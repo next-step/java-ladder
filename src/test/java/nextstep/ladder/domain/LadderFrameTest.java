@@ -9,7 +9,6 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import static nextstep.ladder.domain.PlayersTest.ps;
-import static nextstep.ladder.domain.PrizesTest.pzs;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
@@ -42,13 +41,7 @@ public class LadderFrameTest {
         List<String> results = List.of("r1", "r2");
         LadderFrame frame = lf(players, results);
         assertThat(frame.players()).isEqualTo(ps(players));
-        assertThat(frame.results()).isEqualTo(PrizesTest.pzs(results));
-    }
-
-    @Test
-    public void resultOfGame() {
-        LadderFrame frame = lf(List.of("n1", "n2"), List.of("r1", "r2"));
-        assertThat(frame.resultsOfGame(List.of(1, 0))).isEqualTo(pzs("r2", "r1"));
+        assertThat(frame.prizes()).isEqualTo(PrizesTest.pzs(results));
     }
 
     @Test void railCount() {

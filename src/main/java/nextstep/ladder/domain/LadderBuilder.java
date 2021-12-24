@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.Objects;
 
+import nextstep.ladder.engine.Ladder;
 import nextstep.ladder.engine.LadderPointGenerateStrategy;
 
 public class LadderBuilder implements nextstep.ladder.engine.LadderBuilder {
@@ -20,8 +21,8 @@ public class LadderBuilder implements nextstep.ladder.engine.LadderBuilder {
         return new LadderBuilder(ladderFrame, Height.of(height));
     }
 
-    public nextstep.ladder.engine.Ladder build(LadderPointGenerateStrategy strategy) {
-        return Ladder.of(ladderFrame, height, strategy);
+    public Ladder build(LadderPointGenerateStrategy strategy) {
+        return nextstep.ladder.domain.Ladder.of(ladderFrame, height, strategy);
     }
 
     @Override

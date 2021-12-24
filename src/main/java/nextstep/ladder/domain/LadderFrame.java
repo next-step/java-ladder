@@ -5,6 +5,7 @@ import java.util.Objects;
 
 public class LadderFrame {
     private final Players players;
+    // todo refactor 이게 여기 있으므로 책임과 로직이 모호해짐
     private final Prizes prizes;
 
     private LadderFrame(Players players, Prizes prizes) {
@@ -28,13 +29,8 @@ public class LadderFrame {
         return players;
     }
 
-    public Prizes results() {
+    public Prizes prizes() {
         return prizes;
-    }
-
-    // todo 이렇게 하면 구조는 깔끔해지지만 LadderFrame의 책임이 많아지고 이름과 책임이 맞지 않음
-    public Prizes resultsOfGame(List<Integer> indexes) {
-        return prizes.mapByIndex(indexes);
     }
 
     public RailCount railCount() {

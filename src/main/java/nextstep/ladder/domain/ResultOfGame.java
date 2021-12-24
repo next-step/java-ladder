@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -29,7 +30,10 @@ public class ResultOfGame implements GameResult {
         return new ResultOfGame(playerResultMap);
     }
 
-    public static ResultOfGame of(Players players, Prizes prizes) {
+    public static ResultOfGame of(LadderFrame ladderFrame, List<Integer> resultIndexes) {
+        Players players = ladderFrame.players();
+        Prizes prizes = ladderFrame.prizes().mapByIndex(resultIndexes);
+        // todo lambda style
         return of(players.stream()
                 .collect(Collectors.toMap(
                         Function.identity(),

@@ -69,6 +69,7 @@ public class OutputView {
     public static void printResultOfPlayers(String nameOfUser, GameResult gameResult) {
         System.out.println("실행 결과");
 
+        // todo lambda style
         gameResult.result(nameOfUser)
                 .map(Prize::toString)
                 .or(() -> mapNotExistUser(nameOfUser, gameResult))
@@ -76,12 +77,14 @@ public class OutputView {
     }
 
     public static Optional<String> mapNotExistUser(String nameOfUser, GameResult resultOfGame) {
+        // todo lambda style
         return Optional.of(nameOfUser)
                 .filter(name -> name.equalsIgnoreCase(Command.ALL_COMMAND))
                 .map(name -> parseAllResult(resultOfGame));
     }
 
     public static String parseAllResult(GameResult resultOfGame) {
+        // todo lambda style
         return resultOfGame.stream()
                 .map(entry -> entry.getKey() + NAME_COLON + entry.getValue())
                 .collect(Collectors.joining(NEWLINE));

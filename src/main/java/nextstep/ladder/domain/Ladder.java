@@ -22,6 +22,7 @@ public class Ladder extends FirstClassList<LadderLine> implements nextstep.ladde
             throw new IllegalArgumentException("rail count or height cannot be null");
         }
 
+        // todo lambda style
         List<LadderLine> lines = IntStream.range(0, height.toInt())
                 .mapToObj(index -> LadderLine.init(ladderFrame.railCount(), strategy))
                 .collect(Collectors.toList());
@@ -37,7 +38,7 @@ public class Ladder extends FirstClassList<LadderLine> implements nextstep.ladde
                 .mapToObj(this::downToResult)
                 .collect(Collectors.toList());
 
-        return ResultOfGame.of(ladderFrame.players(), ladderFrame.resultsOfGame(indexes));
+        return ResultOfGame.of(ladderFrame, indexes);
     }
 
     @Override
@@ -47,10 +48,11 @@ public class Ladder extends FirstClassList<LadderLine> implements nextstep.ladde
 
     @Override
     public Prizes prizes() {
-        return ladderFrame.results();
+        return ladderFrame.prizes();
     }
 
     public int downToResult(int index) {
+        // todo lambda style with stream
         for(LadderLine ladderLine: collect()) {
             index = ladderLine.move(index).toInt();
         }
