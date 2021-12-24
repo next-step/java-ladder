@@ -21,26 +21,9 @@ class LineTest {
         assertThat(line).isNotNull();
     }
 
-    @DisplayName("사다리 한줄이 의도적으로 생성되었는지 테스트")
-    @Test
-    void createLineAllTrue() {
-        Point pointTrue = new Point(true);
-        Point pointFalse = new Point(false);
-        List<Point> excepted = Arrays.asList(pointFalse, pointTrue, pointFalse, pointTrue);
-
-        Line line = Line.of(4, () -> true);
-        List<Point> actual = line.getLine();
-
-        assertThat(actual.size()).isEqualTo(excepted.size());
-
-        for (int i =0; i < actual.size(); i++) {
-            assertThat(actual.get(i)).isEqualTo(excepted.get(i));
-        }
-    }
-
     @DisplayName("좌우가 이어진 사다리의 가로 한줄에서의 이동 테스트")
     @ParameterizedTest
-    @CsvSource(value = {"1:2", "2:1", "5:6", "6:5"}, delimiter = ':')
+    @CsvSource(value = {"0:1", "1:0", "2:3", "3:2", "5:4", "4:5"}, delimiter = ':')
     void moveLine(int currentPoint, int result) {
         // 사다리 모양
         // |-| |-| |-|
