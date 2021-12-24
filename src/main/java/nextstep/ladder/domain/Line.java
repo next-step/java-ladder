@@ -19,34 +19,20 @@ public class Line {
     }
 
     public static Line of(int width, LineStrategy lineStrategy) {
+        Point point = Point.first(lineStrategy.draw());
         List<Point> points = new ArrayList<>();
-        points.add(new Point(false));
-        IntStream.range(FIRST_INDEX, width)
+        points.add(point);
+        IntStream.range(FIRST_INDEX, width - 1)
                 .forEach(index -> {
-                    int prevIndex = index - 1;
-                    Point prevPoint = points.get(prevIndex);
-                    points.add(createPoint(prevPoint, lineStrategy));
+                    Point prevPoint = points.get(points.size() -1);
+                    points.add(prevPoint.next(lineStrategy.draw()));
                 });
-        points.add(new Point(false));
+        Point prevPoint = points.get(points.size() -1);
+        points.add(prevPoint.last());
         return new Line(points);
     }
 
-    public int move(int location) {
-        return IntStream.range(FIRST_INDEX, points.size() + FIRST_INDEX)
-                .filter(index -> index == location)
-                .map(current -> current + moveToPoint(points.get(current - 1), points.get(current)))
-                .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
-    }
-
-    private static Point createPoint(Point prev, LineStrategy lineStrategy) {
-        if (prev.isValue()) {
-            return new Point(false);
-        }
-        return new Point(lineStrategy.draw());
-    }
-
-    private int moveToPoint(Point leftPoint, Point currentPoint) {
-        return currentPoint.checkDirection(leftPoint);
+    public int move(int position) {
+        return points.get(position).move();
     }
 }
