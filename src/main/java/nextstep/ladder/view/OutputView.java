@@ -19,20 +19,28 @@ public final class OutputView {
 
     public static void printLadderResult(Users users, Ladder ladder, LadderResults ladderResults) {
         System.out.println(RESULT_FOR_LADDER_OUTPUT_MESSAGE);
-        printUserNames(users);
-        printLadder(ladder);
-        printLadderResults(ladderResults);
+        System.out.printf("%s%n%s%n%s%n", formattedUserNames(users), formattedLadder(ladder), formattedLadderResults(ladderResults));
     }
 
-    // todo: 사다리 실행 사용자 결과 구현
     public static void printExecutionResultForUsers(UserResults userResults, String command) {
         System.out.println(RESULT_FOR_USERS_OUTPUT_MESSAGE);
         Stream.of("pobi : 꽝", "honux : 3000", "crong : 꽝", "jk : 5000")
                 .forEach(System.out::println);
     }
 
-    private static void printLadderResults(LadderResults ladderResults) {
-        System.out.println(ladderResults(ladderResults));
+    private static String formattedUserNames(Users users) {
+        return userNames(users);
+    }
+
+    private static String formattedLadder(Ladder ladder) {
+        return ladder.getLadderLines()
+                .stream()
+                .map(OutputView::ladderLine)
+                .collect(Collectors.joining("\n"));
+    }
+
+    private static String formattedLadderResults(LadderResults ladderResults) {
+        return ladderResults(ladderResults);
     }
 
     private static String ladderResults(LadderResults ladderResults) {
@@ -43,23 +51,12 @@ public final class OutputView {
                 .collect(Collectors.joining());
     }
 
-    private static void printUserNames(Users users) {
-        System.out.println(userNames(users));
-    }
-
     private static String userNames(Users users) {
         return users.getUsers()
                 .stream()
                 .map(User::getName)
                 .map(name -> String.format("%6s", name))
                 .collect(Collectors.joining());
-    }
-
-    private static void printLadder(Ladder ladder) {
-        ladder.getLadderLines()
-                .stream()
-                .map(OutputView::ladderLine)
-                .forEach(System.out::println);
     }
 
     private static String ladderLine(LadderLine ladderLine) {
