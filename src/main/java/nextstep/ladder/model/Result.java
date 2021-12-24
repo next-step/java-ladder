@@ -16,7 +16,7 @@ public class Result extends Name {
         this.index = index;
     }
 
-    public Index getIndex() {
-        return index;
+    public boolean equalsIndex(Index index) {
+        return this.index.equals(index);
     }
 }

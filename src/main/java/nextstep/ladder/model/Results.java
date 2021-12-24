@@ -29,7 +29,8 @@ public class Results {
     }
 
     public Result findResultByIndex(Index index) {
-        return results.stream().filter(result -> index.equals(result.getIndex()))
+        return results.stream()
+                .filter(result -> result.equalsIndex(index))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(MESSAGE_NOT_FOUND));
     }
