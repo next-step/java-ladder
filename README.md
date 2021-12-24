@@ -7,3 +7,17 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+## 구현 목록
+- [x] Player를 만들자
+- [x] Players를 만들자
+- [ ] ~~사다리 라인 수를 받아야 하는지 고민~~
+- [x] Line을 만들자
+  - [x] 포인트 생성 전략을 외부에서 받을 수 있도록 구현
+- [x] Ladder를 만들자
+- [x] View Layer 구현
+- [x] PointCreationStrategy 를 LineCreationStrategy로 변경
+- [x] Line은 연속하는 Point가 없는 리스트를 받아 확인만 하고 생성 로직은 LineCreationStrategy 구현체로 이동
+
+
+## 커밋을 하지 않고 몰아서 하게 된다 어떻게 하면 좋을까
