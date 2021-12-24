@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class PointDirectionTest {
 
@@ -48,5 +49,17 @@ class PointDirectionTest {
     @Test
     void lastNowNoneDirectionTest() {
         assertThat(PointDirection.NONE.last()).isEqualTo(PointDirection.NONE);
+    }
+
+    @Test
+    void moveTest() {
+        // given
+        int currentPosition = 1;
+        // when
+        assertAll(
+                () -> assertThat(PointDirection.NONE.move(currentPosition)).isEqualTo(currentPosition),
+                () -> assertThat(PointDirection.LEFT.move(currentPosition)).isEqualTo(currentPosition - 1),
+                () -> assertThat(PointDirection.RIGHT.move(currentPosition)).isEqualTo(currentPosition + 1)
+        );
     }
 }
