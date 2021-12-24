@@ -49,4 +49,9 @@ public final class LadderLine {
     public List<LadderPoint> getPoints() {
         return Collections.unmodifiableList(points);
     }
+
+    // todo: 일급 컬렉션 리팩토링 필요
+    public int move(int position) {
+        return points.get(position).move();
+    }
 }
