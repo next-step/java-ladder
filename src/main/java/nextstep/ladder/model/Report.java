@@ -20,12 +20,12 @@ public class Report {
     }
 
     public Result findResultByPlayerName(String name) {
-        Player player = playerResults.keySet().stream()
-                .filter(p -> name.equals(p.getName()))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(Players.EXCEPTION_NOT_FOUND_PLAYER));
-
-        return playerResults.get(player);
+        return playerResults.get(
+                playerResults.keySet().stream()
+                        .filter(player -> name.equals(player.getName()))
+                        .findFirst()
+                        .orElseThrow(() -> new IllegalArgumentException(Players.EXCEPTION_NOT_FOUND_PLAYER))
+        );
     }
 
     public Map<Player, Result> getPlayerResults() {
