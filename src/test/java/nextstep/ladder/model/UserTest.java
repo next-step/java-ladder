@@ -6,8 +6,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class UserTest {
-    public static final User USER = new User(UserNameTest.CRONG);
-    private static final String CRONG = "crong";
+    public static final User CRONG = new User(UserNameTest.CRONG);
+    public static final User RYAN = new User(UserNameTest.RYAN);
 
     @Test
     void createTest() {

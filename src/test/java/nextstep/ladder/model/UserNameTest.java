@@ -7,6 +7,7 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 public class UserNameTest {
     public static final UserName CRONG = new UserName("crong");
+    public static final UserName RYAN = new UserName("ryan");
 
     @Test
     void createTest() {
