@@ -34,6 +34,8 @@ public class Point {
         return new Point(0, Direction.first(right));
     }
 
+
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Point{");
@@ -41,5 +43,9 @@ public class Point {
         sb.append(", direction=").append(direction);
         sb.append('}');
         return sb.toString();
+    }
+
+    public Point last() {
+        return new Point(index + 1, direction.last());
     }
 }
