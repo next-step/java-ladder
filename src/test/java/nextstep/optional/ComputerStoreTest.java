@@ -4,6 +4,8 @@ import nextstep.optional.Computer.Soundcard;
 import nextstep.optional.Computer.USB;
 import org.junit.jupiter.api.Test;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ComputerStoreTest {
@@ -37,23 +39,38 @@ public class ComputerStoreTest {
         String version = "pobi's usb";
         Soundcard soundcard = new Soundcard(new USB(version));
         Computer computer = new Computer(soundcard);
-        assertThat(ComputerStore.getVersionOptional(computer)).isEqualTo(version);
+
+        Optional<String> versionOptional = ComputerStore.getVersionOptional(computer);
+
+        assertThat(versionOptional.isPresent()).isTrue();
+        assertThat(versionOptional.get()).isEqualTo(version);
     }
 
     @Test
     public void getVersionOptionalWhenComputerIsNull() throws Exception {
-        assertThat(ComputerStore.getVersionOptional(null)).isEqualTo(ComputerStore.UNKNOWN_VERSION);
+        Optional<String> versionOptional = ComputerStore.getVersionOptional(null);
+
+        assertThat(versionOptional.isPresent()).isTrue();
+        assertThat(versionOptional.get()).isEqualTo(ComputerStore.UNKNOWN_VERSION);
     }
 
     @Test
     public void getVersionOptionalWhenSoundcardIsNull() throws Exception {
         Computer computer = new Computer(null);
-        assertThat(ComputerStore.getVersionOptional(computer)).isEqualTo(ComputerStore.UNKNOWN_VERSION);
+
+        Optional<String> versionOptional = ComputerStore.getVersionOptional(computer);
+
+        assertThat(versionOptional.isPresent()).isTrue();
+        assertThat(versionOptional.get()).isEqualTo(ComputerStore.UNKNOWN_VERSION);
     }
 
     @Test
     public void getVersionOptionalWhenUSBIsNull() throws Exception {
         Computer computer = new Computer(new Soundcard(null));
-        assertThat(ComputerStore.getVersionOptional(computer)).isEqualTo(ComputerStore.UNKNOWN_VERSION);
+
+        Optional<String> versionOptional = ComputerStore.getVersionOptional(computer);
+
+        assertThat(versionOptional.isPresent()).isTrue();
+        assertThat(versionOptional.get()).isEqualTo(ComputerStore.UNKNOWN_VERSION);
     }
 }
