@@ -23,6 +23,16 @@ public final class Ladder {
     public List<LadderLine> getLadderLines() {
         return Collections.unmodifiableList(ladderLines);
     }
+
+    public int move(int index) {
+        for (LadderLine ladderLine : ladderLines) {
+            index = ladderLine.move(index);
+        }
+        return index;
+    }
+
+    public int height() {
+        return ladderLines.size();
     }
 
     private static void validate(int height) {
