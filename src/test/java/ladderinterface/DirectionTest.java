@@ -52,4 +52,11 @@ public class DirectionTest {
         assertThat(direction.isDown()).isTrue();
     }
 
+    @DisplayName("이전 점이 true면 현재 점은 무조건 false")
+    @Test
+    void random() {
+        Direction direction = Direction.first(true).nextRandom();
+        assertThat(direction).isEqualTo(Direction.of(true, false));
+    }
+
 }

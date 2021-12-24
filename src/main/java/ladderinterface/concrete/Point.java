@@ -19,6 +19,14 @@ public class Point {
         return new Point(0, Direction.first(current));
     }
 
+    public Point last() {
+        return new Point(position + 1, direction.last());
+    }
+
+    public Point nextRandom() {
+        return new Point(position + 1, direction.nextRandom());
+    }
+
     public Point next(boolean current) {
         return new Point(position + 1 , direction.next(current));
     }
