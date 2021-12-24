@@ -29,7 +29,7 @@ public final class OutputView {
     }
 
     // todo: 사다리 실행 사용자 결과 구현
-    public static void printExecutionResultForUsers(String command) {
+    public static void printExecutionResultForUsers(UserResults userResults, String command) {
         System.out.println(RESULT_FOR_USERS_OUTPUT_MESSAGE);
         Stream.of("pobi : 꽝", "honux : 3000", "crong : 꽝", "jk : 5000")
                 .forEach(System.out::println);
@@ -48,7 +48,7 @@ public final class OutputView {
     }
 
     private static void printLadder(Ladder ladder) {
-        ladder.getLadders()
+        ladder.getLadderLines()
                 .stream()
                 .map(OutputView::ladderLine)
                 .forEach(System.out::println);

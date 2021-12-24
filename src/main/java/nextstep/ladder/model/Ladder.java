@@ -9,10 +9,10 @@ import java.util.stream.IntStream;
 public final class Ladder {
     private static final int MIN_HEIGHT = 1;
 
-    private final List<LadderLine> ladders;
+    private final List<LadderLine> ladderLines;
 
     private Ladder(List<LadderLine> ladders) {
-        this.ladders = new ArrayList<>(ladders);
+        this.ladderLines = new ArrayList<>(ladders);
     }
 
     public static Ladder initate(int userSize, int height) {
@@ -20,8 +20,9 @@ public final class Ladder {
         return new Ladder(ladderLines(userSize, height));
     }
 
-    public List<LadderLine> getLadders() {
-        return Collections.unmodifiableList(ladders);
+    public List<LadderLine> getLadderLines() {
+        return Collections.unmodifiableList(ladderLines);
+    }
     }
 
     private static void validate(int height) {
