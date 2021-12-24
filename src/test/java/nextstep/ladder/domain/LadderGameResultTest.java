@@ -13,15 +13,15 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import static nextstep.ladder.domain.PlayerNameTest.pn;
-import static nextstep.ladder.domain.PrizeTest.pz;
+import static nextstep.ladder.domain.LadderPrizeTest.pz;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-public class ResultOfGameTest {
+public class LadderGameResultTest {
     @Test
     public void create() {
         Map<Name, Prize> resultMap = Map.of(pn("p1"), pz("r1"), pn("p2"), pz("r2"));
-        assertThat(ResultOfGame.of(resultMap)).isEqualTo(ResultOfGame.of(resultMap));
+        assertThat(LadderGameResult.of(resultMap)).isEqualTo(LadderGameResult.of(resultMap));
     }
 
     static Stream<Arguments> parseCreateFailed() {
@@ -35,7 +35,7 @@ public class ResultOfGameTest {
     @MethodSource("parseCreateFailed")
     public void createFailed(Map<Name, Prize> playerResultMap) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> ResultOfGame.of(playerResultMap));
+                .isThrownBy(() -> LadderGameResult.of(playerResultMap));
     }
 
     @Test
@@ -43,20 +43,20 @@ public class ResultOfGameTest {
         String p1 = "p1";
         String r1 ="r1";
         Map<Name, Prize> resultMap = Map.of(pn(p1), pz(r1), pn("p2"), pz("r2"));
-        assertThat(ResultOfGame.of(resultMap).result(p1).isPresent()).isTrue();
-        assertThat(ResultOfGame.of(resultMap).result(p1)).isEqualTo(Optional.of(pz(r1)));
+        assertThat(LadderGameResult.of(resultMap).result(p1).isPresent()).isTrue();
+        assertThat(LadderGameResult.of(resultMap).result(p1)).isEqualTo(Optional.of(pz(r1)));
     }
 
     @Test
     public void resultNotExist() {
         Map<Name, Prize> resultMap = Map.of(pn("p1"), pz("r1"), pn("p2"), pz("r2"));
-        assertThat(ResultOfGame.of(resultMap).result("p3").isPresent()).isFalse();
-        assertThat(ResultOfGame.of(resultMap).result("p3")).isEqualTo(Optional.empty());
+        assertThat(LadderGameResult.of(resultMap).result("p3").isPresent()).isFalse();
+        assertThat(LadderGameResult.of(resultMap).result("p3")).isEqualTo(Optional.empty());
     }
 
     @Test
     public void stream() {
         Map<Name, Prize> resultMap = Map.of(pn("p1"), pz("r1"), pn("p2"), pz("r2"));
-        assertThat(ResultOfGame.of(resultMap).stream()).hasSameElementsAs(resultMap.entrySet());
+        assertThat(LadderGameResult.of(resultMap).stream()).hasSameElementsAs(resultMap.entrySet());
     }
 }

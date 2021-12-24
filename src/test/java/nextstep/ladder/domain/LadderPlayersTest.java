@@ -14,10 +14,10 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-public class PlayersTest {
+public class LadderPlayersTest {
     @Test
     public void create() {
-        assertThat(Players.of(List.of("name1", "name2"))).isEqualTo(Players.of(List.of("name1", "name2")));
+        assertThat(LadderPlayers.of(List.of("name1", "name2"))).isEqualTo(LadderPlayers.of(List.of("name1", "name2")));
     }
 
     static Stream<Arguments> parseCreateFailed() {
@@ -31,20 +31,20 @@ public class PlayersTest {
     @MethodSource("parseCreateFailed")
     public void createFailed(List<String> names) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> Players.of(names));
+                .isThrownBy(() -> LadderPlayers.of(names));
     }
 
     @Test
     public void stream() {
         final List<String> names = List.of("name1", "name2");
-        assertThat(Players.of(names).stream()).hasSameElementsAs(names.stream().map(PlayerName::of).collect(Collectors.toList()));
+        assertThat(LadderPlayers.of(names).stream()).hasSameElementsAs(names.stream().map(PlayerName::of).collect(Collectors.toList()));
     }
 
-    public static Players ps(String ... names) {
-        return Players.of(Arrays.asList(names));
+    public static LadderPlayers ps(String ... names) {
+        return LadderPlayers.of(Arrays.asList(names));
     }
 
-    public static Players ps(List<String> names) {
-        return Players.of(names);
+    public static LadderPlayers ps(List<String> names) {
+        return LadderPlayers.of(names);
     }
 }

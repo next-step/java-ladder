@@ -8,12 +8,12 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-public class PrizeTest {
+public class LadderPrizeTest {
     @Test
     public void create() {
         final String prize = "result";
-        assertThat(Prize.of(prize)).isEqualTo(Prize.of(prize));
-        assertThat(Prize.of(prize).toString()).isEqualTo(prize);
+        assertThat(LadderPrize.of(prize)).isEqualTo(LadderPrize.of(prize));
+        assertThat(LadderPrize.of(prize).toString()).isEqualTo(prize);
     }
 
     @ParameterizedTest(name = "create failed : [{arguments}]")
@@ -21,11 +21,11 @@ public class PrizeTest {
     @ValueSource(strings = " ")
     public void createFailed(String result) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> Prize.of(result))
+                .isThrownBy(() -> LadderPrize.of(result))
                 .withMessageContaining("cannot be null or empty");
     }
 
-    public static Prize pz(String result) {
-        return Prize.of(result);
+    public static LadderPrize pz(String result) {
+        return LadderPrize.of(result);
     }
 }

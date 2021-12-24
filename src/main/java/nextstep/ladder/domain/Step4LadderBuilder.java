@@ -3,33 +3,34 @@ package nextstep.ladder.domain;
 import java.util.Objects;
 
 import nextstep.ladder.engine.Ladder;
+import nextstep.ladder.engine.LadderBuilder;
 import nextstep.ladder.engine.LadderPointGenerateStrategy;
 
-public class LadderBuilder implements nextstep.ladder.engine.LadderBuilder {
+public class Step4LadderBuilder implements LadderBuilder {
     private final LadderFrame ladderFrame;
     private final Height height;
 
-    private LadderBuilder(final LadderFrame ladderFrame, final Height height) {
+    private Step4LadderBuilder(final LadderFrame ladderFrame, final Height height) {
         this.ladderFrame = ladderFrame;
         this.height = height;
     }
 
-    public static LadderBuilder of(LadderFrame ladderFrame, int height) {
+    public static Step4LadderBuilder of(LadderFrame ladderFrame, int height) {
         if (ladderFrame == null) {
             throw new IllegalArgumentException("invalid frame: cannot be null");
         }
-        return new LadderBuilder(ladderFrame, Height.of(height));
+        return new Step4LadderBuilder(ladderFrame, Height.of(height));
     }
 
     public Ladder build(LadderPointGenerateStrategy strategy) {
-        return nextstep.ladder.domain.Ladder.of(ladderFrame, height, strategy);
+        return Step4Ladder.of(ladderFrame, height, strategy);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        LadderBuilder that = (LadderBuilder) o;
+        Step4LadderBuilder that = (Step4LadderBuilder) o;
         return Objects.equals(ladderFrame, that.ladderFrame) && Objects.equals(height, that.height);
     }
 

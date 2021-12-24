@@ -13,31 +13,31 @@ import nextstep.ladder.engine.GameResult;
 import nextstep.ladder.engine.Name;
 import nextstep.ladder.engine.Prize;
 
-public class ResultOfGame implements GameResult {
+public class LadderGameResult implements GameResult {
     private final Map<Name, Prize> playerResultMap;
 
-    private ResultOfGame(Map<Name, Prize> playerResultMap) {
+    private LadderGameResult(Map<Name, Prize> playerResultMap) {
         this.playerResultMap = Collections.unmodifiableMap(playerResultMap);
     }
 
-    public static ResultOfGame of(Map<Name, Prize> playerResultMap) {
+    public static LadderGameResult of(Map<Name, Prize> playerResultMap) {
         if (playerResultMap == null) {
             throw new IllegalArgumentException("invalid input: result map cannot be null");
         }
 
         RailCount.validate(playerResultMap.size());
 
-        return new ResultOfGame(playerResultMap);
+        return new LadderGameResult(playerResultMap);
     }
 
-    public static ResultOfGame of(LadderFrame ladderFrame, List<Integer> resultIndexes) {
-        Players players = ladderFrame.players();
-        Prizes prizes = ladderFrame.prizes().mapByIndex(resultIndexes);
+    public static LadderGameResult of(LadderFrame ladderFrame, List<Integer> resultIndexes) {
+        LadderPlayers ladderPlayers = ladderFrame.players();
+        LadderPrizes ladderPrizes = ladderFrame.prizes().mapByIndex(resultIndexes);
         // todo lambda style
-        return of(players.stream()
+        return of(ladderPlayers.stream()
                 .collect(Collectors.toMap(
                         Function.identity(),
-                        player -> prizes.elementOf(players.indexOf(player))
+                        player -> ladderPrizes.elementOf(ladderPlayers.indexOf(player))
                 )));
     }
 
@@ -54,7 +54,7 @@ public class ResultOfGame implements GameResult {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ResultOfGame that = (ResultOfGame) o;
+        LadderGameResult that = (LadderGameResult) o;
         return Objects.equals(playerResultMap, that.playerResultMap);
     }
 

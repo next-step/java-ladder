@@ -5,26 +5,27 @@ import java.util.stream.Collectors;
 
 import nextstep.ladder.engine.FirstClassList;
 import nextstep.ladder.engine.Prize;
+import nextstep.ladder.engine.Prizes;
 
-public class Prizes extends FirstClassList<Prize> implements nextstep.ladder.engine.Prizes {
-    private Prizes(final List<Prize> prizes) {
+public class LadderPrizes extends FirstClassList<Prize> implements Prizes {
+    private LadderPrizes(final List<Prize> prizes) {
         super(prizes);
     }
 
-    public static Prizes fromString(final List<String> results) {
+    public static LadderPrizes fromString(final List<String> results) {
         if (results == null) {
             throw new IllegalArgumentException("invalid results: cannot be null or empty");
         }
 
         RailCount.validate(results.size());
 
-        return new Prizes(results.stream()
-                .map(nextstep.ladder.domain.Prize::of)
+        return new LadderPrizes(results.stream()
+                .map(LadderPrize::of)
                 .collect(Collectors.toList()));
     }
 
-    public Prizes mapByIndex(List<Integer> indexes) {
-        return new Prizes(indexes.stream()
+    public LadderPrizes mapByIndex(List<Integer> indexes) {
+        return new LadderPrizes(indexes.stream()
                 .map(this::elementOf)
                 .collect(Collectors.toList()));
     }

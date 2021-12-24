@@ -11,24 +11,24 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import static nextstep.ladder.domain.HeightTest.h;
-import static nextstep.ladder.domain.LadderFrameTest.lf;
-import static nextstep.ladder.domain.LadderFrameTest.simpleLF;
+import static nextstep.ladder.domain.ConcreteLadderFrameTest.lf;
+import static nextstep.ladder.domain.ConcreteLadderFrameTest.simpleLF;
 import static nextstep.ladder.domain.PlayerNameTest.pn;
-import static nextstep.ladder.domain.PlayersTest.ps;
-import static nextstep.ladder.domain.PrizeTest.pz;
-import static nextstep.ladder.domain.PrizesTest.pzs;
+import static nextstep.ladder.domain.LadderPlayersTest.ps;
+import static nextstep.ladder.domain.LadderPrizeTest.pz;
+import static nextstep.ladder.domain.LadderPrizesTest.pzs;
 import static nextstep.ladder.domain.TestLadderPointStrategy.NO_LINE_STRATEGY;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-public class LadderTest {
+public class Step4LadderTest {
     @Test
     public void create() {
         final LadderFrame ladderFrame = lf(List.of("p1", "p2", "p3"), List.of("r1", "r2", "r3"));
         final Height height = h(5);
         final LadderPointGenerateStrategy strategy = NO_LINE_STRATEGY;
 
-        assertThat(Ladder.of(ladderFrame, height, strategy)).isEqualTo(Ladder.of(ladderFrame, height, strategy));
+        assertThat(Step4Ladder.of(ladderFrame, height, strategy)).isEqualTo(Step4Ladder.of(ladderFrame, height, strategy));
     }
 
     static Stream<Arguments> parseInvalidLadder() {
@@ -43,25 +43,25 @@ public class LadderTest {
     @MethodSource("parseInvalidLadder")
     public void createFailed(LadderFrame ladderFrame, Height height, LadderPointGenerateStrategy strategy) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> Ladder.of(ladderFrame, height, strategy));
+                .isThrownBy(() -> Step4Ladder.of(ladderFrame, height, strategy));
     }
 
     @Test
     public void stream() {
         final int height = 5;
         final LadderPointGenerateStrategy strategy = NO_LINE_STRATEGY;
-        assertThat(Ladder.of(simpleLF, height, strategy).stream()).hasSize(height);
-        assertThat(Ladder.of(simpleLF, height, strategy).stream()).hasOnlyElementsOfType(LadderLine.class);
+        assertThat(Step4Ladder.of(simpleLF, height, strategy).stream()).hasSize(height);
+        assertThat(Step4Ladder.of(simpleLF, height, strategy).stream()).hasOnlyElementsOfType(LadderLine.class);
     }
 
     static Stream<Arguments> parseLadderResult() {
         return Stream.of(
                 Arguments.of(simpleLF, 2, NO_LINE_STRATEGY,
-                        ResultOfGame.of(Map.of(pn("p1"), pz("r1"), pn("p2"), pz("r2")))),
+                        LadderGameResult.of(Map.of(pn("p1"), pz("r1"), pn("p2"), pz("r2")))),
                 Arguments.of(simpleLF, 1, TestLadderPointStrategy.reverseLineStrategy(),
-                        ResultOfGame.of(Map.of(pn("p1"), pz("r2"), pn("p2"), pz("r1")))),
+                        LadderGameResult.of(Map.of(pn("p1"), pz("r2"), pn("p2"), pz("r1")))),
                 Arguments.of(simpleLF, 3, TestLadderPointStrategy.reverseLineStrategy(),
-                        ResultOfGame.of(Map.of(pn("p1"), pz("r1"), pn("p2"), pz("r2"))))
+                        LadderGameResult.of(Map.of(pn("p1"), pz("r1"), pn("p2"), pz("r2"))))
         );
     }
 
@@ -77,11 +77,11 @@ public class LadderTest {
 
     @ParameterizedTest(name = "result of ladder: {arguments}")
     @MethodSource("parseLadderResult")
-    public void result(LadderFrame ladderFrame, int height, LadderPointGenerateStrategy strategy, ResultOfGame expected) {
+    public void result(LadderFrame ladderFrame, int height, LadderPointGenerateStrategy strategy, LadderGameResult expected) {
         assertThat(l(ladderFrame, height, strategy).result()).isEqualTo(expected);
     }
 
-    public static Ladder l(LadderFrame ladderFrame, int height, LadderPointGenerateStrategy strategy) {
-        return Ladder.of(ladderFrame, height, strategy);
+    public static Step4Ladder l(LadderFrame ladderFrame, int height, LadderPointGenerateStrategy strategy) {
+        return Step4Ladder.of(ladderFrame, height, strategy);
     }
 }

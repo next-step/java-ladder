@@ -4,13 +4,13 @@ import java.util.List;
 import java.util.Objects;
 
 public class LadderFrame {
-    private final Players players;
+    private final LadderPlayers ladderPlayers;
     // todo refactor 이게 여기 있으므로 책임과 로직이 모호해짐
-    private final Prizes prizes;
+    private final LadderPrizes ladderPrizes;
 
-    private LadderFrame(Players players, Prizes prizes) {
-        this.players = players;
-        this.prizes = prizes;
+    private LadderFrame(LadderPlayers ladderPlayers, LadderPrizes ladderPrizes) {
+        this.ladderPlayers = ladderPlayers;
+        this.ladderPrizes = ladderPrizes;
     }
 
     public static LadderFrame of(List<String> players, List<String> results) {
@@ -22,19 +22,19 @@ public class LadderFrame {
             throw new IllegalArgumentException("players and results count is not matched");
         }
 
-        return new LadderFrame(Players.of(players), Prizes.fromString(results));
+        return new LadderFrame(LadderPlayers.of(players), LadderPrizes.fromString(results));
     }
 
-    public Players players() {
-        return players;
+    public LadderPlayers players() {
+        return ladderPlayers;
     }
 
-    public Prizes prizes() {
-        return prizes;
+    public LadderPrizes prizes() {
+        return ladderPrizes;
     }
 
     public RailCount railCount() {
-        return RailCount.of(players.size());
+        return RailCount.of(ladderPlayers.size());
     }
 
     @Override
@@ -42,19 +42,19 @@ public class LadderFrame {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LadderFrame that = (LadderFrame) o;
-        return Objects.equals(players, that.players) && Objects.equals(prizes, that.prizes);
+        return Objects.equals(ladderPlayers, that.ladderPlayers) && Objects.equals(ladderPrizes, that.ladderPrizes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(players, prizes);
+        return Objects.hash(ladderPlayers, ladderPrizes);
     }
 
     @Override
     public String toString() {
         return "LadderFrame{" +
-                "players=" + players +
-                ", results=" + prizes +
+                "players=" + ladderPlayers +
+                ", results=" + ladderPrizes +
                 '}';
     }
 }

@@ -10,31 +10,31 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-public class PrizesTest {
+public class LadderPrizesTest {
     @Test
     public void create() {
         final List<String> results = List.of("result1", "result2", "result3");
-        assertThat(Prizes.fromString(results)).isEqualTo(Prizes.fromString(results));
+        assertThat(LadderPrizes.fromString(results)).isEqualTo(LadderPrizes.fromString(results));
     }
 
     @ParameterizedTest(name = "create failed : [{arguments}]")
     @NullAndEmptySource
     public void createFailed(List<String> results) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> Prizes.fromString(results));
+                .isThrownBy(() -> LadderPrizes.fromString(results));
     }
 
     @Test
     public void mapByIndex() {
-        final Prizes prizes = Prizes.fromString(List.of("r1", "r2", "r3"));
-        assertThat(prizes.mapByIndex(List.of(1, 0, 2))).isEqualTo(pzs("r2", "r1", "r3"));
+        final LadderPrizes ladderPrizes = LadderPrizes.fromString(List.of("r1", "r2", "r3"));
+        assertThat(ladderPrizes.mapByIndex(List.of(1, 0, 2))).isEqualTo(pzs("r2", "r1", "r3"));
     }
 
     public static nextstep.ladder.engine.Prizes pzs(String ... results) {
-        return Prizes.fromString(Arrays.asList(results));
+        return LadderPrizes.fromString(Arrays.asList(results));
     }
 
     public static nextstep.ladder.engine.Prizes pzs(List<String> results) {
-        return Prizes.fromString(results);
+        return LadderPrizes.fromString(results);
     }
 }

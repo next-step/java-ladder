@@ -6,18 +6,19 @@ import java.util.stream.IntStream;
 
 import nextstep.ladder.engine.FirstClassList;
 import nextstep.ladder.engine.GameResult;
+import nextstep.ladder.engine.Ladder;
 import nextstep.ladder.engine.Players;
 import nextstep.ladder.engine.LadderPointGenerateStrategy;
 
-public class Ladder extends FirstClassList<LadderLine> implements nextstep.ladder.engine.Ladder {
+public class Step4Ladder extends FirstClassList<LadderLine> implements Ladder {
     private final LadderFrame ladderFrame;
 
-    private Ladder(final List<LadderLine> lines, final LadderFrame ladderFrame) {
+    private Step4Ladder(final List<LadderLine> lines, final LadderFrame ladderFrame) {
         super(lines);
         this.ladderFrame = ladderFrame;
     }
 
-    public static Ladder of(final LadderFrame ladderFrame, final Height height, LadderPointGenerateStrategy strategy) {
+    public static Step4Ladder of(final LadderFrame ladderFrame, final Height height, LadderPointGenerateStrategy strategy) {
         if (ladderFrame == null || height == null) {
             throw new IllegalArgumentException("rail count or height cannot be null");
         }
@@ -26,10 +27,10 @@ public class Ladder extends FirstClassList<LadderLine> implements nextstep.ladde
         List<LadderLine> lines = IntStream.range(0, height.toInt())
                 .mapToObj(index -> LadderLine.init(ladderFrame.railCount(), strategy))
                 .collect(Collectors.toList());
-        return new Ladder(lines, ladderFrame);
+        return new Step4Ladder(lines, ladderFrame);
     }
 
-    public static Ladder of(final LadderFrame ladderFrame, final int height, final LadderPointGenerateStrategy strategy) {
+    public static Step4Ladder of(final LadderFrame ladderFrame, final int height, final LadderPointGenerateStrategy strategy) {
         return of(ladderFrame, Height.of(height), strategy);
     }
 
@@ -38,7 +39,7 @@ public class Ladder extends FirstClassList<LadderLine> implements nextstep.ladde
                 .mapToObj(this::downToResult)
                 .collect(Collectors.toList());
 
-        return ResultOfGame.of(ladderFrame, indexes);
+        return LadderGameResult.of(ladderFrame, indexes);
     }
 
     @Override
@@ -47,7 +48,7 @@ public class Ladder extends FirstClassList<LadderLine> implements nextstep.ladde
     }
 
     @Override
-    public Prizes prizes() {
+    public LadderPrizes prizes() {
         return ladderFrame.prizes();
     }
 
