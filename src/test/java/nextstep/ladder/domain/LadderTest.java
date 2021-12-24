@@ -16,7 +16,7 @@ import static nextstep.ladder.domain.LadderFrameTest.simpleLF;
 import static nextstep.ladder.domain.PlayerNameTest.pn;
 import static nextstep.ladder.domain.PlayersTest.ps;
 import static nextstep.ladder.domain.PrizeTest.pz;
-import static nextstep.ladder.domain.PrizesTest.rs;
+import static nextstep.ladder.domain.PrizesTest.pzs;
 import static nextstep.ladder.domain.TestLadderPointStrategy.NO_LINE_STRATEGY;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -71,14 +71,14 @@ public class LadderTest {
         List<String> results = List.of("r1", "r2");
         LadderFrame frame = lf(players, results);
         assertThat(l(frame, 5, NO_LINE_STRATEGY).players()).isEqualTo(ps(players));
-        assertThat(l(frame, 5, NO_LINE_STRATEGY).prizes()).isEqualTo(rs(results));
+        assertThat(l(frame, 5, NO_LINE_STRATEGY).prizes()).isEqualTo(pzs(results));
     }
 
 
     @ParameterizedTest(name = "result of ladder: {arguments}")
     @MethodSource("parseLadderResult")
     public void result(LadderFrame ladderFrame, int height, LadderPointGenerateStrategy strategy, ResultOfGame expected) {
-        assertThat(l(ladderFrame, height, strategy).resultOfGame()).isEqualTo(expected);
+        assertThat(l(ladderFrame, height, strategy).result()).isEqualTo(expected);
     }
 
     public static Ladder l(LadderFrame ladderFrame, int height, LadderPointGenerateStrategy strategy) {

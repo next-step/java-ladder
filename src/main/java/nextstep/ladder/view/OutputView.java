@@ -5,16 +5,13 @@ import java.util.stream.Collectors;
 
 // todo view에서 LadderGame을 보면 안된다
 import nextstep.ladder.LadderGame;
-// todo domain을 너무 많이 본다
-import nextstep.ladder.domain.PlayerName;
-import nextstep.ladder.domain.Prize;
-import nextstep.ladder.domain.ResultOfGame;
-import nextstep.ladder.domain.Prizes;
-// todo 최대한 engine만 보도록
+import nextstep.ladder.engine.GameResult;
 import nextstep.ladder.engine.Ladder;
 import nextstep.ladder.engine.Line;
 import nextstep.ladder.engine.Name;
 import nextstep.ladder.engine.Players;
+import nextstep.ladder.engine.Prize;
+import nextstep.ladder.engine.Prizes;
 
 public class OutputView {
     private static final String NAME_FORMAT = "%" + (Name.LENGTH_LIMIT + 1) + "s";
@@ -71,23 +68,23 @@ public class OutputView {
         printResult(ladder.prizes());
     }
 
-    public static void printResultOfPlayers(String nameOfUser, ResultOfGame resultOfGame) {
+    public static void printResultOfPlayers(String nameOfUser, GameResult gameResult) {
         System.out.println("실행 결과");
 
-        resultOfGame.result(PlayerName.of(nameOfUser))
+        gameResult.result(nameOfUser)
                 .map(Prize::toString)
-                .or(() -> mapNotExistUser(nameOfUser, resultOfGame))
+                .or(() -> mapNotExistUser(nameOfUser, gameResult))
                 .ifPresent(System.out::println);
     }
 
-    public static Optional<String> mapNotExistUser(String nameOfUser, ResultOfGame resultOfGame) {
+    public static Optional<String> mapNotExistUser(String nameOfUser, GameResult resultOfGame) {
         return Optional.of(nameOfUser)
                 .filter(name -> name.equalsIgnoreCase(LadderGame.ALL_COMMAND))
                 .map(name -> parseAllResult(resultOfGame));
     }
 
-    public static String parseAllResult(ResultOfGame resultOfGame) {
-        return resultOfGame.streamOfEntry()
+    public static String parseAllResult(GameResult resultOfGame) {
+        return resultOfGame.stream()
                 .map(entry -> entry.getKey() + NAME_COLON + entry.getValue())
                 .collect(Collectors.joining(NEWLINE));
     }

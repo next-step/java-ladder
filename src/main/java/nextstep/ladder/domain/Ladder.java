@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import nextstep.ladder.engine.FirstClassList;
+import nextstep.ladder.engine.GameResult;
 import nextstep.ladder.engine.Players;
 import nextstep.ladder.engine.LadderPointGenerateStrategy;
 
@@ -31,7 +32,7 @@ public class Ladder extends FirstClassList<LadderLine> implements nextstep.ladde
         return of(ladderFrame, Height.of(height), strategy);
     }
 
-    public ResultOfGame resultOfGame() {
+    public GameResult result() {
         List<Integer> indexes = IntStream.range(0, ladderFrame.railCount().toInt())
                 .mapToObj(this::downToResult)
                 .collect(Collectors.toList());

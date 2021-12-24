@@ -4,8 +4,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import nextstep.ladder.engine.FirstClassList;
+import nextstep.ladder.engine.Prize;
 
-public class Prizes extends FirstClassList<Prize> {
+public class Prizes extends FirstClassList<Prize> implements nextstep.ladder.engine.Prizes {
     private Prizes(final List<Prize> prizes) {
         super(prizes);
     }
@@ -18,7 +19,7 @@ public class Prizes extends FirstClassList<Prize> {
         RailCount.validate(results.size());
 
         return new Prizes(results.stream()
-                .map(Prize::of)
+                .map(nextstep.ladder.domain.Prize::of)
                 .collect(Collectors.toList()));
     }
 

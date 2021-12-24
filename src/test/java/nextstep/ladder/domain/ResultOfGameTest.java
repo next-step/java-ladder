@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 import nextstep.ladder.engine.Name;
+import nextstep.ladder.engine.Prize;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -39,23 +40,23 @@ public class ResultOfGameTest {
 
     @Test
     public void resultExist() {
-        PlayerName p1 = pn("p1");
-        Prize r1 = pz("r1");
-        Map<Name, Prize> resultMap = Map.of(p1, r1, pn("p2"), pz("r2"));
+        String p1 = "p1";
+        String r1 ="r1";
+        Map<Name, Prize> resultMap = Map.of(pn(p1), pz(r1), pn("p2"), pz("r2"));
         assertThat(ResultOfGame.of(resultMap).result(p1).isPresent()).isTrue();
-        assertThat(ResultOfGame.of(resultMap).result(p1)).isEqualTo(Optional.of(r1));
+        assertThat(ResultOfGame.of(resultMap).result(p1)).isEqualTo(Optional.of(pz(r1)));
     }
 
     @Test
     public void resultNotExist() {
         Map<Name, Prize> resultMap = Map.of(pn("p1"), pz("r1"), pn("p2"), pz("r2"));
-        assertThat(ResultOfGame.of(resultMap).result(pn("p3")).isPresent()).isFalse();
-        assertThat(ResultOfGame.of(resultMap).result(pn("p3"))).isEqualTo(Optional.empty());
+        assertThat(ResultOfGame.of(resultMap).result("p3").isPresent()).isFalse();
+        assertThat(ResultOfGame.of(resultMap).result("p3")).isEqualTo(Optional.empty());
     }
 
     @Test
     public void stream() {
         Map<Name, Prize> resultMap = Map.of(pn("p1"), pz("r1"), pn("p2"), pz("r2"));
-        assertThat(ResultOfGame.of(resultMap).streamOfEntry()).hasSameElementsAs(resultMap.entrySet());
+        assertThat(ResultOfGame.of(resultMap).stream()).hasSameElementsAs(resultMap.entrySet());
     }
 }

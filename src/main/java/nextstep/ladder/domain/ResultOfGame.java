@@ -8,9 +8,11 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import nextstep.ladder.engine.GameResult;
 import nextstep.ladder.engine.Name;
+import nextstep.ladder.engine.Prize;
 
-public class ResultOfGame {
+public class ResultOfGame implements GameResult {
     private final Map<Name, Prize> playerResultMap;
 
     private ResultOfGame(Map<Name, Prize> playerResultMap) {
@@ -35,11 +37,11 @@ public class ResultOfGame {
                 )));
     }
 
-    public Optional<Prize> result(PlayerName playerName) {
-        return Optional.ofNullable(playerResultMap.get(playerName));
+    public Optional<Prize> result(String playerName) {
+        return Optional.ofNullable(playerResultMap.get(PlayerName.of(playerName)));
     }
 
-    public Stream<Map.Entry<Name, Prize>> streamOfEntry() {
+    public Stream<Map.Entry<Name, Prize>> stream() {
         return playerResultMap.entrySet()
                 .stream();
     }

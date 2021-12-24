@@ -4,7 +4,7 @@ import java.util.List;
 
 import nextstep.ladder.domain.LadderFrame;
 import nextstep.ladder.domain.RandomLadderPointStrategy;
-import nextstep.ladder.domain.ResultOfGame;
+import nextstep.ladder.engine.GameResult;
 import nextstep.ladder.engine.Ladder;
 import nextstep.ladder.engine.LadderBuilder;
 import nextstep.ladder.view.InputView;
@@ -25,7 +25,7 @@ public class LadderGame {
 
         OutputView.printLadder(ladder);
 
-        ResultOfGame resultOfGame = ladder.resultOfGame();
+        GameResult gameResult = ladder.result();
 
         String nameOfUser = "";
         while(!nameOfUser.equalsIgnoreCase(QUIT_COMMAND)) {
@@ -34,7 +34,7 @@ public class LadderGame {
                 break;
             }
 
-            OutputView.printResultOfPlayers(nameOfUser, resultOfGame);
+            OutputView.printResultOfPlayers(nameOfUser, gameResult);
         }
     }
 }

@@ -26,15 +26,15 @@ public class PrizesTest {
 
     @Test
     public void mapByIndex() {
-        final Prizes prizes = rs("r1", "r2", "r3");
-        assertThat(prizes.mapByIndex(List.of(1, 0, 2))).isEqualTo(rs("r2", "r1", "r3"));
+        final Prizes prizes = Prizes.fromString(List.of("r1", "r2", "r3"));
+        assertThat(prizes.mapByIndex(List.of(1, 0, 2))).isEqualTo(pzs("r2", "r1", "r3"));
     }
 
-    public static Prizes rs(String ... results) {
+    public static nextstep.ladder.engine.Prizes pzs(String ... results) {
         return Prizes.fromString(Arrays.asList(results));
     }
 
-    public static Prizes rs(List<String> results) {
+    public static nextstep.ladder.engine.Prizes pzs(List<String> results) {
         return Prizes.fromString(results);
     }
 }

@@ -2,7 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.Objects;
 
-public class Prize {
+public class Prize implements nextstep.ladder.engine.Prize {
     private final String result;
 
     private Prize(final String result) {
