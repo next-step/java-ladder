@@ -1,7 +1,5 @@
-package ladderinterface;
+package ladderinterface.concrete;
 
-import ladderinterface.concrete.Direction;
-import ladderinterface.concrete.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

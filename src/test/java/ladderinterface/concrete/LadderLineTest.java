@@ -1,4 +1,4 @@
-package ladderinterface;
+package ladderinterface.concrete;
 
 import org.junit.jupiter.api.Test;
 
