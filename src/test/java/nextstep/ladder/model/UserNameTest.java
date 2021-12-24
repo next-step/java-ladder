@@ -5,7 +5,8 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-class UserNameTest {
+public class UserNameTest {
+    public static final UserName CRONG = new UserName("crong");
 
     @Test
     void createTest() {
