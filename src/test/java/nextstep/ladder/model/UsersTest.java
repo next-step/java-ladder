@@ -29,4 +29,10 @@ public class UsersTest {
         // when & then
         assertThat(FOUR_USERS.size()).isEqualTo(VALID_USERS.size());
     }
+
+    @Test
+    void getTest() {
+        // when & then
+        assertThat(FOUR_USERS.get(0)).isEqualTo(UserTest.POBI);
+    }
 }

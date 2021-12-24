@@ -25,6 +25,10 @@ public final class Users {
         return users.size();
     }
 
+    public User get(int index) {
+        return users.get(index);
+    }
+
     private static List<User> users(List<String> userNames) {
         return userNames.stream()
                 .map(UserName::new)

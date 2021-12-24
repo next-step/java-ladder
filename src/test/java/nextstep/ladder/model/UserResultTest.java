@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 public class UserResultTest {
     public static final UserResult USER_RESULT_WITH_BANG = new UserResult(UserTest.CRONG, LadderResultTest.BANG);
-    public static final UserResult USER_RESULT_WITH_2000_WON = new UserResult(UserTest.RYAN, LadderResultTest.WON_2000);
+    public static final UserResult USER_RESULT_WITH_2000_WON = new UserResult(UserTest.POBI, LadderResultTest.WON_2000);
 
     @Test
     void createTest() {
@@ -27,7 +27,7 @@ public class UserResultTest {
     void checkExceptionWithNullLadderResultTest() {
         // when & then
         assertThatIllegalArgumentException().isThrownBy(
-                () -> new UserResult(UserTest.RYAN, null)
+                () -> new UserResult(UserTest.POBI, null)
         );
     }
 
