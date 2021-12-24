@@ -1,5 +1,6 @@
 package nextstep.ladder.model;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,6 +29,6 @@ public class Report {
     }
 
     public Map<Player, Result> getPlayerResults() {
-        return playerResults;
+        return Collections.unmodifiableMap(playerResults);
     }
 }
