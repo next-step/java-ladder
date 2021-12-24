@@ -1,27 +1,33 @@
 package nextstep.ladder.controller;
 
 import nextstep.ladder.model.Ladder;
+import nextstep.ladder.model.UserResults;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderControllerTest {
-
-    private static final CreateLadderRequest VALID_REQUEST = CreateLadderRequest.of(4, 5);
+    private static final LadderController LADDER_CONTROLLER = new LadderController();
 
     @Test
     void createTest() {
         // when & then
-        assertThat(new LadderController()).isNotNull();
+        assertThat(LADDER_CONTROLLER).isNotNull();
     }
 
     @Test
-    void runTest() {
-        // given
-        LadderController controller = new LadderController();
+    void createLadderTest() {
         // when
-        Ladder ladder = controller.createLadder(VALID_REQUEST);
+        Ladder ladder = LADDER_CONTROLLER.createLadder(CreateLadderRequestTest.CREATE_LADDER_REQUEST);
         // then
         assertThat(ladder).isNotNull();
+    }
+
+    @Test
+    void retrieveUserResultsTest() {
+        // when
+        UserResults userResults = LADDER_CONTROLLER.retrieveUserResults(RetrieveResultRequestTest.RETRIEVE_RESULT_REQUEST);
+        // then
+        assertThat(userResults).isNotNull();
     }
 }

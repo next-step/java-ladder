@@ -10,7 +10,8 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-class CreateLadderRequestTest {
+public class CreateLadderRequestTest {
+    public static final CreateLadderRequest CREATE_LADDER_REQUEST = CreateLadderRequest.of(4, 5);
     private static final List<String> USER_NAMES = Arrays.asList("pobi", "honux", "crong", "jk");
 
     @Test
