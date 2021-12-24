@@ -12,20 +12,20 @@ public class Results {
     private final List<Result> results;
 
     public Results(String[] splitResults, int width) {
+        validationSize(splitResults, width);
         this.results = convertTo(splitResults, width);
     }
 
     private List<Result> convertTo(String[] splitResults, int width) {
-        return IntStream.range(0, validationSize(splitResults, width))
+        return IntStream.range(0, splitResults.length)
                 .mapToObj(index -> new Result(splitResults[index], new Index(index)))
                 .collect(Collectors.toList());
     }
 
-    private int validationSize(String[] splitResults, int width) {
+    private void validationSize(String[] splitResults, int width) {
         if (splitResults.length != width) {
             throw new IllegalArgumentException(MESSAGE_NOT_EQUALS_SIZE);
         }
-        return splitResults.length;
     }
 
     public Result findResultByIndex(Index index) {
