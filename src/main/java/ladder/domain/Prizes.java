@@ -24,10 +24,6 @@ public class Prizes {
         }
     }
 
-    public int size() {
-        return this.prizes.size();
-    }
-
     public List<String> getPrizeNames() {
         return this.prizes.stream().map(Prize::getName).collect(Collectors.toList());
     }

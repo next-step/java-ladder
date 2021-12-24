@@ -12,14 +12,14 @@ public class ParticipantTest {
     @ParameterizedTest
     @ValueSource(strings = {"pobi", "crong", "1234", "$$$!@", "####", "ABCDE"})
     void create(String name) {
-        assertThat(new Participant(name, 0, 0).getName()).isEqualTo(name);
-        assertThat(new Participant(new Name(name), new Position(0, 0)).getName()).isEqualTo(name);
+        assertThat(new Participant(name, 0).getName()).isEqualTo(name);
+        assertThat(new Participant(new Name(name), new Position(0)).getName()).isEqualTo(name);
     }
 
     @DisplayName("참가자 이름이 5글자를 초과한 경우 에러를 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {"pobi123", "123456", "######"})
     void exception(String name) {
-        assertThatThrownBy(() -> new Participant(name, 0, 0)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Participant(name, 0)).isInstanceOf(IllegalArgumentException.class);
     }
 }

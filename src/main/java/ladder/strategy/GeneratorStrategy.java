@@ -1,6 +1,6 @@
 package ladder.strategy;
 
 @FunctionalInterface
-public interface MovingStrategy {
+public interface GeneratorStrategy {
     boolean canMove();
 }

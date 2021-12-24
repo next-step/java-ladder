@@ -5,11 +5,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RandomMovingStrategyTest {
+public class RandomGeneratorStrategyTest {
     @DisplayName("Random의 seed(0) 고정시 출력 결과가 동일하다.")
     @Test
     void test() {
-        MovingStrategy movingStrategy = new RandomMovingStrategy(0);
+        GeneratorStrategy movingStrategy = new RandomGeneratorStrategy(0);
         assertThat(movingStrategy.canMove()).isTrue();
         assertThat(movingStrategy.canMove()).isTrue();
         assertThat(movingStrategy.canMove()).isFalse();
@@ -17,11 +17,6 @@ public class RandomMovingStrategyTest {
         assertThat(movingStrategy.canMove()).isTrue();
         assertThat(movingStrategy.canMove()).isFalse();
         assertThat(movingStrategy.canMove()).isTrue();
-        assertThat(movingStrategy.canMove()).isFalse();
-        assertThat(movingStrategy.canMove()).isTrue();
-        assertThat(movingStrategy.canMove()).isTrue();
-        assertThat(movingStrategy.canMove()).isFalse();
-        assertThat(movingStrategy.canMove()).isFalse();
         assertThat(movingStrategy.canMove()).isFalse();
     }
 }
