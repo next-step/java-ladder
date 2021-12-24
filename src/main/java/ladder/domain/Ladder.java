@@ -4,7 +4,6 @@ import ladder.strategy.GeneratorStrategy;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -33,11 +32,10 @@ public class Ladder {
     }
 
     public int findPrizeIndex(int position) {
-        AtomicInteger index = new AtomicInteger();
-        return IntStream.range(0, height)
-                .map(i -> ladderLines.get(i).move(position))
-                .reduce((first, second) -> ladderLines.get(index.incrementAndGet()).move(first))
-                .orElse(0);
+        for (int i = 0; i < height; i++) {
+            position = ladderLines.get(i).move(position);
+        }
+        return position;
     }
 
     public List<LadderLine> getLadderLines() {
