@@ -6,13 +6,13 @@ import java.util.Map;
 import java.util.stream.IntStream;
 
 public class GameResult {
-    private static final int ADD_INDEX = 1;
+    private static final int INIT_INDEX = 0;
 
     private final Map<Name, Integer> result;
 
     public GameResult(Ladder ladder, Names names) {
         this.result =  new HashMap<>();
-        IntStream.range(0, names.getNames().size())
+        IntStream.range(INIT_INDEX, names.getNames().size())
                 .forEach(index -> {
                     Name name = names.getNames().get(index);
                     result.put(name, this.findGameResult(ladder, index));
@@ -28,6 +28,6 @@ public class GameResult {
     }
 
     private int findGameResult(Ladder ladder, int location) {
-        return  ladder.discovery(location + ADD_INDEX);
+        return  ladder.discovery(location);
     }
 }
