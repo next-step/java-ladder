@@ -12,11 +12,11 @@ import static nextstep.ladder.domain.LadderPlayersTest.ps;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-public class Step4LadderFrameTest {
+public class Step4LadderRailsTest {
     @Test
     public void create() {
-        assertThat(Step4LadderFrame.of(List.of("n1", "n2"), List.of("r1", "r2")))
-                .isEqualTo(Step4LadderFrame.of(List.of("n1", "n2"), List.of("r1", "r2")));
+        assertThat(Step4LadderRails.of(List.of("n1", "n2"), List.of("r1", "r2")))
+                .isEqualTo(Step4LadderRails.of(List.of("n1", "n2"), List.of("r1", "r2")));
     }
 
     static Stream<Arguments> parseCreateFailed() {
@@ -31,7 +31,7 @@ public class Step4LadderFrameTest {
     @MethodSource("parseCreateFailed")
     public void createFailed(List<String> players, List<String> results, String expectedMessage) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> Step4LadderFrame.of(players, results))
+                .isThrownBy(() -> Step4LadderRails.of(players, results))
                 .withMessageContaining(expectedMessage);
     }
 
@@ -39,7 +39,7 @@ public class Step4LadderFrameTest {
     public void playersAndResults() {
         List<String> players = List.of("n1", "n2");
         List<String> results = List.of("r1", "r2");
-        Step4LadderFrame frame = lf(players, results);
+        Step4LadderRails frame = lf(players, results);
         assertThat(frame.players()).isEqualTo(ps(players));
         assertThat(frame.prizes()).isEqualTo(LadderPrizesTest.pzs(results));
     }
@@ -48,9 +48,9 @@ public class Step4LadderFrameTest {
         assertThat(lf(List.of("n1", "n2"), List.of("r1", "r2")).railCount()).isEqualTo(LadderRailCount.of(2));
     }
 
-    public static Step4LadderFrame lf(List<String> players, List<String> results) {
-        return Step4LadderFrame.of(players, results);
+    public static Step4LadderRails lf(List<String> players, List<String> results) {
+        return Step4LadderRails.of(players, results);
     }
 
-    public static Step4LadderFrame simpleLF = lf(List.of("p1", "p2"), List.of("r1", "r2"));
+    public static Step4LadderRails simpleLF = lf(List.of("p1", "p2"), List.of("r1", "r2"));
 }

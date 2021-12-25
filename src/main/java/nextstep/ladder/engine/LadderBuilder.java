@@ -1,5 +1,5 @@
 package nextstep.ladder.engine;
 
 public interface LadderBuilder {
-    Ladder build(LadderPointGenerateStrategy strategy);
+    Ladder build(int height, LadderPointGenerateStrategy strategy);
 }

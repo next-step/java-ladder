@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import nextstep.ladder.engine.GameResult;
-import nextstep.ladder.engine.LadderFrame;
+import nextstep.ladder.engine.LadderRails;
 import nextstep.ladder.engine.Name;
 import nextstep.ladder.engine.Players;
 import nextstep.ladder.engine.Prize;
@@ -33,9 +33,9 @@ public class LadderGameResult implements GameResult {
         return new LadderGameResult(playerResultMap);
     }
 
-    public static LadderGameResult of(LadderFrame ladderFrame, List<Integer> resultIndexes) {
-        Players players = ladderFrame.players();
-        Prizes prizes = ladderFrame.prizes();
+    public static LadderGameResult of(LadderRails ladderRails, List<Integer> resultIndexes) {
+        Players players = ladderRails.players();
+        Prizes prizes = ladderRails.prizes();
         Prizes result = ((LadderPrizes)prizes).mapByIndex(resultIndexes);
         // todo lambda style
         return of(players.stream()

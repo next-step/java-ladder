@@ -4,11 +4,9 @@ import java.util.List;
 
 import nextstep.ladder.domain.RandomLadderPointStrategy;
 import nextstep.ladder.domain.Step4LadderBuilder;
-import nextstep.ladder.domain.Step4LadderFrame;
 import nextstep.ladder.engine.GameResult;
 import nextstep.ladder.engine.Ladder;
 import nextstep.ladder.engine.LadderBuilder;
-import nextstep.ladder.engine.LadderFrame;
 import nextstep.ladder.view.Command;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
@@ -19,9 +17,8 @@ public class LadderGame {
         final List<String> resultList = InputView.inputPrizeOfResult();
         final int height = InputView.inputHeight();
 
-        final LadderFrame ladderFrame = Step4LadderFrame.of(names, resultList);
-        final LadderBuilder ladderBuilder = Step4LadderBuilder.of(ladderFrame, height);
-        final Ladder ladder = ladderBuilder.build(new RandomLadderPointStrategy());
+        final LadderBuilder ladderBuilder = Step4LadderBuilder.of(names, resultList);
+        final Ladder ladder = ladderBuilder.build(height, new RandomLadderPointStrategy());
 
         OutputView.printLadder(ladder);
 

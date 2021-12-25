@@ -29,7 +29,7 @@
   * [x] Ladder를 출력하기 위해 Line을 탐색
     * [x] 참가자를 탐색
     * [x] 경기 결과를 탐색
-  * [ ] LadderFrame의 책임은 사다리의 형태를 구성
+  * [x] LadderFrame의 책임은 사다리의 형태를 구성
   * [ ] GameResult의 책임은 사다리 게임의 결과를 연산
   * [x] FirstClassList 인터페이스 분리
   * [x] Primitive wrapper 인터페이스 분리

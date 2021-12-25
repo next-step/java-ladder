@@ -1,6 +1,6 @@
 package nextstep.ladder.engine;
 
-public interface LadderFrame {
+public interface LadderRails {
     RailCount railCount();
 
     Players players();
