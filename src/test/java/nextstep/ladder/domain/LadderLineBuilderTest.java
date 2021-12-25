@@ -35,7 +35,7 @@ public class LadderLineBuilderTest {
         assertThatIllegalArgumentException().isThrownBy(() -> LadderLineBuilder.of(ladderRailCount, strategy));
     }
 
-    static List<Point> generateLadderPoints(int sizeOfPerson, LadderPointGenerateStrategy strategy) {
+    static LadderLine generateLadderPoints(int sizeOfPerson, LadderPointGenerateStrategy strategy) {
         Point point = Point.first(strategy.generatePoint());
         List<Point> points = new ArrayList<>(sizeOfPerson);
         points.add(point);
@@ -44,7 +44,7 @@ public class LadderLineBuilderTest {
             points.add(point);
         }
         points.add(point.last());
-        return points;
+        return LadderLine.of(points);
     }
 
     static Stream<Arguments> parseBuildArguments() {
@@ -57,6 +57,6 @@ public class LadderLineBuilderTest {
     @ParameterizedTest(name = "build: {arguments}")
     @MethodSource("parseBuildArguments")
     public void build(int railCount, LadderPointGenerateStrategy strategy) {
-        assertThat(LadderLineBuilder.of(railCount, strategy).build()).hasSameElementsAs(generateLadderPoints(railCount, strategy));
+        assertThat(LadderLineBuilder.of(railCount, strategy).build()).isEqualTo(generateLadderPoints(railCount, strategy));
     }
 }

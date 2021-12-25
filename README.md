@@ -38,7 +38,7 @@
   * [ ] 람다식 메서드 추출하여 메서드 참조로 변경
     * [x] OutputView
     * [ ] LadderGameResult
-    * [ ] Ladder
+    * [x] Ladder
   * [x] 함수 인자 수를 3개 미만으로 변경
   * [ ] indexes의 일급 객체화
     * [ ] Ladder 생성시

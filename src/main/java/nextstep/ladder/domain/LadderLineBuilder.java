@@ -2,9 +2,6 @@ package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import nextstep.ladder.engine.LadderPointGenerateStrategy;
 import nextstep.ladder.engine.RailCount;
@@ -15,12 +12,10 @@ public class LadderLineBuilder {
 
     private final RailCount railCount;
     private final LadderPointGenerateStrategy strategy;
-    private final AtomicReference<Point> previous;
 
     public LadderLineBuilder(RailCount railCount, LadderPointGenerateStrategy strategy) {
         this.railCount = railCount;
         this.strategy = strategy;
-        this.previous = new AtomicReference<>(Point.first(strategy.generatePoint()));
     }
 
     public static LadderLineBuilder of(RailCount railCount, LadderPointGenerateStrategy strategy) {
@@ -35,23 +30,17 @@ public class LadderLineBuilder {
         return of(LadderRailCount.of(railCount), strategy);
     }
 
-    public List<Point> build() {
+    public LadderLine build() {
         List<Point> points = new ArrayList<>(railCount.toInt());
-        points.add(previous.get());
-        points.addAll(IntStream.range(HEAD_INDEX, railCount.toInt() - LAST_REVERSE_INDEX)
-                .mapToObj(this::generate)
-                .collect(Collectors.toList()));
-        points.add(previous.get().last());
+        Point previous = Point.first(strategy.generatePoint());
+        points.add(previous);
+        for (int index = HEAD_INDEX; index < railCount.toInt() - LAST_REVERSE_INDEX; index++) {
+            previous = previous.next(strategy.generatePoint());
+            points.add(previous);
+        }
+        points.add(previous.last());
 
-        return points;
-    }
-
-    private Point generate(int notUsedIndex) {
-        return previous.updateAndGet(this::nextPoint);
-    }
-
-    private Point nextPoint(Point previousPoint) {
-        return previousPoint.next(strategy.generatePoint());
+        return LadderLine.of(points);
     }
 
     @Override
@@ -59,7 +48,6 @@ public class LadderLineBuilder {
         return "LadderLineBuilder{" +
                 "sizeOfPerson=" + railCount +
                 ", strategy=" + strategy +
-                ", previous=" + previous +
                 '}';
     }
 }

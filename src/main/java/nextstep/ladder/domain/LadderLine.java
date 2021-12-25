@@ -1,56 +1,36 @@
 package nextstep.ladder.domain;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Stream;
 
-import nextstep.ladder.engine.LadderPointGenerateStrategy;
+import nextstep.ladder.engine.FirstClassList;
 import nextstep.ladder.engine.Line;
 import nextstep.ladder.engine.RailCount;
 
-public class LadderLine implements Line {
-    private final List<Point> points;
-
+public class LadderLine extends FirstClassList<Point> implements Line {
     public LadderLine(List<Point> points) {
-        this.points = Collections.unmodifiableList(points);
+        super(points);
     }
 
-    public static LadderLine init(RailCount ladderRailCount, LadderPointGenerateStrategy strategy) {
-        return new LadderLine(LadderLineBuilder.of(ladderRailCount, strategy).build());
-    }
+    public static LadderLine of(List<Point> points) {
+        if (points == null) {
+            throw new IllegalArgumentException("points cannot be null.");
+        }
 
-    public static LadderLine init(int railCount, LadderPointGenerateStrategy strategy) {
-        return new LadderLine(LadderLineBuilder.of(LadderRailCount.of(railCount), strategy).build());
+        if (points.size() < RailCount.MINIMUM_RAIL_COUNT) {
+            throw new IllegalArgumentException("number of points must be larger than or equal to 2");
+        }
+
+        return new LadderLine(points);
     }
 
     public Index move(int position) {
-        return points.get(position).move();
+        return elementOf(position).move();
     }
 
     @Override
     public Stream<Boolean> boolStream() {
-        return points.stream()
+        return stream()
                 .map(Point::isRight);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        LadderLine that = (LadderLine) o;
-        return Objects.equals(points, that.points);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(points);
-    }
-
-    @Override
-    public String toString() {
-        return "LadderLine{" +
-                "points=" + points +
-                '}';
     }
 }

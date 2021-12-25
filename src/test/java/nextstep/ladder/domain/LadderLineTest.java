@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 import nextstep.ladder.engine.LadderPointGenerateStrategy;
@@ -7,23 +8,40 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import static nextstep.ladder.domain.IndexTest.ix;
 import static nextstep.ladder.domain.TestLadderPointStrategy.NO_LINE_STRATEGY;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class LadderLineTest {
     @Test
     public void init() {
-        int sizeOfRail = 5;
-        assertThat(LadderLine.init(sizeOfRail, NO_LINE_STRATEGY)).isEqualTo(LadderLine.init(sizeOfRail, NO_LINE_STRATEGY));
+        Point first = Point.first(false);
+        Point last = first.last();
+        assertThat(LadderLine.of(List.of(first, last))).isEqualTo(LadderLine.of(List.of(first, last)));
+    }
+
+    static Stream<Arguments> parseInitFailed() {
+        return Stream.of(
+                Arguments.of(List.of(Point.first(false)))
+        );
+    }
+
+    @ParameterizedTest(name = "init failed: {arguments}")
+    @NullAndEmptySource
+    @MethodSource("parseInitFailed")
+    public void initFailed(List<Point> points) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> LadderLine.of(points));
     }
 
     static Stream<Arguments> parseMoveArguments() {
         return Stream.of(
-                Arguments.of(LadderLine.init(2, NO_LINE_STRATEGY), 0, 0),
-                Arguments.of(LadderLine.init(2, TestLadderPointStrategy.reverseLineStrategy()), 1, 0),
-                Arguments.of(LadderLine.init(2, TestLadderPointStrategy.reverseLineStrategy()), 0, 1)
+                Arguments.of(ll(2, NO_LINE_STRATEGY), 0, 0),
+                Arguments.of(ll(2, TestLadderPointStrategy.reverseLineStrategy()), 1, 0),
+                Arguments.of(ll(2, TestLadderPointStrategy.reverseLineStrategy()), 0, 1)
         );
     }
 
@@ -34,6 +52,8 @@ public class LadderLineTest {
     }
 
     public static LadderLine ll(int railCount, LadderPointGenerateStrategy strategy) {
-        return LadderLine.init(railCount, strategy);
+
+        LadderLineBuilder builder = LadderLineBuilder.of(railCount, strategy);
+        return builder.build();
     }
 }

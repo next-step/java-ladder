@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import nextstep.ladder.engine.FirstClassList;
 import nextstep.ladder.engine.GameResult;
@@ -28,15 +29,15 @@ public class Step4Ladder extends FirstClassList<Line> implements Ladder {
             throw new IllegalArgumentException("frame or strategy cannot be null");
         }
 
-        // todo wrapping indexes
-        List<Line> lines = IntStream.range(0, frame.height().toInt())
-        // todo lambda style
-                .mapToObj(index -> LadderLine.init(frame.railCount(), strategy))
+        LadderLineBuilder builder = LadderLineBuilder.of(frame.railCount(), strategy);
+        List<Line> lines = Stream.generate(builder::build)
+                .limit(frame.height().toInt())
                 .collect(Collectors.toList());
         return new Step4Ladder(lines, frame);
     }
 
     public GameResult move(Prizes prizes) {
+        // todo indexes
         List<Integer> indexes = IntStream.range(0, ladderFrame.railCount().toInt())
                 .mapToObj(this::downToResult)
                 .collect(Collectors.toList());
@@ -65,7 +66,6 @@ public class Step4Ladder extends FirstClassList<Line> implements Ladder {
     }
 
     public int downToResult(int index) {
-        // todo lambda style with stream
         for(Line line: collect()) {
             index = line.move(index).toInt();
         }
