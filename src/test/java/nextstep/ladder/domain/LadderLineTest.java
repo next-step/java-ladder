@@ -52,8 +52,13 @@ public class LadderLineTest {
     }
 
     public static LadderLine ll(int railCount, LadderPointGenerateStrategy strategy) {
-
         LadderLineBuilder builder = LadderLineBuilder.of(railCount, strategy);
         return builder.build();
+    }
+
+    public static LadderLine simpleLine() {
+        Point first = Point.first(true);
+        Point last = first.last();
+        return LadderLine.of(List.of(first, last));
     }
 }

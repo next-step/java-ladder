@@ -1,5 +1,10 @@
 package nextstep.ladder.domain;
 
+import java.util.List;
+import java.util.Map;
+
+import nextstep.ladder.engine.GameResult;
+import nextstep.ladder.engine.Line;
 import nextstep.ladder.engine.Name;
 import nextstep.ladder.engine.Players;
 import nextstep.ladder.engine.Prize;
@@ -7,23 +12,28 @@ import nextstep.ladder.engine.Prizes;
 import nextstep.ladder.engine.ResultMap;
 
 public class PlayerResultMap implements ResultMap {
-    private final Players players;
-    private final Prizes results;
+    final Prizes original;
+    final Map<Prize, Index> resultIndexMap;
 
-    private PlayerResultMap(Players players, Prizes results) {
-        this.players = players;
-        this.results = results;
+    private PlayerResultMap(Prizes original, Map<Prize, Index> resultIndexMap) {
+        this.original = original;
+        this.resultIndexMap = resultIndexMap;
     }
 
-    public static PlayerResultMap of(Players players, Prizes results) {
-        if (players == null || results == null) {
-            throw new IllegalArgumentException("players or results cannot be null");
-        }
-
-        return new PlayerResultMap(players, results);
+    public static PlayerResultMap of(Prizes original) {
+        return new PlayerResultMap(original, LadderResultMapComposer.of(original).compose());
     }
 
-    public Prize result(Name player) {
-        return results.elementOf(players.indexOf(player));
+    public void move(List<Line> lines) {
+        lines.forEach(this::moveLine);
+    }
+
+    private void moveLine(Line line) {
+        original.forEach(prize -> resultIndexMap.compute(prize, ((prizeAsKey, index) -> line.move(index))));
+    }
+
+    public GameResult result(Players players) {
+        Map<Name, Prize> resultMap = LadderGameResultComposer.of(players, resultIndexMap).compose();
+        return LadderGameResult.of(resultMap);
     }
 }

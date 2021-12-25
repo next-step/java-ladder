@@ -1,5 +1,8 @@
 package nextstep.ladder.engine;
 
+import java.util.List;
+
 public interface ResultMap {
-    Prize result(Name name);
+    void move(List<Line> lines);
+    GameResult result(Players players);
 }

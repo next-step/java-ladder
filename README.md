@@ -34,15 +34,16 @@
   * [x] FirstClassList 인터페이스 분리
   * [x] Primitive wrapper 인터페이스 분리
   * [x] 패키지간 순환 참조 해결
+  * [x] Ladder#move
 * 피드백
-  * [x] 람다식 메서드 추출하여 메서드 참조로 변경
+  * [ ] 람다식 메서드 추출하여 메서드 참조로 변경
     * [x] OutputView
     * [x] LadderGameResult
     * [x] Ladder
   * [x] 함수 인자 수를 3개 미만으로 변경
-  * [ ] indexes의 일급 객체화
+  ~~* [ ] indexes의 일급 객체화~~
     ~~* [ ] Ladder 생성시~~
-    * [ ] 결과 도출시
+    ~~* [ ] 결과 도출시~~
 
 ## STEP3 사다리 게임 실행
 

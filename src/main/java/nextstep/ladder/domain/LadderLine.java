@@ -29,6 +29,11 @@ public class LadderLine extends FirstClassList<Point> implements Line {
     }
 
     @Override
+    public Index move(Index position) {
+        return elementOf(position.toInt()).move();
+    }
+
+    @Override
     public Stream<Boolean> boolStream() {
         return stream()
                 .map(Point::isRight);

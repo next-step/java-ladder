@@ -2,7 +2,6 @@ package nextstep.ladder.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import nextstep.ladder.engine.FirstClassList;
@@ -15,6 +14,7 @@ import nextstep.ladder.engine.Line;
 import nextstep.ladder.engine.Players;
 import nextstep.ladder.engine.Prizes;
 import nextstep.ladder.engine.RailCount;
+import nextstep.ladder.engine.ResultMap;
 
 public class Step4Ladder extends FirstClassList<Line> implements Ladder {
     private final LadderFrame ladderFrame;
@@ -37,22 +37,9 @@ public class Step4Ladder extends FirstClassList<Line> implements Ladder {
     }
 
     public GameResult move(Prizes prizes) {
-        // todo indexes
-        List<Integer> indexes = IntStream.range(0, ladderFrame.railCount().toInt())
-                .mapToObj(this::downToResult)
-                .collect(Collectors.toList());
-
-        // todo refactor: 어떻게든 해보자
-        Prizes results = ((LadderPrizes)ladderFrame.prizes()).mapByIndex(indexes);
-        return LadderGameResult.of(ladderFrame.players(), results);
-    }
-
-    public int downToResult(int index) {
-        for(Line line: collect()) {
-            index = line.move(index).toInt();
-        }
-
-        return index;
+        final ResultMap resultMap = PlayerResultMap.of(ladderFrame.prizes());
+        resultMap.move(collect());
+        return resultMap.result(ladderFrame.players());
     }
 
     @Override
