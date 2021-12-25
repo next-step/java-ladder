@@ -29,6 +29,6 @@ public class Ladder {
     public int discovery(int number) {
         AtomicInteger result = new AtomicInteger(number);
         ladder.forEach(line -> result.set(line.move(result.get())));
-        return result.get() - 1;
+        return result.get();
     }
 }
