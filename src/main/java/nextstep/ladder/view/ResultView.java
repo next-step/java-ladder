@@ -49,6 +49,7 @@ public class ResultView {
 
     private static void printLaddersResult(Ladder ladder) {
         ladder.getLadder().forEach(line -> {
+            System.out.printf("%s%s", LADDER_BLANK, LADDER_LINE);
                     IntStream.range(0, line.getLine().size() - 1)
                             .forEach(index -> printPoint(line.getLine().get(index)));
                     System.out.println();
@@ -56,7 +57,7 @@ public class ResultView {
     }
 
     private static void printPoint(Point point) {
-        if (point.isValue()) {
+        if (point.rightLineExists()) {
             System.out.printf("%s%s", LADDER_DASH, LADDER_LINE);
             return;
         }
