@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import nextstep.ladder.engine.LadderPointGenerateStrategy;
+import nextstep.ladder.engine.RailCount;
 
 public class LadderLineBuilder {
     private static final int HEAD_INDEX = 1;
@@ -31,7 +32,7 @@ public class LadderLineBuilder {
     }
 
     public static LadderLineBuilder of(int railCount, LadderPointGenerateStrategy strategy) {
-        return of(RailCount.of(railCount), strategy);
+        return of(LadderRailCount.of(railCount), strategy);
     }
 
     public List<Point> build() {

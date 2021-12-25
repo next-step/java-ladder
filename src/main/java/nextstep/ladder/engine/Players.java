@@ -1,7 +1,4 @@
 package nextstep.ladder.engine;
 
-import java.util.stream.Stream;
-
-public interface Players {
-    Stream<Name> stream();
+public interface Players extends FirstClassIndexCollection<Name> {
 }

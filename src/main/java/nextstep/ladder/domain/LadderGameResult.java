@@ -10,8 +10,11 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import nextstep.ladder.engine.GameResult;
+import nextstep.ladder.engine.LadderFrame;
 import nextstep.ladder.engine.Name;
+import nextstep.ladder.engine.Players;
 import nextstep.ladder.engine.Prize;
+import nextstep.ladder.engine.Prizes;
 
 public class LadderGameResult implements GameResult {
     private final Map<Name, Prize> playerResultMap;
@@ -25,19 +28,20 @@ public class LadderGameResult implements GameResult {
             throw new IllegalArgumentException("invalid input: result map cannot be null");
         }
 
-        RailCount.validate(playerResultMap.size());
+        LadderRailCount.validate(playerResultMap.size());
 
         return new LadderGameResult(playerResultMap);
     }
 
     public static LadderGameResult of(LadderFrame ladderFrame, List<Integer> resultIndexes) {
-        LadderPlayers ladderPlayers = ladderFrame.players();
-        LadderPrizes ladderPrizes = ladderFrame.prizes().mapByIndex(resultIndexes);
+        Players players = ladderFrame.players();
+        Prizes prizes = ladderFrame.prizes();
+        Prizes result = ((LadderPrizes)prizes).mapByIndex(resultIndexes);
         // todo lambda style
-        return of(ladderPlayers.stream()
+        return of(players.stream()
                 .collect(Collectors.toMap(
                         Function.identity(),
-                        player -> ladderPrizes.elementOf(ladderPlayers.indexOf(player))
+                        player -> result.elementOf(players.indexOf(player))
                 )));
     }
 

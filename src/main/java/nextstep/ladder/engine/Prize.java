@@ -1,5 +1,4 @@
 package nextstep.ladder.engine;
 
-public interface Prize {
-    String toString();
+public interface Prize extends StringWrapper {
 }

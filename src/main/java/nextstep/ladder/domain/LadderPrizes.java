@@ -17,7 +17,7 @@ public class LadderPrizes extends FirstClassList<Prize> implements Prizes {
             throw new IllegalArgumentException("invalid results: cannot be null or empty");
         }
 
-        RailCount.validate(results.size());
+        LadderRailCount.validate(results.size());
 
         return new LadderPrizes(results.stream()
                 .map(LadderPrize::of)

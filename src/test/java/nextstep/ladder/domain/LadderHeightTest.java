@@ -7,23 +7,23 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-public class HeightTest {
+public class LadderHeightTest {
     @Test
     public void create() {
         final int height = 5;
-        assertThat(Height.of(height)).isEqualTo(Height.of(height));
-        assertThat(Height.of(height).toInt()).isEqualTo(height);
+        assertThat(LadderHeight.of(height)).isEqualTo(LadderHeight.of(height));
+        assertThat(LadderHeight.of(height).toInt()).isEqualTo(height);
     }
 
     @ParameterizedTest(name = "create failed: {arguments}")
     @ValueSource(ints = {-1, 0})
     public void createFailed(int invalidHeight) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> Height.of(invalidHeight))
+                .isThrownBy(() -> LadderHeight.of(invalidHeight))
                 .withMessageContaining("larger than 0");
     }
 
-    public static Height h(int height) {
-        return Height.of(height);
+    public static LadderHeight h(int height) {
+        return LadderHeight.of(height);
     }
 }

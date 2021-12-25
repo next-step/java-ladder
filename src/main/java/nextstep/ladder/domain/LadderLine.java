@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 
 import nextstep.ladder.engine.LadderPointGenerateStrategy;
 import nextstep.ladder.engine.Line;
+import nextstep.ladder.engine.RailCount;
 
 public class LadderLine implements Line {
     private final List<Point> points;
@@ -15,16 +16,16 @@ public class LadderLine implements Line {
         this.points = Collections.unmodifiableList(points);
     }
 
-    public Index move(int position) {
-        return points.get(position).move();
-    }
-
-    public static LadderLine init(RailCount railCount, LadderPointGenerateStrategy strategy) {
-        return new LadderLine(LadderLineBuilder.of(railCount, strategy).build());
+    public static LadderLine init(RailCount ladderRailCount, LadderPointGenerateStrategy strategy) {
+        return new LadderLine(LadderLineBuilder.of(ladderRailCount, strategy).build());
     }
 
     public static LadderLine init(int railCount, LadderPointGenerateStrategy strategy) {
-        return new LadderLine(LadderLineBuilder.of(RailCount.of(railCount), strategy).build());
+        return new LadderLine(LadderLineBuilder.of(LadderRailCount.of(railCount), strategy).build());
+    }
+
+    public Index move(int position) {
+        return points.get(position).move();
     }
 
     @Override

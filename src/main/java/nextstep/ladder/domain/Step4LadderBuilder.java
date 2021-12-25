@@ -2,8 +2,10 @@ package nextstep.ladder.domain;
 
 import java.util.Objects;
 
+import nextstep.ladder.engine.Height;
 import nextstep.ladder.engine.Ladder;
 import nextstep.ladder.engine.LadderBuilder;
+import nextstep.ladder.engine.LadderFrame;
 import nextstep.ladder.engine.LadderPointGenerateStrategy;
 
 public class Step4LadderBuilder implements LadderBuilder {
@@ -19,7 +21,7 @@ public class Step4LadderBuilder implements LadderBuilder {
         if (ladderFrame == null) {
             throw new IllegalArgumentException("invalid frame: cannot be null");
         }
-        return new Step4LadderBuilder(ladderFrame, Height.of(height));
+        return new Step4LadderBuilder(ladderFrame, LadderHeight.of(height));
     }
 
     public Ladder build(LadderPointGenerateStrategy strategy) {

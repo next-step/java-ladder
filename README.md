@@ -31,6 +31,8 @@
     * [x] 경기 결과를 탐색
   * [ ] LadderFrame의 책임은 사다리의 형태를 구성
   * [ ] GameResult의 책임은 사다리 게임의 결과를 연산
+  * [x] FirstClassList 인터페이스 분리
+  * [x] Primitive wrapper 인터페이스 분리
   * [x] 패키지간 순환 참조 해결
 * 피드백
   * [ ] 람다식 메서드 추출하여 메서드 참조로 변경

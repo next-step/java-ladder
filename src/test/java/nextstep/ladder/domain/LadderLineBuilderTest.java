@@ -10,7 +10,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import static nextstep.ladder.domain.RailCountTest.rc;
+import static nextstep.ladder.domain.LadderRailCountTest.rc;
 import static nextstep.ladder.domain.TestLadderPointStrategy.NO_LINE_STRATEGY;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -31,8 +31,8 @@ public class LadderLineBuilderTest {
 
     @ParameterizedTest(name = "create failed: {arguments}")
     @MethodSource("parseCreateFailed")
-    public void createFailed(RailCount railCount, LadderPointGenerateStrategy strategy) {
-        assertThatIllegalArgumentException().isThrownBy(() -> LadderLineBuilder.of(railCount, strategy));
+    public void createFailed(LadderRailCount ladderRailCount, LadderPointGenerateStrategy strategy) {
+        assertThatIllegalArgumentException().isThrownBy(() -> LadderLineBuilder.of(ladderRailCount, strategy));
     }
 
     static List<Point> generateLadderPoints(int sizeOfPerson, LadderPointGenerateStrategy strategy) {

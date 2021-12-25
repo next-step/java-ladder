@@ -2,23 +2,24 @@ package nextstep.ladder.domain;
 
 import java.util.Objects;
 
-public class Height {
-    private static final int ZERO = 0;
+import nextstep.ladder.engine.Height;
 
+public class LadderHeight implements Height {
     private final int height;
 
-    private Height(final int height) {
+    private LadderHeight(final int height) {
         this.height = height;
     }
 
-    public static Height of(final int height) {
-        if (height <= ZERO) {
+    public static LadderHeight of(final int height) {
+        if (height < MINIMUM_HEIGHT) {
             throw new IllegalArgumentException("invalid height: must larger than 0, but " + height);
         }
 
-        return new Height(height);
+        return new LadderHeight(height);
     }
 
+    @Override
     public int toInt() {
         return height;
     }
@@ -27,8 +28,8 @@ public class Height {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Height height = (Height) o;
-        return this.height == height.height;
+        LadderHeight ladderHeight = (LadderHeight) o;
+        return this.height == ladderHeight.height;
     }
 
     @Override

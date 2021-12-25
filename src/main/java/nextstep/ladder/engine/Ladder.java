@@ -3,7 +3,7 @@ package nextstep.ladder.engine;
 import java.util.stream.Stream;
 
 public interface Ladder {
-    GameResult result();
+    GameResult move(Prizes prizes);
     Stream<? extends Line> stream();
 
     Players players();

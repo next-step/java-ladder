@@ -1,5 +1,5 @@
 package nextstep.ladder.engine;
 
-public interface Count {
+public interface IntegerWrapper {
     int toInt();
 }

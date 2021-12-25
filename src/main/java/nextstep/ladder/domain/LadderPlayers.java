@@ -17,7 +17,7 @@ public class LadderPlayers extends FirstClassList<Name> implements Players {
             throw new IllegalArgumentException("names cannot be null");
         }
 
-        RailCount.validate(names.size());
+        LadderRailCount.validate(names.size());
 
         return new LadderPlayers(names.stream()
                 .map(PlayerName::of)
