@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import java.util.Arrays;
 import java.util.List;
 
+import nextstep.ladder.engine.Prizes;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
@@ -30,11 +31,11 @@ public class LadderPrizesTest {
         assertThat(ladderPrizes.mapByIndex(List.of(1, 0, 2))).isEqualTo(pzs("r2", "r1", "r3"));
     }
 
-    public static nextstep.ladder.engine.Prizes pzs(String ... results) {
+    public static Prizes pzs(String ... results) {
         return LadderPrizes.fromString(Arrays.asList(results));
     }
 
-    public static nextstep.ladder.engine.Prizes pzs(List<String> results) {
+    public static Prizes pzs(List<String> results) {
         return LadderPrizes.fromString(results);
     }
 }

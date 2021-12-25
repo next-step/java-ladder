@@ -42,7 +42,17 @@ public class Step4Ladder extends FirstClassList<Line> implements Ladder {
                 .mapToObj(this::downToResult)
                 .collect(Collectors.toList());
 
-        return LadderGameResult.of(ladderFrame, indexes);
+        // todo refactor: 어떻게든 해보자
+        Prizes results = ((LadderPrizes)ladderFrame.prizes()).mapByIndex(indexes);
+        return LadderGameResult.of(ladderFrame.players(), results);
+    }
+
+    public int downToResult(int index) {
+        for(Line line: collect()) {
+            index = line.move(index).toInt();
+        }
+
+        return index;
     }
 
     @Override
@@ -63,14 +73,6 @@ public class Step4Ladder extends FirstClassList<Line> implements Ladder {
     @Override
     public Height height() {
         return ladderFrame.height();
-    }
-
-    public int downToResult(int index) {
-        for(Line line: collect()) {
-            index = line.move(index).toInt();
-        }
-
-        return index;
     }
 
     @Override

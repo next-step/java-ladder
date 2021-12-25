@@ -1,7 +1,6 @@
 package nextstep.ladder.domain;
 
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -10,11 +9,11 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import nextstep.ladder.engine.GameResult;
-import nextstep.ladder.engine.LadderRails;
 import nextstep.ladder.engine.Name;
 import nextstep.ladder.engine.Players;
 import nextstep.ladder.engine.Prize;
 import nextstep.ladder.engine.Prizes;
+import nextstep.ladder.engine.ResultMap;
 
 public class LadderGameResult implements GameResult {
     private final Map<Name, Prize> playerResultMap;
@@ -33,16 +32,10 @@ public class LadderGameResult implements GameResult {
         return new LadderGameResult(playerResultMap);
     }
 
-    public static LadderGameResult of(LadderRails ladderRails, List<Integer> resultIndexes) {
-        Players players = ladderRails.players();
-        Prizes prizes = ladderRails.prizes();
-        Prizes result = ((LadderPrizes)prizes).mapByIndex(resultIndexes);
-        // todo lambda style
+    public static GameResult of(Players players, Prizes results) {
+        ResultMap map = PlayerResultMap.of(players, results);
         return of(players.stream()
-                .collect(Collectors.toMap(
-                        Function.identity(),
-                        player -> result.elementOf(players.indexOf(player))
-                )));
+                .collect(Collectors.toMap(Function.identity(), map::result)));
     }
 
     public Optional<Prize> result(String playerName) {
