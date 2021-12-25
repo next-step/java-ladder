@@ -36,8 +36,12 @@
   * [x] 패키지간 순환 참조 해결
 * 피드백
   * [ ] 람다식 메서드 추출하여 메서드 참조로 변경
+    * [x] OutputView
+    * [ ] LadderGameResult
+    * [ ] Ladder
   * [x] 함수 인자 수를 3개 미만으로 변경
-  * [ ] 곧곧에서 쓰이는 indexes의 일급 객체 화
+  * [ ] indexes의 일급 객체화
+    * [ ] Ladder 생성시
 
 ## STEP3 사다리 게임 실행
 

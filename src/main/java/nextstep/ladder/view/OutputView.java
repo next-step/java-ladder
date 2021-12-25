@@ -1,6 +1,5 @@
 package nextstep.ladder.view;
 
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import nextstep.ladder.engine.GameResult;
@@ -12,12 +11,12 @@ import nextstep.ladder.engine.Prize;
 import nextstep.ladder.engine.Prizes;
 
 public class OutputView {
+    public static final String NEWLINE = "\n";
+
     private static final String NAME_FORMAT = "%" + (Name.LENGTH_LIMIT + 1) + "s";
-    private static final String NEWLINE = "\n";
     private static final String SPACE = " ";
     private static final String LINE = "-";
     private static final String RAIL = "|";
-    private static final String NAME_COLON = ":";
 
     public static void printPlayerList(Players players) {
         players.stream()
@@ -69,24 +68,10 @@ public class OutputView {
     public static void printResultOfPlayers(String nameOfUser, GameResult gameResult) {
         System.out.println("실행 결과");
 
-        // todo lambda style
+        ResultPrinter resultPrinter = new ResultPrinter(nameOfUser, gameResult);
         gameResult.result(nameOfUser)
                 .map(Prize::toString)
-                .or(() -> mapNotExistUser(nameOfUser, gameResult))
+                .or(resultPrinter::mapNotExistUser)
                 .ifPresent(System.out::println);
-    }
-
-    public static Optional<String> mapNotExistUser(String nameOfUser, GameResult resultOfGame) {
-        // todo lambda style
-        return Optional.of(nameOfUser)
-                .filter(name -> name.equalsIgnoreCase(Command.ALL_COMMAND))
-                .map(name -> parseAllResult(resultOfGame));
-    }
-
-    public static String parseAllResult(GameResult resultOfGame) {
-        // todo lambda style
-        return resultOfGame.stream()
-                .map(entry -> entry.getKey() + NAME_COLON + entry.getValue())
-                .collect(Collectors.joining(NEWLINE));
     }
 }
