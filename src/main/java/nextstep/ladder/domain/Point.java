@@ -5,7 +5,6 @@ import java.util.Objects;
 public class Point {
     private static final int LEFT = -1;
     private static final int RIGHT = 1;
-    private static final int NOW = 0;
 
     private final int index;
     private final Direction direction;
@@ -16,14 +15,18 @@ public class Point {
     }
 
     public int move() {
-        if (direction.isRight()) {
-            return index + RIGHT;
-        }
         if (direction.isLeft()) {
             return index + LEFT;
         }
 
+        if (direction.isRight()) {
+            return index + RIGHT;
+        }
+
         return index;
+    }
+    public boolean rightLineExists() {
+        return direction.isRight();
     }
 
     public Point next(boolean right) {
