@@ -39,18 +39,18 @@ public class Step4LadderRailsTest {
     public void playersAndResults() {
         List<String> players = List.of("n1", "n2");
         List<String> results = List.of("r1", "r2");
-        Step4LadderRails frame = lf(players, results);
-        assertThat(frame.players()).isEqualTo(ps(players));
-        assertThat(frame.prizes()).isEqualTo(LadderPrizesTest.pzs(results));
+        Step4LadderRails rails = lrs(players, results);
+        assertThat(rails.players()).isEqualTo(ps(players));
+        assertThat(rails.prizes()).isEqualTo(LadderPrizesTest.pzs(results));
     }
 
     @Test void railCount() {
-        assertThat(lf(List.of("n1", "n2"), List.of("r1", "r2")).railCount()).isEqualTo(LadderRailCount.of(2));
+        assertThat(lrs(List.of("n1", "n2"), List.of("r1", "r2")).railCount()).isEqualTo(LadderRailCount.of(2));
     }
 
-    public static Step4LadderRails lf(List<String> players, List<String> results) {
+    public static Step4LadderRails lrs(List<String> players, List<String> results) {
         return Step4LadderRails.of(players, results);
     }
 
-    public static Step4LadderRails simpleLF = lf(List.of("p1", "p2"), List.of("r1", "r2"));
+    public static Step4LadderRails simpleRails = lrs(List.of("p1", "p2"), List.of("r1", "r2"));
 }

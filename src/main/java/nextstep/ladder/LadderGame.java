@@ -7,6 +7,8 @@ import nextstep.ladder.domain.Step4LadderBuilder;
 import nextstep.ladder.engine.GameResult;
 import nextstep.ladder.engine.Ladder;
 import nextstep.ladder.engine.LadderBuilder;
+import nextstep.ladder.engine.LadderFrame;
+import nextstep.ladder.engine.LadderRails;
 import nextstep.ladder.view.Command;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
@@ -17,8 +19,10 @@ public class LadderGame {
         final List<String> resultList = InputView.inputPrizeOfResult();
         final int height = InputView.inputHeight();
 
-        final LadderBuilder ladderBuilder = Step4LadderBuilder.of(names, resultList);
-        final Ladder ladder = ladderBuilder.build(height, new RandomLadderPointStrategy());
+        final LadderBuilder ladderBuilder = new Step4LadderBuilder();
+        final LadderRails ladderRails = ladderBuilder.buildRails(names, resultList);
+        final LadderFrame ladderFrame = ladderBuilder.buildFrame(ladderRails, height);
+        final Ladder ladder = ladderBuilder.buildLadder(ladderFrame, new RandomLadderPointStrategy());
 
         OutputView.printLadder(ladder);
 
