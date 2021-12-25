@@ -1,13 +1,16 @@
 package nextstep.ladder.controller;
 
 import nextstep.ladder.model.Ladder;
-import nextstep.ladder.model.Users;
+import nextstep.ladder.model.UserResults;
 
 public class LadderController {
 
-    // todo
-    public Ladder run(RunRequest request) {
-        Users users = request.participatedUsers();
-        return Ladder.initate(users.size(), request.getHeightOfLadder());
+    public Ladder createLadder(CreateLadderRequest request) {
+        return Ladder.initate(request.getUserSize(), request.getHeightOfLadder());
+    }
+
+    public UserResults retrieveUserResults(RetrieveResultRequest request) {
+        return request.ladderGame()
+                .userResults();
     }
 }

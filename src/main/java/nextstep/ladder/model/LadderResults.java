@@ -1,0 +1,51 @@
+package nextstep.ladder.model;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
+public final class LadderResults {
+
+    private final List<LadderResult> ladderResults;
+
+    private LadderResults(List<LadderResult> ladderResults) {
+        this.ladderResults = new ArrayList<>(ladderResults);
+    }
+
+    public static LadderResults from(List<String> ladderResults) {
+        validate(ladderResults);
+        return new LadderResults(ladderResults(ladderResults));
+    }
+
+    private static void validate(List<String> ladderResults) {
+        if (Objects.isNull(ladderResults)) {
+            throw new IllegalArgumentException("전달된 사다리 결과 그룹이 null입니다.");
+        }
+        if (ladderResults.isEmpty()) {
+            throw new IllegalArgumentException("전달된 사다리 결과 그룹이 비어있습니다.");
+        }
+    }
+
+    private static List<LadderResult> ladderResults(List<String> ladderResults) {
+        return ladderResults.stream()
+                .map(LadderResult::new)
+                .collect(Collectors.toList());
+    }
+
+    public List<LadderResult> getLadderResults() {
+        return Collections.unmodifiableList(ladderResults);
+    }
+
+    public LadderResult get(int index) {
+        if (size() <= index) {
+            throw new IllegalArgumentException(String.format("입력된 index(%d)는 결과를 넘어갈 수 없습니다.", index));
+        }
+        return ladderResults.get(index);
+    }
+
+    public int size() {
+        return ladderResults.size();
+    }
+}

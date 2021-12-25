@@ -49,4 +49,8 @@ public final class LadderLine {
     public List<LadderPoint> getPoints() {
         return Collections.unmodifiableList(points);
     }
+
+    public int move(int position) {
+        return points.get(position).move();
+    }
 }

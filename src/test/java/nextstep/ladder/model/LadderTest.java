@@ -6,14 +6,18 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
-class LadderTest {
-    private static final int VALID_HEIGHT_OF_LADDER = 5;
+public class LadderTest {
+    private static final int HEIGHT_OF_LADDER = 5;
+    private static final int USER_SIZE = 4;
+    public static final Ladder LADDER = Ladder.initate(USER_SIZE, HEIGHT_OF_LADDER);
+    private static final int INITIATIVE_INDEX = 0;
 
     @Test
     void initTest() {
         // then
-        assertThat(Ladder.initate(UsersTest.USERS.size(), VALID_HEIGHT_OF_LADDER)).isNotNull();
+        assertThat(LADDER).isNotNull();
     }
 
     @ParameterizedTest
@@ -21,7 +25,7 @@ class LadderTest {
     void checkExceptionForInvalidUserSizeTest(int invalidUserSize) {
         // when & then
         assertThatIllegalArgumentException().isThrownBy(
-                () -> Ladder.initate(invalidUserSize, VALID_HEIGHT_OF_LADDER)
+                () -> Ladder.initate(invalidUserSize, HEIGHT_OF_LADDER)
         );
     }
 
@@ -30,15 +34,30 @@ class LadderTest {
     void checkExceptionForInvalidHeightTest(int invalidHeight) {
         // when & then
         assertThatIllegalArgumentException().isThrownBy(
-                () -> Ladder.initate(UsersTest.USERS.size(), invalidHeight)
+                () -> Ladder.initate(UsersTest.FOUR_USERS.size(), invalidHeight)
         );
     }
 
     @Test
     void getLaddersTest() {
-        // given
-        Ladder ladder = Ladder.initate(UsersTest.USERS.size(), VALID_HEIGHT_OF_LADDER);
         // when & then
-        assertThat(ladder.getLadders()).hasSize(VALID_HEIGHT_OF_LADDER);
+        assertThat(LADDER.getLadderLines()).hasSize(HEIGHT_OF_LADDER);
+    }
+
+    @Test
+    void heightTest() {
+        // when & then
+        assertThat(LADDER.height()).isEqualTo(HEIGHT_OF_LADDER);
+    }
+
+    @Test
+    void moveTest() {
+        // when
+        int index = LADDER.move(INITIATIVE_INDEX);
+        // then
+        assertAll(
+                () -> assertThat(index).isGreaterThanOrEqualTo(INITIATIVE_INDEX),
+                () -> assertThat(index).isLessThanOrEqualTo(LADDER.height())
+        );
     }
 }
