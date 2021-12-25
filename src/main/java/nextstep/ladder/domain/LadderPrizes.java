@@ -24,12 +24,6 @@ public class LadderPrizes extends FirstClassList<Prize> implements Prizes {
                 .collect(Collectors.toList()));
     }
 
-    public LadderPrizes mapByIndex(List<Integer> indexes) {
-        return new LadderPrizes(indexes.stream()
-                .map(this::elementOf)
-                .collect(Collectors.toList()));
-    }
-
     @Override
     public String toString() {
         return "Results {" +

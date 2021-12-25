@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.*;
 
 public class IndexTest {
     @ParameterizedTest(name = "create: {arguments}")
-    @ValueSource(ints = {0, 1})
+    @ValueSource(ints = {0, 1, 11})
     public void create(final int index) {
         assertThat(Index.of(index)).isEqualTo(Index.of(index));
     }

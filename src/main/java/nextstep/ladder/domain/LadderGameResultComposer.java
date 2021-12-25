@@ -37,7 +37,7 @@ public class LadderGameResultComposer implements GameResultComposer {
         return resultMap;
     }
 
-    public void zip(Prize prize, Index index) {
+    private void zip(Prize prize, Index index) {
         resultMap.put(players.elementOf(index.toInt()), prize);
     }
 }

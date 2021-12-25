@@ -23,18 +23,21 @@ public class PointTest {
     @Test
     public void next_stay() {
         Point second = Point.first(false).next(false);
+        assertThat(second.isRight()).isFalse();
         assertThat(second.move()).isEqualTo(ix(1));
     }
 
     @Test
     public void next_left() {
         Point second = Point.first(true).next(false);
+        assertThat(second.isRight()).isFalse();
         assertThat(second.move()).isEqualTo(ix(0));
     }
 
     @Test
     public void next_right() {
         Point second = Point.first(false).next(true);
+        assertThat(second.isRight()).isTrue();
         assertThat(second.move()).isEqualTo(ix(2));
     }
 

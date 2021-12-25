@@ -24,10 +24,6 @@ public class LadderLine extends FirstClassList<Point> implements Line {
         return new LadderLine(points);
     }
 
-    public Index move(int position) {
-        return elementOf(position).move();
-    }
-
     @Override
     public Index move(Index position) {
         return elementOf(position.toInt()).move();

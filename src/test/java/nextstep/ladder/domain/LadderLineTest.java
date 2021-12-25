@@ -48,7 +48,12 @@ public class LadderLineTest {
     @ParameterizedTest
     @MethodSource("parseMoveArguments")
     public void move(LadderLine line, int move, int expected) {
-        assertThat(line.move(move)).isEqualTo(ix(expected));
+        assertThat(line.move(ix(move))).isEqualTo(ix(expected));
+    }
+
+    @Test
+    public void boolStream() {
+        assertThat(simpleLine().boolStream()).hasSameElementsAs(List.of(false, true, false));
     }
 
     public static LadderLine ll(int railCount, LadderPointGenerateStrategy strategy) {

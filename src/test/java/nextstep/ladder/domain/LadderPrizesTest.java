@@ -25,12 +25,6 @@ public class LadderPrizesTest {
                 .isThrownBy(() -> LadderPrizes.fromString(results));
     }
 
-    @Test
-    public void mapByIndex() {
-        final LadderPrizes ladderPrizes = LadderPrizes.fromString(List.of("r1", "r2", "r3"));
-        assertThat(ladderPrizes.mapByIndex(List.of(1, 0, 2))).isEqualTo(pzs("r2", "r1", "r3"));
-    }
-
     public static Prizes pzs(String ... results) {
         return LadderPrizes.fromString(Arrays.asList(results));
     }

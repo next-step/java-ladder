@@ -1,10 +1,14 @@
 package nextstep.ladder.domain;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import nextstep.ladder.engine.LadderFrame;
 import nextstep.ladder.engine.LadderRails;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import static nextstep.ladder.domain.LadderHeightTest.h;
 import static nextstep.ladder.domain.LadderPlayersTest.ps;
@@ -12,6 +16,7 @@ import static nextstep.ladder.domain.LadderPrizesTest.pzs;
 import static nextstep.ladder.domain.Step4LadderRailsTest.lrs;
 import static nextstep.ladder.domain.Step4LadderRailsTest.simpleRails;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class Step4LadderFrameTest {
     @Test
@@ -19,6 +24,19 @@ public class Step4LadderFrameTest {
         final LadderRails rails = lrs(List.of("p1", "p2"), List.of("r2", "r3"));
         final int height = 4;
         assertThat(Step4LadderFrame.of(rails, height)).isEqualTo(Step4LadderFrame.of(rails, height));
+    }
+
+    static Stream<Arguments> parseCreateFailed() {
+        return Stream.of(
+                Arguments.of(null, 1),
+                Arguments.of(lrs(List.of("p1", "p2"), List.of("r2", "r3")), 0)
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("parseCreateFailed")
+    public void createFailed(LadderRails rails, int height) {
+        assertThatIllegalArgumentException().isThrownBy(() -> Step4LadderFrame.of(rails, height));
     }
 
     @Test

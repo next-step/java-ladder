@@ -38,7 +38,7 @@ public class Step4Ladder extends FirstClassList<Line> implements Ladder {
 
     public GameResult move(Prizes prizes) {
         final ResultMap resultMap = PlayerResultMap.of(ladderFrame.prizes());
-        resultMap.move(collect());
+        resultMap.move(this.collect());
         return resultMap.result(ladderFrame.players());
     }
 

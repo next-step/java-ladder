@@ -27,10 +27,6 @@ public class Point {
         return new Point(index.next(), direction.last());
     }
 
-    public boolean isLeft() {
-        return direction == Direction.LEFT;
-    }
-
     public boolean isRight() {
         return direction == Direction.RIGHT;
     }

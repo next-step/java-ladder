@@ -1,23 +1,18 @@
 package nextstep.ladder.engine;
 
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 public class FirstClassList<T> implements FirstClassIndexCollection<T> {
-    private static final int HEAD_INDEX = 0;
-
     private final List<T> collection;
 
     protected FirstClassList(List<T> collection) {
         this.collection = Collections.unmodifiableList(collection);
     }
 
-    // todo refactor: test에서만 사용
     public List<T> collect() {
         return collection;
     }
@@ -26,7 +21,6 @@ public class FirstClassList<T> implements FirstClassIndexCollection<T> {
         return collection.stream();
     }
 
-    // todo refactor: test에서만 사용
     public void forEach(Consumer<? super T> action) {
         collection.forEach(action);
     }
@@ -39,27 +33,8 @@ public class FirstClassList<T> implements FirstClassIndexCollection<T> {
         return collection.get(index);
     }
 
-    // todo refactor: test에서만 사용
-    public Optional<T> elementOfOpt(int index) {
-        if (index < HEAD_INDEX || index >= collection.size()) {
-            return Optional.empty();
-        }
-
-        return Optional.of(collection.get(index));
-    }
-
     public int indexOf(T t) {
         return collection.indexOf(t);
-    }
-
-    // todo refactor: test에서만 사용
-    public Iterator<T> iterator() {
-        return collect().iterator();
-    }
-
-    // todo refactor: test에서만 사용
-    public <S> boolean hasSameSize(FirstClassList<S> other) {
-        return other != null && collection.size() == other.size();
     }
 
     @Override
