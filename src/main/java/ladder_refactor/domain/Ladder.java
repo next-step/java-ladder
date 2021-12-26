@@ -20,6 +20,10 @@ public class Ladder {
         return new Ladder(lines);
     }
 
+    public static Ladder init(List<LadderLine> lines) {
+        return new Ladder(lines);
+    }
+
     public int move(int position) {
         for (LadderLine line : this.lines) {
             position = line.move(position);

@@ -8,7 +8,7 @@ import static ladder_refactor.domain.LadderPointGenerator.generatePoint;
 public class LadderLine {
     private final List<Point> points;
 
-    public LadderLine(List<Point> points) {
+    private LadderLine(List<Point> points) {
         this.points = points;
     }
 
@@ -21,6 +21,10 @@ public class LadderLine {
         Point point = initFirst(points);
         point = initBody(sizeOfPerson, points, point);
         initLast(points, point);
+        return new LadderLine(points);
+    }
+
+    public static LadderLine init(List<Point> points) {
         return new LadderLine(points);
     }
 
