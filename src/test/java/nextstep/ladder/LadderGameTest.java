@@ -3,10 +3,7 @@ package nextstep.ladder;
 import nextstep.ladder.factory.LinesFactory;
 import nextstep.ladder.model.*;
 import nextstep.ladder.utils.StringUtils;
-import nextstep.ladder.view.OutputView;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -35,7 +32,10 @@ class LadderGameTest {
         Ladder ladder = new Ladder(players, lines, results);
         Report report = ladder.game();
 
-        OutputView.print(report);
-        assertThat(players.findPlayerByIndex(new Index(index))).isEqualTo(new Player(name, index));
+
+        Result result = report.findResultByPlayerName(name);
+        Player player = players.findPlayerByIndex(new Index(index));
+
+        assertThat(result.equalsIndex(player.getIndex())).isTrue();
     }
 }
