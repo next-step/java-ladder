@@ -2,38 +2,39 @@ package nextstep.ladder.view;
 
 import java.util.stream.Stream;
 
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Name;
-import nextstep.ladder.domain.TestLineStrategy;
+import nextstep.ladder.domain.PlayerName;
+import nextstep.ladder.engine.Line;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static nextstep.ladder.domain.LineTest.l;
-import static nextstep.ladder.domain.NameTest.n;
+import static nextstep.ladder.domain.LadderLineTest.ll;
+import static nextstep.ladder.domain.PlayerNameTest.pn;
+import static nextstep.ladder.domain.TestLadderPointStrategy.ALL_LINE_STRATEGY;
+import static nextstep.ladder.domain.TestLadderPointStrategy.NO_LINE_STRATEGY;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class OutputViewTest {
     static Stream<Arguments> parseName() {
         return Stream.of(
-                Arguments.of(n("name1"), " name1"),
-                Arguments.of(n("name"), "  name"),
-                Arguments.of(n(" "), "      ")
+                Arguments.of(pn("name1"), " name1"),
+                Arguments.of(pn("name"), "  name"),
+                Arguments.of(pn(" "), "      ")
         );
     }
 
     @ParameterizedTest(name = "format name: {arguments}")
     @MethodSource("parseName")
-    public void formatName(Name name, String expected) {
+    public void formatName(PlayerName name, String expected) {
         assertThat(OutputView.formatName(name)).isEqualTo(expected);
     }
 
 
     static Stream<Arguments> parseFormatLine() {
         return Stream.of(
-                Arguments.of(l(2, TestLineStrategy.NO_LINE_STRATEGY), "     |     |     |"),
-                Arguments.of(l(2, TestLineStrategy.ALL_LINE_STRATEGY), "     |-----|-----|")
+                Arguments.of(ll(2, NO_LINE_STRATEGY), "     |     |     "),
+                Arguments.of(ll(2, ALL_LINE_STRATEGY), "     |-----|     ")
         );
     }
 
@@ -45,8 +46,8 @@ public class OutputViewTest {
 
     static Stream<Arguments> parseMapLine() {
         return Stream.of(
-                Arguments.of(l(2, TestLineStrategy.NO_LINE_STRATEGY), "     |     "),
-                Arguments.of(l(2, TestLineStrategy.ALL_LINE_STRATEGY), "-----|-----")
+                Arguments.of(ll(2, NO_LINE_STRATEGY), "     |     "),
+                Arguments.of(ll(2, ALL_LINE_STRATEGY), "-----|     ")
         );
     }
 

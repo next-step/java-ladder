@@ -6,6 +6,45 @@
 * 규칙 6: 모든 엔티티를 작게 유지한다.
 * 규칙 7: 3개 이상의 인스턴스 변수를 가진 클래스를 쓰지 않는다.
 
+## STEP4 사다리 리팩토링
+* 기능 요구사항 3단계와 같다.
+* 추가로 제공되는 객체 설계 힌트를 참고해 철저하게 TDD로 재구현해 본다.
+* [x] 사다리 한 Line 추상화
+  * [x] 사다리 게임에서 한 Line을 LadderLine으로 이름을 붙이고 다음과 같이 구현
+  * [x] 사다리 Line의 모든 Point 초기화와 이동을 담당
+  * [x] 포인트 생성 방식을 런타임에 정할수 있게 수정
+  * [x] LadderLine의 init을 분리
+* [x] LadderLine의 두 점과 현재 위치를 Point로 추상화
+  * [x] LadderLine에서 위치와 각 점의 방향을 관리
+  * [x] Index class
+* [x] 각 Point의 좌/우 방향을 Direction으로 추상화
+  * [x] 각 Point의 좌/우 방향 정보를 가진다.
+  * [x] 현재 Point에서 다음 Point를 생성하는 역할
+* [x] LadderLine, Point, Direction 클래스를 기존 코드에 적용
+  * [x] sizeOfRail의 wrapping
+  * [x] LadderBuilder에 적용
+* [x] 책임 기반의 인터페이스 위주 설계
+  * [x] LadderBuilder가 Ladder를 생성
+  * [x] Ladder가 경기를 진행
+  * [x] Ladder를 출력하기 위해 Line을 탐색
+    * [x] 참가자를 탐색
+    * [x] 경기 결과를 탐색
+  * [x] LadderFrame의 책임은 사다리의 형태를 구성
+  * [x] GameResult의 책임은 사다리 게임의 결과를 매핑
+  * [x] FirstClassList 인터페이스 분리
+  * [x] Primitive wrapper 인터페이스 분리
+  * [x] 패키지간 순환 참조 해결
+  * [x] Ladder#move
+* 피드백
+  * [ ] 람다식 메서드 추출하여 메서드 참조로 변경
+    * [x] OutputView
+    * [x] LadderGameResult
+    * [x] Ladder
+  * [x] 함수 인자 수를 3개 미만으로 변경
+  ~~* [ ] indexes의 일급 객체화~~
+    ~~* [ ] Ladder 생성시~~
+    ~~* [ ] 결과 도출시~~
+
 ## STEP3 사다리 게임 실행
 
 ### 기능 요구사항

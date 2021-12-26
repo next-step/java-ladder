@@ -1,30 +1,25 @@
 package nextstep.ladder.view;
 
-import java.util.Optional;
 import java.util.stream.Collectors;
 
-import nextstep.ladder.LadderGame;
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.LadderFrame;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Name;
-import nextstep.ladder.domain.Player;
-import nextstep.ladder.domain.Players;
-import nextstep.ladder.domain.Result;
-import nextstep.ladder.domain.ResultOfGame;
-import nextstep.ladder.domain.Results;
+import nextstep.ladder.engine.GameResult;
+import nextstep.ladder.engine.Ladder;
+import nextstep.ladder.engine.Line;
+import nextstep.ladder.engine.Name;
+import nextstep.ladder.engine.Players;
+import nextstep.ladder.engine.Prize;
+import nextstep.ladder.engine.Prizes;
 
 public class OutputView {
+    public static final String NEWLINE = "\n";
+
     private static final String NAME_FORMAT = "%" + (Name.LENGTH_LIMIT + 1) + "s";
-    private static final String NEWLINE = "\n";
     private static final String SPACE = " ";
     private static final String LINE = "-";
     private static final String RAIL = "|";
-    private static final String NAME_COLON = ":";
 
     public static void printPlayerList(Players players) {
         players.stream()
-                .map(Player::name)
                 .map(OutputView::formatPadding)
                 .forEach(System.out::print);
         System.out.print(NEWLINE);
@@ -38,21 +33,14 @@ public class OutputView {
         return String.format(NAME_FORMAT, name);
     }
 
-    public static void printLadder(Ladder ladder) {
-        ladder.stream()
-                .map(OutputView::formatLine)
-                .forEach(System.out::println);
-    }
-
     public static String formatLine(Line line) {
-        return SPACE.repeat(Name.LENGTH_LIMIT) + RAIL + mapLine(line) + RAIL;
+        return SPACE.repeat(Name.LENGTH_LIMIT) + RAIL + mapLine(line);
     }
 
     public static String mapLine(Line line) {
-        return line.stream()
+        return line.boolStream()
                 .map(OutputView::mapPoint)
                 .collect(Collectors.joining(RAIL));
-
     }
 
     public static String mapPoint(boolean isPoint) {
@@ -60,37 +48,30 @@ public class OutputView {
         return point.repeat(Name.LENGTH_LIMIT);
     }
 
-    public static void printResult(Results results) {
-        results.stream()
+    public static void printResult(Prizes prizes) {
+        prizes.stream()
                 .map(OutputView::formatPadding)
                 .forEach(System.out::print);
         System.out.print(NEWLINE);
     }
 
-    public static void printLadder(LadderFrame ladderFrame, Ladder ladder) {
-        printPlayerList(ladderFrame.players());
-        printLadder(ladder);
-        printResult(ladderFrame.results());
+    public static void printLadder(Ladder ladder) {
+        printPlayerList(ladder.players());
+
+        ladder.stream()
+                .map(OutputView::formatLine)
+                .forEach(System.out::println);
+
+        printResult(ladder.prizes());
     }
 
-    public static void printResultOfPlayers(String nameOfUser, ResultOfGame resultOfGame) {
+    public static void printResultOfPlayers(String nameOfUser, GameResult gameResult) {
         System.out.println("실행 결과");
 
-        resultOfGame.result(Player.of(nameOfUser))
-                .map(Result::toString)
-                .or(() -> mapNotExistUser(nameOfUser, resultOfGame))
+        ResultPrinter resultPrinter = new ResultPrinter(nameOfUser, gameResult);
+        gameResult.result(nameOfUser)
+                .map(Prize::toString)
+                .or(resultPrinter::mapNotExistUser)
                 .ifPresent(System.out::println);
-    }
-
-    public static Optional<String> mapNotExistUser(String nameOfUser, ResultOfGame resultOfGame) {
-        return Optional.of(nameOfUser)
-                .filter(name -> name.equalsIgnoreCase(LadderGame.ALL_COMMAND))
-                .map(name -> parseAllResult(resultOfGame));
-    }
-
-    public static String parseAllResult(ResultOfGame resultOfGame) {
-        return resultOfGame.streamOfEntry()
-                .map(entry -> entry.getKey().name() + NAME_COLON + entry.getValue())
-                .collect(Collectors.joining(NEWLINE));
     }
 }
