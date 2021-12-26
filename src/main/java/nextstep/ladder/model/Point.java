@@ -35,4 +35,17 @@ public class Point {
     public boolean isActive() {
         return active;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Point)) return false;
+        Point point = (Point) o;
+        return isActive() == point.isActive() && Objects.equals(getIndex(), point.getIndex());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getIndex(), isActive());
+    }
 }
