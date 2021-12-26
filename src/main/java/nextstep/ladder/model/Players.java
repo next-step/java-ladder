@@ -58,10 +58,8 @@ public class Players {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Players[");
-        players.forEach(player -> sb.append("{index=").append(player.getIndex().index)
-                .append(" Name=").append(player.getName()).append("}"));
-        sb.append(']');
-        return sb.toString();
+        return "Players{" +
+                "players=" + players +
+                '}';
     }
 }

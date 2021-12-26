@@ -4,7 +4,7 @@ import nextstep.ladder.common.Name;
 
 public class Player extends Name {
 
-    private final Index index;
+    private Index index;
 
     public Player(String name) {
         super(name);
@@ -21,7 +21,7 @@ public class Player extends Name {
     }
 
     public void move(Direction direction) {
-        direction.move(index);
+        this.index = direction.move(index);
     }
 
     public Index getIndex() {
@@ -30,6 +30,8 @@ public class Player extends Name {
 
     @Override
     public String toString() {
-        return "Player{" + "index=" + index.index + " Name=" + super.getName() + '}';
+        return "Player{" +
+                "index=" + index +
+                '}';
     }
 }
