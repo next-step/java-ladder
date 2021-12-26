@@ -12,16 +12,16 @@ class IndexTest {
     @DisplayName("next 테스트")
     void next() {
         Index index = new Index();
-        index.next();
-        assertThat(index).isEqualTo(Index.ONE);
+        Index next = index.next();
+        assertThat(next).isEqualTo(Index.ONE);
     }
 
     @Test
     @DisplayName("prev 테스트")
     void prev() {
         Index index = Index.ONE;
-        index.prev();
-        assertThat(index).isEqualTo(new Index());
+        Index prev = index.prev();
+        assertThat(prev).isEqualTo(new Index());
     }
 
     @Test
