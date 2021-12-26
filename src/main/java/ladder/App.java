@@ -1,19 +1,17 @@
 package ladder;
 
-import ladder.domain.ladder.Controller;
 import ladder.UI.InputView;
+import ladder.UI.RequestDto;
 import ladder.UI.ResponseDto;
 import ladder.UI.ResultView;
+import ladder.domain.ladder.Controller;
 import ladder.domain.ladder.LadderResult;
 
 public class App {
 
     public static void main(String[] args) {
-        ResponseDto responseDto =
-                Controller.readyLadderGame(InputView.inputParticipants(),
-                                         InputView.inputLadderResult(),
-                                         InputView.inputLadderHeight()
-                                         );
+        RequestDto requestDto = new RequestDto(InputView.inputParticipants(), InputView.inputLadderResult(), InputView.inputLadderHeight());
+        ResponseDto responseDto = Controller.readyLadderGame(requestDto);
         ResultView.printLadderGame(responseDto);
 
         String name = InputView.inputFindByName();

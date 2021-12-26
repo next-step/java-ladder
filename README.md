@@ -394,3 +394,4 @@ jk : 5000
 - [x] 테스트 케이스의 중복 예외 메시지 상수 처리
 - [x] 예외 코드 가독성 개선
 - [x] LadderResult에서 Map의 key값 Name 클래스로 변경
+- Controller의 요청 파라미터를 RequestDto로 변경

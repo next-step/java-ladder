@@ -1,18 +1,16 @@
 package ladder.domain.ladder;
 
+import ladder.UI.RequestDto;
 import ladder.UI.ResponseDto;
-import ladder.domain.ladder.InputLadderResult;
-import ladder.domain.ladder.LadderContext;
-import ladder.domain.ladder.LadderResult;
 import ladder.domain.user.Participants;
 
 public class Controller {
 
-    public static ResponseDto readyLadderGame(String participantNames, String inputLadderResult, int ladderHeight) {
-        Participants participants = new Participants(participantNames);
-        LadderContext ladderContext = new LadderContext(ladderHeight, participants.size());
+    public static ResponseDto readyLadderGame(RequestDto requestDto) {
+        Participants participants = new Participants(requestDto.getParticipantNames());
+        LadderContext ladderContext = new LadderContext(requestDto.getLadderHeight(), participants.size());
 
-        return new ResponseDto(participants, ladderContext, new InputLadderResult(inputLadderResult));
+        return new ResponseDto(participants, ladderContext, new InputLadderResult(requestDto.getInputLadderResult()));
     }
 
     public static LadderResult play(ResponseDto responseDto) {
