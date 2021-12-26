@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private static int INIT_INDEX = 0;
+    private static final int INIT_INDEX = 0;
 
     private final List<Line> ladder;
 
@@ -29,6 +29,6 @@ public class Ladder {
     public int discovery(int number) {
         AtomicInteger result = new AtomicInteger(number);
         ladder.forEach(line -> result.set(line.move(result.get())));
-        return result.get() - 1;
+        return result.get();
     }
 }

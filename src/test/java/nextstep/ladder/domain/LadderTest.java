@@ -22,7 +22,7 @@ class LadderTest {
 
     @DisplayName("사다리 탐색 테스트")
     @ParameterizedTest
-    @CsvSource(value = {"1:4:4:2", "1:5:1:1", "2:5:2:1", "2:5:3:2"}, delimiter = ':')
+    @CsvSource(value = {"1:4:0:1","2:5:2:2", "2:5:2:2", "2:5:3:3"}, delimiter = ':')
     void discoveryLadder(int depth, int width, int startLine, int arrivalLocation) {
         Height height = new Height(depth);
         Ladder ladder = Ladder.of(width, height, () -> true);
