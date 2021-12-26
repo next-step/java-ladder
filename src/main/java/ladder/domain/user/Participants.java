@@ -12,14 +12,14 @@ public class Participants {
     private final List<Name> names = new ArrayList<>();
 
     public Participants(String names) {
-        validate(names);
+        validateMinimumParticipants(names);
         String[] split = names.split(DELIMITER);
         for (String name : split) {
             this.names.add(new Name(name));
         }
     }
 
-    private void validate(String names) {
+    private void validateMinimumParticipants(String names) {
         if (names.split(DELIMITER).length < MINIMUM_NUMBER_OF_PARTICIPANTS) {
             throw new IllegalArgumentException("참가자가 2명 이상이어야 게임을 진행할 수 있습니다.");
         }

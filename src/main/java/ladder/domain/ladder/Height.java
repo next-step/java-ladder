@@ -10,10 +10,14 @@ public class Height {
     private final int height;
 
     public Height(int height) {
+        validateHeight(height);
+        this.height = height;
+    }
+
+    private void validateHeight(int height) {
         if (height > MAXIMUM_HEIGHT || height < MINIMUM_HEIGHT) {
             throw new IllegalArgumentException("사다리 높이는 " + MINIMUM_HEIGHT + "이상 " + MAXIMUM_HEIGHT + "이하로 설정 해주세요.");
         }
-        this.height = height;
     }
 
     @Override
