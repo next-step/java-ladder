@@ -48,15 +48,7 @@ public class Point {
     }
 
     public int move() {
-        if (direction.isLeft()) {
-            return position - 1;
-        }
-
-        if (direction.isRight()) {
-            return position + 1;
-        }
-
-        return position;
+        return direction.move(position);
     }
 
     @Override

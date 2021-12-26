@@ -51,6 +51,19 @@ public class Direction {
         return !prev && !current;
     }
 
+    public int move(int position) {
+        if (isLeft()) {
+            return position - 1;
+        }
+
+        if (isRight()) {
+            return position + 1;
+        }
+
+        return position;
+
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
