@@ -5,9 +5,6 @@ import java.util.Random;
 
 public class Point {
     public static final Random RANDOM = new Random();
-    public static final int RANDOM_END = 10;
-
-    public static final int RANDOM_BOUNDARY = 5;
 
     private final Direction direction;
     private final int index;
@@ -21,52 +18,16 @@ public class Point {
         return new Point(direction, index);
     }
 
-    public static Point randomFirstPoint() {
-        int randomNumber = RANDOM.nextInt(RANDOM_END);
-        if (randomNumber > RANDOM_BOUNDARY) {
-            return Point.of(new Direction("right"), 0);
-        } else if (randomNumber <= RANDOM_BOUNDARY) {
-            return Point.of(new Direction("none"), 0);
-        }
-        throw new IllegalArgumentException("first point 생성 불가능");
+    public static Point first() {
+        return Point.of(Direction.first(), 0);
     }
 
-    public static Point randomLastPoint(Point previousPoint, int index) {
-        int randomNumber = RANDOM.nextInt(RANDOM_END);
-
-        if (previousPoint.direction.isRight()) {
-            return Point.of(new Direction("left"), index);
-        }
-        if (previousPoint.direction.isLeft()) {
-            return Point.of(new Direction("none"), index);
-        }
-        if (previousPoint.direction.isNone() && randomNumber <= RANDOM_BOUNDARY) {
-
-            return Point.of(new Direction("left"), index);
-        }
-        if (previousPoint.direction.isNone() && randomNumber > RANDOM_BOUNDARY) {
-            return Point.of(new Direction("none"), index);
-        }
-        throw new IllegalArgumentException("last point 생성 불가능");
+    public Point next(int index) {
+        return Point.of(direction.next(), index);
     }
 
-    public Point nextPoint(int index) {
-        int randomNumber = RANDOM.nextInt(RANDOM_END);
-        if (this.direction.isRight()) {
-            return Point.of(new Direction("left"), index);
-        }
-        if ((this.direction.isLeft() || this.direction.isNone()) && randomNumber <= RANDOM_BOUNDARY) {
-
-            return Point.of(new Direction("right"), index);
-        }
-        if ((this.direction.isLeft() || this.direction.isNone()) && randomNumber > RANDOM_BOUNDARY) {
-            return Point.of(new Direction("none"), index);
-        }
-        throw new IllegalArgumentException("next point 생성 불가능");
-    }
-
-    public Direction getDirection() {
-        return direction;
+    public Point last(int index) {
+        return Point.of(this.direction.last(), index);
     }
 
     public int move() {
@@ -77,6 +38,10 @@ public class Point {
             return index - 1;
         }
         return index;
+    }
+
+    public Direction getDirection() {
+        return direction;
     }
 
     @Override

@@ -11,6 +11,10 @@ repositories {
 dependencies {
     testCompile('org.junit.jupiter:junit-jupiter:5.6.0')
     testCompile('org.assertj:assertj-core:3.15.0')
+    testImplementation 'org.hamcrest:hamcrest:2.2'
+// https://mvnrepository.com/artifact/junit/junit
+    testImplementation group: 'junit', name: 'junit', version: '4.13.1'
+
 }
 
 test {

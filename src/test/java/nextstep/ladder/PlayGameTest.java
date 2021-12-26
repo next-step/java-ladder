@@ -2,11 +2,11 @@ package nextstep.ladder;
 
 import nextstep.ladder.domain.*;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -29,15 +29,8 @@ public class PlayGameTest {
         Ladder ladder = Ladder.ofLines(lines);
 
         PlayGame playGame = PlayGame.of(participants, compensations);
-        HashMap<String, String> resultPlayOne = playGame.playGame(participantWantResult, ladder);
+        Map<String, String> resultPlayOne = playGame.playGame(participantWantResult, ladder);
 
         assertThat(resultPlayOne.get("A")).isEqualTo("우승");
-
-        assertThatThrownBy(() -> {
-            playGame.playGame(Participant.of("q", 0), ladder);
-        }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("해당 참가자가 없습니다.");
-
-        HashMap<String, String> resultAll = playGame.playGame(Participant.of("all", 0), ladder);
-        assertThat(resultAll.get("A")).isEqualTo("우승");
     }
 }

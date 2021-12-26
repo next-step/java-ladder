@@ -55,12 +55,10 @@ public class OutPut {
     }
 
     public static void viewResult(Participants participants, Map<String, String> result) {
-        for (Participant participant : participants.getParticipants()) {
-            if (result.containsKey(participant.getParticipant())) {
-                System.out.println(participant.getParticipant() + " : " + result.get(participant.getParticipant()));
-            }
-
+        for (String participant : result.keySet()) {
+            System.out.println(participant + " : " + result.get(participant));
         }
+
     }
 }
 

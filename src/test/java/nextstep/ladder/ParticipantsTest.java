@@ -3,7 +3,7 @@ package nextstep.ladder;
 import nextstep.ladder.domain.Participant;
 import nextstep.ladder.domain.Participants;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;

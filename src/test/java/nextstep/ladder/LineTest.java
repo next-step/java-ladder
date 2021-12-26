@@ -4,9 +4,9 @@ import nextstep.ladder.domain.Direction;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Point;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -20,28 +20,17 @@ public class LineTest {
         Line lineByStringB = Line.ofString("none,right,left,right,left,none");
         Line lineByStringC = Line.ofString("right,left,none,right,left");
 
-        List<Point> lineA = new ArrayList<>();
-        lineA.add(Point.of(new Direction("right"), 0));
-        lineA.add(Point.of(new Direction("left"), 1));
-        lineA.add(Point.of(new Direction("right"), 2));
-        lineA.add(Point.of(new Direction("left"), 3));
-        lineA.add(Point.of(new Direction("none"), 4));
-        lineA.add(Point.of(new Direction("none"), 5));
+        List<Point> lineA = Arrays.asList(Point.of(new Direction("right"), 0), Point.of(new Direction("left"), 1),
+                Point.of(new Direction("right"), 2), Point.of(new Direction("left"), 3),
+                Point.of(new Direction("none"), 4), Point.of(new Direction("none"), 5));
 
-        List<Point> lineB = new ArrayList<>();
-        lineB.add(Point.of(new Direction("none"), 0));
-        lineB.add(Point.of(new Direction("right"), 1));
-        lineB.add(Point.of(new Direction("left"), 2));
-        lineB.add(Point.of(new Direction("right"), 3));
-        lineB.add(Point.of(new Direction("left"), 4));
-        lineB.add(Point.of(new Direction("none"), 5));
+        List<Point> lineB = Arrays.asList(Point.of(new Direction("none"), 0), Point.of(new Direction("right"), 1),
+                Point.of(new Direction("left"), 2), Point.of(new Direction("right"), 3),
+                Point.of(new Direction("left"), 4), Point.of(new Direction("none"), 5));
 
-        List<Point> lineC = new ArrayList<>();
-        lineC.add(Point.of(new Direction("right"), 0));
-        lineC.add(Point.of(new Direction("left"), 1));
-        lineC.add(Point.of(new Direction("none"), 2));
-        lineC.add(Point.of(new Direction("right"), 3));
-        lineC.add(Point.of(new Direction("left"), 4));
+        List<Point> lineC = Arrays.asList(Point.of(new Direction("right"), 0), Point.of(new Direction("left"), 1),
+                Point.of(new Direction("none"), 2), Point.of(new Direction("right"), 3),
+                Point.of(new Direction("left"), 4));
 
         assertThat(lineByStringA.getPoints()).isEqualTo(lineA);
         assertThat(lineByStringB.getPoints()).isEqualTo(lineB);
@@ -65,5 +54,17 @@ public class LineTest {
         assertThat(line.move(4)).isEqualTo(4);
         assertThat(line.move(3)).isEqualTo(2);
         assertThat(line.move(5)).isEqualTo(5);
+    }
+
+    @Test
+    public void init() {
+        int sizeOfPerson = 5;
+        Line.init(sizeOfPerson).getPoints();
+    }
+
+    @Test
+    public void move() {
+        Line line = Line.init(2);
+        System.out.println("ladder result : " + line.move(0));
     }
 }
