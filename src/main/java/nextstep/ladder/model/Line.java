@@ -8,8 +8,8 @@ public class Line {
     public static final String EXIST_LINE = "-----";
     public static final String LADDER_COLUMN = "|";
 
-    private static final int MIN_WIDTH = 2;
-    private static final String MESSAGE_MIN_WIDTH = "너비가 최소 2는 되어야합니다.";
+    private static final int MIN_WIDTH = 1;
+    private static final String MESSAGE_MIN_WIDTH = "라인의 너비는는 0 또는 음수가 될 수 없습니다.";
 
     private final List<Point> points;
 
