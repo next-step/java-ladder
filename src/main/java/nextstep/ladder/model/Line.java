@@ -30,7 +30,7 @@ public class Line {
     public void move(Player player) {
         Direction direction = points.stream()
                 .filter(Point::isActive)
-                .filter(point -> player.isAdjacent(player.getIndex()))
+                .filter(point -> player.isAdjacent(point.getIndex()))
                 .findFirst()
                 .map(point -> Direction.of(player.getIndex(), point))
                 .orElse(Direction.PASS);
