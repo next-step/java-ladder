@@ -29,10 +29,9 @@ class ReportTest {
     @DisplayName("Report 생성")
     void constructor() {
         Index zeroIndex = new Index();
-        Player player = players.findPlayerByIndex(zeroIndex);
         Result result = results.findResultByIndex(zeroIndex);
 
-        assertThat(report.getPlayerResults().get(player)).isEqualTo(result);
+        assertThat(report.getPlayerResults().get("pobi")).isEqualTo(result);
     }
 
     @ParameterizedTest

@@ -54,10 +54,10 @@ public class OutputView {
     }
 
     public static void print(Report report) {
-        Map<Player, Result> playerResults = report.getPlayerResults();
-        playerResults.keySet().forEach(player -> {
-            Result result = playerResults.get(player);
-            print(String.format("%s : %s", player.getName(), result.getName()));
+        Map<String, Result> playerResults = report.getPlayerResults();
+        playerResults.keySet().forEach(playerName -> {
+            Result result = playerResults.get(playerName);
+            print(String.format("%s : %s", playerName, result.getName()));
         });
     }
 
