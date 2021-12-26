@@ -1,30 +1,31 @@
 package ladder.domain.ladder;
 
+import ladder.domain.user.Name;
+
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 
 public class LadderResult {
 
-    private final Map<String, String> results = new LinkedHashMap<>();
+    private final Map<Name, String> results = new LinkedHashMap<>();
 
-    void put(String participant, String ladderResult) {
+    void put(Name participant, String ladderResult) {
         results.put(participant, ladderResult);
     }
 
-    public Map<String, String> getResults(String name) {
-        if ("all".equals(name)) {
+    public Map<Name, String> getResults(String name) {
+        if (new Name("all").equals(new Name(name))) {
             return Collections.unmodifiableMap(results);
         }
-        String findName = results.get(name);
+        String findName = results.get(new Name(name));
         if (findName == null) {
             throw new IllegalArgumentException("존재하지 않는 사용자 입니다.");
         }
 
-        Map<String, String> result = new LinkedHashMap<>();
-        result.put(name, findName);
+        Map<Name, String> result = new LinkedHashMap<>();
+        result.put(new Name(name), findName);
         return result;
     }
 

@@ -1,5 +1,6 @@
 package ladder.domain.ladder;
 
+import ladder.domain.user.Name;
 import ladder.domain.user.Participants;
 
 import java.util.List;
@@ -30,7 +31,7 @@ public class Ladder {
     LadderResult play(InputLadderResult inputLadderResult, Participants participants) {
         LadderResult ladderResult = new LadderResult();
         for (int i = 0; i < numberOfParticipant; i++) {
-            ladderResult.put(participants.getName(i).toString(), inputLadderResult.findResult(getResult(i)));
+            ladderResult.put(new Name(participants.getName(i).toString()), inputLadderResult.findResult(getResult(i)));
         }
         return ladderResult;
     }

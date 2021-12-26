@@ -83,8 +83,8 @@ public class ResultView {
         View.newLine();
         System.out.println("실행결과");
 
-        Map<String, String> result = ladderResult.getResults(name);
-        for (String key : result.keySet()) {
+        Map<Name, String> result = ladderResult.getResults(name);
+        for (Name key : result.keySet()) {
             System.out.println(key + " : " + result.get(key));
         }
     }
