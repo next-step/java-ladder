@@ -30,12 +30,12 @@ class LadderGameTest {
         Results results = new Results(splitResults, width);
 
         int height = 4;
-        Lines lines = LinesFactory.of(true, width, height, prev -> !prev);
+        Lines lines = LinesFactory.of(true, width, height, prev -> !prev); // 제자리로 돌아오는 사다리
 
         Ladder ladder = new Ladder(players, lines, results);
         Report report = ladder.game();
 
         OutputView.print(report);
-        assertThat(players.toString()).contains("{index=" + index + " Name=" + name + "}");
+        assertThat(players.findPlayerByIndex(new Index(index))).isEqualTo(new Player(name, index));
     }
 }
