@@ -1,6 +1,7 @@
 package ladder_refactor.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,7 +24,7 @@ public class Players {
     }
 
     public List<Player> getPlayers() {
-        return this.players;
+        return Collections.unmodifiableList(this.players);
     }
 
     public int count() {

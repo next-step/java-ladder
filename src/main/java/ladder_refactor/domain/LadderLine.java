@@ -1,6 +1,7 @@
 package ladder_refactor.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static ladder_refactor.domain.LadderPointGenerator.generatePoint;
@@ -48,7 +49,7 @@ public class LadderLine {
     }
 
     public List<Point> getPoints() {
-        return points;
+        return Collections.unmodifiableList(points);
     }
 
     @Override

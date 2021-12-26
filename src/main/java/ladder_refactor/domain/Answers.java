@@ -5,6 +5,7 @@ package ladder_refactor.domain;
 import ladder_refactor.exception.LadderInputException;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Answers {
@@ -33,7 +34,7 @@ public class Answers {
     }
 
     public List<String> getResults() {
-        return results;
+        return Collections.unmodifiableList(results);
     }
 
     public String getResult(int location) {
