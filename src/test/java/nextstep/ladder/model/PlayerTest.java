@@ -28,8 +28,8 @@ class PlayerTest {
     @Test
     @DisplayName("index 값 일치 테스트")
     void indexEqualsTest() {
-        Player player = new Player("test", Index.ONE);
-        assertThat(player.getIndex()).isEqualTo(new Index(Index.ONE));
+        Player player = new Player("test", 1);
+        assertThat(player.getIndex()).isEqualTo(Index.ONE);
     }
 
     @ParameterizedTest
@@ -47,6 +47,6 @@ class PlayerTest {
     void move(Direction direction, int output) {
         Player player = new Player("test", 3);
         player.move(direction);
-        assertThat(player.getIndex().index).isEqualTo(output);
+        assertThat(player.getIndex()).isEqualTo(new Index(output));
     }
 }

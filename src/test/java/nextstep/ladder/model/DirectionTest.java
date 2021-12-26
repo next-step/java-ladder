@@ -12,7 +12,7 @@ class DirectionTest {
 
     @BeforeEach
     void setUp() {
-        playerIndex = new Index(Index.ONE);
+        playerIndex = Index.ONE;
     }
 
     @Test
@@ -34,7 +34,7 @@ class DirectionTest {
     @Test
     @DisplayName("Player가 Point와 인접하지 않았을 때")
     void passDirectionTest() {
-        Point point = new Point(3, true);
+        Point point = new Point(new Index(3), true);
         Direction direction = Direction.of(playerIndex, point);
         assertThat(direction).isEqualTo(Direction.PASS);
     }
@@ -42,7 +42,7 @@ class DirectionTest {
     @Test
     @DisplayName("다리가 활성화되있지 않을 때")
     void passDirectionNotActive() {
-        Point point = new Point(1, false);
+        Point point = new Point(new Index(1), false);
         Direction direction = Direction.of(playerIndex, point);
         assertThat(direction).isEqualTo(Direction.PASS);
     }
