@@ -38,12 +38,11 @@ public class Line {
     }
 
     private boolean hasConsecutivePoints(List<Point> points) {
-        for (int i = 1; i < points.size(); i++) {
-            if (isConsecutiveMovablePoints(points.get(i - 1), points.get(i))) {
-                return true;
-            }
+        boolean isConsecutivePoints = false;
+        for (int i = 1; i < points.size() && !isConsecutivePoints; i++) {
+            isConsecutivePoints = isConsecutiveMovablePoints(points.get(i - 1), points.get(i));
         }
-        return false;
+        return isConsecutivePoints;
     }
 
     private boolean isConsecutiveMovablePoints(Point previousPoint, Point point) {
