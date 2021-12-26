@@ -16,7 +16,6 @@ public class App {
                                          );
         ResultView.printLadderGame(responseDto);
 
-
         String name = InputView.inputFindByName();
         LadderResult ladderResult = Controller.play(responseDto);
         ResultView.printLadderGameResult(ladderResult, name);

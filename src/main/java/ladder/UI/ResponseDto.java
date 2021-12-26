@@ -2,7 +2,6 @@ package ladder.UI;
 
 import ladder.domain.ladder.InputLadderResult;
 import ladder.domain.ladder.LadderContext;
-import ladder.domain.ladder.LadderResult;
 import ladder.domain.user.Participants;
 
 public class ResponseDto {
