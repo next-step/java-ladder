@@ -26,10 +26,6 @@ public class Point {
         return new Point(index + 1, direction.next());
     }
 
-    public Point next(Boolean right) {
-        return new Point(index + 1, direction.next(right));
-    }
-
     public static Point first(Boolean right) {
         return new Point(0, Direction.first(right));
     }
