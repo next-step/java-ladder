@@ -2,15 +2,13 @@ package ladderinterface.util;
 
 import java.util.Random;
 
-public class RandomGenerator {
+public class RandomGenerator implements BooleanGenerator {
     private static final Random RANDOM = new Random();
 
-    private RandomGenerator() {
-        throw new AssertionError();
-    }
-
-    public static boolean generate() {
+    @Override
+    public boolean generate() {
         return RANDOM.nextBoolean();
+
     }
 
 }

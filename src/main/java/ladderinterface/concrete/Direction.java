@@ -1,6 +1,6 @@
 package ladderinterface.concrete;
 
-import ladderinterface.util.RandomGenerator;
+import ladderinterface.util.BooleanGenerator;
 
 import java.util.Objects;
 
@@ -21,14 +21,14 @@ public class Direction {
     }
 
     public static Direction first(boolean current) {
-        return new Direction(false, current);
+        return of(false, current);
     }
 
-    public Direction nextRandom() {
+    public Direction next(BooleanGenerator generator) {
         if (current) {
             return next(false);
         }
-        return next(RandomGenerator.generate());
+        return next(generator.generate());
     }
 
     public Direction next(boolean current) {

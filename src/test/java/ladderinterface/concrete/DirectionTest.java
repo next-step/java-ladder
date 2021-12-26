@@ -1,5 +1,6 @@
 package ladderinterface.concrete;
 
+import ladderinterface.util.RandomGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -54,7 +55,7 @@ public class DirectionTest {
     @DisplayName("이전 점이 true면 현재 점은 무조건 false")
     @Test
     void random() {
-        Direction direction = Direction.first(true).nextRandom();
+        Direction direction = Direction.first(true).next(new RandomGenerator());
         assertThat(direction).isEqualTo(Direction.of(true, false));
     }
 
