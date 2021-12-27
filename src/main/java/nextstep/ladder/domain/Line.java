@@ -10,12 +10,28 @@ public class Line {
         this.points = points;
     }
 
+    public static Line ofString(String input) {
+        checkCanBePoint(input);
+        List<Point> points = new ArrayList<>();
+        String[] splitInput = input.split(",");
+        for (int index = 0; index < splitInput.length; index++) {
+            points.add(Point.of(new Direction(splitInput[index]), index));
+        }
+        return new Line(points);
+    }
+
     public static Line init(int countOfParticipants) {
         List<Point> points = new ArrayList<>();
         Point firstPoint = initFirst(points);
         Point point = initBody(points, countOfParticipants, firstPoint);
         initLast(points, point);
         return new Line(points);
+    }
+
+    public static Point initFirst(List<Point> points) {
+        Point firstPoint = Point.first();
+        points.add(firstPoint);
+        return firstPoint;
     }
 
     public static Point initBody(List<Point> points, int countOfParticipants, Point point) {
@@ -26,25 +42,10 @@ public class Line {
         return point;
     }
 
-    public static Point initFirst(List<Point> points) {
-        Point firstPoint = Point.first();
-        points.add(firstPoint);
-        return firstPoint;
-    }
-
     public static void initLast(List<Point> points, Point point) {
-        points.add(point.last(points.size() + 1));
+        points.add(point.last(points.size()));
     }
 
-    public static Line ofString(String input) {
-        checkCanBePoint(input);
-        List<Point> points = new ArrayList<>();
-        String[] splitInput = input.split(",");
-        for (int index = 0; index < splitInput.length; index++) {
-            points.add(Point.of(new Direction(splitInput[index]), index));
-        }
-        return new Line(points);
-    }
 
     private static void checkCanBePoint(String input) {
         Optional<String> inputError = Arrays.stream(input.split(","))
@@ -63,10 +64,5 @@ public class Line {
         return Collections.unmodifiableList(points);
     }
 
-    @Override
-    public String toString() {
-        return "Line{" +
-                "points=" + points +
-                '}';
-    }
+
 }
