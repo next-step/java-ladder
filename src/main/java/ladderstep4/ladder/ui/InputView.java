@@ -17,7 +17,7 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public static String readRewards() {
+    public static String readPrizes() {
         enter();
         System.out.println(READ_REWARD_MESSAGE);
         return scanner.nextLine();

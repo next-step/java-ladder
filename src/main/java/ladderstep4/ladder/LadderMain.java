@@ -1,9 +1,6 @@
 package ladderstep4.ladder;
 
-import ladderstep4.ladder.domain.Ladder;
-import ladderstep4.ladder.domain.Names;
-import ladderstep4.ladder.domain.Results;
-import ladderstep4.ladder.domain.Rewards;
+import ladderstep4.ladder.domain.*;
 import ladderstep4.ladder.dto.LadderGameDto;
 import ladderstep4.ladder.ui.InputView;
 import ladderstep4.ladder.ui.OutputView;
@@ -13,27 +10,29 @@ public class LadderMain {
     public static final String ALL = "all";
 
     public static void main(String[] args) {
-        Names names = new Names(InputView.readNames());
-        Rewards rewards = new Rewards(InputView.readRewards());
-        int height = InputView.readHeight();
+        Players players = new Players(InputView.readNames());
 
-        Ladder ladder = new Ladder(names, height);
-        Results results = new Results(names, ladder, rewards);
+        Prizes prizes = new Prizes(InputView.readPrizes());
+        Height height = new Height(InputView.readHeight());
 
-        OutputView.printLadderGame(new LadderGameDto(names, ladder, rewards));
+        Ladder2 ladder2 = new Ladder2(new PlayerCount(players.size()), height);
+        PlayResult playResult = ladder2.play();
 
-        readNameAndPrintResult(results);
+        ResultMatcher resultMatcher = new ResultMatcher(players, playResult, prizes);
+
+        OutputView.printLadderGame(players, ladder2, prizes);
+
+        readNameAndPrintResult(resultMatcher);
     }
 
-    private static void readNameAndPrintResult(Results results) {
+    private static void readNameAndPrintResult(ResultMatcher resultMatcher) {
         String name = InputView.readName();
         if (ALL.equalsIgnoreCase(name)) {
-            OutputView.printResults(results);
+            OutputView.printResults(resultMatcher);
             return;
         }
-        OutputView.printResult(results.resultOf(name));
+        OutputView.printResult(resultMatcher.match(name));
 
-        readNameAndPrintResult(results);
+        readNameAndPrintResult(resultMatcher);
     }
-
 }

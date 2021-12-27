@@ -1,6 +1,7 @@
 package ladderstep4.ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Ladder2 {
@@ -40,5 +41,9 @@ public class Ladder2 {
             position = ladderLine.move(position);
         }
         return position;
+    }
+
+    public List<LadderLine> getLadderLines() {
+        return Collections.unmodifiableList(ladderLines);
     }
 }

@@ -1,6 +1,7 @@
 package ladderstep4.ladder.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,5 +31,9 @@ public class Prizes {
 
     public int size() {
         return values.size();
+    }
+
+    public List<Prize> getValues() {
+        return Collections.unmodifiableList(values);
     }
 }

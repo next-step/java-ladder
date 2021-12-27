@@ -20,7 +20,7 @@ public class Point {
     }
 
     public Point next() {
-        return next(RandomUtil.randomBoolean());
+        return new Point(position.next(), moveDirection.next());
     }
 
     public Point next(boolean right) {
@@ -39,5 +39,9 @@ public class Point {
             return position.next();
         }
         return position;
+    }
+
+    public MoveDirection getMoveDirection() {
+        return moveDirection;
     }
 }

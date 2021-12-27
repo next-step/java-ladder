@@ -7,27 +7,35 @@ public class Prize {
 
     private static final int MAX_LENGTH = 5;
 
-    private final String name;
+    private final String value;
 
-    public Prize(String name) {
-        if (Objects.isNull(name) || name.trim().isEmpty() || name.trim().length() > MAX_LENGTH) {
+    public Prize(String value) {
+        if (Objects.isNull(value) || value.trim().isEmpty() || value.trim().length() > MAX_LENGTH) {
             throw new IllegalArgumentException(INVALID_NAME_MESSAGE);
         }
-        this.name = name.trim();
+        this.value = value.trim();
+    }
+
+    public String value() {
+        return value;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
-        Prize player = (Prize) o;
+        Prize prize = (Prize) o;
 
-        return name != null ? name.equals(player.name) : player.name == null;
+        return value != null ? value.equals(prize.value) : prize.value == null;
     }
 
     @Override
     public int hashCode() {
-        return name != null ? name.hashCode() : 0;
+        return value != null ? value.hashCode() : 0;
     }
 }

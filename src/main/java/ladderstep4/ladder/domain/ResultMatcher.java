@@ -1,5 +1,7 @@
 package ladderstep4.ladder.domain;
 
+import java.util.List;
+
 public class ResultMatcher {
     public static final String WRONG_PARAMETER_VALUE_MESSAGE = "결과를 만들기 위한 파라미터들이 올바르지 않습니다.";
 
@@ -20,5 +22,9 @@ public class ResultMatcher {
         Position start = players.findPositionOf(new Player(name));
         Position end = playResult.get(start);
         return prizes.findPrize(end);
+    }
+
+    public List<Player> getPlayers() {
+        return players.getValues();
     }
 }
