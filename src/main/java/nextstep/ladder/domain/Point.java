@@ -7,7 +7,7 @@ public class Point {
     private final boolean left;
     private final boolean current;
 
-    private Point(boolean left, boolean current) {
+    public Point(boolean left, boolean current) {
         valid(left, current);
         this.left = left;
         this.current = current;
@@ -17,11 +17,31 @@ public class Point {
         return new Point(false, current);
     }
 
-    public Point next(LineStrategy lineStrategy) {
-        return new Point(this.current, hasLineBefore() ? false : lineStrategy.random());
+    public Point next(boolean current) {
+        return new Point(this.current, this.current == true ? false : current);
+    }
+
+    public Point end() {
+        return new Point(this.current, false);
+    }
+
+    public Direction move() {
+        if (hasLineAfter()) {
+            return Direction.RIGHT;
+        }
+
+        if (hasLineBefore()) {
+            return Direction.LEFT;
+        }
+
+        return Direction.DOWN;
     }
 
     public boolean hasLineBefore() {
+        return left && !current;
+    }
+
+    public boolean hasLineAfter() {
         return !left && current;
     }
 
