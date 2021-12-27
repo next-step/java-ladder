@@ -1,72 +1,49 @@
 package ladderstep4.ladder.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Ladder {
+    private final List<LadderLine> ladderLines;
 
-    public static final String INVALID_WIDTH_HEIGHT_MESSAGE = "width와 height는 양수여야 합니다.";
-
-    private static final int MIN_HEIGHT = 1;
-    private static final int INDEX_ZERO = 0;
-    private static final int CONVERT_INDEX_NUMBER = 2;
-
-    private final List<Line> lines;
-
-    public Ladder(String names, int height) {
-        this(new Names(names), height);
+    public Ladder(int playerCount, int height) {
+        this(new PlayerCount(playerCount), new Height(height));
     }
 
-    public Ladder(Names names, int height) {
-        this(widthFromNames(names), height);
+    public Ladder(PlayerCount playerCount, Height height) {
+        this(init(playerCount, height));
     }
 
-    private static int widthFromNames(Names names) {
-        return names.count() * 2 - 1;
+    public Ladder(List<LadderLine> ladderLines) {
+        this.ladderLines = ladderLines;
     }
 
-    public Ladder(int width, int height) {
-        if (height < MIN_HEIGHT) {
-            throw new IllegalArgumentException(INVALID_WIDTH_HEIGHT_MESSAGE);
+    private static List<LadderLine> init(PlayerCount playerCount, Height height) {
+        List<LadderLine> ladderLines = new ArrayList<>();
+        for (int i = 0; i < height.value(); i++) {
+            ladderLines.add(new LadderLine(playerCount));
         }
-
-        this.lines = IntStream.range(INDEX_ZERO, height)
-                .mapToObj(index -> new Line(width))
-                .collect(Collectors.toList());
+        return ladderLines;
     }
 
-    public Ladder(List<Line> lines) {
-        this.lines = lines;
-    }
-
-    public int findRewardIndex(int number) {
-        int result = calculateStartIndex(number);
-        for (Line line : lines) {
-            result = line.move(result);
+    public PlayResult play() {
+        PlayResult playResult = new PlayResult();
+        for (int i = 0; i < ladderLines.get(0).size(); i++) {
+            Position start = new Position(i);
+            playResult.put(start, findEndPosition(start));
         }
-        return calculateRewardIndex(result);
+        return playResult;
     }
 
-    private int calculateStartIndex(int index) {
-        return index * CONVERT_INDEX_NUMBER;
+    private Position findEndPosition(Position position) {
+        for (LadderLine ladderLine : ladderLines) {
+            position = ladderLine.move(position);
+        }
+        return position;
     }
 
-    private int calculateRewardIndex(int index) {
-        return index / CONVERT_INDEX_NUMBER;
+    public List<LadderLine> getLadderLines() {
+        return Collections.unmodifiableList(ladderLines);
     }
-
-    public int height() {
-        return lines.size();
-    }
-
-    public int width() {
-        return lines.get(INDEX_ZERO).width();
-    }
-
-    public List<Line> getLines() {
-        return Collections.unmodifiableList(lines);
-    }
-
 }

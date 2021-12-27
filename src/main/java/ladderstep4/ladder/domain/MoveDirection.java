@@ -24,20 +24,8 @@ public class MoveDirection {
         return first(RandomUtil.randomBoolean());
     }
 
-    public boolean canMoveRight() {
-        return right;
-    }
-
-    public boolean canMoveLeft() {
-        return left;
-    }
-
     public MoveDirection next(boolean right) {
         return new MoveDirection(this.right, right);
-    }
-
-    public MoveDirection last() {
-        return new MoveDirection(this.right, false);
     }
 
     public MoveDirection next() {
@@ -45,5 +33,17 @@ public class MoveDirection {
             return next(false);
         }
         return next(RandomUtil.randomBoolean());
+    }
+
+    public MoveDirection last() {
+        return new MoveDirection(this.right, false);
+    }
+
+    public boolean canMoveRight() {
+        return right;
+    }
+
+    public boolean canMoveLeft() {
+        return left;
     }
 }

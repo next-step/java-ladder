@@ -1,44 +1,32 @@
 package ladderstep4.ladder.domain;
 
-import ladder.domain.Ladder;
-import ladder.domain.Names;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LadderTest {
-
-    @DisplayName("유효한 height과 width로 Ladder 생성할 경우, 정상적으로 Ladder 인스턴스가 생성된다.")
     @Test
-    void create() {
-        int width = 7;
-        int height = 5;
-        Ladder ladder = new Ladder(width, height);
-
-        assertThat(ladder.width()).isEqualTo(width);
-        assertThat(ladder.height()).isEqualTo(height);
+    void 유효한height로_Ladder생성() {
+        new Ladder(2, 2);
     }
 
-    @DisplayName("Names로 Ladder 생성. ,로 구분한다.")
     @Test
-    void create_names() {
-        int height = 5;
-        Ladder ladder = new Ladder(new Names("pobi, honux, crong, jk"), height);
+    void play테스트() {
+        Point point = Point.first(true);
+        List<Point> points = new ArrayList<>();
+        points.add(point);
+        points.add(point.last());
 
-        assertThat(ladder.width()).isEqualTo(7);
-        assertThat(ladder.height()).isEqualTo(height);
-    }
+        LadderLine ladderLine = new LadderLine(points);
 
-    @DisplayName("width와 height은 음수일 수 없다.")
-    @ParameterizedTest
-    @CsvSource(value = {"-1,1", "1,-1"})
-    void invalid_width(int width, int height) {
-        assertThatThrownBy(() -> new Ladder(width, height))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(Ladder.INVALID_WIDTH_HEIGHT_MESSAGE);
+        Ladder ladder = new Ladder(Arrays.asList(ladderLine));
+        PlayResult playResult = ladder.play();
+
+        assertThat(playResult.get(new Position(0))).isEqualTo(new Position(1));
+        assertThat(playResult.get(new Position(1))).isEqualTo(new Position(0));
     }
 }

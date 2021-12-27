@@ -24,12 +24,12 @@ public class OutputView {
 
     private OutputView() {}
 
-    public static void printLadderGame(Players players, Ladder2 ladder2, Prizes prizes) {
+    public static void printLadderGame(Players players, Ladder ladder, Prizes prizes) {
         enter();
         System.out.println(LADDER_RESULT_MESSAGE);
         enter();
         printPlayers(players);
-        printLadders(ladder2);
+        printLadders(ladder);
         printPrizes(prizes);
     }
 
@@ -40,27 +40,9 @@ public class OutputView {
                 .collect(Collectors.joining(EMPTY_DELIMITER)));
     }
 
-    private static String padding(String name) {
+    private static void printLadders(Ladder ladder) {
         clearStringBuilder();
-        STRING_BUILDER.append(name);
-        while (STRING_BUILDER.length() < NAME_PADDING) {
-            append();
-        }
-        return STRING_BUILDER.toString();
-    }
-
-    private static void append() {
-        if (MathFunction.EVEN_NUMBER.test(STRING_BUILDER.length())) {
-            STRING_BUILDER.append(SPACE);
-            return;
-        }
-
-        STRING_BUILDER.insert(STRING_BUILDER_DEFAULT_LENGTH, SPACE);
-    }
-
-    private static void printLadders(Ladder2 ladder2) {
-        clearStringBuilder();
-        List<LadderLine> ladderLines = ladder2.getLadderLines();
+        List<LadderLine> ladderLines = ladder.getLadderLines();
         for (LadderLine ladderLine : ladderLines) {
             STRING_BUILDER.append(TWO_SPACE).append(RAIL_VALUE);
             printLadderLine(ladderLine);
@@ -89,6 +71,24 @@ public class OutputView {
         System.out.println(values.stream()
                 .map(prize -> padding(prize.value()))
                 .collect(Collectors.joining(EMPTY_DELIMITER)));
+    }
+
+    private static String padding(String name) {
+        clearStringBuilder();
+        STRING_BUILDER.append(name);
+        while (STRING_BUILDER.length() < NAME_PADDING) {
+            append();
+        }
+        return STRING_BUILDER.toString();
+    }
+
+    private static void append() {
+        if (MathFunction.EVEN_NUMBER.test(STRING_BUILDER.length())) {
+            STRING_BUILDER.append(SPACE);
+            return;
+        }
+
+        STRING_BUILDER.insert(STRING_BUILDER_DEFAULT_LENGTH, SPACE);
     }
 
     public static void printResult(Prize prize) {

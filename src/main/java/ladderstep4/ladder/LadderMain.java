@@ -1,7 +1,6 @@
 package ladderstep4.ladder;
 
 import ladderstep4.ladder.domain.*;
-import ladderstep4.ladder.dto.LadderGameDto;
 import ladderstep4.ladder.ui.InputView;
 import ladderstep4.ladder.ui.OutputView;
 
@@ -15,12 +14,12 @@ public class LadderMain {
         Prizes prizes = new Prizes(InputView.readPrizes());
         Height height = new Height(InputView.readHeight());
 
-        Ladder2 ladder2 = new Ladder2(new PlayerCount(players.size()), height);
-        PlayResult playResult = ladder2.play();
+        Ladder ladder = new Ladder(new PlayerCount(players.size()), height);
+        PlayResult playResult = ladder.play();
 
         ResultMatcher resultMatcher = new ResultMatcher(players, playResult, prizes);
 
-        OutputView.printLadderGame(players, ladder2, prizes);
+        OutputView.printLadderGame(players, ladder, prizes);
 
         readNameAndPrintResult(resultMatcher);
     }
