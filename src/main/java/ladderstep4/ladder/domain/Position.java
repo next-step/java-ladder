@@ -15,6 +15,10 @@ public class Position {
         this.value = value;
     }
 
+    public static Position ofFirst() {
+        return new Position(MIN_VALUE);
+    }
+
     public Position before() {
         return new Position(this.value - POSITION_MIN_UNIT);
     }

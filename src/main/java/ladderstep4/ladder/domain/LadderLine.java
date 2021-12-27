@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class LadderLine {
+    public static final int ONE = 1;
+
     private final List<Point> points;
 
     public LadderLine(int playerCount) {
@@ -25,7 +27,7 @@ public class LadderLine {
         Point point = Point.first();
         points.add(point);
 
-        for (int i = 1; i < count.value() - 1; i++) {
+        for (int i = ONE; i < count.value() - ONE; i++) {
             point = point.next();
             points.add(point);
         }

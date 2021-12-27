@@ -16,7 +16,7 @@ public class Point {
     }
 
     public static Point first(boolean right) {
-        return new Point(new Position(0), MoveDirection.first(right));
+        return new Point(Position.ofFirst(), MoveDirection.first(right));
     }
 
     public Point next() {

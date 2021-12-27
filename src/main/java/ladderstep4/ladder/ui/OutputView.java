@@ -10,17 +10,23 @@ public class OutputView {
 
     private static final String LADDER_RESULT_MESSAGE = "사다리 결과";
     private static final String REWARD_RESULT_MESSAGE = "실행 결과";
-    private static final int NAME_PADDING = 6;
-    private static final char SPACE = ' ';
-    private static final String TWO_SPACE = "  ";
-    private static final String EMPTY_DELIMITER = "";
-    private static final StringBuilder STRING_BUILDER = new StringBuilder();
-    private static final int STRING_BUILDER_DEFAULT_LENGTH = 0;
+
     private static final String RAIL_VALUE = "|";
     private static final String RUNG_VALUE = "-----";
     private static final String EMPTY_RUNG_VALUE = "     ";
     private static final String PRINT_ALL_FORMAT = "%s : %s\n";
     private static final String LINE_BREAK = "\n";
+
+    private static final char SPACE = ' ';
+    private static final String TWO_SPACE = "  ";
+    private static final String EMPTY_DELIMITER = "";
+    private static final int NAME_PADDING = 6;
+
+    private static final int START_INDEX = 0;
+    private static final int ONE = 1;
+
+    private static final StringBuilder STRING_BUILDER = new StringBuilder();
+    private static final int STRING_BUILDER_DEFAULT_LENGTH = 0;
 
     private OutputView() {}
 
@@ -52,14 +58,19 @@ public class OutputView {
 
     private static void printLadderLine(LadderLine ladderLine) {
         List<Point> points = ladderLine.getPoints();
-        for (int i = 0; i < points.size() - 1; i++) {
+        int end = calculateLadderLineEndIndex(points);
+        for (int i = START_INDEX; i < end; i++) {
             printPoints(points, i);
         }
         STRING_BUILDER.append(LINE_BREAK);
     }
 
-    private static void printPoints(List<Point> points, int i) {
-        if (points.get(i).getMoveDirection().canMoveRight()) {
+    private static int calculateLadderLineEndIndex(List<Point> points) {
+        return points.size() - ONE;
+    }
+
+    private static void printPoints(List<Point> points, int index) {
+        if (points.get(index).getMoveDirection().canMoveRight()) {
             STRING_BUILDER.append(RUNG_VALUE).append(RAIL_VALUE);
             return;
         }
