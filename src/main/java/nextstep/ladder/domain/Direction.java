@@ -23,21 +23,20 @@ public class Direction {
         }
     }
 
-    public static Direction of(boolean left, boolean right) {
-        if (left == true && right == false) {
-            return new Direction("left");
-        }
-        if (right == true && left == false) {
-            return new Direction("right");
-        }
-        if (left == false && right == false) {
-            return new Direction("none");
-        }
-        throw new IllegalStateException("direction error");
+    public Direction(boolean left, boolean right) {
+        this.left = left;
+        this.right = right;
     }
 
     public static Direction of(String input) {
         return new Direction(input);
+    }
+
+    public static Direction of(boolean left, boolean right) {
+        if (left == true && right == true) {
+            throw new IllegalStateException("direction can't be (true, true)");
+        }
+        return new Direction(left, right);
     }
 
     public static Direction first() {
@@ -49,7 +48,7 @@ public class Direction {
     }
 
     public Direction last() {
-        if (this.right==true && this.left == false) {
+        if (this.right == true && this.left == false) {
             return Direction.of(true, false);
         }
         if (!(this.right == true && this.left == false)) {
@@ -76,6 +75,16 @@ public class Direction {
         throw new IllegalArgumentException("Direction next error");
     }
 
+    public Direction next(boolean nextRight) {
+        if (nextRight == true) {
+            return Direction.of(false, true);
+        }
+        if (nextRight == false) {
+            return Direction.of(false, false);
+        }
+        throw new IllegalArgumentException("Direction next error");
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -87,5 +96,13 @@ public class Direction {
     @Override
     public int hashCode() {
         return Objects.hash(left, right);
+    }
+
+    @Override
+    public String toString() {
+        return "Direction{" +
+                "left=" + left +
+                ", right=" + right +
+                '}';
     }
 }
