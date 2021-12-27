@@ -11,21 +11,16 @@ import java.util.stream.Collectors;
 public class Ladder {
     private final Users users;
     private final Lines lines;
-    private final Results results;
 
-    public Ladder(Users users, Lines lines, Results results) {
+    public Ladder(Users users, Lines lines) {
         this.users = users;
         this.lines = lines;
-        this.results = results;
     }
 
-    public static Ladder from(Users users, Height height, Results results) {
-        return new Ladder(users, Lines.of(users, height), results);
+    public static Ladder from(Users users, Height height) {
+        return new Ladder(users, Lines.of(users, height));
     }
 
-    public Results getResultsBy(User user) {
-        return Results.of(results.getResultBy(users.getIndexBy(user)));
-    }
 
     public Users getUsers() {
         return users;
@@ -35,11 +30,7 @@ public class Ladder {
         return lines;
     }
 
-    public Results getResults() {
-        return results;
-    }
-
-    public List<Position> toPlay() {
+    public Play toPlay(Results results) {
         Line line = this.lines.getLines().get(0);
         List<Position> positions = first(line);
 
@@ -48,7 +39,7 @@ public class Ladder {
             positions = next(positions, line1);
         }
 
-        return positions;
+        return new Play(positions, results);
     }
 
     private List<Position> first(Line line) {

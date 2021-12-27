@@ -7,7 +7,6 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -22,8 +21,7 @@ class LadderTest {
     void create() {
         Users users = Users.createByString(UsersTest.NAMES);
         Height height = new Height(5);
-        Results results = Results.createByString(ResultsTest.RESULTS);
-        assertDoesNotThrow(() -> Ladder.from(users, height, results));
+        assertDoesNotThrow(() -> Ladder.from(users, height));
     }
 
     @ParameterizedTest
@@ -33,12 +31,13 @@ class LadderTest {
         Users users = Users.createByString(UsersTest.NAMES);
         Results results = Results.createByString(ResultsTest.RESULTS);
 
-        Ladder ladder = new Ladder(users, lines, results);
-        List<Position> positions = ladder.toPlay();
-        assertThat(positions.get(0).getUser().getName()).isEqualTo("jk");
-        assertThat(positions.get(1).getUser().getName()).isEqualTo("honux");
-        assertThat(positions.get(2).getUser().getName()).isEqualTo("crong");
-        assertThat(positions.get(3).getUser().getName()).isEqualTo("pobi");
+        Ladder ladder = new Ladder(users, lines);
+        Play play = ladder.toPlay(results);
+        Result jk = play.getResults(new User(Name.of("jk")));
+        assertThat(jk.getValue()).isEqualTo("꽝");
+
+        Result honux = play.getResults(new User(Name.of("honux")));
+        assertThat(honux.getValue()).isEqualTo("5000");
     }
 
     private static Stream<Arguments> provideLines() {
