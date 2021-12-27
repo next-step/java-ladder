@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LadderTest {
 
-    @DisplayName("height과 width로 Ladder 생성")
+    @DisplayName("유효한 height과 width로 Ladder 생성할 경우, 정상적으로 Ladder 인스턴스가 생성된다.")
     @Test
     void create() {
         int width = 7;
@@ -21,7 +21,7 @@ public class LadderTest {
         assertThat(ladder.height()).isEqualTo(height);
     }
 
-    @DisplayName("Names로 Ladder 생성")
+    @DisplayName("Names로 Ladder 생성. ,로 구분한다.")
     @Test
     void create_names() {
         int height = 5;
