@@ -24,17 +24,13 @@ public class LadderMain {
 
     private static void readNameAndPrintResult(Results results) {
         String name = InputView.readName();
-        checkPrintAllAndEnd(name, results);
+        if (ALL.equalsIgnoreCase(name)) {
+            OutputView.printResults(results);
+            return;
+        }
         OutputView.printResult(results.resultOf(name));
 
         readNameAndPrintResult(results);
-    }
-
-    private static void checkPrintAllAndEnd(String name, Results results) {
-        if (ALL.equalsIgnoreCase(name)) {
-            OutputView.printResults(results);
-            System.exit(0);
-        }
     }
 
 }
