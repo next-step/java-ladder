@@ -8,8 +8,8 @@ public class Line {
     public static final String EXIST_LINE = "-----";
     public static final String LADDER_COLUMN = "|";
 
-    private static final int MIN_WIDTH = 2;
-    private static final String MESSAGE_MIN_WIDTH = "너비가 최소 2는 되어야합니다.";
+    private static final int MIN_WIDTH = 1;
+    private static final String MESSAGE_MIN_WIDTH = "라인의 너비는는 0 또는 음수가 될 수 없습니다.";
 
     private final List<Point> points;
 
@@ -30,9 +30,9 @@ public class Line {
     public void move(Player player) {
         Direction direction = points.stream()
                 .filter(Point::isActive)
-                .filter(player::isAdjacent)
+                .filter(point -> player.isAdjacent(point.getIndex()))
                 .findFirst()
-                .map(point -> Direction.of(player, point))
+                .map(point -> Direction.of(player.getIndex(), point))
                 .orElse(Direction.PASS);
 
         player.move(direction);

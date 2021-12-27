@@ -3,26 +3,27 @@ package nextstep.ladder.model;
 import java.util.Objects;
 
 public class Index {
-    public static final int ZERO = 0;
-    public static final int ONE = 1;
+    public static final Index ZERO = new Index();
+    public static final Index ONE = new Index(1);
 
     private static final String MESSAGE_INDEX_CAN_ONLY_POSITIVE = "INDEX는 0 이하의 값이 들어올 수 없습니다.";
-    protected int index;
+
+    private final int index;
 
     public Index() {
-        this(ZERO);
+        this(0);
     }
 
     public Index(int index) {
         this.index = validationNegative(index);
     }
 
-    public void next() {
-        this.index++;
+    public Index next() {
+        return new Index(this.index + 1);
     }
 
-    public void prev() {
-        validationNegative(--index);
+    public Index prev() {
+        return new Index(index - 1);
     }
 
     private int validationNegative(int index) {

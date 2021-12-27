@@ -1,37 +1,36 @@
 package nextstep.ladder.model;
 
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 public enum Direction {
 
     LEFT(Index::prev),
     RIGHT(Index::next),
-    PASS(index -> {});
+    PASS(index -> index);
 
-    private final Consumer<Index> expression;
+    private final Function<Index, Index> expression;
 
-    Direction(Consumer<Index> expression) {
+    Direction(Function<Index, Index> expression) {
         this.expression = expression;
     }
 
-    public static Direction of(Player player, Point point) {
+    public static Direction of(Index playerIndex, Point point) {
         if (!point.isActive()) {
             return PASS;
         }
-        Index playerIndex = player.getIndex();
 
-        if (playerIndex.isAdjacentRight(point)) {
+        if (playerIndex.isAdjacentRight(point.getIndex())) {
             return RIGHT;
         }
 
-        if (playerIndex.isAdjacentLeft(point)) {
+        if (playerIndex.isAdjacentLeft(point.getIndex())) {
             return LEFT;
         }
 
         return PASS;
     }
 
-    public void move(Index index) {
-        expression.accept(index);
+    public Index move(Index index) {
+        return expression.apply(index);
     }
 }

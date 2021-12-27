@@ -3,7 +3,8 @@ package nextstep.ladder.model;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class IndexTest {
 
@@ -11,22 +12,22 @@ class IndexTest {
     @DisplayName("next 테스트")
     void next() {
         Index index = new Index();
-        index.next();
-        assertThat(index).isEqualTo(new Index(1));
+        Index next = index.next();
+        assertThat(next).isEqualTo(Index.ONE);
     }
 
     @Test
     @DisplayName("prev 테스트")
     void prev() {
-        Index index = new Index(Index.ONE);
-        index.prev();
-        assertThat(index).isEqualTo(new Index());
+        Index index = Index.ONE;
+        Index prev = index.prev();
+        assertThat(prev).isEqualTo(new Index());
     }
 
     @Test
     @DisplayName("next, prev시 복구 테스트")
     void nextAndPrev() {
-        Index index = new Index(Index.ONE);
+        Index index = Index.ONE;
         index.next();
         index.prev();
         assertThat(index).isEqualTo(index);

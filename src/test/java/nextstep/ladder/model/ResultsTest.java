@@ -41,7 +41,7 @@ class ResultsTest {
         String[] splitResults = StringUtils.validationNotNullAndEmpty("꽝,5000,꽝").split(DELIMITER);
         Results results = new Results(splitResults, splitResults.length);
 
-        Result result = results.findResultByIndex(new Index(Index.ONE));
+        Result result = results.findResultByIndex(Index.ONE);
 
         assertThat(result.getName()).isEqualTo("5000");
     }

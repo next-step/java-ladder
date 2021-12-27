@@ -7,6 +7,7 @@ import nextstep.ladder.model.Lines;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LinesFactory {
@@ -20,9 +21,9 @@ public class LinesFactory {
     }
 
     public static Lines of(boolean first, int width, int height, LineGenerator generator) {
-        List<Line> lines = new ArrayList<>();
-        IntStream.range(0, height).forEach(index -> lines.add(LineFactory.of(first, width, generator)));
-        return new Lines(lines);
+        return IntStream.range(0, height)
+                .mapToObj(index -> LineFactory.of(first, width, generator))
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Lines::new));
     }
 
     public static Lines of(int width, int height) {
