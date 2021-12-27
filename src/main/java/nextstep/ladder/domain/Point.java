@@ -22,6 +22,10 @@ public class Point {
         return Point.of(Direction.first(), 0);
     }
 
+    public static Point first(boolean value) {
+        return Point.of(Direction.first(value), 0);
+    }
+
     public Point next(int index) {
         return Point.of(direction.next(), index);
     }
@@ -44,6 +48,9 @@ public class Point {
         return direction;
     }
 
+    public int getIndex() {
+        return index;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
