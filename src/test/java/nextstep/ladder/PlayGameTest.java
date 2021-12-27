@@ -2,19 +2,18 @@ package nextstep.ladder;
 
 import nextstep.ladder.domain.*;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class PlayGameTest {
     @Test
     @DisplayName("PlayGame 테스트")
-    public void PlayGameTest() {
+    public void playGame() {
         Participants participants = Participants.of("A,B,C,D,E,F");
         Compensations compensations = Compensations.of("꽝,꽝,우승,꽝,꽝,꽝", participants.getParticipantsSize());
         Participant participantWantResult = Participant.of("A", 0);

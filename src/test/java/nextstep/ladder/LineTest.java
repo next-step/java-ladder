@@ -4,7 +4,7 @@ import nextstep.ladder.domain.Direction;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Point;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class LineTest {
     @Test
     @DisplayName("ofString 메소드로 Line 이 잘 만들어지는지 테스트")
-    public void LineFromStringInputTest() {
+    public void ofString() {
         Line lineByStringA = Line.ofString("right,left,right,left,none,none");
         Line lineByStringB = Line.ofString("none,right,left,right,left,none");
         Line lineByStringC = Line.ofString("right,left,none,right,left");
@@ -39,32 +39,49 @@ public class LineTest {
 
     @Test
     @DisplayName("ofString 메소드 인풋으로, Point로 변환이 불가능한 문자열이 들어왔을 때 'Boolean 으로 변환될 수 없습니다.' 를 반환")
-    public void checkCanBeBooleanTest() {
+    public void checkCanBeBoolean() {
         assertThatThrownBy(() -> {
             Line.ofString("test,test,test");
         }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("Point 로 변환될 수 없습니다.");
     }
 
     @Test
-    @DisplayName("move 메소드 호출 시 index를 input으로 넣어주면 move한 index를 반환")
-    public void moveTest() {
-        Line line = Line.ofString("right,left,right,left,none,none");
+    @DisplayName("sizeOfPerson 에 맞는 크기의 points 를 가지고 있는 Line 을 반환")
+    public void init() {
+        int sizeOfPerson = 10;
+        Line line = Line.init(sizeOfPerson);
+        for (int index = 0; index < 10; index++) {
+            assertThat(line.getPoints().get(index)).isEqualTo(index);
+        }
+        assertThat(line.getPoints().size()).isEqualTo(10);
+    }
+
+    @Test
+    @DisplayName("init 시에 point 들의 index 가 잘 들어갔는지 테스트")
+    public void init_point_index_check() {
+        int sizeOfPerson = 10;
+        Line line = Line.init(sizeOfPerson);
+        for (int index = 0; index < 10; index++) {
+            assertThat(line.getPoints().get(index).getIndex()).isEqualTo(index);
+        }
+    }
+
+    @Test
+    @DisplayName("현재 position 에서 move 한 point 의 position 을 반환")
+    public void move() {
+        Line line = Line.ofString("right,left,right,left,none");
+        assertThat(line.move(0)).isEqualTo(1);
+        assertThat(line.move(1)).isEqualTo(0);
+        assertThat(line.move(2)).isEqualTo(3);
+        assertThat(line.move(3)).isEqualTo(2);
+        assertThat(line.move(4)).isEqualTo(4);
+
+        line = Line.ofString("right,left,right,left,none,none");
         assertThat(line.move(0)).isEqualTo(1);
         assertThat(line.move(1)).isEqualTo(0);
         assertThat(line.move(4)).isEqualTo(4);
         assertThat(line.move(3)).isEqualTo(2);
         assertThat(line.move(5)).isEqualTo(5);
-    }
 
-    @Test
-    public void init() {
-        int sizeOfPerson = 5;
-        Line.init(sizeOfPerson).getPoints();
-    }
-
-    @Test
-    public void move() {
-        Line line = Line.init(2);
-        System.out.println("ladder result : " + line.move(0));
     }
 }

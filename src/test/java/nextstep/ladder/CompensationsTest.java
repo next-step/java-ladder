@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class CompensationsTest {
     @Test
     @DisplayName("checkCompensationsSize 메소드느 참가자와 보상 크기가 다르면 보상과 참가자 수가 다릅니다. 를 반환")
-    void compensationsTest() {
+    void compensations() {
         Participants participants = Participants.of("A,B,C");
         assertThatThrownBy(() -> {
             Compensations compensations = Compensations.of("꽝,우승", participants.getParticipantsSize());
