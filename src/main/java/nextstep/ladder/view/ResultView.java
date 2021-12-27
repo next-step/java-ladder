@@ -2,7 +2,9 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.*;
 
+import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * @author han
@@ -20,6 +22,25 @@ public class ResultView {
         System.out.println(printLines(ladder.getLines()));
         System.out.println(printResults(ladder.getResults()));
     }
+
+    public static void printResults(Ladder ladder, User user) {
+        System.out.println(RESULT);
+        if (user.isAll()) {
+            System.out.println(printMultipleResult(ladder));
+            return;
+        }
+        System.out.println(printResults(ladder.getResultsBy(user)));
+    }
+
+    private static String printMultipleResult(Ladder ladder) {
+        List<User> users = ladder.getUsers().getUsers();
+        List<Result> result = ladder.getResults().getResult();
+
+        return IntStream.range(0, users.size())
+            .mapToObj(i -> printUser(users.get(i)) + ":" + printResult(result.get(i)))
+            .collect(Collectors.joining("\n"));
+    }
+
 
     private static String printResults(Results results) {
         return results.getResult()
