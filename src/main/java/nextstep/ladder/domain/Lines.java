@@ -12,7 +12,7 @@ public class Lines {
     private static final int ZERO = 0;
     private final List<Line> lines;
 
-    private Lines(List<Line> line) {
+    public Lines(List<Line> line) {
         this.lines = line;
     }
 
