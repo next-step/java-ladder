@@ -16,36 +16,34 @@ public class ResultView {
     private static final String LINE_WITH_BRIDGE = "-----|";
     private static final String LINE_WITHOUT_BRIDGE = FIVE_SPACE + "|";
 
-    public static void print(Ladder ladder) {
+    public static void print(Ladder ladder, Results results) {
         System.out.println(RESULT);
         System.out.println(printUsers(ladder.getUsers()));
         System.out.println(printLines(ladder.getLines()));
-        System.out.println(printResults(ladder.getResults()));
+        System.out.println(printResults(results));
     }
 
-    public static void printResults(Ladder ladder, User user) {
+    public static void printResults(Play play, User user) {
         System.out.println(RESULT);
         if (user.isAll()) {
-            System.out.println(printMultipleResult(ladder));
+            System.out.println(printMultipleResult(play));
             return;
         }
-        System.out.println(printResults(ladder.getResultsBy(user)));
+        System.out.println(printResult(play.getResults(user)));
     }
 
-    private static String printMultipleResult(Ladder ladder) {
-        List<User> users = ladder.getUsers().getUsers();
-        List<Result> result = ladder.getResults().getResult();
+    private static String printMultipleResult(Play play) {
+        List<User> users = play.getPosition().stream().map(Position::getUser).collect(Collectors.toList());
 
         return IntStream.range(0, users.size())
-            .mapToObj(i -> printUser(users.get(i)) + ":" + printResult(result.get(i)))
+            .mapToObj(i -> printUser(users.get(i)) + " : " + printResult(play.getResults(users.get(i))))
             .collect(Collectors.joining("\n"));
     }
-
 
     private static String printResults(Results results) {
         return results.getResult()
             .stream()
-            .map(result -> printResult(result) + THREE_SPACE)
+            .map(result ->  THREE_SPACE + printResult(result))
             .collect(Collectors.joining());
     }
 
@@ -56,7 +54,7 @@ public class ResultView {
     private static String printUsers(Users users) {
         return users.getUsers().
             stream().
-            map(user -> printUser(user) + THREE_SPACE)
+            map(user -> THREE_SPACE + printUser(user))
             .collect(Collectors.joining());
     }
 
