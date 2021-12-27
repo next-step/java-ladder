@@ -20,22 +20,23 @@ public class PlayGame {
         if (participantWantResult.getParticipant().equals("all")) {
             return playAll(ladder);
         }
-        HashMap<String, String> result = new HashMap<>();
-        return playOne(participantWantResult, ladder, result);
+        return playOne(participantWantResult, ladder);
     }
 
     private Map<String, String> playAll(Ladder ladder) {
-        HashMap<String, String> result = new HashMap<>();
+        Map<String, String> result = new HashMap<>();
         for (int i = 0; i < participants.getParticipantsSize(); i++) {
-            playOne(participants.getParticipants().get(i), ladder, result);
+            int compensationIndex = ladder.move(i);
+            result.put(participants.getParticipants().get(i).getParticipant(), compensations.getCompensationByIndex(compensationIndex));
         }
         return result;
     }
 
-    private Map<String, String> playOne(Participant participantWantResult, Ladder ladder, HashMap<String, String> result) {
-        int index = participants.getParticipantIndex(participantWantResult.getParticipant());
-        index = ladder.play(index);
-        result.put(participantWantResult.getParticipant(), compensations.getCompensationByIndex(index));
+    private Map<String, String> playOne(Participant participantWantResult, Ladder ladder) {
+        Map<String, String> result = new HashMap<>();
+        int participantIndex = participantWantResult.getIndex();
+        int compensationIndex = ladder.move(participantIndex);
+        result.put(participantWantResult.getParticipant(), compensations.getCompensationByIndex(compensationIndex));
         return result;
     }
 }

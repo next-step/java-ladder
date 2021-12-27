@@ -21,7 +21,7 @@ public class LadderController {
         OutPut.viewLadder(ladder);
         OutPut.viewCompensation(compensations);
 
-        Participant participantWantResult = Participant.of(Input.InputParticipantWantResult(), 0);
+        Participant participantWantResult = participants.findParticipant(Input.InputParticipantWantResult());
         PlayGame playGame = PlayGame.of(participants, compensations);
         Map<String, String> result = playGame.playGame(participantWantResult, ladder);
 
