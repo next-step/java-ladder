@@ -22,6 +22,13 @@ public class Users {
             .collect(Collectors.toList()));
     }
 
+    public int getIndexBy(User user) {
+        if (!users.contains(user)) {
+            throw new IllegalArgumentException();
+        }
+        return users.indexOf(user);
+    }
+
     public List<User> getUsers() {
         return users;
     }
