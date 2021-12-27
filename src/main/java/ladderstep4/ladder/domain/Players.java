@@ -28,4 +28,8 @@ public class Players {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(CANNOT_FIND_PLAYER_MESSAGE)));
     }
+
+    public int size() {
+        return values.size();
+    }
 }

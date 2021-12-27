@@ -27,4 +27,8 @@ public class Prizes {
         }
         return values.get(position.value());
     }
+
+    public int size() {
+        return values.size();
+    }
 }

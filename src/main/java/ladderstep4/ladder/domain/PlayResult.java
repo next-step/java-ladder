@@ -13,4 +13,8 @@ public class PlayResult {
     public Position get(Position start) {
         return result.get(start);
     }
+
+    public int size() {
+        return result.size();
+    }
 }
