@@ -2,6 +2,7 @@ package ladderstep4.ladder.domain;
 
 public class Position {
     public static final String INVALID_VALUE_MESSAGE = "음수 값을 가질 수 없습니다.";
+
     private static final int MIN_VALUE = 0;
     private static final int POSITION_MIN_UNIT = 1;
 
@@ -20,6 +21,10 @@ public class Position {
 
     public Position next() {
         return new Position(this.value + POSITION_MIN_UNIT);
+    }
+
+    public int value() {
+        return value;
     }
 
     @Override
