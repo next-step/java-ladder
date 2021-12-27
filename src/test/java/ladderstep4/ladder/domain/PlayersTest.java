@@ -1,6 +1,5 @@
 package ladderstep4.ladder.domain;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -9,6 +8,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class PlayersTest {
@@ -19,17 +19,25 @@ public class PlayersTest {
 
     @ParameterizedTest
     @MethodSource(value = "providePositionAndPlayer")
-    void 포지션에_해당하는_플레이어_반환(int value, String name) {
+    void 이름에_해당하는_플레이어의_포지션_반환(String name, int value) {
         Players players = new Players("pobi,honux,crong,jk");
-        assertThat(players.findPlayer(new Position(value))).isEqualTo(new Player(name));
+        assertThat(players.findPositionOf(new Player(name))).isEqualTo(new Position(value));
     }
 
     private static Stream<Arguments> providePositionAndPlayer() {
         return Stream.of(
-                Arguments.of(0, "pobi"),
-                Arguments.of(1, "honux"),
-                Arguments.of(2, "crong"),
-                Arguments.of(3, "jk")
+                Arguments.of("pobi", 0),
+                Arguments.of("honux", 1),
+                Arguments.of("crong", 2),
+                Arguments.of("jk", 3)
         );
+    }
+
+    @Test
+    void 이름에_해당하는_플레이어를_찾지못함_예외발생() {
+        Players players = new Players("pobi,honux,crong,jk");
+        assertThatThrownBy(() -> players.findPositionOf(new Player("catsb")))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Players.CANNOT_FIND_PLAYER_MESSAGE);
     }
 }
