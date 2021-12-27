@@ -11,8 +11,24 @@ public class Point {
         this.moveDirection = moveDirection;
     }
 
+    public static Point first() {
+        return first(RandomUtil.randomBoolean());
+    }
+
     public static Point first(boolean right) {
         return new Point(new Position(0), MoveDirection.first(right));
+    }
+
+    public Point next() {
+        return next(RandomUtil.randomBoolean());
+    }
+
+    public Point next(boolean right) {
+        return new Point(position.next(), moveDirection.next(right));
+    }
+
+    public Point last() {
+        return new Point(position.next(), moveDirection.last());
     }
 
     public Position move() {
@@ -23,13 +39,5 @@ public class Point {
             return position.next();
         }
         return position;
-    }
-
-    public Point next() {
-        return next(RandomUtil.randomBoolean());
-    }
-
-    public Point next(boolean right) {
-        return new Point(position.next(), moveDirection.next(right));
     }
 }
