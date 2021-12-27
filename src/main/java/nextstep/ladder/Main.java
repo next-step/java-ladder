@@ -4,8 +4,6 @@ import nextstep.ladder.domain.*;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
-import java.util.List;
-
 /**
  * @author han
  */
@@ -16,11 +14,11 @@ public class Main {
         Users users = InputView.inputUserNames();
         Results results = InputView.inputResults();
         Height height = InputView.inputLadderHeight();
-        Ladder ladder = Ladder.from(users, height, results);
-        ResultView.print(ladder);
+        Ladder ladder = Ladder.from(users, height);
+        ResultView.print(ladder, results);
 
-        List<Position> positions = ladder.toPlay();
+        Play play = ladder.toPlay(results);
         User user = InputView.inputResultUser();
-        ResultView.printResults(ladder, user);
+        ResultView.printResults(play, user);
     }
 }
