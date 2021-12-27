@@ -34,6 +34,14 @@ public class LadderLine {
     }
 
     public Position move(int count) {
-        return points.get(count).move();
+        return move(new Position(count));
+    }
+
+    public Position move(Position count) {
+        return points.get(count.value()).move();
+    }
+
+    public int size() {
+        return points.size();
     }
 }
