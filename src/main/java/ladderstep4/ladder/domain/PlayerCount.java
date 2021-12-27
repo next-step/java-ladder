@@ -1,25 +1,21 @@
-package ladder.domain;
+package ladderstep4.ladder.domain;
 
-public class Position {
-    public static final String INVALID_VALUE_MESSAGE = "음수 값을 가질 수 없습니다.";
-    private static final int MIN_VALUE = 0;
-    private static final int POSITION_MIN_UNIT = 1;
+public class PlayerCount {
+    public static final String INVALID_VALUE_MESSAGE = "플레이어는 2명 이상입니다.";
+
+    private static final int MIN_VALUE = 2;
 
     private final int value;
 
-    public Position(int value) {
+    public PlayerCount(int value) {
         if (value < MIN_VALUE) {
             throw new IllegalArgumentException(INVALID_VALUE_MESSAGE);
         }
         this.value = value;
     }
 
-    public Position before() {
-        return new Position(this.value - POSITION_MIN_UNIT);
-    }
-
-    public Position next() {
-        return new Position(this.value + POSITION_MIN_UNIT);
+    public int value() {
+        return value;
     }
 
     @Override
@@ -31,7 +27,7 @@ public class Position {
             return false;
         }
 
-        Position position = (Position) o;
+        PlayerCount position = (PlayerCount) o;
 
         return value == position.value;
     }

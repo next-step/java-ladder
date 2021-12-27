@@ -1,5 +1,6 @@
-package ladder.domain;
+package ladderstep4.ladder.domain;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -7,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class PointTest {
     @Test
     void 포인트_첫번째_생성_오른쪽으로_이동() {
-        assertThat(Point.first(false).move()).isEqualTo(new Position(0));
+        Assertions.assertThat(Point.first(false).move()).isEqualTo(new Position(0));
         assertThat(Point.first(true).move()).isEqualTo(new Position(1));
     }
 

@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladderstep4.ladder.domain;
 
 import ladder.util.RandomUtil;
 
