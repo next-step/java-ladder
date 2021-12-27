@@ -14,6 +14,10 @@ public class Position {
         this.user = user;
     }
 
+    public static Position of(Position position, Point point) {
+        return new Position(position.getIndex(), point, position.getUser());
+    }
+
     public Position move() {
         Direction move = point.move();
 

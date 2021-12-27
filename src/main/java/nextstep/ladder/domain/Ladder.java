@@ -24,9 +24,6 @@ public class Ladder {
     }
 
     public Results getResultsBy(User user) {
-        if (user.isAll()) {
-            return results;
-        }
         return Results.of(results.getResultBy(users.getIndexBy(user)));
     }
 
@@ -44,38 +41,40 @@ public class Ladder {
 
     public List<Position> toPlay() {
         Line line = this.lines.getLines().get(0);
-        List<Position> init = init(line);
+        List<Position> positions = first(line);
 
         for (int i = 1; i < this.lines.getLines().size(); i++) {
             Line line1 = this.lines.getLines().get(i);
-            init = next(init, line1);
+            positions = next(positions, line1);
         }
 
-        return init;
+        return positions;
     }
 
-    private List<Position> init(Line line) {
-        List<Position> init = new ArrayList<>();
+    private List<Position> first(Line line) {
+        List<Position> positions = new ArrayList<>();
 
         for (int i = 0; i < line.getPoints().size(); i++) {
             Point point = line.getPoints().get(i);
-            Position position = new Position(i, point, users.getUsers().get(i));
-            init.add(position.move());
+            positions.add(new Position(i, point, users.getUsers().get(i)).move());
         }
-        List<Position> collect = init.stream().sorted(Comparator.comparing(Position::getIndex)).collect(Collectors.toList());
-        return collect;
+
+        return positions.stream()
+            .sorted(Comparator.comparing(Position::getIndex))
+            .collect(Collectors.toList());
     }
 
     private List<Position> next(List<Position> positions, Line line) {
-        List<Position> init = new ArrayList<>();
+        List<Position> result = new ArrayList<>();
 
         for (int i = 0; i < line.getPoints().size(); i++) {
             Point point = line.getPoints().get(i);
-            Position position1 = positions.get(i);
-            Position position = new Position(position1.getIndex(), point, position1.getUser());
-            init.add(position.move());
+            Position position = positions.get(i);
+            result.add(Position.of(position, point).move());
         }
-        List<Position> collect = init.stream().sorted(Comparator.comparing(Position::getIndex)).collect(Collectors.toList());
-        return collect;
+
+        return result.stream()
+            .sorted(Comparator.comparing(Position::getIndex))
+            .collect(Collectors.toList());
     }
 }
