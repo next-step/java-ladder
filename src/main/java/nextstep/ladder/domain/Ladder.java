@@ -28,7 +28,7 @@ public class Ladder {
         return Collections.unmodifiableList(lines);
     }
 
-    public int play(int index) {
+    public int move(int index) {
         for (Line line : lines) {
             index = line.move(index);
         }
