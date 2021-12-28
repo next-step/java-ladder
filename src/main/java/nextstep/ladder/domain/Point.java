@@ -34,7 +34,7 @@ public class Point {
             return Direction.LEFT;
         }
 
-        return Direction.DOWN;
+        return Direction.PASS;
     }
 
     public boolean hasLineBefore() {

@@ -29,7 +29,7 @@ class PointTest {
     @Test
     void down() {
         Point point = Point.init(false).next(false);
-        assertThat(point.move()).isEqualTo(Direction.DOWN);
+        assertThat(point.move()).isEqualTo(Direction.PASS);
     }
 
     @Test
@@ -41,6 +41,6 @@ class PointTest {
     @Test
     void end() {
         Point point = Point.init(false).end();
-        assertThat(point.move()).isEqualTo(Direction.DOWN);
+        assertThat(point.move()).isEqualTo(Direction.PASS);
     }
 }
