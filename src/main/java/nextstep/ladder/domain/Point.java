@@ -18,7 +18,7 @@ public class Point {
     }
 
     public Point next(boolean current) {
-        return new Point(this.current, this.current == true ? false : current);
+        return new Point(this.current, current);
     }
 
     public Point end() {
@@ -35,6 +35,10 @@ public class Point {
         }
 
         return Direction.PASS;
+    }
+
+    public boolean isCurrent() {
+        return current;
     }
 
     public boolean hasLineBefore() {

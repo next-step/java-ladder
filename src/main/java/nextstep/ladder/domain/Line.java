@@ -49,6 +49,14 @@ public class Line {
             points.add(point.end());
             return;
         }
-        points.add(point.next(lineStrategy.random()));
+        boolean nextBoolean = getNextBoolean(point.isCurrent());
+        points.add(point.next(nextBoolean));
+    }
+
+    private boolean getNextBoolean(boolean current) {
+        if (current) {
+            return false;
+        }
+        return lineStrategy.random();
     }
 }
