@@ -11,30 +11,30 @@ class PointTest {
 
     @Test
     void hasNotLineBefore() {
-        Point point = Point.init(false).next(new TrueReturnStrategy().random());
+        Point point = Point.init(false).next(true);
         assertThat(point.hasLineBefore()).isEqualTo(false);
     }
 
     @Test
     void hasLineBefore() {
-        Point point = Point.init(true).next(new FalseReturnStrategy().random());
+        Point point = Point.init(true).next(false);
         assertThat(point.hasLineBefore()).isEqualTo(true);
     }
     @Test
     void right() {
-        Point point = Point.init(false).next(new TrueReturnStrategy().random());
+        Point point = Point.init(false).next(true);
         assertThat(point.move()).isEqualTo(Direction.RIGHT);
     }
 
     @Test
     void down() {
-        Point point = Point.init(false).next(new FalseReturnStrategy().random());
+        Point point = Point.init(false).next(false);
         assertThat(point.move()).isEqualTo(Direction.DOWN);
     }
 
     @Test
     void left() {
-        Point point = Point.init(true).next(new FalseReturnStrategy().random());
+        Point point = Point.init(true).next(false);
         assertThat(point.move()).isEqualTo(Direction.LEFT);
     }
 
@@ -42,19 +42,5 @@ class PointTest {
     void end() {
         Point point = Point.init(false).end();
         assertThat(point.move()).isEqualTo(Direction.DOWN);
-    }
-
-    class FalseReturnStrategy implements LineStrategy {
-        @Override
-        public boolean random() {
-            return false;
-        }
-    }
-
-    class TrueReturnStrategy implements LineStrategy {
-        @Override
-        public boolean random() {
-            return true;
-        }
     }
 }
