@@ -1,5 +1,6 @@
 package rick.view;
 
+import java.util.List;
 import java.util.Objects;
 import rick.domain.Ladder;
 import rick.domain.Line;
@@ -44,14 +45,17 @@ public class ResultView {
 
     private static void drawLine(Line line) {
         System.out.print("     |");
-        for (Point point : line.getPoints()) {
-            drawPoint(point);
+        List<Point> points = line.getPoints()
+            .getPoints();
+
+        for (int i = 0; i < points.size() - 1; i++) {
+            drawPoint(points.get(i));
         }
         System.out.println();
     }
 
     private static void drawPoint(Point point) {
-        if (point.movable()) {
+        if (point.movableToRight()) {
             System.out.print("-----|");
             return;
         }

@@ -20,12 +20,12 @@ class LadderTest {
         | |-|
         | | |
         */
-        List<List<Point>> points = Arrays.asList(
-            Arrays.asList(Point.MOVABLE_POINT, Point.NON_MOVABLE_POINT),
-            Arrays.asList(Point.NON_MOVABLE_POINT, Point.NON_MOVABLE_POINT),
-            Arrays.asList(Point.NON_MOVABLE_POINT, Point.MOVABLE_POINT)
+        List<Points> points = Arrays.asList(
+            new Points(Arrays.asList(new Point(false, true), new Point(true, false), new Point(false, false))),
+            new Points(Arrays.asList(new Point(false, false), new Point(false, true), new Point(true, false))),
+            new Points(Arrays.asList(new Point(false, false), new Point(false, false), new Point(false, false)))
         );
-        Queue<List<Point>> pointCreationQueue = new LinkedList<>(points);
+        Queue<Points> pointCreationQueue = new LinkedList<>(points);
 
         List<Line> expectedLines = points.stream()
             .map(Line::new)

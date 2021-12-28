@@ -5,31 +5,26 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import rick.domain.Point;
+import rick.domain.Points;
 
 public class RandomLineCreationStrategy implements LineCreationStrategy {
 
     private static final Random RANDOM = new Random();
 
     @Override
-    public List<Point> create(int countOfPerson) {
+    public Points create(int countOfPerson) {
+        Point firstPoint = new Point(false, RANDOM.nextBoolean());
+        List<Point> points = new ArrayList<>(Arrays.asList(firstPoint));
 
-        Point previousPoint = new Point(RANDOM.nextBoolean());
-        List<Point> points = new ArrayList<>(Arrays.asList(previousPoint));
-        
-        for (int i = 1; i < countOfPerson; i++) {
-            Point point = generateNextPoint(previousPoint);
+        Point previousPoint = firstPoint;
+        for (int i = 1; i < countOfPerson - 1; i++) {
+            Point point = previousPoint.next(RANDOM.nextBoolean());
             points.add(point);
             previousPoint = point;
         }
 
-        return points;
-    }
+        points.add(previousPoint.last());
 
-    private Point generateNextPoint(Point previousPoint) {
-        if (previousPoint.movable()) {
-            return new Point(false);
-        }
-
-        return new Point(RANDOM.nextBoolean());
+        return new Points(points);
     }
 }
