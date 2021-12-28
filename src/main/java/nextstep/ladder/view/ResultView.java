@@ -12,6 +12,7 @@ import java.util.stream.IntStream;
 public class ResultView {
     private static final String RESULT = "실행결과";
     private static final String THREE_SPACE = "   ";
+    private static final String TWO_SPACE = "  ";
     private static final String FIVE_SPACE = "     ";
     private static final String LINE_WITH_BRIDGE = "-----|";
     private static final String LINE_WITHOUT_BRIDGE = FIVE_SPACE + "|";
@@ -20,7 +21,7 @@ public class ResultView {
         System.out.println(RESULT);
         System.out.println(printUsers(ladder.getUsers()));
         System.out.println(printLines(ladder.getLines()));
-        System.out.println(printResults(results));
+        System.out.println(TWO_SPACE + printResults(results));
     }
 
     public static void printResults(Play play, User user) {
@@ -54,7 +55,7 @@ public class ResultView {
     private static String printUsers(Users users) {
         return users.getUsers().
             stream().
-            map(user -> THREE_SPACE + printUser(user))
+            map(user -> TWO_SPACE + printUser(user))
             .collect(Collectors.joining());
     }
 
