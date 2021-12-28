@@ -17,4 +17,10 @@ class ResultsTest {
         Results results = Results.createByString(RESULTS);
         assertThat(results.getResult().size()).isEqualTo(4);
     }
+
+    @Test
+    void getResultsBy() {
+        Results results = Results.createByString(RESULTS);
+        assertThat(results.getResultBy(0)).isEqualTo(new Result("꽝"));
+    }
 }
