@@ -32,4 +32,16 @@ public class Lines {
     public List<Line> getLines() {
         return lines;
     }
+
+    public Line getFirstLine() {
+        return lines.get(0);
+    }
+
+    public Line getLineBy(int index) {
+        return lines.get(index);
+    }
+
+    public int getLinesSize() {
+        return lines.size();
+    }
 }

@@ -17,7 +17,7 @@ public class Main {
         Ladder ladder = Ladder.from(users, height);
         ResultView.print(ladder, results);
 
-        Play play = ladder.toPlay(results);
+        Play play = new Play(ladder, users, results);
         User user;
 
         do {
