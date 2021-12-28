@@ -11,28 +11,31 @@ public class Line {
     private static final int BASE = 1;
 
     private final List<Point> points;
+    private final LineStrategy lineStrategy;
 
-    public Line(List<Point> points) {
-       this.points = points;
+    public Line(List<Point> points, LineStrategy lineStrategy) {
+        this.points = points;
+        this.lineStrategy = lineStrategy;
     }
 
-    public static Line of (List<Point> points) {
-        return new Line(points);
+    public static Line of(List<Point> points, LineStrategy lineStrategy) {
+        return new Line(points, lineStrategy);
     }
 
     public Line(int users, LineStrategy lineStrategy) {
         if (users < MINIMUM) {
             throw new IllegalArgumentException();
         }
-        this.points = createBy(users, lineStrategy);
+        this.lineStrategy = lineStrategy;
+        this.points = createBy(users);
     }
 
-    private List<Point> createBy(int users, LineStrategy lineStrategy) {
+    private List<Point> createBy(int users) {
         List<Point> points = new ArrayList<>();
         points.add(Point.init(lineStrategy.random()));
         for (int i = BASE; i < users; i++) {
             Point point = points.get(i - BASE);
-            add(points, point, i == users - 1, lineStrategy);
+            add(points, point, i == users - 1);
         }
         return points;
     }
@@ -41,7 +44,7 @@ public class Line {
         return points;
     }
 
-    private void add(List<Point> points, Point point, boolean last, LineStrategy lineStrategy) {
+    private void add(List<Point> points, Point point, boolean last) {
         if (last) {
             points.add(point.end());
             return;

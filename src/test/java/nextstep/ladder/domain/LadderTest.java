@@ -17,6 +17,8 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
  */
 class LadderTest {
 
+    static LineStrategy strategy = new RandomStrategy();
+
     @Test
     void create() {
         Users users = Users.createByString(UsersTest.NAMES);
@@ -43,8 +45,8 @@ class LadderTest {
     private static Stream<Arguments> provideLines() {
         return Stream.of(
             Arguments.of(new Lines(Arrays.asList(
-                new Line(Arrays.asList(new Point(false, true), new Point(true, false), new Point(false, true), new Point(true, false))),
-                new Line(Arrays.asList(new Point(false, false), new Point(false, true), new Point(true, false), new Point(false, false))),
-                (new Line(Arrays.asList(new Point(false, true), new Point(true, false), new Point(false, true), new Point(true, false))))))));
+                new Line(Arrays.asList(new Point(false, true), new Point(true, false), new Point(false, true), new Point(true, false)), strategy),
+                new Line(Arrays.asList(new Point(false, false), new Point(false, true), new Point(true, false), new Point(false, false)), strategy),
+                (new Line(Arrays.asList(new Point(false, true), new Point(true, false), new Point(false, true), new Point(true, false)), strategy))))));
     }
 }
