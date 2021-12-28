@@ -17,9 +17,9 @@ public class ResultView {
     private static final String LINE_WITH_BRIDGE = "-----|";
     private static final String LINE_WITHOUT_BRIDGE = FIVE_SPACE + "|";
 
-    public static void print(Ladder ladder, Results results) {
+    public static void print(Ladder ladder,Users users, Results results) {
         System.out.println(RESULT);
-        System.out.println(printUsers(ladder.getUsers()));
+        System.out.println(printUsers(users));
         System.out.println(printLines(ladder.getLines()));
         System.out.println(TWO_SPACE + printResults(results));
     }

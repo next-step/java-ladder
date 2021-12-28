@@ -15,7 +15,7 @@ public class Main {
         Results results = InputView.inputResults();
         Height height = InputView.inputLadderHeight();
         Ladder ladder = Ladder.from(users, height);
-        ResultView.print(ladder, results);
+        ResultView.print(ladder, users, results);
 
         Play play = new Play(ladder, users, results);
         User user;

@@ -4,21 +4,14 @@ package nextstep.ladder.domain;
  * @author han
  */
 public class Ladder {
-    private final Users users;
     private final Lines lines;
 
-    public Ladder(Users users, Lines lines) {
-        this.users = users;
+    public Ladder(Lines lines) {
         this.lines = lines;
     }
 
     public static Ladder from(Users users, Height height) {
-        return new Ladder(users, Lines.of(users, height));
-    }
-
-
-    public Users getUsers() {
-        return users;
+        return new Ladder(Lines.of(users, height));
     }
 
     public Lines getLines() {

@@ -24,7 +24,7 @@ class PlayTest {
         Users users = Users.createByString(UsersTest.NAMES);
         Results results = Results.createByString(ResultsTest.RESULTS);
 
-        Ladder ladder = new Ladder(users, lines);
+        Ladder ladder = new Ladder(lines);
         Play play = new Play(ladder, users, results);
         Result jk = play.getResults(new User(Name.of("jk")));
         assertThat(jk.getValue()).isEqualTo("꽝");
