@@ -25,6 +25,7 @@ public class ResultView {
     }
 
     public static void printResults(Play play, User user) {
+        System.out.println();
         System.out.println(RESULT);
         if (user.isAll()) {
             System.out.println(printMultipleResult(play));

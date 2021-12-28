@@ -18,7 +18,11 @@ public class Main {
         ResultView.print(ladder, results);
 
         Play play = ladder.toPlay(results);
-        User user = InputView.inputResultUser();
-        ResultView.printResults(play, user);
+        User user;
+
+        do {
+            user = InputView.inputResultUser();
+            ResultView.printResults(play, user);
+        } while (!user.isAll());
     }
 }

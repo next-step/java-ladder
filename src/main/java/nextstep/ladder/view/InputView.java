@@ -19,6 +19,7 @@ public class InputView {
     }
 
     public static User inputResultUser() {
+        System.out.println();
         System.out.println(INPUT_WHO_RESULT);
         String line = scanner.nextLine();
         return new User(Name.of(line));
