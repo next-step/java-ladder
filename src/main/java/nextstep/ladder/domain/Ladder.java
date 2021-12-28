@@ -47,7 +47,7 @@ public class Ladder {
 
         for (int i = 0; i < line.getPoints().size(); i++) {
             Point point = line.getPoints().get(i);
-            positions.add(new Position(i, point, users.getUsers().get(i)).move());
+            positions.add(new Position(i, users.getUsers().get(i)).move(point));
         }
 
         return positions.stream()
@@ -61,7 +61,7 @@ public class Ladder {
         for (int i = 0; i < line.getPoints().size(); i++) {
             Point point = line.getPoints().get(i);
             Position position = positions.get(i);
-            result.add(Position.of(position, point).move());
+            result.add(Position.of(position).move(point));
         }
 
         return result.stream()
