@@ -35,10 +35,10 @@ public final class UserResult {
 
     private void validate(User user, LadderResult result) {
         if (Objects.isNull(user)) {
-            throw new IllegalArgumentException("사용자 결과에 필요한 사용자 정보가 null입니다.");
+            throw new IllegalArgumentException("전달된 사용자 정보가 null 입니다.");
         }
         if (Objects.isNull(result)) {
-            throw new IllegalArgumentException("사용자의 사다리 타기 결과가 null입니다.");
+            throw new IllegalArgumentException("전달된 사용자의 사다리 타기 결과가 null 입니다.");
         }
     }
 }
