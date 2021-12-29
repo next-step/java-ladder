@@ -10,6 +10,10 @@ public class Line {
         this.points = points;
     }
 
+    public static Line of(List<Point> points) {
+        return new Line(points);
+    }
+
     public static Line ofString(String input) {
         checkCanBePoint(input);
         List<Point> points = new ArrayList<>();
@@ -19,6 +23,7 @@ public class Line {
         }
         return new Line(points);
     }
+
 
     public static Line init(int countOfParticipants) {
         List<Point> points = new ArrayList<>();
@@ -64,5 +69,16 @@ public class Line {
         return Collections.unmodifiableList(points);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Line line = (Line) o;
+        return Objects.equals(points, line.points);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(points);
+    }
 }
