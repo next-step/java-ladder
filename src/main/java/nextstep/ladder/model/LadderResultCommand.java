@@ -16,14 +16,6 @@ public final class LadderResultCommand {
         return new LadderResultCommand(command);
     }
 
-    public boolean isAll() {
-        return ALL.equalsIgnoreCase(command);
-    }
-
-    public UserName userName() {
-        return new UserName(command);
-    }
-
     private static void validate(String command) {
         if (Objects.isNull(command)) {
             throw new IllegalArgumentException("전달된 명령어는 null입니다.");
@@ -31,5 +23,13 @@ public final class LadderResultCommand {
         if (command.isEmpty()) {
             throw new IllegalArgumentException("전달된 명령어가 비어있습니다.");
         }
+    }
+
+    public boolean isAll() {
+        return ALL.equalsIgnoreCase(command);
+    }
+
+    public UserName userName() {
+        return new UserName(command);
     }
 }
