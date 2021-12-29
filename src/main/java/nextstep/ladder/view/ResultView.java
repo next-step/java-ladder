@@ -56,7 +56,7 @@ public class ResultView {
     private static String printUsers(Users users) {
         return users.getUsers().
             stream().
-            map(user -> TWO_SPACE + printUser(user))
+            map(user -> getSpace(user.getName().length()) + printUser(user))
             .collect(Collectors.joining());
     }
 
@@ -83,6 +83,10 @@ public class ResultView {
             return LINE_WITH_BRIDGE;
         }
         return LINE_WITHOUT_BRIDGE;
+    }
+
+    public static String getSpace(int length) {
+        return length < 3 ? FIVE_SPACE : TWO_SPACE;
     }
 }
 
