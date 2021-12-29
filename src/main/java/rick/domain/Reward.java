@@ -2,16 +2,16 @@ package rick.domain;
 
 import java.util.Objects;
 
-public class Player {
+public class Reward {
 
-    private static final String EXCEPTION_MESSAGE_TOO_LONG = "이름의 길이가 너무 깁니다. Max Length %d";
-    private static final String EXCEPTION_MESSAGE_CAN_NOT_BE_EMPTY = "이름은 빈 값일 수 없습니다.";
-    private static final String EXCEPTION_MESSAGE_CAN_NOT_BE_NULL = "이름은 null 일 수 없습니다.";
+    private static final String EXCEPTION_MESSAGE_TOO_LONG = "보상의 길이가 너무 깁니다. Max Length %d";
+    private static final String EXCEPTION_MESSAGE_CAN_NOT_BE_EMPTY = "보상은 빈 값일 수 없습니다.";
+    private static final String EXCEPTION_MESSAGE_CAN_NOT_BE_NULL = "보상은 null 일 수 없습니다.";
     private static final int MAX_NAME_LENGTH = 5;
 
     private final String name;
 
-    public Player(String name) {
+    public Reward(String name) {
         if (Objects.isNull(name)) {
             throw new IllegalArgumentException(EXCEPTION_MESSAGE_CAN_NOT_BE_NULL);
         }
@@ -39,8 +39,8 @@ public class Player {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Player player = (Player) o;
-        return Objects.equals(name, player.name);
+        Reward reward = (Reward) o;
+        return Objects.equals(name, reward.name);
     }
 
     @Override

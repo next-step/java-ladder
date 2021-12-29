@@ -33,4 +33,19 @@ public class Players {
     public int playerCount() {
         return players.size();
     }
+
+    public Player player(String name) {
+        Player player = new Player(name);
+
+        return players.stream()
+            .filter(player::equals)
+            .findFirst()
+            .orElse(null);
+    }
+
+    public Reward reward(Ladder ladder, Rewards rewards, Player player) {
+        int playerIndex = players.indexOf(player);
+        int rewardIndex = ladder.rewardIndex(playerIndex);
+        return rewards.reward(rewardIndex);
+    }
 }

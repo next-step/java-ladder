@@ -1,10 +1,9 @@
 package rick.strategy;
 
-import java.util.List;
-import rick.domain.Point;
+import rick.domain.Points;
 
 @FunctionalInterface
 public interface LineCreationStrategy {
 
-    List<Point> create(int countOfPerson);
+    Points create(int countOfPerson);
 }

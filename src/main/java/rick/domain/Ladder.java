@@ -25,6 +25,15 @@ public class Ladder {
         return Collections.unmodifiableList(lines);
     }
 
+    public int rewardIndex(int playerIndex) {
+        int currentPlayerIndex = playerIndex;
+        for (Line line : lines) {
+            currentPlayerIndex = line.nextPlayerIndex(currentPlayerIndex);
+        }
+
+        return currentPlayerIndex;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
