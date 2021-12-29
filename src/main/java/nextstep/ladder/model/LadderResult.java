@@ -17,7 +17,7 @@ public final class LadderResult {
 
     private void validate(String value) {
         if (Objects.isNull(value)) {
-            throw new IllegalArgumentException("전달된 사다리 결과가 null입니다.");
+            throw new IllegalArgumentException("전달된 사다리 결과가 null 입니다.");
         }
         if (value.isEmpty()) {
             throw new IllegalArgumentException("전달된 사다리 결과가 비어있습니다.");
