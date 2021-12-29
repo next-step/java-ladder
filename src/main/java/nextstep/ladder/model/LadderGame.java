@@ -20,10 +20,10 @@ public final class LadderGame {
 
     private void validate(Ladder ladder, UserLadderResults userLadderResults) {
         if (Objects.isNull(ladder)) {
-            throw new IllegalArgumentException("게임 사다리 정보가 null입니다.");
+            throw new IllegalArgumentException("사다리 게임에 필요한 '사다리 정보'가 null 입니다.");
         }
         if (Objects.isNull(userLadderResults)) {
-            throw new IllegalArgumentException("사다리 게임의 결과에 필요한 사용자와 결과 정보가 null입니다.");
+            throw new IllegalArgumentException("사다리 게임의 결과에 필요한 '사용자 정보'와 '사라디 결과 정보'가 null 입니다.");
         }
     }
 
