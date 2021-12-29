@@ -9,7 +9,7 @@ public final class LadderController {
     }
 
     public static Ladder createLadder(CreateLadderRequest request) {
-        return Ladder.initate(request.getUserSize(), request.getHeightOfLadder());
+        return Ladder.initiate(request.getUserSize(), request.getHeightOfLadder());
     }
 
     public static UserResults retrieveUserResults(RetrieveResultRequest request) {

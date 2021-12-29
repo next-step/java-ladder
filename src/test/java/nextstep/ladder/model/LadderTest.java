@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 public class LadderTest {
     private static final int HEIGHT_OF_LADDER = 5;
     private static final int USER_SIZE = 4;
-    public static final Ladder LADDER = Ladder.initate(USER_SIZE, HEIGHT_OF_LADDER);
+    public static final Ladder LADDER = Ladder.initiate(USER_SIZE, HEIGHT_OF_LADDER);
     private static final int INITIATIVE_INDEX = 0;
 
     @Test
@@ -25,7 +25,7 @@ public class LadderTest {
     void checkExceptionForInvalidUserSizeTest(int invalidUserSize) {
         // when & then
         assertThatIllegalArgumentException().isThrownBy(
-                () -> Ladder.initate(invalidUserSize, HEIGHT_OF_LADDER)
+                () -> Ladder.initiate(invalidUserSize, HEIGHT_OF_LADDER)
         );
     }
 
@@ -34,7 +34,7 @@ public class LadderTest {
     void checkExceptionForInvalidHeightTest(int invalidHeight) {
         // when & then
         assertThatIllegalArgumentException().isThrownBy(
-                () -> Ladder.initate(UsersTest.FOUR_USERS.size(), invalidHeight)
+                () -> Ladder.initiate(UsersTest.FOUR_USERS.size(), invalidHeight)
         );
     }
 
