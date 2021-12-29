@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.factory.LadderFactory;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -11,8 +12,8 @@ class LinesTest {
 
     @Test
     void create() {
-        int height = 5;
-        Lines lines = Lines.of(Users.createByString(UsersTest.NAMES), new Height(height));
-        assertThat(lines.getLines().size()).isEqualTo(height);
+        Height height = new Height(5);
+        Users users = Users.createByString(UsersTest.NAMES);
+        assertThat(LadderFactory.createLines(users, height).getLinesSize()).isEqualTo(5);
     }
 }

@@ -15,8 +15,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 class PlayTest {
 
-    static LineStrategy strategy = new RandomStrategy();
-
     @ParameterizedTest
     @DisplayName("test")
     @MethodSource("provideLines")
@@ -24,7 +22,7 @@ class PlayTest {
         Users users = Users.createByString(UsersTest.NAMES);
         Results results = Results.createByString(ResultsTest.RESULTS);
 
-        Ladder ladder = new Ladder(lines);
+        Ladder ladder = Ladder.of(lines);
         Play play = new Play(ladder, users, results);
         Result jk = play.getResults(new User(Name.of("jk")));
         assertThat(jk.getValue()).isEqualTo("꽝");
@@ -35,9 +33,9 @@ class PlayTest {
 
     private static Stream<Arguments> provideLines() {
         return Stream.of(
-            Arguments.of(new Lines(Arrays.asList(
-                new Line(Arrays.asList(new Point(false, true), new Point(true, false), new Point(false, true), new Point(true, false)), strategy),
-                new Line(Arrays.asList(new Point(false, false), new Point(false, true), new Point(true, false), new Point(false, false)), strategy),
-                (new Line(Arrays.asList(new Point(false, true), new Point(true, false), new Point(false, true), new Point(true, false)), strategy))))));
+            Arguments.of(Lines.of(Arrays.asList(
+                Line.of(Arrays.asList(new Point(false, true), new Point(true, false), new Point(false, true), new Point(true, false))),
+                Line.of(Arrays.asList(new Point(false, false), new Point(false, true), new Point(true, false), new Point(false, false))),
+                (Line.of(Arrays.asList(new Point(false, true), new Point(true, false), new Point(false, true), new Point(true, false))))))));
     }
 }
