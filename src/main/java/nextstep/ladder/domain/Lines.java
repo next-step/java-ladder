@@ -22,10 +22,10 @@ public class Lines {
 
     private static List<Line> createBy(Users users, Height height) {
         int ladderHeight = height.getHeight();
-        int userSize = users.getUsers().size();
+        int width = users.width();
 
         return IntStream.range(ZERO, ladderHeight)
-            .mapToObj(i -> new Line(userSize, strategy))
+            .mapToObj(i -> new Line(width, strategy))
             .collect(Collectors.toList());
     }
 

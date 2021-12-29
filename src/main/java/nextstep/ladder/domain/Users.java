@@ -32,4 +32,8 @@ public class Users {
     public List<User> getUsers() {
         return users;
     }
+
+    public int width() {
+        return users.size();
+    }
 }
