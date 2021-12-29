@@ -3,7 +3,7 @@ package nextstep.ladder;
 import nextstep.ladder.controller.CreateLadderRequest;
 import nextstep.ladder.controller.LadderController;
 import nextstep.ladder.controller.RetrieveResultRequest;
-import nextstep.ladder.controller.UsersLadderResults;
+import nextstep.ladder.controller.UserLadderResults;
 import nextstep.ladder.model.Ladder;
 import nextstep.ladder.model.LadderResultCommand;
 import nextstep.ladder.model.LadderResults;
@@ -19,7 +19,7 @@ public class LadderApplication {
         OutputView.printLadderResult(users, ladder, ladderResults);
         OutputView.printExecutionResult(
                 LadderController.retrieveUserResults(
-                        RetrieveResultRequest.of(ladder, UsersLadderResults.of(users, ladderResults))
+                        RetrieveResultRequest.of(ladder, UserLadderResults.of(users, ladderResults))
                 ),
                 LadderResultCommand.from(InputView.readCommandForResultOfTargetUser())
         );

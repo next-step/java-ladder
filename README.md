@@ -125,10 +125,11 @@ public class Line {
     - [x] 전달 인스턴스 생성 기능 추가
     - [x] 전달 파라미터 검증 기능 추가
     - [x] 리팩토링
-- [ ] `LadderController`에 게임 결과 확인 파라미터를 전달하기 위한 클래스 `UsersLadderResults`
+- [x] `LadderController`에 게임 결과 확인 파라미터를 전달하기 위한 클래스 `UserLadderResults`
     - [x] 전달 인스턴스 생성 기능 추가
     - [x] 전달 파라미터 검증 기능 추가
     - [x] 사용자 게임 결과 갯수 기능 추가
+    - [x] 리팩토링
 - [ ] 사다리 게임 요청 처리를 위한 컨트롤러 `LadderController`
     - [x] 컨트롤러 생성
     - [x] 참여자/사다리 높이를 입력받아 게임 시작 기능 추가

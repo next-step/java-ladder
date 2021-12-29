@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class RetrieveResultRequestTest {
-    public static final RetrieveResultRequest RETRIEVE_RESULT_REQUEST = RetrieveResultRequest.of(LadderTest.LADDER, UsersLadderResultsTest.USERS_LADDER_RESULTS);
+    public static final RetrieveResultRequest RETRIEVE_RESULT_REQUEST = RetrieveResultRequest.of(LadderTest.LADDER, UserLadderResultsTest.USERS_LADDER_RESULTS);
 
     @Test
     void ofTest() {
@@ -19,7 +19,7 @@ class RetrieveResultRequestTest {
     void checkExceptionForInvalidLadderTest() {
         // when & then
         assertThatIllegalArgumentException().isThrownBy(
-                () -> RetrieveResultRequest.of(null, UsersLadderResultsTest.USERS_LADDER_RESULTS)
+                () -> RetrieveResultRequest.of(null, UserLadderResultsTest.USERS_LADDER_RESULTS)
         );
     }
 
