@@ -115,12 +115,12 @@ public class Line {
     - [x] 게임 실행 결과를 보기 위한 명령어 생성 검증 기능
     - [x] 명령어가 'all'인지 여부 확인 기능 추가
     - [x] 사용자 이름 명령어 `UserName` 생성 기능 추가
-- [ ] `LadderController`에 `Ladder` 생성 파라미터를 전달하기 위한 클래스 `CreateLadderRequest`
+- [x] `LadderController`에 `Ladder` 생성 파라미터를 전달하기 위한 클래스 `CreateLadderRequest`
     - [x] 전달 인스턴스 생성 기능 추가
     - [x] 전달 파라미터 검증 기능 추가
     - [x] `Users`를 만드는 빌더 메서드 추가
     - [x] 사다리 생성시 필요한 파라미터(사용자 수, 사다리 높이)로 변경
-    - [ ] 리팩토링
+    - [x] 리팩토링
 - [ ] `LadderController`에 게임 결과 확인 파라미터를 전달하기 위한 클래스 `RetrieveResultRequest`
     - [x] 전달 인스턴스 생성 기능 추가
     - [x] 전달 파라미터 검증 기능 추가

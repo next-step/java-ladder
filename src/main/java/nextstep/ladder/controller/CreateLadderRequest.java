@@ -30,7 +30,7 @@ public final class CreateLadderRequest {
 
     private static void validateUserSize(int userSize) {
         if (userSize < MIN_USER_SIZE) {
-            throw new IllegalArgumentException(String.format("전달된 사용자의 수가 %d보다 작습니다.", MIN_USER_SIZE));
+            throw new IllegalArgumentException(String.format("전달된 사용자의 수가 %d이상이 필요합니다.", MIN_USER_SIZE));
         }
     }
 
