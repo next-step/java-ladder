@@ -9,27 +9,25 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 class PositionTest {
 
-    User user = new User(Name.of("temp"));
-
     @Test
     void left() {
         Point point = Point.init(true).next(false);
-        Position position = new Position(1, user).move(point);
-        assertThat(position.getIndex()).isEqualTo(0);
+        Position position = new Position(1).move(point);
+        assertThat(position.getEndPoint()).isEqualTo(0);
     }
 
     @Test
     void right() {
         Point point = Point.init(false).next(true);
-        Position position = new Position(1, user).move(point);
-        assertThat(position.getIndex()).isEqualTo(2);
+        Position position = new Position(1).move(point);
+        assertThat(position.getEndPoint()).isEqualTo(2);
     }
 
 
     @Test
     void pass() {
         Point point = Point.init(false).next(false);
-        Position position = new Position(1, user).move(point);
-        assertThat(position.getIndex()).isEqualTo(1);
+        Position position = new Position(1).move(point);
+        assertThat(position.getEndPoint()).isEqualTo(1);
     }
 }

@@ -6,37 +6,42 @@ package nextstep.ladder.domain;
 public class Position {
     private static final int FORWARD = 1;
 
-    private final int index;
-    private final User user;
+    private final int startPoint;
+    private final int endPoint;
 
-    public Position(int index, User user) {
-        this.index = index;
-        this.user = user;
+    private Position(int startPoint, int endPoint) {
+        this.startPoint = startPoint;
+        this.endPoint = endPoint;
+    }
+
+    public Position(int index) {
+        this.startPoint = index;
+        this.endPoint = index;
     }
 
     public static Position of(Position position) {
-        return new Position(position.getIndex(), position.getUser());
+        return new Position(position.getStartPoint(), position.getEndPoint());
     }
 
     public Position move(Point point) {
         Direction move = point.move();
 
         if (move.equals(Direction.LEFT)) {
-            return new Position(index - FORWARD, this.user);
+            return new Position(startPoint, endPoint - FORWARD);
         }
 
         if (move.equals(Direction.RIGHT)) {
-            return new Position(index + FORWARD, this.user);
+            return new Position(startPoint, endPoint + FORWARD);
         }
 
         return this;
     }
 
-    public int getIndex() {
-        return index;
+    public int getStartPoint() {
+        return startPoint;
     }
 
-    public User getUser() {
-        return user;
+    public int getEndPoint() {
+        return endPoint;
     }
 }

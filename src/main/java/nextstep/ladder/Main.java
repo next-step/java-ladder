@@ -20,12 +20,12 @@ public class Main {
         Ladder ladder = ladderFactory.getLadder();
         ResultView.print(ladder, users, results);
 
-        Play play = new Play(ladder, users);
+        Play play = new Play(ladder);
         User user;
 
         do {
             user = InputView.inputResultUser();
-            ResultView.printResults(results, play, user);
+            ResultView.printResults(results, play, users, user);
         } while (!user.isAll());
     }
 }

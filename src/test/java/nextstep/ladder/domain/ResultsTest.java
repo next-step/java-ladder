@@ -24,12 +24,11 @@ class ResultsTest {
     @DisplayName("getResult")
     @MethodSource("nextstep.ladder.domain.PlayTest#provideLines")
     void getResultBy(Lines lines) {
-        Users users = Users.createByString(UsersTest.NAMES);
         Results results = Results.createByString(ResultsTest.RESULTS);
 
         Ladder ladder = Ladder.of(lines);
-        Play play = new Play(ladder, users);
-        Result jk = results.getResult(play, new User(Name.of("jk")));
-        assertThat(jk.getValue()).isEqualTo("꽝");
+        Play play = new Play(ladder);
+        Result zero = results.getResult(play, 0);
+        assertThat(zero.getValue()).isEqualTo("3000");
     }
 }

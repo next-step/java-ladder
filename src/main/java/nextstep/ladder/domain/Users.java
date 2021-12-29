@@ -29,4 +29,8 @@ public class Users {
     public int width() {
         return users.size();
     }
+
+    public int getUserIndex(User user) {
+        return users.indexOf(user);
+    }
 }

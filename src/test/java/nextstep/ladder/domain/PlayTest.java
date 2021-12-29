@@ -23,11 +23,11 @@ class PlayTest {
         Results results = Results.createByString(ResultsTest.RESULTS);
 
         Ladder ladder = Ladder.of(lines);
-        Play play = new Play(ladder, users);
-        Result jk = results.getResult(play, new User(Name.of("jk")));
+        Play play = new Play(ladder);
+        Result jk = results.getResult(play, users.getUserIndex(new User(Name.of("jk"))));
         assertThat(jk.getValue()).isEqualTo("꽝");
 
-        Result honux = results.getResult(play, new User(Name.of("honux")));
+        Result honux = results.getResult(play, users.getUserIndex(new User(Name.of("honux"))));
         assertThat(honux.getValue()).isEqualTo("5000");
     }
 

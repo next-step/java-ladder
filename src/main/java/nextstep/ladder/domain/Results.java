@@ -27,11 +27,11 @@ public class Results {
             .collect(Collectors.toList()));
     }
 
-    public Result getResult(Play play, User user) {
+    public Result getResult(Play play, int userPosition) {
         List<Position> positions = play.getPosition();
-        Position positionByUser = positions.stream().filter(position -> position.getUser().equals(user)).findAny().orElseThrow(IllegalArgumentException::new);
+        Position positionByUser = positions.get(userPosition);
 
-        return result.get(positionByUser.getIndex());
+        return result.get(positionByUser.getStartPoint());
     }
 
     public List<Result> getResult() {
