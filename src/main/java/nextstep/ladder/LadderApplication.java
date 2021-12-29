@@ -5,6 +5,7 @@ import nextstep.ladder.controller.LadderController;
 import nextstep.ladder.controller.RetrieveResultRequest;
 import nextstep.ladder.controller.UsersLadderResults;
 import nextstep.ladder.model.Ladder;
+import nextstep.ladder.model.LadderResultCommand;
 import nextstep.ladder.model.LadderResults;
 import nextstep.ladder.model.Users;
 import nextstep.ladder.view.InputView;
@@ -16,6 +17,11 @@ public class LadderApplication {
         LadderResults ladderResults = LadderResults.from(InputView.readLadderResults());
         Ladder ladder = LadderController.createLadder(CreateLadderRequest.of(users.size(), InputView.readHeightOfLadder()));
         OutputView.printLadderResult(users, ladder, ladderResults);
-        OutputView.printExecutionResultForUsers(LadderController.retrieveUserResults(RetrieveResultRequest.of(ladder, UsersLadderResults.of(users, ladderResults))), InputView.readCommandForResultOfTargetUser());
+        OutputView.printExecutionResult(
+                LadderController.retrieveUserResults(
+                        RetrieveResultRequest.of(ladder, UsersLadderResults.of(users, ladderResults))
+                ),
+                LadderResultCommand.from(InputView.readCommandForResultOfTargetUser())
+        );
     }
 }

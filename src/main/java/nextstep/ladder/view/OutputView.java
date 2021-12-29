@@ -29,13 +29,14 @@ public final class OutputView {
         );
     }
 
-    public static void printExecutionResultForUsers(UserResults userResults, String command) {
+    public static void printExecutionResult(UserResults userResults, LadderResultCommand command) {
         System.out.printf("%s%n%s%n",
                 RESULT_FOR_USERS_OUTPUT_MESSAGE,
                 formattedUserResults(command, userResults)
         );
     }
 
+    private static String formattedUserResults(LadderResultCommand command, UserResults userResults) {
         if (command.isAll()) {
             return formattedAllUserResults(userResults);
         }
@@ -67,10 +68,10 @@ public final class OutputView {
                 .collect(Collectors.joining("\n"));
     }
 
-    private static String targetUserResult(UserResults userResults, String command) {
+    private static String formattedTargetUserResult(UserResults userResults, LadderResultCommand command) {
         return userResults.getUserResults()
                 .stream()
-                .filter(userResult -> userResult.userName().equals(command))
+                .filter(userResult -> userResult.hasUserName(command.userName()))
                 .map(OutputView::eachUserResult)
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(String.format("입력된 참여자이름(%s)는 없습니다.", command)));

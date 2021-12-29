@@ -21,6 +21,10 @@ public final class User {
         return name.getName();
     }
 
+    public boolean hasName(UserName name) {
+        return this.name.equals(name);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

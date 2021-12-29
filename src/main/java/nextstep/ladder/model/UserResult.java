@@ -29,6 +29,10 @@ public final class UserResult {
         return result.getValue();
     }
 
+    public boolean hasUserName(UserName userName) {
+        return user.hasName(userName);
+    }
+
     private void validate(User user, LadderResult result) {
         if (Objects.isNull(user)) {
             throw new IllegalArgumentException("사용자 결과에 필요한 사용자 정보가 null입니다.");
