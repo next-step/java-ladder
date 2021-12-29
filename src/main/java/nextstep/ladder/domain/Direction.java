@@ -23,7 +23,10 @@ public class Direction {
         }
     }
 
-    public Direction(boolean left, boolean right) {
+    private Direction(boolean left, boolean right) {
+        if (left == true && right == true) {
+            throw new IllegalStateException("direction can't be (true, true)");
+        }
         this.left = left;
         this.right = right;
     }
@@ -33,9 +36,6 @@ public class Direction {
     }
 
     public static Direction of(boolean left, boolean right) {
-        if (left == true && right == true) {
-            throw new IllegalStateException("direction can't be (true, true)");
-        }
         return new Direction(left, right);
     }
 
