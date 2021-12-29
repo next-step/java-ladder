@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 public class Results {
 
     private static final String COMMA = ",";
+
     private final List<Result> result;
 
     private Results(List<Result> result) {
@@ -26,8 +27,11 @@ public class Results {
             .collect(Collectors.toList()));
     }
 
-    public Result getResultBy(int index) {
-        return result.get(index);
+    public Result getResult(Play play, User user) {
+        List<Position> positions = play.getPosition();
+        Position positionByUser = positions.stream().filter(position -> position.getUser().equals(user)).findAny().orElseThrow(IllegalArgumentException::new);
+
+        return result.get(positionByUser.getIndex());
     }
 
     public List<Result> getResult() {

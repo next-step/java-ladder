@@ -16,22 +16,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 class PlayTest {
 
     @ParameterizedTest
-    @DisplayName("test")
+    @DisplayName("create")
     @MethodSource("provideLines")
     void create(Lines lines) {
         Users users = Users.createByString(UsersTest.NAMES);
         Results results = Results.createByString(ResultsTest.RESULTS);
 
         Ladder ladder = Ladder.of(lines);
-        Play play = new Play(ladder, users, results);
-        Result jk = play.getResults(new User(Name.of("jk")));
+        Play play = new Play(ladder, users);
+        Result jk = results.getResult(play, new User(Name.of("jk")));
         assertThat(jk.getValue()).isEqualTo("꽝");
 
-        Result honux = play.getResults(new User(Name.of("honux")));
+        Result honux = results.getResult(play, new User(Name.of("honux")));
         assertThat(honux.getValue()).isEqualTo("5000");
     }
 
-    private static Stream<Arguments> provideLines() {
+    static Stream<Arguments> provideLines() {
         return Stream.of(
             Arguments.of(Lines.of(Arrays.asList(
                 Line.of(Arrays.asList(new Point(false, true), new Point(true, false), new Point(false, true), new Point(true, false))),

@@ -24,21 +24,21 @@ public class ResultView {
         System.out.println(TWO_SPACE + printResults(results));
     }
 
-    public static void printResults(Play play, User user) {
+    public static void printResults(Results results, Play play, User user) {
         System.out.println();
         System.out.println(RESULT);
         if (user.isAll()) {
-            System.out.println(printMultipleResult(play));
+            System.out.println(printMultipleResult(results, play));
             return;
         }
-        System.out.println(printResult(play.getResults(user)));
+        System.out.println(printResult(results.getResult(play, user)));
     }
 
-    private static String printMultipleResult(Play play) {
+    private static String printMultipleResult(Results results, Play play) {
         List<User> users = play.getPosition().stream().map(Position::getUser).collect(Collectors.toList());
 
         return IntStream.range(0, users.size())
-            .mapToObj(i -> printUser(users.get(i)) + " : " + printResult(play.getResults(users.get(i))))
+            .mapToObj(i -> printUser(users.get(i)) + " : " + printResult(results.getResult(play, users.get(i))))
             .collect(Collectors.joining("\n"));
     }
 

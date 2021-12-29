@@ -10,20 +10,13 @@ import java.util.stream.Collectors;
  */
 public class Play {
     private final List<Position> positions;
-    private final Results results;
 
-    public Play(Ladder ladder, Users users, Results results) {
+    public Play(Ladder ladder, Users users) {
         this.positions = createBy(ladder, users);
-        this.results = results;
     }
 
     public List<Position> getPosition() {
         return positions;
-    }
-
-    public Result getResults(User user) {
-        Position positionByUser = positions.stream().filter(position -> position.getUser().equals(user)).findAny().orElseThrow(IllegalAccessError::new);
-        return results.getResultBy(positionByUser.getIndex());
     }
 
     private List<Position> createBy(Ladder ladder, Users users) {
