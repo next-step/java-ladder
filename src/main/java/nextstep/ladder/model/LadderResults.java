@@ -21,7 +21,7 @@ public final class LadderResults {
 
     private static void validate(List<String> ladderResults) {
         if (Objects.isNull(ladderResults)) {
-            throw new IllegalArgumentException("전달된 사다리 결과 그룹이 null입니다.");
+            throw new IllegalArgumentException("전달된 사다리 결과 그룹이 null 입니다.");
         }
         if (ladderResults.isEmpty()) {
             throw new IllegalArgumentException("전달된 사다리 결과 그룹이 비어있습니다.");
@@ -39,10 +39,18 @@ public final class LadderResults {
     }
 
     public LadderResult get(int index) {
-        if (size() <= index) {
-            throw new IllegalArgumentException(String.format("입력된 index(%d)는 결과를 넘어갈 수 없습니다.", index));
+        if (isOutboundIndex(index)) {
+            throw new IllegalArgumentException(String.format("입력된 index(%d)는 결과의 최대 index(%d)를 넘어갈 수 없습니다.", index, maxIndex()));
         }
         return ladderResults.get(index);
+    }
+
+    private int maxIndex() {
+        return size() - 1;
+    }
+
+    private boolean isOutboundIndex(int index) {
+        return size() <= index;
     }
 
     public int size() {

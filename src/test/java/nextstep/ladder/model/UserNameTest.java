@@ -1,6 +1,8 @@
 package nextstep.ladder.model;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -15,11 +17,12 @@ public class UserNameTest {
         assertThat(new UserName("crong")).isNotNull();
     }
 
-    @Test
-    void checkExceptionWithNullNameTest() {
+    @ParameterizedTest
+    @NullAndEmptySource
+    void checkExceptionWithNullOrEmptyNameTest(String invalidName) {
         // when & then
         assertThatIllegalArgumentException().isThrownBy(
-                () -> new UserName(null)
+                () -> new UserName(invalidName)
         );
     }
 

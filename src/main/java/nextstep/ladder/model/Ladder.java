@@ -15,20 +15,20 @@ public final class Ladder {
         this.ladderLines = new ArrayList<>(ladders);
     }
 
-    public static Ladder initate(int userSize, int height) {
+    public static Ladder initiate(int userSize, int height) {
         validate(height);
         return new Ladder(ladderLines(userSize, height));
     }
 
     private static void validate(int height) {
         if (height < MIN_HEIGHT) {
-            throw new IllegalArgumentException(String.format("전달된 사다리의 높이(%d)는 %d이상이 필요합니다.", height, MIN_HEIGHT));
+            throw new IllegalArgumentException(String.format("전달된 사다리의 높이(%d)는 %d 이상이 필요합니다.", height, MIN_HEIGHT));
         }
     }
 
     private static List<LadderLine> ladderLines(int userSize, int height) {
         return IntStream.range(0, height)
-                .mapToObj(x -> LadderLine.init(userSize))
+                .mapToObj(x -> LadderLine.initiate(userSize))
                 .collect(Collectors.toList());
     }
 

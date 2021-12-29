@@ -31,4 +31,8 @@ public final class LadderPoint {
     public int move() {
         return direction.move(index);
     }
+
+    public boolean isLeft() {
+        return direction == PointDirection.LEFT;
+    }
 }

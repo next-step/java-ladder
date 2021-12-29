@@ -13,12 +13,16 @@ public final class User {
 
     private void validate(UserName name) {
         if (Objects.isNull(name)) {
-            throw new IllegalArgumentException("전달된 이름이 null입니다.");
+            throw new IllegalArgumentException("전달된 사용자 이름이 null 입니다.");
         }
     }
 
     public String getName() {
         return name.getName();
+    }
+
+    public boolean hasName(UserName name) {
+        return this.name.equals(name);
     }
 
     @Override

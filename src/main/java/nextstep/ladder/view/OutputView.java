@@ -14,28 +14,40 @@ public final class OutputView {
     private static final String LADDER_VERTICAL_BAR = "┃";
     private static final String BLANK = " ";
     private static final int TEXT_WIDTH = 5;
-    private static final String OUTPUT_FORMAT = "%6s";
+    private static final String LADDER_OUTPUT_FORMAT = "%6s";
     private static final String EXECUTION_RESULT_FORMAT = "%s : %s";
 
     private OutputView() {
     }
 
     public static void printLadderResult(Users users, Ladder ladder, LadderResults ladderResults) {
-        System.out.println(RESULT_FOR_LADDER_OUTPUT_MESSAGE);
-        System.out.printf("%s%n%s%n%s%n", formattedUserNames(users), formattedLadder(ladder), formattedLadderResults(ladderResults));
+        System.out.printf("%s%n%s%n%s%n%s%n",
+                RESULT_FOR_LADDER_OUTPUT_MESSAGE,
+                formattedUserNames(users),
+                formattedLadder(ladder),
+                formattedLadderResults(ladderResults)
+        );
     }
 
-    public static void printExecutionResultForUsers(UserResults userResults, String command) {
-        System.out.println(RESULT_FOR_USERS_OUTPUT_MESSAGE);
-        if ("all" .equals(command)) {
-            System.out.println(allUserResults(userResults));
-            return;
+    public static void printExecutionResult(UserResults userResults, LadderResultCommand command) {
+        System.out.printf("%s%n%s%n",
+                RESULT_FOR_USERS_OUTPUT_MESSAGE,
+                formattedUserResults(command, userResults)
+        );
+    }
+
+    private static String formattedUserResults(LadderResultCommand command, UserResults userResults) {
+        if (command.isAll()) {
+            return formattedAllUserResults(userResults);
         }
-        System.out.println(targetUserResult(userResults, command));
+        return formattedTargetUserResult(userResults, command);
     }
 
     private static String formattedUserNames(Users users) {
-        return userNames(users);
+        return users.getUsers()
+                .stream()
+                .map(OutputView::eachUserName)
+                .collect(Collectors.joining());
     }
 
     private static String formattedLadder(Ladder ladder) {
@@ -49,48 +61,54 @@ public final class OutputView {
         return ladderResults(ladderResults);
     }
 
-    private static String allUserResults(UserResults userResults) {
+    private static String formattedAllUserResults(UserResults userResults) {
         return userResults.getUserResults()
                 .stream()
-                .map(userResult -> String.format(EXECUTION_RESULT_FORMAT, userResult.userName(), userResult.ladderResult()))
+                .map(OutputView::eachUserResult)
                 .collect(Collectors.joining("\n"));
     }
 
-    private static String targetUserResult(UserResults userResults, String command) {
+    private static String formattedTargetUserResult(UserResults userResults, LadderResultCommand command) {
         return userResults.getUserResults()
                 .stream()
-                .filter(userResult -> userResult.userName().equals(command))
-                .map(v -> String.format(EXECUTION_RESULT_FORMAT, v.userName(), v.ladderResult()))
+                .filter(userResult -> userResult.hasUserName(command.userName()))
+                .map(OutputView::eachUserResult)
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(String.format("입력된 참여자이름(%s)는 없습니다.", command)));
+    }
+
+    private static String eachUserResult(UserResult v) {
+        return String.format(EXECUTION_RESULT_FORMAT, v.userName(), v.ladderResult());
     }
 
     private static String ladderResults(LadderResults ladderResults) {
         return ladderResults.getLadderResults()
                 .stream()
-                .map(LadderResult::getValue)
-                .map(name -> String.format(OUTPUT_FORMAT, name))
+                .map(OutputView::eachLadderResult)
                 .collect(Collectors.joining());
     }
 
-    private static String userNames(Users users) {
-        return users.getUsers()
-                .stream()
-                .map(User::getName)
-                .map(name -> String.format("%6s", name))
-                .collect(Collectors.joining());
+    private static String eachLadderResult(LadderResult ladderResult) {
+        return ladderOutput(ladderResult.getValue());
+    }
+
+    private static String eachUserName(User user) {
+        return ladderOutput(user.getName());
+    }
+
+    private static String ladderOutput(String name) {
+        return String.format(LADDER_OUTPUT_FORMAT, name);
     }
 
     private static String ladderLine(LadderLine ladderLine) {
         return ladderLine.getPoints()
                 .stream()
-                .map(LadderPoint::getDirection)
-                .map(OutputView::ladderPoint)
+                .map(OutputView::eachPointDirection)
                 .collect(Collectors.joining());
     }
 
-    private static String ladderPoint(PointDirection direction) {
-        if (PointDirection.LEFT == direction) {
+    private static String eachPointDirection(LadderPoint ladderPoint) {
+        if (ladderPoint.isLeft()) {
             return new String(new char[TEXT_WIDTH]).replace("\0", LADDER_HORIZONTAL_BAR) + LADDER_VERTICAL_BAR;
         }
         return new String(new char[TEXT_WIDTH]).replace("\0", BLANK) + LADDER_VERTICAL_BAR;
