@@ -15,7 +15,7 @@ public final class LadderLine {
         this.points = new ArrayList<>(points);
     }
 
-    public static LadderLine init(int userSize) {
+    public static LadderLine initiate(int userSize) {
         validate(userSize);
         List<LadderPoint> points = new ArrayList<>(userSize);
         LadderPoint firstPoint = firstPoint();
@@ -26,7 +26,7 @@ public final class LadderLine {
 
     private static void validate(int userSize) {
         if (userSize < MIN_USER_SIZE) {
-            throw new IllegalArgumentException(String.format("입력된 사용자의 수(%d)는 %d을 넘어야합니다.", userSize, MIN_USER_SIZE));
+            throw new IllegalArgumentException(String.format("입력된 사용자 수(%d)는 %d 이상이 필요합니다.", userSize, MIN_USER_SIZE));
         }
     }
 

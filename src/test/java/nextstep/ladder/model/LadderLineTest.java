@@ -9,10 +9,10 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 class LadderLineTest {
     private static final int VALID_USER_SIZE = 5;
-    private static final LadderLine LADDER_LINE = LadderLine.init(VALID_USER_SIZE);
+    private static final LadderLine LADDER_LINE = LadderLine.initiate(VALID_USER_SIZE);
 
     @Test
-    void initTest() {
+    void initiateTest() {
         // then
         assertThat(LADDER_LINE).isNotNull();
     }
@@ -22,7 +22,7 @@ class LadderLineTest {
     void checkExceptionForInvalidUserSizeTest(int userSize) {
         // when & then
         assertThatIllegalArgumentException().isThrownBy(
-                () -> LadderLine.init(userSize)
+                () -> LadderLine.initiate(userSize)
         );
     }
 
