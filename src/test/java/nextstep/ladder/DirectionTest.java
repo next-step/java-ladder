@@ -19,7 +19,7 @@ public class DirectionTest {
     }
 
     @Test
-    @DisplayName("Direction을 ture true 로 만들면 direction can't be (true, true) 를 반환")
+    @DisplayName("Direction 을 ture true 로 만들면 direction can't be (true, true) 를 반환")
     public void init_invalid() {
         assertThatThrownBy(() -> {
             Direction.of(true, true);
@@ -68,19 +68,4 @@ public class DirectionTest {
         Direction last = Direction.first(true).last();
         assertEquals(last, Direction.of(true, false));
     }
-
-    @Test
-    @DisplayName("마지막 Point 의 Direction 을 반환")
-    public void isRight() {
-        Direction direction = Direction.of("right");
-        assertTrue(direction.isRight());
-    }
-
-    @Test
-    @DisplayName("마지막 Point 의 Direction 을 반환")
-    public void isLeft() {
-        Direction direction = Direction.of("left");
-        assertTrue(direction.isLeft());
-    }
-
 }

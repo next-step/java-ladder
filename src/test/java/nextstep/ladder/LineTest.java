@@ -5,6 +5,8 @@ import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Arrays;
 import java.util.List;
@@ -32,9 +34,9 @@ public class LineTest {
                 Point.of(new Direction("none"), 2), Point.of(new Direction("right"), 3),
                 Point.of(new Direction("left"), 4));
 
-        assertThat(lineByStringA.getPoints()).isEqualTo(lineA);
-        assertThat(lineByStringB.getPoints()).isEqualTo(lineB);
-        assertThat(lineByStringC.getPoints()).isEqualTo(lineC);
+        assertThat(lineByStringA).isEqualTo(Line.of(lineA));
+        assertThat(lineByStringB).isEqualTo(Line.of(lineB));
+        assertThat(lineByStringC).isEqualTo(Line.of(lineC));
     }
 
     @Test
@@ -50,9 +52,6 @@ public class LineTest {
     public void init() {
         int sizeOfPerson = 10;
         Line line = Line.init(sizeOfPerson);
-        for (int index = 0; index < 10; index++) {
-            assertThat(line.getPoints().get(index)).isEqualTo(index);
-        }
         assertThat(line.getPoints().size()).isEqualTo(10);
     }
 
@@ -66,17 +65,40 @@ public class LineTest {
         }
     }
 
-    @Test
     @DisplayName("현재 position 에서 move 한 point 의 position 을 반환")
-    public void move() {
+    @ParameterizedTest
+    @CsvSource({
+            "0,    1",
+            "1,    0",
+            "2,    3",
+            "3,    2",
+            "4,    4",
+    })
+    public void move_one(int position, int movedPosition) {
         Line line = Line.ofString("right,left,right,left,none");
-        assertThat(line.move(0)).isEqualTo(1);
-        assertThat(line.move(1)).isEqualTo(0);
-        assertThat(line.move(2)).isEqualTo(3);
-        assertThat(line.move(3)).isEqualTo(2);
-        assertThat(line.move(4)).isEqualTo(4);
+        assertThat(line.move(position)).isEqualTo(movedPosition);
 
         line = Line.ofString("right,left,right,left,none,none");
+        assertThat(line.move(0)).isEqualTo(1);
+        assertThat(line.move(1)).isEqualTo(0);
+        assertThat(line.move(4)).isEqualTo(4);
+        assertThat(line.move(3)).isEqualTo(2);
+        assertThat(line.move(5)).isEqualTo(5);
+
+    }
+
+    @DisplayName("현재 position 에서 move 한 point 의 position 을 반환")
+    @ParameterizedTest
+    @CsvSource({
+            "0,    1",
+            "1,    0",
+            "2,    3",
+            "3,    2",
+            "4,    4",
+            "5,    5",
+    })
+    public void move_two(int position, int movedPosition) {
+        Line line = Line.ofString("right,left,right,left,none,none");
         assertThat(line.move(0)).isEqualTo(1);
         assertThat(line.move(1)).isEqualTo(0);
         assertThat(line.move(4)).isEqualTo(4);
