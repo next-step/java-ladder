@@ -21,7 +21,7 @@ public class ResultView {
         System.out.println(RESULT);
         System.out.println(printUsers(users));
         System.out.println(printLines(ladder.getLines()));
-        System.out.println(TWO_SPACE + printResults(results));
+        System.out.println(printResults(results));
     }
 
     public static void printResults(Results results, Play play, Users users, User user) {
@@ -45,7 +45,7 @@ public class ResultView {
     private static String printResults(Results results) {
         return results.getResult()
             .stream()
-            .map(result ->  THREE_SPACE + printResult(result))
+            .map(result ->  getSpace(result.getValue().length()) + printResult(result))
             .collect(Collectors.joining());
     }
 
@@ -86,7 +86,10 @@ public class ResultView {
     }
 
     public static String getSpace(int length) {
-        return length < 3 ? FIVE_SPACE : TWO_SPACE;
+        if (length < 3) {
+            return FIVE_SPACE;
+        }
+        return TWO_SPACE;
     }
 }
 
