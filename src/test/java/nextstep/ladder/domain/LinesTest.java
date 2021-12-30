@@ -14,6 +14,6 @@ class LinesTest {
     void create() {
         Height height = new Height(5);
         Users users = Users.createByString(UsersTest.NAMES);
-        assertThat(LadderFactory.createLines(users.width(), height).getLinesSize()).isEqualTo(5);
+        assertThat(LadderFactory.createLines(users.width(), height).height()).isEqualTo(5);
     }
 }

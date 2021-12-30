@@ -16,7 +16,15 @@ public class Line {
         return new Line(points);
     }
 
+    public int move(int index) {
+        return points.get(index).move();
+    }
+
     public List<Point> getPoints() {
         return points;
+    }
+
+    public int width() {
+        return points.size();
     }
 }

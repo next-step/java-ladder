@@ -7,7 +7,7 @@ public class Position {
     private final int startPoint;
     private final int endPoint;
 
-    private Position(int startPoint, int endPoint) {
+    public Position(int startPoint, int endPoint) {
         this.startPoint = startPoint;
         this.endPoint = endPoint;
     }
@@ -23,6 +23,10 @@ public class Position {
 
     public Position move(Point point) {
         return new Position(startPoint, endPoint + point.move());
+    }
+
+    public Position move(int move) {
+        return new Position(startPoint, endPoint + move);
     }
 
     public int getStartPoint() {

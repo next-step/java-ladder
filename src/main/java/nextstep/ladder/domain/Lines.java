@@ -24,11 +24,11 @@ public class Lines {
         return lines.get(0);
     }
 
-    public Line getLineBy(int index) {
+    public Line move(int index) {
         return lines.get(index);
     }
 
-    public int getLinesSize() {
+    public int height() {
         return lines.size();
     }
 }

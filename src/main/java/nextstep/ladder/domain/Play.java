@@ -21,11 +21,11 @@ public class Play {
 
     private List<Position> createBy(Ladder ladder) {
         Lines lines = ladder.getLines();
-        int size = lines.getLinesSize();
+        int height = lines.height();
         List<Position> positions = first(lines.getFirstLine());
 
-        for (int i = 1; i < size; i++) {
-            Line line = lines.getLineBy(i);
+        for (int i = 1; i < height; i++) {
+            Line line = lines.move(i);
             positions = next(positions, line);
         }
         return positions;
@@ -34,9 +34,8 @@ public class Play {
     private List<Position> first(Line line) {
         List<Position> positions = new ArrayList<>();
 
-        for (int i = 0; i < line.getPoints().size(); i++) {
-            Point point = line.getPoints().get(i);
-            positions.add(new Position(i).move(point));
+        for (int i = 0; i < line.width(); i++) {
+            positions.add(new Position(i, (line.move(i))));
         }
 
         return positions.stream()
@@ -47,10 +46,9 @@ public class Play {
     private List<Position> next(List<Position> positions, Line line) {
         List<Position> result = new ArrayList<>();
 
-        for (int i = 0; i < line.getPoints().size(); i++) {
-            Point point = line.getPoints().get(i);
+        for (int i = 0; i < line.width(); i++) {
             Position position = positions.get(i);
-            result.add(Position.of(position).move(point));
+            result.add(Position.of(position).move(line.move(i)));
         }
 
         return result.stream()
