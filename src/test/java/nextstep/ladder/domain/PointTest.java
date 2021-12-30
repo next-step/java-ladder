@@ -23,24 +23,24 @@ class PointTest {
     @Test
     void right() {
         Point point = Point.init(false).next(true);
-        assertThat(point.move()).isEqualTo(Direction.RIGHT);
+        assertThat(point.move()).isEqualTo(1);
     }
 
     @Test
-    void down() {
+    void pass() {
         Point point = Point.init(false).next(false);
-        assertThat(point.move()).isEqualTo(Direction.PASS);
+        assertThat(point.move()).isEqualTo(0);
     }
 
     @Test
     void left() {
         Point point = Point.init(true).next(false);
-        assertThat(point.move()).isEqualTo(Direction.LEFT);
+        assertThat(point.move()).isEqualTo(-1);
     }
 
     @Test
     void end() {
         Point point = Point.init(false).end();
-        assertThat(point.move()).isEqualTo(Direction.PASS);
+        assertThat(point.move()).isEqualTo(0);
     }
 }

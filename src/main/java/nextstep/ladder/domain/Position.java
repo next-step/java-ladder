@@ -4,8 +4,6 @@ package nextstep.ladder.domain;
  * @author han
  */
 public class Position {
-    private static final int FORWARD = 1;
-
     private final int startPoint;
     private final int endPoint;
 
@@ -24,17 +22,7 @@ public class Position {
     }
 
     public Position move(Point point) {
-        Direction move = point.move();
-
-        if (move.equals(Direction.LEFT)) {
-            return new Position(startPoint, endPoint - FORWARD);
-        }
-
-        if (move.equals(Direction.RIGHT)) {
-            return new Position(startPoint, endPoint + FORWARD);
-        }
-
-        return this;
+        return new Position(startPoint, endPoint + point.move());
     }
 
     public int getStartPoint() {

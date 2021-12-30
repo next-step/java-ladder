@@ -4,6 +4,10 @@ package nextstep.ladder.domain;
  * @author han
  */
 public class Point {
+    private static final int FORWARD = 1;
+    private static final int BACKWARD = -1;
+    private static final int PASS = 0;
+
     private final boolean left;
     private final boolean current;
 
@@ -25,16 +29,16 @@ public class Point {
         return new Point(this.current, false);
     }
 
-    public Direction move() {
+    public int move() {
         if (hasLineAfter()) {
-            return Direction.RIGHT;
+            return FORWARD;
         }
 
         if (hasLineBefore()) {
-            return Direction.LEFT;
+            return BACKWARD;
         }
 
-        return Direction.PASS;
+        return PASS;
     }
 
     public boolean isCurrent() {
