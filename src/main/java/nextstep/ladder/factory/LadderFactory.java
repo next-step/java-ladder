@@ -22,17 +22,16 @@ public class LadderFactory {
         this.ladder = ladder;
     }
 
-    public static LadderFactory from(Users users, Height height) {
-        return new LadderFactory(Ladder.of(createLines(users, height)));
+    public static LadderFactory from(int width, Height height) {
+        return new LadderFactory(Ladder.of(createLines(width, height)));
     }
 
     public Ladder getLadder() {
         return ladder;
     }
 
-    public static Lines createLines(Users users, Height height) {
+    public static Lines createLines(int width , Height height) {
         int ladderHeight = height.getHeight();
-        int width = users.width();
 
         if (width < MINIMUM) {
             throw new IllegalArgumentException();

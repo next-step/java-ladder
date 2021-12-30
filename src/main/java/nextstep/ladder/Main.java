@@ -16,7 +16,7 @@ public class Main {
         Results results = InputView.inputResults();
         Height height = InputView.inputLadderHeight();
 
-        LadderFactory ladderFactory = LadderFactory.from(users, height);
+        LadderFactory ladderFactory = LadderFactory.from(users.width(), height);
         Ladder ladder = ladderFactory.getLadder();
         ResultView.print(ladder, users, results);
 

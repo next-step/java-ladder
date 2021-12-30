@@ -16,6 +16,6 @@ class LadderFactoryTest {
     void create() {
         Users users = Users.createByString("1,2,3,4,5");
         Height height = new Height(5);
-        assertDoesNotThrow(() -> LadderFactory.from(users, height));
+        assertDoesNotThrow(() -> LadderFactory.from(users.width(), height));
     }
 }
