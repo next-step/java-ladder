@@ -28,7 +28,7 @@ class ResultsTest {
 
         Ladder ladder = Ladder.of(lines);
         Play play = new Play(ladder);
-        Result zero = results.getResult(play, 0);
+        Result zero = results.getResult(play.getPosition(0));
         assertThat(zero.getValue()).isEqualTo("3000");
     }
 }

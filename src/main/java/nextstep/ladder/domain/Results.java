@@ -27,10 +27,7 @@ public class Results {
             .collect(Collectors.toList()));
     }
 
-    public Result getResult(Play play, int userPosition) {
-        List<Position> positions = play.getPosition();
-        Position positionByUser = positions.get(userPosition);
-
+    public Result getResult(Position positionByUser) {
         return result.get(positionByUser.getStartPoint());
     }
 

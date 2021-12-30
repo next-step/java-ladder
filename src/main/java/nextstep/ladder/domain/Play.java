@@ -15,8 +15,8 @@ public class Play {
         this.positions = createBy(ladder);
     }
 
-    public List<Position> getPosition() {
-        return positions;
+    public Position getPosition(int userPosition) {
+        return positions.get(userPosition);
     }
 
     private List<Position> createBy(Ladder ladder) {

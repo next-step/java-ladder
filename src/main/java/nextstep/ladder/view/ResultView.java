@@ -31,14 +31,14 @@ public class ResultView {
             System.out.println(printMultipleResult(results, users, play));
             return;
         }
-        System.out.println(printResult(results.getResult(play, users.getUserIndex(user))));
+        System.out.println(printResult(results.getResult(play.getPosition(users.getUserIndex(user)))));
     }
 
     private static String printMultipleResult(Results results, Users users, Play play) {
         List<User> user = users.getUsers();
 
         return IntStream.range(0, user.size())
-            .mapToObj(i -> printUser(user.get(i)) + " : " + printResult(results.getResult(play, users.getUserIndex(user.get(i)))))
+            .mapToObj(i -> printUser(user.get(i)) + " : " + printResult(results.getResult(play.getPosition(users.getUserIndex(user.get(i))))))
             .collect(Collectors.joining("\n"));
     }
 
