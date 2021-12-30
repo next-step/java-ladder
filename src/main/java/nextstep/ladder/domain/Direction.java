@@ -2,6 +2,8 @@ package nextstep.ladder.domain;
 
 import java.util.Objects;
 
+import static nextstep.ladder.domain.Point.RANDOM;
+
 public class Direction {
     private boolean left;
     private boolean right;
@@ -10,7 +12,6 @@ public class Direction {
         if (input.equals("left")) {
             this.left = true;
             this.right = false;
-
         }
         if (input.equals("right")) {
             this.left = false;
@@ -22,6 +23,40 @@ public class Direction {
         }
     }
 
+    private Direction(boolean left, boolean right) {
+        if (left == true && right == true) {
+            throw new IllegalStateException("direction can't be (true, true)");
+        }
+        this.left = left;
+        this.right = right;
+    }
+
+    public static Direction of(String input) {
+        return new Direction(input);
+    }
+
+    public static Direction of(boolean left, boolean right) {
+        return new Direction(left, right);
+    }
+
+    public static Direction first() {
+        return Direction.of(false, RANDOM.nextBoolean());
+    }
+
+    public static Direction first(boolean value) {
+        return Direction.of(false, value);
+    }
+
+    public Direction last() {
+        if (this.right == true && this.left == false) {
+            return Direction.of(true, false);
+        }
+        if (!(this.right == true && this.left == false)) {
+            return Direction.of(false, false);
+        }
+        throw new IllegalArgumentException("lastPointDirection error");
+    }
+
     public boolean isRight() {
         return right == true;
     }
@@ -30,8 +65,24 @@ public class Direction {
         return left == true;
     }
 
-    public boolean isNone() {
-        return right == false && left == false;
+    public Direction next() {
+        if (this.right == true) {
+            return Direction.of(true, false);
+        }
+        if (this.right == false) {
+            return Direction.of(false, RANDOM.nextBoolean());
+        }
+        throw new IllegalArgumentException("Direction next error");
+    }
+
+    public Direction next(boolean nextRight) {
+        if (nextRight == true) {
+            return Direction.of(false, true);
+        }
+        if (nextRight == false) {
+            return Direction.of(false, false);
+        }
+        throw new IllegalArgumentException("Direction next error");
     }
 
     @Override
@@ -45,5 +96,13 @@ public class Direction {
     @Override
     public int hashCode() {
         return Objects.hash(left, right);
+    }
+
+    @Override
+    public String toString() {
+        return "Direction{" +
+                "left=" + left +
+                ", right=" + right +
+                '}';
     }
 }

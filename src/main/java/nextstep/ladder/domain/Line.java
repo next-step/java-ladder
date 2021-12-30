@@ -10,28 +10,47 @@ public class Line {
         this.points = points;
     }
 
-    public static Line ofRandom(int countOfParticipants) {
-        List<Point> points = new ArrayList<>();
-        Point point = Point.randomFirstPoint();
-        points.add(point);
-        for (int index = 1; index < countOfParticipants - 1; index++) {
-            point = point.nextPoint(index);
-            points.add(point);
-        }
-        points.add(Point.randomLastPoint(point, countOfParticipants - 1));
+    public static Line of(List<Point> points) {
         return new Line(points);
     }
 
     public static Line ofString(String input) {
         checkCanBePoint(input);
         List<Point> points = new ArrayList<>();
-        int i = 0;
-        for (String pointString : (input.split(","))) {
-            points.add(Point.of(new Direction(pointString), i));
-            i++;
+        String[] splitInput = input.split(",");
+        for (int index = 0; index < splitInput.length; index++) {
+            points.add(Point.of(new Direction(splitInput[index]), index));
         }
         return new Line(points);
     }
+
+
+    public static Line init(int countOfParticipants) {
+        List<Point> points = new ArrayList<>();
+        Point firstPoint = initFirst(points);
+        Point point = initBody(points, countOfParticipants, firstPoint);
+        initLast(points, point);
+        return new Line(points);
+    }
+
+    public static Point initFirst(List<Point> points) {
+        Point firstPoint = Point.first();
+        points.add(firstPoint);
+        return firstPoint;
+    }
+
+    public static Point initBody(List<Point> points, int countOfParticipants, Point point) {
+        for (int index = 1; index < countOfParticipants - 1; index++) {
+            point = point.next(index);
+            points.add(point);
+        }
+        return point;
+    }
+
+    public static void initLast(List<Point> points, Point point) {
+        points.add(point.last(points.size()));
+    }
+
 
     private static void checkCanBePoint(String input) {
         Optional<String> inputError = Arrays.stream(input.split(","))
@@ -50,4 +69,16 @@ public class Line {
         return Collections.unmodifiableList(points);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Line line = (Line) o;
+        return Objects.equals(points, line.points);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(points);
+    }
 }

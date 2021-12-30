@@ -35,12 +35,13 @@ public class Participants {
         return Collections.unmodifiableList(participants);
     }
 
-    public int getParticipantIndex(String participant) {
-        for (int index = 0; index < participants.size(); index++) {
-            if (participants.get(index).getParticipant() == participant) {
-                return index;
-            }
+    public Participant findParticipant(String participantString) {
+        if (participantString.equals("all")) {
+            return Participant.of("all", 0);
         }
-        throw new IllegalArgumentException("해당하는 유저가 없습니다.");
+        return participants.stream()
+                .filter(participant -> participant.getParticipant().equals(participantString))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("해당 유저가 없습니다."));
     }
 }

@@ -18,6 +18,10 @@ public class Participant {
         return new Participant(participant, index);
     }
 
+    public int getIndex() {
+        return index;
+    }
+
     private void checkParticipantLength(String participant) {
         if (participant.length() > PARTICIPANT_SIZE) {
             throw new IllegalArgumentException("이름의 길이가 " + PARTICIPANT_SIZE + "를 초과합니다.");

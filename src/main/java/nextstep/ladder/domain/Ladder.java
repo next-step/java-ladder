@@ -20,7 +20,7 @@ public class Ladder {
     public static Ladder ofRandom(int countOfParticipants, int countOfLine) {
         List<Line> lines = new ArrayList<>();
         IntStream.range(0, countOfLine)
-                .forEach(index -> lines.add(Line.ofRandom(countOfParticipants)));
+                .forEach(index -> lines.add(Line.init(countOfParticipants)));
         return new Ladder(lines);
     }
 
@@ -28,7 +28,7 @@ public class Ladder {
         return Collections.unmodifiableList(lines);
     }
 
-    public int play(int index) {
+    public int move(int index) {
         for (Line line : lines) {
             index = line.move(index);
         }
