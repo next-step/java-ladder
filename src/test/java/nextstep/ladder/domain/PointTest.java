@@ -10,28 +10,37 @@ import static org.assertj.core.api.Assertions.assertThat;
 class PointTest {
 
     @Test
-    void hasLineBefore() {
-        Point point = Point.init(false).next(new TrueReturnStrategy());
-        assertThat(point.hasLineBefore()).isEqualTo(true);
-    }
-
-    @Test
     void hasNotLineBefore() {
-        Point point = Point.init(true).next(new FalseReturnStrategy());
+        Point point = Point.init(false).next(true);
         assertThat(point.hasLineBefore()).isEqualTo(false);
     }
 
-    class FalseReturnStrategy implements LineStrategy {
-        @Override
-        public boolean random() {
-            return false;
-        }
+    @Test
+    void hasLineBefore() {
+        Point point = Point.init(true).next(false);
+        assertThat(point.hasLineBefore()).isEqualTo(true);
+    }
+    @Test
+    void right() {
+        Point point = Point.init(false).next(true);
+        assertThat(point.move()).isEqualTo(1);
     }
 
-    class TrueReturnStrategy implements LineStrategy {
-        @Override
-        public boolean random() {
-            return true;
-        }
+    @Test
+    void pass() {
+        Point point = Point.init(false).next(false);
+        assertThat(point.move()).isEqualTo(0);
+    }
+
+    @Test
+    void left() {
+        Point point = Point.init(true).next(false);
+        assertThat(point.move()).isEqualTo(-1);
+    }
+
+    @Test
+    void end() {
+        Point point = Point.init(false).end();
+        assertThat(point.move()).isEqualTo(0);
     }
 }

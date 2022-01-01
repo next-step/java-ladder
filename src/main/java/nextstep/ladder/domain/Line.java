@@ -1,33 +1,30 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 /**
  * @author han
  */
 public class Line {
-    private static final int MINIMUM = 2;
-
     private final List<Point> points;
 
-    public Line(int users, LineStrategy lineStrategy) {
-        if (users < MINIMUM) {
-            throw new IllegalArgumentException();
-        }
-        this.points = createBy(users, lineStrategy);
+    public Line(List<Point> points) {
+        this.points = points;
     }
 
-    private List<Point> createBy(int users, LineStrategy lineStrategy) {
-        List<Point> points = new ArrayList<>();
-        points.add(Point.init(false));
-        IntStream.range(0, users - 1)
-            .forEach(i -> points.add(points.get(i).next(lineStrategy)));
-        return points;
+    public static Line of(List<Point> points) {
+        return new Line(points);
+    }
+
+    public int move(int index) {
+        return points.get(index).move();
     }
 
     public List<Point> getPoints() {
         return points;
+    }
+
+    public int width() {
+        return points.size();
     }
 }
