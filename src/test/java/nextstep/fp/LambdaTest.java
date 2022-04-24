@@ -32,6 +32,11 @@ public class LambdaTest {
     }
 
     @Test
+    public void runThreadLambda() throws Exception {
+        Lambda.runThreadLambda();
+    }
+
+    @Test
     public void sumAll() throws Exception {
         int sum = Lambda.sumAll(numbers, number -> true);
         assertThat(sum).isEqualTo(21);

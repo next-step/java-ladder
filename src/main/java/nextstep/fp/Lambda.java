@@ -26,6 +26,10 @@ public class Lambda {
         }).start();
     }
 
+    public static void runThreadLambda() {
+        new Thread(() -> System.out.println("Hello from lambda thread")).start();
+    }
+
     public static int sumAll(List<Integer> numbers, SumCondition sumCondition) {
         return totalSum(numbers, sumCondition);
     }
