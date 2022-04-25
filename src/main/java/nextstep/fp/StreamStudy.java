@@ -14,8 +14,8 @@ import static java.util.Comparator.*;
 
 public class StreamStudy {
 
-    public static final int MAX_SIZE = 100;
-    public static final int WORD_FILTER_LENGTH = 12;
+    private static final int MAX_SIZE = 100;
+    private static final int WORD_FILTER_LENGTH = 12;
 
     public static long countWords() throws IOException {
         String contents = new String(Files.readAllBytes(Paths
