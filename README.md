@@ -29,3 +29,17 @@
       1. 자바 8 stream 과 Optional 을 사용하도록 리팩토링한 후에 UsersTest 의 단위 테스트 통과
    3. nextstep.optional.ExpressionTest 의 테스트가 통과하다록 Expression 의 of 메서드를 구현
    4. of 메서드를 구현할 때 자바 88의 stream 을 기반으로 구현
+
+### step 2. 사다리(생성)
+0. refactoring list
+   1. sumAll, sumAllEven, sumAllOverThree 다시 구현하기
+   2. @FunctionalInterface 사용하기! (제약)
+      1. https://zzang9ha.tistory.com/303
+   3. 클래스 내부의 상수 접근제한자 private 으로 수정
+   4. 불필요한 import 줄이기
+      1. https://milenote.tistory.com/25
+   5. findFirst & findAny 의 차이점 인지하기
+      1. https://codechacha.com/ko/java8-stream-difference-findany-findfirst/
+   6. 정렬 실수 (현재: 작은 순서부터되어 있음, 수정: 긴 순서부터 출력되도록)
+   7. map 을 통해 age 를 가져온 후에 필터 처리..!
+   8. `ofNullable 자체가 null 에 대해 안정성을 보장하기 때문에 null 검증은 필요하지 않다!`
