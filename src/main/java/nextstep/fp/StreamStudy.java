@@ -5,10 +5,17 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.util.Comparator.*;
+
 public class StreamStudy {
+
+    public static final int MAX_SIZE = 100;
+    public static final int WORD_FILTER_LENGTH = 12;
 
     public static long countWords() throws IOException {
         String contents = new String(Files.readAllBytes(Paths
@@ -28,6 +35,13 @@ public class StreamStudy {
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
         // TODO 이 부분에 구현한다.
+        words.stream()
+                .filter(word -> word.length() > WORD_FILTER_LENGTH)
+                .sorted(comparing(String::length))
+                .distinct()
+                .map(String::toLowerCase)
+                .limit(MAX_SIZE)
+                .forEach(System.out::println);
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
