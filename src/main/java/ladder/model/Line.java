@@ -23,7 +23,7 @@ public class Line {
         Point point = Point.createForFirstLine(height, generationStrategy);
         points.add(point);
 
-        for (int index = 1; index < width; index++) {
+        for (int index = 1; index < width - 1; index++) {
             Point currentPoint = Point.createComparingPrevPoint(height, point, generationStrategy);
             points.add(currentPoint);
             point = currentPoint;
