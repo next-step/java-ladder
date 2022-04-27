@@ -15,4 +15,23 @@ public class Point {
         return new Point(index, direction);
     }
 
+    public static Point createForFirstLine(int index, GenerationStrategy generationStrategy) {
+        return Point.of(index, Direction.of(false, generationStrategy.generate()));
+    }
+
+    public static Point createForLastLine(int index, Point prevPoint) {
+        return Point.of(index, Direction.of(prevPoint.isRight(), false));
+    }
+
+    public static Point createComparingPrevPoint(int index, Point prevPoint, GenerationStrategy generationStrategy) {
+        if (prevPoint.isRight()) {
+            return Point.of(index, Direction.of(true, false));
+        }
+        return Point.of(index, Direction.of(false, generationStrategy.generate()));
+    }
+
+    public boolean isRight() {
+        return direction.isRight();
+    }
+
 }
