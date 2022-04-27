@@ -11,4 +11,10 @@ class UserNameTest {
         UserName userName = new UserName("wang");
         assertThat(userName).isEqualTo(new UserName("wang"));
     }
+
+    @Test
+    void invalidUserName() {
+        assertThatThrownBy(() -> new UserName("WangTak"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

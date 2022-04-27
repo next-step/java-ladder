@@ -4,10 +4,18 @@ import java.util.Objects;
 
 public class UserName {
 
+    private static final int MAXIMUM_USER_NAME_LENGTH = 5;
     private String userName;
 
     public UserName(String userName) {
+        if (isInvalidUserName(userName)) {
+            throw new IllegalArgumentException("사용자의 이름은 최대 5글자입니다.");
+        }
         this.userName = userName;
+    }
+
+    private boolean isInvalidUserName(String userName) {
+        return userName.length() > MAXIMUM_USER_NAME_LENGTH;
     }
 
     @Override
