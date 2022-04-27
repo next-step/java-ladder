@@ -7,40 +7,52 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
-public class StreamStudyTest {
+class StreamStudyTest {
     private List<Integer> numbers;
 
     @BeforeEach
-    public void setup() {
+    void setup() {
         numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
     }
 
     @Test
-    public void countWords() throws Exception {
+    void countWords() throws Exception {
         long result = StreamStudy.countWords();
         System.out.println("result : " + result);
     }
 
     @Test
-    public void printLongestWordTop100() throws Exception {
-        StreamStudy.printLongestWordTop100();
+    void printLongestWordTop100() throws Exception {
+        //when
+        List<String> strings = StreamStudy.printLongestWordTop100();
+        //then
+        assertAll(
+                () -> assertThat(strings.size()).isEqualTo(100),
+                () -> assertThat(strings).extracting(String::length)
+                        .allMatch(length -> length > 12),
+                () -> assertThat(strings).extracting(String::chars)
+                        .allMatch(chars -> chars.allMatch(Character::isLowerCase)),
+                () -> assertThat(strings.get(0).length())
+                        .isGreaterThanOrEqualTo(strings.get(strings.size() - 1).length())
+        );
     }
 
     @Test
-    public void map() throws Exception {
+    void map() {
         List<Integer> doubleNumbers = StreamStudy.doubleNumbers(numbers);
         doubleNumbers.forEach(System.out::println);
     }
 
     @Test
-    public void sumAll() throws Exception {
+    void sumAll() {
         long sum = StreamStudy.sumAll(numbers);
         assertThat(sum).isEqualTo(21);
     }
 
     @Test
-    public void sumOverThreeAndDouble() throws Exception {
+    void sumOverThreeAndDouble() {
         numbers = Arrays.asList(3, 1, 6, 2, 4, 8);
         long sum = StreamStudy.sumOverThreeAndDouble(numbers);
         assertThat(sum).isEqualTo(36);
