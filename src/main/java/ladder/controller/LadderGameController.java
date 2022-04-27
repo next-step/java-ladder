@@ -1,7 +1,9 @@
 package ladder.controller;
 
 import ladder.model.Height;
+import ladder.model.Ladder;
 import ladder.model.Participants;
+import ladder.model.RandomStrategy;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -23,8 +25,9 @@ public class LadderGameController {
     public void start() {
         Participants participants = inputView.inputParticipants();
         Height height = inputView.inputLadderHeight();
-        outputView.printParticipants(participants);
-        outputView.printLadderHeight(height);
+        Ladder ladder = Ladder.of(participants.size(), height.getValue(), new RandomStrategy());
+
+        outputView.printParticipantsAndLadder(participants.getParticipants(), ladder.getLines());
     }
 
 }

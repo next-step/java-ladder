@@ -34,4 +34,7 @@ public class Point {
         return direction.isRight();
     }
 
+    public boolean isLeft() {
+        return direction.isLeft();
+    }
 }

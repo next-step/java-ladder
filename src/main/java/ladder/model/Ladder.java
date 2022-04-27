@@ -19,4 +19,7 @@ public class Ladder {
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Ladder::new));
     }
 
+    public List<Line> getLines() {
+        return lines;
+    }
 }

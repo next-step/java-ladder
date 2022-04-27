@@ -14,9 +14,11 @@ public class Participants {
         return new Participants(participants);
     }
 
-    @Override
-    public String toString() {
-        return participants.toString();
+    public List<Participant> getParticipants() {
+        return participants;
     }
 
+    public int size() {
+        return participants.size();
+    }
 }
