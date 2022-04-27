@@ -7,8 +7,8 @@ public class Line {
 
     private List<Boolean> points = new ArrayList<>();
 
-    public Line(int countOfPerson) {
-        this.points = LineGenerator.createLine(countOfPerson);
+    public Line(int countOfPlayer) {
+        this.points = LineGenerator.createLine(countOfPlayer);
     }
 
     public List<Boolean> getPoints() {

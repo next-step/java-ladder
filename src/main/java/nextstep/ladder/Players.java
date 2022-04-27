@@ -14,6 +14,10 @@ public class Players {
         }
     }
 
+    public List<Player> getPlayers() {
+        return players;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
