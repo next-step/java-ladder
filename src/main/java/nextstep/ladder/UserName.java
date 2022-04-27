@@ -8,10 +8,17 @@ public class UserName {
     private String userName;
 
     public UserName(String userName) {
+        if (isEmptyOrNull(userName)) {
+            throw new IllegalArgumentException("사용자의 이름은 공백일 수 없습니다.");
+        }
         if (isInvalidUserName(userName)) {
             throw new IllegalArgumentException("사용자의 이름은 최대 5글자입니다.");
         }
         this.userName = userName;
+    }
+
+    private boolean isEmptyOrNull(String userName) {
+        return userName == null || userName.isEmpty();
     }
 
     private boolean isInvalidUserName(String userName) {
