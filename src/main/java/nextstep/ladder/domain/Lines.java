@@ -16,7 +16,10 @@ public class Lines {
             throw new IllegalArgumentException("width and height can't be negative number");
         }
 
-        List<Line> lines = Line.createLines(width, height);
+        List<Line> lines = new ArrayList<>();
+        for (int i = 0; i < height; i++) {
+            lines.add(new Line(width));
+        }
         return new Lines(lines);
     }
 
