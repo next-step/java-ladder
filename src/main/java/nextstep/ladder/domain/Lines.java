@@ -12,8 +12,8 @@ public class Lines {
     }
 
     public static Lines createLines(int width, int height) {
-        if (width < 0 || height < 0) {
-            throw new IllegalArgumentException("width and height can't be negative number");
+        if (width <= 0 || height <= 0) {
+            throw new IllegalArgumentException("width and height must be greater than zero");
         }
 
         List<Line> lines = new ArrayList<>();
