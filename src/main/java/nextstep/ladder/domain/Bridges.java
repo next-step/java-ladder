@@ -16,23 +16,28 @@ public class Bridges {
 
     private void initBridge(int width) {
         if (width == 1) {
-            bridges.add(false);
+            appendBridge(false);
             return;
         }
 
-        bridges.add(RANDOM.nextBoolean());
-        for (int i = 1; i < width - 1; i++) {
-            addBridge(i);
+       appendBridge(RANDOM.nextBoolean());
+        for (int index = 1; index < width - 1; index++) {
+            setBridgeAt(index);
         }
-        bridges.add(false);
+        appendBridge(false);
     }
 
-    private void addBridge(int index) {
-        if (bridges.get(index - 1)) {
-            bridges.add(false);
+    private void setBridgeAt(int index) {
+        boolean previousBridge = bridges.get(index - 1);
+        if (previousBridge) {
+            appendBridge(false);
             return;
         }
-        bridges.add(RANDOM.nextBoolean());
+        appendBridge(RANDOM.nextBoolean());
+    }
+
+    private void appendBridge(boolean bridge) {
+        bridges.add(bridge);
     }
 
     public List<Boolean> getBridges() {
