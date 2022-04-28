@@ -1,7 +1,6 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.Lines;
-import nextstep.ladder.domain.Participant;
 import nextstep.ladder.domain.Participants;
 import nextstep.ladder.ui.InputView;
 import nextstep.ladder.ui.OutputView;
@@ -22,7 +21,6 @@ public class Main {
 
     private static Participants createParticipants() {
         List<String> names = InputView.promptNames();
-        List<Participant> participants = Participant.createParticipants(names);
-        return new Participants(participants);
+        return Participants.createParticipants(names);
     }
 }
