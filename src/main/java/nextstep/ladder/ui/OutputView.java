@@ -29,13 +29,7 @@ public class OutputView {
 
     private static void printLine(Line line) {
         List<Boolean> bridges = line.getBridges();
-        bridges.forEach(bridge -> {
-            if (bridge) {
-                System.out.print(BRIDGE);
-            } else {
-                System.out.print(EMPTY_BRIDGE);
-            }
-        });
+        bridges.forEach(bridge -> System.out.print(bridge ? BRIDGE : EMPTY_BRIDGE));
         System.out.println();
     }
 }
