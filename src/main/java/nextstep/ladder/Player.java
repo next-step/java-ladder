@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Player {
 
-    private UserName userName;
+    private final UserName userName;
 
     public Player(UserName userName) {
         this.userName = userName;

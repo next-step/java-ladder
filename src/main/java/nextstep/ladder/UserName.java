@@ -5,7 +5,7 @@ import java.util.Objects;
 public class UserName {
 
     private static final int MAXIMUM_USER_NAME_LENGTH = 5;
-    private String userName;
+    private final String userName;
 
     public UserName(String userName) {
         if (isEmptyOrNull(userName)) {
