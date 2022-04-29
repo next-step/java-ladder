@@ -1,5 +1,6 @@
 package ladder.controller;
 
+import ladder.model.ExecutionResults;
 import ladder.model.Height;
 import ladder.model.Ladder;
 import ladder.model.Participants;
@@ -24,10 +25,11 @@ public class LadderGameController {
 
     public void start() {
         Participants participants = inputView.inputParticipants();
+        ExecutionResults executionResults = inputView.inputExecutionResults();
         Height height = inputView.inputLadderHeight();
         Ladder ladder = Ladder.of(participants.size(), height.getValue(), new RandomStrategy());
 
-        outputView.printParticipantsAndLadder(participants, ladder);
+        outputView.printParticipantsAndLadder(participants, ladder, executionResults);
     }
 
 }

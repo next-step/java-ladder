@@ -15,4 +15,8 @@ public class ExecutionResults {
         return new ExecutionResults(executionResults);
     }
 
+    public List<ExecutionResult> getExecutionResults() {
+        return executionResults;
+    }
+
 }

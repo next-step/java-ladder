@@ -12,4 +12,8 @@ public class ExecutionResult {
         return new ExecutionResult(name);
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
 }
