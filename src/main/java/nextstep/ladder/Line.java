@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Line {
 
-    private List<Boolean> points = new ArrayList<>();
+    private final List<Boolean> points;
 
     public Line(int countOfPlayer) {
         this.points = LineGenerator.createLine(countOfPlayer);
