@@ -1,8 +1,11 @@
 package nextstep.ladder;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+
+import static java.util.Collections.*;
 
 public class Players {
 
@@ -19,7 +22,7 @@ public class Players {
     }
 
     public List<Player> getPlayers() {
-        return players;
+        return unmodifiableList(players);
     }
 
     @Override
