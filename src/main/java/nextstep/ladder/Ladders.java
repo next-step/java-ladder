@@ -5,12 +5,16 @@ import java.util.List;
 
 public class Ladders {
 
-    private List<Line> lines = new ArrayList<>();
+    private final List<Line> lines = new ArrayList<>();
 
-    public Ladders(int countOfPerson, int maxHeight) {
+    private Ladders(int countOfPlayer, int maxHeight) {
         for (int i = 0; i < maxHeight; i++) {
-            lines.add(new Line(countOfPerson));
+            lines.add(new Line(countOfPlayer));
         }
+    }
+
+    public static Ladders makeLaddersByPlayersAndHeight(int countOfPlayer, int maxHeight) {
+        return new Ladders(countOfPlayer, maxHeight);
     }
 
     public List<Line> getLines() {
