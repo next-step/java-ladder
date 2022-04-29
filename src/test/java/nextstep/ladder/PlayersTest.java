@@ -8,7 +8,7 @@ class PlayersTest {
 
     @Test
     void createPlayers() {
-        Players players = new Players(new String[]{"a", "b", "c", "d"});
-        assertThat(players).isEqualTo(new Players(new String[]{"a", "b", "c", "d"}));
+        Players players = Players.getNewInstanceByStrings(new String[]{"a", "b", "c", "d"});
+        assertThat(players).isEqualTo(Players.getNewInstanceByStrings(new String[]{"a", "b", "c", "d"}));
     }
 }

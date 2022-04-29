@@ -6,12 +6,16 @@ import java.util.Objects;
 
 public class Players {
 
-    private List<Player> players = new ArrayList<>();
+    private final List<Player> players = new ArrayList<>();
 
-    public Players(String[] strings) {
+    private Players(String[] strings) {
         for (String string : strings) {
             players.add(new Player(new UserName(string)));
         }
+    }
+
+    public static Players getNewInstanceByStrings(String[] strings) {
+        return new Players(strings);
     }
 
     public List<Player> getPlayers() {
