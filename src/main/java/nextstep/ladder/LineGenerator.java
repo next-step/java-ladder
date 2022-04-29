@@ -9,6 +9,7 @@ import static java.util.Collections.*;
 public abstract class LineGenerator {
 
     private static final List<Boolean> TRUE_OR_FALSE = Arrays.asList(true, false);
+    private static final int PREVIOUS_POINT = 1;
 
     public static List<Boolean> createLine(int countOfPerson) {
         List<Boolean> points = new ArrayList<>();
@@ -42,8 +43,8 @@ public abstract class LineGenerator {
         return false;
     }
 
-    private static Boolean previousPointDontHaveLine(List<Boolean> points, int i) {
-        return !points.get(i - 1);
+    private static Boolean previousPointDontHaveLine(List<Boolean> points, int currentPoint) {
+        return !points.get(currentPoint - PREVIOUS_POINT);
     }
 
     private static void lastPointDontHaveLine(List<Boolean> points) {
