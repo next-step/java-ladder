@@ -6,14 +6,16 @@ public class ResultView {
 
     private static final String EXISTED_LINE = "|-----";
     private static final String NOT_EXISTED_LINE = "|     ";
+    private static final String BLANK = "    ";
 
     public void printPlayersName(Players players) {
+        StringBuilder sb = new StringBuilder();
         System.out.println("실행 결과");
         players.getPlayers()
                 .forEach(playerName -> {
-                    System.out.print(playerName + "    ");
+                    sb.append(playerName).append(BLANK);
                 });
-        System.out.println();
+        System.out.println(sb);
     }
 
     public void printLadders(Ladders ladders) {
