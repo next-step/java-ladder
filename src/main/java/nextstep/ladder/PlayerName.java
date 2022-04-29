@@ -5,6 +5,7 @@ import java.util.Objects;
 public class PlayerName {
 
     private static final int MAXIMUM_USER_NAME_LENGTH = 5;
+
     private final String playerName;
 
     public PlayerName(String playerName) {
@@ -25,8 +26,7 @@ public class PlayerName {
         return playerName.length() > MAXIMUM_USER_NAME_LENGTH;
     }
 
-    @Override
-    public String toString() {
+    public String getPlayerName() {
         return playerName;
     }
 

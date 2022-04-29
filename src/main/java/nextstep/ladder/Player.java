@@ -10,9 +10,8 @@ public class Player {
         this.playerName = playerName;
     }
 
-    @Override
-    public String toString() {
-        return "" + playerName;
+    public PlayerName getPlayerName() {
+        return playerName;
     }
 
     @Override

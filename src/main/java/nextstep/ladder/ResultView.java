@@ -1,5 +1,7 @@
 package nextstep.ladder;
 
+import nextstep.ladder.dto.PlayersDto;
+
 import java.util.List;
 
 public class ResultView {
@@ -8,12 +10,12 @@ public class ResultView {
     private static final String NOT_EXISTED_LINE = "|     ";
     private static final String BLANK = "    ";
 
-    public void printPlayersName(Players players) {
+    public void printPlayersName(PlayersDto players) {
         StringBuilder sb = new StringBuilder();
         System.out.println("실행 결과");
         players.getPlayers()
-                .forEach(playerName -> {
-                    sb.append(playerName).append(BLANK);
+                .forEach(playerDto -> {
+                    sb.append(playerDto.getPlayerName()).append(BLANK);
                 });
         System.out.println(sb);
     }

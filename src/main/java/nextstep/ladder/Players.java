@@ -1,5 +1,7 @@
 package nextstep.ladder;
 
+import nextstep.ladder.dto.PlayersDto;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -35,5 +37,9 @@ public class Players {
     @Override
     public int hashCode() {
         return Objects.hash(players);
+    }
+
+    public PlayersDto toPlayersDto() {
+        return new PlayersDto(this);
     }
 }

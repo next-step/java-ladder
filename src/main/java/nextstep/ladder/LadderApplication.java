@@ -1,5 +1,7 @@
 package nextstep.ladder;
 
+import nextstep.ladder.dto.PlayersDto;
+
 public class LadderApplication {
 
     public static void main(String[] args) {
@@ -12,7 +14,9 @@ public class LadderApplication {
         Players players = Players.getNewInstanceByStrings(playersName);
         Ladders ladders = Ladders.makeLaddersByPlayersAndHeight(playersName.length, ladderHeight);
 
-        resultView.printPlayersName(players);
+        PlayersDto playersDto = players.toPlayersDto();
+
+        resultView.printPlayersName(playersDto);
         resultView.printLadders(ladders);
     }
 }
