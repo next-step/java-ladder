@@ -1,7 +1,9 @@
 package ladder.view;
 
+import ladder.model.Ladder;
 import ladder.model.Line;
 import ladder.model.Participant;
+import ladder.model.Participants;
 import ladder.model.Point;
 
 import java.util.List;
@@ -18,10 +20,10 @@ public final class OutputView {
 
     private static final StringBuilder BUILDER = new StringBuilder();
 
-    public void printParticipantsAndLadder(List<Participant> participants, List<Line> lines) {
+    public void printParticipantsAndLadder(Participants participants, Ladder ladder) {
         printExecutionResult();
         printParticipants(participants);
-        printLadder(lines);
+        printLadder(ladder);
     }
 
     private void printExecutionResult() {
@@ -29,13 +31,17 @@ public final class OutputView {
         printMessage();
     }
 
-    private void printParticipants(List<Participant> participants) {
+    private void printParticipants(Participants participants) {
+        List<Participant> participantsList = participants.getParticipants();
+
         clearBuilder();
-        participants.forEach(participant -> BUILDER.append(String.format(PARTICIPANT_FORMAT, participant)));
+        participantsList.forEach(participant -> BUILDER.append(String.format(PARTICIPANT_FORMAT, participant)));
         printMessage();
     }
 
-    private void printLadder(List<Line> lines) {
+    private void printLadder(Ladder ladder) {
+        List<Line> lines = ladder.getLines();
+
         clearBuilder();
         lines.forEach(line -> appendLine(line.getPoints()));
         printMessage();

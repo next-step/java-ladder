@@ -27,7 +27,7 @@ public class LadderGameController {
         Height height = inputView.inputLadderHeight();
         Ladder ladder = Ladder.of(participants.size(), height.getValue(), new RandomStrategy());
 
-        outputView.printParticipantsAndLadder(participants.getParticipants(), ladder.getLines());
+        outputView.printParticipantsAndLadder(participants, ladder);
     }
 
 }

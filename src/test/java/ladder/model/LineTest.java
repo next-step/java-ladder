@@ -11,6 +11,8 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
+import static org.junit.jupiter.params.provider.Arguments.of;
 
 class LineTest {
 
@@ -23,7 +25,7 @@ class LineTest {
 
     public static Stream<Arguments> lineProvider() {
         return Stream.of(
-                Arguments.of(
+                arguments(
                         List.of(
                                 Point.of(0, Direction.of(false, true)),
                                 Point.of(0, Direction.of(true, false)),
@@ -44,7 +46,7 @@ class LineTest {
 
     public static Stream<Arguments> invalidLineProvider() {
         return Stream.of(
-                Arguments.of(
+                of(
                         List.of(
                                 Point.of(0, Direction.of(false, true)),
                                 Point.of(0, Direction.of(true, true)),

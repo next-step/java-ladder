@@ -3,6 +3,7 @@ package ladder.model;
 import ladder.exception.InvalidLineException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Line {
@@ -11,7 +12,7 @@ public class Line {
 
     private Line(List<Point> points) {
         validate(points);
-        this.points = points;
+        this.points = Collections.unmodifiableList(points);
     }
 
     public static Line create(List<Point> points) {
