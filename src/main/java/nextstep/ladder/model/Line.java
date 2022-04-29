@@ -3,12 +3,14 @@ package nextstep.ladder.model;
 import nextstep.common.Assert;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 public final class Line {
 
-    private List<Point> points;
+    private final List<Point> points;
 
     private Line(List<Point> points) {
         Assert.notEmpty(points, "points must not be empty");
@@ -16,8 +18,12 @@ public final class Line {
         this.points = new ArrayList<>(points);
     }
 
-    public static Line from(List<Point> points) {
+    static Line from(List<Point> points) {
         return new Line(points);
+    }
+
+    public List<Point> points() {
+        return Collections.unmodifiableList(points);
     }
 
     private void validatePoints(List<Point> points) {
@@ -34,5 +40,22 @@ public final class Line {
         if (previousPoint.isConnected() && point.isConnected()) {
             throw new IllegalArgumentException(String.format("pointers(%s) must not be connected continuously", points));
         }
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(points);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Line line = (Line) o;
+        return Objects.equals(points, line.points);
     }
 }

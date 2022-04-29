@@ -3,6 +3,7 @@ package nextstep.ladder.model;
 import nextstep.common.Assert;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public final class Lines {
@@ -22,5 +23,9 @@ public final class Lines {
             lines.add(generator.line());
         }
         return new Lines(lines);
+    }
+
+    public List<Line> list() {
+        return Collections.unmodifiableList(lines);
     }
 }

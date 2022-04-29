@@ -1,6 +1,6 @@
 package nextstep.ladder.model;
 
-final class Point {
+public final class Point {
 
     private static final Point CONNECTED = new Point(true);
     private static final Point DISCONNECTED = new Point(false);
@@ -19,7 +19,7 @@ final class Point {
         return DISCONNECTED;
     }
 
-    boolean isConnected() {
+    public boolean isConnected() {
         return connected;
     }
 

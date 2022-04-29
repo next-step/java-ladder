@@ -30,4 +30,10 @@ class NamesTest {
     void size(String names, int expected) {
         assertThat(Names.from(names).size()).isEqualTo(expected);
     }
+
+    @Test
+    @DisplayName("주어진 이름 구분해서 반환")
+    void list() {
+        assertThat(Names.from("a,b,c").list()).containsExactly(Name.from("a"), Name.from("b"), Name.from("c"));
+    }
 }

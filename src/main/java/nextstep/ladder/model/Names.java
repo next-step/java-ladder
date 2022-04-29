@@ -4,6 +4,7 @@ import nextstep.common.Assert;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,5 +29,9 @@ public final class Names {
 
     public int size() {
         return names.size();
+    }
+
+    public List<Name> list() {
+        return Collections.unmodifiableList(names);
     }
 }
