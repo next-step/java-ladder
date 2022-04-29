@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class PlayerTest {
+class PlayerTest {
 
     @Test
     void createPlayer() {
