@@ -30,19 +30,19 @@ public class Lambda {
         new Thread(() -> System.out.println("Hello from lambda thread")).start();
     }
 
-    public static int sumAll(List<Integer> numbers, SumCondition sumCondition) {
-        return totalSum(numbers, sumCondition);
+    public static int sumAll(List<Integer> numbers) {
+        return totalSumByCondition(numbers, number -> true);
     }
 
-    public static int sumAllEven(List<Integer> numbers, SumCondition sumCondition) {
-        return totalSum(numbers, sumCondition);
+    public static int sumAllEven(List<Integer> numbers) {
+        return totalSumByCondition(numbers, number -> number % 2 == 0);
     }
 
-    public static int sumAllOverThree(List<Integer> numbers, SumCondition sumCondition) {
-        return totalSum(numbers, sumCondition);
+    public static int sumAllOverThree(List<Integer> numbers) {
+        return totalSumByCondition(numbers, number -> number > 3);
     }
 
-    private static int totalSum(List<Integer> numbers, SumCondition sumCondition) {
+    private static int totalSumByCondition(List<Integer> numbers, SumCondition sumCondition) {
         int total = 0;
         for (int number : numbers) {
             if (sumCondition.canSum(number)) {

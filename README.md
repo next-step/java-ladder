@@ -29,3 +29,54 @@
       1. 자바 8 stream 과 Optional 을 사용하도록 리팩토링한 후에 UsersTest 의 단위 테스트 통과
    3. nextstep.optional.ExpressionTest 의 테스트가 통과하다록 Expression 의 of 메서드를 구현
    4. of 메서드를 구현할 때 자바 88의 stream 을 기반으로 구현
+
+### step 2. 사다리(생성)
+0. refactoring list
+   1. sumAll, sumAllEven, sumAllOverThree 다시 구현하기
+   2. @FunctionalInterface 사용하기! (제약)
+      1. https://zzang9ha.tistory.com/303
+   3. 클래스 내부의 상수 접근제한자 private 으로 수정
+   4. 불필요한 import 줄이기
+      1. https://milenote.tistory.com/25
+   5. findFirst & findAny 의 차이점 인지하기
+      1. https://codechacha.com/ko/java8-stream-difference-findany-findfirst/
+   6. 정렬 실수 (현재: 작은 순서부터되어 있음, 수정: 긴 순서부터 출력되도록)
+   7. map 을 통해 age 를 가져온 후에 필터 처리..!
+   8. `ofNullable 자체가 null 에 대해 안정성을 보장하기 때문에 null 검증은 필요하지 않다!`
+1. 사람 이름을 쉼표(,)를 기준으로 구분
+   1. 사람 이름이 문자열이니깐 클래스로 포장해서 관리해보자
+   2. 이름은 최대 5자!
+2. 사람 이름 클래스를 가지는 Player 클래스를 관리하자.
+3. 가로를 한 라인(Line)으로 한다
+   1. Line 을 일급 콜렉션(ex. List<Boolean> points)으로 사용하고
+   2. Line 에서 관리하는 일급 콜렉션의 수는 사용자의 수다.
+4. 사다리 구현 생각
+   1. Line 에서 관리하는 points 리스트는 오른쪽으로 갈 수 있는지 없는지(true, false)에 대해 상태 값을 갖는다.
+   2. 순서가 있는 ArrayList 를 사용하여 맨 오른쪽을 제외한(맨 오른쪽에서 오른쪽으로 갈 수 없으니) 나머지 points 는 true/false 를 가질 수 있다.
+   3. 맨 오른쪽의 왼쪽인 (idx: n - 2)에서 시작을 하면서 자신의 오른쪽의 값을 확인한다.
+   4. 오른쪽 값을 확인하면서 true/false 를 갖도록 나만의 RandomBooleanGenerator 를 구현한다.
+   5. 중간에 있는 point 같은 경우는 오른쪽에 있는 point 를 참조해서 true 라면 그냥 pass, false 라면 Random 을 돌린다.
+5. 사용자 입력 값인 사다리 높이가 라인(Line)의 개수다.
+6. LadderGame 클래스를 사용하여 List<Line> 을 관리하도록 한다.
+7. LadderGame 에서 관리하고 있는 List<Line> 을 활용하여 사다리를 출력 할 수 있다.
+   1. Line 에 있는 points 리스트는 상태 값에 상관 없이 "|" 를 출력한다.
+   2. 만약 points 리스트에 존재하는 point 의 상태 값이 true 라면? "-"을 참여한 사용자의 이름만큼 출력한다.
+   3. 이 과정을 LadderGame 의 List<Line> 의 사이즈 즉, 최대 사다리 높이만큼 반복한다.
+
+#### step 2.1 사다리(생성) 1차 피드백
+1. 생성자 대신 정적 팩토리 메서드의 장단점을 알고 사용해보자
+2. Line 클래스에서 points List 를 객체 생성과 동시에 생성하니깐 불변 형태로 만들어보자
+3. Player 가 단순히 PlayerName 의 Wrapper Class 처럼 보인다! 이에 대한 나의 생각
+4. 외부에 영향이 없는 불변 객체를 만들어보자
+5. 현재 출력을 위해 toString 을 사용하고 있는데, java 에서 toString 은 어떤 용도로 재정의해서 사용해야 될까?
+6. getPlayers 또한 방어적 복사를 사용하자
+7. String[] strings 의 변수 명이 너무 추상적이다. (의미 있는 변수 명 사용!)
+8. System.out.println 은 성능에 좋지 않다! 한번에 처리할 수 있는 방법!
+9. "   " -> 공백도 BLANK 라는 상수로 빼내서 사용하자
+10. 메서드 참조 시 static 하게 선언하지 않아도 되는 방법
+11. 다른 테스트와 같이 모든 테스트 클래스의 접근 지정자 생략
+12. 테스트 작성 시 @DisplayName 사용 권장!
+13. (참고) Random 클래스에 nextBoolean 을 통해 true, false 를 알 수 있다.
+14. -1 도 의미 있는 상수로 빼내보자
+15. int i 대신에 이름이 명확한 변수 명을 사용하자
+16. 어떤 값이 잘못되었는지 예외 메시지에 함께 넣어주면 원인을 파악하기 더 쉽다
