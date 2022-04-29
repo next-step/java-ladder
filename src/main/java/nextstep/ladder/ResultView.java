@@ -22,10 +22,10 @@ public class ResultView {
         ladders.getLines()
                 .stream()
                 .map(Line::getPoints)
-                .forEach(ResultView::printLines);
+                .forEach(this::printLines);
     }
 
-    private static void printLines(List<Boolean> booleans) {
+    private void printLines(List<Boolean> booleans) {
         booleans.forEach(line -> {
             if (line) {
                 System.out.print(EXISTED_LINE);
