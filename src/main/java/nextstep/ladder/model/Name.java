@@ -18,7 +18,6 @@ final class Name {
         return new Name(value);
     }
 
-
     private void validateSize(String value) {
         if (value.length() > MAXIMUM_SIZE) {
             throw new IllegalArgumentException(String.format("name(%s) length must be equal or less than %d", value, MAXIMUM_SIZE));

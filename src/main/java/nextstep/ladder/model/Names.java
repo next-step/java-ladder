@@ -14,9 +14,7 @@ public final class Names {
     private final List<Name> names;
 
     private Names(List<Name> names) {
-        if (names == null || names.isEmpty()) {
-            throw new IllegalArgumentException("names must not be empty");
-        }
+        Assert.notEmpty(names, "names must not be empty");
         this.names = new ArrayList<>(names);
     }
 
