@@ -10,14 +10,14 @@ public class Players {
 
     private final List<Player> players = new ArrayList<>();
 
-    private Players(String[] strings) {
-        for (String string : strings) {
-            players.add(new Player(new UserName(string)));
+    private Players(String[] playersNames) {
+        for (String playerName : playersNames) {
+            players.add(new Player(new PlayerName(playerName)));
         }
     }
 
-    public static Players getNewInstanceByStrings(String[] strings) {
-        return new Players(strings);
+    public static Players getNewInstanceByStrings(String[] playersNames) {
+        return new Players(playersNames);
     }
 
     public List<Player> getPlayers() {

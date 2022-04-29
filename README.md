@@ -66,11 +66,11 @@
 #### step 2.1 사다리(생성) 1차 피드백
 1. 생성자 대신 정적 팩토리 메서드의 장단점을 알고 사용해보자
 2. Line 클래스에서 points List 를 객체 생성과 동시에 생성하니깐 불변 형태로 만들어보자
-3. Player 가 단순히 UserName 의 Wrapper Class 처럼 보인다! 이에 대한 나의 생각
+3. Player 가 단순히 PlayerName 의 Wrapper Class 처럼 보인다! 이에 대한 나의 생각
 4. 외부에 영향이 없는 불변 객체를 만들어보자
 5. 현재 출력을 위해 toString 을 사용하고 있는데, java 에서 toString 은 어떤 용도로 재정의해서 사용해야 될까?
 6. getPlayers 또한 방어적 복사를 사용하자
-7. List<Player> players; 의 변수 명이 너무 추상적이다. (의미 있는 변수 명 사용!)
+7. String[] strings 의 변수 명이 너무 추상적이다. (의미 있는 변수 명 사용!)
 8. System.out.println 은 성능에 좋지 않다! 한번에 처리할 수 있는 방법!
 9. "   " -> 공백도 BLANK 라는 상수로 빼내서 사용하자
 10. 메서드 참조 시 static 하게 선언하지 않아도 되는 방법

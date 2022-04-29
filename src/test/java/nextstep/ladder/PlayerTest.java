@@ -8,7 +8,7 @@ public class PlayerTest {
 
     @Test
     void createPlayer() {
-        Player wang = new Player(new UserName("wang"));
-        assertThat(wang).isEqualTo(new Player(new UserName("wang")));
+        Player wang = new Player(new PlayerName("wang"));
+        assertThat(wang).isEqualTo(new Player(new PlayerName("wang")));
     }
 }

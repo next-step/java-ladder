@@ -4,15 +4,15 @@ import java.util.Objects;
 
 public class Player {
 
-    private final UserName userName;
+    private final PlayerName playerName;
 
-    public Player(UserName userName) {
-        this.userName = userName;
+    public Player(PlayerName playerName) {
+        this.playerName = playerName;
     }
 
     @Override
     public String toString() {
-        return "" + userName;
+        return "" + playerName;
     }
 
     @Override
@@ -20,11 +20,11 @@ public class Player {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Player player = (Player) o;
-        return Objects.equals(userName, player.userName);
+        return Objects.equals(playerName, player.playerName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userName);
+        return Objects.hash(playerName);
     }
 }
