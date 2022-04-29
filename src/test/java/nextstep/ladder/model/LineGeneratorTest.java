@@ -9,13 +9,13 @@ import static org.assertj.core.api.Assertions.*;
 class LineGeneratorTest {
 
     @Test
-    @DisplayName("포인트 갯수와 포인트 생성기로 생성")
+    @DisplayName("참여자 수와 포인트 생성기로 생성")
     void instance() {
         assertThatNoException().isThrownBy(() -> LineGenerator.of(Positive.ONE, Point::connected));
     }
 
     @Test
-    @DisplayName("포인트 갯수와 포인트 생성기는 필수")
+    @DisplayName("참여자 수와 포인트 생성기는 필수")
     void instance_nullArguments_thrownIllegalArgumentException() {
         assertThatIllegalArgumentException().isThrownBy(() -> LineGenerator.of(Positive.ONE, null));
         assertThatIllegalArgumentException().isThrownBy(() -> LineGenerator.of(null, Point::connected));

@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public final class Positive {
 
-    public static final Positive ONE = from(1);
+    static final Positive ONE = from(1);
 
     private final int value;
 
@@ -24,6 +24,11 @@ public final class Positive {
     Positive add(Positive positive) {
         Assert.notNull(positive, "positive to add must not be null");
         return from(this.value + positive.value);
+    }
+
+    Positive minus(Positive positive) {
+        Assert.notNull(positive, "positive to minus must not be null");
+        return from(this.value - positive.value);
     }
 
     boolean lessThan(Positive positive) {

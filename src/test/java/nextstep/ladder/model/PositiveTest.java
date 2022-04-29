@@ -35,6 +35,19 @@ class PositiveTest {
         assertThatIllegalArgumentException().isThrownBy(() -> Positive.ONE.add(null));
     }
 
+
+    @Test
+    @DisplayName("빼기")
+    void minus() {
+        assertThat(Positive.from(2).minus(Positive.ONE)).isEqualTo(Positive.ONE);
+    }
+
+    @Test
+    @DisplayName("빼는 값은 필수")
+    void minus_nullValue_thrownIllegalArgumentException() {
+        assertThatIllegalArgumentException().isThrownBy(() -> Positive.ONE.minus(null));
+    }
+
     @ParameterizedTest(name = "[{index}] 2가 {0} 보다 미만인 것은 {1}")
     @DisplayName("2보다 미만 여부 판단")
     @CsvSource({"2,false", "3,true"})

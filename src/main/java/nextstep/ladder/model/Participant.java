@@ -4,24 +4,24 @@ import nextstep.common.Assert;
 
 import java.util.Objects;
 
-public final class Name {
+public final class Participant {
 
     private static final int MAXIMUM_SIZE = 5;
 
-    private final String value;
+    private final String name;
 
-    private Name(String value) {
-        Assert.hasText(value, "name must not be blank");
-        validateSize(value);
-        this.value = value;
+    private Participant(String name) {
+        Assert.hasText(name, "name must not be blank");
+        validateSize(name);
+        this.name = name;
     }
 
-    public static Name from(String value) {
-        return new Name(value);
+    static Participant from(String name) {
+        return new Participant(name);
     }
 
     public String value() {
-        return value;
+        return name;
     }
 
     private void validateSize(String value) {
@@ -32,7 +32,7 @@ public final class Name {
 
     @Override
     public int hashCode() {
-        return Objects.hash(value);
+        return Objects.hash(name);
     }
 
     @Override
@@ -43,7 +43,7 @@ public final class Name {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Name name = (Name) o;
-        return Objects.equals(value, name.value);
+        Participant participant = (Participant) o;
+        return Objects.equals(name, participant.name);
     }
 }
