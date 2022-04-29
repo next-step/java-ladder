@@ -12,7 +12,7 @@ public class PlayerName {
             throw new IllegalArgumentException("사용자의 이름은 공백일 수 없습니다.");
         }
         if (isInvalidPlayerName(playerName)) {
-            throw new IllegalArgumentException("사용자의 이름은 최대 5글자입니다.");
+            throw new IllegalArgumentException("사용자의 이름은 최대 5글자입니다. 입력 한 이름:" + playerName);
         }
         this.playerName = playerName;
     }
