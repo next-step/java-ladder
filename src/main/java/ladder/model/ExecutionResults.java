@@ -19,4 +19,7 @@ public class ExecutionResults {
         return executionResults;
     }
 
+    public ExecutionResult getResult(int resultIndex) {
+        return executionResults.get(resultIndex);
+    }
 }
