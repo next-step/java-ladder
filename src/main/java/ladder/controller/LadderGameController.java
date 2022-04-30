@@ -14,6 +14,7 @@ import ladder.view.OutputView;
 public class LadderGameController {
 
     private static final String ALL_PARTICIPANTS_COMMAND = "all";
+
     private final InputView inputView;
 
     private final OutputView outputView;

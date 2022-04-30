@@ -1,6 +1,5 @@
 package ladder.model;
 
-import ladder.exception.InvalidLineException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -27,32 +26,11 @@ class LineTest {
         return Stream.of(
                 arguments(
                         List.of(
-                                Point.of(Direction.of(false, true)),
-                                Point.of(Direction.of(true, false)),
-                                Point.of(Direction.of(false, true)),
-                                Point.of(Direction.of(true, false)),
-                                Point.of(Direction.of(false, false))
-                        )
-                )
-        );
-    }
-
-    @ParameterizedTest
-    @MethodSource("invalidLineProvider")
-    @DisplayName("올바르지 않은 라인일 경우 예외를 반환한다")
-    void throwInvalidLineException(List<Point> points) {
-        assertThatThrownBy(() -> Line.create(points)).isInstanceOf(InvalidLineException.class);
-    }
-
-    static Stream<Arguments> invalidLineProvider() {
-        return Stream.of(
-                arguments(
-                        List.of(
-                                Point.of(Direction.of(false, true)),
-                                Point.of(Direction.of(true, true)),
-                                Point.of(Direction.of(true, true)),
-                                Point.of(Direction.of(true, false)),
-                                Point.of(Direction.of(false, false))
+                                Point.of(false, true),
+                                Point.of(true, false),
+                                Point.of(false, true),
+                                Point.of(true, false),
+                                Point.of(false, false)
                         )
                 )
         );
@@ -63,9 +41,9 @@ class LineTest {
     @DisplayName("라인에서 포인트 값에 따라서 인덱스의 좌우 이동을 확인한다")
     void move(int currentIndex, int expectedIndex) {
         Line line = Line.create(List.of(
-                Point.of(Direction.of(false, true)),
-                Point.of(Direction.of(true, false)),
-                Point.of(Direction.of(false, false))));
+                Point.of(false, true),
+                Point.of(true, false),
+                Point.of(false, false)));
 
         assertThat(line.move(currentIndex)).isEqualTo(expectedIndex);
     }

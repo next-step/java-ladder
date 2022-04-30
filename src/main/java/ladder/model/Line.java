@@ -1,7 +1,5 @@
 package ladder.model;
 
-import ladder.exception.InvalidLineException;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -11,7 +9,6 @@ public class Line {
     private final List<Point> points;
 
     private Line(List<Point> points) {
-        validate(points);
         this.points = Collections.unmodifiableList(points);
     }
 
@@ -32,17 +29,6 @@ public class Line {
 
         points.add(Point.createForLastLine(point));
         return create(points);
-    }
-
-    private void validate(List<Point> points) {
-        for (int index = 0; index < points.size() - 1; index++) {
-            boolean prevConnection = points.get(index).isRight();
-            boolean nowConnection = points.get(index + 1).isRight();
-
-            if (prevConnection && nowConnection) {
-                throw new InvalidLineException();
-            }
-        }
     }
 
     public List<Point> getPoints() {

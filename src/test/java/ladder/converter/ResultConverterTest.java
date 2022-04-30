@@ -37,14 +37,14 @@ class ResultConverterTest {
 
         Ladder ladder = Ladder.create(List.of(
                 Line.create(List.of(
-                        Point.of(Direction.of(false, true)),
-                        Point.of(Direction.of(true, false)),
-                        Point.of(Direction.of(false, false))
+                        Point.of(false, true),
+                        Point.of(true, false),
+                        Point.of(false, false)
                 )),
                 Line.create(List.of(
-                        Point.of(Direction.of(false, false)),
-                        Point.of(Direction.of(false, true)),
-                        Point.of(Direction.of(true, false)))
+                        Point.of(false, false),
+                        Point.of(false, true),
+                        Point.of(true, false))
                 ))
         );
 
