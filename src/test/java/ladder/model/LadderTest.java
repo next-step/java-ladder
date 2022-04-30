@@ -28,13 +28,15 @@ class LadderTest {
         //given
         Ladder ladder = Ladder.create(List.of(
                 Line.create(List.of(
-                        Point.of(0, Direction.of(false, true)),
-                        Point.of(0, Direction.of(true, false)),
-                        Point.of(0, Direction.of(false, false)))),
+                        Point.of(Direction.of(false, true)),
+                        Point.of(Direction.of(true, false)),
+                        Point.of(Direction.of(false, false))
+                )),
                 Line.create(List.of(
-                        Point.of(1, Direction.of(false, false)),
-                        Point.of(1, Direction.of(false, true)),
-                        Point.of(1, Direction.of(true, false)))))
+                        Point.of(Direction.of(false, false)),
+                        Point.of(Direction.of(false, true)),
+                        Point.of(Direction.of(true, false)))
+                ))
         );
 
         //when

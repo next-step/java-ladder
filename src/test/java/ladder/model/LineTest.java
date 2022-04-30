@@ -27,11 +27,11 @@ class LineTest {
         return Stream.of(
                 arguments(
                         List.of(
-                                Point.of(0, Direction.of(false, true)),
-                                Point.of(0, Direction.of(true, false)),
-                                Point.of(0, Direction.of(false, true)),
-                                Point.of(0, Direction.of(true, false)),
-                                Point.of(0, Direction.of(false, false))
+                                Point.of(Direction.of(false, true)),
+                                Point.of(Direction.of(true, false)),
+                                Point.of(Direction.of(false, true)),
+                                Point.of(Direction.of(true, false)),
+                                Point.of(Direction.of(false, false))
                         )
                 )
         );
@@ -48,11 +48,11 @@ class LineTest {
         return Stream.of(
                 arguments(
                         List.of(
-                                Point.of(0, Direction.of(false, true)),
-                                Point.of(0, Direction.of(true, true)),
-                                Point.of(0, Direction.of(true, true)),
-                                Point.of(0, Direction.of(true, false)),
-                                Point.of(0, Direction.of(false, false))
+                                Point.of(Direction.of(false, true)),
+                                Point.of(Direction.of(true, true)),
+                                Point.of(Direction.of(true, true)),
+                                Point.of(Direction.of(true, false)),
+                                Point.of(Direction.of(false, false))
                         )
                 )
         );
@@ -63,9 +63,9 @@ class LineTest {
     @DisplayName("라인에서 포인트 값에 따라서 인덱스의 좌우 이동을 확인한다")
     void move(int currentIndex, int expectedIndex) {
         Line line = Line.create(List.of(
-                Point.of(0, Direction.of(false, true)),
-                Point.of(1, Direction.of(true, false)),
-                Point.of(2, Direction.of(false, false))));
+                Point.of(Direction.of(false, true)),
+                Point.of(Direction.of(true, false)),
+                Point.of(Direction.of(false, false))));
 
         assertThat(line.move(currentIndex)).isEqualTo(expectedIndex);
     }

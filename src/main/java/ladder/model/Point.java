@@ -2,32 +2,29 @@ package ladder.model;
 
 public class Point {
 
-    private int index;
-
     private final Direction direction;
 
-    private Point(int index, Direction direction) {
-        this.index = index;
+    private Point(Direction direction) {
         this.direction = direction;
     }
 
-    public static Point of(int index, Direction direction) {
-        return new Point(index, direction);
+    public static Point of(Direction direction) {
+        return new Point(direction);
     }
 
-    public static Point createForFirstLine(int index, GenerationStrategy generationStrategy) {
-        return Point.of(index, Direction.of(false, generationStrategy.generate()));
+    public static Point createForFirstLine(GenerationStrategy generationStrategy) {
+        return Point.of(Direction.of(false, generationStrategy.generate()));
     }
 
-    public static Point createForLastLine(int index, Point prevPoint) {
-        return Point.of(index, Direction.of(prevPoint.isRight(), false));
+    public static Point createForLastLine(Point prevPoint) {
+        return Point.of(Direction.of(prevPoint.isRight(), false));
     }
 
-    public static Point createComparingPrevPoint(int index, Point prevPoint, GenerationStrategy generationStrategy) {
+    public static Point createComparingPrevPoint(Point prevPoint, GenerationStrategy generationStrategy) {
         if (prevPoint.isRight()) {
-            return Point.of(index, Direction.of(true, false));
+            return Point.of(Direction.of(true, false));
         }
-        return Point.of(index, Direction.of(false, generationStrategy.generate()));
+        return Point.of(Direction.of(false, generationStrategy.generate()));
     }
 
     public boolean isRight() {

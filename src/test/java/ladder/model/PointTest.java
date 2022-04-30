@@ -16,7 +16,7 @@ class PointTest {
     @Test
     @DisplayName("index 와 direction 을 입력하면 객체를 생성한다")
     void of() {
-        assertThat(Point.of(1, Direction.of(true, true))).isInstanceOf(Point.class);
+        assertThat(Point.of(Direction.of(true, true))).isInstanceOf(Point.class);
     }
 
     @ParameterizedTest
@@ -28,9 +28,9 @@ class PointTest {
 
     public static Stream<Arguments> moveProvider() {
         return Stream.of(
-                arguments(Point.of(0, Direction.of(true, false)), 1, 0),
-                arguments(Point.of(2, Direction.of(false, true)), 1, 2),
-                arguments(Point.of(2, Direction.of(false, false)), 1, 1)
+                arguments(Point.of(Direction.of(true, false)), 1, 0),
+                arguments(Point.of(Direction.of(false, true)), 1, 2),
+                arguments(Point.of(Direction.of(false, false)), 1, 1)
         );
     }
 

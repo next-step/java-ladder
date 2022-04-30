@@ -19,7 +19,7 @@ public class Ladder {
 
     public static Ladder of(int width, int height, GenerationStrategy generationStrategy) {
         List<Line> lines = IntStream.range(0, height)
-                .mapToObj(index -> Line.of(width, index, generationStrategy))
+                .mapToObj(index -> Line.of(width, generationStrategy))
                 .collect(Collectors.toList());
         return create(lines);
     }
