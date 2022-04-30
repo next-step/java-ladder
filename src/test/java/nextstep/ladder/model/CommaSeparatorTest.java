@@ -9,6 +9,7 @@ import static org.assertj.core.api.Assertions.*;
 
 @DisplayName("컴마 문자열 분리")
 class CommaSeparatorTest {
+
     @Test
     @DisplayName("구분할 문자열로 문자열 분리 생성")
     void instance() {

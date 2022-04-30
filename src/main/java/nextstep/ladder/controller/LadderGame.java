@@ -1,11 +1,15 @@
 package nextstep.ladder.controller;
 
 import nextstep.common.Assert;
+import nextstep.ladder.model.CommaSeparator;
+import nextstep.ladder.model.CustomEnvironment;
+import nextstep.ladder.model.Ladder;
 import nextstep.ladder.model.LineGenerator;
 import nextstep.ladder.model.Lines;
 import nextstep.ladder.model.Participants;
 import nextstep.ladder.model.Positive;
 import nextstep.ladder.model.RandomPointPainter;
+import nextstep.ladder.model.Results;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 import nextstep.ladder.view.dto.LinesResponse;
@@ -17,6 +21,8 @@ import java.util.Random;
 import java.util.Scanner;
 
 public final class LadderGame {
+
+    private static final String ALL_TARGET_MESSAGE = "all";
 
     private final InputView inputView;
     private final ResultView resultView;
@@ -33,7 +39,12 @@ public final class LadderGame {
     }
 
     public void start() {
-        Participants participants = Participants.from(inputView.participants());
+        Participants participants = Participants.from(CommaSeparator.from(inputView.participants()));
+        Results results = Results.from(CommaSeparator.from(inputView.results()));
+        Ladder.of(
+                CustomEnvironment.of(participants, results),
+                Lines.of(Positive.from(inputView.ladderHeight()), lineGenerator(participants))
+        );
         resultView.print(
                 NamesResponse.from(participants),
                 LinesResponse.from(Lines.of(Positive.from(inputView.ladderHeight()), lineGenerator(participants)))
@@ -41,6 +52,6 @@ public final class LadderGame {
     }
 
     private LineGenerator lineGenerator(Participants participants) {
-        return LineGenerator.of(Positive.from(participants.numberOfGaps()), RandomPointPainter.from(new Random()));
+        return LineGenerator.of(Positive.from(participants.size()), RandomPointPainter.from(new Random()));
     }
 }

@@ -31,11 +31,11 @@ class ResultsTest {
 
     @Test
     @DisplayName("사이즈 2만큼 미소유 여부")
-    void hasNotSize() {
+    void hasDifferentSize() {
         //given
         Results twoResults = Results.from(() -> Arrays.asList("a", "b"));
         //when, then
-        assertThat(twoResults.hasNotSize(2)).isFalse();
-        assertThat(twoResults.hasNotSize(3)).isTrue();
+        assertThat(twoResults.hasDifferentSize(2)).isFalse();
+        assertThat(twoResults.hasDifferentSize(3)).isTrue();
     }
 }

@@ -28,4 +28,15 @@ public final class Lines {
     public List<Line> list() {
         return Collections.unmodifiableList(lines);
     }
+
+    boolean hasDifferentPointSize(int size) {
+        return lines.get(0).hasDifferentSize(size);
+    }
+
+    @Override
+    public String toString() {
+        return "Lines{" +
+                "lines=" + lines +
+                '}';
+    }
 }

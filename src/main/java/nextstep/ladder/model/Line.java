@@ -22,6 +22,10 @@ public final class Line {
         return new Line(points);
     }
 
+    boolean hasDifferentSize(int size) {
+        return points.size() != size;
+    }
+
     public List<Point> points() {
         return Collections.unmodifiableList(points);
     }

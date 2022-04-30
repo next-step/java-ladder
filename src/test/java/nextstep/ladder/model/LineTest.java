@@ -40,4 +40,14 @@ class LineTest {
         //when, then
         assertThat(Line.from(points).points()).containsExactlyElementsOf(points);
     }
+
+    @Test
+    @DisplayName("사이즈 1만큼 미소유 여부")
+    void hasDifferentSize() {
+        //given
+        Line onePointLine = Line.from(Collections.singletonList(Point.connected()));
+        //when, then
+        assertThat(onePointLine.hasDifferentSize(1)).isFalse();
+        assertThat(onePointLine.hasDifferentSize(2)).isTrue();
+    }
 }

@@ -32,7 +32,7 @@ public final class Results {
         return Collections.unmodifiableList(results);
     }
 
-    public boolean hasNotSize(int size) {
+    public boolean hasDifferentSize(int size) {
         return results.size() != size;
     }
 
