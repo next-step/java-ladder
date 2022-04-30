@@ -13,13 +13,27 @@ public class Ladder {
         this.lines = Collections.unmodifiableList(lines);
     }
 
+    public static Ladder create(List<Line> lines) {
+        return new Ladder(lines);
+    }
+
     public static Ladder of(int width, int height, GenerationStrategy generationStrategy) {
-        return IntStream.range(0, height)
+        List<Line> lines = IntStream.range(0, height)
                 .mapToObj(index -> Line.of(width, index, generationStrategy))
-                .collect(Collectors.collectingAndThen(Collectors.toList(), Ladder::new));
+                .collect(Collectors.toList());
+        return create(lines);
     }
 
     public List<Line> getLines() {
         return lines;
     }
+
+    public int move(int index) {
+        int movedIndex = index;
+        for (Line line : lines) {
+            movedIndex = line.move(movedIndex);
+        }
+        return movedIndex;
+    }
+
 }

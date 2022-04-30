@@ -37,4 +37,9 @@ public class Point {
     public boolean isLeft() {
         return direction.isLeft();
     }
+
+    public int move(int rowIndex) {
+        return direction.move(rowIndex);
+    }
+
 }

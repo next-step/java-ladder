@@ -48,4 +48,10 @@ public class Line {
     public List<Point> getPoints() {
         return points;
     }
+
+    public int move(int index) {
+        Point point = points.get(index);
+        return point.move(index);
+    }
+
 }
