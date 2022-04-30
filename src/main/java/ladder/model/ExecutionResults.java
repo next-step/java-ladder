@@ -22,4 +22,9 @@ public class ExecutionResults {
     public ExecutionResult getResult(int resultIndex) {
         return executionResults.get(resultIndex);
     }
+
+    public int size() {
+        return executionResults.size();
+    }
+
 }
