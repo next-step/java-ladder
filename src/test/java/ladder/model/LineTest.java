@@ -4,6 +4,7 @@ import ladder.exception.InvalidLineException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
@@ -12,7 +13,6 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
-import static org.junit.jupiter.params.provider.Arguments.of;
 
 class LineTest {
 
@@ -23,7 +23,7 @@ class LineTest {
         assertThat(Line.create(points)).isInstanceOf(Line.class);
     }
 
-    public static Stream<Arguments> lineProvider() {
+    static Stream<Arguments> lineProvider() {
         return Stream.of(
                 arguments(
                         List.of(
@@ -44,9 +44,9 @@ class LineTest {
         assertThatThrownBy(() -> Line.create(points)).isInstanceOf(InvalidLineException.class);
     }
 
-    public static Stream<Arguments> invalidLineProvider() {
+    static Stream<Arguments> invalidLineProvider() {
         return Stream.of(
-                of(
+                arguments(
                         List.of(
                                 Point.of(0, Direction.of(false, true)),
                                 Point.of(0, Direction.of(true, true)),
@@ -56,6 +56,18 @@ class LineTest {
                         )
                 )
         );
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"0:1", "1:0", "2:2"}, delimiter = ':')
+    @DisplayName("라인에서 포인트 값에 따라서 인덱스의 좌우 이동을 확인한다")
+    void move(int currentIndex, int expectedIndex) {
+        Line line = Line.create(List.of(
+                Point.of(0, Direction.of(false, true)),
+                Point.of(1, Direction.of(true, false)),
+                Point.of(2, Direction.of(false, false))));
+
+        assertThat(line.move(currentIndex)).isEqualTo(expectedIndex);
     }
 
 }
