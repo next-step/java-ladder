@@ -3,14 +3,12 @@ package nextstep.ladder.model;
 import nextstep.common.Assert;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public final class Participants {
 
-    private static final String DEFAULT_DELIMITER = ",";
     private static final int MINIMUM_COUNT = 2;
 
     private final List<Participant> participants;
@@ -21,25 +19,33 @@ public final class Participants {
         this.participants = new ArrayList<>(participants);
     }
 
-    public static Participants from(String namesString) {
-        Assert.hasText(namesString, "names must not be blank");
-        return new Participants(Arrays.stream(namesString.split(DEFAULT_DELIMITER))
+    public static Participants from(StringsProvider provider) {
+        Assert.notNull(provider, "provider must not be blank");
+        return new Participants(provider.strings()
+                .stream()
                 .map(Participant::from)
                 .collect(Collectors.toList())
         );
-    }
-
-    public int numberOfGaps() {
-        return participants.size() - 1;
     }
 
     public List<Participant> list() {
         return Collections.unmodifiableList(participants);
     }
 
+    public int size() {
+        return participants.size();
+    }
+
     private void validateSize(List<Participant> participants) {
         if (participants.size() < MINIMUM_COUNT) {
             throw new IllegalArgumentException(String.format("participants count(%d) must be at least %d", participants.size(), MINIMUM_COUNT));
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Participants{" +
+                "participants=" + participants +
+                '}';
     }
 }

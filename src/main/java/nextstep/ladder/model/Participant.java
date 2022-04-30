@@ -46,4 +46,11 @@ public final class Participant {
         Participant participant = (Participant) o;
         return Objects.equals(name, participant.name);
     }
+
+    @Override
+    public String toString() {
+        return "Participant{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }
