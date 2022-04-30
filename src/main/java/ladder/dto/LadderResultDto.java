@@ -21,4 +21,8 @@ public class LadderResultDto {
         return results.get(participantName);
     }
 
+    public Map<String, ExecutionResult> getResults() {
+        return results;
+    }
+
 }

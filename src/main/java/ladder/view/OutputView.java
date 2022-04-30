@@ -1,15 +1,19 @@
 package ladder.view;
 
+import ladder.dto.LadderResultDto;
+import ladder.model.ExecutionResult;
 import ladder.model.ExecutionResults;
 import ladder.model.Ladder;
 import ladder.model.Participants;
 import ladder.model.Point;
 
 import java.util.List;
+import java.util.Map;
 
 public final class OutputView {
 
-    private static final String EXECUTION_RESULT = "사다리 결과";
+    private static final String LADDER_RESULT = "사다리 결과";
+    private static final String EXECUTION_RESULT = "실행 결과";
 
     private static final String PARTICIPANT_OR_RESULT_FORMAT = "%6s";
 
@@ -18,8 +22,9 @@ public final class OutputView {
     private static final String NEXT_LINE = "\n";
 
     private static final StringBuilder BUILDER = new StringBuilder();
+    private static final String PARTICIPANT_RESULT_FORMAT = "%s : %s";
 
-    public void printParticipantsAndLadder(Participants participants, Ladder ladder, ExecutionResults executionResults) {
+    public void printLadder(Participants participants, Ladder ladder, ExecutionResults executionResults) {
         printLadderNotifyMessage();
         printParticipants(participants);
         printLadder(ladder);
@@ -27,7 +32,7 @@ public final class OutputView {
     }
 
     private void printLadderNotifyMessage() {
-        BUILDER.append(EXECUTION_RESULT);
+        BUILDER.append(LADDER_RESULT);
         printMessage();
     }
 
@@ -76,5 +81,36 @@ public final class OutputView {
         BUILDER.setLength(0);
     }
 
+    public void printAllParticipantResults(LadderResultDto ladderResultDto) {
+        clearBuilder();
+
+        System.out.println(EXECUTION_RESULT);
+
+        Map<String, ExecutionResult> results = ladderResultDto.getResults();
+        for (Map.Entry<String, ExecutionResult> entry : results.entrySet()) {
+            String participant = entry.getKey();
+            ExecutionResult executionResult = entry.getValue();
+            String participantResult = String.format(PARTICIPANT_RESULT_FORMAT, participant, executionResult);
+            BUILDER.append(participantResult).append(NEXT_LINE);
+        }
+
+        printMessage();
+    }
+
+    public void printParticipantResult(LadderResultDto ladderResultDto, String participant) {
+        clearBuilder();
+
+        System.out.println(EXECUTION_RESULT);
+
+        ExecutionResult executionResult = ladderResultDto.showLadderResult(participant);
+        String participantResult = String.format(PARTICIPANT_RESULT_FORMAT, participant, executionResult);
+        BUILDER.append(participantResult).append(NEXT_LINE);
+
+        printMessage();
+    }
+
+    public void printErrorMessage(String message) {
+        System.out.println(message);
+    }
 }
 
