@@ -3,14 +3,19 @@ package nextstep.ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.IntStream;
 
 public class Bridges {
 
     private static final Random RANDOM = new Random();
+    private final List<Boolean> bridges;
 
-    private final List<Boolean> bridges = new ArrayList<>();
+    Bridges(List<Boolean> bridges) {
+        this.bridges = bridges;
+    }
 
     Bridges(int width) {
+        bridges = new ArrayList<>();
         initBridge(width);
     }
 
@@ -38,6 +43,12 @@ public class Bridges {
 
     private void appendBridge(boolean bridge) {
         bridges.add(bridge);
+    }
+
+    public void apply(Participants participants) {
+        IntStream.range(0, bridges.size() - 1)
+                .filter(bridges::get)
+                .forEach(participants::swapWithNext);
     }
 
     public List<Boolean> getBridges() {
