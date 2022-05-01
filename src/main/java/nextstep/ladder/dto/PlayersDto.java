@@ -9,7 +9,7 @@ import static java.util.stream.Collectors.*;
 
 public class PlayersDto {
 
-    List<PlayerDto> players;
+    private final List<PlayerDto> players;
 
     public PlayersDto(Players players) {
         this.players = players.getPlayers()
