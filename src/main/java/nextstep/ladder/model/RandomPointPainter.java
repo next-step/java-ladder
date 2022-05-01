@@ -20,8 +20,8 @@ public final class RandomPointPainter implements PointPainter {
     @Override
     public Point point() {
         if (random.nextBoolean()) {
-            return Point.connected();
+            return Point.CONNECTED;
         }
-        return Point.disconnected();
+        return Point.DISCONNECTED;
     }
 }

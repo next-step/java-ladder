@@ -26,6 +26,6 @@ class RandomPointPainterTest {
     @RepeatedTest(10)
     @DisplayName("랜덤 포인터 생성")
     void pointer() {
-        assertThat(RandomPointPainter.from(new Random()).point()).isIn(Point.connected(), Point.disconnected());
+        assertThat(RandomPointPainter.from(new Random()).point()).isIn(Point.CONNECTED, Point.DISCONNECTED);
     }
 }

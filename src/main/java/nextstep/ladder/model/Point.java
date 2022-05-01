@@ -1,32 +1,10 @@
 package nextstep.ladder.model;
 
-public final class Point {
+public enum Point {
 
-    private static final Point CONNECTED = new Point(true);
-    private static final Point DISCONNECTED = new Point(false);
-
-    private final boolean connected;
-
-    private Point(boolean connected) {
-        this.connected = connected;
-    }
-
-    static Point connected() {
-        return CONNECTED;
-    }
-
-    static Point disconnected() {
-        return DISCONNECTED;
-    }
+    CONNECTED, DISCONNECTED;
 
     public boolean isConnected() {
-        return connected;
-    }
-
-    @Override
-    public String toString() {
-        return "Point{" +
-                "connected=" + connected +
-                '}';
+        return this == CONNECTED;
     }
 }

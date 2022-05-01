@@ -2,6 +2,9 @@ package nextstep.ladder.model;
 
 import nextstep.common.Assert;
 
+import java.util.List;
+import java.util.function.Function;
+
 public final class CustomEnvironment {
 
     private final Participants participants;
@@ -21,6 +24,22 @@ public final class CustomEnvironment {
 
     int size() {
         return participants.size();
+    }
+
+    public boolean isNotExistParticipant(Participant participant) {
+        return participants.isNotExist(participant);
+    }
+
+    public int participantIndexOf(Participant participant) {
+        return participants.indexOf(participant);
+    }
+
+    public Result result(int index) {
+        return results.result(index);
+    }
+
+    public <T> List<T> participantMap(Function<Participant, T> participantFunction) {
+        return participants.map(participantFunction);
     }
 
     private void validateSameSize(Participants participants, Results results) {

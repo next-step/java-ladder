@@ -30,15 +30,15 @@ public final class LineGenerator {
         Point point = painter.point();
         points.add(point);
         for (Positive index = Positive.ONE; index.lessThan(pointCount); index = index.add(Positive.ONE)) {
-            point = nonOverlappingPoint(point);
+            point = nonOverlappingPoint(point, index.equals(pointCount.minus(Positive.ONE)));
             points.add(point);
         }
         return points;
     }
 
-    private Point nonOverlappingPoint(Point point) {
-        if (point.isConnected()) {
-            return Point.disconnected();
+    private Point nonOverlappingPoint(Point point, boolean isLast) {
+        if (point.isConnected() || isLast) {
+            return Point.DISCONNECTED;
         }
         return painter.point();
     }

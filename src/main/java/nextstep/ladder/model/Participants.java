@@ -5,6 +5,7 @@ import nextstep.common.Assert;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public final class Participants {
@@ -34,6 +35,20 @@ public final class Participants {
 
     public int size() {
         return participants.size();
+    }
+
+    boolean isNotExist(Participant participant) {
+        return !participants.contains(participant);
+    }
+
+    int indexOf(Participant participant) {
+        return participants.indexOf(participant);
+    }
+
+    public <T> List<T> map(Function<Participant, T> participantFunction) {
+        return participants.stream()
+                .map(participantFunction)
+                .collect(Collectors.toList());
     }
 
     private void validateSize(List<Participant> participants) {

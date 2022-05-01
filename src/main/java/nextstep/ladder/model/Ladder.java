@@ -2,6 +2,8 @@ package nextstep.ladder.model;
 
 import nextstep.common.Assert;
 
+import java.util.List;
+
 public final class Ladder {
 
     private final CustomEnvironment environment;
@@ -17,6 +19,24 @@ public final class Ladder {
 
     public static Ladder of(CustomEnvironment environment, Lines lines) {
         return new Ladder(environment, lines);
+    }
+
+    public Result result(Participant participant) {
+        validateParticipant(participant);
+        return environment.result(
+                lines.lastMovedIndex(environment.participantIndexOf(participant))
+        );
+    }
+
+    public List<ParticipantResult> participantResults() {
+        return environment.participantMap(participant ->
+                ParticipantResult.of(participant, result(participant)));
+    }
+
+    private void validateParticipant(Participant participant) {
+        if (environment.isNotExistParticipant(participant)) {
+            throw new IllegalStateException(String.format("participant(%s) is not exist", participant));
+        }
     }
 
     private void validateSize(CustomEnvironment environment, Lines lines) {

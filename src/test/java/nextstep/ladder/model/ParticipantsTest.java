@@ -40,4 +40,24 @@ class ParticipantsTest {
     void list() {
         assertThat(Participants.from(() -> Arrays.asList("a", "b", "c")).list()).containsExactly(Participant.from("a"), Participant.from("b"), Participant.from("c"));
     }
+
+    @Test
+    @DisplayName("존재하지 않음")
+    void isNotExist() {
+        //given
+        Participants participants = Participants.from(() -> Arrays.asList("a", "b"));
+        //when, then
+        assertThat(participants.isNotExist(Participant.from("a"))).isFalse();
+        assertThat(participants.isNotExist(Participant.from("c"))).isTrue();
+    }
+
+    @Test
+    @DisplayName("인덱스 정보")
+    void indexOf() {
+        //given
+        Participants participants = Participants.from(() -> Arrays.asList("a", "b"));
+        //when, then
+        assertThat(participants.indexOf(Participant.from("a"))).isZero();
+        assertThat(participants.indexOf(Participant.from("c"))).isEqualTo(-1);
+    }
 }

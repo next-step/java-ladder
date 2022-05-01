@@ -3,7 +3,6 @@ package nextstep.ladder.model;
 import nextstep.common.Assert;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,12 +27,15 @@ public final class Results {
         );
     }
 
-    public List<Result> list() {
-        return Collections.unmodifiableList(results);
-    }
-
     public boolean hasDifferentSize(int size) {
         return results.size() != size;
+    }
+
+    public Result result(int index) {
+        if (results.size() <= index || index < 0) {
+            throw new IndexOutOfBoundsException(String.format("results index(%d) out of range : results size(%d)", index, results.size()));
+        }
+        return results.get(index);
     }
 
     private void validateSize(List<Result> results) {
