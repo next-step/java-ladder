@@ -12,6 +12,9 @@ import java.util.stream.Collectors;
 
 public class ResultConverter {
 
+    private ResultConverter() {
+    }
+
     public static LadderResultDto convertIntoLadderResultDto(
             Participants participants,
             ExecutionResults executionResults,
