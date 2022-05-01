@@ -57,4 +57,16 @@ class CustomEnvironmentTest {
     void result() {
         assertThat(CustomEnvironment.of(TWO_PARTICIPANTS, TWO_RESULTS).result(0)).isEqualTo(Result.from("100"));
     }
+
+    @Test
+    @DisplayName("주어진 참가자들 그대로 반환")
+    void participants() {
+        assertThat(CustomEnvironment.of(TWO_PARTICIPANTS, TWO_RESULTS).participants()).isEqualTo(TWO_PARTICIPANTS);
+    }
+
+    @Test
+    @DisplayName("주어진 결과들 그대로 반환")
+    void results() {
+        assertThat(CustomEnvironment.of(TWO_PARTICIPANTS, TWO_RESULTS).results()).isEqualTo(TWO_RESULTS);
+    }
 }

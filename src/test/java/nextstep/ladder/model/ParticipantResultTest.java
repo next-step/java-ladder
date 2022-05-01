@@ -4,7 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertAll;
 
 @DisplayName("참가자 결과")
 class ParticipantResultTest {
@@ -23,16 +22,20 @@ class ParticipantResultTest {
     }
 
     @Test
-    @DisplayName("참가와 결과는 그대로 반환")
-    void participant_result() {
+    @DisplayName("주어진 참가자 그대로 반환")
+    void participant() {
         //given
         Participant aParticipant = Participant.from("a");
-        Result oneHundred = Result.from("100");
-        ParticipantResult participantResult = ParticipantResult.of(aParticipant, oneHundred);
         //when, then
-        assertAll(
-                () -> assertThat(participantResult.participant()).isEqualTo(aParticipant),
-                () -> assertThat(participantResult.result()).isEqualTo(oneHundred)
-        );
+        assertThat(ParticipantResult.of(aParticipant, Result.from("100")).participant()).isEqualTo(aParticipant);
+    }
+
+    @Test
+    @DisplayName("주어진 결과 그대로 반환")
+    void result() {
+        //given
+        Result oneHundred = Result.from("100");
+        //when, then
+        assertThat(ParticipantResult.of(Participant.from("a"), oneHundred).result()).isEqualTo(oneHundred);
     }
 }

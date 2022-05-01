@@ -42,6 +42,14 @@ public final class CustomEnvironment {
         return participants.map(participantFunction);
     }
 
+    public Participants participants() {
+        return participants;
+    }
+
+    public Results results() {
+        return results;
+    }
+
     private void validateSameSize(Participants participants, Results results) {
         if (results.hasDifferentSize(participants.size())) {
             throw new IllegalArgumentException(String.format("participants(%s) size and results(%s) size must be equal", participants, results));

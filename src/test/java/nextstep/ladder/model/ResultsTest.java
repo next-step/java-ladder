@@ -58,4 +58,9 @@ class ResultsTest {
         assertThatExceptionOfType(IndexOutOfBoundsException.class).isThrownBy(() -> twoResults.result(Integer.MAX_VALUE));
     }
 
+    @Test
+    @DisplayName("주어진 문자열 제공자대로 리스트 반환")
+    void list() {
+        assertThat(Results.from(() -> Arrays.asList("a", "b")).list()).containsExactly(Result.from("a"), Result.from("b"));
+    }
 }

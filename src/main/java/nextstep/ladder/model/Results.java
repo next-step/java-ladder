@@ -27,6 +27,10 @@ public final class Results {
         );
     }
 
+    public List<Result> list() {
+        return results;
+    }
+
     public boolean hasDifferentSize(int size) {
         return results.size() != size;
     }

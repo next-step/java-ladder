@@ -16,7 +16,7 @@ public final class Participant {
         this.name = name;
     }
 
-    static Participant from(String name) {
+    public static Participant from(String name) {
         return new Participant(name);
     }
 

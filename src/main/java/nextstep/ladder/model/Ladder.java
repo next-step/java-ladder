@@ -33,6 +33,14 @@ public final class Ladder {
                 ParticipantResult.of(participant, result(participant)));
     }
 
+    public CustomEnvironment environment() {
+        return environment;
+    }
+
+    public Lines lines() {
+        return lines;
+    }
+
     private void validateParticipant(Participant participant) {
         if (environment.isNotExistParticipant(participant)) {
             throw new IllegalStateException(String.format("participant(%s) is not exist", participant));

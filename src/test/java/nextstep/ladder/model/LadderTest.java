@@ -34,6 +34,18 @@ class LadderTest {
     }
 
     @Test
+    @DisplayName("주어진 사용자 환경 그대로 반환")
+    void environment() {
+        assertThat(Ladder.of(TWO_SIZE_ENVIRONMENT, TWO_HEIGHT_AND_POINTS_LINES).environment()).isEqualTo(TWO_SIZE_ENVIRONMENT);
+    }
+
+    @Test
+    @DisplayName("주어진 라인들 그대로 반환")
+    void lines() {
+        assertThat(Ladder.of(TWO_SIZE_ENVIRONMENT, TWO_HEIGHT_AND_POINTS_LINES).lines()).isEqualTo(TWO_HEIGHT_AND_POINTS_LINES);
+    }
+
+    @Test
     @DisplayName("사용자의 정보로 결과 반환")
     void result() {
         //given
@@ -41,7 +53,6 @@ class LadderTest {
         //when, then
         assertThat(twoSizeLadder.result(Participant.from("a"))).isEqualTo(Result.from("100"));
     }
-
 
     @Test
     @DisplayName("모든 참가자에 대한 결과")

@@ -6,14 +6,16 @@ import nextstep.ladder.model.CustomEnvironment;
 import nextstep.ladder.model.Ladder;
 import nextstep.ladder.model.LineGenerator;
 import nextstep.ladder.model.Lines;
+import nextstep.ladder.model.Participant;
 import nextstep.ladder.model.Participants;
 import nextstep.ladder.model.Positive;
 import nextstep.ladder.model.RandomPointPainter;
 import nextstep.ladder.model.Results;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
-import nextstep.ladder.view.dto.LinesResponse;
-import nextstep.ladder.view.dto.NamesResponse;
+import nextstep.ladder.view.dto.LadderResponse;
+import nextstep.ladder.view.dto.ParticipantResultResponse;
+import nextstep.ladder.view.dto.ResultResponse;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -39,19 +41,33 @@ public final class LadderGame {
     }
 
     public void start() {
-        Participants participants = Participants.from(CommaSeparator.from(inputView.participants()));
-        Results results = Results.from(CommaSeparator.from(inputView.results()));
-        Ladder.of(
-                CustomEnvironment.of(participants, results),
-                Lines.of(Positive.from(inputView.ladderHeight()), lineGenerator(participants))
-        );
-        resultView.print(
-                NamesResponse.from(participants),
-                LinesResponse.from(Lines.of(Positive.from(inputView.ladderHeight()), lineGenerator(participants)))
+        Participants participants = participants();
+        Ladder ladder = ladder(participants);
+        resultView.print(LadderResponse.from(ladder));
+        execute(ladder);
+    }
+
+    private void execute(Ladder ladder) {
+        String resultTarget = inputView.resultTarget();
+        while (!ALL_TARGET_MESSAGE.equals(resultTarget)) {
+            resultView.print(ResultResponse.from(ladder.result(Participant.from(resultTarget))));
+            resultTarget = inputView.resultTarget();
+        }
+        resultView.print(ParticipantResultResponse.listFrom(ladder.participantResults()));
+    }
+
+    private Participants participants() {
+        return Participants.from(CommaSeparator.from(inputView.participants()));
+    }
+
+    private Ladder ladder(Participants participants) {
+        return Ladder.of(
+                CustomEnvironment.of(participants, Results.from(CommaSeparator.from(inputView.results()))),
+                Lines.of(Positive.from(inputView.ladderHeight()), lineGenerator(participants.size()))
         );
     }
 
-    private LineGenerator lineGenerator(Participants participants) {
-        return LineGenerator.of(Positive.from(participants.size()), RandomPointPainter.from(new Random()));
+    private LineGenerator lineGenerator(int pointCount) {
+        return LineGenerator.of(Positive.from(pointCount), RandomPointPainter.from(new Random()));
     }
 }
