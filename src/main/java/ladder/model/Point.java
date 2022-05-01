@@ -1,33 +1,32 @@
 package ladder.model;
 
-public class Point {
+import ladder.exception.InvalidDirectionException;
 
-    private int index;
+public class Point {
 
     private final Direction direction;
 
-    private Point(int index, Direction direction) {
-        this.index = index;
-        this.direction = direction;
+    private Point(boolean isLeft, boolean isRight) {
+        this.direction = Direction.of(isLeft, isRight);
     }
 
-    public static Point of(int index, Direction direction) {
-        return new Point(index, direction);
+    public static Point of(boolean isLeft, boolean isRight) {
+        return new Point(isLeft, isRight);
     }
 
-    public static Point createForFirstLine(int index, GenerationStrategy generationStrategy) {
-        return Point.of(index, Direction.of(false, generationStrategy.generate()));
+    public static Point createForFirstLine(GenerationStrategy generationStrategy) {
+        return Point.of(false, generationStrategy.generate());
     }
 
-    public static Point createForLastLine(int index, Point prevPoint) {
-        return Point.of(index, Direction.of(prevPoint.isRight(), false));
+    public static Point createForLastLine(Point prevPoint) {
+        return Point.of(prevPoint.isRight(), false);
     }
 
-    public static Point createComparingPrevPoint(int index, Point prevPoint, GenerationStrategy generationStrategy) {
+    public static Point createComparingPrevPoint(Point prevPoint, GenerationStrategy generationStrategy) {
         if (prevPoint.isRight()) {
-            return Point.of(index, Direction.of(true, false));
+            return Point.of(true, false);
         }
-        return Point.of(index, Direction.of(false, generationStrategy.generate()));
+        return Point.of(false, generationStrategy.generate());
     }
 
     public boolean isRight() {
@@ -37,4 +36,9 @@ public class Point {
     public boolean isLeft() {
         return direction.isLeft();
     }
+
+    public int move(int rowIndex) {
+        return direction.move(rowIndex);
+    }
+
 }
