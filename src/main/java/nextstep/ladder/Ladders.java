@@ -3,6 +3,8 @@ package nextstep.ladder;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.Collections.*;
+
 public class Ladders {
 
     private final List<Line> lines = new ArrayList<>();
@@ -18,6 +20,6 @@ public class Ladders {
     }
 
     public List<Line> getLines() {
-        return new ArrayList<>(lines);
+        return unmodifiableList(lines);
     }
 }
