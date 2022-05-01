@@ -10,6 +10,10 @@ public class Line {
         bridges = new Bridges(width);
     }
 
+    public void apply(Participants participants) {
+        bridges.apply(participants);
+    }
+
     public List<Boolean> getBridges() {
         return bridges.getBridges();
     }
