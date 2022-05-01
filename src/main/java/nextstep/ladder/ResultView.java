@@ -28,13 +28,14 @@ public class ResultView {
     }
 
     private void printLines(List<Boolean> booleans) {
+        StringBuilder sb = new StringBuilder();
         booleans.forEach(line -> {
             if (line) {
-                System.out.print(EXISTED_LINE);
+                sb.append(EXISTED_LINE);
                 return;
             }
-            System.out.print(NOT_EXISTED_LINE);
+            sb.append(NOT_EXISTED_LINE);
         });
-        System.out.println();
+        System.out.println(sb);
     }
 }
