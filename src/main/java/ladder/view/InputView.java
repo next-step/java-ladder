@@ -55,7 +55,7 @@ public class InputView {
     }
 
     private ExecutionResults convertExecutionResults() {
-        String[] executionResults = readLine().replace(" ", "").split(DEFAULT_DELIMITER);
+        String[] executionResults = readLine().replace(WHITE_SPACE, BLANK).split(DEFAULT_DELIMITER);
         List<ExecutionResult> executionResultList = Arrays.stream(executionResults)
                 .map(ExecutionResult::create)
                 .collect(toList());
