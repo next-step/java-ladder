@@ -1,14 +1,13 @@
 package nextstep.ladder.ui;
 
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Lines;
-import nextstep.ladder.domain.Participants;
+import nextstep.ladder.domain.*;
 
 import java.util.List;
 
 public class OutputView {
 
     public static final String PARTICIPANT_PRINT_FORMAT = "%-6s";
+    public static final String PRIZE_PRINT_FORMAT = "%-6s";
     public static final String BRIDGE = "|-----";
     public static final String EMPTY_BRIDGE = "|     ";
 
@@ -22,14 +21,38 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printLines(Lines lines) {
-        lines.getLines()
+    public static void printLines(Ladder ladder) {
+        ladder.getLines()
                 .forEach(OutputView::printLine);
     }
 
     private static void printLine(Line line) {
         List<Boolean> bridges = line.getBridges();
-        bridges.forEach(bridge -> System.out.print(bridge ? BRIDGE : EMPTY_BRIDGE));
+        for (boolean bridge : bridges) {
+            System.out.print(mapBridgeToString(bridge));
+        }
         System.out.println();
+    }
+
+    private static String mapBridgeToString(boolean bridge) {
+        if (bridge) {
+            return BRIDGE;
+        }
+        return EMPTY_BRIDGE;
+    }
+
+    public static void printPrizes(Prizes prizes) {
+        prizes.getPrizes()
+                .forEach(prize -> System.out.printf(PRIZE_PRINT_FORMAT, prize.getPrize()));
+        System.out.println();
+    }
+
+    public static void printEveryResult(LadderGameResult result) {
+        result.getResult()
+                .forEach(((participant, prize) -> printResult(participant.getName(), prize.getPrize())));
+    }
+
+    public static void printResult(String name, int prize) {
+        System.out.println(name + " : " + prize);
     }
 }
