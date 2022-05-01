@@ -3,15 +3,17 @@ package nextstep.ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Lines {
+public class Ladder {
 
+    private final int width;
     private final List<Line> lines;
 
-    private Lines(List<Line> lines) {
+    private Ladder(List<Line> lines, int width) {
         this.lines = lines;
+        this.width = width;
     }
 
-    public static Lines createLines(int width, int height) {
+    public static Ladder createLadder(int width, int height) {
         if (width <= 0 || height <= 0) {
             throw new IllegalArgumentException("width and height must be greater than zero");
         }
@@ -20,7 +22,15 @@ public class Lines {
         for (int i = 0; i < height; i++) {
             lines.add(new Line(width));
         }
-        return new Lines(lines);
+        return new Ladder(lines, width);
+    }
+
+    public void apply(Participants participants) {
+        lines.forEach(line -> line.apply(participants));
+    }
+
+    public int getWidth() {
+        return width;
     }
 
     public List<Line> getLines() {
