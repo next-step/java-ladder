@@ -92,3 +92,20 @@
 3. "all"을 입력하면 전체 참여자의 실행 결과를 출력한다.
    1. 만약 사다리 게임에 참여한 이름 or "all"을 제외한 input 이 들어오면 Exception
 4. Rule: 3개 이상의 인스턴스 변수를 가진 클래스를 쓰지 않는다.
+
+#### step 3.1 사다리(게임 실행) 1차 피드백
+1. 패키지 분리 (view, domain, util 등!)
+2. Sting[] 보다는 안정성을 보장할 수 있는 List 형태로 사용하자
+3. main 의 역할이 너무 크다! 메서드의 단위를 최대한 줄여 볼 수 있는 방법은?
+4. 입력과 출력의 요구사항 반영! - 루프를 돌다가  특정 문장에 프로그램이 종료되도록
+5. 정적 팩토리 네이밍 컨벤션 일관되게 가져가기
+6. (참고 & 생각해보고 반영해보기) Map 의 Key 를 PlayerName 으로! 그리고 출력에서 getter 를 사용하도록 유도
+7. Ladders 의 생성자에서 stream 을 사용해보자. (IntStream.rangeClose, IntStream.range)
+   1. 둘의 차이점도 같이 학습하면 좋다!
+8. Ladders 에서 너무 많은 역할을 담당하고 있다!
+   1. Players, Ladders, LaddersResults 세 개로 분리하고, LadderGame 에서 정말 게임하듯이 !
+9. LaddersResults 에서도 똑같이 String[] 보다는 List 의 형태로 사용!
+10. Line 에서 가지고 있는 List<Boolean> points 도 원시 값 포장을 진행하여 클래스로 도출!
+11. Players 에서도 생성을 할 때 String[] 을 사용하고 있는데 stream 을 이용하면 생성과 동시에 List 형태로 초기화 가능!
+12. StringBuilder 사용시 무슨 용도의 Builder 인지 변수 네이밍을 바꿔주자
+13. ResultView 의 결과 출력 부분에서 System.out 을 builder 형태로 사용해보자!
