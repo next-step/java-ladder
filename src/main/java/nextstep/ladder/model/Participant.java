@@ -16,7 +16,7 @@ public final class Participant {
         this.name = name;
     }
 
-    static Participant from(String name) {
+    public static Participant from(String name) {
         return new Participant(name);
     }
 
@@ -45,5 +45,12 @@ public final class Participant {
         }
         Participant participant = (Participant) o;
         return Objects.equals(name, participant.name);
+    }
+
+    @Override
+    public String toString() {
+        return "Participant{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }

@@ -10,6 +10,8 @@ import java.util.Objects;
 
 public final class Line {
 
+    private static final int MOVING_INDEX_STEP = 1;
+
     private final List<Point> points;
 
     private Line(List<Point> points) {
@@ -22,8 +24,36 @@ public final class Line {
         return new Line(points);
     }
 
+    boolean hasDifferentSize(int size) {
+        return points.size() != size;
+    }
+
     public List<Point> points() {
         return Collections.unmodifiableList(points);
+    }
+
+    int movedPointIndex(int index) {
+        validateIndex(index);
+        if (points.get(index).isConnected()) {
+            return index + MOVING_INDEX_STEP;
+        }
+        if (isPreviousPointConnected(index)) {
+            return index - MOVING_INDEX_STEP;
+        }
+        return index;
+    }
+
+    private boolean isPreviousPointConnected(int index) {
+        if (index == 0) {
+            return false;
+        }
+        return points.get(index - 1).isConnected();
+    }
+
+    private void validateIndex(int index) {
+        if (index < 0 || points.size() <= index) {
+            throw new IndexOutOfBoundsException(String.format("points index(%d) out of range : points size(%d)", index, points.size()));
+        }
     }
 
     private void validatePoints(List<Point> points) {

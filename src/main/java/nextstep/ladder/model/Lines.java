@@ -28,4 +28,23 @@ public final class Lines {
     public List<Line> list() {
         return Collections.unmodifiableList(lines);
     }
+
+    boolean hasDifferentPointSize(int size) {
+        return lines.get(0).hasDifferentSize(size);
+    }
+
+    public int lastMovedIndex(int startIndex) {
+        int currentIndex = startIndex;
+        for (Line line : lines) {
+            currentIndex = line.movedPointIndex(currentIndex);
+        }
+        return currentIndex;
+    }
+
+    @Override
+    public String toString() {
+        return "Lines{" +
+                "lines=" + lines +
+                '}';
+    }
 }
