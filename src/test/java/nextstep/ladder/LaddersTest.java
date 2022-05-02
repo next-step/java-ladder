@@ -19,13 +19,15 @@ class LaddersTest {
         Line fourthLine = new Line(asList(false, true, false, false));
         Line fifthLine = new Line(asList(true, false, true, false));
 
-        defaultLadders = Ladders.makeDefaultLadders(asList(firstLine, secondLine, thirdLine, fourthLine, fifthLine));
+        String[] results = {"꽝", "5000", "꽝", "3000"};
+
+        defaultLadders = Ladders.makeDefaultLadders(asList(firstLine, secondLine, thirdLine, fourthLine, fifthLine), LaddersResults.makeLaddersResultsByUserInput(results));
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"0:0", "1:3", "2:2", "3:1"}, delimiter = ':')
-    void playLadder(int startPosition, int endPosition) {
-        int resultPosition = defaultLadders.findLadderResult(startPosition);
-        assertThat(resultPosition).isEqualTo(endPosition);
+    @CsvSource(value = {"0:꽝", "1:3000", "2:꽝", "3:5000"}, delimiter = ':')
+    void playLadder(int startPosition, String endResult) {
+        String ladderResult = defaultLadders.findLadderResult(startPosition);
+        assertThat(ladderResult).isEqualTo(endResult);
     }
 }

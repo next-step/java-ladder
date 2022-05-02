@@ -3,6 +3,7 @@ package nextstep.ladder;
 import nextstep.ladder.dto.PlayersDto;
 
 import java.util.List;
+import java.util.Map;
 
 public class ResultView {
 
@@ -46,8 +47,10 @@ public class ResultView {
         System.out.println(sb);
     }
 
-    public void printPlayerResult(String result) {
+    public void printPlayerResult(Map<String, String> result) {
         System.out.println("실행 결과");
-        System.out.println(result);
+        for (Map.Entry<String, String> resultSet : result.entrySet()) {
+            System.out.println(resultSet.getKey() + " : " + resultSet.getValue());
+        }
     }
 }

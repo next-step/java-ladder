@@ -2,6 +2,8 @@ package nextstep.ladder;
 
 import nextstep.ladder.dto.PlayersDto;
 
+import java.util.Map;
+
 public class LadderApplication {
 
     public static void main(String[] args) {
@@ -9,12 +11,13 @@ public class LadderApplication {
         ResultView resultView = new ResultView();
 
         String[] playersName = inputView.inputPlayersName();
-        String[] laddersStringResults = inputView.inputLaddersResults();
-        int ladderHeight = inputView.inputLadderHeight();
-
         Players players = Players.getNewInstanceByStrings(playersName);
-        Ladders ladders = Ladders.makeLaddersByPlayersAndHeight(playersName.length, ladderHeight);
+
+        String[] laddersStringResults = inputView.inputLaddersResults();
         LaddersResults laddersResults = LaddersResults.makeLaddersResultsByUserInput(laddersStringResults);
+
+        int ladderHeight = inputView.inputLadderHeight();
+        Ladders ladders = Ladders.makeLaddersByPlayersAndHeight(playersName.length, ladderHeight, laddersResults);
 
         PlayersDto playersDto = players.toPlayersDto();
 
@@ -22,11 +25,12 @@ public class LadderApplication {
         resultView.printLadders(ladders);
         resultView.printLaddersResults(laddersResults);
 
+        LadderGame ladderGame = new LadderGame(ladders, players);
+
         String playerName = inputView.inputWinner();
 
-        int playerPosition = players.findPositionByPlayerName(playerName);
-        String result = laddersResults.findLadderResultByEndPosition(ladders.findLadderResult(playerPosition));
+        Map<String, String> resultMap = ladderGame.findResultByPlayerName(playerName);
 
-        resultView.printPlayerResult(result);
+        resultView.printPlayerResult(resultMap);
     }
 }
