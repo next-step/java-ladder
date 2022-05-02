@@ -1,37 +1,44 @@
 package ladder.model;
 
-public class Direction {
+import ladder.exception.InvalidDirectionException;
 
-    private final boolean isLeft;
+public enum Direction {
+    LEFT(-1),
+    RIGHT(1),
+    HOLD(0);
 
-    private final boolean isRight;
+    private final int moveCount;
 
-    private Direction(boolean isLeft, boolean isRight) {
-        this.isLeft = isLeft;
-        this.isRight = isRight;
+    Direction(int moveCount) {
+        this.moveCount = moveCount;
     }
 
     public static Direction of(boolean isLeft, boolean isRight) {
-        return new Direction(isLeft, isRight);
-    }
+        if (isLeft && isRight) {
+            throw new InvalidDirectionException();
+        }
 
-    public boolean isLeft() {
-        return isLeft;
-    }
+        if (isLeft) {
+            return LEFT;
+        }
 
-    public boolean isRight() {
-        return isRight;
+        if (isRight) {
+            return RIGHT;
+        }
+
+        return HOLD;
     }
 
     public int move(int index) {
-        if(isLeft) {
-            return index - 1;
-        }
-
-        if(isRight) {
-            return index + 1;
-        }
-
-        return index;
+        return this.moveCount + index;
     }
+
+    public boolean isRight() {
+        return this == RIGHT;
+    }
+
+    public boolean isLeft() {
+        return this == LEFT;
+    }
+
 }
