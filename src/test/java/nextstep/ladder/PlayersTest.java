@@ -12,7 +12,7 @@ class PlayersTest {
     @Test
     @DisplayName("사다리 타기 게임에 참가하는 모든 Player 를 관리하는 일급 콜렉션 생성")
     void createPlayers() {
-        Players players = Players.getNewInstanceByStrings(asList("a", "b", "c", "d"));
-        assertThat(players).isEqualTo(Players.getNewInstanceByStrings(asList("a", "b", "c", "d")));
+        Players players = Players.create(asList("a", "b", "c", "d"));
+        assertThat(players).isEqualTo(Players.create(asList("a", "b", "c", "d")));
     }
 }

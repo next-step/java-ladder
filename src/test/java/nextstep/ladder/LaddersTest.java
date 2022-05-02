@@ -22,9 +22,9 @@ class LaddersTest {
         Line fourthLine = new Line(asList(false, true, false, false));
         Line fifthLine = new Line(asList(true, false, true, false));
 
-        defaultLadders = Ladders.makeDefaultLadders(
+        defaultLadders = Ladders.getDefault(
                 asList(firstLine, secondLine, thirdLine, fourthLine, fifthLine),
-                LaddersResults.makeLaddersResultsByUserInput(asList("꽝", "5000", "꽝", "3000")));
+                LaddersResults.create(asList("꽝", "5000", "꽝", "3000")));
     }
 
     @ParameterizedTest

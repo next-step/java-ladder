@@ -18,13 +18,13 @@ public class LadderApplication {
         ResultView resultView = new ResultView();
 
         List<String> playersName = inputView.inputPlayersName();
-        Players players = Players.getNewInstanceByStrings(playersName);
+        Players players = Players.create(playersName);
 
         List<String> laddersStringResults = inputView.inputLaddersResults();
-        LaddersResults laddersResults = LaddersResults.makeLaddersResultsByUserInput(laddersStringResults);
+        LaddersResults laddersResults = LaddersResults.create(laddersStringResults);
 
         int ladderHeight = inputView.inputLadderHeight();
-        Ladders ladders = Ladders.makeLaddersByPlayersAndHeight(playersName.size(), ladderHeight, laddersResults);
+        Ladders ladders = Ladders.of(playersName.size(), ladderHeight, laddersResults);
 
         PlayersDto playersDto = players.toPlayersDto();
 

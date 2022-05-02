@@ -10,7 +10,7 @@ class LaddersResultsTest {
 
     @Test
     void create() {
-        LaddersResults laddersResults = LaddersResults.makeLaddersResultsByUserInput(asList("꽝", "5000", "꽝", "3000"));
-        assertThat(laddersResults).isEqualTo(LaddersResults.makeLaddersResultsByUserInput(asList("꽝", "5000", "꽝", "3000")));
+        LaddersResults laddersResults = LaddersResults.create(asList("꽝", "5000", "꽝", "3000"));
+        assertThat(laddersResults).isEqualTo(LaddersResults.create(asList("꽝", "5000", "꽝", "3000")));
     }
 }

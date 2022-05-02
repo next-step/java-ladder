@@ -25,11 +25,11 @@ public class Ladders {
         this.laddersResults = laddersResults;
     }
 
-    public static Ladders makeLaddersByPlayersAndHeight(int countOfPlayer, int maxHeight, LaddersResults laddersResults) {
+    public static Ladders of(int countOfPlayer, int maxHeight, LaddersResults laddersResults) {
         return new Ladders(countOfPlayer, maxHeight, laddersResults);
     }
 
-    public static Ladders makeDefaultLadders(List<Line> lines, LaddersResults laddersResults) {
+    public static Ladders getDefault(List<Line> lines, LaddersResults laddersResults) {
         return new Ladders(lines, laddersResults);
     }
 

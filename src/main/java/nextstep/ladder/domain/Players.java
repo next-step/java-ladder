@@ -18,7 +18,7 @@ public class Players {
         }
     }
 
-    public static Players getNewInstanceByStrings(List<String> playersNames) {
+    public static Players create(List<String> playersNames) {
         return new Players(playersNames);
     }
 

@@ -13,7 +13,7 @@ public class LaddersResults {
         this.ladderResults = ladderResults;
     }
 
-    public static LaddersResults makeLaddersResultsByUserInput(List<String> laddersResults) {
+    public static LaddersResults create(List<String> laddersResults) {
         return new LaddersResults(laddersResults);
     }
 
