@@ -1,22 +1,25 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.IntStream;
 
 import static java.util.Collections.*;
+import static java.util.stream.Collectors.*;
 
 public class Ladders {
+
+    public static final int START_INCLUSIVE = 1;
 
     private final List<Line> lines;
     private final LaddersResults laddersResults;
 
     private Ladders(int countOfPlayer, int maxHeight, LaddersResults laddersResults) {
-        this.lines = new ArrayList<>();
-        for (int i = 0; i < maxHeight; i++) {
-            lines.add(new Line(countOfPlayer));
-        }
+        this.lines = IntStream.rangeClosed(START_INCLUSIVE, maxHeight)
+                .mapToObj(index -> new Line(countOfPlayer))
+                .collect(toList());
+
         this.laddersResults = laddersResults;
     }
 
