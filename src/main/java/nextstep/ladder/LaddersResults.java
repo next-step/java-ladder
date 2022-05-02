@@ -6,11 +6,11 @@ import java.util.Objects;
 
 import static java.util.Arrays.*;
 
-public class LadderResults {
+public class LaddersResults {
 
     private final List<String> ladderResults;
 
-    public LadderResults(String[] ladderResults) {
+    public LaddersResults(String[] ladderResults) {
         this.ladderResults = new ArrayList<>();
         this.ladderResults.addAll(asList(ladderResults));
     }
@@ -19,7 +19,7 @@ public class LadderResults {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        LadderResults that = (LadderResults) o;
+        LaddersResults that = (LaddersResults) o;
         return Objects.equals(ladderResults, that.ladderResults);
     }
 

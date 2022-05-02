@@ -33,19 +33,19 @@ public class Ladders {
     }
 
     public int findLadderResult(int startPosition) {
-        int startColumn = startPosition;
+        int resultColumn = startPosition;
 
         for (Line line : lines) {
-            if (line.canGoRight(startColumn)) {
-                startColumn++;
+            if (line.canGoRight(resultColumn)) {
+                resultColumn++;
                 continue;
             }
 
-            if (line.canGoLeft(startColumn)) {
-                startColumn--;
+            if (line.canGoLeft(resultColumn)) {
+                resultColumn--;
             }
         }
         
-        return startColumn;
+        return resultColumn;
     }
 }
