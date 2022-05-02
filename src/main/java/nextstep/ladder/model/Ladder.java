@@ -6,10 +6,10 @@ import java.util.List;
 
 public final class Ladder {
 
-    private final CustomEnvironment environment;
+    private final ParticipantsWithResults environment;
     private final Lines lines;
 
-    public Ladder(CustomEnvironment environment, Lines lines) {
+    public Ladder(ParticipantsWithResults environment, Lines lines) {
         Assert.notNull(environment, "environment must not be null");
         Assert.notNull(lines, "lines must not be null");
         validateSize(environment, lines);
@@ -17,7 +17,7 @@ public final class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder of(CustomEnvironment environment, Lines lines) {
+    public static Ladder of(ParticipantsWithResults environment, Lines lines) {
         return new Ladder(environment, lines);
     }
 
@@ -33,7 +33,7 @@ public final class Ladder {
                 ParticipantResult.of(participant, result(participant)));
     }
 
-    public CustomEnvironment environment() {
+    public ParticipantsWithResults environment() {
         return environment;
     }
 
@@ -47,7 +47,7 @@ public final class Ladder {
         }
     }
 
-    private void validateSize(CustomEnvironment environment, Lines lines) {
+    private void validateSize(ParticipantsWithResults environment, Lines lines) {
         if (lines.hasDifferentPointSize(environment.size())) {
             throw new IllegalArgumentException(String.format("environment(%s) size and line(%s) points size must be equal", environment, lines));
         }
