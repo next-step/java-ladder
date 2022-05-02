@@ -1,5 +1,8 @@
 package nextstep.ladder;
 
+import nextstep.ladder.domain.Ladders;
+import nextstep.ladder.domain.LaddersResults;
+import nextstep.ladder.domain.Line;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;

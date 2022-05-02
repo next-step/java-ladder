@@ -1,5 +1,8 @@
-package nextstep.ladder;
+package nextstep.ladder.view;
 
+import nextstep.ladder.domain.Ladders;
+import nextstep.ladder.domain.LaddersResults;
+import nextstep.ladder.domain.Line;
 import nextstep.ladder.dto.PlayersDto;
 
 import java.util.List;

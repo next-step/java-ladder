@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.util;
 
 import java.util.ArrayList;
 import java.util.Arrays;
