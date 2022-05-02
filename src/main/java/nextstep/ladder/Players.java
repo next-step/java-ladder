@@ -10,11 +10,11 @@ import static java.util.Collections.*;
 
 public class Players {
 
-    private final List<Player> players = new ArrayList<>();
+    private final List<PlayerName> players = new ArrayList<>();
 
     private Players(String[] playersNames) {
-        for (int i = 0; i < playersNames.length; i++) {
-            players.add(new Player(new PlayerName(playersNames[i]), i));
+        for (String playersName : playersNames) {
+            players.add((new PlayerName(playersName)));
         }
     }
 
@@ -22,16 +22,12 @@ public class Players {
         return new Players(playersNames);
     }
 
-    public List<Player> getPlayers() {
+    public List<PlayerName> getPlayers() {
         return unmodifiableList(players);
     }
 
     public int findPositionByPlayerName(String playerName) {
-        return players.stream()
-                .filter(player -> player.findPlayerName(playerName))
-                .map(Player::getPosition)
-                .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(playerName + "은 존재하지 않는 플레어이업니다."));
+        return players.indexOf(new PlayerName(playerName));
     }
 
     @Override

@@ -9,16 +9,16 @@ import static java.util.stream.Collectors.*;
 
 public class PlayersDto {
 
-    private final List<PlayerDto> players;
+    private final List<PlayerNameDto> players;
 
     public PlayersDto(Players players) {
         this.players = players.getPlayers()
                 .stream()
-                .map(PlayerDto::new)
+                .map(PlayerNameDto::new)
                 .collect(toList());
     }
 
-    public List<PlayerDto> getPlayers() {
+    public List<PlayerNameDto> getPlayers() {
         return unmodifiableList(players);
     }
 }
