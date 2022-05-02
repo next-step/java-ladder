@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class InputView {
 
-    private static final String PLAYER_NAME_DELIMITER = ",";
+    private static final String USER_INPUT_DELIMITER = ",";
 
     private final Scanner scanner;
 
@@ -20,7 +20,7 @@ public class InputView {
     }
 
     private String[] splitPlayersNames(String playerNamesWithComma) {
-        return playerNamesWithComma.split(PLAYER_NAME_DELIMITER);
+        return playerNamesWithComma.split(USER_INPUT_DELIMITER);
     }
 
     public int inputLadderHeight() {
@@ -34,5 +34,16 @@ public class InputView {
 
     private int inputScannerInt() {
         return scanner.nextInt();
+    }
+
+    public String[] inputLaddersResults() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        return inputScannerString().split(USER_INPUT_DELIMITER);
+    }
+
+    public String inputWinner() {
+        scanner.nextLine();
+        System.out.println("결과를 보고 싶은 사람은?");
+        return inputScannerString();
     }
 }

@@ -9,7 +9,7 @@ class LaddersResultsTest {
     @Test
     void create() {
         String[] stringResults = {"꽝", "5000", "꽝", "3000"};
-        LaddersResults laddersResults = new LaddersResults(stringResults);
-        assertThat(laddersResults).isEqualTo(new LaddersResults(stringResults));
+        LaddersResults laddersResults = LaddersResults.makeLaddersResultsByUserInput(stringResults);
+        assertThat(laddersResults).isEqualTo(LaddersResults.makeLaddersResultsByUserInput(stringResults));
     }
 }

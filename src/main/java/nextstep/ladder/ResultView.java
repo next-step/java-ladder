@@ -38,4 +38,16 @@ public class ResultView {
         });
         System.out.println(sb);
     }
+
+    public void printLaddersResults(LaddersResults laddersResults) {
+        StringBuilder sb = new StringBuilder();
+        laddersResults.getLadderResults()
+                .forEach(result -> sb.append(result).append(BLANK));
+        System.out.println(sb);
+    }
+
+    public void printPlayerResult(String result) {
+        System.out.println("실행 결과");
+        System.out.println(result);
+    }
 }

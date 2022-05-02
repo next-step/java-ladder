@@ -5,14 +5,27 @@ import java.util.List;
 import java.util.Objects;
 
 import static java.util.Arrays.*;
+import static java.util.Collections.*;
 
 public class LaddersResults {
 
     private final List<String> ladderResults;
 
-    public LaddersResults(String[] ladderResults) {
+    private LaddersResults(String[] ladderResults) {
         this.ladderResults = new ArrayList<>();
         this.ladderResults.addAll(asList(ladderResults));
+    }
+
+    public static LaddersResults makeLaddersResultsByUserInput(String[] laddersResults) {
+        return new LaddersResults(laddersResults);
+    }
+
+    public String findLadderResultByEndPosition(int endPosition) {
+        return ladderResults.get(endPosition);
+    }
+
+    public List<String> getLadderResults() {
+        return unmodifiableList(ladderResults);
     }
 
     @Override

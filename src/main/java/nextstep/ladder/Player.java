@@ -5,13 +5,23 @@ import java.util.Objects;
 public class Player {
 
     private final PlayerName playerName;
+    private final int position;
 
-    public Player(PlayerName playerName) {
+    public Player(PlayerName playerName, int position) {
         this.playerName = playerName;
+        this.position = position;
     }
 
     public PlayerName getPlayerName() {
         return playerName;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public boolean findPlayerName(String playerName) {
+        return this.playerName.getPlayerName().equals(playerName);
     }
 
     @Override

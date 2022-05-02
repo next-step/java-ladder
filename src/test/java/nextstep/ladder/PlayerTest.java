@@ -10,7 +10,7 @@ class PlayerTest {
     @Test
     @DisplayName("사다리 게임에 참가하는 플레이어 생성")
     void createPlayer() {
-        Player wang = new Player(new PlayerName("wang"));
-        assertThat(wang).isEqualTo(new Player(new PlayerName("wang")));
+        Player wang = new Player(new PlayerName("wang"), 0);
+        assertThat(wang).isEqualTo(new Player(new PlayerName("wang"), 0));
     }
 }
