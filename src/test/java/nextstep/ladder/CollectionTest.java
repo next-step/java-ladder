@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ class CollectionTest {
     }
 
     @Test
+    @DisplayName("new ArrayList 로 방어적 복사시 걸리는 시간")
     void copyArrayList() {
         long startTime = System.currentTimeMillis();
         List<Integer> integers = new ArrayList<>(numbers);
@@ -28,6 +30,7 @@ class CollectionTest {
     }
 
     @Test
+    @DisplayName("unmodifiableList 로 방어적 복사시 걸리는 시간")
     void unmodifiable() {
         long startTime = System.currentTimeMillis();
         List<Integer> integers = Collections.unmodifiableList(numbers);

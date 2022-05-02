@@ -8,6 +8,7 @@ import nextstep.ladder.dto.PlayersDto;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
+import java.util.List;
 import java.util.Map;
 
 public class LadderApplication {
@@ -16,14 +17,14 @@ public class LadderApplication {
         InputView inputView = new InputView();
         ResultView resultView = new ResultView();
 
-        String[] playersName = inputView.inputPlayersName();
+        List<String> playersName = inputView.inputPlayersName();
         Players players = Players.getNewInstanceByStrings(playersName);
 
-        String[] laddersStringResults = inputView.inputLaddersResults();
+        List<String> laddersStringResults = inputView.inputLaddersResults();
         LaddersResults laddersResults = LaddersResults.makeLaddersResultsByUserInput(laddersStringResults);
 
         int ladderHeight = inputView.inputLadderHeight();
-        Ladders ladders = Ladders.makeLaddersByPlayersAndHeight(playersName.length, ladderHeight, laddersResults);
+        Ladders ladders = Ladders.makeLaddersByPlayersAndHeight(playersName.size(), ladderHeight, laddersResults);
 
         PlayersDto playersDto = players.toPlayersDto();
 

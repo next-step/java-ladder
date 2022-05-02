@@ -1,22 +1,19 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static java.util.Arrays.*;
 import static java.util.Collections.*;
 
 public class LaddersResults {
 
     private final List<String> ladderResults;
 
-    private LaddersResults(String[] ladderResults) {
-        this.ladderResults = new ArrayList<>();
-        this.ladderResults.addAll(asList(ladderResults));
+    private LaddersResults(List<String> ladderResults) {
+        this.ladderResults = ladderResults;
     }
 
-    public static LaddersResults makeLaddersResultsByUserInput(String[] laddersResults) {
+    public static LaddersResults makeLaddersResultsByUserInput(List<String> laddersResults) {
         return new LaddersResults(laddersResults);
     }
 

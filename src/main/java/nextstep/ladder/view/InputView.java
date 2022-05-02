@@ -1,6 +1,9 @@
 package nextstep.ladder.view;
 
+import java.util.List;
 import java.util.Scanner;
+
+import static java.util.Arrays.*;
 
 public class InputView {
 
@@ -12,15 +15,15 @@ public class InputView {
         this.scanner = new Scanner(System.in);
     }
 
-    public String[] inputPlayersName() {
+    public List<String> inputPlayersName() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        String playerNamesWithComma = this.inputScannerString();
         System.out.println();
-        return splitPlayersNames(playerNamesWithComma);
+
+        return asList(splitUserInputDelimiter(inputScannerString()));
     }
 
-    private String[] splitPlayersNames(String playerNamesWithComma) {
-        return playerNamesWithComma.split(USER_INPUT_DELIMITER);
+    private String[] splitUserInputDelimiter(String userInputWithComma) {
+        return userInputWithComma.split(USER_INPUT_DELIMITER);
     }
 
     public int inputLadderHeight() {
@@ -36,9 +39,10 @@ public class InputView {
         return scanner.nextInt();
     }
 
-    public String[] inputLaddersResults() {
+    public List<String> inputLaddersResults() {
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
-        return inputScannerString().split(USER_INPUT_DELIMITER);
+
+        return asList(splitUserInputDelimiter(inputScannerString()));
     }
 
     public String inputWinner() {

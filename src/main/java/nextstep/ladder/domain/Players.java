@@ -12,13 +12,13 @@ public class Players {
 
     private final List<PlayerName> players = new ArrayList<>();
 
-    private Players(String[] playersNames) {
+    private Players(List<String> playersNames) {
         for (String playersName : playersNames) {
             players.add((new PlayerName(playersName)));
         }
     }
 
-    public static Players getNewInstanceByStrings(String[] playersNames) {
+    public static Players getNewInstanceByStrings(List<String> playersNames) {
         return new Players(playersNames);
     }
 
