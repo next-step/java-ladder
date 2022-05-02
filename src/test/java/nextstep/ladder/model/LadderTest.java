@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.*;
 @DisplayName("사다리")
 class LadderTest {
 
-    private static final CustomEnvironment TWO_SIZE_ENVIRONMENT = CustomEnvironment.of(Participants.from(() -> Arrays.asList("a", "b")), Results.from(() -> Arrays.asList("100", "200")));
+    private static final CustomEnvironment TWO_SIZE_ENVIRONMENT = CustomEnvironment.of(Participants.from(Arrays.asList("a", "b")), Results.from(Arrays.asList("100", "200")));
     private static final Lines TWO_HEIGHT_AND_POINTS_LINES = Lines.of(Positive.from(2), LineGenerator.of(Positive.from(2), () -> Point.CONNECTED));
 
     @Test

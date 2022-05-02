@@ -10,8 +10,8 @@ import static org.assertj.core.api.Assertions.*;
 @DisplayName("사용자 정의 환경")
 class CustomEnvironmentTest {
 
-    private static final Participants TWO_PARTICIPANTS = Participants.from(() -> Arrays.asList("a", "b"));
-    private static final Results TWO_RESULTS = Results.from(() -> Arrays.asList("100", "500"));
+    private static final Participants TWO_PARTICIPANTS = Participants.from(Arrays.asList("a", "b"));
+    private static final Results TWO_RESULTS = Results.from(Arrays.asList("100", "500"));
 
     @Test
     @DisplayName("참가자들과 결과들 생성")
@@ -29,7 +29,7 @@ class CustomEnvironmentTest {
     @Test
     @DisplayName("참가자들과 결과들의 사이즈는 동일")
     void instance_differentSize_thrownIllegalArgumentException() {
-        assertThatIllegalArgumentException().isThrownBy(() -> CustomEnvironment.of(Participants.from(() -> Arrays.asList("a", "b", "c")), TWO_RESULTS));
+        assertThatIllegalArgumentException().isThrownBy(() -> CustomEnvironment.of(Participants.from(Arrays.asList("a", "b", "c")), TWO_RESULTS));
     }
 
     @Test

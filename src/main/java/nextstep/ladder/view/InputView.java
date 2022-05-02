@@ -1,8 +1,10 @@
 package nextstep.ladder.view;
 
 import nextstep.common.Assert;
+import nextstep.ladder.model.CommaSeparator;
 
 import java.io.PrintStream;
+import java.util.List;
 import java.util.Scanner;
 
 public final class InputView {
@@ -26,14 +28,14 @@ public final class InputView {
         return new InputView(scanner, output);
     }
 
-    public String participants() {
+    public List<String> participants() {
         guidePrinter.println(PARTICIPANTS_NAME_INPUT_MESSAGE);
-        return scanner.next();
+        return CommaSeparator.from(scanner.next()).strings();
     }
 
-    public String results() {
+    public List<String> results() {
         guidePrinter.println(RESULTS_INPUT_MESSAGE);
-        return scanner.next();
+        return CommaSeparator.from(scanner.next()).strings();
     }
 
     public String resultTarget() {

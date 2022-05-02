@@ -18,10 +18,9 @@ public final class Results {
         this.results = new ArrayList<>(results);
     }
 
-    public static Results from(StringsProvider provider) {
-        Assert.notNull(provider, "provider must not be blank");
-        return new Results(provider.strings()
-                .stream()
+    public static Results from(List<String> strings) {
+        Assert.notNull(strings, "strings must not be null");
+        return new Results(strings.stream()
                 .map(Result::from)
                 .collect(Collectors.toList())
         );
