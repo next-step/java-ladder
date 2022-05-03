@@ -23,9 +23,10 @@ class ParticipantsTest {
 
         participants.swapWithNext(2);
 
-        assertThat(participants.get(0)).isEqualTo(new Participant("a"));
-        assertThat(participants.get(1)).isEqualTo(new Participant("b"));
-        assertThat(participants.get(2)).isEqualTo(new Participant("d"));
-        assertThat(participants.get(3)).isEqualTo(new Participant("c"));
+        assertThat(participants.getParticipants())
+                .containsExactly(new Participant("a"),
+                        new Participant("b"),
+                        new Participant("d"),
+                        new Participant("c"));
     }
 }
