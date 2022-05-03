@@ -14,22 +14,17 @@ public class LadderApplication {
         ResultView resultView = new ResultView();
 
         List<String> playersName = inputView.inputPlayersName();
-        Players players = Players.create(playersName);
-
         List<String> laddersStringResults = inputView.inputLaddersResults();
-        LaddersResults laddersResults = LaddersResults.create(laddersStringResults);
-
         int ladderHeight = inputView.inputLadderHeight();
-        Ladders ladders = Ladders.of(playersName.size(), ladderHeight);
 
+        Ladders ladders = Ladders.of(playersName.size(), ladderHeight);
+        Players players = Players.create(playersName);
+        LaddersResults laddersResults = LaddersResults.create(laddersStringResults);
         PlayersDto playersDto = players.toPlayersDto();
 
-        resultView.printPlayersName(playersDto);
-        resultView.printLadders(ladders);
-        resultView.printLaddersResults(laddersResults);
+        resultView.printLadderStatus(playersDto, ladders, laddersResults);
 
         LadderGame ladderGame = LadderGame.of(ladders, players, laddersResults);
-
         ladderGame.startGame(inputView, resultView);
     }
 }
