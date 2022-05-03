@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.exception.InvalidLadderException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,13 +17,16 @@ public class Ladder {
 
     public static Ladder createLadder(int width, int height) {
         if (width <= 0 || height <= 0) {
-            throw new IllegalArgumentException("width and height must be greater than zero");
+            throw new InvalidLadderException(width, height);
         }
-
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            lines.add(new Line(width));
+            lines.add(Line.ofWidth(width));
         }
+        return createLadder(lines, width);
+    }
+
+    static Ladder createLadder(List<Line> lines, int width) {
         return new Ladder(lines, width);
     }
 
