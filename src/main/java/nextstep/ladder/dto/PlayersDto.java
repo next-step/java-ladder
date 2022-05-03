@@ -1,6 +1,6 @@
 package nextstep.ladder.dto;
 
-import nextstep.ladder.Players;
+import nextstep.ladder.domain.Players;
 
 import java.util.List;
 
@@ -9,16 +9,16 @@ import static java.util.stream.Collectors.*;
 
 public class PlayersDto {
 
-    List<PlayerDto> players;
+    private final List<PlayerNameDto> players;
 
     public PlayersDto(Players players) {
         this.players = players.getPlayers()
                 .stream()
-                .map(PlayerDto::new)
+                .map(PlayerNameDto::new)
                 .collect(toList());
     }
 
-    public List<PlayerDto> getPlayers() {
+    public List<PlayerNameDto> getPlayers() {
         return unmodifiableList(players);
     }
 }

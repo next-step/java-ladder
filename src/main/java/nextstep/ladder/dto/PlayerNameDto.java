@@ -1,6 +1,6 @@
 package nextstep.ladder.dto;
 
-import nextstep.ladder.PlayerName;
+import nextstep.ladder.domain.PlayerName;
 
 public class PlayerNameDto {
 
