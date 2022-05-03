@@ -5,12 +5,12 @@ import nextstep.common.Assert;
 import java.util.List;
 import java.util.function.Function;
 
-public final class CustomEnvironment {
+public final class ParticipantsWithResults {
 
     private final Participants participants;
     private final Results results;
 
-    private CustomEnvironment(Participants participants, Results results) {
+    private ParticipantsWithResults(Participants participants, Results results) {
         Assert.notNull(participants, "participants must not be null");
         Assert.notNull(results, "results must not be null");
         validateSameSize(participants, results);
@@ -18,8 +18,8 @@ public final class CustomEnvironment {
         this.results = results;
     }
 
-    public static CustomEnvironment of(Participants participants, Results results) {
-        return new CustomEnvironment(participants, results);
+    public static ParticipantsWithResults of(Participants participants, Results results) {
+        return new ParticipantsWithResults(participants, results);
     }
 
     int size() {

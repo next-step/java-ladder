@@ -20,10 +20,9 @@ public final class Participants {
         this.participants = new ArrayList<>(participants);
     }
 
-    public static Participants from(StringsProvider provider) {
-        Assert.notNull(provider, "provider must not be blank");
-        return new Participants(provider.strings()
-                .stream()
+    public static Participants from(List<String> strings) {
+        Assert.notNull(strings, "strings must not be null");
+        return new Participants(strings.stream()
                 .map(Participant::from)
                 .collect(Collectors.toList())
         );

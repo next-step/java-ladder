@@ -1,8 +1,7 @@
 package nextstep.ladder.controller;
 
 import nextstep.common.Assert;
-import nextstep.ladder.model.CommaSeparator;
-import nextstep.ladder.model.CustomEnvironment;
+import nextstep.ladder.model.ParticipantsWithResults;
 import nextstep.ladder.model.Ladder;
 import nextstep.ladder.model.LineGenerator;
 import nextstep.ladder.model.Lines;
@@ -57,12 +56,12 @@ public final class LadderGame {
     }
 
     private Participants participants() {
-        return Participants.from(CommaSeparator.from(inputView.participants()));
+        return Participants.from(inputView.participants());
     }
 
     private Ladder ladder(Participants participants) {
         return Ladder.of(
-                CustomEnvironment.of(participants, Results.from(CommaSeparator.from(inputView.results()))),
+                ParticipantsWithResults.of(participants, Results.from(inputView.results())),
                 Lines.of(Positive.from(inputView.ladderHeight()), lineGenerator(participants.size()))
         );
     }
