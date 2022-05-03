@@ -1,26 +1,26 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.Lines;
-import nextstep.ladder.domain.Participants;
+import nextstep.ladder.domain.*;
 import nextstep.ladder.ui.InputView;
 import nextstep.ladder.ui.OutputView;
-
-import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
-        Participants participants = createParticipants();
-        int height = InputView.promptHeight();
+        Participants participants = Participants.createParticipants(InputView.promptNames());
+        Prizes prizes = Prizes.createPrizes(InputView.promptPrizes());
+        Ladder ladder = Ladder.createLadder(participants.size(), InputView.promptHeight());
 
-        Lines lines = Lines.createLines(participants.size(), height);
+        printGameStart(participants, prizes, ladder);
 
+        LadderGameResult result = new LadderGame(participants, ladder).play(prizes);
+        OutputView.printResult(result, InputView.promptName());
+    }
+
+    private static void printGameStart(Participants participants, Prizes prizes, Ladder ladder) {
         OutputView.printParticipants(participants);
-        OutputView.printLines(lines);
+        OutputView.printLines(ladder);
+        OutputView.printPrizes(prizes);
     }
 
-    private static Participants createParticipants() {
-        List<String> names = InputView.promptNames();
-        return Participants.createParticipants(names);
-    }
 }

@@ -1,20 +1,32 @@
 package nextstep.ladder.domain;
 
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 class ParticipantsTest {
 
-    @ParameterizedTest(name = "참여자의 이름은 비어있거나 5글자보다 길면 안 된다.")
-    @ValueSource(strings = {"longer than 5 characters", " ", ""})
-    void createParticipants(String invalidName) {
-        List<String> names = List.of(invalidName);
+    @DisplayName("Participants의 이름은 중복일 수 없다")
+    @Test
+    void duplicateValidation() {
+        assertThatThrownBy(() -> Participants.createParticipants(List.of("a", "a")))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
-        assertThatThrownBy(() -> Participants.createParticipants(names))
-                .isInstanceOf(ParticipantNameException.class);
+    @Test
+    void swapWithNext() {
+        Participants participants = Participants.createParticipants(List.of("a", "b", "c", "d"));
+
+        participants.swapWithNext(2);
+
+        assertThat(participants.getParticipants())
+                .containsExactly(new Participant("a"),
+                        new Participant("b"),
+                        new Participant("d"),
+                        new Participant("c"));
     }
 }
