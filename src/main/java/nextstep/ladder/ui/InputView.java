@@ -2,7 +2,6 @@ package nextstep.ladder.ui;
 
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class InputView {
 
@@ -22,20 +21,9 @@ public class InputView {
         return Integer.parseInt(SCANNER.nextLine());
     }
 
-    public static List<Integer> promptMoneys() {
-        System.out.println("상금을 입력하세요.꽝은 0원입니다. 상금은 쉼표(,)로 구분하세요. ex) 꽝,3000,꽝,5000");
-        List<String> moneys = List.of(SCANNER.nextLine().split(",", -1));
-        
-        return moneys.stream()
-                .map(InputView::toInt)
-                .collect(Collectors.toList());
-    }
-
-    private static int toInt(String money) {
-        if (money.equals("꽝")) {
-            return 0;
-        }
-        return Integer.parseInt(money);
+    public static List<String> promptPrizes() {
+        System.out.println("결과를 입력하세요. 결과는 쉼표(,)로 구분하세요. ex) 꽝,3000,꽝,5000");
+        return List.of(SCANNER.nextLine().split(",", -1));
     }
 
     public static String promptName() {

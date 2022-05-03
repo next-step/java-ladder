@@ -47,12 +47,16 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printEveryResult(LadderGameResult result) {
-        result.getResult()
-                .forEach(((participant, prize) -> printResult(participant.getName(), prize.getPrize())));
+    public static void printResult(LadderGameResult result, String name) {
+        if (name.equals("all")) {
+            result.getResult()
+                    .forEach(((participant, prize) -> printResult(participant.getName(), prize.getPrize())));
+            return;
+        }
+        printResult(name, result.findPrizeByName(name));
     }
 
-    public static void printResult(String name, int prize) {
+    private static void printResult(String name, String prize) {
         System.out.println(name + " : " + prize);
     }
 }
