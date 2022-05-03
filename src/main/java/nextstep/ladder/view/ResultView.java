@@ -16,13 +16,13 @@ public class ResultView {
     private static final String BLANK = "    ";
 
     public void printPlayersName(PlayersDto players) {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder playerNameBuilder = new StringBuilder();
         System.out.println("실행 결과");
         players.getPlayers()
                 .forEach(playerDto -> {
-                    sb.append(playerDto.getPlayerName()).append(BLANK);
+                    playerNameBuilder.append(playerDto.getPlayerName()).append(BLANK);
                 });
-        System.out.println(sb);
+        System.out.println(playerNameBuilder);
     }
 
     public void printLadders(Ladders ladders) {
@@ -33,28 +33,34 @@ public class ResultView {
     }
 
     private void printLines(List<Boolean> booleans) {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder lineBuilder = new StringBuilder();
         booleans.forEach(line -> {
             if (line) {
-                sb.append(EXISTED_LINE);
+                lineBuilder.append(EXISTED_LINE);
                 return;
             }
-            sb.append(NOT_EXISTED_LINE);
+            lineBuilder.append(NOT_EXISTED_LINE);
         });
-        System.out.println(sb);
+        System.out.println(lineBuilder);
     }
 
     public void printLaddersResults(LaddersResults laddersResults) {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder ladderBuilder = new StringBuilder();
         laddersResults.getLadderResults()
-                .forEach(result -> sb.append(result).append(BLANK));
-        System.out.println(sb);
+                .forEach(result -> ladderBuilder.append(result).append(BLANK));
+        System.out.println(ladderBuilder);
     }
 
     public void printPlayerResult(Map<PlayerName, String> result) {
         System.out.println("실행 결과");
+        StringBuilder ladderResultBuilder = new StringBuilder();
         for (Map.Entry<PlayerName, String> resultSet : result.entrySet()) {
-            System.out.println(resultSet.getKey().getPlayerName() + " : " + resultSet.getValue());
+            ladderResultBuilder
+                    .append(resultSet.getKey().getPlayerName())
+                    .append(" : ")
+                    .append(resultSet.getValue())
+                    .append("\n");
         }
+        System.out.println(ladderResultBuilder);
     }
 }
