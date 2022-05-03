@@ -1,7 +1,5 @@
 package nextstep.ladder.domain;
 
-import java.util.stream.IntStream;
-
 public class LadderGame {
 
     private final Participants participants;
@@ -19,17 +17,15 @@ public class LadderGame {
         }
     }
 
-    public void play() {
-        ladder.apply(participants);
-    }
-
-    public LadderGameResult match(Prizes prizes) {
+    public LadderGameResult play(Prizes prizes) {
         if (prizes.size() != participants.size()) {
             throw new IllegalArgumentException("number of prizes must be equal with number of participants");
         }
+        ladder.apply(participants);
         LadderGameResult result = new LadderGameResult();
-        IntStream.range(0, prizes.size())
-                .forEach(index -> result.put(participants.get(index), prizes.get(index)));
+        for (int index = 0; index < prizes.size(); index++) {
+            result.put(participants.get(index), prizes.get(index));
+        }
         return result;
     }
 }
