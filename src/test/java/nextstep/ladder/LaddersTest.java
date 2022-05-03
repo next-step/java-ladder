@@ -1,7 +1,6 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.Ladders;
-import nextstep.ladder.domain.LaddersResults;
 import nextstep.ladder.domain.Line;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -23,14 +22,14 @@ class LaddersTest {
         Line fifthLine = new Line(asList(true, false, true, false));
 
         defaultLadders = Ladders.getDefault(
-                asList(firstLine, secondLine, thirdLine, fourthLine, fifthLine),
-                LaddersResults.create(asList("꽝", "5000", "꽝", "3000")));
+                asList(firstLine, secondLine, thirdLine, fourthLine, fifthLine));
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"0:꽝", "1:3000", "2:꽝", "3:5000"}, delimiter = ':')
-    void playLadder(int startPosition, String endResult) {
-        String ladderResult = defaultLadders.findLadderResult(startPosition);
-        assertThat(ladderResult).isEqualTo(endResult);
+    @CsvSource(value = {"0:0", "1:3", "2:2", "3:1"}, delimiter = ':')
+    void playLadder(int startPosition, int endPosition) {
+        int ladderResultPosition = defaultLadders.findLadderResult(startPosition);
+
+        assertThat(ladderResultPosition).isEqualTo(endPosition);
     }
 }
