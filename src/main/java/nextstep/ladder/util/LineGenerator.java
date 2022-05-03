@@ -8,7 +8,7 @@ import java.util.List;
 
 import static java.util.Collections.*;
 
-public abstract class LineGenerator {
+public class LineGenerator {
 
     private static final List<Boolean> TRUE_OR_FALSE = Arrays.asList(true, false);
     private static final int PREVIOUS_POINT = -1;
