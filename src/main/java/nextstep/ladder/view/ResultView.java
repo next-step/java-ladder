@@ -1,9 +1,6 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Ladders;
-import nextstep.ladder.domain.LaddersResults;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.PlayerName;
+import nextstep.ladder.domain.*;
 import nextstep.ladder.dto.PlayersDto;
 
 import java.util.List;
@@ -15,7 +12,7 @@ public class ResultView {
     private static final String NOT_EXISTED_LINE = "|     ";
     private static final String BLANK = "    ";
 
-    public void printPlayersName(PlayersDto players) {
+    private void printPlayersName(PlayersDto players) {
         StringBuilder playerNameBuilder = new StringBuilder();
         System.out.println("실행 결과");
         players.getPlayers()
@@ -25,17 +22,17 @@ public class ResultView {
         System.out.println(playerNameBuilder);
     }
 
-    public void printLadders(Ladders ladders) {
+    private void printLadders(Ladders ladders) {
         ladders.getLines()
                 .stream()
                 .map(Line::getPoints)
                 .forEach(this::printLines);
     }
 
-    private void printLines(List<Boolean> booleans) {
+    private void printLines(List<Point> booleans) {
         StringBuilder lineBuilder = new StringBuilder();
         booleans.forEach(line -> {
-            if (line) {
+            if (line.isTrue()) {
                 lineBuilder.append(EXISTED_LINE);
                 return;
             }
@@ -44,7 +41,7 @@ public class ResultView {
         System.out.println(lineBuilder);
     }
 
-    public void printLaddersResults(LaddersResults laddersResults) {
+    private void printLaddersResults(LaddersResults laddersResults) {
         StringBuilder ladderBuilder = new StringBuilder();
         laddersResults.getLadderResults()
                 .forEach(result -> ladderBuilder.append(result).append(BLANK));
@@ -62,5 +59,11 @@ public class ResultView {
                     .append("\n");
         }
         System.out.println(ladderResultBuilder);
+    }
+
+    public void printLadderStatus(PlayersDto playersDto, Ladders ladders, LaddersResults laddersResults) {
+        printPlayersName(playersDto);
+        printLadders(ladders);
+        printLaddersResults(laddersResults);
     }
 }

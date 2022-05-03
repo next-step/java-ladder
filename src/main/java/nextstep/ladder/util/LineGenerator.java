@@ -1,5 +1,7 @@
 package nextstep.ladder.util;
 
+import nextstep.ladder.domain.Point;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,10 +11,11 @@ import static java.util.Collections.*;
 public abstract class LineGenerator {
 
     private static final List<Boolean> TRUE_OR_FALSE = Arrays.asList(true, false);
-    private static final int PREVIOUS_POINT = 1;
+    private static final int PREVIOUS_POINT = -1;
+    private static final boolean EMPTY_LINE = false;
 
-    public static List<Boolean> createLine(int countOfPerson) {
-        List<Boolean> points = new ArrayList<>();
+    public static List<Point> createLine(int countOfPerson) {
+        List<Point> points = new ArrayList<>();
 
         drawFirstPoint(points);
 
@@ -30,24 +33,24 @@ public abstract class LineGenerator {
         return points;
     }
 
-    private static void drawFirstPoint(List<Boolean> points) {
+    private static void drawFirstPoint(List<Point> points) {
         points.add(drawLineOrNot());
     }
 
-    private static Boolean drawLineOrNot() {
+    private static Point drawLineOrNot() {
         shuffle(TRUE_OR_FALSE);
-        return TRUE_OR_FALSE.get(0);
+        return Point.from(TRUE_OR_FALSE.get(0));
     }
 
-    private static Boolean notDrawLine() {
-        return false;
+    private static Point notDrawLine() {
+        return Point.from(EMPTY_LINE);
     }
 
-    private static Boolean previousPointDontHaveLine(List<Boolean> points, int currentPoint) {
-        return !points.get(currentPoint - PREVIOUS_POINT);
+    private static Boolean previousPointDontHaveLine(List<Point> points, int currentPoint) {
+        return points.get(currentPoint + PREVIOUS_POINT).isFalse();
     }
 
-    private static void lastPointDontHaveLine(List<Boolean> points) {
+    private static void lastPointDontHaveLine(List<Point> points) {
         points.add(notDrawLine());
     }
 

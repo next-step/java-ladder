@@ -2,6 +2,7 @@ package nextstep.ladder;
 
 import nextstep.ladder.domain.Ladders;
 import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.Point;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -15,11 +16,11 @@ class LaddersTest {
 
     @BeforeEach
     void setUp() {
-        Line firstLine = new Line(asList(true, false, true, false));
-        Line secondLine = new Line(asList(false, true, false, false));
-        Line thirdLine = new Line(asList(true, false, false, false));
-        Line fourthLine = new Line(asList(false, true, false, false));
-        Line fifthLine = new Line(asList(true, false, true, false));
+        Line firstLine = new Line(asList(Point.from(true), Point.from(false), Point.from(true), Point.from(false)));
+        Line secondLine = new Line(asList(Point.from(false), Point.from(true), Point.from(false), Point.from(false)));
+        Line thirdLine = new Line(asList(Point.from(true), Point.from(false), Point.from(false), Point.from(false)));
+        Line fourthLine = new Line(asList(Point.from(false), Point.from(true), Point.from(false), Point.from(false)));
+        Line fifthLine = new Line(asList(Point.from(true), Point.from(false), Point.from(true), Point.from(false)));
 
         defaultLadders = Ladders.getDefault(
                 asList(firstLine, secondLine, thirdLine, fourthLine, fifthLine));
