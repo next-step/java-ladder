@@ -16,7 +16,7 @@
     - Optional
         - [x] 요구사항 1 - Optional을 활용해 조건에 따른 반환
         - [x] 요구사항 2 - Optional에서 값을 반환
-        - [ ] 요구사항 3 - Optional에서 exception 처리
+        - [x] 요구사항 3 - Optional에서 exception 처리
 - 사다리
 
 ## 온라인 코드 리뷰 과정
