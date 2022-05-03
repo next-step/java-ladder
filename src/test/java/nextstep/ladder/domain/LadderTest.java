@@ -22,5 +22,11 @@ class LadderTest {
     void createLadder_Exception() {
         assertThatThrownBy(() -> Ladder.createLadder(0, 0))
                 .isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> Ladder.createLadder(0, 2))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> Ladder.createLadder(2, 0))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
