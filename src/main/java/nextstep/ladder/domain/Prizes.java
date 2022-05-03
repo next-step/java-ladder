@@ -12,8 +12,8 @@ public class Prizes {
         this.prizes = prizes;
     }
 
-    public static Prizes createPrizes(List<Integer> moneys) {
-        List<Prize> prizes = moneys.stream()
+    public static Prizes createPrizes(List<String> strings) {
+        List<Prize> prizes = strings.stream()
                 .map(Prize::new)
                 .collect(Collectors.toList());
 

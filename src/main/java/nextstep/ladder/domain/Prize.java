@@ -4,20 +4,20 @@ import java.util.Objects;
 
 public class Prize {
 
-    private final int prize;
+    private final String prize;
 
-    public Prize(int prize) {
+    public Prize(String prize) {
         validatePrize(prize);
         this.prize = prize;
     }
 
-    private void validatePrize(int prize) {
-        if (prize < 0) {
-            throw new IllegalArgumentException("prize must be greater or equal than zero. prize: " + prize);
+    private void validatePrize(String prize) {
+        if (prize == null || prize.isBlank()) {
+            throw new IllegalArgumentException("invalid prize. prize: " + prize);
         }
     }
 
-    public int getPrize() {
+    public String getPrize() {
         return prize;
     }
 
@@ -26,7 +26,7 @@ public class Prize {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Prize prize1 = (Prize) o;
-        return getPrize() == prize1.getPrize();
+        return Objects.equals(getPrize(), prize1.getPrize());
     }
 
     @Override

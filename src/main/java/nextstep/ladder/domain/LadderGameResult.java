@@ -17,7 +17,7 @@ public class LadderGameResult {
         result.put(participant, prize);
     }
 
-    public int findPrizeByName(String name) {
+    public String findPrizeByName(String name) {
         return Optional.ofNullable(result.get(new Participant(name)))
                 .map(Prize::getPrize)
                 .orElseThrow(() -> new NoSuchElementException("can't find participant with name of " + name));
