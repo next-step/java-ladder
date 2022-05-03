@@ -1,11 +1,13 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.exception.InvalidParticipantNameException;
+
 import java.util.Objects;
 
 public class Participant {
 
-    static final int MIN_LENGTH = 1;
-    static final int MAX_LENGTH = 5;
+    public static final int MIN_LENGTH = 1;
+    public static final int MAX_LENGTH = 5;
 
     private final String name;
 
