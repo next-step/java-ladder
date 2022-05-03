@@ -2,20 +2,20 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.dto.PlayersDto;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 import static java.util.Collections.*;
+import static java.util.stream.Collectors.*;
 
 public class Players {
 
-    private final List<PlayerName> players = new ArrayList<>();
+    private final List<PlayerName> players;
 
     private Players(List<String> playersNames) {
-        for (String playersName : playersNames) {
-            players.add((new PlayerName(playersName)));
-        }
+        this.players = playersNames.stream()
+                .map(PlayerName::new)
+                .collect(toList());
     }
 
     public static Players create(List<String> playersNames) {
