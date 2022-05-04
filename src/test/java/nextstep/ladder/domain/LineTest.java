@@ -10,17 +10,17 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class BridgeTest {
+class LineTest {
 
-    @ParameterizedTest(name = "Bridge는 연속으로 존재할 수 없고, 끝이 비어있어야한다.")
-    @MethodSource("provideInvalidBridge")
-    void validation(List<Boolean> invalidBridge) {
+    @ParameterizedTest(name = "Line의 다리는 연속으로 존재할 수 없고, 끝이 비어있어야한다.")
+    @MethodSource("provideInvalidLine")
+    void validation(List<Boolean> invalidLine) {
 
-        assertThatThrownBy(() -> new Bridge(invalidBridge))
+        assertThatThrownBy(() -> new Line(invalidLine))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    private static Stream<List> provideInvalidBridge() {
+    private static Stream<List> provideInvalidLine() {
         return Stream.of(
                 List.of(true, true, false),
                 List.of(true, false, true));
@@ -29,9 +29,9 @@ class BridgeTest {
     @Test
     void apply() {
         Participants participants = Participants.createParticipants(List.of("a", "b", "c"));
-        Bridge bridge = new Bridge(List.of(true, false, false));
+        Line line = new Line(List.of(true, false, false));
 
-        bridge.apply(participants);
+        line.apply(participants);
 
         assertThat(participants.getParticipants())
                 .containsExactly(new Participant("b"), new Participant("a"), new Participant("c"));
