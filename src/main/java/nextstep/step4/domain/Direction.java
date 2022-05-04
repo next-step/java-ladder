@@ -62,4 +62,12 @@ public class Direction {
     public int hashCode() {
         return Objects.hash(left, right);
     }
+
+    @Override
+    public String toString() {
+        return "Direction{" +
+                "left=" + left +
+                ", right=" + right +
+                '}';
+    }
 }

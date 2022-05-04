@@ -41,4 +41,12 @@ public class Point {
 
         return this.column;
     }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "column=" + column +
+                ", direction=" + direction +
+                '}';
+    }
 }
