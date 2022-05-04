@@ -3,6 +3,7 @@ package nextstep.step4.domain;
 import java.util.Objects;
 
 import static java.lang.Boolean.FALSE;
+import static nextstep.step4.util.LadderPointGenerator.*;
 
 public class Direction {
 
@@ -31,6 +32,14 @@ public class Direction {
 
     public Direction next(boolean nextRight) {
         return of(this.right, nextRight);
+    }
+
+    public Direction next() {
+        if (this.right) {
+            return next(FALSE);
+        }
+
+        return of(FALSE, generateDirection());
     }
 
     @Override

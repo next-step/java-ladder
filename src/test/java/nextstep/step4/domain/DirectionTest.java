@@ -32,4 +32,19 @@ class DirectionTest {
         Direction firstDirection = Direction.first(true);
         assertThat(firstDirection.last()).isEqualTo(Direction.of(true, false));
     }
+
+    @Test
+    @DisplayName("중간에 위치한 방향 클래스 next 메서드로 생성")
+    void createNextDirection() {
+        Direction firstDirection = Direction.first(true);
+        assertThat(firstDirection.next(false)).isEqualTo(Direction.of(true, false));
+    }
+
+    @Test
+    @DisplayName("중간에 위치한 방향 클래스 next 메서드로 생성 시 양방향 생성 예외")
+    void invalidCreateNextDirection() {
+        Direction firstDirection = Direction.first(true);
+        assertThatThrownBy(() -> firstDirection.next(true))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
