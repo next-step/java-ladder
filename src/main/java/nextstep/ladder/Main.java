@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
         Participants participants = Participants.createParticipants(InputView.promptNames());
         Prizes prizes = Prizes.createPrizes(InputView.promptPrizes());
-        Ladder ladder = Ladder.createLadder(participants.size(), InputView.promptHeight());
+        Ladder ladder = Ladder.createRandomLadder(participants.size(), InputView.promptHeight());
 
         printGameStart(participants, prizes, ladder);
 

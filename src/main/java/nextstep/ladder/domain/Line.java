@@ -29,10 +29,6 @@ public class Line {
         }
     }
 
-    static Line ofWidth(int width) {
-        return new Line(BridgeFactory.createBridgeOfWidth(width));
-    }
-
     public void apply(Participants participants) {
         IntStream.range(0, bridges.size() - 1)
                 .filter(bridges::get)
