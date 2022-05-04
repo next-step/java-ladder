@@ -2,6 +2,8 @@ package nextstep.step4.domain;
 
 import java.util.Objects;
 
+import static java.lang.Boolean.FALSE;
+
 public class Direction {
 
     private final boolean left;
@@ -17,6 +19,18 @@ public class Direction {
 
     public static Direction of(boolean left, boolean right) {
         return new Direction(left, right);
+    }
+
+    public static Direction first(boolean right) {
+        return of(FALSE, right);
+    }
+
+    public Direction last() {
+        return of(this.right, FALSE);
+    }
+
+    public Direction next(boolean nextRight) {
+        return of(this.right, nextRight);
     }
 
     @Override
