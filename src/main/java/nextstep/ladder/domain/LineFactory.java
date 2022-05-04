@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class BridgeFactory {
+public class LineFactory {
 
     private static final Random RANDOM = new Random();
 
-    private BridgeFactory() {
+    private LineFactory() {
         throw new UnsupportedOperationException();
     }
 
-    static List<Boolean> createBridgeOfWidth(int width) {
+    static Line createLineOfWidth(int width) {
         List<Boolean> bridges = new ArrayList<>();
         addRandomBridge(bridges, width);
         removeInvalidBridge(bridges, width);
-        return bridges;
+        return new Line(bridges);
     }
 
     private static void addRandomBridge(List<Boolean> bridges, int width) {
