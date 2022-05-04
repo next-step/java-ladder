@@ -109,3 +109,28 @@
 11. Players 에서도 생성을 할 때 String[] 을 사용하고 있는데 stream 을 이용하면 생성과 동시에 List 형태로 초기화 가능!
 12. StringBuilder 사용시 무슨 용도의 Builder 인지 변수 네이밍을 바꿔주자
 13. ResultView 의 결과 출력 부분에서 System.out 을 builder 형태로 사용해보자!
+
+### step 4. 사다리(리팩토링)
+1. 기능은 요구사항 3단계까지 같다.
+2. 객체 설계 힌트 참고 하여 철저하게 TDD 로 재구현해 본다.
+3. 기존 작성한 코드는 유지하고 새로운 패키지에 작성할 예정
+4. Direction 클래스 현재 Point 에서 좌,우로 갈 수 있는지 상태를 가지는 클래스
+   1. 좌, 우가 true, true 일 수는 없다.
+   2. 처음의 경우 왼쪽 false 고정, 오른쪽은 random 생성
+   3. 중간의 경우 왼쪽은 이전 right 의 값으로 설정, 오른쪽은 random 생성
+   4. 마지막의 경우 왼쪽은 이전 right 의 값으로 설정, 오른쪽은 false 고정
+   5. 다음 Point 의 Direction 을 생성하는 방법
+      1. 현재 위치에서 .next(true) 를 통해 다음 위치의 우측 방향을 true 로 설정
+      2. 현재 위치에서 .next(false) 를 통해 다음 위치의 우측 방향을 false 로 설정
+      3. 여기서 공통적으로 현재 위치의 right 가 true 일 경우 매개변수의 값과 상관없이 false 로 설정, or Exception
+      4. 현재 위치에서 매개변수가 없는 .next() 를 호출했을 경우 Random 하게 true, false 를 설정하는 util 클래스 사용
+5. Point 클래스 사용 현재의 위치, 방향을 인스턴스 변수로 가짐
+   1. Point 에서는 현재 가지고 있는 Direction 의 left, right 값을 통해 좌, 우를 판별함
+6. Line 클래스 사용 private final List<Point> points
+   1. Line 에서는 현재 위치를 받아서, 해당 위치의 Point 의 left, right 를 확인하고 이동 가능 여부를 알려줌
+7. Ladders 클래스 사용 private final List<Line> ladders
+   1. Ladders 에서는 현재 위치를 받아서, Line 에서 알려주는 left, right 의 이동 여부를 판별하고 다음 지점으로 이동함
+      1. 왼쪽 아래, 오른쪽 아래, 그냥 아래
+   2. Ladders 에서 출발 위치에 따른 도착 위치 값을 도출해야 한다.
+8. LaddersResults 클래스 사용
+   1. Ladders 에서 구한 도착 위치 값을 토대로 사다리 타기의 결과 값을 구함.
