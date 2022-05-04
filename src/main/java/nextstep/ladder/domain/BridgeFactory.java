@@ -27,11 +27,15 @@ public class BridgeFactory {
 
     private static void removeInvalidBridge(List<Boolean> bridges, int width) {
         for (int index = 1; index < width; index++) {
-            boolean previousBridge = bridges.get(index - 1);
-            if (previousBridge) {
-                bridges.set(index, false);
-            }
+            removeInvalidBridgeAt(bridges, index);
         }
         bridges.set(width - 1, false);
+    }
+
+    private static void removeInvalidBridgeAt(List<Boolean> bridges, int index) {
+        boolean previousBridge = bridges.get(index - 1);
+        if (previousBridge) {
+            bridges.set(index, false);
+        }
     }
 }
