@@ -18,39 +18,34 @@ public class Lambda {
     }
 
     public static void runThread() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("Hello from thread");
-            }
-        }).start();
+        new Thread(() -> System.out.println("Hello from thread")).start();
     }
 
     public static int sumAll(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            total += number;
-        }
-        return total;
+        return sumWithStrategy(numbers, (x) -> true);
     }
 
     public static int sumAllEven(List<Integer> numbers) {
+        return sumWithStrategy(numbers, (x) -> x % 2 == 0);
+    }
+
+    public static int sumAllOverThree(List<Integer> numbers) {
+        return sumWithStrategy(numbers, (x) -> x > 3);
+    }
+
+    private static int sumWithStrategy(List<Integer> numbers, SumStrategy sumStrategy) {
         int total = 0;
         for (int number : numbers) {
-            if (number % 2 == 0) {
-                total += number;
-            }
+            total = sum(total, number, sumStrategy);
         }
         return total;
     }
 
-    public static int sumAllOverThree(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number > 3) {
-                total += number;
-            }
+    private static int sum(int total, int number, SumStrategy sumStrategy) {
+        if (sumStrategy.condition(number)) {
+            return total + number;
         }
         return total;
     }
+
 }

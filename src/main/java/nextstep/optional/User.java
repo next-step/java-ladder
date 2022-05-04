@@ -1,5 +1,7 @@
 package nextstep.optional;
 
+import java.util.Optional;
+
 public class User {
     private String name;
     private Integer age;
@@ -9,16 +11,8 @@ public class User {
         this.age = age;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public Integer getAge() {
         return age;
-    }
-
-    public boolean matchName(String name) {
-        return this.name.equals(name);
     }
 
     public static boolean ageIsInRange1(User user) {
@@ -33,7 +27,10 @@ public class User {
     }
 
     public static boolean ageIsInRange2(User user) {
-        return false;
+        return Optional.ofNullable(user)
+            .map(x -> x.age)
+            .filter(x -> x >= 30 && x <= 45)
+            .isPresent();
     }
 
     @Override
@@ -65,5 +62,9 @@ public class User {
         } else if (!name.equals(other.name))
             return false;
         return true;
+    }
+
+    public boolean isSameNameWith(String name) {
+        return this.name.equals(name);
     }
 }
