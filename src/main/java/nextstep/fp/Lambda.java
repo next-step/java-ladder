@@ -1,5 +1,7 @@
 package nextstep.fp;
 
+import nextstep.fp.operator.Opertator;
+
 import java.util.List;
 
 public class Lambda {
@@ -27,29 +29,31 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            total += number;
-        }
-        return total;
+        return sumUsingOperator(numbers, (num1, num2) -> num1 + num2);
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number % 2 == 0) {
-                total += number;
+        return sumUsingOperator(numbers, (num1, num2) -> {
+            if (num2 % 2 == 0) {
+                return num1 + num2;
             }
-        }
-        return total;
+            return num1;
+        });
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
+        return sumUsingOperator(numbers, (num1, num2) -> {
+            if (num2 > 3) {
+                return num1 + num2;
+            }
+            return num1;
+        });
+    }
+
+    private static int sumUsingOperator(List<Integer> numbers, Opertator opertator) {
         int total = 0;
         for (int number : numbers) {
-            if (number > 3) {
-                total += number;
-            }
+            total = opertator.operate(total, number);
         }
         return total;
     }
