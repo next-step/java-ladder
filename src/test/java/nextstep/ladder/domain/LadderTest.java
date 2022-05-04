@@ -2,6 +2,8 @@ package nextstep.ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -17,16 +19,10 @@ class LadderTest {
         assertThat(ladder.getLines()).hasSize(5);
     }
 
-    @DisplayName("사다리는 0보다 큰 width, height 를 가진다.")
-    @Test
-    void createLadder_Exception() {
-        assertThatThrownBy(() -> Ladder.createLadder(0, 0))
-                .isInstanceOf(IllegalArgumentException.class);
-
-        assertThatThrownBy(() -> Ladder.createLadder(0, 2))
-                .isInstanceOf(IllegalArgumentException.class);
-
-        assertThatThrownBy(() -> Ladder.createLadder(2, 0))
+    @ParameterizedTest(name = "사다리는 0보다 큰 width, height 를 가진다.")
+    @CsvSource(value = {"0,0", "0,2", "2,0"})
+    void createLadder_Exception(int width, int height) {
+        assertThatThrownBy(() -> Ladder.createLadder(width, height))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
