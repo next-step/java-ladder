@@ -21,10 +21,22 @@ public class Lambda {
         new Thread(() -> System.out.println("Hello from thread")).start();
     }
 
-    public static int sumAll_old(List<Integer> numbers) {
+    public static int sumAll(List<Integer> numbers) {
+        return sumWithStrategy(numbers, (x) -> true);
+    }
+
+    public static int sumAllEven(List<Integer> numbers) {
+        return sumWithStrategy(numbers, (x) -> x % 2 == 0);
+    }
+
+    public static int sumAllOverThree(List<Integer> numbers) {
+        return sumWithStrategy(numbers, (x) -> x > 3);
+    }
+
+    private static int sumWithStrategy(List<Integer> numbers, SumStrategy sumStrategy) {
         int total = 0;
         for (int number : numbers) {
-            total += number;
+            total = sum(total, number, sumStrategy);
         }
         return total;
     }
@@ -36,51 +48,4 @@ public class Lambda {
         return total;
     }
 
-    public static int sumAll(List<Integer> numbers, SumStrategy sumStrategy) {
-        int total = 0;
-        for (int number : numbers) {
-            total = sum(total, number, sumStrategy);
-        }
-        return total;
-    }
-
-    public static int sumAllEven(List<Integer> numbers, SumStrategy sumStrategy) {
-        int total = 0;
-        for (int number : numbers) {
-            total = sum(total, number, sumStrategy);
-        }
-        return total;
-    }
-
-    public static int sumAllOverThree(List<Integer> numbers, SumStrategy sumStrategy) {
-        int total = 0;
-        for (int number : numbers) {
-            total = sum(total, number, sumStrategy);
-        }
-        return total;
-    }
-
-    public static int sumAll2(List<Integer> numbers, SumStrategy2 sumStrategy) {
-        int total = 0;
-        for (int number : numbers) {
-            total = sumStrategy.sum(total, number);
-        }
-        return total;
-    }
-
-    public static int sumAllEven2(List<Integer> numbers, SumStrategy2 sumStrategy) {
-        int total = 0;
-        for (int number : numbers) {
-            total = sumStrategy.sum(total, number);
-        }
-        return total;
-    }
-
-    public static int sumAllOverThree2(List<Integer> numbers, SumStrategy2 sumStrategy) {
-        int total = 0;
-        for (int number : numbers) {
-            total = sumStrategy.sum(total, number);
-        }
-        return total;
-    }
 }

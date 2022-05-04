@@ -18,7 +18,7 @@ enum Expression {
     static Expression of2(final String expression) {
         return Arrays.stream(values())
             .filter(expression1 -> matchExpression(expression1, expression))
-            .findFirst().orElseThrow(()
-                -> new IllegalArgumentException(String.format("%s는 사칙연산에 해당하지 않는 표현식입니다.", expression)));
+            .findFirst()
+            .orElseThrow(() -> new IllegalArgumentException(String.format("%s는 사칙연산에 해당하지 않는 표현식입니다.", expression)));
     }
 }
