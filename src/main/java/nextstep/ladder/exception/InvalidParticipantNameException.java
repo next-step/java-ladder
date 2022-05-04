@@ -13,11 +13,7 @@ public class InvalidParticipantNameException extends IllegalArgumentException {
     }
 
     public InvalidParticipantNameException(String name) {
-        super(buildErrorMessage(name));
-    }
-
-    private static String buildErrorMessage(String name) {
-        return String.format(ERROR_MESSAGE, MIN_LENGTH, MAX_LENGTH, name);
+        super(String.format(ERROR_MESSAGE, MIN_LENGTH, MAX_LENGTH, name));
     }
 
 }
