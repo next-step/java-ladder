@@ -24,6 +24,14 @@ public class Line {
         return new Line(points);
     }
 
+    public int move(int column) {
+        return points.get(column).move();
+    }
+
+    public static Line from(List<Point> points) {
+        return new Line(points);
+    }
+
     private static Point drawFirstPoint(List<Point> points) {
         Point firstPoint = Point.first(LadderPointGenerator.generateDirection());
         points.add(firstPoint);

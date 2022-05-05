@@ -1,0 +1,35 @@
+package nextstep.step4.domain;
+
+import java.util.List;
+import java.util.stream.IntStream;
+
+import static java.util.stream.Collectors.*;
+
+public class Ladder {
+
+    private final List<Line> ladder;
+
+    private Ladder(int countOfPlayer, int maxHeight) {
+        this.ladder = IntStream.range(countOfPlayer, maxHeight)
+                .mapToObj(index -> Line.from(countOfPlayer))
+                .collect(toList());
+    }
+
+    public Ladder(List<Line> ladder) {
+        this.ladder = ladder;
+    }
+
+    public static Ladder of(int countOfPerson, int maxHeight) {
+        return new Ladder(countOfPerson, maxHeight);
+    }
+
+    public int findEndColumByStartColumn(int startColumn) {
+        int resultColumn = startColumn;
+
+        for (Line line : ladder) {
+            resultColumn = line.move(resultColumn);
+        }
+
+        return resultColumn;
+    }
+}
