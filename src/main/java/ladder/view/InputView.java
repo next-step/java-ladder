@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.exception.InvalidHeightOfLadderException;
 import ladder.exception.InvalidNameOfParticipant;
 import ladder.exception.InvalidNumberOfParticipants;
 
@@ -32,6 +33,18 @@ public class InputView {
     public static void validateNumberOfParticipants(String[] names) {
         if (names.length == 0 || names.length == 1) {
             throw new InvalidNumberOfParticipants();
+        }
+    }
+
+    public static int inputHeightOfLadder() {
+        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        int height = Integer.parseInt(SCANNER.nextLine());
+        return height;
+    }
+
+    public static void validateHeightOfLadder(int heightOfLadder) {
+        if (heightOfLadder == 0) {
+            throw new InvalidHeightOfLadderException(heightOfLadder);
         }
     }
 }
