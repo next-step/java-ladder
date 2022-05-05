@@ -1,12 +1,11 @@
 package nextstep.step4;
 
-import nextstep.step4.domain.Ladder;
-import nextstep.step4.domain.LadderResult;
-import nextstep.step4.domain.Players;
+import nextstep.step4.domain.*;
 import nextstep.step4.view.InputView;
 import nextstep.step4.view.ResultView;
 
 import java.util.List;
+import java.util.Map;
 
 public class LadderApplication {
 
@@ -23,7 +22,20 @@ public class LadderApplication {
         LadderResult ladderResult = LadderResult.from(ladderResultList);
 
         resultView.printLadderStatus(players, ladder, ladderResult);
-        
+
+        LadderGame ladderGame = LadderGame.of(players, ladder, ladderResult);
+        startLadderGame(ladderGame, inputView, resultView);
+    }
+
+    private static void startLadderGame(LadderGame ladderGame, InputView inputView, ResultView resultView) {
+        while (true) {
+            String playerName = inputView.inputWinner();
+            Map<PlayerName, String> result = ladderGame.findResultsByPlayerName(playerName);
+            resultView.printLadderGameResult(result);
+            if (playerName.equals("all")) {
+                break;
+            }
+        }
     }
 
 }

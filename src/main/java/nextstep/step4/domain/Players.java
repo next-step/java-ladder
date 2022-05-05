@@ -26,4 +26,12 @@ public class Players {
     public List<PlayerName> getPlayers() {
         return unmodifiableList(players);
     }
+
+    public PlayerName findPlayerByColumn(int column) {
+        return players.get(column);
+    }
+
+    public int findColumnByPlayerName(String playerName) {
+        return players.indexOf(PlayerName.from(playerName));
+    }
 }

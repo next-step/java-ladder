@@ -3,12 +3,15 @@ package nextstep.step4.view;
 import nextstep.step4.domain.*;
 
 import java.util.List;
+import java.util.Map;
 
 public class ResultView {
 
     private static final String EXISTED_LINE = "|-----";
     private static final String NOT_EXISTED_LINE = "|     ";
     private static final String BLANK = "    ";
+    private static final String COLON = " : ";
+    private static final String NEWLINE = "\n";
 
     public void printLadderStatus(Players players, Ladder ladder, LadderResult ladderResult) {
         printPlayers(players);
@@ -52,5 +55,17 @@ public class ResultView {
                     ladderResultBuilder.append(result).append(BLANK);
                 });
         System.out.println(ladderResultBuilder);
+    }
+
+    public void printLadderGameResult(Map<PlayerName, String> result) {
+        StringBuilder resultBuilder = new StringBuilder();
+        for (Map.Entry<PlayerName, String> resultMap : result.entrySet()) {
+            resultBuilder
+                    .append(resultMap.getKey().getPlayerName())
+                    .append(COLON)
+                    .append(resultMap.getValue())
+                    .append(NEWLINE);
+        }
+        System.out.println(resultBuilder);
     }
 }
