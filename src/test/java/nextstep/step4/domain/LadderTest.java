@@ -1,6 +1,5 @@
 package nextstep.step4.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -39,5 +38,11 @@ class LadderTest {
     @CsvSource(value = {"0:2", "1:1", "2:0"}, delimiter = ':')
     void findEndColumByStartColumn(int startColumn, int endColumn) {
         assertThat(ladder.findEndColumByStartColumn(startColumn)).isEqualTo(endColumn);
+    }
+
+    @Test
+    void create() {
+        Ladder ladder = Ladder.of(5, 5);
+        assertThat(ladder.getLadder()).hasSize(5);
     }
 }

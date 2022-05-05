@@ -8,10 +8,12 @@ import static java.util.stream.Collectors.*;
 
 public class Ladder {
 
+    public static final int START_INCLUSIVE = 1;
+
     private final List<Line> ladder;
 
     private Ladder(int countOfPlayer, int maxHeight) {
-        this.ladder = IntStream.range(countOfPlayer, maxHeight)
+        this.ladder = IntStream.rangeClosed(START_INCLUSIVE, maxHeight)
                 .mapToObj(index -> Line.from(countOfPlayer))
                 .collect(toList());
     }
