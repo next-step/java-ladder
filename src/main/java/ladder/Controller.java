@@ -1,13 +1,26 @@
 package ladder;
 
-import ladder.domain.LadderGame;
+import ladder.exception.InvalidNameOfParticipant;
+import ladder.exception.InvalidNumberOfParticipants;
+import ladder.view.InputView;
 
 public class Controller {
-    public static void main(String[] args) {
-        LadderGame game = new LadderGame(4, 3);
-        System.out.println(game.getLadder());
+    private static final String SEPARATOR_OF_NAMES = ",";
 
-        game = new LadderGame(3, 5);
-        System.out.println(game.getLadder());
+    public static void main(String[] args) {
+        String[] namesOfParticipants;
+
+        while (true) {
+            try {
+                namesOfParticipants = InputView.inputNames().split(SEPARATOR_OF_NAMES);
+                InputView.validateNumberOfParticipants(namesOfParticipants);
+                InputView.validateNameOfParticipants(namesOfParticipants);
+                break;
+            } catch (InvalidNumberOfParticipants e) {
+                System.out.println(e.getMessage());
+            } catch (InvalidNameOfParticipant e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
