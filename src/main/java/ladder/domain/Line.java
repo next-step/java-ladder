@@ -36,4 +36,9 @@ public class Line {
     public List<Boolean> getLine() {
         return Collections.unmodifiableList(line);
     }
+
+    @Override
+    public String toString() {
+        return line.toString();
+    }
 }

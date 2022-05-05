@@ -1,16 +1,13 @@
 package ladder;
 
-import ladder.domain.Line;
+import ladder.domain.LadderGame;
 
 public class Controller {
     public static void main(String[] args) {
-        Line line = new Line(5);
-        System.out.println(line.getLine().toString());
+        LadderGame game = new LadderGame(4, 3);
+        System.out.println(game.getLadder());
 
-        line = new Line(6);
-        System.out.println(line.getLine().toString());
-
-        line = new Line(3);
-        System.out.println(line.getLine().toString());
+        game = new LadderGame(3, 5);
+        System.out.println(game.getLadder());
     }
 }
