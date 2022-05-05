@@ -15,6 +15,10 @@ public class LadderResult {
         return new LadderResult(ladderResult);
     }
 
+    public String findLadderResultByEndColumn(int endColumn) {
+        return ladderResult.get(endColumn);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
