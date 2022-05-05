@@ -3,6 +3,7 @@ package nextstep.step4.domain;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import static java.util.Collections.*;
 import static java.util.stream.Collectors.*;
 
 public class Ladder {
@@ -31,5 +32,9 @@ public class Ladder {
         }
 
         return resultColumn;
+    }
+
+    public List<Line> getLadder() {
+        return unmodifiableList(ladder);
     }
 }

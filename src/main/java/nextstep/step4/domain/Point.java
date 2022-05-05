@@ -42,6 +42,10 @@ public class Point {
         return this.column;
     }
 
+    public boolean isRight() {
+        return direction.isRight();
+    }
+
     @Override
     public String toString() {
         return "Point{" +

@@ -32,6 +32,10 @@ public class PlayerName {
         return new PlayerName(playerName);
     }
 
+    public String getPlayerName() {
+        return playerName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

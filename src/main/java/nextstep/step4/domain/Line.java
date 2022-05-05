@@ -3,8 +3,9 @@ package nextstep.step4.domain;
 import nextstep.step4.util.LadderPointGenerator;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+
+import static java.util.Collections.*;
 
 public class Line {
 
@@ -52,7 +53,7 @@ public class Line {
     }
 
     public List<Point> getPoints() {
-        return Collections.unmodifiableList(points);
+        return unmodifiableList(points);
     }
 
     @Override

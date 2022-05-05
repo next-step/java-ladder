@@ -3,6 +3,8 @@ package nextstep.step4.domain;
 import java.util.List;
 import java.util.Objects;
 
+import static java.util.Collections.*;
+
 public class LadderResult {
 
     private final List<String> ladderResult;
@@ -30,5 +32,9 @@ public class LadderResult {
     @Override
     public int hashCode() {
         return Objects.hash(ladderResult);
+    }
+
+    public List<String> getLadderResult() {
+        return unmodifiableList(ladderResult);
     }
 }
