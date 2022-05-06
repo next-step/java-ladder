@@ -6,13 +6,23 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ResultView {
+    private static final int STANDARD_SPACE_WHEN_PRINT_NAME = 3;
+
     private ResultView() {
     }
 
     public static void printNames(String[] names) {
         Arrays.stream(names)
-                .forEach(name -> System.out.print(name + "\t"));
+                .forEach(name -> printName(name));
         System.out.println();
+    }
+
+    private static void printName(String name) {
+        if (name.length() > STANDARD_SPACE_WHEN_PRINT_NAME) {
+            System.out.print(name + "\t");
+            return;
+        }
+        System.out.print(name + "\t\t");
     }
 
     public static void printLadder(List<Line> ladder) {
@@ -28,9 +38,9 @@ public class ResultView {
 
     private static void drawPartOfLine(Boolean aBoolean) {
         if (aBoolean == true) {
-            System.out.print("│---");
+            System.out.print("│-------");
             return;
         }
-        System.out.print("│" + "\t");
+        System.out.print("│" + "\t\t");
     }
 }
