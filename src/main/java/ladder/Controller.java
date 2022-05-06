@@ -48,5 +48,6 @@ public class Controller {
 
         // Output
         ResultView.printNames(namesOfParticipants);
+        ResultView.printLadder(game.getLadder());
     }
 }
