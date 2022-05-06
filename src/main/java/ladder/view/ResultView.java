@@ -22,13 +22,15 @@ public class ResultView {
 
     private static void printLine(List<Boolean> line) {
         line.stream()
-                .forEach(e -> {
-                    if (e == true) {
-                        System.out.print("│---");
-                    } else {
-                        System.out.print("│" + "\t");
-                    }
-                });
+                .forEach(e -> drawPartOfLine(e));
         System.out.println("│");
+    }
+
+    private static void drawPartOfLine(Boolean aBoolean) {
+        if (aBoolean == true) {
+            System.out.print("│---");
+            return;
+        }
+        System.out.print("│" + "\t");
     }
 }
