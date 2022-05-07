@@ -33,6 +33,12 @@ public class Line {
         return trueCondition.isTrue();
     }
 
+    public Line(List<Boolean> line) {
+        for (int i = 0; i < line.size(); i++) {
+            this.line.add(i, line.get(i));
+        }
+    }
+
     int move(int indexOfParticipants) {
         if (indexOfParticipants == 0) {
             return moveRight(indexOfParticipants);
