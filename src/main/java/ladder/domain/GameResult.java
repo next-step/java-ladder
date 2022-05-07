@@ -4,6 +4,7 @@ import ladder.exception.InvalidNameOfReulstException;
 import ladder.exception.InvalidNumberOfResultException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class GameResult {
@@ -44,5 +45,9 @@ public class GameResult {
 
     int getNumberOfResults() {
         return input.length;
+    }
+
+    public List<String> getInputOfResults() {
+        return Arrays.asList(input);
     }
 }

@@ -43,4 +43,10 @@ public class ResultView {
         }
         System.out.print("│" + "\t\t");
     }
+
+    public static void printResult(List<String> results) {
+        results.stream()
+                .forEach(result -> printName(result));
+        System.out.println();
+    }
 }

@@ -58,5 +58,6 @@ public class Controller {
         // Output
         ResultView.printNames(participants.getNamesOfParticipants());
         ResultView.printLadder(game.getLadder());
+        ResultView.printResult(result.getInputOfResults());
     }
 }
