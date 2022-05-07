@@ -9,6 +9,8 @@ import java.util.List;
 
 public class ResultView {
     private static final int STANDARD_SPACE_WHEN_PRINT_NAME = 3;
+    private static final int CONSTANT_WHICH_MEANS_ALL_PARTICIPANTS = -1;
+    private static final String RESULT_OF_GAME = "실행 결과";
 
     private ResultView() {
     }
@@ -53,7 +55,8 @@ public class ResultView {
     }
 
     public static void printResultOfGame(int index, Participants participants, GameResult gameResult) {
-        if (index != -1) {
+        System.out.println(RESULT_OF_GAME);
+        if (index != CONSTANT_WHICH_MEANS_ALL_PARTICIPANTS) {
             System.out.println(gameResult.getResultOfGame(index));
             return;
         }
@@ -61,7 +64,6 @@ public class ResultView {
     }
 
     private static void printAllResultOfGame(Participants participants, GameResult gameResult) {
-        System.out.println("실행 결과");
         for (int i = 0; i < participants.getNumberOfParticipants(); i++) {
             System.out.print(participants.getParticipant(i) + " : ");
             System.out.println(gameResult.getResultOfGame(i));
