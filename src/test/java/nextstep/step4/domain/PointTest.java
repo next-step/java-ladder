@@ -1,9 +1,11 @@
 package nextstep.step4.domain;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 class PointTest {
 
@@ -45,7 +47,9 @@ class PointTest {
     @Test
     @DisplayName("마지막 위치 이동은 이전 Point 클래스의 right 에 영향을 받는다")
     void lastPointMove() {
-        assertThat(Point.first(false).last().move()).isEqualTo(1);
-        assertThat(Point.first(true).last().move()).isEqualTo(0);
+        assertAll(
+                () -> assertThat(Point.first(false).last().move()).isOne(),
+                () -> assertThat(Point.first(true).last().move()).isZero()
+        );
     }
 }
