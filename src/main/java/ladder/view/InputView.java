@@ -27,4 +27,9 @@ public class InputView {
             throw new InvalidHeightOfLadderException(heightOfLadder);
         }
     }
+
+    public static String inputResult() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        return SCANNER.nextLine();
+    }
 }

@@ -1,10 +1,9 @@
 package ladder;
 
+import ladder.domain.GameResult;
 import ladder.domain.LadderGame;
 import ladder.domain.Participants;
-import ladder.exception.InvalidHeightOfLadderException;
-import ladder.exception.InvalidNameOfParticipant;
-import ladder.exception.InvalidNumberOfParticipants;
+import ladder.exception.*;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -35,6 +34,19 @@ public class Controller {
             } catch (NumberFormatException e) {
                 System.out.println(ERROR_MESSAGE_OF_HEIGHT_OF_LADDER);
             } catch (InvalidHeightOfLadderException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        GameResult result;
+        while (true) {
+            try {
+                String gameResult = InputView.inputResult();
+                result = new GameResult(gameResult, participants);
+                break;
+            } catch (InvalidNumberOfResultException e) {
+                System.out.println(e.getMessage());
+            } catch (InvalidNameOfReulstException e) {
                 System.out.println(e.getMessage());
             }
         }
