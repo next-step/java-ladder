@@ -1,7 +1,7 @@
 package ladder.domain;
 
-import ladder.exception.InvalidNameOfParticipant;
-import ladder.exception.InvalidNumberOfParticipants;
+import ladder.exception.InvalidNameOfParticipantException;
+import ladder.exception.InvalidNumberOfParticipantsException;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -21,7 +21,7 @@ public class Participants {
 
     void validateNumberOfParticipants(String[] names) {
         if (names.length == 0 || names.length == 1) {
-            throw new InvalidNumberOfParticipants();
+            throw new InvalidNumberOfParticipantsException();
         }
     }
 
@@ -33,7 +33,7 @@ public class Participants {
 
     private void validateNameOfParticipants(String name) {
         if (name.length() == 0 || name.length() > 5) {
-            throw new InvalidNameOfParticipant(name);
+            throw new InvalidNameOfParticipantException(name);
         }
     }
 

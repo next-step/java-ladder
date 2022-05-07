@@ -18,9 +18,9 @@ public class Controller {
                 String namesOfParticipants = InputView.inputNames();
                 participants = new Participants(namesOfParticipants);
                 break;
-            } catch (InvalidNumberOfParticipants e) {
+            } catch (InvalidNumberOfParticipantsException e) {
                 System.out.println(e.getMessage());
-            } catch (InvalidNameOfParticipant e) {
+            } catch (InvalidNameOfParticipantException e) {
                 System.out.println(e.getMessage());
             }
         }
