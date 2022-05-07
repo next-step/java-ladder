@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
-import nextstep.fp.Car;
 
 public class Players {
 
@@ -28,6 +27,10 @@ public class Players {
     if (playerNameSet.size() != values.size()) {
       throw new IllegalArgumentException("플레이어 이름은 중복될 수 없습니다.");
     }
+  }
+
+  public int size() {
+    return players.size();
   }
 
   @Override
