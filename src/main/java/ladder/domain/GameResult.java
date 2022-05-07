@@ -5,14 +5,13 @@ import ladder.exception.InvalidNumberOfResultException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class GameResult {
     private static final String SEPARATOR_OF_NAMES = ",";
 
     private final String[] input;
-    private final List<String> result;
+    private final List<Integer> result;
 
     public GameResult(String inputs, Participants participants) {
         String[] input = inputs.split(SEPARATOR_OF_NAMES);
@@ -41,7 +40,7 @@ public class GameResult {
     }
 
     void save(int indexOfParticipants, int result) {
-        this.result.add(indexOfParticipants, String.valueOf(result));
+        this.result.add(indexOfParticipants, result);
     }
 
     int getNumberOfResults() {
@@ -52,11 +51,7 @@ public class GameResult {
         return Arrays.asList(input);
     }
 
-    public List<String> getResultOfGame() {
-        return Collections.unmodifiableList(result);
-    }
-
     public String getResultOfGame(int index) {
-        return input[Integer.parseInt(result.get(index))];
+        return input[result.get(index)];
     }
 }
