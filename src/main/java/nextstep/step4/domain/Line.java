@@ -15,8 +15,7 @@ public class Line {
     }
 
     public static Line from(int countOfPlayer) {
-        LineFactory lineFactory = new LineFactory();
-        return new Line(lineFactory.create(countOfPlayer));
+        return new Line(LineFactory.create(countOfPlayer));
     }
 
     public static Line from(List<Point> points) {

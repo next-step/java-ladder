@@ -8,19 +8,26 @@ import java.util.List;
 import static java.util.Collections.*;
 import static nextstep.step4.util.LadderPointGenerator.*;
 
-public class LineFactory extends Factory {
+public class LineFactory {
 
-    private final List<Point> points = new ArrayList<>();
+    private LineFactory() { }
 
-    @Override
-    protected Point drawFirstPoint() {
+    public static List<Point> create(int countOfPlayer) {
+        List<Point> points = new ArrayList<>();
+        Point currentPoint = drawFirstPoint(points);
+        currentPoint = drawMiddlePoints(points, countOfPlayer, currentPoint);
+        drawLastPoint(points, currentPoint);
+
+        return unmodifiableList(points);
+    }
+
+    private static Point drawFirstPoint(List<Point> points) {
         Point firstPoint = Point.first(generateDirection());
         points.add(firstPoint);
         return firstPoint;
     }
 
-    @Override
-    protected Point drawMiddlePoints(int countOfPlayer, Point currentPoint) {
+    private static Point drawMiddlePoints(List<Point> points, int countOfPlayer, Point currentPoint) {
         for (int i = 1; i < countOfPlayer - 1; i++) {
             currentPoint = currentPoint.next();
             points.add(currentPoint);
@@ -28,11 +35,9 @@ public class LineFactory extends Factory {
         return currentPoint;
     }
 
-    @Override
-    protected List<Point> drawLastPoint(Point currentPoint) {
+    private static void drawLastPoint(List<Point> points, Point currentPoint) {
         Point lastPoint = currentPoint.last();
         points.add(lastPoint);
-        return unmodifiableList(points);
     }
 }
 
