@@ -17,7 +17,7 @@ public class Lambda {
         new Thread(() -> System.out.println("Hello from thread")).start();
     }
 
-    public static int sumByCondition(List<Integer> numbers) {
+    public static int sumAll(List<Integer> numbers) {
         return sumByCondition(numbers, (Integer number) -> true);
     }
 
