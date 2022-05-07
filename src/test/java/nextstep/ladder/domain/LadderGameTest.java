@@ -13,8 +13,8 @@ class LadderGameTest {
 
     private static final Participants THREE_PARTICIPANTS =
             Participants.createParticipants(List.of("a", "b", "c"));
-    private static final Ladder TWO_WIDTH_LADDER = Ladder.createLadder(2, 2);
-    private static final Ladder THREE_WIDTH_LADDER = Ladder.createLadder(3, 2);
+    private static final Ladder TWO_WIDTH_LADDER = Ladder.createRandomLadder(2, 2);
+    private static final Ladder THREE_WIDTH_LADDER = Ladder.createRandomLadder(3, 2);
     private static final Prizes TWO_PRIZES = Prizes.createPrizes(List.of("1", "2"));
 
 
@@ -43,7 +43,7 @@ class LadderGameTest {
         lines.add(new Line(List.of(true, false, false, false)));
         lines.add(new Line(List.of(false, true, false, false)));
         lines.add(new Line(List.of(true, false, true, false)));
-        Ladder ladder = Ladder.createLadder(lines, participants.size());
+        Ladder ladder = new Ladder(lines, participants.size());
         LadderGame ladderGame = new LadderGame(participants, ladder);
 
         LadderGameResult result = ladderGame.play(Prizes.createPrizes(List.of("꽝", "5000", "꽝", "3000")));
