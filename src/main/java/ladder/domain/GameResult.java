@@ -5,6 +5,7 @@ import ladder.exception.InvalidNumberOfResultException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class GameResult {
@@ -49,5 +50,13 @@ public class GameResult {
 
     public List<String> getInputOfResults() {
         return Arrays.asList(input);
+    }
+
+    public List<String> getResultOfGame() {
+        return Collections.unmodifiableList(result);
+    }
+
+    public String getResultOfGame(int index) {
+        return input[Integer.parseInt(result.get(index))];
     }
 }

@@ -59,5 +59,15 @@ public class Controller {
         ResultView.printNames(participants.getNamesOfParticipants());
         ResultView.printLadder(game.getLadder());
         ResultView.printResult(result.getInputOfResults());
+
+        // Query Results
+        while (true) {
+            try {
+                String participantWhoNeedToResult = InputView.inputParticipantWhoWantToSeeResult();
+                ResultView.printResultOfGame(participants.contains(participantWhoNeedToResult), participants, result);
+            } catch (NotFoundParticipantException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

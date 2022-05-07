@@ -1,6 +1,8 @@
 package ladder.view;
 
+import ladder.domain.GameResult;
 import ladder.domain.Line;
+import ladder.domain.Participants;
 
 import java.util.Arrays;
 import java.util.List;
@@ -48,5 +50,21 @@ public class ResultView {
         results.stream()
                 .forEach(result -> printName(result));
         System.out.println();
+    }
+
+    public static void printResultOfGame(int index, Participants participants, GameResult gameResult) {
+        if (index != -1) {
+            System.out.println(gameResult.getResultOfGame(index));
+            return;
+        }
+        printAllResultOfGame(participants, gameResult);
+    }
+
+    private static void printAllResultOfGame(Participants participants, GameResult gameResult) {
+        System.out.println("실행 결과");
+        for (int i = 0; i < participants.getNumberOfParticipants(); i++) {
+            System.out.print(participants.getParticipant(i) + " : ");
+            System.out.println(gameResult.getResultOfGame(i));
+        }
     }
 }

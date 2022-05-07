@@ -2,10 +2,12 @@ package ladder.domain;
 
 import ladder.exception.InvalidNameOfParticipantException;
 import ladder.exception.InvalidNumberOfParticipantsException;
+import ladder.exception.NotFoundParticipantException;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Participants {
     private static final String SEPARATOR_OF_NAMES = ",";
@@ -43,5 +45,20 @@ public class Participants {
 
     public List<String> getNamesOfParticipants() {
         return Collections.unmodifiableList(Arrays.asList(names));
+    }
+
+    public int contains(String name) {
+        if ("all".equals(name)) {
+            return -1;
+        }
+
+        return IntStream.range(0, names.length)
+                .filter(i -> name.equals(names[i]))
+                .findFirst()
+                .orElseThrow(NotFoundParticipantException::new);
+    }
+
+    public String getParticipant(int index) {
+        return names[index];
     }
 }
