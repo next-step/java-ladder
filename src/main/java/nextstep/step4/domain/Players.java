@@ -31,7 +31,4 @@ public class Players {
         return players.get(column);
     }
 
-    public int findColumnByPlayerName(String playerName) {
-        return players.indexOf(PlayerName.from(playerName));
-    }
 }
