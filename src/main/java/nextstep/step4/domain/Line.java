@@ -1,8 +1,7 @@
 package nextstep.step4.domain;
 
-import nextstep.step4.util.LadderPointGenerator;
+import nextstep.step4.factory.LineFactory;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.Collections.*;
@@ -16,40 +15,16 @@ public class Line {
     }
 
     public static Line from(int countOfPlayer) {
-        List<Point> points = new ArrayList<>();
-
-        Point currentPoint = drawFirstPoint(points);
-        currentPoint = drawMiddlePoints(countOfPlayer, points, currentPoint);
-        drawLastPoint(points, currentPoint);
-
-        return new Line(points);
-    }
-
-    public int move(int column) {
-        return points.get(column).move();
+        LineFactory lineFactory = new LineFactory();
+        return new Line(lineFactory.create(countOfPlayer));
     }
 
     public static Line from(List<Point> points) {
         return new Line(points);
     }
 
-    private static Point drawFirstPoint(List<Point> points) {
-        Point firstPoint = Point.first(LadderPointGenerator.generateDirection());
-        points.add(firstPoint);
-        return firstPoint;
-    }
-
-    private static Point drawMiddlePoints(int countOfPlayer, List<Point> points, Point currentPoint) {
-        for (int i = 1; i < countOfPlayer - 1; i++) {
-            currentPoint = currentPoint.next();
-            points.add(currentPoint);
-        }
-        return currentPoint;
-    }
-
-    private static void drawLastPoint(List<Point> points, Point currentPoint) {
-        Point lastPoint = currentPoint.last();
-        points.add(lastPoint);
+    public int move(int column) {
+        return points.get(column).move();
     }
 
     public List<Point> getPoints() {
