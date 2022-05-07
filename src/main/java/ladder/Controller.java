@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.domain.LadderGame;
+import ladder.domain.Participants;
 import ladder.exception.InvalidHeightOfLadderException;
 import ladder.exception.InvalidNameOfParticipant;
 import ladder.exception.InvalidNumberOfParticipants;
@@ -8,17 +9,15 @@ import ladder.view.InputView;
 import ladder.view.ResultView;
 
 public class Controller {
-    private static final String SEPARATOR_OF_NAMES = ",";
     private static final String ERROR_MESSAGE_OF_HEIGHT_OF_LADDER = "ERROR] 사다리 높이는 숫자를 입력해야 합니다.";
 
     public static void main(String[] args) {
         // Input
-        String[] namesOfParticipants;
+        Participants participants;
         while (true) {
             try {
-                namesOfParticipants = InputView.inputNames().split(SEPARATOR_OF_NAMES);
-                InputView.validateNumberOfParticipants(namesOfParticipants);
-                InputView.validateNameOfParticipants(namesOfParticipants);
+                String namesOfParticipants = InputView.inputNames();
+                participants = new Participants(namesOfParticipants);
                 break;
             } catch (InvalidNumberOfParticipants e) {
                 System.out.println(e.getMessage());
@@ -41,10 +40,10 @@ public class Controller {
         }
 
         // Logic
-        LadderGame game = new LadderGame(namesOfParticipants.length, heightOfLadder);
+        LadderGame game = new LadderGame(participants.getNumberOfParticipants(), heightOfLadder);
 
         // Output
-        ResultView.printNames(namesOfParticipants);
+        ResultView.printNames(participants.getNamesOfParticipants());
         ResultView.printLadder(game.getLadder());
     }
 }

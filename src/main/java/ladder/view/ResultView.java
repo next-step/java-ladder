@@ -11,8 +11,8 @@ public class ResultView {
     private ResultView() {
     }
 
-    public static void printNames(String[] names) {
-        Arrays.stream(names)
+    public static void printNames(List<String> names) {
+        names.stream()
                 .forEach(name -> printName(name));
         System.out.println();
     }
