@@ -15,11 +15,11 @@ public class Line {
     public Line(int countOfPerson) {
         line.add(0, createTrueOrFalse());
         for (int i = 1; i < countOfPerson - CONSTANT_TO_CONVERT_COUNT_OF_PERSON_TO_COUNT_OF_LINE; i++) {
-            addBooleanComparedToPreviousBoolean(line.get(i - 1));
+            addValueComparedToPreviousValue(line.get(i - 1));
         }
     }
 
-    Boolean addBooleanComparedToPreviousBoolean(Boolean previousValue) {
+    Boolean addValueComparedToPreviousValue(Boolean previousValue) {
         if (previousValue == false) {
             Boolean currentValue = createTrueOrFalse();
             line.add(currentValue);
