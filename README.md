@@ -155,3 +155,12 @@
 8. ResultView 에서 forEach 를 사용해서 가독성을 높이자
 9. 검증 항목이 여러 개일 경우 assertAll 을 사용해보자
 10. isEqualTo(0) -> isZero()
+
+#### step 4.2 사다리(리팩토링) 2차 피드백
+1. Factory 클래스를 도입해봤다.
+   1. Factory 추상 클래스를 만든 후에 LineFactory 가 Factory 클래스를 상속하여 구현하는 방식을 했지만
+   2. 이 경우 좀 deep 한 부분이 있는 거 같아서 질문을 드렸고 
+   3. 별도의 추상화 없이 LineFactory 가 Line 에 대한 생성 역할만을 맡도록 피드백 주셨습니다.
+2. LadderGame 의 경우 인스턴스 변수가 좀 많아서 걱정이었다.
+   1. 그래서 LadderGame 의 경우도 Factory 클래스를 이용하여 분리해보는 것으로 피드백 주셨습니다.
+   2. 해당 부분 피드백과 관련 코드를 주셨는데 찜찜했던 내용이 해결된 기분~!
