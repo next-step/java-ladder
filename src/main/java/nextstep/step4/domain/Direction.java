@@ -2,10 +2,11 @@ package nextstep.step4.domain;
 
 import java.util.Objects;
 
-import static java.lang.Boolean.FALSE;
 import static nextstep.step4.util.LadderPointGenerator.*;
 
 public class Direction {
+
+    private static final boolean CANT_MOVE = false;
 
     private final boolean left;
     private final boolean right;
@@ -31,11 +32,11 @@ public class Direction {
     }
 
     public static Direction first(boolean right) {
-        return of(FALSE, right);
+        return of(CANT_MOVE, right);
     }
 
     public Direction last() {
-        return of(this.right, FALSE);
+        return of(this.right, CANT_MOVE);
     }
 
     public Direction next(boolean nextRight) {
@@ -44,10 +45,10 @@ public class Direction {
 
     public Direction next() {
         if (this.right) {
-            return next(FALSE);
+            return next(CANT_MOVE);
         }
 
-        return of(FALSE, generateDirection());
+        return of(CANT_MOVE, generateDirection());
     }
 
     @Override
