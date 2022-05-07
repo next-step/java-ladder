@@ -27,7 +27,7 @@ public class ResultView {
                     playersBuilder.append(playerName.getPlayerName()).append(BLANK);
                 });
         System.out.println(playersBuilder);
-   }
+    }
 
     private void printLadder(Ladder ladder) {
         ladder.getLadder()
@@ -57,15 +57,17 @@ public class ResultView {
         System.out.println(ladderResultBuilder);
     }
 
-    public void printLadderGameResult(Map<PlayerName, String> result) {
+    public void printLadderGameResult(Map<PlayerName, String> ladderGameResult) {
         StringBuilder resultBuilder = new StringBuilder();
-        for (Map.Entry<PlayerName, String> resultMap : result.entrySet()) {
-            resultBuilder
-                    .append(resultMap.getKey().getPlayerName())
-                    .append(COLON)
-                    .append(resultMap.getValue())
-                    .append(NEWLINE);
-        }
+
+        ladderGameResult.forEach((playerName, result) ->
+                resultBuilder
+                        .append(playerName.getPlayerName())
+                        .append(COLON)
+                        .append(result)
+                        .append(NEWLINE)
+        );
+
         System.out.println(resultBuilder);
     }
 }
