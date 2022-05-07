@@ -13,13 +13,13 @@ public class LadderApplication {
         InputView inputView = new InputView();
         ResultView resultView = new ResultView();
 
-        List<String> playersNameList = inputView.inputPlayersName();
-        List<String> ladderResultList = inputView.inputLadderResults();
+        List<String> playersNames = inputView.inputPlayersNames();
+        List<String> ladderResults = inputView.inputLadderResults();
         int maxHeight = inputView.inputLadderHeight();
 
-        Players players = Players.from(playersNameList);
+        Players players = Players.from(playersNames);
         Ladder ladder = Ladder.of(players.getCountOfPlayer(), maxHeight);
-        LadderResult ladderResult = LadderResult.from(ladderResultList);
+        LadderResult ladderResult = LadderResult.from(ladderResults);
 
         resultView.printLadderStatus(players, ladder, ladderResult);
 

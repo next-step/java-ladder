@@ -19,7 +19,6 @@ public class LadderGame {
         return new LadderGame(players, ladder, ladderResult);
     }
 
-
     public Map<PlayerName, String> findResultsByPlayerName(String playerName) {
         if (isAll(playerName)) {
             return findAllResult();
