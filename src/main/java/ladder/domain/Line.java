@@ -33,6 +33,24 @@ public class Line {
         return trueCondition.isTrue();
     }
 
+    int move(int indexOfParticipants) {
+        if (indexOfParticipants == 0) {
+            return moveRight(indexOfParticipants);
+        }
+        if (indexOfParticipants == line.size()) {
+            return moveLeft(indexOfParticipants);
+        }
+        return moveRight(indexOfParticipants) == 1 ? 1 : moveLeft(indexOfParticipants);
+    }
+
+    private int moveLeft(int indexOfParticipants) {
+        return line.get(indexOfParticipants - 1) == true ? -1 : 0;
+    }
+
+    private int moveRight(int indexOfParticipants) {
+        return line.get(indexOfParticipants) == true ? 1 : 0;
+    }
+
     public List<Boolean> getLine() {
         return Collections.unmodifiableList(line);
     }

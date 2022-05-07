@@ -37,4 +37,12 @@ public class GameResult {
             throw new InvalidNameOfReulstException(input);
         }
     }
+
+    void save(int indexOfParticipants, int result) {
+        this.result.add(indexOfParticipants, String.valueOf(result));
+    }
+
+    int getNumberOfResults() {
+        return input.length;
+    }
 }
