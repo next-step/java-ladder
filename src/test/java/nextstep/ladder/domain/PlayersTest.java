@@ -26,4 +26,10 @@ class PlayersTest {
 
     assertThat(players).isEqualTo(expected);
   }
+
+  @Test
+  void getNames() {
+    Players players = Players.of(List.of("pobi", "honux", "crong", "jk"));
+    assertThat(players.getNames()).isEqualTo(List.of("pobi", "honux", "crong", "jk"));
+  }
 }

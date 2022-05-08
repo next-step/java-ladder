@@ -33,6 +33,10 @@ public class Players {
     return players.size();
   }
 
+  public List<String> getNames() {
+    return players.stream().map(Player::getName).collect(Collectors.toList());
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
