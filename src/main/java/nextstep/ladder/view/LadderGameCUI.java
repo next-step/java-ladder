@@ -88,7 +88,7 @@ public class LadderGameCUI {
         } out.println();
 
         Lines lines = ladder.getLines();
-        for (Parts partPlate : lines.getPartsPlate()) {
+        for (Parts partPlate : lines.getPartsLine()) {
             drawParts(partPlate.getParts());
         }
     }
