@@ -1,27 +1,27 @@
 package ladder.domain;
 
+import ladder.domain.strategy.RandomTrueCondition;
+import ladder.domain.strategy.TrueCondition;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 public class Line {
-    private static final Random RANDOM = new Random();
-    private static final int RANDOM_NUMBER_UPPER_BOUND = 2;
     private static final int CONSTANT_TO_CONVERT_COUNT_OF_PERSON_TO_COUNT_OF_LINE = 1;
 
     private final List<Boolean> line = new ArrayList<>();
 
     public Line(int countOfPerson) {
-        line.add(0, createTrueOrFalse());
+        line.add(0, createTrueOrFalse(new RandomTrueCondition()));
         for (int i = 1; i < countOfPerson - CONSTANT_TO_CONVERT_COUNT_OF_PERSON_TO_COUNT_OF_LINE; i++) {
-            addBooleanComparedToPreviousBoolean(line.get(i - 1));
+            addValueComparedToPreviousValue(line.get(i - 1));
         }
     }
 
-    Boolean addBooleanComparedToPreviousBoolean(Boolean previousValue) {
+    Boolean addValueComparedToPreviousValue(Boolean previousValue) {
         if (previousValue == false) {
-            Boolean currentValue = createTrueOrFalse();
+            Boolean currentValue = createTrueOrFalse(new RandomTrueCondition());
             line.add(currentValue);
             return currentValue;
         }
@@ -29,8 +29,32 @@ public class Line {
         return false;
     }
 
-    static boolean createTrueOrFalse() {
-        return RANDOM.nextInt(RANDOM_NUMBER_UPPER_BOUND) == 1;
+    static boolean createTrueOrFalse(TrueCondition trueCondition) {
+        return trueCondition.isTrue();
+    }
+
+    public Line(List<Boolean> line) {
+        for (int i = 0; i < line.size(); i++) {
+            this.line.add(i, line.get(i));
+        }
+    }
+
+    int move(int indexOfParticipants) {
+        if (indexOfParticipants == 0) {
+            return moveRight(indexOfParticipants);
+        }
+        if (indexOfParticipants == line.size()) {
+            return moveLeft(indexOfParticipants);
+        }
+        return moveRight(indexOfParticipants) == 1 ? 1 : moveLeft(indexOfParticipants);
+    }
+
+    private int moveLeft(int indexOfParticipants) {
+        return line.get(indexOfParticipants - 1) == true ? -1 : 0;
+    }
+
+    private int moveRight(int indexOfParticipants) {
+        return line.get(indexOfParticipants) == true ? 1 : 0;
     }
 
     public List<Boolean> getLine() {

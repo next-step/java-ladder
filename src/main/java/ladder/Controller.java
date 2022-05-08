@@ -1,31 +1,26 @@
 package ladder;
 
+import ladder.domain.GameResult;
 import ladder.domain.LadderGame;
-import ladder.exception.InvalidHeightOfLadderException;
-import ladder.exception.InvalidNameOfParticipant;
-import ladder.exception.InvalidNumberOfParticipants;
+import ladder.domain.Participants;
+import ladder.exception.*;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
-import java.util.Scanner;
-
 public class Controller {
-    private static final Scanner SCANNER = new Scanner(System.in);
-    private static final String SEPARATOR_OF_NAMES = ",";
     private static final String ERROR_MESSAGE_OF_HEIGHT_OF_LADDER = "ERROR] 사다리 높이는 숫자를 입력해야 합니다.";
 
     public static void main(String[] args) {
         // Input
-        String[] namesOfParticipants;
+        Participants participants;
         while (true) {
             try {
-                namesOfParticipants = InputView.inputNames().split(SEPARATOR_OF_NAMES);
-                InputView.validateNumberOfParticipants(namesOfParticipants);
-                InputView.validateNameOfParticipants(namesOfParticipants);
+                String namesOfParticipants = InputView.inputNames();
+                participants = new Participants(namesOfParticipants);
                 break;
-            } catch (InvalidNumberOfParticipants e) {
+            } catch (InvalidNumberOfParticipantsException e) {
                 System.out.println(e.getMessage());
-            } catch (InvalidNameOfParticipant e) {
+            } catch (InvalidNameOfParticipantException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -43,11 +38,36 @@ public class Controller {
             }
         }
 
+        GameResult result;
+        while (true) {
+            try {
+                String gameResult = InputView.inputResult();
+                result = new GameResult(gameResult, participants);
+                break;
+            } catch (InvalidNumberOfResultException e) {
+                System.out.println(e.getMessage());
+            } catch (InvalidNameOfReulstException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
         // Logic
-        LadderGame game = new LadderGame(namesOfParticipants.length, heightOfLadder);
+        LadderGame game = new LadderGame(participants, heightOfLadder);
+        game.start(result);
 
         // Output
-        ResultView.printNames(namesOfParticipants);
+        ResultView.printNames(participants.getNamesOfParticipants());
         ResultView.printLadder(game.getLadder());
+        ResultView.printResult(result.getInputOfResults());
+
+        // Query Results
+        while (true) {
+            try {
+                String participantWhoNeedToResult = InputView.inputParticipantWhoWantToSeeResult();
+                ResultView.printResultOfGame(participants.contains(participantWhoNeedToResult), participants, result);
+            } catch (NotFoundParticipantException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

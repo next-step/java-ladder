@@ -4,14 +4,18 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class LineTest {
     @Test
     public void 랜덤_불리언_생성_테스트() {
-        boolean trueOrFalse = Line.createTrueOrFalse();
-        assertTrue(trueOrFalse == true || trueOrFalse == false);
+        assertTrue(Line.createTrueOrFalse(() -> true));
+        assertFalse(Line.createTrueOrFalse(() -> false));
     }
 
     @ParameterizedTest
@@ -22,9 +26,21 @@ class LineTest {
 
     @Test
     public void 이전_불리언에_따른_불리언_생성_테스트() {
-        Line line = new Line(5);
-        assertTrue(line.addBooleanComparedToPreviousBoolean(true) == false);
-        Boolean currentValue= line.addBooleanComparedToPreviousBoolean(false);
+        Line line = new Line(3);
+        assertTrue(line.addValueComparedToPreviousValue(true) == false);
+        Boolean currentValue= line.addValueComparedToPreviousValue(false);
         assertTrue(currentValue == false || currentValue == true);
+    }
+
+    @Test
+    void 사다리_이동_테스트() {
+        List<Boolean> testCase = Arrays.asList(true, false, true, false);
+        Line line = new Line(testCase);
+
+        assertThat(line.move(0)).isEqualTo(1);
+        assertThat(line.move(1)).isEqualTo(-1);
+        assertThat(line.move(2)).isEqualTo(1);
+        assertThat(line.move(3)).isEqualTo(-1);
+        assertThat(line.move(4)).isEqualTo(0);
     }
 }
