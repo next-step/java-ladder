@@ -7,10 +7,10 @@ import java.util.Random;
 
 public class Line {
 
-    protected List<LinePart> parts;
-    protected Name name;
+    private List<LinePart> parts;
+    private Name name;
 
-    protected Line(String name, int height) {
+    private Line(String name, int height, int index) {
         this.parts = new ArrayList<>();
         for (int i = 0; i < height; ++i) {
             parts.add(new LinePart());
@@ -19,8 +19,8 @@ public class Line {
         this.name = new Name(name);
     }
 
-    public static Line of(String name, int height) {
-        return new Line(name, height);
+    public static Line of(String name, int height, int index) {
+        return new Line(name, height, index);
     }
 
     public int connectOne() {
@@ -57,8 +57,15 @@ public class Line {
         return parts.size();
     }
 
+    public LinePart getLinePart(int linePartIndex) {
+        return parts.get(linePartIndex);
+    }
     public List<LinePart> getParts() {
         return parts;
+    }
+
+    public int partsSize() {
+        return parts.size();
     }
 
     public int getHeight() {
@@ -70,6 +77,9 @@ public class Line {
     }
 
     public void connect(int connectedIndex) {
+        if (parts.size() <= connectedIndex)
+            throw new IllegalStateException("연결 불가한 LinePart 의 인덱스 값");
+
         parts.get(connectedIndex).connect();
     }
 
@@ -77,4 +87,13 @@ public class Line {
         return parts.stream()
             .anyMatch(LinePart::isConnected);
     }
+
+    public void connectFirst() {
+        connect(0);
+    }
+
+    public void connectSecond() {
+        connect(1);
+    }
+
 }

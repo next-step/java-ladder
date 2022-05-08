@@ -11,8 +11,8 @@ class LadderGameCUITest {
     @Test
     void drawVisualizeTest() {
         Ladder ladder = Ladder.of(
-            List.of("pobi", "start", "end", "12345", "1234"),
-            6
+            List.of("pobi", "start", "end", "1234", "12345", "12"),
+            10
         );
 
         cui.draw(ladder);

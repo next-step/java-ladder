@@ -11,8 +11,9 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.LinePart;
+import nextstep.ladder.domain.Lines;
+import nextstep.ladder.domain.Part;
+import nextstep.ladder.domain.Parts;
 import org.apache.commons.lang3.StringUtils;
 
 public class LadderGameCUI {
@@ -79,24 +80,37 @@ public class LadderGameCUI {
     public void draw(Ladder ladder) {
         out.println("\n 사다리 결과");
 
-        List<Line> lines = ladder.getLines();
+        List<String> names = ladder.getLineNames();
 
         out.print(" ");
-        for (Line line : lines) {
-            out.print(fixedLengthString(line.getName(), 6));
+        for (String name : names) {
+            out.print(fixedLengthString(name, 6));
         } out.println();
 
-        for (int j = 0; j < ladder.lineHeight(); ++j) {
-            out.print("     ");
-            for (int i = lines.size()-1; i >= 1; --i) {
-                out.print("|");
-                if (lines.get(i-1).getParts().get(j).isConnected()) {
-                    out.print("-----");
-                    continue;
-                }
-                out.print("     ");
-            }
-            out.println("|");
+        Lines lines = ladder.getLines();
+        for (Parts partPlate : lines.getPartsPlate()) {
+            drawParts(partPlate.getParts());
         }
+    }
+
+    private void drawParts(List<Part> parts) {
+        out.print("     ");
+        for (Part part : parts) {
+            drawLine(part);
+        }
+        out.println();
+    }
+
+    private void drawLine(Part part) {
+        if (part.isHorizontalLine()) {
+            if (part.isConnected()) {
+                out.print("-----");
+                return;
+            }
+            out.print("     ");
+            return;
+        }
+
+        out.print("|");
     }
 }

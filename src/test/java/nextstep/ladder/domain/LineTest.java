@@ -11,7 +11,7 @@ class LineTest {
         String name = "pobi";
         int height = 5;
 
-        Line line = Line.of(name, height);
+        Line line = Line.of(name, height, 0);
 
         assertThat(line).isNotNull();
         assertThat(line.getName()).isEqualTo(name);
@@ -24,9 +24,9 @@ class LineTest {
         String name = "pobi";
         int height = 5;
 
-        Line line = Line.of(name, height);
+        Line line = Line.of(name, height, 0);
 
-        LinePart linePart = line.parts.stream()
+        LinePart linePart = line.getParts().stream()
             .filter(LinePart::isConnected)
             .findAny()
             .orElse(null);
@@ -39,10 +39,10 @@ class LineTest {
         String name = "pobi";
         int height = 5;
 
-        Line line = new Line(name, height);
+        Line line = Line.of(name, height, 0);
         line.connectOne();
 
-        LinePart linePart = line.parts.stream()
+        LinePart linePart = line.getParts().stream()
             .filter(LinePart::isConnected)
             .findAny()
             .get();
