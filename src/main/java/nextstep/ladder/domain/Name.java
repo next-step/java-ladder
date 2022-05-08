@@ -35,11 +35,20 @@ public class Name {
     }
 
     @Override
+    public String toString() {
+        return "name='" + name + '\'' + '}';
+    }
+
+    @Override
     public int hashCode() {
         return Objects.hash(name);
     }
 
     public boolean is(String name) {
         return this.name.equals(name);
+    }
+
+    public String get() {
+        return name;
     }
 }

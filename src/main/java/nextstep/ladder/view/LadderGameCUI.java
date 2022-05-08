@@ -1,6 +1,8 @@
 package nextstep.ladder.view;
 
 import static java.lang.System.out;
+import static nextstep.ladder.domain.Height.MAXIMUM_LADDER_HEIGHT;
+import static nextstep.ladder.domain.Height.MINIMUM_LADDER_HEIGHT;
 import static nextstep.ladder.domain.Name.MAXIMUM_NAME_LENGTH;
 import static nextstep.ladder.domain.Name.MINIMUM_NAME_LENGTH;
 
@@ -9,12 +11,12 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.LinePart;
 import org.apache.commons.lang3.StringUtils;
 
 public class LadderGameCUI {
 
-    private static final int MINIMUM_LADDER_HEIGHT = 2;
-    private static final int MAXIMUM_LADDER_HEIGHT = 100;
     private static final int MAXIMUM_TRY_COUNT = 3;
 
     private Scanner scanner = new Scanner(System.in);
@@ -70,8 +72,31 @@ public class LadderGameCUI {
             || maxLadderHeight > MAXIMUM_LADDER_HEIGHT;
     }
 
+    private static String fixedLengthString(String string, int length) {
+        return String.format("%1$"+length+ "s", string);
+    }
+
     public void draw(Ladder ladder) {
         out.println("\n 사다리 결과");
 
+        List<Line> lines = ladder.getLines();
+
+        out.print(" ");
+        for (Line line : lines) {
+            out.print(fixedLengthString(line.getName(), 6));
+        } out.println();
+
+        for (int j = 0; j < ladder.lineHeight(); ++j) {
+            out.print("     ");
+            for (int i = lines.size()-1; i >= 1; --i) {
+                out.print("|");
+                if (lines.get(i-1).getParts().get(j).isConnected()) {
+                    out.print("-----");
+                    continue;
+                }
+                out.print("     ");
+            }
+            out.println("|");
+        }
     }
 }

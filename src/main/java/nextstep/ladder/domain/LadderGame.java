@@ -13,8 +13,7 @@ public class LadderGame {
     }
 
     public Ladder createLadder() {
-
-        return null;
+        return Ladder.of(names, ladderHeight);
     }
 
 }
