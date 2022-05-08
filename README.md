@@ -109,3 +109,58 @@
 11. Players 에서도 생성을 할 때 String[] 을 사용하고 있는데 stream 을 이용하면 생성과 동시에 List 형태로 초기화 가능!
 12. StringBuilder 사용시 무슨 용도의 Builder 인지 변수 네이밍을 바꿔주자
 13. ResultView 의 결과 출력 부분에서 System.out 을 builder 형태로 사용해보자!
+
+### step 4. 사다리(리팩토링)
+1. 기능은 요구사항 3단계까지 같다.
+2. 객체 설계 힌트 참고 하여 철저하게 TDD 로 재구현해 본다.
+3. 기존 작성한 코드는 유지하고 새로운 패키지에 작성할 예정
+4. Direction 클래스 현재 Point 에서 좌,우로 갈 수 있는지 상태를 가지는 클래스
+   1. 좌, 우가 true, true 일 수는 없다.
+   2. 처음의 경우 왼쪽 false 고정, 오른쪽은 random 생성
+   3. 중간의 경우 왼쪽은 이전 right 의 값으로 설정, 오른쪽은 random 생성
+   4. 마지막의 경우 왼쪽은 이전 right 의 값으로 설정, 오른쪽은 false 고정
+   5. 다음 Point 의 Direction 을 생성하는 방법
+      1. 현재 위치에서 .next(true) 를 통해 다음 위치의 우측 방향을 true 로 설정
+      2. 현재 위치에서 .next(false) 를 통해 다음 위치의 우측 방향을 false 로 설정
+      3. 여기서 공통적으로 현재 위치의 right 가 true 일 경우 매개변수의 값과 상관없이 false 로 설정, or Exception
+      4. 현재 위치에서 매개변수가 없는 .next() 를 호출했을 경우 Random 하게 true, false 를 설정하는 util 클래스 사용
+5. Point 클래스 사용 현재의 위치, 방향을 인스턴스 변수로 가짐
+   1. Point 에서는 현재 가지고 있는 Direction 의 left, right 값을 통해 좌, 우를 판별함
+6. Line 클래스 사용 private final List<Point> points
+   1. Line 에서는 현재 위치를 받아서, 해당 위치의 Point 의 left, right 를 확인하고 이동 가능 여부를 알려줌
+7. Ladders 클래스 사용 private final List<Line> ladders
+   1. Ladders 에서는 현재 위치를 받아서, Line 에서 알려주는 left, right 의 이동 여부를 판별하고 다음 지점으로 이동함
+      1. 왼쪽 아래, 오른쪽 아래, 그냥 아래
+   2. Ladders 에서 출발 위치에 따른 도착 위치 값을 도출해야 한다.
+8. LaddersResults 클래스 사용
+   1. Ladders 에서 구한 도착 위치 값을 토대로 사다리 타기의 결과 값을 구함.
+
+#### step 4.1 사다리(리팩토링) 1차 피드백
+1. 변수, 메서드의 네이밍에 자료형이 들어가는 것을 지양하자!
+   1. List -> Set 과 같이 다른 자료형으로 바뀌었을 경우 다 바꾸거나, 바꾸지 않으면 혼선 초래
+   2. boolean naming 의 경우 긍정적인 불린 변수 이름을 사용
+   3. 접두어 `is`의 경우 없을 때 이해가 쉬운 경우가 있다!
+2. boolean 을 Boolean 으로 박생해서 사용하는 이유!
+   1. java 에서 오토박싱, 오토언박싱을 제공하지만 성능의 차이는 존재!
+3. Direction 의 next 메서드안에서 generateDirection() 메서드를 호출하는 것이 아니라 외부에서 주입받도록!
+4. (참고) 나만의 메서드 순서 규칙을 만들어보자
+   1. 리뷰어님은 생성자 -> 정적(static) 메서드 -> 기본 메서드 -> 오버라이딩 메서드
+5. 미리 사용자에 대한 결과를 Map 형태로 만들어 놓고 출력 시에 이름(key)을 통해서 결과(value)만 가지고 오도록
+6. (참고) 현재 Line 클래스가 생성에 대한 부분도 같이 담당하고 있다!
+   1. 생성만 담당하는 클래스를 분리해 보는 것도 좋을 거 같다.
+   2. 별도 분리되면 draw 관련 메서드 들이 사라져서 Line 클래스도 좀 더 간단해짐~!
+   3. 리뷰어님은 객체를 생성할 때 별도 Factory 클래스를 사용하는 것을 선호하심
+7. 현재 LadderPointGenerator 는 유틸성 클래스다!
+   1. 외부에서 직접 인스턴스를 생성하지 못하도록 제어할 수 있는 방법 ~!
+8. ResultView 에서 forEach 를 사용해서 가독성을 높이자
+9. 검증 항목이 여러 개일 경우 assertAll 을 사용해보자
+10. isEqualTo(0) -> isZero()
+
+#### step 4.2 사다리(리팩토링) 2차 피드백
+1. Factory 클래스를 도입해봤다.
+   1. Factory 추상 클래스를 만든 후에 LineFactory 가 Factory 클래스를 상속하여 구현하는 방식을 했지만
+   2. 이 경우 좀 deep 한 부분이 있는 거 같아서 질문을 드렸고 
+   3. 별도의 추상화 없이 LineFactory 가 Line 에 대한 생성 역할만을 맡도록 피드백 주셨습니다.
+2. LadderGame 의 경우 인스턴스 변수가 좀 많아서 걱정이었다.
+   1. 그래서 LadderGame 의 경우도 Factory 클래스를 이용하여 분리해보는 것으로 피드백 주셨습니다.
+   2. 해당 부분 피드백과 관련 코드를 주셨는데 찜찜했던 내용이 해결된 기분~!
