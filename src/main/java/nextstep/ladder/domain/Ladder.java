@@ -7,9 +7,21 @@ public class Ladder {
 
   private final List<Line> lines = new ArrayList<>();
 
-  public Ladder(Length width, Length height) {
+  Ladder(Length width, Length height) {
     for (int i = 0; i < height.getValue(); i++) {
       lines.add(new Line(width.getValue()));
     }
+  }
+
+  public static Ladder of(int width, int height) {
+    return new Ladder(new Length(width), new Length(height));
+  }
+
+  public int getWidth() {
+    return lines.get(0).size();
+  }
+
+  public int getHeight() {
+    return lines.size();
   }
 }

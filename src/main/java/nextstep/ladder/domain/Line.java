@@ -24,4 +24,8 @@ public class Line {
   private static boolean getRandomBoolean() {
     return Math.random() < 0.5;
   }
+
+  public int size() {
+    return points.size();
+  }
 }
