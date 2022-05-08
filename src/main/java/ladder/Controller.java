@@ -52,7 +52,7 @@ public class Controller {
         }
 
         // Logic
-        LadderGame game = new LadderGame(participants.getNumberOfParticipants(), heightOfLadder);
+        LadderGame game = new LadderGame(participants, heightOfLadder);
         game.start(result);
 
         // Output

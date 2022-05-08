@@ -7,7 +7,11 @@ import java.util.List;
 public class LadderGame {
     private final List<Line> ladder = new ArrayList<>();
 
-    public LadderGame(int countOfParticipants, int heightOfLadder) {
+    public LadderGame(Participants participants, int heightOfLadder) {
+        this(participants.getNumberOfParticipants(), heightOfLadder);
+    }
+
+    LadderGame(int countOfParticipants, int heightOfLadder) {
         while (heightOfLadder > 0) {
             ladder.add(new Line(countOfParticipants));
             heightOfLadder--;
