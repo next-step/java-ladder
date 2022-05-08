@@ -12,6 +12,8 @@ import static java.util.Collections.*;
 
 public class LadderGameResultsFactory {
 
+    private LadderGameResultsFactory() { }
+
     public static Map<PlayerName, String> create(Players players, Ladder ladder, LadderResult ladderResult) {
         Map<PlayerName, String> ladderGameResults = new HashMap<>();
         for (int playerColumn = 0; playerColumn < players.getCountOfPlayer(); playerColumn++) {
