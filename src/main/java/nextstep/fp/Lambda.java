@@ -27,17 +27,17 @@ public class Lambda {
                 .sum();
     }
 
-    public static int sumAllEven(List<Integer> numbers, SumCondition sumCondition) {
+    public static int sumAllEven(List<Integer> numbers) {
         return numbers.stream()
                 .mapToInt(Integer::intValue)
-                .filter(sumCondition::match)
+                .filter(number -> number % 2 == 0)
                 .sum();
     }
 
-    public static int sumAllOverThree(List<Integer> numbers, SumCondition sumCondition) {
+    public static int sumAllOverThree(List<Integer> numbers) {
         return numbers.stream()
                 .mapToInt(Integer::intValue)
-                .filter(sumCondition::match)
+                .filter(number -> number > 3)
                 .sum();
     }
 }
