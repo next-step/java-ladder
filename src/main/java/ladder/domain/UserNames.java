@@ -18,4 +18,8 @@ public class UserNames {
   public static UserNames of(String userNames) {
     return new UserNames(userNames);
   }
+
+  public int getUserSize() {
+    return this.value.size();
+  }
 }

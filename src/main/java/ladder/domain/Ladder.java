@@ -24,4 +24,8 @@ public class Ladder {
   public boolean isConnect(int height, int userIdx) {
     return lines.get(height).isConnect(userIdx);
   }
+
+  public int getLadderHeight() {
+    return lines.size();
+  }
 }
