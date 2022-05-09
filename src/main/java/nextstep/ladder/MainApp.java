@@ -1,16 +1,18 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.LadderGame;
-import nextstep.ladder.view.LadderGameCUI;
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.view.LadderGameInputCui;
+import nextstep.ladder.view.LadderGameOutputCui;
 
 public class MainApp {
 
     public static void main(String[] args) {
-        LadderGameCUI view = new LadderGameCUI();
+        LadderGameInputCui inputUi = new LadderGameInputCui();
+        LadderGameOutputCui outputUi = new LadderGameOutputCui();
 
-        LadderGame game = new LadderGame(view.inputParticipants(), view.inputMaxLadderHeight());
+        Ladder ladder = Ladder.of(inputUi.inputParticipants(), inputUi.inputMaxLadderHeight());
 
-        view.draw(game.createLadder());
+        outputUi.draw(ladder);
     }
 
 }

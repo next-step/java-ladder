@@ -1,69 +1,100 @@
 package nextstep.ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class Lines {
-    private final List<String> names;
-    private final PartsLines partsLines = new PartsLines();
+    private static final int AFTER_DEFAULT_LINE = 2;
 
-    public Lines(List<String> names, int height) {
-        this.names = names;
+    private final List<Parts> partsList = new ArrayList<>();
+
+    public Lines(int participantsCount, int height) {
+        final int verticalCount = participantsCount;
+        final int horizonCount = participantsCount - 1;
 
         for (int j = 0; j < height; ++j) {
-            partsLines.add(new Parts());
-            for (int i = 0; i < names.size() + names.size()-1; ++i) {
-                partsLines.get(j).add(i);
-            }
+            partsList.add(new Parts());
         }
+
+        partsList.forEach(parts -> {
+                for (int i = 0; i < verticalCount + horizonCount; ++i) {
+                    parts.add(i);
+                }
+            });
     }
 
     public void connectMinimum() {
-        partsLines.connectMinimum();
+        connectFirstLineEvenPart();
+        connectSecondLineOddPart();
+    }
+
+    private void connectFirstLineEvenPart() {
+        Parts parts = this.partsList.get(0);
+
+        int flag = 0;
+        for (int i = 1; i < parts.size(); i += 2) {
+            parts.connectEvenPart(flag++ % 2, i);
+        }
+    }
+
+    private void connectSecondLineOddPart() {
+        Parts parts = this.partsList.get(1);
+
+        int flag = 0;
+        for (int i = 1; i < parts.size(); i += 2) {
+            parts.connectOddPart(flag++ % 2, i);
+        }
     }
 
     public void connectLinesWithPolicy(ConnectPolicy connectPolicy) {
-        partsLines.connectAdditionalLinesWithPolicy(connectPolicy);
+        // 이미 기본연결된 부분 이후로 라인들 순회
+        for (int i = AFTER_DEFAULT_LINE; i < partsList.size(); ++i) {
+            connectParts(partsList.get(i), connectPolicy);
+        }
+    }
+
+    private void connectParts(Parts parts, ConnectPolicy connectPolicy) {
+        // 홀수의 Horz 파트만 확인함
+        for (int j = 1; j < parts.size(); j += 2) {
+            parts.connectPartWithPolicy(j, connectPolicy);
+        }
     }
 
     public int lineHeight() {
-        return partsLines.size();
+        return partsList.size();
     }
 
     public int lineCount() {
-        return partsLines.get(0).size();
-    }
-
-    public List<String> getLineNames() {
-        return names;
+        return partsList.stream()
+            .findAny()
+            .orElseThrow(() -> new IllegalStateException("연결을 확인 할 수 없음"))
+            .size();
     }
 
     public boolean isAllLineConnected() {
-        boolean lineResult = true;
+        int lineCount = lineCount();
 
-        for (int i = 1; i < names.size() + names.size()-1; i += 2) {
+        boolean isConnected;
+        for (int i = 1; i < lineCount; i += 2) {
             final int ii = i;
 
-            lineResult = partsLines.stream()
+            isConnected = partsList.stream()
                 .anyMatch(parts -> parts.isConnected(ii));
 
-            if (!lineResult)
+            if (!isConnected)
                 return false;
         }
 
-        return lineResult;
+        return true;
     }
 
     public List<Parts> getPartsLine() {
-        return partsLines.get();
+        return partsList;
     }
 
     @Override
     public String toString() {
-        return "{" + partsLines + "}\n";
+        return "{" + partsList + "}\n";
     }
 
-    public Stream<Parts> stream() {
-        return partsLines.stream();
-    }
 }

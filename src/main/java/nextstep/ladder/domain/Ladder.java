@@ -2,17 +2,18 @@ package nextstep.ladder.domain;
 
 import java.util.List;
 import java.util.Random;
-import org.apache.commons.lang3.ObjectUtils;
+import nextstep.ladder.utils.ObjectUtils;
 
 public class Ladder {
 
+    private final Names names;
     private final Lines lines;
     private ConnectPolicy connectPolicy = this::randomPolicy;
 
     private Ladder(List<String> names, int height) {
-        lines = new Lines(names, height);
+        this.names = new Names(names);
+        lines = new Lines(names.size(), height);
 
-        lines.connectMinimum();
         lines.connectLinesWithPolicy(connectPolicy);
     }
 
@@ -37,16 +38,11 @@ public class Ladder {
     }
 
     public List<String> getLineNames() {
-        return lines.getLineNames();
+        return names.get();
     }
-
 
     public boolean isAllLineConnected() {
         return lines.isAllLineConnected();
-    }
-
-    public void setConnectPolicy(ConnectPolicy connectPolicy) {
-        this.connectPolicy = connectPolicy;
     }
 
     @Override

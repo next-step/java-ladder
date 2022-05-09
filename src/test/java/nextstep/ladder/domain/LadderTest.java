@@ -1,6 +1,6 @@
 package nextstep.ladder.domain;
 
-import static nextstep.ladder.domain.Height.MINIMUM_LADDER_HEIGHT;
+import static nextstep.ladder.view.LadderGameInputCui.MINIMUM_LADDER_HEIGHT;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;

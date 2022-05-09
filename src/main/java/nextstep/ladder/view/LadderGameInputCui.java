@@ -1,8 +1,6 @@
 package nextstep.ladder.view;
 
 import static java.lang.System.out;
-import static nextstep.ladder.domain.Height.MAXIMUM_LADDER_HEIGHT;
-import static nextstep.ladder.domain.Height.MINIMUM_LADDER_HEIGHT;
 import static nextstep.ladder.domain.Name.MAXIMUM_NAME_LENGTH;
 import static nextstep.ladder.domain.Name.MINIMUM_NAME_LENGTH;
 
@@ -10,15 +8,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Lines;
-import nextstep.ladder.domain.Part;
-import nextstep.ladder.domain.Parts;
-import org.apache.commons.lang3.StringUtils;
+import nextstep.ladder.utils.StringUtils;
 
-public class LadderGameCUI {
+public class LadderGameInputCui {
 
     private static final int MAXIMUM_TRY_COUNT = 3;
+    public static final int MINIMUM_LADDER_HEIGHT = 2;
+    public static final int MAXIMUM_LADDER_HEIGHT = 100;
 
     private Scanner scanner = new Scanner(System.in);
 
@@ -73,44 +69,4 @@ public class LadderGameCUI {
             || maxLadderHeight > MAXIMUM_LADDER_HEIGHT;
     }
 
-    private static String fixedLengthString(String string, int length) {
-        return String.format("%1$"+length+ "s", string);
-    }
-
-    public void draw(Ladder ladder) {
-        out.println("\n 사다리 결과");
-
-        List<String> names = ladder.getLineNames();
-
-        out.print(" ");
-        for (String name : names) {
-            out.print(fixedLengthString(name, 6));
-        } out.println();
-
-        Lines lines = ladder.getLines();
-        for (Parts partPlate : lines.getPartsLine()) {
-            drawParts(partPlate.getParts());
-        }
-    }
-
-    private void drawParts(List<Part> parts) {
-        out.print("     ");
-        for (Part part : parts) {
-            drawLine(part);
-        }
-        out.println();
-    }
-
-    private void drawLine(Part part) {
-        if (part.isHorizontalLine()) {
-            if (part.isConnected()) {
-                out.print("-----");
-                return;
-            }
-            out.print("     ");
-            return;
-        }
-
-        out.print("|");
-    }
 }

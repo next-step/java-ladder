@@ -4,9 +4,9 @@ import java.util.List;
 import nextstep.ladder.domain.Ladder;
 import org.junit.jupiter.api.Test;
 
-class LadderGameCUITest {
+class LadderGameOutputCuiTest {
 
-    private LadderGameCUI cui = new LadderGameCUI();
+    private LadderGameOutputCui outputCui = new LadderGameOutputCui();
 
     @Test
     void drawVisualizeTest() {
@@ -15,7 +15,9 @@ class LadderGameCUITest {
             11
         );
 
-        cui.draw(ladder);
+        System.out.println(ladder.getLines());
+
+        outputCui.draw(ladder);
     }
 
     @Test
@@ -27,7 +29,7 @@ class LadderGameCUITest {
 
         System.out.println(ladder.getLines());
 
-        cui.draw(ladder);
+        outputCui.draw(ladder);
     }
 
 }
