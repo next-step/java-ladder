@@ -1,4 +1,4 @@
-package nextstep.fp;
+package nextstep.fp.streamstudy;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
