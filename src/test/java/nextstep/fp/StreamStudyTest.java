@@ -1,6 +1,7 @@
 package nextstep.fp;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -22,6 +23,7 @@ public class StreamStudyTest {
         System.out.println("result : " + result);
     }
 
+    @Disabled("출력 많아서 생략")
     @Test
     public void printLongestWordTop100() throws Exception {
         StreamStudy.printLongestWordTop100();

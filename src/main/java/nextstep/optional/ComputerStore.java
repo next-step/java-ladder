@@ -1,7 +1,6 @@
 package nextstep.optional;
 
 import java.util.Optional;
-import java.util.function.Supplier;
 import nextstep.optional.Computer.Soundcard;
 import nextstep.optional.Computer.USB;
 
