@@ -1,5 +1,5 @@
 package ladder.domain.strategy;
 
 public interface ConnectStrategy {
-      boolean isConnect();
+      boolean isConnect(int lineIndex);
 }

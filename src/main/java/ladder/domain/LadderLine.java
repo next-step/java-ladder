@@ -14,9 +14,10 @@ public class LadderLine {
 
   public static LadderLine of(int userCount, ConnectStrategy connectStrategy) {
     List<Boolean> connects = new ArrayList<>();
-    for (int i = 0; i < userCount; i++) {
-      connects.add(connectStrategy.isConnect());
+    for (int i = 0; i < userCount - 1; i++) {
+      connects.add(connectStrategy.isConnect(i));
     }
+    connects.add(false);
     return new LadderLine(connects);
   }
 

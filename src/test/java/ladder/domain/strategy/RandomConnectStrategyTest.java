@@ -10,11 +10,11 @@ class RandomConnectStrategyTest {
   @Test
   @DisplayName("한번 연결되었으면, 다음은 연결되지 않는것을 확인.")
   void connect() {
-    RandomConnectStrategy randomConnectStrategy = new RandomConnectStrategy();
+    RandomConnectStrategy randomConnectStrategy = new RandomConnectStrategy(100);
     boolean islastConnect = false;
 
     for (int i = 0; i < 100; i++) {
-      boolean isCurrConnect = randomConnectStrategy.isConnect();
+      boolean isCurrConnect = randomConnectStrategy.isConnect(i);
       if (islastConnect) {
         assertThat(isCurrConnect).isFalse();
       }

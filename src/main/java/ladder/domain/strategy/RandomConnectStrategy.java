@@ -1,24 +1,30 @@
 package ladder.domain.strategy;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class RandomConnectStrategy implements ConnectStrategy {
 
-  private final Random random;
-  private boolean isLastConnect = false;
+  private final List<Boolean> isConnects;
 
-  public RandomConnectStrategy() {
-    this.random = new Random();
+
+  public RandomConnectStrategy(int lineLength) {
+    Random random = new Random();
+    isConnects = new ArrayList<>();
+    boolean isLastConnect = false;
+    for (int i = 0; i < lineLength; i++) {
+      boolean isConnect = random.nextBoolean();
+      if (isLastConnect) {
+        isConnect = false;
+      }
+      isConnects.add(isConnect);
+      isLastConnect = isConnect;
+    }
   }
 
   @Override
-  public boolean isConnect() {
-    if (isLastConnect) {
-      isLastConnect = false;
-      return false;
-    }
-    boolean isConnect = random.nextBoolean();
-    isLastConnect = isConnect;
-    return isConnect;
+  public boolean isConnect(int lineIndex) {
+    return isConnects.get(lineIndex);
   }
 }

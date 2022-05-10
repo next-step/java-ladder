@@ -15,7 +15,7 @@ class FixedConnectStrategyTest {
     FixedConnectStrategy fixedConnectStrategy = new FixedConnectStrategy(fixedConnects);
 
     for (int i = 0; i < fixedConnects.size(); i++) {
-      assertThat(fixedConnectStrategy.isConnect()).isEqualTo(fixedConnects.get(i));
+      assertThat(fixedConnectStrategy.isConnect(i)).isEqualTo(fixedConnects.get(i));
     }
   }
 }
