@@ -1,4 +1,4 @@
-package nextstep.fp;
+package nextstep.fp.streamstudy;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

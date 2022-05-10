@@ -1,4 +1,4 @@
-package nextstep.fp;
+package nextstep.fp.car;
 
 import java.util.Objects;
 
