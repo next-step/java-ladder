@@ -6,7 +6,7 @@ public class UserName {
 
   private static final String EMPTY_NAME_MESSAGE = "사용자 이름은 공백이 허용되지 않습니다.";
   private static final String INVALID_LENGTH_MESSAGE = "사용자 이름의 길이는 %d 이하여야 합니다.";
-  private static final int LENGTH_LIMIT = 5;
+  public static final int LENGTH_LIMIT = 5;
   private final String name;
 
   private UserName(String name) {
@@ -26,5 +26,9 @@ public class UserName {
     if (name.length() > LENGTH_LIMIT) {
       throw new InvalidParameterException(String.format(INVALID_LENGTH_MESSAGE, LENGTH_LIMIT));
     }
+  }
+
+  public String getName() {
+    return name;
   }
 }

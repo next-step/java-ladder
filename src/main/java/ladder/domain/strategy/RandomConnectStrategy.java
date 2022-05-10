@@ -8,12 +8,11 @@ public class RandomConnectStrategy implements ConnectStrategy {
 
   private final List<Boolean> isConnects;
 
-
   public RandomConnectStrategy(int lineLength) {
     Random random = new Random();
     isConnects = new ArrayList<>();
     boolean isLastConnect = false;
-    for (int i = 0; i < lineLength; i++) {
+    for (int i = 0; i < lineLength - 1; i++) {
       boolean isConnect = random.nextBoolean();
       if (isLastConnect) {
         isConnect = false;
@@ -21,6 +20,7 @@ public class RandomConnectStrategy implements ConnectStrategy {
       isConnects.add(isConnect);
       isLastConnect = isConnect;
     }
+    isConnects.add(false);
   }
 
   @Override

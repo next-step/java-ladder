@@ -22,4 +22,8 @@ public class UserNames {
   public int getUserSize() {
     return this.value.size();
   }
+
+  public String getUserName(int userIdx) {
+    return value.get(userIdx).getName();
+  }
 }

@@ -28,4 +28,8 @@ public class Ladder {
   public int getLadderHeight() {
     return lines.size();
   }
+
+  public LadderLine getLadderLine(int heightIdx) {
+    return lines.get(heightIdx);
+  }
 }
