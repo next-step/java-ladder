@@ -18,8 +18,8 @@ public class StreamStudyTest {
 
     @Test
     public void countWords() throws Exception {
-        long result = StreamStudy.countWords();
-        System.out.println("result : " + result);
+        assertThat(StreamStudy.countWords())
+                .isEqualTo(1946);
     }
 
     @Test
