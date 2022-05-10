@@ -15,7 +15,8 @@ public class LadderGame {
     this.userNames = userNames;
   }
 
-  public static LadderGame of(UserNames userNames, int height) {
+  public static LadderGame of(String userNameInput, int height) {
+    UserNames userNames = UserNames.of(userNameInput);
     List<ConnectStrategy> connectStrategies = new ArrayList<>();
     for (int i = 0; i < height; i++) {
       connectStrategies.add(new RandomConnectStrategy());

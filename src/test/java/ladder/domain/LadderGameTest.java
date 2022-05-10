@@ -10,7 +10,7 @@ public class LadderGameTest {
   @Test
   @DisplayName("사다리 게임이 잘 생성되는지 확인")
   void of() {
-    UserNames userNames = UserNames.of("pobi,test,crong");
+    String userNames = "pobi,test,crong";
     int height = 5;
     LadderGame ladderGame = LadderGame.of(userNames, height);
 
