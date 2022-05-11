@@ -23,14 +23,14 @@ public class Part {
     }
 
     public static Part valueOf(int index) {
-        int remainder = index % 2;
-
-        // 0,2,4,6,8,10 ...
-        if (remainder == 0) {
+        if (isEven(index)) {
             return new Part(PartDirection.VERT);
         }
-        // 1,3,5,7,9,11, ...
         return new Part(PartDirection.HORZ);
+    }
+
+    private static boolean isEven(int index) {
+        return index % 2 == 0;
     }
 
     @Override

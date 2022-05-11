@@ -11,7 +11,7 @@ class LinesTest {
     void createTest() {
         Lines lines = new Lines(2, 2);
 
-        assertThat(lines.getPartsLine()).hasSize(2);
+        assertThat(lines.getLines()).hasSize(2);
     }
 
     @DisplayName("필수 기본 연결을 확인한다.")

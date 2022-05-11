@@ -21,7 +21,7 @@ public class LadderGameOutputCui {
         } out.println();
 
         Lines lines = ladder.getLines();
-        for (Parts partPlate : lines.getPartsLine()) {
+        for (Parts partPlate : lines.getLines()) {
             drawParts(partPlate.getParts());
         }
     }
@@ -50,39 +50,5 @@ public class LadderGameOutputCui {
 
         out.print("|");
     }
-
-//    private static String fixedLengthString(String string, int length) {
-//        return String.format("%1$"+length+ "s", string);
-//    }
-//
-//    private void drawParts(List<Part> parts) {
-//        out.print("     ");
-//        for (Part part : parts) {
-//            drawLine(part);
-//        }
-//        out.println();
-//    }
-//
-//    private void drawLine(Part part) {
-//        if (isConnectedHorizontal(part)) {
-//            out.print("-----");
-//            return;
-//        }
-//
-//        if (isJustHorizontal(part)) {
-//            out.print("     ");
-//            return;
-//        }
-//
-//        out.print("|");
-//    }
-//
-//    private boolean isConnectedHorizontal(Part part) {
-//        return part.isHorizontalLine() && part.isConnected();
-//    }
-//
-//    private boolean isJustHorizontal(Part part) {
-//        return part.isHorizontalLine();
-//    }
 
 }

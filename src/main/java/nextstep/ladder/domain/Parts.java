@@ -7,6 +7,12 @@ public class Parts {
 
     private List<Part> parts = new ArrayList<>();
 
+    public Parts(int length) {
+        for (int i = 0; i < length; ++i) {
+            this.add(i);
+        }
+    }
+
     public void add(int index) {
         parts.add(Part.valueOf(index));
     }

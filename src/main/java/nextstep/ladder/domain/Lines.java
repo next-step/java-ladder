@@ -6,21 +6,15 @@ import java.util.List;
 public class Lines {
     private static final int AFTER_DEFAULT_LINE = 2;
 
-    private final List<Parts> partsList = new ArrayList<>();
+    private final List<Parts> lines = new ArrayList<>();
 
     public Lines(int participantsCount, int height) {
         final int verticalCount = participantsCount;
         final int horizonCount = participantsCount - 1;
 
         for (int j = 0; j < height; ++j) {
-            partsList.add(new Parts());
+            lines.add(new Parts(verticalCount + horizonCount));
         }
-
-        partsList.forEach(parts -> {
-                for (int i = 0; i < verticalCount + horizonCount; ++i) {
-                    parts.add(i);
-                }
-            });
     }
 
     public void connectMinimum() {
@@ -29,7 +23,7 @@ public class Lines {
     }
 
     private void connectFirstLineEvenPart() {
-        Parts parts = this.partsList.get(0);
+        Parts parts = this.lines.get(0);
 
         int flag = 0;
         for (int i = 1; i < parts.size(); i += 2) {
@@ -38,7 +32,7 @@ public class Lines {
     }
 
     private void connectSecondLineOddPart() {
-        Parts parts = this.partsList.get(1);
+        Parts parts = this.lines.get(1);
 
         int flag = 0;
         for (int i = 1; i < parts.size(); i += 2) {
@@ -48,8 +42,8 @@ public class Lines {
 
     public void connectLinesWithPolicy(ConnectPolicy connectPolicy) {
         // 이미 기본연결된 부분 이후로 라인들 순회
-        for (int i = AFTER_DEFAULT_LINE; i < partsList.size(); ++i) {
-            connectParts(partsList.get(i), connectPolicy);
+        for (int i = AFTER_DEFAULT_LINE; i < lines.size(); ++i) {
+            connectParts(lines.get(i), connectPolicy);
         }
     }
 
@@ -61,11 +55,11 @@ public class Lines {
     }
 
     public int lineHeight() {
-        return partsList.size();
+        return lines.size();
     }
 
     public int lineCount() {
-        return partsList.stream()
+        return lines.stream()
             .findAny()
             .orElseThrow(() -> new IllegalStateException("연결을 확인 할 수 없음"))
             .size();
@@ -78,7 +72,7 @@ public class Lines {
         for (int i = 1; i < lineCount; i += 2) {
             final int ii = i;
 
-            isConnected = partsList.stream()
+            isConnected = lines.stream()
                 .anyMatch(parts -> parts.isConnected(ii));
 
             if (!isConnected)
@@ -88,13 +82,13 @@ public class Lines {
         return true;
     }
 
-    public List<Parts> getPartsLine() {
-        return partsList;
+    public List<Parts> getLines() {
+        return lines;
     }
 
     @Override
     public String toString() {
-        return "{" + partsList + "}\n";
+        return "{" + lines + "}\n";
     }
 
 }
