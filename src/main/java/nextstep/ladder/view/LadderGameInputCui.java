@@ -43,9 +43,39 @@ public class LadderGameInputCui {
         return names.stream()
             .noneMatch(name ->
                 StringUtils.isEmpty(name)
-                || name.length() < MINIMUM_NAME_LENGTH
-                || name.length() > MAXIMUM_NAME_LENGTH
+                    || name.length() < MINIMUM_NAME_LENGTH
+                    || name.length() > MAXIMUM_NAME_LENGTH
             );
+    }
+
+    public List<String> inputExecuteResult() {
+        return inputExecuteResultImpl(MAXIMUM_TRY_COUNT);
+    }
+
+    private List<String> inputExecuteResultImpl(int tryCount) {
+        if (tryCount <= 0) System.exit(1);
+
+        out.printf("실행 결과를 입력하세요 (결과는 쉼표(,)로 구분하세요) / 남은 시도 횟수: %d\n", tryCount);
+        String inputLine = scanner.nextLine();
+
+        List<String> results = Arrays.stream(inputLine.split(","))
+            .map(String::trim)
+            .collect(Collectors.toUnmodifiableList());
+
+        if (!isValidResults(results)) {
+            return inputExecuteResultImpl(tryCount-1);
+        }
+
+        return results;
+    }
+
+    private boolean isValidResults(List<String> results) {
+        return results.stream()
+            .allMatch(result -> result.equals("꽝") || isInt(result));
+    }
+
+    private boolean isInt(String result) {
+        return Integer.valueOf(result) >= 0;
     }
 
     public int inputMaxLadderHeight() {
@@ -67,6 +97,12 @@ public class LadderGameInputCui {
     private boolean isValid(int maxLadderHeight) {
         return maxLadderHeight < MINIMUM_LADDER_HEIGHT
             || maxLadderHeight > MAXIMUM_LADDER_HEIGHT;
+    }
+
+    public String inputResultName() {
+        out.println("결과를 보고 싶은 사람은?");
+
+        return scanner.nextLine();
     }
 
 }

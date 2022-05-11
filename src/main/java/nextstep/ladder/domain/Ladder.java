@@ -5,20 +5,26 @@ import nextstep.ladder.utils.ObjectUtils;
 
 public class Ladder {
 
+    // 이름과 순서인덱스를 저장
+    // 사이에 사다리라인 시작인덱스~ 끝나는 인덱스 확인
+    // 결과와 순서인덱스를 저장
+
     private final Names names;
     private final Lines lines;
+    private final List<String> results;
 
-    private Ladder(List<String> names, int height, ConnectPolicy connectPolicy) {
+    private Ladder(List<String> names, List<String> results, int height, ConnectPolicy connectPolicy) {
         validate(names);
 
         this.names = new Names(names);
         lines = new Lines(names.size(), height);
-
         lines.connectLinesWithPolicy(connectPolicy);
+
+        this.results = results;
     }
 
-    public static Ladder of(List<String> names, int ladderHeight, ConnectPolicy connectPolicy) {
-        return new Ladder(names, ladderHeight, connectPolicy);
+    public static Ladder of(List<String> names, List<String> results, int ladderHeight, ConnectPolicy connectPolicy) {
+        return new Ladder(names, results, ladderHeight, connectPolicy);
     }
 
     private void validate(List<String> names) {
@@ -52,5 +58,12 @@ public class Ladder {
         return lines;
     }
 
+    public List<String> getResults() {
+        return results;
+    }
+
+    public String checkResultOf(String resultName) {
+        return "null";
+    }
 }
 

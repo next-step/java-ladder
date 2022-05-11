@@ -16,6 +16,7 @@ class LadderGameOutputCuiTest {
     void drawVisualizeTest() {
         Ladder ladder = Ladder.of(
             List.of("pobi", "start", "end", "1234", "12345", "12", "1"),
+            List.of("꽝", "꽝", "꽝", "꽝", "꽝", "꽝", "꽝"),
             11,
             connectPolicy
         );
@@ -29,6 +30,7 @@ class LadderGameOutputCuiTest {
     void drawVisualizeTest2() {
         Ladder ladder = Ladder.of(
             List.of("pobi", "start", "end"),
+            List.of("꽝","꽝","1000"),
             2,
             connectPolicy
         );
