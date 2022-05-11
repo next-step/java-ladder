@@ -33,7 +33,7 @@ public class ResultView {
   }
 
   private static String getFormattedPoint(Boolean point) {
-    if (Boolean.TRUE.equals(point)) {
+    if (point) {
       return LINE + VERTICAL;
     }
     return NO_LINE + VERTICAL;

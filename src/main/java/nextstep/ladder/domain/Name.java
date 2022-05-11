@@ -4,20 +4,28 @@ import java.util.Objects;
 
 public class Name {
 
-  private static int MIN_LENGTH = 1;
-  private static int MAX_LENGTH = 5;
+  private static final int MIN_LENGTH = 1;
+  private static final int MAX_LENGTH = 5;
+  private static final String VALIDATE_MESSAGE = "이름은 %d자 이상, %d자 이하여야 합니다.";
 
   private final String value;
 
   public Name(String value) {
-    validateLength(value);
+    validate(value);
     this.value = value;
   }
 
-  private static void validateLength(String value) {
-    if (value.length() < MIN_LENGTH || value.length() > MAX_LENGTH) {
+  private static void validate(String value) {
+    if (value == null) {
       throw new IllegalArgumentException(
-          String.format("이름은 %d자 이상, %d자 이하여야 합니다.", MIN_LENGTH, MAX_LENGTH)
+          String.format(VALIDATE_MESSAGE, MIN_LENGTH, MAX_LENGTH)
+      );
+    }
+
+    int length = value.length();
+    if (length < MIN_LENGTH || length > MAX_LENGTH) {
+      throw new IllegalArgumentException(
+          String.format(VALIDATE_MESSAGE, MIN_LENGTH, MAX_LENGTH)
       );
     }
   }

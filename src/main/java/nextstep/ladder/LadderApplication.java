@@ -9,10 +9,7 @@ public class LadderApplication {
 
   public static void main(String[] args) {
     Players players = Players.of(InputView.getNames());
-    int height = InputView.getHeight();
-
-    Ladder ladder = Ladder.of(players.size(), height);
-
+    Ladder ladder = Ladder.of(players.size(), InputView.getHeight());
     ResultView.printResult(players, ladder);
   }
 }

@@ -7,15 +7,21 @@ public class Line {
 
   private final List<Boolean> points = new ArrayList<>();
 
-  public Line(int width) {
-    points.add(false);
+  public Line(List<Boolean> values) {
+    this.points.addAll(values);
+  }
+
+  public static Line of(int width) {
+    List<Boolean> values = new ArrayList<>();
+    values.add(false);
     for (int i = 1; i < width; i++) {
-      points.add(checkLineByPrevious(points.get(i - 1)));
+      values.add(checkLineByPrevious(values.get(i - 1)));
     }
+    return new Line(values);
   }
 
   static boolean checkLineByPrevious(boolean previous) {
-    if (Boolean.TRUE.equals(previous)) {
+    if (previous) {
       return false;
     }
     return getRandomBoolean();

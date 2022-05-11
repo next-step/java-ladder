@@ -13,7 +13,7 @@ public class Length {
 
   private static void validate(int value) {
     if (value < MIN_LENGTH) {
-      throw new IllegalArgumentException("길이는 1보다 작을 수 없습니다.");
+      throw new IllegalArgumentException(String.format("길이는 %d보다 작을 수 없습니다.", MIN_LENGTH));
     }
   }
 

@@ -13,7 +13,8 @@ class PlayersTest {
   @Test
   void createWithSameName() {
     assertThatThrownBy(() -> Players.of(List.of("yeeun", "yeeun", "yeny")))
-        .isInstanceOf(IllegalArgumentException.class);
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessageContaining("yeeun, yeeun, yeny");
   }
 
   @DisplayName("List<String>을 인자로 받아 Players를 생성할 수 있다.")

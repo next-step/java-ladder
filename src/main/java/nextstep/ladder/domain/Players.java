@@ -10,7 +10,7 @@ public class Players {
   private final List<Player> players;
 
   public Players(List<Player> players) {
-    validateSameNames(players);
+    validateDuplicatedNames(players);
     this.players = players;
   }
 
@@ -20,12 +20,15 @@ public class Players {
     );
   }
 
-  private void validateSameNames(List<Player> values) {
-    Set<String> playerNameSet = values.stream()
+  private void validateDuplicatedNames(List<Player> values) {
+    Set<String> nonDuplicatedPlayerNames = values.stream()
         .map(Player::getName)
         .collect(Collectors.toSet());
-    if (playerNameSet.size() != values.size()) {
-      throw new IllegalArgumentException("플레이어 이름은 중복될 수 없습니다.");
+    if (nonDuplicatedPlayerNames.size() != values.size()) {
+      List<String> playerNames = values.stream()
+          .map(Player::getName)
+          .collect(Collectors.toList());
+      throw new IllegalArgumentException("플레이어 이름은 중복될 수 없습니다. " + playerNames);
     }
   }
 
