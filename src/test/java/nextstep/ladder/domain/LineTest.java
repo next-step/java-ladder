@@ -13,14 +13,14 @@ class LineTest {
   @ParameterizedTest
   @ValueSource(ints = {1, 10, 100})
   void create(int width) {
-    Line line = Line.create(width, HalfBooleanGeneratingStrategy.getInstance());
+    Line line = Line.create(width, HalfRateGeneratingStrategy.getInstance());
     assertThat(line.size()).isEqualTo(width);
   }
 
   @DisplayName("이전 좌표에 선이 있으면, 현재 좌표에는 선이 존재할 수 없다.")
   @Test
   void getBoolean() {
-    assertThat(Line.checkLineByPrevious(true, HalfBooleanGeneratingStrategy.getInstance())).isFalse();
+    assertThat(Line.checkLineByPrevious(true, HalfRateGeneratingStrategy.getInstance())).isFalse();
   }
 
   @DisplayName("Boolean 생성 전략을 조절할 수 있다.")

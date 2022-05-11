@@ -11,7 +11,7 @@ public class Ladder {
 
   Ladder(Length width, Length height) {
     for (int i = START_INDEX; i < height.getValue(); i++) {
-      lines.add(Line.create(width.getValue(), HalfBooleanGeneratingStrategy.getInstance()));
+      lines.add(Line.create(width.getValue(), HalfRateGeneratingStrategy.getInstance()));
     }
   }
 
