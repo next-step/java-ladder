@@ -8,10 +8,8 @@ public class LadderGameApp {
 
   public static void main(String[] args) {
     LadderGameInputView ladderGameInputView = new LadderGameInputView();
-    ladderGameInputView.inputLadderUsers();
-    ladderGameInputView.inputLadderHeight();
 
-    LadderGame ladderGame = LadderGame.of(ladderGameInputView.getLadderUserNames(),
+    LadderGame ladderGame = LadderGame.of(ladderGameInputView.getLadderUsers(),
         ladderGameInputView.getLadderHeight());
 
     LadderGameOutputView.printLadderGame(ladderGame);
