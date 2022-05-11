@@ -9,7 +9,7 @@ public class Ladder {
 
   Ladder(Length width, Length height) {
     for (int i = 0; i < height.getValue(); i++) {
-      lines.add(Line.of(width.getValue()));
+      lines.add(Line.create(width.getValue()));
     }
   }
 

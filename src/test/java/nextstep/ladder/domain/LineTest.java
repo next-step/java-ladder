@@ -13,7 +13,7 @@ class LineTest {
   @ParameterizedTest
   @ValueSource(ints = {1, 10, 100})
   void create(int width) {
-    Line line = Line.of(width);
+    Line line = Line.create(width);
     assertThat(line.size()).isEqualTo(width);
   }
 

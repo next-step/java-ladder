@@ -11,7 +11,7 @@ public class Line {
     this.points.addAll(values);
   }
 
-  public static Line of(int width) {
+  public static Line create(int width) {
     List<Boolean> values = new ArrayList<>();
     values.add(false);
     for (int i = 1; i < width; i++) {
