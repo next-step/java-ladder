@@ -5,7 +5,8 @@ import java.util.Arrays;
 enum Expression {
   PLUS("+"), MINUS("-"), TIMES("*"), DIVIDE("/");
 
-  private String expression;
+  private static final String INVALID_EXPRESSION_MSG = "%s는 사칙연산에 해당하지 않는 표현식입니다.";
+  private final String expression;
 
   Expression(String expression) {
     this.expression = expression;
@@ -20,6 +21,6 @@ enum Expression {
         .filter(expressionValue -> expression.equals(expressionValue.expression))
         .findFirst()
         .orElseThrow(() -> new IllegalArgumentException(
-            String.format("%s는 사칙연산에 해당하지 않는 표현식입니다.", expression)));
+            String.format(INVALID_EXPRESSION_MSG, expression)));
   }
 }
