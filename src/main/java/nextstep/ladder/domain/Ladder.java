@@ -5,11 +5,13 @@ import java.util.List;
 
 public class Ladder {
 
+  private static final int START_INDEX = 0;
+
   private final List<Line> lines = new ArrayList<>();
 
   Ladder(Length width, Length height) {
-    for (int i = 0; i < height.getValue(); i++) {
-      lines.add(Line.create(width.getValue()));
+    for (int i = START_INDEX; i < height.getValue(); i++) {
+      lines.add(Line.create(width.getValue(), HalfBooleanGeneratingStrategy.getInstance()));
     }
   }
 
@@ -18,7 +20,7 @@ public class Ladder {
   }
 
   public int getWidth() {
-    return lines.get(0).size();
+    return lines.get(START_INDEX).size();
   }
 
   public int getHeight() {
