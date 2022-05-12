@@ -5,10 +5,6 @@ import nextstep.ladder.utils.ObjectUtils;
 
 public class Ladder {
 
-    // 이름과 순서인덱스를 저장
-    // 사이에 사다리라인 시작인덱스~ 끝나는 인덱스 확인
-    // 결과와 순서인덱스를 저장
-
     private final Names names;
     private final Lines lines;
     private final List<String> results;

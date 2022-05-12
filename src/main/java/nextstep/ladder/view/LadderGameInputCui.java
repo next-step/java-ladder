@@ -73,12 +73,11 @@ public class LadderGameInputCui {
 
     private boolean isValidResults(List<String> results) {
         return results.stream()
-            .allMatch(result -> result.equals("꽝") || isInt(result));
+            .allMatch(result -> result.equals("꽝") || isValidLength(result));
     }
 
-    private boolean isInt(String result) {
-        Integer reward = Integer.valueOf(result);
-        return  reward >= MINIMUM_REWARD && reward <= MAXIMUM_REWARD;
+    private boolean isValidLength(String string) {
+        return  string.length() >= MINIMUM_REWARD && string.length() <= MAXIMUM_REWARD;
     }
 
     public int inputMaxLadderHeight() {
