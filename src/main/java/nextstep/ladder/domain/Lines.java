@@ -1,10 +1,13 @@
 package nextstep.ladder.domain;
 
+import static nextstep.ladder.utils.LadderPartIndexUtils.isHorizon;
+import static nextstep.ladder.utils.LadderPartIndexUtils.isVertical;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Lines {
-    private static final int AFTER_DEFAULT_LINE = 2;
+    private static final int AFTER_DEFAULT_LINE = 0;
 
     private final List<Parts> lines = new ArrayList<>();
 
@@ -17,26 +20,51 @@ public class Lines {
         }
     }
 
-    public void connectMinimum() {
-        connectFirstLineEvenPart();
-        connectSecondLineOddPart();
-    }
+    public int resultIndexOf(int startIndex) {
+        validate(startIndex);
 
-    private void connectFirstLineEvenPart() {
-        Parts parts = this.lines.get(0);
+        int rowIndex = 0;
+        int colIndex = startIndex;
 
-        int flag = 0;
-        for (int i = 1; i < parts.size(); i += 2) {
-            parts.connectEvenPart(flag++ % 2, i);
+        int height = lines.size();
+
+        Part part;
+
+        while (rowIndex < height) {
+            part = lines.get(rowIndex).part(colIndex);
+
+            if (!part.isConnected()) {
+                ++rowIndex;
+                continue;
+            }
+
+            if (colIndex > 0
+            && lines.get(rowIndex).part(colIndex-1).isConnected()) {
+                --colIndex;
+                --colIndex;
+                ++rowIndex;
+                continue;
+            }
+
+            if (colIndex < lines.get(rowIndex).size()-1
+            && lines.get(rowIndex).part(colIndex+1).isConnected()) {
+                ++colIndex;
+                ++colIndex;
+                ++rowIndex;
+                continue;
+            }
         }
+
+        return colIndex;
     }
 
-    private void connectSecondLineOddPart() {
-        Parts parts = this.lines.get(1);
+    private void validate(int startIndex) {
+        if (!isVertical(startIndex)) {
+            throw new IllegalArgumentException("결과 확인은 세로줄에서 시작해야함.");
+        }
 
-        int flag = 0;
-        for (int i = 1; i < parts.size(); i += 2) {
-            parts.connectOddPart(flag++ % 2, i);
+        if (startIndex < 0 || startIndex >= lines.get(0).size()) {
+            throw new IllegalArgumentException("유효하지 않은 결과 확인 인덱스.");
         }
     }
 
@@ -65,23 +93,6 @@ public class Lines {
             .size();
     }
 
-    public boolean isAllLineConnected() {
-        int lineCount = lineCount();
-
-        boolean isConnected;
-        for (int i = 1; i < lineCount; i += 2) {
-            final int ii = i;
-
-            isConnected = lines.stream()
-                .anyMatch(parts -> parts.isConnected(ii));
-
-            if (!isConnected)
-                return false;
-        }
-
-        return true;
-    }
-
     public List<Parts> getLines() {
         return lines;
     }
@@ -91,4 +102,11 @@ public class Lines {
         return "{" + lines + "}\n";
     }
 
+    protected void connectLineManually(int lineIndex, int partIndex) {
+        if (!isHorizon(partIndex)) {
+            throw new IllegalArgumentException("연결 시에는 세로줄 part 가 아니라 가로줄 part 인덱스를 넣어야함.");
+        }
+
+        lines.get(lineIndex).connectPart(partIndex);
+    }
 }

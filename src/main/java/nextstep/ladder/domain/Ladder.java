@@ -45,10 +45,6 @@ public class Ladder {
         return names.get();
     }
 
-    public boolean isAllLineConnected() {
-        return lines.isAllLineConnected();
-    }
-
     @Override
     public String toString() {
         return "{" + lines + '}';
@@ -63,7 +59,24 @@ public class Ladder {
     }
 
     public String checkResultOf(String resultName) {
-        return "null";
+        int nameIndex = names.indexOf(resultName);
+
+        int resultIndex = lines.resultIndexOf(
+            convertIndexToLadderColumnIndex(nameIndex)
+        );
+
+        return results.get(
+            convertLadderColumnIndexToIndex(resultIndex)
+        );
     }
+
+    private int convertIndexToLadderColumnIndex(int index) {
+        return index * 2;
+    }
+
+    private int convertLadderColumnIndexToIndex(int index) {
+        return index / 2;
+    }
+
 }
 

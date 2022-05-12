@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import static nextstep.ladder.utils.LadderPartIndexUtils.isVertical;
+
 import java.util.Objects;
 
 public class Part {
@@ -23,14 +25,10 @@ public class Part {
     }
 
     public static Part valueOf(int index) {
-        if (isEven(index)) {
+        if (isVertical(index)) {
             return new Part(PartDirection.VERT);
         }
         return new Part(PartDirection.HORZ);
-    }
-
-    private static boolean isEven(int index) {
-        return index % 2 == 0;
     }
 
     @Override

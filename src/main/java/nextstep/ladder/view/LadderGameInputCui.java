@@ -15,6 +15,8 @@ public class LadderGameInputCui {
     private static final int MAXIMUM_TRY_COUNT = 3;
     public static final int MINIMUM_LADDER_HEIGHT = 2;
     public static final int MAXIMUM_LADDER_HEIGHT = 100;
+    private static final int MINIMUM_REWARD = 0;
+    private static final int MAXIMUM_REWARD = 99999;
 
     private Scanner scanner = new Scanner(System.in);
 
@@ -75,7 +77,8 @@ public class LadderGameInputCui {
     }
 
     private boolean isInt(String result) {
-        return Integer.valueOf(result) >= 0;
+        Integer reward = Integer.valueOf(result);
+        return  reward >= MINIMUM_REWARD && reward <= MAXIMUM_REWARD;
     }
 
     public int inputMaxLadderHeight() {

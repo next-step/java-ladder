@@ -72,9 +72,8 @@ public class LadderGameOutputCui {
     public void printGameResults(Ladder ladder) {
         out.println("실행 결과");
         List<String> lineNames = ladder.getLineNames();
-        List<String> results = ladder.getResults();
-        for (int i = 0; i < lineNames.size(); ++i) {
-            out.printf("%s : %s", lineNames.get(i), results.get(i));
+        for (String lineName : lineNames) {
+            out.printf("%s : %s\n", lineName, ladder.checkResultOf(lineName));
         }
     }
 }
