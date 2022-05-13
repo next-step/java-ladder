@@ -13,6 +13,10 @@ public final class Participant {
         this.name = new ParticipantName(name);
     }
 
+    public long length() {
+        return name.length();
+    }
+
     public void validate(String name) {
         if (name == null) {
             throw new NullPointerException(EXCEPTION_MESSAGE);

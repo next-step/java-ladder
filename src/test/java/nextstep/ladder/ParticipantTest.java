@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ParticipantTest {
@@ -26,5 +27,12 @@ public class ParticipantTest {
         assertThrows(NullPointerException.class, () -> {
             new Participant(null);
         });
+    }
+
+    @Test
+    @DisplayName("참가자의 이름의 길이를 계산한다.")
+    void lengthTest() {
+        Participant participant = new Participant("klom");
+        assertThat(participant.length()).isEqualTo(4);
     }
 }

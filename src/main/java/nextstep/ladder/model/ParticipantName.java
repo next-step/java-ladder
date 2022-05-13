@@ -21,6 +21,9 @@ public final class ParticipantName {
             throw new IndexOutOfBoundsException(EXCEPTION_MESSAGE);
         }
     }
+    public long length() {
+        return value.length();
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -34,4 +37,5 @@ public final class ParticipantName {
     public int hashCode() {
         return Objects.hash(value);
     }
+
 }
