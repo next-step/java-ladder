@@ -1,5 +1,6 @@
 package nextstep.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class LadderLines {
@@ -10,6 +11,7 @@ public class LadderLines {
     }
 
     public List<LadderLine> getLadderLines() {
-        return ladderLines;
+        return Collections.unmodifiableList(this.ladderLines);
     }
+
 }

@@ -4,11 +4,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class LadderHeightTest {
+class UserTest {
     @Test
-    void 사다리_사이즈_체크() {
+    void 유저이름이_다섯글자_넘을경우() {
         assertThatThrownBy(() -> {
-            new LadderHeight(0);
+            new User("abcdef");
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }
