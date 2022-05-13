@@ -24,10 +24,10 @@ public class Rows {
         return rows;
     }
 
-    public static Rows of(int playerSize, int ladderHeight) {
+    public static Rows of(int rowSize, int ladderHeight) {
         return new Rows(
                 IntStream.range(INITIAL_HEIGHT, ladderHeight)
-                        .mapToObj(i -> Row.from(playerSize))
+                        .mapToObj(i -> Row.from(rowSize))
                         .collect(Collectors.toList())
         );
     }
