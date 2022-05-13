@@ -23,7 +23,7 @@ class RowTest {
         Row row = Row.from(playerSize);
 
         assertAll(
-                () -> assertEquals(playerSize + ROW_START_INDEX, row.getSteps().size()),
+                () -> assertEquals(playerSize - ROW_START_INDEX, row.getSteps().size()),
                 () -> assertInstanceOf(Row.class, row)
         );
     }
