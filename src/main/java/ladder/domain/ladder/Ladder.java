@@ -31,10 +31,6 @@ public class Ladder {
         );
     }
 
-    public int getHeight() {
-        return rows.size();
-    }
-
     public Rows getRows() {
         return rows;
     }

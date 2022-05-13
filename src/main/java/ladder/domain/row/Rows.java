@@ -1,5 +1,6 @@
 package ladder.domain.row;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -11,7 +12,7 @@ public class Rows {
 
     public Rows(List<Row> rows) {
         validate(rows);
-        this.rows = rows;
+        this.rows = new ArrayList<>(rows);
     }
 
     private void validate(List<Row> rows) {
@@ -21,7 +22,7 @@ public class Rows {
     }
 
     public List<Row> getRows() {
-        return rows;
+        return new ArrayList<>(rows);
     }
 
     public static Rows of(int rowSize, int ladderHeight) {

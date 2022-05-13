@@ -38,6 +38,6 @@ public class Row {
     }
 
     public List<Step> getSteps() {
-        return steps;
+        return new ArrayList<>(steps);
     }
 }

@@ -1,5 +1,6 @@
 package ladder.domain.player;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -8,7 +9,7 @@ public class Players {
 
     public Players(List<Player> players) {
         validate(players);
-        this.players = players;
+        this.players = new ArrayList<>(players);
     }
 
     private void validate(List<Player> players) {
@@ -30,6 +31,6 @@ public class Players {
     }
 
     public List<Player> getPlayers() {
-        return players;
+        return new ArrayList<>(players);
     }
 }

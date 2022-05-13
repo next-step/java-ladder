@@ -35,7 +35,7 @@ class LadderTest {
 
         assertAll(
                 () -> assertInstanceOf(Ladder.class, ladder),
-                () -> assertEquals(5, ladder.getHeight()),
+                () -> assertEquals(5, ladder.getRows().size()),
                 () -> assertEquals(players.size(), ladder.getPlayers().size()),
                 () -> assertEquals("name", ladder.getPlayers().getPlayers().get(0).getName())
         );
