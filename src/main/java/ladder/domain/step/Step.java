@@ -1,29 +1,20 @@
 package ladder.domain.step;
 
-import ladder.domain.step.strategy.CrossStrategy;
-import ladder.domain.step.strategy.RandomCrossStrategy;
-import ladder.domain.step.strategy.UnCrossableStrategy;
+import utils.RandomUtils;
 
 public class Step {
-    private final CrossStrategy crossStrategy;
+    private final boolean crossable;
 
     public Step() {
-        this(new RandomCrossStrategy());
+        this(RandomUtils.getBoolean());
     }
 
-    public Step(CrossStrategy crossStrategy) {
-        validate(crossStrategy);
-        this.crossStrategy = crossStrategy;
-    }
-
-    private void validate(CrossStrategy crossStrategy) {
-        if (crossStrategy == null) {
-            throw new IllegalArgumentException("crossStrategy는 null 일 수 없습니다.");
-        }
+    public Step(boolean crossable) {
+        this.crossable = crossable;
     }
 
     public boolean isCrossable() {
-        return crossStrategy.isCrossable();
+        return crossable;
     }
 
     public static Step first() {
@@ -32,7 +23,7 @@ public class Step {
 
     public static Step from(Step previousStep) {
         if (previousStep.isCrossable()) {
-            return new Step(new UnCrossableStrategy());
+            return new Step(false);
         }
 
         return new Step();
