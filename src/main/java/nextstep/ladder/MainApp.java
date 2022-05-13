@@ -9,17 +9,14 @@ import nextstep.ladder.view.LadderGameOutputCui;
 
 public class MainApp {
 
-    public static void main(String[] args) {
-        LadderGameInputCui inputUi = new LadderGameInputCui();
-        LadderGameOutputCui outputUi = new LadderGameOutputCui();
+    private static final LadderGameInputCui inputUi = new LadderGameInputCui();
+    private static final LadderGameOutputCui outputUi = new LadderGameOutputCui();
 
+    public static void main(String[] args) {
         List<String> inputNames = inputUi.inputParticipants();
         List<String> results = inputUi.inputExecuteResult();
 
-        if (inputNames.size() != results.size()) {
-            System.out.println("참가자 이름 수와 결과 수는 같게 입력되어야함.");
-            System.exit(1);
-        }
+        validateNamesAndResult(inputNames, results);
 
         int ladderHeight = inputUi.inputMaxLadderHeight();
 
@@ -31,26 +28,33 @@ public class MainApp {
         );
 
         outputUi.draw(ladder);
-
-        String resultName = null;
-        while (!checkAll(resultName)) {
-            resultName = inputUi.inputResultName();
-
-            if (resultName.equals("all")) {
-                break;
-            }
-
-            try {
-                outputUi.printResultOf(ladder.checkResultOf(resultName));
-            } catch (NotExistNameException e) {
-                System.out.println("존재하지 않는 이름, 다시 입력");
-            }
-        }
-
+        checkResult(ladder);
         outputUi.printGameResults(ladder);
     }
 
-    public static boolean checkAll(String resultName) {
+    private static void checkResult(Ladder ladder) {
+        String resultName;
+        while (!finishCheck(resultName = inputUi.inputResultName())) {
+            printResult(ladder, resultName);
+        }
+    }
+
+    private static void printResult(Ladder ladder, String resultName) {
+        try {
+            outputUi.printResultOf(ladder.checkResultOf(resultName));
+        } catch (NotExistNameException e) {
+            System.out.println("존재하지 않는 이름, 다시 입력");
+        }
+    }
+
+    private static boolean finishCheck(String resultName) {
         return resultName != null && "all".equals(resultName);
+    }
+
+    private static void validateNamesAndResult(List<String> names, List<String> results) {
+        if (names.size() != results.size()) {
+            System.out.println("참가자 이름 수와 결과 수는 같게 입력되어야함.");
+            System.exit(1);
+        }
     }
 }

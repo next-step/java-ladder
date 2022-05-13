@@ -1,6 +1,5 @@
 package nextstep.ladder.domain;
 
-import static nextstep.ladder.utils.LadderPartIndexUtils.isHorizon;
 import static nextstep.ladder.utils.LadderPartIndexUtils.isVertical;
 
 import java.util.ArrayList;

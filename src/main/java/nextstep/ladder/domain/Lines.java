@@ -20,42 +20,20 @@ public class Lines {
         }
     }
 
+
+
     public int resultIndexOf(int startIndex) {
         validate(startIndex);
 
-        int rowIndex = 0;
-        int colIndex = startIndex;
+        PartIndex partIndex = new PartIndex(0, startIndex);
 
         int height = lines.size();
 
-        Part part;
-
-        while (rowIndex < height) {
-            part = lines.get(rowIndex).part(colIndex);
-
-            if (!part.isConnected()) {
-                ++rowIndex;
-                continue;
-            }
-
-            if (colIndex > 0
-            && lines.get(rowIndex).part(colIndex-1).isConnected()) {
-                --colIndex;
-                --colIndex;
-                ++rowIndex;
-                continue;
-            }
-
-            if (colIndex < lines.get(rowIndex).size()-1
-            && lines.get(rowIndex).part(colIndex+1).isConnected()) {
-                ++colIndex;
-                ++colIndex;
-                ++rowIndex;
-                continue;
-            }
+        while (partIndex.rowIsSmallerThan(height)) {
+            partIndex.modifyIfConnectedPartOf(lines);
         }
 
-        return colIndex;
+        return partIndex.getCol();
     }
 
     private void validate(int startIndex) {
