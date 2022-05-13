@@ -41,7 +41,6 @@ public class OutputView {
 
     private static void printRow(Row row) {
         System.out.println(row.getSteps()
-                .getSteps()
                 .stream()
                 .map(OutputView::getStepString)
                 .reduce(BEAM, (str, cur) -> str + cur + BEAM));

@@ -1,48 +1,43 @@
 package ladder.domain.row;
 
 import ladder.domain.step.Step;
-import ladder.domain.step.Steps;
-import ladder.domain.step.strategy.UnCrossableStrategy;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Row {
     static final int ROW_START_INDEX = 1;
 
-    private final Steps steps;
+    private final List<Step> steps;
 
-    public Row(Steps steps) {
+    public Row(List<Step> steps) {
         validate(steps);
-        this.steps = steps;
+        this.steps = new ArrayList<>(steps);
     }
 
-    private void validate(Steps steps) {
+    private void validate(List<Step> steps) {
         if (steps == null) {
             throw new IllegalArgumentException("steps는 null 일 수 없습니다.");
         }
     }
 
-    public static Row from(int playersSize) {
-        Steps steps = new Steps();
+    public static Row from(int rowSize) {
+        List<Step> steps = new ArrayList<>();
+        steps.add(Step.first());
 
-        for (int i = ROW_START_INDEX; i < playersSize; i++) {
-            steps = extendSteps(steps);
+        for (int i = ROW_START_INDEX; i < rowSize - 1; i++) {
+            steps.add(
+                    Step.from(lastStep(steps))
+            );
         }
-
         return new Row(steps);
     }
 
-    private static Steps extendSteps(Steps steps) {
-        return steps.extend(generateStep(steps));
+    private static Step lastStep(List<Step> steps) {
+        return steps.get(steps.size() - 1);
     }
 
-    private static Step generateStep(Steps steps) {
-        if (steps.lastIsCrossable()) {
-            return new Step(new UnCrossableStrategy());
-        }
-
-        return new Step();
-    }
-
-    public Steps getSteps() {
+    public List<Step> getSteps() {
         return steps;
     }
 }
