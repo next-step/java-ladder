@@ -16,7 +16,7 @@ public class Participants {
     }
 
     private void validateNullAndEmpty(String[] names) {
-        if(names == null || names.length == 0) {
+        if (names == null || names.length == 0) {
             throw new IllegalArgumentException(PARTICIPANTS_NULL_OR_EMPTY_ERROR_MESSAGE);
         }
     }

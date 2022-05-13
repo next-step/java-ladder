@@ -19,13 +19,13 @@ public class Participant {
     }
 
     private void validateNullAndEmpty(String name) {
-        if(name == null || name.isEmpty()) {
+        if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException(String.format(BASE_LENGTH_OVER_ERROR_MESSAGE, name));
         }
     }
 
     private void validateValueLength(String name) {
-        if(name.length() > BASE_LENGTH_PARTICIPANT_NAME) {
+        if (name.length() > BASE_LENGTH_PARTICIPANT_NAME) {
             throw new IllegalArgumentException(PARTICIPANT_NULL_OR_EMPTY_ERROR_MESSAGE);
         }
     }

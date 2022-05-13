@@ -37,8 +37,8 @@ public class ParticipantTest {
     @ParameterizedTest(name = "참가자의 이름이 null이거나 empty인 경우 예외처리를 합니다.")
     @NullAndEmptySource
     void exceptionParticipantIsNullOrEmpty(String name) {
-      // when & then
-      assertThatThrownBy(() -> new Participant(name))
-              .isInstanceOf(IllegalArgumentException.class);
+        // when & then
+        assertThatThrownBy(() -> new Participant(name))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
