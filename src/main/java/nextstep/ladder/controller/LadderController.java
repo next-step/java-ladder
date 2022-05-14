@@ -1,5 +1,6 @@
 package nextstep.ladder.controller;
 
+import nextstep.ladder.domain.Height;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Participants;
 import nextstep.ladder.generator.ProductionGenerator;
@@ -17,8 +18,10 @@ public class LadderController {
     public void createLadder() {
         String[] participantNames = InputView.inputParticipantNames();
         Participants participants = new Participants(participantNames);
-        int height = InputView.inputLadderHeight();
-        Ladder ladder = new Ladder(productionGenerator, height, participantNames.length);
+        Height height = new Height(InputView.inputLadderHeight());
+
+        Ladder ladder = new Ladder(productionGenerator, height.getValue(), participantNames.length);
+
         OutputView.printParticipants(participants.getValues());
         OutputView.printLadder(ladder.getLines());
     }
