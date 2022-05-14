@@ -26,6 +26,10 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
+    public List<Line> lines() {
+        return ladder;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
