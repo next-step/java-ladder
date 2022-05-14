@@ -8,7 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class UserNameTest {
+class GameUserTest {
 
   @ParameterizedTest
   @DisplayName("사용자 이름을 잘 생성하는지 확인")

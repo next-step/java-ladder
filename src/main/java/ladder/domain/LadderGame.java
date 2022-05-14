@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.security.InvalidParameterException;
+import java.util.stream.Collectors;
 import ladder.domain.strategy.LadderConnectStrategy;
 
 public class LadderGame {
@@ -40,6 +41,34 @@ public class LadderGame {
 
   public GameResults getGameResults() {
     return gameResults;
+  }
+
+  public GameResult gameResult(GameUser gameUser) {
+    int height = 0;
+    int width = gameUsers.getUserIdx(gameUser);
+
+    while (height < ladder.getLadderHeight()) {
+      width = getNextWidth(ladder, height, width);
+      height++;
+    }
+
+    return gameResults.getGameResult(width);
+  }
+
+  public GameResults gameResultAll() {
+    return GameResults.from(gameUsers.getValues().stream()
+        .map(gameUser -> gameResult(gameUser))
+        .collect(Collectors.toList()));
+  }
+
+  private int getNextWidth(Ladder ladder, int height, int width) {
+    if (ladder.isLeftConnect(height, width)) {
+      return width--;
+    }
+    if (ladder.isRightConnect(height, width)) {
+      return width++;
+    }
+    return width;
   }
 
   private void assertLadderGame(GameUsers userNames, GameResults gameResults) {

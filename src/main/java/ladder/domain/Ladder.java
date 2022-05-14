@@ -31,6 +31,14 @@ public class Ladder {
     return ladderLines.getLadderLine(height);
   }
 
+  public boolean isLeftConnect(int height, int width) {
+    return getLadderLine(height).isLeftConnect(width);
+  }
+
+  public boolean isRightConnect(int height, int width) {
+    return getLadderLine(height).isRightConnect(width);
+  }
+
   public int getLadderWidth() {
     return ladderLines.getLadderLine(0).getLadderWidth();
   }

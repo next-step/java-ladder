@@ -21,7 +21,7 @@ public class LadderGameTest {
 
     assertThat(ladderGame.getLadderWidth()).isEqualTo(gameUsers.getUserSize());
     assertThat(ladderGame.getLadderHeight()).isEqualTo(height);
-    assertThat(ladderGame.getUserNames()).isEqualTo(gameUsers);
+    assertThat(ladderGame.getGameUsers()).isEqualTo(gameUsers);
     assertThat(ladderGame.getGameResults()).isEqualTo(gameResults);
   }
 

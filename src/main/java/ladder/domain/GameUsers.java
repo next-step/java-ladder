@@ -7,10 +7,10 @@ import java.util.stream.Collectors;
 public class GameUsers {
 
   private static final String DELIMITER = ",";
-  private final List<GameUser> value;
+  private final List<GameUser> values;
 
   private GameUsers(String userNames) {
-    this.value = Arrays.stream(userNames.split(DELIMITER))
+    this.values = Arrays.stream(userNames.split(DELIMITER))
         .map(GameUser::from)
         .collect(Collectors.toList());
   }
@@ -20,10 +20,18 @@ public class GameUsers {
   }
 
   public int getUserSize() {
-    return this.value.size();
+    return this.values.size();
   }
 
   public String getUserName(int userIdx) {
-    return value.get(userIdx).getName();
+    return values.get(userIdx).getName();
+  }
+
+  public int getUserIdx(GameUser gameUser) {
+    return values.indexOf(gameUser);
+  }
+
+  public List<GameUser> getValues() {
+    return values;
   }
 }

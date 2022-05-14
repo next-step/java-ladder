@@ -21,11 +21,20 @@ public class GameResults {
     return new GameResults(values);
   }
 
+  public static GameResults from(List<GameResult> values) {
+    return new GameResults(values);
+  }
+
+
   public int getResultSize() {
     return values.size();
   }
 
   public List<GameResult> getValues() {
     return values;
+  }
+
+  public GameResult getGameResult(int width) {
+    return values.get(width);
   }
 }

@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.security.InvalidParameterException;
+import java.util.Objects;
 
 public class GameUser {
 
@@ -30,5 +31,22 @@ public class GameUser {
 
   public String getName() {
     return name;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    GameUser gameUser = (GameUser) o;
+    return Objects.equals(name, gameUser.name);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(name);
   }
 }
