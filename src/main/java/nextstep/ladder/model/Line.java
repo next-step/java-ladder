@@ -1,7 +1,6 @@
 package nextstep.ladder.model;
 
 import nextstep.ladder.util.InputUtil;
-import nextstep.ladder.view.InputTable;
 
 import java.util.ArrayList;
 import java.util.List;

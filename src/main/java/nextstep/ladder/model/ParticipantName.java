@@ -22,10 +22,6 @@ public final class ParticipantName {
         }
     }
 
-    public long length() {
-        return value.length();
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

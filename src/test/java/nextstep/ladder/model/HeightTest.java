@@ -11,7 +11,7 @@ class HeightTest {
     @DisplayName("사다리의 높이는 1보다 작을 수 없습니다.")
     void ladderHeightException() {
         assertThrows(NullPointerException.class, () -> {
-           new Height(0);
+            new Height(0);
         });
     }
 }

@@ -17,7 +17,7 @@ public final class InputUtil {
 
     public static boolean randomBar(Boolean beforeStatus) {
         boolean result = new Random().nextBoolean();
-        if(beforeStatus != null && beforeStatus) {
+        if (beforeStatus != null && beforeStatus) {
             return false;
         }
         return result;
