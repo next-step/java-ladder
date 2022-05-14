@@ -1,5 +1,7 @@
 package ladder.view;
 
+import ladder.domain.GameResult;
+import ladder.domain.GameResults;
 import ladder.domain.GameUser;
 import ladder.domain.GameUsers;
 import ladder.domain.Ladder;
@@ -19,18 +21,26 @@ public class LadderGameOutputView {
     for (int i = 0; i < ladder.getLadderHeight(); i++) {
       printLadderLine(ladder.getLadderLine(i));
     }
+
+    printResults(ladderGame.getGameResults());
+  }
+
+  private static void printResults(GameResults gameResults) {
+    for (GameResult gameResult : gameResults.getValues()) {
+      System.out.print(paddingLeftMaxLength(gameResult.getResult()));
+    }
   }
 
   private static void printUsers(GameUsers userNames) {
     for (int i = 0; i < userNames.getUserSize(); i++) {
       String userName = userNames.getUserName(i);
-      System.out.print(paddingUserName(userName));
+      System.out.print(paddingLeftMaxLength(userName));
     }
     System.out.println();
   }
 
-  private static String paddingUserName(String userName) {
-    return SPACE.repeat(GameUser.LENGTH_LIMIT - userName.length() + 1) + userName;
+  private static String paddingLeftMaxLength(String target) {
+    return SPACE.repeat(GameUser.LENGTH_LIMIT - target.length() + 1) + target;
   }
 
   private static void printLadderLine(LadderLine ladderLine) {

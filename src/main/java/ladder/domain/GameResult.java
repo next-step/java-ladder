@@ -21,4 +21,8 @@ public class GameResult {
       throw new InvalidParameterException(INVALID_GAME_RESULT_MSG);
     }
   }
+
+  public String getResult() {
+    return result;
+  }
 }

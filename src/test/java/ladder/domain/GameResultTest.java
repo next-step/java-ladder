@@ -15,8 +15,8 @@ class GameResultTest {
   @DisplayName("게임 결과 입력을 통해 게임 결과가 잘 생성되는지 확인")
   @ValueSource(strings = {"꽝", "1000", "2000", "3000"})
   void from(String result) {
-    assertThat(GameResult.from(result)).usingRecursiveComparison()
-        .isEqualTo(GameResult.from(result));
+    GameResult gameResult = GameResult.from(result);
+    assertThat(gameResult.getResult()).isEqualTo(result);
   }
 
   @Test

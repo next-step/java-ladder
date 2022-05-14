@@ -24,4 +24,8 @@ public class GameResults {
   public int getResultSize() {
     return values.size();
   }
+
+  public List<GameResult> getValues() {
+    return values;
+  }
 }

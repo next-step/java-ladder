@@ -38,6 +38,10 @@ public class LadderGame {
     return ladder.getLadderWidth();
   }
 
+  public GameResults getGameResults() {
+    return gameResults;
+  }
+
   private void assertLadderGame(GameUsers userNames, GameResults gameResults) {
     if (userNames.getUserSize() != gameResults.getResultSize()) {
       throw new InvalidParameterException(NOT_SAME_USER_RESULT_COUNT_MSG);
