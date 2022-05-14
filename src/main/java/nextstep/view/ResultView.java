@@ -2,6 +2,10 @@ package nextstep.view;
 
 import nextstep.domain.LadderLine;
 import nextstep.domain.StartLadderGame;
+import nextstep.domain.User;
+
+import java.util.List;
+import java.util.stream.IntStream;
 
 
 public class ResultView {
@@ -14,32 +18,45 @@ public class ResultView {
 
     public static void print(StartLadderGame startLadderGame) {
         System.out.println("실행결과\n");
-
-        System.out.print(startLadderGame.getUsers().get(0).getUserName()
-                + PAD.substring(startLadderGame.getUsers().get(0).getUserName().length()));
-        for (int i = 1; i < startLadderGame.getUsers().size(); i++) {
-            System.out.print(LPAD.substring(startLadderGame.getUsers().get(i).getUserName().length())
-                    + startLadderGame.getUsers().get(i).getUserName());
-        }
-
+        printUserList(startLadderGame.getUsers());
         System.out.println();
+        printLadderLines(startLadderGame.getUsers().get(0).getUserName().length()
+                , startLadderGame.getLadder().getLadderLines());
+    }
 
-        for (LadderLine ladderLine : startLadderGame.getLadder().getLadderLines()) {
-            System.out.print(PAD.substring(0, startLadderGame.getUsers().get(0).getUserName().length()) + USER_POINT);
-            for (int i = 1; i < ladderLine.getPoints().size(); i++) {
-                if (isUserPoint(i)) {
-                    System.out.print(USER_POINT);
-                }
-                if (isLadderLine(i, ladderLine.getPoints().get(i))) {
-                    System.out.print(LADDER_LINE);
-                }
-                if (isLadderBlankLine(i, ladderLine.getPoints().get(i))) {
-                    System.out.print(BLANK);
-                }
-            }
-            System.out.println();
+    private static void printUserList(List<User> users) {
+        System.out.print(users.get(0).getUserName()
+                + PAD.substring(users.get(0).getUserName().length()));
+        for (int i = 1; i < users.size(); i++) {
+            System.out.print(LPAD.substring(users.get(i).getUserName().length())
+                    + users.get(i).getUserName());
         }
     }
+
+    private static void printLadderLines(int firstUserNameLength, List<LadderLine> ladderLines) {
+        IntStream.range(0, ladderLines.size())
+                .forEach(i -> {
+                    System.out.print(PAD.substring(0, firstUserNameLength));
+                    printLAdderLine(ladderLines.get(i));
+                    System.out.println();
+                });
+    }
+
+    private static void printLAdderLine(LadderLine ladderLine) {
+        IntStream.range(0, ladderLine.getPoints().size())
+                .forEach(i -> {
+                    if (isUserPoint(i)) {
+                        System.out.print(USER_POINT);
+                    }
+                    if (isLadderLine(i, ladderLine.getPoints().get(i))) {
+                        System.out.print(LADDER_LINE);
+                    }
+                    if (isLadderBlankLine(i, ladderLine.getPoints().get(i))) {
+                        System.out.print(BLANK);
+                    }
+                });
+    }
+
 
     private static boolean isUserPoint(int index) {
         return index % CHECK_USER_POINT_INDEX == 0;

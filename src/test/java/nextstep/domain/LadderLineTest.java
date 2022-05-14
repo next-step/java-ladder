@@ -28,19 +28,9 @@ class LadderLineTest {
 
     @Test
     void 사다리라인생성기가_연속적으로_true더라도_사다리라인_겹치지_않는지_체크() {
-        List<Boolean> result = new ArrayList<>();
-        result.add(false);
-        IntStream.range(0,5)
-                .mapToObj(i -> result.add(true))
-                .collect(Collectors.toList());
-        result.add(false);
-        IntStream.range(0,5)
-                .mapToObj(i -> result.add(false))
-                .collect(Collectors.toList());
-        result.add(false);
-        List<Boolean> input = new ArrayList<>();
-        input.add(true);
-        input.add(true);
+        List<Boolean> result = List.of(false,true,true,true,true,true
+                ,false,false,false,false,false,false,false);
+        List<Boolean> input = List.of(true,true);
         assertThat(new LadderLine(input).getPoints()).isEqualTo(result);
     }
 

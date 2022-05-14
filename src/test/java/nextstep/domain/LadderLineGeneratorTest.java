@@ -9,6 +9,6 @@ class LadderLineGeneratorTest {
     @ParameterizedTest
     @ValueSource(ints = {1,2,3})
     void 카운트갯수만큼_리스트가_생성되는지_확인(int count) {
-        assertThat(LadderLineGenerator.generate(count).size()).isEqualTo(count);
+        assertThat(LadderLineGenerator.generate(count)).hasSize(count);
     }
 }
