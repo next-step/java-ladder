@@ -11,7 +11,7 @@ public final class LadderService {
         return new Participants(participantsNames).size();
     }
 
-    public Ladder createLadder(int height, int participant) {
-        return new Ladder(height, participant);
+    public Ladder createLadder(int participant, int height) {
+        return new Ladder(participant, height);
     }
 }

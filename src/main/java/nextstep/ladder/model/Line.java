@@ -12,9 +12,8 @@ public final class Line {
 
     private static final String CONTINUITY_CREATE_MESSAGE = "연속으로 바를 생성할 수 없습니다.";
     private static final String LAST_CREATE_MESSAGE = "마지막 바는 생성할 수 없습니다.";
-    private static final String PARTICIPANT_COUNT_EXCEPTION_MESSAGE = "참가자의 수는 최소 2명이여야 합니다.";
+
     private static final int FIRST_INDEX = 1;
-    private static final int LEAST_PARTICIPANT_COUNT = 2;
 
     private final List<Bar> bars;
 
@@ -51,17 +50,10 @@ public final class Line {
 
     public void validate(List<Boolean> bars) {
         int size = bars.size();
-        barCountValidate(size);
         for (int i = FIRST_INDEX; i < size; i++) {
             continuityCreateValidate(bars.get(i - FIRST_INDEX), bars.get(i));
         }
         lastBarCreateValidate(bars.get(size - FIRST_INDEX));
-    }
-
-    private void barCountValidate(int size) {
-        if (size < LEAST_PARTICIPANT_COUNT) {
-            throw new IllegalArgumentException(PARTICIPANT_COUNT_EXCEPTION_MESSAGE);
-        }
     }
 
     private void lastBarCreateValidate(boolean currentBarStatus) {

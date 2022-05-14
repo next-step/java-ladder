@@ -59,15 +59,4 @@ class LineTest {
         });
     }
 
-    @Test
-    @DisplayName("참가자는 최소 2명이상이어야 합니다.")
-    void createTwoBars() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            Line line = new Line(
-                    List.of(
-                            false
-                    )
-            );
-        });
-    }
 }
