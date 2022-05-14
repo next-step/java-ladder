@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.model;
 
 import nextstep.ladder.model.Participant;
 import org.junit.jupiter.api.DisplayName;
@@ -33,6 +33,6 @@ public class ParticipantTest {
     @DisplayName("참가자의 이름의 길이를 계산한다.")
     void lengthTest() {
         Participant participant = new Participant("klom");
-        assertThat(participant.length()).isEqualTo(4);
+        assertThat(participant.getName()).isEqualTo(" klom");
     }
 }

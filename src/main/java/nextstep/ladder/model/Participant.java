@@ -13,8 +13,8 @@ public final class Participant {
         this.name = new ParticipantName(name);
     }
 
-    public long length() {
-        return name.length();
+    public String getName() {
+        return name.toString();
     }
 
     public void validate(String name) {
