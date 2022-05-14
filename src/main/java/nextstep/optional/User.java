@@ -3,8 +3,8 @@ package nextstep.optional;
 import java.util.Optional;
 
 public class User {
-    private String name;
-    private Integer age;
+    private final String name;
+    private final Integer age;
 
     public User(String name, Integer age) {
         this.name = name;
@@ -13,41 +13,37 @@ public class User {
 
     public static boolean ageIsInRange1(User user) {
         return user != null && ageNotNull(user)
-                && (ageOver29(user)
-                && ageUnder46(user));
+                && (ageSameOrOver30(user)
+                && ageSameOrUnder45(user));
     }
 
     public static boolean ageIsInRange2(User user) {
         return Optional.ofNullable(user)
                 .filter(User::ageNotNull)
                 .map(User::getAge)
-                .filter(User::ageOver29)
-                .filter(User::ageUnder46)
+                .filter(User::ageSameOrOver30)
+                .filter(User::ageSameOrUnder45)
                 .isPresent();
     }
 
-    private static boolean ageUnder46(Integer age) {
+    private static boolean ageSameOrUnder45(Integer age) {
         return age <= 45;
     }
 
-    private static boolean ageOver29(Integer age) {
+    private static boolean ageSameOrOver30(Integer age) {
         return age >= 30;
     }
 
-    private static boolean ageUnder46(User user) {
-        return ageUnder46(user.getAge());
+    private static boolean ageSameOrUnder45(User user) {
+        return ageSameOrUnder45(user.getAge());
     }
 
-    private static boolean ageOver29(User user) {
+    private static boolean ageSameOrOver30(User user) {
         return user.getAge() >= 30;
     }
 
     private static boolean ageNotNull(User user) {
         return user.getAge() != null;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public Integer getAge() {
