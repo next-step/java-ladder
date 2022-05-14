@@ -1,11 +1,19 @@
 package nextstep.ladder.domain;
 
+import static nextstep.ladder.utils.LadderPartIndexUtils.isVertical;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Parts {
 
     private List<Part> parts = new ArrayList<>();
+
+    public Parts(int length) {
+        for (int i = 0; i < length; ++i) {
+            this.add(i);
+        }
+    }
 
     public void add(int index) {
         parts.add(Part.valueOf(index));
@@ -16,13 +24,13 @@ public class Parts {
     }
 
     public void connectPart(int index) {
+        if (isVertical(index) || index >= parts.size() || index < 0) {
+            throw new IllegalArgumentException("연결 할 수 없는 파트.");
+        }
+
+        parts.get(index+1).connect();
         parts.get(index).connect();
-
-        if (index < parts.size()-1)
-            parts.get(index+1).connect();
-
-        if (index > 0)
-            parts.get(index-1).connect();
+        parts.get(index-1).connect();
     }
 
     public void connectPartWithPolicy(int index, ConnectPolicy connectPolicy) {
@@ -55,15 +63,8 @@ public class Parts {
         return "{" + parts + "}\n";
     }
 
-    public void connectEvenPart(int flag, int index) {
-        if (flag == 0) {
-            this.connectPart(index);
-        }
+    public Part part(int colIndex) {
+        return parts.get(colIndex);
     }
 
-    public void connectOddPart(int flag, int index) {
-        if (flag != 0) {
-            this.connectPart(index);
-        }
-    }
 }

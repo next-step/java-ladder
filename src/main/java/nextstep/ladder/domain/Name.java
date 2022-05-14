@@ -51,4 +51,8 @@ public class Name {
     public String get() {
         return name;
     }
+
+    public boolean sameWith(String name) {
+        return this.name.equals(name);
+    }
 }

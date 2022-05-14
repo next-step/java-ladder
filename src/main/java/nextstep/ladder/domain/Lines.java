@@ -1,55 +1,55 @@
 package nextstep.ladder.domain;
 
+import static nextstep.ladder.utils.LadderPartIndexUtils.isHorizon;
+import static nextstep.ladder.utils.LadderPartIndexUtils.isVertical;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Lines {
-    private static final int AFTER_DEFAULT_LINE = 2;
+    private static final int AFTER_DEFAULT_LINE = 0;
 
-    private final List<Parts> partsList = new ArrayList<>();
+    private final List<Parts> lines = new ArrayList<>();
 
     public Lines(int participantsCount, int height) {
         final int verticalCount = participantsCount;
         final int horizonCount = participantsCount - 1;
 
         for (int j = 0; j < height; ++j) {
-            partsList.add(new Parts());
-        }
-
-        partsList.forEach(parts -> {
-                for (int i = 0; i < verticalCount + horizonCount; ++i) {
-                    parts.add(i);
-                }
-            });
-    }
-
-    public void connectMinimum() {
-        connectFirstLineEvenPart();
-        connectSecondLineOddPart();
-    }
-
-    private void connectFirstLineEvenPart() {
-        Parts parts = this.partsList.get(0);
-
-        int flag = 0;
-        for (int i = 1; i < parts.size(); i += 2) {
-            parts.connectEvenPart(flag++ % 2, i);
+            lines.add(new Parts(verticalCount + horizonCount));
         }
     }
 
-    private void connectSecondLineOddPart() {
-        Parts parts = this.partsList.get(1);
 
-        int flag = 0;
-        for (int i = 1; i < parts.size(); i += 2) {
-            parts.connectOddPart(flag++ % 2, i);
+
+    public int resultIndexOf(int startIndex) {
+        validate(startIndex);
+
+        PartIndex partIndex = new PartIndex(0, startIndex);
+
+        int height = lines.size();
+
+        while (partIndex.rowIsSmallerThan(height)) {
+            partIndex.modifyIfConnectedPartOf(lines);
+        }
+
+        return partIndex.getCol();
+    }
+
+    private void validate(int startIndex) {
+        if (!isVertical(startIndex)) {
+            throw new IllegalArgumentException("결과 확인은 세로줄에서 시작해야함.");
+        }
+
+        if (startIndex < 0 || startIndex >= lines.get(0).size()) {
+            throw new IllegalArgumentException("유효하지 않은 결과 확인 인덱스.");
         }
     }
 
     public void connectLinesWithPolicy(ConnectPolicy connectPolicy) {
         // 이미 기본연결된 부분 이후로 라인들 순회
-        for (int i = AFTER_DEFAULT_LINE; i < partsList.size(); ++i) {
-            connectParts(partsList.get(i), connectPolicy);
+        for (int i = AFTER_DEFAULT_LINE; i < lines.size(); ++i) {
+            connectParts(lines.get(i), connectPolicy);
         }
     }
 
@@ -61,40 +61,30 @@ public class Lines {
     }
 
     public int lineHeight() {
-        return partsList.size();
+        return lines.size();
     }
 
     public int lineCount() {
-        return partsList.stream()
+        return lines.stream()
             .findAny()
             .orElseThrow(() -> new IllegalStateException("연결을 확인 할 수 없음"))
             .size();
     }
 
-    public boolean isAllLineConnected() {
-        int lineCount = lineCount();
-
-        boolean isConnected;
-        for (int i = 1; i < lineCount; i += 2) {
-            final int ii = i;
-
-            isConnected = partsList.stream()
-                .anyMatch(parts -> parts.isConnected(ii));
-
-            if (!isConnected)
-                return false;
-        }
-
-        return true;
-    }
-
-    public List<Parts> getPartsLine() {
-        return partsList;
+    public List<Parts> getLines() {
+        return lines;
     }
 
     @Override
     public String toString() {
-        return "{" + partsList + "}\n";
+        return "{" + lines + "}\n";
     }
 
+    protected void connectLineManually(int lineIndex, int partIndex) {
+        if (!isHorizon(partIndex)) {
+            throw new IllegalArgumentException("연결 시에는 세로줄 part 가 아니라 가로줄 part 인덱스를 넣어야함.");
+        }
+
+        lines.get(lineIndex).connectPart(partIndex);
+    }
 }
