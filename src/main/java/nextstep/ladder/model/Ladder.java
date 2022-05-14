@@ -7,6 +7,7 @@ import java.util.stream.IntStream;
 
 public class Ladder {
 
+    private static final String NOT_NULL_CREATE_MESSAGE = "사다리는 생성이 되어야 합니다.";
     private static final int START_INDEX = 0;
 
     private final List<Line> ladder;
@@ -16,7 +17,15 @@ public class Ladder {
     }
 
     public Ladder(List<Line> ladder) {
+        validateNullCheck(ladder);
         this.ladder = ladder;
+    }
+
+    private void validateNullCheck(List<Line> ladder) {
+        if(ladder == null || ladder.isEmpty()) {
+            throw new NullPointerException(NOT_NULL_CREATE_MESSAGE);
+        }
+        ladder.forEach(line -> line.validateNullCheck(line.bars()));
     }
 
     private static List<Line> create(int participant, int height) {

@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 public final class Line {
 
+    private static final String NOT_NULL_CREATE_MESSAGE = "라인은 생성이 되어야 합니다.";
     private static final String CONTINUITY_CREATE_MESSAGE = "연속으로 바를 생성할 수 없습니다.";
     private static final String LAST_CREATE_MESSAGE = "마지막 바는 생성할 수 없습니다.";
 
@@ -68,6 +69,12 @@ public final class Line {
     private void continuityCreateValidate(boolean beforeBarStatus, boolean currentBarStatus) {
         if (beforeBarStatus && currentBarStatus) {
             throw new IllegalArgumentException(CONTINUITY_CREATE_MESSAGE);
+        }
+    }
+
+    public void validateNullCheck(List<Bar> bars) {
+        if (bars == null || bars.isEmpty()) {
+            throw new NullPointerException(NOT_NULL_CREATE_MESSAGE);
         }
     }
 
