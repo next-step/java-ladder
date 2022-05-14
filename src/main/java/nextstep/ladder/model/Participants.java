@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 public final class Participants {
     private static final String PARTICIPANT_COUNT_EXCEPTION_MESSAGE = "참가자의 수는 최소 2명이여야 합니다.";
     private static final int LEAST_PARTICIPANT_COUNT = 2;
+
     private final List<Participant> participants;
 
     public Participants(List<String> participantNames) {

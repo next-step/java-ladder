@@ -14,7 +14,6 @@ public final class InputUtil {
         return List.of(value.split(splitValue));
     }
 
-
     public static boolean randomBar(Boolean beforeStatus) {
         boolean result = new Random().nextBoolean();
         if (beforeStatus != null && beforeStatus) {

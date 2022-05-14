@@ -12,7 +12,6 @@ public final class Line {
     private static final String NOT_NULL_CREATE_MESSAGE = "라인은 생성이 되어야 합니다.";
     private static final String CONTINUITY_CREATE_MESSAGE = "연속으로 바를 생성할 수 없습니다.";
     private static final String LAST_CREATE_MESSAGE = "마지막 바는 생성할 수 없습니다.";
-
     private static final int FIRST_INDEX = 1;
 
     private final List<Bar> bars;
