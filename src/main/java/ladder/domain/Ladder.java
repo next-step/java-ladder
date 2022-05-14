@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import ladder.domain.strategy.ConnectStrategy;
 
 public class Ladder {
@@ -13,12 +14,9 @@ public class Ladder {
   }
 
   public static Ladder of(int userCount, List<ConnectStrategy> connectStrategies) {
-    List<LadderLine> ladderLines = new ArrayList<>();
-    for (int i = 0; i < connectStrategies.size(); i++) {
-      ladderLines.add(LadderLine.of(userCount, connectStrategies.get(i)));
-    }
-
-    return new Ladder(ladderLines);
+    return new Ladder(connectStrategies.stream()
+        .map(c -> LadderLine.of(userCount, c))
+        .collect(Collectors.toList()));
   }
 
   public boolean isConnect(int height, int userIdx) {
