@@ -2,6 +2,9 @@ package ladder.domain.step;
 
 import utils.RandomUtils;
 
+import static ladder.view.OutputView.CROSSABLE_STEP;
+import static ladder.view.OutputView.UN_CROSSABLE_STEP;
+
 public class Step {
     private final boolean crossable;
 
@@ -27,5 +30,13 @@ public class Step {
         }
 
         return new Step();
+    }
+
+    @Override
+    public String toString() {
+        if (isCrossable()) {
+            return CROSSABLE_STEP;
+        }
+        return UN_CROSSABLE_STEP;
     }
 }

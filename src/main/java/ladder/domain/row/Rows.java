@@ -36,4 +36,12 @@ public class Rows {
     public int size() {
         return rows.size();
     }
+
+    @Override
+    public String toString() {
+        return rows.stream()
+                .map(Row::toString)
+                .collect(Collectors.joining("\n"));
+
+    }
 }

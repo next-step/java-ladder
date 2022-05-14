@@ -1,5 +1,7 @@
 package ladder.domain.player;
 
+import static ladder.domain.player.Name.MAX_LENGTH;
+
 public class Player {
     private final Name name;
 
@@ -20,6 +22,7 @@ public class Player {
 
     @Override
     public String toString() {
-        return name.toString();
+        int dif = MAX_LENGTH - name.toString().length();
+        return name + " ".repeat(dif + 1);
     }
 }

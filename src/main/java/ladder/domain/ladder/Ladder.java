@@ -38,4 +38,9 @@ public class Ladder {
     public Players getPlayers() {
         return players;
     }
+
+    @Override
+    public String toString() {
+        return rows.toString();
+    }
 }

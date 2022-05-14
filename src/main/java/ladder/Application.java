@@ -13,9 +13,10 @@ public class Application {
         Players players = Players.from(playerNames);
 
         int ladderHeights = InputView.inputLadderHeights();
-        
+
         Ladder ladder = Ladder.of(players, ladderHeights);
 
+        OutputView.printPlayers(players);
         OutputView.printLadder(ladder);
     }
 }

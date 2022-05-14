@@ -33,4 +33,11 @@ public class Players {
     public List<Player> getPlayers() {
         return new ArrayList<>(players);
     }
+
+    @Override
+    public String toString() {
+        return players.stream()
+                .map(Player::toString)
+                .collect(Collectors.joining());
+    }
 }

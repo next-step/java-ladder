@@ -5,6 +5,8 @@ import ladder.domain.step.Step;
 import java.util.ArrayList;
 import java.util.List;
 
+import static ladder.view.OutputView.BEAM;
+
 public class Row {
     static final int ROW_START_INDEX = 1;
 
@@ -35,6 +37,13 @@ public class Row {
 
     private static Step lastStep(List<Step> steps) {
         return steps.get(steps.size() - 1);
+    }
+
+    @Override
+    public String toString() {
+        return steps.stream()
+                .map(Step::toString)
+                .reduce(BEAM, (acc, cur) -> acc + cur + BEAM);
     }
 
     public List<Step> getSteps() {
