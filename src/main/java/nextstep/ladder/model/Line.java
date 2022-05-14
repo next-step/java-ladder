@@ -53,6 +53,7 @@ public final class Line {
     }
 
     public void validate(List<Boolean> bars) {
+        validateNullCheck(convert(bars));
         int size = bars.size();
         for (int i = FIRST_INDEX; i < size; i++) {
             continuityCreateValidate(bars.get(i - FIRST_INDEX), bars.get(i));
