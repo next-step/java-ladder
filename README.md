@@ -7,3 +7,30 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+## 요구사항
+
+- 사다리(```Lines```)는 여러개의 ```Line```을 갖는다
+- ```Line``` 은 사다리의 가로 줄을 표현한 것이다.
+- ```Line``` 은 ```Bridge```로 서로 연결이 되었는지 구분한다.
+- ```Line``` 의 끝에는 ```Bridge``` 가 존재할 수 없다.   
+- ```Line```은 연속적으로 ```Bridge로```이어질 수 없다
+
+- 사다리는 다음과 같이 표현된다. 
+
+
+    |-----|     |-----|
+    |     |-----|     |
+    |-----|     |     |
+    |     |-----|     |
+    |-----|     |-----|
+ 
+```
+[  
+    [true, false, true], 
+    [false, true, false], 
+    [true, false, false], 
+    [false, true, false],
+    [true, false, true]
+]
+```
