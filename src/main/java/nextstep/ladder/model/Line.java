@@ -33,7 +33,9 @@ public final class Line {
         for (int i = ONE; i < participantCount - ONE; i++) {
             bars.add(InputUtil.randomBar(bars.get(i - ONE)));
         }
-        bars.add(false);
+        if (ONE < participantCount) {
+            bars.add(false);
+        }
         return bars;
     }
 
