@@ -34,4 +34,10 @@ class LadderLineTest {
         assertThat(new LadderLine(input).getPoints()).isEqualTo(result);
     }
 
+    @Test
+    void 사다리살_잘타는지_확인() {
+        List<Boolean> input = List.of(true,true);
+        assertThat(new LadderLine(input).moveLadderLine(0)).isEqualTo(6);
+    }
+
 }
