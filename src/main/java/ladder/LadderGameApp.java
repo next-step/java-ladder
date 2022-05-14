@@ -10,7 +10,7 @@ public class LadderGameApp {
     LadderGameInputView ladderGameInputView = new LadderGameInputView();
 
     LadderGame ladderGame = LadderGame.of(ladderGameInputView.getLadderUsers(),
-        ladderGameInputView.getLadderHeight());
+        ladderGameInputView.getGameResult(), ladderGameInputView.getLadderHeight());
 
     LadderGameOutputView.printLadderGame(ladderGame);
   }
