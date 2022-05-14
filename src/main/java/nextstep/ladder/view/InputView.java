@@ -1,7 +1,6 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Users;
-import nextstep.ladder.domain.UsersFactory;
 
 import java.util.Scanner;
 
@@ -13,7 +12,7 @@ public class InputView {
 
         try {
             String userNames = SCANNER.nextLine();
-            return UsersFactory.create( userNames );
+            return new Users(userNames);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }

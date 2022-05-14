@@ -1,10 +1,12 @@
 package nextstep.ladder.domain;
 
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class UserTest {
@@ -34,6 +36,19 @@ class UserTest {
                         .isInstanceOf(User.ExceedMaxNameLengthException.class);
             }
 
+        }
+    }
+
+    @Nested
+    class toString_메서드는 {
+
+        @Test
+        void 이름을_리턴한다() {
+            String name = "name";
+
+            User user = new User(name);
+
+            assertThat(user.toString()).isEqualTo(name);
         }
     }
 }
