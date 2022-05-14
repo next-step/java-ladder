@@ -1,16 +1,13 @@
 package nextstep.ladder.util;
 
-import java.util.Random;
-
 public class RandomRange {
-    private static final Random RANDOM = new Random();
-    private static final int RANDOM_NUMBER_BOUND = 10;
+    private static final double RANDOM_TRUE_STANDARD = 0.5;
 
     private RandomRange() {
         throw new AssertionError();
     }
 
-    public static int getRandomValue() {
-        return RANDOM.nextInt(RANDOM_NUMBER_BOUND);
+    public static boolean getRandomValue() {
+        return Math.random() < RANDOM_TRUE_STANDARD;
     }
 }
