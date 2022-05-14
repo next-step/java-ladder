@@ -12,4 +12,11 @@ public final class Bar {
     public boolean isActivate() {
         return isActivate;
     }
+
+    @Override
+    public String toString() {
+        return "Bar{" +
+                "isActivate=" + isActivate +
+                '}';
+    }
 }

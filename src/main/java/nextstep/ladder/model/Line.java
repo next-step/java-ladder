@@ -1,5 +1,9 @@
 package nextstep.ladder.model;
 
+import nextstep.ladder.util.InputUtil;
+import nextstep.ladder.view.InputTable;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -14,9 +18,23 @@ public final class Line {
 
     private final List<Bar> bars;
 
+    public Line(int participantCount) {
+        this(create(participantCount));
+    }
+
     public Line(List<Boolean> bars) {
         validate(bars);
         this.bars = convert(bars);
+    }
+
+    private static List<Boolean> create(int participantCount) {
+        List<Boolean> bars = new ArrayList<>();
+        bars.add(InputUtil.randomBar(null));
+        for (int i = ONE; i < participantCount - ONE; i++) {
+            bars.add(InputUtil.randomBar(bars.get(i - ONE)));
+        }
+        bars.add(false);
+        return bars;
     }
 
     private static List<Bar> convert(List<Boolean> bars) {
@@ -67,5 +85,12 @@ public final class Line {
     @Override
     public int hashCode() {
         return Objects.hash(bars);
+    }
+
+    @Override
+    public String toString() {
+        return "Line{" +
+                "bars=" + bars +
+                '}';
     }
 }

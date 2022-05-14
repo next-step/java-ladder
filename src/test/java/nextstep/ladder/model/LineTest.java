@@ -12,6 +12,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class LineTest {
 
     @Test
+    @DisplayName("참가자의 수만큼 라인을 생성합니다.")
+    void participantCreate() {
+        Line line = new Line(4);
+        assertThat(line.barsCount()).isEqualTo(4);
+    }
+
+    @Test
     @DisplayName("사다리의 바의 갯수는 참가지의 갯수와 같습니다.")
     void create() {
         Line line = new Line(
