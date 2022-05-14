@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public final class Participant {
 
-    private static final String EXCEPTION_MESSAGE = "참가자의 이름은 null일 수 없습니다.";
+    private static final String EXCEPTION_MESSAGE = "참가자의 이름은 null이거나 공백일 수 없습니다.";
 
     private final ParticipantName name;
 
