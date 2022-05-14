@@ -25,7 +25,7 @@ public class Ladder {
 
     private void validateNullCheck(List<Line> ladder) {
         if(ladder == null || ladder.isEmpty()) {
-            throw new NullPointerException(NOT_NULL_CREATE_MESSAGE);
+            throw new IllegalArgumentException(NOT_NULL_CREATE_MESSAGE);
         }
         ladder.forEach(line -> line.validateNullCheck(line.bars()));
     }
@@ -39,7 +39,7 @@ public class Ladder {
 
     private static void validateHeightLength(int value) {
         if (value < LEAST_HEIGHT_SIZE) {
-            throw new NullPointerException(String.format(EMPTY_EXCEPTION_MESSAGE, value));
+            throw new IllegalArgumentException(String.format(EMPTY_EXCEPTION_MESSAGE, value));
         }
     }
 

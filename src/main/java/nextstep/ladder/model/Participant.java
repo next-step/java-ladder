@@ -19,7 +19,7 @@ public final class Participant {
 
     public void validate(String name) {
         if (name == null || name.isBlank()) {
-            throw new NullPointerException(EXCEPTION_MESSAGE);
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE);
         }
     }
 

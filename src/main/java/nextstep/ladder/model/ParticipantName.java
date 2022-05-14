@@ -18,7 +18,7 @@ public final class ParticipantName {
     public void validate(String value) {
         int length = value.length();
         if (length < MIN_NAME_LENGTH || MAX_NAME_LENGTH < length) {
-            throw new IndexOutOfBoundsException(EXCEPTION_MESSAGE);
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE);
         }
     }
 
