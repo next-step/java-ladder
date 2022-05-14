@@ -18,7 +18,7 @@ public final class Participant {
     }
 
     public void validate(String name) {
-        if (name == null) {
+        if (name == null || name.isBlank()) {
             throw new NullPointerException(EXCEPTION_MESSAGE);
         }
     }
