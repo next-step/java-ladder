@@ -13,8 +13,11 @@ public class LadderGameOutputView {
   public static final String SPACE = " ";
   public static final String DASH = "-";
   public static final String LADDER = "|";
+  public static final String ALL = "all";
+  public static final String LADDER_RESULT = "\n실행 결과";
 
   public static void printLadderGame(LadderGame ladderGame) {
+    System.out.println();
     printUsers(ladderGame.getGameUsers());
 
     Ladder ladder = ladderGame.getLadder();
@@ -29,6 +32,7 @@ public class LadderGameOutputView {
     for (GameResult gameResult : gameResults.getValues()) {
       System.out.print(paddingLeftMaxLength(gameResult.getResult()));
     }
+    System.out.println();
   }
 
   private static void printUsers(GameUsers gameUsers) {
@@ -56,5 +60,27 @@ public class LadderGameOutputView {
       return DASH.repeat(GameUser.LENGTH_LIMIT);
     }
     return SPACE.repeat(GameUser.LENGTH_LIMIT);
+  }
+
+  public static void printGameResult(String resultUser, LadderGame ladderGame) {
+    System.out.println(LADDER_RESULT);
+    if (resultUser.equals(ALL)) {
+      printGameResultAll(ladderGame.getGameUsers(), ladderGame.gameResultAll());
+      return;
+    }
+    printGameResultOneUser(ladderGame.gameResult(GameUser.from(resultUser)));
+  }
+
+  private static void printGameResultOneUser(GameResult gameResult) {
+    System.out.println(gameResult.getResult());
+  }
+
+
+  private static void printGameResultAll(GameUsers gameUsers, GameResults gameResults) {
+    for (int i = 0; i < gameUsers.getUserSize(); i++) {
+      System.out.printf("%s:%s\n", gameUsers.getUserName(i),
+          gameResults.getGameResult(i).getResult());
+    }
+    System.out.println();
   }
 }

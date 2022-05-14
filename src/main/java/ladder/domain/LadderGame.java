@@ -63,10 +63,10 @@ public class LadderGame {
 
   private int getNextWidth(Ladder ladder, int height, int width) {
     if (ladder.isLeftConnect(height, width)) {
-      return width--;
+      return --width;
     }
     if (ladder.isRightConnect(height, width)) {
-      return width++;
+      return ++width;
     }
     return width;
   }

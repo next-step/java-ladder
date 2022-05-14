@@ -14,8 +14,8 @@ public class LadderGameApp {
     LadderGameInputView ladderGameInputView = new LadderGameInputView();
 
     GameUsers gameUsers = GameUsers.from(ladderGameInputView.getLadderUsers());
-    int ladderHeight = ladderGameInputView.getLadderHeight();
     GameResults gameResults = GameResults.from(ladderGameInputView.getGameResults());
+    int ladderHeight = ladderGameInputView.getLadderHeight();
     LadderConnectStrategy ladderConnectStrategy = new RandomLadderConnectStrategy(ladderHeight,
         gameUsers.getUserSize());
 
@@ -23,5 +23,10 @@ public class LadderGameApp {
         ladderConnectStrategy);
 
     LadderGameOutputView.printLadderGame(ladderGame);
+
+    while (true) {
+      System.out.println();
+      LadderGameOutputView.printGameResult(ladderGameInputView.getResultUser(), ladderGame);
+    }
   }
 }
