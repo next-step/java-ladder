@@ -1,7 +1,9 @@
 package nextstep.optional;
 
+import java.util.Optional;
+
 public class Computer {
-    private Soundcard soundcard;
+    private final Soundcard soundcard;
 
     public Computer(Soundcard soundcard) {
         this.soundcard = soundcard;
@@ -11,8 +13,13 @@ public class Computer {
         return soundcard;
     }
 
+    public Optional<String> getVersion() {
+        return Optional.ofNullable(this.soundcard)
+                .flatMap(Soundcard::getVersion);
+    }
+
     public static class Soundcard {
-        private USB usb;
+        private final USB usb;
 
         public Soundcard(USB usb) {
             super();
@@ -22,10 +29,16 @@ public class Computer {
         public USB getUsb() {
             return usb;
         }
+
+        public Optional<String> getVersion() {
+            return Optional.ofNullable(this.usb)
+                    .map(USB::getVersion);
+        }
+
     }
 
     public static class USB {
-        private String version;
+        private final String version;
 
         public USB(String version) {
             super();
