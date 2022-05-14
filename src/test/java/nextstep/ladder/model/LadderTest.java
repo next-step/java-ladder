@@ -19,6 +19,14 @@ class LadderTest {
         assertThat(ladder.lines()).hasSize(3);
     }
 
+    @Test
+    @DisplayName("사다리의 높이는 1보다 작을 수 없습니다.")
+    void ladderHeightException() {
+        assertThrows(NullPointerException.class, () -> {
+            new Ladder(10, 0);
+        });
+    }
+
     @ParameterizedTest(name = "사다리는 반드시 생성이 되야 합니다.")
     @NullAndEmptySource
     void inputNull(List<Line> lines) {
