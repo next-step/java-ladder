@@ -8,7 +8,7 @@ public class InputView {
     private static final String LADDER_HEIGHT_LESS_THAN_STANDARD_ERROR_MESSAGE = "사다리의 높이는 0보다 커야합니다. (입력된 사다리의 높이: %d)";
     private static final String SPLIT_BASIC_REGEX = ",";
 
-    private static final int LADDER_HEIGHT_MINIMUM_BOUNDARY = 0;
+    private static final int LADDER_HEIGHT_MINIMUM_BOUNDARY = 1;
 
     private static final Scanner SCANNER = new Scanner(System.in);
 
@@ -38,7 +38,7 @@ public class InputView {
     }
 
     private static void validateHeight(int height) {
-        if(height > LADDER_HEIGHT_MINIMUM_BOUNDARY) {
+        if(height < LADDER_HEIGHT_MINIMUM_BOUNDARY) {
             throw new IllegalArgumentException(String.format(LADDER_HEIGHT_LESS_THAN_STANDARD_ERROR_MESSAGE, height));
         }
     }
