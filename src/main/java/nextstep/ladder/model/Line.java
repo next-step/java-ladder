@@ -91,10 +91,4 @@ public final class Line {
         return Objects.hash(bars);
     }
 
-    @Override
-    public String toString() {
-        return "Line{" +
-                "bars=" + bars +
-                '}';
-    }
 }

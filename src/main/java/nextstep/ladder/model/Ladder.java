@@ -24,7 +24,7 @@ public class Ladder {
     }
 
     private void validateNullCheck(List<Line> ladder) {
-        if(ladder == null || ladder.isEmpty()) {
+        if (ladder == null || ladder.isEmpty()) {
             throw new IllegalArgumentException(NOT_NULL_CREATE_MESSAGE);
         }
         ladder.forEach(line -> line.validateNullCheck(line.bars()));
@@ -60,10 +60,4 @@ public class Ladder {
         return Objects.hash(ladder);
     }
 
-    @Override
-    public String toString() {
-        return "Ladder{" +
-                "ladder=" + ladder +
-                '}';
-    }
 }

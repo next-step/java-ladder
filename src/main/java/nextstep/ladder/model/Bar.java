@@ -11,10 +11,4 @@ public final class Bar {
         return isActivate;
     }
 
-    @Override
-    public String toString() {
-        return "Bar{" +
-        "isActivate=" + isActivate +
-                '}';
-    }
 }
