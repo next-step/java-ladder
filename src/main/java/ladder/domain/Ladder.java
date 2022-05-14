@@ -1,24 +1,23 @@
 package ladder.domain;
 
 import java.security.InvalidParameterException;
-import java.util.List;
 import ladder.domain.strategy.LadderConnectStrategy;
 
 public class Ladder {
 
   public static final String INVALID_HEIGHT_MSG = "사다리의 높이는 1 이상이어야 합니다.";
-  private final LadderLines ladderLines;
+  private final LadderPartLines ladderLines;
 
-  private Ladder(LadderLines ladderLines) {
+  private Ladder(LadderPartLines ladderLines) {
     assertLadder(ladderLines);
     this.ladderLines = ladderLines;
   }
 
   public static Ladder of(int height,LadderConnectStrategy ladderConnectStrategy) {
-    return new Ladder(LadderLines.of(height, ladderConnectStrategy));
+    return new Ladder(LadderPartLines.of(height, ladderConnectStrategy));
   }
 
-  private void assertLadder(LadderLines ladderLines) {
+  private void assertLadder(LadderPartLines ladderLines) {
     if (ladderLines.height() == 0) {
       throw new InvalidParameterException(INVALID_HEIGHT_MSG);
     }
@@ -28,7 +27,7 @@ public class Ladder {
     return ladderLines.height();
   }
 
-  public LadderLine getLadderLine(int height) {
+  public LadderPartLine getLadderLine(int height) {
     return ladderLines.getLadderLine(height);
   }
 

@@ -6,7 +6,7 @@ import ladder.domain.GameUser;
 import ladder.domain.GameUsers;
 import ladder.domain.Ladder;
 import ladder.domain.LadderGame;
-import ladder.domain.LadderLine;
+import ladder.domain.LadderPartLine;
 
 public class LadderGameOutputView {
 
@@ -43,10 +43,10 @@ public class LadderGameOutputView {
     return SPACE.repeat(GameUser.LENGTH_LIMIT - target.length() + 1) + target;
   }
 
-  private static void printLadderLine(LadderLine ladderLine) {
+  private static void printLadderLine(LadderPartLine ladderLine) {
     System.out.print(SPACE.repeat(GameUser.LENGTH_LIMIT));
     for (int i = 0; i < ladderLine.getLadderWidth(); i++) {
-      System.out.printf("%s%s", LADDER, getConnectLine(ladderLine.isConnect(i)));
+      System.out.printf("%s%s", LADDER, getConnectLine(ladderLine.isRightConnect(i)));
     }
     System.out.println();
   }
