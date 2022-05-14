@@ -10,6 +10,7 @@ public class OutputView {
     private static final String PARTICIPANT_NAME_PRINT_FORMAT = "%6s";
     private static final String LADDER_LINE_EXIST = "-----|";
     private static final String LADDER_LINE_NON_EXIST = "     |";
+    private static final String LINE_BREAK = "\n";
 
     private static final StringBuilder STRING_BUILDER = new StringBuilder();
 
@@ -17,12 +18,19 @@ public class OutputView {
         throw new AssertionError();
     }
 
-    public static void printParticipants(List<Participant> participants) {
+    public static void printLadderResult(List<Participant> participants, List<Line> lines) {
+        printParticipants(participants);
+        printLadder(lines);
+    }
+
+    private static void printParticipants(List<Participant> participants) {
+        initStringBuilder();
         System.out.println(EXECUTION_RESULT_INTRO);
         printParticipantNames(participants);
     }
 
     public static void printLadder(List<Line> lines) {
+        initStringBuilder();
         for (Line line : lines) {
             printLines(line.getPositions());
         }
@@ -33,7 +41,7 @@ public class OutputView {
         for(int i = 0; i < positions.size(); i++) {
             STRING_BUILDER.append(printLine(positions.get(i).hasValue()));
         }
-        STRING_BUILDER.append("\n");
+        STRING_BUILDER.append(LINE_BREAK);
     }
 
     private static String printLine(boolean hasValue) {
@@ -46,8 +54,16 @@ public class OutputView {
 
     private static void printParticipantNames(List<Participant> participants) {
         for (Participant participant : participants) {
-            System.out.print(String.format(PARTICIPANT_NAME_PRINT_FORMAT, participant.toString()));
+            STRING_BUILDER.append(String.format(PARTICIPANT_NAME_PRINT_FORMAT, participant.toString()));
         }
-        System.out.println();
+
+        printStringBuilder();
+    }
+    private static void initStringBuilder() {
+        STRING_BUILDER.setLength(0);
+    }
+
+    private static void printStringBuilder() {
+        System.out.println(STRING_BUILDER);
     }
 }

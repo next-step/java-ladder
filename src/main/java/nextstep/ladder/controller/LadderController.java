@@ -3,15 +3,15 @@ package nextstep.ladder.controller;
 import nextstep.ladder.domain.Height;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Participants;
-import nextstep.ladder.generator.ProductionGenerator;
+import nextstep.ladder.generator.PositionGenerator;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
 public class LadderController {
 
-    private final ProductionGenerator productionGenerator;
+    private final PositionGenerator productionGenerator;
 
-    public LadderController(ProductionGenerator productionGenerator) {
+    public LadderController(PositionGenerator productionGenerator) {
         this.productionGenerator = productionGenerator;
     }
 
@@ -22,7 +22,6 @@ public class LadderController {
 
         Ladder ladder = new Ladder(productionGenerator, height.getValue(), participantNames.length);
 
-        OutputView.printParticipants(participants.getValues());
-        OutputView.printLadder(ladder.getLines());
+        OutputView.printLadderResult(participants.getValues(), ladder.getLines());
     }
 }
