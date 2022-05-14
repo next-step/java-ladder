@@ -7,3 +7,12 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+## ToDo
+
+- [ ] 입력
+  - [ ] 참여할 사람 이름
+    - 최대 5글자, 쉼표로 구분
+  - [ ] 사다리 최대 높이
+- [ ] 출력
+  - [ ] 사다리 출력
