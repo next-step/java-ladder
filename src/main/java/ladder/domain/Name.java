@@ -3,6 +3,9 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Name {
+    private static final int MAX_NAME_LENGTH = 5;
+    private static final int MIN_NAME_LENGTH = 1;
+
     private final String name;
 
     public Name(String name) {
@@ -18,8 +21,8 @@ public class Name {
     }
 
     private void validateNameLength(String name) {
-        if (name.length() > 5 || name.length() <= 0) {
-            throw new IllegalArgumentException("사람 이름은 1 ~ 5 글자를 만족해야 합니다.");
+        if (name.length() > MAX_NAME_LENGTH || name.length() < MIN_NAME_LENGTH) {
+            throw new IllegalArgumentException(String.format("사람 이름은 1 ~ 5 글자를 만족해야 합니다. 현재 이름 길이 : %d", name.length()));
         }
     }
 
