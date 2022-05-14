@@ -20,7 +20,7 @@ public class Ladder {
     }
 
     private static List<Line> create(int participant, int height) {
-        return IntStream.range(START_INDEX, height)
+        return IntStream.range(START_INDEX, new Height(height).value())
                 .mapToObj(i -> new Line(participant))
                 .collect(Collectors.toList());
     }
