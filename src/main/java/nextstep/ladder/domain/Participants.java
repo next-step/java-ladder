@@ -10,18 +10,23 @@ public class Participants {
 
     private final List<Participant> values;
 
-    public Participants(String[] names) {
-        validateNullAndEmpty(names);
-        values = convertToList(names);
+    public Participants(List<Participant> values) {
+        this.values = values;
     }
 
-    private void validateNullAndEmpty(String[] names) {
+    public Participants(String[] names) {
+        this(convertToList(names));
+    }
+
+    private static void validateNullAndEmpty(String[] names) {
         if (names == null || names.length == 0) {
             throw new IllegalArgumentException(PARTICIPANTS_NULL_OR_EMPTY_ERROR_MESSAGE);
         }
     }
 
-    private List<Participant> convertToList(String[] names) {
+    private static List<Participant> convertToList(String[] names) {
+        validateNullAndEmpty(names);
+
         return Arrays.stream(names)
                 .map(Participant::new)
                 .collect(Collectors.toList());
