@@ -17,6 +17,6 @@ public class PositionTest {
         Position position = new Position(value);
 
         // then
-        assertThat(position.getValue()).isFalse();
+        assertThat(position.hasValue()).isFalse();
     }
 }

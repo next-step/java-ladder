@@ -8,7 +8,7 @@ public class Position {
         this.value = value;
     }
 
-    public boolean getValue() {
+    public boolean hasValue() {
         return value;
     }
 }
