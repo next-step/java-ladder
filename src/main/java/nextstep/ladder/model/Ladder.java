@@ -12,15 +12,15 @@ public class Ladder {
 
     private final List<Line> ladder;
 
-    public Ladder(int height, int participant) {
-        this(create(height, participant));
+    public Ladder(int participant, int height) {
+        this(create(participant, height));
     }
 
     public Ladder(List<Line> ladder) {
         this.ladder = ladder;
     }
 
-    private static List<Line> create(int height, int participant) {
+    private static List<Line> create(int participant, int height) {
         return IntStream.range(START_INDEX, height)
                 .mapToObj(i -> new Line(participant))
                 .collect(Collectors.toList());

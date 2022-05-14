@@ -48,6 +48,10 @@ public final class Line {
         return bars.size();
     }
 
+    public List<Bar> bars() {
+        return bars;
+    }
+
     public void validate(List<Boolean> bars) {
         int size = bars.size();
         for (int i = FIRST_INDEX; i < size; i++) {
