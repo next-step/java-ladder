@@ -12,16 +12,16 @@ public class LadderLine {
     this.isConnects = isConnects;
   }
 
-  public static LadderLine of(int userCount, ConnectStrategy connectStrategy) {
+  public static LadderLine of(int width, ConnectStrategy connectStrategy) {
     List<Boolean> connects = new ArrayList<>();
-    for (int i = 0; i < userCount; i++) {
+    for (int i = 0; i < width; i++) {
       connects.add(connectStrategy.isConnect(i));
     }
     return new LadderLine(connects);
   }
 
-  public boolean isConnect(int linePoint) {
-    return isConnects.get(linePoint);
+  public boolean isConnect(int lineIdx) {
+    return isConnects.get(lineIdx);
   }
 
   public int getLadderLength() {
