@@ -11,11 +11,11 @@ public class UserNames {
 
   private UserNames(String userNames) {
     this.value = Arrays.stream(userNames.split(DELIMITER))
-        .map(UserName::of)
+        .map(UserName::from)
         .collect(Collectors.toList());
   }
 
-  public static UserNames of(String userNames) {
+  public static UserNames from(String userNames) {
     return new UserNames(userNames);
   }
 

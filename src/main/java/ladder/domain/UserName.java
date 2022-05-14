@@ -14,7 +14,7 @@ public class UserName {
     this.name = name;
   }
 
-  public static UserName of(String name) {
+  public static UserName from(String name) {
     return new UserName(name);
   }
 
