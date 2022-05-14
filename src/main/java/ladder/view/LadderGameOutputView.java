@@ -10,6 +10,7 @@ public class LadderGameOutputView {
 
   public static final String SPACE = " ";
   public static final String DASH = "-";
+  public static final String LADDER = "|";
 
   public static void printLadderGame(LadderGame ladderGame) {
     printUsers(ladderGame.getUserNames());
@@ -35,17 +36,15 @@ public class LadderGameOutputView {
   private static void printLadderLine(LadderLine ladderLine) {
     System.out.print(SPACE.repeat(UserName.LENGTH_LIMIT));
     for (int i = 0; i < ladderLine.getLadderLength(); i++) {
-      System.out.print("|");
-      printConnect(ladderLine.isConnect(i));
+      System.out.printf("%s%s", LADDER, getConnectLine(ladderLine.isConnect(i)));
     }
     System.out.println();
   }
 
-  private static void printConnect(boolean connect) {
+  private static String getConnectLine(boolean connect) {
     if (connect) {
-      System.out.print(DASH.repeat(UserName.LENGTH_LIMIT));
-      return;
+      return DASH.repeat(UserName.LENGTH_LIMIT);
     }
-    System.out.print(SPACE.repeat(UserName.LENGTH_LIMIT));
+    return SPACE.repeat(UserName.LENGTH_LIMIT);
   }
 }
