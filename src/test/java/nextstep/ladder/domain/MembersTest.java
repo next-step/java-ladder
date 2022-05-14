@@ -7,16 +7,16 @@ import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class UsersTest {
+class MembersTest {
 
     @Nested
     class toString_메서드는 {
 
         @Test
-        void 유저이름_목록을_리턴한다() {
-            Users users = Users.of(Arrays.asList("pobi", "jason", "pang", "nem"));
+        void 이름_목록을_리턴한다() {
+            Members members = Members.of(Arrays.asList("pobi", "jason", "pang", "nem"));
 
-            assertThat(users.toString()).isEqualTo("[pobi, jason, pang, nem]");
+            assertThat(members.toString()).isEqualTo("[pobi, jason, pang, nem]");
         }
 
     }

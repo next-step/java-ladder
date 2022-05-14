@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class UserTest {
+class MemberTest {
 
     @Nested
     class 생성자는 {
@@ -20,8 +20,8 @@ class UserTest {
             @ParameterizedTest
             @NullAndEmptySource
             void CannotNullOrEmptyException을_던진다(String nullOrEmptySource) {
-                assertThatThrownBy(() -> new User(nullOrEmptySource))
-                        .isInstanceOf(User.CannotNullOrEmptyException.class);
+                assertThatThrownBy(() -> new Member(nullOrEmptySource))
+                        .isInstanceOf(Member.CannotNullOrEmptyException.class);
             }
 
         }
@@ -32,8 +32,8 @@ class UserTest {
             @ParameterizedTest
             @ValueSource(strings = {"123456"})
             void ExceedMaxNameLengthException을_던진다(String name) {
-                assertThatThrownBy(() -> new User(name))
-                        .isInstanceOf(User.ExceedMaxNameLengthException.class);
+                assertThatThrownBy(() -> new Member(name))
+                        .isInstanceOf(Member.ExceedMaxNameLengthException.class);
             }
 
         }
@@ -46,9 +46,9 @@ class UserTest {
         void 이름을_리턴한다() {
             String name = "name";
 
-            User user = new User(name);
+            Member member = new Member(name);
 
-            assertThat(user.toString()).isEqualTo(name);
+            assertThat(member.toString()).isEqualTo(name);
         }
     }
 }

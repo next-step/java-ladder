@@ -1,11 +1,11 @@
 package nextstep.ladder.domain;
 
-public class User {
+public class Member {
     private static final int MAX_NAME_LENGTH = 5;
 
     private final String name;
 
-    public User(String name) {
+    public Member(String name) {
         checkNullOrBlank(name);
         checkExceedMaxLength(name);
         this.name = name;
