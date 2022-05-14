@@ -12,7 +12,7 @@ public class Height {
     }
 
     private void validateBoundary(int height) {
-        if(height < LADDER_HEIGHT_MINIMUM_BOUNDARY) {
+        if (height < LADDER_HEIGHT_MINIMUM_BOUNDARY) {
             throw new IllegalArgumentException(String.format(LADDER_HEIGHT_LESS_THAN_STANDARD_ERROR_MESSAGE, height));
         }
     }

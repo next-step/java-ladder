@@ -1,7 +1,6 @@
 package nextstep.ladder.domain;
 
 public class Position {
-
     private final boolean value;
 
     public Position(boolean value) {

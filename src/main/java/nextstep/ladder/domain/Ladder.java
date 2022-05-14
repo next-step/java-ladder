@@ -20,7 +20,7 @@ public class Ladder {
     }
 
     private void validateNullAndEmpty(List<Line> lines) {
-        if(lines == null || lines.isEmpty()) {
+        if (lines == null || lines.isEmpty()) {
             throw new IllegalArgumentException(LADDER_NULL_OR_EMPTY_ERROR_MESSAGE);
         }
     }
