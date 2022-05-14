@@ -2,8 +2,7 @@ package ladder.domain;
 
 public class Point {
     public static final int UNIT_HORIZONTAL_LINE_LENGTH = 1;
-
-    private static final int FIRST_POSITION = 0;
+    public static final int FIRST_POSITION = 0;
 
     private final int position;
     private final Direction direction;
