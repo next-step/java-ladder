@@ -9,23 +9,27 @@
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
 
 ## 기능 요구사항 목록
-- [ ] 사다리타기 참가자 이름 입력
-  - [ ] 이름은 쉽표(,)로 구분한다
-  - [ ] 사람 이름은 5자가 기준이다
-- [ ] 사다리 높이 입력
-  - [ ] 사다리 높이 만큼 행이 만들어진다
-  - [ ] 한 행의 사다리는 라인이 겹치지 않아야 한다
-- [ ] 실행 결과를 출력한다
-  - [ ] 사다리가 그려진 결과를 출력해준다
+- [X] 사다리타기 참가자 이름 입력
+  - [X] 이름은 쉽표(,)로 구분한다
+  - [X] 사람 이름은 5자가 기준이다
+- [X] 사다리 높이 입력
+  - [X] 사다리 높이 만큼 행이 만들어진다
+  - [X] 한 행의 사다리는 라인이 겹치지 않아야 한다
+- [X] 실행 결과를 출력한다
+  - [X] 사다리가 그려진 결과를 출력해준다
 
 ### 패키지 구분
 - controller
 - domain
 - view
+- exception
+- generator
+- util
 
 ### 도메인
-- Participant(참가자)
-- Participants(참가자 일급컬렉션)
-- Ladder(사다리 한 라인)
-- Ladders(사다리 한 라인의 일급컬렉션)
-- Height(높이)
+- Participant (참가자)
+- Participants (참가자 일급컬렉션)
+- Position (사다리 하나의 라인에서의 위치)
+- Line (사다리 한 라인/Position의 일급컬렉션)
+- Ladder (사다리 한 라인의 일급컬렉션)
+- Height (높이)
