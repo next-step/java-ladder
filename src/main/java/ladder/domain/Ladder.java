@@ -11,8 +11,8 @@ public class Ladder {
     this.ladderLines = ladderLines;
   }
 
-  public static Ladder of(int width, List<ConnectStrategy> connectStrategies) {
-    return new Ladder(LadderLines.of(width, connectStrategies));
+  public static Ladder of(List<ConnectStrategy> connectStrategies) {
+    return new Ladder(LadderLines.of(connectStrategies));
   }
 
   public boolean isConnect(int height, int lineIdx) {

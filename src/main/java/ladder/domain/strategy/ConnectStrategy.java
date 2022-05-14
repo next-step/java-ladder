@@ -1,6 +1,8 @@
 package ladder.domain.strategy;
 
+import java.util.List;
+
 public interface ConnectStrategy {
 
-  boolean isConnect(int lineIndex);
+  List<Boolean> create();
 }

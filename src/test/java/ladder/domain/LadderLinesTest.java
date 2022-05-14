@@ -23,12 +23,27 @@ class LadderLinesTest {
     connectStrategies.add(new FixedConnectStrategy(List.of(true, true, true)));
     connectStrategies.add(new FixedConnectStrategy(List.of(false, false, false)));
     connectStrategies.add(new FixedConnectStrategy(List.of(true, false, true)));
-    LadderLines ladderLines = LadderLines.of(3, connectStrategies);
+    LadderLines ladderLines = LadderLines.of(connectStrategies);
 
-    IntStream.range(0, connectStrategies.size())
-        .forEach(height -> IntStream.range(0, 3)
-            .forEach(lineIdx -> assertThat(connectStrategies.get(height).isConnect(lineIdx))
-                .isEqualTo(ladderLines.isConnect(height, lineIdx))));
+    assertThat(ladderLines).usingRecursiveComparison().isEqualTo(LadderLines.of(connectStrategies));
+  }
+
+  @Test
+  @DisplayName("사다리 라인들의 특정 포인트 연결 여부를 잘 가져오는지 확인")
+  void isConnect() {
+    List<ConnectStrategy> connectStrategies = new ArrayList<>();
+    connectStrategies.add(new FixedConnectStrategy(List.of(true, true, true)));
+    connectStrategies.add(new FixedConnectStrategy(List.of(false, false, false)));
+    connectStrategies.add(new FixedConnectStrategy(List.of(true, false, true)));
+    LadderLines ladderLines = LadderLines.of(connectStrategies);
+
+    for (int height = 0; height < connectStrategies.size(); height++) {
+      List<Boolean> connects = new ArrayList<>();
+      for (int lineIdx = 0; lineIdx < 3; lineIdx++) {
+        connects.add(ladderLines.isConnect(height, lineIdx));
+      }
+      assertThat(connects).isEqualTo(connectStrategies.get(height).create());
+    }
   }
 
   @ParameterizedTest
@@ -38,7 +53,7 @@ class LadderLinesTest {
     List<ConnectStrategy> strategies = IntStream.range(0, height)
         .mapToObj(i -> new RandomConnectStrategy(3))
         .collect(Collectors.toList());
-    LadderLines ladderLines = LadderLines.of(3, strategies);
+    LadderLines ladderLines = LadderLines.of(strategies);
     assertThat(ladderLines.height()).isEqualTo(height);
   }
 
@@ -49,10 +64,10 @@ class LadderLinesTest {
     connectStrategies.add(new FixedConnectStrategy(List.of(true, true, true)));
     connectStrategies.add(new FixedConnectStrategy(List.of(false, false, false)));
     connectStrategies.add(new FixedConnectStrategy(List.of(true, false, true)));
-    LadderLines ladderLines = LadderLines.of(3, connectStrategies);
+    LadderLines ladderLines = LadderLines.of(connectStrategies);
 
     IntStream.range(0, connectStrategies.size())
         .forEach(height -> assertThat(ladderLines.getLadderLine(height)).usingRecursiveComparison()
-            .isEqualTo(LadderLine.of(3, connectStrategies.get(height))));
+            .isEqualTo(LadderLine.of(connectStrategies.get(height))));
   }
 }

@@ -12,9 +12,9 @@ public class LadderLines {
     this.values = ladderLines;
   }
 
-  public static LadderLines of(int width, List<ConnectStrategy> connectStrategies) {
+  public static LadderLines of(List<ConnectStrategy> connectStrategies) {
     return new LadderLines(connectStrategies.stream()
-        .map(c -> LadderLine.of(width, c))
+        .map(c -> LadderLine.of(c))
         .collect(Collectors.toList()));
   }
 

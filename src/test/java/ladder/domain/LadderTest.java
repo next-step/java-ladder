@@ -18,7 +18,7 @@ public class LadderTest {
     connectStrategies.add(new FixedConnectStrategy(List.of(true, false, true)));
     connectStrategies.add(new FixedConnectStrategy(List.of(false, false, false)));
     connectStrategies.add(new FixedConnectStrategy(List.of(true, true, true)));
-    Ladder ladder = Ladder.of(3, connectStrategies);
+    Ladder ladder = Ladder.of(connectStrategies);
 
     assertThat(ladder.isConnect(0, 0)).isTrue();
     assertThat(ladder.isConnect(1, 1)).isFalse();

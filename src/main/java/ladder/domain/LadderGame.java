@@ -17,13 +17,14 @@ public class LadderGame {
 
   public static LadderGame of(String gameUserNames, int height) {
     UserNames userNames = UserNames.from(gameUserNames);
+    int width = userNames.getUserSize();
+
     List<ConnectStrategy> connectStrategies = new ArrayList<>();
     for (int i = 0; i < height; i++) {
-      connectStrategies.add(new RandomConnectStrategy(userNames.getUserSize()));
+      connectStrategies.add(new RandomConnectStrategy(width));
     }
-    Ladder ladder = Ladder.of(userNames.getUserSize(), connectStrategies);
-
-    return new LadderGame(ladder, userNames);
+    
+    return new LadderGame(Ladder.of(connectStrategies), userNames);
   }
 
   public int getUserSize() {

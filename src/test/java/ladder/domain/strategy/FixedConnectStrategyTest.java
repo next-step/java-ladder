@@ -14,8 +14,6 @@ class FixedConnectStrategyTest {
     List<Boolean> fixedConnects = List.of(true, false, true, false);
     FixedConnectStrategy fixedConnectStrategy = new FixedConnectStrategy(fixedConnects);
 
-    for (int i = 0; i < fixedConnects.size(); i++) {
-      assertThat(fixedConnectStrategy.isConnect(i)).isEqualTo(fixedConnects.get(i));
-    }
+    assertThat(fixedConnectStrategy.create()).isEqualTo(fixedConnects);
   }
 }

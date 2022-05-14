@@ -4,14 +4,14 @@ import java.util.List;
 
 public class FixedConnectStrategy implements ConnectStrategy {
 
-  private final List<Boolean> isConnects;
+  private final List<Boolean> connects;
 
-  public FixedConnectStrategy(List<Boolean> isConnects) {
-    this.isConnects = isConnects;
+  public FixedConnectStrategy(List<Boolean> connects) {
+    this.connects = connects;
   }
 
   @Override
-  public boolean isConnect(int lineIndex) {
-    return isConnects.get(lineIndex);
+  public List<Boolean> create() {
+    return connects;
   }
 }
