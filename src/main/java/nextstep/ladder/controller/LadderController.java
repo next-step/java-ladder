@@ -1,5 +1,7 @@
 package nextstep.ladder.controller;
 
+import nextstep.ladder.model.Ladder;
+import nextstep.ladder.model.Line;
 import nextstep.ladder.model.Participants;
 import nextstep.ladder.service.LadderService;
 import nextstep.ladder.view.InputTable;
@@ -15,10 +17,14 @@ public final class LadderController {
 
     public void run() {
         List<String> participantNames = InputTable.insertParticipantNames();
-        gameParticipantCount(participantNames);
+        Ladder ladder = createLadder(InputTable.ladderHeight(), gameParticipantCount(participantNames));
     }
 
     public int gameParticipantCount(List<String> participantsNames) {
         return ladderService.gameParticipantCount(participantsNames);
+    }
+
+    public Ladder createLadder(int height, int participant) {
+        return ladderService.createLadder(height, participant);
     }
 }
