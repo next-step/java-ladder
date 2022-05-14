@@ -24,7 +24,8 @@ public class Name {
         return new Name(name);
     }
 
-    public String getName() {
+    @Override
+    public String toString() {
         return name;
     }
 }

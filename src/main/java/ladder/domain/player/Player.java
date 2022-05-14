@@ -18,7 +18,8 @@ public class Player {
         }
     }
 
-    public String getName() {
-        return name.getName();
+    @Override
+    public String toString() {
+        return name.toString();
     }
 }

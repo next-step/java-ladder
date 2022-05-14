@@ -29,9 +29,9 @@ public class OutputView {
     }
 
     private static void printPlayer(Player player) {
-        int dif = MAX_LENGTH - player.getName().length();
+        int dif = MAX_LENGTH - player.toString().length();
 
-        System.out.print(player.getName() + " ".repeat(dif + 1));
+        System.out.print(player + " ".repeat(dif + 1));
     }
 
     private static void printRows(Rows rows) {
