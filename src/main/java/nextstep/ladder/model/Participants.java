@@ -7,11 +7,17 @@ import java.util.stream.Collectors;
 public final class Participants {
     private final List<Participant> participants;
 
-    public Participants(List<Participant> participants) {
-        this.participants = participants;
+    public Participants(String[] participantNames) {
+        this.participants = join(participantNames);
     }
 
-    public int ladderSize(){
+    private List<Participant> join(String[] participantNames) {
+        return Arrays.stream(participantNames)
+                .map(Participant::new)
+                .collect(Collectors.toList());
+    }
+
+    public int size(){
         return participants.size();
     }
 }
