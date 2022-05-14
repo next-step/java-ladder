@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
@@ -9,14 +10,16 @@ public class Ladder {
 
   private final List<Line> lines = new ArrayList<>();
 
-  Ladder(Length width, Length height) {
-    for (int i = START_INDEX; i < height.getValue(); i++) {
-      lines.add(Line.create(width.getValue(), HalfRateGeneratingStrategy.getInstance()));
-    }
+  Ladder(List<Line> values) {
+    this.lines.addAll(values);
   }
 
-  public static Ladder of(int width, int height) {
-    return new Ladder(new Length(width), new Length(height));
+  public static Ladder of(Length width, Length height) {
+    List<Line> createdLines = new ArrayList<>();
+    for (int i = START_INDEX; i < height.getValue(); i++) {
+      createdLines.add(Line.create(width.getValue(), HalfRateGeneratingStrategy.getInstance()));
+    }
+    return new Ladder(createdLines);
   }
 
   public int getWidth() {
@@ -28,6 +31,6 @@ public class Ladder {
   }
 
   public List<Line> getLines() {
-    return lines;
+    return Collections.unmodifiableList(lines);
   }
 }

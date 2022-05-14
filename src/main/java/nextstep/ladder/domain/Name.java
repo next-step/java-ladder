@@ -21,7 +21,6 @@ public class Name {
           String.format(VALIDATE_MESSAGE, MIN_LENGTH, MAX_LENGTH)
       );
     }
-
     int length = value.length();
     if (length < MIN_LENGTH || length > MAX_LENGTH) {
       throw new IllegalArgumentException(

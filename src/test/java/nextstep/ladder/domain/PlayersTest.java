@@ -9,6 +9,28 @@ import org.junit.jupiter.api.Test;
 
 class PlayersTest {
 
+  @DisplayName("생성자로 Players를 생성한다.")
+  @Test
+  void createByConstructor() {
+    List<Player> playerList = List.of(
+        Player.of("pobi"), Player.of("honux"), Player.of("crong"), Player.of("jk")
+    );
+
+    Players players = new Players(playerList);
+
+    assertThat(players).isNotNull().isInstanceOf(Players.class);
+  }
+
+  @DisplayName("정적 팩터리 메서드로 Players를 생성한다.")
+  @Test
+  void createByFactoryMethod() {
+    List<String> nameList = List.of("pobi", "honux", "crong", "jk");
+
+    Players players = Players.of(nameList);
+
+    assertThat(players).isNotNull().isInstanceOf(Players.class);
+  }
+
   @DisplayName("중복된 이름이 있으면 예외를 던진다.")
   @Test
   void createWithSameName() {
@@ -17,20 +39,13 @@ class PlayersTest {
         .hasMessageContaining("yeeun, yeeun, yeny");
   }
 
-  @DisplayName("List<String>을 인자로 받아 Players를 생성할 수 있다.")
-  @Test
-  void create() {
-    Players players = Players.of(List.of("pobi", "honux", "crong", "jk"));
-    Players expected = new Players(List.of(
-        Player.of("pobi"), Player.of("honux"), Player.of("crong"), Player.of("jk")
-    ));
-
-    assertThat(players).isEqualTo(expected);
-  }
-
   @Test
   void getNames() {
-    Players players = Players.of(List.of("pobi", "honux", "crong", "jk"));
-    assertThat(players.getNames()).isEqualTo(List.of("pobi", "honux", "crong", "jk"));
+    List<String> nameList = List.of("pobi", "honux", "crong", "jk");
+    Players players = Players.of(nameList);
+
+    List<String> playersNames = players.getNames();
+
+    assertThat(playersNames).isEqualTo(nameList);
   }
 }

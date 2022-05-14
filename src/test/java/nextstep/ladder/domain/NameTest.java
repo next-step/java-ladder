@@ -10,11 +10,11 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 class NameTest {
 
-  @DisplayName("입력된 문자열을 가진 Name을 생성한다.")
+  @DisplayName("생성자로 Name을 생성한다.")
   @Test
   void create() {
     Name name = new Name("yeny");
-    assertThat(name.getValue()).isEqualTo("yeny");
+    assertThat(name).isNotNull().isInstanceOf(Name.class);
   }
 
   @DisplayName("생성 시, 이름이 5자보다 길면 예외를 던진다")
@@ -28,5 +28,12 @@ class NameTest {
   @NullAndEmptySource
   void createWithNullOrEmptyName(String value) {
     assertThatThrownBy(() -> new Name(value)).isInstanceOf(IllegalArgumentException.class);
+  }
+
+  @DisplayName("String 타입의 이름값을 확인한다.")
+  @Test
+  void getValue() {
+    Name name = new Name("yeny");
+    assertThat(name.getValue()).isEqualTo("yeny");
   }
 }
