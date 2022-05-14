@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import nextstep.ladder.generator.ProductionGenerator;
+import nextstep.ladder.generator.PositionGenerator;
 import nextstep.ladder.generator.RandomProductionGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,7 +18,7 @@ public class LadderTest {
         // given
         int height = 5;
         int countOfPosition = 3;
-        ProductionGenerator productionGenerator = new RandomProductionGenerator();
+        PositionGenerator productionGenerator = new RandomProductionGenerator();
 
         // when
         Ladder ladder = new Ladder(productionGenerator, height, countOfPosition);

@@ -20,7 +20,7 @@ class LineTest {
         int countOfPosition = 3;
 
         // when
-        Line line = Line.create(new RandomProductionGenerator(), countOfPosition);
+        Line line = new Line(new RandomProductionGenerator(), countOfPosition);
 
         // then
         assertThat(line.getPositions()).hasSize(countOfPosition);
@@ -30,7 +30,7 @@ class LineTest {
     @NullAndEmptySource
     void exceptionLadderLineNullOrEmpty(List<Position> positions) {
         // when & then
-        assertThatThrownBy(() -> Line.create(positions))
+        assertThatThrownBy(() -> new Line(positions))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -42,7 +42,7 @@ class LineTest {
                 new Position(true));
 
         // when & then
-        assertThatThrownBy(() -> Line.create(positions))
+        assertThatThrownBy(() -> new Line(positions))
                 .isInstanceOf(LadderLineOverLapException.class);
     }
 }
