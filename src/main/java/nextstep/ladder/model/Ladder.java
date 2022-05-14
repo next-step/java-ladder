@@ -8,6 +8,8 @@ import java.util.stream.IntStream;
 
 public class Ladder {
 
+    private static final int START_INDEX = 0;
+
     private final List<Line> ladder;
 
     public Ladder(int height, int participant) {
@@ -19,7 +21,7 @@ public class Ladder {
     }
 
     private static List<Line> create(int height, int participant) {
-        return IntStream.range(0,height)
+        return IntStream.range(START_INDEX, height)
                 .mapToObj(i -> new Line(participant))
                 .collect(Collectors.toList());
     }

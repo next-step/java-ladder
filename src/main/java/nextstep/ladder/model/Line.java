@@ -13,8 +13,8 @@ public final class Line {
     private static final String CONTINUITY_CREATE_MESSAGE = "연속으로 바를 생성할 수 없습니다.";
     private static final String LAST_CREATE_MESSAGE = "마지막 바는 생성할 수 없습니다.";
     private static final String PARTICIPANT_COUNT_EXCEPTION_MESSAGE = "참가자의 수는 최소 2명이여야 합니다.";
-    private static final int ONE = 1;
-    private static final int TWO = 2;
+    private static final int FIRST_INDEX = 1;
+    private static final int LEAST_PARTICIPANT_COUNT = 2;
 
     private final List<Bar> bars;
 
@@ -30,10 +30,10 @@ public final class Line {
     private static List<Boolean> create(int participantCount) {
         List<Boolean> bars = new ArrayList<>();
         bars.add(InputUtil.randomBar(null));
-        for (int i = ONE; i < participantCount - ONE; i++) {
-            bars.add(InputUtil.randomBar(bars.get(i - ONE)));
+        for (int i = FIRST_INDEX; i < participantCount - FIRST_INDEX; i++) {
+            bars.add(InputUtil.randomBar(bars.get(i - FIRST_INDEX)));
         }
-        if (ONE < participantCount) {
+        if (FIRST_INDEX < participantCount) {
             bars.add(false);
         }
         return bars;
@@ -52,14 +52,14 @@ public final class Line {
     public void validate(List<Boolean> bars) {
         int size = bars.size();
         barCountValidate(size);
-        for (int i = ONE; i < size; i++) {
-            continuityCreateValidate(bars.get(i - ONE), bars.get(i));
+        for (int i = FIRST_INDEX; i < size; i++) {
+            continuityCreateValidate(bars.get(i - FIRST_INDEX), bars.get(i));
         }
-        lastBarCreateValidate(bars.get(size - ONE));
+        lastBarCreateValidate(bars.get(size - FIRST_INDEX));
     }
 
     private void barCountValidate(int size) {
-        if (size < TWO) {
+        if (size < LEAST_PARTICIPANT_COUNT) {
             throw new IllegalArgumentException(PARTICIPANT_COUNT_EXCEPTION_MESSAGE);
         }
     }
