@@ -1,5 +1,6 @@
 package nextstep.ladder.controller;
 
+import nextstep.ladder.model.Participants;
 import nextstep.ladder.service.LadderService;
 import nextstep.ladder.view.InputTable;
 
@@ -14,6 +15,10 @@ public final class LadderController {
 
     public void run() {
         List<String> participantNames = InputTable.insertParticipantNames();
+        gameParticipantCount(participantNames);
+    }
 
+    public int gameParticipantCount(List<String> participantsNames) {
+        return ladderService.gameParticipantCount(participantsNames);
     }
 }
