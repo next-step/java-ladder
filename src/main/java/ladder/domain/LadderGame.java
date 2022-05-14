@@ -7,13 +7,13 @@ public class LadderGame {
 
   public static final String NOT_SAME_USER_RESULT_COUNT_MSG = "게임 참여자 개수와 게임 결과 개수는 동일해야 합니다.";
   private final Ladder ladder;
-  private final GameUsers userNames;
+  private final GameUsers gameUsers;
   private final GameResults gameResults;
 
-  private LadderGame(Ladder ladder, GameUsers userNames, GameResults gameResults) {
-    assertLadderGame(userNames, gameResults);
+  private LadderGame(Ladder ladder, GameUsers gameUsers, GameResults gameResults) {
+    assertLadderGame(gameUsers, gameResults);
     this.ladder = ladder;
-    this.userNames = userNames;
+    this.gameUsers = gameUsers;
     this.gameResults = gameResults;
   }
 
@@ -30,8 +30,8 @@ public class LadderGame {
     return ladder;
   }
 
-  public GameUsers getUserNames() {
-    return userNames;
+  public GameUsers getGameUsers() {
+    return gameUsers;
   }
 
   public int getLadderWidth() {
@@ -47,4 +47,5 @@ public class LadderGame {
       throw new InvalidParameterException(NOT_SAME_USER_RESULT_COUNT_MSG);
     }
   }
+
 }

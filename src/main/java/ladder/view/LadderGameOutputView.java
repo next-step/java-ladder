@@ -15,7 +15,7 @@ public class LadderGameOutputView {
   public static final String LADDER = "|";
 
   public static void printLadderGame(LadderGame ladderGame) {
-    printUsers(ladderGame.getUserNames());
+    printUsers(ladderGame.getGameUsers());
 
     Ladder ladder = ladderGame.getLadder();
     for (int i = 0; i < ladder.getLadderHeight(); i++) {
@@ -31,9 +31,9 @@ public class LadderGameOutputView {
     }
   }
 
-  private static void printUsers(GameUsers userNames) {
-    for (int i = 0; i < userNames.getUserSize(); i++) {
-      String userName = userNames.getUserName(i);
+  private static void printUsers(GameUsers gameUsers) {
+    for (int i = 0; i < gameUsers.getUserSize(); i++) {
+      String userName = gameUsers.getUserName(i);
       System.out.print(paddingLeftMaxLength(userName));
     }
     System.out.println();
