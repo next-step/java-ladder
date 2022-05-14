@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 public class LadderLineTest {
 
   @Test
-  @DisplayName("LadderLine 이 잘 생성되는지 확인")
+  @DisplayName("연결 전략을 통해 LadderLine 이 잘 생성되는지 확인")
   void of() {
     ConnectStrategy connectStrategy = new FixedConnectStrategy(List.of(true, false, true));
     LadderLine ladderLine = LadderLine.of(connectStrategy);

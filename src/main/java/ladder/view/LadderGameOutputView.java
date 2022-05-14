@@ -35,7 +35,7 @@ public class LadderGameOutputView {
 
   private static void printLadderLine(LadderLine ladderLine) {
     System.out.print(SPACE.repeat(UserName.LENGTH_LIMIT));
-    for (int i = 0; i < ladderLine.getLadderLength(); i++) {
+    for (int i = 0; i < ladderLine.getLadderWidth(); i++) {
       System.out.printf("%s%s", LADDER, getConnectLine(ladderLine.isConnect(i)));
     }
     System.out.println();

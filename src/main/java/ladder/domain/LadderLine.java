@@ -19,7 +19,7 @@ public class LadderLine {
     return isConnects.get(lineIdx);
   }
 
-  public int getLadderLength() {
+  public int getLadderWidth() {
     return isConnects.size();
   }
 }

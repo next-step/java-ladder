@@ -1,7 +1,8 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import ladder.domain.strategy.ConnectStrategy;
 import ladder.domain.strategy.RandomConnectStrategy;
 
@@ -15,20 +16,12 @@ public class LadderGame {
     this.userNames = userNames;
   }
 
-  public static LadderGame of(String gameUserNames, int height) {
-    UserNames userNames = UserNames.from(gameUserNames);
-    int width = userNames.getUserSize();
+  public static LadderGame of(UserNames gameUserNames, int ladderHeight) {
+    List<ConnectStrategy> connectStrategies = IntStream.range(0, ladderHeight)
+        .mapToObj(i -> new RandomConnectStrategy(gameUserNames.getUserSize()))
+        .collect(Collectors.toList());
 
-    List<ConnectStrategy> connectStrategies = new ArrayList<>();
-    for (int i = 0; i < height; i++) {
-      connectStrategies.add(new RandomConnectStrategy(width));
-    }
-    
-    return new LadderGame(Ladder.of(connectStrategies), userNames);
-  }
-
-  public int getUserSize() {
-    return this.userNames.getUserSize();
+    return new LadderGame(Ladder.of(connectStrategies), gameUserNames);
   }
 
   public int getLadderHeight() {
@@ -41,5 +34,9 @@ public class LadderGame {
 
   public UserNames getUserNames() {
     return userNames;
+  }
+
+  public int getLadderWidth() {
+    return ladder.getLadderWidth();
   }
 }

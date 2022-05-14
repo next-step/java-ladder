@@ -12,9 +12,11 @@ public class LadderGameTest {
   void of() {
     String userNames = "pobi,test,crong";
     int height = 5;
-    LadderGame ladderGame = LadderGame.of(userNames, height);
+    LadderGame ladderGame = LadderGame.of(UserNames.from(userNames), height);
 
-    assertThat(ladderGame.getUserSize()).isEqualTo(3);
+    assertThat(ladderGame.getLadderWidth()).isEqualTo(3);
     assertThat(ladderGame.getLadderHeight()).isEqualTo(height);
+    assertThat(ladderGame.getUserNames()).usingRecursiveComparison()
+        .isEqualTo(UserNames.from(userNames));
   }
 }
