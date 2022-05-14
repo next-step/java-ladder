@@ -4,19 +4,19 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class UserNames {
+public class GameUsers {
 
   private static final String DELIMITER = ",";
-  private final List<UserName> value;
+  private final List<GameUser> value;
 
-  private UserNames(String userNames) {
+  private GameUsers(String userNames) {
     this.value = Arrays.stream(userNames.split(DELIMITER))
-        .map(UserName::from)
+        .map(GameUser::from)
         .collect(Collectors.toList());
   }
 
-  public static UserNames from(String userNames) {
-    return new UserNames(userNames);
+  public static GameUsers from(String userNames) {
+    return new GameUsers(userNames);
   }
 
   public int getUserSize() {

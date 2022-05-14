@@ -9,19 +9,20 @@ import ladder.domain.strategy.RandomConnectStrategy;
 public class LadderGame {
 
   private final Ladder ladder;
-  private final UserNames userNames;
+  private final GameUsers userNames;
 
-  private LadderGame(Ladder ladder, UserNames userNames) {
+  private LadderGame(Ladder ladder, GameUsers userNames) {
     this.ladder = ladder;
     this.userNames = userNames;
   }
 
-  public static LadderGame of(UserNames gameUserNames, int ladderHeight) {
+  public static LadderGame of(String gameUserNames, int ladderHeight) {
+    GameUsers gameUsers = GameUsers.from(gameUserNames);
     List<ConnectStrategy> connectStrategies = IntStream.range(0, ladderHeight)
-        .mapToObj(i -> new RandomConnectStrategy(gameUserNames.getUserSize()))
+        .mapToObj(i -> new RandomConnectStrategy(gameUsers.getUserSize()))
         .collect(Collectors.toList());
 
-    return new LadderGame(Ladder.of(connectStrategies), gameUserNames);
+    return new LadderGame(Ladder.of(connectStrategies), gameUsers);
   }
 
   public int getLadderHeight() {
@@ -32,7 +33,7 @@ public class LadderGame {
     return ladder;
   }
 
-  public UserNames getUserNames() {
+  public GameUsers getUserNames() {
     return userNames;
   }
 

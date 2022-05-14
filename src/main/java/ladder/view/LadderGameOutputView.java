@@ -3,8 +3,8 @@ package ladder.view;
 import ladder.domain.Ladder;
 import ladder.domain.LadderGame;
 import ladder.domain.LadderLine;
-import ladder.domain.UserName;
-import ladder.domain.UserNames;
+import ladder.domain.GameUser;
+import ladder.domain.GameUsers;
 
 public class LadderGameOutputView {
 
@@ -21,7 +21,7 @@ public class LadderGameOutputView {
     }
   }
 
-  private static void printUsers(UserNames userNames) {
+  private static void printUsers(GameUsers userNames) {
     for (int i = 0; i < userNames.getUserSize(); i++) {
       String userName = userNames.getUserName(i);
       System.out.print(paddingUserName(userName));
@@ -30,11 +30,11 @@ public class LadderGameOutputView {
   }
 
   private static String paddingUserName(String userName) {
-    return SPACE.repeat(UserName.LENGTH_LIMIT - userName.length() + 1) + userName;
+    return SPACE.repeat(GameUser.LENGTH_LIMIT - userName.length() + 1) + userName;
   }
 
   private static void printLadderLine(LadderLine ladderLine) {
-    System.out.print(SPACE.repeat(UserName.LENGTH_LIMIT));
+    System.out.print(SPACE.repeat(GameUser.LENGTH_LIMIT));
     for (int i = 0; i < ladderLine.getLadderWidth(); i++) {
       System.out.printf("%s%s", LADDER, getConnectLine(ladderLine.isConnect(i)));
     }
@@ -43,8 +43,8 @@ public class LadderGameOutputView {
 
   private static String getConnectLine(boolean connect) {
     if (connect) {
-      return DASH.repeat(UserName.LENGTH_LIMIT);
+      return DASH.repeat(GameUser.LENGTH_LIMIT);
     }
-    return SPACE.repeat(UserName.LENGTH_LIMIT);
+    return SPACE.repeat(GameUser.LENGTH_LIMIT);
   }
 }

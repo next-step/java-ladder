@@ -14,13 +14,13 @@ class UserNameTest {
   @DisplayName("사용자 이름을 잘 생성하는지 확인")
   @ValueSource(strings = {"pobi", "hihi", "next", "crong"})
   void of(String name) {
-    assertThat(UserName.from(name)).usingRecursiveComparison().isEqualTo(UserName.from(name));
+    assertThat(GameUser.from(name)).usingRecursiveComparison().isEqualTo(GameUser.from(name));
   }
 
   @ParameterizedTest
   @DisplayName("올바르지 않은 이름을 넣었을 경우 에러 발생")
   @ValueSource(strings = {"hihisososo", ""})
   void exception(String name) {
-    assertThatThrownBy(() -> UserName.from(name)).isInstanceOf(InvalidParameterException.class);
+    assertThatThrownBy(() -> GameUser.from(name)).isInstanceOf(InvalidParameterException.class);
   }
 }
