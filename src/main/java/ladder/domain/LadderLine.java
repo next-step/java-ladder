@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import java.util.List;
-import ladder.domain.strategy.ConnectStrategy;
 
 public class LadderLine {
 
@@ -11,8 +10,8 @@ public class LadderLine {
     this.isConnects = isConnects;
   }
 
-  public static LadderLine of(ConnectStrategy connectStrategy) {
-    return new LadderLine(connectStrategy.create());
+  public static LadderLine of(List<Boolean> isConnects) {
+    return new LadderLine(isConnects);
   }
 
   public boolean isConnect(int lineIdx) {

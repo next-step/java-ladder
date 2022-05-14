@@ -1,11 +1,7 @@
 package ladder.domain;
 
 import java.security.InvalidParameterException;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import ladder.domain.strategy.ConnectStrategy;
-import ladder.domain.strategy.RandomConnectStrategy;
+import ladder.domain.strategy.LadderConnectStrategy;
 
 public class LadderGame {
 
@@ -21,21 +17,9 @@ public class LadderGame {
     this.gameResults = gameResults;
   }
 
-  private void assertLadderGame(GameUsers userNames, GameResults gameResults) {
-    if (userNames.getUserSize() != gameResults.getResultSize()) {
-      throw new InvalidParameterException(NOT_SAME_USER_RESULT_COUNT_MSG);
-    }
-  }
-
-  public static LadderGame of(String gameUserNames, String gameResults, int ladderHeight) {
-    GameUsers gameUsers = GameUsers.from(gameUserNames);
-    GameResults results = GameResults.from(gameResults);
-
-    List<ConnectStrategy> connectStrategies = IntStream.range(0, ladderHeight)
-        .mapToObj(i -> new RandomConnectStrategy(gameUsers.getUserSize()))
-        .collect(Collectors.toList());
-
-    return new LadderGame(Ladder.of(connectStrategies), gameUsers, results);
+  public static LadderGame of(GameUsers gameUsers, GameResults gameResults, int ladderHeight,
+      LadderConnectStrategy ladderConnectStrategy) {
+    return new LadderGame(Ladder.of(ladderHeight, ladderConnectStrategy), gameUsers, gameResults);
   }
 
   public int getLadderHeight() {
@@ -52,5 +36,11 @@ public class LadderGame {
 
   public int getLadderWidth() {
     return ladder.getLadderWidth();
+  }
+
+  private void assertLadderGame(GameUsers userNames, GameResults gameResults) {
+    if (userNames.getUserSize() != gameResults.getResultSize()) {
+      throw new InvalidParameterException(NOT_SAME_USER_RESULT_COUNT_MSG);
+    }
   }
 }

@@ -2,7 +2,8 @@ package ladder.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import ladder.domain.strategy.ConnectStrategy;
+import java.util.stream.IntStream;
+import ladder.domain.strategy.LadderConnectStrategy;
 
 public class LadderLines {
 
@@ -12,9 +13,9 @@ public class LadderLines {
     this.values = ladderLines;
   }
 
-  public static LadderLines of(List<ConnectStrategy> connectStrategies) {
-    return new LadderLines(connectStrategies.stream()
-        .map(c -> LadderLine.of(c))
+  public static LadderLines of(int height, LadderConnectStrategy ladderConnectStrategy) {
+    return new LadderLines(IntStream.range(0, height)
+        .mapToObj(h -> LadderLine.of(ladderConnectStrategy.create(h)))
         .collect(Collectors.toList()));
   }
 

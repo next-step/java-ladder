@@ -21,10 +21,12 @@ public class LadderGameInputView {
 
   public int getLadderHeight() {
     System.out.println(HEIGHT_INPUT_MESSAGE);
-    return scanner.nextInt();
+    int ladderHeight = scanner.nextInt();
+    scanner.nextLine();
+    return ladderHeight;
   }
 
-  public String getGameResult() {
+  public String getGameResults() {
     System.out.println(RESULT_INPUT_MESSAGE);
     return scanner.nextLine();
   }

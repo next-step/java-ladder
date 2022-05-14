@@ -1,10 +1,10 @@
 package ladder.view;
 
+import ladder.domain.GameUser;
+import ladder.domain.GameUsers;
 import ladder.domain.Ladder;
 import ladder.domain.LadderGame;
 import ladder.domain.LadderLine;
-import ladder.domain.GameUser;
-import ladder.domain.GameUsers;
 
 public class LadderGameOutputView {
 

@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import java.security.InvalidParameterException;
-import java.util.Objects;
 
 public class GameResult {
 

@@ -4,10 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.security.InvalidParameterException;
-import java.util.ArrayList;
 import java.util.List;
-import ladder.domain.strategy.ConnectStrategy;
-import ladder.domain.strategy.FixedConnectStrategy;
+import ladder.domain.strategy.FixedLadderConnectStrategy;
+import ladder.domain.strategy.LadderConnectStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -42,16 +41,14 @@ public class LadderTest {
   @DisplayName("사다리 높이가 정상적이지 않을 경우 에러")
   void exception() {
     assertThatThrownBy(() -> {
-      List<ConnectStrategy> connectStrategies = new ArrayList<>();
-      Ladder ladder = Ladder.of(connectStrategies);
+      Ladder ladder = Ladder.of(0, new FixedLadderConnectStrategy(List.of()));
     }).isInstanceOf(InvalidParameterException.class);
   }
 
   Ladder getTestLadder() {
-    List<ConnectStrategy> connectStrategies = new ArrayList<>();
-    connectStrategies.add(new FixedConnectStrategy(List.of(true, false, true)));
-    connectStrategies.add(new FixedConnectStrategy(List.of(false, false, false)));
-    connectStrategies.add(new FixedConnectStrategy(List.of(true, true, true)));
-    return Ladder.of(connectStrategies);
+    LadderConnectStrategy ladderConnectStrategy = new FixedLadderConnectStrategy(
+        List.of(List.of(true, false, true), List.of(false, false, false),
+            List.of(true, true, true)));
+    return Ladder.of(3, ladderConnectStrategy);
   }
 }

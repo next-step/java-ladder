@@ -2,7 +2,7 @@ package ladder.domain;
 
 import java.security.InvalidParameterException;
 import java.util.List;
-import ladder.domain.strategy.ConnectStrategy;
+import ladder.domain.strategy.LadderConnectStrategy;
 
 public class Ladder {
 
@@ -14,8 +14,8 @@ public class Ladder {
     this.ladderLines = ladderLines;
   }
 
-  public static Ladder of(List<ConnectStrategy> connectStrategies) {
-    return new Ladder(LadderLines.of(connectStrategies));
+  public static Ladder of(int height,LadderConnectStrategy ladderConnectStrategy) {
+    return new Ladder(LadderLines.of(height, ladderConnectStrategy));
   }
 
   private void assertLadder(LadderLines ladderLines) {
