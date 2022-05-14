@@ -7,11 +7,11 @@ public class Bar {
     private static final String BLANK = " ";
 
     private final int count;
-    private final boolean isMove;
+    private final boolean isActivate;
 
-    public Bar(int count, boolean isMove) {
+    public Bar(int count, boolean isActivate) {
         this.count = count;
-        this.isMove = isMove;
+        this.isActivate = isActivate;
     }
 
     @Override
@@ -19,18 +19,18 @@ public class Bar {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Bar bar = (Bar) o;
-        return count == bar.count && isMove == bar.isMove;
+        return count == bar.count && isActivate == bar.isActivate;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(count, isMove);
+        return Objects.hash(count, isActivate);
     }
 
     @Override
     public String toString() {
         String repeat = STEP.repeat(count);
-        if (isMove) {
+        if (isActivate) {
             return repeat;
         }
         return repeat.replaceAll(STEP, BLANK);
