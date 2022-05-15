@@ -23,7 +23,7 @@ public class Parts {
         return parts.size();
     }
 
-    public void connectPart(int index) {
+    protected void connectPart(int index) {
         if (isVertical(index) || index >= parts.size() || index < 0) {
             throw new IllegalArgumentException("연결 할 수 없는 파트.");
         }

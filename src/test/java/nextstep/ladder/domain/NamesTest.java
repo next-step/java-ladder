@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.Arrays;
 import java.util.List;
+import nextstep.ladder.exception.NotExistNameException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -34,7 +35,7 @@ class NamesTest {
     @Test
     void indexOfTest2() {
         assertThatThrownBy(() -> this.names.indexOf("1234"))
-            .isInstanceOf(IllegalStateException.class);
+            .isInstanceOf(NotExistNameException.class);
     }
 
 }

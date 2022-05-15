@@ -15,9 +15,6 @@ public class MainApp {
     public static void main(String[] args) {
         List<String> inputNames = inputUi.inputParticipants();
         List<String> results = inputUi.inputExecuteResult();
-
-        validateNamesAndResult(inputNames, results);
-
         int ladderHeight = inputUi.inputMaxLadderHeight();
 
         Ladder ladder = Ladder.of(
@@ -43,7 +40,7 @@ public class MainApp {
         try {
             outputUi.printResultOf(ladder.checkResultOf(resultName));
         } catch (NotExistNameException e) {
-            System.out.println("존재하지 않는 이름, 다시 입력");
+            System.out.println(e.getMessage());
         }
     }
 
@@ -51,10 +48,4 @@ public class MainApp {
         return resultName != null && "all".equals(resultName);
     }
 
-    private static void validateNamesAndResult(List<String> names, List<String> results) {
-        if (names.size() != results.size()) {
-            System.out.println("참가자 이름 수와 결과 수는 같게 입력되어야함.");
-            System.exit(1);
-        }
-    }
 }

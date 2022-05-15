@@ -5,17 +5,12 @@ import nextstep.ladder.utils.ObjectUtils;
 
 public class Ladder {
 
-    private final Names names;
-    private final Lines lines;
+    private final LadderLines ladderLines;
     private final List<String> results;
 
     private Ladder(List<String> names, List<String> results, int height, ConnectPolicy connectPolicy) {
-        validate(names);
-
-        this.names = new Names(names);
-        lines = new Lines(names.size(), height);
-        lines.connectLinesWithPolicy(connectPolicy);
-
+        validate(names, results);
+        this.ladderLines = new LadderLines(names, height, connectPolicy);
         this.results = results;
     }
 
@@ -23,31 +18,35 @@ public class Ladder {
         return new Ladder(names, results, ladderHeight, connectPolicy);
     }
 
-    private void validate(List<String> names) {
+    private void validate(List<String> names, List<String> results) {
         if (ObjectUtils.isEmpty(names)) {
             throw new IllegalArgumentException("이름이 없으면 사다리 못 만듦");
+        }
+
+        if (names.size() != results.size()) {
+            throw new IllegalArgumentException("참가자 이름 수와 결과 수는 같게 입력되어야함.");
         }
     }
 
     public int lineHeight() {
-        return lines.lineHeight();
+        return ladderLines.lineHeight();
     }
 
     public int lineCount() {
-        return lines.lineCount();
+        return ladderLines.lineCount();
     }
 
     public List<String> getLineNames() {
-        return names.get();
+        return ladderLines.getNames();
     }
 
     @Override
     public String toString() {
-        return "{" + lines + '}';
+        return "{" + ladderLines + '}';
     }
 
     public Lines getLines() {
-        return lines;
+        return ladderLines.getLines();
     }
 
     public List<String> getResults() {
@@ -55,23 +54,9 @@ public class Ladder {
     }
 
     public String checkResultOf(String resultName) {
-        int nameIndex = names.indexOf(resultName);
-
-        int resultIndex = lines.resultIndexOf(
-            convertIndexToLadderColumnIndex(nameIndex)
-        );
-
         return results.get(
-            convertLadderColumnIndexToIndex(resultIndex)
+            ladderLines.checkResultOf(resultName)
         );
-    }
-
-    private int convertIndexToLadderColumnIndex(int index) {
-        return index * 2;
-    }
-
-    private int convertLadderColumnIndexToIndex(int index) {
-        return index / 2;
     }
 
 }
