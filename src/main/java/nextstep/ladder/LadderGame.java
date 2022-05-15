@@ -3,6 +3,7 @@ package nextstep.ladder;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Player;
 import nextstep.ladder.view.Input;
+import nextstep.ladder.view.Output;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,5 +18,8 @@ public class LadderGame {
         int height = Input.askLadderHeight();
         Ladder ladder = Ladder.of(players.size() - 1, height);
         ladder.initialize(height);
+
+        Output.printPlayers(players);
+        Output.printLadder(ladder);
     }
 }
