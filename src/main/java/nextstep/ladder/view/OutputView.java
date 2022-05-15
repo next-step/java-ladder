@@ -6,7 +6,7 @@ import nextstep.ladder.model.Line;
 
 import java.util.List;
 
-public final class OutputTable {
+public final class OutputView {
 
     private static final String EXECUTION_RESULT = "실행결과";
     private static final String LADDER_ACTIVE_BAR = "|-----";
@@ -14,7 +14,7 @@ public final class OutputTable {
     private static final String BLANK = " ";
     private static final int LADDER_WEIGHT_SIZE = 5;
 
-    private OutputTable() {
+    private OutputView() {
     }
 
     public static void executionResult() {

@@ -2,8 +2,8 @@ package nextstep.ladder.controller;
 
 import nextstep.ladder.model.Ladder;
 import nextstep.ladder.service.LadderService;
-import nextstep.ladder.view.InputTable;
-import nextstep.ladder.view.OutputTable;
+import nextstep.ladder.view.InputView;
+import nextstep.ladder.view.OutputView;
 
 import java.util.List;
 
@@ -15,11 +15,11 @@ public final class LadderController {
     }
 
     public void run() {
-        List<String> participantNames = InputTable.insertParticipantNames();
-        Ladder ladder = createLadder(gameParticipantCount(participantNames), InputTable.ladderHeight());
-        OutputTable.executionResult();
-        OutputTable.printParticipantNames(participantNames);
-        OutputTable.printLadder(ladder);
+        List<String> participantNames = InputView.insertParticipantNames();
+        Ladder ladder = createLadder(gameParticipantCount(participantNames), InputView.ladderHeight());
+        OutputView.executionResult();
+        OutputView.printParticipantNames(participantNames);
+        OutputView.printLadder(ladder);
     }
 
     public int gameParticipantCount(List<String> participantsNames) {
