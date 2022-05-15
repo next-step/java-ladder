@@ -9,9 +9,9 @@ public class Line {
     private static final Random RANDOM = new Random();
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
     private static final String EDGE = "-----";
-    private static final String EMPTY_EDGE = "     ";
+    private static final String EMPTY = "     ";
 
-    private final List<Boolean> points = new ArrayList<>();
+    private List<Boolean> points = new ArrayList<>();
 
     public Line(Members members) {
         this(members.size());
@@ -21,6 +21,22 @@ public class Line {
         for (int i = 0; i < size - 1; i++) {
             setPoint(i);
         }
+    }
+
+    Line(List<Boolean> points) {
+        this.points = points;
+    }
+
+    public String getPoint() {
+        StringBuilder stringBuilder = new StringBuilder();
+        this.points.stream()
+                .map(this::getEdgeOrEmpty)
+                .forEach(stringBuilder::append);
+
+        stringBuilder.append(STICK);
+        stringBuilder.append(LINE_SEPARATOR);
+
+        return stringBuilder.toString();
     }
 
     private void setPoint(int i) {
@@ -42,20 +58,11 @@ public class Line {
         return this.points.get(i - 1);
     }
 
-    public void print() {
-        this.points.stream()
-                .map(this::getEdgeOrEmpty)
-                .forEach(System.out::print);
-
-        System.out.print(STICK);
-        System.out.print(LINE_SEPARATOR);
-    }
-
     private String getEdgeOrEmpty(Boolean point) {
         if (point) {
             return STICK + EDGE;
         }
 
-        return STICK + EMPTY_EDGE;
+        return STICK + EMPTY;
     }
 }

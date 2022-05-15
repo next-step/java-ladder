@@ -8,6 +8,7 @@ public class OutputView {
     public static void outputLadder(Members members, MaxHeightOfLadder maxHeightOfLadder) {
         System.out.println(members.getPrettyString());
         Lines lines = maxHeightOfLadder.getLines(members);
-        lines.print();
+
+        System.out.println(lines.getPoints());
     }
 }
