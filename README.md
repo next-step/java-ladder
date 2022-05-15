@@ -23,6 +23,8 @@
 > src/main/resources/fp 디렉토리 아래에 있는 war-and-peace.txt 파일을 읽어 다음 요구사항을 만족하세요.
 
 - map, reduce, filter 실습 1
+  - List에 담긴 모든 숫자 중 3보다 큰 숫자를 2배 한 후 모든 값의 합을 구한다.
+  - nextstep.fp.StreamStudyTest 클래스의 sumOverThreeAndDouble() 테스트를 pass해야 한다.
 - map, reduce, filter 실습 2
 
 ### 3) Optional
