@@ -13,8 +13,7 @@ class ParticipantsTest {
     @DisplayName("사다리 게임할 참가자의 수와 참가자 명단의 숫자가 일치하는지 확인합니다.")
     void join() {
         List<String> names = List.of("a", "b", "c");
-        Participants participants = new Participants(names);
-        assertThat(names).hasSize(participants.size());
+        assertThat(names).hasSize(Participants.create(names));
     }
 
     @Test

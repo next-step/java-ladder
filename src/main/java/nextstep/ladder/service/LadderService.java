@@ -8,10 +8,10 @@ import java.util.List;
 public final class LadderService {
 
     public int gameParticipantCount(List<String> participantsNames) {
-        return new Participants(participantsNames).size();
+        return Participants.create(participantsNames);
     }
 
     public Ladder createLadder(int participant, int height) {
-        return new Ladder(participant, height);
+        return Ladder.createLadder(participant, height);
     }
 }

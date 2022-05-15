@@ -14,6 +14,10 @@ public final class Participants {
         this.participants = join(participantNames);
     }
 
+    public static int create(List<String> participantsNames) {
+        return new Participants(participantsNames).size();
+    }
+
     private List<Participant> join(List<String> participantNames) {
         return participantNames
                 .stream()
@@ -21,7 +25,7 @@ public final class Participants {
                 .collect(Collectors.toList());
     }
 
-    public int size() {
+    private int size() {
         return participants.size();
     }
 

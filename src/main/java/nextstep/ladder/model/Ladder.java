@@ -23,6 +23,11 @@ public final class Ladder {
         this.ladder = ladder;
     }
 
+    public static Ladder createLadder(int participant, int height) {
+        validateHeightLength(height);
+        return new Ladder(participant, height);
+    }
+
     private void validateNullCheck(List<Line> ladder) {
         if (ladder == null || ladder.isEmpty()) {
             throw new IllegalArgumentException(NOT_NULL_CREATE_MESSAGE);
@@ -31,7 +36,6 @@ public final class Ladder {
     }
 
     private static List<Line> create(int participant, int height) {
-        validateHeightLength(height);
         return IntStream.range(START_INDEX, height)
                 .mapToObj(i -> new Line(participant))
                 .collect(Collectors.toList());
