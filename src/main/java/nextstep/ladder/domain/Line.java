@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Line {
-    private final List<Boolean> points;
+    private List<Boolean> points;
 
     public static Line of(int height) {
         return new Line(
@@ -19,12 +19,10 @@ public class Line {
         this.points = points;
     }
 
-    public Line initialize(Line compare) {
-        return new Line(
-                points.stream()
-                        .map(compare::calc)
-                        .collect(Collectors.toList())
-        );
+    public void initialize(Line compare) {
+        points = points.stream()
+                .map(compare::calc)
+                .collect(Collectors.toList());
     }
 
     private Boolean calc(Boolean comparedPoint) {
@@ -51,5 +49,12 @@ public class Line {
     @Override
     public int hashCode() {
         return Objects.hash(points);
+    }
+
+    @Override
+    public String toString() {
+        return "Line{" +
+                "points=" + points +
+                '}';
     }
 }

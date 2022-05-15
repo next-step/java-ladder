@@ -19,4 +19,19 @@ public class Ladder {
     private Ladder(List<Line> lines) {
         this.lines = lines;
     }
+
+    public void initialize(int height) {
+        lines.stream()
+                .reduce(Line.of(height), (prevLine, nextLine) -> {
+                    nextLine.initialize(prevLine);
+                    return nextLine;
+                });
+    }
+
+    @Override
+    public String toString() {
+        return "Ladder{" +
+                "lines=" + lines +
+                '}';
+    }
 }
