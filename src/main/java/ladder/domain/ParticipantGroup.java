@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ParticipantGroup {
     private static final int MIN_PARTICIPANTS = 2;
@@ -10,6 +11,10 @@ public class ParticipantGroup {
     public ParticipantGroup(List<Participant> participants) {
         validateParticipants(participants);
         this.participants = participants;
+    }
+
+    public static ParticipantGroup create(List<String> participantNames) {
+        return new ParticipantGroup(participantNames.stream().map(name -> new Participant(new Name(name))).collect(Collectors.toList()));
     }
 
     public int participantsCount() {

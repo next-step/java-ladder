@@ -19,7 +19,7 @@ public class LadderGameController {
 
     public static void main(String[] args) {
         List<String> participantNames = InputView.scanParticipantNames();
-        ParticipantGroup participantGroup = new ParticipantGroup(participantNames.stream().map(name -> new Participant(new Name(name))).collect(Collectors.toList()));
+        ParticipantGroup participantGroup = ParticipantGroup.create(participantNames);
 
         int height = InputView.scanLadderHeight();
         Ladder ladder = Ladder.create(participantGroup.participantsCount(), height, valueGenerateStrategy);
