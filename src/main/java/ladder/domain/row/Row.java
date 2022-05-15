@@ -1,52 +1,72 @@
 package ladder.domain.row;
 
-import ladder.domain.step.Step;
+import ladder.domain.point.Point;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static ladder.view.OutputView.BEAM;
+import java.util.stream.Collectors;
 
 public class Row {
-    static final int ROW_START_INDEX = 1;
+    private final List<Point> points;
 
-    private final List<Step> steps;
-
-    public Row(List<Step> steps) {
-        validate(steps);
-        this.steps = new ArrayList<>(steps);
+    public Row() {
+        this(new ArrayList<>());
     }
 
-    private void validate(List<Step> steps) {
-        if (steps == null) {
-            throw new IllegalArgumentException("steps는 null 일 수 없습니다.");
+    public Row(List<Point> points) {
+        validate(points);
+        this.points = new ArrayList<>(points);
+    }
+
+    private void validate(List<Point> points) {
+        if (points == null) {
+            throw new IllegalArgumentException("points는 null 일 수 없습니다.");
         }
     }
 
-    public static Row from(int rowSize) {
-        List<Step> steps = new ArrayList<>();
-        steps.add(Step.first());
-
-        for (int i = ROW_START_INDEX; i < rowSize - 1; i++) {
-            steps.add(
-                    Step.from(lastStep(steps))
-            );
-        }
-        return new Row(steps);
+    private Row extend(Point point) {
+        List<Point> points = new ArrayList<>(this.points);
+        points.add(point);
+        return new Row(points);
     }
 
-    private static Step lastStep(List<Step> steps) {
-        return steps.get(steps.size() - 1);
+    public static Row generateByWidth(int width) {
+        return new Row()
+                .extendFirst()
+                .extend(width - 1)
+                .extendLast();
+    }
+
+    private Row extendFirst() {
+        return extend(Point.first());
+    }
+
+    private Row extend(int targetWidth) {
+        if (width() >= targetWidth) {
+            return this;
+        }
+
+        return extend(
+                getLastPoint().next()
+        ).extend(targetWidth);
+    }
+
+    private Row extendLast() {
+        return extend(getLastPoint().nextLast());
+    }
+
+    private Point getLastPoint() {
+        return points.get(points.size() - 1);
+    }
+
+    public int width() {
+        return points.size();
     }
 
     @Override
     public String toString() {
-        return steps.stream()
-                .map(Step::toString)
-                .reduce(BEAM, (acc, cur) -> acc + cur + BEAM);
-    }
-
-    public List<Step> getSteps() {
-        return new ArrayList<>(steps);
+        return points.stream()
+                .map(Point::toString)
+                .collect(Collectors.joining());
     }
 }

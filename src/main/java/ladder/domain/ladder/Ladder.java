@@ -27,16 +27,8 @@ public class Ladder {
     public static Ladder of(Players players, int height) {
         return new Ladder(
                 players,
-                Rows.of(players.size(), height)
+                Rows.generateByWidthAndHeight(players.size(), height)
         );
-    }
-
-    public Rows getRows() {
-        return rows;
-    }
-
-    public Players getPlayers() {
-        return players;
     }
 
     @Override

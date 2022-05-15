@@ -21,20 +21,12 @@ public class Rows {
         }
     }
 
-    public List<Row> getRows() {
-        return new ArrayList<>(rows);
-    }
-
-    public static Rows of(int rowSize, int ladderHeight) {
+    public static Rows generateByWidthAndHeight(int ladderWidth, int ladderHeight) {
         return new Rows(
                 IntStream.range(INITIAL_HEIGHT, ladderHeight)
-                        .mapToObj(i -> Row.from(rowSize))
+                        .mapToObj(i -> Row.generateByWidth(ladderWidth))
                         .collect(Collectors.toList())
         );
-    }
-
-    public int size() {
-        return rows.size();
     }
 
     @Override

@@ -16,6 +16,10 @@ public class Position {
         }
     }
 
+    public Position move(Direction direction) {
+        return new Position(direction.move(position));
+    }
+
     public static Position value(int position) {
         return new Position(position);
     }
@@ -23,5 +27,4 @@ public class Position {
     public static Position initialize() {
         return new Position(INITIAL_POSITION);
     }
-
 }
