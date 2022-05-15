@@ -31,9 +31,6 @@ public class Ladder {
         if (lines == null) {
             throw new IllegalArgumentException("사다리를 구성하는 라인들은 null 일 수 없습니다.");
         }
-        for (Line line : lines) {
-            Line.validatePoints(line.points());
-        }
     }
 
     private static void validateHeight(int height) {
