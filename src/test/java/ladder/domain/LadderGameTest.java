@@ -22,7 +22,7 @@ public class LadderGameTest {
     LadderGame ladderGame = LadderGame.of(gameUsers, gameResults, height,
         new RandomLadderConnectStrategy(height, gameUsers.getUserSize()));
 
-    assertThat(ladderGame.getLadderWidth()).isEqualTo(gameUsers.getUserSize());
+    assertThat(ladderGame.getLadder().getLadderWidth()).isEqualTo(gameUsers.getUserSize());
     assertThat(ladderGame.getLadderHeight()).isEqualTo(height);
     assertThat(ladderGame.getGameUsers()).isEqualTo(gameUsers);
     assertThat(ladderGame.getGameResults()).isEqualTo(gameResults);
@@ -50,10 +50,11 @@ public class LadderGameTest {
     int height = 4;
     LadderGame ladderGame = LadderGame.of(gameUsers, gameResults, height, ladderConnectStrategy);
 
-    assertThat(ladderGame.gameResult(GameUser.from("pobi")).getResult()).isEqualTo("1000");
-    assertThat(ladderGame.gameResult(GameUser.from("test")).getResult()).isEqualTo("꽝");
-    assertThat(ladderGame.gameResult(GameUser.from("crong")).getResult()).isEqualTo("꽝");
-    assertThat(ladderGame.gameResult(GameUser.from("hihi")).getResult()).isEqualTo("3000");
+    assertThat(ladderGame.getUserGameResult(GameUser.from("pobi")).getResult()).isEqualTo("1000");
+    assertThat(ladderGame.getUserGameResult(GameUser.from("test")).getResult()).isEqualTo("꽝");
+    assertThat(ladderGame.getUserGameResult(GameUser.from("crong")).getResult()).isEqualTo("꽝");
+    assertThat(ladderGame.getUserGameResult(GameUser.from("hihi")).getResult()).isEqualTo("3000");
+    assertThat(ladderGame.getUserGameResult(GameUser.from("anony"))).isNull();
   }
 
   @Test
@@ -68,7 +69,7 @@ public class LadderGameTest {
     GameResults resultExpect = GameResults.from("1000,꽝,꽝,3000");
     LadderGame ladderGame = LadderGame.of(gameUsers, gameResults, height, ladderConnectStrategy);
 
-    GameResults resultAll = ladderGame.gameResultAll();
+    GameResults resultAll = ladderGame.getAllGameResult();
     assertThat(resultAll).usingRecursiveComparison().isEqualTo(resultExpect);
   }
 }

@@ -4,10 +4,12 @@ import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class RandomLadderConnectStrategy implements LadderConnectStrategy {
 
-  private static final String INVALID_LINE_WIDTH_MSG = "사다리의 길이는 1 이상이어야 합니다";
+  private static final String INVALID_LINE_WIDTH_MSG = "사다리의 너비는 1 이상이어야 합니다";
   private static final String INVALID_HEIGHT_MSG = "사다리의 높이는 1 이상이어야 합니다";
   private final List<List<Boolean>> connects;
   private final Random random;
@@ -15,17 +17,17 @@ public class RandomLadderConnectStrategy implements LadderConnectStrategy {
   public RandomLadderConnectStrategy(int height, int width) {
     assertRandomLadderConnectStrategy(height, width);
     this.random = new Random();
-    connects = new ArrayList<>();
-    for (int i = 0; i < height; i++) {
-      connects.add(makeLineConnects(width));
-    }
+
+    connects = IntStream.range(0, height)
+        .mapToObj(h -> makeLineConnects(width))
+        .collect(Collectors.toList());
   }
 
   private List<Boolean> makeLineConnects(int width) {
     ArrayList<Boolean> lineConnects = new ArrayList<Boolean>();
     boolean lastConnect = false;
     for (int j = 0; j < width - 1; j++) {
-      boolean connect = isCurrentConnect(random.nextBoolean(), lastConnect);
+      boolean connect = isCurrentConnect(lastConnect);
       lineConnects.add(connect);
       lastConnect = connect;
     }
@@ -42,11 +44,11 @@ public class RandomLadderConnectStrategy implements LadderConnectStrategy {
     }
   }
 
-  private boolean isCurrentConnect(boolean currConnect, boolean lastConnect) {
+  private boolean isCurrentConnect(boolean lastConnect) {
     if (lastConnect) {
       return false;
     }
-    return currConnect;
+    return random.nextBoolean();
   }
 
   @Override

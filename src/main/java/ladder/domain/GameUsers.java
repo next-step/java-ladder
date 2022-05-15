@@ -23,11 +23,7 @@ public class GameUsers {
     return this.values.size();
   }
 
-  public String getUserName(int userIdx) {
-    return values.get(userIdx).getName();
-  }
-
-  public int getUserIdx(GameUser gameUser) {
+  public int getUserPoint(GameUser gameUser) {
     return values.indexOf(gameUser);
   }
 

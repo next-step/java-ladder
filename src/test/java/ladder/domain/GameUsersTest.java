@@ -27,9 +27,9 @@ class GameUsersTest {
 
   @Test
   @DisplayName("사용자에 해당하는 인덱스를 잘 가져오는지 확인")
-  void getIndex(){
+  void getIndex() {
     GameUsers gameUsers = GameUsers.from("pobi,honux,crong,jk");
-    assertThat(gameUsers.getUserIdx(GameUser.from("pobi"))).isEqualTo(0);
+    assertThat(gameUsers.getUserPoint(GameUser.from("pobi"))).isEqualTo(0);
   }
 
 }

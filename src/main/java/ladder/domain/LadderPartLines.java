@@ -14,9 +14,11 @@ public class LadderPartLines {
   }
 
   public static LadderPartLines of(int height, LadderConnectStrategy ladderConnectStrategy) {
-    return new LadderPartLines(IntStream.range(0, height)
-        .mapToObj(h -> LadderPartLine.of(ladderConnectStrategy.create(h)))
-        .collect(Collectors.toList()));
+    List<LadderPartLine> lines = IntStream.range(0, height).
+        mapToObj(heightPont -> LadderPartLine.of(ladderConnectStrategy.create(heightPont)))
+        .collect(Collectors.toList());
+
+    return new LadderPartLines(lines);
   }
 
   public boolean isLeftConnect(int height, int lineIdx) {

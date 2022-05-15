@@ -2,15 +2,12 @@ package ladder.domain;
 
 public class LadderPart {
 
-  private boolean leftConnect;
-  private boolean rightConnect;
+  private final boolean leftConnect;
+  private final boolean rightConnect;
 
-  public void connectRight() {
-    this.rightConnect = true;
-  }
-
-  public void connectLeft() {
-    this.leftConnect = true;
+  public LadderPart(boolean leftConnect, boolean rightConnect) {
+    this.leftConnect = leftConnect;
+    this.rightConnect = rightConnect;
   }
 
   public boolean isLeftConnect() {

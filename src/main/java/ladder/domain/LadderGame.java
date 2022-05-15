@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.security.InvalidParameterException;
+import java.util.List;
 import java.util.stream.Collectors;
 import ladder.domain.strategy.LadderConnectStrategy;
 
@@ -35,33 +36,42 @@ public class LadderGame {
     return gameUsers;
   }
 
-  public int getLadderWidth() {
-    return ladder.getLadderWidth();
-  }
-
   public GameResults getGameResults() {
     return gameResults;
   }
 
-  public GameResult gameResult(GameUser gameUser) {
-    int height = 0;
-    int width = gameUsers.getUserIdx(gameUser);
-
-    while (height < ladder.getLadderHeight()) {
-      width = getNextWidth(ladder, height, width);
-      height++;
+  public GameResult getUserGameResult(GameUser gameUser) {
+    if (notExistUser(gameUser)) {
+      return null;
     }
 
-    return gameResults.getGameResult(width);
+    int heightPoint = 0;
+    int widthPoint = gameUsers.getUserPoint(gameUser);
+
+    while (canDown(heightPoint)) {
+      widthPoint = getNextWidthPoint(ladder, heightPoint, widthPoint);
+      heightPoint++;
+    }
+
+    return gameResults.getGameResult(widthPoint);
   }
 
-  public GameResults gameResultAll() {
-    return GameResults.from(gameUsers.getValues().stream()
-        .map(gameUser -> gameResult(gameUser))
-        .collect(Collectors.toList()));
+  private boolean notExistUser(GameUser gameUser) {
+    return gameUsers.getUserPoint(gameUser) < 0;
   }
 
-  private int getNextWidth(Ladder ladder, int height, int width) {
+  private boolean canDown(int height) {
+    return height < ladder.getLadderHeight();
+  }
+
+  public GameResults getAllGameResult() {
+    List<GameResult> gameResults = gameUsers.getValues().stream()
+        .map(gameUser -> getUserGameResult(gameUser))
+        .collect(Collectors.toList());
+    return GameResults.from(gameResults);
+  }
+
+  private int getNextWidthPoint(Ladder ladder, int height, int width) {
     if (ladder.isLeftConnect(height, width)) {
       return --width;
     }

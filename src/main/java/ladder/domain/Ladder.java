@@ -13,33 +13,29 @@ public class Ladder {
     this.ladderLines = ladderLines;
   }
 
-  public static Ladder of(int height,LadderConnectStrategy ladderConnectStrategy) {
+  public static Ladder of(int height, LadderConnectStrategy ladderConnectStrategy) {
     return new Ladder(LadderPartLines.of(height, ladderConnectStrategy));
-  }
-
-  private void assertLadder(LadderPartLines ladderLines) {
-    if (ladderLines.height() == 0) {
-      throw new InvalidParameterException(INVALID_HEIGHT_MSG);
-    }
   }
 
   public int getLadderHeight() {
     return ladderLines.height();
   }
 
-  public LadderPartLine getLadderLine(int height) {
-    return ladderLines.getLadderLine(height);
-  }
-
   public boolean isLeftConnect(int height, int width) {
-    return getLadderLine(height).isLeftConnect(width);
+    return ladderLines.isLeftConnect(height, width);
   }
 
   public boolean isRightConnect(int height, int width) {
-    return getLadderLine(height).isRightConnect(width);
+    return ladderLines.isRightConnect(height, width);
   }
 
   public int getLadderWidth() {
     return ladderLines.getLadderLine(0).getLadderWidth();
+  }
+
+  private void assertLadder(LadderPartLines ladderLines) {
+    if (ladderLines.height() == 0) {
+      throw new InvalidParameterException(INVALID_HEIGHT_MSG);
+    }
   }
 }

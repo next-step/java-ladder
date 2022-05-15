@@ -19,16 +19,6 @@ public class GameUser {
     return new GameUser(name);
   }
 
-  private void assertName(String name) {
-    if (name == null || name.isBlank()) {
-      throw new InvalidParameterException(EMPTY_NAME_MESSAGE);
-    }
-
-    if (name.length() > LENGTH_LIMIT) {
-      throw new InvalidParameterException(String.format(INVALID_LENGTH_MESSAGE, LENGTH_LIMIT));
-    }
-  }
-
   public String getName() {
     return name;
   }
@@ -48,5 +38,15 @@ public class GameUser {
   @Override
   public int hashCode() {
     return Objects.hash(name);
+  }
+
+  private void assertName(String name) {
+    if (name == null || name.isBlank()) {
+      throw new InvalidParameterException(EMPTY_NAME_MESSAGE);
+    }
+
+    if (name.length() > LENGTH_LIMIT) {
+      throw new InvalidParameterException(String.format(INVALID_LENGTH_MESSAGE, LENGTH_LIMIT));
+    }
   }
 }

@@ -25,7 +25,6 @@ public class GameResults {
     return new GameResults(values);
   }
 
-
   public int getResultSize() {
     return values.size();
   }

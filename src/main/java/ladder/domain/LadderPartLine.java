@@ -1,44 +1,47 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class LadderPartLine {
 
-  private final List<LadderPart> ladderParts;
+  private final List<LadderPart> line;
 
-  private LadderPartLine(List<LadderPart> ladderParts) {
-    this.ladderParts = ladderParts;
+  private LadderPartLine(List<LadderPart> line) {
+    this.line = line;
   }
 
-  public static LadderPartLine of(List<Boolean> isConnects) {
-    List<LadderPart> parts = IntStream.range(0, isConnects.size())
-        .mapToObj(i -> new LadderPart())
-        .collect(Collectors.toList());
-
-    for (int width = 0; width < parts.size() - 1; width++) {
-      connect(parts.get(width), parts.get(width + 1), isConnects.get(width));
+  public static LadderPartLine of(List<Boolean> connects) {
+    List<LadderPart> partLine = new ArrayList<>();
+    for (int widthPoint = 0; widthPoint < connects.size(); widthPoint++) {
+      boolean left = isConnectLeft(widthPoint, connects);
+      boolean right = isConnectRight(widthPoint, connects);
+      partLine.add(new LadderPart(left, right));
     }
-    return new LadderPartLine(parts);
+    return new LadderPartLine(partLine);
   }
 
-  private static void connect(LadderPart left, LadderPart right, Boolean connect) {
-    if (connect) {
-      left.connectRight();
-      right.connectLeft();
+  private static boolean isConnectRight(int widthPoint, List<Boolean> connects) {
+    return connects.get(widthPoint);
+  }
+
+  private static boolean isConnectLeft(int widthPoint, List<Boolean> connects) {
+    int previousPoint = widthPoint - 1;
+    if (previousPoint < 0) {
+      return false;
     }
+    return connects.get(previousPoint);
   }
 
-  public boolean isRightConnect(int lineIdx) {
-    return ladderParts.get(lineIdx).isRightConnect();
+  public boolean isRightConnect(int widthPoint) {
+    return line.get(widthPoint).isRightConnect();
   }
 
-  public boolean isLeftConnect(int lineIdx) {
-    return ladderParts.get(lineIdx).isLeftConnect();
+  public boolean isLeftConnect(int widthPoint) {
+    return line.get(widthPoint).isLeftConnect();
   }
 
   public int getLadderWidth() {
-    return ladderParts.size();
+    return line.size();
   }
 }
