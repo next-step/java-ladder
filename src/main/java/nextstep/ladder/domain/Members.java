@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Members {
+    private  static final String DELIMITER = " ";
     private final static String NAME_DELIMITER = ",";
 
     private final List<Member> members;
@@ -29,6 +30,18 @@ public class Members {
         return Arrays.stream(names.split(NAME_DELIMITER))
                 .map(Member::new)
                 .collect(Collectors.toList());
+    }
+
+    public String getPrettyString() {
+        return members.stream()
+                .map(Member::toString)
+                .map(name -> name + DELIMITER.repeat(Member.MAX_NAME_LENGTH - name.length()))
+                .collect(Collectors.joining(DELIMITER))
+                .strip();
+    }
+
+    public int size() {
+        return this.members.size();
     }
 
     @Override

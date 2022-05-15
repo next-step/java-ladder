@@ -1,7 +1,7 @@
 package nextstep.ladder.domain;
 
 public class Member {
-    private static final int MAX_NAME_LENGTH = 5;
+    public static final int MAX_NAME_LENGTH = 5;
 
     private final String name;
 

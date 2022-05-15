@@ -1,5 +1,9 @@
 package nextstep.ladder.domain;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 public class MaxHeightOfLadder {
     private static final int MIN = 1;
 
@@ -26,6 +30,14 @@ public class MaxHeightOfLadder {
         if (maxHeightOfLadder < MIN) {
             throw new NotAllowNegativeOrZero();
         }
+    }
+
+    public Lines getLines(Members members) {
+        List<Line> lines = IntStream.range(0, this.maxHeightOfLadder)
+                .mapToObj(i -> new Line(members))
+                .collect(Collectors.toList());
+
+        return new Lines(lines);
     }
 
     @Override
