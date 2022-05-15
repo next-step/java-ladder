@@ -16,13 +16,13 @@ class LadderTest {
     @DisplayName("사다리의 높이 만큼 사다리가 생성이 되었는지 확인한다.")
     void confirmLadderHeight() {
         Ladder ladder = new Ladder(3, 5);
-        assertThat(ladder.lines()).hasSize(3);
+        assertThat(ladder.lines()).hasSize(5);
     }
 
     @Test
     @DisplayName("사다리의 높이는 1보다 작을 수 없습니다.")
     void ladderHeightException() {
-        assertThrows(NullPointerException.class, () -> {
+        assertThrows(IllegalArgumentException.class, () -> {
             new Ladder(10, 0);
         });
     }
@@ -30,7 +30,7 @@ class LadderTest {
     @ParameterizedTest(name = "사다리는 반드시 생성이 되야 합니다.")
     @NullAndEmptySource
     void inputNull(List<Line> lines) {
-        assertThrows(NullPointerException.class, () -> {
+        assertThrows(IllegalArgumentException.class, () -> {
             Ladder ladder = new Ladder(lines);
         });
     }

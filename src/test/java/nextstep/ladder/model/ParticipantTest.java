@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ParticipantTest {
@@ -15,7 +14,7 @@ public class ParticipantTest {
     @DisplayName("참가자의 이름의 길이는 1자리에서 5자리입니다.")
     @ValueSource(strings = {"", "kkkkkk"})
     void nameOutOfBounds(String input) {
-        assertThrows(IndexOutOfBoundsException.class, () -> {
+        assertThrows(IllegalArgumentException.class, () -> {
             new Participant(input);
         });
     }
@@ -23,7 +22,7 @@ public class ParticipantTest {
     @Test
     @DisplayName("참가자의 이름은 null일 수 없습니다.")
     void nameNullPointException() {
-        assertThrows(NullPointerException.class, () -> {
+        assertThrows(IllegalArgumentException.class, () -> {
             new Participant(null);
         });
     }

@@ -76,7 +76,7 @@ public final class Line {
     }
 
     void validateNullCheck(List<Bar> bars) {
-        if (bars == null || bars.isEmpty()) {
+        if (bars.isEmpty()) {
             throw new IllegalArgumentException(NOT_NULL_CREATE_MESSAGE);
         }
     }
