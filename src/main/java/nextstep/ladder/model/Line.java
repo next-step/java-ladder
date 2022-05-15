@@ -17,7 +17,7 @@ public final class Line {
     private final List<Bar> bars;
 
     public Line(int participantCount) {
-        this(create(participantCount));
+        this(createLine(participantCount));
     }
 
     public Line(List<Boolean> bars) {
@@ -25,7 +25,7 @@ public final class Line {
         this.bars = convert(bars);
     }
 
-    private static List<Boolean> create(int participantCount) {
+    private static List<Boolean> createLine(int participantCount) {
         List<Boolean> bars = new ArrayList<>();
         bars.add(InputUtil.randomBar(null));
         for (int i = FIRST_INDEX; i < participantCount - FIRST_INDEX; i++) {
@@ -51,28 +51,31 @@ public final class Line {
         return bars;
     }
 
-    public void validate(List<Boolean> bars) {
+    private void validate(List<Boolean> bars) {
         validateNullCheck(convert(bars));
-        int size = bars.size();
-        for (int i = FIRST_INDEX; i < size; i++) {
-            continuityCreateValidate(bars.get(i - FIRST_INDEX), bars.get(i));
-        }
-        lastBarCreateValidate(bars.get(size - FIRST_INDEX));
+        validateContinuityCreate(bars);
+        validateCreateLastBar(bars.get(bars.size() - FIRST_INDEX));
     }
 
-    private void lastBarCreateValidate(boolean currentBarStatus) {
+    private void validateContinuityCreate(List<Boolean> bars) {
+        for (int i = FIRST_INDEX; i < bars.size(); i++) {
+            compareBars(bars.get(i - FIRST_INDEX), bars.get(i));
+        }
+    }
+
+    private void validateCreateLastBar(boolean currentBarStatus) {
         if (currentBarStatus) {
             throw new IllegalArgumentException(LAST_CREATE_MESSAGE);
         }
     }
 
-    private void continuityCreateValidate(boolean beforeBarStatus, boolean currentBarStatus) {
+    private void compareBars(boolean beforeBarStatus, boolean currentBarStatus) {
         if (beforeBarStatus && currentBarStatus) {
             throw new IllegalArgumentException(CONTINUITY_CREATE_MESSAGE);
         }
     }
 
-    public void validateNullCheck(List<Bar> bars) {
+    void validateNullCheck(List<Bar> bars) {
         if (bars == null || bars.isEmpty()) {
             throw new IllegalArgumentException(NOT_NULL_CREATE_MESSAGE);
         }
