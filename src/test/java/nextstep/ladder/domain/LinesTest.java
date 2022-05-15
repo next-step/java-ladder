@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -13,22 +14,31 @@ class LinesTest {
     @Nested
     class getPoints_메서드는 {
 
-        @Test
-        void 문자열을_리턴한다() {
-            List<Line> lineList = Arrays.asList(
-                    new Line(Arrays.asList(true, false, false, true)),
-                    new Line(Arrays.asList(true, false, true, false)),
-                    new Line(Arrays.asList(false, true, false, true)),
-                    new Line(Arrays.asList(false, false, true, false))
-            );
-            Lines lines = new Lines(lineList);
+        @Nested
+        class 라인목록이_주어짐녀 {
+            private List<List<Boolean>> lineList;
 
-            assertThat(lines.getPoints()).isEqualTo(
-                    "|-----|     |     |-----|\n" +
-                    "|-----|     |-----|     |\n" +
-                    "|     |-----|     |-----|\n" +
-                    "|     |     |-----|     |\n"
-            );
+            @BeforeEach
+            void setUp() {
+                this.lineList = Arrays.asList(
+                        Arrays.asList(true, false, false, true),
+                        Arrays.asList(true, false, true, false),
+                        Arrays.asList(false, true, false, true),
+                        Arrays.asList(false, false, true, false)
+                );
+            }
+
+            @Test
+            void 문자열을_리턴한다() {
+                Lines lines = Lines.of(lineList);
+
+                assertThat(lines.getPoints()).isEqualTo(
+                        "|-----|     |     |-----|\n" +
+                                "|-----|     |-----|     |\n" +
+                                "|     |-----|     |-----|\n" +
+                                "|     |     |-----|     |\n"
+                );
+            }
         }
     }
 }
