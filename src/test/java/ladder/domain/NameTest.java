@@ -17,7 +17,7 @@ class NameTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"wu2eee", "wu2eeeeeeee"})
-    void Name_이름_길이_유효성_검사(String name) {
+    void Name_이름_길이가_5자_초과하는_경우(String name) {
         assertThatThrownBy(() -> new Name(name)).isInstanceOf(IllegalArgumentException.class);
     }
 
