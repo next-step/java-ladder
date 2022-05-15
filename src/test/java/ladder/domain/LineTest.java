@@ -8,9 +8,22 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LineTest {
+    @Test
+    void create_라인이_생성된다__전략_패턴_랜덤_boolean_true_인_경우() {
+        Line line = new Line(List.of(new Point(0, Direction.RIGHT), new Point(1, Direction.LEFT), new Point(2, Direction.STRAIGHT)));
+        assertThat(Line.create(3, () -> true)).isEqualTo(line);
+    }
+
+    @Test
+    void create_라인이_생성된다__전략_패턴_랜덤_boolean_false_인_경우() {
+        Line line = new Line(List.of(new Point(0, Direction.STRAIGHT), new Point(1, Direction.STRAIGHT), new Point(2, Direction.STRAIGHT)));
+        assertThat(Line.create(3, () -> false)).isEqualTo(line);
+    }
+
     @ParameterizedTest
     @NullSource
     void Line_포인트들이_null인_경우(List<Point> points) {
