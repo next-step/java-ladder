@@ -5,6 +5,8 @@ import utils.StringSplitter;
 import java.util.List;
 import java.util.Scanner;
 
+import static ladder.app.LadderGame.ALL;
+
 public class InputView {
     private static final String DELIMITER = ",";
     private static final Scanner SCANNER = new Scanner(System.in);
@@ -27,11 +29,22 @@ public class InputView {
         return inputInt();
     }
 
+    public static String inputPlayerName() {
+        System.out.printf("결과를 보고 싶은 사람은?(전체를 볼 경우 %s 입력)%n", ALL);
+        return inputLine().trim();
+    }
+
     private static String inputLine() {
         return SCANNER.nextLine();
     }
 
     private static int inputInt() {
-        return SCANNER.nextInt();
+        int input = SCANNER.nextInt();
+        flushNewLine();
+        return input;
+    }
+
+    private static void flushNewLine() {
+        SCANNER.nextLine();
     }
 }

@@ -20,14 +20,14 @@ class PlayersTest {
     @Test
     void Players는_최소_인원_이하로_생성_할_경우_예외를_발생_시킨다() {
         assertThatThrownBy(
-                () -> new Players(List.of(new Player("name")))
+                () -> new Players(List.of(new Player("name", 1)))
         ).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void Players는_중복된_이름으로_생성_할_경우_예외를_발생_시킨다() {
         assertThatThrownBy(
-                () -> new Players(List.of(new Player("name"), new Player("name")))
+                () -> new Players(List.of(new Player("name", 1), new Player("name", 1)))
         ).isInstanceOf(IllegalArgumentException.class);
     }
 }

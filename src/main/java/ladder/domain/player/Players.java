@@ -39,15 +39,28 @@ public class Players {
     }
 
     public static Players from(List<String> playerNames) {
-        return new Players(
-                playerNames.stream()
-                        .map(Player::new)
-                        .collect(Collectors.toList())
-        );
+        List<Player> players = new ArrayList<>();
+
+        for (int i = 0; i < playerNames.size(); i++) {
+            players.add(new Player(playerNames.get(i), i));
+        }
+
+        return new Players(players);
     }
 
     public int numbers() {
         return players.size();
+    }
+
+    public Player findByName(Name name) {
+        return players.stream()
+                .filter(player -> player.isSameName(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("플레이어가 존재하지 않습니다."));
+    }
+
+    public List<Player> getPlayers() {
+        return new ArrayList<>(players);
     }
 
     @Override

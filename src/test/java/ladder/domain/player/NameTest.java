@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class NameTest {
-    private static final String OVERSIZE_NAME = "oversize";
+    private static final String OVERSIZE_NAME = "경계값 이름";
 
     @ParameterizedTest
     @NullAndEmptySource

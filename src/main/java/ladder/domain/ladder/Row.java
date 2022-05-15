@@ -1,5 +1,6 @@
-package ladder.domain.row;
+package ladder.domain.ladder;
 
+import ladder.domain.player.Player;
 import ladder.domain.point.Point;
 
 import java.util.ArrayList;
@@ -57,6 +58,14 @@ public class Row {
 
     private Point getLastPoint() {
         return points.get(points.size() - 1);
+    }
+
+    public Player trace(Player player) {
+        return points.stream()
+                .filter(player::isOnPoint)
+                .map(point -> point.move(player))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("사다리 위치가 올바르지 않습니다."));
     }
 
     public int width() {

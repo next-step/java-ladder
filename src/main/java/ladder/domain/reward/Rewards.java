@@ -1,7 +1,9 @@
 package ladder.domain.reward;
 
+import ladder.domain.point.Position;
 import ladder.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,7 +12,7 @@ public class Rewards {
 
     public Rewards(List<Reward> rewards) {
         validate(rewards);
-        this.rewards = rewards;
+        this.rewards = new ArrayList<>(rewards);
     }
 
     private void validate(List<Reward> rewards) {
@@ -24,11 +26,20 @@ public class Rewards {
     }
 
     public static Rewards from(List<String> rewardNames) {
-        return new Rewards(
-                rewardNames.stream()
-                        .map(Reward::new)
-                        .collect(Collectors.toList())
-        );
+        List<Reward> rewards = new ArrayList<>();
+
+        for (int i = 0; i < rewardNames.size(); i++) {
+            rewards.add(new Reward(rewardNames.get(i), i));
+        }
+
+        return new Rewards(rewards);
+    }
+
+    public Reward findByPosition(Position position) {
+        return rewards.stream()
+                .filter(reward -> reward.isSamePosition(position))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(String.format("position(%s)이 올바르지 않습니다.", position)));
     }
 
     @Override
