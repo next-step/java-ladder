@@ -12,9 +12,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 class LadderTest {
-
     @Test
-    void Ladder_라인이_생성된다__전략_패턴_랜덤_boolean_true_인_경우() {
+    void create_사다리가_생성된다__전략_패턴_랜덤_boolean_true_인_경우() {
         Ladder ladder = Ladder.create(3, 5, () -> true);
         Line line = new Line(List.of(new Point(0, Direction.RIGHT), new Point(1, Direction.LEFT), new Point(2, Direction.STRAIGHT)));
         List<Line> lines = List.of(line, line, line, line, line);
@@ -22,7 +21,7 @@ class LadderTest {
     }
 
     @Test
-    void Ladder_라인이_생성된다__전략_패턴_랜덤_boolean_false_인_경우() {
+    void create_사다리가_생성된다__전략_패턴_랜덤_boolean_false_인_경우() {
         Ladder ladder = Ladder.create(3, 5, () -> false);
         Line line = new Line(List.of(new Point(0, Direction.STRAIGHT), new Point(1, Direction.STRAIGHT), new Point(2, Direction.STRAIGHT)));
         List<Line> lines = List.of(line, line, line, line, line);
