@@ -1,5 +1,7 @@
 package ladder.domain.reward;
 
+import ladder.view.OutputView;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,7 +34,7 @@ public class Rewards {
     @Override
     public String toString() {
         return rewards.stream()
-                .map(Reward::toString)
+                .map(reward -> OutputView.nameToDisplayingName(reward.toString()))
                 .collect(Collectors.joining());
     }
 }

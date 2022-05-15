@@ -1,5 +1,7 @@
 package ladder.domain.player;
 
+import ladder.view.OutputView;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,6 +23,19 @@ public class Players {
         if (players.size() < MIN_NUMBER_OF_PLAYERS) {
             throw new IllegalArgumentException(String.format("players(%s명)는 %s명 보다 적을 수  없습니다.", players.size(), MIN_NUMBER_OF_PLAYERS));
         }
+
+        if (nameIsDuplicated(players)) {
+            throw new IllegalArgumentException("player 이름은 중복 될 수 없습니다.");
+        }
+    }
+
+    private boolean nameIsDuplicated(List<Player> players) {
+        return players.size() !=
+                players.stream()
+                        .map(Player::toString)
+                        .distinct()
+                        .count();
+
     }
 
     public static Players from(List<String> playerNames) {
@@ -38,7 +53,7 @@ public class Players {
     @Override
     public String toString() {
         return players.stream()
-                .map(Player::toString)
+                .map(player -> OutputView.nameToDisplayingName(player.toString()))
                 .collect(Collectors.joining());
     }
 }
