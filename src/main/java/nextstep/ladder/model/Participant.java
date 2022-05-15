@@ -15,9 +15,6 @@ public final class Participant {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
 
     private void validate(String name) {
         if (name == null || name.isBlank()) {
