@@ -1,33 +1,26 @@
 package ladder.domain.ladder;
 
-import ladder.domain.player.Players;
 import ladder.domain.row.Rows;
 
 public class Ladder {
     public static final int INITIAL_HEIGHT = 0;
 
-    private final Players players;
     private final Rows rows;
 
-    public Ladder(Players players, Rows rows) {
-        validate(players, rows);
-        this.players = players;
+    public Ladder(Rows rows) {
+        validate(rows);
         this.rows = rows;
     }
 
-    private void validate(Players players, Rows rows) {
-        if (players == null) {
-            throw new IllegalArgumentException("players는 null 일 수 없습니다.");
-        }
+    private void validate(Rows rows) {
         if (rows == null) {
             throw new IllegalArgumentException("rows는 null 일 수 없습니다.");
         }
     }
 
-    public static Ladder of(Players players, int height) {
+    public static Ladder generateByWidthAndHeight(int width, int height) {
         return new Ladder(
-                players,
-                Rows.generateByWidthAndHeight(players.size(), height)
+                Rows.generateByWidthAndHeight(width, height)
         );
     }
 

@@ -14,7 +14,7 @@ public class Application {
 
         int ladderHeights = InputView.inputLadderHeights();
 
-        Ladder ladder = Ladder.of(players, ladderHeights);
+        Ladder ladder = Ladder.generateByWidthAndHeight(players.numbers(), ladderHeights);
 
         OutputView.printPlayers(players);
         OutputView.printLadder(ladder);
