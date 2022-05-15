@@ -1,16 +1,19 @@
 package ladder.domain.player;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class NameTest {
     private static final String OVERSIZE_NAME = "oversize";
 
-    @Test
-    void Name은_이름_없이_생성_할_경우_예외를_발생_시킨다() {
+    @ParameterizedTest
+    @NullAndEmptySource
+    void Name은_이름_없이_생성_할_경우_예외를_발생_시킨다(String name) {
         assertThatThrownBy(
-                () -> Name.valueOf(null)
+                () -> Name.valueOf(name)
         ).isInstanceOf(IllegalArgumentException.class);
     }
 

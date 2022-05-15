@@ -11,8 +11,8 @@ public class Name {
     }
 
     private void validate(String name) {
-        if (name == null) {
-            throw new IllegalArgumentException("이름은 null 일 수 없습니다.");
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("이름은 빈 값 일 수 없습니다.");
         }
 
         if (name.length() > MAX_LENGTH) {
