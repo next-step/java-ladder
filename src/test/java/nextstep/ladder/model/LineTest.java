@@ -4,7 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EmptySource;
-import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import java.util.List;
 
@@ -39,7 +38,7 @@ class LineTest {
     @DisplayName("사다리의 바는 연속으로 생성이 될 수 없습니다.")
     void notContinuityTrueBar() {
         assertThrows(IllegalArgumentException.class, () -> {
-            Line line = new Line(
+            Line.from(
                     List.of(
                             true,
                             true,
@@ -53,7 +52,7 @@ class LineTest {
     @DisplayName("마지막 참가자의 바는 생성이 되지 않습니다.")
     void lastCrateBar() {
         assertThrows(IllegalArgumentException.class, () -> {
-            Line line = new Line(
+            Line.from(
                     List.of(
                             true,
                             true
@@ -66,7 +65,7 @@ class LineTest {
     @EmptySource
     void inputNull(List<Boolean> lines) {
         assertThrows(IllegalArgumentException.class, () -> {
-            Line line = new Line(lines);
+            Line line =  Line.from(lines);
         });
     }
 

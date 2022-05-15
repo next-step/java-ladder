@@ -21,8 +21,12 @@ public final class Line {
     }
 
     public Line(List<Boolean> bars) {
-        validate(bars);
         this.bars = convert(bars);
+    }
+
+    public static Line from(List<Boolean> bars) {
+        validate(bars);
+        return new Line(bars);
     }
 
     private static List<Boolean> createLine(int participantCount) {
@@ -51,31 +55,31 @@ public final class Line {
         return bars;
     }
 
-    private void validate(List<Boolean> bars) {
+    private static void validate(List<Boolean> bars) {
         validateNullCheck(convert(bars));
         validateContinuityCreate(bars);
         validateCreateLastBar(bars.get(bars.size() - FIRST_INDEX));
     }
 
-    private void validateContinuityCreate(List<Boolean> bars) {
+    private static void validateContinuityCreate(List<Boolean> bars) {
         for (int i = FIRST_INDEX; i < bars.size(); i++) {
             compareBars(bars.get(i - FIRST_INDEX), bars.get(i));
         }
     }
 
-    private void validateCreateLastBar(boolean currentBarStatus) {
+    private static void validateCreateLastBar(boolean currentBarStatus) {
         if (currentBarStatus) {
             throw new IllegalArgumentException(LAST_CREATE_MESSAGE);
         }
     }
 
-    private void compareBars(boolean beforeBarStatus, boolean currentBarStatus) {
+    private static void compareBars(boolean beforeBarStatus, boolean currentBarStatus) {
         if (beforeBarStatus && currentBarStatus) {
             throw new IllegalArgumentException(CONTINUITY_CREATE_MESSAGE);
         }
     }
 
-    void validateNullCheck(List<Bar> bars) {
+    static void validateNullCheck(List<Bar> bars) {
         if (bars.isEmpty()) {
             throw new IllegalArgumentException(NOT_NULL_CREATE_MESSAGE);
         }
