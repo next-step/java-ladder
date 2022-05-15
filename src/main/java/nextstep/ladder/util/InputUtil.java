@@ -6,6 +6,7 @@ import java.util.Random;
 public final class InputUtil {
 
     private static final String splitValue = ",";
+    private static final Random RANDOM = new Random();
 
     private InputUtil() {
     }
@@ -15,7 +16,7 @@ public final class InputUtil {
     }
 
     public static boolean randomBar(Boolean beforeStatus) {
-        boolean result = new Random().nextBoolean();
+        boolean result = RANDOM.nextBoolean();
         if (beforeStatus != null && beforeStatus) {
             return false;
         }
