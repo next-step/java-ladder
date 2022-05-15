@@ -117,4 +117,19 @@ public class Line {
             throw new IllegalArgumentException(String.format("라인의 폭은 2보다 작을 수 없습니다. (현재 라인 폭 : %d)", width));
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Line line = (Line) o;
+
+        return points.equals(line.points);
+    }
+
+    @Override
+    public int hashCode() {
+        return points.hashCode();
+    }
 }

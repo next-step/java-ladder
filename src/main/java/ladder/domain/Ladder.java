@@ -38,4 +38,19 @@ public class Ladder {
             throw new IllegalArgumentException(String.format("사다리 높이는 최소 1 이상이어야 합니다. 입력 받은 사다리 높이 : %d", height));
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Ladder ladder = (Ladder) o;
+
+        return lines.equals(ladder.lines);
+    }
+
+    @Override
+    public int hashCode() {
+        return lines.hashCode();
+    }
 }
