@@ -5,7 +5,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Ladder {
+public final class Ladder {
 
     private static final String NOT_NULL_CREATE_MESSAGE = "사다리는 생성이 되어야 합니다.";
     private static final String EMPTY_EXCEPTION_MESSAGE = "사다리의 높이는 1보다 작을 수 없습니다. (입력받은 사다리 높이:%d)";
