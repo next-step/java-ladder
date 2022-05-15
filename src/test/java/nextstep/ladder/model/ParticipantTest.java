@@ -28,10 +28,4 @@ public class ParticipantTest {
         });
     }
 
-    @Test
-    @DisplayName("참가자의 이름의 길이를 계산한다.")
-    void lengthTest() {
-        Participant participant = new Participant("klom");
-        assertThat(participant.getName()).isEqualTo(" klom");
-    }
 }
