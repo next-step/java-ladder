@@ -18,26 +18,19 @@ class ParticipantGroupTest {
 
     @Test
     void participantsCount_참가자_카운팅() {
-        assertThat(new ParticipantGroup(List.of(
-                new Participant(new Name("wu2ee")),
-                new Participant(new Name("pobi")),
-                new Participant(new Name("honux")))).participantsCount()
-        ).isEqualTo(3);
+        List<Participant> participants = List.of(new Participant(new Name("wu2ee")), new Participant(new Name("pobi")), new Participant(new Name("honux")));
+        assertThat(new ParticipantGroup(participants).participantsCount()).isEqualTo(3);
     }
 
     @Test
     void ParticipantsGroup_참가자가_2명_미만인_경우() {
-        assertThatThrownBy(() -> new ParticipantGroup(List.of(
-                new Participant(new Name("wu2ee"))
-        ))).isInstanceOf(IllegalArgumentException.class);
+        List<Participant> participants = List.of(new Participant(new Name("wu2ee")));
+        assertThatThrownBy(() -> new ParticipantGroup(participants)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void maxParticipantNameLength_참가자_이름중_최대_길이() {
-        assertThat(new ParticipantGroup(List.of(
-                new Participant(new Name("k")),
-                new Participant(new Name("kbstv")),
-                new Participant(new Name("kb")))).maxParticipantNameLength()
-        ).isEqualTo(5);
+        List<Participant> participants = List.of(new Participant(new Name("k")), new Participant(new Name("kbstv")), new Participant(new Name("kb")));
+        assertThat(new ParticipantGroup(participants).maxParticipantNameLength()).isEqualTo(5);
     }
 }
