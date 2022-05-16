@@ -3,7 +3,7 @@ package nextstep.ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.function.Function;
+import java.util.stream.IntStream;
 
 public class Line {
     private static final String STICK = "|";
@@ -12,20 +12,39 @@ public class Line {
     private static final String EDGE = "-----";
     private static final String EMPTY = "     ";
 
-    private List<Boolean> points = new ArrayList<>();
+    private final List<Boolean> points;
 
     public Line(Members members) {
-        this(members.size());
-    }
-
-    private Line(int size) {
-        for (int i = 0; i < size - 1; i++) {
-            setPoint(i);
-        }
+        this(toPoints(members));
     }
 
     Line(List<Boolean> points) {
         this.points = points;
+    }
+
+    private static List<Boolean> toPoints(Members members) {
+        List<Boolean> points = new ArrayList<>();
+        IntStream.rangeClosed(0, members.size())
+                .forEach(i -> setPoints(points, i));
+
+        return points;
+    }
+
+    private static void setPoints(List<Boolean> points, int i) {
+        if (previousHasEdge(points, i)) {
+            points.add(false);
+            return;
+        }
+
+        points.add(RANDOM.nextBoolean());
+    }
+
+    private static boolean previousHasEdge(List<Boolean> points, int i) {
+        if (points.isEmpty()) {
+            return false;
+        }
+
+        return points.get(i - 1);
     }
 
     public String getPoint() {
@@ -38,25 +57,6 @@ public class Line {
         stringBuilder.append(LINE_SEPARATOR);
 
         return stringBuilder.toString();
-    }
-
-    private void setPoint(int i) {
-        boolean nextBoolean = RANDOM.nextBoolean();
-        if (this.points.isEmpty()) {
-            this.points.add(nextBoolean);
-            return;
-        }
-
-        if (previousHasEdge(i)) {
-            this.points.add(false);
-            return;
-        }
-
-        this.points.add(nextBoolean);
-    }
-
-    private Boolean previousHasEdge(int i) {
-        return this.points.get(i - 1);
     }
 
     private String getEdgeOrEmpty(Boolean point) {
