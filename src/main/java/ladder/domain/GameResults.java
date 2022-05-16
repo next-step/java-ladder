@@ -10,7 +10,7 @@ public class GameResults {
   private static final String DELIMITER = ",";
   private final List<GameResult> values;
 
-  private GameResults(List<GameResult> values) {
+  public GameResults(List<GameResult> values) {
     this.values = Collections.unmodifiableList(values);
   }
 
@@ -19,10 +19,6 @@ public class GameResults {
         .map(s -> GameResult.from(s))
         .collect(Collectors.toList());
 
-    return new GameResults(values);
-  }
-
-  public static GameResults from(List<GameResult> values) {
     return new GameResults(values);
   }
 

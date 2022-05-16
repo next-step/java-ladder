@@ -68,7 +68,7 @@ public class LadderGame {
     List<GameResult> gameResults = gameUsers.getValues().stream()
         .map(gameUser -> getUserGameResult(gameUser))
         .collect(Collectors.toList());
-    return GameResults.from(gameResults);
+    return new GameResults(gameResults);
   }
 
   private int getNextWidthPoint(Ladder ladder, int height, int width) {
