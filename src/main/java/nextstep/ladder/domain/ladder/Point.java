@@ -17,7 +17,7 @@ public class Point {
 
     private void validateIndex(int index) {
         if (index < 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 사다리의 한 행의 위치는 0이상이어야 합니다.");
         }
     }
 

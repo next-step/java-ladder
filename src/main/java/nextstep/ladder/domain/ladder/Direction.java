@@ -20,7 +20,7 @@ public class Direction {
 
     private void validateDirection(boolean left, boolean right) {
         if (left && right) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 한 방향으로만 연결될 수 있습니다.");
         }
     }
 
