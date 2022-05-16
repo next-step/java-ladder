@@ -20,8 +20,9 @@ public class Line {
     }
 
     public void create(Line compare) {
-        points = points.stream()
-                .map(compare::calc)
+        points = compare.getPoints()
+                .stream()
+                .map(this::calc)
                 .collect(Collectors.toList());
     }
 

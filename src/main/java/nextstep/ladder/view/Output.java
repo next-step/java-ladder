@@ -20,7 +20,14 @@ public class Output {
     }
 
     public static void printPlayers(List<Player> players) {
+        printResult();
         players.forEach(player -> System.out.printf("%6s", player.getName()));
+        System.out.println();
+    }
+
+    private static void printResult() {
+        System.out.println();
+        System.out.println("실행결과");
         System.out.println();
     }
 }
