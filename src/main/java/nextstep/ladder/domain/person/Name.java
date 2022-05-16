@@ -1,4 +1,4 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.person;
 
 public class Name {
     private static final int MAX_LENGTH = 5;
