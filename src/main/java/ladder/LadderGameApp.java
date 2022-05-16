@@ -22,6 +22,7 @@ public class LadderGameApp {
     LadderGame ladderGame = LadderGame.of(gameUsers, gameResults, ladderHeight,
         ladderConnectStrategy);
 
+    LadderGameOutputView ladderGameOutputView = LadderGameOutputView.getInstance();
     LadderGameOutputView.printLadderGame(ladderGame);
 
     while (true) {

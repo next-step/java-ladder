@@ -15,6 +15,17 @@ public class LadderGameOutputView {
   public static final String ALL = "all";
   public static final String LADDER_RESULT = "\n실행 결과";
   public static final String NOT_EXIST_USER_MSG = "존재하지 않는 사용자입니다.";
+  private static LadderGameOutputView instance;
+
+  public static LadderGameOutputView getInstance() {
+    if (instance == null) {
+      instance = new LadderGameOutputView();
+    }
+    return instance;
+  }
+
+  private LadderGameOutputView() {
+  }
 
   public static void printLadderGame(LadderGame ladderGame) {
     System.out.println();
