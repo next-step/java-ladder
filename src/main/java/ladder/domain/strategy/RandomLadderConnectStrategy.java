@@ -4,26 +4,20 @@ import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class RandomLadderConnectStrategy implements LadderConnectStrategy {
 
   private static final String INVALID_LINE_WIDTH_MSG = "사다리의 너비는 1 이상이어야 합니다";
   private static final String INVALID_HEIGHT_MSG = "사다리의 높이는 1 이상이어야 합니다";
-  private final List<List<Boolean>> connects;
-  private final Random random;
+  private static final Random random = new Random();
+  private final int width;
 
   public RandomLadderConnectStrategy(int height, int width) {
     assertRandomLadderConnectStrategy(height, width);
-    this.random = new Random();
-
-    connects = IntStream.range(0, height)
-        .mapToObj(h -> makeLineConnects(width))
-        .collect(Collectors.toList());
+    this.width = width;
   }
 
-  private List<Boolean> makeLineConnects(int width) {
+  private List<Boolean> makeLineConnects() {
     ArrayList<Boolean> lineConnects = new ArrayList<Boolean>();
     boolean lastConnect = false;
     for (int j = 0; j < width - 1; j++) {
@@ -53,6 +47,6 @@ public class RandomLadderConnectStrategy implements LadderConnectStrategy {
 
   @Override
   public List<Boolean> create(int height) {
-    return connects.get(height);
+    return makeLineConnects();
   }
 }
