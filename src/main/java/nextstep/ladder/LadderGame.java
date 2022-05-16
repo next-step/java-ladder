@@ -20,6 +20,6 @@ public class LadderGame {
         ladder.create(height);
 
         Output.printPlayers(players);
-        Output.printLadder(ladder);
+        Output.printLadder(ladder, height);
     }
 }

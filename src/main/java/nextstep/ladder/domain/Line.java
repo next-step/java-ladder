@@ -34,7 +34,11 @@ public class Line {
         return booleans[new Random().nextInt(2)];
     }
 
-    public List<Boolean> getPoints() {
+    public Boolean point(int index) {
+        return getPoints().get(index);
+    }
+
+    private List<Boolean> getPoints() {
         return points;
     }
 

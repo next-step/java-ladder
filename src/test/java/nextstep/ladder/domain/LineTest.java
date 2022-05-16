@@ -13,6 +13,6 @@ class LineTest {
         Line compare = new Line(Arrays.asList(true,false,false,false));
         Line original = Line.init(4);
         original.create(compare);
-        assertThat(original.getPoints()).contains(false);
+        assertThat(original.point(0)).isFalse();
     }
 }

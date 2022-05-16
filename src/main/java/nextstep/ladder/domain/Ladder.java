@@ -27,6 +27,10 @@ public class Ladder {
                 });
     }
 
+    public List<Line> lines() {
+        return lines;
+    }
+
     @Override
     public String toString() {
         return "Ladder{" +
