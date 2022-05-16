@@ -9,17 +9,15 @@ public class Line {
     private static final String STICK = "|";
     private static final Random RANDOM = new Random();
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
-    private static final String EDGE = "-----";
-    private static final String EMPTY = "     ";
 
-    private final List<Boolean> points;
+    private final Points points;
 
     public Line(Members members) {
         this(toPoints(members));
     }
 
     Line(List<Boolean> points) {
-        this.points = points;
+        this.points = new Points(points);
     }
 
     private static List<Boolean> toPoints(Members members) {
@@ -48,22 +46,8 @@ public class Line {
     }
 
     public String getPoint() {
-        StringBuilder stringBuilder = new StringBuilder();
-        this.points.stream()
-                .map(this::getEdgeOrEmpty)
-                .forEach(stringBuilder::append);
-
-        stringBuilder.append(STICK);
-        stringBuilder.append(LINE_SEPARATOR);
-
-        return stringBuilder.toString();
-    }
-
-    private String getEdgeOrEmpty(Boolean point) {
-        if (point) {
-            return STICK + EDGE;
-        }
-
-        return STICK + EMPTY;
+        return this.points.getPoint() +
+                STICK +
+                LINE_SEPARATOR;
     }
 }
