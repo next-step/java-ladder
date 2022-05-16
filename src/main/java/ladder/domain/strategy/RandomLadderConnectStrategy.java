@@ -18,7 +18,7 @@ public class RandomLadderConnectStrategy implements LadderConnectStrategy {
   }
 
   private List<Boolean> makeLineConnects() {
-    ArrayList<Boolean> lineConnects = new ArrayList<Boolean>();
+    List<Boolean> lineConnects = new ArrayList<Boolean>();
     boolean lastConnect = false;
     for (int j = 0; j < width - 1; j++) {
       boolean connect = isCurrentConnect(lastConnect);
