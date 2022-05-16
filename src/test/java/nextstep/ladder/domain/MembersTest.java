@@ -9,7 +9,7 @@ import java.util.Arrays;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class MembersTest {
-    public Members members = Members.of(Arrays.asList("pobi", "jason", "pang", "nem"));
+    public Members members;
 
     @BeforeEach
     void setUp() {
