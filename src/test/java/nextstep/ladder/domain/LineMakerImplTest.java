@@ -9,7 +9,7 @@ public class LineMakerImplTest {
     @Test
     @DisplayName("사다리 6개 램덤라인 한 줄을 생성한다")
     void makeLine() {
-        LineMaker lineMaker = new LineMakerImpl(6);
+        LineMaker lineMaker = new LineMaker(6);
         assertThat(lineMaker.makeLine().getPoints()).hasSize(6);
     }
 }
