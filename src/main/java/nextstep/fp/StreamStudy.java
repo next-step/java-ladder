@@ -49,7 +49,7 @@ public class StreamStudy {
         return numbers
                 .stream()
                 .filter(number -> 3 < number)
-                .mapToLong(number -> Math.multiplyExact(number, 2))
-                .sum();
+                .map(number -> Math.multiplyExact(number, 2))
+                .reduce(0, Math::addExact);
     }
 }
