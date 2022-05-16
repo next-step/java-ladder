@@ -9,11 +9,11 @@ public class Line {
     private final Points points;
 
     public Line(Members members) {
-        this(new Points(members));
+        this(Points.of(members));
     }
 
     Line(List<Boolean> points) {
-        this(new Points(points));
+        this(Points.of(points));
     }
 
     Line(Points points) {

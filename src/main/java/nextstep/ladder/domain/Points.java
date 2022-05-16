@@ -3,61 +3,67 @@ package nextstep.ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.function.IntConsumer;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Points {
     private static final Random RANDOM = new Random();
-    private static final String STICK = "|";
-    private static final String EDGE = "-----";
-    private static final String EMPTY = "     ";
+    public static final int START_INCLUSIVE = 0;
+    public static final int LAST_SIZE = 1;
 
-    private final List<Boolean> points;
+    private final List<Point> points;
 
-    public Points(List<Boolean> points) {
+    public Points(List<Point> points) {
         this.points = points;
     }
 
-    public Points(Members members) {
-        this(toPoints(members));
+    public static Points of(Members members) {
+        return new Points(toPoints(members, RANDOM));
     }
 
-    private static List<Boolean> toPoints(Members members) {
-        List<Boolean> points = new ArrayList<>();
-        IntStream.rangeClosed(0, members.size())
-                .forEach(i -> setPoints(points, i));
+    private static List<Point> toPoints(Members members, Random random) {
+        List<Point> points = new ArrayList<>();
+        IntStream.range(START_INCLUSIVE, members.size() - LAST_SIZE)
+                .forEach(setPoints(random, points));
 
         return points;
     }
 
-    private static void setPoints(List<Boolean> points, int i) {
-        if (previousHasEdge(points, i)) {
-            points.add(false);
-            return;
-        }
+    private static IntConsumer setPoints(Random random, List<Point> points) {
+        return i -> {
+            if (previousHasEdge(points, i)) {
+                points.add(new Point(false));
+                return;
+            }
 
-        points.add(RANDOM.nextBoolean());
+            points.add(Point.of(random));
+        };
     }
 
-    private static boolean previousHasEdge(List<Boolean> points, int i) {
+    private static boolean previousHasEdge(List<Point> points, int i) {
         if (points.isEmpty()) {
             return false;
         }
 
-        return points.get(i - 1);
+        return points.get(i - LAST_SIZE)
+                .isTrue();
+    }
+
+    public static Points of(List<Boolean> points) {
+        return new Points(toPointList(points));
+    }
+
+    private static List<Point> toPointList(List<Boolean> points) {
+        return points.stream()
+                .map(Point::new)
+                .collect(Collectors.toList());
     }
 
     public String getPoint() {
         return this.points.stream()
-                .map(this::getEdgeOrEmpty)
+                .map(Point::getEdgeOrEmpty)
                 .collect(Collectors.joining());
     }
 
-    private String getEdgeOrEmpty(Boolean point) {
-        if (point) {
-            return STICK + EDGE;
-        }
-
-        return STICK + EMPTY;
-    }
 }

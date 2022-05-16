@@ -25,7 +25,7 @@ class PointsTest {
 
             @Test
             void 라인_문자열을_리턴한다() {
-                Points points = new Points(this.booleans);
+                Points points = Points.of(this.booleans);
 
                 String point = points.getPoint();
 

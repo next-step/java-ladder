@@ -12,7 +12,7 @@ public class Lines {
         this.lines = lines;
     }
 
-    public static Lines of(List<List<Boolean>> lineList) {
+    static Lines of(List<List<Boolean>> lineList) {
         return new Lines(wrap(lineList));
     }
 
