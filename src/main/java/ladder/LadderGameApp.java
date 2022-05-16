@@ -11,7 +11,7 @@ import ladder.view.LadderGameOutputView;
 public class LadderGameApp {
 
   public static void main(String[] args) {
-    LadderGameInputView ladderGameInputView = new LadderGameInputView();
+    LadderGameInputView ladderGameInputView = LadderGameInputView.getInstance();
 
     GameUsers gameUsers = GameUsers.from(ladderGameInputView.getLadderUsers());
     GameResults gameResults = GameResults.from(ladderGameInputView.getGameResults());
