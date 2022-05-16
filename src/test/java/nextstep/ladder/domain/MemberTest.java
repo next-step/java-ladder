@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.exceptions.CannotNullOrEmptyException;
+import nextstep.ladder.domain.exceptions.ExceedMaxNameLengthException;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -21,7 +23,7 @@ class MemberTest {
             @NullAndEmptySource
             void CannotNullOrEmptyException을_던진다(String nullOrEmptySource) {
                 assertThatThrownBy(() -> new Member(nullOrEmptySource))
-                        .isInstanceOf(Member.CannotNullOrEmptyException.class);
+                        .isInstanceOf(CannotNullOrEmptyException.class);
             }
 
         }
@@ -33,7 +35,7 @@ class MemberTest {
             @ValueSource(strings = {"123456"})
             void ExceedMaxNameLengthException을_던진다(String name) {
                 assertThatThrownBy(() -> new Member(name))
-                        .isInstanceOf(Member.ExceedMaxNameLengthException.class);
+                        .isInstanceOf(ExceedMaxNameLengthException.class);
             }
 
         }

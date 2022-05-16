@@ -1,5 +1,8 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.exceptions.CannotNullOrEmptyException;
+import nextstep.ladder.domain.exceptions.ExceedMaxNameLengthException;
+
 public class Member {
     public static final int MAX_NAME_LENGTH = 5;
 
@@ -26,20 +29,6 @@ public class Member {
     @Override
     public String toString() {
         return this.name;
-    }
-
-    public static class CannotNullOrEmptyException extends IllegalArgumentException {
-        public CannotNullOrEmptyException() {
-            super("null이거나 비어있을 수 없습니다.");
-        }
-
-    }
-
-    public static class ExceedMaxNameLengthException extends IllegalArgumentException {
-        public ExceedMaxNameLengthException() {
-            super("이름 최대 길이를 초과했습니다.");
-        }
-
     }
 }
 

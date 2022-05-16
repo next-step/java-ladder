@@ -1,5 +1,8 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.exceptions.NotAllowNegativeOrZero;
+import nextstep.ladder.domain.exceptions.NotNumberStringIsNotAllowException;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -43,17 +46,5 @@ public class MaxHeightOfLadder {
     @Override
     public String toString() {
         return String.valueOf(this.maxHeightOfLadder);
-    }
-
-    public static class NotNumberStringIsNotAllowException extends IllegalArgumentException {
-        public NotNumberStringIsNotAllowException() {
-            super("숫자가 아닌 문자열은 허용되지 않습니다.");
-        }
-    }
-
-    public static class NotAllowNegativeOrZero extends IllegalArgumentException {
-        public NotAllowNegativeOrZero() {
-            super("음수이거나 0은 허용되지 않은 값입니다.");
-        }
     }
 }

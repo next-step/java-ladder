@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.exceptions.NotAllowNegativeOrZero;
+import nextstep.ladder.domain.exceptions.NotNumberStringIsNotAllowException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -27,7 +29,7 @@ class MaxHeightOfLadderTest {
             @ValueSource(strings = "a")
             void NotNumberStringIsNotAllowException을_던진다(String s) {
                 assertThatThrownBy(() -> new MaxHeightOfLadder(s))
-                        .isInstanceOf(MaxHeightOfLadder.NotNumberStringIsNotAllowException.class);
+                        .isInstanceOf(NotNumberStringIsNotAllowException.class);
             }
 
         }
@@ -50,7 +52,7 @@ class MaxHeightOfLadderTest {
             @ValueSource(ints = {-1, 0})
             void NotAllowNegativeOrZero을_던진다(int negativeOrZero) {
                 assertThatThrownBy(() -> new MaxHeightOfLadder(negativeOrZero))
-                        .isInstanceOf(MaxHeightOfLadder.NotAllowNegativeOrZero.class);
+                        .isInstanceOf(NotAllowNegativeOrZero.class);
             }
         }
 
