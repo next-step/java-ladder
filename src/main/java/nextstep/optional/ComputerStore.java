@@ -1,6 +1,7 @@
 package nextstep.optional;
 
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 import nextstep.optional.Computer.Soundcard;
 import nextstep.optional.Computer.USB;
 
@@ -23,10 +24,12 @@ public class ComputerStore {
   }
 
   public static String getVersionOptional(Computer computer) {
-    return Optional.ofNullable(computer)
-        .map(c -> c.getSoundcard())
-        .map(s -> s.getUsb())
-        .map(u -> u.getVersion())
-        .orElse(UNKNOWN_VERSION);
+    AtomicReference<String> version = new AtomicReference<>(UNKNOWN_VERSION);
+    Optional.ofNullable(computer)
+        .ifPresent(c -> Optional.ofNullable(c.getSoundcard())
+            .ifPresent(soundcard -> Optional.ofNullable(soundcard.getUsb())
+                .ifPresent(usb -> version.set(usb.getVersion()))));
+    
+    return version.get();
   }
 }
