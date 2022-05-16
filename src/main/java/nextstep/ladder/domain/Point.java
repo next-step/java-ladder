@@ -26,7 +26,7 @@ public class Point {
     }
 
     public String getEdgeOrEmpty() {
-        if (this.point) {
+        if (isTrue()) {
             return STICK + EDGE;
         }
 
