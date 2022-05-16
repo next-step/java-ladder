@@ -1,6 +1,5 @@
 package nextstep.ladder.domain.person;
 
-import nextstep.ladder.domain.person.Person;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
