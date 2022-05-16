@@ -1,52 +1,39 @@
 package ladder.view;
 
-import java.util.NoSuchElementException;
 import java.util.Scanner;
-import ladder.exception.UserInputFailException;
 
 public class LadderGameInputView {
 
   private static final String USER_INPUT_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
   private static final String HEIGHT_INPUT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
+  private static final String RESULT_INPUT_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
+  private static final String RESULT_USER_INPUT_MESSAGE = "결과를 보고 싶은 사람은?";
+
   private final Scanner scanner;
-  private String ladderUserNames;
-  private int ladderHeight;
 
   public LadderGameInputView() {
     this.scanner = new Scanner(System.in);
   }
 
-  public void inputLadderUsers() {
+  public String getLadderUsers() {
     System.out.println(USER_INPUT_MESSAGE);
-    ladderUserNames = nextLine();
-  }
-
-  public void inputLadderHeight() {
-    System.out.println(HEIGHT_INPUT_MESSAGE);
-    ladderHeight = nextInt();
-  }
-
-  private int nextInt() {
-    try {
-      return scanner.nextInt();
-    } catch (NoSuchElementException | IllegalStateException e) {
-      throw new UserInputFailException();
-    }
-  }
-
-  private String nextLine() {
-    try {
-      return scanner.nextLine();
-    } catch (NoSuchElementException | IllegalStateException e) {
-      throw new UserInputFailException();
-    }
-  }
-
-  public String getLadderUserNames() {
-    return ladderUserNames;
+    return scanner.nextLine();
   }
 
   public int getLadderHeight() {
+    System.out.println(HEIGHT_INPUT_MESSAGE);
+    int ladderHeight = scanner.nextInt();
+    scanner.nextLine();
     return ladderHeight;
+  }
+
+  public String getGameResults() {
+    System.out.println(RESULT_INPUT_MESSAGE);
+    return scanner.nextLine();
+  }
+
+  public String getResultUser() {
+    System.out.println(RESULT_USER_INPUT_MESSAGE);
+    return scanner.nextLine();
   }
 }

@@ -34,7 +34,8 @@ public class User {
 
   public static boolean ageIsInRange2(User user) {
     return Optional.ofNullable(user)
-        .filter(u -> u.getAge() >= 30 && u.getAge() <= 45)
+        .map(u -> u.getAge())
+        .filter(age -> age >= 30 && age <= 45)
         .isPresent();
   }
 
@@ -68,7 +69,8 @@ public class User {
     }
     if (name == null) {
       return other.name == null;
-    } else
+    } else {
       return name.equals(other.name);
+    }
   }
 }
