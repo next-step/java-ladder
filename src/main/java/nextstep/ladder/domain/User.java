@@ -13,17 +13,22 @@ public class User {
     private final String name;
 
     public User(String name) {
-        this.name = name.replaceAll(SPACE_REGEX, BLANK_REPLACEMENT);
-        validateLength();
+        validateLength(eraseSpace(name));
+        this.name = eraseSpace(name);
     }
 
-    private void validateLength() {
-        if (this.name.equals(BLANK_STRiNG)) {
+    private void validateLength(String name) {
+        if (name.equals(BLANK_STRiNG)) {
             throw new IllegalArgumentException(EMPTY_NAME_ERROR_MESSAGE);
         }
-        if (this.name.length() > MAX_LENGTH) {
+        if (name.length() > MAX_LENGTH) {
             throw new IllegalArgumentException(LENGTH_ERROR_MESSAGE + this);
         }
+    }
+
+
+    private String eraseSpace(String name) {
+        return name.replaceAll(SPACE_REGEX, BLANK_REPLACEMENT);
     }
 
     @Override

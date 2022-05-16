@@ -1,25 +1,36 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Users {
     private static final String DUPLICATED_NAME_ERROR = "이름이 중복되었습니다.";
+    private static final String SPLIT_DELIMITER = ",";
+
     private final List<User> users;
 
-    public Users(List<User> users) {
-        validate(users);
-        this.users = users;
+    public Users(String userNames) {
+        validateDuplicatedNames(toUserList(userNames));
+        this.users = toUserList(userNames);
     }
 
-    private void validate(List<User> users) {
+    private void validateDuplicatedNames(List<User> users) {
         HashSet<User> userSet = new HashSet<>(users);
         if (userSet.size() != users.size()) {
             throw new IllegalArgumentException(DUPLICATED_NAME_ERROR);
         }
     }
+
+    private static List<User> toUserList(String userNames) {
+        return Arrays.stream(split(userNames))
+                .map(User::new)
+                .collect(Collectors.toList());
+    }
+
+    private static String[] split(String userNames) {
+        return userNames.split(SPLIT_DELIMITER);
+    }
+
 
     public List<String> getUserNames() {
         List<String> userNames = new ArrayList<>();
