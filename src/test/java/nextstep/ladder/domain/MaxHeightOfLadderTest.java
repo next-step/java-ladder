@@ -71,21 +71,38 @@ class MaxHeightOfLadderTest {
 
     @Nested
     class getLines_메서드는 {
+        private Members members;
+        private MaxHeightOfLadder maxHeightOfLadder;
+
+        @BeforeEach
+        void setUp() {
+            this.members = Members.of(Arrays.asList("pobi", "jason", "pang", "nem"));
+            this.maxHeightOfLadder = new MaxHeightOfLadder(4);
+        }
 
         @Nested
-        class 멤버목록이_주어지면 {
-            private Members members;
-
-            @BeforeEach
-            void setUp() {
-                this.members = Members.of(Arrays.asList("pobi", "jason", "pang", "nem"));
-            }
+        class booleanGenerate_true일경우 {
 
             @Test
-            void lines_인스턴스를_리턴한다() {
-                MaxHeightOfLadder maxHeightOfLadder = new MaxHeightOfLadder(4);
+            void lines_검증() {
+                List<Boolean> booleans = Arrays.asList(true, false, true);
+                List<List<Boolean>> lists = Arrays.asList(booleans, booleans, booleans, booleans);
 
-                assertThat(maxHeightOfLadder.getLines(members)).isInstanceOf(Lines.class);
+                assertThat(maxHeightOfLadder.getLines(members, () -> true))
+                        .isEqualTo(Lines.of(lists));
+            }
+        }
+
+        @Nested
+        class booleanGenerator_false일경우 {
+
+            @Test
+            void lines_검증() {
+                List<Boolean> booleans = Arrays.asList(false, false, false);
+                List<List<Boolean>> lists = Arrays.asList(booleans, booleans, booleans, booleans);
+
+                assertThat(maxHeightOfLadder.getLines(members, () -> false))
+                        .isEqualTo(Lines.of(lists));
             }
         }
 

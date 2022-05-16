@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import nextstep.ladder.domain.exceptions.NotAllowNegativeOrZero;
 import nextstep.ladder.domain.exceptions.NotNumberStringIsNotAllowException;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -36,9 +37,9 @@ public class MaxHeightOfLadder {
         }
     }
 
-    public Lines getLines(Members members) {
+    public Lines getLines(Members members, BooleanGenerator randomBooleanGenerator) {
         List<Line> lines = IntStream.range(START_INCLUSIVE, this.maxHeightOfLadder)
-                .mapToObj(i -> new Line(members, new RandomBooleanGenerator()))
+                .mapToObj(i -> new Line(members, randomBooleanGenerator))
                 .collect(Collectors.toList());
 
         return new Lines(lines);
