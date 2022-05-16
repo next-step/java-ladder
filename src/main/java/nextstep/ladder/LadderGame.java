@@ -16,8 +16,8 @@ public class LadderGame {
                 .collect(Collectors.toList());
 
         int height = Input.askLadderHeight();
-        Ladder ladder = Ladder.of(players.size() - 1, height);
-        ladder.initialize(height);
+        Ladder ladder = Ladder.init(players.size() - 1, height);
+        ladder.create(height);
 
         Output.printPlayers(players);
         Output.printLadder(ladder);

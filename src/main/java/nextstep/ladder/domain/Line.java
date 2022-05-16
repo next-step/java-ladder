@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 public class Line {
     private List<Boolean> points;
 
-    public static Line of(int height) {
+    public static Line init(int height) {
         return new Line(
                 IntStream.range(0, height)
                         .mapToObj(i -> Boolean.FALSE)
@@ -19,7 +19,7 @@ public class Line {
         this.points = points;
     }
 
-    public void initialize(Line compare) {
+    public void create(Line compare) {
         points = points.stream()
                 .map(compare::calc)
                 .collect(Collectors.toList());

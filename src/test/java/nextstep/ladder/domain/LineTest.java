@@ -11,8 +11,8 @@ class LineTest {
     @Test
     void init() {
         Line compare = new Line(Arrays.asList(true,false,false,false));
-        Line original = Line.of(4);
-        original.initialize(compare);
+        Line original = Line.init(4);
+        original.create(compare);
         assertThat(original.getPoints()).contains(false);
     }
 }
