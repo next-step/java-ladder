@@ -23,11 +23,8 @@ public class LadderGameApp {
         ladderConnectStrategy);
 
     LadderGameOutputView ladderGameOutputView = LadderGameOutputView.getInstance();
-    LadderGameOutputView.printLadderGame(ladderGame);
+    ladderGameOutputView.printLadderGame(ladderGame);
 
-    while (true) {
-      System.out.println();
-      LadderGameOutputView.printGameResult(ladderGameInputView.getResultUser(), ladderGame);
-    }
+    ladderGameOutputView.printRepeatGameResult(ladderGame);
   }
 }
