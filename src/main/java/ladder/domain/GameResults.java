@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,7 +11,7 @@ public class GameResults {
   private final List<GameResult> values;
 
   private GameResults(List<GameResult> values) {
-    this.values = values;
+    this.values = Collections.unmodifiableList(values);
   }
 
   public static GameResults from(String gameResults) {
