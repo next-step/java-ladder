@@ -20,7 +20,7 @@ class LineTest {
     void compareGiven_create() {
         Line compare = new Line(Arrays.asList(true,false,false,false));
         Line original = Line.init(4);
-        original.create(compare);
+        original.createWith(compare);
         assertThat(original.point(0)).isFalse();
     }
 }

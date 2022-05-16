@@ -10,7 +10,7 @@ public class Ladder {
     public static Ladder init(int countOfLines, int height) {
         return new Ladder(
                 IntStream.range(0, countOfLines)
-                        .mapToObj(i -> Line.init(height))
+                        .mapToObj(count -> Line.init(height))
                         .collect(Collectors.toList())
         );
     }
@@ -22,7 +22,7 @@ public class Ladder {
     public void create(int height) {
         lines.stream()
                 .reduce(Line.init(height), (prevLine, nextLine) -> {
-                    nextLine.create(prevLine);
+                    nextLine.createWith(prevLine);
                     return nextLine;
                 });
     }

@@ -19,7 +19,7 @@ public class Line {
         this.points = points;
     }
 
-    public void create(Line compare) {
+    public void createWith(Line compare) {
         points = compare.getPoints()
                 .stream()
                 .map(this::calc)
