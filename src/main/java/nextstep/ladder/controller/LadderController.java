@@ -15,7 +15,7 @@ public class LadderController {
         this.productionGenerator = productionGenerator;
     }
 
-    public void createLadder() {
+    public void run() {
         String[] participantNames = InputView.inputParticipantNames();
         Participants participants = new Participants(participantNames);
         Height height = new Height(InputView.inputLadderHeight());

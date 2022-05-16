@@ -6,6 +6,6 @@ import nextstep.ladder.generator.RandomProductionGenerator;
 public class Application {
     public static void main(String[] args) {
         LadderController ladderController = new LadderController(new RandomProductionGenerator());
-        ladderController.createLadder();
+        ladderController.run();
     }
 }
