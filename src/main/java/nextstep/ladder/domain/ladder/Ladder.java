@@ -1,4 +1,6 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.ladder;
+
+import nextstep.ladder.util.ConnectStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
