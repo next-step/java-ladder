@@ -33,11 +33,9 @@ public class Users {
 
 
     public List<String> getUserNames() {
-        List<String> userNames = new ArrayList<>();
-        for (User user : users) {
-            userNames.add(user.toString());
-        }
-        return userNames;
+        return users.stream()
+                .map(User::toString)
+                .collect(Collectors.toList());
     }
 
     public int size() {
