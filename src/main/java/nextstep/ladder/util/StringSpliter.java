@@ -12,4 +12,10 @@ public class StringSpliter {
         return Arrays.stream(names.split(DELIMITER))
                 .collect(Collectors.toList());
     }
+
+    public static int length(String names) {
+        return Arrays.stream(names.split(DELIMITER))
+                .collect(Collectors.toList())
+                .size();
+    }
 }
