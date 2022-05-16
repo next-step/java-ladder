@@ -1,11 +1,16 @@
 package nextstep.ladder.domain;
 
+import java.util.Objects;
+
 public class Direction {
+
+    private static final boolean TRUE = true;
+    private static final boolean FALSE = false;
 
     private final boolean left;
     private final boolean right;
 
-    public Direction(boolean left, boolean right) {
+    private Direction(boolean left, boolean right) {
         validateDirection(left, right);
         this.left = left;
         this.right = right;
@@ -17,11 +22,43 @@ public class Direction {
         }
     }
 
+    public static Direction of(boolean left, boolean right) {
+        return new Direction(left, right);
+    }
+
+    public static Direction first(ConnectStrategy connectStrategy) {
+        return new Direction(FALSE, connectStrategy.isConnected());
+    }
+
+    public Direction next(ConnectStrategy connectable) {
+        if (right) {
+            return new Direction(TRUE, FALSE);
+        }
+        return new Direction(FALSE, connectable.isConnected());
+    }
+
+    public Direction last() {
+        return new Direction(right, FALSE);
+    }
+
     public boolean isLeft() {
         return left;
     }
 
     public boolean isRight() {
         return right;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Direction direction = (Direction) o;
+        return left == direction.left && right == direction.right;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(left, right);
     }
 }
