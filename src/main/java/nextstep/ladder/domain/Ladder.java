@@ -3,11 +3,10 @@ package nextstep.ladder.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import nextstep.ladder.exception.LadderLineNullException;
 import nextstep.ladder.generator.PositionGenerator;
 
 public class Ladder {
-    private static final String LADDER_NULL_OR_EMPTY_ERROR_MESSAGE = "사다리의 라인들이 비어있습니다.";
-
     private final List<Line> lines;
 
     public Ladder(List<Line> lines) {
@@ -21,7 +20,7 @@ public class Ladder {
 
     private void validateNullAndEmpty(List<Line> lines) {
         if (lines == null || lines.isEmpty()) {
-            throw new IllegalArgumentException(LADDER_NULL_OR_EMPTY_ERROR_MESSAGE);
+            throw new LadderLineNullException();
         }
     }
 

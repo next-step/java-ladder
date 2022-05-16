@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import nextstep.ladder.exception.LadderLineNullException;
 import nextstep.ladder.exception.LadderLineOverLapException;
 import nextstep.ladder.generator.PositionGenerator;
 
@@ -10,8 +11,6 @@ public class Line {
     private static final int FIRST_SPAWN_LOCATION = 1;
     private static final int ZERO = 0;
     private static final int ONE = 1;
-
-    private static final String LADDER_LINE_NULL_OR_EMPTY_ERROR_MESSAGE = "사다리 라인이 비어있습니다.";
 
     private final List<Position> positions;
 
@@ -31,7 +30,7 @@ public class Line {
 
     private void validateNullAndEmpty(List<Position> positions) {
         if (positions == null || positions.isEmpty()) {
-            throw new IllegalArgumentException(LADDER_LINE_NULL_OR_EMPTY_ERROR_MESSAGE);
+            throw new LadderLineNullException();
         }
     }
 
