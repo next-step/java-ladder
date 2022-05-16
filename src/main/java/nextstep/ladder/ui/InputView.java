@@ -12,8 +12,8 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public static String getLadderHeight() {
+    public static int getLadderHeight() {
         System.out.println(INPUT_MAX_HEIGHT_MESSAGE);
-        return scanner.nextLine();
+        return scanner.nextInt();
     }
 }

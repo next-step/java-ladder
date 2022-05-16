@@ -2,6 +2,8 @@ package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LadderMaker {
     private final LineMaker lineMaker;
@@ -10,11 +12,10 @@ public class LadderMaker {
         this.lineMaker = lineMaker;
     }
 
-    public Ladder makeLadder(String height) {
-        List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < Integer.parseInt(height); i++) {
-            lines.add(lineMaker.makeLine());
-        }
+    public Ladder makeLadder(int height) {
+        List<Line> lines = IntStream.range(0, height)
+                .mapToObj(i -> lineMaker.makeLine())
+                .collect(Collectors.toList());
         return new Ladder(lines);
     }
 
