@@ -11,7 +11,6 @@ public class Line {
     private static final int ZERO = 0;
     private static final int ONE = 1;
 
-    private static final String LADDER_LINE_OVERLAP_ERROR_MESSAGE = "사다리 라인 위치가 겹쳐서 생성될 수 없습니다.";
     private static final String LADDER_LINE_NULL_OR_EMPTY_ERROR_MESSAGE = "사다리 라인이 비어있습니다.";
 
     private final List<Position> positions;
@@ -47,7 +46,7 @@ public class Line {
         Position currentPosition = positions.get(position);
 
         if (previousPosition.hasValue() && currentPosition.hasValue()) {
-            throw new LadderLineOverLapException(LADDER_LINE_OVERLAP_ERROR_MESSAGE);
+            throw new LadderLineOverLapException();
         }
     }
 
