@@ -26,7 +26,7 @@ public class Point {
         }
     }
 
-    public boolean isRight() {
+    private boolean isRight() {
         return direction.isRight();
     }
 
