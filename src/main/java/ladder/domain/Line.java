@@ -46,70 +46,17 @@ public class Line {
     private void validateDirectionAndPosition(List<Point> points) {
         int width = points.size();
         Point firstPoint = points.get(FIRST_POSITION);
-        validateFirstPoint(firstPoint);
+        firstPoint.validateFirstPoint();
 
         Point previousPoint = firstPoint;
         for (int index = UNIT_HORIZONTAL_LINE_LENGTH; index < width - UNIT_HORIZONTAL_LINE_LENGTH; index++) {
             Point currentPoint = points.get(index);
-            validateMiddlePoint(previousPoint, currentPoint);
+            currentPoint.validateMiddlePoint(previousPoint);
             previousPoint = currentPoint;
         }
 
         Point lastPoint = points.get(width - UNIT_HORIZONTAL_LINE_LENGTH);
-        validateLastPoint(lastPoint, width);
-    }
-
-    private void validateFirstPoint(Point firstPoint) {
-        validateFirstPointDirection(firstPoint);
-        validateFirstPointPosition(firstPoint);
-    }
-
-    private void validateMiddlePoint(Point previousPoint, Point currentPoint) {
-        validateMiddlePointDirection(previousPoint, currentPoint);
-        validateMiddlePointPosition(previousPoint, currentPoint);
-    }
-
-    private void validateLastPoint(Point lastPoint, int width) {
-        validateLastPointDirection(lastPoint);
-        validateLastPointPosition(lastPoint, width);
-    }
-
-    private void validateFirstPointDirection(Point firstPoint) {
-        if (firstPoint.isLeft()) {
-            throw new IllegalArgumentException(String.format("첫번째 포인트는 왼쪽 방향일 수 없습니다. 입력받은 포인트 : %s", firstPoint));
-        }
-    }
-
-    private void validateFirstPointPosition(Point firstPoint) {
-        if (!firstPoint.isFirstPosition()) {
-            throw new IllegalArgumentException(String.format("첫번째 포인트는 position 이 0 이여야 합니다. 입력받은 포인트 : %s", firstPoint));
-        }
-    }
-
-    private void validateMiddlePointDirection(Point previousPoint, Point currentPoint) {
-        if ((previousPoint.isLeft() && currentPoint.isLeft())
-                || previousPoint.isStraight() && currentPoint.isLeft()
-                || previousPoint.isRight() && !currentPoint.isLeft()) {
-            throw new IllegalArgumentException(String.format("이전 포인트와 현재 포인트의 방향이 잘못 되었습니다. 입력받은 이전 포인트 : %s 현재 포인트 : %s", previousPoint, currentPoint));
-        }
-    }
-
-    private void validateMiddlePointPosition(Point previousPoint, Point currentPoint) {
-        if (!previousPoint.isPreviousPoint(currentPoint)) {
-            throw new IllegalArgumentException(String.format("이전 포인트와 현재 포인트의 position 차이는 1 이여야 합니다. 입력받은 이전 포인트 : %s 현재 포인트 : %s", previousPoint, currentPoint));
-        }
-    }
-
-    private void validateLastPointDirection(Point lastPoint) {
-        if (lastPoint.isRight()) {
-            throw new IllegalArgumentException(String.format("마지막 포인트는 오른쪽 방향일 수 없습니다. 입력받은 포인트 : %s", lastPoint));
-        }
-    }
-
-    private void validateLastPointPosition(Point lastPoint, int width) {
-        if (lastPoint.isLastPosition(width)) {
-            throw new IllegalArgumentException(String.format("마지막 포인트는 position 이 '라인 폭 - 1' (현재 라인 폭 - 1 : %d) 이여야 합니다. 입력받은 포인트 : %s", width - UNIT_HORIZONTAL_LINE_LENGTH, lastPoint));
-        }
+        lastPoint.validateLastPoint(width);
     }
 
     private static void validateWidth(int width) {
