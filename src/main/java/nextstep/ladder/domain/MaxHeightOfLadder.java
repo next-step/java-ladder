@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class MaxHeightOfLadder {
+    private static final int START_INCLUSIVE = 0;
     private static final int MIN = 1;
 
     private final int maxHeightOfLadder;
@@ -36,8 +37,8 @@ public class MaxHeightOfLadder {
     }
 
     public Lines getLines(Members members) {
-        List<Line> lines = IntStream.range(0, this.maxHeightOfLadder)
-                .mapToObj(i -> new Line(members))
+        List<Line> lines = IntStream.range(START_INCLUSIVE, this.maxHeightOfLadder)
+                .mapToObj(i -> new Line(members, new RandomBooleanGenerator()))
                 .collect(Collectors.toList());
 
         return new Lines(lines);

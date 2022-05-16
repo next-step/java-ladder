@@ -8,16 +8,16 @@ public class Line {
 
     private final Points points;
 
-    public Line(Members members) {
-        this(Points.of(members));
-    }
-
     Line(List<Boolean> points) {
         this(Points.of(points));
     }
 
     Line(Points points) {
         this.points = points;
+    }
+
+    public Line(Members members, BooleanGenerator booleanGenerator) {
+        this(Points.of(members, booleanGenerator));
     }
 
     public String getPoint() {

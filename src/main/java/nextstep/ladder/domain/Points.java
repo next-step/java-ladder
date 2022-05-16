@@ -2,15 +2,13 @@ package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.function.IntConsumer;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Points {
-    private static final Random RANDOM = new Random();
-    public static final int START_INCLUSIVE = 0;
-    public static final int LAST_SIZE = 1;
+    private static final int START_INCLUSIVE = 0;
+    private static final int LAST_SIZE = 1;
 
     private final List<Point> points;
 
@@ -18,26 +16,36 @@ public class Points {
         this.points = points;
     }
 
-    public static Points of(Members members) {
-        return new Points(toPoints(members, RANDOM));
+    public static Points of(List<Boolean> points) {
+        return new Points(toPoints(points));
     }
 
-    private static List<Point> toPoints(Members members, Random random) {
+    public static Points of(Members members, BooleanGenerator booleanGenerator) {
+        return new Points(toPoints(members, booleanGenerator));
+    }
+
+    private static List<Point> toPoints(List<Boolean> points) {
+        return points.stream()
+                .map(Point::new)
+                .collect(Collectors.toList());
+    }
+
+    private static List<Point> toPoints(Members members, BooleanGenerator booleanGenerator) {
         List<Point> points = new ArrayList<>();
         IntStream.range(START_INCLUSIVE, members.size() - LAST_SIZE)
-                .forEach(setPoints(random, points));
+                .forEach(setPoints(booleanGenerator, points));
 
         return points;
     }
 
-    private static IntConsumer setPoints(Random random, List<Point> points) {
+    private static IntConsumer setPoints(BooleanGenerator booleanGenerator, List<Point> points) {
         return i -> {
             if (previousHasEdge(points, i)) {
                 points.add(new Point(false));
                 return;
             }
 
-            points.add(Point.of(random));
+            points.add(Point.of(booleanGenerator));
         };
     }
 
@@ -48,16 +56,6 @@ public class Points {
 
         return points.get(i - LAST_SIZE)
                 .isTrue();
-    }
-
-    public static Points of(List<Boolean> points) {
-        return new Points(toPointList(points));
-    }
-
-    private static List<Point> toPointList(List<Boolean> points) {
-        return points.stream()
-                .map(Point::new)
-                .collect(Collectors.toList());
     }
 
     public String getPoint() {
