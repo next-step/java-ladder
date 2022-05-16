@@ -30,5 +30,20 @@ class LineTest {
                 assertThat(line.getPoint()).isEqualTo("|-----|     |     |-----|\n");
             }
         }
+
+        @Nested
+        class booleanGenerator가_주어질경우 {
+
+            @Test
+            void 문자열_검증() {
+                Members members = new Members("pobi,jason,pang,nem");
+                Line line = new Line(members, () -> true);
+
+                assertThat(line.getPoint()).isEqualTo("|-----|     |-----|\n");
+
+                line = new Line(members, () -> false);
+                assertThat(line.getPoint()).isEqualTo("|     |     |     |\n");
+            }
+        }
     }
 }

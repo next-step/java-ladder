@@ -8,6 +8,32 @@ import static org.assertj.core.api.Assertions.assertThat;
 class PointTest {
 
     @Nested
+    class of_정적팩토리_메서드는 {
+
+        @Nested
+        class true가_주어질경우 {
+
+            @Test
+            void true를_리턴한다() {
+                Point point = Point.of(() -> true);
+                assertThat(point).isEqualTo(new Point(true));
+            }
+
+        }
+
+        @Nested
+        class false가_주어질경우 {
+
+            @Test
+            void false를_리턴한다() {
+                Point point = Point.of(() -> false);
+                assertThat(point).isEqualTo(new Point(false));
+            }
+
+        }
+    }
+
+    @Nested
     class isTrue_메서드는 {
 
         @Nested

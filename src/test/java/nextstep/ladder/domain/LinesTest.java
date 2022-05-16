@@ -15,7 +15,7 @@ class LinesTest {
     class getPoints_메서드는 {
 
         @Nested
-        class 라인목록이_주어짐녀 {
+        class 라인목록이_주어질때 {
             private List<List<Boolean>> lineList;
 
             @BeforeEach
@@ -29,7 +29,7 @@ class LinesTest {
             }
 
             @Test
-            void 문자열을_리턴한다() {
+            void 문자열_검증() {
                 Lines lines = Lines.of(lineList);
 
                 assertThat(lines.getPoints()).isEqualTo(

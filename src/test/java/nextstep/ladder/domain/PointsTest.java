@@ -32,5 +32,20 @@ class PointsTest {
                 assertThat(point).isEqualTo("|-----|     |     |-----");
             }
         }
+
+        @Nested
+        class booleanGenerator가_주어질때 {
+
+            @Test
+            void 문자열_검증() {
+                Members members = new Members("pobi,jason,pang,nem");
+                Points points = Points.of(members, () -> true);
+
+                assertThat(points.getPoint()).isEqualTo("|-----|     |-----");
+
+                points = Points.of(members, () -> false);
+                assertThat(points.getPoint()).isEqualTo("|     |     |     ");
+            }
+        }
     }
 }
