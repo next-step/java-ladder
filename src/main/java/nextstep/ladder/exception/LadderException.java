@@ -10,6 +10,6 @@ public class LadderException extends RuntimeException{
     }
 
     public LadderException(LadderExceptionCode exceptionCode, String value) {
-        super(String.format(exceptionCode.getMessage() + " : %s", value));
+        super(String.format(exceptionCode.getMessage() + " 입력값 = %s", value));
     }
 }

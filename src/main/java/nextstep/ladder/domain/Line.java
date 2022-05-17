@@ -22,11 +22,11 @@ public class Line {
     public void createWith(Line compare) {
         points = compare.getPoints()
                 .stream()
-                .map(this::calc)
+                .map(this::calculate)
                 .collect(Collectors.toList());
     }
 
-    private Boolean calc(Boolean comparedPoint) {
+    private Boolean calculate(Boolean comparedPoint) {
         return comparedPoint ? false : randomBoolean();
     }
 
