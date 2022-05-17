@@ -8,6 +8,10 @@ public class Participant {
         this.name = name;
     }
 
+    public static Participant create(String name) {
+        return new Participant(new Name(name));
+    }
+
     public int nameLength() {
         return name.length();
     }

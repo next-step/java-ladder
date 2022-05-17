@@ -14,7 +14,7 @@ public class ParticipantGroup {
     }
 
     public static ParticipantGroup create(List<String> participantNames) {
-        return new ParticipantGroup(participantNames.stream().map(name -> new Participant(new Name(name))).collect(Collectors.toList()));
+        return new ParticipantGroup(participantNames.stream().map(Participant::create).collect(Collectors.toList()));
     }
 
     public int participantsCount() {
