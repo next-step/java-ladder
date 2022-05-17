@@ -5,10 +5,6 @@ import nextstep.ladder.util.ConnectStrategy;
 import java.util.Objects;
 
 public class Direction {
-
-    private static final boolean TRUE = true;
-    private static final boolean FALSE = false;
-
     private final boolean left;
     private final boolean right;
 
@@ -29,18 +25,18 @@ public class Direction {
     }
 
     public static Direction first(ConnectStrategy connectStrategy) {
-        return new Direction(FALSE, connectStrategy.isConnected());
+        return new Direction(false, connectStrategy.isConnected());
     }
 
     public Direction next(ConnectStrategy connectable) {
         if (right) {
-            return new Direction(TRUE, FALSE);
+            return new Direction(true, false);
         }
-        return new Direction(FALSE, connectable.isConnected());
+        return new Direction(false, connectable.isConnected());
     }
 
     public Direction last() {
-        return new Direction(right, FALSE);
+        return new Direction(right, false);
     }
 
     public boolean isLeft() {
