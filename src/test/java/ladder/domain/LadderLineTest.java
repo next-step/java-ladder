@@ -19,12 +19,15 @@ public class LadderLineTest {
   @Test
   @DisplayName("해당 좌표 연결/비연결 여부 확인")
   void isConnect() {
-    LadderPartLine ladderLine = LadderPartLine.of(List.of(true, false, false));
-    assertThat(ladderLine.isLeftConnect(0)).isFalse();
-    assertThat(ladderLine.isRightConnect(0)).isTrue();
-    assertThat(ladderLine.isLeftConnect(1)).isTrue();
-    assertThat(ladderLine.isRightConnect(1)).isFalse();
-    assertThat(ladderLine.isLeftConnect(2)).isFalse();
-    assertThat(ladderLine.isRightConnect(2)).isFalse();
+    List<Boolean> connects = List.of(true, false, false);
+    List<Boolean> leftConnectExpect = List.of(false, true, false);
+    List<Boolean> rightConnectExpect = List.of(true, false, false);
+
+    LadderPartLine ladderLine = LadderPartLine.of(connects);
+
+    for (int i = 0; i < connects.size(); i++) {
+      assertThat(ladderLine.isLeftConnect(i)).isEqualTo(leftConnectExpect.get(i));
+      assertThat(ladderLine.isRightConnect(i)).isEqualTo(rightConnectExpect.get(i));
+    }
   }
 }

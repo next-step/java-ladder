@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.security.InvalidParameterException;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import ladder.domain.strategy.FixedLadderConnectStrategy;
 import ladder.domain.strategy.LadderConnectStrategy;
 import ladder.domain.strategy.RandomLadderConnectStrategy;
@@ -34,6 +36,7 @@ public class LadderGameTest {
     GameUsers gameUsers = GameUsers.from("pobi,test,crong");
     GameResults gameResults = GameResults.from("꽝,100,1000,10");
     int height = 5;
+
     assertThatThrownBy(() -> LadderGame.of(gameUsers, gameResults, height,
         new RandomLadderConnectStrategy(5, 3)))
         .isInstanceOf(InvalidParameterException.class);
@@ -47,13 +50,16 @@ public class LadderGameTest {
     LadderConnectStrategy ladderConnectStrategy = new FixedLadderConnectStrategy(List.of(
         List.of(true, false, true, false), List.of(false, true, false, false),
         List.of(false, false, true, false), List.of(false, false, true, false)));
+    Map<String, String> userGameResultExpect = Map.of("pobi", "1000", "test", "꽝", "crong", "꽝",
+        "hihi", "3000");
     int height = 4;
+
     LadderGame ladderGame = LadderGame.of(gameUsers, gameResults, height, ladderConnectStrategy);
 
-    assertThat(ladderGame.getUserGameResult(GameUser.from("pobi")).getResult()).isEqualTo("1000");
-    assertThat(ladderGame.getUserGameResult(GameUser.from("test")).getResult()).isEqualTo("꽝");
-    assertThat(ladderGame.getUserGameResult(GameUser.from("crong")).getResult()).isEqualTo("꽝");
-    assertThat(ladderGame.getUserGameResult(GameUser.from("hihi")).getResult()).isEqualTo("3000");
+    for (Entry<String, String> resultExpect : userGameResultExpect.entrySet()) {
+      GameResult gameResult = ladderGame.getUserGameResult(GameUser.from(resultExpect.getKey()));
+      assertThat(gameResult.getResult()).isEqualTo(resultExpect.getValue());
+    }
     assertThat(ladderGame.getUserGameResult(GameUser.from("anony"))).isNull();
   }
 
@@ -67,9 +73,10 @@ public class LadderGameTest {
         List.of(false, false, true, false), List.of(false, false, true, false)));
     int height = 4;
     GameResults resultExpect = GameResults.from("1000,꽝,꽝,3000");
-    LadderGame ladderGame = LadderGame.of(gameUsers, gameResults, height, ladderConnectStrategy);
 
+    LadderGame ladderGame = LadderGame.of(gameUsers, gameResults, height, ladderConnectStrategy);
     GameResults resultAll = ladderGame.getAllGameResult();
+
     assertThat(resultAll).usingRecursiveComparison().isEqualTo(resultExpect);
   }
 }

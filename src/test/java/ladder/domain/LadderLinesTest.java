@@ -30,17 +30,19 @@ class LadderLinesTest {
   @Test
   @DisplayName("사다리 라인들의 특정 포인트 연결 여부를 잘 가져오는지 확인")
   void isConnect() {
-    LadderConnectStrategy connectStrategy = new FixedLadderConnectStrategy(
-        List.of(List.of(true, true, false), List.of(false, false, false),
-            List.of(true, false, false)));
-    LadderPartLines ladderLines = LadderPartLines.of(3, connectStrategy);
+    List<List<Boolean>> connects = List.of(List.of(true, true, false), List.of(false, false, false),
+        List.of(true, false, false));
+    LadderConnectStrategy connectStrategy = new FixedLadderConnectStrategy(connects);
+    List<List> actualConnects = new ArrayList<>();
 
+    LadderPartLines ladderLines = LadderPartLines.of(3, connectStrategy);
     for (int height = 0; height < 3; height++) {
-      List<Boolean> connects = new ArrayList<>();
+      actualConnects.add(new ArrayList());
       for (int lineIdx = 0; lineIdx < 3; lineIdx++) {
-        connects.add(ladderLines.isRightConnect(height, lineIdx));
+        actualConnects.get(height).add(ladderLines.isRightConnect(height, lineIdx));
       }
-      assertThat(connects).isEqualTo(connectStrategy.create(height));
+
+      assertThat(connects).isEqualTo(actualConnects);
     }
   }
 
@@ -49,7 +51,9 @@ class LadderLinesTest {
   @ValueSource(ints = {1, 5, 9, 20, 30})
   void height(int height) {
     LadderConnectStrategy connectStrategy = new RandomLadderConnectStrategy(height, 3);
+
     LadderPartLines ladderLines = LadderPartLines.of(height, connectStrategy);
+
     assertThat(ladderLines.height()).isEqualTo(height);
   }
 
@@ -60,6 +64,7 @@ class LadderLinesTest {
         List.of(List.of(true, true, true), List.of(false, false, false),
             List.of(true, false, true)));
     int height = 3;
+
     LadderPartLines ladderLines = LadderPartLines.of(height, connectStrategy);
 
     IntStream.range(0, height)
