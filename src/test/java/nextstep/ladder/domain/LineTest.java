@@ -18,9 +18,14 @@ class LineTest {
 
     @Test
     void compareGiven_create() {
+        // given
         Line compare = new Line(Arrays.asList(true,false,false,false));
         Line original = Line.init(Height.of(4));
+
+        // when
         original.createWith(compare);
+
+        // then
         assertThat(original.point(0)).isFalse();
     }
 }
