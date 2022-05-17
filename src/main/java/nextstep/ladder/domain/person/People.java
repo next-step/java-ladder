@@ -5,6 +5,9 @@ import nextstep.ladder.util.StringSpliter;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
+
 public class People {
     private final List<Person> people;
 
@@ -20,10 +23,9 @@ public class People {
     }
 
     public static People of(String names) {
-        List<Person> people = StringSpliter.split(names)
+        return StringSpliter.split(names)
                 .stream().map(Person::new)
-                .collect(Collectors.toList());
-        return new People(people);
+                .collect(collectingAndThen(toList(), People::new));
     }
 
     @Override
