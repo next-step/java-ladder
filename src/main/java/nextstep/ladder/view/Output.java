@@ -1,5 +1,6 @@
 package nextstep.ladder.view;
 
+import nextstep.ladder.domain.Height;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Player;
 
@@ -7,11 +8,11 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class Output {
-    public static void printLadder(Ladder ladder, int height) {
+    public static void printLadder(Ladder ladder, Height height) {
         final String LADDER_YES = "-----|";
         final String LADDER_NO = "     |";
 
-        IntStream.range(0, height)
+        IntStream.range(0, height.getHeight())
                 .forEach(index -> System.out.println(
                         ladder.lines()
                                 .stream()

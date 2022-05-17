@@ -1,5 +1,8 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.exception.LadderException;
+import nextstep.ladder.exception.LadderExceptionCode;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -7,7 +10,11 @@ import java.util.stream.IntStream;
 public class Ladder {
     private final List<Line> lines;
 
-    public static Ladder init(int countOfLines, int height) {
+    public static Ladder init(int countOfLines, Height height) {
+        if (countOfLines < 0) {
+            throw new LadderException(LadderExceptionCode.FAIL_LADDER_INITIALIZATION);
+        }
+
         return new Ladder(
                 IntStream.range(0, countOfLines)
                         .mapToObj(count -> Line.init(height))
@@ -19,7 +26,7 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public void create(int height) {
+    public void create(Height height) {
         lines.stream()
                 .reduce(Line.init(height), (prevLine, nextLine) -> {
                     nextLine.createWith(prevLine);

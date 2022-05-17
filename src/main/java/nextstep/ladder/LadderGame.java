@@ -1,5 +1,6 @@
 package nextstep.ladder;
 
+import nextstep.ladder.domain.Height;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Player;
 import nextstep.ladder.view.Input;
@@ -15,7 +16,7 @@ public class LadderGame {
                 .map(Player::new)
                 .collect(Collectors.toList());
 
-        int height = Input.askLadderHeight();
+        Height height = Input.askLadderHeight();
         Ladder ladder = Ladder.init(players.size() - 1, height);
         ladder.create(height);
 

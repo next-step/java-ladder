@@ -13,13 +13,13 @@ class LineTest {
     @ParameterizedTest
     @ValueSource(ints = {0,1,2,3})
     void init(int index) {
-        assertThat(Line.init(4).point(index)).isFalse();
+        assertThat(Line.init(Height.of(4)).point(index)).isFalse();
     }
 
     @Test
     void compareGiven_create() {
         Line compare = new Line(Arrays.asList(true,false,false,false));
-        Line original = Line.init(4);
+        Line original = Line.init(Height.of(4));
         original.createWith(compare);
         assertThat(original.point(0)).isFalse();
     }

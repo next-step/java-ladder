@@ -8,4 +8,8 @@ public class LadderException extends RuntimeException{
     public LadderException(LadderExceptionCode exceptionCode) {
         super(exceptionCode.getMessage());
     }
+
+    public LadderException(LadderExceptionCode exceptionCode, String value) {
+        super(String.format(exceptionCode.getMessage() + " : %s", value));
+    }
 }

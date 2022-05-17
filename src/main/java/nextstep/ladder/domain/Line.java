@@ -7,9 +7,9 @@ import java.util.stream.IntStream;
 public class Line {
     private List<Boolean> points;
 
-    public static Line init(int height) {
+    public static Line init(Height height) {
         return new Line(
-                IntStream.range(0, height)
+                IntStream.range(0, height.getHeight())
                         .mapToObj(i -> Boolean.FALSE)
                         .collect(Collectors.toList())
         );

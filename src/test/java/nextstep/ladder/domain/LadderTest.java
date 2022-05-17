@@ -8,7 +8,7 @@ class LadderTest {
 
     @Test
     void init() {
-        Ladder ladder = Ladder.init(3, 3);
-        assertThat(ladder.lines().size()).isEqualTo(3);
+        Ladder ladder = Ladder.init(3, Height.of(3));
+        assertThat(ladder.lines()).hasSize(3);
     }
 }
