@@ -31,8 +31,8 @@ public class Line {
     }
 
     private boolean randomBoolean() {
-        boolean[] booleans = new boolean[]{false, true};
-        return booleans[new Random().nextInt(2)];
+        boolean[] booleans = new boolean[]{false, true, true};
+        return booleans[new Random().nextInt(3)];
     }
 
     public Boolean point(int index) {
