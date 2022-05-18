@@ -20,14 +20,6 @@ public class StreamStudy {
                 .count();
     }
 
-    public static void printLongestWordTop100() throws IOException {
-        String contents = new String(Files.readAllBytes(Paths
-                .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
-        List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
-
-        // TODO 이 부분에 구현한다.
-    }
-
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
         return numbers.stream().map(x -> 2 * x).collect(Collectors.toList());
     }
@@ -37,6 +29,17 @@ public class StreamStudy {
     }
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
-        return 0;
+        return numbers.stream()
+                .filter(number -> number > 3)
+                .map(number -> number * 2)
+                .reduce(0, (x, y) -> x + y);
+    }
+
+    public static void printLongestWordTop100() throws IOException {
+        String contents = new String(Files.readAllBytes(Paths
+                .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
+        List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
+
+        // TODO 이 부분에 구현한다.
     }
 }
