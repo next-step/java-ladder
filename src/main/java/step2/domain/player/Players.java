@@ -41,6 +41,10 @@ public class Players {
 		}
 	}
 
+	public int numberOfPlayer() {
+		return this.values.size();
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)
@@ -54,5 +58,13 @@ public class Players {
 	@Override
 	public int hashCode() {
 		return Objects.hash(values);
+	}
+
+	@Override
+	public String toString() {
+		return values.stream()
+			.map(player -> String.format("%-5s", player.toString()))
+			.sorted(String::compareToIgnoreCase)
+			.collect(Collectors.joining());
 	}
 }

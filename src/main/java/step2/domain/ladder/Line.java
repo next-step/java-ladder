@@ -55,4 +55,11 @@ public class Line {
 	public int hashCode() {
 		return Objects.hash(points);
 	}
+
+	@Override
+	public String toString() {
+		return points.stream()
+			.map(Point::toString)
+			.collect(Collectors.joining());
+	}
 }
