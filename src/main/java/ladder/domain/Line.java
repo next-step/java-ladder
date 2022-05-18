@@ -1,10 +1,10 @@
 package ladder.domain;
 
 import ladder.constant.Point;
+import ladder.exception.ContinuousConnectionException;
 import ladder.exception.InvalidCountOfPersonException;
 import ladder.strategy.GenerationStrategy;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -15,39 +15,47 @@ public class Line {
     private static final int EXCLUSION_VALUE = 1;
     private static final int PREVIOUS_VALUE = 1;
 
-    private final List<Point> points = new ArrayList<>();
+    private final List<Point> points;
 
     public Line(int countOfPerson, GenerationStrategy strategy) {
-        if (countOfPerson < MIN_COUNT_OF_PERSON) {
-            throw new InvalidCountOfPersonException();
-        }
+        this(strategy.generatePoints(totalPoint(countOfPerson)));
+    }
 
-        for (int i = INITIAL_INDEX; i < totalPoint(countOfPerson); i++) {
-            if (isPreviousPointConnected(i)) {
-                this.points.add(Point.DISCONNECTED);
-                continue;
-            }
-            this.points.add(strategy.generatePoint());
+    public Line(List<Point> points) {
+        validatePoints(points);
+        this.points = points;
+    }
+
+    private void validatePoints(List<Point> points) {
+        for (int i = 0; i < points.size(); i++) {
+            validateContinuousConnect(points, i);
         }
     }
 
-    private static int totalPoint(int countOfPerson) {
-        return countOfPerson - EXCLUSION_VALUE;
+    private void validateContinuousConnect(List<Point> points, int currentIndex) {
+        if (!continuousConnected(points, currentIndex)) {
+            return;
+        }
+        throw new ContinuousConnectionException();
     }
 
-    private boolean isPreviousPointConnected(int currentIndex) {
+    private boolean continuousConnected(List<Point> points, int currentIndex) {
         if (currentIndex == INITIAL_INDEX) {
             return false;
         }
-        return points.get(currentIndex - PREVIOUS_VALUE).isConnect();
+        return points.get(currentIndex).isConnect()
+                && points.get(currentIndex - PREVIOUS_VALUE).isConnect();
+    }
+
+    private static int totalPoint(int countOfPerson) {
+        if (countOfPerson < MIN_COUNT_OF_PERSON) {
+            throw new InvalidCountOfPersonException();
+        }
+        return countOfPerson - EXCLUSION_VALUE;
     }
 
     public int countPoint() {
         return points.size();
-    }
-
-    public List<Point> points() {
-        return points;
     }
 
     @Override

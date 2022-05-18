@@ -2,7 +2,9 @@ package ladder.strategy;
 
 import ladder.constant.Point;
 
+import java.util.List;
+
 public interface GenerationStrategy {
 
-    Point generatePoint();
+    List<Point> generatePoints(int count);
 }

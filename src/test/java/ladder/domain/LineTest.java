@@ -1,10 +1,13 @@
 package ladder.domain;
 
 import ladder.constant.Point;
+import ladder.exception.ContinuousConnectionException;
 import ladder.exception.InvalidCountOfPersonException;
 import ladder.strategy.RandomGeneration;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -18,9 +21,11 @@ public class LineTest {
     }
 
     @Test
-    @DisplayName("라인의 좌표값이 연속으로 CONNECTED 일 경우 후자의 좌표값은 DISCONNECTED 가 된다.")
+    @DisplayName("라인의 좌표값이 연속으로 CONNECTED 일 경우 ContinuousConnectionException 를 반환한다.")
     void continuousConnected() {
-        assertThat(new Line(3, () -> Point.valueOf(true)).points().get(1)).isEqualTo(Point.DISCONNECTED);
+        assertThatThrownBy(() -> new Line(List.of(Point.CONNECTED, Point.CONNECTED)))
+                .isInstanceOf(ContinuousConnectionException.class)
+                .hasMessage("사다리 라인은 연속으로 연결될 수 없습니다.");
     }
 
     @Test
@@ -29,6 +34,5 @@ public class LineTest {
         assertThatThrownBy(() -> new Line(1, new RandomGeneration()))
                 .isInstanceOf(InvalidCountOfPersonException.class)
                 .hasMessage("참가자의 수는 2 이상이여야 합니다.");
-
     }
 }
