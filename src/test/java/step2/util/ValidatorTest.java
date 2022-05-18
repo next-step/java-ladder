@@ -3,6 +3,7 @@ package step2.util;
 import static org.assertj.core.api.Assertions.*;
 
 import java.lang.reflect.Constructor;
+import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
@@ -57,9 +58,9 @@ class ValidatorTest {
 	}
 
 	@Test
-	void 동일_값_체크() {
+	void 컬렉션에서_중복_값_체크() {
 		assertThatIllegalArgumentException().isThrownBy(
-			() -> Validator.equivalent(10, 9, "")
+			() -> Validator.duplicate(List.of("1", "1"), "")
 		);
 	}
 

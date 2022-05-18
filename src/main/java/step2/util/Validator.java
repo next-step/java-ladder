@@ -1,5 +1,7 @@
 package step2.util;
 
+import java.util.Collection;
+
 public class Validator {
 
 	private Validator() {
@@ -30,8 +32,9 @@ public class Validator {
 		}
 	}
 
-	public static void equivalent(int threshold, int operand, String message) {
-		if (threshold != operand) {
+	public static void duplicate(Collection<?> collection, String message) {
+		long distinct = collection.stream().distinct().count();
+		if (distinct != collection.size()) {
 			throw new IllegalArgumentException(message);
 		}
 	}

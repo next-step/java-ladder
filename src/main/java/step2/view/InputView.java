@@ -2,11 +2,13 @@ package step2.view;
 
 import static java.lang.System.*;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
 
 	private static final String START = "[START]";
+	public static final String DELIMITER = ",";
 
 	private final Scanner scanner;
 
@@ -15,9 +17,9 @@ public class InputView {
 		this.scanner = new Scanner(System.in);
 	}
 
-	public String askPlayers() {
+	public List<String> askPlayers() {
 		show("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-		return this.scanner.nextLine();
+		return List.of(this.scanner.nextLine().split(DELIMITER));
 	}
 
 	public int askHeight() {
