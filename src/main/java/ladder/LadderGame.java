@@ -7,7 +7,9 @@ public class LadderGame {
 
     public static void main(String[] args) {
         InputView inputView = new InputView();
-        Participants participants = inputView.readParticipants();
+        Participants participants = inputView.inputParticipants();
         participants.getParticipants().forEach(System.out::println);
+        int integer = inputView.inputMaxLadderHeight();
+        System.out.println("integer = " + integer);
     }
 }

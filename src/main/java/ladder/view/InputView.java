@@ -15,17 +15,23 @@ public class InputView {
     public static final String BLANK_STRING = " ";
     public static final String EMPTY_STRING = "";
     public static final String DELIMITER_REG = ",";
+    public static final String INPUT_MAX_HEIGHT_MESSAGE = "최대 사다리 높이는 몇 개 인가요?";
 
-    public Participants readParticipants() {
+    public Participants inputParticipants() {
         System.out.println(INPUT_PARTICIPANTS_MESSAGE);
         return Arrays.stream(getSplitArray())
                 .map(Participant::new)
                 .collect(getParticipants());
     }
 
+    public int inputMaxLadderHeight() {
+        System.out.println(INPUT_MAX_HEIGHT_MESSAGE);
+        return Integer.parseInt(readLine());
+    }
+
     private String[] getSplitArray() {
         String participantsString = readLine();
-        return participantsString.replaceAll(BLANK_STRING, EMPTY_STRING).split(DELIMITER_REG);
+        return participantsString.replace(BLANK_STRING, EMPTY_STRING).split(DELIMITER_REG);
     }
 
     private Collector<Participant, Object, Participants> getParticipants() {
