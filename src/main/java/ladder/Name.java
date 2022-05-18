@@ -1,8 +1,8 @@
 package ladder;
 
 public class Name {
-    private String name;
     public static final int MAX_NAME_LENGTH = 5;
+    private String name;
 
     public Name(String name) {
         if (name == null) {
