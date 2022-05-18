@@ -10,8 +10,8 @@
 
 ---
 ## STEP1 - 자바8 스트림, 람다, Optional
-### 요구사항 정리
-**람다**  
+### [요구사항 정리]
+### 람다
 - 람다 실습 1 - 익명 클래스를 람다로 전환
   -  nextstep.fp.carTest
 - 람다 실습 2 - 람다를 활용해 중복 제거
@@ -35,8 +35,9 @@ Conditional c) {
 // c.test(number)를 활용해 구현할 수 있다.
 }
 ```
-- 익명 클래스를 자바 8의 람다를 활용해 구현한다.
-**스트림(map,reduce,filter실습)**  
+- 익명 클래스를 자바 8의 람다를 활용해 구현한다.  
+
+### 스트림(map,reduce,filter실습)
 - List에 담긴 모든 숫자 중 3보다 큰 숫자를 2배 한 후 모든 값의 합을 구한다. 지금까지 학습한 map, reduce, filter를 활용해 구현해야 한다.
   - nextstep.fp.StreamStudyTest 클래스의 sumOverThreeAndDouble() 테스트를 pass해야 한다.
 - nextstep.fp.StreamStudy 클래스의 printLongestWordTop100() 메서드를 구현한다. 요구사항은 다음과 같다.
