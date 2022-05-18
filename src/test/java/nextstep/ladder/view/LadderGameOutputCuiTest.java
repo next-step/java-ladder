@@ -21,7 +21,7 @@ class LadderGameOutputCuiTest {
             connectPolicy
         );
 
-        System.out.println(ladder.getLines());
+        System.out.println(ladder.getLadderLines());
 
         outputCui.draw(ladder);
     }
@@ -35,7 +35,7 @@ class LadderGameOutputCuiTest {
             connectPolicy
         );
 
-        System.out.println(ladder.getLines());
+        System.out.println(ladder.getLadderLines());
 
         outputCui.draw(ladder);
     }

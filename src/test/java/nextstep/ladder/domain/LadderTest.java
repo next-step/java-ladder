@@ -19,7 +19,7 @@ class LadderTest {
     void createTest_1() {
         Ladder ladder = Ladder.of(names, results, height, randomPolicy);
 
-        assertThat(ladder.lineCount()).isEqualTo(names.size() + names.size()-1);
+        assertThat(ladder.lineCount()).isEqualTo(names.size());
         assertThat(ladder.lineHeight()).isEqualTo(height);
         assertThat(ladder.getLineNames()).containsExactly("pobi", "honux", "crong", "jk");
         assertThat(ladder.getResults()).containsExactly("꽝", "5000", "꽝", "3000");
