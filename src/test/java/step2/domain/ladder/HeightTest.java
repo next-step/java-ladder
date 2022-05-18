@@ -1,7 +1,8 @@
-package step2.domain;
+package step2.domain.ladder;
 
 import static org.assertj.core.api.Assertions.*;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -14,7 +15,7 @@ class HeightTest {
 	@Test
 	void 사다리의_높이를_Wrapping_하는_객체를_생성() {
 		int input = 1;
-		assertThat(new Height(input)).isEqualTo(new Height(input));
+		Assertions.assertThat(new Height(input)).isEqualTo(new Height(input));
 	}
 
 	@Test

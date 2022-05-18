@@ -1,4 +1,4 @@
-package step2.domain;
+package step2.domain.player;
 
 import java.util.Objects;
 

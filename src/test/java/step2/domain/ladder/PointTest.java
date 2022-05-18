@@ -1,10 +1,11 @@
-package step2.domain;
+package step2.domain.ladder;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.function.IntSupplier;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -22,7 +23,7 @@ class PointTest {
 	@Test
 	void 방향을_입력받아서_방향을_Wrapping_하는_객체를_캐싱으로_생성() {
 		assertAll(
-			() -> assertThat(Point.from(Direction.STRAIGHT)).isSameAs(
+			() -> Assertions.assertThat(Point.from(Direction.STRAIGHT)).isSameAs(
 				Point.from(Direction.STRAIGHT))
 		);
 	}

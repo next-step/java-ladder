@@ -1,4 +1,4 @@
-package step2.domain;
+package step2.domain.ladder;
 
 import static org.assertj.core.api.Assertions.*;
 

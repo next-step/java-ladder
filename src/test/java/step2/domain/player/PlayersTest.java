@@ -1,7 +1,8 @@
-package step2.domain;
+package step2.domain.player;
 
 import static org.assertj.core.api.Assertions.*;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -16,7 +17,7 @@ class PlayersTest {
 	@Test
 	void 컴마로_구분된_문자열을_입력받아_플레이어_일급컬렉션_생성() {
 		String input = "aaa,bbb,ccc,ddd";
-		assertThat(new Players(input)).isEqualTo(new Players(input));
+		Assertions.assertThat(new Players(input)).isEqualTo(new Players(input));
 	}
 
 	@ParameterizedTest(name = "{displayName} : {arguments}")

@@ -1,4 +1,4 @@
-package step2.domain;
+package step2.domain.player;
 
 import java.util.HashSet;
 import java.util.Objects;

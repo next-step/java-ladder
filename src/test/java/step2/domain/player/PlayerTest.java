@@ -1,7 +1,6 @@
-package step2.domain;
+package step2.domain.player;
 
-import static org.assertj.core.api.Assertions.*;
-
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -14,7 +13,7 @@ class PlayerTest {
 	@Test
 	void 이름을_입력_받아서_플레이어를_생성한다() {
 		String name = "이름";
-		assertThat(new Player(name)).isEqualTo(new Player(name));
+		Assertions.assertThat(new Player(name)).isEqualTo(new Player(name));
 	}
 
 }
