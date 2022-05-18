@@ -5,7 +5,7 @@ import utils.StringSplitter;
 import java.util.List;
 import java.util.Scanner;
 
-import static ladder.app.LadderGame.ALL;
+import static ladder.app.LadderApp.ALL;
 
 public class InputView {
     private static final String DELIMITER = ",";

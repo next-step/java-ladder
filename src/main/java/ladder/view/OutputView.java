@@ -3,6 +3,8 @@ package ladder.view;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
+import ladder.domain.result.Result;
+import ladder.domain.result.Results;
 import ladder.domain.reward.Reward;
 import ladder.domain.reward.Rewards;
 
@@ -33,8 +35,13 @@ public class OutputView {
         System.out.println("실행 결과");
     }
 
-    public static void printReward(Reward reward) {
-        System.out.println(reward);
+    public static void printResult(Result result) {
+        System.out.println(result.reward());
+    }
+
+    public static void printResults(Results results) {
+        results.getResults()
+                .forEach(result -> printPlayerReward(result.player(), result.reward()));
     }
 
     public static void printPlayerReward(Player player, Reward reward) {
