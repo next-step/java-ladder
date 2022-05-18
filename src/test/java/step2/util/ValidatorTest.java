@@ -30,7 +30,7 @@ class ValidatorTest {
 	@NullSource
 	void null_체크(String input) {
 		assertThatIllegalArgumentException().isThrownBy(
-			() -> Validator.notNull(input)
+			() -> Validator.notNull(input, ErrorTarget.DIRECTION)
 		);
 	}
 
@@ -38,7 +38,28 @@ class ValidatorTest {
 	@NullAndEmptySource
 	void Blank_체크(String input) {
 		assertThatIllegalArgumentException().isThrownBy(
-			() -> Validator.notBlank(input)
+			() -> Validator.notBlank(input, ErrorTarget.NAME_INPUT)
+		);
+	}
+
+	@Test
+	void 최솟값_체크() {
+		assertThatIllegalArgumentException().isThrownBy(
+			() -> Validator.min(10, 9, "")
+		);
+	}
+
+	@Test
+	void 최댓값_체크() {
+		assertThatIllegalArgumentException().isThrownBy(
+			() -> Validator.max(10, 11, "")
+		);
+	}
+
+	@Test
+	void 동일_값_체크() {
+		assertThatIllegalArgumentException().isThrownBy(
+			() -> Validator.equivalent(10, 9, "")
 		);
 	}
 
