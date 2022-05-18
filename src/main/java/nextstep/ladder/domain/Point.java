@@ -49,13 +49,6 @@ public class Point {
         this.direction.set(direction);
     }
 
-    public boolean isConnected() {
-        return direction.isConnected();
-    }
-    public boolean isConnectedLeft() {
-        return direction.isLeft();
-    }
-
     public boolean isConnectedRight() {
         return direction.isRight();
     }

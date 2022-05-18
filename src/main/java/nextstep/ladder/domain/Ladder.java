@@ -28,14 +28,6 @@ public class Ladder {
         }
     }
 
-    public int lineHeight() {
-        return ladderLines.lineHeight();
-    }
-
-    public int lineCount() {
-        return ladderLines.lineCount();
-    }
-
     public List<String> getLineNames() {
         return ladderLines.getNames();
     }

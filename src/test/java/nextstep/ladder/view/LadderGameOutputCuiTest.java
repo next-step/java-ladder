@@ -1,8 +1,6 @@
 package nextstep.ladder.view;
 
 import java.util.List;
-import java.util.Random;
-import nextstep.ladder.domain.ConnectPolicy;
 import nextstep.ladder.domain.Ladder;
 import org.junit.jupiter.api.Test;
 
