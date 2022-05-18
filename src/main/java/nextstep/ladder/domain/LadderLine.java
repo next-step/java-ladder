@@ -57,4 +57,8 @@ public class LadderLine {
     protected void handlePoint(int pointIndex, Direction direction) {
         points.get(pointIndex).handleDirectionMannually(direction);
     }
+
+    public List<Point> getPoints() {
+        return points;
+    }
 }

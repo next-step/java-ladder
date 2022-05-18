@@ -1,7 +1,6 @@
 package nextstep.ladder;
 
 import java.util.List;
-import java.util.Random;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.exception.NotExistNameException;
 import nextstep.ladder.view.LadderGameInputCui;

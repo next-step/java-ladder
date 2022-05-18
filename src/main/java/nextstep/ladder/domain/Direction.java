@@ -76,4 +76,9 @@ public class Direction {
         this.left = direction.left;
         this.right = direction.right;
     }
+
+    public boolean isConnected() {
+        return isLeft() || isRight();
+    }
+
 }
