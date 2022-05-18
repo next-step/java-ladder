@@ -44,6 +44,10 @@ public class Line {
 		return this.points.get(this.points.size() - 1);
 	}
 
+	public List<Point> getPoints() {
+		return points;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)
@@ -57,12 +61,5 @@ public class Line {
 	@Override
 	public int hashCode() {
 		return Objects.hash(points);
-	}
-
-	@Override
-	public String toString() {
-		return points.stream()
-			.map(Point::toString)
-			.collect(Collectors.joining());
 	}
 }

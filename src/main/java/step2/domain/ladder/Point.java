@@ -58,6 +58,10 @@ public class Point {
 		return CACHE.get(Direction.STRAIGHT);
 	}
 
+	public Direction getDirection() {
+		return direction;
+	}
+
 	@Override
 	public String toString() {
 		return this.direction.toString();

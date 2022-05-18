@@ -23,6 +23,6 @@ public class LadderApplication {
 
 		Ladder ladder = new Ladder(players.numberOfPlayer(), height, supplier);
 
-		outputView.showCreationResult(players.toString(), ladder.toString());
+		outputView.showCreationResult(players, ladder);
 	}
 }
