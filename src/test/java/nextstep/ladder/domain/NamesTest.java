@@ -17,7 +17,7 @@ class NamesTest {
 
     @Test
     void createTest() {
-        Names names = new Names(List.of());
+        Names names = new Names(List.of(name1, name2));
 
         assertThat(names).isNotNull();
     }

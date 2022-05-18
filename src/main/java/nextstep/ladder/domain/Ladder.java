@@ -8,14 +8,14 @@ public class Ladder {
     private final LadderLines ladderLines;
     private final List<String> results;
 
-    private Ladder(List<String> names, List<String> results, int height, ConnectPolicy connectPolicy) {
+    private Ladder(List<String> names, List<String> results, int height) {
         validate(names, results);
-        this.ladderLines = new LadderLines(names, height, connectPolicy);
+        this.ladderLines = new LadderLines(names, height);
         this.results = results;
     }
 
-    public static Ladder of(List<String> names, List<String> results, int ladderHeight, ConnectPolicy connectPolicy) {
-        return new Ladder(names, results, ladderHeight, connectPolicy);
+    public static Ladder of(List<String> names, List<String> results, int ladderHeight) {
+        return new Ladder(names, results, ladderHeight);
     }
 
     private void validate(List<String> names, List<String> results) {
@@ -45,8 +45,8 @@ public class Ladder {
         return "{" + ladderLines + '}';
     }
 
-    public Lines getLines() {
-        return ladderLines.getLines();
+    public List<LadderLine> getLadderLines() {
+        return ladderLines.get();
     }
 
     public List<String> getResults() {

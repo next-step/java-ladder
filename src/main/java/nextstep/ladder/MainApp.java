@@ -20,8 +20,7 @@ public class MainApp {
         Ladder ladder = Ladder.of(
             inputNames,
             results,
-            ladderHeight,
-            () -> new Random().nextBoolean()
+            ladderHeight
         );
 
         outputUi.draw(ladder);

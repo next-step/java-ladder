@@ -11,9 +11,6 @@ public class Point {
     }
 
     public int move() {
-        System.out.println("is left? " + direction.isLeft());
-        System.out.println("is right? " + direction.isRight());
-
         if (direction.isRight()) {
             return index + 1;
         }
@@ -43,10 +40,13 @@ public class Point {
 
     @Override
     public String toString() {
-        return "Point{" +
-            "index=" + index +
-            ", direction=" + direction +
+        return "{" + index +
+            ", " + direction +
             '}';
+    }
+
+    protected void handleDirectionMannually(Direction direction) {
+        this.direction.set(direction);
     }
 
 }

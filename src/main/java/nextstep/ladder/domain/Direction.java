@@ -1,13 +1,14 @@
 package nextstep.ladder.domain;
 
 import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 import static nextstep.ladder.domain.LadderPointGenerator.generatePoint;
 
 import java.util.Objects;
 
 public class Direction {
-    private final boolean left;
-    private final boolean right;
+    private boolean left;
+    private boolean right;
 
     private Direction(boolean left, boolean right) {
         if (left && right) {
@@ -16,7 +17,6 @@ public class Direction {
 
         this.left = left;
         this.right = right;
-        System.out.println(this);
     }
 
     public boolean isRight() {
@@ -66,9 +66,14 @@ public class Direction {
 
     @Override
     public String toString() {
-        return "Direction{" +
-            "left=" + left +
-            ", right=" + right +
+        return "{" +
+            "" + left +
+            ", " + right +
             '}';
+    }
+
+    protected void set(Direction direction) {
+        this.left = direction.left;
+        this.right = direction.right;
     }
 }

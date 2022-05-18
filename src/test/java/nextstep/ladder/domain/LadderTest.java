@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 import org.junit.jupiter.api.Test;
 
 class LadderTest {
@@ -13,11 +12,9 @@ class LadderTest {
     private final List<String> results = Arrays.asList("꽝", "5000", "꽝", "3000");
     private final int height = 5;
 
-    private final ConnectPolicy randomPolicy = () -> new Random().nextBoolean();
-
     @Test
     void createTest_1() {
-        Ladder ladder = Ladder.of(names, results, height, randomPolicy);
+        Ladder ladder = Ladder.of(names, results, height);
 
         assertThat(ladder.lineCount()).isEqualTo(names.size());
         assertThat(ladder.lineHeight()).isEqualTo(height);

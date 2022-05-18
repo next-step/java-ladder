@@ -5,6 +5,7 @@ import static java.lang.Boolean.TRUE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class DirectionTest {
@@ -56,4 +57,15 @@ class DirectionTest {
         Direction last = Direction.first(TRUE).last();
         assertThat(last).isEqualTo(Direction.of(TRUE, FALSE));
     }
+
+    @DisplayName("수동 연결한 픽스처를 만들기 위한 메서드, 강제로 연결한다.")
+    @Test
+    void connectNext() {
+        Direction next = Direction.of(FALSE, FALSE);
+        assertThat(next).isEqualTo(Direction.of(FALSE, FALSE));
+
+        next.set(Direction.of(FALSE, TRUE));
+        assertThat(next).isEqualTo(Direction.of(FALSE, TRUE));
+    }
+
 }

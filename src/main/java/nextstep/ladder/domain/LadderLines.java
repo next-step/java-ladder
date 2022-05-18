@@ -1,25 +1,30 @@
 package nextstep.ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LadderLines {
 
     private final Names names;
-    private final Lines lines;
+    private List<LadderLine> ladderLines = new ArrayList<>();
 
-    public LadderLines(List<String> names, int height, ConnectPolicy connectPolicy) {
+    public LadderLines(List<String> names, int height) {
         this.names = new Names(names);
-        lines = new Lines(names.size(), height);
-        lines.connectLinesWithPolicy(connectPolicy);
+
+        for (int i = 0; i < height; ++i) {
+            ladderLines.add(LadderLine.init(names.size()));
+        }
     }
 
-
     public int lineHeight() {
-        return lines.lineHeight();
+        return ladderLines.size();
     }
 
     public int lineCount() {
-        return lines.lineCount();
+        return ladderLines.stream()
+            .findAny()
+            .orElseThrow(() -> new IllegalStateException("연결을 확인 할 수 없음"))
+            .size();
     }
 
     public List<String> getNames() {
@@ -28,31 +33,29 @@ public class LadderLines {
 
     @Override
     public String toString() {
-        return "LadderLines{" +
-            "names=" + names +
-            ", lines=" + lines +
-            '}';
-    }
-
-    public Lines getLines() {
-        return lines;
+        return "{" + names +
+            ", " + ladderLines +
+            "}\n";
     }
 
     public int checkResultOf(String name) {
-        int nameIndex = names.indexOf(name);
+        int pointIndex = names.indexOf(name);
 
-        int resultIndex = lines.resultIndexOf(
-            convertIndexToLadderColumnIndex(nameIndex)
-        );
+        int heightIndex = 0;
+        while (heightIndex < ladderLines.size()) {
+            pointIndex = ladderLines.get(heightIndex).move(pointIndex);
+            ++heightIndex;
+        }
 
-        return convertLadderColumnIndexToIndex(resultIndex);
+        return pointIndex;
     }
 
-    private int convertIndexToLadderColumnIndex(int index) {
-        return index * 2;
+    public List<LadderLine> get() {
+        return ladderLines;
     }
 
-    private int convertLadderColumnIndexToIndex(int index) {
-        return index / 2;
+    protected void handlePointManually(int lineIndex, int pointIndex, Direction direction) {
+        ladderLines.get(lineIndex).handlePoint(pointIndex, direction);
     }
+
 }

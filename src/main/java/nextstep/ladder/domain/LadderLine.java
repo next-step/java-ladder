@@ -47,6 +47,14 @@ public class LadderLine {
     public String toString() {
         return "LadderLine{" +
             "points=" + points +
-            '}';
+            "}\n";
+    }
+
+    public int size() {
+        return points.size();
+    }
+
+    protected void handlePoint(int pointIndex, Direction direction) {
+        points.get(pointIndex).handleDirectionMannually(direction);
     }
 }

@@ -4,9 +4,8 @@ import static java.lang.System.out;
 
 import java.util.List;
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Lines;
+import nextstep.ladder.domain.LadderLine;
 import nextstep.ladder.domain.Part;
-import nextstep.ladder.domain.Parts;
 
 public class LadderGameOutputCui {
 
@@ -14,7 +13,7 @@ public class LadderGameOutputCui {
         out.println("\n 사다리 결과");
 
         printNames(ladder.getLineNames());
-        drawLines(ladder.getLines());
+        drawLines(ladder.getLadderLines());
         printResults(ladder.getResults());
     }
 
@@ -29,10 +28,11 @@ public class LadderGameOutputCui {
         } out.println();
     }
 
-    private void drawLines(Lines lines) {
-        for (Parts partPlate : lines.getLines()) {
-            drawParts(partPlate.getParts());
-        }
+    private void drawLines(List<LadderLine> ladderLines) {
+        throw new UnsupportedOperationException();
+//        for (Parts partPlate : lines.getLines()) {
+//            drawParts(partPlate.getParts());
+//        }
     }
 
     private void drawParts(List<Part> parts) {
