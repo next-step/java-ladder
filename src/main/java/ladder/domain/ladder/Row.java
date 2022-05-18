@@ -1,7 +1,7 @@
 package ladder.domain.ladder;
 
-import ladder.domain.player.Player;
 import ladder.domain.point.Point;
+import ladder.domain.point.Position;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,10 +60,10 @@ public class Row {
         return points.get(points.size() - 1);
     }
 
-    public Player trace(Player player) {
+    public Position trace(Position position) {
         return points.stream()
-                .filter(player::isOnPoint)
-                .map(point -> point.move(player))
+                .filter(point -> point.isSamePosition(position))
+                .map(point -> point.move(position))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("사다리 위치가 올바르지 않습니다."));
     }

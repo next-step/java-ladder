@@ -43,7 +43,7 @@ public class Player {
         return this.name.equals(name);
     }
 
-    public Position getPosition() {
+    public Position position() {
         return position;
     }
 

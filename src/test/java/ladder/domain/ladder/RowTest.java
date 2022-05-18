@@ -1,6 +1,5 @@
 package ladder.domain.ladder;
 
-import ladder.domain.player.Player;
 import ladder.domain.point.Direction;
 import ladder.domain.point.Point;
 import ladder.domain.point.Position;
@@ -12,7 +11,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class RowTest {
     static final Row LEFT_ROW = new Row(List.of(
@@ -51,17 +49,17 @@ class RowTest {
     }
 
     @Test
-    void trace는_player를_사다리를_따라서_이동시킨다() {
-        Player player = new Player("name", 1);
+    void trace는_position을_사다리를_따라서_이동시킨다() {
+        Position position = new Position(1);
 
-        Player leftMovedPlayer = LEFT_ROW.trace(player);
-        Player notMovedPlayer = UNCONNECTED_ROW.trace(player);
-        Player rightMovedPlayer = RIGHT_ROW.trace(player);
+        Position leftMovedPosition = LEFT_ROW.trace(position);
+        Position notMovedPosition = UNCONNECTED_ROW.trace(position);
+        Position rightMovedPosition = RIGHT_ROW.trace(position);
 
         assertAll(
-                () -> assertTrue(leftMovedPlayer.isOnPoint(new Point(Direction.RIGHT, new Position(0)))),
-                () -> assertTrue(notMovedPlayer.isOnPoint(new Point(Direction.RIGHT, new Position(1)))),
-                () -> assertTrue(rightMovedPlayer.isOnPoint(new Point(Direction.RIGHT, new Position(2))))
+                () -> assertEquals(new Position(0), leftMovedPosition),
+                () -> assertEquals(new Position(1), notMovedPosition),
+                () -> assertEquals(new Position(2), rightMovedPosition)
         );
     }
 }

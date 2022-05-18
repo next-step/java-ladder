@@ -68,6 +68,10 @@ public class Point {
         return player.move(direction);
     }
 
+    public Position move(Position position) {
+        return position.move(direction);
+    }
+
     @Override
     public String toString() {
         if (direction.isRight()) {

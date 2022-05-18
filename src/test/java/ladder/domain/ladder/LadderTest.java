@@ -1,6 +1,5 @@
 package ladder.domain.ladder;
 
-import ladder.domain.player.Player;
 import ladder.domain.point.Position;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -35,8 +34,8 @@ class LadderTest {
     }
 
     @Test
-    void trace는_player를_사다리를_따라서_이동된_위치를_반환한다() {
-        Player player = new Player("name", 2);
+    void trace는_position을_사다리를_따라서_이동된_위치를_반환한다() {
+        Position position = new Position(2);
         Ladder ladder = new Ladder(List.of(
                 RIGHT_ROW,
                 UNCONNECTED_ROW,
@@ -44,7 +43,7 @@ class LadderTest {
                 LEFT_ROW
         ));
 
-        Position movedPosition = ladder.trace(player);
+        Position movedPosition = ladder.trace(position);
 
         assertEquals(movedPosition, new Position(1));
     }

@@ -73,7 +73,9 @@ public class LadderGame {
     }
 
     private Reward traceLadder(Player player) {
-        return rewards.findByPosition(ladder.trace(player));
+        return rewards.findByPosition(
+                ladder.trace(player.position())
+        );
     }
 
     private void displayResult(Name name) {

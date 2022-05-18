@@ -1,6 +1,5 @@
 package ladder.domain.ladder;
 
-import ladder.domain.player.Player;
 import ladder.domain.point.Position;
 
 import java.util.ArrayList;
@@ -24,12 +23,12 @@ public class Ladder {
         }
     }
 
-    public Position trace(Player player) {
-        Player movingPlayer = player;
+    public Position trace(Position position) {
+        Position movingPosition = position;
         for (Row row : rows) {
-            movingPlayer = row.trace(movingPlayer);
+            movingPosition = row.trace(movingPosition);
         }
-        return movingPlayer.getPosition();
+        return movingPosition;
     }
 
     public static Ladder generateByWidthAndHeight(int width, int height) {
