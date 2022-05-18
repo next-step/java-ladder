@@ -13,8 +13,8 @@ import step2.domain.player.Players;
 
 public class OutputView {
 
-	public static final String LINE_BREAK = "\n";
-	public static final Map<Direction, String> DIRECTION_PRINT_MAP = new HashMap<>();
+	private static final String LINE_BREAK = "\n";
+	private static final Map<Direction, String> DIRECTION_PRINT_MAP = new HashMap<>();
 
 	static {
 		DIRECTION_PRINT_MAP.put(Direction.LEFT, "--|  ");

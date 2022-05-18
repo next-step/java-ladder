@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class InputView {
 
 	private static final String START = "[START]";
-	public static final String DELIMITER = ",";
+	private static final String DELIMITER = ",";
 
 	private final Scanner scanner;
 
