@@ -1,13 +1,20 @@
 package step2.domain;
 
-import java.util.Objects;
+import java.util.Arrays;
+import java.util.EnumMap;
+import java.util.Map;
 import java.util.function.IntSupplier;
+import java.util.stream.Collectors;
 
 import step2.util.Validator;
 
 public class Point {
 
-	private static final int FIRST_POINT_THRESHOLD = 5;
+	private static final int THRESHOLD = 5;
+	private static final Map<Direction, Point> CACHE = new EnumMap<Direction, Point>(
+		Arrays.stream(Direction.values())
+			.collect(Collectors.toMap(value -> value, Point::new))
+	);
 
 	private final Direction direction;
 
@@ -15,34 +22,39 @@ public class Point {
 		this.direction = direction;
 	}
 
+	public static Point from(Direction direction) {
+		Validator.notNull(direction);
+		return CACHE.get(direction);
+	}
+
 	public static Point firstPointFrom(IntSupplier supplier) {
 		Validator.notNull(supplier);
-		if (supplier.getAsInt() < FIRST_POINT_THRESHOLD) {
-			return new Point(Direction.STRAIGHT);
+		if (supplier.getAsInt() < THRESHOLD) {
+			return CACHE.get(Direction.STRAIGHT);
 		}
-		return new Point(Direction.RIGHT);
+		return CACHE.get(Direction.RIGHT);
 	}
 
-	public static Point firstPointFrom(Direction direction) {
-		Validator.notNull(direction);
-		if (direction == Direction.LEFT) {
-			throw new IllegalArgumentException("첫 번째 포인트는 왼쪽일 수 없습니다.");
+	public static Point middlePointFrom(Point previousPoint, IntSupplier supplier) {
+		Validator.notNull(previousPoint);
+		Validator.notNull(supplier);
+
+		if (previousPoint.equals(CACHE.get(Direction.RIGHT))) {
+			return CACHE.get(Direction.LEFT);
 		}
-		return new Point(direction);
+
+		if (supplier.getAsInt() < THRESHOLD) {
+			return CACHE.get(Direction.STRAIGHT);
+		}
+
+		return CACHE.get(Direction.RIGHT);
 	}
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (o == null || getClass() != o.getClass())
-			return false;
-		Point that = (Point)o;
-		return direction == that.direction;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(direction);
+	public static Point lastPointFrom(Point previousPoint) {
+		Validator.notNull(previousPoint);
+		if (previousPoint.equals(CACHE.get(Direction.RIGHT))) {
+			return CACHE.get(Direction.LEFT);
+		}
+		return CACHE.get(Direction.STRAIGHT);
 	}
 }
