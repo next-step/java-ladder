@@ -3,7 +3,7 @@ package step2.domain.ladder;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.function.IntSupplier;
+import java.util.function.BooleanSupplier;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
@@ -16,8 +16,8 @@ import org.junit.jupiter.params.provider.NullSource;
 @DisplayName(value = "포인트 테스트")
 class PointTest {
 
-	private static final IntSupplier ALWAYS_4 = () -> 4;
-	private static final IntSupplier ALWAYS_5 = () -> 5;
+	private static final BooleanSupplier FALSE = () -> false;
+	private static final BooleanSupplier TRUE = () -> true;
 
 	private static final Point PREVIOUS_LEFT = Point.from(Direction.LEFT);
 	private static final Point PREVIOUS_STRAIGHT = Point.from(Direction.STRAIGHT);
@@ -37,37 +37,37 @@ class PointTest {
 	}
 
 	@Test
-	void 첫_번째_포인트는_5보다_작으면_직진() {
-		assertThat(Point.firstPointFrom(ALWAYS_4)).isSameAs(Point.from(Direction.STRAIGHT));
+	void 첫_번째_포인트는_true_이면_직진() {
+		assertThat(Point.firstPointFrom(TRUE)).isSameAs(Point.from(Direction.STRAIGHT));
 	}
 
 	@Test
-	void 첫_번째_포인트는_5_이상_이면_오른쪽() {
-		assertThat(Point.firstPointFrom(ALWAYS_5)).isSameAs(Point.from(Direction.RIGHT));
+	void 첫_번째_포인트는_false_이면_오른쪽() {
+		assertThat(Point.firstPointFrom(FALSE)).isSameAs(Point.from(Direction.RIGHT));
 	}
 
 	@Test
 	void 중간_포인트는_이전_포인트가_오른쪽이면_왼쪽() {
 		assertAll(
-			() -> assertThat(Point.middlePointFrom(PREVIOUS_RIGHT, ALWAYS_4)).isSameAs(Point.from(Direction.LEFT)),
-			() -> assertThat(Point.middlePointFrom(PREVIOUS_RIGHT, ALWAYS_5)).isSameAs(Point.from(Direction.LEFT))
+			() -> assertThat(Point.middlePointFrom(PREVIOUS_RIGHT, FALSE)).isSameAs(Point.from(Direction.LEFT)),
+			() -> assertThat(Point.middlePointFrom(PREVIOUS_RIGHT, TRUE)).isSameAs(Point.from(Direction.LEFT))
 		);
 	}
 
 	@Test
-	void 중간_포인트는_이전_포인트가_오른쪽이_아니고_5보다_작으면_직진() {
+	void 중간_포인트는_이전_포인트가_오른쪽이_아니고_true_이면_직진() {
 		assertAll(
-			() -> assertThat(Point.middlePointFrom(PREVIOUS_LEFT, ALWAYS_4)).isSameAs(Point.from(Direction.STRAIGHT)),
-			() -> assertThat(Point.middlePointFrom(PREVIOUS_STRAIGHT, ALWAYS_4)).isSameAs(
+			() -> assertThat(Point.middlePointFrom(PREVIOUS_LEFT, TRUE)).isSameAs(Point.from(Direction.STRAIGHT)),
+			() -> assertThat(Point.middlePointFrom(PREVIOUS_STRAIGHT, TRUE)).isSameAs(
 				Point.from(Direction.STRAIGHT))
 		);
 	}
 
 	@Test
-	void 중간_포인트는_이전_포인트가_오른쪽이_아니고_5보다_크면_오른쪽() {
+	void 중간_포인트는_이전_포인트가_오른쪽이_아니고_false_오른쪽() {
 		assertAll(
-			() -> assertThat(Point.middlePointFrom(PREVIOUS_LEFT, ALWAYS_5)).isSameAs(Point.from(Direction.RIGHT)),
-			() -> assertThat(Point.middlePointFrom(PREVIOUS_STRAIGHT, ALWAYS_5)).isSameAs(Point.from(Direction.RIGHT))
+			() -> assertThat(Point.middlePointFrom(PREVIOUS_LEFT, FALSE)).isSameAs(Point.from(Direction.RIGHT)),
+			() -> assertThat(Point.middlePointFrom(PREVIOUS_STRAIGHT, FALSE)).isSameAs(Point.from(Direction.RIGHT))
 		);
 	}
 

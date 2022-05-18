@@ -3,7 +3,7 @@ package step2.domain.ladder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.IntSupplier;
+import java.util.function.BooleanSupplier;
 import java.util.stream.Collectors;
 
 import step2.util.ErrorTarget;
@@ -15,7 +15,7 @@ public class Line {
 
 	private final List<Point> points = new ArrayList<>();
 
-	public Line(int numberOfPlayer, IntSupplier supplier) {
+	public Line(int numberOfPlayer, BooleanSupplier supplier) {
 		Validator.notNull(supplier, ErrorTarget.SUPPLIER);
 		Validator.min(NUMBER_OF_FIRST_AND_LAST, numberOfPlayer,
 			String.format("첫 라인과 마지막 라인을 그리기위한 플레이어의 최소 수는 %d 입니다. 입력 : %d", NUMBER_OF_FIRST_AND_LAST, numberOfPlayer));

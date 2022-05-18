@@ -2,7 +2,7 @@ package step2.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.IntSupplier;
+import java.util.function.BooleanSupplier;
 import java.util.stream.Collectors;
 
 import step2.util.ErrorTarget;
@@ -13,7 +13,7 @@ public class Ladder {
 	private static final int MIN_NUMBER_OF_PLAYER = 2;
 	private final List<Line> values = new ArrayList<>();
 
-	public Ladder(int numberOfPlayer, Height height, IntSupplier supplier) {
+	public Ladder(int numberOfPlayer, Height height, BooleanSupplier supplier) {
 		Validator.notNull(height, ErrorTarget.HEIGHT);
 		Validator.notNull(supplier, ErrorTarget.SUPPLIER);
 		Validator.min(MIN_NUMBER_OF_PLAYER, numberOfPlayer,

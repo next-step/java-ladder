@@ -3,7 +3,7 @@ package step2.domain.ladder;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
-import java.util.function.IntSupplier;
+import java.util.function.BooleanSupplier;
 import java.util.stream.Collectors;
 
 import step2.util.ErrorTarget;
@@ -11,7 +11,6 @@ import step2.util.Validator;
 
 public class Point {
 
-	private static final int THRESHOLD = 5;
 	private static final Map<Direction, Point> CACHE = new EnumMap<Direction, Point>(
 		Arrays.stream(Direction.values())
 			.collect(Collectors.toMap(value -> value, Point::new))
@@ -28,15 +27,15 @@ public class Point {
 		return CACHE.get(direction);
 	}
 
-	public static Point firstPointFrom(IntSupplier supplier) {
+	public static Point firstPointFrom(BooleanSupplier supplier) {
 		Validator.notNull(supplier, ErrorTarget.SUPPLIER);
-		if (supplier.getAsInt() < THRESHOLD) {
+		if (supplier.getAsBoolean()) {
 			return CACHE.get(Direction.STRAIGHT);
 		}
 		return CACHE.get(Direction.RIGHT);
 	}
 
-	public static Point middlePointFrom(Point previousPoint, IntSupplier supplier) {
+	public static Point middlePointFrom(Point previousPoint, BooleanSupplier supplier) {
 		Validator.notNull(previousPoint, ErrorTarget.PREVIOUS_POINT);
 		Validator.notNull(supplier, ErrorTarget.SUPPLIER);
 
@@ -44,7 +43,7 @@ public class Point {
 			return CACHE.get(Direction.LEFT);
 		}
 
-		if (supplier.getAsInt() < THRESHOLD) {
+		if (supplier.getAsBoolean()) {
 			return CACHE.get(Direction.STRAIGHT);
 		}
 
