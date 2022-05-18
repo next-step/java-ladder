@@ -2,22 +2,20 @@ package step2.domain.player;
 
 import java.util.Objects;
 
+import step2.util.ErrorTarget;
 import step2.util.Validator;
 
 public class Name {
 
+	private static final int MAX_NAME_LENGTH = 5;
+
 	private final String value;
 
 	public Name(String input) {
-		Validator.notBlank(input);
-		validateNameLength(input);
+		Validator.notBlank(input, ErrorTarget.NAME_INPUT);
+		Validator.max(MAX_NAME_LENGTH, input.length(),
+			String.format("이름이 최대 길이는 %d 글자 입니다. 입력 : %s", MAX_NAME_LENGTH, input));
 		this.value = input;
-	}
-
-	private void validateNameLength(String input) {
-		if (input.length() > 5) {
-			throw new IllegalArgumentException("이름이 5글자를 초과합니다.");
-		}
 	}
 
 	@Override

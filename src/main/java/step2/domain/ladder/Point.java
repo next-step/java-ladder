@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.function.IntSupplier;
 import java.util.stream.Collectors;
 
+import step2.util.ErrorTarget;
 import step2.util.Validator;
 
 public class Point {
@@ -23,12 +24,12 @@ public class Point {
 	}
 
 	public static Point from(Direction direction) {
-		Validator.notNull(direction);
+		Validator.notNull(direction, ErrorTarget.DIRECTION);
 		return CACHE.get(direction);
 	}
 
 	public static Point firstPointFrom(IntSupplier supplier) {
-		Validator.notNull(supplier);
+		Validator.notNull(supplier, ErrorTarget.SUPPLIER);
 		if (supplier.getAsInt() < THRESHOLD) {
 			return CACHE.get(Direction.STRAIGHT);
 		}
@@ -36,8 +37,8 @@ public class Point {
 	}
 
 	public static Point middlePointFrom(Point previousPoint, IntSupplier supplier) {
-		Validator.notNull(previousPoint);
-		Validator.notNull(supplier);
+		Validator.notNull(previousPoint, ErrorTarget.PREVIOUS_POINT);
+		Validator.notNull(supplier, ErrorTarget.SUPPLIER);
 
 		if (previousPoint.equals(CACHE.get(Direction.RIGHT))) {
 			return CACHE.get(Direction.LEFT);
@@ -51,7 +52,7 @@ public class Point {
 	}
 
 	public static Point lastPointFrom(Point previousPoint) {
-		Validator.notNull(previousPoint);
+		Validator.notNull(previousPoint, ErrorTarget.PREVIOUS_POINT);
 		if (previousPoint.equals(CACHE.get(Direction.RIGHT))) {
 			return CACHE.get(Direction.LEFT);
 		}

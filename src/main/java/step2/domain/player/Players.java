@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import step2.util.ErrorTarget;
 import step2.util.Validator;
 
 public class Players {
@@ -16,29 +17,18 @@ public class Players {
 	private final Set<Player> values = new HashSet<>();
 
 	public Players(String input) {
-		Validator.notBlank(input);
+		Validator.notBlank(input, ErrorTarget.NAME_INPUT);
 
 		String[] split = input.split(DELIMITER);
 		Set<Player> players = Stream.of(split)
 			.map(Player::new)
 			.collect(Collectors.toSet());
 
-		validateDuplication(split.length, players.size());
-		validateMinCount(players.size());
+		int setSize = players.size();
+		Validator.equivalent(split.length, setSize, String.format("입력 값에 중복이 존재합니다. 입력 : %s", input));
+		Validator.min(MIN_COUNT, setSize, String.format("플레이어의 최소 숫자는 %d 입니다. 입력 : %d", MIN_COUNT, setSize));
 
 		values.addAll(players);
-	}
-
-	private void validateDuplication(int inputSize, int setSize) {
-		if (inputSize != setSize) {
-			throw new IllegalArgumentException("입력 값에 중복된 이름이 있습니다.");
-		}
-	}
-
-	private void validateMinCount(int size) {
-		if (size < MIN_COUNT) {
-			throw new IllegalArgumentException("플레이어는 최소 두 명이어야 합니다.");
-		}
 	}
 
 	public int numberOfPlayer() {
