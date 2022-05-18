@@ -2,17 +2,17 @@ package ladder.domain;
 
 import ladder.exception.InvalidNameException;
 
-public class Name {
+public class Person {
 
     public static final int MAX_LENGTH = 5;
 
-    private final String value;
+    private final String name;
 
-    public Name(String value) {
-        if (isLowerMaxLength(value)) {
+    public Person(String name) {
+        if (isLowerMaxLength(name)) {
             throw new InvalidNameException();
         }
-        this.value = value;
+        this.name = name;
     }
 
     private boolean isLowerMaxLength(String value) {
