@@ -7,9 +7,9 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import java.util.List;
 
-import static ladder.domain.ladder.RowTest.LEFT_ROW;
-import static ladder.domain.ladder.RowTest.RIGHT_ROW;
-import static ladder.domain.ladder.RowTest.UNCONNECTED_ROW;
+import static ladder.domain.ladder.LineTest.LEFT_LINE;
+import static ladder.domain.ladder.LineTest.RIGHT_LINE;
+import static ladder.domain.ladder.LineTest.UNCONNECTED_LINE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
@@ -17,9 +17,9 @@ import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 class LadderTest {
     @ParameterizedTest
     @NullAndEmptySource
-    void Ladder는_rows_없이_생성_할_경우_예외를_발생_시킨다(List<Row> rows) {
+    void Ladder는_lines_없이_생성_할_경우_예외를_발생_시킨다(List<Line> lines) {
         assertThatThrownBy(
-                () -> new Ladder(rows)
+                () -> new Ladder(lines)
         ).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -37,10 +37,10 @@ class LadderTest {
     void trace는_position을_사다리를_따라서_이동된_위치를_반환한다() {
         Position position = new Position(2);
         Ladder ladder = new Ladder(List.of(
-                RIGHT_ROW,
-                UNCONNECTED_ROW,
-                LEFT_ROW,
-                LEFT_ROW
+                RIGHT_LINE,
+                UNCONNECTED_LINE,
+                LEFT_LINE,
+                LEFT_LINE
         ));
 
         Position movedPosition = ladder.trace(position);

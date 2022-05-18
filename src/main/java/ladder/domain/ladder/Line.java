@@ -7,14 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Row {
+public class Line {
     private final List<Point> points;
 
-    public Row() {
+    public Line() {
         this(new ArrayList<>());
     }
 
-    public Row(List<Point> points) {
+    public Line(List<Point> points) {
         validate(points);
         this.points = new ArrayList<>(points);
     }
@@ -25,24 +25,24 @@ public class Row {
         }
     }
 
-    private Row extend(Point point) {
+    private Line extend(Point point) {
         List<Point> points = new ArrayList<>(this.points);
         points.add(point);
-        return new Row(points);
+        return new Line(points);
     }
 
-    public static Row generateByWidth(int width) {
-        return new Row()
+    public static Line generateByWidth(int width) {
+        return new Line()
                 .extendFirst()
                 .extend(width - 1)
                 .extendLast();
     }
 
-    private Row extendFirst() {
+    private Line extendFirst() {
         return extend(Point.first());
     }
 
-    private Row extend(int targetWidth) {
+    private Line extend(int targetWidth) {
         if (width() >= targetWidth) {
             return this;
         }
@@ -52,7 +52,7 @@ public class Row {
         ).extend(targetWidth);
     }
 
-    private Row extendLast() {
+    private Line extendLast() {
         return extend(getLastPoint().nextLast());
     }
 

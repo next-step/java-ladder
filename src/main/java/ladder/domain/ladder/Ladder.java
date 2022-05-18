@@ -10,23 +10,23 @@ import java.util.stream.IntStream;
 public class Ladder {
     public static final int INITIAL_HEIGHT = 0;
 
-    private final List<Row> rows;
+    private final List<Line> lines;
 
-    public Ladder(List<Row> rows) {
-        validate(rows);
-        this.rows = new ArrayList<>(rows);
+    public Ladder(List<Line> lines) {
+        validate(lines);
+        this.lines = new ArrayList<>(lines);
     }
 
-    private void validate(List<Row> rows) {
-        if (rows == null || rows.isEmpty()) {
-            throw new IllegalArgumentException("rows는 빈 값일 수 없습니다.");
+    private void validate(List<Line> lines) {
+        if (lines == null || lines.isEmpty()) {
+            throw new IllegalArgumentException("lines는 빈 값일 수 없습니다.");
         }
     }
 
     public Position trace(Position position) {
         Position movingPosition = position;
-        for (Row row : rows) {
-            movingPosition = row.trace(movingPosition);
+        for (Line line : lines) {
+            movingPosition = line.trace(movingPosition);
         }
         return movingPosition;
     }
@@ -34,15 +34,15 @@ public class Ladder {
     public static Ladder generateByWidthAndHeight(int width, int height) {
         return new Ladder(
                 IntStream.range(INITIAL_HEIGHT, height)
-                        .mapToObj(i -> Row.generateByWidth(width))
+                        .mapToObj(i -> Line.generateByWidth(width))
                         .collect(Collectors.toList())
         );
     }
 
     @Override
     public String toString() {
-        return rows.stream()
-                .map(Row::toString)
+        return lines.stream()
+                .map(Line::toString)
                 .collect(Collectors.joining("\n"));
 
     }
