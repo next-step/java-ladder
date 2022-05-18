@@ -24,6 +24,7 @@ public class LineTest {
     }
 
     @Test
+    @DisplayName("참가자 수는 최소 2 이상이여야한다.")
     void invalidCountOfPerson() {
         assertThatThrownBy(() -> new Line(1, new RandomGeneration()))
                 .isInstanceOf(InvalidCountOfPersonException.class)
