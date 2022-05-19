@@ -1,13 +1,13 @@
 package ladder.domain;
 
-import org.assertj.core.api.Assertions;
+import ladder.exception.InvalidParticipantNumberException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ParticipantsTest {
 
@@ -22,5 +22,15 @@ class ParticipantsTest {
                 new Participant("e")
         ));
         assertThat(participants.size()).isEqualTo(5);
+    }
+
+    @Test
+    @DisplayName("참가자들의 수가 두명 이하이면 InvalidParticipantsNumberException 발생")
+    void throwInvalidParticipantsNumberExceptionTest() {
+        assertThatThrownBy(() -> new Participants(List.of()))
+                .isInstanceOf(InvalidParticipantNumberException.class);
+
+        assertThatThrownBy(() -> new Participants(List.of(new Participant("a"))))
+                .isInstanceOf(InvalidParticipantNumberException.class);
     }
 }
