@@ -1,11 +1,11 @@
-package ladder.domain;
+package ladder.strategy;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class RandomLineStrategy implements LineStrategy{
+public class RandomLineStrategy implements LineStrategy {
     private static final Random RANDOM = new Random();
     private static final int START_INDEX = 1;
     private static final int GO_TO_PREVIOUS_INDEX = -1;

@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.domain.*;
+import ladder.strategy.RandomLineStrategy;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 

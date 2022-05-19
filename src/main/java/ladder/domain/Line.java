@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.strategy.LineStrategy;
+
 import java.util.List;
 
 public class Line {
