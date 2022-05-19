@@ -20,7 +20,7 @@ public class Point {
         return Point.of(new Direction(prevPoint.isRight(), false));
     }
 
-    public static Point createPointForMiddleLine(Point prevPoint, GenerateStrategy generateStrategy) {
+    public static Point createPointForMiddleLines(Point prevPoint, GenerateStrategy generateStrategy) {
         if (prevPoint.isRight()) {
             return Point.of(new Direction(true, false));
         }

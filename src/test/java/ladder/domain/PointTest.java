@@ -31,14 +31,14 @@ class PointTest {
     @Test
     @DisplayName("이전 point 가 왼쪽방향 갖고 있으면 현재 point 는 오른쪽 방향 갖음")
     void createForMidLineTest() {
-        Point pointForMiddleLine = Point.createPointForMiddleLine(pointForFirstLine, () -> true);
+        Point pointForMiddleLine = Point.createPointForMiddleLines(pointForFirstLine, () -> true);
         assertThat(pointForMiddleLine.isLeft()).isTrue();
     }
 
     @Test
     @DisplayName("이전 point 가 왼쪽방향 갖고 있지 않으면 현재 point 는 오른쪽 방향 갖지 않음")
     void createForMidLineTest_isNotLeft() {
-        Point pointForMiddleLine = Point.createPointForMiddleLine(pointForFirstLine, () -> false);
+        Point pointForMiddleLine = Point.createPointForMiddleLines(pointForFirstLine, () -> false);
         assertThat(pointForMiddleLine.isRight()).isFalse();
     }
 
