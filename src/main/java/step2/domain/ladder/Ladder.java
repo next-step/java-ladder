@@ -3,7 +3,6 @@ package step2.domain.ladder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BooleanSupplier;
-import java.util.stream.Collectors;
 
 import step2.util.ErrorTarget;
 import step2.util.Validator;
@@ -26,12 +25,5 @@ public class Ladder {
 
 	public List<Line> getLines() {
 		return lines;
-	}
-
-	@Override
-	public String toString() {
-		return lines.stream()
-			.map(Line::toString)
-			.collect(Collectors.joining("\n"));
 	}
 }
