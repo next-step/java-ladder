@@ -15,4 +15,14 @@ public class PersonTest {
         assertThatThrownBy(() -> new Person("qwerty")).isInstanceOf(InvalidNameException.class)
                 .hasMessage("이름은 5 글자를 초과할 수 없습니다.");
     }
+
+    @Test
+    @DisplayName("이름이 Null 이거나 공란일 경우 InvalidNameException 반환한다.")
+    void invalidNullOrBlank() {
+        assertThatThrownBy(() -> new Person(" ")).isInstanceOf(InvalidNameException.class)
+                .hasMessage("이름은 공란이거나 Null 일 수 없습니다.");
+
+        assertThatThrownBy(() -> new Person(null)).isInstanceOf(InvalidNameException.class)
+                .hasMessage("이름은 공란이거나 Null 일 수 없습니다.");
+    }
 }

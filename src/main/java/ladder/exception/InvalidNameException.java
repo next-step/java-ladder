@@ -9,4 +9,8 @@ public class InvalidNameException extends IllegalArgumentException {
     public InvalidNameException() {
         super(String.format(MESSAGE, Person.MAX_LENGTH));
     }
+
+    public InvalidNameException(String message) {
+        super(message);
+    }
 }
