@@ -1,8 +1,10 @@
 package ladder.domain;
 
 import ladder.exception.InvalidCountOfPersonException;
+import ladder.util.SplitUtil;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -12,6 +14,10 @@ public class People {
     private static final int EXCLUSION_POINT_VALUE = 1;
 
     private final List<Person> people;
+
+    public People(String value) {
+        this(convertToPeople(SplitUtil.split(value)));
+    }
 
     public People(String... people) {
         this(convertToPeople(people));
@@ -32,5 +38,18 @@ public class People {
 
     public int pointCount() {
         return people.size() - EXCLUSION_POINT_VALUE;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        People people1 = (People) o;
+        return Objects.equals(people, people1.people);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(people);
     }
 }

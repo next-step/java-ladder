@@ -14,12 +14,12 @@ public class SplitUtil {
         throw new NotSupportException();
     }
 
-    public static List<String> split(String values) {
+    public static String[] split(String values) {
         return split(values, DEFAULT_SEPARATOR);
     }
 
-    public static List<String> split(String values, String separator) {
-        return List.of(trim(values).split(separator));
+    public static String[] split(String values, String separator) {
+        return trim(values).split(separator);
     }
 
     private static String trim(String value) {
