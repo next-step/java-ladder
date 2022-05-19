@@ -1,43 +1,50 @@
 package ladder.domain.ladder;
 
-import ladder.domain.player.Players;
-import ladder.domain.row.Rows;
+import ladder.domain.point.Position;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import java.util.List;
 
+import static ladder.domain.ladder.LineTest.LEFT_LINE;
+import static ladder.domain.ladder.LineTest.RIGHT_LINE;
+import static ladder.domain.ladder.LineTest.UNCONNECTED_LINE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
 class LadderTest {
-    @Test
-    void Ladder는_players_없이_생성할_경우_예외를_발생시킨다() {
+    @ParameterizedTest
+    @NullAndEmptySource
+    void Ladder는_lines_없이_생성_할_경우_예외를_발생_시킨다(List<Line> lines) {
         assertThatThrownBy(
-                () -> new Ladder(null, Rows.of(1, 1))
+                () -> new Ladder(lines)
         ).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void Ladder는_rows_없이_생성할_경우_예외를_발생시킨다() {
-        assertThatThrownBy(
-                () -> new Ladder(Players.from(List.of("name")), null)
-        ).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void of는_players와_height로_Ladder를_생성한다() {
-        Players players = Players.from(List.of("name"));
+    void generateByWidthAndHeight는_width와_height로_Ladder를_생성한다() {
+        int width = 4;
         int height = 5;
 
-        Ladder ladder = Ladder.of(players, height);
+        Ladder ladder = Ladder.generateByWidthAndHeight(width, height);
 
-        assertAll(
-                () -> assertInstanceOf(Ladder.class, ladder),
-                () -> assertEquals(5, ladder.getRows().size()),
-                () -> assertEquals(players.size(), ladder.getPlayers().size()),
-                () -> assertEquals("name", ladder.getPlayers().getPlayers().get(0).getName())
-        );
+        assertInstanceOf(Ladder.class, ladder);
+    }
+
+    @Test
+    void trace는_position을_사다리를_따라서_이동된_위치를_반환한다() {
+        Position position = new Position(2);
+        Ladder ladder = new Ladder(List.of(
+                RIGHT_LINE,
+                UNCONNECTED_LINE,
+                LEFT_LINE,
+                LEFT_LINE
+        ));
+
+        Position movedPosition = ladder.trace(position);
+
+        assertEquals(movedPosition, new Position(1));
     }
 }

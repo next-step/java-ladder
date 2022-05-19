@@ -1,5 +1,7 @@
 package ladder.domain.player;
 
+import java.util.Objects;
+
 public class Name {
     public static final int MAX_LENGTH = 5;
 
@@ -11,8 +13,8 @@ public class Name {
     }
 
     private void validate(String name) {
-        if (name == null) {
-            throw new IllegalArgumentException("이름은 null 일 수 없습니다.");
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("이름은 빈 값 일 수 없습니다.");
         }
 
         if (name.length() > MAX_LENGTH) {
@@ -24,7 +26,21 @@ public class Name {
         return new Name(name);
     }
 
-    public String getName() {
+    @Override
+    public String toString() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Name name1 = (Name) o;
+        return Objects.equals(name, name1.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
