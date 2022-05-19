@@ -1,8 +1,10 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.utils;
 
 import java.util.Random;
 
-public class LadderPointGenerator {
+public final class LadderPointGenerator {
+
+    private LadderPointGenerator() { }
 
     public static boolean generatePoint() {
         return new Random().nextBoolean();

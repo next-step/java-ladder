@@ -1,6 +1,6 @@
 package nextstep.ladder.domain;
 
-import static nextstep.ladder.domain.LadderPointGenerator.generatePoint;
+import static nextstep.ladder.utils.LadderPointGenerator.generatePoint;
 
 import java.util.ArrayList;
 import java.util.List;

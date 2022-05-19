@@ -21,10 +21,7 @@ public class LadderLines {
     }
 
     public int lineCount() {
-        return ladderLines.stream()
-            .findAny()
-            .orElseThrow(() -> new IllegalStateException("연결을 확인 할 수 없음"))
-            .size();
+        return names.size();
     }
 
     public List<String> getNames() {
@@ -39,12 +36,10 @@ public class LadderLines {
     }
 
     public int checkResultOf(String name) {
-        int pointIndex = names.indexOf(name);
+        int pointIndex = names.indexOf(new Name(name));
 
-        int heightIndex = 0;
-        while (heightIndex < ladderLines.size()) {
-            pointIndex = ladderLines.get(heightIndex).move(pointIndex);
-            ++heightIndex;
+        for (LadderLine ladderLine : ladderLines) {
+            pointIndex = ladderLine.move(pointIndex);
         }
 
         return pointIndex;

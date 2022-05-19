@@ -1,18 +1,18 @@
 package nextstep.ladder.domain;
 
 import static java.lang.Boolean.FALSE;
-import static java.lang.Boolean.TRUE;
-import static nextstep.ladder.domain.LadderPointGenerator.generatePoint;
+import static nextstep.ladder.utils.LadderPointGenerator.generatePoint;
 
 import java.util.Objects;
 
 public class Direction {
+    private static final String CANNOT_CONNET_BIDIRECTION = "양방향 연결은 불가함.";
     private boolean left;
     private boolean right;
 
     private Direction(boolean left, boolean right) {
         if (left && right) {
-            throw new IllegalStateException();
+            throw new IllegalStateException(CANNOT_CONNET_BIDIRECTION);
         }
 
         this.left = left;
@@ -75,10 +75,6 @@ public class Direction {
     protected void set(Direction direction) {
         this.left = direction.left;
         this.right = direction.right;
-    }
-
-    public boolean isConnected() {
-        return isLeft() || isRight();
     }
 
 }
