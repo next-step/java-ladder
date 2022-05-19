@@ -8,7 +8,8 @@ public enum ErrorTarget implements Supplier<String> {
 	DIRECTION_LIST("방향 리스트"),
 	HEIGHT("사다리높이"),
 	PREVIOUS_POINT("이전 포인트"),
-	SUPPLIER("생성 전략");
+	SUPPLIER("생성 전략"),
+	RESULT_LIST("실행 결과 리스트");
 
 	private final String message;
 

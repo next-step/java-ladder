@@ -34,8 +34,17 @@ public class Validator {
 
 	public static void duplicate(Collection<?> collection, String message) {
 		long distinct = collection.stream().distinct().count();
-		if (distinct != collection.size()) {
+		equivalent(distinct, collection.size(), message);
+	}
+
+	public static void equivalent(long operand1, int operand2, String message) {
+		if (operand1 != operand2) {
 			throw new IllegalArgumentException(message);
 		}
 	}
+
+	public static void equivalent(int operand1, int operand2, String message) {
+		equivalent((long)operand1, operand2, message);
+	}
+
 }
