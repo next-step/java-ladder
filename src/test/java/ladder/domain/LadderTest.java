@@ -4,10 +4,7 @@ import ladder.pattern.CustomValueGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.NullSource;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.*;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -30,7 +27,11 @@ class LadderTest {
 
     static Stream<Arguments> booleanListProvider() {
         return Stream.of(
-                arguments(List.of(true, false, true, false, false, true, false, true, true, true, false, false, false, false, false, true, false, false, false, false),
+                arguments(List.of(true, false, true, false,
+                                false, true, false, true,
+                                true, true, false, false,
+                                false, false, false, true,
+                                false, false, false, false),
                         List.of(
                                 new Line(List.of(new Point(0, RIGHT), new Point(1, LEFT), new Point(2, RIGHT), new Point(3, LEFT), new Point(4, STRAIGHT))),
                                 new Line(List.of(new Point(0, STRAIGHT), new Point(1, RIGHT), new Point(2, LEFT), new Point(3, RIGHT), new Point(4, LEFT))),
@@ -72,5 +73,21 @@ class LadderTest {
     @DisplayName("사다리 높이가 1 미만인 경우 예외가 발생한다.")
     void create_사다리_높이_1_미만(int height) {
         assertThatThrownBy(() -> Ladder.create(3, height, () -> true)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @DisplayName("사다리 타기 게임 실행 후, 최종 위치의 포지션을 반환한다.")
+    @CsvSource(value = {
+            "0, 2",
+            "1, 1",
+            "2, 0"
+    })
+    void move_최종_포지션_반환(int startPosition, int finalPosition) {
+        CustomValueGenerator customValueGenerator = new CustomValueGenerator(List.of(
+                true, true,
+                false, true,
+                true, false));
+        Ladder ladder = Ladder.create(3, 3, customValueGenerator);
+        assertThat(ladder.finalPosition(startPosition)).isEqualTo(finalPosition);
     }
 }

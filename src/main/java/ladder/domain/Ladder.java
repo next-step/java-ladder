@@ -39,6 +39,14 @@ public class Ladder {
         }
     }
 
+    int finalPosition(int startPosition) {
+        int position = startPosition;
+        for (Line line : lines) {
+            position = line.move(position);
+        }
+        return position;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
