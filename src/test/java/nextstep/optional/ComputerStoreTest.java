@@ -2,13 +2,16 @@ package nextstep.optional;
 
 import nextstep.optional.Computer.Soundcard;
 import nextstep.optional.Computer.USB;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@DisplayName("Optional 실습 - ComputerStore 클래스 테스트")
 public class ComputerStoreTest {
     @Test
-    public void getVersion() {
+    @DisplayName("getVersion 테스트")
+    void getVersion() {
         String version = "pobi's usb";
         Soundcard soundcard = new Soundcard(new USB(version));
         Computer computer = new Computer(soundcard);
@@ -16,24 +19,28 @@ public class ComputerStoreTest {
     }
 
     @Test
-    public void getVersionWhenComputerIsNull() throws Exception {
+    @DisplayName("getVersion 테스트 - Computer null일 경우 기본값 처리")
+    void getVersionWhenComputerIsNull() throws Exception {
         assertThat(ComputerStore.getVersion(null)).isEqualTo(ComputerStore.UNKNOWN_VERSION);
     }
 
     @Test
-    public void getVersionWhenSoundcardIsNull() throws Exception {
+    @DisplayName("getVersion 테스트 - Soundcard null일 경우 기본값 처리")
+    void getVersionWhenSoundcardIsNull() throws Exception {
         Computer computer = new Computer(null);
         assertThat(ComputerStore.getVersion(computer)).isEqualTo(ComputerStore.UNKNOWN_VERSION);
     }
 
     @Test
-    public void getVersionWhenUSBIsNull() throws Exception {
+    @DisplayName("getVersion 테스트 - usb null일 경우 기본값 처리")
+    void getVersionWhenUSBIsNull() throws Exception {
         Computer computer = new Computer(new Soundcard(null));
         assertThat(ComputerStore.getVersion(computer)).isEqualTo(ComputerStore.UNKNOWN_VERSION);
     }
 
     @Test
-    public void getVersionOptional() {
+    @DisplayName("Optional이용한 getVersion 테스트")
+    void getVersionOptional() {
         String version = "pobi's usb";
         Soundcard soundcard = new Soundcard(new USB(version));
         Computer computer = new Computer(soundcard);
@@ -41,18 +48,21 @@ public class ComputerStoreTest {
     }
 
     @Test
-    public void getVersionOptionalWhenComputerIsNull() throws Exception {
+    @DisplayName("Optional이용한 getVersion 테스트 - Computer null일 경우 기본값 처리")
+    void getVersionOptionalWhenComputerIsNull() throws Exception {
         assertThat(ComputerStore.getVersionOptional(null)).isEqualTo(ComputerStore.UNKNOWN_VERSION);
     }
 
     @Test
-    public void getVersionOptionalWhenSoundcardIsNull() throws Exception {
+    @DisplayName("Optional이용한 getVersion 테스트 - Soundcard null일 경우 기본값 처리")
+    void getVersionOptionalWhenSoundcardIsNull() throws Exception {
         Computer computer = new Computer(null);
         assertThat(ComputerStore.getVersionOptional(computer)).isEqualTo(ComputerStore.UNKNOWN_VERSION);
     }
 
     @Test
-    public void getVersionOptionalWhenUSBIsNull() throws Exception {
+    @DisplayName("Optional이용한 getVersion 테스트 - USB null일 경우 기본값 처리")
+    void getVersionOptionalWhenUSBIsNull() throws Exception {
         Computer computer = new Computer(new Soundcard(null));
         assertThat(ComputerStore.getVersionOptional(computer)).isEqualTo(ComputerStore.UNKNOWN_VERSION);
     }

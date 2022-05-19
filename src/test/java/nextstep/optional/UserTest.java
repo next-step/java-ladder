@@ -1,14 +1,17 @@
 package nextstep.optional;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static nextstep.optional.User.ageIsInRange1;
 import static nextstep.optional.User.ageIsInRange2;
 import static org.assertj.core.api.Assertions.assertThat;
 
+@DisplayName("Optional 실습 - User 클래스 테스트")
 public class UserTest {
     @Test
-    public void whenFiltersWithoutOptional_thenCorrect() {
+    @DisplayName("일반 조건문으로 User age 테스트")
+    void whenFiltersWithoutOptional_thenCorrect() {
         assertThat(ageIsInRange1(new User("crong", 35))).isTrue();
         assertThat(ageIsInRange1(new User("crong", 48))).isFalse();
         assertThat(ageIsInRange1(new User("crong", null))).isFalse();
@@ -17,7 +20,8 @@ public class UserTest {
     }
 
     @Test
-    public void whenFiltersWithOptional_thenCorrect() {
+    @DisplayName("Optional활용해 User age 조건에 따른 반환 테스트")
+    void whenFiltersWithOptional_thenCorrect() {
         assertThat(ageIsInRange2(new User("crong", 35))).isTrue();
         assertThat(ageIsInRange2(new User("crong", 48))).isFalse();
         assertThat(ageIsInRange2(new User("crong", null))).isFalse();
