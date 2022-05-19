@@ -13,6 +13,10 @@ public class Point {
         this.direction = direction;
     }
 
+    public int move() {
+        return position + direction.getUnitDirection();
+    }
+
     public boolean isPreviousPoint(Point nextPoint) {
         return nextPoint.position - this.position == UNIT_HORIZONTAL_LINE_LENGTH;
     }
