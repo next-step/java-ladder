@@ -21,21 +21,28 @@ class ParticipantGroupTest {
     @Test
     @DisplayName("참가자 수를 카운팅 한다.")
     void participantsCount_참가자_카운팅() {
-        List<Participant> participants = List.of(new Participant(new Name("wu2ee")), new Participant(new Name("pobi")), new Participant(new Name("honux")));
+        List<Participant> participants = List.of(new Participant("wu2ee"), new Participant("pobi"), new Participant("honux"));
         assertThat(new ParticipantGroup(participants).participantsCount()).isEqualTo(3);
     }
 
     @Test
     @DisplayName("참가자가 2명 미만일 경우 예외가 발생한다.")
     void ParticipantsGroup_참가자_2명_미만() {
-        List<Participant> participants = List.of(new Participant(new Name("wu2ee")));
+        List<Participant> participants = List.of(new Participant("wu2ee"));
         assertThatThrownBy(() -> new ParticipantGroup(participants)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("참가자 이름 중 최대 길이를 반환한다.")
     void maxParticipantNameLength_참가자_이름_최대_길이() {
-        List<Participant> participants = List.of(new Participant(new Name("k")), new Participant(new Name("kbstv")), new Participant(new Name("kb")));
+        List<Participant> participants = List.of(new Participant("k"), new Participant("kbstv"), new Participant("kb"));
         assertThat(new ParticipantGroup(participants).maxParticipantNameLength()).isEqualTo(5);
+    }
+
+    @Test
+    @DisplayName("참가자 이름이 중복될 경우 예외가 발생한다.")
+    void ParticipantGroup_참가자_이름_중복() {
+        List<Participant> participants = List.of(new Participant("wu2ee"), new Participant("pobi"), new Participant("wu2ee"));
+        assertThatThrownBy(() -> new ParticipantGroup(participants)).isInstanceOf(IllegalArgumentException.class);
     }
 }
