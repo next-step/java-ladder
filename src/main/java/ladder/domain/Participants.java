@@ -9,14 +9,15 @@ public class Participants {
 
     private final List<Participant> participants;
 
-    private Participants(String participantsNames) {
-        participants = Arrays.stream(participantsNames.split(PARTICIPANT_DELIMITER))
-                .map(Participant::from)
-                .collect(Collectors.toList());
+    private Participants(List<Participant> participants) {
+        this.participants = participants;
     }
 
     public static Participants from(String participantsNames) {
-        return new Participants(participantsNames);
+        List<Participant> participants = Arrays.stream(participantsNames.split(PARTICIPANT_DELIMITER))
+                .map(Participant::from)
+                .collect(Collectors.toList());
+        return new Participants(participants);
     }
 
     public List<Participant> getParticipants() {

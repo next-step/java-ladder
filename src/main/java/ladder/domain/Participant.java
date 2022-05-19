@@ -11,7 +11,7 @@ public class Participant {
         return new Participant(Name.from(name));
     }
 
-    public String getName() {
+    public String name() {
         return name.getName();
     }
 }

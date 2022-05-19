@@ -9,11 +9,11 @@ public class ResultView {
     private static final String CROSSABLE_LINE = "-----|";
     private static final String ENTER = System.lineSeparator();
     private static final String NAMES_FORMAT = "%5s ";
+    private static StringBuilder sb = new StringBuilder();
 
     private ResultView() {}
 
     public static void printResult(Participants participants, Ladder ladder) {
-        StringBuilder sb = new StringBuilder();
         sb.append("실행결과\n");
         printParticipants(sb, participants);
         printLadder(sb, ladder);
@@ -23,7 +23,7 @@ public class ResultView {
 
     private static void printParticipants(StringBuilder sb, Participants participants) {
         sb.append(ENTER);
-        participants.getParticipants().forEach(participant -> sb.append(String.format(NAMES_FORMAT, participant.getName())));
+        participants.getParticipants().forEach(participant -> sb.append(String.format(NAMES_FORMAT, participant.name())));
     }
 
     private static void printLadder(StringBuilder sb, Ladder ladder) {

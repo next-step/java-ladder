@@ -1,21 +1,15 @@
 package ladder.domain;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Ladder {
     private final List<Line> lines;
 
     private Ladder(List<Line> lines) {
+        if (lines == null || lines.isEmpty()) {
+            throw new IllegalArgumentException("사다리 라인들이 존재하지 않습니다.");
+        }
         this.lines = lines;
-    }
-
-    public static Ladder of(int theNumberOfLines, int countOfParticipants, LineStrategy lineStrategy) {
-        List<Line> init = IntStream.range(0, theNumberOfLines)
-                .mapToObj(i -> Line.of(countOfParticipants, lineStrategy))
-                .collect(Collectors.toList());
-        return new Ladder(init);
     }
 
     public static Ladder from(List<Line> lines) {

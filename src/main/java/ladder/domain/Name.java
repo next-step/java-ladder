@@ -1,14 +1,22 @@
 package ladder.domain;
 
 public class Name {
-    public static final int MAX_LENGTH = 5;
+    private static final int MAX_LENGTH = 5;
+
     private final String name;
 
     private Name(String name) {
-        if(name.length() > MAX_LENGTH) {
-            throw new IllegalArgumentException("참여할 사람의 이름은 최대 5글자까지만 입력가능합니다.");
-        }
+        validateName(name);
         this.name = name;
+    }
+
+    private void validateName(String name) {
+        if (name.length() > MAX_LENGTH) {
+            throw new IllegalArgumentException("참여자 이름은 최대 " + MAX_LENGTH + "글자까지만 입력가능합니다.");
+        }
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("참여자 이름이 존재하지 않습니다.");
+        }
     }
 
     public static Name from(String name) {
