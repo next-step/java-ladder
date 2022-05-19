@@ -9,6 +9,9 @@ import java.util.stream.IntStream;
 
 public final class Line {
 
+    private static final int ZERO = 0;
+    private static final int ONE = 1;
+    private static final boolean FALSE = false;
     private static final String WIDTH_LINE = "-----";
     private static final String EMPTY_WIDTH_LINE = "     ";
     private static final String HEIGHT_LINE = "|";
@@ -30,18 +33,18 @@ public final class Line {
 
     private static Function<Integer, List<Boolean>> init() {
         return countOfPeople -> IntStream
-                .range(0, countOfPeople)
-                .mapToObj(i -> Math.round(Math.random()) == 1)
+                .range(ZERO, countOfPeople)
+                .mapToObj(i -> Math.round(Math.random()) == ONE)
                 .collect(Collectors.toList());
     }
 
     private static UnaryOperator<List<Boolean>> removable() {
         return points -> {
-            int lastIndex = points.size() - 1;
-            IntStream.range(0, lastIndex)
-                    .filter(i -> points.get(i) && points.get(i + 1))
-                    .forEach(i -> points.set(i + 1, false));
-            points.set(lastIndex, false);
+            int lastIndex = points.size() - ONE;
+            IntStream.range(ZERO, lastIndex)
+                    .filter(i -> points.get(i) && points.get(i + ONE))
+                    .forEach(i -> points.set(i + ONE, FALSE));
+            points.set(lastIndex, FALSE);
 
             return points;
         };
@@ -55,8 +58,8 @@ public final class Line {
     }
 
     private String addHeight(int index) {
-        int nextIndex = index + 1;
-        int lastIndex = this.points.size() - 1;
+        int nextIndex = index + ONE;
+        int lastIndex = this.points.size() - ONE;
         if (nextIndex == lastIndex) {
             return HEIGHT_LINE;
         }
@@ -71,9 +74,9 @@ public final class Line {
     }
 
     public String draw() {
-        int lastIndex = this.points.size() - 1;
+        int lastIndex = this.points.size() - ONE;
         return IntStream
-                .range(0, lastIndex)
+                .range(ZERO, lastIndex)
                 .mapToObj(joining())
                 .reduce((prev, next) -> prev + next)
                 .orElseThrow();

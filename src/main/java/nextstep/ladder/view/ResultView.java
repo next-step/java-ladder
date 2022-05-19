@@ -9,6 +9,7 @@ import java.util.stream.IntStream;
 
 public class ResultView {
 
+    private static final int ZERO = 0;
     private final static String RESULT_MESSAGE = "실행결과";
     private static final String EMPTY_WIDTH_LINE = "  ";
 
@@ -17,7 +18,7 @@ public class ResultView {
 
     private static String nameSpace(String name) {
         return IntStream
-                .range(0, name.length() / 2)
+                .range(ZERO, Math.floorDiv(name.length(), 2))
                 .mapToObj(i -> " ")
                 .reduce((prev, next) -> prev + next)
                 .orElseThrow();
@@ -48,7 +49,7 @@ public class ResultView {
         println(RESULT_MESSAGE);
         println();
         printName(ladder.people());
-        String firstName = ladder.people().get(0).name();
+        String firstName = ladder.people().get(ZERO).name();
         printLine(firstName, ladder.lines());
     }
 }
