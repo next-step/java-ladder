@@ -16,7 +16,8 @@ public class LineTest {
     @Test
     @DisplayName("참가자 수가 3명일 경우 2개의 좌표가 생긴다.")
     void create() {
-        assertThat(new Line(new People("tom", "paul", "anna"), new RandomGeneration()).countPoint()).isEqualTo(2);
+        assertThat(new Line(new People("tom", "paul", "anna"), count -> List.of(Point.CONNECTED, Point.DISCONNECTED)))
+                .isEqualTo(new Line(Point.CONNECTED, Point.DISCONNECTED));
     }
 
     @Test

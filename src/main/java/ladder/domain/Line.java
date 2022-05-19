@@ -18,6 +18,10 @@ public class Line {
         this(strategy.generatePoints(people.pointCount()));
     }
 
+    public Line(Point... points) {
+        this(List.of(points));
+    }
+
     public Line(List<Point> points) {
         validatePoints(points);
         this.points = points;
@@ -42,10 +46,6 @@ public class Line {
         }
         return points.get(currentIndex).isConnect()
                 && points.get(currentIndex - PREVIOUS_VALUE).isConnect();
-    }
-
-    public int countPoint() {
-        return points.size();
     }
 
     @Override
