@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import step2.Results;
 import step2.domain.ladder.Direction;
 import step2.domain.ladder.Ladder;
 import step2.domain.ladder.Line;
@@ -22,21 +23,15 @@ public class OutputView {
 		DIRECTION_PRINT_MAP.put(Direction.RIGHT, "  |--");
 	}
 
-	public void showCreationResult(Players players, Ladder ladder) {
-		show("실행 결과 - 생성");
-		showPlayersResult(players);
-		showLadderResult(ladder);
-	}
-
-	private void showPlayersResult(Players players) {
-		String result = players.getValues().stream()
-			.map(player -> String.format("%-5s", player.getName()))
-			.sorted(String::compareToIgnoreCase)
+	public void showPlayersResult(Players players) {
+		String result = players.getValues()
+			.stream()
+			.map(player -> format(player.getName()))
 			.collect(Collectors.joining());
 		show(result);
 	}
 
-	private void showLadderResult(Ladder ladder) {
+	public void showLadderResult(Ladder ladder) {
 		String result = ladder.getLines().stream()
 			.map(this::mapToConsolePrint)
 			.collect(Collectors.joining(LINE_BREAK));
@@ -50,7 +45,19 @@ public class OutputView {
 			.collect(Collectors.joining());
 	}
 
-	private void show(String output) {
+	public void showResults(Results results) {
+		String result = results.getValues()
+			.stream()
+			.map(this::format)
+			.collect(Collectors.joining());
+		show(result);
+	}
+
+	private String format(String input) {
+		return String.format("%-5s", input);
+	}
+
+	public void show(String output) {
 		out.println(output);
 	}
 }

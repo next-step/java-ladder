@@ -1,5 +1,6 @@
 package step2.domain.player;
 
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -21,7 +22,7 @@ public class Players {
 
 		this.values = input.stream()
 			.map(Player::new)
-			.collect(Collectors.toSet());
+			.collect(Collectors.toCollection(LinkedHashSet::new));
 	}
 
 	public int numberOfPlayer() {

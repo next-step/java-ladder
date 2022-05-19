@@ -11,6 +11,8 @@ import step2.view.OutputView;
 
 public class LadderApplication {
 
+	private static final String END_FLAG = "All";
+
 	public static void main(String[] args) {
 
 		InputView inputView = new InputView();
@@ -18,11 +20,16 @@ public class LadderApplication {
 		BooleanSupplier supplier = new RandomBooleanSupplier();
 
 		Players players = new Players(inputView.askPlayers());
+		Results results = new Results(inputView.askExecutionResults(), players.numberOfPlayer());
 		Height height = new Height(inputView.askHeight());
-		inputView.close();
 
 		Ladder ladder = new Ladder(players.numberOfPlayer(), height, supplier);
 
-		outputView.showCreationResult(players, ladder);
+		outputView.show("실행 결과");
+		outputView.showPlayersResult(players);
+		outputView.showLadderResult(ladder);
+		outputView.showResults(results);
+
+		inputView.close();
 	}
 }
