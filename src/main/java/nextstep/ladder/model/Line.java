@@ -20,22 +20,22 @@ public final class Line {
         this.points = points;
     }
 
-    public static Line create(int countOfPerson) {
+    public static Line create(int countOfPeople) {
         List<Boolean> points = init()
-                .andThen(removeContinuity())
-                .apply(countOfPerson);
+                .andThen(removable())
+                .apply(countOfPeople);
 
         return new Line(points);
     }
 
     private static Function<Integer, List<Boolean>> init() {
-        return countOfPerson -> IntStream
-                .range(0, countOfPerson)
+        return countOfPeople -> IntStream
+                .range(0, countOfPeople)
                 .mapToObj(i -> Math.round(Math.random()) == 1)
                 .collect(Collectors.toList());
     }
 
-    private static UnaryOperator<List<Boolean>> removeContinuity() {
+    private static UnaryOperator<List<Boolean>> removable() {
         return points -> {
             int lastIndex = points.size() - 1;
             IntStream.range(0, lastIndex)
@@ -47,14 +47,14 @@ public final class Line {
         };
     }
 
-    private String isWidth(boolean prev) {
+    private String addWidth(boolean prev) {
         if (prev) {
             return WIDTH_LINE;
         }
         return EMPTY_WIDTH_LINE;
     }
 
-    private String isLastIndex(int index) {
+    private String addHeight(int index) {
         int nextIndex = index + 1;
         int lastIndex = this.points.size() - 1;
         if (nextIndex == lastIndex) {
@@ -66,7 +66,7 @@ public final class Line {
     private IntFunction<String> joining() {
         return index -> {
             boolean prev = this.points.get(index);
-            return String.join(isWidth(prev), HEIGHT_LINE, isLastIndex(index));
+            return String.join(addWidth(prev), HEIGHT_LINE, addHeight(index));
         };
     }
 
