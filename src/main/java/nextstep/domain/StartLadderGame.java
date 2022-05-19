@@ -14,7 +14,7 @@ public class StartLadderGame {
     }
 
     private void start() {
-        this.ladder.moveLines();
+        this.ladder.moveLadderLines();
     }
 
     public String findUserResult(String username) {
@@ -22,10 +22,7 @@ public class StartLadderGame {
     }
 
     public List<String> findAll() {
-        return this.users.getUsers()
-            .stream()
-            .map(u -> this.ladder.find(users.findUsernameIndex(u.getUserName())))
-            .collect(Collectors.toList());
+        return this.users.findAll(this.ladder);
     }
 
     public Ladder getLadder() {

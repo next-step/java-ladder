@@ -10,6 +10,7 @@ import java.util.stream.IntStream;
 public class LadderLine {
     private static final int WRITE_START = 1;
     private static final int LINE_LENGTH_FOR_USER = 5;
+    private static final int MOVE_USER_POINT = 6;
     private static final boolean USER_POINT = false;
     private final List<Boolean> points = new ArrayList<>();
     private List<Boolean> visitedList = new ArrayList<>();
@@ -61,11 +62,11 @@ public class LadderLine {
         }
         if (isLeftIndex(startIndex)) {
             visitLeft(startIndex);
-            return moveLadderLine(startIndex - 6);
+            return moveLadderLine(startIndex - MOVE_USER_POINT);
         }
         if (isRightIndex(startIndex)) {
             visitRight(startIndex);
-            return moveLadderLine(startIndex + 6);
+            return moveLadderLine(startIndex + MOVE_USER_POINT);
         }
         clearVisitedList();
         return startIndex;
@@ -95,7 +96,7 @@ public class LadderLine {
     private int checkLeftPoint(int i) {
         if (!this.visitedList.get(i - 1) && this.points.get(i - 1)) {
             visitLeft(i);
-            return moveLadderLine(i - 6);
+            return moveLadderLine(i - MOVE_USER_POINT);
         }
         clearVisitedList();
         return i;
@@ -104,7 +105,7 @@ public class LadderLine {
     private int checkRightPoint(int i) {
         if (!this.visitedList.get(i + 1) && this.points.get(i + 1)) {
             visitRight(i);
-            return moveLadderLine(i + 6);
+            return moveLadderLine(i + MOVE_USER_POINT);
         }
         clearVisitedList();
         return i;
@@ -112,14 +113,14 @@ public class LadderLine {
 
     private void visitRight(int i) {
         int k = i;
-        for (int j = 0; j <= 6; j++) {
+        for (int j = 0; j <= MOVE_USER_POINT; j++) {
             this.visitedList.set(k++, true);
         }
     }
 
     private void visitLeft(int i) {
         int k = i;
-        for (int j = 0; j <= 6; j++) {
+        for (int j = 0; j <= MOVE_USER_POINT; j++) {
             this.visitedList.set(k--, true);
         }
     }

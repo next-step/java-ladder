@@ -1,5 +1,6 @@
 package nextstep.view;
 
+import nextstep.domain.Ladder;
 import nextstep.domain.LadderHeight;
 import nextstep.domain.LadderResult;
 import nextstep.domain.User;
@@ -18,6 +19,10 @@ public class InputView {
         return new Users(Arrays.stream(SCANNER.nextLine().split(COMMA))
                 .map(User::new)
                 .collect(Collectors.toList()));
+    }
+
+    public static Ladder createLadder(int userSize) {
+        return new Ladder(userSize, inputMaxLadderHeight(), inputLadderResult());
     }
 
     public static LadderHeight inputMaxLadderHeight() {
