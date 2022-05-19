@@ -7,8 +7,8 @@ import ladder.domain.Participants;
 public class ResultView {
     private static final String DEFAULT_LINE = "     |";
     private static final String CROSSABLE_LINE = "-----|";
-    public static final String ENTER = System.lineSeparator();
-    public static final String NAMES_FORMAT = "%5s ";
+    private static final String ENTER = System.lineSeparator();
+    private static final String NAMES_FORMAT = "%5s ";
 
     private ResultView() {}
 

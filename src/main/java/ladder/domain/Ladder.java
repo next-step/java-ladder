@@ -7,15 +7,19 @@ import java.util.stream.IntStream;
 public class Ladder {
     private final List<Line> lines;
 
-    public Ladder(List<Line> lines) {
+    private Ladder(List<Line> lines) {
         this.lines = lines;
     }
 
-    public static Ladder from(int theNumberOfLines, int countOfParticipants) {
+    public static Ladder of(int theNumberOfLines, int countOfParticipants, LineStrategy lineStrategy) {
         List<Line> init = IntStream.range(0, theNumberOfLines)
-                .mapToObj(i -> Line.from(countOfParticipants))
+                .mapToObj(i -> Line.of(countOfParticipants, lineStrategy))
                 .collect(Collectors.toList());
         return new Ladder(init);
+    }
+
+    public static Ladder from(List<Line> lines) {
+        return new Ladder(lines);
     }
 
     public List<Line> getLines() {
