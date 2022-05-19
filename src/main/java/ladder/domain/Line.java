@@ -31,6 +31,10 @@ public class Line {
         return new Line(points);
     }
 
+    public int move(int startPosition) {
+        return points.get(startPosition).move();
+    }
+
     public List<Point> points() {
         return points;
     }

@@ -121,4 +121,25 @@ class LineTest {
         List<Point> points = List.of(new Point(0, STRAIGHT), new Point(1, STRAIGHT), new Point(3, STRAIGHT));
         assertThatThrownBy(() -> new Line(points)).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("현재 포인트에서 오른쪽으로 이동한다.")
+    void Line_오른쪽_이동() {
+        Line line = new Line(List.of(new Point(0, RIGHT), new Point(1, LEFT), new Point(2, STRAIGHT)));
+        assertThat(line.move(0)).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("현재 포인트에서 왼쪽으로 이동한다.")
+    void Line_왼쪽_이동() {
+        Line line = new Line(List.of(new Point(0, RIGHT), new Point(1, LEFT), new Point(2, STRAIGHT)));
+        assertThat(line.move(1)).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("현재 포인트에서 직진한다.")
+    void Line_직진() {
+        Line line = new Line(List.of(new Point(0, RIGHT), new Point(1, LEFT), new Point(2, STRAIGHT)));
+        assertThat(line.move(2)).isEqualTo(2);
+    }
 }
