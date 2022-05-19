@@ -2,7 +2,6 @@ package ladder.domain;
 
 import ladder.constant.Point;
 import ladder.exception.ContinuousConnectionException;
-import ladder.exception.InvalidCountOfPersonException;
 import ladder.strategy.GenerationStrategy;
 
 import java.util.List;
@@ -10,15 +9,13 @@ import java.util.Objects;
 
 public class Line {
 
-    public static final int MIN_COUNT_OF_PERSON = 2;
     private static final int INITIAL_INDEX = 0;
-    private static final int EXCLUSION_VALUE = 1;
     private static final int PREVIOUS_VALUE = 1;
 
     private final List<Point> points;
 
-    public Line(int countOfPerson, GenerationStrategy strategy) {
-        this(strategy.generatePoints(totalPoint(countOfPerson)));
+    public Line(People people, GenerationStrategy strategy) {
+        this(strategy.generatePoints(people.pointCount()));
     }
 
     public Line(List<Point> points) {
@@ -45,13 +42,6 @@ public class Line {
         }
         return points.get(currentIndex).isConnect()
                 && points.get(currentIndex - PREVIOUS_VALUE).isConnect();
-    }
-
-    private static int totalPoint(int countOfPerson) {
-        if (countOfPerson < MIN_COUNT_OF_PERSON) {
-            throw new InvalidCountOfPersonException();
-        }
-        return countOfPerson - EXCLUSION_VALUE;
     }
 
     public int countPoint() {

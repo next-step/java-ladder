@@ -10,14 +10,14 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(int ladderHeight, int countOfPerson) {
-        this(ladderHeight, countOfPerson, new RandomGeneration());
+    public Ladder(int ladderHeight, People people) {
+        this(ladderHeight, people, new RandomGeneration());
     }
 
-    public Ladder(int ladderHeight, int countOfPerson, GenerationStrategy strategy) {
+    public Ladder(int ladderHeight, People people, GenerationStrategy strategy) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < ladderHeight; i++) {
-            lines.add(new Line(countOfPerson, strategy));
+            lines.add(new Line(people, strategy));
         }
         this.lines = lines;
     }
