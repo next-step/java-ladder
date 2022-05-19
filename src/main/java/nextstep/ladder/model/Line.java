@@ -1,6 +1,9 @@
 package nextstep.ladder.model;
 
+import nextstep.ladder.exception.MinimumException;
+
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.IntFunction;
 import java.util.function.UnaryOperator;
@@ -12,6 +15,7 @@ public final class Line {
     private static final int ZERO = 0;
     private static final int ONE = 1;
     private static final boolean FALSE = false;
+    private static final String MINIMUM_LINE_MESSAGE = "사다리 높이는 최소 2개 이상이어야 합니다.";
     private static final String WIDTH_LINE = "-----";
     private static final String EMPTY_WIDTH_LINE = "     ";
     private static final String HEIGHT_LINE = "|";
@@ -23,11 +27,17 @@ public final class Line {
         this.points = points;
     }
 
+    private static void check(int countOfPeople) {
+        Optional.of(countOfPeople)
+                .filter(count -> 2 < count)
+                .orElseThrow(() -> new MinimumException(MINIMUM_LINE_MESSAGE));
+    }
+
     public static Line create(int countOfPeople) {
+        check(countOfPeople);
         List<Boolean> points = init()
                 .andThen(removable())
                 .apply(countOfPeople);
-
         return new Line(points);
     }
 
@@ -45,7 +55,6 @@ public final class Line {
                     .filter(i -> points.get(i) && points.get(i + ONE))
                     .forEach(i -> points.set(i + ONE, FALSE));
             points.set(lastIndex, FALSE);
-
             return points;
         };
     }

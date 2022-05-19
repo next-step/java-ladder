@@ -1,5 +1,6 @@
 package nextstep.ladder.model;
 
+import nextstep.ladder.exception.NameLengthExceedException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,6 +20,6 @@ public class PersonTest {
     @DisplayName("Person 객체의 이름 최대 길이 예외 처리")
     void outOfLength() {
         String name = "helloWorld";
-        assertThatThrownBy(() -> Person.is(name)).isExactlyInstanceOf(IndexOutOfBoundsException.class);
+        assertThatThrownBy(() -> Person.is(name)).isExactlyInstanceOf(NameLengthExceedException.class);
     }
 }

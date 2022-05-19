@@ -1,5 +1,7 @@
 package nextstep.ladder.model;
 
+import nextstep.ladder.exception.NameLengthExceedException;
+
 import java.util.Optional;
 
 public class Person {
@@ -19,7 +21,7 @@ public class Person {
                 .map(String::length)
                 .filter(length -> MINIMUM_NAME_LENGTH < length)
                 .filter(length -> length < MAXIMUM_NAME_LENGTH)
-                .orElseThrow(() -> new IndexOutOfBoundsException(OUT_OF_LENGTH_MESSAGE));
+                .orElseThrow(() -> new NameLengthExceedException(OUT_OF_LENGTH_MESSAGE));
 
         return name;
     }
