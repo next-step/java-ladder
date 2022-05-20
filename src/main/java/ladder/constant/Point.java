@@ -4,13 +4,15 @@ import java.util.stream.Stream;
 
 public enum Point {
 
-    CONNECTED(true),
-    DISCONNECTED(false);
+    CONNECTED(true, "-----"),
+    DISCONNECTED(false, "     ");
 
     private final boolean value;
+    private final String line;
 
-    Point(boolean value) {
+    Point(boolean value, String line) {
         this.value = value;
+        this.line = line;
     }
 
     public static Point valueOf(boolean value) {
@@ -22,5 +24,10 @@ public enum Point {
 
     public boolean isConnect() {
         return this == CONNECTED;
+    }
+
+    @Override
+    public String toString() {
+        return this.line;
     }
 }
