@@ -7,6 +7,8 @@ import java.util.Optional;
 
 public class Ladder {
 
+    private static final String EMPTY_PEOPLE_MESSAGE = "참여자가 존재하지 않습니다.";
+    private static final String EMPTY_LINE_MESSAGE = "사다리가 존재하지 않습니다.";
     private static final String MINIMUM_PEOPLE_MESSAGE = "참여자 수는 최소 2인 이상입니다.";
     private static final String MINIMUM_LINE_MESSAGE = "사다리의 행 길이는 최소 2인 이상입니다.";
     private static final int MINIMUM_ROW_LENGTH = 2;
@@ -36,7 +38,7 @@ public class Ladder {
                 .stream()
                 .map(Person::name)
                 .reduce((prev, next) -> String.format("%s  %s", prev, next))
-                .orElseThrow();
+                .orElseThrow(() -> new MinimumException(EMPTY_PEOPLE_MESSAGE + MINIMUM_PEOPLE_MESSAGE));
     }
 
     public String lines() {
@@ -44,6 +46,6 @@ public class Ladder {
                 .stream()
                 .map(Line::draw)
                 .reduce((prev, next) -> prev + System.lineSeparator() + next)
-                .orElseThrow();
+                .orElseThrow(() -> new MinimumException(EMPTY_LINE_MESSAGE + MINIMUM_LINE_MESSAGE));
     }
 }
