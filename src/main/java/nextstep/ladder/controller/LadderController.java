@@ -16,7 +16,7 @@ public class LadderController {
     public static void game() {
         List<Person> people = InputView.createPeople();
         List<Line> lines = InputView.inputMaxHeight(people.size());
-        Ladder ladder = Ladder.start(people, lines);
+        Ladder ladder = Ladder.create(people, lines);
         ResultView.printResult(ladder);
     }
 }
