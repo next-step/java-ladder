@@ -8,6 +8,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 @DisplayName(value = "실행 결과 테스트")
@@ -40,6 +42,36 @@ class ResultsTest {
 	void 문자열_리스트에서_길이가_최댓값_보다_크면_예외() {
 		assertThatIllegalArgumentException().isThrownBy(
 			() -> new Results(List.of("123456", "2", "3"), 3)
+		);
+	}
+
+	@ParameterizedTest(name = "{displayName} : {0} => {1}")
+	@CsvSource(
+		delimiter = ':',
+		value = {
+			"0:a",
+			"1:b",
+			"2:c"
+		}
+	)
+	void 실행결과_인덱스를_받아서_실행결과를_반환(int index, String result) {
+		Results results = new Results(List.of("a", "b", "c"), 3);
+		assertThat(results.toResult(index)).isEqualTo(result);
+	}
+
+	@Test
+	void 실행결과_인덱스가_최솟값보다_작으면_실행_결과_반환_시_예외() {
+		Results results = new Results(List.of("a", "b", "c"), 3);
+		assertThatIllegalArgumentException().isThrownBy(
+			() -> results.toResult(-1)
+		);
+	}
+
+	@Test
+	void 실행결과_인덱스가_최댓값_보다_크면_실행_결과_반환_시_예외() {
+		Results results = new Results(List.of("a", "b", "c"), 3);
+		assertThatIllegalArgumentException().isThrownBy(
+			() -> results.toResult(100)
 		);
 	}
 }
