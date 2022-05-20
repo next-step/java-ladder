@@ -1,9 +1,7 @@
 package step2.domain.player;
 
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import step2.util.ErrorTarget;
@@ -13,7 +11,7 @@ public class Players {
 
 	private static final int MIN_COUNT = 2;
 
-	private final Set<Player> values;
+	private final List<Player> values;
 
 	public Players(List<String> input) {
 		Validator.notNull(input, ErrorTarget.NAME_INPUT);
@@ -22,14 +20,23 @@ public class Players {
 
 		this.values = input.stream()
 			.map(Player::new)
-			.collect(Collectors.toCollection(LinkedHashSet::new));
+			.collect(Collectors.toList());
 	}
 
 	public int numberOfPlayer() {
 		return this.values.size();
 	}
 
-	public Set<Player> getValues() {
+	public int findIndexByName(String playerName) {
+		Validator.notBlank(playerName, ErrorTarget.NAME_INPUT);
+		Player result = this.values.stream()
+			.filter(player -> player.hasName(playerName))
+			.findAny()
+			.orElseThrow(() -> new IllegalArgumentException(String.format("입력한 플레이어는 존재하지 않습니다. 입력 : %s", playerName)));
+		return values.indexOf(result);
+	}
+
+	public List<Player> getValues() {
 		return values;
 	}
 
