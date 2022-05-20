@@ -23,5 +23,9 @@ public class Line {
     private boolean isOverlap(Bridge currentBridge, Bridge nextBridge) {
         return currentBridge.isConnected() && currentBridge.equals(nextBridge);
     }
+
+    public List<Bridge> getLine() {
+        return line;
+    }
 }
 

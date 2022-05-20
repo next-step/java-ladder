@@ -19,4 +19,8 @@ public class Player {
             throw new IllegalArgumentException("player의 이름은 최대 5글자를 초과 할 수 없습니다.");
         }
     }
+
+    public String getPlayer() {
+        return player;
+    }
 }

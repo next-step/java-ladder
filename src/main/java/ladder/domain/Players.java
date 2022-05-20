@@ -13,4 +13,8 @@ public class Players {
     public static Players from(List<String> players) {
         return new Players(players.stream().map(Player::new).collect(Collectors.toList()));
     }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
 }
