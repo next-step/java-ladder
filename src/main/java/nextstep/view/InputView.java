@@ -1,11 +1,12 @@
 package nextstep.view;
 
+import nextstep.domain.Ladder;
 import nextstep.domain.LadderHeight;
+import nextstep.domain.LadderResult;
 import nextstep.domain.User;
 import nextstep.domain.Users;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
@@ -20,9 +21,25 @@ public class InputView {
                 .collect(Collectors.toList()));
     }
 
+    public static Ladder createLadder(int userSize) {
+        return new Ladder(userSize, inputMaxLadderHeight(), inputLadderResult());
+    }
+
     public static LadderHeight inputMaxLadderHeight() {
         System.out.println("최대 사다리 높이는 몇 개 인가요?");
         return new LadderHeight(SCANNER.nextInt());
+    }
+
+    public static LadderResult inputLadderResult() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        SCANNER.nextLine();
+        return new LadderResult(Arrays.stream(SCANNER.nextLine().split(COMMA))
+                .collect(Collectors.toList()));
+    }
+
+    public static String inputLadderResultUserName() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        return SCANNER.nextLine();
     }
 
 }
