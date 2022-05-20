@@ -32,6 +32,11 @@ public class InputView {
 		return Integer.parseInt(this.scanner.nextLine());
 	}
 
+	public String askPlayerName() {
+		show("\n>>결과를 보고 싶은 사람은?");
+		return this.scanner.nextLine();
+	}
+
 	private void show(String output) {
 		out.println(output);
 	}

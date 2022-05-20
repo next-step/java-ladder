@@ -2,11 +2,11 @@ package step2.view;
 
 import static java.lang.System.*;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import step2.Results;
+import step2.domain.Results;
 import step2.domain.ladder.Direction;
 import step2.domain.ladder.Ladder;
 import step2.domain.ladder.Line;
@@ -15,12 +15,18 @@ import step2.domain.player.Players;
 public class OutputView {
 
 	private static final String LINE_BREAK = "\n";
-	private static final Map<Direction, String> DIRECTION_PRINT_MAP = new HashMap<>();
+	private static final Map<Direction, String> DIRECTION_PRINT_MAP = new EnumMap<>(Direction.class);
 
 	static {
 		DIRECTION_PRINT_MAP.put(Direction.LEFT, "--|  ");
 		DIRECTION_PRINT_MAP.put(Direction.STRAIGHT, "  |  ");
 		DIRECTION_PRINT_MAP.put(Direction.RIGHT, "  |--");
+	}
+
+	public void showCreationResult() {
+		show(LINE_BREAK);
+		show("사다리 결과");
+		show(LINE_BREAK);
 	}
 
 	public void showPlayersResult(Players players) {
@@ -51,6 +57,15 @@ public class OutputView {
 			.map(this::format)
 			.collect(Collectors.joining());
 		show(result);
+	}
+
+	public void showAllResult() {
+		show(LINE_BREAK);
+		show("<<실행결과>>");
+	}
+
+	public void showResultWithName(String playerName, String result) {
+		show(String.format("%s : %s", playerName, result));
 	}
 
 	private String format(String input) {
