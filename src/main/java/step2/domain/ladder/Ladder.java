@@ -10,6 +10,7 @@ import step2.util.Validator;
 public class Ladder {
 
 	private static final int MIN_NUMBER_OF_PLAYER = 2;
+
 	private final List<Line> lines = new ArrayList<>();
 
 	public Ladder(int numberOfPlayer, Height height, BooleanSupplier supplier) {
@@ -25,5 +26,13 @@ public class Ladder {
 
 	public List<Line> getLines() {
 		return lines;
+	}
+
+	public int calculateResultIndex(int playerIndex) {
+		int result = playerIndex;
+		for (Line line : lines) {
+			result = line.nextLineIndex(result);
+		}
+		return result;
 	}
 }
