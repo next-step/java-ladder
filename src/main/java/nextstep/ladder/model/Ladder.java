@@ -27,9 +27,12 @@ public class Ladder {
                 .orElseThrow(() -> new MinimumException(message));
     }
 
-    public static Ladder create(List<Person> people, List<Line> lines) {
+    public static Ladder create(List<Person> people, int maxHeight) {
         check(people, MINIMUM_PEOPLE_MESSAGE);
+
+        List<Line> lines = Line.create(people.size(), maxHeight);
         check(lines, MINIMUM_LINE_MESSAGE);
+
         return new Ladder(people, lines);
     }
 

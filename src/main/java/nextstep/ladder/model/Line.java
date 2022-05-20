@@ -41,6 +41,13 @@ public final class Line {
         return new Line(points);
     }
 
+    public static List<Line> create(int countOfPeople, int maxHeight) {
+        return IntStream
+                .range(ZERO, maxHeight)
+                .mapToObj(i -> Line.create(countOfPeople))
+                .collect(Collectors.toList());
+    }
+
     private static Function<Integer, List<Boolean>> init() {
         return countOfPeople -> IntStream
                 .range(ZERO, countOfPeople)
