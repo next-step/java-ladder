@@ -1,7 +1,17 @@
 package ladder.domain;
 
 public enum Direction {
-    STRAIGHT, LEFT, RIGHT;
+    STRAIGHT(0), LEFT(-1), RIGHT(1);
+
+    private final int unitDirection;
+
+    Direction(int unitDirection) {
+        this.unitDirection = unitDirection;
+    }
+
+    public int getUnitDirection() {
+        return this.unitDirection;
+    }
 
     static Direction rightOrStraight(boolean isRight) {
         if (isRight) {
