@@ -27,7 +27,13 @@ public class StreamStudy {
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-        // TODO 이 부분에 구현한다.
+        words.stream()
+                .filter(w -> (w.length() > 12))
+                .sorted((s1, s2) -> s2.length() - s1.length())
+                .limit(100)
+                .collect(Collectors.toList())
+                .stream().distinct()
+                .forEach(value -> System.out.println(value.toLowerCase()));
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
@@ -39,6 +45,10 @@ public class StreamStudy {
     }
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
-        return 0;
+        return numbers.stream()
+                .filter(w -> w > 3)
+                .map(w -> 2 * w)
+                .collect(Collectors.toList())
+                .stream().reduce(0, (x ,y) -> x + y);
     }
 }
