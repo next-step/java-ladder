@@ -15,4 +15,8 @@ public class Height {
             throw new IllegalArgumentException("사다리의 높이는 1보다 작을 수 없습니다");
         }
     }
+
+    public int getHeight() {
+        return height;
+    }
 }
