@@ -61,4 +61,8 @@ public class Point {
 	public Direction getDirection() {
 		return direction;
 	}
+
+	public int nextLineIndex(int playerIndex) {
+		return direction.nextIndex(playerIndex);
+	}
 }
