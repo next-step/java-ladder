@@ -4,9 +4,8 @@ import static java.lang.System.out;
 
 import java.util.List;
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Lines;
-import nextstep.ladder.domain.Part;
-import nextstep.ladder.domain.Parts;
+import nextstep.ladder.domain.LadderLine;
+import nextstep.ladder.domain.Point;
 
 public class LadderGameOutputCui {
 
@@ -14,7 +13,7 @@ public class LadderGameOutputCui {
         out.println("\n 사다리 결과");
 
         printNames(ladder.getLineNames());
-        drawLines(ladder.getLines());
+        drawLines(ladder.getLadderLines());
         printResults(ladder.getResults());
     }
 
@@ -29,31 +28,27 @@ public class LadderGameOutputCui {
         } out.println();
     }
 
-    private void drawLines(Lines lines) {
-        for (Parts partPlate : lines.getLines()) {
-            drawParts(partPlate.getParts());
+    private void drawLines(List<LadderLine> ladderLines) {
+        for (LadderLine ladderLine : ladderLines) {
+            drawPoints(ladderLine.getPoints());
         }
     }
 
-    private void drawParts(List<Part> parts) {
+    private void drawPoints(List<Point> points) {
         out.print("     ");
-        for (Part part : parts) {
-            drawLine(part);
+        for (Point point : points) {
+            drawLine(point);
         }
         out.println();
     }
 
-    private void drawLine(Part part) {
-        if (part.isHorizontalLine()) {
-            if (part.isConnected()) {
-                out.print("-----");
-                return;
-            }
-            out.print("     ");
+    private void drawLine(Point point) {
+        out.print("|");
+        if (point.isConnectedRight()) {
+            out.print("-----");
             return;
         }
-
-        out.print("|");
+        out.print("     ");
     }
 
     private void printResults(List<String> results) {

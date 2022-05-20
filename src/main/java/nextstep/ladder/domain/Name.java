@@ -52,7 +52,4 @@ public class Name {
         return name;
     }
 
-    public boolean sameWith(String name) {
-        return this.name.equals(name);
-    }
 }
