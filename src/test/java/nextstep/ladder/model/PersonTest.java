@@ -13,13 +13,13 @@ public class PersonTest {
     @DisplayName("Person 객체 생성")
     void create() {
         String name = "osean";
-        assertThat(Person.is(name).name()).isEqualTo(name);
+        assertThat(Person.of(name).toString()).isEqualTo(name);
     }
 
     @Test
     @DisplayName("Person 객체의 이름 최대 길이 예외 처리")
     void outOfLength() {
         String name = "helloWorld";
-        assertThatThrownBy(() -> Person.is(name)).isExactlyInstanceOf(NameLengthExceedException.class);
+        assertThatThrownBy(() -> Person.of(name)).isExactlyInstanceOf(NameLengthExceedException.class);
     }
 }

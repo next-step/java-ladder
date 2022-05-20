@@ -17,32 +17,24 @@ public class LadderTest {
 
     @ParameterizedTest(name = "최소 인원 예외 처리 - {index}")
     @MethodSource("isPeopleAndLineMinimum")
-    void minimum(List<Person> people, List<Line> lines) {
-        assertThatThrownBy(() -> Ladder.create(people, lines)).isInstanceOf(MinimumException.class);
+    void minimum(List<Person> people, int maxHeight) {
+        assertThatThrownBy(() -> Ladder.create(people, maxHeight)).isInstanceOf(MinimumException.class);
     }
 
     private static Stream<Arguments> isPeopleAndLineMinimum() {
-        List<Person> person = List.of(Person.is("one"));
+        List<Person> person = List.of(Person.of("one"));
         List<Person> people = IntStream
                 .range(0, 5)
-                .mapToObj(i -> Person.is(String.valueOf(i)))
-                .collect(Collectors.toList());
-
-        List<Line> line = List.of(Line.create(5));
-        List<Line> lines = IntStream
-                .range(0, 5)
-                .mapToObj(i -> Line.create(5))
+                .mapToObj(i -> Person.of(String.valueOf(i)))
                 .collect(Collectors.toList());
 
         return Stream.of(
-                Arguments.of(person, null),
-                Arguments.of(people, null),
-                Arguments.of(person, new ArrayList<>()),
-                Arguments.of(people, new ArrayList<>()),
-                Arguments.of(null, line),
-                Arguments.of(null, lines),
-                Arguments.of(new ArrayList<>(), line),
-                Arguments.of(new ArrayList<>(), lines)
+                Arguments.of(person, 0),
+                Arguments.of(person, -1),
+                Arguments.of(people, 0),
+                Arguments.of(people, -1),
+                Arguments.of(null, 5),
+                Arguments.of(new ArrayList<>(), 5)
         );
     }
 }
