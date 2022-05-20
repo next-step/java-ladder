@@ -48,6 +48,10 @@ public class Line {
                 && points.get(currentIndex - PREVIOUS_VALUE).isConnect();
     }
 
+    public List<Point> points() {
+        return points;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

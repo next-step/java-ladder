@@ -22,6 +22,10 @@ public class Ladder {
         this.lines = lines;
     }
 
+    public List<Line> lines() {
+        return lines;
+    }
+
     public int totalLines() {
         return lines.size();
     }

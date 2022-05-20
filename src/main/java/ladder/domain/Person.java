@@ -29,6 +29,14 @@ public class Person {
         return value.length() > MAX_LENGTH;
     }
 
+    public String name() {
+        return name;
+    }
+
+    public int withoutNameSize(int size) {
+        return size - name.length();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

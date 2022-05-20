@@ -40,6 +40,10 @@ public class People {
         return people.size() - EXCLUSION_POINT_VALUE;
     }
 
+    public List<Person> toList() {
+        return people;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
