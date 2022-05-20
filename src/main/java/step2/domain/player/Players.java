@@ -9,6 +9,7 @@ import step2.util.Validator;
 
 public class Players {
 
+	private static final int MIN_INDEX = 0;
 	private static final int MIN_COUNT = 2;
 
 	private final List<Player> values;
@@ -34,6 +35,13 @@ public class Players {
 			.findAny()
 			.orElseThrow(() -> new IllegalArgumentException(String.format("입력한 플레이어는 존재하지 않습니다. 입력 : %s", playerName)));
 		return values.indexOf(result);
+	}
+
+	public String findPlayerNameByIndex(int index) {
+		Validator.min(MIN_INDEX, index, String.format("플레이어의 출발 인덱스가 최솟값(%d)보다 작습니다. 입력 : %d", MIN_INDEX, index));
+		Validator.max(values.size() - 1, index,
+			String.format("플레이어의 출발 인덱스가 최댓값(%d)보다 큽니다. 입력 : %d", values.size() - 1, index));
+		return values.get(index).getName();
 	}
 
 	public List<Player> getValues() {

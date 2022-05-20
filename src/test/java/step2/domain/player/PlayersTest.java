@@ -44,7 +44,7 @@ class PlayersTest {
 		);
 	}
 
-	@ParameterizedTest
+	@ParameterizedTest(name = "{displayName} : {0} => {1}")
 	@CsvSource(
 		delimiter = ':',
 		value = {
@@ -71,6 +71,36 @@ class PlayersTest {
 	void 입력된_이름이_존재하지_않을_때_출발_인덱스를_찾으면_예외() {
 		assertThatIllegalArgumentException().isThrownBy(
 			() -> new Players(List.of("aaa", "bbb", "ccc", "ddd")).findIndexByName("이상한 이름")
+		);
+	}
+
+	@ParameterizedTest(name = "{displayName} : {0} => {1}")
+	@CsvSource(
+		delimiter = ':',
+		value = {
+			"0:aaa",
+			"1:bbb",
+			"2:ccc",
+			"3:ddd",
+		}
+	)
+	void 인덱스를_입력받아서_플레이어의_이름을_반환(int index, String playerName) {
+		Players players = new Players(List.of("aaa", "bbb", "ccc", "ddd"));
+
+		assertThat(players.findPlayerNameByIndex(index)).isEqualTo(playerName);
+	}
+
+	@Test
+	void 인덱스가_최솟값보다_작으면_플레이어의_이름_반환_시_예외() {
+		assertThatIllegalArgumentException().isThrownBy(
+			() -> new Players(List.of("aaa", "bbb", "ccc", "ddd")).findPlayerNameByIndex(-1)
+		);
+	}
+
+	@Test
+	void 인덱스가_최댓값보다_크면_플레이어의_이름_반환_시_예외() {
+		assertThatIllegalArgumentException().isThrownBy(
+			() -> new Players(List.of("aaa", "bbb", "ccc", "ddd")).findPlayerNameByIndex(100)
 		);
 	}
 }
