@@ -37,11 +37,21 @@ public class LadderController {
         OutputView.printLadderResult(participants.getValues(), ladder.getLines());
         OutputView.printResults(results.getValues());
 
-        List<Integer> resultPosition =  rideLadder(participants, ladder);
+        List<Integer> resultPosition = rideLadder(participants, ladder);
         ResultsDto resultsDto = new ResultsDto(resultPosition, results);
         ExecutionResultDto executionResultDto = new ExecutionResultDto(participants, resultsDto);
 
         rideLadderResult(executionResultDto);
+    }
+
+    private List<Integer> rideLadder(Participants participants, Ladder ladder) {
+        List<Integer> ladderRideResult = new ArrayList<>();
+        for (Participant participant : participants.getValues()) {
+            int rideIndex = ladder.ride(participant.getIndex());
+            ladderRideResult.add(rideIndex);
+        }
+
+        return ladderRideResult;
     }
 
     private void rideLadderResult(ExecutionResultDto executionResultDto) {
@@ -53,16 +63,6 @@ public class LadderController {
 
             proceed = isGameOver(participant);
         }
-    }
-
-    private List<Integer> rideLadder(Participants participants, Ladder ladder) {
-        List<Integer> ladderRideResult = new ArrayList<>();
-        for (Participant participant : participants.getValues()) {
-            int rideIndex = ladder.ride(participant.getIndex());
-            ladderRideResult.add(rideIndex);
-        }
-
-        return ladderRideResult;
     }
 
     private boolean isGameOver(String participant) {
