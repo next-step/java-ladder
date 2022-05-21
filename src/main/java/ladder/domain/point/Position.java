@@ -5,11 +5,11 @@ import java.util.Objects;
 public class Position {
     static final int INITIAL_POSITION = 0;
 
-    private final int position;
+    private final int value;
 
-    public Position(int position) {
-        validate(position);
-        this.position = position;
+    public Position(int value) {
+        validate(value);
+        this.value = value;
     }
 
     private void validate(int position) {
@@ -19,7 +19,7 @@ public class Position {
     }
 
     public Position move(Direction direction) {
-        return new Position(direction.move(position));
+        return new Position(direction.move(value));
     }
 
     public static Position value(int position) {
@@ -35,11 +35,11 @@ public class Position {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Position position1 = (Position) o;
-        return position == position1.position;
+        return value == position1.value;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(position);
+        return Objects.hash(value);
     }
 }
