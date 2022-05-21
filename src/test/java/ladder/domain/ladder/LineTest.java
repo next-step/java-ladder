@@ -43,7 +43,6 @@ class LineTest {
         Line line = Line.generateByWidth(ladderWidth);
 
         assertAll(
-                () -> assertEquals(ladderWidth, line.width()),
                 () -> assertInstanceOf(Line.class, line)
         );
     }

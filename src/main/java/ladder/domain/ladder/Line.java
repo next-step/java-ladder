@@ -68,7 +68,7 @@ public class Line {
                 .orElseThrow(() -> new IllegalArgumentException("사다리 위치가 올바르지 않습니다."));
     }
 
-    public int width() {
+    private int width() {
         return points.size();
     }
 
