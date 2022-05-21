@@ -11,6 +11,7 @@ import step2.util.Validator;
 
 public class Line {
 
+	private static final int MIN_PLAYER_INDEX = 0;
 	private static final int NUMBER_OF_FIRST_AND_LAST = 2;
 
 	private final List<Point> points = new ArrayList<>();
@@ -42,6 +43,16 @@ public class Line {
 			throw new IllegalStateException("가로 라인이 비어있습니다.");
 		}
 		return this.points.get(this.points.size() - 1);
+	}
+
+	public int nextLineIndex(int playerIndex) {
+		Validator.min(MIN_PLAYER_INDEX, playerIndex,
+			String.format("플레이어의 출발 인덱스가 최솟값(%d)보다 작습니다. 입력 : %d", MIN_PLAYER_INDEX, playerIndex));
+		Validator.max(points.size() - 1, playerIndex,
+			String.format("플레이어의 출발 인덱스가 최댓값(%d)보다 큽니다. 입력 : %d", points.size() - 1, playerIndex));
+
+		Point currentPoint = points.get(playerIndex);
+		return currentPoint.nextLineIndex(playerIndex);
 	}
 
 	public List<Point> getPoints() {

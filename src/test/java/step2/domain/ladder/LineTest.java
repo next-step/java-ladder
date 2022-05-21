@@ -10,6 +10,7 @@ import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullSource;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
@@ -49,5 +50,37 @@ class LineTest {
 		Line expect = new Line(List.of(Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT));
 
 		assertThat(actual).isEqualTo(expect);
+	}
+
+	@ParameterizedTest(name = "{displayName} : {0} => {1}")
+	@CsvSource(
+		delimiter = ':',
+		value = {
+			"0:1",
+			"1:0",
+			"2:3",
+			"3:2"
+		}
+	)
+	void 현재_인덱스를_받아서_다음_가로_라인의_인덱스를_반환(int currentIndex, int nextLineIndex) {
+		Line line = new Line(List.of(Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT));
+		assertThat(line.nextLineIndex(currentIndex)).isEqualTo(nextLineIndex);
+	}
+
+	@Test
+	void 현재_인덱스가_최솟값_보다_작으면_다음_가로_라인의_인덱스를_반환시_예외() {
+		Line line = new Line(List.of(Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT));
+
+		assertThatIllegalArgumentException().isThrownBy(
+			() -> line.nextLineIndex(-1)
+		);
+	}
+
+	@Test
+	void 현재_인덱스가_최댓값_보다_크면_다음_가로_라인의_인덱스를_반환시_예외() {
+		Line line = new Line(List.of(Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT));
+		assertThatIllegalArgumentException().isThrownBy(
+			() -> line.nextLineIndex(100)
+		);
 	}
 }

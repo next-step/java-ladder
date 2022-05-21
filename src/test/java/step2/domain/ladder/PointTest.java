@@ -10,6 +10,7 @@ import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullSource;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
@@ -82,6 +83,22 @@ class PointTest {
 			() -> assertThat(Point.lastPointFrom(PREVIOUS_LEFT)).isSameAs(Point.from(Direction.STRAIGHT)),
 			() -> assertThat(Point.lastPointFrom(PREVIOUS_STRAIGHT)).isSameAs(Point.from(Direction.STRAIGHT))
 		);
+	}
+
+	@ParameterizedTest(name = "{displayName} : {0} : {1} => {2}")
+	@CsvSource(
+		delimiter = ':',
+		value = {
+			"LEFT:5:4",
+			"STRAIGHT:5:5",
+			"RIGHT:5:6"
+		}
+	)
+	void 현재_인덱스를_입력받아_현재_포인트의_방향을_기준으로_다음_인덱스를_반환(Direction direction, int currentIndex, int nextIndex) {
+
+		Point currentPoint = Point.from(direction);
+
+		assertThat(currentPoint.nextLineIndex(currentIndex)).isEqualTo(nextIndex);
 	}
 
 }

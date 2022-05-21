@@ -62,8 +62,7 @@ public class Point {
 		return direction;
 	}
 
-	@Override
-	public String toString() {
-		return this.direction.toString();
+	public int nextLineIndex(int playerIndex) {
+		return direction.nextIndex(playerIndex);
 	}
 }

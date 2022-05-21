@@ -3,7 +3,6 @@ package step2.domain.ladder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BooleanSupplier;
-import java.util.stream.Collectors;
 
 import step2.util.ErrorTarget;
 import step2.util.Validator;
@@ -11,6 +10,7 @@ import step2.util.Validator;
 public class Ladder {
 
 	private static final int MIN_NUMBER_OF_PLAYER = 2;
+
 	private final List<Line> lines = new ArrayList<>();
 
 	public Ladder(int numberOfPlayer, Height height, BooleanSupplier supplier) {
@@ -28,10 +28,11 @@ public class Ladder {
 		return lines;
 	}
 
-	@Override
-	public String toString() {
-		return lines.stream()
-			.map(Line::toString)
-			.collect(Collectors.joining("\n"));
+	public int calculateResultIndex(int playerIndex) {
+		int result = playerIndex;
+		for (Line line : lines) {
+			result = line.nextLineIndex(result);
+		}
+		return result;
 	}
 }

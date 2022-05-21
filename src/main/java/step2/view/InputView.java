@@ -22,9 +22,19 @@ public class InputView {
 		return List.of(this.scanner.nextLine().split(DELIMITER));
 	}
 
+	public List<String> askExecutionResults() {
+		show("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요");
+		return List.of(this.scanner.nextLine().split(DELIMITER));
+	}
+
 	public int askHeight() {
 		show("최대 사다리 높이는 몇 개인가요?");
 		return Integer.parseInt(this.scanner.nextLine());
+	}
+
+	public String askPlayerName() {
+		show("\n>>결과를 보고 싶은 사람은?");
+		return this.scanner.nextLine();
 	}
 
 	private void show(String output) {
