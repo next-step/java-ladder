@@ -12,9 +12,9 @@ import java.util.stream.Collectors;
 public class ResultView {
     private static final String EMPTY_PEOPLE_MESSAGE = "참여자가 존재하지 않습니다.";
     private static final String EMPTY_LINE_MESSAGE = "사다리가 존재하지 않습니다.";
-    private final static String RESULT_MESSAGE = "실행결과";
+    private static final String RESULT_MESSAGE = "실행결과";
     private static final String EMPTY_SPACE = "";
-    private final static String DOUBLE_EMPTY_SPACE = "  ";
+    private static final String DOUBLE_EMPTY_SPACE = "  ";
     private static final String WIDTH_LINE = "-----";
     private static final String EMPTY_WIDTH_LINE = "     ";
     private static final String HEIGHT_LINE = "|";
