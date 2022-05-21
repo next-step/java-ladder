@@ -11,7 +11,7 @@ public class Ladder {
     public Ladder(int userCount, LadderHeight ladderHeight, LadderResult ladderResult) {
         validate(userCount, ladderResult);
         this.ladderLines = new LadderLines(IntStream.range(0, ladderHeight.getHeight())
-                .mapToObj(i -> new LadderLine(LadderLineGenerator.generate(userCount - 1)))
+                .mapToObj(i -> LadderLine.init(userCount))
                 .collect(Collectors.toList()));
         this.ladderResult = ladderResult;
     }
@@ -28,6 +28,7 @@ public class Ladder {
 
     public void moveLadderLines() {
         this.ladderLines.moveLines(this.ladderResult);
+        System.out.println(this.ladderResult.getResultIndex().toString());
     }
 
     public String find(int userIndex) {
