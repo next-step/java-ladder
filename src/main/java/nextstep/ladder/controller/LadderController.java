@@ -7,6 +7,7 @@ import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Participant;
 import nextstep.ladder.domain.Participants;
 import nextstep.ladder.domain.Results;
+import nextstep.ladder.dto.ExecutionResultDto;
 import nextstep.ladder.generator.PositionGenerator;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
@@ -43,11 +44,13 @@ public class LadderController {
             executionResult.put(participant.toString(), rideResult);
         }
 
+        ExecutionResultDto executionResultDto = new ExecutionResultDto(executionResult);
+
         boolean proceed = true;
         while (proceed) {
             String participant = InputView.inputParticipantResult();
 
-            OutputView.printLadderRideResult(executionResult, participant);
+            OutputView.printLadderRideResult(executionResultDto, participant);
 
             proceed = isGameOver(participant);
         }
