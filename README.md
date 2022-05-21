@@ -6,4 +6,11 @@
 * 모든 피드백을 완료하면 다음 단계를 도전하고 앞의 과정을 반복한다.
 
 ## 온라인 코드 리뷰 과정
-* [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+* [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)1
+
+## 
+- 참여한 사람의 이름은 5이하이다.
+    - 길이가 5가 넘으면 예외처리
+- 쉼표로 이름을 구분한다.
+    - 쉼표로 구분되어지지 않는 이름들이 나오면 예외처리
+    
