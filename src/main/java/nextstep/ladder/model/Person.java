@@ -1,6 +1,7 @@
 package nextstep.ladder.model;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Person {
@@ -25,5 +26,22 @@ public class Person {
     @Override
     public String toString() {
         return this.name.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.name);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return Objects.equals(this.name, person.name);
+    }
+
+    public boolean equals(String name) {
+        return this.name.equals(name);
     }
 }

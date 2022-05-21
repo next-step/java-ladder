@@ -22,4 +22,13 @@ public class PersonTest {
         String name = "helloWorld";
         assertThatThrownBy(() -> Person.of(name)).isExactlyInstanceOf(NameLengthExceedException.class);
     }
+
+    @Test
+    @DisplayName("Person 객체 이름 비교")
+    void equals() {
+        String name_1 = "java";
+        String name_2 = "kotlin";
+        assertThat(Person.of(name_1).equals(name_1)).isTrue();
+        assertThat(Person.of(name_1).equals(name_2)).isFalse();
+    }
 }
