@@ -27,7 +27,7 @@ public class LadderController {
         String[] participantNames = InputView.inputParticipantNames();
         Participants participants = new Participants(participantNames);
         String[] executionResults = InputView.inputExecutionResults();
-        Results results = new Results(executionResults);
+        Results results = new Results(executionResults, participantNames.length);
         Height height = new Height(InputView.inputLadderHeight());
 
         LadderStandardDto ladderStandardDto = new LadderStandardDto(height, participantNames.length);

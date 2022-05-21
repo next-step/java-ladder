@@ -3,18 +3,26 @@ package nextstep.ladder.domain;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import nextstep.ladder.exception.IllegalExecutionResultException;
 
 public class Results {
-    private static final String RESULT_NULL_OR_EMPTY_ERROR_MESSAGE = "입력된 실행 결과가 없습니다.";
+    private static final int ZERO = 0;
 
     private final List<String> values;
 
-    public Results(List<String> values) {
+    public Results(List<String> values, int width) {
+        validateResultsSize(values, width);
         this.values = values;
     }
 
-    public Results(String[] values) {
-        this(convertToList(values));
+    private void validateResultsSize(List<String> values, int width) {
+        if(values.size() != width) {
+            throw new IllegalExecutionResultException(values.size());
+        }
+    }
+
+    public Results(String[] values, int width) {
+        this(convertToList(values), width);
     }
 
     private static List<String> convertToList(String[] values) {
@@ -26,7 +34,7 @@ public class Results {
 
     private static void validateNullAndEmpty(String[] values) {
         if (values == null || values.length == 0) {
-            throw new IllegalArgumentException(RESULT_NULL_OR_EMPTY_ERROR_MESSAGE);
+            throw new IllegalExecutionResultException(ZERO);
         }
     }
 
