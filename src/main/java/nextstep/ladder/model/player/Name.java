@@ -1,4 +1,4 @@
-package nextstep.ladder.model;
+package nextstep.ladder.model.player;
 
 import nextstep.ladder.exception.NameLengthExceedException;
 

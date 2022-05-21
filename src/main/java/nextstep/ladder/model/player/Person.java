@@ -1,8 +1,6 @@
-package nextstep.ladder.model;
+package nextstep.ladder.model.player;
 
-import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class Person {
 
@@ -14,13 +12,6 @@ public class Person {
 
     public static Person of(String name) {
         return new Person(Name.of(name));
-    }
-
-    public static List<Person> of(List<String> names) {
-        return names
-                .stream()
-                .map(Person::of)
-                .collect(Collectors.toList());
     }
 
     @Override

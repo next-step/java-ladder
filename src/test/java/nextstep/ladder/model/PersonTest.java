@@ -1,6 +1,7 @@
 package nextstep.ladder.model;
 
 import nextstep.ladder.exception.NameLengthExceedException;
+import nextstep.ladder.model.player.Person;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

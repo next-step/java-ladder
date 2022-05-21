@@ -1,9 +1,7 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.model.Ladder;
-import nextstep.ladder.model.Line;
-import nextstep.ladder.model.Person;
-import nextstep.ladder.model.Point;
+import nextstep.ladder.model.ladder.*;
+import nextstep.ladder.model.player.People;
 
 import java.util.List;
 import java.util.function.Function;
@@ -12,7 +10,7 @@ import java.util.stream.Collectors;
 public class ResultView {
     private static final String EMPTY_PEOPLE_MESSAGE = "참여자가 존재하지 않습니다.";
     private static final String EMPTY_LINE_MESSAGE = "사다리가 존재하지 않습니다.";
-    private static final String RESULT_MESSAGE = "실행결과";
+    private static final String RESULT_MESSAGE = "사다리 결과";
     private static final String EMPTY_SPACE = "";
     private static final String DOUBLE_EMPTY_SPACE = "  ";
     private static final String WIDTH_LINE = "-----";
@@ -41,8 +39,8 @@ public class ResultView {
                 .orElseThrow(() -> new NullPointerException(EMPTY_LINE_MESSAGE));
     }
 
-    private static void printLines(List<Line> lines) {
-        String serialize = lines
+    private static void printLines(Lines lines) {
+        String serialize = lines.unwrap()
                 .stream()
                 .map(Line::points)
                 .map(drawing())
@@ -51,21 +49,29 @@ public class ResultView {
         println(serialize);
     }
 
-    private static void printNames(List<Person> names) {
-        String serialize = names
+    private static <T> void printList(List<T> list) {
+        String serialize = list
                 .stream()
-                .map(Person::toString)
+                .map(Object::toString)
                 .reduce((prev, next) -> prev + DOUBLE_EMPTY_SPACE + next)
                 .orElseThrow(() -> new NullPointerException(EMPTY_PEOPLE_MESSAGE));
 
         println(serialize);
     }
 
-    public static void printResult(Ladder ladder) {
+    private static void printEndPoints(EndPoints endPoints) {
+        printList(endPoints.unwrap());
+    }
+
+    private static void printName(People people) {
+        printList(people.unwrap());
+    }
+
+    public static void printLadder(Ladder ladder) {
         println(RESULT_MESSAGE);
         println();
-        printNames(ladder.people());
         printLines(ladder.lines());
+        printEndPoints(ladder.endPoints());
     }
 
     public static void println() {

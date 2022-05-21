@@ -1,6 +1,7 @@
 package nextstep.ladder.model;
 
 import nextstep.ladder.exception.MinimumException;
+import nextstep.ladder.model.ladder.Line;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package nextstep.ladder.model;
+package nextstep.ladder.model.ladder;
 
 import nextstep.ladder.exception.MinimumException;
 import nextstep.ladder.util.RandomBoolean;
@@ -66,13 +66,6 @@ public final class Line {
                 .andThen(removable())
                 .apply(countOfPeople);
         return new Line(points);
-    }
-
-    public static List<Line> create(int countOfPeople, int maxHeight) {
-        return IntStream
-                .range(ZERO, maxHeight)
-                .mapToObj(i -> Line.create(countOfPeople))
-                .collect(Collectors.toList());
     }
 
     public List<Point> points() {
