@@ -38,8 +38,8 @@ public class User {
         Optional<User> user1 = Optional.ofNullable(user);
 
         return user1
-                .filter(u -> u.getAge() != null)
-                .filter(u -> (u.getAge() >= 30 && u.getAge() <= 45))
+                .filter(userObj -> userObj.getAge() != null)
+                .filter(userObj -> (userObj.getAge() >= 30 && userObj.getAge() <= 45))
                 .isPresent();
     }
 

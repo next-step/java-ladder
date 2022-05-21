@@ -36,4 +36,24 @@ public class Lambda {
         }
         return total;
     }
+
+    public static int sumAllEven(List<Integer> numbers, Conditional c) {
+        int total = 0;
+        for (int number : numbers) {
+            if (c.isPossibleSum((number))) {
+                total += number;
+            }
+        }
+        return total;
+    }
+
+    public static int sumAllOverThree(List<Integer> numbers, Conditional c) {
+        int total = 0;
+        for (int number : numbers) {
+            if (c.isPossibleSum(number)) {
+                total += number;
+            }
+        }
+        return total;
+    }
 }
