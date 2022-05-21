@@ -3,6 +3,7 @@ package ladder.domain;
 import ladder.exception.InvalidCountOfPersonException;
 import ladder.util.SplitUtil;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -41,7 +42,7 @@ public class People {
     }
 
     public List<Person> toList() {
-        return people;
+        return Collections.unmodifiableList(people);
     }
 
     @Override

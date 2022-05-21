@@ -4,6 +4,7 @@ import ladder.strategy.GenerationStrategy;
 import ladder.strategy.RandomGeneration;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
@@ -23,7 +24,7 @@ public class Ladder {
     }
 
     public List<Line> lines() {
-        return lines;
+        return Collections.unmodifiableList(lines);
     }
 
     public int totalLines() {
