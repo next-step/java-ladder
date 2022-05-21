@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 public class ParticipantsTest {
@@ -29,5 +30,19 @@ public class ParticipantsTest {
         // when & then
         assertThatThrownBy(() -> new Participants(names))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest(name = "결과를 보고싶은 참가자 {0}의 위치는 {1}이다")
+    @CsvSource({"a,0", "b,1", "c,2", "d,3"})
+    void checkedParticipantPosition(String participant, int expected) {
+        // given
+        String[] names = new String[]{"a", "b", "c", "d"};
+        Participants participants = new Participants(names);
+
+        // when
+        int findPosition = participants.findPosition(participant);
+
+        // then
+        assertThat(findPosition).isEqualTo(expected);
     }
 }
