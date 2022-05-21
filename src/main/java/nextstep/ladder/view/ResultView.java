@@ -5,7 +5,7 @@ import nextstep.ladder.model.Line;
 import nextstep.ladder.model.Person;
 import nextstep.ladder.model.Point;
 
-import java.util.Arrays;
+import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -33,17 +33,17 @@ public class ResultView {
         return String.join(addWidth(prev), HEIGHT_LINE, EMPTY_SPACE);
     }
 
-    private static Function<Point[], String> drawing() {
-        return points -> Arrays
-                .stream(points)
+    private static Function<List<Point>, String> drawing() {
+        return points -> points
+                .stream()
                 .map(ResultView::joining)
                 .reduce((prev, next) -> prev + next)
                 .orElseThrow(() -> new NullPointerException(EMPTY_LINE_MESSAGE));
     }
 
-    private static void printLines(Line[] lines) {
-        String serialize = Arrays
-                .stream(lines)
+    private static void printLines(List<Line> lines) {
+        String serialize = lines
+                .stream()
                 .map(Line::points)
                 .map(drawing())
                 .collect(Collectors.joining(System.lineSeparator()));
@@ -51,9 +51,9 @@ public class ResultView {
         println(serialize);
     }
 
-    private static void printNames(Person[] names) {
-        String serialize = Arrays
-                .stream(names)
+    private static void printNames(List<Person> names) {
+        String serialize = names
+                .stream()
                 .map(Person::toString)
                 .reduce((prev, next) -> prev + DOUBLE_EMPTY_SPACE + next)
                 .orElseThrow(() -> new NullPointerException(EMPTY_PEOPLE_MESSAGE));

@@ -3,6 +3,7 @@ package nextstep.ladder.model;
 import nextstep.ladder.exception.MinimumException;
 import nextstep.ladder.util.RandomBoolean;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
@@ -74,7 +75,7 @@ public final class Line {
                 .collect(Collectors.toList());
     }
 
-    public Point[] points() {
-        return this.points.toArray(Point[]::new);
+    public List<Point> points() {
+        return Collections.unmodifiableList(this.points);
     }
 }

@@ -2,6 +2,7 @@ package nextstep.ladder.model;
 
 import nextstep.ladder.exception.MinimumException;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,11 +35,11 @@ public class Ladder {
         return new Ladder(people, lines);
     }
 
-    public Person[] people() {
-        return this.people.toArray(Person[]::new);
+    public List<Person> people() {
+        return Collections.unmodifiableList(this.people);
     }
 
-    public Line[] lines() {
-        return this.lines.toArray(Line[]::new);
+    public List<Line> lines() {
+        return Collections.unmodifiableList(this.lines);
     }
 }
