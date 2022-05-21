@@ -54,4 +54,7 @@ public enum Connect {
     return Connect.getConnect(false, connect);
   }
 
+  public boolean isRightConnect() {
+    return this.right;
+  }
 }

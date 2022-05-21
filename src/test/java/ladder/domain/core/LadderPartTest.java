@@ -1,7 +1,9 @@
-package ladder.domain;
+package ladder.domain.core;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import ladder.domain.Connect;
+import ladder.domain.core.LadderPart;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

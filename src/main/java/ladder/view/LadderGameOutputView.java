@@ -6,7 +6,7 @@ import ladder.domain.GameResult;
 import ladder.domain.GameResults;
 import ladder.domain.GameUser;
 import ladder.domain.GameUsers;
-import ladder.domain.Ladder;
+import ladder.domain.core.Ladder;
 import ladder.domain.LadderGame;
 
 public class LadderGameOutputView {
@@ -66,13 +66,13 @@ public class LadderGameOutputView {
   private void printLadderLine(int heightIdx, Ladder ladder) {
     System.out.print(SPACE.repeat(GameUser.LENGTH_LIMIT));
     for (int lineIdx = 0; lineIdx < ladder.getWidth(); lineIdx++) {
-      System.out.printf("%s%s", LADDER, getConnectLine(ladder.getConnect(heightIdx, lineIdx)));
+      System.out.printf("%s%s", LADDER, getConnectLine(ladder.isRightConnect(heightIdx, lineIdx)));
     }
     System.out.println();
   }
 
-  private String getConnectLine(Connect connect) {
-    if (connect == Connect.RIGHT) {
+  private String getConnectLine(boolean right) {
+    if (right) {
       return DASH.repeat(GameUser.LENGTH_LIMIT);
     }
     return SPACE.repeat(GameUser.LENGTH_LIMIT);

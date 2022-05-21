@@ -1,7 +1,8 @@
-package ladder.domain;
+package ladder.domain.core;
 
 import java.util.ArrayList;
 import java.util.List;
+import ladder.domain.Connect;
 
 public class LadderPartLine {
 
@@ -40,15 +41,11 @@ public class LadderPartLine {
     return line.get(lineIdx).move();
   }
 
-  public List<LadderPart> getLine() {
-    return line;
-  }
-
   public int getWidth() {
     return line.size();
   }
 
-  public Connect getConnect(int lineIdx) {
-    return line.get(lineIdx).getConnect();
+  public boolean isRightConnect(int lineIdx) {
+    return line.get(lineIdx).isRightConnect();
   }
 }

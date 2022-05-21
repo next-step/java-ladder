@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.core;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -16,24 +16,27 @@ public class LadderPartLineTest {
     int width = new Random().nextInt(100);
     LadderPartLine line = LadderPartLine.from(width);
 
-    assertThat(line.getLine().size()).isEqualTo(width);
+    assertThat(line.getWidth()).isEqualTo(width);
   }
 
 
   @RepeatedTest(20)
-  @DisplayName("라인에서 연결된 채로 잘 움직이는지 확인")
+  @DisplayName("라인에서 연결된 채로 잘 움직이며 한 칸만 움직이는지 확인")
   void move() {
     int width = new Random().nextInt(100);
     LadderPartLine line = LadderPartLine.from(width);
-    List<Integer> moveExpect = new ArrayList<>();
-    List<Integer> moveActual = new ArrayList<>();
+    List<Integer> moves = new ArrayList<>();
 
+    int move = 0;
     for (int i = 0; i < width; i++) {
-      moveExpect.add(line.getLine().get(i).getConnect().move(i));
-      moveActual.add(line.move(i));
+      move = line.move(move);
+      moves.add(move);
     }
 
-    assertThat(moveExpect).isEqualTo(moveActual);
+    for (int i = 1; i < moves.size(); i++) {
+      int moveSize = Math.abs(moves.get(i) - moves.get(i - 1));
+      assertThat(moveSize).isLessThan(2);
+    }
   }
 
 }

@@ -1,6 +1,7 @@
-package ladder.domain;
+package ladder.domain.core;
 
 import java.security.InvalidParameterException;
+import ladder.domain.Connect;
 
 public class Ladder {
 
@@ -30,15 +31,11 @@ public class Ladder {
     return ladderLines.traverse(startPartIndex);
   }
 
-  public LadderPartLines getLadderLines() {
-    return ladderLines;
-  }
-
   public int getWidth() {
     return ladderLines.getWidth();
   }
 
-  public Connect getConnect(int heightIdx, int lineIdx) {
-    return ladderLines.getConnect(heightIdx, lineIdx);
+  public boolean isRightConnect(int heightIdx, int lineIdx) {
+    return ladderLines.isRightConnect(heightIdx, lineIdx);
   }
 }

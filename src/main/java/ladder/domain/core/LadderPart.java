@@ -1,7 +1,8 @@
-package ladder.domain;
+package ladder.domain.core;
 
 import java.util.Objects;
-import ladder.domain.generator.RandomValueGenerator;
+import ladder.domain.Connect;
+import ladder.domain.util.RandomValueGenerator;
 
 public class LadderPart {
 
@@ -37,10 +38,6 @@ public class LadderPart {
     return new LadderPart(index + 1, connect.generateNext(getRandom()));
   }
 
-  public Connect getConnect() {
-    return connect;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -56,5 +53,9 @@ public class LadderPart {
   @Override
   public int hashCode() {
     return Objects.hash(index, connect);
+  }
+
+  public boolean isRightConnect() {
+    return connect.isRightConnect();
   }
 }

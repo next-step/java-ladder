@@ -3,6 +3,7 @@ package ladder.domain;
 import java.security.InvalidParameterException;
 import java.util.List;
 import java.util.stream.Collectors;
+import ladder.domain.core.Ladder;
 
 public class LadderGame {
 
