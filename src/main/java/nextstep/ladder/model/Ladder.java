@@ -11,6 +11,7 @@ public class Ladder {
     private static final String MINIMUM_PEOPLE_MESSAGE = "참여자 수는 최소 2인 이상입니다.";
     private static final String MINIMUM_LINE_MESSAGE = "사다리의 행 길이는 최소 2인 이상입니다.";
     private static final int MINIMUM_ROW_LENGTH = 2;
+
     private final List<Person> people;
     private final List<Line> lines;
 
