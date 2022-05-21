@@ -1,7 +1,7 @@
 package nextstep.ladder.controller;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 import nextstep.ladder.domain.Height;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Participant;
@@ -9,6 +9,7 @@ import nextstep.ladder.domain.Participants;
 import nextstep.ladder.domain.Results;
 import nextstep.ladder.dto.ExecutionResultDto;
 import nextstep.ladder.dto.LadderStandardDto;
+import nextstep.ladder.dto.ResultsDto;
 import nextstep.ladder.generator.PositionGenerator;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
@@ -36,19 +37,14 @@ public class LadderController {
         OutputView.printLadderResult(participants.getValues(), ladder.getLines());
         OutputView.printResults(results.getValues());
 
-        rideLadder(participants, ladder, results);
+        List<Integer> resultPosition =  rideLadder(participants, ladder);
+        ResultsDto resultsDto = new ResultsDto(resultPosition, results);
+        ExecutionResultDto executionResultDto = new ExecutionResultDto(participants, resultsDto);
+
+        rideLadderResult(executionResultDto);
     }
 
-    private void rideLadder(Participants participants, Ladder ladder, Results results) {
-        Map<String, String> executionResult = new HashMap<>();
-        for (Participant participant : participants.getValues()) {
-            int rideIndex = ladder.ride(participant.getIndex());
-            String rideResult = results.getValues().get(rideIndex);
-            executionResult.put(participant.toString(), rideResult);
-        }
-
-        ExecutionResultDto executionResultDto = new ExecutionResultDto(executionResult);
-
+    private void rideLadderResult(ExecutionResultDto executionResultDto) {
         boolean proceed = true;
         while (proceed) {
             String participant = InputView.inputParticipantResult();
@@ -57,6 +53,16 @@ public class LadderController {
 
             proceed = isGameOver(participant);
         }
+    }
+
+    private List<Integer> rideLadder(Participants participants, Ladder ladder) {
+        List<Integer> ladderRideResult = new ArrayList<>();
+        for (Participant participant : participants.getValues()) {
+            int rideIndex = ladder.ride(participant.getIndex());
+            ladderRideResult.add(rideIndex);
+        }
+
+        return ladderRideResult;
     }
 
     private boolean isGameOver(String participant) {
