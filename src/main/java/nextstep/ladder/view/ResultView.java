@@ -22,6 +22,7 @@ public class ResultView {
     private static final String WIDTH_LINE = "-----";
     private static final String EMPTY_WIDTH_LINE = "     ";
     private static final String HEIGHT_LINE = "|";
+    private static final String ALL = "all";
 
     private ResultView() {
     }
@@ -97,7 +98,7 @@ public class ResultView {
     public static void printResult(String name, Game game) {
         println(RESULT_MESSAGE);
 
-        if (name.equals("all")) {
+        if (name.equals(ALL)) {
             printAllResult(game);
             return;
         }
