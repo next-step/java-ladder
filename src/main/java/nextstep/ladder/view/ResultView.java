@@ -1,5 +1,6 @@
 package nextstep.ladder.view;
 
+import nextstep.ladder.model.Game;
 import nextstep.ladder.model.ladder.*;
 import nextstep.ladder.model.player.People;
 
@@ -10,7 +11,9 @@ import java.util.stream.Collectors;
 public class ResultView {
     private static final String EMPTY_PEOPLE_MESSAGE = "참여자가 존재하지 않습니다.";
     private static final String EMPTY_LINE_MESSAGE = "사다리가 존재하지 않습니다.";
-    private static final String RESULT_MESSAGE = "사다리 결과";
+    private static final String FIND_RESULT_MESSAGE = "결과를 보고 싶은 사람은?";
+    private static final String LADDER_MESSAGE = "사다리 결과";
+    private static final String RESULT_MESSAGE = "실행 결과";
     private static final String EMPTY_SPACE = "";
     private static final String DOUBLE_EMPTY_SPACE = "  ";
     private static final String WIDTH_LINE = "-----";
@@ -49,6 +52,14 @@ public class ResultView {
         println(serialize);
     }
 
+    private static void printEndPoints(EndPoints endPoints) {
+        printList(endPoints.unwrap());
+    }
+
+    private static void printName(People people) {
+        printList(people.unwrap());
+    }
+
     private static <T> void printList(List<T> list) {
         String serialize = list
                 .stream()
@@ -59,19 +70,21 @@ public class ResultView {
         println(serialize);
     }
 
-    private static void printEndPoints(EndPoints endPoints) {
-        printList(endPoints.unwrap());
-    }
-
-    private static void printName(People people) {
-        printList(people.unwrap());
-    }
-
-    public static void printLadder(Ladder ladder) {
-        println(RESULT_MESSAGE);
+    public static void printGame(Game game) {
+        println(LADDER_MESSAGE);
         println();
-        printLines(ladder.lines());
-        printEndPoints(ladder.endPoints());
+        printName(game.people());
+        printLines(game.ladder().lines());
+        printEndPoints(game.ladder().endPoints());
+    }
+
+    public static void printResult(Game game) {
+        println(FIND_RESULT_MESSAGE);
+        String name = InputView.inputString();
+        println();
+        println(RESULT_MESSAGE);
+        EndPoint endPoint = game.result(name);
+        println(endPoint.score());
     }
 
     public static void println() {

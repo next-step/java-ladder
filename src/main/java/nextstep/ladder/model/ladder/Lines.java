@@ -21,6 +21,10 @@ public class Lines {
                 .mapToObj(i -> Line.create(countOfPeople))
                 .collect(Collectors.toList());
 
+        return Lines.of(lines);
+    }
+
+    public static Lines of(List<Line> lines) {
         return new Lines(lines);
     }
 
@@ -28,7 +32,20 @@ public class Lines {
         return Collections.unmodifiableList(this.lines);
     }
 
+    public int moveDown(int row, int column) {
+        if (row == this.size()) {
+            return column;
+        }
+        Line line = this.lines.get(row);
+        int nextColumn = line.moveLeftAndRight(column);
+        return moveDown(++row, nextColumn);
+    }
+
     public Line line(int index) {
         return this.lines.get(index);
+    }
+
+    public int size() {
+        return this.lines.size();
     }
 }

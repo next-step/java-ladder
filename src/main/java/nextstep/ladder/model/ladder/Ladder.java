@@ -10,6 +10,7 @@ public class Ladder {
     private static final String MINIMUM_LINE_MESSAGE = "사다리의 행 길이는 최소 2 이상입니다.";
     private static final String MINIMUM_END_POINTS_MESSAGE = "점수 개수는 사다리의 행 길이와 동일 해야합니다.";
     private static final int MINIMUM_ROW_LENGTH = 2;
+    private static final int ZERO = 0;
 
     private final Lines lines;
     private final EndPoints endPoints;
@@ -39,7 +40,16 @@ public class Ladder {
 
         EndPoints endPoints = EndPoints.of(scores);
         isMinimum(countOfPeople, endPoints);
+        return Ladder.create(lines, endPoints);
+    }
+
+    public static Ladder create(Lines lines, EndPoints endPoints) {
         return new Ladder(lines, endPoints);
+    }
+
+    public EndPoint findEndPoint(int index) {
+        int endPointNumber = this.lines.moveDown(ZERO, index);
+        return this.endPoints.endPoint(endPointNumber);
     }
 
     public Lines lines() {

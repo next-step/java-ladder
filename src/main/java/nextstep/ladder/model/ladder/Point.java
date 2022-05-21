@@ -8,11 +8,24 @@ public class Point {
         this.value = point;
     }
 
+    public static Point ofFalse() {
+        return Point.of(false);
+    }
+
+    public static Point ofTrue() {
+        return Point.of(true);
+    }
+
     public static Point of(boolean point) {
         return new Point(point);
     }
 
     public boolean value() {
         return value;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(this.value);
     }
 }
