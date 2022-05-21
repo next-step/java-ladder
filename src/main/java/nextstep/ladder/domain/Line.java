@@ -11,6 +11,7 @@ public class Line {
     private static final int FIRST_SPAWN_LOCATION = 1;
     private static final int ZERO = 0;
     private static final int ONE = 1;
+    private static final int DISTANCE_MOVED = 1;
 
     private final List<Position> positions;
 
@@ -70,6 +71,18 @@ public class Line {
         }
 
         return new Position(productionStrategy.decideLineProduction());
+    }
+
+    public int ride(int position) {
+        if (positions.get(position).hasValue()) {
+            return position - DISTANCE_MOVED;
+        }
+
+        if (position + DISTANCE_MOVED < positions.size() && positions.get(position + DISTANCE_MOVED).hasValue()) {
+            return position + DISTANCE_MOVED;
+        }
+
+        return position;
     }
 
     public List<Position> getPositions() {
