@@ -31,7 +31,7 @@ class LineTest {
 
     @ParameterizedTest(name = "사다리 라인이 비어있는 경우 예외처리를 한다.")
     @NullAndEmptySource
-    void exceptionLadderLineNullOrEmpty(List<Position> positions) {
+    void exceptionLadderLineNullOrEmpty(List<Boolean> positions) {
         // when & then
         assertThatThrownBy(() -> new Line(positions))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -41,8 +41,7 @@ class LineTest {
     @DisplayName("사다리 라인이 겹쳐서 생성된 경우 예외처리를 한다.")
     void exceptionLadderLineOverlap() {
         // given
-        List<Position> positions = Arrays.asList(new Position(false), new Position(true), new Position(true),
-                new Position(true));
+        List<Boolean> positions = Arrays.asList(false, true, true, true);
 
         // when & then
         assertThatThrownBy(() -> new Line(positions))
@@ -56,10 +55,10 @@ class LineTest {
         Line line = new Line(new FixedProductionGenerator(), 2);
 
         // when
-        List<Position> positions = line.getPositions();
+        List<Boolean> positions = line.getPositions();
 
         // then
-        assertThat(positions.get(1).hasValue()).isTrue();
+        assertThat(positions.get(1)).isTrue();
 
     }
 
@@ -70,10 +69,10 @@ class LineTest {
         Line line = new Line(new FixedNonProductionGenerator(), 2);
 
         // when
-        List<Position> positions = line.getPositions();
+        List<Boolean> positions = line.getPositions();
 
         // then
-        assertThat(positions.get(1).hasValue()).isFalse();
+        assertThat(positions.get(1)).isFalse();
     }
 
     @ParameterizedTest(name = "{0}번째 참가자가 연결된 사다리 라인을 탄 결과는 {1}이다")

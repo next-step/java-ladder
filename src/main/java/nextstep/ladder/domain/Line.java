@@ -13,9 +13,9 @@ public class Line {
     private static final int ONE = 1;
     private static final int DISTANCE_MOVED = 1;
 
-    private final List<Position> positions;
+    private final List<Boolean> positions;
 
-    public Line(List<Position> positions) {
+    public Line(List<Boolean> positions) {
         validate(positions);
         this.positions = positions;
     }
@@ -24,34 +24,34 @@ public class Line {
         this(createLine(productionStrategy, countOfPosition));
     }
 
-    private void validate(List<Position> positions) {
+    private void validate(List<Boolean> positions) {
         validateNullAndEmpty(positions);
         validateLinePositionOverlap(positions);
     }
 
-    private void validateNullAndEmpty(List<Position> positions) {
+    private void validateNullAndEmpty(List<Boolean> positions) {
         if (positions == null || positions.isEmpty()) {
             throw new LadderLineNullException();
         }
     }
 
-    private void validateLinePositionOverlap(List<Position> positions) {
+    private void validateLinePositionOverlap(List<Boolean> positions) {
         for (int position = FIRST_SPAWN_LOCATION; position < positions.size(); position++) {
             comparePosition(positions, position);
         }
     }
 
-    private void comparePosition(List<Position> positions, int position) {
-        Position previousPosition = positions.get(position - ONE);
-        Position currentPosition = positions.get(position);
+    private void comparePosition(List<Boolean> positions, int position) {
+        boolean previousPosition = positions.get(position - ONE);
+        boolean currentPosition = positions.get(position);
 
-        if (previousPosition.hasValue() && currentPosition.hasValue()) {
+        if (previousPosition && currentPosition) {
             throw new LadderLineOverLapException();
         }
     }
 
-    private static List<Position> createLine(PositionGenerator productionStrategy, int countOfPosition) {
-        List<Position> positions = new ArrayList<>();
+    private static List<Boolean> createLine(PositionGenerator productionStrategy, int countOfPosition) {
+        List<Boolean> positions = new ArrayList<>();
 
         for (int position = ZERO; position < countOfPosition; position++) {
             positions.add(decidePositionProduction(positions, productionStrategy, position));
@@ -60,32 +60,32 @@ public class Line {
         return positions;
     }
 
-    private static Position decidePositionProduction(List<Position> positions, PositionGenerator productionStrategy,
-                                                     int position) {
+    private static Boolean decidePositionProduction(List<Boolean> positions, PositionGenerator productionStrategy,
+                                                    int position) {
         if (position == FIRST_POSITION_OF_LADDER_LINE) {
-            return new Position(false);
+            return false;
         }
 
-        if (positions.get(position - ONE).hasValue()) {
-            return new Position(false);
+        if (positions.get(position - ONE)) {
+            return false;
         }
 
-        return new Position(productionStrategy.decideLineProduction());
+        return productionStrategy.decideLineProduction();
     }
 
     public int ride(int position) {
-        if (positions.get(position).hasValue()) {
+        if (positions.get(position)) {
             return position - DISTANCE_MOVED;
         }
 
-        if (position + DISTANCE_MOVED < positions.size() && positions.get(position + DISTANCE_MOVED).hasValue()) {
+        if (position + DISTANCE_MOVED < positions.size() && positions.get(position + DISTANCE_MOVED)) {
             return position + DISTANCE_MOVED;
         }
 
         return position;
     }
 
-    public List<Position> getPositions() {
+    public List<Boolean> getPositions() {
         return positions;
     }
 }
