@@ -17,7 +17,7 @@ public class ParticipantTest {
         String name = "pobi";
 
         // when
-        Participant participant = new Participant(name);
+        Participant participant = new Participant(0, name);
 
         // then
         assertThat(participant.toString()).isEqualTo(name);
@@ -30,7 +30,7 @@ public class ParticipantTest {
         String name = "pobipobi";
 
         // when & then
-        assertThatThrownBy(() -> new Participant(name))
+        assertThatThrownBy(() -> new Participant(0, name))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -38,7 +38,7 @@ public class ParticipantTest {
     @NullAndEmptySource
     void exceptionParticipantIsNullOrEmpty(String name) {
         // when & then
-        assertThatThrownBy(() -> new Participant(name))
+        assertThatThrownBy(() -> new Participant(0, name))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

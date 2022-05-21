@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class Participants {
@@ -27,9 +28,19 @@ public class Participants {
     private static List<Participant> convertToList(String[] names) {
         validateNullAndEmpty(names);
 
+        AtomicInteger index = new AtomicInteger();
+
         return Arrays.stream(names)
-                .map(Participant::new)
+                .map(name -> new Participant(index.getAndIncrement(), name))
                 .collect(Collectors.toList());
+    }
+
+    public int findPosition(String name) {
+        return values.stream()
+                .filter(value -> name.equals(value.toString()))
+                .findFirst()
+                .get()
+                .getIndex();
     }
 
 

@@ -7,9 +7,11 @@ public class Participant {
     private static final int BASE_LENGTH_PARTICIPANT_NAME = 5;
 
     private final String name;
+    private final int index;
 
-    public Participant(String name) {
+    public Participant(int index, String name) {
         validate(name);
+        this.index = index;
         this.name = name;
     }
 
@@ -28,6 +30,10 @@ public class Participant {
         if (name.length() > BASE_LENGTH_PARTICIPANT_NAME) {
             throw new IllegalParticipantNameException(name);
         }
+    }
+
+    public int getIndex() {
+        return index;
     }
 
     @Override
