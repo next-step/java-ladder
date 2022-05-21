@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import nextstep.ladder.dto.LadderStandardDto;
 import nextstep.ladder.exception.LadderLineNullException;
 import nextstep.ladder.generator.PositionGenerator;
 
@@ -14,8 +15,8 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public Ladder(PositionGenerator productionGenerator, int height, int countOfPosition) {
-        this(createLines(productionGenerator, height, countOfPosition));
+    public Ladder(PositionGenerator productionGenerator, LadderStandardDto ladderStandardDto) {
+        this(createLines(productionGenerator, ladderStandardDto));
     }
 
     private void validateNullAndEmpty(List<Line> lines) {
@@ -24,9 +25,9 @@ public class Ladder {
         }
     }
 
-    private static List<Line> createLines(PositionGenerator productionGenerator, int height, int countOfPosition) {
-        return IntStream.range(0, height)
-                .mapToObj(i -> new Line(productionGenerator, countOfPosition))
+    private static List<Line> createLines(PositionGenerator productionGenerator, LadderStandardDto ladderStandardDto) {
+        return IntStream.range(0, ladderStandardDto.getHeight())
+                .mapToObj(i -> new Line(productionGenerator, ladderStandardDto.getWidth()))
                 .collect(Collectors.toList());
     }
 

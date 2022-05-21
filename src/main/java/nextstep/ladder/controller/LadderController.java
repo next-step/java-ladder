@@ -8,6 +8,7 @@ import nextstep.ladder.domain.Participant;
 import nextstep.ladder.domain.Participants;
 import nextstep.ladder.domain.Results;
 import nextstep.ladder.dto.ExecutionResultDto;
+import nextstep.ladder.dto.LadderStandardDto;
 import nextstep.ladder.generator.PositionGenerator;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
@@ -28,7 +29,9 @@ public class LadderController {
         Results results = new Results(executionResults);
         Height height = new Height(InputView.inputLadderHeight());
 
-        Ladder ladder = new Ladder(productionGenerator, height.getValue(), participantNames.length);
+        LadderStandardDto ladderStandardDto = new LadderStandardDto(height, participantNames.length);
+
+        Ladder ladder = new Ladder(productionGenerator, ladderStandardDto);
 
         OutputView.printLadderResult(participants.getValues(), ladder.getLines());
         OutputView.printResults(results.getValues());
