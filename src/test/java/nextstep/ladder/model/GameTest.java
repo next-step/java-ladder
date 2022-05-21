@@ -22,16 +22,16 @@ public class GameTest {
         List<String> names = List.of("a", "b", "c");
         People people = People.of(names);
 
-        Line first = Line.create(Point.ofTrue(), Point.ofFalse(), Point.ofFalse());
-        Line second = Line.create(Point.ofFalse(), Point.ofTrue(), Point.ofFalse());
-        Line third = Line.create(Point.ofTrue(), Point.ofFalse(), Point.ofFalse());
+        Line first = Line.create(Point.isTrue(), Point.isFalse(), Point.isFalse());
+        Line second = Line.create(Point.isFalse(), Point.isTrue(), Point.isFalse());
+        Line third = Line.create(Point.isTrue(), Point.isFalse(), Point.isFalse());
         Lines lines = Lines.of(List.of(first, second, third));
 
         List<String> scores = List.of("10", "20", "30");
         EndPoints endPoints = EndPoints.of(scores);
 
         Game game = Game.ready(people, lines, endPoints);
-        ResultView.printGame(game);
+        ResultView.printLadder(people, game.ladder());
 
         assertThat(game.result(name).score()).isEqualTo(score);
     }

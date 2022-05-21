@@ -25,7 +25,7 @@ public class EndPoints {
         return Collections.unmodifiableList(this.endPoints);
     }
 
-    public EndPoint endPoint(int index) {
-        return this.endPoints.get(index);
+    public EndPoint endPoint(int column) {
+        return this.endPoints.get(column);
     }
 }

@@ -3,17 +3,20 @@ package nextstep.ladder.view;
 import nextstep.ladder.model.Game;
 import nextstep.ladder.model.ladder.*;
 import nextstep.ladder.model.player.People;
+import nextstep.ladder.model.player.Person;
 
 import java.util.List;
-import java.util.function.Function;
+import java.util.function.BiFunction;
 import java.util.stream.Collectors;
+
+import static nextstep.ladder.model.ConstantNumber.ZERO;
 
 public class ResultView {
     private static final String EMPTY_PEOPLE_MESSAGE = "참여자가 존재하지 않습니다.";
     private static final String EMPTY_LINE_MESSAGE = "사다리가 존재하지 않습니다.";
-    private static final String FIND_RESULT_MESSAGE = "결과를 보고 싶은 사람은?";
     private static final String LADDER_MESSAGE = "사다리 결과";
     private static final String RESULT_MESSAGE = "실행 결과";
+    private static final String ALL_RESULT_MESSAGE = "%s : %s";
     private static final String EMPTY_SPACE = "";
     private static final String DOUBLE_EMPTY_SPACE = "  ";
     private static final String WIDTH_LINE = "-----";
@@ -34,8 +37,8 @@ public class ResultView {
         return String.join(addWidth(prev), HEIGHT_LINE, EMPTY_SPACE);
     }
 
-    private static Function<List<Point>, String> drawing() {
-        return points -> points
+    private static String drawing(List<Point> points) {
+        return points
                 .stream()
                 .map(ResultView::joining)
                 .reduce((prev, next) -> prev + next)
@@ -46,7 +49,7 @@ public class ResultView {
         String serialize = lines.unwrap()
                 .stream()
                 .map(Line::points)
-                .map(drawing())
+                .map(ResultView::drawing)
                 .collect(Collectors.joining(System.lineSeparator()));
 
         println(serialize);
@@ -70,21 +73,38 @@ public class ResultView {
         println(serialize);
     }
 
-    public static void printGame(Game game) {
+    public static void printLadder(People people, Ladder ladder) {
         println(LADDER_MESSAGE);
         println();
-        printName(game.people());
-        printLines(game.ladder().lines());
-        printEndPoints(game.ladder().endPoints());
+        printName(people);
+        printLines(ladder.lines());
+        printEndPoints(ladder.endPoints());
+        println();
     }
 
-    public static void printResult(Game game) {
-        println(FIND_RESULT_MESSAGE);
-        String name = InputView.inputString();
-        println();
+    public static void printAllResult(Game game) {
+        BiFunction<String, EndPoint, String> message = (name, result) ->
+                String.format(ALL_RESULT_MESSAGE, name, game.result(name));
+        game.people()
+                .unwrap()
+                .stream()
+                .map(Person::toString)
+                .forEach(name -> println(message.apply(name, game.result(name))));
+
+        System.exit(ZERO.getValue());
+    }
+
+    public static void printResult(String name, Game game) {
         println(RESULT_MESSAGE);
+
+        if (name.equals("all")) {
+            printAllResult(game);
+            return;
+        }
+
         EndPoint endPoint = game.result(name);
         println(endPoint.score());
+        println();
     }
 
     public static void println() {

@@ -14,11 +14,10 @@ import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static nextstep.ladder.model.ConstantNumber.*;
+
 public final class Line {
 
-    private static final int ZERO = 0;
-    private static final int ONE = 1;
-    private static final int MINIMUM_ROW_LENGTH = 2;
     private static final Point FALSE = Point.of(false);
     private static final String MINIMUM_LINE_MESSAGE = "사다리 높이는 최소 2 이상이어야 합니다.";
 
@@ -30,33 +29,33 @@ public final class Line {
 
     private static void isMinimum(int countOfPeople) {
         Optional.of(countOfPeople)
-                .filter(count -> MINIMUM_ROW_LENGTH <= count)
+                .filter(count -> TWO.getValue() <= count)
                 .orElseThrow(() -> new MinimumException(MINIMUM_LINE_MESSAGE));
     }
 
     private static Function<Integer, List<Point>> init() {
         return countOfPeople -> IntStream
-                .range(ZERO, countOfPeople)
+                .range(ZERO.getValue(), countOfPeople)
                 .mapToObj(i -> RandomBoolean.trueOrFalse())
                 .map(Point::of)
                 .collect(Collectors.toList());
     }
 
     private static IntPredicate isAdjacentPointsHaveLines(List<Point> points) {
-        return index -> points.get(index).value() && points.get(index + ONE).value();
+        return column -> points.get(column).value() && points.get(column + ONE.getValue()).value();
     }
 
     private static IntConsumer setNextPointNoLine(List<Point> points) {
-        return index -> points.set(index + ONE, FALSE);
+        return column -> points.set(column + ONE.getValue(), FALSE);
     }
 
     private static UnaryOperator<List<Point>> removable() {
         return points -> {
-            int lastIndex = points.size() - ONE;
-            IntStream.range(ZERO, lastIndex)
+            int lastColumn = points.size() - ONE.getValue();
+            IntStream.range(ZERO.getValue(), lastColumn)
                     .filter(isAdjacentPointsHaveLines(points))
                     .forEach(setNextPointNoLine(points));
-            points.set(lastIndex, FALSE);
+            points.set(lastColumn, FALSE);
             return points;
         };
     }
@@ -75,7 +74,7 @@ public final class Line {
     }
 
     private Point leftPoint(AtomicInteger column) {
-        if (column.get() <= ZERO) {
+        if (column.get() <= ZERO.getValue()) {
             column.incrementAndGet();
         }
         return this.points.get(column.decrementAndGet());
@@ -95,7 +94,7 @@ public final class Line {
         Point leftPoint = this.leftPoint(leftColumn);
         Point columnPoint = this.currentPoint(currentColumn);
 
-        if (column != ZERO && leftPoint.value()) {
+        if (column != ZERO.getValue() && leftPoint.value()) {
             return leftColumn.get();
         }
 

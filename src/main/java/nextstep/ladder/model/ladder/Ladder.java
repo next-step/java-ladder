@@ -5,12 +5,13 @@ import nextstep.ladder.exception.MinimumException;
 import java.util.List;
 import java.util.Optional;
 
+import static nextstep.ladder.model.ConstantNumber.TWO;
+import static nextstep.ladder.model.ConstantNumber.ZERO;
+
 public class Ladder {
 
     private static final String MINIMUM_LINE_MESSAGE = "사다리의 행 길이는 최소 2 이상입니다.";
     private static final String MINIMUM_END_POINTS_MESSAGE = "점수 개수는 사다리의 행 길이와 동일 해야합니다.";
-    private static final int MINIMUM_ROW_LENGTH = 2;
-    private static final int ZERO = 0;
 
     private final Lines lines;
     private final EndPoints endPoints;
@@ -23,7 +24,7 @@ public class Ladder {
     private static void isMinimum(Lines lines) {
         Optional.ofNullable(lines.unwrap())
                 .map(List::size)
-                .filter(size -> MINIMUM_ROW_LENGTH < size)
+                .filter(size -> TWO.getValue() < size)
                 .orElseThrow(() -> new MinimumException(MINIMUM_LINE_MESSAGE));
     }
 
@@ -47,9 +48,9 @@ public class Ladder {
         return new Ladder(lines, endPoints);
     }
 
-    public EndPoint findEndPoint(int index) {
-        int endPointNumber = this.lines.moveDown(ZERO, index);
-        return this.endPoints.endPoint(endPointNumber);
+    public EndPoint findEndPoint(int startColumn) {
+        int endColumn = this.lines.moveDown(ZERO.getValue(), startColumn);
+        return this.endPoints.endPoint(endColumn);
     }
 
     public Lines lines() {

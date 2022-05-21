@@ -22,8 +22,11 @@ public class LadderController {
         ResultView.println();
 
         Game game = Game.ready(names, scores, maxHeight);
-        ResultView.printGame(game);
+        ResultView.printLadder(game.people(), game.ladder());
 
-        names.forEach(name -> ResultView.printResult(game));
+        names.forEach(name -> {
+            String n = InputView.inputName();
+            ResultView.printResult(n, game);
+        });
     }
 }

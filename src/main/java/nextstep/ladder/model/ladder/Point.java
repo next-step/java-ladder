@@ -8,11 +8,11 @@ public class Point {
         this.value = point;
     }
 
-    public static Point ofFalse() {
+    public static Point isFalse() {
         return Point.of(false);
     }
 
-    public static Point ofTrue() {
+    public static Point isTrue() {
         return Point.of(true);
     }
 

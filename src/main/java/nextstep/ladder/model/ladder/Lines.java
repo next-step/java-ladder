@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Lines {
+import static nextstep.ladder.model.ConstantNumber.ZERO;
 
-    private static final int ZERO = 0;
+public class Lines {
 
     private final List<Line> lines;
 
@@ -17,7 +17,7 @@ public class Lines {
 
     public static Lines of(int countOfPeople, int maxHeight) {
         List<Line> lines = IntStream
-                .range(ZERO, maxHeight)
+                .range(ZERO.getValue(), maxHeight)
                 .mapToObj(i -> Line.create(countOfPeople))
                 .collect(Collectors.toList());
 
@@ -36,13 +36,13 @@ public class Lines {
         if (row == this.size()) {
             return column;
         }
-        Line line = this.lines.get(row);
+        Line line = this.line(row);
         int nextColumn = line.moveLeftAndRight(column);
         return moveDown(++row, nextColumn);
     }
 
-    public Line line(int index) {
-        return this.lines.get(index);
+    public Line line(int row) {
+        return this.lines.get(row);
     }
 
     public int size() {

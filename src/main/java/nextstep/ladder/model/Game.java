@@ -42,7 +42,7 @@ public class Game {
     }
 
     public EndPoint result(String name) {
-        int index = this.people.sequence(name);
-        return this.ladder.findEndPoint(index);
+        int sequence = this.people.findSequence(name);
+        return this.ladder.findEndPoint(sequence);
     }
 }
