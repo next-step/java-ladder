@@ -3,6 +3,7 @@ package ladder.domain;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class GameResults {
@@ -32,5 +33,22 @@ public class GameResults {
 
   public GameResult getGameResult(int width) {
     return values.get(width);
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof GameResults)) {
+      return false;
+    }
+    GameResults that = (GameResults) o;
+    return Objects.equals(values, that.values);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(values);
   }
 }

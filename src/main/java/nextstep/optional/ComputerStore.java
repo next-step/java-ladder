@@ -29,7 +29,7 @@ public class ComputerStore {
         .ifPresent(c -> Optional.ofNullable(c.getSoundcard())
             .ifPresent(soundcard -> Optional.ofNullable(soundcard.getUsb())
                 .ifPresent(usb -> version.set(usb.getVersion()))));
-    
+
     return version.get();
   }
 }

@@ -7,22 +7,22 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class LadderTest {
+class LadderPartLinesTest {
 
   @Test
-  @DisplayName("사다리 높이를 잘 가져오는지 확인")
-  void getLadderHeight() {
-    Ladder ladder = Ladder.of(10, 10);
+  @DisplayName("사다리 높이, 너비에 따라 잘 생성되는지 확인")
+  void of() {
+    LadderPartLines lines = LadderPartLines.of(10, 10);
 
-    assertThat(ladder.getLadderHeight()).isEqualTo(10);
+    assertThat(lines.height()).isEqualTo(10);
+    assertThat(lines.getLines().get(0).getLine().size()).isEqualTo(10);
   }
 
   @Test
   @DisplayName("사다리 타기 결과가 정확한지 확인")
   void traverse() {
     int width = 10;
-    Ladder ladder = Ladder.of(10, width);
-    LadderPartLines lines = ladder.getLadderLines();
+    LadderPartLines lines = LadderPartLines.of(10, width);
     List<Integer> expects = new ArrayList<>();
     List<Integer> actual = new ArrayList<>();
 

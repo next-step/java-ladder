@@ -7,41 +7,48 @@ public class LadderPartLine {
 
   private final List<LadderPart> line;
 
-  private LadderPartLine(List<LadderPart> line) {
+  public LadderPartLine(List<LadderPart> line) {
     this.line = line;
   }
 
-  public static LadderPartLine of(List<Boolean> connects) {
+  public static LadderPartLine from(int width) {
     List<LadderPart> partLine = new ArrayList<>();
-    for (int widthPoint = 0; widthPoint < connects.size(); widthPoint++) {
-      boolean left = isConnectLeft(widthPoint, connects);
-      boolean right = isConnectRight(widthPoint, connects);
-      partLine.add(new LadderPart(left, right));
-    }
+    LadderPart first = LadderPart.first();
+    partLine.add(first);
+
+    LadderPart lastPart = addBody(width, partLine, first);
+
+    addLast(width, partLine, lastPart);
     return new LadderPartLine(partLine);
   }
 
-  private static boolean isConnectRight(int widthPoint, List<Boolean> connects) {
-    return connects.get(widthPoint);
-  }
-
-  private static boolean isConnectLeft(int widthPoint, List<Boolean> connects) {
-    int previousPoint = widthPoint - 1;
-    if (previousPoint < 0) {
-      return false;
+  private static void addLast(int width, List<LadderPart> partLine, LadderPart lastPart) {
+    if (width > partLine.size()) {
+      partLine.add(lastPart.last());
     }
-    return connects.get(previousPoint);
   }
 
-  public boolean isRightConnect(int widthPoint) {
-    return line.get(widthPoint).isRightConnect();
+  private static LadderPart addBody(int width, List<LadderPart> partLine, LadderPart part) {
+    for (int widthPoint = 1; widthPoint < width - 1; widthPoint++) {
+      part = part.generateNext();
+      partLine.add(part);
+    }
+    return part;
   }
 
-  public boolean isLeftConnect(int widthPoint) {
-    return line.get(widthPoint).isLeftConnect();
+  public int move(int lineIdx) {
+    return line.get(lineIdx).move();
   }
 
-  public int getLadderWidth() {
+  public List<LadderPart> getLine() {
+    return line;
+  }
+
+  public int getWidth() {
     return line.size();
+  }
+
+  public Connect getConnect(int lineIdx) {
+    return line.get(lineIdx).getConnect();
   }
 }

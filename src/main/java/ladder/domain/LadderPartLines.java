@@ -1,39 +1,46 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import ladder.domain.strategy.LadderConnectStrategy;
 
 public class LadderPartLines {
 
-  private final List<LadderPartLine> values;
+  private final List<LadderPartLine> lines;
 
   public LadderPartLines(List<LadderPartLine> ladderLines) {
-    this.values = ladderLines;
+    this.lines = ladderLines;
   }
 
-  public static LadderPartLines of(int height, LadderConnectStrategy ladderConnectStrategy) {
-    List<LadderPartLine> lines = IntStream.range(0, height).
-        mapToObj(heightPont -> LadderPartLine.of(ladderConnectStrategy.create(heightPont)))
-        .collect(Collectors.toList());
+  public static LadderPartLines of(int height, int width) {
+    List<LadderPartLine> ladderPartLines = new ArrayList<>();
+    for (int i = 0; i < height; i++) {
+      ladderPartLines.add(LadderPartLine.from(width));
+    }
 
-    return new LadderPartLines(lines);
-  }
-
-  public boolean isLeftConnect(int height, int lineIdx) {
-    return values.get(height).isLeftConnect(lineIdx);
-  }
-
-  public boolean isRightConnect(int height, int lineIdx) {
-    return values.get(height).isRightConnect(lineIdx);
+    return new LadderPartLines(ladderPartLines);
   }
 
   public int height() {
-    return values.size();
+    return lines.size();
   }
 
-  public LadderPartLine getLadderLine(int height) {
-    return values.get(height);
+  public int traverse(int startIndex) {
+    int result = startIndex;
+    for (LadderPartLine line : lines) {
+      result = line.move(result);
+    }
+    return result;
+  }
+
+  public List<LadderPartLine> getLines() {
+    return lines;
+  }
+
+  public int getWidth() {
+    return lines.get(0).getWidth();
+  }
+
+  public Connect getConnect(int heightIdx, int lineIdx) {
+    return lines.get(heightIdx).getConnect(lineIdx);
   }
 }
