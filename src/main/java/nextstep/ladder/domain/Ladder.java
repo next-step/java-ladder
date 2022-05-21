@@ -30,6 +30,14 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
+    public int ride(int position) {
+        for (Line line : lines) {
+            position = line.ride(position);
+        }
+
+        return position;
+    }
+
     public List<Line> getLines() {
         return lines;
     }

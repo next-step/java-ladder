@@ -1,13 +1,19 @@
 package nextstep.ladder.view;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Participant;
 import nextstep.ladder.domain.Position;
 
 public class OutputView {
+    private static final String ALL_RESULT_DELIMITER = ":";
+    private static final String ALL_PARTICIPANT_RESULT = "all";
+    private static final String LADDER_RESULT_INTRO = "사다리 결과";
     private static final String EXECUTION_RESULT_INTRO = "실행결과";
     private static final String PARTICIPANT_NAME_PRINT_FORMAT = "%6s";
+    private static final String RESULT_PRINT_FORMAT = "%6s";
     private static final String LADDER_LINE_EXIST = "-----|";
     private static final String LADDER_LINE_NON_EXIST = "     |";
     private static final String LINE_BREAK = "\n";
@@ -25,7 +31,7 @@ public class OutputView {
 
     private static void printParticipants(List<Participant> participants) {
         initStringBuilder();
-        System.out.println(EXECUTION_RESULT_INTRO);
+        System.out.println(LADDER_RESULT_INTRO);
         printParticipantNames(participants);
     }
 
@@ -34,6 +40,15 @@ public class OutputView {
         for (Line line : lines) {
             printLines(line.getPositions());
         }
+        System.out.println(STRING_BUILDER);
+    }
+
+    public static void printResults(List<String> results) {
+        initStringBuilder();
+        for (String result : results) {
+            STRING_BUILDER.append(String.format(RESULT_PRINT_FORMAT, result));
+        }
+        STRING_BUILDER.append(LINE_BREAK);
         System.out.println(STRING_BUILDER);
     }
 
@@ -65,5 +80,29 @@ public class OutputView {
 
     private static void printStringBuilder() {
         System.out.println(STRING_BUILDER);
+    }
+
+    public static void printLadderRideResult(Map<String, String> ladderRideResult, String participant) {
+        initStringBuilder();
+        System.out.println(EXECUTION_RESULT_INTRO);
+        if(ALL_PARTICIPANT_RESULT.equals(participant)) {
+            printLadderRideAllResult(ladderRideResult);
+        }
+
+        if(!ALL_PARTICIPANT_RESULT.equals(participant)) {
+            STRING_BUILDER.append(ladderRideResult.get(participant));
+            STRING_BUILDER.append(LINE_BREAK);
+        }
+
+        System.out.println(STRING_BUILDER);
+    }
+
+    private static void printLadderRideAllResult(Map<String, String> ladderRideResult) {
+        ladderRideResult.forEach((key, value) -> {
+            STRING_BUILDER.append(key);
+            STRING_BUILDER.append(ALL_RESULT_DELIMITER);
+            STRING_BUILDER.append(value);
+            STRING_BUILDER.append(LINE_BREAK);
+        });
     }
 }
