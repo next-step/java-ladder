@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain.player;
 
 import ladder.exception.TooLongNameException;
 
@@ -17,5 +17,9 @@ public class Name {
         if (name.length() > NAME_MAX_LENGTH) {
             throw new TooLongNameException("이름의 길이는 최대 5입니다");
         }
+    }
+
+    public String getName() {
+        return name;
     }
 }

@@ -1,5 +1,6 @@
 package ladder;
 
+import ladder.controller.LadderGame;
 import ladder.exception.TooLongNameException;
 
 public class Main {

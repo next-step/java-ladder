@@ -1,5 +1,6 @@
 package ladder;
 
+import ladder.domain.player.Name;
 import ladder.exception.TooLongNameException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
