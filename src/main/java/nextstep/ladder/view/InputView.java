@@ -27,6 +27,11 @@ public class InputView {
     return Arrays.asList(getStringInput().split(DELIMITER));
   }
 
+  public static String getResultName() {
+    System.out.println("결과를 보고 싶은 사람은?");
+    return getStringInput();
+  }
+
   private static int getIntInput() {
     return Integer.parseInt(SCANNER.nextLine());
   }
