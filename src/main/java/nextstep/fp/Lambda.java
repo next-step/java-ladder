@@ -21,20 +21,9 @@ public class Lambda {
         new Thread(() -> System.out.println("Hello from thread")).start();
     }
 
-    public static int sumAll(List<Integer> numbers) {
-        return numbers.stream().mapToInt(Integer::intValue).sum();
-    }
-
-    public static int sumAllEven(List<Integer> numbers) {
+    public static int sumAll(List<Integer> numbers, Conditional sumConditional) {
         return numbers.stream()
-                .filter(number -> number%2 == 0)
-                .mapToInt(Integer::intValue)
-                .sum();
-    }
-
-    public static int sumAllOverThree(List<Integer> numbers) {
-        return numbers.stream()
-                .filter(number -> number > 3)
+                .filter(sumConditional::check)
                 .mapToInt(Integer::intValue)
                 .sum();
     }
