@@ -3,19 +3,19 @@ package nextstep.ladder.domain;
 import java.util.Collections;
 import java.util.List;
 
-public class Results {
+public class EndPoints {
 
   private static final String VALIDATE_MESSAGE = "실행 결과의 수는 플레이어의 수(%d)와 같아야 합니다.";
 
-  private final List<String> results;
+  private final List<String> endPoints;
 
-  private Results(List<String> values) {
-    this.results = values;
+  private EndPoints(List<String> values) {
+    this.endPoints = values;
   }
 
-  public static Results of(List<String> values, int playerSize) {
+  public static EndPoints of(List<String> values, int playerSize) {
     validateSize(values, playerSize);
-    return new Results(values);
+    return new EndPoints(values);
   }
 
   private static void validateSize(List<String> values, int playerSize) {
@@ -25,10 +25,10 @@ public class Results {
   }
 
   public List<String> getResults() {
-    return Collections.unmodifiableList(results);
+    return Collections.unmodifiableList(endPoints);
   }
 
   public String valueByColumn(int column) {
-    return results.get(column);
+    return endPoints.get(column);
   }
 }
