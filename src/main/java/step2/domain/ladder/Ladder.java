@@ -25,7 +25,7 @@ public class Ladder {
 	}
 
 	public List<Line> getLines() {
-		return lines;
+		return List.copyOf(lines);
 	}
 
 	public int calculateResultIndex(int playerIndex) {

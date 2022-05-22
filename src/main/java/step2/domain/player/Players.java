@@ -45,7 +45,7 @@ public class Players {
 	}
 
 	public List<Player> getValues() {
-		return values;
+		return List.copyOf(values);
 	}
 
 	@Override
