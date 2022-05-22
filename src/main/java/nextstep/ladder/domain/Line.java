@@ -6,7 +6,9 @@ import java.util.List;
 
 public class Line {
 
+  private static final int START_INDEX = 0;
   private static final int START_POSITIVE_INDEX = 1;
+  private static final String VALIDATE_MESSAGE = "플레이어는 %d와 %d 사이에 위치해야 합니다.";
 
   private final List<Boolean> points = new ArrayList<>();
 
@@ -34,7 +36,67 @@ public class Line {
     return points.size();
   }
 
+  private int lastIndex() {
+    return size() - 1;
+  }
+
   public List<Boolean> getPoints() {
     return Collections.unmodifiableList(points);
+  }
+
+  public int move(int playerIndex) {
+    validateIndex(playerIndex);
+    if (playerIndex == START_INDEX) {
+      return moveRightOrStraight(playerIndex);
+    }
+    if (playerIndex == lastIndex()) {
+      return moveLeftOrStraight(playerIndex);
+    }
+
+    boolean leftPoint = points.get(playerIndex);
+    boolean rightPoint = points.get(playerIndex + 1);
+    if (leftPoint) {
+      return moveLeft(playerIndex);
+    }
+    if (rightPoint) {
+      return moveRight(playerIndex);
+    }
+    return moveStraight(playerIndex);
+  }
+
+  private void validateIndex(int playerIndex) {
+    if (playerIndex < START_INDEX || playerIndex > lastIndex()) {
+      throw new IllegalArgumentException(
+          String.format(VALIDATE_MESSAGE, START_INDEX, lastIndex())
+      );
+    }
+  }
+
+  private int moveRightOrStraight(int playerIndex) {
+    boolean point = points.get(playerIndex + 1);
+    if (point) {
+      return moveRight(playerIndex);
+    }
+    return moveStraight(playerIndex);
+  }
+
+  private int moveLeftOrStraight(int playerIndex) {
+    boolean point = points.get(playerIndex);
+    if (point) {
+      return moveLeft(playerIndex);
+    }
+    return playerIndex;
+  }
+
+  private int moveRight(int playerIndex) {
+    return playerIndex + 1;
+  }
+
+  private int moveLeft(int playerIndex) {
+    return playerIndex - 1;
+  }
+
+  private int moveStraight(int playerIndex) {
+    return playerIndex;
   }
 }

@@ -1,6 +1,8 @@
 package nextstep.ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -44,5 +46,29 @@ class LineTest {
   void createWithAllTruePoints() {
     Line line = Line.create(5, () -> false);
     assertThat(line.getPoints()).containsOnly(false);
+  }
+
+  @DisplayName("playerIndex를 입력하면 좌우 사다리 유무에 따라 이동할 수 있다.")
+  @Test
+  void move() {
+    List<Boolean> booleans = List.of(false, true, false, true);
+    Line line = new Line(booleans);
+
+    assertAll(
+        () -> assertThat(line.move(0)).isEqualTo(1),
+        () -> assertThat(line.move(1)).isZero(),
+        () -> assertThat(line.move(2)).isEqualTo(3),
+        () -> assertThat(line.move(3)).isEqualTo(2)
+    );
+  }
+
+  @DisplayName("Line의 start index, last index를 벗어난 인덱스를 입력하면 예외를 던진다.")
+  @ParameterizedTest
+  @ValueSource(ints = {-1, 5})
+  void moveWithInvalidIndex(int invalidIndex) {
+    List<Boolean> booleans = List.of(false, true, false, true);
+    Line line = new Line(booleans);
+
+    assertThatThrownBy(() -> line.move(invalidIndex)).isInstanceOf(IllegalArgumentException.class);
   }
 }
