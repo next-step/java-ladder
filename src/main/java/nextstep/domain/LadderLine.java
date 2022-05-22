@@ -4,135 +4,70 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class LadderLine {
-    private static final int WRITE_START = 1;
-    private static final int LINE_LENGTH_FOR_USER = 5;
-    private static final int MOVE_USER_POINT = 6;
-    private static final boolean USER_POINT = false;
-    private final List<Boolean> points = new ArrayList<>();
-    private List<Boolean> visitedList = new ArrayList<>();
+    private final List<Point> points;
+    private final List<Boolean> visitedList;
 
-    public LadderLine(List<Boolean> isLadderGenerates) {
-        writeLadderLine(isLadderGenerates);
+    public LadderLine(List<Point> points, List<Boolean> visitedList) {
+        this.points = points;
+        this.visitedList = visitedList;
     }
 
-    private void writeLadderLine(List<Boolean> isLadderGenerates) {
-        for (int i = WRITE_START; i <= isLadderGenerates.size(); i++) {
-            this.points.add(USER_POINT);
-            this.visitedList.add(false);
-            this.points.addAll(writePoints(i, isLadderGenerates.get(i - 1)));
+    public int move(int position) {
+        return points.get(position).move();
+    }
+
+    public int moves(int position) {
+        int result = position;
+        while(!isStop(result)) {
+            result = move(result);
+            visitedList.set(result, true);
         }
-        this.points.add(USER_POINT);
-        this.visitedList.add(false);
-    }
-
-    private List<Boolean> writePoints(int i, boolean generate) {
-        for (int j = 0; j < LINE_LENGTH_FOR_USER; j++) {
-            this.visitedList.add(false);
+        int visitedListSize = visitedList.size();
+        for(int i = 0; i<visitedListSize; i++) {
+            visitedList.set(i,false);
         }
 
-        if (i == WRITE_START) {
-            return write(generate);
+        return result;
+    }
+
+    private boolean isStop(int position) {
+        return visitedList.get(position);
+    }
+
+    public static LadderLine init(int sizeOfPerson) {
+        List<Point> points = new ArrayList<>();
+        List<Boolean> visitedList = new ArrayList<>();
+        Point point = initFirst(points, visitedList);
+        point = initBody(sizeOfPerson, points, point, visitedList);
+        initLast(points, point, visitedList);
+        return new LadderLine(points, visitedList);
+    }
+
+    private static void initLast(List<Point> points, Point point, List<Boolean> visitedList) {
+        point = point.last();
+        points.add(point);
+        visitedList.add(false);
+    }
+
+    private static Point initBody(int sizeOfPerson, List<Point> points, Point point, List<Boolean> visitedList) {
+        for(int i = 1; i< sizeOfPerson - 1; i++) {
+            point = point.next();
+            points.add(point);
+            visitedList.add(false);
         }
-        if (!checkPoint(i)) {
-            return write(generate);
-        }
-        return write(false);
+        return point;
     }
 
-    private boolean checkPoint(int i) {
-        return this.points.get((i - 1) * LINE_LENGTH_FOR_USER - 1);
+    private static Point initFirst(List<Point> points, List<Boolean> visitedList) {
+        Point point = Point.first(LadderLineGenerator.generatePoint());
+        points.add(point);
+        visitedList.add(false);
+        return point;
     }
 
-    private List<Boolean> write(boolean point) {
-        return IntStream.range(0, LINE_LENGTH_FOR_USER)
-                .mapToObj(idx -> point)
-                .collect(Collectors.toList());
-    }
-
-    public int moveLadderLine(int startIndex) {
-        if (isLeftStartIndex(startIndex)) {
-            return checkRightPoint(startIndex);
-        }
-        if (isRightStartIndex(startIndex)) {
-            return checkLeftPoint(startIndex);
-        }
-        if (isLeftIndex(startIndex)) {
-            visitLeft(startIndex);
-            return moveLadderLine(startIndex - MOVE_USER_POINT);
-        }
-        if (isRightIndex(startIndex)) {
-            visitRight(startIndex);
-            return moveLadderLine(startIndex + MOVE_USER_POINT);
-        }
-        clearVisitedList();
-        return startIndex;
-    }
-
-    private boolean isLeftStartIndex(int startIndex) {
-        return startIndex == 0 && !this.visitedList.get(startIndex);
-    }
-
-    private boolean isRightStartIndex(int startIndex) {
-        return startIndex == this.points.size() - 1 && !this.visitedList.get(startIndex);
-    }
-
-    private boolean isLeftIndex(int startIndex) {
-        return startIndex > 0 && startIndex < this.points.size() - 1
-                && !this.visitedList.get(startIndex - 1)
-                && this.points.get(startIndex - 1);
-    }
-
-    private boolean isRightIndex(int startIndex) {
-        return startIndex > 0 && startIndex < this.points.size() - 1
-                && !this.visitedList.get(startIndex + 1)
-                && this.points.get(startIndex + 1);
-    }
-
-
-    private int checkLeftPoint(int i) {
-        if (!this.visitedList.get(i - 1) && this.points.get(i - 1)) {
-            visitLeft(i);
-            return moveLadderLine(i - MOVE_USER_POINT);
-        }
-        clearVisitedList();
-        return i;
-    }
-
-    private int checkRightPoint(int i) {
-        if (!this.visitedList.get(i + 1) && this.points.get(i + 1)) {
-            visitRight(i);
-            return moveLadderLine(i + MOVE_USER_POINT);
-        }
-        clearVisitedList();
-        return i;
-    }
-
-    private void visitRight(int i) {
-        int k = i;
-        for (int j = 0; j <= MOVE_USER_POINT; j++) {
-            this.visitedList.set(k++, true);
-        }
-    }
-
-    private void visitLeft(int i) {
-        int k = i;
-        for (int j = 0; j <= MOVE_USER_POINT; j++) {
-            this.visitedList.set(k--, true);
-        }
-    }
-
-    private void clearVisitedList() {
-        this.visitedList = this.visitedList.stream()
-                .map(v -> false)
-                .collect(Collectors.toList());
-    }
-
-
-    public List<Boolean> getPoints() {
+    public List<Point> getPoints() {
         return Collections.unmodifiableList(this.points);
     }
 
@@ -148,4 +83,5 @@ public class LadderLine {
     public int hashCode() {
         return Objects.hash(points);
     }
+
 }

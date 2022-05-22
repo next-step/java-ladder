@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LadderResult {
-    private static final int USER_INDEX_POINT = 6;
     private final List<String> result;
     private final List<Integer> resultIndex = new ArrayList<>();
 
@@ -29,10 +28,10 @@ public class LadderResult {
     }
 
     public String find(int userIndex) {
-        if (userIndex < 0) {
+        if (userIndex < 0 || userIndex > resultIndex.size()) {
             throw new IllegalArgumentException("유저를 찾을 수 없습니다.");
         }
-        return this.result.get(this.resultIndex.get(userIndex) / USER_INDEX_POINT);
+        return this.result.get(this.resultIndex.get(userIndex));
     }
 
 }

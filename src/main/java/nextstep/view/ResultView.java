@@ -13,10 +13,9 @@ public class ResultView {
     private static final String PAD = "     ";
     private static final String LPAD = "      ";
     private static final String USER_POINT = "|";
-    private static final String LADDER_LINE = "-";
-    private static final String BLANK = " ";
+    private static final String LADDER_LINE = "-----";
+    private static final String BLANK = "     ";
     private static final String COLON = " : ";
-    private static final int CHECK_USER_POINT_INDEX = 6;
 
     public static void print(StartLadderGame startLadderGame) {
         System.out.println("실행결과\n");
@@ -58,13 +57,11 @@ public class ResultView {
     private static void printLAdderLine(LadderLine ladderLine) {
         IntStream.range(0, ladderLine.getPoints().size())
                 .forEach(i -> {
-                    if (isUserPoint(i)) {
-                        System.out.print(USER_POINT);
-                    }
-                    if (isLadderLine(i, ladderLine.getPoints().get(i))) {
+                    System.out.print(USER_POINT);
+                    if (ladderLine.getPoints().get(i).getDirection().isRight()) {
                         System.out.print(LADDER_LINE);
                     }
-                    if (isLadderBlankLine(i, ladderLine.getPoints().get(i))) {
+                    if (!ladderLine.getPoints().get(i).getDirection().isRight()) {
                         System.out.print(BLANK);
                     }
                 });
@@ -74,17 +71,6 @@ public class ResultView {
         System.out.println(result);
     }
 
-    private static boolean isUserPoint(int index) {
-        return index % CHECK_USER_POINT_INDEX == 0;
-    }
-
-    private static boolean isLadderLine(int index, boolean isLadderLine) {
-        return index % CHECK_USER_POINT_INDEX != 0 && isLadderLine;
-    }
-
-    private static boolean isLadderBlankLine(int index, boolean isLadderLine) {
-        return index % CHECK_USER_POINT_INDEX != 0 && !isLadderLine;
-    }
 
     public static void printAllResult(Users users, List<String> all) {
         System.out.println("실행 결과");
