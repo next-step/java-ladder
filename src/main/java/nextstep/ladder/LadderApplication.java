@@ -1,10 +1,10 @@
 package nextstep.ladder;
 
+import nextstep.ladder.domain.EndPoints;
 import nextstep.ladder.domain.GameResult;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Length;
 import nextstep.ladder.domain.Players;
-import nextstep.ladder.domain.EndPoints;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 

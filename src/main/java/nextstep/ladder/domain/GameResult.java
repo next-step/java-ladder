@@ -1,7 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class GameResult {
@@ -9,7 +9,7 @@ public class GameResult {
   private final Map<Player, String> results;
 
   public GameResult() {
-    this.results = new HashMap<>();
+    this.results = new LinkedHashMap<>();
   }
 
   public void add(Player player, String endPoint) {
@@ -18,5 +18,9 @@ public class GameResult {
 
   public Map<Player, String> getResults() {
     return Collections.unmodifiableMap(results);
+  }
+
+  public String getResultByName(String name) {
+    return results.get(Player.of(name));
   }
 }
