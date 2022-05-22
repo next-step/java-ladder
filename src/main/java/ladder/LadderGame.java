@@ -2,6 +2,7 @@ package ladder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LadderGame {
     private List<User> users;
@@ -19,5 +20,11 @@ public class LadderGame {
         }
 
         return lines;
+    }
+
+    public List<String> drawUserList() {
+        return users.stream()
+                .map(user -> user.getUserName())
+                .collect(Collectors.toList());
     }
 }

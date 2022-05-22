@@ -32,20 +32,24 @@ public class Line {
         return points.contains(new Point(true));
     }
 
-    public void print() {
+    public String drawLine() {
+        StringBuilder builder = new StringBuilder();
         for (Point point : points) {
-            if (isFirstPoint(point)) {
-                System.out.print("|" + point.getString());
-                continue;
-            }
-
-            if (isLastPoint(point)) {
-                System.out.println(point.getString() + "|");
-                continue;
-            }
-
-            System.out.print("|" + point.getString() + "|");
+            builder.append(drawLine(point));
         }
+        return builder.toString();
+    }
+
+    private String drawLine(Point point) {
+        if (isFirstPoint(point)) {
+            return "|" + point.getString();
+        }
+
+        if (isLastPoint(point)) {
+            return point.getString() + "|";
+        }
+
+        return "|" + point.getString() + "|";
     }
 
     private boolean isFirstPoint(Point point) {
