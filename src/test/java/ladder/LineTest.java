@@ -1,6 +1,8 @@
 package ladder;
 
 import static java.util.Collections.emptyList;
+import static ladder.NameTest.PLAYER_NAME_LIST_1;
+import static ladder.PlayersTest.PLAYERS_1;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -37,7 +39,7 @@ class LineTest {
 
   @Test
   void from_성공() {
-    Line line = Line.from(new PlayerNumber(5));
-    assertThat(line.playerNumber()).isEqualTo(5);
+    Line line = Line.from(PLAYERS_1);
+    assertThat(line.playerNumber()).isEqualTo(PLAYERS_1.playerNumber());
   }
 }

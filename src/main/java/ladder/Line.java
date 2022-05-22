@@ -1,6 +1,6 @@
 package ladder;
 
-import static ladder.PlayerNumber.MIN_PLAYER_NUMBER;
+import static ladder.Players.MIN_PLAYER_NUMBER;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -32,9 +32,9 @@ public class Line {
     }
   }
 
-  public static Line from(PlayerNumber playerNumber) {
+  public static Line from(Players players) {
     List<Boolean> line = new ArrayList<>();
-    for (int i = 0; playerNumber.isMoreThan(i + 1); i++) {
+    for (int i = 0; players.isMoreThan(i + 1); i++) {
       seedPoint(line, i);
     }
     line.add(Boolean.FALSE);

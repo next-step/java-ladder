@@ -26,10 +26,10 @@ public class Ladder {
     }
   }
 
-  public static Ladder from(PlayerNumber playerNumber, Height height) {
+  public static Ladder from(Players players, Height height) {
     List<Line> ladder = new ArrayList<>();
     for (int i = 0; height.isMoreThan(i); i++) {
-      ladder.add(i, Line.from(playerNumber));
+      ladder.add(i, Line.from(players));
     }
     return new Ladder(ladder);
   }

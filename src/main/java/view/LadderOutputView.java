@@ -4,8 +4,7 @@ import java.util.List;
 import java.util.StringJoiner;
 import ladder.Ladder;
 import ladder.Line;
-import ladder.PlayerNames;
-import ladder.PlayerNumber;
+import ladder.Players;
 
 public class LadderOutputView {
 
@@ -30,8 +29,8 @@ public class LadderOutputView {
     print(stringJoiner.toString());
   }
 
-  public void printPlayerNames(PlayerNames playerNames) {
-    List<String> names = playerNames.playerNames();
+  public void printPlayerNames(Players players) {
+    List<String> names = players.playerNames();
     StringBuilder stringBuilder = new StringBuilder();
     for (String name : names) {
       stringBuilder.append(name)
@@ -42,9 +41,8 @@ public class LadderOutputView {
 
   private String lineToString(Line line) {
     List<Boolean> points = line.points();
-    PlayerNumber playerNumber = PlayerNumber.from(line);
     StringBuilder lineStringBuilder = new StringBuilder();
-    for (int i = 0; playerNumber.isMoreThan(i + 1); i++) {
+    for (int i = 0; i + 1 < points.size(); i++) {
       lineStringBuilder.append(LINE);
       lineStringBuilder.append(pointToString(points.get(i)));
     }

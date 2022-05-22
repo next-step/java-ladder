@@ -2,7 +2,7 @@ package view;
 
 import java.util.Scanner;
 import ladder.Height;
-import ladder.PlayerNames;
+import ladder.Players;
 
 public class LadderInputView {
 
@@ -11,9 +11,9 @@ public class LadderInputView {
 
   private final Scanner scanner = new Scanner(System.in);
 
-  public PlayerNames inputPlayerName() {
+  public Players inputPlayerName() {
     String text = scanString(INPUT_NAME_MESSAGE);
-    return PlayerNames.of(text);
+    return Players.of(text);
   }
 
   public Height inputHeight() {

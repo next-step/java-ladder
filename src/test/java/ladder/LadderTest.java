@@ -3,6 +3,7 @@ package ladder;
 import static java.util.Collections.emptyList;
 import static ladder.LineTest.LINE_1;
 import static ladder.LineTest.LINE_2;
+import static ladder.PlayersTest.PLAYERS_1;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -31,13 +32,12 @@ class LadderTest {
 
   @Test
   void from_성공() {
-    PlayerNumber playerNumber = new PlayerNumber(5);
     Height height = new Height(4);
 
-    Ladder ladder = Ladder.from(playerNumber, height);
+    Ladder ladder = Ladder.from(PLAYERS_1, height);
 
     List<Line> lines = ladder.lines();
     assertThat(lines.size()).isEqualTo(4);
-    assertThat(lines.get(0).points().size()).isEqualTo(5);
+    assertThat(lines.get(0).points().size()).isEqualTo(PLAYERS_1.playerNumber());
   }
 }

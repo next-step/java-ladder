@@ -14,13 +14,12 @@ public class LadderController {
   }
 
   public void proceed() {
-    PlayerNames playerNames = inputView.inputPlayerName();
-    PlayerNumber playerNumber = PlayerNumber.from(playerNames);
+    Players players = inputView.inputPlayerName();
     Height height = inputView.inputHeight();
 
-    Ladder ladder = Ladder.from(playerNumber, height);
+    Ladder ladder = Ladder.from(players, height);
     outputView.printResult();
-    outputView.printPlayerNames(playerNames);
+    outputView.printPlayerNames(players);
     outputView.printLine(ladder);
   }
 }
