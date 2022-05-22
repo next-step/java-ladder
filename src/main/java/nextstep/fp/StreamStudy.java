@@ -23,7 +23,12 @@ public class StreamStudy {
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-        // TODO 이 부분에 구현한다.
+        words.stream()
+                .filter(word -> word.length() > 12)
+                .sorted(StreamStudy::compare)
+                .distinct()
+                .map(String::toLowerCase)
+                .forEach(System.out::println);
     }
 
     public static List<Integer> getNumbers() throws IOException {
@@ -54,5 +59,9 @@ public class StreamStudy {
                 .filter(number -> number > 3)
                 .map(number -> number * 2)
                 .reduce(0, (x, y) -> x + y);
+    }
+
+    public static int compare(String word1, String word2) {
+        return Integer.compare(word2.length(), word1.length());
     }
 }
