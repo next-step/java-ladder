@@ -1,5 +1,8 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.exception.LadderException;
+import nextstep.ladder.exception.LadderExceptionCode;
+
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -8,6 +11,9 @@ public class Line {
     private List<Boolean> points;
 
     public static Line init(Height height) {
+        if (height == null) {
+            throw new LadderException(LadderExceptionCode.INVALID_HEIGHT);
+        }
         return new Line(
                 IntStream.range(0, height.getHeight())
                         .mapToObj(i -> Boolean.FALSE)
