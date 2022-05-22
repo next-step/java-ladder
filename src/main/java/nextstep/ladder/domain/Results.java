@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Results {
@@ -24,6 +25,6 @@ public class Results {
   }
 
   public List<String> getResults() {
-    return results;
+    return Collections.unmodifiableList(results);
   }
 }
