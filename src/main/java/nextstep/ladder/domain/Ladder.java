@@ -8,10 +8,12 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
+    private final static int MIN_COUNT_OF_LINES = 0;
+
     private final List<Line> lines;
 
     public static Ladder init(int countOfLines, Height height) {
-        if (countOfLines < 0) {
+        if (countOfLines < MIN_COUNT_OF_LINES) {
             throw new LadderException(LadderExceptionCode.FAIL_LADDER_INITIALIZATION);
         }
 

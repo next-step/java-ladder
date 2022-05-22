@@ -3,6 +3,7 @@ package nextstep.ladder;
 import nextstep.ladder.domain.Height;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Player;
+import nextstep.ladder.domain.Players;
 import nextstep.ladder.exception.LadderException;
 import nextstep.ladder.view.Input;
 import nextstep.ladder.view.Output;
@@ -14,12 +15,10 @@ public class LadderGame {
     public static void main(String[] args) {
         try {
             List<String> playersAsString = Input.askPlayers();
-            List<Player> players = playersAsString.stream()
-                    .map(Player::new)
-                    .collect(Collectors.toList());
+            Players players = Players.of(playersAsString);
 
             Height height = Input.askLadderHeight();
-            Ladder ladder = Ladder.init(players.size() - 1, height);
+            Ladder ladder = Ladder.init(players.countOfLines(), height);
             ladder.create(height);
 
             Output.printPlayers(players);

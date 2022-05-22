@@ -2,9 +2,8 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Height;
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Player;
+import nextstep.ladder.domain.Players;
 
-import java.util.List;
 import java.util.stream.IntStream;
 
 public class Output {
@@ -20,9 +19,9 @@ public class Output {
                                 .reduce(LADDER_NO, (prevLadder, nextLadder) -> (prevLadder + nextLadder))));
     }
 
-    public static void printPlayers(List<Player> players) {
+    public static void printPlayers(Players players) {
         printResult();
-        players.forEach(player -> System.out.printf("%6s", player.getName()));
+        players.players().forEach(player -> System.out.printf("%6s", player.getName()));
         System.out.println();
     }
 

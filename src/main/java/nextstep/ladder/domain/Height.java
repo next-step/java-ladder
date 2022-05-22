@@ -5,6 +5,7 @@ import nextstep.ladder.exception.LadderExceptionCode;
 
 public class Height {
     private static final int MIN_LADDER_HEIGHT = 1;
+
     private final int height;
 
     public static Height of(int height) {
