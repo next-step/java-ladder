@@ -56,7 +56,7 @@ class LadderTest {
      |-----|     |-----|
      1     2     3     4
   */
-  @DisplayName("playerIndex를 입력하면 마지막 줄까지 이동할 수 있다.")
+  @DisplayName("playerIndex를 입력하면 마지막 줄까지 이동하고 그곳의 인덱스를 반환한다.")
   @Test
   void move() {
     Ladder ladder = new Ladder(List.of(
