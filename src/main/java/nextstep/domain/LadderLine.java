@@ -21,12 +21,11 @@ public class LadderLine {
     public int moves(int position) {
         int result = position;
         while(!isStop(result)) {
-            visitedList.set(result, true);
             result = move(result);
             visitedList.set(result, true);
         }
-
-        for(int i = 0; i<visitedList.size(); i++) {
+        int visitedListSize = visitedList.size();
+        for(int i = 0; i<visitedListSize; i++) {
             visitedList.set(i,false);
         }
 
@@ -84,4 +83,5 @@ public class LadderLine {
     public int hashCode() {
         return Objects.hash(points);
     }
+
 }

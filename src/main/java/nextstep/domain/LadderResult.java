@@ -28,7 +28,7 @@ public class LadderResult {
     }
 
     public String find(int userIndex) {
-        if (userIndex < 0) {
+        if (userIndex < 0 || userIndex > resultIndex.size()) {
             throw new IllegalArgumentException("유저를 찾을 수 없습니다.");
         }
         return this.result.get(this.resultIndex.get(userIndex));
