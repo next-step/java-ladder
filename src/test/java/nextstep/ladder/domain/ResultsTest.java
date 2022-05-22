@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -28,5 +29,17 @@ class ResultsTest {
 
     assertThatThrownBy(() -> Results.of(values, playerSize))
         .isInstanceOf(IllegalArgumentException.class);
+  }
+
+  @Test
+  void valueByColumn() {
+    Results results = Results.of(List.of("꽝", "5000", "꽝", "3000"), 4);
+
+    assertAll(
+        () -> assertThat(results.valueByColumn(0)).isEqualTo("꽝"),
+        () -> assertThat(results.valueByColumn(1)).isEqualTo("5000"),
+        () -> assertThat(results.valueByColumn(2)).isEqualTo("꽝"),
+        () -> assertThat(results.valueByColumn(3)).isEqualTo("3000")
+    );
   }
 }

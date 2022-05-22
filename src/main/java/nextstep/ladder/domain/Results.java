@@ -27,4 +27,8 @@ public class Results {
   public List<String> getResults() {
     return Collections.unmodifiableList(results);
   }
+
+  public String valueByColumn(int column) {
+    return results.get(column);
+  }
 }
