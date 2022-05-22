@@ -3,8 +3,8 @@ package ladder;
 import static ladder.PlayerNumber.MIN_PLAYER_NUMBER;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 import util.RandomGenerator;
 
 public class Line {
@@ -19,8 +19,7 @@ public class Line {
   }
 
   public List<Boolean> points() {
-    return points.stream()
-        .collect(Collectors.toUnmodifiableList());
+    return Collections.unmodifiableList(points);
   }
 
   public int playerNumber() {
@@ -48,7 +47,7 @@ public class Line {
       line.add(index, Boolean.FALSE);
       return;
     }
-    ;
+
     line.add(index, RandomGenerator.randomBool());
   }
 }

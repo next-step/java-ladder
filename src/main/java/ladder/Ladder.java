@@ -4,8 +4,8 @@ import static ladder.Height.MESSAGE_FOR_INVALID_HEIGHT;
 import static ladder.Height.MIN_HEIGHT;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Ladder {
 
@@ -17,8 +17,7 @@ public class Ladder {
   }
 
   public List<Line> lines() {
-    return ladder.stream()
-        .collect(Collectors.toUnmodifiableList());
+    return Collections.unmodifiableList(ladder);
   }
 
   private void validateLadder(List<Line> ladder) {
