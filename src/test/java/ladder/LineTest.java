@@ -14,9 +14,4 @@ public class LineTest {
         Line line = new Line(Arrays.asList(new Point(false), new Point(false), new Point(false), new Point(false), new Point(false)));
         line.hasLine();
     }
-
-    @Test
-    void 사다리_라인이_겹치지_않도록한다() {
-
-    }
 }
