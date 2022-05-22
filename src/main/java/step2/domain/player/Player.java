@@ -11,12 +11,12 @@ public class Player {
 
 	private final String name;
 
-	public Player(String input) {
-		Validator.notBlank(input, ErrorTarget.NAME_INPUT);
-		Validator.max(MAX_NAME_LENGTH, input.length(),
-			String.format("이름이 최대 길이는 %d 글자 입니다. 입력 : %s", MAX_NAME_LENGTH, input));
+	public Player(String name) {
+		Validator.notBlank(name, ErrorTarget.NAME_INPUT);
+		Validator.max(MAX_NAME_LENGTH, name.length(),
+			String.format("이름이 최대 길이는 %d 글자 입니다. 입력 : %s", MAX_NAME_LENGTH, name));
 
-		this.name = input;
+		this.name = name;
 	}
 
 	public boolean hasName(String playerName) {
