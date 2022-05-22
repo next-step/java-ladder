@@ -12,9 +12,5 @@ public class LadderGameTest {
         LadderGame ladderGameTest = new LadderGame(Arrays.asList(new User("pobi"), new User("honux"), new User("crong"), new User("jk")));
         List<Line> lines = ladderGameTest.ready();
 
-
-        lines.forEach(line -> {
-            line.print();
-        });
     }
 }

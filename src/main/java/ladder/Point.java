@@ -5,9 +5,27 @@ import java.util.Objects;
 
 public class Point {
     private boolean point;
+    private Point prevPoint;
+
 
     public Point(boolean point) {
         this.point = point;
+    }
+
+    public Point(boolean point, Point prevPoint) {
+        this(point);
+        this.prevPoint = prevPoint;
+    }
+
+    public String  getString() {
+        if (point) {
+            return "-----";
+        }
+        return "     ";
+    }
+
+    public boolean isTrue() {
+        return this.point;
     }
 
     @Override
@@ -15,20 +33,18 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point1 = (Point) o;
-        return point == point1.point;
+        return point == point1.point && Objects.equals(prevPoint, point1.prevPoint);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(point);
+        return Objects.hash(point, prevPoint);
     }
 
-    public void print() {
-        System.out.print("|");
-        if (point) {
-            System.out.print("-----");
-        } else {
-            System.out.print("     ");
-        }
+    @Override
+    public String toString() {
+        return "Point{" +
+                "point=" + point +
+                '}';
     }
 }

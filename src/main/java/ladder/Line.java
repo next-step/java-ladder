@@ -8,46 +8,51 @@ public class Line {
     private List<Point> points = new ArrayList<>();
 
     public Line(int countOfPerson) {
-        while (!hasLine()) {
-            lineGenerator(countOfPerson);
-        }
+        lineGenerator(countOfPerson);
     }
 
     public Line(List<Point> points) {
         this.points = points;
     }
 
+    private void lineGenerator(int countOfPerson) {
+        Random random = new Random();
+        points.add(new Point(random.nextBoolean()));
+
+        for (int i = 1; i < countOfPerson; i++) {
+            if (points.get(i - 1).isTrue()) {
+                points.add(new Point(false, points.get(i - 1)));
+                continue;
+            }
+            points.add(new Point(true, points.get(i - 1)));
+        }
+    }
+
     boolean hasLine() {
         return points.contains(new Point(true));
     }
 
-    boolean isLinesOverlap() {
-        for (int i = 0; i < points.size(); i++) {
-            if (isOverlap(i)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private boolean isOverlap(int i) {
-//        if (i < points.size() - 1 && points.get(i) && points.get(i + 1)) {
-//            return true;
-//        }
-        return false;
-    }
-
-    private void lineGenerator(int countOfPerson) {
-        Random random = new Random();
-        Point point = new Point(random.nextBoolean());
-        for (int i = 0; i < countOfPerson; i++) {
-            points.add(point);
-        }
-    }
-
     public void print() {
-        points.forEach(point -> point.print());
-        System.out.println();
+        for (Point point : points) {
+            if (isFirstPoint(point)) {
+                System.out.print("|" + point.getString());
+                continue;
+            }
+
+            if (isLastPoint(point)) {
+                System.out.println(point.getString() + "|");
+                continue;
+            }
+
+            System.out.print("|" + point.getString() + "|");
+        }
     }
 
+    private boolean isFirstPoint(Point point) {
+        return points.get(0).equals(point);
+    }
+
+    private boolean isLastPoint(Point point) {
+        return points.get(points.size() - 1).equals(point);
+    }
 }
