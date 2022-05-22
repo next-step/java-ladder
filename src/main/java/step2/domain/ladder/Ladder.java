@@ -13,13 +13,12 @@ public class Ladder {
 
 	private final List<Line> lines = new ArrayList<>();
 
-	public Ladder(int numberOfPlayer, Height height, BooleanSupplier supplier) {
-		Validator.notNull(height, ErrorTarget.HEIGHT);
+	public Ladder(int numberOfPlayer, int height, BooleanSupplier supplier) {
 		Validator.notNull(supplier, ErrorTarget.SUPPLIER);
 		Validator.min(MIN_NUMBER_OF_PLAYER, numberOfPlayer,
 			String.format("플레이어의 수는 최소 %d 명 이어야합니다. 입력 : %d", MIN_NUMBER_OF_PLAYER, numberOfPlayer));
 
-		for (int i = 0; i < height.getValue(); i++) {
+		for (int i = 0; i < new Height(height).getValue(); i++) {
 			lines.add(new Line(numberOfPlayer, supplier));
 		}
 	}

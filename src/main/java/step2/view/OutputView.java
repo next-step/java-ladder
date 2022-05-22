@@ -6,7 +6,8 @@ import java.util.EnumMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import step2.domain.Results;
+import step2.domain.ExecutionResults;
+import step2.domain.LadderGame;
 import step2.domain.ladder.Direction;
 import step2.domain.ladder.Ladder;
 import step2.domain.ladder.Line;
@@ -23,11 +24,11 @@ public class OutputView {
 		DIRECTION_PRINT_MAP.put(Direction.RIGHT, "  |--");
 	}
 
-	public void showCreationResult(Players players, Ladder ladder, Results results) {
+	public void showCreationResult(LadderGame ladderGame, Ladder ladder) {
 		show("\n[사다리 결과]\n");
-		showPlayersResult(players);
+		showPlayersResult(ladderGame.getPlayers());
 		showLadderResult(ladder);
-		showResults(results);
+		showExecutionResults(ladderGame.getExecutionResults());
 	}
 
 	private void showPlayersResult(Players players) {
@@ -52,21 +53,21 @@ public class OutputView {
 			.collect(Collectors.joining());
 	}
 
-	private void showResults(Results results) {
-		String result = results.getValues()
+	private void showExecutionResults(ExecutionResults executionResults) {
+		String result = executionResults.getValues()
 			.stream()
 			.map(this::format)
 			.collect(Collectors.joining());
 		show(result);
 	}
 
-	public void showAllResult() {
-		show(LINE_BREAK);
-		show("<<실행결과>>");
-	}
-
-	public void showResultWithName(String playerName, String result) {
-		show(String.format("%s : %s", playerName, result));
+	public void showGameResult(Map<String, String> gameResult) {
+		show("\n<<실행결과>>");
+		String result = gameResult.entrySet()
+			.stream()
+			.map(entry -> String.format("%s : %s", entry.getKey(), entry.getValue()))
+			.collect(Collectors.joining(LINE_BREAK));
+		show(result);
 	}
 
 	private String format(String input) {
