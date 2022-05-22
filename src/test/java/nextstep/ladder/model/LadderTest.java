@@ -1,6 +1,6 @@
 package nextstep.ladder.model;
 
-import nextstep.ladder.exception.MinimumException;
+import nextstep.ladder.exception.LadderLengthException;
 import nextstep.ladder.model.ladder.Ladder;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -16,7 +16,7 @@ public class LadderTest {
     @ParameterizedTest(name = "최소 인원 예외 처리 - {index}")
     @MethodSource("isPeopleAndLineMinimum")
     void minimum(int countOfPeople, int maxHeight, List<String> scores) {
-        assertThatThrownBy(() -> Ladder.create(countOfPeople, maxHeight, scores)).isInstanceOf(MinimumException.class);
+        assertThatThrownBy(() -> Ladder.create(countOfPeople, maxHeight, scores)).isInstanceOf(LadderLengthException.class);
     }
 
     private static Stream<Arguments> isPeopleAndLineMinimum() {

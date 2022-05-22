@@ -1,12 +1,11 @@
 package nextstep.ladder.model.ladder;
 
-import nextstep.ladder.exception.MinimumException;
+import nextstep.ladder.exception.LadderLengthException;
 import nextstep.ladder.util.RandomBoolean;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
 import java.util.function.IntConsumer;
 import java.util.function.IntPredicate;
@@ -18,9 +17,6 @@ import static nextstep.ladder.model.ConstantNumber.*;
 
 public final class Line {
 
-    private static final Point FALSE = Point.of(false);
-    private static final String MINIMUM_LINE_MESSAGE = "사다리 높이는 최소 2 이상이어야 합니다.";
-
     private final List<Point> points;
 
     private Line(List<Point> points) {
@@ -30,7 +26,7 @@ public final class Line {
     private static void isMinimum(int countOfPeople) {
         Optional.of(countOfPeople)
                 .filter(count -> TWO.getValue() <= count)
-                .orElseThrow(() -> new MinimumException(MINIMUM_LINE_MESSAGE));
+                .orElseThrow(LadderLengthException::new);
     }
 
     private static Function<Integer, List<Point>> init() {
@@ -46,7 +42,7 @@ public final class Line {
     }
 
     private static IntConsumer setNextPointNoLine(List<Point> points) {
-        return column -> points.set(column + ONE.getValue(), FALSE);
+        return column -> points.set(column + ONE.getValue(), Point.of(false));
     }
 
     private static UnaryOperator<List<Point>> removable() {
@@ -55,7 +51,7 @@ public final class Line {
             IntStream.range(ZERO.getValue(), lastColumn)
                     .filter(isAdjacentPointsHaveLines(points))
                     .forEach(setNextPointNoLine(points));
-            points.set(lastColumn, FALSE);
+            points.set(lastColumn, Point.of(false));
             return points;
         };
     }
@@ -73,36 +69,45 @@ public final class Line {
         return new Line(List.of(points));
     }
 
-    private Point leftPoint(AtomicInteger column) {
-        if (column.get() <= ZERO.getValue()) {
-            column.incrementAndGet();
+    private int moveLeft(int column) {
+        int currentColumn = column;
+        if (column == ZERO.getValue()) {
+            column++;
         }
-        return this.points.get(column.decrementAndGet());
+
+        Point point = this.points.get(--column);
+
+        if (currentColumn != ZERO.getValue() && point.value()) {
+            return column;
+        }
+
+        return currentColumn;
     }
 
-    private Point currentPoint(AtomicInteger column) {
-        if (column.get() == this.size()) {
-            column.decrementAndGet();
+    private int moveRight(int column) {
+        int currentColumn = column;
+        if (column == this.size()) {
+            column--;
         }
-        return this.points.get(column.getAndIncrement());
+        Point point = this.points.get(column++);
+
+        if (point.value()) {
+            return column;
+        }
+
+        return currentColumn;
     }
 
     public int moveLeftAndRight(int column) {
-        AtomicInteger leftColumn = new AtomicInteger(column);
-        AtomicInteger currentColumn = new AtomicInteger(column);
+        int leftColumn = this.moveLeft(column);
+        int rightColumn = this.moveRight(column);
 
-        Point leftPoint = this.leftPoint(leftColumn);
-        Point columnPoint = this.currentPoint(currentColumn);
-
-        if (column != ZERO.getValue() && leftPoint.value()) {
-            return leftColumn.get();
+        if (leftColumn < column) {
+            return leftColumn;
         }
 
-        if (columnPoint.value()) {
-            return currentColumn.get();
-        }
+        return Math.max(column, rightColumn);
 
-        return column;
     }
 
     public List<Point> points() {

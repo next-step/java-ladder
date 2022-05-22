@@ -1,6 +1,7 @@
 package nextstep.ladder.model.ladder;
 
-import nextstep.ladder.exception.MinimumException;
+import nextstep.ladder.exception.EndPointsLengthException;
+import nextstep.ladder.exception.LadderLengthException;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,9 +11,6 @@ import static nextstep.ladder.model.ConstantNumber.ZERO;
 
 public class Ladder {
 
-    private static final String MINIMUM_LINE_MESSAGE = "사다리의 행 길이는 최소 2 이상입니다.";
-    private static final String MINIMUM_END_POINTS_MESSAGE = "점수 개수는 사다리의 행 길이와 동일 해야합니다.";
-
     private final Lines lines;
     private final EndPoints endPoints;
 
@@ -21,26 +19,26 @@ public class Ladder {
         this.endPoints = endPoints;
     }
 
-    private static void isMinimum(Lines lines) {
+    private static void isMinimumLines(Lines lines) {
         Optional.ofNullable(lines.unwrap())
                 .map(List::size)
                 .filter(size -> TWO.getValue() < size)
-                .orElseThrow(() -> new MinimumException(MINIMUM_LINE_MESSAGE));
+                .orElseThrow(LadderLengthException::new);
     }
 
-    private static void isMinimum(int minimumCount, EndPoints endPoints) {
+    private static void isMinimumEndPoints(int minimumCount, EndPoints endPoints) {
         Optional.ofNullable(endPoints.unwrap())
                 .map(List::size)
                 .filter(size -> minimumCount == size)
-                .orElseThrow(() -> new MinimumException(MINIMUM_END_POINTS_MESSAGE));
+                .orElseThrow(EndPointsLengthException::new);
     }
 
     public static Ladder create(int countOfPeople, int maxHeight, List<String> scores) {
         Lines lines = Lines.of(countOfPeople, maxHeight);
-        isMinimum(lines);
+        isMinimumLines(lines);
 
         EndPoints endPoints = EndPoints.of(scores);
-        isMinimum(countOfPeople, endPoints);
+        isMinimumEndPoints(countOfPeople, endPoints);
         return Ladder.create(lines, endPoints);
     }
 

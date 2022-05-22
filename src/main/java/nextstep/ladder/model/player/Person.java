@@ -32,7 +32,7 @@ public class Person {
         return Objects.equals(this.name, person.name);
     }
 
-    public boolean equals(String name) {
+    public boolean hasName(String name) {
         return this.name.equals(name);
     }
 }

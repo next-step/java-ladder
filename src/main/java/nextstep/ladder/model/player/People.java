@@ -1,5 +1,7 @@
 package nextstep.ladder.model.player;
 
+import nextstep.ladder.exception.NotFoundPersonException;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,8 +10,6 @@ import java.util.stream.IntStream;
 import static nextstep.ladder.model.ConstantNumber.ZERO;
 
 public class People {
-
-    private static final String NOT_FOUND_SEQUENCE_MESSAGE = "%s 의 참여자를 찾을 수 없습니다.";
 
     private final List<Person> people;
 
@@ -33,10 +33,10 @@ public class People {
     public int findSequence(String name) {
         return IntStream
                 .range(ZERO.getValue(), this.people.size())
-                .filter(index -> this.person(index).equals(name))
+                .filter(index -> this.person(index).hasName(name))
                 .boxed()
                 .findFirst()
-                .orElseThrow(() -> new NullPointerException(String.format(NOT_FOUND_SEQUENCE_MESSAGE, name)));
+                .orElseThrow(NotFoundPersonException::new);
     }
 
     public Person person(int index) {
