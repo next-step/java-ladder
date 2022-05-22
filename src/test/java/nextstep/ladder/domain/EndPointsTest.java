@@ -31,15 +31,16 @@ class EndPointsTest {
         .isInstanceOf(IllegalArgumentException.class);
   }
 
+  @DisplayName("index에 해당하는 값을 얻는다.")
   @Test
-  void valueByColumn() {
+  void valueByIndex() {
     EndPoints endPoints = EndPoints.of(List.of("꽝", "5000", "꽝", "3000"), 4);
 
     assertAll(
-        () -> assertThat(endPoints.valueByColumn(0)).isEqualTo("꽝"),
-        () -> assertThat(endPoints.valueByColumn(1)).isEqualTo("5000"),
-        () -> assertThat(endPoints.valueByColumn(2)).isEqualTo("꽝"),
-        () -> assertThat(endPoints.valueByColumn(3)).isEqualTo("3000")
+        () -> assertThat(endPoints.valueByIndex(0)).isEqualTo("꽝"),
+        () -> assertThat(endPoints.valueByIndex(1)).isEqualTo("5000"),
+        () -> assertThat(endPoints.valueByIndex(2)).isEqualTo("꽝"),
+        () -> assertThat(endPoints.valueByIndex(3)).isEqualTo("3000")
     );
   }
 }

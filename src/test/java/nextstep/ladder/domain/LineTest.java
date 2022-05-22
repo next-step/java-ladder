@@ -51,8 +51,7 @@ class LineTest {
   @DisplayName("playerIndex를 입력하면 좌우 사다리 유무에 따라 이동할 수 있다.")
   @Test
   void move() {
-    List<Boolean> booleans = List.of(false, true, false, true);
-    Line line = new Line(booleans);
+    Line line = new Line(List.of(false, true, false, true));
 
     assertAll(
         () -> assertThat(line.move(0)).isEqualTo(1),
@@ -66,8 +65,7 @@ class LineTest {
   @ParameterizedTest
   @ValueSource(ints = {-1, 5})
   void moveWithInvalidIndex(int invalidIndex) {
-    List<Boolean> booleans = List.of(false, true, false, true);
-    Line line = new Line(booleans);
+    Line line = new Line(List.of(false, true, false, true));
 
     assertThatThrownBy(() -> line.move(invalidIndex)).isInstanceOf(IllegalArgumentException.class);
   }

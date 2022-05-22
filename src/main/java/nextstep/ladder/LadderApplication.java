@@ -24,7 +24,7 @@ public class LadderApplication {
   private static GameResult makeResult(Players players, EndPoints endPoints, Ladder ladder) {
     GameResult gameResult = new GameResult();
     for (int i = 0; i < players.size(); i++) {
-      gameResult.add(players.playerByColumn(i), endPoints.valueByColumn(ladder.move(i)));
+      gameResult.add(players.playerByIndex(i), endPoints.valueByIndex(ladder.move(i)));
     }
     return gameResult;
   }

@@ -35,10 +35,10 @@ public class Ladder {
   }
 
   public int move(int playerIndex) {
-    int resultColumn = lines.get(0).move(playerIndex);
+    int nextIndex = lines.get(0).move(playerIndex);
     for (int i = 1; i < lines.size(); i++) {
-      resultColumn = lines.get(i).move(resultColumn);
+      nextIndex = lines.get(i).move(nextIndex);
     }
-    return resultColumn;
+    return nextIndex;
   }
 }

@@ -42,7 +42,7 @@ public class Players {
         .collect(Collectors.toUnmodifiableList());
   }
 
-  public Player playerByColumn(int index) {
+  public Player playerByIndex(int index) {
     return players.get(index);
   }
 

@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -47,5 +48,18 @@ class PlayersTest {
     List<String> playersNames = players.getNames();
 
     assertThat(playersNames).isEqualTo(nameList);
+  }
+
+  @DisplayName("index에 해당하는 값을 얻는다.")
+  @Test
+  void playerByIndex() {
+    Players players = Players.of(List.of("pobi", "honux", "crong", "jk"));
+
+    assertAll(
+        () -> assertThat(players.playerByIndex(0)).isEqualTo(Player.of("pobi")),
+        () -> assertThat(players.playerByIndex(1)).isEqualTo(Player.of("honux")),
+        () -> assertThat(players.playerByIndex(2)).isEqualTo(Player.of("crong")),
+        () -> assertThat(players.playerByIndex(3)).isEqualTo(Player.of("jk"))
+    );
   }
 }

@@ -28,7 +28,7 @@ public class EndPoints {
     return Collections.unmodifiableList(endPoints);
   }
 
-  public String valueByColumn(int column) {
+  public String valueByIndex(int column) {
     return endPoints.get(column);
   }
 }
