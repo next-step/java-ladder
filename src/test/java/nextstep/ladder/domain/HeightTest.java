@@ -5,9 +5,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class HeightTest {
+
+    @Test
+    void heightIsOverAndEqualThan1_SuccessCreate() {
+        assertThat(Height.of(1)).isEqualTo(Height.of(1));
+    }
 
     @Test
     void heightIsUnderThan1_ThrowException() {
