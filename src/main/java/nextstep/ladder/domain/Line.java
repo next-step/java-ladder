@@ -56,12 +56,12 @@ public class Line {
     boolean leftPoint = points.get(playerIndex);
     boolean rightPoint = points.get(playerIndex + 1);
     if (leftPoint) {
-      return moveLeft(playerIndex);
+      return MoveDirection.LEFT.apply(playerIndex);
     }
     if (rightPoint) {
-      return moveRight(playerIndex);
+      return MoveDirection.RIGHT.apply(playerIndex);
     }
-    return moveStraight(playerIndex);
+    return MoveDirection.STRAIGHT.apply(playerIndex);
   }
 
   private void validateIndex(int playerIndex) {
@@ -75,28 +75,16 @@ public class Line {
   private int moveRightOrStraight(int playerIndex) {
     boolean point = points.get(playerIndex + 1);
     if (point) {
-      return moveRight(playerIndex);
+      return MoveDirection.RIGHT.apply(playerIndex);
     }
-    return moveStraight(playerIndex);
+    return MoveDirection.STRAIGHT.apply(playerIndex);
   }
 
   private int moveLeftOrStraight(int playerIndex) {
     boolean point = points.get(playerIndex);
     if (point) {
-      return moveLeft(playerIndex);
+      return MoveDirection.LEFT.apply(playerIndex);
     }
-    return playerIndex;
-  }
-
-  private int moveRight(int playerIndex) {
-    return playerIndex + 1;
-  }
-
-  private int moveLeft(int playerIndex) {
-    return playerIndex - 1;
-  }
-
-  private int moveStraight(int playerIndex) {
-    return playerIndex;
+    return MoveDirection.STRAIGHT.apply(playerIndex);
   }
 }
