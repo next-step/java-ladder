@@ -37,4 +37,8 @@ public class Line {
     public List<Point> getPoints() {
         return points;
     }
+
+    public Integer numberOfPoints() {
+        return points.size();
+    }
 }
