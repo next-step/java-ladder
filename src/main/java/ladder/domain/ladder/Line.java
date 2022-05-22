@@ -1,42 +1,36 @@
 package ladder.domain.ladder;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.IntStream;
 
 public class Line {
-    private List<Boolean> points = new ArrayList<>();
+    private List<Boolean> contentList = new ArrayList<>();
 
     public Line(int countOfPerson) {
-        IntStream.range(0, countOfPerson - 1).forEach(i -> makePoint());
+        IntStream.range(0, countOfPerson - 1).forEach(i -> createContent());
     }
 
-    private void makePoint(){
-        if (points.isEmpty()) {
-            points.add(isTrueOrFalse());
+    private void createContent(){
+        if (contentList.isEmpty()) {
+            contentList.add(randomBoolean());
             return;
         }
 
-        Boolean prevLine = points.get(points.size()-1);
+        Boolean prevLine = contentList.get(contentList.size()-1);
         if(!prevLine) {
-            points.add(isTrueOrFalse());
+            contentList.add(randomBoolean());
             return;
         }
 
-        points.add(false);
+        contentList.add(false);
     }
 
-    private boolean isTrueOrFalse() {
+    private boolean randomBoolean() {
         Random rd = new Random();
         return rd.nextBoolean();
     }
 
-    public int getLineLength() {
-        return points.size();
-    }
-
-    public List<Boolean> getLine() {
-        return points;
+    public List<Boolean> getContents() {
+        return contentList;
     }
 }

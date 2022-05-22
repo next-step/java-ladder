@@ -11,13 +11,8 @@ public class LadderGame {
         Players players = new Players(InputView.inputPlayerNames());
         int ladderHeight = InputView.inputLadderHeight();
 
-        Ladder ladder = createLadder(players, ladderHeight);
+        Ladder ladder = Ladder.createLadder(players.getPlayerNum(), ladderHeight);
 
         ResultView.showResult(players, ladder);
     }
-
-    private Ladder createLadder(Players players, int ladderHeight) {
-        return new Ladder(players.getPlayerNum(), ladderHeight);
-    }
-
 }

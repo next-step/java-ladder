@@ -2,14 +2,23 @@ package ladder.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Ladder {
 
-    private List<Line> lineList = new ArrayList();
+    private static List<Line> lineList = new ArrayList();
 
-    public Ladder(int personNum, int height) {
-        IntStream.range(0, height).forEach(i -> lineList.add(new Line(personNum)));
+    public Ladder(List<Line> list) {
+        lineList = list;
+    }
+
+    public static Ladder createLadder(int personNum, int ladderHeight) {
+        List<Line> tmpList = new ArrayList<>();
+
+        for (int i = 0; i < ladderHeight; i++) {
+            tmpList.add(new Line(personNum));
+        }
+
+        return new Ladder(tmpList);
     }
 
     public int ladderHeight () {
