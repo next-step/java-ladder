@@ -6,10 +6,11 @@ public enum ErrorTarget implements Supplier<String> {
 	NAME_INPUT("이름 입력"),
 	DIRECTION("방향"),
 	DIRECTION_LIST("방향 리스트"),
-	HEIGHT("사다리높이"),
 	PREVIOUS_POINT("이전 포인트"),
 	SUPPLIER("생성 전략"),
-	RESULT_LIST("실행 결과 리스트");
+	EXECUTION_RESULT_LIST("실행 결과 리스트"),
+	PLAYERS("플레이어 일급 컬렉션"),
+	;
 
 	private final String message;
 

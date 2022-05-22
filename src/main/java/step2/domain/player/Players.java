@@ -14,12 +14,12 @@ public class Players {
 
 	private final List<Player> values;
 
-	public Players(List<String> input) {
-		Validator.notNull(input, ErrorTarget.NAME_INPUT);
-		Validator.duplicate(input, String.format("입력 값에 중복이 존재합니다. 입력 : %s", input));
-		Validator.min(MIN_COUNT, input.size(), String.format("플레이어의 최소 숫자는 %d 입니다. 입력 : %d", MIN_COUNT, input.size()));
+	public Players(List<String> names) {
+		Validator.notNull(names, ErrorTarget.NAME_INPUT);
+		Validator.duplicate(names, String.format("입력 값에 중복이 존재합니다. 입력 : %s", names));
+		Validator.min(MIN_COUNT, names.size(), String.format("플레이어의 최소 숫자는 %d 입니다. 입력 : %d", MIN_COUNT, names.size()));
 
-		this.values = input.stream()
+		this.values = names.stream()
 			.map(Player::new)
 			.collect(Collectors.toList());
 	}
@@ -45,7 +45,7 @@ public class Players {
 	}
 
 	public List<Player> getValues() {
-		return values;
+		return List.copyOf(values);
 	}
 
 	@Override

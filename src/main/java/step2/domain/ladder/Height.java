@@ -9,9 +9,9 @@ public class Height {
 	private static final int MIN_HEIGHT = 1;
 	private final int value;
 
-	public Height(int input) {
-		Validator.min(MIN_HEIGHT, input, String.format("사다리의 최소 높이는 %d 입니다. 입력 : %d", MIN_HEIGHT, input));
-		this.value = input;
+	public Height(int height) {
+		Validator.min(MIN_HEIGHT, height, String.format("사다리의 최소 높이는 %d 입니다. 입력 : %d", MIN_HEIGHT, height));
+		this.value = height;
 	}
 
 	public int getValue() {

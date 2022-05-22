@@ -14,8 +14,8 @@ public class Validator {
 		}
 	}
 
-	public static void notBlank(String input, ErrorTarget target) {
-		if (input == null || input.isBlank()) {
+	public static void notBlank(String value, ErrorTarget target) {
+		if (value == null || value.isBlank()) {
 			throw new IllegalArgumentException(target.get() + "- 널이거나 공백입니다.");
 		}
 	}

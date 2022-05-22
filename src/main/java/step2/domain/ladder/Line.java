@@ -56,7 +56,7 @@ public class Line {
 	}
 
 	public List<Point> getPoints() {
-		return points;
+		return List.copyOf(points);
 	}
 
 	@Override

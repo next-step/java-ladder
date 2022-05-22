@@ -13,35 +13,35 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 @DisplayName(value = "실행 결과 테스트")
-class ResultsTest {
+class ExecutionResultsTest {
 
 	@Test
 	void 문자열_리스트와_플레이어_수를_입력받아서_Wrapping_하는_객체_생성() {
 		List<String> input = List.of("1", "2");
 
-		Results actual = new Results(input, input.size());
+		ExecutionResults actual = new ExecutionResults(input, input.size());
 
-		assertThat(actual).isEqualTo(new Results(input, input.size()));
+		assertThat(actual).isEqualTo(new ExecutionResults(input, input.size()));
 	}
 
 	@Test
 	void 문자열_리스트가_널이면_예외() {
 		assertThatIllegalArgumentException().isThrownBy(
-			() -> new Results(null, 1)
+			() -> new ExecutionResults(null, 1)
 		);
 	}
 
 	@Test
 	void 문자열_리스트_크기와_플레이어_수가_다르면_예외() {
 		assertThatIllegalArgumentException().isThrownBy(
-			() -> new Results(List.of("1", "2", "3"), 2)
+			() -> new ExecutionResults(List.of("1", "2", "3"), 2)
 		);
 	}
 
 	@Test
 	void 문자열_리스트에서_길이가_최댓값_보다_크면_예외() {
 		assertThatIllegalArgumentException().isThrownBy(
-			() -> new Results(List.of("123456", "2", "3"), 3)
+			() -> new ExecutionResults(List.of("123456", "2", "3"), 3)
 		);
 	}
 
@@ -55,23 +55,23 @@ class ResultsTest {
 		}
 	)
 	void 실행결과_인덱스를_받아서_실행결과를_반환(int index, String result) {
-		Results results = new Results(List.of("a", "b", "c"), 3);
-		assertThat(results.toResult(index)).isEqualTo(result);
+		ExecutionResults executionResults = new ExecutionResults(List.of("a", "b", "c"), 3);
+		assertThat(executionResults.toResult(index)).isEqualTo(result);
 	}
 
 	@Test
 	void 실행결과_인덱스가_최솟값보다_작으면_실행_결과_반환_시_예외() {
-		Results results = new Results(List.of("a", "b", "c"), 3);
+		ExecutionResults executionResults = new ExecutionResults(List.of("a", "b", "c"), 3);
 		assertThatIllegalArgumentException().isThrownBy(
-			() -> results.toResult(-1)
+			() -> executionResults.toResult(-1)
 		);
 	}
 
 	@Test
 	void 실행결과_인덱스가_최댓값_보다_크면_실행_결과_반환_시_예외() {
-		Results results = new Results(List.of("a", "b", "c"), 3);
+		ExecutionResults executionResults = new ExecutionResults(List.of("a", "b", "c"), 3);
 		assertThatIllegalArgumentException().isThrownBy(
-			() -> results.toResult(100)
+			() -> executionResults.toResult(100)
 		);
 	}
 }
