@@ -1,5 +1,6 @@
 package ladder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGame {
@@ -9,7 +10,14 @@ public class LadderGame {
         this.users = users;
     }
 
-    public Ladder createLadder(int maxHeight) {
-        return new Ladder(maxHeight, users);
+    public List<Line> ready() {
+        int maxLine = users.size() - 1;
+        List<Line> lines = new ArrayList<>();
+
+        for (int i = 0; i < 5; i++) {
+            lines.add(new Line(maxLine));
+        }
+
+        return lines;
     }
 }

@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Line {
-    private List<Boolean> points = new ArrayList<>();
+    private List<Point> points = new ArrayList<>();
 
     public Line(int countOfPerson) {
         while (!hasLine()) {
@@ -13,12 +13,12 @@ public class Line {
         }
     }
 
-    public Line(List<Boolean> points) {
+    public Line(List<Point> points) {
         this.points = points;
     }
 
     boolean hasLine() {
-        return points.contains(true);
+        return points.contains(new Point(true));
     }
 
     boolean isLinesOverlap() {
@@ -31,17 +31,23 @@ public class Line {
     }
 
     private boolean isOverlap(int i) {
-        if (i < points.size() - 1 && points.get(i) && points.get(i + 1)) {
-            return true;
-        }
+//        if (i < points.size() - 1 && points.get(i) && points.get(i + 1)) {
+//            return true;
+//        }
         return false;
     }
 
     private void lineGenerator(int countOfPerson) {
         Random random = new Random();
+        Point point = new Point(random.nextBoolean());
         for (int i = 0; i < countOfPerson; i++) {
-            points.add(random.nextBoolean());
+            points.add(point);
         }
+    }
+
+    public void print() {
+        points.forEach(point -> point.print());
+        System.out.println();
     }
 
 }
