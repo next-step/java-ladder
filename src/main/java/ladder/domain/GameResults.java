@@ -1,7 +1,9 @@
 package ladder.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class GameResults {
@@ -9,8 +11,8 @@ public class GameResults {
   private static final String DELIMITER = ",";
   private final List<GameResult> values;
 
-  private GameResults(List<GameResult> values) {
-    this.values = values;
+  public GameResults(List<GameResult> values) {
+    this.values = Collections.unmodifiableList(values);
   }
 
   public static GameResults from(String gameResults) {
@@ -18,10 +20,6 @@ public class GameResults {
         .map(s -> GameResult.from(s))
         .collect(Collectors.toList());
 
-    return new GameResults(values);
-  }
-
-  public static GameResults from(List<GameResult> values) {
     return new GameResults(values);
   }
 
@@ -35,5 +33,22 @@ public class GameResults {
 
   public GameResult getGameResult(int width) {
     return values.get(width);
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof GameResults)) {
+      return false;
+    }
+    GameResults that = (GameResults) o;
+    return Objects.equals(values, that.values);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(values);
   }
 }

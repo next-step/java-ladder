@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,9 +11,10 @@ public class GameUsers {
   private final List<GameUser> values;
 
   private GameUsers(String userNames) {
-    this.values = Arrays.stream(userNames.split(DELIMITER))
+    List<GameUser> gameUsers = Arrays.stream(userNames.split(DELIMITER))
         .map(GameUser::from)
         .collect(Collectors.toList());
+    this.values = Collections.unmodifiableList(gameUsers);
   }
 
   public static GameUsers from(String userNames) {
