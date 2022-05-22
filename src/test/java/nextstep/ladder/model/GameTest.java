@@ -38,8 +38,8 @@ public class GameTest {
         List<String> names = List.of("a", "b", "c");
         People people = People.of(names);
 
-        Point falsePoint = Point.of(false);
-        Point truePoint = Point.of(true);
+        Point falsePoint = Point.noLine();
+        Point truePoint = Point.hasLine();
 
         Line first = Line.create(truePoint, falsePoint, falsePoint);
         Line second = Line.create(falsePoint, truePoint, falsePoint);

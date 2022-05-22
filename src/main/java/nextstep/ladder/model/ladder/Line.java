@@ -42,7 +42,7 @@ public final class Line {
     }
 
     private static IntConsumer setNextPointNoLine(List<Point> points) {
-        return column -> points.set(column + ONE.getValue(), Point.of(false));
+        return column -> points.set(column + ONE.getValue(), Point.noLine());
     }
 
     private static UnaryOperator<List<Point>> removable() {
@@ -51,7 +51,7 @@ public final class Line {
             IntStream.range(ZERO.getValue(), lastColumn)
                     .filter(isAdjacentPointsHaveLines(points))
                     .forEach(setNextPointNoLine(points));
-            points.set(lastColumn, Point.of(false));
+            points.set(lastColumn, Point.noLine());
             return points;
         };
     }
