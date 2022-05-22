@@ -23,13 +23,14 @@ public class OutputView {
 		DIRECTION_PRINT_MAP.put(Direction.RIGHT, "  |--");
 	}
 
-	public void showCreationResult() {
-		show(LINE_BREAK);
-		show("사다리 결과");
-		show(LINE_BREAK);
+	public void showCreationResult(Players players, Ladder ladder, Results results) {
+		show("\n[사다리 결과]\n");
+		showPlayersResult(players);
+		showLadderResult(ladder);
+		showResults(results);
 	}
 
-	public void showPlayersResult(Players players) {
+	private void showPlayersResult(Players players) {
 		String result = players.getValues()
 			.stream()
 			.map(player -> format(player.getName()))
@@ -37,7 +38,7 @@ public class OutputView {
 		show(result);
 	}
 
-	public void showLadderResult(Ladder ladder) {
+	private void showLadderResult(Ladder ladder) {
 		String result = ladder.getLines().stream()
 			.map(this::mapToConsolePrint)
 			.collect(Collectors.joining(LINE_BREAK));
@@ -51,7 +52,7 @@ public class OutputView {
 			.collect(Collectors.joining());
 	}
 
-	public void showResults(Results results) {
+	private void showResults(Results results) {
 		String result = results.getValues()
 			.stream()
 			.map(this::format)

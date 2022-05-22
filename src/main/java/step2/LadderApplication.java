@@ -23,13 +23,8 @@ public class LadderApplication {
 		Players players = new Players(INPUT_VIEW.askPlayers());
 		Results results = new Results(INPUT_VIEW.askExecutionResults(), players.numberOfPlayer());
 		Height height = new Height(INPUT_VIEW.askHeight());
-
 		Ladder ladder = new Ladder(players.numberOfPlayer(), height, supplier);
-
-		OUTPUT_VIEW.showCreationResult();
-		OUTPUT_VIEW.showPlayersResult(players);
-		OUTPUT_VIEW.showLadderResult(ladder);
-		OUTPUT_VIEW.showResults(results);
+		OUTPUT_VIEW.showCreationResult(players, ladder, results);
 
 		String playerName = INPUT_VIEW.askPlayerName();
 		while (!END_FLAG.equals(playerName)) {
