@@ -3,7 +3,6 @@ package nextstep.ladder.domain;
 import nextstep.ladder.domain.exceptions.NotAllowNegativeOrZero;
 import nextstep.ladder.domain.exceptions.NotNumberStringIsNotAllowException;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
