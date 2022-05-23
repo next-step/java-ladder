@@ -1,6 +1,7 @@
 package nextstep.ladder.model;
 
 import nextstep.ladder.exception.TwoWayDirectionException;
+import nextstep.ladder.model.ladder.Direction;
 import org.junit.jupiter.api.Test;
 
 import java.util.stream.IntStream;
