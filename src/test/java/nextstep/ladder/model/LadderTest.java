@@ -1,14 +1,12 @@
 package nextstep.ladder.model;
 
-import nextstep.ladder.exception.MinimumException;
+import nextstep.ladder.exception.LadderLengthException;
+import nextstep.ladder.model.ladder.Ladder;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -17,24 +15,21 @@ public class LadderTest {
 
     @ParameterizedTest(name = "최소 인원 예외 처리 - {index}")
     @MethodSource("isPeopleAndLineMinimum")
-    void minimum(List<Person> people, int maxHeight) {
-        assertThatThrownBy(() -> Ladder.create(people, maxHeight)).isInstanceOf(MinimumException.class);
+    void minimum(int countOfPeople, int maxHeight, List<String> scores) {
+        assertThatThrownBy(() -> Ladder.create(countOfPeople, maxHeight, scores)).isInstanceOf(LadderLengthException.class);
     }
 
     private static Stream<Arguments> isPeopleAndLineMinimum() {
-        List<Person> person = List.of(Person.of("one"));
-        List<Person> people = IntStream
-                .range(0, 5)
-                .mapToObj(i -> Person.of(String.valueOf(i)))
-                .collect(Collectors.toList());
+        List<String> singleName = List.of("a");
+        List<String> doubleName = List.of("a", "b");
 
         return Stream.of(
-                Arguments.of(person, 0),
-                Arguments.of(person, -1),
-                Arguments.of(people, 0),
-                Arguments.of(people, -1),
-                Arguments.of(null, 5),
-                Arguments.of(new ArrayList<>(), 5)
+                Arguments.of(1, 0, singleName),
+                Arguments.of(1, -1, singleName),
+                Arguments.of(1, -1, doubleName),
+                Arguments.of(2, 0, doubleName),
+                Arguments.of(2, -1, doubleName),
+                Arguments.of(2, -1, singleName)
         );
     }
 }

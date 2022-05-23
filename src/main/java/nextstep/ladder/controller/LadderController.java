@@ -1,7 +1,6 @@
 package nextstep.ladder.controller;
 
-import nextstep.ladder.model.Ladder;
-import nextstep.ladder.model.Person;
+import nextstep.ladder.model.Game;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
@@ -14,13 +13,20 @@ public class LadderController {
 
     public static void game() {
         List<String> names = InputView.inputNames();
-        List<Person> people = Person.of(names);
+        ResultView.println();
+
+        List<String> scores = InputView.inputScores();
         ResultView.println();
 
         int maxHeight = InputView.inputMaxHeight();
         ResultView.println();
 
-        Ladder ladder = Ladder.create(people, maxHeight);
-        ResultView.printResult(ladder);
+        Game game = Game.ready(names, scores, maxHeight);
+        ResultView.printLadder(game.people(), game.ladder());
+
+        names.forEach(name -> {
+            String n = InputView.inputName();
+            ResultView.printResult(n, game);
+        });
     }
 }

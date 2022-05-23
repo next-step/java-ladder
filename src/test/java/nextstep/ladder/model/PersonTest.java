@@ -1,6 +1,7 @@
 package nextstep.ladder.model;
 
 import nextstep.ladder.exception.NameLengthExceedException;
+import nextstep.ladder.model.player.Person;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -21,5 +22,14 @@ public class PersonTest {
     void outOfLength() {
         String name = "helloWorld";
         assertThatThrownBy(() -> Person.of(name)).isExactlyInstanceOf(NameLengthExceedException.class);
+    }
+
+    @Test
+    @DisplayName("Person 객체 이름 비교")
+    void equals() {
+        String name_1 = "java";
+        String name_2 = "kotlin";
+        assertThat(Person.of(name_1).hasName(name_1)).isTrue();
+        assertThat(Person.of(name_1).hasName(name_2)).isFalse();
     }
 }
