@@ -13,7 +13,7 @@ public class UserTest {
     }
 
     @Test
-    void 유저_이름은_빈값이면_안된() {
+    void 유저_이름은_빈값이면_안된다() {
         Assertions.assertThatThrownBy(() -> {
             User user = new User("");
         }).isInstanceOf(IllegalArgumentException.class);
