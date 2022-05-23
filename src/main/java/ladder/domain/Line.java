@@ -3,6 +3,7 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class Line {
     private List<Point> points = new ArrayList<>();
@@ -33,11 +34,9 @@ public class Line {
     }
 
     public String drawLine() {
-        StringBuilder builder = new StringBuilder();
-        for (Point point : points) {
-            builder.append(drawLine(point));
-        }
-        return builder.toString();
+        return points.stream()
+                .map(point -> drawLine(point))
+                .collect(Collectors.joining());
     }
 
     private String drawLine(Point point) {
