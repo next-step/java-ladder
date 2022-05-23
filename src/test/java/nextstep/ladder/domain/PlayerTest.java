@@ -19,4 +19,5 @@ class PlayerTest {
   void givenFiveLength_ShouldBeException() {
     assertThatIllegalArgumentException().isThrownBy(() -> new Player("netflix"));
   }
+
 }
