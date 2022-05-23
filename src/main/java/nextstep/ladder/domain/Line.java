@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.IntStream;
 
 import static java.util.Collections.unmodifiableList;
@@ -35,7 +36,7 @@ public class Line {
     }
 
     public List<Boolean> getPointList(){
-        return points.subList(1, points.size()-1);
+        return points;
     }
 
     @Override
@@ -43,4 +44,20 @@ public class Line {
         return "Line: " + points;
     }
 
+    @Override
+    public boolean equals(Object obj){
+        if(this == obj){
+            return true;
+        }
+        if(obj == null || obj.getClass() != getClass()){
+            return false;
+        }
+        Line line = (Line) obj;
+        return Objects.equals(line.points, this.points);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(points);
+    }
 }

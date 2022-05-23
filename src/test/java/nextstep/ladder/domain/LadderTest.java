@@ -1,14 +1,13 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.view.Output;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LadderTest {
 
@@ -20,4 +19,16 @@ class LadderTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    @DisplayName("사다리 생성 테스트")
+    void ladder_creation(){
+        Ladder ladder = Ladder.of(2, 3, (num)->true);
+
+        List<Line> res = new ArrayList<>();
+        res.add(new Line(List.of(false, true, false, true, false)));
+        res.add(new Line(List.of(false, true, false, true, false)));
+
+        assertThat(ladder.getLineList())
+                .isEqualTo(res);
+    }
 }

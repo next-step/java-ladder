@@ -39,11 +39,11 @@ public class Output {
     }
 
     private static void printLine(Line line){
+        List<Boolean> points  = line.getPointList();
         StringBuilder sb = new StringBuilder();
-        sb.append(EMPTY_POINT);
-        sb.append("|");
 
-        line.getPointList()
+        points.stream()
+                .limit(points.size()-1)
                 .forEach(point->{
                     if(point){
                         sb.append(BAR_POINT);
