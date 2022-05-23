@@ -3,6 +3,7 @@ package ladder.domain;
 import ladder.strategy.LineStrategy;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Line {
     private final List<Boolean> points;
@@ -23,11 +24,14 @@ public class Line {
     }
 
     public Position movedFrom(Position position) {
+        if (position.isOver(points.size() - 1)) {
+            throw new IllegalArgumentException("더 이상 이동할 수 없습니다.");
+        }
         if (movableLeftFrom(position)) {
-            return position.movedLeft();
+            return position.movedBackward();
         }
         if (movableRightFrom(position)) {
-            return position.movedRight();
+            return position.movedForward();
         }
         return position;
     }
@@ -43,7 +47,7 @@ public class Line {
         if (position.isLast(points.size() - 1)) { // 라인의 맨 오른쪽인 경우 오른쪽으로 더이상 갈 수 없음.
             return false;
         }
-        return points.get(position.right());
+        return points.get(position.forward());
     }
 
     private void validateEmpty(List<Boolean> points) {
@@ -71,5 +75,25 @@ public class Line {
 
     public List<Boolean> getPoints() {
         return List.copyOf(points);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Line line = (Line) o;
+        return Objects.equals(points, line.points);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(points);
+    }
+
+    @Override
+    public String toString() {
+        return "Line{" +
+                "points=" + points +
+                '}';
     }
 }

@@ -20,15 +20,19 @@ public class Position {
         return this.position;
     }
 
-    public int right() {
+    public int backward() {
+        return this.position - 1;
+    }
+
+    public int forward() {
         return this.position + 1;
     }
 
-    public Position movedLeft() {
+    public Position movedBackward() {
         return Position.of(this.position - 1);
     }
 
-    public Position movedRight() {
+    public Position movedForward() {
         return Position.of(this.position + 1);
     }
 
@@ -38,6 +42,10 @@ public class Position {
 
     public boolean isLast(int lastPosition) {
         return this.position == lastPosition;
+    }
+
+    public boolean isOver(int lastPosition) {
+        return this.position > lastPosition;
     }
 
     @Override
@@ -51,5 +59,12 @@ public class Position {
     @Override
     public int hashCode() {
         return Objects.hash(position);
+    }
+
+    @Override
+    public String toString() {
+        return "Position{" +
+                "position=" + position +
+                '}';
     }
 }
