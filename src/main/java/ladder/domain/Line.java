@@ -28,7 +28,7 @@ public class Line {
         }
     }
 
-    boolean hasLine() {
+    public boolean hasLine() {
         return points.contains(new Point(true));
     }
 
