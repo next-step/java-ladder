@@ -15,6 +15,6 @@ public class PlayerTest {
 
     @Test
     void parseToPlayers() {
-        assertThat(Player.parse("a,b")).isEqualTo(Arrays.asList(new Player("a"), new Player("b")));
+        assertThat(Player.parse("a,b")).isEqualTo(new Players(Arrays.asList(new Player("a"), new Player("b"))));
     }
 }

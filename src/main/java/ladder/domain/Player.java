@@ -15,10 +15,10 @@ public class Player {
         this.name = name;
     }
 
-    public static List<Player> parse(String line) {
-        return Arrays.stream(line.split("\\s*,\\s*"))
+    public static Players parse(String line) {
+        return new Players(Arrays.stream(line.split("\\s*,\\s*"))
                 .map(Player::new)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
     }
 
     @Override
@@ -32,5 +32,9 @@ public class Player {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    public void draw() {
+        System.out.print(String.format("%-6s", this.name));
     }
 }
