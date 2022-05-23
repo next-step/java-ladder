@@ -3,6 +3,8 @@ package ladder.domain;
 import ladder.strategy.RandomLineStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,5 +46,17 @@ class LineTest {
                 .isThrownBy(() -> Line.from(new ArrayList<>(List.of(false, true, true))))
                 .withMessageContaining("겹치는 경우")
         ;
+    }
+
+    @ParameterizedTest(name = "각 좌표값에서 이동 가능한 좌표로 움직인 결과{index}")
+    @CsvSource({"0,1", "1,0", "2,3", "3,2"})
+    void moved(int currentPosition, int movedPosition) {
+        List<Boolean> points = new ArrayList<>(Arrays.asList(false, true, false, true));
+        /*
+               0     1     2     3
+         '     |-----|     |-----|'
+         */
+        Line line = Line.from(points);
+        assertThat(line.moved(currentPosition)).isEqualTo(movedPosition);
     }
 }
