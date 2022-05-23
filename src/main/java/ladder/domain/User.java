@@ -9,10 +9,6 @@ public class User {
         this.name = new Name(name);
     }
 
-    public String getUserName() {
-        return name.getName();
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -28,8 +24,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "name=" + name +
-                '}';
+        return name.toString();
     }
 }
