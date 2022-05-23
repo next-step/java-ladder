@@ -1,19 +1,17 @@
 package nextstep.ladder.model.ladder;
 
 import nextstep.ladder.exception.LadderLengthException;
-import nextstep.ladder.util.LadderPointGenerator;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Function;
-import java.util.function.IntConsumer;
-import java.util.function.IntPredicate;
-import java.util.function.UnaryOperator;
-import java.util.stream.Collectors;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.IntStream;
 
-import static nextstep.ladder.model.ConstantNumber.*;
+import static nextstep.ladder.model.ConstantNumber.ONE;
+import static nextstep.ladder.model.ConstantNumber.TWO;
+import static nextstep.ladder.util.LadderPointGenerator.generatePoint;
 
 public final class Line {
 
@@ -29,85 +27,42 @@ public final class Line {
                 .orElseThrow(LadderLengthException::new);
     }
 
-    private static Function<Integer, List<Point>> init() {
-        return countOfPeople -> IntStream
-                .range(ZERO.getValue(), countOfPeople)
-                .mapToObj(i -> LadderPointGenerator.generatePoint())
-                .map(Point::of)
-                .collect(Collectors.toList());
+    public int move(int column) {
+        return this.points.get(column).move();
     }
 
-    private static IntPredicate isAdjacentPointsHaveLines(List<Point> points) {
-        return column -> points.get(column).value() && points.get(column + ONE.getValue()).value();
-    }
-
-    private static IntConsumer setNextPointNoLine(List<Point> points) {
-        return column -> points.set(column + ONE.getValue(), Point.of(false));
-    }
-
-    private static UnaryOperator<List<Point>> removable() {
-        return points -> {
-            int lastColumn = points.size() - ONE.getValue();
-            IntStream.range(ZERO.getValue(), lastColumn)
-                    .filter(isAdjacentPointsHaveLines(points))
-                    .forEach(setNextPointNoLine(points));
-            points.set(lastColumn, Point.of(false));
-            return points;
-        };
-    }
-
-    public static Line create(int countOfPeople) {
-        isMinimum(countOfPeople);
-        List<Point> points = init()
-                .andThen(removable())
-                .apply(countOfPeople);
+    public static Line init(List<Point> points) {
+        isMinimum(points.size());
         return new Line(points);
     }
 
-    public static Line create(Point... points) {
-        isMinimum(points.length);
-        return new Line(List.of(points));
+    public static Line init(int countOfPeople) {
+        isMinimum(countOfPeople);
+        List<Point> points = new ArrayList<>();
+        Point point = initFirst(points);
+        point = initBody(countOfPeople, points, point);
+        initLast(points, point);
+        return new Line(points);
     }
 
-    private int moveLeft(int column) {
-        int currentColumn = column;
-        if (column == ZERO.getValue()) {
-            column++;
-        }
-
-        Point point = this.points.get(--column);
-
-        if (currentColumn != ZERO.getValue() && point.value()) {
-            return column;
-        }
-
-        return currentColumn;
+    private static void initLast(List<Point> points, Point point) {
+        point = point.last();
+        points.add(point);
     }
 
-    private int moveRight(int column) {
-        int currentColumn = column;
-        if (column == this.size()) {
-            column--;
-        }
-        Point point = this.points.get(column++);
+    private static Point initBody(int countOfPeople, List<Point> points, Point point) {
+        AtomicReference<Point> pointAtomic = new AtomicReference<>(point);
+        IntStream.range(ONE.getValue(), Math.subtractExact(countOfPeople, ONE.getValue()))
+                .forEach(i -> points.add(pointAtomic.updateAndGet(Point::next)));
 
-        if (point.value()) {
-            return column;
-        }
-
-        return currentColumn;
+        return pointAtomic.get();
     }
 
-    public int moveLeftAndRight(int column) {
-        int leftColumn = this.moveLeft(column);
-        int rightColumn = this.moveRight(column);
+    private static Point initFirst(List<Point> points) {
+        Point point = Point.first(generatePoint());
+        points.add(point);
 
-        if (leftColumn < column) {
-            return leftColumn;
-        }
-
-        return Math.max(column, rightColumn);
-
+        return point;
     }
 
     public List<Point> points() {

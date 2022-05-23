@@ -44,6 +44,14 @@ public class Direction {
         return of(this.right, FALSE);
     }
 
+    public boolean isRight() {
+        return this.right;
+    }
+
+    public boolean isLeft() {
+        return this.left;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
