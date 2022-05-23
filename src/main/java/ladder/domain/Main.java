@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.util.UserGenerator;
+import ladder.UserGenerator;
 import ladder.contoller.InputView;
 import ladder.contoller.ResultView;
 
