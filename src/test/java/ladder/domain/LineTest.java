@@ -57,6 +57,6 @@ class LineTest {
          '     |-----|     |-----|'
          */
         Line line = Line.from(points);
-        assertThat(line.moved(currentPosition)).isEqualTo(movedPosition);
+        assertThat(line.movedFrom(Position.of(currentPosition))).isEqualTo(Position.of(movedPosition));
     }
 }

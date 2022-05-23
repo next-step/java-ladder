@@ -22,36 +22,28 @@ public class Line {
         return new Line(points);
     }
 
-    public int moved(int index) {
-        if (movableLeft(index)) {
-            return index - 1;
+    public Position movedFrom(Position position) {
+        if (movableLeftFrom(position)) {
+            return position.movedLeft();
         }
-        if (movableRight(index)) {
-            return index + 1;
+        if (movableRightFrom(position)) {
+            return position.movedRight();
         }
-        return index;
+        return position;
     }
 
-    private boolean movableLeft(int index) {
-        if (isFirstPoint(index)) { // 라인의 맨 왼쪽인 경우 왼쪽으로 더이상 갈 수 없음.
+    private boolean movableLeftFrom(Position position) {
+        if (position.isFirst()) { // 라인의 맨 왼쪽인 경우 왼쪽으로 더이상 갈 수 없음.
             return false;
         }
-        return points.get(index); // ex)'      |-----|' 왼쪽으로 이동가능한 경우
+        return points.get(position.now()); // ex)'      |-----|' 왼쪽으로 이동가능한 경우
     }
 
-    private boolean movableRight(int index) {
-        if (isLastPoint(index)) { // 라인의 맨 오른쪽인 경우 오른쪽으로 더이상 갈 수 없음.
+    private boolean movableRightFrom(Position position) {
+        if (position.isLast(points.size() - 1)) { // 라인의 맨 오른쪽인 경우 오른쪽으로 더이상 갈 수 없음.
             return false;
         }
-        return !points.get(index) && points.get(index + 1);
-    }
-
-    private boolean isFirstPoint(int index) {
-        return index == 0;
-    }
-
-    private boolean isLastPoint(int index) {
-        return index == points.size() - 1;
+        return points.get(position.right());
     }
 
     private void validateEmpty(List<Boolean> points) {
