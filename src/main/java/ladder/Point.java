@@ -17,7 +17,7 @@ public class Point {
         this.prevPoint = prevPoint;
     }
 
-    public String  getString() {
+    public String drawPoint() {
         if (point) {
             return "-----";
         }

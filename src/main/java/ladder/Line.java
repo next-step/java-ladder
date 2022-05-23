@@ -42,14 +42,14 @@ public class Line {
 
     private String drawLine(Point point) {
         if (isFirstPoint(point)) {
-            return "|" + point.getString();
+            return "|" + point.drawPoint();
         }
 
         if (isLastPoint(point)) {
-            return point.getString() + "|";
+            return point.drawPoint() + "|";
         }
 
-        return "|" + point.getString() + "|";
+        return "|" + point.drawPoint() + "|";
     }
 
     private boolean isFirstPoint(Point point) {
