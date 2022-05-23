@@ -15,11 +15,7 @@ public class StreamStudy {
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-        long count = 0;
-        for (String w : words) {
-            if (w.length() > 12) count++;
-        }
-        return count;
+        return words.stream().filter(word -> word.length() > 12).count();
     }
 
     public static void printLongestWordTop100() throws IOException {
@@ -27,7 +23,27 @@ public class StreamStudy {
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-        // TODO 이 부분에 구현한다.
+        words.stream()
+                .filter(word -> word.length() > 12)
+                .sorted(StreamStudy::compare)
+                .distinct()
+                .map(String::toLowerCase)
+                .forEach(System.out::println);
+    }
+
+    public static List<Integer> getNumbers() throws IOException {
+        String contents = new String(Files.readAllBytes(Paths
+                .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
+        List<String> words = Arrays.asList(contents.split("[\\P{N}]+"));
+
+        return words.stream()
+                .map((number) -> {
+                    if (number.isBlank()) {
+                        return 0;
+                    }
+                    return Integer.parseInt(number);
+                })
+                .collect(Collectors.toList());
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
@@ -38,7 +54,14 @@ public class StreamStudy {
         return numbers.stream().reduce(0, (x, y) -> x + y);
     }
 
-    public static long sumOverThreeAndDouble(List<Integer> numbers) {
-        return 0;
+    public static long sumOverThreeAndDouble(List<Integer> numbers) throws IOException {
+        return numbers.stream()
+                .filter(number -> number > 3)
+                .map(number -> number * 2)
+                .reduce(0, (x, y) -> x + y);
+    }
+
+    public static int compare(String word1, String word2) {
+        return Integer.compare(word2.length(), word1.length());
     }
 }
