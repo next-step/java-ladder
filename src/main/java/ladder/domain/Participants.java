@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Participants {
 
-    public static final int MINIMUM_PARTICIPANTS_NUMBER = 2;
+    private static final int MINIMUM_PARTICIPANTS_NUMBER = 2;
     private final List<Participant> participants;
 
     public Participants(List<Participant> participants) {

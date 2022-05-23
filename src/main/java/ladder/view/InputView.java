@@ -11,11 +11,11 @@ import java.util.stream.Collectors;
 public class InputView {
 
     private static final Scanner SCANNER = new Scanner(System.in);
-    public static final String INPUT_PARTICIPANTS_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
-    public static final String BLANK_STRING = " ";
-    public static final String EMPTY_STRING = "";
-    public static final String DELIMITER_REG = ",";
-    public static final String INPUT_MAX_HEIGHT_MESSAGE = "최대 사다리 높이는 몇 개 인가요?";
+    private static final String INPUT_PARTICIPANTS_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
+    private static final String BLANK_STRING = " ";
+    private static final String EMPTY_STRING = "";
+    private static final String DELIMITER_REG = ",";
+    private static final String INPUT_MAX_HEIGHT_MESSAGE = "최대 사다리 높이는 몇 개 인가요?";
 
     public Participants inputParticipants() {
         System.out.println(INPUT_PARTICIPANTS_MESSAGE);
