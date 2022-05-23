@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -34,7 +33,7 @@ public class Player {
         return Objects.hash(name);
     }
 
-    public void draw() {
-        System.out.print(String.format("%-6s", this.name));
+    public String payload() {
+        return String.format("%-6s", this.name);
     }
 }

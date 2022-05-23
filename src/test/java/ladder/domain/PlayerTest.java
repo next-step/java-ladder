@@ -17,4 +17,9 @@ public class PlayerTest {
     void parseToPlayers() {
         assertThat(Player.parse("a,b")).isEqualTo(new Players(Arrays.asList(new Player("a"), new Player("b"))));
     }
+
+    @Test
+    void payloadWithSize6() {
+        assertThat(new Player("test").payload()).hasSize(6);
+    }
 }

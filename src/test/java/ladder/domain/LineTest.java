@@ -5,6 +5,6 @@ import org.junit.jupiter.api.Test;
 public class LineTest {
     @Test
     void name() {
-        new Line(5)
+//        new Line(5)
     }
 }

@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.view.Output;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -15,9 +17,9 @@ public class Players {
     }
 
     public void draw() {
-        System.out.print(" ".repeat(2));
-        this.players.forEach(p -> p.draw());
-        System.out.println();
+        Output.print(" ".repeat(2));
+        this.players.forEach(p -> Output.print(p.payload()));
+        Output.print("\n");
     }
 
     @Override
