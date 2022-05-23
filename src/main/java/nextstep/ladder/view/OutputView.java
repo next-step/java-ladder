@@ -6,9 +6,15 @@ import nextstep.ladder.domain.Members;
 import nextstep.ladder.domain.RandomBooleanGenerator;
 
 public class OutputView {
+    private static final RandomBooleanGenerator RANDOM_BOOLEAN_GENERATOR;
+
+    static {
+        RANDOM_BOOLEAN_GENERATOR = new RandomBooleanGenerator();
+    }
+
     public static void outputLadder(Members members, MaxHeightOfLadder maxHeightOfLadder) {
         System.out.println(members.getPrettyString());
-        Lines lines = maxHeightOfLadder.getLines(members, new RandomBooleanGenerator());
+        Lines lines = maxHeightOfLadder.getLines(members, RANDOM_BOOLEAN_GENERATOR);
 
         System.out.println(lines.getPoints());
     }
