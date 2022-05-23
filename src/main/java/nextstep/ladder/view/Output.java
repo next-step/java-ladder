@@ -15,7 +15,7 @@ public class Output {
                 .forEach(index -> System.out.println(
                         ladder.lines()
                                 .stream()
-                                .map(line -> line.point(index) ? LADDER_YES : LADDER_NO)
+                                .map(line -> line.bar(index) ? LADDER_YES : LADDER_NO)
                                 .reduce(LADDER_NO, (prevLadder, nextLadder) -> (prevLadder + nextLadder))));
     }
 
