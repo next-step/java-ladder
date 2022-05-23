@@ -1,8 +1,10 @@
-package ladder.domain;
+package ladder;
 
-import ladder.UserGenerator;
+import ladder.util.UserGenerator;
 import ladder.contoller.InputView;
 import ladder.contoller.ResultView;
+import ladder.domain.LadderGame;
+import ladder.domain.Line;
 
 import java.util.List;
 
