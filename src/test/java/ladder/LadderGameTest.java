@@ -1,5 +1,7 @@
 package ladder;
 
+import ladder.domain.LadderGame;
+import ladder.domain.User;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

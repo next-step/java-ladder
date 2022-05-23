@@ -1,11 +1,10 @@
 package ladder;
 
-import org.assertj.core.api.Assertions;
+import ladder.domain.Line;
+import ladder.domain.Point;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-
-import static org.assertj.core.api.Assertions.*;
 
 public class LineTest {
 

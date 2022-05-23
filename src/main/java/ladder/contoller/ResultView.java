@@ -1,6 +1,6 @@
-package ladder.view;
+package ladder.contoller;
 
-import ladder.Line;
+import ladder.domain.Line;
 
 import java.util.List;
 
