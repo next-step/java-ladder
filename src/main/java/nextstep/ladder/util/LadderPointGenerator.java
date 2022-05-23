@@ -2,13 +2,13 @@ package nextstep.ladder.util;
 
 import java.util.Random;
 
-public class RandomBoolean {
+public class LadderPointGenerator {
     private static final Random RANDOM = new Random();
 
-    private RandomBoolean() {
+    private LadderPointGenerator() {
     }
 
-    public static boolean trueOrFalse() {
+    public static boolean generatePoint() {
         return RANDOM.nextBoolean();
     }
 }

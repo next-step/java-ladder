@@ -1,7 +1,7 @@
 package nextstep.ladder.model.ladder;
 
 import nextstep.ladder.exception.LadderLengthException;
-import nextstep.ladder.util.RandomBoolean;
+import nextstep.ladder.util.LadderPointGenerator;
 
 import java.util.Collections;
 import java.util.List;
@@ -32,7 +32,7 @@ public final class Line {
     private static Function<Integer, List<Point>> init() {
         return countOfPeople -> IntStream
                 .range(ZERO.getValue(), countOfPeople)
-                .mapToObj(i -> RandomBoolean.trueOrFalse())
+                .mapToObj(i -> LadderPointGenerator.generatePoint())
                 .map(Point::of)
                 .collect(Collectors.toList());
     }
