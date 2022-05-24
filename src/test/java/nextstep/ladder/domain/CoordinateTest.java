@@ -63,4 +63,9 @@ class CoordinateTest {
         assertThatThrownBy(() -> coordinate.move(invalidLines))
                 .isInstanceOf(LadderException.class);
     }
+
+    @Test
+    void done() {
+        assertThat(Coordinate.of(0,3).done(3)).isTrue();
+    }
 }

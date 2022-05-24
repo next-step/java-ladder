@@ -71,4 +71,12 @@ public class Coordinate {
     public int hashCode() {
         return Objects.hash(x, y);
     }
+
+    public boolean done(int lineLength) {
+        return y >= lineLength;
+    }
+
+    public int x() {
+        return x;
+    }
 }

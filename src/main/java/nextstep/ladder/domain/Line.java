@@ -53,6 +53,10 @@ public class Line {
         return bars;
     }
 
+    public int height() {
+        return bars.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
