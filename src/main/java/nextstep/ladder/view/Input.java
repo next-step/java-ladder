@@ -1,8 +1,6 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Height;
-import nextstep.ladder.exception.LadderException;
-import nextstep.ladder.exception.LadderExceptionCode;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,14 +13,23 @@ public class Input {
 
     public static List<String> askPlayers() {
         System.out.println("참여할 이름을 입력하세요. 쉽표(,)로 구분해주세요. ex. jack, pobi");
-        return Arrays.stream(scanner.nextLine().split(DELIMITER))
-                .map(String::trim)
-                .collect(Collectors.toList());
+        return splitByDelimiter();
     }
 
     public static Height askLadderHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         int height = Integer.parseInt(scanner.nextLine());
         return Height.of(height);
+    }
+
+    public static List<String> askResults() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요) ex. X,3000,X,4000");
+        return splitByDelimiter();
+    }
+
+    private static List<String> splitByDelimiter() {
+        return Arrays.stream(scanner.nextLine().split(DELIMITER))
+                .map(String::trim)
+                .collect(Collectors.toList());
     }
 }

@@ -24,7 +24,7 @@ public class Ladder {
         );
     }
 
-    private Ladder(List<Line> lines) {
+    Ladder(List<Line> lines) {
         this.lines = lines;
     }
 
@@ -45,5 +45,10 @@ public class Ladder {
         return "Ladder{" +
                 "lines=" + lines +
                 '}';
+    }
+
+    public void execute(Players players, Height height, List<String> results) {
+        players.players()
+                .forEach(player -> player.move(lines, height, results));
     }
 }
