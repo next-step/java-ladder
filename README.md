@@ -61,7 +61,7 @@ Put max height of ladders
 - [x] 도메인이 UI에 의존적이지 않게 변경
     - [x] Line * 5 print
     - [x] Lines foreach print
-- [ ] 생성자를 추가하거나 전략 패턴을 적용하여 랜덤 요소분리
+- [x] 생성자를 추가하거나 전략 패턴을 적용하여 랜덤 요소분리 (Line)
 - [ ] Player.parse Input 으로 이동
 - [ ] Player.payload Output 으로 이동
 - [ ] Line 수동 생성자 추가하여 테스트
