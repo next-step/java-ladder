@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class LadderTest {
 
@@ -45,5 +47,38 @@ class LadderTest {
   void create_실패() {
     assertThatThrownBy(() -> Ladder.of(new Length(0), new Length(0)))
         .isInstanceOf(IllegalArgumentException.class);
+  }
+
+  /*
+     1     2     3     4
+     |     |-----|     |
+     |     |     |-----|
+     |-----|     |-----|
+     1     2     3     4
+  */
+  @DisplayName("playerIndex를 입력하면 마지막 줄까지 이동하고 그곳의 인덱스를 반환한다.")
+  @Test
+  void move() {
+    Ladder ladder = new Ladder(List.of(
+        new Line(List.of(false, false, true, false)),
+        new Line(List.of(false, false, false, true)),
+        new Line(List.of(false, true, false, true))
+    ));
+
+    assertAll(
+        () -> assertThat(ladder.move(0)).isEqualTo(1),
+        () -> assertThat(ladder.move(1)).isEqualTo(2),
+        () -> assertThat(ladder.move(2)).isZero(),
+        () -> assertThat(ladder.move(3)).isEqualTo(3)
+    );
+  }
+
+  @DisplayName("유효하지 않은 인덱스를 입력하면 예외를 던진다.")
+  @ParameterizedTest
+  @ValueSource(ints = {-1, 5})
+  void moveWithInvalidIndex(int invalidIndex) {
+    Ladder ladder = Ladder.of(new Length(4), new Length(3));
+
+    assertThatThrownBy(() -> ladder.move(invalidIndex)).isInstanceOf(IllegalArgumentException.class);
   }
 }

@@ -33,4 +33,12 @@ public class Ladder {
   public List<Line> getLines() {
     return Collections.unmodifiableList(lines);
   }
+
+  public int move(int playerIndex) {
+    int nextIndex = lines.get(0).move(playerIndex);
+    for (int i = 1; i < lines.size(); i++) {
+      nextIndex = lines.get(i).move(nextIndex);
+    }
+    return nextIndex;
+  }
 }

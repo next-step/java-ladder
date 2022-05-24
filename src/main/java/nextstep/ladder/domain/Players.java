@@ -42,6 +42,10 @@ public class Players {
         .collect(Collectors.toUnmodifiableList());
   }
 
+  public Player playerByIndex(int index) {
+    return players.get(index);
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {

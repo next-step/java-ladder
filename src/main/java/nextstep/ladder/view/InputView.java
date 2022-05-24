@@ -22,8 +22,18 @@ public class InputView {
     return getIntInput();
   }
 
+  public static List<String> getResults() {
+    System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+    return Arrays.asList(getStringInput().split(DELIMITER));
+  }
+
+  public static String getResultName() {
+    System.out.println("결과를 보고 싶은 사람은?");
+    return getStringInput();
+  }
+
   private static int getIntInput() {
-    return SCANNER.nextInt();
+    return Integer.parseInt(SCANNER.nextLine());
   }
 
   private static String getStringInput() {
