@@ -16,11 +16,11 @@ public class Player {
         this.name = name;
     }
 
-    public static Players parse(String line) {
-        return new Players(Arrays.stream(line.split("\\s*,\\s*"))
-                .map(Player::new)
-                .collect(Collectors.toList()));
-    }
+//    public static Players parse(String line) {
+//        return new Players(Arrays.stream(line.split("\\s*,\\s*"))
+//                .map(Player::new)
+//                .collect(Collectors.toList()));
+//    }
 
     @Override
     public boolean equals(Object o) {

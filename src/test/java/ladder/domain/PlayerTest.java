@@ -13,10 +13,10 @@ public class PlayerTest {
         assertThatThrownBy(() -> new Player("123456")).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void parseToPlayers() {
-        assertThat(Player.parse("a,b")).isEqualTo(new Players(Arrays.asList(new Player("a"), new Player("b"))));
-    }
+//    @Test
+//    void parseToPlayers() {
+//        assertThat(Player.parse("a,b")).isEqualTo(new Players(Arrays.asList(new Player("a"), new Player("b"))));
+//    }
 
     @Test
     void payloadWithSize6() {

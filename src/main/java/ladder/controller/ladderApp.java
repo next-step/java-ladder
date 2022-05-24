@@ -9,8 +9,7 @@ import ladder.view.Output;
 
 public class ladderApp {
     public static void main(String[] args) {
-        String scannedNames = Input.scanName();
-        Players players = Player.parse(scannedNames);
+        Players players = Input.scanPlayers();
         Height height = new Height(Input.scanNumber());
 
         players.draw();
