@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -40,20 +39,38 @@ class PlayersTest {
         .map(Name::new)
         .collect(Collectors.toUnmodifiableList()));
 
-    List<String> names = players.playerNames();
-    
+    List<String> names = players.playerNames()
+        .stream()
+        .map(Name::toString)
+        .collect(Collectors.toUnmodifiableList());
+
     assertThat(names.containsAll(expected)).isTrue();
     assertThat(expected.containsAll(names)).isTrue();
   }
 
   @Test
   void isMoreThan_성공() {
-    Assertions.assertThat(PLAYERS_1.isMoreThan(PLAYER_NAME_LIST_1.size()-1)).isTrue();
+    assertThat(PLAYERS_1.isMoreThan(PLAYER_NAME_LIST_1.size() - 1)).isTrue();
   }
 
   @Test
   void isMoreThan_실패() {
-    Assertions.assertThat(PLAYERS_1.isMoreThan(PLAYER_NAME_LIST_1.size())).isFalse();
+    assertThat(PLAYERS_1.isMoreThan(PLAYER_NAME_LIST_1.size())).isFalse();
+  }
+
+  @Test
+  void startIndexOf_성공() {
+    assertThat(PLAYERS_1.startIndexOf(PLAYER_NAME_LIST_1.get(0))).isEqualTo(0);
+  }
+
+  @Test
+  void has_성공() {
+    assertThat(PLAYERS_1.has(PLAYER_NAME_LIST_1.get(0))).isTrue();
+  }
+
+  @Test
+  void has_실패() {
+    assertThat(PLAYERS_1.has(new Name("없음"))).isFalse();
   }
 
   @Test

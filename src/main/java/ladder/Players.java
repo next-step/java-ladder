@@ -1,10 +1,13 @@
 package ladder;
 
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Players {
+
   public static final int MIN_PLAYER_NUMBER = 2;
 
   private static final String MESSAGE_FOR_INVALID_NAMES = "참가자 수는 %s이상 이어야합니다.";
@@ -21,14 +24,20 @@ public class Players {
     return names.size();
   }
 
-  public List<String> playerNames() {
-    return names.stream()
-        .map(Name::toString)
-        .collect(Collectors.toUnmodifiableList());
+  public List<Name> playerNames() {
+    return Collections.unmodifiableList(names);
   }
 
   public boolean isMoreThan(int number) {
     return playerNumber() > number;
+  }
+
+  public int startIndexOf(Name name) {
+    return names.indexOf(name);
+  }
+
+  public boolean has(Name name) {
+    return names.contains(name);
   }
 
   private void validateNames(List<Name> names) {
