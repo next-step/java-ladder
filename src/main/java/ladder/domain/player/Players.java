@@ -8,6 +8,8 @@ import java.util.List;
 
 public class Players {
 
+    private static final int MIN_PERSON_NUM = 1;
+
     List<Player> playerList = new ArrayList<>();
 
     public Players(String playerNames) {
@@ -19,7 +21,7 @@ public class Players {
     }
 
     private void validate(String[] names) {
-        if (names.length == 1) {
+        if (names.length == MIN_PERSON_NUM) {
             throw new NeedMorePlayerException("사다리 게임을 진행할 플레이어가 더 필요합니다");
         }
     }

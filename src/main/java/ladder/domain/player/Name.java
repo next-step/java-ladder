@@ -5,7 +5,7 @@ import ladder.exception.TooLongNameException;
 public class Name {
     private static final int NAME_MAX_LENGTH = 5;
 
-    String name;
+    private String name;
 
     public Name(String name) {
         validate(name);
@@ -19,7 +19,9 @@ public class Name {
         }
     }
 
-    public String getName() {
+    @Override
+    public String toString() {
         return name;
     }
+
 }

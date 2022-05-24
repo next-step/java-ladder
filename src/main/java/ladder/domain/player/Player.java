@@ -8,7 +8,8 @@ public class Player {
         this.name = new Name(name);
     }
 
-    public String getName() {
-        return name.getName();
+    @Override
+    public String toString() {
+        return name.toString();
     }
 }

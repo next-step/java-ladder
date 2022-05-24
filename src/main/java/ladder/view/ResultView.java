@@ -9,7 +9,9 @@ import java.util.stream.IntStream;
 
 public class ResultView {
     public static void showResult(Players players, Ladder ladder) {
+        System.out.println();
         System.out.println("실행결과");
+        System.out.println();
 
         showPlayers(players);
 
@@ -19,13 +21,17 @@ public class ResultView {
     private static void showPlayers(Players players) {
         players.getPlayers().stream()
                 .forEach(player ->
-                        { System.out.print(player.getName() + "     "); }
+                        { System.out.print(player.toString() + "     "); }
                 );
         System.out.println();
     }
 
     private static void showLadder(Ladder ladder) {
-        IntStream.range(0, ladder.ladderHeight()).mapToObj(ladder::getLine).forEach(ResultView::showLine);
+        int height = ladder.ladderHeight();
+        for (int i = 0; i < height; i++) {
+            Line line = ladder.getLine(i);
+            showLine(line);
+        }
     }
 
     private static void showLine(Line line) {
@@ -35,9 +41,9 @@ public class ResultView {
             System.out.print("|");
             if (isLine) {
                 showContent("-");
-            } else {
-                showContent(" ");
+                return;
             }
+            showContent(" ");
         });
         System.out.println("|");
     }

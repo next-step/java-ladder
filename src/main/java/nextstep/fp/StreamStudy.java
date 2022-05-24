@@ -28,8 +28,8 @@ public class StreamStudy {
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
         words.stream()
-                .filter(w -> (w.length() > 12))
-                .sorted((s1, s2) -> s2.length() - s1.length())
+                .filter(word -> (word.length() > 12))
+                .sorted((word1, word2) -> word2.length() - word1.length())
                 .distinct()
                 .collect(Collectors.toList())
                 .stream().limit(100)
