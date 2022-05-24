@@ -15,11 +15,16 @@ public class Line {
                 .collect(Collectors.toList());
     }
 
-    public void draw() {
-        this.points
-                .stream()
-                .map(p -> p? "-" : " ")
-                .map(p -> p.repeat(5) + "|")
-                .forEach(System.out::print);
+    public List<Boolean> points() {
+        return this.points;
     }
+
+
+//    public String toLine() {
+//        this.points
+//                .stream()
+//                .map(p -> p? "-" : " ")
+//                .map(p -> p.repeat(5) + "|")
+//                .reduce("", (acc, cur) -> acc + cur);
+//    }
 }

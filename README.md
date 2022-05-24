@@ -58,9 +58,9 @@ Put max height of ladders
     - [x] MAX_HEIGHT = 20
 - [x] 입력 메시지는 Input 내에서 처리
   - [x] Height 에 대해서는 scanner.nextInt() 로 변경
-- [ ] 도메인이 UI에 의존적이지 않게 변경
-    - [ ] Line * 5 print
-    - [ ] Lines foreach print
+- [x] 도메인이 UI에 의존적이지 않게 변경
+    - [x] Line * 5 print
+    - [x] Lines foreach print
 - [ ] 생성자를 추가하거나 전략 패턴을 적용하여 랜덤 요소분리
 - [ ] Player.parse Input 으로 이동
 - [ ] Player.payload Output 으로 이동

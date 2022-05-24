@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.view.Output;
+
 import java.util.List;
 
 public class Lines {
@@ -9,11 +11,7 @@ public class Lines {
         this.lines = lines;
     }
 
-    public void draw() {
-        this.lines.forEach(line -> {
-            System.out.print(" ".repeat(4) + "|");
-            line.draw();
-            System.out.println();
-        });
+    public List<Line> lines() {
+        return this.lines;
     }
 }

@@ -11,7 +11,7 @@ public class Height {
     private final int height;
 
     public Height(int height) {
-        this.height = Optional.ofNullable(height)
+        this.height = Optional.of(height)
                 .filter(h -> h <= MAX_HEIGHT)
                 .orElseThrow(() -> new IllegalArgumentException("height should be less than " + MAX_HEIGHT + " but, : " + height));
     }
