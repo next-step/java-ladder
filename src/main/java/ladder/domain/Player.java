@@ -16,12 +16,6 @@ public class Player {
         this.name = name;
     }
 
-//    public static Players parse(String line) {
-//        return new Players(Arrays.stream(line.split("\\s*,\\s*"))
-//                .map(Player::new)
-//                .collect(Collectors.toList()));
-//    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -35,7 +29,7 @@ public class Player {
         return Objects.hash(name);
     }
 
-    public String payload() {
-        return String.format("%-6s", this.name);
+    public String name() {
+        return this.name;
     }
 }

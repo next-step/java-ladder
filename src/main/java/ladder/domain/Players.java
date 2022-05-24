@@ -16,10 +16,8 @@ public class Players {
         return this.players.size();
     }
 
-    public void draw() {
-        Output.print(" ".repeat(2));
-        this.players.forEach(p -> Output.print(p.payload()));
-        Output.print("\n");
+    public List<Player> players() {
+        return this.players;
     }
 
     @Override

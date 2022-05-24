@@ -63,7 +63,7 @@ Put max height of ladders
     - [x] Lines foreach print
 - [x] 생성자를 추가하거나 전략 패턴을 적용하여 랜덤 요소분리 (Line)
 - [x] Player.parse Input 으로 이동
-- [ ] Player.payload Output 으로 이동
+- [x] Players.payload => Output.format, Players.draw => Output.printPlayers 로 이동
 - [ ] Line 수동 생성자 추가하여 테스트
 - [ ] Height.lines -> Lines.lines 이동
 - [ ] 검증, 비지니스 로직이 없다면 일급 컬렉션 제거 (Lines)?

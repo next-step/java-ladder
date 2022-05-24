@@ -12,7 +12,7 @@ public class ladderApp {
         Players players = Input.scanPlayers();
         Height height = new Height(Input.scanNumber());
 
-        players.draw();
+        Output.printPlayers(players.players());
 
         Lines lines = height.lines(players.size());
         Output.printLines(lines.lines());
