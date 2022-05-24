@@ -56,8 +56,8 @@ Put max height of ladders
 - [x] 매직 넘버 const 선언
     - [x] MAX_PLAYER_NAME = 5, 상수 통해 예외처리 추가
     - [x] MAX_HEIGHT = 20
-- [ ] 입력 메시지는 Input 내에서 처리
-- [ ] Height 에 대해서는 scanner.nextInt() 로 변경
+- [x] 입력 메시지는 Input 내에서 처리
+  - [x] Height 에 대해서는 scanner.nextInt() 로 변경
 - [ ] 도메인이 UI에 의존적이지 않게 변경
     - [ ] Line * 5 print
     - [ ] Lines foreach print

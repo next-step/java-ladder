@@ -16,10 +16,6 @@ public class Height {
                 .orElseThrow(() -> new IllegalArgumentException("height should be less than " + MAX_HEIGHT + " but, : " + height));
     }
 
-    public static Height parse(String scannedHeight) {
-        return new Height(Integer.parseInt(scannedHeight));
-    }
-
     public Lines lines(int countOfPerson) {
         return new Lines(Stream.iterate(0, i -> i < this.height, i -> i + 1)
                 .map(i -> new Line(countOfPerson))

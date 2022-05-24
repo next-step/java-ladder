@@ -8,14 +8,11 @@ import ladder.view.Input;
 
 public class ladderApp {
     public static void main(String[] args) {
-        String scannedNames = Input.scan("Put player names separated by ','.");
+        String scannedNames = Input.scanName();
         Players players = Player.parse(scannedNames);
-
-        String scannedHeight = Input.scan("Put max height of ladders");
-        Height height = Height.parse(scannedHeight);
-
         players.draw();
 
+        Height height = new Height(Input.scanNumber());
         Lines lines = height.lines(players.size());
         lines.draw();
     }
