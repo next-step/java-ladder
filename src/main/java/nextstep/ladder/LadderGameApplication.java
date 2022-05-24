@@ -1,25 +1,18 @@
 package nextstep.ladder;
 
-import java.util.List;
+import nextstep.ladder.domain.Height;
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.Players;
+import nextstep.ladder.view.InputView;
+import nextstep.ladder.view.ResultView;
 
 public class LadderGameApplication {
 
   public static void main(String[] args) {
-    Ladder ladder = new Ladder(5, 4);
-    List<Line> lines = ladder.lines();
-    lines.forEach(line -> {
-      System.out.print("     |");
-      line.points()
-          .forEach(point -> {
-            if (Boolean.TRUE.equals(point)) {
-              System.out.print("-----|");
-              return;
-            }
-            System.out.print("     |");
-          });
-      System.out.println();
-    });
+    Players players = new Players(Players.create(InputView.playerNames()));
+    Height height = new Height(InputView.ladderHeight());
+    Ladder ladder = new Ladder(height.height(), players.count());
+    ResultView.print(players);
+    ResultView.print(ladder);
   }
 }
