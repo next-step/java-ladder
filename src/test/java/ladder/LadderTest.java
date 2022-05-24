@@ -1,9 +1,13 @@
 package ladder;
 
 import static java.util.Collections.emptyList;
+import static ladder.LineIndexTest.FIRST_LINE_INDEX;
 import static ladder.LineTest.LINE_1;
 import static ladder.LineTest.LINE_2;
+import static ladder.NameTest.PLAYER_NAME_LIST_1;
 import static ladder.PlayersTest.PLAYERS_1;
+import static ladder.PrizesTest.PRIZES_1;
+import static ladder.PrizesTest.PRIZE_LIST_1;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -28,6 +32,15 @@ class LadderTest {
   @Test
   void lines_성공() {
     assertThat(LADDER.lines()).isEqualTo(List.of(LINE_1, LINE_2));
+  }
+
+  @Test
+  void findResult_성공() {
+    for (int i = 0; PLAYERS_1.isMoreThan(i); i++) {
+      assertThat(
+          LADDER.findResult(PRIZES_1, LineIndex.init(PLAYERS_1, PLAYER_NAME_LIST_1.get(i)))
+      ).isEqualTo(PRIZE_LIST_1.get(i));
+    }
   }
 
   @Test

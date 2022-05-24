@@ -20,6 +20,13 @@ public class Ladder {
     return Collections.unmodifiableList(ladder);
   }
 
+  public Name findResult(Prizes prizes, LineIndex index) {
+    for (Line line : ladder) {
+      index = line.nextIndex(index);
+    }
+    return prizes.prizeFrom(index);
+  }
+
   private void validateLadder(List<Line> ladder) {
     if (ladder.size() < MIN_HEIGHT) {
       throw new IllegalArgumentException(String.format(MESSAGE_FOR_INVALID_HEIGHT, MIN_HEIGHT));
