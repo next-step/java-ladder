@@ -20,11 +20,16 @@ public class Participants {
         return new Participants(participants);
     }
 
-    public List<Participant> getParticipants() {
-        return List.copyOf(participants); // 방어적 복사
-    }
-
     public int count() {
         return participants.size();
     }
+
+    public Position positionOf(Participant participant) {
+        return Position.from(participants.indexOf(participant));
+    }
+
+    public List<Participant> getParticipants() {
+        return List.copyOf(participants);
+    }
+
 }

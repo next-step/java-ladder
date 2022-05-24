@@ -37,7 +37,7 @@ class LadderTest {
                 Line.from(Arrays.asList(false, false, true, false))
         ));
         Ladder ladder = Ladder.from(lines);
-        Line movedLine = ladder.movedFrom(Position.of(0));
+        Line movedLine = ladder.movedFrom(Position.from(0));
 
         assertThat(movedLine).isEqualTo(lines.get(1));
     }
@@ -49,7 +49,7 @@ class LadderTest {
         List<Line> lines = LineFactory.createLines(heightOfLadder, 4, new RandomLineStrategy());
         Ladder ladder = Ladder.from(lines);
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> ladder.movedFrom(Position.of(heightOfLadder)))
+                .isThrownBy(() -> ladder.movedFrom(Position.from(heightOfLadder)))
                 .withMessageContaining("더 이상")
         ;
     }

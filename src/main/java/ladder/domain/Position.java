@@ -12,7 +12,7 @@ public class Position {
         this.position = position;
     }
 
-    public static Position of(int position) {
+    public static Position from(int position) {
         return new Position(position);
     }
 
@@ -29,11 +29,11 @@ public class Position {
     }
 
     public Position movedBackward() {
-        return Position.of(this.position - 1);
+        return Position.from(this.position - 1);
     }
 
     public Position movedForward() {
-        return Position.of(this.position + 1);
+        return Position.from(this.position + 1);
     }
 
     public boolean isFirst() {

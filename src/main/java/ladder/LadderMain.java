@@ -13,6 +13,10 @@ public class LadderMain {
         int numberOfLadders = InputView.inputTheNumberOfLadders();
 
         Participants participants = Participants.from(participantsNames);
+
+        // TODO 실행결과 입력받기
+        ExecutionResult executionResult = ExecutionResult.from(InputView.inputExecutionResult());
+
         List<Line> lines = LineFactory.createLines(numberOfLadders, participants.count(), new RandomLineStrategy());
 
         ResultView.printResult(participants, Ladder.from(lines));
