@@ -52,7 +52,7 @@ Put max height of ladders
 ### Requested changes
 
 - [x] 개행으로 가독성 개선 (ladderApp)
-- [ ] Optional.ofNullable => of 로 변경 (Height)
+- [x] Optional.ofNullable => of 로 변경 (Height)
 - [ ] 매직 넘버 const 선언
     - [ ] MAX_HEIGHT = 10
     - [ ] MAX_PlayerName = 5, 상수 통해 예외처리 추가
