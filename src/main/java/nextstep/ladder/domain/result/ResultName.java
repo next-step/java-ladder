@@ -2,6 +2,7 @@ package nextstep.ladder.domain.result;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class ResultName {
 
@@ -20,5 +21,23 @@ public class ResultName {
             return;
         }
         throw new IllegalArgumentException("[ERROR] 결과 형식에 맞지 않습니다.");
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ResultName that = (ResultName) o;
+        return Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
