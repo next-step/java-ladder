@@ -18,7 +18,7 @@ public class Lines {
     public static Lines of(int countOfPeople, int maxHeight) {
         List<Line> lines = IntStream
                 .range(ZERO.getValue(), maxHeight)
-                .mapToObj(i -> Line.create(countOfPeople))
+                .mapToObj(i -> Line.init(countOfPeople))
                 .collect(Collectors.toList());
 
         return Lines.of(lines);
@@ -37,7 +37,7 @@ public class Lines {
             return column;
         }
         Line line = this.line(row);
-        int nextColumn = line.moveLeftAndRight(column);
+        int nextColumn = line.move(column);
         return moveDown(++row, nextColumn);
     }
 

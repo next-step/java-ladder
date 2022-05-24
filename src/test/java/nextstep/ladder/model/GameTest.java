@@ -10,7 +10,10 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -21,32 +24,45 @@ public class GameTest {
     @MethodSource("findResult")
     void find(Game game, String name, String score) {
         ResultView.printLadder(game.people(), game.ladder());
-        ResultView.printAllResult(game);
+        ResultView.printResult(name, game);
         assertThat(game.result(name).score()).isEqualTo(score);
     }
 
     private static Stream<Arguments> findResult() {
         Game game = createGame();
         return Stream.of(
-                Arguments.of(game, "a", "30"),
+                Arguments.of(game, "a", "40"),
                 Arguments.of(game, "b", "20"),
-                Arguments.of(game, "c", "10")
+                Arguments.of(game, "c", "50"),
+                Arguments.of(game, "d", "10"),
+                Arguments.of(game, "e", "30")
         );
     }
 
+    private static List<Point> createPoints(boolean start, int count) {
+        AtomicReference<Point> point = new AtomicReference<>(Point.first(start));
+
+        List<Point> points = new ArrayList<>();
+        points.add(point.get());
+
+        IntStream.range(1, count - 1)
+                .mapToObj(i -> (i % 2 == 1 && !start) || (i % 2 == 0 && start))
+                .forEach(right -> points.add(point.updateAndGet(p -> p.next(right))));
+
+        points.add(point.updateAndGet(Point::last));
+
+        return points;
+    }
+
     private static Game createGame() {
-        List<String> names = List.of("a", "b", "c");
+        List<String> names = List.of("a", "b", "c", "d", "e");
         People people = People.of(names);
 
-        Point falsePoint = Point.noLine();
-        Point truePoint = Point.hasLine();
+        Line first = Line.init(createPoints(true, names.size()));
+        Line second = Line.init(createPoints(false, names.size()));
+        Lines lines = Lines.of(List.of(first, second, first));
 
-        Line first = Line.create(truePoint, falsePoint, falsePoint);
-        Line second = Line.create(falsePoint, truePoint, falsePoint);
-        Line third = Line.create(truePoint, falsePoint, falsePoint);
-        Lines lines = Lines.of(List.of(first, second, third));
-
-        List<String> scores = List.of("10", "20", "30");
+        List<String> scores = List.of("10", "20", "30", "40", "50");
         EndPoints endPoints = EndPoints.of(scores);
 
         return Game.ready(people, lines, endPoints);

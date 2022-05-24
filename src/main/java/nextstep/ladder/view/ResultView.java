@@ -28,7 +28,7 @@ public class ResultView {
     }
 
     private static String addWidth(Point prev) {
-        if (prev.value()) {
+        if (prev.direction().isRight()) {
             return WIDTH_LINE;
         }
         return EMPTY_WIDTH_LINE;
