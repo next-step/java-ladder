@@ -6,7 +6,8 @@ public class LineIndex {
 
   private static final String MESSAGE_FOR_INVALID_NAME = "해당 이름과 일치하는 참가자가 존재하지 않습니다.";
   private static final String MESSAGE_FOR_INVALID_INDEX = "현재 위치는 0과 참가자수 사이여야 합니다.";
-
+  private static final int NEXT = 1;
+  private static final int PREV = 1;
   private final int playerNumber;
   private final int index;
 
@@ -17,11 +18,11 @@ public class LineIndex {
   }
 
   public LineIndex moveRight() {
-    return new LineIndex(playerNumber, index + 1);
+    return new LineIndex(playerNumber, NEXT + index);
   }
 
   public LineIndex moveLeft() {
-    return new LineIndex(playerNumber, index - 1);
+    return new LineIndex(playerNumber, PREV + index);
   }
 
   public int value() {
