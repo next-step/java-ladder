@@ -26,6 +26,16 @@ public class Line {
     return points.size();
   }
 
+  public LineIndex nextIndex(LineIndex index) {
+    if (points.get(index.value())) {
+      return index.moveRight();
+    }
+    if (index.value() > 0 && points.get(index.value() - 1)) {
+      return index.moveLeft();
+    }
+    return index;
+  }
+
   private void validatePoints(List<Boolean> points) {
     if (points.size() < MIN_PLAYER_NUMBER) {
       throw new IllegalArgumentException(MESSAGE_FOR_INVALID_POINTS);

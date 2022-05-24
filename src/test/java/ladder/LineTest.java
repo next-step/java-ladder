@@ -1,7 +1,9 @@
 package ladder;
 
 import static java.util.Collections.emptyList;
-import static ladder.NameTest.PLAYER_NAME_LIST_1;
+import static ladder.LineIndexTest.FIRST_LINE_INDEX;
+import static ladder.LineIndexTest.SECOND_LINE_INDEX;
+import static ladder.LineIndexTest.THIRD_LINE_INDEX;
 import static ladder.PlayersTest.PLAYERS_1;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -12,9 +14,9 @@ import org.junit.jupiter.api.Test;
 
 class LineTest {
 
-  private static final List<Boolean> POINTS = List.of(true, false, true, false, false);
+  private static final List<Boolean> POINTS = List.of(true, false, false, true, false);
   public static final Line LINE_1 = new Line(POINTS);
-  public static final Line LINE_2 = new Line(List.of(false, true, false, true, false));
+  public static final Line LINE_2 = new Line(List.of(true, false, false, true, false));
 
   @Test
   void Line_생성_성공() {
@@ -35,6 +37,21 @@ class LineTest {
   @Test
   void playerNumber_성공() {
     assertThat(LINE_1.playerNumber()).isEqualTo(POINTS.size());
+  }
+
+  @Test
+  void nextIndex_오른쪽으로_이동_성공() {
+    assertThat(LINE_1.nextIndex(FIRST_LINE_INDEX)).isEqualTo(SECOND_LINE_INDEX);
+  }
+
+  @Test
+  void nextIndex_왼쪽으로_이동_성공() {
+    assertThat(LINE_1.nextIndex(SECOND_LINE_INDEX)).isEqualTo(FIRST_LINE_INDEX);
+  }
+
+  @Test
+  void nextIndex_이동하지않음_성공() {
+    assertThat(LINE_1.nextIndex(THIRD_LINE_INDEX)).isEqualTo(THIRD_LINE_INDEX);
   }
 
   @Test
