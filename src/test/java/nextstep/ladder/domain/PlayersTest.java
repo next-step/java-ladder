@@ -26,4 +26,9 @@ class PlayersTest {
                 new Player("jack", Coordinate.of(0,0)),
                 new Player("pobi", Coordinate.of(1,0))));
     }
+
+    @Test
+    void sameLength_fail() {
+        assertThat(Players.of(List.of("a", "b", "c")).sameLength((List.of("X", "3000")))).isFalse();
+    }
 }

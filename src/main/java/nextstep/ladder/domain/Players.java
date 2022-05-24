@@ -26,4 +26,10 @@ public class Players {
     public List<Player> players() {
         return players;
     }
+
+    public boolean sameLength(List<String> results) {
+        return players.size() == results.size();
+    }
+
+
 }
