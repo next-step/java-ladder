@@ -16,7 +16,7 @@
 
 ### Todo
 
-- [ ] 사다리 게임에 참여하는 사람에 이름을 최대5글자까지 부여할 수 있다. 사다리를 출력할 때 사람 이름도 같이 출력한다.
+- [x] 사다리 게임에 참여하는 사람에 이름을 최대5글자까지 부여할 수 있다. 사다리를 출력할 때 사람 이름도 같이 출력한다.
     - [x] scanName, 사람 이름은 쉼표(,)를 기준으로 구분한다.
     - [x] class Name with max 5
     - [x] scanHeight
@@ -48,3 +48,23 @@ Put max height of ladders
     |     |-----|     |     |
     |     |-----|     |     |
 ```
+
+### Requested changes
+
+- [ ] 개행으로 가독성 개선 (ladderApp)
+- [ ] Optional.ofNullable => of 로 변경 (Height)
+- [ ] 매직 넘버 const 선언
+    - [ ] MAX_HEIGHT = 10
+    - [ ] MAX_PlayerName = 5, 상수 통해 예외처리 추가
+- [ ] 입력 메시지는 Input 내에서 처리
+- [ ] Height 에 대해서는 scanner.nextInt() 로 변경
+- [ ] 도메인이 UI에 의존적이지 않게 변경
+  - [ ] Line * 5 print
+  - [ ] Lines foreach print
+- [ ] 생성자를 추가하거나 전략 패턴을 적용하여 랜덤 요소분리
+- [ ] Player.parse Input 으로 이동
+- [ ] Player.payload Output 으로 이동
+- [ ] Line 수동 생성자 추가하여 테스트
+- [ ] Height.lines -> Lines.lines 이동
+- [ ] 검증, 비지니스 로직이 없다면 일급 컬렉션 제거 (Lines)?
+  - lines 가 이동되면 로직이 생겼으니 제거 안해도 되는것인가?
