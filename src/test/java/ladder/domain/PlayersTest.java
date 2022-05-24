@@ -14,7 +14,8 @@ public class PlayersTest {
                 new Players(Stream.iterate(0, i -> i + 1)
                         .map(i -> new Player(i + ""))
                         .limit(5)
-                        .collect(Collectors.toList())).size()
+                        .collect(Collectors.toList()))
+                        .size()
         ).isEqualTo(5);
     }
 }

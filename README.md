@@ -68,3 +68,4 @@ Put max height of ladders
 - [x] Height.lines -> Lines 의 생성자로 이동
 - [ ] 검증, 비지니스 로직이 없다면 일급 컬렉션 제거 (Lines)?
     - lines 가 이동되면 로직이 생겼으니 제거 안해도 되는것인가?
+- [x] add test cases

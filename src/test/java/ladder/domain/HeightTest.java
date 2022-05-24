@@ -9,9 +9,4 @@ public class HeightTest {
     void over20GetsError() {
         assertThatThrownBy(() -> new Height(21)).isInstanceOf(IllegalArgumentException.class);
     }
-
-//    @Test
-//    void returnHeight() {
-//        assertThat(Height.parse("1")).isEqualTo(new Height(1));
-//    }
 }

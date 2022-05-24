@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import ladder.view.Output;
-
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -14,10 +12,6 @@ public class Lines {
                 .map(i -> new Line(countOfPerson))
                 .collect(Collectors.toList());
     }
-//    public Lines(List<Line> lines) {
-//        this.lines = lines;
-
-//    }
 
     public List<Line> lines() {
         return this.lines;
