@@ -5,13 +5,15 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static ladder.util.Const.MAX_HEIGHT;
+
 public class Height {
     private final int height;
 
     public Height(int height) {
         this.height = Optional.ofNullable(height)
-                .filter(h -> h <= 10)
-                .orElseThrow(() -> new IllegalArgumentException("height should be less than 10 but, : " + height));
+                .filter(h -> h <= MAX_HEIGHT)
+                .orElseThrow(() -> new IllegalArgumentException("height should be less than " + MAX_HEIGHT + " but, : " + height));
     }
 
     public static Height parse(String scannedHeight) {

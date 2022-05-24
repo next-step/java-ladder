@@ -53,18 +53,18 @@ Put max height of ladders
 
 - [x] 개행으로 가독성 개선 (ladderApp)
 - [x] Optional.ofNullable => of 로 변경 (Height)
-- [ ] 매직 넘버 const 선언
-    - [ ] MAX_HEIGHT = 10
-    - [ ] MAX_PlayerName = 5, 상수 통해 예외처리 추가
+- [x] 매직 넘버 const 선언
+    - [x] MAX_PLAYER_NAME = 5, 상수 통해 예외처리 추가
+    - [x] MAX_HEIGHT = 20
 - [ ] 입력 메시지는 Input 내에서 처리
 - [ ] Height 에 대해서는 scanner.nextInt() 로 변경
 - [ ] 도메인이 UI에 의존적이지 않게 변경
-  - [ ] Line * 5 print
-  - [ ] Lines foreach print
+    - [ ] Line * 5 print
+    - [ ] Lines foreach print
 - [ ] 생성자를 추가하거나 전략 패턴을 적용하여 랜덤 요소분리
 - [ ] Player.parse Input 으로 이동
 - [ ] Player.payload Output 으로 이동
 - [ ] Line 수동 생성자 추가하여 테스트
 - [ ] Height.lines -> Lines.lines 이동
 - [ ] 검증, 비지니스 로직이 없다면 일급 컬렉션 제거 (Lines)?
-  - lines 가 이동되면 로직이 생겼으니 제거 안해도 되는것인가?
+    - lines 가 이동되면 로직이 생겼으니 제거 안해도 되는것인가?

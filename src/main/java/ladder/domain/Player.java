@@ -4,11 +4,13 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import static ladder.util.Const.MAX_PLAYER_NAME;
+
 public class Player {
     private final String name;
 
     public Player(String name) {
-        if (name.length() > 5) {
+        if (name.length() > MAX_PLAYER_NAME) {
             throw new IllegalArgumentException("name should be less than 5, but: " + name.length());
         }
         this.name = name;
