@@ -1,5 +1,8 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.exception.LadderException;
+import nextstep.ladder.exception.LadderExceptionCode;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -32,4 +35,20 @@ public class Players {
     }
 
 
+    public List<Player> player(String name) {
+        if (isAll(name)) {
+            return players;
+        }
+
+        return List.of(
+                players.stream()
+                        .filter(player -> player.equalName(name))
+                        .findAny()
+                        .orElseThrow(() -> new LadderException(LadderExceptionCode.NO_SUCH_PLAYER, name)));
+    }
+
+    private boolean isAll(String name) {
+        final String ALL = "all";
+        return name.equals(ALL);
+    }
 }

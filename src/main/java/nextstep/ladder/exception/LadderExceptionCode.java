@@ -4,6 +4,7 @@ public enum LadderExceptionCode {
     // player
     INVALID_NAME_FORMAT("이름은 null이거나 빈 값은 안됩니다."),
     INVAILD_NAME_LENGTH("이름은 0~5글자 사이어야 합니다."),
+    NO_SUCH_PLAYER("해당 선수를 찾을 수 없습니다."),
 
     // ladder
     INVAILD_LADDER_HEIGHT("사다리 높이는 1이상 이어야 합니다."),

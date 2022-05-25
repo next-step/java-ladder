@@ -39,4 +39,10 @@ public class Input {
                 .map(String::trim)
                 .collect(Collectors.toList());
     }
+
+    public static String askResultsOfPlayers() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        return scanner.nextLine()
+                .trim();
+    }
 }

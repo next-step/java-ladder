@@ -58,6 +58,10 @@ public class Player {
         }
     }
 
+    public boolean equalName(String name) {
+        return this.name.equals(name);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

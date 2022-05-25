@@ -2,6 +2,7 @@ package nextstep.ladder;
 
 import nextstep.ladder.domain.Height;
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Player;
 import nextstep.ladder.domain.Players;
 import nextstep.ladder.exception.LadderException;
 import nextstep.ladder.view.Input;
@@ -14,7 +15,7 @@ public class LadderGame {
         try {
             List<String> playersAsString = Input.askPlayers();
             Players players = Players.of(playersAsString);
-            List<String> results = Input.askResults();
+            List<String> results = Input.askResults(players);
 
             Height height = Input.askLadderHeight();
             Ladder ladder = Ladder.init(players.countOfLines(), height);
@@ -23,6 +24,12 @@ public class LadderGame {
 
             Output.printPlayers(players);
             Output.printLadder(ladder, height);
+            Output.printResults(results);
+
+            String name = Input.askResultsOfPlayers();
+            List<Player> selectedPlayers = players.player(name);
+
+
         } catch (LadderException e) {
             System.out.println(e.getMessage());
         } catch (Exception e) {
