@@ -27,9 +27,9 @@ public class ResultView {
     }
 
     private static void showLadder(Ladder ladder) {
-        int height = ladder.ladderHeight();
+        int height = ladder.getLines().size();
         for (int i = 0; i < height; i++) {
-            Line line = ladder.getLine(i);
+            Line line = ladder.getLines().get(i);
             showLine(line);
         }
     }
@@ -47,6 +47,7 @@ public class ResultView {
         });
         System.out.println("|");
     }
+
 
     private static void showContent(String contents) {
         IntStream.range(0, 9).mapToObj(j -> contents).forEach(System.out::print);

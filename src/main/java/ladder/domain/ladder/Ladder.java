@@ -21,11 +21,7 @@ public class Ladder {
         return new Ladder(tmpList);
     }
 
-    public int ladderHeight () {
-        return lineList.size();
-    }
-
-    public Line getLine(int heightIdx) {
-        return lineList.get(heightIdx);
+    public List<Line> getLines() {
+        return lineList;
     }
 }
