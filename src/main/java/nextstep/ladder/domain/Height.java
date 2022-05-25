@@ -6,6 +6,7 @@ import java.util.Objects;
 
 public class Height {
 
+  public static final int MIN_HEIGHT = 1;
   private final int height;
 
   public Height(String height) {
@@ -13,7 +14,7 @@ public class Height {
   }
 
   public Height(int height) {
-    if (height < 1) {
+    if (height < MIN_HEIGHT) {
       throw new IllegalArgumentException("사다리 높이는 1보다 작을 수 없습니다.");
     }
     this.height = height;

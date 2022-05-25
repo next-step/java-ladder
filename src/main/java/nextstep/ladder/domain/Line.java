@@ -4,29 +4,26 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.Random;
 
 public class Line {
 
-  private static final Random RANDOM = new Random();
-
   private final List<Boolean> points;
 
-  public Line(int countOfPerson) {
-    this(points(countOfPerson));
-  }
-
-  public Line(List<Boolean> points) {
+  private Line(List<Boolean> points) {
     this.points = points;
   }
 
-  private static List<Boolean> points(int countOfPerson) {
+  public static Line from(int countOfPerson, PointStrategy strategy) {
     List<Boolean> points = new ArrayList<>();
-    points.add(randomPoint());
+    points.add(strategy.linkable());
     for (int i = 1; i < countOfPerson - 1; i++) {
-      points.add(point(points.get(i - 1), randomPoint()));
+      points.add(point(points.get(i - 1), strategy.linkable()));
     }
-    return points;
+    return from(points);
+  }
+
+  public static Line from(List<Boolean> points) {
+    return new Line(points);
   }
 
   private static Boolean point(boolean prev, boolean current) {
@@ -34,10 +31,6 @@ public class Line {
       return false;
     }
     return current;
-  }
-
-  private static Boolean randomPoint() {
-    return RANDOM.nextBoolean();
   }
 
   public List<Boolean> points() {

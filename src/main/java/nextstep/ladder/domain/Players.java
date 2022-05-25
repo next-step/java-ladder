@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 public class Players {
 
   public static final String DELIMITER = ",";
+  public static final String JOINING_DELIMITER = " ";
   private final List<Player> players;
 
   public Players(List<Player> players) {
@@ -56,6 +57,6 @@ public class Players {
   public String toString() {
     return players.stream()
         .map(String::valueOf)
-        .collect(Collectors.joining(" "));
+        .collect(Collectors.joining(JOINING_DELIMITER));
   }
 }
