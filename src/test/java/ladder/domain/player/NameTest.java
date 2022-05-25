@@ -4,7 +4,6 @@ import ladder.exception.TooLongNameException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class NameTest {
@@ -19,9 +18,10 @@ public class NameTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"kim:kim", "hong:hong", "pobi:pobi"}, delimiter = ':')
-    public void NameTest(String name, String result)
+    @ValueSource(strings = {"kim", "hong", "pobi"})
+    public void NameTest(String text)
     {
-        org.assertj.core.api.Assertions.assertThat(new Name(name).toString()).isEqualTo(result);
+        Name name = new Name(text);
+        Assertions.assertEquals(name.toString(), text);
     }
 }
