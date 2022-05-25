@@ -41,7 +41,7 @@ public class Input {
     }
 
     public static String askWhichPlayerToKnow() {
-        System.out.println("결과를 보고 싶은 사람은?");
+        System.out.println("결과를 보고 싶은 사람은? 1명 혹은 전체만 가능. 전체는 all 입력");
         return scanner.nextLine()
                 .trim();
     }

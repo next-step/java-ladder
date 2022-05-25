@@ -46,12 +46,14 @@ public class Player {
         IntStream.range(0, height.getHeight())
                 .forEach(index -> coordinate.move(lines));
 
-        // TODO(jack.comeback) : else 없애기, custom Exception으로 변경
+        result = matchResult(lines, results);
+    }
+
+    private String matchResult(List<Line> lines, List<String> results) {
         if (coordinate.done(lines.size())) {
-            result = results.get(coordinate.x());
-        } else {
-            throw new RuntimeException("사다리 게임이 비정상적으로 끝났습니다.");
+            return results.get(coordinate.x());
         }
+        throw new LadderException(LadderExceptionCode.INVALID_GAME_EXIT);
     }
 
     public boolean equalName(String name) {

@@ -48,19 +48,13 @@ public class PlayerTest {
     @DisplayName("각 선수가 본인 사다리게임을 실행 후 성공")
     @ParameterizedTest
     @CsvSource(value = {
-            "0:0:0:3:X",
-            "1:0:2:3:X",
-            "2:0:1:3:3000"
+            "jack:0:0:0:3:X",
+            "pobi:1:0:2:3:X",
+            "crong:2:0:1:3:3000"
     }, delimiter = ':')
-    void move_success(int x, int y, int x1, int y1, String result) {
-        Player jack = new Player("jack", Coordinate.of(x,y));
-        jack.move(lines, height,  Arrays.asList("X", "3000", "X"));
-        assertThat(jack).isEqualTo(new Player("jack", Coordinate.of(x1,y1), result));
-    }
-
-    @DisplayName("각 선수가 본인 사다리게임 실행하지만 실패")
-    @Test
-    void move_fail() {
-
+    void move_success(String name, int x, int y, int x1, int y1, String result) {
+        Player player = new Player(name, Coordinate.of(x,y));
+        player.move(lines, height,  Arrays.asList("X", "3000", "X"));
+        assertThat(player).isEqualTo(new Player(name, Coordinate.of(x1,y1), result));
     }
 }
