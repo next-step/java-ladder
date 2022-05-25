@@ -6,7 +6,7 @@ public class RandomPointCreationRule implements PointCreationRule {
     private static final Random random = new Random();
 
     @Override
-    public boolean canCreate(int num) {
+    public boolean canCreate() {
         return random.nextBoolean();
     }
 }
