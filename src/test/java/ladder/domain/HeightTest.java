@@ -2,11 +2,17 @@ package ladder.domain;
 
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class HeightTest {
     @Test
     void over20GetsError() {
-        assertThatThrownBy(() -> new Height(21)).isInstanceOf(IllegalArgumentException.class);
+        assertThatIllegalArgumentException().isThrownBy(() -> new Height(21));
+    }
+
+    @Test
+    void equalsCanCompareHeights() {
+        assertThat(new Height(5)).isEqualTo(new Height(5));
     }
 }
