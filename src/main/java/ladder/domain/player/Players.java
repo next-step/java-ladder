@@ -10,7 +10,7 @@ public class Players {
 
     private static final int MIN_PERSON_NUM = 1;
 
-    List<Player> playerList = new ArrayList<>();
+    private final List<Player> playerList = new ArrayList<>();
 
     public Players(String playerNames) {
         String[] names = playerNames.split(",");
