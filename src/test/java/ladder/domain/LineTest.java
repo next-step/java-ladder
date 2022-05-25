@@ -19,8 +19,8 @@ public class LineTest {
     }
 
     @Test
-    void inspectThrowErrorWithConsecutiveTrue() {
-        assertThatThrownBy(() -> Line.inspect(Arrays.asList(false, true, true))).isInstanceOf(RuntimeException.class);
+    void validateThrowErrorWithConsecutiveTrue() {
+        assertThatThrownBy(() -> Line.validate(Arrays.asList(false, true, true))).isInstanceOf(RuntimeException.class);
     }
 
     @Test

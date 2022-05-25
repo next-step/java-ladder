@@ -83,7 +83,9 @@ Put max height of ladders
   - [x] 커스텀 에외 클래스 생성
 - [x] HeightTest.over20GetsError 에서 assertThatIllegalArgumentException 로 변경
   - [x] equals, hashcode 검증 테스트 추가
+- [x] Line 의 검증 inspect 메서드 생성자 내에서 사용으로 통일
+  - [x] Line 생성 자 내 로직 Line.create() 로 분리
+  - [x] inspect 메서드 -> validate 로 이름 변경
 - [ ] LineTest
   - [ ] BDD 로 테스트 작성, 높이에 대한 검증만 수행
   - [ ] Line의 Random 요소 분리 가능?
-- [ ] Line 의 검증 inspect 메서드 생성자 내에서 사용으로 통일

@@ -14,7 +14,7 @@ public class Lines {
 
     public static Lines create(int countOfPerson, int height) {
         return Stream.iterate(0, i -> i < height, i -> i + 1)
-                .map(i -> new Line(countOfPerson))
+                .map(i -> Line.create(countOfPerson))
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Lines::new));
     }
 

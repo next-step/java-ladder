@@ -13,9 +13,9 @@ public class LinesTest {
     void createLinesUpToHeight() {
         Lines lines = Lines.create(2, 3);
         List<Line> expected = Arrays.asList(
-                new Line(2),
-                new Line(2),
-                new Line(2)
+                Line.create(2),
+                Line.create(2),
+                Line.create(2)
         );
         assertThat(lines.lines()
                 .stream()
