@@ -69,3 +69,21 @@ Put max height of ladders
 - [ ] 검증, 비지니스 로직이 없다면 일급 컬렉션 제거 (Lines)?
     - lines 가 이동되면 로직이 생겼으니 제거 안해도 되는것인가?
 - [x] add test cases
+
+### Requested changes - phase2
+- [x] User.ageIsInRange2n 내부 Optional.of 를 ofNullable 로 원복
+- [ ] Input 의 생성자 private 으로 변경 (java.util.Objects)
+- [ ] Output class 내부에서만 사용되는 메서드 private 로 변경 후 호출 순서대로 public 메서드 하단에 위치 (클린코드 5장 형식 맞추기)
+- [ ] Const class 의 static 변수들 각자의 위치로 분배
+- [ ] 불변 컬렉션 리턴
+  - [ ] Lines.lines
+  - [ ] Players.players
+- [ ] Lines 생성자 내부 로직을 create() 정적 팩토리 메서드로 변경
+- [ ] Player 생성자 내부 에러 메시지 const로 변경
+  - [ ] 커스텀 에외 클래스 생성
+- [ ] HeightTest.over20GetsError 에서 assertThatIllegalArgumentException 로 변경
+  - [ ] equals, hashcode 검증 테스트 추가
+- [ ] LineTest
+  - [ ] BDD 로 테스트 작성, 높이에 대한 검증만 수행
+  - [ ] Line의 Random 요소 분리 가능?
+- [ ] Line 의 검증 inspect 메서드 생성자 내에서 사용으로 통일
