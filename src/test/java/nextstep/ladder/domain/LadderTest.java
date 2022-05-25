@@ -13,22 +13,31 @@ class LadderTest {
 
     @Test
     @DisplayName("라인 없이 사다리 생성시 예외를 던진다.")
-    void exception_creation(){
+    void exception_creation_null(){
         assertThatThrownBy(()->{
             new Ladder(null);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
+    @DisplayName("empty list면 생성시 예외를 던진다.")
+    void exception_creation_emptyList(){
+        assertThatThrownBy(()->{
+            new Ladder(List.of());
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+
+    @Test
     @DisplayName("사다리 생성 테스트")
     void ladder_creation(){
-        Ladder ladder = Ladder.of(2, 3, (num)->true);
+        Ladder ladder = Ladder.of(2, 3, ()->true);
 
         List<Line> res = new ArrayList<>();
         res.add(new Line(List.of(false, true, false, true, false)));
         res.add(new Line(List.of(false, true, false, true, false)));
 
-        assertThat(ladder.getLineList())
+        assertThat(ladder.getLines())
                 .isEqualTo(res);
     }
 }
