@@ -2,57 +2,55 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Name;
+import nextstep.ladder.domain.Player;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Output {
 
-    private static final String BAR_POINT = "-----";
-    private static final int LINE_POINT_CNT = 5;
+    private static final String NOT_EMPTY_POINT = "-----";
     private static final String EMPTY_POINT = "     ";
+    private static final String VERTICAL_LINE = "|";
+    private static final int VERTICAL_LINE_WIDTH = 1;
+    private static final int POINT_WIDTH = 5;
 
-    public static void printNameList(List<Name> nameList){
+    public static void printNameList(List<Player> players){
         StringBuilder sb = new StringBuilder();
 
-        for(int i=0; i<nameList.size(); i++){
-            Name name = nameList.get(i);
-            sb.append(getBlank(LINE_POINT_CNT + 1  - name.getName().length()));
-            sb.append(name.getName());
+        for (Player player : players) {
+            sb.append(getBlank(POINT_WIDTH + VERTICAL_LINE_WIDTH - player.getName().length()));
+            sb.append(player.getName());
         }
+
         System.out.println(sb);
     }
 
 
     private static String getBlank(int cnt) {
-        StringBuilder sb = new StringBuilder();
-        for(int i=0; i<cnt; i++){
-            sb.append(" ");
-        }
-        return sb.toString();
+        return " ".repeat(Math.max(0, cnt));
     }
 
     public static void printLadder(Ladder ladder){
-        ladder.getLineList()
+        ladder.getLines()
                 .forEach(Output::printLine);
     }
 
-    private static void printLine(Line line){
-        List<Boolean> points  = line.getPointList();
-        StringBuilder sb = new StringBuilder();
+    public static void printLine(Line line){
+        List<Boolean> points  = line.getPoints();
 
-        points.stream()
-                .limit(points.size()-1)
-                .forEach(point->{
-                    if(point){
-                        sb.append(BAR_POINT);
-                    }else{
-                        sb.append(EMPTY_POINT);
-                    }
-                    sb.append("|");
-                });
+        String result = points.stream()
+                .limit(points.size())
+                .map(Output::getPointAndVertical)
+                .collect(Collectors.joining(VERTICAL_LINE));
 
-        System.out.println(sb);
+        System.out.println(result);
+    }
+
+    private static String getPointAndVertical(boolean point){
+        if(point){
+            return NOT_EMPTY_POINT ;
+        }
+        return EMPTY_POINT ;
     }
 }
