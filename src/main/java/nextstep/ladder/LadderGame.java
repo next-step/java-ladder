@@ -26,10 +26,10 @@ public class LadderGame {
             Output.printLadder(ladder, height);
             Output.printResults(results);
 
-            String name = Input.askResultsOfPlayers();
+            String name = Input.askWhichPlayerToKnow();
             List<Player> selectedPlayers = players.player(name);
 
-
+            Output.printResultsOfPlayers(selectedPlayers);
         } catch (LadderException e) {
             System.out.println(e.getMessage());
         } catch (Exception e) {

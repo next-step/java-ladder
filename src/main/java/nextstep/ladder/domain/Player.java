@@ -42,10 +42,6 @@ public class Player {
         return name == null || name.isBlank();
     }
 
-    public String getName() {
-        return name;
-    }
-
     public void move(List<Line> lines, Height height, List<String> results) {
         IntStream.range(0, height.getHeight())
                 .forEach(index -> coordinate.move(lines));
@@ -60,6 +56,14 @@ public class Player {
 
     public boolean equalName(String name) {
         return this.name.equals(name);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getResult() {
+        return result;
     }
 
     @Override

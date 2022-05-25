@@ -25,7 +25,7 @@ public class Input {
     }
 
     public static List<String> askResults(Players players) {
-        System.out.printf("사다리 결과 %d개 를 입력하세요. (결과는 쉼표(,)로 구분하세요) ex. X,3000,X,4000", players.players().size());
+        System.out.printf("사다리 결과 %d개를 입력하세요. (결과는 쉼표(,)로 구분하세요) ex. X,3000,X,4000", players.players().size());
         System.out.println();
         List<String> results = splitByDelimiter();
         if (!players.sameLength(results)) {
@@ -40,7 +40,7 @@ public class Input {
                 .collect(Collectors.toList());
     }
 
-    public static String askResultsOfPlayers() {
+    public static String askWhichPlayerToKnow() {
         System.out.println("결과를 보고 싶은 사람은?");
         return scanner.nextLine()
                 .trim();
