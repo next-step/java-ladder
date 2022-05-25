@@ -75,9 +75,9 @@ Put max height of ladders
 - [x] Input 의 생성자 private 으로 변경 (java.util.Objects)
 - [x] Output class 내부에서만 사용되는 메서드 private 로 변경 후 호출 순서대로 public 메서드 하단에 위치 (클린코드 5장 형식 맞추기)
 - [x] Const class 의 static 변수들 각자의 위치로 분배
-- [ ] 불변 컬렉션 리턴
-  - [ ] Lines.lines
-  - [ ] Players.players
+- [x] 불변 컬렉션 리턴
+  - [x] Lines.lines
+  - [x] Players.players
 - [ ] Lines 생성자 내부 로직을 create() 정적 팩토리 메서드로 변경
 - [ ] Player 생성자 내부 에러 메시지 const로 변경
   - [ ] 커스텀 에외 클래스 생성

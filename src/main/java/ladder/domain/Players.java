@@ -2,6 +2,7 @@ package ladder.domain;
 
 import ladder.view.Output;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -17,7 +18,7 @@ public class Players {
     }
 
     public List<Player> players() {
-        return this.players;
+        return Collections.unmodifiableList(this.players);
     }
 
     @Override
