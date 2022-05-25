@@ -16,7 +16,14 @@ public class Line {
     private final List<Boolean> points;
 
     public Line(List<Boolean> points) {
+        validate(points);
         this.points = unmodifiableList(points);
+    }
+
+    private void validate(List<Boolean> points){
+        if(points == null){
+            throw new IllegalArgumentException("Line의 points는 null일 수 없습니다.");
+        }
     }
 
     public static Line of(int cnt, PointCreationRule pointCreationRule){
