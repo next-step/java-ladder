@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.exception.PlayerNameLengthExceedException;
+
 import java.util.Objects;
 
 public class Player {
@@ -8,7 +10,7 @@ public class Player {
 
     public Player(String name) {
         if (name.length() > MAX_PLAYER_NAME) {
-            throw new IllegalArgumentException("name should be less than 5, but: " + name.length());
+            throw new PlayerNameLengthExceedException(name.length());
         }
         this.name = name;
     }
