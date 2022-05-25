@@ -76,4 +76,9 @@ public class Line {
                 "points=" + bars +
                 '}';
     }
+
+    public boolean invalidateWith(Line another) {
+        return IntStream.range(0, bars.size())
+                .anyMatch(index -> this.bar(index) && another.bar(index));
+    }
 }

@@ -31,11 +31,6 @@ public class Coordinate {
     }
 
     public void move(List<Line> lines) {
-        // TODO(jack.comeback) : 이 검증은 Ladder에 맡기기?
-        if (leftBarMovable(lines) && rightBarMovable(lines))  {
-            throw new LadderException(LadderExceptionCode.INVALID_LADDER_FORMAT);
-        }
-
         if (leftBarMovable(lines)) {
             x -= 1;
             y += 1;

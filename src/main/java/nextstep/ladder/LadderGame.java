@@ -20,6 +20,7 @@ public class LadderGame {
             Height height = Input.askLadderHeight();
             Ladder ladder = Ladder.init(players.countOfLines(), height);
             ladder.create(height);
+            ladder.validateLadder();
             ladder.execute(players, height, results);
 
             Output.printPlayers(players);

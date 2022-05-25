@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static java.lang.Boolean.*;
+import static nextstep.ladder.exception.LadderExceptionCode.INVALID_LADDER_FORMAT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -50,5 +51,16 @@ class LadderTest {
                         new Player("crong", Coordinate.of(1, 3), "3000")
                 )
         );
+    }
+
+    @Test
+    void validate_success() {
+        Ladder inValidLadder = new Ladder(List.of(
+                Line.of(List.of(TRUE, TRUE, FALSE)),
+                Line.of(List.of(TRUE, FALSE, TRUE))
+        ));
+        assertThatThrownBy(inValidLadder::validateLadder)
+                .isInstanceOf(LadderException.class)
+                .hasMessageContaining(INVALID_LADDER_FORMAT.getMessage());
     }
 }

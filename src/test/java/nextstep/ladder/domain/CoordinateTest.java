@@ -56,14 +56,6 @@ class CoordinateTest {
         assertThat(coordinate).isEqualTo(new Coordinate(x1,y1));
     }
 
-    @DisplayName("바가 같은 라인에 2개가 있어 좌표 한 개가 이동 실패")
-    @Test
-    void coordinateGiven_moveFail() {
-        Coordinate coordinate = new Coordinate(1, 0);
-        assertThatThrownBy(() -> coordinate.move(invalidLines))
-                .isInstanceOf(LadderException.class);
-    }
-
     @Test
     void done() {
         assertThat(Coordinate.of(0,3).done(3)).isTrue();
