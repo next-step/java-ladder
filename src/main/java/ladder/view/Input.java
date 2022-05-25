@@ -7,8 +7,11 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class Input {
+ public class Input {
     static Scanner scanner = new Scanner(System.in);
+    private Input() {
+        throw new AssertionError("Cannot instantiate Input class");
+    }
     public static int scanNumber() {
         System.out.println("Put max height of ladders");
         return scanner.nextInt();
