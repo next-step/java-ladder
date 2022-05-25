@@ -13,7 +13,7 @@ public class LadderController {
     private static final int DIFFERENCE_BETWEEN_PLAYER_CNT_AND_POINT_CNT = 1;
 
     public void start(){
-        List<Player> players =  Input.readUserNameList();
+        List<Player> players =  Input.readUserNames();
         int maxLadderLength = Input.readMaxLadderLength();
         Ladder ladder = Ladder.of(maxLadderLength, players.size()-DIFFERENCE_BETWEEN_PLAYER_CNT_AND_POINT_CNT, new RandomPointCreationRule());
 

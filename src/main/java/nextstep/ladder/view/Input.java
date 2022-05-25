@@ -13,7 +13,7 @@ public class Input {
     private static final String NAME_DELIMITER = ",";
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static List<Player> readUserNameList(){
+    public static List<Player> readUserNames(){
         System.out.println(PARTICIPATION_USERNAME);
         String input = scanner.nextLine();
         return Stream.of(input.split(NAME_DELIMITER))
