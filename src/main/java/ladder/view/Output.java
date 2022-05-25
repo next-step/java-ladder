@@ -10,12 +10,10 @@ public class Output {
         System.out.print(payload);
     }
 
-    public static void printLine(List<Boolean> points) {
-        points
-            .stream()
-            .map(p -> p ? "-" : " ")
-            .map(p -> p.repeat(5) + "|")
-            .forEach(System.out::print);
+    public static void printPlayers(List<Player> players) {
+        Output.print(" ".repeat(2));
+        players.forEach(p -> Output.print(format(p.name())));
+        Output.print("\n");
     }
 
     public static void printLines(List<Line> lines) {
@@ -26,13 +24,16 @@ public class Output {
         });
 
     }
-    public static String format(String name) {
-        return String.format("%-6s", name);
+
+    public static void printLine(List<Boolean> points) {
+        points
+                .stream()
+                .map(p -> p ? "-" : " ")
+                .map(p -> p.repeat(5) + "|")
+                .forEach(System.out::print);
     }
 
-    public static void printPlayers(List<Player> players) {
-        Output.print(" ".repeat(2));
-        players.forEach(p -> Output.print(format(p.name())));
-        Output.print("\n");
+    private static String format(String name) {
+        return String.format("%-6s", name);
     }
 }
