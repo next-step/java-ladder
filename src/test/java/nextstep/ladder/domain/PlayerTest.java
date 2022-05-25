@@ -3,9 +3,10 @@ package nextstep.ladder.domain;
 import nextstep.ladder.exception.LadderException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,19 +30,17 @@ public class PlayerTest {
         height = Height.of(lines.get(0).height());
     }
 
-    @Test
-    void nameIsEmpty_ThrowException() {
-        assertThatThrownBy(() -> new Player(null))
-                .isInstanceOf(LadderException.class);
-        assertThatThrownBy(() -> new Player(""))
+    @ParameterizedTest
+    @NullAndEmptySource
+    void nameIsEmpty_ThrowException(String name) {
+        assertThatThrownBy(() -> new Player(name))
                 .isInstanceOf(LadderException.class);
     }
 
-    @Test
-    void nameLengthIsNotBetween1and5_ThrowException() {
-        assertThatThrownBy(() -> new Player("abcedf"))
-                .isInstanceOf(LadderException.class);
-        assertThatThrownBy(() -> new Player(""))
+    @ParameterizedTest
+    @ValueSource(strings = {"abcdef", ""})
+    void nameLengthIsNotBetween1and5_ThrowException(String name) {
+        assertThatThrownBy(() -> new Player(name))
                 .isInstanceOf(LadderException.class);
     }
 
