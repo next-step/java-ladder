@@ -10,8 +10,13 @@ public class Person {
     private static final String MESSAGE_NULL_OR_BLANK = "이름은 공란이거나 Null 일 수 없습니다.";
 
     private final String name;
+    private final Position position;
 
-    public Person(String name) {
+    public Person(String name, int maxPosition, int position) {
+        this(name, new Position(maxPosition, position));
+    }
+
+    public Person(String name, Position position) {
         if (isNullOrBlank(name)) {
             throw new InvalidNameException(MESSAGE_NULL_OR_BLANK);
         }
@@ -19,6 +24,7 @@ public class Person {
             throw new InvalidNameException();
         }
         this.name = name;
+        this.position = position;
     }
 
     private boolean isNullOrBlank(String name) {
@@ -42,11 +48,11 @@ public class Person {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return Objects.equals(name, person.name);
+        return Objects.equals(name, person.name) && Objects.equals(position, person.position);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(name, position);
     }
 }

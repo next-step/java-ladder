@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.stream.IntStream;
 
 public class People {
 
@@ -16,12 +16,12 @@ public class People {
 
     private final List<Person> people;
 
-    public People(String value) {
-        this(convertToPeople(SplitUtil.split(value)));
+    public People(String names) {
+        this(convertToPeople(SplitUtil.split(names)));
     }
 
-    public People(String... people) {
-        this(convertToPeople(people));
+    public People(String... names) {
+        this(convertToPeople(names));
     }
 
     public People(List<Person> people) {
@@ -31,9 +31,9 @@ public class People {
         this.people = people;
     }
 
-    private static List<Person> convertToPeople(String... people) {
-        return Stream.of(people)
-                .map(Person::new)
+    private static List<Person> convertToPeople(String... names) {
+        return IntStream.range(Position.MIN_VALUE, names.length)
+                .mapToObj(index -> new Person(names[index], names.length - 1, index))
                 .collect(Collectors.toList());
     }
 
