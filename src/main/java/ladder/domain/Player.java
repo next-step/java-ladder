@@ -1,12 +1,9 @@
 package ladder.domain;
 
-import java.util.Arrays;
 import java.util.Objects;
-import java.util.stream.Collectors;
-
-import static ladder.util.Const.MAX_PLAYER_NAME;
 
 public class Player {
+    public static final int MAX_PLAYER_NAME = 5;
     private final String name;
 
     public Player(String name) {

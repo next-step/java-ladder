@@ -3,9 +3,8 @@ package ladder.domain;
 import java.util.Objects;
 import java.util.Optional;
 
-import static ladder.util.Const.MAX_HEIGHT;
-
 public class Height {
+    public static final int MAX_HEIGHT = 20;
     private final int height;
 
     public Height(int height) {

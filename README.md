@@ -74,7 +74,7 @@ Put max height of ladders
 - [x] User.ageIsInRange2n 내부 Optional.of 를 ofNullable 로 원복
 - [x] Input 의 생성자 private 으로 변경 (java.util.Objects)
 - [x] Output class 내부에서만 사용되는 메서드 private 로 변경 후 호출 순서대로 public 메서드 하단에 위치 (클린코드 5장 형식 맞추기)
-- [ ] Const class 의 static 변수들 각자의 위치로 분배
+- [x] Const class 의 static 변수들 각자의 위치로 분배
 - [ ] 불변 컬렉션 리턴
   - [ ] Lines.lines
   - [ ] Players.players

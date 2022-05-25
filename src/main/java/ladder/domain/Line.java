@@ -5,9 +5,8 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static ladder.util.Const.RANDOM;
-
 public class Line {
+    public static final Random RANDOM = new Random();
     private final List<Boolean> points;
 
     public Line(int countOfPerson) {
