@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class LinesTest {
     @Test
     void createLinesUpToHeight() {
-        Lines lines = new Lines(2, 3);
+        Lines lines = Lines.create(2, 3);
         List<Line> expected = Arrays.asList(
                 new Line(2),
                 new Line(2),

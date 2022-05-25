@@ -14,7 +14,7 @@ public class ladderApp {
 
         Output.printPlayers(players.players());
 
-        Lines lines = new Lines(players.size(), height.height());
+        Lines lines = Lines.create(players.size(), height.height());
         Output.printLines(lines.lines());
     }
 }

@@ -78,7 +78,7 @@ Put max height of ladders
 - [x] 불변 컬렉션 리턴
   - [x] Lines.lines
   - [x] Players.players
-- [ ] Lines 생성자 내부 로직을 create() 정적 팩토리 메서드로 변경
+- [x] Lines 생성자 내부 로직을 create() 정적 팩토리 메서드로 변경
 - [ ] Player 생성자 내부 에러 메시지 const로 변경
   - [ ] 커스텀 에외 클래스 생성
 - [ ] HeightTest.over20GetsError 에서 assertThatIllegalArgumentException 로 변경
