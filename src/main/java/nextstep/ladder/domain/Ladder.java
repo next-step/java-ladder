@@ -21,6 +21,14 @@ public class Ladder {
         }
     }
 
+    public int findResult(int startIndex) {
+        int index = startIndex;
+        for(Line line: lines){
+            index = line.moveFrom(index);
+        }
+        return index;
+    }
+
     public static Ladder of(int rowCnt, int colCnt, PointCreationRule pointCreationRule) {
         List<Line> lines = new ArrayList<>();
         for(int i=0; i<rowCnt; i++){
