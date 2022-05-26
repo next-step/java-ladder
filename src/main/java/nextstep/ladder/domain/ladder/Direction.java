@@ -28,11 +28,11 @@ public class Direction {
         return new Direction(false, connectStrategy.isConnected());
     }
 
-    public Direction next(ConnectStrategy connectable) {
+    public Direction next(ConnectStrategy connectStrategy) {
         if (right) {
             return new Direction(true, false);
         }
-        return new Direction(false, connectable.isConnected());
+        return new Direction(false, connectStrategy.isConnected());
     }
 
     public Direction last() {
