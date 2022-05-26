@@ -24,7 +24,7 @@ public class Ladder {
         );
     }
 
-    private Ladder(List<Line> lines) {
+    Ladder(List<Line> lines) {
         this.lines = lines;
     }
 
@@ -38,6 +38,21 @@ public class Ladder {
 
     public List<Line> lines() {
         return lines;
+    }
+
+    public void execute(Players players, Height height, List<String> results) {
+        players.players()
+                .forEach(player -> player.move(lines, height, results));
+    }
+
+    public void validateLadder() {
+        lines.stream()
+                .reduce((prevLine, nextLine) -> {
+                    if (prevLine.invalidateWith(nextLine)) {
+                        throw new LadderException(LadderExceptionCode.INVALID_LADDER_FORMAT);
+                    }
+                    return nextLine;
+                });
     }
 
     @Override

@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Line {
-    private List<Boolean> points;
+    private List<Boolean> bars;
 
     public static Line init(Height height) {
         if (height == null) {
@@ -21,12 +21,16 @@ public class Line {
         );
     }
 
-    Line(List<Boolean> points) {
-        this.points = points;
+    public static Line of(List<Boolean> bars) {
+        return new Line(bars);
+    }
+
+    private Line(List<Boolean> bars) {
+        this.bars = bars;
     }
 
     public void createWith(Line compare) {
-        points = compare.getPoints()
+        bars = compare.getBars()
                 .stream()
                 .map(this::calculate)
                 .collect(Collectors.toList());
@@ -41,12 +45,16 @@ public class Line {
         return booleans[new Random().nextInt(3)];
     }
 
-    public Boolean point(int index) {
-        return getPoints().get(index);
+    public Boolean bar(int index) {
+        return getBars().get(index);
     }
 
-    private List<Boolean> getPoints() {
-        return points;
+    private List<Boolean> getBars() {
+        return bars;
+    }
+
+    public int height() {
+        return bars.size();
     }
 
     @Override
@@ -54,18 +62,23 @@ public class Line {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Line line = (Line) o;
-        return Objects.equals(points, line.points);
+        return Objects.equals(bars, line.bars);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(points);
+        return Objects.hash(bars);
     }
 
     @Override
     public String toString() {
         return "Line{" +
-                "points=" + points +
+                "points=" + bars +
                 '}';
+    }
+
+    public boolean invalidateWith(Line another) {
+        return IntStream.range(0, bars.size())
+                .anyMatch(index -> this.bar(index) && another.bar(index));
     }
 }

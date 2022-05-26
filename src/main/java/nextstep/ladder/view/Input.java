@@ -1,8 +1,8 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Height;
+import nextstep.ladder.domain.Players;
 import nextstep.ladder.exception.LadderException;
-import nextstep.ladder.exception.LadderExceptionCode;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,14 +15,34 @@ public class Input {
 
     public static List<String> askPlayers() {
         System.out.println("참여할 이름을 입력하세요. 쉽표(,)로 구분해주세요. ex. jack, pobi");
-        return Arrays.stream(scanner.nextLine().split(DELIMITER))
-                .map(String::trim)
-                .collect(Collectors.toList());
+        return splitByDelimiter();
     }
 
     public static Height askLadderHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         int height = Integer.parseInt(scanner.nextLine());
         return Height.of(height);
+    }
+
+    public static List<String> askResults(Players players) {
+        System.out.printf("사다리 결과 %d개를 입력하세요. (결과는 쉼표(,)로 구분하세요) ex. X,3000,X,4000", players.players().size());
+        System.out.println();
+        List<String> results = splitByDelimiter();
+        if (!players.sameLength(results)) {
+            throw new LadderException("사다리 결과는 참여자 수와 같아야 합니다.");
+        }
+        return results;
+    }
+
+    private static List<String> splitByDelimiter() {
+        return Arrays.stream(scanner.nextLine().split(DELIMITER))
+                .map(String::trim)
+                .collect(Collectors.toList());
+    }
+
+    public static String askWhichPlayerToKnow() {
+        System.out.println("결과를 보고 싶은 사람은? 1명 혹은 전체만 가능. 전체는 all 입력");
+        return scanner.nextLine()
+                .trim();
     }
 }
