@@ -65,6 +65,23 @@ public class Points {
                 .collect(Collectors.joining());
     }
 
+    public boolean sameSize(int x) {
+        return this.points.size() == x;
+    }
+
+    public boolean firstMatch() {
+        return this.points.get(0).isTrue();
+    }
+
+    public boolean lastMatch() {
+        return this.points.get(this.points.size() - 1).isTrue();
+    }
+
+    public boolean anyBesideMatch(int x) {
+        return this.points.get(x).isTrue()
+                || this.points.get(x + 1).isTrue();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
