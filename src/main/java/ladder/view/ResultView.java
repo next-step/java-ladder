@@ -37,19 +37,23 @@ public class ResultView {
     private static void showLine(Line line) {
         List<Boolean> nowLine = line.getContents();
 
-        nowLine.forEach(isLine -> {
+        for (Boolean isLine : nowLine) {
             System.out.print("|");
-            if (isLine) {
-                showContent("-");
-                return;
-            }
-            showContent(" ");
-        });
+            showValidLine(isLine);
+        }
         System.out.println("|");
     }
 
+    public static void showValidLine(Boolean isLine) {
+        if (isLine) {
+            showContent("-");
+            return;
+        }
+        showContent(" ");
+    }
 
     private static void showContent(String contents) {
         IntStream.range(0, 9).mapToObj(j -> contents).forEach(System.out::print);
+
     }
 }

@@ -19,7 +19,9 @@ public class Line {
     }
 
     private void validate(List<Boolean> contents) {
-        IntStream.range(0, contents.size() - 1).filter(i -> contents.get(i) == true && contents.get(i + 1) == true).forEach(i -> {
+        IntStream.range(0, contents.size() - 1).
+                filter(i -> contents.get(i) == true && contents.get(i + 1) == true).
+                forEach(i -> {
             throw new OverlapLineException("Line이 겹치는 부분이 있습니다.");
         });
     }
@@ -28,20 +30,24 @@ public class Line {
         List<Boolean> tmpContentList = new ArrayList<>();
 
         IntStream.range(0, person).forEach(i -> {
-            if (tmpContentList.isEmpty()) {
-                tmpContentList.add(randomBoolean());
-                return;
-            }
-
-            Boolean prevLine = tmpContentList.get(tmpContentList.size() - 1);
-            if (!prevLine) {
-                tmpContentList.add(randomBoolean());
-                return;
-            }
-            tmpContentList.add(false);
+            checkContent(tmpContentList);
         });
 
         return tmpContentList ;
+    }
+
+    private static void checkContent(List<Boolean> tmpContentList) {
+        if (tmpContentList.isEmpty()) {
+            tmpContentList.add(randomBoolean());
+            return;
+        }
+
+        Boolean prevLine = tmpContentList.get(tmpContentList.size() - 1);
+        if (!prevLine) {
+            tmpContentList.add(randomBoolean());
+            return;
+        }
+        tmpContentList.add(false);
     }
 
     private static boolean randomBoolean() {
