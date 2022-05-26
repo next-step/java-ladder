@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,9 +28,14 @@ public class Members {
     }
 
     private static List<Member> toList(String names) {
-        return Arrays.stream(names.split(NAME_DELIMITER))
-                .map(Member::new)
-                .collect(Collectors.toList());
+        String[] split = names.split(NAME_DELIMITER);
+
+        List<Member> members = new ArrayList<>();
+        for (int i = 0; i < split.length; i++) {
+            members.add(new Member(split[i], i));
+        }
+
+        return members;
     }
 
     public String getPrettyString() {
@@ -42,6 +48,10 @@ public class Members {
 
     public int size() {
         return this.members.size();
+    }
+
+    public void movePositions(Lines lines) {
+        this.members.forEach(lines::move);
     }
 
     @Override

@@ -46,4 +46,8 @@ public class Lines {
     public int hashCode() {
         return Objects.hash(lines);
     }
+
+    public void move(Member member) {
+        this.lines.forEach(line -> line.move(member));
+    }
 }

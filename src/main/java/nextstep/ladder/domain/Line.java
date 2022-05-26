@@ -45,4 +45,8 @@ public class Line {
     public int hashCode() {
         return Objects.hash(points);
     }
+
+    public void move(Member member) {
+        member.move(this.points);
+    }
 }

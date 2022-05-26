@@ -10,19 +10,32 @@ public class PositionX {
     }
 
     public void increase(Points points) {
-        if (this.x == 0 && points.firstMatch()) {
-            increase();
+        if (this.x == 0) {
+            if (points.firstMatch()) {
+                increase();
+            }
             return;
         }
 
-        if (points.sameSize(x) && points.lastMatch()) {
-            increase();
+        if (points.sameSize(x)) {
+            if (points.lastMatch()) {
+                decrease();
+            }
             return;
         }
 
-        if (points.anyBesideMatch(x)) {
+        if (points.leftMatch(x)) {
+            decrease();
+            return ;
+        }
+
+        if (points.rightMatch(x)) {
             increase();
         }
+    }
+
+    private synchronized void decrease() {
+        this.x--;
     }
 
     private synchronized void increase() {

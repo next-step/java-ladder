@@ -15,6 +15,11 @@ public class Member {
         this.position = position;
     }
 
+    public Member(String name, int x) {
+        this.name = new Name(name);
+        this.position = new Position(x);
+    }
+
     public void move(Points points) {
         this.position.move(points);
     }

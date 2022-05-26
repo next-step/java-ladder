@@ -74,12 +74,17 @@ public class Points {
     }
 
     public boolean lastMatch() {
-        return this.points.get(this.points.size() - 1).isTrue();
+        int index = this.points.size() - 1;
+
+        return this.points.get(index).isTrue();
     }
 
-    public boolean anyBesideMatch(int x) {
-        return this.points.get(x).isTrue()
-                || this.points.get(x + 1).isTrue();
+    public boolean leftMatch(int x) {
+        return this.points.get(x - 1).isTrue();
+    }
+
+    public boolean rightMatch(int x) {
+        return this.points.get(x).isTrue();
     }
 
     @Override

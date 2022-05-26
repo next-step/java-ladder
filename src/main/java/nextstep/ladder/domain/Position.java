@@ -6,6 +6,10 @@ public class Position {
     private final PositionX x;
     private final PositionY y;
 
+    public Position(int x) {
+        this(x, 0);
+    }
+
     public Position(int x, int y) {
         this(new PositionX(x), new PositionY(y));
     }

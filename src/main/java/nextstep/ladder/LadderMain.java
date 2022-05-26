@@ -17,5 +17,9 @@ public class LadderMain {
         Lines lines = LinesFactory.create(members, maxHeightOfLadder);
 
         OutputView.outputLadder(members, lines, runResults);
+
+        members.movePositions(lines);
+        System.out.println("members = " + members);
+        System.out.println("End Of Ladder Main");
     }
 }
