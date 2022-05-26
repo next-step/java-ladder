@@ -14,7 +14,8 @@ public class Input {
     private static final String LADDER_RESULT = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String MAX_LADDER_LENGTH = "최대 사다리 높이는 몇 개인가요?";
     private static final String DELIMITER = ",";
-    private static final String EMPTY = " ";
+    private static final String BLANK = " ";
+    private static final String NOT_BLANK = "";
     private static final Scanner scanner = new Scanner(System.in);
 
     public static String readCommandForResult(){
@@ -25,7 +26,7 @@ public class Input {
     public static List<Player> readPlayerNames(){
         System.out.println(PARTICIPATION_USERNAMES);
         String input = scanner.nextLine();
-        input = input.replaceAll(EMPTY,"");
+        input = input.replaceAll(BLANK,NOT_BLANK);
         return Stream.of(input.split(DELIMITER))
                 .map(Player::new)
                 .collect(Collectors.toList());
@@ -34,7 +35,7 @@ public class Input {
     public static List<LadderResult> readResults(){
         System.out.println(LADDER_RESULT);
         String input = scanner.nextLine();
-        input = input.replaceAll(EMPTY,"");
+        input = input.replaceAll(BLANK,NOT_BLANK);
         return Stream.of(input.split(DELIMITER))
                 .map(LadderResult::new)
                 .collect(Collectors.toList());

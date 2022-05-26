@@ -33,7 +33,6 @@ public class Output {
         System.out.println(sb);
     }
 
-
     private static String getBlank(int cnt) {
         return " ".repeat(Math.max(0, cnt));
     }
