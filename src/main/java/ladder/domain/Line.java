@@ -15,8 +15,10 @@ public class Line {
     }
 
     static Line create(int countOfPerson) {
-        return Stream.iterate(RANDOM.nextBoolean(), b -> next(b))
-                .limit(countOfPerson - 1)
+
+        return Stream.concat(
+                        Stream.iterate(RANDOM.nextBoolean(), b -> next(b)).limit(countOfPerson - 1),
+                        Stream.of(false))
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Line::new));
     }
 

@@ -25,6 +25,5 @@ public class ladderApp {
         Ladder ladder = new Ladder(lines, targetPlayer.no());
         ladder.plays();
         System.out.println(rewards.get(ladder.coordinate().x()).value());
-
     }
 }

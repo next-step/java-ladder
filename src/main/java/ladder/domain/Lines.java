@@ -21,13 +21,4 @@ public class Lines {
     public List<Line> lines() {
         return Collections.unmodifiableList(this.lines);
     }
-
-//    public void play(Player player) {
-//        int no = player.no();
-//        for (Line line:this.lines) {
-//            for (Boolean point: line.points().subList()) {
-//
-//            }
-//        }
-//    }
 }

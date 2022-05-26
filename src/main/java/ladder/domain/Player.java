@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Player {
     public static final int MAX_PLAYER_NAME = 5;
-    private static int autoIncrement = 0;
+    public static int autoIncrement = 0;
     private final String name;
     private final int no;
 
@@ -32,6 +32,7 @@ public class Player {
     public String toString() {
         return "Player{" +
                 "name='" + name + '\'' +
+                ", no=" + no +
                 '}';
     }
 

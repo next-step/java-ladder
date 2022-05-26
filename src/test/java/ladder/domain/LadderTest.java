@@ -50,12 +50,12 @@ public class LadderTest {
     @Test
     void playsFromFourth() {
         Lines lines = new Lines(Arrays.asList(
-                new Line(Arrays.asList(false, true, false)),
-                new Line(Arrays.asList(true, false, false)),
-                new Line(Arrays.asList(true, false, false))
+                new Line(Arrays.asList(false, true, false, false)),
+                new Line(Arrays.asList(true, false, true, false)),
+                new Line(Arrays.asList(true, false, false, false))
         ));
         Ladder ladder = new Ladder(lines, 3);
         ladder.plays();
-        assertThat(ladder.coordinate()).isEqualTo(new Coordinate(0,3)); // left, dow.
+        assertThat(ladder.coordinate()).isEqualTo(new Coordinate(2,3));
     }
 }

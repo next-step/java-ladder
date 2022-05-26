@@ -7,12 +7,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class PlayerTest {
     @Test
-    void nameOver5GetsError() {
-        assertThatThrownBy(() -> new Player("123456")).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
     void autoIncrementTest() {
+        Player.autoIncrement = 0;
         Player player0 = new Player("a");
         Player player1 = new Player("b");
         Player playerWithoutNo = new Player("z", 2);
@@ -21,5 +17,10 @@ public class PlayerTest {
         assertThat(player1).isEqualTo(new Player("b", 1));
         assertThat(playerWithoutNo).isEqualTo(new Player("z", 2));
         assertThat(player2).isEqualTo(new Player("c", 2));
+    }
+
+    @Test
+    void nameOver5GetsError() {
+        assertThatThrownBy(() -> new Player("123456")).isInstanceOf(IllegalArgumentException.class);
     }
 }

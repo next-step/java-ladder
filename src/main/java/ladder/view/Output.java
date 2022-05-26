@@ -19,7 +19,7 @@ public class Output {
 
     public static void printLines(List<Line> lines) {
         lines.forEach(line -> {
-            System.out.print(" ".repeat(4) + "|");
+            System.out.print(" ".repeat(4));
             Output.printLine(line.points());
             System.out.println();
         });
@@ -30,12 +30,13 @@ public class Output {
         points
                 .stream()
                 .map(p -> p ? "-" : " ")
-                .map(p -> p.repeat(5) + "|")
+                .map(p -> "|" + p.repeat(5))
                 .forEach(System.out::print);
     }
 
     private static String format(String name) {
-        return String.format("%-6s", name);
+        return String.format("%-5s", name)
+                .replace(" ", ".") + " ";
     }
 
     public static void printRewards(List<Reward> rewards) {
