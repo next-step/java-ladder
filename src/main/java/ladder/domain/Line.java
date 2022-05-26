@@ -14,11 +14,19 @@ public class Line {
 
     private Line(int countOfPerson) {
         IntStream.range(INITIAL, countOfPerson - ONE)
-                .forEachOrdered(number -> points.add(RANDOM.nextBoolean()));
+                .forEachOrdered(number -> deduplicationInsert(number));
     }
 
     public static Line of(int countOfPerson) {
         return new Line(countOfPerson);
+    }
+
+    private void deduplicationInsert(int number) {
+        if (number != INITIAL && points.get(number - ONE)) {
+            points.add(false);
+            return;
+        }
+        points.add(RANDOM.nextBoolean());
     }
 
     public List<Boolean> getPoints() {
