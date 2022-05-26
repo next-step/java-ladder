@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Players {
@@ -33,12 +34,7 @@ public class Players {
         return players.size();
     }
 
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Name playerName : players) {
-            stringBuilder.append(playerName).append(" ");
-        }
-        return stringBuilder.toString();
+    public List<Name> getPlayers() {
+        return Collections.unmodifiableList(players);
     }
 }

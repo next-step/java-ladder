@@ -3,10 +3,8 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 public class HorizontalLines {
-    private static final Random random = new Random();
     private static final boolean DEFAULT_VALUE = false;
 
     private final List<Boolean> horizontalLines;
@@ -19,19 +17,22 @@ public class HorizontalLines {
         this.horizontalLines = horizontalLines;
     }
 
-    public List<Boolean> connect(int countOfLines) {
+    public void connect(int countOfLines, ConnectingStrategy connectingStrategy) {
         for (int i = 0; i < countOfLines; i++) {
-            if (isFirstOrConnectableLine(i)) {
-                horizontalLines.add(random.nextBoolean());
-                continue;
-            }
-            horizontalLines.add(DEFAULT_VALUE);
+            connectLine(connectingStrategy, i);
         }
-        return Collections.unmodifiableList(horizontalLines);
     }
 
-    private boolean isFirstOrConnectableLine(int i) {
-        return i == 0 || !horizontalLines.get(i - 1);
+    private void connectLine(ConnectingStrategy connectingStrategy, int index) {
+        if (isFirstOrConnectableLine(index)) {
+            horizontalLines.add(connectingStrategy.connectable());
+            return;
+        }
+        horizontalLines.add(DEFAULT_VALUE);
+    }
+
+    private boolean isFirstOrConnectableLine(int index) {
+        return index == 0 || !horizontalLines.get(index - 1);
     }
 
     public List<Boolean> getHorizontalLines() {

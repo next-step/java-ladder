@@ -1,8 +1,6 @@
 package ladder;
 
-import ladder.domain.HorizontalLines;
-import ladder.domain.Ladder;
-import ladder.domain.Players;
+import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -14,10 +12,10 @@ public class LadderMain {
         int maxLadderHeight = InputView.inputMaxLadderHeight();
 
         Players players = Players.create(names);
-        ResultView.printResultPlayer(players.toString());
+        ResultView.printResultPlayer(players);
 
-        Ladder ladder = new Ladder();
-        List<HorizontalLines> horizontalLines = ladder.create(players.countOfPlayers(), maxLadderHeight);
+        ConnectingStrategy connectingStrategy = new RandomConnectingStrategy();
+        List<HorizontalLines> horizontalLines = Ladder.create(players.countOfPlayers(), maxLadderHeight, connectingStrategy);
         ResultView.printResult(horizontalLines);
     }
 }
