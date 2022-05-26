@@ -2,6 +2,7 @@ package nextstep.ladder.domain.person;
 
 import nextstep.ladder.util.StringSpliter;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -23,19 +24,19 @@ public class People {
         }
     }
 
-    public static People from(String names) {
-        List<String> nameList = StringSpliter.split(names);
-        List<Person> people = peopleList(nameList);
+    public static People from(String newNames) {
+        List<String> names = StringSpliter.split(newNames);
+        List<Person> people = peopleList(names);
         return new People(people);
     }
 
-    private static List<Person> peopleList(List<String> nameList) {
-        List<Person> people = new LinkedList<>();
-        Person person = Person.first(nameList.get(0));
+    private static List<Person> peopleList(List<String> names) {
+        List<Person> people = new ArrayList<>();
+        Person person = Person.first(names.get(0));
         people.add(person);
 
-        for (int index = 1; index < nameList.size(); index++) {
-            person = person.next(nameList.get(index));
+        for (int index = 1; index < names.size(); index++) {
+            person = person.next(names.get(index));
             people.add(person);
         }
         return people;
