@@ -1,21 +1,27 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Player;
+import nextstep.ladder.domain.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Output {
 
+    private static final String GAME_RESULT_MESSAGE = "실행결과";
     private static final String NOT_EMPTY_POINT = "-----";
     private static final String EMPTY_POINT = "     ";
     private static final String VERTICAL_LINE = "|";
     private static final int VERTICAL_LINE_WIDTH = 1;
     private static final int POINT_WIDTH = 5;
 
-    public static void printNameList(List<Player> players){
+    public static void printLadderResult(List<Player> players, Ladder ladder, List<LadderResult> ladderResults){
+        Output.printNames(players);
+        Output.printLadder(ladder);
+        Output.printLadderResults(ladderResults);
+    }
+
+    public static void printNames(List<Player> players){
         StringBuilder sb = new StringBuilder();
 
         for (Player player : players) {
@@ -25,7 +31,6 @@ public class Output {
 
         System.out.println(sb);
     }
-
 
     private static String getBlank(int cnt) {
         return " ".repeat(Math.max(0, cnt));
@@ -52,5 +57,34 @@ public class Output {
             return NOT_EMPTY_POINT ;
         }
         return EMPTY_POINT ;
+    }
+
+
+    public static void printLadderResults(List<LadderResult> ladderResults) {
+        StringBuilder sb = new StringBuilder();
+
+        for (LadderResult ladderResult : ladderResults) {
+            String value = ladderResult.getValue();
+            sb.append(getBlank(POINT_WIDTH + VERTICAL_LINE_WIDTH - value.length()));
+            sb.append(value);
+        }
+
+        System.out.println(sb);
+    }
+
+    public static void printAllGameResults(Map<Player, LadderResult> gameResults) {
+        System.out.println(GAME_RESULT_MESSAGE);
+//        gameResults.entrySet().stream();
+        for(Map.Entry<Player, LadderResult> entry: gameResults.entrySet()){
+            Player player = entry.getKey();
+            LadderResult ladderResult = entry.getValue();
+            System.out.println(String.join(" : ", player.getName(), ladderResult.getValue()));
+        }
+
+    }
+
+    public static void printGameResultByPlayerName(LadderResult result) {
+        System.out.println(GAME_RESULT_MESSAGE);
+        System.out.println(result.getValue());
     }
 }
