@@ -95,6 +95,16 @@ Put max height of ladders
 
 - [x] 실행 결과 입력 받음
 - [x] 사다리 결과 아래에 실행 결과 나열
-- [ ] 결과를 보고 싶은 사람 입력 받음
-  - [ ] 1명의 이름 -> 1명 결과 출력
-  - [ ] all -> 모두의 실행 결과 출력
+- [x] 결과를 보고 싶은 사람 입력 받음
+    - [x] scanPlayerToShow
+    - [x] findPlayer
+- [x] 사다리 타기
+    - [x] Coordinate class 생성: 사다리 현재 좌표 표시 
+    - [x] Ladder class 생성
+      - line, coordinate
+      - [x] Ladder.play(): 사다리 1턴 수행
+      - [x] Ladder.plays(): 사다리 높이만큼 모두 수행
+- [ ] 사람수에 비해 사다리 칸(lines) 이 부족한 버그 수정
+- [ ] Reward 출력
+    - [ ] 1명의 이름 -> 1명 결과 출력
+    - [ ] all -> 모두의 실행 결과 출력

@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import ladder.view.Output;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -32,5 +30,21 @@ public class Players {
     @Override
     public int hashCode() {
         return Objects.hash(players);
+    }
+
+    @Override
+    public String toString() {
+        return this.players.stream()
+                .map(p -> p.name())
+                .reduce((acc, cur) -> acc + ", " + cur)
+                .orElseThrow(() -> new RuntimeException("unreachable."));
+    }
+
+    public Player findPlayer(String playerName) {
+        return this.players
+                .stream()
+                .filter(p -> p.name().equals(playerName))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Could not find player: " + playerName));
     }
 }

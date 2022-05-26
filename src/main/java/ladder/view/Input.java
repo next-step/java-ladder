@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
     }
     public static int scanNumber() {
         System.out.println("Put max height of ladders");
-        return scanner.nextInt();
+        return Integer.parseInt(scanner.nextLine());
     }
 
     public static Players scanPlayers() {
@@ -39,5 +39,10 @@ import java.util.stream.Collectors;
          return Arrays.stream(nextLine.split("\\s*,\\s*"))
                  .map(Reward::new)
                  .collect(Collectors.toList());
+     }
+
+     public static Player scanPlayerToShow(Players players) {
+         Output.print("Put person to show reward.\nOptions: " + players + " (or 'all')\n");
+         return players.findPlayer(scanner.nextLine());
      }
  }

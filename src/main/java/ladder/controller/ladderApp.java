@@ -2,6 +2,7 @@ package ladder.controller;
 
 import ladder.domain.Height;
 import ladder.domain.Lines;
+import ladder.domain.Player;
 import ladder.domain.Players;
 import ladder.view.Input;
 import ladder.view.Output;
@@ -19,5 +20,11 @@ public class ladderApp {
         Output.printLines(lines.lines());
 
         Output.printRewards(rewards);
+
+        Player targetPlayer = Input.scanPlayerToShow(players);
+        Ladder ladder = new Ladder(lines, targetPlayer.no());
+        ladder.plays();
+        System.out.println(rewards.get(ladder.coordinate().x()).value());
+
     }
 }
