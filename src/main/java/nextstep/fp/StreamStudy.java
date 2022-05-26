@@ -19,11 +19,6 @@ public class StreamStudy {
         return words.stream()
                 .filter(word -> word.length() > 12)
                 .count();
-//        long count = 0;
-//        for (String w : words) {
-//            if (w.length() > 12) count++;
-//        }
-//        return count;
     }
 
     public static void printLongestWordTop100() throws IOException {
@@ -31,7 +26,6 @@ public class StreamStudy {
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-        // TODO 이 부분에 구현한다.
         /**
          * filter: 단어의 길이가 12자를 초과하는 단어를 추출한다.
          * distinct: 단어 중복을 허용하지 않는다.
