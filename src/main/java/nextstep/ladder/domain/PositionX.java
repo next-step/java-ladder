@@ -9,7 +9,7 @@ public class PositionX {
         this.x = x;
     }
 
-    public void increase(Points points) {
+    public void increaseOrDecrease(Points points) {
         if (this.x == 0) {
             if (points.firstMatch()) {
                 increase();

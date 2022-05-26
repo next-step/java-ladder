@@ -20,7 +20,7 @@ public class Position {
     }
 
     public void move(Points points) {
-        this.x.increase(points);
+        this.x.increaseOrDecrease(points);
         this.y.increase();
     }
 
