@@ -1,5 +1,7 @@
 package nextstep.ladder;
 
+import nextstep.ladder.domain.Lines;
+import nextstep.ladder.domain.LinesFactory;
 import nextstep.ladder.domain.MaxHeightOfLadder;
 import nextstep.ladder.domain.Members;
 import nextstep.ladder.domain.RunResults;
@@ -12,6 +14,8 @@ public class LadderMain {
         RunResults runResults = InputView.inputRunResults();
         MaxHeightOfLadder maxHeightOfLadder = InputView.inputMaxHeightOfLadder();
 
-        OutputView.outputLadder(members, maxHeightOfLadder, runResults);
+        Lines lines = LinesFactory.create(members, maxHeightOfLadder);
+
+        OutputView.outputLadder(members, lines, runResults);
     }
 }
