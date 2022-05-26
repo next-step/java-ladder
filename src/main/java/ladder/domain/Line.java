@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.constant.Direction;
 import ladder.constant.Point;
 import ladder.exception.ContinuousConnectionException;
 import ladder.strategy.GenerationStrategy;
@@ -9,7 +10,6 @@ import java.util.Objects;
 
 public class Line {
 
-    private static final int INITIAL_INDEX = 0;
     private static final int PREVIOUS_VALUE = 1;
 
     private final List<Point> points;
@@ -41,11 +41,28 @@ public class Line {
     }
 
     private boolean continuousConnected(List<Point> points, int currentIndex) {
-        if (currentIndex == INITIAL_INDEX) {
+        if (currentIndex == Position.MIN_VALUE) {
             return false;
         }
         return points.get(currentIndex).isConnect()
                 && points.get(currentIndex - PREVIOUS_VALUE).isConnect();
+    }
+
+    public Direction direction(Position position) {
+        if(connectedLeftLine(position)) {
+            return Direction.LEFT;
+        }
+        if (connectedRightLine(position)) {
+            return Direction.RIGHT;
+        }
+        return Direction.STAY;
+    }
+
+    private boolean connectedLeftLine(Position position) {
+        return !position.minimum() && points.get(position.leftValue()).isConnect();
+    }
+    private boolean connectedRightLine(Position position) {
+        return !position.maximum() && points.get(position.value()).isConnect();
     }
 
     public List<Point> points() {
