@@ -1,8 +1,11 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.view.Output;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -33,4 +36,17 @@ class LineTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @ParameterizedTest
+    @DisplayName("라인에서 움직인 후 위치를 반환한다.")
+    @CsvSource(value = {
+            "0, 1",
+            "1, 0",
+            "2, 3",
+            "3, 2",
+            "4, 4"
+    })
+    void 움직인후_위치(int startIndex, int endIndex){
+        Line line = new Line(List.of(false, true, false, true, false, false));
+        assertThat(line.moveFrom(startIndex)).isEqualTo(endIndex);
+    }
 }
