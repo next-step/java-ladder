@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.controller.Reward;
 import ladder.domain.Line;
 import ladder.domain.Player;
 
@@ -35,5 +36,12 @@ public class Output {
 
     private static String format(String name) {
         return String.format("%-6s", name);
+    }
+
+    public static void printRewards(List<Reward> rewards) {
+        Output.print(" ".repeat(2));
+        rewards.stream()
+                .forEach(r -> Output.print(format(r.value())));
+        Output.print("\n");
     }
 }

@@ -36,6 +36,8 @@ import java.util.stream.Collectors;
      }
 
      private static List<Reward> parseResults(String nextLine) {
-         Arrays.stream(nextLine.split("\\s*,\\s*")).map(Reward::new).collect(Collectors.toList());
+         return Arrays.stream(nextLine.split("\\s*,\\s*"))
+                 .map(Reward::new)
+                 .collect(Collectors.toList());
      }
  }
