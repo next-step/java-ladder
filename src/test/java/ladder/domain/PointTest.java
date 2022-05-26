@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class PointTest {
 
@@ -41,6 +42,18 @@ class PointTest {
         Point pointForMiddleLine = Point.createPointForMiddleLines(pointForFirstLine, () -> false);
         assertThat(pointForMiddleLine.isRight()).isFalse();
     }
+
+    @Test
+    @DisplayName("이전 point 가 오른쪽 방향 갖고 있으면 현재 point 는 오른쪽 방향 갖지 않음")
+    void directionTest() {
+        Point pointForMiddleLine_1 = Point.createPointForMiddleLines(pointForFirstLine, () -> true);
+        Point pointForMiddleLine_2 = Point.createPointForMiddleLines(pointForFirstLine, () -> false);
+        assertAll(
+                () -> assertThat(pointForMiddleLine_1.isRight()).isFalse(),
+                () -> assertThat(pointForMiddleLine_2.isRight()).isFalse()
+        );
+    }
+
 
 
 }

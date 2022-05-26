@@ -23,10 +23,6 @@ public class Participant {
         return name.length() > MAX_PARTICIPANT_NAME_LENGTH || name.length() < MIN_PARTICIPANT_NAME_LENGTH;
     }
 
-    public String getName() {
-        return name;
-    }
-
     @Override
     public String toString() {
         return name;

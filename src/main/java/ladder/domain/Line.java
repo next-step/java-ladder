@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Line {
@@ -8,14 +9,14 @@ public class Line {
     private final List<Point> points;
 
     private Line(List<Point> points) {
-        this.points = points;
+        this.points = Collections.unmodifiableList(points);
     }
 
     public static Line create(List<Point> points) {
         return new Line(points);
     }
 
-    public static Line of(int width, GenerateStrategy generateStrategy) {
+    public static Line of(int width, DirectionGenerateStrategy generateStrategy) {
         List<Point> points = new ArrayList<>();
         Point prevPoint = Point.createPointForFirstLine(generateStrategy);
         points.add(prevPoint);

@@ -1,5 +1,5 @@
 package ladder.domain;
 
-public interface GenerateStrategy {
+public interface DirectionGenerateStrategy {
     boolean generate();
 }

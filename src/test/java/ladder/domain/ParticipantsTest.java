@@ -21,7 +21,7 @@ class ParticipantsTest {
                 new Participant("d"),
                 new Participant("e")
         ));
-        assertThat(participants.size()).isEqualTo(5);
+        assertThat(participants.getParticipants().size()).isEqualTo(5);
     }
 
     @Test

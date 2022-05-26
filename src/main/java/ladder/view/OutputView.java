@@ -5,6 +5,8 @@ import ladder.domain.Line;
 import ladder.domain.Participants;
 import ladder.domain.Point;
 
+import java.util.List;
+
 public class OutputView {
 
     private static final String PARTICIPANT_PRINT_FORMAT = "%6s";
@@ -14,7 +16,12 @@ public class OutputView {
     private static final String NOT_CONNECTED_LINE_STRING = "     |";
 
     private void printLadder(Ladder ladder) {
-        ladder.getLines().forEach(this::appendLine);
+        printParticipants(ladder.getParticipants());
+        printLines(ladder.getLines());
+    }
+
+    private void printLines(List<Line> lines) {
+        lines.forEach(this::appendLine);
         System.out.println(LADDER_BUILDER);
     }
 
@@ -31,12 +38,10 @@ public class OutputView {
         LADDER_BUILDER.append(NOT_CONNECTED_LINE_STRING);
     }
 
-    public void printResult(Ladder ladder, Participants participants) {
+    public void printResult(Ladder ladder) {
         this.printResultInfoMessage();
-        this.printParticipants(participants);
         this.printLadder(ladder);
     }
-
     private void printResultInfoMessage() {
         System.out.println(RESULT_INFO_MESSAGE);
     }

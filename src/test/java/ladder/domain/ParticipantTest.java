@@ -15,7 +15,7 @@ class ParticipantTest {
     @DisplayName("사용자의 이름이 1글자 이상 5글자 이하이면 참가자가 생성된다.")
     void createParticipantTest(String inputName) {
         Participant participant = new Participant(inputName);
-        assertThat(participant.getName()).isEqualTo(inputName);
+        assertThat(participant.toString()).isEqualTo(inputName);
     }
 
     @ParameterizedTest
