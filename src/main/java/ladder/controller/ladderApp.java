@@ -2,7 +2,6 @@ package ladder.controller;
 
 import ladder.domain.Height;
 import ladder.domain.Lines;
-import ladder.domain.Player;
 import ladder.domain.Players;
 import ladder.view.Input;
 import ladder.view.Output;

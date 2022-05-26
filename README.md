@@ -86,6 +86,4 @@ Put max height of ladders
 - [x] Line 의 검증 inspect 메서드 생성자 내에서 사용으로 통일
   - [x] Line 생성 자 내 로직 Line.create() 로 분리
   - [x] inspect 메서드 -> validate 로 이름 변경
-- [ ] LineTest
-  - [ ] BDD 로 테스트 작성, 높이에 대한 검증만 수행
-  - [ ] Line의 Random 요소 분리 가능?
+- [x] LinesTest BDD 로 테스트 작성, 높이에 대한 검증만 수행
