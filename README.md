@@ -105,6 +105,7 @@ Put max height of ladders
         - [x] Ladder.play(): 사다리 1턴 수행
         - [x] Ladder.plays(): 사다리 높이만큼 모두 수행
 - [x] 사람수에 비해 사다리 칸(lines) 이 부족한 버그 수정
-- [ ] Reward 출력
-    - [ ] 1명의 이름 -> 1명 결과 출력
-    - [ ] all -> 모두의 실행 결과 출력
+- [x] Reward 출력
+    - [x] 1명의 이름 -> 1명 결과 출력
+    - [x] all -> 모두의 실행 결과 출력
+- [ ] refactoring to remove indent 

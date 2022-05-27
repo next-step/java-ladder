@@ -1,8 +1,11 @@
 package ladder.domain;
 
+import ladder.controller.Reward;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Players {
     private final List<Player> players;
@@ -40,11 +43,12 @@ public class Players {
                 .orElseThrow(() -> new RuntimeException("unreachable."));
     }
 
-    public Player findPlayer(String playerName) {
-        return this.players
-                .stream()
-                .filter(p -> p.name().equals(playerName))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Could not find player: " + playerName));
+    public Players findPlayer(String playerName) {
+        return new Players(
+                this.players
+                        .stream()
+                        .filter(p -> p.name().equals(playerName))
+                        .collect(Collectors.toList())
+        );
     }
 }

@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.controller.LadderResult;
 import ladder.controller.Reward;
 import ladder.domain.Line;
 import ladder.domain.Player;
@@ -44,5 +45,10 @@ public class Output {
         rewards.stream()
                 .forEach(r -> Output.print(format(r.value())));
         Output.print("\n");
+    }
+
+    public static void printLadderResults(List<LadderResult> ladderResults) {
+        Output.print("Ladder Result\n");
+        ladderResults.forEach(ladderResult -> Output.print(ladderResult.playerName() + ": " + ladderResult.reward() + "\n"));
     }
 }

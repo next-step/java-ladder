@@ -57,9 +57,10 @@ public class Ladder {
         this.down();
     }
 
-    public void plays() {
+    public Coordinate plays() {
         while(this.coordinate.y() < this.lines.lines().size()) {
             play();
         }
+        return this.coordinate;
     }
 }

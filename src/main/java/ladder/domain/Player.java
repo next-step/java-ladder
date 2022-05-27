@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.controller.Ladder;
+import ladder.controller.Reward;
 import ladder.exception.PlayerNameLengthExceedException;
 
 import java.util.Objects;

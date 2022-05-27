@@ -6,7 +6,9 @@ import ladder.domain.Player;
 import ladder.domain.Players;
 import ladder.view.Input;
 import ladder.view.Output;
+
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ladderApp {
     public static void main(String[] args) {
@@ -21,9 +23,16 @@ public class ladderApp {
 
         Output.printRewards(rewards);
 
-        Player targetPlayer = Input.scanPlayerToShow(players);
-        Ladder ladder = new Ladder(lines, targetPlayer.no());
-        ladder.plays();
-        System.out.println(rewards.get(ladder.coordinate().x()).value());
+        while (true) {
+            Players targetPlayers = Input.scanPlayerToShow(players);
+            List<LadderResult> ladderResults = targetPlayers.players()
+                    .stream()
+                    .map(player -> new LadderResult(player, rewards.get(new Ladder(lines, player.no()).plays().x())))
+                    .collect(Collectors.toList());
+            Output.printLadderResults(ladderResults);
+            if (targetPlayers.size() == players.size()) {
+                break;
+            }
+        }
     }
 }

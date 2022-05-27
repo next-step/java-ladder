@@ -41,8 +41,12 @@ import java.util.stream.Collectors;
                  .collect(Collectors.toList());
      }
 
-     public static Player scanPlayerToShow(Players players) {
+     public static Players scanPlayerToShow(Players players) {
          Output.print("Put person to show reward.\nOptions: " + players + " (or 'all')\n");
-         return players.findPlayer(scanner.nextLine());
+         String playerName = scanner.nextLine();
+         if (playerName.equals("all")) {
+             return players;
+         }
+         return players.findPlayer(playerName);
      }
  }
