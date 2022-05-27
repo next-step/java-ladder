@@ -25,22 +25,33 @@ public class Ladder {
         return lines;
     }
 
-    public Map<String, String> move(List<String> names, List<String> ladderResult) {
-        Map<String, String> result = new LinkedHashMap<>();
-        names.stream().forEachOrdered(name -> result.put(name, " "));
-        for (String name : names) {
-            int index = moveMove(names.indexOf(name));
-            result.put(name, ladderResult.get(index));
-            //System.out.println(name + ": " + result.get(name));
-        }
-        return result;
+    public List<Integer> resultIndexes(int countOfPerson) {
+        List<Integer> resultIndexes = new ArrayList<>();
+
+        IntStream.range(INITIAL, countOfPerson).forEachOrdered(number -> {
+            number = move(number);
+            resultIndexes.add(number);
+        });
+        return resultIndexes;
     }
 
-    public int moveMove(int index) {
+    public int move(int index) {
         for (Line line : lines) {
             index = line.move(index);
         }
         return index;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ladder ladder = (Ladder) o;
+        return Objects.equals(getLines(), ladder.getLines());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getLines());
+    }
 }

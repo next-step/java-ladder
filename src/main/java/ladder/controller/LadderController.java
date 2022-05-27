@@ -1,6 +1,7 @@
 package ladder.controller;
 
 import ladder.domain.Ladder;
+import ladder.domain.LadderResult;
 import ladder.domain.Person;
 import ladder.view.InputView;
 import ladder.view.ResultView;
@@ -10,11 +11,18 @@ import java.util.stream.Collectors;
 
 public class LadderController {
     public static void start() {
-        List<Person> persons = InputView.inputPerson().stream()
+        List<String> names = InputView.inputPerson();
+        List<String> results = InputView.inputResults();
+        List<Person> persons = names.stream()
                 .map(name -> Person.of(name))
                 .collect(Collectors.toList());
+        LadderResult ladderResult = LadderResult.of(names);
+
         int height = InputView.inputHeight();
+        Ladder ladder = Ladder.of(height, persons.size());
+        ladderResult.findLadderResult(ladder, results);
         ResultView.printName(persons);
-        ResultView.resultLadders(Ladder.of(height, persons.size()));
+        ResultView.drawLadders(ladder, results);
+        ResultView.resultFinal(ladderResult, InputView.inputFinalResult());
     }
 }
