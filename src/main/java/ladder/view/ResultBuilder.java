@@ -30,17 +30,17 @@ public class ResultBuilder {
     }
 
     private static void renderParticipants(People people) {
-        for (Person person : people.toList()) {
-            renderPerson(person);
+        for (Element element : people.toList()) {
+            renderPerson(element);
         }
         sb.append(BLANK_LINE);
     }
 
-    private static void renderPerson(Person person) {
-        for (int i = 0; i < person.withoutNameSize(NAME_PLACE_PER_LENGTH); i++) {
+    private static void renderPerson(Element element) {
+        for (int i = 0; i < element.withoutNameSize(NAME_PLACE_PER_LENGTH); i++) {
             sb.append(NAME_EMPTY_ONE_UNIT);
         }
-        sb.append(person.name());
+        sb.append(element.name());
     }
 
     private static void renderLadder(Ladder ladder) {

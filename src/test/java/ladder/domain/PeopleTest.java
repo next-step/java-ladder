@@ -29,6 +29,6 @@ class PeopleTest {
     @DisplayName("이름 문자열을 입력하면 구분자로 나누어 People 를 생성한다.")
     void create() {
         assertThat(new People("tom,tommy")).isEqualTo(new People("tom", "tommy"));
-        assertThat(new People("tom,tommy")).isEqualTo(new People(List.of(new Person("tom", 1,0), new Person("tommy",1,1))));
+        assertThat(new People("tom,tommy")).isEqualTo(new People(List.of(new Element("tom", 1,0), new Element("tommy",1,1))));
     }
 }

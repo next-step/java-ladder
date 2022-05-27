@@ -31,10 +31,10 @@ public class Ladder {
         people.toList().forEach(person -> start(person));
     }
 
-    private void start(Person person) {
+    private void start(Element element) {
         lines.stream()
-                .map(line -> line.direction(person.position()))
-                .forEach(person::move);
+                .map(line -> line.direction(element.position()))
+                .forEach(element::move);
     }
 
     public int totalLines() {

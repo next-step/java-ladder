@@ -5,7 +5,7 @@ import ladder.exception.InvalidNameException;
 
 import java.util.Objects;
 
-public class Person {
+public class Element {
 
     public static final int MAX_LENGTH = 5;
     private static final String MESSAGE_NULL_OR_BLANK = "이름은 공란이거나 Null 일 수 없습니다.";
@@ -13,11 +13,11 @@ public class Person {
     private final String name;
     private final Position position;
 
-    public Person(String name, int maxPosition, int position) {
+    public Element(String name, int maxPosition, int position) {
         this(name, new Position(maxPosition, position));
     }
 
-    public Person(String name, Position position) {
+    public Element(String name, Position position) {
         if (isNullOrBlank(name)) {
             throw new InvalidNameException(MESSAGE_NULL_OR_BLANK);
         }
@@ -56,8 +56,8 @@ public class Person {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Person person = (Person) o;
-        return Objects.equals(name, person.name) && Objects.equals(position, person.position);
+        Element element = (Element) o;
+        return Objects.equals(name, element.name) && Objects.equals(position, element.position);
     }
 
     @Override
