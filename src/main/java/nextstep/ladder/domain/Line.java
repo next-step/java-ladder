@@ -14,7 +14,8 @@ public class Line {
     private static final int EDGE_CNT = 2;
     private static final int EDGE_WIDTH = 1;
     private static final int MIN_POINT_CNT = 0;
-    private static final int DIFF_BETWEEN_CUR_AND_BEFORE_INDEX = 1;
+    private static final int DIFFERENCE_BETWEEN_POINT = 1;
+    private static final int DIFFERENCE_BETWEEN_POSITION = 1;
 
 
     private final List<Boolean> points;
@@ -46,7 +47,7 @@ public class Line {
     }
 
     private static boolean isValid(List<Boolean> line, int index){
-        return !line.get(index-DIFF_BETWEEN_CUR_AND_BEFORE_INDEX) && !line.get(index+DIFF_BETWEEN_CUR_AND_BEFORE_INDEX);
+        return !line.get(index- DIFFERENCE_BETWEEN_POINT) && !line.get(index+ DIFFERENCE_BETWEEN_POINT);
     }
 
     private static void createPoint(List<Boolean> line, int index){
@@ -57,14 +58,16 @@ public class Line {
         return points;
     }
 
-    public int moveFrom(int index) {
-        if(points.get(index)){
-            return index-DIFF_BETWEEN_CUR_AND_BEFORE_INDEX;
+    public int moveFrom(int position) {
+        boolean leftPoint = points.get(position);
+        boolean rightPoint = points.get(position+ DIFFERENCE_BETWEEN_POINT);
+        if(leftPoint){
+            return position-DIFFERENCE_BETWEEN_POSITION;
         }
-        if(points.get(index+1)){
-            return index+DIFF_BETWEEN_CUR_AND_BEFORE_INDEX;
+        if(rightPoint){
+            return position+DIFFERENCE_BETWEEN_POSITION;
         }
-        return index;
+        return position;
     }
 
     @Override
