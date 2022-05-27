@@ -86,10 +86,10 @@ public class InputView {
         }
     }
 
-    private static Elements validateResult(Elements elements) {
+    private static Elements validateResult(Elements playerElements) {
         Elements resultElements = new Elements(scanner.nextLine());
-        if (!elements.sameSize(resultElements)) {
-            throw new InvalidCountOfElementException(String.format(MESSAGE_INVALID_RESULT_COUNT, elements.size()));
+        if (!playerElements.sameSize(resultElements)) {
+            throw new InvalidCountOfElementException(String.format(MESSAGE_INVALID_RESULT_COUNT, playerElements.size()));
         }
         return resultElements;
     }

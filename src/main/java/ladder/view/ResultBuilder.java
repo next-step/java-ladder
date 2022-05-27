@@ -26,7 +26,7 @@ public class ResultBuilder {
         Map<Point, String> lineViews = initializeLineViews(ladderGame);
         initializeStringBuilder();
 
-        renderParticipants(ladderGame.people(), maxNameSize(ladderGame));
+        renderParticipants(ladderGame.playerElements(), maxNameSize(ladderGame));
         renderLadder(ladderGame.ladder(), lineViews);
         renderResultElements(ladderGame.resultElements(), maxNameSize(ladderGame));
         return sb.toString();

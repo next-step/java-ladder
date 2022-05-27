@@ -16,5 +16,4 @@ class LadderGameTest {
 
         assertThat(ladderGame.maxNameSize()).isEqualTo(10);
     }
-
 }

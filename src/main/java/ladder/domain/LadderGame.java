@@ -2,32 +2,35 @@ package ladder.domain;
 
 public class LadderGame {
 
-    // TODO: elements 묶는 elementGroup 클래스 생성?
-    private final Elements elements;
-    private final Elements resultElements;
+    private final ElementGroup elementGroup;
     private final Ladder ladder;
 
-    public LadderGame(Elements elements, Elements resultElements, Height height) {
-        this.elements = elements;
-        this.resultElements = resultElements;
-        this.ladder = new Ladder(height, elements);
+    public LadderGame(Elements playerElements, Elements resultElements, Height height) {
+        this(new ElementGroup(playerElements, resultElements), new Ladder(height, playerElements));
+    }
+
+    public LadderGame(ElementGroup elementGroup, Height height) {
+        this(elementGroup, new Ladder(height, elementGroup.playerElements()));
+    }
+
+    public LadderGame(ElementGroup elementGroup, Ladder ladder) {
+        this.elementGroup = elementGroup;
+        this.ladder = ladder;
     }
 
     public Ladder ladder() {
         return ladder;
     }
 
-    public Elements people() {
-        return elements;
+    public Elements playerElements() {
+        return elementGroup.playerElements();
     }
 
     public Elements resultElements() {
-        return resultElements;
+        return elementGroup.resultElements();
     }
 
     public int maxNameSize() {
-        int elementsMaxNameSize = elements.maxNameSize();
-        int resultElementsMaxNameSize = resultElements.maxNameSize();
-        return Integer.max(elementsMaxNameSize, resultElementsMaxNameSize);
+        return elementGroup.maxNameSize();
     }
 }
