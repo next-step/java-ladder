@@ -2,7 +2,7 @@ package ladder.domain;
 
 import ladder.constant.Direction;
 import ladder.exception.InvalidBoundPositionException;
-import ladder.exception.NotMoveException;
+import ladder.exception.NotChangeException;
 
 import java.util.Objects;
 
@@ -33,7 +33,7 @@ public class Position {
 
     public void change(Direction direction) {
         if (invalidChangeStatus(direction)) {
-            throw new NotMoveException(maxValue, value);
+            throw new NotChangeException(maxValue, value);
         }
         value += direction.value();
     }

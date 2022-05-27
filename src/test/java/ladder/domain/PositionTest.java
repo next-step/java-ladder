@@ -2,7 +2,7 @@ package ladder.domain;
 
 import ladder.constant.Direction;
 import ladder.exception.InvalidBoundPositionException;
-import ladder.exception.NotMoveException;
+import ladder.exception.NotChangeException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -28,13 +28,13 @@ class PositionTest {
     }
 
     @Test
-    @DisplayName("포지션 값이 최솟값일때 왼쪽으로 이동하면 예외를 반환한다.")
-    void invalidDown() {
+    @DisplayName("포지션 값이 최솟값일때 왼쪽으로 변경하면 예외를 반환한다.")
+    void invalidChangeLeft() {
         Position position = new Position(2, 0);
 
         assertThatThrownBy(() -> position.change(Direction.LEFT))
-                .isInstanceOf(NotMoveException.class)
-                .hasMessage("현재 위치가 최소 혹은 최대이라서 움직일 수 없습니다. 최솟값=0, 최댓값=2, 현재 위치=0");
+                .isInstanceOf(NotChangeException.class)
+                .hasMessage("현재 위치가 최소 혹은 최대이라서 변경할 수 없습니다. 최솟값=0, 최댓값=2, 현재 위치=0");
     }
 
     @Test
@@ -48,13 +48,13 @@ class PositionTest {
     }
 
     @Test
-    @DisplayName("포지션 값이 최댓값일때 오른쪽으로 이동하면 예외를 반환한다.")
-    void invalidUp() {
+    @DisplayName("포지션 값이 최댓값일때 오른쪽으로 변경하면 예외를 반환한다.")
+    void invalidChangeRight() {
         Position position = new Position(2, 2);
 
         assertThatThrownBy(() -> position.change(Direction.RIGHT))
-                .isInstanceOf(NotMoveException.class)
-                .hasMessage("현재 위치가 최소 혹은 최대이라서 움직일 수 없습니다. 최솟값=0, 최댓값=2, 현재 위치=2");
+                .isInstanceOf(NotChangeException.class)
+                .hasMessage("현재 위치가 최소 혹은 최대이라서 변경할 수 없습니다. 최솟값=0, 최댓값=2, 현재 위치=2");
     }
 
     @Test
