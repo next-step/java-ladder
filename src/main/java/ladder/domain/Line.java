@@ -15,6 +15,11 @@ public class Line {
     private Line(int countOfPerson) {
         IntStream.range(INITIAL, countOfPerson - ONE)
                 .forEachOrdered(number -> deduplicationInsert(number));
+        points.add(false);
+    }
+
+    public Line(List<Boolean> points) {
+        this.points = new ArrayList<>(points);
     }
 
     public static Line of(int countOfPerson) {
@@ -31,5 +36,15 @@ public class Line {
 
     public List<Boolean> getPoints() {
         return points;
+    }
+
+    public int move(int index) {
+        if (index != 0 && points.get(index - 1)) {
+            return index - 1;
+        }
+        if (points.get(index)) {
+            return index + 1;
+        }
+        return index;
     }
 }

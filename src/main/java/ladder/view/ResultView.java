@@ -41,6 +41,7 @@ public class ResultView {
         stringBuilder.append(COLUMN);
         line.getPoints().stream()
                 .forEachOrdered(value -> stringBuilder.append(divideValue(value)).append(COLUMN));
+        stringBuilder.delete(stringBuilder.length() - 6, stringBuilder.length());
         stringBuilder.append(ENTER);
     }
 
