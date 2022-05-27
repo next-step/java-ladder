@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.constant.Direction;
 import ladder.exception.InvalidNameException;
 
 import java.util.Objects;
@@ -41,6 +42,14 @@ public class Person {
 
     public int withoutNameSize(int size) {
         return size - name.length();
+    }
+
+    public void move(Direction direction) {
+        position.change(direction);
+    }
+
+    public Position position() {
+        return position;
     }
 
     @Override

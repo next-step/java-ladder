@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.constant.Direction;
 import ladder.exception.InvalidBoundPositionException;
 import ladder.exception.NotMoveException;
 import org.junit.jupiter.api.DisplayName;
@@ -27,41 +28,41 @@ class PositionTest {
     }
 
     @Test
-    @DisplayName("포지션 값이 최솟값일때 down 을 호출하면 예외를 반환한다.")
+    @DisplayName("포지션 값이 최솟값일때 왼쪽으로 이동하면 예외를 반환한다.")
     void invalidDown() {
         Position position = new Position(2, 0);
 
-        assertThatThrownBy(() -> position.down())
+        assertThatThrownBy(() -> position.change(Direction.LEFT))
                 .isInstanceOf(NotMoveException.class)
                 .hasMessage("현재 위치가 최소 혹은 최대이라서 움직일 수 없습니다. 최솟값=0, 최댓값=2, 현재 위치=0");
     }
 
     @Test
-    @DisplayName("down 을 호출하면 포지션 값이 1 적어진다.")
+    @DisplayName("왼쪽으로 이동하면 포지션 값이 1 감소한다.")
     void down() {
         Position position = new Position(2, 1);
 
-        position.down();
+        position.change(Direction.LEFT);
 
         assertThat(position).isEqualTo(new Position(2, 0));
     }
 
     @Test
-    @DisplayName("포지션 값이 최댓값일때 up 을 호출하면 예외를 반환한다.")
+    @DisplayName("포지션 값이 최댓값일때 오른쪽으로 이동하면 예외를 반환한다.")
     void invalidUp() {
         Position position = new Position(2, 2);
 
-        assertThatThrownBy(() -> position.up())
+        assertThatThrownBy(() -> position.change(Direction.RIGHT))
                 .isInstanceOf(NotMoveException.class)
                 .hasMessage("현재 위치가 최소 혹은 최대이라서 움직일 수 없습니다. 최솟값=0, 최댓값=2, 현재 위치=2");
     }
 
     @Test
-    @DisplayName("up 을 호출하면 포지션 값이 1 증가한다.")
+    @DisplayName("오른쪽으로 이동하면 포지션 값이 1 증가한다.")
     void up() {
         Position position = new Position(2, 1);
 
-        position.up();
+        position.change(Direction.RIGHT);
 
         assertThat(position).isEqualTo(new Position(2, 2));
     }

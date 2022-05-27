@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.constant.Direction;
 import ladder.exception.InvalidBoundPositionException;
 import ladder.exception.NotMoveException;
 
@@ -26,22 +27,19 @@ public class Position {
         return value < MIN_VALUE || value > maxValue;
     }
 
-    public void down() {
-        if (minimum()) {
-            throw new NotMoveException(maxValue, value);
-        }
-        value--;
-    }
-
     public boolean minimum() {
         return value == MIN_VALUE;
     }
 
-    public void up() {
-        if (maximum()) {
+    public void change(Direction direction) {
+        if (invalidChangeStatus(direction)) {
             throw new NotMoveException(maxValue, value);
         }
-        value++;
+        value += direction.value();
+    }
+
+    private boolean invalidChangeStatus(Direction direction) {
+        return (direction.isLeft() && minimum()) || (direction.isRight() && maximum());
     }
 
     public boolean maximum() {

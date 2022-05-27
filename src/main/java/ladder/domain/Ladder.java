@@ -27,6 +27,16 @@ public class Ladder {
         return Collections.unmodifiableList(lines);
     }
 
+    public void start(People people) {
+        people.toList().forEach(person -> start(person));
+    }
+
+    private void start(Person person) {
+        lines.stream()
+                .map(line -> line.direction(person.position()))
+                .forEach(person::move);
+    }
+
     public int totalLines() {
         return lines.size();
     }
