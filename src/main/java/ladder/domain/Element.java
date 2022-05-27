@@ -26,8 +26,12 @@ public class Element {
         return name;
     }
 
-    public int withoutNameSize(int size) {
-        return name.withoutNameSize(size);
+    public int withoutNameSize(int maxSize) {
+        return maxSize - name.size();
+    }
+
+    public int nameSize() {
+        return name.size();
     }
 
     public void move(Direction direction) {

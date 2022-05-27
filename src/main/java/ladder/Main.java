@@ -13,7 +13,7 @@ public class Main {
         Elements resultElements = InputView.resultView(elements);
         Height height = InputView.ladderHeightView();
 
-        LadderGame ladderGame = new LadderGame(elements, height);
+        LadderGame ladderGame = new LadderGame(elements, resultElements, height);
         ResultView.ladderResultView(ladderGame);
     }
 }

@@ -53,6 +53,13 @@ public class Elements {
         return values.size();
     }
 
+    public int maxNameSize() {
+        return values.stream()
+                .mapToInt(Element::nameSize)
+                .max()
+                .orElseThrow(RuntimeException::new);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

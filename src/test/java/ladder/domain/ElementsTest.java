@@ -31,4 +31,11 @@ class ElementsTest {
         assertThat(new Elements("tom,tommy")).isEqualTo(new Elements("tom", "tommy"));
         assertThat(new Elements("tom,tommy")).isEqualTo(new Elements(List.of(new Element("tom", 1,0), new Element("tommy",1,1))));
     }
+
+    @Test
+    @DisplayName("이름들의 크기 중 가장 큰 크기의 값을 반환한다.")
+    void maxNameSize() {
+        assertThat(new Elements("tom", "tommy", "paul").maxNameSize()).isEqualTo(5);
+        assertThat(new Elements("tom", "안녕하세요", "paul").maxNameSize()).isEqualTo(10);
+    }
 }
