@@ -1,16 +1,12 @@
 package ladder.domain;
 
 import ladder.constant.Direction;
-import ladder.exception.InvalidNameException;
 
 import java.util.Objects;
 
 public class Element {
 
-    public static final int MAX_LENGTH = 5;
-    private static final String MESSAGE_NULL_OR_BLANK = "이름은 공란이거나 Null 일 수 없습니다.";
-
-    private final String name;
+    private final Name name;
     private final Position position;
 
     public Element(String name, int maxPosition, int position) {
@@ -18,30 +14,20 @@ public class Element {
     }
 
     public Element(String name, Position position) {
-        if (isNullOrBlank(name)) {
-            throw new InvalidNameException(MESSAGE_NULL_OR_BLANK);
-        }
-        if (isLowerMaxLength(name)) {
-            throw new InvalidNameException();
-        }
+        this(new Name(name), position);
+    }
+
+    public Element(Name name, Position position) {
         this.name = name;
         this.position = position;
     }
 
-    private boolean isNullOrBlank(String name) {
-        return name == null || name.isBlank();
-    }
-
-    private boolean isLowerMaxLength(String value) {
-        return value.length() > MAX_LENGTH;
-    }
-
-    public String name() {
+    public Name name() {
         return name;
     }
 
     public int withoutNameSize(int size) {
-        return size - name.length();
+        return name.withoutNameSize(size);
     }
 
     public void move(Direction direction) {
