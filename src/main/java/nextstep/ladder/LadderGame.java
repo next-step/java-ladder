@@ -2,8 +2,8 @@ package nextstep.ladder;
 
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.person.People;
+import nextstep.ladder.domain.result.Results;
 import nextstep.ladder.util.RandomConnectStrategy;
-import nextstep.ladder.util.StringSpliter;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
@@ -14,14 +14,14 @@ public class LadderGame {
     public void start() {
         try {
             String names = InputView.inputPeopleName();
+            String resultNames = InputView.inputResults();
             String ladderHeight = InputView.inputLadderHeight();
 
-            People people = People.of(names);
-            Ladder ladder = Ladder.from(Integer.parseInt(ladderHeight), StringSpliter.length(names), new RandomConnectStrategy());
+            People people = People.from(names);
+            Ladder ladder = Ladder.from(Integer.parseInt(ladderHeight), people, new RandomConnectStrategy());
+            Results results = ladder.results(resultNames);
 
-            ResultView.printResultMessage();
-            ResultView.printPeople(people);
-            ResultView.printLadder(ladder);
+            ResultView.printResults(people, ladder, results);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage() + LADDER_GAME_ERROR_MESSAGE);
             start();

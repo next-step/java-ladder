@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.ladder;
 
+import nextstep.ladder.domain.Position;
 import nextstep.ladder.util.ConnectStrategy;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ public class LadderLine {
         this.points = points;
     }
 
-    public static LadderLine from(int sizeOfPerson, ConnectStrategy connectStrategy) {
+    public static LadderLine of(int sizeOfPerson, ConnectStrategy connectStrategy) {
         List<Point> points = new ArrayList<>();
 
         Point point = initHead(connectStrategy, points);
@@ -39,6 +40,19 @@ public class LadderLine {
 
     private static boolean initLast(List<Point> points, Point last) {
         return points.add(last);
+    }
+
+    public Position move(Position position) {
+        Point currentPoint = point(position);
+        return currentPoint.move();
+    }
+
+    public Point point(Position position) {
+        return points.get(position.value());
+    }
+
+    public int size() {
+        return points.size();
     }
 
     @Override
