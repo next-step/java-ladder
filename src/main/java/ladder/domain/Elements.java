@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.exception.InvalidCountOfPersonException;
+import ladder.exception.InvalidCountOfElementException;
 import ladder.util.SplitUtil;
 
 import java.util.Collections;
@@ -26,7 +26,7 @@ public class Elements {
 
     public Elements(List<Element> values) {
         if (values.size() < MIN_COUNT_OF_PERSON) {
-            throw new InvalidCountOfPersonException();
+            throw new InvalidCountOfElementException();
         }
         this.values = values;
     }
@@ -43,6 +43,14 @@ public class Elements {
 
     public List<Element> toList() {
         return Collections.unmodifiableList(values);
+    }
+
+    public boolean sameSize(Elements otherElements) {
+        return values.size() == otherElements.values.size();
+    }
+
+    public int size() {
+        return values.size();
     }
 
     @Override

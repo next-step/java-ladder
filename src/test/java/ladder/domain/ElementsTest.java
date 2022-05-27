@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.exception.InvalidCountOfPersonException;
+import ladder.exception.InvalidCountOfElementException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +15,7 @@ class ElementsTest {
     @DisplayName("참가자 수는 2 이상이여야 한다.")
     void invalidCount() {
         assertThatThrownBy(() -> new Elements("tom"))
-                .isInstanceOf(InvalidCountOfPersonException.class)
+                .isInstanceOf(InvalidCountOfElementException.class)
                 .hasMessage("참가자의 수는 2 이상이여야 합니다.");
     }
 

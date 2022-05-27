@@ -2,7 +2,7 @@ package ladder.view;
 
 import ladder.domain.Height;
 import ladder.domain.Elements;
-import ladder.exception.InvalidCountOfPersonException;
+import ladder.exception.InvalidCountOfElementException;
 import ladder.exception.InvalidHeightException;
 import ladder.exception.InvalidNameException;
 import ladder.exception.NotSupportException;
@@ -15,6 +15,8 @@ public class InputView {
     private static final String MESSAGE_INPUT_PARTICIPANTS_NAME = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String MESSAGE_INPUT_LADDER_HEIGHT = "최대 사다리 높이는 몇 개인가요?";
     private static final String MESSAGE_INVALID_NUMBER_FORMAT = "숫자만 입력 가능합니다.";
+    private static final String MESSAGE_INPUT_RESULT = "실행 결과를 입력하세요. (이름은 쉼표(,)로 구분하세요)";
+    private static final String MESSAGE_INVALID_RESULT_COUNT = "결과의 개수는 %d 이여야 합니다.";
 
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -30,7 +32,7 @@ public class InputView {
     private static Elements inputValidParticipantsName() {
         try {
             return validateParticipantsName();
-        } catch (InvalidCountOfPersonException | InvalidNameException e) {
+        } catch (InvalidCountOfElementException | InvalidNameException e) {
             System.out.println(e.getMessage());
             return inputValidParticipantsName();
         }
@@ -70,4 +72,25 @@ public class InputView {
         }
     }
 
+    public static Elements resultView(Elements elements) {
+        System.out.println(MESSAGE_INPUT_RESULT);
+        return inputValidResult(elements);
+    }
+
+    private static Elements inputValidResult(Elements elements) {
+        try {
+            return validateResult(elements);
+        } catch (InvalidCountOfElementException | InvalidNameException e) {
+            System.out.println(e.getMessage());
+            return inputValidResult(elements);
+        }
+    }
+
+    private static Elements validateResult(Elements elements) {
+        Elements resultElements = new Elements(scanner.nextLine());
+        if (!elements.sameSize(resultElements)) {
+            throw new InvalidCountOfElementException(String.format(MESSAGE_INVALID_RESULT_COUNT, elements.size()));
+        }
+        return resultElements;
+    }
 }
