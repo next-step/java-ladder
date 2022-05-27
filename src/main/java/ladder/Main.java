@@ -16,5 +16,7 @@ public class Main {
 
         LadderGame ladderGame = new LadderGame(new ElementGroup(playerElements, resultElements), height);
         ResultView.ladderResultView(ladderGame);
+
+        ladderGame.start();
     }
 }

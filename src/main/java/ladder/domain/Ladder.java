@@ -27,14 +27,14 @@ public class Ladder {
         return Collections.unmodifiableList(lines);
     }
 
-    public void start(Elements elements) {
-        elements.toList().forEach(element -> start(element));
+    public void start(Elements playerElements) {
+        playerElements.toList().forEach(player -> start(player));
     }
 
-    private void start(Element element) {
+    private void start(Element player) {
         lines.stream()
-                .map(line -> line.direction(element.position()))
-                .forEach(element::move);
+                .map(line -> line.direction(player.position()))
+                .forEach(player::move);
     }
 
     public int totalLines() {

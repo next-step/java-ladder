@@ -33,4 +33,8 @@ public class LadderGame {
     public int maxNameSize() {
         return elementGroup.maxNameSize();
     }
+
+    public void start() {
+        ladder.start(elementGroup.playerElements());
+    }
 }
