@@ -1,6 +1,10 @@
 package ladder.domain;
 
+import ladder.controller.Ladder;
+import ladder.controller.LadderResult;
 import ladder.controller.Reward;
+import ladder.view.Input;
+import ladder.view.Output;
 
 import java.util.Collections;
 import java.util.List;
@@ -50,5 +54,17 @@ public class Players {
                         .filter(p -> p.name().equals(playerName))
                         .collect(Collectors.toList())
         );
+    }
+
+    public void showResult(List<Reward> rewards, Lines lines) {
+        Players targetPlayers = Input.scanPlayerToShow(this);
+        List<LadderResult> ladderResults = targetPlayers.players()
+                .stream()
+                .map(player -> new LadderResult(player, rewards.get(new Ladder(lines, player.no()).plays().x())))
+                .collect(Collectors.toList());
+        Output.printLadderResults(ladderResults);
+        if (targetPlayers.size() != this.players.size()) {
+            this.showResult(rewards, lines);
+        };
     }
 }

@@ -108,4 +108,4 @@ Put max height of ladders
 - [x] Reward 출력
     - [x] 1명의 이름 -> 1명 결과 출력
     - [x] all -> 모두의 실행 결과 출력
-- [ ] refactoring to remove indent 
+- [x] refactoring to remove indent 
