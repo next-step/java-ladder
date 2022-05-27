@@ -24,20 +24,20 @@ public class Point {
     }
 
     public Point next(ConnectStrategy connectStrategy) {
-        return new Point(position.next(), direction.next(connectStrategy));
+        return new Point(position.nextPosition(), direction.next(connectStrategy));
     }
 
     public Point last() {
-        return new Point(position.next(), direction.last());
+        return new Point(position.nextPosition(), direction.last());
     }
 
     public Position move() {
         if (direction.isLeft()) {
-            return position.before();
+            return position.beforePosition();
         }
 
         if (direction.isRight()) {
-            return position.next();
+            return position.nextPosition();
         }
 
         return position;

@@ -23,7 +23,7 @@ public class Result {
     }
 
     public Result next(String name) {
-        return new Result(position.next(), name);
+        return new Result(position.nextPosition(), name);
     }
 
     public boolean equalPosition(Position position) {

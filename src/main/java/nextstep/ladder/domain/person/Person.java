@@ -23,7 +23,7 @@ public class Person {
     }
 
     public Person next(String name) {
-        return new Person(position.next(), name);
+        return new Person(position.nextPosition(), name);
     }
 
     public Position position() {

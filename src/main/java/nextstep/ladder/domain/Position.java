@@ -19,14 +19,14 @@ public class Position {
         return new Position(MIN_POSITION);
     }
 
-    public Position before() {
+    public Position beforePosition() {
         if (position == MIN_POSITION) {
             throw new IllegalArgumentException("[ERROR] 위치는 " + MIN_POSITION + "이상이어야 합니다.");
         }
         return new Position(position - 1);
     }
 
-    public Position next() {
+    public Position nextPosition() {
         return new Position(position + 1);
     }
 
