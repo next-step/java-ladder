@@ -108,4 +108,34 @@ Put max height of ladders
 - [x] Reward 출력
     - [x] 1명의 이름 -> 1명 결과 출력
     - [x] all -> 모두의 실행 결과 출력
-- [x] refactoring to remove indent 
+- [x] refactoring to remove indent
+
+### Result
+
+```
+Put player names separated by ','.
+pobi, honux, henry
+Put Execution results separated by ','.
+💎, 💣, 💰
+Put max height of ladders
+5
+  pobi. honux henry 
+    |     |     |     
+    |-----|     |     
+    |     |     |     
+    |     |     |     
+    |     |-----|     
+  💎... 💣... 💰... 
+Put person to show reward.
+Options: pobi, honux, henry (or 'all')
+henry
+Ladder Result
+henry: 💣
+Put person to show reward.
+Options: pobi, honux, henry (or 'all')
+all
+Ladder Result
+pobi: 💰
+honux: 💎
+henry: 💣
+```
