@@ -11,14 +11,14 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(Height height, People people) {
-        this(height, people, new RandomGeneration());
+    public Ladder(Height height, Elements elements) {
+        this(height, elements, new RandomGeneration());
     }
 
-    public Ladder(Height height, People people, GenerationStrategy strategy) {
+    public Ladder(Height height, Elements elements, GenerationStrategy strategy) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height.value(); i++) {
-            lines.add(new Line(people, strategy));
+            lines.add(new Line(elements, strategy));
         }
         this.lines = lines;
     }
@@ -27,8 +27,8 @@ public class Ladder {
         return Collections.unmodifiableList(lines);
     }
 
-    public void start(People people) {
-        people.toList().forEach(person -> start(person));
+    public void start(Elements elements) {
+        elements.toList().forEach(element -> start(element));
     }
 
     private void start(Element element) {

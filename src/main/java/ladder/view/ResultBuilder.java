@@ -29,8 +29,8 @@ public class ResultBuilder {
         return sb.toString();
     }
 
-    private static void renderParticipants(People people) {
-        for (Element element : people.toList()) {
+    private static void renderParticipants(Elements elements) {
+        for (Element element : elements.toList()) {
             renderPerson(element);
         }
         sb.append(BLANK_LINE);

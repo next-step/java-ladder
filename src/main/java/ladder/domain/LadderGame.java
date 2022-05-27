@@ -2,19 +2,19 @@ package ladder.domain;
 
 public class LadderGame {
 
-    private final People people;
+    private final Elements elements;
     private final Ladder ladder;
 
-    public LadderGame(People people, Height height) {
-        this.people = people;
-        this.ladder = new Ladder(height, people);
+    public LadderGame(Elements elements, Height height) {
+        this.elements = elements;
+        this.ladder = new Ladder(height, elements);
     }
 
     public Ladder ladder() {
         return ladder;
     }
 
-    public People people() {
-        return people;
+    public Elements people() {
+        return elements;
     }
 }

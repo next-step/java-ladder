@@ -1,7 +1,7 @@
 package ladder.view;
 
 import ladder.domain.Height;
-import ladder.domain.People;
+import ladder.domain.Elements;
 import ladder.exception.InvalidCountOfPersonException;
 import ladder.exception.InvalidHeightException;
 import ladder.exception.InvalidNameException;
@@ -22,12 +22,12 @@ public class InputView {
         throw new NotSupportException();
     }
 
-    public static People participantsNameView() {
+    public static Elements participantsNameView() {
         System.out.println(MESSAGE_INPUT_PARTICIPANTS_NAME);
         return inputValidParticipantsName();
     }
 
-    private static People inputValidParticipantsName() {
+    private static Elements inputValidParticipantsName() {
         try {
             return validateParticipantsName();
         } catch (InvalidCountOfPersonException | InvalidNameException e) {
@@ -36,8 +36,8 @@ public class InputView {
         }
     }
 
-    private static People validateParticipantsName() {
-        return new People(scanner.nextLine());
+    private static Elements validateParticipantsName() {
+        return new Elements(scanner.nextLine());
     }
 
     public static Height ladderHeightView() {

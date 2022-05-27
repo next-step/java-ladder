@@ -10,7 +10,7 @@ class LadderTest {
     @Test
     @DisplayName("사다리 높이만큼 라인이 생성된다.")
     void totalLines() {
-        assertThat(new Ladder(new Height(5), new People("tom", "paul", "anna")).totalLines()).isEqualTo(5);
+        assertThat(new Ladder(new Height(5), new Elements("tom", "paul", "anna")).totalLines()).isEqualTo(5);
     }
 
 }

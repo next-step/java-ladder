@@ -9,52 +9,52 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class People {
+public class Elements {
 
     public static final int MIN_COUNT_OF_PERSON = 2;
     private static final int EXCLUSION_POINT_VALUE = 1;
 
-    private final List<Element> people;
+    private final List<Element> values;
 
-    public People(String names) {
-        this(convertToPeople(SplitUtil.split(names)));
+    public Elements(String names) {
+        this(convertToList(SplitUtil.split(names)));
     }
 
-    public People(String... names) {
-        this(convertToPeople(names));
+    public Elements(String... names) {
+        this(convertToList(names));
     }
 
-    public People(List<Element> people) {
-        if (people.size() < MIN_COUNT_OF_PERSON) {
+    public Elements(List<Element> values) {
+        if (values.size() < MIN_COUNT_OF_PERSON) {
             throw new InvalidCountOfPersonException();
         }
-        this.people = people;
+        this.values = values;
     }
 
-    private static List<Element> convertToPeople(String... names) {
+    private static List<Element> convertToList(String... names) {
         return IntStream.range(Position.MIN_VALUE, names.length)
                 .mapToObj(index -> new Element(names[index], names.length - 1, index))
                 .collect(Collectors.toList());
     }
 
     public int pointCount() {
-        return people.size() - EXCLUSION_POINT_VALUE;
+        return values.size() - EXCLUSION_POINT_VALUE;
     }
 
     public List<Element> toList() {
-        return Collections.unmodifiableList(people);
+        return Collections.unmodifiableList(values);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        People people1 = (People) o;
-        return Objects.equals(people, people1.people);
+        Elements elements = (Elements) o;
+        return Objects.equals(values, elements.values);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(people);
+        return Objects.hash(values);
     }
 }
