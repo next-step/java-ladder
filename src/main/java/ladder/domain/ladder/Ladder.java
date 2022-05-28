@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Ladder {
 
-    private static List<Line> lineList = new ArrayList();
+    private List<Line> lineList;
 
     public Ladder(List<Line> list) {
         lineList = list;
