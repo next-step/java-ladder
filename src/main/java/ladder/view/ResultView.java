@@ -10,11 +10,12 @@ public class ResultView {
 
     private static final String LADDER_INTERVAL = "  ";
     private static final String RESULT_INTERVAL = "   ";
+    private static final int LAST_INTERVAL_LENGTH = 6;
     private static final String BRIDGE = "-----";
     private static final String PASS = "     ";
     private static final String COLUMN = "|";
-    private static final String ENTER = "\n";
     private static final String ALL = "all";
+
 
     private ResultView() {
     }
@@ -25,7 +26,7 @@ public class ResultView {
                 .map(Person::getName)
                 .map(Name::getName)
                 .collect(Collectors.joining(LADDER_INTERVAL));
-        stringBuilder.append(String.format("%s실행결과%s%s %s", ENTER, ENTER, ENTER, result));
+        stringBuilder.append(String.format("\n실행결과\n\n %s", result));
         System.out.println(stringBuilder);
     }
 
@@ -36,7 +37,7 @@ public class ResultView {
 
         String result = results.stream()
                 .collect(Collectors.joining(RESULT_INTERVAL));
-        stringBuilder.append(String.format("  %s%s ", result, ENTER));
+        stringBuilder.append(String.format("  %s\n ", result));
         System.out.println(stringBuilder);
     }
 
@@ -45,8 +46,8 @@ public class ResultView {
         stringBuilder.append(COLUMN);
         line.getPoints().stream()
                 .forEachOrdered(value -> stringBuilder.append(divideValue(value)).append(COLUMN));
-        stringBuilder.delete(stringBuilder.length() - 6, stringBuilder.length());
-        stringBuilder.append(ENTER);
+        stringBuilder.delete(stringBuilder.length() - LAST_INTERVAL_LENGTH, stringBuilder.length());
+        stringBuilder.append("\n");
     }
 
     private static String divideValue(boolean value) {
@@ -60,10 +61,10 @@ public class ResultView {
         StringBuilder stringBuilder = new StringBuilder();
         Map<String, String> temporary = ladderResult.getLadderResult();
 
-        stringBuilder.append(String.format("%s%s%s", ENTER, "실행결과", ENTER));
+        stringBuilder.append("\n실행결과\n");
         if (request.equals(ALL)) {
             temporary.keySet().stream()
-                    .forEachOrdered(key -> stringBuilder.append(String.format("%s : %s %s", key, temporary.get(key), ENTER)));
+                    .forEachOrdered(key -> stringBuilder.append(String.format("%s : %s \n", key, temporary.get(key))));
             System.out.println(stringBuilder);
             return;
         }

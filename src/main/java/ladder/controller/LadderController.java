@@ -1,8 +1,6 @@
 package ladder.controller;
 
-import ladder.domain.Ladder;
-import ladder.domain.LadderResult;
-import ladder.domain.Person;
+import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -19,7 +17,8 @@ public class LadderController {
         LadderResult ladderResult = LadderResult.of(names);
 
         int height = InputView.inputHeight();
-        Ladder ladder = Ladder.of(height, persons.size());
+        LineStrategy lineStrategy = new DeduplicationStrategy();
+        Ladder ladder = Ladder.of(lineStrategy, height, persons.size());
         ladderResult.findLadderResult(ladder, results);
         ResultView.printName(persons);
         ResultView.drawLadders(ladder, results);
