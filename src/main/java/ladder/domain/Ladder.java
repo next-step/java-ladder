@@ -13,10 +13,6 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public List<Line> lines() {
-        return lines;
-    }
-
     public static Ladder create(int width, int height, ValueGenerateStrategy valueGenerateStrategy) {
         validateHeight(height);
         List<Line> lines = new ArrayList<>();
@@ -45,6 +41,10 @@ public class Ladder {
             position = line.move(position);
         }
         return position;
+    }
+
+    public List<Line> lines() {
+        return lines;
     }
 
     @Override

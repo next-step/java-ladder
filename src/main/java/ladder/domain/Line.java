@@ -35,10 +35,6 @@ public class Line {
         return points.get(startPosition).move();
     }
 
-    public List<Point> points() {
-        return points;
-    }
-
     public void validatePoints(List<Point> points) {
         if (points == null) {
             throw new IllegalArgumentException("라인을 구성하는 포인트들은 null 일 수 없습니다.");
@@ -67,6 +63,10 @@ public class Line {
         if (width < MIN_WIDTH) {
             throw new IllegalArgumentException(String.format("라인의 폭은 2보다 작을 수 없습니다. (현재 라인 폭 : %d)", width));
         }
+    }
+
+    public List<Point> points() {
+        return points;
     }
 
     @Override

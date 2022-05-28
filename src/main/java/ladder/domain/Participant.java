@@ -21,10 +21,6 @@ public class Participant {
         return names.stream().map(Participant::new).collect(Collectors.toList());
     }
 
-    public String name() {
-        return name;
-    }
-
     public int nameLength() {
         return name.length();
     }
@@ -37,6 +33,10 @@ public class Participant {
         if (name.length() > MAX_NAME_LENGTH || name.length() < MIN_NAME_LENGTH) {
             throw new IllegalArgumentException(String.format("사람 이름은 1 ~ 5 글자를 만족해야 합니다. 현재 이름 길이 : %d", name.length()));
         }
+    }
+
+    public String name() {
+        return name;
     }
 
     @Override
