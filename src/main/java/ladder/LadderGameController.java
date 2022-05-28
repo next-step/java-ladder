@@ -24,9 +24,8 @@ public class LadderGameController {
     public static void main(String[] args) {
         List<Participant> participants = Participant.create(InputView.scanParticipantNames());
         ParticipantGroup participantGroup = new ParticipantGroup(participants);
-        int maxConnectionLineLength = participantGroup.maxParticipantNameLength();
 
-        List<Score> scores = Score.create(InputView.scanScores(), maxConnectionLineLength);
+        List<Score> scores = Score.create(InputView.scanScores());
         LadderGame ladderGame = new LadderGame(participants, scores);
 
         int height = InputView.scanLadderHeight();
