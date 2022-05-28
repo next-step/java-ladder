@@ -41,4 +41,15 @@ class DirectionTest {
     void last_마지막_포인트_방향(Direction currentDirection, Direction nextDirection) {
         assertThat(currentDirection.last()).isEqualTo(nextDirection);
     }
+
+    @ParameterizedTest
+    @CsvSource(value = {
+            "3, RIGHT, 4",
+            "3, STRAIGHT, 3",
+            "3, LEFT, 2"
+    })
+    @DisplayName("방향에 맞는 다음 위치를 반환한다.")
+    void nextPosition_다음방향위치_반환(int currentPosition, Direction direction, int nextPosition) {
+        assertThat(direction.nextPosition(currentPosition)).isEqualTo(nextPosition);
+    }
 }
