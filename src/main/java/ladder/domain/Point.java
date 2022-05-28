@@ -14,7 +14,7 @@ public class Point {
     }
 
     public int move() {
-        return position + direction.getUnitDirection();
+        return direction.nextPosition(position);
     }
 
     public boolean isPreviousPoint(Point nextPoint) {
