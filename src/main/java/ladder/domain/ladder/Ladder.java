@@ -11,11 +11,11 @@ public class Ladder {
         lineList = list;
     }
 
-    public static Ladder createLadder(int personNum, int ladderHeight) {
+    public static Ladder createLadder(int width, int ladderHeight) {
         List<Line> tmpList = new ArrayList<>();
 
         for (int i = 0; i < ladderHeight; i++) {
-            tmpList.add(new Line(personNum));
+            tmpList.add(new Line(width));
         }
 
         return new Ladder(tmpList);
