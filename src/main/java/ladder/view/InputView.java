@@ -17,6 +17,7 @@ public class InputView {
     private static final String MESSAGE_INVALID_NUMBER_FORMAT = "숫자만 입력 가능합니다.";
     private static final String MESSAGE_INPUT_RESULT = "실행 결과를 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String MESSAGE_INVALID_RESULT_COUNT = "결과의 개수는 %d 이여야 합니다.";
+    private static final String MESSAGE_INPUT_SEARCH = "결과를 보고 싶은 사람은?";
 
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -92,5 +93,10 @@ public class InputView {
             throw new InvalidCountOfElementException(String.format(MESSAGE_INVALID_RESULT_COUNT, playerElements.size()));
         }
         return resultElements;
+    }
+
+    public static String searchResult() {
+        System.out.println(MESSAGE_INPUT_SEARCH);
+        return scanner.nextLine();
     }
 }

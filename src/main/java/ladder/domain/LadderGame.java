@@ -4,7 +4,7 @@ import java.util.List;
 
 public class LadderGame {
 
-    private static final String ALL_RESULT = "all";
+    public static final String ALL_RESULT = "all";
 
     private final ElementGroup elementGroup;
     private final Ladder ladder;

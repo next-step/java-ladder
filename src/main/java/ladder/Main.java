@@ -1,11 +1,10 @@
 package ladder;
 
-import ladder.domain.ElementGroup;
-import ladder.domain.Height;
-import ladder.domain.LadderGame;
-import ladder.domain.Elements;
+import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.ResultView;
+
+import java.util.List;
 
 public class Main {
 
@@ -18,5 +17,39 @@ public class Main {
         ResultView.ladderResultView(ladderGame);
 
         ladderGame.start();
+
+        loopSearchResult(ladderGame);
+    }
+
+    private static void loopSearchResult(LadderGame ladderGame) {
+        while (true) {
+            boolean continuousLoop = validateSearchResult(ladderGame);
+            if (!continuousLoop) {
+                break;
+            }
+        }
+    }
+
+    private static boolean validateSearchResult(LadderGame ladderGame) {
+        try {
+            return searchResult(ladderGame);
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+            return validateSearchResult(ladderGame);
+        }
+    }
+
+    private static boolean searchResult(LadderGame ladderGame) {
+        String searchValue = InputView.searchResult();
+        List<Result> results = ladderGame.results(searchValue);
+        ResultView.searchResultView(results);
+        return continuousLoop(searchValue);
+    }
+
+    private static boolean continuousLoop(String searchValue) {
+        if (searchValue.equals(LadderGame.ALL_RESULT)) {
+            return false;
+        }
+        return true;
     }
 }

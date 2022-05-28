@@ -5,16 +5,20 @@ import ladder.domain.*;
 import ladder.exception.NotSupportException;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ResultBuilder {
 
     private static final int EMPTY_SIZE = 0;
     private static final int MIN_NAME_PLACE_PER_LENGTH = 6;
+    private static final int SINGLE_RESULT_INDEX = 0;
+    private static final int SINGLE_RESULT_SIZE = 1;
     private static final String BLANK_LINE = "\n";
     private static final String VERTICAL_LINE = "|";
     private static final String NAME_EMPTY_ONE_UNIT = " ";
     private static final String NAME_CONNECT_ONE_UNIT = "-";
+    private static final String ALL_RESULT_TEMPLATE = "%s : %s";
 
     private static final StringBuilder sb = new StringBuilder();
 
@@ -95,5 +99,27 @@ public class ResultBuilder {
             renderElement(element, maxNameSize);
         }
         sb.append(BLANK_LINE);
+    }
+
+    public static String searchResult(List<Result> results) {
+        initializeStringBuilder();
+
+        if (results.size() == SINGLE_RESULT_SIZE) {
+            return renderSingleResult(results.get(SINGLE_RESULT_INDEX));
+        }
+        return renderMultiResult(results);
+    }
+
+    private static String renderSingleResult(Result result) {
+        sb.append(result.value());
+        return sb.toString();
+    }
+
+    private static String renderMultiResult(List<Result> results) {
+        for (Result result : results) {
+            sb.append(String.format(ALL_RESULT_TEMPLATE, result.playerName(), result.value()));
+            sb.append(BLANK_LINE);
+        }
+        return sb.toString();
     }
 }
