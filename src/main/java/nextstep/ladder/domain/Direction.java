@@ -33,13 +33,6 @@ public class Direction {
         return Direction.of(false, right);
     }
 
-    public Direction next() {
-        if(this.right){
-            return Direction.of(true, false);
-        }
-        return Direction.of(false, RandomGenerator.generateRandomBoolean());
-    }
-
     public static Direction first(boolean right) {
         return of(false, right);
     }
