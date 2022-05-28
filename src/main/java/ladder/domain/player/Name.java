@@ -23,5 +23,4 @@ public class Name {
     public String toString() {
         return name;
     }
-
 }

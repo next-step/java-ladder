@@ -21,8 +21,9 @@ public class ResultView {
     private static void showPlayers(Players players) {
         players.getPlayers().stream()
                 .forEach(player ->
-                        { System.out.print(player.toString() + "     "); }
+                        { System.out.print(String.format("%7s", player.toString())); }
                 );
+
         System.out.println();
     }
 
@@ -37,11 +38,12 @@ public class ResultView {
     private static void showLine(Line line) {
         List<Boolean> nowLine = line.getContents();
 
+        System.out.print(String.format("%7s", "|"));
         for (Boolean isLine : nowLine) {
-            System.out.print("|");
             showValidLine(isLine);
+            System.out.print("|");
         }
-        System.out.println("|");
+        System.out.println();
     }
 
     public static void showValidLine(Boolean isLine) {
@@ -53,7 +55,7 @@ public class ResultView {
     }
 
     private static void showContent(String contents) {
-        IntStream.range(0, 9).mapToObj(j -> contents).forEach(System.out::print);
+        IntStream.range(0, 6).mapToObj(j -> contents).forEach(System.out::print);
 
     }
 }
