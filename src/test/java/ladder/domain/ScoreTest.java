@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -14,6 +15,13 @@ class ScoreTest {
     @DisplayName("점수를 생성한다.")
     void Score_점수_생성() {
         assertThat(new Score("꽝", 3)).isNotNull().isInstanceOf(Score.class);
+    }
+
+    @ParameterizedTest
+    @NullSource
+    @DisplayName("점수를 생성시 스코어 값이 null 일 경우 예외가 발생한다.")
+    void Score_점수_생성_예외(String scoreValue) {
+        assertThatThrownBy(() -> new Score(scoreValue, 3)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest

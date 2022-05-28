@@ -31,7 +31,7 @@ public class Score {
     }
 
     private boolean isBlank(String scoreValue) {
-        return scoreValue.isBlank() || scoreValue == null;
+        return scoreValue == null || scoreValue.isBlank();
     }
 
     public String score() {
