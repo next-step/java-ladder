@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import ladder.exception.InvalidCountOfElementException;
+import ladder.exception.NotFoundElementException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -37,5 +38,39 @@ class ElementsTest {
     void maxNameSize() {
         assertThat(new Elements("tom", "tommy", "paul").maxNameSize()).isEqualTo(5);
         assertThat(new Elements("tom", "안녕하세요", "paul").maxNameSize()).isEqualTo(10);
+    }
+
+    @Test
+    @DisplayName("해당하는 이름의 Element를 반환한다.")
+    void searchName() {
+        Element tom = new Element("tom", new Position(1, 0));
+        Element paul = new Element("paul", new Position(1, 1));
+        Elements elements = new Elements(List.of(tom, paul));
+
+        assertThat(elements.value(new Name("tom"))).isEqualTo(tom);
+        assertThat(elements.value(new Name("paul"))).isEqualTo(paul);
+    }
+
+    @Test
+    @DisplayName("해당하는 이름의 Element가 존재하지 않을 경우 NotFoundElement를 반환한다.")
+    void invalidSearchName() {
+        Element tom = new Element("tom", new Position(1, 0));
+        Element paul = new Element("paul", new Position(1, 1));
+        Elements elements = new Elements(List.of(tom, paul));
+
+        assertThatThrownBy(() -> elements.value(new Name("anna")))
+                .isInstanceOf(NotFoundElementException.class)
+                .hasMessage("anna를 찾을 수 없습니다.");
+    }
+
+    @Test
+    @DisplayName("해당하는 위치값을 가진 Element를 반환한다.")
+    void searchPosition() {
+        Element tom = new Element("tom", new Position(1, 0));
+        Element paul = new Element("paul", new Position(1, 1));
+        Elements elements = new Elements(List.of(tom, paul));
+
+        assertThat(elements.value(new Position(1,0))).isEqualTo(tom);
+        assertThat(elements.value(new Position(1,1))).isEqualTo(paul);
     }
 }

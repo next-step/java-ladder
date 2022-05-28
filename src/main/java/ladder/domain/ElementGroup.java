@@ -1,5 +1,8 @@
 package ladder.domain;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class ElementGroup {
 
     private final Elements playerElements;
@@ -27,4 +30,16 @@ public class ElementGroup {
         return resultElements;
     }
 
+    public Result result(Name name) {
+        Element player = playerElements.value(name);
+        return new Result(player.name(), resultElements.value(player.position()));
+    }
+
+    public List<Result> resultAll() {
+        return playerElements.toList()
+                .stream()
+                .map(Element::name)
+                .map(name -> result(name))
+                .collect(Collectors.toList());
+    }
 }

@@ -1,6 +1,10 @@
 package ladder.domain;
 
+import java.util.List;
+
 public class LadderGame {
+
+    private static final String ALL_RESULT = "all";
 
     private final ElementGroup elementGroup;
     private final Ladder ladder;
@@ -36,5 +40,12 @@ public class LadderGame {
 
     public void start() {
         ladder.start(elementGroup.playerElements());
+    }
+
+    public List<Result> results(String value) {
+        if (value.equals(ALL_RESULT)) {
+            return elementGroup.resultAll();
+        }
+        return List.of(elementGroup.result(new Name(value)));
     }
 }

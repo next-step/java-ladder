@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import ladder.exception.InvalidCountOfElementException;
+import ladder.exception.NotFoundElementException;
 import ladder.util.SplitUtil;
 
 import java.util.Collections;
@@ -57,6 +58,20 @@ public class Elements {
         return values.stream()
                 .mapToInt(Element::nameSize)
                 .max()
+                .orElseThrow(RuntimeException::new);
+    }
+
+    public Element value(Name name) {
+        return values.stream()
+                .filter(element -> element.sameName(name))
+                .findFirst()
+                .orElseThrow(() -> new NotFoundElementException(name.toString()));
+    }
+
+    public Element value(Position position) {
+        return values.stream()
+                .filter(element -> element.samePosition(position))
+                .findFirst()
                 .orElseThrow(RuntimeException::new);
     }
 

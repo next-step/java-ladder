@@ -42,6 +42,14 @@ public class Element {
         return position;
     }
 
+    public boolean sameName(Name name) {
+        return this.name.equals(name);
+    }
+
+    public boolean samePosition(Position position) {
+        return this.position.equals(position);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
