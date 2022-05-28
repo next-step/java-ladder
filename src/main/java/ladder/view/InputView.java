@@ -40,7 +40,7 @@ public class InputView {
     }
 
     private static Elements validateParticipantsName() {
-        return new Elements(scanner.nextLine());
+        return Elements.createPlayers(scanner.nextLine());
     }
 
     public static Height ladderHeightView() {
@@ -88,7 +88,7 @@ public class InputView {
     }
 
     private static Elements validateResult(Elements playerElements) {
-        Elements resultElements = new Elements(scanner.nextLine());
+        Elements resultElements = Elements.createResults(scanner.nextLine());
         if (!playerElements.sameSize(resultElements)) {
             throw new InvalidCountOfElementException(String.format(MESSAGE_INVALID_RESULT_COUNT, playerElements.size()));
         }

@@ -9,4 +9,8 @@ public class NotChangeException extends RuntimeException {
     public NotChangeException(int max, int position) {
         super(String.format(MESSAGE, Position.MIN_VALUE, max, position));
     }
+
+    public NotChangeException(String message) {
+        super(message);
+    }
 }

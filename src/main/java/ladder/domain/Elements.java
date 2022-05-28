@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.constant.Type;
 import ladder.exception.InvalidCountOfElementException;
 import ladder.exception.NotFoundElementException;
 import ladder.util.SplitUtil;
@@ -17,14 +18,6 @@ public class Elements {
 
     private final List<Element> values;
 
-    public Elements(String names) {
-        this(convertToList(SplitUtil.split(names)));
-    }
-
-    public Elements(String... names) {
-        this(convertToList(names));
-    }
-
     public Elements(List<Element> values) {
         if (values.size() < MIN_COUNT_OF_PERSON) {
             throw new InvalidCountOfElementException();
@@ -32,9 +25,17 @@ public class Elements {
         this.values = values;
     }
 
-    private static List<Element> convertToList(String... names) {
+    public static Elements createPlayers(String names) {
+        return new Elements(convertToList(SplitUtil.split(names), Type.UNFIXED));
+    }
+
+    public static Elements createResults(String names) {
+        return new Elements(convertToList(SplitUtil.split(names), Type.FIXED));
+    }
+
+    private static List<Element> convertToList(String[] names, Type type) {
         return IntStream.range(Position.MIN_VALUE, names.length)
-                .mapToObj(index -> new Element(names[index], names.length - 1, index))
+                .mapToObj(index -> new Element(names[index], new Position(names.length - 1, index, type)))
                 .collect(Collectors.toList());
     }
 

@@ -9,9 +9,9 @@ class ElementGroupTest {
 
     @Test
     void invalidCreate() {
-        assertThatThrownBy(() -> new ElementGroup(null, new Elements("tom")))
+        assertThatThrownBy(() -> new ElementGroup(null, Elements.createResults("1000")))
                 .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new ElementGroup(new Elements("tom"), null))
+        assertThatThrownBy(() -> new ElementGroup(Elements.createPlayers("tom"), null))
                 .isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new ElementGroup(null, null))
                 .isInstanceOf(IllegalArgumentException.class);

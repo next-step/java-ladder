@@ -9,10 +9,6 @@ public class Element {
     private final Name name;
     private final Position position;
 
-    public Element(String name, int maxPosition, int position) {
-        this(name, new Position(maxPosition, position));
-    }
-
     public Element(String name, Position position) {
         this(new Name(name), position);
     }
