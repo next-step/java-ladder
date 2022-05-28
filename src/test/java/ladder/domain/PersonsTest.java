@@ -16,6 +16,4 @@ public class PersonsTest {
         Persons persons = Persons.of(Arrays.asList(pobi, honux));
         assertThat(persons).isEqualTo(Persons.of(Arrays.asList(pobi, honux)));
     }
-
-
 }

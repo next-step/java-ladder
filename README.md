@@ -50,8 +50,10 @@
 * 각 사용자의 사다리 결과를 나타내는 도메인 로직 생성
   *Line에서 Index값 추출
     -해당 Index값 테스트
-  * 각사람마다 재귀적으로 진행하여 최종 Index값을 갖고있는 List반환
+  * Ladder에서 각사람마다 재귀적으로 진행하여 최종 Index값을 갖고있는 List반환
     -해당 IndexList값 테스트
+  * LadderResult에서 결과 맞는지 확인Test
+  * 
 ## 도메인 구상
 
 (step2)
@@ -69,3 +71,7 @@
     => 사람들 객체와 사다리 값을 인자로 주면 결과값을 Map형식으로 저장하는 result객체 구현
 
 추가할 객체: 사람들객체(사람객체 컬렉션), 사다리결과객체(mapCollection)
+
+구현 후 refactoring 고민과정.. 
+==> Ladder(List<Line> + LadderResult객체) , Persons => finalResult(mapCollection)
+(그럼 만약 Persons를 인자로 받는다면.. input으로 받은 NameList를 어떻게 전달할 것인가) 

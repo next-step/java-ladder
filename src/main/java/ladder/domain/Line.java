@@ -39,11 +39,11 @@ public class Line {
     }
 
     public int move(int index) {
-        if (index != 0 && points.get(index - 1)) {
-            return index - 1;
+        if (index != INITIAL && points.get(index - 1)) {
+            return index - ONE;
         }
         if (points.get(index)) {
-            return index + 1;
+            return index + ONE;
         }
         return index;
     }
