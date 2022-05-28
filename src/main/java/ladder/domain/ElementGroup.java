@@ -6,6 +6,9 @@ public class ElementGroup {
     private final Elements resultElements;
 
     public ElementGroup(Elements playerElements, Elements resultElements) {
+        if (playerElements == null || resultElements == null) {
+            throw new IllegalArgumentException();
+        }
         this.playerElements = playerElements;
         this.resultElements = resultElements;
     }
