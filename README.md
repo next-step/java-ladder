@@ -55,8 +55,6 @@
   * LadderResult에서 결과 맞는지 확인Test
   * 
 ## 도메인 구상
-
-(step2)
 * 사다리 라인 랜덤 생성
     메시지 전송자 : 사다리
     메시지 수신자 : 라인
@@ -75,3 +73,4 @@
 구현 후 refactoring 고민과정.. 
 ==> Ladder(List<Line> + LadderResult객체) , Persons => finalResult(mapCollection)
 (그럼 만약 Persons를 인자로 받는다면.. input으로 받은 NameList를 어떻게 전달할 것인가) 
+

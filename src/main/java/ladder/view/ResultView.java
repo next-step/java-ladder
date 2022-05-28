@@ -47,7 +47,6 @@ public class ResultView {
                 .forEachOrdered(value -> stringBuilder.append(divideValue(value)).append(COLUMN));
         stringBuilder.delete(stringBuilder.length() - 6, stringBuilder.length());
         stringBuilder.append(ENTER);
-
     }
 
     private static String divideValue(boolean value) {
@@ -60,7 +59,7 @@ public class ResultView {
     public static void resultFinal(LadderResult ladderResult, String request) {
         StringBuilder stringBuilder = new StringBuilder();
         Map<String, String> temporary = ladderResult.getLadderResult();
-        
+
         stringBuilder.append(String.format("%s%s%s", ENTER, "실행결과", ENTER));
         if (request.equals(ALL)) {
             temporary.keySet().stream()

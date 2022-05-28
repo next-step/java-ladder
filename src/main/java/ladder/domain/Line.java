@@ -37,7 +37,7 @@ public class Line {
     public List<Boolean> getPoints() {
         return points;
     }
-
+    
     public int move(int index) {
         if (index != INITIAL && points.get(index - 1)) {
             return index - ONE;
