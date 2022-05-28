@@ -39,7 +39,7 @@ public class Ladder {
         }
     }
 
-    int finalPosition(int startPosition) {
+    public int finalPosition(int startPosition) {
         int position = startPosition;
         for (Line line : lines) {
             position = line.move(position);
