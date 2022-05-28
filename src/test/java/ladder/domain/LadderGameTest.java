@@ -42,6 +42,7 @@ class LadderGameTest {
     @Test
     @DisplayName("전달 받은 사다리에 대한 사다리 결과를 반환한다.")
     void ladderResult_사다리_결과() {
+        // given
         CustomValueGenerator customValueGenerator = new CustomValueGenerator(List.of(
                 true, true,
                 false, true,
@@ -51,12 +52,17 @@ class LadderGameTest {
         List<Score> scores = List.of(new Score("5000", 5), new Score("3000", 5), new Score("꽝", 5));
         LadderGame ladderGame = new LadderGame(participants, scores);
 
-        Map<Participant, Score> results = Map.of(
+        Map<Participant, Score> expectedResult = Map.of(
                 new Participant("wu2ee"), new Score("꽝", 5),
                 new Participant("pobi"), new Score("3000", 5),
                 new Participant("honux"), new Score("5000", 5)
         );
-        LadderResult ladderResult = new LadderResult(results);
-        assertThat(ladderGame.ladderResult(ladder)).isEqualTo(ladderResult);
+        LadderResult expectedLadderResult = new LadderResult(expectedResult);
+
+        // when
+        LadderResult actualLadderResult = ladderGame.ladderResult(ladder);
+
+        // then
+        assertThat(actualLadderResult).isEqualTo(expectedLadderResult);
     }
 }
