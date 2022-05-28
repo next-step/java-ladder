@@ -19,11 +19,16 @@ public class Line {
     }
 
     private void validate(List<Boolean> contents) {
-        IntStream.range(0, contents.size() - 1).
-                filter(i -> contents.get(i) == true && contents.get(i + 1) == true).
-                forEach(i -> {
+        int bound = contents.size() - 1;
+        for (int i = 0; i < bound; i++) {
+            overlapValidate(contents, i);
+        }
+    }
+
+    private void overlapValidate(List<Boolean> contents, int i) {
+        if (contents.get(i) == true && contents.get(i + 1) == true) {
             throw new OverlapLineException("Line이 겹치는 부분이 있습니다.");
-        });
+        }
     }
 
     private static List<Boolean> createContent(int person){
