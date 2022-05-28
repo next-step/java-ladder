@@ -2,7 +2,6 @@ package ladder.domain;
 
 import ladder.constant.Direction;
 import ladder.constant.Type;
-import ladder.exception.InvalidBoundPositionException;
 import ladder.exception.NotChangeException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,67 +15,14 @@ class PositionTest {
     public static final Position FIXED_VALUE_ONE = new Position(1, 1, Type.FIXED);
 
     @Test
-    @DisplayName("0 보다 작은 Position 으로 생성할 경우 InvalidBoundPositionException 를 반환한다.")
-    void invalidPosition_Min() {
-        assertThatThrownBy(() -> new Position(1, -1, Type.UNFIXED))
-                .isInstanceOf(InvalidBoundPositionException.class)
-                .hasMessage("0 ~ 1 사이의 값만 가능합니다.");
-    }
-
-    @Test
-    @DisplayName("최댓값 보다 큰 Position 으로 생성할 경우 InvalidBoundPositionException 를 반환한다.")
-    void invalidPosition_Max() {
-        assertThatThrownBy(() -> new Position(1, 2, Type.UNFIXED))
-                .isInstanceOf(InvalidBoundPositionException.class)
-                .hasMessage("0 ~ 1 사이의 값만 가능합니다.");
-    }
-
-    @Test
-    @DisplayName("포지션 값이 최솟값일때 왼쪽으로 변경하면 예외를 반환한다.")
-    void invalidChangeLeft() {
-        Position position = new Position(2, 0, Type.UNFIXED);
-
-        assertThatThrownBy(() -> position.change(Direction.LEFT))
-                .isInstanceOf(NotChangeException.class)
-                .hasMessage("현재 위치가 최소 혹은 최대이라서 변경할 수 없습니다. 최솟값=0, 최댓값=2, 현재 위치=0");
-    }
-
-    @Test
-    @DisplayName("왼쪽으로 이동하면 포지션 값이 1 감소한다.")
-    void down() {
-        Position position = new Position(2, 1, Type.UNFIXED);
-
-        position.change(Direction.LEFT);
-
-        assertThat(position).isEqualTo(new Position(2, 0, Type.UNFIXED));
-    }
-
-    @Test
-    @DisplayName("포지션 값이 최댓값일때 오른쪽으로 변경하면 예외를 반환한다.")
-    void invalidChangeRight() {
-        Position position = new Position(2, 2, Type.UNFIXED);
-
-        assertThatThrownBy(() -> position.change(Direction.RIGHT))
-                .isInstanceOf(NotChangeException.class)
-                .hasMessage("현재 위치가 최소 혹은 최대이라서 변경할 수 없습니다. 최솟값=0, 최댓값=2, 현재 위치=2");
-    }
-
-    @Test
-    @DisplayName("오른쪽으로 이동하면 포지션 값이 1 증가한다.")
-    void up() {
-        Position position = new Position(2, 1, Type.UNFIXED);
-
-        position.change(Direction.RIGHT);
-
-        assertThat(position).isEqualTo(new Position(2, 2, Type.UNFIXED));
-    }
-
-    @Test
-    @DisplayName("포지션 타입이 FIXED 일때 오른쪽으로 변경하면 예외를 반환한다.")
+    @DisplayName("포지션 타입이 FIXED 일때 변경하면 예외를 반환한다.")
     void invalidChange() {
         Position position = new Position(2, 1, Type.FIXED);
 
         assertThatThrownBy(() -> position.change(Direction.RIGHT))
+                .isInstanceOf(NotChangeException.class)
+                .hasMessage("고정된 Position 이여서 변경할 수 없습니다.");
+        assertThatThrownBy(() -> position.change(Direction.LEFT))
                 .isInstanceOf(NotChangeException.class)
                 .hasMessage("고정된 Position 이여서 변경할 수 없습니다.");
     }

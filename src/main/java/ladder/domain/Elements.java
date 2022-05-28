@@ -35,7 +35,7 @@ public class Elements {
     }
 
     private static List<Element> convertToList(String[] names, Type type) {
-        return IntStream.range(Position.MIN_VALUE, names.length)
+        return IntStream.range(Index.MIN_VALUE, names.length)
                 .mapToObj(index -> new Element(names[index], new Position(names.length - 1, index, type)))
                 .collect(Collectors.toList());
     }

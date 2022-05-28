@@ -41,7 +41,7 @@ public class Line {
     }
 
     private boolean continuousConnected(List<Point> points, int currentIndex) {
-        if (currentIndex == Position.MIN_VALUE) {
+        if (currentIndex == Index.MIN_VALUE) {
             return false;
         }
         return points.get(currentIndex).isConnect()
@@ -49,20 +49,20 @@ public class Line {
     }
 
     public Direction direction(Position position) {
-        if(connectedLeftLine(position)) {
+        if(connectedLeftLine(position.index())) {
             return Direction.LEFT;
         }
-        if (connectedRightLine(position)) {
+        if (connectedRightLine(position.index())) {
             return Direction.RIGHT;
         }
         return Direction.STAY;
     }
 
-    private boolean connectedLeftLine(Position position) {
-        return !position.minimum() && points.get(position.leftValue()).isConnect();
+    private boolean connectedLeftLine(Index index) {
+        return !index.minimum() && points.get(index.leftValue()).isConnect();
     }
-    private boolean connectedRightLine(Position position) {
-        return !position.maximum() && points.get(position.value()).isConnect();
+    private boolean connectedRightLine(Index index) {
+        return !index.maximum() && points.get(index.value()).isConnect();
     }
 
     public List<Point> points() {
