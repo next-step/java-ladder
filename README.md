@@ -8,7 +8,7 @@
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)1
 
-## feat
+## step2
 - Line은 가로 한줄을 의미한다.
 - Line에서 하나의 connection의 존재 유무는 boolean으로 표현한다.
 - Line에서 만약 전 connection이 true였다면 다음에 그려질 connection은 무조건 false다.
@@ -16,10 +16,18 @@
 - 사다리(Ladder)는 Line의 List를 갖고 있다.
 - 사다리게임에 참여하는 플레이어들을 일급콜렉션으로 관리한다.
 - 플레이어는 String을 원시값 포장한 Name이라는 객체를 가지고 있다.
-  
-## exception
+
+### exception
 - 참여한 사람의 이름은 5이하이다.
-    - 길이가 5가 넘으면 예외처리
+  - 길이가 5가 넘으면 예외처리
 - 플레이어는 여러명 참가해야 게임진행이 가능하다.
-    - 한명만 입력되면 예외를 던진다.
-    
+  - 한명만 입력되면 예외를 던진다.
+  
+## step3
+- 사다리게임 결과를 입력한다.
+
+### exception
+-사다리 게임 결과의 수는 플레이어의 수와 같다
+  - 수가 맞지않으면 예외를 던진다.
+  
+  
