@@ -15,6 +15,7 @@ public class Elements {
 
     public static final int MIN_COUNT_OF_PERSON = 2;
     private static final int EXCLUSION_POINT_VALUE = 1;
+    private static final int EMPTY_VALUE = 0;
 
     private final List<Element> values;
 
@@ -60,6 +61,12 @@ public class Elements {
                 .mapToInt(Element::nameSize)
                 .max()
                 .orElseThrow(RuntimeException::new);
+    }
+
+    public boolean containUnfixedPosition() {
+        return values.stream()
+                .filter(Element::unfixedPosition)
+                .count() > EMPTY_VALUE;
     }
 
     public Element value(Name name) {

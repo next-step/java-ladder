@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.exception.NotFoundResultException;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,6 +33,9 @@ public class ElementGroup {
     }
 
     public Result result(Name name) {
+        if (playerElements.containUnfixedPosition()) {
+            throw new NotFoundResultException();
+        }
         Element player = playerElements.value(name);
         return new Result(player.name(), resultElements.value(player.position()));
     }

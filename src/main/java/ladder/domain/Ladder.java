@@ -35,6 +35,7 @@ public class Ladder {
         lines.stream()
                 .map(line -> line.direction(player.position()))
                 .forEach(player::move);
+        player.fixPosition();
     }
 
     public int totalLines() {

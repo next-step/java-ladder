@@ -61,8 +61,12 @@ public class Position {
         return value;
     }
 
-    private boolean fixed() {
+    public boolean fixed() {
         return type.fixed();
+    }
+
+    public void fix() {
+        type = Type.FIXED;
     }
 
     @Override

@@ -46,6 +46,14 @@ public class Element {
         return this.position.equals(position);
     }
 
+    public boolean unfixedPosition() {
+        return !position.fixed();
+    }
+
+    public void fixPosition() {
+        position.fix();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
