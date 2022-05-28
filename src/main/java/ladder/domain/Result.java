@@ -6,6 +6,9 @@ public class Result {
     private final Name value;
 
     public Result(Name playerName, Element result) {
+        if (playerName == null || result == null) {
+            throw new IllegalArgumentException();
+        }
         this.playerName = playerName;
         this.value = result.name();
     }
