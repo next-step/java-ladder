@@ -7,3 +7,8 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+## 기능 요구사항
+- 플레이어 이름을 입력한다.
+  - 이름은 비어있을 수 없다.
+  - 이름은 최대 5글자를 넘을 수 없다.
