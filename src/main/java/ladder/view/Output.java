@@ -1,6 +1,6 @@
 package ladder.view;
 
-import ladder.controller.LadderResult;
+import ladder.domain.LadderResult;
 import ladder.domain.Line;
 import ladder.domain.Player;
 

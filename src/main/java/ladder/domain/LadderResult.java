@@ -1,6 +1,4 @@
-package ladder.controller;
-
-import ladder.domain.Player;
+package ladder.domain;
 
 public class LadderResult {
     private final Player player;

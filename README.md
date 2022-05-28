@@ -144,12 +144,12 @@ henry: 💣
 - [x] 가독성을 높이기 위해 의미있는 단위로 개행
 - [x] 불필요한 인터페이스 제거: Scanned
 - [x] 행위없는 class 제거: Reward
+- [x] LadderResult controller -> domain 패키지 변경
+- [ ] Line 이 boolean 뿐만아니라 경계선이 존재하는지도 알고 있게 변경
 - [ ] showResult 테스트 가능한 구조로 변경
   - [ ] 사다리는 Players 가 아닌 다른 곳에서 생성
 - [ ] Players.toString 내부의 output layer 를 분리
-- [ ] 축약된 변수명 풀어쓰기
-  - Players.findPlayer
 - [ ] getter 최대한 메시지로 변경
   - player.name
-- [ ] LadderResult controller -> domain 패키지 변경
-- [ ] Line 이 boolean 뿐만아니라 경계선이 존재하는지도 알고 있게 변경
+- [ ] 축약된 변수명 풀어쓰기
+  - Players.findPlayer
