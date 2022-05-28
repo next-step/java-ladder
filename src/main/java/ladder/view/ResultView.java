@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.domain.Rewards;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Line;
 import ladder.domain.player.Players;
@@ -8,7 +9,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class ResultView {
-    public static void showResult(Players players, Ladder ladder) {
+    public static void showLadderResult(Players players, Ladder ladder, Rewards rewards) {
         System.out.println();
         System.out.println("실행결과");
         System.out.println();
@@ -16,6 +17,8 @@ public class ResultView {
         showPlayers(players);
 
         showLadder(ladder);
+        
+        showResultValue(rewards);
     }
 
     private static void showPlayers(Players players) {
@@ -56,6 +59,13 @@ public class ResultView {
 
     private static void showContent(String contents) {
         IntStream.range(0, 6).mapToObj(j -> contents).forEach(System.out::print);
+    }
 
+    private static void showResultValue(Rewards rewards) {
+        rewards.getResultValues().stream()
+                .forEach(reward ->
+                        { System.out.print(String.format("%7s", reward)); }
+                );
+        System.out.println();
     }
 }
