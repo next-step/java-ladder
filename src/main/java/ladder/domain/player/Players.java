@@ -4,6 +4,7 @@ import ladder.exception.NeedMorePlayerException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Players {
@@ -27,7 +28,7 @@ public class Players {
     }
 
     public List<Player> getPlayers() {
-        return playerList;
+        return Collections.unmodifiableList(playerList);
     }
 
     public int getPlayerNum() { return playerList.size(); }
