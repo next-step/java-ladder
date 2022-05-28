@@ -1,6 +1,5 @@
 package ladder.view;
 
-import ladder.controller.Reward;
 import ladder.domain.Player;
 import ladder.domain.Players;
 
@@ -30,14 +29,13 @@ import java.util.stream.Collectors;
                 .collect(Collectors.toList()));
     }
 
-     public static List<Reward> scanRewards() {
+     public static List<String> scanRewards() {
          System.out.println("Put Execution results separated by ','.");
          return parseResults(scanner.nextLine());
      }
 
-     private static List<Reward> parseResults(String nextLine) {
+     private static List<String> parseResults(String nextLine) {
          return Arrays.stream(nextLine.split("\\s*,\\s*"))
-                 .map(Reward::new)
                  .collect(Collectors.toList());
      }
 

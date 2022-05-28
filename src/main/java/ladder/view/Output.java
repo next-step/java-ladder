@@ -1,7 +1,6 @@
 package ladder.view;
 
 import ladder.controller.LadderResult;
-import ladder.controller.Reward;
 import ladder.domain.Line;
 import ladder.domain.Player;
 
@@ -40,10 +39,10 @@ public class Output {
                 .replace(" ", ".") + " ";
     }
 
-    public static void printRewards(List<Reward> rewards) {
+    public static void printRewards(List<String> rewards) {
         Output.print(" ".repeat(2));
         rewards.stream()
-                .forEach(r -> Output.print(format(r.value())));
+                .forEach(reward -> Output.print(format(reward)));
         Output.print("\n");
     }
 

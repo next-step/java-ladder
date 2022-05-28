@@ -4,9 +4,9 @@ import ladder.domain.Player;
 
 public class LadderResult {
     private final Player player;
-    private final Reward reward;
+    private final String reward;
 
-    public LadderResult(Player player, Reward reward) {
+    public LadderResult(Player player, String reward) {
         this.player = player;
         this.reward = reward;
     }
@@ -16,6 +16,6 @@ public class LadderResult {
     }
 
     public String reward() {
-        return this.reward.value();
+        return this.reward;
     }
 }

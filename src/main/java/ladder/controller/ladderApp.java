@@ -10,7 +10,7 @@ import java.util.List;
 public class ladderApp {
     public static void main(String[] args) {
         Players players = Input.scanPlayers();
-        List<Reward> rewards = Input.scanRewards();
+        List<String> rewards = Input.scanRewards();
         Height height = new Height(Input.scanNumber());
 
         Output.printPlayers(players.players());

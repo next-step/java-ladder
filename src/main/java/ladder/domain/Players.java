@@ -2,7 +2,6 @@ package ladder.domain;
 
 import ladder.controller.Ladder;
 import ladder.controller.LadderResult;
-import ladder.controller.Reward;
 import ladder.view.Input;
 import ladder.view.Output;
 
@@ -56,7 +55,7 @@ public class Players {
         );
     }
 
-    public void showResult(List<Reward> rewards, Lines lines) {
+    public void showResult(List<String> rewards, Lines lines) {
         Players targetPlayers = Input.scanPlayerToShow(this);
         List<LadderResult> ladderResults = targetPlayers.players()
                 .stream()
