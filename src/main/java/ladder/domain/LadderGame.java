@@ -14,16 +14,6 @@ public class LadderGame {
         this.scores = scores;
     }
 
-    public LadderResult ladderResult(Ladder ladder) {
-        validateLadder(ladder);
-        Map<Participant, Score> results = new HashMap<>();
-        for (int startPosition = 0; startPosition < participants.size(); startPosition++) {
-            int finalPosition = ladder.finalPosition(startPosition);
-            results.put(participants.get(startPosition), scores.get(finalPosition));
-        }
-        return new LadderResult(results);
-    }
-
     private void validateParticipantsAndScores(List<Participant> participants, List<Score> scores) {
         if (participants == null) {
             throw new IllegalArgumentException("전달 받은 참가자 그룹은 null 일 수 없습니다.");
@@ -34,6 +24,16 @@ public class LadderGame {
         if (participants.size() != scores.size()) {
             throw new IllegalArgumentException(String.format("참가자와 점수 결과 갯수가 같아야 합니다. 참가자 수 : %d, 점수 결과 갯수 : %d", participants.size(), scores.size()));
         }
+    }
+
+    public LadderResult ladderResult(Ladder ladder) {
+        validateLadder(ladder);
+        Map<Participant, Score> results = new HashMap<>();
+        for (int startPosition = 0; startPosition < participants.size(); startPosition++) {
+            int finalPosition = ladder.finalPosition(startPosition);
+            results.put(participants.get(startPosition), scores.get(finalPosition));
+        }
+        return new LadderResult(results);
     }
 
     private void validateLadder(Ladder ladder) {

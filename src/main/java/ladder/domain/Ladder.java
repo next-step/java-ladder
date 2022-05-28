@@ -13,6 +13,12 @@ public class Ladder {
         this.lines = lines;
     }
 
+    private void validateLines(List<Line> lines) {
+        if (lines == null) {
+            throw new IllegalArgumentException("사다리를 구성하는 라인들은 null 일 수 없습니다.");
+        }
+    }
+
     public static Ladder create(int width, int height, ValueGenerateStrategy valueGenerateStrategy) {
         validateHeight(height);
         List<Line> lines = new ArrayList<>();
@@ -21,12 +27,6 @@ public class Ladder {
             lines.add(line);
         }
         return new Ladder(lines);
-    }
-
-    private void validateLines(List<Line> lines) {
-        if (lines == null) {
-            throw new IllegalArgumentException("사다리를 구성하는 라인들은 null 일 수 없습니다.");
-        }
     }
 
     private static void validateHeight(int height) {

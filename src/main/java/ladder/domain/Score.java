@@ -14,10 +14,6 @@ public class Score {
         this.scoreValue = scoreValue;
     }
 
-    public static List<Score> create(List<String> scores, int maxParticipantNameLength) {
-        return scores.stream().map(score -> new Score(score, maxParticipantNameLength)).collect(Collectors.toList());
-    }
-
     private void validateScoreValue(String scoreValue, int maxParticipantNameLength) {
         if (maxParticipantNameLength > MAX_NAME_LENGTH || maxParticipantNameLength < MIN_NAME_LENGTH) {
             throw new IllegalArgumentException(String.format("사람 이름의 최대 길이는 1 ~ 5를 벗어날 수 없습니다. 입력 받은 최대 이름 길이 : %d", maxParticipantNameLength));
@@ -32,6 +28,10 @@ public class Score {
 
     private boolean isBlank(String scoreValue) {
         return scoreValue == null || scoreValue.isBlank();
+    }
+
+    public static List<Score> create(List<String> scores, int maxParticipantNameLength) {
+        return scores.stream().map(score -> new Score(score, maxParticipantNameLength)).collect(Collectors.toList());
     }
 
     public String score() {

@@ -15,18 +15,6 @@ public class ParticipantGroup {
         this.participants = participants;
     }
 
-    public List<String> participantNames() {
-        return participants.stream().map(Participant::name).collect(Collectors.toList());
-    }
-
-    public int participantsCount() {
-        return participants.size();
-    }
-
-    public int maxParticipantNameLength() {
-        return participants.stream().mapToInt(Participant::nameLength).max().getAsInt();
-    }
-
     private void validateParticipants(List<Participant> participants) {
         if (participants == null) {
             throw new IllegalArgumentException("참가자들은 null 일 수 없습니다.");
@@ -46,5 +34,17 @@ public class ParticipantGroup {
         if (nonDuplicateParticipant.size() != participants.size()) {
             throw new IllegalArgumentException(String.format("참가자 이름은 중복될 수 없습니다. 참가자한 사람 이름 : %s", participants));
         }
+    }
+
+    public List<String> participantNames() {
+        return participants.stream().map(Participant::name).collect(Collectors.toList());
+    }
+
+    public int participantsCount() {
+        return participants.size();
+    }
+
+    public int maxParticipantNameLength() {
+        return participants.stream().mapToInt(Participant::nameLength).max().getAsInt();
     }
 }

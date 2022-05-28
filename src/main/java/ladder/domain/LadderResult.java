@@ -11,6 +11,12 @@ public class LadderResult {
         this.ladderResults = ladderResults;
     }
 
+    private void validateLadderResults(Map<Participant, Score> ladderResults) {
+        if (ladderResults == null) {
+            throw new IllegalArgumentException("전달 받은 사다리 결과는 null 일 수 없습니다.");
+        }
+    }
+
     public Map<Participant, Score> ladderResults() {
         return Collections.unmodifiableMap(ladderResults);
     }
@@ -22,12 +28,6 @@ public class LadderResult {
                 .map(Score::score)
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(String.format("찾고자 하는 참가자가 없습니다. 현재 참여자 현황 : %s", ladderResults.keySet())));
-    }
-
-    private void validateLadderResults(Map<Participant, Score> ladderResults) {
-        if (ladderResults == null) {
-            throw new IllegalArgumentException("전달 받은 사다리 결과는 null 일 수 없습니다.");
-        }
     }
 
     @Override
