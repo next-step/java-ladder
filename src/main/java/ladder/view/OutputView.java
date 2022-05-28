@@ -51,7 +51,7 @@ public class OutputView {
     }
 
     public static void printLadder(Ladder ladder, int maxConnectionLineLength) {
-        ladder.lines().forEach(line -> printLine(line.points(), maxConnectionLineLength));
+        ladder.ladderLines().forEach(line -> printLine(line.points(), maxConnectionLineLength));
     }
 
     public static void printResultView(String command, LadderResult ladderResult) {

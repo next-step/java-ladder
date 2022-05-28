@@ -19,10 +19,10 @@ class LadderTest {
     @ParameterizedTest
     @DisplayName("전략 패턴을 이용하여 사다리를을 생성한다. (custom boolean")
     @MethodSource("booleanListProvider")
-    void create_사다리_생성_전략패턴_custom(List<Boolean> booleanList, List<Line> lines) {
+    void create_사다리_생성_전략패턴_custom(List<Boolean> booleanList, List<LadderLine> ladderLines) {
         CustomValueGenerator customValueGenerator = new CustomValueGenerator(booleanList);
         Ladder ladder = Ladder.create(5, 5, customValueGenerator);
-        assertThat(ladder).isEqualTo(new Ladder(lines));
+        assertThat(ladder).isEqualTo(new Ladder(ladderLines));
     }
 
     static Stream<Arguments> booleanListProvider() {
@@ -33,11 +33,11 @@ class LadderTest {
                                 false, false, false, true,
                                 false, false, false, false),
                         List.of(
-                                new Line(List.of(new Point(0, RIGHT), new Point(1, LEFT), new Point(2, RIGHT), new Point(3, LEFT), new Point(4, STRAIGHT))),
-                                new Line(List.of(new Point(0, STRAIGHT), new Point(1, RIGHT), new Point(2, LEFT), new Point(3, RIGHT), new Point(4, LEFT))),
-                                new Line(List.of(new Point(0, RIGHT), new Point(1, LEFT), new Point(2, STRAIGHT), new Point(3, STRAIGHT), new Point(4, STRAIGHT))),
-                                new Line(List.of(new Point(0, STRAIGHT), new Point(1, STRAIGHT), new Point(2, STRAIGHT), new Point(3, RIGHT), new Point(4, LEFT))),
-                                new Line(List.of(new Point(0, STRAIGHT), new Point(1, STRAIGHT), new Point(2, STRAIGHT), new Point(3, STRAIGHT), new Point(4, STRAIGHT)))
+                                new LadderLine(List.of(new Point(0, RIGHT), new Point(1, LEFT), new Point(2, RIGHT), new Point(3, LEFT), new Point(4, STRAIGHT))),
+                                new LadderLine(List.of(new Point(0, STRAIGHT), new Point(1, RIGHT), new Point(2, LEFT), new Point(3, RIGHT), new Point(4, LEFT))),
+                                new LadderLine(List.of(new Point(0, RIGHT), new Point(1, LEFT), new Point(2, STRAIGHT), new Point(3, STRAIGHT), new Point(4, STRAIGHT))),
+                                new LadderLine(List.of(new Point(0, STRAIGHT), new Point(1, STRAIGHT), new Point(2, STRAIGHT), new Point(3, RIGHT), new Point(4, LEFT))),
+                                new LadderLine(List.of(new Point(0, STRAIGHT), new Point(1, STRAIGHT), new Point(2, STRAIGHT), new Point(3, STRAIGHT), new Point(4, STRAIGHT)))
                         )
                 )
         );
@@ -47,25 +47,25 @@ class LadderTest {
     @DisplayName("전략 패턴을 이용하여 사다리를 생성한다. (boolean all true)")
     void create_사다리_생성_boolean_all_true() {
         Ladder ladder = Ladder.create(3, 5, () -> true);
-        Line line = new Line(List.of(new Point(0, Direction.RIGHT), new Point(1, Direction.LEFT), new Point(2, Direction.STRAIGHT)));
-        List<Line> lines = List.of(line, line, line, line, line);
-        assertThat(new Ladder(lines)).isEqualTo(ladder);
+        LadderLine ladderLine = new LadderLine(List.of(new Point(0, Direction.RIGHT), new Point(1, Direction.LEFT), new Point(2, Direction.STRAIGHT)));
+        List<LadderLine> ladderLines = List.of(ladderLine, ladderLine, ladderLine, ladderLine, ladderLine);
+        assertThat(new Ladder(ladderLines)).isEqualTo(ladder);
     }
 
     @Test
     @DisplayName("전략 패턴을 이용하여 사다리를 생성한다. (boolean all false)")
     void create_사다리_생성_boolean_all_false() {
         Ladder ladder = Ladder.create(3, 5, () -> false);
-        Line line = new Line(List.of(new Point(0, Direction.STRAIGHT), new Point(1, Direction.STRAIGHT), new Point(2, Direction.STRAIGHT)));
-        List<Line> lines = List.of(line, line, line, line, line);
-        assertThat(new Ladder(lines)).isEqualTo(ladder);
+        LadderLine ladderLine = new LadderLine(List.of(new Point(0, Direction.STRAIGHT), new Point(1, Direction.STRAIGHT), new Point(2, Direction.STRAIGHT)));
+        List<LadderLine> ladderLines = List.of(ladderLine, ladderLine, ladderLine, ladderLine, ladderLine);
+        assertThat(new Ladder(ladderLines)).isEqualTo(ladder);
     }
 
     @ParameterizedTest
     @NullSource
     @DisplayName("라인 리스트가 null 일 경우 예외가 발생한다.")
-    void Ladder_라인_null(List<Line> lines) {
-        assertThatThrownBy(() -> new Ladder(lines)).isInstanceOf(IllegalArgumentException.class);
+    void Ladder_라인_null(List<LadderLine> ladderLines) {
+        assertThatThrownBy(() -> new Ladder(ladderLines)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest

@@ -8,17 +8,17 @@ import java.util.List;
 import static ladder.domain.Point.FIRST_POSITION;
 import static ladder.domain.Point.UNIT_HORIZONTAL_LINE_LENGTH;
 
-public class Line {
+public class LadderLine {
     private static final int MIN_WIDTH = 2;
 
     private final List<Point> points;
 
-    public Line(List<Point> points) {
+    public LadderLine(List<Point> points) {
         validatePoints(points);
         this.points = points;
     }
 
-    public static Line create(int width, ValueGenerateStrategy valueGenerateStrategy) {
+    public static LadderLine create(int width, ValueGenerateStrategy valueGenerateStrategy) {
         validateWidth(width);
         List<Point> points = new ArrayList<>();
         Point point = Point.first(valueGenerateStrategy.booleanGenerate());
@@ -28,7 +28,7 @@ public class Line {
             points.add(point);
         }
         points.add(point.last());
-        return new Line(points);
+        return new LadderLine(points);
     }
 
     public int move(int startPosition) {
@@ -74,9 +74,9 @@ public class Line {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Line line = (Line) o;
+        LadderLine ladderLine = (LadderLine) o;
 
-        return points.equals(line.points);
+        return points.equals(ladderLine.points);
     }
 
     @Override

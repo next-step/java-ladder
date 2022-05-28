@@ -6,27 +6,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
-    private final List<Line> lines;
+    private final List<LadderLine> ladderLines;
 
-    public Ladder(List<Line> lines) {
-        validateLines(lines);
-        this.lines = lines;
+    public Ladder(List<LadderLine> ladderLines) {
+        validateLadderLines(ladderLines);
+        this.ladderLines = ladderLines;
     }
 
-    private void validateLines(List<Line> lines) {
-        if (lines == null) {
+    private void validateLadderLines(List<LadderLine> ladderLines) {
+        if (ladderLines == null) {
             throw new IllegalArgumentException("사다리를 구성하는 라인들은 null 일 수 없습니다.");
         }
     }
 
     public static Ladder create(int width, int height, ValueGenerateStrategy valueGenerateStrategy) {
         validateHeight(height);
-        List<Line> lines = new ArrayList<>();
+        List<LadderLine> ladderLines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            Line line = Line.create(width, valueGenerateStrategy);
-            lines.add(line);
+            LadderLine ladderLine = LadderLine.create(width, valueGenerateStrategy);
+            ladderLines.add(ladderLine);
         }
-        return new Ladder(lines);
+        return new Ladder(ladderLines);
     }
 
     private static void validateHeight(int height) {
@@ -37,14 +37,14 @@ public class Ladder {
 
     public int finalPosition(int startPosition) {
         int position = startPosition;
-        for (Line line : lines) {
-            position = line.move(position);
+        for (LadderLine ladderLine : ladderLines) {
+            position = ladderLine.move(position);
         }
         return position;
     }
 
-    public List<Line> lines() {
-        return lines;
+    public List<LadderLine> ladderLines() {
+        return ladderLines;
     }
 
     @Override
@@ -54,11 +54,11 @@ public class Ladder {
 
         Ladder ladder = (Ladder) o;
 
-        return lines.equals(ladder.lines);
+        return ladderLines.equals(ladder.ladderLines);
     }
 
     @Override
     public int hashCode() {
-        return lines.hashCode();
+        return ladderLines.hashCode();
     }
 }
