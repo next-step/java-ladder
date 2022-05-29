@@ -38,6 +38,14 @@ public class Players {
     public int getPositionInLadder(String inputPlayer) {
         validatePlayer(inputPlayer);
 
+        return getPosition(inputPlayer);
+    }
+
+    private int getPosition(String inputPlayer) {
+        if(inputPlayer.equals("all")) {
+            return -1;
+        }
+
         return IntStream.range(0, playerList.size())
                 .filter(i -> playerList.get(i).isEqualPlayerName(inputPlayer))
                 .findFirst()
@@ -45,9 +53,7 @@ public class Players {
     }
 
     private void validatePlayer(String inputPlayer) {
-        if(inputPlayer.equals("all")) {
-            return;
-        }
+
 
         isContainPlayerName(inputPlayer);
     }

@@ -1,5 +1,6 @@
 package ladder.controller;
 
+import ladder.domain.RewardDirector;
 import ladder.domain.Rewards;
 import ladder.view.InputView;
 import ladder.view.ResultView;
@@ -20,7 +21,6 @@ public class LadderGame {
         ResultView.showLadderResult(players, ladder, rewards);
 
         String resultPlayer = InputView.inputResultPlayer();
-        //players.isValidPlayer(resultPlayer);
 
         int ladderPosition = players.getPositionInLadder(resultPlayer);
     }
