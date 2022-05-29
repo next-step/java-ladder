@@ -41,4 +41,8 @@ public class Ladder {
     public boolean isMaxHeight(final Height height) {
         return this.height == height;
     }
+
+    public ArrayList<Line> getLines() {
+        return lines;
+    }
 }

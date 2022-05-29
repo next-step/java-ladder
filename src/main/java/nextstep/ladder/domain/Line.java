@@ -53,4 +53,8 @@ public class Line {
     public int getMaxPointPosition() {
         return maxPointPosition;
     }
+
+    public List<Boolean> getPoints() {
+        return points;
+    }
 }
