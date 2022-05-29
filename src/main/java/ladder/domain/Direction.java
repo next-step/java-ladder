@@ -9,8 +9,8 @@ public enum Direction {
         this.unitDirection = unitDirection;
     }
 
-    public int getUnitDirection() {
-        return this.unitDirection;
+    public int nextPosition(int position) {
+        return this.unitDirection + position;
     }
 
     static Direction rightOrStraight(boolean isRight) {

@@ -13,8 +13,25 @@ public class Point {
         this.direction = direction;
     }
 
+    private void validatePoint(int position, Direction direction) {
+        validatePosition(position);
+        validateDirection(direction);
+    }
+
+    private void validatePosition(int position) {
+        if (position < FIRST_POSITION) {
+            throw new IllegalArgumentException(String.format("포인트 위치는 음수일 수 없습니다. 입려한 포인트 위치 : %d", position));
+        }
+    }
+
+    private void validateDirection(Direction direction) {
+        if (direction == null) {
+            throw new IllegalArgumentException("방향 값은 null 일 수 없습니다.");
+        }
+    }
+
     public int move() {
-        return position + direction.getUnitDirection();
+        return direction.nextPosition(position);
     }
 
     public boolean isPreviousPoint(Point nextPoint) {
@@ -86,23 +103,6 @@ public class Point {
         }
         if (!this.isLastPosition(width)) {
             throw new IllegalArgumentException(String.format("마지막 포인트는 position 이 '라인 폭 - 1' (현재 라인 폭 - 1 : %d) 이여야 합니다. 입력받은 포인트 : %s", width - UNIT_HORIZONTAL_LINE_LENGTH, this));
-        }
-    }
-
-    private void validatePoint(int position, Direction direction) {
-        validatePosition(position);
-        validateDirection(direction);
-    }
-
-    private void validatePosition(int position) {
-        if (position < FIRST_POSITION) {
-            throw new IllegalArgumentException(String.format("포인트 위치는 음수일 수 없습니다. 입려한 포인트 위치 : %d", position));
-        }
-    }
-
-    private void validateDirection(Direction direction) {
-        if (direction == null) {
-            throw new IllegalArgumentException("방향 값은 null 일 수 없습니다.");
         }
     }
 

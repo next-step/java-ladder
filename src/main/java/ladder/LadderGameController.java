@@ -17,21 +17,20 @@ import java.util.stream.Collectors;
 import static ladder.domain.Point.UNIT_HORIZONTAL_LINE_LENGTH;
 
 public class LadderGameController {
-    private static final ValueGenerateStrategy valueGenerateStrategy = new RandomValueGenerator();
+    private static final ValueGenerateStrategy VALUE_GENERATE_STRATEGY = new RandomValueGenerator();
     private static final String VIEW_ALL_COMMAND = "all";
     private static final String VIEW_EXIT_COMMAND = "exit";
 
     public static void main(String[] args) {
         List<Participant> participants = Participant.create(InputView.scanParticipantNames());
         ParticipantGroup participantGroup = new ParticipantGroup(participants);
-        int maxConnectionLineLength = participantGroup.maxParticipantNameLength();
 
-        List<Score> scores = Score.create(InputView.scanScores(), maxConnectionLineLength);
+        List<Score> scores = Score.create(InputView.scanScores());
         LadderGame ladderGame = new LadderGame(participants, scores);
 
         int height = InputView.scanLadderHeight();
         int width = participantGroup.participantsCount();
-        Ladder ladder = Ladder.create(width, height, valueGenerateStrategy);
+        Ladder ladder = Ladder.create(width, height, VALUE_GENERATE_STRATEGY);
 
         LadderResult ladderResult = ladderGame.ladderResult(ladder);
 

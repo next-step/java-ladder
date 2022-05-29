@@ -15,7 +15,7 @@ class LadderResultTest {
     @Test
     @DisplayName("사다리 객체를 생성한다.")
     void LadderResult_사다리_결과_생성() {
-        Map<Participant, Score> results = Map.of(new Participant("wu2ee"), new Score("꽝", 5));
+        Map<Participant, Score> results = Map.of(new Participant("wu2ee"), new Score("꽝"));
         assertThat(new LadderResult(results)).isNotNull().isInstanceOf(LadderResult.class);
     }
 
@@ -34,19 +34,19 @@ class LadderResultTest {
     @DisplayName("사다리 결과에서 특정 참가자에 해당하는 점수를 반환한다.")
     void getScore_사다리_결과_점수_반환(String name, String scoreValue) {
         Map<Participant, Score> results = Map.of(
-                new Participant("wu2ee"), new Score("꽝", 5),
-                new Participant("pobi"), new Score("5000", 5)
+                new Participant("wu2ee"), new Score("꽝"),
+                new Participant("pobi"), new Score("5000")
         );
         LadderResult ladderResult = new LadderResult(results);
         assertThat(ladderResult.getScore(name)).isEqualTo(scoreValue);
     }
 
     @Test
-    @DisplayName("참고자 하는 참가자가 없는 경우 예외가 발생한다.")
+    @DisplayName("찾고자 하는 참가자가 없는 경우 예외가 발생한다.")
     void getScore_사다리_참가자_예외() {
         Map<Participant, Score> results = Map.of(
-                new Participant("wu2ee"), new Score("꽝", 5),
-                new Participant("pobi"), new Score("5000", 5)
+                new Participant("wu2ee"), new Score("꽝"),
+                new Participant("pobi"), new Score("5000")
         );
         LadderResult ladderResult = new LadderResult(results);
         assertThatThrownBy(() -> ladderResult.getScore("honux")).isInstanceOf(IllegalArgumentException.class);
