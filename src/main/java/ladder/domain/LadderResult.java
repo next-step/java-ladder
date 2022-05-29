@@ -1,43 +1,30 @@
 package ladder.domain;
 
 import java.util.*;
-import java.util.stream.IntStream;
 
 public class LadderResult {
 
-    private final static int INITIAL = 0;
+    private final List<String> ladderResult;
 
-    private Map<String, String> ladderResult;
-
-    private LadderResult(Map<String, String> ladderResult) {
-        this.ladderResult = new LinkedHashMap<>(ladderResult);
+    private LadderResult(List<String> ladderResult) {
+        this.ladderResult = new ArrayList<>(ladderResult);
     }
 
-    private LadderResult(List<String> names) {
-        ladderResult = new LinkedHashMap<>();
-        names.stream().forEachOrdered(name -> ladderResult.put(name, ""));
-    }
-
-    public static LadderResult of(Map<String, String> ladderResult) {
+    public static LadderResult of(List<String> ladderResult) {
         return new LadderResult(ladderResult);
     }
 
-    public static LadderResult of(List<String> names) {
-        return new LadderResult(names);
-    }
-
-    public Map<String, String> getLadderResult() {
+    public List<String> getLadderResult() {
         return ladderResult;
     }
 
-    public void findLadderResult(Ladder ladder, List<String> result) {
+    public List<String> findLadderResult(Ladder ladder) {
         List<Integer> resultIndexes = ladder.resultIndexes(ladderResult.size());
-        List<String> names = new ArrayList<>();
-        ladderResult.keySet().stream().forEachOrdered(name -> names.add(name));
+        List<String> results = new ArrayList<>();
 
-        IntStream.range(INITIAL, resultIndexes.size()).forEachOrdered(index -> {
-            ladderResult.put(names.get(index), result.get(resultIndexes.get(index)));
-        });
+        resultIndexes.stream().forEachOrdered(index -> results.add(ladderResult.get(index)));
+
+        return results;
     }
 
     @Override
@@ -45,12 +32,12 @@ public class LadderResult {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LadderResult that = (LadderResult) o;
-        return Objects.equals(ladderResult, that.ladderResult);
+        return Objects.equals(getLadderResult(), that.getLadderResult());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ladderResult);
+        return Objects.hash(getLadderResult());
     }
 }
 

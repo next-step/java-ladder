@@ -20,22 +20,21 @@ public class ResultView {
     private ResultView() {
     }
 
-    public static void printName(List<Person> persons) {
+    public static void printName(List<Name> names) {
         StringBuilder stringBuilder = new StringBuilder();
-        String result = persons.stream()
-                .map(Person::getName)
+        String result = names.stream()
                 .map(Name::getName)
                 .collect(Collectors.joining(LADDER_INTERVAL));
         stringBuilder.append(String.format("\n실행결과\n\n %s", result));
         System.out.println(stringBuilder);
     }
 
-    public static void drawLadders(Ladder ladder, List<String> results) {
+    public static void drawLadders(Ladder ladder, LadderResult ladderResult) {
         StringBuilder stringBuilder = new StringBuilder();
         ladder.getLines().stream()
                 .forEachOrdered(line -> drawLadder(stringBuilder, line));
 
-        String result = results.stream()
+        String result = ladderResult.getLadderResult().stream()
                 .collect(Collectors.joining(RESULT_INTERVAL));
         stringBuilder.append(String.format("  %s\n ", result));
         System.out.println(stringBuilder);
@@ -57,9 +56,10 @@ public class ResultView {
         return PASS;
     }
 
-    public static void resultFinal(LadderResult ladderResult, String request) {
+
+    public static void resultFinal(FinalResult finalResult, String request) {
         StringBuilder stringBuilder = new StringBuilder();
-        Map<String, String> temporary = ladderResult.getLadderResult();
+        Map<String, String> temporary = finalResult.getFinalResult();
 
         stringBuilder.append("\n실행결과\n");
         if (request.equals(ALL)) {

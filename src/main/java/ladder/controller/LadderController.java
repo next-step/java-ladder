@@ -9,19 +9,19 @@ import java.util.stream.Collectors;
 
 public class LadderController {
     public static void start() {
-        List<String> names = InputView.inputPerson();
-        List<String> results = InputView.inputResults();
-        List<Person> persons = names.stream()
-                .map(name -> Person.of(name))
+
+        List<String> stringNames = InputView.inputPerson();
+        LadderResult ladderResult2 = LadderResult.of(InputView.inputResults());
+        List<Name> names = stringNames.stream()
+                .map(name -> Name.of(name))
                 .collect(Collectors.toList());
-        LadderResult ladderResult = LadderResult.of(names);
 
         int height = InputView.inputHeight();
-        LineStrategy lineStrategy = new DeduplicationStrategy();
-        Ladder ladder = Ladder.of(lineStrategy, height, persons.size());
-        ladderResult.findLadderResult(ladder, results);
-        ResultView.printName(persons);
-        ResultView.drawLadders(ladder, results);
-        ResultView.resultFinal(ladderResult, InputView.inputFinalResult());
+        Ladder ladder = Ladder.of(height, stringNames.size());
+
+        FinalResult finalResult = FinalResult.of(ladder, ladderResult2, stringNames);
+        ResultView.printName(names);
+        ResultView.drawLadders(ladder, ladderResult2);
+        ResultView.resultFinal(finalResult, InputView.inputFinalResult());
     }
 }
