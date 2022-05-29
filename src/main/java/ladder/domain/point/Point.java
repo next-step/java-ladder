@@ -26,38 +26,20 @@ public class Point {
         }
     }
 
-    private boolean isRight() {
-        return direction.isRight();
-    }
-
     public static Point first() {
         return random(Position.initialize());
     }
 
     public Point next() {
-        if (isRight()) {
-            return left(position.move(Direction.RIGHT));
-        }
-        return random(position.move(Direction.RIGHT));
+        return new Point(direction.next(), position.next());
     }
 
     public Point nextLast() {
-        if (isRight()) {
-            return left(position.move(Direction.RIGHT));
-        }
-        return none(position.move(Direction.RIGHT));
-    }
-
-    private static Point left(Position position) {
-        return new Point(Direction.LEFT, position);
+        return new Point(direction.nextLast(), position.next());
     }
 
     private static Point random(Position position) {
         return new Point(Direction.generate(), position);
-    }
-
-    private static Point none(Position position) {
-        return new Point(Direction.NONE, position);
     }
 
     public boolean isSamePosition(Position position) {

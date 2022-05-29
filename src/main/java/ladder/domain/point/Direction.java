@@ -23,6 +23,22 @@ public enum Direction {
         return NONE;
     }
 
+    public Direction next() {
+        if (isRight()) {
+            return Direction.LEFT;
+        }
+
+        return Direction.generate();
+    }
+
+    public Direction nextLast() {
+        if (isRight()) {
+            return Direction.LEFT;
+        }
+
+        return Direction.NONE;
+    }
+
     Direction(IntUnaryOperator directionPolicy) {
         this.directionPolicy = directionPolicy;
     }

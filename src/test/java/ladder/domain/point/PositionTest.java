@@ -30,4 +30,13 @@ class PositionTest {
     void initialize는_초기값으로_position을_생성한다() {
         assertEquals(Position.initialize(), new Position(INITIAL_POSITION));
     }
+
+    @Test
+    void next는_다음_position을_반환한다() {
+        Position previousPosition = new Position(1);
+
+        Position movedPosition = previousPosition.next();
+
+        assertEquals(new Position(2), movedPosition);
+    }
 }

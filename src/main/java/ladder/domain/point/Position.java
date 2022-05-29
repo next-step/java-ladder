@@ -22,6 +22,10 @@ public class Position {
         return new Position(direction.move(value));
     }
 
+    public Position next() {
+        return new Position(Direction.RIGHT.move(value));
+    }
+
     public static Position value(int position) {
         return new Position(position);
     }
