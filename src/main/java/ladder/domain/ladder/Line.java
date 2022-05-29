@@ -31,10 +31,10 @@ public class Line {
         return new Line(points);
     }
 
-    public static Line generateByWidth(int width) {
+    public static Line init(int width) {
         return new Line()
                 .extendFirst()
-                .extend(width - 1)
+                .extendBody(width - 1)
                 .extendLast();
     }
 
@@ -42,14 +42,14 @@ public class Line {
         return extend(Point.first());
     }
 
-    private Line extend(int targetWidth) {
+    private Line extendBody(int targetWidth) {
         if (width() >= targetWidth) {
             return this;
         }
 
         return extend(
                 getLastPoint().next()
-        ).extend(targetWidth);
+        ).extendBody(targetWidth);
     }
 
     private Line extendLast() {

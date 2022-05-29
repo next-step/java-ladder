@@ -34,7 +34,7 @@ public class Ladder {
     public static Ladder generateByWidthAndHeight(int width, int height) {
         return new Ladder(
                 IntStream.range(INITIAL_HEIGHT, height)
-                        .mapToObj(i -> Line.generateByWidth(width))
+                        .mapToObj(i -> Line.init(width))
                         .collect(Collectors.toList())
         );
     }

@@ -40,7 +40,7 @@ class LineTest {
     void generateByWidth은_ladderWidth로_Line을_생성한다() {
         int ladderWidth = 5;
 
-        Line line = Line.generateByWidth(ladderWidth);
+        Line line = Line.init(ladderWidth);
 
         assertAll(
                 () -> assertInstanceOf(Line.class, line)
