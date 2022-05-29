@@ -23,8 +23,10 @@ public class Ladder {
     public static Ladder from(int height, People people, ConnectStrategy connectStrategy) {
         validateHeight(height);
         List<LadderLine> ladderLines = new ArrayList<>();
+
+        int peopleSize = people.size();
         for (int i = 1; i <= height; i++) {
-            ladderLines.add(LadderLine.of(people.size(), connectStrategy));
+            ladderLines.add(LadderLine.of(peopleSize, connectStrategy));
         }
         return new Ladder(ladderLines);
     }
