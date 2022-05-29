@@ -4,13 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
-    public static List<HorizontalLines> create(int countOfPerson, int numberOfMoves, ConnectingStrategy connectingStrategy) {
-        List<HorizontalLines> lines = new ArrayList<>();
+    private int countOfPerson;
+    private int numberOfMoves;
+    private List<HorizontalLines> verticalLines;
+
+    public Ladder(int countOfPerson, int numberOfMoves, ConnectingStrategy connectingStrategy) {
+        this.countOfPerson = countOfPerson;
+        this.numberOfMoves = numberOfMoves;
+        create(connectingStrategy);
+    }
+
+    public void create(ConnectingStrategy connectingStrategy) {
+        verticalLines = new ArrayList<>();
         for (int index = 0; index < numberOfMoves; index++) {
             HorizontalLines horizontalLines = new HorizontalLines();
             horizontalLines.connect(countOfPerson - 1, connectingStrategy);
-            lines.add(horizontalLines);
+            verticalLines.add(horizontalLines);
         }
-        return lines;
+    }
+
+    public List<HorizontalLines> getVerticalLines() {
+        return verticalLines;
     }
 }

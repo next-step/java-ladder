@@ -13,7 +13,7 @@ public class PlayersTest {
     @ParameterizedTest
     @ValueSource(strings = {"", "   "})
     void create_inputBlank(String names) {
-        assertThatIllegalArgumentException().isThrownBy(() -> Players.create(names))
+        assertThatIllegalArgumentException().isThrownBy(() -> new Players(names))
                 .withMessageContaining("이름은 빈 값을 입력 할 수 없습니다.");
     }
 
@@ -21,7 +21,7 @@ public class PlayersTest {
     @ParameterizedTest
     @CsvSource(value = "user1, user2, user3:3", delimiter = ':')
     void create(String names, int expected) {
-        Players players = Players.create(names);
+        Players players = new Players(names);
         assertThat(players.countOfPlayers()).isEqualTo(expected);
     }
 }

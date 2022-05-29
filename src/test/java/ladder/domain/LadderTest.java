@@ -15,7 +15,7 @@ public class LadderTest {
     @CsvSource(value = {"4:5:5"}, delimiter = ':')
     void create(int countOfPerson, int numberOfMoves, int expected) {
         ConnectingStrategy connectingStrategy = new SequentialConnectionStratrgy();
-        List<HorizontalLines> horizontalLines = Ladder.create(countOfPerson, numberOfMoves, connectingStrategy);
-        assertThat(horizontalLines).hasSize(expected);
+        Ladder ladder = new Ladder(countOfPerson, numberOfMoves, connectingStrategy);
+        assertThat(ladder.getVerticalLines()).hasSize(expected);
     }
 }
