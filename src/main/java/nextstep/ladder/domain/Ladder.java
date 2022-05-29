@@ -29,7 +29,7 @@ public class Ladder {
     }
 
     public void makeLine(final Line line, final Draw draw) {
-        for (int i = 0; i < line.getMaxPointPosition(); i++) {
+        for (int i = 0; i <= line.getMaxPointPosition(); i++) {
             try {
                 line.makeBridge(i, draw);
             } catch (LineException e) {
