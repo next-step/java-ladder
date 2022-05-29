@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import nextstep.ladder.domain.Height;
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Line;
+
 public class LadderTest {
     @DisplayName("높이만큼 사다리를 만든다.")
     @Test

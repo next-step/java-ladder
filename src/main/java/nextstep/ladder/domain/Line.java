@@ -1,8 +1,10 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import nextstep.ladder.exception.LineException;
 
 public class Line {
     private static final int MIN_POINT_POSITION = 0;

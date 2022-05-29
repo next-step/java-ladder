@@ -9,6 +9,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import nextstep.ladder.domain.PlayerName;
+import nextstep.ladder.exception.InvalidPlayerNameException;
+
 public class PlayerNameTest {
     @DisplayName("이름은 최대 5글자이다.")
     @Test

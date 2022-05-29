@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import nextstep.ladder.domain.Height;
+import nextstep.ladder.exception.InvalidHeightException;
+
 public class HeightTest {
     @DisplayName("사다리 높이는 1칸 이상이다.")
     @ValueSource(ints = {-1, 0})

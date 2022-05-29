@@ -1,6 +1,8 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 import java.util.Objects;
+
+import nextstep.ladder.exception.InvalidPlayerNameException;
 
 public class PlayerName {
     private static final int MAX_NAME_LENGTH = 5;

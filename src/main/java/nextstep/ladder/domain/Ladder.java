@@ -1,6 +1,8 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 import java.util.ArrayList;
+
+import nextstep.ladder.exception.LineException;
 
 public class Ladder {
     private final ArrayList<Line> lines = new ArrayList<>();

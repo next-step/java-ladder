@@ -7,6 +7,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import nextstep.ladder.domain.Line;
+import nextstep.ladder.exception.LadderException;
+import nextstep.ladder.exception.LineException;
+
 public class LineTest {
     @DisplayName("사다리 선을 만든다.")
     @Test
