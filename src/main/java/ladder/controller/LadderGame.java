@@ -20,6 +20,8 @@ public class LadderGame {
         ResultView.showLadderResult(players, ladder, rewards);
 
         String resultPlayer = InputView.inputResultPlayer();
-        players.isValidPlayer(resultPlayer);
+        //players.isValidPlayer(resultPlayer);
+
+        int ladderPosition = players.getPositionInLadder(resultPlayer);
     }
 }

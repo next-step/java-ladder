@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Stream;
+import java.util.stream.IntStream;
 
 public class Players {
 
@@ -18,12 +18,12 @@ public class Players {
     public Players(String playerNames) {
         String[] names = playerNames.split(",");
 
-        validate(names);
+        validatePlayer(names);
 
         Arrays.stream(names).forEach(name -> playerList.add(new Player(name)));
     }
 
-    private void validate(String[] names) {
+    private void validatePlayer(String[] names) {
         if (names.length == MIN_PERSON_NUM) {
             throw new NeedMorePlayerException("사다리 게임을 진행할 플레이어가 더 필요합니다");
         }
@@ -35,15 +35,24 @@ public class Players {
 
     public int getPlayerNum() { return playerList.size(); }
 
-    public void isValidPlayer(String inputPlayer) {
+    public int getPositionInLadder(String inputPlayer) {
+        validatePlayer(inputPlayer);
+
+        return IntStream.range(0, playerList.size())
+                .filter(i -> playerList.get(i).isEqualPlayerName(inputPlayer))
+                .findFirst()
+                .orElse(0);
+    }
+
+    private void validatePlayer(String inputPlayer) {
         if(inputPlayer.equals("all")) {
             return;
         }
 
-        validateContainPlayerName(inputPlayer);
+        isContainPlayerName(inputPlayer);
     }
 
-    private void validateContainPlayerName(String inputPlayer) {
+    private void isContainPlayerName(String inputPlayer) {
         long count = playerList.stream()
                 .filter(player -> (player.toString().equals(inputPlayer)))
                 .count();
