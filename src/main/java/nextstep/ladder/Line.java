@@ -17,9 +17,11 @@ public class Line {
         Collections.fill(points, false);
     }
 
-    public void makeBridge(final int point) {
-        ableToMake(point);
-        points.set(point, true);
+    public void makeBridge(final int point, final Draw draw) {
+        if (draw.draw()) {
+            ableToMake(point);
+            points.set(point, true);
+        }
     }
 
     private void ableToMake(final int point) {
@@ -44,5 +46,9 @@ public class Line {
 
     public Boolean hasBridge(final int point) {
         return points.get(point);
+    }
+
+    public int getMaxPointPosition() {
+        return maxPointPosition;
     }
 }
