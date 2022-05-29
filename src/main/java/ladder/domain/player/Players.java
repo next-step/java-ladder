@@ -1,11 +1,13 @@
 package ladder.domain.player;
 
 import ladder.exception.NeedMorePlayerException;
+import ladder.exception.NotFoundPlayerException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Players {
 
@@ -32,4 +34,22 @@ public class Players {
     }
 
     public int getPlayerNum() { return playerList.size(); }
+
+    public void isValidPlayer(String inputPlayer) {
+        if(inputPlayer.equals("all")) {
+            return;
+        }
+
+        validateContainPlayerName(inputPlayer);
+    }
+
+    private void validateContainPlayerName(String inputPlayer) {
+        long count = playerList.stream()
+                .filter(player -> (player.toString().equals(inputPlayer)))
+                .count();
+
+        if (count == 0) {
+            throw new NotFoundPlayerException("입력한 플레이어를 찾을 수 없습니다.");
+        }
+    }
 }

@@ -18,5 +18,8 @@ public class LadderGame {
         Ladder ladder = Ladder.createLadder(players.getPlayerNum(), ladderHeight);
 
         ResultView.showLadderResult(players, ladder, rewards);
+
+        String resultPlayer = InputView.inputResultPlayer();
+        players.isValidPlayer(resultPlayer);
     }
 }
