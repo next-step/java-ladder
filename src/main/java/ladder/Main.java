@@ -47,9 +47,6 @@ public class Main {
     }
 
     private static boolean continuousLoop(String searchValue) {
-        if (searchValue.equals(LadderGame.ALL_RESULT)) {
-            return false;
-        }
-        return true;
+        return !searchValue.equals(LadderGame.ALL_RESULT);
     }
 }

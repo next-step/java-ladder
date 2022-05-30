@@ -14,8 +14,8 @@ public class Line {
 
     private final List<Point> points;
 
-    public Line(Elements elements, GenerationStrategy strategy) {
-        this(strategy.generatePoints(elements.pointCount()));
+    public Line(int pointCount, GenerationStrategy strategy) {
+        this(strategy.generatePoints(pointCount));
     }
 
     public Line(Point... points) {

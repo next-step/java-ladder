@@ -18,7 +18,7 @@ public class Ladder {
     public Ladder(Height height, Elements elements, GenerationStrategy strategy) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height.value(); i++) {
-            lines.add(new Line(elements, strategy));
+            lines.add(new Line(elements.pointCount(), strategy));
         }
         this.lines = lines;
     }

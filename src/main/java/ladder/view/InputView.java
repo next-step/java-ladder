@@ -6,6 +6,7 @@ import ladder.exception.InvalidCountOfElementException;
 import ladder.exception.InvalidHeightException;
 import ladder.exception.InvalidNameException;
 import ladder.exception.NotSupportException;
+import ladder.util.SplitUtil;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -40,7 +41,7 @@ public class InputView {
     }
 
     private static Elements validateParticipantsName() {
-        return Elements.createPlayers(scanner.nextLine());
+        return Elements.createPlayers(SplitUtil.split(scanner.nextLine()));
     }
 
     public static Height ladderHeightView() {
@@ -88,7 +89,7 @@ public class InputView {
     }
 
     private static Elements validateResult(Elements playerElements) {
-        Elements resultElements = Elements.createResults(scanner.nextLine());
+        Elements resultElements = Elements.createResults(SplitUtil.split(scanner.nextLine()));
         if (!playerElements.sameSize(resultElements)) {
             throw new InvalidCountOfElementException(String.format(MESSAGE_INVALID_RESULT_COUNT, playerElements.size()));
         }

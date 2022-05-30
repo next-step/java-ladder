@@ -38,11 +38,11 @@ public class Element {
         return position;
     }
 
-    public boolean sameName(Name name) {
+    public boolean same(Name name) {
         return this.name.equals(name);
     }
 
-    public boolean samePosition(Position position) {
+    public boolean same(Position position) {
         return this.position.equals(position);
     }
 

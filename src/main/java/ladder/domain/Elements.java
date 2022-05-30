@@ -3,7 +3,6 @@ package ladder.domain;
 import ladder.constant.Type;
 import ladder.exception.InvalidCountOfElementException;
 import ladder.exception.NotFoundElementException;
-import ladder.util.SplitUtil;
 
 import java.util.Collections;
 import java.util.List;
@@ -26,12 +25,12 @@ public class Elements {
         this.values = values;
     }
 
-    public static Elements createPlayers(String names) {
-        return new Elements(convertToList(SplitUtil.split(names), Type.UNFIXED));
+    public static Elements createPlayers(String[] names) {
+        return new Elements(convertToList(names, Type.UNFIXED));
     }
 
-    public static Elements createResults(String names) {
-        return new Elements(convertToList(SplitUtil.split(names), Type.FIXED));
+    public static Elements createResults(String[] names) {
+        return new Elements(convertToList(names, Type.FIXED));
     }
 
     private static List<Element> convertToList(String[] names, Type type) {
@@ -71,14 +70,14 @@ public class Elements {
 
     public Element value(Name name) {
         return values.stream()
-                .filter(element -> element.sameName(name))
+                .filter(element -> element.same(name))
                 .findFirst()
                 .orElseThrow(() -> new NotFoundElementException(name.toString()));
     }
 
     public Element value(Position position) {
         return values.stream()
-                .filter(element -> element.samePosition(position))
+                .filter(element -> element.same(position))
                 .findFirst()
                 .orElseThrow(RuntimeException::new);
     }

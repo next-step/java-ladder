@@ -11,9 +11,9 @@ class ElementGroupTest {
 
     @Test
     void invalidCreate() {
-        assertThatThrownBy(() -> new ElementGroup(null, Elements.createResults("1000")))
+        assertThatThrownBy(() -> new ElementGroup(null, Elements.createResults(new String[]{"1000"})))
                 .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new ElementGroup(Elements.createPlayers("tom"), null))
+        assertThatThrownBy(() -> new ElementGroup(Elements.createPlayers(new String[]{"tom"}), null))
                 .isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new ElementGroup(null, null))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -22,7 +22,7 @@ class ElementGroupTest {
     @Test
     @DisplayName("Players 중에 Position 이 FIXED 가 아닌 경우가 포함되면 예외를 반환한다.")
     void name() {
-        ElementGroup elementGroup = new ElementGroup(Elements.createPlayers("Tim, Paul"), Elements.createResults("1000, 꽝"));
+        ElementGroup elementGroup = new ElementGroup(Elements.createPlayers(new String[]{"Tim", "Paul"}), Elements.createResults(new String[]{"1000", "꽝"}));
 
         assertThatThrownBy(() -> elementGroup.result(new Name("Tim")))
                 .isInstanceOf(NotFoundResultException.class);
