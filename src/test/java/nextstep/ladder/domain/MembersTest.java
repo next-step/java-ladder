@@ -1,6 +1,5 @@
 package nextstep.ladder.domain;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -9,12 +8,12 @@ import java.util.Arrays;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class MembersTest {
-    public Members members;
-
-    @BeforeEach
-    void setUp() {
-        this.members = Members.of(Arrays.asList("pobi", "jason", "pang", "nem"));
-    }
+    public Members members = new Members(Arrays.asList(
+            MemberTest.POBI,
+            MemberTest.JASON,
+            MemberTest.PANG,
+            MemberTest.NEM
+    ));
 
     @Nested
     class toString_메서드는 {

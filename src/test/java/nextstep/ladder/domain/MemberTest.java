@@ -7,8 +7,11 @@ import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class MemberTest {
+public class MemberTest {
+    public static final Member POBI = new Member("pobi");
+    public static final Member JASON = new Member("jason");
     public static final Member PANG = new Member("pang");
+    public static final Member NEM = new Member("nem");
 
     @Nested
     class toString_메서드는 {
