@@ -19,7 +19,5 @@ public class LadderMain {
         OutputView.outputLadder(members, lines, runResults);
 
         members.movePositions(lines);
-        System.out.println("members = " + members);
-        System.out.println("End Of Ladder Main");
     }
 }
