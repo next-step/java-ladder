@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import nextstep.ladder.generator.FixedNonProductionGenerator;
@@ -88,5 +89,17 @@ class DirectionTest {
                 () -> assertThat(lastDirection.isLeft()).isTrue(),
                 () -> assertThat(lastDirection.isRight()).isFalse()
         );
+    }
+
+    @Test
+    @DisplayName("해당 위치에서 사다리가 양쪽으로 생성되는 경우, 예외처리를 한다")
+    void exceptionLeftAndRightLineGenerate() {
+        // given
+        boolean left = true;
+        boolean right = true;
+
+        // when & then
+        assertThatThrownBy(() -> Direction.of(left, right))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

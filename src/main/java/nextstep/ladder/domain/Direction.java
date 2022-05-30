@@ -16,7 +16,7 @@ public class Direction {
 
     private void validateDirection(boolean left, boolean right) {
         if (left && right) {
-            throw new IllegalStateException("왼쪽과 오른쪽 양쪽 방향성을 모두 갖을 수 없습니다.");
+            throw new IllegalArgumentException("왼쪽과 오른쪽 양쪽 방향성을 모두 갖을 수 없습니다.");
         }
     }
 
