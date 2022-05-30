@@ -31,11 +31,15 @@ public class Position {
     }
 
     public Position next(boolean right) {
-        return new Position(value + INCREASE_VALUE, direction.last());
+        return new Position(value + INCREASE_VALUE, direction.next(right));
     }
 
     public static Position first(boolean right) {
         return new Position(INITIAL_POSITION, Direction.first(right));
+    }
+
+    public Position last() {
+        return new Position(value + INCREASE_VALUE, direction.last());
     }
 
     public boolean isLeft() {
