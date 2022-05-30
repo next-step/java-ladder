@@ -4,7 +4,6 @@ import nextstep.ladder.domain.exceptions.CannotNullOrEmptyException;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 public class PositionX {
     private int x;
@@ -15,25 +14,33 @@ public class PositionX {
 
     public void increaseOrDecrease(Points points) {
         if (this.x == 0) {
-            if (points.firstMatch()) {
-                increase();
-            }
+            increaseOrStay(points);
             return;
         }
 
         if (points.sameSize(x)) {
-            if (points.lastMatch()) {
-                decrease();
-            }
+            decreaseOrStay(points);
             return;
         }
 
         if (points.leftMatch(x)) {
             decrease();
-            return ;
+            return;
         }
 
         if (points.rightMatch(x)) {
+            increase();
+        }
+    }
+
+    private void decreaseOrStay(Points points) {
+        if (points.lastMatch()) {
+            decrease();
+        }
+    }
+
+    private void increaseOrStay(Points points) {
+        if (points.firstMatch()) {
             increase();
         }
     }
