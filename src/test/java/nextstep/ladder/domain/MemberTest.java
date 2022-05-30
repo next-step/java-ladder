@@ -8,17 +8,14 @@ import java.util.Arrays;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class MemberTest {
+    public static final Member PANG = new Member("pang");
 
     @Nested
     class toString_메서드는 {
 
         @Test
         void 이름을_리턴한다() {
-            String name = "name";
-
-            Member member = new Member(name);
-
-            assertThat(member.toString()).isEqualTo(name);
+            assertThat(PANG.toString()).isEqualTo("pang");
         }
     }
 
@@ -30,14 +27,12 @@ class MemberTest {
 
             @Test
             void 이동_혹은_정지한다() {
-                Member member = new Member("pobi");
-
-                member.move(Points.of(Arrays.asList(
+                PANG.move(Points.of(Arrays.asList(
                         true, false, true
                 )));
 
-                assertThat(member).isEqualTo(
-                        new Member("pobi", new Position(1, 1))
+                assertThat(PANG).isEqualTo(
+                        new Member("pang", new Position(1, 1))
                 );
             }
         }
