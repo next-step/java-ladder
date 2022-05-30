@@ -70,21 +70,25 @@ public class Points {
     }
 
     public boolean firstMatch() {
-        return this.points.get(0).isTrue();
+        return this.points.get(START_INCLUSIVE)
+                .isTrue();
     }
 
     public boolean lastMatch() {
-        int index = this.points.size() - 1;
+        int index = this.points.size() - LAST_SIZE;
 
-        return this.points.get(index).isTrue();
+        return this.points.get(index)
+                .isTrue();
     }
 
     public boolean leftMatch(int x) {
-        return this.points.get(x - 1).isTrue();
+        return this.points.get(x - LAST_SIZE)
+                .isTrue();
     }
 
     public boolean rightMatch(int x) {
-        return this.points.get(x).isTrue();
+        return this.points.get(x)
+                .isTrue();
     }
 
     @Override
