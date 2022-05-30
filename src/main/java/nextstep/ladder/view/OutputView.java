@@ -2,6 +2,7 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Lines;
 import nextstep.ladder.domain.Members;
+import nextstep.ladder.domain.RunResult;
 import nextstep.ladder.domain.RunResults;
 
 public class OutputView {
@@ -9,5 +10,13 @@ public class OutputView {
         System.out.println(members.getPrettyString());
         System.out.println(lines.getPoints());
         System.out.println(runResults);
+    }
+
+    public static void output(Members members) {
+        System.out.println(members);
+    }
+
+    public static void output(RunResult runResult) {
+        System.out.println(runResult);
     }
 }

@@ -1,7 +1,6 @@
 package nextstep.ladder.domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -52,6 +51,13 @@ public class Members {
 
     public void movePositions(Lines lines) {
         this.members.forEach(lines::move);
+    }
+
+    public Member findByName(String name) {
+        return this.members.stream()
+                .filter(member -> member.matchName(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 이름입니다."));
     }
 
     @Override

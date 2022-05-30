@@ -21,6 +21,12 @@ public class RunResults {
                 .collect(Collectors.toList());
     }
 
+    public RunResult findRunResult(String name, Members members) {
+        Member member = members.findByName(name);
+
+        return member.getRunResult(this.runResults);
+    }
+
     @Override
     public String toString() {
         return this.runResults.toString();

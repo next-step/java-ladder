@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Position {
@@ -22,6 +23,10 @@ public class Position {
     public void move(Points points) {
         this.x.increaseOrDecrease(points);
         this.y.increase();
+    }
+
+    public RunResult getMatchX(List<RunResult> runResults) {
+        return this.x.getFrom(runResults);
     }
 
     @Override

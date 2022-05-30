@@ -28,6 +28,10 @@ public class Name {
         }
     }
 
+    public boolean match(String name) {
+        return Objects.equals(this.name, name);
+    }
+
     @Override
     public String toString() {
         return this.name;

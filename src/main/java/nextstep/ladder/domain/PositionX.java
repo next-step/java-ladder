@@ -1,6 +1,8 @@
 package nextstep.ladder.domain;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 public class PositionX {
     private int x;
@@ -40,6 +42,25 @@ public class PositionX {
 
     private synchronized void increase() {
         this.x++;
+    }
+
+    public RunResult getFrom(List<RunResult> runResults) {
+        validateNullOrEmpty(runResults);
+        validateSize(runResults);
+
+        return runResults.get(this.x);
+    }
+
+    private void validateSize(List<RunResult> runResults) {
+        if (this.x > runResults.size()) {
+            throw new IllegalArgumentException("길이가 부족합니다.");
+        }
+    }
+
+    private void validateNullOrEmpty(List<RunResult> runResults) {
+        if (runResults == null || runResults.isEmpty()) {
+            throw new IllegalArgumentException("비거나 Null일 수 없습니다.");
+        }
     }
 
     @Override

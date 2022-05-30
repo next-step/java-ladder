@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Member {
@@ -22,6 +23,14 @@ public class Member {
 
     public void move(Points points) {
         this.position.move(points);
+    }
+
+    public boolean matchName(String name) {
+        return this.name.match(name);
+    }
+
+    public RunResult getRunResult(List<RunResult> runResults) {
+        return this.position.getMatchX(runResults);
     }
 
     @Override
