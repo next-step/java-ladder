@@ -32,7 +32,7 @@ public class ResultView {
         StringBuilder stringBuilder = new StringBuilder();
         ladder.getLines().stream()
                 .forEachOrdered(line -> drawLadder(stringBuilder, line));
-        System.out.println(stringBuilder);
+        System.out.print(stringBuilder);
     }
 
     private static void drawLadder(StringBuilder stringBuilder, Line line) {
@@ -77,5 +77,4 @@ public class ResultView {
         stringBuilder.append(temporary.get(request));
         System.out.print(stringBuilder);
     }
-
 }
