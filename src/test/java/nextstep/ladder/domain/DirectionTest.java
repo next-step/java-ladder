@@ -14,15 +14,15 @@ class DirectionTest {
     @DisplayName("방향에 대한 객체 생성을 확인한다")
     void checkedDirectionObjectGenerate() {
         // given
-        boolean left = true;
+        boolean right = true;
 
         // when
-        Direction direction = Direction.first(left);
+        Direction direction = Direction.first(right);
 
         // then
         assertAll(
-                () -> assertThat(direction.isLeft()).isTrue(),
-                () -> assertThat(direction.isRight()).isFalse()
+                () -> assertThat(direction.isLeft()).isFalse(),
+                () -> assertThat(direction.isRight()).isTrue()
         );
     }
 
@@ -37,8 +37,8 @@ class DirectionTest {
 
         // then
         assertAll(
-                () -> assertThat(nextDirection.isLeft()).isFalse(),
-                () -> assertThat(nextDirection.isRight()).isTrue()
+                () -> assertThat(nextDirection.isLeft()).isTrue(),
+                () -> assertThat(nextDirection.isRight()).isFalse()
         );
     }
 
@@ -53,8 +53,8 @@ class DirectionTest {
 
         // then
         assertAll(
-                () -> assertThat(nextDirection.isLeft()).isTrue(),
-                () -> assertThat(nextDirection.isRight()).isFalse()
+                () -> assertThat(nextDirection.isLeft()).isFalse(),
+                () -> assertThat(nextDirection.isRight()).isTrue()
         );
     }
 
@@ -71,6 +71,22 @@ class DirectionTest {
         assertAll(
                 () -> assertThat(nextDirection.isLeft()).isFalse(),
                 () -> assertThat(nextDirection.isRight()).isFalse()
+        );
+    }
+
+    @Test
+    @DisplayName("마지막 위치의 사다리 생성을 확인한다")
+    void checkedLastDirectionGenerate() {
+        // given
+        Direction direction = Direction.first(true);
+
+        // when
+        Direction lastDirection = direction.last();
+
+        // then
+        assertAll(
+                () -> assertThat(lastDirection.isLeft()).isTrue(),
+                () -> assertThat(lastDirection.isRight()).isFalse()
         );
     }
 }
