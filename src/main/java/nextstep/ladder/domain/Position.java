@@ -15,11 +15,11 @@ public class Position {
     }
 
     public int ride() {
-        if(direction.isRight()) {
+        if (direction.isRight()) {
             return value + INCREASE_VALUE;
         }
 
-        if(direction.isLeft()) {
+        if (direction.isLeft()) {
             return value - INCREASE_VALUE;
         }
 
@@ -48,12 +48,5 @@ public class Position {
 
     public boolean isRight() {
         return direction.isRight();
-    }
-
-    @Override
-    public String toString() {
-        return "Position{" +
-                "value=" + value +
-                '}';
     }
 }
