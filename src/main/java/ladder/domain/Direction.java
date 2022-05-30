@@ -2,19 +2,19 @@ package ladder.domain;
 
 public class Direction {
 
-    private final boolean isLeft;
-    private final boolean isRight;
+    private final boolean left;
+    private final boolean right;
 
-    public Direction(boolean isLeft, boolean isRight) {
-        this.isLeft = isLeft;
-        this.isRight = isRight;
+    public Direction(boolean left, boolean right) {
+        this.left = left;
+        this.right = right;
     }
 
     public boolean isLeft() {
-        return isLeft;
+        return left;
     }
 
     public boolean isRight() {
-        return isRight;
+        return right;
     }
 }
