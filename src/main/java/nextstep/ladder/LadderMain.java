@@ -1,11 +1,11 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.Lines;
-import nextstep.ladder.domain.LinesFactory;
+import nextstep.ladder.domain.line.Lines;
+import nextstep.ladder.domain.line.LinesFactory;
 import nextstep.ladder.domain.MaxHeightOfLadder;
-import nextstep.ladder.domain.Members;
-import nextstep.ladder.domain.RunResult;
-import nextstep.ladder.domain.RunResults;
+import nextstep.ladder.domain.member.Members;
+import nextstep.ladder.domain.runresult.RunResult;
+import nextstep.ladder.domain.runresult.RunResults;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 

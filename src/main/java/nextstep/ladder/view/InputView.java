@@ -1,8 +1,8 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.MaxHeightOfLadder;
-import nextstep.ladder.domain.Members;
-import nextstep.ladder.domain.RunResults;
+import nextstep.ladder.domain.member.Members;
+import nextstep.ladder.domain.runresult.RunResults;
 
 import java.util.Scanner;
 
