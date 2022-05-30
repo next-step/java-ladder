@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import ladder.constant.Direction;
+import ladder.constant.Type;
 import ladder.exception.InvalidBoundIndexException;
 import ladder.exception.NotChangeException;
 import org.junit.jupiter.api.DisplayName;
@@ -10,6 +11,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class IndexTest {
+
+    public static final Index ZERO_INDEX = new Index(1, 0);
+    public static final Index ONE_INDEX = new Index(1, 1);
 
     @Test
     @DisplayName("0 보다 작은 Index 으로 생성할 경우 InvalidBoundIndexException 를 반환한다.")

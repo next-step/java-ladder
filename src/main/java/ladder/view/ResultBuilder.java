@@ -26,50 +26,50 @@ public class ResultBuilder {
         throw new NotSupportException();
     }
 
-    public static String ladderResult(LadderGame ladderGame) {
-        Map<Point, String> lineViews = initializeLineViews(ladderGame);
+    public static String ladderResult(Ladder ladder) {
+        Map<Point, String> lineViews = initializeLineViews(ladder);
         initializeStringBuilder();
 
-        renderParticipants(ladderGame.playerElements(), maxNameSize(ladderGame));
-        renderLadder(ladderGame.ladder(), lineViews);
-        renderResultElements(ladderGame.resultElements(), maxNameSize(ladderGame));
+        renderPositions(ladder.playerPositions(), maxNameSize(ladder));
+        renderLadder(ladder, lineViews);
+        renderPositions(ladder.resultPositions(), maxNameSize(ladder));
         return sb.toString();
     }
 
-    private static Map<Point, String> initializeLineViews(LadderGame ladderGame) {
+    private static Map<Point, String> initializeLineViews(Ladder ladder) {
         Map<Point, String> lines = new HashMap<>();
-        lines.put(Point.CONNECTED, drawLine(ladderGame, NAME_CONNECT_ONE_UNIT));
-        lines.put(Point.DISCONNECTED, drawLine(ladderGame, NAME_EMPTY_ONE_UNIT));
+        lines.put(Point.CONNECTED, drawLine(ladder, NAME_CONNECT_ONE_UNIT));
+        lines.put(Point.DISCONNECTED, drawLine(ladder, NAME_EMPTY_ONE_UNIT));
         return lines;
     }
 
-    private static String drawLine(LadderGame ladderGame, String unit) {
+    private static String drawLine(Ladder ladder, String unit) {
         initializeStringBuilder();
-        for (int i = 0; i < maxNameSize(ladderGame); i++) {
+        for (int i = 0; i < maxNameSize(ladder); i++) {
             sb.append(unit);
         }
         return sb.toString();
     }
 
-    private static int maxNameSize(LadderGame ladderGame) {
-        if (ladderGame.maxNameSize() < MIN_NAME_PLACE_PER_LENGTH) {
+    private static int maxNameSize(Ladder ladder) {
+        if (ladder.maxNameSize() < MIN_NAME_PLACE_PER_LENGTH) {
             return MIN_NAME_PLACE_PER_LENGTH;
         }
-        return ladderGame.maxNameSize();
+        return ladder.maxNameSize();
     }
 
-    private static void renderParticipants(Elements elements, int maxNameSize) {
-        for (Element element : elements.toList()) {
-            renderElement(element, maxNameSize);
+    private static void renderPositions(Positions positions, int maxNameSize) {
+        for (Position position : positions.toList()) {
+            renderPosition(position, maxNameSize);
         }
         sb.append(BLANK_LINE);
     }
 
-    private static void renderElement(Element element, int maxNameSize) {
-        for (int i = 0; i < element.withoutNameSize(maxNameSize) + 1; i++) {
+    private static void renderPosition(Position position, int maxNameSize) {
+        for (int i = 0; i < position.withoutNameSize(maxNameSize) + 1; i++) {
             sb.append(NAME_EMPTY_ONE_UNIT);
         }
-        sb.append(element.name());
+        sb.append(position.name());
     }
 
     private static void renderLadder(Ladder ladder, Map<Point, String> lineViews) {
@@ -92,13 +92,6 @@ public class ResultBuilder {
         if (sb.length() != EMPTY_SIZE) {
             sb.setLength(EMPTY_SIZE);
         }
-    }
-
-    private static void renderResultElements(Elements resultElements, int maxNameSize) {
-        for (Element element : resultElements.toList()) {
-            renderElement(element, maxNameSize);
-        }
-        sb.append(BLANK_LINE);
     }
 
     public static String searchResult(List<Result> results) {

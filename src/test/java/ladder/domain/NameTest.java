@@ -2,6 +2,7 @@ package ladder.domain;
 
 import ladder.constant.Direction;
 import ladder.constant.Point;
+import ladder.constant.Type;
 import ladder.exception.InvalidNameException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,6 +13,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class NameTest {
+
+    public static final Name NAME_1000 = new Name("1000");
+    public static final Name NAME_FAIL = new Name("꽝");
 
     @Test
     @DisplayName("글자수가 5자를 초과하면 InvalidNameException 반환한다.")

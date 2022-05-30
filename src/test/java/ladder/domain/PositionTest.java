@@ -11,13 +11,13 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PositionTest {
 
-    public static final Position FIXED_VALUE_ZERO = new Position(1, 0, Type.FIXED);
-    public static final Position FIXED_VALUE_ONE = new Position(1, 1, Type.FIXED);
+    public static final Position FIXED_1000_ZERO_INDEX = new Position(IndexTest.ZERO_INDEX, NameTest.NAME_1000, Type.FIXED);
+    public static final Position FIXED_FAIL_ONE_INDEX = new Position(IndexTest.ONE_INDEX, NameTest.NAME_FAIL, Type.FIXED);
 
     @Test
     @DisplayName("포지션 타입이 FIXED 일때 변경하면 예외를 반환한다.")
     void invalidChange() {
-        Position position = new Position(2, 1, Type.FIXED);
+        Position position = new Position(2, 1, "꽝",  Type.FIXED);
 
         assertThatThrownBy(() -> position.change(Direction.RIGHT))
                 .isInstanceOf(NotChangeException.class)

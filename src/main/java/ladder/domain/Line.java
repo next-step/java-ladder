@@ -48,11 +48,11 @@ public class Line {
                 && points.get(currentIndex - PREVIOUS_VALUE).isConnect();
     }
 
-    public Direction direction(Position position) {
-        if(connectedLeftLine(position.index())) {
+    public Direction direction(Index index) {
+        if(connectedLeftLine(index)) {
             return Direction.LEFT;
         }
-        if (connectedRightLine(position.index())) {
+        if (connectedRightLine(index)) {
             return Direction.RIGHT;
         }
         return Direction.STAY;

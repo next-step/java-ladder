@@ -5,7 +5,7 @@ public class Result {
     private final Name playerName;
     private final Name value;
 
-    public Result(Name playerName, Element result) {
+    public Result(Name playerName, Position result) {
         if (playerName == null || result == null) {
             throw new IllegalArgumentException();
         }

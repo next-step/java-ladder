@@ -1,8 +1,8 @@
 package ladder.view;
 
 import ladder.domain.Height;
-import ladder.domain.Elements;
-import ladder.exception.InvalidCountOfElementException;
+import ladder.domain.Positions;
+import ladder.exception.InvalidCountOfPositionException;
 import ladder.exception.InvalidHeightException;
 import ladder.exception.InvalidNameException;
 import ladder.exception.NotSupportException;
@@ -26,22 +26,22 @@ public class InputView {
         throw new NotSupportException();
     }
 
-    public static Elements participantsNameView() {
+    public static Positions participantsNameView() {
         System.out.println(MESSAGE_INPUT_PARTICIPANTS_NAME);
         return inputValidParticipantsName();
     }
 
-    private static Elements inputValidParticipantsName() {
+    private static Positions inputValidParticipantsName() {
         try {
             return validateParticipantsName();
-        } catch (InvalidCountOfElementException | InvalidNameException e) {
+        } catch (InvalidCountOfPositionException | InvalidNameException e) {
             System.out.println(e.getMessage());
             return inputValidParticipantsName();
         }
     }
 
-    private static Elements validateParticipantsName() {
-        return Elements.createPlayers(SplitUtil.split(scanner.nextLine()));
+    private static Positions validateParticipantsName() {
+        return Positions.createPlayers(SplitUtil.split(scanner.nextLine()));
     }
 
     public static Height ladderHeightView() {
@@ -74,26 +74,26 @@ public class InputView {
         }
     }
 
-    public static Elements resultView(Elements elements) {
+    public static Positions resultView(Positions positions) {
         System.out.println(MESSAGE_INPUT_RESULT);
-        return inputValidResult(elements);
+        return inputValidResult(positions);
     }
 
-    private static Elements inputValidResult(Elements elements) {
+    private static Positions inputValidResult(Positions positions) {
         try {
-            return validateResult(elements);
-        } catch (InvalidCountOfElementException | InvalidNameException e) {
+            return validateResult(positions);
+        } catch (InvalidCountOfPositionException | InvalidNameException e) {
             System.out.println(e.getMessage());
-            return inputValidResult(elements);
+            return inputValidResult(positions);
         }
     }
 
-    private static Elements validateResult(Elements playerElements) {
-        Elements resultElements = Elements.createResults(SplitUtil.split(scanner.nextLine()));
-        if (!playerElements.sameSize(resultElements)) {
-            throw new InvalidCountOfElementException(String.format(MESSAGE_INVALID_RESULT_COUNT, playerElements.size()));
+    private static Positions validateResult(Positions playerPositions) {
+        Positions resultPositions = Positions.createResults(SplitUtil.split(scanner.nextLine()));
+        if (!playerPositions.hasSameSize(resultPositions)) {
+            throw new InvalidCountOfPositionException(String.format(MESSAGE_INVALID_RESULT_COUNT, playerPositions.size()));
         }
-        return resultElements;
+        return resultPositions;
     }
 
     public static String searchResult() {

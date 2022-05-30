@@ -9,44 +9,44 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        Elements playerElements = InputView.participantsNameView();
-        Elements resultElements = InputView.resultView(playerElements);
+        Positions playerPositions = InputView.participantsNameView();
+        Positions resultPositions = InputView.resultView(playerPositions);
         Height height = InputView.ladderHeightView();
 
-        LadderGame ladderGame = new LadderGame(new ElementGroup(playerElements, resultElements), height);
-        ResultView.ladderResultView(ladderGame);
+        Ladder ladder = new Ladder(height, new PositionGroup(playerPositions, resultPositions));
+        ResultView.ladderResultView(ladder);
 
-        ladderGame.start();
+        ladder.start();
 
-        loopSearchResult(ladderGame);
+        loopSearchResult(ladder);
     }
 
-    private static void loopSearchResult(LadderGame ladderGame) {
+    private static void loopSearchResult(Ladder ladder) {
         while (true) {
-            boolean continuousLoop = validateSearchResult(ladderGame);
+            boolean continuousLoop = validateSearchResult(ladder);
             if (!continuousLoop) {
                 break;
             }
         }
     }
 
-    private static boolean validateSearchResult(LadderGame ladderGame) {
+    private static boolean validateSearchResult(Ladder ladder) {
         try {
-            return searchResult(ladderGame);
+            return searchResult(ladder);
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
-            return validateSearchResult(ladderGame);
+            return validateSearchResult(ladder);
         }
     }
 
-    private static boolean searchResult(LadderGame ladderGame) {
+    private static boolean searchResult(Ladder ladder) {
         String searchValue = InputView.searchResult();
-        List<Result> results = ladderGame.results(searchValue);
+        List<Result> results = ladder.results(searchValue);
         ResultView.searchResultView(results);
         return continuousLoop(searchValue);
     }
 
     private static boolean continuousLoop(String searchValue) {
-        return !searchValue.equals(LadderGame.ALL_RESULT);
+        return !searchValue.equals(Ladder.ALL_RESULT);
     }
 }
