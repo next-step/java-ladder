@@ -3,12 +3,10 @@ package nextstep.ladder.domain;
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import nextstep.ladder.generator.FixedNonProductionGenerator;
 import nextstep.ladder.generator.FixedProductionGenerator;
-import nextstep.ladder.generator.RandomProductionGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +19,7 @@ class PositionTest {
 
         // when
         Position position = Position.first(right);
-        
+
         // then
         assertAll(
                 () -> assertThat(position.isLeft()).isFalse(),
@@ -37,7 +35,7 @@ class PositionTest {
 
         // when
         Position nextPosition = position.next(new FixedProductionGenerator());
-        
+
         // then
         assertAll(
                 () -> assertThat(nextPosition.isLeft()).isFalse(),
@@ -68,7 +66,7 @@ class PositionTest {
         Position position = Position.first(true);
 
         // when
-        Position nextPosition = position.next(position.isRight());
+        Position nextPosition = position.last();
 
         // then
         assertAll(
