@@ -2,7 +2,6 @@ package ladder.controller;
 
 import ladder.domain.Coordinate;
 import ladder.domain.Lines;
-import ladder.domain.Player;
 
 public class Ladder {
     private final Lines lines;
