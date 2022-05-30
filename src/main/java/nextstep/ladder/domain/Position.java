@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Objects;
 
 public class Position {
+    private static final int DEFAULT_POSITION = 0;
+
     private final PositionX x;
     private final PositionY y;
 
     public Position(int x) {
-        this(x, 0);
+        this(x, DEFAULT_POSITION);
     }
 
     public Position(int x, int y) {
