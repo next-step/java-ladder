@@ -20,8 +20,8 @@ public class LadderController {
 
         int height = InputView.inputHeight();
         Ladder ladder = new Ladder(height, stringNames.size());
-
-        FinalResult finalResult = FinalResult.of(ladder, ladderResult, stringNames);
+        FinalResult finalResult = FinalResult.of(ladderResult.findLadderResult(ladder), stringNames);
+        
         ResultView.printName(names);
         ResultView.drawLadders(ladder);
         ResultView.printResult(ladderResult);

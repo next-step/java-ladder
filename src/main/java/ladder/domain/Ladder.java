@@ -15,7 +15,6 @@ public class Ladder {
         Strategy strategy = new DeduplicationStrategy();
         IntStream.range(INITIAL, height)
                 .forEachOrdered(number -> lines.add(new Line(countOfPerson, strategy)));
-
     }
 
     public Ladder(List<Line> lines) {
@@ -34,7 +33,7 @@ public class Ladder {
         return result;
     }
 
-    public int move(int index) {
+    private int move(int index) {
         for (Line line : lines) {
             index = line.move(index);
         }

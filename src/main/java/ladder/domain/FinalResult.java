@@ -3,25 +3,21 @@ package ladder.domain;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.IntStream;
 
 public class FinalResult {
-    private final static int INITIAL = 0;
 
     private final Map<String, String> finalResult;
 
-    private FinalResult(Ladder ladder, LadderResult ladderResult, List<String> names) {
-        List<String> results = ladderResult.findLadderResult(ladder);
+    private FinalResult(List<String> results, List<String> names) {
         Map<String, String> temporary = new LinkedHashMap<>();
-        IntStream.range(INITIAL, results.size()).forEachOrdered(index -> {
-            temporary.put(names.get(index), results.get(index));
-        });
-
+        for (int i = 0; i < results.size(); i++) {
+            temporary.put(names.get(i), results.get(i));
+        }
         this.finalResult = new LinkedHashMap<>(temporary);
     }
 
-    public static FinalResult of(Ladder ladder, LadderResult ladderResult, List<String> names) {
-        return new FinalResult(ladder, ladderResult, names);
+    public static FinalResult of(List<String> results, List<String> names) {
+        return new FinalResult(results, names);
     }
 
     public Map<String, String> getFinalResult() {
