@@ -27,6 +27,10 @@ public class Line {
                 LINE_SEPARATOR;
     }
 
+    public void move(Member member) {
+        member.move(this.points);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -44,9 +48,5 @@ public class Line {
     @Override
     public int hashCode() {
         return Objects.hash(points);
-    }
-
-    public void move(Member member) {
-        member.move(this.points);
     }
 }
