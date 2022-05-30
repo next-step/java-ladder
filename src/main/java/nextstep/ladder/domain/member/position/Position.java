@@ -12,6 +12,10 @@ public class Position {
     private final PositionX x;
     private final PositionY y;
 
+    public Position() {
+        this(DEFAULT_POSITION, DEFAULT_POSITION);
+    }
+
     public Position(int x) {
         this(x, DEFAULT_POSITION);
     }

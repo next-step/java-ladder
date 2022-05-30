@@ -12,14 +12,17 @@ public class Member {
     private final Name name;
     private final Position position;
 
-    public Member(String name, Position position) {
-        this.name = new Name(name);
-        this.position = position;
+    public Member(String name) {
+        this(name, new Position());
     }
 
     public Member(String name, int x) {
+        this(name, new Position(x));
+    }
+
+    public Member(String name, Position position) {
         this.name = new Name(name);
-        this.position = new Position(x);
+        this.position = position;
     }
 
     public void move(Points points) {
