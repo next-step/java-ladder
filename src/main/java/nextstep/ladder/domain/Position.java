@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Position {
-    private static final int DEFAULT_POSITION = 0;
+    public static final int DEFAULT_POSITION = 0;
 
     private final PositionX x;
     private final PositionY y;

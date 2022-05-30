@@ -13,7 +13,7 @@ public class PositionX {
     }
 
     public void increaseOrDecrease(Points points) {
-        if (this.x == 0) {
+        if (this.x == Position.DEFAULT_POSITION) {
             increaseOrStay(points);
             return;
         }
