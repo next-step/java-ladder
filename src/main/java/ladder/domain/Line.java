@@ -1,35 +1,26 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.stream.IntStream;
 
 public class Line {
-    private final static Random RANDOM = new Random();
-    private final static int ONE = 1;
-    private final static int INITIAL = 0;
+    private final List<Moving> movings;
 
-    private List<Boolean> points = new ArrayList<>();
+    public Line(int countOfPerson, Strategy strategy) {
+        this.movings = strategy.create(countOfPerson);
 
-    private Line(int countOfPerson) {
-        IntStream.range(INITIAL, countOfPerson - ONE)
-                .forEachOrdered(number -> deduplicationInsert(number));
     }
 
-    public static Line of(int countOfPerson) {
-        return new Line(countOfPerson);
+    public Line(List<Moving> movings) {
+        this.movings = movings;
     }
 
-    private void deduplicationInsert(int number) {
-        if (number != INITIAL && points.get(number - ONE)) {
-            points.add(false);
-            return;
-        }
-        points.add(RANDOM.nextBoolean());
+    public List<Moving> getMovings() {
+        return movings;
     }
 
-    public List<Boolean> getPoints() {
-        return points;
+    public int move(int index) {
+        return movings.get(index).move();
     }
 }
+
+

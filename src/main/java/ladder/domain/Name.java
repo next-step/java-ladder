@@ -3,6 +3,8 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Name {
+    private static final int MAXIMUM = 5;
+
     private final String name;
 
     private Name(String name) {
@@ -19,7 +21,7 @@ public class Name {
     }
 
     private void validateName(String name) {
-        if (name.length() > 5) {
+        if (name.length() > MAXIMUM) {
             throw new IllegalArgumentException("유저이름이 다섯자를 넘을 수 없습니다.");
         }
     }
