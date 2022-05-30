@@ -33,6 +33,12 @@ public class Member {
         return this.position.getMatchX(runResults);
     }
 
+    public void printResults(List<RunResult> runResults) {
+        RunResult runResult = this.getRunResult(runResults);
+
+        System.out.printf("%s : %s\n", this.name, runResult);
+    }
+
     @Override
     public String toString() {
         return this.name.toString();

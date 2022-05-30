@@ -60,6 +60,10 @@ public class Members {
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 이름입니다."));
     }
 
+    public void printResults(List<RunResult> runResults) {
+        this.members.forEach(member -> member.printResults(runResults));
+    }
+
     @Override
     public String toString() {
         return this.members.toString();

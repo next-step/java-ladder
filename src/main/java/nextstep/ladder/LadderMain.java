@@ -24,12 +24,13 @@ public class LadderMain {
         OutputView.outputLadder(members, lines, runResults);
 
         members.movePositions(lines);
-        OutputView.output(members);
 
         String name;
         while (!Objects.equals(name = InputView.inputName(), FINISH_KEYWORD)) {
             RunResult runResult = runResults.findRunResult(name, members);
             OutputView.output(runResult);
         }
+
+        OutputView.outputRunResults(runResults, members);
     }
 }

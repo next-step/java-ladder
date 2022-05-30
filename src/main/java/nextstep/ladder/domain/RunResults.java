@@ -27,6 +27,10 @@ public class RunResults {
         return member.getRunResult(this.runResults);
     }
 
+    public void printResults(Members members) {
+        members.printResults(this.runResults);
+    }
+
     @Override
     public String toString() {
         return this.runResults.toString();

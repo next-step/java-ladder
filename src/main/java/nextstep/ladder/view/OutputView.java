@@ -12,11 +12,11 @@ public class OutputView {
         System.out.println(runResults);
     }
 
-    public static void output(Members members) {
-        System.out.println(members);
-    }
-
     public static void output(RunResult runResult) {
         System.out.println(runResult);
+    }
+
+    public static void outputRunResults(RunResults runResults, Members members) {
+        runResults.printResults(members);
     }
 }
