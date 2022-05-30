@@ -1,44 +1,35 @@
 package nextstep.ladder.domain;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LinesTest {
+    public static Lines create(List<Line> lines) {
+        return new Lines(lines);
+    }
 
     @Nested
     class getPoints_메서드는 {
 
-        @Nested
-        class 라인목록이_주어질때 {
-            private List<List<Boolean>> lineList;
+        @Test
+        void Point_문자열을_리턴한다() {
+            Lines lines = create(List.of(
+                    LineTest.create(List.of(true, false, false, true)),
+                    LineTest.create(List.of(true, false, true, false)),
+                    LineTest.create(List.of(false, true, false, true)),
+                    LineTest.create(List.of(false, false, true, false))
+            ));
 
-            @BeforeEach
-            void setUp() {
-                this.lineList = Arrays.asList(
-                        Arrays.asList(true, false, false, true),
-                        Arrays.asList(true, false, true, false),
-                        Arrays.asList(false, true, false, true),
-                        Arrays.asList(false, false, true, false)
-                );
-            }
-
-            @Test
-            void 문자열_검증() {
-                Lines lines = Lines.of(lineList);
-
-                assertThat(lines.getPoints()).isEqualTo(
-                        "|-----|     |     |-----|\n" +
-                                "|-----|     |-----|     |\n" +
-                                "|     |-----|     |-----|\n" +
-                                "|     |     |-----|     |\n"
-                );
-            }
+            assertThat(lines.getPoints()).isEqualTo(
+                    "|-----|     |     |-----|\n" +
+                            "|-----|     |-----|     |\n" +
+                            "|     |-----|     |-----|\n" +
+                            "|     |     |-----|     |\n"
+            );
         }
     }
 }
