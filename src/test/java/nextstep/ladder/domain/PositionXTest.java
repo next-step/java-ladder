@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.exceptions.CannotNullOrEmptyException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PositionXTest {
     private PositionX positionX;
@@ -26,10 +28,10 @@ class PositionXTest {
         class 빈_결과_목록이_주어지면 {
 
             @Test
-            void IllegalArgumentException을_던진다() {
-                assertThatIllegalArgumentException()
-                        .isThrownBy(() -> positionX.getFrom(List.of()))
-                        .withMessage("비거나 Null일 수 없습니다.");
+            void CannotNullOrEmptyException을_던진다() {
+                assertThatThrownBy(() -> positionX.getFrom(List.of()))
+                        .isInstanceOf(CannotNullOrEmptyException.class)
+                        .hasMessage("null이거나 비어있을 수 없습니다.");
             }
         }
 
@@ -51,9 +53,9 @@ class PositionXTest {
             @ParameterizedTest
             @NullAndEmptySource
             void IllegalArgumentException을_던진다(List<RunResult> nullOrEmptySource) {
-                assertThatIllegalArgumentException()
-                        .isThrownBy(() -> positionX.getFrom(nullOrEmptySource))
-                        .withMessage("비거나 Null일 수 없습니다.");
+                assertThatThrownBy(() -> positionX.getFrom(nullOrEmptySource))
+                        .isInstanceOf(CannotNullOrEmptyException.class)
+                        .hasMessage("null이거나 비어있을 수 없습니다.");
             }
 
         }

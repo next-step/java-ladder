@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.exceptions.CannotNullOrEmptyException;
+
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -59,7 +61,7 @@ public class PositionX {
 
     private void validateNullOrEmpty(List<RunResult> runResults) {
         if (runResults == null || runResults.isEmpty()) {
-            throw new IllegalArgumentException("비거나 Null일 수 없습니다.");
+            throw new CannotNullOrEmptyException();
         }
     }
 
