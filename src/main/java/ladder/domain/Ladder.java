@@ -25,7 +25,7 @@ public class Ladder {
         return lines;
     }
 
-    public List<Integer> resultIndexes(int countOfPerson) {
+    public List<Integer> extractIndexes(int countOfPerson) {
         List<Integer> resultIndexes = new ArrayList<>();
 
         IntStream.range(INITIAL, countOfPerson).forEachOrdered(number -> {
@@ -35,7 +35,7 @@ public class Ladder {
         return resultIndexes;
     }
 
-    public int move(int index) {
+    private int move(int index) {
         for (Line line : lines) {
             index = line.move(index);
         }

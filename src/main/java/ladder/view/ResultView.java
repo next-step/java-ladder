@@ -29,15 +29,11 @@ public class ResultView {
         System.out.println(stringBuilder);
     }
 
-    public static void drawLadders(Ladder ladder, LadderResult ladderResult) {
+    public static void drawLadders(Ladder ladder) {
         StringBuilder stringBuilder = new StringBuilder();
         ladder.getLines().stream()
                 .forEachOrdered(line -> drawLadder(stringBuilder, line));
-
-        String result = ladderResult.getLadderResult().stream()
-                .collect(Collectors.joining(RESULT_INTERVAL));
-        stringBuilder.append(String.format("  %s\n ", result));
-        System.out.println(stringBuilder);
+        System.out.print(stringBuilder);
     }
 
     public static void drawLadder(StringBuilder stringBuilder, Line line) {
@@ -56,6 +52,13 @@ public class ResultView {
         return PASS;
     }
 
+    public static void printResult(LadderResult ladderResult) {
+        StringBuilder stringBuilder = new StringBuilder();
+        String result = ladderResult.getLadderResult().stream()
+                .collect(Collectors.joining(RESULT_INTERVAL));
+        stringBuilder.append(String.format("  %s\n ", result));
+        System.out.println(stringBuilder);
+    }
 
     public static void resultFinal(FinalResult finalResult, String request) {
         StringBuilder stringBuilder = new StringBuilder();
