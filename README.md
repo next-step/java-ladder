@@ -147,6 +147,7 @@ henry: 💣
 - [x] LadderResult controller -> domain 패키지 변경
 - [ ] Line 이 boolean 뿐만아니라 경계선이 존재하는지도 알고 있게 변경
   - [x] boolean 을 대체할 Node class 생성
+  - [x] 두 Node 를 연결할 Link class 생성
 - [ ] showResult 테스트 가능한 구조로 변경
   - [ ] 사다리는 Players 가 아닌 다른 곳에서 생성
 - [ ] Players.toString 내부의 output layer 를 분리
