@@ -9,7 +9,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -71,12 +70,10 @@ class MaxHeightOfLadderTest {
 
     @Nested
     class getLines_메서드는 {
-        private Members members;
         private MaxHeightOfLadder maxHeightOfLadder;
 
         @BeforeEach
         void setUp() {
-            this.members = Members.of(Arrays.asList("pobi", "jason", "pang", "nem"));
             this.maxHeightOfLadder = new MaxHeightOfLadder(4);
         }
 
@@ -85,11 +82,10 @@ class MaxHeightOfLadderTest {
 
             @Test
             void lines_검증() {
-                List<Boolean> booleans = Arrays.asList(true, false, true);
-                List<List<Boolean>> lists = Arrays.asList(booleans, booleans, booleans, booleans);
+                Line line = LineTest.create(List.of(true, false, true));
 
-                assertThat(maxHeightOfLadder.getLines(members, () -> true))
-                        .isEqualTo(Lines.of(lists));
+                assertThat(maxHeightOfLadder.getLines(MembersTest.members, () -> true))
+                        .isEqualTo(LinesTest.create(List.of(line, line, line, line)));
             }
         }
 
@@ -98,11 +94,10 @@ class MaxHeightOfLadderTest {
 
             @Test
             void lines_검증() {
-                List<Boolean> booleans = Arrays.asList(false, false, false);
-                List<List<Boolean>> lists = Arrays.asList(booleans, booleans, booleans, booleans);
+                Line line = LineTest.create(List.of(false, false, false));
 
-                assertThat(maxHeightOfLadder.getLines(members, () -> false))
-                        .isEqualTo(Lines.of(lists));
+                assertThat(maxHeightOfLadder.getLines(MembersTest.members, () -> false))
+                        .isEqualTo(LinesTest.create(List.of(line, line, line, line)));
             }
         }
 

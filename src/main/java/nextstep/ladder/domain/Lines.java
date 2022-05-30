@@ -13,16 +13,6 @@ public class Lines {
         this.lines = lines;
     }
 
-    static Lines of(List<List<Boolean>> lineList) {
-        return new Lines(wrap(lineList));
-    }
-
-    private static List<Line> wrap(List<List<Boolean>> lineList) {
-        return lineList.stream()
-                .map(Line::new)
-                .collect(Collectors.toList());
-    }
-
     public String getPoints() {
         return this.lines.stream()
                 .map(Line::getPoint)
