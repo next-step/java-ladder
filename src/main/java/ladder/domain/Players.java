@@ -37,7 +37,7 @@ public class Players {
         return new Players(
                 this.players
                         .stream()
-                        .filter(p -> p.name().equals(playerName))
+                        .filter(player -> player.name().equals(playerName))
                         .collect(Collectors.toList())
         );
     }
@@ -47,6 +47,5 @@ public class Players {
                 .stream()
                 .map(player -> player.result(ladder, rewards))
                 .collect(Collectors.toList());
-
     }
 }

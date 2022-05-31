@@ -44,7 +44,7 @@ public class Input {
     public static Players scanPlayerToShow(Players players) {
         String payload = players.players()
                 .stream()
-                .map(p -> p.name())
+                .map(player -> player.name())
                 .reduce((acc, cur) -> acc + ", " + cur)
                 .orElseThrow(() -> new RuntimeException("unreachable."));
         Output.print("Put person to show reward.\nOptions: " + payload + " (or 'all')\n");

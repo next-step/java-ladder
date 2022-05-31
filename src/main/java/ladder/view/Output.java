@@ -14,25 +14,8 @@ public class Output {
 
     public static void printPlayers(List<Player> players) {
         Output.print(" ".repeat(2));
-        players.forEach(p -> Output.print(format(p.name())));
+        players.forEach(player -> Output.print(format(player.name())));
         Output.print("\n");
-    }
-
-    public static void printLines(List<Row> lines) {
-        lines.forEach(line -> {
-            System.out.print(" ".repeat(4));
-//            Output.printLine(line.points());
-            System.out.println();
-        });
-
-    }
-
-    public static void printLine(List<Boolean> points) {
-        points
-                .stream()
-                .map(p -> p ? "-" : " ")
-                .map(p -> "|" + p.repeat(5))
-                .forEach(System.out::print);
     }
 
     private static String format(String name) {

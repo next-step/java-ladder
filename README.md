@@ -159,7 +159,9 @@ henry: 💣
 - [x] showResult 테스트 가능한 구조로 변경 -> ladder.result 가 rewardIndex return 하도록 변경
   - [x] 사다리는 Players 가 아닌 다른 곳에서 생성: new Ladder(height, width)
 - [x] Players.toString 내부의 output layer 를 분리
-- [ ] 축약된 변수명 풀어쓰기
+- [x] 축약된 변수명 풀어쓰기
   - Players.findPlayer
+  - Height
+  - Input.scanPlayerToShow
 - [ ] getter 최대한 메시지로 변경
   - player.name
