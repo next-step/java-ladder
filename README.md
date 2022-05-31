@@ -148,8 +148,8 @@ henry: 💣
 - [ ] Line 이 boolean 뿐만아니라 경계선이 존재하는지도 알고 있게 변경
   - [x] boolean 을 대체할 Node class 생성
   - [x] 두 Node 를 연결할 Link class 생성
-  - [ ] Line -> Row 이름 변경
-  - [ ] Row: Link 를 활용한 로직 구현
+  - [x] Line -> Row 이름 변경
+  - [x] Row: Link 를 활용한 로직 구현
   - [ ] Lines -> Ladder 이름 변경
   - [ ] Ladder: Row 를 활용한 로직 구현
 - [ ] showResult 테스트 가능한 구조로 변경

@@ -1,8 +1,10 @@
 package ladder.domain;
 
 import java.util.Objects;
+import java.util.Random;
 
 public class Node {
+    public static final Random RANDOM = new Random();
     private final boolean left;
     private final boolean current;
 
@@ -15,10 +17,20 @@ public class Node {
         return new Node(false, current);
     }
 
+    public static Node firstRandom() {
+        return new Node(false, RANDOM.nextBoolean());
+    }
+
     public Node next(boolean current) {
         return new Node(this.current, current);
     }
 
+    public Node nextRandom() {
+        if (this.current) {
+            return new Node(true, false);
+        }
+        return new Node(false, RANDOM.nextBoolean());
+    }
 
     public Direction move() {
         if (this.current && this.left) {
@@ -33,8 +45,8 @@ public class Node {
         return Direction.DOWN;
     }
 
-    public static Node last() {
-        return new Node(false, false);
+    public Node last() {
+        return new Node(this.current, false);
     }
 
     @Override

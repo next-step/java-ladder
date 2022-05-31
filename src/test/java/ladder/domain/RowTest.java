@@ -3,6 +3,7 @@ package ladder.domain;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -28,9 +29,29 @@ public class RowTest {
 //        assertThat(Row.next(true)).isFalse();
 //    }
 
+    @Test
+    void move() {
+        Node node = Node.first(false);
+        List<Link> links = Arrays.asList(
+                new Link(0, node),
+                new Link(1, node.next(true)),
+                new Link(2, node.next(false))
+        );
+        Row row = new Row(links);
+        assertThat(row.move(1)).isEqualTo(2);
+    }
 
     @Test
-    void name() {
-        Row row = new Row(Arrays.asList(new Link(0, Node.first(true)), new Link(0, Node.first(true))));
+    void createRow() {
+        Row row = Row.createRandom(5);
+        assertThat(row.size()).isEqualTo(5);
     }
 }
+
+
+/*
+0, false true, 1, false, true
+
+false false false
+false true false
+*/

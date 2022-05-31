@@ -21,4 +21,16 @@ public class Link {
         }
         return this.from;
     }
+
+    public static Link firstRandom() {
+        return new Link(0, Node.firstRandom());
+    }
+
+    public Link nextRandom() {
+       return new Link(this.from + 1, this.node.nextRandom());
+    }
+
+    public Link last() {
+        return new Link(this.from + 1, this.node.last());
+    }
 }

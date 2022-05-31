@@ -1,18 +1,33 @@
 package ladder.domain;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Row {
-
     private final List<Link> links;
 
     public Row(List<Link> links) {
         this.links = links;
     }
+
+    public int move(int from) {
+        return links.get(from).move();
+    }
+
+    public static Row createRandom(int length) {
+        List<Link> links = Stream.iterate(Link.firstRandom(), link -> link.nextRandom())
+                .limit(length - 1)
+                .collect(Collectors.toList());
+        links.add(links.get(length - 2).last());
+        return new Row(links);
+    }
+
+    public int size() {
+        return this.links.size();
+    }
+
+
 //    public static final Random RANDOM = new Random();
 //    private final List<Boolean> points;
 //
