@@ -59,23 +59,31 @@ public class Line {
         return random.nextBoolean();
     }
 
-    public int move(int nowWidth) {
-        if(nowWidth == 0) {
-            nowWidth = rightMove(nowWidth);
-        }
-        else if(nowWidth == getSpotList().size()) {
-            nowWidth = leftMove(nowWidth);
-        }
-        else {
-            if(isRightMove(nowWidth)) {
-                nowWidth = rightMove(nowWidth);
-            }
-            else {
-                nowWidth = leftMove(nowWidth);
-            }
+    public int move(int nowPosition) {
+        // 현재 사다리 맨 왼쪽에 위치해있을때
+        if(nowPosition == 0) {
+            return rightMove(nowPosition);
         }
 
-        return nowWidth;
+        // 현재 사다리 맨 오른쪽에 위치해있을때
+        if(nowPosition == getSpotList().size()) {
+            return leftMove(nowPosition);
+        }
+
+        // 현재 사다리 중간에 위치해있을때
+        return middlePositionCase(nowPosition);
+    }
+
+    private int middlePositionCase(int nowPosition) {
+        if(isRightMove(nowPosition)) {
+            return rightMove(nowPosition);
+        }
+
+        if(!isRightMove(nowPosition)) {
+            return leftMove(nowPosition);
+        }
+
+        return nowPosition;
     }
 
     public int rightMove(int widthPos) {
