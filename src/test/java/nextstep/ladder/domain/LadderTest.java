@@ -2,9 +2,13 @@ package nextstep.ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import static nextstep.ladder.domain.LineTest.convertToPoints;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -30,27 +34,30 @@ class LadderTest {
     @Test
     @DisplayName("사다리 생성 테스트")
     void ladder_creation(){
-        Ladder ladder = Ladder.of(2, 3, ()->true);
+        Ladder ladder = Ladder.of(2, 4, ()->true);
 
         List<Line> res = new ArrayList<>();
-        res.add(new Line(List.of(false, true, false, true, false)));
-        res.add(new Line(List.of(false, true, false, true, false)));
+        res.add(new Line(convertToPoints(List.of(false, true, false, true, false))));
+        res.add(new Line(convertToPoints(List.of(false, true, false, true, false))));
 
         assertThat(ladder.getLines())
                 .isEqualTo(res);
     }
 
-    @Test
-    void 결과_위치를_반환(){
+    @ParameterizedTest
+    @CsvSource(value = {
+            "0, 3",
+            "1, 1",
+            "2, 2",
+            "3, 0"
+    })
+    void 결과_위치를_반환(int startIndex, int finalIndex){
         Ladder ladder = new Ladder(List.of(
-                new Line(List.of(false, true, false, true, false)),
-                new Line(List.of(false, false, true, false, false)),
-                new Line(List.of(false, true, false, true, false))
+                new Line(convertToPoints(List.of(false, true, false, true, false))),
+                new Line(convertToPoints(List.of(false, false, true, false, false))),
+                new Line(convertToPoints(List.of(false, true, false, true, false)))
         ));
 
-        assertThat(ladder.findResult(0)).isEqualTo(3);
-        assertThat(ladder.findResult(1)).isEqualTo(1);
-        assertThat(ladder.findResult(2)).isEqualTo(2);
-        assertThat(ladder.findResult(3)).isEqualTo(0);
+        assertThat(ladder.findResult(startIndex)).isEqualTo(finalIndex);
     }
 }

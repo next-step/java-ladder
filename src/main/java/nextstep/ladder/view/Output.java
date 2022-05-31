@@ -43,21 +43,22 @@ public class Output {
     }
 
     public static void printLine(Line line){
-        List<Boolean> points  = line.getPoints();
+        List<Point> points  = line.getPoints();
 
-        String result = points.stream()
-                .limit(points.size())
+        String result = EMPTY_POINT + VERTICAL_LINE;
+
+        result += points.stream()
                 .map(Output::getPointAndVertical)
                 .collect(Collectors.joining(VERTICAL_LINE));
 
         System.out.println(result);
     }
 
-    private static String getPointAndVertical(boolean point){
-        if(point){
-            return NOT_EMPTY_POINT ;
+    private static String getPointAndVertical(Point point){
+        if(point.getDirection().isRight()){
+            return NOT_EMPTY_POINT;
         }
-        return EMPTY_POINT ;
+        return EMPTY_POINT;
     }
 
     public static void printLadderResults(List<LadderResult> ladderResults) {
