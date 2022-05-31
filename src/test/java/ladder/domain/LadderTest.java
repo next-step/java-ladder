@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -25,8 +26,9 @@ public class LadderTest {
 
         Line line1 = new Line(Arrays.asList(moving1, moving2, moving3, moving4));
         Line line2 = new Line(Arrays.asList(movingA, movingB, movingC, movingD));
-
-        Ladder ladder = new Ladder(Arrays.asList(line1, line2));
-        Assertions.assertThat(ladder.extractIndexes());
+        List<String> results = Arrays.asList("가", "나", "다", "라");
+        List<String> answers = Arrays.asList("다", "가", "라", "나");
+        Ladder ladder = new Ladder(Arrays.asList(line1, line2), 4);
+        Assertions.assertThat(ladder.extractResults(results)).isEqualTo(answers);
     }
 }

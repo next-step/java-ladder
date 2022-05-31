@@ -53,18 +53,18 @@ public class ResultView {
         return PASS;
     }
 
-    public static void printResult(LadderResult ladderResult) {
+    public static void printResult(List<String> results) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        String result = ladderResult.getLadderResult().stream()
+        String result = results.stream()
                 .collect(Collectors.joining(RESULT_INTERVAL));
         stringBuilder.append(String.format("  %s\n ", result));
         System.out.println(stringBuilder);
     }
 
-    public static void resultFinal(FinalResult finalResult, String request) {
+    public static void resultFinal(LadderResult ladderResult, String request) {
         StringBuilder stringBuilder = new StringBuilder();
-        Map<String, String> temporary = finalResult.getFinalResult();
+        Map<String, String> temporary = ladderResult.getLadderResult();
 
         stringBuilder.append("\n실행결과\n");
         if (request.equals(ALL)) {

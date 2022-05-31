@@ -16,8 +16,8 @@ public class Ladder {
                 .forEachOrdered(number -> lines.add(new Line(countOfPerson, strategy)));
     }
 
-    public Ladder(List<Line> lines) {
-        this.countOfPerson = lines.size();
+    public Ladder(List<Line> lines, int countOfPerson) {
+        this.countOfPerson = countOfPerson;
         this.lines = new ArrayList<>(lines);
     }
 
@@ -25,11 +25,11 @@ public class Ladder {
         return lines;
     }
 
-    public List<Integer> extractIndexes() {
-        List<Integer> result = new ArrayList<>();
+    public List<String> extractResults(List<String> results) {
+        List<String> finalResult = new ArrayList<>();
         IntStream.range(INITIAL, countOfPerson)
-                .forEachOrdered(index -> result.add(move(index)));
-        return result;
+                .forEachOrdered(index -> finalResult.add(results.get(move(index))));
+        return finalResult;
     }
 
     private int move(int index) {
