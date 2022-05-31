@@ -150,7 +150,8 @@ henry: 💣
   - [x] 두 Node 를 연결할 Link class 생성
   - [x] Line -> Row 이름 변경
   - [x] Row: Link 를 활용한 로직 구현
-  - [ ] Lines -> Ladder 이름 변경
+  - [x] Row: createRandom, createManual 분리 구현
+  - [x] Lines -> Ladder 이름 변경
   - [ ] Ladder: Row 를 활용한 로직 구현
 - [ ] showResult 테스트 가능한 구조로 변경
   - [ ] 사다리는 Players 가 아닌 다른 곳에서 생성

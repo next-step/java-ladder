@@ -13,6 +13,14 @@ public class Node {
         this.current = current;
     }
 
+    @Override
+    public String toString() {
+        return "Node{" +
+                "left=" + left +
+                ", current=" + current +
+                '}';
+    }
+
     public static Node first(boolean current) {
         return new Node(false, current);
     }

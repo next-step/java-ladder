@@ -3,10 +3,7 @@ package ladder.domain;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class RowTest {
 //    @Test
@@ -31,14 +28,11 @@ public class RowTest {
 
     @Test
     void move() {
-        Node node = Node.first(false);
-        List<Link> links = Arrays.asList(
-                new Link(0, node),
-                new Link(1, node.next(true)),
-                new Link(2, node.next(false))
-        );
-        Row row = new Row(links);
+        Row row = Row.createManual(Arrays.asList(false, true, false));
+        System.out.println(row);
+        assertThat(row.move(0)).isEqualTo(0);
         assertThat(row.move(1)).isEqualTo(2);
+        assertThat(row.move(2)).isEqualTo(1);
     }
 
     @Test
