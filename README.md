@@ -30,6 +30,8 @@
           crong : 꽝
           jk : 5000
 
+(step4)
+-객체를 최소 단위(리프노드)로 리팩토링 해라
 ## 기능목록
 
 (step2)
@@ -53,7 +55,14 @@
   * Ladder에서 각사람마다 재귀적으로 진행하여 최종 Index값을 갖고있는 List반환
     -해당 IndexList값 테스트
   * LadderResult에서 결과 맞는지 확인Test
-  * 
+
+(step4)
+*사다리 구상을 기존 모델의 최소단위인 line을 더 쪼갠다.
+    -한 점인 Point 추가
+    -방향인 Direction Enum 추가
+    -각 점과 index값을 가지는 Moving 추가
+    -Movings를 가지는 Line 
+
 ## 도메인 구상
 * 사다리 라인 랜덤 생성
     메시지 전송자 : 사다리
