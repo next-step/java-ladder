@@ -14,14 +14,14 @@ public class Position {
     this.point = point;
   }
 
-  public int move(int startPoint) {
+  public int move() {
     Direction direction = point.move();
     if (direction.right()) {
-      return startPoint + 1;
+      return position + 1;
     } else if (direction.left()) {
-      return startPoint - 1;
+      return position - 1;
     }
-    return startPoint;
+    return position;
   }
 
 }
