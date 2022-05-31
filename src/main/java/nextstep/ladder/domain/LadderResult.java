@@ -13,7 +13,7 @@ public class LadderResult {
     }
 
     void validate(String value){
-        if(value == null || value.equals("")){
+        if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException(INVALID_LADDER_RESULT_VALUE);
         }
     }
