@@ -7,11 +7,13 @@ import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DirectionTest {
     @Test
     public void init() {
-        assertThat(Direction.of(true, false)).isEqualTo(Direction.of(true, false));
+        assertThat(Direction.of(true, false))
+                .isInstanceOf(Direction.class);
     }
 
     @Test
@@ -48,8 +50,10 @@ public class DirectionTest {
     @Test
     public void first() {
         Direction first = Direction.first(TRUE);
-        assertThat(first.isLeft()).isFalse();
-        assertThat(first.isRight()).isTrue();
+        assertAll(
+                ()->assertFalse(first.isLeft()),
+                ()->assertTrue(first.isRight())
+        );
     }
 
     @Test
