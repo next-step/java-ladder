@@ -1,9 +1,11 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.exceptions.NotAllowNegativeOrZero;
-import nextstep.ladder.domain.exceptions.NotNumberStringIsNotAllowException;
+import nextstep.ladder.exceptions.NotAllowNegativeOrZero;
+import nextstep.ladder.exceptions.NotNumberStringIsNotAllowException;
+import nextstep.ladder.domain.line.Line;
+import nextstep.ladder.domain.line.Lines;
+import nextstep.ladder.domain.member.Members;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;

@@ -1,4 +1,6 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.line.point;
+
+import nextstep.ladder.domain.BooleanGenerator;
 
 import java.util.Objects;
 

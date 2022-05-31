@@ -1,4 +1,9 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.line;
+
+import nextstep.ladder.domain.BooleanGenerator;
+import nextstep.ladder.domain.member.Member;
+import nextstep.ladder.domain.member.Members;
+import nextstep.ladder.domain.line.point.Points;
 
 import java.util.List;
 import java.util.Objects;
@@ -25,6 +30,10 @@ public class Line {
         return this.points.getPoint() +
                 STICK +
                 LINE_SEPARATOR;
+    }
+
+    public void move(Member member) {
+        member.move(this.points);
     }
 
     @Override

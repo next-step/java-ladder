@@ -1,4 +1,6 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.line;
+
+import nextstep.ladder.domain.member.Member;
 
 import java.util.List;
 import java.util.Objects;
@@ -11,16 +13,6 @@ public class Lines {
 
     public Lines(List<Line> lines) {
         this.lines = lines;
-    }
-
-    static Lines of(List<List<Boolean>> lineList) {
-        return new Lines(wrap(lineList));
-    }
-
-    private static List<Line> wrap(List<List<Boolean>> lineList) {
-        return lineList.stream()
-                .map(Line::new)
-                .collect(Collectors.toList());
     }
 
     public String getPoints() {
@@ -45,5 +37,9 @@ public class Lines {
     @Override
     public int hashCode() {
         return Objects.hash(lines);
+    }
+
+    public void move(Member member) {
+        this.lines.forEach(line -> line.move(member));
     }
 }

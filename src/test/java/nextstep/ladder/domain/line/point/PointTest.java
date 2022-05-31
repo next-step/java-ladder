@@ -1,4 +1,4 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.line.point;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

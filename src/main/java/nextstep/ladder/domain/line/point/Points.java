@@ -1,4 +1,7 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.line.point;
+
+import nextstep.ladder.domain.BooleanGenerator;
+import nextstep.ladder.domain.member.Members;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,6 +66,32 @@ public class Points {
         return this.points.stream()
                 .map(Point::getEdgeOrEmpty)
                 .collect(Collectors.joining());
+    }
+
+    public boolean sameSize(int x) {
+        return this.points.size() == x;
+    }
+
+    public boolean firstMatch() {
+        return this.points.get(START_INCLUSIVE)
+                .isTrue();
+    }
+
+    public boolean lastMatch() {
+        int index = this.points.size() - LAST_SIZE;
+
+        return this.points.get(index)
+                .isTrue();
+    }
+
+    public boolean leftMatch(int x) {
+        return this.points.get(x - LAST_SIZE)
+                .isTrue();
+    }
+
+    public boolean rightMatch(int x) {
+        return this.points.get(x)
+                .isTrue();
     }
 
     @Override

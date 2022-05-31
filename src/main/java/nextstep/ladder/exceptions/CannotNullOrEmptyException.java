@@ -1,4 +1,4 @@
-package nextstep.ladder.domain.exceptions;
+package nextstep.ladder.exceptions;
 
 public class CannotNullOrEmptyException extends IllegalArgumentException {
     public CannotNullOrEmptyException() {
