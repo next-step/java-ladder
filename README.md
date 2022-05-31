@@ -165,4 +165,5 @@ henry: 💣
   - Input.scanPlayerToShow
 - [x] getter 최대한 메시지로 변경
   - player.name: 일부는 nameEquals 로 변경하였으나 아예 없애지 못함
+- [x] Players test 추가
 

@@ -52,6 +52,6 @@ public class Input {
         if (playerName.equals("all")) {
             return players;
         }
-        return players.findPlayer(playerName);
+        return players.findPlayers(playerName);
     }
 }

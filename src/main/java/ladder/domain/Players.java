@@ -20,20 +20,7 @@ public class Players {
         return Collections.unmodifiableList(this.players);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Players players1 = (Players) o;
-        return Objects.equals(players, players1.players);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(players);
-    }
-
-    public Players findPlayer(String playerName) {
+    public Players findPlayers(String playerName) {
         return new Players(
                 this.players
                         .stream()
@@ -47,5 +34,26 @@ public class Players {
                 .stream()
                 .map(player -> player.result(ladder, rewards))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Players players1 = (Players) o;
+        return Objects.equals(players, players1.players);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(players);
+    }
+
+    @Override
+    public String
+    toString() {
+        return "Players{" +
+                "players=" + players +
+                '}';
     }
 }
