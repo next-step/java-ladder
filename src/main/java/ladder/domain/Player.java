@@ -2,6 +2,7 @@ package ladder.domain;
 
 import ladder.exception.PlayerNameLengthExceedException;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Player {
@@ -19,9 +20,8 @@ public class Player {
     }
 
     public Player(String name) {
-       this(name, autoIncrement++);
+        this(name, autoIncrement++);
     }
-
 
 
     public String name() {
@@ -51,5 +51,10 @@ public class Player {
 
     public int no() {
         return this.no;
+    }
+
+    public LadderResult result(Ladder ladder, List<String> rewards) {
+        int resultIndex = ladder.result(this.no);
+        return new LadderResult(this, rewards.get(resultIndex));
     }
 }
