@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 import static java.util.Arrays.*;
 
-public class UserGenerator {
+public class Generator {
     public static List<User> generate(String commaNames) {
         return stream(commaNames.split(","))
                 .map(name -> new User(name))

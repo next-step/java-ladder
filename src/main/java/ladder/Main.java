@@ -1,6 +1,7 @@
 package ladder;
 
-import ladder.util.UserGenerator;
+import ladder.domain.User;
+import ladder.util.Generator;
 import ladder.contoller.InputView;
 import ladder.contoller.ResultView;
 import ladder.domain.LadderGame;
@@ -11,8 +12,10 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         String gameContributors = InputView.findGameContributors();
-        LadderGame ladderGame = new LadderGame(UserGenerator.generate(gameContributors));
-        List<Line> lines = ladderGame.ready();
+        List<User> resultList = Generator.generate(InputView.findResultList());
+        LadderGame ladderGame = new LadderGame(Generator.generate(gameContributors));
+        List<Line> lines = ladderGame.getLines();
+//        ladderGame.start();
         ResultView.printLadder(ladderGame.drawUserList(), lines);
     }
 }
