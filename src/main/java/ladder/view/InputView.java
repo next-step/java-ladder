@@ -91,7 +91,7 @@ public class InputView {
     private static Positions validateResult(Positions playerPositions) {
         Positions resultPositions = Positions.createResults(SplitUtil.split(scanner.nextLine()));
         if (!playerPositions.hasSameSize(resultPositions)) {
-            throw new InvalidCountOfPositionException(String.format(MESSAGE_INVALID_RESULT_COUNT, playerPositions.size()));
+            throw new InvalidCountOfPositionException(String.format(MESSAGE_INVALID_RESULT_COUNT, playerPositions.count()));
         }
         return resultPositions;
     }

@@ -1,68 +1,58 @@
 package ladder.domain;
 
 import ladder.constant.Direction;
-import ladder.constant.Point;
-import ladder.exception.ContinuousConnectionException;
-import ladder.strategy.GenerationStrategy;
+import ladder.generator.PointGenerator;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Line {
 
-    private static final int PREVIOUS_VALUE = 1;
-
+    private static final int FIRST_LAST_COUNT = 2;
     private final List<Point> points;
 
-    public Line(int pointCount, GenerationStrategy strategy) {
-        this(strategy.generatePoints(pointCount));
-    }
-
-    public Line(Point... points) {
-        this(List.of(points));
-    }
-
-    public Line(List<Point> points) {
-        validatePoints(points);
+    public Line(Positions positions) {
+        List<Point> points = new ArrayList<>();
+        Point point = initFirstPoint(points);
+        point = initMiddlePoints(positions, points, point);
+        initLastPoint(points, point);
         this.points = points;
     }
 
-    private void validatePoints(List<Point> points) {
-        for (int i = 0; i < points.size(); i++) {
-            validateContinuousConnect(points, i);
-        }
+    private Point initFirstPoint(List<Point> points) {
+        Point point = Point.first(PointGenerator.generate());
+        points.add(point);
+        return point;
     }
 
-    private void validateContinuousConnect(List<Point> points, int currentIndex) {
-        if (!continuousConnected(points, currentIndex)) {
-            return;
+    private Point initMiddlePoints(Positions positions, List<Point> points, Point point) {
+        for (int i = 0; i < positions.count() - FIRST_LAST_COUNT; i++) {
+            point = point.nextRandom();
+            points.add(point);
         }
-        throw new ContinuousConnectionException();
+        return point;
     }
 
-    private boolean continuousConnected(List<Point> points, int currentIndex) {
-        if (currentIndex == Index.MIN_VALUE) {
-            return false;
-        }
-        return points.get(currentIndex).isConnect()
-                && points.get(currentIndex - PREVIOUS_VALUE).isConnect();
+    private void initLastPoint(List<Point> points, Point point) {
+        points.add(point.last());
     }
 
     public Direction direction(Index index) {
-        if(connectedLeftLine(index)) {
+        if(isConnectLeft(index)) {
             return Direction.LEFT;
         }
-        if (connectedRightLine(index)) {
+        if (isConnectRight(index)) {
             return Direction.RIGHT;
         }
-        return Direction.STAY;
+        return Direction.PASS;
     }
 
-    private boolean connectedLeftLine(Index index) {
-        return !index.minimum() && points.get(index.leftValue()).isConnect();
+    private boolean isConnectLeft(Index index) {
+        return points.get(index.toInt()).isLeftConnected();
     }
-    private boolean connectedRightLine(Index index) {
-        return !index.maximum() && points.get(index.value()).isConnect();
+    private boolean isConnectRight(Index index) {
+        return points.get(index.toInt()).isRightConnected();
     }
 
     public List<Point> points() {
@@ -80,11 +70,6 @@ public class Line {
     @Override
     public int hashCode() {
         return Objects.hash(points);
-    }
-
-    @Override
-    public String toString() {
-        return this.points.toString();
     }
 }
 

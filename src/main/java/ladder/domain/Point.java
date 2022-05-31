@@ -7,8 +7,8 @@ import java.util.Objects;
 
 public class Point {
 
-    private static final boolean CONNECTED = true;
-    private static final boolean DISCONNECTED = false;
+    public static final boolean CONNECTED = true;
+    public static final boolean DISCONNECTED = false;
 
     private final boolean left;
     private final boolean right;

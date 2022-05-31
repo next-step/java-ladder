@@ -51,7 +51,7 @@ public class Positions {
         return values.size() == otherPositions.values.size();
     }
 
-    public int size() {
+    public int count() {
         return values.size();
     }
 

@@ -1,6 +1,5 @@
 package ladder.view;
 
-import ladder.constant.Point;
 import ladder.domain.*;
 import ladder.exception.NotSupportException;
 
@@ -27,7 +26,7 @@ public class ResultBuilder {
     }
 
     public static String ladderResult(Ladder ladder) {
-        Map<Point, String> lineViews = initializeLineViews(ladder);
+        Map<Boolean, String> lineViews = initializeLineViews(ladder);
         initializeStringBuilder();
 
         renderPositions(ladder.playerPositions(), maxNameSize(ladder));
@@ -36,8 +35,8 @@ public class ResultBuilder {
         return sb.toString();
     }
 
-    private static Map<Point, String> initializeLineViews(Ladder ladder) {
-        Map<Point, String> lines = new HashMap<>();
+    private static Map<Boolean, String> initializeLineViews(Ladder ladder) {
+        Map<Boolean, String> lines = new HashMap<>();
         lines.put(Point.CONNECTED, drawLine(ladder, NAME_CONNECT_ONE_UNIT));
         lines.put(Point.DISCONNECTED, drawLine(ladder, NAME_EMPTY_ONE_UNIT));
         return lines;
@@ -72,20 +71,18 @@ public class ResultBuilder {
         sb.append(position.name());
     }
 
-    private static void renderLadder(Ladder ladder, Map<Point, String> lineViews) {
+    private static void renderLadder(Ladder ladder, Map<Boolean, String> lineViews) {
         for (Line line : ladder.lines()) {
             renderLine(line, lineViews);
             sb.append(BLANK_LINE);
         }
     }
 
-    private static void renderLine(Line line, Map<Point, String> lineViews) {
-        sb.append(lineViews.get(Point.DISCONNECTED));
+    private static void renderLine(Line line, Map<Boolean, String> lineViews) {
         for (Point point : line.points()) {
+            sb.append(lineViews.get(point.isLeftConnected()));
             sb.append(VERTICAL_LINE);
-            sb.append(lineViews.get(point));
         }
-        sb.append(VERTICAL_LINE);
     }
 
     private static void initializeStringBuilder() {

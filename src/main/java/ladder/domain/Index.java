@@ -9,7 +9,6 @@ import java.util.Objects;
 public class Index {
 
     public static final int MIN_VALUE = 0;
-    private static final int LEFT_POSITION_VALUE = 1;
 
     private final int maxValue;
     private int value;
@@ -46,11 +45,7 @@ public class Index {
         return value == maxValue;
     }
 
-    public int leftValue() {
-        return value - LEFT_POSITION_VALUE;
-    }
-
-    public int value() {
+    public int toInt() {
         return value;
     }
 
