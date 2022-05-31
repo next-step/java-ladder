@@ -8,11 +8,13 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
- public class Input {
+public class Input {
     static Scanner scanner = new Scanner(System.in);
+
     private Input() {
         throw new AssertionError("Cannot instantiate Input class");
     }
+
     public static int scanHeight() {
         System.out.println("Put max height of ladders");
         return Integer.parseInt(scanner.nextLine());
@@ -29,22 +31,27 @@ import java.util.stream.Collectors;
                 .collect(Collectors.toList()));
     }
 
-     public static List<String> scanRewards() {
-         System.out.println("Put Execution results separated by ','.");
-         return parseResults(scanner.nextLine());
-     }
+    public static List<String> scanRewards() {
+        System.out.println("Put Execution results separated by ','.");
+        return parseResults(scanner.nextLine());
+    }
 
-     private static List<String> parseResults(String nextLine) {
-         return Arrays.stream(nextLine.split("\\s*,\\s*"))
-                 .collect(Collectors.toList());
-     }
+    private static List<String> parseResults(String nextLine) {
+        return Arrays.stream(nextLine.split("\\s*,\\s*"))
+                .collect(Collectors.toList());
+    }
 
-     public static Players scanPlayerToShow(Players players) {
-         Output.print("Put person to show reward.\nOptions: " + players + " (or 'all')\n");
-         String playerName = scanner.nextLine();
-         if (playerName.equals("all")) {
-             return players;
-         }
-         return players.findPlayer(playerName);
-     }
- }
+    public static Players scanPlayerToShow(Players players) {
+        String payload = players.players()
+                .stream()
+                .map(p -> p.name())
+                .reduce((acc, cur) -> acc + ", " + cur)
+                .orElseThrow(() -> new RuntimeException("unreachable."));
+        Output.print("Put person to show reward.\nOptions: " + payload + " (or 'all')\n");
+        String playerName = scanner.nextLine();
+        if (playerName.equals("all")) {
+            return players;
+        }
+        return players.findPlayer(playerName);
+    }
+}

@@ -33,14 +33,6 @@ public class Players {
         return Objects.hash(players);
     }
 
-    @Override
-    public String toString() {
-        return this.players.stream()
-                .map(p -> p.name())
-                .reduce((acc, cur) -> acc + ", " + cur)
-                .orElseThrow(() -> new RuntimeException("unreachable."));
-    }
-
     public Players findPlayer(String playerName) {
         return new Players(
                 this.players
@@ -57,16 +49,4 @@ public class Players {
                 .collect(Collectors.toList());
 
     }
-
-//    public void showResult(List<String> rewards, Lines lines) {
-//        Players targetPlayers = Input.scanPlayerToShow(this);
-//        List<LadderResult> ladderResults = targetPlayers.players()
-//                .stream()
-//                .map(player -> new LadderResult(player, rewards.get(new Ladder(lines, player.no()).plays().x())))
-//                .collect(Collectors.toList());
-//        Output.printLadderResults(ladderResults);
-//        if (targetPlayers.size() != this.players.size()) {
-//            this.showResult(rewards, lines);
-//        };
-//    }
 }
