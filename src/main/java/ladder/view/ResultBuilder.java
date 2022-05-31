@@ -4,16 +4,21 @@ import ladder.constant.Point;
 import ladder.domain.*;
 import ladder.exception.NotSupportException;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class ResultBuilder {
 
     private static final int EMPTY_SIZE = 0;
-    private static final int NAME_PLACE_PER_LENGTH = 6;
+    private static final int MIN_NAME_PLACE_PER_LENGTH = 6;
+    private static final int SINGLE_RESULT_INDEX = 0;
+    private static final int SINGLE_RESULT_SIZE = 1;
     private static final String BLANK_LINE = "\n";
-    private static final String INITIAL_EMPTY_SPACE = "     ";
     private static final String VERTICAL_LINE = "|";
-    private static final String HORIZONTAL_CONNECTED_LINE = "-----";
-    private static final String HORIZONTAL_DISCONNECTED_LINE = "     ";
     private static final String NAME_EMPTY_ONE_UNIT = " ";
+    private static final String NAME_CONNECT_ONE_UNIT = "-";
+    private static final String ALL_RESULT_TEMPLATE = "%s : %s";
 
     private static final StringBuilder sb = new StringBuilder();
 
@@ -21,55 +26,93 @@ public class ResultBuilder {
         throw new NotSupportException();
     }
 
-    public static String ladderResult(LadderGame ladderGame) {
+    public static String ladderResult(Ladder ladder) {
+        Map<Point, String> lineViews = initializeLineViews(ladder);
         initializeStringBuilder();
 
-        renderParticipants(ladderGame.people());
-        renderLadder(ladderGame.ladder());
+        renderPositions(ladder.playerPositions(), maxNameSize(ladder));
+        renderLadder(ladder, lineViews);
+        renderPositions(ladder.resultPositions(), maxNameSize(ladder));
         return sb.toString();
     }
 
-    private static void renderParticipants(People people) {
-        for (Person person : people.toList()) {
-            renderPerson(person);
+    private static Map<Point, String> initializeLineViews(Ladder ladder) {
+        Map<Point, String> lines = new HashMap<>();
+        lines.put(Point.CONNECTED, drawLine(ladder, NAME_CONNECT_ONE_UNIT));
+        lines.put(Point.DISCONNECTED, drawLine(ladder, NAME_EMPTY_ONE_UNIT));
+        return lines;
+    }
+
+    private static String drawLine(Ladder ladder, String unit) {
+        initializeStringBuilder();
+        for (int i = 0; i < maxNameSize(ladder); i++) {
+            sb.append(unit);
+        }
+        return sb.toString();
+    }
+
+    private static int maxNameSize(Ladder ladder) {
+        if (ladder.maxNameSize() < MIN_NAME_PLACE_PER_LENGTH) {
+            return MIN_NAME_PLACE_PER_LENGTH;
+        }
+        return ladder.maxNameSize();
+    }
+
+    private static void renderPositions(Positions positions, int maxNameSize) {
+        for (Position position : positions.toList()) {
+            renderPosition(position, maxNameSize);
         }
         sb.append(BLANK_LINE);
     }
 
-    private static void renderPerson(Person person) {
-        for (int i = 0; i < person.withoutNameSize(NAME_PLACE_PER_LENGTH); i++) {
+    private static void renderPosition(Position position, int maxNameSize) {
+        for (int i = 0; i < position.withoutNameSize(maxNameSize) + 1; i++) {
             sb.append(NAME_EMPTY_ONE_UNIT);
         }
-        sb.append(person.name());
+        sb.append(position.name());
     }
 
-    private static void renderLadder(Ladder ladder) {
+    private static void renderLadder(Ladder ladder, Map<Point, String> lineViews) {
         for (Line line : ladder.lines()) {
-            renderLine(line);
+            renderLine(line, lineViews);
             sb.append(BLANK_LINE);
         }
     }
 
-    private static void renderLine(Line line) {
-        sb.append(INITIAL_EMPTY_SPACE);
+    private static void renderLine(Line line, Map<Point, String> lineViews) {
+        sb.append(lineViews.get(Point.DISCONNECTED));
         for (Point point : line.points()) {
             sb.append(VERTICAL_LINE);
-            renderPoint(point);
+            sb.append(lineViews.get(point));
         }
         sb.append(VERTICAL_LINE);
-    }
-
-    private static void renderPoint(Point point) {
-        if (point.isConnect()) {
-            sb.append(HORIZONTAL_CONNECTED_LINE);
-            return;
-        }
-        sb.append(HORIZONTAL_DISCONNECTED_LINE);
     }
 
     private static void initializeStringBuilder() {
         if (sb.length() != EMPTY_SIZE) {
             sb.setLength(EMPTY_SIZE);
         }
+    }
+
+    public static String searchResult(List<Result> results) {
+        initializeStringBuilder();
+
+        if (results.size() == SINGLE_RESULT_SIZE) {
+            return renderSingleResult(results.get(SINGLE_RESULT_INDEX));
+        }
+        return renderMultiResult(results);
+    }
+
+    private static String renderSingleResult(Result result) {
+        sb.append(result.value());
+        return sb.toString();
+    }
+
+    private static String renderMultiResult(List<Result> results) {
+        for (Result result : results) {
+            sb.append(String.format(ALL_RESULT_TEMPLATE, result.playerName(), result.value()));
+            sb.append(BLANK_LINE);
+        }
+        return sb.toString();
     }
 }

@@ -1,11 +1,12 @@
 package ladder.view;
 
 import ladder.domain.Height;
-import ladder.domain.People;
-import ladder.exception.InvalidCountOfPersonException;
+import ladder.domain.Positions;
+import ladder.exception.InvalidCountOfPositionException;
 import ladder.exception.InvalidHeightException;
 import ladder.exception.InvalidNameException;
 import ladder.exception.NotSupportException;
+import ladder.util.SplitUtil;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -15,6 +16,9 @@ public class InputView {
     private static final String MESSAGE_INPUT_PARTICIPANTS_NAME = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String MESSAGE_INPUT_LADDER_HEIGHT = "최대 사다리 높이는 몇 개인가요?";
     private static final String MESSAGE_INVALID_NUMBER_FORMAT = "숫자만 입력 가능합니다.";
+    private static final String MESSAGE_INPUT_RESULT = "실행 결과를 입력하세요. (이름은 쉼표(,)로 구분하세요)";
+    private static final String MESSAGE_INVALID_RESULT_COUNT = "결과의 개수는 %d 이여야 합니다.";
+    private static final String MESSAGE_INPUT_SEARCH = "결과를 보고 싶은 사람은?";
 
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -22,22 +26,22 @@ public class InputView {
         throw new NotSupportException();
     }
 
-    public static People participantsNameView() {
+    public static Positions participantsNameView() {
         System.out.println(MESSAGE_INPUT_PARTICIPANTS_NAME);
         return inputValidParticipantsName();
     }
 
-    private static People inputValidParticipantsName() {
+    private static Positions inputValidParticipantsName() {
         try {
             return validateParticipantsName();
-        } catch (InvalidCountOfPersonException | InvalidNameException e) {
+        } catch (InvalidCountOfPositionException | InvalidNameException e) {
             System.out.println(e.getMessage());
             return inputValidParticipantsName();
         }
     }
 
-    private static People validateParticipantsName() {
-        return new People(scanner.nextLine());
+    private static Positions validateParticipantsName() {
+        return Positions.createPlayers(SplitUtil.split(scanner.nextLine()));
     }
 
     public static Height ladderHeightView() {
@@ -70,4 +74,30 @@ public class InputView {
         }
     }
 
+    public static Positions resultView(Positions positions) {
+        System.out.println(MESSAGE_INPUT_RESULT);
+        return inputValidResult(positions);
+    }
+
+    private static Positions inputValidResult(Positions positions) {
+        try {
+            return validateResult(positions);
+        } catch (InvalidCountOfPositionException | InvalidNameException e) {
+            System.out.println(e.getMessage());
+            return inputValidResult(positions);
+        }
+    }
+
+    private static Positions validateResult(Positions playerPositions) {
+        Positions resultPositions = Positions.createResults(SplitUtil.split(scanner.nextLine()));
+        if (!playerPositions.hasSameSize(resultPositions)) {
+            throw new InvalidCountOfPositionException(String.format(MESSAGE_INVALID_RESULT_COUNT, playerPositions.size()));
+        }
+        return resultPositions;
+    }
+
+    public static String searchResult() {
+        System.out.println(MESSAGE_INPUT_SEARCH);
+        return scanner.nextLine();
+    }
 }
