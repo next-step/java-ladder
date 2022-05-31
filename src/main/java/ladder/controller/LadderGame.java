@@ -7,21 +7,61 @@ import ladder.view.ResultView;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.player.Players;
 
+import java.util.stream.IntStream;
+
 public class LadderGame {
 
-    public void start(){
-        Players players = new Players(InputView.inputPlayerNames());
+    Players players;
+    Rewards rewards;
+    Ladder ladder;
 
-        Rewards rewards = new Rewards(InputView.inputResultValue(), players.getPlayerNum());
+    public void initData() {
+        initGameData();
+    }
+
+    public void showResult(){
+        showRewardResult();
+    }
+
+    private void initGameData() {
+        players = new Players(InputView.inputPlayerNames());
+
+        rewards = new Rewards(InputView.inputResultValue(), players.getPlayerNum());
 
         int ladderHeight = InputView.inputLadderHeight();
-
-        Ladder ladder = Ladder.createLadder(players.getPlayerNum(), ladderHeight);
+        ladder = Ladder.createLadder(players.getPlayerNum(), ladderHeight);
 
         ResultView.showLadderResult(players, ladder, rewards);
-
-        String resultPlayer = InputView.inputResultPlayer();
-
-        int ladderPosition = players.getPositionInLadder(resultPlayer);
     }
+
+    private void showRewardResult() {
+        while(true) {
+            searchRewardForPlayers();
+        }
+    }
+
+    private void searchRewardForPlayers() {
+        int playerPosition = players.getPositionInLadder(InputView.inputResultPlayer());
+
+        if (playerPosition == players.getPlayerNum()) {
+            int playerNum = players.getPlayerNum();
+            ResultView.showRewardResultMessage();
+            IntStream.range(0, playerNum).forEach(i -> {
+                int reward = RewardDirector.searchReward(ladder, i);
+                ResultView.showRewardOnePlayer(rewards, reward, players.getPlayers().get(i));
+            });
+            return;
+        }
+
+        ResultView.showRewardResultMessage();
+        showRewardOnlyPlayer(ladder, playerPosition);
+    }
+
+    private void showRewardOnlyPlayer(Ladder ladder, int playerPosition) {
+        int reward = RewardDirector.searchReward(ladder, playerPosition);
+        ResultView.showRewardOnePlayer(rewards, reward);
+    }
+
+
+
 }

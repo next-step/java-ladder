@@ -3,6 +3,7 @@ package ladder.view;
 import ladder.domain.Rewards;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Line;
+import ladder.domain.player.Player;
 import ladder.domain.player.Players;
 
 import java.util.List;
@@ -39,7 +40,7 @@ public class ResultView {
     }
 
     private static void showLine(Line line) {
-        List<Boolean> nowLine = line.getContents();
+        List<Boolean> nowLine = line.getSpotList();
 
         System.out.print(String.format("%7s", "|"));
         for (Boolean isLine : nowLine) {
@@ -67,5 +68,18 @@ public class ResultView {
                         { System.out.print(String.format("%7s", reward)); }
                 );
         System.out.println();
+        System.out.println();
+    }
+
+    public static void showRewardResultMessage() {
+        System.out.println();
+        System.out.println("실행결과");
+    }
+    public static void showRewardOnePlayer(Rewards rewards, int reward) {
+        System.out.println(rewards.getResultValues().get(reward));
+    }
+
+    public static void showRewardOnePlayer(Rewards rewards, int reward, Player player) {
+        System.out.println(player.toString() + " : " + rewards.getResultValues().get(reward));
     }
 }

@@ -7,59 +7,96 @@ import java.util.stream.IntStream;
 
 public class Line {
     private static final Random random = new Random();
-    private List<Boolean> contentList;
+    private List<Boolean> spotList;
 
     public Line(int countOfPerson) {
-        this(createContent(countOfPerson - 1));
+        this(createSpot(countOfPerson - 1));
     }
 
-    public Line(List<Boolean> contents) {
-        validate(contents);
-        this.contentList = contents;
+    public Line(List<Boolean> spot) {
+        validate(spot);
+        this.spotList = spot;
     }
 
-    private void validate(List<Boolean> contents) {
-        int bound = contents.size() - 1;
+    private void validate(List<Boolean> spot) {
+        int bound = spot.size() - 1;
         for (int i = 0; i < bound; i++) {
-            overlapValidate(contents, i);
+            overlapValidate(spot, i);
         }
     }
 
-    private void overlapValidate(List<Boolean> contents, int i) {
-        if (contents.get(i) == true && contents.get(i + 1) == true) {
+    private void overlapValidate(List<Boolean> spot, int i) {
+        if (spot.get(i) == true && spot.get(i + 1) == true) {
             throw new OverlapLineException("Line이 겹치는 부분이 있습니다.");
         }
     }
 
-    private static List<Boolean> createContent(int person){
-        List<Boolean> tmpContentList = new ArrayList<>();
+    private static List<Boolean> createSpot(int person){
+        List<Boolean> tmpSpotList = new ArrayList<>();
 
         IntStream.range(0, person).forEach(i -> {
-            checkContent(tmpContentList);
+            checkContent(tmpSpotList);
         });
 
-        return tmpContentList ;
+        return tmpSpotList ;
     }
 
-    private static void checkContent(List<Boolean> tmpContentList) {
-        if (tmpContentList.isEmpty()) {
-            tmpContentList.add(randomBoolean());
+    private static void checkContent(List<Boolean> tmpSpotList) {
+        if (tmpSpotList.isEmpty()) {
+            tmpSpotList.add(randomBoolean());
             return;
         }
 
-        Boolean prevLine = tmpContentList.get(tmpContentList.size() - 1);
+        Boolean prevLine = tmpSpotList.get(tmpSpotList.size() - 1);
         if (!prevLine) {
-            tmpContentList.add(randomBoolean());
+            tmpSpotList.add(randomBoolean());
             return;
         }
-        tmpContentList.add(false);
+        tmpSpotList.add(false);
     }
 
     private static boolean randomBoolean() {
         return random.nextBoolean();
     }
 
-    public List<Boolean> getContents() {
-        return contentList;
+    public int move(int nowWidth) {
+        if(nowWidth == 0) {
+            nowWidth = rightMove(nowWidth);
+        }
+        else if(nowWidth == getSpotList().size()) {
+            nowWidth = leftMove(nowWidth);
+        }
+        else {
+            if(isRightMove(nowWidth)) {
+                nowWidth = rightMove(nowWidth);
+            }
+            else {
+                nowWidth = leftMove(nowWidth);
+            }
+        }
+
+        return nowWidth;
+    }
+
+    public int rightMove(int widthPos) {
+        if(spotList.get(widthPos)) {
+            widthPos += 1;
+        }
+        return widthPos;
+    }
+
+    public int leftMove(int widthPos) {
+        if(spotList.get(widthPos - 1)) {
+            widthPos -= 1;
+        }
+        return widthPos;
+    }
+
+    public boolean isRightMove(int widthPos) {
+        return spotList.get(widthPos);
+    }
+
+    public List<Boolean> getSpotList() {
+        return spotList;
     }
 }

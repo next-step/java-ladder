@@ -48,7 +48,7 @@ class PlayersTest {
                 arguments(new Players("a,b,c,d"), "a", 0),
                 arguments(new Players("pobi,honux,crong,jk"), "jk", 3),
                 arguments(new Players("pobi,honux,crong,jk"), "honux", 1),
-                arguments(new Players("pobi,honux,crong,jk"), "all", -1)
+                arguments(new Players("pobi,honux,crong,jk"), "all", 4)
         );
     }
 
