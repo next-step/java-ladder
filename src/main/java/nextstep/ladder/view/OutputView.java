@@ -3,6 +3,7 @@ package nextstep.ladder.view;
 import java.util.List;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Participant;
+import nextstep.ladder.domain.Position;
 import nextstep.ladder.dto.ExecutionResultDto;
 
 public class OutputView {
@@ -49,9 +50,9 @@ public class OutputView {
         System.out.println(STRING_BUILDER);
     }
 
-    private static void printLines(List<Boolean> positions) {
+    private static void printLines(List<Position> positions) {
         for (int i = 0; i < positions.size(); i++) {
-            STRING_BUILDER.append(printLine(positions.get(i)));
+            STRING_BUILDER.append(printLine(positions.get(i).isLeft()));
         }
         STRING_BUILDER.append(LINE_BREAK);
     }

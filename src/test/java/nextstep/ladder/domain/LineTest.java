@@ -3,9 +3,7 @@ package nextstep.ladder.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.Arrays;
 import java.util.List;
-import nextstep.ladder.exception.LadderLineOverLapException;
 import nextstep.ladder.generator.FixedNonProductionGenerator;
 import nextstep.ladder.generator.FixedProductionGenerator;
 import nextstep.ladder.generator.RandomProductionGenerator;
@@ -31,48 +29,10 @@ class LineTest {
 
     @ParameterizedTest(name = "사다리 라인이 비어있는 경우 예외처리를 한다.")
     @NullAndEmptySource
-    void exceptionLadderLineNullOrEmpty(List<Boolean> positions) {
+    void exceptionLadderLineNullOrEmpty(List<Position> positions) {
         // when & then
         assertThatThrownBy(() -> new Line(positions))
                 .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    @DisplayName("사다리 라인이 겹쳐서 생성된 경우 예외처리를 한다.")
-    void exceptionLadderLineOverlap() {
-        // given
-        List<Boolean> positions = Arrays.asList(false, true, true, true);
-
-        // when & then
-        assertThatThrownBy(() -> new Line(positions))
-                .isInstanceOf(LadderLineOverLapException.class);
-    }
-
-    @Test
-    @DisplayName("사다리 라인 생성이 True인 경우, 라인을 만들어준다")
-    void checkedLineGeneratorTrueResult() {
-        // given
-        Line line = new Line(new FixedProductionGenerator(), 2);
-
-        // when
-        List<Boolean> positions = line.getPositions();
-
-        // then
-        assertThat(positions.get(1)).isTrue();
-
-    }
-
-    @Test
-    @DisplayName("사다리 라인 생성이 False인 경우, 라인이 생성되지 않는다")
-    void checkedLineGeneratorFalseResult() {
-        // given
-        Line line = new Line(new FixedNonProductionGenerator(), 2);
-
-        // when
-        List<Boolean> positions = line.getPositions();
-
-        // then
-        assertThat(positions.get(1)).isFalse();
     }
 
     @ParameterizedTest(name = "{0}번째 참가자가 연결된 사다리 라인을 탄 결과는 {1}이다")
