@@ -44,7 +44,7 @@ public class Input {
     public static Players scanPlayerToShow(Players players) {
         String payload = players.players()
                 .stream()
-                .map(player -> player.name())
+                .map(player -> player.name()) // Q: 단순 print 로직인데 getter 없애는 방법?
                 .reduce((acc, cur) -> acc + ", " + cur)
                 .orElseThrow(() -> new RuntimeException("unreachable."));
         Output.print("Put person to show reward.\nOptions: " + payload + " (or 'all')\n");

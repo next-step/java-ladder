@@ -37,7 +37,7 @@ public class Players {
         return new Players(
                 this.players
                         .stream()
-                        .filter(player -> player.name().equals(playerName))
+                        .filter(player -> player.nameEquals(playerName))
                         .collect(Collectors.toList())
         );
     }

@@ -34,11 +34,4 @@ public class LadderTest {
         System.out.println(ladder);
         assertThat(ladder.result(0)).isEqualTo(1);
     }
-
-    @Test
-    void rand() {
-        Ladder ladder = new Ladder(5, 3);
-        System.out.println(ladder);
-        assertThatThrownBy(() -> ladder.result(0)).isInstanceOf(IndexOutOfBoundsException.class);
-    }
 }

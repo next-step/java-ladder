@@ -14,7 +14,7 @@ public class Output {
 
     public static void printPlayers(List<Player> players) {
         Output.print(" ".repeat(2));
-        players.forEach(player -> Output.print(format(player.name())));
+        players.forEach(player -> Output.print(format(player.name()))); // Q: 단순 print 로직인데 getter 없애는 방법?;
         Output.print("\n");
     }
 
@@ -32,7 +32,7 @@ public class Output {
 
     public static void printLadderResults(List<LadderResult> ladderResults) {
         Output.print("Ladder Result\n");
-        ladderResults.forEach(ladderResult -> Output.print(ladderResult.playerName() + ": " + ladderResult.reward() + "\n"));
+        ladderResults.forEach(ladderResult -> Output.print(ladderResult.playerName() + ": " + ladderResult.reward() + "\n")); // Q: 단순 print 로직인데 getter 없애는 방법?
     }
 
     public static void printLadder(Ladder ladder) {

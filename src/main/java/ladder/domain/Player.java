@@ -57,4 +57,8 @@ public class Player {
         int resultIndex = ladder.result(this.no);
         return new LadderResult(this, rewards.get(resultIndex));
     }
+
+    public boolean nameEquals(String playerName) {
+        return this.name == playerName;
+    }
 }

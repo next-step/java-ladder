@@ -9,7 +9,7 @@ public class Height {
 
     public Height(int height) {
         this.value = Optional.of(height)
-                .filter(height -> height <= MAX_HEIGHT)
+                .filter(integer -> integer <= MAX_HEIGHT)
                 .orElseThrow(() -> new IllegalArgumentException("height should be less than " + MAX_HEIGHT + " but, : " + height));
     }
 
