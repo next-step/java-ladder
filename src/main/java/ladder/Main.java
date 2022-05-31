@@ -11,11 +11,14 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        String gameContributors = InputView.findGameContributors();
-        List<User> resultList = Generator.generate(InputView.findResultList());
-        LadderGame ladderGame = new LadderGame(Generator.generate(gameContributors));
+        List<User> gameContributors = Generator.userGenerate(InputView.findGameContributors());
+        List<String> resultList = Generator.resultGenerate(InputView.findResultList());
+
+        LadderGame ladderGame = new LadderGame(gameContributors);
+        List<User> users = ladderGame.start();
+
         List<Line> lines = ladderGame.getLines();
-//        ladderGame.start();
-        ResultView.printLadder(ladderGame.drawUserList(), lines);
+        ResultView.printLadder(ladderGame.drawUserList(), lines, resultList);
+        ResultView.printResult(InputView.searchResult(), users, resultList);
     }
 }

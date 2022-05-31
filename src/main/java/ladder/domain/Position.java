@@ -25,6 +25,10 @@ public class Position {
         this.x -= 1;
     }
 
+    public int getPosition() {
+        return x;
+    }
+
     @Override
     public String toString() {
         return "Position{" +
@@ -32,5 +36,4 @@ public class Position {
                 ", y=" + y +
                 '}';
     }
-
 }

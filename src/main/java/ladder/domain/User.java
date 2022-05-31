@@ -52,6 +52,10 @@ public class User {
         return name.toString();
     }
 
+    public int getPosition() {
+        return position.getPosition();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
