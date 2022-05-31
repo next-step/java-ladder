@@ -49,10 +49,6 @@ public class Player {
         return Objects.hash(name, no);
     }
 
-    public int no() {
-        return this.no;
-    }
-
     public LadderResult result(Ladder ladder, List<String> rewards) {
         int resultIndex = ladder.result(this.no);
         return new LadderResult(this, rewards.get(resultIndex));

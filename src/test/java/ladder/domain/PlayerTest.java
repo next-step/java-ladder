@@ -2,6 +2,9 @@ package ladder.domain;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.*;
+import java.util.Arrays;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -22,5 +25,19 @@ public class PlayerTest {
     @Test
     void nameOver5GetsError() {
         assertThatThrownBy(() -> new Player("123456")).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void result() {
+        Player.autoIncrement = 0;
+        Player player = new Player("a");
+        Ladder ladder = new Ladder(Arrays.asList(
+                Row.createManual(Arrays.asList(false, false, true)),
+                Row.createManual(Arrays.asList(true, false, false)),
+                Row.createManual(Arrays.asList(false, false, true))
+        ));
+        List<String> rewards = Arrays.asList("💣", "💎", "💰");
+        LadderResult ladderResult = player.result(ladder, rewards);
+        assertThat(ladderResult.reward()).isEqualTo("💎");
     }
 }

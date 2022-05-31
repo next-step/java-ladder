@@ -22,6 +22,7 @@ public class PlayersTest {
 
     @Test
     void findPlayers() {
+        Player.autoIncrement = 0;
         Players players = new Players(Arrays.asList(
                 new Player("ab"),
                 new Player("cd")
