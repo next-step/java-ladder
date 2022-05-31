@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LadderTest {
     @Test
@@ -14,12 +15,30 @@ public class LadderTest {
     }
 
     @Test
-    void manualLadder() {
+    void manualLadderResult() {
         Ladder ladder = new Ladder(Arrays.asList(
                 Row.createManual(Arrays.asList(false, false, true)),
                 Row.createManual(Arrays.asList(false, true, false)),
                 Row.createManual(Arrays.asList(true, false, true))
         ));
-        assertThat(ladder.move(1)).isEqualTo(3);
+        assertThat(ladder.result(1)).isEqualTo(3);
+    }
+
+    @Test
+    void manualLadderResult2() {
+        Ladder ladder = new Ladder(Arrays.asList(
+                Row.createManual(Arrays.asList(true, false)),
+                Row.createManual(Arrays.asList(false, true)),
+                Row.createManual(Arrays.asList(false, true))
+        ));
+        System.out.println(ladder);
+        assertThat(ladder.result(0)).isEqualTo(1);
+    }
+
+    @Test
+    void rand() {
+        Ladder ladder = new Ladder(5, 3);
+        System.out.println(ladder);
+        assertThatThrownBy(() -> ladder.result(0)).isInstanceOf(IndexOutOfBoundsException.class);
     }
 }

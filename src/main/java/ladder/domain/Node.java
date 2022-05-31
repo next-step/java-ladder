@@ -69,4 +69,8 @@ public class Node {
     public int hashCode() {
         return Objects.hash(left, current);
     }
+
+    public String toShow() {
+        return (this.current ? "-" : " ").repeat(5);
+    }
 }

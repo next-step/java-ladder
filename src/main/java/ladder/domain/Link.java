@@ -53,4 +53,8 @@ public class Link {
     public int from() {
         return this.from;
     }
+
+    public String toShow() {
+        return this.node.toShow();
+    }
 }

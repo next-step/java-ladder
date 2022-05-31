@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.domain.Ladder;
 import ladder.domain.LadderResult;
 import ladder.domain.Row;
 import ladder.domain.Player;
@@ -49,5 +50,9 @@ public class Output {
     public static void printLadderResults(List<LadderResult> ladderResults) {
         Output.print("Ladder Result\n");
         ladderResults.forEach(ladderResult -> Output.print(ladderResult.playerName() + ": " + ladderResult.reward() + "\n"));
+    }
+
+    public static void printLadder(Ladder ladder) {
+        print(ladder.toShow());
     }
 }

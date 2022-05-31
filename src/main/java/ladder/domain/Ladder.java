@@ -24,7 +24,7 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
-    public int move(int from) {
+    public int result(int from) {
         for (Row row:this.rows ) {
             from = row.move(from); // Q: okay to overwrite parameter?
         }
@@ -33,5 +33,12 @@ public class Ladder {
 
     public int height() {
         return this.rows.size();
+    }
+
+    public String toShow() {
+        return this.rows
+                .stream()
+                .map(row -> row.toShow())
+                .reduce("", (acc, cur) -> acc + cur);
     }
 }

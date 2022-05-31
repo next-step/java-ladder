@@ -12,7 +12,7 @@ public class Row {
     }
 
     public int move(int from) {
-        int width = this.links.size() - 2;
+        int width = this.links.size() - 1;
         if (from > width) {
             throw new IndexOutOfBoundsException("Cannot move from out of width (0 ~ " + width + ") but, " + from);
         }
@@ -47,5 +47,14 @@ public class Row {
 
     public int size() {
         return this.links.size();
+    }
+
+    public String toShow() {
+        return " ".repeat(4) + "|" +
+                this.links
+                        .stream()
+                        .map(link -> link.toShow())
+                        .reduce((acc, cur) -> acc + "|" + cur).orElseThrow(() -> new RuntimeException("noting to show"))
+                + "\n";
     }
 }

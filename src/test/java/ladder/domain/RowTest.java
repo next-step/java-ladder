@@ -19,7 +19,7 @@ public class RowTest {
     @Test
     void outOfRange() {
         Row row = Row.createManual(Arrays.asList(false, true, false));
-        assertThatThrownBy(() -> row.move(3)).isInstanceOf(IndexOutOfBoundsException.class);
+        assertThatThrownBy(() -> row.move(4)).isInstanceOf(IndexOutOfBoundsException.class);
     }
 
     @Test
