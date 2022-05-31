@@ -156,8 +156,8 @@ henry: 💣
   - [x] 기존 class 정리
   - [x] App 로직 재 구현 + printLadder
   - [x] printLadderResults, covered with run()
-- [ ] showResult 테스트 가능한 구조로 변경
-  - [ ] 사다리는 Players 가 아닌 다른 곳에서 생성
+- [x] showResult 테스트 가능한 구조로 변경 -> ladder.result 가 rewardIndex return 하도록 변경
+  - [x] 사다리는 Players 가 아닌 다른 곳에서 생성: new Ladder(height, width)
 - [ ] Players.toString 내부의 output layer 를 분리
 - [ ] getter 최대한 메시지로 변경
   - player.name
