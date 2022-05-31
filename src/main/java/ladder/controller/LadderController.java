@@ -4,6 +4,7 @@ import ladder.domain.FinalResult;
 import ladder.domain.Ladder;
 import ladder.domain.LadderResult;
 import ladder.domain.Name;
+
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -21,7 +22,7 @@ public class LadderController {
         int height = InputView.inputHeight();
         Ladder ladder = new Ladder(height, stringNames.size());
         FinalResult finalResult = FinalResult.of(ladderResult.findLadderResult(ladder), stringNames);
-        
+
         ResultView.printName(names);
         ResultView.drawLadders(ladder);
         ResultView.printResult(ladderResult);

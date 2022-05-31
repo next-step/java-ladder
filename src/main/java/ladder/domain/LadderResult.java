@@ -19,7 +19,7 @@ public class LadderResult {
     }
 
     public List<String> findLadderResult(Ladder ladder) {
-        List<Integer> resultIndexes = ladder.resultIndexes();
+        List<Integer> resultIndexes = ladder.extractIndexes();
         List<String> results = new ArrayList<>();
 
         resultIndexes.stream().forEachOrdered(index -> results.add(ladderResult.get(index)));

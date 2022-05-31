@@ -7,3 +7,7 @@ public class LadderApplication {
         LadderController.start();
     }
 }
+/*
+pobi,honux,crong,jk
+꽝,5000,꽝,3000
+ */

@@ -60,7 +60,6 @@ public class ResultView {
                 .collect(Collectors.joining(RESULT_INTERVAL));
         stringBuilder.append(String.format("  %s\n ", result));
         System.out.println(stringBuilder);
-
     }
 
     public static void resultFinal(FinalResult finalResult, String request) {

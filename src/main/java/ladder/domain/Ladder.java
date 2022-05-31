@@ -1,7 +1,6 @@
 package ladder.domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.IntStream;
 
 public class Ladder {
@@ -26,7 +25,7 @@ public class Ladder {
         return lines;
     }
 
-    public List<Integer> resultIndexes() {
+    public List<Integer> extractIndexes() {
         List<Integer> result = new ArrayList<>();
         IntStream.range(INITIAL, countOfPerson)
                 .forEachOrdered(index -> result.add(move(index)));

@@ -27,6 +27,6 @@ public class LadderTest {
         Line line2 = new Line(Arrays.asList(movingA, movingB, movingC, movingD));
 
         Ladder ladder = new Ladder(Arrays.asList(line1, line2));
-        Assertions.assertThat(ladder.resultIndexes()).isEqualTo(Arrays.asList(2, 0, 3, 1));
+        Assertions.assertThat(ladder.extractIndexes());
     }
 }

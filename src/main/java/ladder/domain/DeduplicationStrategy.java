@@ -25,7 +25,7 @@ public class DeduplicationStrategy implements Strategy {
         return movings;
     }
 
-    private boolean deduplicationInsert(boolean prior) {
+    boolean deduplicationInsert(boolean prior) {
         if (prior) {
             return false;
         }

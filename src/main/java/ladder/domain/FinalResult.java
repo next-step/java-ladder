@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 public class FinalResult {
-
     private final Map<String, String> finalResult;
 
     private FinalResult(List<String> results, List<String> names) {
