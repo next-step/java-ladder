@@ -25,7 +25,7 @@ public class Position {
     }
 
     public void change(Direction direction) {
-        if (fixed()) {
+        if (isFixed()) {
             throw new NotChangeException(MESSAGE_NOT_CHANGE_FIXED);
         }
         index.change(direction);
@@ -43,11 +43,11 @@ public class Position {
         return maxSize - name.size();
     }
 
-    public boolean same(Name name) {
+    public boolean hasSame(Name name) {
         return this.name.equals(name);
     }
 
-    public boolean same(Index index) {
+    public boolean hasSame(Index index) {
         return this.index.equals(index);
     }
 
@@ -55,11 +55,11 @@ public class Position {
         return index;
     }
 
-    public boolean fixed() {
+    public boolean isFixed() {
         return type.fixed();
     }
 
-    public boolean unfixed() {
+    public boolean isUnfixed() {
         return !type.fixed();
     }
 

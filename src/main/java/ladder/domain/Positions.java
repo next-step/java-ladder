@@ -64,20 +64,20 @@ public class Positions {
 
     public boolean containUnfixedPosition() {
         return values.stream()
-                .filter(Position::unfixed)
+                .filter(Position::isUnfixed)
                 .count() > EMPTY_VALUE;
     }
 
     public Position value(Name name) {
         return values.stream()
-                .filter(position -> position.same(name))
+                .filter(position -> position.hasSame(name))
                 .findFirst()
                 .orElseThrow(() -> new NotFoundPositionException(name.toString()));
     }
 
     public Position value(Index index) {
         return values.stream()
-                .filter(position -> position.same(index))
+                .filter(position -> position.hasSame(index))
                 .findFirst()
                 .orElseThrow(RuntimeException::new);
     }
