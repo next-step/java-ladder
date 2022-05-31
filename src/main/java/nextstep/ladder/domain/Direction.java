@@ -3,6 +3,8 @@ package nextstep.ladder.domain;
 import java.util.Objects;
 
 public class Direction {
+
+    private static final String CANNOT_LEFT_AND_RIGHT_TRUE = "왼쪽과 오른쪽 둘다 true일 수 없습니다.";
     private final boolean left;
     private final boolean right;
 
@@ -14,7 +16,7 @@ public class Direction {
 
     private void validate(boolean left, boolean right) {
         if(left && right){
-            throw new IllegalArgumentException("왼쪽과 오른쪽 둘다 true일 수 없습니다.");
+            throw new IllegalArgumentException(CANNOT_LEFT_AND_RIGHT_TRUE);
         }
     }
 
