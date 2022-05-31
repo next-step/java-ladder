@@ -1,9 +1,5 @@
 package ladder.controller;
 
-import ladder.domain.Height;
-import ladder.view.Output;
-import java.util.List;
-
 public class ladderApp {
     public static void main(String[] args) {
 //        Players players = Input.scanPlayers();
