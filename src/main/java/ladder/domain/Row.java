@@ -12,27 +12,29 @@ public class Row {
     }
 
     public int move(int from) {
+        int width = this.links.size() - 2;
+        if (from > width) {
+            throw new IndexOutOfBoundsException("Cannot move from out of width (0 ~ " + width + ") but, " + from);
+        }
         return links.get(from).move();
     }
 
     public static Row createManual(List<Boolean> points) {
-        if (points.size() < 3) {
-            throw new IllegalArgumentException("size of points should be more than 3");
-        }
-        if (points.get(0) || points.get(points.size() - 1)) {
-            throw new IllegalArgumentException("first and last should be false");
+        if (points.size() < 2) {
+            throw new IllegalArgumentException("width of row should be more than 3");
         }
         List<Link> links = Stream.iterate(Link.first(points.get(0)), link -> link.next(points.get(link.from() + 1)))
                 .limit(points.size())
                 .collect(Collectors.toList());
+        links.add(links.get(links.size() - 1).last());
         return new Row(links);
     }
 
     public static Row createRandom(int width) {
         List<Link> links = Stream.iterate(Link.firstRandom(), link -> link.nextRandom())
-                .limit(width - 1)
+                .limit(width)
                 .collect(Collectors.toList());
-        links.add(links.get(width - 2).last());
+        links.add(links.get(width - 1).last());
         return new Row(links);
     }
 
@@ -40,7 +42,7 @@ public class Row {
     public String toString() {
         return "Row{" +
                 "links=" + links +
-                '}';
+                "}\n";
     }
 
     public int size() {

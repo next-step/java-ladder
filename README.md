@@ -152,7 +152,7 @@ henry: 💣
   - [x] Row: Link 를 활용한 로직 구현
   - [x] Row: createRandom, createManual 분리 구현
   - [x] Lines -> Ladder 이름 변경
-  - [ ] Ladder: Row 를 활용한 로직 구현
+  - [x] Ladder: Row 를 활용한 로직 구현
 - [ ] showResult 테스트 가능한 구조로 변경
   - [ ] 사다리는 Players 가 아닌 다른 곳에서 생성
 - [ ] Players.toString 내부의 output layer 를 분리
