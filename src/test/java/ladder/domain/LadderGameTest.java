@@ -1,9 +1,6 @@
-package ladder;
+package ladder.domain;
 
-import ladder.contoller.ResultView;
-import ladder.domain.LadderGame;
-import ladder.domain.Line;
-import ladder.domain.User;
+import ladder.view.ResultView;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

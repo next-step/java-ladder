@@ -2,8 +2,8 @@ package ladder;
 
 import ladder.domain.User;
 import ladder.util.Generator;
-import ladder.contoller.InputView;
-import ladder.contoller.ResultView;
+import ladder.view.InputView;
+import ladder.view.ResultView;
 import ladder.domain.LadderGame;
 import ladder.domain.Line;
 

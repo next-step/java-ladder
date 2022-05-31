@@ -1,8 +1,7 @@
-package ladder.contoller;
+package ladder.view;
 
 import ladder.domain.Line;
 import ladder.domain.User;
-import nextstep.optional.Users;
 
 import java.util.List;
 
