@@ -10,10 +10,27 @@ public class Position {
     }
 
     public int getRightPosition() {
-        return this.x + 1;
+        return this.x;
     }
 
     public int getLeftPosition() {
         return this.x - 1;
     }
+
+    public void moveRight() {
+        this.x += 1;
+    }
+
+    public void moveLeft() {
+        this.x -= 1;
+    }
+
+    @Override
+    public String toString() {
+        return "Position{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
+    }
+
 }

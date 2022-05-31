@@ -58,4 +58,23 @@ public class Line {
     private boolean isLastPoint(Point point) {
         return points.get(points.size() - 1).equals(point);
     }
+
+    public boolean isOverSize(int position) {
+        return points.size() <= position;
+    }
+
+    public boolean isLessSize(int position) {
+        return position < 0;
+    }
+
+    public boolean pointStatus(int position) {
+        return points.get(position).isTrue();
+    }
+
+    @Override
+    public String toString() {
+        return "Line{" +
+                "points=" + points +
+                '}';
+    }
 }

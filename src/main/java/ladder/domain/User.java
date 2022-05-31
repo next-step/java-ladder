@@ -1,8 +1,6 @@
 package ladder.domain;
 
-import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 public class User {
     private Name name;
@@ -17,14 +15,41 @@ public class User {
         this.position = new Position(index, 0);
     }
 
-    public int right(List<Line> lines) {
-        Optional.ofNullable(lines.get(position.getRightPosition()));
-        return 0;
+    public boolean right(Line line) {
+        if (line.isOverSize(position.getRightPosition())) {
+            return false;
+        }
+
+        if (line.pointStatus(position.getRightPosition())) {
+            this.position.moveRight();
+            return true;
+        }
+
+        return false;
     }
 
-    public int left(List<Line> lines) {
-        Optional.ofNullable(lines.get(position.getRightPosition()));
-        return 0;
+    public boolean left(Line line) {
+        if (line.isLessSize(position.getLeftPosition())) {
+            return false;
+        }
+
+        if (line.pointStatus(position.getLeftPosition())) {
+            this.position.moveLeft();
+            return true;
+        }
+
+        return false;
+    }
+
+    public void move(Line line) {
+        if (this.right(line)) {
+            return;
+        }
+        this.left(line);
+    }
+
+    public String getName() {
+        return name.toString();
     }
 
     @Override
@@ -42,7 +67,9 @@ public class User {
 
     @Override
     public String toString() {
-        return name.toString();
+        return "User{" +
+                "name=" + name +
+                ", position=" + position +
+                '}';
     }
-
 }

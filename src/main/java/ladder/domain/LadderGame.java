@@ -20,7 +20,7 @@ public class LadderGame {
 
     public List<String> drawUserList() {
         return users.stream()
-                .map(user -> user.toString())
+                .map(user -> user.getName())
                 .collect(Collectors.toList());
     }
 }

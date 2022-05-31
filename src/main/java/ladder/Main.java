@@ -14,6 +14,5 @@ public class Main {
         LadderGame ladderGame = new LadderGame(UserGenerator.generate(gameContributors));
         List<Line> lines = ladderGame.ready();
         ResultView.printLadder(ladderGame.drawUserList(), lines);
-
     }
 }
