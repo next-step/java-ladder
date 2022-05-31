@@ -11,8 +11,8 @@ public class LadderTest {
     @Test
     void move() {
         Lines lines = new Lines(Arrays.asList(
-                new Line(Arrays.asList(true, false, true)),
-                new Line(Arrays.asList(false, true, false))
+                new Row(Arrays.asList(true, false, true)),
+                new Row(Arrays.asList(false, true, false))
         ));
         Ladder ladder = new Ladder(lines, 0);
         ladder.down();
@@ -22,9 +22,9 @@ public class LadderTest {
     @Test
     void trueGoesRightNDownFalseGoesDown() {
         Lines lines = new Lines(Arrays.asList(
-                new Line(Arrays.asList(false, true, false)),
-                new Line(Arrays.asList(true, false, false)),
-                new Line(Arrays.asList(true, false, false))
+                new Row(Arrays.asList(false, true, false)),
+                new Row(Arrays.asList(true, false, false)),
+                new Row(Arrays.asList(true, false, false))
         ));
         Ladder ladder = new Ladder(lines, 0);
         ladder.play();
@@ -38,9 +38,9 @@ public class LadderTest {
     @Test
     void plays() {
         Lines lines = new Lines(Arrays.asList(
-                new Line(Arrays.asList(false, true, false)),
-                new Line(Arrays.asList(true, false, false)),
-                new Line(Arrays.asList(true, false, false))
+                new Row(Arrays.asList(false, true, false)),
+                new Row(Arrays.asList(true, false, false)),
+                new Row(Arrays.asList(true, false, false))
         ));
         Ladder ladder = new Ladder(lines, 0);
         ladder.plays();
@@ -50,9 +50,9 @@ public class LadderTest {
     @Test
     void playsFromFourth() {
         Lines lines = new Lines(Arrays.asList(
-                new Line(Arrays.asList(false, true, false, false)),
-                new Line(Arrays.asList(true, false, true, false)),
-                new Line(Arrays.asList(true, false, false, false))
+                new Row(Arrays.asList(false, true, false, false)),
+                new Row(Arrays.asList(true, false, true, false)),
+                new Row(Arrays.asList(true, false, false, false))
         ));
         Ladder ladder = new Ladder(lines, 3);
         ladder.plays();

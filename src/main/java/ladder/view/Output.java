@@ -1,7 +1,7 @@
 package ladder.view;
 
 import ladder.domain.LadderResult;
-import ladder.domain.Line;
+import ladder.domain.Row;
 import ladder.domain.Player;
 
 import java.util.List;
@@ -17,10 +17,10 @@ public class Output {
         Output.print("\n");
     }
 
-    public static void printLines(List<Line> lines) {
+    public static void printLines(List<Row> lines) {
         lines.forEach(line -> {
             System.out.print(" ".repeat(4));
-            Output.printLine(line.points());
+//            Output.printLine(line.points());
             System.out.println();
         });
 
