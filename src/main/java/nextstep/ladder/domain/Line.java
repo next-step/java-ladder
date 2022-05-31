@@ -10,6 +10,7 @@ public class Line {
 
     private static final String CANNOT_NULL_FOR_POINTS = "Line의 points는 null일 수 없습니다.";
     private static final int MIN_POINT_CNT = 1;
+    private static final int FIRST_AND_LAST_POINT_COUNT = 2;
 
     private final List<Point> points;
 
@@ -31,7 +32,7 @@ public class Line {
         List<Point> points = new ArrayList<>();
 
         Point firstPoint = initFirst(points, pointCreationRule);
-        Point lastBeforePoint = initBody(cnt-2, points, firstPoint, pointCreationRule);
+        Point lastBeforePoint = initBody(cnt-FIRST_AND_LAST_POINT_COUNT, points, firstPoint, pointCreationRule);
         initLast(points, lastBeforePoint);
 
         return new Line(points);
