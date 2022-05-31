@@ -28,10 +28,10 @@ public class Point {
 
     public int move(){
         if(direction.isLeft()){
-            return index-1;
+            return index-DIFFERENCE_BETWEEN_POINT_INDEX;
         }
         if(direction.isRight()){
-            return index+1;
+            return index+DIFFERENCE_BETWEEN_POINT_INDEX;
         }
         return index;
     }
