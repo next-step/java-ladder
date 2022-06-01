@@ -2,43 +2,43 @@ package ladder.domain;
 
 public class Link {
     private final int from;
-    private final Node node;
+    private final Way way;
 
     @Override
     public String toString() {
         return "Link{" +
                 "from=" + from +
-                ", node=" + node +
+                ", way=" + way +
                 '}';
     }
 
-    public Link(int from, Node node) {
+    public Link(int from, Way way) {
         this.from = from;
-        this.node = node;
+        this.way = way;
     }
 
     public int move() {
-        return this.from + this.node.variation();
+        return this.from + this.way.variation();
     }
 
     public static Link firstRandom() {
-        return new Link(0, Node.firstRandom());
+        return new Link(0, Way.firstRandom());
     }
 
     public Link nextRandom() {
-        return new Link(this.from + 1, this.node.nextRandom());
+        return new Link(this.from + 1, this.way.nextRandom());
     }
 
     public Link next(Boolean point) {
-        return new Link(this.from + 1, this.node.next(point));
+        return new Link(this.from + 1, this.way.next(point));
     }
 
     public static Link first(boolean current) {
-        return new Link(0, Node.first(current));
+        return new Link(0, Way.first(current));
     }
 
     public Link last() {
-        return new Link(this.from + 1, this.node.last());
+        return new Link(this.from + 1, this.way.last());
     }
 
     public int from() {
@@ -46,6 +46,6 @@ public class Link {
     }
 
     public String toShow() {
-        return this.node.toShow();
+        return this.way.toShow();
     }
 }

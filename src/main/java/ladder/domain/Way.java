@@ -2,15 +2,15 @@ package ladder.domain;
 
 import ladder.util.Random;
 
-public enum Node {
+public enum Way {
     LEFT(-1), RIGHT(1), STAY(0);
     private int variation;
 
-    Node(int variation) {
+    Way(int variation) {
         this.variation = variation;
     }
 
-    public static Node of(boolean left, boolean right) {
+    public static Way of(boolean left, boolean right) {
         validate(left, right);
         if (right) {
             return RIGHT;
@@ -27,31 +27,31 @@ public enum Node {
         }
     }
 
-    public static Node first(boolean current) {
-        return Node.of(false, current);
+    public static Way first(boolean current) {
+        return Way.of(false, current);
     }
 
-    public static Node firstRandom() {
-        return Node.of(false, Random.createBoolean());
+    public static Way firstRandom() {
+        return Way.of(false, Random.createBoolean());
     }
 
-    public Node next(boolean current) {
+    public Way next(boolean current) {
         switch (this) {
             case RIGHT:
-                return Node.of(true, current);
+                return Way.of(true, current);
             default:
-                return Node.of(false, current);
+                return Way.of(false, current);
         }
     }
 
-    public Node nextRandom() {
+    public Way nextRandom() {
         if (this.variation == 1) {
             return LEFT;
         }
-        return Node.of(false, Random.createBoolean());
+        return Way.of(false, Random.createBoolean());
     }
 
-    public Node last() {
+    public Way last() {
         return this.next(false);
     }
 

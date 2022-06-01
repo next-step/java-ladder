@@ -180,6 +180,7 @@ henry: 💣
     - [x] validate 는 생성자에서 하자
     - [x] Direction 의 down 제거
     - [x] Direction 없애고 Node 를 left, right, hold 를 가지는 enum 으로 변경
+    - [x] rename Node to Way 
 - [ ] RuntimeException 은 추상클래스 라고 생각하자 → 상속해서 쓰자
 - [ ] 전략패턴 파라미터로 두건 변수로 두건 해서 적용
 - [ ] from → index 수정
