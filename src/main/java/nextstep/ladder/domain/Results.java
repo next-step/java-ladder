@@ -24,6 +24,10 @@ public class Results {
     return results.size();
   }
 
+  public Result result(int point) {
+    return results.get(point);
+  }
+
   private static void validateEmpty(String resultNames) {
     if (resultNames == null || resultNames.isBlank()) {
       throw new IllegalArgumentException("실행결과는 필수입니다.");

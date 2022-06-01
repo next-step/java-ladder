@@ -24,6 +24,10 @@ public class Players {
     return players.size();
   }
 
+  public int point(String playerName) {
+    return players.indexOf(new Player(playerName));
+  }
+
   private static void validateEmpty(String playerNames) {
     if (playerNames == null || playerNames.isBlank()) {
       throw new IllegalArgumentException("플레이어명은 필수입니다.");

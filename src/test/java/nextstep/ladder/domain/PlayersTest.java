@@ -3,7 +3,9 @@ package nextstep.ladder.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class PlayersTest {
@@ -13,5 +15,13 @@ public class PlayersTest {
   @ValueSource(strings = {"apple,tesla,tsmc,meta", "apple, tesla, tsmc, meta"})
   void givenPlayerNames_ShouldBeCreated(String input) {
     assertThat(Players.create(input)).isEqualTo(Players.create(input));
+  }
+
+  @DisplayName("플레이어 시작 포인트 찾기")
+  @Test
+  void point() {
+    Players players = new Players(Players.create("apple,tesla,tsmc,meta"));
+    assertThat(players.point("tsmc")).isEqualTo(2);
+    assertThat(players.point("tesla")).isEqualTo(1);
   }
 }
