@@ -193,3 +193,4 @@ henry: 💣
   - Way.first()
 - [x] namesEquals == -> equals 변경
 - [x] Player.no Player.result() 제거 
+- [x] remove comments

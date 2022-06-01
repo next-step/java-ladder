@@ -31,8 +31,12 @@ public enum Way {
         return Way.of(false, current);
     }
 
-    public static Way firstRandom() {
+    private static Way rightOrStay() {
         return Way.of(false, Random.createBoolean());
+    }
+
+    public static Way firstRandom() {
+        return rightOrStay();
     }
 
     public Way next(boolean current) {
@@ -45,10 +49,10 @@ public enum Way {
     }
 
     public Way nextRandom() {
-        if (this.variation == 1) {
+        if (this == RIGHT) {
             return LEFT;
         }
-        return Way.of(false, Random.createBoolean());
+        return rightOrStay();
     }
 
     public Way last() {
