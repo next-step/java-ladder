@@ -6,18 +6,18 @@ import java.util.Random;
 public class Node {
     public static final Random RANDOM = new Random();
     private final boolean left;
-    private final boolean current;
+    private final boolean right;
 
     public Node(boolean left, boolean current) {
         this.left = left;
-        this.current = current;
+        this.right = current;
     }
 
     @Override
     public String toString() {
         return "Node{" +
                 "left=" + left +
-                ", current=" + current +
+                ", current=" + right +
                 '}';
     }
 
@@ -30,21 +30,21 @@ public class Node {
     }
 
     public Node next(boolean current) {
-        return new Node(this.current, current);
+        return new Node(this.right, current);
     }
 
     public Node nextRandom() {
-        if (this.current) {
+        if (this.right) {
             return new Node(true, false);
         }
         return new Node(false, RANDOM.nextBoolean());
     }
 
     public Direction move() {
-        if (this.current && this.left) {
+        if (this.right && this.left) {
             throw new IllegalArgumentException("left and current cannot be true at the same time.");
         }
-        if (this.current) {
+        if (this.right) {
             return Direction.RIGHT;
         }
         if (this.left) {
@@ -54,7 +54,7 @@ public class Node {
     }
 
     public Node last() {
-        return new Node(this.current, false);
+        return new Node(this.right, false);
     }
 
     @Override
@@ -62,15 +62,15 @@ public class Node {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Node node = (Node) o;
-        return left == node.left && current == node.current;
+        return left == node.left && right == node.right;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(left, current);
+        return Objects.hash(left, right);
     }
 
     public String toShow() {
-        return (this.current ? "-" : " ").repeat(5);
+        return (this.right ? "-" : " ").repeat(5);
     }
 }

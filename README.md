@@ -141,30 +141,53 @@ henry: 💣
 - [x] refactoring to remove indent
 
 ### Requested changes
+
 - [x] 가독성을 높이기 위해 의미있는 단위로 개행
 - [x] 불필요한 인터페이스 제거: Scanned
 - [x] 행위없는 class 제거: Reward
 - [x] LadderResult controller -> domain 패키지 변경
 - [ ] Line 이 boolean 뿐만아니라 경계선이 존재하는지도 알고 있게 변경
-  - [x] boolean 을 대체할 Node class 생성
-  - [x] 두 Node 를 연결할 Link class 생성
-  - [x] Line -> Row 이름 변경
-  - [x] Row: Link 를 활용한 로직 구현
-  - [x] Row: createRandom, createManual 분리 구현
-  - [x] Lines -> Ladder 이름 변경
-  - [x] Ladder: Row 를 활용한 로직 구현
-  - [x] 기존 class 정리
-  - [x] App 로직 재 구현 + printLadder
-  - [x] printLadderResults, covered with run()
+    - [x] boolean 을 대체할 Node class 생성
+    - [x] 두 Node 를 연결할 Link class 생성
+    - [x] Line -> Row 이름 변경
+    - [x] Row: Link 를 활용한 로직 구현
+    - [x] Row: createRandom, createManual 분리 구현
+    - [x] Lines -> Ladder 이름 변경
+    - [x] Ladder: Row 를 활용한 로직 구현
+    - [x] 기존 class 정리
+    - [x] App 로직 재 구현 + printLadder
+    - [x] printLadderResults, covered with run()
 - [x] showResult 테스트 가능한 구조로 변경 -> ladder.result 가 rewardIndex return 하도록 변경
-  - [x] 사다리는 Players 가 아닌 다른 곳에서 생성: new Ladder(height, width)
+    - [x] 사다리는 Players 가 아닌 다른 곳에서 생성: new Ladder(height, width)
 - [x] Players.toString 내부의 output layer 를 분리
 - [x] 축약된 변수명 풀어쓰기
-  - Players.findPlayer
-  - Height
-  - Input.scanPlayerToShow
+    - Players.findPlayer
+    - Height
+    - Input.scanPlayerToShow
 - [x] getter 최대한 메시지로 변경
-  - player.name: 일부는 nameEquals 로 변경하였으나 아예 없애지 못함
+    - player.name: 일부는 nameEquals 로 변경하였으나 아예 없애지 못함
 - [x] Players test 추가
 - [x] Player test 추가
 
+## Step4
+
+### Todo
+
+- [x] Node.current → right 이름 변경
+- [ ] Node.isLeft, isRight만 남기고 Move 제거
+- [ ] Direction의 down을 없애
+- [ ] Direction 아예 없애고 Node를 left, right, hold 를 가지게하고
+- [ ] Util 은 public final class 에 private 생성자 명시적으로 작성
+    - UnsupportedOperationException
+- [ ] RuntimeException 은 추상클래스 라고 생각하자 → 상속해서 쓰자
+- [ ] 전략패턴 파라미터로 두건 변수로 두건 해서 적용
+- [ ] from → index 수정
+- [ ] 팩토리
+    - [ ] 위임하는거지 로직이 없으면 테스트 할 필요 없다
+- [ ] 테스트는 적어도 protected
+- [ ] Link.from 파라미터로 변경
+- [ ] Link.move 첫 방어로직 제거
+- [ ] Row의 방어로직과 manual 테스트 제거
+- [ ] validate 는 생성자에서 하자
+- [ ] namesEquals == 수정
+- [ ] Player.no 제거
