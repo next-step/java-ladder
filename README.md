@@ -173,13 +173,13 @@ henry: 💣
 
 ### Todo
 
+- [x] Util 은 public final class 에 private 생성자 명시적으로 작성
+  - UnsupportedOperationException
 - [x] Node.current → right 이름 변경
-    - [x] Node.isLeft, isRight만 남기고 Move 제거
-    - [ ] Direction 의 down 제거
-    - [ ] validate 는 생성자에서 하자
-    - [ ] Direction 아예 없애고 Node를 left, right, hold 를 가지게하고
-- [ ] Util 은 public final class 에 private 생성자 명시적으로 작성
-    - UnsupportedOperationException
+    - [x] Node.isLeft, isRight 만 남기고 Move 제거
+    - [x] validate 는 생성자에서 하자
+    - [x] Direction 의 down 제거
+    - [ ] Direction 없애고 Node 를 left, right, hold 를 가지는 enum 으로 변경
 - [ ] RuntimeException 은 추상클래스 라고 생각하자 → 상속해서 쓰자
 - [ ] 전략패턴 파라미터로 두건 변수로 두건 해서 적용
 - [ ] from → index 수정
