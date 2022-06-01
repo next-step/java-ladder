@@ -1,8 +1,10 @@
 package nextstep.ladder.view;
 
 import java.util.List;
+import java.util.stream.IntStream;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Lines;
+import nextstep.ladder.domain.Player;
 import nextstep.ladder.domain.Players;
 import nextstep.ladder.domain.Position;
 import nextstep.ladder.domain.Result;
@@ -25,8 +27,21 @@ public class ResultView {
   public static void print(Result result) {
     System.out.println(result);
   }
+
   private static void print(Players players) {
     sb.append(BLANK + players + "\n");
+  }
+
+  public static void result(List<Player> players, Lines lines, Results results) {
+    StringBuilder _sb = new StringBuilder();
+    IntStream.range(0, players.size())
+        .forEach(idx -> {
+              Player player = players.get(idx);
+              Result result = results.result(lines.move(idx));
+              _sb.append(player + " : " + result + "\n");
+            }
+        );
+    System.out.println(_sb);
   }
 
   private static void print(Lines lines) {
@@ -54,4 +69,5 @@ public class ResultView {
   private static void print(Results results) {
     sb.append(BLANK + results + "\n");
   }
+
 }

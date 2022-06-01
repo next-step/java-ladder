@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -25,7 +26,10 @@ public class Players {
   }
 
   public int point(String playerName) {
-    return players.indexOf(new Player(playerName));
+    return point(new Player(playerName));
+  }
+  public int point(Player player) {
+    return players.indexOf(player);
   }
 
   private static void validateEmpty(String playerNames) {
@@ -38,6 +42,10 @@ public class Players {
     return Arrays.stream(playerNames.split(DELIMITER))
         .map(Player::new)
         .collect(Collectors.toList());
+  }
+
+  public List<Player> players() {
+    return Collections.unmodifiableList(players);
   }
 
   @Override
