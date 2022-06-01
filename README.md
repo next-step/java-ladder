@@ -10,6 +10,15 @@
 
 * 프로젝트 기능
 * domain
-  * 
+  * LadderGame
+  * LadderInfo
+  * Line
+  * Participants
+  * Participant
 * view
-  * 
+  * InputView
+    * inputParticipants : 참가자 이름 입력
+    * inputLadderHeight : 사다리 높이 입력
+  * ResultView
+* exceptions
+  * ExceededMaxLengthException
