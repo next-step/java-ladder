@@ -1,13 +1,15 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.exceptions.ExceededMaxLengthException;
+import nextstep.ladder.exceptions.OutOfMaxNameLengthException;
 
 public class Participant {
     private final String name;
 
+    private final int MAX_LENGTH = 6;
+
     public Participant(String name) {
-        if (name.length() > 5) {
-            throw new ExceededMaxLengthException("참가자 이름의 길이가 5 이상이 될 수 없습니다.");
+        if (name.length() == 0 || name.length() > MAX_LENGTH) {
+            throw new OutOfMaxNameLengthException("참가자 이름의 길이는 1 이상 5 이하 이어야 합니다.");
         }
 
         this.name = name;
