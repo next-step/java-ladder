@@ -1,8 +1,5 @@
 package ladder.domain;
 
-import ladder.strategy.GenerationStrategy;
-import ladder.strategy.RandomGeneration;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -15,13 +12,9 @@ public class Ladder {
     private final PositionGroup positionGroup;
 
     public Ladder(Height height, PositionGroup positionGroup) {
-        this(height, positionGroup, new RandomGeneration());
-    }
-
-    public Ladder(Height height, PositionGroup positionGroup, GenerationStrategy strategy) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height.value(); i++) {
-            lines.add(new Line(positionGroup.playerPositions().pointCount(), strategy));
+            lines.add(new Line(positionGroup.playerPositions()));
         }
         this.lines = lines;
         this.positionGroup = positionGroup;

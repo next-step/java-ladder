@@ -4,7 +4,7 @@ public enum Direction {
 
     LEFT(-1),
     RIGHT(1),
-    STAY(0);
+    PASS(0);
 
     private final int value;
 

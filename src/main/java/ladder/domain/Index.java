@@ -9,7 +9,6 @@ import java.util.Objects;
 public class Index {
 
     public static final int MIN_VALUE = 0;
-    private static final int LEFT_POSITION_VALUE = 1;
 
     private final int maxValue;
     private int value;
@@ -17,13 +16,13 @@ public class Index {
     public Index(int maxValue, int value) {
         this.maxValue = maxValue;
 
-        if(outOfBound(value)) {
+        if(isOutOfBound(value)) {
             throw new InvalidBoundIndexException(maxValue);
         }
         this.value = value;
     }
 
-    private boolean outOfBound(int value) {
+    private boolean isOutOfBound(int value) {
         return value < MIN_VALUE || value > maxValue;
     }
 
@@ -35,22 +34,18 @@ public class Index {
     }
 
     private boolean invalidChangeStatus(Direction direction) {
-        return (direction.isLeft() && minimum()) || (direction.isRight() && maximum());
+        return (direction.isLeft() && isMinimum()) || (direction.isRight() && isMaximum());
     }
 
-    public boolean minimum() {
+    private boolean isMinimum() {
         return value == MIN_VALUE;
     }
 
-    public boolean maximum() {
+    private boolean isMaximum() {
         return value == maxValue;
     }
 
-    public int leftValue() {
-        return value - LEFT_POSITION_VALUE;
-    }
-
-    public int value() {
+    public int toInt() {
         return value;
     }
 
