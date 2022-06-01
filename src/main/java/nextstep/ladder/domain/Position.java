@@ -14,6 +14,10 @@ public class Position {
     this.point = point;
   }
 
+  public boolean current() {
+    return point.current();
+  }
+
   public int move() {
     Direction direction = point.move();
     if (direction.right()) {
@@ -24,4 +28,8 @@ public class Position {
     return position;
   }
 
+  @Override
+  public String toString() {
+    return "{" + "position: " + position + ", point: " + point + '}';
+  }
 }

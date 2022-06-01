@@ -16,20 +16,35 @@ class LinesTest {
             new Line(List.of(
                 Position.of(0, Point.of(false, true)),
                 Position.of(1, Point.of(true, false)),
-                Position.of(2, Point.of(false, false))
+                Position.of(2, Point.of(false, false)),
+                Position.of(3, Point.of(false, false))
+            )),
+            new Line(List.of(
+                Position.of(0, Point.of(false, false)),
+                Position.of(1, Point.of(false, false)),
+                Position.of(2, Point.of(false, true)),
+                Position.of(3, Point.of(true, false))
+            )),
+            new Line(List.of(
+                Position.of(0, Point.of(false, true)),
+                Position.of(1, Point.of(true, false)),
+                Position.of(2, Point.of(false, false)),
+                Position.of(3, Point.of(false, false))
+            )),
+            new Line(List.of(
+                Position.of(0, Point.of(false, true)),
+                Position.of(1, Point.of(true, false)),
+                Position.of(2, Point.of(false, false)),
+                Position.of(3, Point.of(false, false))
             )),
             new Line(List.of(
                 Position.of(0, Point.of(false, false)),
                 Position.of(1, Point.of(false, true)),
-                Position.of(2, Point.of(true, false))
-            )),
-            new Line(List.of(
-                Position.of(0, Point.of(false, false)),
-                Position.of(1, Point.of(false, true)),
-                Position.of(2, Point.of(true, false))
+                Position.of(2, Point.of(true, false)),
+                Position.of(3, Point.of(false, false))
             ))
         )
     );
-    assertThat(lines.move(0)).isEqualTo(1);
+    assertThat(lines.move(0)).isEqualTo(2);
   }
 }

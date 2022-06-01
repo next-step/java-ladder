@@ -17,6 +17,10 @@ public class Point {
     this.current = current;
   }
 
+  public boolean current() {
+    return this.current;
+  }
+
   public Direction move() {
     if (current) {
       return Direction.RIGHT;
@@ -24,5 +28,10 @@ public class Point {
       return Direction.LEFT;
     }
     return Direction.STOP;
+  }
+
+  @Override
+  public String toString() {
+    return "{" + "left:" + left + ", current:" + current + '}';
   }
 }
