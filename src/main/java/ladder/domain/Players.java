@@ -32,7 +32,11 @@ public class Players {
     public List<LadderResult> results(Ladder ladder, List<String> rewards) {
         return this.players
                 .stream()
-                .map(player -> player.result(ladder, rewards))
+                .map(player -> {
+                    int index = players.indexOf(player);
+                    int resultIndex = ladder.result(index);
+                    return new LadderResult(player, rewards.get(resultIndex));
+                })
                 .collect(Collectors.toList());
     }
 

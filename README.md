@@ -192,4 +192,4 @@ henry: 💣
   - Ladder.height()
   - Way.first()
 - [x] namesEquals == -> equals 변경
-- [ ] Player.no 제거
+- [x] Player.no Player.result() 제거 
