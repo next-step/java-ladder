@@ -27,13 +27,13 @@ public class Spot {
         return new Spot(this.way.nextRandom());
     }
 
-    public Spot next(Boolean point) {
-        return new Spot(this.way.next(point));
-    }
+//    public Spot next(Boolean point) {
+//        return new Spot(this.way.next(point));
+//    }
 
-    public static Spot first(boolean current) {
-        return new Spot(Way.first(current));
-    }
+//    public static Spot first(boolean current) {
+//        return new Spot(Way.first(current));
+//    }
 
     public Spot last() {
         return new Spot(this.way.last());

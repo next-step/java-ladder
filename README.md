@@ -186,7 +186,10 @@ henry: 💣
 - [x] Spot.move 첫 방어로직 제거: 실 서비스에서 발생할 일 없는 로직
 - [x] from → index 수정
 - [x] Row: 팩토리 class 이므로 위임만 존재하면 불필요 테스트 제거
-- [ ] 테스트는 적어도 protected
+- [x] 테스트를 위한 메서드 protected 변경
+  - Row.width()
+  - Ladder.height()
+  - Way.first()
 - [ ] Row의 방어로직과 manual 테스트 제거
 - [ ] namesEquals == 수정
 - [ ] Player.no 제거

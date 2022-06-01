@@ -30,7 +30,7 @@ public class Row {
                 "}\n";
     }
 
-    public int size() {
+    protected int size() {
         return this.spots.size();
     }
 

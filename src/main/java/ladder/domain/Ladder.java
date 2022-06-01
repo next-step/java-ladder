@@ -7,9 +7,9 @@ import java.util.stream.Stream;
 public class Ladder {
     private final List<Row> rows;
 
-    public Ladder(List<Row> rows) {
-        this.rows = rows;
-    }
+//    public Ladder(List<Row> rows) {
+//        this.rows = rows;
+//    }
 
     @Override
     public String toString() {
@@ -31,7 +31,7 @@ public class Ladder {
         return index;
     }
 
-    public int height() {
+    protected int height() {
         return this.rows.size();
     }
 

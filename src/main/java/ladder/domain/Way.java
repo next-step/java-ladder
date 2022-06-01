@@ -27,7 +27,7 @@ public enum Way {
         }
     }
 
-    public static Way first(boolean current) {
+    protected static Way first(boolean current) {
         return Way.of(false, current);
     }
 
