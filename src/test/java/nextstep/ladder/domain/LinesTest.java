@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class LinesTest {
 
   @Test
-  @DisplayName("")
+  @DisplayName("사다리 라인 포인트 이동 테스트")
   void move() {
     Lines lines = new Lines(
         List.of(
