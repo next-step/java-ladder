@@ -2,6 +2,7 @@ package nextstep.ladder;
 
 import nextstep.ladder.domain.LadderGame;
 import nextstep.ladder.view.InputView;
+import nextstep.ladder.view.ResultView;
 
 public class Ladder {
 
@@ -11,5 +12,8 @@ public class Ladder {
         int ladderHeight = inputView.inputLadderHeight();
 
         LadderGame ladderGame = new LadderGame(participants, ladderHeight);
+
+        ResultView resultView = new ResultView();
+        resultView.printResult(ladderGame.ladderInfo(), ladderGame.participants());
     }
 }

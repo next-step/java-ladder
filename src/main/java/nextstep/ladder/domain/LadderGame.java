@@ -14,4 +14,8 @@ public class LadderGame {
     public LadderInfo ladderInfo() {
         return ladderInfo;
     }
+
+    public Participants participants() {
+        return participants;
+    }
 }

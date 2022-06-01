@@ -40,5 +40,7 @@
     * inputParticipants : 참가자 이름 입력
     * inputLadderHeight : 사다리 높이 입력
   * ResultView
+    * printResult : 실행결과 출력
+    * printParticipants : 참가자 이름 출력
 * exceptions
   * ExceededMaxLengthException

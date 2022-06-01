@@ -20,7 +20,7 @@ public class Participants {
         return this.participants.size();
     }
 
-    public List<Participant> participants() {
+    public List<Participant> value() {
         return Collections.unmodifiableList(participants);
     }
 }

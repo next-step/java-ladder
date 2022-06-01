@@ -5,7 +5,7 @@ import nextstep.ladder.exceptions.OutOfMaxNameLengthException;
 public class Participant {
     private final String name;
 
-    private final int MAX_LENGTH = 6;
+    private final int MAX_LENGTH = 5;
 
     public Participant(String name) {
         if (name.length() == 0 || name.length() > MAX_LENGTH) {
@@ -13,5 +13,9 @@ public class Participant {
         }
 
         this.name = name;
+    }
+
+    public String name() {
+        return name;
     }
 }
