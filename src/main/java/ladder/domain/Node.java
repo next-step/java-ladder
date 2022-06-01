@@ -8,9 +8,16 @@ public class Node {
     private final boolean left;
     private final boolean right;
 
-    public Node(boolean left, boolean current) {
+    public Node(boolean left, boolean right) {
+        validate(left, right);
         this.left = left;
-        this.right = current;
+        this.right = right;
+    }
+
+    private void validate(boolean left, boolean right) {
+        if (left && right) {
+            throw new IllegalArgumentException("left and right cannot be true consecutively.");
+        }
     }
 
     @Override
@@ -40,19 +47,6 @@ public class Node {
         return new Node(false, RANDOM.nextBoolean());
     }
 
-    public Direction move() {
-        if (this.right && this.left) {
-            throw new IllegalArgumentException("left and current cannot be true at the same time.");
-        }
-        if (this.right) {
-            return Direction.RIGHT;
-        }
-        if (this.left) {
-            return Direction.LEFT;
-        }
-        return Direction.DOWN;
-    }
-
     public Node last() {
         return new Node(this.right, false);
     }
@@ -72,5 +66,13 @@ public class Node {
 
     public String toShow() {
         return (this.right ? "-" : " ").repeat(5);
+    }
+
+    public Boolean isLeft() {
+        return this.left;
+    }
+
+    public Boolean isRight() {
+        return this.right;
     }
 }

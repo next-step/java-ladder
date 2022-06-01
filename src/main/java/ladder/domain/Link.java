@@ -18,13 +18,10 @@ public class Link {
     }
 
     public int move() {
-        if (this.node.move() == Direction.LEFT && this.from < 1) { // move logic to From class?
-            throw new RuntimeException("Cannot move to negative");
-        }
-        if (this.node.move() == Direction.LEFT) {
+        if (this.node.isLeft()) {
             return this.from - 1;
         }
-        if (this.node.move() == Direction.RIGHT) {
+        if (this.node.isRight()) {
             return this.from + 1;
         }
         return this.from;

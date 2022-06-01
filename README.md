@@ -174,9 +174,10 @@ henry: 💣
 ### Todo
 
 - [x] Node.current → right 이름 변경
-- [ ] Node.isLeft, isRight만 남기고 Move 제거
-- [ ] Direction의 down을 없애
-- [ ] Direction 아예 없애고 Node를 left, right, hold 를 가지게하고
+    - [x] Node.isLeft, isRight만 남기고 Move 제거
+    - [ ] Direction 의 down 제거
+    - [ ] validate 는 생성자에서 하자
+    - [ ] Direction 아예 없애고 Node를 left, right, hold 를 가지게하고
 - [ ] Util 은 public final class 에 private 생성자 명시적으로 작성
     - UnsupportedOperationException
 - [ ] RuntimeException 은 추상클래스 라고 생각하자 → 상속해서 쓰자
@@ -188,6 +189,5 @@ henry: 💣
 - [ ] Link.from 파라미터로 변경
 - [ ] Link.move 첫 방어로직 제거
 - [ ] Row의 방어로직과 manual 테스트 제거
-- [ ] validate 는 생성자에서 하자
 - [ ] namesEquals == 수정
 - [ ] Player.no 제거

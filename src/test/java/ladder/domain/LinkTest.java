@@ -18,11 +18,11 @@ public class LinkTest {
         assertThat(to).isEqualTo(0);
     }
 
-    @Test
-    void invalid() {
-        Link link = new Link(0, Node.first(true).next(false));
-        assertThatThrownBy(() -> link.move()).isInstanceOf(RuntimeException.class);
-    }
+//    @Test
+//    void invalid() {
+//        Link link = new Link(0, Node.first(true).next(false));
+//        assertThatThrownBy(() -> link.move()).isInstanceOf(RuntimeException.class);
+//    }
 
     @Test
     void down() {
