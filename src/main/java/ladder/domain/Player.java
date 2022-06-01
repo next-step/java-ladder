@@ -55,6 +55,6 @@ public class Player {
     }
 
     public boolean nameEquals(String playerName) {
-        return this.name == playerName;
+        return this.name.equals(playerName);
     }
 }
