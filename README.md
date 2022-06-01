@@ -11,10 +11,30 @@
 * 프로젝트 기능
 * domain
   * LadderGame
+    * Participants participants
+    * LadderInfo ladderInfo
   * LadderInfo
+    * int height
+    * int numberOfParticipants
+    * Lines lines
+  * Lines
+    * List<Line> lines
   * Line
+    * Variables
+      * List<Point> points
+    * Functions
+      * makePoints() : point(가로선) 생성
+  * Point
+    * Variables
+      * boolean linked
+    * Functions
+      * Point randomLink(...) : 좌우 가로선에 따라 가로선 랜덤 생성 
   * Participants
+    * Variables
+      * List<Participant> participants
   * Participant
+    * Variables
+      * String name
 * view
   * InputView
     * inputParticipants : 참가자 이름 입력
