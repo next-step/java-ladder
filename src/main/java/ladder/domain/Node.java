@@ -2,77 +2,64 @@ package ladder.domain;
 
 import ladder.util.Random;
 
-import java.util.Objects;
+public enum Node {
+    LEFT(-1), RIGHT(1), STAY(0);
+    private int variation;
 
-public class Node {
-    private final boolean left;
-    private final boolean right;
-
-    public Node(boolean left, boolean right) {
-        validate(left, right);
-        this.left = left;
-        this.right = right;
+    Node(int variation) {
+        this.variation = variation;
     }
 
-    private void validate(boolean left, boolean right) {
+    public static Node of(boolean left, boolean right) {
+        validate(left, right);
+        if (right) {
+            return RIGHT;
+        }
+        if (left) {
+            return LEFT;
+        }
+        return STAY;
+    }
+
+    private static void validate(boolean left, boolean right) {
         if (left && right) {
             throw new IllegalArgumentException("left and right cannot be true consecutively.");
         }
     }
 
-    @Override
-    public String toString() {
-        return "Node{" +
-                "left=" + left +
-                ", current=" + right +
-                '}';
-    }
-
     public static Node first(boolean current) {
-        return new Node(false, current);
+        return Node.of(false, current);
     }
 
     public static Node firstRandom() {
-        return new Node(false, Random.createBoolean());
+        return Node.of(false, Random.createBoolean());
     }
 
     public Node next(boolean current) {
-        return new Node(this.right, current);
+        switch (this) {
+            case RIGHT:
+                return Node.of(true, current);
+            default:
+                return Node.of(false, current);
+        }
     }
 
     public Node nextRandom() {
-        if (this.right) {
-            return new Node(true, false);
+        if (this.variation == 1) {
+            return LEFT;
         }
-        return new Node(false, Random.createBoolean());
+        return Node.of(false, Random.createBoolean());
     }
 
     public Node last() {
-        return new Node(this.right, false);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Node node = (Node) o;
-        return left == node.left && right == node.right;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(left, right);
+        return this.next(false);
     }
 
     public String toShow() {
-        return (this.right ? "-" : " ").repeat(5);
+        return (this.variation == 1 ? "-" : " ").repeat(5);
     }
 
-    public Boolean isLeft() {
-        return this.left;
-    }
-
-    public Boolean isRight() {
-        return this.right;
+    public int variation() {
+        return this.variation;
     }
 }

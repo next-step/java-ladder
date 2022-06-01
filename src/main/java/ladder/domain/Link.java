@@ -18,13 +18,7 @@ public class Link {
     }
 
     public int move() {
-        if (this.node.isLeft()) {
-            return this.from - 1;
-        }
-        if (this.node.isRight()) {
-            return this.from + 1;
-        }
-        return this.from;
+        return this.from + this.node.variation();
     }
 
     public static Link firstRandom() {

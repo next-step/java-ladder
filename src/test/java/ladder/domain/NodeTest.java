@@ -2,28 +2,29 @@ package ladder.domain;
 
 import org.junit.jupiter.api.Test;
 
+import static ladder.domain.Node.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class NodeTest {
     @Test
     void first() {
-        assertThat(Node.first(true).isRight()).isTrue();
+        assertThat(Node.first(true)).isEqualTo(RIGHT);
     }
 
     @Test
     void next() {
-        assertThat(Node.first(true).next(false).isLeft()).isTrue();
+        assertThat(Node.first(true).next(false)).isEqualTo(LEFT);
     }
 
     @Test
     void right() {
-        assertThat(Node.first(false).next(true).isRight()).isTrue();
+        assertThat(Node.first(false).next(true)).isEqualTo(RIGHT);
     }
 
     @Test
     void left() {
-        assertThat(Node.first(true).next(false).isLeft()).isTrue();
+        assertThat(Node.first(true).next(false)).isEqualTo(LEFT);
     }
 
     @Test
@@ -33,6 +34,6 @@ public class NodeTest {
 
     @Test
     void last() {
-        assertThat(Node.first(true).next(false).last()).isEqualTo(new Node(false, false));
+        assertThat(Node.first(true).next(false).last()).isEqualTo(Node.of(false, false));
     }
 }
