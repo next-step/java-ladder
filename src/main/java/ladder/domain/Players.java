@@ -1,9 +1,9 @@
 package ladder.domain;
 
-import ladder.view.Output;
-
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Players {
     private final List<Player> players;
@@ -17,7 +17,23 @@ public class Players {
     }
 
     public List<Player> players() {
-        return this.players;
+        return Collections.unmodifiableList(this.players);
+    }
+
+    public Players findPlayers(String playerName) {
+        return new Players(
+                this.players
+                        .stream()
+                        .filter(player -> player.nameEquals(playerName))
+                        .collect(Collectors.toList())
+        );
+    }
+
+    public List<LadderResult> results(Ladder ladder, List<String> rewards) {
+        return this.players
+                .stream()
+                .map(player -> player.result(ladder, rewards))
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -31,5 +47,13 @@ public class Players {
     @Override
     public int hashCode() {
         return Objects.hash(players);
+    }
+
+    @Override
+    public String
+    toString() {
+        return "Players{" +
+                "players=" + players +
+                '}';
     }
 }

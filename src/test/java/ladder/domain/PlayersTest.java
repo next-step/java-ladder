@@ -2,6 +2,7 @@ package ladder.domain;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -17,5 +18,19 @@ public class PlayersTest {
                         .collect(Collectors.toList()))
                         .size()
         ).isEqualTo(5);
+    }
+
+    @Test
+    void findPlayers() {
+        Player.autoIncrement = 0;
+        Players players = new Players(Arrays.asList(
+                new Player("ab"),
+                new Player("cd")
+        ));
+        Player.autoIncrement = 0;
+        Players targetPlayers = new Players(Arrays.asList(
+                new Player("ab")
+        ));
+        assertThat(players.findPlayers("ab")).isEqualTo(targetPlayers);
     }
 }

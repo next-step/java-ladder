@@ -3,24 +3,23 @@ package ladder.domain;
 import java.util.Objects;
 import java.util.Optional;
 
-import static ladder.util.Const.MAX_HEIGHT;
-
 public class Height {
-    private final int height;
+    private final int MAX_HEIGHT = 20;
+    private final int value;
 
     public Height(int height) {
-        this.height = Optional.of(height)
-                .filter(h -> h <= MAX_HEIGHT)
+        this.value = Optional.of(height)
+                .filter(integer -> integer <= MAX_HEIGHT)
                 .orElseThrow(() -> new IllegalArgumentException("height should be less than " + MAX_HEIGHT + " but, : " + height));
     }
 
-    public int height() {
-        return this.height;
+    public int value() {
+        return this.value;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(height);
+        return Objects.hash(value);
     }
 
     @Override
@@ -28,6 +27,6 @@ public class Height {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Height height1 = (Height) o;
-        return height == height1.height;
+        return value == height1.value;
     }
 }
