@@ -1,7 +1,6 @@
 package ladder.domain;
 
 public class Spot {
-    //    private final int from;
     private final Way way;
 
 //    @Override

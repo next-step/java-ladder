@@ -11,12 +11,12 @@ public class Row {
         this.spots = spots;
     }
 
-    public int move(int from) {
+    public int move(int index) {
         int width = this.spots.size() - 1;
-        if (from > width) {
-            throw new IndexOutOfBoundsException("Cannot move from out of width (0 ~ " + width + ") but, " + from);
+        if (index > width) {
+            throw new IndexOutOfBoundsException("Cannot move from out of width (0 ~ " + width + ") but, " + index);
         }
-        return spots.get(from).move(from);
+        return spots.get(index).move(index);
     }
 
 //    public static Row createManual(List<Boolean> points) {

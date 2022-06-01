@@ -24,11 +24,11 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
-    public int result(int from) {
+    public int result(int index) {
         for (Row row:this.rows ) {
-            from = row.move(from); // Q: okay to overwrite parameter?
+            index = row.move(index); // Q: okay to overwrite parameter?
         }
-        return from;
+        return index;
     }
 
     public int height() {
