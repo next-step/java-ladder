@@ -1,49 +1,48 @@
 package ladder.domain;
 
 public class Spot {
-    private final int from;
+    //    private final int from;
     private final Way way;
 
-    @Override
-    public String toString() {
-        return "Spot{" +
-                "from=" + from +
-                ", way=" + way +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Spot{" +
+//                "from=" + from +
+//                ", way=" + way +
+//                '}';
+//    }
 
-    public Spot(int from, Way way) {
-        this.from = from;
+    public Spot(Way way) {
         this.way = way;
     }
 
-    public int move() {
-        return this.from + this.way.variation();
+    public int move(int index) {
+        return index + this.way.variation();
     }
 
     public static Spot firstRandom() {
-        return new Spot(0, Way.firstRandom());
+        return new Spot(Way.firstRandom());
     }
 
     public Spot nextRandom() {
-        return new Spot(this.from + 1, this.way.nextRandom());
+        return new Spot(this.way.nextRandom());
     }
 
     public Spot next(Boolean point) {
-        return new Spot(this.from + 1, this.way.next(point));
+        return new Spot(this.way.next(point));
     }
 
     public static Spot first(boolean current) {
-        return new Spot(0, Way.first(current));
+        return new Spot(Way.first(current));
     }
 
     public Spot last() {
-        return new Spot(this.from + 1, this.way.last());
+        return new Spot(this.way.last());
     }
 
-    public int from() {
-        return this.from;
-    }
+//    public int from() {
+//        return this.from;
+//    }
 
     public String toShow() {
         return this.way.toShow();

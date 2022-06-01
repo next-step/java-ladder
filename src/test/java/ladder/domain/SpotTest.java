@@ -8,19 +8,19 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class SpotTest {
     @Test
     void right() {
-        int to = new Spot(0, Way.first(true)).move();
+        int to = new Spot(Way.first(true)).move(0);
         assertThat(to).isEqualTo(1);
     }
 
     @Test
     void left() {
-        int to = new Spot(1, Way.first(true).next(false)).move();
+        int to = new Spot(Way.first(true).next(false)).move(1);
         assertThat(to).isEqualTo(0);
     }
 
     @Test
     void down() {
-        int to = new Spot(0, Way.first(false).next(false)).move();
+        int to = new Spot(Way.first(false).next(false)).move(0);
         assertThat(to).isEqualTo(0);
     }
 }

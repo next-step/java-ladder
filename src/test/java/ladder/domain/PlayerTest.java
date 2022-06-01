@@ -27,17 +27,17 @@ public class PlayerTest {
         assertThatThrownBy(() -> new Player("123456")).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void result() {
-        Player.autoIncrement = 0;
-        Player player = new Player("a");
-        Ladder ladder = new Ladder(Arrays.asList(
-                Row.createManual(Arrays.asList(false, false, true)),
-                Row.createManual(Arrays.asList(true, false, false)),
-                Row.createManual(Arrays.asList(false, false, true))
-        ));
-        List<String> rewards = Arrays.asList("💣", "💎", "💰");
-        LadderResult ladderResult = player.result(ladder, rewards);
-        assertThat(ladderResult.reward()).isEqualTo("💎");
-    }
+//    @Test
+//    void result() {
+//        Player.autoIncrement = 0;
+//        Player player = new Player("a");
+//        Ladder ladder = new Ladder(Arrays.asList(
+//                Row.createManual(Arrays.asList(false, false, true)),
+//                Row.createManual(Arrays.asList(true, false, false)),
+//                Row.createManual(Arrays.asList(false, false, true))
+//        ));
+//        List<String> rewards = Arrays.asList("💣", "💎", "💰");
+//        LadderResult ladderResult = player.result(ladder, rewards);
+//        assertThat(ladderResult.reward()).isEqualTo("💎");
+//    }
 }
