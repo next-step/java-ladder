@@ -181,14 +181,15 @@ henry: 💣
     - [x] Direction 의 down 제거
     - [x] Direction 없애고 Node 를 left, right, hold 를 가지는 enum 으로 변경
     - [x] rename Node to Way 
+- [x] rename Link to Spot
+- [ ] Link.from 파라미터로 변경
+- [ ] Link.move 첫 방어로직 제거
 - [ ] RuntimeException 은 추상클래스 라고 생각하자 → 상속해서 쓰자
 - [ ] 전략패턴 파라미터로 두건 변수로 두건 해서 적용
 - [ ] from → index 수정
 - [ ] 팩토리
     - [ ] 위임하는거지 로직이 없으면 테스트 할 필요 없다
 - [ ] 테스트는 적어도 protected
-- [ ] Link.from 파라미터로 변경
-- [ ] Link.move 첫 방어로직 제거
 - [ ] Row의 방어로직과 manual 테스트 제거
 - [ ] namesEquals == 수정
 - [ ] Player.no 제거

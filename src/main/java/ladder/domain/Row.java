@@ -5,55 +5,55 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Row {
-    private final List<Link> links;
+    private final List<Spot> spots;
 
-    public Row(List<Link> links) {
-        this.links = links;
+    public Row(List<Spot> spots) {
+        this.spots = spots;
     }
 
     public int move(int from) {
-        int width = this.links.size() - 1;
+        int width = this.spots.size() - 1;
         if (from > width) {
             throw new IndexOutOfBoundsException("Cannot move from out of width (0 ~ " + width + ") but, " + from);
         }
-        return links.get(from).move();
+        return spots.get(from).move();
     }
 
     public static Row createManual(List<Boolean> points) {
         if (points.size() < 2) {
             throw new IllegalArgumentException("width of row should be more than 3");
         }
-        List<Link> links = Stream.iterate(Link.first(points.get(0)), link -> link.next(points.get(link.from() + 1)))
+        List<Spot> spots = Stream.iterate(Spot.first(points.get(0)), spot -> spot.next(points.get(spot.from() + 1)))
                 .limit(points.size())
                 .collect(Collectors.toList());
-        links.add(links.get(links.size() - 1).last());
-        return new Row(links);
+        spots.add(spots.get(spots.size() - 1).last());
+        return new Row(spots);
     }
 
     public static Row createRandom(int width) {
-        List<Link> links = Stream.iterate(Link.firstRandom(), link -> link.nextRandom())
+        List<Spot> spots = Stream.iterate(Spot.firstRandom(), spot -> spot.nextRandom())
                 .limit(width)
                 .collect(Collectors.toList());
-        links.add(links.get(width - 1).last());
-        return new Row(links);
+        spots.add(spots.get(width - 1).last());
+        return new Row(spots);
     }
 
     @Override
     public String toString() {
         return "Row{" +
-                "links=" + links +
+                "spots=" + spots +
                 "}\n";
     }
 
     public int size() {
-        return this.links.size();
+        return this.spots.size();
     }
 
     public String toShow() {
         return " ".repeat(4) + "|" +
-                this.links
+                this.spots
                         .stream()
-                        .map(link -> link.toShow())
+                        .map(spot -> spot.toShow())
                         .reduce((acc, cur) -> acc + "|" + cur).orElseThrow(() -> new RuntimeException("noting to show"))
                 + "\n";
     }

@@ -1,0 +1,51 @@
+package ladder.domain;
+
+public class Spot {
+    private final int from;
+    private final Way way;
+
+    @Override
+    public String toString() {
+        return "Spot{" +
+                "from=" + from +
+                ", way=" + way +
+                '}';
+    }
+
+    public Spot(int from, Way way) {
+        this.from = from;
+        this.way = way;
+    }
+
+    public int move() {
+        return this.from + this.way.variation();
+    }
+
+    public static Spot firstRandom() {
+        return new Spot(0, Way.firstRandom());
+    }
+
+    public Spot nextRandom() {
+        return new Spot(this.from + 1, this.way.nextRandom());
+    }
+
+    public Spot next(Boolean point) {
+        return new Spot(this.from + 1, this.way.next(point));
+    }
+
+    public static Spot first(boolean current) {
+        return new Spot(0, Way.first(current));
+    }
+
+    public Spot last() {
+        return new Spot(this.from + 1, this.way.last());
+    }
+
+    public int from() {
+        return this.from;
+    }
+
+    public String toShow() {
+        return this.way.toShow();
+    }
+}
