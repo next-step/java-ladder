@@ -25,14 +25,14 @@ public class Ladder {
         return lines;
     }
 
-    public List<String> extractResults(List<String> results) {
+    public List<String> moveAll(List<String> results) {
         List<String> finalResult = new ArrayList<>();
         IntStream.range(INITIAL, countOfPerson)
-                .forEachOrdered(index -> finalResult.add(results.get(move(index))));
+                .forEachOrdered(index -> finalResult.add(results.get(moveOne(index))));
         return finalResult;
     }
 
-    private int move(int index) {
+    private int moveOne(int index) {
         for (Line line : lines) {
             index = line.move(index);
         }

@@ -8,11 +8,10 @@ public class LadderResult {
     private final Map<String, String> ladderResult;
 
     private LadderResult(List<String> results, List<String> names) {
-        Map<String, String> temporary = new LinkedHashMap<>();
+        ladderResult = new LinkedHashMap<>();
         for (int i = 0; i < results.size(); i++) {
-            temporary.put(names.get(i), results.get(i));
+            ladderResult.put(names.get(i), results.get(i));
         }
-        this.ladderResult = new LinkedHashMap<>(temporary);
 
     }
 

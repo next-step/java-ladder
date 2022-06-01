@@ -29,6 +29,6 @@ public class LadderTest {
         List<String> results = Arrays.asList("가", "나", "다", "라");
         List<String> answers = Arrays.asList("다", "가", "라", "나");
         Ladder ladder = new Ladder(Arrays.asList(line1, line2), 4);
-        Assertions.assertThat(ladder.extractResults(results)).isEqualTo(answers);
+        Assertions.assertThat(ladder.moveAll(results)).isEqualTo(answers);
     }
 }
