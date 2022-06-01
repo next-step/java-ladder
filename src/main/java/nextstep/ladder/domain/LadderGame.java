@@ -8,6 +8,10 @@ public class LadderGame {
 
     public LadderGame(String[] participants, int height) {
         this.participants = new Participants(participants);
-        this.ladderInfo = new LadderInfo(height, this.participants.numberOfParticipants() - 1);
+        this.ladderInfo = new LadderInfo(height, this.participants.numberOfParticipants());
+    }
+
+    public LadderInfo ladderInfo() {
+        return ladderInfo;
     }
 }
