@@ -26,23 +26,11 @@ public class ladderApp {
     private static void showResult(Players players, ResultMap resultMap) {
         String targetPlayer = Input.scanPlayerName(players);
         if (targetPlayer.equals("all")) {
-            resultMap.getAllAsList()
-                    .stream()
-                    .forEach(System.out::println);
+            Output.printResults(resultMap.getAllAsSet());
             return;
         }
         String reward = resultMap.get(targetPlayer);
-        Output.print(targetPlayer + ":" + reward + "\n");
+        Output.printResult(targetPlayer, reward);
         showResult(players, resultMap);
-    }
-
-    private static void run(Players players, List<String> rewards, Ladder ladder) {
-        // Q: okay to recursive function like this?
-        Players targetPlayers = Input.scanPlayerToShow(players);
-        List<LadderResult> ladderResults = targetPlayers.results(ladder, rewards);
-        Output.printLadderResults(ladderResults);
-        if (targetPlayers.size() < players.size()) {
-            run(players, rewards, ladder);
-        }
     }
 }

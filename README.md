@@ -195,3 +195,4 @@ henry: 💣
 - [x] Player.no Player.result() 제거 
 - [x] remove comments
 - [x] Implement ResultMap
+- [x] Implement Output.printResult, Output.printResults
