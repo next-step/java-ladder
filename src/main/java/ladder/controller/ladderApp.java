@@ -20,10 +20,10 @@ public class ladderApp {
 
         ResultMap resultMap = ladder.results(players.players(), rewards);
 
-        showResult(players, resultMap);
+        showResultUntilAll(players, resultMap);
     }
 
-    private static void showResult(Players players, ResultMap resultMap) {
+    private static void showResultUntilAll(Players players, ResultMap resultMap) {
         String targetPlayer = Input.scanPlayerName(players);
         if (targetPlayer.equals("all")) {
             Output.printResults(resultMap.getAllAsSet());
@@ -31,6 +31,6 @@ public class ladderApp {
         }
         String reward = resultMap.get(targetPlayer);
         Output.printResult(targetPlayer, reward);
-        showResult(players, resultMap);
+        showResultUntilAll(players, resultMap);
     }
 }
