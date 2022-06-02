@@ -5,8 +5,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -15,8 +13,8 @@ class LadderTest {
     @DisplayName("사다리 정상 생성 테스트")
     @Test
     void from() {
-        List<Line> lines = LineFactory.createLines(5, 4, new RandomLineStrategy());
-        Ladder ladder = Ladder.from(lines);
+        Ladder ladder = LadderFactory.create(5, 4, new RandomLineStrategy());
+        System.out.println(ladder);
         assertThat(ladder).isNotNull();
     }
 
@@ -29,28 +27,25 @@ class LadderTest {
         ;
     }
 
-    @DisplayName("사다리 한 줄 아래로 이동하는 테스트")
+    @DisplayName("사다리 이동 테스트")
     @Test
-    void movedFrom() {
-        List<Line> lines = new ArrayList<>(List.of(
-                Line.from(Arrays.asList(false, true, false, true)),
-                Line.from(Arrays.asList(false, false, true, false))
-        ));
-        Ladder ladder = Ladder.from(lines);
-        Line movedLine = ladder.movedFrom(Position.from(0));
-
-        assertThat(movedLine).isEqualTo(lines.get(1));
+    void play() {
+        Ladder ladder = LadderFactory.create(5, 4, new RandomLineStrategy());
+        LadderResult result = ladder.play();
+        System.out.println(result);
+        assertThat(result).isNotNull();
     }
 
-    @DisplayName("더 이상 이동할 사다리가 없는 경우 예외 발생 테스트")
+    @DisplayName("사다리 이동 결과 확인 테스트")
     @Test
-    void overException() {
-        int heightOfLadder = 5;
-        List<Line> lines = LineFactory.createLines(heightOfLadder, 4, new RandomLineStrategy());
-        Ladder ladder = Ladder.from(lines);
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> ladder.movedFrom(Position.from(heightOfLadder)))
-                .withMessageContaining("더 이상")
-        ;
+    void play_result() {
+        Line.from(false, true, false, false);
+        Ladder ladder = Ladder.from(Line.from(false, true, false, false), Line.from(false, true, false, true));
+        LadderResult result = ladder.play();
+        System.out.println(result);
+        assertThat(result.goalOf(Position.from(0))).isEqualTo(Position.from(0));
+        assertThat(result.goalOf(Position.from(1))).isEqualTo(Position.from(1));
+        assertThat(result.goalOf(Position.from(2))).isEqualTo(Position.from(3));
+        assertThat(result.goalOf(Position.from(3))).isEqualTo(Position.from(2));
     }
 }

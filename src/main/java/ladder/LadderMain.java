@@ -5,20 +5,13 @@ import ladder.strategy.RandomLineStrategy;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
-import java.util.List;
-
 public class LadderMain {
     public static void main(String[] args) {
-        String participantsNames = InputView.inputParticipantsNames();
-        int numberOfLadders = InputView.inputTheNumberOfLadders();
-
-        Participants participants = Participants.from(participantsNames);
-
-        // TODO 실행결과 입력받기
+        Participants participants = Participants.from(InputView.inputParticipantsNames());
         ExecutionResult executionResult = ExecutionResult.from(InputView.inputExecutionResult());
+        Ladder ladder = LadderFactory.create(InputView.inputHeightOfLadder(), participants.count(), new RandomLineStrategy());
 
-        List<Line> lines = LineFactory.createLines(numberOfLadders, participants.count(), new RandomLineStrategy());
-
-        ResultView.printResult(participants, Ladder.from(lines));
+        ResultView.printLadderResult(participants, executionResult, ladder);
+        ResultView.printExecutionResult(InputView.inputParticipantNameToSeeExecutionResult(), participants, executionResult, ladder.play());
     }
 }

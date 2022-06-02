@@ -7,25 +7,40 @@ public class Ladder {
     private final List<Line> lines;
 
     private Ladder(List<Line> lines) {
-        if (lines == null || lines.isEmpty()) {
-            throw new IllegalArgumentException("사다리 라인들이 존재하지 않습니다.");
-        }
         this.lines = lines;
     }
 
     public static Ladder from(List<Line> lines) {
+        if (lines == null || lines.isEmpty()) {
+            throw new IllegalArgumentException("사다리 라인들이 존재하지 않습니다.");
+        }
         return new Ladder(lines);
+    }
+
+    public static Ladder from(Line... lines) {
+        return Ladder.from(List.of(lines));
+    }
+
+    public LadderResult play() {
+        LadderResult result = new LadderResult();
+        Line startLine = lines.get(0);
+        for (int i = 0; i < startLine.countOfParticipants(); i++) {
+            Position participant = Position.from(i);
+            result.put(participant, goal(participant));
+        }
+        return result;
+    }
+
+    private Position goal(Position position) {
+        Position goal = position;
+        for (Line line : lines) {
+            goal = line.movedFrom(goal);
+        }
+        return goal;
     }
 
     public List<Line> getLines() {
         return List.copyOf(lines);
-    }
-
-    public Line movedFrom(Position position) {
-        if (position.isOver(lines.size() - 1)) {
-            throw new IllegalArgumentException("더 이상 이동할 수 없습니다.");
-        }
-        return lines.get(position.forward());
     }
 
     @Override

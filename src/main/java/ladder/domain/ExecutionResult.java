@@ -30,6 +30,10 @@ public class ExecutionResult {
         }
     }
 
+    public List<String> getResults() {
+        return results;
+    }
+
     @Override
     public String toString() {
         return "ExecutionResult{" +

@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Participants {
@@ -25,11 +26,28 @@ public class Participants {
     }
 
     public Position positionOf(Participant participant) {
-        return Position.from(participants.indexOf(participant));
+        int index = participants.indexOf(participant);
+        if (index < 0) {
+            throw new IllegalArgumentException("해당하는 참여자가 존재하지 않습니다.");
+        }
+
+        return Position.from(index);
     }
 
     public List<Participant> getParticipants() {
         return List.copyOf(participants);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Participants that = (Participants) o;
+        return Objects.equals(participants, that.participants);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(participants);
+    }
 }
