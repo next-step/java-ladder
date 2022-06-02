@@ -18,7 +18,22 @@ public class ladderApp {
         Output.printLadder(ladder);
         Output.printRewards(rewards);
 
-        run(players, rewards, ladder);
+        ResultMap resultMap = ladder.results(players.players(), rewards);
+
+        showResult(players, resultMap);
+    }
+
+    private static void showResult(Players players, ResultMap resultMap) {
+        String targetPlayer = Input.scanPlayerName(players);
+        if (targetPlayer.equals("all")) {
+            resultMap.getAllAsList()
+                    .stream()
+                    .forEach(System.out::println);
+            return;
+        }
+        String reward = resultMap.get(targetPlayer);
+        Output.print(targetPlayer + ":" + reward + "\n");
+        showResult(players, resultMap);
     }
 
     private static void run(Players players, List<String> rewards, Ladder ladder) {
