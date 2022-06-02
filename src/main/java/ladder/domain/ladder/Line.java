@@ -105,6 +105,6 @@ public class Line {
     }
 
     public List<Boolean> getSpotList() {
-        return spotList;
+        return Collections.unmodifiableList(spotList);
     }
 }
