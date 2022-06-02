@@ -11,16 +11,16 @@ public class Ladder {
         lineList = list;
     }
 
-    public static Ladder createLadder(int width, int ladderHeight) {
-        List<Line> lineList = createLines(width, ladderHeight);
+    public static Ladder createLadder(int width, int height) {
+        List<Line> lineList = createLines(width, height);
 
         return new Ladder(lineList);
     }
 
-    private static List<Line> createLines(int width, int ladderHeight) {
+    private static List<Line> createLines(int width, int height) {
         List<Line> tmpList = new ArrayList<>();
 
-        for (int i = 0; i < ladderHeight; i++) {
+        for (int i = 0; i < height; i++) {
             tmpList.add(new Line(width));
         }
         return tmpList;
