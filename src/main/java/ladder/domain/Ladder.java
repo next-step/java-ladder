@@ -5,53 +5,37 @@ import java.util.stream.IntStream;
 
 public class Ladder {
     private final static int INITIAL = 0;
+    private final int countOfPerson;
     private final List<Line> lines;
 
-    private Ladder(int height, int countOfPerson) {
+    public Ladder(int height, int countOfPerson) {
         lines = new ArrayList<>();
+        this.countOfPerson = countOfPerson;
+        Strategy strategy = new DeduplicationStrategy();
         IntStream.range(INITIAL, height)
-                .forEachOrdered(number -> lines.add(Line.of(new DeduplicationStrategy(), countOfPerson)));
+                .forEachOrdered(number -> lines.add(new Line(countOfPerson, strategy)));
     }
 
-    public Ladder(List<Line> lines) {
+    public Ladder(List<Line> lines, int countOfPerson) {
+        this.countOfPerson = countOfPerson;
         this.lines = new ArrayList<>(lines);
-    }
-
-    public static Ladder of(int height, int numberOfUser) {
-        return new Ladder(height, numberOfUser);
     }
 
     public List<Line> getLines() {
         return lines;
     }
 
-    public List<Integer> extractIndexes(int countOfPerson) {
-        List<Integer> resultIndexes = new ArrayList<>();
-
-        IntStream.range(INITIAL, countOfPerson).forEachOrdered(number -> {
-            number = move(number);
-            resultIndexes.add(number);
-        });
-        return resultIndexes;
+    public List<String> moveAll(List<String> results) {
+        List<String> finalResult = new ArrayList<>();
+        IntStream.range(INITIAL, countOfPerson)
+                .forEachOrdered(index -> finalResult.add(results.get(moveOne(index))));
+        return finalResult;
     }
 
-    private int move(int index) {
+    private int moveOne(int index) {
         for (Line line : lines) {
             index = line.move(index);
         }
         return index;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Ladder ladder = (Ladder) o;
-        return Objects.equals(getLines(), ladder.getLines());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getLines());
     }
 }

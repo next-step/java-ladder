@@ -3,24 +3,30 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.IntStream;
 
-public class DeduplicationStrategy implements LineStrategy {
+public class DeduplicationStrategy implements Strategy {
     private final static Random RANDOM = new Random();
-    private final static int ONE = 1;
     private final static int INITIAL = 0;
+    private static final int ONE = 1;
 
     @Override
-    public List<Boolean> create(int countOfPerson) {
-        List<Boolean> booleans = new ArrayList<>();
-        IntStream.range(INITIAL, countOfPerson - ONE)
-                .forEachOrdered(index -> booleans.add(deduplicationInsert(booleans, index)));
-        booleans.add(false);
-        return booleans;
+    public List<Moving> create(int countOfPerson) {
+        List<Moving> movings = new ArrayList<>();
+        boolean current = RANDOM.nextBoolean();
+        Point point = Point.first(current);
+        movings.add(new Moving(INITIAL, point));
+
+        for (int i = 1; i < countOfPerson - ONE; i++) {
+            current = deduplicationInsert(current);
+            point = point.next(current);
+            movings.add(new Moving(i, point));
+        }
+        movings.add(new Moving(countOfPerson - ONE, point.last()));
+        return movings;
     }
 
-    Boolean deduplicationInsert(List<Boolean> booleans, int index) {
-        if (index != INITIAL && booleans.get(index - ONE)) {
+    boolean deduplicationInsert(boolean prior) {
+        if (prior) {
             return false;
         }
         return RANDOM.nextBoolean();

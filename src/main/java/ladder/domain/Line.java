@@ -1,37 +1,26 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private final static int ONE = 1;
-    private final static int INITIAL = 0;
+    private final List<Moving> movings;
 
-    private final List<Boolean> points;
+    public Line(int countOfPerson, Strategy strategy) {
+        this.movings = strategy.create(countOfPerson);
 
-    private Line(LineStrategy lineStrategy, int countOfPerson) {
-        points = lineStrategy.create(countOfPerson);
     }
 
-    public Line(List<Boolean> points) {
-        this.points = new ArrayList<>(points);
+    public Line(List<Moving> movings) {
+        this.movings = movings;
     }
 
-    public static Line of(LineStrategy lineStrategy, int countOfPerson) {
-        return new Line(lineStrategy, countOfPerson);
-    }
-
-    public List<Boolean> getPoints() {
-        return points;
+    public List<Moving> getMovings() {
+        return movings;
     }
 
     public int move(int index) {
-        if (index != INITIAL && points.get(index - 1)) {
-            return index - ONE;
-        }
-        if (points.get(index)) {
-            return index + ONE;
-        }
-        return index;
+        return movings.get(index).move();
     }
 }
+
+

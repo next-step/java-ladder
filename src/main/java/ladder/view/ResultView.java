@@ -16,16 +16,15 @@ public class ResultView {
     private static final String COLUMN = "|";
     private static final String ALL = "all";
 
-
     private ResultView() {
     }
 
-    public static void printName(List<Name> names) {
+    public static void printName(List<Name> persons) {
         StringBuilder stringBuilder = new StringBuilder();
-        String result = names.stream()
+        String result = persons.stream()
                 .map(Name::getName)
                 .collect(Collectors.joining(LADDER_INTERVAL));
-        stringBuilder.append(String.format("\n실행결과\n\n %s", result));
+        stringBuilder.append("\n실행결과\n\n" + result);
         System.out.println(stringBuilder);
     }
 
@@ -36,10 +35,12 @@ public class ResultView {
         System.out.print(stringBuilder);
     }
 
-    public static void drawLadder(StringBuilder stringBuilder, Line line) {
+    private static void drawLadder(StringBuilder stringBuilder, Line line) {
         stringBuilder.append(LADDER_INTERVAL);
         stringBuilder.append(COLUMN);
-        line.getPoints().stream()
+        line.getMovings().stream()
+                .map(Moving::getPoint)
+                .map(Point::getCurrent)
                 .forEachOrdered(value -> stringBuilder.append(divideValue(value)).append(COLUMN));
         stringBuilder.delete(stringBuilder.length() - LAST_INTERVAL_LENGTH, stringBuilder.length());
         stringBuilder.append("\n");
@@ -52,17 +53,18 @@ public class ResultView {
         return PASS;
     }
 
-    public static void printResult(LadderResult ladderResult) {
+    public static void printResult(List<String> results) {
         StringBuilder stringBuilder = new StringBuilder();
-        String result = ladderResult.getLadderResult().stream()
+
+        String result = results.stream()
                 .collect(Collectors.joining(RESULT_INTERVAL));
         stringBuilder.append(String.format("  %s\n ", result));
         System.out.println(stringBuilder);
     }
 
-    public static void resultFinal(FinalResult finalResult, String request) {
+    public static void resultFinal(LadderResult ladderResult, String request) {
         StringBuilder stringBuilder = new StringBuilder();
-        Map<String, String> temporary = finalResult.getFinalResult();
+        Map<String, String> temporary = ladderResult.getLadderResult();
 
         stringBuilder.append("\n실행결과\n");
         if (request.equals(ALL)) {

@@ -3,7 +3,7 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Name {
-    private final static int MAXIMUM = 5;
+    private static final int MAXIMUM = 5;
 
     private final String name;
 
