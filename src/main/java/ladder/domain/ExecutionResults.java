@@ -13,4 +13,12 @@ public class ExecutionResults {
     public ExecutionResult getResult(int resultIndex) {
         return this.executionResults.get(resultIndex);
     }
+
+    public List<ExecutionResult> getExecutionResults() {
+        return executionResults;
+    }
+
+    public int size() {
+        return executionResults.size();
+    }
 }

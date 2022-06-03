@@ -1,6 +1,7 @@
 package ladder.controller;
 
 import ladder.domain.*;
+import ladder.exception.InvalidInputSizeException;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -20,9 +21,20 @@ public class LadderController {
 
     public void startLadderGame() {
         Participants participants = inputView.inputParticipants();
+        ExecutionResults executionResults = inputView.inputExecutionResults();
+
+        validateInputSize(participants, executionResults);
+
         int maxLadderHeight = inputView.inputMaxLadderHeight();
+
         LadderGenerator ladderGenerator = new LadderGenerator(new RandomDirectionGenerateStrategy());
         Ladder ladder = ladderGenerator.createLadder(participants.size(), maxLadderHeight);
-        outputView.printResult(ladder, participants);
+        outputView.printLadder(ladder, participants, executionResults);
+    }
+
+    private void validateInputSize(Participants participants, ExecutionResults executionResults) {
+        if (participants.size() != executionResults.size()) {
+            throw new InvalidInputSizeException(participants.size(), executionResults.size());
+        }
     }
 }

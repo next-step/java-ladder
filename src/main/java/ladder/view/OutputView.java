@@ -1,9 +1,6 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.Line;
-import ladder.domain.Participants;
-import ladder.domain.Point;
+import ladder.domain.*;
 
 import java.util.List;
 
@@ -21,7 +18,7 @@ public class OutputView {
 
     private void printLines(List<Line> lines) {
         lines.forEach(this::appendLine);
-        System.out.println(LADDER_BUILDER);
+        System.out.print(LADDER_BUILDER);
     }
 
     private void appendLine(Line line) {
@@ -37,11 +34,18 @@ public class OutputView {
         LADDER_BUILDER.append(NOT_CONNECTED_LINE_STRING);
     }
 
-    public void printResult(Ladder ladder, Participants participants) {
+    public void printLadder(Ladder ladder, Participants participants, ExecutionResults executionResults) {
         this.printResultInfoMessage();
         this.printParticipants(participants);
         this.printLadder(ladder);
+        this.printExecutionResults(executionResults);
     }
+
+    private void printExecutionResults(ExecutionResults executionResults) {
+        executionResults.getExecutionResults()
+                .forEach(participant -> System.out.printf(PARTICIPANT_PRINT_FORMAT, participant));
+    }
+
     private void printResultInfoMessage() {
         System.out.println(RESULT_INFO_MESSAGE);
     }
