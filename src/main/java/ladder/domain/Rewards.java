@@ -1,10 +1,12 @@
 package ladder.domain;
 
+import ladder.domain.ladder.Ladder;
 import ladder.exception.NeedMoreResultValueException;
 import ladder.exception.NotEqualResultValueException;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Rewards {
     private static final int MIN_VALUE_NUM = 2;
@@ -41,7 +43,15 @@ public class Rewards {
         }
     }
 
-    public List<String> getResultValues() {
-        return resultValueList;
+//    public int searchPlayerReward(Ladder ladder, int i) {
+//        return RewardDirector.searchReward(ladder, i);
+//    }
+
+    public Stream<String> stream() {
+        return resultValueList.stream();
+    }
+
+    public String findRewardName(int rewardPos) {
+        return resultValueList.get(rewardPos);
     }
 }

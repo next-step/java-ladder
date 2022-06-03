@@ -63,7 +63,7 @@ public class ResultView {
     }
 
     private static void showResultValue(Rewards rewards) {
-        rewards.getResultValues().stream()
+        rewards.stream()
                 .forEach(reward ->
                         { System.out.print(String.format("%7s", reward)); }
                 );
@@ -75,11 +75,11 @@ public class ResultView {
         System.out.println();
         System.out.println("실행결과");
     }
-    public static void showRewardOnePlayer(Rewards rewards, int reward) {
-        System.out.println(rewards.getResultValues().get(reward));
+    public static void showRewardOnePlayer(Rewards rewards, int rewardPos) {
+        System.out.println(rewards.findRewardName(rewardPos));
     }
 
-    public static void showRewardOnePlayer(Rewards rewards, int reward, Player player) {
-        System.out.println(player.toString() + " : " + rewards.getResultValues().get(reward));
+    public static void showRewardOnePlayer(Rewards rewards, int rewardPos, Player player) {
+        System.out.println(player.toString() + " : " + rewards.findRewardName(rewardPos));
     }
 }
