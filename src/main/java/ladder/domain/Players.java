@@ -29,13 +29,6 @@ public class Players {
         );
     }
 
-    public List<LadderResult> results(Ladder ladder, List<String> rewards) {
-        return this.players
-                .stream()
-                .map(player -> player.result(ladder, rewards))
-                .collect(Collectors.toList());
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

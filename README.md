@@ -141,30 +141,58 @@ henry: 💣
 - [x] refactoring to remove indent
 
 ### Requested changes
+
 - [x] 가독성을 높이기 위해 의미있는 단위로 개행
 - [x] 불필요한 인터페이스 제거: Scanned
 - [x] 행위없는 class 제거: Reward
 - [x] LadderResult controller -> domain 패키지 변경
 - [ ] Line 이 boolean 뿐만아니라 경계선이 존재하는지도 알고 있게 변경
-  - [x] boolean 을 대체할 Node class 생성
-  - [x] 두 Node 를 연결할 Link class 생성
-  - [x] Line -> Row 이름 변경
-  - [x] Row: Link 를 활용한 로직 구현
-  - [x] Row: createRandom, createManual 분리 구현
-  - [x] Lines -> Ladder 이름 변경
-  - [x] Ladder: Row 를 활용한 로직 구현
-  - [x] 기존 class 정리
-  - [x] App 로직 재 구현 + printLadder
-  - [x] printLadderResults, covered with run()
+    - [x] boolean 을 대체할 Node class 생성
+    - [x] 두 Node 를 연결할 Link class 생성
+    - [x] Line -> Row 이름 변경
+    - [x] Row: Link 를 활용한 로직 구현
+    - [x] Row: createRandom, createManual 분리 구현
+    - [x] Lines -> Ladder 이름 변경
+    - [x] Ladder: Row 를 활용한 로직 구현
+    - [x] 기존 class 정리
+    - [x] App 로직 재 구현 + printLadder
+    - [x] printLadderResults, covered with run()
 - [x] showResult 테스트 가능한 구조로 변경 -> ladder.result 가 rewardIndex return 하도록 변경
-  - [x] 사다리는 Players 가 아닌 다른 곳에서 생성: new Ladder(height, width)
+    - [x] 사다리는 Players 가 아닌 다른 곳에서 생성: new Ladder(height, width)
 - [x] Players.toString 내부의 output layer 를 분리
 - [x] 축약된 변수명 풀어쓰기
-  - Players.findPlayer
-  - Height
-  - Input.scanPlayerToShow
+    - Players.findPlayer
+    - Height
+    - Input.scanPlayerToShow
 - [x] getter 최대한 메시지로 변경
-  - player.name: 일부는 nameEquals 로 변경하였으나 아예 없애지 못함
+    - player.name: 일부는 nameEquals 로 변경하였으나 아예 없애지 못함
 - [x] Players test 추가
 - [x] Player test 추가
 
+## Step4
+
+### Todo
+
+- [x] Util 은 public final class 에 private 생성자 명시적으로 작성
+  - UnsupportedOperationException
+- [x] Node.current → right 이름 변경
+    - [x] Node.isLeft, isRight 만 남기고 Move 제거
+    - [x] validate 는 생성자에서 하자
+    - [x] Direction 의 down 제거
+    - [x] Direction 없애고 Node 를 left, right, hold 를 가지는 enum 으로 변경
+    - [x] rename Node to Way 
+- [x] rename Link to Spot
+- [x] Spot.from 제거하고 일급 컬렉션의 인덱스를 파라미터로 받음
+- [x] Spot.move 첫 방어로직 제거: 실 서비스에서 발생할 일 없는 로직
+- [x] from → index 수정
+- [x] Row: 팩토리 class 이므로 위임만 존재하면 불필요 테스트 제거
+  - [x] Row의 방어로직과 manual 테스트 제거
+- [x] 테스트를 위한 메서드 protected 변경
+  - Row.width()
+  - Ladder.height()
+  - Way.first()
+- [x] namesEquals == -> equals 변경
+- [x] Player.no Player.result() 제거 
+- [x] remove comments
+- [x] Implement ResultMap
+- [x] Implement Output.printResult, Output.printResults

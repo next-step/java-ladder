@@ -18,16 +18,19 @@ public class ladderApp {
         Output.printLadder(ladder);
         Output.printRewards(rewards);
 
-        run(players, rewards, ladder);
+        ResultMap resultMap = ladder.results(players.players(), rewards);
+
+        showResultUntilAll(players, resultMap);
     }
 
-    private static void run(Players players, List<String> rewards, Ladder ladder) {
-        // Q: okay to recursive function like this?
-        Players targetPlayers = Input.scanPlayerToShow(players);
-        List<LadderResult> ladderResults = targetPlayers.results(ladder, rewards);
-        Output.printLadderResults(ladderResults);
-        if (targetPlayers.size() < players.size()) {
-            run(players, rewards, ladder);
+    private static void showResultUntilAll(Players players, ResultMap resultMap) {
+        String targetPlayer = Input.scanPlayerName(players);
+        if (targetPlayer.equals("all")) {
+            Output.printResults(resultMap.getAllAsSet());
+            return;
         }
+        String reward = resultMap.get(targetPlayer);
+        Output.printResult(targetPlayer, reward);
+        showResultUntilAll(players, resultMap);
     }
 }

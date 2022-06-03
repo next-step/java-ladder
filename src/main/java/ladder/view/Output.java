@@ -1,11 +1,11 @@
 package ladder.view;
 
 import ladder.domain.Ladder;
-import ladder.domain.LadderResult;
-import ladder.domain.Row;
 import ladder.domain.Player;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class Output {
     public static void print(String payload) {
@@ -30,12 +30,16 @@ public class Output {
         Output.print("\n");
     }
 
-    public static void printLadderResults(List<LadderResult> ladderResults) {
-        Output.print("Ladder Result\n");
-        ladderResults.forEach(ladderResult -> Output.print(ladderResult.playerName() + ": " + ladderResult.reward() + "\n")); // Q: 단순 print 로직인데 getter 없애는 방법?
-    }
-
     public static void printLadder(Ladder ladder) {
         print(ladder.toShow());
+    }
+
+    public static void printResult(String key, String value) {
+        print(key + ": " + value + "\n");
+    }
+
+    public static void printResults(Set<Map.Entry<String, String>> resultMap) {
+        resultMap.stream()
+                .forEach(result -> Output.printResult(result.getKey(), result.getValue()));
     }
 }
