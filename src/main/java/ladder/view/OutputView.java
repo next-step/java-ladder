@@ -16,8 +16,7 @@ public class OutputView {
     private static final String NOT_CONNECTED_LINE_STRING = "     |";
 
     private void printLadder(Ladder ladder) {
-        printParticipants(ladder.getParticipants());
-        printLines(ladder.getLines());
+        this.printLines(ladder.getLines());
     }
 
     private void printLines(List<Line> lines) {
@@ -38,8 +37,9 @@ public class OutputView {
         LADDER_BUILDER.append(NOT_CONNECTED_LINE_STRING);
     }
 
-    public void printResult(Ladder ladder) {
+    public void printResult(Ladder ladder, Participants participants) {
         this.printResultInfoMessage();
+        this.printParticipants(participants);
         this.printLadder(ladder);
     }
     private void printResultInfoMessage() {

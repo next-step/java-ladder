@@ -23,4 +23,8 @@ public class Participants {
     public List<Participant> getParticipants() {
         return participants;
     }
+
+    public int size() {
+        return participants.size();
+    }
 }

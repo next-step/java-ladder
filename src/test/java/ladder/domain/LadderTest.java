@@ -24,7 +24,7 @@ class LadderTest {
                 new Participant("d"),
                 new Participant("e")
         ));
-        Ladder ladder = ladderGenerator.createLadder(participants, height);
+        Ladder ladder = ladderGenerator.createLadder(participants.size(), height);
         // when
         List<Line> lines = ladder.getLines();
         // then
