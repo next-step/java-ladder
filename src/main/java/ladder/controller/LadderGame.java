@@ -11,15 +11,15 @@ import java.util.stream.IntStream;
 
 public class LadderGame {
 
-    Players players;
-    Rewards rewards;
-    Ladder ladder;
+    private Players players;
+    private Rewards rewards;
+    private Ladder ladder;
 
     public void initData() {
         initGameData();
     }
 
-    public void showResult(){
+    public void showResult() {
         showRewardResult();
     }
 
@@ -35,7 +35,7 @@ public class LadderGame {
     }
 
     private void showRewardResult() {
-        while(true) {
+        while (true) {
             searchRewardForPlayers();
         }
     }
@@ -46,10 +46,7 @@ public class LadderGame {
         if (playerPosition == players.getPlayerNum()) {
             int playerNum = players.getPlayerNum();
             ResultView.showRewardResultMessage();
-            IntStream.range(0, playerNum).forEach(i -> {
-                int reward = RewardDirector.searchReward(ladder, i);
-                ResultView.showRewardOnePlayer(rewards, reward, players.getPlayers().get(i));
-            });
+            searchRewardAllPlayers(playerNum);
             return;
         }
 
@@ -57,11 +54,15 @@ public class LadderGame {
         showRewardOnlyPlayer(ladder, playerPosition);
     }
 
+    private void searchRewardAllPlayers(int playerNum) {
+        IntStream.range(0, playerNum).forEach(i -> {
+            int reward = RewardDirector.searchReward(ladder, i);
+            ResultView.showRewardOnePlayer(rewards, reward, players.getPlayers().get(i));
+        });
+    }
+
     private void showRewardOnlyPlayer(Ladder ladder, int playerPosition) {
         int reward = RewardDirector.searchReward(ladder, playerPosition);
         ResultView.showRewardOnePlayer(rewards, reward);
     }
-
-
-
 }
