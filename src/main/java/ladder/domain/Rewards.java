@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.Line;
 import ladder.exception.NeedMoreResultValueException;
 import ladder.exception.NotEqualResultValueException;
 
@@ -43,9 +44,21 @@ public class Rewards {
         }
     }
 
-//    public int searchPlayerReward(Ladder ladder, int i) {
-//        return RewardDirector.searchReward(ladder, i);
-//    }
+    public int searchPlayerReward(Ladder ladder, int startWidthPos) {
+        int nowHeight = 0;
+        int maxHeight = ladder.getLines().size();
+        int nowWidth = startWidthPos;
+
+        while (maxHeight > nowHeight) {
+            Line line = ladder.getLines().get(nowHeight);
+
+            nowWidth = line.move(nowWidth);
+
+            nowHeight += 1;
+        }
+
+        return nowWidth;
+    }
 
     public Stream<String> stream() {
         return resultValueList.stream();

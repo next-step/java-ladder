@@ -1,6 +1,5 @@
 package ladder.controller;
 
-import ladder.domain.RewardDirector;
 import ladder.domain.Rewards;
 import ladder.view.InputView;
 import ladder.view.ResultView;
@@ -56,13 +55,13 @@ public class LadderGame {
 
     private void searchRewardAllPlayers(int playerNum) {
         IntStream.range(0, playerNum).forEach(i -> {
-            int reward = RewardDirector.searchReward(ladder, i);
+            int reward = rewards.searchPlayerReward(ladder, i);
             ResultView.showRewardOnePlayer(rewards, reward, players.getPlayers().get(i));
         });
     }
 
     private void showRewardOnlyPlayer(Ladder ladder, int playerPosition) {
-        int reward = RewardDirector.searchReward(ladder, playerPosition);
+        int reward = rewards.searchPlayerReward(ladder, playerPosition);
         ResultView.showRewardOnePlayer(rewards, reward);
     }
 }
