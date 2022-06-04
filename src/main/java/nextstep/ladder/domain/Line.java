@@ -3,61 +3,54 @@ package nextstep.ladder.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
-import java.util.Random;
 
 public class Line {
 
-  private static final Random RANDOM = new Random();
+  private final List<Position> positions;
 
-  private final List<Boolean> points;
-
-  public Line(int countOfPerson) {
-    this(points(countOfPerson));
+  public Line(List<Position> positions) {
+    this.positions = positions;
   }
 
-  public Line(List<Boolean> points) {
-    this.points = points;
-  }
-
-  private static List<Boolean> points(int countOfPerson) {
-    List<Boolean> points = new ArrayList<>();
-    points.add(randomPoint());
-    for (int i = 1; i < countOfPerson - 1; i++) {
-      points.add(point(points.get(i - 1), randomPoint()));
+  public static Line from(int numberOfPlayers, PointStrategy strategy) {
+    List<Position> positions = new ArrayList<>();
+    positions.add(firstPosition(strategy));
+    for (int i = 1; i < numberOfPlayers - 1; i++) {
+      positions.add(bodyPosition(i, positions.get(i - 1), strategy));
     }
-    return points;
+    positions.add(lastPosition(numberOfPlayers - 1, positions.get(positions.size() - 1)));
+    return from(positions);
   }
 
-  private static Boolean point(boolean prev, boolean current) {
-    if (prev == current) {
-      return false;
+  public static Line from(List<Position> points) {
+    return new Line(points);
+  }
+
+  private static Position firstPosition(PointStrategy strategy) {
+    return Position.of(0, Point.of(false, strategy.linkable()));
+  }
+
+  private static Position bodyPosition(int position, Position prev, PointStrategy strategy) {
+    return Position.of(position, point(prev, strategy.linkable()));
+  }
+
+  private static Position lastPosition(int position, Position prev) {
+    return Position.of(position, Point.of(prev.current(), false));
+  }
+
+  private static Point point(Position prev, boolean current) {
+    if (prev.current() == current) {
+      return Point.of(prev.current(), false);
     }
-    return current;
+    return Point.of(prev.current(), current);
   }
 
-  private static Boolean randomPoint() {
-    return RANDOM.nextBoolean();
+  public int move(int startPoint) {
+    return positions.get(startPoint).move();
   }
 
-  public List<Boolean> points() {
-    return Collections.unmodifiableList(points);
+  public List<Position> positions() {
+    return Collections.unmodifiableList(positions);
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Line line = (Line) o;
-    return Objects.equals(points, line.points);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(points);
-  }
 }

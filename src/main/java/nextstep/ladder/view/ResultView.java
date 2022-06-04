@@ -1,21 +1,51 @@
 package nextstep.ladder.view;
 
 import java.util.List;
-import nextstep.ladder.domain.Ladder;
+import java.util.stream.IntStream;
 import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.Lines;
+import nextstep.ladder.domain.Player;
 import nextstep.ladder.domain.Players;
+import nextstep.ladder.domain.Position;
+import nextstep.ladder.domain.Result;
+import nextstep.ladder.domain.Results;
 
 public class ResultView {
 
   public static final String BLANK = "     ";
   public static final String HORIZONTAL_LINE = "-----";
   public static final String VERTICAL_LINE = "|";
+  public static final StringBuilder sb = new StringBuilder();
 
-  public static void print(Players players) {
-    System.out.println(BLANK + players);
+  public static void print(Players players, Lines lines, Results results) {
+    print(players);
+    print(lines);
+    print(results);
+    System.out.println(sb);
   }
-  public static void print(Ladder ladder) {
-    printLines(ladder.lines());
+
+  public static void print(Result result) {
+    System.out.println(result);
+  }
+
+  private static void print(Players players) {
+    sb.append(BLANK + players + "\n");
+  }
+
+  public static void result(List<Player> players, Lines lines, Results results) {
+    StringBuilder _sb = new StringBuilder();
+    IntStream.range(0, players.size())
+        .forEach(idx -> {
+              Player player = players.get(idx);
+              Result result = results.result(lines.move(idx));
+              _sb.append(player + " : " + result + "\n");
+            }
+        );
+    System.out.println(_sb);
+  }
+
+  private static void print(Lines lines) {
+    printLines(lines.lines());
   }
 
   private static void printLines(List<Line> lines) {
@@ -23,17 +53,21 @@ public class ResultView {
   }
 
   private static void printLine(Line line) {
-    System.out.print(BLANK + VERTICAL_LINE);
-    line.points().forEach(ResultView::printPoint);
-    System.out.println();
+    sb.append(BLANK);
+    line.positions().forEach(ResultView::printPosition);
+    sb.append("\n");
   }
 
-  private static void printPoint(Boolean point) {
-    if (Boolean.TRUE.equals(point)) {
-      System.out.print(HORIZONTAL_LINE + VERTICAL_LINE);
+  private static void printPosition(Position position) {
+    if (position.current()) {
+      sb.append(VERTICAL_LINE + HORIZONTAL_LINE);
       return;
     }
-    System.out.print(BLANK + VERTICAL_LINE);
+    sb.append(VERTICAL_LINE + BLANK);
+  }
+
+  private static void print(Results results) {
+    sb.append(BLANK + results + "\n");
   }
 
 }

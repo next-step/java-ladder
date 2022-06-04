@@ -4,13 +4,29 @@ import java.util.Objects;
 
 public class Player {
 
+  public static final int MAX_NAME_LENGTH = 5;
   private final String name;
 
   public Player(String name) {
-    if (name == null || name.length() > 5) {
+    validateEmpty(name);
+    validateLength(name.trim());
+    this.name = name.trim();
+  }
+
+  private void validateEmpty(String name) {
+    if (isBlank(name)) {
+      throw new IllegalArgumentException("플레이어 이름은 비어 있을 수 없습니다.");
+    }
+  }
+
+  private void validateLength(String name) {
+    if (name.length() > MAX_NAME_LENGTH) {
       throw new IllegalArgumentException("플레이어 이름은 최대 5글자만 가능합니다.");
     }
-    this.name = name;
+  }
+
+  private static boolean isBlank(String name) {
+    return name == null || name.isBlank();
   }
 
   @Override

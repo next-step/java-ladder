@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -8,6 +9,7 @@ import java.util.stream.Collectors;
 public class Players {
 
   public static final String DELIMITER = ",";
+  public static final String JOINING_DELIMITER = " ";
   private final List<Player> players;
 
   public Players(List<Player> players) {
@@ -23,6 +25,13 @@ public class Players {
     return players.size();
   }
 
+  public int point(String playerName) {
+    return point(new Player(playerName));
+  }
+  public int point(Player player) {
+    return players.indexOf(player);
+  }
+
   private static void validateEmpty(String playerNames) {
     if (playerNames == null || playerNames.isBlank()) {
       throw new IllegalArgumentException("플레이어명은 필수입니다.");
@@ -33,6 +42,10 @@ public class Players {
     return Arrays.stream(playerNames.split(DELIMITER))
         .map(Player::new)
         .collect(Collectors.toList());
+  }
+
+  public List<Player> players() {
+    return Collections.unmodifiableList(players);
   }
 
   @Override
@@ -56,6 +69,6 @@ public class Players {
   public String toString() {
     return players.stream()
         .map(String::valueOf)
-        .collect(Collectors.joining(" "));
+        .collect(Collectors.joining(JOINING_DELIMITER));
   }
 }
