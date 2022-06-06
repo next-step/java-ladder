@@ -20,7 +20,7 @@ public class Ladder {
     return Collections.unmodifiableList(ladder);
   }
 
-  public Name findResult(Prizes prizes, LineIndex index) {
+  public Prize findResult(Prizes prizes, LineIndex index) {
     for (Line line : ladder) {
       index = line.nextIndex(index);
     }

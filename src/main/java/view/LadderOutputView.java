@@ -9,6 +9,7 @@ import ladder.Ladder;
 import ladder.Line;
 import ladder.Name;
 import ladder.Players;
+import ladder.Prize;
 import ladder.Prizes;
 import ladder.LadderResults;
 
@@ -70,15 +71,15 @@ public class LadderOutputView {
   }
 
   public void printResultAll(LadderResults ladderResults) {
-    Set<Entry<Name, Name>> results = ladderResults.allPlayersAndResults();
+    Set<Entry<Name, Prize>> results = ladderResults.allPlayersAndResults();
     StringJoiner stringJoiner = new StringJoiner(NEW_LINE);
-    for (Entry<Name, Name> result : results) {
+    for (Entry<Name, Prize> result : results) {
       stringJoiner.add(result.getKey() + PLAYER_AND_PRIZE_DELIMITER +  result.getValue());
     }
     print(stringJoiner.toString());
   }
 
-  public void printResult(Name prize) {
+  public void printResult(Prize prize) {
     print(RESULT_INFO + NEW_LINE + prize.toString());
   }
 

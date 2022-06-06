@@ -8,23 +8,23 @@ import java.util.Set;
 
 public class LadderResults {
 
-  private static final Name DEFAULT_PRIZE = new Name("꽝");
+  private static final Prize DEFAULT_PRIZE = new Prize("꽝");
 
-  private final Map<Name, Name> results;
+  private final Map<Name, Prize> results;
 
-  LadderResults(Map<Name, Name> results) {
+  LadderResults(Map<Name, Prize> results) {
     this.results = results;
   }
 
-  public void put(Name player, Name prize) {
+  public void put(Name player, Prize prize) {
     results.put(player, prize);
   }
 
-  public Name prizeOf(Name player) {
+  public Prize prizeOf(Name player) {
     return results.get(player);
   }
 
-  public Set<Entry<Name, Name>> allPlayersAndResults() {
+  public Set<Entry<Name, Prize>> allPlayersAndResults() {
     return results.entrySet();
   }
 
@@ -46,7 +46,7 @@ public class LadderResults {
   }
 
   public static LadderResults init(Players players) {
-    Map<Name, Name> map = new HashMap<>();
+    Map<Name, Prize> map = new HashMap<>();
     for (Name player : players.playerNames()) {
       map.put(player, DEFAULT_PRIZE);
     }
