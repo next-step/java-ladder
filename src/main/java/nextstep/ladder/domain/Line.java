@@ -8,6 +8,7 @@ public class Line {
 
   private static final int START_INDEX = 0;
   private static final int START_POSITIVE_INDEX = 1;
+  private static final int ONE_GAP = 1;
   private static final String VALIDATE_MESSAGE = "플레이어는 %d와 %d 사이에 위치해야 합니다.";
 
   private final List<Boolean> points = new ArrayList<>();
@@ -20,7 +21,7 @@ public class Line {
     List<Boolean> values = new ArrayList<>();
     values.add(false);
     for (int i = START_POSITIVE_INDEX; i < width; i++) {
-      values.add(checkLineByPrevious(values.get(i - 1), strategy));
+      values.add(checkLineByPrevious(values.get(i - ONE_GAP), strategy));
     }
     return new Line(values);
   }
@@ -37,7 +38,7 @@ public class Line {
   }
 
   private int lastIndex() {
-    return size() - 1;
+    return size() - ONE_GAP;
   }
 
   public List<Boolean> getPoints() {
@@ -54,7 +55,7 @@ public class Line {
     }
 
     boolean leftPoint = points.get(playerIndex);
-    boolean rightPoint = points.get(playerIndex + 1);
+    boolean rightPoint = points.get(playerIndex + ONE_GAP);
     if (leftPoint) {
       return MoveDirection.LEFT.apply(playerIndex);
     }
@@ -73,7 +74,7 @@ public class Line {
   }
 
   private int moveRightOrStraight(int playerIndex) {
-    boolean point = points.get(playerIndex + 1);
+    boolean point = points.get(playerIndex + ONE_GAP);
     if (point) {
       return MoveDirection.RIGHT.apply(playerIndex);
     }
