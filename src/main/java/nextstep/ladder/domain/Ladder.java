@@ -7,6 +7,8 @@ import java.util.List;
 public class Ladder {
 
   private static final int START_INDEX = 0;
+  private static final int FIRST_LINE_POINT = 0;
+  private static final int SECOND_LINE_POINT = 1;
 
   private final List<Line> lines = new ArrayList<>();
 
@@ -35,8 +37,8 @@ public class Ladder {
   }
 
   public int move(int playerIndex) {
-    int nextIndex = lines.get(0).move(playerIndex);
-    for (int i = 1; i < lines.size(); i++) {
+    int nextIndex = lines.get(FIRST_LINE_POINT).move(playerIndex);
+    for (int i = SECOND_LINE_POINT; i < lines.size(); i++) {
       nextIndex = lines.get(i).move(nextIndex);
     }
     return nextIndex;
