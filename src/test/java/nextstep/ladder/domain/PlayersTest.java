@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class PlayersTest {
 
@@ -61,5 +63,15 @@ class PlayersTest {
         () -> assertThat(players.playerByIndex(2)).isEqualTo(Player.of("crong")),
         () -> assertThat(players.playerByIndex(3)).isEqualTo(Player.of("jk"))
     );
+  }
+
+  @DisplayName("범위를 벗어난 index에 대해 예외를 던진다.")
+  @ParameterizedTest
+  @ValueSource(ints = {-1, 4})
+  void playerByIndexOutOfRange(int invalidIndex) {
+    Players players = Players.of(List.of("pobi", "honux", "crong", "jk"));
+
+    assertThatThrownBy(() -> players.playerByIndex(invalidIndex))
+        .isInstanceOf(IllegalArgumentException.class);
   }
 }
