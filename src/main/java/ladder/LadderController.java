@@ -14,13 +14,50 @@ public class LadderController {
   }
 
   public void proceed() {
-    PlayerNames playerNames = inputView.inputPlayerName();
-    PlayerNumber playerNumber = PlayerNumber.from(playerNames);
+    Players players = inputView.inputPlayers();
+    Prizes prizes = inputView.inputResults(players);
     Height height = inputView.inputHeight();
 
-    Ladder ladder = Ladder.from(playerNumber, height);
-    outputView.printResult();
-    outputView.printPlayerNames(playerNames);
-    outputView.printLine(ladder);
+    Ladder ladder = Ladder.from(players, height);
+
+    outputView.printLadder(players, ladder, prizes);
+    LadderResults ladderResults = execute(ladder, players, prizes);
+    selectResult(ladderResults, players);
+  }
+
+  private LadderResults execute(Ladder ladder, Players players, Prizes prizes) {
+    LadderResults ladderResults = LadderResults.init(players);
+    for (Player player : players.players()) {
+      LineIndex index = LineIndex.init(players, player);
+      ladderResults.put(player, ladder.findResult(prizes, index));
+    }
+    return ladderResults;
+  }
+
+  private void selectResult(LadderResults ladderResults, Players players) {
+    boolean keepGoing;
+    do {
+      keepGoing = printResult(ladderResults, players);
+    } while (keepGoing);
+  }
+
+  private boolean printResult(LadderResults ladderResults, Players players) {
+    Player player = inputView.inputName();
+    if (Player.EXIT.equals(player)) {
+      return false;
+    }
+
+    if (Player.ALL.equals(player)) {
+      outputView.printResultAll(ladderResults);
+      return true;
+    }
+
+    if (!players.has(player)) {
+      outputView.printWrongName();
+      return true;
+    }
+
+    outputView.printResult(ladderResults.prizeOf(player));
+    return true;
   }
 }

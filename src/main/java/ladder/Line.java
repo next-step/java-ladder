@@ -1,6 +1,6 @@
 package ladder;
 
-import static ladder.PlayerNumber.MIN_PLAYER_NUMBER;
+import static ladder.Players.MIN_PLAYER_NUMBER;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,15 +26,25 @@ public class Line {
     return points.size();
   }
 
+  public LineIndex nextIndex(LineIndex index) {
+    if (points.get(index.value())) {
+      return index.moveRight();
+    }
+    if (index.value() > 0 && points.get(index.value() - 1)) {
+      return index.moveLeft();
+    }
+    return index;
+  }
+
   private void validatePoints(List<Boolean> points) {
     if (points.size() < MIN_PLAYER_NUMBER) {
       throw new IllegalArgumentException(MESSAGE_FOR_INVALID_POINTS);
     }
   }
 
-  public static Line from(PlayerNumber playerNumber) {
+  public static Line from(Players players) {
     List<Boolean> line = new ArrayList<>();
-    for (int i = 0; playerNumber.isMoreThan(i + 1); i++) {
+    for (int i = 0; players.isMoreThan(i + 1); i++) {
       seedPoint(line, i);
     }
     line.add(Boolean.FALSE);
