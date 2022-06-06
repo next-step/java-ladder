@@ -1,9 +1,10 @@
 package ladder;
 
-import static ladder.NameTest.PLAYER_NAME_LIST_1;
+import static ladder.PlayerTest.PLAYER_NAME_LIST_1;
 import static ladder.PlayersTest.PLAYERS_1;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -49,7 +50,7 @@ class LineIndexTest {
 
   @Test
   void value_성공() {
-    Name firstPlayer = PLAYER_NAME_LIST_1.get(0);
+    Player firstPlayer = PLAYER_NAME_LIST_1.get(0);
 
     LineIndex lineIndex = LineIndex.init(PLAYERS_1, firstPlayer);
 
@@ -63,7 +64,7 @@ class LineIndexTest {
 
   @Test
   void init_성공() {
-    Name firstPlayer = PLAYER_NAME_LIST_1.get(0);
+    Player firstPlayer = PLAYER_NAME_LIST_1.get(0);
     LineIndex expected = new LineIndex(PLAYER_NAME_LIST_1.size(), 0);
 
     LineIndex lineIndex = LineIndex.init(PLAYERS_1, firstPlayer);

@@ -27,7 +27,7 @@ public class LadderController {
 
   private LadderResults execute(Ladder ladder, Players players, Prizes prizes) {
     LadderResults ladderResults = LadderResults.init(players);
-    for (Name player : players.playerNames()) {
+    for (Player player : players.playerNames()) {
       LineIndex index = LineIndex.init(players, player);
       ladderResults.put(player, ladder.findResult(prizes, index));
     }
@@ -42,12 +42,12 @@ public class LadderController {
   }
 
   private boolean printResult(LadderResults ladderResults, Players players) {
-    Name player = inputView.inputName();
-    if (Name.EXIT.equals(player)) {
+    Player player = inputView.inputName();
+    if (Player.EXIT.equals(player)) {
       return false;
     }
 
-    if (Name.ALL.equals(player)) {
+    if (Player.ALL.equals(player)) {
       outputView.printResultAll(ladderResults);
       return true;
     }

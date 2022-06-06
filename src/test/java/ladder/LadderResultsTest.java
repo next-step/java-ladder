@@ -1,6 +1,6 @@
 package ladder;
 
-import static ladder.NameTest.PLAYER_NAME_LIST_1;
+import static ladder.PlayerTest.PLAYER_NAME_LIST_1;
 import static ladder.PlayersTest.PLAYERS_1;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -14,15 +14,15 @@ import org.junit.jupiter.api.Test;
 
 class LadderResultsTest {
 
-  private Name player;
+  private Player player;
   private Prize prize;
-  private Map<Name, Prize> results;
+  private Map<Player, Prize> results;
   private LadderResults ladderResults;
 
 
   @BeforeEach
   void setup() {
-    player = new Name("참가자1");
+    player = Player.of("참가자1");
     prize = new Prize("상1");
     results = new HashMap<>();
     ladderResults = new LadderResults(results);
@@ -36,11 +36,11 @@ class LadderResultsTest {
 
   @Test
   void put_성공() {
-    Map<Name, Prize> expectedMap = new HashMap<>();
+    Map<Player, Prize> expectedMap = new HashMap<>();
     expectedMap.put(player, prize);
-    expectedMap.put(new Name("참가자2"), new Prize("상2"));
+    expectedMap.put(Player.of("참가자2"), new Prize("상2"));
     LadderResults expected = new LadderResults(expectedMap);
-    ladderResults.put(new Name("참가자2"), new Prize("상2"));
+    ladderResults.put(Player.of("참가자2"), new Prize("상2"));
 
     assertThat(ladderResults).isEqualTo(expected);
   }
@@ -52,15 +52,15 @@ class LadderResultsTest {
 
   @Test
   void allPlayersAndResults() {
-    Set<Entry<Name, Prize>> expected = results.entrySet();
+    Set<Entry<Player, Prize>> expected = results.entrySet();
 
     assertThat(ladderResults.allPlayersAndResults()).isEqualTo(expected);
   }
 
   @Test
   void init_성공() {
-    Map<Name, Prize> map = new HashMap<>();
-    for (Name player : PLAYER_NAME_LIST_1) {
+    Map<Player, Prize> map = new HashMap<>();
+    for (Player player : PLAYER_NAME_LIST_1) {
       map.put(player, new Prize("꽝"));
     }
     LadderResults expected = new LadderResults(map);

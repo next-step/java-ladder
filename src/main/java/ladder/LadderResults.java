@@ -10,21 +10,21 @@ public class LadderResults {
 
   private static final Prize DEFAULT_PRIZE = new Prize("꽝");
 
-  private final Map<Name, Prize> results;
+  private final Map<Player, Prize> results;
 
-  LadderResults(Map<Name, Prize> results) {
+  LadderResults(Map<Player, Prize> results) {
     this.results = results;
   }
 
-  public void put(Name player, Prize prize) {
+  public void put(Player player, Prize prize) {
     results.put(player, prize);
   }
 
-  public Prize prizeOf(Name player) {
+  public Prize prizeOf(Player player) {
     return results.get(player);
   }
 
-  public Set<Entry<Name, Prize>> allPlayersAndResults() {
+  public Set<Entry<Player, Prize>> allPlayersAndResults() {
     return results.entrySet();
   }
 
@@ -46,8 +46,8 @@ public class LadderResults {
   }
 
   public static LadderResults init(Players players) {
-    Map<Name, Prize> map = new HashMap<>();
-    for (Name player : players.playerNames()) {
+    Map<Player, Prize> map = new HashMap<>();
+    for (Player player : players.playerNames()) {
       map.put(player, DEFAULT_PRIZE);
     }
     return new LadderResults(map);

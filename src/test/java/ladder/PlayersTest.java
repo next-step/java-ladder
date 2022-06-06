@@ -1,7 +1,7 @@
 package ladder;
 
 import static java.util.Collections.emptyList;
-import static ladder.NameTest.PLAYER_NAME_LIST_1;
+import static ladder.PlayerTest.PLAYER_NAME_LIST_1;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -36,12 +36,12 @@ class PlayersTest {
   void playerNames_성공() {
     List<String> expected = List.of("a", "bb", "ccc", "dddd", "eeeee");
     Players players = new Players(expected.stream()
-        .map(Name::new)
+        .map(Player::of)
         .collect(Collectors.toUnmodifiableList()));
 
     List<String> names = players.playerNames()
         .stream()
-        .map(Name::toString)
+        .map(Player::toString)
         .collect(Collectors.toUnmodifiableList());
 
     assertThat(names.containsAll(expected)).isTrue();
@@ -70,7 +70,7 @@ class PlayersTest {
 
   @Test
   void has_실패() {
-    assertThat(PLAYERS_1.has(new Name("없음"))).isFalse();
+    assertThat(PLAYERS_1.has(Player.of("없음"))).isFalse();
   }
 
   @Test

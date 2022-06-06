@@ -36,11 +36,11 @@ public class LineIndex {
     }
   }
 
-  public static LineIndex init(Players players, Name name) {
-    if (!players.has(name)) {
+  public static LineIndex init(Players players, Player player) {
+    if (!players.has(player)) {
       throw new IllegalArgumentException(MESSAGE_FOR_INVALID_NAME);
     }
-    return new LineIndex(players.playerNumber(), players.startIndexOf(name));
+    return new LineIndex(players.playerNumber(), players.startIndexOf(player));
   }
 
   @Override

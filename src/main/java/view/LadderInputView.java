@@ -3,6 +3,7 @@ package view;
 import java.util.Scanner;
 import ladder.Height;
 import ladder.Name;
+import ladder.Player;
 import ladder.Players;
 import ladder.Prizes;
 
@@ -27,8 +28,8 @@ public class LadderInputView {
     return Prizes.of(scanString(INPUT_RESULTS_MESSAGE), players);
   }
 
-  public Name inputName() {
-    return Name.of(scanString(INPUT_NAME));
+  public Player inputName() {
+    return Player.of(scanString(INPUT_NAME));
   }
 
   private Integer scanInt(String description) {

@@ -3,7 +3,7 @@ package ladder;
 import static java.util.Collections.emptyList;
 import static ladder.LineTest.LINE_1;
 import static ladder.LineTest.LINE_2;
-import static ladder.NameTest.PLAYER_NAME_LIST_1;
+import static ladder.PlayerTest.PLAYER_NAME_LIST_1;
 import static ladder.PlayersTest.PLAYERS_1;
 import static ladder.PrizeTest.PRIZE_LIST_1;
 import static ladder.PrizesTest.PRIZES_1;
