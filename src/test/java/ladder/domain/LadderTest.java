@@ -39,7 +39,6 @@ class LadderTest {
     @DisplayName("사다리 이동 결과 확인 테스트")
     @Test
     void play_result() {
-        Line.from(false, true, false, false);
         Ladder ladder = Ladder.from(Line.from(false, true, false, false), Line.from(false, true, false, true));
         LadderResult result = ladder.play();
         System.out.println(result);

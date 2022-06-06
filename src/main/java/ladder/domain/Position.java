@@ -40,8 +40,8 @@ public class Position {
         return this.position == 0;
     }
 
-    public boolean isLast(int lastPosition) {
-        return this.position == lastPosition;
+    public boolean isMaxPosition(int maxPosition) {
+        return this.position == maxPosition;
     }
 
     public boolean isOver(int lastPosition) {

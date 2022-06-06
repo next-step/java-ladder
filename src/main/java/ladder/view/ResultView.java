@@ -38,13 +38,13 @@ public class ResultView {
     }
 
     private static void printLine(StringBuilder sb, Line line) {
-        for (boolean point : line.getPoints()) {
+        for (Point point : line.getPoints()) {
             sb.append(makeLine(point));
         }
     }
 
-    private static String makeLine(boolean point) {
-        if (point) {
+    private static String makeLine(Point point) {
+        if (point.hasBridge()) {
             return CROSSABLE_LINE;
         }
         return DEFAULT_LINE;
@@ -54,15 +54,20 @@ public class ResultView {
         System.out.println(makeExecutionResult(participantName, participants, executionResult, result));
     }
 
-    private static String makeExecutionResult(String participantName, Participants participants, ExecutionResult executionResult, LadderResult result) {
+    private static String makeExecutionResult(String participantName, Participants participants, ExecutionResult executionResult, LadderResult ladderResult) {
         if (!"all".equals(participantName)) {
-            return executionResult.get(result.goalOf(participants.positionOf(Participant.from(participantName))));
+            Position positionOfParticipant = ladderResult.goalOf(participants.positionOf(Participant.from(participantName)));
+            return executionResult.results(positionOfParticipant);
         }
 
         sb.setLength(0);
         sb.append(ENTER).append("실행결과").append(ENTER);
+
         for (Participant participant : participants.getParticipants()) {
-            sb.append(participant.name()).append(EXECUTION_RESULT_DELIMITER).append(executionResult.get(result.goalOf(participants.positionOf(participant)))).append(ENTER);
+            Position positionOfParticipant = ladderResult.goalOf(participants.positionOf(participant));
+            String executionResultOfParticipant = executionResult.results(positionOfParticipant);
+
+            sb.append(participant.name()).append(EXECUTION_RESULT_DELIMITER).append(executionResultOfParticipant).append(ENTER);
         }
         return sb.toString();
     }

@@ -28,6 +28,6 @@ class ExecutionResultTest {
     @DisplayName("실행결과의 인덱스값으로 해당 위치의 결과값 확인 테스트")
     @Test
     void get() {
-        assertThat(ExecutionResult.from("꽝,5000,꽝,3000").get(Position.from(1))).isEqualTo("5000");
+        assertThat(ExecutionResult.from("꽝,5000,꽝,3000").results(Position.from(1))).isEqualTo("5000");
     }
 }

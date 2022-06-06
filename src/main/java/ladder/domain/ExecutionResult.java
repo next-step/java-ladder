@@ -11,6 +11,12 @@ public class ExecutionResult {
         this.results = results;
     }
 
+    private void validateEmpty(List<String> results) {
+        if (results == null || results.isEmpty()) {
+            throw new IllegalArgumentException("실행결과가 존재하지 않습니다.");
+        }
+    }
+
     public static ExecutionResult from(String input) {
         String[] strings = input.split(",");
         return new ExecutionResult(Arrays.asList(strings));
@@ -20,14 +26,8 @@ public class ExecutionResult {
         return new ExecutionResult(results);
     }
 
-    public String get(Position position) {
+    public String results(Position position) {
         return this.results.get(position.now());
-    }
-
-    private void validateEmpty(List<String> results) {
-        if (results == null || results.isEmpty()) {
-            throw new IllegalArgumentException("실행결과가 존재하지 않습니다.");
-        }
     }
 
     public List<String> getResults() {

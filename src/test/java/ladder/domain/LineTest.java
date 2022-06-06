@@ -60,14 +60,4 @@ class LineTest {
         assertThat(line.movedFrom(Position.from(currentPosition))).isEqualTo(Position.from(movedPosition));
     }
 
-    @DisplayName("더 이상 이동할 좌표가 없는 경우 예외 발생 테스트")
-    @Test
-    void overException() {
-        int countOfParticipants = 4;
-        Line line = Line.of(countOfParticipants, new RandomLineStrategy());
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> line.movedFrom(Position.from(countOfParticipants)))
-                .withMessageContaining("더 이상")
-        ;
-    }
 }
