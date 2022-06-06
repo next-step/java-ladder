@@ -5,20 +5,25 @@ import java.util.List;
 
 public class Ladder {
 
-    private static List<Line> lineList = new ArrayList();
+    private List<Line> lineList;
 
     public Ladder(List<Line> list) {
         lineList = list;
     }
 
-    public static Ladder createLadder(int personNum, int ladderHeight) {
+    public static Ladder createLadder(int width, int height) {
+        List<Line> lineList = createLines(width, height);
+
+        return new Ladder(lineList);
+    }
+
+    private static List<Line> createLines(int width, int height) {
         List<Line> tmpList = new ArrayList<>();
 
-        for (int i = 0; i < ladderHeight; i++) {
-            tmpList.add(new Line(personNum));
+        for (int i = 0; i < height; i++) {
+            tmpList.add(new Line(width));
         }
-
-        return new Ladder(tmpList);
+        return tmpList;
     }
 
     public List<Line> getLines() {

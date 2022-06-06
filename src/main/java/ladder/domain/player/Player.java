@@ -12,4 +12,8 @@ public class Player {
     public String toString() {
         return name.toString();
     }
+
+    public boolean isEqualPlayerName(String inputPlayer) {
+        return toString().equals(inputPlayer);
+    }
 }

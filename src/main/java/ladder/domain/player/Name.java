@@ -2,6 +2,8 @@ package ladder.domain.player;
 
 import ladder.exception.TooLongNameException;
 
+import java.util.Objects;
+
 public class Name {
     private static final int NAME_MAX_LENGTH = 5;
 
