@@ -7,7 +7,6 @@ import java.util.StringJoiner;
 import java.util.stream.Collectors;
 import ladder.Ladder;
 import ladder.Line;
-import ladder.Name;
 import ladder.Player;
 import ladder.Players;
 import ladder.Prize;
@@ -45,7 +44,7 @@ public class LadderOutputView {
   }
 
   public void printPlayerNames(Players players) {
-    List<String> names = players.playerNames()
+    List<String> names = players.players()
         .stream()
         .map(Player::toString)
         .collect(Collectors.toUnmodifiableList());

@@ -56,7 +56,7 @@ public class Prizes {
             .map(String::strip)
             .map(Prize::new)
             .collect(Collectors.toUnmodifiableList()),
-        players.playerNumber()
+        players.sizeOfPlayers()
     );
   }
 }

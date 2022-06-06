@@ -40,7 +40,7 @@ public class LineIndex {
     if (!players.has(player)) {
       throw new IllegalArgumentException(MESSAGE_FOR_INVALID_NAME);
     }
-    return new LineIndex(players.playerNumber(), players.startIndexOf(player));
+    return new LineIndex(players.sizeOfPlayers(), players.startIndexOf(player));
   }
 
   @Override

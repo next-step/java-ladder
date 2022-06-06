@@ -20,7 +20,6 @@ public class Player {
     this.playerName = name;
   }
 
-
   public static Player of(String name) {
     if (ALL_TRIGGER.equals(name)) {
       return ALL;

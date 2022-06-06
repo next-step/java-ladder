@@ -27,7 +27,7 @@ public class LadderController {
 
   private LadderResults execute(Ladder ladder, Players players, Prizes prizes) {
     LadderResults ladderResults = LadderResults.init(players);
-    for (Player player : players.playerNames()) {
+    for (Player player : players.players()) {
       LineIndex index = LineIndex.init(players, player);
       ladderResults.put(player, ladder.findResult(prizes, index));
     }

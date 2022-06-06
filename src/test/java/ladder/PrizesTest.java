@@ -9,13 +9,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 
 class PrizesTest {
 
 
-  public static final Prizes PRIZES_1 = new Prizes(PRIZE_LIST_1, PLAYERS_1.playerNumber());
+  public static final Prizes PRIZES_1 = new Prizes(PRIZE_LIST_1, PLAYERS_1.sizeOfPlayers());
 
   @Test
   void Prizes_생성_성공() {

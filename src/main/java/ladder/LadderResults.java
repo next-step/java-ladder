@@ -47,7 +47,7 @@ public class LadderResults {
 
   public static LadderResults init(Players players) {
     Map<Player, Prize> map = new HashMap<>();
-    for (Player player : players.playerNames()) {
+    for (Player player : players.players()) {
       map.put(player, DEFAULT_PRIZE);
     }
     return new LadderResults(map);

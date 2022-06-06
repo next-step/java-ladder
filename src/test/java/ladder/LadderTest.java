@@ -50,6 +50,6 @@ class LadderTest {
 
     List<Line> lines = ladder.lines();
     assertThat(lines.size()).isEqualTo(4);
-    assertThat(lines.get(0).points().size()).isEqualTo(PLAYERS_1.playerNumber());
+    assertThat(lines.get(0).points().size()).isEqualTo(PLAYERS_1.sizeOfPlayers());
   }
 }

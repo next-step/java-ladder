@@ -29,7 +29,7 @@ class PlayersTest {
 
   @Test
   void playerNumber_성공() {
-    assertThat(PLAYERS_1.playerNumber()).isEqualTo(PLAYER_NAME_LIST_1.size());
+    assertThat(PLAYERS_1.sizeOfPlayers()).isEqualTo(PLAYER_NAME_LIST_1.size());
   }
 
   @Test
@@ -39,7 +39,7 @@ class PlayersTest {
         .map(Player::of)
         .collect(Collectors.toUnmodifiableList()));
 
-    List<String> names = players.playerNames()
+    List<String> names = players.players()
         .stream()
         .map(Player::toString)
         .collect(Collectors.toUnmodifiableList());

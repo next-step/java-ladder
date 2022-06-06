@@ -20,16 +20,16 @@ public class Players {
     this.players = players;
   }
 
-  public int playerNumber() {
+  public int sizeOfPlayers() {
     return players.size();
   }
 
-  public List<Player> playerNames() {
+  public List<Player> players() {
     return Collections.unmodifiableList(players);
   }
 
   public boolean isMoreThan(int number) {
-    return playerNumber() > number;
+    return sizeOfPlayers() > number;
   }
 
   public int startIndexOf(Player player) {

@@ -57,6 +57,6 @@ class LineTest {
   @Test
   void from_성공() {
     Line line = Line.from(PLAYERS_1);
-    assertThat(line.playerNumber()).isEqualTo(PLAYERS_1.playerNumber());
+    assertThat(line.playerNumber()).isEqualTo(PLAYERS_1.sizeOfPlayers());
   }
 }

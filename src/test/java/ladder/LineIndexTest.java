@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class LineIndexTest {
 
@@ -20,10 +22,10 @@ class LineIndexTest {
       PLAYERS_1, PLAYER_NAME_LIST_1.get(2)
   );
 
-  @Test
-  void LineIndex_생성_성공() {
-    assertDoesNotThrow(() -> new LineIndex(5, 0));
-    assertDoesNotThrow(() -> new LineIndex(5, 4));
+  @ParameterizedTest
+  @ValueSource(ints = {0, 1, 2, 3, 4})
+  void LineIndex_생성_성공(int index) {
+    assertDoesNotThrow(() -> new LineIndex(5, index));
   }
 
   @Test
