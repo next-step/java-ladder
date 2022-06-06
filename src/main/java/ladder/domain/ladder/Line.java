@@ -14,27 +14,27 @@ public class Line {
     }
 
     private static List<Boolean> createConnections(int person) {
-        List<Boolean> tmpSpotList = new ArrayList<>();
+        List<Boolean> tmpConnectionList = new ArrayList<>();
 
         for (int i = 0; i < person; i++) {
-            addConnection(tmpSpotList);
+            addConnection(tmpConnectionList);
         }
 
-        return tmpSpotList;
+        return tmpConnectionList;
     }
 
-    private static void addConnection(List<Boolean> tmpSpotList) {
-        if (tmpSpotList.isEmpty()) {
-            tmpSpotList.add(randomBoolean());
+    private static void addConnection(List<Boolean> tmpConnectionList) {
+        if (tmpConnectionList.isEmpty()) {
+            tmpConnectionList.add(randomBoolean());
             return;
         }
 
-        Boolean prevLine = tmpSpotList.get(tmpSpotList.size() - 1);
+        Boolean prevLine = tmpConnectionList.get(tmpConnectionList.size() - 1);
         if (!prevLine) {
-            tmpSpotList.add(randomBoolean());
+            tmpConnectionList.add(randomBoolean());
             return;
         }
-        tmpSpotList.add(false);
+        tmpConnectionList.add(false);
     }
 
     private static boolean randomBoolean() {
