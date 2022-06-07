@@ -17,7 +17,7 @@ public class Lines {
         }
     }
 
-    public boolean lines(int row, int column) {
+    public boolean linked(int row, int column) {
         if (row < 0
                 || row >= this.height()
                 || column < 0

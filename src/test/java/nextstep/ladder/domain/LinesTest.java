@@ -14,7 +14,7 @@ class LinesTest {
     void outOfLadderSize() {
         Lines lines = new Lines(3, 4);
         assertThatExceptionOfType(OutOfLadderSizeException.class)
-                .isThrownBy(() -> lines.lines(4, 3))
+                .isThrownBy(() -> lines.linked(4, 3))
                 .withMessage("사다리 범위를 넘는 값 조회입니다.");
     }
 }

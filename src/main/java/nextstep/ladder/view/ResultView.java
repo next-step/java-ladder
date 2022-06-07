@@ -13,7 +13,7 @@ public class ResultView {
         for (int i = 0; i < lines.height(); i++) {
             System.out.print("    |");
             for (int j = 0; j < lines.numberOfParticipants() - 1; j++) {
-                System.out.print((lines.lines(i, j) ? "-----|" : "     |"));
+                System.out.print((lines.linked(i, j) ? "-----|" : "     |"));
             }
             System.out.println();
         }
