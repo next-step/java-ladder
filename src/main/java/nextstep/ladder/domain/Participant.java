@@ -8,7 +8,8 @@ public class Participant {
     private final int MAX_LENGTH = 5;
 
     public Participant(String name) {
-        if (name.length() == 0 || name.length() > MAX_LENGTH) {
+        if (name.length() == 0
+                || name.length() > MAX_LENGTH) {
             throw new OutOfMaxNameLengthException("참가자 이름의 길이는 1 이상 5 이하 이어야 합니다.");
         }
 

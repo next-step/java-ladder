@@ -26,7 +26,7 @@ public class Lambda {
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        return sumConditional(numbers, number -> number%2 == 0);
+        return sumConditional(numbers, number -> number % 2 == 0);
     }
 
     public static int sumAll(List<Integer> numbers) {
