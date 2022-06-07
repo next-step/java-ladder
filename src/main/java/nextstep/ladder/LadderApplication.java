@@ -16,12 +16,12 @@ public class LadderApplication {
     Ladder ladder = Ladder.of(new Length(players.size()), new Length(InputView.getHeight()));
     ResultView.printLadder(players, ladder, endPoints);
 
-    GameResult gameResult = makeResult(players, endPoints, ladder);
+    GameResult gameResult = play(players, endPoints, ladder);
     String resultName = InputView.getResultName();
     ResultView.printResult(gameResult, resultName);
   }
 
-  private static GameResult makeResult(Players players, EndPoints endPoints, Ladder ladder) {
+  private static GameResult play(Players players, EndPoints endPoints, Ladder ladder) {
     GameResult gameResult = new GameResult();
     for (int i = 0; i < players.size(); i++) {
       gameResult.add(players.playerByIndex(i), endPoints.valueByIndex(ladder.move(i)));
