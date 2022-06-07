@@ -4,9 +4,10 @@ import java.util.List;
 import java.util.Objects;
 import nextstep.ladder.domain.EndPoints;
 import nextstep.ladder.domain.GameResult;
+import nextstep.ladder.domain.LadderLine;
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Players;
+import nextstep.ladder.domain.Point;
 
 public class ResultView {
 
@@ -36,13 +37,13 @@ public class ResultView {
     ladder.getLines().forEach(ResultView::drawLine);
   }
 
-  private static void drawLine(Line line) {
+  private static void drawLine(LadderLine line) {
     line.getPoints().forEach(point -> System.out.print(getFormattedPoint(point)));
     System.out.println();
   }
 
-  private static String getFormattedPoint(Boolean point) {
-    if (point) {
+  private static String getFormattedPoint(Point point) {
+    if (point.isLeft()) {
       return LINE + VERTICAL;
     }
     return NO_LINE + VERTICAL;

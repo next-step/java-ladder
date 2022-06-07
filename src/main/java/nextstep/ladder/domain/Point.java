@@ -37,4 +37,12 @@ public class Point {
     }
     return index;
   }
+
+  public boolean isRight() {
+    return direction.isRight();
+  }
+
+  public boolean isLeft() {
+    return direction.isLeft();
+  }
 }
