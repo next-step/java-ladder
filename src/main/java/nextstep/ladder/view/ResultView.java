@@ -10,9 +10,9 @@ public class ResultView {
 
         printParticipants(participants);
 
-        for (int i = 0; i < ladderInfo.height(); i++) {
+        for (int i = 0; i < ladderInfo.lines().height(); i++) {
             System.out.print("    |");
-            for (int j = 0; j < ladderInfo.numberOfParticipants() - 1; j++) {
+            for (int j = 0; j < ladderInfo.lines().numberOfParticipants() - 1; j++) {
                 System.out.print((ladderInfo.lines(i, j) ? "-----|" : "     |"));
             }
             System.out.println();
