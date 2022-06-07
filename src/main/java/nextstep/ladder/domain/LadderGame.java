@@ -4,15 +4,15 @@ public class LadderGame {
 
     private final Participants participants;
 
-    private final LadderInfo ladderInfo;
+    private final Lines lines;
 
     public LadderGame(String[] participants, int height) {
         this.participants = new Participants(participants);
-        this.ladderInfo = new LadderInfo(height, this.participants.numberOfParticipants());
+        this.lines = new Lines(height, this.participants.numberOfParticipants());
     }
 
-    public LadderInfo ladderInfo() {
-        return ladderInfo;
+    public Lines lines2() {
+        return lines;
     }
 
     public Participants participants() {

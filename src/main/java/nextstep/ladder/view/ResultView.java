@@ -1,19 +1,19 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.LadderInfo;
+import nextstep.ladder.domain.Lines;
 import nextstep.ladder.domain.Participants;
 
 public class ResultView {
 
-    public void printResult(LadderInfo ladderInfo, Participants participants) {
+    public void printResult(Lines lines, Participants participants) {
         System.out.println("실행결과\n");
 
         printParticipants(participants);
 
-        for (int i = 0; i < ladderInfo.lines().height(); i++) {
+        for (int i = 0; i < lines.height(); i++) {
             System.out.print("    |");
-            for (int j = 0; j < ladderInfo.lines().numberOfParticipants() - 1; j++) {
-                System.out.print((ladderInfo.lines(i, j) ? "-----|" : "     |"));
+            for (int j = 0; j < lines.numberOfParticipants() - 1; j++) {
+                System.out.print((lines.lines(i, j) ? "-----|" : "     |"));
             }
             System.out.println();
         }
