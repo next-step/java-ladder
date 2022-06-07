@@ -2,7 +2,6 @@ package nextstep.ladder.domain;
 
 public class Point {
     private boolean linked;
-
     public Point() {
         this.linked = false;
     }
@@ -11,12 +10,8 @@ public class Point {
         this.linked = linked;
     }
 
-    public Point randomLink(LineStrategy lineStrategy, boolean previousPointLinked, boolean nextPointLinked) {
-        if (!previousPointLinked && !nextPointLinked) {
-            return new Point(lineStrategy.isLinkable());
-        }
-
-        return new Point();
+    public Point next(LineStrategy lineStrategy) {
+        return new Point(lineStrategy.isLinkable());
     }
 
     public boolean linked() {
