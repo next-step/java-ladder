@@ -15,7 +15,6 @@ class DirectionTest {
   void create_invalid() {
     assertThatThrownBy(() -> Direction.of(true, true))
         .isInstanceOf(IllegalStateException.class);
-
   }
 
   @Test

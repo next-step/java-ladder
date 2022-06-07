@@ -29,15 +29,23 @@ public class Direction {
     return of(this.right, false);
   }
 
-  public Direction next(boolean right) {
-    return of(this.right, right);
-  }
-
   public Direction next() {
     if (this.right) {
       return next(false);
     }
     return next(generateByHalfRate());
+  }
+
+  public Direction next(boolean right) {
+    return of(this.right, right);
+  }
+
+  public boolean isRight() {
+    return this.right;
+  }
+
+  public boolean isLeft() {
+    return this.left;
   }
 
   @Override
