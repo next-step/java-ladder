@@ -7,7 +7,7 @@ public class Line {
 
     private final List<Point> points;
 
-    private final static RandomLineStrategy randomLineStrategy = new RandomLineStrategy();
+    private static final RandomLineStrategy randomLineStrategy = new RandomLineStrategy();
 
     public Line(int numberOfParticipants) {
         this.points = new ArrayList<>();
