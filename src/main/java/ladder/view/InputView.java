@@ -19,6 +19,7 @@ public class InputView {
     private static final String EMPTY_STRING = "";
     private static final String DELIMITER_REG = ",";
     private static final String INPUT_MAX_HEIGHT_MESSAGE = "최대 사다리 높이는 몇 개 인가요?";
+    private static final String INPUT_PARTICIPANT_FOR_RESULT_MESSAGE = "결과를 보고 싶은 사람은?";
 
     public Participants inputParticipants() {
         System.out.println(INPUT_PARTICIPANTS_MESSAGE);
@@ -38,6 +39,12 @@ public class InputView {
         System.out.println(INPUT_MAX_HEIGHT_MESSAGE);
         return Integer.parseInt(readLine());
     }
+
+    public String inputParticipantForResult() {
+        System.out.println(INPUT_PARTICIPANT_FOR_RESULT_MESSAGE);
+        return readLine();
+    }
+
 
     private String[] getSplitArray() {
         String participantsString = readLine();

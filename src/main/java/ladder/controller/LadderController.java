@@ -1,6 +1,8 @@
 package ladder.controller;
 
+import ladder.converter.ResultConverter;
 import ladder.domain.*;
+import ladder.dto.LadderResultDto;
 import ladder.exception.InvalidInputSizeException;
 import ladder.view.InputView;
 import ladder.view.OutputView;
@@ -30,6 +32,17 @@ public class LadderController {
         LadderGenerator ladderGenerator = new LadderGenerator(new RandomDirectionGenerateStrategy());
         Ladder ladder = ladderGenerator.createLadder(participants.size(), maxLadderHeight);
         outputView.printLadder(ladder, participants, executionResults);
+
+        LadderResultDto ladderResultDto = ResultConverter.convertToResultDto(ladder, executionResults, participants);
+        String participantForResult = inputView.inputParticipantForResult();
+
+        if (participantForResult.equals("all")) {
+            outputView.printAllParticipantResults(ladderResultDto);
+            return;
+        }
+
+        outputView.printParticipantResult(ladderResultDto, participantForResult);
+
     }
 
     private void validateInputSize(Participants participants, ExecutionResults executionResults) {

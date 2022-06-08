@@ -1,6 +1,7 @@
 package ladder.view;
 
 import ladder.domain.*;
+import ladder.dto.LadderResultDto;
 
 import java.util.List;
 
@@ -41,9 +42,20 @@ public class OutputView {
         this.printExecutionResults(executionResults);
     }
 
+    public void printAllParticipantResults(LadderResultDto ladderResultDto) {
+        System.out.println("실행 결과");
+        ladderResultDto.getResults().forEach((s, executionResult) -> {
+            System.out.printf("%s : %s\n", s, executionResult.toString());
+        });
+    }
+
+    public void printParticipantResult(LadderResultDto ladderResultDto, String participantForResult) {
+    }
+
     private void printExecutionResults(ExecutionResults executionResults) {
         executionResults.getExecutionResults()
                 .forEach(participant -> System.out.printf(PARTICIPANT_PRINT_FORMAT, participant));
+        System.out.print("\n\n");
     }
 
     private void printResultInfoMessage() {
