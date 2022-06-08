@@ -27,4 +27,8 @@ public class Participants {
     public int size() {
         return participants.size();
     }
+
+    public int getLocation(Participant participant) {
+        return participants.indexOf(participant);
+    }
 }
