@@ -17,4 +17,17 @@ public class Direction {
     public boolean isRight() {
         return right;
     }
+
+    public int move(int index) {
+        if (isLeft()) {
+            return index - 1;
+        }
+
+        if (isRight()) {
+            return index + 1;
+        }
+
+        return index;
+    }
+
 }
