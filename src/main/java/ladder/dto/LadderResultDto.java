@@ -13,8 +13,8 @@ public class LadderResultDto {
         this.results = Collections.unmodifiableMap(results);
     }
 
-    public ExecutionResult showLadderResult(String paraticipantName) {
-        return results.get(paraticipantName);
+    public ExecutionResult showLadderResult(String participantName) {
+        return results.get(participantName);
     }
 
     public Map<String, ExecutionResult> getResults() {
