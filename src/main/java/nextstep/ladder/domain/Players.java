@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 
 public class Players {
 
+  private static final int MIN_INDEX = 0;
+
   private final List<Player> players;
 
   public Players(List<Player> players) {
@@ -43,7 +45,14 @@ public class Players {
   }
 
   public Player playerByIndex(int index) {
+    validateIndex(index);
     return players.get(index);
+  }
+
+  private void validateIndex(int index) {
+    if (index < MIN_INDEX || index >= size()) {
+      throw new IllegalArgumentException("인덱스 범위가 players 크기를 벗어납니다.");
+    }
   }
 
   @Override

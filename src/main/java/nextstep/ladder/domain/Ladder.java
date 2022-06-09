@@ -7,17 +7,20 @@ import java.util.List;
 public class Ladder {
 
   private static final int START_INDEX = 0;
+  private static final int FIRST_LINE_POINT = 0;
+  private static final int SECOND_LINE_POINT = 1;
+  private static final String VALIDATE_MESSAGE = "플레이어는 %d와 %d 사이에 위치해야 합니다.";
 
-  private final List<Line> lines = new ArrayList<>();
+  private final List<LadderLine> lines;
 
-  Ladder(List<Line> values) {
-    this.lines.addAll(values);
+  public Ladder(List<LadderLine> lines) {
+    this.lines = lines;
   }
 
-  public static Ladder of(Length width, Length height) {
-    List<Line> createdLines = new ArrayList<>();
+  public static Ladder init(Length width, Length height) {
+    List<LadderLine> createdLines = new ArrayList<>();
     for (int i = START_INDEX; i < height.getValue(); i++) {
-      createdLines.add(Line.create(width.getValue(), HalfRateGeneratingStrategy.getInstance()));
+      createdLines.add(LadderLine.init(width.getValue()));
     }
     return new Ladder(createdLines);
   }
@@ -30,15 +33,28 @@ public class Ladder {
     return lines.size();
   }
 
-  public List<Line> getLines() {
+  private int lastIndex() {
+    return getWidth() - 1;
+  }
+
+  public List<LadderLine> getLines() {
     return Collections.unmodifiableList(lines);
   }
 
   public int move(int playerIndex) {
-    int nextIndex = lines.get(0).move(playerIndex);
-    for (int i = 1; i < lines.size(); i++) {
+    validateIndex(playerIndex);
+    int nextIndex = lines.get(FIRST_LINE_POINT).move(playerIndex);
+    for (int i = SECOND_LINE_POINT; i < lines.size(); i++) {
       nextIndex = lines.get(i).move(nextIndex);
     }
     return nextIndex;
+  }
+
+  private void validateIndex(int playerIndex) {
+    if (playerIndex < START_INDEX || playerIndex > lastIndex()) {
+      throw new IllegalArgumentException(
+          String.format(VALIDATE_MESSAGE, START_INDEX, lastIndex())
+      );
+    }
   }
 }
