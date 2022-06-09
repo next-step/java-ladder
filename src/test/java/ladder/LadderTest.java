@@ -13,6 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class LadderTest {
 
@@ -33,13 +35,12 @@ class LadderTest {
     assertThat(LADDER.lines()).isEqualTo(List.of(LINE_1, LINE_2));
   }
 
-  @Test
-  void findResult_성공() {
-    for (int i = 0; PLAYERS_1.isMoreThan(i); i++) {
-      assertThat(
-          LADDER.findResult(PRIZES_1, LineIndex.init(PLAYERS_1, PLAYER_NAME_LIST_1.get(i)))
-      ).isEqualTo(PRIZE_LIST_1.get(i));
-    }
+  @ParameterizedTest
+  @ValueSource(ints = {0, 1, 2, 3, 4})
+  void findResult_성공(int index) {
+    assertThat(LADDER.findResult(
+        PRIZES_1, LineIndex.init(PLAYERS_1, PLAYER_NAME_LIST_1.get(index))
+    )).isEqualTo(PRIZE_LIST_1.get(index));
   }
 
   @Test
