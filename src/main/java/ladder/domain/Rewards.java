@@ -45,6 +45,7 @@ public class Rewards {
     }
 
     public int searchPlayerReward(Ladder ladder, int startWidthPos) {
+        // TODO
         int nowHeight = 0;
         int maxHeight = ladder.getLines().size();
         int nowWidth = startWidthPos;

@@ -3,50 +3,43 @@ package ladder.domain.ladder;
 import java.util.*;
 
 public class Line {
-    private Connections connections;
+    private List<Point> points;
 
     public Line(int countOfPerson) {
-        this(createConnections(countOfPerson - 1));
+        this(createConnections(countOfPerson));
     }
 
-    public Line(List<Boolean> connectionList) {
-        connections = new Connections(connectionList);
+    public Line(List<Point> connectionList) {
+        points = connectionList;
     }
 
-    private static List<Boolean> createConnections(int person) {
-        List<Boolean> tmpConnectionList = new ArrayList<>();
+    private static List<Point> createConnections(int person) {
+        List<Point> tmpConnectionList = new ArrayList<>();
 
-        for (int i = 0; i < person; i++) {
-            addConnection(tmpConnectionList);
+        Point point = Point.first(generate());
+        tmpConnectionList.add(point);
+
+        for (int i = 1; i < person-1; i++) {
+            point = point.next();
+            tmpConnectionList.add(point);
         }
+
+        point = point.last();
+        tmpConnectionList.add(point);
 
         return tmpConnectionList;
     }
 
-    private static void addConnection(List<Boolean> tmpConnectionList) {
-        if (tmpConnectionList.isEmpty()) {
-            tmpConnectionList.add(randomBoolean());
-            return;
-        }
-
-        Boolean prevLine = tmpConnectionList.get(tmpConnectionList.size() - 1);
-        if (!prevLine) {
-            tmpConnectionList.add(randomBoolean());
-            return;
-        }
-        tmpConnectionList.add(false);
+    public int move(int width) {
+        return points.get(width).move();
     }
 
-    private static boolean randomBoolean() {
+    private static boolean generate() {
         Random random = new Random();
         return random.nextBoolean();
     }
 
-    public int move(int nowPosition) {
-        return connections.move(nowPosition);
-    }
-
-    public List<Boolean> getSpotList() {
-        return connections.getConnectionList();
+    public List<Point> getPoints() {
+        return points;
     }
 }
