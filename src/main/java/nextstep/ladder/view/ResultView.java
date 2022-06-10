@@ -1,15 +1,15 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Lines;
+import nextstep.ladder.domain.LadderGame;
 import nextstep.ladder.domain.Participants;
 
 public class ResultView {
 
-    public void printResult(Lines lines, Participants participants) {
+    public void printResult(LadderGame ladderGame) {
         System.out.println("실행결과\n");
 
-        printParticipants(participants);
-        System.out.println(lines.toLadderLines());
+        printParticipants(ladderGame.participants());
+        System.out.println(ladderGame.view());
     }
 
     private void printParticipants(Participants participants) {

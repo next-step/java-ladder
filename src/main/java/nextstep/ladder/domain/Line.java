@@ -31,8 +31,4 @@ public class Line {
     public List<Point> points() {
         return points;
     }
-
-    public int numberOfParticipants() {
-        return this.points.size() + 1;
-    }
 }

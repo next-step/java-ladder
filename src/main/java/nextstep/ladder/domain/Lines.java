@@ -1,7 +1,5 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.exceptions.OutOfLadderSizeException;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -30,13 +28,4 @@ public class Lines {
     public List<Line> value() {
         return Collections.unmodifiableList(lines);
     }
-
-    public int height() {
-        return this.lines.size();
-    }
-
-    public int numberOfParticipants() {
-        return this.lines.get(0).numberOfParticipants();
-    }
-
 }

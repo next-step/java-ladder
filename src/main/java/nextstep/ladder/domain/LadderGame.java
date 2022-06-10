@@ -11,8 +11,8 @@ public class LadderGame {
         this.lines = new Lines(height, this.participants.numberOfParticipants());
     }
 
-    public Lines lines() {
-        return lines;
+    public String view() {
+        return this.lines.toLadderLines();
     }
 
     public Participants participants() {
