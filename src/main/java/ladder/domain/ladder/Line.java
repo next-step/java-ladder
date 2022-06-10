@@ -8,28 +8,28 @@ public class Line {
     private List<Point> points;
 
     public Line(int countOfPerson) {
-        this(createConnections(countOfPerson));
+        this(createPoints(countOfPerson));
     }
 
-    public Line(List<Point> connectionList) {
-        points = connectionList;
+    public Line(List<Point> points) {
+        this.points = points;
     }
 
-    private static List<Point> createConnections(int person) {
-        List<Point> tmpConnectionList = new ArrayList<>();
+    private static List<Point> createPoints(int person) {
+        List<Point> tmpPoints = new ArrayList<>();
 
         Point point = Point.first(generate());
-        tmpConnectionList.add(point);
+        tmpPoints.add(point);
 
         for (int i = 1; i < person-1; i++) {
             point = point.next();
-            tmpConnectionList.add(point);
+            tmpPoints.add(point);
         }
 
         point = point.last();
-        tmpConnectionList.add(point);
+        tmpPoints.add(point);
 
-        return tmpConnectionList;
+        return tmpPoints;
     }
 
     public int move(int width) {
