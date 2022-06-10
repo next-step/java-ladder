@@ -1,5 +1,7 @@
 package ladder.domain.ladder;
 
+import java.util.Objects;
+
 public class Point {
     private final int idx;
     private Direction direction;
@@ -10,7 +12,7 @@ public class Point {
     }
 
     public static Point first(boolean generate) {
-        return new Point(0, new Direction(false, generate));
+        return new Point(0, Direction.first(generate));
     }
 
     public Point next() {
@@ -35,5 +37,18 @@ public class Point {
 
     public boolean isRight() {
         return direction.isRight();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Point point = (Point) o;
+        return idx == point.idx && direction.equals(point.direction);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idx, direction);
     }
 }

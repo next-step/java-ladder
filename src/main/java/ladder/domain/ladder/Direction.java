@@ -18,6 +18,10 @@ public class Direction {
         this.right = right;
     }
 
+    public static Direction first(boolean right) {
+        return new Direction(false, right);
+    }
+
     public Direction next() {
         if(right) {
             return new Direction(right, false);

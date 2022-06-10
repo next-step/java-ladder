@@ -14,6 +14,13 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 public class DirectionTest {
 
     @Test
+    @DisplayName("첫 Direction 의 방향 테스트")
+    public void firstDirectionTest () {
+        Assertions.assertThat(Direction.first(true)).isEqualTo(new Direction(false, true));
+        Assertions.assertThat(Direction.first(false)).isEqualTo(new Direction(false, false));
+    }
+
+    @Test
     @DisplayName("다음 Direction 의 방향 테스트")
     public void nextDirectionTest () {
         Direction direction = new Direction(false, true).next();
