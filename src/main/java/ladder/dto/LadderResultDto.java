@@ -1,6 +1,7 @@
 package ladder.dto;
 
 import ladder.domain.ExecutionResult;
+import ladder.exception.ParticipantNotFoundException;
 
 import java.util.Collections;
 import java.util.Map;
@@ -14,7 +15,15 @@ public class LadderResultDto {
     }
 
     public ExecutionResult showLadderResult(String participantName) {
-        return results.get(participantName);
+        ExecutionResult executionResult = results.get(participantName);
+        validateParticipant(executionResult);
+        return executionResult;
+    }
+
+    private void validateParticipant(ExecutionResult executionResult) {
+        if (executionResult == null) {
+            throw new ParticipantNotFoundException();
+        }
     }
 
     public Map<String, ExecutionResult> getResults() {
