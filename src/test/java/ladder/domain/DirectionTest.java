@@ -1,11 +1,13 @@
 package ladder.domain;
 
+import ladder.exception.InvalidDirectionException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class DirectionTest {
 
@@ -35,4 +37,10 @@ class DirectionTest {
         assertThat(move).isEqualTo(index - 1);
     }
 
+    @Test
+    @DisplayName("양방향이 모두 true 이면 InvalidDirectionException 발생")
+    void throwInvalidDirectionExceptionTest() {
+        assertThatThrownBy(() -> new Direction(true, true))
+                .isInstanceOf(InvalidDirectionException.class);
+    }
 }

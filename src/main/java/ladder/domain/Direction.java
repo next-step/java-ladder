@@ -1,13 +1,22 @@
 package ladder.domain;
 
+import ladder.exception.InvalidDirectionException;
+
 public class Direction {
 
     private final boolean left;
     private final boolean right;
 
     public Direction(boolean left, boolean right) {
+        validDirection(left, right);
         this.left = left;
         this.right = right;
+    }
+
+    private void validDirection(boolean left, boolean right) {
+        if (left && right) {
+            throw new InvalidDirectionException();
+        }
     }
 
     public boolean isLeft() {
