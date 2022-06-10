@@ -2,6 +2,8 @@ package ladder.domain.ladder;
 
 import java.util.*;
 
+import static ladder.domain.RandomGenerator.generate;
+
 public class Line {
     private List<Point> points;
 
@@ -32,11 +34,6 @@ public class Line {
 
     public int move(int width) {
         return points.get(width).move();
-    }
-
-    private static boolean generate() {
-        Random random = new Random();
-        return random.nextBoolean();
     }
 
     public List<Point> getPoints() {

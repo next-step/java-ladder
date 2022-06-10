@@ -2,6 +2,8 @@ package ladder.domain.ladder;
 
 import java.util.Random;
 
+import static ladder.domain.RandomGenerator.generate;
+
 public class Direction {
 
     private final boolean left;
@@ -14,7 +16,6 @@ public class Direction {
 
         this.left = left;
         this.right = right;
-        System.out.println(this);
     }
 
     public Direction next() {
@@ -28,10 +29,6 @@ public class Direction {
         return new Direction(this.right, false);
     }
 
-    private static boolean generate() {
-        Random random = new Random();
-        return random.nextBoolean();
-    }
 
     public boolean isLeft() {
         return this.left;
