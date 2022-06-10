@@ -11,7 +11,7 @@ public class LadderGame {
         this.lines = new Lines(height, this.participants.numberOfParticipants());
     }
 
-    public Lines lines2() {
+    public Lines lines() {
         return lines;
     }
 
