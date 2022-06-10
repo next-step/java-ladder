@@ -12,20 +12,11 @@ public class Line {
     public Line(int numberOfParticipants) {
         this.points = new ArrayList<>();
 
-        for (int i = 0; i < numberOfParticipants - 1; i++) {
-            this.points.add(nextPoint(i));
+        Point point = new Point();
+        for (int i = 1; i < numberOfParticipants; i++) {
+            point = point.next(RANDOM_LINE_STRATEGY);
+            this.points.add(point);
         }
-    }
-
-    private Point nextPoint(int index) {
-        if (index == 0) {
-            return new Point().next(RANDOM_LINE_STRATEGY);
-        }
-        if (this.points.get(index - 1).linked()) {
-            return new Point();
-        }
-
-        return new Point().next(RANDOM_LINE_STRATEGY);
     }
 
     public List<Point> points() {

@@ -11,7 +11,14 @@ public class Point {
     }
 
     public Point next(LineStrategy lineStrategy) {
+        if (linked) {
+            return unlink();
+        }
         return new Point(lineStrategy.isLinkable());
+    }
+
+    private Point unlink() {
+        return new Point(false);
     }
 
     public boolean linked() {
