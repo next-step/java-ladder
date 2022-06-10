@@ -17,14 +17,14 @@ public class Lines {
         }
     }
 
-    public boolean linked(int row, int column) {
-        if (row < 0
-                || row >= this.height()
-                || column < 0
-                || column >= this.numberOfParticipants() - 1) {
-            throw new OutOfLadderSizeException("사다리 범위를 넘는 값 조회입니다.");
+    public String toLadderLines() {
+        StringBuilder lines = new StringBuilder();
+        for (Line line : this.lines) {
+            lines.append(line.toLadderLine());
+            lines.append("\n");
         }
-        return this.lines.get(row).points().get(column).linked();
+
+        return lines.toString();
     }
 
     public List<Line> value() {

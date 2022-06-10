@@ -1,7 +1,12 @@
 package nextstep.ladder.domain;
 
 public class Point {
-    private boolean linked;
+
+    private static final String LINKED = "-----|";
+    private static final String UNLINKED = "     |";
+
+    private final boolean linked;
+
     public Point() {
         this.linked = false;
     }
@@ -21,8 +26,11 @@ public class Point {
         return new Point(false);
     }
 
-    public boolean linked() {
-        return linked;
+    public String link() {
+        if (linked) {
+            return LINKED;
+        }
+        return  UNLINKED;
     }
 
     @Override
@@ -39,4 +47,5 @@ public class Point {
     public int hashCode() {
         return (linked ? 1 : 0);
     }
+
 }

@@ -19,6 +19,15 @@ public class Line {
         }
     }
 
+    public String toLadderLine() {
+        StringBuilder line = new StringBuilder("    |");
+        for (Point point : this.points) {
+            line.append(point.link());
+        }
+
+        return line.toString();
+    }
+
     public List<Point> points() {
         return points;
     }

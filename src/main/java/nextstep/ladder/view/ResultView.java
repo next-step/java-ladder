@@ -9,14 +9,7 @@ public class ResultView {
         System.out.println("실행결과\n");
 
         printParticipants(participants);
-
-        for (int i = 0; i < lines.height(); i++) {
-            System.out.print("    |");
-            for (int j = 0; j < lines.numberOfParticipants() - 1; j++) {
-                System.out.print((lines.linked(i, j) ? "-----|" : "     |"));
-            }
-            System.out.println();
-        }
+        System.out.println(lines.toLadderLines());
     }
 
     private void printParticipants(Participants participants) {

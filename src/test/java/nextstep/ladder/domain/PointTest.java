@@ -16,6 +16,5 @@ class PointTest {
                 .isEqualTo(new Point(true));
         assertThat(point.next(()->false))
                 .isEqualTo(new Point(false));
-
     }
 }
