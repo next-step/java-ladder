@@ -7,3 +7,40 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+* 프로젝트 기능
+* domain
+  * LadderGame
+    * Participants participants
+    * LadderInfo ladderInfo
+  * LadderInfo
+    * int height
+    * int numberOfParticipants
+    * Lines lines
+  * Lines
+    * List<Line> lines
+  * Line
+    * Variables
+      * List<Point> points
+    * Functions
+      * makePoints() : point(가로선) 생성
+  * Point
+    * Variables
+      * boolean linked
+    * Functions
+      * Point randomLink(...) : 좌우 가로선에 따라 가로선 랜덤 생성 
+  * Participants
+    * Variables
+      * List<Participant> participants
+  * Participant
+    * Variables
+      * String name
+* view
+  * InputView
+    * inputParticipants : 참가자 이름 입력
+    * inputLadderHeight : 사다리 높이 입력
+  * ResultView
+    * printResult : 실행결과 출력
+    * printParticipants : 참가자 이름 출력
+* exceptions
+  * ExceededMaxLengthException
