@@ -1,7 +1,9 @@
 package ladder.domain;
 
+import ladder.domain.ladder.Direction;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Line;
+import ladder.domain.ladder.Point;
 import ladder.exception.NeedMoreResultValueException;
 import ladder.exception.NotEqualResultValueException;
 import org.junit.jupiter.api.Assertions;
@@ -55,25 +57,41 @@ class RewardsTest {
         return Stream.of(
                 arguments(
                         new Rewards("1000,꽝,꽝,꽝", 4),
-                        new Ladder(List.of(new Line(List.of(true, false, false)), new Line(List.of(false, true, false)))),
+                        new Ladder(List.of(
+                                new Line(
+                                        List.of(new Point(0, new Direction(false,true)), new Point(1, new Direction(true,false)),new Point(2, new Direction(false,false)),new Point(3, new Direction(false,false)))),
+                                new Line(
+                                        List.of(new Point(0, new Direction(false,false)), new Point(1, new Direction(false,true)),new Point(2, new Direction(true,false)),new Point(3, new Direction(false,false)))))),
                         0,
                         "꽝"
                 ),
                 arguments(
                         new Rewards("1000,꽝,꽝,꽝", 4),
-                        new Ladder(List.of(new Line(List.of(true, false, false)), new Line(List.of(false, true, false)))),
+                        new Ladder(List.of(
+                                new Line(
+                                        List.of(new Point(0, new Direction(false,true)), new Point(1, new Direction(true,false)),new Point(2, new Direction(false,false)),new Point(3, new Direction(false,false)))),
+                                new Line(
+                                        List.of(new Point(0, new Direction(false,false)), new Point(1, new Direction(false,true)),new Point(2, new Direction(true,false)),new Point(3, new Direction(false,false)))))),
                         1,
                         "1000"
                 ),
                 arguments(
                         new Rewards("1000,꽝,꽝,꽝", 4),
-                        new Ladder(List.of(new Line(List.of(true, false, false)), new Line(List.of(false, true, false)))),
+                        new Ladder(List.of(
+                                new Line(
+                                        List.of(new Point(0, new Direction(false,true)), new Point(1, new Direction(true,false)),new Point(2, new Direction(false,false)),new Point(3, new Direction(false,false)))),
+                                new Line(
+                                        List.of(new Point(0, new Direction(false,false)), new Point(1, new Direction(false,true)),new Point(2, new Direction(true,false)),new Point(3, new Direction(false,false)))))),
                         2,
                         "꽝"
                 ),
                 arguments(
                         new Rewards("1000,꽝,꽝,꽝", 4),
-                        new Ladder(List.of(new Line(List.of(true, false, false)), new Line(List.of(false, true, false)))),
+                        new Ladder(List.of(
+                                new Line(
+                                        List.of(new Point(0, new Direction(false,true)), new Point(1, new Direction(true,false)),new Point(2, new Direction(false,false)),new Point(3, new Direction(false,false)))),
+                                new Line(
+                                        List.of(new Point(0, new Direction(false,false)), new Point(1, new Direction(false,true)),new Point(2, new Direction(true,false)),new Point(3, new Direction(false,false)))))),
                         3,
                         "꽝"
                 )
