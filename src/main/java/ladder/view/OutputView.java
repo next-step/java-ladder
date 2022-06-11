@@ -1,9 +1,7 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.Line;
-import ladder.domain.Participants;
-import ladder.domain.Point;
+import ladder.domain.*;
+import ladder.dto.LadderResultDto;
 
 import java.util.List;
 
@@ -14,20 +12,23 @@ public class OutputView {
     private static final StringBuilder LADDER_BUILDER = new StringBuilder();
     private static final String CONNECTED_LINE_STRING = "-----|";
     private static final String NOT_CONNECTED_LINE_STRING = "     |";
+    private static final String PRINT_EXECUTION_RESULT_FORMAT = "%s : %s\n";
+    private static final String RESULT_EXECUTION_INFO_MESSAGE = "실행 결과";
+    private static final String TOW_LINE_BREAK = "\n\n";
+    private static final String ONE_LINE_BREAK = "\n";
 
     private void printLadder(Ladder ladder) {
-        printParticipants(ladder.getParticipants());
-        printLines(ladder.getLines());
+        this.printLines(ladder.getLines());
     }
 
     private void printLines(List<Line> lines) {
         lines.forEach(this::appendLine);
-        System.out.println(LADDER_BUILDER);
+        System.out.print(LADDER_BUILDER);
     }
 
     private void appendLine(Line line) {
         line.getPoints().forEach(this::appendConnection);
-        LADDER_BUILDER.append("\n");
+        LADDER_BUILDER.append(ONE_LINE_BREAK);
     }
 
     private void appendConnection(Point point) {
@@ -38,10 +39,38 @@ public class OutputView {
         LADDER_BUILDER.append(NOT_CONNECTED_LINE_STRING);
     }
 
-    public void printResult(Ladder ladder) {
+    public void printLadder(Ladder ladder, Participants participants, ExecutionResults executionResults) {
         this.printResultInfoMessage();
+        this.printParticipants(participants);
         this.printLadder(ladder);
+        this.printExecutionResults(executionResults);
     }
+
+    public void printAllParticipantResults(LadderResultDto ladderResultDto) {
+        printResultExecutionInfoMessage();
+        ladderResultDto.getResults().forEach(this::printExecutionResultPerParticipant);
+    }
+
+    public void printParticipantResult(LadderResultDto ladderResultDto, String participantForResult) {
+        printResultExecutionInfoMessage();
+        ExecutionResult executionResult = ladderResultDto.showLadderResult(participantForResult);
+        printExecutionResultPerParticipant(participantForResult, executionResult);
+    }
+
+    private void printResultExecutionInfoMessage() {
+        System.out.println(RESULT_EXECUTION_INFO_MESSAGE);
+    }
+
+    private void printExecutionResultPerParticipant(String participantName, ExecutionResult executionResult) {
+        System.out.printf(PRINT_EXECUTION_RESULT_FORMAT, participantName, executionResult.toString());
+    }
+
+    private void printExecutionResults(ExecutionResults executionResults) {
+        executionResults.getExecutionResults()
+                .forEach(participant -> System.out.printf(PARTICIPANT_PRINT_FORMAT, participant));
+        System.out.print(TOW_LINE_BREAK);
+    }
+
     private void printResultInfoMessage() {
         System.out.println(RESULT_INFO_MESSAGE);
     }

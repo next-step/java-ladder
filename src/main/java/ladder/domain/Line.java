@@ -42,4 +42,8 @@ public class Line {
     public Integer numberOfPoints() {
         return points.size();
     }
+
+    public int move(int movedIndex) {
+        return points.get(movedIndex).move(movedIndex);
+    }
 }

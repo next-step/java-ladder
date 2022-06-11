@@ -8,6 +8,10 @@ public class Point {
         this.direction = direction;
     }
 
+    public Point(boolean isLeft, boolean isRight) {
+        this.direction = new Direction(isLeft, isRight);
+    }
+
     public static Point of(Direction direction) {
         return new Point(direction);
     }
@@ -35,4 +39,7 @@ public class Point {
         return this.direction.isLeft();
     }
 
+    public int move(int index) {
+        return this.direction.move(index);
+    }
 }

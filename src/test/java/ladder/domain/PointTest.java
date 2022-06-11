@@ -3,6 +3,8 @@ package ladder.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -54,6 +56,22 @@ class PointTest {
         );
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3, 4, 5})
+    @DisplayName("point 의 direction 이 오른쪽이면 index 가 1 증가한다.")
+    void rightDirectionTest(int index) {
+        int move = pointForFirstLine.move(index);
+        assertThat(move).isEqualTo(index + 1);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3, 4, 5})
+    @DisplayName("point 의 direction 이 왼쪽이면 index 가 1 감소한다.")
+    void leftDirectionTest(int index) {
+        Point leftDirectionPoint = Point.createPointForMiddleLines(pointForFirstLine, () -> true);
+        int move = leftDirectionPoint.move(index);
+        assertThat(move).isEqualTo(index - 1);
+    }
 
 
 }
