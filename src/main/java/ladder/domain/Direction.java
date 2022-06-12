@@ -27,7 +27,7 @@ public class Direction {
     }
 
     public boolean isRight() {
-        return false;
+        return this.right;
     }
 
     public Direction next() {

@@ -16,6 +16,10 @@ public class Line {
         this.points = points;
     }
 
+    public int move(int position) {
+        return points.get(position).move();
+    }
+
     private void lineGenerator(int countOfPerson) {
         Random random = new Random();
         points.add(new Point(random.nextBoolean()));

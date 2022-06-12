@@ -57,6 +57,11 @@ public class Point {
         return new Point(index + 1, direction.next());
     }
 
+    public Point last() {
+        return new Point(index + 1, direction.last());
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
