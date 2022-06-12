@@ -1,6 +1,8 @@
 package ladder.domain;
 
+import java.util.Iterator;
 import java.util.Objects;
+import java.util.Random;
 
 public class Direction {
     private final boolean left;
@@ -19,8 +21,32 @@ public class Direction {
     public static Direction of(boolean first, boolean second) {
         return new Direction(first, second);
     }
+
+    public static Direction first(boolean right) {
+        return of(false, right);
+    }
+
     public boolean isRight() {
         return false;
+    }
+
+    public Direction next() {
+        if (this.right) {
+            return next(false);
+        }
+        return next(new Random().nextBoolean());
+    }
+
+    public Direction next(boolean nextRight) {
+        return of(this.right, nextRight);
+    }
+
+    public boolean isLeft() {
+        return this.left;
+    }
+
+    public Direction last() {
+        return of(this.right, false);
     }
 
     @Override
