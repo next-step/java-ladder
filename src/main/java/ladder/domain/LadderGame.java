@@ -3,17 +3,17 @@ package ladder.domain;
 import java.util.*;
 
 public class LadderGame {
-    private List<User> users;
+    private Users users;
     private List<LadderLine> lines;
     private Map<String, Integer> results = new HashMap<>();
 
-    public LadderGame(List<User> gameContributors) {
+    public LadderGame(Users gameContributors) {
         users = gameContributors;
     }
 
     public Map<String, Integer> start() {
         for (int i = 0; i < users.size(); i++) {
-            results.put(users.get(i).getName(), getTarget(i));
+            results.put(users.findName(i), getTarget(i));
         }
         return results;
     }

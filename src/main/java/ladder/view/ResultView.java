@@ -3,16 +3,15 @@ package ladder.view;
 import ladder.domain.LadderLine;
 import ladder.domain.Point;
 import ladder.domain.User;
+import ladder.domain.Users;
 
 import java.util.List;
 import java.util.Map;
 
 public class ResultView {
 
-    public static void printLadder(List<User> drawUserList, List<LadderLine> ladderLine, List<String> resultList) {
-        for (User user : drawUserList) {
-            System.out.print(user.getName() + " ");
-        }
+    public static void printLadder(Users drawUserList, List<LadderLine> ladderLine, List<String> resultList) {
+        drawUserList.drawUserNames();
         System.out.println();
 
         for (LadderLine line : ladderLine) {

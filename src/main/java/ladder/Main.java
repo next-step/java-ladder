@@ -2,6 +2,7 @@ package ladder;
 
 import ladder.domain.LadderLine;
 import ladder.domain.User;
+import ladder.domain.Users;
 import ladder.util.Generator;
 import ladder.view.InputView;
 import ladder.view.ResultView;
@@ -12,7 +13,7 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        List<User> gameContributors = Generator.userGenerate(InputView.findGameContributors());
+        Users gameContributors = Users.userGenerate(InputView.findGameContributors());
         List<String> resultList = Generator.resultGenerate(InputView.findResultList());
         LadderGame ladderGame = new LadderGame(gameContributors);
         List<LadderLine> ladderLine = ladderGame.create(4);
