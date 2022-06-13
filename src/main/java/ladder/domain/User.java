@@ -15,39 +15,6 @@ public class User {
         this.position = new Position(index, 0);
     }
 
-    public boolean right(Line line) {
-        if (line.isOverSize(position.getRightPosition())) {
-            return false;
-        }
-
-        if (line.pointStatus(position.getRightPosition())) {
-            this.position.moveRight();
-            return true;
-        }
-
-        return false;
-    }
-
-    public boolean left(Line line) {
-        if (line.isLessSize(position.getLeftPosition())) {
-            return false;
-        }
-
-        if (line.pointStatus(position.getLeftPosition())) {
-            this.position.moveLeft();
-            return true;
-        }
-
-        return false;
-    }
-
-    public void move(Line line) {
-        if (this.right(line)) {
-            return;
-        }
-        this.left(line);
-    }
-
     public String getName() {
         return name.toString();
     }

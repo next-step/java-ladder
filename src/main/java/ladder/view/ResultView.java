@@ -1,15 +1,15 @@
 package ladder.view;
 
-import ladder.domain.Line;
+import ladder.domain.LadderLine;
 import ladder.domain.User;
 
 import java.util.List;
 
 public class ResultView {
 
-    public static void printLadder(List<String> strings, List<Line> lines) {
+    public static void printLadder(List<String> strings, List<LadderLine> lines) {
         System.out.println(strings);
-        lines.forEach(line -> System.out.println(line.drawLine()));
+//        lines.forEach(line -> System.out.println(line.drawLine()));
     }
 
     public static void printResult(String searchName, List<User> users, List<String> resultList) {
@@ -29,9 +29,8 @@ public class ResultView {
         System.out.println(resultList.get(position));
     }
 
-    public static void printLadder(List<String> drawUserList, List<Line> lines, List<String> resultList) {
+    public static void printLadder(List<String> drawUserList, List<LadderLine> lines, List<String> resultList) {
         System.out.println(drawUserList);
-        lines.forEach(line -> System.out.println(line.drawLine()));
-        System.out.println(resultList);
+
     }
 }

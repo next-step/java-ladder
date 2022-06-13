@@ -3,8 +3,6 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Point {
-    private boolean point;
-    private Point prevPoint;
     private int index;
     private Direction direction;
 
@@ -27,26 +25,6 @@ public class Point {
         }
 
         return this.index;
-    }
-
-    public Point(boolean point) {
-        this.point = point;
-    }
-
-    public Point(boolean point, Point prevPoint) {
-        this(point);
-        this.prevPoint = prevPoint;
-    }
-
-    public String drawPoint() {
-        if (point) {
-            return "-----";
-        }
-        return "     ";
-    }
-
-    public boolean isTrue() {
-        return this.point;
     }
 
     public Point next(boolean right) {
@@ -75,11 +53,5 @@ public class Point {
         return Objects.hash(index, direction);
     }
 
-    @Override
-    public String toString() {
-        return "Point{" +
-                "point=" + point +
-                '}';
-    }
 
 }
