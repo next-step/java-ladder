@@ -41,4 +41,10 @@ public class LadderLine {
     public int move(int position) {
         return points.get(position).move();
     }
+
+    public void draw() {
+        for (Point point : points) {
+            point.draw();
+        }
+    }
 }

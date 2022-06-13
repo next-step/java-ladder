@@ -39,6 +39,18 @@ public class Point {
         return new Point(index + 1, direction.last());
     }
 
+    public boolean untilBeforeLastPoint(int sizeOfPerson) {
+        return sizeOfPerson - 2 > index;
+    }
+
+    public void draw() {
+        if (this.direction.isRight()) {
+            System.out.print("|-----|");
+            return;
+        }
+
+        System.out.print("|     |");
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -53,5 +65,11 @@ public class Point {
         return Objects.hash(index, direction);
     }
 
-
+    @Override
+    public String toString() {
+        return "Point{" +
+                "index=" + index +
+                ", direction=" + direction +
+                '}';
+    }
 }

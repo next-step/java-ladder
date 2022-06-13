@@ -15,7 +15,6 @@ public class Direction {
 
         this.left = left;
         this.right = right;
-        System.out.println(this);
     }
 
     public static Direction of(boolean first, boolean second) {
@@ -60,5 +59,13 @@ public class Direction {
     @Override
     public int hashCode() {
         return Objects.hash(left, right);
+    }
+
+    @Override
+    public String toString() {
+        return "Direction{" +
+                "left=" + left +
+                ", right=" + right +
+                '}';
     }
 }
