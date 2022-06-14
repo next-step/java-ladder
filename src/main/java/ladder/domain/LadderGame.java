@@ -1,50 +1,40 @@
 package ladder.domain;
 
-import nextstep.optional.Users;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.*;
 
 public class LadderGame {
-    private List<User> users;
-    private List<Line> lines;
-    private List<String> results;
+    private Users users;
+    private List<LadderLine> lines;
+    private Map<String, Integer> results = new HashMap<>();
 
-    public LadderGame(List<User> users) {
-        this.users = users;
-        this.lines = createLine();
+    public LadderGame(Users gameContributors) {
+        users = gameContributors;
     }
 
-    public LadderGame(List<User> users, List<String> resultList) {
-        this(users);
-        results = resultList;
+    public Map<String, Integer> start() {
+        for (int i = 0; i < users.size(); i++) {
+            results.put(users.findName(i), getTarget(i));
+        }
+        return results;
     }
 
-    private List<Line> createLine() {
-        return IntStream.range(1, 5)
-                .mapToObj(number -> new Line(users.size() - 1))
-                .collect(Collectors.toList());
+    private Integer getTarget(int position) {
+        int target = position;
+        for (LadderLine line : lines) {
+            target = line.move(target);
+        }
+        return target;
     }
 
-    public List<Line> getLines() {
-        return this.lines;
-    }
+    public List<LadderLine> create(int height) {
+        List<LadderLine> ladderLines = new ArrayList<>();
 
-    public List<String> drawUserList() {
-        return users.stream()
-                .map(user -> user.getName())
-                .collect(Collectors.toList());
-    }
-
-    public List<User>  start() {
-        for (User user : users) {
-            for (Line line : lines) {
-                user.move(line);
-            }
+        for (int i = 0; i < 4; i++) {
+            ladderLines.add(LadderLine.init(users.size()));
         }
 
-        return users;
+        this.lines = ladderLines;
+        return ladderLines;
     }
+
 }

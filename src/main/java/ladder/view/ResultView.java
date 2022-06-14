@@ -1,37 +1,39 @@
 package ladder.view;
 
-import ladder.domain.Line;
+import ladder.domain.LadderLine;
+import ladder.domain.Point;
 import ladder.domain.User;
+import ladder.domain.Users;
 
 import java.util.List;
+import java.util.Map;
 
 public class ResultView {
 
-    public static void printLadder(List<String> strings, List<Line> lines) {
-        System.out.println(strings);
-        lines.forEach(line -> System.out.println(line.drawLine()));
+    public static void printLadder(Users drawUserList, List<LadderLine> ladderLine, List<String> resultList) {
+        drawUserList.drawUserNames();
+        System.out.println();
+
+        for (LadderLine line : ladderLine) {
+            line.draw();
+            System.out.println();
+        }
+
+        resultList.forEach(System.out::print);
+        System.out.print(" ");
     }
 
-    public static void printResult(String searchName, List<User> users, List<String> resultList) {
+    public static void printResult(Map<String , Integer> ladderLine, String searchName) {
         System.out.println("실행결과");
 
         if ("all".equalsIgnoreCase(searchName)) {
-            for (User user : users) {
-                System.out.println(user.getName() + " : " + resultList.get(user.getPosition()));
-            }
+            ladderLine.entrySet().forEach(System.out::println);
             return;
         }
 
-        User findUser = users.stream().filter(user -> searchName.equals(user.getName()))
+        String key = ladderLine.keySet().stream().filter(name -> name.equals(searchName))
                 .findFirst().orElseThrow(() -> new IllegalArgumentException("없는 사용자 입니다."));
 
-        int position = findUser.getPosition();
-        System.out.println(resultList.get(position));
-    }
-
-    public static void printLadder(List<String> drawUserList, List<Line> lines, List<String> resultList) {
-        System.out.println(drawUserList);
-        lines.forEach(line -> System.out.println(line.drawLine()));
-        System.out.println(resultList);
+        System.out.println(String.format("%s의 값은 : %s"  , key, ladderLine.get(key)));
     }
 }
