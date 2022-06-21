@@ -1,29 +1,29 @@
 package nextstep.ladder.domain;
 
-public class Point {
+public class Edge {
 
     private static final String LINKED = "-----|";
     private static final String UNLINKED = "     |";
 
     private final boolean linked;
 
-    public Point() {
+    public Edge() {
         this.linked = false;
     }
 
-    public Point(boolean linked) {
+    public Edge(boolean linked) {
         this.linked = linked;
     }
 
-    public Point next(LineStrategy lineStrategy) {
+    public Edge next(LineStrategy lineStrategy) {
         if (linked) {
             return unlink();
         }
-        return new Point(lineStrategy.isLinkable());
+        return new Edge(lineStrategy.isLinkable());
     }
 
-    private Point unlink() {
-        return new Point(false);
+    private Edge unlink() {
+        return new Edge(false);
     }
 
     public String link() {
@@ -38,9 +38,9 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Point point = (Point) o;
+        Edge edge = (Edge) o;
 
-        return linked == point.linked;
+        return linked == edge.linked;
     }
 
     @Override

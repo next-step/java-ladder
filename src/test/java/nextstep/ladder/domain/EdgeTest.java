@@ -5,16 +5,16 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class PointTest {
+class EdgeTest {
 
     @Test
     @DisplayName("Point 생성 결과 테스트")
     void line() {
-        Point point = new Point();
+        Edge edge = new Edge();
 
-        assertThat(point.next(()->true))
-                .isEqualTo(new Point(true));
-        assertThat(point.next(()->false))
-                .isEqualTo(new Point(false));
+        assertThat(edge.next(()->true))
+                .isEqualTo(new Edge(true));
+        assertThat(edge.next(()->false))
+                .isEqualTo(new Edge(false));
     }
 }

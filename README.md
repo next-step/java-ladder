@@ -23,7 +23,7 @@
     * Variables
       * List<Point> points
     * Functions
-      * makePoints() : point(가로선) 생성
+      * makePoints() : edge(가로선) 생성
   * Point
     * Variables
       * boolean linked
