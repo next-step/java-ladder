@@ -1,16 +1,30 @@
 package ladder.domain;
 
+import ladder.engine.LadderCreator;
+import ladder.engine.LineCreator;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Ladder {
-    public static List<HorizontalLines> create(int countOfPerson, int numberOfMoves, ConnectingStrategy connectingStrategy) {
-        List<HorizontalLines> lines = new ArrayList<>();
-        for (int index = 0; index < numberOfMoves; index++) {
-            HorizontalLines horizontalLines = new HorizontalLines();
-            horizontalLines.connect(countOfPerson - 1, connectingStrategy);
-            lines.add(horizontalLines);
+public class Ladder implements LadderCreator {
+    private List<HorizontalLines> verticalLines;
+
+    public Ladder(List<LineCreator> verticalLines, ConnectingStrategy connectingStrategy) {
+        this.verticalLines = new ArrayList<>();
+        for (LineCreator verticalLine : verticalLines) {
+            this.verticalLines.add((HorizontalLines) verticalLine);
         }
-        return lines;
+        create(connectingStrategy);
+    }
+
+    @Override
+    public void create(ConnectingStrategy connectingStrategy) {
+        for (LineCreator verticalLine : verticalLines) {
+            verticalLine.connect(connectingStrategy);
+        }
+    }
+
+    public List<HorizontalLines> getLines() {
+        return verticalLines;
     }
 }
