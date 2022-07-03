@@ -1,41 +1,41 @@
 package ladder.domain;
 
+import ladder.engine.LineCreator;
+
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-public class HorizontalLines {
-    private static final boolean DEFAULT_VALUE = false;
+public class HorizontalLines implements LineCreator {
+    private final int countOfLines;
+    private final ConnectingLines connectingLines;
 
-    private final List<Boolean> horizontalLines;
-
-    HorizontalLines() {
-        this(new ArrayList<>());
+    public HorizontalLines(int countOfLines) {
+        this(countOfLines, new ArrayList<>());
     }
 
-    public HorizontalLines(List<Boolean> horizontalLines) {
-        this.horizontalLines = horizontalLines;
+    HorizontalLines(int countOfLines, ConnectingStrategy connectingStrategy) {
+        this(countOfLines, new ArrayList<>());
+        connect(connectingStrategy);
     }
 
-    public void connect(int countOfLines, ConnectingStrategy connectingStrategy) {
+    private HorizontalLines(int countOfLines, List<Boolean> connectingLines) {
+        this(countOfLines, new ConnectingLines(connectingLines));
+    }
+
+    public HorizontalLines(int countOfLines, ConnectingLines connectingLines) {
+        this.countOfLines = countOfLines;
+        this.connectingLines = connectingLines;
+    }
+
+    @Override
+    public void connect(ConnectingStrategy connectingStrategy) {
         for (int i = 0; i < countOfLines; i++) {
-            connectLine(connectingStrategy, i);
+            connectingLines.connectLine(connectingStrategy, i);
         }
     }
 
-    private void connectLine(ConnectingStrategy connectingStrategy, int index) {
-        if (isFirstOrConnectableLine(index)) {
-            horizontalLines.add(connectingStrategy.connectable());
-            return;
-        }
-        horizontalLines.add(DEFAULT_VALUE);
-    }
-
-    private boolean isFirstOrConnectableLine(int index) {
-        return index == 0 || !horizontalLines.get(index - 1);
-    }
-
-    public List<Boolean> getHorizontalLines() {
-        return Collections.unmodifiableList(horizontalLines);
+    @Override
+    public List<Boolean> getConnectingLines() {
+        return connectingLines.getLines();
     }
 }

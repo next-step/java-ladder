@@ -1,6 +1,6 @@
 package ladder.domain;
 
-public class SequentialConnectionStratrgy implements ConnectingStrategy {
+public class SequentialConnectionStrategy implements ConnectingStrategy {
     private static final boolean ALWAYS_TRUE = true;
 
     @Override

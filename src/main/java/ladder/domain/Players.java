@@ -5,26 +5,26 @@ import java.util.*;
 public class Players {
     private static final String SPILT_COMMA_AND_TRIM = "\\s*,\\s*";
 
-    private Map<Name, String> players;
+    private Map<PlayerName, String> players;
 
-    public Players(String names) {
-        this(splitNames(names));
+    public Players(String playerNames) {
+        this(splitNames(playerNames));
     }
 
-    public Players(Map<Name, String> players) {
+    public Players(Map<PlayerName, String> players) {
         this.players = players;
     }
 
-    private static Map<Name, String> splitNames(String names) {
-        if (names == null || names.isBlank()) {
+    private static Map<PlayerName, String> splitNames(String playerNames) {
+        if (playerNames == null || playerNames.isBlank()) {
             throw new IllegalArgumentException("이름은 빈 값을 입력 할 수 없습니다.");
         }
 
-        String[] splitNames = names.split(SPILT_COMMA_AND_TRIM);
+        String[] splitNames = playerNames.split(SPILT_COMMA_AND_TRIM);
 
-        Map<Name, String> nameMap = new LinkedHashMap<>();
+        Map<PlayerName, String> nameMap = new LinkedHashMap<>();
         for (String splitName : splitNames) {
-            nameMap.put(new Name(splitName), "");
+            nameMap.put(new PlayerName(splitName), "");
         }
         return nameMap;
     }
@@ -33,7 +33,7 @@ public class Players {
         return players.size();
     }
 
-    public Map<Name, String> getPlayers() {
-        return Collections.unmodifiableMap(players);
+    public Map<PlayerName, String> getPlayers() {
+        return players;
     }
 }
