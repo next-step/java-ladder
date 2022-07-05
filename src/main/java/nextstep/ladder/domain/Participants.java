@@ -8,12 +8,10 @@ public class Participants {
     private final List<Participant> participants;
 
     public Participants(String[] participants) {
-        List<Participant> inputParticipants = new ArrayList<>();
+        this.participants = new ArrayList<>();
         for (String participant : participants) {
-            inputParticipants.add(new Participant(participant));
+            this.participants.add(new Participant(participant));
         }
-
-        this.participants = inputParticipants;
     }
 
     public int numberOfParticipants() {
