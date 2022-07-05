@@ -6,11 +6,11 @@ public class LadderGame {
 
     private final Lines lines;
 
-    private final Results results;
+    private final LadderResults ladderResults;
 
     public LadderGame(String[] participants, String[] ladderResults, int height) {
         this.participants = new Participants(participants);
-        this.results = new Results(ladderResults, this.participants.numberOfParticipants());
+        this.ladderResults = new LadderResults(ladderResults, this.participants.numberOfParticipants());
         this.lines = new Lines(height, this.participants.numberOfParticipants());
     }
 
@@ -22,7 +22,7 @@ public class LadderGame {
         return participants;
     }
 
-    public Results results() {
-        return results;
+    public LadderResults ladderResults() {
+        return ladderResults;
     }
 }

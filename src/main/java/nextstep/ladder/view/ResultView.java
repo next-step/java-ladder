@@ -2,7 +2,7 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.LadderGame;
 import nextstep.ladder.domain.Participants;
-import nextstep.ladder.domain.Results;
+import nextstep.ladder.domain.LadderResults;
 
 public class ResultView {
 
@@ -11,7 +11,7 @@ public class ResultView {
 
         printParticipants(ladderGame.participants());
         System.out.print(ladderGame.view());
-        printLadderResults(ladderGame.results());
+        printLadderResults(ladderGame.ladderResults());
     }
 
     private void printParticipants(Participants participants) {
@@ -21,9 +21,9 @@ public class ResultView {
         System.out.println();
     }
 
-    private void printLadderResults(Results results) {
-        for(int i = 0; i < results.numberOfResults(); i++) {
-            System.out.printf("%5s ", results.value().get(i).name());
+    private void printLadderResults(LadderResults ladderResults) {
+        for(int i = 0; i < ladderResults.numberOfLadderResults(); i++) {
+            System.out.printf("%5s ", ladderResults.value().get(i).name());
         }
         System.out.println();
     }

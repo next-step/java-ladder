@@ -6,13 +6,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-class ResultsTest {
+class LadderResultsTest {
 
     @Test
     @DisplayName("ParticipantsAndResultsNumberNotMatchedException")
     void exception() {
         assertThatExceptionOfType(ParticipantsAndResultsNumberNotMatchedException.class)
-                .isThrownBy(() -> new Results(new String[]{"a", "b"}, 3))
+                .isThrownBy(() -> new LadderResults(new String[]{"a", "b"}, 3))
                 .withMessage("참가자 수와 사다리 타기 결과의 수는 일치해야 합니다.");
     }
 
