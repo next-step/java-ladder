@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import nextstep.ladder.exceptions.ParticipantsAndResultsNumberNotMatchedException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Results {
@@ -17,5 +18,13 @@ public class Results {
         for (String result : results) {
             this.results.add(new Result(result));
         }
+    }
+
+    public int numberOfResults() {
+        return results.size();
+    }
+
+    public List<Result> value() {
+        return Collections.unmodifiableList(results);
     }
 }

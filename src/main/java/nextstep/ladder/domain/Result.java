@@ -13,4 +13,8 @@ public class Result {
         }
         this.name = name;
     }
+
+    public String name() {
+        return name;
+    }
 }

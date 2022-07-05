@@ -21,4 +21,8 @@ public class LadderGame {
     public Participants participants() {
         return participants;
     }
+
+    public Results results() {
+        return results;
+    }
 }
