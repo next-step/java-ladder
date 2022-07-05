@@ -11,6 +11,12 @@ public class InputView {
         return split(input);
     }
 
+    public String[] inputLadderResults() {
+        System.out.println("실행 결과를 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        String input = scanner.nextLine();
+        return split(input);
+    }
+
     public int inputLadderHeight() {
         System.out.println("최대 사다리 높이는 얼마인가요?");
         return scanner.nextInt();
