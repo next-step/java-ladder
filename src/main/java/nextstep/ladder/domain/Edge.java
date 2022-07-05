@@ -26,11 +26,11 @@ public class Edge {
         return new Edge(false);
     }
 
-    public String link() {
+    public String edge() {
         if (linked) {
             return LINKED;
         }
-        return  UNLINKED;
+        return UNLINKED;
     }
 
     @Override

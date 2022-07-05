@@ -22,13 +22,13 @@ public class Line {
     public String toLadderLine() {
         StringBuilder line = new StringBuilder("    |");
         for (Edge edge : this.edges) {
-            line.append(edge.link());
+            line.append(edge.edge());
         }
 
         return line.toString();
     }
 
-    public List<Edge> points() {
+    public List<Edge> edges() {
         return edges;
     }
 }
