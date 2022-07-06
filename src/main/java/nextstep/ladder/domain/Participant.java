@@ -23,6 +23,10 @@ public class Participant {
         return name;
     }
 
+    public String ladderResult() {
+        return this.ladderResult.name();
+    }
+
     public void matchResult(LadderResult ladderResult) {
         this.ladderResult = ladderResult;
     }

@@ -7,7 +7,7 @@ import nextstep.ladder.domain.LadderResults;
 public class ResultView {
 
     public void printResult(LadderGame ladderGame) {
-        System.out.println("실행결과\n");
+        System.out.print("실행결과\n");
 
         printParticipants(ladderGame.participants());
         System.out.print(ladderGame.view());
@@ -26,5 +26,9 @@ public class ResultView {
             System.out.printf("%5s ", ladderResults.value().get(i).name());
         }
         System.out.println();
+    }
+
+    public void printResultOfParticipant(String name, String result) {
+        System.out.println(name + " : " + result);
     }
 }

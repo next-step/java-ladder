@@ -1,9 +1,6 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Participants {
     private final List<Participant> participants;
@@ -24,6 +21,14 @@ public class Participants {
     }
 
     public String findByName(String name) {
-        return this.participants.stream().filter(participant -> participant.name() == name).findFirst().get().name();
+        Optional<Participant> target = this.participants.stream()
+                .filter(participant -> Objects.equals(participant.name(), name))
+                .findFirst();
+
+        if (target.isPresent()) {
+            return target.get().ladderResult();
+        }
+
+        return "NULL";
     }
 }

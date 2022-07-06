@@ -22,6 +22,12 @@ public class InputView {
         return scanner.nextInt();
     }
 
+    public String inputParticipant() {
+        scanner.nextLine();
+        System.out.println("결과를 보고 싶은 참가자의 이름을 입력하세요.");
+        return scanner.nextLine();
+    }
+
     private String[] split(String input) {
         return input.split("[,]");
     }
