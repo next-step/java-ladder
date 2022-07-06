@@ -22,4 +22,8 @@ public class Participant {
     public String name() {
         return name;
     }
+
+    public void matchResult(LadderResult ladderResult) {
+        this.ladderResult = ladderResult;
+    }
 }

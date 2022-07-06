@@ -26,6 +26,10 @@ public class Edge {
         return new Edge(false);
     }
 
+    public boolean linked() {
+        return linked;
+    }
+
     public String edge() {
         if (linked) {
             return LINKED;
