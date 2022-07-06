@@ -40,6 +40,9 @@ public class LadderGame {
         return currentIndex;
     }
 
+    String resultOfParticipant(String name) {
+        return this.participants.findByName(name);
+    }
 
     public String view() {
         return this.lines.toLadderLines();
