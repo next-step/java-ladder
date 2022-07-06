@@ -8,6 +8,8 @@ public class Participant {
 
     private final String name;
 
+    private LadderResult ladderResult;
+
     public Participant(String name) {
         if (name.length() == 0
                 || name.length() > MAX_LENGTH) {
