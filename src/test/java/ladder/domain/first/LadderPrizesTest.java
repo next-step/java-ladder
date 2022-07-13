@@ -1,5 +1,8 @@
-package ladder.domain;
+package ladder.domain.first;
 
+import ladder.domain.PlayerName;
+import ladder.domain.Players;
+import ladder.domain.SequentialConnectionStrategy;
 import ladder.engine.LadderCreator;
 import ladder.factory.LadderFactory;
 import org.junit.jupiter.api.BeforeEach;

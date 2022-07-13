@@ -1,5 +1,6 @@
-package ladder.domain;
+package ladder.domain.first;
 
+import ladder.domain.ConnectingStrategy;
 import ladder.engine.LadderCreator;
 import ladder.engine.LineCreator;
 

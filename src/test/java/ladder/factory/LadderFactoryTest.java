@@ -1,7 +1,7 @@
 package ladder.factory;
 
-import ladder.domain.HorizontalLines;
-import ladder.domain.Ladder;
+import ladder.domain.first.HorizontalLines;
+import ladder.domain.first.Ladder;
 import ladder.domain.SequentialConnectionStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,7 +17,6 @@ class LadderFactoryTest {
     @CsvSource(value = "4:3", delimiter = ':')
     void create(int heightOfLadder, int countOfLines) {
         Ladder ladder = (Ladder) LadderFactory.create(heightOfLadder, countOfLines, new SequentialConnectionStrategy());
-
         List<HorizontalLines> verticalLines = ladder.getLines();
         assertThat(verticalLines).hasSize(heightOfLadder);
     }
