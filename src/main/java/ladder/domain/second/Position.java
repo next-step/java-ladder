@@ -16,12 +16,7 @@ public class Position {
     }
 
     public int move() {
-        switch (point.move()) {
-            case LEFT : return --index;
-            case RIGHT: return ++index;
-            case PASS : return index;
-            default   : return index;
-        }
+        return index += point.moveIndex();
     }
 
     public Position next(boolean right) {

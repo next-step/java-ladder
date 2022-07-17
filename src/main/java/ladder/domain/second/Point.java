@@ -31,6 +31,10 @@ public class Point {
         return Direction.PASS;
     }
 
+    public int moveIndex() {
+        return this.move().moveCount();
+    }
+
     public Point last() {
         return new Point(this.right, false);
     }
