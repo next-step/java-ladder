@@ -1,4 +1,6 @@
-package ladder.domain;
+package ladder.domain.first;
+
+import ladder.domain.ConnectingStrategy;
 
 import java.util.Collections;
 import java.util.List;

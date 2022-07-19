@@ -23,8 +23,9 @@ public class Players {
         String[] splitNames = playerNames.split(SPILT_COMMA_AND_TRIM);
 
         Map<PlayerName, String> nameMap = new LinkedHashMap<>();
+        int index = 0;
         for (String splitName : splitNames) {
-            nameMap.put(new PlayerName(splitName), "");
+            nameMap.put(new PlayerName(splitName), String.valueOf(index++));
         }
         return nameMap;
     }

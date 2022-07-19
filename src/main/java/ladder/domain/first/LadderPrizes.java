@@ -1,31 +1,23 @@
-package ladder.domain;
+package ladder.domain.first;
 
+import ladder.domain.PlayerName;
+import ladder.domain.Players;
 import ladder.engine.LadderCreator;
 import ladder.engine.LadderResult;
 import ladder.engine.LineCreator;
+import ladder.factory.LadderResultFactory;
 
 import java.util.*;
 
 public class LadderPrizes implements LadderResult {
-    private static final String SPILT_COMMA_AND_TRIM = "\\s*,\\s*";
-
     private final List<String> prizes;
 
     public LadderPrizes(String prizeNames) {
-        this(splitPrizes(prizeNames));
+        this(LadderResultFactory.splitPrizes(prizeNames));
     }
 
     LadderPrizes(List<String> prizes) {
         this.prizes = prizes;
-    }
-
-    private static List<String> splitPrizes(String prizeNames) {
-        if (prizeNames == null || prizeNames.isBlank()) {
-            throw new IllegalArgumentException("상품은 빈 값을 입력 할 수 없습니다.");
-        }
-
-        String[] splitNames = prizeNames.split(SPILT_COMMA_AND_TRIM);
-        return Arrays.asList(splitNames);
     }
 
     @Override

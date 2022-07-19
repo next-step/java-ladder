@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.domain.*;
+import ladder.domain.second.LadderGameResult;
 import ladder.engine.LadderCreator;
 import ladder.engine.LadderResult;
 import ladder.factory.LadderFactory;
@@ -21,7 +22,7 @@ public class LadderMain {
         LadderCreator ladderCreator = LadderFactory.create(maxLadderHeight, players.countOfPlayers(), new RandomConnectingStrategy());
         ResultView.printResult(ladderCreator.getLines());
 
-        LadderResult ladderResult = new LadderPrizes(winningPrizes);
+        LadderResult ladderResult = new LadderGameResult(winningPrizes);
         Players result = ladderResult.result(players, ladderCreator);
 
         for (int i = 0; i < result.countOfPlayers(); i++) {

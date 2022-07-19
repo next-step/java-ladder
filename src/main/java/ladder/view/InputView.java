@@ -24,7 +24,7 @@ public class InputView {
         return InputUtils.scanNext("\n결과를 보고 싶은 사람은?");
     }
 
-    public static String printResultOfChosenPlayer(String result) {
-        return InputUtils.scan("\n실행 결과\n" + result);
+    public static void printResultOfChosenPlayer(String result) {
+        InputUtils.scan("\n실행 결과\n" + result);
     }
 }
