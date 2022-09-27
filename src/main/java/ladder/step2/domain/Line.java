@@ -1,5 +1,6 @@
 package ladder.step2.domain;
 
+import ladder.step2.domain.dto.LineDTO;
 import ladder.step2.domain.strategy.LineCreateStrategy;
 import ladder.step2.domain.strategy.RandomLineCreateStrategy;
 
@@ -24,6 +25,10 @@ public class Line {
     private void initPartLines(int countOfPlayers, LineCreateStrategy lineCreateStrategy) {
         IntStream.range(0, countOfPlayers)
                 .forEach(count -> lineCreateStrategy.addPartLine(partLines, countOfPlayers));
+    }
+    
+    public LineDTO getLineInformation() {
+        return new LineDTO(partLines);
     }
     
     @Override
