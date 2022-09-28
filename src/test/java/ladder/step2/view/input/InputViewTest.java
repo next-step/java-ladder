@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 class InputViewTest {
     
@@ -16,5 +16,13 @@ class InputViewTest {
     void inputPlayerNames() {
         List<Player> players = InputView.inputPlayerNames("pobi, jun, honux, jk");
         assertThat(players).isEqualTo(Arrays.asList(new Player("pobi"), new Player("jun"), new Player("honux"), new Player("jk")));
+    }
+    
+    @Test
+    @DisplayName("구분자가 쉼표가 아니면 예외 던지기")
+    void delimiterException() {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> InputView.inputPlayerNames("pobi, jun, honux. jk"))
+                .withMessage("올바른 입력 형식이 아닙니다. 다시 입력해주세요.");
     }
 }
