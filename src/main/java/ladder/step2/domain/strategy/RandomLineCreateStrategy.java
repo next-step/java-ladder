@@ -6,7 +6,7 @@ import java.util.Random;
 public class RandomLineCreateStrategy implements LineCreateStrategy {
     @Override
     public void addPartLine(List<Boolean> partLines, int countOfPlayers) {
-        if ((partLines.size() != 0 && partLines.get(partLines.size() - 1)) || partLines.size() + 1 >= countOfPlayers) {
+        if (partLines.size() == 0 || partLines.get(partLines.size() - 1)) {
             partLines.add(false);
             return;
         }

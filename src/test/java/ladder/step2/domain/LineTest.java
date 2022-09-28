@@ -19,17 +19,23 @@ class LineTest {
         partLines = lineDTO.getPartLines();
     }
     
-    @Test
+    @Nested
     @DisplayName("가로라인이 겹치지 않는지 확인")
-    void correct_create_part_line() {
-        IntStream.range(0, partLines.size() - 1)
-                .forEach(index -> assertThat(partLines.get(index) && partLines.get(index + 1)).isFalse());
+    class NotOverlappingLines {
+        @RepeatedTest(100)
+        void not_overlapping_lines() {
+            IntStream.range(0, partLines.size() - 1)
+                    .forEach(index -> assertThat(partLines.get(index) && partLines.get(index + 1)).isFalse());
+        }
     }
 
-    @Test
-    @DisplayName("가로라인의 끝 부분은 부분라인이 없는지 확인")
-    void last_part_line() {
-        assertThat(partLines.get(partLines.size() - 1)).isFalse();
+    @Nested
+    @DisplayName("가로라인 중 첫 부분은 부분라인이 없는지 확인")
+    class LastPartLine {
+        @RepeatedTest(100)
+        void last_part_line() {
+            assertThat(partLines.get(0)).isFalse();
+        }
     }
     
 }
