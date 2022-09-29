@@ -19,7 +19,7 @@ class LadderFactoryTest {
     @BeforeEach
     void setUp() {
         playerNames = Arrays.asList(new Player(new PlayerName("pobi")), new Player(new PlayerName("honux")), new Player(new PlayerName("jun")), new Player(new PlayerName("crong")));
-        ;
+        
         partLines = IntStream.range(0, playerNames.size())
                 .mapToObj(count -> new PartLine(false))
                 .collect(Collectors.toList());
