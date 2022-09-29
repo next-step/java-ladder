@@ -1,5 +1,11 @@
 package ladder.step2.view.output;
 
-public class ResultView {
+import ladder.step2.domain.Ladder;
 
+public class ResultView {
+    
+    public static void ladderPrint(Ladder ladder) {
+        System.out.println();
+        System.out.println(ladder);
+    }
 }
