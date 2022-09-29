@@ -21,7 +21,7 @@ public class RandomLineCreateStrategy implements LineCreateStrategy {
     }
     
     private PartLine createPartLine(int index, List<PartLine> partLines) {
-        if (index == 0 ||  partLines.get(index - 1).equals(new PartLine(true))) {
+        if (index == 0 || partLines.get(index - 1).equals(new PartLine(true))) {
             return new PartLine(false);
         }
         

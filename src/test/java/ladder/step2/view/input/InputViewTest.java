@@ -2,6 +2,7 @@ package ladder.step2.view.input;
 
 import ladder.step2.domain.Player;
 import ladder.step2.domain.PlayerName;
+import ladder.step2.domain.Players;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,8 +20,9 @@ class InputViewTest {
     @Test
     @DisplayName("입력한 플레이어들의 객체를 반환받는다.")
     void inputPlayerNames() {
-        List<Player> players = InputView.inputPlayerNames("pobi, honux, jun,jk");
-        assertThat(players).isEqualTo(Arrays.asList(new Player(new PlayerName("pobi")), new Player(new PlayerName("honux")), new Player(new PlayerName("jun")), new Player(new PlayerName("jk"))));
+        Players players = InputView.inputPlayerNames("pobi, honux, jun,jk");
+        List<Player> playerList = Arrays.asList(new Player(new PlayerName("pobi")), new Player(new PlayerName("honux")), new Player(new PlayerName("jun")), new Player(new PlayerName("jk")));
+        assertThat(players).isEqualTo(new Players(playerList));
     }
     
     @Test

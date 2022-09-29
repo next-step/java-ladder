@@ -25,9 +25,9 @@ public class PartLine {
     @Override
     public String toString() {
         if (partLine) {
-            return "-----|";
+            return "--------|";
         }
         
-        return "     |";
+        return "        |";
     }
 }

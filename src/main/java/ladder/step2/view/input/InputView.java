@@ -2,6 +2,7 @@ package ladder.step2.view.input;
 
 import ladder.step2.domain.Player;
 import ladder.step2.domain.PlayerName;
+import ladder.step2.domain.Players;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,7 +22,7 @@ public class InputView {
     private static final String EMPTY = "";
     private static final String DELIMITER = ",";
     
-    public static List<Player> inputPlayerNames() {
+    public static Players inputPlayerNames() {
         try {
             System.out.println(PLAYER_NAMES_INPUT_MESSAGE);
             return inputPlayerNames(SCANNER.nextLine());
@@ -31,9 +32,9 @@ public class InputView {
         }
     }
     
-    public static List<Player> inputPlayerNames(String playerNames) {
+    public static Players inputPlayerNames(String playerNames) {
         checkAllPlayerNamesInputExceptionCase(playerNames);
-        return getPlayers(deleteSpace(playerNames));
+        return new Players(getPlayers(deleteSpace(playerNames)));
     }
     
     private static String deleteSpace(String playerNames) {

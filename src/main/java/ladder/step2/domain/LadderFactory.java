@@ -7,11 +7,11 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LadderFactory {
-    public static Ladder of(List<Player> playerNames, int ladderHeight, LineCreateStrategy lineCreateStrategy) {
+    public static Ladder of(Players playerNames, int ladderHeight, LineCreateStrategy lineCreateStrategy) {
         return new Ladder(getLines(playerNames, ladderHeight, lineCreateStrategy));
     }
     
-    private static List<Line> getLines(List<Player> playerNames, int ladderHeight, LineCreateStrategy lineCreateStrategy) {
+    private static List<Line> getLines(Players playerNames, int ladderHeight, LineCreateStrategy lineCreateStrategy) {
         return IntStream.range(0, ladderHeight)
                 .mapToObj(count -> lineCreateStrategy.addPartLine(playerNames.size()))
                 .map(Line::new)

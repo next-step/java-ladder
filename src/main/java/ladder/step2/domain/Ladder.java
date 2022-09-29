@@ -5,6 +5,9 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Ladder {
+    private static final String NEW_LINE = "\n";
+    private static final int FIRST_PART_LINE_LENGTH = 4;
+    
     private final List<Line> lines;
     
     public Ladder(List<Line> lines) {
@@ -28,6 +31,7 @@ public class Ladder {
     public String toString() {
         return lines.stream()
                 .map(Line::toString)
-                .collect(Collectors.joining("\n"));
+                .map(line -> line.substring(FIRST_PART_LINE_LENGTH))
+                .collect(Collectors.joining(NEW_LINE));
     }
 }

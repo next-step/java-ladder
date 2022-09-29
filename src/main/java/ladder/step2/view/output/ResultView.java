@@ -1,11 +1,22 @@
 package ladder.step2.view.output;
 
 import ladder.step2.domain.Ladder;
+import ladder.step2.domain.Players;
 
 public class ResultView {
     
-    public static void ladderPrint(Ladder ladder) {
+    private static final String RESULT_MESSAGE = "\n실행결과";
+    
+    public static void resultMessagePrint() {
+        System.out.println(RESULT_MESSAGE);
         System.out.println();
+    }
+    
+    public static void playerNamesPrint(Players players) {
+        System.out.println(players);
+    }
+    
+    public static void ladderPrint(Ladder ladder) {
         System.out.println(ladder);
     }
 }
