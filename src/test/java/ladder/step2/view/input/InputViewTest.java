@@ -3,6 +3,8 @@ package ladder.step2.view.input;
 import ladder.step2.domain.Player;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,11 +12,12 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 
 class InputViewTest {
+    private static final String INPUT_EXCEPTION_MESSAGE = "올바른 입력 형식이 아닙니다. 다시 입력해주세요.";
     
     @Test
     @DisplayName("입력한 플레이어들의 객체를 반환받는다.")
     void inputPlayerNames() {
-        List<Player> players = InputView.inputPlayerNames("pobi, jun, honux, jk");
+        List<Player> players = InputView.inputPlayerNames("pobi, jun, honux,jk");
         assertThat(players).isEqualTo(Arrays.asList(new Player("pobi"), new Player("jun"), new Player("honux"), new Player("jk")));
     }
     
@@ -23,7 +26,7 @@ class InputViewTest {
     void delimiterException() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> InputView.inputPlayerNames("pobi, jun, honux. jk"))
-                .withMessage("올바른 입력 형식이 아닙니다. 다시 입력해주세요.");
+                .withMessage(INPUT_EXCEPTION_MESSAGE);
     }
     
     @Test
@@ -31,7 +34,7 @@ class InputViewTest {
     void inputLengthException() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> InputView.inputPlayerNames("pobi, tjdtls, honux, jk"))
-                .withMessage("올바른 입력 형식이 아닙니다. 다시 입력해주세요.");
+                .withMessage(INPUT_EXCEPTION_MESSAGE);
     }
     
     @Test
@@ -39,6 +42,15 @@ class InputViewTest {
     void nonAlphabeticException() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> InputView.inputPlayerNames("pobi, jun, ho1ux, jk"))
-                .withMessage("올바른 입력 형식이 아닙니다. 다시 입력해주세요.");
+                .withMessage(INPUT_EXCEPTION_MESSAGE);
+    }
+    
+    @DisplayName("null or empty 입력 시 예외 던지기")
+    @ParameterizedTest(name = "{displayName} : {0}")
+    @NullAndEmptySource
+    void nullOrEmptyException(String input) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> InputView.inputPlayerNames(input))
+                .withMessage(INPUT_EXCEPTION_MESSAGE);
     }
 }
