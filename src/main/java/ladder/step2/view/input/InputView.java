@@ -16,9 +16,11 @@ public class InputView {
     private static final String SPACE = " ";
     private static final String EMPTY = "";
     private static final String DELIMITER = ",";
+    public static final String PLAYER_NAMES_INPUT_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     
     public static List<Player> inputPlayerNames() {
         try {
+            System.out.println(PLAYER_NAMES_INPUT_MESSAGE);
             return inputPlayerNames(SCANNER.nextLine());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -27,7 +29,7 @@ public class InputView {
     }
     
     public static List<Player> inputPlayerNames(String playerNames) {
-        checkAllExceptionCase(playerNames);
+        checkAllPlayerNamesInputExceptionCase(playerNames);
         return getPlayers(deleteSpace(playerNames));
     }
     
@@ -41,7 +43,7 @@ public class InputView {
                 .collect(Collectors.toList());
     }
     
-    private static void checkAllExceptionCase(String playerNames) {
+    private static void checkAllPlayerNamesInputExceptionCase(String playerNames) {
         checkNull(playerNames);
         checkPlayerNamesInputForm(playerNames);
     }
@@ -60,9 +62,13 @@ public class InputView {
     }
     
     public static int inputLadderHeight(String ladderHeight) {
+        checkAllLadderHeightInputExceptionCase(ladderHeight);
+        return Integer.parseInt(ladderHeight);
+    }
+    
+    private static void checkAllLadderHeightInputExceptionCase(String ladderHeight) {
         checkNull(ladderHeight);
         checkLadderHeightInputForm(ladderHeight);
-        return Integer.parseInt(ladderHeight);
     }
     
     private static void checkLadderHeightInputForm(String ladderHeight) {
