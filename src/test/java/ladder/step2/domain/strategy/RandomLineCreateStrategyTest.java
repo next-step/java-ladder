@@ -1,13 +1,15 @@
 package ladder.step2.domain.strategy;
 
 import ladder.step2.domain.PartLine;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.RepeatedTest;
 
 import java.util.List;
 import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class RandomLineCreateStrategyTest {
     private List<PartLine> partLines;

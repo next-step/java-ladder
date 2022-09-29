@@ -16,6 +16,13 @@ public class Players {
     }
     
     @Override
+    public String toString() {
+        return players.stream()
+                .map(Player::toString)
+                .collect(Collectors.joining());
+    }
+    
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -26,12 +33,5 @@ public class Players {
     @Override
     public int hashCode() {
         return Objects.hash(players);
-    }
-    
-    @Override
-    public String toString() {
-        return players.stream()
-                .map(Player::toString)
-                .collect(Collectors.joining());
     }
 }

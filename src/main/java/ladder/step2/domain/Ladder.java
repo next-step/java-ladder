@@ -15,6 +15,14 @@ public class Ladder {
     }
     
     @Override
+    public String toString() {
+        return lines.stream()
+                .map(Line::toString)
+                .map(line -> line.substring(FIRST_PART_LINE_LENGTH))
+                .collect(Collectors.joining(NEW_LINE));
+    }
+    
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -25,13 +33,5 @@ public class Ladder {
     @Override
     public int hashCode() {
         return Objects.hash(lines);
-    }
-    
-    @Override
-    public String toString() {
-        return lines.stream()
-                .map(Line::toString)
-                .map(line -> line.substring(FIRST_PART_LINE_LENGTH))
-                .collect(Collectors.joining(NEW_LINE));
     }
 }

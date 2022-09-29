@@ -14,12 +14,17 @@ public class PlayerName {
         this.playerName = playerName;
     }
     
+    private int getLeftSpaceLength() {
+        return getRightSpaceLength() + (TOTAL_NAME_LENGTH - playerName.length()) % 2 + playerName.length();
+    }
+    
     private int getRightSpaceLength() {
         return (TOTAL_NAME_LENGTH - playerName.length()) / 2;
     }
     
-    private int getLeftSpaceLength() {
-        return getRightSpaceLength() + (TOTAL_NAME_LENGTH - playerName.length()) % 2 + playerName.length();
+    @Override
+    public String toString() {
+        return String.format(String.format(PLAYER_NAME_PRINT_FORM, getLeftSpaceLength(), getRightSpaceLength()), playerName, EMPTY);
     }
     
     @Override
@@ -33,10 +38,5 @@ public class PlayerName {
     @Override
     public int hashCode() {
         return Objects.hash(playerName);
-    }
-    
-    @Override
-    public String toString() {
-        return String.format(String.format(PLAYER_NAME_PRINT_FORM, getLeftSpaceLength(), getRightSpaceLength()), playerName, EMPTY);
     }
 }
