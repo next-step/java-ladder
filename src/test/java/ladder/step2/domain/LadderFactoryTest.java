@@ -15,13 +15,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 class LadderFactoryTest {
     private List<Player> playerNames;
     private List<PartLine> partLines;
-    private PartLine falsePartLine;
     
     @BeforeEach
     void setUp() {
-        playerNames = Arrays.asList(new Player("pobi"), new Player("honux"), new Player("jun"), new Player("crong"));
-        falsePartLine = new PartLine(false);
-        partLines = IntStream.range(0, playerNames.size()).mapToObj(count -> falsePartLine).collect(Collectors.toList());
+        playerNames = Arrays.asList(new Player(new PlayerName("pobi")), new Player(new PlayerName("honux")), new Player(new PlayerName("jun")), new Player(new PlayerName("crong")));;
+        partLines = IntStream.range(0, playerNames.size()).mapToObj(count -> new PartLine(false)).collect(Collectors.toList());
     }
     
     @Test

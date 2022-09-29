@@ -2,10 +2,10 @@ package ladder.step2.domain;
 
 import java.util.Objects;
 
-public class Player {
-    private final PlayerName playerName;
+public class PlayerName {
+    private final String playerName;
     
-    public Player(PlayerName playerName) {
+    public PlayerName(String playerName) {
         this.playerName = playerName;
     }
     
@@ -13,8 +13,8 @@ public class Player {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Player player = (Player) o;
-        return Objects.equals(playerName, player.playerName);
+        PlayerName that = (PlayerName) o;
+        return Objects.equals(playerName, that.playerName);
     }
     
     @Override

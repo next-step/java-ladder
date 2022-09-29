@@ -13,24 +13,23 @@ import java.util.stream.IntStream;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderTest {
-    private List<Player> playerNames;
     private List<PartLine> partLines;
-    private PartLine falsePartLine;
+    private Ladder ladder;
     
     @BeforeEach
     void setUp() {
-        playerNames = Arrays.asList(new Player("pobi"), new Player("honux"), new Player("jun"), new Player("crong"));
-        falsePartLine = new PartLine(false);
-        partLines = IntStream.range(0, playerNames.size()).mapToObj(count -> falsePartLine).collect(Collectors.toList());
+        List<Player> playerNames = Arrays.asList(new Player(new PlayerName("pobi")), new Player(new PlayerName("honux")), new Player(new PlayerName("jun")), new Player(new PlayerName("crong")));
+        
+        partLines = IntStream.range(0, playerNames.size()).mapToObj(count -> new PartLine(false)).collect(Collectors.toList());
+        ladder = LadderFactory.of(playerNames, 5, countOfPlayers -> partLines);
     }
     
     @Test
     @DisplayName("사다리 생성")
     void create() {
-        Ladder ladder = LadderFactory.of(playerNames, 5, countOfPlayers -> partLines);
         List<Line> lines = IntStream.range(0, 5)
                 .mapToObj(count -> new Line(partLines))
                 .collect(Collectors.toList());
-        assertThat(ladder).isEqualTo(new Ladder(lines));
+        assertThat(new Ladder(lines)).isEqualTo(ladder);
     }
 }

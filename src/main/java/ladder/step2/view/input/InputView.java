@@ -1,6 +1,7 @@
 package ladder.step2.view.input;
 
 import ladder.step2.domain.Player;
+import ladder.step2.domain.PlayerName;
 
 import java.util.Arrays;
 import java.util.List;
@@ -41,6 +42,7 @@ public class InputView {
     
     private static List<Player> getPlayers(String playerNames) {
         return Arrays.stream(playerNames.split(DELIMITER))
+                .map(PlayerName::new)
                 .map(Player::new)
                 .collect(Collectors.toList());
     }

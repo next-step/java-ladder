@@ -11,15 +11,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RandomLineCreateStrategyTest {
     private List<PartLine> partLines;
-    private PartLine truePartLine;
-    private PartLine falsePartLine;
     
     @BeforeEach
     void setUp() {
         RandomLineCreateStrategy randomLineCreateStrategy = new RandomLineCreateStrategy();
         partLines = randomLineCreateStrategy.addPartLine(5);
-        truePartLine = new PartLine(true);
-        falsePartLine = new PartLine(false);
     }
     
     @Nested
@@ -28,7 +24,7 @@ class RandomLineCreateStrategyTest {
         @RepeatedTest(100)
         void not_overlapping_lines() {
             IntStream.range(0, partLines.size() - 1)
-                    .forEach(index -> assertThat(partLines.get(index).equals(truePartLine) && partLines.get(index + 1).equals(truePartLine)).isFalse());
+                    .forEach(index -> assertThat(partLines.get(index).equals(new PartLine(true)) && partLines.get(index + 1).equals(new PartLine(true))).isFalse());
         }
     }
     
@@ -37,7 +33,7 @@ class RandomLineCreateStrategyTest {
     class LastPartLine {
         @RepeatedTest(100)
         void last_part_line() {
-            assertThat(partLines.get(0)).isEqualTo(falsePartLine);
+            assertThat(partLines.get(0)).isEqualTo(new PartLine(false));
         }
     }
 }
