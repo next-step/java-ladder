@@ -39,4 +39,11 @@ public class Line {
     public int hashCode() {
         return Objects.hash(partLines);
     }
+    
+    @Override
+    public String toString() {
+        return partLines.stream()
+                .map(PartLine::toString)
+                .collect(Collectors.joining());
+    }
 }

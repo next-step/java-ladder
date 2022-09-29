@@ -21,4 +21,13 @@ public class PartLine {
     public int hashCode() {
         return Objects.hash(partLine);
     }
+    
+    @Override
+    public String toString() {
+        if (partLine) {
+            return "-----|";
+        }
+        
+        return "     |";
+    }
 }

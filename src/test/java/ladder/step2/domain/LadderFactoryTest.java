@@ -13,12 +13,12 @@ import java.util.stream.IntStream;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderFactoryTest {
-    private List<String> playerNames;
+    private List<Player> playerNames;
     private PartLine falsePartLine;
     
     @BeforeEach
     void setUp() {
-        playerNames = new ArrayList<>(Arrays.asList("pobi", "honux", "jun", "crong"));
+        playerNames = Arrays.asList(new Player("pobi"), new Player("honux"), new Player("jun"), new Player("crong"));
         falsePartLine = new PartLine(false);
     }
     
