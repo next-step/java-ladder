@@ -33,4 +33,12 @@ class InputViewTest {
                 .isThrownBy(() -> InputView.inputPlayerNames("pobi, tjdtls, honux, jk"))
                 .withMessage("올바른 입력 형식이 아닙니다. 다시 입력해주세요.");
     }
+    
+    @Test
+    @DisplayName("알파벳이 아닌 경우 예외 던지기")
+    void nonAlphabeticException() {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> InputView.inputPlayerNames("pobi, jun, ho1ux, jk"))
+                .withMessage("올바른 입력 형식이 아닙니다. 다시 입력해주세요.");
+    }
 }

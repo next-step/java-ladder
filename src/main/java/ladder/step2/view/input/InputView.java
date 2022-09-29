@@ -48,8 +48,4 @@ public class InputView {
     private static String deleteSpace(String playerNames) {
         return playerNames.replace(SPACE, EMPTY);
     }
-    
-    public static void main(String[] args) {
-        System.out.println(inputPlayerNames());
-    }
 }
