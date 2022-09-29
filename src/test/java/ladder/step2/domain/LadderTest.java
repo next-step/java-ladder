@@ -14,18 +14,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderTest {
     private List<String> playerNames;
+    private PartLine falsePartLine;
     
     @BeforeEach
     void setUp() {
         playerNames = new ArrayList<>(Arrays.asList("pobi", "honux", "jun", "crong"));
+        falsePartLine = new PartLine(false);
     }
     
     @Test
     @DisplayName("사다리 생성")
     void create() {
-        Ladder ladder = LadderFactory.of(playerNames, 5, (partLines, countOfPlayers) -> partLines.add(false));
+        Ladder ladder = LadderFactory.of(playerNames, 5, (partLines, countOfPlayers) -> partLines.add(falsePartLine));
         List<Line> lines = IntStream.range(0, 5)
-                .mapToObj(count -> new Line(playerNames.size(), (partLines, countOfPlayers) -> partLines.add(false)))
+                .mapToObj(count -> new Line(playerNames.size(), (partLines, countOfPlayers) -> partLines.add(falsePartLine)))
                 .collect(Collectors.toList());
         assertThat(ladder).isEqualTo(new Ladder(lines));
     }

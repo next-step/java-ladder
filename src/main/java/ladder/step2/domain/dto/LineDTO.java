@@ -1,15 +1,17 @@
 package ladder.step2.domain.dto;
 
+import ladder.step2.domain.PartLine;
+
 import java.util.List;
 
 public class LineDTO {
-    private final List<Boolean> partLines;
+    private final List<PartLine> partLines;
     
-    public LineDTO(List<Boolean> partLines) {
+    public LineDTO(List<PartLine> partLines) {
         this.partLines = partLines;
     }
     
-    public List<Boolean> getPartLines() {
+    public List<PartLine> getPartLines() {
         return partLines;
     }
 }

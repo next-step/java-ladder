@@ -7,15 +7,11 @@ import ladder.step2.domain.strategy.RandomLineCreateStrategy;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Line {
-    private final List<Boolean> partLines;
-    
-    public Line(int countOfPlayers) {
-        this(countOfPlayers, new RandomLineCreateStrategy());
-                
-    }
+    private final List<PartLine> partLines;
     
     public Line(int countOfPlayers, LineCreateStrategy lineCreateStrategy) {
         this.partLines = new ArrayList<>();
