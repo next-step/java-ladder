@@ -23,7 +23,7 @@ class InputViewTest {
     
     @Test
     @DisplayName("구분자가 쉼표가 아니면 예외 던지기")
-    void delimiterException() {
+    void inputPlayerNamesDelimiterException() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> InputView.inputPlayerNames("pobi, jun, honux. jk"))
                 .withMessage(INPUT_EXCEPTION_MESSAGE);
@@ -31,7 +31,7 @@ class InputViewTest {
     
     @Test
     @DisplayName("입력한 이름의 글자 5자 초과 시 예외 던지기")
-    void inputLengthException() {
+    void inputPlayerNamesLengthException() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> InputView.inputPlayerNames("pobi, tjdtls, honux, jk"))
                 .withMessage(INPUT_EXCEPTION_MESSAGE);
@@ -39,7 +39,7 @@ class InputViewTest {
     
     @Test
     @DisplayName("알파벳이 아닌 경우 예외 던지기")
-    void nonAlphabeticException() {
+    void inputPlayerNamesNonAlphabeticException() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> InputView.inputPlayerNames("pobi, jun, ho1ux, jk"))
                 .withMessage(INPUT_EXCEPTION_MESSAGE);
@@ -48,9 +48,16 @@ class InputViewTest {
     @DisplayName("null or empty 입력 시 예외 던지기")
     @ParameterizedTest(name = "{displayName} : {0}")
     @NullAndEmptySource
-    void nullOrEmptyException(String input) {
+    void inputPlayerNamesNullOrEmptyException(String input) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> InputView.inputPlayerNames(input))
                 .withMessage(INPUT_EXCEPTION_MESSAGE);
+    }
+    
+    @Test
+    @DisplayName("최대 사다리의 높이 입력 값을 반환한다.")
+    void inputLadderHeight() {
+        int ladderHeight = InputView.inputLadderHeight("11");
+        assertThat(ladderHeight).isEqualTo(11);
     }
 }

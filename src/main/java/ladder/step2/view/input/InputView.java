@@ -58,4 +58,8 @@ public class InputView {
             throw new IllegalArgumentException(INPUT_EXCEPTION_MESSAGE);
         }
     }
+    
+    public static int inputLadderHeight(String ladderHeight) {
+        return Integer.parseInt(ladderHeight);
+    }
 }
