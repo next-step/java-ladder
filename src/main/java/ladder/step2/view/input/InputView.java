@@ -43,7 +43,7 @@ public class InputView {
     
     private static void checkAllExceptionCase(String playerNames) {
         checkNull(playerNames);
-        checkInputForm(playerNames);
+        checkPlayerNamesInputForm(playerNames);
     }
     
     private static void checkNull(String playerNames) {
@@ -52,7 +52,7 @@ public class InputView {
         }
     }
     
-    private static void checkInputForm(String playerNames) {
+    private static void checkPlayerNamesInputForm(String playerNames) {
         Matcher matcher = Pattern.compile(PLAYER_NAMES_INPUT_FORM).matcher(playerNames);
         if (!matcher.matches()) {
             throw new IllegalArgumentException(INPUT_EXCEPTION_MESSAGE);
@@ -60,6 +60,14 @@ public class InputView {
     }
     
     public static int inputLadderHeight(String ladderHeight) {
+        checkLadderHeightInputForm(ladderHeight);
         return Integer.parseInt(ladderHeight);
+    }
+    
+    private static void checkLadderHeightInputForm(String ladderHeight) {
+        Matcher matcher = Pattern.compile("[1-9][0-9]*").matcher(ladderHeight);
+        if (!matcher.matches()) {
+            throw new IllegalArgumentException(INPUT_EXCEPTION_MESSAGE);
+        }
     }
 }

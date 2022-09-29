@@ -22,7 +22,7 @@ class InputViewTest {
     }
     
     @Test
-    @DisplayName("구분자가 쉼표가 아니면 예외 던지기")
+    @DisplayName("플레이어 이름 입력 시, 구분자가 쉼표가 아니면 예외 던지기")
     void inputPlayerNamesDelimiterException() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> InputView.inputPlayerNames("pobi, jun, honux. jk"))
@@ -30,7 +30,7 @@ class InputViewTest {
     }
     
     @Test
-    @DisplayName("입력한 이름의 글자 5자 초과 시 예외 던지기")
+    @DisplayName("플레이어 이름 입력 시, 한 플레이어 이름의 글자 5자 초과 시 예외 던지기")
     void inputPlayerNamesLengthException() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> InputView.inputPlayerNames("pobi, tjdtls, honux, jk"))
@@ -38,14 +38,14 @@ class InputViewTest {
     }
     
     @Test
-    @DisplayName("알파벳이 아닌 경우 예외 던지기")
+    @DisplayName("플레이어 이름 입력 시, 알파벳이 아닌 경우 예외 던지기")
     void inputPlayerNamesNonAlphabeticException() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> InputView.inputPlayerNames("pobi, jun, ho1ux, jk"))
                 .withMessage(INPUT_EXCEPTION_MESSAGE);
     }
     
-    @DisplayName("null or empty 입력 시 예외 던지기")
+    @DisplayName("플레이어 이름 입력 시, null or empty 입력 시 예외 던지기")
     @ParameterizedTest(name = "{displayName} : {0}")
     @NullAndEmptySource
     void inputPlayerNamesNullOrEmptyException(String input) {
@@ -59,5 +59,13 @@ class InputViewTest {
     void inputLadderHeight() {
         int ladderHeight = InputView.inputLadderHeight("11");
         assertThat(ladderHeight).isEqualTo(11);
+    }
+    
+    @Test
+    @DisplayName("최대 사다리 높이 입력 시, 숫자가 아닌 값 입력 시 예외 던지기")
+    void inputLadderHeightNonNumberException() {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> InputView.inputLadderHeight("abc"))
+                .withMessage(INPUT_EXCEPTION_MESSAGE);
     }
 }
