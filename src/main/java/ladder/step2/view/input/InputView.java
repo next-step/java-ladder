@@ -60,6 +60,7 @@ public class InputView {
     }
     
     public static int inputLadderHeight(String ladderHeight) {
+        checkNull(ladderHeight);
         checkLadderHeightInputForm(ladderHeight);
         return Integer.parseInt(ladderHeight);
     }

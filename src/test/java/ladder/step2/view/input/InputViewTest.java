@@ -68,4 +68,13 @@ class InputViewTest {
                 .isThrownBy(() -> InputView.inputLadderHeight("abc"))
                 .withMessage(INPUT_EXCEPTION_MESSAGE);
     }
+    
+    @DisplayName("최대 사다리 높이 입력 시, null or empty 입력 시 예외 던지기")
+    @ParameterizedTest(name = "{displayName} : {0}")
+    @NullAndEmptySource
+    void inputLadderHeightNullOrEmptyException(String input) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> InputView.inputLadderHeight(input))
+                .withMessage(INPUT_EXCEPTION_MESSAGE);
+    }
 }
