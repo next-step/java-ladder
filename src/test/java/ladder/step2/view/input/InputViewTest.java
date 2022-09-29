@@ -87,4 +87,12 @@ class InputViewTest {
                 .isThrownBy(() -> InputView.inputLadderHeight(input))
                 .withMessage(INPUT_EXCEPTION_MESSAGE);
     }
+    
+    @Test
+    @DisplayName("최대 사다리 높이 입력 시, 음수를 입력 시 예외 던지기")
+    void inputLadderHeightNegativeNumberException() {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> InputView.inputLadderHeight("-2"))
+                .withMessage(INPUT_EXCEPTION_MESSAGE);
+    }
 }
