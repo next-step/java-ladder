@@ -5,5 +5,5 @@ import ladder.step2.domain.PartLine;
 import java.util.List;
 
 public interface LineCreateStrategy {
-    void addPartLine(List<PartLine> partLines, int countOfPlayers);
+    List<PartLine> addPartLine(int countOfPlayers);
 }

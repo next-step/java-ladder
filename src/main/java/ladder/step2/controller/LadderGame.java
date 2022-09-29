@@ -13,7 +13,13 @@ public class LadderGame {
     public void play() {
         List<Player> players = InputView.inputPlayerNames();
         int ladderHeight = InputView.inputLadderHeight();
-        Ladder ladder = LadderFactory.of(players, ladderHeight, new RandomLineCreateStrategy());
+    
+        Ladder ladder = createLadder(players, ladderHeight);
+    
         ResultView.ladderPrint(ladder);
+    }
+    
+    private Ladder createLadder(List<Player> players, int ladderHeight) {
+        return LadderFactory.of(players, ladderHeight, new RandomLineCreateStrategy());
     }
 }

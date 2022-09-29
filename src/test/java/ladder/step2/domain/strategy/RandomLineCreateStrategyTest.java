@@ -1,26 +1,25 @@
-package ladder.step2.domain;
+package ladder.step2.domain.strategy;
 
-import ladder.step2.domain.dto.LineDTO;
-import ladder.step2.domain.strategy.RandomLineCreateStrategy;
+import ladder.step2.domain.PartLine;
 import org.junit.jupiter.api.*;
 
 import java.util.List;
 import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
-class LineTest {
+class RandomLineCreateStrategyTest {
     private List<PartLine> partLines;
     private PartLine truePartLine;
     private PartLine falsePartLine;
     
     @BeforeEach
     void setUp() {
-        Line line = new Line(5, new RandomLineCreateStrategy());
-        LineDTO lineDTO = line.getLineInformation();
-        partLines = lineDTO.getPartLines();
-        falsePartLine = new PartLine(false);
+        RandomLineCreateStrategy randomLineCreateStrategy = new RandomLineCreateStrategy();
+        partLines = randomLineCreateStrategy.addPartLine(5);
         truePartLine = new PartLine(true);
+        falsePartLine = new PartLine(false);
     }
     
     @Nested
@@ -41,5 +40,4 @@ class LineTest {
             assertThat(partLines.get(0)).isEqualTo(falsePartLine);
         }
     }
-    
 }

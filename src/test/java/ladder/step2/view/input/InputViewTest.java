@@ -42,7 +42,7 @@ class InputViewTest {
     @DisplayName("플레이어 이름 입력 시, 알파벳이 아닌 경우 예외 던지기")
     void inputPlayerNamesNonAlphabeticException() {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> InputView.inputPlayerNames("pobi, jun, ho1ux, jk"))
+                .isThrownBy(() -> InputView.inputPlayerNames("pobi, jun, ho2ux, jk"))
                 .withMessage(INPUT_EXCEPTION_MESSAGE);
     }
     
