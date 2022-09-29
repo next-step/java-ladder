@@ -25,4 +25,12 @@ class InputViewTest {
                 .isThrownBy(() -> InputView.inputPlayerNames("pobi, jun, honux. jk"))
                 .withMessage("올바른 입력 형식이 아닙니다. 다시 입력해주세요.");
     }
+    
+    @Test
+    @DisplayName("입력한 이름의 글자 5자 초과 시 예외 던지기")
+    void inputLengthException() {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> InputView.inputPlayerNames("pobi, tjdtls, honux, jk"))
+                .withMessage("올바른 입력 형식이 아닙니다. 다시 입력해주세요.");
+    }
 }
