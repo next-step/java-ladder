@@ -31,7 +31,7 @@ class RandomLineCreateStrategyTest {
     }
     
     @Nested
-    @DisplayName("가로라인 중 첫 부분은 부분라인이 없는지 확인")
+    @DisplayName("가로라인 중 첫 부분은 공백 라인인지 확인")
     class LastPartLine {
         @RepeatedTest(100)
         void last_part_line() {

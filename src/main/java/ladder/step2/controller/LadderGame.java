@@ -11,13 +11,10 @@ public class LadderGame {
     public void play() {
         Players players = InputView.inputPlayerNames();
         int ladderHeight = InputView.inputLadderHeight();
-        
-        Ladder ladder = createLadder(players, ladderHeight);
-        
-        resultPrint(players, ladder);
+        resultPrint(players, createLadder(players, ladderHeight));
     }
     
-    private static void resultPrint(Players players, Ladder ladder) {
+    private void resultPrint(Players players, Ladder ladder) {
         ResultView.resultMessagePrint();
         ResultView.playerNamesPrint(players);
         ResultView.ladderPrint(ladder);
