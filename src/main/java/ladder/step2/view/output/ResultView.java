@@ -5,9 +5,10 @@ import ladder.step2.domain.Players;
 
 public class ResultView {
     
-    private static final String RESULT_MESSAGE = "\n실행결과";
+    private static final String RESULT_MESSAGE = "실행결과";
     
     public static void resultMessagePrint() {
+        System.out.println();
         System.out.println(RESULT_MESSAGE);
         System.out.println();
     }
