@@ -82,7 +82,7 @@ class InputViewTest {
                 .withMessage(INPUT_EXCEPTION_MESSAGE);
     }
     
-    @DisplayName("최대 사다리 높이 입력 시, null or empty 입력 시 예외 던지기")
+    @DisplayName("최대 사다리 높이 입력 시, 그냥 0 또는 두 자릿수 이상에서 첫번째 자리에 0을 입력 시 예외 던지기")
     @ParameterizedTest(name = "{displayName} : {0}")
     @ValueSource(strings = {"0", "04", "011"})
     void inputLadderHeightZeroException(String input) {
