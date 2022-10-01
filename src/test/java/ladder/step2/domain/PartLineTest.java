@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class PartLineTest {
     public static final PartLine TRUE = new PartLine(true);
@@ -13,5 +14,14 @@ public class PartLineTest {
     @DisplayName("부분 라인 생성")
     void create() {
         assertThat(TRUE).isNotNull();
+    }
+    
+    @Test
+    @DisplayName("부분 라인 존재 여부 확인")
+    void checkExist() {
+        assertAll(
+                () -> assertThat(TRUE.isExist()).isTrue(),
+                () -> assertThat(FALSE.isExist()).isFalse()
+        );
     }
 }
