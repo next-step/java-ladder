@@ -13,6 +13,10 @@ public class PartLine {
         this.partLine = partLine;
     }
     
+    public boolean isExist() {
+        return partLine;
+    }
+    
     @Override
     public String toString() {
         if (partLine) {

@@ -24,13 +24,13 @@ public class Line {
     }
     
     private void checkFirstPartLineExistException(List<PartLine> partLines) {
-        if (partLines.get(0).equals(new PartLine(true))) {
+        if (partLines.get(0).isExist()) {
             throw new IllegalArgumentException(FIRST_PART_LINE_EXIST_EXCEPTION_MESSAGE);
         }
     }
     
     private void checkPartLineOverlappingException(List<PartLine> partLines, int index) {
-        if (partLines.get(index).equals(new PartLine(true)) && partLines.get(index + 1).equals(new PartLine(true))) {
+        if (partLines.get(index).isExist() && partLines.get(index + 1).isExist()) {
             throw new IllegalArgumentException(LINE_OVERLAPPING_EXCEPTION_MESSAGE);
         }
     }
