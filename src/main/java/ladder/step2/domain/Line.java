@@ -16,18 +16,22 @@ public class Line {
     }
     
     private void checkPartLinesException(List<PartLine> partLines) {
+        checkFirstPartLineExistException(partLines);
+    
         for (int index = 0; index < partLines.size() - 1; index++) {
-            checkPartLineException(partLines, index);
+            checkPartLineOverlappingException(partLines, index);
         }
     }
     
-    private void checkPartLineException(List<PartLine> partLines, int index) {
-        if (partLines.get(index).equals(new PartLine(true)) && partLines.get(index + 1).equals(new PartLine(true))) {
-            throw new IllegalArgumentException(LINE_OVERLAPPING_EXCEPTION_MESSAGE);
-        }
-        
+    private void checkFirstPartLineExistException(List<PartLine> partLines) {
         if (partLines.get(0).equals(new PartLine(true))) {
             throw new IllegalArgumentException(FIRST_PART_LINE_EXIST_EXCEPTION_MESSAGE);
+        }
+    }
+    
+    private void checkPartLineOverlappingException(List<PartLine> partLines, int index) {
+        if (partLines.get(index).equals(new PartLine(true)) && partLines.get(index + 1).equals(new PartLine(true))) {
+            throw new IllegalArgumentException(LINE_OVERLAPPING_EXCEPTION_MESSAGE);
         }
     }
     
