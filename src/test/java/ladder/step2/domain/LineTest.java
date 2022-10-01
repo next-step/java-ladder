@@ -1,27 +1,21 @@
 package ladder.step2.domain;
 
-import ladder.step2.domain.strategy.RandomLineCreateStrategy;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class LineTest {
     public static final Line LINE = new Line(Arrays.asList(PartLineTest.FALSE, PartLineTest.TRUE, PartLineTest.FALSE, PartLineTest.TRUE, PartLineTest.FALSE));
     
-    @Nested
+    @Test
     @DisplayName("라인 생성 성공")
-    class CreateLineSuccess {
-        @RepeatedTest(100)
-        void create_line_success() {
-            Line line = new RandomLineCreateStrategy().createLine(5);
-            assertThat(line).isNotNull();
-        }
+    void create_line_success() {
+        assertThat(LINE).isNotNull();
     }
     
     @Test
