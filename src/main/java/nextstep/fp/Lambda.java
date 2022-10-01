@@ -35,12 +35,9 @@ public class Lambda {
     }
 
     private static int sumWithCondition(List<Integer> numbers, LambdaCondition condition) {
-        int total = 0;
-        for (int number : numbers) {
-            if (condition.satisfy(number)) {
-                total += number;
-            }
-        }
-        return total;
+        return numbers.stream()
+            .filter(condition::satisfy)
+            .reduce(Integer::sum)
+            .orElse(0);
     }
 }
