@@ -9,7 +9,7 @@ class LadderFactoryTest {
     @Test
     @DisplayName("사다리 생성")
     void create_ladder() {
-        Ladder ladder = LadderFactory.of(PlayersTest.PLAYERS, 5, countOfPlayers -> LineTest.LINE);
+        Ladder ladder = LadderFactory.of(4, 5, countOfPlayers -> LineTest.LINE);
         assertThat(ladder).isEqualTo(LadderTest.LADDER);
     }
 }

@@ -21,6 +21,6 @@ public class LadderGame {
     }
     
     private Ladder createLadder(Players players, int ladderHeight) {
-        return LadderFactory.of(players, ladderHeight, new RandomLineCreateStrategy());
+        return LadderFactory.of(players.size(), ladderHeight, new RandomLineCreateStrategy());
     }
 }
