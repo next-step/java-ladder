@@ -1,18 +1,15 @@
 package ladder.step2.view.input;
 
-import ladder.step2.domain.Player;
-import ladder.step2.domain.PlayerName;
 import ladder.step2.domain.Players;
+import ladder.step2.domain.PlayersTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.Arrays;
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class InputViewTest {
     private static final String INPUT_EXCEPTION_MESSAGE = "올바른 입력 형식이 아닙니다. 다시 입력해주세요.";
@@ -21,8 +18,7 @@ class InputViewTest {
     @DisplayName("입력한 플레이어들의 객체를 반환받는다.")
     void inputPlayerNames() {
         Players players = InputView.inputPlayerNames("pobi, honux, jun,jk");
-        List<Player> playerList = Arrays.asList(new Player(new PlayerName("pobi")), new Player(new PlayerName("honux")), new Player(new PlayerName("jun")), new Player(new PlayerName("jk")));
-        assertThat(players).isEqualTo(new Players(playerList));
+        assertThat(players).isEqualTo(PlayersTest.PLAYERS);
     }
     
     @Test

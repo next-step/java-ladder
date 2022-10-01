@@ -13,8 +13,7 @@ public class LadderFactory {
     
     private static List<Line> getLines(Players playerNames, int ladderHeight, LineCreateStrategy lineCreateStrategy) {
         return IntStream.range(0, ladderHeight)
-                .mapToObj(count -> lineCreateStrategy.addPartLine(playerNames.size()))
-                .map(Line::new)
+                .mapToObj(count -> lineCreateStrategy.createLine(playerNames.size()))
                 .collect(Collectors.toList());
     }
 }

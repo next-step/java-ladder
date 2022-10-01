@@ -1,9 +1,7 @@
 package ladder.step2.domain.strategy;
 
-import ladder.step2.domain.PartLine;
-
-import java.util.List;
+import ladder.step2.domain.Line;
 
 public interface LineCreateStrategy {
-    List<PartLine> addPartLine(int countOfPlayers);
+    Line createLine(int countOfPlayers);
 }

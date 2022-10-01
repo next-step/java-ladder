@@ -1,41 +1,20 @@
 package ladder.step2.domain.strategy;
 
-import ladder.step2.domain.PartLine;
-import org.junit.jupiter.api.BeforeEach;
+import ladder.step2.domain.Line;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.RepeatedTest;
 
-import java.util.List;
-import java.util.stream.IntStream;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 class RandomLineCreateStrategyTest {
-    private List<PartLine> partLines;
-    
-    @BeforeEach
-    void setUp() {
-        RandomLineCreateStrategy randomLineCreateStrategy = new RandomLineCreateStrategy();
-        partLines = randomLineCreateStrategy.addPartLine(5);
-    }
-    
     @Nested
-    @DisplayName("가로라인이 겹치지 않는지 확인")
-    class NotOverlappingLines {
+    @DisplayName("라인 생성 성공")
+    class CreateLineSuccess {
         @RepeatedTest(100)
-        void not_overlapping_lines() {
-            IntStream.range(0, partLines.size() - 1)
-                    .forEach(index -> assertThat(partLines.get(index).equals(new PartLine(true)) && partLines.get(index + 1).equals(new PartLine(true))).isFalse());
-        }
-    }
-    
-    @Nested
-    @DisplayName("가로라인 중 첫 부분은 공백 라인인지 확인")
-    class LastPartLine {
-        @RepeatedTest(100)
-        void last_part_line() {
-            assertThat(partLines.get(0)).isEqualTo(new PartLine(false));
+        void create_line_success() {
+            Line line = new RandomLineCreateStrategy().createLine(5);
+            assertThat(line).isNotNull();
         }
     }
 }

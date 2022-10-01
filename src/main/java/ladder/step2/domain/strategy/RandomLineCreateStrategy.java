@@ -1,5 +1,6 @@
 package ladder.step2.domain.strategy;
 
+import ladder.step2.domain.Line;
 import ladder.step2.domain.PartLine;
 
 import java.util.ArrayList;
@@ -9,10 +10,10 @@ import java.util.stream.IntStream;
 
 public class RandomLineCreateStrategy implements LineCreateStrategy {
     @Override
-    public List<PartLine> addPartLine(int countOfPlayers) {
+    public Line createLine(int countOfPlayers) {
         List<PartLine> partLines = new ArrayList<>();
         addPartLines(countOfPlayers, partLines);
-        return partLines;
+        return new Line(partLines);
     }
     
     private void addPartLines(int countOfPlayers, List<PartLine> partLines) {
