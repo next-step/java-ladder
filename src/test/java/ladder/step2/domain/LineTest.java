@@ -12,7 +12,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 
 public class LineTest {
-    public static final Line LINE = new RandomLineCreateStrategy().createLine(5);
+    public static final Line LINE = new Line(Arrays.asList(PartLineTest.FALSE, PartLineTest.TRUE, PartLineTest.FALSE, PartLineTest.TRUE, PartLineTest.FALSE));
     
     @Nested
     @DisplayName("라인 생성 성공")
