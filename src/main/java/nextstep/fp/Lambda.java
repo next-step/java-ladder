@@ -26,28 +26,10 @@ public class Lambda {
         }).start();
     }
 
-    public static int sumAll(final List<Integer> numbers) {
+    public static int sumAll(final List<Integer> numbers, final ConditionStrategy conditionStrategy) {
         int total = 0;
         for (int number : numbers) {
-            total += number;
-        }
-        return total;
-    }
-
-    public static int sumAllEven(final List<Integer> numbers, final ConditionStrategy condition) {
-        int total = 0;
-        for (int number : numbers) {
-            if (condition.condition(number)) {
-                total += number;
-            }
-        }
-        return total;
-    }
-
-    public static int sumAllOverThree(final List<Integer> numbers, final ConditionStrategy condition) {
-        int total = 0;
-        for (int number : numbers) {
-            if (condition.condition(number)) {
+            if (conditionStrategy.condition(number)) {
                 total += number;
             }
         }
