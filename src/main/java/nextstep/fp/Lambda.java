@@ -26,7 +26,7 @@ public class Lambda {
         }).start();
     }
 
-    public static int sumAll(List<Integer> numbers) {
+    public static int sumAll(final List<Integer> numbers) {
         int total = 0;
         for (int number : numbers) {
             total += number;
@@ -34,20 +34,20 @@ public class Lambda {
         return total;
     }
 
-    public static int sumAllEven(List<Integer> numbers) {
+    public static int sumAllEven(final List<Integer> numbers, final ConditionStrategy condition) {
         int total = 0;
         for (int number : numbers) {
-            if (number % 2 == 0) {
+            if (condition.condition(number)) {
                 total += number;
             }
         }
         return total;
     }
 
-    public static int sumAllOverThree(List<Integer> numbers) {
+    public static int sumAllOverThree(final List<Integer> numbers, final ConditionStrategy condition) {
         int total = 0;
         for (int number : numbers) {
-            if (number > 3) {
+            if (condition.condition(number)) {
                 total += number;
             }
         }
