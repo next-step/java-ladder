@@ -15,12 +15,7 @@ class CarTest {
     @Test
     void 정지() {
         Car car = new Car("pobi", 0);
-        Car actual = car.move(new MoveStrategy() {
-            @Override
-            public boolean isMovable() {
-                return false;
-            }
-        });
+        Car actual = car.move(() -> false);
         assertThat(actual).isEqualTo(new Car("pobi", 0));
     }
 }
