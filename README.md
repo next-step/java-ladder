@@ -31,7 +31,7 @@
     * Optional.ofNullable(user)을 활용해 User을 Optional로 생성하는 것이 가능하다.
     * Optional의 map(), filter() 메소드등을 활용해 필요한 데이터를 추출
     * Optional의 isPresent() 메소드 활용
-  * [ ] Users의 getUser() 메소드를 자바 8의 stream과 Optional을 활용해 구현한다.
+  * [x] Users의 getUser() 메소드를 자바 8의 stream과 Optional을 활용해 구현한다.
     *  Optional의 orElse() 메소드 활용해 구현한다.
   * [ ] Expression의 of 메소드를 Stream을 사용해 구현한다. 
     * Optional의 orElseThrow() 메소드 활용해 구현한다.
