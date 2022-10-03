@@ -15,7 +15,7 @@
   * List의 담긴 값 중 3보다 큰 수만을 더해야 한다.
   * [x] 변경되는 부분과, 변경되지 않는 부분의 코드를 분리한다. 
   * [x] 변경되는 부분을 인터페이스로 추출하고, 구현체를 람다를 사용해 익명 클래스로 구현한다. 
-* [ ] StreamStudyTest에서 map, reduce, filter를 실습한다.
+* [x] StreamStudyTest에서 map, reduce, filter를 실습한다.
   * [x] countWords를 filter로 구현한다.
   * [x] sumOverThreeAndDouble() 메서드를 구현한다.
     * List에 담긴 모든 숫자 중 3보다 큰 숫자를 2배한 후 총합을 구한다.
@@ -24,8 +24,8 @@
     * [x] 12자가 넘는 단어 중 길이가 긴 순서로 100개의 단어를 추출한다.
     * [x] 단어 중복을 허용하지 않는다. 즉, 서로 다른 단어 100개를 추출해야 한다.
     * [x] 추출한 100개의 단어를 출력한다. 모든 단어는 소문자로 출력해야 한다.
-* [ ] Optional 
-  * [ ] Optional을 사용해 ageIsInRange2()를 구현한다.
+* [x] Optional 
+  * [x] Optional을 사용해 ageIsInRange2()를 구현한다.
     * User의 ageIsInRange1() 메소드는 30살 이상, 45살 이하에 해당하는 User가 존재하는 경우 true를 반환하는 메소드이다.
     * 메소드 인자로 받은 User를 Optional로 생성하면 stream의 map, filter와 같은 메소드를 사용하는 것이 가능하다.
     * Optional.ofNullable(user)을 활용해 User을 Optional로 생성하는 것이 가능하다.
