@@ -1,7 +1,6 @@
 package nextstep.fp;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -10,24 +9,30 @@ import java.util.stream.Collectors;
 
 public class StreamStudy {
 
-    public static long countWords() throws IOException {
-        String contents = new String(Files.readAllBytes(Paths
-                .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
-        List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
+    private StreamStudy() {
+    }
 
-        long count = 0;
-        for (String w : words) {
-            if (w.length() > 12) count++;
-        }
-        return count;
+    public static long countWords() throws IOException {
+        String contents = Files.readString(Paths
+                .get("src/main/resources/fp/war-and-peace.txt"));
+        List<String> words = Arrays.asList(contents.split("\\P{L}+"));
+
+        return words.stream().filter(w -> w.length() > 12).count();
     }
 
     public static void printLongestWordTop100() throws IOException {
-        String contents = new String(Files.readAllBytes(Paths
-                .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
-        List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
+        String contents = Files.readString(Paths
+                .get("src/main/resources/fp/war-and-peace.txt"));
+        List<String> words = Arrays.asList(contents.split("\\P{L}+"));
 
-        // TODO 이 부분에 구현한다.
+        words.stream()
+                .filter(w -> w.length() > 12)
+                .distinct()
+                .sorted((a,b)->Integer.compare(b.length(), a.length()))
+                .limit(100)
+                .map(String::toLowerCase)
+                .forEach(System.out::println);
+
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
@@ -35,10 +40,15 @@ public class StreamStudy {
     }
 
     public static long sumAll(List<Integer> numbers) {
-        return numbers.stream().reduce(0, (x, y) -> x + y);
+        return numbers.stream().reduce(0, Integer::sum);
     }
 
+
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
-        return 0;
+        return numbers.stream()
+                .filter(n -> n > 3)
+                .map(n -> n * 2)
+                .reduce(0, Integer::sum);
     }
+
 }

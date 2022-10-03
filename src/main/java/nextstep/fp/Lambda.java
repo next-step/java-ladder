@@ -41,7 +41,7 @@ public class Lambda {
     private static int sumByCondition(List<Integer> numbers, SumCondition condition) {
         return numbers.stream()
                 .filter(condition::condition)
-                .reduce(Integer::sum).orElse(0);
+                .reduce(0, Integer::sum);
     }
 
 }
