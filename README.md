@@ -36,4 +36,4 @@
   * [x] Expression의 of 메소드를 Stream을 사용해 구현한다. 
     * Optional의 orElseThrow() 메소드 활용해 구현한다.
     * 일치하는 값 하나를 추출할 때 findFirst() 메소드를 활용 가능하다.
-  * [ ] UserTest의 테스트가 모두 pass해야 한다.
+  * [x] UserTest의 테스트가 모두 pass해야 한다.
