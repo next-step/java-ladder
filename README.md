@@ -33,7 +33,7 @@
     * Optional의 isPresent() 메소드 활용
   * [x] Users의 getUser() 메소드를 자바 8의 stream과 Optional을 활용해 구현한다.
     *  Optional의 orElse() 메소드 활용해 구현한다.
-  * [ ] Expression의 of 메소드를 Stream을 사용해 구현한다. 
+  * [x] Expression의 of 메소드를 Stream을 사용해 구현한다. 
     * Optional의 orElseThrow() 메소드 활용해 구현한다.
     * 일치하는 값 하나를 추출할 때 findFirst() 메소드를 활용 가능하다.
   * [ ] UserTest의 테스트가 모두 pass해야 한다.
