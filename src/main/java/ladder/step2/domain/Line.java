@@ -1,8 +1,9 @@
 package ladder.step2.domain;
 
+import ladder.step2.domain.dto.LineDTO;
+
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class Line {
     private static final String LINE_OVERLAPPING_EXCEPTION_MESSAGE = "부분 라인이 겹칩니다.";
@@ -35,11 +36,8 @@ public class Line {
         }
     }
     
-    @Override
-    public String toString() {
-        return partLines.stream()
-                .map(PartLine::toString)
-                .collect(Collectors.joining());
+    public LineDTO lineInformation() {
+        return new LineDTO(partLines);
     }
     
     @Override

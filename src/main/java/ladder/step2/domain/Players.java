@@ -1,5 +1,7 @@
 package ladder.step2.domain;
 
+import ladder.step2.domain.dto.PlayerNameDTO;
+
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -15,11 +17,10 @@ public class Players {
         return players.size();
     }
     
-    @Override
-    public String toString() {
+    public List<PlayerNameDTO> playerNamesInformation() {
         return players.stream()
-                .map(PlayerName::toString)
-                .collect(Collectors.joining());
+                .map(PlayerName::playerNameInformation)
+                .collect(Collectors.toList());
     }
     
     @Override

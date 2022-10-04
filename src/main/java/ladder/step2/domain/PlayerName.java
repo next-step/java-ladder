@@ -1,15 +1,12 @@
 package ladder.step2.domain;
 
+import ladder.step2.domain.dto.PlayerNameDTO;
+
 import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class PlayerName {
     private static final String PLAYER_NAME_LENGTH_EXCEPTION_MESSAGE = "플레이어 이름은 5자를 초과할 수 없습니다.";
-    private static final String PLAYER_NAME_PRINT_FORM = "%%%ds%%%ds";
-    private static final String EMPTY = "";
     private static final int PLAYER_NAME_MAX_LENGTH = 5;
-    private static final int TOTAL_NAME_LENGTH = 9;
     
     private final String playerName;
     
@@ -21,17 +18,8 @@ public class PlayerName {
         this.playerName = playerName;
     }
     
-    private int getLeftSpaceLength() {
-        return getRightSpaceLength() + (TOTAL_NAME_LENGTH - playerName.length()) % 2 + playerName.length();
-    }
-    
-    private int getRightSpaceLength() {
-        return (TOTAL_NAME_LENGTH - playerName.length()) / 2;
-    }
-    
-    @Override
-    public String toString() {
-        return String.format(String.format(PLAYER_NAME_PRINT_FORM, getLeftSpaceLength(), getRightSpaceLength()), playerName, EMPTY);
+    public PlayerNameDTO playerNameInformation() {
+        return new PlayerNameDTO(playerName);
     }
     
     @Override

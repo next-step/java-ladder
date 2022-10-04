@@ -1,25 +1,19 @@
 package ladder.step2.domain;
 
+import ladder.step2.domain.dto.LadderDTO;
+
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class Ladder {
-    private static final String NEW_LINE = "\n";
-    private static final int FIRST_PART_LINE_LENGTH = 4;
-    
     private final List<Line> lines;
     
     public Ladder(List<Line> lines) {
         this.lines = lines;
     }
     
-    @Override
-    public String toString() {
-        return lines.stream()
-                .map(Line::toString)
-                .map(line -> line.substring(FIRST_PART_LINE_LENGTH))
-                .collect(Collectors.joining(NEW_LINE));
+    public LadderDTO ladderInformation() {
+        return new LadderDTO(lines);
     }
     
     @Override

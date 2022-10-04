@@ -3,10 +3,6 @@ package ladder.step2.domain;
 import java.util.Objects;
 
 public class PartLine {
-    private static final String EIGHT_BAR = "--------";
-    private static final String VERTICAL_LINE = "|";
-    private static final String EIGHT_SPACE = "        ";
-    
     private final boolean partLine;
     
     public PartLine(boolean partLine) {
@@ -15,15 +11,6 @@ public class PartLine {
     
     public boolean isExist() {
         return partLine;
-    }
-    
-    @Override
-    public String toString() {
-        if (partLine) {
-            return EIGHT_BAR + VERTICAL_LINE;
-        }
-        
-        return EIGHT_SPACE + VERTICAL_LINE;
     }
     
     @Override
