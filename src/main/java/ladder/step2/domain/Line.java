@@ -12,21 +12,20 @@ public class Line {
     private final List<PartLine> partLines;
     
     public Line(List<PartLine> partLines) {
-        checkPartLinesException(partLines);
-        this.partLines = partLines;
-    }
-    
-    private void checkPartLinesException(List<PartLine> partLines) {
         checkFirstPartLineExistException(partLines);
-    
-        for (int index = 0; index < partLines.size() - 1; index++) {
-            checkPartLineOverlappingException(partLines, index);
-        }
+        checkPartLinesOverlappingException(partLines);
+        this.partLines = partLines;
     }
     
     private void checkFirstPartLineExistException(List<PartLine> partLines) {
         if (partLines.get(0).isExist()) {
             throw new IllegalArgumentException(FIRST_PART_LINE_EXIST_EXCEPTION_MESSAGE);
+        }
+    }
+    
+    private void checkPartLinesOverlappingException(List<PartLine> partLines) {
+        for (int index = 0; index < partLines.size() - 1; index++) {
+            checkPartLineOverlappingException(partLines, index);
         }
     }
     
