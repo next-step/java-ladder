@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-class PlayerNameTest {
+public class PlayerNameTest {
     public static final PlayerName JUN = new PlayerName("jun");
     public static final PlayerName POBI = new PlayerName("pobi");
     public static final PlayerName HONUX = new PlayerName("honux");
