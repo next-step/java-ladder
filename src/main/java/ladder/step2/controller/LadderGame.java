@@ -11,16 +11,14 @@ public class LadderGame {
     public void play() {
         Players players = InputView.inputPlayerNames();
         int ladderHeight = InputView.inputLadderHeight();
-        resultPrint(players, createLadder(players, ladderHeight));
+        
+        Ladder ladder = LadderFactory.of(players.size(), ladderHeight, new RandomLineCreateStrategy());
+        resultPrint(players, ladder);
     }
     
     private void resultPrint(Players players, Ladder ladder) {
         ResultView.resultMessagePrint();
         ResultView.playerNamesPrint(players);
         ResultView.ladderPrint(ladder);
-    }
-    
-    private Ladder createLadder(Players players, int ladderHeight) {
-        return LadderFactory.of(players.size(), ladderHeight, new RandomLineCreateStrategy());
     }
 }
