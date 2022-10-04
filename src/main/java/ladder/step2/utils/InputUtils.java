@@ -1,12 +1,10 @@
 package ladder.step2.utils;
 
-import ladder.step2.domain.Player;
 import ladder.step2.domain.PlayerName;
 import ladder.step2.domain.Players;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -28,10 +26,9 @@ public class InputUtils {
         return playerNames.replace(SPACE, EMPTY);
     }
     
-    private static List<Player> convertToPlayers(String playerNames) {
+    private static List<PlayerName> convertToPlayers(String playerNames) {
         return Arrays.stream(playerNames.split(DELIMITER))
                 .map(PlayerName::new)
-                .map(Player::new)
                 .collect(Collectors.toList());
     }
     
