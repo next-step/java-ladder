@@ -10,7 +10,6 @@ public class PlayerName {
     private static final String EMPTY = "";
     private static final int PLAYER_NAME_MAX_LENGTH = 5;
     private static final int TOTAL_NAME_LENGTH = 9;
-    private static final int TWO = 2;
     
     private final String playerName;
     
@@ -23,11 +22,11 @@ public class PlayerName {
     }
     
     private int getLeftSpaceLength() {
-        return getRightSpaceLength() + (TOTAL_NAME_LENGTH - playerName.length()) % TWO + playerName.length();
+        return getRightSpaceLength() + (TOTAL_NAME_LENGTH - playerName.length()) % 2 + playerName.length();
     }
     
     private int getRightSpaceLength() {
-        return (TOTAL_NAME_LENGTH - playerName.length()) / TWO;
+        return (TOTAL_NAME_LENGTH - playerName.length()) / 2;
     }
     
     @Override
