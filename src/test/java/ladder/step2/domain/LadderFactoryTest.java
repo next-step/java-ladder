@@ -1,5 +1,6 @@
 package ladder.step2.domain;
 
+import ladder.step2.dto.LadderHeightDTO;
 import ladder.step2fixture.domain.LineFixture;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,7 +11,7 @@ class LadderFactoryTest {
     @Test
     @DisplayName("사다리 생성")
     void create_ladder() {
-        Ladder ladder = LadderFactory.of(4, 5, countOfPlayers -> LineFixture.LINE);
+        Ladder ladder = LadderFactory.of(4, new LadderHeightDTO("5"), countOfPlayers -> LineFixture.LINE);
         assertThat(ladder).isNotNull();
     }
 }

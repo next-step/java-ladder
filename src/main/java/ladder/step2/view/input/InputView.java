@@ -1,7 +1,7 @@
 package ladder.step2.view.input;
 
+import ladder.step2.dto.LadderHeightDTO;
 import ladder.step2.domain.Players;
-import ladder.step2.utils.InputUtils;
 
 import java.util.Scanner;
 
@@ -13,17 +13,17 @@ public class InputView {
     public static Players inputPlayerNames() {
         try {
             System.out.println(PLAYER_NAMES_INPUT_MESSAGE);
-            return InputUtils.getPlayers(SCANNER.nextLine());
+            return new Players(SCANNER.nextLine());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputPlayerNames();
         }
     }
     
-    public static int inputLadderHeight() {
+    public static LadderHeightDTO inputLadderHeight() {
         try {
             System.out.println(LADDER_HEIGHT_INPUT_MESSAGE);
-            return InputUtils.getLadderHeight(SCANNER.nextLine());
+            return new LadderHeightDTO(SCANNER.nextLine());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputLadderHeight();
