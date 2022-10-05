@@ -1,4 +1,4 @@
-package ladder.step2.domain.dto;
+package ladder.step2.dto;
 
 public class PlayerNameDTO {
     private final String playerName;

@@ -1,7 +1,7 @@
 package ladder.step2.utils;
 
 import ladder.step2.domain.Players;
-import ladder.step2.domain.PlayersTest;
+import ladder.step2fixture.domain.PlayersFixture;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,7 +18,7 @@ class InputUtilsTest {
     @DisplayName("입력한 플레이어들의 객체를 반환받는다.")
     void inputPlayerNames() {
         Players players = InputUtils.getPlayers("pobi, honux, jun,jk");
-        assertThat(players).isEqualTo(PlayersTest.PLAYERS);
+        assertThat(players).isEqualTo(PlayersFixture.PLAYERS);
     }
     
     @Test

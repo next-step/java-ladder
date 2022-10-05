@@ -1,6 +1,6 @@
 package ladder.step2.domain;
 
-import ladder.step2.domain.dto.LadderDTO;
+import ladder.step2.dto.LadderDTO;
 
 import java.util.List;
 import java.util.Objects;

@@ -1,4 +1,4 @@
-package ladder.step2.domain.dto;
+package ladder.step2.dto;
 
 import ladder.step2.domain.Line;
 

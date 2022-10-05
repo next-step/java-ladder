@@ -1,6 +1,6 @@
 package ladder.step2.domain;
 
-import ladder.step2.domain.dto.PlayerNameDTO;
+import ladder.step2.dto.PlayerNameDTO;
 
 import java.util.Objects;
 

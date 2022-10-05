@@ -4,11 +4,9 @@ import ladder.step2.domain.Ladder;
 import ladder.step2.domain.Line;
 import ladder.step2.domain.PartLine;
 import ladder.step2.domain.Players;
-import ladder.step2.domain.dto.LadderDTO;
-import ladder.step2.domain.dto.LineDTO;
-import ladder.step2.domain.dto.PlayerNameDTO;
+import ladder.step2.dto.LineDTO;
+import ladder.step2.dto.PlayerNameDTO;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class ResultView {
