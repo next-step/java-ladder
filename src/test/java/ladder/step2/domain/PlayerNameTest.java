@@ -1,16 +1,17 @@
 package ladder.step2.domain;
 
-import ladder.step2fixture.domain.PlayerNameFixture;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
 public class PlayerNameTest {
+    public static final PlayerName JUN = new PlayerName("jun");
+    
     @Test
     @DisplayName("플레이어 이름 생성")
     void create() {
-        assertThat(PlayerNameFixture.JUN).isNotNull();
+        assertThat(PlayerNameTest.JUN).isNotNull();
     }
     
     @Test
@@ -23,6 +24,6 @@ public class PlayerNameTest {
     @Test
     @DisplayName("플레이어 이름 dto 생성")
     void player_name_dto() {
-        assertThat(PlayerNameFixture.JUN.playerNameInformation().getPlayerName()).isEqualTo("jun");
+        assertThat(PlayerNameTest.JUN.playerNameInformation().getPlayerName()).isEqualTo("jun");
     }
 }

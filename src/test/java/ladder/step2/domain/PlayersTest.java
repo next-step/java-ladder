@@ -1,7 +1,6 @@
 package ladder.step2.domain;
 
 import ladder.step2.dto.PlayerNameDTO;
-import ladder.step2fixture.domain.PlayersFixture;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,12 +14,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class PlayersTest {
+    public static final Players PLAYERS = new Players("pobi, honux, jun, jk");
+    
     private static final String INPUT_EXCEPTION_MESSAGE = "올바른 입력 형식이 아닙니다. 다시 입력해주세요.";
     
     @Test
     @DisplayName("여러 플레이어들의 일급 콜렉션 생성")
     void create() {
-        assertThat(PlayersFixture.PLAYERS).isNotNull();
+        assertThat(PlayersTest.PLAYERS).isNotNull();
     }
     
     @Test
@@ -71,7 +72,7 @@ public class PlayersTest {
     @Test
     @DisplayName("플레이어 이름들 DTO 리스트 데이터 확인")
     void player_names_dto() {
-        List<String> playerNames = PlayersFixture.PLAYERS.playerNamesInformation().stream()
+        List<String> playerNames = PlayersTest.PLAYERS.playerNamesInformation().stream()
                 .map(PlayerNameDTO::getPlayerName)
                 .collect(Collectors.toList());
         assertThat(playerNames).isEqualTo(Arrays.asList("pobi", "honux", "jun", "jk"));
@@ -80,7 +81,7 @@ public class PlayersTest {
     @Test
     @DisplayName("플레이어 이름들 DTO 리스트 데이터 확인")
     void player_names_size() {
-        int size = PlayersFixture.PLAYERS.size();
+        int size = PlayersTest.PLAYERS.size();
         assertThat(size).isEqualTo(4);
     }
 }
