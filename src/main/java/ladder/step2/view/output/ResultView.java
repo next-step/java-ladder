@@ -49,7 +49,7 @@ public class ResultView {
         ladder.ladderInformation().getLines().stream()
                 .map(Line::lineInformation)
                 .map(ResultView::linePrintForm)
-                .map(s -> s.substring(FIRST_PART_LINE_LENGTH))
+                .map(line -> line.substring(FIRST_PART_LINE_LENGTH))
                 .forEach(System.out::println);
     }
     
