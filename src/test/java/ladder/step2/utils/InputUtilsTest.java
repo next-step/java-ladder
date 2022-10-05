@@ -1,12 +1,17 @@
 package ladder.step2.utils;
 
 import ladder.step2.domain.Players;
+import ladder.step2.dto.PlayerNameDTO;
 import ladder.step2fixture.domain.PlayersFixture;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -18,7 +23,12 @@ class InputUtilsTest {
     @DisplayName("입력한 플레이어들의 객체를 반환받는다.")
     void inputPlayerNames() {
         Players players = InputUtils.getPlayers("pobi, honux, jun,jk");
-        assertThat(players).isEqualTo(PlayersFixture.PLAYERS);
+        List<PlayerNameDTO> playerNameDTOS = players.playerNamesInformation();
+        List<String> collect = playerNameDTOS.stream()
+                .map(PlayerNameDTO::getPlayerName)
+                .collect(Collectors.toList());
+        
+        assertThat(collect).isEqualTo(Arrays.asList("pobi", "honux", "jun", "jk"));
     }
     
     @Test
