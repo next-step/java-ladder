@@ -12,4 +12,10 @@ public class LadderTest {
     void create() {
         assertThat(LadderFixture.LADDER).isNotNull();
     }
+    
+    @Test
+    @DisplayName("LadderDTO 생성")
+    void ladder_dto() {
+        assertThat(LadderFixture.LADDER.ladderInformation()).isNotNull();
+    }
 }

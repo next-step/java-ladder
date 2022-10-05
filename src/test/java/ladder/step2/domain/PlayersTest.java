@@ -67,4 +67,20 @@ public class PlayersTest {
                 .isThrownBy(() -> new Players(input))
                 .withMessage(INPUT_EXCEPTION_MESSAGE);
     }
+    
+    @Test
+    @DisplayName("플레이어 이름들 DTO 리스트 데이터 확인")
+    void player_names_dto() {
+        List<String> playerNames = PlayersFixture.PLAYERS.playerNamesInformation().stream()
+                .map(PlayerNameDTO::getPlayerName)
+                .collect(Collectors.toList());
+        assertThat(playerNames).isEqualTo(Arrays.asList("pobi", "honux", "jun", "jk"));
+    }
+    
+    @Test
+    @DisplayName("플레이어 이름들 DTO 리스트 데이터 확인")
+    void player_names_size() {
+        int size = PlayersFixture.PLAYERS.size();
+        assertThat(size).isEqualTo(4);
+    }
 }

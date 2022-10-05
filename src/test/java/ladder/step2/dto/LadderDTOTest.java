@@ -12,4 +12,10 @@ class LadderDTOTest {
     void create() {
         assertThat(LadderDTOFixture.LADDER_DTO).isNotNull();
     }
+    
+    @Test
+    @DisplayName("LadderDTO 데이터 있는지 확인")
+    void is_exist_data() {
+        assertThat(LadderDTOFixture.LADDER_DTO.getLines()).isNotNull();
+    }
 }
