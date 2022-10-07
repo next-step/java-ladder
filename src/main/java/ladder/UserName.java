@@ -2,6 +2,7 @@ package ladder;
 
 public class UserName {
 
+    private static final int MAX_NAME_LENGTH = 5;
     private final String name;
 
     public UserName(String name) {
@@ -12,7 +13,7 @@ public class UserName {
     }
 
     private boolean isInvalidName(String name) {
-        return name == null || name.isBlank() || name.length() > 5;
+        return name == null || name.isBlank() || name.length() > MAX_NAME_LENGTH;
     }
 
 }
