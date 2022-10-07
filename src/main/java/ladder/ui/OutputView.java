@@ -7,6 +7,10 @@ import ladder.model.Users;
 public class OutputView {
 
     private static final int INTERVAL = 6;
+    private static final String LADDER_WITH_NO_SPACE = " ";
+    private static final String HORIZONTAL_UNIT = "-";
+    private static final String VERTICAL_UNIT = "|";
+
     public static void printLadder(Users users, Integer lineLength) {
         printName(users);
         System.out.println();
@@ -20,7 +24,7 @@ public class OutputView {
                 System.out.print(username);
                 continue;
             }
-            System.out.print(addDelimiter(INTERVAL - username.length()," ") + username);
+            System.out.print(addDelimiter(INTERVAL - username.length(), LADDER_WITH_NO_SPACE) + username);
         }
     }
 
@@ -32,12 +36,12 @@ public class OutputView {
                 String username = getNameOfUser(user);
                 LineUnit unit = user.getVerticalLine().getLineUnits().get(i);
                 if (j == 0 ){
-                    stringBuilder.append(addDelimiter(username.length()," ") + "|");
+                    stringBuilder.append(addDelimiter(username.length(),LADDER_WITH_NO_SPACE) + VERTICAL_UNIT);
                 }else{
                     if (unit.hasPrevious()) {
-                        stringBuilder.append(addDelimiter(INTERVAL-1,"-") + "|");
+                        stringBuilder.append(addDelimiter(INTERVAL-1, HORIZONTAL_UNIT) + VERTICAL_UNIT);
                     }else{
-                        stringBuilder.append(addDelimiter(INTERVAL-1," ") + "|");
+                        stringBuilder.append(addDelimiter(INTERVAL-1,LADDER_WITH_NO_SPACE) + VERTICAL_UNIT);
                     }
                 }
                 System.out.print(stringBuilder);
