@@ -25,7 +25,8 @@ public class InputView implements AutoCloseable {
 
     public List<String> getUser() throws IOException {
         System.out.printf(USER_NAME_ASK_QST, DEFAULT_DELIMITER);
-        return Arrays.stream(bufferedReader.readLine().split(DEFAULT_DELIMITER)).collect(Collectors.toList());
+        return Arrays.stream(bufferedReader.readLine().split(DEFAULT_DELIMITER))
+                .collect(Collectors.toList());
     }
 
     public Integer getVerticalLine() throws IOException {
