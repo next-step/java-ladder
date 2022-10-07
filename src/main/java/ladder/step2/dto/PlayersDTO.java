@@ -21,4 +21,8 @@ public class PlayersDTO {
     public List<PlayerDTO> getPlayerDTOS() {
         return playerDTOS;
     }
+    
+    public int size() {
+        return playerDTOS.size();
+    }
 }

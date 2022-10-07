@@ -3,6 +3,7 @@ package ladder.step2.view.input;
 import ladder.step2.domain.LadderResults;
 import ladder.step2.dto.LadderHeightDTO;
 import ladder.step2.domain.Players;
+import ladder.step2.dto.PlayersDTO;
 import ladder.step2.utils.StringUtils;
 
 import java.util.Scanner;
@@ -26,15 +27,15 @@ public class InputView {
         }
     }
     
-    public static LadderResults ladderResults() {
+    public static LadderResults ladderResults(PlayersDTO playersDTO) {
         try {
             System.out.println(LADDER_RESULTS_INPUT_MESSAGE);
             final String input = SCANNER.nextLine();
             checkBlankException(input);
-            return new LadderResults(input);
+            return new LadderResults(input, playersDTO.size());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return ladderResults();
+            return ladderResults(playersDTO);
         }
     }
     
