@@ -29,7 +29,7 @@ public class InputView {
     public static LadderResults ladderResults() {
         try {
             System.out.println(LADDER_RESULTS_INPUT_MESSAGE);
-            String input = SCANNER.nextLine();
+            final String input = SCANNER.nextLine();
             checkBlankException(input);
             return new LadderResults(input);
         } catch (IllegalArgumentException e) {
