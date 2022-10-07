@@ -1,6 +1,6 @@
 package ladder.service;
 
-import ladder.dto.HorizontalLine;
+import ladder.model.HorizontalLine;
 
 import java.util.List;
 

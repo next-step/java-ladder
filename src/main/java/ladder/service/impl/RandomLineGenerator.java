@@ -1,6 +1,6 @@
 package ladder.service.impl;
 
-import ladder.dto.HorizontalLine;
+import ladder.model.HorizontalLine;
 import ladder.model.LineUnit;
 import ladder.service.LineGenerator;
 

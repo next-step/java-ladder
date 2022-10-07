@@ -1,4 +1,4 @@
-package ladder.dto;
+package ladder.model;
 
 import ladder.model.LineUnit;
 
@@ -14,5 +14,9 @@ public class HorizontalLine {
 
     public List<LineUnit> getUnits() {
         return units;
+    }
+
+    public int size(){
+       return this.units.size();
     }
 }

@@ -28,4 +28,6 @@ public class LineUnit {
     public boolean canAddNext() {
         return previous == null && next == null;
     }
+
+
 }

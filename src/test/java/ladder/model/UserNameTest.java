@@ -1,4 +1,4 @@
-package ladder;
+package ladder.model;
 
 import ladder.model.UserName;
 import org.assertj.core.api.Assertions;
