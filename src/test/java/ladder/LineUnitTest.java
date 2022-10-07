@@ -1,5 +1,6 @@
 package ladder;
 
+import ladder.model.LineUnit;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

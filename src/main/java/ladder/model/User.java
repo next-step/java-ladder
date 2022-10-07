@@ -1,4 +1,4 @@
-package ladder;
+package ladder.model;
 
 public class User {
     private final UserName name;

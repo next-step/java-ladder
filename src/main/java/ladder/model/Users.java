@@ -1,4 +1,4 @@
-package ladder;
+package ladder.model;
 
 import nextstep.optional.User;
 
