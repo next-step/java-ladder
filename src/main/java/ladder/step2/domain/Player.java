@@ -26,14 +26,6 @@ public class Player {
         this.position = new Position(position);
     }
     
-    public PlayerName getPlayerName() {
-        return playerName;
-    }
-    
-    public Position getPosition() {
-        return position;
-    }
-    
     public void putLadderGameResult(final HashMap<String, String> ladderGameResults, final List<LineDTO> lineDTOS, final List<LadderResultDTO> ladderResultsDTOS) {
         move(lineDTOS);
         
@@ -46,5 +38,13 @@ public class Player {
         lineDTOS.stream()
                 .map(LineDTO::getPartLines)
                 .forEach(partLines -> this.position = position.move(partLines));
+    }
+    
+    public PlayerName getPlayerName() {
+        return playerName;
+    }
+    
+    public Position getPosition() {
+        return position;
     }
 }

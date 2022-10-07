@@ -46,14 +46,6 @@ public class Players {
         }
     }
     
-    public int size() {
-        return players.size();
-    }
-    
-    public List<Player> getPlayers() {
-        return players;
-    }
-    
     public LadderGameResults parseLadderGameResults(final LadderDTO ladderDto, final LadderResultsDTO ladderResultsDto) {
         HashMap<String, String> ladderGameResults = new HashMap<>();
         
@@ -61,5 +53,13 @@ public class Players {
             player.putLadderGameResult(ladderGameResults, ladderDto.getLineDTOS(), ladderResultsDto.getLadderResultsDTOS());
         }
         return new LadderGameResults(ladderGameResults);
+    }
+    
+    public int size() {
+        return players.size();
+    }
+    
+    public List<Player> getPlayers() {
+        return players;
     }
 }

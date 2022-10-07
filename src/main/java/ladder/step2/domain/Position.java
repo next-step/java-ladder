@@ -9,10 +9,6 @@ public class Position {
         this.position = position;
     }
     
-    public int getPosition() {
-        return position;
-    }
-    
     public Position move(final List<PartLine> partLines) {
         if (partLines.get(position).isExist()) {
             return new Position(position - 1);
@@ -22,5 +18,9 @@ public class Position {
             return new Position(position + 1);
         }
         return this;
+    }
+    
+    public int getPosition() {
+        return position;
     }
 }
