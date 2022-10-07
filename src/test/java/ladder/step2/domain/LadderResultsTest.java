@@ -31,4 +31,11 @@ class LadderResultsTest {
         assertThatIllegalArgumentException().isThrownBy(() -> new LadderResults(input))
                 .withMessage("올바른 입력 형식이 아닙니다. 다시 입력해주세요.");
     }
+    
+    @Test
+    @DisplayName("특수 문자 예외")
+    void special_characters_exception() {
+        assertThatIllegalArgumentException().isThrownBy(() -> new LadderResults("꽝, 5?00, 꽝, 3000"))
+                .withMessage("올바른 입력 형식이 아닙니다. 다시 입력해주세요.");
+    }
 }
