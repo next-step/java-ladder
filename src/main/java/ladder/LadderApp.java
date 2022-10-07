@@ -5,6 +5,7 @@ import ladder.model.Users;
 import ladder.service.LineGenerator;
 import ladder.service.impl.RandomLineGenerator;
 import ladder.ui.InputView;
+import ladder.ui.OutputView;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -20,9 +21,12 @@ public class LadderApp {
             Integer lineLength = inputView.getVerticalLine();
 
             List<HorizontalLine> horizontalLines = generator.generate(users.size(), lineLength);
-
             users.addLine(horizontalLines);
 
+            OutputView.printLadder(users,lineLength);
+
+        } catch (IllegalArgumentException e) {
+            throw new RuntimeException(e);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

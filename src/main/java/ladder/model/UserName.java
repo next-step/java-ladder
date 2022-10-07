@@ -16,4 +16,7 @@ public class UserName {
         return name == null || name.isBlank() || name.length() > MAX_NAME_LENGTH;
     }
 
+    public String getName() {
+        return name;
+    }
 }

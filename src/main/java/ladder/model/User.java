@@ -16,6 +16,7 @@ public class User {
         return verticalLine != null;
     }
 
-
-
+    public UserName getName() {
+        return name;
+    }
 }
