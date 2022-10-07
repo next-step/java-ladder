@@ -40,12 +40,12 @@ public class OutputView {
     }
 
     private static void printSingleLine(Users users, int index) {
-        for (int j = 0; j < users.size() ; j++){
+        for (int i = 0; i < users.size() ; i++){
             StringBuilder stringBuilder = new StringBuilder();
-            User user = users.getUsers().get(j);
+            User user = users.getUsers().get(i);
             String username = getNameOfUser(user);
             LineUnit unit = user.getVerticalLine().getLineUnits().get(index);
-            appendSingleLine(j, stringBuilder, username, unit);
+            appendSingleLine(i, stringBuilder, username, unit);
             System.out.print(stringBuilder);
         }
     }
