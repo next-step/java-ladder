@@ -16,7 +16,9 @@ public class RandomLineGenerator implements LineGenerator {
 
     @Override
     public List<HorizontalLine> generate(int numberOfUser, int length) {
-        return IntStream.range(0,length).mapToObj((idx)->createHorizontalLine(numberOfUser)).collect(Collectors.toList());
+        return IntStream.range(0,length)
+                .mapToObj((idx)->createHorizontalLine(numberOfUser))
+                .collect(Collectors.toList());
     }
 
     private HorizontalLine createHorizontalLine(int numberOfUser) {

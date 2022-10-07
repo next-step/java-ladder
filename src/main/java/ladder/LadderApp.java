@@ -10,11 +10,13 @@ import ladder.ui.OutputView;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class LadderApp {
 
-    static LineGenerator generator = getLineGenerator();
-
+    private static LineGenerator generator = getLineGenerator();
+    private static final Logger LOGGER = Logger.getLogger(LadderApp.class.getName());
     public static void main(String[] args) {
         try(InputView inputView = getInputView()){
             Users users = Users.createUsersWithName(inputView.getUser());
@@ -24,9 +26,8 @@ public class LadderApp {
             users.addLine(horizontalLines);
 
             OutputView.printLadder(users,lineLength);
-
         } catch (IllegalArgumentException e) {
-            throw new RuntimeException(e);
+            LOGGER.log(Level.SEVERE , "유효하지 않은 입력값입니다.", e);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
