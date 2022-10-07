@@ -26,31 +26,30 @@ public class Lambda {
         }).start();
     }
 
-    public static int sumAll(List<Integer> numbers) {
+    public static int sumAll(List<Integer> numbers, Conditional conditional) {
+        return sumOfFilteringNumber(numbers, conditional);
+    }
+
+    public static int sumAllEven(List<Integer> numbers, Conditional conditional) {
+        return sumOfFilteringNumber(numbers, conditional);
+    }
+
+    public static int sumAllOverThree(List<Integer> numbers, Conditional conditional) {
+        return sumOfFilteringNumber(numbers, conditional);
+    }
+
+    private static int sumOfFilteringNumber(List<Integer> numbers, Conditional conditional) {
         int total = 0;
         for (int number : numbers) {
-            total += number;
+            total += getConditionalNumber(number, conditional);
         }
         return total;
     }
 
-    public static int sumAllEven(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number % 2 == 0) {
-                total += number;
-            }
+    private static int getConditionalNumber(Integer number, Conditional conditional){
+        if(conditional.test(number)){
+            return number;
         }
-        return total;
-    }
-
-    public static int sumAllOverThree(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number > 3) {
-                total += number;
-            }
-        }
-        return total;
+        return  0;
     }
 }
