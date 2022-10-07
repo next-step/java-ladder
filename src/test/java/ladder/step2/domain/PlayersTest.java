@@ -1,20 +1,19 @@
 package ladder.step2.domain;
 
-import ladder.step2.dto.LadderDTOTest;
-import ladder.step2.dto.LadderResultsDTOTest;
-import ladder.step2.dto.PlayerDTO;
-import ladder.step2.dto.PlayersDTO;
+import ladder.step2.dto.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EmptySource;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class PlayersTest {
     public static final Players PLAYERS = new Players("pobi, honux, jun, jk");
@@ -97,9 +96,15 @@ public class PlayersTest {
     }
     
     @Test
-    @DisplayName("여러 플레이어들의 일급 콜렉션 생성")
+    @DisplayName("사다리 게임 최종 결과 계산하기")
     void parse_ladder_game_results() {
         LadderGameResults ladderGameResults = PLAYERS.parseLadderGameResults(LadderDTOTest.LADDER_DTO, LadderResultsDTOTest.LADDER_RESULTS_DTO);
-        assertThat(ladderGameResults).isNotNull();
+        final HashMap<String, String> ladderGameResultsActual = ladderGameResults.getLadderGameResults();
+        assertAll(
+                () -> assertThat(ladderGameResultsActual.get("pobi")).isEqualTo("5000"),
+                () -> assertThat(ladderGameResultsActual.get("honux")).isEqualTo("꽝"),
+                () -> assertThat(ladderGameResultsActual.get("jun")).isEqualTo("notebook"),
+                () -> assertThat(ladderGameResultsActual.get("jk")).isEqualTo("꽝")
+        );
     }
 }

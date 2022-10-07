@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class LadderGameResultsDTOTest {
+public class LadderGameResultsDTOTest {
     public static final LadderGameResultsDTO LADDER_GAME_RESULTS_DTO = new LadderGameResultsDTO(LadderGameResultsTest.LADDER_GAME_RESULTS);
     
     @Test
