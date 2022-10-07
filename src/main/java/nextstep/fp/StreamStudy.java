@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class StreamStudy {
 
@@ -29,7 +28,7 @@ public class StreamStudy {
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-        List<String> conditionalWords= words.stream()
+        List<String> conditionalWords = words.stream()
                 .filter(word -> word.length() > 12)
                 .sorted(Comparator.comparing(String::length).reversed())
                 .distinct()
@@ -37,8 +36,8 @@ public class StreamStudy {
                 .map(String::toLowerCase)
                 .collect(Collectors.toList());
 
-        for(int index = 0; index < conditionalWords.size(); index++){
-            System.out.println( ( index+1 ) + ". " + conditionalWords.get(index));
+        for (int index = 0; index < conditionalWords.size(); index++) {
+            System.out.println((index + 1) + ". " + conditionalWords.get(index));
         }
     }
 
