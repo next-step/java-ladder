@@ -2,10 +2,7 @@ package ladder.step2.controller;
 
 import ladder.step2.domain.*;
 import ladder.step2.domain.strategy.RandomLineCreateStrategy;
-import ladder.step2.dto.LadderDTO;
-import ladder.step2.dto.LadderHeightDTO;
-import ladder.step2.dto.LadderResultsDTO;
-import ladder.step2.dto.PlayersDTO;
+import ladder.step2.dto.*;
 import ladder.step2.view.input.InputView;
 import ladder.step2.view.output.ResultView;
 
@@ -18,11 +15,19 @@ public class LadderGame {
         final Ladder ladder = LadderFactory.of(players.size(), ladderHeight, new RandomLineCreateStrategy());
         final LadderGameResults ladderGameResults = players.parseLadderGameResults(new LadderDTO(ladder), new LadderResultsDTO(ladderResults));
         
-    
-        resultPrint(players, ladder, ladderResults);
+        ladderGameInformationPrint(players, ladder, ladderResults);
+        ladderGameResultsPrint(ladderGameResults);
     }
     
-    private void resultPrint(final Players players, final Ladder ladder, final LadderResults ladderResults) {
+    private void ladderGameResultsPrint(final LadderGameResults ladderGameResults) {
+        boolean isEnd = true;
+        while (isEnd) {
+            final String targetPlayer = InputView.inputTargetPlayer();
+            isEnd = ResultView.ladderGameResultsPrint(targetPlayer, new LadderGameResultsDTO(ladderGameResults));
+        }
+    }
+    
+    private void ladderGameInformationPrint(final Players players, final Ladder ladder, final LadderResults ladderResults) {
         ResultView.resultMessagePrint();
         ResultView.playerNamesPrint(new PlayersDTO(players));
         ResultView.ladderPrint(new LadderDTO(ladder));

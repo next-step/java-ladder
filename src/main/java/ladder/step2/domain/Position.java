@@ -1,8 +1,5 @@
 package ladder.step2.domain;
 
-import ladder.step2.dto.LadderResultDTO;
-
-import java.util.HashMap;
 import java.util.List;
 
 public class Position {

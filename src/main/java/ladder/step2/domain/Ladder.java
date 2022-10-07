@@ -1,7 +1,5 @@
 package ladder.step2.domain;
 
-import ladder.step2.dto.LadderResultsDTO;
-
 import java.util.List;
 
 public class Ladder {

@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class LadderGameResultsTest {
+public class LadderGameResultsTest {
     private static final HashMap<String, String> HASH_MAP = new HashMap<>();
     public static final LadderGameResults LADDER_GAME_RESULTS = new LadderGameResults(HASH_MAP);
     
