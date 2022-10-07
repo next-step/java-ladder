@@ -35,4 +35,10 @@ public class LineTest {
         assertThatIllegalArgumentException().isThrownBy(() -> new Line(partLines))
                 .withMessage("첫번째 부분 라인이 존재합니다.");
     }
+    
+    @Test
+    @DisplayName("라인 데이터 가져오기")
+    void get_part_lines() {
+        assertThat(LineTest.LINE.getPartLines()).isEqualTo(Arrays.asList(PartLineTest.FALSE, PartLineTest.TRUE, PartLineTest.FALSE, PartLineTest.TRUE, PartLineTest.FALSE));
+    }
 }

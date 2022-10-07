@@ -1,9 +1,8 @@
 package ladder.step2.view.output;
 
-import ladder.step2.domain.Ladder;
-import ladder.step2.domain.Line;
 import ladder.step2.domain.PartLine;
 import ladder.step2.domain.Players;
+import ladder.step2.dto.LadderDTO;
 import ladder.step2.dto.LineDTO;
 import ladder.step2.dto.PlayerNameDTO;
 
@@ -45,9 +44,8 @@ public class ResultView {
         return (TOTAL_NAME_LENGTH - playerName.length()) / 2;
     }
     
-    public static void ladderPrint(Ladder ladder) {
-        ladder.ladderInformation().getLines().stream()
-                .map(Line::lineInformation)
+    public static void ladderPrint(LadderDTO ladderDTO) {
+        ladderDTO.getLineDTOS().stream()
                 .map(ResultView::linePrintForm)
                 .map(line -> line.substring(FIRST_PART_LINE_LENGTH))
                 .forEach(System.out::println);

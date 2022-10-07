@@ -1,7 +1,5 @@
 package ladder.step2.domain;
 
-import ladder.step2.dto.LadderDTO;
-
 import java.util.List;
 
 public class Ladder {
@@ -11,7 +9,7 @@ public class Ladder {
         this.lines = lines;
     }
     
-    public LadderDTO ladderInformation() {
-        return new LadderDTO(lines);
+    public List<Line> getLines() {
+        return lines;
     }
 }

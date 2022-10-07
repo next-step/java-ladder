@@ -17,8 +17,8 @@ public class LadderTest {
     }
     
     @Test
-    @DisplayName("LadderDTO 생성")
-    void ladder_dto() {
-        assertThat(LadderTest.LADDER.ladderInformation()).isNotNull();
+    @DisplayName("사다리 데이터 가져오기")
+    void get_lines() {
+        assertThat(LadderTest.LADDER.getLines()).isEqualTo(Arrays.asList(LineTest.LINE, LineTest.LINE, LineTest.LINE, LineTest.LINE, LineTest.LINE));
     }
 }

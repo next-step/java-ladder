@@ -16,7 +16,7 @@ class PlayerNameDTOTest {
     }
     
     @Test
-    @DisplayName("PlayerNameDTO 데이터 있는지 확인")
+    @DisplayName("PlayerNameDTO 데이터 가져오기")
     void is_exist_data() {
         assertThat(PlayerNameDTOTest.PLAYER_NAME_DTO_JUN.getPlayerName()).isNotNull();
     }

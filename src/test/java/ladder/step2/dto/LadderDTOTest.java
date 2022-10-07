@@ -1,13 +1,16 @@
 package ladder.step2.dto;
 
 import ladder.step2.domain.LadderTest;
+import ladder.step2.domain.LineTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderDTOTest {
-    public static final LadderDTO LADDER_DTO = new LadderDTO(LadderTest.LADDER.ladderInformation().getLines());
+    public static final LadderDTO LADDER_DTO = new LadderDTO(LadderTest.LADDER);
     
     @Test
     @DisplayName("LadderDTO 생성")
@@ -16,8 +19,8 @@ class LadderDTOTest {
     }
     
     @Test
-    @DisplayName("LadderDTO 데이터 있는지 확인")
-    void is_exist_data() {
-        assertThat(LadderDTOTest.LADDER_DTO.getLines()).isNotNull();
+    @DisplayName("LadderDTO 데이터 가져오기")
+    void get_line_dtos() {
+        assertThat(LadderDTOTest.LADDER_DTO.getLineDTOS()).isNotNull();
     }
 }

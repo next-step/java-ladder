@@ -1,7 +1,5 @@
 package ladder.step2.domain;
 
-import ladder.step2.dto.LineDTO;
-
 import java.util.List;
 
 public class Line {
@@ -34,7 +32,7 @@ public class Line {
         }
     }
     
-    public LineDTO lineInformation() {
-        return new LineDTO(partLines);
+    public List<PartLine> getPartLines() {
+        return partLines;
     }
 }
