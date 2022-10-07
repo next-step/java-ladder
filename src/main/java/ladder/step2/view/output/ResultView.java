@@ -4,8 +4,10 @@ import ladder.step2.domain.PartLine;
 import ladder.step2.domain.Players;
 import ladder.step2.dto.LadderDTO;
 import ladder.step2.dto.LineDTO;
-import ladder.step2.dto.PlayerNameDTO;
+import ladder.step2.dto.PlayerDTO;
+import ladder.step2.dto.PlayersDTO;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class ResultView {
@@ -24,9 +26,9 @@ public class ResultView {
         System.out.println();
     }
     
-    public static void playerNamesPrint(Players players) {
-        players.playerNamesInformation().stream()
-                .map(PlayerNameDTO::getPlayerName)
+    public static void playerNamesPrint(PlayersDTO playersDTO) {
+        playersDTO.getPlayerDTOS().stream()
+                .map(PlayerDTO::getPlayerName)
                 .map(ResultView::playerNameOutputFormat)
                 .forEach(System.out::print);
         System.out.println();

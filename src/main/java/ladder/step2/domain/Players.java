@@ -1,6 +1,6 @@
 package ladder.step2.domain;
 
-import ladder.step2.dto.PlayerNameDTO;
+import ladder.step2.dto.PlayerDTO;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,13 +15,13 @@ public class Players {
     private static final String EMPTY = "";
     private static final String DELIMITER = ",";
     
-    private final List<PlayerName> players;
+    private final List<Player> players;
     
     public Players(String playerNames) {
         this.players = parsePlayers(playerNames);
     }
     
-    private List<PlayerName> parsePlayers(String playerNames) {
+    private List<Player> parsePlayers(String playerNames) {
         checkAllPlayerNamesInputExceptionCase(playerNames);
         return convertToPlayers(deleteSpace(playerNames));
     }
@@ -30,9 +30,9 @@ public class Players {
         return playerNames.replace(SPACE, EMPTY);
     }
     
-    private List<PlayerName> convertToPlayers(String playerNames) {
+    private List<Player> convertToPlayers(String playerNames) {
         return Arrays.stream(playerNames.split(DELIMITER))
-                .map(PlayerName::new)
+                .map(Player::new)
                 .collect(Collectors.toList());
     }
     
@@ -58,9 +58,7 @@ public class Players {
         return players.size();
     }
     
-    public List<PlayerNameDTO> playerNamesInformation() {
-        return players.stream()
-                .map(PlayerName::playerNameInformation)
-                .collect(Collectors.toList());
+    public List<Player> getPlayers() {
+        return players;
     }
 }

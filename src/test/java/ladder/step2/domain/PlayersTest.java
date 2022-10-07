@@ -1,6 +1,7 @@
 package ladder.step2.domain;
 
-import ladder.step2.dto.PlayerNameDTO;
+import ladder.step2.dto.PlayerDTO;
+import ladder.step2.dto.PlayersDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -21,16 +22,14 @@ public class PlayersTest {
     @Test
     @DisplayName("여러 플레이어들의 일급 콜렉션 생성")
     void create() {
-        assertThat(PlayersTest.PLAYERS).isNotNull();
+        assertThat(PLAYERS).isNotNull();
     }
     
     @Test
     @DisplayName("입력한 플레이어들의 객체를 반환받는다.")
     void inputPlayerNames() {
-        Players players = new Players("pobi, honux, jun,jk");
-        List<PlayerNameDTO> playerNameDTOS = players.playerNamesInformation();
-        List<String> collect = playerNameDTOS.stream()
-                .map(PlayerNameDTO::getPlayerName)
+        List<String> collect = new PlayersDTO(PLAYERS).getPlayerDTOS().stream()
+                .map(PlayerDTO::getPlayerName)
                 .collect(Collectors.toList());
         
         assertThat(collect).isEqualTo(Arrays.asList("pobi", "honux", "jun", "jk"));
@@ -72,8 +71,8 @@ public class PlayersTest {
     @Test
     @DisplayName("플레이어 이름들 DTO 리스트 데이터 확인")
     void player_names_dto() {
-        List<String> playerNames = PlayersTest.PLAYERS.playerNamesInformation().stream()
-                .map(PlayerNameDTO::getPlayerName)
+        List<String> playerNames = new PlayersDTO(PLAYERS).getPlayerDTOS().stream()
+                .map(PlayerDTO::getPlayerName)
                 .collect(Collectors.toList());
         assertThat(playerNames).isEqualTo(Arrays.asList("pobi", "honux", "jun", "jk"));
     }
@@ -81,7 +80,16 @@ public class PlayersTest {
     @Test
     @DisplayName("플레이어 이름들 DTO 리스트 데이터 확인")
     void player_names_size() {
-        int size = PlayersTest.PLAYERS.size();
+        int size = PLAYERS.size();
         assertThat(size).isEqualTo(4);
+    }
+    
+    @Test
+    @DisplayName("플레이어 이름들 DTO 리스트 데이터 확인")
+    void get_players() {
+        final List<String> PlayerNames = PLAYERS.getPlayers().stream()
+                .map(Player::getPlayerName)
+                .collect(Collectors.toList());
+        assertThat(PlayerNames).isEqualTo(Arrays.asList("pobi", "honux", "jun", "jk"));
     }
 }

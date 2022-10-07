@@ -13,12 +13,18 @@ public class LadderTest {
     @Test
     @DisplayName("사다리 생성")
     void create() {
-        assertThat(LadderTest.LADDER).isNotNull();
+        assertThat(LADDER).isNotNull();
     }
     
     @Test
     @DisplayName("사다리 데이터 가져오기")
     void get_lines() {
-        assertThat(LadderTest.LADDER.getLines()).isEqualTo(Arrays.asList(LineTest.LINE, LineTest.LINE, LineTest.LINE, LineTest.LINE, LineTest.LINE));
+        assertThat(LADDER.getLines()).isEqualTo(Arrays.asList(LineTest.LINE, LineTest.LINE, LineTest.LINE, LineTest.LINE, LineTest.LINE));
+    }
+    
+    @Test
+    @DisplayName("사다리 게임 결과를 구하기")
+    void ladder_game_result() {
+    
     }
 }

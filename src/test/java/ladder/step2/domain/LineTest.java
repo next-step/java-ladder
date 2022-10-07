@@ -15,7 +15,7 @@ public class LineTest {
     @Test
     @DisplayName("라인 생성 성공")
     void create_line_success() {
-        assertThat(LineTest.LINE).isNotNull();
+        assertThat(LINE).isNotNull();
     }
     
     @Test
@@ -39,6 +39,6 @@ public class LineTest {
     @Test
     @DisplayName("라인 데이터 가져오기")
     void get_part_lines() {
-        assertThat(LineTest.LINE.getPartLines()).isEqualTo(Arrays.asList(PartLineTest.FALSE, PartLineTest.TRUE, PartLineTest.FALSE, PartLineTest.TRUE, PartLineTest.FALSE));
+        assertThat(LINE.getPartLines()).isEqualTo(Arrays.asList(PartLineTest.FALSE, PartLineTest.TRUE, PartLineTest.FALSE, PartLineTest.TRUE, PartLineTest.FALSE));
     }
 }

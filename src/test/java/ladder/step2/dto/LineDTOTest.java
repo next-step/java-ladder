@@ -12,12 +12,12 @@ class LineDTOTest {
     @Test
     @DisplayName("LineDTO 생성")
     void create() {
-        assertThat(LineDTOTest.LINE_DTO).isNotNull();
+        assertThat(LINE_DTO).isNotNull();
     }
     
     @Test
     @DisplayName("LineDTO 데이터 가져오기")
     void is_exist_data() {
-        assertThat(LineDTOTest.LINE_DTO.getPartLines()).isNotNull();
+        assertThat(LINE_DTO.getPartLines()).isNotNull();
     }
 }

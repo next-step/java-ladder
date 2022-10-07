@@ -15,12 +15,12 @@ class LadderDTOTest {
     @Test
     @DisplayName("LadderDTO 생성")
     void create() {
-        assertThat(LadderDTOTest.LADDER_DTO).isNotNull();
+        assertThat(LADDER_DTO).isNotNull();
     }
     
     @Test
     @DisplayName("LadderDTO 데이터 가져오기")
     void get_line_dtos() {
-        assertThat(LadderDTOTest.LADDER_DTO.getLineDTOS()).isNotNull();
+        assertThat(LADDER_DTO.getLineDTOS()).isNotNull();
     }
 }
