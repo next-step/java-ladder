@@ -22,23 +22,22 @@ public class RandomLineGenerator implements LineGenerator {
     private HorizontalLine createHorizontalLine(int numberOfUser) {
         List<LineUnit> units = new ArrayList<>();
         for (int i = 0 ; i < numberOfUser ; i++){
-            addUnit(units, i);
+            units.add(getUnit(units, i));
         }
         return new HorizontalLine(units);
     }
 
-    private void addUnit(List<LineUnit> units, int index) {
+    private LineUnit getUnit(List<LineUnit> units, int index) {
         LineUnit unit = new LineUnit();
         if (index == 0){
-            units.add(unit);
-            return;
+            return unit;
         }
         LineUnit previousUnit = units.get(index - 1);
         if (!previousUnit.canAddNext() || random.nextBoolean()){
-            units.add(unit);
-            return;
+            return unit;
         }
         previousUnit.addNext(unit);
+        return unit;
     }
 
 

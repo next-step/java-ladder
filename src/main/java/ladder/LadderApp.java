@@ -1,23 +1,27 @@
 package ladder;
 
-import ladder.model.User;
+import ladder.model.HorizontalLine;
 import ladder.model.Users;
 import ladder.service.LineGenerator;
 import ladder.service.impl.RandomLineGenerator;
 import ladder.ui.InputView;
 
-import javax.sound.sampled.Line;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.List;
 
 public class LadderApp {
+
+    static LineGenerator generator = getLineGenerator();
 
     public static void main(String[] args) {
         try(InputView inputView = getInputView()){
             Users users = Users.createUsersWithName(inputView.getUser());
             Integer lineLength = inputView.getVerticalLine();
 
-            LineGenerator generator = getLineGenerator();
+            List<HorizontalLine> horizontalLines = generator.generate(users.size(), lineLength);
+
+            users.addLine(horizontalLines);
 
         } catch (Exception e) {
             throw new RuntimeException(e);

@@ -21,7 +21,7 @@ public class Users {
     }
 
     public int size(){
-        return this.size();
+        return this.users.size();
     }
 
     public void addLine(List<HorizontalLine> horizontalLine) {
