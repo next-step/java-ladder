@@ -18,7 +18,7 @@ public class LineUnit {
         if (unit.hasPrevious() || this.hasNext()){
             throw new IllegalArgumentException("이미 설정된 값이 존재합니다.");
         }
-        if (canAddNext()){
+        if (!canAddNext()){
             throw new IllegalStateException("가로라인은 중복될 수 없습니다.");
         }
         this.next = unit;
