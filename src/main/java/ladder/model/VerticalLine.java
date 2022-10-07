@@ -9,4 +9,8 @@ public class VerticalLine {
     public VerticalLine(List<LineUnit> lineUnits) {
         this.lineUnits = lineUnits;
     }
+
+    public List<LineUnit> getLineUnits() {
+        return lineUnits;
+    }
 }

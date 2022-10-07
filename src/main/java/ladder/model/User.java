@@ -19,4 +19,8 @@ public class User {
     public UserName getName() {
         return name;
     }
+
+    public VerticalLine getVerticalLine() {
+        return verticalLine;
+    }
 }
