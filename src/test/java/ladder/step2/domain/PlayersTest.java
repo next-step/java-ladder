@@ -5,6 +5,7 @@ import ladder.step2.dto.PlayersDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EmptySource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import java.util.Arrays;
@@ -59,9 +60,9 @@ public class PlayersTest {
                 .withMessage(INPUT_EXCEPTION_MESSAGE);
     }
     
-    @DisplayName("플레이어 이름 입력 시, null or empty 입력 시 예외 던지기")
+    @DisplayName("플레이어 이름 입력 시, \"\" 입력 시 예외 던지기")
     @ParameterizedTest(name = "{displayName} : {0}")
-    @NullAndEmptySource
+    @EmptySource
     void inputPlayerNamesNullOrEmptyException(String input) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Players(input))

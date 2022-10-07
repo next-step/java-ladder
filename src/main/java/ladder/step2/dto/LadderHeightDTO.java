@@ -14,19 +14,8 @@ public class LadderHeightDTO {
     }
     
     private static int parseLadderHeight(String ladderHeight) {
-        checkAllLadderHeightInputExceptionCase(ladderHeight);
-        return Integer.parseInt(ladderHeight);
-    }
-    
-    private static void checkNull(String playerNames) {
-        if (playerNames == null) {
-            throw new IllegalArgumentException(INPUT_EXCEPTION_MESSAGE);
-        }
-    }
-    
-    private static void checkAllLadderHeightInputExceptionCase(String ladderHeight) {
-        checkNull(ladderHeight);
         checkLadderHeightInputForm(ladderHeight);
+        return Integer.parseInt(ladderHeight);
     }
     
     private static void checkLadderHeightInputForm(String ladderHeight) {

@@ -6,13 +6,9 @@ import ladder.step2.domain.Players;
 import ladder.step2.domain.strategy.RandomLineCreateStrategy;
 import ladder.step2.dto.LadderDTO;
 import ladder.step2.dto.LadderHeightDTO;
-import ladder.step2.dto.PlayerDTO;
 import ladder.step2.dto.PlayersDTO;
 import ladder.step2.view.input.InputView;
 import ladder.step2.view.output.ResultView;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class LadderGame {
     public void play() {

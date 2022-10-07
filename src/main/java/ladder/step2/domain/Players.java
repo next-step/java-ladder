@@ -1,7 +1,5 @@
 package ladder.step2.domain;
 
-import ladder.step2.dto.PlayerDTO;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -22,7 +20,7 @@ public class Players {
     }
     
     private List<Player> parsePlayers(String playerNames) {
-        checkAllPlayerNamesInputExceptionCase(playerNames);
+        checkPlayerNamesInputForm(playerNames);
         return convertToPlayers(deleteSpace(playerNames));
     }
     
@@ -34,17 +32,6 @@ public class Players {
         return Arrays.stream(playerNames.split(DELIMITER))
                 .map(Player::new)
                 .collect(Collectors.toList());
-    }
-    
-    private void checkAllPlayerNamesInputExceptionCase(String playerNames) {
-        checkNull(playerNames);
-        checkPlayerNamesInputForm(playerNames);
-    }
-    
-    private void checkNull(String playerNames) {
-        if (playerNames == null) {
-            throw new IllegalArgumentException(INPUT_EXCEPTION_MESSAGE);
-        }
     }
     
     private void checkPlayerNamesInputForm(String playerNames) {

@@ -3,6 +3,7 @@ package ladder.step2.dto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EmptySource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -27,9 +28,9 @@ class LadderHeightDTOTest {
                 .withMessage(INPUT_EXCEPTION_MESSAGE);
     }
     
-    @DisplayName("최대 사다리 높이 입력 시, null or empty 입력 시 예외 던지기")
+    @DisplayName("최대 사다리 높이 입력 시, \"\" 입력 시 예외 던지기")
     @ParameterizedTest(name = "{displayName} : {0}")
-    @NullAndEmptySource
+    @EmptySource
     void inputLadderHeightNullOrEmptyException(String input) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new LadderHeightDTO(input))
