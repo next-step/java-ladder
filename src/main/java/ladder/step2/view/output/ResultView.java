@@ -1,13 +1,8 @@
 package ladder.step2.view.output;
 
 import ladder.step2.domain.PartLine;
-import ladder.step2.domain.Players;
-import ladder.step2.dto.LadderDTO;
-import ladder.step2.dto.LineDTO;
-import ladder.step2.dto.PlayerDTO;
-import ladder.step2.dto.PlayersDTO;
+import ladder.step2.dto.*;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class ResultView {
@@ -29,21 +24,21 @@ public class ResultView {
     public static void playerNamesPrint(PlayersDTO playersDTO) {
         playersDTO.getPlayerDTOS().stream()
                 .map(PlayerDTO::getPlayerName)
-                .map(ResultView::playerNameOutputFormat)
+                .map(ResultView::outputFormat)
                 .forEach(System.out::print);
         System.out.println();
     }
     
-    private static String playerNameOutputFormat(String playerName) {
-        return String.format(String.format(PLAYER_NAME_PRINT_FORM, getLeftSpaceLength(playerName), getRightSpaceLength(playerName)), playerName, EMPTY);
+    private static String outputFormat(String output) {
+        return String.format(String.format(PLAYER_NAME_PRINT_FORM, getLeftSpaceLength(output), getRightSpaceLength(output)), output, EMPTY);
     }
     
-    private static int getLeftSpaceLength(String playerName) {
-        return getRightSpaceLength(playerName) + (TOTAL_NAME_LENGTH - playerName.length()) % 2 + playerName.length();
+    private static int getLeftSpaceLength(String output) {
+        return getRightSpaceLength(output) + (TOTAL_NAME_LENGTH - output.length()) % 2 + output.length();
     }
     
-    private static int getRightSpaceLength(String playerName) {
-        return (TOTAL_NAME_LENGTH - playerName.length()) / 2;
+    private static int getRightSpaceLength(String output) {
+        return (TOTAL_NAME_LENGTH - output.length()) / 2;
     }
     
     public static void ladderPrint(LadderDTO ladderDTO) {
@@ -66,5 +61,13 @@ public class ResultView {
         }
         
         return EIGHT_SPACE + VERTICAL_LINE;
+    }
+    
+    public static void ladderResultsPrint(final LadderResultsDTO ladderResultsDTO) {
+        ladderResultsDTO.getLadderResultsDTOS().stream()
+                .map(LadderResultDTO::getLadderResult)
+                .map(ResultView::outputFormat)
+                .forEach(System.out::print);
+        System.out.println();
     }
 }

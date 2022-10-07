@@ -11,6 +11,10 @@ public class LadderGameResults {
         this.ladderGameResults = ladderGameResults;
     }
     
+    public HashMap<String, String> getLadderGameResults() {
+        return ladderGameResults;
+    }
+    
     public String get(final String playerName) {
         if (!ladderGameResults.containsKey(playerName)) {
             throw new IllegalArgumentException(NOT_EXIST_PLAYER_NAME_EXCEPTION_MESSAGE);

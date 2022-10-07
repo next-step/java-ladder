@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class LadderGameResultsTest {
     private static final HashMap<String, String> HASH_MAP = new HashMap<>();
@@ -28,15 +27,8 @@ class LadderGameResultsTest {
     }
     
     @Test
-    @DisplayName("특정 플레이어의 결과 가져오기")
-    void get_specific_data() {
-        assertThat(LADDER_GAME_RESULTS.get("jun")).isEqualTo("notebook");
-    }
-    
-    @Test
-    @DisplayName("존재하지 않는 플레이어 예외")
-    void not_exist_player_exception() {
-        assertThatIllegalArgumentException().isThrownBy(() -> LADDER_GAME_RESULTS.get("ggg"))
-                .withMessage("존재하지 않는 플레이어입니다. 다시 입력해주세요.");
+    @DisplayName("사다리 게임 결과 데이터 가져오기")
+    void get_ladder_game_results() {
+        assertThat(LADDER_GAME_RESULTS.getLadderGameResults()).isEqualTo(HASH_MAP);
     }
 }

@@ -22,8 +22,10 @@ public class LadderResults {
     
     private List<LadderResult> parseLadderResults(final String input, final int playersSize) {
         checkLadderResultsInputForm(input);
+        
         final String[] split = split(input);
         checkCountOfLadderResults(split, playersSize);
+        
         return Arrays.stream(split)
                 .map(LadderResult::new)
                 .collect(Collectors.toList());
