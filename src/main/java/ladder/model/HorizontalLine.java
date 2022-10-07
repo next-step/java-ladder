@@ -1,7 +1,5 @@
 package ladder.model;
 
-import ladder.model.LineUnit;
-
 import java.util.List;
 
 public class HorizontalLine {
@@ -16,7 +14,7 @@ public class HorizontalLine {
         return units;
     }
 
-    public int size(){
-       return this.units.size();
+    public int size() {
+        return this.units.size();
     }
 }

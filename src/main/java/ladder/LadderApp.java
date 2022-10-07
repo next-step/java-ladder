@@ -15,19 +15,20 @@ import java.util.logging.Logger;
 
 public class LadderApp {
 
-    private static LineGenerator generator = getLineGenerator();
     private static final Logger LOGGER = Logger.getLogger(LadderApp.class.getName());
+    private static final LineGenerator generator = getLineGenerator();
+
     public static void main(String[] args) {
-        try(InputView inputView = getInputView()){
+        try (InputView inputView = getInputView()) {
             Users users = Users.createUsersWithName(inputView.getUser());
             Integer lineLength = inputView.getVerticalLine();
 
             List<HorizontalLine> horizontalLines = generator.generate(users.size(), lineLength);
             users.addLine(horizontalLines);
 
-            OutputView.printLadder(users,lineLength);
+            OutputView.printLadder(users, lineLength);
         } catch (IllegalArgumentException e) {
-            LOGGER.log(Level.SEVERE , "유효하지 않은 입력값입니다.", e);
+            LOGGER.log(Level.SEVERE, "유효하지 않은 입력값입니다.", e);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -37,7 +38,7 @@ public class LadderApp {
         return new InputView(new BufferedReader(new InputStreamReader(System.in)));
     }
 
-    private static LineGenerator getLineGenerator(){
+    private static LineGenerator getLineGenerator() {
         return new RandomLineGenerator();
     }
 }

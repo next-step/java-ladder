@@ -2,17 +2,16 @@ package ladder.service.impl;
 
 import ladder.model.HorizontalLine;
 import ladder.service.LineGenerator;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class RandomLineGeneratorTest {
 
     @Test
-    void shouldGenerateProperSizeOfLine(){
+    void shouldGenerateProperSizeOfLine() {
         LineGenerator generator = new RandomLineGenerator();
 
         List<HorizontalLine> result = generator.generate(2, 5);

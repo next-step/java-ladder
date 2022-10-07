@@ -16,14 +16,14 @@ public class RandomLineGenerator implements LineGenerator {
 
     @Override
     public List<HorizontalLine> generate(int numberOfUser, int length) {
-        return IntStream.range(0,length)
-                .mapToObj((idx)->createHorizontalLine(numberOfUser))
+        return IntStream.range(0, length)
+                .mapToObj((idx) -> createHorizontalLine(numberOfUser))
                 .collect(Collectors.toList());
     }
 
     private HorizontalLine createHorizontalLine(int numberOfUser) {
         List<LineUnit> units = new ArrayList<>();
-        for (int i = 0 ; i < numberOfUser ; i++){
+        for (int i = 0; i < numberOfUser; i++) {
             units.add(getUnit(units, i));
         }
         return new HorizontalLine(units);
@@ -31,11 +31,11 @@ public class RandomLineGenerator implements LineGenerator {
 
     private LineUnit getUnit(List<LineUnit> units, int index) {
         LineUnit unit = new LineUnit();
-        if (index == 0){
+        if (index == 0) {
             return unit;
         }
         LineUnit previousUnit = units.get(index - 1);
-        if (!previousUnit.canAddNext() || random.nextBoolean()){
+        if (!previousUnit.canAddNext() || random.nextBoolean()) {
             return unit;
         }
         previousUnit.addNext(unit);

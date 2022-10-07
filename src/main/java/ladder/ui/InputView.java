@@ -1,14 +1,12 @@
 package ladder.ui;
 
-import ladder.model.User;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class InputView implements AutoCloseable{
+public class InputView implements AutoCloseable {
 
 
     private static final String MAX_VERTICAL_LINE_LENGTH_QST = "최대 사다리 높이는 몇 개인가요?";
@@ -34,11 +32,11 @@ public class InputView implements AutoCloseable{
         return parseNumber(bufferedReader.readLine());
     }
 
-    private Integer parseNumber(String input){
-        try{
+    private Integer parseNumber(String input) {
+        try {
             return Integer.valueOf(input.trim());
-        }catch (NumberFormatException e){
-            throw new IllegalArgumentException("숫자만 입력이 가능합니다.",e);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("숫자만 입력이 가능합니다.", e);
         }
     }
 
