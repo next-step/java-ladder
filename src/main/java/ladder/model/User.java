@@ -16,4 +16,6 @@ public class User {
         return verticalLine != null;
     }
 
+
+
 }

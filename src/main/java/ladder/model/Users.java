@@ -3,6 +3,7 @@ package ladder.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Users {
 
@@ -10,6 +11,13 @@ public class Users {
 
     public Users(List<User> users){
         this.users = users;
+    }
+
+    public static Users createUsersWithName(List<String> names){
+        return new Users(names.stream()
+                .map(UserName::new)
+                .map(User::new)
+                .collect(Collectors.toList()));
     }
 
     public int size(){
