@@ -8,13 +8,19 @@ import org.junit.jupiter.params.provider.EmptySource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-class LadderResultsTest {
+public class LadderResultsTest {
     public static final LadderResults LADDER_RESULTS = new LadderResults("꽝, 5000, 꽝, notobook");
     
     @Test
     @DisplayName("사다리 실행 결과 생성")
     void create() {
         assertThat(LADDER_RESULTS).isNotNull();
+    }
+    
+    @Test
+    @DisplayName("사다리 실행 결과 생성")
+    void get_data() {
+        assertThat(LADDER_RESULTS.getLadderResults()).isNotNull();
     }
     
     @Test

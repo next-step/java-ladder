@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class LineTest {
-    public static final Line LINE = new Line(Arrays.asList(PartLineTest.FALSE, PartLineTest.TRUE, PartLineTest.FALSE, PartLineTest.TRUE, PartLineTest.FALSE));
+    public static final Line LINE = new Line(Arrays.asList(PartLineTest.FALSE, PartLineTest.TRUE, PartLineTest.FALSE, PartLineTest.TRUE));
     
     @Test
     @DisplayName("라인 생성 성공")
@@ -39,6 +39,6 @@ public class LineTest {
     @Test
     @DisplayName("라인 데이터 가져오기")
     void get_part_lines() {
-        assertThat(LINE.getPartLines()).isEqualTo(Arrays.asList(PartLineTest.FALSE, PartLineTest.TRUE, PartLineTest.FALSE, PartLineTest.TRUE, PartLineTest.FALSE));
+        assertThat(LINE.getPartLines()).isEqualTo(Arrays.asList(PartLineTest.FALSE, PartLineTest.TRUE, PartLineTest.FALSE, PartLineTest.TRUE));
     }
 }

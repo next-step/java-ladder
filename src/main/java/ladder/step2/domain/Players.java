@@ -1,10 +1,14 @@
 package ladder.step2.domain;
 
-import java.util.Arrays;
+import ladder.step2.dto.LadderDTO;
+import ladder.step2.dto.LadderResultsDTO;
+
+import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Players {
     private static final String INPUT_EXCEPTION_MESSAGE = "올바른 입력 형식이 아닙니다. 다시 입력해주세요.";
@@ -29,8 +33,9 @@ public class Players {
     }
     
     private List<Player> convertToPlayers(String playerNames) {
-        return Arrays.stream(playerNames.split(DELIMITER))
-                .map(Player::new)
+        final String[] split = playerNames.split(DELIMITER);
+        return IntStream.range(0, split.length)
+                .mapToObj(position -> new Player(split[position], position))
                 .collect(Collectors.toList());
     }
     
@@ -47,5 +52,14 @@ public class Players {
     
     public List<Player> getPlayers() {
         return players;
+    }
+    
+    public LadderGameResults parseLadderGameResults(final LadderDTO ladderDto, final LadderResultsDTO ladderResultsDto) {
+        HashMap<String, String> ladderGameResults = new HashMap<>();
+        
+        for (Player player : players) {
+            player.putLadderGameResult(ladderGameResults, ladderDto.getLineDTOS(), ladderResultsDto.getLadderResultsDTOS());
+        }
+        return new LadderGameResults(ladderGameResults);
     }
 }

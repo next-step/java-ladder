@@ -1,12 +1,13 @@
 package ladder.step2.domain;
 
+import ladder.step2.dto.LadderDTOTest;
+import ladder.step2.dto.LadderResultsDTOTest;
 import ladder.step2.dto.PlayerDTO;
 import ladder.step2.dto.PlayersDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EmptySource;
-import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import java.util.Arrays;
 import java.util.List;
@@ -90,7 +91,15 @@ public class PlayersTest {
     void get_players() {
         final List<String> PlayerNames = PLAYERS.getPlayers().stream()
                 .map(Player::getPlayerName)
+                .map(PlayerName::getPlayerName)
                 .collect(Collectors.toList());
         assertThat(PlayerNames).isEqualTo(Arrays.asList("pobi", "honux", "jun", "jk"));
+    }
+    
+    @Test
+    @DisplayName("여러 플레이어들의 일급 콜렉션 생성")
+    void parse_ladder_game_results() {
+        LadderGameResults ladderGameResults = PLAYERS.parseLadderGameResults(LadderDTOTest.LADDER_DTO, LadderResultsDTOTest.LADDER_RESULTS_DTO);
+        assertThat(ladderGameResults).isNotNull();
     }
 }
