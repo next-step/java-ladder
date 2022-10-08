@@ -3,8 +3,10 @@ package ladder.step2.domain;
 import ladder.step2.dto.LadderDTO;
 import ladder.step2.dto.LadderResultsDTO;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -47,7 +49,7 @@ public class Players {
     }
     
     public LadderGameResults parseLadderGameResults(final LadderDTO ladderDto, final LadderResultsDTO ladderResultsDto) {
-        HashMap<String, String> ladderGameResults = new HashMap<>();
+        Map<String, String> ladderGameResults = new HashMap<>();
         
         for (Player player : players) {
             player.putLadderGameResult(ladderGameResults, ladderDto.getLineDTOS(), ladderResultsDto.getLadderResultsDTOS());
@@ -60,6 +62,6 @@ public class Players {
     }
     
     public List<Player> getPlayers() {
-        return players;
+        return Collections.unmodifiableList(players);
     }
 }

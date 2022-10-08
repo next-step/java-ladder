@@ -1,5 +1,6 @@
 package ladder.step2.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Line {
@@ -33,6 +34,6 @@ public class Line {
     }
     
     public List<PartLine> getPartLines() {
-        return partLines;
+        return Collections.unmodifiableList(partLines);
     }
 }

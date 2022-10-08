@@ -1,15 +1,16 @@
 package ladder.step2.domain;
 
-import java.util.HashMap;
+import java.util.Collections;
+import java.util.Map;
 
 public class LadderGameResults {
-    private final HashMap<String, String> ladderGameResults;
+    private final Map<String, String> ladderGameResults;
     
-    public LadderGameResults(final HashMap<String, String> ladderGameResults) {
+    public LadderGameResults(final Map<String, String> ladderGameResults) {
         this.ladderGameResults = ladderGameResults;
     }
     
-    public HashMap<String, String> getLadderGameResults() {
-        return ladderGameResults;
+    public Map<String, String> getLadderGameResults() {
+        return Collections.unmodifiableMap(ladderGameResults);
     }
 }

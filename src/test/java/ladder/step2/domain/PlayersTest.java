@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.EmptySource;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -99,12 +100,19 @@ public class PlayersTest {
     @DisplayName("사다리 게임 최종 결과 계산하기")
     void parse_ladder_game_results() {
         LadderGameResults ladderGameResults = PLAYERS.parseLadderGameResults(LadderDTOTest.LADDER_DTO, LadderResultsDTOTest.LADDER_RESULTS_DTO);
-        final HashMap<String, String> ladderGameResultsActual = ladderGameResults.getLadderGameResults();
+        final Map<String, String> ladderGameResultsActual = ladderGameResults.getLadderGameResults();
         assertAll(
                 () -> assertThat(ladderGameResultsActual.get("pobi")).isEqualTo("5000"),
                 () -> assertThat(ladderGameResultsActual.get("honux")).isEqualTo("꽝"),
                 () -> assertThat(ladderGameResultsActual.get("jun")).isEqualTo("book"),
                 () -> assertThat(ladderGameResultsActual.get("jk")).isEqualTo("꽝")
         );
+    }
+    
+    @Test
+    @DisplayName("플레이어 이름 5자 초과시 예뢰")
+    void player_name_length_exception() {
+        assertThatIllegalArgumentException().isThrownBy(() -> new PlayerName("honuxs"))
+                .withMessage("플레이어 이름은 5자를 초과할 수 없습니다.");
     }
 }

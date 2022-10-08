@@ -4,6 +4,7 @@ import ladder.step2.domain.PartLine;
 import ladder.step2.dto.*;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ResultView {
@@ -78,7 +79,7 @@ public class ResultView {
     
     public static boolean ladderGameResultsPrint(final String targetPlayer, final LadderGameResultsDTO ladderGameResultsDTO) {
         System.out.println(FINAL_RESULT_MESSAGE);
-        final HashMap<String, String> ladderGameResults = ladderGameResultsDTO.getLadderGameResults();
+        final Map<String, String> ladderGameResults = ladderGameResultsDTO.getLadderGameResults();
         
         if (targetPlayer.equals(FINAL_INPUT)) {
             allPlayerResultsPrint(ladderGameResults);
@@ -88,7 +89,7 @@ public class ResultView {
         return true;
     }
     
-    private static void allPlayerResultsPrint(final HashMap<String, String> ladderGameResults) {
+    private static void allPlayerResultsPrint(final Map<String, String> ladderGameResults) {
         for (String player : ladderGameResults.keySet()) {
             System.out.printf(FINAL_RESULTS_PRINT_FORMAT, player, ladderGameResults.get(player));
         }

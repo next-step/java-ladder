@@ -3,13 +3,10 @@ package ladder.step2.domain;
 import ladder.step2.dto.LadderResultDTO;
 import ladder.step2.dto.LineDTO;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Player {
-    private static final String PLAYER_NAME_LENGTH_EXCEPTION_MESSAGE = "플레이어 이름은 5자를 초과할 수 없습니다.";
-    private static final int PLAYER_NAME_MAX_LENGTH = 5;
-    
     private final PlayerName playerName;
     private Position position;
     
@@ -18,15 +15,11 @@ public class Player {
     }
     
     public Player(String playerName, int position) {
-        if (playerName.length() > PLAYER_NAME_MAX_LENGTH) {
-            throw new IllegalArgumentException(PLAYER_NAME_LENGTH_EXCEPTION_MESSAGE);
-        }
-        
         this.playerName = new PlayerName(playerName);
         this.position = new Position(position);
     }
     
-    public void putLadderGameResult(final HashMap<String, String> ladderGameResults, final List<LineDTO> lineDTOS, final List<LadderResultDTO> ladderResultsDTOS) {
+    public void putLadderGameResult(final Map<String, String> ladderGameResults, final List<LineDTO> lineDTOS, final List<LadderResultDTO> ladderResultsDTOS) {
         move(lineDTOS);
         
         final String playerName = this.playerName.getPlayerName();

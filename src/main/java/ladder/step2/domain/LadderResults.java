@@ -1,6 +1,7 @@
 package ladder.step2.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -53,6 +54,6 @@ public class LadderResults {
     }
     
     public List<LadderResult> getLadderResults() {
-        return ladderResults;
+        return Collections.unmodifiableList(ladderResults);
     }
 }
