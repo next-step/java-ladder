@@ -99,7 +99,7 @@ public class PlayersTest {
     @Test
     @DisplayName("사다리 게임 최종 결과 계산하기")
     void parse_ladder_game_results() {
-        LadderGameResults ladderGameResults = PLAYERS.parseLadderGameResults(LadderDTOTest.LADDER_DTO, LadderResultsDTOTest.LADDER_RESULTS_DTO);
+        LadderGameResults ladderGameResults = PLAYERS.parseLadderGameResults(LadderTest.LADDER, LadderResultsTest.LADDER_RESULTS);
         final Map<String, String> ladderGameResultsActual = ladderGameResults.getLadderGameResults();
         assertAll(
                 () -> assertThat(ladderGameResultsActual.get("pobi")).isEqualTo("5000"),

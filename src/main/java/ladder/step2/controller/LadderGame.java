@@ -13,7 +13,7 @@ public class LadderGame {
         final LadderHeightDTO ladderHeight = InputView.inputLadderHeight();
         
         final Ladder ladder = LadderFactory.of(players.size(), ladderHeight, new RandomLineCreateStrategy());
-        final LadderGameResults ladderGameResults = players.parseLadderGameResults(new LadderDTO(ladder), new LadderResultsDTO(ladderResults));
+        final LadderGameResults ladderGameResults = players.parseLadderGameResults(ladder, ladderResults);
         
         ladderGameInformationPrint(players, ladder, ladderResults);
         ladderGameResultsPrint(ladderGameResults);

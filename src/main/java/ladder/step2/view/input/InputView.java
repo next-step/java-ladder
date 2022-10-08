@@ -1,8 +1,8 @@
 package ladder.step2.view.input;
 
 import ladder.step2.domain.LadderResults;
-import ladder.step2.dto.LadderHeightDTO;
 import ladder.step2.domain.Players;
+import ladder.step2.dto.LadderHeightDTO;
 import ladder.step2.dto.PlayersDTO;
 import ladder.step2.utils.StringUtils;
 

@@ -1,8 +1,5 @@
 package ladder.step2.domain;
 
-import ladder.step2.dto.LadderResultDTO;
-import ladder.step2.dto.LineDTO;
-
 import java.util.List;
 import java.util.Map;
 
@@ -19,25 +16,21 @@ public class Player {
         this.position = new Position(position);
     }
     
-    public void putLadderGameResult(final Map<String, String> ladderGameResults, final List<LineDTO> lineDTOS, final List<LadderResultDTO> ladderResultsDTOS) {
-        move(lineDTOS);
-        
+    public void putLadderGameResult(final Map<String, String> ladderGameResults, final LadderResults ladderResults) {
         final String playerName = this.playerName.getPlayerName();
-        final LadderResultDTO ladderResultDTO = ladderResultsDTOS.get(position.getPosition());
-        ladderGameResults.put(playerName, ladderResultDTO.getLadderResult());
+        final List<LadderResult> ladderResultsData = ladderResults.getLadderResults();
+        final LadderResult ladderResult = ladderResultsData.get(position.getPosition());
+        
+        ladderGameResults.put(playerName, ladderResult.getLadderResult());
     }
     
-    private void move(final List<LineDTO> lineDTOS) {
-        lineDTOS.stream()
-                .map(LineDTO::getPartLines)
+    public void move(final List<Line> line) {
+        line.stream()
+                .map(Line::getPartLines)
                 .forEach(partLines -> this.position = position.move(partLines));
     }
     
     public PlayerName getPlayerName() {
         return playerName;
-    }
-    
-    public Position getPosition() {
-        return position;
     }
 }

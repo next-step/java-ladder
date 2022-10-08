@@ -19,4 +19,11 @@ class PositionTest {
     void get_position() {
         assertThat(POSITION.getPosition()).isEqualTo(2);
     }
+    
+    @Test
+    @DisplayName("이동하기")
+    void move() {
+        final Position move = POSITION.move(LineTest.LINE.getPartLines());
+        assertThat(move.getPosition()).isEqualTo(3);
+    }
 }

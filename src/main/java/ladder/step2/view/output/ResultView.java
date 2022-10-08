@@ -3,7 +3,6 @@ package ladder.step2.view.output;
 import ladder.step2.domain.PartLine;
 import ladder.step2.dto.*;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 

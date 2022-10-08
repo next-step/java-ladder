@@ -1,8 +1,5 @@
 package ladder.step2.domain;
 
-import ladder.step2.dto.LadderDTO;
-import ladder.step2.dto.LadderResultsDTO;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -48,13 +45,24 @@ public class Players {
         }
     }
     
-    public LadderGameResults parseLadderGameResults(final LadderDTO ladderDto, final LadderResultsDTO ladderResultsDto) {
+    public LadderGameResults parseLadderGameResults(final Ladder ladder, final LadderResults ladderResults) {
+        allPlayersMove(ladder);
+        return getLadderGameResults(ladderResults);
+    }
+    
+    private LadderGameResults getLadderGameResults(final LadderResults ladderResults) {
         Map<String, String> ladderGameResults = new HashMap<>();
         
         for (Player player : players) {
-            player.putLadderGameResult(ladderGameResults, ladderDto.getLineDTOS(), ladderResultsDto.getLadderResultsDTOS());
+            player.putLadderGameResult(ladderGameResults, ladderResults);
         }
         return new LadderGameResults(ladderGameResults);
+    }
+    
+    private void allPlayersMove(final Ladder ladder) {
+        for (Player player : players) {
+            player.move(ladder.getLines());
+        }
     }
     
     public int size() {
