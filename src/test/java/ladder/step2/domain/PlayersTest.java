@@ -103,7 +103,7 @@ public class PlayersTest {
         assertAll(
                 () -> assertThat(ladderGameResultsActual.get("pobi")).isEqualTo("5000"),
                 () -> assertThat(ladderGameResultsActual.get("honux")).isEqualTo("꽝"),
-                () -> assertThat(ladderGameResultsActual.get("jun")).isEqualTo("notebook"),
+                () -> assertThat(ladderGameResultsActual.get("jun")).isEqualTo("book"),
                 () -> assertThat(ladderGameResultsActual.get("jk")).isEqualTo("꽝")
         );
     }

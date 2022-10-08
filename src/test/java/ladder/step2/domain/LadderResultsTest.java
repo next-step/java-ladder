@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class LadderResultsTest {
-    public static final LadderResults LADDER_RESULTS = new LadderResults("꽝, 5000, 꽝, notebook", 4);
+    public static final LadderResults LADDER_RESULTS = new LadderResults("꽝, 5000, 꽝, book", 4);
     
     @Test
     @DisplayName("사다리 실행 결과 생성")
