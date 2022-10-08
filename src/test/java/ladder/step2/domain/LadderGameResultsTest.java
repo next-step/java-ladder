@@ -1,6 +1,5 @@
 package ladder.step2.domain;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +11,7 @@ public class LadderGameResultsTest {
     private static final HashMap<String, String> HASH_MAP = new HashMap<>();
     public static final LadderGameResults LADDER_GAME_RESULTS = new LadderGameResults(HASH_MAP);
     
-    static  {
+    static {
         HASH_MAP.put("pobi", "5000");
         HASH_MAP.put("honux", "꽝");
         HASH_MAP.put("jun", "notebook");
