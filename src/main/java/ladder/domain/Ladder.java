@@ -11,7 +11,7 @@ public class Ladder {
 
     public Ladder(Integer personCount, Integer height, LineFactory lineFactory) {
         this.lines = IntStream.range(0, height)
-                .mapToObj(i -> lineFactory.create(personCount - 1))
+                .mapToObj(i -> lineFactory.create(personCount))
                 .collect(toList());
     }
 

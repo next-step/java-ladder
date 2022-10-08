@@ -11,7 +11,7 @@ public class ResultView {
     private static final String NAMES_DELIMITER = " ";
     private static final int FIXED_NAME_LENGTH = 5;
     private static final String BAR = "|";
-    private static final String LINE = "-----";
+    private static final String HORIZONTAL_WAY = "-----";
 
     public static void printIntro() {
         System.out.println(INTRO);
@@ -27,17 +27,17 @@ public class ResultView {
 
     public static void printLadder(Ladder ladder) {
         ladder.lines().forEach(line -> {
-            String lineString = line.lanes()
+            String lineString = line.horizontalWays()
                     .stream()
-                    .map(ResultView::laneString)
+                    .map(ResultView::lineString)
                     .collect(joining(BAR, " ".repeat(FIXED_NAME_LENGTH - 1) + BAR, BAR));
             System.out.println(lineString);
         });
     }
 
-    private static String laneString(Boolean existsLane) {
+    private static String lineString(Boolean existsLane) {
         if (existsLane) {
-            return LINE;
+            return HORIZONTAL_WAY;
         }
 
         return " ".repeat(FIXED_NAME_LENGTH);
