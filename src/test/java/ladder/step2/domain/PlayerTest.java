@@ -26,31 +26,16 @@ public class PlayerTest {
     }
     
     @Test
+    @DisplayName("플레이어 사다리 타고 이동하기")
+    void move() {
+        JUN.move(LadderTest.LADDER.getLines());
+        Position position = JUN.getPosition();
+        assertThat(position.getPosition()).isEqualTo(1);
+    }
+    
+    @Test
     @DisplayName("플레이어 이름 가져오기")
     void get_player_name() {
         assertThat(JUN.getPlayerName()).isNotNull();
-    }
-    
-    @Test
-    @DisplayName("사다리 게임 매칭 결과 받아오기")
-    void get_ladder_game_result() {
-        Map<String, String> map = new HashMap<>();
-        
-        JUN.putLadderGameResult(map, LadderResultsTest.LADDER_RESULTS);
-        final String actual = map.get(JUN.getPlayerName().getPlayerName());
-        
-        assertThat(actual).isEqualTo("꽝");
-    }
-    
-    @Test
-    @DisplayName("플레이어 사다리 타고 이동하기")
-    void move() {
-        Map<String, String> map = new HashMap<>();
-        
-        JUN.move(LadderTest.LADDER.getLines());
-        JUN.putLadderGameResult(map, LadderResultsTest.LADDER_RESULTS);
-        final String actual = map.get(JUN.getPlayerName().getPlayerName());
-        
-        assertThat(actual).isEqualTo("5000");
     }
 }

@@ -51,10 +51,13 @@ public class Players {
     }
     
     private LadderGameResults getLadderGameResults(final LadderResults ladderResults) {
-        Map<String, String> ladderGameResults = new HashMap<>();
+        final Map<String, String> ladderGameResults = new HashMap<>();
         
         for (Player player : players) {
-            player.putLadderGameResult(ladderGameResults, ladderResults);
+            final LadderResult ladderResult = ladderResults.getMatchingLadderResult(player);
+            final PlayerName playerName = player.getPlayerName();
+            
+            ladderGameResults.put(playerName.getPlayerName(), ladderResult.getLadderResult());
         }
         return new LadderGameResults(ladderGameResults);
     }

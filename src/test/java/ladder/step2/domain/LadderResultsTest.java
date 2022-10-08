@@ -51,4 +51,12 @@ public class LadderResultsTest {
         assertThatIllegalArgumentException().isThrownBy(() -> new LadderResults("꽝, 5000, 꽝, 3000", 5))
                 .withMessage("플레이어 수 만큼만 입력할 수 있습니다. 다시 입력해주세요.");
     }
+    
+    @Test
+    @DisplayName("매칭되는 결과물 가져오기")
+    void get_matching_ladder_result() {
+        final LadderResult matchingLadderResult = LADDER_RESULTS.getMatchingLadderResult(PlayerTest.JUN);
+        System.out.println(matchingLadderResult.getLadderResult());
+        assertThat(matchingLadderResult.getLadderResult()).isEqualTo("꽝");
+    }
 }

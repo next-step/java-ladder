@@ -16,14 +16,6 @@ public class Player {
         this.position = new Position(position);
     }
     
-    public void putLadderGameResult(final Map<String, String> ladderGameResults, final LadderResults ladderResults) {
-        final String playerName = this.playerName.getPlayerName();
-        final List<LadderResult> ladderResultsData = ladderResults.getLadderResults();
-        final LadderResult ladderResult = ladderResultsData.get(position.getPosition());
-        
-        ladderGameResults.put(playerName, ladderResult.getLadderResult());
-    }
-    
     public void move(final List<Line> line) {
         line.stream()
                 .map(Line::getPartLines)
@@ -32,5 +24,9 @@ public class Player {
     
     public PlayerName getPlayerName() {
         return playerName;
+    }
+    
+    public Position getPosition() {
+        return position;
     }
 }

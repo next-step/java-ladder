@@ -53,6 +53,11 @@ public class LadderResults {
         return ladderResults.replace(SPACE, EMPTY);
     }
     
+    public LadderResult getMatchingLadderResult(final Player player) {
+        Position position = player.getPosition();
+        return ladderResults.get(position.getPosition());
+    }
+    
     public List<LadderResult> getLadderResults() {
         return Collections.unmodifiableList(ladderResults);
     }
