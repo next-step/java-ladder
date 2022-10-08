@@ -10,14 +10,22 @@ public class Position {
     }
     
     public Position move(final List<PartLine> partLines) {
-        if (partLines.get(position).isExist()) {
+        if (isExistLeftPartLine(partLines)) {
             return new Position(position - 1);
         }
         
-        if (partLines.size() > position + 1 && partLines.get(position + 1).isExist()) {
+        if (isExistRightPartLine(partLines)) {
             return new Position(position + 1);
         }
         return this;
+    }
+    
+    private boolean isExistRightPartLine(final List<PartLine> partLines) {
+        return partLines.size() > position + 1 && partLines.get(position + 1).isExist();
+    }
+    
+    private boolean isExistLeftPartLine(final List<PartLine> partLines) {
+        return partLines.get(position).isExist();
     }
     
     public int getPosition() {
