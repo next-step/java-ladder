@@ -17,14 +17,14 @@ public class LadderResults {
     
     private final List<LadderResult> ladderResults;
     
-    public LadderResults(final String input, final int playersSize) {
-        this.ladderResults = parseLadderResults(input, playersSize);
+    public LadderResults(final String ladderResults, final int playersSize) {
+        this.ladderResults = parseLadderResults(ladderResults, playersSize);
     }
     
-    private List<LadderResult> parseLadderResults(final String input, final int playersSize) {
-        checkLadderResultsInputForm(input);
+    private List<LadderResult> parseLadderResults(final String ladderResults, final int playersSize) {
+        checkLadderResultsInputForm(ladderResults);
         
-        final String[] split = split(input);
+        final String[] split = split(ladderResults);
         checkCountOfLadderResults(split, playersSize);
         
         return Arrays.stream(split)
@@ -38,19 +38,19 @@ public class LadderResults {
         }
     }
     
-    private void checkLadderResultsInputForm(final String input) {
-        final Matcher matcher = Pattern.compile(LADDER_RESULTS_INPUT_FORM).matcher(input);
+    private void checkLadderResultsInputForm(final String ladderResults) {
+        final Matcher matcher = Pattern.compile(LADDER_RESULTS_INPUT_FORM).matcher(ladderResults);
         if (!matcher.matches()) {
             throw new IllegalArgumentException(INPUT_EXCEPTION_MESSAGE);
         }
     }
     
-    private String[] split(final String input) {
-        return removeSpace(input).split(DELIMITER);
+    private String[] split(final String ladderResults) {
+        return removeSpace(ladderResults).split(DELIMITER);
     }
     
-    private String removeSpace(final String input) {
-        return input.replace(SPACE, EMPTY);
+    private String removeSpace(final String ladderResults) {
+        return ladderResults.replace(SPACE, EMPTY);
     }
     
     public List<LadderResult> getLadderResults() {
