@@ -28,7 +28,7 @@ public class InputView {
         }
     }
     
-    public static LadderResults ladderResults(PlayersDTO playersDTO) {
+    public static LadderResults inputLadderResults(PlayersDTO playersDTO) {
         try {
             System.out.println(LADDER_RESULTS_INPUT_MESSAGE);
             final String input = SCANNER.nextLine();
@@ -36,7 +36,7 @@ public class InputView {
             return new LadderResults(input, playersDTO.size());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return ladderResults(playersDTO);
+            return inputLadderResults(playersDTO);
         }
     }
     

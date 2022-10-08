@@ -9,7 +9,7 @@ import ladder.step2.view.output.ResultView;
 public class LadderGame {
     public void play() {
         final Players players = InputView.inputPlayerNames();
-        final LadderResults ladderResults = InputView.ladderResults(new PlayersDTO(players));
+        final LadderResults ladderResults = InputView.inputLadderResults(new PlayersDTO(players));
         final LadderHeightDTO ladderHeight = InputView.inputLadderHeight();
         
         final Ladder ladder = LadderFactory.of(players.size(), ladderHeight, new RandomLineCreateStrategy());
