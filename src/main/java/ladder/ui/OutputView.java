@@ -18,14 +18,14 @@ public abstract class OutputView {
     }
 
     private static void printName(Users users) {
-        for (int i = 0; i < users.size(); i++) {
-            printSingleName(users, i);
+        for (int userIndex = 0; userIndex < users.size(); userIndex++) {
+            printSingleName(users, userIndex);
         }
     }
 
-    private static void printSingleName(Users users, int index) {
-        String username = getNameOfUser(users.getUsers().get(index));
-        if (index == 0) {
+    private static void printSingleName(Users users, int userIndex) {
+        String username = getNameOfUser(users.getUsers().get(userIndex));
+        if (userIndex == 0) {
             System.out.print(username);
             return;
         }
@@ -33,25 +33,25 @@ public abstract class OutputView {
     }
 
     private static void printLine(Users users, int length) {
-        for (int i = 0; i < length; i++) {
-            printSingleLine(users, i);
+        for (int lineIndex = 0; lineIndex < length; lineIndex++) {
+            printSingleLine(users, lineIndex);
             System.out.println();
         }
     }
 
-    private static void printSingleLine(Users users, int index) {
-        for (int i = 0; i < users.size(); i++) {
+    private static void printSingleLine(Users users, int lineIndex) {
+        for (int userIndex = 0; userIndex < users.size(); userIndex++) {
             StringBuilder stringBuilder = new StringBuilder();
-            User user = users.getUsers().get(i);
+            User user = users.getUsers().get(userIndex);
             String username = getNameOfUser(user);
-            LineUnit unit = user.getVerticalLine().getLineUnits().get(index);
-            appendSingleLine(i, stringBuilder, username, unit);
+            LineUnit unit = user.getVerticalLine().getLineUnits().get(lineIndex);
+            appendSingleLine(userIndex, stringBuilder, username, unit);
             System.out.print(stringBuilder);
         }
     }
 
-    private static void appendSingleLine(int index, StringBuilder stringBuilder, String username, LineUnit unit) {
-        if (index == 0) {
+    private static void appendSingleLine(int userIndex, StringBuilder stringBuilder, String username, LineUnit unit) {
+        if (userIndex == 0) {
             stringBuilder.append(addDelimiter(username.length(), LADDER_WITH_NO_SPACE) + VERTICAL_UNIT);
             return;
         }

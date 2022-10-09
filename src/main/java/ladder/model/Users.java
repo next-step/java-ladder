@@ -25,17 +25,17 @@ public class Users {
     }
 
     public void addLine(List<HorizontalLine> horizontalLine) {
-        for (int userIdex = 0; userIdex < this.users.size(); userIdex++) {
-            users.get(userIdex).addLine(new VerticalLine(getVerticalLine(horizontalLine, userIdex)));
+        for (int userIndex = 0; userIndex < this.users.size(); userIndex++) {
+            users.get(userIndex).addLine(new VerticalLine(getVerticalLine(horizontalLine, userIndex)));
         }
     }
 
-    private List<LineUnit> getVerticalLine(List<HorizontalLine> horizontalLine, int userIdex) {
+    private List<LineUnit> getVerticalLine(List<HorizontalLine> horizontalLine, int userIndex) {
         List<LineUnit> verticalLine = new ArrayList<>();
         for (int lineIndex = 0; lineIndex < horizontalLine.size(); lineIndex++) {
             HorizontalLine line = horizontalLine.get(lineIndex);
             validateLine(line);
-            LineUnit lineUnit = line.getUnits().get(userIdex);
+            LineUnit lineUnit = line.getUnits().get(userIndex);
             verticalLine.add(lineUnit);
         }
         return verticalLine;

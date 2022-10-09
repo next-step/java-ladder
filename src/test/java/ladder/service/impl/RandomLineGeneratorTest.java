@@ -14,7 +14,7 @@ class RandomLineGeneratorTest {
 
     @Test
     void shouldGenerateProperSizeOfLine() {
-        LineGenerator generator = new RandomLineGenerator(()->true);
+        LineGenerator generator = new RandomLineGenerator(() -> true);
 
         List<HorizontalLine> result = generator.generate(2, 5);
 
@@ -23,8 +23,8 @@ class RandomLineGeneratorTest {
     }
 
     @Test
-    void shouldAlwaysGenerateLine(){
-        LineGenerator generator = new RandomLineGenerator(()->false);
+    void shouldAlwaysGenerateLine() {
+        LineGenerator generator = new RandomLineGenerator(() -> false);
 
         List<HorizontalLine> result = generator.generate(2, 5);
         List<LineUnit> units = result.get(0).getUnits();
@@ -34,8 +34,8 @@ class RandomLineGeneratorTest {
     }
 
     @Test
-    void shouldNotAlwaysGenerateLine(){
-        LineGenerator generator = new RandomLineGenerator(()->true);
+    void shouldNotAlwaysGenerateLine() {
+        LineGenerator generator = new RandomLineGenerator(() -> true);
 
         List<HorizontalLine> result = generator.generate(2, 5);
         List<LineUnit> units = result.get(0).getUnits();
