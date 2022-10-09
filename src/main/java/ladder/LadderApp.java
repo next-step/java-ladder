@@ -3,7 +3,7 @@ package ladder;
 import ladder.model.HorizontalLine;
 import ladder.model.Users;
 import ladder.service.LineGenerator;
-import ladder.service.impl.RandomLineGenerator;
+import ladder.service.RandomLineGenerator;
 import ladder.ui.InputView;
 import ladder.ui.OutputView;
 

@@ -2,6 +2,7 @@ package ladder.service.impl;
 
 import ladder.model.HorizontalLine;
 import ladder.service.LineGenerator;
+import ladder.service.RandomLineGenerator;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

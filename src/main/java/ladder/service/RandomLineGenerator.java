@@ -1,4 +1,4 @@
-package ladder.service.impl;
+package ladder.service;
 
 import ladder.model.HorizontalLine;
 import ladder.model.LineUnit;
