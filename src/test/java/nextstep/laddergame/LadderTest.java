@@ -10,10 +10,14 @@ class LadderTest {
 
     @Test
     public void ladder_size_test() {
-        Ladder ladder = new Ladder(4, 5);
+        int width = 4;
+        int height = 5;
+
+        Ladder ladder = new Ladder(width, height);
+
         List<List<LadderPiece>> board = ladder.getBoard();
-        assertThat(board).hasSize(4);
-        assertThat(board).hasSize(5);
+        assertThat(board).hasSize(height);
+        assertThat(board.get(0)).hasSize(width);
     }
 
 }
