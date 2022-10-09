@@ -10,7 +10,9 @@ public class ResultView {
     private static final String INTRO = "\n실행 결과\n";
     private static final String NAMES_DELIMITER = " ";
     private static final String BAR = "|";
-    private static final String HORIZONTAL_WAY = "-----";
+    private static final String HORIZONTAL_WAY = "-".repeat(Name.MAX_LENGTH);
+    private static final String EMPTY_HORIZONTAL_WAY = " ".repeat(Name.MAX_LENGTH);
+    private static final String START_OF_LINE = " ".repeat(Name.MAX_LENGTH - 1) + BAR;
 
     public static void printIntro() {
         System.out.println(INTRO);
@@ -29,18 +31,18 @@ public class ResultView {
         ladder.lines().forEach(line -> {
             String lineString = line.horizontalWays()
                     .stream()
-                    .map(ResultView::lineString)
-                    .collect(joining(BAR, " ".repeat(Name.MAX_LENGTH - 1) + BAR, BAR));
+                    .map(ResultView::horizontalWayString)
+                    .collect(joining(BAR, START_OF_LINE, BAR));
             System.out.println(lineString);
         });
     }
 
-    private static String lineString(Boolean existsLane) {
-        if (existsLane) {
+    private static String horizontalWayString(Boolean existsHorizontalWay) {
+        if (existsHorizontalWay) {
             return HORIZONTAL_WAY;
         }
 
-        return " ".repeat(Name.MAX_LENGTH);
+        return EMPTY_HORIZONTAL_WAY;
     }
 
     private static String formattedName(Name name) {
