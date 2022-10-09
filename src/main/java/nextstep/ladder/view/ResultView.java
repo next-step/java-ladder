@@ -1,10 +1,15 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.LadderGame;
+import nextstep.ladder.domain.Participant;
 import nextstep.ladder.domain.Participants;
 import nextstep.ladder.domain.LadderResults;
 
+import java.util.Objects;
+
 public class ResultView {
+
+    private static final String VIEW_ALL = "all";
 
     public void printResult(LadderGame ladderGame) {
         System.out.print("실행결과\n");
@@ -30,5 +35,21 @@ public class ResultView {
 
     public void printResultOfParticipant(String name, String result) {
         System.out.println(name + " : " + result);
+    }
+
+    public void printResult(LadderGame ladderGame, String name) {
+        if (Objects.equals(name, VIEW_ALL)) {
+            printAllResult(ladderGame);
+            return ;
+        }
+
+        printResultOfParticipant(name, ladderGame.resultOfParticipant(name));
+    }
+
+    private void printAllResult(LadderGame ladderGame) {
+        for (Participant participant : ladderGame.participants().value()) {
+            String name = participant.name();
+            printResultOfParticipant(name, ladderGame.resultOfParticipant(name));
+        }
     }
 }
