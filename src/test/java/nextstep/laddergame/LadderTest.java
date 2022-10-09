@@ -15,9 +15,9 @@ class LadderTest {
 
         Ladder ladder = new Ladder(width, height);
 
-        List<List<LadderPiece>> board = ladder.getBoard();
+        List<Line> board = ladder.getBoard();
         assertThat(board).hasSize(height);
-        assertThat(board.get(0)).hasSize(width);
+        assertThat(board.get(0).getLadderPieces()).hasSize(width);
     }
 
 }
