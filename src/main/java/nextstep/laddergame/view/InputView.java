@@ -21,7 +21,7 @@ public class InputView {
     }
 
     public static Integer inputLadderHeight() {
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        System.out.println("\n최대 사다리 높이는 몇 개인가요?");
         Scanner scanner = new Scanner(System.in);
         String ladderHeightString = scanner.nextLine();
         checkValidLadderHeight(ladderHeightString);
@@ -36,7 +36,7 @@ public class InputView {
     }
 
     private static void checkValidLadderHeight(String heightString) throws IllegalArgumentException {
-        if (isNumber(heightString)) {
+        if (!isNumber(heightString)) {
             throw new IllegalArgumentException("Wrong Input : Ladder Height is not a number");
         }
     }

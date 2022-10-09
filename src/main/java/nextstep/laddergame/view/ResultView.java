@@ -6,6 +6,11 @@ import nextstep.laddergame.domain.Line;
 
 public class ResultView {
     public static void printLadder(Ladder ladder) {
+        System.out.println("\n실행결과\n");
+        for (String name : ladder.getGamer()) {
+            System.out.print(name + " ");
+        }
+        System.out.println();
         for (Line line : ladder.getBoard()) {
             printLine(line);
             System.out.println();
