@@ -18,4 +18,9 @@ class LadderTest {
         assertThat(board).hasSize(height);
         assertThat(board.get(0).getLadderPieces()).hasSize(width);
     }
+
+    @Test
+    public void print_ladder() {
+        ResultView.printLadder(ladder);
+    }
 }
