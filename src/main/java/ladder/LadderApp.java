@@ -10,6 +10,7 @@ import ladder.ui.OutputView;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -39,6 +40,7 @@ public class LadderApp {
     }
 
     private static LineGenerator getLineGenerator() {
-        return new RandomLineGenerator();
+        Random random = new Random();
+        return new RandomLineGenerator(random::nextBoolean);
     }
 }

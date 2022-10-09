@@ -2,20 +2,24 @@ package ladder.service;
 
 import ladder.model.HorizontalLine;
 import ladder.model.LineUnit;
-import ladder.service.LineGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class RandomLineGenerator implements LineGenerator {
 
-    private final Random random = new Random();
+
+    private final Supplier<Boolean> supplier;
+
+    public RandomLineGenerator(Supplier<Boolean> supplier) {
+        this.supplier = supplier;
+    }
 
     @Override
-    public List<HorizontalLine> generate(int numberOfUser, int length) {
+    public List<HorizontalLine> generate(int numberOfUser, int length ) {
         return IntStream.range(0, length)
                 .mapToObj((idx) -> createHorizontalLine(numberOfUser))
                 .collect(Collectors.toList());
@@ -35,7 +39,7 @@ public class RandomLineGenerator implements LineGenerator {
             return unit;
         }
         LineUnit previousUnit = units.get(index - 1);
-        if (!previousUnit.canAddNext() || random.nextBoolean()) {
+        if (!previousUnit.canAddNext() || supplier.get()) {
             return unit;
         }
         previousUnit.addNext(unit);
