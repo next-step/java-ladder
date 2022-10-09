@@ -7,13 +7,9 @@ import java.util.List;
 public class Ladder {
     private final List<Line> board;
 
-    Ladder(int width, int height) {
-        // 기본 사다리 템플릿 생성
-        List<Line> board = getLadderTemplate(width, height);
-
-        // TODO: 가로 다리 생성
-
-        this.board = Collections.unmodifiableList(board);
+    Ladder(int width, int height, BridgeInterface bridgeInterface) {
+        this.board = Collections.unmodifiableList(getLadderTemplate(width, height));
+        drawBridgeAtAllLine(bridgeInterface);
     }
 
     public List<Line> getBoard() {
@@ -26,6 +22,12 @@ public class Ladder {
             ladderTemplate.add(new Line(width));
         }
         return ladderTemplate;
+    }
+
+    private void drawBridgeAtAllLine(BridgeInterface bridgeInterface) {
+        for (Line line : this.board) {
+            line.drawBridgeAtAllPiece(bridgeInterface);
+        }
     }
 
 }

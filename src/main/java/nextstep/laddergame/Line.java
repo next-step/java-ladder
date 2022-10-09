@@ -21,10 +21,17 @@ public class Line {
         return Collections.unmodifiableList(ladderPieces);
     }
 
+    public void drawBridgeAtAllPiece(BridgeInterface bridgeInterface) {
+        for (LadderPiece ladderPiece : this.ladderPieces) {
+            ladderPiece.setBridge(bridgeInterface);
+        }
+    }
+
     private void connectLadderPiece(LadderPiece left, LadderPiece right) {
         if (left != null) {
             left.setRightLadderPiece(right);
             right.setLeftLadderPiece(left);
         }
     }
+
 }

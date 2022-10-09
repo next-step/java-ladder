@@ -37,4 +37,16 @@ public class LadderPiece {
     public void setRightLadderPiece(LadderPiece rightLadderPiece) {
         this.rightLadderPiece = rightLadderPiece;
     }
+
+    private boolean isAbleSetBridge() {
+        return this.rightLadderPiece != null && !this.leftBridge && !this.rightBridge;
+    }
+
+    // 가로 사다리(Bridge) 는 left -> right 방향으로만 생성한다.
+    public void setBridge(BridgeInterface bridgeInterface) {
+        if (isAbleSetBridge() && bridgeInterface.ifDrawBridge()) {
+            this.rightBridge = true;
+            this.rightLadderPiece.leftBridge = true;
+        }
+    }
 }
