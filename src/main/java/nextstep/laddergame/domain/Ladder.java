@@ -31,9 +31,7 @@ public class Ladder {
     }
 
     private void drawBridgeAtAllLine(BridgeInterface bridgeInterface) {
-        for (Line line : this.board) {
-            line.drawBridgeAtAllPiece(bridgeInterface);
-        }
+        this.board.forEach((line) -> line.drawBridgeAtAllPiece(bridgeInterface));
     }
 
 }

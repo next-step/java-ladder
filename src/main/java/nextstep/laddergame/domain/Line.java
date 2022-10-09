@@ -22,9 +22,7 @@ public class Line {
     }
 
     public void drawBridgeAtAllPiece(BridgeInterface bridgeInterface) {
-        for (LadderPiece ladderPiece : this.ladderPieces) {
-            ladderPiece.setBridge(bridgeInterface);
-        }
+        this.ladderPieces.forEach((ladderPiece) -> ladderPiece.setBridge(bridgeInterface));
     }
 
     private void connectLadderPiece(LadderPiece left, LadderPiece right) {
