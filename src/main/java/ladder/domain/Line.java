@@ -3,14 +3,14 @@ package ladder.domain;
 import java.util.List;
 
 public class Line {
-    private final List<Boolean> horizontalWays;
+    private final List<Boolean> bridges;
 
-    public Line(List<Boolean> horizontalWays) {
-        this.horizontalWays = horizontalWays;
+    public Line(List<Boolean> bridges) {
+        this.bridges = bridges;
     }
 
-    public List<Boolean> horizontalWays() {
-        return horizontalWays;
+    public List<Boolean> bridges() {
+        return bridges;
     }
 
     @Override
@@ -20,11 +20,11 @@ public class Line {
 
         Line line = (Line) o;
 
-        return horizontalWays.equals(line.horizontalWays);
+        return bridges.equals(line.bridges);
     }
 
     @Override
     public int hashCode() {
-        return horizontalWays.hashCode();
+        return bridges.hashCode();
     }
 }

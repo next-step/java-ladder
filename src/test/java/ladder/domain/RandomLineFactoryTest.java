@@ -7,13 +7,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class RandomLineFactoryTest {
 
-    @DisplayName("personCount - 1 와 라인의 horizontalWays 수가 일치한다")
+    @DisplayName("personCount - 1 와 라인의 bridges 수가 일치한다")
     @Test
     void create() {
         int personCount = 4;
         RandomLineFactory randomLineFactory = new RandomLineFactory();
         Line line = randomLineFactory.create(personCount);
 
-        assertThat(line.horizontalWays()).hasSize(personCount - 1);
+        assertThat(line.bridges()).hasSize(personCount - 1);
     }
 }

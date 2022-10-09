@@ -8,17 +8,17 @@ public class RandomLineFactory implements LineFactory {
 
     @Override
     public Line create(Integer personCount) {
-        List<Boolean> horizontalWays = new ArrayList<>();
-        horizontalWays.add(booleanRandomly());
+        List<Boolean> bridges = new ArrayList<>();
+        bridges.add(booleanRandomly());
         for (int i = 1; i < personCount - 1; i++) {
-            horizontalWays.add(nextHorizontalWay(horizontalWays.get(i - 1)));
+            bridges.add(nextBridges(bridges.get(i - 1)));
         }
 
-        return new Line(horizontalWays);
+        return new Line(bridges);
     }
 
-    private Boolean nextHorizontalWay(boolean existsPreviousHorizontalWay) {
-        if (!existsPreviousHorizontalWay) {
+    private Boolean nextBridges(Boolean existsPreviousBridge) {
+        if (!existsPreviousBridge) {
             return booleanRandomly();
         }
 
