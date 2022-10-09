@@ -2,8 +2,7 @@ package ladder.view;
 
 import ladder.domain.Ladder;
 import ladder.domain.Name;
-
-import java.util.List;
+import ladder.domain.Names;
 
 import static java.util.stream.Collectors.joining;
 
@@ -17,8 +16,9 @@ public class ResultView {
         System.out.println(INTRO);
     }
 
-    public static void printNames(List<Name> names) {
-        String allNames = names.stream()
+    public static void printNames(Names names) {
+        String allNames = names.names()
+                .stream()
                 .map(ResultView::formattedName)
                 .collect(joining(NAMES_DELIMITER));
 

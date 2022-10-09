@@ -1,9 +1,9 @@
 package ladder.view;
 
 import ladder.domain.Name;
+import ladder.domain.Names;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 import static java.util.stream.Collectors.toList;
@@ -13,7 +13,7 @@ public class InputView {
     private static final String NAMES_DELIMITER = ",";
     private static final String HEIGHT_QUESTION = "\n최대 사다리 높이는 몇 개인가요?";
 
-    private final List<Name> names;
+    private final Names names;
     private final Integer height;
 
     public InputView() {
@@ -26,7 +26,7 @@ public class InputView {
         }
     }
 
-    public List<Name> names() {
+    public Names names() {
         return names;
     }
 
@@ -34,11 +34,11 @@ public class InputView {
         return height;
     }
 
-    private List<Name> scanNames(Scanner scanner) {
-        return Arrays.stream(scanner.nextLine()
+    private Names scanNames(Scanner scanner) {
+        return new Names(Arrays.stream(scanner.nextLine()
                         .split(NAMES_DELIMITER))
                 .map(Name::new)
-                .collect(toList());
+                .collect(toList()));
     }
 
     private Integer scanHeight(Scanner scanner) {
