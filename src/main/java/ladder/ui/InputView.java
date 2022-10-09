@@ -29,14 +29,14 @@ public class InputView implements AutoCloseable {
                 .collect(Collectors.toList());
     }
 
-    public Integer getVerticalLine() throws IOException {
+    public int getVerticalLine() throws IOException {
         System.out.println(MAX_VERTICAL_LINE_LENGTH_QST);
         return parseNumber(bufferedReader.readLine());
     }
 
-    private Integer parseNumber(String input) {
+    private int parseNumber(String input) {
         try {
-            return Integer.valueOf(input.trim());
+            return Integer.parseInt(input.trim());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("숫자만 입력이 가능합니다.", e);
         }

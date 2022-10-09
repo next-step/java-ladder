@@ -21,7 +21,7 @@ public class LadderApp {
     public static void main(String[] args) {
         try (InputView inputView = getInputView()) {
             Users users = Users.createUsersWithName(inputView.getUser());
-            Integer lineLength = inputView.getVerticalLine();
+            int lineLength = inputView.getVerticalLine();
 
             List<HorizontalLine> horizontalLines = generator.generate(users.size(), lineLength);
             users.addLine(horizontalLines);

@@ -11,7 +11,7 @@ public abstract class OutputView {
     private static final String HORIZONTAL_UNIT = "-";
     private static final String VERTICAL_UNIT = "|";
 
-    public static void printLadder(Users users, Integer lineLength) {
+    public static void printLadder(Users users, int lineLength) {
         printName(users);
         System.out.println();
         printLine(users, lineLength);
