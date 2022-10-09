@@ -24,15 +24,9 @@ public class Users {
     }
 
     public void addLine(List<HorizontalLine> horizontalLine) {
-        horizontalLine.forEach(this::validateLine);
+        horizontalLine.forEach((line) -> line.validate(this.size()));
         for (int userIndex = 0; userIndex < this.users.size(); userIndex++) {
             users.get(userIndex).addLine(VerticalLine.mapHorizontalLineToVertical(horizontalLine, userIndex));
-        }
-    }
-
-    private void validateLine(HorizontalLine line) {
-        if (this.users.size() != line.getUnits().size()) {
-            throw new IllegalArgumentException("유효하지 않은 행 라인입니다.");
         }
     }
 
