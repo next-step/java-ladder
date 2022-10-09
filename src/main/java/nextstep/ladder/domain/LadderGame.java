@@ -16,10 +16,18 @@ public class LadderGame {
         matchResults();
     }
 
-    void matchResults() {
+    public void matchResults() {
         for (int i = 0; i < this.participants.numberOfParticipants(); i++) {
             goToResult(i, this.lines.value().size(), this.participants.numberOfParticipants());
         }
+    }
+
+    public String resultOfParticipant(String name) {
+        return this.participants.findByName(name);
+    }
+
+    public String view() {
+        return this.lines.toLadderLines();
     }
 
     private void goToResult(int startIndex, int height, int numberOfParticipants) {
@@ -38,14 +46,6 @@ public class LadderGame {
             return currentIndex + 1;
         }
         return currentIndex;
-    }
-
-    public String resultOfParticipant(String name) {
-        return this.participants.findByName(name);
-    }
-
-    public String view() {
-        return this.lines.toLadderLines();
     }
 
     public Participants participants() {

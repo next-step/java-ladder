@@ -18,7 +18,6 @@ public class Ladder {
         resultView.printResult(ladderGame);
 
         String name = inputView.inputParticipant();
-        String result = ladderGame.resultOfParticipant(name);
-        resultView.printResultOfParticipant(name, result);
+        resultView.printResult(ladderGame, name);
     }
 }
