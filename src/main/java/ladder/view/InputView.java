@@ -1,5 +1,7 @@
 package ladder.view;
 
+import ladder.domain.Name;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -11,13 +13,13 @@ public class InputView {
     private static final String NAMES_DELIMITER = ",";
     private static final String HEIGHT_QUESTION = "\n최대 사다리 높이는 몇 개인가요?";
 
-    public static List<String> scanNames() {
+    public static List<Name> scanNames() {
         System.out.println(NAMES_QUESTION);
         Scanner scanner = new Scanner(System.in);
 
         return Arrays.stream(scanner.nextLine()
                         .split(NAMES_DELIMITER))
-                .map(InputView::validateName)
+                .map(Name::new)
                 .collect(toList());
     }
 
@@ -26,13 +28,5 @@ public class InputView {
         Scanner scanner = new Scanner(System.in);
 
         return Integer.parseInt(scanner.nextLine());
-    }
-
-    private static String validateName(String name) {
-        if (name.length() > 5) {
-            throw new IllegalArgumentException("이름은 5자이하 이어야 합니다");
-        }
-
-        return name;
     }
 }

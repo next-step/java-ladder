@@ -1,6 +1,7 @@
 package ladder.view;
 
 import ladder.domain.Ladder;
+import ladder.domain.Name;
 
 import java.util.List;
 
@@ -9,7 +10,6 @@ import static java.util.stream.Collectors.joining;
 public class ResultView {
     private static final String INTRO = "\n실행 결과\n";
     private static final String NAMES_DELIMITER = " ";
-    private static final int FIXED_NAME_LENGTH = 5;
     private static final String BAR = "|";
     private static final String HORIZONTAL_WAY = "-----";
 
@@ -17,9 +17,9 @@ public class ResultView {
         System.out.println(INTRO);
     }
 
-    public static void printNames(List<String> names) {
+    public static void printNames(List<Name> names) {
         String allNames = names.stream()
-                .map(ResultView::fixedName)
+                .map(ResultView::formattedName)
                 .collect(joining(NAMES_DELIMITER));
 
         System.out.println(allNames);
@@ -30,7 +30,7 @@ public class ResultView {
             String lineString = line.horizontalWays()
                     .stream()
                     .map(ResultView::lineString)
-                    .collect(joining(BAR, " ".repeat(FIXED_NAME_LENGTH - 1) + BAR, BAR));
+                    .collect(joining(BAR, " ".repeat(Name.MAX_LENGTH - 1) + BAR, BAR));
             System.out.println(lineString);
         });
     }
@@ -40,15 +40,15 @@ public class ResultView {
             return HORIZONTAL_WAY;
         }
 
-        return " ".repeat(FIXED_NAME_LENGTH);
+        return " ".repeat(Name.MAX_LENGTH);
     }
 
-    private static String fixedName(String name) {
+    private static String formattedName(Name name) {
         int nameLength = name.length();
-        if (nameLength == FIXED_NAME_LENGTH) {
-            return name;
+        if (nameLength == Name.MAX_LENGTH) {
+            return name.name();
         }
 
-        return " ".repeat(FIXED_NAME_LENGTH - 1 - nameLength) + name + " ";
+        return String.format("%s%s ", " ".repeat(Name.MAX_LENGTH - 1 - nameLength), name.name());
     }
 }
