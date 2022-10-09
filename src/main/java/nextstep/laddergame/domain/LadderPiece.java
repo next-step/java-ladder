@@ -1,4 +1,4 @@
-package nextstep.laddergame;
+package nextstep.laddergame.domain;
 
 public class LadderPiece {
     private LadderPiece leftLadderPiece = null;

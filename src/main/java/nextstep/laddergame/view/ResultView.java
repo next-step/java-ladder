@@ -1,4 +1,8 @@
-package nextstep.laddergame;
+package nextstep.laddergame.view;
+
+import nextstep.laddergame.domain.Ladder;
+import nextstep.laddergame.domain.LadderPiece;
+import nextstep.laddergame.domain.Line;
 
 public class ResultView {
     public static void printLadder(Ladder ladder) {

@@ -1,5 +1,6 @@
-package nextstep.laddergame;
+package nextstep.laddergame.domain;
 
+import nextstep.laddergame.view.ResultView;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
