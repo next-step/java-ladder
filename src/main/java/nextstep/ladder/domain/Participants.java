@@ -24,6 +24,14 @@ public class Participants {
         return Collections.unmodifiableList(participants);
     }
 
+    public Participant getParticipant(int index) {
+        return participants.get(index);
+    }
+
+    public void match(int indexOfParticipant, LadderResult ladderResult) {
+        participants.get(indexOfParticipant).matchResult(ladderResult);
+    }
+
     public String findByName(String name) {
         Optional<Participant> target = this.participants.stream()
                 .filter(participant -> Objects.equals(participant.name(), name))

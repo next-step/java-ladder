@@ -15,9 +15,9 @@ public class Ladder {
         LadderGame ladderGame = new LadderGame(participants, ladderResults, ladderHeight);
 
         ResultView resultView = new ResultView();
-        resultView.printResult(ladderGame);
+        resultView.printLadderGame(ladderGame);
 
         String name = inputView.inputParticipant();
-        resultView.printResult(ladderGame, name);
+        resultView.printResultByName(ladderGame, name);
     }
 }

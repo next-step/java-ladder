@@ -11,7 +11,7 @@ public class ResultView {
 
     private static final String VIEW_ALL = "all";
 
-    public void printResult(LadderGame ladderGame) {
+    public void printLadderGame(LadderGame ladderGame) {
         System.out.print("실행결과\n");
 
         printParticipants(ladderGame.participants());
@@ -37,7 +37,7 @@ public class ResultView {
         System.out.println(name + " : " + result);
     }
 
-    public void printResult(LadderGame ladderGame, String name) {
+    public void printResultByName(LadderGame ladderGame, String name) {
         if (Objects.equals(name, VIEW_ALL)) {
             printAllResult(ladderGame);
             return ;

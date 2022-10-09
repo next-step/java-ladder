@@ -31,4 +31,12 @@ public class Line {
     public List<Edge> edges() {
         return edges;
     }
+
+    public boolean linkedLeft(int index) {
+        return edges.get(index - 1).linked();
+    }
+
+    public boolean linkedRight(int index) {
+        return edges.get(index + 1).linked();
+    }
 }

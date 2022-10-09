@@ -10,16 +10,61 @@ public class LadderGame {
 
     public LadderGame(String[] participants, String[] ladderResults, int height) {
         this.participants = new Participants(participants);
-        this.ladderResults = new LadderResults(ladderResults, this.participants.numberOfParticipants());
-        this.lines = new Lines(height, this.participants.numberOfParticipants());
+        this.ladderResults = new LadderResults(ladderResults, participants.length);
+        this.lines = new Lines(height, participants.length);
 
-        matchResults();
+        linkParticipantWithLadderResult();
     }
 
-    public void matchResults() {
-        for (int i = 0; i < this.participants.numberOfParticipants(); i++) {
-            goToResult(i, this.lines.value().size(), this.participants.numberOfParticipants());
+    public void linkParticipantWithLadderResult() {
+        for (int index = 0; index < this.participants.numberOfParticipants(); index++) {
+            moveToLadderResult(index, this.lines.height());
         }
+    }
+
+    private void moveToLadderResult(int indexOfParticipant, int heightOfLine) {
+        int currentIndex = indexOfParticipant;
+        for (int height = 0; height < heightOfLine; height++) {
+            currentIndex = move(currentIndex, height);
+        }
+
+        this.participants.match(indexOfParticipant, this.ladderResults.getLadderResult(currentIndex));
+    }
+
+    private int move(int index, int height) {
+        int lastIndexOfLadder = this.participants.numberOfParticipants() - 1;
+
+        if (isNotFirstIndex(index) && linkedLeft(height, index)) {
+            return moveLeft(index);
+        }
+        if (isNotLastIndex(index, lastIndexOfLadder) && linkedRight(height, index)) {
+            return moveRight(index);
+        }
+        return index;
+    }
+
+    private boolean isNotFirstIndex(int index) {
+        return index > 0;
+    }
+
+    private boolean linkedLeft(int height, int index) {
+        return this.lines.getLine(height).linkedLeft(index);
+    }
+
+    private boolean isNotLastIndex(int index, int lastIndexOfLadder) {
+        return index < lastIndexOfLadder;
+    }
+
+    private boolean linkedRight(int height, int index) {
+        return this.lines.getLine(height).linkedRight(index);
+    }
+
+    private int moveLeft(int currentIndex) {
+        return currentIndex - 1;
+    }
+
+    private int moveRight(int currentIndex) {
+        return currentIndex + 1;
     }
 
     public String resultOfParticipant(String name) {
@@ -28,24 +73,6 @@ public class LadderGame {
 
     public String view() {
         return this.lines.toLadderLines();
-    }
-
-    private void goToResult(int startIndex, int height, int numberOfParticipants) {
-        int endIndex = startIndex;
-        for (int h = 0; h < height; h++) {
-            endIndex = move(endIndex, h, numberOfParticipants);
-        }
-        this.participants.value().get(startIndex).matchResult(this.ladderResults.value().get(endIndex));
-    }
-
-    private int move(int currentIndex, int currentHeight, int numberOfParticipants) {
-        if (currentIndex > 0 && this.lines.value().get(currentHeight).edges().get(currentIndex - 1).linked()) {
-            return currentIndex - 1;
-        }
-        if (currentIndex < numberOfParticipants - 1 && this.lines.value().get(currentHeight).edges().get(currentIndex).linked()) {
-            return currentIndex + 1;
-        }
-        return currentIndex;
     }
 
     public Participants participants() {

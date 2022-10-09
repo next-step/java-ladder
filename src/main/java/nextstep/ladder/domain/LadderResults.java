@@ -27,4 +27,8 @@ public class LadderResults {
     public List<LadderResult> value() {
         return Collections.unmodifiableList(ladderResults);
     }
+
+    public LadderResult getLadderResult(int index) {
+        return ladderResults.get(index);
+    }
 }

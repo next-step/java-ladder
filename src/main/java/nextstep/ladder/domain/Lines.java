@@ -28,4 +28,12 @@ public class Lines {
     public List<Line> value() {
         return Collections.unmodifiableList(lines);
     }
+
+    public Line getLine(int index) {
+        return lines.get(index);
+    }
+
+    public int height() {
+        return lines.size();
+    }
 }
