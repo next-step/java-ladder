@@ -17,18 +17,20 @@ public class LadderGame {
     }
 
     public void linkParticipantWithLadderResult() {
-        for (int index = 0; index < this.participants.numberOfParticipants(); index++) {
-            moveToLadderResult(index, this.lines.height());
+        for (int participantIndex = 0; participantIndex < this.participants.numberOfParticipants(); participantIndex++) {
+            int resultIndex = moveToLadderResult(participantIndex, this.lines.height());
+
+            this.participants.match(participantIndex, this.ladderResults.getLadderResult(resultIndex));
         }
     }
 
-    private void moveToLadderResult(int indexOfParticipant, int heightOfLine) {
-        int currentIndex = indexOfParticipant;
+    private int moveToLadderResult(int participantIndex, int heightOfLine) {
+        int currentIndex = participantIndex;
         for (int height = 0; height < heightOfLine; height++) {
             currentIndex = move(currentIndex, height);
         }
 
-        this.participants.match(indexOfParticipant, this.ladderResults.getLadderResult(currentIndex));
+        return currentIndex;
     }
 
     private int move(int index, int height) {
