@@ -15,7 +15,7 @@ public class Ladder {
                 .collect(toList());
     }
 
-    public Ladder(List<Line> lines) {
+    Ladder(List<Line> lines) {
         this.lines = lines;
     }
 
