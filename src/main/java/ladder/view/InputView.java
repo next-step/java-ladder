@@ -13,35 +13,26 @@ public class InputView {
     private static final String NAMES_DELIMITER = ",";
     private static final String HEIGHT_QUESTION = "\n최대 사다리 높이는 몇 개인가요?";
 
-    private final Names names;
-    private final Integer height;
-
-    public InputView() {
+    public static InputDto scan() {
         try (Scanner scanner = new Scanner(System.in)) {
             System.out.println(NAMES_QUESTION);
-            names = scanNames(scanner);
+            Names names = scanNames(scanner);
 
             System.out.println(HEIGHT_QUESTION);
-            height = scanHeight(scanner);
+            Integer height = scanHeight(scanner);
+
+            return new InputDto(names, height);
         }
     }
 
-    public Names names() {
-        return names;
-    }
-
-    public Integer height() {
-        return height;
-    }
-
-    private Names scanNames(Scanner scanner) {
+    private static Names scanNames(Scanner scanner) {
         return new Names(Arrays.stream(scanner.nextLine()
                         .split(NAMES_DELIMITER))
                 .map(Name::new)
                 .collect(toList()));
     }
 
-    private Integer scanHeight(Scanner scanner) {
+    private static Integer scanHeight(Scanner scanner) {
         return Integer.parseInt(scanner.nextLine());
     }
 }
