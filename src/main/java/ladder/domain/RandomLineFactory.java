@@ -13,7 +13,7 @@ public class RandomLineFactory implements LineFactory {
     }
 
     @Override
-    public Line create(Integer personCount) {
+    public Line create(int personCount) {
         List<Boolean> bridges = new ArrayList<>();
         bridges.add(randomFactory.nextBoolean());
         for (int i = 1; i < personCount - 1; i++) {
@@ -23,7 +23,7 @@ public class RandomLineFactory implements LineFactory {
         return new Line(bridges);
     }
 
-    private Boolean nextBridges(Boolean existsPreviousBridge) {
+    private boolean nextBridges(Boolean existsPreviousBridge) {
         if (!existsPreviousBridge) {
             return randomFactory.nextBoolean();
         }

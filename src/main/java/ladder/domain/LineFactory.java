@@ -3,5 +3,5 @@ package ladder.domain;
 @FunctionalInterface
 public interface LineFactory {
 
-    Line create(Integer personCount);
+    Line create(int personCount);
 }
