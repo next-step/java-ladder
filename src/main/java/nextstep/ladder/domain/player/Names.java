@@ -1,4 +1,4 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.player;
 
 import java.util.Collections;
 import java.util.List;
@@ -31,6 +31,4 @@ public class Names {
     public List<Name> values() {
         return Collections.unmodifiableList(values);
     }
-
-
 }
