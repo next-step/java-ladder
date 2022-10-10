@@ -6,16 +6,15 @@ public class PersonName {
     String name;
 
     public PersonName(String name) {
-        String temp = name.trim();
-        validateName(temp);
-        this.name = temp;
+        validateName(name);
+        this.name = name.trim();
     }
 
     private void validateName(String name) {
         if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException("빈 값은 입력될 수 없습니다.");
         }
-        if (name.length() > 5) {
+        if (name.trim().length() > 5) {
             throw new IllegalArgumentException("이름은 최대 5글자까지 입력할 수 있습니다.");
         }
     }
