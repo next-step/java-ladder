@@ -43,7 +43,7 @@ public class LadderPiece {
     }
 
     // 가로 사다리(Bridge) 는 left -> right 방향으로만 생성한다.
-    public void setBridge(BridgeInterface bridgeInterface) {
+    public void settingBridge(BridgeInterface bridgeInterface) {
         if (isAbleSetBridge() && bridgeInterface.ifDrawBridge()) {
             this.rightBridge = true;
             this.rightLadderPiece.leftBridge = true;

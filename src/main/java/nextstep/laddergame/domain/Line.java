@@ -21,8 +21,8 @@ public class Line {
         return Collections.unmodifiableList(ladderPieces);
     }
 
-    public void drawBridgeAtAllPiece(BridgeInterface bridgeInterface) {
-        this.ladderPieces.forEach((ladderPiece) -> ladderPiece.setBridge(bridgeInterface));
+    public void settingBridgeOnAllPiece(BridgeInterface bridgeInterface) {
+        this.ladderPieces.forEach((ladderPiece) -> ladderPiece.settingBridge(bridgeInterface));
     }
 
     private void connectLadderPiece(LadderPiece left, LadderPiece right) {

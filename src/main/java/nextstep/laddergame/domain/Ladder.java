@@ -11,7 +11,7 @@ public class Ladder {
     public Ladder(List<Gamer> gamers, int height, BridgeInterface bridgeInterface) {
         this.gamers = gamers;
         this.board = Collections.unmodifiableList(getLadderTemplate(gamers.size(), height));
-        drawBridgeAtAllLine(bridgeInterface);
+        settingBridgeOnAllLine(bridgeInterface);
     }
 
     public List<Gamer> getGamers() {
@@ -30,8 +30,8 @@ public class Ladder {
         return ladderTemplate;
     }
 
-    private void drawBridgeAtAllLine(BridgeInterface bridgeInterface) {
-        this.board.forEach((line) -> line.drawBridgeAtAllPiece(bridgeInterface));
+    private void settingBridgeOnAllLine(BridgeInterface bridgeInterface) {
+        this.board.forEach((line) -> line.settingBridgeOnAllPiece(bridgeInterface));
     }
 
 }
