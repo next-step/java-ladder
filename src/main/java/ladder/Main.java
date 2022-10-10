@@ -13,8 +13,6 @@ public class Main {
 
         Ladder ladder = new Ladder(inputDto.getNames().size(), inputDto.getHeight(), new RandomLineFactory(new RandomFactory()));
 
-        ResultView.printIntro();
-        ResultView.printNames(inputDto.getNames());
-        ResultView.printLadder(ladder);
+        ResultView.printLadderResult(inputDto.getNames(), ladder, inputDto.getLadderResults());
     }
 }
