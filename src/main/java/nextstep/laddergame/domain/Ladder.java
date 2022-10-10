@@ -5,17 +5,17 @@ import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
-    private final List<String> gamer;
+    private final List<Gamer> gamers;
     private final List<Line> board;
 
-    public Ladder(List<String> gamer, int height, BridgeInterface bridgeInterface) {
-        this.gamer = gamer;
-        this.board = Collections.unmodifiableList(getLadderTemplate(gamer.size(), height));
+    public Ladder(List<Gamer> gamers, int height, BridgeInterface bridgeInterface) {
+        this.gamers = gamers;
+        this.board = Collections.unmodifiableList(getLadderTemplate(gamers.size(), height));
         drawBridgeAtAllLine(bridgeInterface);
     }
 
-    public List<String> getGamer() {
-        return gamer;
+    public List<Gamer> getGamers() {
+        return gamers;
     }
 
     public List<Line> getBoard() {
