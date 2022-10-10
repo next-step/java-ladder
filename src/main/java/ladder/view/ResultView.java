@@ -46,11 +46,6 @@ public class ResultView {
     }
 
     private static String formattedName(Name name) {
-        int nameLength = name.length();
-        if (nameLength == Name.MAX_LENGTH) {
-            return name.name();
-        }
-
-        return String.format("%s%s ", " ".repeat(Name.MAX_LENGTH - 1 - nameLength), name.name());
+        return String.format("%" + Name.MAX_LENGTH + "s", name.name());
     }
 }
