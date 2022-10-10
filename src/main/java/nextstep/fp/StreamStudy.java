@@ -1,7 +1,6 @@
 package nextstep.fp;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -14,7 +13,7 @@ public class StreamStudy {
     public static long countWords() throws IOException {
         String contents = Files.readString(Paths
             .get("src/main/resources/fp/war-and-peace.txt"));
-        List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
+        String[] words = contents.split("[\\P{L}]+");
 
         long count = 0;
         for (String w : words) {

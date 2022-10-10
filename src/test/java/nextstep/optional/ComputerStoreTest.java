@@ -1,10 +1,11 @@
 package nextstep.optional;
 
-import nextstep.optional.Computer.Soundcard;
-import nextstep.optional.Computer.USB;
+import static org.assertj.core.api.Assertions.*;
+
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import nextstep.optional.Computer.Soundcard;
+import nextstep.optional.Computer.USB;
 
 public class ComputerStoreTest {
     @Test
