@@ -46,7 +46,7 @@ class LadderTest {
     }
 
     @Test
-    public void ladder_bridge_valid_test() {
+    public void ladder_bridge_count_test3() {
         Ladder ladder = new Ladder(gamers, height, DrawBridgeStrategy.DEFAULT_STRATEGY);
         assertThat(getBridgeCount(ladder)).isBetween(0, MAX_BRIDGE_COUNT);
     }
