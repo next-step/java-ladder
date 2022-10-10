@@ -1,12 +1,13 @@
 package ladder.step2.domain;
 
-import ladder.step2.dto.PlayerNameDTO;
-
-import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Players {
     private static final String INPUT_EXCEPTION_MESSAGE = "올바른 입력 형식이 아닙니다. 다시 입력해주세요.";
@@ -15,14 +16,14 @@ public class Players {
     private static final String EMPTY = "";
     private static final String DELIMITER = ",";
     
-    private final List<PlayerName> players;
+    private final List<Player> players;
     
     public Players(String playerNames) {
         this.players = parsePlayers(playerNames);
     }
     
-    private List<PlayerName> parsePlayers(String playerNames) {
-        checkAllPlayerNamesInputExceptionCase(playerNames);
+    private List<Player> parsePlayers(String playerNames) {
+        checkPlayerNamesInputForm(playerNames);
         return convertToPlayers(deleteSpace(playerNames));
     }
     
@@ -30,21 +31,11 @@ public class Players {
         return playerNames.replace(SPACE, EMPTY);
     }
     
-    private List<PlayerName> convertToPlayers(String playerNames) {
-        return Arrays.stream(playerNames.split(DELIMITER))
-                .map(PlayerName::new)
+    private List<Player> convertToPlayers(String playerNames) {
+        final String[] split = playerNames.split(DELIMITER);
+        return IntStream.range(0, split.length)
+                .mapToObj(position -> new Player(split[position], position))
                 .collect(Collectors.toList());
-    }
-    
-    private void checkAllPlayerNamesInputExceptionCase(String playerNames) {
-        checkNull(playerNames);
-        checkPlayerNamesInputForm(playerNames);
-    }
-    
-    private void checkNull(String playerNames) {
-        if (playerNames == null) {
-            throw new IllegalArgumentException(INPUT_EXCEPTION_MESSAGE);
-        }
     }
     
     private void checkPlayerNamesInputForm(String playerNames) {
@@ -54,13 +45,34 @@ public class Players {
         }
     }
     
+    public LadderGameResults parseLadderGameResults(final Ladder ladder, final LadderResults ladderResults) {
+        allPlayersMove(ladder);
+        return getLadderGameResults(ladderResults);
+    }
+    
+    private LadderGameResults getLadderGameResults(final LadderResults ladderResults) {
+        final Map<String, String> ladderGameResults = new HashMap<>();
+        
+        for (Player player : players) {
+            final LadderResult ladderResult = ladderResults.getMatchingLadderResult(player);
+            final PlayerName playerName = player.getPlayerName();
+            
+            ladderGameResults.put(playerName.getPlayerName(), ladderResult.getLadderResult());
+        }
+        return new LadderGameResults(ladderGameResults);
+    }
+    
+    private void allPlayersMove(final Ladder ladder) {
+        for (Player player : players) {
+            player.move(ladder.getLines());
+        }
+    }
+    
     public int size() {
         return players.size();
     }
     
-    public List<PlayerNameDTO> playerNamesInformation() {
-        return players.stream()
-                .map(PlayerName::playerNameInformation)
-                .collect(Collectors.toList());
+    public List<Player> getPlayers() {
+        return Collections.unmodifiableList(players);
     }
 }

@@ -3,27 +3,20 @@ package ladder.step2.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
-public class PlayerNameTest {
-    public static final PlayerName JUN = new PlayerName("jun");
+class PlayerNameTest {
+    public static final PlayerName PLAYER_NAME = new PlayerName("jun");
     
     @Test
     @DisplayName("플레이어 이름 생성")
     void create() {
-        assertThat(PlayerNameTest.JUN).isNotNull();
+        assertThat(PLAYER_NAME).isNotNull();
     }
     
     @Test
-    @DisplayName("플레이어 이름 5자 초과시 예뢰")
-    void player_name_length_exception() {
-        assertThatIllegalArgumentException().isThrownBy(() -> new PlayerName("honuxs"))
-                .withMessage("플레이어 이름은 5자를 초과할 수 없습니다.");
-    }
-    
-    @Test
-    @DisplayName("플레이어 이름 dto 생성")
-    void player_name_dto() {
-        assertThat(PlayerNameTest.JUN.playerNameInformation().getPlayerName()).isEqualTo("jun");
+    @DisplayName("플레이어 이름 가져오기")
+    void get_player_name() {
+        assertThat(PLAYER_NAME.getPlayerName()).isEqualTo("jun");
     }
 }

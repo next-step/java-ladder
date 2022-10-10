@@ -7,17 +7,17 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LineDTOTest {
-    public static final LineDTO LINE_DTO = new LineDTO(LineTest.LINE.lineInformation().getPartLines());
+    public static final LineDTO LINE_DTO = new LineDTO(LineTest.LINE);
     
     @Test
     @DisplayName("LineDTO 생성")
     void create() {
-        assertThat(LineDTOTest.LINE_DTO).isNotNull();
+        assertThat(LINE_DTO).isNotNull();
     }
     
     @Test
-    @DisplayName("LineDTO 데이터 있는지 확인")
+    @DisplayName("LineDTO 데이터 가져오기")
     void is_exist_data() {
-        assertThat(LineDTOTest.LINE_DTO.getPartLines()).isNotNull();
+        assertThat(LINE_DTO.getPartLines()).isNotNull();
     }
 }

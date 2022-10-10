@@ -6,18 +6,18 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class LadderDTOTest {
-    public static final LadderDTO LADDER_DTO = new LadderDTO(LadderTest.LADDER.ladderInformation().getLines());
+public class LadderDTOTest {
+    public static final LadderDTO LADDER_DTO = new LadderDTO(LadderTest.LADDER);
     
     @Test
     @DisplayName("LadderDTO 생성")
     void create() {
-        assertThat(LadderDTOTest.LADDER_DTO).isNotNull();
+        assertThat(LADDER_DTO).isNotNull();
     }
     
     @Test
-    @DisplayName("LadderDTO 데이터 있는지 확인")
-    void is_exist_data() {
-        assertThat(LadderDTOTest.LADDER_DTO.getLines()).isNotNull();
+    @DisplayName("LadderDTO 데이터 가져오기")
+    void get_line_dtos() {
+        assertThat(LADDER_DTO.getLineDTOS()).isNotNull();
     }
 }

@@ -1,17 +1,20 @@
 package ladder.step2.domain;
 
-import ladder.step2.dto.PlayerNameDTO;
+import ladder.step2.dto.PlayerDTO;
+import ladder.step2.dto.PlayersDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.EmptySource;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class PlayersTest {
     public static final Players PLAYERS = new Players("pobi, honux, jun, jk");
@@ -21,16 +24,14 @@ public class PlayersTest {
     @Test
     @DisplayName("여러 플레이어들의 일급 콜렉션 생성")
     void create() {
-        assertThat(PlayersTest.PLAYERS).isNotNull();
+        assertThat(PLAYERS).isNotNull();
     }
     
     @Test
     @DisplayName("입력한 플레이어들의 객체를 반환받는다.")
     void inputPlayerNames() {
-        Players players = new Players("pobi, honux, jun,jk");
-        List<PlayerNameDTO> playerNameDTOS = players.playerNamesInformation();
-        List<String> collect = playerNameDTOS.stream()
-                .map(PlayerNameDTO::getPlayerName)
+        List<String> collect = new PlayersDTO(PLAYERS).getPlayerDTOS().stream()
+                .map(PlayerDTO::getPlayerName)
                 .collect(Collectors.toList());
         
         assertThat(collect).isEqualTo(Arrays.asList("pobi", "honux", "jun", "jk"));
@@ -60,9 +61,9 @@ public class PlayersTest {
                 .withMessage(INPUT_EXCEPTION_MESSAGE);
     }
     
-    @DisplayName("플레이어 이름 입력 시, null or empty 입력 시 예외 던지기")
+    @DisplayName("플레이어 이름 입력 시, \"\" 입력 시 예외 던지기")
     @ParameterizedTest(name = "{displayName} : {0}")
-    @NullAndEmptySource
+    @EmptySource
     void inputPlayerNamesNullOrEmptyException(String input) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Players(input))
@@ -72,8 +73,8 @@ public class PlayersTest {
     @Test
     @DisplayName("플레이어 이름들 DTO 리스트 데이터 확인")
     void player_names_dto() {
-        List<String> playerNames = PlayersTest.PLAYERS.playerNamesInformation().stream()
-                .map(PlayerNameDTO::getPlayerName)
+        List<String> playerNames = new PlayersDTO(PLAYERS).getPlayerDTOS().stream()
+                .map(PlayerDTO::getPlayerName)
                 .collect(Collectors.toList());
         assertThat(playerNames).isEqualTo(Arrays.asList("pobi", "honux", "jun", "jk"));
     }
@@ -81,7 +82,37 @@ public class PlayersTest {
     @Test
     @DisplayName("플레이어 이름들 DTO 리스트 데이터 확인")
     void player_names_size() {
-        int size = PlayersTest.PLAYERS.size();
+        int size = PLAYERS.size();
         assertThat(size).isEqualTo(4);
+    }
+    
+    @Test
+    @DisplayName("플레이어 이름들 DTO 리스트 데이터 확인")
+    void get_players() {
+        final List<String> PlayerNames = PLAYERS.getPlayers().stream()
+                .map(Player::getPlayerName)
+                .map(PlayerName::getPlayerName)
+                .collect(Collectors.toList());
+        assertThat(PlayerNames).isEqualTo(Arrays.asList("pobi", "honux", "jun", "jk"));
+    }
+    
+    @Test
+    @DisplayName("사다리 게임 최종 결과 계산하기")
+    void parse_ladder_game_results() {
+        LadderGameResults ladderGameResults = PLAYERS.parseLadderGameResults(LadderTest.LADDER, LadderResultsTest.LADDER_RESULTS);
+        final Map<String, String> ladderGameResultsActual = ladderGameResults.getLadderGameResults();
+        assertAll(
+                () -> assertThat(ladderGameResultsActual.get("pobi")).isEqualTo("5000"),
+                () -> assertThat(ladderGameResultsActual.get("honux")).isEqualTo("꽝"),
+                () -> assertThat(ladderGameResultsActual.get("jun")).isEqualTo("book"),
+                () -> assertThat(ladderGameResultsActual.get("jk")).isEqualTo("꽝")
+        );
+    }
+    
+    @Test
+    @DisplayName("플레이어 이름 5자 초과시 예뢰")
+    void player_name_length_exception() {
+        assertThatIllegalArgumentException().isThrownBy(() -> new PlayerName("honuxs"))
+                .withMessage("플레이어 이름은 5자를 초과할 수 없습니다.");
     }
 }

@@ -13,12 +13,12 @@ public class LadderTest {
     @Test
     @DisplayName("사다리 생성")
     void create() {
-        assertThat(LadderTest.LADDER).isNotNull();
+        assertThat(LADDER).isNotNull();
     }
     
     @Test
-    @DisplayName("LadderDTO 생성")
-    void ladder_dto() {
-        assertThat(LadderTest.LADDER.ladderInformation()).isNotNull();
+    @DisplayName("사다리 데이터 가져오기")
+    void get_lines() {
+        assertThat(LADDER.getLines()).isEqualTo(Arrays.asList(LineTest.LINE, LineTest.LINE, LineTest.LINE, LineTest.LINE, LineTest.LINE));
     }
 }

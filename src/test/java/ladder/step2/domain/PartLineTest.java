@@ -13,15 +13,15 @@ public class PartLineTest {
     @Test
     @DisplayName("부분 라인 생성")
     void create() {
-        assertThat(PartLineTest.TRUE).isNotNull();
+        assertThat(TRUE).isNotNull();
     }
     
     @Test
     @DisplayName("부분 라인 존재 여부 확인")
     void checkExist() {
         assertAll(
-                () -> assertThat(PartLineTest.TRUE.isExist()).isTrue(),
-                () -> assertThat(PartLineTest.FALSE.isExist()).isFalse()
+                () -> assertThat(TRUE.isExist()).isTrue(),
+                () -> assertThat(FALSE.isExist()).isFalse()
         );
     }
 }

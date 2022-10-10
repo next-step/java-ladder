@@ -10,12 +10,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class LineTest {
-    public static final Line LINE = new Line(Arrays.asList(PartLineTest.FALSE, PartLineTest.TRUE, PartLineTest.FALSE, PartLineTest.TRUE, PartLineTest.FALSE));
+    public static final Line LINE = new Line(Arrays.asList(PartLineTest.FALSE, PartLineTest.TRUE, PartLineTest.FALSE, PartLineTest.TRUE));
     
     @Test
     @DisplayName("라인 생성 성공")
     void create_line_success() {
-        assertThat(LineTest.LINE).isNotNull();
+        assertThat(LINE).isNotNull();
     }
     
     @Test
@@ -34,5 +34,11 @@ public class LineTest {
         
         assertThatIllegalArgumentException().isThrownBy(() -> new Line(partLines))
                 .withMessage("첫번째 부분 라인이 존재합니다.");
+    }
+    
+    @Test
+    @DisplayName("라인 데이터 가져오기")
+    void get_part_lines() {
+        assertThat(LINE.getPartLines()).isEqualTo(Arrays.asList(PartLineTest.FALSE, PartLineTest.TRUE, PartLineTest.FALSE, PartLineTest.TRUE));
     }
 }
