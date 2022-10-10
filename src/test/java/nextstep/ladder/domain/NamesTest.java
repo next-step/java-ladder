@@ -1,18 +1,34 @@
 package nextstep.ladder.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
+@DisplayName("Names 테스트")
 class NamesTest {
 
-    @DisplayName("쉼표를 기준으로 이름을 구분할 수 있다.")
+    Names names;
+
+    @BeforeEach
+    void setUp() {
+        names = new Names("test1, test2,test3");
+    }
+
+    @DisplayName("쉼표를 기준으로 이름을 구분할 수 있다. - 사이즈 확인")
     @Test
     void names() {
-        Names names = new Names("test1, test2,test3");
+        assertThat(names.size()).isEqualTo(3);
+    }
 
-        assertThat(names.values()).contains(Name.of("test1"), Name.of("test2"), Name.of("test3"));
+    @DisplayName("쉼표를 기준으로 이름을 구분할 수 있다. - Element 값 확인")
+    @ParameterizedTest
+    @ValueSource(strings = {"test1", "test2", "test3"})
+    void names(String input) {
+        assertThat(names.contains(Name.of(input))).isTrue();
     }
 }

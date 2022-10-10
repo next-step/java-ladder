@@ -24,7 +24,13 @@ public class Names {
         return values.contains(name);
     }
 
+    public int size() {
+        return values.size();
+    }
+
     public List<Name> values() {
         return Collections.unmodifiableList(values);
     }
+
+
 }
