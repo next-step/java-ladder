@@ -28,6 +28,7 @@ public class StreamStudy {
                 .distinct()
                 .sorted(Comparator.comparing(String::length).reversed())
                 .map(String::toLowerCase)
+                .limit(100)
                 .collect(Collectors.toList());
 
         longestWordTop100.forEach(System.out::println);
