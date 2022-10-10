@@ -2,8 +2,8 @@ package ladder.view;
 
 import ladder.domain.Ladder;
 import ladder.domain.LadderResults;
-import ladder.domain.Name;
-import ladder.domain.Names;
+import ladder.domain.Player;
+import ladder.domain.Players;
 
 import static java.util.stream.Collectors.joining;
 
@@ -11,20 +11,20 @@ public class ResultView {
     private static final String LADDER_RESULT = "\n사다리 결과\n";
     private static final String WHITE_SPACE = " ";
     private static final String BAR = "|";
-    private static final int BRIDGE_WIDTH = Name.MAX_LENGTH;
+    private static final int BRIDGE_WIDTH = Player.MAX_LENGTH;
     private static final String BRIDGE = "-".repeat(BRIDGE_WIDTH);
     private static final String EMPTY_BRIDGE = WHITE_SPACE.repeat(BRIDGE_WIDTH);
     private static final String START_OF_LINE = WHITE_SPACE.repeat(BRIDGE_WIDTH - 1) + BAR;
 
-    public static void printLadderResult(Names names, Ladder ladder, LadderResults ladderResults) {
+    public static void printLadderResult(Players players, Ladder ladder, LadderResults ladderResults) {
         System.out.println(LADDER_RESULT);
-        printNames(names);
+        printNames(players);
         printLadder(ladder);
         printLadderResults(ladderResults);
     }
 
-    private static void printNames(Names names) {
-        String allNames = names.names()
+    private static void printNames(Players players) {
+        String allNames = players.players()
                 .stream()
                 .map(name -> widthFormattedString(name.name()))
                 .collect(joining(WHITE_SPACE));

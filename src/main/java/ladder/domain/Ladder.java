@@ -9,9 +9,9 @@ import static java.util.stream.Collectors.toList;
 public class Ladder {
     private final List<Line> lines;
 
-    public Ladder(Integer personCount, Integer height, LineFactory lineFactory) {
+    public Ladder(Integer playerCount, Integer height, LineFactory lineFactory) {
         this.lines = IntStream.range(0, height)
-                .mapToObj(i -> lineFactory.create(personCount))
+                .mapToObj(i -> lineFactory.create(playerCount))
                 .collect(toList());
     }
 
@@ -36,5 +36,13 @@ public class Ladder {
     @Override
     public int hashCode() {
         return lines != null ? lines.hashCode() : 0;
+    }
+
+    public Players goDown(Players players) {
+        Players result = players;
+        for (Line line: lines()) {
+            result = result.move(line);
+        }
+        return result;
     }
 }

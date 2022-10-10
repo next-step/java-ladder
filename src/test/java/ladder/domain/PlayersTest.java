@@ -6,18 +6,17 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class LadderTest {
+class PlayersTest {
 
     @Test
-    void create() {
-        Line line = new Line(List.of(true, false, true));
-        Ladder ladder = new Ladder(4, 2, playerCount -> line);
+    void size() {
+        List<Player> players = List.of(new Player("apple", 0));
 
-        assertThat(ladder).isEqualTo(new Ladder(List.of(line, line)));
+        assertThat(new Players(players).count()).isEqualTo(players.size());
     }
 
     @Test
-    void goDown() {
+    void move() {
         Players players = new Players(List.of(
                 new Player("a", 0),
                 new Player("b", 1),
@@ -26,7 +25,6 @@ class LadderTest {
                 new Player("e", 4)));
         List<Boolean> bridges = List.of(true, false, false, true);
         Line line = new Line(bridges);
-        Ladder ladder = new Ladder(players.count(), 3, playerCount -> line);
 
         Players expected = new Players(List.of(
                 new Player("a", 1),
@@ -34,6 +32,6 @@ class LadderTest {
                 new Player("c", 2),
                 new Player("d", 4),
                 new Player("e", 3)));
-        assertThat(ladder.goDown(players)).isEqualTo(expected);
+        assertThat(players.move(line)).isEqualTo(expected);
     }
 }

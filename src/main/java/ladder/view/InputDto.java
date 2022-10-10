@@ -1,21 +1,21 @@
 package ladder.view;
 
 import ladder.domain.LadderResults;
-import ladder.domain.Names;
+import ladder.domain.Players;
 
 public class InputDto {
-    private final Names names;
+    private final Players players;
     private final Integer height;
     private final LadderResults ladderResults;
 
-    public InputDto(Names names, Integer height, LadderResults ladderResults) {
-        this.names = names;
+    public InputDto(Players players, Integer height, LadderResults ladderResults) {
+        this.players = players;
         this.height = height;
         this.ladderResults = ladderResults;
     }
 
-    public Names getNames() {
-        return names;
+    public Players getPlayers() {
+        return players;
     }
 
     public Integer getHeight() {

@@ -2,11 +2,12 @@ package ladder.view;
 
 import ladder.domain.LadderResult;
 import ladder.domain.LadderResults;
-import ladder.domain.Name;
-import ladder.domain.Names;
+import ladder.domain.Player;
+import ladder.domain.Players;
 
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.toList;
 
@@ -19,7 +20,7 @@ public class InputView {
     public static InputDto scan() {
         try (Scanner scanner = new Scanner(System.in)) {
             System.out.println(NAMES_QUESTION);
-            Names names = scanNames(scanner);
+            Players players = scanPlayers(scanner);
 
             System.out.println(LADDER_RESULTS_QUESTION);
             LadderResults ladderResults = scanLadderResults(scanner);
@@ -27,14 +28,15 @@ public class InputView {
             System.out.println(HEIGHT_QUESTION);
             Integer height = scanHeight(scanner);
 
-            return new InputDto(names, height, ladderResults);
+            return new InputDto(players, height, ladderResults);
         }
     }
 
-    private static Names scanNames(Scanner scanner) {
-        return new Names(Arrays.stream(scanner.nextLine()
-                        .split(ELEMENTS_DELIMITER))
-                .map(Name::new)
+    private static Players scanPlayers(Scanner scanner) {
+        String[] names = scanner.nextLine().split(ELEMENTS_DELIMITER);
+
+        return new Players(IntStream.range(0, names.length)
+                .mapToObj(i -> new Player(names[i], i))
                 .collect(toList()));
     }
 
@@ -44,7 +46,7 @@ public class InputView {
 
     private static LadderResults scanLadderResults(Scanner scanner) {
         return new LadderResults(Arrays.stream(scanner.nextLine()
-                .split(ELEMENTS_DELIMITER))
+                        .split(ELEMENTS_DELIMITER))
                 .map(LadderResult::new)
                 .collect(toList()));
     }

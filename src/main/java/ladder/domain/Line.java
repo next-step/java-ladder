@@ -27,4 +27,18 @@ public class Line {
     public int hashCode() {
         return bridges.hashCode();
     }
+
+    public int nextPosition(int position) {
+        boolean existsRightBridge = position < bridges.size() && bridges.get(position);
+        if (existsRightBridge) {
+            return position + 1;
+        }
+
+        boolean existsLeftBridge = position > 0 && bridges.get(position - 1);
+        if (existsLeftBridge) {
+            return position - 1;
+        }
+
+        return position;
+    }
 }

@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.domain.Ladder;
+import ladder.domain.Players;
 import ladder.domain.RandomLineFactory;
 import ladder.external.RandomFactory;
 import ladder.view.InputDto;
@@ -11,8 +12,11 @@ public class Main {
     public static void main(String[] args) {
         InputDto inputDto = InputView.scan();
 
-        Ladder ladder = new Ladder(inputDto.getNames().size(), inputDto.getHeight(), new RandomLineFactory(new RandomFactory()));
+        Players players = inputDto.getPlayers();
+        Ladder ladder = new Ladder(players.count(), inputDto.getHeight(), new RandomLineFactory(new RandomFactory()));
 
-        ResultView.printLadderResult(inputDto.getNames(), ladder, inputDto.getLadderResults());
+        ResultView.printLadderResult(players, ladder, inputDto.getLadderResults());
+
+        players = ladder.goDown(players);
     }
 }
