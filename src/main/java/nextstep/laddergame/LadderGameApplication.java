@@ -15,7 +15,7 @@ public class LadderGameApplication {
         // 5
 
         List<Gamer> gamers = InputView.inputGamerNames();
-        int ladderHeight = InputView.inputLadderHeight();
+        Integer ladderHeight = InputView.inputLadderHeight();
 
         Ladder ladder = new Ladder(gamers, ladderHeight, DrawBridgeStrategy.DEFAULT_STRATEGY);
 
