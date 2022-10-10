@@ -33,7 +33,7 @@ class PersonNameTest {
     @ParameterizedTest
     @NullAndEmptySource
     @DisplayName("사람 이름이 빈 값이면 IllegalArgumentException")
-    void name_null_and_emtpy(String name) {
+    void name_null_and_empty(String name) {
         //then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new PersonName(name));
