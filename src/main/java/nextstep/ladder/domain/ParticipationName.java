@@ -35,4 +35,9 @@ public class ParticipationName {
                 .map(ParticipationName::new)
                 .collect(Collectors.toList());
     }
+
+    public String getName() {
+
+        return name;
+    }
 }
