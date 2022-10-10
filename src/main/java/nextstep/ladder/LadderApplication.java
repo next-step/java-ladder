@@ -17,8 +17,6 @@ public class LadderApplication {
         final List<ParticipationName> participationNames = ParticipationName.from(InputView.inputName());
         final LadderCreator ladderCreator = LadderCreator.of(participationNames.size(), InputView.inputLadderHeight());
         final Ladder ladder = ladderCreator.start();
-        ResultView.resultTitlePrint();
-        ResultView.resultNamePrint(ParticipationNameDto.from(participationNames));
-        ResultView.resultLadderPrint(Result.show(ladder));
+        ResultView.resultPrint(ParticipationNameDto.from(participationNames), Result.show(ladder));
     }
 }
