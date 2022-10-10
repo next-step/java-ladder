@@ -5,36 +5,42 @@
 * 코드 리뷰 피드백에 대한 개선 작업을 하고 다시 PUSH한다.
 * 모든 피드백을 완료하면 다음 단계를 도전하고 앞의 과정을 반복한다.
 
-## 온라인 코드 리뷰 과정
-* [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
-
 * 프로젝트 기능
 * domain
   * LadderGame
-    * Participants participants
-    * LadderInfo ladderInfo
-  * LadderInfo
-    * int height
-    * int numberOfParticipants
-    * Lines lines
+    * Variables
+      * Participants participants
+      * Lines lines
+    * Functions
+      * String view() : 사다리 String 리턴
+      * Participants participants() : 참가자 리스트 리턴
   * Lines
-    * List<Line> lines
+    * Variables
+      * List<Line> lines
+    * Functions
+      * String toLadderLines() : 사다리 String 생성 및 리턴
   * Line
     * Variables
-      * List<Point> points
+      * List<Edge> edges
     * Functions
-      * makePoints() : point(가로선) 생성
-  * Point
+      * String toLadderLine() : edge(가로선) 생성
+  * Edge
     * Variables
       * boolean linked
     * Functions
-      * Point randomLink(...) : 좌우 가로선에 따라 가로선 랜덤 생성 
+      * Edge next(LineStrategy) : LineStrategy 에 따라 edge 생성
+      * Edge unlink() : unlinked edge 리턴
+      * String edge() : linked 여부에 따라 edge 모양 리턴
   * Participants
     * Variables
       * List<Participant> participants
   * Participant
     * Variables
       * String name
+  * LineStrategy (interface)
+    * boolean isLinkable() : 구현체에 따라 edge 의 link 여부 리턴
+  * RandomLineStrategy implements LineStrategy
+    * boolean isLinkable() : 랜덤으로 edge 의 link 여부 리터
 * view
   * InputView
     * inputParticipants : 참가자 이름 입력

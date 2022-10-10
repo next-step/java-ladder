@@ -3,9 +3,12 @@ package nextstep.ladder.domain;
 import nextstep.ladder.exceptions.OutOfMaxNameLengthException;
 
 public class Participant {
-    private final String name;
 
     private static final int MAX_LENGTH = 5;
+
+    private final String name;
+
+    private LadderResult ladderResult;
 
     public Participant(String name) {
         if (name.length() == 0
@@ -18,5 +21,13 @@ public class Participant {
 
     public String name() {
         return name;
+    }
+
+    public String ladderResult() {
+        return this.ladderResult.name();
+    }
+
+    public void matchResult(LadderResult ladderResult) {
+        this.ladderResult = ladderResult;
     }
 }

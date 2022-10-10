@@ -7,28 +7,36 @@ public class Line {
 
     private static final RandomLineStrategy RANDOM_LINE_STRATEGY = new RandomLineStrategy();
 
-    private final List<Point> points;
+    private final List<Edge> edges;
 
     public Line(int numberOfParticipants) {
-        this.points = new ArrayList<>();
+        this.edges = new ArrayList<>();
 
-        Point point = new Point();
+        Edge edge = new Edge();
         for (int i = 1; i < numberOfParticipants; i++) {
-            point = point.next(RANDOM_LINE_STRATEGY);
-            this.points.add(point);
+            edge = edge.next(RANDOM_LINE_STRATEGY);
+            this.edges.add(edge);
         }
     }
 
     public String toLadderLine() {
         StringBuilder line = new StringBuilder("    |");
-        for (Point point : this.points) {
-            line.append(point.link());
+        for (Edge edge : this.edges) {
+            line.append(edge.edge());
         }
 
         return line.toString();
     }
 
-    public List<Point> points() {
-        return points;
+    public List<Edge> edges() {
+        return edges;
+    }
+
+    public boolean linkedLeft(int index) {
+        return edges.get(index - 1).linked();
+    }
+
+    public boolean linkedRight(int index) {
+        return edges.get(index + 1).linked();
     }
 }

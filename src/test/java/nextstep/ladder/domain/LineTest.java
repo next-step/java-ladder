@@ -4,7 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LineTest {
 
@@ -14,8 +13,8 @@ class LineTest {
         Line line1 = new Line(10);
         Line line2 = new Line(20);
 
-        assertThat(line1.points().size()).isEqualTo(9);
-        assertThat(line2.points().size()).isEqualTo(19);
+        assertThat(line1.edges().size()).isEqualTo(9);
+        assertThat(line2.edges().size()).isEqualTo(19);
     }
 
 }
