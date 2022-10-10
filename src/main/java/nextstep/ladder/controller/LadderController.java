@@ -1,6 +1,6 @@
 package nextstep.ladder.controller;
 
-import nextstep.ladder.domain.Names;
+import nextstep.ladder.domain.player.Names;
 import nextstep.ladder.view.InputView;
 
 public class LadderController {
