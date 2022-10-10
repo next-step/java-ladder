@@ -22,6 +22,7 @@ public class ParticipationNameDto {
     }
 
     public String getNames() {
+
         return names;
     }
 

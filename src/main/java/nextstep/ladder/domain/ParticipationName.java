@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class ParticipationName {
 
-    public static final String REGEX_COMMA = ",";
+    private static final String REGEX_COMMA = ",";
 
     private final String name;
 
