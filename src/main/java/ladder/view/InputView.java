@@ -5,7 +5,6 @@ import ladder.domain.LadderResults;
 import ladder.domain.Player;
 import ladder.domain.Players;
 
-import java.util.Arrays;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
@@ -16,23 +15,42 @@ public class InputView {
     private static final String ELEMENTS_DELIMITER = ",";
     private static final String LADDER_RESULTS_QUESTION = "\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String HEIGHT_QUESTION = "\n최대 사다리 높이는 몇 개인가요?";
+    private static final String TARGET_PLAYERS_QUESTION = "\n결과를 보고 싶은 사람은? (all: 모두)";
+    private static final String ALL = "all";
+
+    private static final Scanner scanner = new Scanner(System.in);
 
     public static InputDto scan() {
-        try (Scanner scanner = new Scanner(System.in)) {
-            System.out.println(NAMES_QUESTION);
-            Players players = scanPlayers(scanner);
+        System.out.println(NAMES_QUESTION);
+        Players players = scanPlayers();
 
-            System.out.println(LADDER_RESULTS_QUESTION);
-            LadderResults ladderResults = scanLadderResults(scanner);
+        System.out.println(LADDER_RESULTS_QUESTION);
+        LadderResults ladderResults = scanLadderResults();
+        validateLadderResultsCount(players, ladderResults);
 
-            System.out.println(HEIGHT_QUESTION);
-            Integer height = scanHeight(scanner);
+        System.out.println(HEIGHT_QUESTION);
+        Integer height = scanHeight();
 
-            return new InputDto(players, height, ladderResults);
-        }
+        return new InputDto(players, height, ladderResults);
     }
 
-    private static Players scanPlayers(Scanner scanner) {
+    public static Players scanTargetPlayers(Players players) {
+        System.out.println(TARGET_PLAYERS_QUESTION);
+        String[] names = scanner.nextLine().split(ELEMENTS_DELIMITER);
+        if (names.length == 1 && ALL.equals(names[0])) {
+            return players;
+        }
+
+        return new Players(IntStream.range(0, names.length)
+                .mapToObj(i -> new Player(names[i], i))
+                .collect(toList()));
+    }
+
+    public static void closeScan() {
+        scanner.close();
+    }
+
+    private static Players scanPlayers() {
         String[] names = scanner.nextLine().split(ELEMENTS_DELIMITER);
 
         return new Players(IntStream.range(0, names.length)
@@ -40,14 +58,21 @@ public class InputView {
                 .collect(toList()));
     }
 
-    private static Integer scanHeight(Scanner scanner) {
+    private static Integer scanHeight() {
         return Integer.parseInt(scanner.nextLine());
     }
 
-    private static LadderResults scanLadderResults(Scanner scanner) {
-        return new LadderResults(Arrays.stream(scanner.nextLine()
-                        .split(ELEMENTS_DELIMITER))
-                .map(LadderResult::new)
+    private static LadderResults scanLadderResults() {
+        String[] ladderResults = scanner.nextLine().split(ELEMENTS_DELIMITER);
+
+        return new LadderResults(IntStream.range(0, ladderResults.length)
+                .mapToObj(i -> new LadderResult(ladderResults[i], i))
                 .collect(toList()));
+    }
+
+    private static void validateLadderResultsCount(Players players, LadderResults ladderResults) {
+        if (players.count() != ladderResults.count()) {
+            throw new IllegalArgumentException("플레이어 수와 사다리 결과 수는 같아야 합니다.");
+        }
     }
 }

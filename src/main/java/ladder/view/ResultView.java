@@ -1,14 +1,12 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.LadderResults;
-import ladder.domain.Player;
-import ladder.domain.Players;
+import ladder.domain.*;
 
 import static java.util.stream.Collectors.joining;
 
 public class ResultView {
     private static final String LADDER_RESULT = "\n사다리 결과\n";
+    private static final String EXECUTION_RESULT = "\n실행 결과";
     private static final String WHITE_SPACE = " ";
     private static final String BAR = "|";
     private static final int BRIDGE_WIDTH = Player.MAX_LENGTH;
@@ -21,6 +19,16 @@ public class ResultView {
         printNames(players);
         printLadder(ladder);
         printLadderResults(ladderResults);
+    }
+
+    public static void printLadderResultsByPlayers(Players targetPlayers, Players resultPlayers, LadderResults ladderResults) {
+        System.out.println(EXECUTION_RESULT);
+        targetPlayers.players()
+                .forEach(targetPlayer -> {
+                    Player resultPlayer = resultPlayers.findByName(targetPlayer.name());
+                    LadderResult ladderResult = ladderResults.findByPosition(resultPlayer.position());
+                    System.out.println(String.format("%s : %s", targetPlayer.name(), ladderResult.ladderResult()));
+                });
     }
 
     private static void printNames(Players players) {

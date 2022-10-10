@@ -21,6 +21,10 @@ public class Player {
         return name;
     }
 
+    public int position() {
+        return position;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 
 import static java.util.stream.Collectors.toList;
@@ -39,5 +40,12 @@ public class Players {
         return new Players(players.stream()
                 .map(player -> player.move(line))
                 .collect(toList()));
+    }
+
+    public Player findByName(String name) {
+        return players.stream()
+                .filter(player -> player.name().equals(name))
+                .findFirst()
+                .orElseThrow(() -> new NoSuchElementException(String.format("name=%s에 해당하는 플레이어가 없습니다.", name)));
     }
 }

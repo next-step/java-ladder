@@ -17,6 +17,11 @@ public class Main {
 
         ResultView.printLadderResult(players, ladder, inputDto.getLadderResults());
 
-        players = ladder.goDown(players);
+        Players resultPlayers = ladder.goDown(players);
+
+        Players targetPlayers = InputView.scanTargetPlayers(players);
+        ResultView.printLadderResultsByPlayers(targetPlayers, resultPlayers, inputDto.getLadderResults());
+
+        InputView.closeScan();
     }
 }
