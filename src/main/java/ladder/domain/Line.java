@@ -29,16 +29,22 @@ public class Line {
     }
 
     public int nextPosition(int position) {
-        boolean existsRightBridge = position < bridges.size() && bridges.get(position);
-        if (existsRightBridge) {
+        if (existsRightBridge(position)) {
             return position + 1;
         }
 
-        boolean existsLeftBridge = position > 0 && bridges.get(position - 1);
-        if (existsLeftBridge) {
+        if (existsLeftBridge(position)) {
             return position - 1;
         }
 
         return position;
+    }
+
+    private boolean existsLeftBridge(int position) {
+        return position > 0 && bridges.get(position - 1);
+    }
+
+    private boolean existsRightBridge(int position) {
+        return position < bridges.size() && bridges.get(position);
     }
 }
