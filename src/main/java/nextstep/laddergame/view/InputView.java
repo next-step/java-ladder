@@ -6,6 +6,7 @@ import nextstep.laddergame.domain.Height;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class InputView {
@@ -17,9 +18,10 @@ public class InputView {
         System.out.println(INPUT_GAMER_NAMS_STRING);
         Scanner scanner = new Scanner(System.in);
         String gamerNamesString = scanner.nextLine();
+        AtomicInteger index = new AtomicInteger();
         return Arrays
                 .stream(gamerNamesString.split(NAME_SEPARATE))
-                .map(Gamer::new)
+                .map(name -> new Gamer(name, index.getAndIncrement()))
                 .collect(Collectors.toList());
     }
 

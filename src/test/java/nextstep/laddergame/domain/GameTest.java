@@ -8,10 +8,10 @@ import java.util.List;
 
 class GameTest {
     private static List<Gamer> gamers = Arrays.asList(
-            new Gamer("pobi")
-            , new Gamer("honux")
-            , new Gamer("crong")
-            , new Gamer("jk")
+            new Gamer("pobi", 0)
+            , new Gamer("honux", 1)
+            , new Gamer("crong", 2)
+            , new Gamer("jk", 3)
     );
     private static Height height = new Height("5");
 
