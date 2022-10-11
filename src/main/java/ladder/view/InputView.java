@@ -5,6 +5,7 @@ import ladder.domain.LadderResults;
 import ladder.domain.Player;
 import ladder.domain.Players;
 
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
@@ -63,10 +64,9 @@ public class InputView {
     }
 
     private static LadderResults scanLadderResults() {
-        String[] ladderResults = scanner.nextLine().split(ELEMENTS_DELIMITER);
-
-        return new LadderResults(IntStream.range(0, ladderResults.length)
-                .mapToObj(i -> new LadderResult(ladderResults[i], i))
+        return new LadderResults(Arrays.stream(scanner.nextLine()
+                        .split(ELEMENTS_DELIMITER))
+                .map(LadderResult::new)
                 .collect(toList()));
     }
 

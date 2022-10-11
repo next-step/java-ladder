@@ -12,27 +12,27 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class LadderResultsTest {
 
     @Test
-    void findByPosition() {
+    void ladderResultAt() {
         LadderResults ladderResults = ladderResults();
-        LadderResult ladderResult = ladderResults.findByPosition(0);
+        LadderResult ladderResult = ladderResults.ladderResultAt(0);
 
-        assertThat(ladderResult).isEqualTo(new LadderResult("꽝", 0));
+        assertThat(ladderResult).isEqualTo(new LadderResult("꽝"));
     }
 
     @DisplayName("포지션에 해당하는 사다리 결과가 없으면 예외 발생")
     @Test
-    void findByPosition_fail() {
+    void ladderResultAt_fail() {
         LadderResults ladderResults = ladderResults();
 
-        assertThatThrownBy(() -> ladderResults.findByPosition(4))
+        assertThatThrownBy(() -> ladderResults.ladderResultAt(4))
                 .isInstanceOf(NoSuchElementException.class);
     }
 
     private static LadderResults ladderResults() {
         return new LadderResults(List.of(
-                new LadderResult("꽝", 0),
-                new LadderResult("1000", 1),
-                new LadderResult("2000", 2),
-                new LadderResult("꽝", 3)));
+                new LadderResult("꽝"),
+                new LadderResult("1000"),
+                new LadderResult("2000"),
+                new LadderResult("꽝")));
     }
 }

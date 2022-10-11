@@ -26,7 +26,7 @@ public class ResultView {
         targetPlayers.players()
                 .forEach(targetPlayer -> {
                     Player resultPlayer = resultPlayers.findByName(targetPlayer.name());
-                    LadderResult ladderResult = ladderResults.findByPosition(resultPlayer.position());
+                    LadderResult ladderResult = ladderResults.ladderResultAt(resultPlayer.position());
                     System.out.println(String.format("%s : %s", targetPlayer.name(), ladderResult.ladderResult()));
                 });
     }
