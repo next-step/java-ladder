@@ -50,6 +50,20 @@ class PlayersTest {
                 .isInstanceOf(NoSuchElementException.class);
     }
 
+    @Test
+    void toPlayerNames() {
+        Players players = players();
+
+        PlayerNames playerNames = players.toPlayerNames();
+
+        assertThat(playerNames).isEqualTo(new PlayerNames(List.of(
+                new PlayerName("a"),
+                new PlayerName("b"),
+                new PlayerName("c"),
+                new PlayerName("d"),
+                new PlayerName("e"))));
+    }
+
     private Players players() {
         return new Players(List.of(
                 new Player(new PlayerName("a"), new Position(0)),
