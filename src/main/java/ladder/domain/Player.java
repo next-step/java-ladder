@@ -6,9 +6,9 @@ public class Player {
     public static final int MAX_LENGTH = 5;
 
     private final String name;
-    private final int position;
+    private final Position position;
 
-    public Player(String name, int position) {
+    public Player(String name, Position position) {
         if (name.length() > MAX_LENGTH) {
             throw new IllegalArgumentException("이름은 5자이하 이어야 합니다");
         }
@@ -21,7 +21,7 @@ public class Player {
         return name;
     }
 
-    public int position() {
+    public Position position() {
         return position;
     }
 
@@ -32,14 +32,14 @@ public class Player {
 
         Player player = (Player) o;
 
-        if (position != player.position) return false;
-        return Objects.equals(name, player.name);
+        if (!Objects.equals(name, player.name)) return false;
+        return Objects.equals(position, player.position);
     }
 
     @Override
     public int hashCode() {
         int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + position;
+        result = 31 * result + (position != null ? position.hashCode() : 0);
         return result;
     }
 

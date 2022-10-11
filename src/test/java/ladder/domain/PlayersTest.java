@@ -13,7 +13,7 @@ class PlayersTest {
 
     @Test
     void size() {
-        List<Player> players = List.of(new Player("apple", 0));
+        List<Player> players = List.of(new Player("apple", new Position(0)));
 
         assertThat(new Players(players).count()).isEqualTo(players.size());
     }
@@ -25,11 +25,11 @@ class PlayersTest {
         Line line = new Line(bridges);
 
         Players expected = new Players(List.of(
-                new Player("a", 1),
-                new Player("b", 0),
-                new Player("c", 2),
-                new Player("d", 4),
-                new Player("e", 3)));
+                new Player("a", new Position(1)),
+                new Player("b", new Position(0)),
+                new Player("c", new Position(2)),
+                new Player("d", new Position(4)),
+                new Player("e", new Position(3))));
         assertThat(players.move(line)).isEqualTo(expected);
     }
 
@@ -38,7 +38,7 @@ class PlayersTest {
         Players players = players();
         Player player = players.findByName("a");
 
-        assertThat(player).isEqualTo(new Player("a", 0));
+        assertThat(player).isEqualTo(new Player("a", new Position(0)));
     }
 
     @DisplayName("이름에 해당하는 플레이어가 존재하지 않으면 에러 발생")
@@ -52,10 +52,10 @@ class PlayersTest {
 
     private Players players() {
         return new Players(List.of(
-                new Player("a", 0),
-                new Player("b", 1),
-                new Player("c", 2),
-                new Player("d", 3),
-                new Player("e", 4)));
+                new Player("a", new Position(0)),
+                new Player("b", new Position(1)),
+                new Player("c", new Position(2)),
+                new Player("d", new Position(3)),
+                new Player("e", new Position(4))));
     }
 }

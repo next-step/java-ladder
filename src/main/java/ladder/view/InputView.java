@@ -1,9 +1,6 @@
 package ladder.view;
 
-import ladder.domain.LadderResult;
-import ladder.domain.LadderResults;
-import ladder.domain.Player;
-import ladder.domain.Players;
+import ladder.domain.*;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -43,7 +40,7 @@ public class InputView {
         }
 
         return new Players(IntStream.range(0, names.length)
-                .mapToObj(i -> new Player(names[i], i))
+                .mapToObj(i -> new Player(names[i], new Position(i)))
                 .collect(toList()));
     }
 
@@ -55,7 +52,7 @@ public class InputView {
         String[] names = scanner.nextLine().split(ELEMENTS_DELIMITER);
 
         return new Players(IntStream.range(0, names.length)
-                .mapToObj(i -> new Player(names[i], i))
+                .mapToObj(i -> new Player(names[i], new Position(i)))
                 .collect(toList()));
     }
 

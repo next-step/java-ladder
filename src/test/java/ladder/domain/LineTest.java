@@ -21,6 +21,6 @@ class LineTest {
         List<Boolean> bridges = List.of(true, false, false, true);
         Line line = new Line(bridges);
 
-        assertThat(line.nextPosition(position)).isEqualTo(expected);
+        assertThat(line.nextPosition(new Position(position))).isEqualTo(new Position(expected));
     }
 }

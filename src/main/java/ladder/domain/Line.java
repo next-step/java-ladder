@@ -28,23 +28,23 @@ public class Line {
         return bridges.hashCode();
     }
 
-    public int nextPosition(int position) {
+    public Position nextPosition(Position position) {
         if (existsRightBridge(position)) {
-            return position + 1;
+            return position.moveRight();
         }
 
         if (existsLeftBridge(position)) {
-            return position - 1;
+            return position.moveLeft();
         }
 
         return position;
     }
 
-    private boolean existsLeftBridge(int position) {
-        return position > 0 && bridges.get(position - 1);
+    private boolean existsRightBridge(Position position) {
+        return position.isLesserThan(bridges.size()) && bridges.get(position.position());
     }
 
-    private boolean existsRightBridge(int position) {
-        return position < bridges.size() && bridges.get(position);
+    private boolean existsLeftBridge(Position position) {
+        return position.isGreaterThan(0) && bridges.get(position.position() - 1);
     }
 }

@@ -14,7 +14,7 @@ class LadderResultsTest {
     @Test
     void ladderResultAt() {
         LadderResults ladderResults = ladderResults();
-        LadderResult ladderResult = ladderResults.ladderResultAt(0);
+        LadderResult ladderResult = ladderResults.ladderResultAt(new Position(0));
 
         assertThat(ladderResult).isEqualTo(new LadderResult("꽝"));
     }
@@ -24,7 +24,7 @@ class LadderResultsTest {
     void ladderResultAt_fail() {
         LadderResults ladderResults = ladderResults();
 
-        assertThatThrownBy(() -> ladderResults.ladderResultAt(4))
+        assertThatThrownBy(() -> ladderResults.ladderResultAt(new Position(4)))
                 .isInstanceOf(NoSuchElementException.class);
     }
 

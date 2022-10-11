@@ -18,11 +18,11 @@ public class LadderResults {
         return ladderResults.size();
     }
 
-    public LadderResult ladderResultAt(int position) {
-        if (position < 0 || position >= ladderResults.size()) {
-            throw new NoSuchElementException(String.format("position=%s에 해당하는 사다리 결과가 없습니다.", position));
+    public LadderResult ladderResultAt(Position position) {
+        if (position.isLesserThan(0) || position.isGreaterThanEqual(ladderResults.size())) {
+            throw new NoSuchElementException(String.format("position=%s에 해당하는 사다리 결과가 없습니다.", position.position()));
         }
 
-        return ladderResults.get(position);
+        return ladderResults.get(position.position());
     }
 }
