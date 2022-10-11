@@ -20,7 +20,7 @@ public class LadderResults {
 
     public LadderResult ladderResultAt(Position position) {
         if (position.isLesserThan(0) || position.isGreaterThanEqual(ladderResults.size())) {
-            throw new NoSuchElementException(String.format("position=%s에 해당하는 사다리 결과가 없습니다.", position.position()));
+            throw new NoSuchElementException(String.format("%s에 해당하는 사다리 결과가 없습니다.", position));
         }
 
         return ladderResults.get(position.position());

@@ -34,7 +34,7 @@ class PlayersTest {
     }
 
     @Test
-    void findByName() {
+    void findByPlayerName() {
         Players players = players();
         Player player = players.findByPlayerName(new PlayerName("a"));
 
@@ -43,7 +43,7 @@ class PlayersTest {
 
     @DisplayName("이름에 해당하는 플레이어가 존재하지 않으면 에러 발생")
     @Test
-    void findByName_fail() {
+    void findByPlayerName_fail() {
         Players players = players();
 
         assertThatThrownBy(() -> players.findByPlayerName(new PlayerName("f")))

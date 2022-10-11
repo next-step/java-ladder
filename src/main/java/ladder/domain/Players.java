@@ -46,7 +46,7 @@ public class Players {
         return players.stream()
                 .filter(player -> player.name().equals(playerName))
                 .findFirst()
-                .orElseThrow(() -> new NoSuchElementException(String.format("playerName=%s에 해당하는 플레이어가 없습니다.", playerName)));
+                .orElseThrow(() -> new NoSuchElementException(String.format("%s에 해당하는 플레이어가 없습니다.", playerName)));
     }
 
     public PlayerNames toPlayerNames() {

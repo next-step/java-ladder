@@ -30,6 +30,13 @@ public class Position {
         return position;
     }
 
+    @Override
+    public String toString() {
+        return "Position{" +
+                "position=" + position +
+                '}';
+    }
+
     public Position moveRight() {
         return new Position(position + 1);
     }
