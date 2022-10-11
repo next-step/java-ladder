@@ -44,10 +44,6 @@ public class LadderPiece {
         return bridgePosition;
     }
 
-    private boolean isAbleSetBridge() {
-        return this.nextLadderPieceMap.get(DirectionEnum.RIGHT) != null && this.bridgePosition.equals(BridgePositionEnum.NONE);
-    }
-
     // 가로 사다리(Bridge) 는 left -> right 방향으로만 생성한다.
     public void settingBridge(BridgeInterface bridgeInterface) {
         if (isAbleSetBridge() && bridgeInterface.ifDrawBridge()) {
@@ -55,4 +51,27 @@ public class LadderPiece {
             this.getRightPiece().setBridgePosition(BridgePositionEnum.LEFT);
         }
     }
+
+    public int moveToLadder(int currentIndex) {
+        LadderPiece nextPiece = this;
+        if (getBridgePosition().equals(BridgePositionEnum.RIGHT)) {
+            nextPiece = nextPiece.getRightPiece();
+            currentIndex++;
+        }
+        if (getBridgePosition().equals(BridgePositionEnum.LEFT)) {
+            nextPiece = nextPiece.getLeftPiece();
+            currentIndex--;
+        }
+        nextPiece = nextPiece.getBottomPiece();
+
+        if (nextPiece == null) {
+            return currentIndex;
+        }
+        return nextPiece.moveToLadder(currentIndex);
+    }
+
+    private boolean isAbleSetBridge() {
+        return this.nextLadderPieceMap.get(DirectionEnum.RIGHT) != null && this.bridgePosition.equals(BridgePositionEnum.NONE);
+    }
+
 }

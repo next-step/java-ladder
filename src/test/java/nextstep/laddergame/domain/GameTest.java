@@ -1,6 +1,7 @@
 package nextstep.laddergame.domain;
 
 import nextstep.laddergame.view.ResultView;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -19,5 +20,14 @@ class GameTest {
     public void print_ladder() {
         Game game = new Game(gamers, height, DrawBridgeStrategy.DEFAULT_STRATEGY);
         ResultView.printLadder(game);
+    }
+
+    @RepeatedTest(10)
+    void getResultIndex() {
+        Game game = new Game(gamers, height, DrawBridgeStrategy.DEFAULT_STRATEGY);
+        List<Integer> resultAll = game.getResultAll();
+
+        ResultView.printLadder(game);
+        System.out.println(resultAll.toString());
     }
 }
