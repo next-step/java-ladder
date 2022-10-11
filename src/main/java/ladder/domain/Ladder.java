@@ -40,7 +40,7 @@ public class Ladder {
 
     public Players goDown(Players players) {
         Players result = players;
-        for (Line line: lines()) {
+        for (Line line: lines) {
             result = result.move(line);
         }
         return result;
