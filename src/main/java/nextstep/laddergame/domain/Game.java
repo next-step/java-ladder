@@ -20,6 +20,18 @@ public class Game {
         this.ladder = new Ladder(gamers.size(), ladderHeight, bridgeInterface);
     }
 
+    public Gamer getGamer(String name) {
+        return this.gamers
+                .stream()
+                .filter(vo -> vo.getName().equals(name))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public Gamer getGamer(int index) {
+        return this.gamers.get(index);
+    }
+
     public int getResultIndex(int startIndex) {
         Line startLine = ladder.getStartLine();
         LadderPiece startLadderPiece = startLine.getLadderPiece(startIndex);
