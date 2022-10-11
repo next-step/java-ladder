@@ -36,6 +36,10 @@ public class Name {
         return value.strip().length() > DEFAULT_NAME_LENGTH;
     }
 
+    public String value() {
+        return value;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
