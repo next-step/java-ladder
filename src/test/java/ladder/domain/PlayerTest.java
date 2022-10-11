@@ -16,7 +16,7 @@ class PlayerTest {
     @Test
     void create_fail() {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Player("chicken", new Position(0)))
+                .isThrownBy(() -> new Player(new PlayerName("chicken"), new Position(0)))
                 .withMessage("이름은 5자이하 이어야 합니다");
     }
 
@@ -29,10 +29,10 @@ class PlayerTest {
             "4,3"
     })
     void move(Integer position, Integer expected) {
-        Player player = new Player("panda", new Position(position));
+        Player player = new Player(new PlayerName("panda"), new Position(position));
         List<Boolean> bridges = List.of(true, false, false, true);
         Line line = new Line(bridges);
 
-        assertThat(player.move(line)).isEqualTo(new Player("panda", new Position(expected)));
+        assertThat(player.move(line)).isEqualTo(new Player(new PlayerName("panda"), new Position(expected)));
     }
 }

@@ -42,10 +42,16 @@ public class Players {
                 .collect(toList()));
     }
 
-    public Player findByName(String name) {
+    public Player findByPlayerName(PlayerName playerName) {
         return players.stream()
-                .filter(player -> player.name().equals(name))
+                .filter(player -> player.name().equals(playerName))
                 .findFirst()
-                .orElseThrow(() -> new NoSuchElementException(String.format("name=%s에 해당하는 플레이어가 없습니다.", name)));
+                .orElseThrow(() -> new NoSuchElementException(String.format("playerName=%s에 해당하는 플레이어가 없습니다.", playerName)));
+    }
+
+    public PlayerNames toPlayerNames() {
+        return new PlayerNames(players.stream()
+                .map(Player::name)
+                .collect(toList()));
     }
 }

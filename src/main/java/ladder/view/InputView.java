@@ -32,15 +32,15 @@ public class InputView {
         return new InputDto(players, height, ladderResults);
     }
 
-    public static Players scanTargetPlayers(Players players) {
+    public static PlayerNames scanTargetPlayers(Players players) {
         System.out.println(TARGET_PLAYERS_QUESTION);
         String[] names = scanner.nextLine().split(ELEMENTS_DELIMITER);
         if (names.length == 1 && ALL.equals(names[0])) {
-            return players;
+            return players.toPlayerNames();
         }
 
-        return new Players(IntStream.range(0, names.length)
-                .mapToObj(i -> new Player(names[i], new Position(i)))
+        return new PlayerNames(Arrays.stream(names)
+                .map(PlayerName::new)
                 .collect(toList()));
     }
 
@@ -52,7 +52,7 @@ public class InputView {
         String[] names = scanner.nextLine().split(ELEMENTS_DELIMITER);
 
         return new Players(IntStream.range(0, names.length)
-                .mapToObj(i -> new Player(names[i], new Position(i)))
+                .mapToObj(i -> new Player(new PlayerName(names[i]), new Position(i)))
                 .collect(toList()));
     }
 

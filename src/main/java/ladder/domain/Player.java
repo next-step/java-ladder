@@ -3,21 +3,17 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Player {
-    public static final int MAX_LENGTH = 5;
 
-    private final String name;
+
+    private final PlayerName name;
     private final Position position;
 
-    public Player(String name, Position position) {
-        if (name.length() > MAX_LENGTH) {
-            throw new IllegalArgumentException("이름은 5자이하 이어야 합니다");
-        }
-
+    public Player(PlayerName name, Position position) {
         this.name = name;
         this.position = position;
     }
 
-    public String name() {
+    public PlayerName name() {
         return name;
     }
 

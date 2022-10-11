@@ -9,7 +9,7 @@ public class ResultView {
     private static final String EXECUTION_RESULT = "\n실행 결과";
     private static final String WHITE_SPACE = " ";
     private static final String BAR = "|";
-    private static final int BRIDGE_WIDTH = Player.MAX_LENGTH;
+    private static final int BRIDGE_WIDTH = PlayerName.MAX_LENGTH;
     private static final String BRIDGE = "-".repeat(BRIDGE_WIDTH);
     private static final String EMPTY_BRIDGE = WHITE_SPACE.repeat(BRIDGE_WIDTH);
     private static final String START_OF_LINE = WHITE_SPACE.repeat(BRIDGE_WIDTH - 1) + BAR;
@@ -21,20 +21,20 @@ public class ResultView {
         printLadderResults(ladderResults);
     }
 
-    public static void printLadderResultsByPlayers(Players targetPlayers, Players resultPlayers, LadderResults ladderResults) {
+    public static void printLadderResultsByPlayers(PlayerNames targetPlayersNames, Players resultPlayers, LadderResults ladderResults) {
         System.out.println(EXECUTION_RESULT);
-        targetPlayers.players()
-                .forEach(targetPlayer -> {
-                    Player resultPlayer = resultPlayers.findByName(targetPlayer.name());
+        targetPlayersNames.names()
+                .forEach(playerName -> {
+                    Player resultPlayer = resultPlayers.findByPlayerName(playerName);
                     LadderResult ladderResult = ladderResults.ladderResultAt(resultPlayer.position());
-                    System.out.println(String.format("%s : %s", targetPlayer.name(), ladderResult.ladderResult()));
+                    System.out.println(String.format("%s : %s", playerName.name(), ladderResult.ladderResult()));
                 });
     }
 
     private static void printNames(Players players) {
         String allNames = players.players()
                 .stream()
-                .map(name -> widthFormattedString(name.name()))
+                .map(player -> widthFormattedString(player.name().name()))
                 .collect(joining(WHITE_SPACE));
 
         System.out.println(allNames);
