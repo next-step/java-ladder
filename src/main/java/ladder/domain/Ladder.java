@@ -9,7 +9,7 @@ import static java.util.stream.Collectors.toList;
 public class Ladder {
     private final List<Line> lines;
 
-    public Ladder(Integer playerCount, Integer height, LineFactory lineFactory) {
+    public Ladder(int playerCount, int height, LineFactory lineFactory) {
         this.lines = IntStream.range(0, height)
                 .mapToObj(i -> lineFactory.create(playerCount))
                 .collect(toList());

@@ -5,10 +5,10 @@ import ladder.domain.Players;
 
 public class InputDto {
     private final Players players;
-    private final Integer height;
+    private final int height;
     private final LadderResults ladderResults;
 
-    public InputDto(Players players, Integer height, LadderResults ladderResults) {
+    public InputDto(Players players, int height, LadderResults ladderResults) {
         this.players = players;
         this.height = height;
         this.ladderResults = ladderResults;
@@ -18,7 +18,7 @@ public class InputDto {
         return players;
     }
 
-    public Integer getHeight() {
+    public int getHeight() {
         return height;
     }
 
