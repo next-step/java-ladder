@@ -30,4 +30,9 @@ public class InputView {
         PrintView.printInitLadderHeightPhrase();
         return scanner().nextInt();
     }
+
+    public static String initLadderGameResult() {
+        PrintView.printInitLadderGameResultPhrase();
+        return scanner().next();
+    }
 }

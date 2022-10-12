@@ -17,7 +17,7 @@ public class UserName {
     }
 
     private void validateUserName(String userName) {
-        if (userName == null || userName.isEmpty() || userName.length() > MAX_NAME_LENGTH) {
+        if (userName == null || userName.isEmpty() || userName.length() > MAX_NAME_LENGTH || userName.equals("all")) {
             throw new IllegalArgumentException("유효하지 않은 유저 이름입니다.");
         }
     }
