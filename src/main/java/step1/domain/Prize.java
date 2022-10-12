@@ -20,7 +20,7 @@ public class Prize {
             .collect(Collectors.toList());
     }
 
-    public String getLadderGoal() {
+    public String getPrize() {
         return prize;
     }
 
