@@ -1,14 +1,12 @@
 package nextstep.ladder.view;
 
-import java.util.List;
-
-import nextstep.ladder.model.Person;
+import nextstep.ladder.model.People;
 
 public class ResultView {
     private static final String RESULT_TITLE = "실행 결과";
     private static final String NAME_FORMAT = "%6s";
 
-    public void printResult(List<Person> people) {
+    public void printResult(People people) {
         printTitle();
         printPeopleNames(people);
         // System.out.println("     |-----|-----|-----|");
@@ -23,9 +21,8 @@ public class ResultView {
         System.out.println();
     }
 
-    private void printPeopleNames(List<Person> people) {
-        people.stream()
-            .map(Person::getName)
+    private void printPeopleNames(People people) {
+        people.getPeopleNames()
             .forEach(name -> System.out.printf(NAME_FORMAT, name));
         System.out.println();
     }

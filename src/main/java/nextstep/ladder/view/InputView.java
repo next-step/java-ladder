@@ -34,7 +34,7 @@ public class InputView {
         return ladderLength;
     }
 
-    private<T> T wrapMethod(Supplier<T> method) {
+    private <T> T wrapMethod(Supplier<T> method) {
         try {
             return method.get();
         } catch (Exception e) {
