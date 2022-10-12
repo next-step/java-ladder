@@ -60,7 +60,7 @@ public class Lines {
     }
 
     private void validateBridgesDuplicated(List<Line> lines) {
-        IntStream.range(1, getWidth())
+        IntStream.range(1, lines.size())
             .filter(idx -> lines.get(idx).isDuplicatedLine(lines.get(idx - 1)))
             .forEach(exists -> {
                 throw new IllegalArgumentException("가로 라인에 인접한 Bridge는 같이 열려있을 수 없습니다.");
