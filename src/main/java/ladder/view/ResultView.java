@@ -1,33 +1,46 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.Name;
-import ladder.domain.Names;
+import ladder.domain.*;
 
 import static java.util.stream.Collectors.joining;
 
 public class ResultView {
-    private static final String INTRO = "\n실행 결과\n";
-    private static final String NAMES_DELIMITER = " ";
+    private static final String LADDER_RESULT = "\n사다리 결과\n";
+    private static final String EXECUTION_RESULT = "\n실행 결과";
+    private static final String WHITE_SPACE = " ";
     private static final String BAR = "|";
-    private static final String BRIDGE = "-".repeat(Name.MAX_LENGTH);
-    private static final String EMPTY_BRIDGE = " ".repeat(Name.MAX_LENGTH);
-    private static final String START_OF_LINE = " ".repeat(Name.MAX_LENGTH - 1) + BAR;
+    private static final int BRIDGE_WIDTH = PlayerName.MAX_LENGTH;
+    private static final String BRIDGE = "-".repeat(BRIDGE_WIDTH);
+    private static final String EMPTY_BRIDGE = WHITE_SPACE.repeat(BRIDGE_WIDTH);
+    private static final String START_OF_LINE = WHITE_SPACE.repeat(BRIDGE_WIDTH - 1) + BAR;
 
-    public static void printIntro() {
-        System.out.println(INTRO);
+    public static void printLadderResult(Players players, Ladder ladder, LadderResults ladderResults) {
+        System.out.println(LADDER_RESULT);
+        printNames(players);
+        printLadder(ladder);
+        printLadderResults(ladderResults);
     }
 
-    public static void printNames(Names names) {
-        String allNames = names.names()
+    public static void printLadderResultsByPlayers(PlayerNames targetPlayersNames, Players resultPlayers, LadderResults ladderResults) {
+        System.out.println(EXECUTION_RESULT);
+        targetPlayersNames.names()
+                .forEach(playerName -> {
+                    Player resultPlayer = resultPlayers.findByPlayerName(playerName);
+                    LadderResult ladderResult = ladderResults.ladderResultAt(resultPlayer.position());
+                    System.out.println(String.format("%s : %s", playerName.name(), ladderResult.ladderResult()));
+                });
+    }
+
+    private static void printNames(Players players) {
+        String allNames = players.players()
                 .stream()
-                .map(ResultView::formattedName)
-                .collect(joining(NAMES_DELIMITER));
+                .map(player -> widthFormattedString(player.name().name()))
+                .collect(joining(WHITE_SPACE));
 
         System.out.println(allNames);
     }
 
-    public static void printLadder(Ladder ladder) {
+    private static void printLadder(Ladder ladder) {
         ladder.lines().forEach(line -> {
             String lineString = line.bridges()
                     .stream()
@@ -35,6 +48,15 @@ public class ResultView {
                     .collect(joining(BAR, START_OF_LINE, BAR));
             System.out.println(lineString);
         });
+    }
+
+    private static void printLadderResults(LadderResults ladderResults) {
+        String allLadderResults = ladderResults.ladderResults()
+                .stream()
+                .map(ladderResult -> widthFormattedString(ladderResult.ladderResult()))
+                .collect(joining(WHITE_SPACE));
+
+        System.out.println(allLadderResults);
     }
 
     private static String bridgeString(Boolean existsBridge) {
@@ -45,12 +67,7 @@ public class ResultView {
         return EMPTY_BRIDGE;
     }
 
-    private static String formattedName(Name name) {
-        int nameLength = name.length();
-        if (nameLength == Name.MAX_LENGTH) {
-            return name.name();
-        }
-
-        return String.format("%s%s ", " ".repeat(Name.MAX_LENGTH - 1 - nameLength), name.name());
+    private static String widthFormattedString(String string) {
+        return String.format("%" + BRIDGE_WIDTH + "s", string);
     }
 }

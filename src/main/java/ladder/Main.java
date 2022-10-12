@@ -1,19 +1,28 @@
 package ladder;
 
 import ladder.domain.Ladder;
+import ladder.domain.PlayerNames;
+import ladder.domain.Players;
 import ladder.domain.RandomLineFactory;
 import ladder.external.RandomFactory;
+import ladder.view.InputDto;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
 public class Main {
     public static void main(String[] args) {
-        InputView inputView = new InputView();
+        InputDto inputDto = InputView.scan();
 
-        Ladder ladder = new Ladder(inputView.names().size(), inputView.height(), new RandomLineFactory(new RandomFactory()));
+        Players players = inputDto.getPlayers();
+        Ladder ladder = new Ladder(players.count(), inputDto.getHeight(), new RandomLineFactory(new RandomFactory()));
 
-        ResultView.printIntro();
-        ResultView.printNames(inputView.names());
-        ResultView.printLadder(ladder);
+        ResultView.printLadderResult(players, ladder, inputDto.getLadderResults());
+
+        Players resultPlayers = ladder.goDown(players);
+
+        PlayerNames targetPlayerNames = InputView.scanTargetPlayers(players);
+        ResultView.printLadderResultsByPlayers(targetPlayerNames, resultPlayers, inputDto.getLadderResults());
+
+        InputView.closeScan();
     }
 }
