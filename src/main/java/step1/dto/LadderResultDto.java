@@ -20,12 +20,8 @@ public class LadderResultDto {
     }
 
     public static LadderResultDto from(Ladder ladder, UserNames userNames) {
-        List<LineDto> lineDtos = ladder.getLines().stream()
-            .map(LineDto::from)
-            .collect(Collectors.toList());
-
         return new LadderResultDto(
-            lineDtos,
+            LineDto.from(ladder.getLines()),
             userNames.getPrimitiveUserNames(),
             ladder.getHeight()
         );
