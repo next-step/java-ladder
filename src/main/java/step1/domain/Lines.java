@@ -28,6 +28,14 @@ public class Lines {
         return height;
     }
 
+    public int getWidth() {
+        return lines.size();
+    }
+
+    public boolean existsBridgeByIdxAndHeight(int idx, int h) {
+        return lines.get(idx).getBridgeByIdx(h - 1).isOpen();
+    }
+
     private void validateLines(List<Line> lines, int height) {
         validateHeightSame(lines, height);
         validateFirstLineIsAllFalse(lines);
@@ -52,7 +60,7 @@ public class Lines {
     }
 
     private void validateBridgesDuplicated(List<Line> lines) {
-        IntStream.range(1, lines.size())
+        IntStream.range(1, getWidth())
             .filter(idx -> lines.get(idx).isDuplicatedLine(lines.get(idx - 1)))
             .forEach(exists -> {
                 throw new IllegalArgumentException("가로 라인에 인접한 Bridge는 같이 열려있을 수 없습니다.");
