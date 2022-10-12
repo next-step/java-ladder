@@ -23,7 +23,7 @@ public class Bridge {
             return Bridge.closed();
         }
 
-        return new Bridge(RandomGenerator.nextBoolean());
+        return new Bridge(RandomGenerator.generate());
     }
 
     public static List<Bridge> createAllClosedBridges(int count) {
