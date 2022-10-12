@@ -14,6 +14,10 @@ public class ResultView {
         // System.out.println("     |-----|-----|-----|");
     }
 
+    public void printError(Exception e) {
+        System.out.println(e.getMessage());
+    }
+
     private void printTitle() {
         System.out.println(RESULT_TITLE);
         System.out.println();
