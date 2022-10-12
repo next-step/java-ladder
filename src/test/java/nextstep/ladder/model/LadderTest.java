@@ -17,7 +17,7 @@ class LadderTest {
     }
 
     @ParameterizedTest(name = "부적절한 사다리의 길이가 주어졌을 때, 예외가 던져진다. 길이: {0}")
-    @ValueSource(ints = {-1 ,0})
+    @ValueSource(ints = {-1, 0})
     void createWithInvalidLength(int ladderLength) {
         assertThatThrownBy(() -> new Ladder(ladderLength, 3))
             .isInstanceOf(IllegalArgumentException.class)
