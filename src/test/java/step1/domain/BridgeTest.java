@@ -12,12 +12,17 @@ class BridgeTest {
     @Test
     @DisplayName("전 라인의 Bridge가 Open이라면 다음 라인의 Bridge는 Closed이어야한다.")
     void fromBeforeLineBridge() {
-        then(Bridge.fromBeforeLineBridge(new Bridge(true))).isEqualTo(new Bridge(false));
+        then(Bridge.fromBeforeLineBridge(new Bridge(true))).isEqualTo(Bridge.closed());
     }
 
     @Test
     void createAllClosedBridges() {
         then(Bridge.createAllClosedBridges(2))
-            .isEqualTo(List.of(new Bridge(false), new Bridge(false)));
+            .isEqualTo(List.of(Bridge.closed(), Bridge.closed()));
+    }
+
+    @Test
+    void closed() {
+        then(Bridge.closed()).isEqualTo(new Bridge(false));
     }
 }
