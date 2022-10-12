@@ -21,12 +21,14 @@ public class LadderGameController {
         try {
             doRun();
         } catch (Exception e) {
-
+            resultView.printError(e);
         }
     }
 
     private void doRun() {
         List<String> peopleNames = inputView.getPeopleNames();
+        int ladderLength = inputView.getLadderLength();
+
         List<Person> people = peopleNames.stream()
             .map(Person::new)
             .collect(toList());
