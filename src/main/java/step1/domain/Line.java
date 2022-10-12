@@ -25,6 +25,10 @@ public class Line {
         return height.getHeight();
     }
 
+    public boolean isEqualsHeight(int height) {
+        return this.height.isEqualsHeight(height);
+    }
+
     public List<Bridge> getBridges() {
         return Collections.unmodifiableList(bridges);
     }
@@ -35,15 +39,13 @@ public class Line {
 
     public boolean isDuplicatedLine(Line beforeLine) {
         return IntStream.range(0, getHeight())
-            .anyMatch(idx -> isDuplicatedBridge(beforeLine.getBridgeByIdx(idx), getBridgeByIdx(idx)));
-    }
-
-    private boolean isDuplicatedBridge(Bridge beforeLineBridge, Bridge bridge) {
-        return beforeLineBridge.isOpen() && bridge.isOpen();
+            .anyMatch(idx ->
+                beforeLine.getBridgeByIdx(idx).isDuplicatedBridge(getBridgeByIdx(idx))
+            );
     }
 
     private static void validateLine(List<Bridge> bridges, Height height) {
-        if (bridges.size() != height.getHeight()) {
+        if (!height.isEqualsHeight(bridges.size())) {
             throw new IllegalArgumentException("Line의 길이와 bridge의 개수는 같아야합니다.");
         }
     }

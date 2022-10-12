@@ -36,6 +36,10 @@ public class Bridge {
         return isOpen;
     }
 
+    public boolean isDuplicatedBridge(Bridge bridge) {
+        return isOpen && bridge.isOpen;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

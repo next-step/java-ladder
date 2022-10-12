@@ -36,7 +36,7 @@ public class Lines {
 
     private void validateHeightSame(List<Line> lines, int height) {
         lines.stream()
-            .filter(line -> height != line.getHeight())
+            .filter(line -> !line.isEqualsHeight(height))
             .forEach(exists -> {
                 throw new IllegalArgumentException("Line의 모든 높이는 같아야합니다.");
             });
