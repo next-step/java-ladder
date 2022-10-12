@@ -1,5 +1,10 @@
 package nextstep.ladder.controller;
 
+import static java.util.stream.Collectors.*;
+
+import java.util.List;
+
+import nextstep.ladder.model.Person;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
@@ -21,6 +26,11 @@ public class LadderGameController {
     }
 
     private void doRun() {
+        List<String> peopleNames = inputView.getPeopleNames();
+        List<Person> people = peopleNames.stream()
+            .map(Person::new)
+            .collect(toList());
 
+        resultView.printResult(people);
     }
 }
