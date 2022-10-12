@@ -17,6 +17,10 @@ public class Ladder {
             .collect(toList());
     }
 
+    public List<Line> getLines() {
+        return lines;
+    }
+
     private void validate(int ladderLength) {
         if (ladderLength <= 0) {
             throw new IllegalArgumentException(INVALID_LADDER_LENGTH_EXCEPTION_MESSAGE);

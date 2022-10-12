@@ -2,6 +2,7 @@ package nextstep.ladder.controller;
 
 import java.util.List;
 
+import nextstep.ladder.model.Ladder;
 import nextstep.ladder.model.People;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
@@ -25,9 +26,11 @@ public class LadderGameController {
 
     private void doRun() {
         List<String> peopleNames = inputView.getPeopleNames();
-        int ladderLength = inputView.getLadderLength();
-
         People people = new People(peopleNames);
-        resultView.printResult(people);
+
+        int ladderLength = inputView.getLadderLength();
+        Ladder ladder = new Ladder(ladderLength, peopleNames.size());
+
+        resultView.printResult(people, ladder);
     }
 }
