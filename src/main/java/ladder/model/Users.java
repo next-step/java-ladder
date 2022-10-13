@@ -25,14 +25,6 @@ public class Users {
         return this.users.size();
     }
 
-    public List<VerticalLine> mapToVertical(List<HorizontalLine> horizontalLine) {
-        horizontalLine.forEach((line) -> line.validate(this.size()));
-        List<VerticalLine> verticalLines = new ArrayList<>();
-        for (int userIndex = 0; userIndex < this.users.size(); userIndex++) {
-            verticalLines.add(VerticalLine.mapHorizontalLineToVertical(horizontalLine, userIndex));
-        }
-        return verticalLines;
-    }
 
     public List<Integer> findStartPositionByUsername(UserName name) {
         if (name.isAllUser()){

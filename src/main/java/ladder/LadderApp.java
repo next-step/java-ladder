@@ -3,6 +3,7 @@ package ladder;
 import ladder.model.*;
 import ladder.service.LineGenerator;
 import ladder.service.RandomLineGenerator;
+import ladder.service.VerticalMapper;
 import ladder.ui.InputView;
 import ladder.ui.OutputView;
 
@@ -26,7 +27,7 @@ public class LadderApp {
 
             List<HorizontalLine> horizontalLines = generator.generate(users.size(),ladderLength);
 
-            Ladder ladder = new Ladder(users.mapToVertical(horizontalLines), ladderLength);
+            Ladder ladder = new Ladder(VerticalMapper.map(horizontalLines,users.size()),ladderLength);
             OutputView.printLadder(users,ladder,ladderResult);
 
             while (true){
