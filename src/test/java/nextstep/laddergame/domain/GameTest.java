@@ -46,6 +46,7 @@ class GameTest {
     @Test
     @DisplayName("[전원] 가로 사다리(Bridge)가 0개일 때 사다리 게임의 시작 위치와 종료 위치가 동일한지 테스트")
     public void getResultAll() {
+        Game game = new Game(gamers, height, DrawBridgeStrategy.DRAW_ANY);
         List<Integer> rewards = game.getResultAll();
         List<Gamer> gamers = game.getGamers();
         for (int index = 0; index < game.getGamers().size(); index++) {
