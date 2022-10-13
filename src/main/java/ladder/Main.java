@@ -3,7 +3,7 @@ package ladder;
 import ladder.domain.Ladder;
 import ladder.domain.PlayerNames;
 import ladder.domain.Players;
-import ladder.domain.RandomLineFactory;
+import ladder.domain.v1.RandomLineFactory;
 import ladder.external.RandomFactory;
 import ladder.view.InputDto;
 import ladder.view.InputView;

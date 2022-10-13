@@ -1,8 +1,11 @@
-package ladder.domain;
+package ladder.domain.v1;
+
+import ladder.domain.Position;
+import ladder.domain.factory.ILine;
 
 import java.util.List;
 
-public class Line {
+public class Line implements ILine {
     private final List<Boolean> bridges;
 
     public Line(List<Boolean> bridges) {

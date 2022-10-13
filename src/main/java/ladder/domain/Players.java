@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.domain.factory.ILine;
+
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Objects;
@@ -36,7 +38,7 @@ public class Players {
         return players.size();
     }
 
-    public Players move(Line line) {
+    public Players move(ILine line) {
         return new Players(players.stream()
                 .map(player -> player.move(line))
                 .collect(toList()));

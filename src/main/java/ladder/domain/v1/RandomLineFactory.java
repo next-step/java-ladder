@@ -1,5 +1,7 @@
-package ladder.domain;
+package ladder.domain.v1;
 
+import ladder.domain.factory.ILine;
+import ladder.domain.factory.LineFactory;
 import ladder.external.RandomFactory;
 
 import java.util.ArrayList;
@@ -13,7 +15,7 @@ public class RandomLineFactory implements LineFactory {
     }
 
     @Override
-    public Line create(int playerCount) {
+    public ILine create(int playerCount) {
         List<Boolean> bridges = new ArrayList<>();
         bridges.add(randomFactory.nextBoolean());
         for (int i = 1; i < playerCount - 1; i++) {

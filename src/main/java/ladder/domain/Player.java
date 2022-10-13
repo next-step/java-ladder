@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.domain.factory.ILine;
+
 import java.util.Objects;
 
 public class Player {
@@ -39,7 +41,7 @@ public class Player {
         return result;
     }
 
-    public Player move(Line line) {
+    public Player move(ILine line) {
         return new Player(name, line.nextPosition(position));
     }
 }

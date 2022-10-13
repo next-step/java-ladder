@@ -1,5 +1,8 @@
 package ladder.domain;
 
+import ladder.domain.factory.ILine;
+import ladder.domain.v1.Line;
+import ladder.domain.v1.RandomLineFactory;
 import ladder.external.RandomFactory;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +21,7 @@ class RandomLineFactoryTest {
             }
         };
         RandomLineFactory randomLineFactory = new RandomLineFactory(alwaysTrueRandomFactory);
-        Line line = randomLineFactory.create(6);
+        ILine line = randomLineFactory.create(6);
 
         assertThat(line).isEqualTo(new Line(List.of(true, false, true, false, true)));
     }
