@@ -42,10 +42,6 @@ public abstract class OutputView {
     private static void printSingleLine(Users users, int lineIndex) {
         for (int userIndex = 0; userIndex < users.size(); userIndex++) {
             StringBuilder stringBuilder = new StringBuilder();
-            User user = users.getUsers().get(userIndex);
-            String username = getNameOfUser(user);
-            LineUnit unit = user.getVerticalLine().getLineUnits().get(lineIndex);
-            appendSingleLine(userIndex, stringBuilder, username, unit);
             System.out.print(stringBuilder);
         }
     }

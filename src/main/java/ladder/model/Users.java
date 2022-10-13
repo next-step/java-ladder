@@ -33,9 +33,6 @@ public class Users {
         return verticalLines;
     }
 
-    public boolean hasLine() {
-        return !this.users.stream().anyMatch(user -> !user.hasLine());
-    }
 
     public List<User> getUsers() {
         return users;
