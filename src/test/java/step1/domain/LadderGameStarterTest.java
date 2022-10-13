@@ -7,6 +7,7 @@ import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.BDDAssertions.then;
 
 class LadderGameStarterTest {
@@ -36,5 +37,30 @@ class LadderGameStarterTest {
 
         // then
         then(ladderGameResult).isEqualTo(new LadderGameResult(ladderGoalMap));
+    }
+
+    @Test
+    @DisplayName("사다리 넓이와 userNames, prizes 개수가 동일하지 않은 경우 에러 발생")
+    void validateLadderGame() {
+        Lines oneLines = Lines.from(List.of(
+            Line.from(List.of(new Bridge(false), new Bridge(false))))
+        );
+        Ladder ladder = new Ladder(oneLines);
+
+        assertThatIllegalArgumentException().isThrownBy(
+            () -> LadderGameStarter.start(
+                ladder,
+                UserNames.from(List.of("pobi")),
+                Prize.from(List.of("꽝", "5000"))
+            )
+        );
+
+        assertThatIllegalArgumentException().isThrownBy(
+            () -> LadderGameStarter.start(
+                ladder,
+                UserNames.from(List.of("pobi", "honux")),
+                Prize.from(List.of("꽝"))
+            )
+        );
     }
 }

@@ -7,6 +7,8 @@ import java.util.Map;
 public class LadderGameStarter {
 
     public static LadderGameResult start(Ladder ladder, UserNames userNames, List<Prize> prizes) {
+        validateLadderGame(ladder, userNames, prizes);
+
         Lines lines = ladder.getLines();
         int width = lines.getWidth();
         int height = ladder.getHeight();
@@ -27,5 +29,11 @@ public class LadderGameStarter {
         }
 
         return position;
+    }
+
+    private static void validateLadderGame(Ladder ladder, UserNames userNames, List<Prize> prizes) {
+        if (ladder.getLines().getWidth() != userNames.size() || userNames.size() != prizes.size()) {
+            throw new IllegalArgumentException("사다리의 넓이와 userNames와 prizes의 개수가 모두 동일해야합니다.");
+        }
     }
 }
