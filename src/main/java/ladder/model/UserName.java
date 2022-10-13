@@ -1,8 +1,12 @@
 package ladder.model;
 
+import java.util.Objects;
+
 public class UserName {
 
     private static final int MAX_NAME_LENGTH = 5;
+
+    public static final String ALL_USER_NAME = "all";
     private final String name;
 
     public UserName(String name) {
@@ -16,7 +20,28 @@ public class UserName {
         return name == null || name.isBlank() || name.length() > MAX_NAME_LENGTH;
     }
 
+    public int maxLength(String result){
+        return Math.max(this.name.length(),result.length());
+    }
+
+    public boolean isAllUser() {
+        return ALL_USER_NAME.equals(this.name);
+    }
     public String getName() {
         return name;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserName userName = (UserName) o;
+        return Objects.equals(name, userName.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
 }
