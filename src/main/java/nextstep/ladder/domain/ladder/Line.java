@@ -12,7 +12,6 @@ public class Line {
     private static final String POINTS_SIZE_EXCEPTION_MESSAGE = "하나의 선은 점이 2개 이상이어야 합니다.";
     private static final int MIN_SIZE = 2;
 
-
     private final List<Point> points;
 
     public static Line create(int countOfPlayer, EnablePointStrategy strategy) {
@@ -35,7 +34,7 @@ public class Line {
     }
 
     private static boolean isPreviousPointEnable(List<Point> points, int index) {
-        return points.get(index - 2).isEnable();
+        return points.get(index - DEFAULT_POSITION - 1).isEnable();
     }
 
     public Line(List<Point> points) {
@@ -55,7 +54,7 @@ public class Line {
         }
     }
 
-    private static boolean isValidSize(List<Point> points) {
+    private boolean isValidSize(List<Point> points) {
         return points.size() < MIN_SIZE;
     }
 
