@@ -11,11 +11,11 @@ public class Ladder {
     private final List<Line> lines;
     private final Players players;
 
-    public static Ladder create(int height, Players players, PointEnableStrategy pointEnableStrategy) {
+    public static Ladder create(int height, Players players, EnablePointStrategy strategy) {
         int countOfPlayer = players.count();
 
         List<Line> lines = IntStream.range(0, height)
-                .mapToObj(i -> Line.create(countOfPlayer, pointEnableStrategy))
+                .mapToObj(i -> Line.create(countOfPlayer, strategy))
                 .collect(Collectors.toList());
 
         return new Ladder(lines, players);

@@ -7,6 +7,10 @@ import java.util.stream.Collectors;
 public class Players {
     private final List<Player> values;
 
+    public static Players create(String names) {
+        return create(Names.of(names));
+    }
+
     public static Players create(Names names) {
         List<Player> players = names.values()
                 .stream()

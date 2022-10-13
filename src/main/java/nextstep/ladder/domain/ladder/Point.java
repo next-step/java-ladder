@@ -10,8 +10,8 @@ public class Point {
     private final int position;
     private final boolean enable;
 
-    public static Point of(int position, PointEnableStrategy pointEnableStrategy) {
-        return new Point(position, pointEnableStrategy.isEnable());
+    public static Point of(int position, EnablePointStrategy enablePointStrategy) {
+        return new Point(position, enablePointStrategy.isEnable());
     }
 
     public Point(int position, boolean enable) {
@@ -27,8 +27,20 @@ public class Point {
         }
     }
 
+    public int position() {
+        return position;
+    }
+
     public boolean isEnable() {
         return enable;
+    }
+
+    public boolean isConnected(Point nextPoint) {
+        return isNext(nextPoint) && this.enable && nextPoint.enable;
+    }
+
+    private boolean isNext(Point nextPoint) {
+        return Math.abs(this.position - nextPoint.position) == 1;
     }
 
     @Override

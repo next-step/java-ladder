@@ -1,6 +1,6 @@
 package nextstep.ladder.domain.ladder;
 
 @FunctionalInterface
-public interface PointEnableStrategy {
+public interface EnablePointStrategy {
     boolean isEnable();
 }
