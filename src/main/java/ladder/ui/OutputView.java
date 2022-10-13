@@ -25,7 +25,6 @@ public abstract class OutputView {
     }
 
     private static int findMaxInterval(Users users, LadderResult ladderResult) {
-        validate(users, ladderResult);
         List<User> user = users.getUsers();
         List<String> result = ladderResult.getResult();
         int maxInterval = -1;
@@ -33,12 +32,6 @@ public abstract class OutputView {
             maxInterval = Math.max(user.get(i).getName().maxLength(result.get(i)) , maxInterval);
         }
         return maxInterval + ADDITIONAL_SPACE;
-    }
-
-    private static void validate(Users users, LadderResult ladderResult) {
-        if (users.size() != ladderResult.size()){
-            throw new IllegalArgumentException("결과개수는 사용자 개수와 일치해야 합니다.");
-        }
     }
 
     private static void printName(Users users , int maxInterval) {
