@@ -30,8 +30,8 @@ public class LadderPosition {
         return horizontalPosition;
     }
 
-    public LadderLength getLadderLength() {
-        return ladderLength;
+    public int length() {
+        return ladderLength.getLength();
     }
 
 }

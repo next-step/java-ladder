@@ -11,9 +11,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class UsersTest {
 
-
-
-
     @Test
     void shouldFindUserStartPositionByUsername(){
         User userA = userWithName("testA");

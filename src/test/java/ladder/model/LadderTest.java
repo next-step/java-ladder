@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LadderTest {
 
@@ -29,7 +28,9 @@ class LadderTest {
 
     private List<VerticalLine> getVerticalLines(int numberOfUsers , int ladderLength){
         RandomLineGenerator generator = new RandomLineGenerator(()-> new Random().nextBoolean());
-        return IntStream.range(0,numberOfUsers).mapToObj((idx)->VerticalLine.mapHorizontalLineToVertical(generator.generate(numberOfUsers,new LadderLength(ladderLength)),idx)).collect(Collectors.toList());
+        return IntStream.range(0,numberOfUsers)
+                .mapToObj((idx)->VerticalLine.mapHorizontalLineToVertical(generator.generate(numberOfUsers,new LadderLength(ladderLength)),idx))
+                .collect(Collectors.toList());
     }
 
 }
