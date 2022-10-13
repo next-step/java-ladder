@@ -1,8 +1,12 @@
 package nextstep.laddergame;
 
-import nextstep.laddergame.domain.*;
+import nextstep.laddergame.domain.DrawBridgeStrategy;
+import nextstep.laddergame.domain.Game;
+import nextstep.laddergame.domain.Gamer;
 import nextstep.laddergame.view.InputView;
 import nextstep.laddergame.view.ResultView;
+import nextstep.laddergame.wrapper.Height;
+import nextstep.laddergame.wrapper.RewardWrapper;
 
 import java.util.List;
 

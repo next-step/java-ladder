@@ -1,5 +1,7 @@
 package nextstep.laddergame.domain;
 
+import nextstep.laddergame.wrapper.Height;
+import nextstep.laddergame.wrapper.RewardWrapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

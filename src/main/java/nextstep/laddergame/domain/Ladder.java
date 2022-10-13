@@ -1,5 +1,7 @@
 package nextstep.laddergame.domain;
 
+import nextstep.laddergame.wrapper.Height;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

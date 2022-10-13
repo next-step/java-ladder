@@ -1,5 +1,7 @@
 package nextstep.laddergame.domain;
 
+import nextstep.laddergame.enumerate.BridgePositionEnum;
+import nextstep.laddergame.wrapper.Height;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

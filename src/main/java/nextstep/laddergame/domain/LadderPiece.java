@@ -1,5 +1,8 @@
 package nextstep.laddergame.domain;
 
+import nextstep.laddergame.enumerate.BridgePositionEnum;
+import nextstep.laddergame.enumerate.DirectionEnum;
+
 import java.util.EnumMap;
 
 public class LadderPiece {

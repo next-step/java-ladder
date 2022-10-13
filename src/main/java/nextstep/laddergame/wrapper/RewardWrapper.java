@@ -1,4 +1,4 @@
-package nextstep.laddergame.domain;
+package nextstep.laddergame.wrapper;
 
 import java.util.List;
 

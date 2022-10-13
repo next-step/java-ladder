@@ -1,6 +1,11 @@
 package nextstep.laddergame.view;
 
-import nextstep.laddergame.domain.*;
+import nextstep.laddergame.domain.Game;
+import nextstep.laddergame.domain.Gamer;
+import nextstep.laddergame.domain.LadderPiece;
+import nextstep.laddergame.domain.Line;
+import nextstep.laddergame.enumerate.BridgePositionEnum;
+import nextstep.laddergame.wrapper.RewardWrapper;
 
 import java.util.List;
 

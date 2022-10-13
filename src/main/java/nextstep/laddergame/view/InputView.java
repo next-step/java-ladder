@@ -1,8 +1,8 @@
 package nextstep.laddergame.view;
 
 import nextstep.laddergame.domain.Gamer;
-import nextstep.laddergame.domain.Height;
-import nextstep.laddergame.domain.RewardWrapper;
+import nextstep.laddergame.wrapper.Height;
+import nextstep.laddergame.wrapper.RewardWrapper;
 
 import java.util.Arrays;
 import java.util.List;
