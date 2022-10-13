@@ -21,5 +21,5 @@
 - [x] 결과를 보고 싶은 사람 받아 실행 결과 보여주기
 
 ## Step4 사다리(리팩토링)
-- [ ] Line 을 다른 방식으로 구현하기 (LadderLine)
+- [x] Line 을 다른 방식으로 구현하기 (LadderLine)
 - [ ] LadderLine 기존 인터페이스에 조합해서 끼워넣기
