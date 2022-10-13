@@ -11,7 +11,6 @@ public class User {
     }
 
 
-
     public UserName getName() {
         return name;
     }

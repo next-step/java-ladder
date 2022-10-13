@@ -13,13 +13,13 @@ public class Ladder {
         this.ladderLength = ladderLength;
     }
 
-    public List<LadderPosition> play(List<Integer> startPositions){
+    public List<LadderPosition> play(List<Integer> startPositions) {
         return startPositions.stream().map(this::play).collect(Collectors.toList());
     }
 
-    LadderPosition play(int startPosition){
+    LadderPosition play(int startPosition) {
         LadderPosition ladderPosition = new LadderPosition(startPosition);
-        while (!ladderPosition.isArrived(this.ladderLength)){
+        while (!ladderPosition.isArrived(this.ladderLength)) {
             VerticalLine verticalLine = this.lines.get(ladderPosition.getHorizontalPosition());
             verticalLine.play(ladderPosition);
         }

@@ -1,10 +1,9 @@
 package ladder.model;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class UserNameTest {
 
@@ -20,13 +19,13 @@ class UserNameTest {
     }
 
     @Test
-    void shouldReturnIsAllOrNot(){
+    void shouldReturnIsAllOrNot() {
         assertThat(new UserName(UserName.ALL_USER_NAME).isAllUser()).isTrue();
         assertThat(new UserName("test").isAllUser()).isFalse();
     }
 
     @Test
-    void shouldReturnMaxLength(){
+    void shouldReturnMaxLength() {
         UserName username = new UserName("test");
         String result = "당첨!!!!!!!!!!!!!!!!";
 

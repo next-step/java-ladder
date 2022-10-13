@@ -20,7 +20,7 @@ class VerticalLineTest {
     }
 
     @Test
-    void shouldMovePosition(){
+    void shouldMovePosition() {
         List<VerticalLine> verticalLine = getVerticalLines();
         LadderPosition position = new LadderPosition(0);
 
@@ -40,9 +40,9 @@ class VerticalLineTest {
         LineUnit unitA = new LineUnit();
         LineUnit unitB = new LineUnit();
         unitA.addNext(unitB);
-        HorizontalLine horizontalLineA = new HorizontalLine(List.of(unitA , unitB));
-        HorizontalLine horizontalLineB = new HorizontalLine(List.of(unitA , unitB));
-        return VerticalMapper.map(List.of(horizontalLineA,horizontalLineB),2);
+        HorizontalLine horizontalLineA = new HorizontalLine(List.of(unitA, unitB));
+        HorizontalLine horizontalLineB = new HorizontalLine(List.of(unitA, unitB));
+        return VerticalMapper.map(List.of(horizontalLineA, horizontalLineB), 2);
     }
 
 }

@@ -15,9 +15,9 @@ public abstract class OutputView {
 
     private static final int ADDITIONAL_SPACE = 1;
 
-    public static void printLadder(Users users, Ladder ladder , LadderResult ladderResult) {
+    public static void printLadder(Users users, Ladder ladder, LadderResult ladderResult) {
         int maxInterval = findMaxInterval(users, ladderResult);
-        printName(users,maxInterval);
+        printName(users, maxInterval);
         System.out.println();
         printLine(ladder, maxInterval);
         printResult(ladderResult, maxInterval);
@@ -28,21 +28,21 @@ public abstract class OutputView {
         List<User> user = users.getUsers();
         List<String> result = ladderResult.getResult();
         int maxInterval = -1;
-        for (int i = 0 ; i < users.size() ; i++){
-            maxInterval = Math.max(user.get(i).getName().maxLength(result.get(i)) , maxInterval);
+        for (int i = 0; i < users.size(); i++) {
+            maxInterval = Math.max(user.get(i).getName().maxLength(result.get(i)), maxInterval);
         }
         return maxInterval + ADDITIONAL_SPACE;
     }
 
-    private static void printName(Users users , int maxInterval) {
+    private static void printName(Users users, int maxInterval) {
         users.getUsers().stream()
                 .map(OutputView::getNameOfUser)
-                .forEach((username)->System.out.print(addDelimiter(maxInterval - username.length(),LADDER_WITH_NO_SPACE) + username));
+                .forEach((username) -> System.out.print(addDelimiter(maxInterval - username.length(), LADDER_WITH_NO_SPACE) + username));
     }
 
     private static void printLine(Ladder ladder, int maxInterval) {
         List<VerticalLine> lines = ladder.getLines();
-        for (int lengthIndex = 0 ; lengthIndex < ladder.getLadderLength().getLength() ; lengthIndex++){
+        for (int lengthIndex = 0; lengthIndex < ladder.getLadderLength().getLength(); lengthIndex++) {
             printSingleLine(maxInterval, lines, lengthIndex);
             System.out.println();
         }
@@ -50,7 +50,7 @@ public abstract class OutputView {
 
     private static void printSingleLine(int maxInterval, List<VerticalLine> lines, int lengthIndex) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (int lineIndex = 0; lineIndex < lines.size() ; lineIndex++){
+        for (int lineIndex = 0; lineIndex < lines.size(); lineIndex++) {
             LineUnit unit = lines.get(lineIndex).getLineUnits().get(lengthIndex);
             appendSingleLine(maxInterval, stringBuilder, unit);
         }
@@ -65,8 +65,8 @@ public abstract class OutputView {
         stringBuilder.append(addDelimiter(maxInterval - 1, LADDER_WITH_NO_SPACE) + VERTICAL_UNIT);
     }
 
-    private static void printResult(LadderResult result , int maxInterval){
-        result.getResult().stream().forEach((username)->System.out.print(addDelimiter(maxInterval - username.length(),LADDER_WITH_NO_SPACE) + username));
+    private static void printResult(LadderResult result, int maxInterval) {
+        result.getResult().stream().forEach((username) -> System.out.print(addDelimiter(maxInterval - username.length(), LADDER_WITH_NO_SPACE) + username));
     }
 
     private static String addDelimiter(int length, String delimiter) {
@@ -83,7 +83,7 @@ public abstract class OutputView {
 
     public static void printResult(UserName userName, Users users, List<String> result) {
         System.out.println(PLAY_RESULT_MSG);
-        if (userName.isAllUser()){
+        if (userName.isAllUser()) {
             List<String> usernames = users.getUsers().stream()
                     .map(User::getName)
                     .map(UserName::getName)
@@ -91,12 +91,12 @@ public abstract class OutputView {
             printResult(usernames, result);
             return;
         }
-        printResult(List.of(userName.getName()),result);
+        printResult(List.of(userName.getName()), result);
     }
 
     private static void printResult(List<String> usernames, List<String> result) {
-        for(int i = 0; i < result.size() ; i++){
-            System.out.printf( "%s : %s \n", usernames.get(i) , result.get(i));
+        for (int i = 0; i < result.size(); i++) {
+            System.out.printf("%s : %s \n", usernames.get(i), result.get(i));
         }
     }
 }

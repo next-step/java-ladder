@@ -4,9 +4,8 @@ import java.util.Objects;
 
 public class UserName {
 
-    private static final int MAX_NAME_LENGTH = 5;
-
     public static final String ALL_USER_NAME = "all";
+    private static final int MAX_NAME_LENGTH = 5;
     private final String name;
 
     public UserName(String name) {
@@ -20,13 +19,14 @@ public class UserName {
         return name == null || name.isBlank() || name.length() > MAX_NAME_LENGTH;
     }
 
-    public int maxLength(String result){
-        return Math.max(this.name.length(),result.length());
+    public int maxLength(String result) {
+        return Math.max(this.name.length(), result.length());
     }
 
     public boolean isAllUser() {
         return ALL_USER_NAME.equals(this.name);
     }
+
     public String getName() {
         return name;
     }

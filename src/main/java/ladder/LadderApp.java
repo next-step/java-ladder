@@ -22,17 +22,17 @@ public class LadderApp {
     public static void main(String[] args) {
         try (InputView inputView = getInputView()) {
             Users users = Users.createUsersWithName(inputView.getUser());
-            LadderResult ladderResult = new LadderResult(inputView.getResult() ,users.size());
+            LadderResult ladderResult = new LadderResult(inputView.getResult(), users.size());
             LadderLength ladderLength = new LadderLength(inputView.getVerticalLine());
 
-            List<HorizontalLine> horizontalLines = generator.generate(users.size(),ladderLength);
+            List<HorizontalLine> horizontalLines = generator.generate(users.size(), ladderLength);
 
-            Ladder ladder = new Ladder(VerticalMapper.map(horizontalLines,users.size()),ladderLength);
-            OutputView.printLadder(users,ladder,ladderResult);
+            Ladder ladder = new Ladder(VerticalMapper.map(horizontalLines, users.size()), ladderLength);
+            OutputView.printLadder(users, ladder, ladderResult);
 
-            while (true){
+            while (true) {
                 UserName userName = new UserName(inputView.getUserForResult());
-                OutputView.printResult(userName,users,ladderResult.result(ladder.play(users.findStartPositionByUsername(userName))));
+                OutputView.printResult(userName, users, ladderResult.result(ladder.play(users.findStartPositionByUsername(userName))));
             }
         } catch (IllegalArgumentException e) {
             LOGGER.log(Level.SEVERE, "유효하지 않은 입력값입니다.", e);

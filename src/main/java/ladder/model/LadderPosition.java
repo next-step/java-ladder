@@ -2,7 +2,7 @@ package ladder.model;
 
 public class LadderPosition {
 
-    private LadderLength ladderLength = new LadderLength(0);
+    private final LadderLength ladderLength = new LadderLength(0);
 
     private int horizontalPosition;
 
@@ -10,19 +10,19 @@ public class LadderPosition {
         this.horizontalPosition = horizontalPosition;
     }
 
-    public void down(){
+    public void down() {
         this.ladderLength.increase();
     }
 
-    public void next(){
+    public void next() {
         this.horizontalPosition++;
     }
 
-    public void previous(){
+    public void previous() {
         this.horizontalPosition--;
     }
 
-    public boolean isArrived(LadderLength ladderLength){
+    public boolean isArrived(LadderLength ladderLength) {
         return this.ladderLength.compareTo(ladderLength) >= 0;
     }
 

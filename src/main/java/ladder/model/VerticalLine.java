@@ -22,13 +22,13 @@ public class VerticalLine {
     }
 
     public void play(LadderPosition ladderPosition) {
-        for (LineUnit lineUnit : verticalLineFrom(ladderPosition)){
+        for (LineUnit lineUnit : verticalLineFrom(ladderPosition)) {
             ladderPosition.down();
-            if(lineUnit.hasPrevious()){
+            if (lineUnit.hasPrevious()) {
                 ladderPosition.previous();
                 return;
             }
-            if (lineUnit.hasNext()){
+            if (lineUnit.hasNext()) {
                 ladderPosition.next();
                 return;
             }

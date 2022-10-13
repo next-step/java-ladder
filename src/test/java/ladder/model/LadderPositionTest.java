@@ -8,7 +8,7 @@ class LadderPositionTest {
 
 
     @Test
-    void shouldIncreasePosition(){
+    void shouldIncreasePosition() {
         LadderPosition position = new LadderPosition(0);
 
         position.next();
@@ -17,7 +17,7 @@ class LadderPositionTest {
     }
 
     @Test
-    void shouldDecreasePosition(){
+    void shouldDecreasePosition() {
         LadderPosition position = new LadderPosition(1);
 
         position.previous();
@@ -26,7 +26,7 @@ class LadderPositionTest {
     }
 
     @Test
-    void shouldValidateArrived(){
+    void shouldValidateArrived() {
         LadderPosition position = new LadderPosition(1);
 
         position.down();

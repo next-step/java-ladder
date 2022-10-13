@@ -8,12 +8,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class LadderLengthTest {
 
     @Test
-    void shouldVaidateLadderLegnth(){
-        assertThrows(IllegalArgumentException.class,()->new LadderLength(-1));
+    void shouldVaidateLadderLegnth() {
+        assertThrows(IllegalArgumentException.class, () -> new LadderLength(-1));
     }
 
     @Test
-    void shouldIncreaseLength(){
+    void shouldIncreaseLength() {
         LadderLength length = new LadderLength(1);
 
         length.increase();

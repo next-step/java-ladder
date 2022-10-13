@@ -17,7 +17,7 @@ class VerticalMapperTest {
     void shouldMapLine() {
         List<HorizontalLine> horizontalLine = List.of(new HorizontalLine(List.of(new LineUnit(), new LineUnit(), new LineUnit())));
 
-        List<VerticalLine> verticalLines = VerticalMapper.map(horizontalLine,3);
+        List<VerticalLine> verticalLines = VerticalMapper.map(horizontalLine, 3);
 
         assertThat(verticalLines.size()).isEqualTo(3);
     }
@@ -27,7 +27,7 @@ class VerticalMapperTest {
     void shouldNotMapLine_whenDifferentNum() {
         List<HorizontalLine> horizontalLine = List.of(new HorizontalLine(List.of(new LineUnit(), new LineUnit(), new LineUnit())));
 
-        assertThatThrownBy(() -> VerticalMapper.map(horizontalLine,2)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> VerticalMapper.map(horizontalLine, 2)).isInstanceOf(IllegalArgumentException.class);
     }
 
 }

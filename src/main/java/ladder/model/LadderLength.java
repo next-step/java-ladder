@@ -7,20 +7,20 @@ public class LadderLength implements Comparable<LadderLength> {
     private int length;
 
     public LadderLength(int length) {
-        if (length < 0 ){
+        if (length < 0) {
             throw new IllegalArgumentException("사다리 높이는 음수가 올 수 없습니다.");
         }
         this.length = length;
     }
 
-    public void increase(){
+    public void increase() {
         this.length++;
     }
 
 
     @Override
     public int compareTo(LadderLength target) {
-        return Integer.compare(this.length,target.length);
+        return Integer.compare(this.length, target.length);
     }
 
     @Override
