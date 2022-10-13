@@ -20,7 +20,7 @@ class LadderTest {
         int ladderLength = 20;
         Ladder ladder = new Ladder(getVerticalLines(numOfUsers, ladderLength), new LadderLength(ladderLength));
 
-        LadderPosition position = ladder.play(0);
+        LadderPosition position = ladder.move(0);
 
         assertThat(position.isArrived(new LadderLength(ladderLength))).isTrue();
     }

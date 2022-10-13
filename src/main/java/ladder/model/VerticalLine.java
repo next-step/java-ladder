@@ -21,23 +21,23 @@ public class VerticalLine {
         return new VerticalLine(verticalLine);
     }
 
-    public void play(LadderPosition ladderPosition) {
-        for (LineUnit lineUnit : verticalLineFrom(ladderPosition)) {
-            ladderPosition.down();
-            if (lineUnit.hasPrevious()) {
-                ladderPosition.previous();
-                return;
-            }
-            if (lineUnit.hasNext()) {
-                ladderPosition.next();
-                return;
-            }
+    public void move(LadderPosition ladderPosition, LadderLength ladderLength) {
+        if (ladderPosition.isArrived(ladderLength)) {
+            return;
         }
+        LineUnit unit = this.lineUnits.get(ladderPosition.length());
+        ladderPosition.down();
+        if (unit.hasPrevious()) {
+            ladderPosition.previous();
+            return;
+        }
+        if (unit.hasNext()) {
+            ladderPosition.next();
+            return;
+        }
+        move(ladderPosition, ladderLength);
     }
 
-    private List<LineUnit> verticalLineFrom(LadderPosition ladderPosition) {
-        return lineUnits.subList(ladderPosition.length(), lineUnits.size());
-    }
 
     public List<LineUnit> getLineUnits() {
         return lineUnits;

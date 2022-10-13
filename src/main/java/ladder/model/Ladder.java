@@ -14,14 +14,16 @@ public class Ladder {
     }
 
     public List<LadderPosition> play(List<Integer> startPositions) {
-        return startPositions.stream().map(this::play).collect(Collectors.toList());
+        return startPositions.stream()
+                .map(this::move)
+                .collect(Collectors.toList());
     }
 
-    LadderPosition play(int startPosition) {
+    LadderPosition move(int startPosition) {
         LadderPosition ladderPosition = new LadderPosition(startPosition);
         while (!ladderPosition.isArrived(this.ladderLength)) {
             VerticalLine verticalLine = this.lines.get(ladderPosition.getHorizontalPosition());
-            verticalLine.play(ladderPosition);
+            verticalLine.move(ladderPosition, this.ladderLength);
         }
         return ladderPosition;
     }

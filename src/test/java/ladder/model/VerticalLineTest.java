@@ -24,7 +24,7 @@ class VerticalLineTest {
         List<VerticalLine> verticalLine = getVerticalLines();
         LadderPosition position = new LadderPosition(0);
 
-        verticalLine.get(0).play(position);
+        verticalLine.get(0).move(position, new LadderLength(2));
 
         assertThat(position.getHorizontalPosition()).isEqualTo(1);
         assertThat(position.length()).isEqualTo(1);
@@ -32,7 +32,7 @@ class VerticalLineTest {
     }
 
     /***
-     * 사다리 모양
+     * 테스트 케이스 사다리 모양
      * | ---- |
      * | ---- |
      */
