@@ -22,4 +22,4 @@
 
 ## Step4 사다리(리팩토링)
 - [x] Line 을 다른 방식으로 구현하기 (LadderLine)
-- [ ] LadderLine 기존 인터페이스에 조합해서 끼워넣기
+- [x] LadderLine 기존 인터페이스에 조합해서 끼워넣기

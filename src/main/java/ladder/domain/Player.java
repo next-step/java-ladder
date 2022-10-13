@@ -5,8 +5,6 @@ import ladder.domain.factory.ILine;
 import java.util.Objects;
 
 public class Player {
-
-
     private final PlayerName name;
     private final Position position;
 

@@ -2,6 +2,8 @@ package ladder.view;
 
 import ladder.domain.*;
 
+import java.util.List;
+
 import static java.util.stream.Collectors.joining;
 
 public class ResultView {
@@ -42,7 +44,8 @@ public class ResultView {
 
     private static void printLadder(Ladder ladder) {
         ladder.lines().forEach(line -> {
-            String lineString = line.bridges()
+            List<Boolean> bridges = line.bridges();
+            String lineString = bridges
                     .stream()
                     .map(ResultView::bridgeString)
                     .collect(joining(BAR, START_OF_LINE, BAR));
