@@ -1,9 +1,9 @@
 package nextstep.laddergame;
 
 import nextstep.laddergame.domain.DrawBridgeStrategy;
+import nextstep.laddergame.domain.Game;
 import nextstep.laddergame.domain.Gamer;
 import nextstep.laddergame.domain.Height;
-import nextstep.laddergame.domain.Ladder;
 import nextstep.laddergame.view.InputView;
 import nextstep.laddergame.view.ResultView;
 
@@ -18,8 +18,8 @@ public class LadderGameApplication {
         List<Gamer> gamers = InputView.inputGamerNames();
         Height ladderHeight = InputView.inputLadderHeight();
 
-        Ladder ladder = new Ladder(gamers, ladderHeight, DrawBridgeStrategy.DEFAULT_STRATEGY);
+        Game game = new Game(gamers, ladderHeight, DrawBridgeStrategy.DEFAULT_STRATEGY);
 
-        ResultView.printLadder(ladder);
+        ResultView.printLadder(game);
     }
 }

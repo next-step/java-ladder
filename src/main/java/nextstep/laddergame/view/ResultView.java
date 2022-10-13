@@ -1,7 +1,7 @@
 package nextstep.laddergame.view;
 
+import nextstep.laddergame.domain.Game;
 import nextstep.laddergame.domain.Gamer;
-import nextstep.laddergame.domain.Ladder;
 import nextstep.laddergame.domain.LadderPiece;
 import nextstep.laddergame.domain.Line;
 
@@ -12,13 +12,13 @@ public class ResultView {
     private static final String NO_BRIDGE_STRING = "     ";
     private static final String BRIDGE_STRING = "-----";
 
-    public static void printLadder(Ladder ladder) {
+    public static void printLadder(Game game) {
         System.out.println(RESULT_STRING);
-        for (Gamer gamer : ladder.getGamers()) {
+        for (Gamer gamer : game.getGamers()) {
             System.out.print(gamer.getName() + NAME_SEPARATOR);
         }
         System.out.println();
-        for (Line line : ladder.getBoard()) {
+        for (Line line : game.getLadder().getLines()) {
             printLine(line);
             System.out.println();
         }
