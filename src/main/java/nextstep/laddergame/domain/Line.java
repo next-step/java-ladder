@@ -21,15 +21,21 @@ public class Line {
         return Collections.unmodifiableList(ladderPieces);
     }
 
+    public LadderPiece getLadderPiece(int index) {
+        return this.ladderPieces.get(index);
+    }
+
     public void settingBridgeOnAllPiece(BridgeInterface bridgeInterface) {
         this.ladderPieces.forEach((ladderPiece) -> ladderPiece.settingBridge(bridgeInterface));
     }
 
     private void connectLadderPiece(LadderPiece left, LadderPiece right) {
-        if (left != null) {
-            left.setRightLadderPiece(right);
-            right.setLeftLadderPiece(left);
+        if (left == null) {
+            return;
         }
+
+        left.setRightPiece(right);
+        right.setLeftPiece(left);
     }
 
 }
