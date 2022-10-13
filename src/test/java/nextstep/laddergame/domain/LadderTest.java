@@ -22,7 +22,6 @@ class LadderTest {
         assertThat(lines.get(0).getLadderPieces()).hasSize(width);
     }
 
-
     @Test
     public void ladder_bridge_count_test1() {
         Ladder ladder = new Ladder(width, height, DrawBridgeStrategy.DRAW_ALL);
@@ -61,10 +60,7 @@ class LadderTest {
 
     private int getBridgeCount(LadderPiece ladderPiece) {
         int bridgeCount = 0;
-        if (ladderPiece.isRightBridge()) {
-            bridgeCount++;
-        }
-        if (ladderPiece.isLeftBridge()) {
+        if (ladderPiece.getBridgePosition().equals(BridgePositionEnum.LEFT) || ladderPiece.getBridgePosition().equals(BridgePositionEnum.RIGHT)) {
             bridgeCount++;
         }
         return bridgeCount;

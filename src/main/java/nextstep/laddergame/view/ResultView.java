@@ -1,9 +1,6 @@
 package nextstep.laddergame.view;
 
-import nextstep.laddergame.domain.Game;
-import nextstep.laddergame.domain.Gamer;
-import nextstep.laddergame.domain.LadderPiece;
-import nextstep.laddergame.domain.Line;
+import nextstep.laddergame.domain.*;
 
 public class ResultView {
     private static final String RESULT_STRING = "\n실행결과\n";
@@ -32,7 +29,7 @@ public class ResultView {
     }
 
     private static void printBridgeString(LadderPiece ladderPiece) {
-        if (ladderPiece.isRightBridge()) {
+        if (ladderPiece.getBridgePosition().equals(BridgePositionEnum.RIGHT)) {
             System.out.print(BRIDGE_STRING);
             return;
         }
