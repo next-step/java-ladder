@@ -30,4 +30,31 @@ public class PointTest {
     void pointStrategy(boolean input) {
         assertThat(Point.of(1, () -> input)).isEqualTo(new Point(1, input));
     }
+
+    @DisplayName("점끼리 연결될 수 있다.")
+    @Test
+    void connect() {
+        Point pointA = new Point(1, true);
+        Point pointB = new Point(2, true);
+
+        assertThat(pointA.isConnected(pointB)).isTrue();
+    }
+
+    @DisplayName("옆에 있는 점이어도 활성화된 점이 아니면 연결될 수 없다.")
+    @Test
+    void connectTrue() {
+        Point pointA = new Point(1, true);
+        Point pointB = new Point(2, false);
+
+        assertThat(pointA.isConnected(pointB)).isFalse();
+    }
+
+    @DisplayName("활성화된 점이어도 떨어져 있으면 연결되어있다고 판단하지 않는다.")
+    @Test
+    void connectFalse() {
+        Point pointA = new Point(1, true);
+        Point pointB = new Point(3, true);
+
+        assertThat(pointA.isConnected(pointB)).isFalse();
+    }
 }
