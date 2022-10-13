@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import step1.domain.Line;
+import step1.domain.Lines;
 
 public class LineDto {
 
@@ -21,6 +22,12 @@ public class LineDto {
             .map(BridgeDto::from)
             .collect(Collectors.toList());
         return new LineDto(bridges, line.getHeight());
+    }
+
+    public static List<LineDto> from(Lines lines) {
+        return lines.getLines().stream()
+            .map(LineDto::from)
+            .collect(Collectors.toList());
     }
 
     public List<BridgeDto> getBridges() {

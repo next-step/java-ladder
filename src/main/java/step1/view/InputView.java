@@ -20,8 +20,19 @@ public class InputView {
         return Arrays.stream(split.split(",")).collect(Collectors.toList());
     }
 
+    public static List<String> initLadderGoals() {
+        PrintView.INIT_LADDER_GOALS_PHRASE();
+        String split = scanner().next();
+        return Arrays.stream(split.split(",")).collect(Collectors.toList());
+    }
+
     public static int initLadderHeight() {
         PrintView.printInitLadderHeightPhrase();
         return scanner().nextInt();
+    }
+
+    public static String initLadderGameResult() {
+        PrintView.printInitLadderGameResultPhrase();
+        return scanner().next();
     }
 }

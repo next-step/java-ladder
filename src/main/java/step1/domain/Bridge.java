@@ -14,22 +14,30 @@ public class Bridge {
         this.isOpen = isOpen;
     }
 
+    public static Bridge closed() {
+        return new Bridge(false);
+    }
+
     public static Bridge fromBeforeLineBridge(Bridge beforeLineBridge) {
         if (beforeLineBridge.isOpen()) {
-            return new Bridge(false);
+            return Bridge.closed();
         }
 
-        return new Bridge(RandomGenerator.nextBoolean());
+        return new Bridge(RandomGenerator.generate());
     }
 
     public static List<Bridge> createAllClosedBridges(int count) {
         return IntStream.range(0, count)
-            .mapToObj(i -> new Bridge(false))
+            .mapToObj(i -> Bridge.closed())
             .collect(Collectors.toList());
     }
 
     public boolean isOpen() {
         return isOpen;
+    }
+
+    public boolean isDuplicatedBridge(Bridge bridge) {
+        return isOpen && bridge.isOpen;
     }
 
     @Override

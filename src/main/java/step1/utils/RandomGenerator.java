@@ -4,9 +4,9 @@ import java.util.Random;
 
 public class RandomGenerator {
 
-    private static final Random random = new Random();
+    private static final Random RANDOM = new Random();
 
-    public static boolean nextBoolean() {
-        return random.nextBoolean();
+    public static boolean generate() {
+        return RANDOM.nextBoolean();
     }
 }

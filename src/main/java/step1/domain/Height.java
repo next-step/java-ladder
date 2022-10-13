@@ -13,6 +13,14 @@ public class Height {
         return height;
     }
 
+    public boolean isEqualsHeight(int height) {
+        return this.height == height;
+    }
+
+    public boolean isEqualsHeight(Height height) {
+        return isEqualsHeight(height.getHeight());
+    }
+
     private void validateHeight(int height) {
         if (height < 1) {
             throw new IllegalArgumentException("높이는 1 미만일 수 없습니다.");

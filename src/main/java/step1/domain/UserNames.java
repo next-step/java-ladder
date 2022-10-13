@@ -19,6 +19,10 @@ public class UserNames {
             .collect(Collectors.toList()));
     }
 
+    public UserName getByIdx(int idx) {
+        return userNames.get(idx);
+    }
+
     public List<String> getPrimitiveUserNames() {
         return userNames.stream()
             .map(UserName::getUserName)
