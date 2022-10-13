@@ -25,4 +25,23 @@ public class VerticalLine {
         return lineUnits;
     }
 
+    public void play(LadderPosition ladderPosition) {
+        for (LineUnit lineUnit : verticalLineFrom(ladderPosition)){
+            if(lineUnit.hasPrevious()){
+                ladderPosition.previous();
+                ladderPosition.down();
+                return;
+            }
+            if (lineUnit.hasNext()){
+                ladderPosition.next();
+                ladderPosition.down();
+                return;
+            }
+            ladderPosition.down();
+        }
+    }
+
+    private List<LineUnit> verticalLineFrom(LadderPosition ladderPosition) {
+        return lineUnits.subList(ladderPosition.getLadderLength().getLength(), lineUnits.size());
+    }
 }

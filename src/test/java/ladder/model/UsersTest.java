@@ -17,9 +17,9 @@ class UsersTest {
         List<HorizontalLine> horizontalLine = List.of(new HorizontalLine(List.of(new LineUnit(), new LineUnit(), new LineUnit())));
         Users users = new Users(List.of(userWithName("A"), userWithName("B"), userWithName("C")));
 
-        users.addLine(horizontalLine);
+        List<VerticalLine> verticalLines = users.mapToVertical(horizontalLine);
 
-        assertThat(users.hasLine()).isTrue();
+        assertThat(verticalLines.size()).isEqualTo(3);
     }
 
     @Test
@@ -28,7 +28,7 @@ class UsersTest {
         List<HorizontalLine> horizontalLine = List.of(new HorizontalLine(List.of(new LineUnit(), new LineUnit(), new LineUnit())));
         Users users = new Users(List.of(userWithName("A"), userWithName("B")));
 
-        assertThatThrownBy(() -> users.addLine(horizontalLine)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> users.mapToVertical(horizontalLine)).isInstanceOf(IllegalArgumentException.class);
     }
 
     private User userWithName(String name) {

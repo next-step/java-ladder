@@ -1,6 +1,7 @@
 package ladder.model;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,11 +24,13 @@ public class Users {
         return this.users.size();
     }
 
-    public void addLine(List<HorizontalLine> horizontalLine) {
+    public List<VerticalLine> mapToVertical(List<HorizontalLine> horizontalLine) {
         horizontalLine.forEach((line) -> line.validate(this.size()));
+        List<VerticalLine> verticalLines = new ArrayList<>();
         for (int userIndex = 0; userIndex < this.users.size(); userIndex++) {
-            users.get(userIndex).addLine(VerticalLine.mapHorizontalLineToVertical(horizontalLine, userIndex));
+            verticalLines.add(VerticalLine.mapHorizontalLineToVertical(horizontalLine, userIndex));
         }
+        return verticalLines;
     }
 
     public boolean hasLine() {

@@ -1,6 +1,7 @@
 package ladder.service;
 
 import ladder.model.HorizontalLine;
+import ladder.model.LadderLength;
 import ladder.model.LineUnit;
 
 import java.util.ArrayList;
@@ -19,8 +20,8 @@ public class RandomLineGenerator implements LineGenerator {
     }
 
     @Override
-    public List<HorizontalLine> generate(int numberOfUser, int length) {
-        return IntStream.range(0, length)
+    public List<HorizontalLine> generate(int numberOfUser, LadderLength length) {
+        return IntStream.range(0, length.getLength())
                 .mapToObj((idx) -> createHorizontalLine(numberOfUser))
                 .collect(Collectors.toList());
     }

@@ -1,6 +1,7 @@
 package ladder.service.impl;
 
 import ladder.model.HorizontalLine;
+import ladder.model.LadderLength;
 import ladder.model.LineUnit;
 import ladder.service.LineGenerator;
 import ladder.service.RandomLineGenerator;
@@ -16,7 +17,7 @@ class RandomLineGeneratorTest {
     void shouldGenerateProperSizeOfLine() {
         LineGenerator generator = new RandomLineGenerator(() -> true);
 
-        List<HorizontalLine> result = generator.generate(2, 5);
+        List<HorizontalLine> result = generator.generate(2, new LadderLength(5));
 
         assertThat(result.get(0).size()).isEqualTo(2);
         assertThat(result.size()).isEqualTo(5);
@@ -26,7 +27,7 @@ class RandomLineGeneratorTest {
     void shouldAlwaysGenerateLine() {
         LineGenerator generator = new RandomLineGenerator(() -> false);
 
-        List<HorizontalLine> result = generator.generate(2, 5);
+        List<HorizontalLine> result = generator.generate(2, new LadderLength(5));
         List<LineUnit> units = result.get(0).getUnits();
 
         assertThat(units.get(0).hasNext()).isTrue();
@@ -37,7 +38,7 @@ class RandomLineGeneratorTest {
     void shouldNotAlwaysGenerateLine() {
         LineGenerator generator = new RandomLineGenerator(() -> true);
 
-        List<HorizontalLine> result = generator.generate(2, 5);
+        List<HorizontalLine> result = generator.generate(2, new LadderLength(5));
         List<LineUnit> units = result.get(0).getUnits();
 
         assertThat(units.get(0).hasNext()).isFalse();
