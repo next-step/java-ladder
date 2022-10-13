@@ -1,8 +1,6 @@
 package ladder;
 
-import ladder.model.HorizontalLine;
-import ladder.model.LadderLength;
-import ladder.model.Users;
+import ladder.model.*;
 import ladder.service.LineGenerator;
 import ladder.service.RandomLineGenerator;
 import ladder.ui.InputView;
@@ -23,11 +21,15 @@ public class LadderApp {
     public static void main(String[] args) {
         try (InputView inputView = getInputView()) {
             Users users = Users.createUsersWithName(inputView.getUser());
+            LadderResult ladderResult = new LadderResult(inputView.getResult());
             LadderLength ladderLength = new LadderLength(inputView.getVerticalLine());
 
             List<HorizontalLine> horizontalLines = generator.generate(users.size(),ladderLength);
 
-//            OutputView.printLadder(users, lineLength);
+            Ladder ladder = new Ladder(users.mapToVertical(horizontalLines), ladderLength);
+            while (true){
+                UserName userName = new UserName(inputView.getUserForResult());
+            }
         } catch (IllegalArgumentException e) {
             LOGGER.log(Level.SEVERE, "유효하지 않은 입력값입니다.", e);
         } catch (Exception e) {

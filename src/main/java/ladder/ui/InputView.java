@@ -12,6 +12,10 @@ public class InputView implements AutoCloseable {
     private static final String MAX_VERTICAL_LINE_LENGTH_QST = "최대 사다리 높이는 몇 개인가요?";
     private static final String USER_NAME_ASK_QST = "참여할 사람 이름을 입력하세요. (이름은 쉼표(%s)로 구분하세요)";
     private static final String DEFAULT_DELIMITER = ",";
+
+    private static final String RESULT_ASK_QST = "실행 결과를 입력하세요. (결과는 쉼표(%s)로 구분하세요)";
+
+    private static final String RESULT_OF_USER_ASK_QST = "결과를 보고 싶은 사람은?";
     private final BufferedReader bufferedReader;
 
     public InputView(BufferedReader bufferedReader) {
@@ -42,4 +46,14 @@ public class InputView implements AutoCloseable {
         }
     }
 
+    public List<String> getResult() throws IOException {
+        System.out.printf(RESULT_ASK_QST, DEFAULT_DELIMITER);
+        return Arrays.stream(bufferedReader.readLine().split(DEFAULT_DELIMITER))
+                .collect(Collectors.toList());
+    }
+
+    public String getUserForResult() throws IOException {
+        System.out.printf(RESULT_OF_USER_ASK_QST);
+        return bufferedReader.readLine().trim();
+    }
 }
