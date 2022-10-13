@@ -1,8 +1,5 @@
-package ladder.service;
+package ladder.domain;
 
-import ladder.model.HorizontalLine;
-import ladder.model.LineUnit;
-import ladder.model.VerticalLine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -1,7 +1,4 @@
-package ladder.service;
-
-import ladder.model.HorizontalLine;
-import ladder.model.VerticalLine;
+package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;

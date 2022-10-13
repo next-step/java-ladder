@@ -1,4 +1,4 @@
-package ladder.model;
+package ladder.domain;
 
 public class LadderPosition {
 

@@ -1,10 +1,5 @@
-package ladder.service.impl;
+package ladder.domain;
 
-import ladder.model.HorizontalLine;
-import ladder.model.LadderLength;
-import ladder.model.LineUnit;
-import ladder.service.LineGenerator;
-import ladder.service.RandomLineGenerator;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

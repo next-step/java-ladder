@@ -1,9 +1,9 @@
 package ladder;
 
-import ladder.model.*;
-import ladder.service.LineGenerator;
-import ladder.service.RandomLineGenerator;
-import ladder.service.VerticalMapper;
+import ladder.domain.*;
+import ladder.domain.LineGenerator;
+import ladder.domain.RandomLineGenerator;
+import ladder.domain.VerticalMapper;
 import ladder.ui.InputView;
 import ladder.ui.OutputView;
 
