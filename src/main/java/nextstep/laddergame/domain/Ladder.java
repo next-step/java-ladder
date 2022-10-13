@@ -8,9 +8,9 @@ public class Ladder {
     private final List<Gamer> gamers;
     private final List<Line> board;
 
-    public Ladder(List<Gamer> gamers, int height, BridgeInterface bridgeInterface) {
+    public Ladder(List<Gamer> gamers, Height height, BridgeInterface bridgeInterface) {
         this.gamers = gamers;
-        this.board = Collections.unmodifiableList(getLadderTemplate(gamers.size(), height));
+        this.board = Collections.unmodifiableList(getLadderTemplate(gamers.size(), height.getLadderHeight()));
         settingBridgeOnAllLine(bridgeInterface);
     }
 
