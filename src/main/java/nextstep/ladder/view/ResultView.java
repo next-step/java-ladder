@@ -7,6 +7,8 @@ import nextstep.ladder.model.People;
 public class ResultView {
     private static final String RESULT_TITLE = "실행 결과";
     private static final String NAME_FORMAT = "%6s";
+    private static final String WITH_POINT_STRING = "-----|";
+    private static final String WITHOUT_POINT_STRING = "     |";
 
     public void printResult(People people, Ladder ladder) {
         printTitle();
@@ -36,7 +38,7 @@ public class ResultView {
 
     private void printLine(Line line) {
         StringBuilder sb = new StringBuilder();
-        sb.append("     |");
+        sb.append(WITHOUT_POINT_STRING);
 
         line.getMovingPoints()
             .forEach(point -> sb.append(getFormattedMovingPoint(point)));
@@ -45,6 +47,6 @@ public class ResultView {
     }
 
     private String getFormattedMovingPoint(boolean point) {
-        return point ? "-----|" : "     |";
+        return point ? WITH_POINT_STRING : WITHOUT_POINT_STRING;
     }
 }
