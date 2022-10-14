@@ -38,13 +38,7 @@ public class Ladder {
         if (topLine == null) {
             return;
         }
-
-        List<LadderPiece> topLineLadderPieces = topLine.getLadderPieces();
-        List<LadderPiece> bottomLineLadderPieces = bottomLine.getLadderPieces();
-
-        for (int index = 0; index < topLine.getLadderPieces().size(); index++) {
-            topLineLadderPieces.get(index).setBottomPiece(bottomLineLadderPieces.get(index));
-        }
+        topLine.connectToUnder(bottomLine);
     }
 
     private void settingBridgeOnAllLine(BridgeInterface bridgeInterface) {

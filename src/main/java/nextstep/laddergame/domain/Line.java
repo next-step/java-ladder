@@ -29,6 +29,15 @@ public class Line {
         this.ladderPieces.forEach((ladderPiece) -> ladderPiece.settingBridge(bridgeInterface));
     }
 
+    public void connectToUnder(Line bottomLine) {
+        List<LadderPiece> topLineLadderPieces = this.getLadderPieces();
+        List<LadderPiece> bottomLineLadderPieces = bottomLine.getLadderPieces();
+
+        for (int index = 0; index < topLineLadderPieces.size(); index++) {
+            topLineLadderPieces.get(index).setBottomPiece(bottomLineLadderPieces.get(index));
+        }
+    }
+
     private void connectLadderPiece(LadderPiece left, LadderPiece right) {
         if (left == null) {
             return;
