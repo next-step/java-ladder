@@ -71,7 +71,7 @@ public class Line {
 
         Point prevPoint = target.remove(0);
         for (Point point : target) {
-            if (prevPoint.isOverlap(point)) {
+            if (prevPoint.isOverlapping(point)) {
                 return true;
             }
             prevPoint = point;

@@ -5,7 +5,7 @@ import nextstep.ladder.util.RandomGenerator;
 public class DefaultEnablePointStrategy implements EnablePointStrategy {
 
     @Override
-    public boolean isEnable() {
+    public boolean isEnabled() {
         return RandomGenerator.halfBoolean();
     }
 }

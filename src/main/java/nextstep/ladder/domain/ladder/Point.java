@@ -13,11 +13,11 @@ public class Point {
     private final boolean right;
 
     public static Point first(EnablePointStrategy strategy) {
-        return new Point(DEFAULT_POSITION, false, strategy.isEnable());
+        return new Point(DEFAULT_POSITION, false, strategy.isEnabled());
     }
 
     public static Point nextOf(Point prevPoint, EnablePointStrategy strategy) {
-        boolean enable = strategy.isEnable();
+        boolean enable = strategy.isEnabled();
         int nextPosition = prevPoint.position + 1;
 
         if (prevPoint.hasLeft()) {
@@ -37,11 +37,11 @@ public class Point {
     }
 
     public static Point of(int position, EnablePointStrategy strategy) {
-        boolean left = strategy.isEnable();
-        boolean right = strategy.isEnable();
+        boolean left = strategy.isEnabled();
+        boolean right = strategy.isEnabled();
 
         if (isAnyOpen(left, right)) {
-            left = strategy.isEnable();
+            left = strategy.isEnabled();
             right = !left;
         }
 
@@ -86,7 +86,7 @@ public class Point {
         return right;
     }
 
-    public boolean isOverlap(Point other) {
+    public boolean isOverlapping(Point other) {
         return isNext(other) && isSameDirection(other);
     }
 

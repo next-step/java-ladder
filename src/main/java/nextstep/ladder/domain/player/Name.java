@@ -3,7 +3,7 @@ package nextstep.ladder.domain.player;
 import java.util.Objects;
 
 public class Name {
-    private static final int DEFAULT_NAME_LENGTH = 5;
+    private static final int MAX_LENGTH = 5;
     private static final String LENGTH_EXCEPTION_MESSAGE = "5글자 이하의 이름만 가능합니다.";
     private static final String NULL_BLANK_EXCEPTION_MESSAGE = "Null 또는 공백 문자열은 이름이 될 수 없습니다.";
 
@@ -33,7 +33,7 @@ public class Name {
     }
 
     private boolean isOverLength(String value) {
-        return value.strip().length() > DEFAULT_NAME_LENGTH;
+        return value.strip().length() > MAX_LENGTH;
     }
 
     public String value() {

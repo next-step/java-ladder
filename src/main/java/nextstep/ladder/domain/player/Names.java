@@ -6,16 +6,14 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Names {
-    public static final String DEFAULT_DELIMITER = ",";
-
     private final List<Name> values;
 
-    public static Names of(String names) {
-        return new Names(names);
+    public static Names of(String names, String delimiter) {
+        return new Names(names, delimiter);
     }
 
-    public Names(String names) {
-        values = Stream.of(names.split(DEFAULT_DELIMITER))
+    public Names(String names, String delimiter) {
+        values = Stream.of(names.split(delimiter))
                 .map(Name::of)
                 .collect(Collectors.toList());
     }
