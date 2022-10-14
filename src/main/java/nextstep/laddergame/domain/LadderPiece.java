@@ -73,9 +73,11 @@ public class LadderPiece {
         return nextPiece.moveToLadder(currentIndex);
     }
 
-    public void connectToRight(LadderPiece rightPiece) {
-        this.setRightPiece(rightPiece);
-        rightPiece.setLeftPiece(this);
+    public LadderPiece makeAndLinkNewLadderPieceToRight() {
+        LadderPiece rightLadderPiece = new LadderPiece();
+        this.setRightPiece(rightLadderPiece);
+        rightLadderPiece.setLeftPiece(this);
+        return rightLadderPiece;
     }
 
     private boolean isAbleSetBridge() {
