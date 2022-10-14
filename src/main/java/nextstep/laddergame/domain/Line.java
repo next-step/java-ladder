@@ -33,9 +33,7 @@ public class Line {
         if (left == null) {
             return;
         }
-
-        left.setRightPiece(right);
-        right.setLeftPiece(left);
+        left.connectToRight(right);
     }
 
 }

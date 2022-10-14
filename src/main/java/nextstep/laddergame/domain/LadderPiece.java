@@ -73,6 +73,11 @@ public class LadderPiece {
         return nextPiece.moveToLadder(currentIndex);
     }
 
+    public void connectToRight(LadderPiece rightPiece) {
+        this.setRightPiece(rightPiece);
+        rightPiece.setLeftPiece(this);
+    }
+
     private boolean isAbleSetBridge() {
         return this.nextLadderPieceMap.get(DirectionEnum.RIGHT) != null && this.bridgePosition.equals(BridgePositionEnum.NONE);
     }
