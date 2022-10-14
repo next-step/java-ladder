@@ -53,7 +53,7 @@ public class ResultView {
             System.out.print(gamer.getName() + NAME_SEPARATOR);
         }
         System.out.println();
-        for (Line line : game.getLadder().getLines()) {
+        for (Line line : game.getLadderLines()) {
             printLine(line);
             System.out.println();
         }

@@ -13,6 +13,10 @@ public class Game {
         return ladder;
     }
 
+    public List<Line> getLadderLines() {
+        return this.ladder.getLines();
+    }
+
     public List<Gamer> getGamers() {
         return gamers;
     }
