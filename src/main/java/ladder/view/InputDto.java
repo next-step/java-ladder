@@ -1,7 +1,7 @@
 package ladder.view;
 
-import ladder.domain.LadderResults;
-import ladder.domain.Players;
+import ladder.domain.ladderresult.LadderResults;
+import ladder.domain.player.Players;
 
 public class InputDto {
     private final Players players;

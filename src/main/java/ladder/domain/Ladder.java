@@ -1,7 +1,8 @@
 package ladder.domain;
 
-import ladder.domain.factory.ILine;
-import ladder.domain.factory.LineFactory;
+import ladder.domain.line.ILine;
+import ladder.domain.line.LineFactory;
+import ladder.domain.player.Players;
 
 import java.util.List;
 import java.util.Objects;

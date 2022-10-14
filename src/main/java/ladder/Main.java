@@ -1,9 +1,9 @@
 package ladder;
 
 import ladder.domain.Ladder;
-import ladder.domain.PlayerNames;
-import ladder.domain.Players;
-import ladder.domain.v2.RandomLadderLineFactory;
+import ladder.domain.line.v2.RandomLadderLineFactory;
+import ladder.domain.player.PlayerNames;
+import ladder.domain.player.Players;
 import ladder.external.RandomFactory;
 import ladder.view.InputDto;
 import ladder.view.InputView;

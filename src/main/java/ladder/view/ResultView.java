@@ -1,6 +1,12 @@
 package ladder.view;
 
-import ladder.domain.*;
+import ladder.domain.Ladder;
+import ladder.domain.ladderresult.LadderResult;
+import ladder.domain.ladderresult.LadderResults;
+import ladder.domain.player.Player;
+import ladder.domain.player.PlayerName;
+import ladder.domain.player.PlayerNames;
+import ladder.domain.player.Players;
 
 import java.util.List;
 
