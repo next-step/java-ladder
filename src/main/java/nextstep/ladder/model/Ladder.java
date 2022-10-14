@@ -2,6 +2,7 @@ package nextstep.ladder.model;
 
 import static java.util.stream.Collectors.*;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -18,7 +19,7 @@ public class Ladder {
     }
 
     public List<Line> getLines() {
-        return lines;
+        return Collections.unmodifiableList(lines);
     }
 
     private void validate(int ladderLength) {

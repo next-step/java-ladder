@@ -1,6 +1,7 @@
 package nextstep.ladder.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -16,7 +17,7 @@ public class Line {
     }
 
     public List<Boolean> getMovingPoints() {
-        return movingPoints;
+        return Collections.unmodifiableList(movingPoints);
     }
 
     private void validate(int countOfPerson) {
