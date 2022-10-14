@@ -5,47 +5,27 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LineTest {
 
-    @DisplayName("점으로 이루어진 선을 생성할 수 있다.")
+    @DisplayName("선은 점이 하나 이상으로 구성되어야 하므로 점이 비어있는 경우 예외가 발생한다.")
     @Test
     void line() {
-        assertDoesNotThrow(() -> {
-            new Line(List.of(new Point(1, true),
-                    new Point(2, false),
-                    new Point(3, true)));
-        });
+        List<Point> points = List.of();
+        assertThatThrownBy(() -> new Line(points))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("사용자 수 만큼의 점들로 이루어진 선이 생성된다.")
-    @Test
-    void lineCountOfPlayer() {
-        Line line = Line.create(5, () -> true);
-
-        assertThat(line.points()).hasSize(5);
-    }
-
-    @DisplayName("활성화된 점이 연속적으로 연결된 경우 예외가 발생한다.")
+    @DisplayName("두번 연속 나란히 연결되는 점이 포함되어 있는 경우 예외가 발생한다.")
     @Test
     void lineException() {
-        assertThatThrownBy(() -> {
-            new Line(List.of(new Point(1, true),
-                    new Point(2, true),
-                    new Point(3, true),
-                    new Point(4, true),
-                    new Point(5, true)));
-        }).isInstanceOf(IllegalArgumentException.class);
-    }
+        Point first = Point.first(() -> true);
+        Point nextPoint = Point.of(1, false, true);
 
-    @DisplayName("점이 2개 미만인 경우 예외가 발생한다.")
-    @Test
-    void lineSizeException() {
-        assertThatThrownBy(() -> {
-            new Line(List.of(new Point(1, true)));
-        }).isInstanceOf(IllegalArgumentException.class);
+        List<Point> points = List.of(first, nextPoint);
+
+        assertThatThrownBy(() -> new Line(points))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

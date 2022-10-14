@@ -2,59 +2,80 @@ package nextstep.ladder.domain.ladder;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class PointTest {
 
-    @DisplayName("하나의 점은 위치와 사용 가능 여부 상태를 가진다.")
-    @ParameterizedTest
-    @ValueSource(booleans = {true, false})
-    void point(boolean input) {
-        assertThat(new Point(1, input)).isEqualTo(new Point(1, input));
-    }
-
-    @DisplayName("위치가 1 미만인 경우 예외가 발생한다.")
+    @DisplayName("왼쪽 오른쪽 동시에 열릴 수 없다.")
     @Test
-    void pointException() {
-        assertThatThrownBy(() -> new Point(0, true))
+    void biPoint() {
+        assertThatThrownBy(() -> new Point(1, true, true))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("사용 가능 상태를 정의할 수 있다.")
-    @ParameterizedTest
-    @ValueSource(booleans = {true, false})
-    void pointStrategy(boolean input) {
-        assertThat(Point.of(1, () -> input)).isEqualTo(new Point(1, input));
+    @DisplayName("첫번째 점은 왼쪽이 닫혀있다.")
+    @Test
+    void firstPoint() {
+        Point first = Point.first(() -> true);
+
+        assertThat(first.hasLeft()).isFalse();
     }
 
-    @DisplayName("점끼리 연결될 수 있다.")
+    @DisplayName("이전 점의 왼쪽이 열려있는 경우 다음 점의 왼쪽은 닫혀있다.")
     @Test
-    void connect() {
-        Point pointA = new Point(1, true);
-        Point pointB = new Point(2, true);
+    void nextPoint1() {
+        Point prevPoint = new Point(1, true, false);
+        Point nextPoint = Point.nextOf(prevPoint, () -> true);
 
-        assertThat(pointA.isConnected(pointB)).isTrue();
+        assertThat(nextPoint.hasLeft()).isFalse();
     }
 
-    @DisplayName("옆에 있는 점이어도 활성화된 점이 아니면 연결될 수 없다.")
+    @DisplayName("이전 점의 오른쪽이 열려있는 경우 다음 점의 왼쪽은 열려있고 오른쪽은 닫혀있다.")
     @Test
-    void connectTrue() {
-        Point pointA = new Point(1, true);
-        Point pointB = new Point(2, false);
+    void nextPoint2() {
+        Point prevPoint = new Point(1, false, true);
+        Point nextPoint = Point.nextOf(prevPoint, () -> true);
 
-        assertThat(pointA.isConnected(pointB)).isFalse();
+        assertThat(nextPoint.hasLeft()).isTrue();
+        assertThat(nextPoint.hasRight()).isFalse();
     }
 
-    @DisplayName("활성화된 점이어도 떨어져 있으면 연결되어있다고 판단하지 않는다.")
-    @Test
-    void connectFalse() {
-        Point pointA = new Point(1, true);
-        Point pointB = new Point(3, true);
 
-        assertThat(pointA.isConnected(pointB)).isFalse();
+    @DisplayName("마지막 점의 오른쪽은 닫혀있다.")
+    @Test
+    void lastPoint() {
+        Point prevPoint = new Point(1, false, true);
+        Point lastPoint = Point.lastOf(prevPoint, () -> true);
+
+        assertThat(lastPoint.hasRight()).isFalse();
+    }
+
+    @DisplayName("두 점이 나란히 왼쪽 방향을 바라보는지 판단할 수 있다.")
+    @Test
+    void leftOverlap() {
+        Point pointA = Point.of(2, false, true);
+        Point pointB = Point.of(3, false, true);
+
+        assertThat(pointA.isOverlap(pointB)).isTrue();
+    }
+
+    @DisplayName("두 점이 나란히 오른쪽 방향을 바라보는지 판단할 수 있다.")
+    @Test
+    void rightOverlap() {
+        Point pointA = Point.of(2, true, false);
+        Point pointB = Point.of(3, true, false);
+
+        assertThat(pointA.isOverlap(pointB)).isTrue();
+    }
+
+    @DisplayName("거리가 떨어져 있는 경우 같은 방향을 바라보는 것은 상관하지 않는다.")
+    @Test
+    void noOverlap() {
+        Point pointA = Point.of(2, true, false);
+        Point pointB = Point.of(4, true, false);
+
+        assertThat(pointA.isOverlap(pointB)).isFalse();
     }
 }
