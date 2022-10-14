@@ -1,7 +1,5 @@
 package nextstep.ladder.domain.ladder;
 
-import java.util.Objects;
-
 public class Point {
 
     public static final int DEFAULT_POSITION = 0;
@@ -96,24 +94,5 @@ public class Point {
 
     private boolean isSameDirection(Point other) {
         return (this.left && other.left) || (this.right && other.right);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        Point point = (Point) o;
-        return position == point.position && left == point.left && right == point.right;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(position, left, right);
     }
 }

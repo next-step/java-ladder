@@ -23,7 +23,7 @@ public class LadderResult {
         return ladder.players().values()
                 .stream()
                 .map(p -> String.format("%6s", p.name()))
-                .reduce("", (name1, name2) -> name1 + name2);
+                .collect(Collectors.joining());
     }
 
     public String getLadder() {

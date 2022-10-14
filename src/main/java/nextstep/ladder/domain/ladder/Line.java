@@ -12,20 +12,22 @@ public class Line {
     private final List<Point> points;
 
     public static Line create(int countOfPoint, EnablePointStrategy strategy) {
-        List<Point> points = new ArrayList<>();
-
-        Point firstPoint = Point.first(strategy);
-        points.add(firstPoint);
+        List<Point> points = initPoints(strategy);
 
         if (isOnePoint(countOfPoint)) {
             return new Line(points);
         }
 
         if (isTwoPoint(countOfPoint)) {
-            points.add(Point.lastOf(firstPoint, strategy));
+            points.add(Point.lastOf(points.get(0), strategy));
             return new Line(points);
         }
 
+        setPoints(points, strategy, countOfPoint);
+        return new Line(points);
+    }
+
+    private static void setPoints(List<Point> points, EnablePointStrategy strategy, int countOfPoint) {
         for (int i = 1; i < countOfPoint - 1; i++) {
             Point prevPoint = points.get(i - 1);
             Point nextPoint = Point.nextOf(prevPoint, strategy);
@@ -34,8 +36,11 @@ public class Line {
 
         Point lastPoint = Point.lastOf(points.get(points.size() - 1), strategy);
         points.add(lastPoint);
+    }
 
-        return new Line(points);
+    private static List<Point> initPoints(EnablePointStrategy strategy) {
+        Point firstPoint = Point.first(strategy);
+        return new ArrayList<>(List.of(firstPoint));
     }
 
     private static boolean isOnePoint(int countOfPoint) {
