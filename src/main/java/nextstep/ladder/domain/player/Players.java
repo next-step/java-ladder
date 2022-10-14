@@ -21,7 +21,9 @@ public class Players {
     }
 
     public Players(List<Player> values) {
-        this.values = values;
+        this.values = values.stream()
+                .distinct()
+                .collect(Collectors.toList());
     }
 
     public int count() {
