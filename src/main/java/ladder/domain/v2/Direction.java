@@ -21,12 +21,12 @@ public enum Direction {
         return NONE;
     }
 
-    public Direction next(boolean hasRight) {
+    public Direction next(boolean hasNextRight) {
         if (this == RIGHT) {
             return LEFT;
         }
 
-        if (hasRight) {
+        if (hasNextRight) {
             return RIGHT;
         }
 
