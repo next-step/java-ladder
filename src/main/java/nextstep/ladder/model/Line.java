@@ -3,7 +3,8 @@ package nextstep.ladder.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
+
+import nextstep.ladder.model.strategy.PointPickerStrategy;
 
 public class Line {
     private static final String POINT_CONDITION_EXCEPTION_MESSAGE = "최소 2명이 존재해야 사다리에서 이동이 가능합니다.";
@@ -11,9 +12,9 @@ public class Line {
     // points.get(N): N번째 세로줄과 N+1번째 세로줄 사이에 가로선이 존재하는가? (0번부터 시작)
     private final List<Boolean> movingPoints;
 
-    public Line(int countOfPerson) {
+    public Line(int countOfPerson, PointPickerStrategy strategy) {
         validate(countOfPerson);
-        movingPoints = createMovingPoints(countOfPerson - 1);
+        movingPoints = createMovingPoints(countOfPerson - 1, strategy);
     }
 
     public List<Boolean> getMovingPoints() {
@@ -26,13 +27,12 @@ public class Line {
         }
     }
 
-    private List<Boolean> createMovingPoints(int numberOfMovingPoints) {
+    private List<Boolean> createMovingPoints(int numberOfMovingPoints, PointPickerStrategy strategy) {
         List<Boolean> points = new ArrayList<>(numberOfMovingPoints);
-        Random random = new Random();
 
         for (int i = 0; i < numberOfMovingPoints; ++i) {
             if (isAdjacentPointExist(points)) {
-                points.add(random.nextBoolean());
+                points.add(strategy.makePoint());
                 continue;
             }
             points.add(false);
