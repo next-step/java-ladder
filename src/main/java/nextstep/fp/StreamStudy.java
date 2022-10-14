@@ -31,7 +31,9 @@ public class StreamStudy {
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
-        return numbers.stream().map(x -> 2 * x).collect(Collectors.toList());
+        return numbers.stream()
+                      .map(x -> 2 * x)
+                      .collect(Collectors.toList());
     }
 
     public static long sumAll(List<Integer> numbers) {
@@ -39,6 +41,10 @@ public class StreamStudy {
     }
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
-        return 0;
+        return numbers.stream()
+                      .filter(number -> number > 3)
+                      .map(number -> number * 2)
+                      .reduce(Integer::sum)
+                      .orElseGet(() -> 0);
     }
 }
