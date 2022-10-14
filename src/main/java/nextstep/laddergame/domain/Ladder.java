@@ -24,21 +24,14 @@ public class Ladder {
 
     private List<Line> getLadderTemplate(int width, int height) {
         List<Line> ladderTemplate = new ArrayList<>();
-        Line topLine = null;
-        for (int innerIndex = 0; innerIndex < height; innerIndex++) {
-            Line line = new Line(width);
-            connectLine(topLine, line);
+        Line topLine = new Line(width);
+        ladderTemplate.add(topLine);
+        for (int innerIndex = 1; innerIndex < height; innerIndex++) {
+            Line line = topLine.makeAndLinkNewLineToUnder();
             topLine = line;
             ladderTemplate.add(line);
         }
         return ladderTemplate;
-    }
-
-    private void connectLine(Line topLine, Line bottomLine) {
-        if (topLine == null) {
-            return;
-        }
-        topLine.connectToUnder(bottomLine);
     }
 
     private void settingBridgeOnAllLine(BridgeInterface bridgeInterface) {
