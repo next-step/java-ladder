@@ -17,11 +17,11 @@ public class Line {
         Point firstPoint = Point.first(strategy);
         points.add(firstPoint);
 
-        if (countOfPoint == 1) {
+        if (isOnePoint(countOfPoint)) {
             return new Line(points);
         }
 
-        if (countOfPoint == 2) {
+        if (isTwoPoint(countOfPoint)) {
             points.add(Point.lastOf(firstPoint, strategy));
             return new Line(points);
         }
@@ -36,6 +36,14 @@ public class Line {
         points.add(lastPoint);
 
         return new Line(points);
+    }
+
+    private static boolean isOnePoint(int countOfPoint) {
+        return countOfPoint == 1;
+    }
+
+    private static boolean isTwoPoint(int countOfPoint) {
+        return countOfPoint == 2;
     }
 
 

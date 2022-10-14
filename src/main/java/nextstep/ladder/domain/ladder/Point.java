@@ -12,7 +12,6 @@ public class Point {
     private final boolean left;
     private final boolean right;
 
-
     public static Point first(EnablePointStrategy strategy) {
         return new Point(DEFAULT_POSITION, false, strategy.isEnable());
     }
@@ -41,12 +40,16 @@ public class Point {
         boolean left = strategy.isEnable();
         boolean right = strategy.isEnable();
 
-        if (left && right) {
+        if (isAnyOpen(left, right)) {
             left = strategy.isEnable();
             right = !left;
         }
 
         return new Point(position, left, right);
+    }
+
+    private static boolean isAnyOpen(boolean left, boolean right) {
+        return left && right;
     }
 
     public static Point of(int position, boolean left, boolean right) {
