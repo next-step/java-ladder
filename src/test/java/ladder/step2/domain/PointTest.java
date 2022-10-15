@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PointTest {
-    
-    
     @Test
     @DisplayName("패스")
     void pass() {
