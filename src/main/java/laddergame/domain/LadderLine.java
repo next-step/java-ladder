@@ -2,14 +2,14 @@ package laddergame.domain;
 
 import java.util.*;
 
-public class LadderLineConnections {
+public class LadderLine {
 
-    private static final int MIN_NUMBER_OF_CONNECTIONS = 0;
+    private static final int MIN_NUMBER_OF_COLUMNS = 1;
     private static final Random RANDOM = new Random();
 
     private final List<Boolean> connections;
 
-    public LadderLineConnections(List<Boolean> connections) {
+    public LadderLine(List<Boolean> connections) {
         validate(connections);
         this.connections = connections;
     }
@@ -28,21 +28,25 @@ public class LadderLineConnections {
         }
     }
 
-    public static LadderLineConnections from(int numberOfConnections) {
-        if (numberOfConnections < MIN_NUMBER_OF_CONNECTIONS) {
-            throw new IllegalArgumentException(String.format("Connection의 개수는 최소 %d 개 이상이어야 합니다.", MIN_NUMBER_OF_CONNECTIONS));
-        }
+    public static LadderLine from(int numberOfColumns) {
+        validate(numberOfColumns);
 
-        if (numberOfConnections == MIN_NUMBER_OF_CONNECTIONS) {
-            return new LadderLineConnections(Collections.emptyList());
+        if (numberOfColumns == MIN_NUMBER_OF_COLUMNS) {
+            return new LadderLine(Collections.emptyList());
         }
 
         List<Boolean> connections = new ArrayList<>();
         connections.add(generateRandomConnection());
-        for (int i = 1; i < numberOfConnections; i++) {
+        for (int i = 1; i < numberOfColumns - 1; i++) {
             connections.add(generateConnection(connections.get(i - 1)));
         }
-        return new LadderLineConnections(connections);
+        return new LadderLine(connections);
+    }
+
+    private static void validate(int numberOfColumns) {
+        if (numberOfColumns < MIN_NUMBER_OF_COLUMNS) {
+            throw new IllegalArgumentException(String.format("세로 막대 개수는 최소 %d 개 이상이어야 합니다.", MIN_NUMBER_OF_COLUMNS));
+        }
     }
 
     private static boolean generateConnection(boolean previousConnected) {
@@ -68,7 +72,7 @@ public class LadderLineConnections {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        LadderLineConnections that = (LadderLineConnections) o;
+        LadderLine that = (LadderLine) o;
         return Objects.equals(connections, that.connections);
     }
 

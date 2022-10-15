@@ -5,28 +5,26 @@ import java.util.List;
 
 public class Ladder {
 
-    private final int numberOfColumns;
-    private final List<LadderLineConnections> connectionsByHeight;
+    private final List<LadderLine> lines;
 
-    public Ladder(int numberOfColumns) {
-        this(numberOfColumns, new ArrayList<>());
+    public Ladder(List<LadderLine> lines) {
+        this.lines = lines;
     }
 
-    public Ladder(int numberOfColumns, List<LadderLineConnections> connectionsByHeight) {
-        this.numberOfColumns = numberOfColumns;
-        this.connectionsByHeight = connectionsByHeight;
+    public static Ladder of(int numberOfColumns, int height) {
+        List<LadderLine> lines = new ArrayList<>();
+        for (int i = 0; i < height; i++) {
+            lines.add(LadderLine.from(numberOfColumns));
+        }
+        return new Ladder(lines);
     }
 
-    public void addLine() {
-        connectionsByHeight.add(LadderLineConnections.from(numberOfColumns - 1));
+    public LadderLine getLine(int indexOfHeight) {
+        return lines.get(indexOfHeight);
     }
 
-    public LadderLineConnections getConnectionsByHeight(int indexOfHeight) {
-        return connectionsByHeight.get(indexOfHeight);
-    }
-
-    public int getValueOfHeight() {
-        return connectionsByHeight.size();
+    public int getHeight() {
+        return lines.size();
     }
 
 }

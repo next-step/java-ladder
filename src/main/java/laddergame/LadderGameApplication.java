@@ -2,7 +2,6 @@ package laddergame;
 
 import laddergame.domain.LadderGame;
 import laddergame.domain.LadderGameResult;
-import laddergame.domain.LadderHeight;
 import laddergame.domain.ParticipantName;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
@@ -14,9 +13,9 @@ public class LadderGameApplication {
     public static void main(String[] args) {
         LadderGame game = new LadderGame();
         List<ParticipantName> participantNames = InputView.inputParticipantNames();
-        LadderHeight height = InputView.inputHeight();
+        int ladderHeight = InputView.inputLadderHeight();
 
-        LadderGameResult result = game.run(participantNames, height);
+        LadderGameResult result = game.run(participantNames, ladderHeight);
         OutputView.printResult(result);
     }
 

@@ -11,7 +11,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
-class LadderLineConnectionsTest {
+class LadderLineTest {
 
     private static List<Arguments> provideCorrectConnections() {
         return List.of(
@@ -26,40 +26,40 @@ class LadderLineConnectionsTest {
     @MethodSource("provideCorrectConnections")
     void create(List<Boolean> connections) {
         assertThatNoException()
-                .isThrownBy(() -> new LadderLineConnections(connections));
+                .isThrownBy(() -> new LadderLine(connections));
     }
 
     @DisplayName("가로 라인이 연속적으로 연결된 경우, 예외가 발생해야 한다.")
     @Test
     void create_givenContinuousConnections() {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new LadderLineConnections(
+                .isThrownBy(() -> new LadderLine(
                         List.of(true, true)
                 ));
     }
 
-    @DisplayName("Connection의 개수가 0인 경우, Connection이 존재하지 않은 인스턴스를 생성해야 한다.")
+    @DisplayName("세로 막대의 개수가 1개인 경우, 세로 막대에 연결된 것이 없어야 한다.")
     @Test
-    void from_givenZero() {
-        assertThat(LadderLineConnections.from(0))
-                .isEqualTo(new LadderLineConnections(Collections.emptyList()));
+    void from_givenOneColumn() {
+        assertThat(LadderLine.from(1))
+                .isEqualTo(new LadderLine(Collections.emptyList()));
     }
 
-    @DisplayName("Connection의 개수가 1인 경우, Connection은 연결되거나 연결되지 않아야 한다.")
+    @DisplayName("세로 막대의 개수가 2개인 경우, 세로 막대는 연결되거나 연결되지 않아야 한다.")
     @Test
-    void from_givenOne() {
-        assertThat(LadderLineConnections.from(1))
+    void from_givenTwoColumns() {
+        assertThat(LadderLine.from(2))
                 .isIn(
-                        new LadderLineConnections(List.of(true)),
-                        new LadderLineConnections(List.of(false))
+                        new LadderLine(List.of(true)),
+                        new LadderLine(List.of(false))
                 );
     }
 
-    @DisplayName("Connection의 개수가 0보다 작은 경우, 인스턴스를 생성하면 예외가 발생해야 한다.")
+    @DisplayName("세로 막대의 개수가 1보다 작은 경우, 예외가 발생해야 한다.")
     @Test
-    void from_givenNumberOfConnectionsUnderMinValueOfConnecctions() {
+    void from_givenNumberOfColumnsUnderMinValueOfColumns() {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> LadderLineConnections.from(-1));
+                .isThrownBy(() -> LadderLine.from(0));
     }
 
 }

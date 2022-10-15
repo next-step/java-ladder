@@ -25,7 +25,7 @@ class ParticipantNameTest {
                 .isThrownBy(() -> new ParticipantName(participantNameValue));
     }
 
-    @DisplayName("참가자 이름이 null이거나 공백이면 에러가 밸생해야 한다.")
+    @DisplayName("참가자 이름이 null이거나 공백이면 에러가 발생해야 한다.")
     @ParameterizedTest
     @NullAndEmptySource
     void create_givenNullOrEmpty(String participantNameValue) {
@@ -33,7 +33,7 @@ class ParticipantNameTest {
                 .isThrownBy(() -> new ParticipantName(participantNameValue));
     }
 
-    @DisplayName("참가자 이름이 5자를 넘어가면 에러가 밸생해야 한다.")
+    @DisplayName("참가자 이름이 5자를 넘어가면 에러가 발생해야 한다.")
     @Test
     void create_givenNameOverMaxLength() {
         assertThatIllegalArgumentException()

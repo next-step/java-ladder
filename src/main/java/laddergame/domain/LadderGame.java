@@ -4,11 +4,8 @@ import java.util.List;
 
 public class LadderGame {
 
-    public LadderGameResult run(List<ParticipantName> participantNames, LadderHeight height) {
-        Ladder ladder = new Ladder(participantNames.size());
-        for (int i = 0; i < height.getValue(); i++) {
-            ladder.addLine();
-        }
+    public LadderGameResult run(List<ParticipantName> participantNames, int height) {
+        Ladder ladder = Ladder.of(participantNames.size(), height);
         return new LadderGameResult(participantNames, ladder);
     }
 

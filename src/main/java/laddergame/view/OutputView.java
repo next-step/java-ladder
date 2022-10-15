@@ -2,7 +2,7 @@ package laddergame.view;
 
 import laddergame.domain.Ladder;
 import laddergame.domain.LadderGameResult;
-import laddergame.domain.LadderLineConnections;
+import laddergame.domain.LadderLine;
 import laddergame.domain.ParticipantName;
 
 import java.util.List;
@@ -12,8 +12,8 @@ public class OutputView {
 
     private static final String BLANK = " ";
     private static final String LADDER_COLUMN = "|";
-    private static final String LADDER_CONNECTION = "-".repeat(ParticipantName.MAX_LENGTH);
-    private static final String LADDER_NOT_CONNECTION = BLANK.repeat(ParticipantName.MAX_LENGTH);
+    private static final String LADDER_LINE_CONNECTION = "-".repeat(ParticipantName.MAX_LENGTH);
+    private static final String LADDER_LINE_NOT_CONNECTION = BLANK.repeat(ParticipantName.MAX_LENGTH);
 
     private OutputView() {}
 
@@ -36,15 +36,15 @@ public class OutputView {
     }
 
     private static void printLadder(Ladder ladder) {
-        for (int i = 0; i < ladder.getValueOfHeight(); i++) {
-            System.out.println(formatLadderLineConnections(ladder.getConnectionsByHeight(i)));
+        for (int i = 0; i < ladder.getHeight(); i++) {
+            System.out.println(formatLadderLine(ladder.getLine(i)));
         }
     }
 
-    private static String formatLadderLineConnections(LadderLineConnections connections) {
+    private static String formatLadderLine(LadderLine line) {
         StringBuilder content = new StringBuilder(BLANK.repeat(ParticipantName.MAX_LENGTH - 1) + LADDER_COLUMN);
-        for (int i = 0; i < connections.size(); i++) {
-            content.append(connections.isConnected(i) ? LADDER_CONNECTION : LADDER_NOT_CONNECTION)
+        for (int i = 0; i < line.size(); i++) {
+            content.append(line.isConnected(i) ? LADDER_LINE_CONNECTION : LADDER_LINE_NOT_CONNECTION)
                     .append(LADDER_COLUMN);
         }
         return content.toString();
