@@ -6,46 +6,56 @@ import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class PointTest {
+    public static final Point ONE_RIGHT = new Point(PositionTest.ONE, DirectionTest.RIGHT);
+    public static final Point ONE_LEFT = new Point(PositionTest.ONE, DirectionTest.LEFT);
+    public static final Point ONE_PASS = new Point(PositionTest.ONE, DirectionTest.PASS);
+    
     @Test
     @DisplayName("패스")
     void pass() {
-        Point point = new Point(PositionTest.ONE, DirectionTest.PASS);
-        assertThat(point.move()).isEqualTo(1);
+        assertThat(ONE_PASS.move()).isEqualTo(1);
     }
     
     @Test
     @DisplayName("왼쪽 이동")
     void move_left() {
-        Point point = new Point(PositionTest.ONE, DirectionTest.LEFT);
-        assertThat(point.move()).isEqualTo(0);
+        assertThat(ONE_LEFT.move()).isEqualTo(0);
     }
     
     @Test
     @DisplayName("오른쪽 이동")
     void move_right() {
-        Point point = new Point(PositionTest.ONE, DirectionTest.RIGHT);
-        assertThat(point.move()).isEqualTo(2);
+        assertThat(ONE_RIGHT.move()).isEqualTo(2);
     }
     
-    @Nested
+    @Test
     @DisplayName("처음 부분라인은 존재하지 않는다")
-    class CreateFirst {
-        @RepeatedTest(100)
-        void create_first() {
-            Point first = Point.createFirst();
-            assertThat(first.move()).isNotEqualTo(-1);
-        }
+    void create_first() {
+        assertThat(Point.createFirst().move()).isNotEqualTo(-1);
     }
     
-    @Nested
+    @Test
     @DisplayName("마지막 부분라인은 존재하지 않는다")
-    class CreateLast {
-        @RepeatedTest(100)
-        void create_last() {
-            Point first = Point.createLast(3);
-            assertThat(first.move()).isNotEqualTo(4);
-        }
+    void create_last() {
+        final Point twoLeft = ONE_RIGHT.createLast();
+        assertAll(
+                () -> assertThat(twoLeft.move()).isNotEqualTo(3),
+                () -> assertThat(twoLeft.move()).isNotEqualTo(2),
+                () -> assertThat(twoLeft.move()).isEqualTo(1)
+        );
+    }
+    
+    @Test
+    @DisplayName("이전 부분 라인과 겹치지 않는다.")
+    void create_next() {
+        final Point twoLeft = ONE_RIGHT.createNext();
+        assertAll(
+                () -> assertThat(twoLeft.move()).isNotEqualTo(3),
+                () -> assertThat(twoLeft.move()).isNotEqualTo(2),
+                () -> assertThat(twoLeft.move()).isEqualTo(1)
+        );
     }
 }

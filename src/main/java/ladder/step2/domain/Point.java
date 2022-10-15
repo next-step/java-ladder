@@ -13,8 +13,12 @@ public class Point {
         return new Point(new Position(0), Direction.createFirst());
     }
     
-    public static Point createLast(final int position) {
-        return new Point(new Position(position), Direction.createLast());
+    public Point createLast() {
+        return new Point(position.createNext(), direction.createLast());
+    }
+    
+    public Point createNext() {
+        return new Point(position.createNext(), direction.createNext());
     }
     
     public int move() {

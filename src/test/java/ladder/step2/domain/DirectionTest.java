@@ -1,6 +1,8 @@
 package ladder.step2.domain;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -39,7 +41,12 @@ public class DirectionTest {
     @Test
     @DisplayName("마지막 부분 라인은 존재하지 않는다.")
     void create_last() {
-        Direction first = Direction.createLast();
-        assertThat(first.isRight()).isFalse();
+        assertThat(RIGHT.createLast().isRight()).isFalse();
+    }
+    
+    @Test
+    @DisplayName("이전 부분라인과 겹치지 않는다.")
+    void create_next() {
+        assertThat(RIGHT.createNext().isRight()).isFalse();
     }
 }

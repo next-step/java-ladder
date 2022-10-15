@@ -26,4 +26,10 @@ class PositionTest {
     void move_right() {
         assertThat(ONE.moveRight()).isEqualTo(2);
     }
+    
+    @Test
+    @DisplayName("다음 포지션 생성")
+    void create_next_position() {
+        assertThat(ONE.createNext().pass()).isEqualTo(2);
+    }
 }

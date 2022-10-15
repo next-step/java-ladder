@@ -18,4 +18,8 @@ public class Position {
     public int pass() {
         return position;
     }
+    
+    public Position createNext() {
+        return new Position(position + 1);
+    }
 }

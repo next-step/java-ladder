@@ -13,8 +13,16 @@ public class Direction {
         return new Direction(new PartLine(false), PartLineFactory.random());
     }
     
-    public static Direction createLast() {
-        return new Direction(PartLineFactory.random(), new PartLine(false));
+    public Direction createLast() {
+        return new Direction(rightPartLine, new PartLine(false));
+    }
+    
+    public Direction createNext() {
+        if (rightPartLine.isExist()) {
+            return new Direction(rightPartLine, new PartLine(false));
+        }
+    
+        return new Direction(rightPartLine, PartLineFactory.random());
     }
     
     public boolean isLeft() {
