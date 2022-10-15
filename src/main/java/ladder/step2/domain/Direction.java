@@ -1,5 +1,8 @@
 package ladder.step2.domain;
 
+import ladder.step2.domain.partlinestrategy.PartLineCreateStrategy;
+import ladder.step2.domain.partlinestrategy.RandomPartLineCreateStrategy;
+
 public class Direction {
     private final PartLine leftPartLine;
     private final PartLine rightPartLine;
@@ -9,20 +12,20 @@ public class Direction {
         this.rightPartLine = rightPartLine;
     }
     
-    public static Direction createFirst() {
-        return new Direction(new PartLine(false), PartLineFactory.random());
+    public static Direction createFirst(PartLineCreateStrategy partLineCreateStrategy) {
+        return new Direction(new PartLine(false), partLineCreateStrategy.create());
     }
     
     public Direction createLast() {
         return new Direction(rightPartLine, new PartLine(false));
     }
     
-    public Direction createNext() {
+    public Direction createNext(PartLineCreateStrategy partLineCreateStrategy) {
         if (rightPartLine.isExist()) {
             return new Direction(rightPartLine, new PartLine(false));
         }
     
-        return new Direction(rightPartLine, PartLineFactory.random());
+        return new Direction(rightPartLine, partLineCreateStrategy.create());
     }
     
     public boolean isLeft() {

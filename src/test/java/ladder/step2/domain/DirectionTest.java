@@ -1,5 +1,6 @@
 package ladder.step2.domain;
 
+import ladder.step2.domain.partlinestrategy.RandomPartLineCreateStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.RepeatedTest;
@@ -34,8 +35,9 @@ public class DirectionTest {
     @Test
     @DisplayName("처음 부분 라인은 존재하지 않는다.")
     void create_first() {
-        Direction first = Direction.createFirst();
+        Direction first = Direction.createFirst(() -> PartLineTest.TRUE);
         assertThat(first.isLeft()).isFalse();
+        assertThat(first.isRight()).isTrue();
     }
     
     @Test
@@ -44,9 +46,13 @@ public class DirectionTest {
         assertThat(RIGHT.createLast().isRight()).isFalse();
     }
     
-    @Test
+    @Nested
     @DisplayName("이전 부분라인과 겹치지 않는다.")
-    void create_next() {
-        assertThat(RIGHT.createNext().isRight()).isFalse();
+    class CreateNext {
+        @RepeatedTest(100)
+        void create_next() {
+            final Direction next = RIGHT.createNext(new RandomPartLineCreateStrategy());
+            assertThat(next.isRight()).isFalse();
+        }
     }
 }

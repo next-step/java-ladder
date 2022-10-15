@@ -1,5 +1,6 @@
 package ladder.step2.domain;
 
+import ladder.step2.domain.partlinestrategy.RandomPartLineCreateStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.RepeatedTest;
@@ -34,7 +35,12 @@ public class PointTest {
     @Test
     @DisplayName("처음 부분라인은 존재하지 않는다")
     void create_first() {
-        assertThat(Point.createFirst().move()).isNotEqualTo(-1);
+        final Point zeroRight = Point.createFirst(() -> PartLineTest.TRUE);
+        assertAll(
+                () -> assertThat(zeroRight.move()).isNotEqualTo(-1),
+                () -> assertThat(zeroRight.move()).isNotEqualTo(0),
+                () -> assertThat(zeroRight.move()).isEqualTo(1)
+        );
     }
     
     @Test
@@ -48,14 +54,17 @@ public class PointTest {
         );
     }
     
-    @Test
-    @DisplayName("이전 부분 라인과 겹치지 않는다.")
-    void create_next() {
-        final Point twoLeft = ONE_RIGHT.createNext();
-        assertAll(
-                () -> assertThat(twoLeft.move()).isNotEqualTo(3),
-                () -> assertThat(twoLeft.move()).isNotEqualTo(2),
-                () -> assertThat(twoLeft.move()).isEqualTo(1)
-        );
+    @Nested
+    @DisplayName("이전 부분라인과 겹치지 않는다.")
+    class CreateNext {
+        @RepeatedTest(100)
+        void create_next() {
+            final Point twoLeft = ONE_RIGHT.createNext(new RandomPartLineCreateStrategy());
+            assertAll(
+                    () -> assertThat(twoLeft.move()).isNotEqualTo(3),
+                    () -> assertThat(twoLeft.move()).isNotEqualTo(2),
+                    () -> assertThat(twoLeft.move()).isEqualTo(1)
+            );
+        }
     }
 }
