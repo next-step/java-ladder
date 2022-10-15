@@ -9,10 +9,6 @@ public class Name {
 
     private final String value;
 
-    public static Name of(String value) {
-        return new Name(value);
-    }
-
     public Name(String value) {
         validate(value);
         this.value = value.strip();

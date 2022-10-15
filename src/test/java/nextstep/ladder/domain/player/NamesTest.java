@@ -28,6 +28,6 @@ class NamesTest {
     @ParameterizedTest
     @ValueSource(strings = {"test1", "test2", "test3"})
     void names(String input) {
-        assertThat(names.contains(Name.of(input))).isTrue();
+        assertThat(names.contains(new Name(input))).isTrue();
     }
 }

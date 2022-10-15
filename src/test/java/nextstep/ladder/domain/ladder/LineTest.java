@@ -24,7 +24,7 @@ class LineTest {
     @Test
     void linePointsException() {
         Point first = Point.first(() -> true);
-        Point nextPoint = Point.of(1, false, true);
+        Point nextPoint = new Point(1, false, true);
 
         List<Point> points = List.of(first, nextPoint);
 
