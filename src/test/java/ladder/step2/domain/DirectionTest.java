@@ -4,23 +4,35 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class DirectionTest {
-    public static final Direction PASS = new Direction(false, false);
-    public static final Direction LEFT = new Direction(true, false);
-    public static final Direction RIGHT = new Direction(false, true);
+    public static final Direction PASS = new Direction(PartLineTest.FALSE, PartLineTest.FALSE);
+    public static final Direction LEFT = new Direction(PartLineTest.TRUE, PartLineTest.FALSE);
+    public static final Direction RIGHT = new Direction(PartLineTest.FALSE, PartLineTest.TRUE);
     
     @Test
     @DisplayName("오른쪽 이동")
     void move_right() {
-        assertThat(RIGHT.isRight()).isTrue();
-        assertThat(RIGHT.isLeft()).isFalse();
+        assertAll(
+                () -> assertThat(RIGHT.isRight()).isTrue(),
+                () -> assertThat(RIGHT.isLeft()).isFalse()
+        );
     }
     
     @Test
     @DisplayName("왼쪽 이동")
     void move_left() {
-        assertThat(LEFT.isLeft()).isTrue();
-        assertThat(LEFT.isRight()).isFalse();
+        assertAll(
+                () -> assertThat(LEFT.isLeft()).isTrue(),
+                () -> assertThat(LEFT.isRight()).isFalse()
+        );
+    }
+    
+    @Test
+    @DisplayName("처음 부분 라인은 존재하지 않는다.")
+    void create_first() {
+        Direction first = Direction.createFirst();
+        assertThat(first.isLeft()).isFalse();
     }
 }

@@ -9,6 +9,10 @@ public class Point {
         this.direction = direction;
     }
     
+    public static Point createFirst() {
+        return new Point(new Position(0), Direction.createFirst());
+    }
+    
     public int move() {
         if (direction.isLeft()) {
             return position.moveLeft();
