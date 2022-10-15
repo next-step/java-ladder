@@ -42,6 +42,14 @@ public class PointTest {
         assertThat(nextPoint.hasRight()).isFalse();
     }
 
+    @DisplayName("이전 점의 왼쪽, 오른쪽 모두 열려있지 않은 경우 다음 점의 왼쪽은 닫혀있다.")
+    @Test
+    void nextPoint3() {
+        Point prevPoint = new Point(1, false, false);
+        Point nextPoint = Point.nextOf(prevPoint, () -> true);
+
+        assertThat(nextPoint.hasLeft()).isFalse();
+    }
 
     @DisplayName("마지막 점의 오른쪽은 닫혀있다.")
     @Test

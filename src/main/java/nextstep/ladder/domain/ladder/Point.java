@@ -19,35 +19,19 @@ public class Point {
         int nextPosition = prevPoint.position + 1;
 
         if (prevPoint.hasLeft()) {
-            return of(nextPosition, false, enable);
+            return of(nextPosition, false, enable || strategy.isEnabled());
         }
 
         if (prevPoint.hasRight()) {
             return of(nextPosition, true, false);
         }
 
-        return of(nextPosition, strategy);
+        return of(nextPosition, false, enable);
     }
 
     public static Point lastOf(Point prevPoint, EnablePointStrategy strategy) {
         Point point = nextOf(prevPoint, strategy);
         return of(point.position, point.hasLeft(), false);
-    }
-
-    public static Point of(int position, EnablePointStrategy strategy) {
-        boolean left = strategy.isEnabled();
-        boolean right = strategy.isEnabled();
-
-        if (isAnyOpen(left, right)) {
-            left = strategy.isEnabled();
-            right = !left;
-        }
-
-        return new Point(position, left, right);
-    }
-
-    private static boolean isAnyOpen(boolean left, boolean right) {
-        return left && right;
     }
 
     public static Point of(int position, boolean left, boolean right) {
