@@ -1,5 +1,6 @@
-package ladder.domain;
+package ladder.domain.line.v1;
 
+import ladder.domain.position.Position;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 

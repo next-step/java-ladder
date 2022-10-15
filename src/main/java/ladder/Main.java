@@ -1,9 +1,9 @@
 package ladder;
 
 import ladder.domain.Ladder;
-import ladder.domain.PlayerNames;
-import ladder.domain.Players;
-import ladder.domain.RandomLineFactory;
+import ladder.domain.line.v2.RandomLadderLineFactory;
+import ladder.domain.player.PlayerNames;
+import ladder.domain.player.Players;
 import ladder.external.RandomFactory;
 import ladder.view.InputDto;
 import ladder.view.InputView;
@@ -14,7 +14,7 @@ public class Main {
         InputDto inputDto = InputView.scan();
 
         Players players = inputDto.getPlayers();
-        Ladder ladder = new Ladder(players.count(), inputDto.getHeight(), new RandomLineFactory(new RandomFactory()));
+        Ladder ladder = new Ladder(players.count(), inputDto.getHeight(), new RandomLadderLineFactory(new RandomFactory()));
 
         ResultView.printLadderResult(players, ladder, inputDto.getLadderResults());
 

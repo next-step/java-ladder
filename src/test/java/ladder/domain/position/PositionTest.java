@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.position;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

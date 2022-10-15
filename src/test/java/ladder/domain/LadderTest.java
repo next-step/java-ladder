@@ -1,5 +1,10 @@
 package ladder.domain;
 
+import ladder.domain.line.v1.Line;
+import ladder.domain.player.Player;
+import ladder.domain.player.PlayerName;
+import ladder.domain.player.Players;
+import ladder.domain.position.Position;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

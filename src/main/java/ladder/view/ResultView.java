@@ -1,6 +1,14 @@
 package ladder.view;
 
-import ladder.domain.*;
+import ladder.domain.Ladder;
+import ladder.domain.ladderresult.LadderResult;
+import ladder.domain.ladderresult.LadderResults;
+import ladder.domain.player.Player;
+import ladder.domain.player.PlayerName;
+import ladder.domain.player.PlayerNames;
+import ladder.domain.player.Players;
+
+import java.util.List;
 
 import static java.util.stream.Collectors.joining;
 
@@ -42,7 +50,8 @@ public class ResultView {
 
     private static void printLadder(Ladder ladder) {
         ladder.lines().forEach(line -> {
-            String lineString = line.bridges()
+            List<Boolean> bridges = line.bridges();
+            String lineString = bridges
                     .stream()
                     .map(ResultView::bridgeString)
                     .collect(joining(BAR, START_OF_LINE, BAR));

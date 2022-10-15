@@ -1,5 +1,9 @@
 package ladder.domain;
 
+import ladder.domain.line.ILine;
+import ladder.domain.line.LineFactory;
+import ladder.domain.player.Players;
+
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
@@ -7,7 +11,7 @@ import java.util.stream.IntStream;
 import static java.util.stream.Collectors.toList;
 
 public class Ladder {
-    private final List<Line> lines;
+    private final List<ILine> lines;
 
     public Ladder(int playerCount, int height, LineFactory lineFactory) {
         this.lines = IntStream.range(0, height)
@@ -15,11 +19,11 @@ public class Ladder {
                 .collect(toList());
     }
 
-    Ladder(List<Line> lines) {
+    Ladder(List<ILine> lines) {
         this.lines = lines;
     }
 
-    public List<Line> lines() {
+    public List<ILine> lines() {
         return lines;
     }
 
@@ -40,7 +44,7 @@ public class Ladder {
 
     public Players goDown(Players players) {
         Players result = players;
-        for (Line line: lines) {
+        for (ILine line: lines) {
             result = result.move(line);
         }
         return result;

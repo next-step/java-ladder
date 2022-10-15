@@ -1,10 +1,11 @@
-package ladder.domain;
+package ladder.domain.player;
+
+import ladder.domain.line.ILine;
+import ladder.domain.position.Position;
 
 import java.util.Objects;
 
 public class Player {
-
-
     private final PlayerName name;
     private final Position position;
 
@@ -39,7 +40,7 @@ public class Player {
         return result;
     }
 
-    public Player move(Line line) {
+    public Player move(ILine line) {
         return new Player(name, line.nextPosition(position));
     }
 }

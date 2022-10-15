@@ -1,4 +1,6 @@
-package ladder.domain;
+package ladder.domain.ladderresult;
+
+import ladder.domain.position.Position;
 
 import java.util.List;
 import java.util.NoSuchElementException;
