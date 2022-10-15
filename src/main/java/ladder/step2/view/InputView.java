@@ -1,6 +1,7 @@
 package ladder.step2.view;
 
 import ladder.step2.domain.Players;
+import ladder.step2.dto.LadderHeightDTO;
 import ladder.step2.utils.StringUtils;
 
 import java.util.Arrays;
@@ -18,6 +19,7 @@ public class InputView {
     private static final String SPACE = " ";
     private static final String EMPTY = "";
     private static final String DELIMITER = ",";
+    private static final String LADDER_HEIGHT_INPUT_MESSAGE = "\n최대 사다리 높이는 몇 개인가요?";
     
     public static Players inputPlayerNames() {
         try {
@@ -54,6 +56,18 @@ public class InputView {
     private static void checkBlankException(final String input) {
         if (StringUtils.isBlank(input)) {
             throw new IllegalArgumentException(INPUT_EXCEPTION_MESSAGE);
+        }
+    }
+    
+    public static LadderHeightDTO inputLadderHeight() {
+        try {
+            System.out.println(LADDER_HEIGHT_INPUT_MESSAGE);
+            final String input = SCANNER.nextLine();
+            checkBlankException(input);
+            return new LadderHeightDTO(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputLadderHeight();
         }
     }
 }
