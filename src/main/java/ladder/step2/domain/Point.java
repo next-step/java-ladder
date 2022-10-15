@@ -1,23 +1,23 @@
 package ladder.step2.domain;
 
 public class Point {
-    private final PartLine leftLine;
-    private final PartLine rightLine;
+    private final Position position;
+    private final Direction direction;
     
-    public Point(final boolean leftLine, final boolean rightLine) {
-        this.leftLine = new PartLine(leftLine);
-        this.rightLine = new PartLine(rightLine);
+    public Point(final Position position, Direction direction) {
+        this.position = position;
+        this.direction = direction;
     }
     
-    public int move(final int currentPosition) {
-        if (leftLine.isExist()) {
-            return currentPosition - 1;
+    public int move() {
+        if (direction.isLeft()) {
+            return position.moveLeft();
         }
         
-        if (rightLine.isExist()) {
-            return currentPosition + 1;
+        if (direction.isRight()) {
+            return position.moveRight();
         }
-        
-        return currentPosition;
+    
+        return position.pass();
     }
 }
