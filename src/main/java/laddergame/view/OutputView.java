@@ -1,5 +1,6 @@
 package laddergame.view;
 
+import laddergame.domain.Ladder;
 import laddergame.domain.LadderGameResult;
 import laddergame.domain.LadderLineConnections;
 import laddergame.domain.ParticipantName;
@@ -18,7 +19,7 @@ public class OutputView {
 
     public static void printResult(LadderGameResult result) {
         printParticipantNames(result.getParticipantNames());
-        printLadder(result.getConnectionsByHeight());
+        printLadder(result.getLadder());
     }
 
     private static void printParticipantNames(List<ParticipantName> participantNames) {
@@ -34,10 +35,10 @@ public class OutputView {
                 + BLANK.repeat((ParticipantName.MAX_LENGTH - length + 1) / 2);
     }
 
-    private static void printLadder(List<LadderLineConnections> connectionsByHeight) {
-        connectionsByHeight.stream()
-                .map(OutputView::formatLadderLineConnections)
-                .forEach(System.out::println);
+    private static void printLadder(Ladder ladder) {
+        for (int i = 0; i < ladder.getValueOfHeight(); i++) {
+            System.out.println(formatLadderLineConnections(ladder.getConnectionsByHeight(i)));
+        }
     }
 
     private static String formatLadderLineConnections(LadderLineConnections connections) {
