@@ -3,8 +3,8 @@ package nextstep.optional;
 import java.util.Optional;
 
 public class User {
-    private String name;
-    private Integer age;
+    private final String name;
+    private final Integer age;
 
     public User(String name, Integer age) {
         this.name = name;
@@ -24,13 +24,10 @@ public class User {
     }
 
     public static boolean ageIsInRange1(User user) {
-        boolean isInRange = false;
+        boolean isInRange = user != null && user.getAge() != null
+            && (user.getAge() >= 30
+            && user.getAge() <= 45);
 
-        if (user != null && user.getAge() != null
-                && (user.getAge() >= 30
-                && user.getAge() <= 45)) {
-            isInRange = true;
-        }
         return isInRange;
     }
 
@@ -58,17 +55,15 @@ public class User {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        User other = (User) obj;
+        User other = (User)obj;
         if (age == null) {
             if (other.age != null)
                 return false;
         } else if (!age.equals(other.age))
             return false;
         if (name == null) {
-            if (other.name != null)
-                return false;
-        } else if (!name.equals(other.name))
-            return false;
-        return true;
+            return other.name == null;
+        } else
+            return name.equals(other.name);
     }
 }
