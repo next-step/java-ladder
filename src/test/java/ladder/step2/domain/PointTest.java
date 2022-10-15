@@ -10,9 +10,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class PointTest {
-    public static final Point ONE_RIGHT = new Point(PositionTest.ONE, DirectionTest.RIGHT);
-    public static final Point ONE_LEFT = new Point(PositionTest.ONE, DirectionTest.LEFT);
-    public static final Point ONE_PASS = new Point(PositionTest.ONE, DirectionTest.PASS);
+    public static final Point ZERO_PASS = Point.createFirst(() -> PartLineTest.FALSE);
+    public static final Point ZERO_RIGHT = Point.createFirst(() -> PartLineTest.TRUE);
+    public static final Point ONE_LEFT = ZERO_RIGHT.createNext(() -> PartLineTest.FALSE);
+    public static final Point ONE_PASS = ZERO_PASS.createNext(() -> PartLineTest.FALSE);
     
     @Test
     @DisplayName("패스")
@@ -29,7 +30,7 @@ public class PointTest {
     @Test
     @DisplayName("오른쪽 이동")
     void move_right() {
-        assertThat(ONE_RIGHT.move()).isEqualTo(2);
+        assertThat(ZERO_RIGHT.move()).isEqualTo(1);
     }
     
     @Test
@@ -46,11 +47,11 @@ public class PointTest {
     @Test
     @DisplayName("마지막 부분라인은 존재하지 않는다")
     void create_last() {
-        final Point twoLeft = ONE_RIGHT.createLast();
+        final Point onePass = ZERO_PASS.createLast();
         assertAll(
-                () -> assertThat(twoLeft.move()).isNotEqualTo(3),
-                () -> assertThat(twoLeft.move()).isNotEqualTo(2),
-                () -> assertThat(twoLeft.move()).isEqualTo(1)
+                () -> assertThat(onePass.move()).isNotEqualTo(2),
+                () -> assertThat(onePass.move()).isNotEqualTo(0),
+                () -> assertThat(onePass.move()).isEqualTo(1)
         );
     }
     
@@ -59,11 +60,11 @@ public class PointTest {
     class CreateNext {
         @RepeatedTest(100)
         void create_next() {
-            final Point twoLeft = ONE_RIGHT.createNext(new RandomPartLineCreateStrategy());
+            final Point oneLeft = ZERO_RIGHT.createNext(new RandomPartLineCreateStrategy());
             assertAll(
-                    () -> assertThat(twoLeft.move()).isNotEqualTo(3),
-                    () -> assertThat(twoLeft.move()).isNotEqualTo(2),
-                    () -> assertThat(twoLeft.move()).isEqualTo(1)
+                    () -> assertThat(oneLeft.move()).isNotEqualTo(2),
+                    () -> assertThat(oneLeft.move()).isNotEqualTo(1),
+                    () -> assertThat(oneLeft.move()).isEqualTo(0)
             );
         }
     }

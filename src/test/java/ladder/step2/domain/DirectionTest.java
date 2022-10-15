@@ -10,9 +10,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class DirectionTest {
-    public static final Direction PASS = new Direction(PartLineTest.FALSE, PartLineTest.FALSE);
-    public static final Direction LEFT = new Direction(PartLineTest.TRUE, PartLineTest.FALSE);
-    public static final Direction RIGHT = new Direction(PartLineTest.FALSE, PartLineTest.TRUE);
+    public static final Direction PASS = Direction.createFirst(() -> PartLineTest.FALSE);
+    public static final Direction RIGHT = PASS.createNext(() -> PartLineTest.TRUE);
+    public static final Direction LEFT = RIGHT.createNext(() -> PartLineTest.FALSE);
     
     @Test
     @DisplayName("오른쪽 이동")

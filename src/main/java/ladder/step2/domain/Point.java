@@ -7,7 +7,7 @@ public class Point {
     private final Position position;
     private final Direction direction;
     
-    public Point(final Position position, Direction direction) {
+    private Point(final Position position, Direction direction) {
         this.position = position;
         this.direction = direction;
     }
