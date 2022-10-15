@@ -13,6 +13,10 @@ public class Point {
         return new Point(new Position(0), Direction.createFirst());
     }
     
+    public static Point createLast(final int position) {
+        return new Point(new Position(position), Direction.createLast());
+    }
+    
     public int move() {
         if (direction.isLeft()) {
             return position.moveLeft();

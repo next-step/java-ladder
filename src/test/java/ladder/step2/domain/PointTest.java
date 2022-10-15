@@ -38,4 +38,14 @@ public class PointTest {
             assertThat(first.move()).isNotEqualTo(-1);
         }
     }
+    
+    @Nested
+    @DisplayName("마지막 부분라인은 존재하지 않는다")
+    class CreateLast {
+        @RepeatedTest(100)
+        void create_last() {
+            Point first = Point.createLast(3);
+            assertThat(first.move()).isNotEqualTo(4);
+        }
+    }
 }

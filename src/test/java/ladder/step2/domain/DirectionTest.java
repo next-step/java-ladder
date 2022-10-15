@@ -35,4 +35,11 @@ public class DirectionTest {
         Direction first = Direction.createFirst();
         assertThat(first.isLeft()).isFalse();
     }
+    
+    @Test
+    @DisplayName("마지막 부분 라인은 존재하지 않는다.")
+    void create_last() {
+        Direction first = Direction.createLast();
+        assertThat(first.isRight()).isFalse();
+    }
 }
