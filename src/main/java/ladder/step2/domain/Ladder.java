@@ -23,7 +23,13 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
     
-    public int move(int position) {
+    public List<Integer> move(Players players) {
+        return IntStream.range(0, players.countOfPlayers())
+                .mapToObj(this::move)
+                .collect(Collectors.toList());
+    }
+    
+    private int move(int position) {
         for (Line line : ladder) {
             position = line.move(position);
         }

@@ -16,6 +16,10 @@ public class Players {
                 .collect(Collectors.toList());
     }
     
+    public int countOfPlayers() {
+        return playerNames.size();
+    }
+    
     @Override
     public String toString() {
         return "Players{" +
