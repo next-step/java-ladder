@@ -1,37 +1,41 @@
 package nextstep.laddergame.domain;
 
+import nextstep.laddergame.wrapper.Height;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
-    private final List<Gamer> gamers;
-    private final List<Line> board;
+    private final List<Line> lines;
 
-    public Ladder(List<Gamer> gamers, int height, BridgeInterface bridgeInterface) {
-        this.gamers = gamers;
-        this.board = Collections.unmodifiableList(getLadderTemplate(gamers.size(), height));
+    public Ladder(int width, Height height, BridgeInterface bridgeInterface) {
+        this.lines = Collections.unmodifiableList(getLadderTemplate(width, height.getLadderHeight()));
         settingBridgeOnAllLine(bridgeInterface);
     }
 
-    public List<Gamer> getGamers() {
-        return gamers;
+    public List<Line> getLines() {
+        return lines;
     }
 
-    public List<Line> getBoard() {
-        return board;
+    public Line getStartLine() {
+        return this.getLines().get(0);
     }
 
     private List<Line> getLadderTemplate(int width, int height) {
         List<Line> ladderTemplate = new ArrayList<>();
-        for (int innerIndex = 0; innerIndex < height; innerIndex++) {
-            ladderTemplate.add(new Line(width));
+        Line topLine = new Line(width);
+        ladderTemplate.add(topLine);
+        for (int innerIndex = 1; innerIndex < height; innerIndex++) {
+            Line line = topLine.makeAndLinkNewLineToUnder();
+            topLine = line;
+            ladderTemplate.add(line);
         }
         return ladderTemplate;
     }
 
     private void settingBridgeOnAllLine(BridgeInterface bridgeInterface) {
-        this.board.forEach((line) -> line.settingBridgeOnAllPiece(bridgeInterface));
+        this.lines.forEach((line) -> line.settingBridgeOnAllPiece(bridgeInterface));
     }
 
 }

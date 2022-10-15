@@ -1,59 +1,50 @@
 package nextstep.laddergame.domain;
 
-import nextstep.laddergame.view.ResultView;
+import nextstep.laddergame.enumerate.BridgePositionEnum;
+import nextstep.laddergame.wrapper.Height;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderTest {
-    private static List<Gamer> gamers = Arrays.asList(
-            new Gamer("pobi")
-            , new Gamer("honux")
-            , new Gamer("crong")
-            , new Gamer("jk")
-    );
     private static int width = 4;
-    private static int height = 5;
-    private static Ladder ladder = new Ladder(gamers, height, DrawBridgeStrategy.DEFAULT_STRATEGY);
-    private static int MAX_BRIDGE_COUNT = gamers.size() / 2 * height;
+    private static String heightString = "5";
+    private static Integer heightNumber = Integer.parseInt(heightString);
+    private static Height height = new Height(heightString);
+    private static Ladder ladder = new Ladder(width, height, DrawBridgeStrategy.DEFAULT_STRATEGY);
+    private static int MAX_BRIDGE_COUNT = width / 2 * heightNumber;
 
     @Test
     public void ladder_size_test() {
-        List<Line> board = ladder.getBoard();
+        List<Line> lines = ladder.getLines();
 
-        assertThat(board).hasSize(height);
-        assertThat(board.get(0).getLadderPieces()).hasSize(width);
-    }
-
-    @Test
-    public void print_ladder() {
-        ResultView.printLadder(ladder);
+        assertThat(lines).hasSize(heightNumber);
+        assertThat(lines.get(0).getLadderPieces()).hasSize(width);
     }
 
     @Test
     public void ladder_bridge_count_test1() {
-        Ladder ladder = new Ladder(gamers, height, DrawBridgeStrategy.DRAW_ALL);
+        Ladder ladder = new Ladder(width, height, DrawBridgeStrategy.DRAW_ALL);
         assertThat(getBridgeCount(ladder)).isEqualTo(MAX_BRIDGE_COUNT);
     }
 
     @Test
     public void ladder_bridge_count_test2() {
-        Ladder ladder = new Ladder(gamers, height, DrawBridgeStrategy.DRAW_ANY);
+        Ladder ladder = new Ladder(width, height, DrawBridgeStrategy.DRAW_ANY);
         assertThat(getBridgeCount(ladder)).isEqualTo(0);
     }
 
     @Test
     public void ladder_bridge_count_test3() {
-        Ladder ladder = new Ladder(gamers, height, DrawBridgeStrategy.DEFAULT_STRATEGY);
+        Ladder ladder = new Ladder(width, height, DrawBridgeStrategy.DEFAULT_STRATEGY);
         assertThat(getBridgeCount(ladder)).isBetween(0, MAX_BRIDGE_COUNT);
     }
 
     private int getBridgeCount(Ladder ladder) {
         int bridgeCount = 0;
-        for (Line line : ladder.getBoard()) {
+        for (Line line : ladder.getLines()) {
             bridgeCount += getBridgeCount(line);
         }
         return bridgeCount;
@@ -71,10 +62,7 @@ class LadderTest {
 
     private int getBridgeCount(LadderPiece ladderPiece) {
         int bridgeCount = 0;
-        if (ladderPiece.isRightBridge()) {
-            bridgeCount++;
-        }
-        if (ladderPiece.isLeftBridge()) {
+        if (ladderPiece.getBridgePosition().equals(BridgePositionEnum.LEFT) || ladderPiece.getBridgePosition().equals(BridgePositionEnum.RIGHT)) {
             bridgeCount++;
         }
         return bridgeCount;
