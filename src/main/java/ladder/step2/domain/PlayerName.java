@@ -13,4 +13,11 @@ public class PlayerName {
         }
         this.playerName = playerName;
     }
+    
+    @Override
+    public String toString() {
+        return "PlayerName{" +
+                "playerName='" + playerName + '\'' +
+                '}';
+    }
 }

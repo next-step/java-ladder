@@ -14,10 +14,10 @@ public class Ladder {
     }
     
     public static Ladder of(final int ladderHeight, final int countOfPlayers, final PartLineCreateStrategy partLineCreateStrategy) {
-        return new Ladder(init(ladderHeight, countOfPlayers, partLineCreateStrategy));
+        return new Ladder(initLadder(ladderHeight, countOfPlayers, partLineCreateStrategy));
     }
     
-    private static List<Line> init(final int ladderHeight, final int countOfPlayers, final PartLineCreateStrategy partLineCreateStrategy) {
+    private static List<Line> initLadder(final int ladderHeight, final int countOfPlayers, final PartLineCreateStrategy partLineCreateStrategy) {
         return IntStream.range(0, ladderHeight)
                 .mapToObj(count -> Line.of(countOfPlayers, partLineCreateStrategy))
                 .collect(Collectors.toList());
