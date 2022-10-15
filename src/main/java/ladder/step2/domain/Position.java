@@ -22,4 +22,11 @@ public class Position {
     public Position createNext() {
         return new Position(position + 1);
     }
+    
+    @Override
+    public String toString() {
+        return "Position{" +
+                "position=" + position +
+                '}';
+    }
 }

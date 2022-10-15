@@ -40,4 +40,12 @@ public class Direction {
     public boolean isRight() {
         return rightPartLine.isExist();
     }
+    
+    @Override
+    public String toString() {
+        return "Direction{" +
+                "leftPartLine=" + leftPartLine +
+                ", rightPartLine=" + rightPartLine +
+                '}';
+    }
 }

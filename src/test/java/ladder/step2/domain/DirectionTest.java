@@ -36,8 +36,10 @@ public class DirectionTest {
     @DisplayName("처음 부분 라인은 존재하지 않는다.")
     void create_first() {
         Direction first = Direction.createFirst(() -> PartLineTest.TRUE);
-        assertThat(first.isLeft()).isFalse();
-        assertThat(first.isRight()).isTrue();
+        assertAll(
+                () -> assertThat(first.isLeft()).isFalse(),
+                () -> assertThat(first.isRight()).isTrue()
+        );
     }
     
     @Test

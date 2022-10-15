@@ -10,4 +10,11 @@ public class PartLine {
     public boolean isExist() {
         return partLine;
     }
+    
+    @Override
+    public String toString() {
+        return "PartLine{" +
+                "partLine=" + partLine +
+                '}';
+    }
 }

@@ -35,4 +35,12 @@ public class Point {
     
         return position.pass();
     }
+    
+    @Override
+    public String toString() {
+        return "Point{" +
+                "position=" + position +
+                ", direction=" + direction +
+                '}';
+    }
 }
