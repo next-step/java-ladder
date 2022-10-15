@@ -21,4 +21,12 @@ public class LadderGameResult {
         return new LadderGameResult(participantNames, connectionsByHeight);
     }
 
+    public List<ParticipantName> getParticipantNames() {
+        return participantNames;
+    }
+
+    public List<LadderLineConnections> getConnectionsByHeight() {
+        return connectionsByHeight;
+    }
+
 }

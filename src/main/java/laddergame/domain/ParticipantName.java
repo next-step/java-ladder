@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class ParticipantName {
 
-    private static final int MAX_LENGTH = 5;
+    public static final int MAX_LENGTH = 5;
 
     private final String value;
 
@@ -21,6 +21,10 @@ public class ParticipantName {
         if (value.length() > MAX_LENGTH) {
             throw new IllegalArgumentException("참가자 이름은 최대 5자까자 부여할 수 있습니다.");
         }
+    }
+
+    public int getLength() {
+        return value.length();
     }
 
     @Override

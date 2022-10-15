@@ -56,6 +56,14 @@ public class LadderLineConnections {
         return RANDOM.nextBoolean();
     }
 
+    public int size() {
+        return connections.size();
+    }
+
+    public boolean isConnected(int index) {
+        return connections.get(index);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
