@@ -7,6 +7,8 @@ import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.LadderResult;
 import nextstep.ladder.view.ResultView;
 
+import static nextstep.ladder.view.GameResult.ALL_PLAYERS;
+
 public class LadderController {
     public void start() {
         String[] inputNames = InputView.inputNames();
@@ -25,19 +27,18 @@ public class LadderController {
     private void showGameResult(GameResult gameResult) {
         String playerName = InputView.inputPlayerName();
 
-        if (playerName.equals("all")) {
+        if (playerName.equals(ALL_PLAYERS)) {
             String result = gameResult.resultOfPlayer(playerName);
             ResultView.showResult(result);
             return;
         }
 
-        String result = gameResult.resultOfPlayer(playerName);
-        if (result == null) {
-            System.out.println(result + "은(는) 등록되지 않은 플레이어 입니다.");
-            return;
+        try {
+            String result = gameResult.resultOfPlayer(playerName);
+            ResultView.showResult(result);
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
         }
-
-        ResultView.showResult(result);
         showGameResult(gameResult);
     }
 }

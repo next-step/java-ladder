@@ -7,8 +7,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class GameResult {
-    private static final String ALL_PLAYERS = "all";
-    
+    public static final String ALL_PLAYERS = "all";
+
     private final Map<Player, String> results;
 
     public GameResult(Game game) {
@@ -23,6 +23,11 @@ public class GameResult {
                     .collect(Collectors.joining());
         }
 
-        return results.get(Player.of(playerName));
+        String result = results.get(Player.of(playerName));
+        if (result == null) {
+            throw new IllegalArgumentException(playerName + "은(는) 등록되지 않은 플레이어입니다.");
+        }
+
+        return result;
     }
 }
