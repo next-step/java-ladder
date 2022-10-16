@@ -11,6 +11,7 @@ public class InputView {
     private static final String INPUT_PLAYER_NAMES_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String INPUT_RESULTS_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String INPUT_NUMBER_MESSAGE = "숫자를 입력해주세요.";
+    private static final String INPUT_PLAYER_NAME = "결과를 보고 싶은 사람은?";
     private static final BufferedReader BR = new BufferedReader(new InputStreamReader(System.in));
 
     private InputView() {
@@ -34,7 +35,7 @@ public class InputView {
     }
 
     public static String inputPlayerName() {
-        return inputWithText(NEW_LINE + "결과를 보고 싶은 사람은?");
+        return inputWithText(NEW_LINE + INPUT_PLAYER_NAME);
     }
 
     private static String inputWithText(String text) {

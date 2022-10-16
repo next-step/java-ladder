@@ -2,12 +2,10 @@ package nextstep.ladder.controller;
 
 import nextstep.ladder.domain.Game;
 import nextstep.ladder.domain.player.Players;
+import nextstep.ladder.view.GameResult;
 import nextstep.ladder.view.InputView;
-import nextstep.ladder.view.LadderView;
+import nextstep.ladder.view.LadderResult;
 import nextstep.ladder.view.ResultView;
-
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class LadderController {
     public void start() {
@@ -18,26 +16,28 @@ public class LadderController {
         int height = InputView.inputLadderHeight();
 
         Game game = new Game(players, results, height);
-        ResultView.showLadder(new LadderView(game.getLadder(), players));
+        ResultView.showLadder(new LadderResult(game, results));
 
-        System.out.println(Stream.of(results)
-                .map(result -> String.format("%6s", result))
-                .collect(Collectors.joining()));
-
-        showResult(game);
+        GameResult gameResult = new GameResult(game);
+        showGameResult(gameResult);
     }
 
-    private void showResult(Game game) {
+    private void showGameResult(GameResult gameResult) {
         String playerName = InputView.inputPlayerName();
 
         if (playerName.equals("all")) {
-            String result = game.getResult(playerName);
+            String result = gameResult.resultOfPlayer(playerName);
             ResultView.showResult(result);
             return;
         }
 
-        String result = game.getResult(playerName);
+        String result = gameResult.resultOfPlayer(playerName);
+        if (result == null) {
+            System.out.println(result + "은(는) 등록되지 않은 플레이어 입니다.");
+            return;
+        }
+
         ResultView.showResult(result);
-        showResult(game);
+        showGameResult(gameResult);
     }
 }

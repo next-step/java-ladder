@@ -13,9 +13,9 @@ class PlayersTest {
     void players() {
         Players players = Players.create("test1", "test2", "test3");
 
-        assertThat(players.values()).containsExactly(new Player("test1"),
-                new Player("test2"),
-                new Player("test3"));
+        assertThat(players.values()).containsExactly(Player.of("test1"),
+                Player.of("test2"),
+                Player.of("test3"));
     }
 
     @DisplayName("중복된 이름의 플레이어가 있으면 예외가 발생한다.")

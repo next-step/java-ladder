@@ -7,6 +7,7 @@ import nextstep.ladder.domain.ladder.Point;
 import nextstep.ladder.domain.player.Player;
 import nextstep.ladder.domain.player.Players;
 
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +16,7 @@ public class Game {
     private static final DefaultEnablePointStrategy DEFAULT_STRATEGY = new DefaultEnablePointStrategy();
 
     private final Ladder ladder;
-    private final Map<String, String> matchTable = new LinkedHashMap<>();
+    private final Map<Player, String> matchTable = new LinkedHashMap<>();
 
     public Game(Players players, String[] results, int ladderHeight) {
         if (players.count() != results.length) {
@@ -27,11 +28,9 @@ public class Game {
     }
 
     private void start(Players players, String[] results) {
-        List<Player> values = players.values();
-
         int index = 0;
-        for (Player value : values) {
-            matchTable.put(value.name(), results[destinationIndex(index)]);
+        for (Player player : players.values()) {
+            matchTable.put(player, results[destinationIndex(index)]);
             index++;
         }
     }
@@ -54,21 +53,11 @@ public class Game {
         }
     }
 
-    public String getResult(String playerName) {
-        if (playerName.equals("all")) {
-            StringBuilder result = new StringBuilder();
-
-            for (Map.Entry<String, String> entry : matchTable.entrySet()) {
-                result.append(String.format("%s : %s\n", entry.getKey(), entry.getValue()));
-            }
-
-            return result.toString();
-        }
-
-        return matchTable.get(playerName);
+    public Ladder ladder() {
+        return ladder;
     }
 
-    public Ladder getLadder() {
-        return this.ladder;
+    public Map<Player, String> resultTable() {
+        return Collections.unmodifiableMap(matchTable);
     }
 }
