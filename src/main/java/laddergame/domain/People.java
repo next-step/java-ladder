@@ -6,15 +6,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Persons {
+public class People {
     List<PersonName> names;
 
-    public Persons(List<PersonName> names) {
+    public People(List<PersonName> names) {
         validateDuplicate(names);
         this.names = names;
     }
 
-    public Persons(String[] names) {
+    public People(String[] names) {
         this(Arrays.stream(names)
                 .map(PersonName::new)
                 .collect(Collectors.toList()));

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 
-class PersonsTest {
+class PeopleTest {
     @Test
     @DisplayName("이름에 중복된 값이 들어오면 IllegalArgumentException")
     void when_duplicate() {
@@ -14,7 +14,7 @@ class PersonsTest {
         String[] names = "name, name, abc".split(",");
         //then
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Persons(names));
+                .isThrownBy(() -> new People(names));
     }
 
     @Test
@@ -24,7 +24,7 @@ class PersonsTest {
         String[] names = "name, kkk, abc".split(",");
         //then
         assertThatNoException()
-                .isThrownBy(() -> new Persons(names));
+                .isThrownBy(() -> new People(names));
     }
 
 }
