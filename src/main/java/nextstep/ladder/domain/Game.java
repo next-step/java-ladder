@@ -13,18 +13,23 @@ import java.util.List;
 import java.util.Map;
 
 public class Game {
+    private static final String INVALID_COUNT_EXCEPTION_MESSAGE = "플레이어 수 만큼의 결과를 입력해주세요.";
     private static final DefaultEnablePointStrategy DEFAULT_STRATEGY = new DefaultEnablePointStrategy();
 
     private final Ladder ladder;
     private final Map<Player, String> matchTable = new LinkedHashMap<>();
 
-    public Game(Players players, String[] results, int ladderHeight) {
-        if (players.count() != results.length) {
-            throw new IllegalArgumentException("플레이어 수 만큼의 결과를 입력해주세요.");
-        }
+    public Game(Players players, Ladder ladder, String[] results) {
+        checkSize(players, results);
 
-        this.ladder = Ladder.create(ladderHeight, players, DEFAULT_STRATEGY);
+        this.ladder = ladder;
         start(players, results);
+    }
+
+    private void checkSize(Players players, String[] results) {
+        if (players.count() != results.length) {
+            throw new IllegalArgumentException(INVALID_COUNT_EXCEPTION_MESSAGE);
+        }
     }
 
     private void start(Players players, String[] results) {
@@ -51,6 +56,12 @@ public class Game {
             pointPosition = point.nextPosition();
             linePosition += 1;
         }
+    }
+
+    public static Game of(Players players, int ladderHeight, String[] results) {
+        Ladder ladder = Ladder.create(ladderHeight, players, DEFAULT_STRATEGY);
+
+        return new Game(players, ladder, results);
     }
 
     public Ladder ladder() {
