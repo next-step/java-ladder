@@ -11,11 +11,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DisplayName("Names 테스트")
 class NamesTest {
 
-    Names names;
+    private Names names;
 
     @BeforeEach
     void setUp() {
-        names = new Names("test1, test2,test3", ",");
+        names = new Names("test1", " test2", "test3");
     }
 
     @DisplayName("쉼표를 기준으로 이름을 구분할 수 있다. - 사이즈 확인")
