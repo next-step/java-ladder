@@ -24,7 +24,7 @@ public class StreamStudyTest {
 
     @Test
     public void printLongestWordTop100() throws Exception {
-        StreamStudy.printLongestWordTop100();
+        StreamStudy.printLongestWordTop100((length) -> length > 12);
     }
 
     @Test
@@ -42,7 +42,6 @@ public class StreamStudyTest {
     @Test
     public void sumOverThreeAndDouble() throws Exception {
         numbers = Arrays.asList(3, 1, 6, 2, 4, 8);
-        long sum = StreamStudy.sumOverThreeAndDouble(numbers);
-        assertThat(sum).isEqualTo(36);
+        assertThat(StreamStudy.sumOverThreeAndDouble(numbers, (number) -> number > 3)).isEqualTo(36);
     }
 }
