@@ -56,6 +56,18 @@ public class Point {
         return position;
     }
 
+    public int nextPosition() {
+        if (hasLeft()) {
+            return position - 1;
+        }
+
+        if (hasRight()) {
+            return position + 1;
+        }
+
+        return position;
+    }
+
     public boolean hasLeft() {
         return left;
     }

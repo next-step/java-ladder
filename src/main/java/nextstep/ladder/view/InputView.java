@@ -33,6 +33,10 @@ public class InputView {
         }
     }
 
+    public static String inputPlayerName() {
+        return inputWithText(NEW_LINE + "결과를 보고 싶은 사람은?");
+    }
+
     private static String inputWithText(String text) {
         System.out.println(text);
         return input();
