@@ -8,15 +8,14 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    List<Line> lines;
-    Persons persons;
+    private List<Line> lines;
+    private People people;
 
-
-    public Ladder(Persons persons, int countOfLadder) {
+    public Ladder(People people, int countOfLadder) {
         this.lines = IntStream.range(0, countOfLadder)
-                .mapToObj(a -> new Line(persons.numberOfPersons(), new RandomLinePainter()))
+                .mapToObj( __ -> new Line(people.numberOfPersons(), new RandomLinePainter()))
                 .collect(Collectors.toUnmodifiableList());
-        this.persons = persons;
+        this.people = people;
     }
 
     public List<Line> getLines() {
@@ -24,6 +23,6 @@ public class Ladder {
     }
 
     public List<PersonName> getPersonNames() {
-        return persons.getNames();
+        return people.getNames();
     }
 }
