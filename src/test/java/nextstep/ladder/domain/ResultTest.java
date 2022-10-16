@@ -16,8 +16,8 @@ class ResultTest {
     @Test
     void result() {
 
-        final LadderCreator ladderCreator = LadderCreator.of(5, "4");
-        final List<LineDto> linesDto = Result.show(ladderCreator.start());
+        final LadderCreator ladderCreator = LadderCreator.of(5, 4);
+        final List<LineDto> linesDto = Result.show(ladderCreator.create());
 
         final List<PointDto> pointsDto = linesDto.get(0).getPointsDto();
         assertAll(
