@@ -27,32 +27,17 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers, Conditinal conditinal) {
-        int total = 0;
-        for (int number : numbers) {
-            if (conditinal.test(number)) {
-                total += number;
-            }
-        }
-        return total;
+        return numbers.stream().filter(it -> conditinal.test(it))
+                .reduce(0, Integer::sum);
     }
 
     public static int sumAllEven(List<Integer> numbers, Conditinal conditinal) {
-        int total = 0;
-        for (int number : numbers) {
-            if (conditinal.test(number)) {
-                total += number;
-            }
-        }
-        return total;
+        return numbers.stream().filter(it -> conditinal.test(it))
+                .reduce(0, Integer::sum);
     }
 
     public static int sumAllOverThree(List<Integer> numbers, Conditinal conditinal) {
-        int total = 0;
-        for (int number : numbers) {
-            if (conditinal.test(number)) {
-                total += number;
-            }
-        }
-        return total;
+        return numbers.stream().filter(it -> conditinal.test(it))
+                .reduce(0, Integer::sum);
     }
 }
