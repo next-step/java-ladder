@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LadderTest {
 
@@ -17,6 +18,14 @@ public class LadderTest {
         Ladder ladder = Ladder.create(5, players, () -> true);
 
         assertThat(ladder.lines()).hasSize(5);
+    }
+
+    @DisplayName("사다리 높이가 1 미만인 경우 예외가 발생한다.")
+    @Test
+    void ladderHeightException() {
+        Players players = Players.create("test1", "test2", "test3");
+        assertThatThrownBy(() -> Ladder.create(0, players, () -> true))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("시작 포인트의 끝 위치를 알 수 있다.")

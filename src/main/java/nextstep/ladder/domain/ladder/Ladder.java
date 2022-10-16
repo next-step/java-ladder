@@ -8,10 +8,19 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
+    private static final int MIN_LADDER_HEIGHT = 1;
+
     private final List<Line> lines;
 
     public Ladder(List<Line> lines) {
+        validate(lines);
         this.lines = lines;
+    }
+
+    private void validate(List<Line> lines) {
+        if (lines.size() < MIN_LADDER_HEIGHT) {
+            throw new IllegalArgumentException("사다리 높이는 " + MIN_LADDER_HEIGHT + " 이상이어야 합니다.");
+        }
     }
 
     public static Ladder create(int height, Players players, EnablePointStrategy strategy) {
