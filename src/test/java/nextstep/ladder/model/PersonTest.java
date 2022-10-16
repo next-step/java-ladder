@@ -25,6 +25,12 @@ class PersonTest {
         );
     }
 
+    @Test
+    @DisplayName("사다리 게임 진행 특성 상 all 이라는 이름이 주어지면 예외를 반환한다.")
+    void createWithInvalidName() {
+        assertThrows(IllegalArgumentException.class, () -> new Person("all"));
+    }
+
     @ParameterizedTest(name = "5자를 초과하는 이름이 주어졌을 때, 예외를 반환한다; 이름: {0}")
     @ValueSource(strings = {"abcedf", "veryverylongstring"})
     void createWithNameExceeding5Length(String name) {
