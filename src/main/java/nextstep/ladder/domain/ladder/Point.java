@@ -4,7 +4,6 @@ public class Point {
 
     public static final int DEFAULT_POSITION = 0;
     private static final String INVALID_POSITION_EXCEPTION_MESSAGE = "위치는 0 이상이어야 합니다.";
-    private static final String DIRECTION_EXCEPTION_MESSAGE = "두 방향 모두 열릴 수 없습니다.";
 
     private final int position;
     private final Direction direction;
@@ -34,19 +33,15 @@ public class Point {
     }
 
     public Point(int position, boolean left, boolean right) {
-        validate(position, left, right);
+        validate(position);
 
         this.position = position;
         this.direction = new Direction(left, right);
     }
 
-    private void validate(int position, boolean left, boolean right) {
+    private void validate(int position) {
         if (position < DEFAULT_POSITION) {
             throw new IllegalArgumentException(INVALID_POSITION_EXCEPTION_MESSAGE);
-        }
-
-        if (left && right) {
-            throw new IllegalArgumentException(DIRECTION_EXCEPTION_MESSAGE);
         }
     }
 
