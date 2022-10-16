@@ -11,7 +11,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class LadderResultTest {
+class LadderViewTest {
 
     @DisplayName("플레이어가 5명이 있고 높이가 1인 사다리를 정상적으로 출력한다.")
     @Test
@@ -25,8 +25,8 @@ class LadderResultTest {
         Players players = Players.create("test1, test2, test3, test4, test5", ",");
         Ladder ladder = new Ladder(List.of(line), players);
 
-        LadderResult ladderResult = new LadderResult(ladder);
+        LadderView ladderView = new LadderView(ladder);
 
-        assertThat(ladderResult.getLadder()).contains("|-----|     |-----|     |");
+        assertThat(ladderView.getLadder()).contains("|-----|     |-----|     |");
     }
 }

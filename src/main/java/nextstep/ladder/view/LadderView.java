@@ -7,7 +7,7 @@ import nextstep.ladder.domain.ladder.Point;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class LadderResult {
+public class LadderView {
     private static final String NEW_LINE = System.lineSeparator();
     private static final String POINT = "|";
     private static final String ENABLE_RIGHT_POINT = "-----";
@@ -15,7 +15,7 @@ public class LadderResult {
 
     private final Ladder ladder;
 
-    public LadderResult(Ladder ladder) {
+    public LadderView(Ladder ladder) {
         this.ladder = ladder;
     }
 

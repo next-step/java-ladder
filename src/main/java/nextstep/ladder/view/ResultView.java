@@ -7,7 +7,7 @@ public class ResultView {
     private ResultView() {
     }
 
-    public static void showLadder(LadderResult result) {
+    public static void showLadder(LadderView result) {
         System.out.println(RESULT_MESSAGE);
         System.out.println(result.getPlayerNames());
         System.out.println(result.getLadder());
