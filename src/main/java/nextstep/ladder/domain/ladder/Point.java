@@ -8,6 +8,19 @@ public class Point {
     private final int position;
     private final Direction direction;
 
+    public Point(int position, boolean left, boolean right) {
+        validate(position);
+
+        this.position = position;
+        this.direction = new Direction(left, right);
+    }
+
+    private void validate(int position) {
+        if (position < DEFAULT_POSITION) {
+            throw new IllegalArgumentException(INVALID_POSITION_EXCEPTION_MESSAGE);
+        }
+    }
+
     public static Point first(EnablePointStrategy strategy) {
         return new Point(DEFAULT_POSITION, false, strategy.isEnabled());
     }
@@ -30,19 +43,6 @@ public class Point {
     public static Point lastOf(Point prevPoint, EnablePointStrategy strategy) {
         Point point = nextOf(prevPoint, strategy);
         return new Point(point.position, point.hasLeft(), false);
-    }
-
-    public Point(int position, boolean left, boolean right) {
-        validate(position);
-
-        this.position = position;
-        this.direction = new Direction(left, right);
-    }
-
-    private void validate(int position) {
-        if (position < DEFAULT_POSITION) {
-            throw new IllegalArgumentException(INVALID_POSITION_EXCEPTION_MESSAGE);
-        }
     }
 
     public int nextPosition() {

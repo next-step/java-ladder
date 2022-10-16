@@ -10,6 +10,10 @@ import java.util.stream.IntStream;
 public class Ladder {
     private final List<Line> lines;
 
+    public Ladder(List<Line> lines) {
+        this.lines = lines;
+    }
+
     public static Ladder create(int height, Players players, EnablePointStrategy strategy) {
         int countOfPlayer = players.count();
 
@@ -18,10 +22,6 @@ public class Ladder {
                 .collect(Collectors.toList());
 
         return new Ladder(lines);
-    }
-
-    public Ladder(List<Line> lines) {
-        this.lines = lines;
     }
 
     public Point findPoint(int linePosition, int pointPosition) {
