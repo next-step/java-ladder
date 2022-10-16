@@ -15,16 +15,12 @@ public class LadderCreator {
         this.height = height;
     }
 
-    public static LadderCreator of(final int countOfPerson, final String height) {
+    public static LadderCreator of(final int countOfPerson, final int height) {
 
-        try {
-            return new LadderCreator(countOfPerson, Integer.parseInt(height));
-        } catch (NumberFormatException nfe) {
-            throw new IllegalArgumentException("숫자만 입력해야 합니다.");
-        }
+        return new LadderCreator(countOfPerson, height);
     }
 
-    public Ladder start() {
+    public Ladder create() {
 
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < this.height; i++) {
