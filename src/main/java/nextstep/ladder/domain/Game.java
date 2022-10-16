@@ -2,14 +2,12 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.ladder.DefaultEnablePointStrategy;
 import nextstep.ladder.domain.ladder.Ladder;
-import nextstep.ladder.domain.ladder.Line;
 import nextstep.ladder.domain.ladder.Point;
 import nextstep.ladder.domain.player.Player;
 import nextstep.ladder.domain.player.Players;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Game {
@@ -41,15 +39,13 @@ public class Game {
     }
 
     private int destinationIndex(int playerIndex) {
-        List<Line> lines = ladder.lines();
-
         int linePosition = 0;
         int pointPosition = playerIndex;
 
         while (true) {
-            Point point = lines.get(linePosition).points().get(pointPosition);
+            Point point = ladder.findPoint(linePosition, pointPosition);
 
-            if (linePosition == lines.size() - 1) {
+            if (linePosition == ladder.lineSize() - 1) {
                 return point.nextPosition();
             }
 

@@ -91,6 +91,10 @@ public class Line {
         return new ArrayList<>(List.of(firstPoint));
     }
 
+    public Point findPoint(int pointPosition) {
+        return points().get(pointPosition);
+    }
+
     public List<Point> points() {
         return Collections.unmodifiableList(points);
     }

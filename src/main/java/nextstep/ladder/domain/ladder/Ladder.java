@@ -24,6 +24,15 @@ public class Ladder {
         this.lines = lines;
     }
 
+    public Point findPoint(int linePosition, int pointPosition) {
+        return lines.get(linePosition)
+                .findPoint(pointPosition);
+    }
+
+    public int lineSize() {
+        return lines.size();
+    }
+
     public List<Line> lines() {
         return Collections.unmodifiableList(lines);
     }
