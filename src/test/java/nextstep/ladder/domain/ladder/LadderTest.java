@@ -4,6 +4,8 @@ import nextstep.ladder.domain.player.Players;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderTest {
@@ -15,5 +17,27 @@ public class LadderTest {
         Ladder ladder = Ladder.create(5, players, () -> true);
 
         assertThat(ladder.lines()).hasSize(5);
+    }
+
+    @DisplayName("시작 포인트의 끝 위치를 알 수 있다.")
+    @Test
+    void pointPosition() {
+        /**
+         *  |-----|     |
+         *  |-----|     |
+         */
+        List<Point> pointsA = List.of(new Point(0, false, true),
+                new Point(1, true, false),
+                new Point(2, false, false));
+        List<Point> pointsB = List.of(new Point(0, false, true),
+                new Point(1, true, false),
+                new Point(2, false, false));
+        Line lineA = new Line(pointsA);
+        Line lineB = new Line(pointsB);
+        Ladder ladder = new Ladder(List.of(lineA, lineB));
+
+        assertThat(ladder.destinationPosition(0)).isEqualTo(0);
+        assertThat(ladder.destinationPosition(1)).isEqualTo(1);
+        assertThat(ladder.destinationPosition(2)).isEqualTo(2);
     }
 }

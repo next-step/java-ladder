@@ -24,13 +24,24 @@ public class Ladder {
         return new Ladder(lines);
     }
 
-    public Point findPoint(int linePosition, int pointPosition) {
-        return lines.get(linePosition)
-                .findPoint(pointPosition);
+    public int destinationPosition(int pointPosition) {
+        int linePosition = 0;
+
+        while (true) {
+            Point point = findPoint(linePosition, pointPosition);
+
+            if (linePosition == lines.size() - 1) {
+                return point.nextPosition();
+            }
+
+            pointPosition = point.nextPosition();
+            linePosition++;
+        }
     }
 
-    public int lineSize() {
-        return lines.size();
+    private Point findPoint(int linePosition, int pointPosition) {
+        return lines.get(linePosition)
+                .findPoint(pointPosition);
     }
 
     public List<Line> lines() {

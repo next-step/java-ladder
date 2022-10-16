@@ -2,7 +2,6 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.ladder.DefaultEnablePointStrategy;
 import nextstep.ladder.domain.ladder.Ladder;
-import nextstep.ladder.domain.ladder.Point;
 import nextstep.ladder.domain.player.Player;
 import nextstep.ladder.domain.player.Players;
 
@@ -33,24 +32,8 @@ public class Game {
     private void start(Players players, String[] results) {
         int index = 0;
         for (Player player : players.values()) {
-            matchTable.put(player, results[destinationIndex(index)]);
+            matchTable.put(player, results[ladder.destinationPosition(index)]);
             index++;
-        }
-    }
-
-    private int destinationIndex(int playerIndex) {
-        int linePosition = 0;
-        int pointPosition = playerIndex;
-
-        while (true) {
-            Point point = ladder.findPoint(linePosition, pointPosition);
-
-            if (linePosition == ladder.lineSize() - 1) {
-                return point.nextPosition();
-            }
-
-            pointPosition = point.nextPosition();
-            linePosition += 1;
         }
     }
 
