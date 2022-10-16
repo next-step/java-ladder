@@ -1,5 +1,6 @@
 package nextstep.ladder.dto;
 
+import nextstep.ladder.domain.Direction;
 import nextstep.ladder.domain.Point;
 
 public class PointDto {
@@ -15,7 +16,8 @@ public class PointDto {
 
     public static PointDto from(final Point point) {
 
-        return new PointDto(point.getIndex(), point.getMovement().isRight());
+        final Direction direction = point.getDirection();
+        return new PointDto(point.getIndex(), direction.isRight());
     }
 
     public int getIndex() {
