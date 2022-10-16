@@ -20,6 +20,14 @@ public class Ladder {
             .collect(toList());
     }
 
+
+    int move(int startPosition) {
+        int resultPosition = startPosition;
+        // TODO: 사다리 이동 로직 완성 할 것
+        return resultPosition;
+    }
+
+
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }
