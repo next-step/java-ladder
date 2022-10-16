@@ -13,7 +13,7 @@ class LineTest {
     @Test
     void create() {
 
-        final Point point = new Point(0, Movement.first(true));
+        final Point point = Point.first(true);
         final List<Point> points = List.of(point
                 , point.next(false)
                 , point.next(true)
