@@ -13,7 +13,7 @@ public class LineCreator {
     public static Line create(final int countOfPerson) {
 
         final List<Point> points = new ArrayList<>();
-        final Point point = Point.first(Movement.first(generate()));
+        final Point point = Point.first(generate());
         points.add(point);
         while (point.untilExcludeStart(points.size(), countOfPerson)) {
             points.add(nextPoint(points).next(generate()));
