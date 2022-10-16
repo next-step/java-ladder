@@ -1,6 +1,6 @@
 package nextstep.ladder.dto;
 
-import nextstep.ladder.domain.ParticipationName;
+import nextstep.ladder.domain.ParticipationNames;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,10 +14,11 @@ public class ParticipationNameDto {
         this.names = names;
     }
 
-    public static List<ParticipationNameDto> from(final List<ParticipationName> participationNames) {
+    public static List<ParticipationNameDto> from(final ParticipationNames participationNames) {
 
-        return participationNames.stream()
-                .map(participationName -> new ParticipationNameDto(participationName.getName()))
+        return participationNames.getName()
+                .stream()
+                .map(ParticipationNameDto::new)
                 .collect(Collectors.toList());
     }
 
