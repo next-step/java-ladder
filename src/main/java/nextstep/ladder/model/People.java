@@ -24,6 +24,10 @@ public class People {
             .collect(toList());
     }
 
+    public int getPeopleCount() {
+        return people.size();
+    }
+
     private void validate(List<String> peopleNames) {
         if (peopleNames.size() != people.size()) {
             throw new IllegalArgumentException(DUPLICATE_PEOPLE_NAME_EXCEPTION_MESSAGE);
