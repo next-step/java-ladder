@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.assertThatNoException;
 
 class LineTest {
 
@@ -40,4 +41,12 @@ class LineTest {
                 .isThrownBy(() -> new Line(values));
     }
 
+    @Test
+    @DisplayName("정상")
+    void normal_case() {
+        //given
+        List<Boolean> values = Arrays.asList(false, true, false, true, false);
+        //then
+        assertThatNoException().isThrownBy(() -> new Line(values));
+    }
 }
