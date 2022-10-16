@@ -19,8 +19,7 @@ class PointTest {
     @MethodSource("provideMoveCurrentPoint")
     void current_point(final boolean left, final boolean right, final int index, final int expected) {
 
-        final Movement movement = Movement.first(left).next(right);
-        final Point point = new Point(index, movement);
+        final Point point = Point.first(left).next(right);
         assertThat(point.move()).isEqualTo(expected);
     }
 
@@ -36,10 +35,10 @@ class PointTest {
     @Test
     void next_point() {
 
-        final Point point = new Point(0, Movement.first(true));
+        final Point point = Point.first(false);
         final Point next = point.next(true);
 
-        assertThat(next).isEqualTo(new Point(1, Movement.first(true).next(false)));
+        assertThat(next).isEqualTo(new Point(1, Direction.RIGHT));
     }
 
     @DisplayName("첫번째를 제외한 수만큼 포인트를 생성한다.")
@@ -47,7 +46,32 @@ class PointTest {
     @CsvSource(value = {"0,true", "1,true", "2,true", "3,true", "4,false"})
     void last_index(final int index, final boolean expected) {
 
-        final Point point = new Point(index, Movement.first(true));
+        final Point point = new Point(index, Direction.RIGHT);
         assertThat(point.untilExcludeStart(index, 5)).isEqualTo(expected);
+    }
+
+    @DisplayName("왼쪽 첫번째 사람은 왼쪽으로 이동할 수 없다.")
+    @Test
+    void left_first_move_right() {
+
+        assertThat(Point.first(true).move()).isEqualTo(1);
+    }
+
+    @DisplayName("사다리를 이동한다.")
+    @ParameterizedTest
+    @MethodSource("provideMovePoint")
+    void move(final boolean left, final boolean right, final int index) {
+
+        final Point point = Point.first(left)
+                .next(right);
+        assertThat(point).isEqualTo(new Point(index, Direction.of(left, right)));
+    }
+
+    private static Stream<Arguments> provideMovePoint() {
+        return Stream.of(
+                Arguments.of(false, false, 1),
+                Arguments.of(false, true, 1),
+                Arguments.of(true, false, 1)
+        );
     }
 }
