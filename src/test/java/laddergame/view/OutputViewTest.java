@@ -1,7 +1,7 @@
 package laddergame.view;
 
 import laddergame.domain.Ladder;
-import laddergame.domain.Persons;
+import laddergame.domain.People;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +12,7 @@ class OutputViewTest {
     void print() {
         //given
         String[] names = "pobi,honux,crong,jk".split(",");
-        Persons persons = new Persons(names);
+        People persons = new People(names);
         int countOfLadder = 5;
         //when
         Ladder ladder = new Ladder(persons, countOfLadder);
