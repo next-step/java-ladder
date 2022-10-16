@@ -3,6 +3,7 @@ package nextstep.ladder.view;
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.ladder.Line;
 import nextstep.ladder.domain.ladder.Point;
+import nextstep.ladder.domain.player.Players;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,14 +14,16 @@ public class LadderView {
     private static final String ENABLE_RIGHT_POINT = "-----";
     private static final String DISABLE_RIGHT_POINT = "     ";
 
+    private final Players players;
     private final Ladder ladder;
 
-    public LadderView(Ladder ladder) {
+    public LadderView(Ladder ladder, Players players) {
         this.ladder = ladder;
+        this.players = players;
     }
 
     public String getPlayerNames() {
-        return ladder.players().values()
+        return players.values()
                 .stream()
                 .map(p -> String.format("%6s", p.name()))
                 .collect(Collectors.joining());

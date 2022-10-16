@@ -17,6 +17,6 @@ public class LadderController {
         int height = InputView.inputLadderHeight();
         Ladder ladder = Ladder.create(height, players, new DefaultEnablePointStrategy());
 
-        ResultView.showLadder(new LadderView(ladder));
+        ResultView.showLadder(new LadderView(ladder, players));
     }
 }

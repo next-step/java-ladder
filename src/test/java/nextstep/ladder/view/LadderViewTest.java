@@ -23,9 +23,9 @@ class LadderViewTest {
                 new Point(4, false, false));
         Line line = new Line(points);
         Players players = Players.create("test1, test2, test3, test4, test5", ",");
-        Ladder ladder = new Ladder(List.of(line), players);
+        Ladder ladder = new Ladder(List.of(line));
 
-        LadderView ladderView = new LadderView(ladder);
+        LadderView ladderView = new LadderView(ladder, players);
 
         assertThat(ladderView.getLadder()).contains("|-----|     |-----|     |");
     }

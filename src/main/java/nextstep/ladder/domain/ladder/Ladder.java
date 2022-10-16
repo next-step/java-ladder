@@ -9,7 +9,6 @@ import java.util.stream.IntStream;
 
 public class Ladder {
     private final List<Line> lines;
-    private final Players players;
 
     public static Ladder create(int height, Players players, EnablePointStrategy strategy) {
         int countOfPlayer = players.count();
@@ -18,19 +17,14 @@ public class Ladder {
                 .mapToObj(i -> Line.create(countOfPlayer, strategy))
                 .collect(Collectors.toList());
 
-        return new Ladder(lines, players);
+        return new Ladder(lines);
     }
 
-    public Ladder(List<Line> lines, Players players) {
+    public Ladder(List<Line> lines) {
         this.lines = lines;
-        this.players = players;
     }
 
     public List<Line> lines() {
         return Collections.unmodifiableList(lines);
-    }
-
-    public Players players() {
-        return players;
     }
 }
