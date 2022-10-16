@@ -10,6 +10,7 @@ public class InputView {
     private static final String REWARDS_INPUT_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String LADDER_LENGTH_INPUT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
     private static final String INVALID_INPUT_MESSAGE = "잘못된 형식의 입력을 수행하셨습니다.";
+    private static final String TARGET_PERSON_NAME_INPUT_MESSAGE = "결과를 보고 싶은 사람은?";
 
     private final Scanner scanner = new Scanner(System.in);
 
@@ -23,6 +24,10 @@ public class InputView {
 
     public int getLadderLength() {
         return wrapMethod(this::doGetLadderLength);
+    }
+
+    public String getTargetPersonName() {
+        return wrapMethod(this::doGetTargetPersonName);
     }
 
     private List<String> doGetPeopleNames() {
@@ -46,11 +51,23 @@ public class InputView {
         return ladderLength;
     }
 
+    private String doGetTargetPersonName() {
+        System.out.println(TARGET_PERSON_NAME_INPUT_MESSAGE);
+        clearBuffer();
+        String targetPersonName = scanner.nextLine();
+        System.out.println();
+        return targetPersonName;
+    }
+
     private <T> T wrapMethod(Supplier<T> method) {
         try {
             return method.get();
         } catch (Exception e) {
             throw new RuntimeException(INVALID_INPUT_MESSAGE);
         }
+    }
+
+    private void clearBuffer() {
+        scanner.nextLine();
     }
 }

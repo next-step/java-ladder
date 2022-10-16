@@ -27,6 +27,10 @@ public class People {
             .collect(toList());
     }
 
+    public String getPeopleNameByPosition(int position) {
+        return people.get(position).getName();
+    }
+
     public int getPeopleCount() {
         return people.size();
     }

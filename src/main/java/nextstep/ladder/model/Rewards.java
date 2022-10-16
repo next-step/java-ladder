@@ -17,9 +17,15 @@ public class Rewards {
         return Collections.unmodifiableList(rewards);
     }
 
+    public String getRewardByPosition(int position) {
+        return rewards.get(position);
+    }
+
     private void validate(List<String> rewards, int peopleCount) {
         if (rewards.size() != peopleCount) {
             throw new IllegalArgumentException(NOT_MATCHED_PEOPLE_COUNT_EXCEPTION_MESSAGE);
         }
     }
+
+
 }

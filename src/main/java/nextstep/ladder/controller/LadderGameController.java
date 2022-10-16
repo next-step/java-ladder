@@ -1,8 +1,10 @@
 package nextstep.ladder.controller;
 
 import nextstep.ladder.model.Ladder;
+import nextstep.ladder.model.LadderGame;
 import nextstep.ladder.model.People;
 import nextstep.ladder.model.Rewards;
+import nextstep.ladder.model.dto.LadderGameResult;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
@@ -30,6 +32,13 @@ public class LadderGameController {
         int ladderLength = inputView.getLadderLength();
         Ladder ladder = new Ladder(ladderLength, people.getPeopleCount());
 
-        resultView.printResult(people, ladder, rewards);
+        resultView.printLadderStatus(people, ladder, rewards);
+
+        LadderGameResult gameResult = LadderGame.play(people, ladder, rewards);
+        printGameResult(people, gameResult);
+    }
+
+    private void printGameResult(People people, LadderGameResult gameResult) {
+        resultView.printGameResult(inputView.getTargetPersonName(), people, gameResult);
     }
 }
