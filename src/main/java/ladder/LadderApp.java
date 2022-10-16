@@ -1,9 +1,7 @@
 package ladder;
 
 import ladder.domain.*;
-import ladder.domain.LineGenerator;
-import ladder.domain.RandomLineGenerator;
-import ladder.domain.VerticalMapper;
+import ladder.dto.LineGenerateDto;
 import ladder.ui.InputView;
 import ladder.ui.OutputView;
 
@@ -17,7 +15,7 @@ import java.util.logging.Logger;
 public class LadderApp {
 
     private static final Logger LOGGER = Logger.getLogger(LadderApp.class.getName());
-    private static final LineGenerator generator = getLineGenerator();
+    private static final LineGenerator generator = new RandomLineGenerator();
 
     public static void main(String[] args) {
         try (InputView inputView = getInputView()) {
@@ -25,7 +23,8 @@ public class LadderApp {
             LadderResult ladderResult = new LadderResult(inputView.getResult(), users.size());
             LadderLength ladderLength = new LadderLength(inputView.getVerticalLine());
 
-            List<HorizontalLine> horizontalLines = generator.generate(users.size(), ladderLength);
+            Random random = new Random();
+            List<HorizontalLine> horizontalLines = generator.generate(new LineGenerateDto(users.size(), ladderLength.getLength()), () -> random.nextBoolean());
 
             Ladder ladder = new Ladder(VerticalMapper.map(horizontalLines, users.size()), ladderLength);
             OutputView.printLadder(users, ladder, ladderResult);
@@ -45,8 +44,4 @@ public class LadderApp {
         return new InputView(new BufferedReader(new InputStreamReader(System.in)));
     }
 
-    private static LineGenerator getLineGenerator() {
-        Random random = new Random();
-        return new RandomLineGenerator(random::nextBoolean);
-    }
 }

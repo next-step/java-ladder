@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.dto.LineGenerateDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -26,9 +27,10 @@ class LadderTest {
 
 
     private List<VerticalLine> getVerticalLines(int numberOfUsers, int ladderLength) {
-        RandomLineGenerator generator = new RandomLineGenerator(() -> new Random().nextBoolean());
+        RandomLineGenerator generator = new RandomLineGenerator();
+        Random random = new Random();
         return IntStream.range(0, numberOfUsers)
-                .mapToObj((idx) -> VerticalLine.mapHorizontalLineToVertical(generator.generate(numberOfUsers, new LadderLength(ladderLength)), idx))
+                .mapToObj((idx) -> VerticalLine.mapHorizontalLineToVertical(generator.generate(new LineGenerateDto(numberOfUsers, ladderLength), ()->random.nextBoolean()), idx))
                 .collect(Collectors.toList());
     }
 

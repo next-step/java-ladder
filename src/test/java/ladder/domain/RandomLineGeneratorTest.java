@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.dto.LineGenerateDto;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -10,9 +11,9 @@ class RandomLineGeneratorTest {
 
     @Test
     void shouldGenerateProperSizeOfLine() {
-        LineGenerator generator = new RandomLineGenerator(() -> true);
+        LineGenerator generator = new RandomLineGenerator();
 
-        List<HorizontalLine> result = generator.generate(2, new LadderLength(5));
+        List<HorizontalLine> result = generator.generate(new LineGenerateDto(2, 5),()-> true);
 
         assertThat(result.get(0).size()).isEqualTo(2);
         assertThat(result.size()).isEqualTo(5);
@@ -20,9 +21,9 @@ class RandomLineGeneratorTest {
 
     @Test
     void shouldAlwaysGenerateLine() {
-        LineGenerator generator = new RandomLineGenerator(() -> false);
+        LineGenerator generator = new RandomLineGenerator();
 
-        List<HorizontalLine> result = generator.generate(2, new LadderLength(5));
+        List<HorizontalLine> result = generator.generate(new LineGenerateDto(2, 5),()-> false);
         List<LineUnit> units = result.get(0).getUnits();
 
         assertThat(units.get(0).hasNext()).isTrue();
@@ -31,9 +32,9 @@ class RandomLineGeneratorTest {
 
     @Test
     void shouldNotAlwaysGenerateLine() {
-        LineGenerator generator = new RandomLineGenerator(() -> true);
+        LineGenerator generator = new RandomLineGenerator();
 
-        List<HorizontalLine> result = generator.generate(2, new LadderLength(5));
+        List<HorizontalLine> result = generator.generate(new LineGenerateDto(2, 5),()->true);
         List<LineUnit> units = result.get(0).getUnits();
 
         assertThat(units.get(0).hasNext()).isFalse();
