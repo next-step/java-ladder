@@ -7,8 +7,7 @@ public class Point {
     private static final String DIRECTION_EXCEPTION_MESSAGE = "두 방향 모두 열릴 수 없습니다.";
 
     private final int position;
-    private final boolean left;
-    private final boolean right;
+    private final Direction direction;
 
     public static Point first(EnablePointStrategy strategy) {
         return new Point(DEFAULT_POSITION, false, strategy.isEnabled());
@@ -38,8 +37,7 @@ public class Point {
         validate(position, left, right);
 
         this.position = position;
-        this.left = left;
-        this.right = right;
+        this.direction = new Direction(left, right);
     }
 
     private void validate(int position, boolean left, boolean right) {
@@ -50,10 +48,6 @@ public class Point {
         if (left && right) {
             throw new IllegalArgumentException(DIRECTION_EXCEPTION_MESSAGE);
         }
-    }
-
-    public int position() {
-        return position;
     }
 
     public int nextPosition() {
@@ -69,11 +63,11 @@ public class Point {
     }
 
     public boolean hasLeft() {
-        return left;
+        return direction.isLeft();
     }
 
     public boolean hasRight() {
-        return right;
+        return direction.isRight();
     }
 
     public boolean isOverlapping(Point other) {
@@ -85,6 +79,6 @@ public class Point {
     }
 
     private boolean isSameDirection(Point other) {
-        return (this.left && other.left) || (this.right && other.right);
+        return direction.equals(other.direction);
     }
 }
