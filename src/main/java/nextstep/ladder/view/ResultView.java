@@ -3,17 +3,20 @@ package nextstep.ladder.view;
 import nextstep.ladder.model.Ladder;
 import nextstep.ladder.model.Line;
 import nextstep.ladder.model.People;
+import nextstep.ladder.model.Rewards;
 
 public class ResultView {
     private static final String RESULT_TITLE = "실행 결과";
     private static final String NAME_FORMAT = "%6s";
+    private static final String REWARD_FORMAT = "%-6s";
     private static final String WITH_POINT_STRING = "-----|";
     private static final String WITHOUT_POINT_STRING = "     |";
 
-    public void printResult(People people, Ladder ladder) {
+    public void printResult(People people, Ladder ladder, Rewards rewards) {
         printTitle();
         printPeopleNames(people);
         printLadder(ladder);
+        printRewards(rewards);
     }
 
     public void printError(Exception e) {
@@ -48,5 +51,12 @@ public class ResultView {
 
     private String getFormattedMovingPoint(boolean point) {
         return point ? WITH_POINT_STRING : WITHOUT_POINT_STRING;
+    }
+
+
+    private void printRewards(Rewards rewards) {
+        rewards.getValue()
+            .forEach(reward -> System.out.printf(REWARD_FORMAT, reward));
+        System.out.println();
     }
 }

@@ -30,6 +30,6 @@ public class LadderGameController {
         int ladderLength = inputView.getLadderLength();
         Ladder ladder = new Ladder(ladderLength, people.getPeopleCount());
 
-        resultView.printResult(people, ladder);
+        resultView.printResult(people, ladder, rewards);
     }
 }

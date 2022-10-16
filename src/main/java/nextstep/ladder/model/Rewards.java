@@ -1,5 +1,6 @@
 package nextstep.ladder.model;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Rewards {
@@ -10,6 +11,10 @@ public class Rewards {
     public Rewards(List<String> rewards, int peopleCount) {
         validate(rewards, peopleCount);
         this.rewards = rewards;
+    }
+
+    public List<String> getValue() {
+        return Collections.unmodifiableList(rewards);
     }
 
     private void validate(List<String> rewards, int peopleCount) {
