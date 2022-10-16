@@ -2,7 +2,7 @@
 
  import java.util.Objects;
 
-public class Direction {
+ public class Direction {
     private static final String DIRECTION_EXCEPTION_MESSAGE = "두 방향 모두 열릴 수 없습니다.";
 
     private final boolean left;
@@ -25,22 +25,16 @@ public class Direction {
         return right;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
+     @Override
+     public boolean equals(Object o) {
+         if (this == o) return true;
+         if (o == null || getClass() != o.getClass()) return false;
+         Direction direction = (Direction) o;
+         return (left && direction.left) || (right && direction.right);
+     }
 
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        Direction direction = (Direction) o;
-        return left == direction.left && right == direction.right;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(left, right);
-    }
-}
+     @Override
+     public int hashCode() {
+         return Objects.hash(left, right);
+     }
+ }
