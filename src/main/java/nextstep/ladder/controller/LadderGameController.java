@@ -5,6 +5,7 @@ import nextstep.ladder.model.LadderGame;
 import nextstep.ladder.model.People;
 import nextstep.ladder.model.Rewards;
 import nextstep.ladder.model.dto.LadderGameResult;
+import nextstep.ladder.model.strategy.RandomPointPickerStrategy;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
@@ -30,7 +31,7 @@ public class LadderGameController {
         Rewards rewards = new Rewards(inputView.getRewards(), people.getPeopleCount());
 
         int ladderLength = inputView.getLadderLength();
-        Ladder ladder = new Ladder(ladderLength, people.getPeopleCount());
+        Ladder ladder = new Ladder(ladderLength, people.getPeopleCount(), new RandomPointPickerStrategy());
 
         resultView.printLadderStatus(people, ladder, rewards);
 

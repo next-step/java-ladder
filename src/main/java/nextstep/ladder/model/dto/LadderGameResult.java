@@ -14,7 +14,6 @@ public class LadderGameResult {
         rewardByPersonName = createResultMap(people, rewards, resultPositions);
     }
 
-
     public String findRewardByPersonName(String personName) {
         return rewardByPersonName.get(personName);
     }
@@ -22,8 +21,10 @@ public class LadderGameResult {
     private Map<String, String> createResultMap(People people, Rewards rewards, List<Integer> resultPositions) {
         var map = new HashMap<String, String>();
 
-        resultPositions.forEach(position ->
-            map.put(people.getPeopleNameByPosition(position), rewards.getRewardByPosition(position)));
+        for (int i = 0; i < resultPositions.size(); ++i) {
+            int resultPosition = resultPositions.get(i);
+            map.put(people.getPeopleNameByPosition(i), rewards.getRewardByPosition(resultPosition));
+        }
 
         return map;
     }

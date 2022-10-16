@@ -17,6 +17,16 @@ public class Line {
         movingPoints = createMovingPoints(countOfPerson - 1, strategy);
     }
 
+    public int move(int position) {
+        if (canMoveLeft(position)) {
+            return position - 1;
+        }
+        if (canMoveRight(position)) {
+            return position + 1;
+        }
+        return position;
+    }
+
     public List<Boolean> getMovingPoints() {
         return Collections.unmodifiableList(movingPoints);
     }
@@ -47,5 +57,13 @@ public class Line {
         }
 
         return !points.get(points.size() - 1);
+    }
+
+    private boolean canMoveLeft(int position) {
+        return position > 0 && movingPoints.get(position - 1);
+    }
+
+    private boolean canMoveRight(int position) {
+        return position < movingPoints.size() && movingPoints.get(position);
     }
 }
