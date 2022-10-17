@@ -12,16 +12,26 @@ import static org.assertj.core.api.Assertions.assertThat;
 class LadderRowTest {
 
 	@Test
-	void 생성() {
-		LadderRow ladderRow = new LadderRow(4, () -> true);
+	void 생성_2인() {
+		LadderRow ladderRow = new LadderRow(2, () -> true);
 		List<LadderColumn> columns = ladderRow.getColumns();
 
-		assertThat(columns).hasSize(6);
+		assertThat(columns).hasSize(3);
+		assertThat(columns.get(0)).hasSameClassAs(new LadderColumnEdge());
+		assertThat(columns.get(1)).hasSameClassAs(new LadderColumnWidth(true));
+		assertThat(columns.get(2)).hasSameClassAs(new LadderColumnEdge());
+	}
+
+	@Test
+	void 생성_3인이상() {
+		LadderRow ladderRow = new LadderRow(3, () -> true);
+		List<LadderColumn> columns = ladderRow.getColumns();
+
+		assertThat(columns).hasSize(5);
 		assertThat(columns.get(0)).hasSameClassAs(new LadderColumnEdge());
 		assertThat(columns.get(1)).hasSameClassAs(new LadderColumnWidth(true));
 		assertThat(columns.get(2)).hasSameClassAs(new LadderColumnEdge());
 		assertThat(columns.get(3)).hasSameClassAs(new LadderColumnWidth(false));
 		assertThat(columns.get(4)).hasSameClassAs(new LadderColumnEdge());
-		assertThat(columns.get(5)).hasSameClassAs(new LadderColumnWidth(true));
 	}
 }
