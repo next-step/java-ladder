@@ -7,34 +7,32 @@ import java.util.Objects;
 
 public class Line {
 
-    private List<Boolean> line;
+    private final List<Bridge> line;
 
-    public Line(List<Boolean> line) {
+    public Line(List<Bridge> line) {
         this.line = line;
     }
 
-    public void checkThisPointIsAbleConnectAndExecuteConnect(ConnectBridgeStrategy connectBridgeStrategy) {
+    public void checkDecidingConnectBridge(ConnectBridgeStrategy connectBridgeStrategy) {
         int cureentLastLocation = line.size() - 1;
-		if (line.isEmpty()) {
-			line.add(false);
-			return;
-		}
-        if (checkThisPointIsAbleConnect(cureentLastLocation)) {
-            line.add(false);
+        if (line.isEmpty()) {
+            line.add(new Bridge(false));
+            return;
+        }
+        Bridge BeforeBridge = line.get(cureentLastLocation);
+        if (BeforeBridge.isConnect()) {
+            line.add(new Bridge(false));
             return;
         }
         line.add(checkConnectBridge(connectBridgeStrategy));
     }
 
-    private boolean checkConnectBridge(ConnectBridgeStrategy connectBridgeStrategy) {
-        return connectBridgeStrategy.makeBridge();
+    private Bridge checkConnectBridge(ConnectBridgeStrategy connectBridgeStrategy) {
+        return new Bridge(connectBridgeStrategy.makeBridge());
     }
 
-    private boolean checkThisPointIsAbleConnect(int currentLastLine) {
-        return line.get(currentLastLine);
-    }
 
-    public List<Boolean> getLine() {
+    public List<Bridge> getLine() {
         return line;
     }
 

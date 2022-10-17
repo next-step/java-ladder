@@ -21,7 +21,7 @@ public class LadderGenerator {
         Line line = new Line(new ArrayList<>());
         ConnectBridgeStrategy connectBridgeStrategy = new RandomConnectBrideStrategy();
         for (int i = 0; i < peopleCount; i++) {
-            line.checkThisPointIsAbleConnectAndExecuteConnect(connectBridgeStrategy);
+            line.checkDecidingConnectBridge(connectBridgeStrategy);
         }
         return line;
     }

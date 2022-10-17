@@ -29,7 +29,7 @@ public class LadderOutput {
 
     private static void printLine(Line line) {
         StringBuilder sb = new StringBuilder();
-        line.getLine().forEach(it -> sb.append(convertLineInfoToString(it)));
+        line.getLine().forEach(it -> sb.append(convertLineInfoToString(it.isConnect())));
         System.out.println(sb.toString());
     }
 

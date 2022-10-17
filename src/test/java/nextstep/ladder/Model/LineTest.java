@@ -15,8 +15,8 @@ class LineTest {
     public void connectBridgeTest(){
         Line line = new Line(new ArrayList<>());
         List<Boolean> expectLine = new ArrayList<>();
-        line.checkThisPointIsAbleConnectAndExecuteConnect(()-> true);
-        line.checkThisPointIsAbleConnectAndExecuteConnect(()-> true);
+        line.checkDecidingConnectBridge(()-> true);
+        line.checkDecidingConnectBridge(()-> true);
         expectLine.add(false);
         expectLine.add(true);
         assertThat(line.getLine()).isEqualTo(expectLine);
