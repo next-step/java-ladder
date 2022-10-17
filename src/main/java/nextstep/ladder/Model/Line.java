@@ -14,12 +14,12 @@ public class Line {
     }
 
     public void checkDecidingConnectBridge(ConnectBridgeStrategy connectBridgeStrategy) {
-        int cureentLastLocation = line.size() - 1;
+        int currentLastLocation = line.size() - 1;
         if (line.isEmpty()) {
             line.add(new Bridge(false));
             return;
         }
-        Bridge BeforeBridge = line.get(cureentLastLocation);
+        Bridge BeforeBridge = line.get(currentLastLocation);
         if (BeforeBridge.isConnect()) {
             line.add(new Bridge(false));
             return;
