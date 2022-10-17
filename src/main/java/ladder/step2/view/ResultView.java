@@ -1,10 +1,10 @@
 package ladder.step2.view;
 
-import ladder.step2.domain.PartLine;
 import ladder.step2.dto.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class ResultView {
     private static final String PLAYER_NAME_PRINT_FORM = "%%%ds%%%ds";
@@ -15,6 +15,10 @@ public class ResultView {
     private static final String VERTICAL_LINE = "|";
     private static final String EIGHT_SPACE = "        ";
     private static final int FIRST_PART_LINE_LENGTH = 4;
+    private static final String FINAL_RESULT_MESSAGE = "실행 결과";
+    private static final String NOT_EXIST_PLAYER_MESSAGE = "존재하지 않는 플레이어입니다. 다시 입력해주세요.";
+    private static final String FINAL_RESULTS_PRINT_FORMAT = "%s : %s\n";
+    private static final String FINAL_INPUT = "all";
     
     public static void resultMessagePrint() {
         System.out.println();
@@ -69,5 +73,50 @@ public class ResultView {
                 .map(ResultView::outputFormat)
                 .forEach(System.out::print);
         System.out.println();
+    }
+    
+    public static boolean targetPlayerResultPrint(final String targetPlayer, final LadderGameResultsDTO ladderGameResultsDTO, final LadderResultsDTO ladderResultsDTO) {
+        if (targetPlayer.equals(FINAL_INPUT)) {
+            allResultPrint(ladderGameResultsDTO, ladderResultsDTO);
+            return true;
+        }
+    
+        if (isNotExistTargetPlayer(targetPlayer, ladderGameResultsDTO)) {
+            System.out.println(NOT_EXIST_PLAYER_MESSAGE);
+            return false;
+        }
+        
+        targetPlayerLadderResultPrint(targetPlayer, ladderGameResultsDTO, ladderResultsDTO);
+        return false;
+    }
+    
+    private static boolean isNotExistTargetPlayer(final String targetPlayer, final LadderGameResultsDTO ladderGameResultsDTO) {
+        return !ladderGameResultsDTO.getPlayerNames().contains(targetPlayer);
+    }
+    
+    private static void targetPlayerLadderResultPrint(final String targetPlayer, final LadderGameResultsDTO ladderGameResultsDTO, final LadderResultsDTO ladderResultsDTO) {
+        final List<String> playerNames = ladderGameResultsDTO.getPlayerNames();
+        final List<Integer> ladderPositionResult = ladderGameResultsDTO.getLadderPositionResult();
+        final List<LadderResultDTO> ladderResultDTOS = ladderResultsDTO.getLadderResultDTOS();
+    
+        final Integer targetPlayerResultPosition = ladderPositionResult.get(targetPlayerOrderNumber(targetPlayer, playerNames));
+        System.out.println(ladderResultDTOS.get(targetPlayerResultPosition).getLadderResult());
+    }
+    
+    private static int targetPlayerOrderNumber(final String targetPlayer, final List<String> playerNames) {
+        return playerNames.indexOf(targetPlayer);
+    }
+    
+    private static void allResultPrint(final LadderGameResultsDTO ladderGameResultsDTO, final LadderResultsDTO ladderResultsDTO) {
+        final List<String> playerNames = ladderGameResultsDTO.getPlayerNames();
+        final List<Integer> ladderPositionResult = ladderGameResultsDTO.getLadderPositionResult();
+        final List<LadderResultDTO> ladderResultDTOS = ladderResultsDTO.getLadderResultDTOS();
+        
+        IntStream.range(0, playerNames.size())
+                .forEach(orderNumber -> System.out.printf(FINAL_RESULTS_PRINT_FORMAT, playerNames.get(orderNumber), ladderResultDTOS.get(ladderPositionResult.get(orderNumber)).getLadderResult()));
+    }
+    
+    public static void finalResultMessagePrint() {
+        System.out.println(FINAL_RESULT_MESSAGE);
     }
 }

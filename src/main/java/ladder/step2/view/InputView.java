@@ -23,6 +23,7 @@ public class InputView {
     private static final String DELIMITER = ",";
     private static final String LADDER_HEIGHT_INPUT_MESSAGE = "\n최대 사다리 높이는 몇 개인가요?";
     private static final String LADDER_RESULTS_INPUT_MESSAGE = "\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
+    private static final String TARGET_PLAYER_INPUT_MESSAGE = "\n결과를 보고 싶은 사람은? (all 입력 시, 모든 결과 출력 후 프로그램 종료)";
     
     public static Players inputPlayerNames() {
         try {
@@ -77,12 +78,19 @@ public class InputView {
     public static LadderResultsDTO inputLadderResults(PlayersDTO playersDTO) {
         try {
             System.out.println(LADDER_RESULTS_INPUT_MESSAGE);
-            final String input = SCANNER.nextLine();
-            checkBlankException(input);
-            return new LadderResultsDTO(input, playersDTO.getPlayerNameDTOS().size());
+            final String ladderResults = SCANNER.nextLine();
+            checkBlankException(ladderResults);
+            return new LadderResultsDTO(ladderResults, playersDTO.getPlayerNameDTOS().size());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputLadderResults(playersDTO);
         }
+    }
+    
+    public static String inputTargetPlayer() {
+        System.out.println(TARGET_PLAYER_INPUT_MESSAGE);
+        final String targetPlayer = SCANNER.nextLine();
+        System.out.println();
+        return targetPlayer;
     }
 }

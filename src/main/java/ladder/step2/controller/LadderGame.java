@@ -3,24 +3,30 @@ package ladder.step2.controller;
 import ladder.step2.domain.Ladder;
 import ladder.step2.domain.Players;
 import ladder.step2.domain.partlinestrategy.RandomPartLineCreateStrategy;
-import ladder.step2.dto.LadderDTO;
-import ladder.step2.dto.LadderHeightDTO;
-import ladder.step2.dto.LadderResultsDTO;
-import ladder.step2.dto.PlayersDTO;
+import ladder.step2.dto.*;
 import ladder.step2.view.InputView;
 import ladder.step2.view.ResultView;
 
 public class LadderGame {
     public void run() {
         final Players players = InputView.inputPlayerNames();
-        final LadderResultsDTO ladderResultsDTO = InputView.inputLadderResults(new PlayersDTO(players));
+        final PlayersDTO playersDTO = new PlayersDTO(players);
+        final LadderResultsDTO ladderResultsDTO = InputView.inputLadderResults(playersDTO);
         final LadderHeightDTO ladderHeightDTO = InputView.inputLadderHeight();
         
-        final Ladder ladder = Ladder.of(ladderHeightDTO.getLadderHeight(), players.countOfPlayers(), new RandomPartLineCreateStrategy());
-    
+        final Ladder ladder = Ladder.of(ladderHeightDTO.getLadderHeight(), playersDTO.getPlayerNameDTOS().size(), new RandomPartLineCreateStrategy());
+        
         ResultView.resultMessagePrint();
-        ResultView.playerNamesPrint(new PlayersDTO(players));
+        ResultView.playerNamesPrint(playersDTO);
         ResultView.ladderPrint(new LadderDTO(ladder));
         ResultView.ladderResultsPrint(ladderResultsDTO);
+        
+        
+        boolean isEnd = false;
+        while (!isEnd) {
+            final String targetPlayer = InputView.inputTargetPlayer();
+            ResultView.finalResultMessagePrint();
+            isEnd = ResultView.targetPlayerResultPrint(targetPlayer, new LadderGameResultsDTO(playersDTO, ladder.move(players)), ladderResultsDTO);
+        }
     }
 }
