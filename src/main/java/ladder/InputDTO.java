@@ -24,4 +24,12 @@ public class InputDTO {
 			.map(Person::new)
 			.collect(Collectors.toList());
 	}
+
+	public List<Person> getPersons() {
+		return persons;
+	}
+
+	public int getHeight() {
+		return height;
+	}
 }
