@@ -1,5 +1,9 @@
 package nextstep.optional;
 
+import nextstep.fp.Conditional;
+
+import java.util.Optional;
+
 public class User {
     private String name;
     private Integer age;
@@ -32,8 +36,11 @@ public class User {
         return isInRange;
     }
 
-    public static boolean ageIsInRange2(User user) {
-        return false;
+    public static boolean ageIsInRange2(User user, Conditional conditional) {
+        return Optional.ofNullable(user)
+                .map(User::getAge)
+                .filter(conditional::test)
+                .isPresent();
     }
 
     @Override
