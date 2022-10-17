@@ -1,4 +1,7 @@
-package laddergame.domain;
+package laddergame.dto;
+
+import laddergame.domain.Ladder;
+import laddergame.domain.ParticipantName;
 
 import java.util.List;
 

@@ -1,5 +1,7 @@
 package laddergame.domain;
 
+import laddergame.dto.LadderGameResult;
+
 import java.util.List;
 
 public class LadderGame {

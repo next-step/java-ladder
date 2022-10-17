@@ -1,8 +1,8 @@
 package laddergame;
 
 import laddergame.domain.LadderGame;
-import laddergame.domain.LadderGameResult;
 import laddergame.domain.ParticipantName;
+import laddergame.dto.LadderGameResult;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 

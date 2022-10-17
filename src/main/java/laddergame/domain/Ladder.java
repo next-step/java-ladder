@@ -1,7 +1,8 @@
 package laddergame.domain;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder {
 
@@ -12,10 +13,9 @@ public class Ladder {
     }
 
     public static Ladder of(int numberOfColumns, int height) {
-        List<LadderLine> lines = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            lines.add(LadderLine.from(numberOfColumns));
-        }
+        List<LadderLine> lines = IntStream.range(0, height)
+                .mapToObj(i -> LadderLine.from(numberOfColumns))
+                .collect(Collectors.toList());
         return new Ladder(lines);
     }
 

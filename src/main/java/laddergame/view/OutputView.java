@@ -1,12 +1,13 @@
 package laddergame.view;
 
 import laddergame.domain.Ladder;
-import laddergame.domain.LadderGameResult;
 import laddergame.domain.LadderLine;
 import laddergame.domain.ParticipantName;
+import laddergame.dto.LadderGameResult;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class OutputView {
 
@@ -15,7 +16,8 @@ public class OutputView {
     private static final String LADDER_LINE_CONNECTION = "-".repeat(ParticipantName.MAX_LENGTH);
     private static final String LADDER_LINE_NOT_CONNECTION = BLANK.repeat(ParticipantName.MAX_LENGTH);
 
-    private OutputView() {}
+    private OutputView() {
+    }
 
     public static void printResult(LadderGameResult result) {
         printParticipantNames(result.getParticipantNames());
@@ -43,10 +45,8 @@ public class OutputView {
 
     private static String formatLadderLine(LadderLine line) {
         StringBuilder content = new StringBuilder(BLANK.repeat(ParticipantName.MAX_LENGTH - 1) + LADDER_COLUMN);
-        for (int i = 0; i < line.size(); i++) {
-            content.append(line.isConnected(i) ? LADDER_LINE_CONNECTION : LADDER_LINE_NOT_CONNECTION)
-                    .append(LADDER_COLUMN);
-        }
+        IntStream.range(0, line.size())
+                .forEach(i -> content.append(line.isConnected(i) ? LADDER_LINE_CONNECTION : LADDER_LINE_NOT_CONNECTION).append(LADDER_COLUMN));
         return content.toString();
     }
 
