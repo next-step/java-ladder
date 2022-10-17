@@ -2,6 +2,8 @@ package ladder.step2.view;
 
 import ladder.step2.domain.Players;
 import ladder.step2.dto.LadderHeightDTO;
+import ladder.step2.dto.LadderResultsDTO;
+import ladder.step2.dto.PlayersDTO;
 import ladder.step2.utils.StringUtils;
 
 import java.util.Arrays;
@@ -20,6 +22,7 @@ public class InputView {
     private static final String EMPTY = "";
     private static final String DELIMITER = ",";
     private static final String LADDER_HEIGHT_INPUT_MESSAGE = "\n최대 사다리 높이는 몇 개인가요?";
+    private static final String LADDER_RESULTS_INPUT_MESSAGE = "\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     
     public static Players inputPlayerNames() {
         try {
@@ -62,12 +65,24 @@ public class InputView {
     public static LadderHeightDTO inputLadderHeight() {
         try {
             System.out.println(LADDER_HEIGHT_INPUT_MESSAGE);
-            final String input = SCANNER.nextLine();
-            checkBlankException(input);
-            return new LadderHeightDTO(input);
+            final String ladderHeight = SCANNER.nextLine();
+            checkBlankException(ladderHeight);
+            return new LadderHeightDTO(ladderHeight);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputLadderHeight();
+        }
+    }
+    
+    public static LadderResultsDTO inputLadderResults(PlayersDTO playersDTO) {
+        try {
+            System.out.println(LADDER_RESULTS_INPUT_MESSAGE);
+            final String input = SCANNER.nextLine();
+            checkBlankException(input);
+            return new LadderResultsDTO(input, playersDTO.size());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputLadderResults(playersDTO);
         }
     }
 }

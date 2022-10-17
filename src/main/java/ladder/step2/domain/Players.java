@@ -1,5 +1,6 @@
 package ladder.step2.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,6 +19,10 @@ public class Players {
     
     public int countOfPlayers() {
         return playerNames.size();
+    }
+    
+    public List<PlayerName> getPlayerNames() {
+        return Collections.unmodifiableList(playerNames);
     }
     
     @Override
