@@ -5,6 +5,8 @@ import java.util.Objects;
 public class Person {
     private static final String EMPTY_NAME_EXCEPTION_MESSAGE = "공백뿐인 이름은 사용할 수 없습니다.";
     private static final String EXCEEDED_NAME_LENGTH_EXCEPTION_MESSAGE = "이름의 길이는 5자를 초과할 수 없습니다.";
+    private static final String NOT_ALLOWED_NAME_EXCEPTION_MESSAGE = "사람 이름으로 all을 사용할 수 없습니다.";
+    private static final String NOT_ALLOWED_NAME = "all";
 
     private final String name;
 
@@ -20,6 +22,10 @@ public class Person {
     private void validate(String name) {
         if (name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException(EMPTY_NAME_EXCEPTION_MESSAGE);
+        }
+
+        if (name.trim().equals(NOT_ALLOWED_NAME)) {
+            throw new IllegalArgumentException(NOT_ALLOWED_NAME_EXCEPTION_MESSAGE);
         }
 
         if (name.length() > 5) {
