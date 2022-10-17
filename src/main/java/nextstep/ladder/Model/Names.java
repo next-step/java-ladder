@@ -7,7 +7,7 @@ public class Names {
 
     private static final String MIN_MEMBER_ERROR = "게임을 하려면 최소 2명이어야 합니다.";
     private static final int STANDARD_GAME = 2;
-    List<Name> names;
+    private final List<Name> names;
 
     public Names(List<Name> names) {
         validate(names);
