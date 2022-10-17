@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EmptySource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.NullSource;
 
 import static org.assertj.core.api.Assertions.*;
@@ -24,10 +25,8 @@ class NameTest {
     public void constructorErrorTest() {
         assertThatThrownBy(() -> new Name(ERROR_NAME)).isInstanceOf(IllegalArgumentException.class);
     }
-    @ParameterizedTest
-    @NullSource
-    @EmptySource
-    @DisplayName("이름을 생성할 때 Null 혹은 빈값을 넣을 경우 에러를 발생한다.")
+    @ParameterizedTest(name = "이름을 생성할 때 Null 혹은 빈값을 넣을 경우 에러를 발생한다.")
+    @NullAndEmptySource
     void constructorTestNullOrBlank(String text) {
         assertThatThrownBy(() -> new Name(text)).isInstanceOf(IllegalArgumentException.class);
     }
