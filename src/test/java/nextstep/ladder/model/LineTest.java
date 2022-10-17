@@ -10,37 +10,15 @@ import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
-import nextstep.ladder.model.strategy.RandomPointPickerStrategy;
+import nextstep.ladder.model.factory.LineFactory;
 
 class LineTest {
-
-    @ParameterizedTest(name = "사람 수가 주어질 때, 가로 이동이 가능한 Line 객체를 생성합니다; 사람 수: {0}")
-    @ValueSource(ints = {2, 3, 4, 5})
-    void create(int countOfPerson) {
-        Line line = new Line(countOfPerson, new RandomPointPickerStrategy());
-    }
-
-    @ParameterizedTest(name = "부족한 인원의 사람 수가 주어질 때, 예외를 반환합니다.")
-    @ValueSource(ints = {0, 1})
-    void createWithInsufficientPeopleCount(int countOfPerson) {
-        assertThatThrownBy(() -> new Line(countOfPerson, new RandomPointPickerStrategy()))
-            .isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining("최소 2명이 존재해야 사다리에서 이동이 가능합니다");
-    }
-
-    @ParameterizedTest(name = "사다리 게임의 룰에 따라 Line을 생성할 때, 의도한 대로 Point가 생성되어야 합니다; 인원 수: {0}")
-    @MethodSource("provideLineSource")
-    void hasValidMovingPoints(int countOfPerson, List<Boolean> expectedMovingPoints) {
-        List<Boolean> movingPoints = new Line(countOfPerson, () -> true).getMovingPoints();
-        assertThat(movingPoints).isEqualTo(expectedMovingPoints);
-    }
 
     @ParameterizedTest(name = "각 세로선에 대해서 move 명령을 수행 했을 때, 정상적으로 이동하는지 확인합니다; 인원 수: {0}")
     @MethodSource("provideLineMovingSource")
     void move(int countOfPerson, List<Integer> expectedPositions) {
-        Line line = new Line(countOfPerson, () -> true);
+        Line line = LineFactory.create(countOfPerson, () -> true);
 
         List<Integer> positions = IntStream.range(0, countOfPerson)
             .map(line::move)
@@ -48,14 +26,6 @@ class LineTest {
             .collect(toList());
 
         assertThat(positions).isEqualTo(expectedPositions);
-    }
-
-    private static Stream<Arguments> provideLineSource() {
-        return Stream.of(
-            Arguments.of(3, List.of(true, false)),
-            Arguments.of(4, List.of(true, false, true)),
-            Arguments.of(5, List.of(true, false, true, false))
-        );
     }
 
     private static Stream<Arguments> provideLineMovingSource() {
