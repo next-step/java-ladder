@@ -1,8 +1,7 @@
 package laddergame.domain;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.Objects;
 
 public class Ladder {
 
@@ -12,19 +11,32 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder of(int numberOfColumns, int height) {
-        List<LadderLine> lines = IntStream.range(0, height)
-                .mapToObj(i -> LadderLine.from(numberOfColumns))
-                .collect(Collectors.toList());
-        return new Ladder(lines);
-    }
-
     public LadderLine getLine(int indexOfHeight) {
         return lines.get(indexOfHeight);
     }
 
     public int getHeight() {
         return lines.size();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ladder ladder = (Ladder) o;
+        return Objects.equals(lines, ladder.lines);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(lines);
+    }
+
+    @Override
+    public String toString() {
+        return "Ladder{" +
+                "lines=" + lines +
+                '}';
     }
 
 }

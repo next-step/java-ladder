@@ -1,11 +1,9 @@
 package laddergame.domain;
 
-import java.util.*;
+import java.util.List;
+import java.util.Objects;
 
 public class LadderLine {
-
-    private static final int MIN_NUMBER_OF_COLUMNS = 1;
-    private static final Random RANDOM = new Random();
 
     private final List<Boolean> connections;
 
@@ -26,38 +24,6 @@ public class LadderLine {
         if (previousConnected && currentConnected) {
             throw new IllegalArgumentException("가로 라인은 연속으로 연결될 수 없습니다.");
         }
-    }
-
-    public static LadderLine from(int numberOfColumns) {
-        validate(numberOfColumns);
-
-        if (numberOfColumns == MIN_NUMBER_OF_COLUMNS) {
-            return new LadderLine(Collections.emptyList());
-        }
-
-        List<Boolean> connections = new ArrayList<>();
-        connections.add(generateRandomConnection());
-        for (int i = 1; i < numberOfColumns - 1; i++) {
-            connections.add(generateConnection(connections.get(i - 1)));
-        }
-        return new LadderLine(connections);
-    }
-
-    private static void validate(int numberOfColumns) {
-        if (numberOfColumns < MIN_NUMBER_OF_COLUMNS) {
-            throw new IllegalArgumentException(String.format("세로 막대 개수는 최소 %d 개 이상이어야 합니다.", MIN_NUMBER_OF_COLUMNS));
-        }
-    }
-
-    private static boolean generateConnection(boolean previousConnected) {
-        if (previousConnected) {
-            return false;
-        }
-        return generateRandomConnection();
-    }
-
-    private static boolean generateRandomConnection() {
-        return RANDOM.nextBoolean();
     }
 
     public int size() {
