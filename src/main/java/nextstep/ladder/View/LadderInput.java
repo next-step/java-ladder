@@ -18,8 +18,12 @@ public class LadderInput {
 
     public static Names askAttendMembers() {
         System.out.println(ASK_ATTEND_MEMBERS);
-        List<Name> names = Arrays.stream(SCANNER.nextLine().split(DELIMITER)).map(Name::new).collect(Collectors.toList());
-        System.out.println(names.stream().map(Name::toString).collect(Collectors.joining(DELIMITER)));
+        List<Name> names = Arrays.stream(SCANNER.nextLine().split(DELIMITER))
+                .map(Name::new)
+                .collect(Collectors.toList());
+        System.out.println(names.stream()
+                .map(Name::toString)
+                .collect(Collectors.joining(DELIMITER)));
         return new Names(names);
     }
 

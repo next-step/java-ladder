@@ -31,8 +31,8 @@ public class Line {
         return connectBridgeStrategy.makeBridge();
     }
 
-    private boolean checkThisPointIsAbleConnect(int cureentLastLine) {
-        return line.get(cureentLastLine) == true;
+    private boolean checkThisPointIsAbleConnect(int currentLastLine) {
+        return line.get(currentLastLine);
     }
 
     public List<Boolean> getLine() {

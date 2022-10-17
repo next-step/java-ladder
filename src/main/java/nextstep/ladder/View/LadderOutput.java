@@ -18,7 +18,9 @@ public class LadderOutput {
         System.out.println(RESULT_TITLE);
         System.out.println();
         List<Name> Names = names.getNames();
-        System.out.println(Names.stream().map(Name::toString).collect(Collectors.joining(DELIMITER)));
+        System.out.println(Names.stream()
+                .map(Name::toString)
+                .collect(Collectors.joining(DELIMITER)));
         List<Line> Ladder = ladder.getLadder();
         for (Line line : Ladder) {
             printLine(line);
@@ -32,7 +34,7 @@ public class LadderOutput {
     }
 
     private static String convertLineInfoToString(Boolean lineInfo) {
-        if (lineInfo == true) {
+        if (lineInfo) {
             return CONNECT_BRIDGE;
         }
         return DIS_CONNECT_BRIDGE;

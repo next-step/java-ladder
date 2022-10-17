@@ -1,7 +1,7 @@
 package nextstep.ladder.Model;
 
 import nextstep.ladder.Strategy.ConnectBridgeStrategy;
-import nextstep.ladder.Strategy.RandomConnectBrideStragegy;
+import nextstep.ladder.Strategy.RandomConnectBrideStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ public class LadderGenerator {
 
     private Line createLine(int peopleCount) {
         Line line = new Line(new ArrayList<>());
-        ConnectBridgeStrategy connectBridgeStrategy = new RandomConnectBrideStragegy();
+        ConnectBridgeStrategy connectBridgeStrategy = new RandomConnectBrideStrategy();
         for (int i = 0; i < peopleCount; i++) {
             line.checkThisPointIsAbleConnectAndExecuteConnect(connectBridgeStrategy);
         }
