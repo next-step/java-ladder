@@ -38,5 +38,4 @@ class LineTest {
         assertThat(line.getLine()).isEqualTo(expectLine);
     }
 
-
 }
