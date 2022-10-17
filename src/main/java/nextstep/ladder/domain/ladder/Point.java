@@ -4,11 +4,22 @@ public class Point {
 
     public static final int DEFAULT_POSITION = 0;
     private static final String INVALID_POSITION_EXCEPTION_MESSAGE = "위치는 0 이상이어야 합니다.";
-    private static final String DIRECTION_EXCEPTION_MESSAGE = "두 방향 모두 열릴 수 없습니다.";
 
     private final int position;
-    private final boolean left;
-    private final boolean right;
+    private final Direction direction;
+
+    public Point(int position, boolean left, boolean right) {
+        validate(position);
+
+        this.position = position;
+        this.direction = new Direction(left, right);
+    }
+
+    private void validate(int position) {
+        if (position < DEFAULT_POSITION) {
+            throw new IllegalArgumentException(INVALID_POSITION_EXCEPTION_MESSAGE);
+        }
+    }
 
     public static Point first(EnablePointStrategy strategy) {
         return new Point(DEFAULT_POSITION, false, strategy.isEnabled());
@@ -34,34 +45,24 @@ public class Point {
         return new Point(point.position, point.hasLeft(), false);
     }
 
-    public Point(int position, boolean left, boolean right) {
-        validate(position, left, right);
-
-        this.position = position;
-        this.left = left;
-        this.right = right;
-    }
-
-    private void validate(int position, boolean left, boolean right) {
-        if (position < DEFAULT_POSITION) {
-            throw new IllegalArgumentException(INVALID_POSITION_EXCEPTION_MESSAGE);
+    public int nextPosition() {
+        if (hasLeft()) {
+            return position - 1;
         }
 
-        if (left && right) {
-            throw new IllegalArgumentException(DIRECTION_EXCEPTION_MESSAGE);
+        if (hasRight()) {
+            return position + 1;
         }
-    }
 
-    public int position() {
         return position;
     }
 
     public boolean hasLeft() {
-        return left;
+        return direction.isLeft();
     }
 
     public boolean hasRight() {
-        return right;
+        return direction.isRight();
     }
 
     public boolean isOverlapping(Point other) {
@@ -73,6 +74,6 @@ public class Point {
     }
 
     private boolean isSameDirection(Point other) {
-        return (this.left && other.left) || (this.right && other.right);
+        return direction.equals(other.direction);
     }
 }

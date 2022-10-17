@@ -1,5 +1,6 @@
 package nextstep.ladder.view;
 
+import nextstep.ladder.domain.Game;
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.ladder.Line;
 import nextstep.ladder.domain.ladder.Point;
@@ -22,11 +23,13 @@ class LadderResultTest {
                 new Point(3, true, false),
                 new Point(4, false, false));
         Line line = new Line(points);
-        Players players = Players.create("test1, test2, test3, test4, test5", ",");
-        Ladder ladder = new Ladder(List.of(line), players);
+        Players players = Players.create("test1", "test2", "test3", "test4", "test5");
+        Ladder ladder = new Ladder(List.of(line));
+        String[] results = {"a", "b", "c", "d" , "e"};
+        Game game = new Game(players, ladder, results);
 
-        LadderResult ladderResult = new LadderResult(ladder);
+        LadderResult result = new LadderResult(game, results);
 
-        assertThat(ladderResult.getLadder()).contains("|-----|     |-----|     |");
+        assertThat(result.ladder()).contains("|-----|     |-----|     |");
     }
 }

@@ -5,16 +5,16 @@ import java.util.Objects;
 public class Player {
     private final Name name;
 
-    public Player(String name) {
-        this.name = new Name(name);
-    }
-
     public Player(Name name) {
         this.name = name;
     }
 
     public String name() {
         return name.value();
+    }
+
+    public static Player of(String name) {
+        return new Player(new Name(name));
     }
 
     @Override

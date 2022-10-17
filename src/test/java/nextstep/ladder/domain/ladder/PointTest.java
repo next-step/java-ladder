@@ -86,4 +86,29 @@ public class PointTest {
 
         assertThat(pointA.isOverlapping(pointB)).isFalse();
     }
+
+    @DisplayName("열려있는 방향을 체크할 수 있다.")
+    @Test
+    void direction() {
+        Point point = new Point(0, true, false);
+
+        assertThat(point.hasLeft()).isTrue();
+        assertThat(point.hasRight()).isFalse();
+    }
+
+    @DisplayName("열려있는 방향의 점 위치를 반환한다.")
+    @Test
+    void directionPosition1() {
+        Point point = new Point(1, true, false);
+
+        assertThat(point.nextPosition()).isEqualTo(0);
+    }
+
+    @DisplayName("열려있는 방향의 점 위치를 반환한다.")
+    @Test
+    void directionPosition2() {
+        Point point = new Point(1, false, true);
+
+        assertThat(point.nextPosition()).isEqualTo(2);
+    }
 }

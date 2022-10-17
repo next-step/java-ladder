@@ -8,10 +8,18 @@ import java.util.stream.Stream;
 public class Names {
     private final List<Name> values;
 
-    public Names(String names, String delimiter) {
-        values = Stream.of(names.split(delimiter))
+    public Names(String ... names) {
+        checkSize(names);
+
+        values = Stream.of(names)
                 .map(Name::new)
                 .collect(Collectors.toList());
+    }
+
+    private void checkSize(String[] names) {
+        if (names.length == 0) {
+            throw new IllegalArgumentException("이름이 입력되지 않았습니다.");
+        }
     }
 
     public boolean contains(Name name) {

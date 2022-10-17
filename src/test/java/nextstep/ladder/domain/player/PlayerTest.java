@@ -10,12 +10,12 @@ class PlayerTest {
     @DisplayName("문자열 이름으로 플레이어를 생성할 수 있다.")
     @Test
     void player() {
-        assertDoesNotThrow(() -> new Player("test"));
+        assertDoesNotThrow(() -> Player.of("test"));
     }
 
     @DisplayName("이름이 같으면 같은 플레이어로 간주한다.")
     @Test
     void equalsPlayer() {
-        assertThat(new Player("test")).isEqualTo(new Player("test"));
+        assertThat(Player.of("test")).isEqualTo(Player.of("test"));
     }
 }
