@@ -13,19 +13,26 @@ public class Ladder {
         this.ladderLength = ladderLength;
     }
 
-    public List<LadderPosition> play(List<Integer> startPositions) {
-        return startPositions.stream()
+    public List<HorizontalPosition> play(List<User> users) {
+        return users.stream()
                 .map(this::move)
                 .collect(Collectors.toList());
     }
 
-    LadderPosition move(int startPosition) {
-        LadderPosition ladderPosition = new LadderPosition(startPosition);
+    HorizontalPosition move(User user) {
+        LadderPosition ladderPosition = LadderPosition.startWithUserPosition(user.getPosition());
         while (!ladderPosition.isArrived(this.ladderLength)) {
-            VerticalLine verticalLine = this.lines.get(ladderPosition.getHorizontalPosition());
+            VerticalLine verticalLine = findVerticalLineByPosition(ladderPosition.getHorizontalPosition());
             verticalLine.move(ladderPosition, this.ladderLength);
         }
-        return ladderPosition;
+        return ladderPosition.getHorizontalPosition();
+    }
+
+    private VerticalLine findVerticalLineByPosition(HorizontalPosition position) {
+        return this.lines.stream()
+                .filter((line)->line.isSamePosition(position))
+                .findFirst()
+                .orElseThrow(IllegalStateException::new);
     }
 
     public List<VerticalLine> getLines() {

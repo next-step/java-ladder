@@ -30,7 +30,7 @@ class UsersTest {
     }
 
     private User userWithName(String name) {
-        return new User(new UserName(name));
+        return new User(new UserName(name), position);
     }
 
 

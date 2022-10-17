@@ -7,8 +7,11 @@ public class VerticalLine {
 
     private final List<LineUnit> lineUnits;
 
-    public VerticalLine(List<LineUnit> lineUnits) {
+    private final HorizontalPosition horizontalPosition;
+
+    public VerticalLine(List<LineUnit> lineUnits, HorizontalPosition horizontalPosition) {
         this.lineUnits = lineUnits;
+        this.horizontalPosition = horizontalPosition;
     }
 
     public static VerticalLine mapHorizontalLineToVertical(List<HorizontalLine> horizontalLine, int userIndex) {
@@ -18,7 +21,7 @@ public class VerticalLine {
             LineUnit lineUnit = line.getUnits().get(userIndex);
             verticalLine.add(lineUnit);
         }
-        return new VerticalLine(verticalLine);
+        return new VerticalLine(verticalLine, new HorizontalPosition(userIndex));
     }
 
     public void move(LadderPosition ladderPosition, LadderLength ladderLength) {
@@ -43,4 +46,7 @@ public class VerticalLine {
         return lineUnits;
     }
 
+    public boolean isSamePosition(HorizontalPosition horizontalPosition) {
+        return this.horizontalPosition.equals(horizontalPosition);
+    }
 }

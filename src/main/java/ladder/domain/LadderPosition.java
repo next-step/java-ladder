@@ -4,10 +4,14 @@ public class LadderPosition {
 
     private final LadderLength ladderLength = new LadderLength(0);
 
-    private int horizontalPosition;
+    private final HorizontalPosition horizontalPosition;
 
-    public LadderPosition(int horizontalPosition) {
+    private LadderPosition(HorizontalPosition horizontalPosition) {
         this.horizontalPosition = horizontalPosition;
+    }
+
+    public static LadderPosition startWithUserPosition(HorizontalPosition position) {
+        return new LadderPosition(position);
     }
 
     public void down() {
@@ -15,23 +19,22 @@ public class LadderPosition {
     }
 
     public void next() {
-        this.horizontalPosition++;
+        this.horizontalPosition.increase();
     }
 
     public void previous() {
-        this.horizontalPosition--;
+        this.horizontalPosition.decrease();
     }
 
     public boolean isArrived(LadderLength ladderLength) {
         return this.ladderLength.compareTo(ladderLength) >= 0;
     }
 
-    public int getHorizontalPosition() {
-        return horizontalPosition;
-    }
-
     public int length() {
         return ladderLength.getLength();
     }
 
+    public HorizontalPosition getHorizontalPosition() {
+        return horizontalPosition;
+    }
 }

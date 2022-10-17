@@ -1,24 +1,27 @@
 package ladder.domain;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LadderResult {
 
-    private final List<String> result;
+    private final Map<HorizontalPosition,String> resultMap = new HashMap<>();
 
     public LadderResult(List<String> result, int userNumber) throws IllegalArgumentException {
         if (result.size() != userNumber) {
             throw new IllegalArgumentException("게임 결과 개수가 사용자 개수와 다릅니다.");
         }
         result.stream().forEach(this::validate);
-        this.result = result;
+        IntStream.range(0,result.size())
+                .forEach((idx)->this.resultMap.put(new HorizontalPosition(idx),result.get(idx)));
     }
 
-    public List<String> result(List<LadderPosition> positions) {
-        return positions.stream()
-                .map((position) -> this.result.get(position.getHorizontalPosition()))
-                .collect(Collectors.toList());
+    public String result(HorizontalPosition position) {
+        return this.resultMap.get(position);
     }
 
     private void validate(String result) {
@@ -28,11 +31,11 @@ public class LadderResult {
     }
 
     public List<String> getResult() {
-        return result;
+        return new ArrayList<>(this.resultMap.values());
     }
 
     public int size() {
-        return this.result.size();
+        return this.resultMap.keySet().size();
     }
 
 }

@@ -4,7 +4,6 @@ import java.util.Objects;
 
 public class UserName {
 
-    public static final String ALL_USER_NAME = "all";
     private static final int MAX_NAME_LENGTH = 5;
     private final String name;
 
@@ -21,10 +20,6 @@ public class UserName {
 
     public int maxLength(String result) {
         return Math.max(this.name.length(), result.length());
-    }
-
-    public boolean isAllUser() {
-        return ALL_USER_NAME.equals(this.name);
     }
 
     public String getName() {

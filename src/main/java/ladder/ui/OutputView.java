@@ -1,6 +1,7 @@
 package ladder.ui;
 
 import ladder.domain.*;
+import ladder.dto.ResultDto;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -81,22 +82,8 @@ public abstract class OutputView {
         return user.getName().getName();
     }
 
-    public static void printResult(UserName userName, Users users, List<String> result) {
+    public static void printResult(List<ResultDto> resultDtos) {
         System.out.println(PLAY_RESULT_MSG);
-        if (userName.isAllUser()) {
-            List<String> usernames = users.getUsers().stream()
-                    .map(User::getName)
-                    .map(UserName::getName)
-                    .collect(Collectors.toList());
-            printResult(usernames, result);
-            return;
-        }
-        printResult(List.of(userName.getName()), result);
-    }
-
-    private static void printResult(List<String> usernames, List<String> result) {
-        for (int i = 0; i < result.size(); i++) {
-            System.out.printf("%s : %s \n", usernames.get(i), result.get(i));
-        }
+        resultDtos.forEach((dto)-> System.out.printf("%s : %S \n" , dto.getUser().getName().getName() , dto.getResult()));
     }
 }
