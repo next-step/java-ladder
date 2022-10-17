@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.factory.VerticalMapper;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

@@ -2,6 +2,9 @@ package ladder;
 
 import ladder.domain.*;
 import ladder.dto.LineGenerateDto;
+import ladder.factory.LadderFactory;
+import ladder.factory.VerticalMapper;
+import ladder.service.LadderService;
 import ladder.ui.InputView;
 import ladder.ui.OutputView;
 
@@ -15,7 +18,8 @@ import java.util.logging.Logger;
 public class LadderApp {
 
     private static final Logger LOGGER = Logger.getLogger(LadderApp.class.getName());
-    private static final LineGenerator generator = new RandomLineGenerator();
+
+    private static final LadderService ladderService = new LadderService();
 
     public static void main(String[] args) {
         try (InputView inputView = getInputView()) {
@@ -23,10 +27,8 @@ public class LadderApp {
             LadderResult ladderResult = new LadderResult(inputView.getResult(), users.size());
             LadderLength ladderLength = new LadderLength(inputView.getVerticalLine());
 
-            Random random = new Random();
-            List<HorizontalLine> horizontalLines = generator.generate(new LineGenerateDto(users.size(), ladderLength.getLength()), () -> random.nextBoolean());
+            Ladder ladder = ladderService.getLadder(users, ladderLength);
 
-            Ladder ladder = new Ladder(VerticalMapper.map(horizontalLines, users.size()), ladderLength);
             OutputView.printLadder(users, ladder, ladderResult);
 
             while (true) {
@@ -43,5 +45,6 @@ public class LadderApp {
     private static InputView getInputView() {
         return new InputView(new BufferedReader(new InputStreamReader(System.in)));
     }
+
 
 }
