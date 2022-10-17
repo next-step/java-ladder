@@ -14,7 +14,7 @@ class LadderResultsDTOTest {
     @Test
     @DisplayName("사다리 실행 결과 생성")
     void get_data() {
-        assertThat(LADDER_RESULTS_DTO.getLadderResults()).isNotNull();
+        assertThat(LADDER_RESULTS_DTO.getLadderResultDTOS()).isNotNull();
     }
     
     @Test

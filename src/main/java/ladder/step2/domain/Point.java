@@ -36,6 +36,10 @@ public class Point {
         return position.pass();
     }
     
+    public Direction getDirection() {
+        return direction;
+    }
+    
     @Override
     public String toString() {
         return "Point{" +

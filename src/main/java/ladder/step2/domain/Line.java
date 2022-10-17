@@ -27,6 +27,10 @@ public class Line {
         return line.get(currentPosition).move();
     }
     
+    public List<Point> getLine() {
+        return line;
+    }
+    
     @Override
     public String toString() {
         return "Line{" +

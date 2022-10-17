@@ -79,7 +79,7 @@ public class InputView {
             System.out.println(LADDER_RESULTS_INPUT_MESSAGE);
             final String input = SCANNER.nextLine();
             checkBlankException(input);
-            return new LadderResultsDTO(input, playersDTO.size());
+            return new LadderResultsDTO(input, playersDTO.getPlayerNameDTOS().size());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputLadderResults(playersDTO);

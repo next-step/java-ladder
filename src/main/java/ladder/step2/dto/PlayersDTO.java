@@ -5,19 +5,20 @@ import ladder.step2.domain.Players;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PlayersDTO {
-    private final List<PlayerName> playerNames;
+    private final List<PlayerNameDTO> playerNameDTOS;
     
     public PlayersDTO(Players players) {
-        playerNames = players.getPlayerNames();
+        playerNameDTOS = players.getPlayerNames()
+                .stream()
+                .map(PlayerName::getPlayerName)
+                .map(PlayerNameDTO::new)
+                .collect(Collectors.toList());
     }
     
-    public int size() {
-        return playerNames.size();
-    }
-    
-    public List<PlayerName> getPlayerNames() {
-        return Collections.unmodifiableList(playerNames);
+    public List<PlayerNameDTO> getPlayerNameDTOS() {
+        return Collections.unmodifiableList(playerNameDTOS);
     }
 }

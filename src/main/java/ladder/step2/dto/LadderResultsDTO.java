@@ -15,10 +15,10 @@ public class LadderResultsDTO {
     private static final String DELIMITER = ",";
     private static final String NOT_EQUALS_LENGTH_EXCEPTION_MESSAGE = "플레이어 수 만큼만 입력할 수 있습니다. 다시 입력해주세요.";
     
-    private final List<LadderResultDTO> ladderResults;
+    private final List<LadderResultDTO> ladderResultDTOS;
     
-    public LadderResultsDTO(final String ladderResults, final int playersSize) {
-        this.ladderResults = parseLadderResults(ladderResults, playersSize);
+    public LadderResultsDTO(final String ladderResultDTOS, final int playersSize) {
+        this.ladderResultDTOS = parseLadderResults(ladderResultDTOS, playersSize);
     }
     
     private List<LadderResultDTO> parseLadderResults(final String ladderResults, final int playersSize) {
@@ -53,7 +53,7 @@ public class LadderResultsDTO {
         return ladderResults.replace(SPACE, EMPTY);
     }
     
-    public List<LadderResultDTO> getLadderResults() {
-        return Collections.unmodifiableList(ladderResults);
+    public List<LadderResultDTO> getLadderResultDTOS() {
+        return Collections.unmodifiableList(ladderResultDTOS);
     }
 }
