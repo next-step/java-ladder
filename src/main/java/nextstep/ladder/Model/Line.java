@@ -7,7 +7,6 @@ import java.util.Objects;
 
 public class Line {
 
-    private static final int STANDARD_START_LOCATION = -1;
     private List<Boolean> line;
 
     public Line(List<Boolean> line) {
@@ -16,10 +15,10 @@ public class Line {
 
     public void checkThisPointIsAbleConnectAndExecuteConnect(ConnectBridgeStrategy connectBridgeStrategy) {
         int cureentLastLocation = line.size() - 1;
-        if (cureentLastLocation == STANDARD_START_LOCATION) {
-            line.add(false);
-            return;
-        }
+		if (line.isEmpty()) {
+			line.add(false);
+			return;
+		}
         if (checkThisPointIsAbleConnect(cureentLastLocation)) {
             line.add(false);
             return;
