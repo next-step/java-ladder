@@ -5,6 +5,8 @@ import java.util.Objects;
 
 public class Ladder {
 
+    private static final int MIN_INDEX_OF_HEIGHT = 0;
+
     private final List<LadderLine> lines;
 
     public Ladder(List<LadderLine> lines) {
@@ -12,6 +14,9 @@ public class Ladder {
     }
 
     public LadderLine getLine(int indexOfHeight) {
+        if (indexOfHeight < MIN_INDEX_OF_HEIGHT || indexOfHeight >= getHeight()) {
+            throw new IndexOutOfBoundsException(indexOfHeight);
+        }
         return lines.get(indexOfHeight);
     }
 
