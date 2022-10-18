@@ -8,7 +8,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class LineGenerator  {
+public class LineGenerator {
 
     private final Supplier<Boolean> lineGeneratePolicy;
 

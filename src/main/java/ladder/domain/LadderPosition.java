@@ -11,7 +11,6 @@ public class LadderPosition {
     }
 
 
-
     public void down() {
         this.ladderLength.increase();
     }

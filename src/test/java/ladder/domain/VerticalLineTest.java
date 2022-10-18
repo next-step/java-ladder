@@ -23,7 +23,7 @@ class VerticalLineTest {
     }
 
     @Test
-    void shouldReturnSamePosition(){
+    void shouldReturnSamePosition() {
         VerticalLine line = new VerticalLine(List.of(new LineUnit()), new HorizontalPosition(0));
 
         assertThat(line.isSamePosition(new HorizontalPosition(0))).isTrue();

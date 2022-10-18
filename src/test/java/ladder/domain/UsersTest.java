@@ -30,25 +30,25 @@ class UsersTest {
     }
 
     @Test
-    void shouldFindAllUserByUsername(){
+    void shouldFindAllUserByUsername() {
         User userA = userWithName("testA");
         User userB = userWithName("testB");
         Users users = new Users(List.of(userA, userB));
 
         List<User> foundUsers = users.findUserByUsernames(List.of(new UserName("testA"), new UserName("testB")));
 
-        assertThat(foundUsers).containsExactly(userA,userB);
+        assertThat(foundUsers).containsExactly(userA, userB);
     }
 
     @Test
-    void shouldGetAllUsername(){
+    void shouldGetAllUsername() {
         User userA = userWithName("testA");
         User userB = userWithName("testB");
         Users users = new Users(List.of(userA, userB));
 
         List<UserName> foundNames = users.findAllUserName();
 
-        assertThat(foundNames).containsExactly(new UserName("testA"),new UserName("testB"));
+        assertThat(foundNames).containsExactly(new UserName("testA"), new UserName("testB"));
     }
 
 

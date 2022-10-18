@@ -6,13 +6,13 @@ public class User {
     private final HorizontalPosition position;
 
 
-    public static User withNameAndPosition(UserName userName,  HorizontalPosition position){
-        return new User(userName , position);
-    }
-
-    private User(UserName userName,  HorizontalPosition position){
+    private User(UserName userName, HorizontalPosition position) {
         this.name = userName;
         this.position = position;
+    }
+
+    public static User withNameAndPosition(UserName userName, HorizontalPosition position) {
+        return new User(userName, position);
     }
 
     public UserName getName() {

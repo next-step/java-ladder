@@ -12,7 +12,6 @@ import java.io.InputStreamReader;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 public class LadderApp {
 
@@ -33,8 +32,8 @@ public class LadderApp {
             while (true) {
                 List<UserName> userNames = UserNameFactory.getUserName(users, inputView.getUserForResult());
                 List<User> foundUsers = users.findUserByUsernames(userNames);
-                
-                ResultDto resultDto = ladderService.getResultOfUser(ladder,foundUsers, ladderResult);
+
+                ResultDto resultDto = ladderService.getResultOfUser(ladder, foundUsers, ladderResult);
                 OutputView.printResult(resultDto);
             }
         } catch (IllegalArgumentException e) {

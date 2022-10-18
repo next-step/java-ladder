@@ -11,7 +11,7 @@ class LineGeneratorTest {
 
     @Test
     void shouldGenerateProperSizeOfLine() {
-        LineGenerator generator = new LineGenerator(()-> true);
+        LineGenerator generator = new LineGenerator(() -> true);
 
         List<HorizontalLine> result = generator.generate(new LineGenerateDto(2, 5));
 
@@ -21,7 +21,7 @@ class LineGeneratorTest {
 
     @Test
     void shouldAlwaysGenerateLine() {
-        LineGenerator generator = new LineGenerator(()-> false);
+        LineGenerator generator = new LineGenerator(() -> false);
 
         List<HorizontalLine> result = generator.generate(new LineGenerateDto(2, 5));
         List<LineUnit> units = result.get(0).getUnits();
@@ -32,7 +32,7 @@ class LineGeneratorTest {
 
     @Test
     void shouldNotAlwaysGenerateLine() {
-        LineGenerator generator = new LineGenerator(()->true);
+        LineGenerator generator = new LineGenerator(() -> true);
 
         List<HorizontalLine> result = generator.generate(new LineGenerateDto(2, 5));
         List<LineUnit> units = result.get(0).getUnits();

@@ -15,7 +15,7 @@ public class Ladder {
 
     public List<HorizontalPosition> play(List<HorizontalPosition> positions) {
         return positions.stream()
-                .map((position)->this.move(new LadderPosition(position)))
+                .map((position) -> this.move(new LadderPosition(position)))
                 .collect(Collectors.toList());
     }
 
@@ -29,7 +29,7 @@ public class Ladder {
 
     private VerticalLine findVerticalLineByPosition(HorizontalPosition position) {
         return this.lines.stream()
-                .filter((line)->line.isSamePosition(position))
+                .filter((line) -> line.isSamePosition(position))
                 .findFirst()
                 .orElseThrow(IllegalStateException::new);
     }

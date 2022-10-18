@@ -2,8 +2,6 @@ package ladder.domain;
 
 import org.junit.jupiter.api.Test;
 
-import java.net.http.HttpRequest;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderPositionTest {

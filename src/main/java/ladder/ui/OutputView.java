@@ -3,9 +3,7 @@ package ladder.ui;
 import ladder.domain.*;
 import ladder.dto.ResultDto;
 
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public abstract class OutputView {
@@ -89,7 +87,7 @@ public abstract class OutputView {
         System.out.println(PLAY_RESULT_MSG);
         List<String> results = resultDtos.getResults();
         List<User> users = resultDtos.getUsers();
-        IntStream.range(0,users.size())
-                        .forEach((idx)-> System.out.printf("%s : %s \n", getNameOfUser(users.get(idx)), results.get(idx)));
+        IntStream.range(0, users.size())
+                .forEach((idx) -> System.out.printf("%s : %s \n", getNameOfUser(users.get(idx)), results.get(idx)));
     }
 }

@@ -3,7 +3,6 @@ package ladder.factory;
 import ladder.domain.HorizontalLine;
 import ladder.domain.LineUnit;
 import ladder.domain.VerticalLine;
-import ladder.factory.LadderFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

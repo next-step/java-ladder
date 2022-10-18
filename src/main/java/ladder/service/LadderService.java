@@ -11,22 +11,22 @@ import java.util.stream.Collectors;
 
 public class LadderService {
 
-    public Ladder getLadder(int numOfUser , LadderLength ladderLength){
+    public Ladder getLadder(int numOfUser, LadderLength ladderLength) {
         LineGenerator lineGenerator = new LineGenerator(() -> new Random().nextBoolean());
-        List<HorizontalLine> horizontalLines = LadderFactory.horizontalLines(new LineGenerateDto(numOfUser, ladderLength.getLength()) , lineGenerator);
-        List<VerticalLine> verticalLines     = LadderFactory.verticalLines(horizontalLines, numOfUser);
-        return new Ladder(verticalLines , ladderLength);
-    };
+        List<HorizontalLine> horizontalLines = LadderFactory.horizontalLines(new LineGenerateDto(numOfUser, ladderLength.getLength()), lineGenerator);
+        List<VerticalLine> verticalLines = LadderFactory.verticalLines(horizontalLines, numOfUser);
+        return new Ladder(verticalLines, ladderLength);
+    }
 
     public ResultDto getResultOfUser(Ladder ladder, List<User> foundUsers, LadderResult ladderResult) {
         List<String> results = getResultOfPosition(ladder, ladderResult, foundUsers);
-        return new ResultDto(foundUsers,results);
+        return new ResultDto(foundUsers, results);
     }
 
     private List<String> getResultOfPosition(Ladder ladder, LadderResult ladderResult, List<User> foundUsers) {
         List<HorizontalPosition> positions = getStartPosition(foundUsers);
 
-        return  ladder.play(positions)
+        return ladder.play(positions)
                 .stream()
                 .map(ladderResult::result)
                 .collect(Collectors.toList());
