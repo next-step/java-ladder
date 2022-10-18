@@ -5,13 +5,9 @@ import nextstep.laddergame.wrapper.Height;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Game {
+public class Game implements LadderGameInterface {
     private final List<Gamer> gamers;
     private final Ladder ladder;
-
-    public Ladder getLadder() {
-        return ladder;
-    }
 
     public List<Line> getLadderLines() {
         return this.ladder.getLines();
@@ -38,12 +34,14 @@ public class Game {
         return this.gamers.get(index);
     }
 
+    @Override
     public int getResultIndex(int startIndex) {
         Line startLine = ladder.getStartLine();
         LadderPiece startLadderPiece = startLine.getLadderPiece(startIndex);
         return startLadderPiece.moveToLadder(startIndex);
     }
 
+    @Override
     public List<Integer> getResultAll() {
         List<Integer> resultIndexes = new ArrayList<>();
         Line startLine = ladder.getStartLine();
