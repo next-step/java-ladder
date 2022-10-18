@@ -16,5 +16,7 @@ public class LadderGame {
         Ladder ladder = new Ladder(persons, numberOfLadder);
         // 사다리 출력하기
         OutputView.printLadder(ladder);
+        // 결과를 출력하고 싶은 사람 이름 입력받기
+        String wantResult = InputView.askPersonNameWantToKnowResult();
     }
 }

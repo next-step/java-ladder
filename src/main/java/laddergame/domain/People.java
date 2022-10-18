@@ -34,4 +34,8 @@ public class People {
     public List<PersonName> getNames() {
         return Collections.unmodifiableList(names);
     }
+
+    public boolean contains(PersonName name){
+        return names.contains(name);
+    }
 }
