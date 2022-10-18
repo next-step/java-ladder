@@ -56,17 +56,8 @@ public class LadderPiece {
     }
 
     public int moveToLadder(int currentIndex) {
-        LadderPiece nextPiece = this;
-        if (getBridgePosition().equals(BridgePositionEnum.RIGHT)) {
-            nextPiece = nextPiece.getRightPiece();
-            currentIndex++;
-        }
-        if (getBridgePosition().equals(BridgePositionEnum.LEFT)) {
-            nextPiece = nextPiece.getLeftPiece();
-            currentIndex--;
-        }
-        nextPiece = nextPiece.getBottomPiece();
-
+        LadderPiece nextPiece = this.bridgePosition.getNextPiece(this);
+        currentIndex += BridgePositionEnum.getNextPositionIndex(this.bridgePosition);
         if (nextPiece == null) {
             return currentIndex;
         }
