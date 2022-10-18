@@ -1,7 +1,6 @@
 package nextstep.ladder;
 
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
 public class Input {
     private final static Scanner SCANNER = new Scanner(System.in);
@@ -11,11 +10,15 @@ public class Input {
     private final static String NOT_ENTERED_VALUE = "값이 입력되지 않았습니다.";
     private final static String SEPARATOR_COMMA = ",";
 
-    public static String inputPerson() {
+    private Input() {
+        throw new AssertionError();
+    }
+
+    public static String[] inputPerson() {
         System.out.println(ENTER_NAME_OF_PERSON);
         String input = SCANNER.nextLine();
         if (containsSeparator(input)) {
-            return input;
+            return input.split(SEPARATOR_COMMA);
         }
         throw new IllegalArgumentException(INVALID_NAME_FORMAT);
     }
