@@ -33,17 +33,17 @@ public class Ladder {
         return new Ladder(lines);
     }
 
-    public int destinationPosition(int pointPosition) {
+    public int destinationPosition(int startPosition) {
         int linePosition = 0;
 
         while (true) {
-            Point point = findPoint(linePosition, pointPosition);
+            Point point = findPoint(linePosition, startPosition);
 
             if (linePosition == lines.size() - 1) {
                 return point.nextPosition();
             }
 
-            pointPosition = point.nextPosition();
+            startPosition = point.nextPosition();
             linePosition++;
         }
     }
