@@ -1,7 +1,7 @@
 package nextstep.fp;
 
 import java.util.List;
-import java.util.function.Predicate;
+import java.util.function.IntPredicate;
 
 public class Lambda {
     public static void printAllOld(List<Integer> numbers) {
@@ -22,10 +22,11 @@ public class Lambda {
         new Thread(() -> System.out.println("Hello from thread")).start();
     }
 
-    public static int sumAllByCondition(List<Integer> numbers, Predicate<Integer> condition) {
+    public static int sumAllByCondition(List<Integer> numbers, IntPredicate condition) {
         return numbers.stream()
+                .mapToInt(number -> number)
                 .filter(condition)
-                .reduce(0, (num1, num2) -> num1 + num2);
+                .sum();
     }
 
 }
