@@ -2,7 +2,7 @@ package nextstep.ladder.domain.ladder;
 
 public class Point {
 
-    public static final int DEFAULT_POSITION = 0;
+    private static final int DEFAULT_POSITION = 0;
     private static final String INVALID_POSITION_EXCEPTION_MESSAGE = "위치는 0 이상이어야 합니다.";
 
     private final int position;
