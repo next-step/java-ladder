@@ -1,10 +1,12 @@
 package nextstep.ladder.dto;
 
 import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.Point;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LineDto {
 
@@ -17,13 +19,14 @@ public class LineDto {
 
     public static LineDto from(final Line line) {
 
-        final List<PointDto> pointsDto = line.getPoints()
-                .stream()
-                //.filter(point -> point.get)
-                .map(PointDto::from)
+        final List<PointDto> collect = IntStream.range(0, line.getPoints().size() - 1)
+                .mapToObj(i -> {
+                    final Point point = line.getPoints().get(i);
+                    return PointDto.from(point);
+                })
                 .collect(Collectors.toList());
 
-        return new LineDto(pointsDto);
+        return new LineDto(collect);
     }
 
     public List<PointDto> getPointsDto() {
