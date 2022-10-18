@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.*;
+
 class UserNameFactoryTest {
 
     @Test
@@ -22,8 +24,8 @@ class UserNameFactoryTest {
         List<UserName> resultA = UserNameFactory.getUserName(users, UserNameFactory.ALL_USER);
         List<UserName> resultB = UserNameFactory.getUserName(users, "testA");
 
-        Assertions.assertThat(resultA).containsOnly(new UserName("testA"), new UserName("testB"));
-        Assertions.assertThat(resultB).containsOnly(new UserName("testA"));
+        assertThat(resultA).containsOnly(new UserName("testA"), new UserName("testB"));
+        assertThat(resultB).containsOnly(new UserName("testA"));
     }
 
     private User getUser(String username, int startPosition) {

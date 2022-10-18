@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.function.Supplier;
 
+import static org.assertj.core.api.Assertions.*;
+
 class LadderTest {
 
     @Test
@@ -27,8 +29,8 @@ class LadderTest {
         List<HorizontalPosition> resultA = ladder.play(List.of(new HorizontalPosition(0)));
         List<HorizontalPosition> resultB = ladder.play(List.of(new HorizontalPosition(1)));
 
-        Assertions.assertThat(resultA).containsOnly(new HorizontalPosition(0));
-        Assertions.assertThat(resultB).containsOnly(new HorizontalPosition(1));
+        assertThat(resultA).containsOnly(new HorizontalPosition(0));
+        assertThat(resultB).containsOnly(new HorizontalPosition(1));
     }
 
 
