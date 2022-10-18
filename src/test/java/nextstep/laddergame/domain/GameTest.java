@@ -24,7 +24,7 @@ class GameTest {
     ));
     private static RewardWrapper rewardWrapper = new RewardWrapper(Arrays.asList("꽝", "5000", "꽝", "3000"));
     private static Height height = new Height("5");
-    Game game = new Game(gamers, height, DrawBridgeStrategy.DEFAULT_STRATEGY);
+    private static Game game = new Game(gamers, height, DrawBridgeStrategy.DEFAULT_STRATEGY);
 
     @Test
     public void get_gamer_test() {
