@@ -30,7 +30,7 @@ public class StreamStudy {
         words.stream()
                 .filter(w -> w.length() > 12)
                 .distinct()
-                .sorted((a,b)->Integer.compare(b.length(), a.length()))
+                .sorted((a, b) -> Integer.compare(b.length(), a.length()))
                 .limit(100)
                 .map(String::toLowerCase)
                 .forEach(System.out::println);
@@ -44,7 +44,8 @@ public class StreamStudy {
     }
 
     public static long sumAll(List<Integer> numbers) {
-        return numbers.stream().reduce(0, Integer::sum);
+        return numbers.stream()
+                .reduce(0, Integer::sum);
     }
 
 
