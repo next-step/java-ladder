@@ -1,7 +1,9 @@
 package nextstep.optional;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class User {
     private String name;
@@ -41,7 +43,9 @@ public class User {
                 .filter(Objects::nonNull)
                 .map(User::getAge)
                 .filter(Objects::nonNull)
-                .anyMatch((age) -> age >= 30 && age <= 45);
+                .filter((age) -> age >= 30 && age <= 45)
+                .findAny()
+                .isPresent();
     }
 
     @Override
