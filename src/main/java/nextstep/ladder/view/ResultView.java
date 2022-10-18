@@ -1,6 +1,6 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.dto.LadderResultDto;
+import nextstep.ladder.dto.LadderWinningResultDto;
 import nextstep.ladder.dto.LineDto;
 import nextstep.ladder.dto.ParticipationNameDto;
 import nextstep.ladder.dto.PointDto;
@@ -86,11 +86,11 @@ public class ResultView {
         return "     ";
     }
 
-    public static void resultName(final String name, final LadderResultDto ladderResultDto) {
+    public static void resultName(final String name, final LadderWinningResultDto ladderWinningResultDto) {
 
         resultTitlePrint();
 
-        final Map<String, String> ladderResultDtoMap = ladderResultDto.getLadderResultDto();
+        final Map<String, String> ladderResultDtoMap = ladderWinningResultDto.getLadderResultDto();
         if ("all".equals(name)) {
             printOfAll(ladderResultDtoMap);
             return ;
