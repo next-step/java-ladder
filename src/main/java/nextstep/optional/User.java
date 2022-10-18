@@ -36,10 +36,7 @@ public class User {
 
     public static boolean ageIsInRange2(User user) {
         return Optional.ofNullable(user)
-                .map(User::getAge)
-                .filter(age -> age >= 30 && age <= 45)
-                .stream()
-                .findAny()
+                .filter(one -> one.getAge() >= 30 && one.getAge() <= 45)
                 .isPresent();
     }
 
@@ -72,5 +69,9 @@ public class User {
         } else if (!name.equals(other.name))
             return false;
         return true;
+    }
+
+    public boolean equalsName(String name) {
+        return this.name.equals(name);
     }
 }

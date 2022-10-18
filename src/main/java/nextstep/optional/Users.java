@@ -13,6 +13,6 @@ public class Users {
             new User("honux", 45));
 
     User getUser(String name) {
-        return users.stream().filter(user -> user.getName().equals(name)).findFirst().orElse(DEFAULT_USER);
+        return users.stream().filter(user -> user.equalsName(name)).findFirst().orElse(DEFAULT_USER);
     }
 }
