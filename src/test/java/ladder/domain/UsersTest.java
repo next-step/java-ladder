@@ -16,8 +16,8 @@ class UsersTest {
         User userB = userWithName("testB");
         Users users = new Users(List.of(userA, userB));
 
-        assertThat(users.findStartPositionByUsername(new UserName("testA"))).isEqualTo(List.of(0));
-        assertThat(users.findStartPositionByUsername(new UserName("testB"))).isEqualTo(List.of(1));
+        assertThat(users.findUserByUsername(new UserName("testA"))).isEqualTo(userA);
+        assertThat(users.findUserByUsername(new UserName("testB"))).isEqualTo(userB);
     }
 
     @Test
@@ -26,11 +26,34 @@ class UsersTest {
         User userB = userWithName("testB");
         Users users = new Users(List.of(userA, userB));
 
-        assertThatThrownBy(() -> users.findStartPositionByUsername(new UserName("hello"))).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> users.findUserByUsername(new UserName("hello"))).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void shouldFindAllUserByUsername(){
+        User userA = userWithName("testA");
+        User userB = userWithName("testB");
+        Users users = new Users(List.of(userA, userB));
+
+        List<User> foundUsers = users.findUserByUsernames(List.of(new UserName("testA"), new UserName("testB")));
+
+        assertThat(foundUsers).containsExactly(userA,userB);
+    }
+
+    @Test
+    void shouldGetAllUsername(){
+        User userA = userWithName("testA");
+        User userB = userWithName("testB");
+        Users users = new Users(List.of(userA, userB));
+
+        List<UserName> foundNames = users.findAllUserName();
+
+        assertThat(foundNames).containsExactly(new UserName("testA"),new UserName("testB"));
+    }
+
+
     private User userWithName(String name) {
-        return new User(new UserName(name), position);
+        return User.withNameAndPosition(new UserName(name), new HorizontalPosition(0));
     }
 
 

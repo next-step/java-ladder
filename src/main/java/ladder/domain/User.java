@@ -24,10 +24,7 @@ public class User {
     }
 
     public HorizontalPosition getPosition() {
-        return position;
+        return new HorizontalPosition(position.getPosition());
     }
 
-    public boolean isSamePosition(HorizontalPosition position) {
-        return this.position.equals(position);
-    }
 }

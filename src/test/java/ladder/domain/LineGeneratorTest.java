@@ -7,13 +7,13 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class RandomLineGeneratorTest {
+class LineGeneratorTest {
 
     @Test
     void shouldGenerateProperSizeOfLine() {
-        LineGenerator generator = new RandomLineGenerator();
+        LineGenerator generator = new LineGenerator(()-> true);
 
-        List<HorizontalLine> result = generator.generate(new LineGenerateDto(2, 5),()-> true);
+        List<HorizontalLine> result = generator.generate(new LineGenerateDto(2, 5));
 
         assertThat(result.get(0).size()).isEqualTo(2);
         assertThat(result.size()).isEqualTo(5);
@@ -21,9 +21,9 @@ class RandomLineGeneratorTest {
 
     @Test
     void shouldAlwaysGenerateLine() {
-        LineGenerator generator = new RandomLineGenerator();
+        LineGenerator generator = new LineGenerator(()-> false);
 
-        List<HorizontalLine> result = generator.generate(new LineGenerateDto(2, 5),()-> false);
+        List<HorizontalLine> result = generator.generate(new LineGenerateDto(2, 5));
         List<LineUnit> units = result.get(0).getUnits();
 
         assertThat(units.get(0).hasNext()).isTrue();
@@ -32,9 +32,9 @@ class RandomLineGeneratorTest {
 
     @Test
     void shouldNotAlwaysGenerateLine() {
-        LineGenerator generator = new RandomLineGenerator();
+        LineGenerator generator = new LineGenerator(()->true);
 
-        List<HorizontalLine> result = generator.generate(new LineGenerateDto(2, 5),()->true);
+        List<HorizontalLine> result = generator.generate(new LineGenerateDto(2, 5));
         List<LineUnit> units = result.get(0).getUnits();
 
         assertThat(units.get(0).hasNext()).isFalse();

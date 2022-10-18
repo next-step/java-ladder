@@ -31,7 +31,9 @@ public class LadderResult {
     }
 
     public List<String> getResult() {
-        return new ArrayList<>(this.resultMap.values());
+        return this.resultMap.entrySet().stream().sorted(Map.Entry.comparingByKey())
+                .map(Map.Entry::getValue)
+                .collect(Collectors.toList());
     }
 
     public int size() {

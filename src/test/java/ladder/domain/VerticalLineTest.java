@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.factory.VerticalMapper;
+import ladder.factory.LadderFactory;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -11,24 +11,23 @@ import static org.assertj.core.api.Assertions.assertThat;
 class VerticalLineTest {
 
     @Test
-    void shouldMapToVertical() {
-        HorizontalLine horizontalLine = new HorizontalLine(List.of(new LineUnit()));
-
-        VerticalLine verticalLine = VerticalLine.mapHorizontalLineToVertical(List.of(horizontalLine), 0);
-
-        assertThat(verticalLine.getLineUnits().size()).isEqualTo(1);
-    }
-
-    @Test
     void shouldMovePosition() {
         List<VerticalLine> verticalLine = getVerticalLines();
-        LadderPosition position = new LadderPosition(0);
+        HorizontalPosition horizontalPosition = new HorizontalPosition(0);
+        LadderPosition position = new LadderPosition(horizontalPosition);
 
         verticalLine.get(0).move(position, new LadderLength(2));
 
-        assertThat(position.getHorizontalPosition()).isEqualTo(1);
+        assertThat(position.getHorizontalPosition()).isEqualTo(new HorizontalPosition(1));
         assertThat(position.length()).isEqualTo(1);
+    }
 
+    @Test
+    void shouldReturnSamePosition(){
+        VerticalLine line = new VerticalLine(List.of(new LineUnit()), new HorizontalPosition(0));
+
+        assertThat(line.isSamePosition(new HorizontalPosition(0))).isTrue();
+        assertThat(line.isSamePosition(new HorizontalPosition(1))).isFalse();
     }
 
     /***
@@ -42,7 +41,7 @@ class VerticalLineTest {
         unitA.addNext(unitB);
         HorizontalLine horizontalLineA = new HorizontalLine(List.of(unitA, unitB));
         HorizontalLine horizontalLineB = new HorizontalLine(List.of(unitA, unitB));
-        return VerticalMapper.map(List.of(horizontalLineA, horizontalLineB), 2);
+        return LadderFactory.verticalLines(List.of(horizontalLineA, horizontalLineB), 2);
     }
 
 }

@@ -18,11 +18,6 @@ class UserNameTest {
         assertThatThrownBy(() -> new UserName("   ")).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void shouldReturnIsAllOrNot() {
-        assertThat(new UserName(UserName.ALL_USER_NAME).isAllUser()).isTrue();
-        assertThat(new UserName("test").isAllUser()).isFalse();
-    }
 
     @Test
     void shouldReturnMaxLength() {

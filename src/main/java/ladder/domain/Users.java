@@ -14,12 +14,12 @@ public class Users {
     }
 
     public static Users createUsersWithName(List<String> names) {
-       return new Users(IntStream.range(0,names.size())
-                .mapToObj((idx)-> User.withNameAndPosition(new UserName(names.get(idx)),new HorizontalPosition(idx)))
+        return new Users(IntStream.range(0, names.size())
+                .mapToObj((idx) -> User.withNameAndPosition(new UserName(names.get(idx)), new HorizontalPosition(idx)))
                 .collect(Collectors.toList()));
     }
 
-    public List<UserName> allUserName() {
+    public List<UserName> findAllUserName() {
         return this.users.stream()
                 .map(User::getName)
                 .collect(Collectors.toList());
@@ -29,20 +29,18 @@ public class Users {
         return this.users.size();
     }
 
-
-    public User findUserByUsername(UserName name) {
-        return this.users.stream()
-                .filter((user)->user.isSameName(name))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 유저입니다."));
-
+    public List<User> findUserByUsernames(List<UserName> names) {
+        return names.stream()
+                .map(this::findUserByUsername)
+                .collect(Collectors.toList());
     }
 
-    public User findUserByPosition(HorizontalPosition position){
+    User findUserByUsername(UserName name) {
         return this.users.stream()
-                .filter((user)->user.isSamePosition(position))
+                .filter((user) -> user.isSameName(name))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 유저입니다."));
+
     }
 
     public List<User> getUsers() {

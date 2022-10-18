@@ -2,13 +2,13 @@ package ladder.domain;
 
 import java.util.Objects;
 
-public class HorizontalPosition {
+public class HorizontalPosition implements Comparable<HorizontalPosition>  {
 
     private int position;
 
     public HorizontalPosition(int position) {
         if (position < 0){
-            throw new IllegalArgumentException("사용자 위치 인덱스 값은 0 보다 작을 수 없습니다.");
+            throw new IllegalArgumentException("인덱스 값은 0 보다 작을 수 없습니다.");
         }
         this.position = position;
     }
@@ -36,5 +36,10 @@ public class HorizontalPosition {
     @Override
     public int hashCode() {
         return Objects.hash(position);
+    }
+
+    @Override
+    public int compareTo(HorizontalPosition target) {
+        return Integer.compare(this.position, target.position);
     }
 }

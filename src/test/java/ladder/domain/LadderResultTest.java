@@ -25,10 +25,9 @@ class LadderResultTest {
     void shouldGetGameResult() {
         LadderResult result = new LadderResult(Arrays.asList("제로콜라", "곱창", "떡볶이"), 3);
 
-        assertThat(result.result(List.of(new LadderPosition(0)))).containsExactly("제로콜라");
-        assertThat(result.result(List.of(new LadderPosition(1)))).containsExactly("곱창");
-        assertThat(result.result(List.of(new LadderPosition(2), new LadderPosition(1)))).containsExactly("떡볶이", "곱창");
+        assertThat(result.result(new HorizontalPosition(0))).isEqualTo("제로콜라");
+        assertThat(result.result(new HorizontalPosition(1))).isEqualTo("곱창");
+        assertThat(result.result(new HorizontalPosition(2))).isEqualTo("떡볶이");
     }
-
 
 }

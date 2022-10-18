@@ -14,15 +14,6 @@ public class VerticalLine {
         this.horizontalPosition = horizontalPosition;
     }
 
-    public static VerticalLine mapHorizontalLineToVertical(List<HorizontalLine> horizontalLine, int userIndex) {
-        List<LineUnit> verticalLine = new ArrayList<>();
-        for (int lineIndex = 0; lineIndex < horizontalLine.size(); lineIndex++) {
-            HorizontalLine line = horizontalLine.get(lineIndex);
-            LineUnit lineUnit = line.getUnits().get(userIndex);
-            verticalLine.add(lineUnit);
-        }
-        return new VerticalLine(verticalLine, new HorizontalPosition(userIndex));
-    }
 
     public void move(LadderPosition ladderPosition, LadderLength ladderLength) {
         if (ladderPosition.isArrived(ladderLength)) {

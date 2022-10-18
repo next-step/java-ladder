@@ -3,8 +3,10 @@ package ladder.ui;
 import ladder.domain.*;
 import ladder.dto.ResultDto;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public abstract class OutputView {
 
@@ -67,7 +69,8 @@ public abstract class OutputView {
     }
 
     private static void printResult(LadderResult result, int maxInterval) {
-        result.getResult().stream().forEach((username) -> System.out.print(addDelimiter(maxInterval - username.length(), LADDER_WITH_NO_SPACE) + username));
+        result.getResult()
+                .forEach((username) -> System.out.print(addDelimiter(maxInterval - username.length(), LADDER_WITH_NO_SPACE) + username));
     }
 
     private static String addDelimiter(int length, String delimiter) {
@@ -82,8 +85,11 @@ public abstract class OutputView {
         return user.getName().getName();
     }
 
-    public static void printResult(List<ResultDto> resultDtos) {
+    public static void printResult(ResultDto resultDtos) {
         System.out.println(PLAY_RESULT_MSG);
-        resultDtos.forEach((dto)-> System.out.printf("%s : %S \n" , dto.getUser().getName().getName() , dto.getResult()));
+        List<String> results = resultDtos.getResults();
+        List<User> users = resultDtos.getUsers();
+        IntStream.range(0,users.size())
+                        .forEach((idx)-> System.out.printf("%s : %s \n", getNameOfUser(users.get(idx)), results.get(idx)));
     }
 }

@@ -2,6 +2,7 @@ package ladder;
 
 import ladder.domain.*;
 import ladder.dto.ResultDto;
+import ladder.factory.UserNameFactory;
 import ladder.service.LadderService;
 import ladder.ui.InputView;
 import ladder.ui.OutputView;
@@ -30,14 +31,11 @@ public class LadderApp {
             OutputView.printLadder(users, ladder, ladderResult);
 
             while (true) {
-                List<HorizontalPosition> resultPositions = ladderService.getResultOfUser(ladder, users, inputView.getUserForResult());
-                List<ResultDto> resultDtos = resultPositions.stream()
-                        .map((position) -> {
-                            User foundUser = users.findUserByPosition(position);
-                            String foundResult = ladderResult.result(position);
-                            return new ResultDto(foundUser, foundResult);
-                        }).collect(Collectors.toList());
-                OutputView.printResult(resultDtos);
+                List<UserName> userNames = UserNameFactory.getUserName(users, inputView.getUserForResult());
+                List<User> foundUsers = users.findUserByUsernames(userNames);
+                
+                ResultDto resultDto = ladderService.getResultOfUser(ladder,foundUsers, ladderResult);
+                OutputView.printResult(resultDto);
             }
         } catch (IllegalArgumentException e) {
             LOGGER.log(Level.SEVERE, "유효하지 않은 입력값입니다.", e);
