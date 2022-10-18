@@ -1,6 +1,7 @@
 package nextstep.laddergame.domain;
 
 import nextstep.laddergame.wrapper.Height;
+import nextstep.laddergame.wrapper.Participants;
 import nextstep.laddergame.wrapper.RewardWrapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,15 +16,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 class GameTest {
     private static String POBI = "pobi";
     private static int POBI_INDEX = 0;
-    private static List<Gamer> gamers = Arrays.asList(
+    private static Participants gamers = new Participants(Arrays.asList(
             new Gamer(POBI, POBI_INDEX)
             , new Gamer("honux", 1)
             , new Gamer("crong", 2)
             , new Gamer("jk", 3)
-    );
+    ));
     private static RewardWrapper rewardWrapper = new RewardWrapper(Arrays.asList("꽝", "5000", "꽝", "3000"));
     private static Height height = new Height("5");
-    Game game = new Game(gamers, height, DrawBridgeStrategy.DEFAULT_STRATEGY);
+    private static Game game = new Game(gamers, height, DrawBridgeStrategy.DEFAULT_STRATEGY);
 
     @Test
     public void get_gamer_test() {
