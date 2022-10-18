@@ -5,14 +5,14 @@ package ladder.domain;
  */
 public class LadderColumnWidth implements LadderColumn {
 
-	private final boolean isEmpty;
+	private final boolean isNotEmpty;
 
-	public LadderColumnWidth(boolean isEmpty) {
-		this.isEmpty = isEmpty;
+	public LadderColumnWidth(boolean isNotEmpty) {
+		this.isNotEmpty = isNotEmpty;
 	}
 
 	@Override
 	public boolean isNotEmpty() {
-		return isEmpty;
+		return isNotEmpty;
 	}
 }
