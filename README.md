@@ -7,3 +7,7 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+## 1단계 - 자바8 스트림, 람다, Optional
+* [x] 람다 학습 및 실습
+  * 변경가능성높음 것을 인터페이스로 정의하고 람다로 사용
