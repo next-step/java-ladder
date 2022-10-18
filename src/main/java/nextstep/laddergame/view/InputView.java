@@ -2,10 +2,10 @@ package nextstep.laddergame.view;
 
 import nextstep.laddergame.domain.Gamer;
 import nextstep.laddergame.wrapper.Height;
+import nextstep.laddergame.wrapper.Participants;
 import nextstep.laddergame.wrapper.RewardWrapper;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -33,15 +33,18 @@ public class InputView {
                 .collect(Collectors.toList()));
     }
 
-    public static List<Gamer> inputGamerNames() {
+    public static Participants inputGamerNames() {
         System.out.println(INPUT_GAMER_NAMS_STRING);
         Scanner scanner = new Scanner(System.in);
         String gamerNamesString = scanner.nextLine();
         AtomicInteger index = new AtomicInteger();
-        return Arrays
-                .stream(gamerNamesString.split(SEPARATE))
-                .map(name -> new Gamer(name, index.getAndIncrement()))
-                .collect(Collectors.toList());
+
+        return new Participants(
+                Arrays
+                        .stream(gamerNamesString.split(SEPARATE))
+                        .map(name -> new Gamer(name, index.getAndIncrement()))
+                        .collect(Collectors.toList())
+        );
     }
 
     public static Height inputLadderHeight() {

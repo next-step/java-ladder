@@ -1,37 +1,34 @@
 package nextstep.laddergame.domain;
 
 import nextstep.laddergame.wrapper.Height;
+import nextstep.laddergame.wrapper.Participants;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Game implements LadderGameInterface {
-    private final List<Gamer> gamers;
+    private final Participants participants;
     private final Ladder ladder;
 
     public List<Line> getLadderLines() {
         return this.ladder.getLines();
     }
 
-    public List<Gamer> getGamers() {
-        return gamers;
-    }
-
-    public Game(List<Gamer> gamers, Height ladderHeight, BridgeInterface bridgeInterface) {
-        this.gamers = gamers;
-        this.ladder = new Ladder(gamers.size(), ladderHeight, bridgeInterface);
+    public Game(Participants participants, Height ladderHeight, BridgeInterface bridgeInterface) {
+        this.participants = participants;
+        this.ladder = new Ladder(participants.getNumberOfPerson(), ladderHeight, bridgeInterface);
     }
 
     public Gamer getGamer(String name) {
-        return this.gamers
-                .stream()
-                .filter(vo -> vo.getName().equals(name))
-                .findFirst()
-                .orElse(null);
+        return this.participants.getGamer(name);
     }
 
     public Gamer getGamer(int index) {
-        return this.gamers.get(index);
+        return this.participants.getGamer(index);
+    }
+
+    public List<Gamer> getGamers() {
+        return this.participants.getGamers();
     }
 
     @Override
@@ -45,7 +42,7 @@ public class Game implements LadderGameInterface {
     public List<Integer> getResultAll() {
         List<Integer> resultIndexes = new ArrayList<>();
         Line startLine = ladder.getStartLine();
-        for (Gamer gamer : gamers) {
+        for (Gamer gamer : this.participants.getGamers()) {
             int index = gamer.getIndex();
             LadderPiece startLadderPiece = startLine.getLadderPiece(index);
             resultIndexes.add(startLadderPiece.moveToLadder(index));
