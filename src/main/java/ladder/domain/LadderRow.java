@@ -24,11 +24,7 @@ public class LadderRow {
 	}
 
 	private static int getTotalColumnCount(int personCount) {
-		if (personCount == 2) {
-			return 3;
-		}
-
-		return personCount + 2;
+		return personCount + (personCount - 1);
 	}
 
 	private void createRow(Supplier<Boolean> booleanSupplier, int totalColumnCount) {
