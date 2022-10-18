@@ -2,6 +2,7 @@ package ladder;
 
 import ladder.domain.Ladder;
 import ladder.domain.LadderFactory;
+import ladder.dto.InputDTO;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 

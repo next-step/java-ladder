@@ -1,10 +1,9 @@
 package ladder.domain;
 
-import ladder.InputDTO;
+import ladder.dto.InputDTO;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by seungwoo.song on 2022-10-17

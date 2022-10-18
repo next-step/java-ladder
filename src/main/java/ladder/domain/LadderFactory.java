@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.InputDTO;
+import ladder.dto.InputDTO;
 
 import java.util.ArrayList;
 import java.util.List;

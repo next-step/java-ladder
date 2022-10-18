@@ -1,6 +1,6 @@
 package ladder.view;
 
-import ladder.InputDTO;
+import ladder.dto.InputDTO;
 import ladder.domain.*;
 
 import java.util.stream.Collectors;
