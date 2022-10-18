@@ -35,20 +35,13 @@ class LineTest {
     @Test
     void verify_line() {
 
-        final Point first = Point.first(true);
-        final List<Point> points = List.of(first
-                , first.next(false)
-                , first.next(false).next(true)
-                , first.next(false).next(true).next(false)
-        );
-        final Line line = new Line(points);
         final Map<Integer, Integer> convert = line.convert();
 
         assertAll(
-                () -> assertThat(convert.get(0)).isEqualTo(1),
-                () -> assertThat(convert.get(1)).isEqualTo(0),
-                () -> assertThat(convert.get(2)).isEqualTo(3),
-                () -> assertThat(convert.get(3)).isEqualTo(2)
+                () -> assertThat(convert).containsEntry(0, 1),
+                () -> assertThat(convert).containsEntry(1, 0),
+                () -> assertThat(convert).containsEntry(2, 3),
+                () -> assertThat(convert).containsEntry(3, 2)
         );
     }
 }
