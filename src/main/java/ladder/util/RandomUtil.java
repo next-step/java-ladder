@@ -7,7 +7,7 @@ import java.util.Random;
  */
 public class RandomUtil {
 
-	private static final int MAX_BOOLEAN_NUMBER = 1;
+	private static final int MAX_BOOLEAN_NUMBER = 2;
 
 	private static final Random RANDOM = new Random();
 
@@ -15,7 +15,7 @@ public class RandomUtil {
 	}
 
 	public static boolean random() {
-		return random(MAX_BOOLEAN_NUMBER) == 0;
+		return random(MAX_BOOLEAN_NUMBER) == 1;
 	}
 
 	private static int random(int maxNumber) {
