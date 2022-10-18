@@ -1,4 +1,4 @@
-package nextstep.ladder.view;
+package nextstep.ladder.domain;
 
 public class Person {
 
