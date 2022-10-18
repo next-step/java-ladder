@@ -92,7 +92,7 @@ public class Line {
     }
 
     public Point findPoint(int pointPosition) {
-        return points().get(pointPosition);
+        return points.get(pointPosition);
     }
 
     public List<Point> points() {
