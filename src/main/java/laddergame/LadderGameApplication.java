@@ -2,7 +2,7 @@ package laddergame;
 
 import laddergame.component.LadderFactory;
 import laddergame.component.RandomLadderLineFactory;
-import laddergame.domain.LadderGame;
+import laddergame.controller.LadderGame;
 import laddergame.dto.LadderGameResult;
 import laddergame.dto.LadderGameRunRequest;
 import laddergame.view.InputView;

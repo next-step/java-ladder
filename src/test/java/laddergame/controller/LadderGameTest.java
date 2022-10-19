@@ -1,6 +1,7 @@
-package laddergame.domain;
+package laddergame.controller;
 
 import laddergame.component.LadderFactory;
+import laddergame.domain.LadderLine;
 import laddergame.dto.LadderDto;
 import laddergame.dto.LadderGameResult;
 import laddergame.dto.LadderGameRunRequest;

@@ -1,6 +1,9 @@
-package laddergame.domain;
+package laddergame.controller;
 
 import laddergame.component.LadderFactory;
+import laddergame.domain.Ladder;
+import laddergame.domain.LadderGameReward;
+import laddergame.domain.ParticipantName;
 import laddergame.dto.LadderGameResult;
 import laddergame.dto.LadderGameRunRequest;
 
