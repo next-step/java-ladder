@@ -196,12 +196,10 @@ jk : 5000
 
 ### 기능 구현 사항
 
-- [X] `LadderWinningResult`
-  - [X] 순수 결과 처리할 객체
-  - [X] 인덱스로 사다리 결과 계산
 - [X] `LadderWinningResultDto`
   - [X] 화면에서 출력할 DTO 객체
   - [X] 참가한 사람의 대한 최종 결과 저장
+  - [X] 인덱스로 사다리 결과 계산
 - [X] `InputView`
   - [X] 결과 검색 입력 
 - [X] `ResultView`
