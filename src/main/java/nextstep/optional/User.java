@@ -39,7 +39,7 @@ public class User {
                 .stream()
                 .filter(u -> u.getAge() != null)
                 .filter(u -> u.getAge() >= 30 && u.getAge() <= 45)
-                .findAny()
+                .findFirst()
                 .isPresent();
     }
 
