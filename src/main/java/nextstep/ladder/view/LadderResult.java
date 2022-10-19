@@ -3,10 +3,10 @@ package nextstep.ladder.view;
 import nextstep.ladder.domain.Game;
 import nextstep.ladder.domain.ladder.Line;
 import nextstep.ladder.domain.ladder.Point;
+import nextstep.ladder.domain.ladder.Results;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class LadderResult {
     private static final String NEW_LINE = System.lineSeparator();
@@ -15,9 +15,9 @@ public class LadderResult {
     private static final String DISABLE_RIGHT_POINT = "     ";
 
     private final Game game;
-    private final String[] results;
+    private final Results results;
 
-    public LadderResult(Game game, String[] results) {
+    public LadderResult(Game game, Results results) {
         this.game = game;
         this.results = results;
     }
@@ -65,8 +65,9 @@ public class LadderResult {
     }
 
     public String results() {
-        return Stream.of(results)
-                .map(result -> String.format("%6s", result))
+        return results.values()
+                .stream()
+                .map(result -> String.format("%6s", result.value()))
                 .collect(Collectors.joining());
     }
 }

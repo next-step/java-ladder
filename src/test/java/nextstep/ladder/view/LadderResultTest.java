@@ -4,6 +4,7 @@ import nextstep.ladder.domain.Game;
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.ladder.Line;
 import nextstep.ladder.domain.ladder.Point;
+import nextstep.ladder.domain.ladder.Results;
 import nextstep.ladder.domain.player.Players;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,7 +26,8 @@ class LadderResultTest {
         Line line = new Line(points);
         Players players = Players.create("test1", "test2", "test3", "test4", "test5");
         Ladder ladder = new Ladder(List.of(line));
-        String[] results = {"a", "b", "c", "d" , "e"};
+        String[] stringResults = {"a", "b", "c", "d" , "e"};
+        Results results = new Results(stringResults);
         Game game = new Game(players, ladder, results);
 
         LadderResult result = new LadderResult(game, results);
