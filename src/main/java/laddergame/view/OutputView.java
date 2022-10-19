@@ -1,9 +1,7 @@
 package laddergame.view;
 
-import laddergame.domain.Ladder;
-import laddergame.domain.Line;
-import laddergame.domain.PersonName;
-import laddergame.domain.Reward;
+import laddergame.domain.*;
+import laddergame.domain.service.LadderGame;
 
 import java.util.List;
 import java.util.Map;
@@ -19,11 +17,11 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printLadder(Ladder ladder) {
+    public static void printLadder(LadderGame ladderGame) {
         System.out.println("실행결과");
-        printPersonNames(ladder.getPersonNames());
-        printLines(ladder);
-        printRewards(ladder.getRewards());
+        printPersonNames(ladderGame.getPersonNames());
+        printLines(ladderGame.getLadder());
+        printRewards(ladderGame.getRewards());
     }
 
     private static void printLines(Ladder ladder) {
@@ -52,9 +50,9 @@ public class OutputView {
         System.out.println(stringBuilder);
     }
 
-    private static void printRewards(List<Reward> rewards) {
+    private static void printRewards(Rewards rewards) {
         StringBuilder stringBuilder = new StringBuilder();
-        rewards.forEach(n -> stringBuilder.append(lpad(n.toString())));
+        rewards.getRewards().forEach(n -> stringBuilder.append(lpad(n.toString())));
         System.out.println(stringBuilder);
     }
 

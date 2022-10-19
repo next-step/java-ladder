@@ -1,7 +1,8 @@
 package laddergame.view;
 
-import laddergame.domain.Ladder;
 import laddergame.domain.People;
+import laddergame.domain.Rewards;
+import laddergame.domain.service.LadderGame;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,11 +13,12 @@ class OutputViewTest {
     void print() {
         //given
         String[] names = "pobi,honux,crong,jk".split(",");
-        People persons = new People(names);
+        Rewards rewards = new Rewards("꽝,5000,꽝,3000".split(","));
+        People people = new People(names);
         int countOfLadder = 5;
         //when
-        Ladder ladder = new Ladder(persons, countOfLadder, null);
-        OutputView.printLadder(ladder);
+        LadderGame ladderGame = new LadderGame(people, rewards, countOfLadder);
+        OutputView.printLadder(ladderGame);
     }
 
 }

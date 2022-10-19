@@ -29,7 +29,7 @@ public class Rewards {
         return values.get(index);
     }
 
-    public List<Reward> getRewardAll() {
+    public List<Reward> getRewards() {
         return Collections.unmodifiableList(values);
     }
 }
