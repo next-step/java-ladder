@@ -52,5 +52,17 @@ class PeopleTest {
 
     }
 
+    @Test
+    @DisplayName("이름으로 인덱스 반환")
+    void get_index_by_name() {
+        //given
+        String[] names = "name, kkk, abc".split(",");
+        People people = new People(names);
+        //when
+        PersonName name = new PersonName("abc");
+        //then
+        assertThat(people.getIndex(name)).isEqualTo(2);
+    }
+
 
 }

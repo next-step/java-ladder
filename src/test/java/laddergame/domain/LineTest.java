@@ -8,8 +8,7 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
-import static org.assertj.core.api.Assertions.assertThatNoException;
+import static org.assertj.core.api.Assertions.*;
 
 class LineTest {
 
@@ -48,5 +47,14 @@ class LineTest {
         List<Boolean> values = Arrays.asList(false, true, false, true, false);
         //then
         assertThatNoException().isThrownBy(() -> new Line(values));
+    }
+
+    @Test
+    @DisplayName("사다리판으로 이동한 위치")
+    void move_next_index() {
+        //given
+        Line line = new Line(Arrays.asList(false, true, false, true));
+        //then
+        assertThat(line.nextIndex(0)).isEqualTo(1);
     }
 }
