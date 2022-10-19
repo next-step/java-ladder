@@ -7,9 +7,14 @@ public class Result {
     private final String value;
 
     public Result(String value) {
-        if (isNullOrEmpty(value) || isOverSize(value)) {
+        if (isNullOrEmpty(value)) {
             throw new IllegalArgumentException(NULL_BLANK_EXCEPTION_MESSAGE);
         }
+
+        if (isOverSize(value)) {
+            throw new IllegalArgumentException("결과 값은 " + MAX_LENGTH + " 길이 이하이어야 합니다.");
+        }
+
 
         this.value = value.strip();
     }

@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Line {
     public static final int MIN_POINTS_SIZE = 2;
+    public static final int MAX_POINTS_SIZE = 24;
     private static final String POINT_OVERLAP_MESSAGE = "점이 연속해 이어져 있습니다.";
     private static final String POINTS_SIZE_EXCEPTION_MESSAGE = "점이 " + MIN_POINTS_SIZE + "개 이상이어야 합니다.";
 
@@ -27,7 +28,7 @@ public class Line {
     }
 
     private boolean isNotValidSize(List<Point> points) {
-        return points.size() < MIN_POINTS_SIZE;
+        return points.size() < MIN_POINTS_SIZE || points.size() > MAX_POINTS_SIZE;
     }
 
     private boolean isNotValidPoints(List<Point> points) {
@@ -54,6 +55,7 @@ public class Line {
         }
 
         List<Point> points = initPoints(strategy);
+
         if (isTwoPoint(countOfPoint)) {
             points.add(Point.lastOf(points.get(0), strategy));
             return new Line(points);
