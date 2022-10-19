@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class People {
-    private List<PersonName> names;
+    private final List<PersonName> names;
 
     public People(List<PersonName> names) {
         validateDuplicate(names);
@@ -33,6 +33,10 @@ public class People {
 
     public List<PersonName> getNames() {
         return Collections.unmodifiableList(names);
+    }
+
+    public int getIndex(PersonName name){
+        return names.indexOf(name);
     }
 
     public boolean contains(PersonName name){

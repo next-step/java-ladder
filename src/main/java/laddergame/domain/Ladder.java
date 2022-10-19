@@ -13,14 +13,22 @@ public class Ladder {
 
     private static final PersonName ALL = new PersonName("all");
 
-    private List<Line> lines;
+    private final List<Line> lines;
     private final People people;
+    private final Rewards rewards;
 
-    public Ladder(People people, int countOfLadder) {
-        this.lines = IntStream.range(0, countOfLadder)
-                .mapToObj(__ -> new Line(people.numberOfPeople(), new RandomLinePainter()))
-                .collect(Collectors.toUnmodifiableList());
+    public Ladder(People people, int countOfLadder, Rewards rewards) {
+        this(IntStream.range(0, countOfLadder)
+                        .mapToObj(__ -> new Line(people.numberOfPeople(), new RandomLinePainter()))
+                        .collect(Collectors.toUnmodifiableList()),
+                people,
+                rewards);
+    }
+
+    public Ladder(List<Line> lines, People people, Rewards rewards) {
+        this.lines = lines;
         this.people = people;
+        this.rewards = rewards;
     }
 
     public List<Line> getLines() {
@@ -31,24 +39,46 @@ public class Ladder {
         return people.getNames();
     }
 
-    public Map<PersonName, String> getResult(PersonName personName, Rewards rewards) {
+    public Map<PersonName, Reward> getResult(PersonName personName) {
 
-         if(ALL.equals(personName)){
+        if (ALL.equals(personName)) {
             return getResultAll(rewards);
         }
 
-        if(people.contains(personName)){
+        if (people.contains(personName)) {
             return getResultOne(personName, rewards);
         }
         throw new IllegalArgumentException();
     }
 
-    private Map<PersonName, String> getResultOne(PersonName personName, Rewards rewards) {
-        return new HashMap<>();
+    private Map<PersonName, Reward> getResultOne(PersonName personName, Rewards rewards) {
+
+        HashMap<PersonName, Reward> result = new HashMap<>();
+        result.put(personName, rewards.getReward(getResultIndex(people.getIndex(personName))));
+
+        return result;
     }
 
-    private Map<PersonName, String> getResultAll(Rewards rewards) {
-        return new HashMap<>();
+    private int getResultIndex(int index) {
+        for (Line line : lines) {
+            index = line.nextIndex(index);
+        }
+        return index;
     }
 
+    private Map<PersonName, Reward> getResultAll(Rewards rewards) {
+
+        HashMap<PersonName, Reward> result = new HashMap<>();
+
+        List<PersonName> names = people.getNames();
+        for (PersonName name : names) {
+            result.put(name, rewards.getReward(getResultIndex(people.getIndex(name))));
+        }
+
+        return result;
+    }
+
+    public List<Reward> getRewards() {
+        return rewards.getRewardAll();
+    }
 }
