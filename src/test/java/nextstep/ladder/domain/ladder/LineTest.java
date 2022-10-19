@@ -34,7 +34,7 @@ class LineTest {
 
     @DisplayName("원하는 수 만큼의 점을 가진 선을 생성할 수 있다.")
     @ParameterizedTest
-    @ValueSource(ints = {1, 2, 3, 5})
+    @ValueSource(ints = {2, 3, 5})
     void creatLine(int input) {
         Line line = Line.create(input, () -> true);
 

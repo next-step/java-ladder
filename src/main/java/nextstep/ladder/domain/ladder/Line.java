@@ -5,8 +5,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class Line {
+    public static final int MIN_POINTS_SIZE = 2;
     private static final String POINT_OVERLAP_MESSAGE = "점이 연속해 이어져 있습니다.";
-    private static final int MIN_POINTS_SIZE = 1;
     private static final String POINTS_SIZE_EXCEPTION_MESSAGE = "점이 " + MIN_POINTS_SIZE + "개 이상이어야 합니다.";
 
     private final List<Point> points;
