@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.dto.LadderWinningResultDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,9 +10,9 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-class LadderWinningResultTest {
+class LadderWinningResultDtoTest {
 
-    private Ladder ladder;
+    private Ladder 사다리;
 
     /**
      *  테스트를 위해 아래 사다리를 이용한다.
@@ -42,20 +43,22 @@ class LadderWinningResultTest {
                 , first3.next(false).next(true)
                 , first3.next(false).next(true).next(false)
         );
-        ladder = new Ladder(List.of(new Line(points1), new Line(points2), new Line(points3)));
+        사다리 = new Ladder(List.of(new Line(points1), new Line(points2), new Line(points3)));
     }
 
     @DisplayName("사다리의 순서를 확인한다.")
     @Test
     void result_findByName() {
 
-        final LadderWinningResult ladderWinningResult = LadderWinningResult.of(ladder);
+        final List<String> 참가자 = List.of("pobi", "honux", "crong", "jk");
+        final List<String> 상품 = List.of("꽝", "5000", "꽝", "3000");
+        final LadderWinningResultDto 최종결과 = LadderWinningResultDto.of(사다리, 참가자, 상품);
 
         assertAll(
-                () -> assertThat(ladderWinningResult.findByName(0)).isEqualTo(3),
-                () -> assertThat(ladderWinningResult.findByName(1)).isEqualTo(1),
-                () -> assertThat(ladderWinningResult.findByName(2)).isEqualTo(2),
-                () -> assertThat(ladderWinningResult.findByName(3)).isEqualTo(0)
+                () -> assertThat(최종결과.findByName("pobi")).isEqualTo("3000"),
+                () -> assertThat(최종결과.findByName("honux")).isEqualTo("5000"),
+                () -> assertThat(최종결과.findByName("crong")).isEqualTo("꽝"),
+                () -> assertThat(최종결과.findByName("jk")).isEqualTo("꽝")
         );
     }
 }
