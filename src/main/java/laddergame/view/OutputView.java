@@ -5,6 +5,7 @@ import laddergame.domain.Line;
 import laddergame.domain.PersonName;
 
 import java.util.List;
+import java.util.Map;
 
 
 public class OutputView {
@@ -51,5 +52,9 @@ public class OutputView {
 
     private static String lpad(PersonName name) {
         return TAB.repeat(WIDTH).substring(name.toString().length()) + name + TAB;
+    }
+
+    public static void printResult(Map<PersonName, String> result) {
+
     }
 }

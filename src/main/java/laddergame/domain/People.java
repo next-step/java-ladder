@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class People {
-    List<PersonName> names;
+    private List<PersonName> names;
 
     public People(List<PersonName> names) {
         validateDuplicate(names);
@@ -27,7 +27,7 @@ public class People {
         }
     }
 
-    public int numberOfPersons() {
+    public int numberOfPeople() {
         return names.size();
     }
 

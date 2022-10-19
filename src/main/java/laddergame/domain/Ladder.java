@@ -18,7 +18,7 @@ public class Ladder {
 
     public Ladder(People people, int countOfLadder) {
         this.lines = IntStream.range(0, countOfLadder)
-                .mapToObj(__ -> new Line(people.numberOfPersons(), new RandomLinePainter()))
+                .mapToObj(__ -> new Line(people.numberOfPeople(), new RandomLinePainter()))
                 .collect(Collectors.toUnmodifiableList());
         this.people = people;
     }
@@ -31,18 +31,24 @@ public class Ladder {
         return people.getNames();
     }
 
-    public Map<PersonName, String> getResult(PersonName personName) {
+    public Map<PersonName, String> getResult(PersonName personName, Rewards rewards) {
 
-        validateResultName(personName);
+         if(ALL.equals(personName)){
+            return getResultAll(rewards);
+        }
 
-        return new HashMap<>();
-    }
-
-    private void validateResultName(PersonName resultName) {
-
-        if (ALL.equals(resultName) || people.contains(resultName)) {
-            return;
+        if(people.contains(personName)){
+            return getResultOne(personName, rewards);
         }
         throw new IllegalArgumentException();
     }
+
+    private Map<PersonName, String> getResultOne(PersonName personName, Rewards rewards) {
+        return new HashMap<>();
+    }
+
+    private Map<PersonName, String> getResultAll(Rewards rewards) {
+        return new HashMap<>();
+    }
+
 }
