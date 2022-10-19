@@ -3,6 +3,7 @@ package laddergame.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
@@ -53,20 +54,32 @@ class LadderTest {
 
     @DisplayName("다음 라인으로 이동할 때, 오른쪽으로 연결되어 있다면 1 증가해야 한다.")
     @Test
-    void moveNextLine_whenRightConnected() {
-        assertThat(ladder.moveNextLine(0, 0)).isEqualTo(1);
+    void moveToNextLine_whenRightConnected() {
+        assertThat(ladder.moveToNextLine(0, 0)).isEqualTo(1);
     }
 
     @DisplayName("다음 라인으로 이동할 때, 왼쪽으로 연결되어 있다면 1 감소해야 한다.")
     @Test
-    void moveNextLine_whenLeftConnected() {
-        assertThat(ladder.moveNextLine(0, 1)).isEqualTo(0);
+    void moveToNextLine_whenLeftConnected() {
+        assertThat(ladder.moveToNextLine(0, 1)).isEqualTo(0);
     }
 
     @DisplayName("다음 라인으로 이동할 때, 아무것도 연결되어 있지 않다면 그 자리에 있어야 한다.")
     @Test
-    void moveNextLine_whenNotConnected() {
-        assertThat(ladder.moveNextLine(2, 1)).isEqualTo(1);
+    void moveToNextLine_whenNotConnected() {
+        assertThat(ladder.moveToNextLine(2, 1)).isEqualTo(1);
+    }
+
+    @DisplayName("처음 위치가 주어졌을 때, 마지막 라인까지 이동했을 때의 위치를 반환해야 한다.")
+    @ParameterizedTest
+    @CsvSource({
+            "0,0",
+            "1,1",
+            "2,3",
+            "3,2"
+    })
+    void moveToLastLine(int indexOfFirstPosition, int expected) {
+        assertThat(ladder.moveToLastLine(indexOfFirstPosition)).isEqualTo(expected);
     }
 
 }

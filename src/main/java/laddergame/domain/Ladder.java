@@ -24,7 +24,15 @@ public class Ladder {
         return lines.size();
     }
 
-    public int moveNextLine(int indexOfHeight, int indexOfPosition) {
+    public int moveToLastLine(int indexOfFirstPosition) {
+        int indexOfCurrentPosition = indexOfFirstPosition;
+        for (int i = 0; i < getHeight(); i++) {
+            indexOfCurrentPosition = moveToNextLine(i, indexOfCurrentPosition);
+        }
+        return indexOfCurrentPosition;
+    }
+
+    public int moveToNextLine(int indexOfHeight, int indexOfPosition) {
         if (isConnectedRight(indexOfHeight, indexOfPosition)) {
             return indexOfPosition + 1;
         }
