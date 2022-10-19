@@ -19,7 +19,7 @@ public class LadderGame {
                 .map(ParticipantName::new)
                 .collect(Collectors.toList());
         Ladder ladder = ladderFactory.createLadder(participantNames.size(), height);
-        return new LadderGameResult(participantNames, ladder);
+        return LadderGameResult.of(participantNames, ladder);
     }
 
 }

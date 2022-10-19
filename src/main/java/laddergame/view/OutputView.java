@@ -1,13 +1,12 @@
 package laddergame.view;
 
-import laddergame.domain.Ladder;
-import laddergame.domain.LadderLine;
 import laddergame.domain.ParticipantName;
+import laddergame.dto.LadderDto;
 import laddergame.dto.LadderGameResult;
+import laddergame.dto.LadderLineDto;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class OutputView {
 
@@ -24,29 +23,28 @@ public class OutputView {
         printLadder(result.getLadder());
     }
 
-    private static void printParticipantNames(List<ParticipantName> participantNames) {
+    private static void printParticipantNames(List<String> participantNames) {
         System.out.println(participantNames.stream()
                 .map(OutputView::formatParticipantName)
                 .collect(Collectors.joining(BLANK)));
     }
 
-    private static String formatParticipantName(ParticipantName participantName) {
-        int length = participantName.getLength();
+    private static String formatParticipantName(String participantName) {
+        int length = participantName.length();
         return BLANK.repeat((ParticipantName.MAX_LENGTH - length) / 2)
                 + participantName
                 + BLANK.repeat((ParticipantName.MAX_LENGTH - length + 1) / 2);
     }
 
-    private static void printLadder(Ladder ladder) {
-        for (int i = 0; i < ladder.getHeight(); i++) {
-            System.out.println(formatLadderLine(ladder.getLine(i)));
-        }
+    private static void printLadder(LadderDto ladder) {
+        List<LadderLineDto> lines = ladder.getLines();
+        lines.forEach(line -> System.out.println(formatLadderLine(line)));
     }
 
-    private static String formatLadderLine(LadderLine line) {
+    private static String formatLadderLine(LadderLineDto line) {
+        List<Boolean> connections = line.getConnections();
         StringBuilder content = new StringBuilder(BLANK.repeat(ParticipantName.MAX_LENGTH - 1) + LADDER_COLUMN);
-        IntStream.range(0, line.size())
-                .forEach(i -> content.append(line.isConnected(i) ? LADDER_LINE_CONNECTION : LADDER_LINE_NOT_CONNECTION).append(LADDER_COLUMN));
+        connections.forEach(connected -> content.append(connected ? LADDER_LINE_CONNECTION : LADDER_LINE_NOT_CONNECTION).append(LADDER_COLUMN));
         return content.toString();
     }
 

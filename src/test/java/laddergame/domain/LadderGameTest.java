@@ -1,7 +1,9 @@
 package laddergame.domain;
 
 import laddergame.component.LadderFactory;
+import laddergame.dto.LadderDto;
 import laddergame.dto.LadderGameResult;
+import laddergame.dto.LadderLineDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,16 +21,15 @@ class LadderGameTest {
     void run() {
         List<String> participantNameValues = List.of("a", "ab", "abc");
         int height = 2;
-        List<ParticipantName> participantNames = List.of(
-                new ParticipantName("a"),
-                new ParticipantName("ab"),
-                new ParticipantName("abc")
+        assertThat(ladderGame.run(participantNameValues, height)).isEqualTo(
+                new LadderGameResult(
+                        participantNameValues,
+                        new LadderDto(List.of(
+                                new LadderLineDto(List.of(true, false, true)),
+                                new LadderLineDto(List.of(true, false, true))
+                        ))
+                )
         );
-        Ladder ladder = new Ladder(List.of(
-                new LadderLine(List.of(true, false, true)),
-                new LadderLine(List.of(true, false, true))
-        ));
-        assertThat(ladderGame.run(participantNameValues, height)).isEqualTo(new LadderGameResult(participantNames, ladder));
     }
 
 }

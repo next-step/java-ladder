@@ -5,22 +5,31 @@ import laddergame.domain.ParticipantName;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class LadderGameResult {
 
-    private final List<ParticipantName> participantNames;
-    private final Ladder ladder;
+    private final List<String> participantNames;
+    private final LadderDto ladder;
 
-    public LadderGameResult(List<ParticipantName> participantNames, Ladder ladder) {
+    public LadderGameResult(List<String> participantNames, LadderDto ladder) {
         this.participantNames = participantNames;
         this.ladder = ladder;
     }
 
-    public List<ParticipantName> getParticipantNames() {
+    public static LadderGameResult of(List<ParticipantName> participantNames, Ladder ladder) {
+        List<String> participantNameValues = participantNames.stream()
+                .map(ParticipantName::toString)
+                .collect(Collectors.toList());
+        LadderDto ladderDto = LadderDto.from(ladder);
+        return new LadderGameResult(participantNameValues, ladderDto);
+    }
+
+    public List<String> getParticipantNames() {
         return participantNames;
     }
 
-    public Ladder getLadder() {
+    public LadderDto getLadder() {
         return ladder;
     }
 
