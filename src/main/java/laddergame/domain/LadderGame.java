@@ -2,6 +2,7 @@ package laddergame.domain;
 
 import laddergame.component.LadderFactory;
 import laddergame.dto.LadderGameResult;
+import laddergame.dto.LadderGameRunRequest;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,11 +15,11 @@ public class LadderGame {
         this.ladderFactory = ladderFactory;
     }
 
-    public LadderGameResult run(List<String> participantNameValues, int height) {
-        List<ParticipantName> participantNames = participantNameValues.stream()
+    public LadderGameResult run(LadderGameRunRequest request) {
+        List<ParticipantName> participantNames = request.getParticipantNames().stream()
                 .map(ParticipantName::new)
                 .collect(Collectors.toList());
-        Ladder ladder = ladderFactory.createLadder(participantNames.size(), height);
+        Ladder ladder = ladderFactory.createLadder(participantNames.size(), request.getHeight());
         return LadderGameResult.of(participantNames, ladder);
     }
 
