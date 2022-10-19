@@ -15,7 +15,7 @@ class OutputViewTest {
         People persons = new People(names);
         int countOfLadder = 5;
         //when
-        Ladder ladder = new Ladder(persons, countOfLadder);
+        Ladder ladder = new Ladder(persons, countOfLadder, null);
         OutputView.printLadder(ladder);
     }
 

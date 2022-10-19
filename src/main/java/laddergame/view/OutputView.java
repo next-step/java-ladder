@@ -3,6 +3,7 @@ package laddergame.view;
 import laddergame.domain.Ladder;
 import laddergame.domain.Line;
 import laddergame.domain.PersonName;
+import laddergame.domain.Reward;
 
 import java.util.List;
 import java.util.Map;
@@ -22,6 +23,7 @@ public class OutputView {
         System.out.println("실행결과");
         printPersonNames(ladder.getPersonNames());
         printLines(ladder);
+        printRewards(ladder.getRewards());
     }
 
     private static void printLines(Ladder ladder) {
@@ -46,15 +48,23 @@ public class OutputView {
 
     private static void printPersonNames(List<PersonName> personNames) {
         StringBuilder stringBuilder = new StringBuilder();
-        personNames.forEach(n -> stringBuilder.append(lpad(n)));
+        personNames.forEach(n -> stringBuilder.append(lpad(n.toString())));
         System.out.println(stringBuilder);
     }
 
-    private static String lpad(PersonName name) {
-        return TAB.repeat(WIDTH).substring(name.toString().length()) + name + TAB;
+    private static void printRewards(List<Reward> rewards) {
+        StringBuilder stringBuilder = new StringBuilder();
+        rewards.forEach(n -> stringBuilder.append(lpad(n.toString())));
+        System.out.println(stringBuilder);
     }
 
-    public static void printResult(Map<PersonName, String> result) {
+    private static String lpad(String name) {
+        return TAB.repeat(WIDTH).substring(name.length()) + name + TAB;
+    }
+
+    public static void printResult(Map<PersonName, Reward> result) {
+        System.out.println("실행 결과");
+        result.forEach((key, value) -> System.out.println(key + " : " + value));
 
     }
 }
