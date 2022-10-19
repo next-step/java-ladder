@@ -17,8 +17,7 @@ public class LadderApplication {
         final LadderCreator ladderCreator = LadderCreator.of(participationNames.size(), InputView.inputLadderHeight());
         final Ladder ladder = ladderCreator.create();
         ResultView.resultPrint(ParticipationNameDto.from(participationNames), Result.show(ladder), resultNames);
-        final LadderWinningResult ladderWinningResult = LadderWinningResult.of(ladder);
-        final LadderWinningResultDto ladderWinningResultDto = LadderWinningResultDto.of(ladderWinningResult, participationNames, resultNames);
+        final LadderWinningResultDto ladderWinningResultDto = LadderWinningResultDto.of(ladder, participationNames.getName(), resultNames);
         while (true) {
             final String inputResult = InputView.inputResultName();
             ResultView.resultName(inputResult, ladderWinningResultDto);
