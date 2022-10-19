@@ -21,6 +21,7 @@ public class OutputView {
     public static void printResult(LadderGameResult result) {
         printParticipantNames(result.getParticipantNames());
         printLadder(result.getLadder());
+        printRewards(result.getRewards());
     }
 
     private static void printParticipantNames(List<String> participantNames) {
@@ -46,6 +47,10 @@ public class OutputView {
         StringBuilder content = new StringBuilder(BLANK.repeat(ParticipantName.MAX_LENGTH - 1) + LADDER_COLUMN);
         connections.forEach(connected -> content.append(connected ? LADDER_LINE_CONNECTION : LADDER_LINE_NOT_CONNECTION).append(LADDER_COLUMN));
         return content.toString();
+    }
+
+    private static void printRewards(List<String> rewards) {
+        rewards.forEach(reward -> System.out.printf("%-5s" + BLANK, reward));
     }
 
 }
