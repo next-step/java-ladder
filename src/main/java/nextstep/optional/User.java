@@ -1,5 +1,10 @@
 package nextstep.optional;
 
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 public class User {
     private String name;
     private Integer age;
@@ -33,7 +38,14 @@ public class User {
     }
 
     public static boolean ageIsInRange2(User user) {
-        return false;
+        return Optional.ofNullable(user)
+                .stream()
+                .filter(Objects::nonNull)
+                .map(User::getAge)
+                .filter(Objects::nonNull)
+                .filter((age) -> age >= 30 && age <= 45)
+                .findAny()
+                .isPresent();
     }
 
     @Override

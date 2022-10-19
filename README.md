@@ -7,3 +7,12 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+## 1단계 - 자바8 스트림, 람다, Optional
+* [x] 람다 학습 및 실습
+  * 변경가능성높음 것을 인터페이스로 정의하고 람다로 사용
+* [x] stream 실습
+* optional 실습
+  * [x] 요구사항 1 - Optional을 활용해 조건에 따른 반환
+  * [x] 요구사항 2 - Optional에서 값을 반환
+  * [x] 요구사항 3 - Optional에서 exception 처리
