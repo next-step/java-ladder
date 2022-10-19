@@ -14,8 +14,8 @@ public class VerticalLine {
     }
 
 
-    public void move(LadderPosition ladderPosition, LadderLength ladderLength) {
-        if (ladderPosition.isArrived(ladderLength)) {
+    public void move(LadderPosition ladderPosition) {
+        if (isArrived(ladderPosition)) {
             return;
         }
         LineUnit unit = this.lineUnits.get(ladderPosition.length());
@@ -28,7 +28,11 @@ public class VerticalLine {
             ladderPosition.next();
             return;
         }
-        move(ladderPosition, ladderLength);
+        move(ladderPosition);
+    }
+
+    private boolean isArrived(LadderPosition ladderPosition) {
+        return lineUnits.size() <= ladderPosition.length();
     }
 
 

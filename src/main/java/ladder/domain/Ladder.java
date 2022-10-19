@@ -22,7 +22,7 @@ public class Ladder {
     private HorizontalPosition move(LadderPosition ladderPosition) {
         while (!ladderPosition.isArrived(this.ladderLength)) {
             VerticalLine verticalLine = findVerticalLineByPosition(ladderPosition.getHorizontalPosition());
-            verticalLine.move(ladderPosition, this.ladderLength);
+            verticalLine.move(ladderPosition);
         }
         return ladderPosition.getHorizontalPosition();
     }

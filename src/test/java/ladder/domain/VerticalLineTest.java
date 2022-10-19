@@ -16,7 +16,7 @@ class VerticalLineTest {
         HorizontalPosition horizontalPosition = new HorizontalPosition(0);
         LadderPosition position = new LadderPosition(horizontalPosition);
 
-        verticalLine.get(0).move(position, new LadderLength(2));
+        verticalLine.get(0).move(position);
 
         assertThat(position.getHorizontalPosition()).isEqualTo(new HorizontalPosition(1));
         assertThat(position.length()).isEqualTo(1);
