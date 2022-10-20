@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
 public class People {
 
     private static final String MIN_MEMBER_ERROR = "게임을 하려면 최소 2명이어야 합니다.";
-    private static final String NOT_COTAIN_PERSON = "일치하는 사용자가 존재하지 않습니다.";
+    private static final String NOT_CONTAIN_PERSON = "일치하는 사용자가 존재하지 않습니다.";
     private static final int STANDARD_GAME = 2;
     private final List<Person> people;
 
@@ -32,7 +32,7 @@ public class People {
         return people.stream()
                 .filter(it -> it.equals(new Person(name)))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(NOT_COTAIN_PERSON));
+                .orElseThrow(() -> new IllegalArgumentException(NOT_CONTAIN_PERSON));
     }
 
     private void validate(List<Person> people) {
@@ -40,7 +40,6 @@ public class People {
             throw new IllegalArgumentException(MIN_MEMBER_ERROR);
         }
     }
-
 
     public int size() {
         return people.size();
