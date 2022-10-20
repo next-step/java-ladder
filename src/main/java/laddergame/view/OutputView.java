@@ -6,6 +6,7 @@ import laddergame.dto.LadderGameResult;
 import laddergame.dto.LadderLineDto;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -51,6 +52,25 @@ public class OutputView {
 
     private static void printRewards(List<String> rewards) {
         rewards.forEach(reward -> System.out.printf("%-5s" + BLANK, reward));
+    }
+
+    public static void printReward(String reward) {
+        System.out.println("실행결과");
+        System.out.println(reward);
+    }
+
+    public static void printError(String message) {
+        System.out.println(message);
+    }
+
+    public static void printAllNameAndReward(Map<String, String> rewardByName) {
+        System.out.println("실행결과");
+        rewardByName.keySet()
+                .forEach(name -> printNameAndReward(name, rewardByName.get(name)));
+    }
+
+    private static void printNameAndReward(String name, String reward) {
+        System.out.printf("%s : %s\n", name, reward);
     }
 
 }
