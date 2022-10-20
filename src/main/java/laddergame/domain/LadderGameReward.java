@@ -9,7 +9,18 @@ public class LadderGameReward {
     private final String name;
 
     public LadderGameReward(String name) {
+        validate(name);
         this.name = name;
+    }
+
+    private void validate(String name) {
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("사다리 게임 결과는 null이거나 공백일 수 없습니다.");
+        }
+
+        if (name.length() > MAX_LENGTH) {
+            throw new IllegalArgumentException("사다리 게임 결과는 최대 5자까지 부여할 수 있습니다.");
+        }
     }
 
     @Override
