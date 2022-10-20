@@ -2,21 +2,20 @@ package laddergame.controller;
 
 import laddergame.component.LadderFactory;
 import laddergame.domain.Ladder;
+import laddergame.domain.LadderGame;
 import laddergame.domain.LadderGameReward;
 import laddergame.domain.ParticipantName;
 import laddergame.dto.LadderGameResult;
 import laddergame.dto.LadderGameRunRequest;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
-public class LadderGame {
+public class LadderGameRunner {
 
     private final LadderFactory ladderFactory;
 
-    public LadderGame(LadderFactory ladderFactory) {
+    public LadderGameRunner(LadderFactory ladderFactory) {
         this.ladderFactory = ladderFactory;
     }
 
@@ -24,13 +23,8 @@ public class LadderGame {
         List<ParticipantName> participantNames = parseParticipantNames(request.getParticipantNames());
         List<LadderGameReward> rewards = parseLadderGameRewards(request.getRewards());
         Ladder ladder = ladderFactory.createLadder(participantNames.size(), request.getHeight());
-        Map<ParticipantName, LadderGameReward> rewardByName = IntStream.range(0, participantNames.size())
-                .boxed()
-                .collect(Collectors.toMap(
-                        participantNames::get,
-                        i -> rewards.get(ladder.moveToLastLine(i))
-                ));
-        return LadderGameResult.of(ladder, rewardByName);
+        LadderGame ladderGame = new LadderGame(participantNames, rewards, ladder);
+        return LadderGameResult.from(ladderGame);
     }
 
     private List<ParticipantName> parseParticipantNames(List<String> participantNames) {

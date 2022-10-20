@@ -1,6 +1,6 @@
 package laddergame.dto;
 
-import laddergame.domain.Ladder;
+import laddergame.domain.LadderGame;
 import laddergame.domain.LadderGameReward;
 import laddergame.domain.ParticipantName;
 
@@ -10,30 +10,30 @@ import java.util.stream.Collectors;
 
 public class LadderGameResult {
 
-    private final LadderDto ladder;
+    private final LadderGameDto ladderGame;
     private final Map<String, String> rewardByName;
 
-    public LadderGameResult(LadderDto ladder, Map<String, String> rewardByName) {
-        this.ladder = ladder;
+    public LadderGameResult(LadderGameDto ladderGame, Map<String, String> rewardByName) {
+        this.ladderGame = ladderGame;
         this.rewardByName = rewardByName;
     }
 
-    public static LadderGameResult of(Ladder ladder, Map<ParticipantName, LadderGameReward> rewardByName) {
-        LadderDto ladderDto = LadderDto.from(ladder);
-        Map<String, String> rewardValuesByNameValue = parseLadderGameRewardByParticipantName(rewardByName);
-        return new LadderGameResult(ladderDto, rewardValuesByNameValue);
-    }
-
-    private static Map<String, String> parseLadderGameRewardByParticipantName(Map<ParticipantName, LadderGameReward> rewardByName) {
-        return rewardByName.keySet().stream()
+    public static LadderGameResult from(LadderGame ladderGame) {
+        LadderGameDto ladderGameDto = LadderGameDto.from(ladderGame);
+        Map<ParticipantName, LadderGameReward> rewardByName = ladderGame.calculateRewardByParticipantName();
+        Map<String, String> rewardByNameDto = ladderGame.getParticipantNames()
+                .stream()
                 .collect(Collectors.toMap(
                         ParticipantName::toString,
-                        name -> rewardByName.get(name).toString()
+                        participantName -> rewardByName.get(participantName)
+                                .toString()
                 ));
+
+        return new LadderGameResult(ladderGameDto, rewardByNameDto);
     }
 
-    public LadderDto getLadder() {
-        return ladder;
+    public LadderGameDto getLadderGame() {
+        return ladderGame;
     }
 
     public Map<String, String> getRewardByName() {
@@ -45,18 +45,18 @@ public class LadderGameResult {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LadderGameResult that = (LadderGameResult) o;
-        return Objects.equals(ladder, that.ladder) && Objects.equals(rewardByName, that.rewardByName);
+        return Objects.equals(ladderGame, that.ladderGame) && Objects.equals(rewardByName, that.rewardByName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ladder, rewardByName);
+        return Objects.hash(ladderGame, rewardByName);
     }
 
     @Override
     public String toString() {
         return "LadderGameResult{" +
-                "ladder=" + ladder +
+                "ladderGame=" + ladderGame +
                 ", rewardByName=" + rewardByName +
                 '}';
     }

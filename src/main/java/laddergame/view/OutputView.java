@@ -2,7 +2,7 @@ package laddergame.view;
 
 import laddergame.domain.ParticipantName;
 import laddergame.dto.LadderDto;
-import laddergame.dto.LadderGameRunRequest;
+import laddergame.dto.LadderGameDto;
 import laddergame.dto.LadderLineDto;
 
 import java.util.List;
@@ -19,10 +19,10 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printLadderGameState(LadderGameRunRequest request, LadderDto ladder) {
-        printParticipantNames(request.getParticipantNames());
-        printLadder(ladder);
-        printRewards(request.getRewards());
+    public static void printLadderGame(LadderGameDto ladderGame) {
+        printParticipantNames(ladderGame.getParticipantNames());
+        printLadder(ladderGame.getLadder());
+        printRewards(ladderGame.getRewards());
     }
 
     private static void printParticipantNames(List<String> participantNames) {

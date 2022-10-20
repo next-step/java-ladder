@@ -2,7 +2,7 @@ package laddergame;
 
 import laddergame.component.LadderFactory;
 import laddergame.component.RandomLadderLineFactory;
-import laddergame.controller.LadderGame;
+import laddergame.controller.LadderGameRunner;
 import laddergame.dto.LadderGameResult;
 import laddergame.dto.LadderGameRunRequest;
 import laddergame.view.InputView;
@@ -17,24 +17,26 @@ public class LadderGameApplication {
     public static void main(String[] args) {
         LadderGameRunRequest request = InputView.inputLadderGameRunRequest();
         LadderFactory ladderFactory = new LadderFactory(new RandomLadderLineFactory());
-        LadderGame game = new LadderGame(ladderFactory);
+        LadderGameRunner game = new LadderGameRunner(ladderFactory);
         LadderGameResult result = game.run(request);
-        OutputView.printLadderGameState(request, result.getLadder());
+        OutputView.printLadderGame(result.getLadderGame());
 
         searchRewardByName(result.getRewardByName());
     }
 
     private static void searchRewardByName(Map<String, String> rewardByName) {
-        String nameForSearch = InputView.inputNameForSearch();
-        while (!isPrintAllKeyword(nameForSearch)) {
+        while (true) {
             try {
+                String nameForSearch = InputView.inputNameForSearch();
+                if (!isPrintAllKeyword(nameForSearch)) {
+                    OutputView.printAllNameAndReward(rewardByName);
+                    break;
+                }
                 OutputView.printReward(findRewardByName(rewardByName, nameForSearch));
             } catch (Exception e) {
                 OutputView.printError(e.getMessage());
             }
-            nameForSearch = InputView.inputNameForSearch();
         }
-        OutputView.printAllNameAndReward(rewardByName);
     }
 
     private static boolean isPrintAllKeyword(String input) {

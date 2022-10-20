@@ -23,10 +23,6 @@ public class ParticipantName {
         }
     }
 
-    public int getLength() {
-        return value.length();
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
