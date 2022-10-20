@@ -14,5 +14,5 @@
 * [x] 람다를 활용해 중복 제거
 * [x] stream 실습하기
 * [x] Optional을 활용해 조건에 따른 반환
-* [ ] Optional에서 값을 반환
+* [x] Optional에서 값을 반환
 * [ ] Optional에서 exception 처리
