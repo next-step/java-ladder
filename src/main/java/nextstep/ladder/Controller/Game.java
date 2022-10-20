@@ -1,9 +1,6 @@
 package nextstep.ladder.Controller;
 
-import nextstep.ladder.Model.Height;
-import nextstep.ladder.Model.Ladder;
-import nextstep.ladder.Model.LadderGenerator;
-import nextstep.ladder.Model.Names;
+import nextstep.ladder.Model.*;
 import nextstep.ladder.View.LadderInput;
 import nextstep.ladder.View.LadderOutput;
 
@@ -11,9 +8,13 @@ public class Game {
 
     public void play() {
         LadderGenerator ladderGenerator = new LadderGenerator();
-        Names names = LadderInput.askAttendMembers();
+        People people = LadderInput.askAttendMembers();
+        Rewards rewards = LadderInput.askRewards();
         Height height = LadderInput.askMaxHeight();
-        Ladder ladder = ladderGenerator.generateLadder(names.size(), height);
-        LadderOutput.printResult(names, ladder);
+        Ladder ladder = ladderGenerator.generateLadder(people.size(), height);
+        people.offerReward(ladder, rewards);
+        LadderOutput.printResult(people, ladder, rewards);
+        String resultName = LadderInput.askResultName();
+        LadderOutput.printExecuteResult(resultName, people);
     }
 }
