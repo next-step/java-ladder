@@ -1,10 +1,8 @@
 package nextstep.step1.optional;
 
-import nextstep.step1.optional.User;
-import nextstep.step1.optional.Users;
-import org.junit.jupiter.api.Test;
-
 import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.jupiter.api.Test;
 
 public class UsersTest {
 

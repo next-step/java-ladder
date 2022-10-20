@@ -21,5 +21,5 @@
       - [x] sumOverThreeAndDouble() 테스트 Pass
     * 옵셔널
       - [x] ageIsInRange2() 메서드 Optional 변경
-      - [ ] getUser() 메서드를 Stream/Optional 구현
+      - [x] getUser() 메서드를 Stream/Optional 구현
       - [ ] ExpressionTest.of() 메서드 구현
