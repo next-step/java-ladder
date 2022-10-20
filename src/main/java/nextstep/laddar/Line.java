@@ -1,6 +1,7 @@
 package nextstep.laddar;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -13,42 +14,50 @@ public class Line {
                 .collect(Collectors.toList());
     }
 
-
-    public void putHorizontalLine(int position) {
-        if (hasHorizontalLine(position)) {
-            throw new IllegalStateException("해당 위치에는 이미 다리가 존재합니다.");
-        }
-        if (!hasNearHorizontalLine(position)) {
-            this.positions.set(position, true);
-        }
+    public void putHorizontalLine(int position, BooleanGenerator booleanGenerator) {
+        Optional.of(position)
+                .filter(pos -> !hasHorizontalLine(pos))
+                .filter(pos -> !hasNearHorizontalLine(pos))
+                .ifPresent(pos -> this.positions.set(pos, booleanGenerator.generate()));
     }
 
     public boolean hasNearHorizontalLine(int position) {
-        if (position > 0) {
-            return positions.get(position - 1).equals(true);
-        }
-        if (position < positions.size() - 1) {
-            return positions.get(position + 1).equals(true);
-        }
-        return false;
+        int rangeNumber = Optional.of(position)
+                .filter(this::isRangePosition)
+                .orElseThrow(() -> new IllegalArgumentException("해당 위치에는 다리를 놓을 수 없습니다."));
+
+        boolean hasLeftLine = Optional.of(rangeNumber)
+                .filter(number -> number > 0 && positions.get(number - 1).equals(true))
+                .isPresent();
+        boolean hasRightLine = Optional.of(rangeNumber)
+                .filter(number -> number < positions.size() - 1 && positions.get(number + 1).equals(true))
+                .isPresent();
+
+        return hasLeftLine || hasRightLine;
     }
 
-    public boolean hasHorizontalLine(int position) {
-        if (position >= positions.size()) {
-            throw new IllegalArgumentException("해당 위치에는 다리를 놓을 수 없습니다.");
-        }
-        return positions.get(position).equals(true);
+    boolean hasHorizontalLine(int position) {
+        return Optional.of(
+                        Optional.of(position)
+                                .filter(this::isRangePosition)
+                                .orElseThrow(() -> new IllegalArgumentException("해당 위치에는 다리를 놓을 수 없습니다."))
+                )
+                .map(positions::get)
+                .filter(hasLine -> hasLine.equals(true))
+                .isPresent();
+    }
+
+    private boolean isRangePosition(Integer pos) {
+        return pos < positions.size() && pos >= 0;
     }
 
     public void makeHorizontalLines(BooleanGenerator booleanGenerator) {
-        for (int idx = 0; idx < positions.size(); idx++) {
-            if (hasHorizontalLine(idx)) {
-                continue;
-            }
-            if (booleanGenerator.generate()) {
-                putHorizontalLine(idx);
-            }
-        }
+        IntStream.range(0, positions.size())
+                .forEach((idx) -> putHorizontalLine(idx, booleanGenerator));
+    }
+
+    public List<Boolean> getPositions() {
+        return positions;
     }
 }
 
