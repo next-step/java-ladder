@@ -49,7 +49,6 @@ class LineTest {
         line.checkDecidingConnectBridge(() ->true);
         line.checkDecidingConnectBridge(() ->false);
         assertThat(line.move(START_LOCATION)).isEqualTo(EXPECT_LOCATION);
-
     }
 
 }
