@@ -41,7 +41,14 @@ public class Lambda {
 
     public static int sumAllOverThree(List<Integer> numbers) {
         return numbers.stream()
+            .mapToInt(Integer::intValue)
             .filter(number -> number > 3)
+            .sum();
+    }
+
+    public static int sumAllByCondition(List<Integer> numbers, Conditional conditional) {
+        return numbers.stream()
+            .filter(number -> conditional.test(number))
             .mapToInt(Integer::intValue)
             .sum();
     }
