@@ -3,6 +3,8 @@ package nextstep.ladder.domain;
 import nextstep.ladder.domain.ladder.*;
 import nextstep.ladder.domain.player.Player;
 import nextstep.ladder.domain.player.Players;
+import nextstep.ladder.domain.player.Result;
+import nextstep.ladder.domain.player.Results;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

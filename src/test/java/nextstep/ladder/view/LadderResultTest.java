@@ -4,7 +4,7 @@ import nextstep.ladder.domain.Game;
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.ladder.Line;
 import nextstep.ladder.domain.ladder.Point;
-import nextstep.ladder.domain.ladder.Results;
+import nextstep.ladder.domain.player.Results;
 import nextstep.ladder.domain.player.Players;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

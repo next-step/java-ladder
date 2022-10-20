@@ -3,7 +3,7 @@ package nextstep.ladder.view;
 import nextstep.ladder.domain.Game;
 import nextstep.ladder.domain.ladder.Line;
 import nextstep.ladder.domain.ladder.Point;
-import nextstep.ladder.domain.ladder.Results;
+import nextstep.ladder.domain.player.Results;
 
 import java.util.List;
 import java.util.stream.Collectors;

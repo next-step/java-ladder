@@ -1,7 +1,7 @@
 package nextstep.ladder.controller;
 
 import nextstep.ladder.domain.Game;
-import nextstep.ladder.domain.ladder.Results;
+import nextstep.ladder.domain.player.Results;
 import nextstep.ladder.domain.player.Players;
 import nextstep.ladder.view.GameResult;
 import nextstep.ladder.view.InputView;

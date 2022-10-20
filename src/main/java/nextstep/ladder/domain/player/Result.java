@@ -1,4 +1,4 @@
-package nextstep.ladder.domain.ladder;
+package nextstep.ladder.domain.player;
 
 public class Result {
     private static final int MAX_LENGTH = 5;

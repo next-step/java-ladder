@@ -1,7 +1,7 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Game;
-import nextstep.ladder.domain.ladder.Result;
+import nextstep.ladder.domain.player.Result;
 import nextstep.ladder.domain.player.Player;
 
 import java.util.Map;

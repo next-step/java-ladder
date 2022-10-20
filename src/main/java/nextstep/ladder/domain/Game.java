@@ -2,8 +2,8 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.ladder.DefaultEnablePointStrategy;
 import nextstep.ladder.domain.ladder.Ladder;
-import nextstep.ladder.domain.ladder.Result;
-import nextstep.ladder.domain.ladder.Results;
+import nextstep.ladder.domain.player.Result;
+import nextstep.ladder.domain.player.Results;
 import nextstep.ladder.domain.player.Player;
 import nextstep.ladder.domain.player.Players;
 
