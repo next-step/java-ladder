@@ -2,7 +2,7 @@ package laddergame.view;
 
 import laddergame.domain.ParticipantName;
 import laddergame.dto.LadderDto;
-import laddergame.dto.LadderGameResult;
+import laddergame.dto.LadderGameRunRequest;
 import laddergame.dto.LadderLineDto;
 
 import java.util.List;
@@ -19,10 +19,10 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printResult(LadderGameResult result) {
-        printParticipantNames(result.getParticipantNames());
-        printLadder(result.getLadder());
-        printRewards(result.getRewards());
+    public static void printLadderGameState(LadderGameRunRequest request, LadderDto ladder) {
+        printParticipantNames(request.getParticipantNames());
+        printLadder(ladder);
+        printRewards(request.getRewards());
     }
 
     private static void printParticipantNames(List<String> participantNames) {
@@ -52,6 +52,7 @@ public class OutputView {
 
     private static void printRewards(List<String> rewards) {
         rewards.forEach(reward -> System.out.printf("%-5s" + BLANK, reward));
+        System.out.println();
     }
 
     public static void printReward(String reward) {
@@ -60,7 +61,7 @@ public class OutputView {
     }
 
     public static void printError(String message) {
-        System.out.println(message);
+        System.err.println(message);
     }
 
     public static void printAllNameAndReward(Map<String, String> rewardByName) {

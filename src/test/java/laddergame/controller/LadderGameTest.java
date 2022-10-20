@@ -29,8 +29,6 @@ class LadderGameTest {
         );
         assertThat(ladderGame.run(request)).isEqualTo(
                 new LadderGameResult(
-                        List.of("a", "ab", "abc", "abcd"),
-                        List.of("꽝", "꽝", "1000", "500"),
                         new LadderDto(List.of(
                                 new LadderLineDto(List.of(true, false, true)),
                                 new LadderLineDto(List.of(true, false, true)),

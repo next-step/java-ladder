@@ -30,7 +30,7 @@ public class LadderGame {
                         participantNames::get,
                         i -> rewards.get(ladder.moveToLastLine(i))
                 ));
-        return LadderGameResult.of(participantNames, rewards, ladder, rewardByName);
+        return LadderGameResult.of(ladder, rewardByName);
     }
 
     private List<ParticipantName> parseParticipantNames(List<String> participantNames) {

@@ -69,7 +69,7 @@ public class InputView {
 
     private static void validateReward(String reward) {
         if (reward == null || reward.isBlank()) {
-            throw new IllegalArgumentException("결과는 nu는l 이거나 공백으로 입력할 수 없습니다.");
+            throw new IllegalArgumentException("결과는 null 이거나 공백으로 입력할 수 없습니다.");
         }
 
         if (reward.length() > LadderGameReward.MAX_LENGTH) {
@@ -86,7 +86,7 @@ public class InputView {
 
     private static int inputLadderHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        int input = SCANNER.nextInt();
+        int input = Integer.parseInt(SCANNER.nextLine());
         validateLadderHeight(input);
         return input;
     }
