@@ -8,8 +8,6 @@ public class RandomGenerator implements BooleanGenerator {
 
     @Override
     public boolean generate() {
-        boolean b = RAMDOM.nextBoolean();
-        System.out.println(b);
-        return b;
+        return RAMDOM.nextBoolean();
     }
 }
