@@ -1,8 +1,8 @@
-package nextstep.fp;
-
-import org.junit.jupiter.api.Test;
+package nextstep.step1.fp;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.jupiter.api.Test;
 
 public class CarTest {
     @Test
