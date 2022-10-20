@@ -1,4 +1,4 @@
-package ladder.model;
+package ladder.domain;
 
 import java.util.List;
 
@@ -18,8 +18,8 @@ public class HorizontalLine {
         return this.units.size();
     }
 
-    public void validate(int userSize){
-        if (userSize != this.size()){
+    public void validate(int userSize) {
+        if (userSize != this.size()) {
             throw new IllegalArgumentException("유효하지 않은 행 라인입니다.");
         }
     }

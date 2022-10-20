@@ -1,7 +1,6 @@
-package ladder.service;
+package ladder.domain;
 
-import ladder.model.HorizontalLine;
-import ladder.model.LineUnit;
+import ladder.dto.LineGenerateDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,19 +8,17 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class RandomLineGenerator implements LineGenerator {
+public class LineGenerator {
 
+    private final Supplier<Boolean> lineGeneratePolicy;
 
-    private final Supplier<Boolean> supplier;
-
-    public RandomLineGenerator(Supplier<Boolean> supplier) {
-        this.supplier = supplier;
+    public LineGenerator(Supplier<Boolean> lineGeneratePolicy) {
+        this.lineGeneratePolicy = lineGeneratePolicy;
     }
 
-    @Override
-    public List<HorizontalLine> generate(int numberOfUser, int length) {
-        return IntStream.range(0, length)
-                .mapToObj((idx) -> createHorizontalLine(numberOfUser))
+    public List<HorizontalLine> generate(LineGenerateDto lineGenerateDto) {
+        return IntStream.range(0, lineGenerateDto.getLadderLength())
+                .mapToObj((idx) -> createHorizontalLine(lineGenerateDto.getNumOfUser()))
                 .collect(Collectors.toList());
     }
 
@@ -39,7 +36,7 @@ public class RandomLineGenerator implements LineGenerator {
             return unit;
         }
         LineUnit previousUnit = units.get(index - 1);
-        if (!previousUnit.canAddNext() || supplier.get()) {
+        if (!previousUnit.canAddNext() || lineGeneratePolicy.get()) {
             return unit;
         }
         previousUnit.addNext(unit);

@@ -1,4 +1,6 @@
-package ladder.model;
+package ladder.domain;
+
+import java.util.Objects;
 
 public class UserName {
 
@@ -16,7 +18,25 @@ public class UserName {
         return name == null || name.isBlank() || name.length() > MAX_NAME_LENGTH;
     }
 
+    public int maxLength(String result) {
+        return Math.max(this.name.length(), result.length());
+    }
+
     public String getName() {
         return name;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserName userName = (UserName) o;
+        return Objects.equals(name, userName.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
 }
