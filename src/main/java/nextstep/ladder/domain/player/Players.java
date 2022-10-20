@@ -5,12 +5,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static nextstep.ladder.domain.ladder.Line.MAX_POINTS_SIZE;
-import static nextstep.ladder.domain.ladder.Line.MIN_POINTS_SIZE;
-
 public class Players {
+    public static final int MIN_PLAYER_SIZE = 2;
+    public static final int MAX_PLAYER_SIZE = 24;
     private static final String DUPLICATED_NAME_EXCEPTION_MESSAGE = "중복된 이름의 플레이어는 허용하지 않습니다.";
-    private static final String PLAYER_SIZE_EXCEPTION_MESSAGE = MIN_POINTS_SIZE + "명 이상 또는 " + MAX_POINTS_SIZE + "이하의 플레이어가 있어야 합니다.";
+    private static final String PLAYER_SIZE_EXCEPTION_MESSAGE = MIN_PLAYER_SIZE + "명 이상 또는 " + MAX_PLAYER_SIZE + "명 이하의 플레이어가 있어야 합니다.";
 
     private final List<Player> values;
 
@@ -22,8 +21,8 @@ public class Players {
     }
 
     private void checkSize(List<Player> values) {
-        if (values.size() < MIN_POINTS_SIZE ||
-                values.size() > MAX_POINTS_SIZE) {
+        if (values.size() < MIN_PLAYER_SIZE ||
+                values.size() > MAX_PLAYER_SIZE) {
             throw new IllegalArgumentException(PLAYER_SIZE_EXCEPTION_MESSAGE);
         }
     }
@@ -34,7 +33,7 @@ public class Players {
         }
     }
 
-    public static Players create(String ... names) {
+    public static Players create(String... names) {
         return create(new Names(names));
     }
 

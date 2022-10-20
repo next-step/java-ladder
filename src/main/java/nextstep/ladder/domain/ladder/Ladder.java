@@ -9,6 +9,7 @@ import java.util.stream.IntStream;
 
 public class Ladder {
     private static final int MIN_LADDER_HEIGHT = 1;
+    private static final String INVALID_HEIGHT_EXCEPTION_MESSAGE = "사다리 높이는 " + MIN_LADDER_HEIGHT + " 이상이어야 합니다.";
 
     private final List<Line> lines;
 
@@ -19,7 +20,7 @@ public class Ladder {
 
     private void validate(List<Line> lines) {
         if (lines.size() < MIN_LADDER_HEIGHT) {
-            throw new IllegalArgumentException("사다리 높이는 " + MIN_LADDER_HEIGHT + " 이상이어야 합니다.");
+            throw new IllegalArgumentException(INVALID_HEIGHT_EXCEPTION_MESSAGE);
         }
     }
 
