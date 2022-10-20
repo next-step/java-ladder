@@ -33,6 +33,10 @@ public class InputView {
 
     private static void validateParticipantNames(List<String> participantNames) {
         participantNames.forEach(InputView::validateParticipantName);
+
+        if (participantNames.size() != getDistinctCountOfParticipantNames(participantNames)) {
+            throw new IllegalArgumentException("참가자 이름은 중복될 수 없습니다.");
+        }
     }
 
     private static void validateParticipantName(String participantName) {
@@ -43,6 +47,12 @@ public class InputView {
         if (participantName.length() > ParticipantName.MAX_LENGTH) {
             throw new IllegalArgumentException(String.format("참가자 이름은 최대 %d자까지 입력할 수 있습니다.", ParticipantName.MAX_LENGTH));
         }
+    }
+
+    private static int getDistinctCountOfParticipantNames(List<String> participantNames) {
+        return (int) participantNames.stream()
+                .distinct()
+                .count();
     }
 
     private static List<String> inputRewards() {
