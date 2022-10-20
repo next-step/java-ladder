@@ -20,7 +20,7 @@ public class GameResult {
         if (playerName.equals(ALL_PLAYERS)) {
             return results.entrySet()
                     .stream()
-                    .map(e -> String.format("%s : %s\n", e.getKey().name(), e.getValue()))
+                    .map(e -> String.format("%s : %s\n", e.getKey().name(), e.getValue().value()))
                     .collect(Collectors.joining());
         }
 
