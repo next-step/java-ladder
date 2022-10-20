@@ -20,6 +20,6 @@
         - [x] 추출한 100개의 단어를 소문자로 출력
       - [x] sumOverThreeAndDouble() 테스트 Pass
     * 옵셔널
-      - [ ] ageIsInRange1() 메서드 Optional 변경
+      - [x] ageIsInRange2() 메서드 Optional 변경
       - [ ] getUser() 메서드를 Stream/Optional 구현
       - [ ] ExpressionTest.of() 메서드 구현
