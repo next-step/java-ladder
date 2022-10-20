@@ -2,43 +2,24 @@ package ladder.step2.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
-import java.util.List;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class LineTest {
-    public static final Line LINE = new Line(Arrays.asList(PartLineTest.FALSE, PartLineTest.TRUE, PartLineTest.FALSE, PartLineTest.TRUE));
+    public static final Line LINE = Line.of(5, () -> PartLineTest.TRUE);
     
     @Test
-    @DisplayName("라인 생성 성공")
-    void create_line_success() {
-        assertThat(LINE).isNotNull();
+    @DisplayName("라인 생성")
+    void create() {
+        System.out.println("false true false true false false?? : " + LINE);
     }
     
-    @Test
-    @DisplayName("부분 라인이 겹칠 경우 예외")
-    void overlapping_line_exception() {
-        List<PartLine> partLines = Arrays.asList(PartLineTest.FALSE, PartLineTest.TRUE, PartLineTest.TRUE, PartLineTest.FALSE);
-        
-        assertThatIllegalArgumentException().isThrownBy(() -> new Line(partLines))
-                .withMessage("부분 라인이 겹칩니다.");
-    }
-    
-    @Test
-    @DisplayName("첫번째 부분 라인이 있는 경우 예외")
-    void exist_first_line_exception() {
-        List<PartLine> partLines = Arrays.asList(PartLineTest.TRUE, PartLineTest.FALSE, PartLineTest.FALSE, PartLineTest.FALSE);
-        
-        assertThatIllegalArgumentException().isThrownBy(() -> new Line(partLines))
-                .withMessage("첫번째 부분 라인이 존재합니다.");
-    }
-    
-    @Test
-    @DisplayName("라인 데이터 가져오기")
-    void get_part_lines() {
-        assertThat(LINE.getPartLines()).isEqualTo(Arrays.asList(PartLineTest.FALSE, PartLineTest.TRUE, PartLineTest.FALSE, PartLineTest.TRUE));
+    @DisplayName("라인 이동")
+    @ParameterizedTest(name = "{displayName} : currentPosition => {0}, resultPosition => {1}")
+    @CsvSource(value = {"4, 4", "3, 2", "2, 3", "1, 0", "0, 1"})
+    void move(int currentPosition, int resultPosition) {
+        assertThat(LINE.move(currentPosition)).isEqualTo(resultPosition);
     }
 }

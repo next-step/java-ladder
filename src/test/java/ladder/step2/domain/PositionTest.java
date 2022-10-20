@@ -4,26 +4,32 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 class PositionTest {
-    public static final Position POSITION = new Position(2);
+    public static final Position ONE = new Position(1);
     
     @Test
-    @DisplayName("포지션 생성")
-    void create() {
-        assertThat(POSITION).isNotNull();
+    @DisplayName("패스")
+    void pass() {
+        assertThat(ONE.pass()).isEqualTo(1);
     }
     
     @Test
-    @DisplayName("포지션 가져오기")
-    void get_position() {
-        assertThat(POSITION.getPosition()).isEqualTo(2);
+    @DisplayName("왼쪽 이동")
+    void move_left() {
+        assertThat(ONE.moveLeft()).isEqualTo(0);
     }
     
     @Test
-    @DisplayName("이동하기")
-    void move() {
-        final Position move = POSITION.move(LineTest.LINE.getPartLines());
-        assertThat(move.getPosition()).isEqualTo(3);
+    @DisplayName("오른쪽 이동")
+    void move_right() {
+        assertThat(ONE.moveRight()).isEqualTo(2);
+    }
+    
+    @Test
+    @DisplayName("다음 포지션 생성")
+    void create_next_position() {
+        assertThat(ONE.createNext().pass()).isEqualTo(2);
     }
 }

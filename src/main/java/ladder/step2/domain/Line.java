@@ -1,39 +1,40 @@
 package ladder.step2.domain;
 
-import java.util.Collections;
+import ladder.step2.domain.partlinestrategy.PartLineCreateStrategy;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Line {
-    private static final String LINE_OVERLAPPING_EXCEPTION_MESSAGE = "부분 라인이 겹칩니다.";
-    private static final String FIRST_PART_LINE_EXIST_EXCEPTION_MESSAGE = "첫번째 부분 라인이 존재합니다.";
+    private final List<Point> line;
     
-    private final List<PartLine> partLines;
-    
-    public Line(List<PartLine> partLines) {
-        checkFirstPartLineExistException(partLines);
-        checkPartLinesOverlappingException(partLines);
-        this.partLines = partLines;
+    private Line(List<Point> line) {
+        this.line = line;
     }
     
-    private void checkFirstPartLineExistException(List<PartLine> partLines) {
-        if (partLines.get(0).isExist()) {
-            throw new IllegalArgumentException(FIRST_PART_LINE_EXIST_EXCEPTION_MESSAGE);
-        }
+    public static Line of(final int countOfPlayers, final PartLineCreateStrategy partLineCreateStrategy) {
+        LinkedList<Point> line = new LinkedList<>();
+        line.add(Point.createFirst(partLineCreateStrategy));
+        IntStream.range(1, countOfPlayers - 1)
+                .forEach(count -> line.add(line.getLast().createNext(partLineCreateStrategy)));
+        line.add(line.getLast().createLast());
+        return new Line(line);
     }
     
-    private void checkPartLinesOverlappingException(List<PartLine> partLines) {
-        for (int index = 0; index < partLines.size() - 1; index++) {
-            checkPartLineOverlappingException(partLines, index);
-        }
+    public int move(final int currentPosition) {
+        return line.get(currentPosition).move();
     }
     
-    private void checkPartLineOverlappingException(List<PartLine> partLines, int index) {
-        if (partLines.get(index).isExist() && partLines.get(index + 1).isExist()) {
-            throw new IllegalArgumentException(LINE_OVERLAPPING_EXCEPTION_MESSAGE);
-        }
+    public List<Point> getLine() {
+        return line;
     }
     
-    public List<PartLine> getPartLines() {
-        return Collections.unmodifiableList(partLines);
+    @Override
+    public String toString() {
+        return "Line{" +
+                "line=" + line +
+                '}';
     }
 }

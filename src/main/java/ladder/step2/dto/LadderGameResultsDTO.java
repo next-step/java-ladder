@@ -1,17 +1,29 @@
 package ladder.step2.dto;
 
-import ladder.step2.domain.LadderGameResults;
-
-import java.util.Map;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class LadderGameResultsDTO {
-    private final Map<String, String> ladderGameResults;
+    private final List<String> playerNames;
+    private final List<Integer> ladderPositionResult;
     
-    public LadderGameResultsDTO(final LadderGameResults ladderGameResults) {
-        this.ladderGameResults = ladderGameResults.getLadderGameResults();
+    public LadderGameResultsDTO(final PlayersDTO playersDTO, final List<Integer> ladderPositionResult) {
+        this.playerNames = getPlayerNames(playersDTO);
+        this.ladderPositionResult = ladderPositionResult;
     }
     
-    public Map<String, String> getLadderGameResults() {
-        return ladderGameResults;
+    private static List<String> getPlayerNames(final PlayersDTO playersDTO) {
+        return playersDTO.getPlayerNameDTOS().stream()
+                .map(PlayerNameDTO::getPlayerName)
+                .collect(Collectors.toList());
+    }
+    
+    public List<String> getPlayerNames() {
+        return Collections.unmodifiableList(playerNames);
+    }
+    
+    public List<Integer> getLadderPositionResult() {
+        return Collections.unmodifiableList(ladderPositionResult);
     }
 }

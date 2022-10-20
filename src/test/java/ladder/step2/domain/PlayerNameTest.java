@@ -4,19 +4,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-class PlayerNameTest {
-    public static final PlayerName PLAYER_NAME = new PlayerName("jun");
-    
+public class PlayerNameTest {
     @Test
-    @DisplayName("플레이어 이름 생성")
-    void create() {
-        assertThat(PLAYER_NAME).isNotNull();
-    }
-    
-    @Test
-    @DisplayName("플레이어 이름 가져오기")
-    void get_player_name() {
-        assertThat(PLAYER_NAME.getPlayerName()).isEqualTo("jun");
+    @DisplayName("플레이어 이름 5자 초과시 예외")
+    void name_length_exceeded_exception() {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new PlayerName("abcdef"))
+                .withMessage("플레이어 이름은 5자를 초과할 수 없습니다.");
     }
 }

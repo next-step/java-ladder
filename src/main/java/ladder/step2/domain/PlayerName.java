@@ -1,20 +1,27 @@
 package ladder.step2.domain;
 
+import ladder.step2.exception.PlayerNameLengthExceededException;
+
 public class PlayerName {
-    private static final String PLAYER_NAME_LENGTH_EXCEPTION_MESSAGE = "플레이어 이름은 5자를 초과할 수 없습니다.";
-    private static final int PLAYER_NAME_MAX_LENGTH = 5;
+    private static final int MAX_LENGTH_OF_PLAYER_NAME = 5;
     
     private final String playerName;
     
     public PlayerName(final String playerName) {
-        if (playerName.length() > PLAYER_NAME_MAX_LENGTH) {
-            throw new IllegalArgumentException(PLAYER_NAME_LENGTH_EXCEPTION_MESSAGE);
+        if (playerName.length() > MAX_LENGTH_OF_PLAYER_NAME) {
+            throw new PlayerNameLengthExceededException();
         }
-        
         this.playerName = playerName;
     }
     
     public String getPlayerName() {
         return playerName;
+    }
+    
+    @Override
+    public String toString() {
+        return "PlayerName{" +
+                "playerName='" + playerName + '\'' +
+                '}';
     }
 }

@@ -1,11 +1,9 @@
 package ladder.step2.domain;
 
-import java.util.Objects;
-
 public class PartLine {
     private final boolean partLine;
     
-    public PartLine(boolean partLine) {
+    public PartLine(final boolean partLine) {
         this.partLine = partLine;
     }
     
@@ -14,15 +12,9 @@ public class PartLine {
     }
     
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        PartLine partLine1 = (PartLine) o;
-        return partLine == partLine1.partLine;
-    }
-    
-    @Override
-    public int hashCode() {
-        return Objects.hash(partLine);
+    public String toString() {
+        return "PartLine{" +
+                "partLine=" + partLine +
+                '}';
     }
 }

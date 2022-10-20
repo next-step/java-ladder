@@ -8,7 +8,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
-
 class LadderHeightDTOTest {
     public static final LadderHeightDTO LADDER_HEIGHT_DTO = new LadderHeightDTO("1");
     private static final String INPUT_EXCEPTION_MESSAGE = "올바른 입력 형식이 아닙니다. 다시 입력해주세요.";

@@ -1,16 +1,50 @@
 package ladder.step2.domain;
 
-import java.util.Collections;
+import ladder.step2.domain.partlinestrategy.PartLineCreateStrategy;
+
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder {
-    private final List<Line> lines;
+    private final List<Line> ladder;
     
-    public Ladder(List<Line> lines) {
-        this.lines = lines;
+    private Ladder(final List<Line> ladder) {
+        this.ladder = ladder;
     }
     
-    public List<Line> getLines() {
-        return Collections.unmodifiableList(lines);
+    public static Ladder of(final int ladderHeight, final int countOfPlayers, final PartLineCreateStrategy partLineCreateStrategy) {
+        return new Ladder(initLadder(ladderHeight, countOfPlayers, partLineCreateStrategy));
+    }
+    
+    private static List<Line> initLadder(final int ladderHeight, final int countOfPlayers, final PartLineCreateStrategy partLineCreateStrategy) {
+        return IntStream.range(0, ladderHeight)
+                .mapToObj(count -> Line.of(countOfPlayers, partLineCreateStrategy))
+                .collect(Collectors.toList());
+    }
+    
+    public List<Integer> move(Players players) {
+        return IntStream.range(0, players.countOfPlayers())
+                .mapToObj(this::move)
+                .collect(Collectors.toList());
+    }
+    
+    private int move(int position) {
+        for (Line line : ladder) {
+            position = line.move(position);
+        }
+        
+        return position;
+    }
+    
+    public List<Line> getLadder() {
+        return ladder;
+    }
+    
+    @Override
+    public String toString() {
+        return "Ladder{" +
+                "ladder=" + ladder +
+                '}';
     }
 }

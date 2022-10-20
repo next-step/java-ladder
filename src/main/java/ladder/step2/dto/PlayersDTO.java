@@ -1,28 +1,24 @@
 package ladder.step2.dto;
 
+import ladder.step2.domain.PlayerName;
 import ladder.step2.domain.Players;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class PlayersDTO {
-    private final List<PlayerDTO> playerDTOS;
+    private final List<PlayerNameDTO> playerNameDTOS;
     
-    public PlayersDTO(final Players players) {
-        this.playerDTOS = parsePlayerDTOS(players);
-    }
-    
-    private List<PlayerDTO> parsePlayerDTOS(final Players players) {
-        return players.getPlayers().stream()
-                .map(PlayerDTO::new)
+    public PlayersDTO(Players players) {
+        playerNameDTOS = players.getPlayerNames()
+                .stream()
+                .map(PlayerName::getPlayerName)
+                .map(PlayerNameDTO::new)
                 .collect(Collectors.toList());
     }
     
-    public List<PlayerDTO> getPlayerDTOS() {
-        return playerDTOS;
-    }
-    
-    public int size() {
-        return playerDTOS.size();
+    public List<PlayerNameDTO> getPlayerNameDTOS() {
+        return Collections.unmodifiableList(playerNameDTOS);
     }
 }

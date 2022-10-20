@@ -1,23 +1,16 @@
 package ladder.step2.dto;
 
-import ladder.step2.domain.LadderResultTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-public class LadderResultDTOTest {
-    public static final LadderResultDTO LADDER_RESULT_DTO = new LadderResultDTO(LadderResultTest.LADDER_RESULT);
-    
+class LadderResultDTOTest {
     @Test
-    @DisplayName("사다리 단일 실행 결과 생성")
-    void create() {
-        assertThat(LADDER_RESULT_DTO).isNotNull();
-    }
-    
-    @Test
-    @DisplayName("사다리 단일 실행 결과 생성")
-    void get_ladder_result() {
-        assertThat(LADDER_RESULT_DTO.getLadderResult()).isEqualTo("3000");
+    @DisplayName("사다리 결과 이름이 7자를 초과할 시 예외")
+    void ladder_result_length_exceeded_exception() {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new LadderResultDTO("12345678"))
+                .withMessage("사다리 결과 이름은 7자를 초과할 수 없습니다.");
     }
 }
