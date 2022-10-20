@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
-class NamesTest {
+class PeoPleTest {
 
     private static final String NORMAL_NAME1 = "mojh";
     private static final String NORMAL_NAME2 = "mojh2";
@@ -15,15 +15,15 @@ class NamesTest {
     @Test
     @DisplayName("Names가 정상적으로 생성되어지는에 대한 테스트")
     public void constructorSuccessTest() {
-        assertThat(new Names(
+        assertThat(new People(
                 List.of(
-                        new Name(NORMAL_NAME1),
-                        new Name(NORMAL_NAME2)
+                        new Person(NORMAL_NAME1),
+                        new Person(NORMAL_NAME2)
                 )
-        )).isEqualTo(new Names(
+        )).isEqualTo(new People(
                 List.of(
-                        new Name(NORMAL_NAME1),
-                        new Name(NORMAL_NAME2)
+                        new Person(NORMAL_NAME1),
+                        new Person(NORMAL_NAME2)
                 )
         ));
     }
@@ -31,8 +31,8 @@ class NamesTest {
     @Test
     @DisplayName("Names를 생성할 때 하나만 값을 넣어 에러가 발생되어지는지에 대한 테스트.")
     public void constructorErrorTest() {
-        assertThatThrownBy(() -> new Names(
-                List.of(new Name(NORMAL_NAME1))
+        assertThatThrownBy(() -> new People(
+                List.of(new Person(NORMAL_NAME1))
         )).isInstanceOf(IllegalArgumentException.class);
     }
 
