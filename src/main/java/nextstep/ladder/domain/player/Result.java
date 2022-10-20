@@ -3,7 +3,7 @@ package nextstep.ladder.domain.player;
 public class Result {
     private static final int MAX_LENGTH = 5;
     private static final String NULL_BLANK_EXCEPTION_MESSAGE = "사다리 결과는 Null 또는 공백 문자열을 허용하지 않습니다.";
-    private static final String SIZE_EXCEPTION_MESSAGE = "결과 값은 " + MAX_LENGTH + " 길이 이하이어야 합니다.";
+    private static final String SIZE_EXCEPTION_MESSAGE = "결과 문자열 길이는 " + MAX_LENGTH + "글자까지 가능합니다.";
 
     private final String value;
 
