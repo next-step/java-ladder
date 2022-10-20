@@ -13,9 +13,29 @@ public class LadderGame {
     private final Ladder ladder;
 
     public LadderGame(List<ParticipantName> participantNames, List<LadderGameReward> rewards, Ladder ladder) {
+        validate(participantNames, rewards, ladder);
         this.participantNames = participantNames;
         this.rewards = rewards;
         this.ladder = ladder;
+    }
+
+    private void validate(List<ParticipantName> participantNames, List<LadderGameReward> rewards, Ladder ladder) {
+        int sizeOfDistinctParticipantNames = getNumberOfDistinctParticipantNames(participantNames);
+        if (sizeOfDistinctParticipantNames != participantNames.size()) {
+            throw new IllegalArgumentException("참가자 이름은 중복될 수 없습니다.");
+        }
+        if (sizeOfDistinctParticipantNames != rewards.size()) {
+            throw new IllegalArgumentException("참가자 이름의 수와 사다리 게임 결과의 수는 같아야 합니다.");
+        }
+        if (sizeOfDistinctParticipantNames != ladder.getWidth() + 1) {
+            throw new IllegalArgumentException("참가자 이름의 수는 사다리의 가로 길이보다 1 커야 합니다.");
+        }
+    }
+
+    private int getNumberOfDistinctParticipantNames(List<ParticipantName> participantNames) {
+        return (int) participantNames.stream()
+                .distinct()
+                .count();
     }
 
     public Map<ParticipantName, LadderGameReward> calculateRewardByParticipantName() {

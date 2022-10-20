@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
@@ -25,6 +26,18 @@ class LadderTest {
                 .isThrownBy(() -> {
                     assertThat(new Ladder(List.of(
                             new LadderLine(List.of(false, true, false)),
+                            new LadderLine(List.of(true, false, false))
+                    ))).isNotNull();
+                });
+    }
+
+    @DisplayName("사다리의 가로 길이가 다른 리스트를 전달하면, 예외가 발생해야 한다.")
+    @Test
+    void create_givenInvalidLines() {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> {
+                    assertThat(new Ladder(List.of(
+                            new LadderLine(List.of(false, true)),
                             new LadderLine(List.of(true, false, false))
                     ))).isNotNull();
                 });
@@ -80,6 +93,20 @@ class LadderTest {
     })
     void moveToLastLine(int indexOfFirstPosition, int expected) {
         assertThat(ladder.moveToLastLine(indexOfFirstPosition)).isEqualTo(expected);
+    }
+
+    @DisplayName("사다리의 가로 라인의 개수가 0 이면, 사다리 가로 길이는 0 이어야 한다.")
+    @Test
+    void getWidth_whenLadderLineIsEmpty() {
+        Ladder ladder = new Ladder(Collections.emptyList());
+        assertThat(ladder.getWidth()).isEqualTo(0);
+    }
+
+    @DisplayName("사다리의 가로 라인의 개수가 0 이 아니라면, 사다리 가로 길이를 반환해야 한다.")
+    @Test
+    void getWidth() {
+        Ladder ladder = new Ladder(List.of(new LadderLine(List.of(false, true, false))));
+        assertThat(ladder.getWidth()).isEqualTo(3);
     }
 
 }

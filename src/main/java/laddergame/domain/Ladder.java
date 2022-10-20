@@ -10,7 +10,29 @@ public class Ladder {
     private final List<LadderLine> lines;
 
     public Ladder(List<LadderLine> lines) {
+        validate(lines);
         this.lines = lines;
+    }
+
+    private void validate(List<LadderLine> lines) {
+        if (lines.isEmpty()) {
+            return;
+        }
+
+        if (isNotSameAllLineWidth(lines)) {
+            throw new IllegalArgumentException("사다리 가로 길이가 일치하지 않은 라인이 존재합니다.");
+        }
+    }
+
+    private boolean isNotSameAllLineWidth(List<LadderLine> lines) {
+        return countDistinctWidthOfLines(lines) != 1L;
+    }
+
+    private long countDistinctWidthOfLines(List<LadderLine> lines) {
+        return lines.stream()
+                .map(LadderLine::size)
+                .distinct()
+                .count();
     }
 
     public LadderLine getLine(int indexOfHeight) {
@@ -22,6 +44,13 @@ public class Ladder {
 
     public int getHeight() {
         return lines.size();
+    }
+
+    public int getWidth() {
+        if (lines.isEmpty()) {
+            return 0;
+        }
+        return lines.get(0).size();
     }
 
     public int moveToLastLine(int indexOfFirstPosition) {
