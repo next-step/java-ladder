@@ -22,4 +22,5 @@
     * 옵셔널
       - [x] ageIsInRange2() 메서드 Optional 변경
       - [x] getUser() 메서드를 Stream/Optional 구현
-      - [ ] ExpressionTest.of() 메서드 구현
+      - [x] ExpressionTest.of() 메서드 구현
+      - [x] notValidExpression Test Pass
