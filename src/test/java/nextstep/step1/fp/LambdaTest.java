@@ -1,14 +1,14 @@
-package nextstep.fp;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
-import java.util.List;
+package nextstep.step1.fp;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 public class LambdaTest {
+
     private List<Integer> numbers;
 
     @BeforeEach
@@ -48,4 +48,24 @@ public class LambdaTest {
         int sum = Lambda.sumAllOverThree(numbers);
         assertThat(sum).isEqualTo(15);
     }
+
+    @Test
+    public void sumAllByCondition_when_all() {
+        int sum = Lambda.sumAllByCondition(numbers, number -> true);
+        assertThat(sum).isEqualTo(21);
+    }
+
+    @Test
+    public void sumAllByCondition_when_even() {
+        int sum = Lambda.sumAllByCondition(numbers, number -> number % 2 == 0);
+        assertThat(sum).isEqualTo(12);
+    }
+
+    @Test
+    public void sumAllByCondition_when_ove_three() {
+        int sum = Lambda.sumAllByCondition(numbers, number -> number > 3);
+        assertThat(sum).isEqualTo(15);
+    }
+
+
 }

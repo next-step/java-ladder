@@ -1,9 +1,9 @@
-package nextstep.optional;
-
-import org.junit.jupiter.api.Test;
+package nextstep.step1.optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+
+import org.junit.jupiter.api.Test;
 
 
 public class ExpressionTest {
