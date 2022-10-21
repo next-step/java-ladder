@@ -4,21 +4,21 @@ import java.util.Objects;
 
 public class Point {
     private final int index;
-    private final boolean leftLine;
-    private final boolean rightLine;
+    private final Boolean leftLine;
+    private final Boolean rightLine;
 
-    public Point(int index, boolean leftLine, boolean rightLine) {
+    public Point(int index, Boolean leftLine, Boolean rightLine) {
         this.index = index;
         this.leftLine = leftLine;
         this.rightLine = rightLine;
     }
 
     public boolean hasLeftLine() {
-        return leftLine;
+        return leftLine != null && leftLine;
     }
 
     public boolean hasRightLine() {
-        return rightLine;
+        return rightLine != null && rightLine;
     }
 
     @Override
@@ -26,7 +26,7 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return index == point.index && leftLine == point.leftLine && rightLine == point.rightLine;
+        return index == point.index && Objects.equals(leftLine, point.leftLine) && Objects.equals(rightLine, point.rightLine);
     }
 
     @Override
