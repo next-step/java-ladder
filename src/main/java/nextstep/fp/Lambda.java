@@ -1,7 +1,6 @@
 package nextstep.fp;
 
 import java.util.List;
-import nextstep.optional.Conditional;
 
 public class Lambda {
     public static void printAllOld(List<Integer> numbers) {
