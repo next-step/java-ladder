@@ -12,7 +12,7 @@ public class InputView {
     private static final String INPUT_RESULTS_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String INPUT_NUMBER_MESSAGE = "숫자를 입력해주세요.";
     private static final String INPUT_PLAYER_NAME = "결과를 보고 싶은 사람은?";
-    private static final BufferedReader BR = new BufferedReader(new InputStreamReader(System.in));
+    private static final BufferedReader BUFFERED_READER = new BufferedReader(new InputStreamReader(System.in));
 
     private InputView() {
     }
@@ -45,7 +45,7 @@ public class InputView {
 
     private static String input() {
         try {
-            return BR.readLine();
+            return BUFFERED_READER.readLine();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

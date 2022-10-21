@@ -1,10 +1,10 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.ladder.Ladder;
-import nextstep.ladder.domain.ladder.Line;
-import nextstep.ladder.domain.ladder.Point;
+import nextstep.ladder.domain.ladder.*;
 import nextstep.ladder.domain.player.Player;
 import nextstep.ladder.domain.player.Players;
+import nextstep.ladder.domain.player.Result;
+import nextstep.ladder.domain.player.Results;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +12,6 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class GameTest {
 
@@ -20,7 +19,7 @@ class GameTest {
     @Test
     void gameException1() {
         Players players = Players.create("test1", "test2", "test3");
-        String[] results = {"a", "b"};
+        Results results = new Results("a", "b");
 
         assertThatThrownBy(() -> Game.of(players, 3, results))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -30,7 +29,7 @@ class GameTest {
     @Test
     void gameException2() {
         Players players = Players.create("test1", "test2");
-        String[] results = {"a", "b", "d"};
+        Results results = new Results("a", "b", "c");
 
         assertThatThrownBy(() -> Game.of(players, 3, results))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -46,12 +45,13 @@ class GameTest {
         Line line = new Line(points);
         Players players = Players.create("test1", "test2", "test3");
         Ladder ladder = new Ladder(List.of(line));
-        String[] results = {"a", "b", "c"};
+        Results results = new Results("a", "b", "c");
 
         Game game = new Game(players, ladder, results);
-        String result = game.resultTable().get(Player.of("test1"));
+        Result result = game.resultTable()
+                .get(Player.of("test1"));
 
-        assertThat(result).isEqualTo("b");
+        assertThat(result.value()).isEqualTo("b");
     }
 
     @DisplayName("높이가 2인 사다리의 경우 게임 결과가 정상적으로 나온다.")
@@ -69,11 +69,11 @@ class GameTest {
         Line lineB = new Line(pointsB);
         Players players = Players.create("test1", "test2", "test3");
         Ladder ladder = new Ladder(List.of(lineA, lineB));
-        String[] results = {"a", "b", "c"};
+        Results results = new Results("a", "b", "c");
 
         Game game = new Game(players, ladder, results);
-        String result = game.resultTable().get(Player.of("test1"));
+        Result result = game.resultTable().get(Player.of("test1"));
 
-        assertThat(result).isEqualTo("c");
+        assertThat(result.value()).isEqualTo("c");
     }
 }
