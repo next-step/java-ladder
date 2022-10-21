@@ -35,8 +35,10 @@ public class User {
     }
 
     public static boolean ageIsInRange2(User user) {
-        return Optional.ofNullable(user).stream()
-            .anyMatch(validUser -> validUser != null && validUser.getAge() != null && validUser.getAge() >= 30 && validUser.getAge() <= 45);
+        return Optional.ofNullable(user)
+            .filter(validUser -> validUser != null && validUser.getAge() != null && validUser.getAge() >= 30 && validUser.getAge() <= 45)
+            .map(validUser -> true)
+            .isPresent();
     }
 
     @Override

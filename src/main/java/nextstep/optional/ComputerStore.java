@@ -23,10 +23,13 @@ public class ComputerStore {
     }
 
     public static String getVersionOptional(Computer computer) {
-        return Optional.ofNullable(computer).stream()
+        return Optional.ofNullable(computer)
             .filter(Objects::nonNull)
-            .map(ComputerStore::getVersion)
-            .findFirst()
+            .map(Computer::getSoundcard)
+            .filter(Objects::nonNull)
+            .map(Soundcard::getUsb)
+            .filter(Objects::nonNull)
+            .map(USB::getVersion)
             .orElse(UNKNOWN_VERSION);
     }
 }
