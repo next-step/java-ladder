@@ -1,41 +1,34 @@
 package laddergame.domain;
 
-import java.util.List;
+import java.util.function.Function;
 
 public enum LadderConnectedDirection {
 
-    RIGHT(true, false),
-    LEFT(false, true),
-    NONE(false, false);
+    RIGHT(position -> position + 1),
+    LEFT(position -> position - 1),
+    NONE(position -> position);
 
-    private static final List<LadderConnectedDirection> VALUES = List.of(values());
+    private final Function<Integer, Integer> nextLinePositionCalculation;
 
-    private final boolean rightConnected;
-    private final boolean leftConnected;
-
-    LadderConnectedDirection(boolean rightConnected, boolean leftConnected) {
-        this.rightConnected = rightConnected;
-        this.leftConnected = leftConnected;
+    LadderConnectedDirection(Function<Integer, Integer> nextLinePositionCalculation) {
+        this.nextLinePositionCalculation = nextLinePositionCalculation;
     }
 
     public static LadderConnectedDirection of(boolean rightConnected, boolean leftConnected) {
-        return VALUES.stream()
-                .filter(direction -> direction.rightConnected == rightConnected
-                        && direction.leftConnected == leftConnected)
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("해당하는 방향을 찾을 수 없습니다."));
+        if (rightConnected && leftConnected) {
+            throw new IllegalArgumentException("해당하는 방향을 찾을 수 없습니다.");
+        }
+        if (rightConnected) {
+            return LadderConnectedDirection.RIGHT;
+        }
+        if (leftConnected) {
+            return LadderConnectedDirection.LEFT;
+        }
+        return LadderConnectedDirection.NONE;
     }
 
     public int getNextLinePosition(int position) {
-        if (this == LadderConnectedDirection.RIGHT) {
-            return position + 1;
-        }
-
-        if (this == LadderConnectedDirection.LEFT) {
-            return position - 1;
-        }
-
-        return position;
+        return nextLinePositionCalculation.apply(position);
     }
 
 }
