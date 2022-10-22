@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Players {
+
     private List<Player> players;
 
     public Players(String[] playersName) {
@@ -13,7 +14,11 @@ public class Players {
                 .collect(Collectors.toList());
     }
 
-    public int getPlayersSize() {
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public int getPlayersCount() {
         return players.size();
     }
 }
