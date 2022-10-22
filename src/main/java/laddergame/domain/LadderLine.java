@@ -30,6 +30,19 @@ public class LadderLine {
         return connections.size();
     }
 
+    public LadderConnectedDirection getConnectedDirection(int indexOfPosition) {
+        return LadderConnectedDirection.of(isConnectedRight(indexOfPosition), isConnectedLeft(indexOfPosition));
+    }
+
+    private boolean isConnectedRight(int indexOfPosition) {
+        return indexOfPosition < size() && isConnected(indexOfPosition);
+    }
+
+    private boolean isConnectedLeft(int indexOfPosition) {
+        return indexOfPosition > 0 && isConnected(indexOfPosition - 1);
+
+    }
+
     public boolean isConnected(int index) {
         return connections.get(index);
     }

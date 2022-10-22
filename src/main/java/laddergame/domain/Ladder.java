@@ -62,31 +62,9 @@ public class Ladder {
     }
 
     public int moveToNextLine(int indexOfHeight, int indexOfPosition) {
-        if (isConnectedRight(indexOfHeight, indexOfPosition)) {
-            return indexOfPosition + 1;
-        }
-
-        if (isConnectedLeft(indexOfHeight, indexOfPosition)) {
-            return indexOfPosition - 1;
-        }
-
-        return indexOfPosition;
-    }
-
-    private boolean isConnectedRight(int indexOfHeight, int indexOfPosition) {
         LadderLine line = getLine(indexOfHeight);
-        if (indexOfPosition == line.size()) {
-            return false;
-        }
-        return line.isConnected(indexOfPosition);
-    }
-
-    private boolean isConnectedLeft(int indexOfHeight, int indexOfPosition) {
-        LadderLine line = getLine(indexOfHeight);
-        if (indexOfPosition == 0) {
-            return false;
-        }
-        return line.isConnected(indexOfPosition - 1);
+        LadderConnectedDirection direction = line.getConnectedDirection(indexOfPosition);
+        return direction.getNextLinePosition(indexOfPosition);
     }
 
     @Override
