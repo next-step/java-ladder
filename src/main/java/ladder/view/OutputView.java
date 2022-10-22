@@ -52,7 +52,7 @@ public class OutputView {
         List<Point> points = ladderLine.getPointList();
 
         for (int i = 0; i < ladderLine.getPointList().size() - 1; i++) {
-            if (points.get(i).getDirection().isConnected()) {
+            if (points.get(i).getDirection().isConnectedRight()) {
                 showLadderLine();
             } else {
                 nextTab(BAR);

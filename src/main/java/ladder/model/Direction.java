@@ -18,7 +18,7 @@ public class Direction {
         this.right = right;
     }
 
-    public boolean isConnected() {
+    public boolean isConnectedRight() {
         return this.right;
     }
 
@@ -31,7 +31,7 @@ public class Direction {
     }
 
     public Direction next() {
-        if (isConnected()) {
+        if (isConnectedRight()) {
             return of(true, false);
         }
 
