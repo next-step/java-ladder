@@ -28,7 +28,7 @@ public class LadderGameApplication {
         while (true) {
             try {
                 String nameForSearch = InputView.inputNameForSearch();
-                if (!isPrintAllKeyword(nameForSearch)) {
+                if (isPrintAllKeyword(nameForSearch)) {
                     OutputView.printAllNameAndReward(rewardByName);
                     break;
                 }
