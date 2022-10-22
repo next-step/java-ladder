@@ -10,7 +10,6 @@ public class Bridge {
         this.isConnect = isConnect;
     }
 
-
     public boolean isConnect() {
         return isConnect;
     }

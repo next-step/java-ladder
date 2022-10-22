@@ -14,9 +14,13 @@ public class Height {
     }
 
     private void validate(int height) {
-        if (height < POSITIVE_STANDARD) {
+        if (isNegative(height)) {
             throw new IllegalArgumentException(HEIGHT_IS_POSITIVE);
         }
+    }
+
+    private boolean isNegative(int height) {
+        return height < POSITIVE_STANDARD;
     }
 
     public int getHeight() {

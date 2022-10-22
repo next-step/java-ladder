@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import static org.assertj.core.api.Assertions.*;
 
-class NameTest {
+class PersonTest {
 
     private static final String NORMAL_NAME = "mojh";
     private static final String ERROR_NAME = "mojh123";
@@ -15,19 +15,19 @@ class NameTest {
     @Test
     @DisplayName("이름을 생성할 때 정상적인 값을 넣었을 때 정상적으로 생성되어지는지에 대한 테스트")
     public void constructorSuccessTest() {
-        assertThat(new Name(NORMAL_NAME)).isEqualTo(new Name(NORMAL_NAME));
+        assertThat(new Person(NORMAL_NAME)).isEqualTo(new Person(NORMAL_NAME));
     }
 
     @Test
     @DisplayName("이름을 생성할 떄 5자를 초과할 경우 에러를 발생되어지는지에 대한 테스트")
     public void constructorErrorTest() {
-        assertThatThrownBy(() -> new Name(ERROR_NAME)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Person(ERROR_NAME)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest(name = "이름을 생성할 때 Null 혹은 빈값을 넣을 경우 에러를 발생한다.")
     @NullAndEmptySource
     void constructorTestNullOrBlank(String text) {
-        assertThatThrownBy(() -> new Name(text)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Person(text)).isInstanceOf(IllegalArgumentException.class);
     }
 
 }
