@@ -1,5 +1,7 @@
 package laddergame.domain;
 
+import laddergame.utils.AbstractLadderGameValueValidator;
+
 import java.util.Objects;
 
 abstract public class AbstractLadderGameValue {
@@ -9,18 +11,8 @@ abstract public class AbstractLadderGameValue {
     private final String value;
 
     public AbstractLadderGameValue(String value) {
-        validate(value);
+        AbstractLadderGameValueValidator.validate(value);
         this.value = value;
-    }
-
-    private void validate(String value) {
-        if (value == null || value.isBlank()) {
-            throw new IllegalArgumentException("문자열은 null이거나 공백일 수 없습니다.");
-        }
-
-        if (value.length() > MAX_LENGTH) {
-            throw new IllegalArgumentException("문자열은 최대 5자까자 부여할 수 있습니다.");
-        }
     }
 
     @Override

@@ -20,9 +20,6 @@ public class LadderGameRewards {
     }
 
     public LadderGameReward get(int index) {
-        if (index < 0 || index >= rewards.size()) {
-            throw new IndexOutOfBoundsException(String.format("인덱스의 범위를 벗어 났습니다. (%d)", index));
-        }
         return rewards.get(index);
     }
 

@@ -38,9 +38,6 @@ public class ParticipantNames {
 
 
     public ParticipantName get(int index) {
-        if (index < 0 || index >= size()) {
-            throw new IndexOutOfBoundsException(String.format("인덱스의 범위를 벗어 났습니다. (%d)", index));
-        }
         return participantNames.get(index);
     }
 

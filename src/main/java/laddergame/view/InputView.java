@@ -1,8 +1,7 @@
 package laddergame.view;
 
-import laddergame.domain.LadderGameReward;
-import laddergame.domain.ParticipantName;
 import laddergame.dto.LadderGameRunRequest;
+import laddergame.utils.AbstractLadderGameValueValidator;
 
 import java.util.List;
 import java.util.Scanner;
@@ -32,20 +31,10 @@ public class InputView {
     }
 
     private static void validateParticipantNames(List<String> participantNames) {
-        participantNames.forEach(InputView::validateParticipantName);
+        participantNames.forEach(AbstractLadderGameValueValidator::validate);
 
         if (participantNames.size() != getDistinctCountOfParticipantNames(participantNames)) {
             throw new IllegalArgumentException("참가자 이름은 중복될 수 없습니다.");
-        }
-    }
-
-    private static void validateParticipantName(String participantName) {
-        if (participantName == null || participantName.isBlank()) {
-            throw new IllegalArgumentException("참가자 이름은 null 이거나 공백으로 입력할 수 없습니다.");
-        }
-
-        if (participantName.length() > ParticipantName.MAX_LENGTH) {
-            throw new IllegalArgumentException(String.format("참가자 이름은 최대 %d자까지 입력할 수 있습니다.", ParticipantName.MAX_LENGTH));
         }
     }
 
@@ -64,18 +53,7 @@ public class InputView {
     }
 
     private static void validateRewards(List<String> rewards) {
-        rewards.forEach(InputView::validateReward);
-    }
-
-    private static void validateReward(String reward) {
-        if (reward == null || reward.isBlank()) {
-            throw new IllegalArgumentException("결과는 null 이거나 공백으로 입력할 수 없습니다.");
-        }
-
-        if (reward.length() > LadderGameReward.MAX_LENGTH) {
-            throw new IllegalArgumentException(String.format("결과는 최대 %d자까지 입력할 수 있습니다.", LadderGameReward.MAX_LENGTH));
-        }
-
+        rewards.forEach(AbstractLadderGameValueValidator::validate);
     }
 
     private static void validateParticipantNamesAndRewards(List<String> participantNames, List<String> rewards) {
