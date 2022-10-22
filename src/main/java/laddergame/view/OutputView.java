@@ -1,5 +1,6 @@
 package laddergame.view;
 
+import laddergame.domain.AbstractLadderGameValue;
 import laddergame.domain.ParticipantName;
 import laddergame.dto.LadderDto;
 import laddergame.dto.LadderGameDto;
@@ -13,8 +14,8 @@ public class OutputView {
 
     private static final String BLANK = " ";
     private static final String LADDER_COLUMN = "|";
-    private static final String LADDER_LINE_CONNECTION = "-".repeat(ParticipantName.MAX_LENGTH);
-    private static final String LADDER_LINE_NOT_CONNECTION = BLANK.repeat(ParticipantName.MAX_LENGTH);
+    private static final String LADDER_LINE_CONNECTION = "-".repeat(AbstractLadderGameValue.MAX_LENGTH);
+    private static final String LADDER_LINE_NOT_CONNECTION = BLANK.repeat(AbstractLadderGameValue.MAX_LENGTH);
 
     private OutputView() {
     }
