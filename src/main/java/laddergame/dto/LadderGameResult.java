@@ -3,10 +3,12 @@ package laddergame.dto;
 import laddergame.domain.LadderGame;
 import laddergame.domain.LadderGameReward;
 import laddergame.domain.ParticipantName;
+import laddergame.domain.ParticipantNames;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LadderGameResult {
 
@@ -21,14 +23,14 @@ public class LadderGameResult {
     public static LadderGameResult from(LadderGame ladderGame) {
         LadderGameDto ladderGameDto = LadderGameDto.from(ladderGame);
         Map<ParticipantName, LadderGameReward> rewardByName = ladderGame.calculateRewardByParticipantName();
-        Map<String, String> rewardByNameDto = ladderGame.getParticipantNames()
-                .stream()
-                .collect(Collectors.toMap(
-                        ParticipantName::toString,
-                        participantName -> rewardByName.get(participantName)
-                                .toString()
-                ));
-
+        Map<String, String> rewardByNameDto = new HashMap<>();
+        ParticipantNames participantNames = ladderGame.getParticipantNames();
+        IntStream.range(0, participantNames.size())
+                .mapToObj(participantNames::get)
+                .forEach(participantName -> rewardByNameDto.put(
+                        participantName.toString(),
+                        rewardByName.get(participantName).toString())
+                );
         return new LadderGameResult(ladderGameDto, rewardByNameDto);
     }
 

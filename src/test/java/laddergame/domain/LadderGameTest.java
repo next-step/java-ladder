@@ -11,11 +11,7 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 class LadderGameTest {
 
-    private final List<ParticipantName> participantNames = List.of(
-            new ParticipantName("a"),
-            new ParticipantName("ab"),
-            new ParticipantName("abc")
-    );
+    private final ParticipantNames participantNames = ParticipantNames.from(List.of("a", "ab", "abc"));
 
     private final List<LadderGameReward> rewards = List.of(
             new LadderGameReward("꽝"),
@@ -29,18 +25,10 @@ class LadderGameTest {
             new LadderLine(List.of(true, false))
     ));
 
-    @DisplayName("중복된 참가자 이름이 존재하는 경우, 예외가 발생해야 한다.")
-    @Test
-    void create_givenDuplicatedParticipantNames() {
-        List<ParticipantName> participantNames = List.of(new ParticipantName("a"), new ParticipantName("a"), new ParticipantName("ab"));
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> new LadderGame(participantNames, rewards, ladder));
-    }
-
     @DisplayName("참가자 이름의 수와 사다리 게임 결과의 수가 같지 않으면, 예외가 발생해야 한다.")
     @Test
     void create_whenNotMatchNumberOfParticipantNamesAndNumberOfRewards() {
-        List<ParticipantName> participantNames = List.of(new ParticipantName("a"), new ParticipantName("ab"));
+        ParticipantNames participantNames = ParticipantNames.from(List.of("a", "ab"));
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new LadderGame(participantNames, rewards, ladder));
     }

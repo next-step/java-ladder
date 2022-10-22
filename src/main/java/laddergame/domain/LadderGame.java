@@ -8,35 +8,26 @@ import java.util.stream.IntStream;
 
 public class LadderGame {
 
-    private final List<ParticipantName> participantNames;
+    private final ParticipantNames participantNames;
     private final List<LadderGameReward> rewards;
     private final Ladder ladder;
 
-    public LadderGame(List<ParticipantName> participantNames, List<LadderGameReward> rewards, Ladder ladder) {
+    public LadderGame(ParticipantNames participantNames, List<LadderGameReward> rewards, Ladder ladder) {
         validate(participantNames, rewards, ladder);
         this.participantNames = participantNames;
         this.rewards = rewards;
         this.ladder = ladder;
     }
 
-    private void validate(List<ParticipantName> participantNames, List<LadderGameReward> rewards, Ladder ladder) {
-        int sizeOfDistinctParticipantNames = getNumberOfDistinctParticipantNames(participantNames);
-        if (sizeOfDistinctParticipantNames != participantNames.size()) {
-            throw new IllegalArgumentException("참가자 이름은 중복될 수 없습니다.");
-        }
-        if (sizeOfDistinctParticipantNames != rewards.size()) {
+    private void validate(ParticipantNames participantNames, List<LadderGameReward> rewards, Ladder ladder) {
+        if (participantNames.size() != rewards.size()) {
             throw new IllegalArgumentException("참가자 이름의 수와 사다리 게임 결과의 수는 같아야 합니다.");
         }
-        if (sizeOfDistinctParticipantNames != ladder.getWidth() + 1) {
+        if (participantNames.size() != ladder.getWidth() + 1) {
             throw new IllegalArgumentException("참가자 이름의 수는 사다리의 가로 길이보다 1 커야 합니다.");
         }
     }
 
-    private int getNumberOfDistinctParticipantNames(List<ParticipantName> participantNames) {
-        return (int) participantNames.stream()
-                .distinct()
-                .count();
-    }
 
     public Map<ParticipantName, LadderGameReward> calculateRewardByParticipantName() {
         return IntStream.range(0, participantNames.size())
@@ -47,7 +38,7 @@ public class LadderGame {
                 ));
     }
 
-    public List<ParticipantName> getParticipantNames() {
+    public ParticipantNames getParticipantNames() {
         return participantNames;
     }
 

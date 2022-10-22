@@ -2,11 +2,12 @@ package laddergame.dto;
 
 import laddergame.domain.LadderGame;
 import laddergame.domain.LadderGameReward;
-import laddergame.domain.ParticipantName;
+import laddergame.domain.ParticipantNames;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LadderGameDto {
 
@@ -21,16 +22,19 @@ public class LadderGameDto {
     }
 
     public static LadderGameDto from(LadderGame ladderGame) {
-        List<String> participantNameValues = ladderGame.getParticipantNames()
-                .stream()
-                .map(ParticipantName::toString)
-                .collect(Collectors.toList());
+        List<String> participantNameValues = getParticipantNameValues(ladderGame.getParticipantNames());
         List<String> rewardValues = ladderGame.getRewards()
                 .stream()
                 .map(LadderGameReward::toString)
                 .collect(Collectors.toList());
         LadderDto ladderDto = LadderDto.from(ladderGame.getLadder());
         return new LadderGameDto(participantNameValues, rewardValues, ladderDto);
+    }
+
+    private static List<String> getParticipantNameValues(ParticipantNames participantNames) {
+        return IntStream.range(0, participantNames.size())
+                .mapToObj(i -> participantNames.get(i).toString())
+                .collect(Collectors.toList());
     }
 
     public List<String> getParticipantNames() {
