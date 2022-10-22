@@ -1,7 +1,6 @@
 package ladder;
 
 import ladder.model.Ladder;
-import ladder.model.LadderCreator;
 import ladder.model.Players;
 
 import static ladder.view.InputView.scanLadderHeight;
@@ -13,9 +12,7 @@ public class Main {
     public static void main(String[] args) {
         Players players = new Players(scanPlayersName());
 
-        LadderCreator ladderCreator = new LadderCreator(players.getPlayersSize(), scanLadderHeight());
-
-        Ladder ladder = new Ladder(ladderCreator);
+        Ladder ladder = new Ladder(players.getPlayersCount(), scanLadderHeight());
 
         showResultMessage();
         showPlayersName(players);
