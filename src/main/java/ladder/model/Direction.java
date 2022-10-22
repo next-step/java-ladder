@@ -5,6 +5,7 @@ import ladder.exception.CannotCreateLadderException;
 import java.util.Objects;
 
 public class Direction {
+
     private final boolean left;
     private final boolean right;
 
@@ -30,23 +31,23 @@ public class Direction {
     }
 
     public Direction next() {
-        if (this.right) {
+        if (isConnected()) {
             return of(true, false);
         }
 
-        return of(false, false);
+        return next(false);
     }
 
-    public Direction next(boolean right) {
-        return of(false, right);
+    public Direction next(boolean rightRandom) {
+        return of(false, rightRandom);
+    }
+
+    public static Direction first(boolean rightRandom) {
+        return of(false, rightRandom);
     }
 
     public Direction last() {
         return of(this.right, false);
-    }
-
-    public static Direction first(boolean right) {
-        return of(false, right);
     }
 
     @Override

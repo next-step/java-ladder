@@ -5,6 +5,7 @@ import java.util.Scanner;
 import static ladder.view.OutputView.show;
 
 public class InputView {
+
     private static Scanner SCANNER = new Scanner(System.in);
 
     private InputView() {
