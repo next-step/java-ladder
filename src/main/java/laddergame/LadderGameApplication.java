@@ -19,7 +19,7 @@ public class LadderGameApplication {
         LadderFactory ladderFactory = new LadderFactory(new RandomLadderLineFactory());
         LadderGameRunner game = new LadderGameRunner(ladderFactory);
         LadderGameResult result = game.run(request);
-        OutputView.printLadderGame(result.getLadderGame());
+        OutputView.printLadderGame(request, result.getLadder());
 
         searchRewardByName(result.getRewardByName());
     }

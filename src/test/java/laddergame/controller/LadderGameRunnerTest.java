@@ -2,7 +2,10 @@ package laddergame.controller;
 
 import laddergame.component.LadderFactory;
 import laddergame.domain.LadderLine;
-import laddergame.dto.*;
+import laddergame.dto.LadderDto;
+import laddergame.dto.LadderGameResult;
+import laddergame.dto.LadderGameRunRequest;
+import laddergame.dto.LadderLineDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -26,15 +29,11 @@ class LadderGameRunnerTest {
         );
         assertThat(ladderGameRunner.run(request)).isEqualTo(
                 new LadderGameResult(
-                        new LadderGameDto(
-                                List.of("a", "ab", "abc", "abcd"),
-                                List.of("꽝", "꽝", "1000", "500"),
-                                new LadderDto(List.of(
-                                        new LadderLineDto(List.of(true, false, true)),
-                                        new LadderLineDto(List.of(true, false, true)),
-                                        new LadderLineDto(List.of(true, false, true))
-                                ))
-                        ),
+                        new LadderDto(List.of(
+                                new LadderLineDto(List.of(true, false, true)),
+                                new LadderLineDto(List.of(true, false, true)),
+                                new LadderLineDto(List.of(true, false, true))
+                        )),
                         Map.of("a", "꽝", "ab", "꽝", "abc", "500", "abcd", "1000")
                 )
         );
