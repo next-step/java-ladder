@@ -14,12 +14,7 @@ public class Line {
     }
 
     private List<Point> drawLine(int countOfPerson, HorizontalLineStrategy horizontalLineStrategy) {
-        List<Point> points = new ArrayList<>();
-        for (int i = 0; i < countOfPerson; i++) {
-            points.add(new Point(i, null, null));
-        }
-        points.set(0, new Point(0, false, null));
-        points.set(countOfPerson - 1, new Point(countOfPerson - 1, null, false));
+        List<Point> points = initializePoints(countOfPerson);
 
         for (int right = 1; right < countOfPerson; right++) {
             int left = right - 1;
@@ -28,11 +23,21 @@ public class Line {
             Point prevLeftPoint = points.get(left);
             Point prevRightPoint = points.get(right);
 
-            Point curLeftPoint = new Point(left, prevLeftPoint.hasLeftLine(), connect);
-            Point curRightPoint = new Point(right, connect, prevRightPoint.hasRightLine());
-            points.set(left, curLeftPoint);
-            points.set(right, curRightPoint);
+            Point currentLeftPoint = new Point(left, prevLeftPoint.hasLeftLine(), connect);
+            Point currentRightPoint = new Point(right, connect, prevRightPoint.hasRightLine());
+            points.set(left, currentLeftPoint);
+            points.set(right, currentRightPoint);
         }
+        return points;
+    }
+
+    private List<Point> initializePoints(int countOfPerson) {
+        List<Point> points = new ArrayList<>();
+        for (int i = 0; i < countOfPerson; i++) {
+            points.add(new Point(i, null, null));
+        }
+        points.set(0, new Point(0, false, null));
+        points.set(countOfPerson - 1, new Point(countOfPerson - 1, null, false));
         return points;
     }
 

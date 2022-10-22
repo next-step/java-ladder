@@ -13,9 +13,4 @@ public class HorizontalLineRandomStrategy implements HorizontalLineStrategy {
                 && areLinesNotOverlapped(left, right, points);
     }
 
-    private boolean areLinesNotOverlapped(final int left, final int right, final List<Point> points) {
-        return !points.get(left).hasLeftLine()
-                && !points.get(right).hasRightLine();
-    }
-
 }
