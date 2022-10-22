@@ -9,6 +9,9 @@ import java.util.List;
 
 public class OutputView {
 
+    private static final String BAR = "|";
+    private static final String LADDER_LINE = "------";
+
     private OutputView() {
         throw new AssertionError();
     }
@@ -44,7 +47,7 @@ public class OutputView {
     }
 
     private static void showLadderLine(LadderLine ladderLine) {
-        nextTab("|");
+        nextTab(BAR);
 
         List<Point> points = ladderLine.getPointList();
 
@@ -52,12 +55,12 @@ public class OutputView {
             if (points.get(i).getDirection().isConnected()) {
                 showLadderLine();
             } else {
-                nextTab("|");
+                nextTab(BAR);
             }
         }
     }
 
     private static void showLadderLine() {
-        System.out.printf("%s%s", "------", "|");
+        System.out.printf("%s%s", LADDER_LINE, BAR);
     }
 }
