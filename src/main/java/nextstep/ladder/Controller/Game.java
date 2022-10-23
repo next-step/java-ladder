@@ -13,7 +13,10 @@ public class Game {
         Height height = LadderInput.askMaxHeight();
         Ladder ladder = ladderGenerator.generateLadder(people.size(), height);
         people.offerReward(ladder, rewards);
-        LadderOutput.printResult(people, ladder, rewards);
+        LadderOutput.printLadderResultTitle();
+        LadderOutput.printLadderResultPeoPle(people);
+        LadderOutput.printLadderResultLadder(ladder);
+        LadderOutput.printLadderResultRewards(rewards);
         while (true) {
             String resultName = LadderInput.askResultName();
             LadderOutput.printExecuteResult(resultName, people);

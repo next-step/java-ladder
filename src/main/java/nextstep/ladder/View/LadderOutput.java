@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LadderOutput {
+
+    private static final String LADDER_RESULT_TITLE = "사다리 결과";
     private static final String RESULT_TITLE = "실행 결과";
     private static final String DELIMITER = "  ";
     private static final String CONNECT_BRIDGE = "-----|";
@@ -14,18 +16,27 @@ public class LadderOutput {
     private static final String ENTER = "\n";
     private static final String ALL_PEOPLE = "all";
 
-    public static void printResult(People people, Ladder ladder, Rewards rewards) {
-        System.out.println(RESULT_TITLE);
+    public static void printLadderResultTitle() {
+        System.out.println(LADDER_RESULT_TITLE);
         System.out.println();
+    }
+
+    public static void printLadderResultPeoPle(People people) {
         List<Person> People = people.getPeople();
-        List<Reward> Rewards = rewards.getRewards();
         System.out.println(People.stream()
                 .map(Person::toString)
                 .collect(Collectors.joining(DELIMITER)));
+    }
+
+    public static void printLadderResultLadder(Ladder ladder) {
         List<Line> Ladder = ladder.getLadder();
         for (Line line : Ladder) {
             printLine(line);
         }
+    }
+
+    public static void printLadderResultRewards(Rewards rewards) {
+        List<Reward> Rewards = rewards.getRewards();
         System.out.println(Rewards.stream()
                 .map(Reward::toString)
                 .collect(Collectors.joining(DELIMITER)));
