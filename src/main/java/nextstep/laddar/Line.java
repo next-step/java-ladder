@@ -18,14 +18,14 @@ public class Line {
         }
     }
 
-    public boolean putHorizontalLine(int position) {
+    private boolean putHorizontalLine(int position) {
         if (!hasNearHorizontalLine(position)) {
             return booleanGenerator.generate();
         }
         return false;
     }
 
-    public boolean hasNearHorizontalLine(int position) {
+    private boolean hasNearHorizontalLine(int position) {
         validateRangePosition(position);
         return hasLeftLine(position) || hasRightRine(position);
     }
