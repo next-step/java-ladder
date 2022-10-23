@@ -7,59 +7,34 @@ import java.util.Objects;
 
 public class Line {
 
-    private final List<Bridge> line;
+    private final List<Point> line;
 
-    public Line(List<Bridge> line) {
+    public Line(List<Point> line) {
         this.line = line;
     }
 
-    public void checkDecidingConnectBridge(ConnectBridgeStrategy connectBridgeStrategy) {
+    public void checkDecidingConnectBridge(ConnectBridgeStrategy connectBridgeStrategy, int peopleCount) {
         int currentLastLocation = line.size() - 1;
+        int size = line.size();
         if (line.isEmpty()) {
-            line.add(new Bridge(false));
+            line.add(new Point(0, Bridge.first(connectBridgeStrategy)));
             return;
         }
-        Bridge BeforeBridge = line.get(currentLastLocation);
-        if (BeforeBridge.isConnect()) {
-            line.add(new Bridge(false));
+        Point beforePoint = line.get(currentLastLocation);
+        Bridge beforeBridge = beforePoint.getBridgeInfo();
+        if (size + 1 == peopleCount) {
+            line.add(new Point(currentLastLocation + 1, beforeBridge.last()));
             return;
         }
-        line.add(checkConnectBridge(connectBridgeStrategy));
+        line.add(new Point(currentLastLocation + 1, beforeBridge.next(connectBridgeStrategy)));
     }
 
     public int move(int currentLocation) {
-        if (isConnectLeft(currentLocation)) {
-            return currentLocation - 1;
-        }
-        if (isConnectRight(currentLocation)) {
-            return currentLocation + 1;
-        }
-        return currentLocation;
+        Point point = line.get(currentLocation);
+        return point.move();
     }
 
-    private boolean isConnectRight(int currentLocation) {
-        int size = line.size();
-        if (currentLocation == size - 1) {
-            return false;
-        }
-        Bridge bridge = line.get(currentLocation + 1);
-        return bridge.isConnect();
-    }
-
-    private boolean isConnectLeft(int currentLocation) {
-        if (currentLocation == 0) {
-            return false;
-        }
-        Bridge bridge = line.get(currentLocation);
-        return bridge.isConnect();
-    }
-
-    private Bridge checkConnectBridge(ConnectBridgeStrategy connectBridgeStrategy) {
-        return new Bridge(connectBridgeStrategy.makeBridge());
-    }
-
-
-    public List<Bridge> getLine() {
+    public List<Point> getLine() {
         return line;
     }
 

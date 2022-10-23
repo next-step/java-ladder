@@ -49,7 +49,7 @@ public class LadderOutput {
 
     private static void printLine(Line line) {
         StringBuilder sb = new StringBuilder();
-        line.getLine().forEach(it -> sb.append(convertLineInfoToString(it.isConnect())));
+        line.getLine().forEach(it -> sb.append(convertLineInfoToString(it.getBridgeInfo().getLeftConnectInfo())));
         System.out.println(sb);
     }
 
