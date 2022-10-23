@@ -55,12 +55,8 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers, SumCondition sumCondition) {
-        int total = 0;
-        for (int number : numbers) {
-            if (sumCondition.predicate(number)) {
-                total += number;
-            }
-        }
-        return total;
+        return numbers.stream()
+                .filter(sumCondition::predicate)
+                .reduce(0, Integer::sum);
     }
 }
