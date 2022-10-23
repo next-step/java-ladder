@@ -1,30 +1,26 @@
 package nextstep.laddar.view;
 
+import static nextstep.laddar.view.Shape.*;
+
 import java.util.List;
-import nextstep.laddar.Laddar;
+import nextstep.laddar.Ladder;
 import nextstep.laddar.Line;
 import nextstep.laddar.User;
 
 public class ResultView {
+    private static final String NAME_FORMAT = "%" + User.NAME_MAX_LENGTH + "s";
 
-    private static final String BLANK = " ";
-    private static final String HORIZONTAL_LINE = "-";
-    private static final String VERTICAL_LINE = "|";
-
-    private static final String NAME_FORMAT = "%" + User.getMaxNameLength() + "s";
+    private ResultView() {
+    }
 
 
-    public static void printLaddar(Laddar laddar) {
+    public static void printLaddar(Ladder laddar) {
         StringBuilder sb = new StringBuilder();
         List<Line> lines = laddar.getLines();
-        int height = lines.size();
         for (Line line : lines) {
             List<Boolean> positions = line.getPositions();
-            sb.append(BLANK.repeat(User.getMaxNameLength()));
+            sb.append(BLANK.makePrintShape(User.NAME_MAX_LENGTH));
             addOneLine(sb, positions);
-            sb.append(VERTICAL_LINE);
-            sb.append("\n");
-
         }
         System.out.println(sb);
     }
@@ -32,10 +28,11 @@ public class ResultView {
     private static void addOneLine(StringBuilder sb, List<Boolean> positions) {
         for (int i = 0; i < positions.size() - 1; i++) {
             boolean hasLine = positions.get(i);
-            sb.append(VERTICAL_LINE);
+            sb.append(VERTICAL_LINE.makePrintShape(1));
             addHorizontalLine(sb, hasLine);
             addBlankLine(sb, hasLine);
         }
+        sb.append(VERTICAL_LINE.makePrintShape(1)).append("\n");
     }
 
     public static void printNames(List<User> userNames) {
@@ -49,13 +46,13 @@ public class ResultView {
 
     private static void addBlankLine(StringBuilder sb, boolean hasLine) {
         if (!hasLine) {
-            sb.append(BLANK.repeat(User.getMaxNameLength()));
+            sb.append(BLANK.makePrintShape(User.NAME_MAX_LENGTH));
         }
     }
 
     private static void addHorizontalLine(StringBuilder sb, boolean hasLine) {
         if (hasLine) {
-            sb.append(HORIZONTAL_LINE.repeat(User.getMaxNameLength()));
+            sb.append(HORIZONTAL_LINE.makePrintShape(User.NAME_MAX_LENGTH));
         }
     }
 }
