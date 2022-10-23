@@ -18,7 +18,7 @@ public class Line {
 
         for (int right = 1; right < countOfPerson; right++) {
             int left = right - 1;
-            boolean connect = horizontalLineStrategy.drawLine(left, right, points);
+            boolean connect = isConnect(horizontalLineStrategy, left, right);
 
             Point prevLeftPoint = points.get(left);
             Point prevRightPoint = points.get(right);
@@ -31,7 +31,7 @@ public class Line {
         return points;
     }
 
-    private List<Point> initializePoints(int countOfPerson) {
+    private List<Point> initializePoints(final int countOfPerson) {
         List<Point> points = new ArrayList<>();
         for (int i = 0; i < countOfPerson; i++) {
             points.add(new Point(i, null, null));
@@ -39,6 +39,15 @@ public class Line {
         points.set(0, new Point(0, false, null));
         points.set(countOfPerson - 1, new Point(countOfPerson - 1, null, false));
         return points;
+    }
+
+    private boolean isConnect(HorizontalLineStrategy horizontalLineStrategy, final int left, final int right) {
+        return horizontalLineStrategy.drawLine() && areLinesNotOverlapped(left, right);
+    }
+
+    private boolean areLinesNotOverlapped(final int left, final int right) {
+        return !points.get(left).hasLeftLine()
+                && !points.get(right).hasRightLine();
     }
 
     public boolean isConnected(int left, int right) {

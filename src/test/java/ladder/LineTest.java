@@ -11,24 +11,11 @@ public class LineTest {
     void test1() {
         // given
         int countOfPerson = 5;
-        Line line = new Line(countOfPerson, (left, right, points) -> false);
+        Line line = new Line(countOfPerson, () -> false);
         // when
         // then
         for (int i = 1; i < countOfPerson; i++) {
             assertThat(line.isConnected(i - 1, i)).isFalse();
-        }
-    }
-
-    @Test
-    @DisplayName("가로선 전부 있음")
-    void test2() {
-        // given
-        int countOfPerson = 5;
-        Line line = new Line(countOfPerson, (left, right, points) -> true);
-        // when
-        // then
-        for (int i = 1; i < countOfPerson; i++) {
-            assertThat(line.isConnected(i - 1, i)).isTrue();
         }
     }
 
