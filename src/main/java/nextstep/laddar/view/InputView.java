@@ -5,15 +5,22 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 import nextstep.laddar.User;
+import nextstep.laddar.Users;
+import nextstep.laddar.UsersFactory;
 
 public class InputView {
+    private static final String NAME_SEPARATOR = ",";
+
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    public static List<User> getUserName() {
+    private InputView() {
+    }
+
+    public static Users getUserName() {
         System.out.println("참여할 사람 이름을 입력하세요.");
-        return Arrays.stream(SCANNER.nextLine().split(","))
-                .map((User::new))
+        List<String> names = Arrays.stream(SCANNER.nextLine().split(NAME_SEPARATOR))
                 .collect(Collectors.toList());
+        return UsersFactory.createUsers(names);
     }
 
     public static int getHeight() {

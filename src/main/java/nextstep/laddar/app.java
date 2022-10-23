@@ -7,10 +7,10 @@ import nextstep.laddar.view.ResultView;
 public class app {
 
     public static void main(String[] args) {
-        List<User> userNames = InputView.getUserName();
+        Users userNames = InputView.getUserName();
         int height = InputView.getHeight();
-        Laddar laddar = new Laddar(height, userNames.size(), new RandomGenerator());
-        ResultView.printNames(userNames);
+        Ladder laddar = new Ladder(height, userNames.getSize(), new RandomGenerator());
+        ResultView.printNames(userNames.getUsers());
         ResultView.printLaddar(laddar);
     }
 
