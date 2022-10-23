@@ -4,12 +4,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
-import static org.assertj.core.api.Assertions.assertThatNoException;
+import static org.assertj.core.api.Assertions.*;
 
 class LadderLineTest {
 
@@ -36,6 +36,18 @@ class LadderLineTest {
                 .isThrownBy(() -> new LadderLine(
                         List.of(true, true)
                 ));
+    }
+
+    @DisplayName("위치 인덱스가 주어지면, 연결된 방향을 반환해야 한다.")
+    @ParameterizedTest
+    @CsvSource({
+            "0,RIGHT",
+            "1,LEFT",
+            "2,NONE",
+    })
+    void getConnectedDirection(int indexOfPosition, LadderConnectedDirection expected) {
+        LadderLine line = new LadderLine(List.of(true, false));
+        assertThat(line.getConnectedDirection(indexOfPosition)).isEqualTo(expected);
     }
 
 }
