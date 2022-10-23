@@ -23,7 +23,7 @@ public class Bridge {
     }
 
     public Bridge next(ConnectBridgeStrategy connectBridgeStrategy) {
-        if(this.right){
+        if (this.right) {
             return new Bridge(this.right, false);
         }
         return new Bridge(this.right, connectBridgeStrategy.makeBridge());
@@ -38,7 +38,8 @@ public class Bridge {
         }
         return Direction.PASS;
     }
-    public boolean getLeftConnectInfo(){
+
+    public boolean getLeftConnectInfo() {
         return this.left;
     }
 
