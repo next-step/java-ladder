@@ -46,7 +46,7 @@ public class Person {
 
     @Override
     public String toString() {
-        return name;
+        return name + " ".repeat(STANDARD_NAME_LENGTH - name.length());
     }
 
     @Override

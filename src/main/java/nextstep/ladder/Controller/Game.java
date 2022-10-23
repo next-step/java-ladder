@@ -14,7 +14,12 @@ public class Game {
         Ladder ladder = ladderGenerator.generateLadder(people.size(), height);
         people.offerReward(ladder, rewards);
         LadderOutput.printResult(people, ladder, rewards);
-        String resultName = LadderInput.askResultName();
-        LadderOutput.printExecuteResult(resultName, people);
+        while (true) {
+            String resultName = LadderInput.askResultName();
+            LadderOutput.printExecuteResult(resultName, people);
+            if ("stop".equals(resultName)) {
+                break;
+            }
+        }
     }
 }

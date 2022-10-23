@@ -32,6 +32,9 @@ public class LadderOutput {
     }
 
     public static void printExecuteResult(String name, People people) {
+        if ("stop".equals(name)) {
+            return;
+        }
         System.out.println(RESULT_TITLE);
         if (ALL_PEOPLE.equals(name)) {
             List<Person> People = people.getPeople();
