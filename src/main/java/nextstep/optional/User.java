@@ -27,7 +27,7 @@ public class User {
         boolean isInRange = false;
 
         if (user != null && user.getAge() != null
-                && (user.getAge() >= 30
+            && (user.getAge() >= 30
                 && user.getAge() <= 45)) {
             isInRange = true;
         }
@@ -37,8 +37,8 @@ public class User {
     public static boolean ageIsInRange2(User user) {
         return Optional.ofNullable(user)
                        .filter(u -> u.getAge() != null)
-                       .filter(u -> (u.getAge() >= 30
-                                     && u.getAge() <= 45))
+                       .filter(u -> u.getAge() >= 30)
+                       .filter(u -> u.getAge() <= 45)
                        .isPresent();
     }
 
@@ -53,23 +53,16 @@ public class User {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
+        if (this == obj) {return true;}
+        if (obj == null) {return false;}
+        if (getClass() != obj.getClass()) {return false;}
         User other = (User) obj;
         if (age == null) {
-            if (other.age != null)
-                return false;
-        } else if (!age.equals(other.age))
-            return false;
+            if (other.age != null) {return false;}
+        } else if (!age.equals(other.age)) {return false;}
         if (name == null) {
-            if (other.name != null)
-                return false;
-        } else if (!name.equals(other.name))
-            return false;
+            if (other.name != null) {return false;}
+        } else if (!name.equals(other.name)) {return false;}
         return true;
     }
 }
