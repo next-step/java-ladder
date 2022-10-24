@@ -13,8 +13,10 @@ public class InputView {
 
 	public InputDTO read() {
 		String names = inputName();
-		int height = inputLadderHeight();
+		System.out.println();
 		String ladderGameResults = inputLadderGameResults();
+		System.out.println();
+		int height = inputLadderHeight();
 		return new InputDTO(names, height, ladderGameResults);
 	}
 

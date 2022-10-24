@@ -2,7 +2,9 @@ package ladder.view;
 
 import ladder.dto.InputDTO;
 import ladder.domain.*;
+import ladder.util.StringUtil;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -17,26 +19,26 @@ public class OutputView {
 	private StringBuilder result = new StringBuilder();
 
 	public void print(Ladder ladder, InputDTO inputDTO) {
-		addNames(inputDTO);
+		addNames(inputDTO.getPersons());
 		addLadder(ladder);
-
+		addResult(inputDTO.getLadderGameResults());
 		System.out.println(result.toString());
 	}
 
-	private void addNames(InputDTO inputDTO) {
-		String nameLine = inputDTO.getPersons()
+	private void addResult(LadderGameResults ladderGameResults) {
+		result.append(ladderGameResults.values());
+	}
+
+	private void addNames(List<Person> persons) {
+		String nameLine = persons
 			.stream()
 			.map(Person::getName)
-			.map(name -> lpad(name, Person.MAX_LENGTH_NAME))
+			.map(name -> StringUtil.lpad(name, Person.MAX_LENGTH_NAME))
 			.collect(Collectors.joining(EMPTY_MARK));
 
 		result.append(nameLine);
 
 		changeLine();
-	}
-
-	private String lpad(String name, int maxLengthName) {
-		return getMarks(maxLengthName - name.length(), EMPTY_MARK) + name;
 	}
 
 	private void addLadder(Ladder ladder) {
@@ -46,7 +48,7 @@ public class OutputView {
 	}
 
 	private void addRow(LadderRow ladderRow) {
-		result.append(getMarks(4, EMPTY_MARK));
+		result.append(StringUtil.getMarks(Person.MAX_LENGTH_NAME - 1, EMPTY_MARK));
 
 		ladderRow.getColumns()
 			.stream()
@@ -77,15 +79,8 @@ public class OutputView {
 	}
 
 	private String getMarks(String mark) {
-		return getMarks(Person.MAX_LENGTH_NAME, mark);
+		return StringUtil.getMarks(Person.MAX_LENGTH_NAME, mark);
 	}
 
-	private String getMarks(int cnt, String mark) {
-		String result = "";
-		for (int i = 0; i < cnt; i++) {
-			result += mark;
-		}
 
-		return result;
-	}
 }

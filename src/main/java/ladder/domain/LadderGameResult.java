@@ -21,6 +21,10 @@ public class LadderGameResult {
 		return new LadderGameResult(value);
 	}
 
+	public String getValue() {
+		return value;
+	}
+
 	private static boolean isNotDigit(String value) {
 		return !value.chars().allMatch(Character::isDigit);
 	}

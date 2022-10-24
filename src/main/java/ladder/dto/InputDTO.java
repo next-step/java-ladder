@@ -41,4 +41,8 @@ public class InputDTO {
 	public int getHeight() {
 		return height;
 	}
+
+	public LadderGameResults getLadderGameResults() {
+		return ladderGameResults;
+	}
 }

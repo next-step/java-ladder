@@ -39,12 +39,18 @@ public class LadderGameResults {
 		return Objects.hash(ladderGameResults);
 	}
 
-	public LadderGameResult getResult(Person person) {
+	public LadderGameResult get(Person person) {
 		int position = person.getPosition();
 		if (position < 0 || position >= ladderGameResults.size()) {
 			throw new IllegalArgumentException("잘못된 위치값입니다 " + position);
 		}
 
 		return ladderGameResults.get(position);
+	}
+
+	public String values() {
+		return ladderGameResults.stream()
+			.map(result -> StringUtil.lpad(result.getValue(), Person.MAX_LENGTH_NAME))
+			.collect(Collectors.joining(StringUtil.EMPTY_MARK));
 	}
 }
