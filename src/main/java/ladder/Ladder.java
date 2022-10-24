@@ -17,4 +17,11 @@ public class Ladder {
         return Collections.unmodifiableList(ladder);
     }
 
+    public int findFinalIndexOf(int startIndex) {
+        int currentIndex = startIndex;
+        for (Line line : ladder) {
+            currentIndex = line.nextVerticalIndex(currentIndex);
+        }
+        return currentIndex;
+    }
 }

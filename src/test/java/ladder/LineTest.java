@@ -19,4 +19,18 @@ public class LineTest {
         }
     }
 
+    @Test
+    @DisplayName("가로선 전부 없을 때, 다음 포인트 반환")
+    void test2() {
+        // given
+        int countOfPerson = 2;
+        Line line = new Line(countOfPerson, () -> false);
+        // when
+        int nextIndex1 = line.nextVerticalIndex(0);
+        int nextIndex2 = line.nextVerticalIndex(1);
+        // then
+        assertThat(nextIndex1).isEqualTo(0);
+        assertThat(nextIndex2).isEqualTo(1);
+    }
+
 }
