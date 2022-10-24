@@ -32,13 +32,21 @@ public class Output {
 
     private static void printLines(List<HorizontalLine> horizontalLines) {
         horizontalLines.stream()
-                .map(horizontalLine -> horizontalLine.points().stream()
-                        .map(point -> point == true ? MARK_HORIZONTAL_LINE : appendWhiteSpaceInside(WHITE_SPACE, 5))
-                        .collect(Collectors.toList()))
+                .map(horizontalLine -> parsedPoints(horizontalLine))
                 .forEach(horizontalLine -> {
-                    print.append(String.join(MARK_VERTICAL_LINE, horizontalLine)
-                                    .concat(MARK_VERTICAL_LINE))
-                            .append(ENTER);
+                    print.append(parsedVerticalLine(horizontalLine));
+                    print.append(ENTER);
                 });
+    }
+
+    private static List<String> parsedPoints(HorizontalLine horizontalLine) {
+        return horizontalLine.points().stream()
+                .map(point -> point == true ? MARK_HORIZONTAL_LINE : appendWhiteSpaceInside(WHITE_SPACE, 5))
+                .collect(Collectors.toList());
+    }
+
+    private static String parsedVerticalLine(List<String> horizontalLine) {
+        return String.join(MARK_VERTICAL_LINE, horizontalLine)
+                .concat(MARK_VERTICAL_LINE);
     }
 }
