@@ -14,4 +14,8 @@ public class InputView {
     public static String[] splitPersonName(String text) {
         return text.split(PERSON_NAME_SEPARATOR);
     }
+
+    public static int ladderHeight() {
+        return scanner.nextInt();
+    }
 }
