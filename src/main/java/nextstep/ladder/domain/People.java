@@ -4,15 +4,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class LadderParser {
+public class People {
 
-    private LadderParser() {
-        throw new AssertionError();
-    }
+    private final List<Person> people;
 
-    public static List<Person> people(String[] names) {
-        return IntStream.range(0, names.length)
+    public People(String[] names) {
+        this.people = IntStream.range(0, names.length)
                 .mapToObj(sequence -> new Person(names[sequence]))
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    public List<Person> people() {
+        return people;
     }
 }
