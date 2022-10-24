@@ -13,7 +13,7 @@ class LadderFactoryTest {
 	@Test
 	void 생성() {
 		LadderFactory ladderFactory = new LadderFactory();
-		Ladder ladder = ladderFactory.create(new InputDTO("a,b", 2));
+		Ladder ladder = ladderFactory.create(new InputDTO("a,b", 2, "100,꽝"));
 
 		assertThat(ladder).isNotNull();
 		assertThat(ladder.getLadderRows()).hasSize(2);

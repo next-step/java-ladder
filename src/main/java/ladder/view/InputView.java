@@ -14,8 +14,13 @@ public class InputView {
 	public InputDTO read() {
 		String names = inputName();
 		int height = inputLadderHeight();
+		String ladderGameResults = inputLadderGameResults();
+		return new InputDTO(names, height, ladderGameResults);
+	}
 
-		return new InputDTO(names, height);
+	private String inputLadderGameResults() {
+		System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+		return SCANNER.nextLine();
 	}
 
 	private int inputLadderHeight() {

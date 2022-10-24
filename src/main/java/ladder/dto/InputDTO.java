@@ -1,5 +1,6 @@
 package ladder.dto;
 
+import ladder.domain.LadderGameResults;
 import ladder.domain.Person;
 
 import java.util.Arrays;
@@ -11,12 +12,20 @@ import java.util.stream.Collectors;
  */
 public class InputDTO {
 
+	public static final String SEPARATOR = ",";
+
 	private List<Person> persons;
 	private int height;
+	private LadderGameResults ladderGameResults;
 
-	public InputDTO(String names, int height) {
+	public InputDTO(String names, int height, String ladderGameResults) {
 		this.persons = toPersons(names);
 		this.height = height;
+		this.ladderGameResults = toLadderGameResults(ladderGameResults);
+	}
+
+	private LadderGameResults toLadderGameResults(String ladderGameResults) {
+		return LadderGameResults.of(Arrays.asList(ladderGameResults.split(SEPARATOR)));
 	}
 
 	private static List<Person> toPersons(String names) {
