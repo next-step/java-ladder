@@ -5,7 +5,9 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 public class StreamStudy {
@@ -23,11 +25,25 @@ public class StreamStudy {
     }
 
     public static void printLongestWordTop100() throws IOException {
-        String contents = new String(Files.readAllBytes(Paths
-                .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
+        String contents = Files.readString(Paths
+                .get("src/main/resources/fp/war-and-peace.txt"));
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
         // TODO 이 부분에 구현한다.
+        words.stream()
+                .filter(StreamStudy::checkLength)
+                .distinct()
+                .sorted(Comparator.comparingInt(String::length))
+                .limit(100)
+                .forEach(StreamStudy::print);
+    }
+
+    private static boolean checkLength(String word) {
+        return word.length() > 12;
+    }
+
+    private static void print(String word) {
+        System.out.println(word.toLowerCase(Locale.ROOT));
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
