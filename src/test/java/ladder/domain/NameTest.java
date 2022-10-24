@@ -1,5 +1,6 @@
-package ladder;
+package ladder.domain;
 
+import ladder.domain.Name;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -18,5 +19,12 @@ public class NameTest {
     public void 이름_생성() {
         Name name = new Name("test");
         assertThat(name).isEqualTo(new Name("test"));
+    }
+
+    @Test
+    public void 이름_5글자_기준으로_출력() {
+        Name name = new Name("abc");
+        assertThat(name.resultName().length()).isEqualTo(5);
+        assertThat(name.resultName()).isEqualTo("  abc");
     }
 }

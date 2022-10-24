@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 import java.util.Objects;
 
@@ -14,6 +14,11 @@ public class Name {
             throw new IllegalArgumentException(ERR_MSG_MAX_NAME_LENGTH);
         }
         this.name = name;
+    }
+
+    public String resultName() {
+        System.out.println(String.format("%5s", this.name));
+        return String.format("%5s", this.name);
     }
 
     @Override
