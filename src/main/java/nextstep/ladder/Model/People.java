@@ -20,8 +20,8 @@ public class People {
 
     public void offerReward(Ladder ladder, Rewards rewards) {
         List<Reward> Rewards = IntStream.range(0, people.size())
-                .map(it -> ladder.move(it))
-                .mapToObj(it -> rewards.getRewardByLocation(it))
+                .map(ladder::move)
+                .mapToObj(rewards::getRewardByLocation)
                 .collect(Collectors.toList());
         for (int i = 0; i < people.size(); i++) {
             people.get(i).offerReward(Rewards.get(i));

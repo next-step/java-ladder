@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Reward {
 
     private static final String REWARD_IS_NOT_NULL_OR_BLANK_ERROR = "보상을 정할 때 Null 혹은 빈값을 올 수 없습니다.";
+    private static final int STANDARD_COMMON_LENGTH = 5;
     private final String reward;
 
     public Reward(String reward) {
@@ -24,6 +25,9 @@ public class Reward {
 
     @Override
     public String toString() {
+        if (reward.length() < STANDARD_COMMON_LENGTH) {
+            return reward + " ".repeat(STANDARD_COMMON_LENGTH - reward.length());
+        }
         return reward;
     }
 
