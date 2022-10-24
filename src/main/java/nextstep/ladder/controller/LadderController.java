@@ -11,7 +11,7 @@ import java.util.List;
 
 public class LadderController {
 
-    public void ladderGame() {
+    public void startGame() {
         List<Person> people = LadderParser.people(Input.inputPerson());
         List<HorizontalLine> horizontalLines = new Ladder(people, Input.inputHeightOfLadder()).horizontalLines();
 
