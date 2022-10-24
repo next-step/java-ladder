@@ -15,12 +15,4 @@ public class LadderParser {
                 .mapToObj(sequence -> new Person(names[sequence]))
                 .collect(Collectors.toUnmodifiableList());
     }
-
-    public static String appendWhiteSpaceInside(String text, int length) {
-        return String.format(new StringBuilder()
-                .append("%")
-                .append(length)
-                .append("s")
-                .toString(), text);
-    }
 }

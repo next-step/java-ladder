@@ -6,7 +6,7 @@ import nextstep.ladder.domain.Person;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static nextstep.ladder.domain.LadderParser.appendWhiteSpaceInside;
+import static nextstep.ladder.util.StringUtil.appendWhiteSpaceInside;
 
 public class Output {
     private final static String ENTER = System.lineSeparator();
