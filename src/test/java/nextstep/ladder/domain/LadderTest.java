@@ -14,6 +14,13 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class LadderTest {
 
     @Test
+    @DisplayName("사다리 타기에 참여하는 사람의 수가 두 명 미만일 경우 예외가 발생한다.")
+    void countOfPersonLessThanTwo() {
+        assertThatThrownBy(() -> new Ladder(Arrays.asList(new Person("정우성")), 5))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     @DisplayName("생성자에 참여할 사람이 없거나, null이면 예외가 발생한다.")
     void peopleNullOrEmptyException() {
         assertThatThrownBy(() -> new Ladder(null, 5))

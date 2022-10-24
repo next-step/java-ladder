@@ -23,6 +23,10 @@ public class Ladder {
         if (people == null || people.isEmpty()) {
             throw new IllegalArgumentException("사다리 타기에 참여할 사용자가 입력되지 않았습니다.");
         }
+
+        if (people.size() < 2) {
+            throw new IllegalArgumentException("사다리 게임에 참여하는 사람의 수는 최소 2명 이상이어야 합니다.");
+        }
     }
 
     private void validateHeight(int heightOfLadder) {

@@ -14,7 +14,6 @@ public class HorizontalLine {
     private final List<Boolean> points;
 
     public HorizontalLine(int countOfPerson) {
-        validateCountOfPerson(countOfPerson);
         this.points = IntStream.range(ZERO, countOfPerson)
                 .mapToObj(point -> false)
                 .collect(Collectors.toList());
@@ -29,12 +28,6 @@ public class HorizontalLine {
                 })
                 .collect(Collectors.toList());
         return this;
-    }
-
-    private void validateCountOfPerson(int countOfPerson) {
-        if (countOfPerson < 2) {
-            throw new IllegalArgumentException("사다리 게임에 참여하는 사람의 수는 최소 2명 이상이어야 합니다.");
-        }
     }
 
     private void checkConnectLine(int index) {

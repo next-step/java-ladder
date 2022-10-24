@@ -15,13 +15,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class HorizontalLineTest {
 
     @Test
-    @DisplayName("사다리 타기에 참여하는 사람의 수가 두 명 미만일 경우 예외가 발생한다.")
-    void countOfPersonLessThanTwo() {
-        assertThatThrownBy(() -> new HorizontalLine(1))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
     @DisplayName("참여하는 사람의 수 만큼 사다리의 이동 포인트가 생성된다.")
     void getPointsSize() {
         assertThat(new HorizontalLine(5).points())
