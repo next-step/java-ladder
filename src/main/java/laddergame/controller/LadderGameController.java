@@ -24,6 +24,6 @@ public class LadderGameController {
         // 결과를 출력하고 싶은 사람 이름 입력받기
         String wantResult = InputView.askPersonNameWantToKnowResult();
         // 결과 출력하기
-        OutputView.printResult(ladderGame.getResult(new PersonName(wantResult)));
+        OutputView.printResult(ladderGame.makeResult(new PersonName(wantResult)));
     }
 }

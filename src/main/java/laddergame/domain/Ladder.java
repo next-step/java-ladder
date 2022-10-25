@@ -30,7 +30,7 @@ public class Ladder {
         return Collections.unmodifiableList(lines);
     }
 
-    public int getResultIndex(int index) {
+    public int findRewardIndex(int index) {
         for (Line line : lines) {
             index = line.nextIndex(index);
         }

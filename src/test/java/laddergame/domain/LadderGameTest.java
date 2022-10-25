@@ -34,7 +34,7 @@ class LadderGameTest {
 
 
         //then
-        assertThatNoException().isThrownBy(() -> ladderGame.getResult(all));
+        assertThatNoException().isThrownBy(() -> ladderGame.makeResult(all));
     }
 
 
@@ -45,7 +45,7 @@ class LadderGameTest {
         PersonName ddd = new PersonName("ddd");
         LadderGame ladderGame = new LadderGame(new People("aaa,bbb,ccc".split(",")), null, null);
         //then
-        assertThatIllegalArgumentException().isThrownBy(() -> ladderGame.getResult(ddd));
+        assertThatIllegalArgumentException().isThrownBy(() -> ladderGame.makeResult(ddd));
     }
 
     @Test
@@ -65,7 +65,7 @@ class LadderGameTest {
         LadderGame ladderGame = new LadderGame(people, rewards, new Ladder(lines));
         //then
         PersonName pobi = new PersonName("pobi");
-        Map<PersonName, Reward> result = ladderGame.getResult(pobi);
+        Map<PersonName, Reward> result = ladderGame.makeResult(pobi);
         //when
         assertThat(result).containsEntry(pobi, new Reward("꽝"));
     }
@@ -87,7 +87,7 @@ class LadderGameTest {
         LadderGame ladderGame = new LadderGame(people, rewards, new Ladder(lines));
         //then
         PersonName all = new PersonName("all");
-        Map<PersonName, Reward> result = ladderGame.getResult(all);
+        Map<PersonName, Reward> result = ladderGame.makeResult(all);
         //when
         org.junit.jupiter.api.Assertions.assertAll(
                 () -> assertThat(result).containsEntry(new PersonName("pobi"), new Reward("꽝")),

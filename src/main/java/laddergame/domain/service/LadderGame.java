@@ -28,29 +28,29 @@ public class LadderGame {
         return people.getNames();
     }
 
-    public Map<PersonName, Reward> getResult(PersonName personName) {
+    public Map<PersonName, Reward> makeResult(PersonName personName) {
 
         if (ALL.equals(personName)) {
-            return getResultAll();
+            return makeResultAll();
         }
         if (people.contains(personName)) {
-            return getResultOne(personName);
+            return makeResultOne(personName);
         }
         throw new IllegalArgumentException();
     }
 
-    private Map<PersonName, Reward> getResultOne(PersonName personName) {
+    private Map<PersonName, Reward> makeResultOne(PersonName personName) {
         Map<PersonName, Reward> result = new HashMap<>();
-        result.put(personName, rewards.getReward(ladder.getResultIndex(people.getIndex(personName))));
+        result.put(personName, rewards.getReward(ladder.findRewardIndex(people.getIndex(personName))));
         return result;
     }
 
-    private Map<PersonName, Reward> getResultAll() {
+    private Map<PersonName, Reward> makeResultAll() {
         HashMap<PersonName, Reward> result = new HashMap<>();
 
         List<PersonName> names = people.getNames();
         for (PersonName name : names) {
-            result.put(name, rewards.getReward(ladder.getResultIndex(people.getIndex(name))));
+            result.put(name, rewards.getReward(ladder.findRewardIndex(people.getIndex(name))));
         }
 
         return result;

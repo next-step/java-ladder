@@ -22,7 +22,7 @@ class LadderTest {
         lines.add(new Line(Arrays.asList(false, false, true, false)));
         Ladder ladder = new Ladder(lines);
         //then
-        assertThat(ladder.getResultIndex(0)).isEqualTo(3);
+        assertThat(ladder.findRewardIndex(0)).isEqualTo(3);
     }
 
 }
