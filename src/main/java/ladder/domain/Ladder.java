@@ -8,6 +8,7 @@ import java.util.stream.IntStream;
 public class Ladder {
     private final List<String> participantNames;
     private final List<Line> lines;
+
     public Ladder(List<String> participantNames, int ladderHeight, LineGenerator lineGenerator) {
         this.participantNames = participantNames;
         int lineLength = getLineLength(participantNames);
