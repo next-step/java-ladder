@@ -1,6 +1,8 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 public class User {
+    public static final int MAX_NAME_LENGTH = 5;
+
     private final String name;
 
     public User(String name) {
@@ -9,8 +11,8 @@ public class User {
     }
 
     private void validateName(String name) {
-        if (name.length() > 5) {
-            throw new IllegalArgumentException();
+        if (name.length() > MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException("이름은 5자 미만이어야 합니다.");
         }
     }
 

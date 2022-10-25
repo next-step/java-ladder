@@ -1,8 +1,10 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 import java.util.Random;
 
-public class RandomLineStrategy implements LineStrategy{
+import nextstep.ladder.domain.LineStrategy;
+
+public class RandomLineStrategy implements LineStrategy {
 
     @Override
     public Boolean addLine() {

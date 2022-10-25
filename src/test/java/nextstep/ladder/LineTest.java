@@ -12,6 +12,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import nextstep.ladder.domain.Line;
+
 public class LineTest {
 
     @DisplayName("곂치는 라인을 생성하지 않았는지 테스트")
