@@ -1,12 +1,18 @@
 package ladder.domain.ladder;
 
+import ladder.exception.ladder.LadderWidthBoundException;
+
 import java.util.Objects;
 
 public class LadderWidth {
 
     private final int width;
+    private static final int LADDER_WIDTH_MIN = 2;
 
     public LadderWidth(int width) {
+        if (width < LADDER_WIDTH_MIN) {
+            throw new LadderWidthBoundException(LADDER_WIDTH_MIN);
+        }
         this.width = width;
     }
 
