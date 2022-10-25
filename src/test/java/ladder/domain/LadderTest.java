@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by seungwoo.song on 2022-10-17
@@ -21,6 +20,6 @@ class LadderTest {
 
 		Ladder ladder = new Ladder(ladderRows);
 
-		assertThat(ladder.getLadderRows()).hasSize(2);
+		assertThat(ladder).hasSize(2);
 	}
 }

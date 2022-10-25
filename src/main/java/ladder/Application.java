@@ -2,6 +2,7 @@ package ladder;
 
 import ladder.domain.Ladder;
 import ladder.domain.LadderFactory;
+import ladder.dto.InputDTO;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -14,8 +15,7 @@ public class Application {
 		InputView inputView = new InputView();
 		InputDTO inputDTO = inputView.read();
 
-		LadderFactory ladderFactory = new LadderFactory();
-		Ladder ladder = ladderFactory.create(inputDTO);
+		Ladder ladder = LadderFactory.create(inputDTO);
 
 		OutputView outputView = new OutputView();
 		outputView.print(ladder, inputDTO);

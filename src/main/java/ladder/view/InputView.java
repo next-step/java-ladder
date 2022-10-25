@@ -1,6 +1,6 @@
 package ladder.view;
 
-import ladder.InputDTO;
+import ladder.dto.InputDTO;
 
 import java.util.Scanner;
 
@@ -13,9 +13,19 @@ public class InputView {
 
 	public InputDTO read() {
 		String names = inputName();
+		System.out.println();
+
+		String ladderGameResults = inputLadderGameResults();
+		System.out.println();
+
 		int height = inputLadderHeight();
 
-		return new InputDTO(names, height);
+		return InputDTO.from(names, height, ladderGameResults);
+	}
+
+	private String inputLadderGameResults() {
+		System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+		return SCANNER.nextLine();
 	}
 
 	private int inputLadderHeight() {
