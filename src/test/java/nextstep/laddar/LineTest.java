@@ -22,4 +22,18 @@ public class LineTest {
         List<Boolean> positions = line.getPositions();
         assertThat(positions).containsExactly(true, false, true, false);
     }
+
+    @Test
+    void goOneStepToRight() {
+        Line line = new Line(4, new TrueGenerator());
+        int position = line.goOneStep(0);
+        assertThat(position).isEqualTo(1);
+    }
+
+    @Test
+    void goOneStepToLeft() {
+        Line line = new Line(4, new TrueGenerator());
+        int position = line.goOneStep(1);
+        assertThat(position).isEqualTo(0);
+    }
 }

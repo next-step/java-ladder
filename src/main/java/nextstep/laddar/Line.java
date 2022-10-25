@@ -2,7 +2,6 @@ package nextstep.laddar;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Line {
     private final List<Boolean> positions = new ArrayList<>();
@@ -16,6 +15,51 @@ public class Line {
         for (int position = 0; position < this.positions.size(); position++) {
             positions.set(position, putHorizontalLine(position));
         }
+    }
+
+    public int goOneStep(int position) {
+        if (hasLine(position)) {
+            return moveRight(position);
+        }
+
+        if (hasLeftLine(position)) {
+            return moveLeft(position);
+        }
+
+        return position;
+    }
+
+    private int moveLeft(int position) {
+        if (canMoveLeft(position)) {
+            return position - 1;
+        }
+        return position;
+    }
+
+    private boolean canMoveLeft(int position) {
+        return position - 1 >= 0;
+    }
+
+    private int moveRight(int position) {
+        if (canMoveRight(position)) {
+            return position + 1;
+        }
+        return position;
+    }
+
+    private boolean canMoveRight(int position) {
+        return position + 1 < this.positions.size();
+    }
+
+    private void validateRangePosition(int pos) {
+        if (pos >= positions.size() || pos < 0) {
+            throw new IllegalArgumentException("범위를 벗어나는 위치입니다.");
+        }
+    }
+
+    private boolean hasLine(int position) {
+        validateRangePosition(position);
+        return positions.get(position);
     }
 
     private boolean putHorizontalLine(int position) {
@@ -37,15 +81,9 @@ public class Line {
     private boolean hasLeftLine(int position) {
         return position > 0 && positions.get(position - 1).equals(true);
     }
-
-    private void validateRangePosition(int pos) {
-        if (pos >= positions.size() || pos < 0) {
-            throw new IllegalArgumentException("해당 위치에는 다리를 놓을 수 없습니다.");
-        }
-    }
-
     public List<Boolean> getPositions() {
         return positions;
     }
+
 }
 
