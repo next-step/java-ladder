@@ -8,8 +8,6 @@ import java.util.Map;
 
 public class LadderGame {
 
-    private static final PersonName ALL = new PersonName("all");
-
     private final People people;
     private final Rewards rewards;
     private final Ladder ladder;
@@ -30,7 +28,7 @@ public class LadderGame {
 
     public Map<PersonName, Reward> makeResult(PersonName personName) {
 
-        if (ALL.equals(personName)) {
+        if (personName.isAll()) {
             return makeResultAll();
         }
         if (people.contains(personName)) {
