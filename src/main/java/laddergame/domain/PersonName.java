@@ -3,7 +3,10 @@ package laddergame.domain;
 import java.util.Objects;
 
 public class PersonName {
-    String name;
+
+    private static final String ALL = "all";
+
+    private final String name;
 
     public PersonName(String name) {
         validateName(name);
@@ -17,6 +20,10 @@ public class PersonName {
         if (name.trim().length() > 5) {
             throw new IllegalArgumentException("이름은 최대 5글자까지 입력할 수 있습니다.");
         }
+    }
+
+    public boolean isAll(){
+        return ALL.equals(this.name);
     }
 
     @Override
