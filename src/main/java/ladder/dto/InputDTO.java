@@ -31,7 +31,9 @@ public class InputDTO {
 		List<Person> people = toPersons(names);
 		LadderGameResults results = toLadderGameResults(ladderGameResults);
 
-		if (people.size() != results.)
+		if (people.size() != results.size()) {
+			throw new IllegalArgumentException("참여자수와 결과 갯수는 같아야 합니다.");
+		}
 
 		return new InputDTO(people, height, results);
 	}
