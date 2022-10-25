@@ -1,5 +1,6 @@
 package ladderapplication.ui;
 
+import ladderapplication.models.requests.LadderRequest;
 import ladderapplication.models.requests.PlayerRequest;
 
 import java.util.List;
@@ -14,5 +15,12 @@ public class Printer {
 
         String[] playerArr = players.split(",");
         return Stream.of(playerArr).map(PlayerRequest::of).collect(Collectors.toList());
+    }
+
+    public static LadderRequest requestLadder() {
+        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        int height = InputScanner.intScan();
+
+        return LadderRequest.of(height);
     }
 }

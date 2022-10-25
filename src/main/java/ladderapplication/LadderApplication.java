@@ -1,5 +1,6 @@
 package ladderapplication;
 
+import ladderapplication.models.requests.LadderRequest;
 import ladderapplication.models.requests.PlayerRequest;
 import ladderapplication.ui.Printer;
 
@@ -9,6 +10,7 @@ public class LadderApplication {
 
     public static void main(String[] args) {
         List<PlayerRequest> playerRequests = Printer.requestPlayer();
+        LadderRequest ladderRequest = Printer.requestLadder();
     }
 
 }
