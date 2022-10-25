@@ -31,8 +31,6 @@ public class LadderNotContinuousConnectStrategyTest {
     @ParameterizedTest(name = "사다리를 넣으면 연결 가능한 사다리 리스트를 반환한다.")
     @MethodSource(value = "providesForGetConnectableLadder")
     void connectable_ladder(Ladder beforeLadder, List<Ladder> connectableLadderList) {
-        LadderConnectStrategy ladderConnectStrategy = new LadderNotContinuousConnectStrategy();
-
         assertThat(ladderConnectStrategy.connectableLadders(beforeLadder)).isEqualTo(connectableLadderList);
     }
 
