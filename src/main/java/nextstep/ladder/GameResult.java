@@ -11,6 +11,18 @@ public class GameResult {
         this.resultPosition = resultPosition;
     }
 
+    public boolean isSameUser(User user) {
+        return this.user.equals(user);
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public int getResultPosition() {
+        return resultPosition;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

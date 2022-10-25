@@ -1,8 +1,11 @@
 package nextstep.ladder.view;
 
-import static nextstep.ladder.view.Shape.*;
+import static nextstep.ladder.view.Shape.BLANK;
+import static nextstep.ladder.view.Shape.HORIZONTAL_LINE;
+import static nextstep.ladder.view.Shape.VERTICAL_LINE;
 
 import java.util.List;
+import nextstep.ladder.GameResult;
 import nextstep.ladder.Ladder;
 import nextstep.ladder.Line;
 import nextstep.ladder.User;
@@ -13,8 +16,7 @@ public class ResultView {
     private ResultView() {
     }
 
-
-    public static void printLaddar(Ladder laddar) {
+    public static void printLadder(Ladder laddar, List<String> executeResult) {
         StringBuilder sb = new StringBuilder();
         List<Line> lines = laddar.getLines();
         for (Line line : lines) {
@@ -22,6 +24,7 @@ public class ResultView {
             sb.append(BLANK.makePrintShape(User.NAME_MAX_LENGTH));
             addOneLine(sb, positions);
         }
+        sb.append(makeExecuteResultLine(executeResult));
         System.out.println(sb);
     }
 
@@ -36,12 +39,49 @@ public class ResultView {
     }
 
     public static void printNames(List<User> userNames) {
-        System.out.println("실행결과");
+        System.out.println("\n사다리 결과");
         StringBuilder sb = new StringBuilder();
         userNames.forEach((username) ->
-                sb.append(String.format(NAME_FORMAT, username.getName()))
+                sb.append(String.format(NAME_FORMAT, username.getName())).append(" ")
         );
         System.out.println(sb);
+    }
+
+    public static void printGameResult(User user, List<GameResult> gameResults, List<String> executeResult) {
+        System.out.println("\n실행 결과");
+        if (user.isSameName("all")) {
+            printAllResult(gameResults, executeResult);
+            return ;
+        }
+        printSingleResult(user, gameResults, executeResult);
+    }
+
+    private static void printAllResult(List<GameResult> gameResults, List<String> executeResult) {
+        for (int i = 0; i < gameResults.size(); i++) {
+            GameResult gameResult = gameResults.get(i);
+            User user = gameResult.getUser();
+            String resultLine = user.getName() + " : " + executeResult.get(gameResult.getResultPosition());
+            System.out.println(resultLine);
+        }
+    }
+
+    private static void printSingleResult(User user, List<GameResult> gameResults, List<String> executeResult) {
+        String result = gameResults.stream()
+                .filter(gameResult -> gameResult.isSameUser(user))
+                .map(GameResult::getResultPosition)
+                .map(executeResult::get)
+                .findFirst()
+                .orElseGet(() -> "[ERROR] 입력된 사람이 사다리게임에 참여하지 않았습니다.");
+        System.out.println(result);
+    }
+
+    private static String makeExecuteResultLine(List<String> executeResult) {
+        StringBuilder sb = new StringBuilder();
+        for (String result : executeResult) {
+            sb.append(String.format(NAME_FORMAT, result)).append(" ");
+        }
+        sb.append("\n");
+        return sb.toString();
     }
 
     private static void addBlankLine(StringBuilder sb, boolean hasLine) {
