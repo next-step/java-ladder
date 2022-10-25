@@ -2,6 +2,7 @@ package ladder.dto;
 
 import ladder.domain.LadderGameResults;
 import ladder.domain.Person;
+import ladder.util.StringUtil;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,7 +26,28 @@ public class InputDTO {
 	}
 
 	public static InputDTO from(String names, int height, String ladderGameResults) {
-		return new InputDTO(toPersons(names), height, toLadderGameResults(ladderGameResults));
+		validate(names, height, ladderGameResults);
+
+		List<Person> people = toPersons(names);
+		LadderGameResults results = toLadderGameResults(ladderGameResults);
+
+		if (people.size() != results.)
+
+		return new InputDTO(people, height, results);
+	}
+
+	private static void validate(String names, int height, String ladderGameResults) {
+		if (StringUtil.isBlank(names)) {
+			throw new IllegalArgumentException("이름은 필수값 입니다");
+		}
+
+		if (height < 1) {
+			throw new IllegalArgumentException("높이는 1 이상 입니다.");
+		}
+
+		if (StringUtil.isBlank(ladderGameResults)) {
+			throw new IllegalArgumentException("결과 값은 필수값 입니다");
+		}
 	}
 
 	private static LadderGameResults toLadderGameResults(String ladderGameResults) {
