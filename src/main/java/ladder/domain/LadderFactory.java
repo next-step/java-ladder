@@ -17,7 +17,7 @@ public class LadderFactory {
 		List<LadderRow> ladderRows = new ArrayList<>();
 
 		for (int i = 0; i < inputDTO.getHeight(); i++) {
-			ladderRows.add(new LadderRow(inputDTO.getPersons().size()));
+			ladderRows.add(new LadderRow(inputDTO.personCount()));
 		}
 
 		return new Ladder(ladderRows);

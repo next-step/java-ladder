@@ -38,6 +38,10 @@ public class InputDTO {
 		return persons;
 	}
 
+	public int personCount() {
+		return persons.size();
+	}
+
 	public int getHeight() {
 		return height;
 	}
