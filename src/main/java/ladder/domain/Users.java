@@ -8,4 +8,8 @@ public class Users {
     public Users(UserNames names) {
         this.users = names.toUsers();
     }
+
+    public int count() {
+        return users.size();
+    }
 }

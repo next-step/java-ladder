@@ -6,22 +6,18 @@ import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.EmptySource;
-import org.junit.jupiter.params.provider.NullSource;
 
 class UserNamesTest {
-    @DisplayName("이름이 null 이거나 공백이면 IllegalArgumentException 예외를 발생시킨다.")
-    @ParameterizedTest
-    @NullSource
-    @EmptySource
-    void constructor_when_null_or_empty(String names) {
-        assertThatThrownBy(() -> new UserNames(names)).isInstanceOf(IllegalArgumentException.class).hasMessage("Name cannot be null or blank.");
-    }
-
     @DisplayName("사용자 목록을 리턴한다.")
     @Test
     void toUsers() {
-        assertThat(new UserNames("pobi,honix").toUsers()).hasSameElementsAs(List.of(new User("pobi"), new User("honix")));
+        assertThat(new UserNames(List.of("pobi", "honix")).toUsers()).hasSameElementsAs(List.of(new User("pobi"), new User("honix")));
+    }
+
+    @DisplayName("전체 사용자의 이름 목록을 리턴한다.")
+    @Test
+    void getAll() {
+        List<String> names = List.of("pobi", "honix");
+        assertThat(new UserNames(names).getAll()).hasSameElementsAs(names);
     }
 }

@@ -6,4 +6,8 @@ public class Height {
     public Height(final int height) {
         this.height = height;
     }
+
+    public int value() {
+        return height;
+    }
 }

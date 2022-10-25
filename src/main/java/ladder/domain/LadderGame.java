@@ -1,11 +1,13 @@
 package ladder.domain;
 
 public class LadderGame {
-    private final Users users;
-    private final Height height;
+    private final Ladder ladder;
 
     public LadderGame(Users users, Height height) {
-        this.users = users;
-        this.height = height;
+        this.ladder = new Ladder(users.count(), height.value());
+    }
+
+    public Ladder execute() {
+        return ladder;
     }
 }
