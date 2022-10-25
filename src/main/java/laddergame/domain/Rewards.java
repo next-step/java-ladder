@@ -19,17 +19,15 @@ public class Rewards {
                 .collect(Collectors.toList()));
     }
 
-    public void validate(People persons) {
-        if(persons.numberOfPeople() != values.size()){
-            throw new IllegalArgumentException();
-        }
-    }
-
     public Reward getReward(int index) {
         return values.get(index);
     }
 
     public List<Reward> getRewards() {
         return Collections.unmodifiableList(values);
+    }
+
+    public int numberOfRewards(){
+        return values.size();
     }
 }

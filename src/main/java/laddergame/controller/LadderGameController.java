@@ -12,9 +12,10 @@ public class LadderGameController {
     public static void main(String[] args) {
         // 게임 참가자 이름 받기
         People people = new People(InputView.askPersonNames());
-        // 실행 결과 입력 받기
+        // 보상 입력 받기
         Rewards rewards = new Rewards(InputView.askRewards());
-        rewards.validate(people);
+        // 참가자 명수와 보상 개수가 같은지 검증
+        validateSize(people, rewards);
         // 사다리 개수 입력 받기
         int numberOfLadder = InputView.askMaxCountOfLadder();
         // 사다리 만들기
@@ -26,4 +27,11 @@ public class LadderGameController {
         // 결과 출력하기
         OutputView.printResult(ladderGame.makeResult(new PersonName(wantResult)));
     }
+
+    private static void validateSize(People people, Rewards rewards) {
+        if(people.numberOfPeople() != rewards.numberOfRewards()){
+            throw new IllegalArgumentException();
+        }
+    }
+
 }
