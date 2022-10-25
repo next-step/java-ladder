@@ -3,11 +3,11 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Name {
-    private final String name;
 
     public static final int MAX_NAME_LENGTH = 5;
-    public static final String NAME_BLANK_APPENDER = " ";
     public static final String ERR_MSG_MAX_NAME_LENGTH = "이름은 최대 5글자까지 부여할 수 있습니다.";
+
+    private final String name;
 
     public Name(String name) {
         if (name.length() > MAX_NAME_LENGTH) {
