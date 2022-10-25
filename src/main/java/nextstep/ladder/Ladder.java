@@ -15,7 +15,7 @@ public class Ladder {
     }
 
     public int executeLaddar(int position) {
-        for (int i = lines.size() - 1; i >= 0; i--) {
+        for (int i = 0; i < lines.size(); i++) {
             Line line = lines.get(i);
             position = line.goOneStep(position);
         }

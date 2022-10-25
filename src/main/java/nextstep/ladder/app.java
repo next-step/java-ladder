@@ -13,10 +13,10 @@ public class app {
 
         Ladder ladder = new Ladder(height, users.getSize(), new RandomGenerator());
         LadderGame ladderGame = new LadderGame(users, ladder);
-        List<GameResult> gameResults = ladderGame.gameStart();
 
         ResultView.printNames(users.getUsers());
         ResultView.printLadder(ladder, executeResult);
+        List<GameResult> gameResults = ladderGame.gameStart();
 
         while (true) {
             User resultUser = InputView.getUserNameForResult();

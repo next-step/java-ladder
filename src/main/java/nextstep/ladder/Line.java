@@ -59,9 +59,6 @@ public class Line {
 
     private boolean hasLine(int position) {
         validateRangePosition(position);
-        if (position == this.positions.size() - 1) {
-            return false;
-        }
         return positions.get(position);
     }
 
