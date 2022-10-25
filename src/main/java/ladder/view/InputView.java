@@ -20,7 +20,7 @@ public class InputView {
 
 		int height = inputLadderHeight();
 
-		return new InputDTO(names, height, ladderGameResults);
+		return InputDTO.from(names, height, ladderGameResults);
 	}
 
 	private String inputLadderGameResults() {

@@ -18,13 +18,17 @@ public class InputDTO {
 	private int height;
 	private LadderGameResults ladderGameResults;
 
-	public InputDTO(String names, int height, String ladderGameResults) {
-		this.persons = toPersons(names);
+	private InputDTO(List<Person> persons, int height, LadderGameResults ladderGameResults) {
+		this.persons = persons;
 		this.height = height;
-		this.ladderGameResults = toLadderGameResults(ladderGameResults);
+		this.ladderGameResults = ladderGameResults;
 	}
 
-	private LadderGameResults toLadderGameResults(String ladderGameResults) {
+	public static InputDTO from(String names, int height, String ladderGameResults) {
+		return new InputDTO(toPersons(names), height, toLadderGameResults(ladderGameResults));
+	}
+
+	private static LadderGameResults toLadderGameResults(String ladderGameResults) {
 		return LadderGameResults.of(Arrays.asList(ladderGameResults.split(SEPARATOR)));
 	}
 
