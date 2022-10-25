@@ -16,13 +16,8 @@ public class Name {
         this.name = name;
     }
 
-    public String getResultName() {
-        StringBuilder builder = new StringBuilder();
-        builder.append(this.name);
-        while (builder.length() <= MAX_NAME_LENGTH) {
-            builder.append(NAME_BLANK_APPENDER);
-        }
-        return builder.toString();
+    public String getName() {
+        return name;
     }
 
     @Override

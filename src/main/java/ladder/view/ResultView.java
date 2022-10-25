@@ -17,7 +17,7 @@ public class ResultView {
 
     private static void printNames(Names names) {
         for (Name name : names.getNames()) {
-            System.out.print(name.getResultName());
+            System.out.print(String.format("%-5s", name.getName()));
         }
         System.out.println();
     }
