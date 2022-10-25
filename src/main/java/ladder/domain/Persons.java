@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import ladder.util.StringUtil;
-
 import java.util.AbstractList;
 import java.util.List;
 import java.util.Objects;
@@ -11,10 +9,10 @@ import java.util.Objects;
  */
 public class Persons extends AbstractList<Person> {
 
-	private final List<Person> persons;
+	private final List<Person> values;
 
-	private Persons(List<Person> persons) {
-		this.persons = persons;
+	private Persons(List<Person> values) {
+		this.values = values;
 	}
 
 	public static Persons of(List<Person> list) {
@@ -25,25 +23,25 @@ public class Persons extends AbstractList<Person> {
 		return new Persons(list);
 	}
 
-	@Override
-	public Person get(int index) {
-		return persons.get(index);
+	public static Persons of(Person person) {
+		return new Persons(List.of(person));
 	}
 
 	public Person get(String name) {
-		if (StringUtil.isBlank(name)) {
-			throw new IllegalArgumentException("이름은 필수값 입니다");
-		}
-
-		return persons.stream()
+		return values.stream()
 			.filter(person -> person.isSameName(name))
 			.findAny()
-			.orElseThrow(() -> new IllegalArgumentException("잘못된 이름입니다. " + name));
+			.orElseThrow(() -> new IllegalArgumentException("잘못된 이름입니다"));
+	}
+
+	@Override
+	public Person get(int index) {
+		return values.get(index);
 	}
 
 	@Override
 	public int size() {
-		return persons.size();
+		return values.size();
 	}
 
 	@Override public boolean equals(Object o) {
@@ -52,10 +50,10 @@ public class Persons extends AbstractList<Person> {
 		if (o == null || getClass() != o.getClass())
 			return false;
 		Persons persons1 = (Persons)o;
-		return Objects.equals(persons, persons1.persons);
+		return Objects.equals(values, persons1.values);
 	}
 
 	@Override public int hashCode() {
-		return Objects.hash(persons);
+		return Objects.hash(values);
 	}
 }

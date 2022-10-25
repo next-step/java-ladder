@@ -11,6 +11,7 @@ import java.util.function.BooleanSupplier;
 public class LadderRow extends AbstractList<LadderColumn> {
 
 	private static final BooleanSupplier DEFAULT_BOOLEAN_SUPPLIER = () -> RandomUtil.random();
+	public static final int SEARCH_DISTANCE = 1;
 
 	private final List<LadderColumn> columns = new ArrayList<>();
 
@@ -68,8 +69,8 @@ public class LadderRow extends AbstractList<LadderColumn> {
 
 	public void movePerson(Person person) {
 		int position = person.getPosition();
-		int leftPosition = position - 1;
-		int rightPosition = position + 1;
+		int leftPosition = position - SEARCH_DISTANCE;
+		int rightPosition = position + SEARCH_DISTANCE;
 
 		if (isColumnNotEmpty(leftPosition)) {
 			person.moveLeft();

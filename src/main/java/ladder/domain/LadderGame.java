@@ -1,15 +1,19 @@
 package ladder.domain;
 
+import ladder.dto.InputDTO;
+
 /**
  * Created by seungwoo.song on 2022-10-25
  */
 public class LadderGame {
-	public LadderGameResult start(Ladder ladder, LadderGameResults results, Person person) {
+
+	public Persons start(Ladder ladder, InputDTO inputDTO) {
+		Persons persons = inputDTO.getPersons();
 
 		for (LadderRow row : ladder) {
-			row.movePerson(person);
+			persons.stream().forEach(row::movePerson);
 		}
 
-		return results.get(person);
+		return persons;
 	}
 }

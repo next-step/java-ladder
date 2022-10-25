@@ -26,7 +26,7 @@ public class OutputView {
 
 	private void addResult(LadderGameResults ladderGameResults) {
 		result.append(ladderGameResults.stream()
-			.map(result -> StringUtil.lpad(result.getValue(), Person.MAX_LENGTH_NAME))
+			.map(ladderGameResult -> StringUtil.lpad(ladderGameResult.getValue(), Person.MAX_LENGTH_NAME))
 			.collect(Collectors.joining(StringUtil.EMPTY_MARK)));
 	}
 
@@ -81,4 +81,28 @@ public class OutputView {
 		return StringUtil.getMarks(Person.MAX_LENGTH_NAME, mark);
 	}
 
+	private boolean isSingle(Persons selectedPersons) {
+		return selectedPersons.size() == 1;
+	}
+
+	public void print(LadderGameResults ladderGameResults, InputDTO inputDTO, String selectedPerson) {
+		if ("all".equals(selectedPerson)) {
+			printSingleResult(ladderGameResults, inputDTO.getPersons());
+			return;
+		}
+
+		printMultiResult(ladderGameResults, inputDTO.getPersons().get(selectedPerson));
+	}
+
+	private void printMultiResult(LadderGameResults gameResults, Person selectedPerson) {
+		LadderGameResult gameResult = gameResults.get(selectedPerson);
+		System.out.println(gameResult.getValue());
+	}
+
+	private void printSingleResult(LadderGameResults gameResults, Persons selectedPersons) {
+		for (Person person : selectedPersons) {
+			LadderGameResult gameResult = gameResults.get(person);
+			System.out.println(String.format("%s : %s", person.getName(), gameResult.getValue()));
+		}
+	}
 }

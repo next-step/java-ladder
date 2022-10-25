@@ -17,8 +17,9 @@ class PersonsTest {
 			new Person("일", 0),
 			new Person("이", 1));
 
-		Persons persons = Persons.of(list);
+		Person find = Persons.of(list).get("일");
 
-		assertThat(persons.get("일").isSameName("일")).isTrue();
+		assertThat(find.isSameName("일")).isTrue();
 	}
+
 }

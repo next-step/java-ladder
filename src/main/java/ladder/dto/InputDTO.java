@@ -5,9 +5,9 @@ import ladder.domain.Person;
 import ladder.domain.Persons;
 import ladder.util.StringUtil;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by seungwoo.song on 2022-10-17
@@ -16,9 +16,9 @@ public class InputDTO {
 
 	public static final String SEPARATOR = ",";
 
-	private Persons persons;
-	private int height;
-	private LadderGameResults ladderGameResults;
+	private final Persons persons;
+	private final int height;
+	private final LadderGameResults ladderGameResults;
 
 	private InputDTO(Persons persons, int height, LadderGameResults ladderGameResults) {
 		this.persons = persons;
@@ -54,13 +54,17 @@ public class InputDTO {
 	}
 
 	private static LadderGameResults toLadderGameResults(String ladderGameResults) {
-		return LadderGameResults.of(Arrays.asList(ladderGameResults.split(SEPARATOR)));
+		String replaced = ladderGameResults.replace(" ", "");
+		return LadderGameResults.of(Arrays.asList(replaced.split(SEPARATOR)));
 	}
 
 	private static Persons toPersons(String names) {
-		List<Person> persons = Arrays.stream(names.split(","))
-			.map(Person::new)
-			.collect(Collectors.toList());
+		List<Person> persons = new ArrayList<>();
+		String[] tokens = names.split(",");
+		for (int i = 0; i < tokens.length; i++) {
+			persons.add(new Person(tokens[i], i));
+		}
+
 		return Persons.of(persons);
 	}
 
