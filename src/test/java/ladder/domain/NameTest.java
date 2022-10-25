@@ -21,10 +21,4 @@ public class NameTest {
         assertThat(name).isEqualTo(new Name("test"));
     }
 
-    @Test
-    public void 이름_5글자_기준으로_출력() {
-        Name name = new Name("abc");
-        assertThat(name.getResultName().length()).isEqualTo(5);
-        assertThat(name.getResultName()).isEqualTo("  abc");
-    }
 }
