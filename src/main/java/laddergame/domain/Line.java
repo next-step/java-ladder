@@ -14,8 +14,8 @@ public class Line {
         this.values = values;
     }
 
-    public Line(int numberOfPerson, LinePainter painter) {
-        this(painter.draw(numberOfPerson));
+    public static Line of(int numberOfPerson, LinePainter painter) {
+        return new Line(painter.draw(numberOfPerson));
     }
 
     private void validateLine(List<Boolean> values) {

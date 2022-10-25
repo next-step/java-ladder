@@ -19,7 +19,7 @@ public class Ladder {
 
     public static Ladder of(int countOfLadder, int numberOfPeople) {
         List<Line> lines = IntStream.range(0, countOfLadder)
-                .mapToObj(__ -> new Line(numberOfPeople, new RandomLinePainter()))
+                .mapToObj(__ -> Line.of(numberOfPeople, new RandomLinePainter()))
                 .collect(Collectors.toUnmodifiableList());
         return new Ladder(lines);
     }
