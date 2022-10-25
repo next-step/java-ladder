@@ -42,8 +42,7 @@ public class OutputView {
 	}
 
 	private void addLadder(Ladder ladder) {
-		ladder.getLadderRows()
-			.stream()
+		ladder.stream()
 			.forEach(this::addRow);
 	}
 

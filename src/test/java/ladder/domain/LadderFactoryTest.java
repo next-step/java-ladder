@@ -13,10 +13,10 @@ class LadderFactoryTest {
 	@Test
 	void 생성() {
 		Ladder ladder = LadderFactory.create(new InputDTO("a,b", 2, "100,꽝"));
-		LadderRow fistColumn = ladder.getLadderRows().get(0);
+		LadderRow fistColumn = ladder.get(0);
 
 		assertThat(ladder).isNotNull();
-		assertThat(ladder.getLadderRows()).hasSize(2);
+		assertThat(ladder).hasSize(2);
 		assertThat(fistColumn.size()).isEqualTo(3);
 		assertThat(fistColumn.get(0)).isInstanceOf(LadderColumnEdge.class);
 		assertThat(fistColumn.get(1)).isInstanceOf(LadderColumnWidth.class);
