@@ -1,7 +1,7 @@
 package ladder.view;
 
-import ladder.dto.InputDTO;
 import ladder.domain.*;
+import ladder.dto.InputDTO;
 import ladder.util.StringUtil;
 
 import java.util.List;
@@ -79,6 +79,5 @@ public class OutputView {
 	private String getMarks(String mark) {
 		return StringUtil.getMarks(Person.MAX_LENGTH_NAME, mark);
 	}
-
 
 }

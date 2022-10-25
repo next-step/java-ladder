@@ -13,7 +13,7 @@ public class LadderGameResult {
 		this.value = value;
 	}
 
-	public static LadderGameResult of (String value) {
+	public static LadderGameResult of(String value) {
 		if ((!"꽝".equals(value) && isNotDigit(value))) {
 			throw new IllegalArgumentException("꽝, 또는 숫자만 입력가능 합니다. " + value);
 		}

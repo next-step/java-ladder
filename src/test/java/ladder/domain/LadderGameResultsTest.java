@@ -14,7 +14,7 @@ class LadderGameResultsTest {
 
 	@Test
 	void 생성() {
-		assertThat(LadderGameResults.of(List.of("꽝","1000"))).isEqualTo(LadderGameResults.of(List.of("꽝","1000")));
+		assertThat(LadderGameResults.of(List.of("꽝", "1000"))).isEqualTo(LadderGameResults.of(List.of("꽝", "1000")));
 	}
 
 	@Test

@@ -2,8 +2,6 @@ package ladder.domain;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -14,7 +12,6 @@ class LadderRowTest {
 	@Test
 	void 생성_2인() {
 		LadderRow ladderRow = new LadderRow(2, () -> true);
-		
 
 		assertThat(ladderRow).hasSize(3);
 		assertThat(ladderRow.get(0)).hasSameClassAs(new LadderColumnEdge());

@@ -2,11 +2,8 @@ package ladder.domain;
 
 import org.junit.jupiter.api.Test;
 
-import javax.swing.text.Position;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by seungwoo.song on 2022-10-24
