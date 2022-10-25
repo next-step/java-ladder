@@ -21,4 +21,9 @@ class PersonTest {
 	void 생성실패_이름6글자() {
 		assertThatIllegalArgumentException().isThrownBy(() -> new Person("123456"));
 	}
+
+	@Test
+	void 이름동일() {
+		assertThat(new Person("1").isSameName("1")).isTrue();
+	}
 }
