@@ -1,12 +1,18 @@
 package ladder.domain;
 
+import ladder.exception.LadderHeightBoundException;
+
 import java.util.Objects;
 
 public class LadderHeight {
 
     private final int height;
+    private static final int LADDER_HEIGHT_MIN = 1;
 
     public LadderHeight(int height) {
+        if (height < LADDER_HEIGHT_MIN) {
+            throw new LadderHeightBoundException(LADDER_HEIGHT_MIN);
+        }
         this.height = height;
     }
 
