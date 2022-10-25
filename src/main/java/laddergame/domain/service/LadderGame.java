@@ -41,7 +41,8 @@ public class LadderGame {
 
     private Map<PersonName, Reward> makeResultOne(PersonName personName) {
         Map<PersonName, Reward> result = new HashMap<>();
-        result.put(personName, rewards.getReward(ladder.findRewardIndex(people.getIndex(personName))));
+        int rewardIndex = ladder.findRewardIndex(people.getIndex(personName));
+        result.put(personName, rewards.getReward(rewardIndex));
         return result;
     }
 
@@ -50,7 +51,8 @@ public class LadderGame {
 
         List<PersonName> names = people.getNames();
         for (PersonName name : names) {
-            result.put(name, rewards.getReward(ladder.findRewardIndex(people.getIndex(name))));
+            int rewardIndex = ladder.findRewardIndex(people.getIndex(name));
+            result.put(name, rewards.getReward(rewardIndex));
         }
 
         return result;
