@@ -1,12 +1,15 @@
 package ladder.domain.ladder.ladderline;
 
 import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.LadderHeight;
 import ladder.domain.ladder.LadderWidth;
 import ladder.domain.ladder.strategy.LadderConnectStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LadderLineFactory {
 
@@ -14,6 +17,12 @@ public class LadderLineFactory {
 
     public LadderLineFactory(LadderConnectStrategy ladderConnectStrategy) {
         this.ladderConnectStrategy = ladderConnectStrategy;
+    }
+
+    public LadderLines randomLadderLines(LadderWidth ladderWidth, LadderHeight ladderHeight) {
+        return new LadderLines(IntStream.range(0, ladderHeight.height())
+                .mapToObj(i -> randomLadderLine(ladderWidth))
+                .collect(Collectors.toList()));
     }
 
     public LadderLine randomLadderLine(LadderWidth ladderWidth) {

@@ -16,6 +16,10 @@ public class LadderHeight {
         this.height = height;
     }
 
+    public int height() {
+        return height;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
