@@ -1,6 +1,5 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
-import ladder.domain.Ladder.Ladder;
 import ladder.exception.ladder.LadderNumberException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

@@ -1,4 +1,4 @@
-package ladder.domain.Ladder;
+package ladder.domain.ladder;
 
 import ladder.exception.ladder.LadderNumberException;
 
