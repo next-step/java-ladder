@@ -50,8 +50,7 @@ public class OutputView {
 	private void addRow(LadderRow ladderRow) {
 		result.append(StringUtil.getMarks(Person.MAX_LENGTH_NAME - 1, EMPTY_MARK));
 
-		ladderRow.getColumns()
-			.stream()
+		ladderRow.stream()
 			.forEach(this::addColumn);
 
 		changeLine();
