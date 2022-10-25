@@ -7,6 +7,7 @@ import java.util.Objects;
  */
 public class LadderGameResult {
 
+	public static final String LOSE_VALUE = "꽝";
 	private final String value;
 
 	private LadderGameResult(String value) {
@@ -14,7 +15,7 @@ public class LadderGameResult {
 	}
 
 	public static LadderGameResult of(String value) {
-		if ((!"꽝".equals(value) && isNotDigit(value))) {
+		if ((!LOSE_VALUE.equals(value) && isNotDigit(value))) {
 			throw new IllegalArgumentException("꽝, 또는 숫자만 입력가능 합니다. " + value);
 		}
 
