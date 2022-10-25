@@ -18,7 +18,7 @@ public class LadderGameController {
         // 사다리 개수 입력 받기
         int numberOfLadder = InputView.askMaxCountOfLadder();
         // 사다리 만들기
-        LadderGame ladderGame = new LadderGame(people, rewards, numberOfLadder);
+        LadderGame ladderGame = LadderGame.of(people, rewards, numberOfLadder);
         // 사다리 출력하기
         OutputView.printLadder(ladderGame);
         // 결과를 출력하고 싶은 사람 이름 입력받기

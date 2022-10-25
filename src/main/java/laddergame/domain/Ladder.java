@@ -17,11 +17,13 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public Ladder(int countOfLadder, int numberOfPeople) {
-        this(IntStream.range(0, countOfLadder)
+    public static Ladder of(int countOfLadder, int numberOfPeople) {
+        List<Line> lines = IntStream.range(0, countOfLadder)
                 .mapToObj(__ -> new Line(numberOfPeople, new RandomLinePainter()))
-                .collect(Collectors.toUnmodifiableList()));
+                .collect(Collectors.toUnmodifiableList());
+        return new Ladder(lines);
     }
+
 
 
     public List<Line> getLines() {

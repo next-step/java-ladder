@@ -20,8 +20,8 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
-    public LadderGame(People people, Rewards rewards, int countOfLadder) {
-        this(people, rewards, new Ladder(countOfLadder, people.numberOfPeople()));
+    public static LadderGame of(People people, Rewards rewards, int countOfLadder) {
+        return new LadderGame(people, rewards, Ladder.of(countOfLadder, people.numberOfPeople()) );
     }
 
     public List<PersonName> getPersonNames() {
