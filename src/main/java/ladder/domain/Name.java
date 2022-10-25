@@ -6,6 +6,7 @@ public class Name {
     private final String name;
 
     public static final int MAX_NAME_LENGTH = 5;
+    public static final String NAME_BLANK_APPENDER = " ";
     public static final String ERR_MSG_MAX_NAME_LENGTH = "이름은 최대 5글자까지 부여할 수 있습니다.";
 
     public Name(String name) {
@@ -15,9 +16,13 @@ public class Name {
         this.name = name;
     }
 
-    public String resultName() {
-        System.out.println(String.format("%5s", this.name));
-        return String.format("%5s", this.name);
+    public String getResultName() {
+        StringBuilder builder = new StringBuilder();
+        builder.append(this.name);
+        while (builder.length() <= MAX_NAME_LENGTH) {
+            builder.append(NAME_BLANK_APPENDER);
+        }
+        return builder.toString();
     }
 
     @Override

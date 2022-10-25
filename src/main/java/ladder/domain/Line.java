@@ -3,6 +3,7 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class Line {
 
@@ -25,5 +26,11 @@ public class Line {
 
     public List<Point> getPoints() {
         return points;
+    }
+
+    public List<String> getResultLine() {
+        return points.stream()
+                .map(point -> point.getPointExist())
+                .collect(Collectors.toList());
     }
 }
