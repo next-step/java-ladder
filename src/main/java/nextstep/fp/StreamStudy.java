@@ -30,9 +30,9 @@ public class StreamStudy {
 
         // TODO 이 부분에 구현한다.
         words.stream()
-                .filter(word -> word.length() > 12)
-                .sorted(Comparator.comparing(String::length, Comparator.reverseOrder()))
                 .distinct()
+                .filter(word -> word.length() > 12)
+                .sorted(Comparator.comparing(String::length).reversed())
                 .limit(100)
                 .map(String::toLowerCase)
                 .forEach(System.out::println);
@@ -49,7 +49,6 @@ public class StreamStudy {
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
         return numbers.stream()
                 .filter(number -> number > 3 )
-                .mapToInt(number -> number * 2)
-                .sum();
+                .reduce(0, (x, y) -> x + y * 2);
     }
 }

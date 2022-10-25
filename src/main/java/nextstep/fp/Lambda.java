@@ -41,10 +41,9 @@ public class Lambda {
         return sumCondition(numbers, number -> number > 3);
     }
 
-    public static int sumCondition(List<Integer> numbers, Conditional c) {
+    public static int sumCondition(List<Integer> numbers, Conditional conditional) {
         return numbers.stream()
-                .filter(c::test)
-                .mapToInt(number -> number)
-                .sum();
+                .filter(conditional::test)
+                .reduce(0, Integer::sum);
     }
 }
