@@ -26,4 +26,18 @@ class PersonTest {
 	void 이름동일() {
 		assertThat(new Person("1").isSameName("1")).isTrue();
 	}
+
+	@Test
+	void 이동_왼쪽() {
+		Person person = new Person("a", 3);
+		person.moveLeft();
+		assertThat(person.getPosition()).isEqualTo(2);
+	}
+
+	@Test
+	void 이동_오른쪽() {
+		Person person = new Person("a", 3);
+		person.moveRight();
+		assertThat(person.getPosition()).isEqualTo(4);
+	}
 }

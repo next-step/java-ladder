@@ -34,4 +34,16 @@ public class Person {
 	public boolean isSameName(String name) {
 		return this.name.equals(name);
 	}
+
+	public void moveLeft() {
+		position--;
+	}
+
+	public void moveRight() {
+		position++;
+	}
+
+	private void move(LadderRow row) {
+		row.get(position);
+	}
 }

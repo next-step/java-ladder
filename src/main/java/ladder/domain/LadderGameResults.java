@@ -56,9 +56,4 @@ public class LadderGameResults extends AbstractList<LadderGameResult> {
 
 		return get(position);
 	}
-
-	@Deprecated
-	public String values() {
-		return
-	}
 }
