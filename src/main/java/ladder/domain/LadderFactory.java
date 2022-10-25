@@ -10,7 +10,10 @@ import java.util.List;
  */
 public class LadderFactory {
 
-	public Ladder create(InputDTO inputDTO) {
+	private LadderFactory() {
+	}
+
+	public static Ladder create(InputDTO inputDTO) {
 		List<LadderRow> ladderRows = new ArrayList<>();
 
 		for (int i = 0; i < inputDTO.getHeight(); i++) {
