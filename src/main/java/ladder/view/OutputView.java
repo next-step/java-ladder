@@ -4,7 +4,6 @@ import ladder.domain.*;
 import ladder.dto.InputDTO;
 import ladder.util.StringUtil;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -26,12 +25,12 @@ public class OutputView {
 	}
 
 	private void addResult(LadderGameResults ladderGameResults) {
-		result.append( ladderGameResults.stream()
+		result.append(ladderGameResults.stream()
 			.map(result -> StringUtil.lpad(result.getValue(), Person.MAX_LENGTH_NAME))
 			.collect(Collectors.joining(StringUtil.EMPTY_MARK)));
 	}
 
-	private void addNames(List<Person> persons) {
+	private void addNames(Persons persons) {
 		String nameLine = persons
 			.stream()
 			.map(Person::getName)

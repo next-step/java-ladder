@@ -2,7 +2,9 @@ package ladder.domain;
 
 import ladder.util.StringUtil;
 
-import java.util.*;
+import java.util.AbstractList;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by seungwoo.song on 2022-10-25
@@ -11,7 +13,7 @@ public class Persons extends AbstractList<Person> {
 
 	private final List<Person> persons;
 
-	public Persons(List<Person> persons) {
+	private Persons(List<Person> persons) {
 		this.persons = persons;
 	}
 
@@ -22,7 +24,6 @@ public class Persons extends AbstractList<Person> {
 
 		return new Persons(list);
 	}
-
 
 	@Override
 	public Person get(int index) {

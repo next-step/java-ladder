@@ -2,6 +2,7 @@ package ladder.dto;
 
 import ladder.domain.LadderGameResults;
 import ladder.domain.Person;
+import ladder.domain.Persons;
 import ladder.util.StringUtil;
 
 import java.util.Arrays;
@@ -15,11 +16,11 @@ public class InputDTO {
 
 	public static final String SEPARATOR = ",";
 
-	private List<Person> persons;
+	private Persons persons;
 	private int height;
 	private LadderGameResults ladderGameResults;
 
-	private InputDTO(List<Person> persons, int height, LadderGameResults ladderGameResults) {
+	private InputDTO(Persons persons, int height, LadderGameResults ladderGameResults) {
 		this.persons = persons;
 		this.height = height;
 		this.ladderGameResults = ladderGameResults;
@@ -28,7 +29,7 @@ public class InputDTO {
 	public static InputDTO from(String names, int height, String ladderGameResults) {
 		validate(names, height, ladderGameResults);
 
-		List<Person> people = toPersons(names);
+		Persons people = toPersons(names);
 		LadderGameResults results = toLadderGameResults(ladderGameResults);
 
 		if (people.size() != results.size()) {
@@ -56,13 +57,14 @@ public class InputDTO {
 		return LadderGameResults.of(Arrays.asList(ladderGameResults.split(SEPARATOR)));
 	}
 
-	private static List<Person> toPersons(String names) {
-		return Arrays.stream(names.split(","))
+	private static Persons toPersons(String names) {
+		List<Person> persons = Arrays.stream(names.split(","))
 			.map(Person::new)
 			.collect(Collectors.toList());
+		return Persons.of(persons);
 	}
 
-	public List<Person> getPersons() {
+	public Persons getPersons() {
 		return persons;
 	}
 
