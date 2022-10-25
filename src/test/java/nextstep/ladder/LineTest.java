@@ -36,4 +36,11 @@ public class LineTest {
         int position = line.goOneStep(1);
         assertThat(position).isEqualTo(0);
     }
+
+    @Test
+    void goOneStepOddGenerator() {
+        Line line = new Line(4, new TwoRepeatGenerator());
+        int position = line.goOneStep(3);
+        assertThat(position).isEqualTo(2);
+    }
 }
