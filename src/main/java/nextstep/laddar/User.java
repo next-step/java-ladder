@@ -1,7 +1,5 @@
 package nextstep.laddar;
 
-import java.util.Optional;
-
 public class User {
     public static final int NAME_MAX_LENGTH = 5;
 
