@@ -1,4 +1,4 @@
-package nextstep.laddar;
+package nextstep.ladder;
 
 public class User {
     public static final int NAME_MAX_LENGTH = 5;

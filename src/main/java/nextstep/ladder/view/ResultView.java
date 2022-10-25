@@ -1,11 +1,11 @@
-package nextstep.laddar.view;
+package nextstep.ladder.view;
 
-import static nextstep.laddar.view.Shape.*;
+import static nextstep.ladder.view.Shape.*;
 
 import java.util.List;
-import nextstep.laddar.Ladder;
-import nextstep.laddar.Line;
-import nextstep.laddar.User;
+import nextstep.ladder.Ladder;
+import nextstep.ladder.Line;
+import nextstep.ladder.User;
 
 public class ResultView {
     private static final String NAME_FORMAT = "%" + User.NAME_MAX_LENGTH + "s";

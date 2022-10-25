@@ -1,4 +1,4 @@
-package nextstep.laddar;
+package nextstep.ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

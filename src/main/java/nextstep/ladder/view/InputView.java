@@ -1,12 +1,11 @@
-package nextstep.laddar.view;
+package nextstep.ladder.view;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
-import nextstep.laddar.User;
-import nextstep.laddar.Users;
-import nextstep.laddar.UsersFactory;
+import nextstep.ladder.Users;
+import nextstep.ladder.UsersFactory;
 
 public class InputView {
     private static final String NAME_SEPARATOR = ",";

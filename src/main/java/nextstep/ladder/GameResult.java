@@ -1,4 +1,4 @@
-package nextstep.laddar;
+package nextstep.ladder;
 
 import java.util.Objects;
 
