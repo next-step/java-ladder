@@ -10,8 +10,12 @@ public class StringUtil {
 	private StringUtil() {
 	}
 
-	public static boolean isNotBlank(String result) {
-		return result != null && !result.isEmpty();
+	public static boolean isBlank(String text) {
+		return text == null || text.isEmpty();
+	}
+
+	public static boolean isNotBlank(String text) {
+		return !isBlank(text);
 	}
 
 	public static String lpad(String text, int maxLength) {
