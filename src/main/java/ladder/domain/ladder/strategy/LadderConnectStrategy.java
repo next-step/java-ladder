@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface LadderConnectStrategy {
     List<Ladder> connectableLadders(Ladder beforeLadder);
+
+    Ladder lastLadder(Ladder beforeLadder);
 }

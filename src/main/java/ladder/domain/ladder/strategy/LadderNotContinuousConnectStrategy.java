@@ -19,4 +19,15 @@ public class LadderNotContinuousConnectStrategy implements LadderConnectStrategy
         }
         throw new NoConnectableLadder();
     }
+
+    @Override
+    public Ladder lastLadder(Ladder beforeLadder) {
+        if (beforeLadder.equals(Ladder.LEFT) || beforeLadder.equals(Ladder.NONE)) {
+            return Ladder.NONE;
+        }
+        if(beforeLadder.equals(Ladder.RIGHT)){
+            return Ladder.LEFT;
+        }
+        throw new NoConnectableLadder();
+    }
 }

@@ -1,15 +1,16 @@
-package ladder.domain.ladder;
+package ladder.domain.ladder.ladderline;
 
-import java.util.ArrayList;
+import ladder.domain.ladder.Ladder;
+
 import java.util.List;
 import java.util.Objects;
 
 public class LadderLine {
 
-    private final List<Ladder> ladderList;
+    private final List<Ladder> ladders;
 
-    public LadderLine() {
-        this.ladderList = new ArrayList<>();
+    public LadderLine(List<Ladder> ladders) {
+        this.ladders = ladders;
     }
 
     @Override
@@ -17,11 +18,11 @@ public class LadderLine {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LadderLine that = (LadderLine) o;
-        return Objects.equals(ladderList, that.ladderList);
+        return Objects.equals(ladders, that.ladders);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ladderList);
+        return Objects.hash(ladders);
     }
 }

@@ -16,6 +16,10 @@ public class LadderWidth {
         this.width = width;
     }
 
+    public int lastLadderIndex() {
+        return width - 1;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
