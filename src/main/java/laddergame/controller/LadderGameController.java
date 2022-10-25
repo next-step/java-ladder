@@ -22,10 +22,18 @@ public class LadderGameController {
         LadderGame ladderGame = LadderGame.of(people, rewards, numberOfLadder);
         // 사다리 출력하기
         OutputView.printLadder(ladderGame);
-        // 결과를 출력하고 싶은 사람 이름 입력받기
-        String wantResult = InputView.askPersonNameWantToKnowResult();
-        // 결과 출력하기
-        OutputView.printResult(ladderGame.makeResult(new PersonName(wantResult)));
+        // 결과 출력
+        boolean gameOver = false;
+        do{
+            // 결과를 출력하고 싶은 사람 이름 입력받기
+            String wantResult = InputView.askPersonNameWantToKnowResult();
+            PersonName personName = new PersonName(wantResult);
+            // 결과 출력하기
+            OutputView.printResult(ladderGame.makeResult(personName));
+            // 전체 출력이면 게임 종료
+            gameOver = personName.isAll();
+        } while (!gameOver);
+
     }
 
     private static void validateSize(People people, Rewards rewards) {
