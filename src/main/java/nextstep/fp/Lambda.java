@@ -24,14 +24,22 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers) {
-        return numbers.stream().reduce(Integer::sum).orElse(0);
+        return numbers.stream()
+                      .reduce(Integer::sum)
+                      .orElse(0);
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        return numbers.stream().filter(n -> n % 2 == 0).reduce(Integer::sum).orElse(0);
+        return numbers.stream()
+                      .filter(n -> n % 2 == 0)
+                      .reduce(Integer::sum)
+                      .orElse(0);
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
-        return numbers.stream().filter(n -> n > 3).reduce(Integer::sum).orElse(0);
+        return numbers.stream()
+                      .filter(n -> n > 3)
+                      .reduce(Integer::sum)
+                      .orElse(0);
     }
 }
