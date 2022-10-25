@@ -1,4 +1,6 @@
-package ladder.exception;
+package ladder.exception.ladder;
+
+import ladder.exception.LadderException;
 
 public class NoConnectableLadder extends LadderException {
     public NoConnectableLadder() {

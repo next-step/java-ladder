@@ -1,7 +1,7 @@
 package ladder.domain.ladder.strategy;
 
 import ladder.domain.ladder.Ladder;
-import ladder.exception.NoConnectableLadder;
+import ladder.exception.ladder.NoConnectableLadder;
 
 import java.util.List;
 
