@@ -26,7 +26,9 @@ public class OutputView {
 	}
 
 	private void addResult(LadderGameResults ladderGameResults) {
-		result.append(ladderGameResults.values());
+		result.append( ladderGameResults.stream()
+			.map(result -> StringUtil.lpad(result.getValue(), Person.MAX_LENGTH_NAME))
+			.collect(Collectors.joining(StringUtil.EMPTY_MARK)));
 	}
 
 	private void addNames(List<Person> persons) {
