@@ -15,7 +15,7 @@ public class StringUtil {
 	}
 
 	public static String lpad(String text, int maxLength) {
-		return StringUtil.getMarks(maxLength - text.length(), EMPTY_MARK) + text;
+		return lpad(text, maxLength, EMPTY_MARK);
 	}
 
 	public static String lpad(String text, int maxLength, String emptyMark) {
