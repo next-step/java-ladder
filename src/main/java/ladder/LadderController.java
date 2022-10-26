@@ -14,12 +14,32 @@ public class LadderController {
     }
 
     public void create() {
-        OutputView.inputPersonName();
-        People people = ladderService.people(InputView.personNameInput());
+        OutputView.inputPeople();
+        People people = inputPeople();
 
         OutputView.inputLadderHeight();
-        LadderLines ladderLines = ladderService.createLadderLine(people.number(), InputView.ladderHeight());
+        LadderLines ladderLines = ladderService.createLadderLine(people.number(), inputHeight());
 
         OutputView.result(people.toStrings(), ladderLines.toString());
+    }
+
+    private static int inputHeight() {
+        try {
+            return InputView.ladderHeight();
+        } catch (Exception e) {
+            e.printStackTrace();
+            OutputView.inputLadderHeightException();
+        }
+        return inputHeight();
+    }
+
+    private People inputPeople() {
+        try {
+            return ladderService.people(InputView.personNameInput());
+        } catch (Exception e) {
+            e.printStackTrace();
+            OutputView.inputPeopleException();
+        }
+        return inputPeople();
     }
 }
