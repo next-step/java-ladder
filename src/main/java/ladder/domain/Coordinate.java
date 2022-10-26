@@ -7,7 +7,7 @@ public class Coordinate {
     private final Position x;
     private final Position y;
 
-    public Coordinate(final Position x,final Position y) {
+    public Coordinate(final Position x, final Position y) {
         this.x = x;
         this.y = y;
     }
