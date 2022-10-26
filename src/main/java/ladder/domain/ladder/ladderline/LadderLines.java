@@ -2,6 +2,7 @@ package ladder.domain.ladder.ladderline;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class LadderLines {
 
@@ -22,5 +23,12 @@ public class LadderLines {
     @Override
     public int hashCode() {
         return Objects.hash(ladderLines);
+    }
+
+    @Override
+    public String toString() {
+        return ladderLines.stream()
+                .map(LadderLine::toString)
+                .collect(Collectors.joining("\n"));
     }
 }

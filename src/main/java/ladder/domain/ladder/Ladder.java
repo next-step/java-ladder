@@ -1,5 +1,6 @@
 package ladder.domain.ladder;
 
+import ladder.exception.NoSuchLadderException;
 import ladder.exception.ladder.LadderNumberException;
 
 import java.util.Arrays;
@@ -23,5 +24,16 @@ public enum Ladder {
                 .filter(ladder -> ladder.type == type)
                 .findFirst()
                 .orElseThrow(() -> new LadderNumberException(type));
+    }
+
+    @Override
+    public String toString() {
+        if (this == Ladder.RIGHT) {
+            return "|-----";
+        }
+        if (this == Ladder.NONE || this == Ladder.LEFT) {
+            return "|     ";
+        }
+        throw new NoSuchLadderException();
     }
 }

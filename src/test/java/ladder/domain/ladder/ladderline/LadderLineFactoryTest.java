@@ -8,9 +8,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
+import static ladder.domain.ladder.ladderline.LadderLineTestUtil.createNoneLadderLine;
 import static org.assertj.core.api.Assertions.*;
 
 class LadderLineFactoryTest {
@@ -38,11 +37,5 @@ class LadderLineFactoryTest {
     @Test
     void random_ladderline() {
         assertThat(createNoneLadderLine(3)).isEqualTo(new LadderLine(List.of(Ladder.NONE, Ladder.NONE, Ladder.NONE)));
-    }
-
-    private static LadderLine createNoneLadderLine(int width) {
-        return new LadderLine(IntStream.range(0, width)
-                .mapToObj(i -> Ladder.NONE)
-                .collect(Collectors.toList()));
     }
 }
