@@ -24,3 +24,11 @@
       - [x] getUser() 메서드를 Stream/Optional 구현
       - [x] ExpressionTest.of() 메서드 구현
       - [x] notValidExpression Test Pass
+* Step2 - 사다리(생성)
+  * 기능 목록
+    - [ ] 쉼표를 기준으로 최대 5글자의 참여하는 사람 입력
+    - [ ] 사다리 높이 입력
+    - [ ] 사람 이름 일급 컬렉션 객체
+    - [ ] 세로 사다리(높이) 구현
+    - [ ] 가로 사다리 구현
+    - [ ] 실행결과 출력
