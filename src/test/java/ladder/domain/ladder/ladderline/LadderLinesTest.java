@@ -23,8 +23,8 @@ public class LadderLinesTest {
 
     private static Stream<Arguments> provideCustomToString() {
         return Stream.of(
-                Arguments.of(new LadderLines(List.of(continuousLadder(), continuousLadder())), "    |-----|\n|-----|"),
-                Arguments.of(new LadderLines(List.of(createNoneLadderLine(2), continuousLadder())), "    |-----|\n|-----|")
+                Arguments.of(new LadderLines(List.of(continuousLadder(), continuousLadder())), "    |-----|\n    |-----|"),
+                Arguments.of(new LadderLines(List.of(createNoneLadderLine(2), continuousLadder())), "    |     |\n    |-----|")
         );
     }
 
