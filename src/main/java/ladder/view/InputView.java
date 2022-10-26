@@ -16,6 +16,6 @@ public class InputView {
     }
 
     public static int ladderHeight() {
-        return scanner.nextInt();
+        return Integer.parseInt(scanner.nextLine());
     }
 }
