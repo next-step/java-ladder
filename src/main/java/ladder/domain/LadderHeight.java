@@ -46,4 +46,11 @@ public class LadderHeight {
     public int hashCode() {
         return Objects.hash(value);
     }
+
+    @Override
+    public String toString() {
+        return "LadderHeight{" +
+                "value=" + value +
+                '}';
+    }
 }
