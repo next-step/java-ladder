@@ -1,6 +1,7 @@
 package ladder;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -43,4 +44,20 @@ public class Row {
         return points;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Row row = (Row) o;
+        return Objects.equals(points, row.points);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(points);
+    }
 }
