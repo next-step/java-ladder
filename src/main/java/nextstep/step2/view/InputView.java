@@ -19,4 +19,10 @@ public class InputView {
             .map(name -> ParticipantName.from(name))
             .collect(Collectors.toList());
     }
+
+    public static int inputLadderHeight() {
+        OutputView.printLadderHeightNotification();
+
+        return scanner.nextInt();
+    }
 }

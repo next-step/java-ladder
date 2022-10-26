@@ -8,5 +8,6 @@ public class LadderGameApplication {
 
     public static void main(String[] args) {
         List<ParticipantName> participantNames = InputView.inputParticipantNames();
+        InputView.inputLadderHeight();
     }
 }
