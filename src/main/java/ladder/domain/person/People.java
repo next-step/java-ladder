@@ -13,4 +13,14 @@ public class People {
                 .map(Person::new)
                 .collect(Collectors.toList());
     }
+
+    public int number() {
+        return people.size();
+    }
+
+    public List<String> toStrings() {
+        return people.stream()
+                .map(Person::toString)
+                .collect(Collectors.toList());
+    }
 }

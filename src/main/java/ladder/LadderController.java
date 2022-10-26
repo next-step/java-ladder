@@ -1,12 +1,9 @@
 package ladder;
 
-import ladder.domain.person.Person;
+import ladder.domain.person.People;
 import ladder.domain.ladder.ladderline.LadderLines;
 import ladder.view.InputView;
 import ladder.view.OutputView;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class LadderController {
 
@@ -18,15 +15,11 @@ public class LadderController {
 
     public void create() {
         OutputView.inputPersonName();
-        List<Person> persons = ladderService.persons(InputView.personNameInput());
+        People people = ladderService.people(InputView.personNameInput());
 
         OutputView.inputLadderHeight();
-        LadderLines ladderLines = ladderService.createLadderLine(persons.size(), InputView.ladderHeight());
+        LadderLines ladderLines = ladderService.createLadderLine(people.number(), InputView.ladderHeight());
 
-        List<String> personStrings = persons.stream()
-                .map(Person::toString)
-                .collect(Collectors.toList());
-
-        OutputView.result(personStrings, ladderLines.toString());
+        OutputView.result(people.toStrings(), ladderLines.toString());
     }
 }
