@@ -1,8 +1,11 @@
 package nextstep.fp;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Lambda {
+
     public static void printAllOld(List<Integer> numbers) {
         System.out.println("printAllOld");
 
@@ -27,30 +30,26 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            total += number;
-        }
-        return total;
+        return sum(numbers, (int number) -> true);
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number % 2 == 0) {
-                total += number;
-            }
-        }
-        return total;
+        return sum(numbers, (int number) -> number % 2 == 0);
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number > 3) {
-                total += number;
-            }
-        }
-        return total;
+        return sum(numbers, (int number) -> number > 3);
+    }
+
+    private static int sum(List<Integer> numbers, SumCondition condition) {
+        AtomicInteger total = new AtomicInteger();
+        numbers.forEach(number -> total.addAndGet(getValidNumber(number, condition)));
+        return total.get();
+    }
+
+    private static int getValidNumber(int number, SumCondition condition) {
+        return Optional.of(number)
+                .filter(condition::validateNumber)
+                .orElse(0);
     }
 }
