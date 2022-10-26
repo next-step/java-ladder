@@ -5,22 +5,18 @@ import ladder.domain.exception.NonNumericStringException;
 
 import java.util.Objects;
 
-public class Position {
+public class LadderHeight {
 
-    public static final int MINIMUM = 0;
+    public static final int MINIMUM = 1;
 
     private final int value;
 
-    public Position() {
-        this.value = 0;
-    }
-
-    public Position(final int value) {
+    public LadderHeight(final int value) {
         validateMin(value);
         this.value = value;
     }
 
-    public Position(final String value) {
+    public LadderHeight(final String value) {
         this(parseInt(value));
     }
 
@@ -42,8 +38,8 @@ public class Position {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Position position = (Position) o;
-        return value == position.value;
+        LadderHeight that = (LadderHeight) o;
+        return value == that.value;
     }
 
     @Override
