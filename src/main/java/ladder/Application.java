@@ -1,13 +1,13 @@
 package ladder;
 
+import ladder.domain.LadderHeight;
+import ladder.domain.PlayerGroup;
 import ladder.ui.ConsoleInput;
-
-import java.util.List;
 
 public class Application {
 
     public static void main(String[] args) {
-        List<String> names = ConsoleInput.receiveNames();
-        String height = ConsoleInput.receiveHeight();
+        PlayerGroup playerGroup = PlayerGroup.from(ConsoleInput.receiveNames());
+        LadderHeight ladderHeight = new LadderHeight(ConsoleInput.receiveHeight());
     }
 }
