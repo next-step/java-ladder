@@ -15,8 +15,8 @@ public class LadderService {
         this.ladderLineFactory = new LadderLineFactory(ladderConnectStrategy);
     }
 
-    public LadderLines createLadderLine(int width, int height) {
-        return ladderLineFactory.randomLadderLines(new LadderWidth(width), new LadderHeight(height));
+    public LadderLines createLadderLine(LadderWidth width, LadderHeight height) {
+        return ladderLineFactory.randomLadderLines(width, height);
     }
 
     public People people(String[] strings) {

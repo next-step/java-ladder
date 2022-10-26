@@ -1,5 +1,7 @@
 package ladder;
 
+import ladder.domain.ladder.LadderHeight;
+import ladder.domain.ladder.LadderWidth;
 import ladder.domain.person.People;
 import ladder.domain.ladder.ladderline.LadderLines;
 import ladder.view.InputView;
@@ -18,19 +20,9 @@ public class LadderController {
         People people = inputPeople();
 
         OutputView.inputLadderHeight();
-        LadderLines ladderLines = ladderService.createLadderLine(people.number(), inputHeight());
+        LadderLines ladderLines = ladderService.createLadderLine(inputWidth(people), inputHeight());
 
         OutputView.result(people.toStrings(), ladderLines.toString());
-    }
-
-    private static int inputHeight() {
-        try {
-            return InputView.ladderHeight();
-        } catch (Exception e) {
-            e.printStackTrace();
-            OutputView.inputLadderHeightException();
-        }
-        return inputHeight();
     }
 
     private People inputPeople() {
@@ -41,5 +33,25 @@ public class LadderController {
             OutputView.inputPeopleException();
         }
         return inputPeople();
+    }
+
+    private static LadderWidth inputWidth(People people) {
+        try {
+            return new LadderWidth(people.number());
+        } catch (Exception e) {
+            e.printStackTrace();
+            OutputView.inputLadderHeightException();
+        }
+        return inputWidth(people);
+    }
+
+    private static LadderHeight inputHeight() {
+        try {
+            return new LadderHeight(InputView.ladderHeight());
+        } catch (Exception e) {
+            e.printStackTrace();
+            OutputView.inputLadderHeightException();
+        }
+        return inputHeight();
     }
 }
