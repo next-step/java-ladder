@@ -21,10 +21,10 @@ public class Lambda {
         new Thread(() -> System.out.println("Hello from thread")).start();
     }
 
-    public static int sumAll(List<Integer> numbers,Conditional c) {
+    public static int sumAll(List<Integer> numbers, Conditional c) {
         int total = 0;
         for (int number : numbers) {
-            if(c.test(number)) {
+            if (c.test(number)) {
                 total += number;
             }
         }
@@ -32,7 +32,7 @@ public class Lambda {
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-       return sumAll(numbers, number -> number % 2 == 0);
+        return sumAll(numbers, number -> number % 2 == 0);
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
