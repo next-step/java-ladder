@@ -16,6 +16,12 @@ public class OutputView {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
     }
 
+    public static void result(List<String> persons, String ladderLine) {
+        resultGuide();
+        outputPersonNames(persons);
+        outputLadderLines(ladderLine);
+    }
+
     public static void resultGuide() {
         System.out.println("실행결과");
     }
@@ -36,4 +42,5 @@ public class OutputView {
     public static void outputLadderLines(String ladderLines) {
         System.out.println(ladderLines);
     }
+
 }

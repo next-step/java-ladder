@@ -23,10 +23,10 @@ public class LadderController {
         OutputView.inputLadderHeight();
         LadderLines ladderLines = ladderService.createLadderLine(persons.size(), InputView.ladderHeight());
 
-        OutputView.resultGuide();
-        OutputView.outputPersonNames(persons.stream()
+        List<String> personStrings = persons.stream()
                 .map(Person::toString)
-                .collect(Collectors.toList()));
-        OutputView.outputLadderLines(ladderLines.toString());
+                .collect(Collectors.toList());
+
+        OutputView.result(personStrings, ladderLines.toString());
     }
 }
