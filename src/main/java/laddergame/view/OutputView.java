@@ -58,7 +58,7 @@ public class OutputView {
 
     public static void printReward(String reward) {
         System.out.println("실행결과");
-        System.out.println(reward);
+        System.out.println(reward + "\n");
     }
 
     public static void printError(String message) {

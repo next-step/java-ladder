@@ -1,6 +1,6 @@
 package laddergame.domain;
 
-import java.util.function.Function;
+import java.util.function.UnaryOperator;
 
 public enum LadderConnectedDirection {
 
@@ -8,9 +8,9 @@ public enum LadderConnectedDirection {
     LEFT(position -> position - 1),
     NONE(position -> position);
 
-    private final Function<Integer, Integer> nextLinePositionCalculation;
+    private final UnaryOperator<Integer> nextLinePositionCalculation;
 
-    LadderConnectedDirection(Function<Integer, Integer> nextLinePositionCalculation) {
+    LadderConnectedDirection(UnaryOperator<Integer> nextLinePositionCalculation) {
         this.nextLinePositionCalculation = nextLinePositionCalculation;
     }
 

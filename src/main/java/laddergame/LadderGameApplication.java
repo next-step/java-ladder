@@ -32,7 +32,7 @@ public class LadderGameApplication {
         try {
             OutputView.printReward(findRewardByName(input, rewardByName));
         } catch (Exception e) {
-            OutputView.printError(e.getMessage());
+            OutputView.printError(e.getMessage() + " 다시 입력해주세요.\n");
         }
         searchRewardByName(InputView.inputNameForSearch(), rewardByName);
     }
