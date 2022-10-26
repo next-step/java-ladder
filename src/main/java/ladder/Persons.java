@@ -1,9 +1,6 @@
 package ladder;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Persons {
     private final List<Person> persons;
@@ -37,6 +34,14 @@ public class Persons {
             indexs.put(person, findResultOf(person, ladder));
         }
         return indexs;
+    }
+
+    public int countOfPersons() {
+        return persons.size();
+    }
+
+    public List<Person> getPersons() {
+        return Collections.unmodifiableList(persons);
     }
 
 }

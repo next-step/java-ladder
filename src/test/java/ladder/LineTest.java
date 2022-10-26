@@ -20,6 +20,23 @@ public class LineTest {
     }
 
     @Test
+    @DisplayName("가로선이 전부 생기게 할 경우, 중간에 한칸씩 빔")
+    void test() {
+        // given
+        int countOfPerson = 5;
+        Line line = new Line(countOfPerson, () -> true);
+        // when
+        // then
+        for (int i = 1; i < countOfPerson; i++) {
+            if (i % 2 == 1) {
+                assertThat(line.isConnected(i-1, i)).isTrue();
+            } else {
+                assertThat(line.isConnected(i-1, i)).isFalse();
+            }
+        }
+    }
+
+    @Test
     @DisplayName("가로선 전부 없을 때, 다음 포인트 반환")
     void test2() {
         // given

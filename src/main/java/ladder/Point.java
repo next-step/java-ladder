@@ -17,5 +17,4 @@ public class Point {
         return rightLine != null && rightLine;
     }
 
-
 }
