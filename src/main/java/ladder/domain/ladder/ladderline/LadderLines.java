@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 public class LadderLines {
 
     private final List<LadderLine> ladderLines;
+    private static final String LADDERLINES_DELIMITER = "\n";
 
     public LadderLines(List<LadderLine> ladderLines) {
         this.ladderLines = ladderLines;
@@ -29,6 +30,6 @@ public class LadderLines {
     public String toString() {
         return ladderLines.stream()
                 .map(LadderLine::toString)
-                .collect(Collectors.joining("\n"));
+                .collect(Collectors.joining(LADDERLINES_DELIMITER));
     }
 }
