@@ -1,52 +1,38 @@
 package laddergame.domain;
 
-import laddergame.domain.linepainter.LinePainter;
+import laddergame.Point;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Line {
-    private final List<Boolean> values;
+    private final List<Point> points;
 
-    public Line(List<Boolean> values) {
-        validateLine(values);
-        this.values = values;
+    public Line(List<Point> values) {
+        this.points = values;
     }
 
-    public static Line of(int numberOfPerson, LinePainter painter) {
-        return new Line(painter.draw(numberOfPerson));
-    }
+    public static Line of(int numberOfPerson) {
 
-    private void validateLine(List<Boolean> values) {
-        if (values == null || values.isEmpty()) {
-            throw new IllegalArgumentException("빈 값은 입력이 불가능합니다.");
+        List<Point> points = new ArrayList<>();
+        Point point = Point.first();
+        points.add(point);
+
+        for (int i = 1; i < numberOfPerson-1; i++) {
+            point = point.next();
+            points.add(point);
         }
-        if (values.get(0)) {
-            throw new IllegalArgumentException("첫번째 값은 사다리를 그릴 수 없습니다.");
-        }
-        if (isDuplicatePoint(values)) {
-            throw new IllegalArgumentException("연속된 사다리는 그릴 수 없습니다.");
-        }
+
+        points.add(point.last());
+        return new Line(points);
     }
 
-    private static boolean isDuplicatePoint(List<Boolean> values) {
-        return IntStream.range(1, values.size())
-                .anyMatch(i -> values.get(i - 1) && values.get(i));
-    }
-
-    public List<Boolean> getValues() {
-        return Collections.unmodifiableList(values);
+    public List<Point> getPoints() {
+        return Collections.unmodifiableList(points);
     }
 
     public int nextIndex(int index) {
-        if (index > 0 && values.get(index)) {
-           return index-1;
-        }
-
-        if (index < values.size()-1 && values.get(index + 1)) {
-            return index+1;
-        }
-        return index;
+        return points.get(index).move();
     }
 }
