@@ -13,6 +13,7 @@ public class ResultView {
         userNames.forEach(username -> System.out.printf("%6s", username.getName() + blank));
         System.out.println();
     }
+
     public static void printLadder(Ladder ladder) {
         for (Row ladderRow : ladder.getLadderLines()) {
             List<Boolean> points = ladderRow.getPoints();
