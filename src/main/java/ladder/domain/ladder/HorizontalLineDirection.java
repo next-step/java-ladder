@@ -1,7 +1,5 @@
 package ladder.domain.ladder;
 
-import ladder.exception.ladder.NoSuchHorizontalLineDirectionException;
-
 public enum HorizontalLineDirection {
 
     LEFT(true, false), RIGHT(false, true), NONE(false, false);
@@ -12,16 +10,5 @@ public enum HorizontalLineDirection {
     HorizontalLineDirection(boolean left, boolean right) {
         this.left = left;
         this.right = right;
-    }
-
-    @Override
-    public String toString() {
-        if (this == HorizontalLineDirection.RIGHT) {
-            return "|-----";
-        }
-        if (this == HorizontalLineDirection.NONE || this == HorizontalLineDirection.LEFT) {
-            return "|     ";
-        }
-        throw new NoSuchHorizontalLineDirectionException();
     }
 }

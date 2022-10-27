@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static ladder.domain.ladder.ladderline.LadderLineTestUtil.createNoneLadderLine;
+import static ladder.testutil.LadderLineTestUtil.createNoneLadderLine;
 import static org.assertj.core.api.Assertions.*;
 
 class LadderLineFactoryTest {

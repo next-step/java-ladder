@@ -2,17 +2,20 @@ package ladder.domain.ladder.ladderline;
 
 import ladder.domain.ladder.HorizontalLineDirection;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class LadderLine {
 
     private final List<HorizontalLineDirection> horizontalLineDirections;
-    private final String LADDER_LINE_START_TEXT = "    ";
 
     public LadderLine(List<HorizontalLineDirection> horizontalLineDirections) {
         this.horizontalLineDirections = horizontalLineDirections;
+    }
+
+    public List<HorizontalLineDirection> horizontalLineDirections() {
+        return Collections.unmodifiableList(horizontalLineDirections);
     }
 
     @Override
@@ -26,13 +29,5 @@ public class LadderLine {
     @Override
     public int hashCode() {
         return Objects.hash(horizontalLineDirections);
-    }
-
-    @Override
-    public String toString() {
-        return (LADDER_LINE_START_TEXT + horizontalLineDirections.stream()
-                .map(HorizontalLineDirection::toString)
-                .collect(Collectors.joining()))
-                .stripTrailing();
     }
 }
