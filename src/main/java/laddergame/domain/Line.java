@@ -14,8 +14,8 @@ public class Line {
         this.values = values;
     }
 
-    public Line(int numberOfPerson, LinePainter painter) {
-        this(painter.draw(numberOfPerson));
+    public static Line of(int numberOfPerson, LinePainter painter) {
+        return new Line(painter.draw(numberOfPerson));
     }
 
     private void validateLine(List<Boolean> values) {
@@ -37,5 +37,16 @@ public class Line {
 
     public List<Boolean> getValues() {
         return Collections.unmodifiableList(values);
+    }
+
+    public int nextIndex(int index) {
+        if (index > 0 && values.get(index)) {
+           return index-1;
+        }
+
+        if (index < values.size()-1 && values.get(index + 1)) {
+            return index+1;
+        }
+        return index;
     }
 }
