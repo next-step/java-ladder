@@ -7,11 +7,11 @@ import ladder.domain.ladder.ladderline.LadderLineFactory;
 import ladder.domain.ladder.ladderline.LadderLines;
 import ladder.domain.ladder.strategy.LadderConnectStrategy;
 
-public class LadderService {
+public class LadderGameCreateService {
 
     private final LadderLineFactory ladderLineFactory;
 
-    public LadderService(LadderConnectStrategy ladderConnectStrategy) {
+    public LadderGameCreateService(LadderConnectStrategy ladderConnectStrategy) {
         this.ladderLineFactory = new LadderLineFactory(ladderConnectStrategy);
     }
 

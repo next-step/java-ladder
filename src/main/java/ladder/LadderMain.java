@@ -5,8 +5,8 @@ import ladder.domain.ladder.strategy.LadderNotContinuousConnectStrategy;
 public class LadderMain {
 
     public static void main(String[] args) {
-        LadderService ladderService = new LadderService(new LadderNotContinuousConnectStrategy());
-        LadderController ladderController = new LadderController(ladderService);
+        LadderGameCreateService ladderGameCreateService = new LadderGameCreateService(new LadderNotContinuousConnectStrategy());
+        LadderController ladderController = new LadderController(ladderGameCreateService);
         ladderController.create();
     }
 }

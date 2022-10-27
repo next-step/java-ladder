@@ -9,10 +9,10 @@ import ladder.view.OutputView;
 
 public class LadderController {
 
-    private final LadderService ladderService;
+    private final LadderGameCreateService ladderGameCreateService;
 
-    public LadderController(LadderService ladderService) {
-        this.ladderService = ladderService;
+    public LadderController(LadderGameCreateService ladderGameCreateService) {
+        this.ladderGameCreateService = ladderGameCreateService;
     }
 
     public void create() {
@@ -20,14 +20,14 @@ public class LadderController {
         People people = inputPeople();
 
         OutputView.inputLadderHeight();
-        LadderLines ladderLines = ladderService.createLadderLine(inputWidth(people), inputHeight());
+        LadderLines ladderLines = ladderGameCreateService.createLadderLine(inputWidth(people), inputHeight());
 
         OutputView.result(people.toStrings(), ladderLines.toString());
     }
 
     private People inputPeople() {
         try {
-            return ladderService.people(InputView.personNameInput());
+            return ladderGameCreateService.people(InputView.personNameInput());
         } catch (Exception e) {
             e.printStackTrace();
             OutputView.inputPeopleException();
