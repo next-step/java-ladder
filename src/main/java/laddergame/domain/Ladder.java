@@ -1,7 +1,5 @@
 package laddergame.domain;
 
-import laddergame.domain.linepainter.RandomLinePainter;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,11 +17,10 @@ public class Ladder {
 
     public static Ladder of(int countOfLadder, int numberOfPeople) {
         List<Line> lines = IntStream.range(0, countOfLadder)
-                .mapToObj(__ -> Line.of(numberOfPeople, new RandomLinePainter()))
+                .mapToObj(__ -> Line.of(numberOfPeople))
                 .collect(Collectors.toUnmodifiableList());
         return new Ladder(lines);
     }
-
 
 
     public List<Line> getLines() {
