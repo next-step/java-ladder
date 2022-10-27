@@ -4,14 +4,12 @@ import ladder.exception.NoSuchLadderException;
 
 public enum HorizontalLineDirection {
 
-    LEFT(1, true, false), RIGHT(2, false, true), NONE(3, false, false);
+    LEFT(true, false), RIGHT(false, true), NONE(false, false);
 
-    private final int type;
     private final boolean left;
     private final boolean right;
 
-    HorizontalLineDirection(int type, boolean left, boolean right) {
-        this.type = type;
+    HorizontalLineDirection(boolean left, boolean right) {
         this.left = left;
         this.right = right;
     }
