@@ -13,4 +13,8 @@ public class ParticipantNames {
     public static ParticipantNames from(List<ParticipantName> participantNames) {
         return new ParticipantNames(participantNames);
     }
+
+    public List<ParticipantName> getParticipantNames() {
+        return participantNames;
+    }
 }

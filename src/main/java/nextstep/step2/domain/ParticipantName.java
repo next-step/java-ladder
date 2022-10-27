@@ -1,13 +1,14 @@
 package nextstep.step2.domain;
 
-import java.util.Objects;
-
 public class ParticipantName {
 
     private final int NAME_MAX_RANGE = 5;
+    private final String name;
+
 
     private ParticipantName(String name) {
         validateName(name);
+        this.name = name;
     }
 
     public static ParticipantName from(String name) {
@@ -22,5 +23,9 @@ public class ParticipantName {
         if (name.equals("")) {
             throw new IllegalArgumentException("참여자 이름은 공백일 수 없습니다.");
         }
+    }
+
+    public String getName() {
+        return name;
     }
 }
