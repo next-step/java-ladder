@@ -12,7 +12,7 @@ import java.util.List;
 import static ladder.domain.ladder.ladderline.LadderLineTestUtil.createNoneLadderLine;
 import static org.assertj.core.api.Assertions.*;
 
-class HorizontalLineDirectionLineFactoryTest {
+class LadderLineFactoryTest {
 
     private LadderLineFactory ladderLineFactory;
 

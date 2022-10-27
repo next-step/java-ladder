@@ -1,6 +1,6 @@
 package ladder.domain.ladder;
 
-import ladder.exception.NoSuchLadderException;
+import ladder.exception.ladder.NoSuchHorizontalLineDirectionException;
 
 public enum HorizontalLineDirection {
 
@@ -22,6 +22,6 @@ public enum HorizontalLineDirection {
         if (this == HorizontalLineDirection.NONE || this == HorizontalLineDirection.LEFT) {
             return "|     ";
         }
-        throw new NoSuchLadderException();
+        throw new NoSuchHorizontalLineDirectionException();
     }
 }

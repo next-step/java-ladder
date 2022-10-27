@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.*;
 
 
-public class HorizontalLineDirectionLineTest {
+public class LadderLineTest {
 
     @Test
     void create() {

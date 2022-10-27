@@ -1,7 +1,7 @@
 package ladder.domain.ladder.strategy;
 
 import ladder.domain.ladder.HorizontalLineDirection;
-import ladder.exception.ladder.NoConnectableLadder;
+import ladder.exception.ladder.NoConnectableHorizontalLineDirectionException;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ public class LadderNotContinuousConnectStrategy implements LadderConnectStrategy
         if (beforeHorizontalLineDirection.equals(HorizontalLineDirection.NONE)) {
             return List.of(HorizontalLineDirection.RIGHT, HorizontalLineDirection.NONE);
         }
-        throw new NoConnectableLadder();
+        throw new NoConnectableHorizontalLineDirectionException();
     }
 
     @Override
@@ -28,6 +28,6 @@ public class LadderNotContinuousConnectStrategy implements LadderConnectStrategy
         if(beforeHorizontalLineDirection.equals(HorizontalLineDirection.RIGHT)){
             return HorizontalLineDirection.LEFT;
         }
-        throw new NoConnectableLadder();
+        throw new NoConnectableHorizontalLineDirectionException();
     }
 }
