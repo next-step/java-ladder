@@ -29,7 +29,6 @@ public class LadderController {
         try {
             return ladderGameCreateService.people(InputView.personNameInput());
         } catch (Exception e) {
-            e.printStackTrace();
             OutputView.inputPeopleException();
         }
         return inputPeople();
@@ -39,7 +38,6 @@ public class LadderController {
         try {
             return new LadderWidth(people.number());
         } catch (Exception e) {
-            e.printStackTrace();
             OutputView.inputLadderHeightException();
         }
         return inputWidth(people);
@@ -49,7 +47,6 @@ public class LadderController {
         try {
             return new LadderHeight(InputView.ladderHeight());
         } catch (Exception e) {
-            e.printStackTrace();
             OutputView.inputLadderHeightException();
         }
         return inputHeight();
