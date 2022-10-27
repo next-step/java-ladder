@@ -1,9 +1,6 @@
 package ladder.domain.ladder;
 
 import ladder.exception.NoSuchLadderException;
-import ladder.exception.ladder.LadderNumberException;
-
-import java.util.Arrays;
 
 public enum HorizontalLineDirection {
 
@@ -17,13 +14,6 @@ public enum HorizontalLineDirection {
         this.type = type;
         this.left = left;
         this.right = right;
-    }
-
-    public static HorizontalLineDirection of(int type) {
-        return Arrays.stream(values())
-                .filter(ladder -> ladder.type == type)
-                .findFirst()
-                .orElseThrow(() -> new LadderNumberException(type));
     }
 
     @Override
