@@ -1,6 +1,8 @@
 package laddergame.view;
 
-import laddergame.domain.*;
+import laddergame.domain.PersonName;
+import laddergame.domain.Reward;
+import laddergame.domain.Rewards;
 import laddergame.domain.service.LadderGame;
 
 import java.util.List;
@@ -20,19 +22,19 @@ public class OutputView {
     public static void printLadder(LadderGame ladderGame) {
         System.out.println("실행결과");
         printPersonNames(ladderGame.getPersonNames());
-        printLines(ladderGame.getLadder());
+        printLines(ladderGame.getLadderRecord());
         printRewards(ladderGame.getRewards());
     }
 
-    private static void printLines(Ladder ladder) {
-        ladder.getLines().forEach(line -> System.out.println(printLine(line)));
+    private static void printLines(List<List<Boolean>> ladder) {
+        ladder.forEach(line -> System.out.println(printLine(line)));
     }
 
-    private static String printLine(Line line) {
+    private static String printLine(List<Boolean> line) {
         StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(TAB.repeat(WIDTH)).append(COLUMN);
 
-        line.getValues()
-                .forEach(l -> stringBuilder.append(getRung(l).repeat(WIDTH)).append(COLUMN));
+        line.forEach(l -> stringBuilder.append(getRung(l).repeat(WIDTH)).append(COLUMN));
 
         return stringBuilder.toString();
     }
