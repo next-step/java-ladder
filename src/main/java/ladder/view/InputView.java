@@ -8,6 +8,7 @@ public class InputView {
     public static String PERSON_NAME_SEPARATOR = ",";
 
     public static String[] personNameInput() {
+        OutputView.inputPeople();
         return splitPersonName(scanner.nextLine());
     }
 
@@ -16,6 +17,7 @@ public class InputView {
     }
 
     public static int ladderHeight() {
+        OutputView.inputLadderHeight();
         return Integer.parseInt(scanner.nextLine());
     }
 }

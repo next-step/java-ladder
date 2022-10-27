@@ -16,10 +16,8 @@ public class LadderController {
     }
 
     public void create() {
-        OutputView.inputPeople();
         People people = inputPeople();
 
-        OutputView.inputLadderHeight();
         LadderLines ladderLines = ladderGameCreateService.createLadderLine(new LadderWidth(people.number()), inputHeight());
 
         OutputView.result(people.toStrings(), ladderLines.toString());
