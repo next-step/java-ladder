@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class LadderWidthTest {
+public class HorizontalLineDirectionWidthTest {
 
     @Test
     void create() {

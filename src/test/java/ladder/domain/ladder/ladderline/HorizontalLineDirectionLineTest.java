@@ -1,6 +1,6 @@
 package ladder.domain.ladder.ladderline;
 
-import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.HorizontalLineDirection;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -12,20 +12,20 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.*;
 
 
-public class LadderLineTest {
+public class HorizontalLineDirectionLineTest {
 
     @Test
     void create() {
-        LadderLine ladderLine = new LadderLine(List.of(Ladder.NONE, Ladder.NONE));
+        LadderLine ladderLine = new LadderLine(List.of(HorizontalLineDirection.NONE, HorizontalLineDirection.NONE));
 
-        assertThat(ladderLine).isEqualTo(new LadderLine(List.of(Ladder.NONE, Ladder.NONE)));
+        assertThat(ladderLine).isEqualTo(new LadderLine(List.of(HorizontalLineDirection.NONE, HorizontalLineDirection.NONE)));
     }
 
 
     private static Stream<Arguments> provideToString() {
         return Stream.of(
-                Arguments.of(new LadderLine(List.of(Ladder.RIGHT, Ladder.LEFT)), "    |-----|"),
-                Arguments.of(new LadderLine(List.of(Ladder.NONE, Ladder.NONE)), "    |     |")
+                Arguments.of(new LadderLine(List.of(HorizontalLineDirection.RIGHT, HorizontalLineDirection.LEFT)), "    |-----|"),
+                Arguments.of(new LadderLine(List.of(HorizontalLineDirection.NONE, HorizontalLineDirection.NONE)), "    |     |")
         );
     }
 

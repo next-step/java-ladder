@@ -1,6 +1,6 @@
 package ladder.domain.ladder.ladderline;
 
-import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.HorizontalLineDirection;
 import ladder.domain.ladder.LadderHeight;
 import ladder.domain.ladder.LadderWidth;
 import ladder.domain.ladder.strategy.LadderNotContinuousConnectStrategy;
@@ -12,7 +12,7 @@ import java.util.List;
 import static ladder.domain.ladder.ladderline.LadderLineTestUtil.createNoneLadderLine;
 import static org.assertj.core.api.Assertions.*;
 
-class LadderLineFactoryTest {
+class HorizontalLineDirectionLineFactoryTest {
 
     private LadderLineFactory ladderLineFactory;
 
@@ -20,8 +20,8 @@ class LadderLineFactoryTest {
     void setUp() {
         this.ladderLineFactory = new LadderLineFactory(new LadderNotContinuousConnectStrategy()) {
             @Override
-            protected Ladder randomConnectableLadder(Ladder beforeLadder) {
-                return Ladder.NONE;
+            protected HorizontalLineDirection randomConnectableLadder(HorizontalLineDirection beforeHorizontalLineDirection) {
+                return HorizontalLineDirection.NONE;
             }
         };
     }
@@ -36,6 +36,6 @@ class LadderLineFactoryTest {
 
     @Test
     void random_ladderline() {
-        assertThat(createNoneLadderLine(3)).isEqualTo(new LadderLine(List.of(Ladder.NONE, Ladder.NONE, Ladder.NONE)));
+        assertThat(createNoneLadderLine(3)).isEqualTo(new LadderLine(List.of(HorizontalLineDirection.NONE, HorizontalLineDirection.NONE, HorizontalLineDirection.NONE)));
     }
 }

@@ -1,6 +1,6 @@
 package ladder.domain.ladder.ladderline;
 
-import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.HorizontalLineDirection;
 import ladder.domain.ladder.LadderHeight;
 import ladder.domain.ladder.LadderWidth;
 import ladder.domain.ladder.strategy.LadderConnectStrategy;
@@ -26,19 +26,19 @@ public class LadderLineFactory {
     }
 
     public LadderLine randomLadderLine(LadderWidth ladderWidth) {
-        List<Ladder> ladderLine = new ArrayList<>();
-        Ladder beforeLadder = Ladder.NONE;
+        List<HorizontalLineDirection> horizontalLineDirectionLine = new ArrayList<>();
+        HorizontalLineDirection beforeHorizontalLineDirection = HorizontalLineDirection.NONE;
         for (int i = 0; i <= ladderWidth.lastLadderIndex() - 1; i++) {
-            Ladder currentLadder = randomConnectableLadder(beforeLadder);
-            ladderLine.add(currentLadder);
-            beforeLadder = currentLadder;
+            HorizontalLineDirection currentHorizontalLineDirection = randomConnectableLadder(beforeHorizontalLineDirection);
+            horizontalLineDirectionLine.add(currentHorizontalLineDirection);
+            beforeHorizontalLineDirection = currentHorizontalLineDirection;
         }
-        ladderLine.add(ladderConnectStrategy.lastLadder(ladderLine.get(ladderWidth.lastLadderIndex() - 1)));
-        return new LadderLine(ladderLine);
+        horizontalLineDirectionLine.add(ladderConnectStrategy.lastLadder(horizontalLineDirectionLine.get(ladderWidth.lastLadderIndex() - 1)));
+        return new LadderLine(horizontalLineDirectionLine);
     }
 
-    protected Ladder randomConnectableLadder(Ladder beforeLadder) {
-        List<Ladder> connectableLadders = ladderConnectStrategy.connectableLadders(beforeLadder);
-        return connectableLadders.get(new Random().nextInt(connectableLadders.size()));
+    protected HorizontalLineDirection randomConnectableLadder(HorizontalLineDirection beforeHorizontalLineDirection) {
+        List<HorizontalLineDirection> connectableHorizontalLineDirections = ladderConnectStrategy.connectableLadders(beforeHorizontalLineDirection);
+        return connectableHorizontalLineDirections.get(new Random().nextInt(connectableHorizontalLineDirections.size()));
     }
 }

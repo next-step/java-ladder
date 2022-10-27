@@ -1,32 +1,32 @@
 package ladder.domain.ladder.strategy;
 
-import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.HorizontalLineDirection;
 import ladder.exception.ladder.NoConnectableLadder;
 
 import java.util.List;
 
 public class LadderNotContinuousConnectStrategy implements LadderConnectStrategy {
     @Override
-    public List<Ladder> connectableLadders(Ladder beforeLadder) {
-        if (beforeLadder.equals(Ladder.LEFT)) {
-            return List.of(Ladder.RIGHT, Ladder.NONE);
+    public List<HorizontalLineDirection> connectableLadders(HorizontalLineDirection beforeHorizontalLineDirection) {
+        if (beforeHorizontalLineDirection.equals(HorizontalLineDirection.LEFT)) {
+            return List.of(HorizontalLineDirection.RIGHT, HorizontalLineDirection.NONE);
         }
-        if (beforeLadder.equals(Ladder.RIGHT)) {
-            return List.of(Ladder.LEFT);
+        if (beforeHorizontalLineDirection.equals(HorizontalLineDirection.RIGHT)) {
+            return List.of(HorizontalLineDirection.LEFT);
         }
-        if (beforeLadder.equals(Ladder.NONE)) {
-            return List.of(Ladder.RIGHT, Ladder.NONE);
+        if (beforeHorizontalLineDirection.equals(HorizontalLineDirection.NONE)) {
+            return List.of(HorizontalLineDirection.RIGHT, HorizontalLineDirection.NONE);
         }
         throw new NoConnectableLadder();
     }
 
     @Override
-    public Ladder lastLadder(Ladder beforeLadder) {
-        if (beforeLadder.equals(Ladder.LEFT) || beforeLadder.equals(Ladder.NONE)) {
-            return Ladder.NONE;
+    public HorizontalLineDirection lastLadder(HorizontalLineDirection beforeHorizontalLineDirection) {
+        if (beforeHorizontalLineDirection.equals(HorizontalLineDirection.LEFT) || beforeHorizontalLineDirection.equals(HorizontalLineDirection.NONE)) {
+            return HorizontalLineDirection.NONE;
         }
-        if(beforeLadder.equals(Ladder.RIGHT)){
-            return Ladder.LEFT;
+        if(beforeHorizontalLineDirection.equals(HorizontalLineDirection.RIGHT)){
+            return HorizontalLineDirection.LEFT;
         }
         throw new NoConnectableLadder();
     }

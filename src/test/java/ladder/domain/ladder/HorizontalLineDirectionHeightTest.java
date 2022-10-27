@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class LadderHeightTest {
+public class HorizontalLineDirectionHeightTest {
 
     @Test
     void create() {

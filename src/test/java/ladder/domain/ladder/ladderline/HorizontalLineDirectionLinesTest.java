@@ -12,7 +12,7 @@ import static ladder.domain.ladder.ladderline.LadderLineTestUtil.continuousLadde
 import static ladder.domain.ladder.ladderline.LadderLineTestUtil.createNoneLadderLine;
 import static org.assertj.core.api.Assertions.*;
 
-public class LadderLinesTest {
+public class HorizontalLineDirectionLinesTest {
 
     @Test
     void create() {

@@ -1,11 +1,11 @@
 package ladder.domain.ladder.strategy;
 
-import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.HorizontalLineDirection;
 
 import java.util.List;
 
 public interface LadderConnectStrategy {
-    List<Ladder> connectableLadders(Ladder beforeLadder);
+    List<HorizontalLineDirection> connectableLadders(HorizontalLineDirection beforeHorizontalLineDirection);
 
-    Ladder lastLadder(Ladder beforeLadder);
+    HorizontalLineDirection lastLadder(HorizontalLineDirection beforeHorizontalLineDirection);
 }

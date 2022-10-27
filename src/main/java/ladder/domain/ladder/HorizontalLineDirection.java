@@ -5,7 +5,7 @@ import ladder.exception.ladder.LadderNumberException;
 
 import java.util.Arrays;
 
-public enum Ladder {
+public enum HorizontalLineDirection {
 
     LEFT(1, true, false), RIGHT(2, false, true), NONE(3, false, false);
 
@@ -13,13 +13,13 @@ public enum Ladder {
     private final boolean left;
     private final boolean right;
 
-    Ladder(int type, boolean left, boolean right) {
+    HorizontalLineDirection(int type, boolean left, boolean right) {
         this.type = type;
         this.left = left;
         this.right = right;
     }
 
-    public static Ladder of(int type) {
+    public static HorizontalLineDirection of(int type) {
         return Arrays.stream(values())
                 .filter(ladder -> ladder.type == type)
                 .findFirst()
@@ -28,10 +28,10 @@ public enum Ladder {
 
     @Override
     public String toString() {
-        if (this == Ladder.RIGHT) {
+        if (this == HorizontalLineDirection.RIGHT) {
             return "|-----";
         }
-        if (this == Ladder.NONE || this == Ladder.LEFT) {
+        if (this == HorizontalLineDirection.NONE || this == HorizontalLineDirection.LEFT) {
             return "|     ";
         }
         throw new NoSuchLadderException();

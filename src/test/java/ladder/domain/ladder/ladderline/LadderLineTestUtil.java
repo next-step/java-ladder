@@ -1,6 +1,6 @@
 package ladder.domain.ladder.ladderline;
 
-import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.HorizontalLineDirection;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,11 +10,11 @@ public class LadderLineTestUtil {
 
     static LadderLine createNoneLadderLine(int width) {
         return new LadderLine(IntStream.range(0, width)
-                .mapToObj(i -> Ladder.NONE)
+                .mapToObj(i -> HorizontalLineDirection.NONE)
                 .collect(Collectors.toList()));
     }
 
     static LadderLine continuousLadder() {
-        return new LadderLine(List.of(Ladder.RIGHT, Ladder.LEFT));
+        return new LadderLine(List.of(HorizontalLineDirection.RIGHT, HorizontalLineDirection.LEFT));
     }
 }
