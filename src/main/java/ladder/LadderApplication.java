@@ -10,8 +10,6 @@ public class LadderApplication {
 
         Ladder ladder = Ladder.of(userNames.size(), ladderHeight);
 
-        ResultView.printUserNames(userNames);
-        ResultView.printLadder(ladder);
-
+        ResultView.printResult(userNames, ladder);
     }
 }

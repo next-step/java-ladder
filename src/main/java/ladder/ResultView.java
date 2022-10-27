@@ -8,7 +8,12 @@ public class ResultView {
     private static final String HORIZONTAL_BLANK_LINE = "     ";
     private static final String HORIZONTAL_FULL_LINE = "-----";
 
-    public static void printUserNames(List<UserName> userNames) {
+    public static void printResult(List<UserName> userNames, Ladder ladder) {
+        printUserNames(userNames);
+        printLadder(ladder);
+    }
+
+    private static void printUserNames(List<UserName> userNames) {
         String blank = " ";
         System.out.println("실행 결과");
         System.out.println();
@@ -16,19 +21,26 @@ public class ResultView {
         System.out.println();
     }
 
-    public static void printLadder(Ladder ladder) {
-        for (Row ladderRow : ladder.getLadderLines()) {
-            List<Boolean> points = ladderRow.getPoints();
-            for (Boolean point : points) {
-                if (point) {
-                    System.out.print(HORIZONTAL_FULL_LINE);
-                    System.out.print(VERTICAL_LINE);
-                } else {
-                    System.out.print(HORIZONTAL_BLANK_LINE);
-                    System.out.print(VERTICAL_LINE);
-                }
-            }
-            System.out.println();
+    private static void printLadder(Ladder ladder) {
+        ladder.getLadderLines()
+            .forEach(ResultView::printLowLine);
+    }
+
+    private static void printLowLine(Row row) {
+        List<Boolean> points = row.getPoints();
+        for (Boolean point : points) {
+            printConnectLine(point);
+        }
+        System.out.println();
+    }
+
+    private static void printConnectLine(Boolean point) {
+        if (point) {
+            System.out.print(HORIZONTAL_FULL_LINE);
+            System.out.print(VERTICAL_LINE);
+        } else {
+            System.out.print(HORIZONTAL_BLANK_LINE);
+            System.out.print(VERTICAL_LINE);
         }
     }
 }
