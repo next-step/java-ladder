@@ -8,9 +8,9 @@ public class ResultView {
     private static final String HORIZONTAL_BLANK_LINE = "     ";
     private static final String HORIZONTAL_FULL_LINE = "-----";
 
-    public static void printUserNames(List<String> userNames) {
+    public static void printUserNames(List<UserName> userNames) {
         String blank = " ";
-        userNames.forEach(username -> System.out.print(blank.repeat(6 - username.length()) + username));
+        userNames.forEach(username -> System.out.printf("%6s", username.getName() + blank));
         System.out.println();
     }
     public static void printLadder(Ladder ladder) {

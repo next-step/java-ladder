@@ -9,11 +9,13 @@ public class InputView {
 
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    public static List<String> inputUserName() {
+    public static List<UserName> inputUserName() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String input = SCANNER.next();
         String[] split = input.split(",");
-        return Arrays.stream(split).collect(Collectors.toList());
+        return Arrays.stream(split)
+            .map(UserName::from)
+            .collect(Collectors.toList());
     }
 
     public static int inputLadderHeight() {

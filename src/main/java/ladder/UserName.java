@@ -19,4 +19,8 @@ public class UserName {
             throw new IllegalArgumentException("이름은 최대 5글자까지 가능합니다.");
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }
