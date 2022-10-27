@@ -37,7 +37,7 @@
 * [x] Name
   * 유저 이름 객체
   * 유저의 이름은 5글자 제한한다.
-* [ ] RandomBooleanGenerator
+* [x] RandomBooleanGenerator
   * 랜덤 생성기
 
 ```text

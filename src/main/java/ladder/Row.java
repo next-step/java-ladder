@@ -2,7 +2,6 @@ package ladder;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -24,7 +23,7 @@ public class Row {
 
     public Row generate(int people) {
         IntStream.range(1, people)
-            .filter(index -> getRandomBoolean())
+            .filter(index -> RandomBooleanGenerator.generator())
             .forEach(this::drawLine);
         return new Row(points);
     }
@@ -33,11 +32,6 @@ public class Row {
         if (points.get(index - 1).equals(false)) {
             points.set(index, true);
         }
-    }
-
-    private Boolean getRandomBoolean() {
-        Random random = new Random();
-        return random.nextBoolean();
     }
 
     public List<Boolean> getPoints() {
