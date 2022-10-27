@@ -20,7 +20,7 @@ public class LadderController {
         People people = inputPeople();
 
         OutputView.inputLadderHeight();
-        LadderLines ladderLines = ladderGameCreateService.createLadderLine(inputWidth(people), inputHeight());
+        LadderLines ladderLines = ladderGameCreateService.createLadderLine(new LadderWidth(people.number()), inputHeight());
 
         OutputView.result(people.toStrings(), ladderLines.toString());
     }
@@ -32,15 +32,6 @@ public class LadderController {
             OutputView.inputPeopleException();
         }
         return inputPeople();
-    }
-
-    private static LadderWidth inputWidth(People people) {
-        try {
-            return new LadderWidth(people.number());
-        } catch (Exception e) {
-            OutputView.inputLadderHeightException();
-        }
-        return inputWidth(people);
     }
 
     private static LadderHeight inputHeight() {
