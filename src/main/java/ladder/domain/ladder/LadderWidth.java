@@ -7,7 +7,7 @@ import java.util.Objects;
 public class LadderWidth {
 
     private final int width;
-    private static final int LADDER_WIDTH_MIN = 2;
+    private static final int LADDER_WIDTH_MIN = 1;
 
     public LadderWidth(int width) {
         if (width < LADDER_WIDTH_MIN) {

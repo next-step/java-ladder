@@ -15,7 +15,7 @@ public class LadderWidthTest {
     }
 
     @Test
-    void valid_more_2() {
-        assertThatThrownBy(() -> new LadderWidth(1)).isInstanceOf(LadderWidthBoundException.class);
+    void valid_min() {
+        assertThatThrownBy(() -> new LadderWidth(0)).isInstanceOf(LadderWidthBoundException.class);
     }
 }
