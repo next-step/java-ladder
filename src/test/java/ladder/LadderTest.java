@@ -8,7 +8,7 @@ class LadderTest {
 
     @Test
     void create() {
-        Ladder ladder = Ladder.of(4, 5);
+        Ladder ladder = Ladder.of(4,5);
         assertThat(ladder.getLadderLines().size()).isEqualTo(5);
     }
 }

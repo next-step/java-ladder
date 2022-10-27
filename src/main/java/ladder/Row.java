@@ -21,6 +21,10 @@ public class Row {
         return new Row(points);
     }
 
+    public static Row from(List<Boolean> rows) {
+        return new Row(rows);
+    }
+
     public Row generate(int people) {
         IntStream.range(1, people)
             .filter(index -> RandomBooleanGenerator.generator())

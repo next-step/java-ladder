@@ -10,13 +10,13 @@ public class Ladder {
         this.rows = rows;
     }
 
-    public static Ladder of(int countOfPerson, int height) {
+    public static Ladder of(int people, int height) {
         List<Row> rows = new ArrayList<>();
 
         for (int i = 0; i < height; i++) {
-            Row row = Row.from(countOfPerson);
-            Row generate = row.generate(countOfPerson);
-            rows.add(generate);
+            RowGenerator rowGenerator = new RowGenerator(people);
+            Row row = rowGenerator.create();
+            rows.add(row);
         }
 
         return new Ladder(rows);
