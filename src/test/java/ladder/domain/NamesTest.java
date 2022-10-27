@@ -10,7 +10,7 @@ public class NamesTest {
     @ParameterizedTest
     @ValueSource(strings = {"pobi,honux,crong,jk"})
     public void 사람이름_쉼표로_구분(String candidates) {
-        Names names = Names.createNames(candidates);
+        Names names = Names.of(candidates);
         assertThat(names.getNames().size()).isEqualTo(4);
         assertThat(names.getNames()).containsExactly(
                 new Name("pobi"), new Name("honux"), new Name("crong"), new Name("jk")
