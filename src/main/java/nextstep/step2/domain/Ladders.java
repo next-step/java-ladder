@@ -22,10 +22,6 @@ public class Ladders {
         return ladders;
     }
 
-    public int countLadder(){
-        return ladders.size();
-    }
-
     public ParticipantNames getParticipantNames(){
         List<ParticipantName> participantNames = ladders.stream()
                 .map(ladder -> ladder.getParticipantName())

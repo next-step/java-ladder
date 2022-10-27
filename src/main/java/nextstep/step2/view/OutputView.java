@@ -34,10 +34,11 @@ public class OutputView {
     }
 
     private static void printLadders(Ladders ladders) {
-        int countOfLadder = ladders.countLadder();
-
-        ladders.getLadders()
-                .stream()
-                .forEach(ladder -> System.out.println((LADDER_VIEW + LETTER_SPACE).repeat(countOfLadder)));
+        for (int i = 0; i < ladders.getLadders().get(0).getHeight(); i++) {
+            ladders.getLadders()
+                    .stream()
+                    .forEach(ladder -> System.out.print((LADDER_VIEW + LETTER_SPACE)));
+            System.out.println();
+        }
     }
 }
