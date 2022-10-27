@@ -30,11 +30,11 @@
 * 규칙 6: 모든 엔티티를 작게 유지한다.
 
 ### 세부 기능 목록
-* [ ] Row
+* [x] Row
   * 하나의 행 라인 객체
-* [ ] Ladder
+* [x] Ladder
   * 사다리 객체
-* [ ] Name
+* [x] Name
   * 유저 이름 객체
   * 유저의 이름은 5글자 제한한다.
 * [ ] RandomBooleanGenerator
