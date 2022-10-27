@@ -1,5 +1,7 @@
 package laddergame.domain;
 
+import laddergame.Direction;
+import laddergame.Point;
 import laddergame.domain.service.LadderGame;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,11 +22,31 @@ class LadderGameTest {
         PersonName all = new PersonName("all");
 
         List<Line> lines = new ArrayList<>();
-        lines.add(new Line(Arrays.asList(false, true, false, true)));
-        lines.add(new Line(Arrays.asList(false, false, true, false)));
-        lines.add(new Line(Arrays.asList(false, true, false, false)));
-        lines.add(new Line(Arrays.asList(false, false, true, false)));
-        lines.add(new Line(Arrays.asList(false, true, false, true)));
+
+        lines.add(new Line(Arrays.asList(new Point(0, Direction.of(false, true))
+                , new Point(1, Direction.of(true, false))
+                , new Point(2, Direction.of(false, true))
+                , new Point(3, Direction.of(true, false)))));
+
+        lines.add(new Line(Arrays.asList(new Point(0, Direction.of(false, false))
+                , new Point(1, Direction.of(false, true))
+                , new Point(2, Direction.of(true, false))
+                , new Point(3, Direction.of(false, false)))));
+
+        lines.add(new Line(Arrays.asList(new Point(0, Direction.of(false, true))
+                , new Point(1, Direction.of(true, false))
+                , new Point(2, Direction.of(false, false))
+                , new Point(3, Direction.of(false, false)))));
+
+        lines.add(new Line(Arrays.asList(new Point(0, Direction.of(false, false))
+                , new Point(1, Direction.of(false, true))
+                , new Point(2, Direction.of(true, false))
+                , new Point(3, Direction.of(false, false)))));
+
+        lines.add(new Line(Arrays.asList(new Point(0, Direction.of(false, true))
+                , new Point(1, Direction.of(true, false))
+                , new Point(2, Direction.of(false, true))
+                , new Point(3, Direction.of(true, false)))));
 
         People people = new People("aaa,bbb,ccc".split(","));
         Rewards rewards = new Rewards("꽝,5000,꽝,3000".split(","));
@@ -56,11 +78,30 @@ class LadderGameTest {
         People people = new People("pobi,honux,crong,jk".split(","));
 
         List<Line> lines = new ArrayList<>();
-        lines.add(new Line(Arrays.asList(false, true, false, true)));
-        lines.add(new Line(Arrays.asList(false, false, true, false)));
-        lines.add(new Line(Arrays.asList(false, true, false, false)));
-        lines.add(new Line(Arrays.asList(false, false, true, false)));
-        lines.add(new Line(Arrays.asList(false, true, false, true)));
+        lines.add(new Line(Arrays.asList(new Point(0, Direction.of(false, true))
+                , new Point(1, Direction.of(true, false))
+                , new Point(2, Direction.of(false, true))
+                , new Point(3, Direction.of(true, false)))));
+
+        lines.add(new Line(Arrays.asList(new Point(0, Direction.of(false, false))
+                , new Point(1, Direction.of(false, true))
+                , new Point(2, Direction.of(true, false))
+                , new Point(3, Direction.of(false, false)))));
+
+        lines.add(new Line(Arrays.asList(new Point(0, Direction.of(false, true))
+                , new Point(1, Direction.of(true, false))
+                , new Point(2, Direction.of(false, false))
+                , new Point(3, Direction.of(false, false)))));
+
+        lines.add(new Line(Arrays.asList(new Point(0, Direction.of(false, false))
+                , new Point(1, Direction.of(false, true))
+                , new Point(2, Direction.of(true, false))
+                , new Point(3, Direction.of(false, false)))));
+
+        lines.add(new Line(Arrays.asList(new Point(0, Direction.of(false, true))
+                , new Point(1, Direction.of(true, false))
+                , new Point(2, Direction.of(false, true))
+                , new Point(3, Direction.of(true, false)))));
 
         LadderGame ladderGame = new LadderGame(people, rewards, new Ladder(lines));
         //then
@@ -78,11 +119,30 @@ class LadderGameTest {
         People people = new People("pobi,honux,crong,jk".split(","));
 
         List<Line> lines = new ArrayList<>();
-        lines.add(new Line(Arrays.asList(false, true, false, true)));
-        lines.add(new Line(Arrays.asList(false, false, true, false)));
-        lines.add(new Line(Arrays.asList(false, true, false, false)));
-        lines.add(new Line(Arrays.asList(false, false, true, false)));
-        lines.add(new Line(Arrays.asList(false, true, false, true)));
+        lines.add(new Line(Arrays.asList(new Point(0, Direction.of(false, true))
+                , new Point(1, Direction.of(true, false))
+                , new Point(2, Direction.of(false, true))
+                , new Point(3, Direction.of(true, false)))));
+
+        lines.add(new Line(Arrays.asList(new Point(0, Direction.of(false, false))
+                , new Point(1, Direction.of(false, true))
+                , new Point(2, Direction.of(true, false))
+                , new Point(3, Direction.of(false, false)))));
+
+        lines.add(new Line(Arrays.asList(new Point(0, Direction.of(false, true))
+                , new Point(1, Direction.of(true, false))
+                , new Point(2, Direction.of(false, false))
+                , new Point(3, Direction.of(false, false)))));
+
+        lines.add(new Line(Arrays.asList(new Point(0, Direction.of(false, false))
+                , new Point(1, Direction.of(false, true))
+                , new Point(2, Direction.of(true, false))
+                , new Point(3, Direction.of(false, false)))));
+
+        lines.add(new Line(Arrays.asList(new Point(0, Direction.of(false, true))
+                , new Point(1, Direction.of(true, false))
+                , new Point(2, Direction.of(false, true))
+                , new Point(3, Direction.of(true, false)))));
 
         LadderGame ladderGame = new LadderGame(people, rewards, new Ladder(lines));
         //then

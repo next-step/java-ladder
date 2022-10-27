@@ -1,10 +1,10 @@
 package laddergame.domain.service;
 
+import laddergame.Point;
 import laddergame.domain.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class LadderGame {
 
@@ -56,9 +56,26 @@ public class LadderGame {
         return result;
     }
 
-    public Ladder getLadder() {
-        return ladder;
+    public List<List<Boolean>> getLadderRecord() {
+        return ladder.getLines()
+                .stream()
+                .map(this::makeLineRecord)
+                .collect(Collectors.toUnmodifiableList());
     }
+
+    private List<Boolean> makeLineRecord(Line line) {
+
+        List<Point> points = line.getPoints();
+
+        List<Boolean> records = new ArrayList<>();
+
+        for (int i = 0; i < points.size() -1 ; i++) {
+            records.add(points.get(i).isRight());
+        }
+
+        return Collections.unmodifiableList(records);
+    }
+
 
     public Rewards getRewards() {
         return rewards;
