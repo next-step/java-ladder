@@ -34,9 +34,12 @@
   * 하나의 행 라인 객체
 * [x] Ladder
   * 사다리 객체
-* [x] Name
+* [x] UserName
   * 유저 이름 객체
   * 유저의 이름은 5글자 제한한다.
+* [x] UserNames
+  * 유저 이름 모음
+  * 유저 이름은 중복될 수 없다.
 * [x] RandomBooleanGenerator
   * 랜덤 생성기
 

@@ -8,16 +8,16 @@ public class ResultView {
     private static final String HORIZONTAL_BLANK_LINE = "     ";
     private static final String HORIZONTAL_FULL_LINE = "-----";
 
-    public static void printResult(List<UserName> userNames, Ladder ladder) {
+    public static void printResult(UserNames userNames, Ladder ladder) {
         printUserNames(userNames);
         printLadder(ladder);
     }
 
-    private static void printUserNames(List<UserName> userNames) {
+    private static void printUserNames(UserNames userNames) {
         String blank = " ";
         System.out.println("실행 결과");
         System.out.println();
-        userNames.forEach(username -> System.out.printf("%6s", username.getName() + blank));
+        userNames.getUserNames().forEach(username -> System.out.printf("%6s", username.getName() + blank));
         System.out.println();
     }
 
