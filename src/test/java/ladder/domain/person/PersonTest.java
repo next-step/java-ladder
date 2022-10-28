@@ -28,4 +28,10 @@ public class PersonTest {
     void valid_null() {
         assertThatThrownBy(() -> new Person(null)).isInstanceOf(IllegalPersonNameException.class);
     }
+
+    @ParameterizedTest(name = "사람 이름 가져오기")
+    @ValueSource(strings = {"pobi", "crong", "sik"})
+    void name(String name) {
+        assertThat(new Person(name).name()).isEqualTo(name);
+    }
 }
