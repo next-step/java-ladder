@@ -1,13 +1,19 @@
 package ladder.domain;
 
 import ladder.domain.person.Person;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 
 public class ResultMapTest {
 
     @Test
-    void create() {
-        ResultMap resultMap = new ResultMap(new Person("pobi", 0), new Person("crong", 1));
+    void setPersonResult() {
+        Person pobi = new Person("pobi", 0);
+        Person crong = new Person("crong", 1);
+        ResultMap resultMap = new ResultMap(pobi, crong);
+        resultMap.setPersonResult(pobi, "꽝");
+
+        Assertions.assertThat(resultMap.result(pobi)).isEqualTo("꽝");
     }
 }
