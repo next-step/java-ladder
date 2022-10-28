@@ -32,21 +32,15 @@ public class LadderGameCreateOutputView {
         System.out.println("사다리 높이 입력이 잘못됐습니다 다시 입력해주세요.");
     }
 
-    public static void result(List<String> persons, String ladderLine, List<String> results) {
+    public static void result(List<String> persons, String ladderLine, String results) {
         ladderResultGuide();
         outputPersonNames(persons);
         outputLadderLines(ladderLine);
         outputResults(results);
     }
 
-    private static void outputResults(List<String> results) {
-        System.out.println(results.stream()
-                .map(LadderGameCreateOutputView::translateResultOutputFormat)
-                .collect(Collectors.joining(RESULT_DELIMITER)));
-    }
-
-    private static String translateResultOutputFormat(String result) {
-        return String.format("%-5s", result);
+    private static void outputResults(String results) {
+        System.out.println(results);
     }
 
     public static void ladderResultGuide() {

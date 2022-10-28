@@ -17,6 +17,10 @@ public class Result {
         this.result = result;
     }
 
+    public String result(){
+        return this.result;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
