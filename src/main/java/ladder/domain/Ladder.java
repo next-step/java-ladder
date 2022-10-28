@@ -1,11 +1,12 @@
 package ladder.domain;
 
+import java.util.AbstractList;
 import java.util.List;
 
 /**
  * Created by seungwoo.song on 2022-10-17
  */
-public class Ladder {
+public class Ladder extends AbstractList<LadderRow> {
 
 	private final List<LadderRow> ladderRows;
 
@@ -13,7 +14,13 @@ public class Ladder {
 		this.ladderRows = ladderRows;
 	}
 
-	public List<LadderRow> getLadderRows() {
-		return ladderRows;
+	@Override
+	public LadderRow get(int index) {
+		return ladderRows.get(index);
+	}
+
+	@Override
+	public int size() {
+		return ladderRows.size();
 	}
 }
