@@ -8,6 +8,7 @@ import ladder.domain.ladder.LadderWidth;
 import ladder.domain.person.People;
 import ladder.domain.ladder.ladderline.LadderLines;
 import ladder.dto.LadderCreateResultOutputDto;
+import ladder.dto.LadderGameResultDto;
 import ladder.service.LadderGameCreateService;
 import ladder.service.LadderGameResultService;
 import ladder.util.LadderOutputConverter;
@@ -37,7 +38,7 @@ public class LadderController {
 
         ResultPeople resultPeople = inputResultPersonName(people);
 
-        ResultMap resultMap = ladderGameResultService.ladderGameResult(results, ladderLines, resultPeople);
+        ResultMap resultMap = ladderGameResultService.ladderGameResult(new LadderGameResultDto(results, ladderLines), resultPeople);
 
         LadderGameResultOutputView.result(LadderOutputConverter.resultMapOutput(resultMap, resultPeople.resultPeople()));
     }

@@ -1,8 +1,15 @@
 package ladder.domain.result;
 
+import ladder.domain.ladder.ladderline.LadderLines;
 import ladder.domain.person.Person;
-import org.assertj.core.api.Assertions;
+import ladder.dto.LadderGameResultDto;
+import ladder.testutil.LadderLineTestUtil;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class ResultMapTest {
@@ -12,8 +19,26 @@ public class ResultMapTest {
         Person pobi = new Person("pobi", 0);
         Person crong = new Person("crong", 1);
         ResultMap resultMap = new ResultMap(pobi, crong);
-        resultMap.setPersonResult(pobi, "꽝");
+        resultMap.setPersonResult(pobi, new Result("꽝"));
 
-        Assertions.assertThat(resultMap.result(pobi)).isEqualTo(new Result("꽝"));
+        assertThat(resultMap.result(pobi)).isEqualTo(new Result("꽝"));
+    }
+
+    @Test
+    void setResult() {
+        Person pobi = new Person("pobi", 0);
+        Person crong = new Person("crong", 1);
+        ResultMap resultMap = new ResultMap(pobi, crong);
+        resultMap.setResult(
+                new LadderGameResultDto(
+                        new Results("1", "2"),
+                        new LadderLines(List.of(LadderLineTestUtil.continuousLadder()))
+                )
+        );
+
+        assertAll(
+                () -> assertThat(resultMap.result(pobi)).isEqualTo(new Result("2")),
+                () -> assertThat(resultMap.result(crong)).isEqualTo(new Result("1"))
+        );
     }
 }

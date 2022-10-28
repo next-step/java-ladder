@@ -2,6 +2,7 @@ package ladder.domain.result;
 
 import ladder.domain.person.Person;
 import ladder.domain.person.ResultPeople;
+import ladder.dto.LadderGameResultDto;
 import ladder.exception.result.ResultNotExistException;
 
 import java.util.*;
@@ -25,10 +26,6 @@ public class ResultMap {
         persons.forEach(person -> resultMap.put(person, Optional.empty()));
     }
 
-    public void setPersonResult(Person person, String result) {
-        resultMap.put(person, Optional.of(new Result(result)));
-    }
-
     public void setPersonResult(Person person, Result result) {
         resultMap.put(person, Optional.of(result));
     }
@@ -38,4 +35,12 @@ public class ResultMap {
                 .orElseThrow(ResultNotExistException::new);
     }
 
+    public void setResult(LadderGameResultDto ladderGameResultDto) {
+        this.resultMap.keySet()
+                .forEach(person -> {
+                            Result result = ladderGameResultDto.results().result(ladderGameResultDto.ladderLines().result(person.number()));
+                            this.setPersonResult(person, result);
+                        }
+                );
+    }
 }

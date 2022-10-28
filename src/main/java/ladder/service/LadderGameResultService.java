@@ -1,19 +1,14 @@
 package ladder.service;
 
 import ladder.domain.person.ResultPeople;
-import ladder.domain.result.Result;
 import ladder.domain.result.ResultMap;
-import ladder.domain.result.Results;
-import ladder.domain.ladder.ladderline.LadderLines;
+import ladder.dto.LadderGameResultDto;
 
 public class LadderGameResultService {
 
-    public ResultMap ladderGameResult(Results results, LadderLines ladderLines, ResultPeople resultPeople) {
+    public ResultMap ladderGameResult(LadderGameResultDto ladderGameResultDto, ResultPeople resultPeople) {
         ResultMap resultMap = new ResultMap(resultPeople);
-        resultPeople.resultPeople().forEach(person -> {
-            Result result = results.result(ladderLines.result(person.number()));
-            resultMap.setPersonResult(person, result);
-        });
+        resultMap.setResult(ladderGameResultDto);
         return resultMap;
     }
 }
