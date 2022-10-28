@@ -17,7 +17,7 @@ public class ResultView {
         String blank = " ";
         System.out.println("실행 결과");
         System.out.println();
-        userNames.getUserNames().forEach(username -> System.out.printf("%6s", username.getName() + blank));
+        userNames.getUserNames().forEach(username -> System.out.printf("%4s", username.getName() + blank));
         System.out.println();
     }
 
