@@ -29,7 +29,7 @@ public class LadderController {
     public void gameStart() {
         People people = inputPeople();
 
-        Results results = new Results(inputPlayResult());
+        Results results = inputPlayResult();
 
         LadderLines ladderLines = ladderGameCreateService.createLadderLine(new LadderWidth(people.number()), inputHeight());
 
@@ -54,9 +54,9 @@ public class LadderController {
         return inputPeople();
     }
 
-    private String[] inputPlayResult() {
+    private Results inputPlayResult() {
         try {
-            return InputView.splitResult();
+            return new Results(InputView.splitResult());
         } catch (Exception e) {
             LadderGameCreateOutputView.inputPlayResultException();
         }
