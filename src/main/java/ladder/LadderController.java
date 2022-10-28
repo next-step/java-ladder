@@ -7,6 +7,7 @@ import ladder.domain.ladder.ladderline.LadderLines;
 import ladder.util.LadderOutputConverter;
 import ladder.view.InputView;
 import ladder.view.output.LadderGameCreateOutputView;
+import ladder.view.output.LadderGameResultOutputView;
 
 public class LadderController {
 
@@ -40,5 +41,18 @@ public class LadderController {
             LadderGameCreateOutputView.inputLadderHeightException();
         }
         return inputHeight();
+    }
+
+    public void gameStart() {
+        String personName = inputResultPersonName();
+    }
+
+    private static String inputResultPersonName() {
+        try {
+            return InputView.inputResultPersonName();
+        } catch (Exception e) {
+            LadderGameResultOutputView.inputResultPersonNameException();
+        }
+        return inputResultPersonName();
     }
 }
