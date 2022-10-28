@@ -3,13 +3,12 @@ package ladder.view.output;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static ladder.view.ViewConst.*;
+
 public class LadderGameCreateOutputView {
 
-    public static final String PERSON_NAME_DELIMITER = " ";
-    private static final int PERSON_NAME_LENGTH_MAX = 5;
-
     public static void inputPeople() {
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(" + PERSON_NAME_SEPARATOR + ")로 구분하세요)");
     }
 
     public static void inputPeopleException() {

@@ -5,10 +5,11 @@ import ladder.view.output.LadderGameResultOutputView;
 
 import java.util.Scanner;
 
+import static ladder.view.ViewConst.*;
+
 public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
-    public static String PERSON_NAME_SEPARATOR = ",";
 
     public static String[] personNameInput() {
         LadderGameCreateOutputView.inputPeople();
