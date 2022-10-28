@@ -15,4 +15,11 @@ public class ResultPeopleTest {
 
         assertThat(actual).isEqualTo(expected);
     }
+
+    @Test
+    void resultPeople() {
+        ResultPeople resultPeople = new ResultPeople(new People("pobi", "crong").people());
+
+        assertThat(resultPeople.resultPeople()).isEqualTo(List.of(new Person("pobi", 0), new Person("crong", 1)));
+    }
 }

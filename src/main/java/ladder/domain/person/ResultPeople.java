@@ -1,5 +1,6 @@
 package ladder.domain.person;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -9,6 +10,10 @@ public class ResultPeople {
 
     public ResultPeople(List<Person> persons) {
         this.resultPeople = persons;
+    }
+
+    public List<Person> resultPeople() {
+        return Collections.unmodifiableList(this.resultPeople);
     }
 
     @Override

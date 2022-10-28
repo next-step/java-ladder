@@ -1,6 +1,7 @@
 package ladder.domain.result;
 
 import ladder.domain.person.Person;
+import ladder.domain.person.ResultPeople;
 import ladder.exception.result.ResultNotExistException;
 
 import java.util.*;
@@ -11,7 +12,12 @@ public class ResultMap {
     private final Map<Person, Optional<Result>> resultMap;
 
     public ResultMap(Person... persons) {
-        this(Arrays.stream(persons).collect(Collectors.toList()));
+        this(Arrays.stream(persons)
+                .collect(Collectors.toList()));
+    }
+
+    public ResultMap(ResultPeople resultPeople) {
+        this(resultPeople.resultPeople());
     }
 
     public ResultMap(List<Person> persons) {

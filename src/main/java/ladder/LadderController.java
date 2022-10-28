@@ -1,12 +1,12 @@
 package ladder;
 
+import ladder.domain.person.ResultPeople;
 import ladder.domain.result.ResultMap;
 import ladder.domain.result.Results;
 import ladder.domain.ladder.LadderHeight;
 import ladder.domain.ladder.LadderWidth;
 import ladder.domain.person.People;
 import ladder.domain.ladder.ladderline.LadderLines;
-import ladder.domain.person.Person;
 import ladder.service.LadderGameCreateService;
 import ladder.service.LadderGameResultService;
 import ladder.util.LadderOutputConverter;
@@ -14,7 +14,6 @@ import ladder.view.InputView;
 import ladder.view.output.LadderGameCreateOutputView;
 import ladder.view.output.LadderGameResultOutputView;
 
-import java.util.List;
 
 public class LadderController {
 
@@ -38,11 +37,11 @@ public class LadderController {
                 LadderOutputConverter.ladderLinesOutput(ladderLines),
                 LadderOutputConverter.resultOutput(results));
 
-        List<Person> resultPersonList = inputResultPersonName(people);
+        ResultPeople resultPeople = inputResultPersonName(people);
 
-        ResultMap resultMap = ladderGameResultService.ladderGameResult(results, ladderLines, resultPersonList);
+        ResultMap resultMap = ladderGameResultService.ladderGameResult(results, ladderLines, resultPeople);
 
-        LadderGameResultOutputView.result(LadderOutputConverter.resultMapOutput(resultMap, resultPersonList));
+        LadderGameResultOutputView.result(LadderOutputConverter.resultMapOutput(resultMap, resultPeople.resultPeople()));
     }
 
     private People inputPeople() {
@@ -72,9 +71,9 @@ public class LadderController {
         return inputHeight();
     }
 
-    private static List<Person> inputResultPersonName(People people) {
+    private static ResultPeople inputResultPersonName(People people) {
         try {
-            return people.findByName(InputView.inputResultPersonName());
+            return new ResultPeople(people.findByName(InputView.inputResultPersonName()));
         } catch (Exception e) {
             LadderGameResultOutputView.inputResultPersonNameException();
         }
