@@ -4,6 +4,7 @@ import ladder.exception.person.PeopleSizeException;
 import ladder.exception.person.PersonNotFoundException;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -44,7 +45,7 @@ public class People {
         if (personList.isEmpty()) {
             throw new PersonNotFoundException();
         }
-        return personList;
+        return Collections.unmodifiableList(personList);
     }
 
     private boolean isContainFindAll(String... personNames) {
