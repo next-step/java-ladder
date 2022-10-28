@@ -1,6 +1,6 @@
 package ladder.view;
 
-import ladder.view.output.LadderCreateOutputView;
+import ladder.view.output.LadderGameCreateOutputView;
 
 import java.util.Scanner;
 
@@ -10,7 +10,7 @@ public class InputView {
     public static String PERSON_NAME_SEPARATOR = ",";
 
     public static String[] personNameInput() {
-        LadderCreateOutputView.inputPeople();
+        LadderGameCreateOutputView.inputPeople();
         return splitPersonName(scanner.nextLine());
     }
 
@@ -19,7 +19,7 @@ public class InputView {
     }
 
     public static int ladderHeight() {
-        LadderCreateOutputView.inputLadderHeight();
+        LadderGameCreateOutputView.inputLadderHeight();
         return Integer.parseInt(scanner.nextLine());
     }
 }

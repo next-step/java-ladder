@@ -3,7 +3,7 @@ package ladder.view.output;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class LadderCreateOutputView {
+public class LadderGameCreateOutputView {
 
     public static final String PERSON_NAME_DELIMITER = " ";
     private static final int PERSON_NAME_LENGTH_MAX = 5;
@@ -37,7 +37,7 @@ public class LadderCreateOutputView {
 
     public static void outputPersonNames(List<String> names) {
         System.out.println(names.stream()
-                .map(LadderCreateOutputView::outputPersonName)
+                .map(LadderGameCreateOutputView::outputPersonName)
                 .collect(Collectors.joining(PERSON_NAME_DELIMITER)));
     }
 

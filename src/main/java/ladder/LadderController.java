@@ -6,7 +6,7 @@ import ladder.domain.person.People;
 import ladder.domain.ladder.ladderline.LadderLines;
 import ladder.util.LadderOutputConverter;
 import ladder.view.InputView;
-import ladder.view.output.LadderCreateOutputView;
+import ladder.view.output.LadderGameCreateOutputView;
 
 public class LadderController {
 
@@ -21,14 +21,14 @@ public class LadderController {
 
         LadderLines ladderLines = ladderGameCreateService.createLadderLine(new LadderWidth(people.number()), inputHeight());
 
-        LadderCreateOutputView.result(people.toStrings(), LadderOutputConverter.ladderLinesOutput(ladderLines));
+        LadderGameCreateOutputView.result(people.toStrings(), LadderOutputConverter.ladderLinesOutput(ladderLines));
     }
 
     private People inputPeople() {
         try {
             return ladderGameCreateService.people(InputView.personNameInput());
         } catch (Exception e) {
-            LadderCreateOutputView.inputPeopleException();
+            LadderGameCreateOutputView.inputPeopleException();
         }
         return inputPeople();
     }
@@ -37,7 +37,7 @@ public class LadderController {
         try {
             return new LadderHeight(InputView.ladderHeight());
         } catch (Exception e) {
-            LadderCreateOutputView.inputLadderHeightException();
+            LadderGameCreateOutputView.inputLadderHeightException();
         }
         return inputHeight();
     }
