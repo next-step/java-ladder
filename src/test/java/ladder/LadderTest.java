@@ -2,6 +2,7 @@ package ladder;
 
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,14 +21,15 @@ class LadderTest {
     @DisplayName("사다리 그리기")
     void add_lines() {
         Ladder ladder = new Ladder(List.of("abc", "adgda", "adg"), 4);
-        ladder.addLines(
+
+        assertDoesNotThrow(() -> ladder.addLines(
                 List.of(
                         new ManualLine(3, List.of(false, false, true)),
                         new ManualLine(3, List.of(false, true, false)),
                         new ManualLine(3, List.of(false, true, false)),
                         new ManualLine(3, List.of(false, false, true))
                 )
-        );
+        ));
     }
 
     @Test

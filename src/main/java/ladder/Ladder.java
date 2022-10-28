@@ -8,7 +8,6 @@ import ladder.exception.EmptyNamesException;
 import ladder.exception.InvalidHeightException;
 import ladder.exception.InvalidLinesException;
 import ladder.exception.InvalidNameLengthException;
-import ladder.exception.NullLinesException;
 import ladder.exception.NullNamesException;
 import ladder.line.Line;
 
@@ -54,9 +53,7 @@ public class Ladder {
     }
 
     private void validateLines(List<Line> lines) {
-        long barCount = Optional.ofNullable(lines)
-                .orElseThrow(NullLinesException::new)
-                .stream()
+        long barCount = lines.stream()
                 .filter(this::validateLine)
                 .count();
         if (barCount != height) {
@@ -88,17 +85,15 @@ public class Ladder {
                 .sorted((left, right) -> right.length() - left.length())
                 .collect(Collectors.toUnmodifiableList());
 
-        return validateNameLength(sortedNames);
+        validateNameLength(sortedNames);
+        return sortedNames.get(0).length();
     }
 
-    private int validateNameLength(List<String> sortedNames) {
-        int minLength = sortedNames.get(sortedNames.size() - 1).length();
-        int maxLength = sortedNames.get(0).length();
-
-        if (minLength == 0 || maxLength > 5) {
+    private void validateNameLength(List<String> sortedNames) {
+        if (sortedNames.stream()
+                .anyMatch(name -> name.length() == 0 || name.length() > 5)) {
             throw new InvalidNameLengthException();
         }
-        return maxLength;
     }
 
 }
