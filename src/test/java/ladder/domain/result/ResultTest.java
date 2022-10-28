@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.result;
 
 import ladder.exception.InputLengthException;
 import org.junit.jupiter.api.Test;

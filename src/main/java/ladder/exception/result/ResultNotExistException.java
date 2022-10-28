@@ -1,4 +1,6 @@
-package ladder.exception;
+package ladder.exception.result;
+
+import ladder.exception.LadderException;
 
 public class ResultNotExistException extends LadderException {
     public ResultNotExistException() {

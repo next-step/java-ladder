@@ -1,7 +1,7 @@
 package ladder;
 
-import ladder.domain.ResultMap;
-import ladder.domain.Results;
+import ladder.domain.result.ResultMap;
+import ladder.domain.result.Results;
 import ladder.domain.ladder.LadderHeight;
 import ladder.domain.ladder.LadderWidth;
 import ladder.domain.person.People;

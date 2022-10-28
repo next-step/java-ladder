@@ -1,6 +1,6 @@
 package ladder.util;
 
-import ladder.domain.Results;
+import ladder.domain.result.Results;
 import ladder.domain.ladder.ladderline.LadderLines;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

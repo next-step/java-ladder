@@ -1,8 +1,8 @@
 package ladder.util;
 
-import ladder.domain.Result;
-import ladder.domain.ResultMap;
-import ladder.domain.Results;
+import ladder.domain.result.Result;
+import ladder.domain.result.ResultMap;
+import ladder.domain.result.Results;
 import ladder.domain.ladder.HorizontalLineDirection;
 import ladder.domain.ladder.ladderline.LadderLine;
 import ladder.domain.ladder.ladderline.LadderLines;

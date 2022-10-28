@@ -1,7 +1,7 @@
-package ladder.domain;
+package ladder.domain.result;
 
 import ladder.domain.person.Person;
-import ladder.exception.ResultNotExistException;
+import ladder.exception.result.ResultNotExistException;
 
 import java.util.*;
 import java.util.stream.Collectors;
