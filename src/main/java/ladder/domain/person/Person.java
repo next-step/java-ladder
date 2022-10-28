@@ -1,15 +1,16 @@
 package ladder.domain.person;
 
 import ladder.exception.person.IllegalPersonNameException;
-import ladder.exception.person.PersonNameLengthException;
+import ladder.exception.InputLengthException;
 
 import java.util.Objects;
+
+import static ladder.util.LadderConst.*;
 
 public class Person {
 
     private final String name;
     private final int number;
-    private final int PERSON_NAME_LENGTH_MAX = 5;
 
     public Person(String name, int number) {
         validationName(name);
@@ -21,8 +22,8 @@ public class Person {
         if (name == null || name.isBlank()) {
             throw new IllegalPersonNameException();
         }
-        if (name.length() > PERSON_NAME_LENGTH_MAX) {
-            throw new PersonNameLengthException(PERSON_NAME_LENGTH_MAX);
+        if (name.length() > INPUT_LENGTH_MAX) {
+            throw new InputLengthException(INPUT_LENGTH_MAX);
         }
     }
 
@@ -44,7 +45,7 @@ public class Person {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, number, PERSON_NAME_LENGTH_MAX);
+        return Objects.hash(name, number, INPUT_LENGTH_MAX);
     }
 
     @Override

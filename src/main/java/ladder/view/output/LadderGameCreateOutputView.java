@@ -60,7 +60,7 @@ public class LadderGameCreateOutputView {
     }
 
     protected static String outputPersonName(String name) {
-        if (name.length() < PERSON_NAME_LENGTH_MAX) {
+        if (name.length() < INPUT_LENGTH_MAX) {
             return String.format("%4s ", name);
         }
         return name;
