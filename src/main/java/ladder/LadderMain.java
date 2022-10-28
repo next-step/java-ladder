@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.domain.ladder.strategy.LadderNotContinuousConnectStrategy;
+import ladder.service.LadderGameCreateService;
 import ladder.service.LadderGameResultService;
 
 public class LadderMain {

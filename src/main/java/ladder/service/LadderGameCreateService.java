@@ -1,4 +1,4 @@
-package ladder;
+package ladder.service;
 
 import ladder.domain.person.People;
 import ladder.domain.ladder.LadderHeight;
