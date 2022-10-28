@@ -1,6 +1,7 @@
 package ladder.view;
 
 import ladder.view.output.LadderGameCreateOutputView;
+import ladder.view.output.LadderGameResultOutputView;
 
 import java.util.Scanner;
 
@@ -21,5 +22,10 @@ public class InputView {
     public static int ladderHeight() {
         LadderGameCreateOutputView.inputLadderHeight();
         return Integer.parseInt(scanner.nextLine());
+    }
+
+    public static String inputResultPersonName() {
+        LadderGameResultOutputView.inputResultPersonName();
+        return scanner.nextLine().trim();
     }
 }
