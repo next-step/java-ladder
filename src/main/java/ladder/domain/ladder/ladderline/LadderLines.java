@@ -1,8 +1,6 @@
 package ladder.domain.ladder.ladderline;
 
-import ladder.domain.ladder.HorizontalLineDirection;
 import ladder.exception.ladder.EscapeLadderLinesException;
-import ladder.exception.ladder.NoSuchHorizontalLineDirectionException;
 
 import java.util.Collections;
 import java.util.List;
@@ -31,22 +29,9 @@ public class LadderLines {
     private int ladderClimbResult(int startNumber) {
         int result = startNumber;
         for (LadderLine ladderLine : ladderLines) {
-            result = moveNumber(ladderLine.horizontalLineDirections().get(result), result);
+            result = ladderLine.horizontalLineDirections().get(result).move(result);
         }
         return result;
-    }
-
-    private int moveNumber(HorizontalLineDirection horizontalLineDirection, int number) {
-        if (horizontalLineDirection.equals(HorizontalLineDirection.LEFT)) {
-            return number - 1;
-        }
-        if (horizontalLineDirection.equals(HorizontalLineDirection.RIGHT)) {
-            return number + 1;
-        }
-        if (horizontalLineDirection.equals(HorizontalLineDirection.NONE)) {
-            return number;
-        }
-        throw new NoSuchHorizontalLineDirectionException();
     }
 
     private boolean isEscapeResultNumberBound(int startNumber) {
