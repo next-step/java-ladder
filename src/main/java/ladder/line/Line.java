@@ -2,6 +2,7 @@ package ladder.line;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 import ladder.exception.InvalidCountOfPersonException;
 
 public abstract class Line {
@@ -20,20 +21,23 @@ public abstract class Line {
     }
 
     public boolean validate() {
-        if(bars.size() != countOfPerson) {
+        if (bars.size() != countOfPerson) {
             return false;
         }
 
-        for (int i = 0; i < bars.size(); i++) {
-            if (i == 0 && bars.get(i)) {
-                return false;
-            }
+        long invalidCount = IntStream.range(0, bars.size())
+                .filter(i -> isFirstBarInvalid(i) || isBarInvalid(i))
+                .count();
 
-            if (i != 0 && bars.get(i - 1) && bars.get(i)) {
-                return false;
-            }
-        }
-        return true;
+        return invalidCount == 0;
+    }
+
+    private boolean isBarInvalid(int i) {
+        return i != 0 && bars.get(i - 1) && bars.get(i);
+    }
+
+    private boolean isFirstBarInvalid(int i) {
+        return i == 0 && bars.get(i);
     }
 
     private int validateCountOfPerson(int countOfPerson) {
