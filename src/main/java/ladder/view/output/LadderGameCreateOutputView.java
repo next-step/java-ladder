@@ -8,11 +8,15 @@ import static ladder.view.ViewConst.*;
 public class LadderGameCreateOutputView {
 
     public static void inputPeople() {
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(" + PERSON_NAME_SEPARATOR + ")로 구분하세요)");
+        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표("+ PERSON_NAME_SEPARATOR+")로 구분하세요)");
     }
 
     public static void inputPeopleException() {
         System.out.println("사람 이름 입력이 잘못됐습니다 다시 이력해주세요.");
+    }
+
+    public static void inputPlayResult() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표("+ INPUT_RESULT_SEPARATOR+")로 구분하세요)");
     }
 
     public static void inputLadderHeight() {
