@@ -26,13 +26,13 @@ public class LadderCreateOutputView {
     }
 
     public static void result(List<String> persons, String ladderLine) {
-        resultGuide();
+        ladderResultGuide();
         outputPersonNames(persons);
         outputLadderLines(ladderLine);
     }
 
-    public static void resultGuide() {
-        System.out.println("실행결과");
+    public static void ladderResultGuide() {
+        System.out.println("사다리 결과");
     }
 
     public static void outputPersonNames(List<String> names) {
