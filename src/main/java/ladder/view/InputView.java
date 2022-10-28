@@ -20,6 +20,11 @@ public class InputView {
         return text.split(PERSON_NAME_SEPARATOR);
     }
 
+    public static String[] splitResult() {
+        LadderGameCreateOutputView.inputPlayResult();
+        return scanner.nextLine().split(INPUT_RESULT_SEPARATOR);
+    }
+
     public static int ladderHeight() {
         LadderGameCreateOutputView.inputLadderHeight();
         return Integer.parseInt(scanner.nextLine());

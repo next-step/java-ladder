@@ -25,6 +25,8 @@ public class LadderController {
         LadderGameCreateOutputView.result(people.toStrings(), LadderOutputConverter.ladderLinesOutput(ladderLines));
 
         inputResultPersonName();
+
+        inputPlayResult();
     }
 
     private People inputPeople() {
@@ -34,6 +36,15 @@ public class LadderController {
             LadderGameCreateOutputView.inputPeopleException();
         }
         return inputPeople();
+    }
+
+    private String[] inputPlayResult() {
+        try {
+            return InputView.splitResult();
+        } catch (Exception e) {
+            LadderGameCreateOutputView.inputPlayResultException();
+        }
+        return inputPlayResult();
     }
 
     private static LadderHeight inputHeight() {
