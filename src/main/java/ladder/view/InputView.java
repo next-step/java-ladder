@@ -24,8 +24,12 @@ public class InputView {
         return Integer.parseInt(scanner.nextLine());
     }
 
-    public static String inputResultPersonName() {
+    public static String[] inputResultPersonName() {
         LadderGameResultOutputView.inputResultPersonName();
-        return scanner.nextLine().trim();
+        String text = scanner.nextLine().trim();
+        if (text.contains(PERSON_NAME_SEPARATOR)) {
+            return splitPersonName(text);
+        }
+        return new String[]{text};
     }
 }

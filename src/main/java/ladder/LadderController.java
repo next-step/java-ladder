@@ -45,7 +45,7 @@ public class LadderController {
         return inputHeight();
     }
 
-    private static String inputResultPersonName() {
+    private static String[] inputResultPersonName() {
         try {
             return InputView.inputResultPersonName();
         } catch (Exception e) {
