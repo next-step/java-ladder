@@ -15,4 +15,13 @@ class HorizontalLineDirectionTest {
                 () -> assertThat(HorizontalLineDirection.LEFT).isNotEqualTo(HorizontalLineDirection.NONE)
         );
     }
+
+    @Test
+    void move() {
+        Assertions.assertAll(
+                () -> assertThat(HorizontalLineDirection.LEFT.move(1)).isEqualTo(0),
+                () -> assertThat(HorizontalLineDirection.RIGHT.move(1)).isEqualTo(2),
+                () -> assertThat(HorizontalLineDirection.NONE.move(1)).isEqualTo(1)
+        );
+    }
 }

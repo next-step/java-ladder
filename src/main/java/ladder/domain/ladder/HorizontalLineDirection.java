@@ -9,4 +9,8 @@ public enum HorizontalLineDirection {
     HorizontalLineDirection(int value) {
         this.value = value;
     }
+
+    public int move(int number) {
+        return number + value;
+    }
 }
