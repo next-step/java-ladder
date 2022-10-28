@@ -14,6 +14,6 @@ public class ResultMapTest {
         ResultMap resultMap = new ResultMap(pobi, crong);
         resultMap.setPersonResult(pobi, "꽝");
 
-        Assertions.assertThat(resultMap.result(pobi)).isEqualTo("꽝");
+        Assertions.assertThat(resultMap.result(pobi)).isEqualTo(new Result("꽝"));
     }
 }

@@ -1,32 +1,47 @@
 package ladder;
 
+import ladder.domain.ResultMap;
+import ladder.domain.Results;
 import ladder.domain.ladder.LadderHeight;
 import ladder.domain.ladder.LadderWidth;
 import ladder.domain.person.People;
 import ladder.domain.ladder.ladderline.LadderLines;
+import ladder.domain.person.Person;
+import ladder.service.LadderGameResultService;
 import ladder.util.LadderOutputConverter;
 import ladder.view.InputView;
 import ladder.view.output.LadderGameCreateOutputView;
 import ladder.view.output.LadderGameResultOutputView;
 
+import java.util.List;
+
 public class LadderController {
 
     private final LadderGameCreateService ladderGameCreateService;
+    private final LadderGameResultService ladderGameResultService;
 
-    public LadderController(LadderGameCreateService ladderGameCreateService) {
+    public LadderController(LadderGameCreateService ladderGameCreateService, LadderGameResultService ladderGameResultService) {
         this.ladderGameCreateService = ladderGameCreateService;
+        this.ladderGameResultService = ladderGameResultService;
     }
 
     public void gameStart() {
         People people = inputPeople();
 
+        Results results = new Results(inputPlayResult());
+
         LadderLines ladderLines = ladderGameCreateService.createLadderLine(new LadderWidth(people.number()), inputHeight());
 
-        LadderGameCreateOutputView.result(people.toStrings(), LadderOutputConverter.ladderLinesOutput(ladderLines));
+        LadderGameCreateOutputView.result(
+                people.toStrings(),
+                LadderOutputConverter.ladderLinesOutput(ladderLines),
+                LadderOutputConverter.resultOutput(results));
 
-        inputResultPersonName();
+        List<Person> resultPersonList = inputResultPersonName(people);
 
-        inputPlayResult();
+        ResultMap resultMap = ladderGameResultService.ladderGameResult(results, ladderLines, resultPersonList);
+
+        LadderGameResultOutputView.result(LadderOutputConverter.resultMapOutput(resultMap, resultPersonList));
     }
 
     private People inputPeople() {
@@ -56,12 +71,12 @@ public class LadderController {
         return inputHeight();
     }
 
-    private static String[] inputResultPersonName() {
+    private static List<Person> inputResultPersonName(People people) {
         try {
-            return InputView.inputResultPersonName();
+            return people.findByName(InputView.inputResultPersonName());
         } catch (Exception e) {
             LadderGameResultOutputView.inputResultPersonNameException();
         }
-        return inputResultPersonName();
+        return inputResultPersonName(people);
     }
 }
