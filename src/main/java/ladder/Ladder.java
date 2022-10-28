@@ -1,23 +1,23 @@
 package ladder;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder {
 
     private final List<Row> rows;
+
     private Ladder(List<Row> rows) {
         this.rows = rows;
     }
 
     public static Ladder of(int people, int height) {
-        List<Row> rows = new ArrayList<>();
         RowGenerator rowGenerator = new RowGenerator();
 
-        for (int i = 0; i < height; i++) {
-            Row row = rowGenerator.create(people);
-            rows.add(row);
-        }
+        List<Row> rows = IntStream.range(0, height)
+            .mapToObj(i -> rowGenerator.create(people))
+            .collect(Collectors.toList());
 
         return new Ladder(rows);
     }
