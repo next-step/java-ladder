@@ -22,8 +22,8 @@ public class LadderLinesTest {
     void result() {
         LadderLines ladderLines = new LadderLines(List.of(LadderLineTestUtil.continuousLadder()));
         Assertions.assertAll(
-                () -> assertThat(ladderLines.result(1)).isEqualTo(2),
-                () -> assertThat(ladderLines.result(2)).isEqualTo(1)
+                () -> assertThat(ladderLines.result(0)).isEqualTo(1),
+                () -> assertThat(ladderLines.result(1)).isEqualTo(0)
         );
     }
 }

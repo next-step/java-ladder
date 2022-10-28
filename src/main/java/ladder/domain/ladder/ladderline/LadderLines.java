@@ -11,7 +11,7 @@ import java.util.Objects;
 public class LadderLines {
 
     private final List<LadderLine> ladderLines;
-    private static final int RESULT_START_NUMBER_MIN = 1;
+    private static final int RESULT_START_NUMBER_MIN = 0;
 
     public LadderLines(List<LadderLine> ladderLines) {
         this.ladderLines = ladderLines;
@@ -21,27 +21,19 @@ public class LadderLines {
         return Collections.unmodifiableList(ladderLines);
     }
 
-    public int result(int number) {
-        if (isEscapeResultNumberBound(number)) {
+    public int result(int startNumber) {
+        if (isEscapeResultNumberBound(startNumber)) {
             throw new EscapeLadderLinesException();
         }
-        return ladderClimbResult(number);
+        return ladderClimbResult(startNumber);
     }
 
-    private int ladderClimbResult(int number) {
-        number = setStartResult(number);
+    private int ladderClimbResult(int startNumber) {
+        int result = startNumber;
         for (LadderLine ladderLine : ladderLines) {
-            number = moveNumber(ladderLine.horizontalLineDirections().get(number), number);
+            result = moveNumber(ladderLine.horizontalLineDirections().get(result), result);
         }
-        return setEndResult(number);
-    }
-
-    private static int setEndResult(int number) {
-        return number + 1;
-    }
-
-    private static int setStartResult(int number) {
-        return number - 1;
+        return result;
     }
 
     private int moveNumber(HorizontalLineDirection horizontalLineDirection, int number) {
