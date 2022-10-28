@@ -1,12 +1,19 @@
 package ladder.domain;
 
+import ladder.exception.InputLengthException;
+
 import java.util.Objects;
+
+import static ladder.util.LadderConst.*;
 
 public class Result {
 
     private final String result;
 
     public Result(String result) {
+        if (result.length() > INPUT_LENGTH_MAX) {
+            throw new InputLengthException(INPUT_LENGTH_MAX);
+        }
         this.result = result;
     }
 
