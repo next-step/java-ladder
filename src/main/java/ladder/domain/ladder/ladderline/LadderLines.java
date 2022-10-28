@@ -1,6 +1,7 @@
 package ladder.domain.ladder.ladderline;
 
 import ladder.exception.ladder.EscapeLadderLinesException;
+import ladder.exception.ladder.NoSuchLadderLineException;
 
 import java.util.Collections;
 import java.util.List;
@@ -29,7 +30,9 @@ public class LadderLines {
     private int ladderClimbResult(int startNumber) {
         int result = startNumber;
         for (LadderLine ladderLine : ladderLines) {
-            result = ladderLine.horizontalLineDirections().get(result).move(result);
+            result = ladderLine.horizontalLineDirections()
+                    .get(result)
+                    .move(result);
         }
         return result;
     }
@@ -39,7 +42,10 @@ public class LadderLines {
     }
 
     private int ladderWidth() {
-        return ladderLines.get(0).horizontalLineDirections().size();
+        return ladderLines.stream()
+                .findFirst()
+                .orElseThrow(NoSuchLadderLineException::new)
+                .width();
     }
 
 
