@@ -17,8 +17,8 @@ public class UserName {
     }
 
     private void valid(String name) {
-        if (name.length() > USER_NAME_LENGTH) {
-            throw new IllegalArgumentException("이름은 최대 5글자까지 가능합니다.");
+        if (name == null || name.isBlank() || name.length() > USER_NAME_LENGTH) {
+            throw new IllegalArgumentException("유효하지 않은 이름입니다.");
         }
     }
 
