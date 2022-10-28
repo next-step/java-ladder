@@ -1,5 +1,7 @@
 package ladder.domain.ladder.ladderline;
 
+import ladder.testutil.LadderLineTestUtil;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -14,5 +16,14 @@ public class LadderLinesTest {
         LadderLines ladderLines = new LadderLines(List.of(createNoneLadderLine(2)));
 
         assertThat(ladderLines).isEqualTo(new LadderLines(List.of(createNoneLadderLine(2))));
+    }
+
+    @Test
+    void result() {
+        LadderLines ladderLines = new LadderLines(List.of(LadderLineTestUtil.continuousLadder()));
+        Assertions.assertAll(
+                () -> assertThat(ladderLines.result(1)).isEqualTo(2),
+                () -> assertThat(ladderLines.result(2)).isEqualTo(1)
+        );
     }
 }
