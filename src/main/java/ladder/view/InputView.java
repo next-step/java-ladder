@@ -1,5 +1,7 @@
 package ladder.view;
 
+import ladder.view.output.LadderCreateOutputView;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -8,7 +10,7 @@ public class InputView {
     public static String PERSON_NAME_SEPARATOR = ",";
 
     public static String[] personNameInput() {
-        OutputView.inputPeople();
+        LadderCreateOutputView.inputPeople();
         return splitPersonName(scanner.nextLine());
     }
 
@@ -17,7 +19,7 @@ public class InputView {
     }
 
     public static int ladderHeight() {
-        OutputView.inputLadderHeight();
+        LadderCreateOutputView.inputLadderHeight();
         return Integer.parseInt(scanner.nextLine());
     }
 }
