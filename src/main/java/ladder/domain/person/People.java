@@ -8,19 +8,20 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class People {
 
     private final List<Person> people;
     private static final int PEOPLE_MIN = 2;
-    private final String FIND_ALL = "all";
+    private static final String FIND_ALL = "all";
 
     public People(String... strings) {
         if (strings.length < PEOPLE_MIN) {
             throw new PeopleSizeException();
         }
-        this.people = Arrays.stream(strings)
-                .map(Person::new)
+        this.people = IntStream.range(0, strings.length)
+                .mapToObj(number -> new Person(strings[number], number))
                 .collect(Collectors.toList());
     }
 

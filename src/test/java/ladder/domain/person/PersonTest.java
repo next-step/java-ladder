@@ -14,24 +14,24 @@ public class PersonTest {
     @DisplayName("사람 이름은 최대 5글자이다.")
     @Test
     void valid_personname_length() {
-        assertThatThrownBy(() -> new Person("abcdef")).isInstanceOf(PersonNameLengthException.class);
+        assertThatThrownBy(() -> new Person("abcdef", 0)).isInstanceOf(PersonNameLengthException.class);
     }
 
     @ParameterizedTest(name = "사람 이름은 공백일 수 없습니다.")
     @ValueSource(strings = {"", "   "})
     void valid_blank(String name) {
-        assertThatThrownBy(() -> new Person(name)).isInstanceOf(IllegalPersonNameException.class);
+        assertThatThrownBy(() -> new Person(name, 0)).isInstanceOf(IllegalPersonNameException.class);
     }
 
     @DisplayName("사람 이름은 null일 수 없습니다.")
     @Test
     void valid_null() {
-        assertThatThrownBy(() -> new Person(null)).isInstanceOf(IllegalPersonNameException.class);
+        assertThatThrownBy(() -> new Person(null, 0)).isInstanceOf(IllegalPersonNameException.class);
     }
 
     @ParameterizedTest(name = "사람 이름 가져오기")
     @ValueSource(strings = {"pobi", "crong", "sik"})
     void name(String name) {
-        assertThat(new Person(name).name()).isEqualTo(name);
+        assertThat(new Person(name, 0).name()).isEqualTo(name);
     }
 }

@@ -8,6 +8,6 @@ public class ResultMapTest {
 
     @Test
     void create() {
-        ResultMap resultMap = new ResultMap(new Person("pobi"), new Person("crong"));
+        ResultMap resultMap = new ResultMap(new Person("pobi", 0), new Person("crong", 1));
     }
 }
