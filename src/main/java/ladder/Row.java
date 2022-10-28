@@ -11,8 +11,8 @@ public class Row {
         this.points = points;
     }
 
-    public static Row from(List<Boolean> rows) {
-        return new Row(rows);
+    public static Row from(List<Boolean> points) {
+        return new Row(points);
     }
 
     public List<Boolean> getPoints() {
