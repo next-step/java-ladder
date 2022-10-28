@@ -17,12 +17,14 @@ public class LadderController {
         this.ladderGameCreateService = ladderGameCreateService;
     }
 
-    public void create() {
+    public void gameStart() {
         People people = inputPeople();
 
         LadderLines ladderLines = ladderGameCreateService.createLadderLine(new LadderWidth(people.number()), inputHeight());
 
         LadderGameCreateOutputView.result(people.toStrings(), LadderOutputConverter.ladderLinesOutput(ladderLines));
+
+        inputResultPersonName();
     }
 
     private People inputPeople() {
@@ -41,10 +43,6 @@ public class LadderController {
             LadderGameCreateOutputView.inputLadderHeightException();
         }
         return inputHeight();
-    }
-
-    public void gameStart() {
-        String personName = inputResultPersonName();
     }
 
     private static String inputResultPersonName() {
