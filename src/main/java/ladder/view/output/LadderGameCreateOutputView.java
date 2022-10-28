@@ -1,5 +1,7 @@
 package ladder.view.output;
 
+import ladder.dto.LadderCreateResultOutputDto;
+
 import static ladder.util.LadderConst.*;
 
 public class LadderGameCreateOutputView {
@@ -29,11 +31,9 @@ public class LadderGameCreateOutputView {
         System.out.println("사다리 높이 입력이 잘못됐습니다 다시 입력해주세요.");
     }
 
-    public static void result(String peopleName, String ladderLine, String results) {
+    public static void result(LadderCreateResultOutputDto ladderCreateResultOutputDto) {
         ladderResultGuide();
-        System.out.println(peopleName);
-        System.out.println(ladderLine);
-        System.out.println(results);
+        System.out.println(ladderCreateResultOutputDto.toString());
     }
 
     public static void ladderResultGuide() {
