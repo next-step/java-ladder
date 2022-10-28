@@ -1,5 +1,6 @@
 package ladder.util;
 
+import ladder.domain.person.People;
 import ladder.domain.result.Result;
 import ladder.domain.result.ResultMap;
 import ladder.domain.result.Results;
@@ -59,5 +60,19 @@ public class LadderOutputConverter {
 
     private static String resultMapFormat(Result result, Person person) {
         return String.format(RESULTMAP_FORMAT, person.name(), result.result());
+    }
+
+    public static String peopleName(People people) {
+        return people.people().stream()
+                .map(Person::name)
+                .map(LadderOutputConverter::outputPersonName)
+                .collect(Collectors.joining(PERSON_NAME_DELIMITER));
+    }
+
+    protected static String outputPersonName(String name) {
+        if (name.length() < INPUT_LENGTH_MAX) {
+            return String.format("%4s ", name);
+        }
+        return name;
     }
 }

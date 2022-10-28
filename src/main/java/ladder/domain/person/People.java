@@ -29,10 +29,8 @@ public class People {
         return people.size();
     }
 
-    public List<String> toStrings() {
-        return people.stream()
-                .map(Person::toString)
-                .collect(Collectors.toList());
+    public List<Person> people() {
+        return this.people;
     }
 
     public List<Person> findByName(String... personNames) {

@@ -1,8 +1,5 @@
 package ladder.view.output;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import static ladder.util.LadderConst.*;
 
 public class LadderGameCreateOutputView {
@@ -32,36 +29,14 @@ public class LadderGameCreateOutputView {
         System.out.println("사다리 높이 입력이 잘못됐습니다 다시 입력해주세요.");
     }
 
-    public static void result(List<String> persons, String ladderLine, String results) {
+    public static void result(String peopleName, String ladderLine, String results) {
         ladderResultGuide();
-        outputPersonNames(persons);
-        outputLadderLines(ladderLine);
-        outputResults(results);
-    }
-
-    private static void outputResults(String results) {
+        System.out.println(peopleName);
+        System.out.println(ladderLine);
         System.out.println(results);
     }
 
     public static void ladderResultGuide() {
         System.out.println("사다리 결과");
     }
-
-    public static void outputPersonNames(List<String> names) {
-        System.out.println(names.stream()
-                .map(LadderGameCreateOutputView::outputPersonName)
-                .collect(Collectors.joining(PERSON_NAME_DELIMITER)));
-    }
-
-    protected static String outputPersonName(String name) {
-        if (name.length() < INPUT_LENGTH_MAX) {
-            return String.format("%4s ", name);
-        }
-        return name;
-    }
-
-    public static void outputLadderLines(String ladderLines) {
-        System.out.println(ladderLines);
-    }
-
 }
