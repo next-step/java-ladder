@@ -15,9 +15,8 @@ public class PrintView {
         }
         System.out.println();
 
-        for (int i = 0; i < ladder.getHeight(); i++) {
-            printLine(ladder.getLine(i), ladder.getMaxNameLength());
-        }
+        ladder.getLines()
+                .forEach(line -> printLine(line, ladder.getMaxNameLength()));
     }
 
     private static void printName(int maxNameLength, String name) {

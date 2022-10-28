@@ -40,6 +40,10 @@ public class Ladder {
         return this.lines.get(index);
     }
 
+    public List<Line> getLines() {
+        return this.lines;
+    }
+
     public int getHeight() {
         return this.height;
     }
