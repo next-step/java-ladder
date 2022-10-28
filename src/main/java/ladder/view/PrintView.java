@@ -37,4 +37,11 @@ public class PrintView {
         return EMPTY_BAR.repeat(width) + STICK;
     }
 
+    public static void printError(Exception e) {
+        System.out.println(e.getMessage());
+    }
+
+    public static void printTryAgain() {
+        System.out.println("입력값을 확인하고 다시 압력해주세요.");
+    }
 }

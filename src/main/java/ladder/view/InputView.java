@@ -27,4 +27,7 @@ public class InputView {
         return scanner.nextLine();
     }
 
+    public static void clear() {
+        scanner.nextLine();
+    }
 }
