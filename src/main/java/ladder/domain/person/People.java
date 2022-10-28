@@ -30,7 +30,7 @@ public class People {
     }
 
     public List<Person> people() {
-        return this.people;
+        return Collections.unmodifiableList(this.people);
     }
 
     public List<Person> findByName(String... personNames) {
