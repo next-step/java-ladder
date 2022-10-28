@@ -1,6 +1,6 @@
-package ladder.view;
+package ladder.util;
 
-public class ViewConst {
+public class LadderConst {
 
     public static final String PERSON_NAME_DELIMITER = " ";
     public static final String RESULT_DELIMITER = " ";

@@ -3,7 +3,7 @@ package ladder.view.output;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static ladder.view.ViewConst.*;
+import static ladder.util.LadderConst.*;
 
 public class LadderGameCreateOutputView {
 

@@ -5,7 +5,7 @@ import ladder.view.output.LadderGameResultOutputView;
 
 import java.util.Scanner;
 
-import static ladder.view.ViewConst.*;
+import static ladder.util.LadderConst.*;
 
 public class InputView {
 
