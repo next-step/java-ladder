@@ -17,7 +17,7 @@ class BodyLineTest {
     @Test
     void points() {
         int countOfPerson = 3;
-        assertThat(new BodyLine(countOfPerson).points())
+        assertThat(new BodyLine(countOfPerson).getPoints())
                 .hasSize(countOfPerson * 2 - 1)
                 .startsWith(VERTICAL_LINE)
                 .endsWith(VERTICAL_LINE);

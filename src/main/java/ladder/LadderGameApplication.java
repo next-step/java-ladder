@@ -1,5 +1,6 @@
 package ladder;
 
+import ladder.domain.Height;
 import ladder.domain.LadderGame;
 import ladder.domain.UserNames;
 import ladder.domain.Users;
@@ -11,8 +12,8 @@ public class LadderGameApplication {
     
     public static void main(String[] args) {
         UserInput input = new UserInput();
-        UserNames names = input.userNames(MAX_NAME_SIZE);
-        LadderGame game = new LadderGame(new Users(names), input.height());
+        UserNames names = new UserNames(input.getUserNames(MAX_NAME_SIZE));
+        LadderGame game = new LadderGame(new Users(names), new Height(input.getHeight()));
 
         new ConsoleView(names.getAll(), game.execute().lines(), MAX_NAME_SIZE).show();
     }

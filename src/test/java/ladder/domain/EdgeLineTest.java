@@ -12,7 +12,7 @@ class EdgeLineTest {
     @Test
     void points() {
         int countOfPerson = 3;
-        assertThat(new EdgeLine(countOfPerson).points())
+        assertThat(new EdgeLine(countOfPerson).getPoints())
                 .hasSize(countOfPerson * 2 - 1)
                 .startsWith(VERTICAL_LINE)
                 .endsWith(VERTICAL_LINE)

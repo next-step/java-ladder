@@ -14,7 +14,7 @@ public abstract class Line {
         length = countOfPerson * 2 - 1;
     }
 
-    public List<Point> points() {
+    public List<Point> getPoints() {
         List<Point> points = new ArrayList<>();
         points.add(VERTICAL_LINE);
 
@@ -34,12 +34,12 @@ public abstract class Line {
         if (isBeforeLast) {
             return choiceBeforeLast(before);
         }
-        return point(next(before));
+        return choicePoint(next(before));
     }
 
     protected abstract Point choiceBeforeLast(Point before);
         
-    protected static Point point(List<Point> points) {
+    protected static Point choicePoint(List<Point> points) {
         return points.get(random.nextInt(points.size()));
     }
 }

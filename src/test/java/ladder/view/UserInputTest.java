@@ -14,7 +14,7 @@ class UserInputTest {
     @NullSource
     @EmptySource
     void constructor_when_null_or_empty(String names) {
-        assertThatThrownBy(() -> new MockUserInput(names).userNames(5))
+        assertThatThrownBy(() -> new MockUserInput(names).getUserNames(5))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("Name cannot be null or blank.");
     }
@@ -23,7 +23,7 @@ class UserInputTest {
     @Test
     void constructor_when_invalid_length() {
         int maxNameLength = 3;
-        assertThatThrownBy(() -> new MockUserInput("abcdefg,abc").userNames(maxNameLength))
+        assertThatThrownBy(() -> new MockUserInput("abcdefg,abc").getUserNames(maxNameLength))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("The maximum length of a name cannot exceed "+ maxNameLength +" characters.");
     }
@@ -37,7 +37,7 @@ class MockUserInput extends UserInput {
     }
 
     @Override
-    String names() {
+    String makeNames() {
         return names;
     }
 }

@@ -15,7 +15,7 @@ public class BodyLine extends Line {
             return HORIZON;
         }
         if (before == VERTICAL_LINE) {
-            return point(List.of(HORIZON, BLANK));
+            return choicePoint(List.of(HORIZON, BLANK));
         }
         return BLANK;
     }

@@ -30,7 +30,7 @@ public class ConsoleView {
     
     private void showLadder() {
         for (Line line : ladder) {
-            System.out.println(lineDisplay.show(line.points()));
+            System.out.println(lineDisplay.show(line.getPoints()));
         }
     }
     

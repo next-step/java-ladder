@@ -11,6 +11,6 @@ public class EdgeLine extends Line {
 
     @Override
     protected Point choiceBeforeLast(Point before) {
-        return point(List.of(HORIZON, BLANK));
+        return choicePoint(List.of(HORIZON, BLANK));
     }
 }
