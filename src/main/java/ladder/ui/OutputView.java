@@ -113,7 +113,7 @@ public abstract class OutputView {
     }
 
     private static String getUsername(User user) {
-        return user.getName();
+        return user.getName().getName();
     }
 
     private static String getResult(Result result) {

@@ -15,13 +15,13 @@ class UsersTest {
 
     @ParameterizedTest
     @CsvSource({"testA,1", "testB,2"})
-    void shouldFindUserPositionByUsers(String username, int position) {
+    void shouldFindUserPositionByUsernames(String username, int position) {
         User user = new User(username);
         Position userPosition = new Position(position);
         Users users = new Users();
         users.add(userPosition, user);
 
-        assertThat(users.findUserPositionByUsers(List.of(user))).containsExactly(userPosition);
+        assertThat(users.findUserPositionByUsernames(List.of(new UserName(username)))).containsExactly(userPosition);
     }
 
     @Test
@@ -29,17 +29,18 @@ class UsersTest {
         User user = new User("testA");
         Users users = new Users(user);
 
-        assertThatThrownBy(() -> users.findUserPositionByUsers(List.of(new User("hello"))))
+        assertThatThrownBy(() -> users.findUserPositionByUsernames(List.of(new UserName("hello"))))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void shouldFindAllUsers() {
-        User userA = new User("testA");
-        User userB = new User("testB");
+    @ParameterizedTest
+    @CsvSource({"testA,testB"})
+    void shouldFindAllUsers(String usernameA, String usernameB) {
+        User userA = new User(usernameA);
+        User userB = new User(usernameB);
         Users users = new Users(userA, userB);
 
-        assertThat(users.findAllUser()).contains(userA, userB);
+        assertThat(users.findAllUsernames()).contains(new UserName(usernameA), new UserName(usernameB));
     }
 
     @ParameterizedTest

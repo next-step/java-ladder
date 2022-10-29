@@ -31,23 +31,24 @@ public class Users {
                 .collect(Collectors.toList()));
     }
 
-    public List<User> findAllUser() {
+    public List<UserName> findAllUsernames() {
         return this.users.entrySet()
                 .stream()
                 .map(Map.Entry::getValue)
+                .map(User::getName)
                 .collect(Collectors.toList());
     }
 
-    public List<Position> findUserPositionByUsers(List<User> users) {
-        return users.stream()
-                .map(this::findPositionByUser)
+    public List<Position> findUserPositionByUsernames(List<UserName> names) {
+        return names.stream()
+                .map(this::findPositionByUsername)
                 .collect(Collectors.toList());
     }
 
-    private Position findPositionByUser(User user) {
+    private Position findPositionByUsername(UserName name) {
         return this.users.entrySet()
                 .stream()
-                .filter((entry) -> entry.getValue().isSameName(user))
+                .filter((entry) -> entry.getValue().isSameName(name))
                 .map(Map.Entry::getKey)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 유저입니다."));

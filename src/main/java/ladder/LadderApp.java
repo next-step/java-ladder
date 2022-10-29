@@ -27,8 +27,8 @@ public class LadderApp {
             OutputView.printLadder(users, ladder, ladderResult);
 
             while (true) {
-                List<User> foundUsers = getUser(users, inputView.getUserForResult());
-                List<Position> userPositions = users.findUserPositionByUsers(foundUsers);
+                List<UserName> foundUsers = getUsernames(users, inputView.getUserForResult());
+                List<Position> userPositions = users.findUserPositionByUsernames(foundUsers);
                 List<Position> resultPositions = ladder.play(userPositions);
 
                 List<UserResult> results = getUserResults(users, ladderResult, userPositions, resultPositions);
@@ -56,10 +56,10 @@ public class LadderApp {
         return new InputView(new BufferedReader(new InputStreamReader(System.in)));
     }
 
-    private static List<User> getUser(Users users, String name) {
+    private static List<UserName> getUsernames(Users users, String name) {
         if (name.equals(ALL_USER)) {
-            return users.findAllUser();
+            return users.findAllUsernames();
         }
-        return List.of(new User(name));
+        return List.of(new UserName(name));
     }
 }
