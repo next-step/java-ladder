@@ -10,7 +10,7 @@ class HorizontalLineTest {
 
     @Test
     void shouldValidateline() {
-        HorizontalLine horizontalLine = new HorizontalLine(List.of(new LineUnit()));
+        HorizontalLine horizontalLine = new HorizontalLine(List.of(new Direction()));
 
         assertThatThrownBy(() -> horizontalLine.validate(2)).isInstanceOf(IllegalArgumentException.class);
     }

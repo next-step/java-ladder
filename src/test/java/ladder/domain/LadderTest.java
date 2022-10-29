@@ -1,15 +1,13 @@
 package ladder.domain;
 
 import ladder.dto.LineGenerateDto;
-import ladder.factory.LadderFactory;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.function.Supplier;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderTest {
 
@@ -25,17 +23,16 @@ class LadderTest {
          *  |-----|
          */
         Ladder ladder = getLadder(numOfUsers, ladderLength, () -> false);
+        List<Position> resultA = ladder.play(List.of(new Position(0)));
+        List<Position> resultB = ladder.play(List.of(new Position(1)));
 
-        List<HorizontalPosition> resultA = ladder.play(List.of(new HorizontalPosition(0)));
-        List<HorizontalPosition> resultB = ladder.play(List.of(new HorizontalPosition(1)));
-
-        assertThat(resultA).containsOnly(new HorizontalPosition(0));
-        assertThat(resultB).containsOnly(new HorizontalPosition(1));
+        assertThat(resultA).containsOnly(new Position(0));
+        assertThat(resultB).containsOnly(new Position(1));
     }
 
 
     private Ladder getLadder(int numberOfUsers, int ladderLength, Supplier<Boolean> lineGenerationPolicy) {
-        List<HorizontalLine> horizontalLines = LadderFactory.horizontalLines(new LineGenerateDto(numberOfUsers, ladderLength), new LineGenerator(lineGenerationPolicy));
+        List<HorizontalLine> horizontalLines = LadderFactory.horizontalLines(new LineGenerateDto(numberOfUsers, ladderLength), new RandomLineGenerator(lineGenerationPolicy));
         List<VerticalLine> verticalLines = LadderFactory.verticalLines(horizontalLines, numberOfUsers);
         return new Ladder(verticalLines, new LadderLength(ladderLength));
     }

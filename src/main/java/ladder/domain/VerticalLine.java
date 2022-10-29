@@ -4,13 +4,13 @@ import java.util.List;
 
 public class VerticalLine {
 
-    private final List<LineUnit> lineUnits;
+    private final List<Direction> directions;
 
-    private final HorizontalPosition horizontalPosition;
+    private final Position position;
 
-    public VerticalLine(List<LineUnit> lineUnits, HorizontalPosition horizontalPosition) {
-        this.lineUnits = lineUnits;
-        this.horizontalPosition = horizontalPosition;
+    public VerticalLine(List<Direction> directions, Position position) {
+        this.directions = directions;
+        this.position = position;
     }
 
 
@@ -18,7 +18,7 @@ public class VerticalLine {
         if (isArrived(ladderPosition)) {
             return;
         }
-        LineUnit unit = this.lineUnits.get(ladderPosition.length());
+        Direction unit = this.directions.get(ladderPosition.length());
         ladderPosition.down();
         if (unit.hasPrevious()) {
             ladderPosition.previous();
@@ -32,15 +32,15 @@ public class VerticalLine {
     }
 
     private boolean isArrived(LadderPosition ladderPosition) {
-        return lineUnits.size() <= ladderPosition.length();
+        return directions.size() <= ladderPosition.length();
     }
 
 
-    public List<LineUnit> getLineUnits() {
-        return lineUnits;
+    public List<Direction> getLineUnits() {
+        return directions;
     }
 
-    public boolean isSamePosition(HorizontalPosition horizontalPosition) {
-        return this.horizontalPosition.equals(horizontalPosition);
+    public boolean isSamePosition(Position position) {
+        return this.position.equals(position);
     }
 }

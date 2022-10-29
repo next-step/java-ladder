@@ -5,12 +5,12 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class LineUnitTest {
+class DirectionTest {
 
     @Test
     void shouldAddNext() {
-        LineUnit unitA = new LineUnit();
-        LineUnit unitB = new LineUnit();
+        Direction unitA = new Direction();
+        Direction unitB = new Direction();
 
         unitA.addNext(unitB);
 
@@ -20,18 +20,18 @@ class LineUnitTest {
 
     @Test
     void shouldNotAddNext() {
-        LineUnit unitA = new LineUnit();
-        LineUnit unitB = new LineUnit();
+        Direction unitA = new Direction();
+        Direction unitB = new Direction();
 
         unitA.addNext(unitB);
 
-        assertThrows(IllegalArgumentException.class, () -> unitA.addNext(new LineUnit()));
+        assertThrows(IllegalArgumentException.class, () -> unitA.addNext(new Direction()));
     }
 
     @Test
     void shouldReturnWhetherUnitCanAdd() {
-        LineUnit unitA = new LineUnit();
-        LineUnit unitB = new LineUnit();
+        Direction unitA = new Direction();
+        Direction unitB = new Direction();
 
         assertThat(unitA.canAddNext()).isTrue();
 

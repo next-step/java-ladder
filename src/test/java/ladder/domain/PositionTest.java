@@ -5,29 +5,29 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class HorizontalPositionTest {
+class PositionTest {
 
     @Test
     void shouldValidateHorizontalPosition() {
-        assertThatThrownBy(() -> new HorizontalPosition(-1)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Position(-1)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void shouldIncreasePosition() {
-        HorizontalPosition position = new HorizontalPosition(1);
+        Position position = new Position(1);
 
         position.increase();
 
-        assertThat(position).isEqualTo(new HorizontalPosition(2));
+        assertThat(position).isEqualTo(new Position(2));
     }
 
     @Test
     void shouldDecreasePosition() {
-        HorizontalPosition position = new HorizontalPosition(1);
+        Position position = new Position(1);
 
         position.decrease();
 
-        assertThat(position).isEqualTo(new HorizontalPosition(0));
+        assertThat(position).isEqualTo(new Position(0));
     }
 
 }

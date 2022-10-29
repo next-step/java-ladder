@@ -4,13 +4,13 @@ import java.util.List;
 
 public class HorizontalLine {
 
-    private final List<LineUnit> units;
+    private final List<Direction> units;
 
-    public HorizontalLine(List<LineUnit> units) {
+    public HorizontalLine(List<Direction> units) {
         this.units = units;
     }
 
-    public List<LineUnit> getUnits() {
+    public List<Direction> getUnits() {
         return units;
     }
 
