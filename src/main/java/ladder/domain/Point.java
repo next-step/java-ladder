@@ -14,9 +14,17 @@ public enum Point {
 
     public static boolean canAddHorizonNextTime(final List<Point> points) {
         try {
-            return points.get(points.size()-1) != VERTICAL_LINE || points.get(points.size()-2) != HORIZON;
+            return isNotVerticalLine(points.get(points.size() - 1)) || isNotHorizon(points.get(points.size() - 2));
         } catch (IndexOutOfBoundsException e) {
             return true;
         }
+    }
+    
+    private static boolean isNotVerticalLine(Point before) {
+        return VERTICAL_LINE != before;
+    }
+    
+    private static boolean isNotHorizon(Point before) {
+        return HORIZON != before;
     }
 }

@@ -8,6 +8,7 @@ import java.util.Random;
 
 public abstract class Line {
     private static final Random random = new Random();
+    
     private final int length;
 
     protected Line(int countOfPerson) {
