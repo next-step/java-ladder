@@ -6,7 +6,7 @@ import ladder.domain.Users;
 import ladder.view.ConsoleView;
 import ladder.view.UserInput;
 
-public class LadderGameExecutor {
+public class LadderGameApplication {
     private static final int MAX_NAME_SIZE = 5;
     
     public static void main(String[] args) {
