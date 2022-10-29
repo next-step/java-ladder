@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class StreamStudy {
+    private StreamStudy() {
+    }
 
     public static long countWords() throws IOException {
         String contents = new String(Files.readAllBytes(Paths
@@ -39,6 +41,9 @@ public class StreamStudy {
     }
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
-        return 0;
+        return numbers.stream()
+                .filter(number -> number > 3)
+                .map(number -> number * 2)
+                .reduce(0, (x, y) -> x + y);
     }
 }

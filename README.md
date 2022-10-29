@@ -21,7 +21,7 @@
   > - 구글에서 자바의 익명 클래스로 검색해 익명 클래스가 무엇인지 학습한다.
 
 ### 스트림(Stream) 실습
-- [ ] map, reduce, filter 실습 1 - StreamStudy
+- [x] map, reduce, filter 실습 1 - StreamStudy
   > List에 담긴 모든 숫자 중 3보다 큰 숫자를 2배 한 후 모든 값의 합을 구한다. 지금까지 학습한 map, reduce, filter를 활용해 구현해야 한다. 
   > - nextstep.fp.StreamStudyTest 클래스의 sumOverThreeAndDouble() 테스트를 pass해야 한다.
 - [ ] map, reduce, filter 실습 2 - StreamStudy
