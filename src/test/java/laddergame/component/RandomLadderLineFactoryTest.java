@@ -1,41 +1,30 @@
 package laddergame.component;
 
-import laddergame.domain.LadderLine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.Collections;
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.assertThatNoException;
 
 class RandomLadderLineFactoryTest {
 
-    private final LadderLineFactory ladderLineFactory = new RandomLadderLineFactory();
+    private final LadderLineFactory lineFactory = new RandomLadderLineFactory();
 
-    @DisplayName("세로 막대의 개수가 1개인 경우, 세로 막대에 연결된 것이 없어야 한다.")
-    @Test
-    void createLadderLine_givenOneColumn() {
-        LadderLine actual = ladderLineFactory.createLadderLine(1);
-        assertThat(actual).isEqualTo(new LadderLine(Collections.emptyList()));
+    @DisplayName("포인트의 개수를 전달하면, 예외가 발생하지 않고 사다리 라인이 생성되어야 한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2})
+    void createLadderLine(int numberOfPoints) {
+        assertThatNoException()
+                .isThrownBy(() -> lineFactory.createLadderLine(numberOfPoints));
     }
 
-    @DisplayName("세로 막대의 개수가 2개인 경우, 세로 막대는 연결되거나 연결되지 않아야 한다.")
+    @DisplayName("포인트의 개수로 0 보다 작은 수를 전달하면, 예외가 발생해야 한다.")
     @Test
-    void createLadderLine_givenTwoColumns() {
-        LadderLine actual = ladderLineFactory.createLadderLine(2);
-        assertThat(actual).isIn(
-                new LadderLine(List.of(true)),
-                new LadderLine(List.of(false))
-        );
-    }
-
-    @DisplayName("세로 막대의 개수가 1보다 작은 경우, 예외가 발생해야 한다.")
-    @Test
-    void createLadderLine_givenNumberOfColumnsUnderMinValueOfColumns() {
+    void createLadderLine_givenZero() {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> ladderLineFactory.createLadderLine(0));
+                .isThrownBy(() -> lineFactory.createLadderLine(0));
     }
 
 }

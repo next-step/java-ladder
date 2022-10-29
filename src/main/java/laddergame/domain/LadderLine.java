@@ -2,49 +2,88 @@ package laddergame.domain;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LadderLine {
 
-    private final List<Boolean> connections;
+    public static final int MIN_NUMBER_OF_POINTS = 1;
 
-    public LadderLine(List<Boolean> connections) {
-        validate(connections);
-        this.connections = connections;
+    private final List<Point> points;
+
+    public LadderLine(List<Point> points) {
+        validate(points);
+        this.points = points;
     }
 
-    private void validate(List<Boolean> connections) {
-        boolean previousConnected = false;
-        for (boolean currentConnected : connections) {
-            validateContinuousConnection(currentConnected, previousConnected);
-            previousConnected = currentConnected;
+    private void validate(List<Point> points) {
+        validateSizeOfPoints(points);
+        validatePointIndices(points);
+        validatePointDirections(points);
+        validateEndPoints(points);
+    }
+
+    private void validateSizeOfPoints(List<Point> points) {
+        if (points.size() < MIN_NUMBER_OF_POINTS) {
+            throw new IllegalArgumentException(String.format("포인트의 개수는 %d 이상이어야 합니다.", MIN_NUMBER_OF_POINTS));
         }
     }
 
-    private void validateContinuousConnection(boolean currentConnected, boolean previousConnected) {
-        if (previousConnected && currentConnected) {
-            throw new IllegalArgumentException("가로 라인은 연속으로 연결될 수 없습니다.");
+    private void validatePointIndices(List<Point> points) {
+        IntStream.range(0, points.size())
+                .forEach(i -> {
+                    Point point = points.get(i);
+                    if (!point.isEqualIndex(i)) {
+                        throw new IllegalArgumentException("포인트의 인덱스는 0 부터 순차적으로 1씩 증가해야 합니다.");
+                    }
+                });
+    }
+
+    private void validatePointDirections(List<Point> points) {
+        if (points.isEmpty()) {
+            return;
         }
+
+        IntStream.range(1, points.size())
+                .forEach(i -> {
+                    Point previousPoint = points.get(i - 1);
+                    Point nextPoint = points.get(i);
+                    if (!nextPoint.nextPointPossible(previousPoint)) {
+                        throw new IllegalArgumentException("포인트의 방향이 잘못되었습니다.");
+                    }
+                });
+    }
+
+    private void validateEndPoints(List<Point> points) {
+        if (points.isEmpty()) {
+            return;
+        }
+
+        Point firstPoint = points.get(0);
+        Point lastPoint = points.get(points.size() - 1);
+        if (!firstPoint.firstPossible() || !lastPoint.lastPossible(points.size())) {
+            throw new IllegalArgumentException("양 끝의 포인트가 잘못되었습니다.");
+        }
+    }
+
+    public static LadderLine from(Direction... directions) {
+        List<Point> points = IntStream.range(0, directions.length)
+                .mapToObj(i -> new Point(i, directions[i]))
+                .collect(Collectors.toList());
+        return new LadderLine(points);
+    }
+
+    public Point get(int index) {
+        return points.get(index);
     }
 
     public int size() {
-        return connections.size();
+        return points.size() - 1;
     }
 
-    public LadderConnectedDirection getConnectedDirection(int indexOfPosition) {
-        return LadderConnectedDirection.of(isConnectedRight(indexOfPosition), isConnectedLeft(indexOfPosition));
-    }
-
-    private boolean isConnectedRight(int indexOfPosition) {
-        return indexOfPosition < size() && isConnected(indexOfPosition);
-    }
-
-    private boolean isConnectedLeft(int indexOfPosition) {
-        return indexOfPosition > 0 && isConnected(indexOfPosition - 1);
-
-    }
-
-    public boolean isConnected(int index) {
-        return connections.get(index);
+    public boolean isConnected(int indexOfConnection) {
+        Point point = points.get(indexOfConnection);
+        return point.isConnected(points.get(indexOfConnection + 1));
     }
 
     @Override
@@ -52,18 +91,18 @@ public class LadderLine {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LadderLine that = (LadderLine) o;
-        return Objects.equals(connections, that.connections);
+        return Objects.equals(points, that.points);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(connections);
+        return Objects.hash(points);
     }
 
     @Override
     public String toString() {
-        return "LadderLineConnections{" +
-                "connections=" + connections +
+        return "LadderLine{" +
+                "points=" + points +
                 '}';
     }
 

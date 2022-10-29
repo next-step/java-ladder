@@ -1,6 +1,7 @@
 package laddergame.controller;
 
 import laddergame.component.LadderFactory;
+import laddergame.domain.Direction;
 import laddergame.domain.LadderLine;
 import laddergame.dto.LadderDto;
 import laddergame.dto.LadderGameResult;
@@ -16,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderGameRunnerTest {
 
-    private final LadderFactory ladderFactory = new LadderFactory(numberOfColumns -> new LadderLine(List.of(true, false, true)));
+    private final LadderFactory ladderFactory = new LadderFactory(numberOfColumns -> LadderLine.from(Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT));
     private final LadderGameRunner ladderGameRunner = new LadderGameRunner(ladderFactory);
 
     @DisplayName("참가자 이름 목록과 사다리 높이를 전달하면, 사다리 게임 결과를 반환해야 한다.")
