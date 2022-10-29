@@ -13,13 +13,13 @@ public class Ladder {
         this.ladderLength = ladderLength;
     }
 
-    public List<HorizontalPosition> play(List<HorizontalPosition> positions) {
+    public List<Position> play(List<Position> positions) {
         return positions.stream()
                 .map((position) -> this.move(new LadderPosition(position)))
                 .collect(Collectors.toList());
     }
 
-    private HorizontalPosition move(LadderPosition ladderPosition) {
+    private Position move(LadderPosition ladderPosition) {
         while (!ladderPosition.isArrived(this.ladderLength)) {
             VerticalLine verticalLine = findVerticalLineByPosition(ladderPosition.getHorizontalPosition());
             verticalLine.move(ladderPosition);
@@ -27,7 +27,7 @@ public class Ladder {
         return ladderPosition.getHorizontalPosition();
     }
 
-    private VerticalLine findVerticalLineByPosition(HorizontalPosition position) {
+    private VerticalLine findVerticalLineByPosition(Position position) {
         return this.lines.stream()
                 .filter((line) -> line.isSamePosition(position))
                 .findFirst()

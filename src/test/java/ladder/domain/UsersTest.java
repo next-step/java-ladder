@@ -1,6 +1,8 @@
 package ladder.domain;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
@@ -10,51 +12,43 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class UsersTest {
 
-    @Test
-    void shouldFindUserStartPositionByUsername() {
-        User userA = userWithName("testA");
-        User userB = userWithName("testB");
-        Users users = new Users(List.of(userA, userB));
+    @ParameterizedTest
+    @CsvSource({"testA,1", "testB,2"})
+    void shouldFindUserPositionByUsers(String username, int position) {
+        User user = new User(username);
+        Position userPosition = new Position(position);
+        Users users = new Users();
+        users.add(userPosition, user);
 
-        assertThat(users.findUserByUsername(new UserName("testA"))).isEqualTo(userA);
-        assertThat(users.findUserByUsername(new UserName("testB"))).isEqualTo(userB);
+        assertThat(users.findUserPositionByUsers(List.of(user))).containsExactly(userPosition);
     }
 
     @Test
     void shouldNotFindUserByUsername_whenUsernameNotExist() {
-        User userA = userWithName("testA");
-        User userB = userWithName("testB");
-        Users users = new Users(List.of(userA, userB));
+        User user = new User("testA");
+        Users users = new Users(user);
 
-        assertThatThrownBy(() -> users.findUserByUsername(new UserName("hello"))).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> users.findUserPositionByUsers(List.of(new User("hello"))))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void shouldFindAllUserByUsername() {
-        User userA = userWithName("testA");
-        User userB = userWithName("testB");
-        Users users = new Users(List.of(userA, userB));
+    void shouldFindAllUsers() {
+        User userA = new User("testA");
+        User userB = new User("testB");
+        Users users = new Users(userA, userB);
 
-        List<User> foundUsers = users.findUserByUsernames(List.of(new UserName("testA"), new UserName("testB")));
-
-        assertThat(foundUsers).containsExactly(userA, userB);
+        assertThat(users.findAllUser()).contains(userA, userB);
     }
 
-    @Test
-    void shouldGetAllUsername() {
-        User userA = userWithName("testA");
-        User userB = userWithName("testB");
-        Users users = new Users(List.of(userA, userB));
+    @ParameterizedTest
+    @CsvSource({"testA,1", "testB,2"})
+    void shouldFindUserByPosition(String username, int position) {
+        User user = new User(username);
+        Position userPosition = new Position(position);
+        Users users = new Users();
+        users.add(userPosition, user);
 
-        List<UserName> foundNames = users.findAllUserName();
-
-        assertThat(foundNames).containsExactly(new UserName("testA"), new UserName("testB"));
+        assertThat(users.findUserByPosition(userPosition)).isEqualTo(user);
     }
-
-
-    private User userWithName(String name) {
-        return User.withNameAndPosition(new UserName(name), new HorizontalPosition(0));
-    }
-
-
 }

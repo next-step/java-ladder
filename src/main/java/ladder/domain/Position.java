@@ -2,11 +2,11 @@ package ladder.domain;
 
 import java.util.Objects;
 
-public class HorizontalPosition implements Comparable<HorizontalPosition> {
+public class Position implements Comparable<Position> {
 
     private int position;
 
-    public HorizontalPosition(int position) {
+    public Position(int position) {
         if (position < 0) {
             throw new IllegalArgumentException("인덱스 값은 0 보다 작을 수 없습니다.");
         }
@@ -29,7 +29,7 @@ public class HorizontalPosition implements Comparable<HorizontalPosition> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        HorizontalPosition that = (HorizontalPosition) o;
+        Position that = (Position) o;
         return position == that.position;
     }
 
@@ -39,7 +39,7 @@ public class HorizontalPosition implements Comparable<HorizontalPosition> {
     }
 
     @Override
-    public int compareTo(HorizontalPosition target) {
+    public int compareTo(Position target) {
         return Integer.compare(this.position, target.position);
     }
 }

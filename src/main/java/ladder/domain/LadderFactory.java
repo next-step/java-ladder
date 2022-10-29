@@ -1,10 +1,10 @@
-package ladder.factory;
+package ladder.domain;
 
-import ladder.domain.*;
 import ladder.dto.LineGenerateDto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class LadderFactory {
 
@@ -23,13 +23,19 @@ public class LadderFactory {
     }
 
     private static VerticalLine mapHorizontalLineToVertical(List<HorizontalLine> horizontalLine, int userIndex) {
-        List<LineUnit> verticalLine = new ArrayList<>();
+        List<Direction> verticalLine = new ArrayList<>();
         for (int lineIndex = 0; lineIndex < horizontalLine.size(); lineIndex++) {
             HorizontalLine line = horizontalLine.get(lineIndex);
-            LineUnit lineUnit = line.getUnits().get(userIndex);
-            verticalLine.add(lineUnit);
+            Direction direction = line.getUnits().get(userIndex);
+            verticalLine.add(direction);
         }
-        return new VerticalLine(verticalLine, new HorizontalPosition(userIndex));
+        return new VerticalLine(verticalLine, new Position(userIndex));
     }
 
+    public static Ladder getLadder(int numberOfUser, LadderLength ladderLength) {
+        LineGenerator lineGenerator = new LineGenerator(() -> new Random().nextBoolean());
+        List<HorizontalLine> horizontalLines = LadderFactory.horizontalLines(new LineGenerateDto(numberOfUser, ladderLength.getLength()), lineGenerator);
+        List<VerticalLine> verticalLines = LadderFactory.verticalLines(horizontalLines, numberOfUser);
+        return new Ladder(verticalLines, ladderLength);
+    }
 }
