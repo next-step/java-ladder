@@ -1,40 +1,34 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class Ladder {
 
-    private final List<User> users;
-    private final List<Line> lines;
-    private final int height;
+    private final LadderInOut ladderInOut;
+    private final LadderLine line;
 
-    public Ladder(List<String> names, int height) {
-        this.users = names.stream()
-                          .map(User::new)
-                          .collect(Collectors.toList());
+    public Ladder(LadderInOut ladderInOut, LadderLine line) {
+        this.ladderInOut = ladderInOut;
+        this.line = line;
+    }
 
-        this.lines = new ArrayList<>();
-        this.height = height;
-        for (int i = 0; i < height; i++) {
-            lines.add(new Line(users.size(), new RandomLineStrategy()));
-        }
+    public String getResult(String name) {
+        int userIdx = ladderInOut.indexOfUser(name);
+        int arriveIdx = line.getArriveIdx(userIdx);
+        return ladderInOut.getResult(arriveIdx);
     }
 
     public int getCountOfPerson() {
-        return users.size();
+        return ladderInOut.getCountOfUser();
     }
 
     public Line getLine(int idx) {
-        return lines.get(idx);
+        return line.getLine(idx);
     }
 
     public String getUserName(int idx) {
-        return users.get(idx).getName();
+        return ladderInOut.getUserName(idx);
     }
 
     public int getHeight() {
-        return height;
+        return line.getHeight();
     }
 }

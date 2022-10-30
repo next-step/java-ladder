@@ -28,9 +28,9 @@ public class LineTest {
 
     static Stream<Arguments> lineTestSource() {
         return Stream.of(
-                arguments(3, Lists.list(true, false, true)),
-                arguments(1, Lists.list(true)),
-                arguments(5, Lists.list(true, false, true, false, true))
+                arguments(3, Lists.list(true, false, false)),
+                arguments(1, Lists.list(false)),
+                arguments(5, Lists.list(true, false, true, false, false))
         );
     }
 }
