@@ -9,7 +9,7 @@ public class Line {
     private static final Random RANDOM = new Random();
     List<Boolean> points = new ArrayList<>();
 
-    public Line(int countPerson) {
+    public Line(final int countPerson) {
         IntStream.range(0, countPerson - 1)
                 .forEach(i -> points.add(getPoint(i)));
     }
@@ -18,15 +18,15 @@ public class Line {
         this.points = points;
     }
 
-    public boolean isTrue(int point) {
-        return point > 0 && points.get(point - 1);
-    }
-
-    public boolean addPoint(int point) {
+    boolean addPoint(int point) {
         if (isTrue(point)) {
             return false;
         }
         return RANDOM.nextBoolean();
+    }
+
+    private boolean isTrue(int point) {
+        return point > 0 && points.get(point - 1);
     }
 
     public boolean getPoint(int point) {
