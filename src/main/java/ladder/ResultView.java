@@ -28,6 +28,8 @@ public class ResultView {
 
     private static void printLowLine(Row row) {
         List<Boolean> points = row.getPoints();
+
+        System.out.print(HORIZONTAL_BLANK_LINE);
         for (Boolean point : points) {
             printConnectLine(point);
         }
@@ -36,11 +38,11 @@ public class ResultView {
 
     private static void printConnectLine(Boolean point) {
         if (point) {
+            System.out.print(VERTICAL_LINE);
             System.out.print(HORIZONTAL_FULL_LINE);
-            System.out.print(VERTICAL_LINE);
         } else {
-            System.out.print(HORIZONTAL_BLANK_LINE);
             System.out.print(VERTICAL_LINE);
+            System.out.print(HORIZONTAL_BLANK_LINE);
         }
     }
 }
