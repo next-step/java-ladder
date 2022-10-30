@@ -2,9 +2,11 @@ package ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
@@ -33,5 +35,18 @@ class StickTest {
                     Arguments.arguments((DetermineStick) () -> false, new Stick(false))
             );
         }
+
+    }
+
+    @DisplayName("자기 자신이 true이고 인자의 스틱도 true인지 확인한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"true,true,true", "false,true,false", "true,false,false", "false,false,false"})
+    void isTrueAndSo(boolean ownValue, boolean otherValue, boolean expected) {
+        Stick stick = new Stick(ownValue);
+        Stick other = new Stick(otherValue);
+
+        boolean actual = stick.isTrueAndSo(other);
+
+        assertThat(actual).isEqualTo(expected);
     }
 }

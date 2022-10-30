@@ -14,6 +14,10 @@ public class Stick {
         this(determineStick.isExists());
     }
 
+    public boolean isTrueAndSo(Stick stick) {
+        return this.value && stick.value;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
