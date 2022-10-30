@@ -1,9 +1,6 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.GameResult;
-import nextstep.ladder.Ladder;
-import nextstep.ladder.Line;
-import nextstep.ladder.User;
+import nextstep.ladder.*;
 
 import java.util.List;
 
@@ -44,13 +41,13 @@ public class ResultView {
         System.out.println(sb);
     }
 
-    public static void printGameResult(User user, List<GameResult> gameResults, List<String> executeResult) {
+    public static void printGameResult(User user, GameResults gameResults, List<String> executeResult) {
         System.out.println("\n실행 결과");
         if (user.isSameName("all")) {
-            printAllResult(gameResults, executeResult);
+            printAllResult(gameResults.getGameResults(), executeResult);
             return ;
         }
-        printSingleResult(user, gameResults, executeResult);
+        System.out.println(gameResults.getUserResult(user, executeResult));
     }
 
     private static void printAllResult(List<GameResult> gameResults, List<String> executeResult) {

@@ -1,8 +1,9 @@
 package nextstep.ladder;
 
-import java.util.List;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
+
+import java.util.List;
 
 public class app {
 
@@ -16,7 +17,7 @@ public class app {
 
         ResultView.printNames(users.getUsers());
         ResultView.printLadder(ladder, executeResult);
-        List<GameResult> gameResults = ladderGame.gameStart();
+        GameResults gameResults = ladderGame.gameStart();
 
         while (true) {
             User resultUser = InputView.getUserNameForResult();

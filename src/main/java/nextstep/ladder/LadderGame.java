@@ -12,7 +12,7 @@ public class LadderGame {
         this.users = users;
     }
 
-    public List<GameResult> gameStart() {
+    public GameResults gameStart() {
         List<GameResult> gameResults = new ArrayList<>();
         List<User> userInfos = users.getUsers();
         for (int position = 0; position < users.getSize(); position++) {
@@ -20,6 +20,6 @@ public class LadderGame {
             int resultPosition = ladder.executeLadder(position);
             gameResults.add(new GameResult(user, resultPosition));
         }
-        return gameResults;
+        return new GameResults(gameResults);
     }
 }

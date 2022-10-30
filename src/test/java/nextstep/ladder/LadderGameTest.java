@@ -1,10 +1,11 @@
 package nextstep.ladder;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderGameTest {
 
@@ -21,8 +22,9 @@ class LadderGameTest {
         Users users = new Users(testUsers);
 
         LadderGame ladderGame = new LadderGame(users, ladder);
-        List<GameResult> gameResults = ladderGame.gameStart();
-        assertThat(gameResults)
+        GameResults gameResults = ladderGame.gameStart();
+        List<GameResult> results = gameResults.getGameResults();
+        assertThat(results)
                 .contains(
                         new GameResult(testUsers.get(0), 1),
                         new GameResult(testUsers.get(1), 0),
