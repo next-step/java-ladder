@@ -40,6 +40,10 @@ public class PlayerGroup {
         }
     }
 
+    public NumberOfLine findNumberOfPlayer() {
+        return new NumberOfLine(players.size() - 1);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

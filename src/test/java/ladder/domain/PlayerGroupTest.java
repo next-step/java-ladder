@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.ArrayList;
@@ -51,5 +50,17 @@ class PlayerGroupTest {
                     List.of(new Player("apple", 0, 0))
             );
         }
+
+    }
+
+    @DisplayName("라인 수를 반환한다.")
+    @Test
+    void findNumberOfLine() {
+        NumberOfLine expected = new NumberOfLine(2);
+        PlayerGroup playerGroup = PlayerGroup.from(List.of("apple", "foby", "jung"));
+
+        NumberOfLine actual = playerGroup.findNumberOfPlayer();
+
+        assertThat(actual).isEqualTo(expected);
     }
 }
