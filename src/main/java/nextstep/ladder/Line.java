@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Line {
@@ -9,12 +10,8 @@ public class Line {
 
     public Line(int countOfPerson, BooleanGenerator booleanGenerator) {
         this.booleanGenerator = booleanGenerator;
-        for (int i = 0; i < countOfPerson; i++) {
-            this.positions.add(false);
-        }
-        for (int position = 0; position < this.positions.size(); position++) {
-            positions.set(position, putHorizontalLine(position));
-        }
+        initializePositions(countOfPerson);
+        generateHorizontalLine();
     }
 
     public int goOneStep(int position) {
@@ -27,6 +24,19 @@ public class Line {
         }
 
         return position;
+    }
+
+
+    private void initializePositions(int countOfPerson) {
+        for (int i = 0; i < countOfPerson; i++) {
+            this.positions.add(false);
+        }
+    }
+
+    private void generateHorizontalLine() {
+        for (int position = 0; position < this.positions.size(); position++) {
+            positions.set(position, putHorizontalLine(position));
+        }
     }
 
     private int moveLeft(int position) {
@@ -82,7 +92,7 @@ public class Line {
         return position > 0 && positions.get(position - 1).equals(true);
     }
     public List<Boolean> getPositions() {
-        return positions;
+        return Collections.unmodifiableList(this.positions);
     }
 
 }
