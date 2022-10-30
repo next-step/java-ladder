@@ -39,14 +39,8 @@ public class Lambda {
     }
 
     private static int sum(final List<Integer> numbers, SumCondition condition) {
-        int total = 0;
-
-        for (int number : numbers) {
-            if (condition.test(number)) {
-                total += number;
-            }
-        }
-
-        return total;
+        return numbers.stream()
+                      .filter(condition::test)
+                      .reduce(0, Integer::sum);
     }
 }
