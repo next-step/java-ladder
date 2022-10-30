@@ -13,6 +13,10 @@ public class Person {
         this.person = Arrays.asList(person);
     }
 
+    public List<String> getPerson() {
+        return person;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
