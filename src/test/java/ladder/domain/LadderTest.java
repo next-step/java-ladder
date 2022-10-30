@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.utils.LadderUtils;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -18,24 +19,7 @@ class LadderTest {
 
     @Test
     public void 사다리_결과_인덱스() {
-        List<Point> points = new ArrayList<>();
-        points.add(new Point(true));
-        points.add(new Point(false));
-        points.add(new Point(true));
-
-        List<Point> points2 = new ArrayList<>();
-        points2.add(new Point(false));
-        points2.add(new Point(true));
-        points2.add(new Point(false));
-
-        List<Line> lines = new ArrayList<>();
-        lines.add(new Line(points));
-        lines.add(new Line(points2));
-        lines.add(new Line(points));
-        lines.add(new Line(points2));
-        lines.add(new Line(points));
-
-        Ladder ladder = new Ladder(lines);
+        Ladder ladder = LadderUtils.createLadder();
         assertThat(ladder.getLadderEndIdx(0)).isEqualTo(2);
         assertThat(ladder.getLadderEndIdx(1)).isEqualTo(3);
         assertThat(ladder.getLadderEndIdx(2)).isEqualTo(0);

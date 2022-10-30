@@ -1,8 +1,6 @@
 package ladder.controller;
 
-import ladder.domain.Ladder;
-import ladder.domain.Names;
-import ladder.domain.Results;
+import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -18,9 +16,15 @@ public class LadderController {
         this.results = null;
     }
 
+    public LadderController(Names names, Ladder ladder, Results results) {
+        this.names = names;
+        this.ladder = ladder;
+        this.results = results;
+    }
+
     public LadderController(Names names, int height, Results results) {
         this.names = names;
-        this.ladder = new Ladder(this.names.getCountOfNames(), height);
+        this.ladder = Ladder.of(this.names.getCountOfNames(), height);
         this.results = results;
     }
 
@@ -28,6 +32,13 @@ public class LadderController {
         if (countOfNames != countOfResults) {
             throw new IllegalArgumentException(ERR_MSG_RESULTS_NUMBER);
         }
+    }
+
+    public String getExecutionResult(String candidate) {
+        Name name = new Name(candidate);
+        int idx = this.names.getNames().indexOf(name);
+        int resultIdx = ladder.getLadderEndIdx(idx);
+        return results.getResults().get(resultIdx);
     }
 
     public Names getNames() {
