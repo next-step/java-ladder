@@ -7,16 +7,15 @@ import java.util.stream.IntStream;
 
 public class Ladder {
 
-    private List<Line> lines = new ArrayList<>();
+    private final List<Line> lines = new ArrayList<>();
 
     public Ladder(int height, int countOfPerson, BooleanGenerator booleanGenerator) {
         IntStream.range(0, height)
                 .forEach((i) -> lines.add(new Line(countOfPerson, booleanGenerator)));
     }
 
-    public int executeLaddar(int position) {
-        for (int i = 0; i < lines.size(); i++) {
-            Line line = lines.get(i);
+    public int executeLadder(int position) {
+        for (Line line : lines) {
             position = line.goOneStep(position);
         }
         return position;
@@ -25,6 +24,4 @@ public class Ladder {
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }
-
-
 }
