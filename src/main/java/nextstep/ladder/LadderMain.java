@@ -6,6 +6,5 @@ public class LadderMain {
          Line line = new Line(InputView.inputLadderHeight());
 
          OutputView.outputLadder(person, line);
-
     }
 }

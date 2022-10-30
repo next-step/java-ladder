@@ -1,13 +1,12 @@
 package nextstep.ladder;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 public class Person {
 
-    List<String> person = new ArrayList<>();
+    List<String> person;
 
     public Person(String[] person) {
         this.person = Arrays.asList(person);

@@ -10,8 +10,4 @@ public class Line {
     public Line(int height) {
         this.height = height;
     }
-
-    public int getHeight() {
-        return height;
-    }
 }
