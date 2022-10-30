@@ -1,8 +1,7 @@
 package ladder;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class RowGenerator {
 
@@ -10,20 +9,18 @@ public class RowGenerator {
     }
 
     public Row create(int people) {
-        List<Boolean> points = IntStream.range(0, people)
-            .mapToObj(i -> false)
-            .collect(Collectors.toList());
+        List<Boolean> points = new ArrayList<>();
+        points.add(RandomBooleanGenerator.generator());
 
-        IntStream.range(0, people-1).forEach(i -> {
+        for (int i = 1; i < people-1; i++) {
             boolean generator = RandomBooleanGenerator.generator();
-            if (i == 0) {
-                points.set(i, generator);
+            if (points.get(i - 1).equals(false)) {
+                points.add(generator);
             } else {
-                if (points.get(i - 1).equals(false)) {
-                    points.set(i, generator);
-                }
+                points.add(false);
             }
-        });
+        }
+        points.add(false);
         return Row.from(points);
     }
 }
