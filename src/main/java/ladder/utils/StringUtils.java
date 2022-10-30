@@ -16,7 +16,5 @@ public class StringUtils {
     public static final String LINE_EXIST = "|-----";
     public static final String LINE_NO_EXIST = "|     ";
     public static final String VERTICAL_LINE = "|";
-    public static final String RESULT_REGIX = " : ";
-
     public static final String RESULT_REGEX = ",";
 }
