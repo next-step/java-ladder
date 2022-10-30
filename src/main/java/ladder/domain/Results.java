@@ -3,8 +3,10 @@ package ladder.domain;
 import java.util.Arrays;
 import java.util.List;
 
+import static ladder.utils.StringUtils.RESULT_REGEX;
+
 public class Results {
-    public static final String RESULT_REGEX = ",";
+
     private List<String> results;
 
     public static Results of(String results) {

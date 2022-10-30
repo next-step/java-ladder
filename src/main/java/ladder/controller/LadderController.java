@@ -4,12 +4,13 @@ import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+
+import static ladder.utils.StringUtils.*;
 
 public class LadderController {
-    public static final String ERR_MSG_RESULTS_NUMBER = "실행 결과의 갯수는 참여하는 사람의 수와 동일해야 합니다.";
-    public static final String STR_ALL = "all";
+
+
     private final Names names;
     private final Ladder ladder;
     private final Results results;
@@ -30,6 +31,7 @@ public class LadderController {
         this.names = names;
         this.ladder = Ladder.of(this.names.getCountOfNames(), height);
         this.results = results;
+        checkValidationOfResultsNumber(names.getCountOfNames(), results.getResultsSize());
     }
 
     public void checkValidationOfResultsNumber(int countOfNames, int countOfResults) {
@@ -39,7 +41,7 @@ public class LadderController {
     }
 
     public Map<Name, String> getExecutionResultAll() {
-        Map<Name, String> ladderResult = new HashMap<>();
+        Map<Name, String> ladderResult = new LinkedHashMap<>();
         for (int i = 0; i < names.getCountOfNames(); i++) {
             int resultIdx = ladder.getLadderEndIdx(i);
             String result = results.getResults().get(resultIdx);
@@ -49,8 +51,8 @@ public class LadderController {
     }
 
     public String getExecutionResult(String candidate) {
-        Name name = new Name(candidate);
-        int idx = this.names.getNames().indexOf(name);
+        Name candidateName = new Name(candidate);
+        int idx = names.getNames().indexOf(candidateName);
         int resultIdx = ladder.getLadderEndIdx(idx);
         return results.getResults().get(resultIdx);
     }
@@ -63,19 +65,44 @@ public class LadderController {
         return ladder;
     }
 
+    private String validateCandidateName(String candidate) {
+        if (!isContainedName(candidate)) {
+            throw new IllegalArgumentException(ERR_MSG_CANDIDATE_NAME);
+        }
+        return candidate;
+    }
+
+    private boolean isContainedName(String candidate) {
+        Optional<Name> candidateName = names.getNames().stream().filter(name -> name.equals(new Name(candidate))).findAny();
+        if (!candidateName.isPresent()) {
+            return false;
+        }
+        return true;
+    }
+
     public void start() {
         String candidateNames = InputView.inputCandidateNames();
         Names names = Names.of(candidateNames);
 
         String inputResults = InputView.inputExecutionResult();
         Results results = Results.of(inputResults);
-        checkValidationOfResultsNumber(names.getCountOfNames(), results.getResultsSize());
 
         Integer maxHeight = InputView.inputMaxLadderHeight();
-        LadderController controller = new LadderController(names, maxHeight, results);
+        LadderController ladderGame = new LadderController(names, maxHeight, results);
 
-        ResultView.printResult(controller.getNames(), controller.getLadder());
-        
+        ResultView.printResult(ladderGame.getNames(), ladderGame.getLadder());
+
+        String candidate;
+        do {
+            candidate = InputView.inputResultCandidateName();
+            if (!candidate.equals(STR_ALL)) {
+                ladderGame.validateCandidateName(candidate);
+                ResultView.printLadderResult(ladderGame.getExecutionResult(candidate));
+            }
+            if (candidate.equals(STR_ALL)) {
+                ResultView.printLadderResultAll(ladderGame.getExecutionResultAll());
+            }
+        } while(!candidate.equals(STR_ALL));
 
     }
 }

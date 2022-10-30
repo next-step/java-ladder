@@ -3,6 +3,7 @@ package ladder.domain;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Names {
 
@@ -28,4 +29,5 @@ public class Names {
     public int getCountOfNames() {
         return names.size();
     }
+
 }
