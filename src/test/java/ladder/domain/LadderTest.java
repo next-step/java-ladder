@@ -25,4 +25,13 @@ class LadderTest {
         assertThat(ladder.getLadderEndIdx(2)).isEqualTo(0);
         assertThat(ladder.getLadderEndIdx(3)).isEqualTo(1);
     }
+
+    @Test
+    public void 사다리_결과_테스트2() {
+        Ladder ladder = LadderUtils.createLadder2();
+        assertThat(ladder.getLadderEndIdx(0)).isEqualTo(2);
+        assertThat(ladder.getLadderEndIdx(1)).isEqualTo(1);
+        assertThat(ladder.getLadderEndIdx(2)).isEqualTo(0);
+        assertThat(ladder.getLadderEndIdx(3)).isEqualTo(3);
+    }
 }

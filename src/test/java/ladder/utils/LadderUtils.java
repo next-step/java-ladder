@@ -30,4 +30,24 @@ public class LadderUtils {
         return new Ladder(lines);
     }
 
+    public static Ladder createLadder2() {
+        List<Point> points = new ArrayList<>();
+        points.add(new Point(true));
+        points.add(new Point(false));
+        points.add(new Point(false));
+
+        List<Point> points2 = new ArrayList<>();
+        points2.add(new Point(false));
+        points2.add(new Point(true));
+        points2.add(new Point(false));
+
+        List<Line> lines = new ArrayList<>();
+        lines.add(new Line(points));
+        lines.add(new Line(points));
+        lines.add(new Line(points));
+        lines.add(new Line(points2));
+        lines.add(new Line(points));
+
+        return new Ladder(lines);
+    }
 }

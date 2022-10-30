@@ -3,19 +3,18 @@ package ladder.view;
 import ladder.domain.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
+
+import static ladder.utils.StringUtils.*;
 
 public class ResultView {
 
-    public static final String MSG_RESULT = "실행결과";
-    public static final String LINE_EXIST = "|-----";
-    public static final String LINE_NO_EXIST = "|     ";
-    public static final String VERTICAL_LINE = "|";
-
     public static void printResult(Names names, Ladder ladder) {
-        System.out.println(MSG_RESULT);
+        System.out.println(MSG_LADDER_RESULT);
         printNames(names);
         printLadder(ladder);
+        System.out.println();
     }
 
     private static void printNames(Names names) {
@@ -56,6 +55,17 @@ public class ResultView {
         if (i == points.size() - 1) {
             System.out.print(VERTICAL_LINE);
         }
+    }
+
+    public static void printLadderResult(String result) {
+        System.out.println(MSG_EXECUTION_RESULT);
+        System.out.println(result);
+        System.out.println();
+    }
+    public static void printLadderResultAll(Map<Name, String> ladderResult) {
+        System.out.println(MSG_EXECUTION_RESULT);
+        ladderResult.forEach((name, result) -> System.out.println(name.getName() + RESULT_REGIX + result));
+        System.out.println();
     }
 
 }
