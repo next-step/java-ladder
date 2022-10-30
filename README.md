@@ -14,6 +14,6 @@
 - [x] fp.StreamStudy 수정
   - [x] sumOverThreeAndDouble 메소드를 stream 메소드를 활용하여 구현
   - [x] printLongestWordTop100 메소드를 stream 메소드를 활용하여 구현
-- [ ] optional.User.ageIsInRange1 기능을 optional을 활용하여 ageIsInRange2에 구현
+- [x] optional.User.ageIsInRange1 기능을 optional을 활용하여 ageIsInRange2에 구현
 - [ ] optional.Users.getUser 메소드를 stream과 optional을 활용하여 구현
 - [ ] optional.Expression.of 메소드를 stream과 optional을 활용하여 구현
