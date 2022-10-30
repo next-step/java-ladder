@@ -28,5 +28,6 @@ public class LadderController {
 
         Ladder ladder = ladderFactory.generateLadder(results, names, ladderHeight);
         outputView.printResult(ladder);
+        outputView.printUserResult(ladder);
     }
 }
