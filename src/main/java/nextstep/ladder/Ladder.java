@@ -1,5 +1,7 @@
 package nextstep.ladder;
 
+import nextstep.ladder.strategy.BooleanGenerator;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

@@ -1,5 +1,6 @@
 package nextstep.ladder;
 
+import nextstep.ladder.strategy.RandomGenerator;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
@@ -13,11 +14,10 @@ public class app {
         int height = InputView.getHeight();
 
         Ladder ladder = new Ladder(height, users.getSize(), new RandomGenerator());
-        LadderGame ladderGame = new LadderGame(users, ladder);
 
         ResultView.printNames(users.getUsers());
         ResultView.printLadder(ladder, executeResult);
-        GameResults gameResults = ladderGame.gameStart();
+        GameResults gameResults = GameResults.retrieveResults(users, ladder);
 
         while (true) {
             User resultUser = InputView.getUserNameForResult();

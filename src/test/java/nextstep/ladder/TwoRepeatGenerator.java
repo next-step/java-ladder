@@ -1,5 +1,7 @@
 package nextstep.ladder;
 
+import nextstep.ladder.strategy.BooleanGenerator;
+
 public class TwoRepeatGenerator implements BooleanGenerator {
     private int number = 0;
     @Override

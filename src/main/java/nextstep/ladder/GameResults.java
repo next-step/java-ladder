@@ -1,13 +1,25 @@
 package nextstep.ladder;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class GameResults {
     private final List<GameResult> gameResults;
 
-    public GameResults(List<GameResult> gameResults) {
+    private GameResults(List<GameResult> gameResults) {
         this.gameResults = gameResults;
+    }
+
+    public static GameResults retrieveResults(Users users, Ladder ladder) {
+        List<GameResult> results = new ArrayList<>();
+        List<User> userInfos = users.getUsers();
+        for (int position = 0; position < users.getSize(); position++) {
+            User user = userInfos.get(position);
+            int resultPosition = ladder.executeLadder(position);
+            results.add(new GameResult(user, resultPosition));
+        }
+        return new GameResults(results);
     }
 
     public String getUserResult(User user, List<String> executeResults) {

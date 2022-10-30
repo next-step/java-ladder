@@ -21,8 +21,7 @@ class LadderGameTest {
         );
         Users users = new Users(testUsers);
 
-        LadderGame ladderGame = new LadderGame(users, ladder);
-        GameResults gameResults = ladderGame.gameStart();
+        GameResults gameResults = GameResults.retrieveResults(users, ladder);
         List<GameResult> results = gameResults.getGameResults();
         assertThat(results)
                 .contains(

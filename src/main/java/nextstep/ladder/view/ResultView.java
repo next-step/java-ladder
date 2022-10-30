@@ -51,8 +51,7 @@ public class ResultView {
     }
 
     private static void printAllResult(List<GameResult> gameResults, List<String> executeResult) {
-        for (int i = 0; i < gameResults.size(); i++) {
-            GameResult gameResult = gameResults.get(i);
+        for (GameResult gameResult : gameResults) {
             User user = gameResult.getUser();
             String resultLine = user.getName() + " : " + executeResult.get(gameResult.getResultPosition());
             System.out.println(resultLine);
