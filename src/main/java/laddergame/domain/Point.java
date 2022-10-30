@@ -1,4 +1,4 @@
-package laddergame;
+package laddergame.domain;
 
 public class Point {
     private final int index;

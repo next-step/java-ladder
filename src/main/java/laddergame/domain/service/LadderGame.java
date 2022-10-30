@@ -1,6 +1,6 @@
 package laddergame.domain.service;
 
-import laddergame.Point;
+import laddergame.domain.Point;
 import laddergame.domain.*;
 
 import java.util.*;

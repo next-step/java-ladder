@@ -1,7 +1,5 @@
 package laddergame.domain;
 
-import laddergame.Direction;
-import laddergame.Point;
 import laddergame.domain.service.LadderGame;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
