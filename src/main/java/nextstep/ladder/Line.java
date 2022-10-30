@@ -3,15 +3,15 @@ package nextstep.ladder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.IntStream;
 
 public class Line {
     private static final Random RANDOM = new Random();
     List<Boolean> points = new ArrayList<>();
 
     public Line(int countPerson) {
-        for (int i = 0; i < countPerson-1; i++) {
-            points.add(getPoint(i));
-        }
+        IntStream.range(0, countPerson - 1)
+                .forEach(i -> points.add(getPoint(i)));
     }
 
     public Line(List<Boolean> points) {
