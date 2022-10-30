@@ -11,9 +11,9 @@
 ## TO DO LIST(Step1)
 - [x] CarTest에서 MoveStrategy에 대한 익명 클래스를 람다로 전환
 - [ ] fp.Lambda에서 람다를 활용해 중복 제거
-- [ ] fp.StreamStudy 수정
-  - [ ] sumOverThreeAndDouble 메소드를 stream 메소드를 활용하여 구현
-  - [ ] printLongestWordTop100 메소드를 stream 메소드를 활용하여 구현
+- [x] fp.StreamStudy 수정
+  - [x] sumOverThreeAndDouble 메소드를 stream 메소드를 활용하여 구현
+  - [x] printLongestWordTop100 메소드를 stream 메소드를 활용하여 구현
 - [ ] optional.User.ageIsInRange1 기능을 optional을 활용하여 ageIsInRange2에 구현
 - [ ] optional.Users.getUser 메소드를 stream과 optional을 활용하여 구현
 - [ ] optional.Expression.of 메소드를 stream과 optional을 활용하여 구현
