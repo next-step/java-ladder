@@ -1,7 +1,8 @@
-package nextstep.fp;
+package step1.nextstep.fp;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import step1.nextstep.fp.Lambda;
 
 import java.util.Arrays;
 import java.util.List;

@@ -1,8 +1,10 @@
-package nextstep.optional;
+package step1.nextstep.optional;
 
-import nextstep.optional.Computer.Soundcard;
-import nextstep.optional.Computer.USB;
+import step1.nextstep.optional.Computer;
+import step1.nextstep.optional.Computer.Soundcard;
+import step1.nextstep.optional.Computer.USB;
 import org.junit.jupiter.api.Test;
+import step1.nextstep.optional.ComputerStore;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

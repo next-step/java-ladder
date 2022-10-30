@@ -1,6 +1,8 @@
-package nextstep.optional;
+package step1.nextstep.optional;
 
 import org.junit.jupiter.api.Test;
+import step1.nextstep.optional.User;
+import step1.nextstep.optional.Users;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
