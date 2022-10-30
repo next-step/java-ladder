@@ -20,12 +20,14 @@ public class InputView {
         return UserNames.of(userNames);
     }
 
-    public static List<String> inputGameAwards() {
+    public static Awards inputGameAwards() {
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         String input = SCANNER.next();
         String[] split = input.split(",");
-        return Arrays.stream(split)
+        List<Award> awards = Arrays.stream(split)
+            .map(Award::from)
             .collect(Collectors.toList());
+        return Awards.of(awards);
     }
 
     public static int inputLadderHeight() {

@@ -10,7 +10,7 @@ public class ResultView {
     private static final String HORIZONTAL_BLANK_LINE = "     ";
     private static final String HORIZONTAL_FULL_LINE = "-----";
 
-    public static void printResult(UserNames userNames, Ladder ladder, Map<Integer, Integer> gameResult, List<String> awards) {
+    public static void printResult(UserNames userNames, Ladder ladder, Map<Integer, Integer> gameResult, Awards awards) {
         printUserNames(userNames);
         printLadder(ladder);
         printResult(userNames, gameResult, awards);
@@ -49,13 +49,13 @@ public class ResultView {
         }
     }
 
-    private static void printResult(UserNames userNames, Map<Integer, Integer> result, List<String> awards) {
+    private static void printResult(UserNames userNames, Map<Integer, Integer> result, Awards awards) {
         while (true) {
             UserName userName = InputView.inputUserNameResult();
             if (userName.getName().equals("all")) {
                 System.out.println("실행 결과");
                 for (Entry<Integer, Integer> entry : result.entrySet()) {
-                    System.out.println(userNames.getUserNames().get(entry.getKey()) + ":" + awards.get(entry.getValue()));
+                    System.out.println(userNames.getUserNames().get(entry.getKey()) + ":" + awards.getAwards().get(entry.getValue()));
                 }
                 break;
             }
