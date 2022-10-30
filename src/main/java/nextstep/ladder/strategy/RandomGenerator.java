@@ -1,10 +1,10 @@
-package nextstep.laddar;
+package nextstep.ladder.strategy;
 
 import java.util.Random;
 
 public class RandomGenerator implements BooleanGenerator {
 
-    private final Random RANDOM = new Random();
+    private static final Random RANDOM = new Random();
 
     @Override
     public boolean generate() {

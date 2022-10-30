@@ -1,6 +1,6 @@
-package nextstep.laddar;
+package nextstep.ladder;
 
-import java.util.Random;
+import nextstep.ladder.strategy.BooleanGenerator;
 
 public class TrueGenerator implements BooleanGenerator {
 

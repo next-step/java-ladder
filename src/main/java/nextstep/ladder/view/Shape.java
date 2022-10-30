@@ -1,6 +1,4 @@
-package nextstep.laddar.view;
-
-import nextstep.laddar.User;
+package nextstep.ladder.view;
 
 public enum Shape {
     BLANK(" "),
