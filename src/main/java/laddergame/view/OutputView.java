@@ -1,12 +1,13 @@
 package laddergame.view;
 
 import laddergame.domain.PersonName;
-import laddergame.domain.Reward;
 import laddergame.domain.Rewards;
 import laddergame.domain.service.LadderGame;
+import laddergame.dto.LadderRecord;
+import laddergame.dto.LineRecord;
+import laddergame.dto.RewordRecords;
 
 import java.util.List;
-import java.util.Map;
 
 
 public class OutputView {
@@ -26,15 +27,15 @@ public class OutputView {
         printRewards(ladderGame.getRewards());
     }
 
-    private static void printLines(List<List<Boolean>> ladder) {
-        ladder.forEach(line -> System.out.println(printLine(line)));
+    private static void printLines(LadderRecord ladderRecord) {
+        ladderRecord.getRecord().forEach(line -> System.out.println(printLine(line)));
     }
 
-    private static String printLine(List<Boolean> line) {
+    private static String printLine(LineRecord lineRecord) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(TAB.repeat(WIDTH)).append(COLUMN);
 
-        line.forEach(l -> stringBuilder.append(getRung(l).repeat(WIDTH)).append(COLUMN));
+        lineRecord.getRecord().forEach(l -> stringBuilder.append(getRung(l).repeat(WIDTH)).append(COLUMN));
 
         return stringBuilder.toString();
     }
@@ -62,9 +63,9 @@ public class OutputView {
         return TAB.repeat(WIDTH).substring(name.length()) + name + TAB;
     }
 
-    public static void printResult(Map<PersonName, Reward> result) {
+    public static void printResult(RewordRecords result) {
         System.out.println("실행 결과");
-        result.forEach((key, value) -> System.out.println(key + " : " + value));
+        result.getRecords().forEach(record -> System.out.println(record.getPlayerName() + " : " + record.getReword()));
 
     }
 }

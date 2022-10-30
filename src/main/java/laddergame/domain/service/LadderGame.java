@@ -1,10 +1,11 @@
 package laddergame.domain.service;
 
-import laddergame.domain.Point;
 import laddergame.domain.*;
+import laddergame.dto.LadderRecord;
+import laddergame.dto.RewardRecord;
+import laddergame.dto.RewordRecords;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class LadderGame {
 
@@ -26,7 +27,7 @@ public class LadderGame {
         return people.getNames();
     }
 
-    public Map<PersonName, Reward> makeResult(PersonName personName) {
+    public RewordRecords makeResult(PersonName personName) {
 
         if (personName.isAll()) {
             return makeResultAll();
@@ -37,45 +38,32 @@ public class LadderGame {
         throw new IllegalArgumentException("all 또는 사다리 게임 참여자의 이름을 입력해주세요.");
     }
 
-    private Map<PersonName, Reward> makeResultOne(PersonName personName) {
-        Map<PersonName, Reward> result = new HashMap<>();
+    private RewordRecords makeResultOne(PersonName personName) {
+
+        List<RewardRecord> result = new ArrayList<>();
+
         int rewardIndex = ladder.findRewardIndex(people.getIndex(personName));
-        result.put(personName, rewards.getReward(rewardIndex));
-        return result;
+        result.add( RewardRecord.of(personName, rewards.getReward(rewardIndex)));
+
+        return new RewordRecords(result);
     }
 
-    private Map<PersonName, Reward> makeResultAll() {
-        HashMap<PersonName, Reward> result = new HashMap<>();
+    private RewordRecords makeResultAll() {
+
+        List<RewardRecord> result = new ArrayList<>();
 
         List<PersonName> names = people.getNames();
         for (PersonName name : names) {
             int rewardIndex = ladder.findRewardIndex(people.getIndex(name));
-            result.put(name, rewards.getReward(rewardIndex));
+            result.add( RewardRecord.of(name, rewards.getReward(rewardIndex)));
         }
 
-        return result;
+        return new RewordRecords(result);
     }
 
-    public List<List<Boolean>> getLadderRecord() {
-        return ladder.getLines()
-                .stream()
-                .map(this::makeLineRecord)
-                .collect(Collectors.toUnmodifiableList());
+    public LadderRecord getLadderRecord() {
+        return LadderRecord.of(ladder);
     }
-
-    private List<Boolean> makeLineRecord(Line line) {
-
-        List<Point> points = line.getPoints();
-
-        List<Boolean> records = new ArrayList<>();
-
-        for (int i = 0; i < points.size() -1 ; i++) {
-            records.add(points.get(i).isRight());
-        }
-
-        return Collections.unmodifiableList(records);
-    }
-
 
     public Rewards getRewards() {
         return rewards;

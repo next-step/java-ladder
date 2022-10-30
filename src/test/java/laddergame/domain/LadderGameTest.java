@@ -1,15 +1,17 @@
 package laddergame.domain;
 
 import laddergame.domain.service.LadderGame;
+import laddergame.dto.RewardRecord;
+import laddergame.dto.RewordRecords;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class LadderGameTest {
 
@@ -50,7 +52,6 @@ class LadderGameTest {
         Rewards rewards = new Rewards("꽝,5000,꽝,3000".split(","));
 
         LadderGame ladderGame = new LadderGame(people, rewards, new Ladder(lines));
-
 
 
         //then
@@ -104,9 +105,14 @@ class LadderGameTest {
         LadderGame ladderGame = new LadderGame(people, rewards, new Ladder(lines));
         //then
         PersonName pobi = new PersonName("pobi");
-        Map<PersonName, Reward> result = ladderGame.makeResult(pobi);
+        RewordRecords rewordRecords = ladderGame.makeResult(pobi);
+        RewardRecord rewardRecord = rewordRecords.getRecords().get(0);
         //when
-        assertThat(result).containsEntry(pobi, new Reward("꽝"));
+        assertAll(
+                () -> assertThat(rewardRecord.getPlayerName()).isEqualTo("pobi"),
+                () -> assertThat(rewardRecord.getReword()).isEqualTo("꽝")
+        );
+
     }
 
     @Test
@@ -145,13 +151,22 @@ class LadderGameTest {
         LadderGame ladderGame = new LadderGame(people, rewards, new Ladder(lines));
         //then
         PersonName all = new PersonName("all");
-        Map<PersonName, Reward> result = ladderGame.makeResult(all);
+
+        RewordRecords rewordRecords = ladderGame.makeResult(all);
+        RewardRecord pobiRecord = rewordRecords.getRecords().get(0);
+        RewardRecord honuxRecord = rewordRecords.getRecords().get(1);
+        RewardRecord crongRecord = rewordRecords.getRecords().get(2);
+        RewardRecord jkRecord = rewordRecords.getRecords().get(3);
         //when
-        org.junit.jupiter.api.Assertions.assertAll(
-                () -> assertThat(result).containsEntry(new PersonName("pobi"), new Reward("꽝")),
-                () -> assertThat(result).containsEntry(new PersonName("honux"), new Reward("3000")),
-                () -> assertThat(result).containsEntry(new PersonName("crong"), new Reward("꽝")),
-                () -> assertThat(result).containsEntry(new PersonName("jk"), new Reward("5000"))
+        assertAll(
+                () -> assertThat(pobiRecord.getPlayerName()).isEqualTo("pobi"),
+                () -> assertThat(pobiRecord.getReword()).isEqualTo("꽝"),
+                () -> assertThat(honuxRecord.getPlayerName()).isEqualTo("honux"),
+                () -> assertThat(honuxRecord.getReword()).isEqualTo("3000"),
+                () -> assertThat(crongRecord.getPlayerName()).isEqualTo("crong"),
+                () -> assertThat(crongRecord.getReword()).isEqualTo("꽝"),
+                () -> assertThat(jkRecord.getPlayerName()).isEqualTo("jk"),
+                () -> assertThat(jkRecord.getReword()).isEqualTo("5000")
         );
 
     }
