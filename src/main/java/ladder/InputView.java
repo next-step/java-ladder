@@ -20,6 +20,14 @@ public class InputView {
         return UserNames.of(userNames);
     }
 
+    public static List<String> inputGameResult() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String input = SCANNER.next();
+        String[] split = input.split(",");
+        return Arrays.stream(split)
+            .collect(Collectors.toList());
+    }
+
     public static int inputLadderHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         return SCANNER.nextInt();
