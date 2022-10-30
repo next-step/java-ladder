@@ -1,10 +1,14 @@
 package nextstep.game;
 
+import game.domain.FixedWithLadderCaseNumberStrategy;
+import game.domain.FixedWithoutLadderCaseNumberStrategy;
 import game.domain.GhostLegService;
 import game.dto.LineDto;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -22,19 +26,37 @@ public class GhostLegServiceTest {
     }
 
     @Test
+    @Order(1)
     public void 사다리_가로줄_생성_확인() {
         List<Boolean> lines = validLineDto.getLines();
         assertThat(lines).containsAnyOf(true, false);
     }
 
     @Test
-    public void 유효한_사다리_가로줄_확인() {
-        validLineDto.filter(ghostLegService.filterLines(List.of(true, false, true)));
-//        LineDto invalidLineDto = new LineDto(List.of(true, true, true));
-//        invalidLineDto.filter(ghostLegService.filterLines(invalidLineDto.getLines()));
+    @Order(2)
+    public void 유효한_사다리_가로줄_WithLadderCase_확인() {
+        List<Boolean> firstUnfilteredLines = Arrays.asList(true, true, true);
+        List<Boolean> secondUnfilteredLines = Arrays.asList(true, true, false);
+        List<Boolean> firstFilteredLines = ghostLegService.filterLines(firstUnfilteredLines, new FixedWithLadderCaseNumberStrategy());
+        List<Boolean> secondFilteredLines = ghostLegService.filterLines(secondUnfilteredLines, new FixedWithLadderCaseNumberStrategy());
+
         assertAll(
-                () -> assertThat(validLineDto.getLines()).isEqualTo(List.of(true, false, true))
-//                () -> assertThat(invalidLineDto.getLines()).isEqualTo(List.of(true, false, true))
+                () -> assertThat(firstFilteredLines).isEqualTo(List.of(true, false, true)),
+                () -> assertThat(secondFilteredLines).isEqualTo(List.of(true, false, true))
+        );
+    }
+
+    @Test
+    @Order(3)
+    public void 유효한_사다리_가로줄_WithoutLadderCase_확인() {
+        List<Boolean> firstUnfilteredLines = Arrays.asList(false, false, true);
+        List<Boolean> secondUnfilteredLines = Arrays.asList(false, false, false);
+        List<Boolean> firstFilteredLines = ghostLegService.filterLines(firstUnfilteredLines, new FixedWithoutLadderCaseNumberStrategy());
+        List<Boolean> secondFilteredLines = ghostLegService.filterLines(secondUnfilteredLines, new FixedWithoutLadderCaseNumberStrategy());
+
+        assertAll(
+                () -> assertThat(firstFilteredLines).isEqualTo(List.of(true, false, true)),
+                () -> assertThat(secondFilteredLines).isEqualTo(List.of(true, false, true))
         );
     }
 }

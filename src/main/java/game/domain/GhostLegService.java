@@ -14,14 +14,14 @@ public class GhostLegService {
                 .collect(Collectors.toList());
     }
 
-    public List<Boolean> filterLines(List<Boolean> lines) {
+    public List<Boolean> filterLines(List<Boolean> lines, NumberStrategy numberStrategy) {
         boolean prevStatus = lines.get(0);
 
         for (int index = 1; index < lines.size(); index++) {
             boolean currentStatus = lines.get(index);
 
             Case nextStep = checkStatus(prevStatus, currentStatus);
-            changeStatus(nextStep, index, lines, RandomNumberGenerator.randomNumber(2));
+            changeStatus(nextStep, index, lines, numberStrategy);
             prevStatus = lines.get(index);
         }
 
@@ -29,18 +29,18 @@ public class GhostLegService {
     }
 
     private Case checkStatus(boolean previous, boolean current) {
-        if (previous && current) return Case.TRUE;
-        if (!previous && !current) return Case.FALSE;
+        if (previous && current) return Case.WITH_LADDER;
+        if (!previous && !current) return Case.WITHOUT_LADDER;
         return Case.UNKNOWN;
     }
 
-    private void changeStatus(Case nextStep, int index, List<Boolean> points, int generatedRandomNumber) {
-        if (nextStep == Case.TRUE) resolveTrueCase(index, points, generatedRandomNumber);
-        if (nextStep == Case.FALSE) resolveFalseCase(index, points, generatedRandomNumber);
+    private void changeStatus(Case nextStep, int index, List<Boolean> points, NumberStrategy numberStrategy) {
+        if (nextStep == Case.WITH_LADDER) resolveWithLadderCase(index, points, numberStrategy.generateNumber());
+        if (nextStep == Case.WITHOUT_LADDER) resolveWithoutLadderCase(index, points, numberStrategy.generateNumber());
     }
 
-    private void resolveTrueCase(int index, List<Boolean> points, int generatedRandomNumber) {
-        boolean validValue = validateTrueCase(index, points);
+    private void resolveWithLadderCase(int index, List<Boolean> points, int generatedRandomNumber) {
+        boolean validValue = validateWithLadderCase(index, points);
         switch (generatedRandomNumber) {
             case 0:
                 points.set(index, false);
@@ -51,8 +51,8 @@ public class GhostLegService {
         }
     }
 
-    private void resolveFalseCase(int index, List<Boolean> points, int generatedRandomNumber) {
-        boolean validValue = validateFalseCase(index, points);
+    private void resolveWithoutLadderCase(int index, List<Boolean> points, int generatedRandomNumber) {
+        boolean validValue = validateWithoutLadderCase(index, points);
         switch (generatedRandomNumber) {
             case 0:
                 points.set(index, true);
@@ -63,14 +63,14 @@ public class GhostLegService {
         }
     }
 
-    private boolean validateFalseCase(int index, List<Boolean> points) {
+    private boolean validateWithoutLadderCase(int index, List<Boolean> points) {
         if (index >= 2) {
             return !points.get(index - 2);
         }
         return !points.get(index);
     }
 
-    private boolean validateTrueCase(int index, List<Boolean> points) {
+    private boolean validateWithLadderCase(int index, List<Boolean> points) {
         if (index >= 2) {
             return points.get(index - 2);
         }

@@ -1,7 +1,7 @@
 package game.constant;
 
 public enum Case {
-    TRUE,
-    FALSE,
+    WITH_LADDER,
+    WITHOUT_LADDER,
     UNKNOWN
 }
