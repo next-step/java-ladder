@@ -12,6 +12,10 @@ public class Person {
         this.person = Arrays.asList(person);
     }
 
+    public int countPerson() {
+        return person.size();
+    }
+
     public List<String> getPerson() {
         return person;
     }

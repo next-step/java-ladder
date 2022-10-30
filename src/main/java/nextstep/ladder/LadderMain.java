@@ -3,8 +3,9 @@ package nextstep.ladder;
 public class LadderMain {
     public static void main(String[] args) {
          Person person = new Person(InputView.inputPerson());
-         Line line = new Line(InputView.inputLadderHeight());
+         int height = InputView.inputLadderHeight();
+         Ladder ladder = new Ladder(height, person.countPerson());
 
-         OutputView.outputLadder(person, line);
+         OutputView.outputResult(person, ladder);
     }
 }
