@@ -1,14 +1,13 @@
 package nextstep.ladder.view;
 
-import static nextstep.ladder.view.Shape.BLANK;
-import static nextstep.ladder.view.Shape.HORIZONTAL_LINE;
-import static nextstep.ladder.view.Shape.VERTICAL_LINE;
-
-import java.util.List;
 import nextstep.ladder.GameResult;
 import nextstep.ladder.Ladder;
 import nextstep.ladder.Line;
 import nextstep.ladder.User;
+
+import java.util.List;
+
+import static nextstep.ladder.view.Shape.*;
 
 public class ResultView {
     private static final String NAME_FORMAT = "%" + User.NAME_MAX_LENGTH + "s";
@@ -20,20 +19,18 @@ public class ResultView {
         StringBuilder sb = new StringBuilder();
         List<Line> lines = laddar.getLines();
         for (Line line : lines) {
-            List<Boolean> positions = line.getPositions();
-            sb.append(BLANK.makePrintShape(User.NAME_MAX_LENGTH));
-            addOneLine(sb, positions);
+            addOneLine(sb, line.getPositions());
         }
         sb.append(makeExecuteResultLine(executeResult));
         System.out.println(sb);
     }
 
     private static void addOneLine(StringBuilder sb, List<Boolean> positions) {
+        addBlankLine(sb);
         for (int i = 0; i < positions.size() - 1; i++) {
             boolean hasLine = positions.get(i);
             sb.append(VERTICAL_LINE.makePrintShape(1));
             addHorizontalLine(sb, hasLine);
-            addBlankLine(sb, hasLine);
         }
         sb.append(VERTICAL_LINE.makePrintShape(1)).append("\n");
     }
@@ -84,15 +81,15 @@ public class ResultView {
         return sb.toString();
     }
 
-    private static void addBlankLine(StringBuilder sb, boolean hasLine) {
-        if (!hasLine) {
-            sb.append(BLANK.makePrintShape(User.NAME_MAX_LENGTH));
-        }
+    private static void addBlankLine(StringBuilder sb) {
+        sb.append(BLANK.makePrintShape(User.NAME_MAX_LENGTH));
     }
 
     private static void addHorizontalLine(StringBuilder sb, boolean hasLine) {
         if (hasLine) {
             sb.append(HORIZONTAL_LINE.makePrintShape(User.NAME_MAX_LENGTH));
+            return ;
         }
+        addBlankLine(sb);
     }
 }
