@@ -1,42 +1,43 @@
 package nextstep.ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class HorizontalLine {
 
-    private final static ThreadLocalRandom random = ThreadLocalRandom.current();
-    private final static int ZERO = 0;
-    private final static int FIRST = 1;
+    private final List<Point> points;
 
-    private final List<Boolean> points;
-
-    public HorizontalLine(int countOfPerson) {
-        this.points = IntStream.range(ZERO, countOfPerson)
-                .mapToObj(point -> false)
-                .collect(Collectors.toList());
+    private HorizontalLine(List<Point> points) {
+        this.points = points;
     }
 
-    public HorizontalLine generatePoint() {
-        IntStream.range(FIRST, points.size())
-                .mapToObj(index -> {
-                    points.set(index, random.nextBoolean());
-                    checkConnectLine(index);
-                    return points.get(index);
-                })
-                .collect(Collectors.toList());
-        return this;
+    public static HorizontalLine createLineWithPoints(int numberOfPeople) {
+        List<Point> points = new ArrayList<>();
+        Point point = initFirst(points);
+        point = initBody(numberOfPeople, points, point);
+        initLast(points, point);
+        return new HorizontalLine(points);
     }
 
-    private void checkConnectLine(int index) {
-        if (points.get(index - 1).equals(true)) {
-            points.set(index, false);
+    private static Point initFirst(List<Point> points) {
+        Point point = Point.first(new RandomPointGenerator().generatePoint());
+        points.add(point);
+        return point;
+    }
+
+    private static Point initBody(int numberOfPeople, List<Point> points, Point point) {
+        for (int i = 1; i < numberOfPeople - 1; i++) {
+            point = point.next();
+            points.add(point);
         }
+        return point;
     }
 
-    public List<Boolean> points() {
-        return points;
+    private static void initLast(List<Point> points, Point point) {
+        points.add(point.last());
+    }
+
+    public List<Point> points() {
+        return this.points;
     }
 }

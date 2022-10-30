@@ -40,8 +40,9 @@ public class Output {
     }
 
     private static List<String> parsedPoints(HorizontalLine horizontalLine) {
-        return horizontalLine.points().stream()
-                .map(point -> point == true ? MARK_HORIZONTAL_LINE : appendWhiteSpaceInside(WHITE_SPACE, 5))
+        return horizontalLine.points()
+                .stream()
+                .map(point -> point.left() == true ? MARK_HORIZONTAL_LINE : appendWhiteSpaceInside(WHITE_SPACE, 5))
                 .collect(Collectors.toList());
     }
 

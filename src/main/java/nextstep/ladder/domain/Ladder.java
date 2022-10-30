@@ -14,8 +14,7 @@ public class Ladder {
         validatePeople(people);
         validateHeight(heightOfLadder);
         this.horizontalLines = IntStream.range(ZERO, heightOfLadder)
-                .mapToObj(verticalLine -> new HorizontalLine(people.size())
-                        .generatePoint())
+                .mapToObj(height -> HorizontalLine.createLineWithPoints(people.size()))
                 .collect(Collectors.toList());
     }
 
