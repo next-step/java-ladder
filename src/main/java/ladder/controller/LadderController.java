@@ -4,8 +4,12 @@ import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class LadderController {
     public static final String ERR_MSG_RESULTS_NUMBER = "실행 결과의 갯수는 참여하는 사람의 수와 동일해야 합니다.";
+    public static final String STR_ALL = "all";
     private final Names names;
     private final Ladder ladder;
     private final Results results;
@@ -32,6 +36,16 @@ public class LadderController {
         if (countOfNames != countOfResults) {
             throw new IllegalArgumentException(ERR_MSG_RESULTS_NUMBER);
         }
+    }
+
+    public Map<Name, String> getExecutionResultAll() {
+        Map<Name, String> ladderResult = new HashMap<>();
+        for (int i = 0; i < names.getCountOfNames(); i++) {
+            int resultIdx = ladder.getLadderEndIdx(i);
+            String result = results.getResults().get(resultIdx);
+            ladderResult.put(names.getNames().get(i), result);
+        }
+        return ladderResult;
     }
 
     public String getExecutionResult(String candidate) {
@@ -61,5 +75,7 @@ public class LadderController {
         LadderController controller = new LadderController(names, maxHeight, results);
 
         ResultView.printResult(controller.getNames(), controller.getLadder());
+        
+
     }
 }
