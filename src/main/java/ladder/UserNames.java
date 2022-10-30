@@ -32,4 +32,8 @@ public class UserNames {
     public List<UserName> getUserNames() {
         return userNames;
     }
+
+    public int findUserIndex(UserName userName) {
+        return userNames.indexOf(userName);
+    }
 }

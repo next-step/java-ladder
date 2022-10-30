@@ -20,7 +20,7 @@ public class InputView {
         return UserNames.of(userNames);
     }
 
-    public static List<String> inputGameResult() {
+    public static List<String> inputGameAwards() {
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         String input = SCANNER.next();
         String[] split = input.split(",");
@@ -31,5 +31,11 @@ public class InputView {
     public static int inputLadderHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         return SCANNER.nextInt();
+    }
+
+    public static UserName inputUserNameResult() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        String input = SCANNER.next();
+        return UserName.from(input);
     }
 }

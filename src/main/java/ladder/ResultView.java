@@ -1,6 +1,8 @@
 package ladder;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 public class ResultView {
 
@@ -8,9 +10,10 @@ public class ResultView {
     private static final String HORIZONTAL_BLANK_LINE = "     ";
     private static final String HORIZONTAL_FULL_LINE = "-----";
 
-    public static void printResult(UserNames userNames, Ladder ladder) {
+    public static void printResult(UserNames userNames, Ladder ladder, Map<Integer, Integer> gameResult, List<String> awards) {
         printUserNames(userNames);
         printLadder(ladder);
+        printResult(userNames, gameResult, awards);
     }
 
     private static void printUserNames(UserNames userNames) {
@@ -43,6 +46,22 @@ public class ResultView {
         } else {
             System.out.print(VERTICAL_LINE);
             System.out.print(HORIZONTAL_BLANK_LINE);
+        }
+    }
+
+    private static void printResult(UserNames userNames, Map<Integer, Integer> result, List<String> awards) {
+        while (true) {
+            UserName userName = InputView.inputUserNameResult();
+            if (userName.getName().equals("all")) {
+                System.out.println("실행 결과");
+                for (Entry<Integer, Integer> entry : result.entrySet()) {
+                    System.out.println(userNames.getUserNames().get(entry.getKey()) + ":" + awards.get(entry.getValue()));
+                }
+                break;
+            }
+            System.out.println("실행 결과");
+            int userIndex = userNames.findUserIndex(userName);
+            System.out.println(result.get(userIndex));
         }
     }
 }

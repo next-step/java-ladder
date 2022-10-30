@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class Row {
 
-    private List<Boolean> points;
+    private final List<Boolean> points;
 
     private Row(List<Boolean> points) {
         this.points = points;
