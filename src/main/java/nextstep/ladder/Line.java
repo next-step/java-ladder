@@ -10,7 +10,7 @@ public class Line {
 
     public Line(int countPerson) {
         for (int i = 0; i < countPerson-1; i++) {
-            addPoint(i);
+            points.add(getPoint(i));
         }
     }
 
@@ -22,13 +22,11 @@ public class Line {
         return point > 0 && points.get(point - 1);
     }
 
-    public void addPoint(int point) {
-
+    public boolean addPoint(int point) {
         if (isTrue(point)) {
-            points.add(point, false);
-        } else {
-            points.add(RANDOM.nextBoolean());
+            return false;
         }
+        return RANDOM.nextBoolean();
     }
 
     public boolean getPoint(int point) {
