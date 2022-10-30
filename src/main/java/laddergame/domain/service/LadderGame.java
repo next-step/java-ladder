@@ -34,7 +34,7 @@ public class LadderGame {
         if (people.contains(personName)) {
             return makeResultOne(personName);
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException("all 또는 사다리 게임 참여자의 이름을 입력해주세요.");
     }
 
     private Map<PersonName, Reward> makeResultOne(PersonName personName) {

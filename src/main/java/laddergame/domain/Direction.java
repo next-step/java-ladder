@@ -13,7 +13,7 @@ public class Direction {
 
     private Direction(boolean left, boolean right) {
         if (left && right) {
-            throw new IllegalStateException();
+            throw new IllegalStateException("양방향은 불가능합니다.");
         }
 
         this.left = left;
