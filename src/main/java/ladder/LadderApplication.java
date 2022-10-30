@@ -11,6 +11,8 @@ public class LadderApplication {
 
         Ladder ladder = Ladder.of(userNames.size(), ladderHeight);
 
+        System.out.println(ladder.play(userNames.size()));
+
         ResultView.printResult(userNames, ladder);
     }
 }
