@@ -14,10 +14,16 @@ public class RowGenerator {
             .mapToObj(i -> false)
             .collect(Collectors.toList());
 
-        IntStream.range(0, people-1)
-            .filter(index -> RandomBooleanGenerator.generator())
-            .filter(i -> points.get(i+1).equals(false))
-            .forEach(i-> points.set(i, true));
+        IntStream.range(0, people-1).forEach(i -> {
+            boolean generator = RandomBooleanGenerator.generator();
+            if (i == 0) {
+                points.set(i, generator);
+            } else {
+                if (points.get(i - 1).equals(false)) {
+                    points.set(i, generator);
+                }
+            }
+        });
         return Row.from(points);
     }
 }
