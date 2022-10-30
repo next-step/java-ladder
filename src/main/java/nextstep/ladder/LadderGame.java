@@ -17,7 +17,7 @@ public class LadderGame {
         List<User> userInfos = users.getUsers();
         for (int position = 0; position < users.getSize(); position++) {
             User user = userInfos.get(position);
-            int resultPosition = ladder.executeLaddar(position);
+            int resultPosition = ladder.executeLadder(position);
             gameResults.add(new GameResult(user, resultPosition));
         }
         return gameResults;
