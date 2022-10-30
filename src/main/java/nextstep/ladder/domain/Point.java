@@ -40,6 +40,12 @@ public class Point {
         return new Point(index, this.direction.next(generate));
     }
 
+    public Point last() {
+
+        final int index = this.index + 1;
+        return new Point(index, this.direction.next(false));
+    }
+
     public int getIndex() {
 
         return this.index;

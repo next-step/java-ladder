@@ -17,7 +17,7 @@ class PointTest {
     @DisplayName("현재 위치를 구한다")
     @ParameterizedTest
     @MethodSource("provideMoveCurrentPoint")
-    void current_point(final boolean left, final boolean right, final int index, final int expected) {
+    void current_point(final boolean left, final boolean right, final int expected) {
 
         final Point point = Point.first(left).next(right);
         assertThat(point.move()).isEqualTo(expected);
@@ -25,9 +25,9 @@ class PointTest {
 
     private static Stream<Arguments> provideMoveCurrentPoint() {
         return Stream.of(
-                Arguments.of(false, false, 1, 1),
-                Arguments.of(false, true, 1, 2),
-                Arguments.of(true, false, 1, 0)
+                Arguments.of(false, false, 1),
+                Arguments.of(false, true, 2),
+                Arguments.of(true, false, 0)
         );
     }
 

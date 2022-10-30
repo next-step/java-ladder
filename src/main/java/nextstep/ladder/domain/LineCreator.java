@@ -18,6 +18,7 @@ public class LineCreator {
         while (point.untilExcludeStart(points.size(), countOfPerson)) {
             points.add(nextPoint(points).next(generate()));
         }
+        points.add(nextPoint(points).last());
         return new Line(points);
     }
 

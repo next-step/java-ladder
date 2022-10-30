@@ -22,7 +22,7 @@ class DirectionTest {
                 .hasMessage("연속된 사다리는 그릴 수 없습니다.");
     }
 
-    @DisplayName("사다리 이동 방향을 결정한다.")
+    @DisplayName("현재 위치에서 사다리 이동 방향을 결정한다.")
     @ParameterizedTest
     @MethodSource("provideMovePoint")
     void create_direction(final boolean left, final boolean right, final Direction expected) {

@@ -1,8 +1,6 @@
 package nextstep.ladder.domain;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.IntStream;
 
 public class Line {
@@ -20,6 +18,16 @@ public class Line {
         if (isDuplicatePoint(points)) {
             throw new IllegalArgumentException("연속된 사다리는 그릴 수 없습니다.");
         }
+    }
+
+    public Map<Integer, Integer> convert() {
+
+        final Map<Integer, Integer> result = new HashMap<>();
+        for (int i = 0; i < this.points.size(); i++) {
+            final Point point = this.points.get(i);
+            result.put(i, point.move());
+        }
+        return result;
     }
 
     private static boolean isDuplicatePoint(List<Point> values) {

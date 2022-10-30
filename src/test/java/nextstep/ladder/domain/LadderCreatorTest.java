@@ -27,7 +27,7 @@ class LadderCreatorTest {
         final List<Line> lines = ladder.getLines();
         assertAll(
                 () -> assertThat(lines).hasSize(5),
-                () -> assertThat(lines.get(0).getPoints()).hasSize(3)
+                () -> assertThat(lines.get(0).getPoints()).hasSize(4)
         );
     }
 }
