@@ -1,44 +1,33 @@
 package ladder;
 
-import java.util.ArrayList;
 import java.util.List;
-import ladder.exception.InvalidHeightException;
-import ladder.exception.InvalidLinesException;
 import ladder.line.Line;
+import ladder.line.Lines;
 
 public class Ladder {
 
-    private final List<Line> lines;
+    private final Lines lines;
     private final Names names;
-    private final int height;
 
     public Ladder(List<String> names, int height) {
         this.names = new Names(names);
-
-        if (height <= 0) {
-            throw new InvalidHeightException();
-        }
-        this.height = height;
-
-        this.lines = new ArrayList<>();
+        this.lines = new Lines(height);
     }
 
     public void addLines(List<Line> lines) {
-        validateLines(lines);
-
-        this.lines.addAll(lines);
+        this.lines.addLines(lines);
     }
 
     public Line getLine(int index) {
-        return this.lines.get(index);
+        return this.lines.getLine(index);
     }
 
     public List<Line> getLines() {
-        return this.lines;
+        return this.lines.getLines();
     }
 
     public int getHeight() {
-        return this.height;
+        return this.lines.getHeight();
     }
 
     public List<String> getNames() {
@@ -48,24 +37,5 @@ public class Ladder {
     public int getMaxNameLength() {
         return this.names.getMaxNameLength();
     }
-
-    private void validateLines(List<Line> lines) {
-        long barCount = lines.stream()
-                .filter(this::validateLine)
-                .count();
-        if (barCount != height) {
-            throw new InvalidLinesException();
-        }
-    }
-
-    private boolean validateLine(Line line) {
-        List<Boolean> bars = line.getBars();
-        if (bars.size() != getNames().size()) {
-            return false;
-        }
-
-        return line.validate();
-    }
-
 
 }
