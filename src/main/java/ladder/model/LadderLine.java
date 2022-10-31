@@ -8,7 +8,7 @@ import static ladder.model.Direction.first;
 
 public class LadderLine {
 
-    private List<Point> pointList;
+    private List<Point> points;
 
     private static final Random RANDOM;
 
@@ -16,44 +16,44 @@ public class LadderLine {
         RANDOM = new Random();
     }
 
-    public LadderLine(List<Point> pointList) {
-        this.pointList = pointList;
+    public LadderLine(List<Point> points) {
+        this.points = points;
     }
 
     public static LadderLine create(int width) {
         List<Point> points = new ArrayList<>();
 
-        Point point = createFirst(points);
-        point = createBody(width, points, point);
-        createLast(points, point);
+        points.add(createFirst());
+        points.addAll(createBody(width, points.get(0)));
+        points.add(createLast(points.get(points.size() - 1)));
 
         return new LadderLine(points);
     }
 
-    private static Point createFirst(List<Point> points) {
-        Point point = new Point(0, first(getRandomBoolean()));
-        points.add(point);
-        return point;
+    private static Point createFirst() {
+        return new Point(0, first(getRandomBoolean()));
     }
 
-    private static Point createBody(int width, List<Point> points, Point point) {
+    private static List<Point> createBody(int width, Point point) {
+        List<Point> points = new ArrayList<>();
+
         for (int i = 1; i < width - 1; i++) {
             point = point.next(getRandomBoolean());
             points.add(point);
         }
 
-        return point;
+        return points;
     }
 
-    private static void createLast(List<Point> points, Point point) {
-        points.add(point.last());
+    private static Point createLast(Point point) {
+        return point.last();
     }
 
     private static boolean getRandomBoolean() {
         return RANDOM.nextBoolean();
     }
 
-    public List<Point> getPointList() {
-        return pointList;
+    public List<Point> getPoints() {
+        return points;
     }
 }

@@ -49,9 +49,9 @@ public class OutputView {
     private static void showLadderLine(LadderLine ladderLine) {
         nextTab(BAR);
 
-        List<Point> points = ladderLine.getPointList();
+        List<Point> points = ladderLine.getPoints();
 
-        for (int i = 0; i < ladderLine.getPointList().size() - 1; i++) {
+        for (int i = 0; i < ladderLine.getPoints().size() - 1; i++) {
             if (points.get(i).getDirection().isConnectedRight()) {
                 showLadderLine();
             } else {
