@@ -4,12 +4,20 @@ import java.util.Random;
 
 public class RandomLineGenerator {
     private static final Random random = new Random();
+    private int booleanCount=0;
 
-    private RandomLineGenerator() {
+    public boolean createRandomBoolean() {
+        boolean nextBoolean = random.nextBoolean();
 
-    }
+        if (booleanCount > 0) {
+            return false;
+        }
 
-    public static boolean getRandomBoolean() {
-        return random.nextBoolean();
+        if (nextBoolean) {
+            booleanCount++;
+            return true;
+        }
+
+        return false;
     }
 }
