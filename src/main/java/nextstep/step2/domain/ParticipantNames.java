@@ -17,4 +17,8 @@ public class ParticipantNames {
     public List<ParticipantName> getParticipantNames() {
         return participantNames;
     }
+
+    public int count(){
+        return participantNames.size();
+    }
 }

@@ -1,24 +1,33 @@
 package nextstep.step2.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.IntStream;
+
 public class Ladder {
 
-    private final ParticipantName participantName;
-    private final int height;
+    private final ParticipantNames participantNames;
+    private final List<Line> lines = new ArrayList<>();
 
-    private Ladder(final ParticipantName participantName, final int height){
-        this.participantName = participantName;
-        this.height = height;
+    private Ladder(final ParticipantNames participantNames, final int height){
+        this.participantNames = participantNames;
+        IntStream.range(0, height)
+                .forEach(i -> lines.add(Line.from(participantCount())));
     }
 
-    public static Ladder of(final ParticipantName participantName, final int height) {
-        return new Ladder(participantName, height);
+    public static Ladder of(final ParticipantNames participantNames, final int height) {
+        return new Ladder(participantNames, height);
     }
 
-    public ParticipantName getParticipantName() {
-        return participantName;
+    public ParticipantNames getParticipantNames() {
+        return participantNames;
     }
 
-    public int getHeight() {
-        return height;
+    public List<Line> getLines() {
+        return lines;
+    }
+
+    private int participantCount(){
+        return participantNames.count();
     }
 }
