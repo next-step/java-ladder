@@ -3,6 +3,7 @@ package ladder.domain;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Names {
 
@@ -14,8 +15,9 @@ public class Names {
         this.names = names;
     }
 
-    public static Names createNames(String candidates) {
-        List<Name> names = Arrays.stream(candidates.split(NAME_REGEX))
+    public static Names of(String[] candidates) {
+        List<Name> names = List.of(candidates)
+                .stream()
                 .map(name -> new Name(name))
                 .collect(Collectors.toList());
         return new Names(names);
@@ -28,4 +30,5 @@ public class Names {
     public int getCountOfNames() {
         return names.size();
     }
+
 }
