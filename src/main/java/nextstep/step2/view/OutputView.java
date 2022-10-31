@@ -9,8 +9,8 @@ import java.util.List;
 public class OutputView {
 
     private static final String LADDER_VIEW = "|";
-    private static final String LADDER_LINK = "-----";
-    private static final String LADDER_SPACE = "     ";
+    private static final String LADDER_LINK = "-";
+    private static final String LADDER_SPACE = " ";
 
     public static void printParticipantNamesNotification() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요.)");
@@ -39,14 +39,15 @@ public class OutputView {
 
     private static void printLadders(Ladder ladder) {
         List<Line> lines = ladder.getLines();
+        int participantCount = ladder.getParticipantNames().count();
 
         for (Line line : lines) {
             line.getPoints().stream()
                     .forEach(point -> {
                         if (point.value()) {
-                            System.out.print(LADDER_VIEW + LADDER_LINK);
+                            System.out.print(LADDER_VIEW + LADDER_LINK.repeat(participantCount));
                         } else {
-                            System.out.print(LADDER_VIEW + LADDER_SPACE);
+                            System.out.print(LADDER_VIEW + LADDER_SPACE.repeat(participantCount));
                         }
                     });
 
