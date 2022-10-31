@@ -14,8 +14,7 @@ import ladder.service.LadderGameCreateService;
 import ladder.service.LadderGameResultService;
 import ladder.util.LadderOutputConverter;
 import ladder.view.InputView;
-import ladder.view.output.LadderGameCreateOutputView;
-import ladder.view.output.LadderGameResultOutputView;
+import ladder.view.OutputView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -39,13 +38,13 @@ public class LadderController {
 
         LadderLines ladderLines = ladderGameCreateService.createLadderLine(new LadderWidth(people.number()), inputHeight());
 
-        LadderGameCreateOutputView.result(people, ladderLines, rewards);
+        OutputView.result(people, ladderLines, rewards);
 
         List<Person> resultPersonList = ladderGameResultService.resultPersonList(people, inputResultPersonName());
 
         Result result = ladderGameResultService.ladderGameResult(new LadderGameResultDto(rewards, ladderLines), resultPersonList);
 
-        LadderGameResultOutputView.result(LadderOutputConverter.resultOutput(result));
+        OutputView.result(LadderOutputConverter.resultOutput(result));
     }
 
 
