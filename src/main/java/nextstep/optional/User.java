@@ -5,6 +5,8 @@ import java.util.Optional;
 public class User {
     private String name;
     private Integer age;
+    private static final Integer MIN_AGE = 30;
+    private static final Integer MAX_AGE = 45;
 
     public User(String name, Integer age) {
         this.name = name;
@@ -37,7 +39,7 @@ public class User {
     public static boolean ageIsInRange2(User user) {
         return Optional.ofNullable(user)
                 .map(User::getAge)
-                .filter(age -> age >= 30 && age <= 45)
+                .filter(age -> age >= MIN_AGE && age <= MAX_AGE)
                 .isPresent();
     }
 
