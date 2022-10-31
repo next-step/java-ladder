@@ -1,6 +1,6 @@
 package ladder.util;
 
-import ladder.domain.result.LadderTextInput;
+import ladder.domain.LadderTextInput;
 import ladder.domain.result.ResultMap;
 import ladder.domain.result.Results;
 import ladder.domain.ladder.HorizontalLineDirection;

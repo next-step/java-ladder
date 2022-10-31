@@ -1,5 +1,6 @@
 package ladder.domain.result;
 
+import ladder.domain.LadderTextInput;
 import ladder.exception.result.ResultNotExistException;
 
 import java.util.Collections;

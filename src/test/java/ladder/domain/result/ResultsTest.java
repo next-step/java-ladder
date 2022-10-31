@@ -1,5 +1,6 @@
 package ladder.domain.result;
 
+import ladder.domain.LadderTextInput;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

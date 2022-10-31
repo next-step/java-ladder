@@ -1,5 +1,6 @@
 package ladder.domain.result;
 
+import ladder.domain.LadderTextInput;
 import ladder.domain.person.Person;
 import ladder.domain.person.ResultPeople;
 import ladder.dto.LadderGameResultDto;

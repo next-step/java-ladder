@@ -1,6 +1,6 @@
 package ladder.domain.person;
 
-import ladder.domain.result.LadderTextInput;
+import ladder.domain.LadderTextInput;
 import ladder.exception.person.IllegalPersonNameException;
 import ladder.exception.InputLengthException;
 
