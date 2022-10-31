@@ -2,12 +2,12 @@ package nextstep.ladder.domain;
 
 import java.util.List;
 
-public class LadderInOut {
+public class LadderInput {
     private final List<String> results;
 
     private final Users users;
 
-    public LadderInOut(List<String> results, Users users) {
+    public LadderInput(List<String> results, Users users) {
         this.results = results;
         this.users = users;
     }

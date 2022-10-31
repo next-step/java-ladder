@@ -3,10 +3,6 @@ package nextstep.ladder;
 import java.util.List;
 
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.LadderInOut;
-import nextstep.ladder.domain.LadderLine;
-import nextstep.ladder.domain.RandomLineStrategy;
-import nextstep.ladder.domain.Users;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
