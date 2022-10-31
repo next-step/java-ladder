@@ -2,6 +2,7 @@ package ladder.view;
 
 import java.util.List;
 import java.util.Scanner;
+import ladder.exception.IntegerMismatchException;
 
 public class InputView {
 
@@ -20,7 +21,11 @@ public class InputView {
     }
 
     private static int getInt() {
-        return scanner.nextInt();
+        try {
+            return scanner.nextInt();
+        } catch (Exception e) {
+            throw new IntegerMismatchException();
+        }
     }
 
     private static String getString() {
