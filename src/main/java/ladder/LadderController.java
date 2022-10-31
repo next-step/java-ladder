@@ -9,7 +9,6 @@ import ladder.domain.ladder.LadderHeight;
 import ladder.domain.ladder.LadderWidth;
 import ladder.domain.person.People;
 import ladder.domain.ladder.ladderline.LadderLines;
-import ladder.dto.LadderCreateResultOutputDto;
 import ladder.dto.LadderGameResultDto;
 import ladder.service.LadderGameCreateService;
 import ladder.service.LadderGameResultService;
@@ -40,18 +39,15 @@ public class LadderController {
 
         LadderLines ladderLines = ladderGameCreateService.createLadderLine(new LadderWidth(people.number()), inputHeight());
 
-        LadderGameCreateOutputView.result(new LadderCreateResultOutputDto(people, ladderLines, rewards));
+        LadderGameCreateOutputView.result(people, ladderLines, rewards);
 
-        SearchPeopleNames searchPeopleNames = inputResultPersonName();
+        List<Person> resultPersonList = ladderGameResultService.resultPersonList(people, inputResultPersonName());
 
-        List<Person> personList = people.findByName(searchPeopleNames.peopleNames().stream()
-                .map(LadderTextInput::text)
-                .collect(Collectors.toList()));
+        Result result = ladderGameResultService.ladderGameResult(new LadderGameResultDto(rewards, ladderLines), resultPersonList);
 
-        Result result = ladderGameResultService.ladderGameResult(new LadderGameResultDto(rewards, ladderLines), personList);
-
-        LadderGameResultOutputView.result(LadderOutputConverter.resultMapOutput(result));
+        LadderGameResultOutputView.result(LadderOutputConverter.resultOutput(result));
     }
+
 
     private People inputPeople() {
         try {

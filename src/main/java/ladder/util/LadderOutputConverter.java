@@ -2,9 +2,11 @@ package ladder.util;
 
 import ladder.domain.LadderTextInput;
 import ladder.domain.Result;
+import ladder.domain.Rewards;
 import ladder.domain.ladder.HorizontalLineDirection;
 import ladder.domain.ladder.ladderline.LadderLine;
 import ladder.domain.ladder.ladderline.LadderLines;
+import ladder.domain.person.People;
 import ladder.domain.person.Person;
 import ladder.exception.ladder.NoSuchHorizontalLineDirectionException;
 
@@ -16,14 +18,22 @@ import static ladder.util.LadderConst.RESULT_DELIMITER;
 
 public class LadderOutputConverter {
 
-    public static String horizontalLineDirectionOutput(HorizontalLineDirection horizontalLineDirection) {
-        if (horizontalLineDirection == HorizontalLineDirection.RIGHT) {
-            return LADDER_RIGHT_OUTPUT;
-        }
-        if (horizontalLineDirection == HorizontalLineDirection.NONE || horizontalLineDirection == HorizontalLineDirection.LEFT) {
-            return LADDER_DEFAULT_OUTPUT;
-        }
-        throw new NoSuchHorizontalLineDirectionException();
+    public static String peopleOutput(People people) {
+        return LadderOutputConverter.ladderTextOutput(people.people().stream()
+                .map(Person::name)
+                .map(LadderTextInput::new)
+                .collect(Collectors.toList()));
+    }
+
+    public static String rewardsOutput(Rewards rewards) {
+        return LadderOutputConverter.ladderTextOutput(rewards.results());
+    }
+
+    public static String ladderLinesOutput(LadderLines ladderLines) {
+        return ladderLines.ladderLines()
+                .stream()
+                .map(LadderOutputConverter::ladderLineOutput)
+                .collect(Collectors.joining(LADDERLINES_DELIMITER));
     }
 
     public static String ladderLineOutput(LadderLine ladderLine) {
@@ -33,11 +43,14 @@ public class LadderOutputConverter {
                 .stripTrailing();
     }
 
-    public static String ladderLinesOutput(LadderLines ladderLines) {
-        return ladderLines.ladderLines()
-                .stream()
-                .map(LadderOutputConverter::ladderLineOutput)
-                .collect(Collectors.joining(LADDERLINES_DELIMITER));
+    public static String horizontalLineDirectionOutput(HorizontalLineDirection horizontalLineDirection) {
+        if (horizontalLineDirection == HorizontalLineDirection.RIGHT) {
+            return LADDER_RIGHT_OUTPUT;
+        }
+        if (horizontalLineDirection == HorizontalLineDirection.NONE || horizontalLineDirection == HorizontalLineDirection.LEFT) {
+            return LADDER_DEFAULT_OUTPUT;
+        }
+        throw new NoSuchHorizontalLineDirectionException();
     }
 
     public static String ladderTextOutput(List<LadderTextInput> results) {
@@ -50,7 +63,7 @@ public class LadderOutputConverter {
         return String.format(RESULT_OUTPUT_FORMAT, result.text());
     }
 
-    public static String resultMapOutput(Result resultMap) {
+    public static String resultOutput(Result resultMap) {
         return resultMap.resultMap().entrySet().stream()
                 .map(result -> resultMapFormat(result.getKey(), result.getValue()))
                 .collect(Collectors.joining(RESULTMAP_DELIMITER));
@@ -58,12 +71,5 @@ public class LadderOutputConverter {
 
     private static String resultMapFormat(Person person, LadderTextInput result) {
         return String.format(RESULTMAP_FORMAT, person.name(), result.text());
-    }
-
-    protected static String outputPersonName(String name) {
-        if (name.length() < INPUT_LENGTH_MAX) {
-            return String.format("%4s ", name);
-        }
-        return name;
     }
 }

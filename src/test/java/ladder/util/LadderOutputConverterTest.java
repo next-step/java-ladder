@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -38,12 +37,5 @@ public class LadderOutputConverterTest {
         Rewards rewards = new Rewards("꽝", "5000", "3000");
 
         assertThat(LadderOutputConverter.ladderTextOutput(rewards.results())).isEqualTo("    꽝  5000  3000");
-    }
-
-
-    @ParameterizedTest(name = "사람 이름이 5자 미만일 경우 공백을 채워 5자로 출력한다.")
-    @ValueSource(strings = {"a", "ab", "abc", "abcd", "abcde"})
-    void personname_output(String text) {
-        assertThat(LadderOutputConverter.outputPersonName(text).length()).isEqualTo(5);
     }
 }
