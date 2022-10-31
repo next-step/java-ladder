@@ -60,7 +60,7 @@ public class InputDTO {
 
 	private static Persons toPersons(String names) {
 		List<Person> persons = new ArrayList<>();
-		String[] tokens = names.split(",");
+		String[] tokens = names.split(SEPARATOR);
 		for (int i = 0; i < tokens.length; i++) {
 			persons.add(new Person(tokens[i], i));
 		}
