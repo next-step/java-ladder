@@ -4,17 +4,19 @@ import java.util.List;
 
 public class Users {
     public static final String NAME_LENGTH_EXCEPTION = "사람의 이름은 5글자까지 가능합니다.";
-    public List<String> names;
+    public static final int NAME_MAX_LENGTH = 5;
+    public final List<String> names;
 
     public Users(List<String> names) {
-        names.stream()
-                .forEach(name -> validateNames(name));
+        for (String name : names) {
+            validateNames(name);
+        }
         this.names = names;
 
     }
 
-    private static void validateNames(String name) {
-        if (name.length() > 5) {
+    private void validateNames(String name) {
+        if (name.length() == 0 || name.length() > NAME_MAX_LENGTH) {
             throw new IllegalArgumentException(NAME_LENGTH_EXCEPTION);
         }
     }

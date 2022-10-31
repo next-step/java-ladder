@@ -11,7 +11,7 @@ public class ResultView {
     public static final String LADDER_SHAPE = "|";
     public static final String IS_LINE = "-";
     public static final String IS_BLANK = " ";
-    public static final String RESULT_TEXT = "\n실행결과\n";
+    public static final String RESULT_TEXT = System.lineSeparator()+"실행결과"+System.lineSeparator();
     public static final int REPEAT_COUNT = 5;
 
     public static void printLadderGame(Users users, Ladder ladder) {
@@ -23,14 +23,14 @@ public class ResultView {
     private static void printLadders(Ladder ladder) {
         ladder.lines.stream()
                 .forEach(floor -> {
-                    System.out.print("\n" + IS_BLANK.repeat(3));
+                    System.out.print(System.lineSeparator() + IS_BLANK.repeat(3));
                     printLines(floor);
                     System.out.print(LADDER_SHAPE);
                 });
     }
 
     private static void printLines(Line floor) {
-        floor.isLine.stream()
+        floor.hasLine.stream()
                 .forEach(isLine -> {
                     System.out.print(LADDER_SHAPE);
                     System.out.print(getLine(isLine.booleanValue()));

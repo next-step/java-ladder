@@ -10,7 +10,7 @@ public class LadderGameMain {
     public static void main(String[] args) {
         Users users = new Users(InputView.inputUsers());
         Ladder ladder = new Ladder(InputView.inputLadderHeight());
-        ladder.createLadderGame(users.getUserCounts());
+        ladder.createLadder(users.getUserCounts());
         ResultView.printLadderGame(users, ladder);
     }
 
