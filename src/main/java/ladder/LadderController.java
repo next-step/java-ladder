@@ -50,7 +50,7 @@ public class LadderController {
 
     private People inputPeople() {
         try {
-            return ladderGameCreateService.people(InputView.personNameInput());
+            return new People(InputView.personNameInput());
         } catch (Exception e) {
             System.out.println("사람 이름 입력이 잘못됐습니다 다시 이력해주세요.");
         }
