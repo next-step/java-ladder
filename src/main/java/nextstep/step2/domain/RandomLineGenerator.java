@@ -4,12 +4,21 @@ import java.util.Random;
 
 public class RandomLineGenerator {
     private static final Random random = new Random();
+    private final int countOfParticipant;
     private int booleanCount=0;
 
-    public boolean createRandomBoolean() {
+    public RandomLineGenerator(int countOfParticipant) {
+        this.countOfParticipant = countOfParticipant;
+    }
+
+    public static RandomLineGenerator from(int countOfParticipant) {
+        return new RandomLineGenerator(countOfParticipant);
+    }
+
+    public boolean createRandomBoolean(int position) {
         boolean nextBoolean = random.nextBoolean();
 
-        if (booleanCount > 0) {
+        if (booleanCount > 0 || position == countOfParticipant - 1) {
             return false;
         }
 

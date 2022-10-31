@@ -7,9 +7,9 @@ public class Line {
     private List<Point> points = new ArrayList<>();
 
     private Line(final int countOfParticipant){
-        for (int i = 0; i < countOfParticipant; i++) {
-            RandomLineGenerator randomLineGenerator = new RandomLineGenerator();
-            points.add(Point.from(randomLineGenerator.createRandomBoolean()));
+        RandomLineGenerator randomLineGenerator = RandomLineGenerator.from(countOfParticipant);
+        for (int position = 0; position < countOfParticipant; position++) {
+            points.add(Point.from(randomLineGenerator.createRandomBoolean(position)));
         }
     }
 
