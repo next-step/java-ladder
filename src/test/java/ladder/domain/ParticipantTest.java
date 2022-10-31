@@ -11,14 +11,14 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 public class ParticipantTest {
 
     @ParameterizedTest(name = "참가자 생성 테스트 - {0}")
-    @ValueSource(strings = {"woody", "beans", "isla", "jacob", "hasey"})
+    @ValueSource(strings = {"woody", "jacob", "tate"})
     void create(final String personName) {
         assertDoesNotThrow(() -> new Participant(personName));
     }
 
     @ParameterizedTest(name = "참가자 생성 실패 테스트 - {0}")
     @NullSource
-    @ValueSource(strings = {"charlie", "benjamin"})
+    @ValueSource(strings = {"hannah"})
     void invalidName(final String personName) {
         assertThatThrownBy(() -> new Participant(personName))
                 .isInstanceOf(CreatingParticipantFailureException.class)
