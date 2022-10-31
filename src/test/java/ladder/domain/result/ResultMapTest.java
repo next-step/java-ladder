@@ -19,9 +19,9 @@ public class ResultMapTest {
         Person pobi = new Person("pobi", 0, 0);
         Person crong = new Person("crong", 1, 0);
         ResultMap resultMap = new ResultMap(pobi, crong);
-        resultMap.setPersonResult(pobi, new Result("꽝"));
+        resultMap.setPersonResult(pobi, new LadderTextInput("꽝"));
 
-        assertThat(resultMap.result(pobi)).isEqualTo(new Result("꽝"));
+        assertThat(resultMap.result(pobi)).isEqualTo(new LadderTextInput("꽝"));
     }
 
     @Test
@@ -37,8 +37,8 @@ public class ResultMapTest {
         );
 
         assertAll(
-                () -> assertThat(resultMap.result(pobi)).isEqualTo(new Result("2")),
-                () -> assertThat(resultMap.result(crong)).isEqualTo(new Result("1"))
+                () -> assertThat(resultMap.result(pobi)).isEqualTo(new LadderTextInput("2")),
+                () -> assertThat(resultMap.result(crong)).isEqualTo(new LadderTextInput("1"))
         );
     }
 }

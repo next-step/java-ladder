@@ -1,5 +1,6 @@
 package ladder.domain.person;
 
+import ladder.domain.result.LadderTextInput;
 import ladder.exception.person.IllegalPersonNameException;
 import ladder.exception.InputLengthException;
 
@@ -10,12 +11,12 @@ import static ladder.util.LadderConst.*;
 
 public class Person {
 
-    private final String name;
+    private final LadderTextInput name;
     private final Point position;
 
     public Person(String name, int x, int y) {
         validationName(name);
-        this.name = name;
+        this.name = new LadderTextInput(name);
         this.position = new Point(x, y);
     }
 
@@ -29,7 +30,7 @@ public class Person {
     }
 
     public String name() {
-        return this.name;
+        return this.name.text();
     }
 
     public int getHorizontalPosition() {
@@ -51,10 +52,5 @@ public class Person {
     @Override
     public int hashCode() {
         return Objects.hash(name, position);
-    }
-
-    @Override
-    public String toString() {
-        return name;
     }
 }

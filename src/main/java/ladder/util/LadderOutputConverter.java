@@ -1,7 +1,6 @@
 package ladder.util;
 
-import ladder.domain.person.People;
-import ladder.domain.result.Result;
+import ladder.domain.result.LadderTextInput;
 import ladder.domain.result.ResultMap;
 import ladder.domain.result.Results;
 import ladder.domain.ladder.HorizontalLineDirection;
@@ -48,8 +47,8 @@ public class LadderOutputConverter {
                 .collect(Collectors.joining(RESULT_DELIMITER));
     }
 
-    private static String translateResultOutputFormat(Result result) {
-        return String.format(RESULT_OUTPUT_FORMAT, result.result());
+    private static String translateResultOutputFormat(LadderTextInput result) {
+        return String.format(RESULT_OUTPUT_FORMAT, result.text());
     }
 
     public static String resultMapOutput(ResultMap resultMap, List<Person> resultPersons) {
@@ -58,15 +57,8 @@ public class LadderOutputConverter {
                 .collect(Collectors.joining(RESULTMAP_DELIMITER));
     }
 
-    private static String resultMapFormat(Result result, Person person) {
-        return String.format(RESULTMAP_FORMAT, person.name(), result.result());
-    }
-
-    public static String peopleName(People people) {
-        return people.people().stream()
-                .map(Person::name)
-                .map(LadderOutputConverter::outputPersonName)
-                .collect(Collectors.joining(PERSON_NAME_DELIMITER));
+    private static String resultMapFormat(LadderTextInput result, Person person) {
+        return String.format(RESULTMAP_FORMAT, person.name(), result.text());
     }
 
     protected static String outputPersonName(String name) {

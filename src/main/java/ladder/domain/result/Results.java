@@ -9,19 +9,19 @@ import java.util.stream.Stream;
 
 public class Results {
 
-    public final List<Result> results;
+    public final List<LadderTextInput> results;
 
     public Results(String... strings) {
         this.results = Stream.of(strings)
-                .map(Result::new)
+                .map(LadderTextInput::new)
                 .collect(Collectors.toList());
     }
 
-    public List<Result> results() {
+    public List<LadderTextInput> results() {
         return Collections.unmodifiableList(results);
     }
 
-    public Result result(int index) {
+    public LadderTextInput result(int index) {
         if (results.size() < index) {
             throw new ResultNotExistException();
         }

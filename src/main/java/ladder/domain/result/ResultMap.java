@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 public class ResultMap {
 
-    private final Map<Person, Optional<Result>> resultMap;
+    private final Map<Person, Optional<LadderTextInput>> resultMap;
 
     public ResultMap(Person... persons) {
         this(Arrays.stream(persons)
@@ -26,11 +26,11 @@ public class ResultMap {
         persons.forEach(person -> resultMap.put(person, Optional.empty()));
     }
 
-    public void setPersonResult(Person person, Result result) {
+    public void setPersonResult(Person person, LadderTextInput result) {
         resultMap.put(person, Optional.of(result));
     }
 
-    public Result result(Person person) {
+    public LadderTextInput result(Person person) {
         return resultMap.get(person)
                 .orElseThrow(ResultNotExistException::new);
     }
@@ -38,7 +38,7 @@ public class ResultMap {
     public void setResult(LadderGameResultDto ladderGameResultDto) {
         this.resultMap.keySet()
                 .forEach(person -> {
-                            Result result = ladderGameResultDto.results().result(ladderGameResultDto.ladderLines().result(person.getHorizontalPosition()));
+                            LadderTextInput result = ladderGameResultDto.results().result(ladderGameResultDto.ladderLines().result(person.getHorizontalPosition()));
                             this.setPersonResult(person, result);
                         }
                 );

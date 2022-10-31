@@ -6,17 +6,17 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class ResultTest {
+public class LadderTextInputTest {
 
     @Test
     void create() {
-        Result result = new Result("꽝");
+        LadderTextInput result = new LadderTextInput("꽝");
 
-        assertThat(result).isEqualTo(new Result("꽝"));
+        assertThat(result).isEqualTo(new LadderTextInput("꽝"));
     }
 
     @Test
     void valid_length() {
-        assertThatThrownBy(() -> new Result("500000")).isInstanceOf(InputLengthException.class);
+        assertThatThrownBy(() -> new LadderTextInput("500000")).isInstanceOf(InputLengthException.class);
     }
 }

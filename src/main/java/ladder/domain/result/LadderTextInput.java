@@ -6,31 +6,31 @@ import java.util.Objects;
 
 import static ladder.util.LadderConst.*;
 
-public class Result {
+public class LadderTextInput {
 
-    private final String result;
+    private final String text;
 
-    public Result(String result) {
-        if (result.length() > INPUT_LENGTH_MAX) {
+    public LadderTextInput(String text) {
+        if (text.length() > INPUT_LENGTH_MAX) {
             throw new InputLengthException(INPUT_LENGTH_MAX);
         }
-        this.result = result;
+        this.text = text;
     }
 
-    public String result(){
-        return this.result;
+    public String text(){
+        return this.text;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Result result1 = (Result) o;
-        return Objects.equals(result, result1.result);
+        LadderTextInput result1 = (LadderTextInput) o;
+        return Objects.equals(text, result1.text);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(result);
+        return Objects.hash(text);
     }
 }
