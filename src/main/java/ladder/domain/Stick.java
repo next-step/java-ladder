@@ -18,6 +18,10 @@ public class Stick {
         return this.value && stick.value;
     }
 
+    public boolean isValue() {
+        return value;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

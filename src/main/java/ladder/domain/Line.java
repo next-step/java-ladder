@@ -9,8 +9,6 @@ import java.util.stream.IntStream;
 
 public class Line {
 
-    private static final String SEPARATOR = ",";
-
     private final List<Stick> sticks;
 
     public Line(final List<Stick> sticks) {
@@ -30,21 +28,25 @@ public class Line {
     }
 
     public List<Integer> findIndexesBothTrue(Line line) {
-        if (findSize() != line.findSize()) {
+        if (findHeight() != line.findHeight()) {
             throw DifferentLineSizeException.getInstance();
         }
-        return IntStream.range(0, findSize())
+        return IntStream.range(0, findHeight())
                 .filter(index -> findStick(index).isTrueAndSo(line.findStick(index)))
                 .boxed()
                 .collect(Collectors.toList());
     }
 
-    public int findSize() {
+    public int findHeight() {
         return sticks.size();
     }
 
     private Stick findStick(int index) {
         return sticks.get(index);
+    }
+
+    public List<Stick> getSticks() {
+        return sticks;
     }
 
     @Override
