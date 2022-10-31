@@ -1,8 +1,6 @@
 package ladder;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
 public class ResultView {
 
@@ -10,7 +8,7 @@ public class ResultView {
     private static final String HORIZONTAL_BLANK_LINE = "     ";
     private static final String HORIZONTAL_FULL_LINE = "-----";
 
-    public static void printResult(UserNames userNames, Ladder ladder, Map<Integer, Integer> gameResult, Awards awards) {
+    public static void printResult(UserNames userNames, Ladder ladder, LadderResult gameResult, Awards awards) {
         printUserNames(userNames);
         printLadder(ladder);
         printResult(userNames, gameResult, awards);
@@ -49,19 +47,19 @@ public class ResultView {
         }
     }
 
-    private static void printResult(UserNames userNames, Map<Integer, Integer> result, Awards awards) {
+    private static void printResult(UserNames userNames, LadderResult result, Awards awards) {
         while (true) {
             UserName userName = InputView.inputUserNameResult();
             if (userName.getName().equals("all")) {
                 System.out.println("실행 결과");
-                for (Entry<Integer, Integer> entry : result.entrySet()) {
-                    System.out.println(userNames.getUserNames().get(entry.getKey()) + ":" + awards.getAwards().get(entry.getValue()));
+                for (int i = 0; i < result.getValues().size(); i++) {
+                    System.out.println(userNames.getUserNames().get(i) + ":" + awards.getAwards().get(result.getTarget(i)));
                 }
                 break;
             }
             System.out.println("실행 결과");
             int userIndex = userNames.findUserIndex(userName);
-            System.out.println(result.get(userIndex));
+            System.out.println(result.getTarget(userIndex));
         }
     }
 }

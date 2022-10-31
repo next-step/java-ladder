@@ -37,4 +37,11 @@ public class Award {
     public int hashCode() {
         return Objects.hash(award);
     }
+
+    @Override
+    public String toString() {
+        return "Award{" +
+            "award='" + award + '\'' +
+            '}';
+    }
 }
