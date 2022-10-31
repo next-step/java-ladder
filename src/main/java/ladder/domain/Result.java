@@ -1,16 +1,15 @@
-package ladder.domain.result;
+package ladder.domain;
 
-import ladder.domain.LadderTextInput;
 import ladder.domain.person.Person;
 import ladder.dto.LadderGameResultDto;
 
 import java.util.*;
 
-public class ResultMap {
+public class Result {
 
     private final Map<Person, LadderTextInput> resultMap = new HashMap<>();
 
-    public ResultMap(LadderGameResultDto ladderGameResultDto, List<Person> personList) {
+    public Result(LadderGameResultDto ladderGameResultDto, List<Person> personList) {
         personList.forEach(person -> {
             LadderTextInput result = ladderGameResultDto.results()
                     .result(ladderGameResultDto.ladderLines().result(person.getHorizontalPosition()));

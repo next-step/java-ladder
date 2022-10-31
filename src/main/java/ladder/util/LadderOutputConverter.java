@@ -1,7 +1,7 @@
 package ladder.util;
 
 import ladder.domain.LadderTextInput;
-import ladder.domain.result.ResultMap;
+import ladder.domain.Result;
 import ladder.domain.ladder.HorizontalLineDirection;
 import ladder.domain.ladder.ladderline.LadderLine;
 import ladder.domain.ladder.ladderline.LadderLines;
@@ -50,7 +50,7 @@ public class LadderOutputConverter {
         return String.format(RESULT_OUTPUT_FORMAT, result.text());
     }
 
-    public static String resultMapOutput(ResultMap resultMap) {
+    public static String resultMapOutput(Result resultMap) {
         return resultMap.resultMap().entrySet().stream()
                 .map(result -> resultMapFormat(result.getKey(), result.getValue()))
                 .collect(Collectors.joining(RESULTMAP_DELIMITER));

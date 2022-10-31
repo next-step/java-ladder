@@ -3,7 +3,7 @@ package ladder;
 import ladder.domain.LadderTextInput;
 import ladder.domain.person.Person;
 import ladder.domain.person.SearchPeopleNames;
-import ladder.domain.result.ResultMap;
+import ladder.domain.Result;
 import ladder.domain.Rewards;
 import ladder.domain.ladder.LadderHeight;
 import ladder.domain.ladder.LadderWidth;
@@ -48,9 +48,9 @@ public class LadderController {
                 .map(LadderTextInput::text)
                 .collect(Collectors.toList()));
 
-        ResultMap resultMap = ladderGameResultService.ladderGameResult(new LadderGameResultDto(rewards, ladderLines), personList);
+        Result result = ladderGameResultService.ladderGameResult(new LadderGameResultDto(rewards, ladderLines), personList);
 
-        LadderGameResultOutputView.result(LadderOutputConverter.resultMapOutput(resultMap));
+        LadderGameResultOutputView.result(LadderOutputConverter.resultMapOutput(result));
     }
 
     private People inputPeople() {

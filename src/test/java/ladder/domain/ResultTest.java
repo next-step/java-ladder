@@ -1,6 +1,5 @@
-package ladder.domain.result;
+package ladder.domain;
 
-import ladder.domain.Rewards;
 import ladder.domain.ladder.ladderline.LadderLines;
 import ladder.domain.person.Person;
 import ladder.dto.LadderGameResultDto;
@@ -12,7 +11,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 
 
-public class ResultMapTest {
+public class ResultTest {
 
     @Test
     void result() {
@@ -23,9 +22,9 @@ public class ResultMapTest {
         Rewards rewards = new Rewards("1000", "꽝");
         LadderLines ladderLines = new LadderLines(List.of(LadderLineTestUtil.continuousLadder()));
 
-        ResultMap resultMap = new ResultMap(new LadderGameResultDto(rewards, ladderLines), personList);
+        Result result = new Result(new LadderGameResultDto(rewards, ladderLines), personList);
 
-        assertThat(resultMap.result(pobi).text()).isEqualTo("꽝");
-        assertThat(resultMap.result(crong).text()).isEqualTo("1000");
+        assertThat(result.result(pobi).text()).isEqualTo("꽝");
+        assertThat(result.result(crong).text()).isEqualTo("1000");
     }
 }

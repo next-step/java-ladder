@@ -1,7 +1,5 @@
-package ladder.domain.result;
+package ladder.domain;
 
-import ladder.domain.LadderTextInput;
-import ladder.domain.Rewards;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
