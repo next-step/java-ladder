@@ -17,7 +17,7 @@ public class LadderTextInput {
         this.text = text;
     }
 
-    public String text(){
+    public String text() {
         return this.text;
     }
 
@@ -25,8 +25,8 @@ public class LadderTextInput {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        LadderTextInput result1 = (LadderTextInput) o;
-        return Objects.equals(text, result1.text);
+        LadderTextInput that = (LadderTextInput) o;
+        return Objects.equals(text, that.text);
     }
 
     @Override

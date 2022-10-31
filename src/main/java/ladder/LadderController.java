@@ -1,6 +1,8 @@
 package ladder;
 
-import ladder.domain.person.ResultPeople;
+import ladder.domain.LadderTextInput;
+import ladder.domain.person.Person;
+import ladder.domain.person.SearchPeopleNames;
 import ladder.domain.result.ResultMap;
 import ladder.domain.result.Results;
 import ladder.domain.ladder.LadderHeight;
@@ -15,6 +17,10 @@ import ladder.util.LadderOutputConverter;
 import ladder.view.InputView;
 import ladder.view.output.LadderGameCreateOutputView;
 import ladder.view.output.LadderGameResultOutputView;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class LadderController {
@@ -36,11 +42,15 @@ public class LadderController {
 
         LadderGameCreateOutputView.result(new LadderCreateResultOutputDto(people, ladderLines, results));
 
-        ResultPeople resultPeople = inputResultPersonName(people);
+        SearchPeopleNames searchPeopleNames = inputResultPersonName();
 
-        ResultMap resultMap = ladderGameResultService.ladderGameResult(new LadderGameResultDto(results, ladderLines), resultPeople);
+        List<Person> personList = people.findByName(searchPeopleNames.peopleNames().stream()
+                .map(LadderTextInput::text)
+                .collect(Collectors.toList()));
 
-        LadderGameResultOutputView.result(LadderOutputConverter.resultMapOutput(resultMap, resultPeople.resultPeople()));
+        ResultMap resultMap = ladderGameResultService.ladderGameResult(new LadderGameResultDto(results, ladderLines), personList);
+
+        LadderGameResultOutputView.result(LadderOutputConverter.resultMapOutput(resultMap));
     }
 
     private People inputPeople() {
@@ -70,12 +80,14 @@ public class LadderController {
         return inputHeight();
     }
 
-    private static ResultPeople inputResultPersonName(People people) {
+    private static SearchPeopleNames inputResultPersonName() {
         try {
-            return new ResultPeople(people.findByName(InputView.inputResultPersonName()));
+            return new SearchPeopleNames(Arrays.stream(InputView.inputResultPersonName())
+                    .map(LadderTextInput::new)
+                    .collect(Collectors.toList()));
         } catch (Exception e) {
             LadderGameResultOutputView.inputResultPersonNameException();
         }
-        return inputResultPersonName(people);
+        return inputResultPersonName();
     }
 }

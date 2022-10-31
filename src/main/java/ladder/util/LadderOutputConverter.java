@@ -2,7 +2,6 @@ package ladder.util;
 
 import ladder.domain.LadderTextInput;
 import ladder.domain.result.ResultMap;
-import ladder.domain.result.Results;
 import ladder.domain.ladder.HorizontalLineDirection;
 import ladder.domain.ladder.ladderline.LadderLine;
 import ladder.domain.ladder.ladderline.LadderLines;
@@ -41,8 +40,8 @@ public class LadderOutputConverter {
                 .collect(Collectors.joining(LADDERLINES_DELIMITER));
     }
 
-    public static String resultOutput(Results results) {
-        return results.results().stream()
+    public static String ladderTextOutput(List<LadderTextInput> results) {
+        return results.stream()
                 .map(LadderOutputConverter::translateResultOutputFormat)
                 .collect(Collectors.joining(RESULT_DELIMITER));
     }
@@ -51,13 +50,13 @@ public class LadderOutputConverter {
         return String.format(RESULT_OUTPUT_FORMAT, result.text());
     }
 
-    public static String resultMapOutput(ResultMap resultMap, List<Person> resultPersons) {
-        return resultPersons.stream()
-                .map(person -> resultMapFormat(resultMap.result(person), person))
+    public static String resultMapOutput(ResultMap resultMap) {
+        return resultMap.resultMap().entrySet().stream()
+                .map(result -> resultMapFormat(result.getKey(), result.getValue()))
                 .collect(Collectors.joining(RESULTMAP_DELIMITER));
     }
 
-    private static String resultMapFormat(LadderTextInput result, Person person) {
+    private static String resultMapFormat(Person person, LadderTextInput result) {
         return String.format(RESULTMAP_FORMAT, person.name(), result.text());
     }
 

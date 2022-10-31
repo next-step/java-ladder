@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.*;
 
 public class PeopleTest {
@@ -19,11 +21,11 @@ public class PeopleTest {
         People people = new People("pobi", "crong", "sik");
 
         Assertions.assertAll(
-                () -> assertThat(people.findByName("crong"))
+                () -> assertThat(people.findByName(List.of("crong")))
                         .contains(new Person("crong", 1, 0)),
-                () -> assertThat(people.findByName("pobi", "crong"))
+                () -> assertThat(people.findByName(List.of("pobi", "crong")))
                         .contains(new Person("pobi", 0, 0), new Person("crong", 1, 0)),
-                () -> assertThat(people.findByName("all"))
+                () -> assertThat(people.findByName(List.of("all")))
                         .contains(new Person("pobi", 0, 0), new Person("crong", 1, 0),
                                 new Person("sik", 2, 0))
         );
@@ -35,8 +37,8 @@ public class PeopleTest {
         People people = new People("pobi", "crong", "sik");
 
         Assertions.assertAll(
-                () -> assertThat(people.findByName("pobi", "pobi")).contains(new Person("pobi", 0, 0)),
-                () -> assertThat(people.findByName("pobi", "pobi").size()).isEqualTo(1)
+                () -> assertThat(people.findByName(List.of("pobi", "pobi"))).contains(new Person("pobi", 0, 0)),
+                () -> assertThat(people.findByName(List.of("pobi", "pobi")).size()).isEqualTo(1)
         );
     }
 }

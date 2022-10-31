@@ -3,7 +3,6 @@ package ladder.domain.person;
 import ladder.exception.person.PeopleSizeException;
 import ladder.exception.person.PersonNotFoundException;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
@@ -29,16 +28,12 @@ public class People {
         return people.size();
     }
 
-    public List<Person> people() {
-        return Collections.unmodifiableList(this.people);
-    }
-
-    public List<Person> findByName(String... personNames) {
-        if (isContainFindAll(personNames)) {
+    public List<Person> findByName(List<String> peopleNames) {
+        if (peopleNames.contains(FIND_ALL)) {
             return this.people;
         }
         List<Person> personList = this.people.stream()
-                .filter(person -> Arrays.stream(personNames).anyMatch(Predicate.isEqual(person.name())))
+                .filter(person -> peopleNames.stream().anyMatch(Predicate.isEqual(person.name())))
                 .distinct()
                 .collect(Collectors.toList());
         if (personList.isEmpty()) {
@@ -47,7 +42,7 @@ public class People {
         return Collections.unmodifiableList(personList);
     }
 
-    private boolean isContainFindAll(String... personNames) {
-        return Arrays.asList(personNames).contains(FIND_ALL);
+    public List<Person> people() {
+        return this.people;
     }
 }

@@ -1,6 +1,5 @@
 package ladder.domain.result;
 
-import ladder.domain.LadderTextInput;
 import ladder.domain.ladder.ladderline.LadderLines;
 import ladder.domain.person.Person;
 import ladder.dto.LadderGameResultDto;
@@ -10,36 +9,22 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 
 public class ResultMapTest {
 
     @Test
-    void setPersonResult() {
+    void result() {
         Person pobi = new Person("pobi", 0, 0);
         Person crong = new Person("crong", 1, 0);
-        ResultMap resultMap = new ResultMap(pobi, crong);
-        resultMap.setPersonResult(pobi, new LadderTextInput("꽝"));
+        List<Person> personList = List.of(pobi, crong);
 
-        assertThat(resultMap.result(pobi)).isEqualTo(new LadderTextInput("꽝"));
-    }
+        Results results = new Results("1000", "꽝");
+        LadderLines ladderLines = new LadderLines(List.of(LadderLineTestUtil.continuousLadder()));
 
-    @Test
-    void setResult() {
-        Person pobi = new Person("pobi", 0, 0);
-        Person crong = new Person("crong", 1, 0);
-        ResultMap resultMap = new ResultMap(pobi, crong);
-        resultMap.setResult(
-                new LadderGameResultDto(
-                        new Results("1", "2"),
-                        new LadderLines(List.of(LadderLineTestUtil.continuousLadder()))
-                )
-        );
+        ResultMap resultMap = new ResultMap(new LadderGameResultDto(results, ladderLines), personList);
 
-        assertAll(
-                () -> assertThat(resultMap.result(pobi)).isEqualTo(new LadderTextInput("2")),
-                () -> assertThat(resultMap.result(crong)).isEqualTo(new LadderTextInput("1"))
-        );
+        assertThat(resultMap.result(pobi).text()).isEqualTo("꽝");
+        assertThat(resultMap.result(crong).text()).isEqualTo("1000");
     }
 }
