@@ -10,7 +10,7 @@ import static ladder.view.OutputView.*;
 public class Main {
 
     public static void main(String[] args) {
-        Players players = new Players(scanPlayersName());
+        Players players = Players.of(scanPlayersName());
 
         Ladder ladder = new Ladder(players.getPlayersCount(), scanLadderHeight());
 
