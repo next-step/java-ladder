@@ -15,8 +15,9 @@ public class Names {
         this.names = names;
     }
 
-    public static Names of(String candidates) {
-        List<Name> names = Arrays.stream(candidates.split(NAME_REGEX))
+    public static Names of(String[] candidates) {
+        List<Name> names = List.of(candidates)
+                .stream()
                 .map(name -> new Name(name))
                 .collect(Collectors.toList());
         return new Names(names);

@@ -47,14 +47,18 @@ public class Ladder {
     }
 
     private boolean canMoveRight(int idx, List<Point> points) {
-        if (idx >= points.size()) return false;
+        if (idx >= points.size()) {
+            return false;
+        }
 
         Point point = points.get(idx);
         return point.isExist();
     }
 
     private boolean canMoveLeft(int idx, List<Point> points) {
-        if (idx - 1 < 0) return false;
+        if (idx - 1 < 0) {
+            return false;
+        }
 
         Point leftPoint = points.get(idx - 1);
         if (leftPoint.isExist()) {
