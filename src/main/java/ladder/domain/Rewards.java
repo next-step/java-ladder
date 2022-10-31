@@ -2,6 +2,7 @@ package ladder.domain;
 
 import ladder.exception.result.ResultNotExistException;
 
+import java.awt.*;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,10 +22,10 @@ public class Rewards {
         return Collections.unmodifiableList(results);
     }
 
-    public LadderTextInput result(int index) {
-        if (results.size() < index) {
+    public LadderTextInput result(Point index) {
+        if (results.size() < index.x) {
             throw new ResultNotExistException();
         }
-        return results.get(index);
+        return results.get(index.x);
     }
 }

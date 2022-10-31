@@ -4,6 +4,7 @@ import ladder.domain.person.Person;
 import ladder.dto.LadderGameResultDto;
 
 import java.util.*;
+import java.util.List;
 
 public class Result {
 
@@ -12,9 +13,8 @@ public class Result {
     public Result(LadderGameResultDto ladderGameResultDto, List<Person> personList) {
         personList.forEach(person -> {
             LadderTextInput result = ladderGameResultDto.results()
-                    .result(ladderGameResultDto.ladderLines().result(person.getHorizontalPosition()));
-            resultMap.put(person, result);
-        });
+                    .result(ladderGameResultDto.ladderLines().result(person.position()));
+            resultMap.put(person, result);});
     }
 
     public LadderTextInput result(Person person) {

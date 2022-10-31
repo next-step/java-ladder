@@ -32,12 +32,8 @@ public class Person {
         return this.name.text();
     }
 
-    public int getHorizontalPosition() {
-        return this.position.x;
-    }
-
-    public int getVerticalPosition() {
-        return this.position.y;
+    public Point position() {
+        return this.position;
     }
 
     @Override

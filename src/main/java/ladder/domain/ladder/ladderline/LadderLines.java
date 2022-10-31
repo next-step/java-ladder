@@ -3,14 +3,15 @@ package ladder.domain.ladder.ladderline;
 import ladder.exception.ladder.EscapeLadderLinesException;
 import ladder.exception.ladder.NoSuchLadderLineException;
 
+import java.awt.*;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
 public class LadderLines {
 
-    private final List<LadderLine> ladderLines;
     private static final int RESULT_START_NUMBER_MIN = 0;
+    private final List<LadderLine> ladderLines;
 
     public LadderLines(List<LadderLine> ladderLines) {
         this.ladderLines = ladderLines;
@@ -20,21 +21,22 @@ public class LadderLines {
         return Collections.unmodifiableList(ladderLines);
     }
 
-    public int result(int startNumber) {
-        if (isEscapeResultNumberBound(startNumber)) {
+    public Point result(Point point) {
+        if (isEscapeResultNumberBound(point.x)) {
             throw new EscapeLadderLinesException();
         }
-        return ladderClimbResult(startNumber);
+        return ladderClimbResult(point);
     }
 
-    private int ladderClimbResult(int startNumber) {
-        int result = startNumber;
+    private Point ladderClimbResult(Point position) {
+        Point currentPosition = position;
         for (LadderLine ladderLine : ladderLines) {
-            result = ladderLine.horizontalLineDirections()
-                    .get(result)
-                    .move(result);
+            int x = ladderLine.horizontalLineDirections()
+                    .get(position.x)
+                    .move(position.x);
+            currentPosition = new Point(x, position.y + 1);
         }
-        return result;
+        return currentPosition;
     }
 
     private boolean isEscapeResultNumberBound(int startNumber) {
