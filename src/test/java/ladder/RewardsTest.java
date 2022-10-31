@@ -28,4 +28,5 @@ class RewardsTest {
                         .isThrownBy(() -> new Rewards(null, 3))
         );
     }
+
 }
