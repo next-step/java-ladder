@@ -7,7 +7,14 @@ import java.util.Optional;
 
 public final class Participant {
 
+    private static final int MINIMUM_NAME_LENGTH = 1;
+    private static final int MAXIMUM_NAME_LENGTH = 5;
+
     private final String name;
+
+    public Participant(final Participant participant) {
+        this(participant.name);
+    }
 
     public Participant(final String name) {
         validateOrThrow(name);
@@ -21,12 +28,18 @@ public final class Participant {
 
     private void validateNameOrThrow(final String name) {
         Optional.ofNullable(name)
+                .filter(s -> s.length() >= MINIMUM_NAME_LENGTH)
+                .filter(s -> s.length() <= MAXIMUM_NAME_LENGTH)
                 .filter(s -> !s.isBlank())
-                .filter(s -> s.length() <= 5)
                 .orElseThrow(() -> {
-                    final String exceptionMessage = "참가자 이름 길이는 최소 1, 최대 5 입니다.";
+                    final String exceptionMessage = String.format("참가자 이름 길이는 최소 %d, 최대 %d 입니다.",
+                            MINIMUM_NAME_LENGTH, MAXIMUM_NAME_LENGTH);
                     throw new CreatingParticipantFailureException(exceptionMessage);
                 });
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     @Override

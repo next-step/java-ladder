@@ -1,16 +1,16 @@
 package ladder;
 
-import ladder.domain.Participant;
+import ladder.domain.Ladder;
+import ladder.domain.LadderHeight;
+import ladder.domain.Participants;
 import ladder.view.InputView;
 import ladder.view.ResultView;
-
-import java.util.List;
 
 public class LadderMain {
 
     public static void main(String[] args) {
-        final List<Participant> participants = InputView.inputParticipants();
-        final int ladderHeight = InputView.inputLadderHeight();
-        ResultView.print();
+        final Participants participants = InputView.inputParticipants();
+        final LadderHeight ladderHeight = InputView.inputLadderHeight();
+        ResultView.print(new Ladder(participants, ladderHeight));
     }
 }
