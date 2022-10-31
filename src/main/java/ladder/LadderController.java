@@ -16,28 +16,24 @@ public class LadderController {
     }
 
     private Ladder getLadder() {
-        int height;
-        List<String> names;
         Ladder ladder = null;
 
         while (ladder == null) {
-            names = InputView.getNames();
-            height = InputView.getHeight();
-
-            try {
-                ladder = initLadder(names, height);
-            } catch (Exception e) {
-                clearAndPrintTryAgain(e);
-            }
+            ladder = initLadder();
         }
 
         return ladder;
     }
 
-    private void clearAndPrintTryAgain(Exception e) {
-        PrintView.printError(e);
-        PrintView.printTryAgain();
-        InputView.clear();
+    private Ladder initLadder() {
+        try {
+            List<String> names = InputView.getNames();
+            int height = InputView.getHeight();
+            return initLadder(names, height);
+        } catch (Exception e) {
+            clearAndPrintTryAgain(e);
+            return null;
+        }
     }
 
     private Ladder initLadder(List<String> names, int height) {
@@ -51,6 +47,12 @@ public class LadderController {
                 .mapToObj(i -> new RandomLine(countOfPerson))
                 .collect(Collectors.toUnmodifiableList());
         ladder.addLines(lines);
+    }
+
+    private void clearAndPrintTryAgain(Exception e) {
+        PrintView.printError(e);
+        PrintView.printTryAgain();
+        InputView.clear();
     }
 
 }
