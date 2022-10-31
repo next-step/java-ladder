@@ -7,10 +7,9 @@ import ladder.exception.InputLengthException;
 import java.awt.*;
 import java.util.Objects;
 
-import static ladder.util.LadderConst.*;
-
 public class Person {
 
+    public static final int INPUT_LENGTH_MAX = 5;
     private final LadderTextInput name;
     private final Point position;
 

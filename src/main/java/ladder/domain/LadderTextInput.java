@@ -4,10 +4,9 @@ import ladder.exception.InputLengthException;
 
 import java.util.Objects;
 
-import static ladder.util.LadderConst.*;
-
 public class LadderTextInput {
 
+    public static final int INPUT_LENGTH_MAX = 5;
     private final String text;
 
     public LadderTextInput(String text) {
