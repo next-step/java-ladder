@@ -26,6 +26,10 @@ public class Names {
         return this.maxNameLength;
     }
 
+    public int getCountOfPerson() {
+        return this.names.size();
+    }
+
     public int getIndex(String name) {
         int index = this.names.indexOf(name);
         if(index == -1) {

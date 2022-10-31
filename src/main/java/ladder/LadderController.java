@@ -11,27 +11,52 @@ import ladder.view.PrintView;
 public class LadderController {
 
     public void start() {
-        Ladder ladder = getLadder();
-        PrintView.printLadder(ladder);
-    }
-
-    private Ladder getLadder() {
         Ladder ladder = null;
+        Rewards rewards = null;
 
-        while (ladder == null) {
-            ladder = initLadder();
+        Boolean flag = false;
+        while (!flag) {
+            List<String> names = InputView.getNames();
+            List<String> rewardList = InputView.getRewards();
+
+            ladder = getLadder(names, getHeight());
+            rewards = getRewards(rewardList, names.size());
+
+            flag = updateFlag(ladder, rewards);
         }
 
-        return ladder;
+        PrintView.printLadder(ladder, rewards);
     }
 
-    private Ladder initLadder() {
+    private Boolean updateFlag(Ladder ladder, Rewards rewards) {
+        if (ladder != null && rewards != null) {
+            return true;
+        }
+        return false;
+    }
+
+    private int getHeight() {
         try {
-            List<String> names = InputView.getNames();
-            int height = InputView.getHeight();
+            return InputView.getHeight();
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
+    private Ladder getLadder(List<String> names, int height) {
+        try {
             return initLadder(names, height);
         } catch (Exception e) {
-            clearAndPrintTryAgain(e);
+            printTryAgain(e);
+            return null;
+        }
+    }
+
+    private Rewards getRewards(List<String> rewardsList, int countOfPerson) {
+        try {
+            return new Rewards(rewardsList, countOfPerson);
+        } catch (Exception e) {
+            printTryAgain(e);
             return null;
         }
     }
@@ -49,7 +74,7 @@ public class LadderController {
         ladder.addLines(lines);
     }
 
-    private void clearAndPrintTryAgain(Exception e) {
+    private void printTryAgain(Exception e) {
         PrintView.printError(e);
         PrintView.printTryAgain();
         InputView.clear();

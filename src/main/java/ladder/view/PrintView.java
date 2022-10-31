@@ -1,6 +1,7 @@
 package ladder.view;
 
 import ladder.Ladder;
+import ladder.Rewards;
 import ladder.line.Line;
 
 public class PrintView {
@@ -9,7 +10,7 @@ public class PrintView {
     private static final String EMPTY_BAR = " ";
     private static final String SOLID_BAR = "-";
 
-    public static void printLadder(Ladder ladder) {
+    public static void printLadder(Ladder ladder, Rewards rewards) {
         for (String name : ladder.getNames()) {
             printName(ladder.getMaxNameLength(), name);
         }
@@ -17,6 +18,10 @@ public class PrintView {
 
         ladder.getLines()
                 .forEach(line -> printLine(line, ladder.getMaxNameLength()));
+
+        for (String reward : rewards.getRewards()) {
+            printName(ladder.getMaxNameLength(), reward);
+        }
     }
 
     private static void printName(int maxNameLength, String name) {

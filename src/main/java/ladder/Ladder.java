@@ -38,6 +38,10 @@ public class Ladder {
         return this.names.getMaxNameLength();
     }
 
+    public int getCountOfPerson() {
+        return this.names.getCountOfPerson();
+    }
+
     public int getEndPoint(String name) {
         int currentPoint = this.names.getIndex(name);
 
