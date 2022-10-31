@@ -6,18 +6,16 @@ import java.util.Random;
 public class Point {
 
     private final boolean exist;
-
-    public static Point of(boolean value) {
-        return new Point(value);
-    }
+    private static final Random random = new Random();
 
     public Point() {
-        this.exist = new Random().nextBoolean();
+        this.exist = random.nextBoolean();
     }
 
     public Point(boolean exist) {
         this.exist = exist;
     }
+
     public boolean isExist() {
         return exist;
     }
