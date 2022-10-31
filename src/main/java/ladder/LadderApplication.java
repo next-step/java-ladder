@@ -7,7 +7,8 @@ public class LadderApplication {
         Awards awards = InputView.inputGameAwards();
         int ladderHeight = InputView.inputLadderHeight();
 
-        Ladder ladder = Ladder.of(userNames.size(), ladderHeight);
+        LadderGenerator ladderGenerator = new LadderGenerator(new RowGenerator());
+        Ladder ladder = ladderGenerator.create(userNames.size(), ladderHeight);
 
         System.out.println(ladder.play(userNames.size()));
 
