@@ -4,6 +4,7 @@ import ladder.testutil.LadderLineTestUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.awt.*;
 import java.util.List;
 
 import static ladder.testutil.LadderLineTestUtil.createNoneLadderLine;
@@ -22,8 +23,8 @@ public class LadderLinesTest {
     void result() {
         LadderLines ladderLines = new LadderLines(List.of(LadderLineTestUtil.continuousLadder()));
         Assertions.assertAll(
-                () -> assertThat(ladderLines.result(0)).isEqualTo(1),
-                () -> assertThat(ladderLines.result(1)).isEqualTo(0)
+                () -> assertThat(ladderLines.result(new Point(0, 0))).isEqualTo(new Point(1, 1)),
+                () -> assertThat(ladderLines.result(new Point(1, 0))).isEqualTo(new Point(0, 1))
         );
     }
 }

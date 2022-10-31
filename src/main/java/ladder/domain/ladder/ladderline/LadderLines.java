@@ -21,11 +21,11 @@ public class LadderLines {
         return Collections.unmodifiableList(ladderLines);
     }
 
-    public Point result(Point point) {
-        if (isEscapeResultNumberBound(point.x)) {
+    public Point result(Point position) {
+        if (isEscapeResultNumberBound(position)) {
             throw new EscapeLadderLinesException();
         }
-        return ladderClimbResult(point);
+        return ladderClimbResult(position);
     }
 
     private Point ladderClimbResult(Point position) {
@@ -39,8 +39,16 @@ public class LadderLines {
         return currentPosition;
     }
 
-    private boolean isEscapeResultNumberBound(int startNumber) {
-        return startNumber < RESULT_START_NUMBER_MIN || startNumber > ladderWidth();
+    private boolean isEscapeResultNumberBound(Point position) {
+        return validLadderWidth(position) && validLadderHeight(position);
+    }
+
+    private boolean validLadderHeight(Point position) {
+        return position.y < 0 || position.y >= ladderLines.size();
+    }
+
+    private boolean validLadderWidth(Point position) {
+        return position.x < RESULT_START_NUMBER_MIN || position.x > ladderWidth();
     }
 
     private int ladderWidth() {

@@ -3,6 +3,8 @@ package ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.awt.*;
+
 import static org.assertj.core.api.Assertions.*;
 
 public class RewardsTest {
@@ -19,6 +21,6 @@ public class RewardsTest {
     void result() {
         Rewards rewards = new Rewards("3000", "꽝", "4000");
 
-        assertThat(rewards.result(1)).isEqualTo(new LadderTextInput("꽝"));
+        assertThat(rewards.result(new Point(1, 0))).isEqualTo(new LadderTextInput("꽝"));
     }
 }
