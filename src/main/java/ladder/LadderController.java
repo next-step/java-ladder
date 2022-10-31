@@ -10,6 +10,8 @@ import ladder.view.PrintView;
 
 public class LadderController {
 
+    private final LadderGamePlayer gamePlayer = new LadderGamePlayer();
+
     public void start() {
         Ladder ladder = null;
         Rewards rewards = null;
@@ -25,7 +27,7 @@ public class LadderController {
             flag = updateFlag(ladder, rewards);
         }
 
-        PrintView.printLadder(ladder, rewards);
+        gamePlayer.play(ladder, rewards);
     }
 
     private Boolean updateFlag(Ladder ladder, Rewards rewards) {

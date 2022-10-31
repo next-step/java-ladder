@@ -20,6 +20,11 @@ public class InputView {
         return splitString();
     }
 
+    public static String getResultName() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        return getString();
+    }
+
     private static List<String> splitString() {
         return List.of(getString().split(DELIMITER));
     }

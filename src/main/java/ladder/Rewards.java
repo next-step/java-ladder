@@ -20,6 +20,10 @@ public class Rewards {
         return this.rewards;
     }
 
+    public String getReward(int index) {
+        return this.rewards.get(index);
+    }
+
     private boolean validateNotEmpty(List<String> rewards) {
         return Optional.ofNullable(rewards)
                 .map(r -> !r.isEmpty())

@@ -11,6 +11,10 @@ public class PrintView {
     private static final String SOLID_BAR = "-";
 
     public static void printLadder(Ladder ladder, Rewards rewards) {
+        System.out.println();
+        System.out.println("사다리 결과");
+        System.out.println();
+
         for (String name : ladder.getNames()) {
             printName(ladder.getMaxNameLength(), name);
         }
@@ -22,6 +26,22 @@ public class PrintView {
         for (String reward : rewards.getRewards()) {
             printName(ladder.getMaxNameLength(), reward);
         }
+        System.out.println();
+        System.out.println();
+    }
+
+    public static void printAllResult(Ladder ladder, Rewards rewards) {
+        System.out.println("실행 결과");
+        for (String name : ladder.getNames()) {
+            System.out.println(name + " : " + rewards.getReward(ladder.getEndPoint(name)));
+        }
+        System.out.println();
+    }
+
+    public static void printResult(String reward) {
+        System.out.println("실행 결과");
+        System.out.println(reward);
+        System.out.println();
     }
 
     private static void printName(int maxNameLength, String name) {
