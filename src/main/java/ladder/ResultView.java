@@ -50,16 +50,24 @@ public class ResultView {
     private static void printResult(UserNames userNames, LadderResult result, Awards awards) {
         while (true) {
             UserName userName = InputView.inputUserNameResult();
+            System.out.println("실행 결과");
             if (userName.getName().equals("all")) {
-                System.out.println("실행 결과");
-                for (int i = 0; i < result.getValues().size(); i++) {
-                    System.out.println(userNames.getUserNames().get(i) + ":" + awards.getAwards().get(result.getTarget(i)));
-                }
+                printAllUserResult(userNames, result, awards);
                 break;
             }
-            System.out.println("실행 결과");
-            int userIndex = userNames.findUserIndex(userName);
-            System.out.println(result.getTarget(userIndex));
+            printFindOneUserResult(userNames, result, userName);
+        }
+    }
+
+    private static void printFindOneUserResult(UserNames userNames, LadderResult result, UserName userName) {
+        int userIndex = userNames.findUserIndex(userName);
+        System.out.println(result.getTarget(userIndex));
+    }
+
+    private static void printAllUserResult(UserNames userNames, LadderResult result, Awards awards) {
+        for (int i = 0; i < result.getValues().size(); i++) {
+            System.out.println(
+                userNames.getUserNames().get(i) + ":" + awards.getAwards().get(result.getTarget(i)));
         }
     }
 }
