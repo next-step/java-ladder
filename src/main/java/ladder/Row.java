@@ -19,6 +19,10 @@ public class Row {
         return points;
     }
 
+    public boolean move(int position) {
+        return points.get(position);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

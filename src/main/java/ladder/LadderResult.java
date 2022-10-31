@@ -7,6 +7,7 @@ import java.util.Map;
 
 public class LadderResult {
 
+    // index, position
     private Map<Integer, Integer> result;
 
     private LadderResult(Map<Integer, Integer> result) {
