@@ -1,23 +1,23 @@
 package ladder.dto;
 
 import ladder.domain.ladder.ladderline.LadderLines;
-import ladder.domain.result.Results;
+import ladder.domain.Rewards;
 
 public class LadderGameResultDto {
 
     private final LadderLines ladderLines;
-    private final Results results;
+    private final Rewards rewards;
 
-    public LadderGameResultDto(Results results, LadderLines ladderLines) {
+    public LadderGameResultDto(Rewards rewards, LadderLines ladderLines) {
         this.ladderLines = ladderLines;
-        this.results = results;
+        this.rewards = rewards;
     }
 
     public LadderLines ladderLines() {
         return ladderLines;
     }
 
-    public Results results() {
-        return results;
+    public Rewards results() {
+        return rewards;
     }
 }

@@ -1,6 +1,6 @@
 package ladder.util;
 
-import ladder.domain.result.Results;
+import ladder.domain.Rewards;
 import ladder.domain.ladder.ladderline.LadderLines;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -35,9 +35,9 @@ public class LadderOutputConverterTest {
     @DisplayName("5자 미만일 경우 공백을 채워 5자로 출력한다.")
     @Test
     void result_output() {
-        Results results = new Results("꽝", "5000", "3000");
+        Rewards rewards = new Rewards("꽝", "5000", "3000");
 
-        assertThat(LadderOutputConverter.ladderTextOutput(results.results())).isEqualTo("    꽝  5000  3000");
+        assertThat(LadderOutputConverter.ladderTextOutput(rewards.results())).isEqualTo("    꽝  5000  3000");
     }
 
 

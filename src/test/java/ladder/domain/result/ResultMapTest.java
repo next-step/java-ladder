@@ -1,5 +1,6 @@
 package ladder.domain.result;
 
+import ladder.domain.Rewards;
 import ladder.domain.ladder.ladderline.LadderLines;
 import ladder.domain.person.Person;
 import ladder.dto.LadderGameResultDto;
@@ -19,10 +20,10 @@ public class ResultMapTest {
         Person crong = new Person("crong", 1, 0);
         List<Person> personList = List.of(pobi, crong);
 
-        Results results = new Results("1000", "꽝");
+        Rewards rewards = new Rewards("1000", "꽝");
         LadderLines ladderLines = new LadderLines(List.of(LadderLineTestUtil.continuousLadder()));
 
-        ResultMap resultMap = new ResultMap(new LadderGameResultDto(results, ladderLines), personList);
+        ResultMap resultMap = new ResultMap(new LadderGameResultDto(rewards, ladderLines), personList);
 
         assertThat(resultMap.result(pobi).text()).isEqualTo("꽝");
         assertThat(resultMap.result(crong).text()).isEqualTo("1000");

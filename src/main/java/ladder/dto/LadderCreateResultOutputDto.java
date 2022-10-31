@@ -4,7 +4,7 @@ import ladder.domain.LadderTextInput;
 import ladder.domain.ladder.ladderline.LadderLines;
 import ladder.domain.person.People;
 import ladder.domain.person.Person;
-import ladder.domain.result.Results;
+import ladder.domain.Rewards;
 import ladder.util.LadderOutputConverter;
 
 import java.util.stream.Collectors;
@@ -13,7 +13,7 @@ public class LadderCreateResultOutputDto {
 
     private final String resultOutput;
 
-    public LadderCreateResultOutputDto(People people, LadderLines ladderLines, Results results) {
+    public LadderCreateResultOutputDto(People people, LadderLines ladderLines, Rewards rewards) {
         String peopleOutput = LadderOutputConverter.ladderTextOutput(people.people().stream()
                 .map(Person::name)
                 .map(LadderTextInput::new)
@@ -21,7 +21,7 @@ public class LadderCreateResultOutputDto {
 
         String ladderLinesOutput = LadderOutputConverter.ladderLinesOutput(ladderLines);
 
-        String resultsOutput = LadderOutputConverter.ladderTextOutput(results.results());
+        String resultsOutput = LadderOutputConverter.ladderTextOutput(rewards.results());
 
         this.resultOutput = peopleOutput + "\n" +
                 ladderLinesOutput + "\n" +

@@ -1,6 +1,5 @@
-package ladder.domain.result;
+package ladder.domain;
 
-import ladder.domain.LadderTextInput;
 import ladder.exception.result.ResultNotExistException;
 
 import java.util.Collections;
@@ -8,11 +7,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Results {
+public class Rewards {
 
     public final List<LadderTextInput> results;
 
-    public Results(String... strings) {
+    public Rewards(String... strings) {
         this.results = Stream.of(strings)
                 .map(LadderTextInput::new)
                 .collect(Collectors.toList());

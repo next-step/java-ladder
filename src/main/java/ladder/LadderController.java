@@ -4,7 +4,7 @@ import ladder.domain.LadderTextInput;
 import ladder.domain.person.Person;
 import ladder.domain.person.SearchPeopleNames;
 import ladder.domain.result.ResultMap;
-import ladder.domain.result.Results;
+import ladder.domain.Rewards;
 import ladder.domain.ladder.LadderHeight;
 import ladder.domain.ladder.LadderWidth;
 import ladder.domain.person.People;
@@ -36,11 +36,11 @@ public class LadderController {
     public void gameStart() {
         People people = inputPeople();
 
-        Results results = inputPlayResult();
+        Rewards rewards = inputPlayResult();
 
         LadderLines ladderLines = ladderGameCreateService.createLadderLine(new LadderWidth(people.number()), inputHeight());
 
-        LadderGameCreateOutputView.result(new LadderCreateResultOutputDto(people, ladderLines, results));
+        LadderGameCreateOutputView.result(new LadderCreateResultOutputDto(people, ladderLines, rewards));
 
         SearchPeopleNames searchPeopleNames = inputResultPersonName();
 
@@ -48,7 +48,7 @@ public class LadderController {
                 .map(LadderTextInput::text)
                 .collect(Collectors.toList()));
 
-        ResultMap resultMap = ladderGameResultService.ladderGameResult(new LadderGameResultDto(results, ladderLines), personList);
+        ResultMap resultMap = ladderGameResultService.ladderGameResult(new LadderGameResultDto(rewards, ladderLines), personList);
 
         LadderGameResultOutputView.result(LadderOutputConverter.resultMapOutput(resultMap));
     }
@@ -62,9 +62,9 @@ public class LadderController {
         return inputPeople();
     }
 
-    private Results inputPlayResult() {
+    private Rewards inputPlayResult() {
         try {
-            return new Results(InputView.splitResult());
+            return new Rewards(InputView.splitResult());
         } catch (Exception e) {
             LadderGameCreateOutputView.inputPlayResultException();
         }
