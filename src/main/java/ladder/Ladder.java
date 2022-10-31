@@ -22,19 +22,31 @@ public class Ladder {
         LadderResult result = LadderResult.of(people);
         // index, position
 
-        for (int i = 0; i < people; i++) {
-            for (Row row : rows) {
-                if (row.move(result.getTarget(i))) {
-                    // 오른쪽으로 이동
-                    result.put(i, result.getTarget(i) + 1);
-                } else {
-                    // 왼쪽으로 이동
-                    if (result.getTarget(i) > 0 && row.move(result.getTarget(i) - 1)) {
-                        result.put(i, result.getTarget(i)-1);
-                    }
-                }
-            }
+        for (int index = 0; index < people; index++) {
+            int destination = descending(index);
+            result.put(index, destination);
         }
         return result;
+    }
+
+    private int descending(int index) {
+        int position = index;
+        for (Row row : rows) {
+            position = getNextPosition(row, position);
+        }
+
+        return position;
+    }
+
+    private int getNextPosition(Row row, int position) {
+        if (row.move(position)) {
+            return position + 1;
+        }
+
+        if (position > 0 && row.move(position - 1)) {
+            return position - 1;
+        }
+
+        return position;
     }
 }
