@@ -1,5 +1,6 @@
 package ladder;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -129,5 +130,27 @@ class LadderTest {
                 () -> assertThatExceptionOfType(InvalidNameLengthException.class)
                         .isThrownBy(() -> new Ladder(List.of("", "adgda", "adg"), 4))
         );
+    }
+
+    @Test
+    @DisplayName("사다리 도착 결과")
+    void get_end_point() {
+        Ladder ladder = new Ladder(List.of("abc", "def", "ghi"), 5);
+        ladder.addLines(
+                List.of(
+                        new ManualLine(3, List.of(false, false, true)),
+                        new ManualLine(3, List.of(false, true, false)),
+                        new ManualLine(3, List.of(false, false, true)),
+                        new ManualLine(3, List.of(false, true, false)),
+                        new ManualLine(3, List.of(false, false, true))
+                )
+        );
+
+        assertAll(
+                () -> assertThat(ladder.getEndPoint("abc")).isEqualTo(1),
+                () -> assertThat(ladder.getEndPoint("def")).isEqualTo(0),
+                () -> assertThat(ladder.getEndPoint("ghi")).isEqualTo(2)
+        );
+
     }
 }

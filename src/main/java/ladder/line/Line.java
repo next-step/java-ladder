@@ -20,6 +20,26 @@ public abstract class Line {
         return this.bars;
     }
 
+    public int move(int index) {
+        if (isMovementAvailable(index)) {
+            return -1;
+        }
+
+        if (isMovementAvailable(index + 1)) {
+            return 1;
+        }
+
+        return 0;
+    }
+
+    private Boolean isMovementAvailable(int index) {
+        try {
+            return this.bars.get(index);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     public boolean validate() {
         if (bars.size() != countOfPerson) {
             return false;

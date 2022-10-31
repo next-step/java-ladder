@@ -38,4 +38,13 @@ public class Ladder {
         return this.names.getMaxNameLength();
     }
 
+    public int getEndPoint(String name) {
+        int currentPoint = this.names.getIndex(name);
+
+        for(Line line : getLines()) {
+            currentPoint += line.move(currentPoint);
+        }
+
+        return currentPoint;
+    }
 }
