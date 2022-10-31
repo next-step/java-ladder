@@ -25,19 +25,16 @@ public abstract class Line {
             return false;
         }
 
-        long invalidCount = IntStream.range(0, bars.size())
-                .filter(i -> isFirstBarInvalid(i) || isBarInvalid(i))
-                .count();
-
-        return invalidCount == 0;
+        return IntStream.range(0, bars.size())
+                .noneMatch(i -> isFirstBarInvalid(i) || isBarInvalid(i));
     }
 
-    private boolean isBarInvalid(int i) {
-        return i != 0 && bars.get(i - 1) && bars.get(i);
+    private boolean isBarInvalid(int index) {
+        return index != 0 && bars.get(index - 1) && bars.get(index);
     }
 
-    private boolean isFirstBarInvalid(int i) {
-        return i == 0 && bars.get(i);
+    private boolean isFirstBarInvalid(int index) {
+        return index == 0 && bars.get(index);
     }
 
     private int validateCountOfPerson(int countOfPerson) {
