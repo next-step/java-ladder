@@ -53,7 +53,7 @@ public class LadderController {
         try {
             return ladderGameCreateService.people(InputView.personNameInput());
         } catch (Exception e) {
-            LadderGameCreateOutputView.inputPeopleException();
+            System.out.println("사람 이름 입력이 잘못됐습니다 다시 이력해주세요.");
         }
         return inputPeople();
     }
@@ -62,7 +62,7 @@ public class LadderController {
         try {
             return new Rewards(InputView.splitResult());
         } catch (Exception e) {
-            LadderGameCreateOutputView.inputPlayResultException();
+            System.out.println("사다리 게임 실행 결과 입력이 잘못됐습니다 다시 입력해주세요.");
         }
         return inputPlayResult();
     }
@@ -71,7 +71,7 @@ public class LadderController {
         try {
             return new LadderHeight(InputView.ladderHeight());
         } catch (Exception e) {
-            LadderGameCreateOutputView.inputLadderHeightException();
+            System.out.println("사다리 높이 입력이 잘못됐습니다 다시 입력해주세요.");
         }
         return inputHeight();
     }
@@ -82,7 +82,7 @@ public class LadderController {
                     .map(LadderTextInput::new)
                     .collect(Collectors.toList()));
         } catch (Exception e) {
-            LadderGameResultOutputView.inputResultPersonNameException();
+            System.out.println("결과를 보고 싶은 사람 이름 입력이 잘못됐습니다 다시 입력해주세요");
         }
         return inputResultPersonName();
     }
