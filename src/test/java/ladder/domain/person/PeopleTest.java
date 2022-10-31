@@ -20,11 +20,12 @@ public class PeopleTest {
 
         Assertions.assertAll(
                 () -> assertThat(people.findByName("crong"))
-                        .contains(new Person("crong", 1)),
+                        .contains(new Person("crong", 1, 0)),
                 () -> assertThat(people.findByName("pobi", "crong"))
-                        .contains(new Person("pobi", 0), new Person("crong", 1)),
+                        .contains(new Person("pobi", 0, 0), new Person("crong", 1, 0)),
                 () -> assertThat(people.findByName("all"))
-                        .contains(new Person("pobi", 0), new Person("crong", 1), new Person("sik", 2))
+                        .contains(new Person("pobi", 0, 0), new Person("crong", 1, 0),
+                                new Person("sik", 2, 0))
         );
     }
 
@@ -34,7 +35,7 @@ public class PeopleTest {
         People people = new People("pobi", "crong", "sik");
 
         Assertions.assertAll(
-                () -> assertThat(people.findByName("pobi", "pobi")).contains(new Person("pobi", 0)),
+                () -> assertThat(people.findByName("pobi", "pobi")).contains(new Person("pobi", 0, 0)),
                 () -> assertThat(people.findByName("pobi", "pobi").size()).isEqualTo(1)
         );
     }

@@ -16,8 +16,8 @@ public class ResultMapTest {
 
     @Test
     void setPersonResult() {
-        Person pobi = new Person("pobi", 0);
-        Person crong = new Person("crong", 1);
+        Person pobi = new Person("pobi", 0, 0);
+        Person crong = new Person("crong", 1, 0);
         ResultMap resultMap = new ResultMap(pobi, crong);
         resultMap.setPersonResult(pobi, new Result("꽝"));
 
@@ -26,8 +26,8 @@ public class ResultMapTest {
 
     @Test
     void setResult() {
-        Person pobi = new Person("pobi", 0);
-        Person crong = new Person("crong", 1);
+        Person pobi = new Person("pobi", 0, 0);
+        Person crong = new Person("crong", 1, 0);
         ResultMap resultMap = new ResultMap(pobi, crong);
         resultMap.setResult(
                 new LadderGameResultDto(

@@ -11,7 +11,7 @@ public class ResultPeopleTest {
     @Test
     void create() {
         ResultPeople actual = new ResultPeople(new People("pobi", "crong").people());
-        ResultPeople expected = new ResultPeople(List.of(new Person("pobi", 0), new Person("crong", 1)));
+        ResultPeople expected = new ResultPeople(List.of(new Person("pobi", 0, 0), new Person("crong", 1, 0)));
 
         assertThat(actual).isEqualTo(expected);
     }
@@ -20,6 +20,6 @@ public class ResultPeopleTest {
     void resultPeople() {
         ResultPeople resultPeople = new ResultPeople(new People("pobi", "crong").people());
 
-        assertThat(resultPeople.resultPeople()).isEqualTo(List.of(new Person("pobi", 0), new Person("crong", 1)));
+        assertThat(resultPeople.resultPeople()).isEqualTo(List.of(new Person("pobi", 0, 0), new Person("crong", 1, 0)));
     }
 }

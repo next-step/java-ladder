@@ -38,7 +38,7 @@ public class ResultMap {
     public void setResult(LadderGameResultDto ladderGameResultDto) {
         this.resultMap.keySet()
                 .forEach(person -> {
-                            Result result = ladderGameResultDto.results().result(ladderGameResultDto.ladderLines().result(person.number()));
+                            Result result = ladderGameResultDto.results().result(ladderGameResultDto.ladderLines().result(person.getHorizontalPosition()));
                             this.setPersonResult(person, result);
                         }
                 );

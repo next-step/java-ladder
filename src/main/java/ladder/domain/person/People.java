@@ -21,7 +21,7 @@ public class People {
             throw new PeopleSizeException();
         }
         this.people = IntStream.range(0, strings.length)
-                .mapToObj(number -> new Person(strings[number], number))
+                .mapToObj(number -> new Person(strings[number], number, 0))
                 .collect(Collectors.toList());
     }
 

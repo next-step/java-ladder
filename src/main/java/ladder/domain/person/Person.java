@@ -3,6 +3,7 @@ package ladder.domain.person;
 import ladder.exception.person.IllegalPersonNameException;
 import ladder.exception.InputLengthException;
 
+import java.awt.*;
 import java.util.Objects;
 
 import static ladder.util.LadderConst.*;
@@ -10,12 +11,12 @@ import static ladder.util.LadderConst.*;
 public class Person {
 
     private final String name;
-    private final int number;
+    private final Point position;
 
-    public Person(String name, int number) {
+    public Person(String name, int x, int y) {
         validationName(name);
         this.name = name;
-        this.number = number;
+        this.position = new Point(x, y);
     }
 
     private void validationName(String name) {
@@ -31,8 +32,12 @@ public class Person {
         return this.name;
     }
 
-    public int number() {
-        return this.number;
+    public int getHorizontalPosition() {
+        return this.position.x;
+    }
+
+    public int getVerticalPosition() {
+        return this.position.y;
     }
 
     @Override
@@ -40,12 +45,12 @@ public class Person {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return number == person.number && Objects.equals(name, person.name);
+        return Objects.equals(name, person.name) && Objects.equals(position, person.position);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, number, INPUT_LENGTH_MAX);
+        return Objects.hash(name, position);
     }
 
     @Override
