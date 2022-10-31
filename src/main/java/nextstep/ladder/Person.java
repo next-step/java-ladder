@@ -1,15 +1,24 @@
 package nextstep.ladder;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Person {
 
-    List<String> person;
+    List<String> person = new ArrayList<>();
 
-    public Person(String[] person) {
-        this.person = Arrays.asList(person);
+    public Person(String[] people) {
+        for (String person : people) {
+            checkDuplicate(person);
+            this.person.add(person);
+        }
+    }
+
+    private void checkDuplicate(String person) {
+        if (this.person.contains(person)) {
+            throw new IllegalArgumentException("이름은 중복으로 입력 불가합니다.");
+        }
     }
 
     public int countPerson() {

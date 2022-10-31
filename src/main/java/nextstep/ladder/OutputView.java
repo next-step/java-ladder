@@ -5,6 +5,7 @@ public class OutputView {
     private static final String BLANK = "     ";
     private static final String HORIZONTAL_LINE = "-----";
     private static final String VERTICAL_LINE = "|";
+    private static final String TAB = "\t";
 
     public static void outputResult(Person people, Ladder ladder) {
         System.out.println("실행결과\n");
@@ -22,7 +23,7 @@ public class OutputView {
     private static void outputLines(Line line) {
         for (boolean bool : line.points) {
             System.out.print(VERTICAL_LINE);
-            System.out.println(getLine(bool));
+            System.out.print(getLine(bool));
         }
         System.out.println(VERTICAL_LINE);
     }
@@ -36,9 +37,9 @@ public class OutputView {
     }
 
     private static void outputPerson(Person person) {
-            person.getPerson()
+        person.getPerson()
                 .stream()
-                .forEach(p -> System.out.print(p + "\t"));
+                .forEach(p -> System.out.print(p + TAB));
 
         System.out.println();
     }

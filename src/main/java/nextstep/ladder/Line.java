@@ -11,7 +11,7 @@ public class Line {
 
     public Line(final int countPerson) {
         IntStream.range(0, countPerson - 1)
-                .forEach(i -> points.add(getPoint(i)));
+                .forEach(i -> points.add(addPoint(i)));
     }
 
     public Line(List<Boolean> points) {
@@ -19,13 +19,13 @@ public class Line {
     }
 
     boolean addPoint(int point) {
-        if (isTrue(point)) {
+        if (isCondition(point)) {
             return false;
         }
         return RANDOM.nextBoolean();
     }
 
-    private boolean isTrue(int point) {
+    private boolean isCondition(int point) {
         return point > 0 && points.get(point - 1);
     }
 
