@@ -8,7 +8,7 @@ public class Line {
 
     private Line(final int countOfParticipant){
         RandomLineGenerator randomLineGenerator = RandomLineGenerator.from(countOfParticipant);
-        for (int position = 0; position < countOfParticipant; position++) {
+        for (int position = 1; position <= countOfParticipant; position++) {
             points.add(Point.from(randomLineGenerator.createRandomBoolean(position)));
         }
     }

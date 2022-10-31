@@ -18,7 +18,7 @@ public class RandomLineGenerator {
     public boolean createRandomBoolean(int position) {
         boolean nextBoolean = random.nextBoolean();
 
-        if (booleanCount > 0 || position == countOfParticipant - 1) {
+        if (booleanCount > 0 || position == countOfParticipant) {
             return false;
         }
 
