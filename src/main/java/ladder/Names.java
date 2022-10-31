@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import ladder.exception.EmptyNamesException;
 import ladder.exception.InvalidNameLengthException;
 import ladder.exception.NullNamesException;
+import ladder.exception.UnknownNameException;
 
 public class Names {
 
@@ -23,6 +24,14 @@ public class Names {
 
     public int getMaxNameLength() {
         return this.maxNameLength;
+    }
+
+    public int getIndex(String name) {
+        int index = this.names.indexOf(name);
+        if(index == -1) {
+            throw new UnknownNameException();
+        }
+        return index;
     }
 
     private List<String> validateNames(List<String> names) {
@@ -50,4 +59,5 @@ public class Names {
             throw new InvalidNameLengthException();
         }
     }
+
 }
