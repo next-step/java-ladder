@@ -16,7 +16,7 @@ public class LadderInitializer {
         Ladder ladder = null;
         Rewards rewards = null;
 
-        Boolean initLoopFlag = false;
+        boolean initLoopFlag = false;
         while (!initLoopFlag) {
             List<String> names = InputView.getNames();
             List<String> rewardValues = InputView.getRewards();
@@ -31,10 +31,7 @@ public class LadderInitializer {
     }
 
     private Boolean updateFlag(Ladder ladder, Rewards rewards) {
-        if (ladder != null && rewards != null) {
-            return true;
-        }
-        return false;
+        return ladder != null && rewards != null;
     }
 
     private int getHeight() {

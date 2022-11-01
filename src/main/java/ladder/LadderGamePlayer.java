@@ -17,12 +17,12 @@ public class LadderGamePlayer {
         PrintView.printLadder(ladder, rewards);
         InputView.clear();
 
-        Boolean flag = false;
-        while (!flag) {
+        boolean resultLoopFlag = false;
+        while (!resultLoopFlag) {
             String resultName = InputView.getResultName();
             printResult(ladder, rewards, resultName);
 
-            flag = updateFlag(resultName);
+            resultLoopFlag = updateFlag(resultName);
         }
     }
 
