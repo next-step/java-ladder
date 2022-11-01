@@ -23,7 +23,7 @@ public class LadderGameController {
         // 사다리 출력하기
         OutputView.printLadder(ladderGame);
         // 결과 출력
-        boolean gameOver = false;
+        boolean gameOver;
         do{
             // 결과를 출력하고 싶은 사람 이름 입력받기
             String wantResult = InputView.askPersonNameWantToKnowResult();
@@ -38,7 +38,7 @@ public class LadderGameController {
 
     private static void validateSize(People people, Rewards rewards) {
         if(people.numberOfPeople() != rewards.numberOfRewards()){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("참여자 수와 실행 결과 수는 같아야 합니다.");
         }
     }
 

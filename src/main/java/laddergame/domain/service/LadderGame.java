@@ -1,10 +1,11 @@
 package laddergame.domain.service;
 
 import laddergame.domain.*;
+import laddergame.dto.LadderRecord;
+import laddergame.dto.RewardRecord;
+import laddergame.dto.RewordRecords;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class LadderGame {
 
@@ -26,7 +27,7 @@ public class LadderGame {
         return people.getNames();
     }
 
-    public Map<PersonName, Reward> makeResult(PersonName personName) {
+    public RewordRecords makeResult(PersonName personName) {
 
         if (personName.isAll()) {
             return makeResultAll();
@@ -34,30 +35,34 @@ public class LadderGame {
         if (people.contains(personName)) {
             return makeResultOne(personName);
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException("all 또는 사다리 게임 참여자의 이름을 입력해주세요.");
     }
 
-    private Map<PersonName, Reward> makeResultOne(PersonName personName) {
-        Map<PersonName, Reward> result = new HashMap<>();
+    private RewordRecords makeResultOne(PersonName personName) {
+
+        List<RewardRecord> result = new ArrayList<>();
+
         int rewardIndex = ladder.findRewardIndex(people.getIndex(personName));
-        result.put(personName, rewards.getReward(rewardIndex));
-        return result;
+        result.add( RewardRecord.of(personName, rewards.getReward(rewardIndex)));
+
+        return new RewordRecords(result);
     }
 
-    private Map<PersonName, Reward> makeResultAll() {
-        HashMap<PersonName, Reward> result = new HashMap<>();
+    private RewordRecords makeResultAll() {
+
+        List<RewardRecord> result = new ArrayList<>();
 
         List<PersonName> names = people.getNames();
         for (PersonName name : names) {
             int rewardIndex = ladder.findRewardIndex(people.getIndex(name));
-            result.put(name, rewards.getReward(rewardIndex));
+            result.add( RewardRecord.of(name, rewards.getReward(rewardIndex)));
         }
 
-        return result;
+        return new RewordRecords(result);
     }
 
-    public Ladder getLadder() {
-        return ladder;
+    public LadderRecord getLadderRecord() {
+        return LadderRecord.of(ladder);
     }
 
     public Rewards getRewards() {
