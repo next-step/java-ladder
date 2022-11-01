@@ -7,10 +7,10 @@ import ladder.domain.line.Lines;
 public class Ladder {
 
     private final Lines lines;
-    private final Names names;
+    private final Users users;
 
     public Ladder(List<String> names, int height) {
-        this.names = new Names(names);
+        this.users = new Users(names);
         this.lines = new Lines(height);
     }
 
@@ -31,19 +31,19 @@ public class Ladder {
     }
 
     public List<String> getNames() {
-        return this.names.getNames();
+        return this.users.getNames();
     }
 
     public int getMaxNameLength() {
-        return this.names.getMaxNameLength();
+        return this.users.getMaxNameLength();
     }
 
     public int getCountOfPerson() {
-        return this.names.getCountOfPerson();
+        return this.users.getCountOfPerson();
     }
 
     public int getEndPoint(String name) {
-        int currentPoint = this.names.getIndex(name);
+        int currentPoint = this.users.getIndex(name);
 
         for(Line line : getLines()) {
             currentPoint += line.move(currentPoint);

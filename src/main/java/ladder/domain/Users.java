@@ -8,12 +8,14 @@ import ladder.domain.exception.InvalidNameLengthException;
 import ladder.domain.exception.NullNamesException;
 import ladder.domain.exception.UnknownNameException;
 
-public class Names {
+public class Users {
+
+    private static final int NAME_LENGTH_MAX = 5;
 
     private final List<String> names;
     private final int maxNameLength;
 
-    public Names(List<String> names) {
+    public Users(List<String> names) {
         this.names = validateNames(names);
         this.maxNameLength = getMaxNameLength(names);
     }
@@ -59,7 +61,7 @@ public class Names {
 
     private void validateNameLength(List<String> sortedNames) {
         if (sortedNames.stream()
-                .anyMatch(name -> name.length() == 0 || name.length() > 5)) {
+                .anyMatch(name -> name.length() == 0 || name.length() > NAME_LENGTH_MAX)) {
             throw new InvalidNameLengthException();
         }
     }
