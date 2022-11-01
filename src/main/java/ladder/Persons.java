@@ -12,13 +12,6 @@ public class Persons {
         }
     }
 
-    public Persons(String... names) {
-        persons = new ArrayList<>();
-        for (int i = 0; i < names.length; i++) {
-            persons.add(new Person(i, names[i]));
-        }
-    }
-
     public int findResultOf(Person person, Ladder ladder) {
         int index = persons.stream()
                 .filter(p -> p.equals(person))

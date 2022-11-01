@@ -3,6 +3,7 @@ package ladder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -14,7 +15,7 @@ public class PersonsTest {
         // given
         Person pobi = new Person("pobi");
         Person honux = new Person("honux");
-        Persons persons = new Persons("pobi", "honux");
+        Persons persons = new Persons(List.of("pobi", "honux"));
         Ladder ladder = new Ladder(1, 2, () -> false);
         // when
         int result0 = persons.findResultOf(pobi, ladder);
@@ -30,7 +31,7 @@ public class PersonsTest {
         // given
         Person pobi = new Person("pobi");
         Person honux = new Person("honux");
-        Persons persons = new Persons("pobi", "honux");
+        Persons persons = new Persons(List.of("pobi", "honux"));
         Ladder ladder = new Ladder(1, 2, () -> false);
         // when
         Map<Person, Integer> indexs = persons.findAllFinalIndex(ladder);

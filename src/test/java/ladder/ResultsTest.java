@@ -3,6 +3,8 @@ package ladder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ResultsTest {
@@ -12,7 +14,7 @@ public class ResultsTest {
     void test1() {
         // given
         String success = "2000";
-        Results results = new Results(success, "꽝", "꽝", "꽝");
+        Results results = new Results(List.of(success, "꽝", "꽝", "꽝"));
         // when
         Result result = results.findResultOf(0);
         // then

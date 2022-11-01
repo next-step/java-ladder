@@ -3,6 +3,7 @@ package ladder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -12,8 +13,8 @@ public class LadderPlayerTest {
     @DisplayName("한명 결과 찾기")
     void test1() {
         // given
-        Persons persons = new Persons("a", "b", "c", "d");
-        Results results = new Results("1", "2", "3", "4");
+        Persons persons = new Persons(List.of("a", "b", "c", "d"));
+        Results results = new Results(List.of("1", "2", "3", "4"));
         int ladderHeight = 1;
         int countOfPerson = 4;
         Ladder ladder = new Ladder(ladderHeight, countOfPerson, () -> false);
@@ -34,8 +35,8 @@ public class LadderPlayerTest {
     @DisplayName("전체 결과 찾기")
     void test() {
         // given
-        Persons persons = new Persons("a", "b", "c", "d");
-        Results results = new Results("1", "2", "3", "4");
+        Persons persons = new Persons(List.of("a", "b", "c", "d"));
+        Results results = new Results(List.of("1", "2", "3", "4"));
         int ladderHeight = 1;
         int countOfPerson = 4;
         Ladder ladder = new Ladder(ladderHeight, countOfPerson, () -> false);
