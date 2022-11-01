@@ -26,31 +26,21 @@ public class Lambda {
         }).start();
     }
 
-    public static int sumAll(List<Integer> numbers) {
+    public static int sumAll(List<Integer> numbers, SumStrategy strategy) {
         int total = 0;
         for (int number : numbers) {
-            total += number;
+            if (strategy.validateCondition(number)) {
+                total += number;
+            }
         }
         return total;
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number % 2 == 0) {
-                total += number;
-            }
-        }
-        return total;
+        return sumAll(numbers, value -> value % 2 == 0);
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number > 3) {
-                total += number;
-            }
-        }
-        return total;
+        return sumAll(numbers, value -> value > 3);
     }
 }
