@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.strategy.BridgeLinesRandomStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +18,7 @@ public class LadderTest {
                                                                  .map(Participant::new)
                                                                  .collect(Collectors.toList()));
         final LadderHeight ladderHeight = new LadderHeight(5);
-        final Ladder ladder = new Ladder(participants, ladderHeight);
+        final Ladder ladder = new Ladder(participants, ladderHeight, new BridgeLinesRandomStrategy());
 
         assertThat(ladder.getParticipants()).isEqualTo(new Participants(Stream.of("woody", "jacob", "tate", "test")
                                                                               .map(Participant::new)
