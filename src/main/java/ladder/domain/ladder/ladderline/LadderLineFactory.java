@@ -7,12 +7,12 @@ import ladder.domain.ladder.strategy.LadderConnectStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LadderLineFactory {
-
+    private static final ThreadLocalRandom random = ThreadLocalRandom.current();
     private final LadderConnectStrategy ladderConnectStrategy;
 
     public LadderLineFactory(LadderConnectStrategy ladderConnectStrategy) {
@@ -39,6 +39,6 @@ public class LadderLineFactory {
 
     protected HorizontalLineDirection randomConnectableLadder(HorizontalLineDirection beforeHorizontalLineDirection) {
         List<HorizontalLineDirection> connectableHorizontalLineDirections = ladderConnectStrategy.connectableLadders(beforeHorizontalLineDirection);
-        return connectableHorizontalLineDirections.get(new Random().nextInt(connectableHorizontalLineDirections.size()));
+        return connectableHorizontalLineDirections.get(random.nextInt(connectableHorizontalLineDirections.size()));
     }
 }
