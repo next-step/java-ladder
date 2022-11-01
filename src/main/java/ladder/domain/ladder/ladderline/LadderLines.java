@@ -40,15 +40,15 @@ public class LadderLines {
     }
 
     private boolean isEscapeResultNumberBound(Point position) {
-        return validLadderWidth(position) && validLadderHeight(position);
+        return validLadderWidth(position.x) && validLadderHeight(position.y);
     }
 
-    private boolean validLadderHeight(Point position) {
-        return position.y < 0 || position.y >= ladderLines.size();
+    private boolean validLadderHeight(int height) {
+        return height < 0 || height >= ladderLines.size();
     }
 
-    private boolean validLadderWidth(Point position) {
-        return position.x < RESULT_START_NUMBER_MIN || position.x > ladderWidth();
+    private boolean validLadderWidth(int width) {
+        return width < RESULT_START_NUMBER_MIN || width > ladderWidth();
     }
 
     private int ladderWidth() {
