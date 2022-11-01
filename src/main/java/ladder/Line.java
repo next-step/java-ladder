@@ -18,7 +18,7 @@ public class Line {
 
         for (int right = 1; right < countOfPerson; right++) {
             int left = right - 1;
-            boolean connect = horizontalLineStrategy.drawLine() && areLinesNotOverlapped(left, right, points);
+            boolean connect = horizontalLineStrategy.drawLine(left) && areLinesNotOverlapped(left, right, points);
 
             Point prevLeftPoint = points.get(left);
             Point prevRightPoint = points.get(right);

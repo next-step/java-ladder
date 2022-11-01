@@ -12,7 +12,7 @@ public class LadderTest {
         // given
         int ladderHeight = 1;
         int countOfPerson = 2;
-        Ladder ladder = new Ladder(ladderHeight, countOfPerson, () -> false);
+        Ladder ladder = new Ladder(ladderHeight, countOfPerson, (left) -> false);
         // when
         int index0 = ladder.findFinalIndexOf(0);
         int index1 = ladder.findFinalIndexOf(1);
@@ -27,7 +27,7 @@ public class LadderTest {
         // given
         int ladderHeight = 1;
         int countOfPerson = 2;
-        Ladder ladder = new Ladder(ladderHeight, countOfPerson, () -> true);
+        Ladder ladder = new Ladder(ladderHeight, countOfPerson, (left) -> true);
         // when
         int index0 = ladder.findFinalIndexOf(0);
         int index1 = ladder.findFinalIndexOf(1);

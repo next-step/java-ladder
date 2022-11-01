@@ -2,5 +2,5 @@ package ladder;
 
 @FunctionalInterface
 public interface HorizontalLineStrategy {
-    boolean drawLine();
+    boolean drawLine(int left);
 }

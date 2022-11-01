@@ -7,7 +7,7 @@ public class HorizontalLineRandomStrategy implements HorizontalLineStrategy {
     private static final int RANDOM_MAX = 10;
 
     @Override
-    public boolean drawLine() {
+    public boolean drawLine(int left) {
         return ThreadLocalRandom.current().nextInt(RANDOM_MAX) > RANDOM_THRESHOLD;
     }
 

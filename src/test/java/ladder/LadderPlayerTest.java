@@ -17,7 +17,7 @@ public class LadderPlayerTest {
         Results results = new Results(List.of("1", "2", "3", "4"));
         int ladderHeight = 1;
         int countOfPerson = 4;
-        Ladder ladder = new Ladder(ladderHeight, countOfPerson, () -> false);
+        Ladder ladder = new Ladder(ladderHeight, countOfPerson, (left) -> false);
         LadderPlayer ladderPlayer = new LadderPlayer(persons, results);
         // when
         Map<Person, Result> result1 = ladderPlayer.getResultOf("a", ladder);
@@ -39,7 +39,7 @@ public class LadderPlayerTest {
         Results results = new Results(List.of("1", "2", "3", "4"));
         int ladderHeight = 1;
         int countOfPerson = 4;
-        Ladder ladder = new Ladder(ladderHeight, countOfPerson, () -> false);
+        Ladder ladder = new Ladder(ladderHeight, countOfPerson, (left) -> false);
         LadderPlayer ladderPlayer = new LadderPlayer(persons, results);
         // when
         Map<Person, Result> resultOfAll = ladderPlayer.getResultOf("all", ladder);
