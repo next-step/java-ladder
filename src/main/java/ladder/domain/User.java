@@ -2,14 +2,12 @@ package ladder.domain;
 
 import java.util.Objects;
 
-public class User
-{
+public class User {
 
     private static final int MAX_LENGTH = 5;
     private final String name;
 
-    private User(String name)
-    {
+    private User(String name) {
         this.name = name;
     }
 
@@ -20,14 +18,12 @@ public class User
         return new User(name);
     }
 
-    public String getName()
-    {
+    public String getName() {
         return name;
     }
 
     @Override
-    public boolean equals(Object o)
-    {
+    public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
@@ -35,8 +31,7 @@ public class User
     }
 
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         return Objects.hash(name);
     }
 }

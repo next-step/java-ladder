@@ -5,12 +5,10 @@ import ladder.domain.Users;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
-public class LadderController
-{
+public class LadderController {
 
     private static LadderController ladderController;
-    public static LadderController getInstance()
-    {
+    public static LadderController getInstance() {
         if (ladderController == null) {
             ladderController = new LadderController();
         }
@@ -18,8 +16,7 @@ public class LadderController
         return ladderController;
     }
 
-    public void run()
-    {
+    public void run() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         Users users = Users.from(InputView.getNames());
 
@@ -27,10 +24,5 @@ public class LadderController
         Ladder ladder = Ladder.of(users.getUserCount(), InputView.getHeight());
 
         OutputView.printLadder(users.getUserList(), ladder.getLines());
-
-
-
-
-
     }
 }

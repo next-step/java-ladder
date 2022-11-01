@@ -8,8 +8,7 @@ public class Users
 {
     private final List<User> list;
 
-    private Users(List<User> list)
-    {
+    private Users(List<User> list) {
         this.list = list;
     }
 
@@ -24,8 +23,7 @@ public class Users
         return list.size();
     }
 
-    public List<User> getUserList()
-    {
+    public List<User> getUserList() {
         return list;
     }
 
