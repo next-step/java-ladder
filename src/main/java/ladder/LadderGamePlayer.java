@@ -2,53 +2,33 @@ package ladder;
 
 import ladder.domain.Ladder;
 import ladder.domain.Rewards;
-import ladder.view.InputView;
-import ladder.view.PrintView;
 
 public class LadderGamePlayer {
 
     private static final String RESULT_ALL_COMMAND = "all";
-    private static final String LOOP_EXIT_COMMAND = "exit";
 
-    public void play(LadderGameData gameData) {
+    public LadderResultDto play(LadderGameData gameData, String command) {
         Ladder ladder = gameData.getLadder();
         Rewards rewards = gameData.getRewards();
 
-        PrintView.printLadder(ladder, rewards);
-        InputView.clear();
-
-        boolean resultLoopFlag = false;
-        while (!resultLoopFlag) {
-            String resultName = InputView.getResultName();
-            printResult(ladder, rewards, resultName);
-
-            resultLoopFlag = updateFlag(resultName);
+        if (RESULT_ALL_COMMAND.equals(command)) {
+            return addAllResult(ladder, rewards);
         }
+        return addSingleResult(command, ladder, rewards);
     }
 
-    private boolean updateFlag(String resultName) {
-        return LOOP_EXIT_COMMAND.equals(resultName);
+    private LadderResultDto addAllResult(Ladder ladder, Rewards rewards) {
+        LadderResultDto resultDto = new LadderResultDto();
+        ladder.getNames()
+                .forEach(name ->
+                        resultDto.addResult(name, rewards.getReward(ladder.getEndPoint(name))));
+        return resultDto;
     }
 
-    private void printResult(Ladder ladder, Rewards rewards, String resultName) {
-        if (RESULT_ALL_COMMAND.equals(resultName)) {
-            PrintView.printAllResult(ladder, rewards);
-            return;
-        }
-
-        if (LOOP_EXIT_COMMAND.equals(resultName)) {
-            return;
-        }
-
-        try {
-            PrintView.printResult(rewards.getReward(ladder.getEndPoint(resultName)));
-        } catch (Exception e) {
-            printTryAgain(e);
-        }
-    }
-
-    private void printTryAgain(Exception e) {
-        PrintView.printError(e);
+    private LadderResultDto addSingleResult(String command, Ladder ladder, Rewards rewards) {
+        LadderResultDto resultDto = new LadderResultDto();
+        resultDto.addResult(command, rewards.getReward(ladder.getEndPoint(command)));
+        return resultDto;
     }
 
 }

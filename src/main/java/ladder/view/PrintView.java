@@ -1,5 +1,7 @@
 package ladder.view;
 
+import java.util.Map.Entry;
+import ladder.LadderResultDto;
 import ladder.domain.Ladder;
 import ladder.domain.Rewards;
 import ladder.domain.line.Line;
@@ -30,17 +32,32 @@ public class PrintView {
         System.out.println();
     }
 
-    public static void printAllResult(Ladder ladder, Rewards rewards) {
+    public static void printResult(LadderResultDto resultDto) {
+        if (resultDto.getResult().isEmpty()) {
+            return;
+        }
+
+        if (resultDto.getResult().size() == 1) {
+            printResultValue(resultDto);
+            return;
+        }
+
+        printResultAll(resultDto);
+    }
+
+    private static void printResultAll(LadderResultDto resultDto) {
         System.out.println("실행 결과");
-        for (String name : ladder.getNames()) {
-            System.out.println(name + " : " + rewards.getReward(ladder.getEndPoint(name)));
+        for (Entry<String, String> entry : resultDto.getResult().entrySet()) {
+            System.out.println(entry.getKey() + " : " + entry.getValue());
         }
         System.out.println();
     }
 
-    public static void printResult(String reward) {
+    private static void printResultValue(LadderResultDto resultDto) {
         System.out.println("실행 결과");
-        System.out.println(reward);
+        for (Entry<String, String> entry : resultDto.getResult().entrySet()) {
+            System.out.println(entry.getValue());
+        }
         System.out.println();
     }
 
