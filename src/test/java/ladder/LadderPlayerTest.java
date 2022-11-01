@@ -18,12 +18,12 @@ public class LadderPlayerTest {
         int ladderHeight = 1;
         int countOfPerson = 4;
         Ladder ladder = new Ladder(ladderHeight, countOfPerson, () -> false);
-        LadderPlayer ladderPlayer = new LadderPlayer(persons, results, ladder);
+        LadderPlayer ladderPlayer = new LadderPlayer(persons, results);
         // when
-        Map<Person, Result> result1 = ladderPlayer.getResultOf("a");
-        Map<Person, Result> result2 = ladderPlayer.getResultOf("b");
-        Map<Person, Result> result3 = ladderPlayer.getResultOf("c");
-        Map<Person, Result> result4 = ladderPlayer.getResultOf("d");
+        Map<Person, Result> result1 = ladderPlayer.getResultOf("a", ladder);
+        Map<Person, Result> result2 = ladderPlayer.getResultOf("b", ladder);
+        Map<Person, Result> result3 = ladderPlayer.getResultOf("c", ladder);
+        Map<Person, Result> result4 = ladderPlayer.getResultOf("d", ladder);
         // then
         assertThat(result1).containsValue(new Result("1"));
         assertThat(result2).containsValue(new Result("2"));
@@ -40,9 +40,9 @@ public class LadderPlayerTest {
         int ladderHeight = 1;
         int countOfPerson = 4;
         Ladder ladder = new Ladder(ladderHeight, countOfPerson, () -> false);
-        LadderPlayer ladderPlayer = new LadderPlayer(persons, results, ladder);
+        LadderPlayer ladderPlayer = new LadderPlayer(persons, results);
         // when
-        Map<Person, Result> resultOfAll = ladderPlayer.getResultOf("all");
+        Map<Person, Result> resultOfAll = ladderPlayer.getResultOf("all", ladder);
         // then
         assertThat(resultOfAll).containsEntry(new Person("a"), new Result("1"))
                 .containsEntry(new Person("b"), new Result("2"))

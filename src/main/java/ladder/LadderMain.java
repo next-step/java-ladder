@@ -9,9 +9,9 @@ public class LadderMain {
 
         OutputView.printLadder(persons, ladderHeight, ladder, results);
 
-        LadderPlayer ladderPlayer = new LadderPlayer(persons, results, ladder);
+        LadderPlayer ladderPlayer = new LadderPlayer(persons, results);
         String name = InputView.inputResultName();
-        OutputView.printResult(ladderPlayer.getResultOf(name));
+        OutputView.printResult(ladderPlayer.getResultOf(name, ladder));
     }
 
 }
