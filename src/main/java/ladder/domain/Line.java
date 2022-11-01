@@ -26,5 +26,24 @@ public class Line {
         return points;
     }
 
+    public boolean canMoveRight(int idx) {
+        if (idx >= points.size()) {
+            return false;
+        }
 
+        Point point = points.get(idx);
+        return point.isExist();
+    }
+
+    public boolean canMoveLeft(int idx) {
+        if (idx - 1 < 0) {
+            return false;
+        }
+
+        Point leftPoint = points.get(idx - 1);
+        if (leftPoint.isExist()) {
+            return true;
+        }
+        return false;
+    }
 }

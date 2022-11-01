@@ -23,7 +23,10 @@ public class LadderApplication {
         Ladder ladder = Ladder.of(names.getCountOfNames(), maxHeight);
 
         ResultView.printResult(ladderGame.getNames(), ladder);
+        printCandidatesResults(ladderGame, ladder);
+    }
 
+    private static void printCandidatesResults(LadderGame ladderGame, Ladder ladder) {
         String candidate;
         do {
             candidate = InputView.inputResultCandidateName();
@@ -36,4 +39,5 @@ public class LadderApplication {
             }
         } while (!candidate.equals(STR_ALL));
     }
+
 }

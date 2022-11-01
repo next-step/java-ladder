@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.utils.LadderUtils;
+import ladder.fixtures.LadderFixtures;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -16,7 +16,7 @@ class LadderTest {
 
     @Test
     public void 사다리_결과_인덱스() {
-        Ladder ladder = LadderUtils.createLadder();
+        Ladder ladder = LadderFixtures.createLadder();
         assertAll(
                 () -> assertThat(ladder.getLadderEndIdx(0)).isEqualTo(2),
                 () -> assertThat(ladder.getLadderEndIdx(1)).isEqualTo(3),
@@ -26,7 +26,7 @@ class LadderTest {
 
     @Test
     public void 사다리_결과_테스트2() {
-        Ladder ladder = LadderUtils.createLadder2();
+        Ladder ladder = LadderFixtures.createLadder2();
         assertAll(
                 () -> assertThat(ladder.getLadderEndIdx(0)).isEqualTo(2),
                 () -> assertThat(ladder.getLadderEndIdx(1)).isEqualTo(1),

@@ -1,11 +1,11 @@
 package ladder.domain;
 
-import ladder.utils.LadderUtils;
+import ladder.fixtures.LadderFixtures;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 
-import static ladder.domain.Names.NAME_REGEX;
+import static ladder.view.InputView.NAME_REGEX;
 import static ladder.view.ResultView.RESULT_REGEX;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -23,7 +23,7 @@ class LadderGameTest {
 
     @Test
     public void 실행결과_테스트_1명() {
-        Ladder ladder = LadderUtils.createLadder();
+        Ladder ladder = LadderFixtures.createLadder();
         Names names = Names.of("pobi,honux,crong,jk".split(NAME_REGEX));
         Results results = Results.of("꽝,3000,꽝,5000".split(RESULT_REGEX));
 
@@ -37,7 +37,7 @@ class LadderGameTest {
 
     @Test
     public void 실행결과_테스트_전체() {
-        Ladder ladder = LadderUtils.createLadder();
+        Ladder ladder = LadderFixtures.createLadder();
         Names names = Names.of("pobi,honux,crong,jk".split(NAME_REGEX));
         Results results = Results.of("꽝,3000,꽝,5000".split(RESULT_REGEX));
 
@@ -51,7 +51,7 @@ class LadderGameTest {
 
     @Test
     public void 실행결과_테스트_전체2() {
-        Ladder ladder = LadderUtils.createLadder2();
+        Ladder ladder = LadderFixtures.createLadder2();
         Names names = Names.of("pobi,honux,crong,jk".split(NAME_REGEX));
         Results results = Results.of("꽝,3000,꽝,5000".split(RESULT_REGEX));
 

@@ -1,4 +1,4 @@
-package ladder.utils;
+package ladder.fixtures;
 
 import ladder.domain.Ladder;
 import ladder.domain.Line;
@@ -7,7 +7,7 @@ import ladder.domain.Point;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LadderUtils {
+public class LadderFixtures {
 
     public static Ladder createLadder() {
         List<Point> points = new ArrayList<>();

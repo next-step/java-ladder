@@ -3,9 +3,8 @@ package ladder.domain;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static ladder.domain.Names.NAME_REGEX;
+import static ladder.view.InputView.NAME_REGEX;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class NamesTest {
 
