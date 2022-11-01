@@ -7,6 +7,9 @@ import ladder.view.PrintView;
 
 public class LadderGamePlayer {
 
+    private static final String RESULT_ALL_COMMAND = "all";
+    private static final String LOOP_EXIT_COMMAND = "exit";
+
     public void play(LadderGameData gameData) {
         Ladder ladder = gameData.getLadder();
         Rewards rewards = gameData.getRewards();
@@ -24,19 +27,16 @@ public class LadderGamePlayer {
     }
 
     private boolean updateFlag(String resultName) {
-        if ("exit".equals(resultName)) {
-            return true;
-        }
-        return false;
+        return LOOP_EXIT_COMMAND.equals(resultName);
     }
 
     private void printResult(Ladder ladder, Rewards rewards, String resultName) {
-        if ("all".equals(resultName)) {
+        if (RESULT_ALL_COMMAND.equals(resultName)) {
             PrintView.printAllResult(ladder, rewards);
             return;
         }
 
-        if ("exit".equals(resultName)) {
+        if (LOOP_EXIT_COMMAND.equals(resultName)) {
             return;
         }
 
