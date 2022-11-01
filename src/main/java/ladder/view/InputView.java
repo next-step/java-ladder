@@ -2,7 +2,7 @@ package ladder.view;
 
 import java.util.List;
 import java.util.Scanner;
-import ladder.exception.IntegerMismatchException;
+import ladder.domain.exception.IntegerMismatchException;
 
 public class InputView {
 

@@ -1,4 +1,4 @@
-package ladder.exception;
+package ladder.domain.exception;
 
 public class NullNamesException extends RuntimeException {
 

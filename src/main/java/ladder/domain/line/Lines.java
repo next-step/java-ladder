@@ -1,9 +1,9 @@
-package ladder.line;
+package ladder.domain.line;
 
 import java.util.ArrayList;
 import java.util.List;
-import ladder.exception.InvalidHeightException;
-import ladder.exception.InvalidLinesException;
+import ladder.domain.exception.InvalidHeightException;
+import ladder.domain.exception.InvalidLinesException;
 
 public class Lines {
 

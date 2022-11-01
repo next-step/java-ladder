@@ -1,9 +1,12 @@
 package ladder;
 
+import ladder.domain.Ladder;
+import ladder.domain.Rewards;
+
 public class LadderGameData {
 
     private final Ladder ladder;
-    private Rewards rewards;
+    private final Rewards rewards;
 
     public LadderGameData(Ladder ladder, Rewards rewards) {
         this.ladder = ladder;

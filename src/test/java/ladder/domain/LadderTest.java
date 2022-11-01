@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
@@ -7,12 +7,12 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.ArrayList;
 import java.util.List;
-import ladder.exception.EmptyNamesException;
-import ladder.exception.InvalidHeightException;
-import ladder.exception.InvalidLinesException;
-import ladder.exception.InvalidNameLengthException;
-import ladder.exception.NullNamesException;
-import ladder.line.ManualLine;
+import ladder.domain.exception.EmptyNamesException;
+import ladder.domain.exception.InvalidHeightException;
+import ladder.domain.exception.InvalidLinesException;
+import ladder.domain.exception.InvalidNameLengthException;
+import ladder.domain.exception.NullNamesException;
+import ladder.domain.line.ManualLine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

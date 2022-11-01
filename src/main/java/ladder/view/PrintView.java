@@ -1,8 +1,8 @@
 package ladder.view;
 
-import ladder.Ladder;
-import ladder.Rewards;
-import ladder.line.Line;
+import ladder.domain.Ladder;
+import ladder.domain.Rewards;
+import ladder.domain.line.Line;
 
 public class PrintView {
 

@@ -1,12 +1,12 @@
-package ladder.line;
+package ladder.domain.line;
 
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.List;
-import ladder.exception.InvalidHeightException;
-import ladder.exception.InvalidLinesException;
+import ladder.domain.exception.InvalidHeightException;
+import ladder.domain.exception.InvalidLinesException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

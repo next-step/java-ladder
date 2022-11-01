@@ -1,8 +1,8 @@
-package ladder;
+package ladder.domain;
 
 import java.util.List;
 import java.util.Optional;
-import ladder.exception.InvalidRewordsException;
+import ladder.domain.exception.InvalidRewordsException;
 
 public class Rewards {
 

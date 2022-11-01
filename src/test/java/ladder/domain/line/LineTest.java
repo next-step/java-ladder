@@ -1,4 +1,4 @@
-package ladder.line;
+package ladder.domain.line;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.ArrayList;
 import java.util.List;
-import ladder.exception.InvalidCountOfPersonException;
+import ladder.domain.exception.InvalidCountOfPersonException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

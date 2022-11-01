@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -6,10 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.ArrayList;
 import java.util.List;
-import ladder.exception.EmptyNamesException;
-import ladder.exception.InvalidNameLengthException;
-import ladder.exception.NullNamesException;
-import ladder.exception.UnknownNameException;
+import ladder.domain.exception.EmptyNamesException;
+import ladder.domain.exception.InvalidNameLengthException;
+import ladder.domain.exception.NullNamesException;
+import ladder.domain.exception.UnknownNameException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

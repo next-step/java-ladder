@@ -3,8 +3,10 @@ package ladder;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import ladder.line.Line;
-import ladder.line.RandomLine;
+import ladder.domain.Ladder;
+import ladder.domain.Rewards;
+import ladder.domain.line.Line;
+import ladder.domain.line.RandomLine;
 import ladder.view.InputView;
 import ladder.view.PrintView;
 

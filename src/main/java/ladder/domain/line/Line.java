@@ -1,9 +1,9 @@
-package ladder.line;
+package ladder.domain.line;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
-import ladder.exception.InvalidCountOfPersonException;
+import ladder.domain.exception.InvalidCountOfPersonException;
 
 public abstract class Line {
 

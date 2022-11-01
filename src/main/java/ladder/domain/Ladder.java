@@ -1,8 +1,8 @@
-package ladder;
+package ladder.domain;
 
 import java.util.List;
-import ladder.line.Line;
-import ladder.line.Lines;
+import ladder.domain.line.Line;
+import ladder.domain.line.Lines;
 
 public class Ladder {
 

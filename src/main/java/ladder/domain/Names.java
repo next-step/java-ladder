@@ -1,12 +1,12 @@
-package ladder;
+package ladder.domain;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import ladder.exception.EmptyNamesException;
-import ladder.exception.InvalidNameLengthException;
-import ladder.exception.NullNamesException;
-import ladder.exception.UnknownNameException;
+import ladder.domain.exception.EmptyNamesException;
+import ladder.domain.exception.InvalidNameLengthException;
+import ladder.domain.exception.NullNamesException;
+import ladder.domain.exception.UnknownNameException;
 
 public class Names {
 
