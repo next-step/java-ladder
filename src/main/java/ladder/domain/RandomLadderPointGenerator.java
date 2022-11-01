@@ -7,21 +7,23 @@ import java.util.Random;
 public class RandomLadderPointGenerator implements LadderPointGenerator {
 
     @Override
-    public void generate(Ladder ladder, int lineCount) {
+    public void generate(Ladder ladder, int maxLineCount) {
         Random random = new Random();
-        for (int i = 0; i < lineCount; i++) {
+        for (int i = 0; i < maxLineCount; i++) {
             int lineNumber = random.nextInt(ladder.getLineSize() - 1);
             Line line = ladder.getLine(lineNumber);
             Line rightLine = ladder.getLine(lineNumber + 1);
-
-            Optional<Integer> pointIndex = getAvailablePoint(line, rightLine);
-            if (pointIndex.isEmpty()) {
-                // TODO: 좀더 나은 처리
-                continue;
-            }
-
-            ladder.connectLine(line, rightLine, pointIndex.get());
+            connectLineIfPossible(ladder, line, rightLine);
         }
+    }
+
+    private void connectLineIfPossible(Ladder ladder, Line line, Line rightLine) {
+        Optional<Integer> pointIndex = getAvailablePoint(line, rightLine);
+        if (pointIndex.isEmpty()) {
+            return;
+        }
+
+        ladder.connectLine(line, rightLine, pointIndex.get());
     }
 
     private Optional<Integer> getAvailablePoint(Line line, Line rightLine) {
@@ -30,6 +32,6 @@ public class RandomLadderPointGenerator implements LadderPointGenerator {
 
         return lineEmptyPoints.stream()
                 .filter(rightLineEmptyPoints::contains)
-                .findFirst();
+                .findAny();
     }
 }
