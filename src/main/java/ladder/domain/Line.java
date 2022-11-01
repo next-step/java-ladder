@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -15,14 +16,11 @@ public class Line {
     }
 
     public List<Integer> emptyPoints() {
-        List<Integer> results = new ArrayList<>();
-        for (int i = 0; i < points.size(); i++) {
-            Point point = points.get(i);
-            if (point == Point.NONE) {
-                results.add(i);
-            }
-        }
-        return results;
+        return IntStream.range(0, points.size())
+                .mapToObj(index -> Map.entry(index, points.get(index)))
+                .filter(entry -> entry.getValue() == Point.NONE)
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toList());
     }
 
     public void setPoint(int index, Point point) {
