@@ -27,12 +27,8 @@ public class LineTest {
         Line line = new Line(countOfPerson, () -> true);
         // when
         // then
-        for (int i = 1; i < countOfPerson; i++) {
-            if (i % 2 == 1) {
-                assertThat(line.isConnected(i-1, i)).isTrue();
-            } else {
-                assertThat(line.isConnected(i-1, i)).isFalse();
-            }
+        for (int i = 2; i < countOfPerson; i+=2) {
+            assertThat(line.isConnected(i-1, i)).isFalse();
         }
     }
 
