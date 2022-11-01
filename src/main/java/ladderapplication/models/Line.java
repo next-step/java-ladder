@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 
 public class Line {
     private static final Random RANDOM_GENERATOR = new Random();
+    private static final int HAS_STEP_BOUND = 4;
     private static final int RANDOM_NUMBER_BOUND = 10;
     private final List<Boolean> hasSteps;
 
@@ -30,7 +31,7 @@ public class Line {
     }
 
     private static boolean hasStep() {
-        return RANDOM_GENERATOR.nextInt(RANDOM_NUMBER_BOUND) >= 3;
+        return RANDOM_GENERATOR.nextInt(RANDOM_NUMBER_BOUND) >= HAS_STEP_BOUND;
     }
 
     public String getLine() {

@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 
 public class Ladder {
 
+    private static final int NAME_SPACE = 6;
     private static final int STANDARD_SIZE = 4;
     private final List<Player> players;
     private final List<Line> lines;
@@ -41,7 +42,8 @@ public class Ladder {
             sb.append(getSpace(STANDARD_SIZE - name.length()));
         }
         sb.append(name);
-        sb.append(getSpace(sb.length()));
+        sb.append(getSpace(NAME_SPACE - sb.length()));
+        System.out.println(sb);
         return sb.toString();
     }
 
