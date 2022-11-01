@@ -5,15 +5,13 @@ import java.util.List;
 
 public class Line {
 
-    private List<Boolean> points;
-    private LineStrategy lineStrategy;
+    private final List<Boolean> points;
 
     public Line(int countOfPerson, LineStrategy lineStrategy) {
         points = new ArrayList<>();
-        this.lineStrategy = lineStrategy;
 
         for (int i = 0; i < countOfPerson; i++) {
-            addPoints(i);
+            addPoints(i, countOfPerson, lineStrategy);
         }
     }
 
@@ -21,11 +19,18 @@ public class Line {
         return points.get(idx);
     }
 
-    private void addPoints(int idx) {
-        if (points.isEmpty() || !points.get(idx - 1)) {
+    private void addPoints(int idx, int countOfPerson, LineStrategy lineStrategy) {
+        if (addablePoint(idx, countOfPerson)) {
             points.add(lineStrategy.addLine());
             return;
         }
         points.add(false);
+    }
+
+    private boolean addablePoint(int idx, int countOfPerson) {
+        if (idx == countOfPerson - 1) {
+            return false;
+        }
+        return points.isEmpty() || !points.get(idx - 1);
     }
 }

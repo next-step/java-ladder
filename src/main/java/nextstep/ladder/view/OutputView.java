@@ -1,10 +1,13 @@
 package nextstep.ladder.view;
 
+import java.util.Scanner;
+
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.User;
 
 public class OutputView {
+    private static final String ALL = "all";
 
     public void printResult(Ladder ladder) {
         System.out.println("실행결과");
@@ -14,11 +17,20 @@ public class OutputView {
         for (int i = 0; i < ladder.getHeight(); i++) {
             printLadder(ladder.getLine(i), ladder.getCountOfPerson());
         }
+        printResultName(ladder);
     }
 
     private void printName(Ladder ladder) {
         for (int i = 0; i < ladder.getCountOfPerson(); i++) {
             System.out.print(ladder.getUserName(i));
+            printSpace(ladder.getUserName(i).length());
+        }
+        System.out.println();
+    }
+
+    private void printResultName(Ladder ladder) {
+        for (int i = 0; i < ladder.getCountOfPerson(); i++) {
+            System.out.print(ladder.getResultName(i));
             printSpace(ladder.getUserName(i).length());
         }
         System.out.println();
@@ -54,5 +66,32 @@ public class OutputView {
             return;
         }
         System.out.print(" ");
+    }
+
+    public void printUserResult(Ladder ladder) {
+        String name;
+        do {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("결과를 보고 싶은 사람은?");
+            name = scanner.nextLine();
+
+            System.out.println("실행 결과");
+            printUserResult(name, ladder);
+        } while (!name.equals(ALL));
+    }
+
+    private void printUserResult(String name, Ladder ladder) {
+        if (name.equals(ALL)) {
+            printAllUserResult(ladder);
+            return;
+        }
+        System.out.println(ladder.getResult(name));
+    }
+
+    private void printAllUserResult(Ladder ladder) {
+        for (int i = 0; i < ladder.getCountOfPerson(); i++) {
+            System.out.print(ladder.getUserName(i) + ":");
+            System.out.println(ladder.getResult(i));
+        }
     }
 }

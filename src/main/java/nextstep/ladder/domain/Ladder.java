@@ -1,40 +1,43 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class Ladder {
 
-    private final List<User> users;
-    private final List<Line> lines;
-    private final int height;
+    private final LadderInput ladderInput;
+    private final LadderLine line;
 
-    public Ladder(List<String> names, int height) {
-        this.users = names.stream()
-                          .map(User::new)
-                          .collect(Collectors.toList());
+    public Ladder(LadderInput ladderInput, LadderLine line) {
+        this.ladderInput = ladderInput;
+        this.line = line;
+    }
 
-        this.lines = new ArrayList<>();
-        this.height = height;
-        for (int i = 0; i < height; i++) {
-            lines.add(new Line(users.size(), new RandomLineStrategy()));
-        }
+    public String getResultName(int idx) {
+        return ladderInput.getResult(idx);
+    }
+
+    public String getResult(int userIdx) {
+        int arriveIdx = line.getArriveIdx(userIdx);
+        return ladderInput.getResult(arriveIdx);
+    }
+
+    public String getResult(String name) {
+        int userIdx = ladderInput.indexOfUser(name);
+        int arriveIdx = line.getArriveIdx(userIdx);
+        return ladderInput.getResult(arriveIdx);
     }
 
     public int getCountOfPerson() {
-        return users.size();
+        return ladderInput.getCountOfUser();
     }
 
     public Line getLine(int idx) {
-        return lines.get(idx);
+        return line.getLine(idx);
     }
 
     public String getUserName(int idx) {
-        return users.get(idx).getName();
+        return ladderInput.getUserName(idx);
     }
 
     public int getHeight() {
-        return height;
+        return line.getHeight();
     }
 }
