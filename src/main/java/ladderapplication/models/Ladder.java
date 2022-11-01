@@ -37,8 +37,8 @@ public class Ladder {
 
     private String DecoratingName(String name) {
         StringBuilder sb = new StringBuilder();
-        if (name.length() < 4) {
-            sb.append(getSpace(4 - name.length()));
+        if (name.length() < STANDARD_SIZE) {
+            sb.append(getSpace(STANDARD_SIZE - name.length()));
         }
         sb.append(name);
         sb.append(getSpace(sb.length()));
