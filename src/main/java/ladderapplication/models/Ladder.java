@@ -1,5 +1,6 @@
 package ladderapplication.models;
 
+import ladderapplication.models.requests.GameSettingRequest;
 import ladderapplication.models.requests.LadderRequest;
 
 import java.util.List;
@@ -12,19 +13,22 @@ public class Ladder {
     private static final int STANDARD_SIZE = 4;
     private final List<Player> players;
     private final List<Line> lines;
-    private final int height;
 
-    public Ladder(List<Player> players, List<Line> lines, int height) {
+    public Ladder(List<Player> players, List<Line> lines) {
         this.players = players;
         this.lines = lines;
-        this.height = height;
     }
 
-    public static Ladder of(LadderRequest ladderRequest, List<Player> players) {
-        List<Line> newLines = Stream.generate(() -> Line.of(players.size()))
-                .limit(ladderRequest.getHeight())
+    public static Ladder of(GameSettingRequest gameSettingRequest) {
+        List<Player> newPlayers = gameSettingRequest.getPlayerRequests()
+                .stream()
+                .map(Player::from)
                 .collect(Collectors.toList());
-        return new Ladder(players, newLines, ladderRequest.getHeight());
+
+        List<Line> newLines = Stream.generate(() -> Line.of(gameSettingRequest.getPlayerRequests().size()))
+                .limit(gameSettingRequest.getLadderRequest().getHeight())
+                .collect(Collectors.toList());
+        return new Ladder(newPlayers, newLines);
     }
 
     public void print() {
@@ -43,7 +47,6 @@ public class Ladder {
         }
         sb.append(name);
         sb.append(getSpace(NAME_SPACE - sb.length()));
-        System.out.println(sb);
         return sb.toString();
     }
 
