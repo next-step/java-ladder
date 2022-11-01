@@ -48,7 +48,7 @@ public class LadderLines {
     }
 
     private boolean validLadderWidth(int width) {
-        return width < RESULT_START_NUMBER_MIN || width > ladderWidth();
+        return width < RESULT_START_NUMBER_MIN || width >= ladderWidth();
     }
 
     private int ladderWidth() {
