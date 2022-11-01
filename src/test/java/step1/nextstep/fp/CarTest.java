@@ -1,6 +1,7 @@
-package nextstep.fp;
+package step1.nextstep.fp;
 
 import org.junit.jupiter.api.Test;
+import step1.nextstep.fp.Car;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
