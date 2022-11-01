@@ -36,7 +36,7 @@ public class LadderController {
 
         OutputView.ladderCreateResult(people, ladderLines, rewards);
 
-        List<Person> resultPersonList = ladderGameResultService.resultPersonList(people, new SearchPeopleNames(InputView.inputResultPersonName()));
+        List<Person> resultPersonList = ladderGameResultService.resultPersonList(people, new SearchPeopleNames(InputView.inputResultPeopleNames()));
 
         Result result = ladderGameResultService.ladderGameResult(new LadderGameResultDto(rewards, ladderLines), resultPersonList);
 
