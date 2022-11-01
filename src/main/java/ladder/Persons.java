@@ -12,21 +12,21 @@ public class Persons {
         }
     }
 
-    public int findResultOf(Person person, Ladder ladder) {
-        int index = persons.stream()
-                .filter(p -> p.equals(person))
-                .mapToInt(Person::getIndex)
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("해당 사람이 없습니다."));
-        return ladder.findFinalIndexOf(index);
-    }
-
     public Map<Person, Integer> findAllFinalIndex(Ladder ladder) {
         Map<Person, Integer> indexs = new HashMap<>();
         for (Person person : persons) {
             indexs.put(person, findResultOf(person, ladder));
         }
         return indexs;
+    }
+
+    private int findResultOf(Person person, Ladder ladder) {
+        int index = persons.stream()
+                .filter(p -> p.equals(person))
+                .mapToInt(Person::getIndex)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("해당 사람이 없습니다."));
+        return ladder.findFinalIndexOf(index);
     }
 
     public int countOfPersons() {

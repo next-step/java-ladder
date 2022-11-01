@@ -1,6 +1,5 @@
 package ladder;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -11,12 +10,6 @@ public class Results {
 
     public Results(List<String> results) {
         this.results = results.stream()
-                .map(Result::new)
-                .collect(toList());
-    }
-
-    public Results(String... results) {
-        this.results = Arrays.stream(results)
                 .map(Result::new)
                 .collect(toList());
     }

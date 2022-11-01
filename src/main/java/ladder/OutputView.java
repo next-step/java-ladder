@@ -30,11 +30,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printResultOne(Result result) {
-        System.out.println(result.getResult());
-    }
-
-    public static void pringResultAll(Map<Person, Result> results) {
+    public static void printResult(Map<Person, Result> results) {
         results.forEach((key, value) -> System.out.printf("%s : %s\n", key.getName(), value.getResult()));
     }
 }

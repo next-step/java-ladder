@@ -1,7 +1,9 @@
 package ladder;
 
 import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.Set;
+
+import static java.util.stream.Collectors.toMap;
 
 public class LadderPlayer {
     private final Persons persons;
@@ -14,14 +16,16 @@ public class LadderPlayer {
         this.ladder = ladder;
     }
 
-    public Result getResultOf(Person person) {
-        return results.findResultOf(persons.findResultOf(person, ladder));
+    public Map<Person, Result> getResultOf(String personName) {
+        Set<Map.Entry<Person, Integer>> entries = persons.findAllFinalIndex(ladder)
+                .entrySet();
+        if ("all".equals(personName)) {
+            return entries.stream()
+                    .collect(toMap(Map.Entry::getKey, e -> results.findResultOf(e.getValue())));
+        }
+        return entries.stream()
+                .filter(e -> e.getKey().equals(new Person(personName)))
+                .collect(toMap(Map.Entry::getKey, e -> results.findResultOf(e.getValue())));
     }
 
-    public Map<Person, Result> getResultOfAll() {
-        return persons.findAllFinalIndex(ladder)
-                .entrySet()
-                .stream()
-                .collect(Collectors.toMap(Map.Entry::getKey, e -> results.findResultOf(e.getValue())));
-    }
 }

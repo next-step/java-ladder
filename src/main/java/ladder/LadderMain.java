@@ -11,11 +11,7 @@ public class LadderMain {
 
         LadderPlayer ladderPlayer = new LadderPlayer(persons, results, ladder);
         String name = InputView.inputResultName();
-        if ("all".equals(name)) {
-            OutputView.pringResultAll(ladderPlayer.getResultOfAll());
-            return;
-        }
-        OutputView.printResultOne(ladderPlayer.getResultOf(new Person(name)));
+        OutputView.printResult(ladderPlayer.getResultOf(name));
     }
 
 }
