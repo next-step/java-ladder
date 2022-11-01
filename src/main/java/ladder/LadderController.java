@@ -38,13 +38,13 @@ public class LadderController {
 
         LadderLines ladderLines = ladderGameCreateService.createLadderLine(new LadderWidth(people.number()), inputHeight());
 
-        OutputView.result(people, ladderLines, rewards);
+        OutputView.ladderCreateResult(people, ladderLines, rewards);
 
         List<Person> resultPersonList = ladderGameResultService.resultPersonList(people, inputResultPersonName());
 
         Result result = ladderGameResultService.ladderGameResult(new LadderGameResultDto(rewards, ladderLines), resultPersonList);
 
-        OutputView.result(LadderOutputConverter.resultOutput(result));
+        OutputView.gameResult(LadderOutputConverter.resultOutput(result));
     }
 
 
