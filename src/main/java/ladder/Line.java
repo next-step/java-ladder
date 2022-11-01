@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private List<Point> points;
+    private final List<Point> points;
 
     public Line(int countOfPerson, HorizontalLineStrategy horizontalLineStrategy) {
         if (countOfPerson < 2) {
@@ -18,31 +18,46 @@ public class Line {
 
         for (int right = 1; right < countOfPerson; right++) {
             int left = right - 1;
-            boolean connect = horizontalLineStrategy.drawLine(left, right, points);
+            boolean connect = horizontalLineStrategy.drawLine(left) && areLinesNotOverlapped(left, right, points);
 
             Point prevLeftPoint = points.get(left);
             Point prevRightPoint = points.get(right);
 
-            Point currentLeftPoint = new Point(left, prevLeftPoint.hasLeftLine(), connect);
-            Point currentRightPoint = new Point(right, connect, prevRightPoint.hasRightLine());
+            Point currentLeftPoint = new Point(prevLeftPoint.hasLeftLine(), connect);
+            Point currentRightPoint = new Point(connect, prevRightPoint.hasRightLine());
             points.set(left, currentLeftPoint);
             points.set(right, currentRightPoint);
         }
         return points;
     }
 
-    private List<Point> initializePoints(int countOfPerson) {
+    private List<Point> initializePoints(final int countOfPerson) {
         List<Point> points = new ArrayList<>();
         for (int i = 0; i < countOfPerson; i++) {
-            points.add(new Point(i, null, null));
+            points.add(new Point(null, null));
         }
-        points.set(0, new Point(0, false, null));
-        points.set(countOfPerson - 1, new Point(countOfPerson - 1, null, false));
+        points.set(0, new Point(false, null));
+        points.set(countOfPerson - 1, new Point(null, false));
         return points;
+    }
+
+    private boolean areLinesNotOverlapped(final int left, final int right, List<Point> points) {
+        return !points.get(left).hasLeftLine()
+                && !points.get(right).hasRightLine();
     }
 
     public boolean isConnected(int left, int right) {
         return points.get(left).hasRightLine() && points.get(right).hasLeftLine();
+    }
+
+    public int nextVerticalIndex(int currentIndex) {
+        if (points.get(currentIndex).hasLeftLine()) {
+            return currentIndex - 1;
+        }
+        if (points.get(currentIndex).hasRightLine()) {
+            return currentIndex + 1;
+        }
+        return currentIndex;
     }
 
 }

@@ -10,7 +10,7 @@ public class PointTest {
     @DisplayName("왼쪽, 오른쪽 전부 갈수 있는 Point")
     void test1() {
         // given
-        Point point = new Point(0, true, true);
+        Point point = new Point(true, true);
         // when
         boolean moveLeft = point.hasLeftLine();
         boolean moveRight = point.hasRightLine();
