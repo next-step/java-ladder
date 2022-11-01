@@ -18,7 +18,6 @@ public class ResultView {
     private static void printUserNames(UserNames userNames) {
         System.out.println("실행 결과");
         System.out.println();
-        System.out.print(HORIZONTAL_BLANK_LINE);
         userNames.getUserNames()
             .forEach(username -> System.out.printf("%s ", StringUtils.center(username.getName(), 5)));
         System.out.println();
@@ -57,19 +56,19 @@ public class ResultView {
                 printAllUserResult(userNames, result, awards);
                 break;
             }
-            printFindOneUserResult(userNames, result, userName);
+            printFindOneUserResult(userNames, result, userName, awards);
         }
     }
 
-    private static void printFindOneUserResult(UserNames userNames, LadderResult result, UserName userName) {
+    private static void printFindOneUserResult(UserNames userNames, LadderResult result, UserName userName, Awards awards) {
         int userIndex = userNames.findUserIndex(userName);
-        System.out.println(result.getTarget(userIndex));
+        Award award = awards.getAwards().get(result.getTarget(userIndex));
+        System.out.println(award.getAward());
     }
 
     private static void printAllUserResult(UserNames userNames, LadderResult result, Awards awards) {
         for (int i = 0; i < result.getValues().size(); i++) {
-            System.out.println(
-                userNames.getUserNames().get(i) + ":" + awards.getAwards().get(result.getTarget(i)));
+            System.out.println(userNames.getUserNames().get(i).getName() + " : " + awards.getAwards().get(result.getTarget(i)).getAward());
         }
     }
 }

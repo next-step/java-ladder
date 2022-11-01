@@ -17,6 +17,10 @@ public class Award {
         }
     }
 
+    public String getAward() {
+        return award;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -32,12 +36,5 @@ public class Award {
     @Override
     public int hashCode() {
         return Objects.hash(award);
-    }
-
-    @Override
-    public String toString() {
-        return "Award{" +
-            "award='" + award + '\'' +
-            '}';
     }
 }
