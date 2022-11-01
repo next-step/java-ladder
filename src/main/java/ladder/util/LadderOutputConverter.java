@@ -36,14 +36,14 @@ public class LadderOutputConverter {
                 .collect(Collectors.joining(LADDERLINES_DELIMITER));
     }
 
-    public static String ladderLineOutput(LadderLine ladderLine) {
+    private static String ladderLineOutput(LadderLine ladderLine) {
         return (LADDER_LINE_START_TEXT + ladderLine.horizontalLineDirections().stream()
                 .map(LadderOutputConverter::horizontalLineDirectionOutput)
                 .collect(Collectors.joining()))
                 .stripTrailing();
     }
 
-    public static String horizontalLineDirectionOutput(HorizontalLineDirection horizontalLineDirection) {
+    private static String horizontalLineDirectionOutput(HorizontalLineDirection horizontalLineDirection) {
         if (horizontalLineDirection == HorizontalLineDirection.RIGHT) {
             return LADDER_RIGHT_OUTPUT;
         }
