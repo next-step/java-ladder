@@ -9,7 +9,7 @@ public class LadderApplication {
     public static void main(String[] args) {
         GameSettingRequest gameSettingRequest = Printer.requestGameSetting();
 
-        Ladder ladder = Ladder.of(gameSettingRequest);
+        Ladder ladder = Ladder.from(gameSettingRequest);
         ladder.print();
     }
 
