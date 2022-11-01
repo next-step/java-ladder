@@ -15,8 +15,10 @@ class LadderGameTest {
 
     @Test
     public void 실행결과_개수가_참여자수와_동일한지() {
-        LadderGame controller = new LadderGame();
-        assertThatThrownBy(() -> controller.checkValidationOfResultsNumber(4, 5))
+        Names names = Names.of("pobi,honux,crong,jk".split(NAME_REGEX));
+        Results results = Results.of("꽝,3000,꽝".split(RESULT_REGEX));
+
+        assertThatThrownBy(() -> new LadderGame(names, results))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("실행 결과의 갯수는 참여하는 사람의 수와 동일해야 합니다.");
     }
