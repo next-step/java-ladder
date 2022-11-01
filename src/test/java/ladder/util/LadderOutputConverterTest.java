@@ -36,6 +36,6 @@ public class LadderOutputConverterTest {
     void result_output() {
         Rewards rewards = new Rewards("꽝", "5000", "3000");
 
-        assertThat(LadderOutputConverter.ladderTextOutput(rewards.results())).isEqualTo("    꽝  5000  3000");
+        assertThat(LadderOutputConverter.ladderTextOutput(rewards.rewards())).isEqualTo("    꽝  5000  3000");
     }
 }

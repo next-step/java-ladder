@@ -13,7 +13,7 @@ public class Result {
     public Result(LadderGameResultDto ladderGameResultDto, List<Person> personList) {
         personList.forEach(person -> {
             LadderTextInput result = ladderGameResultDto.results()
-                    .result(ladderGameResultDto.ladderLines().result(person.position()));
+                    .reward(ladderGameResultDto.ladderLines().result(person.position()));
             resultMap.put(person, result);});
     }
 

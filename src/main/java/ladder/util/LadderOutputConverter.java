@@ -26,7 +26,7 @@ public class LadderOutputConverter {
     }
 
     public static String rewardsOutput(Rewards rewards) {
-        return LadderOutputConverter.ladderTextOutput(rewards.results());
+        return LadderOutputConverter.ladderTextOutput(rewards.rewards());
     }
 
     public static String ladderLinesOutput(LadderLines ladderLines) {

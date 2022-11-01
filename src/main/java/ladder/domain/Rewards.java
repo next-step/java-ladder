@@ -18,11 +18,11 @@ public class Rewards {
                 .collect(Collectors.toList());
     }
 
-    public List<LadderTextInput> results() {
+    public List<LadderTextInput> rewards() {
         return Collections.unmodifiableList(results);
     }
 
-    public LadderTextInput result(Point index) {
+    public LadderTextInput reward(Point index) {
         if (results.size() < index.x) {
             throw new ResultNotExistException();
         }
