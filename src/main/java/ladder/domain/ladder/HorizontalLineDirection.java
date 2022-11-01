@@ -2,13 +2,15 @@ package ladder.domain.ladder;
 
 public enum HorizontalLineDirection {
 
-    LEFT(true, false), RIGHT(false, true), NONE(false, false);
+    LEFT(-1), RIGHT(1), NONE(0);
 
-    private final boolean left;
-    private final boolean right;
+    private final int value;
 
-    HorizontalLineDirection(boolean left, boolean right) {
-        this.left = left;
-        this.right = right;
+    HorizontalLineDirection(int value) {
+        this.value = value;
+    }
+
+    public int move(int number) {
+        return number + value;
     }
 }

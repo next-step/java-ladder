@@ -18,6 +18,10 @@ public class LadderLine {
         return Collections.unmodifiableList(horizontalLineDirections);
     }
 
+    public int width() {
+        return this.horizontalLineDirections.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

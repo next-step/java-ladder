@@ -1,6 +1,5 @@
-package ladder;
+package ladder.service;
 
-import ladder.domain.person.People;
 import ladder.domain.ladder.LadderHeight;
 import ladder.domain.ladder.LadderWidth;
 import ladder.domain.ladder.ladderline.LadderLineFactory;
@@ -17,9 +16,5 @@ public class LadderGameCreateService {
 
     public LadderLines createLadderLine(LadderWidth width, LadderHeight height) {
         return ladderLineFactory.randomLadderLines(width, height);
-    }
-
-    public People people(String[] strings) {
-        return new People(strings);
     }
 }
