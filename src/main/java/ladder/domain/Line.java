@@ -2,6 +2,7 @@ package ladder.domain;
 
 import ladder.domain.exception.DifferentLineSizeException;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -45,8 +46,12 @@ public class Line {
         return sticks.get(index);
     }
 
+    public Stick findStickOf(int height) {
+        return sticks.get(height);
+    }
+
     public List<Stick> getSticks() {
-        return sticks;
+        return Collections.unmodifiableList(sticks);
     }
 
     @Override

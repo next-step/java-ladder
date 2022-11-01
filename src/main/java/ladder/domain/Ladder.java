@@ -5,6 +5,7 @@ import ladder.domain.exception.DifferentLineSizeException;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Ladder {
 
@@ -27,7 +28,7 @@ public class Ladder {
     }
 
     private void validateLinesAllSameHeight(List<Line> lines) {
-        int distinctLineHeightCount = (int) lines.stream()
+        long distinctLineHeightCount = lines.stream()
                 .map(Line::findHeight)
                 .distinct()
                 .count();
@@ -54,6 +55,19 @@ public class Ladder {
 
     private Line findLine(int index, List<Line> lines) {
         return lines.get(index);
+    }
+
+    public List<Stick> findSticksOf(int height) {
+        return lines.stream()
+                .map(line -> line.findStickOf(height))
+                .collect(Collectors.toList());
+    }
+
+    public int findHeight() {
+        return lines.stream()
+                .map(Line::findHeight)
+                .findFirst()
+                .orElse(0);
     }
 
     @Override

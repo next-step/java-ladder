@@ -44,6 +44,12 @@ public class PlayerGroup {
         return new NumberOfLine(players.size() - 1);
     }
 
+    public List<String> findNames() {
+        return players.stream()
+                .map(Player::findName)
+                .collect(Collectors.toList());
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

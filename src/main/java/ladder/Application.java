@@ -2,6 +2,7 @@ package ladder;
 
 import ladder.domain.*;
 import ladder.ui.ConsoleInput;
+import ladder.ui.ConsoleOutput;
 
 public class Application {
 
@@ -11,5 +12,7 @@ public class Application {
 
         DefaultLinesGenerator defaultLinesGenerator = new DefaultLinesGenerator(playerGroup.findNumberOfPlayer(), ladderHeight, new RandomlyDetermineStick());
         Ladder ladder = new Ladder(defaultLinesGenerator);
+
+        ConsoleOutput.printNamesAndLadder(playerGroup, ladder);
     }
 }

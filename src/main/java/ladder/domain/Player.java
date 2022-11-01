@@ -16,6 +16,10 @@ public class Player {
         this(new Name(name), new Coordinate(x, y));
     }
 
+    public String findName() {
+        return name.getValue();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -34,4 +34,11 @@ public class Stick {
     public int hashCode() {
         return Objects.hash(value);
     }
+
+    @Override
+    public String toString() {
+        return "Stick{" +
+                "value=" + value +
+                '}';
+    }
 }
