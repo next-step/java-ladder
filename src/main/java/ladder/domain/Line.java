@@ -14,14 +14,6 @@ public class Line {
                 .collect(Collectors.toList());
     }
 
-    public void setPoint(int index, Point point) {
-        points.set(index, point);
-    }
-
-    public boolean hasPoint(int index) {
-        return points.get(index) != Point.NONE;
-    }
-
     public List<Integer> emptyPoints() {
         List<Integer> results = new ArrayList<>();
         for (int i = 0; i < points.size(); i++) {
@@ -31,5 +23,17 @@ public class Line {
             }
         }
         return results;
+    }
+
+    public void setPoint(int index, Point point) {
+        points.set(index, point);
+    }
+
+    public boolean hasPoint(int index) {
+        return points.get(index) != Point.NONE;
+    }
+
+    public Point getPoint(int index) {
+        return points.get(index);
     }
 }
