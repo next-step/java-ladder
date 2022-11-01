@@ -11,23 +11,30 @@ public class Line {
 
     private final List<Boolean> points = new ArrayList<>();
 
-    public Line (int countOfPerson) {
-        IntStream.range(0, countOfPerson-1)
+    public Line(int countOfUser) {
+        IntStream.range(0, countOfUser-1)
             .forEach(index -> points.add(setPoint(index)));
     }
 
-    public List<Boolean> getPoints()
-    {
+    public List<Boolean> getPoints() {
         return points;
     }
 
     private boolean setPoint(int index) {
         boolean point = random.nextBoolean();
 
-        if (point && index > 0 && Boolean.TRUE.equals(points.get(index-1))) {
-
+        if (index > 0) {
+            point = validPoint(point, points.get(index - 1));
         }
         return point;
+    }
+
+    private boolean validPoint(boolean currentPoint, boolean beforePoint) {
+
+        if (currentPoint && beforePoint) {
+            return false;
+        }
+        return currentPoint;
     }
 }
 
