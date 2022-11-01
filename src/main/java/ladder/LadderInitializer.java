@@ -8,11 +8,9 @@ import ladder.line.RandomLine;
 import ladder.view.InputView;
 import ladder.view.PrintView;
 
-public class LadderController {
+public class LadderInitializer {
 
-    private final LadderGamePlayer gamePlayer = new LadderGamePlayer();
-
-    public void start() {
+    public LadderGameData init() {
         Ladder ladder = null;
         Rewards rewards = null;
 
@@ -27,7 +25,7 @@ public class LadderController {
             flag = updateFlag(ladder, rewards);
         }
 
-        gamePlayer.play(ladder, rewards);
+        return new LadderGameData(ladder, rewards);
     }
 
     private Boolean updateFlag(Ladder ladder, Rewards rewards) {

@@ -5,7 +5,10 @@ import ladder.view.PrintView;
 
 public class LadderGamePlayer {
 
-    public void play(Ladder ladder, Rewards rewards) {
+    public void play(LadderGameData gameData) {
+        Ladder ladder = gameData.getLadder();
+        Rewards rewards = gameData.getRewards();
+
         PrintView.printLadder(ladder, rewards);
         InputView.clear();
 
