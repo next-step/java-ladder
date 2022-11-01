@@ -2,10 +2,12 @@ package nextstep.ladder;
 
 public class LadderMain {
     public static void main(String[] args) {
-         Person person = new Person(InputView.inputPerson());
-         int height = InputView.inputLadderHeight();
-         Ladder ladder = new Ladder(height, person.countPerson());
+        Person person = new Person(InputView.inputPerson());
+        int height = InputView.inputLadderHeight();
 
-         OutputView.outputResult(person, ladder);
+        LadderFactory ladderFactory = new RandomLadderFactory();
+        Ladder ladder = ladderFactory.creatLadder(height, person.countPerson());
+
+        OutputView.outputResult(person, ladder);
     }
 }

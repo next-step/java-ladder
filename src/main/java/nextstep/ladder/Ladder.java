@@ -1,16 +1,13 @@
 package nextstep.ladder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
 
-    List<Line> lines = new ArrayList<>();
+    List<Line> lines;
 
-    public Ladder(int height, int countPerson) {
-        for (int i = 0; i < height; i++) {
-            lines.add(new Line(countPerson));
-        }
+    public Ladder(List<Line> lines) {
+        this.lines = lines;
     }
 
     public List<Line> getLines() {
