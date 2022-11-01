@@ -16,15 +16,15 @@ public class LadderInitializer {
         Ladder ladder = null;
         Rewards rewards = null;
 
-        Boolean flag = false;
-        while (!flag) {
+        Boolean initLoopFlag = false;
+        while (!initLoopFlag) {
             List<String> names = InputView.getNames();
-            List<String> rewardList = InputView.getRewards();
+            List<String> rewardValues = InputView.getRewards();
 
             ladder = getLadder(names, getHeight());
-            rewards = getRewards(rewardList, names.size());
+            rewards = getRewards(rewardValues, names.size());
 
-            flag = updateFlag(ladder, rewards);
+            initLoopFlag = updateFlag(ladder, rewards);
         }
 
         return new LadderGameData(ladder, rewards);
