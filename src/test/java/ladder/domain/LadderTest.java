@@ -26,5 +26,7 @@ public class LadderTest {
         assertThat(ladder.getParticipants()
                          .size()).isEqualTo(4);
         assertThat(ladder.getHeight()).isEqualTo(new LadderHeight(5));
+        assertThat(ladder.getBridgeLines()
+                         .size()).isEqualTo(3);
     }
 }

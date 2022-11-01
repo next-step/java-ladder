@@ -19,6 +19,14 @@ public class BridgeLines {
         this.bridgeLines = bridgeLines;
     }
 
+    public int size() {
+        return this.bridgeLines.size();
+    }
+
+    public List<BridgeLine> getBridgeLines() {
+        return bridgeLines;
+    }
+
     private void validateBridgeLinesOrThrow(final List<BridgeLine> bridgeLines) {
         validateBridgeLinesSize(bridgeLines);
         validateBridgeLinesHeightOrThrow(bridgeLines);

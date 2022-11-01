@@ -21,7 +21,7 @@ public class BridgeLinesRandomStrategy implements BridgeLinesStrategy {
             add(createBridgeLine(height));
         }};
 
-        IntStream.range(1, height.getValue())
+        IntStream.range(1, amount)
                  .forEach(index -> bridgeLines.add(createBridgeLine(bridgeLines.get(index - 1), height)));
 
         return new BridgeLines(bridgeLines);

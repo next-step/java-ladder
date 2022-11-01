@@ -8,7 +8,7 @@ import java.util.Optional;
 public final class Participant {
 
     private static final int MINIMUM_NAME_LENGTH = 1;
-    private static final int MAXIMUM_NAME_LENGTH = 5;
+    public static final int MAXIMUM_NAME_LENGTH = 5;
 
     private final String name;
 
