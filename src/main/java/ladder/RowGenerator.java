@@ -21,6 +21,6 @@ public class RowGenerator {
             }
         }
         points.add(false);
-        return Row.from(points);
+        return new Row(points);
     }
 }

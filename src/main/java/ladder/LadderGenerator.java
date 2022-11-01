@@ -18,6 +18,6 @@ public class LadderGenerator {
             rows.add(rowGenerator.create(people));
         }
 
-        return Ladder.of(rows);
+        return new Ladder(rows);
     }
 }

@@ -15,9 +15,9 @@ public class InputView {
         String[] split = input.split(",");
 
         List<UserName> userNames = Arrays.stream(split)
-            .map(UserName::from)
+            .map(UserName::new)
             .collect(Collectors.toList());
-        return UserNames.of(userNames);
+        return new UserNames(userNames);
     }
 
     public static Awards inputGameAwards() {
@@ -25,9 +25,9 @@ public class InputView {
         String input = SCANNER.next();
         String[] split = input.split(",");
         List<Award> awards = Arrays.stream(split)
-            .map(Award::from)
+            .map(Award::new)
             .collect(Collectors.toList());
-        return Awards.of(awards);
+        return new Awards(awards);
     }
 
     public static int inputLadderHeight() {
@@ -38,6 +38,6 @@ public class InputView {
     public static UserName inputUserNameResult() {
         System.out.println("결과를 보고 싶은 사람은?");
         String input = SCANNER.next();
-        return UserName.from(input);
+        return new UserName(input);
     }
 }

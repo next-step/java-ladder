@@ -1,15 +1,14 @@
 package ladder;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import java.util.List;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class AwardsTest {
 
     @Test
     void create() {
-        Awards awards = Awards.of(List.of(Award.from("꽝"), Award.from("1000"), Award.from("2000"), Award.from("3000")));
-        assertThat(awards).isEqualTo(Awards.of(List.of(Award.from("꽝"), Award.from("1000"), Award.from("2000"), Award.from("3000"))));
+        Awards awards = new Awards(List.of(new Award("꽝"), new Award("100"), new Award("200")));
+        Assertions.assertThat(awards.getAwards().size()).isEqualTo(3);
     }
 }

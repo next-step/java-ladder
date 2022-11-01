@@ -7,13 +7,9 @@ public class UserName {
     private static final int USER_NAME_LENGTH = 5;
     private final String name;
 
-    private UserName(String name) {
+    public UserName(String name) {
         valid(name);
         this.name = name;
-    }
-
-    public static UserName from(String name) {
-        return new UserName(name);
     }
 
     private void valid(String name) {

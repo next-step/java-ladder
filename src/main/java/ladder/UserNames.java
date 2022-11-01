@@ -6,13 +6,9 @@ public class UserNames {
 
     private final List<UserName> userNames;
 
-    private UserNames(List<UserName> userNames) {
+    public UserNames(List<UserName> userNames) {
         valid(userNames);
         this.userNames = userNames;
-    }
-
-    public static UserNames of(List<UserName> userNames) {
-        return new UserNames(userNames);
     }
 
     private void valid(List<UserName> userNames) {

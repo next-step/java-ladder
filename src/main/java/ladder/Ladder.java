@@ -6,12 +6,8 @@ public class Ladder {
 
     private final List<Row> rows;
 
-    private Ladder(List<Row> rows) {
+    public Ladder(List<Row> rows) {
         this.rows = rows;
-    }
-
-    public static Ladder of(List<Row> rows) {
-        return new Ladder(rows);
     }
 
     public List<Row> getLadderLines() {

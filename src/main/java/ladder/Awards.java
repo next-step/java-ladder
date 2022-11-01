@@ -11,10 +11,6 @@ public class Awards {
         this.awards = awards;
     }
 
-    public static Awards of(List<Award> awards) {
-        return new Awards(awards);
-    }
-
     public List<Award> getAwards() {
         return awards;
     }

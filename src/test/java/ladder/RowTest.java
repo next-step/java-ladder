@@ -9,7 +9,7 @@ class RowTest {
 
     @Test
     void create() {
-        Row row = Row.from(List.of(true,false,false,true,false));
+        Row row = new Row(List.of(true,false,false,true,false));
         assertThat(row.getPoints().size()).isEqualTo(5);
     }
 }

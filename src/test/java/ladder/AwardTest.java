@@ -8,7 +8,7 @@ class AwardTest {
 
     @Test
     void 당첨_여부에_빈값_에러() {
-        assertThatThrownBy(() -> Award.from(""))
+        assertThatThrownBy(() -> new Award(""))
             .isInstanceOf(IllegalArgumentException.class);
     }
 }

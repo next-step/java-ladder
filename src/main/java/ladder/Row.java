@@ -7,12 +7,8 @@ public class Row {
 
     private final List<Boolean> points;
 
-    private Row(List<Boolean> points) {
+    public Row(List<Boolean> points) {
         this.points = points;
-    }
-
-    public static Row from(List<Boolean> points) {
-        return new Row(points);
     }
 
     public List<Boolean> getPoints() {

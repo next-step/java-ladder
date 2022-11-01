@@ -6,13 +6,9 @@ public class Award {
 
     private final String award;
 
-    private Award(String award) {
+    public Award(String award) {
         valid(award);
         this.award = award;
-    }
-
-    public static Award from(String award) {
-        return new Award(award);
     }
 
     private void valid(String award) {
