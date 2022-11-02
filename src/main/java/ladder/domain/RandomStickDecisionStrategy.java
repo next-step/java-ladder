@@ -2,7 +2,7 @@ package ladder.domain;
 
 import java.util.Random;
 
-public class RandomlyDetermineStick implements DetermineStick {
+public class RandomStickDecisionStrategy implements StickDecisionStrategy {
 
     private static final Random RANDOM = new Random();
     private static final int BOUND = 10;

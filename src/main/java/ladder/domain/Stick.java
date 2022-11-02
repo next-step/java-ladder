@@ -10,8 +10,8 @@ public class Stick {
         this.value = value;
     }
 
-    public Stick(final DetermineStick determineStick) {
-        this(determineStick.isExists());
+    public Stick(final StickDecisionStrategy stickDecisionStrategy) {
+        this(stickDecisionStrategy.isExists());
     }
 
     public boolean isTrueAndSo(Stick stick) {

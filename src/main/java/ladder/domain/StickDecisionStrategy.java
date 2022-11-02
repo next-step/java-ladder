@@ -1,7 +1,7 @@
 package ladder.domain;
 
 @FunctionalInterface
-interface DetermineStick {
+public interface StickDecisionStrategy {
 
     boolean isExists();
 }

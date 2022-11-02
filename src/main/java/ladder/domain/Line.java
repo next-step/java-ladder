@@ -21,9 +21,9 @@ public class Line {
         return new Line(sticks);
     }
 
-    public static Line of(final LadderHeight ladderHeight, final DetermineStick determineStick) {
+    public static Line of(final LadderHeight ladderHeight, final StickDecisionStrategy stickDecisionStrategy) {
         List<Stick> sticks = IntStream.range(0, ladderHeight.getValue())
-                .mapToObj(height -> new Stick(determineStick))
+                .mapToObj(height -> new Stick(stickDecisionStrategy))
                 .collect(Collectors.toList());
         return new Line(sticks);
     }
