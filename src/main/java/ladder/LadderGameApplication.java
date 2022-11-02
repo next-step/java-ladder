@@ -12,7 +12,7 @@ public class LadderGameApplication {
 
         Users users = Users.from(input.getUserNames());
         Result result = new Result(users.count(), input.getResult());
-        Ladder ladder = new Ladder(users, input.getHeight());
-        new ConsoleView(users, ladder.lines()).show();
+        Ladder ladder = new Ladder(users, input.getHeight(), result);
+        new ConsoleView(users, ladder).show();
     }
 }

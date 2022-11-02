@@ -9,18 +9,15 @@ import java.util.List;
 public class Ladder {
     private final int countOfPerson;
     private final int height;
+    private final Result result;
 
-    public Ladder(Users users, int height) {
-        this.countOfPerson = users.count();
-        this.height = height;
-    }
-    
-    public Ladder(final int countOfPerson, final int height) {
-        if (countOfPerson < 1 || height < 1) {
+    public Ladder(final Users users, final int height, final Result result) {
+        if (users.count() < 1 || height < 1) {
             throw new IllegalArgumentException("Number of people or height is greater than 1.");
         }
-        this.countOfPerson = countOfPerson;
+        this.countOfPerson = users.count();
         this.height = height;
+        this.result = result;
     }
 
     public List<Line> lines() {
@@ -35,5 +32,9 @@ public class Ladder {
         }
         lines.add(edge(countOfPerson));
         return lines;
+    }
+
+    public List<String> getResult() {
+        return result.getAll();
     }
 }

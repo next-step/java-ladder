@@ -1,19 +1,26 @@
 package ladder.view;
 
+import java.util.function.Consumer;
+
 import ladder.domain.Users;
 
-public class UserDisplay {
+public class UserDisplayer implements Displayer {
     private static final String BLANK = " ";
     
     private final Users users;
     private final int displaySize;
     
-    public UserDisplay(final Users users, final int displaySize) {
+    public UserDisplayer(final Users users, final int displaySize) {
         this.users = users;
         this.displaySize = displaySize;
     }
 
-    public String get() {
+    @Override
+    public void show(Consumer<String> displayer) {
+        displayer.accept(get());
+    }
+    
+    String get() {
         StringBuilder display = new StringBuilder();
         for (String name : users.names()) {
             display.append(name);
