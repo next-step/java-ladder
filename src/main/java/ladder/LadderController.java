@@ -1,5 +1,7 @@
 package ladder;
 
+import ladder.domain.ladder.ladderline.LadderLineFactory;
+import ladder.domain.ladder.strategy.LadderConnectStrategy;
 import ladder.domain.person.Person;
 import ladder.domain.person.SearchPeopleNames;
 import ladder.domain.Result;
@@ -9,7 +11,6 @@ import ladder.domain.ladder.LadderWidth;
 import ladder.domain.person.People;
 import ladder.domain.ladder.ladderline.LadderLines;
 import ladder.dto.LadderGameResultDto;
-import ladder.service.LadderGameCreateService;
 import ladder.service.LadderGameResultService;
 import ladder.util.LadderOutputConverter;
 import ladder.view.InputView;
@@ -19,12 +20,13 @@ import java.util.List;
 
 public class LadderController {
 
-    private final LadderGameCreateService ladderGameCreateService;
     private final LadderGameResultService ladderGameResultService;
+    private final LadderLineFactory ladderLineFactory;
 
-    public LadderController(LadderGameCreateService ladderGameCreateService,
+
+    public LadderController(LadderConnectStrategy ladderConnectStrategy,
                             LadderGameResultService ladderGameResultService) {
-        this.ladderGameCreateService = ladderGameCreateService;
+        this.ladderLineFactory = new LadderLineFactory(ladderConnectStrategy);
         this.ladderGameResultService = ladderGameResultService;
     }
 
@@ -33,7 +35,7 @@ public class LadderController {
 
         Rewards rewards = new Rewards(InputView.splitResult());
 
-        LadderLines ladderLines = ladderGameCreateService.createLadderLine(new LadderWidth(people.number()),
+        LadderLines ladderLines = ladderLineFactory.randomLadderLines(new LadderWidth(people.number()),
                 new LadderHeight(InputView.ladderHeight()));
 
         OutputView.ladderCreateResult(people, ladderLines, rewards);
