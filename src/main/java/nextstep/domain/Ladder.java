@@ -5,18 +5,19 @@ import nextstep.strategy.LineStrategy;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Ladder {
+    private static final int MINIMUM_LADDER_LENGTH = 1;
     private List<Line> lines = new ArrayList<>();
 
     public Ladder(int height, int countPerson, LineStrategy lineStrategy) {
-        if (height < 1) {
+        if (height < MINIMUM_LADDER_LENGTH) {
             throw new IllegalArgumentException("사다리의 높이는 1 이상의 양수이어야 한다.");
         }
 
-        IntStream.range(0, height)
-                .forEach(idx -> lines.add(new Line(countPerson, lineStrategy)));
+        for (int i = 0; i < height; i++) {
+            lines.add(new Line(countPerson, lineStrategy));
+        }
     }
 
     public List<Line> getLines() {

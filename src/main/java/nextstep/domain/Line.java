@@ -7,12 +7,13 @@ import java.util.Collections;
 import java.util.List;
 
 public class Line {
+    private static final int MINIMUM_NUMBER_OF_PEOPLE = 2;
     private List<Boolean> points = new ArrayList<>();
     private LineStrategy lineStrategy;
 
     public Line(int countPerson, LineStrategy lineStrategy) {
-        if (countPerson < 2) {
-            throw new IllegalArgumentException("2명 이상 필요하다.");
+        if (countPerson < MINIMUM_NUMBER_OF_PEOPLE) {
+            throw new IllegalArgumentException("최소 2명 이상이 필요하다.");
         }
         this.lineStrategy = lineStrategy;
 
@@ -49,6 +50,6 @@ public class Line {
 
         // 양사이드 true 체크
         return point > 0 && points.get(point - 1).equals(true)
-                || point < points.size() - 1&& points.get(point + 1).equals(true);
+                || point < points.size() - 1 && points.get(point + 1).equals(true);
     }
 }
