@@ -6,6 +6,7 @@ public class Users {
     private static final String NAME_LENGTH_EXCEPTION = "사람의 이름은 5글자까지 가능합니다.";
     private static final String NAME_EXCEPTION = "사람의 이름이 입력되어야 합니다.";
     private static final int NAME_MAX_LENGTH = 5;
+
     public final List<String> names;
 
     public Users(List<String> names) {
