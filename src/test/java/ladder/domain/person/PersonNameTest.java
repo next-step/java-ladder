@@ -31,4 +31,9 @@ public class PersonNameTest {
     void valid_length() {
         assertThatThrownBy(() -> new PersonName("abcdef")).isInstanceOf(IllegalPersonNameException.class);
     }
+
+    @Test
+    void get_name() {
+        assertThat(new PersonName("pobi").name()).isEqualTo("pobi");
+    }
 }

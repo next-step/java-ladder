@@ -1,21 +1,19 @@
 package ladder.domain.person;
 
-import ladder.domain.LadderTextInput;
-
 import java.util.Objects;
 
 public class Person {
 
     private final Position position;
-    private final LadderTextInput name;
+    private final PersonName name;
 
     public Person(String name, int x, int y) {
-        this.name = new LadderTextInput(name);
+        this.name = new PersonName(name);
         this.position = new Position(x, y);
     }
 
     public String name() {
-        return this.name.text();
+        return this.name.name();
     }
 
     public Position position() {

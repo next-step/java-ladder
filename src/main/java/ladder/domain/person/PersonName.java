@@ -27,6 +27,10 @@ public class PersonName {
         }
     }
 
+    public String name() {
+        return this.name;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
