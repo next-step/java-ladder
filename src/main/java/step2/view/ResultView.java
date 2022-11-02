@@ -8,11 +8,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class ResultView {
 
-    public static final String LADDER_SHAPE = "|";
-    public static final String IS_LINE = "-";
-    public static final String IS_BLANK = " ";
-    public static final String RESULT_TEXT = System.lineSeparator()+"실행결과"+System.lineSeparator();
-    public static final int REPEAT_COUNT = 5;
+    private static final String LADDER_SHAPE = "|";
+    private static final String IS_LINE = "-";
+    private static final String IS_BLANK = " ";
+    private static final String RESULT_TEXT = System.lineSeparator()+"실행결과"+System.lineSeparator();
+    private static final int REPEAT_COUNT = 5;
 
     public static void printLadderGame(Users users, Ladder ladder) {
         System.out.println(RESULT_TEXT);
