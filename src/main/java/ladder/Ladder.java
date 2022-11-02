@@ -16,7 +16,6 @@ public class Ladder {
 
     public LadderResult play(int people) {
         LadderResult result = LadderResult.of(people);
-        // index, position
 
         for (int index = 0; index < people; index++) {
             int destination = descending(index);
