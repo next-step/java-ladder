@@ -7,6 +7,7 @@ import java.awt.*;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 public class LadderLines {
 
@@ -56,12 +57,10 @@ public class LadderLines {
     }
 
     private int ladderWidth() {
-        return ladderLines.stream()
-                .findFirst()
+        return Optional.of(ladderLines.get(0))
                 .orElseThrow(NoSuchLadderLineException::new)
                 .width();
     }
-
 
     @Override
     public boolean equals(Object o) {
