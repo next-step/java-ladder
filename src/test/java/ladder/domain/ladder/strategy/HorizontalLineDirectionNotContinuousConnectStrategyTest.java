@@ -17,7 +17,7 @@ public class HorizontalLineDirectionNotContinuousConnectStrategyTest {
 
     @BeforeEach
     void setUp() {
-        this.ladderConnectStrategy = new LadderNotContinuousConnectStrategy();
+        this.ladderConnectStrategy = new LadderDiscontinuousConnectStrategy();
     }
 
     private static Stream<Arguments> providesForGetConnectableLadder() {

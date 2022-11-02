@@ -2,7 +2,7 @@ package ladder.domain.ladder.strategy;
 
 public enum LadderConnectType {
 
-    DISCONTINUOUS(new LadderNotContinuousConnectStrategy());
+    DISCONTINUOUS(new LadderDiscontinuousConnectStrategy());
 
     private final LadderConnectStrategy ladderConnectStrategy;
 

@@ -5,7 +5,7 @@ import ladder.exception.ladder.NoConnectableHorizontalLineDirectionException;
 
 import java.util.List;
 
-public class LadderNotContinuousConnectStrategy implements LadderConnectStrategy {
+public class LadderDiscontinuousConnectStrategy implements LadderConnectStrategy {
     @Override
     public List<HorizontalLineDirection> connectableLadders(HorizontalLineDirection beforeHorizontalLineDirection) {
         if (beforeHorizontalLineDirection.equals(HorizontalLineDirection.LEFT)) {
