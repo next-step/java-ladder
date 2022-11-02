@@ -23,9 +23,13 @@ public class Rewards {
     }
 
     public Reward reward(Position position) {
+        validRewardBound(position);
+        return rewards.get(position.x());
+    }
+
+    private void validRewardBound(Position position) {
         if (rewards.size() < position.x()) {
             throw new ResultNotExistException();
         }
-        return rewards.get(position.x());
     }
 }
