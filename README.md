@@ -19,7 +19,7 @@
 - [x] optional.Expression.of 메소드를 stream과 optional을 활용하여 구현
 
 ## TO DO LIST(Step2)
-- [ ] Name 클래스 추가
+- [X] Name 클래스 추가
 - [ ] Line 클래스 추가
 - [ ] Point 클래스 추가
   - [ ] 검증 메소드 추가
