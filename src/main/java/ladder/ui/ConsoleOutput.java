@@ -1,10 +1,12 @@
 package ladder.ui;
 
 import ladder.domain.Ladder;
+import ladder.domain.LadderHeight;
 import ladder.domain.PlayerGroup;
 import ladder.domain.Stick;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class ConsoleOutput {
 
@@ -29,13 +31,16 @@ public class ConsoleOutput {
     }
 
     private static void printLadder(Ladder ladder) {
-        int ladderHeight = ladder.findHeight();
-        for (int height = 0; height < ladderHeight; height++) {
-            System.out.print(START_BLANK);
-            ladder.findSticksOf(height)
-                    .forEach(ConsoleOutput::printStick);
-            System.out.println(LAST_PIPE);
-        }
+        LadderHeight ladderHeight = ladder.findHeight();
+        IntStream.rangeClosed(1, ladderHeight.getValue())
+                .forEach(currentHeight -> printLadderOf(ladder, currentHeight));
+    }
+
+    private static void printLadderOf(Ladder ladder, int height) {
+        System.out.print(START_BLANK);
+        ladder.findSticksOf(new LadderHeight(height))
+                .forEach(ConsoleOutput::printStick);
+        System.out.println(LAST_PIPE);
     }
 
     private static void printStick(Stick stick) {

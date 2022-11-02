@@ -29,25 +29,29 @@ public class Line {
     }
 
     public List<Integer> findIndexesBothTrue(Line line) {
-        if (findHeight() != line.findHeight()) {
-            throw DifferentLineSizeException.getInstance();
-        }
-        return IntStream.range(0, findHeight())
+        validateSameHeight(line);
+        return IntStream.range(0, findHeight().getValue())
                 .filter(index -> findStick(index).isTrueAndSo(line.findStick(index)))
                 .boxed()
                 .collect(Collectors.toList());
     }
 
-    public int findHeight() {
-        return sticks.size();
+    private void validateSameHeight(Line line) {
+        if (!findHeight().equals(line.findHeight())) {
+            throw DifferentLineSizeException.getInstance();
+        }
+    }
+
+    public LadderHeight findHeight() {
+        return new LadderHeight(sticks.size());
     }
 
     private Stick findStick(int index) {
         return sticks.get(index);
     }
 
-    public Stick findStickOf(int height) {
-        return sticks.get(height);
+    public Stick findStickOf(LadderHeight height) {
+        return sticks.get(height.getValue() - 1);
     }
 
     public List<Stick> getSticks() {
