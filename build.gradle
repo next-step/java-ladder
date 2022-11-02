@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id "org.sonarqube" version "3.4.0.2513"
+    id "org.sonarqube" version "3.3"
     id 'jacoco'
 }
 
@@ -40,7 +40,7 @@ sonarqube {
     properties {
         property "sonar.host.url", "http://localhost:9000"
         property "sonar.projectKey", "java-ladder"
-        property "sonar.login", "sqp_da581b18a201cef72bbc09198865afc336ad737a"
+        property "sonar.login", "63232b48eaadf6ba9632385bcf45261b1edd44de"
         property "sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco.xml"
         property "sonar.java.source", "11"
         property "sonar.java.target", "11"
