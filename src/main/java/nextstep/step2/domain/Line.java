@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private final List<Point> points = new ArrayList<>();
+    private final List<Link> links = new ArrayList<>();
 
     private Line(final int countOfParticipant){
         RandomLineGenerator randomLineGenerator = RandomLineGenerator.from(countOfParticipant);
         for (int position = 1; position <= countOfParticipant; position++) {
-            points.add(Point.from(randomLineGenerator.createRandomBoolean(position)));
+            links.add(Link.from(randomLineGenerator.createRandomBoolean(position)));
         }
     }
 
@@ -17,7 +17,7 @@ public class Line {
         return new Line(countOfParticipant);
     }
 
-    public List<Point> getPoints() {
-        return points;
+    public List<Link> getLinks() {
+        return links;
     }
 }

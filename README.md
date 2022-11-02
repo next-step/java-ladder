@@ -38,3 +38,4 @@
     - [x] 상수와 인스턴스 변수 사이에는 개행 추가
     - [x] 재할당 하지 않는 대상 final keyword 추가
     - [x] ParticipantName 예외처리 꼼꼼하게
+    - [x] Point 클래스, 변수 네이밍 변경

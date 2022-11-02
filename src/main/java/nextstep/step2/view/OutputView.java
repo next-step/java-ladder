@@ -42,9 +42,9 @@ public class OutputView {
         int participantCount = ladder.getParticipantNames().count();
 
         for (Line line : lines) {
-            line.getPoints().stream()
-                    .forEach(point -> {
-                        if (point.value()) {
+            line.getLinks().stream()
+                    .forEach(link -> {
+                        if (link.value()) {
                             System.out.print(LADDER_VIEW + LADDER_LINK.repeat(participantCount));
                         } else {
                             System.out.print(LADDER_VIEW + LADDER_SPACE.repeat(participantCount));
