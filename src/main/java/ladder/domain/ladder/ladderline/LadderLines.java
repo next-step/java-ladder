@@ -1,5 +1,6 @@
 package ladder.domain.ladder.ladderline;
 
+import java.util.stream.IntStream;
 import ladder.domain.ladder.HorizontalLineDirection;
 import ladder.domain.person.Position;
 import ladder.exception.ladder.EscapeLadderLinesException;
@@ -70,7 +71,11 @@ public class LadderLines {
             return false;
         }
         LadderLines that = (LadderLines) o;
-        return Objects.equals(ladderLines, that.ladderLines);
+        long count = IntStream.range(0, this.ladderLines.size())
+                .filter(index -> !(this.ladderLines.get(index).equals(that.ladderLines.get(index))))
+                .count();
+
+        return count == 0;
     }
 
     @Override

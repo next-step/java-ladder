@@ -1,5 +1,6 @@
 package ladder.domain.ladder.ladderline;
 
+import java.util.stream.IntStream;
 import ladder.domain.ladder.HorizontalLineDirection;
 
 import java.util.Collections;
@@ -31,7 +32,11 @@ public class LadderLine {
             return false;
         }
         LadderLine that = (LadderLine) o;
-        return Objects.equals(horizontalLineDirections, that.horizontalLineDirections);
+        long count = IntStream.range(0, this.horizontalLineDirections.size())
+                .filter(index -> (this.horizontalLineDirections.get(index) != that.horizontalLineDirections.get(index)))
+                .count();
+
+        return count == 0;
     }
 
     @Override
