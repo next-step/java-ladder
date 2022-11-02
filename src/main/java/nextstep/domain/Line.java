@@ -33,7 +33,7 @@ public class Line {
             points.set(point, setStrategy(point, lineStrategy));
         }
 
-        return points;
+        return Collections.unmodifiableList(points);
     }
 
     private Boolean setStrategy(int point, LineStrategy lineStrategy) {
