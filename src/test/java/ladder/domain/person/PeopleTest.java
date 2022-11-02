@@ -1,12 +1,12 @@
 package ladder.domain.person;
 
 import ladder.exception.person.PeopleSizeException;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PeopleTest {
 
@@ -20,7 +20,7 @@ public class PeopleTest {
     void find_persons_distinct() {
         People people = new People("pobi", "crong", "sik");
 
-        Assertions.assertAll(
+        assertAll(
                 () -> assertThat(people.findByName(new SearchPeopleNames("pobi", "pobi")))
                         .contains(new Person("pobi", 0, 0)),
                 () -> assertThat(people.findByName(new SearchPeopleNames("pobi", "pobi")).size())
@@ -32,7 +32,7 @@ public class PeopleTest {
     void find_persons() {
         People people = new People("pobi", "crong", "sik");
 
-        Assertions.assertAll(
+        assertAll(
                 () -> assertThat(people.findByName(new SearchPeopleNames("crong")))
                         .contains(new Person("crong", 1, 0)),
                 () -> assertThat(people.findByName(new SearchPeopleNames("pobi", "crong")))

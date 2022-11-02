@@ -36,4 +36,9 @@ public class PersonNameTest {
     void get_name() {
         assertThat(new PersonName("pobi").name()).isEqualTo("pobi");
     }
+
+    @Test
+    void findAll() {
+        assertThat(PersonName.findAll()).isEqualTo(new PersonName("all"));
+    }
 }

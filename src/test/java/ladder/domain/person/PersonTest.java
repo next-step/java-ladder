@@ -31,6 +31,6 @@ public class PersonTest {
     @ParameterizedTest(name = "사람 이름 가져오기")
     @ValueSource(strings = {"pobi", "crong", "sik"})
     void name(String name) {
-        assertThat(new Person(name, 0, 0).name()).isEqualTo(name);
+        assertThat(new Person(name, 0, 0).name()).isEqualTo(new PersonName(name));
     }
 }

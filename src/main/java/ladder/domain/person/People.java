@@ -4,7 +4,6 @@ import ladder.exception.person.PeopleSizeException;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -12,7 +11,6 @@ public class People {
 
     private final List<Person> people;
     private static final int PEOPLE_MIN = 2;
-    private static final String FIND_ALL = "all";
 
     public People(String... strings) {
         validPeopleSize(strings);
@@ -32,30 +30,17 @@ public class People {
     }
 
     public List<Person> findByName(SearchPeopleNames searchPeopleNames) {
-        List<String> textPersonNames = searchPeopleNamesToText(searchPeopleNames);
-
-        if (isFindAll(textPersonNames)) {
+        if (searchPeopleNames.isFindAll()) {
             return this.people();
         }
-        return Collections.unmodifiableList(findPersons(textPersonNames));
+        return Collections.unmodifiableList(findPersons(searchPeopleNames));
     }
 
-    private List<String> searchPeopleNamesToText(SearchPeopleNames searchPeopleNames) {
-        List<PersonName> personNames = searchPeopleNames.peopleNames();
-        return personNames.stream()
-                .map(PersonName::name)
-                .collect(Collectors.toList());
-    }
-
-    private List<Person> findPersons(List<String> peopleNames) {
+    private List<Person> findPersons(SearchPeopleNames peopleNames) {
         return this.people.stream()
-                .filter(person -> peopleNames.stream().anyMatch(Predicate.isEqual(person.name())))
+                .filter(person -> peopleNames.peopleNames().contains(person.name()))
                 .distinct()
                 .collect(Collectors.toList());
-    }
-
-    private boolean isFindAll(List<String> peopleNames) {
-        return peopleNames.contains(FIND_ALL);
     }
 
     public List<Person> people() {

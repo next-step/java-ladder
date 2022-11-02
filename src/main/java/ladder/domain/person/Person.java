@@ -12,8 +12,8 @@ public class Person {
         this.position = new Position(x, y);
     }
 
-    public String name() {
-        return this.name.name();
+    public PersonName name() {
+        return this.name;
     }
 
     public Position position() {

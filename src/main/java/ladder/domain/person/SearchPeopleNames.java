@@ -24,6 +24,10 @@ public class SearchPeopleNames {
         return Collections.unmodifiableList(this.peopleNames);
     }
 
+    public boolean isFindAll() {
+        return peopleNames.contains(PersonName.findAll());
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

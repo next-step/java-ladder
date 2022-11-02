@@ -8,6 +8,7 @@ public class PersonName {
 
     private final String name;
     public static final int INPUT_LENGTH_MAX = 5;
+    private static final String FIND_ALL = "all";
 
     public PersonName(String name) {
         validEmpty(name);
@@ -29,6 +30,10 @@ public class PersonName {
 
     public String name() {
         return this.name;
+    }
+
+    public static PersonName findAll() {
+        return new PersonName(FIND_ALL);
     }
 
     @Override

@@ -10,6 +10,7 @@ public class LadderConst {
     public static final String LADDER_RIGHT_OUTPUT = "|-----";
     public static final String LADDER_DEFAULT_OUTPUT = "|     ";
     public static final String RESULT_OUTPUT_FORMAT = "%5s";
+    public static final String PERSONNAME_OUTPUT_FORMAT = "%5s";
     public static final String RESULTMAP_DELIMITER = "\n";
     public static final String RESULTMAP_FORMAT = "%s : %s";
 }

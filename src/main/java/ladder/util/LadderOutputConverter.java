@@ -10,6 +10,7 @@ import ladder.domain.person.People;
 import ladder.domain.person.Person;
 
 import java.util.stream.Collectors;
+import ladder.domain.person.PersonName;
 
 import static ladder.util.LadderConst.*;
 import static ladder.util.LadderConst.RESULT_DELIMITER;
@@ -21,7 +22,12 @@ public class LadderOutputConverter {
     public static String peopleOutput(People people) {
         return people.people().stream()
                 .map(Person::name)
+                .map(LadderOutputConverter::translatePersonNameOutputFormat)
                 .collect(Collectors.joining(PEOPLE_NAMES_DELIMITER));
+    }
+
+    private static String translatePersonNameOutputFormat(PersonName personName) {
+        return String.format(PERSONNAME_OUTPUT_FORMAT, personName.name());
     }
 
     public static String rewardsOutput(Rewards rewards) {
