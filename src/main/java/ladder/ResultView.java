@@ -1,7 +1,6 @@
 package ladder;
 
 import java.util.List;
-import ladder.util.StringUtils;
 
 public class ResultView {
 
@@ -19,7 +18,7 @@ public class ResultView {
         System.out.println("실행 결과");
         System.out.println();
         userNames.getUserNames()
-            .forEach(username -> System.out.printf("%s ", StringUtils.center(username.getName(), 5)));
+            .forEach(username -> System.out.printf("%5s ", username.getName()));
         System.out.println();
     }
 
