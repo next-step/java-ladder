@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 import ladder.domain.person.PersonName;
 
 import static ladder.util.LadderConst.*;
-import static ladder.util.LadderConst.RESULT_DELIMITER;
+import static ladder.util.LadderConst.REWARDS_DELIMITER;
 
 public class LadderOutputConverter {
 
@@ -31,7 +31,13 @@ public class LadderOutputConverter {
     }
 
     public static String rewardsOutput(Rewards rewards) {
-        return LadderOutputConverter.ladderTextOutput(rewards);
+        return rewards.rewards().stream()
+                .map(LadderOutputConverter::translateResultOutputFormat)
+                .collect(Collectors.joining(REWARDS_DELIMITER));
+    }
+
+    private static String translateResultOutputFormat(Reward reward) {
+        return String.format(RESULT_OUTPUT_FORMAT, reward.reward());
     }
 
     public static String ladderLinesOutput(LadderLines ladderLines) {
@@ -55,24 +61,14 @@ public class LadderOutputConverter {
         return LADDER_DEFAULT_OUTPUT;
     }
 
-    public static String ladderTextOutput(Rewards rewards) {
-        return rewards.rewards().stream()
-                .map(LadderOutputConverter::translateResultOutputFormat)
-                .collect(Collectors.joining(RESULT_DELIMITER));
-    }
-
-    private static String translateResultOutputFormat(Reward reward) {
-        return String.format(RESULT_OUTPUT_FORMAT, reward.reward());
-    }
-
     public static String resultOutput(Result result) {
         return result.result().entrySet().stream()
                 .map(resultEntry -> resultMapFormat(resultEntry.getKey(), resultEntry.getValue()))
-                .collect(Collectors.joining(RESULTMAP_DELIMITER));
+                .collect(Collectors.joining(RESULT_DELIMITER));
     }
 
     private static String resultMapFormat(Person person, Reward result) {
         PersonName personName = person.name();
-        return String.format(RESULTMAP_FORMAT, personName.name(), result.reward());
+        return String.format(RESULT_FORMAT, personName.name(), result.reward());
     }
 }

@@ -35,9 +35,9 @@ public class LadderOutputConverterTest {
 
     @DisplayName("5자 미만일 경우 공백을 채워 5자로 출력한다.")
     @Test
-    void result_output() {
+    void rewards_output() {
         Rewards rewards = new Rewards("꽝", "5000", "3000");
 
-        assertThat(LadderOutputConverter.ladderTextOutput(rewards)).isEqualTo("    꽝  5000  3000");
+        assertThat(LadderOutputConverter.rewardsOutput(rewards)).isEqualTo("    꽝  5000  3000");
     }
 }
