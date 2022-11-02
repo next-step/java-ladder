@@ -1,6 +1,8 @@
 package ladder;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Ladder {
 
@@ -15,13 +17,13 @@ public class Ladder {
     }
 
     public LadderResult play(int CountOfPeople) {
-        LadderResult result = LadderResult.of(CountOfPeople);
+        Map<Integer, Position> result = new HashMap<>();
 
         for (int index = 0; index < CountOfPeople; index++) {
             Position destination = descending(index);
             result.put(index, destination);
         }
-        return result;
+        return new LadderResult(result);
     }
 
     private Position descending(int index) {
