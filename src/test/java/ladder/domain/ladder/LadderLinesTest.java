@@ -1,4 +1,4 @@
-package ladder.domain.ladder.ladderline;
+package ladder.domain.ladder;
 
 import ladder.domain.Position;
 import ladder.testutil.LadderLineTestUtil;

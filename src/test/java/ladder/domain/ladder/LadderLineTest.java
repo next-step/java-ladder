@@ -1,6 +1,5 @@
-package ladder.domain.ladder.ladderline;
+package ladder.domain.ladder;
 
-import ladder.domain.ladder.MoveHorizontalDirection;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;

@@ -1,13 +1,13 @@
 package ladder;
 
-import ladder.domain.ladder.ladderline.LadderLineFactory;
+import ladder.domain.ladder.LadderLineFactory;
 import ladder.domain.person.SearchPeopleNames;
 import ladder.domain.Result;
 import ladder.domain.reward.Rewards;
 import ladder.domain.ladder.LadderHeight;
 import ladder.domain.ladder.LadderWidth;
 import ladder.domain.person.People;
-import ladder.domain.ladder.ladderline.LadderLines;
+import ladder.domain.ladder.LadderLines;
 import ladder.view.input.InputView;
 import ladder.view.output.OutputView;
 

@@ -4,8 +4,8 @@ import ladder.domain.Result;
 import ladder.domain.reward.Reward;
 import ladder.domain.reward.Rewards;
 import ladder.domain.ladder.MoveHorizontalDirection;
-import ladder.domain.ladder.ladderline.LadderLine;
-import ladder.domain.ladder.ladderline.LadderLines;
+import ladder.domain.ladder.LadderLine;
+import ladder.domain.ladder.LadderLines;
 import ladder.domain.person.People;
 import ladder.domain.person.Person;
 

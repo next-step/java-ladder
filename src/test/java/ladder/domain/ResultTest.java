@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.domain.ladder.ladderline.LadderLines;
+import ladder.domain.ladder.LadderLines;
 import ladder.domain.person.Person;
 import ladder.domain.reward.Rewards;
 import ladder.testutil.LadderLineTestUtil;

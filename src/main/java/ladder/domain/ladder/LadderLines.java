@@ -1,7 +1,6 @@
-package ladder.domain.ladder.ladderline;
+package ladder.domain.ladder;
 
 import java.util.stream.IntStream;
-import ladder.domain.ladder.MoveHorizontalDirection;
 import ladder.domain.Position;
 import ladder.exception.ladder.EscapeLadderLinesException;
 import ladder.exception.ladder.NoSuchLadderLineException;

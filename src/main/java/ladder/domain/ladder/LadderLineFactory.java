@@ -1,8 +1,4 @@
-package ladder.domain.ladder.ladderline;
-
-import ladder.domain.ladder.LadderHeight;
-import ladder.domain.ladder.LadderWidth;
-import ladder.domain.ladder.MoveHorizontalDirection;
+package ladder.domain.ladder;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
