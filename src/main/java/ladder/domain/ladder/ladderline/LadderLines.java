@@ -22,7 +22,7 @@ public class LadderLines {
     }
 
     public Point result(Point position) {
-        if (isEscapeResultNumberBound(position)) {
+        if (isEscapePosition(position)) {
             throw new EscapeLadderLinesException();
         }
         return ladderClimbResult(position);
@@ -31,15 +31,19 @@ public class LadderLines {
     private Point ladderClimbResult(Point position) {
         Point currentPosition = position;
         for (LadderLine ladderLine : ladderLines) {
-            int x = ladderLine.horizontalLineDirections()
-                    .get(position.x)
-                    .move(position.x);
-            currentPosition = new Point(x, position.y + 1);
+            currentPosition = ladderClimb(position, ladderLine);
         }
         return currentPosition;
     }
 
-    private boolean isEscapeResultNumberBound(Point position) {
+    private Point ladderClimb(Point position, LadderLine ladderLine) {
+        int x = ladderLine.horizontalLineDirections()
+                .get(position.x)
+                .move(position.x);
+        return new Point(x, position.y + 1);
+    }
+
+    private boolean isEscapePosition(Point position) {
         return validLadderWidth(position.x) && validLadderHeight(position.y);
     }
 
