@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.domain.exception.DuplicateNameException;
 import ladder.domain.exception.NotEnoughPlayerToPlayException;
 
 import java.util.Collections;
@@ -17,6 +18,7 @@ public class PlayerGroup {
 
     public PlayerGroup(final List<Player> players) {
         validateNumberOfPlayer(players);
+        validateDuplicateName(players);
         this.players = players;
     }
 
@@ -37,6 +39,17 @@ public class PlayerGroup {
                 .orElse(0);
         if (size < MINIMUM_PLAYER) {
             throw new NotEnoughPlayerToPlayException(MINIMUM_PLAYER);
+        }
+    }
+
+    private void validateDuplicateName(List<Player> players) {
+        long deduplicationCount = players.stream()
+                .map(Player::getName)
+                .distinct()
+                .count();
+
+        if (players.size() != deduplicationCount) {
+            throw DuplicateNameException.getInstance();
         }
     }
 

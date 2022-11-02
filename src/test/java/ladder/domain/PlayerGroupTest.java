@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.domain.exception.DuplicateNameException;
 import ladder.domain.exception.NotEnoughPlayerToPlayException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -51,6 +52,15 @@ class PlayerGroupTest {
             );
         }
 
+        @DisplayName("중복되는 이름이 존재하면 예외가 발생한다.")
+        @Test
+        void validate_duplicate_name() {
+            List<String> names = List.of("apple", "foby", "apple");
+
+            assertThatThrownBy(() -> PlayerGroup.from(names))
+                    .isExactlyInstanceOf(DuplicateNameException.class)
+                    .hasMessage("중복되는 이름은 사용할 수 없습니다.");
+        }
     }
 
     @DisplayName("라인 수를 반환한다.")
