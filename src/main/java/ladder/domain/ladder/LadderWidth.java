@@ -10,10 +10,14 @@ public class LadderWidth {
     private static final int LADDER_WIDTH_MIN = 1;
 
     public LadderWidth(int width) {
+        validLadderWidthBound(width);
+        this.width = width;
+    }
+
+    private static void validLadderWidthBound(int width) {
         if (width < LADDER_WIDTH_MIN) {
             throw new LadderWidthBoundException(LADDER_WIDTH_MIN);
         }
-        this.width = width;
     }
 
     public int lastLadderIndex() {
