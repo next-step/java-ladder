@@ -1,8 +1,10 @@
 package ladder;
 
+import java.util.Objects;
+
 public class Position {
 
-    private int position;
+    private final int position;
 
     public Position(int position) {
         valid(position);
@@ -25,5 +27,22 @@ public class Position {
         if (position < 0) {
             throw new IllegalArgumentException("위치는 0 이상이어야 합니다.");
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Position position1 = (Position) o;
+        return position == position1.position;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(position);
     }
 }
