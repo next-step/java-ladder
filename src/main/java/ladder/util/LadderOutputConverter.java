@@ -10,7 +10,7 @@ import ladder.domain.person.People;
 import ladder.domain.person.Person;
 
 import java.util.stream.Collectors;
-import ladder.domain.person.PersonName;
+import ladder.domain.person.name.PersonName;
 
 import static ladder.util.LadderConst.*;
 import static ladder.util.LadderConst.REWARDS_DELIMITER;

@@ -1,7 +1,7 @@
 package ladder;
 
 import ladder.domain.ladder.LadderLineFactory;
-import ladder.domain.person.SearchPeopleNames;
+import ladder.domain.person.name.SearchPeopleNames;
 import ladder.domain.Result;
 import ladder.domain.reward.Rewards;
 import ladder.domain.ladder.size.LadderHeight;

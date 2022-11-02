@@ -1,4 +1,4 @@
-package ladder.domain.person;
+package ladder.domain.person.name;
 
 import ladder.exception.person.IllegalPersonNameException;
 import org.junit.jupiter.api.DisplayName;

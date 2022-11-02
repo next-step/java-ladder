@@ -1,5 +1,6 @@
 package ladder.domain.person;
 
+import ladder.domain.person.name.PersonName;
 import ladder.exception.person.IllegalPersonNameException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

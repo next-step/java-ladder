@@ -2,6 +2,7 @@ package ladder.domain.person;
 
 import java.util.Objects;
 import ladder.domain.Position;
+import ladder.domain.person.name.PersonName;
 
 public class Person {
 

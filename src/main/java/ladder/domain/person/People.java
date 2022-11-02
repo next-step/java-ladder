@@ -1,5 +1,6 @@
 package ladder.domain.person;
 
+import ladder.domain.person.name.SearchPeopleNames;
 import ladder.exception.person.PeopleSizeException;
 
 import java.util.Collections;

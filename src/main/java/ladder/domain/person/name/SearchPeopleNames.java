@@ -1,4 +1,4 @@
-package ladder.domain.person;
+package ladder.domain.person.name;
 
 import java.util.Arrays;
 import java.util.Collections;
