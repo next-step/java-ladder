@@ -14,7 +14,8 @@ public class Result {
         personList.forEach(person -> {
             LadderTextInput result = ladderGameResultDto.results()
                     .reward(ladderGameResultDto.ladderLines().result(person.position()));
-            resultMap.put(person, result);});
+            resultMap.put(person, result);
+        });
     }
 
     public LadderTextInput result(Person person) {

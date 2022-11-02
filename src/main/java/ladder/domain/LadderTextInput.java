@@ -6,8 +6,8 @@ import java.util.Objects;
 
 public class LadderTextInput {
 
-    public static final int INPUT_LENGTH_MAX = 5;
     private final String text;
+    public static final int INPUT_LENGTH_MAX = 5;
 
     public LadderTextInput(String text) {
         if (text.length() > INPUT_LENGTH_MAX) {

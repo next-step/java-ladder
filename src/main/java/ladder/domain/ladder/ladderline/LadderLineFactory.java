@@ -13,8 +13,8 @@ import java.util.stream.IntStream;
 
 public class LadderLineFactory {
 
-    private static final SecureRandom random = new SecureRandom();
     private final LadderConnectStrategy ladderConnectStrategy;
+    private static final SecureRandom random = new SecureRandom();
 
     public LadderLineFactory(LadderConnectStrategy ladderConnectStrategy) {
         this.ladderConnectStrategy = ladderConnectStrategy;

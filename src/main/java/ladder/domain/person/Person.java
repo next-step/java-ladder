@@ -9,9 +9,9 @@ import java.util.Objects;
 
 public class Person {
 
-    public static final int INPUT_LENGTH_MAX = 5;
-    private final LadderTextInput name;
     private final Point position;
+    private final LadderTextInput name;
+    public static final int INPUT_LENGTH_MAX = 5;
 
     public Person(String name, int x, int y) {
         validationName(name);
