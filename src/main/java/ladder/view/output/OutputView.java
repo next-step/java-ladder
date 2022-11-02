@@ -1,7 +1,7 @@
 package ladder.view.output;
 
 import ladder.domain.Result;
-import ladder.domain.Rewards;
+import ladder.domain.reward.Rewards;
 import ladder.domain.ladder.ladderline.LadderLines;
 import ladder.domain.person.People;
 

@@ -3,7 +3,7 @@ package ladder;
 import ladder.domain.ladder.ladderline.LadderLineFactory;
 import ladder.domain.person.SearchPeopleNames;
 import ladder.domain.Result;
-import ladder.domain.Rewards;
+import ladder.domain.reward.Rewards;
 import ladder.domain.ladder.LadderHeight;
 import ladder.domain.ladder.LadderWidth;
 import ladder.domain.person.People;

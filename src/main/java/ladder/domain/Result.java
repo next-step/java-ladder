@@ -5,6 +5,8 @@ import ladder.domain.person.Person;
 
 import java.util.*;
 import java.util.List;
+import ladder.domain.reward.Reward;
+import ladder.domain.reward.Rewards;
 
 public class Result {
 

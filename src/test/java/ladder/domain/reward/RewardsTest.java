@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.reward;
 
 import ladder.domain.person.Position;
 import org.junit.jupiter.api.DisplayName;
