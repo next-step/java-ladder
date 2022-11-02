@@ -1,4 +1,4 @@
-package ladder.domain.ladder;
+package ladder.domain.ladder.size;
 
 import ladder.exception.ladder.LadderWidthBoundException;
 import org.junit.jupiter.api.Test;

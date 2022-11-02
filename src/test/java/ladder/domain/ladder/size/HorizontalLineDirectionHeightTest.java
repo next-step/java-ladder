@@ -1,4 +1,4 @@
-package ladder.domain.ladder;
+package ladder.domain.ladder.size;
 
 import ladder.exception.ladder.LadderHeightBoundException;
 import org.junit.jupiter.api.DisplayName;
