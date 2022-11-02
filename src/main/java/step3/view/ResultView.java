@@ -1,7 +1,7 @@
 package step3.view;
 
 import step3.domain.Ladder;
-import step3.domain.Line;
+import step3.domain.Lines;
 import step3.domain.Results;
 import step3.domain.Users;
 
@@ -22,8 +22,8 @@ public class ResultView {
         printResults(results);
     }
 
-    private static void printLadders(Ladder ladder) {
-        ladder.lines.stream()
+    public static void printLadders(Ladder ladder) {
+        ladder.getLines().stream()
                 .forEach(floor -> {
                     System.out.print(System.lineSeparator() + BLANK.repeat(3));
                     printLines(floor);
@@ -32,8 +32,8 @@ public class ResultView {
         System.out.println();
     }
 
-    private static void printLines(Line floor) {
-        floor.hasLine.stream()
+    private static void printLines(Lines floor) {
+        floor.getLines().stream()
                 .forEach(isLine -> {
                     System.out.print(LADDER_SHAPE);
                     System.out.print(getLine(isLine.booleanValue()));
