@@ -42,13 +42,13 @@ public class StreamStudy {
     }
 
     public static long sumAll(List<Integer> numbers) {
-        return numbers.stream().reduce(0, (x, y) -> x + y);
+        return numbers.stream().reduce(0, Integer::sum);
     }
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
         return numbers.stream()
             .filter(n -> n > 3)
             .map(n -> n * 2)
-            .reduce(0, (x, y) -> x + y);
+            .reduce(0, Integer::sum);
     }
 }
