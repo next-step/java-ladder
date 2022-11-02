@@ -1,8 +1,8 @@
 package nextstep.step2.domain;
 
 public class ParticipantName {
-
     private final int NAME_MAX_RANGE = 5;
+
     private final String name;
 
 

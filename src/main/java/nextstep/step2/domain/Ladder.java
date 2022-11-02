@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class Ladder {
-
     private final ParticipantNames participantNames;
     private final List<Line> lines = new ArrayList<>();
 
