@@ -10,14 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import ladder.domain.ladder.strategy.LadderConnectType;
 
 public class LadderLineFactory {
 
     private final LadderConnectStrategy ladderConnectStrategy;
     private static final SecureRandom random = new SecureRandom();
 
-    public LadderLineFactory(LadderConnectStrategy ladderConnectStrategy) {
-        this.ladderConnectStrategy = ladderConnectStrategy;
+    public LadderLineFactory(LadderConnectType ladderConnectType) {
+        this.ladderConnectStrategy = ladderConnectType.strategy();
     }
 
     public LadderLines randomLadderLines(LadderWidth ladderWidth, LadderHeight ladderHeight) {

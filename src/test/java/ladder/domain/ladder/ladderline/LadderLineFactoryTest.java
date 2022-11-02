@@ -3,7 +3,7 @@ package ladder.domain.ladder.ladderline;
 import ladder.domain.ladder.HorizontalLineDirection;
 import ladder.domain.ladder.LadderHeight;
 import ladder.domain.ladder.LadderWidth;
-import ladder.domain.ladder.strategy.LadderNotContinuousConnectStrategy;
+import ladder.domain.ladder.strategy.LadderConnectType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +18,7 @@ class LadderLineFactoryTest {
 
     @BeforeEach
     void setUp() {
-        this.ladderLineFactory = new LadderLineFactory(new LadderNotContinuousConnectStrategy()) {
+        this.ladderLineFactory = new LadderLineFactory(LadderConnectType.DISCONTINUOUS) {
             @Override
             protected HorizontalLineDirection randomConnectableLadder(
                     HorizontalLineDirection beforeHorizontalLineDirection) {
