@@ -17,3 +17,14 @@
 - [x] optional.User.ageIsInRange1 기능을 optional을 활용하여 ageIsInRange2에 구현
 - [x] optional.Users.getUser 메소드를 stream과 optional을 활용하여 구현
 - [x] optional.Expression.of 메소드를 stream과 optional을 활용하여 구현
+
+## TO DO LIST(Step2)
+- [ ] Name 클래스 추가
+- [ ] Line 클래스 추가
+- [ ] Point 클래스 추가
+  - [ ] 검증 메소드 추가
+  - [ ] Line 포함 여부 확인 메소드 추가
+- [ ] Ladder 클래스 추가
+  - [ ] Line 배치 메소드 추가
+- [ ] InputView 클래스 추가
+- [ ] OutputView 클래스 추가
