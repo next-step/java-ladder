@@ -1,4 +1,4 @@
-package ladder.domain.person;
+package ladder.domain;
 
 import ladder.domain.ladder.HorizontalLineDirection;
 import ladder.domain.ladder.MoveHorizontalDirection;

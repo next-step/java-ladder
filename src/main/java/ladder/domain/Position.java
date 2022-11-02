@@ -1,4 +1,4 @@
-package ladder.domain.person;
+package ladder.domain;
 
 import java.awt.*;
 import java.util.Objects;

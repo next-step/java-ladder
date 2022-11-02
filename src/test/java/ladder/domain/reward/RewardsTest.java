@@ -1,6 +1,6 @@
 package ladder.domain.reward;
 
-import ladder.domain.person.Position;
+import ladder.domain.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -1,6 +1,7 @@
 package ladder.domain.person;
 
 import java.util.Objects;
+import ladder.domain.Position;
 
 public class Person {
 

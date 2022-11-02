@@ -1,6 +1,6 @@
 package ladder.domain.reward;
 
-import ladder.domain.person.Position;
+import ladder.domain.Position;
 import ladder.exception.result.ResultNotExistException;
 
 import java.util.Collections;

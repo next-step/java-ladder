@@ -1,6 +1,6 @@
 package ladder.domain.ladder.ladderline;
 
-import ladder.domain.person.Position;
+import ladder.domain.Position;
 import ladder.testutil.LadderLineTestUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
