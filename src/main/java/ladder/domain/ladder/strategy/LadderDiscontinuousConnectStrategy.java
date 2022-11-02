@@ -21,6 +21,11 @@ public class LadderDiscontinuousConnectStrategy implements LadderConnectStrategy
     }
 
     @Override
+    public List<HorizontalLineDirection> firstLadder() {
+        return List.of(HorizontalLineDirection.NONE, HorizontalLineDirection.RIGHT);
+    }
+
+    @Override
     public HorizontalLineDirection lastLadder(HorizontalLineDirection beforeHorizontalLineDirection) {
         if (beforeHorizontalLineDirection.equals(HorizontalLineDirection.LEFT)
                 || beforeHorizontalLineDirection.equals(HorizontalLineDirection.NONE)) {

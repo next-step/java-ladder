@@ -2,6 +2,8 @@ package ladder.domain.ladder.strategy;
 
 import ladder.domain.ladder.HorizontalLineDirection;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -52,5 +54,12 @@ public class HorizontalLineDirectionNotContinuousConnectStrategyTest {
                      HorizontalLineDirection lastHorizontalLineDirection) {
         assertThat(ladderConnectStrategy.lastLadder(beforeHorizontalLineDirection))
                 .isSameAs(lastHorizontalLineDirection);
+    }
+
+    @DisplayName("처음에올 수 있는 사다리를 반환한다.")
+    @Test
+    void first_ladder() {
+        assertThat(ladderConnectStrategy.firstLadder())
+                .contains(HorizontalLineDirection.NONE, HorizontalLineDirection.RIGHT);
     }
 }
