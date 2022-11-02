@@ -1,8 +1,10 @@
 package ladder;
 
+import java.util.stream.Collectors;
 import ladder.domain.ladder.ladderline.LadderLineFactory;
 import ladder.domain.ladder.strategy.LadderConnectStrategy;
 import ladder.domain.person.Person;
+import ladder.domain.person.PersonName;
 import ladder.domain.person.SearchPeopleNames;
 import ladder.domain.Result;
 import ladder.domain.Rewards;
@@ -11,7 +13,6 @@ import ladder.domain.ladder.LadderWidth;
 import ladder.domain.person.People;
 import ladder.domain.ladder.ladderline.LadderLines;
 import ladder.dto.LadderGameResultDto;
-import ladder.service.LadderGameResultService;
 import ladder.util.LadderOutputConverter;
 import ladder.view.InputView;
 import ladder.view.OutputView;
@@ -20,14 +21,11 @@ import java.util.List;
 
 public class LadderController {
 
-    private final LadderGameResultService ladderGameResultService;
     private final LadderLineFactory ladderLineFactory;
 
 
-    public LadderController(LadderConnectStrategy ladderConnectStrategy,
-                            LadderGameResultService ladderGameResultService) {
+    public LadderController(LadderConnectStrategy ladderConnectStrategy) {
         this.ladderLineFactory = new LadderLineFactory(ladderConnectStrategy);
-        this.ladderGameResultService = ladderGameResultService;
     }
 
     public void gameStart() {
@@ -40,11 +38,13 @@ public class LadderController {
 
         OutputView.ladderCreateResult(people, ladderLines, rewards);
 
-        List<Person> resultPersonList = ladderGameResultService.resultPersonList(people,
-                new SearchPeopleNames(InputView.inputResultPeopleNames()));
+        SearchPeopleNames searchPeopleNames = new SearchPeopleNames(InputView.inputResultPeopleNames());
 
-        Result result = ladderGameResultService.ladderGameResult(new LadderGameResultDto(rewards, ladderLines),
-                resultPersonList);
+        List<Person> resultPersons = people.findByName(searchPeopleNames.peopleNames().stream()
+                .map(PersonName::name)
+                .collect(Collectors.toList()));
+
+        Result result = new Result(new LadderGameResultDto(rewards, ladderLines), resultPersons);
 
         OutputView.gameResult(LadderOutputConverter.resultOutput(result));
     }
