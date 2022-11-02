@@ -16,8 +16,8 @@ public class Player {
         this(new Name(name), new Coordinate(x, y));
     }
 
-    public String findName() {
-        return name.getValue();
+    public Name getName() {
+        return name;
     }
 
     @Override

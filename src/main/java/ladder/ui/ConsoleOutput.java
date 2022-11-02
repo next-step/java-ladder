@@ -1,9 +1,6 @@
 package ladder.ui;
 
-import ladder.domain.Ladder;
-import ladder.domain.LadderHeight;
-import ladder.domain.PlayerGroup;
-import ladder.domain.Stick;
+import ladder.domain.*;
 
 import java.util.List;
 import java.util.stream.IntStream;
@@ -25,8 +22,8 @@ public class ConsoleOutput {
     }
 
     private static void printNames(PlayerGroup playerGroup) {
-        List<String> names = playerGroup.findNames();
-        names.forEach(name -> System.out.printf("%6s", name));
+        List<Name> names = playerGroup.findNames();
+        names.forEach(name -> System.out.printf("%6s", name.getValue()));
         System.out.println();
     }
 

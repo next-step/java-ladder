@@ -44,9 +44,9 @@ public class PlayerGroup {
         return new NumberOfLine(players.size() - 1);
     }
 
-    public List<String> findNames() {
+    public List<Name> findNames() {
         return players.stream()
-                .map(Player::findName)
+                .map(Player::getName)
                 .collect(Collectors.toList());
     }
 

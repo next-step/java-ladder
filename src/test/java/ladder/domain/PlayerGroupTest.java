@@ -55,11 +55,22 @@ class PlayerGroupTest {
 
     @DisplayName("라인 수를 반환한다.")
     @Test
-    void findNumberOfLine() {
+    void find_number_of_player() {
         NumberOfLine expected = new NumberOfLine(2);
         PlayerGroup playerGroup = PlayerGroup.from(List.of("apple", "foby", "jung"));
 
         NumberOfLine actual = playerGroup.findNumberOfPlayer();
+
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @DisplayName("이름들을 가져온다.")
+    @Test
+    void find_names() {
+        List<Name> expected = List.of(new Name("apple"), new Name("foby"), new Name("jung"));
+        PlayerGroup playerGroup = PlayerGroup.from(List.of("apple", "foby", "jung"));
+
+        List<Name> actual = playerGroup.findNames();
 
         assertThat(actual).isEqualTo(expected);
     }
