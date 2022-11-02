@@ -8,17 +8,19 @@ import java.util.List;
 
 public class Result {
 
-    private final Map<Person, Reward> resultMap = new HashMap<>();
+    private final Map<Person, Reward> result;
 
     public Result(LadderLines ladderLines, Rewards rewards, List<Person> personList) {
-        personList.forEach(person -> resultMap.put(person, rewards.reward(ladderLines.ladderClimbResultPosition(person.position()))));
+        this.result = new HashMap<>();
+        personList.forEach(
+                person -> result.put(person, rewards.reward(ladderLines.ladderClimbResultPosition(person.position()))));
     }
 
     public Reward result(Person person) {
-        return resultMap.get(person);
+        return result.get(person);
     }
 
-    public Map<Person, Reward> resultMap() {
-        return resultMap;
+    public Map<Person, Reward> result() {
+        return Collections.unmodifiableMap(result);
     }
 }

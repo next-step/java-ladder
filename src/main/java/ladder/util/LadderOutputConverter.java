@@ -66,7 +66,7 @@ public class LadderOutputConverter {
     }
 
     public static String resultOutput(Result result) {
-        return result.resultMap().entrySet().stream()
+        return result.result().entrySet().stream()
                 .map(resultEntry -> resultMapFormat(resultEntry.getKey(), resultEntry.getValue()))
                 .collect(Collectors.joining(RESULTMAP_DELIMITER));
     }
