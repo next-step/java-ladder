@@ -59,6 +59,7 @@ public class ResultView {
         results.results.stream()
                 .map(name -> getString(index, name))
                 .forEach(System.out::print);
+        System.out.println();
     }
 
     private static String getString(AtomicInteger index, String string) {

@@ -13,6 +13,7 @@ public class LadderGameMain {
         Results results = new Results(InputView.inputResults(), users.getUserCounts());
         Ladder ladder = new Ladder(InputView.inputLadderHeight(), users.getUserCounts());
         ResultView.printLadderGame(users, ladder, results);
+        String selectedPerson = InputView.inputSelectedPerson();
     }
 
 }
