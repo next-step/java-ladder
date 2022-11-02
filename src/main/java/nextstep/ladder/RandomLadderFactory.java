@@ -5,12 +5,11 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
 
-public class RandomLadderFactory extends LadderFactory {
+public class RandomLadderFactory implements LadderFactory {
 
     private static final Random RANDOM = new Random();
 
-    @Override
-    Ladder creatLadder(int height, int countPerson) {
+    public Ladder creatLadder(int height, int countPerson) {
         List<Line> lines = new ArrayList<>();
 
         for (int i = 0; i < height; i++) {
