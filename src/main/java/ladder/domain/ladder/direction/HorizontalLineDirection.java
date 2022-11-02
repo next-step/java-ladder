@@ -1,4 +1,4 @@
-package ladder.domain.ladder;
+package ladder.domain.ladder.direction;
 
 public enum HorizontalLineDirection {
 

@@ -1,7 +1,7 @@
 package ladder.domain;
 
-import ladder.domain.ladder.HorizontalLineDirection;
-import ladder.domain.ladder.MoveHorizontalDirection;
+import ladder.domain.ladder.direction.HorizontalLineDirection;
+import ladder.domain.ladder.direction.MoveHorizontalDirection;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

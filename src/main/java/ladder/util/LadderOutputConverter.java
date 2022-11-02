@@ -3,7 +3,7 @@ package ladder.util;
 import ladder.domain.Result;
 import ladder.domain.reward.Reward;
 import ladder.domain.reward.Rewards;
-import ladder.domain.ladder.MoveHorizontalDirection;
+import ladder.domain.ladder.direction.MoveHorizontalDirection;
 import ladder.domain.ladder.LadderLine;
 import ladder.domain.ladder.LadderLines;
 import ladder.domain.person.People;

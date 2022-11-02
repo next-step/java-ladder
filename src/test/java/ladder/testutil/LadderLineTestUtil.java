@@ -1,7 +1,7 @@
 package ladder.testutil;
 
-import ladder.domain.ladder.HorizontalLineDirection;
-import ladder.domain.ladder.MoveHorizontalDirection;
+import ladder.domain.ladder.direction.HorizontalLineDirection;
+import ladder.domain.ladder.direction.MoveHorizontalDirection;
 import ladder.domain.ladder.LadderLine;
 
 import java.util.List;
