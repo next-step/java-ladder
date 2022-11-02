@@ -38,12 +38,19 @@ public class LadderLine {
             return false;
         }
         LadderLine that = (LadderLine) o;
+        return isEqualLadderLine(that);
+    }
+
+    private boolean isEqualLadderLine(LadderLine that) {
         long count = IntStream.range(0, this.moveHorizontalDirections.size())
-                .filter(index ->
-                        !(this.moveHorizontalDirections.get(index).equals(that.moveHorizontalDirections.get(index))))
+                .filter(index -> isNotEqualMoveHorizontalDirection(that, index))
                 .count();
 
         return count == 0;
+    }
+
+    private boolean isNotEqualMoveHorizontalDirection(LadderLine that, int index) {
+        return !(this.moveHorizontalDirections.get(index).equals(that.moveHorizontalDirections.get(index)));
     }
 
     @Override
