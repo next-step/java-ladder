@@ -1,8 +1,6 @@
 package ladder.domain.person;
 
 import ladder.domain.LadderTextInput;
-import ladder.exception.person.IllegalPersonNameException;
-import ladder.exception.InputLengthException;
 
 import java.util.Objects;
 
@@ -10,21 +8,10 @@ public class Person {
 
     private final Position position;
     private final LadderTextInput name;
-    public static final int INPUT_LENGTH_MAX = 5;
 
     public Person(String name, int x, int y) {
-        validationName(name);
         this.name = new LadderTextInput(name);
         this.position = new Position(x, y);
-    }
-
-    private void validationName(String name) {
-        if (name == null || name.isBlank()) {
-            throw new IllegalPersonNameException();
-        }
-        if (name.length() > INPUT_LENGTH_MAX) {
-            throw new InputLengthException(INPUT_LENGTH_MAX);
-        }
     }
 
     public String name() {
