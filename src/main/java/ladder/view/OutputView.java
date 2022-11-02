@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.domain.Result;
 import ladder.domain.Rewards;
 import ladder.domain.ladder.ladderline.LadderLines;
 import ladder.domain.person.People;
@@ -15,8 +16,8 @@ public class OutputView {
         System.out.println(LadderOutputConverter.rewardsOutput(rewards));
     }
 
-    public static void gameResult(String result) {
+    public static void gameResult(Result result) {
         System.out.println("실행 결과");
-        System.out.println(result);
+        System.out.println(LadderOutputConverter.resultOutput(result));
     }
 }
