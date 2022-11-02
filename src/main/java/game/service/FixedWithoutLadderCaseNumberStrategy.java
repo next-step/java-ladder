@@ -1,4 +1,4 @@
-package game.domain.ladder;
+package game.service;
 
 public class FixedWithoutLadderCaseNumberStrategy implements NumberStrategy {
     @Override
