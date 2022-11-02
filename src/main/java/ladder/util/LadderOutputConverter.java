@@ -3,12 +3,11 @@ package ladder.util;
 import ladder.domain.Result;
 import ladder.domain.Reward;
 import ladder.domain.Rewards;
-import ladder.domain.ladder.HorizontalLineDirection;
+import ladder.domain.ladder.MoveHorizontalDirection;
 import ladder.domain.ladder.ladderline.LadderLine;
 import ladder.domain.ladder.ladderline.LadderLines;
 import ladder.domain.person.People;
 import ladder.domain.person.Person;
-import ladder.exception.ladder.NoSuchHorizontalLineDirectionException;
 
 import java.util.stream.Collectors;
 
@@ -43,15 +42,11 @@ public class LadderOutputConverter {
                 .stripTrailing();
     }
 
-    private static String horizontalLineDirectionOutput(HorizontalLineDirection horizontalLineDirection) {
-        if (horizontalLineDirection == HorizontalLineDirection.RIGHT) {
+    private static String horizontalLineDirectionOutput(MoveHorizontalDirection moveHorizontalDirection) {
+        if (moveHorizontalDirection.isCurrentRight()) {
             return LADDER_RIGHT_OUTPUT;
         }
-        if (horizontalLineDirection == HorizontalLineDirection.NONE
-                || horizontalLineDirection == HorizontalLineDirection.LEFT) {
-            return LADDER_DEFAULT_OUTPUT;
-        }
-        throw new NoSuchHorizontalLineDirectionException();
+        return LADDER_DEFAULT_OUTPUT;
     }
 
     public static String ladderTextOutput(Rewards rewards) {

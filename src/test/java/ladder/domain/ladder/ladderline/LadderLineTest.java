@@ -1,9 +1,7 @@
 package ladder.domain.ladder.ladderline;
 
-import ladder.domain.ladder.HorizontalLineDirection;
+import ladder.domain.ladder.MoveHorizontalDirection;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -12,9 +10,11 @@ public class LadderLineTest {
 
     @Test
     void create() {
-        LadderLine ladderLine = new LadderLine(List.of(HorizontalLineDirection.NONE, HorizontalLineDirection.NONE));
+        MoveHorizontalDirection first = MoveHorizontalDirection.first().get(0);
+        MoveHorizontalDirection last = first.last();
 
-        assertThat(ladderLine)
-                .isEqualTo(new LadderLine(List.of(HorizontalLineDirection.NONE, HorizontalLineDirection.NONE)));
+        LadderLine ladderLine = new LadderLine(first, last);
+
+        assertThat(ladderLine).isEqualTo(new LadderLine(first, last));
     }
 }

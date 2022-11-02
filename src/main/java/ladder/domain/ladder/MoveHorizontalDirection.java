@@ -20,6 +20,13 @@ public class MoveHorizontalDirection {
                 new MoveHorizontalDirection(HorizontalLineDirection.NONE, HorizontalLineDirection.RIGHT));
     }
 
+    public static MoveHorizontalDirection first(int number) {
+        if ((number < 0) || (number >= first().size())) {
+            throw new IllegalArgumentException();
+        }
+        return first().get(number);
+    }
+
     public List<MoveHorizontalDirection> next() {
         if (this.currentHorizontalLineDirection.isRight()) {
             return List.of(
@@ -35,6 +42,14 @@ public class MoveHorizontalDirection {
             return new MoveHorizontalDirection(this.currentHorizontalLineDirection, HorizontalLineDirection.LEFT);
         }
         return new MoveHorizontalDirection(this.currentHorizontalLineDirection, HorizontalLineDirection.NONE);
+    }
+
+    public boolean isCurrentRight() {
+        return this.currentHorizontalLineDirection == HorizontalLineDirection.RIGHT;
+    }
+
+    public boolean isCurrentLeft() {
+        return this.currentHorizontalLineDirection == HorizontalLineDirection.LEFT;
     }
 
     @Override

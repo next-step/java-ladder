@@ -1,9 +1,8 @@
 package ladder.domain.person;
 
-import ladder.domain.ladder.HorizontalLineDirection;
-
 import java.awt.*;
 import java.util.Objects;
+import ladder.domain.ladder.MoveHorizontalDirection;
 
 public class Position {
 
@@ -21,12 +20,14 @@ public class Position {
         return this.position.y;
     }
 
-    public Position descend(HorizontalLineDirection horizontalLineDirection) {
-        return new Position(horizontalLineDirection.move(this.x()), descend());
-    }
-
-    private int descend() {
-        return this.y() + 1;
+    public Position descend(MoveHorizontalDirection moveHorizontalDirection) {
+        if (moveHorizontalDirection.isCurrentRight()) {
+            return new Position(this.x() + 1, this.y() + 1);
+        }
+        if (moveHorizontalDirection.isCurrentLeft()) {
+            return new Position(this.x() - 1, this.y() + 1);
+        }
+        return new Position(this.x(), this.y() + 1);
     }
 
     @Override

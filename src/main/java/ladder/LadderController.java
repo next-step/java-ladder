@@ -1,7 +1,6 @@
 package ladder;
 
 import ladder.domain.ladder.ladderline.LadderLineFactory;
-import ladder.domain.ladder.strategy.LadderConnectType;
 import ladder.domain.person.SearchPeopleNames;
 import ladder.domain.Result;
 import ladder.domain.Rewards;
@@ -19,8 +18,8 @@ public class LadderController {
     private final OutputView outputView;
     private final InputView inputView;
 
-    public LadderController(LadderConnectType ladderConnectStrategy, OutputView outputView, InputView inputView) {
-        this.ladderLineFactory = new LadderLineFactory(ladderConnectStrategy);
+    public LadderController(OutputView outputView, InputView inputView) {
+        this.ladderLineFactory = new LadderLineFactory();
         this.outputView = outputView;
         this.inputView = inputView;
     }
