@@ -2,7 +2,6 @@ package nextstep.ladder.factory;
 
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
-import nextstep.ladder.factory.LadderFactory;
 
 import java.util.ArrayList;
 import java.util.List;

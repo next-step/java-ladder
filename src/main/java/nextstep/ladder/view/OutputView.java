@@ -25,7 +25,7 @@ public class OutputView {
     }
 
     private static void outputLines(Line line) {
-        for (boolean bool : line.points) {
+        for (boolean bool : line.getPoints()) {
             System.out.print(VERTICAL_LINE);
             System.out.print(getLine(bool));
         }
