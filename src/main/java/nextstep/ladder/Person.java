@@ -11,7 +11,14 @@ public class Person {
     public Person(String[] people) {
         for (String person : people) {
             checkDuplicate(person);
+            checkNameLength(person);
             this.people.add(person);
+        }
+    }
+
+    private void checkNameLength(String person) {
+        if (person.length() > 5) {
+            throw new IllegalArgumentException("이름은 5자까지 입력 가능합니다.");
         }
     }
 
