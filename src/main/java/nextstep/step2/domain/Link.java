@@ -11,7 +11,7 @@ public class Link {
         return new Link(point);
     }
 
-    public boolean value(){
+    public boolean value() {
         return isLinked;
     }
 }

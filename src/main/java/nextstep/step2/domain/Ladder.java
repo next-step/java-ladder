@@ -8,7 +8,7 @@ public class Ladder {
     private final ParticipantNames participantNames;
     private final List<Line> lines = new ArrayList<>();
 
-    private Ladder(final ParticipantNames participantNames, final int height){
+    private Ladder(final ParticipantNames participantNames, final int height) {
         this.participantNames = participantNames;
         IntStream.range(0, height)
                 .forEach(i -> lines.add(Line.from(participantCount())));
@@ -26,7 +26,7 @@ public class Ladder {
         return lines;
     }
 
-    private int participantCount(){
+    private int participantCount() {
         return participantNames.count();
     }
 }

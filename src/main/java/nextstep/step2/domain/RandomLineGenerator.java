@@ -5,7 +5,7 @@ import java.util.Random;
 public class RandomLineGenerator {
     private static final Random random = new Random();
     private final int countOfParticipant;
-    private int booleanCount=0;
+    private int booleanCount = 0;
 
     public RandomLineGenerator(final int countOfParticipant) {
         this.countOfParticipant = countOfParticipant;
