@@ -10,22 +10,22 @@ import java.util.stream.Stream;
 
 public class Rewards {
 
-    public final List<LadderTextInput> results;
+    public final List<Reward> rewards;
 
     public Rewards(String... strings) {
-        this.results = Stream.of(strings)
-                .map(LadderTextInput::new)
+        this.rewards = Stream.of(strings)
+                .map(Reward::new)
                 .collect(Collectors.toList());
     }
 
-    public List<LadderTextInput> rewards() {
-        return Collections.unmodifiableList(results);
+    public List<Reward> rewards() {
+        return Collections.unmodifiableList(rewards);
     }
 
-    public LadderTextInput reward(Position position) {
-        if (results.size() < position.x()) {
+    public Reward reward(Position position) {
+        if (rewards.size() < position.x()) {
             throw new ResultNotExistException();
         }
-        return results.get(position.x());
+        return rewards.get(position.x());
     }
 }

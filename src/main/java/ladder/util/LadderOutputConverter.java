@@ -1,7 +1,7 @@
 package ladder.util;
 
-import ladder.domain.LadderTextInput;
 import ladder.domain.Result;
+import ladder.domain.Reward;
 import ladder.domain.Rewards;
 import ladder.domain.ladder.HorizontalLineDirection;
 import ladder.domain.ladder.ladderline.LadderLine;
@@ -10,7 +10,6 @@ import ladder.domain.person.People;
 import ladder.domain.person.Person;
 import ladder.exception.ladder.NoSuchHorizontalLineDirectionException;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 import static ladder.util.LadderConst.*;
@@ -18,15 +17,16 @@ import static ladder.util.LadderConst.RESULT_DELIMITER;
 
 public class LadderOutputConverter {
 
+    private static final String PEOPLE_NAMES_DELIMITER = " ";
+
     public static String peopleOutput(People people) {
-        return LadderOutputConverter.ladderTextOutput(people.people().stream()
+        return people.people().stream()
                 .map(Person::name)
-                .map(LadderTextInput::new)
-                .collect(Collectors.toList()));
+                .collect(Collectors.joining(PEOPLE_NAMES_DELIMITER));
     }
 
     public static String rewardsOutput(Rewards rewards) {
-        return LadderOutputConverter.ladderTextOutput(rewards.rewards());
+        return LadderOutputConverter.ladderTextOutput(rewards);
     }
 
     public static String ladderLinesOutput(LadderLines ladderLines) {
@@ -53,14 +53,14 @@ public class LadderOutputConverter {
         throw new NoSuchHorizontalLineDirectionException();
     }
 
-    public static String ladderTextOutput(List<LadderTextInput> results) {
-        return results.stream()
+    public static String ladderTextOutput(Rewards rewards) {
+        return rewards.rewards().stream()
                 .map(LadderOutputConverter::translateResultOutputFormat)
                 .collect(Collectors.joining(RESULT_DELIMITER));
     }
 
-    private static String translateResultOutputFormat(LadderTextInput result) {
-        return String.format(RESULT_OUTPUT_FORMAT, result.text());
+    private static String translateResultOutputFormat(Reward reward) {
+        return String.format(RESULT_OUTPUT_FORMAT, reward.reward());
     }
 
     public static String resultOutput(Result resultMap) {
@@ -69,7 +69,7 @@ public class LadderOutputConverter {
                 .collect(Collectors.joining(RESULTMAP_DELIMITER));
     }
 
-    private static String resultMapFormat(Person person, LadderTextInput result) {
-        return String.format(RESULTMAP_FORMAT, person.name(), result.text());
+    private static String resultMapFormat(Person person, Reward result) {
+        return String.format(RESULTMAP_FORMAT, person.name(), result.reward());
     }
 }

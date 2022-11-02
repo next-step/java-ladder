@@ -10,6 +10,10 @@ public class Reward {
         this.reward = reward;
     }
 
+    public String reward() {
+        return this.reward;
+    }
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

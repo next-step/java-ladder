@@ -1,7 +1,6 @@
 package ladder.domain.person;
 
 import ladder.exception.person.IllegalPersonNameException;
-import ladder.exception.InputLengthException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,7 +13,7 @@ public class PersonTest {
     @DisplayName("사람 이름은 최대 5글자이다.")
     @Test
     void valid_personname_length() {
-        assertThatThrownBy(() -> new Person("abcdef", 0, 0)).isInstanceOf(InputLengthException.class);
+        assertThatThrownBy(() -> new Person("abcdef", 0, 0)).isInstanceOf(IllegalPersonNameException.class);
     }
 
     @ParameterizedTest(name = "사람 이름은 공백일 수 없습니다.")

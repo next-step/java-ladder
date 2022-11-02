@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.domain.ladder.ladderline.LadderLines;
 import ladder.domain.person.Person;
 import ladder.dto.LadderGameResultDto;
 
@@ -8,21 +9,22 @@ import java.util.List;
 
 public class Result {
 
-    private final Map<Person, LadderTextInput> resultMap = new HashMap<>();
+    private final Map<Person, Reward> resultMap = new HashMap<>();
 
     public Result(LadderGameResultDto ladderGameResultDto, List<Person> personList) {
         personList.forEach(person -> {
-            LadderTextInput result = ladderGameResultDto.results()
-                    .reward(ladderGameResultDto.ladderLines().result(person.position()));
-            resultMap.put(person, result);
+            LadderLines ladderLines = ladderGameResultDto.ladderLines();
+            Rewards results = ladderGameResultDto.results();
+
+            resultMap.put(person, results.reward(ladderLines.result(person.position())));
         });
     }
 
-    public LadderTextInput result(Person person) {
+    public Reward result(Person person) {
         return resultMap.get(person);
     }
 
-    public Map<Person, LadderTextInput> resultMap() {
+    public Map<Person, Reward> resultMap() {
         return resultMap;
     }
 }

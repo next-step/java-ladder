@@ -24,7 +24,7 @@ public class ResultTest {
 
         Result result = new Result(new LadderGameResultDto(rewards, ladderLines), personList);
 
-        assertThat(result.result(pobi).text()).isEqualTo("꽝");
-        assertThat(result.result(crong).text()).isEqualTo("1000");
+        assertThat(result.result(pobi).reward()).isEqualTo("꽝");
+        assertThat(result.result(crong).reward()).isEqualTo("1000");
     }
 }

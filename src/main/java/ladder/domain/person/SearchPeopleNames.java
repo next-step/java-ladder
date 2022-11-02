@@ -1,7 +1,5 @@
 package ladder.domain.person;
 
-import ladder.domain.LadderTextInput;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -10,19 +8,19 @@ import java.util.stream.Collectors;
 
 public class SearchPeopleNames {
 
-    private final List<LadderTextInput> peopleNames;
+    private final List<PersonName> peopleNames;
 
     public SearchPeopleNames(String... persons) {
         this(Arrays.stream(persons)
-                .map(LadderTextInput::new)
+                .map(PersonName::new)
                 .collect(Collectors.toList()));
     }
 
-    public SearchPeopleNames(List<LadderTextInput> persons) {
+    public SearchPeopleNames(List<PersonName> persons) {
         this.peopleNames = persons;
     }
 
-    public List<LadderTextInput> peopleNames() {
+    public List<PersonName> peopleNames() {
         return Collections.unmodifiableList(this.peopleNames);
     }
 
