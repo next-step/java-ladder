@@ -1,9 +1,9 @@
 package nextstep.strategy;
 
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomLineStrategy implements LineStrategy {
-    private static final Random random = new Random();
+    private static final ThreadLocalRandom random = ThreadLocalRandom.current();
 
     private static final RandomLineStrategy randomLineStrategy = new RandomLineStrategy();
 
