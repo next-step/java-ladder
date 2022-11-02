@@ -37,9 +37,7 @@ public class StreamStudy {
 
                  return first.length() < second.length() ? 1 : -1;
              })
-             .collect(Collectors.toList())
-             .subList(0, 100)
-             .stream()
+             .limit(100)
              .map(String::toLowerCase)
              .forEach(System.out::println);
     }
@@ -52,7 +50,7 @@ public class StreamStudy {
 
     public static long sumAll(List<Integer> numbers) {
         return numbers.stream()
-                      .reduce(0, (x, y) -> x + y);
+                      .reduce(0, Integer::sum);
     }
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
