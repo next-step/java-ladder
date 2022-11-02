@@ -1,9 +1,10 @@
 package ladder.domain.ladder.ladderline;
 
+import ladder.domain.ladder.HorizontalLineDirection;
+import ladder.domain.person.Position;
 import ladder.exception.ladder.EscapeLadderLinesException;
 import ladder.exception.ladder.NoSuchLadderLineException;
 
-import java.awt.*;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -22,30 +23,28 @@ public class LadderLines {
         return Collections.unmodifiableList(ladderLines);
     }
 
-    public Point result(Point position) {
+    public Position result(Position position) {
         if (isEscapePosition(position)) {
             throw new EscapeLadderLinesException();
         }
         return ladderClimbResult(position);
     }
 
-    private Point ladderClimbResult(Point position) {
-        Point currentPosition = position;
+    private Position ladderClimbResult(Position position) {
+        Position currentPosition = position;
         for (LadderLine ladderLine : ladderLines) {
             currentPosition = ladderClimb(position, ladderLine);
         }
         return currentPosition;
     }
 
-    private Point ladderClimb(Point position, LadderLine ladderLine) {
-        int x = ladderLine.horizontalLineDirections()
-                .get(position.x)
-                .move(position.x);
-        return new Point(x, position.y + 1);
+    private Position ladderClimb(Position position, LadderLine ladderLine) {
+        HorizontalLineDirection horizontalLineDirection = ladderLine.horizontalLineDirections().get(position.x());
+        return position.descend(horizontalLineDirection);
     }
 
-    private boolean isEscapePosition(Point position) {
-        return validLadderWidth(position.x) && validLadderHeight(position.y);
+    private boolean isEscapePosition(Position position) {
+        return validLadderWidth(position.x()) && validLadderHeight(position.y());
     }
 
     private boolean validLadderHeight(int height) {

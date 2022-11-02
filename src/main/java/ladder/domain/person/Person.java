@@ -4,19 +4,18 @@ import ladder.domain.LadderTextInput;
 import ladder.exception.person.IllegalPersonNameException;
 import ladder.exception.InputLengthException;
 
-import java.awt.*;
 import java.util.Objects;
 
 public class Person {
 
-    private final Point position;
+    private final Position position;
     private final LadderTextInput name;
     public static final int INPUT_LENGTH_MAX = 5;
 
     public Person(String name, int x, int y) {
         validationName(name);
         this.name = new LadderTextInput(name);
-        this.position = new Point(x, y);
+        this.position = new Position(x, y);
     }
 
     private void validationName(String name) {
@@ -32,7 +31,7 @@ public class Person {
         return this.name.text();
     }
 
-    public Point position() {
+    public Position position() {
         return this.position;
     }
 

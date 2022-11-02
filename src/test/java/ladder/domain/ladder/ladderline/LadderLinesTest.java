@@ -1,10 +1,10 @@
 package ladder.domain.ladder.ladderline;
 
+import ladder.domain.person.Position;
 import ladder.testutil.LadderLineTestUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.awt.*;
 import java.util.List;
 
 import static ladder.testutil.LadderLineTestUtil.createNoneLadderLine;
@@ -23,8 +23,8 @@ public class LadderLinesTest {
     void result() {
         LadderLines ladderLines = new LadderLines(List.of(LadderLineTestUtil.continuousLadder()));
         Assertions.assertAll(
-                () -> assertThat(ladderLines.result(new Point(0, 0))).isEqualTo(new Point(1, 1)),
-                () -> assertThat(ladderLines.result(new Point(1, 0))).isEqualTo(new Point(0, 1))
+                () -> assertThat(ladderLines.result(new Position(0, 0))).isEqualTo(new Position(1, 1)),
+                () -> assertThat(ladderLines.result(new Position(1, 0))).isEqualTo(new Position(0, 1))
         );
     }
 }
