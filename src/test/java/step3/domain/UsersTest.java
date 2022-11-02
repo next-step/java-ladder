@@ -1,6 +1,5 @@
 package step3.domain;
 import org.junit.jupiter.api.Test;
-import step3.domain.Users;
 
 import java.util.List;
 
