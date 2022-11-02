@@ -7,7 +7,7 @@ public class Results {
     private static final String RESULT_LENGTH_EXCEPTION = "실행결과는 5글자까지 가능합니다.";
     private static final int RESULT_MAX_LENGTH = 5;
 
-    public final List<String> results;
+    private final List<String> results;
 
     public Results(List<String> results, int userCounts) {
         validateResultSize(results, userCounts);
@@ -29,5 +29,9 @@ public class Results {
         if (result.length() == 0 || result.length() > RESULT_MAX_LENGTH) {
             throw new IllegalArgumentException(RESULT_LENGTH_EXCEPTION);
         }
+    }
+
+    public List<String> getResults() {
+        return results;
     }
 }

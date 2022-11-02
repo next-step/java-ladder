@@ -43,7 +43,7 @@ public class Ladder {
         return conditional.canHaveLine(i);
     }
 
-    public Map<Integer, Integer> getResultIndex(int startIndex) {
+    public Map<Integer, Integer> getOneResultIndex(int startIndex) {
         Map<Integer, Integer> results = new HashMap<>();
         int currentIndex = startIndex;
         for (Lines ladder : this.ladders) {
@@ -56,7 +56,7 @@ public class Ladder {
     public Map<Integer, Integer> getAllResultIndex(int userCounts) {
         Map<Integer, Integer> results = new HashMap<>();
         for (int i = 0; i < userCounts; i++) {
-            results.putAll(getResultIndex(i));
+            results.putAll(getOneResultIndex(i));
         }
         return results;
     }

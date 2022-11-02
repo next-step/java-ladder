@@ -6,20 +6,21 @@ public class GameResult {
 
     private static final String ALL_PEOPLE_TEXT = "all";
 
+
     private final Map<Integer, Integer> results;
 
     public GameResult(String name, Users users, Ladder ladder) {
-        this.results = calculateResults(name, users, ladder);
+        this.results = calculateGameResults(name, users, ladder);
     }
 
-    private Map<Integer, Integer> calculateResults(String name, Users users, Ladder ladder) {
+    private Map<Integer, Integer> calculateGameResults(String name, Users users, Ladder ladder) {
         if (name.equals(ALL_PEOPLE_TEXT)) {
             return ladder.getAllResultIndex(users.getUserCounts());
         }
-        return ladder.getResultIndex(users.names.indexOf(name));
+        return ladder.getOneResultIndex(users.getNames().indexOf(name));
     }
 
-    public Map<Integer, Integer> getResults() {
+    public Map<Integer, Integer> getGameResults() {
         return results;
     }
 }

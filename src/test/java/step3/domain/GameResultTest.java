@@ -19,7 +19,7 @@ class GameResultTest {
         });
         String selectedPerson = "pobi";
 
-        assertThat(new GameResult(selectedPerson, users, ladder).getResults().get(0)).isEqualTo(1);
+        assertThat(new GameResult(selectedPerson, users, ladder).getGameResults().get(0)).isEqualTo(1);
     }
 
     @Test
@@ -33,6 +33,6 @@ class GameResultTest {
         });
         String selectedPerson = "all";
 
-        assertThat(new GameResult(selectedPerson, users, ladder).getResults().get(2)).isEqualTo(2);
+        assertThat(new GameResult(selectedPerson, users, ladder).getGameResults().get(2)).isEqualTo(2);
     }
 }

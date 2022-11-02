@@ -13,6 +13,7 @@ public class LadderGameMain {
         ResultView.printLadderGame(users, ladder, results);
         String selectedPerson = users.findContainedName(InputView.inputSelectedPerson());
         GameResult gameResult = new GameResult(selectedPerson, users, ladder);
+        ResultView.printLadderGameResults(gameResult, users, results);
     }
 
 }
