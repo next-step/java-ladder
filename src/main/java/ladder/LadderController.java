@@ -10,16 +10,18 @@ import ladder.domain.ladder.LadderWidth;
 import ladder.domain.person.People;
 import ladder.domain.ladder.ladderline.LadderLines;
 import ladder.view.InputView;
-import ladder.view.OutputView;
+import ladder.view.output.OutputView;
 
 
 public class LadderController {
 
     private final LadderLineFactory ladderLineFactory;
+    private final OutputView outputView;
 
 
-    public LadderController(LadderConnectType ladderConnectStrategy) {
+    public LadderController(LadderConnectType ladderConnectStrategy, OutputView outputView) {
         this.ladderLineFactory = new LadderLineFactory(ladderConnectStrategy);
+        this.outputView = outputView;
     }
 
     public void gameStart() {
@@ -30,12 +32,12 @@ public class LadderController {
         LadderLines ladderLines = ladderLineFactory.randomLadderLines(new LadderWidth(people.number()),
                 new LadderHeight(InputView.ladderHeight()));
 
-        OutputView.ladderCreateResult(people, ladderLines, rewards);
+        outputView.ladderCreateResult(people, ladderLines, rewards);
 
         SearchPeopleNames searchPeopleNames = new SearchPeopleNames(InputView.inputResultPeopleNames());
 
         Result result = new Result(ladderLines, rewards, people.findByName(searchPeopleNames));
 
-        OutputView.gameResult(result);
+        outputView.gameResult(result);
     }
 }
