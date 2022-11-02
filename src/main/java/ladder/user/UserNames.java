@@ -1,18 +1,15 @@
-package ladder;
+package ladder.user;
 
 import java.util.List;
+import ladder.user.UserName;
 
 public class UserNames {
 
     private final List<UserName> userNames;
 
-    private UserNames(List<UserName> userNames) {
+    public UserNames(List<UserName> userNames) {
         valid(userNames);
         this.userNames = userNames;
-    }
-
-    public static UserNames of(List<UserName> userNames) {
-        return new UserNames(userNames);
     }
 
     private void valid(List<UserName> userNames) {
@@ -31,5 +28,9 @@ public class UserNames {
 
     public List<UserName> getUserNames() {
         return userNames;
+    }
+
+    public int findUserIndex(UserName userName) {
+        return userNames.indexOf(userName);
     }
 }

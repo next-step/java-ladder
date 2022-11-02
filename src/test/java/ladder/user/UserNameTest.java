@@ -1,26 +1,27 @@
-package ladder;
+package ladder.user;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import ladder.user.UserName;
 import org.junit.jupiter.api.Test;
 
 public class UserNameTest {
 
     @Test
     void 유저_이름_5글자_제한() {
-        assertThatThrownBy(() -> UserName.from("abcdefgh"))
+        assertThatThrownBy(() -> new UserName("abcdefgh"))
             .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void 유저_이름_널_에러() {
-        assertThatThrownBy(() -> UserName.from(null))
+        assertThatThrownBy(() -> new UserName(null))
             .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void 유저_이름_공백_에러() {
-        assertThatThrownBy(() -> UserName.from(" "))
+        assertThatThrownBy(() -> new UserName(" "))
             .isInstanceOf(IllegalArgumentException.class);
     }
 }
