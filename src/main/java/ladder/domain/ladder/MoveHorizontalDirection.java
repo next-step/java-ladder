@@ -21,7 +21,7 @@ public class MoveHorizontalDirection {
     }
 
     public List<MoveHorizontalDirection> next() {
-        if (this.currentHorizontalLineDirection == HorizontalLineDirection.RIGHT) {
+        if (this.currentHorizontalLineDirection.isRight()) {
             return List.of(
                     new MoveHorizontalDirection(this.currentHorizontalLineDirection, HorizontalLineDirection.LEFT));
         }
@@ -31,7 +31,7 @@ public class MoveHorizontalDirection {
     }
 
     public MoveHorizontalDirection last() {
-        if (this.currentHorizontalLineDirection == HorizontalLineDirection.RIGHT) {
+        if (this.currentHorizontalLineDirection.isRight()) {
             return new MoveHorizontalDirection(this.currentHorizontalLineDirection, HorizontalLineDirection.LEFT);
         }
         return new MoveHorizontalDirection(this.currentHorizontalLineDirection, HorizontalLineDirection.NONE);
