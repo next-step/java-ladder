@@ -9,6 +9,6 @@ class AwardsTest {
     @Test
     void create() {
         Awards awards = new Awards(List.of(new Award("꽝"), new Award("100"), new Award("200")));
-        Assertions.assertThat(awards.getAwards().size()).isEqualTo(3);
+        Assertions.assertThat(awards.getAward(0).getAward()).isEqualTo("꽝");
     }
 }

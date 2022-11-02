@@ -62,13 +62,13 @@ public class ResultView {
 
     private static void printFindOneUserResult(UserNames userNames, LadderResult result, UserName userName, Awards awards) {
         int userIndex = userNames.findUserIndex(userName);
-        Award award = awards.getAwards().get(result.getTarget(userIndex));
+        Award award = awards.getAward(result.getTarget(userIndex));
         System.out.println(award.getAward());
     }
 
     private static void printAllUserResult(UserNames userNames, LadderResult result, Awards awards) {
         for (int i = 0; i < result.getValues().size(); i++) {
-            System.out.println(userNames.getUserNames().get(i).getName() + " : " + awards.getAwards().get(result.getTarget(i)).getAward());
+            System.out.println(userNames.getUserNames().get(i).getName() + " : " + awards.getAward(result.getTarget(i)).getAward());
         }
     }
 }
