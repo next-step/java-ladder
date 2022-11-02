@@ -2,7 +2,6 @@ package ladder.domain;
 
 import ladder.domain.ladder.ladderline.LadderLines;
 import ladder.domain.person.Person;
-import ladder.dto.LadderGameResultDto;
 import ladder.testutil.LadderLineTestUtil;
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +21,7 @@ public class ResultTest {
         Rewards rewards = new Rewards("1000", "꽝");
         LadderLines ladderLines = new LadderLines(List.of(LadderLineTestUtil.continuousLadder()));
 
-        Result result = new Result(new LadderGameResultDto(rewards, ladderLines), personList);
+        Result result = new Result(ladderLines, rewards, personList);
 
         assertThat(result.result(pobi).reward()).isEqualTo("꽝");
         assertThat(result.result(crong).reward()).isEqualTo("1000");

@@ -9,7 +9,6 @@ import ladder.domain.ladder.LadderHeight;
 import ladder.domain.ladder.LadderWidth;
 import ladder.domain.person.People;
 import ladder.domain.ladder.ladderline.LadderLines;
-import ladder.dto.LadderGameResultDto;
 import ladder.util.LadderOutputConverter;
 import ladder.view.InputView;
 import ladder.view.OutputView;
@@ -36,7 +35,7 @@ public class LadderController {
 
         SearchPeopleNames searchPeopleNames = new SearchPeopleNames(InputView.inputResultPeopleNames());
 
-        Result result = new Result(new LadderGameResultDto(rewards, ladderLines), people.findByName(searchPeopleNames));
+        Result result = new Result(ladderLines, rewards, people.findByName(searchPeopleNames));
 
         OutputView.gameResult(LadderOutputConverter.resultOutput(result));
     }
