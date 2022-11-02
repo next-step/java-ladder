@@ -9,10 +9,10 @@ public class Ladder {
     private final int height;
     public final List<Line> lines;
 
-    public Ladder(int height) {
+    public Ladder(int height,int userCounts) {
         validateHeight(height);
         this.height = height;
-        this.lines = new ArrayList<>(height);
+        this.lines = createLadder(userCounts);
     }
 
     private void validateHeight(int height) {
@@ -21,10 +21,12 @@ public class Ladder {
         }
     }
 
-    public void createLadder(int userCounts) {
+     private List<Line> createLadder(int userCounts) {
+        List<Line> lines = new ArrayList<>();
         for (int i = 0; i < this.height; i++) {
-            this.lines.add(new Line(userCounts));
+            lines.add(new Line(userCounts));
         }
+        return lines;
     }
 
 }

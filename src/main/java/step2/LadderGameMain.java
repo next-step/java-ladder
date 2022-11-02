@@ -9,8 +9,7 @@ import step2.view.ResultView;
 public class LadderGameMain {
     public static void main(String[] args) {
         Users users = new Users(InputView.inputUsers());
-        Ladder ladder = new Ladder(InputView.inputLadderHeight());
-        ladder.createLadder(users.getUserCounts());
+        Ladder ladder = new Ladder(InputView.inputLadderHeight(),users.getUserCounts());
         ResultView.printLadderGame(users, ladder);
     }
 
