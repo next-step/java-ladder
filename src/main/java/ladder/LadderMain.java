@@ -7,7 +7,8 @@ import ladder.service.LadderGameResultService;
 public class LadderMain {
 
     public static void main(String[] args) {
-        LadderGameCreateService ladderGameCreateService = new LadderGameCreateService(new LadderNotContinuousConnectStrategy());
+        LadderGameCreateService ladderGameCreateService
+                = new LadderGameCreateService(new LadderNotContinuousConnectStrategy());
         LadderGameResultService ladderGameResultService = new LadderGameResultService();
 
         LadderController ladderController = new LadderController(ladderGameCreateService, ladderGameResultService);

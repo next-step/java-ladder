@@ -22,7 +22,8 @@ public class LadderController {
     private final LadderGameCreateService ladderGameCreateService;
     private final LadderGameResultService ladderGameResultService;
 
-    public LadderController(LadderGameCreateService ladderGameCreateService, LadderGameResultService ladderGameResultService) {
+    public LadderController(LadderGameCreateService ladderGameCreateService,
+                            LadderGameResultService ladderGameResultService) {
         this.ladderGameCreateService = ladderGameCreateService;
         this.ladderGameResultService = ladderGameResultService;
     }
@@ -32,13 +33,16 @@ public class LadderController {
 
         Rewards rewards = new Rewards(InputView.splitResult());
 
-        LadderLines ladderLines = ladderGameCreateService.createLadderLine(new LadderWidth(people.number()), new LadderHeight(InputView.ladderHeight()));
+        LadderLines ladderLines = ladderGameCreateService.createLadderLine(new LadderWidth(people.number()),
+                new LadderHeight(InputView.ladderHeight()));
 
         OutputView.ladderCreateResult(people, ladderLines, rewards);
 
-        List<Person> resultPersonList = ladderGameResultService.resultPersonList(people, new SearchPeopleNames(InputView.inputResultPeopleNames()));
+        List<Person> resultPersonList = ladderGameResultService.resultPersonList(people,
+                new SearchPeopleNames(InputView.inputResultPeopleNames()));
 
-        Result result = ladderGameResultService.ladderGameResult(new LadderGameResultDto(rewards, ladderLines), resultPersonList);
+        Result result = ladderGameResultService.ladderGameResult(new LadderGameResultDto(rewards, ladderLines),
+                resultPersonList);
 
         OutputView.gameResult(LadderOutputConverter.resultOutput(result));
     }

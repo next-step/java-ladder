@@ -22,10 +22,11 @@ public class LadderNotContinuousConnectStrategy implements LadderConnectStrategy
 
     @Override
     public HorizontalLineDirection lastLadder(HorizontalLineDirection beforeHorizontalLineDirection) {
-        if (beforeHorizontalLineDirection.equals(HorizontalLineDirection.LEFT) || beforeHorizontalLineDirection.equals(HorizontalLineDirection.NONE)) {
+        if (beforeHorizontalLineDirection.equals(HorizontalLineDirection.LEFT)
+                || beforeHorizontalLineDirection.equals(HorizontalLineDirection.NONE)) {
             return HorizontalLineDirection.NONE;
         }
-        if(beforeHorizontalLineDirection.equals(HorizontalLineDirection.RIGHT)){
+        if (beforeHorizontalLineDirection.equals(HorizontalLineDirection.RIGHT)) {
             return HorizontalLineDirection.LEFT;
         }
         throw new NoConnectableHorizontalLineDirectionException();

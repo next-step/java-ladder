@@ -24,8 +24,12 @@ public class LadderLine {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         LadderLine that = (LadderLine) o;
         return Objects.equals(horizontalLineDirections, that.horizontalLineDirections);
     }

@@ -31,8 +31,12 @@ public class Position {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Position position1 = (Position) o;
         return (position.x == position1.position.x) && (position.y == position1.position.y);
     }

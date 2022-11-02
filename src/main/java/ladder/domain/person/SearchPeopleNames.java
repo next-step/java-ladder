@@ -26,8 +26,12 @@ public class SearchPeopleNames {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         SearchPeopleNames that = (SearchPeopleNames) o;
         return Objects.equals(peopleNames, that.peopleNames);
     }

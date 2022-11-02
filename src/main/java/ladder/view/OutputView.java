@@ -14,6 +14,7 @@ public class OutputView {
         System.out.println(LadderOutputConverter.ladderLinesOutput(ladderLines));
         System.out.println(LadderOutputConverter.rewardsOutput(rewards));
     }
+
     public static void gameResult(String result) {
         System.out.println("실행 결과");
         System.out.println(result);

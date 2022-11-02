@@ -47,7 +47,8 @@ public class LadderOutputConverter {
         if (horizontalLineDirection == HorizontalLineDirection.RIGHT) {
             return LADDER_RIGHT_OUTPUT;
         }
-        if (horizontalLineDirection == HorizontalLineDirection.NONE || horizontalLineDirection == HorizontalLineDirection.LEFT) {
+        if (horizontalLineDirection == HorizontalLineDirection.NONE
+                || horizontalLineDirection == HorizontalLineDirection.LEFT) {
             return LADDER_DEFAULT_OUTPUT;
         }
         throw new NoSuchHorizontalLineDirectionException();

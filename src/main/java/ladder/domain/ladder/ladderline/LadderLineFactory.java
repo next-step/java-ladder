@@ -30,16 +30,19 @@ public class LadderLineFactory {
         List<HorizontalLineDirection> horizontalLineDirectionLine = new ArrayList<>();
         HorizontalLineDirection beforeHorizontalLineDirection = HorizontalLineDirection.NONE;
         for (int i = 0; i <= ladderWidth.lastLadderIndex() - 1; i++) {
-            HorizontalLineDirection currentHorizontalLineDirection = randomConnectableLadder(beforeHorizontalLineDirection);
+            HorizontalLineDirection currentHorizontalLineDirection
+                    = randomConnectableLadder(beforeHorizontalLineDirection);
             horizontalLineDirectionLine.add(currentHorizontalLineDirection);
             beforeHorizontalLineDirection = currentHorizontalLineDirection;
         }
-        horizontalLineDirectionLine.add(ladderConnectStrategy.lastLadder(horizontalLineDirectionLine.get(ladderWidth.lastLadderIndex() - 1)));
+        horizontalLineDirectionLine.add(
+                ladderConnectStrategy.lastLadder(horizontalLineDirectionLine.get(ladderWidth.lastLadderIndex() - 1)));
         return new LadderLine(horizontalLineDirectionLine);
     }
 
     protected HorizontalLineDirection randomConnectableLadder(HorizontalLineDirection beforeHorizontalLineDirection) {
-        List<HorizontalLineDirection> connectableHorizontalLineDirections = ladderConnectStrategy.connectableLadders(beforeHorizontalLineDirection);
+        List<HorizontalLineDirection> connectableHorizontalLineDirections
+                = ladderConnectStrategy.connectableLadders(beforeHorizontalLineDirection);
         return connectableHorizontalLineDirections.get(random.nextInt(connectableHorizontalLineDirections.size()));
     }
 }

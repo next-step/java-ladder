@@ -63,8 +63,12 @@ public class LadderLines {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         LadderLines that = (LadderLines) o;
         return Objects.equals(ladderLines, that.ladderLines);
     }

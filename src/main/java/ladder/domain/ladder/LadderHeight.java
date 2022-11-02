@@ -22,8 +22,12 @@ public class LadderHeight {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         LadderHeight that = (LadderHeight) o;
         return height == that.height;
     }

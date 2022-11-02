@@ -22,16 +22,20 @@ public class HorizontalLineDirectionNotContinuousConnectStrategyTest {
 
     private static Stream<Arguments> providesForGetConnectableLadder() {
         return Stream.of(
-                Arguments.of(HorizontalLineDirection.LEFT, List.of(HorizontalLineDirection.RIGHT, HorizontalLineDirection.NONE)),
+                Arguments.of(HorizontalLineDirection.LEFT,
+                        List.of(HorizontalLineDirection.RIGHT, HorizontalLineDirection.NONE)),
                 Arguments.of(HorizontalLineDirection.RIGHT, List.of(HorizontalLineDirection.LEFT)),
-                Arguments.of(HorizontalLineDirection.NONE, List.of(HorizontalLineDirection.RIGHT, HorizontalLineDirection.NONE))
+                Arguments.of(HorizontalLineDirection.NONE,
+                        List.of(HorizontalLineDirection.RIGHT, HorizontalLineDirection.NONE))
         );
     }
 
     @ParameterizedTest(name = "사다리를 넣으면 연결 가능한 사다리 리스트를 반환한다.")
     @MethodSource(value = "providesForGetConnectableLadder")
-    void connectable_ladder(HorizontalLineDirection beforeHorizontalLineDirection, List<HorizontalLineDirection> connectableHorizontalLineDirectionList) {
-        assertThat(ladderConnectStrategy.connectableLadders(beforeHorizontalLineDirection)).isEqualTo(connectableHorizontalLineDirectionList);
+    void connectable_ladder(HorizontalLineDirection beforeHorizontalLineDirection,
+                            List<HorizontalLineDirection> connectableHorizontalLineDirectionList) {
+        assertThat(ladderConnectStrategy.connectableLadders(beforeHorizontalLineDirection))
+                .isEqualTo(connectableHorizontalLineDirectionList);
     }
 
     private static Stream<Arguments> providesForLastLadder() {
@@ -44,7 +48,9 @@ public class HorizontalLineDirectionNotContinuousConnectStrategyTest {
 
     @ParameterizedTest(name = "마지막에 올 수 있는 사다리를 반환한다.")
     @MethodSource("providesForLastLadder")
-    void last_ladder(HorizontalLineDirection beforeHorizontalLineDirection, HorizontalLineDirection lastHorizontalLineDirection) {
-        assertThat(ladderConnectStrategy.lastLadder(beforeHorizontalLineDirection)).isSameAs(lastHorizontalLineDirection);
+    void last_ladder(HorizontalLineDirection beforeHorizontalLineDirection,
+                     HorizontalLineDirection lastHorizontalLineDirection) {
+        assertThat(ladderConnectStrategy.lastLadder(beforeHorizontalLineDirection))
+                .isSameAs(lastHorizontalLineDirection);
     }
 }

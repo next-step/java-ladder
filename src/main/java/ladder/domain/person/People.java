@@ -32,8 +32,9 @@ public class People {
     }
 
     public List<Person> findByName(List<String> peopleNames) {
-        if (isFindAll(peopleNames))
+        if (isFindAll(peopleNames)) {
             return this.people();
+        }
         return Collections.unmodifiableList(findPersons(peopleNames));
     }
 

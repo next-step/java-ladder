@@ -20,7 +20,8 @@ class LadderLineFactoryTest {
     void setUp() {
         this.ladderLineFactory = new LadderLineFactory(new LadderNotContinuousConnectStrategy()) {
             @Override
-            protected HorizontalLineDirection randomConnectableLadder(HorizontalLineDirection beforeHorizontalLineDirection) {
+            protected HorizontalLineDirection randomConnectableLadder(
+                    HorizontalLineDirection beforeHorizontalLineDirection) {
                 return HorizontalLineDirection.NONE;
             }
         };
@@ -36,6 +37,9 @@ class LadderLineFactoryTest {
 
     @Test
     void random_ladderline() {
-        assertThat(createNoneLadderLine(3)).isEqualTo(new LadderLine(List.of(HorizontalLineDirection.NONE, HorizontalLineDirection.NONE, HorizontalLineDirection.NONE)));
+        LadderLine ladderLine = new LadderLine(
+                List.of(HorizontalLineDirection.NONE, HorizontalLineDirection.NONE, HorizontalLineDirection.NONE));
+
+        assertThat(createNoneLadderLine(3)).isEqualTo(ladderLine);
     }
 }
