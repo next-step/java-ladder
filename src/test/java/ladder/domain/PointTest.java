@@ -5,13 +5,13 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class NameTest {
+class PointTest {
 
     @Test
-    @DisplayName("5자를 초과하는 값을 할당하는 경우 Name 객체를 생성하는데 실패한다.")
+    @DisplayName("0 미만의 값을 할당하는 경우 Point 객체를 생성하는데 실패한다.")
     void create() {
-        assertThatThrownBy(() -> new Name("scappy")).
+        assertThatThrownBy(() -> new Point(0, -1)).
             isInstanceOf(IllegalArgumentException.class).
-            hasMessage("5자 이하의 이름만 입력 가능합니다.");
+            hasMessage("0 이상의 값만 입력 가능합니다.");
     }
 }

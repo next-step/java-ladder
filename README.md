@@ -21,9 +21,9 @@
 ## TO DO LIST(Step2)
 - [X] Name 클래스 추가
 - [ ] Line 클래스 추가
-- [ ] Point 클래스 추가
-  - [ ] 검증 메소드 추가
-  - [ ] Line 포함 여부 확인 메소드 추가
+- [x] Point 클래스 추가
+  - [x] 검증 메소드 추가
+  - [x] Line 포함 여부 확인 메소드 추가
 - [ ] Ladder 클래스 추가
   - [ ] Line 배치 메소드 추가
 - [ ] InputView 클래스 추가

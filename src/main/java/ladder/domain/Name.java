@@ -6,6 +6,7 @@ public class Name {
 
     private final static String ERROR_EMPTY_VALUE = "입력 값이 누락되었습니다.";
     private final static String ERROR_OVER_FIVE_LETTERS = "5자 이하의 이름만 입력 가능합니다.";
+    private final static int MAX_LENGTH = 5;
 
     private final String value;
 
@@ -19,7 +20,7 @@ public class Name {
             throw new IllegalArgumentException(ERROR_EMPTY_VALUE);
         }
 
-        if (input.length() > 5) {
+        if (input.length() > MAX_LENGTH) {
             throw new IllegalArgumentException(ERROR_OVER_FIVE_LETTERS);
         }
     }
