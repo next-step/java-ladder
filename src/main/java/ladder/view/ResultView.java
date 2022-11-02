@@ -32,12 +32,32 @@ public class ResultView {
     }
 
     private static void printLadder(Ladder ladder) {
+        for (LadderLine line: ladder.getLines()) {
+            printLine(line);
+        }
+    }
+
+    private static void printLine(LadderLine line) {
+        List<String> resultLines = getResultLine(line);
+        for (String resultLine : resultLines) {
+            System.out.print(resultLine);
+        }
+        System.out.println();
+    }
+
+    private static List<String> getResultLine(LadderLine line) {
+        return line.getPoints().stream()
+                .map(ResultView::getPointExist)
+                .collect(Collectors.toList());
+    }
+
+   /* private static void printLadder1(Ladder_bak ladder) {
         for (Line line : ladder.getLines()) {
             printLine(line);
         }
     }
 
-    private static void printLine(Line line) {
+    private static void printLine1(Line line) {
         List<String> resultLines = getResultLine(line);
         for (int i = 0; i < resultLines.size(); i++) {
             System.out.print(resultLines.get(i));
@@ -46,14 +66,19 @@ public class ResultView {
         System.out.println();
     }
 
-    private static List<String> getResultLine(Line line) {
+    private static List<String> getResultLine1(Line line) {
         return line.getPoints().stream()
                 .map(point -> getPointExist(point))
                 .collect(Collectors.toList());
     }
 
-    private static String getPointExist(Point point) {
+    private static String getPointExist1(Point point) {
         if (point.isExist()) return LINE_EXIST;
+        return LINE_NO_EXIST;
+    }*/
+
+    private static String getPointExist(Point point) {
+        if (point.getDirection().isRight()) return LINE_EXIST;
         return LINE_NO_EXIST;
     }
 

@@ -1,9 +1,6 @@
 package ladder;
 
-import ladder.domain.Ladder;
-import ladder.domain.LadderGame;
-import ladder.domain.Names;
-import ladder.domain.Results;
+import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -39,5 +36,4 @@ public class LadderApplication {
             }
         } while (!candidate.equals(STR_ALL));
     }
-
 }

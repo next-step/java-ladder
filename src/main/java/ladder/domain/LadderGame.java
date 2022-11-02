@@ -46,16 +46,15 @@ public class LadderGame {
         return names;
     }
 
-    public String validateCandidateName(String candidate) {
+    public void validateCandidateName(String candidate) {
         if (!isContainedName(candidate)) {
             throw new IllegalArgumentException(ERR_MSG_CANDIDATE_NAME);
         }
-        return candidate;
     }
 
     private boolean isContainedName(String candidate) {
         Optional<Name> candidateName = names.getNames().stream().filter(name -> name.equals(new Name(candidate))).findAny();
-        return candidateName.isEmpty();
+        return candidateName.isPresent();
     }
 
 }

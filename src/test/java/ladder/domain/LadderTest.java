@@ -29,8 +29,8 @@ class LadderTest {
         Ladder ladder = LadderFixtures.createLadder2();
         assertAll(
                 () -> assertThat(ladder.getLadderEndIdx(0)).isEqualTo(2),
-                () -> assertThat(ladder.getLadderEndIdx(1)).isEqualTo(1),
+                () -> assertThat(ladder.getLadderEndIdx(1)).isEqualTo(3),
                 () -> assertThat(ladder.getLadderEndIdx(2)).isEqualTo(0),
-                () -> assertThat(ladder.getLadderEndIdx(3)).isEqualTo(3));
+                () -> assertThat(ladder.getLadderEndIdx(3)).isEqualTo(1));
     }
 }
