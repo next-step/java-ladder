@@ -5,7 +5,6 @@ public class ParticipantName {
 
     private final String name;
 
-
     private ParticipantName(final String name) {
         validateName(name);
         this.name = name;
