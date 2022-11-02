@@ -14,10 +14,10 @@ public class Ladder {
         return rows;
     }
 
-    public LadderResult play(int people) {
-        LadderResult result = LadderResult.of(people);
+    public LadderResult play(int CountOfPeople) {
+        LadderResult result = LadderResult.of(CountOfPeople);
 
-        for (int index = 0; index < people; index++) {
+        for (int index = 0; index < CountOfPeople; index++) {
             int destination = descending(index);
             result.put(index, destination);
         }
