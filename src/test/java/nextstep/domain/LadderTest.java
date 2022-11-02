@@ -16,4 +16,4 @@ class LadderTest {
 
         assertThat(ladder.getLines().size()).isEqualTo(6);
     }
-}g
+}
