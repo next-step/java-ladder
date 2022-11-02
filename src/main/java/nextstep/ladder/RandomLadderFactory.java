@@ -29,9 +29,13 @@ public class RandomLadderFactory implements LadderFactory {
     }
 
     boolean addPoint(int point, List<Boolean> points) {
-        if (point > 0 && points.get(point - 1)) {
+        if (isPreviousTrue(point, points)) {
             return false;
         }
         return RANDOM.nextBoolean();
+    }
+
+    private boolean isPreviousTrue(int point, List<Boolean> points) {
+        return point > 0 && points.get(point - 1);
     }
 }
