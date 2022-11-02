@@ -10,7 +10,7 @@ public class InputView {
         try {
             return SCANNER.nextLine().trim().split(",");
         } catch (Exception e) {
-            throw new IllegalArgumentException("잘못된 입력 값입니다.");
+            throw new IllegalArgumentException("잘못된 입력 값입니다.", e);
         }
     }
 
@@ -19,7 +19,7 @@ public class InputView {
         try {
             return SCANNER.nextInt();
         } catch (Exception e) {
-            throw new IllegalArgumentException("숫자만 입력 가능합니다");
+            throw new IllegalArgumentException("숫자만 입력 가능합니다", e);
         }
     }
 }
