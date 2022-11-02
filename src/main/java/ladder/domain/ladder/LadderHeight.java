@@ -10,10 +10,14 @@ public class LadderHeight {
     private static final int LADDER_HEIGHT_MIN = 1;
 
     public LadderHeight(int height) {
+        validLadderHeightBound(height);
+        this.height = height;
+    }
+
+    private static void validLadderHeightBound(int height) {
         if (height < LADDER_HEIGHT_MIN) {
             throw new LadderHeightBoundException(LADDER_HEIGHT_MIN);
         }
-        this.height = height;
     }
 
     public int height() {
