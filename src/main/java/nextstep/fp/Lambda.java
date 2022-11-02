@@ -29,8 +29,8 @@ public class Lambda {
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        Predicate<Integer> number = n -> n % 2 == 0;
-        return sum(numbers, number);
+        Predicate<Integer> isEven = n -> n % 2 == 0;
+        return sum(numbers, isEven);
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
