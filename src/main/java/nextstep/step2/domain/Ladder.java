@@ -1,17 +1,18 @@
 package nextstep.step2.domain;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
     private final ParticipantNames participantNames;
-    private final List<Line> lines = new ArrayList<>();
+    private final List<Line> lines;
 
     private Ladder(final ParticipantNames participantNames, final Height height) {
         this.participantNames = participantNames;
-        IntStream.range(0, height.value())
-                .forEach(i -> lines.add(Line.from(participantCount())));
+        lines = IntStream.range(0, height.value())
+                .mapToObj(i -> Line.from(participantCount()))
+                .collect(Collectors.toList());
     }
 
     public static Ladder of(final ParticipantNames participantNames, final Height height) {
