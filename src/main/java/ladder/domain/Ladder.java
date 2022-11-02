@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder {
 
@@ -54,20 +55,17 @@ public class Ladder {
         if (lines.size() <= 1) {
             return;
         }
-        for (int index = 0; index < lines.size() - 1; index++) {
-            checkConsecutiveLines(index, lines);
-        }
+        IntStream.range(0, lines.size() - 1)
+                .forEach(index -> checkConsecutiveLines(index, lines));
     }
 
     private void checkConsecutiveLines(int index, List<Line> lines) {
-        List<Integer> sameIndexes = findLine(index, lines).findIndexesBothTrue(findLine(index + 1, lines));
-        if (sameIndexes.size() > 0) {
+        Line line = lines.get(index);
+        Line nextLine = lines.get(index + 1);
+        List<Integer> indexes = line.findIndexesTrueStickOfSameIndex(nextLine);
+        if (indexes.size() > 0) {
             throw ContinuousTrueStickSameHeightException.getInstance();
         }
-    }
-
-    private Line findLine(int index, List<Line> lines) {
-        return lines.get(index);
     }
 
     public List<Stick> findSticksOf(LadderHeight height) {

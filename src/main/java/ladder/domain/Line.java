@@ -28,7 +28,7 @@ public class Line {
         return new Line(sticks);
     }
 
-    public List<Integer> findIndexesBothTrue(Line line) {
+    public List<Integer> findIndexesTrueStickOfSameIndex(Line line) {
         validateSameHeight(line);
         return IntStream.range(0, findHeight().getValue())
                 .filter(index -> findStick(index).isTrueAndSo(line.findStick(index)))
