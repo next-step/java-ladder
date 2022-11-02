@@ -9,6 +9,11 @@ import java.util.List;
 public class Ladder {
     private final int countOfPerson;
     private final int height;
+
+    public Ladder(Users users, int height) {
+        this.countOfPerson = users.count();
+        this.height = height;
+    }
     
     public Ladder(final int countOfPerson, final int height) {
         if (countOfPerson < 1 || height < 1) {

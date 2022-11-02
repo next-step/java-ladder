@@ -10,18 +10,20 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-class NamesDisplayTest {
+import ladder.domain.Users;
+
+class UserDisplayTest {
     @DisplayName("출력할 이름 문자열을 생성한다.")
     @ParameterizedTest
     @MethodSource("getSet")
-    void get(NamesDisplay display, String expected) {
+    void get(UserDisplay display, String expected) {
         assertThat(display.get()).isEqualTo(expected);
     }
     
     private static Stream<Arguments> getSet() {
         return Stream.of(
-                Arguments.arguments(new NamesDisplay(List.of("poby","luna","jk"), 5), "poby  luna  jk    "),
-                Arguments.arguments(new NamesDisplay(List.of("h","jk","cro"), 5), "h     jk    cro   ")
+                Arguments.arguments(new UserDisplay(Users.from(List.of("poby", "luna", "jk")), 5), "poby  luna  jk    "),
+                Arguments.arguments(new UserDisplay(Users.from(List.of("h", "jk", "cro")), 5), "h     jk    cro   ")
         );
     }
 }
