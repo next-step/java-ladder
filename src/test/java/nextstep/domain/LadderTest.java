@@ -9,11 +9,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderTest {
 
-    @Test
-    void create_ladder() {
-        Players players = new Players(List.of("tobi", "pobi", "cao", "petty"));
-        Ladder ladder = new Ladder(6, players.getPlayers().size(), RandomLineStrategy.getInstance());
+    private static final int HEIGHT_LENGTH = 6;
 
-        assertThat(ladder.getLines().size()).isEqualTo(6);
+    @Test
+    void test_Equals_size_If_create_ladder_with_same_height_length() {
+        Players players = new Players(List.of("tobi", "pobi", "cao", "petty"));
+        Ladder ladder = new Ladder(HEIGHT_LENGTH, players.getPlayersSize(), RandomLineStrategy.getInstance());
+
+        assertThat(ladder.getLines().size()).isEqualTo(HEIGHT_LENGTH);
     }
 }
