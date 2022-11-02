@@ -12,8 +12,8 @@ public class RowGenerator {
         List<Boolean> points = new ArrayList<>();
         points.add(RandomBooleanGenerator.generator());
 
-        for (int i = 1; i < people-1; i++) {
-            points.add(isConnected(points, i-1));
+        for (int index = 1; index < people-1; index++) {
+            points.add(isConnected(points, index-1));
         }
         points.add(false);
         return new Row(points);
