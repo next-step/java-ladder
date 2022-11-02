@@ -11,8 +11,8 @@ public class Awards {
         this.awards = awards;
     }
 
-    public Award getAward(int position) {
-        return awards.get(position);
+    public Award getAward(Position position) {
+        return awards.get(position.getPosition());
     }
 
     @Override

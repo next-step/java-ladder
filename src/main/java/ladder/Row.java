@@ -15,8 +15,15 @@ public class Row {
         return points;
     }
 
-    public boolean move(int position) {
-        return points.get(position);
+    public Position move(Position position) {
+        if (points.get(position.getPosition())) {
+            return position.moveRight();
+        }
+
+        if (position.getPosition() > 0 && points.get(position.getPosition() - 1)) {
+            return position.moveLeft();
+        }
+        return position;
     }
 
     @Override

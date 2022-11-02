@@ -18,14 +18,14 @@ public class Ladder {
         LadderResult result = LadderResult.of(CountOfPeople);
 
         for (int index = 0; index < CountOfPeople; index++) {
-            int destination = descending(index);
+            Position destination = descending(index);
             result.put(index, destination);
         }
         return result;
     }
 
-    private int descending(int index) {
-        int position = index;
+    private Position descending(int index) {
+        Position position = new Position(index);
         for (Row row : rows) {
             position = getNextPosition(row, position);
         }
@@ -33,15 +33,7 @@ public class Ladder {
         return position;
     }
 
-    private int getNextPosition(Row row, int position) {
-        if (row.move(position)) {
-            return position + 1;
-        }
-
-        if (position > 0 && row.move(position - 1)) {
-            return position - 1;
-        }
-
-        return position;
+    private Position getNextPosition(Row row, Position position) {
+        return row.move(position);
     }
 }

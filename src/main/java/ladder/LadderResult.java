@@ -8,29 +8,29 @@ import java.util.Map;
 public class LadderResult {
 
     // index, position
-    private Map<Integer, Integer> result;
+    private Map<Integer, Position> result;
 
-    private LadderResult(Map<Integer, Integer> result) {
+    private LadderResult(Map<Integer, Position> result) {
         this.result = result;
     }
 
     public static LadderResult of(int people) {
-        Map<Integer, Integer> result = new HashMap<>();
+        Map<Integer, Position> result = new HashMap<>();
         for (int index = 0; index < people; index++) {
-            result.put(index, index);
+            result.put(index, new Position(index));
         }
         return new LadderResult(result);
     }
 
-    public void put(int index, int position) {
+    public void put(int index, Position position) {
         result.put(index, position);
     }
 
-    public int getTarget(int index) {
+    public Position getTarget(int index) {
         return result.get(index);
     }
 
-    public List<Integer> getValues() {
+    public List<Position> getValues() {
         return new ArrayList<>(result.values());
     }
 }
