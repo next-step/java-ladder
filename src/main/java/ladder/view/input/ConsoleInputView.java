@@ -2,11 +2,11 @@ package ladder.view.input;
 
 import java.util.Scanner;
 
-import static ladder.util.LadderConst.*;
-
 public class ConsoleInputView implements InputView {
 
     private final Scanner scanner = new Scanner(System.in);
+    public static final String PERSON_NAME_SEPARATOR = ",";
+    public static final String INPUT_RESULT_SEPARATOR = ",";
 
     public String[] personNameInput() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(" + PERSON_NAME_SEPARATOR + ")로 구분하세요)");
