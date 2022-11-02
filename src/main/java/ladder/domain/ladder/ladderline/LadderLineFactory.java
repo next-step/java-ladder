@@ -5,14 +5,15 @@ import ladder.domain.ladder.LadderHeight;
 import ladder.domain.ladder.LadderWidth;
 import ladder.domain.ladder.strategy.LadderConnectStrategy;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LadderLineFactory {
-    private static final ThreadLocalRandom random = ThreadLocalRandom.current();
+
+    private static final SecureRandom random = new SecureRandom();
     private final LadderConnectStrategy ladderConnectStrategy;
 
     public LadderLineFactory(LadderConnectStrategy ladderConnectStrategy) {
