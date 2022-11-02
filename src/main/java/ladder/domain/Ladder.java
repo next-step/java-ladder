@@ -50,7 +50,7 @@ public class Ladder {
             throw DifferentLineSizeException.getInstance();
         }
     }
-    
+
     private void validateConsecutiveSticks(List<Line> lines) {
         if (lines.size() <= 1) {
             return;
