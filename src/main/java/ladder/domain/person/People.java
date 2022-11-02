@@ -1,7 +1,6 @@
 package ladder.domain.person;
 
 import ladder.exception.person.PeopleSizeException;
-import ladder.exception.person.PersonNotFoundException;
 
 import java.util.Collections;
 import java.util.List;
@@ -16,12 +15,16 @@ public class People {
     private static final String FIND_ALL = "all";
 
     public People(String... strings) {
-        if (strings.length < PEOPLE_MIN) {
-            throw new PeopleSizeException();
-        }
+        validPeopleSize(strings);
         this.people = IntStream.range(0, strings.length)
                 .mapToObj(number -> new Person(strings[number], number, 0))
                 .collect(Collectors.toList());
+    }
+
+    private static void validPeopleSize(String[] strings) {
+        if (strings.length < PEOPLE_MIN) {
+            throw new PeopleSizeException();
+        }
     }
 
     public int number() {
@@ -29,20 +32,23 @@ public class People {
     }
 
     public List<Person> findByName(List<String> peopleNames) {
-        if (peopleNames.contains(FIND_ALL)) {
-            return this.people;
-        }
-        List<Person> personList = this.people.stream()
+        if (isFindAll(peopleNames))
+            return this.people();
+        return Collections.unmodifiableList(findPersons(peopleNames));
+    }
+
+    private List<Person> findPersons(List<String> peopleNames) {
+        return this.people.stream()
                 .filter(person -> peopleNames.stream().anyMatch(Predicate.isEqual(person.name())))
                 .distinct()
                 .collect(Collectors.toList());
-        if (personList.isEmpty()) {
-            throw new PersonNotFoundException();
-        }
-        return Collections.unmodifiableList(personList);
+    }
+
+    private boolean isFindAll(List<String> peopleNames) {
+        return peopleNames.contains(FIND_ALL);
     }
 
     public List<Person> people() {
-        return this.people;
+        return Collections.unmodifiableList(this.people);
     }
 }
