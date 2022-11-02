@@ -8,9 +8,9 @@ import nextstep.step2.view.OutputView;
 public class LadderGameApplication {
 
     public static void main(String[] args) {
-        ParticipantNames participantNames = ParticipantNames.from(InputView.inputParticipantNames());
-        int ladderHeight = InputView.inputLadderHeight();
-        Ladder ladder = Ladder.of(participantNames, ladderHeight);
+        final ParticipantNames participantNames = ParticipantNames.from(InputView.inputParticipantNames());
+        final int ladderHeight = InputView.inputLadderHeight();
+        final Ladder ladder = Ladder.of(participantNames, ladderHeight);
         OutputView.printGameResult(ladder);
     }
 }

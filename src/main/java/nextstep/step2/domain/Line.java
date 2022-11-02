@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private List<Point> points = new ArrayList<>();
+    private final List<Point> points = new ArrayList<>();
 
     private Line(final int countOfParticipant){
         RandomLineGenerator randomLineGenerator = RandomLineGenerator.from(countOfParticipant);

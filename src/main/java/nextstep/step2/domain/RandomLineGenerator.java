@@ -7,15 +7,15 @@ public class RandomLineGenerator {
     private final int countOfParticipant;
     private int booleanCount=0;
 
-    public RandomLineGenerator(int countOfParticipant) {
+    public RandomLineGenerator(final int countOfParticipant) {
         this.countOfParticipant = countOfParticipant;
     }
 
-    public static RandomLineGenerator from(int countOfParticipant) {
+    public static RandomLineGenerator from(final int countOfParticipant) {
         return new RandomLineGenerator(countOfParticipant);
     }
 
-    public boolean createRandomBoolean(int position) {
+    public boolean createRandomBoolean(final int position) {
         boolean nextBoolean = random.nextBoolean();
 
         if (booleanCount > 0 || position == countOfParticipant) {
