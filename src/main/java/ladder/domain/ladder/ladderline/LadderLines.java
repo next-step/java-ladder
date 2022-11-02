@@ -72,11 +72,19 @@ public class LadderLines {
             return false;
         }
         LadderLines that = (LadderLines) o;
+        return isEqualLadderLines(that);
+    }
+
+    private boolean isEqualLadderLines(LadderLines that) {
         long count = IntStream.range(0, this.ladderLines.size())
-                .filter(index -> !(this.ladderLines.get(index).equals(that.ladderLines.get(index))))
+                .filter(index -> isNotEqualLadderLine(that, index))
                 .count();
 
         return count == 0;
+    }
+
+    private boolean isNotEqualLadderLine(LadderLines that, int index) {
+        return !(this.ladderLines.get(index).equals(that.ladderLines.get(index)));
     }
 
     @Override
