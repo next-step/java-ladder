@@ -12,8 +12,8 @@ class LadderTest {
     @Test
     void create_ladder() {
         Players players = new Players(List.of("tobi", "pobi", "cao", "petty"));
-        Ladder ladder = new Ladder(6, players.getPlayers().size(), new RandomLineStrategy());
+        Ladder ladder = new Ladder(6, players.getPlayers().size(), RandomLineStrategy.getInstance());
 
         assertThat(ladder.getLines().size()).isEqualTo(6);
     }
-}
+}g
