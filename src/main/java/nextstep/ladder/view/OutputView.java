@@ -1,4 +1,8 @@
-package nextstep.ladder;
+package nextstep.ladder.view;
+
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.Person;
 
 public class OutputView {
 

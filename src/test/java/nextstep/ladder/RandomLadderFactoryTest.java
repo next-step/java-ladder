@@ -1,12 +1,12 @@
 package nextstep.ladder;
 
+import nextstep.ladder.factory.RandomLadderFactory;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
 public class RandomLadderFactoryTest {
-
 
     @Test
     void 앞죄표가_true일_경우() {

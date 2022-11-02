@@ -1,4 +1,8 @@
-package nextstep.ladder;
+package nextstep.ladder.factory;
+
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Line;
+import nextstep.ladder.factory.LadderFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +32,7 @@ public class RandomLadderFactory implements LadderFactory {
         return new Line(points);
     }
 
-    boolean addPoint(int point, List<Boolean> points) {
+    public boolean addPoint(int point, List<Boolean> points) {
         if (isPreviousTrue(point, points)) {
             return false;
         }
