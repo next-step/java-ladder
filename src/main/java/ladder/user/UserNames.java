@@ -1,6 +1,7 @@
-package ladder;
+package ladder.user;
 
 import java.util.List;
+import ladder.user.UserName;
 
 public class UserNames {
 

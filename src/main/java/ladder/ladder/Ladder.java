@@ -1,8 +1,9 @@
-package ladder;
+package ladder.ladder;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import ladder.result.LadderResult;
 
 public class Ladder {
 

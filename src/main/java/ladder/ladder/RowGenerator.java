@@ -1,7 +1,8 @@
-package ladder;
+package ladder.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
+import ladder.util.RandomBooleanGenerator;
 
 public class RowGenerator {
 

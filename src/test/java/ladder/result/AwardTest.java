@@ -1,7 +1,8 @@
-package ladder;
+package ladder.result;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import ladder.result.Award;
 import org.junit.jupiter.api.Test;
 
 class AwardTest {

@@ -1,8 +1,9 @@
-package ladder;
+package ladder.result;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import ladder.ladder.Position;
 
 public class LadderResult {
 

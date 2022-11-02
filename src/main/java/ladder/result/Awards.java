@@ -1,7 +1,8 @@
-package ladder;
+package ladder.result;
 
 import java.util.List;
 import java.util.Objects;
+import ladder.ladder.Position;
 
 public class Awards {
 

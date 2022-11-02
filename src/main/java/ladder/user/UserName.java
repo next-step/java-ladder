@@ -1,4 +1,4 @@
-package ladder;
+package ladder.user;
 
 import java.util.Objects;
 

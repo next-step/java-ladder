@@ -1,6 +1,9 @@
-package ladder;
+package ladder.ladder;
 
 import java.util.List;
+import ladder.ladder.Ladder;
+import ladder.ladder.Row;
+import ladder.result.LadderResult;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

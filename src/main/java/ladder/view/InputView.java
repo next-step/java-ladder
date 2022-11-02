@@ -1,9 +1,13 @@
-package ladder;
+package ladder.view;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+import ladder.result.Award;
+import ladder.result.Awards;
+import ladder.user.UserName;
+import ladder.user.UserNames;
 
 public class InputView {
 

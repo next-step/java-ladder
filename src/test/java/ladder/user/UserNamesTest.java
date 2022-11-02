@@ -1,8 +1,10 @@
-package ladder;
+package ladder.user;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import ladder.user.UserName;
+import ladder.user.UserNames;
 import org.junit.jupiter.api.Test;
 
 class UserNamesTest {

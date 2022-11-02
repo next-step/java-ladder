@@ -1,4 +1,4 @@
-package ladder;
+package ladder.ladder;
 
 import java.util.List;
 import java.util.Objects;
