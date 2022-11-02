@@ -8,13 +8,13 @@ public class Ladder {
     private final ParticipantNames participantNames;
     private final List<Line> lines = new ArrayList<>();
 
-    private Ladder(final ParticipantNames participantNames, final int height) {
+    private Ladder(final ParticipantNames participantNames, final Height height) {
         this.participantNames = participantNames;
-        IntStream.range(0, height)
+        IntStream.range(0, height.value())
                 .forEach(i -> lines.add(Line.from(participantCount())));
     }
 
-    public static Ladder of(final ParticipantNames participantNames, final int height) {
+    public static Ladder of(final ParticipantNames participantNames, final Height height) {
         return new Ladder(participantNames, height);
     }
 

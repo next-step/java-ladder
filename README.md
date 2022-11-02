@@ -39,3 +39,4 @@
     - [x] 재할당 하지 않는 대상 final keyword 추가
     - [x] ParticipantName 예외처리 꼼꼼하게
     - [x] Point 클래스, 변수 네이밍 변경
+    - [x] 사다리 높이(height)를 Wrapper 클래스로 만들고 검증 추가

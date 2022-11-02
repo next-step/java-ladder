@@ -1,5 +1,6 @@
 package nextstep.step2;
 
+import nextstep.step2.domain.Height;
 import nextstep.step2.domain.Ladder;
 import nextstep.step2.domain.ParticipantName;
 import nextstep.step2.domain.ParticipantNames;
@@ -15,7 +16,7 @@ public class LadderGameApplication {
     public static void main(String[] args) {
         final String[] inputParticipantNames = InputView.inputParticipantNames();
         final ParticipantNames participantNames = ParticipantNames.from(toParticipantNames(inputParticipantNames));
-        final int ladderHeight = InputView.inputLadderHeight();
+        final Height ladderHeight = Height.from(InputView.inputLadderHeight());
         final Ladder ladder = Ladder.of(participantNames, ladderHeight);
         OutputView.printGameResult(ladder);
     }
