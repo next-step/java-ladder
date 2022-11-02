@@ -31,11 +31,20 @@ public class People {
         return people.size();
     }
 
-    public List<Person> findByName(List<String> peopleNames) {
-        if (isFindAll(peopleNames)) {
+    public List<Person> findByName(SearchPeopleNames searchPeopleNames) {
+        List<String> textPersonNames = searchPeopleNamesToText(searchPeopleNames);
+
+        if (isFindAll(textPersonNames)) {
             return this.people();
         }
-        return Collections.unmodifiableList(findPersons(peopleNames));
+        return Collections.unmodifiableList(findPersons(textPersonNames));
+    }
+
+    private List<String> searchPeopleNamesToText(SearchPeopleNames searchPeopleNames) {
+        List<PersonName> personNames = searchPeopleNames.peopleNames();
+        return personNames.stream()
+                .map(PersonName::name)
+                .collect(Collectors.toList());
     }
 
     private List<Person> findPersons(List<String> peopleNames) {

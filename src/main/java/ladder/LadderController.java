@@ -1,10 +1,7 @@
 package ladder;
 
-import java.util.stream.Collectors;
 import ladder.domain.ladder.ladderline.LadderLineFactory;
 import ladder.domain.ladder.strategy.LadderConnectStrategy;
-import ladder.domain.person.Person;
-import ladder.domain.person.PersonName;
 import ladder.domain.person.SearchPeopleNames;
 import ladder.domain.Result;
 import ladder.domain.Rewards;
@@ -17,7 +14,6 @@ import ladder.util.LadderOutputConverter;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
-import java.util.List;
 
 public class LadderController {
 
@@ -40,11 +36,7 @@ public class LadderController {
 
         SearchPeopleNames searchPeopleNames = new SearchPeopleNames(InputView.inputResultPeopleNames());
 
-        List<Person> resultPersons = people.findByName(searchPeopleNames.peopleNames().stream()
-                .map(PersonName::name)
-                .collect(Collectors.toList()));
-
-        Result result = new Result(new LadderGameResultDto(rewards, ladderLines), resultPersons);
+        Result result = new Result(new LadderGameResultDto(rewards, ladderLines), people.findByName(searchPeopleNames));
 
         OutputView.gameResult(LadderOutputConverter.resultOutput(result));
     }
