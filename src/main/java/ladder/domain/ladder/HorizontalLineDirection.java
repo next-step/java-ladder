@@ -13,4 +13,8 @@ public enum HorizontalLineDirection {
     public int move(int number) {
         return number + value;
     }
+
+    public boolean isRight() {
+        return this == HorizontalLineDirection.RIGHT;
+    }
 }
