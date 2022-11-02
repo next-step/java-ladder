@@ -13,14 +13,18 @@ public class RowGenerator {
         points.add(RandomBooleanGenerator.generator());
 
         for (int i = 1; i < people-1; i++) {
-            boolean generator = RandomBooleanGenerator.generator();
-            if (points.get(i - 1).equals(false)) {
-                points.add(generator);
-            } else {
-                points.add(false);
-            }
+            points.add(isConnected(points, i-1));
         }
         points.add(false);
         return new Row(points);
+    }
+
+    public boolean isConnected(List<Boolean> points, int index) {
+        boolean generator = RandomBooleanGenerator.generator();
+
+        if (!points.get(index)) {
+            return generator;
+        }
+        return false;
     }
 }
