@@ -1,5 +1,7 @@
 package nextstep.step2.domain;
 
+import java.util.Objects;
+
 public class ParticipantName {
     private final int NAME_MAX_RANGE = 5;
 
@@ -19,7 +21,7 @@ public class ParticipantName {
             throw new IllegalArgumentException("참여자 이름은 5글자 이하로 입력해야 합니다.");
         }
 
-        if (name.equals("")) {
+        if (Objects.isNull(name) || name.isBlank()) {
             throw new IllegalArgumentException("참여자 이름은 공백일 수 없습니다.");
         }
     }

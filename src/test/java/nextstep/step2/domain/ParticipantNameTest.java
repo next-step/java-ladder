@@ -16,10 +16,11 @@ class ParticipantNameTest {
             .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("참여자 이름이 0글자이면 예외 처리")
-    @Test
-    void participant_name_not_zero(){
-        Assertions.assertThatThrownBy(() -> ParticipantName.from(""))
-            .isInstanceOf(IllegalArgumentException.class);
+    @DisplayName("참여자 이름이 공백으로만 이루어지면 예외 처리")
+    @ParameterizedTest
+    @ValueSource(strings = {"", "  ", "    "})
+    void participant_name_not_blank(String blank) {
+        Assertions.assertThatThrownBy(() -> ParticipantName.from(blank))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

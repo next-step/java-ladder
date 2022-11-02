@@ -10,7 +10,14 @@ public class ParticipantNames {
     }
 
     public static ParticipantNames from(final List<ParticipantName> participantNames) {
+        validateParticipants(participantNames);
         return new ParticipantNames(participantNames);
+    }
+
+    private static void validateParticipants(final List<ParticipantName> participantNames) {
+        if (participantNames.isEmpty()) {
+            throw new IllegalArgumentException("참여자 수는 0명일 수 없습니다.");
+        }
     }
 
     public List<ParticipantName> getParticipantNames() {
