@@ -21,9 +21,9 @@ public class PeopleTest {
         People people = new People("pobi", "crong", "sik");
 
         assertAll(
-                () -> assertThat(people.findByName(new SearchPeopleNames("pobi", "pobi")))
+                () -> assertThat(people.findAllBySearchPeopleNames(new SearchPeopleNames("pobi", "pobi")))
                         .contains(new Person("pobi", 0, 0)),
-                () -> assertThat(people.findByName(new SearchPeopleNames("pobi", "pobi")).size())
+                () -> assertThat(people.findAllBySearchPeopleNames(new SearchPeopleNames("pobi", "pobi")).size())
                         .isEqualTo(1)
         );
     }
@@ -33,11 +33,11 @@ public class PeopleTest {
         People people = new People("pobi", "crong", "sik");
 
         assertAll(
-                () -> assertThat(people.findByName(new SearchPeopleNames("crong")))
+                () -> assertThat(people.findAllBySearchPeopleNames(new SearchPeopleNames("crong")))
                         .contains(new Person("crong", 1, 0)),
-                () -> assertThat(people.findByName(new SearchPeopleNames("pobi", "crong")))
+                () -> assertThat(people.findAllBySearchPeopleNames(new SearchPeopleNames("pobi", "crong")))
                         .contains(new Person("pobi", 0, 0), new Person("crong", 1, 0)),
-                () -> assertThat(people.findByName(new SearchPeopleNames("all")))
+                () -> assertThat(people.findAllBySearchPeopleNames(new SearchPeopleNames("all")))
                         .contains(new Person("pobi", 0, 0), new Person("crong", 1, 0),
                                 new Person("sik", 2, 0))
         );

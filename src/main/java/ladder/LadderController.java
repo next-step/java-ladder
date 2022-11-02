@@ -36,7 +36,7 @@ public class LadderController {
 
         SearchPeopleNames searchPeopleNames = new SearchPeopleNames(inputView.inputResultPeopleNames());
 
-        Result result = new Result(ladderLines, rewards, people.findByName(searchPeopleNames));
+        Result result = new Result(ladderLines, rewards, people.findAllBySearchPeopleNames(searchPeopleNames));
 
         outputView.gameResult(result);
     }

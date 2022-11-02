@@ -29,7 +29,7 @@ public class People {
         return people.size();
     }
 
-    public List<Person> findByName(SearchPeopleNames searchPeopleNames) {
+    public List<Person> findAllBySearchPeopleNames(SearchPeopleNames searchPeopleNames) {
         if (searchPeopleNames.isFindAll()) {
             return this.people();
         }
