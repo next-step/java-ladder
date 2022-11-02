@@ -25,16 +25,24 @@ public class User {
     }
 
     public static boolean ageIsInRange1(User user) {
-        Optional<User> optionalUser = Optional.of(user);
-        return optionalUser.filter(user1 -> Objects.nonNull(user1.age))
+        boolean isInRange = false;
+
+        if (user != null && user.getAge() != null
+                && (user.getAge() >= 30
+                && user.getAge() <= 45)) {
+            isInRange = true;
+        }
+        return isInRange;
+    }
+
+    public static boolean ageIsInRange2(User user) {
+        Optional<User> optionalUser = Optional.ofNullable(user);
+        return optionalUser
+                .filter(user1 -> Objects.nonNull(user1.age))
                 .map(user1 -> user1.age)
                 .filter(age -> age >= 30)
                 .filter(age -> age <= 45)
                 .isPresent();
-    }
-
-    public static boolean ageIsInRange2(User user) {
-        return false;
     }
 
     @Override
