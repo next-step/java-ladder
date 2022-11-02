@@ -1,14 +1,14 @@
-package ladder.view;
+package ladder.view.input;
 
 import java.util.Scanner;
 
 import static ladder.util.LadderConst.*;
 
-public class InputView {
+public class ConsoleInputView implements InputView {
 
-    private static final Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
-    public static String[] personNameInput() {
+    public String[] personNameInput() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(" + PERSON_NAME_SEPARATOR + ")로 구분하세요)");
         try {
             return splitPersonName(scanner.nextLine());
@@ -17,7 +17,7 @@ public class InputView {
         }
     }
 
-    public static String[] inputResultPeopleNames() {
+    public String[] inputResultPeopleNames() {
         System.out.println("결과를 보고 싶은 사람은?");
         try {
             return inputPeopleNames(scanner.nextLine().trim());
@@ -26,18 +26,18 @@ public class InputView {
         }
     }
 
-    private static String[] inputPeopleNames(String text) {
+    private String[] inputPeopleNames(String text) {
         if (text.contains(PERSON_NAME_SEPARATOR)) {
             return splitPersonName(text);
         }
         return new String[]{text};
     }
 
-    public static String[] splitPersonName(String text) {
+    private String[] splitPersonName(String text) {
         return text.split(PERSON_NAME_SEPARATOR);
     }
 
-    public static String[] splitResult() {
+    public String[] splitResult() {
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(" + INPUT_RESULT_SEPARATOR + ")로 구분하세요)");
         try {
             return scanner.nextLine().split(INPUT_RESULT_SEPARATOR);
@@ -46,7 +46,7 @@ public class InputView {
         }
     }
 
-    public static int ladderHeight() {
+    public int ladderHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         try {
             return Integer.parseInt(scanner.nextLine());
