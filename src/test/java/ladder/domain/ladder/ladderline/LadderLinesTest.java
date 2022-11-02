@@ -23,8 +23,8 @@ public class LadderLinesTest {
     void result() {
         LadderLines ladderLines = new LadderLines(List.of(LadderLineTestUtil.continuousLadder()));
         Assertions.assertAll(
-                () -> assertThat(ladderLines.result(new Position(0, 0))).isEqualTo(new Position(1, 1)),
-                () -> assertThat(ladderLines.result(new Position(1, 0))).isEqualTo(new Position(0, 1))
+                () -> assertThat(ladderLines.ladderClimbResultPosition(new Position(0, 0))).isEqualTo(new Position(1, 1)),
+                () -> assertThat(ladderLines.ladderClimbResultPosition(new Position(1, 0))).isEqualTo(new Position(0, 1))
         );
     }
 }

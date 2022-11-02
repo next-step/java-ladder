@@ -11,7 +11,7 @@ public class Result {
     private final Map<Person, Reward> resultMap = new HashMap<>();
 
     public Result(LadderLines ladderLines, Rewards rewards, List<Person> personList) {
-        personList.forEach(person -> resultMap.put(person, rewards.reward(ladderLines.result(person.position()))));
+        personList.forEach(person -> resultMap.put(person, rewards.reward(ladderLines.ladderClimbResultPosition(person.position()))));
     }
 
     public Reward result(Person person) {

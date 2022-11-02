@@ -24,14 +24,14 @@ public class LadderLines {
         return Collections.unmodifiableList(ladderLines);
     }
 
-    public Position result(Position position) {
+    public Position ladderClimbResultPosition(Position position) {
         if (isEscapePosition(position)) {
             throw new EscapeLadderLinesException();
         }
-        return ladderClimbResult(position);
+        return ladderClimbPosition(position);
     }
 
-    private Position ladderClimbResult(Position position) {
+    private Position ladderClimbPosition(Position position) {
         Position currentPosition = position;
         for (LadderLine ladderLine : ladderLines) {
             currentPosition = ladderClimb(position, ladderLine);
@@ -46,14 +46,14 @@ public class LadderLines {
     }
 
     private boolean isEscapePosition(Position position) {
-        return validLadderWidth(position.x()) && validLadderHeight(position.y());
+        return isValidLadderWidth(position.x()) && isValidLadderHeight(position.y());
     }
 
-    private boolean validLadderHeight(int height) {
+    private boolean isValidLadderHeight(int height) {
         return height < 0 || height >= ladderLines.size();
     }
 
-    private boolean validLadderWidth(int width) {
+    private boolean isValidLadderWidth(int width) {
         return width < RESULT_START_NUMBER_MIN || width >= ladderWidth();
     }
 
