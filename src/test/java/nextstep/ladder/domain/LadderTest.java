@@ -17,14 +17,14 @@ class LadderTest {
     @ParameterizedTest
     @MethodSource("ladderTestSource")
     void arrive_index_test(int height, String userName, String result) {
-        LadderInput ladderInput = generateLadderInOut();
-        LadderLine ladderLine = new LadderLine(ladderInput.getCountOfUser(), height, () -> true);
-        Ladder ladder = new Ladder(ladderInput, ladderLine);
+        LadderInOut ladderInOut = generateLadderInOut();
+        LadderLines ladderLines = new LadderLines(ladderInOut.getCountOfUser(), height, () -> true);
+        Ladder ladder = new Ladder(ladderInOut, ladderLines);
         assertThat(ladder.getResult(userName)).isEqualTo(result);
     }
 
-    LadderInput generateLadderInOut() {
-        return new LadderInput(Lists.list("1", "2", "3"), new Users(Lists.list("a", "b", "c")));
+    LadderInOut generateLadderInOut() {
+        return new LadderInOut(Lists.list("1", "2", "3"), new Users(Lists.list("a", "b", "c")));
     }
 
     static Stream<Arguments> ladderTestSource() {

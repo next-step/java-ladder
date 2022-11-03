@@ -7,10 +7,10 @@ import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
 public class LadderController {
-    private InputView inputView;
-    private OutputView outputView;
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final LadderFactory ladderFactory;
 
-    private LadderFactory ladderFactory;
     public LadderController(InputView inputView, OutputView outputView, LadderFactory ladderFactory) {
         this.inputView = inputView;
         this.outputView = outputView;

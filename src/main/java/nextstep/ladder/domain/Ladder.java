@@ -2,31 +2,31 @@ package nextstep.ladder.domain;
 
 public class Ladder {
 
-    private final LadderInput ladderInput;
-    private final LadderLine line;
+    private final LadderInOut ladderInOut;
+    private final LadderLines line;
 
-    public Ladder(LadderInput ladderInput, LadderLine line) {
-        this.ladderInput = ladderInput;
+    public Ladder(LadderInOut ladderInOut, LadderLines line) {
+        this.ladderInOut = ladderInOut;
         this.line = line;
     }
 
     public String getResultName(int idx) {
-        return ladderInput.getResult(idx);
+        return ladderInOut.getResult(idx);
     }
 
     public String getResult(int userIdx) {
         int arriveIdx = line.getArriveIdx(userIdx);
-        return ladderInput.getResult(arriveIdx);
+        return ladderInOut.getResult(arriveIdx);
     }
 
     public String getResult(String name) {
-        int userIdx = ladderInput.indexOfUser(name);
+        int userIdx = ladderInOut.indexOfUser(name);
         int arriveIdx = line.getArriveIdx(userIdx);
-        return ladderInput.getResult(arriveIdx);
+        return ladderInOut.getResult(arriveIdx);
     }
 
     public int getCountOfPerson() {
-        return ladderInput.getCountOfUser();
+        return ladderInOut.getCountOfUser();
     }
 
     public Line getLine(int idx) {
@@ -34,7 +34,7 @@ public class Ladder {
     }
 
     public String getUserName(int idx) {
-        return ladderInput.getUserName(idx);
+        return ladderInOut.getUserName(idx);
     }
 
     public int getHeight() {
