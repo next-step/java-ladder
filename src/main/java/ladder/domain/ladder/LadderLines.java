@@ -13,8 +13,8 @@ import java.util.Optional;
 
 public class LadderLines {
 
-    private final List<LadderLine> ladderLines;
     private static final int RESULT_START_NUMBER_MIN = 0;
+    private final List<LadderLine> ladderLines;
 
     public LadderLines(List<LadderLine> ladderLines) {
         this.ladderLines = ladderLines;

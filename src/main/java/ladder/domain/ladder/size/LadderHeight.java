@@ -6,8 +6,8 @@ import java.util.Objects;
 
 public class LadderHeight {
 
-    private final int height;
     private static final int LADDER_HEIGHT_MIN = 1;
+    private final int height;
 
     public LadderHeight(int height) {
         validLadderHeightBound(height);

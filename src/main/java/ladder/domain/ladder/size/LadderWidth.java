@@ -6,8 +6,8 @@ import java.util.Objects;
 
 public class LadderWidth {
 
-    private final int width;
     private static final int LADDER_WIDTH_MIN = 1;
+    private final int width;
 
     public LadderWidth(int width) {
         validLadderWidthBound(width);

@@ -10,8 +10,8 @@ import java.util.stream.IntStream;
 
 public class People {
 
-    private final List<Person> people;
     private static final int PEOPLE_MIN = 2;
+    private final List<Person> people;
 
     public People(String... strings) {
         validPeopleSize(strings);

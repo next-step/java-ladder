@@ -6,9 +6,9 @@ import java.util.Objects;
 
 public class PersonName {
 
-    private final String name;
     public static final int INPUT_LENGTH_MAX = 5;
     private static final String FIND_ALL = "all";
+    private final String name;
 
     public PersonName(String name) {
         validEmpty(name);
