@@ -7,7 +7,7 @@ import step3.view.ResultView;
 
 public class LadderGameMain {
 
-    public static final String GAME_END_TEXT = "all";
+    private static final String GAME_END_TEXT = "all";
 
     public static void main(String[] args) {
         Users users = new Users(InputView.inputUsers());
