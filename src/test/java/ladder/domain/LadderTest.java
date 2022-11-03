@@ -10,10 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 import ladder.domain.exception.EmptyNamesException;
 import ladder.domain.exception.InvalidHeightException;
-import ladder.domain.exception.InvalidLinesException;
+import ladder.domain.exception.InvalidLineException;
 import ladder.domain.exception.InvalidNameLengthException;
+import ladder.domain.exception.MismatchHeightLinesException;
+import ladder.domain.exception.MismatchPersonBarsException;
 import ladder.domain.exception.NullNamesException;
-import ladder.domain.line.ManualLine;
+import ladder.domain.line.Line;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -26,10 +28,10 @@ class LadderTest {
 
         assertDoesNotThrow(() -> ladder.addLines(
                 List.of(
-                        new ManualLine(3, getBars(List.of(false, false, true))),
-                        new ManualLine(3, getBars(List.of(false, true, false))),
-                        new ManualLine(3, getBars(List.of(false, true, false))),
-                        new ManualLine(3, getBars(List.of(false, false, true)))
+                        new Line(3, getBars(List.of(false, false, true))),
+                        new Line(3, getBars(List.of(false, true, false))),
+                        new Line(3, getBars(List.of(false, true, false))),
+                        new Line(3, getBars(List.of(false, false, true)))
                 )
         ));
     }
@@ -39,14 +41,14 @@ class LadderTest {
     void fail_to_add_lines_with_invalid_bar() {
         Ladder ladder = new Ladder(List.of("abc", "adgda", "adg"), 4);
 
-        assertThatExceptionOfType(InvalidLinesException.class)
+        assertThatExceptionOfType(InvalidLineException.class)
                 .isThrownBy(() ->
                         ladder.addLines(
                                 List.of(
-                                        new ManualLine(3, getBars(List.of(false, true, true))),
-                                        new ManualLine(3, getBars(List.of(false, false, true))),
-                                        new ManualLine(3, getBars(List.of(false, true, false))),
-                                        new ManualLine(3, getBars(List.of(false, false, true)))
+                                        new Line(3, getBars(List.of(false, true, true))),
+                                        new Line(3, getBars(List.of(false, false, true))),
+                                        new Line(3, getBars(List.of(false, true, false))),
+                                        new Line(3, getBars(List.of(false, false, true)))
                                 )
                         ));
     }
@@ -56,14 +58,14 @@ class LadderTest {
     void fail_to_add_lines_with_invalid_first_bar() {
         Ladder ladder = new Ladder(List.of("abc", "adgda", "adg"), 4);
 
-        assertThatExceptionOfType(InvalidLinesException.class)
+        assertThatExceptionOfType(InvalidLineException.class)
                 .isThrownBy(() ->
                         ladder.addLines(
                                 List.of(
-                                        new ManualLine(3, getBars(List.of(false, false, true))),
-                                        new ManualLine(3, getBars(List.of(false, true, false))),
-                                        new ManualLine(3, getBars(List.of(false, true, false))),
-                                        new ManualLine(3, getBars(List.of(true, false, true)))
+                                        new Line(3, getBars(List.of(false, false, true))),
+                                        new Line(3, getBars(List.of(false, true, false))),
+                                        new Line(3, getBars(List.of(false, true, false))),
+                                        new Line(3, getBars(List.of(true, false, true)))
                                 )
                         ));
     }
@@ -73,14 +75,14 @@ class LadderTest {
     void fail_to_add_lines_with_invalid_bar_count() {
         Ladder ladder = new Ladder(List.of("abc", "adgda", "adg"), 4);
 
-        assertThatExceptionOfType(InvalidLinesException.class)
+        assertThatExceptionOfType(MismatchPersonBarsException.class)
                 .isThrownBy(() ->
                         ladder.addLines(
                                 List.of(
-                                        new ManualLine(3, getBars(List.of(false, false, true))),
-                                        new ManualLine(3, getBars(List.of(false, false))),
-                                        new ManualLine(3, getBars(List.of(false, false, true))),
-                                        new ManualLine(3, getBars(List.of(false, false, true)))
+                                        new Line(3, getBars(List.of(false, false, true))),
+                                        new Line(3, getBars(List.of(false, false))),
+                                        new Line(3, getBars(List.of(false, false, true))),
+                                        new Line(3, getBars(List.of(false, false, true)))
                                 )
                         ));
     }
@@ -90,13 +92,13 @@ class LadderTest {
     void fail_to_add_lines_with_not_enough_bars() {
         Ladder ladder = new Ladder(List.of("abc", "adgda", "adg"), 4);
 
-        assertThatExceptionOfType(InvalidLinesException.class)
+        assertThatExceptionOfType(MismatchHeightLinesException.class)
                 .isThrownBy(() ->
                         ladder.addLines(
                                 List.of(
-                                        new ManualLine(3, getBars(List.of(false, false, true))),
-                                        new ManualLine(3, getBars(List.of(false, false, true))),
-                                        new ManualLine(3, getBars(List.of(false, false, true)))
+                                        new Line(3, getBars(List.of(false, false, true))),
+                                        new Line(3, getBars(List.of(false, false, true))),
+                                        new Line(3, getBars(List.of(false, false, true)))
                                 )
                         ));
     }
@@ -139,11 +141,11 @@ class LadderTest {
         Ladder ladder = new Ladder(List.of("abc", "def", "ghi"), 5);
         ladder.addLines(
                 List.of(
-                        new ManualLine(3, getBars(List.of(false, false, true))),
-                        new ManualLine(3, getBars(List.of(false, true, false))),
-                        new ManualLine(3, getBars(List.of(false, false, true))),
-                        new ManualLine(3, getBars(List.of(false, true, false))),
-                        new ManualLine(3, getBars(List.of(false, false, true)))
+                        new Line(3, getBars(List.of(false, false, true))),
+                        new Line(3, getBars(List.of(false, true, false))),
+                        new Line(3, getBars(List.of(false, false, true))),
+                        new Line(3, getBars(List.of(false, true, false))),
+                        new Line(3, getBars(List.of(false, false, true)))
                 )
         );
 

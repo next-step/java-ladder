@@ -1,19 +1,20 @@
 package ladder.domain.line;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 import ladder.domain.exception.InvalidCountOfPersonException;
+import ladder.domain.exception.InvalidLineException;
+import ladder.domain.exception.MismatchPersonBarsException;
 
-public abstract class Line {
+public class Line {
 
-    protected final List<Bar> bars;
-    protected final int countOfPerson;
+    private final List<Bar> bars;
+    private final int countOfPerson;
 
-    protected Line(int countOfPerson) {
-        this.bars = new ArrayList<>();
+    public Line(int countOfPerson, List<Bar> bars) {
+        this.bars = bars;
         this.countOfPerson = validateCountOfPerson(countOfPerson);
-        initBars();
+        validateBar();
     }
 
     public List<Bar> getBars() {
@@ -32,13 +33,15 @@ public abstract class Line {
         }
     }
 
-    public boolean validate() {
+    private void validateBar() {
         if (bars.size() != countOfPerson) {
-            return false;
+            throw new MismatchPersonBarsException();
         }
 
-        return IntStream.range(0, bars.size())
-                .noneMatch(i -> isFirstBarInvalid(i) || isBarInvalid(i));
+        if (IntStream.range(0, bars.size())
+                .anyMatch(i -> isFirstBarInvalid(i) || isBarInvalid(i))) {
+            throw new InvalidLineException();
+        }
     }
 
     private boolean isBarInvalid(int index) {
@@ -55,7 +58,5 @@ public abstract class Line {
         }
         return countOfPerson;
     }
-
-    protected abstract void initBars();
 
 }

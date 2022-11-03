@@ -6,7 +6,7 @@ import java.util.stream.IntStream;
 import ladder.domain.Ladder;
 import ladder.domain.Rewards;
 import ladder.domain.line.Line;
-import ladder.domain.line.RandomLine;
+import ladder.domain.line.RandomLineGenerator;
 
 public class LadderInitializer {
 
@@ -25,7 +25,7 @@ public class LadderInitializer {
 
     private void addLadder(Ladder ladder, int countOfPerson, int height) {
         List<Line> lines = IntStream.range(0, height)
-                .mapToObj(i -> new RandomLine(countOfPerson))
+                .mapToObj(i -> RandomLineGenerator.getLine(countOfPerson))
                 .collect(Collectors.toUnmodifiableList());
         ladder.addLines(lines);
     }
