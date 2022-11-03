@@ -30,4 +30,5 @@ class PointTest {
         point.move(line);
         return point.getIndex();
     }
+
 }
