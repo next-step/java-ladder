@@ -14,6 +14,5 @@ public class OutputView {
 		ladder.forEach(line -> {
 			System.out.println(line.getLine());
 		});
-
 	}
 }

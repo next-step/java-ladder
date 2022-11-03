@@ -1,7 +1,5 @@
 package nextstep.ladder.controller;
 
-import java.util.List;
-
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.participant.Participants;
 import nextstep.ladder.view.InputView;
@@ -15,12 +13,8 @@ public class LadderController {
 	private Ladder ladder;
 
 	public void start() {
-		List<String> names = inputView.getParticipants();
-		participants = new Participants(names);
-
-		int height = inputView.getLadderHeight();
-
-		ladder = new Ladder(participants.size(), height);
+		participants = new Participants(inputView.getParticipants());
+		ladder = new Ladder(participants.size(), inputView.getLadderHeight());
 	}
 
 	public void draw() {

@@ -13,29 +13,20 @@ public class Line implements Iterable<Boolean> {
 	private List<Boolean> points = new ArrayList<>();
 
 	public Line (int length) {
-		IntStream.range(0, length - 1).forEach(i -> {
-			Boolean point = RANDOM.nextBoolean();
-			if (isAvailablePoint(i)) {
-				points.add(point);
-				return;
-			}
-			points.add(false);
-		});
+		IntStream.range(0, length - 1).forEach(this::addPoint);
 	}
 
 	public StringBuilder getLine() {
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("|");
-		for (Boolean point : points) {
-			if (point)
-				stringBuilder.append("------");
-			else
-				stringBuilder.append("      ");
-			stringBuilder.append("|");
-		}
+		points.forEach(point -> appendLine(point, stringBuilder));
 		return stringBuilder;
 	}
 
+	/**
+	 * 현재 포인트에 true / false 가 올 수 있는 경우를 체크하는 메서드
+	 * 이전 포인트가 없거나(첫번째) 또는 이전 포인트가 false(라인이 없음)
+	 */
 	private Boolean isAvailablePoint(int index) {
 		return points.isEmpty() || !points.get(index - 1);
 	}
@@ -48,5 +39,24 @@ public class Line implements Iterable<Boolean> {
 	@Override
 	public void forEach(Consumer<? super Boolean> action) {
 		Iterable.super.forEach(action);
+	}
+
+	private void appendLine(Boolean point, StringBuilder stringBuilder) {
+		if (point){
+			stringBuilder.append("------");
+		}
+		else{
+			stringBuilder.append("      ");
+		}
+		stringBuilder.append("|");
+	}
+
+	private void addPoint(int index) {
+		Boolean point = RANDOM.nextBoolean();
+		if (isAvailablePoint(index)) {
+			points.add(point);
+			return;
+		}
+		points.add(false);
 	}
 }

@@ -10,8 +10,9 @@ public class Ladder implements Iterable<Line> {
 
 	private final List<Line> ladder = new ArrayList<>();
 
-	public Ladder (int length, int height) {
-		IntStream.range(0, height).forEach(i -> ladder.add(new Line(length)));
+	public Ladder(int length, int height) {
+		IntStream.range(0, height)
+			.forEach(count-> ladder.add(new Line(length)));
 	}
 
 	@Override
