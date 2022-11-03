@@ -73,7 +73,8 @@ public class ResultView {
         System.out.println(GAME_RESULT_PRINT_TEXT);
         Map<Integer, Integer> gameResults = gameResult.getGameResults();
         if (gameResults.size() == 1) {
-            System.out.println(results.getResults().get(gameResults.get(0)));
+            int firstValue = gameResults.values().stream().findFirst().get();
+            System.out.println(results.getResults().get(firstValue));
         } else {
             printLadderGameAllResults(gameResults, users, results);
         }
