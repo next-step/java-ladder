@@ -11,20 +11,32 @@ public class Line {
         this.line = line;
     }
 
-    public Line addPoint(boolean point) {
+    public Line addedLine(boolean point) {
         ArrayList<Boolean> newLine = new ArrayList<>(line);
         newLine.add(point);
         return new Line(newLine);
     }
 
-    public boolean isLastPointTrue() {
+    public boolean isLastTrue() {
         if (line.size() == 0) {
-            throw new IndexOutOfBoundsException("point가 하나도 담겨있지 않습니다.");
+            throw new IndexOutOfBoundsException("line에 값이 없습니다.");
         }
         return line.get(line.size() - 1);
     }
 
-    public List<Boolean> getLine() {
+    public boolean isLeftEdge(int index) {
+        return index > -1;
+    }
+
+    public boolean isRightEdge(int index) {
+        return index < line.size();
+    }
+
+    public boolean isRoadExist(int index) {
+        return line.get(index);
+    }
+
+    public List<Boolean> line() {
         return line;
     }
 

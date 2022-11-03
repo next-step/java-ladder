@@ -1,34 +1,33 @@
 package ladder.domain;
 
 import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private final List<String> participantNames;
-    private final List<Line> lines;
+    private final List<Line> ladder;
 
-    public Ladder(List<String> participantNames, int ladderHeight, LineGenerator lineGenerator) {
-        this.participantNames = participantNames;
-        int lineLength = getLineLength(participantNames);
-        lines = IntStream.range(0, ladderHeight)
-                .mapToObj(i -> lineGenerator.create(lineLength))
+    public Ladder(int height, int length, LineGenerator lineGenerator) {
+        this.ladder = IntStream.range(0, height)
+                .mapToObj(i -> lineGenerator.create(length))
                 .collect(Collectors.toList());
     }
 
-    private int getLineLength(List<String> participantNames) {
-        return participantNames.size() - 1;
+    public List<Line> ladder() {
+        return ladder;
     }
 
-    public int getNamesMaxLength() {
-        return participantNames.stream()
-                .mapToInt(String::length)
-                .max()
-                .orElseThrow(NoSuchElementException::new);
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ladder ladder1 = (Ladder) o;
+        return Objects.equals(ladder, ladder1.ladder);
     }
 
-    public List<Line> getLines() {
-        return lines;
+    @Override
+    public int hashCode() {
+        return Objects.hash(ladder);
     }
 }

@@ -14,27 +14,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
 class LineTest {
-    static Stream<Arguments> addPointParam() {
+    static Stream<Arguments> addedLineParam() {
         return Stream.of(
                 Arguments.arguments(
-                        new Line(new ArrayList<>(List.of())),
-                        true,
-                        new Line(new ArrayList<>(List.of(true)))
-                ),
-                Arguments.arguments(
-                        new Line(new ArrayList<>(List.of())),
+                        new Line(new ArrayList<>(List.of(false))),
                         false,
-                        new Line(new ArrayList<>(List.of(false)))
+                        new Line(new ArrayList<>(List.of(false, false)))
                 ),
                 Arguments.arguments(
                         new Line(new ArrayList<>(List.of(true))),
                         false,
                         new Line(new ArrayList<>(List.of(true, false)))
-                ),
-                Arguments.arguments(
-                        new Line(new ArrayList<>(List.of(false))),
-                        false,
-                        new Line(new ArrayList<>(List.of(false, false)))
                 ),
                 Arguments.arguments(
                         new Line(new ArrayList<>(List.of(true, false, false, false))),
@@ -44,15 +34,15 @@ class LineTest {
         );
     }
 
-    @DisplayName("Line에 point 추가")
+    @DisplayName("Line에 point 추가 성공")
     @ParameterizedTest(name = "{displayName} {index} expectedLines: {2}")
-    @MethodSource("addPointParam")
-    void addPoint(Line line, boolean point, Line expectedLine) {
-        Line addedLine = line.addPoint(point);
-        assertThat(addedLine.getLine()).isEqualTo(expectedLine.getLine());
+    @MethodSource("addedLineParam")
+    void addedLine(Line line, boolean point, Line expectedLine) {
+        Line addedLine = line.addedLine(point);
+        assertThat(addedLine).isEqualTo(expectedLine);
     }
 
-    static Stream<Arguments> isLastPointTrueParam() {
+    static Stream<Arguments> isLastTrueParam() {
         return Stream.of(
                 Arguments.arguments(
                         new Line(new ArrayList<>(List.of(true))),
@@ -74,18 +64,70 @@ class LineTest {
     }
 
     @DisplayName("Line의 마지막 요소 true인지 체크")
-    @ParameterizedTest(name = "{displayName} {index} expectedLines: {0}")
-    @MethodSource("isLastPointTrueParam")
-    void isLastPointTrue(Line line, boolean expectedBoolean) {
-        boolean lastPointTrue = line.isLastPointTrue();
-        assertThat(lastPointTrue).isEqualTo(expectedBoolean);
+    @ParameterizedTest(name = "{displayName} {index}")
+    @MethodSource("isLastTrueParam")
+    void isLastTrue(Line line, boolean expectedBoolean) {
+        boolean lastTrue = line.isLastTrue();
+        assertThat(lastTrue).isEqualTo(expectedBoolean);
     }
 
     @DisplayName("Line의 마지막 요소 true인지 체크: 길이가 0일때 에러발생")
     @Test
-    void isLastPointTrueException() {
+    void isLastTrueFail() {
         Line line = new Line(new ArrayList<>(List.of()));
-        Throwable thrown = catchThrowable(line::isLastPointTrue);
+        Throwable thrown = catchThrowable(line::isLastTrue);
         assertThat(thrown).isInstanceOf(IndexOutOfBoundsException.class);
+    }
+
+    static Stream<Arguments> isLeftEdgeParam() {
+        return Stream.of(
+                Arguments.arguments(new Line(new ArrayList<>(List.of(true))), 0, true),
+                Arguments.arguments(new Line(new ArrayList<>(List.of(true))), -1, false),
+                Arguments.arguments(new Line(new ArrayList<>(List.of(true))), 10, true)
+        );
+    }
+
+    @DisplayName("Line의 왼쪽 끝 범위를 벗어났는지 확인")
+    @ParameterizedTest(name = "{displayName} {index}")
+    @MethodSource("isLeftEdgeParam")
+    void isLeftEdge(Line line, int index, boolean expectedBoolean) {
+        boolean leftEdge = line.isLeftEdge(index);
+        assertThat(leftEdge).isEqualTo(expectedBoolean);
+    }
+
+    static Stream<Arguments> isRightEdgeParam() {
+        return Stream.of(
+                Arguments.arguments(new Line(new ArrayList<>(List.of(true))), 1, false),
+                Arguments.arguments(new Line(new ArrayList<>(List.of(true))), 0, true),
+                Arguments.arguments(new Line(new ArrayList<>(List.of(true, false, true, false))), 4, false),
+                Arguments.arguments(new Line(new ArrayList<>(List.of(true, false, true, false))), 3, true),
+                Arguments.arguments(new Line(new ArrayList<>(List.of(true, false, true, false))), 0, true)
+        );
+    }
+
+    @DisplayName("Line의 오른쪽 끝 범위를 벗어났는지 확인")
+    @ParameterizedTest(name = "{displayName} {index}")
+    @MethodSource("isRightEdgeParam")
+    void isRightEdge(Line line, int index, boolean expectedBoolean) {
+        boolean leftEdge = line.isRightEdge(index);
+        assertThat(leftEdge).isEqualTo(expectedBoolean);
+    }
+
+    static Stream<Arguments> isRoadExistParam() {
+        return Stream.of(
+                Arguments.arguments(new Line(new ArrayList<>(List.of(true))), 0, true),
+                Arguments.arguments(new Line(new ArrayList<>(List.of(false))), 0, false),
+                Arguments.arguments(new Line(new ArrayList<>(List.of(true, false, true))), 0, true),
+                Arguments.arguments(new Line(new ArrayList<>(List.of(true, false, true))), 1, false),
+                Arguments.arguments(new Line(new ArrayList<>(List.of(true, false, true))), 2, true)
+        );
+    }
+
+    @DisplayName("Line애서 해당index에 길이 존재하는지 확인")
+    @ParameterizedTest(name = "{displayName} {index}")
+    @MethodSource("isRoadExistParam")
+    void isRoadExist(Line line, int index, boolean expectedBoolean) {
+        boolean leftEdge = line.isRoadExist(index);
+        assertThat(leftEdge).isEqualTo(expectedBoolean);
     }
 }
