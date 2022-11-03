@@ -7,13 +7,13 @@ public class Ladders {
 
     private final int height;
     private final int ladderCounts;
-    private final List<Lines> levels;
+    private final List<LadderLevel> ladderLevels;
 
     public Ladders(int height, int userCounts, LineConditional conditional) {
         validateHeight(height);
         this.height = height;
         this.ladderCounts = userCounts - 1;
-        this.levels = createLadderLevels(conditional);
+        this.ladderLevels = createLadderLevels(conditional);
     }
 
     private void validateHeight(int height) {
@@ -22,24 +22,24 @@ public class Ladders {
         }
     }
 
-    private List<Lines> createLadderLevels(LineConditional conditional) {
-        List<Lines> lines = new ArrayList<>();
+    private List<LadderLevel> createLadderLevels(LineConditional conditional) {
+        List<LadderLevel> lines = new ArrayList<>();
         for (int i = 0; i < this.height; i++) {
-            lines.add(new Lines(createLevelLines(conditional)));
+            lines.add(new LadderLevel(createLevelLines(conditional)));
         }
         return lines;
     }
 
-    private List<Boolean> createLevelLines(LineConditional conditional) {
-        List<Boolean> lines = new ArrayList<>();
+    private List<Line> createLevelLines(LineConditional conditional) {
+        List<Line> lines = new ArrayList<>();
         for (int i = 0; i < this.ladderCounts; i++) {
-            lines.add(canHaveLine(lines, i, conditional));
+            lines.add(new Line(canHaveLine(lines, i, conditional)));
         }
         return lines;
     }
 
-    private boolean canHaveLine(List<Boolean> lines, int i, LineConditional conditional) {
-        if (i > 0 && lines.get(i - 1)) {
+    private boolean canHaveLine(List<Line> lines, int i, LineConditional conditional) {
+        if (i > 0 && lines.get(i - 1).isLine()) {
             return false;
         }
         return conditional.canHaveLine(i);
@@ -48,7 +48,7 @@ public class Ladders {
     public Map<Integer, Integer> getOneResultIndex(int startIndex) {
         Map<Integer, Integer> results = new HashMap<>();
         int currentIndex = startIndex;
-        for (Lines level : this.levels) {
+        for (LadderLevel level : this.ladderLevels) {
             currentIndex = level.getDirection(currentIndex);
         }
         results.put(startIndex, currentIndex);
@@ -63,7 +63,7 @@ public class Ladders {
         return results;
     }
 
-    public List<Lines> getLevels() {
-        return new ArrayList<>(levels);
+    public List<LadderLevel> ladderLevels() {
+        return new ArrayList<>(ladderLevels);
     }
 }

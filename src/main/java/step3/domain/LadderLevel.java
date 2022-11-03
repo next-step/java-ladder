@@ -3,10 +3,10 @@ package step3.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Lines {
-    private final List<Boolean> lines;
+public class LadderLevel {
+    private final List<Line> lines;
 
-    public Lines(List<Boolean> lines) {
+    public LadderLevel(List<Line> lines) {
         this.lines = lines;
     }
 
@@ -23,20 +23,20 @@ public class Lines {
     }
 
     private int getLeftLine(int startIndex) {
-        if (this.lines.get(startIndex - 1)) {
+        if (this.lines.get(startIndex - 1).isLine()) {
             return -1;
         }
         return 0;
     }
 
     private int getRightLine(int startIndex) {
-        if (this.lines.get(startIndex)) {
+        if (this.lines.get(startIndex).isLine()) {
             return 1;
         }
         return 0;
     }
 
-    public List<Boolean> getLines() {
+    public List<Line> getLines() {
         return new ArrayList<>(lines);
     }
 }
