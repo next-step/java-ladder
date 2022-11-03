@@ -20,5 +20,4 @@
 * List<Point> 를 가진다.
 * 생성 시 connect 메서드로 포인트를 입력한다.
 * true 값 뒤에는 true가 또 나올 수 없으므로 validation을 한다.
-=======
->>>>>>> rollo231
+
