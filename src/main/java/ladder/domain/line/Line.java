@@ -7,7 +7,7 @@ import ladder.domain.exception.InvalidCountOfPersonException;
 
 public abstract class Line {
 
-    protected final List<Boolean> bars;
+    protected final List<Bar> bars;
     protected final int countOfPerson;
 
     protected Line(int countOfPerson) {
@@ -16,8 +16,12 @@ public abstract class Line {
         initBars();
     }
 
-    public List<Boolean> getBars() {
+    public List<Bar> getBars() {
         return this.bars;
+    }
+
+    public Bar getBar(int index) {
+        return bars.get(index);
     }
 
     public int move(int index) {
@@ -32,9 +36,9 @@ public abstract class Line {
         return 0;
     }
 
-    private Boolean isMovementAvailable(int index) {
+    private boolean isMovementAvailable(int index) {
         try {
-            return this.bars.get(index);
+            return this.bars.get(index).isAvailable();
         } catch (Exception e) {
             return false;
         }
@@ -50,11 +54,11 @@ public abstract class Line {
     }
 
     private boolean isBarInvalid(int index) {
-        return index != 0 && bars.get(index - 1) && bars.get(index);
+        return index != 0 && getBar(index - 1).isAvailable() && getBar(index).isAvailable();
     }
 
     private boolean isFirstBarInvalid(int index) {
-        return index == 0 && bars.get(index);
+        return index == 0 && getBar(index).isAvailable();
     }
 
     private int validateCountOfPerson(int countOfPerson) {

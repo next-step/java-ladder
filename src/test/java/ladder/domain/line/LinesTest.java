@@ -1,5 +1,6 @@
 package ladder.domain.line;
 
+import static ladder.domain.line.BarHelper.getBars;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -18,10 +19,10 @@ class LinesTest {
         Lines lines = new Lines(4);
 
         assertDoesNotThrow(() -> lines.addLines(List.of(
-                        new ManualLine(3, List.of(false, false, true)),
-                        new ManualLine(3, List.of(false, true, false)),
-                        new ManualLine(3, List.of(false, true, false)),
-                        new ManualLine(3, List.of(false, false, true))
+                        new ManualLine(3, getBars(List.of(false, false, true))),
+                        new ManualLine(3, getBars(List.of(false, true, false))),
+                        new ManualLine(3, getBars(List.of(false, true, false))),
+                        new ManualLine(3, getBars(List.of(false, false, true)))
                 )
         ));
     }
@@ -31,19 +32,17 @@ class LinesTest {
     void fail_to_add_lines_with_invalid_line() {
         assertAll(
                 () -> assertThatSingleLineInvalidLinesException(
-                        new ManualLine(3, List.of(false, true, true))),
+                        new ManualLine(3, getBars(List.of(false, true, true)))),
                 () -> assertThatSingleLineInvalidLinesException(
-                        new ManualLine(3, List.of(true, false, true))),
+                        new ManualLine(3, getBars(List.of(true, false, true)))),
                 () -> assertThatSingleLineInvalidLinesException(
-                        new ManualLine(3, List.of(false, false))),
-                () -> assertThatExceptionOfType(InvalidLinesException.class)
-                        .isThrownBy(() ->
-                                (new Lines(3)).addLines(
-                                        List.of(
-                                                new ManualLine(3, List.of(false, false, true)),
-                                                new ManualLine(3, List.of(false, false, true))
-                                        )
-                                ))
+                        new ManualLine(3, getBars(List.of(false, false)))),
+                () -> assertThatMultipleLineInvalidLinesException(
+                        3,
+                        List.of(
+                                new ManualLine(3, getBars(List.of(false, false, true))),
+                                new ManualLine(3, getBars(List.of(false, false, true)))
+                        ))
         );
     }
 
@@ -58,6 +57,12 @@ class LinesTest {
         Lines lines = new Lines(1);
         assertThatExceptionOfType(InvalidLinesException.class)
                 .isThrownBy(() -> lines.addLines(List.of(line)));
+    }
+
+    private void assertThatMultipleLineInvalidLinesException(int height, List<Line> lineData) {
+        Lines lines = new Lines(height);
+        assertThatExceptionOfType(InvalidLinesException.class)
+                .isThrownBy(() -> lines.addLines(lineData));
     }
 
 }

@@ -1,5 +1,6 @@
 package ladder.domain.line;
 
+import static ladder.domain.line.BarHelper.getBars;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -15,10 +16,10 @@ class LineTest {
     @Test
     @DisplayName("사다리 바 그리기 룰 검증")
     void init_line() {
-        Line line1 = new ManualLine(4, List.of(false, true, false, true));
-        Line line2 = new ManualLine(4, List.of(false, true, true, false));
-        Line line3 = new ManualLine(4, List.of(true, false, true, false));
-        Line line4 = new ManualLine(4, List.of(false, true, false));
+        Line line1 = new ManualLine(4, getBars(List.of(false, true, false, true)));
+        Line line2 = new ManualLine(4, getBars(List.of(false, true, true, false)));
+        Line line3 = new ManualLine(4, getBars(List.of(true, false, true, false)));
+        Line line4 = new ManualLine(4, getBars(List.of(false, true, false)));
 
         assertAll(
                 () -> assertThat(line1.validate()).isTrue(),

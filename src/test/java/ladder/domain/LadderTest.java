@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import static ladder.domain.line.BarHelper.getBars;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -25,10 +26,10 @@ class LadderTest {
 
         assertDoesNotThrow(() -> ladder.addLines(
                 List.of(
-                        new ManualLine(3, List.of(false, false, true)),
-                        new ManualLine(3, List.of(false, true, false)),
-                        new ManualLine(3, List.of(false, true, false)),
-                        new ManualLine(3, List.of(false, false, true))
+                        new ManualLine(3, getBars(List.of(false, false, true))),
+                        new ManualLine(3, getBars(List.of(false, true, false))),
+                        new ManualLine(3, getBars(List.of(false, true, false))),
+                        new ManualLine(3, getBars(List.of(false, false, true)))
                 )
         ));
     }
@@ -42,10 +43,10 @@ class LadderTest {
                 .isThrownBy(() ->
                         ladder.addLines(
                                 List.of(
-                                        new ManualLine(3, List.of(false, true, true)),
-                                        new ManualLine(3, List.of(false, false, true)),
-                                        new ManualLine(3, List.of(false, true, false)),
-                                        new ManualLine(3, List.of(false, false, true))
+                                        new ManualLine(3, getBars(List.of(false, true, true))),
+                                        new ManualLine(3, getBars(List.of(false, false, true))),
+                                        new ManualLine(3, getBars(List.of(false, true, false))),
+                                        new ManualLine(3, getBars(List.of(false, false, true)))
                                 )
                         ));
     }
@@ -59,10 +60,10 @@ class LadderTest {
                 .isThrownBy(() ->
                         ladder.addLines(
                                 List.of(
-                                        new ManualLine(3, List.of(false, false, true)),
-                                        new ManualLine(3, List.of(false, true, false)),
-                                        new ManualLine(3, List.of(false, true, false)),
-                                        new ManualLine(3, List.of(true, false, true))
+                                        new ManualLine(3, getBars(List.of(false, false, true))),
+                                        new ManualLine(3, getBars(List.of(false, true, false))),
+                                        new ManualLine(3, getBars(List.of(false, true, false))),
+                                        new ManualLine(3, getBars(List.of(true, false, true)))
                                 )
                         ));
     }
@@ -76,10 +77,10 @@ class LadderTest {
                 .isThrownBy(() ->
                         ladder.addLines(
                                 List.of(
-                                        new ManualLine(3, List.of(false, false, true)),
-                                        new ManualLine(3, List.of(false, false)),
-                                        new ManualLine(3, List.of(false, false, true)),
-                                        new ManualLine(3, List.of(false, false, true))
+                                        new ManualLine(3, getBars(List.of(false, false, true))),
+                                        new ManualLine(3, getBars(List.of(false, false))),
+                                        new ManualLine(3, getBars(List.of(false, false, true))),
+                                        new ManualLine(3, getBars(List.of(false, false, true)))
                                 )
                         ));
     }
@@ -93,9 +94,9 @@ class LadderTest {
                 .isThrownBy(() ->
                         ladder.addLines(
                                 List.of(
-                                        new ManualLine(3, List.of(false, false, true)),
-                                        new ManualLine(3, List.of(false, false, true)),
-                                        new ManualLine(3, List.of(false, false, true))
+                                        new ManualLine(3, getBars(List.of(false, false, true))),
+                                        new ManualLine(3, getBars(List.of(false, false, true))),
+                                        new ManualLine(3, getBars(List.of(false, false, true)))
                                 )
                         ));
     }
@@ -138,11 +139,11 @@ class LadderTest {
         Ladder ladder = new Ladder(List.of("abc", "def", "ghi"), 5);
         ladder.addLines(
                 List.of(
-                        new ManualLine(3, List.of(false, false, true)),
-                        new ManualLine(3, List.of(false, true, false)),
-                        new ManualLine(3, List.of(false, false, true)),
-                        new ManualLine(3, List.of(false, true, false)),
-                        new ManualLine(3, List.of(false, false, true))
+                        new ManualLine(3, getBars(List.of(false, false, true))),
+                        new ManualLine(3, getBars(List.of(false, true, false))),
+                        new ManualLine(3, getBars(List.of(false, false, true))),
+                        new ManualLine(3, getBars(List.of(false, true, false))),
+                        new ManualLine(3, getBars(List.of(false, false, true)))
                 )
         );
 

@@ -4,6 +4,7 @@ import java.util.Map.Entry;
 import ladder.LadderResultDto;
 import ladder.domain.Ladder;
 import ladder.domain.Rewards;
+import ladder.domain.line.Bar;
 import ladder.domain.line.Line;
 
 public class PrintView {
@@ -66,8 +67,8 @@ public class PrintView {
     }
 
     private static void printLine(Line line, int width) {
-        for (Boolean bar : line.getBars()) {
-            System.out.print(getBar(bar, width));
+        for (Bar bar : line.getBars()) {
+            System.out.print(getBar(bar.isAvailable(), width));
         }
         System.out.println();
     }

@@ -16,11 +16,11 @@ public class RandomLine extends Line {
         }
     }
 
-    private boolean initBar(int index) {
-        if (index == 0 || bars.get(index - 1)) {
-            return false;
+    private Bar initBar(int index) {
+        if (index == 0 || bars.get(index - 1).isAvailable()) {
+            return new Bar(false);
         }
-        return random.nextBoolean();
+        return new Bar(random.nextBoolean());
     }
 
 }
