@@ -22,11 +22,23 @@ public class Position {
 
     public Position descend(MoveHorizontalDirection moveHorizontalDirection) {
         if (moveHorizontalDirection.isCurrentRight()) {
-            return new Position(this.x() + 1, this.y() + 1);
+            return moveLeft();
         }
         if (moveHorizontalDirection.isCurrentLeft()) {
-            return new Position(this.x() - 1, this.y() + 1);
+            return moveRight();
         }
+        return moveStraight();
+    }
+
+    private Position moveLeft() {
+        return new Position(this.x() + 1, this.y() + 1);
+    }
+
+    private Position moveRight() {
+        return new Position(this.x() - 1, this.y() + 1);
+    }
+
+    private Position moveStraight() {
         return new Position(this.x(), this.y() + 1);
     }
 
@@ -39,7 +51,7 @@ public class Position {
             return false;
         }
         Position position1 = (Position) o;
-        return (position.x == position1.position.x) && (position.y == position1.position.y);
+        return (position.x == position1.x()) && (position.y == position1.y());
     }
 
     @Override
