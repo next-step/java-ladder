@@ -8,11 +8,11 @@ public class Users {
     
     private final List<User> users;
 
-    public Users(List<User> users) {
+    public Users(final List<User> users) {
         this.users = users;
     }
     
-    public static Users from(List<String> names) {
+    public static Users from(final List<String> names) {
         List<User> users = new ArrayList<>();
         for (String name: names) {
             users.add(new User(name, MAX_NAME_SIZE));

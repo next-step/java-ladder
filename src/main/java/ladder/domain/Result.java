@@ -13,10 +13,6 @@ public class Result {
         this.result = result;
     }
 
-    public Result(List<String> result) {
-        this.result = result;
-    }
-
     public List<String> getAll() {
         return Collections.unmodifiableList(result);
     }

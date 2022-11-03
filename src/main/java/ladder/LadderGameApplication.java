@@ -19,13 +19,13 @@ public class LadderGameApplication {
         
         Users users = Users.from(input.getUserNames());
         Result result = new Result(users.count(), input.getResult());
-        Ladder ladder = new Ladder(users, input.getHeight(), result);
+        Ladder ladder = new Ladder(users, input.getHeight());
 
         displaySize = users.getMaxNameSize() + users.names().size();
         show(users, result, ladder);
     }
 
-    private static void show(Users users, Result result, Ladder ladder) {
+    private static void show(final Users users, final Result result, final Ladder ladder) {
         showUser(users);
         showLadder(ladder);
         showResult(result);

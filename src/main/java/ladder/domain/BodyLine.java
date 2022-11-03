@@ -10,7 +10,7 @@ public class BodyLine extends Line {
     }
     
     @Override
-    protected Point choiceBeforeLast(Point before) {
+    protected Point choiceBeforeLast(final Point before) {
         if (before == HORIZON) {
             return HORIZON;
         }

@@ -24,7 +24,7 @@ public class ResultDisplayer implements Displayer {
         displayer.accept(display.toString());
     }
 
-    private String blank(int nameLength) {
+    private String blank(final int nameLength) {
         StringBuilder blank = new StringBuilder();
         blank.append(BLANK.repeat(Math.max(0, displaySize - nameLength + 1)));
         return blank.toString();

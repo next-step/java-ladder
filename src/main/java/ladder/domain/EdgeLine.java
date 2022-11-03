@@ -10,7 +10,7 @@ public class EdgeLine extends Line {
     }
 
     @Override
-    protected Point choiceBeforeLast(Point before) {
+    protected Point choiceBeforeLast(final Point before) {
         return choicePoint(List.of(HORIZON, BLANK));
     }
 }

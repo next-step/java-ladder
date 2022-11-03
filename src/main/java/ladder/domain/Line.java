@@ -11,7 +11,7 @@ public abstract class Line {
     
     private final int length;
 
-    protected Line(int countOfPerson) {
+    protected Line(final int countOfPerson) {
         length = countOfPerson * 2 - 1;
     }
 
@@ -28,7 +28,7 @@ public abstract class Line {
         return points;
     }
     
-    private Point choice(Point before, boolean canAddHorizonNextTime, boolean isBeforeLast) {
+    private Point choice(final Point before, final boolean canAddHorizonNextTime, final boolean isBeforeLast) {
         if (!canAddHorizonNextTime) {
             return BLANK;
         }
@@ -40,7 +40,7 @@ public abstract class Line {
 
     protected abstract Point choiceBeforeLast(Point before);
         
-    protected static Point choicePoint(List<Point> points) {
+    protected static Point choicePoint(final List<Point> points) {
         return points.get(random.nextInt(points.size()));
     }
 }
