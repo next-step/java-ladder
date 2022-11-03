@@ -21,10 +21,10 @@ public class Position {
     }
 
     public Position descend(MoveHorizontalDirection moveHorizontalDirection) {
-        if (moveHorizontalDirection.isCurrentRight()) {
+        if (moveHorizontalDirection.isRight()) {
             return moveLeft();
         }
-        if (moveHorizontalDirection.isCurrentLeft()) {
+        if (moveHorizontalDirection.isLeft()) {
             return moveRight();
         }
         return moveStraight();

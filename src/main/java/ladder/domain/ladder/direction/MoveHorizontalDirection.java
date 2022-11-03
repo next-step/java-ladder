@@ -31,11 +31,11 @@ public enum MoveHorizontalDirection {
         return STRAIGHT;
     }
 
-    public boolean isCurrentRight() {
+    public boolean isRight() {
         return this == RIGHT;
     }
 
-    public boolean isCurrentLeft() {
+    public boolean isLeft() {
         return this == LEFT;
     }
 }

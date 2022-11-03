@@ -61,8 +61,8 @@ public class MoveHorizontalDirectionTest {
     @Test
     void isCurrentRight() {
         assertAll(
-                () -> assertThat(MoveHorizontalDirection.LEFT.isCurrentRight()).isFalse(),
-                () -> assertThat(MoveHorizontalDirection.STRAIGHT.isCurrentRight()).isFalse(),
-                () -> assertThat(MoveHorizontalDirection.RIGHT.isCurrentRight()).isTrue());
+                () -> assertThat(MoveHorizontalDirection.LEFT.isRight()).isFalse(),
+                () -> assertThat(MoveHorizontalDirection.STRAIGHT.isRight()).isFalse(),
+                () -> assertThat(MoveHorizontalDirection.RIGHT.isRight()).isTrue());
     }
 }

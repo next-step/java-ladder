@@ -55,7 +55,7 @@ public class LadderOutputConverter {
     }
 
     private static String horizontalLineDirectionOutput(MoveHorizontalDirection moveHorizontalDirection) {
-        if (moveHorizontalDirection.isCurrentRight()) {
+        if (moveHorizontalDirection.isRight()) {
             return LADDER_RIGHT_OUTPUT;
         }
         return LADDER_DEFAULT_OUTPUT;
