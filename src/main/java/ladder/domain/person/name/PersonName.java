@@ -11,18 +11,18 @@ public class PersonName {
     private final String name;
 
     public PersonName(String name) {
-        validEmpty(name);
-        validLength(name);
+        validateEmpty(name);
+        validateLength(name);
         this.name = name;
     }
 
-    private void validEmpty(String name) {
+    private void validateEmpty(String name) {
         if (name == null || name.isBlank()) {
             throw new IllegalPersonNameException();
         }
     }
 
-    private void validLength(String name) {
+    private void validateLength(String name) {
         if (name.length() > INPUT_LENGTH_MAX) {
             throw new IllegalPersonNameException();
         }
