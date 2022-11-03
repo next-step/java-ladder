@@ -10,11 +10,11 @@ public class GameResult {
 
     private final Map<Integer, Integer> results;
 
-    public GameResult(String name, Users users, Ladder ladder) {
+    public GameResult(String name, Users users, Ladders ladder) {
         this.results = calculateGameResults(name, users, ladder);
     }
 
-    private Map<Integer, Integer> calculateGameResults(String name, Users users, Ladder ladder) {
+    private Map<Integer, Integer> calculateGameResults(String name, Users users, Ladders ladder) {
         if (name.equals(ALL_PEOPLE_TEXT)) {
             return ladder.getAllResultIndex(users.getUserCounts());
         }

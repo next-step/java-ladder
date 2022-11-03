@@ -11,7 +11,7 @@ class GameResultTest {
     @Test
     void 이름으로_입력했을_때_게임결과_계산() {
         Users users = new Users(List.of("pobi", "jake", "ilil"));
-        Ladder ladder = new Ladder(3, users.getUserCounts(), index -> {
+        Ladders ladder = new Ladders(3, users.getUserCounts(), index -> {
             if (index % 2 == 0) {
                 return true;
             }
@@ -25,7 +25,7 @@ class GameResultTest {
     @Test
     void 전체를_입력했을_때_게임결과_계산() {
         Users users = new Users(List.of("pobi", "jake", "ilil"));
-        Ladder ladder = new Ladder(3, users.getUserCounts(), index -> {
+        Ladders ladder = new Ladders(3, users.getUserCounts(), index -> {
             if (index % 2 == 0) {
                 return true;
             }

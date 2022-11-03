@@ -9,7 +9,7 @@ public class LadderGameMain {
     public static void main(String[] args) {
         Users users = new Users(InputView.inputUsers());
         Results results = new Results(InputView.inputResults(), users.getUserCounts());
-        Ladder ladder = new Ladder(InputView.inputLadderHeight(), users.getUserCounts(), new RandomLineConditional());
+        Ladders ladder = new Ladders(InputView.inputLadderHeight(), users.getUserCounts(), new RandomLineConditional());
         ResultView.printLadderGame(users, ladder, results);
         String selectedPerson = users.findContainedName(InputView.inputSelectedPerson());
         GameResult gameResult = new GameResult(selectedPerson, users, ladder);

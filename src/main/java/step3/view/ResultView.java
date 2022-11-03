@@ -15,15 +15,15 @@ public class ResultView {
     private static final String RESULT_PRINT_SEPARATOR = " : ";
     private static final String GAME_RESULT_PRINT_TEXT = System.lineSeparator() + "실행 결과";
 
-    public static void printLadderGame(Users users, Ladder ladder, Results results) {
+    public static void printLadderGame(Users users, Ladders ladder, Results results) {
         System.out.println(RESULT_TEXT);
         printNames(users);
         printLadders(ladder);
         printResults(results);
     }
 
-    public static void printLadders(Ladder ladder) {
-        ladder.getLadders().stream()
+    public static void printLadders(Ladders ladder) {
+        ladder.getLevels().stream()
                 .forEach(floor -> {
                     System.out.print(System.lineSeparator() + BLANK.repeat(3));
                     printLines(floor);

@@ -2,16 +2,16 @@ package step3.domain;
 
 import java.util.*;
 
-public class Ladder {
+public class Ladders {
     private static final String HEIGHT_EXCEPTION = "사다리의 높이는 1이상이어야 합니다.";
 
     private final int height;
-    private final List<Lines> ladders;
+    private final List<Lines> levels;
 
-    public Ladder(int height, int userCounts, LineConditional conditional) {
+    public Ladders(int height, int userCounts, LineConditional conditional) {
         validateHeight(height);
         this.height = height;
-        this.ladders = createLadder(userCounts, conditional);
+        this.levels = createLadderLevels(userCounts, conditional);
     }
 
     private void validateHeight(int height) {
@@ -20,15 +20,15 @@ public class Ladder {
         }
     }
 
-    private List<Lines> createLadder(int userCounts, LineConditional conditional) {
+    private List<Lines> createLadderLevels(int userCounts, LineConditional conditional) {
         List<Lines> lines = new ArrayList<>();
         for (int i = 0; i < this.height; i++) {
-            lines.add(new Lines(createLadderLine(userCounts, conditional)));
+            lines.add(new Lines(createLevelLines(userCounts, conditional)));
         }
         return lines;
     }
 
-    private List<Boolean> createLadderLine(int userCounts, LineConditional conditional) {
+    private List<Boolean> createLevelLines(int userCounts, LineConditional conditional) {
         List<Boolean> lines = new ArrayList<>();
         for (int i = 0; i < userCounts - 1; i++) {
             lines.add(canHaveLine(lines, i, conditional));
@@ -46,8 +46,8 @@ public class Ladder {
     public Map<Integer, Integer> getOneResultIndex(int startIndex) {
         Map<Integer, Integer> results = new HashMap<>();
         int currentIndex = startIndex;
-        for (Lines ladder : this.ladders) {
-            currentIndex = ladder.getDirection(currentIndex);
+        for (Lines level : this.levels) {
+            currentIndex = level.getDirection(currentIndex);
         }
         results.put(startIndex, currentIndex);
         return results;
@@ -61,7 +61,7 @@ public class Ladder {
         return results;
     }
 
-    public List<Lines> getLadders() {
-        return new ArrayList<>(ladders);
+    public List<Lines> getLevels() {
+        return new ArrayList<>(levels);
     }
 }
