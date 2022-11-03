@@ -1,5 +1,7 @@
 package ladder.domain.ladder.direction;
 
+import static ladder.domain.ladder.direction.HorizontalLineDirection.*;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -22,34 +24,30 @@ public class MoveHorizontalDirection {
     }
 
     public static List<MoveHorizontalDirection> first() {
-        return List.of(new MoveHorizontalDirection(HorizontalLineDirection.NONE, HorizontalLineDirection.NONE),
-                new MoveHorizontalDirection(HorizontalLineDirection.NONE, HorizontalLineDirection.RIGHT));
+        return List.of(new MoveHorizontalDirection(NONE, NONE), new MoveHorizontalDirection(NONE, RIGHT));
     }
 
     public List<MoveHorizontalDirection> next() {
         if (this.currentHorizontalLineDirection.isRight()) {
-            return List.of(current(HorizontalLineDirection.LEFT));
+            return List.of(new MoveHorizontalDirection(this.currentHorizontalLineDirection, LEFT));
         }
-        return List.of(current(HorizontalLineDirection.NONE), current(HorizontalLineDirection.RIGHT));
+        return List.of(new MoveHorizontalDirection(this.currentHorizontalLineDirection, NONE),
+                new MoveHorizontalDirection(this.currentHorizontalLineDirection, RIGHT));
     }
 
     public MoveHorizontalDirection last() {
         if (this.currentHorizontalLineDirection.isRight()) {
-            return current(HorizontalLineDirection.LEFT);
+            return new MoveHorizontalDirection(this.currentHorizontalLineDirection, LEFT);
         }
-        return current(HorizontalLineDirection.NONE);
-    }
-
-    private MoveHorizontalDirection current(HorizontalLineDirection horizontalLineDirection) {
-        return new MoveHorizontalDirection(this.currentHorizontalLineDirection, horizontalLineDirection);
+        return new MoveHorizontalDirection(this.currentHorizontalLineDirection, NONE);
     }
 
     public boolean isCurrentRight() {
-        return this.currentHorizontalLineDirection == HorizontalLineDirection.RIGHT;
+        return this.currentHorizontalLineDirection == RIGHT;
     }
 
     public boolean isCurrentLeft() {
-        return this.currentHorizontalLineDirection == HorizontalLineDirection.LEFT;
+        return this.currentHorizontalLineDirection == LEFT;
     }
 
     @Override
