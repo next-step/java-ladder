@@ -2,6 +2,7 @@ package step3.view;
 
 import step3.domain.*;
 
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -23,21 +24,18 @@ public class ResultView {
     }
 
     public static void printLadders(Ladders ladder) {
-        ladder.getLevels().stream()
-                .forEach(floor -> {
-                    System.out.print(System.lineSeparator() + BLANK.repeat(3));
-                    printLines(floor);
-                    System.out.print(LADDER_SHAPE);
-                });
-        System.out.println();
+        for (LadderLevel lines : ladder.ladderLevels()) {
+            System.out.print(System.lineSeparator() + BLANK.repeat(3));
+            printLines(lines);
+            System.out.print(LADDER_SHAPE);
+        }
     }
 
-    private static void printLines(Lines floor) {
-        floor.getLines().stream()
-                .forEach(isLine -> {
-                    System.out.print(LADDER_SHAPE);
-                    System.out.print(getLine(isLine.booleanValue()));
-                });
+    private static void printLines(LadderLevel lines) {
+        for (Line line : lines.getLines()) {
+            System.out.print(LADDER_SHAPE);
+            System.out.print(getLine(line.isLine()));
+        }
     }
 
     private static String getLine(boolean isLine) {
