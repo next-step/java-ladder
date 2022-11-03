@@ -24,17 +24,18 @@ public class LadderLines {
     }
 
     public Position ladderClimbResultPosition(Position position) {
-        if (isEscapePosition(position)) {
-            throw new EscapeLadderLinesException();
-        }
+        validateInPositionInLadderSize(position);
         return ladderClimbPosition(position);
     }
 
     private Position ladderClimbPosition(Position position) {
         Position currentPosition = position;
-        for (LadderLine ladderLine : ladderLines) {
-            currentPosition = ladderClimb(position, ladderLine);
+        for (int i = position.y(); i < ladderLines.size(); i++) {
+            currentPosition = ladderClimb(position, ladderLines.get(i));
         }
+
+        validateInPositionInLadderSize(currentPosition);
+
         return currentPosition;
     }
 
@@ -44,8 +45,10 @@ public class LadderLines {
         return position.descend(horizontalLineDirections.get(position.x()));
     }
 
-    private boolean isEscapePosition(Position position) {
-        return isInvalidLadderWidth(position.x()) && isInvalidLadderHeight(position.y());
+    private void validateInPositionInLadderSize(Position position) {
+        if (isInvalidLadderWidth(position.x()) || isInvalidLadderHeight(position.y())) {
+            throw new EscapeLadderLinesException();
+        }
     }
 
     private boolean isInvalidLadderHeight(int height) {
