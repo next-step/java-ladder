@@ -1,4 +1,4 @@
-package ladder.domain.ladder.direction;
+package ladder.domain.ladder;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;

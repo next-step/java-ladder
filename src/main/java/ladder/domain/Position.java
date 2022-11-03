@@ -2,7 +2,7 @@ package ladder.domain;
 
 import java.awt.*;
 import java.util.Objects;
-import ladder.domain.ladder.direction.HorizontalLineDirection;
+import ladder.domain.ladder.HorizontalLineDirection;
 
 public class Position {
 

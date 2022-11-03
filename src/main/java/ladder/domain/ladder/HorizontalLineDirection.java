@@ -1,4 +1,4 @@
-package ladder.domain.ladder.direction;
+package ladder.domain.ladder;
 
 import java.util.List;
 
