@@ -14,13 +14,13 @@ public class People {
     private final List<Person> people;
 
     public People(String... strings) {
-        validPeopleSize(strings);
+        validatePeopleSize(strings);
         this.people = IntStream.range(0, strings.length)
                 .mapToObj(number -> new Person(strings[number], number, 0))
                 .collect(Collectors.toList());
     }
 
-    private static void validPeopleSize(String[] strings) {
+    private void validatePeopleSize(String[] strings) {
         if (strings.length < PEOPLE_MIN) {
             throw new PeopleSizeException();
         }
