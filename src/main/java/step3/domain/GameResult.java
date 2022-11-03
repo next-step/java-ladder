@@ -7,7 +7,6 @@ public class GameResult {
 
     private static final String ALL_PEOPLE_TEXT = "all";
 
-
     private final Map<Integer, Integer> results;
 
     public GameResult(String name, Users users, Ladders ladder) {

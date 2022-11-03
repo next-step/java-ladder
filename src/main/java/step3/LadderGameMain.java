@@ -6,14 +6,24 @@ import step3.view.ResultView;
 
 
 public class LadderGameMain {
+
+    public static final String GAME_END_TEXT = "all";
+
     public static void main(String[] args) {
         Users users = new Users(InputView.inputUsers());
         Results results = new Results(InputView.inputResults(), users.getUserCounts());
-        Ladders ladder = new Ladders(InputView.inputLadderHeight(), users.getUserCounts(), new RandomLineConditional());
-        ResultView.printLadderGame(users, ladder, results);
-        String selectedPerson = users.findContainedName(InputView.inputSelectedPerson());
-        GameResult gameResult = new GameResult(selectedPerson, users, ladder);
-        ResultView.printLadderGameResults(gameResult, users, results);
+        Ladders ladders = new Ladders(InputView.inputLadderHeight(), users.getUserCounts(), new RandomLineConditional());
+        ResultView.printLadderGame(users, ladders, results);
+        calculateGameResult(users, ladders, results);
+    }
+
+    private static void calculateGameResult(Users users, Ladders ladders, Results results) {
+        String selectedPerson;
+        do {
+            selectedPerson = users.findContainedName(InputView.inputSelectedPerson());
+            GameResult gameResult = new GameResult(selectedPerson, users, ladders);
+            ResultView.printLadderGameResults(gameResult, users, results);
+        } while (!selectedPerson.equals(GAME_END_TEXT));
     }
 
 }

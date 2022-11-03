@@ -29,6 +29,7 @@ public class ResultView {
             printLines(lines);
             System.out.print(LADDER_SHAPE);
         }
+        System.out.println();
     }
 
     private static void printLines(LadderLevel lines) {
