@@ -38,3 +38,4 @@ class LaddersTest {
         assertThat(ladder.getAllResultIndex(userCounts).get(1)).isEqualTo(0);
     }
 }
+

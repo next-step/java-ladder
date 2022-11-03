@@ -25,3 +25,4 @@ class UsersTest {
         assertThat(new Users(List.of("pobi", "crong", "jetty")).getUserCounts()).isEqualTo(3);
     }
 }
+
