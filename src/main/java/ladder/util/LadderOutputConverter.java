@@ -68,7 +68,6 @@ public class LadderOutputConverter {
     }
 
     private static String resultMapFormat(Person person, Reward result) {
-        PersonName personName = person.name();
-        return String.format(RESULT_FORMAT, personName.name(), result.reward());
+        return String.format(RESULT_FORMAT, person.name().name(), result.reward());
     }
 }
