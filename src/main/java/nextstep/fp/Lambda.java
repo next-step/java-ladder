@@ -39,12 +39,8 @@ public class Lambda {
     }
 
     public static int sumByCondition(List<Integer> numbers, Conditional conditional) {
-        int total = 0;
-        for (int number : numbers) {
-            if (conditional.satisfy(number)) {
-                total += number;
-            }
-        }
-        return total;
+        return numbers.stream()
+            .mapToInt(number -> number)
+            .filter(conditional::test).sum();
     }
 }
