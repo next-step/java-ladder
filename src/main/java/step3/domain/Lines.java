@@ -1,5 +1,6 @@
 package step3.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lines {
@@ -36,6 +37,6 @@ public class Lines {
     }
 
     public List<Boolean> getLines() {
-        return lines;
+        return new ArrayList<>(lines);
     }
 }

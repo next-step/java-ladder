@@ -1,5 +1,6 @@
 package step3.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Users {
@@ -48,6 +49,6 @@ public class Users {
     }
 
     public List<String> getNames() {
-        return names;
+        return new ArrayList<>(names);
     }
 }

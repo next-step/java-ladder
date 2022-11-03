@@ -1,5 +1,6 @@
 package step3.domain;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class GameResult {
@@ -21,6 +22,6 @@ public class GameResult {
     }
 
     public Map<Integer, Integer> getGameResults() {
-        return results;
+        return new HashMap<>(results);
     }
 }

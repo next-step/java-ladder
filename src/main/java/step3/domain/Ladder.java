@@ -62,6 +62,6 @@ public class Ladder {
     }
 
     public List<Lines> getLadders() {
-        return ladders;
+        return new ArrayList<>(ladders);
     }
 }
