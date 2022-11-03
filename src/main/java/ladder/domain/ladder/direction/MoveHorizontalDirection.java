@@ -7,12 +7,9 @@ import java.util.Objects;
 
 public class MoveHorizontalDirection {
 
-    private final HorizontalLineDirection beforeHorizontalLineDirection;
     private final HorizontalLineDirection currentHorizontalLineDirection;
 
-    public MoveHorizontalDirection(HorizontalLineDirection beforeHorizontalLineDirection,
-                                   HorizontalLineDirection currentHorizontalLineDirection) {
-        this.beforeHorizontalLineDirection = beforeHorizontalLineDirection;
+    public MoveHorizontalDirection(HorizontalLineDirection currentHorizontalLineDirection) {
         this.currentHorizontalLineDirection = currentHorizontalLineDirection;
     }
 
@@ -24,22 +21,22 @@ public class MoveHorizontalDirection {
     }
 
     public static List<MoveHorizontalDirection> first() {
-        return List.of(new MoveHorizontalDirection(NONE, NONE), new MoveHorizontalDirection(NONE, RIGHT));
+        return List.of(new MoveHorizontalDirection(NONE), new MoveHorizontalDirection(RIGHT));
     }
 
     public List<MoveHorizontalDirection> next() {
         if (this.currentHorizontalLineDirection.isRight()) {
-            return List.of(new MoveHorizontalDirection(this.currentHorizontalLineDirection, LEFT));
+            return List.of(new MoveHorizontalDirection(LEFT));
         }
-        return List.of(new MoveHorizontalDirection(this.currentHorizontalLineDirection, NONE),
-                new MoveHorizontalDirection(this.currentHorizontalLineDirection, RIGHT));
+        return List.of(new MoveHorizontalDirection(NONE),
+                new MoveHorizontalDirection(RIGHT));
     }
 
     public MoveHorizontalDirection last() {
         if (this.currentHorizontalLineDirection.isRight()) {
-            return new MoveHorizontalDirection(this.currentHorizontalLineDirection, LEFT);
+            return new MoveHorizontalDirection(LEFT);
         }
-        return new MoveHorizontalDirection(this.currentHorizontalLineDirection, NONE);
+        return new MoveHorizontalDirection(NONE);
     }
 
     public boolean isCurrentRight() {
@@ -59,12 +56,11 @@ public class MoveHorizontalDirection {
             return false;
         }
         MoveHorizontalDirection that = (MoveHorizontalDirection) o;
-        return beforeHorizontalLineDirection == that.beforeHorizontalLineDirection
-                && currentHorizontalLineDirection == that.currentHorizontalLineDirection;
+        return currentHorizontalLineDirection == that.currentHorizontalLineDirection;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(beforeHorizontalLineDirection, currentHorizontalLineDirection);
+        return Objects.hash(currentHorizontalLineDirection);
     }
 }

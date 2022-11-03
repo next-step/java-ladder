@@ -12,14 +12,13 @@ public class LadderLineTestUtil {
 
     public static LadderLine createNoneLadderLine(int width) {
         return new LadderLine(IntStream.range(0, width)
-                .mapToObj(i -> new MoveHorizontalDirection(HorizontalLineDirection.NONE, HorizontalLineDirection.NONE))
-                .collect(Collectors.toList()));
+                .mapToObj(i -> new MoveHorizontalDirection(HorizontalLineDirection.NONE)).collect(Collectors.toList()));
     }
 
     public static LadderLine continuousLadder() {
         return new LadderLine(List.of(
-                new MoveHorizontalDirection(HorizontalLineDirection.NONE, HorizontalLineDirection.RIGHT),
-                new MoveHorizontalDirection(HorizontalLineDirection.RIGHT, HorizontalLineDirection.LEFT)
+                new MoveHorizontalDirection(HorizontalLineDirection.RIGHT),
+                new MoveHorizontalDirection(HorizontalLineDirection.LEFT)
         ));
     }
 }

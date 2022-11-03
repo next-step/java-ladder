@@ -34,12 +34,9 @@ public class PositionTest {
 
     @Test
     void descend() {
-        Position descendLeft = this.position
-                .descend(new MoveHorizontalDirection(HorizontalLineDirection.NONE, HorizontalLineDirection.LEFT));
-        Position descendNone = this.position
-                .descend(new MoveHorizontalDirection(HorizontalLineDirection.NONE, HorizontalLineDirection.NONE));
-        Position descendRight = this.position
-                .descend(new MoveHorizontalDirection(HorizontalLineDirection.NONE, HorizontalLineDirection.RIGHT));
+        Position descendLeft = this.position.descend(new MoveHorizontalDirection(HorizontalLineDirection.LEFT));
+        Position descendNone = this.position.descend(new MoveHorizontalDirection(HorizontalLineDirection.NONE));
+        Position descendRight = this.position.descend(new MoveHorizontalDirection(HorizontalLineDirection.RIGHT));
 
         Assertions.assertAll(
                 () -> assertThat(descendLeft).isEqualTo(new Position(0, 2)),
