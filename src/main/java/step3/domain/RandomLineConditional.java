@@ -7,10 +7,6 @@ public class RandomLineConditional implements LineConditional {
 
     @Override
     public boolean canHaveLine(int index) {
-        return getRandomNo() == 1;
-    }
-
-    private int getRandomNo() {
-        return random.nextInt(2);
+        return random.nextBoolean();
     }
 }
