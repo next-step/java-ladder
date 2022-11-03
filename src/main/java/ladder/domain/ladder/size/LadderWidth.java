@@ -10,11 +10,11 @@ public class LadderWidth {
     private final int width;
 
     public LadderWidth(int width) {
-        validLadderWidthBound(width);
+        validateLadderWidthBound(width);
         this.width = width;
     }
 
-    private static void validLadderWidthBound(int width) {
+    private void validateLadderWidthBound(int width) {
         if (width < LADDER_WIDTH_MIN) {
             throw new LadderWidthBoundException(LADDER_WIDTH_MIN);
         }
