@@ -21,6 +21,12 @@ public class ComputerStore {
     }
 
     public static String getVersionOptional(Computer computer) {
-        return null;
+        if (computer != null
+                && computer.getSoundcard() != null
+                && computer.getSoundcard().getUsb() != null
+        ) {
+            return computer.getSoundcard().getUsb().getVersion();
+        }
+        return "UNKNOWN";
     }
 }
