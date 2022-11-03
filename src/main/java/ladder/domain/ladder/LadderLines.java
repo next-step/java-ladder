@@ -1,6 +1,6 @@
 package ladder.domain.ladder;
 
-import java.util.stream.IntStream;
+import java.util.AbstractCollection;
 import ladder.domain.Position;
 import ladder.exception.ladder.EscapeLadderLinesException;
 import ladder.exception.ladder.NoSuchLadderLineException;
@@ -71,19 +71,9 @@ public class LadderLines {
             return false;
         }
         LadderLines that = (LadderLines) o;
-        return isEqualLadderLines(that);
-    }
+        AbstractCollection<LadderLine> ladderLines = (AbstractCollection<LadderLine>) this.ladderLines;
 
-    private boolean isEqualLadderLines(LadderLines that) {
-        long count = IntStream.range(0, this.ladderLines.size())
-                .filter(index -> isNotEqualLadderLine(that, index))
-                .count();
-
-        return count == 0;
-    }
-
-    private boolean isNotEqualLadderLine(LadderLines that, int index) {
-        return !(this.ladderLines.get(index).equals(that.ladderLines.get(index)));
+        return ladderLines.equals(that.ladderLines);
     }
 
     @Override
