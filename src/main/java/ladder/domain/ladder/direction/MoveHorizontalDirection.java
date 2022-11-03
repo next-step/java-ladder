@@ -14,12 +14,6 @@ public class MoveHorizontalDirection {
         this.currentHorizontalLineDirection = currentHorizontalLineDirection;
     }
 
-    public static List<MoveHorizontalDirection> first() {
-        return List.of(
-                new MoveHorizontalDirection(HorizontalLineDirection.NONE, HorizontalLineDirection.NONE),
-                new MoveHorizontalDirection(HorizontalLineDirection.NONE, HorizontalLineDirection.RIGHT));
-    }
-
     public static MoveHorizontalDirection first(int number) {
         if ((number < 0) || (number >= first().size())) {
             throw new IllegalArgumentException();
@@ -27,21 +21,27 @@ public class MoveHorizontalDirection {
         return first().get(number);
     }
 
+    public static List<MoveHorizontalDirection> first() {
+        return List.of(new MoveHorizontalDirection(HorizontalLineDirection.NONE, HorizontalLineDirection.NONE),
+                new MoveHorizontalDirection(HorizontalLineDirection.NONE, HorizontalLineDirection.RIGHT));
+    }
+
     public List<MoveHorizontalDirection> next() {
         if (this.currentHorizontalLineDirection.isRight()) {
-            return List.of(
-                    new MoveHorizontalDirection(this.currentHorizontalLineDirection, HorizontalLineDirection.LEFT));
+            return List.of(current(HorizontalLineDirection.LEFT));
         }
-        return List.of(
-                new MoveHorizontalDirection(this.currentHorizontalLineDirection, HorizontalLineDirection.NONE),
-                new MoveHorizontalDirection(this.currentHorizontalLineDirection, HorizontalLineDirection.RIGHT));
+        return List.of(current(HorizontalLineDirection.NONE), current(HorizontalLineDirection.RIGHT));
     }
 
     public MoveHorizontalDirection last() {
         if (this.currentHorizontalLineDirection.isRight()) {
-            return new MoveHorizontalDirection(this.currentHorizontalLineDirection, HorizontalLineDirection.LEFT);
+            return current(HorizontalLineDirection.LEFT);
         }
-        return new MoveHorizontalDirection(this.currentHorizontalLineDirection, HorizontalLineDirection.NONE);
+        return current(HorizontalLineDirection.NONE);
+    }
+
+    private MoveHorizontalDirection current(HorizontalLineDirection horizontalLineDirection) {
+        return new MoveHorizontalDirection(this.currentHorizontalLineDirection, horizontalLineDirection);
     }
 
     public boolean isCurrentRight() {
