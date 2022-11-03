@@ -10,4 +10,8 @@ public class LadderHeight {
         }
         this.height = height;
     }
+
+    public int getHeight() {
+        return height;
+    }
 }

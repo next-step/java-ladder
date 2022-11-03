@@ -16,4 +16,13 @@ public class Participant {
         }
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    public int getNameSize(){
+        return name.length();
+    }
 }
