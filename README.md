@@ -7,3 +7,18 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+--
+
+## 사다리 게임 구현
+
+### 1. Point
+* 라인 배열의 요소
+* boolean 값을 가진다.
+* true 연결 o / false 연결 x
+
+### 2. Line 
+* 사다리 게임에 라인
+* List<Point> 를 가진다.
+* 생성 시 connect 메서드로 포인트를 입력한다.
+* true 값 뒤에는 true가 또 나올 수 없으므로 validation을 한다.
