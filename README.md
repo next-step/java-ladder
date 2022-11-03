@@ -24,3 +24,22 @@
       - [x] getUser() 메서드를 Stream/Optional 구현
       - [x] ExpressionTest.of() 메서드 구현
       - [x] notValidExpression Test Pass
+* Step2 - 사다리(생성)
+  * 기능 목록
+    - [x] 쉼표를 기준으로 최대 5글자의 참여하는 사람 입력
+    - [x] 사람 이름 일급 컬렉션 객체
+    - [x] 사다리 높이 입력
+    - [x] 세로 사다리(높이) 구현
+    - [x] 가로 사다리 구현
+    - [x] 실행결과 출력
+  * 피드백
+    - [x] InputView 도메인 객체 생성 책임
+    - [x] 상수와 인스턴스 변수 사이에는 개행 추가
+    - [x] 재할당 하지 않는 대상 final keyword 추가
+    - [x] ParticipantName 예외처리 꼼꼼하게
+    - [x] Point 클래스, 변수 네이밍 변경
+    - [x] 사다리 높이(height)를 Wrapper 클래스로 만들고 검증 추가
+    - [x] 이름이 짧은 경우 빈 공간 추가
+    - [ ] 단순 생성자 호출에 정적 팩터리 메서드를 사용한 이유
+    - [ ] RandomLineGenerator 직접 의존함에 따라 테스트 어려운 구조 해결
+    - [ ] 사다리 연결 로직 개선
