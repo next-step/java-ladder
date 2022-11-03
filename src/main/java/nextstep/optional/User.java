@@ -36,16 +36,16 @@ public class User {
 
     public static boolean ageIsInRange2(User user) {
         Optional<User> optionalUser = Optional.ofNullable(user);
-        return optionalUser.stream()
-            .anyMatch(User::checkAgeRange);
+        return optionalUser.map(User::getAge).filter(User::checkAgeRange).isPresent();
+
     }
 
-    private static boolean checkAgeRange(User user) {
-        if (user == null || user.getAge() == null) {
+    private static boolean checkAgeRange(Integer age) {
+        if (age == null) {
             return false;
         }
 
-        return user.getAge() >= 30 && user.getAge() <= 45;
+        return age >= 30 && age <= 45;
     }
 
     @Override
