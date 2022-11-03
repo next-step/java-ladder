@@ -13,7 +13,15 @@ public class Result {
         this.result = result;
     }
 
+    public Result(final List<String> result) {
+        this.result = result;
+    }
+
     public List<String> getAll() {
         return Collections.unmodifiableList(result);
+    }
+
+    public String get(final int index) {
+        return result.get(index);
     }
 }

@@ -33,6 +33,11 @@ class LineDisplayerTest {
     private static Line createLine(List<Point> points) {
         return new Line(3) {
             @Override
+            public int nextLineIndex(int userIndex) {
+                return 0;
+            }
+
+            @Override
             public List<Point> getPoints() {
                 return points;
             }

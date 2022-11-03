@@ -2,6 +2,7 @@ package ladder;
 
 import ladder.domain.Ladder;
 import ladder.domain.Result;
+import ladder.domain.User;
 import ladder.domain.Users;
 import ladder.view.LineConsoleView;
 import ladder.view.LineDisplayer;
@@ -19,10 +20,12 @@ public class LadderGameApplication {
         
         Users users = Users.from(input.getUserNames());
         Result result = new Result(users.count(), input.getResult());
-        Ladder ladder = new Ladder(users, input.getHeight());
+        Ladder ladder = Ladder.of(users, input.getHeight(), result);
 
         displaySize = users.getMaxNameSize() + users.names().size();
         show(users, result, ladder);
+        
+        String prize = ladder.getResultBy(users, new User(input.getUserName()));
     }
 
     private static void show(final Users users, final Result result, final Ladder ladder) {
@@ -30,7 +33,7 @@ public class LadderGameApplication {
         showLadder(ladder);
         showResult(result);
     }
-
+    
     private static void showUser(final Users users) {
         new UserConsoleView(new UserDisplayer(users, displaySize)).show();
     }

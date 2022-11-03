@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class Users {
     private static final int MAX_NAME_SIZE = 5;
@@ -34,5 +35,14 @@ public class Users {
 
     public int getMaxNameSize() {
         return MAX_NAME_SIZE;
+    }
+
+    public int find(User user) {
+        for (int index = 0; index < users.size(); index++) {
+            if (users.get(index).equalsByName(user)) {
+                return index;
+            }
+        }
+        throw new NoSuchElementException("Users that don't exist.");
     }
 }

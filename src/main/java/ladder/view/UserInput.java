@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+import ladder.domain.Result;
+
 public class UserInput {
     private static final Pattern DELIMITER = Pattern.compile("[,]");
     
@@ -32,6 +34,11 @@ public class UserInput {
             throw new IllegalArgumentException("Height must be greater than zero.");
         }
         return height;
+    }
+
+    public String getUserName() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        return input.next();
     }
     
     private static List<String> split(final String names) {

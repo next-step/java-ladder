@@ -17,4 +17,8 @@ public class User {
     public String getName() {
         return name;
     }
+
+    public boolean equalsByName(User user) {
+        return name.equals(user.name);
+    }
 }

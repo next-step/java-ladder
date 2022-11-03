@@ -3,19 +3,32 @@ package ladder.domain;
 import static ladder.domain.Point.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
 public abstract class Line {
     private static final Random random = new Random();
     
-    private final int length;
+    private final Points points;
 
     protected Line(final int countOfPerson) {
-        length = countOfPerson * 2 - 1;
+        points = new Points(createPoints(countOfPerson * 2 - 1));
     }
 
+    protected Line(final Points points) {
+        this.points = points;
+    }
+
+    public int nextLineIndex(int startIndex) {
+        return points.getNextLineStartIndex(startIndex);
+    }
+    
     public List<Point> getPoints() {
+        return Collections.unmodifiableList(points.getAll());
+    }
+
+    private List<Point> createPoints(int length) {
         List<Point> points = new ArrayList<>();
         points.add(VERTICAL_LINE);
 
