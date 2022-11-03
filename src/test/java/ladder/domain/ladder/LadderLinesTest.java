@@ -24,8 +24,12 @@ public class LadderLinesTest {
     void result() {
         LadderLines ladderLines = new LadderLines(List.of(LadderLineTestUtil.continuousLadder()));
         Assertions.assertAll(
-                () -> assertThat(ladderLines.ladderClimbResultPosition(new Position(0, 0))).isEqualTo(new Position(1, 1)),
-                () -> assertThat(ladderLines.ladderClimbResultPosition(new Position(1, 1))).isEqualTo(new Position(0, 1))
+                () -> assertThat(ladderLines.ladderClimbResultPosition(new Position(0, 0)))
+                        .isEqualTo(new Position(1, 1)),
+                () -> assertThat(ladderLines.ladderClimbResultPosition(new Position(1, 0)))
+                        .isEqualTo(new Position(0, 1)),
+                () -> assertThat(ladderLines.ladderClimbResultPosition(new Position(1, 1)))
+                        .isEqualTo(new Position(1, 1))
         );
     }
 
@@ -33,7 +37,7 @@ public class LadderLinesTest {
     void escape_ladderLines() {
         LadderLines ladderLines = new LadderLines(List.of(LadderLineTestUtil.continuousLadder()));
 
-        assertThatThrownBy(() -> ladderLines.ladderClimbResultPosition(new Position(1, 5)))
+        assertThatThrownBy(() -> ladderLines.ladderClimbResultPosition(new Position(1, 2)))
                 .isInstanceOf(EscapeLadderLinesException.class);
     }
 }

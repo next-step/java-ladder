@@ -52,11 +52,11 @@ public class LadderLines {
     }
 
     private boolean isInvalidLadderHeight(int height) {
-        return height < 0 || height >= ladderLines.size();
+        return height < 0 || height > ladderLines.size();
     }
 
     private boolean isInvalidLadderWidth(int width) {
-        return width < RESULT_START_NUMBER_MIN || width >= ladderWidth();
+        return width < RESULT_START_NUMBER_MIN || width > ladderWidth();
     }
 
     private int ladderWidth() {
