@@ -8,26 +8,20 @@ public class LadderGame {
 
     private static final String LOOP_EXIT_COMMAND = "exit";
 
-    private final LadderInitializer initializer;
-    private final LadderGamePlayer gamePlayer;
-
     public LadderGame() {
-        this.initializer = new LadderInitializer();
-        this.gamePlayer = new LadderGamePlayer();
     }
 
     public static void main(String[] args) {
-        LadderGame game = new LadderGame();
-        game.start();
+        start();
     }
 
-    private void start() {
+    private static void start() {
         LadderGameData gameData = init();
         printLadder(gameData);
         play(gameData);
     }
 
-    private LadderGameData init() {
+    private static LadderGameData init() {
         LadderGameData gameData = null;
         while (gameData == null) {
             LadderInitDto initDto = new LadderInitDto(
@@ -40,7 +34,7 @@ public class LadderGame {
         return gameData;
     }
 
-    private void play(LadderGameData gameData) {
+    private static void play(LadderGameData gameData) {
         boolean flag = false;
         while (!flag) {
             LadderResultDto resultDto = getResult(gameData, InputView.getResultName());
@@ -50,7 +44,8 @@ public class LadderGame {
         }
     }
 
-    private LadderGameData getInitData(LadderInitDto initDto) {
+    private static LadderGameData getInitData(LadderInitDto initDto) {
+        LadderInitializer initializer = new LadderInitializer();
         try {
             return initializer.init(initDto);
         } catch (Exception e) {
@@ -59,7 +54,7 @@ public class LadderGame {
         }
     }
 
-    private int getHeight() {
+    private static int getHeight() {
         try {
             return InputView.getHeight();
         } catch (Exception e) {
@@ -67,11 +62,12 @@ public class LadderGame {
         }
     }
 
-    private LadderResultDto getResult(LadderGameData gameData, String resultName) {
+    private static LadderResultDto getResult(LadderGameData gameData, String resultName) {
         if (LOOP_EXIT_COMMAND.equals(resultName)) {
             return null;
         }
 
+        LadderGamePlayer gamePlayer = new LadderGamePlayer();
         try {
             return gamePlayer.play(gameData, resultName);
         } catch (Exception e) {
@@ -80,29 +76,29 @@ public class LadderGame {
         }
     }
 
-    private boolean updateFlag(LadderResultDto resultDto) {
+    private static boolean updateFlag(LadderResultDto resultDto) {
         return resultDto == null;
     }
 
-    private void printLadder(LadderGameData gameData) {
+    private static void printLadder(LadderGameData gameData) {
         PrintView.printLadder(gameData.getLadder(), gameData.getRewards());
         InputView.clear();
     }
 
 
-    private void printResult(LadderResultDto resultDto) {
+    private static void printResult(LadderResultDto resultDto) {
         PrintView.printResult(
                 Optional.ofNullable(resultDto)
                         .orElse(new LadderResultDto()));
     }
 
-    private void printInitTryAgain(Exception e) {
+    private static void printInitTryAgain(Exception e) {
         PrintView.printError(e);
         PrintView.printTryAgain();
         InputView.clear();
     }
 
-    private void printResultTryAgain(Exception e) {
+    private static void printResultTryAgain(Exception e) {
         PrintView.printError(e);
     }
 
