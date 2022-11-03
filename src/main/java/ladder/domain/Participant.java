@@ -8,10 +8,10 @@ public class Participant {
     private String name;
 
     public Participant(String name) {
-        if(Objects.isNull(name) || name.isEmpty()){
+        if (Objects.isNull(name) || name.isEmpty()) {
             throw new IllegalArgumentException("participant name cannot be empty");
         }
-        if(name.length() > MAX_NAME_LENGTH){
+        if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("participant name length cannot be longer than 5");
         }
         this.name = name;
@@ -22,7 +22,7 @@ public class Participant {
         return name;
     }
 
-    public int getNameSize(){
+    public int getNameSize() {
         return name.length();
     }
 }

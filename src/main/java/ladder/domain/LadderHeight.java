@@ -5,7 +5,7 @@ public class LadderHeight {
     private final int height;
 
     public LadderHeight(int height) {
-        if(height < MIN_HEIGHT) {
+        if (height < MIN_HEIGHT) {
             throw new IllegalArgumentException("height must be bigger than 0");
         }
         this.height = height;

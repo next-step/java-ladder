@@ -7,12 +7,14 @@ import java.util.List;
 
 public class ResultView {
 
+    private final static String SPACE_TEXT = " ";
+    private final static int DEFAULT_NAME_SPACE_COUNT = 6;
     private final static String LINE_WITH_BRIDGE = "-----|";
     private final static String LINE_WITH_NO_BRIDGE = "     |";
 
     public void printParticipants(List<Participant> participants){
         participants.forEach(name -> {
-            String nameText = " ".repeat(6 - name.getNameSize()) + name.toString();
+            String nameText = SPACE_TEXT.repeat(DEFAULT_NAME_SPACE_COUNT - name.getNameSize()) + name.toString();
             System.out.print(nameText);
         });
         System.out.println();
