@@ -1,23 +1,24 @@
 package ladder.domain;
 
-import java.awt.*;
 import java.util.Objects;
 import ladder.domain.ladder.HorizontalLineDirection;
 
 public class Position {
 
-    private final Point position;
+    private final int x;
+    private final int y;
 
     public Position(int x, int y) {
-        this.position = new Point(x, y);
+        this.x = x;
+        this.y = y;
     }
 
     public int x() {
-        return this.position.x;
+        return this.x;
     }
 
     public int y() {
-        return this.position.y;
+        return this.y;
     }
 
     public Position descend(HorizontalLineDirection horizontalLineDirection) {
@@ -31,15 +32,15 @@ public class Position {
     }
 
     private Position moveLeft() {
-        return new Position(this.x() + 1, this.y() + 1);
+        return new Position(this.x + 1, this.y + 1);
     }
 
     private Position moveRight() {
-        return new Position(this.x() - 1, this.y() + 1);
+        return new Position(this.x - 1, this.y + 1);
     }
 
     private Position moveStraight() {
-        return new Position(this.x(), this.y() + 1);
+        return new Position(this.x, this.y + 1);
     }
 
     @Override
@@ -50,12 +51,12 @@ public class Position {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Position position1 = (Position) o;
-        return (position.x == position1.x()) && (position.y == position1.y());
+        Position position = (Position) o;
+        return x == position.x && y == position.y;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(position);
+        return Objects.hash(x, y);
     }
 }
