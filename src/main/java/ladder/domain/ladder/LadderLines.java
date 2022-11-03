@@ -2,7 +2,7 @@ package ladder.domain.ladder;
 
 import java.util.stream.IntStream;
 import ladder.domain.Position;
-import ladder.domain.ladder.direction.MoveHorizontalDirection;
+import ladder.domain.ladder.direction.HorizontalLineDirection;
 import ladder.exception.ladder.EscapeLadderLinesException;
 import ladder.exception.ladder.NoSuchLadderLineException;
 
@@ -40,9 +40,9 @@ public class LadderLines {
     }
 
     private Position ladderClimb(Position position, LadderLine ladderLine) {
-        List<MoveHorizontalDirection> moveHorizontalDirections = ladderLine.horizontalLineDirections();
+        List<HorizontalLineDirection> horizontalLineDirections = ladderLine.horizontalLineDirections();
 
-        return position.descend(moveHorizontalDirections.get(position.x()));
+        return position.descend(horizontalLineDirections.get(position.x()));
     }
 
     private boolean isEscapePosition(Position position) {

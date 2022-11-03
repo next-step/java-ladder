@@ -2,7 +2,7 @@ package ladder.domain;
 
 import java.awt.*;
 import java.util.Objects;
-import ladder.domain.ladder.direction.MoveHorizontalDirection;
+import ladder.domain.ladder.direction.HorizontalLineDirection;
 
 public class Position {
 
@@ -20,11 +20,11 @@ public class Position {
         return this.position.y;
     }
 
-    public Position descend(MoveHorizontalDirection moveHorizontalDirection) {
-        if (moveHorizontalDirection.isRight()) {
+    public Position descend(HorizontalLineDirection horizontalLineDirection) {
+        if (horizontalLineDirection.isRight()) {
             return moveLeft();
         }
-        if (moveHorizontalDirection.isLeft()) {
+        if (horizontalLineDirection.isLeft()) {
             return moveRight();
         }
         return moveStraight();

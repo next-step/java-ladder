@@ -7,26 +7,26 @@ import java.util.stream.IntStream;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import ladder.domain.ladder.direction.MoveHorizontalDirection;
+import ladder.domain.ladder.direction.HorizontalLineDirection;
 
 public class LadderLine {
 
-    private final List<MoveHorizontalDirection> moveHorizontalDirections;
+    private final List<HorizontalLineDirection> horizontalLineDirections;
 
-    public LadderLine(MoveHorizontalDirection... moveHorizontalDirections) {
-        this(Arrays.stream(moveHorizontalDirections).collect(Collectors.toList()));
+    public LadderLine(HorizontalLineDirection... horizontalLineDirections) {
+        this(Arrays.stream(horizontalLineDirections).collect(Collectors.toList()));
     }
 
-    public LadderLine(List<MoveHorizontalDirection> moveHorizontalDirections) {
-        this.moveHorizontalDirections = moveHorizontalDirections;
+    public LadderLine(List<HorizontalLineDirection> horizontalLineDirections) {
+        this.horizontalLineDirections = horizontalLineDirections;
     }
 
-    public List<MoveHorizontalDirection> horizontalLineDirections() {
-        return Collections.unmodifiableList(moveHorizontalDirections);
+    public List<HorizontalLineDirection> horizontalLineDirections() {
+        return Collections.unmodifiableList(horizontalLineDirections);
     }
 
     public int width() {
-        return this.moveHorizontalDirections.size();
+        return this.horizontalLineDirections.size();
     }
 
     @Override
@@ -42,7 +42,7 @@ public class LadderLine {
     }
 
     private boolean isEqualLadderLine(LadderLine that) {
-        long count = IntStream.range(0, this.moveHorizontalDirections.size())
+        long count = IntStream.range(0, this.horizontalLineDirections.size())
                 .filter(index -> isNotEqualMoveHorizontalDirection(that, index))
                 .count();
 
@@ -50,11 +50,11 @@ public class LadderLine {
     }
 
     private boolean isNotEqualMoveHorizontalDirection(LadderLine that, int index) {
-        return !(this.moveHorizontalDirections.get(index).equals(that.moveHorizontalDirections.get(index)));
+        return !(this.horizontalLineDirections.get(index).equals(that.horizontalLineDirections.get(index)));
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(moveHorizontalDirections);
+        return Objects.hash(horizontalLineDirections);
     }
 }

@@ -3,7 +3,7 @@ package ladder.util;
 import ladder.domain.Result;
 import ladder.domain.reward.Reward;
 import ladder.domain.reward.Rewards;
-import ladder.domain.ladder.direction.MoveHorizontalDirection;
+import ladder.domain.ladder.direction.HorizontalLineDirection;
 import ladder.domain.ladder.LadderLine;
 import ladder.domain.ladder.LadderLines;
 import ladder.domain.person.People;
@@ -54,8 +54,8 @@ public class LadderOutputConverter {
                 .stripTrailing();
     }
 
-    private static String horizontalLineDirectionOutput(MoveHorizontalDirection moveHorizontalDirection) {
-        if (moveHorizontalDirection.isRight()) {
+    private static String horizontalLineDirectionOutput(HorizontalLineDirection horizontalLineDirection) {
+        if (horizontalLineDirection.isRight()) {
             return LADDER_RIGHT_OUTPUT;
         }
         return LADDER_DEFAULT_OUTPUT;

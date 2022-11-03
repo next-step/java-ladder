@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import ladder.domain.ladder.direction.MoveHorizontalDirection;
+import ladder.domain.ladder.direction.HorizontalLineDirection;
 import ladder.domain.ladder.size.LadderHeight;
 import ladder.domain.ladder.size.LadderWidth;
 
@@ -20,20 +20,20 @@ public class LadderLineFactory {
     }
 
     public LadderLine randomLadderLine(LadderWidth ladderWidth) {
-        List<MoveHorizontalDirection> moveHorizontalDirections = new ArrayList<>();
+        List<HorizontalLineDirection> horizontalLineDirections = new ArrayList<>();
 
-        MoveHorizontalDirection currentHorizontalDirection
-                = MoveHorizontalDirection.first().get(random.nextInt(MoveHorizontalDirection.first().size()));
-        moveHorizontalDirections.add(currentHorizontalDirection);
+        HorizontalLineDirection currentHorizontalDirection
+                = HorizontalLineDirection.first().get(random.nextInt(HorizontalLineDirection.first().size()));
+        horizontalLineDirections.add(currentHorizontalDirection);
 
         for (int i = 1; i < ladderWidth.lastLadderIndex(); i++) {
             currentHorizontalDirection
                     = currentHorizontalDirection.next().get(random.nextInt(currentHorizontalDirection.next().size()));
-            moveHorizontalDirections.add(currentHorizontalDirection);
+            horizontalLineDirections.add(currentHorizontalDirection);
         }
 
-        moveHorizontalDirections.add(currentHorizontalDirection.last());
+        horizontalLineDirections.add(currentHorizontalDirection.last());
 
-        return new LadderLine(moveHorizontalDirections);
+        return new LadderLine(horizontalLineDirections);
     }
 }

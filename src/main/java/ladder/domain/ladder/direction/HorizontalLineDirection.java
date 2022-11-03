@@ -2,29 +2,29 @@ package ladder.domain.ladder.direction;
 
 import java.util.List;
 
-public enum MoveHorizontalDirection {
+public enum HorizontalLineDirection {
 
     LEFT, STRAIGHT, RIGHT;
 
-    public static MoveHorizontalDirection first(int number) {
+    public static HorizontalLineDirection first(int number) {
         if ((number < 0) || (number >= first().size())) {
             throw new IllegalArgumentException();
         }
         return first().get(number);
     }
 
-    public static List<MoveHorizontalDirection> first() {
+    public static List<HorizontalLineDirection> first() {
         return List.of(STRAIGHT, RIGHT);
     }
 
-    public List<MoveHorizontalDirection> next() {
+    public List<HorizontalLineDirection> next() {
         if (this == RIGHT) {
             return List.of(LEFT);
         }
         return List.of(STRAIGHT, RIGHT);
     }
 
-    public MoveHorizontalDirection last() {
+    public HorizontalLineDirection last() {
         if (this == RIGHT) {
             return LEFT;
         }
