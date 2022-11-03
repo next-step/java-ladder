@@ -45,14 +45,14 @@ public class LadderLines {
     }
 
     private boolean isEscapePosition(Position position) {
-        return isValidLadderWidth(position.x()) && isValidLadderHeight(position.y());
+        return isInvalidLadderWidth(position.x()) && isInvalidLadderHeight(position.y());
     }
 
-    private boolean isValidLadderHeight(int height) {
+    private boolean isInvalidLadderHeight(int height) {
         return height < 0 || height >= ladderLines.size();
     }
 
-    private boolean isValidLadderWidth(int width) {
+    private boolean isInvalidLadderWidth(int width) {
         return width < RESULT_START_NUMBER_MIN || width >= ladderWidth();
     }
 
