@@ -8,7 +8,7 @@
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
 
-## 사다리 게임 구현
+## 2단계 - 사다리(생성)
 
 ### 1. Point
 * 라인 배열의 요소
@@ -24,4 +24,11 @@
 ## 3. InputView
 * 이름 리스트를 받는다. validation -> 5글자
 * 최대 사다리 높이를 받는다. validation -> 숫자
+
+## 4. Ladder
+* 사다리 라인을 그린다.
+
+## 5. ResultView
+* 이름 리스트 뷰
+* 사다리 뷰 -> boolean 리스트를 받아서 스트링 만들기
 

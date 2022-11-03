@@ -23,7 +23,7 @@ public class InputView {
 
     public static List<String> InputNameList() {
         System.out.println(INPUT_NAME_LIST_MESSAGE);
-        String inputNameList = SCANNER.nextLine().trim();
+        String inputNameList = SCANNER.nextLine();
         return makeNameList(inputNameList).stream()
                 .map(InputView::validateName)
                 .collect(Collectors.toList());
@@ -36,7 +36,8 @@ public class InputView {
     }
 
     private static List<String> makeNameList(String inputNameList) {
-        return Arrays.stream(inputNameList.split(",")).collect(Collectors.toList());
+        String trimmedInputNumberList = inputNameList.replaceAll(" ", "");
+        return Arrays.stream(trimmedInputNumberList.split(",")).collect(Collectors.toList());
     }
 
     private static String validateName(String name) {
