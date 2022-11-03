@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class RandomLineGenerator {
+public class RandomLineFactory {
 
     private static final Random random = new Random();
 
-    private RandomLineGenerator() {
+    private RandomLineFactory() {
 
     }
 
