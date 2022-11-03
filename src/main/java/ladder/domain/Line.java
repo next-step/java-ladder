@@ -12,15 +12,11 @@ public class Line {
     }
 
     public Line(int participantCount, LineGenerateStrategy lineGenerateStrategy) {
-        this(lineGenerateStrategy.generateLine(participantCount));
+        this(lineGenerateStrategy.generate(participantCount));
     }
 
     public List<Boolean> getPoints() {
         return points;
-    }
-
-    public static Line from(int participantCount, LineGenerateStrategy lineGenerateStrategy) {
-        return new Line(lineGenerateStrategy.generateLine(participantCount));
     }
 
 }
