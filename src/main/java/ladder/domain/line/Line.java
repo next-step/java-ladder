@@ -24,19 +24,7 @@ public abstract class Line {
         return bars.get(index);
     }
 
-    public int move(int index) {
-        if (isMovementAvailable(index)) {
-            return -1;
-        }
-
-        if (isMovementAvailable(index + 1)) {
-            return 1;
-        }
-
-        return 0;
-    }
-
-    private boolean isMovementAvailable(int index) {
+    public boolean isMovementAvailable(int index) {
         try {
             return this.bars.get(index).isAvailable();
         } catch (Exception e) {

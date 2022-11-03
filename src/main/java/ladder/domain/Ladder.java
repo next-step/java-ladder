@@ -18,16 +18,8 @@ public class Ladder {
         this.lines.addLines(lines);
     }
 
-    public Line getLine(int index) {
-        return this.lines.getLine(index);
-    }
-
     public List<Line> getLines() {
         return this.lines.getLines();
-    }
-
-    public int getHeight() {
-        return this.lines.getHeight();
     }
 
     public List<String> getNames() {
@@ -38,17 +30,10 @@ public class Ladder {
         return this.users.getMaxNameLength();
     }
 
-    public int getCountOfPerson() {
-        return this.users.getCountOfPerson();
-    }
-
     public int getEndPoint(String name) {
-        int currentPoint = this.users.getIndex(name);
+        Point point = new Point(this.users.getIndex(name));
+        getLines().forEach(point::move);
 
-        for(Line line : getLines()) {
-            currentPoint += line.move(currentPoint);
-        }
-
-        return currentPoint;
+        return point.getIndex();
     }
 }
