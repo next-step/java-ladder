@@ -10,8 +10,8 @@ class LadderTest {
     @Test
     void 사다리가_사람수에_맞게_생성되는지() {
         Ladder ladder = new Ladder(5, 4, new RandomLineConditional());
-        assertThat(ladder.getLines().size()).isEqualTo(5);
-        assertThat(ladder.getLines().get(0).getLines().size()).isEqualTo(3);
+        assertThat(ladder.getLadders().size()).isEqualTo(5);
+        assertThat(ladder.getLadders().get(0).getLines().size()).isEqualTo(3);
     }
 
     @ParameterizedTest

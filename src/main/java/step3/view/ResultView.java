@@ -23,7 +23,7 @@ public class ResultView {
     }
 
     public static void printLadders(Ladder ladder) {
-        ladder.getLines().stream()
+        ladder.getLadders().stream()
                 .forEach(floor -> {
                     System.out.print(System.lineSeparator() + BLANK.repeat(3));
                     printLines(floor);
