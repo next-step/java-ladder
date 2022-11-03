@@ -15,6 +15,7 @@ public class ResultView {
     private static final int REPEAT_COUNT = 5;
     private static final String RESULT_PRINT_SEPARATOR = " : ";
     private static final String GAME_RESULT_PRINT_TEXT = System.lineSeparator() + "실행 결과";
+    private static final String ALL_TEXT = "all";
 
     public static void printLadderGame(Users users, Ladders ladder, Results results) {
         System.out.println(RESULT_TEXT);
@@ -68,20 +69,18 @@ public class ResultView {
         return string.concat(BLANK.repeat(REPEAT_COUNT - string.length())).concat(BLANK);
     }
 
-    public static void printLadderGameResults(GameResult gameResult, Users users, Results results) {
+    public static void printLadderGameResults(String selectedPerson, GameResult gameResult) {
         System.out.println(GAME_RESULT_PRINT_TEXT);
-        Map<Integer, Integer> gameResults = gameResult.getGameResults();
-        if (gameResults.size() == 1) {
-            int firstValue = gameResults.values().stream().findFirst().get();
-            System.out.println(results.getResults().get(firstValue));
+        if (selectedPerson.equals(ALL_TEXT)) {
+            printLadderGameAllResults(gameResult.getGameResults());
         } else {
-            printLadderGameAllResults(gameResults, users, results);
+            System.out.println(gameResult.getGameResults().get(selectedPerson));
         }
     }
 
-    public static void printLadderGameAllResults(Map<Integer, Integer> gameResult, Users users, Results results) {
-        for (Integer key : gameResult.keySet()) {
-            System.out.println(users.getNames().get(key) + RESULT_PRINT_SEPARATOR + results.getResults().get(gameResult.get(key)));
+    public static void printLadderGameAllResults(Map<String, String> gameResult) {
+        for (String key : gameResult.keySet()) {
+            System.out.println(key + RESULT_PRINT_SEPARATOR + gameResult.get(key));
         }
     }
 }

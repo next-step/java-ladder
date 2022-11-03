@@ -21,8 +21,8 @@ public class LadderGameMain {
         String selectedPerson;
         do {
             selectedPerson = users.findContainedName(InputView.inputSelectedPerson());
-            GameResult gameResult = new GameResult(selectedPerson, users, ladders);
-            ResultView.printLadderGameResults(gameResult, users, results);
+            GameResult gameResult = new GameResult(users, results, ladders);
+            ResultView.printLadderGameResults(selectedPerson, gameResult);
         } while (!selectedPerson.equals(GAME_END_TEXT));
     }
 

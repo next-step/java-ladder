@@ -2,25 +2,25 @@ package step3.domain;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class GameResult {
 
-    private static final String ALL_PEOPLE_TEXT = "all";
+    private final Map<String, String> gameResults;
 
-    private final Map<Integer, Integer> results;
-
-    public GameResult(String name, Users users, Ladders ladder) {
-        this.results = calculateGameResults(name, users, ladder);
+    public GameResult(Users users, Results results, Ladders ladders) {
+        this.gameResults = calculateGameResults(users, results, ladders);
     }
 
-    private Map<Integer, Integer> calculateGameResults(String name, Users users, Ladders ladder) {
-        if (name.equals(ALL_PEOPLE_TEXT)) {
-            return ladder.getAllResultIndex(users.getUserCounts());
-        }
-        return ladder.getOneResultIndex(users.getNames().indexOf(name));
+    private Map<String, String> calculateGameResults(Users users, Results results, Ladders ladders) {
+        Map<Integer, Integer> indexMap = ladders.getAllResultIndex(users.getUserCounts());
+
+        return indexMap.entrySet().stream().collect(Collectors.toMap(
+                it -> users.getNames().get(it.getKey()),
+                it -> results.getResults().get(it.getValue())));
     }
 
-    public Map<Integer, Integer> getGameResults() {
-        return new HashMap<>(results);
+    public Map<String, String> getGameResults() {
+        return new HashMap<>(gameResults);
     }
 }
