@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import ladder.domain.ladder.direction.HorizontalLineDirection;
 import ladder.domain.ladder.direction.MoveHorizontalDirection;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,9 +33,9 @@ public class PositionTest {
 
     @Test
     void descend() {
-        Position descendLeft = this.position.descend(new MoveHorizontalDirection(HorizontalLineDirection.LEFT));
-        Position descendNone = this.position.descend(new MoveHorizontalDirection(HorizontalLineDirection.NONE));
-        Position descendRight = this.position.descend(new MoveHorizontalDirection(HorizontalLineDirection.RIGHT));
+        Position descendLeft = this.position.descend(MoveHorizontalDirection.LEFT);
+        Position descendNone = this.position.descend(MoveHorizontalDirection.STRAIGHT);
+        Position descendRight = this.position.descend(MoveHorizontalDirection.RIGHT);
 
         Assertions.assertAll(
                 () -> assertThat(descendLeft).isEqualTo(new Position(0, 2)),

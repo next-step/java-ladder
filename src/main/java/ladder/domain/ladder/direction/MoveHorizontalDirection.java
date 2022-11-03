@@ -1,17 +1,10 @@
 package ladder.domain.ladder.direction;
 
-import static ladder.domain.ladder.direction.HorizontalLineDirection.*;
-
 import java.util.List;
-import java.util.Objects;
 
-public class MoveHorizontalDirection {
+public enum MoveHorizontalDirection {
 
-    private final HorizontalLineDirection currentHorizontalLineDirection;
-
-    public MoveHorizontalDirection(HorizontalLineDirection currentHorizontalLineDirection) {
-        this.currentHorizontalLineDirection = currentHorizontalLineDirection;
-    }
+    LEFT, STRAIGHT, RIGHT;
 
     public static MoveHorizontalDirection first(int number) {
         if ((number < 0) || (number >= first().size())) {
@@ -21,46 +14,28 @@ public class MoveHorizontalDirection {
     }
 
     public static List<MoveHorizontalDirection> first() {
-        return List.of(new MoveHorizontalDirection(NONE), new MoveHorizontalDirection(RIGHT));
+        return List.of(STRAIGHT, RIGHT);
     }
 
     public List<MoveHorizontalDirection> next() {
-        if (this.currentHorizontalLineDirection.isRight()) {
-            return List.of(new MoveHorizontalDirection(LEFT));
+        if (this == RIGHT) {
+            return List.of(LEFT);
         }
-        return List.of(new MoveHorizontalDirection(NONE),
-                new MoveHorizontalDirection(RIGHT));
+        return List.of(STRAIGHT, RIGHT);
     }
 
     public MoveHorizontalDirection last() {
-        if (this.currentHorizontalLineDirection.isRight()) {
-            return new MoveHorizontalDirection(LEFT);
+        if (this == RIGHT) {
+            return LEFT;
         }
-        return new MoveHorizontalDirection(NONE);
+        return STRAIGHT;
     }
 
     public boolean isCurrentRight() {
-        return this.currentHorizontalLineDirection == RIGHT;
+        return this == RIGHT;
     }
 
     public boolean isCurrentLeft() {
-        return this.currentHorizontalLineDirection == LEFT;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        MoveHorizontalDirection that = (MoveHorizontalDirection) o;
-        return currentHorizontalLineDirection == that.currentHorizontalLineDirection;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(currentHorizontalLineDirection);
+        return this == LEFT;
     }
 }

@@ -9,17 +9,15 @@ public class MoveHorizontalDirectionTest {
 
     @Test
     void create() {
-        MoveHorizontalDirection moveHorizontalDirection
-                = new MoveHorizontalDirection(HorizontalLineDirection.LEFT);
+        MoveHorizontalDirection moveHorizontalDirection = MoveHorizontalDirection.LEFT;
 
-        assertThat(moveHorizontalDirection).isEqualTo(new MoveHorizontalDirection(HorizontalLineDirection.LEFT));
+        assertThat(moveHorizontalDirection == MoveHorizontalDirection.LEFT).isTrue();
     }
 
     @Test
     void first() {
         assertThat(MoveHorizontalDirection.first())
-                .containsOnly(new MoveHorizontalDirection(HorizontalLineDirection.NONE),
-                        new MoveHorizontalDirection(HorizontalLineDirection.RIGHT));
+                .containsOnly(MoveHorizontalDirection.STRAIGHT, MoveHorizontalDirection.RIGHT);
     }
 
     @Test
@@ -39,41 +37,32 @@ public class MoveHorizontalDirectionTest {
 
     @Test
     void next() {
-        MoveHorizontalDirection moveHorizontalDirection = new MoveHorizontalDirection(HorizontalLineDirection.LEFT);
+        MoveHorizontalDirection moveHorizontalDirection = MoveHorizontalDirection.LEFT;
 
-        assertThat(moveHorizontalDirection.next()).containsOnly(
-                new MoveHorizontalDirection(HorizontalLineDirection.RIGHT),
-                new MoveHorizontalDirection(HorizontalLineDirection.NONE));
+        assertThat(moveHorizontalDirection.next())
+                .containsOnly(MoveHorizontalDirection.RIGHT, MoveHorizontalDirection.STRAIGHT);
 
-        MoveHorizontalDirection rightMoveHorizontalDirection
-                = new MoveHorizontalDirection(HorizontalLineDirection.RIGHT);
+        MoveHorizontalDirection rightMoveHorizontalDirection = MoveHorizontalDirection.RIGHT;
 
-        assertThat(rightMoveHorizontalDirection.next()).containsOnly(
-                new MoveHorizontalDirection(HorizontalLineDirection.LEFT));
+        assertThat(rightMoveHorizontalDirection.next()).containsOnly(MoveHorizontalDirection.LEFT);
     }
 
     @Test
     void last() {
-        MoveHorizontalDirection moveHorizontalDirection = new MoveHorizontalDirection(HorizontalLineDirection.LEFT);
+        MoveHorizontalDirection moveHorizontalDirection = MoveHorizontalDirection.LEFT;
 
-        assertThat(moveHorizontalDirection.last()).isEqualTo(new MoveHorizontalDirection(HorizontalLineDirection.NONE));
+        assertThat(moveHorizontalDirection.last()).isEqualTo(MoveHorizontalDirection.STRAIGHT);
 
-        MoveHorizontalDirection rightMoveHorizontalDirection
-                = new MoveHorizontalDirection(HorizontalLineDirection.RIGHT);
+        MoveHorizontalDirection rightMoveHorizontalDirection = MoveHorizontalDirection.RIGHT;
 
-        assertThat(rightMoveHorizontalDirection.last()).isEqualTo(
-                new MoveHorizontalDirection(HorizontalLineDirection.LEFT));
+        assertThat(rightMoveHorizontalDirection.last()).isEqualTo(MoveHorizontalDirection.LEFT);
     }
 
     @Test
     void isCurrentRight() {
         assertAll(
-                () -> assertThat(
-                        new MoveHorizontalDirection(HorizontalLineDirection.LEFT).isCurrentRight()).isFalse(),
-                () -> assertThat(
-                        new MoveHorizontalDirection(HorizontalLineDirection.NONE).isCurrentRight()).isFalse(),
-                () -> assertThat(
-                        new MoveHorizontalDirection(HorizontalLineDirection.RIGHT).isCurrentRight()).isTrue()
-        );
+                () -> assertThat(MoveHorizontalDirection.LEFT.isCurrentRight()).isFalse(),
+                () -> assertThat(MoveHorizontalDirection.STRAIGHT.isCurrentRight()).isFalse(),
+                () -> assertThat(MoveHorizontalDirection.RIGHT.isCurrentRight()).isTrue());
     }
 }
