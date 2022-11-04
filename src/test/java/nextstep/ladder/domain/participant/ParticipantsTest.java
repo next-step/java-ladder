@@ -13,7 +13,7 @@ import nextstep.ladder.exception.BadRequestException;
 
 class ParticipantsTest {
 
-	@DisplayName("입력가능하지 않은 이름를 입력하면 예외를 던진다.")
+	@DisplayName("입력가능한 이름을 입력하면 Participants 가 생성된다.")
 	@ParameterizedTest
 	@MethodSource("generateWrongName")
 	void Given_Names_Then_Participants() {
