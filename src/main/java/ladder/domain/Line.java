@@ -15,19 +15,27 @@ public abstract class Line {
     protected Line(final int countOfPerson) {
         points = new Points(createPoints(countOfPerson * 2 - 1));
     }
-
+    
     protected Line(final Points points) {
         this.points = points;
     }
 
-    public int nextLineIndex(int startIndex) {
-        return points.getNextLineStartIndex(startIndex);
+    public int getEndIndex(int startIndex) {
+        return points.getEndIndex(startIndex);
+    }
+
+    public int getOrderByNextLine(int nextLineIndex) {
+        return points.getNextLineOrderBy(nextLineIndex);
+    }
+
+    public int getNextLineIndexBy(int order) {
+        return points.getVerticalIndex(order);
     }
     
     public List<Point> getPoints() {
         return Collections.unmodifiableList(points.getAll());
     }
-
+    
     private List<Point> createPoints(int length) {
         List<Point> points = new ArrayList<>();
         points.add(VERTICAL_LINE);

@@ -12,7 +12,7 @@ public class Points {
         this.points = points;
     }
 
-    public int getNextLineStartIndex(final int startIndex) {
+    public int getEndIndex(final int startIndex) {
         if (isInvalidIndex(startIndex) || BLANK == points.get(startIndex)) {
             throw new IllegalArgumentException("Invalid index. index="+startIndex);
         }
@@ -31,6 +31,27 @@ public class Points {
         return index;
     }
 
+    public int getNextLineOrderBy(int nextLineIndex) {
+        int order = 0;
+        for (int index = 0; index <= nextLineIndex; index++) {
+            if (VERTICAL_LINE == points.get(index)) {
+                order++;
+            }
+        }
+        return order - 1;
+    }
+    
+    public int getVerticalIndex(final int order) {
+        int lineIndex = -1;
+        int lineCount = 0;
+        while (lineIndex < points.size() && lineCount < order) {
+            if (VERTICAL_LINE == points.get(++lineIndex)) {
+                lineCount++;
+            }
+        }
+        return lineIndex;
+    }
+    
     public List<Point> getAll() {
         return Collections.unmodifiableList(points);
     }

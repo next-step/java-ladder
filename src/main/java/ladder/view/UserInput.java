@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-import ladder.domain.Result;
-
 public class UserInput {
     private static final Pattern DELIMITER = Pattern.compile("[,]");
     

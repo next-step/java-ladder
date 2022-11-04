@@ -25,20 +25,20 @@ class UsersTest {
         assertThat(Users.from(names).names()).hasSameElementsAs(names);
     }
 
-    @DisplayName("사용자 이름에 해당하는 인덱스를 리턴한다.")
+    @DisplayName("사용자 순서를 리턴한다.")
     @Test
-    void find() {
+    void getOrder() {
         Users users = Users.from(names);
         for (int index = 0; index < names.size(); index++) {
-            assertThat(users.find(new User(names.get(index)))).isEqualTo(index);
+            assertThat(users.getOrder(new User(names.get(index)))).isEqualTo(index + 1);
         }
     }
 
     @DisplayName("존재하지 않는 사용자 이름은 예외를 발생시킨다.")
     @ValueSource(strings = { "martin", "kara" })
     @ParameterizedTest
-    void find_when_not_exist(String name) {
+    void getStartIndex_when_not_exist(String name) {
         Users users = Users.from(names);
-        assertThatThrownBy(() -> users.find(new User(name))).isInstanceOf(NoSuchElementException.class).hasMessage("Users that don't exist.");
+        assertThatThrownBy(() -> users.getOrder(new User(name))).isInstanceOf(NoSuchElementException.class).hasMessage("User's start index could not be found.");
     }
 }

@@ -29,7 +29,7 @@ class LadderTest {
 
     private static Ladder createLadder(int countOfPerson, int height) {
         List<User> users = copies(countOfPerson, () -> new User("name"));
-        return Ladder.of(new Users(users), height, new Result(2, copies(2, () -> "result")));
+        return Ladder.of(new Users(users), height, new Results(2, copies(2, () -> "result")));
     }
     
     private static <T> List<T> copies(int count, Supplier<T> item) {

@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -37,12 +38,16 @@ public class Users {
         return MAX_NAME_SIZE;
     }
 
-    public int find(User user) {
+    public int getOrder(final User user) {
         for (int index = 0; index < users.size(); index++) {
             if (users.get(index).equalsByName(user)) {
-                return index;
+                return index + 1;
             }
         }
-        throw new NoSuchElementException("Users that don't exist.");
+        throw new NoSuchElementException("User's start index could not be found.");
+    }
+
+    public List<User> getAll() {
+        return Collections.unmodifiableList(users);
     }
 }
