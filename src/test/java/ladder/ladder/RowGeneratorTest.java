@@ -3,8 +3,6 @@ package ladder.ladder;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.stream.IntStream;
-import ladder.ladder.Row;
-import ladder.ladder.RowGenerator;
 import org.junit.jupiter.api.Test;
 
 class RowGeneratorTest {
@@ -15,7 +13,7 @@ class RowGeneratorTest {
         Row row = rowGenerator.create(4);
 
         assertThat(IntStream.range(1, row.getPoints().size())
-            .noneMatch(index -> row.getPoints().get(index) && row.getPoints().get(index - 1)))
+            .noneMatch(index -> row.getPoints().get(index).getDirection().isRight() && row.getPoints().get(index - 1).getDirection().isLeft()))
             .isTrue();
     }
 }

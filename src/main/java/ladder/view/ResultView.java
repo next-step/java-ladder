@@ -2,6 +2,7 @@ package ladder.view;
 
 import java.util.List;
 import ladder.ladder.Ladder;
+import ladder.ladder.Point;
 import ladder.ladder.Row;
 import ladder.result.Award;
 import ladder.result.LadderResult;
@@ -38,17 +39,17 @@ public class ResultView {
     }
 
     private static void printLowLine(Row row) {
-        List<Boolean> points = row.getPoints();
+        List<Point> points = row.getPoints();
 
         System.out.print(HORIZONTAL_BLANK_LINE);
-        for (Boolean point : points) {
+        for (Point point : points) {
             printConnectLine(point);
         }
         System.out.println();
     }
 
-    private static void printConnectLine(Boolean point) {
-        if (point) {
+    private static void printConnectLine(Point point) {
+        if (point.getDirection().isRight()) {
             System.out.print(VERTICAL_LINE);
             System.out.print(HORIZONTAL_FULL_LINE);
         } else {
