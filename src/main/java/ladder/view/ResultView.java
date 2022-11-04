@@ -51,32 +51,6 @@ public class ResultView {
                 .collect(Collectors.toList());
     }
 
-   /* private static void printLadder1(Ladder_bak ladder) {
-        for (Line line : ladder.getLines()) {
-            printLine(line);
-        }
-    }
-
-    private static void printLine1(Line line) {
-        List<String> resultLines = getResultLine(line);
-        for (int i = 0; i < resultLines.size(); i++) {
-            System.out.print(resultLines.get(i));
-            printEndPoint(resultLines, i);
-        }
-        System.out.println();
-    }
-
-    private static List<String> getResultLine1(Line line) {
-        return line.getPoints().stream()
-                .map(point -> getPointExist(point))
-                .collect(Collectors.toList());
-    }
-
-    private static String getPointExist1(Point point) {
-        if (point.isExist()) return LINE_EXIST;
-        return LINE_NO_EXIST;
-    }*/
-
     private static String getPointExist(Point point) {
         if (point.getDirection().isRight()) return LINE_EXIST;
         return LINE_NO_EXIST;

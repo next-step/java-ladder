@@ -26,4 +26,7 @@ public class Names {
         return names.size();
     }
 
+    public boolean isContainedName(Name name) {
+        return names.contains(name);
+    }
 }

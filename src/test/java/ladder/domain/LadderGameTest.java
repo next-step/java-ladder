@@ -1,6 +1,8 @@
 package ladder.domain;
 
 import ladder.fixtures.LadderFixtures;
+import org.junit.jupiter.api.DisplayNameGeneration;
+import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
@@ -13,6 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
+@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class LadderGameTest {
     @Test
     public void 실행결과_개수가_참여자수와_동일한지() {
