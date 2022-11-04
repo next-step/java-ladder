@@ -1,27 +1,28 @@
 package ladder.domain;
 
+import ladder.domain.ladder.LadderLines;
 import ladder.domain.person.Person;
-import ladder.dto.LadderGameResultDto;
 
 import java.util.*;
 import java.util.List;
+import ladder.domain.reward.Reward;
+import ladder.domain.reward.Rewards;
 
 public class Result {
 
-    private final Map<Person, LadderTextInput> resultMap = new HashMap<>();
+    private final Map<Person, Reward> result;
 
-    public Result(LadderGameResultDto ladderGameResultDto, List<Person> personList) {
-        personList.forEach(person -> {
-            LadderTextInput result = ladderGameResultDto.results()
-                    .result(ladderGameResultDto.ladderLines().result(person.position()));
-            resultMap.put(person, result);});
+    public Result(LadderLines ladderLines, Rewards rewards, List<Person> personList) {
+        this.result = new HashMap<>();
+        personList.forEach(
+                person -> result.put(person, rewards.reward(ladderLines.ladderClimbResultPosition(person.position()))));
     }
 
-    public LadderTextInput result(Person person) {
-        return resultMap.get(person);
+    public Reward result(Person person) {
+        return result.get(person);
     }
 
-    public Map<Person, LadderTextInput> resultMap() {
-        return resultMap;
+    public Map<Person, Reward> result() {
+        return Collections.unmodifiableMap(result);
     }
 }

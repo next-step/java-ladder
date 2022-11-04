@@ -1,16 +1,16 @@
 package ladder;
 
-import ladder.domain.ladder.strategy.LadderNotContinuousConnectStrategy;
-import ladder.service.LadderGameCreateService;
-import ladder.service.LadderGameResultService;
+import ladder.view.input.ConsoleInputView;
+import ladder.view.output.ConsoleOutputView;
 
 public class LadderMain {
 
     public static void main(String[] args) {
-        LadderGameCreateService ladderGameCreateService = new LadderGameCreateService(new LadderNotContinuousConnectStrategy());
-        LadderGameResultService ladderGameResultService = new LadderGameResultService();
+        ConsoleOutputView outputView = new ConsoleOutputView();
+        ConsoleInputView inputView = new ConsoleInputView();
 
-        LadderController ladderController = new LadderController(ladderGameCreateService, ladderGameResultService);
+        LadderController ladderController = new LadderController(outputView, inputView);
+
         ladderController.gameStart();
     }
 }

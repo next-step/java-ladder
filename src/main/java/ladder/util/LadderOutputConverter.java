@@ -1,32 +1,43 @@
 package ladder.util;
 
-import ladder.domain.LadderTextInput;
 import ladder.domain.Result;
-import ladder.domain.Rewards;
+import ladder.domain.reward.Reward;
+import ladder.domain.reward.Rewards;
 import ladder.domain.ladder.HorizontalLineDirection;
-import ladder.domain.ladder.ladderline.LadderLine;
-import ladder.domain.ladder.ladderline.LadderLines;
+import ladder.domain.ladder.LadderLine;
+import ladder.domain.ladder.LadderLines;
 import ladder.domain.person.People;
 import ladder.domain.person.Person;
-import ladder.exception.ladder.NoSuchHorizontalLineDirectionException;
 
-import java.util.List;
 import java.util.stream.Collectors;
+import ladder.domain.person.name.PersonName;
 
 import static ladder.util.LadderConst.*;
-import static ladder.util.LadderConst.RESULT_DELIMITER;
+import static ladder.util.LadderConst.REWARDS_DELIMITER;
 
 public class LadderOutputConverter {
 
+    private static final String PEOPLE_NAMES_DELIMITER = " ";
+
     public static String peopleOutput(People people) {
-        return LadderOutputConverter.ladderTextOutput(people.people().stream()
+        return people.people().stream()
                 .map(Person::name)
-                .map(LadderTextInput::new)
-                .collect(Collectors.toList()));
+                .map(LadderOutputConverter::translatePersonNameOutputFormat)
+                .collect(Collectors.joining(PEOPLE_NAMES_DELIMITER));
+    }
+
+    private static String translatePersonNameOutputFormat(PersonName personName) {
+        return String.format(PERSONNAME_OUTPUT_FORMAT, personName.name());
     }
 
     public static String rewardsOutput(Rewards rewards) {
-        return LadderOutputConverter.ladderTextOutput(rewards.results());
+        return rewards.rewards().stream()
+                .map(LadderOutputConverter::translateResultOutputFormat)
+                .collect(Collectors.joining(REWARDS_DELIMITER));
+    }
+
+    private static String translateResultOutputFormat(Reward reward) {
+        return String.format(RESULT_OUTPUT_FORMAT, reward.reward());
     }
 
     public static String ladderLinesOutput(LadderLines ladderLines) {
@@ -44,32 +55,19 @@ public class LadderOutputConverter {
     }
 
     private static String horizontalLineDirectionOutput(HorizontalLineDirection horizontalLineDirection) {
-        if (horizontalLineDirection == HorizontalLineDirection.RIGHT) {
+        if (horizontalLineDirection.isRight()) {
             return LADDER_RIGHT_OUTPUT;
         }
-        if (horizontalLineDirection == HorizontalLineDirection.NONE || horizontalLineDirection == HorizontalLineDirection.LEFT) {
-            return LADDER_DEFAULT_OUTPUT;
-        }
-        throw new NoSuchHorizontalLineDirectionException();
+        return LADDER_DEFAULT_OUTPUT;
     }
 
-    public static String ladderTextOutput(List<LadderTextInput> results) {
-        return results.stream()
-                .map(LadderOutputConverter::translateResultOutputFormat)
+    public static String resultOutput(Result result) {
+        return result.result().entrySet().stream()
+                .map(resultEntry -> resultMapFormat(resultEntry.getKey(), resultEntry.getValue()))
                 .collect(Collectors.joining(RESULT_DELIMITER));
     }
 
-    private static String translateResultOutputFormat(LadderTextInput result) {
-        return String.format(RESULT_OUTPUT_FORMAT, result.text());
-    }
-
-    public static String resultOutput(Result resultMap) {
-        return resultMap.resultMap().entrySet().stream()
-                .map(result -> resultMapFormat(result.getKey(), result.getValue()))
-                .collect(Collectors.joining(RESULTMAP_DELIMITER));
-    }
-
-    private static String resultMapFormat(Person person, LadderTextInput result) {
-        return String.format(RESULTMAP_FORMAT, person.name(), result.text());
+    private static String resultMapFormat(Person person, Reward result) {
+        return String.format(RESULT_FORMAT, person.name().name(), result.reward());
     }
 }

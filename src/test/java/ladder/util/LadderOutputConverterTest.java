@@ -1,7 +1,7 @@
 package ladder.util;
 
-import ladder.domain.Rewards;
-import ladder.domain.ladder.ladderline.LadderLines;
+import ladder.domain.reward.Rewards;
+import ladder.domain.ladder.LadderLines;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,8 +19,10 @@ public class LadderOutputConverterTest {
 
     private static Stream<Arguments> provideCustomToString() {
         return Stream.of(
-                Arguments.of(new LadderLines(List.of(continuousLadder(), continuousLadder())), "    |-----|\n    |-----|"),
-                Arguments.of(new LadderLines(List.of(createNoneLadderLine(2), continuousLadder())), "    |     |\n    |-----|")
+                Arguments.of(new LadderLines(List.of(continuousLadder(), continuousLadder())),
+                        "    |-----|\n    |-----|"),
+                Arguments.of(new LadderLines(List.of(createNoneLadderLine(2), continuousLadder())),
+                        "    |     |\n    |-----|")
         );
     }
 
@@ -33,9 +35,9 @@ public class LadderOutputConverterTest {
 
     @DisplayName("5자 미만일 경우 공백을 채워 5자로 출력한다.")
     @Test
-    void result_output() {
+    void rewards_output() {
         Rewards rewards = new Rewards("꽝", "5000", "3000");
 
-        assertThat(LadderOutputConverter.ladderTextOutput(rewards.results())).isEqualTo("    꽝  5000  3000");
+        assertThat(LadderOutputConverter.rewardsOutput(rewards)).isEqualTo("    꽝  5000  3000");
     }
 }

@@ -1,16 +1,41 @@
 package ladder.domain.ladder;
 
+import java.util.List;
+
 public enum HorizontalLineDirection {
 
-    LEFT(-1), RIGHT(1), NONE(0);
+    LEFT, STRAIGHT, RIGHT;
 
-    private final int value;
-
-    HorizontalLineDirection(int value) {
-        this.value = value;
+    public static HorizontalLineDirection first(int number) {
+        if ((number < 0) || (number >= first().size())) {
+            throw new IllegalArgumentException();
+        }
+        return first().get(number);
     }
 
-    public int move(int number) {
-        return number + value;
+    public static List<HorizontalLineDirection> first() {
+        return List.of(STRAIGHT, RIGHT);
+    }
+
+    public List<HorizontalLineDirection> next() {
+        if (this == RIGHT) {
+            return List.of(LEFT);
+        }
+        return List.of(STRAIGHT, RIGHT);
+    }
+
+    public HorizontalLineDirection last() {
+        if (this == RIGHT) {
+            return LEFT;
+        }
+        return STRAIGHT;
+    }
+
+    public boolean isRight() {
+        return this == RIGHT;
+    }
+
+    public boolean isLeft() {
+        return this == LEFT;
     }
 }
