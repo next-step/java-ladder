@@ -13,11 +13,28 @@
   - 이동방향 결정
     - 이전, 현재값을 받아 초기화 
     - 다음 값을 받아 다음 방향 생성
+  - 위치 
+    - 생성
+      - 현재 index와 방향을 가진다
+      - 최초 위치는 index 0과 오른쪽 또는 none이다
+      - 다음 위치는 index + 1, 이전 방향과 오른쪽 판단값을 이용해 구한다.
+      - 마지막 위치의 방향은 왼쪽 또는 none이다
+    - 이동
+      - 이동시 뱡항에 따라 index값을 변경한다
+      - 왼쪽이동시 index -1
+      - 오른쪽 이동시 index + 1
+  - 사다리행 생성
+    - 왼쪽이 true이면 오른쪽은 false만 가진다
+    - 왼쪽이 false이면 오른쪽은 true / false를 가진다
   - 사다리 이동
-    - 시작위치 0부터 시작
-    - 왼쪽이면 -1 
-      - 현재 위치가 0이면 0
-    - 오른쪽이면 +1
+    - 시작 위치 index를 기준으로 왼쪽과 오른쪽 사다리중 true인 곳으로 이동한다
+      
+    - true false fale true
+    -      1 
+    - true false fale true
+    - Point p = Point.first(true) 오른쪽 -> 1
+    - point.next(false) 인쪽 -> -1
+    - point.next(true) 오른쪽 + 1
   
 - 사다리 게임 결과 계산
   - 위치에 매칭되는 결과 리턴

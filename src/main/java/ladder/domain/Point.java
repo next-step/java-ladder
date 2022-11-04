@@ -8,18 +8,50 @@ import java.util.Objects;
 public class Point {
 
 	private final int index;
+	private final Direction direction;
 
-	public Point(int index) {
+	public Point(int index, Direction direction) {
+		if (index < 0) {
+			throw new IllegalArgumentException("0이하는 입력할 수 없습니다");
+		}
+
 		this.index = index;
+		this.direction = direction;
 	}
 
-	public boolean move(Direction direction) {
-		return false;
+	public static Point first(boolean right) {
+		return Point.of(0, Direction.first(right));
 	}
 
-	public int getIndex() {
+	public static Point of(int index, Direction direction) {
+		return new Point(index, direction);
+	}
+
+	public Point next(boolean right) {
+		return of(nextIndex(), direction.next(right));
+	}
+
+	public Point last() {
+		return of(nextIndex(), direction.last());
+	}
+
+	private int nextIndex() {
+		return index + 1;
+	}
+
+	public int move() {
+		if (direction.isLeft()) {
+			return index - 1;
+		}
+
+		if (direction.isRight()) {
+			return index + 1;
+		}
+
 		return index;
 	}
+
+	// =============================================================================================
 
 	@Override public boolean equals(Object o) {
 		if (this == o)
@@ -27,10 +59,17 @@ public class Point {
 		if (o == null || getClass() != o.getClass())
 			return false;
 		Point point = (Point)o;
-		return index == point.index;
+		return index == point.index && direction == point.direction;
 	}
 
 	@Override public int hashCode() {
-		return Objects.hash(index);
+		return Objects.hash(index, direction);
+	}
+
+	@Override public String toString() {
+		return "Point{" +
+			"index=" + index +
+			", direction=" + direction +
+			'}';
 	}
 }
