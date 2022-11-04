@@ -1,6 +1,9 @@
 package ladder.domain;
 
+import ladder.util.RandomUtil;
+
 import java.util.Objects;
+import java.util.function.BooleanSupplier;
 
 /**
  * Created by seungwoo.song on 2022-11-01
@@ -28,7 +31,11 @@ public class Point {
 	}
 
 	public Point next(boolean right) {
-		return of(nextIndex(), direction.next(right));
+		return of(nextIndex(), direction.next(() -> right));
+	}
+
+	public Point next(BooleanSupplier booleanSupplier) {
+		return of(nextIndex(), direction.next(booleanSupplier));
 	}
 
 	public Point last() {
