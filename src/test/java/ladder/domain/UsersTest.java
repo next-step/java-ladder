@@ -39,6 +39,6 @@ class UsersTest {
     @ParameterizedTest
     void getStartIndex_when_not_exist(String name) {
         Users users = Users.from(names);
-        assertThatThrownBy(() -> users.getOrder(new User(name))).isInstanceOf(NoSuchElementException.class).hasMessage("User's start index could not be found.");
+        assertThatThrownBy(() -> users.getOrder(new User(name))).isInstanceOf(NoSuchElementException.class).hasMessage("User's start index could not be found. name="+name);
     }
 }

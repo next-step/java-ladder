@@ -44,7 +44,7 @@ public class Users {
                 return index + 1;
             }
         }
-        throw new NoSuchElementException("User's start index could not be found.");
+        throw new NoSuchElementException("User's start index could not be found. name="+user.getName());
     }
 
     public List<User> getAll() {

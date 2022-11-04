@@ -9,5 +9,6 @@ public class ResultConsoleView {
 
     public void show() {
         resultDisplayer.show((String result) -> System.out.println(result));
+        System.out.println();
     }
 }
