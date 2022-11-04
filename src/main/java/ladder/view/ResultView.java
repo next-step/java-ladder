@@ -13,10 +13,9 @@ public class ResultView {
     private final static String LINE_WITH_NO_BRIDGE = "     |";
 
     public void printParticipants(List<Participant> participants){
-        participants.forEach(name -> {
-            String nameText = SPACE_TEXT.repeat(DEFAULT_NAME_SPACE_COUNT - name.getNameSize()) + name.toString();
-            System.out.print(nameText);
-        });
+        participants.stream()
+                .map(name -> SPACE_TEXT.repeat(DEFAULT_NAME_SPACE_COUNT - name.getNameSize()) + name.toString())
+                .forEach(System.out::print);
         System.out.println();
     }
 
@@ -27,11 +26,11 @@ public class ResultView {
     private void printLine(Line line){
         line.getPoints()
                 .forEach(point -> {
+                    String result = LINE_WITH_NO_BRIDGE;
                     if(point) {
-                        System.out.print(LINE_WITH_BRIDGE);
-                        return;
+                        result = LINE_WITH_BRIDGE;
                     }
-                    System.out.print(LINE_WITH_NO_BRIDGE);
+                    System.out.print(result);
                 });
         System.out.println();
     }

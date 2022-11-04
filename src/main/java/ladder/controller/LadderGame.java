@@ -33,11 +33,11 @@ public class LadderGame {
             List<Boolean> points = new ArrayList<>();
             Random rd = new Random();
             for (int i = 0; i < size; i++) {
-                if (i == 0 || points.get(i - 1)) {
-                    points.add(false);
-                    continue;
+                boolean result = false;
+                if (i != 0 && !points.get(i - 1)) {
+                    result = rd.nextBoolean();
                 }
-                points.add(rd.nextBoolean());
+                points.add(result);
             }
             return points;
         };
