@@ -29,24 +29,6 @@ class DirectionTest {
 	}
 
 	@Test
-	void 다음_오른쪽() {
-		Direction direction = Direction.of(false, false);
-		assertThat(direction.next(true)).isEqualTo(Direction.RIGHT);
-	}
-
-	@Test
-	void 다음_왼쪽() {
-		Direction direction = Direction.of(false, true).next(false);
-		assertThat(direction).isEqualTo(Direction.LEFT);
-	}
-
-	@Test
-	void 다음_이동없음() {
-		Direction direction = Direction.of(false, false).next(false);
-		assertThat(direction).isEqualTo(Direction.NONE);
-	}
-
-	@Test
 	void 처음_오른쪽() {
 		Direction direction = Direction.first(true);
 		assertThat(direction).isEqualTo(Direction.RIGHT);
@@ -55,6 +37,30 @@ class DirectionTest {
 	@Test
 	void 처음_이동없음() {
 		Direction direction = Direction.first(false);
+		assertThat(direction).isEqualTo(Direction.NONE);
+	}
+
+	@Test
+	void 다음_오른쪽() {
+		Direction direction = Direction.first(false).next(() -> true);
+		assertThat(direction).isEqualTo(Direction.RIGHT);
+	}
+
+	@Test
+	void 다음_왼쪽() {
+		Direction direction = Direction.first(true).next(() -> false);
+		assertThat(direction).isEqualTo(Direction.LEFT);
+	}
+
+	@Test
+	void 다음_왼쪽2() {
+		Direction direction = Direction.first(true).next(() -> true);
+		assertThat(direction).isEqualTo(Direction.LEFT);
+	}
+
+	@Test
+	void 다음_이동없음() {
+		Direction direction = Direction.of(false, false).next(() -> false);
 		assertThat(direction).isEqualTo(Direction.NONE);
 	}
 

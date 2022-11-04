@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import javax.print.attribute.standard.ReferenceUriSchemesSupported;
+import java.util.function.BooleanSupplier;
 import java.util.stream.Stream;
 
 /**
@@ -39,7 +40,15 @@ public enum Direction {
 		return of(right, false);
 	}
 
-	public Direction next(boolean next) {
+	public Direction next(BooleanSupplier booleanSupplier) {
+		if (right) {
+			return Direction.LEFT;
+		}
+
+		return next(booleanSupplier.getAsBoolean());
+	}
+
+	private Direction next(boolean next) {
 		return Direction.of(right, next);
 	}
 
