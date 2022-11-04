@@ -8,7 +8,7 @@ public class Point {
 
     private final int x;
     private final int y;
-    private boolean isLocatedLine;
+    private boolean isLinked;
 
     public Point(final int x, final int y) {
         validate(x);
@@ -16,7 +16,7 @@ public class Point {
 
         this.x = x;
         this.y = y;
-        this.isLocatedLine = false;
+        this.isLinked = false;
     }
 
     private void validate(final int value) {
@@ -25,12 +25,12 @@ public class Point {
         }
     }
 
-    public boolean isLocatedLine() {
-        return isLocatedLine;
+    public boolean isLinked() {
+        return isLinked;
     }
 
-    public void setLine() {
-        this.isLocatedLine = true;
+    public void link() {
+        this.isLinked = true;
     }
 
     @Override
