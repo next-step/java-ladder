@@ -24,18 +24,11 @@
       - 왼쪽이동시 index -1
       - 오른쪽 이동시 index + 1
   - 사다리행 생성
-    - 왼쪽이 true이면 오른쪽은 false만 가진다
-    - 왼쪽이 false이면 오른쪽은 true / false를 가진다
+    - 위치를 List로 가진다
+      - 사람수에 따라 위치의 갯수가 결정된다
   - 사다리 이동
-    - 시작 위치 index를 기준으로 왼쪽과 오른쪽 사다리중 true인 곳으로 이동한다
-      
-    - true false fale true
-    -      1 
-    - true false fale true
-    - Point p = Point.first(true) 오른쪽 -> 1
-    - point.next(false) 인쪽 -> -1
-    - point.next(true) 오른쪽 + 1
-  
+    - 현재 index 값에 매칭되는 위치값을 찾아 이동한다. 이동후 인덱스 값을 반환한다
+    - 사다리가 종료될때 까지 반복 한다.
 - 사다리 게임 결과 계산
   - 위치에 매칭되는 결과 리턴
   - 시작위치 0부터 시작
