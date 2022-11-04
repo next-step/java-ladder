@@ -24,8 +24,12 @@ public class ResultView {
     private static void printUserNames(UserNames userNames) {
         System.out.println("실행 결과");
         System.out.println();
-        userNames.getUserNames()
-            .forEach(username -> System.out.printf("%-5s ", username.getName()));
+        for (UserName userName : userNames.getUserNames()) {
+            if (userName.getName().length() == 5) {
+                System.out.println(userName.getName());
+            }
+            System.out.printf("%4s ", userName.getName());
+        }
         System.out.println();
     }
 
