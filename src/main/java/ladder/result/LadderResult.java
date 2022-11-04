@@ -3,22 +3,26 @@ package ladder.result;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import ladder.ladder.Position;
+import ladder.user.Player;
+import ladder.user.UserName;
 
 public class LadderResult {
 
-    // index, position
-    private Map<Integer, Position> result;
+    private final Map<Player, Award> result;
 
-    public LadderResult(Map<Integer, Position> result) {
+    public LadderResult(Map<Player, Award> result) {
         this.result = result;
     }
 
-    public Position getTarget(int index) {
-        return result.get(index);
+    public Award getTargetPlayer(UserName userName) {
+        return result.keySet().stream()
+            .filter(player -> player.getUserName().equals(userName))
+            .findFirst()
+            .map(result::get)
+            .orElseThrow(() -> new IllegalArgumentException("존재 하지 않는 플레이어입니다."));
     }
 
-    public List<Position> getValues() {
+    public List<Award> getValues() {
         return new ArrayList<>(result.values());
     }
 }

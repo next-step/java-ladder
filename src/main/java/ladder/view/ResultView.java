@@ -1,11 +1,10 @@
 package ladder.view;
 
 import java.util.List;
-import ladder.result.Award;
-import ladder.result.Awards;
 import ladder.ladder.Ladder;
-import ladder.result.LadderResult;
 import ladder.ladder.Row;
+import ladder.result.Award;
+import ladder.result.LadderResult;
 import ladder.user.UserName;
 import ladder.user.UserNames;
 
@@ -15,10 +14,10 @@ public class ResultView {
     private static final String HORIZONTAL_BLANK_LINE = "     ";
     private static final String HORIZONTAL_FULL_LINE = "-----";
 
-    public static void printResult(UserNames userNames, Ladder ladder, LadderResult gameResult, Awards awards) {
+    public static void printResult(UserNames userNames, Ladder ladder, LadderResult gameResult) {
         printUserNames(userNames);
         printLadder(ladder);
-        printResult(userNames, gameResult, awards);
+        printResult(userNames, gameResult);
     }
 
     private static void printUserNames(UserNames userNames) {
@@ -58,27 +57,26 @@ public class ResultView {
         }
     }
 
-    private static void printResult(UserNames userNames, LadderResult result, Awards awards) {
+    private static void printResult(UserNames userNames, LadderResult result) {
         while (true) {
-            UserName userName = InputView.inputUserNameResult();
+            UserName inputUserName = InputView.inputUserNameResult();
             System.out.println("실행 결과");
-            if (userName.getName().equals("all")) {
-                printAllUserResult(userNames, result, awards);
+            if (inputUserName.getName().equals("all")) {
+                printAllUserResult(userNames, result);
                 break;
             }
-            printFindOneUserResult(userNames, result, userName, awards);
+            printFindOneUserResult(result, inputUserName);
         }
     }
 
-    private static void printFindOneUserResult(UserNames userNames, LadderResult result, UserName userName, Awards awards) {
-        int userIndex = userNames.findUserIndex(userName);
-        Award award = awards.getAward(result.getTarget(userIndex));
+    private static void printFindOneUserResult(LadderResult result, UserName inputUserName) {
+        Award award = result.getTargetPlayer(inputUserName);
         System.out.println(award.getAward());
     }
 
-    private static void printAllUserResult(UserNames userNames, LadderResult result, Awards awards) {
+    private static void printAllUserResult(UserNames userNames, LadderResult result) {
         for (int i = 0; i < result.getValues().size(); i++) {
-            System.out.println(userNames.getUserNames().get(i).getName() + " : " + awards.getAward(result.getTarget(i)).getAward());
+            System.out.println(userNames.getUserNames().get(i).getName() + " : " + result.getTargetPlayer(userNames.getUserNames().get(i)).getAward());
         }
     }
 }
