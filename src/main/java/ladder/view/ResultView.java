@@ -32,28 +32,27 @@ public class ResultView {
     }
 
     private static void printLadder(Ladder ladder) {
-        for (Line line : ladder.getLines()) {
+        for (LadderLine line: ladder.getLines()) {
             printLine(line);
         }
     }
 
-    private static void printLine(Line line) {
+    private static void printLine(LadderLine line) {
         List<String> resultLines = getResultLine(line);
-        for (int i = 0; i < resultLines.size(); i++) {
-            System.out.print(resultLines.get(i));
-            printEndPoint(resultLines, i);
+        for (String resultLine : resultLines) {
+            System.out.print(resultLine);
         }
         System.out.println();
     }
 
-    private static List<String> getResultLine(Line line) {
+    private static List<String> getResultLine(LadderLine line) {
         return line.getPoints().stream()
-                .map(point -> getPointExist(point))
+                .map(ResultView::getPointExist)
                 .collect(Collectors.toList());
     }
 
     private static String getPointExist(Point point) {
-        if (point.isExist()) return LINE_EXIST;
+        if (point.getDirection().isRight()) return LINE_EXIST;
         return LINE_NO_EXIST;
     }
 

@@ -1,9 +1,6 @@
 package ladder;
 
-import ladder.domain.Ladder;
-import ladder.domain.LadderGame;
-import ladder.domain.Names;
-import ladder.domain.Results;
+import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -23,7 +20,10 @@ public class LadderApplication {
         Ladder ladder = Ladder.of(names.getCountOfNames(), maxHeight);
 
         ResultView.printResult(ladderGame.getNames(), ladder);
+        printCandidatesResults(ladderGame, ladder);
+    }
 
+    private static void printCandidatesResults(LadderGame ladderGame, Ladder ladder) {
         String candidate;
         do {
             candidate = InputView.inputResultCandidateName();

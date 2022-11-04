@@ -1,13 +1,10 @@
 package ladder.domain;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Names {
-
-    public static final String NAME_REGEX = ",";
 
     private final List<Name> names;
 
@@ -16,11 +13,9 @@ public class Names {
     }
 
     public static Names of(String[] candidates) {
-        List<Name> names = List.of(candidates)
-                .stream()
-                .map(name -> new Name(name))
-                .collect(Collectors.toList());
-        return new Names(names);
+        return Stream.of(candidates)
+                .map(Name::new)
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Names::new));
     }
 
     public List<Name> getNames() {
@@ -31,4 +26,7 @@ public class Names {
         return names.size();
     }
 
+    public boolean isContainedName(Name name) {
+        return names.contains(name);
+    }
 }

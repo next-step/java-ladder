@@ -1,8 +1,8 @@
 package ladder.domain;
 
-import ladder.domain.*;
-
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Optional;
 
 public class LadderGame {
 
@@ -13,18 +13,13 @@ public class LadderGame {
     private final Names names;
     private final Results results;
 
-    public LadderGame() {
-        this.names = null;
-        this.results = null;
-    }
-
     public LadderGame(Names names, Results results) {
         this.names = names;
         this.results = results;
         checkValidationOfResultsNumber(names.getCountOfNames(), results.getResultsSize());
     }
 
-    public void checkValidationOfResultsNumber(int countOfNames, int countOfResults) {
+    private void checkValidationOfResultsNumber(int countOfNames, int countOfResults) {
         if (countOfNames != countOfResults) {
             throw new IllegalArgumentException(ERR_MSG_RESULTS_NUMBER);
         }
@@ -51,19 +46,9 @@ public class LadderGame {
         return names;
     }
 
-    public String validateCandidateName(String candidate) {
-        if (!isContainedName(candidate)) {
+    public void validateCandidateName(String candidate) {
+        if (!names.isContainedName(new Name(candidate))) {
             throw new IllegalArgumentException(ERR_MSG_CANDIDATE_NAME);
         }
-        return candidate;
     }
-
-    private boolean isContainedName(String candidate) {
-        Optional<Name> candidateName = names.getNames().stream().filter(name -> name.equals(new Name(candidate))).findAny();
-        if (!candidateName.isPresent()) {
-            return false;
-        }
-        return true;
-    }
-
 }
