@@ -7,3 +7,14 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+## 람다 실습
+* CarTest에 있는 익명 클래스를 람다로 전환
+* Lambda 클래스 내부의 sumAll를 추가하여 중복 제거
+* stream method 실습
+  * nextstep.fp.StreamStudyTest 클래스의 sumOverThreeAndDouble() 테스트를 pass
+  * nextstep.fp.StreamStudy 클래스의 printLongestWordTop100() 메서드를 구현
+    * 단어의 길이가 12자를 초과하는 단어를 추출한다.
+    * 12자가 넘는 단어 중 길이가 긴 순서로 100개의 단어를 추출한다.
+    * 단어 중복을 허용하지 않는다. 즉, 서로 다른 단어 100개를 추출해야 한다.
+    * 추출한 100개의 단어를 출력한다. 모든 단어는 소문자로 출력해야 한다.
