@@ -14,7 +14,7 @@ public class ResultView {
 
     public void printParticipants(List<Participant> participants){
         participants.stream()
-                .map(name -> SPACE_TEXT.repeat(DEFAULT_NAME_SPACE_COUNT - name.getNameSize()) + name.toString())
+                .map(name -> SPACE_TEXT.repeat(DEFAULT_NAME_SPACE_COUNT - name.getNameSize()) + name)
                 .forEach(System.out::print);
         System.out.println();
     }

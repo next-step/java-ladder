@@ -14,6 +14,7 @@ import java.util.Random;
 public class LadderGame {
     private final InputView inputView = new InputView();
     private final ResultView resultView = new ResultView();
+    private final Random rd = new Random();
 
     public void start() {
         List<Participant> participants = inputView.getParticipantNames();
@@ -31,16 +32,18 @@ public class LadderGame {
     private LineGenerateStrategy lineGenerateStrategy() {
         return (size) -> {
             List<Boolean> points = new ArrayList<>();
-            Random rd = new Random();
             for (int i = 0; i < size; i++) {
-                boolean result = false;
-                if (i != 0 && !points.get(i - 1)) {
-                    result = rd.nextBoolean();
-                }
-                points.add(result);
+                points.add(getBooleanPoint(points, i));
             }
             return points;
         };
+    }
+
+    private boolean getBooleanPoint(List<Boolean> points, int index) {
+        if (index == 0 || points.get(index - 1)) {
+            return false;
+        }
+        return rd.nextBoolean();
     }
 
 }
