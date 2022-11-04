@@ -65,6 +65,16 @@ class DirectionTest {
 	}
 
 	@Test
+	void 판단_왼쪽() {
+		assertThat(Direction.LEFT.isLeft()).isTrue();
+	}
+
+	@Test
+	void 판단_오른쪽() {
+		assertThat(Direction.RIGHT.isRight()).isTrue();
+	}
+
+	@Test
 	void invalid() {
 		assertThatIllegalArgumentException().isThrownBy(() -> Direction.of(true, true));
 	}
