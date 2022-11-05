@@ -59,6 +59,10 @@ public class Ladder {
         lines.forEach(line -> line.link(strategy));
     }
 
+    public List<Name> getParticipants() {
+        return participants;
+    }
+
     public List<Line> getLines() {
         return lines;
     }

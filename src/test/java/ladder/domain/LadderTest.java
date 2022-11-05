@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 import ladder.TestLinkStrategy;
 import org.junit.jupiter.api.DisplayName;
@@ -35,7 +37,6 @@ class LadderTest {
             hasMessage("0보다 큰 값만 입력 가능합니다.");
     }
 
-    // TODO: 실패 테스트 확인
     @Test
     @DisplayName("draw 메소드는 사다리를 그려준다.")
     void draw() {
@@ -43,9 +44,14 @@ class LadderTest {
         ladder.draw(new TestLinkStrategy());
 
         ladder.getLines().forEach(line -> {
-            assertThat(line.getPoints().stream()
+            List<Point> linked = line.getPoints().stream()
                 .filter(Point::isLinked)
-                .collect(Collectors.toList())).containsOnly(new Point(0, 0), new Point(0, 2));
+                .collect(Collectors.toList());
+            assertAll(
+                () -> assertThat(linked.size()).isEqualTo(2),
+                () -> assertThat(linked.get(0).getY()).isEqualTo(0),
+                () -> assertThat(linked.get(1).getY()).isEqualTo(2)
+            );
         });
     }
 }

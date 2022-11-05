@@ -34,3 +34,4 @@
   - [x] 사다리를 그려주는 메소드 추가
 - [x] InputView 클래스 추가
 - [x] OutputView 클래스 추가
+- [x] LadderApplication 클래스 추가
