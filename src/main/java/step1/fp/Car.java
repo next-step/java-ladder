@@ -1,4 +1,4 @@
-package nextstep.fp;
+package step1.fp;
 
 import java.util.Objects;
 
