@@ -11,10 +11,6 @@ public class LadderResult {
         this.endIndex = endIndex;
     }
 
-    public int getStartIndex() {
-        return startIndex;
-    }
-
     public int getEndIndex() {
         return endIndex;
     }
