@@ -7,7 +7,9 @@ public class Users {
     private final List<User> users;
 
     public Users(List<String> names) {
-        this.users = names.stream().map(User::new).collect(Collectors.toList());
+        this.users = names.stream()
+                          .map(User::new)
+                          .collect(Collectors.toList());
     }
 
     public String getUserName(int idx) {
@@ -16,7 +18,7 @@ public class Users {
 
     public int indexOfUser(String name) {
         return users.stream()
-                    .filter(u -> u.isEqualName(name))
+                    .filter(user -> user.isEqualName(name))
                     .map(users::indexOf)
                     .findAny()
                     .orElseThrow(IllegalArgumentException::new);

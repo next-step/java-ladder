@@ -77,11 +77,11 @@ public class OutputView {
 
             System.out.println("실행 결과");
             printUserResult(name, ladder);
-        } while (!name.equals(ALL));
+        } while (!ALL.equals(name));
     }
 
     private void printUserResult(String name, Ladder ladder) {
-        if (name.equals(ALL)) {
+        if (ALL.equals(name)) {
             printAllUserResult(ladder);
             return;
         }
@@ -90,8 +90,7 @@ public class OutputView {
 
     private void printAllUserResult(Ladder ladder) {
         for (int i = 0; i < ladder.getCountOfPerson(); i++) {
-            System.out.print(ladder.getUserName(i) + ":");
-            System.out.println(ladder.getResult(i));
+            System.out.println(String.format(":", ladder.getUserName(i), ladder.getResult(i)));
         }
     }
 }
