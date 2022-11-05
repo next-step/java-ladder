@@ -1,5 +1,6 @@
 package nextstep.ladder.model;
 
+import java.security.SecureRandom;
 import java.util.Objects;
 
 public class Line {
@@ -11,7 +12,8 @@ public class Line {
 
 	public static Line create(final Line prevLine) {
 		if (prevLine == null || !prevLine.hasLine) {
-			return new Line(true);
+			SecureRandom secureRandom = new SecureRandom();
+			return new Line(secureRandom.nextBoolean());
 		}
 		return new Line(false);
 	}
