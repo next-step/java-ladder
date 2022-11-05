@@ -1,7 +1,7 @@
 package nextstep.ladder;
 
 import nextstep.ladder.strategy.RandomGenerator;
-import nextstep.refactoring.view.InputView;
+import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
 import java.util.List;
