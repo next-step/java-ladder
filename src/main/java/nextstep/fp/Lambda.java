@@ -53,4 +53,25 @@ public class Lambda {
         }
         return total;
     }
+
+    public static int sumAll_lambda(List<Integer> numbers, Conditional conditional) {
+        return numbers.stream()
+                .filter(conditional::test)
+                .mapToInt(number -> number)
+                .sum();
+    }
+
+    public static int sumAllEven_lambda(List<Integer> numbers, Conditional conditional) {
+        return numbers.stream()
+                .filter(conditional::test)
+                .mapToInt(number -> number)
+                .sum();
+    }
+
+    public static int sumAllOverThree_lambda(List<Integer> numbers, Conditional conditional) {
+        return numbers.stream()
+                .filter(conditional::test)
+                .mapToInt(number -> number)
+                .sum();
+    }
 }
