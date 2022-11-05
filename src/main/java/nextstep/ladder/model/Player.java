@@ -16,6 +16,6 @@ public class Player {
 
 	@Override
 	public String toString() {
-		return name;
+		return String.format("%6s", name);
 	}
 }

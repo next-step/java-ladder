@@ -15,7 +15,7 @@ public class Output {
         System.out.println(players);
         List<Lines> lines = ladder.getLines();
         for (Lines line : lines) {
-            System.out.print("|");
+            System.out.print("     |");
             System.out.print(line);
             System.out.println();
         }

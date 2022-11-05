@@ -2,6 +2,7 @@ package nextstep.ladder.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lines {
 	private final List<Line> lines;
@@ -27,6 +28,8 @@ public class Lines {
 
 	@Override
 	public String toString() {
-		return lines.toString();
+		return lines.stream()
+			.map(Line::toString)
+			.collect(Collectors.joining());
 	}
 }
