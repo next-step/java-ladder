@@ -10,6 +10,7 @@ public class Line {
     private final static String ERROR_NEGATIVE_VALUE = "0 이상의 값만 입력 가능합니다.";
 
     private final List<Point> points;
+
     public Line(final int row, final int lastColumn) {
         validate(row);
         validate(lastColumn);
