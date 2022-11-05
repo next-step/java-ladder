@@ -16,11 +16,14 @@ public class PersonsTest {
         Person pobi = new Person("pobi");
         Person honux = new Person("honux");
         Persons persons = new Persons(List.of("pobi", "honux"));
-        Ladder ladder = new Ladder(1, 2, (left) -> false);
+        Ladder ladder = new Ladder(1, 2);
         // when
         Map<Person, Integer> indexs = persons.findAllFinalIndex(ladder);
         // then
-        assertThat(indexs.get(pobi)).isEqualTo(0);
-        assertThat(indexs.get(honux)).isEqualTo(1);
+        if(indexs.get(pobi) == 0) {
+            assertThat(indexs.get(honux)).isEqualTo(1);
+        } else {
+            assertThat(indexs.get(honux)).isEqualTo(0);
+        }
     }
 }

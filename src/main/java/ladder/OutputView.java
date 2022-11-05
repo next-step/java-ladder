@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class OutputView {
     public static void printLadder(Persons persons, int ladderHeight, Ladder aladder, Results results) {
-        List<Line> ladder = aladder.getLadder();
+        List<LadderLine> ladder = aladder.getLadder();
 
         System.out.println("\n실행결과\n");
         for (Person person : persons.getPersons()) {
@@ -13,7 +13,7 @@ public class OutputView {
         }
         System.out.println();
         for (int i = 0; i < ladderHeight; i++) {
-            Line line = ladder.get(i);
+            LadderLine line = ladder.get(i);
             System.out.printf("%7s", "|");
             for (int j = 1; j < persons.countOfPersons(); j++) {
                 if (line.isConnected(j - 1, j)) {
