@@ -24,21 +24,36 @@ class SpotTest {
     @Test
     void right() {
         Spot spot = new Spot(false, true);
-        assertThat(spot.move()).isEqualTo(1);
+        assertThat(spot.move()).isEqualTo(Direction.RIGHT);
     }
 
     @Test
     void left() {
         Spot spot = new Spot(true, false);
-        assertThat(spot.move()).isEqualTo(-1);
+        assertThat(spot.move()).isEqualTo(Direction.LEFT);
     }
 
     @Test
     void pass() {
         Spot spot = new Spot(false, false);
-        assertThat(spot.move()).isEqualTo(0);
+        assertThat(spot.move()).isEqualTo(Direction.PASS);
     }
 
+    @Test
+    void first() {
+        Spot spot = Spot.first(true);
+        Spot result = new Spot(false, true);
 
+        assertThat(spot).isEqualTo(result);
+    }
+
+    @Test
+    void last() {
+        Spot spot = Spot.first(true);
+        Spot last = spot.last();
+        Spot result = new Spot(true, false);
+
+        assertThat(last).isEqualTo(result);
+    }
 
 }
