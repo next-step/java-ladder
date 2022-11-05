@@ -24,17 +24,25 @@ class SpotTest {
     @Test
     void right() {
         Spot spot = new Spot(false, true);
+        Spot right = spot.right(true);
+        assertThat(right).isEqualTo(new Spot(true, false));
+    }
+
+
+    @Test
+    void rightMove() {
+        Spot spot = new Spot(false, true);
         assertThat(spot.move()).isEqualTo(Direction.RIGHT);
     }
 
     @Test
-    void left() {
+    void leftMove() {
         Spot spot = new Spot(true, false);
         assertThat(spot.move()).isEqualTo(Direction.LEFT);
     }
 
     @Test
-    void pass() {
+    void passMove() {
         Spot spot = new Spot(false, false);
         assertThat(spot.move()).isEqualTo(Direction.PASS);
     }

@@ -23,7 +23,10 @@ public class Spot {
     }
 
     public Spot right(boolean state) {
-        return new Spot(this.left, state);
+        if (this.right) {
+            return new Spot(true, false);
+        }
+        return new Spot(false, state);
     }
 
     public Spot last() {
