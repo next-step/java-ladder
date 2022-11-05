@@ -1,6 +1,6 @@
 package nextstep.refactoring;
 
-import nextstep.ladder.strategy.BooleanGenerator;
+import nextstep.refactoring.strategy.BooleanGenerator;
 
 /**
  * 여러 position을 통해 하나의 선(가로라인)의 상태를 유지

@@ -1,6 +1,5 @@
 package nextstep.refactoring;
 
-import nextstep.ladder.TrueGenerator;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

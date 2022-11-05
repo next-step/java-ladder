@@ -1,6 +1,6 @@
 package nextstep.refactoring;
 
-import nextstep.ladder.strategy.BooleanGenerator;
+import nextstep.refactoring.strategy.BooleanGenerator;
 
 import java.util.ArrayList;
 import java.util.List;

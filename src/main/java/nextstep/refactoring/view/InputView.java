@@ -1,16 +1,16 @@
-package nextstep.ladder.view;
+package nextstep.refactoring.view;
+
+import nextstep.ladder.User;
+import nextstep.ladder.Users;
+import nextstep.ladder.UsersFactory;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
-import nextstep.ladder.User;
-import nextstep.ladder.Users;
-import nextstep.ladder.UsersFactory;
 
 public class InputView {
     private static final String COMMA = ",";
-
     private static final Scanner SCANNER = new Scanner(System.in);
 
     private InputView() {

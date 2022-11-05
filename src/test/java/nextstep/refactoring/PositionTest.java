@@ -22,7 +22,7 @@ public class PositionTest {
     @Test
     public void second() {
         Position second = first.next(false);
-        Position result = new Position(1, Spot.first(false));
+        Position result = new Position(1, new Spot(true, false));
         assertThat(second).isEqualTo(result);
     }
 

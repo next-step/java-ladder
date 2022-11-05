@@ -1,6 +1,5 @@
 package nextstep.refactoring;
 
-import nextstep.ladder.TrueGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +12,7 @@ public class PositionsTest {
 
     @BeforeEach
     void setUp() {
-        positions = new Positions(5, new TrueGenerator());
+        positions = new Positions(4, new TrueGenerator());
     }
 
     @Test
@@ -23,7 +22,7 @@ public class PositionsTest {
 
     @Test
     void moveLastPosition() {
-        assertThat(positions.move(4)).isEqualTo(3);
+        assertThat(positions.move(3)).isEqualTo(2);
     }
 
     @Test
