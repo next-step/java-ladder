@@ -28,4 +28,14 @@ public class CarTest {
         });
         assertThat(actual).isEqualTo(new Car("pobi", 0));
     }
+
+    @Test
+    public void 이동_람다() {
+        assertThat(new Car("pobi", 0).move(() -> true));
+    }
+    
+    @Test
+    public void 정지_람다() {
+        assertThat(new Car("pobi", 0).move(() -> false));
+    }
 }
