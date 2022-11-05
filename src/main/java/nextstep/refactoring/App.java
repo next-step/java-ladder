@@ -1,8 +1,10 @@
 package nextstep.refactoring;
 
-import nextstep.ladder.Users;
 import nextstep.refactoring.strategy.RandomGenerator;
+import nextstep.refactoring.user.User;
+import nextstep.refactoring.user.Users;
 import nextstep.refactoring.view.InputView;
+import nextstep.refactoring.view.OutputView;
 
 import java.util.List;
 
@@ -13,6 +15,21 @@ public class App {
         int height = InputView.getHeight();
 
         Ladder ladder = new Ladder(height, users.getSize(), new RandomGenerator());
+        List<LadderResult> ladderResults = ladder.execute();
 
+        OutputView.printLadderResultSentence();
+        OutputView.printUsernames(users);
+        OutputView.printLadder(ladder.getLines());
+        OutputView.printResult(executeResult);
+
+        while (true) {
+            User inputUser = InputView.getUserNameForResult();
+            OutputView.printExecuteResultSentence();
+            if (inputUser.isSameName("all")) {
+                OutputView.printAllResult(users, ladderResults, executeResult);
+                continue;
+            }
+            OutputView.printGameResult(users, inputUser, ladderResults, executeResult);
+        }
     }
 }
