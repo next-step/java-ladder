@@ -35,6 +35,7 @@ class LadderTest {
             hasMessage("0보다 큰 값만 입력 가능합니다.");
     }
 
+    // TODO: 실패 테스트 확인
     @Test
     @DisplayName("draw 메소드는 사다리를 그려준다.")
     void draw() {

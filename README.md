@@ -33,4 +33,4 @@
   - [x] 사다리 높이 입력 값에 따라 Point 객체 리스트를 생성하는 메소드 추가
   - [x] 사다리를 그려주는 메소드 추가
 - [x] InputView 클래스 추가
-- [ ] OutputView 클래스 추가
+- [x] OutputView 클래스 추가
