@@ -7,7 +7,7 @@ import nextstep.ladder.strategy.BooleanGenerator;
  * 현재 위치에서 다음 위치에 대한 응답
  */
 public class Line {
-    private Positions positions;
+    private final Positions positions;
 
     public Line(int countOfPerson, BooleanGenerator booleanGenerator) {
         this.positions = new Positions(countOfPerson, booleanGenerator);
