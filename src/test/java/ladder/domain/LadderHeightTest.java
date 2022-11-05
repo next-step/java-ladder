@@ -21,7 +21,7 @@ class LadderHeightTest {
     @ValueSource(strings = {"-1", "0"})
     @DisplayName("사다리 높이 유효성 검사한다. 유효하지 않으면 에러 발생한다.")
     void validateLadderHeightTest(String input) {
-        assertThatThrownBy(() -> new LadderMembers(input))
+        assertThatThrownBy(() -> new LadderHeight(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
