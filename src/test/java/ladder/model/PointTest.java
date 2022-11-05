@@ -21,7 +21,7 @@ class PointTest {
     public void 사다리_연결_불가능_검증() {
         Point point = new Point(1, new Direction(false, true));
 
-        Direction expected = new Direction(false, false);
+        Direction expected = new Direction(true, false);
 
         Direction result = point.next(false).getDirection();
 
