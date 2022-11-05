@@ -34,4 +34,12 @@ public class Line {
 	public int hashCode() {
 		return Objects.hash(hasLine);
 	}
+
+	@Override
+	public String toString() {
+		if(hasLine){
+			return "-----|";
+		}
+		return "     |";
+	}
 }

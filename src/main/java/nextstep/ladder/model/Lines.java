@@ -24,4 +24,9 @@ public class Lines {
 	public int size(){
 		return lines.size();
 	}
+
+	@Override
+	public String toString() {
+		return lines.toString();
+	}
 }

@@ -13,4 +13,9 @@ public class Player {
 			throw new IllegalArgumentException("사용자의 이름은 5자를 넘을 수 없습니다");
 		}
 	}
+
+	@Override
+	public String toString() {
+		return name;
+	}
 }

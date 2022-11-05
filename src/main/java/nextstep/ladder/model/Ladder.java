@@ -18,4 +18,8 @@ public class Ladder {
     public int numberOfFloors() {
         return lines.size();
     }
+
+    public List<Lines> getLines() {
+        return lines;
+    }
 }
