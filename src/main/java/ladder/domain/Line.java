@@ -21,7 +21,7 @@ public class Line {
     }
 
     public void link(final LinkStrategy strategy) {
-        List<Integer> linked = strategy.link(points.size());
+        List<Integer> linked = strategy.link(points.size() - 1);
         points.stream()
             .filter(point -> linked.contains(point.getY()))
             .forEach(Point::link);
