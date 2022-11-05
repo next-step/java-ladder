@@ -1,8 +1,6 @@
 package ladder.controller;
 
-import ladder.domain.LadderHeight;
-import ladder.domain.Line;
-import ladder.domain.Participant;
+import ladder.domain.*;
 import ladder.strategy.LineGenerateStrategy;
 import ladder.view.InputView;
 import ladder.view.ResultView;
@@ -17,16 +15,14 @@ public class LadderGame {
     private final Random rd = new Random();
 
     public void start() {
-        List<Participant> participants = inputView.getParticipantNames();
+        Participants participants = inputView.getParticipantNames();
+        ExpectedResults expectedResults = inputView.getExpectedResults(participants.size());
         LadderHeight ladderHeight = inputView.getLadderHeight();
-
-        List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < ladderHeight.getHeight(); i++) {
-            lines.add(Line.from(participants.size(), lineGenerateStrategy()));
-        }
+        Lines lines = Lines.from(ladderHeight.getHeight(), participants.size(), lineGenerateStrategy());
 
         resultView.printParticipants(participants);
         resultView.printLadder(lines);
+        resultView.printExpectedResults(expectedResults);
     }
 
     private LineGenerateStrategy lineGenerateStrategy() {
