@@ -42,7 +42,7 @@ class LineTest {
         assertThat(addedLine).isEqualTo(expectedLine);
     }
 
-    static Stream<Arguments> isLastTrueParam() {
+    static Stream<Arguments> lastParam() {
         return Stream.of(
                 Arguments.arguments(
                         new Line(new ArrayList<>(List.of(true))),
@@ -65,69 +65,52 @@ class LineTest {
 
     @DisplayName("Line의 마지막 요소 true인지 체크")
     @ParameterizedTest(name = "{displayName} {index}")
-    @MethodSource("isLastTrueParam")
-    void isLastTrue(Line line, boolean expectedBoolean) {
-        boolean lastTrue = line.isLastTrue();
+    @MethodSource("lastParam")
+    void last(Line line, boolean expectedBoolean) {
+        boolean lastTrue = line.last();
         assertThat(lastTrue).isEqualTo(expectedBoolean);
     }
 
     @DisplayName("Line의 마지막 요소 true인지 체크: 길이가 0일때 에러발생")
     @Test
-    void isLastTrueFail() {
+    void lastFail() {
         Line line = new Line(new ArrayList<>(List.of()));
-        Throwable thrown = catchThrowable(line::isLastTrue);
+        Throwable thrown = catchThrowable(line::last);
         assertThat(thrown).isInstanceOf(IndexOutOfBoundsException.class);
     }
 
-    static Stream<Arguments> isLeftEdgeParam() {
+    static Stream<Arguments> movableToLeftParam() {
         return Stream.of(
-                Arguments.arguments(new Line(new ArrayList<>(List.of(true))), 0, true),
-                Arguments.arguments(new Line(new ArrayList<>(List.of(true))), -1, false),
-                Arguments.arguments(new Line(new ArrayList<>(List.of(true))), 10, true)
+                Arguments.arguments(new Line(new ArrayList<>(List.of(true))), 0, false),
+                Arguments.arguments(new Line(new ArrayList<>(List.of(true))), 1, true),
+                Arguments.arguments(new Line(new ArrayList<>(List.of(false, false, false, false, true))), 5, true)
         );
     }
 
-    @DisplayName("Line의 왼쪽 끝 범위를 벗어났는지 확인")
+    @DisplayName("line에서 인자로 받은 위치의 왼쪽으로 이동 가능한지 확인")
     @ParameterizedTest(name = "{displayName} {index}")
-    @MethodSource("isLeftEdgeParam")
-    void isLeftEdge(Line line, int index, boolean expectedBoolean) {
-        boolean leftEdge = line.isLeftEdge(index);
-        assertThat(leftEdge).isEqualTo(expectedBoolean);
+    @MethodSource("movableToLeftParam")
+    void movableToLeft(Line line, int index, boolean expectedBoolean) {
+        boolean movableToLeft = line.movableToLeft(index);
+        assertThat(movableToLeft).isEqualTo(expectedBoolean);
     }
 
-    static Stream<Arguments> isRightEdgeParam() {
+    static Stream<Arguments> movableToRightParam() {
         return Stream.of(
-                Arguments.arguments(new Line(new ArrayList<>(List.of(true))), 1, false),
                 Arguments.arguments(new Line(new ArrayList<>(List.of(true))), 0, true),
-                Arguments.arguments(new Line(new ArrayList<>(List.of(true, false, true, false))), 4, false),
-                Arguments.arguments(new Line(new ArrayList<>(List.of(true, false, true, false))), 3, true),
+                Arguments.arguments(new Line(new ArrayList<>(List.of(false))), 0, false),
+                Arguments.arguments(new Line(new ArrayList<>(List.of(true))), 1, false),
+                Arguments.arguments(new Line(new ArrayList<>(List.of(true, false, false, true))), 4, false),
+                Arguments.arguments(new Line(new ArrayList<>(List.of(true, false, false, true))), 3, true),
                 Arguments.arguments(new Line(new ArrayList<>(List.of(true, false, true, false))), 0, true)
         );
     }
 
-    @DisplayName("Line의 오른쪽 끝 범위를 벗어났는지 확인")
+    @DisplayName("line에서 인자로 받은 위치의 오른쪽으로 이동 가능한지 확인")
     @ParameterizedTest(name = "{displayName} {index}")
-    @MethodSource("isRightEdgeParam")
-    void isRightEdge(Line line, int index, boolean expectedBoolean) {
-        boolean leftEdge = line.isRightEdge(index);
-        assertThat(leftEdge).isEqualTo(expectedBoolean);
-    }
-
-    static Stream<Arguments> isRoadExistParam() {
-        return Stream.of(
-                Arguments.arguments(new Line(new ArrayList<>(List.of(true))), 0, true),
-                Arguments.arguments(new Line(new ArrayList<>(List.of(false))), 0, false),
-                Arguments.arguments(new Line(new ArrayList<>(List.of(true, false, true))), 0, true),
-                Arguments.arguments(new Line(new ArrayList<>(List.of(true, false, true))), 1, false),
-                Arguments.arguments(new Line(new ArrayList<>(List.of(true, false, true))), 2, true)
-        );
-    }
-
-    @DisplayName("Line애서 해당index에 길이 존재하는지 확인")
-    @ParameterizedTest(name = "{displayName} {index}")
-    @MethodSource("isRoadExistParam")
-    void isRoadExist(Line line, int index, boolean expectedBoolean) {
-        boolean leftEdge = line.isRoadExist(index);
+    @MethodSource("movableToRightParam")
+    void movableToRight(Line line, int index, boolean expectedBoolean) {
+        boolean leftEdge = line.movableToRight(index);
         assertThat(leftEdge).isEqualTo(expectedBoolean);
     }
 }

@@ -64,6 +64,11 @@ class PointTest {
                         new Line(new ArrayList<>(List.of(false, true))),
                         new Point("kero", 1, 3),
                         new Point("kero", 2, 3)
+                ),
+                Arguments.arguments(
+                        new Line(new ArrayList<>(List.of(false, false))),
+                        new Point("kero", 1, 3),
+                        new Point("kero", 1, 3)
                 )
         );
     }

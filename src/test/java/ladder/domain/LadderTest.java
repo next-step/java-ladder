@@ -68,7 +68,7 @@ class LadderTest {
     @MethodSource("LadderParam")
     void Ladder(int height, int length, LineGenerator lineGenerator, List<Line> expectedLines) {
         Ladder ladder = new Ladder(height, length, lineGenerator);
-        List<Line> lines = ladder.ladder();
+        List<Line> lines = ladder.getLines();
         assertThat(lines).isEqualTo(expectedLines);
     }
 }

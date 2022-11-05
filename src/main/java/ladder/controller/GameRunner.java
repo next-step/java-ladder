@@ -12,23 +12,26 @@ public class GameRunner {
         ResultView resultView = new ResultView();
 
         List<String> participantNames = inputView.enterParticipantName();
-        Points participants = Points.createPointsByNames(participantNames);
         List<String> winningItemNames = inputView.enterWinningItems(participantNames.size());
-        Points winningItems = Points.createPointsByNames(winningItemNames);
         int ladderHeight = inputView.enterLadderHeight();
-        Ladder ladder = new Ladder(ladderHeight, participants.size() - 1, new RandomLineGenerator());
-        LadderGame ladderGame = new LadderGame(ladder, participants);
+        InitialInformation initialInformation = new InitialInformation(participantNames, winningItemNames, ladderHeight);
 
-        int maxNameSize = Math.max(participants.pointNameMaxSize(), winningItems.pointNameMaxSize());
+        Ladder ladder = new Ladder(
+                initialInformation.getLadderHeight(),
+                initialInformation.calculatedLadderLength(),
+                new RandomLineGenerator()
+        );
+        LadderGame ladderGame = new LadderGame(ladder, initialInformation.getParticipants());
+
         resultView.printLadderInitMessage();
-        resultView.printNames(participants, maxNameSize);
-        resultView.printLadder(ladder, maxNameSize);
-        resultView.printNames(winningItems, maxNameSize);
+        resultView.printNames(initialInformation.getParticipants(), initialInformation.maxNameSize());
+        resultView.printLadder(ladder, initialInformation.maxNameSize());
+        resultView.printNames(initialInformation.getWinningItems(), initialInformation.maxNameSize());
 
-        while(true) {
+        for (int i = 0; i < 2; i++) {
             String resultName = inputView.enterResultName();
             Points filteredPoints = ladderGame.filteredResultByName(resultName);
-            resultView.printResult(filteredPoints, winningItems);
+            resultView.printResult(filteredPoints, initialInformation.getWinningItems());
         }
     }
 }

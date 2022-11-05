@@ -1,32 +1,30 @@
 package ladder.domain;
 
-import java.text.MessageFormat;
 import java.util.Objects;
 
 public class Point {
     private final String name;
 
-    private final int location;
-
-    private final int maxLocation;
+    private final Location location;
 
     public Point(String name, int location, int maxLocation) {
+        this(name, new Location(location, maxLocation));
+    }
+
+    private Point(String name, Location location) {
         this.name = name;
         this.location = location;
-        this.maxLocation = maxLocation;
-        validateLocation();
     }
 
     public Point movedPoint(Line line){
-        if (line.isRightEdge(location) && line.isRoadExist(location)) {
-            return this.moveRight();
+        if (line.movableToLeft(location.currentLocation())) {
+            return new Point(this.name, location.frontLocation());
         }
-        if (line.isLeftEdge(location - 1) && line.isRoadExist(location - 1)) {
-            return this.moveLeft();
+        if (line.movableToRight(location.currentLocation())) {
+            return new Point(this.name, location.behindLocation());
         }
         return this;
     }
-
 
     public boolean isNameEqual(String targetName) {
         return this.name.equals(targetName);
@@ -41,29 +39,11 @@ public class Point {
     }
 
     public boolean isMatch(int location) {
-        return location == this.location;
+        return this.location.isMatch(location);
     }
 
     public int location() {
-        return location;
-    }
-
-    private Point moveLeft() {
-        return new Point(this.name, this.location - 1, this.maxLocation);
-    }
-
-    private Point moveRight() {
-        return new Point(this.name, this.location + 1, this.maxLocation);
-    }
-
-    private void validateLocation() {
-        if (location < 0 || location >= maxLocation) {
-            throw new IllegalArgumentException(MessageFormat.format(
-                    "위치는 0이상, {0}미만이여야 하니다. 햔제 입력합 위치: {1}",
-                    maxLocation,
-                    location
-            ));
-        }
+        return location.currentLocation();
     }
 
     @Override
@@ -71,12 +51,12 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return location == point.location && maxLocation == point.maxLocation && Objects.equals(name, point.name);
+        return Objects.equals(name, point.name) && Objects.equals(location, point.location);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, location, maxLocation);
+        return Objects.hash(name, location);
     }
 
     @Override
@@ -84,7 +64,6 @@ public class Point {
         return "Point{" +
                 "name='" + name + '\'' +
                 ", location=" + location +
-                ", maxLocation=" + maxLocation +
                 '}';
     }
 }

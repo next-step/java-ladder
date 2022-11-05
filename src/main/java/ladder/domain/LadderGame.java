@@ -9,9 +9,13 @@ public class LadderGame {
         this.resultParticipants = gameResult(participants);
     }
 
+    public Points filteredResultByName(String name) {
+        return resultParticipants.filteredPoints(name);
+    }
+
     private Points gameResult(Points participants) {
         Points resultParticipants = participants;
-        for (Line line: this.ladder.ladder()) {
+        for (Line line: this.ladder.getLines()) {
             resultParticipants = this.moveByLine(resultParticipants, line);
         }
         return resultParticipants;
@@ -21,7 +25,4 @@ public class LadderGame {
         return points.movedPoints(line);
     }
 
-    public Points filteredResultByName(String name) {
-        return resultParticipants.filteredPoints(name);
-    }
 }

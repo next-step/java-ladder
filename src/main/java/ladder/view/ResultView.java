@@ -15,6 +15,8 @@ public class ResultView extends View {
     private static final String HORIZONTAL_ROAD = "-";
     private static final String EMPTY_HORIZONTAL_ROAD = " ";
     private static final String VERTICAL_ROAD = "|";
+    private static final String RESULT_FORMAT = "%s : %s%n";
+
 
     public void printLadderInitMessage() {
         System.out.println(LADDER_INIT_MESSAGE);
@@ -28,7 +30,7 @@ public class ResultView extends View {
     }
 
     public void printLadder(Ladder ladder, int nameMaxLength) {
-        ladder.ladder().stream()
+        ladder.getLines().stream()
                 .map(line -> lineConvertString(line, nameMaxLength))
                 .forEach(System.out::println);
     }
@@ -38,7 +40,7 @@ public class ResultView extends View {
         printTargetPoints.points()
                 .forEach(point -> {
                     Point winningPoint = winningItems.get(point.location());
-                    System.out.printf("%s : %s\n", point.name(), winningPoint.name());
+                    System.out.printf(RESULT_FORMAT, point.name(), winningPoint.name());
                 });
         this.printEmptyLine();
     }

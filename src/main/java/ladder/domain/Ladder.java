@@ -1,21 +1,23 @@
 package ladder.domain;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Ladder {
-    private final List<Line> ladder;
+    private final List<Line> lines;
 
     public Ladder(int height, int length, LineGenerator lineGenerator) {
-        this.ladder = IntStream.range(0, height)
-                .mapToObj(i -> lineGenerator.create(length))
-                .collect(Collectors.toList());
+        List<Line> lines = new ArrayList<>();
+        for (int row = 0; row < height; row++) {
+            lines.add(lineGenerator.create(length));
+        }
+        this.lines = Collections.unmodifiableList(lines);
     }
 
-    public List<Line> ladder() {
-        return ladder;
+    public List<Line> getLines() {
+        return lines;
     }
 
     @Override
@@ -23,11 +25,11 @@ public class Ladder {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ladder ladder1 = (Ladder) o;
-        return Objects.equals(ladder, ladder1.ladder);
+        return Objects.equals(lines, ladder1.lines);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ladder);
+        return Objects.hash(lines);
     }
 }

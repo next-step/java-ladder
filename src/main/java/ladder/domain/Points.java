@@ -51,7 +51,7 @@ public class Points {
         return points.stream()
                 .filter(point -> point.isMatch(location))
                 .findFirst()
-                .orElseThrow(RuntimeException::new);
+                .orElseThrow(IndexOutOfBoundsException::new);
     }
 
     public List<Point> points() {

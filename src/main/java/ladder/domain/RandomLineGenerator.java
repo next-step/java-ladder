@@ -20,7 +20,7 @@ public class RandomLineGenerator implements LineGenerator {
         Line accumulatedLine = line;
         while (pointCount > 0) {
             pointCount--;
-            boolean nextPoint = accumulatedLine.isLastTrue() ? false : getRandomBoolean();
+            boolean nextPoint = !accumulatedLine.last() && getRandomBoolean();
             accumulatedLine = accumulatedLine.addedLine(nextPoint);
         }
         return accumulatedLine;
