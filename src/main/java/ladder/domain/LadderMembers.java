@@ -17,7 +17,7 @@ public class LadderMembers {
     public static List<LadderMember> addMember(List<String> gameMembers) {
         return gameMembers.stream()
                 .map(LadderMember::new)
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
     }
 
     private static void checkSize(List<LadderMember> members) {

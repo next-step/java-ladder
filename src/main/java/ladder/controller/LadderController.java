@@ -3,6 +3,8 @@ package ladder.controller;
 import ladder.domain.Ladder;
 import ladder.domain.LadderHeight;
 import ladder.domain.LadderMembers;
+import ladder.dto.LadderDto;
+import ladder.dto.MembersDto;
 
 import java.util.List;
 
@@ -20,6 +22,6 @@ public class LadderController {
         LadderMembers members = new LadderMembers(LadderMembers.addMember(memberNames));
         LadderHeight ladderHeight = new LadderHeight(askMaxLadderHeight());
         Ladder ladder = new Ladder(members.memberCount(), ladderHeight);
-        printLadderResult(members, ladder);
+        printLadderResult(new MembersDto(members), new LadderDto(ladder));
     }
 }

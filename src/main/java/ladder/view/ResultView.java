@@ -1,8 +1,8 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.LadderLine;
-import ladder.domain.LadderMembers;
+import ladder.dto.LadderDto;
+import ladder.dto.LineDto;
+import ladder.dto.MembersDto;
 
 import java.util.stream.Collectors;
 
@@ -14,26 +14,26 @@ public class ResultView {
     private ResultView() {
     }
 
-    public static void printLadderResult(LadderMembers members, Ladder ladder) {
+    public static void printLadderResult(MembersDto members, LadderDto ladder) {
         System.out.println(RESULT);
         printMembers(members);
         printLadder(ladder);
     }
 
-    private static void printMembers(LadderMembers members) {
-        members.getMembers()
+    private static void printMembers(MembersDto members) {
+        members.info()
                 .forEach(member -> System.out.printf("%5s ", member.name()));
         System.out.println();
     }
 
-    private static void printLadder(Ladder ladder) {
+    private static void printLadder(LadderDto ladder) {
         ladder.lines()
                 .stream()
                 .map(ResultView::printLines)
                 .forEach(System.out::println);
     }
 
-    private static String printLines(LadderLine line) {
+    private static String printLines(LineDto line) {
         return line.parts()
                 .stream()
                 .map(ResultView::getPart)
