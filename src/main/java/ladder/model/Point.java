@@ -25,4 +25,16 @@ public class Point {
     public Direction getDirection() {
         return direction;
     }
+
+    public int move() {
+        if (direction.isRight()) {
+            return index + 1;
+        }
+
+        if (direction.isLeft()) {
+            return index - 1;
+        }
+
+        return this.index;
+    }
 }
