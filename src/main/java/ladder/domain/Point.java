@@ -33,6 +33,10 @@ public class Point {
         this.isLinked = true;
     }
 
+    public int getY() {
+        return y;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

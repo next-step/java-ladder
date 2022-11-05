@@ -24,10 +24,12 @@
 - [x] Point 클래스 추가
   - [x] 검증 메소드 추가
   - [x] 연결 여부 확인 메소드 추가
-- [ ] Line 클래스 추가
+- [x] Line 클래스 추가
+  - [x] 연결 메소드 추가
+- [x] LinkStrategy 클래스 추가
+  - [ ] RandomLinkStrategy 클래스 추가
 - [ ] Ladder 클래스 추가
   - [ ] 참여자 이름 입력 값을 Name 객체 리스트로 변환하는 메소드 추가
   - [ ] 사다리 높이 입력 값에 따라 Point 객체 리스트를 생성하는 메소드 추가
-  - [ ] 연결 메소드 추가
 - [ ] InputView 클래스 추가
 - [ ] OutputView 클래스 추가
