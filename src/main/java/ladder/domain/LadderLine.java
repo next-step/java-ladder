@@ -17,7 +17,7 @@ public class LadderLine {
         this.parts = parts;
     }
 
-    public static List<Boolean> createLine(int countOfMember, LineCreateStrategy lineCreateStrategy) {
+    private static List<Boolean> createLine(int countOfMember, LineCreateStrategy lineCreateStrategy) {
         List<Boolean> values = new ArrayList<>(countOfMember);
         IntStream.range(0, countOfMember)
                 .forEach(count -> values.add(makePart(values, count, lineCreateStrategy)));
