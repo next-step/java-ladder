@@ -1,22 +1,26 @@
 package ladder.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import ladder.strategy.LinkStrategy;
 
 public class Line {
 
-    private final static String ERROR_EMPTY_VALUE = "입력 값이 누락되었습니다.";
+    private final static String ERROR_NEGATIVE_VALUE = "0 이상의 값만 입력 가능합니다.";
 
     private final List<Point> points;
-
-    public Line(final List<Point> points) {
-        validate(points);
-        this.points = points;
+    public Line(final int row, final int lastColumn) {
+        validate(row);
+        validate(lastColumn);
+        this.points = IntStream.range(0, lastColumn)
+            .mapToObj(i -> new Point(row, i))
+            .collect(Collectors.toList());
     }
 
-    private void validate(final List<Point> value) {
-        if (value == null || value.isEmpty()) {
-            throw new IllegalArgumentException(ERROR_EMPTY_VALUE);
+    private void validate(final int value) {
+        if (value < 0) {
+            throw new IllegalArgumentException(ERROR_NEGATIVE_VALUE);
         }
     }
 
