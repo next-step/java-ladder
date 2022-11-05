@@ -22,7 +22,7 @@ public class LadderGame {
 
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < ladderHeight.getHeight(); i++) {
-            lines.add(new Line(participants.size(), lineGenerateStrategy()));
+            lines.add(Line.from(participants.size(), lineGenerateStrategy()));
         }
 
         resultView.printParticipants(participants);
@@ -40,10 +40,14 @@ public class LadderGame {
     }
 
     private boolean getBooleanPoint(List<Boolean> points, int index) {
-        if (index == 0 || points.get(index - 1)) {
+        if (isFalsePoint(points, index)) {
             return false;
         }
         return rd.nextBoolean();
+    }
+
+    private boolean isFalsePoint(List<Boolean> points, int index) {
+        return index == 0 || points.get(index - 1);
     }
 
 }

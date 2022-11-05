@@ -2,6 +2,8 @@ package ladder.domain;
 
 import ladder.strategy.LineGenerateStrategy;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Line {
@@ -11,12 +13,12 @@ public class Line {
         this.points = points;
     }
 
-    public Line(int participantCount, LineGenerateStrategy lineGenerateStrategy) {
-        this(lineGenerateStrategy.generate(participantCount));
+    public List<Boolean> getPoints() {
+        return Collections.unmodifiableList(points);
     }
 
-    public List<Boolean> getPoints() {
-        return points;
+    public static Line from(int participantCount, LineGenerateStrategy lineGenerateStrategy){
+        return new Line(lineGenerateStrategy.generate(participantCount));
     }
 
 }
