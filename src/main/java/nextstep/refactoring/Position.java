@@ -29,6 +29,10 @@ public class Position {
         return direction.moveDirection(index);
     }
 
+    public Spot getSpot() {
+        return spot;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -11,6 +11,14 @@ public class LadderResult {
         this.endIndex = endIndex;
     }
 
+    public int getStartIndex() {
+        return startIndex;
+    }
+
+    public int getEndIndex() {
+        return endIndex;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

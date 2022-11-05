@@ -22,4 +22,8 @@ public class Ladder {
         }
         return ladderResults;
     }
+
+    public Lines getLines() {
+        return lines;
+    }
 }

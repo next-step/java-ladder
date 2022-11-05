@@ -53,4 +53,8 @@ public class Positions {
             throw new IllegalArgumentException("접근할 수 없는 위치값입니다.");
         }
     }
+
+    public List<Position> getPositions() {
+        return positions;
+    }
 }

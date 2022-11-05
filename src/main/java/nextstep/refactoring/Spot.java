@@ -44,6 +44,10 @@ public class Spot {
         return Direction.PASS;
     }
 
+    public boolean isRight() {
+        return right;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

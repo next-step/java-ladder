@@ -16,4 +16,8 @@ public class Line {
     public int move(int index) {
         return positions.move(index);
     }
+
+    public Positions getPositions() {
+        return positions;
+    }
 }
