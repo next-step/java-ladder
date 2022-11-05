@@ -26,6 +26,14 @@ public class Direction {
         return !this.right;
     }
 
+    public boolean isRight() {
+        return this.right;
+    }
+
+    public boolean isLeft() {
+        return this.left;
+    }
+
     private static Direction of(boolean left, boolean right) {
         return new Direction(left, right);
     }
