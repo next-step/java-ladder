@@ -18,7 +18,7 @@ public class InputView {
 
     private final Scanner scanner = new Scanner(System.in);
 
-    public Participants getParticipantNames(){
+    public Participants getParticipantNames() {
         System.out.println(PARTICIPANT_MSG);
         String input = scanner.nextLine();
         String[] splitInput = input.split(DEFAULT_SPLIT_REGEX);
@@ -28,35 +28,35 @@ public class InputView {
         return new Participants(result);
     }
 
-    public ExpectedResults getExpectedResults(int size){
+    public ExpectedResults getExpectedResults(int size) {
         System.out.println(EXPECTED_RESULT_MSG);
         String input = scanner.nextLine();
         String[] splitInput = input.split(DEFAULT_SPLIT_REGEX);
-        if(splitInput.length != size) {
+        if (splitInput.length != size) {
             throw new IllegalArgumentException("input size must be the same as the number of participants");
         }
-        List<ExpectedResult> result =  Arrays.stream(splitInput)
+        List<ExpectedResult> result = Arrays.stream(splitInput)
                 .map(ExpectedResult::new)
                 .collect(Collectors.toList());
         return new ExpectedResults(result);
     }
 
-    public LadderHeight getLadderHeight(){
+    public LadderHeight getLadderHeight() {
         int numberInput;
         while (true) {
-            try{
+            try {
                 Scanner scanner = new Scanner(System.in);
                 System.out.println(LADDER_HEIGHT_MSG);
                 numberInput = scanner.nextInt();
                 scanner.nextLine();
                 return new LadderHeight(numberInput);
-            } catch (InputMismatchException e){
+            } catch (InputMismatchException e) {
                 System.out.println("input must be number type");
             }
         }
     }
 
-    public String getDesireParticipantName(){
+    public String getDesireParticipantName() {
         System.out.println(DESIRE_PARTICIPANT_MSG);
         return scanner.nextLine();
     }

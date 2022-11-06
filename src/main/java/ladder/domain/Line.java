@@ -25,16 +25,16 @@ public class Line {
         return new Line(lineGenerateStrategy.generate(participantCount));
     }
 
-    public int getLineSize() {
-        return points.size();
-    }
-
-    public boolean getPoint(int index) {
-        return points.get(index);
-    }
-
     public boolean isLastPoint(int index) {
         return points.size() - 1 == index;
+    }
+
+    public boolean isMoveAhead(int index) {
+        return points.get(index + 1);
+    }
+
+    public boolean isMoveBackwards(int index) {
+        return points.get(index);
     }
 
 }

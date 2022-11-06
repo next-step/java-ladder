@@ -7,7 +7,6 @@ import ladder.view.ResultView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 public class LadderGame {
@@ -28,8 +27,7 @@ public class LadderGame {
 
         String desireParticipantName = inputView.getDesireParticipantName();
         Participants desireParticipants = participants.getDesireParticipants(desireParticipantName);
-        Results desireResult = results.getDesireResults(desireParticipants);
-        resultView.printResults(desireResult);
+        resultView.printResults(results.getDesireResults(desireParticipants));
     }
 
     private LineGenerateStrategy lineGenerateStrategy() {

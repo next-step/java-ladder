@@ -15,22 +15,22 @@ public class Results {
         this.results = results;
     }
 
-    public Results getDesireResults(Participants desireParticipants){
+    public Results getDesireResults(Participants desireParticipants) {
         List<Participant> participants = desireParticipants.getParticipants();
         return new Results(participants.stream()
-                .collect(Collectors.toMap(Function.identity(), results::get, (x,y) -> y, LinkedHashMap::new)));
+                .collect(Collectors.toMap(Function.identity(), results::get, (x, y) -> y, LinkedHashMap::new)));
     }
 
-    public boolean isOneResult(){
+    public boolean isOneResult() {
         return results.size() == 1;
     }
 
-    public ExpectedResult getOnlyOneResult(){
-        if(!isOneResult()) throw new IndexOutOfBoundsException("result size is not one");
+    public ExpectedResult getOnlyOneResult() {
+        if (!isOneResult()) throw new IndexOutOfBoundsException("result size is not one");
         return results.values().stream().findAny().get();
     }
 
-    public Map<Participant, ExpectedResult> getResults(){
+    public Map<Participant, ExpectedResult> getResults() {
         return Collections.unmodifiableMap(results);
     }
 }

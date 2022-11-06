@@ -11,7 +11,7 @@ public class Lines {
         this.lines = lines;
     }
 
-    public Lines(Line... lines){
+    public Lines(Line... lines) {
         this(Arrays.asList(lines));
     }
 
@@ -27,27 +27,31 @@ public class Lines {
         return new Lines(result);
     }
 
-    public Results getResult(Participants participants, ExpectedResults expectedResults){
+    public Results getResult(Participants participants, ExpectedResults expectedResults) {
         Map<Participant, ExpectedResult> result = new LinkedHashMap<>();
         List<Participant> participantsForOrder = participants.getParticipants();
-        for(int i = 0; i < participantsForOrder.size(); i++) {
+        for (int i = 0; i < participantsForOrder.size(); i++) {
             result.put(participantsForOrder.get(i), expectedResults.getByIndex(getEachResult(i)));
         }
         return new Results(result);
     }
 
-    public int getEachResult(int participantOrder){
-        Integer index = participantOrder;
+    public int getEachResult(int participantOrder) {
+        int index = participantOrder;
         for (Line line : lines) {
-            if(line.isLastPoint(index)) {
-                if(line.getPoint(index)) index--;
+            if (line.isLastPoint(index)) {
+                if (line.isMoveBackwards(index)) {
+                    index--;
+                }
                 continue;
             }
-            if(line.getPoint(index+1)) {
+            if (line.isMoveAhead(index)) {
                 index++;
                 continue;
             }
-            if(line.getPoint(index)) index--;
+            if (line.isMoveBackwards(index)) {
+                index--;
+            }
         }
         return index;
     }

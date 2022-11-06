@@ -19,7 +19,7 @@ public class Participants {
         this(Arrays.asList(participants));
     }
 
-    public int size(){
+    public int size() {
         return participants.size();
     }
 
@@ -27,14 +27,15 @@ public class Participants {
         return Collections.unmodifiableList(participants);
     }
 
-    public Participants getDesireParticipants(String desireParticipantName){
-        if(desireParticipantName.equals(DESIRE_ALL)) {
+    public Participants getDesireParticipants(String desireParticipantName) {
+        if (desireParticipantName.equals(DESIRE_ALL)) {
             return new Participants(getParticipants());
         }
         List<Participant> result = participants.stream()
                 .filter(participant -> participant.isSameName(desireParticipantName))
                 .collect(Collectors.toList());
-        if(result.isEmpty()) throw new IllegalArgumentException("cannot find a participant with the name " + desireParticipantName);
+        if (result.isEmpty())
+            throw new IllegalArgumentException("cannot find a participant with the name " + desireParticipantName);
         return new Participants(result);
     }
 
