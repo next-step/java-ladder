@@ -23,12 +23,16 @@ public class ResultView {
     private static void printLine(Line line) {
         System.out.print(NOT_CONNECTED);
         for (int i = 0; i < line.size(); i++) {
-            if (line.connected(i)) {
-                System.out.print(CONNECTED);
-            } else {
-                System.out.print(NOT_CONNECTED);
-            }
+            printPoint(line.connected(i));
         }
         System.out.println();
+    }
+
+    private static void printPoint(boolean connected) {
+        if (connected) {
+            System.out.print(CONNECTED);
+            return;
+        }
+        System.out.print(NOT_CONNECTED);
     }
 }
