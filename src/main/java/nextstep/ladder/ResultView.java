@@ -12,8 +12,8 @@ public class ResultView {
         System.out.println();
     }
 
-    public static void printLines(List<Line> lines) {
-        lines.forEach(ResultView::printLine);
+    public static void printLadder(Ladder ladder) {
+        ladder.getLines().forEach(ResultView::printLine);
     }
 
     private static void printLine(Line line) {
