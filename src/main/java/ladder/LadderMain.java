@@ -1,10 +1,6 @@
 package ladder;
 
-import ladder.domain.Ladder;
-import ladder.domain.LadderHeight;
-import ladder.domain.Participant;
-import ladder.domain.Participants;
-import ladder.strategy.BridgeLinesRandomStrategy;
+import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 

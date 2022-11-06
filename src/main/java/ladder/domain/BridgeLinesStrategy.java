@@ -1,7 +1,4 @@
-package ladder.strategy;
-
-import ladder.domain.BridgeLines;
-import ladder.domain.LadderHeight;
+package ladder.domain;
 
 public interface BridgeLinesStrategy {
 

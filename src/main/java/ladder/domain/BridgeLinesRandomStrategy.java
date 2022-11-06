@@ -1,8 +1,4 @@
-package ladder.strategy;
-
-import ladder.domain.BridgeLine;
-import ladder.domain.BridgeLines;
-import ladder.domain.LadderHeight;
+package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;

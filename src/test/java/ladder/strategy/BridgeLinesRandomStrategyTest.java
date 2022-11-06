@@ -1,6 +1,8 @@
 package ladder.strategy;
 
 import ladder.domain.BridgeLines;
+import ladder.domain.BridgeLinesRandomStrategy;
+import ladder.domain.BridgeLinesStrategy;
 import ladder.domain.LadderHeight;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

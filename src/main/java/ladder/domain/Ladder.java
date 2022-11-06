@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import ladder.strategy.BridgeLinesStrategy;
-
 public class Ladder {
 
     private final Participants participants;
