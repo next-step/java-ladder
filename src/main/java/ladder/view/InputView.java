@@ -14,21 +14,30 @@ public class InputView {
     public static String inputParticipants() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String input = scanner.nextLine();
-        validateParticipants(input);
+        validateStringValue(input);
 
         return input;
     }
 
-    private static void validateParticipants(final String input) {
+    private static void validateStringValue(final String input) {
         if (Objects.isNull(input) || input.isEmpty()) {
             throw new IllegalArgumentException(ERROR_EMPTY_VALUE);
         }
+    }
+
+    public static String inputResults() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String input = scanner.nextLine();
+        validateStringValue(input);
+
+        return input;
     }
 
     public static int inputLadderHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         int input = scanner.nextInt();
         validateLadderHeight(input);
+        scanner.nextLine();
 
         return input;
     }
@@ -37,5 +46,13 @@ public class InputView {
         if (input == 0) {
             throw new IllegalArgumentException(ERROR_EMPTY_VALUE);
         }
+    }
+
+    public static String inputParticipant() {
+        System.out.println("\n결과를 보고 싶은 사람은?");
+        String input = scanner.nextLine();
+        validateStringValue(input);
+
+        return input;
     }
 }
