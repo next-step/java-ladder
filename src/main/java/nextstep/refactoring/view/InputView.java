@@ -1,8 +1,8 @@
-package nextstep.ladder.view;
+package nextstep.refactoring.view;
 
-import nextstep.ladder.User;
-import nextstep.ladder.Users;
-import nextstep.ladder.UsersFactory;
+import nextstep.refactoring.user.User;
+import nextstep.refactoring.user.Users;
+import nextstep.refactoring.user.UsersFactory;
 
 import java.util.Arrays;
 import java.util.List;
