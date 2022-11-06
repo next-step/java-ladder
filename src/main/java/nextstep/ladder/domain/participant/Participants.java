@@ -25,7 +25,7 @@ public class Participants {
 	}
 
 	public void checkName(String name) {
-		if (name.length() == 0 || name.length() > 5) {
+		if (name == null || name.length() == 0 || name.length() > 5) {
 			throw new BadRequestException("입력가능한 이름 글자수가 아닙니다.");
 		}
 	}
