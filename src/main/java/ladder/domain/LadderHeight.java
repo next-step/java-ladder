@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import ladder.exception.InvalidLadderHeightException;
-
 import java.util.Objects;
 
 public class LadderHeight {
@@ -16,7 +14,7 @@ public class LadderHeight {
 
     private void validateOrThrow(final int value) {
         if (value <= 0) {
-            throw new InvalidLadderHeightException();
+            throw new IllegalArgumentException("유효하지 않은 사다리 높이입니다.");
         }
     }
 

@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import ladder.exception.InvalidParticipantsSizeException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,6 +13,7 @@ public class ParticipantsTest {
     @Test
     void invalid() {
         assertThatThrownBy(() -> new Participants(Collections.emptyList()))
-                .isInstanceOf(InvalidParticipantsSizeException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("참가자는 최소 1명 이상이여야 합니다.");
     }
 }

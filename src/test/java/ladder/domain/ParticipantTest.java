@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import ladder.exception.CreatingParticipantFailureException;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -23,7 +22,7 @@ public class ParticipantTest {
     @ValueSource(strings = {"hannah"})
     void invalidName(final String personName) {
         assertThatThrownBy(() -> new Participant(personName))
-                .isInstanceOf(CreatingParticipantFailureException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("1")
                 .hasMessageContaining("5");
     }

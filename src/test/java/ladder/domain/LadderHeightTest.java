@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import ladder.exception.InvalidLadderHeightException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,6 +11,7 @@ public class LadderHeightTest {
     @Test
     void invalid() {
         assertThatThrownBy(() -> new LadderHeight(-1))
-                .isInstanceOf(InvalidLadderHeightException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("유효하지 않은 사다리 높이입니다.");
     }
 }
