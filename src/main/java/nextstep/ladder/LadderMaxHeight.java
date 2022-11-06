@@ -12,4 +12,8 @@ public class LadderMaxHeight {
 
         this.value = value;
     }
+
+    public int getValue() {
+        return value;
+    }
 }
