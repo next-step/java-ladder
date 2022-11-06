@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -16,7 +17,8 @@ public class Results {
 
     public Results getDesireResults(Participants desireParticipants){
         List<Participant> participants = desireParticipants.getParticipants();
-        return new Results(participants.stream().collect(Collectors.toMap(Function.identity(), results::get)));
+        return new Results(participants.stream()
+                .collect(Collectors.toMap(Function.identity(), results::get, (x,y) -> y, LinkedHashMap::new)));
     }
 
     public boolean isOneResult(){
