@@ -1,12 +1,10 @@
 package nextstep.ladder.domain.ladder;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.function.Consumer;
 import java.util.stream.IntStream;
 
-public class Ladder implements Iterable<Line> {
+public class Ladder {
 
 	private final List<Line> ladder = new ArrayList<>();
 
@@ -15,13 +13,7 @@ public class Ladder implements Iterable<Line> {
 			.forEach(count-> ladder.add(new Line(length)));
 	}
 
-	@Override
-	public Iterator<Line> iterator() {
-		return ladder.iterator();
-	}
-
-	@Override
-	public void forEach(Consumer<? super Line> action) {
-		Iterable.super.forEach(action);
+	public List<Line> getLadder() {
+		return this.ladder;
 	}
 }

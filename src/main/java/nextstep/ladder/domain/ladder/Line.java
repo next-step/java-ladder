@@ -1,13 +1,11 @@
 package nextstep.ladder.domain.ladder;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-import java.util.function.Consumer;
 import java.util.stream.IntStream;
 
-public class Line implements Iterable<Boolean> {
+public class Line{
 
 	private static Random RANDOM = new Random();
 	private List<Boolean> points = new ArrayList<>();
@@ -16,11 +14,8 @@ public class Line implements Iterable<Boolean> {
 		IntStream.range(0, length - 1).forEach(this::addPoint);
 	}
 
-	public StringBuilder getLine() {
-		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("|");
-		points.forEach(point -> appendLine(point, stringBuilder));
-		return stringBuilder;
+	public List<Boolean> getPoints() {
+		return this.points;
 	}
 
 	/**
@@ -29,26 +24,6 @@ public class Line implements Iterable<Boolean> {
 	 */
 	private Boolean isAvailablePoint(int index) {
 		return points.isEmpty() || !points.get(index - 1);
-	}
-
-	@Override
-	public Iterator<Boolean> iterator() {
-		return points.iterator();
-	}
-
-	@Override
-	public void forEach(Consumer<? super Boolean> action) {
-		Iterable.super.forEach(action);
-	}
-
-	private void appendLine(Boolean point, StringBuilder stringBuilder) {
-		if (point){
-			stringBuilder.append("------");
-		}
-		else{
-			stringBuilder.append("      ");
-		}
-		stringBuilder.append("|");
 	}
 
 	private void addPoint(int index) {

@@ -1,12 +1,10 @@
 package nextstep.ladder.domain.participant;
 
-import java.util.Iterator;
 import java.util.List;
-import java.util.function.Consumer;
 
 import nextstep.ladder.exception.BadRequestException;
 
-public class Participants implements Iterable<String> {
+public class Participants {
 
 	private final List<String> names;
 
@@ -25,13 +23,7 @@ public class Participants implements Iterable<String> {
 		}
 	}
 
-	@Override
-	public Iterator<String> iterator() {
-		return names.iterator();
-	}
-
-	@Override
-	public void forEach(Consumer<? super String> action) {
-		Iterable.super.forEach(action);
+	public List<String> getNames() {
+		return this.names;
 	}
 }
