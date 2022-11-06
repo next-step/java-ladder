@@ -25,7 +25,7 @@ public class InputView {
         }
     }
 
-    public static String inputResults() {
+    public static String inputPrizes() {
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         String input = scanner.nextLine();
         validateStringValue(input);
