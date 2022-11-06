@@ -1,4 +1,7 @@
-package nextstep.ladder;
+package nextstep.ladder.ui;
+
+import nextstep.ladder.LadderMaxHeight;
+import nextstep.ladder.Name;
 
 import java.util.Arrays;
 import java.util.List;

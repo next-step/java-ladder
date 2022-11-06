@@ -1,5 +1,8 @@
 package nextstep.ladder;
 
+import nextstep.ladder.ui.InputView;
+import nextstep.ladder.ui.ResultView;
+
 import java.util.List;
 
 public class Main {

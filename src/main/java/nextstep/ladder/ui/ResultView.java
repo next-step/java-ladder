@@ -1,4 +1,8 @@
-package nextstep.ladder;
+package nextstep.ladder.ui;
+
+import nextstep.ladder.Ladder;
+import nextstep.ladder.Line;
+import nextstep.ladder.Name;
 
 import java.util.List;
 
