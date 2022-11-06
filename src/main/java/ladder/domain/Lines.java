@@ -2,10 +2,7 @@ package ladder.domain;
 
 import ladder.strategy.LineGenerateStrategy;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Lines {
     private final List<Line> lines;
@@ -30,7 +27,16 @@ public class Lines {
         return new Lines(result);
     }
 
-    public int getResult(int participantOrder){
+    public Results getResult(Participants participants, ExpectedResults expectedResults){
+        Map<Participant, ExpectedResult> result = new LinkedHashMap<>();
+        List<Participant> participantsForOrder = participants.getParticipants();
+        for(int i = 0; i < participantsForOrder.size(); i++) {
+            result.put(participantsForOrder.get(i), expectedResults.getByIndex(getEachResult(i)));
+        }
+        return new Results(result);
+    }
+
+    public int getEachResult(int participantOrder){
         Integer index = participantOrder;
         for (Line line : lines) {
             if(line.isLastPoint(index)) {

@@ -13,4 +13,8 @@ public class ExpectedResults {
     public List<ExpectedResult> getExpectedResults() {
         return Collections.unmodifiableList(expectedResults);
     }
+
+    public ExpectedResult getByIndex(int index) {
+        return expectedResults.get(index);
+    }
 }

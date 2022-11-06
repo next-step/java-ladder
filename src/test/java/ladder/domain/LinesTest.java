@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -38,7 +37,7 @@ public class LinesTest {
         Line line3 = new Line(false, true, false);
         Lines lines = new Lines(line1, line2, line3);
 
-        assertThat(lines.getResult(participantOrder)).isEqualTo(resultOrder);
+        assertThat(lines.getEachResult(participantOrder)).isEqualTo(resultOrder);
     }
 
     @DisplayName("4개 사다리 경우 결과 도출 메소드 반환값 확인")
@@ -51,7 +50,7 @@ public class LinesTest {
         Line line4 = new Line(false, false, true, false);
         Lines lines = new Lines(line1, line2, line3, line4);
 
-        assertThat(lines.getResult(participantOrder)).isEqualTo(resultOrder);
+        assertThat(lines.getEachResult(participantOrder)).isEqualTo(resultOrder);
     }
 
 }

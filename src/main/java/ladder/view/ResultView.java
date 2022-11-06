@@ -1,18 +1,18 @@
 package ladder.view;
 
-import ladder.domain.ExpectedResults;
-import ladder.domain.Line;
-import ladder.domain.Lines;
-import ladder.domain.Participants;
+import ladder.domain.*;
 
+import java.util.Map;
 import java.util.Optional;
 
 public class ResultView {
 
     private final static String SPACE_TEXT = " ";
     private final static int DEFAULT_NAME_SPACE_COUNT = 6;
+    private final static String LADDER_MSG = "사다리 결과";
     private final static String LINE_WITH_BRIDGE = "-----|";
     private final static String LINE_WITH_NO_BRIDGE = "     |";
+    private final static String RESULT_MSG = "실행 결과";
 
     public void printParticipants(Participants arg) {
         Optional<Participants> participants = Optional.ofNullable(arg);
@@ -54,4 +54,18 @@ public class ResultView {
         );
         System.out.println();
     }
+
+    public void printResults(Results desireResults) {
+        System.out.println(RESULT_MSG);
+        if (desireResults.isOneResult()) {
+            System.out.println(desireResults.getOnlyOneResult());
+            return;
+        }
+        Map<Participant, ExpectedResult> results = desireResults.getResults();
+        for (Map.Entry<Participant, ExpectedResult> entry : results.entrySet()) {
+            System.out.printf("%s : %s", entry.getKey(), entry.getValue());
+            System.out.println();
+        }
+    }
+
 }
