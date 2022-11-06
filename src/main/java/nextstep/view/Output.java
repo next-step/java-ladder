@@ -10,7 +10,8 @@ import java.util.stream.Collectors;
 public class Output {
 
     private static final String SPACE_BETWEEN_NAMES = "   ";
-    private static final String RESULT_MESSAGE = "\n실행결과\n %s";
+    private static final String SPACE_BETWEEN_RESULTS = "    ";
+    private static final String RESULT_MESSAGE = "\n실행결과\n%s";
     private static final String LADDER_LINE_SPACE = "     ";
     private static final String VERTICAL_LINE = "|";
     private static final String HORIZONTAL_LINE = "-----";
@@ -32,6 +33,16 @@ public class Output {
         ladder.getLines().stream()
                 .forEachOrdered(line -> getLine(sb, line));
 
+        System.out.print(sb);
+    }
+
+    public static void printResult(List<String> result) {
+        StringBuilder sb = new StringBuilder();
+
+        String getResult = result.stream()
+                .collect(Collectors.joining(SPACE_BETWEEN_RESULTS));
+
+        sb.append(getResult);
         System.out.println(sb);
     }
 

@@ -17,5 +17,6 @@ public class LadderApplication {
         Ladder ladder = new Ladder(height, playerNames.getPlayersSize(), RandomLineStrategy.getInstance());
         Output.printName(playerNames.getPlayers());
         Output.printLadder(ladder);
+        Output.printResult(result);
     }
 }
