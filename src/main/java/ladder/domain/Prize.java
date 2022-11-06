@@ -31,4 +31,9 @@ public class Prize {
     public boolean isSameColumn(final int column) {
         return this.column == column;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
