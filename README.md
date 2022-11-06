@@ -17,3 +17,21 @@
 - [x] optional.User.ageIsInRange1 기능을 optional을 활용하여 ageIsInRange2에 구현
 - [x] optional.Users.getUser 메소드를 stream과 optional을 활용하여 구현
 - [x] optional.Expression.of 메소드를 stream과 optional을 활용하여 구현
+
+## TO DO LIST(Step2)
+- [X] Name 클래스 추가
+  - [x] 검증 메소드 추가
+- [x] Point 클래스 추가
+  - [x] 검증 메소드 추가
+  - [x] 연결 여부 확인 메소드 추가
+- [x] Line 클래스 추가
+  - [x] 연결 메소드 추가
+- [x] LinkStrategy 클래스 추가
+  - [x] RandomLinkStrategy 클래스 추가
+- [x] Ladder 클래스 추가
+  - [x] 참여자 이름 입력 값을 Name 객체 리스트로 변환하는 메소드 추가
+  - [x] 사다리 높이 입력 값에 따라 Point 객체 리스트를 생성하는 메소드 추가
+  - [x] 사다리를 그려주는 메소드 추가
+- [x] InputView 클래스 추가
+- [x] OutputView 클래스 추가
+- [x] LadderApplication 클래스 추가
