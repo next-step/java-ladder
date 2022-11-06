@@ -6,6 +6,10 @@ import nextstep.ladder.domain.participant.Participants;
 
 public class OutputView {
 
+	private static final String HAS_LINE_MARK = "-";
+	private static final String HAS_NOT_LINE_MARK = " ";
+	private static final Integer MAX_NAME_LENGTH = 5;
+
 	public void printResult(Participants participants, Ladder ladder) {
 		System.out.println("실행결과");
 
@@ -19,18 +23,22 @@ public class OutputView {
 
 	public StringBuilder getLine(Line line) {
 		StringBuilder stringBuilder = new StringBuilder();
+		appendLine(false, stringBuilder);
+		line.getPoints().forEach(point -> {
+			stringBuilder.append("|");
+			appendLine(point, stringBuilder);
+		});
 		stringBuilder.append("|");
-		line.getPoints().forEach(point -> appendLine(point, stringBuilder));
 		return stringBuilder;
 	}
 
 	private void appendLine(Boolean point, StringBuilder stringBuilder) {
-		if (point){
-			stringBuilder.append("------");
+		String mark;
+		if (point) {
+			mark = HAS_LINE_MARK;
+		} else {
+			mark = HAS_NOT_LINE_MARK;
 		}
-		else{
-			stringBuilder.append("      ");
-		}
-		stringBuilder.append("|");
+		stringBuilder.append(mark.repeat(MAX_NAME_LENGTH));
 	}
 }
