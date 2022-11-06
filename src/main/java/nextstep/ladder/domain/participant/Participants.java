@@ -9,12 +9,19 @@ public class Participants {
 	private final List<String> names;
 
 	public Participants(List<String> names) {
+		checkNames(names);
 		names.forEach(this::checkName);
 		this.names = names;
 	}
 
 	public int size() {
 		return names.size();
+	}
+
+	public void checkNames(List<String> names) {
+		if (names.isEmpty()) {
+			throw new BadRequestException("이름은 공백일 수 없습니다.");
+		}
 	}
 
 	public void checkName(String name) {
