@@ -7,17 +7,12 @@ import nextstep.ladder.view.OutputView;
 
 public class LadderController {
 
-	private final InputView inputView = new InputView();
-	private final OutputView outputView = new OutputView();
-	private Participants participants;
-	private Ladder ladder;
-
-	public void start() {
-		participants = new Participants(inputView.getParticipants());
-		ladder = new Ladder(participants.size(), inputView.getLadderHeight());
-	}
-
 	public void draw() {
+		InputView inputView = new InputView();
+		Participants participants = new Participants(inputView.getParticipants());
+		Ladder ladder = new Ladder(participants.size(), inputView.getLadderHeight());
+
+		OutputView outputView = new OutputView();
 		outputView.printResult(participants, ladder);
 	}
 }
