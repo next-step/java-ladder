@@ -32,6 +32,18 @@ public class Line {
             .forEach(Point::link);
     }
 
+    public int move(final int currentColumnNumber) {
+        if (points.get(currentColumnNumber).isLinked()) {
+            return currentColumnNumber + 1;
+        }
+
+        if (currentColumnNumber != 0 && points.get(currentColumnNumber - 1).isLinked()) {
+            return currentColumnNumber - 1;
+        }
+
+        return currentColumnNumber;
+    }
+
     public List<Point> getPoints() {
         return points;
     }

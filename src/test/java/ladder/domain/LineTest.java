@@ -31,4 +31,13 @@ class LineTest {
             .filter(Point::isLinked)
             .collect(Collectors.toList())).containsOnly(new Point(0, 0), new Point(0, 2));
     }
+
+    @Test
+    @DisplayName("move 메소드는 Point의 연결 여부에 따라 다음 컬럼 위치를 계산한다.")
+    void move() {
+        Line line = new Line(0, 5);
+        line.link(new TestLinkStrategy());
+
+        assertThat(line.move(1)).isZero();
+    }
 }
