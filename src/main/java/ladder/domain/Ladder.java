@@ -2,7 +2,10 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import ladder.strategy.LinkStrategy;
@@ -77,6 +80,26 @@ public class Ladder {
 
     public void draw(final LinkStrategy strategy) {
         lines.forEach(line -> line.link(strategy));
+    }
+
+    public Map<Name, Prize> play() {
+        Map<Name, Prize> result = new HashMap<>();
+        IntStream.range(0, participants.size()).forEach(i -> {
+            Name participant = participants.get(i);
+            Prize prize = move(i);
+            result.put(participant, prize);
+        });
+
+        return result;
+    }
+
+    private Prize move(final int startColumnNumber) {
+        AtomicInteger currentColumnNumber = new AtomicInteger(startColumnNumber);
+        lines.forEach(line -> {
+            currentColumnNumber.set(line.move(currentColumnNumber.get()));
+        });
+
+        return prizes.get(currentColumnNumber.get());
     }
 
     public List<Name> getParticipants() {

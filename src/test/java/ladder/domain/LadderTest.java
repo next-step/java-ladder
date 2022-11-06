@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import ladder.TestLinkStrategy;
 import org.junit.jupiter.api.DisplayName;
@@ -61,5 +62,20 @@ class LadderTest {
                 () -> assertThat(linked.get(1).getY()).isEqualTo(2)
             );
         });
+    }
+
+    @Test
+    @DisplayName("play 메소드는 사다리 게임을 진행한 후 결과를 반환한다.")
+    void play() {
+        Ladder ladder = new Ladder("jordy,penda,kero,cobb", 5, "꽝,5000,2000,꽝");
+        ladder.draw(new TestLinkStrategy());
+        Map<Name, Prize> result = ladder.play();
+
+        assertAll(
+            () -> assertThat(result.get(new Name("jordy")).toString()).isEqualTo("5000"),
+            () -> assertThat(result.get(new Name("penda")).toString()).isEqualTo("꽝"),
+            () -> assertThat(result.get(new Name("kero")).toString()).isEqualTo("꽝"),
+            () -> assertThat(result.get(new Name("cobb")).toString()).isEqualTo("2000")
+        );
     }
 }
