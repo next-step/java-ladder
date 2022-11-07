@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import ladder.util.RandomUtil;
-
 import java.util.Objects;
 import java.util.function.BooleanSupplier;
 
@@ -58,6 +56,10 @@ public class Point {
 		return index;
 	}
 
+	public boolean isMark() {
+		return direction.isRight();
+	}
+
 	// =============================================================================================
 
 	@Override public boolean equals(Object o) {
@@ -74,9 +76,6 @@ public class Point {
 	}
 
 	@Override public String toString() {
-		return "Point{" +
-			"index=" + index +
-			", direction=" + direction +
-			'}';
+		return "Point{" + "index=" + index + ", direction=" + direction + '}';
 	}
 }

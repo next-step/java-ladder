@@ -1,16 +1,12 @@
 package ladder.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.BooleanSupplier;
 
 /**
  * Created by seungwoo.song on 2022-11-04
  */
-public class LadderLine {
-
+public class LadderLine extends AbstractList<Point> {
 	private final List<Point> points;
 
 	private LadderLine(List<Point> points) {
@@ -48,6 +44,16 @@ public class LadderLine {
 		return Optional.ofNullable(points.get(index))
 			.map(Point::move)
 			.orElseThrow(() -> new IllegalArgumentException("잘못된 index 입니다"));
+	}
+
+	@Override
+	public Point get(int index) {
+		return points.get(index);
+	}
+
+	@Override
+	public int size() {
+		return points.size();
 	}
 
 	//===================================================================

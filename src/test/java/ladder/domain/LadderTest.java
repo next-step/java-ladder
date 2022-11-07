@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.dto.InputDTO;
+import ladder.view.OutputView;
 import org.assertj.core.data.Index;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

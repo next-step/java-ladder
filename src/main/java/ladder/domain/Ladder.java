@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -8,7 +9,7 @@ import java.util.function.BooleanSupplier;
 /**
  * Created by seungwoo.song on 2022-11-04
  */
-public class Ladder {
+public class Ladder extends AbstractList<LadderLine> {
 
 	private final List<LadderLine> ladderLines;
 
@@ -34,10 +35,17 @@ public class Ladder {
 		for (int i = 0; i < ladderLines.size(); i++) {
 			LadderLine ladderLine = ladderLines.get(i);
 			index = ladderLine.move(index);
-			System.out.println("ladderLine = " + index);
 		}
 
 		return index;
+	}
+
+	@Override public LadderLine get(int index) {
+		return ladderLines.get(index);
+	}
+
+	@Override public int size() {
+		return ladderLines.size();
 	}
 
 	//===================================================
@@ -56,8 +64,6 @@ public class Ladder {
 	}
 
 	@Override public String toString() {
-		return "Ladder{" +
-			"ladderLines=" + ladderLines +
-			'}';
+		return "Ladder{" + "ladderLines=" + ladderLines + '}';
 	}
 }

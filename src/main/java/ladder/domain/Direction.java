@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import javax.print.attribute.standard.ReferenceUriSchemesSupported;
 import java.util.function.BooleanSupplier;
 import java.util.stream.Stream;
 
