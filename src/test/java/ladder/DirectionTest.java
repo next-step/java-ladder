@@ -1,5 +1,6 @@
 package ladder;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static java.lang.Boolean.FALSE;
@@ -19,12 +20,6 @@ public class DirectionTest {
             Direction.of(TRUE, TRUE);
         }).isInstanceOf(IllegalStateException.class);
 
-    }
-
-    @Test
-    public void next_random_true() {
-        Direction next = Direction.first(TRUE).next();
-        assertThat(next).isEqualTo(Direction.of(TRUE, FALSE));
     }
 
     @Test
@@ -50,4 +45,19 @@ public class DirectionTest {
         Direction last = Direction.first(TRUE).last();
         assertThat(last).isEqualTo(Direction.of(TRUE, FALSE));
     }
+
+    @Test
+    @DisplayName("이전이 오른쪽과 연결되어 있다면 다음은 오른쪽과 무조건 연결되어 있지 않다.")
+    public void test1() {
+        Direction direction = Direction.first(TRUE).next(() -> true);
+        assertThat(direction.isRight()).isFalse();
+    }
+
+    @Test
+    @DisplayName("이전이 오른쪽과 연결되어 있지 않다면 다음은 오른쪽과 연결될 수 있다.")
+    public void test2() {
+        Direction direction = Direction.first(FALSE).next(() -> true);
+        assertThat(direction.isRight()).isTrue();
+    }
+
 }

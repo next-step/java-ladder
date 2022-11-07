@@ -1,10 +1,12 @@
 package ladder;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class PointTest {
     @Test
@@ -32,9 +34,18 @@ public class PointTest {
     }
 
     @Test
-    public void next() {
-        Point second = Point.first(TRUE).next();
-        assertThat(second.move()).isEqualTo(0);
+    @DisplayName("다음 Point가 오른쪽 연결")
+    void test1() {
+        Point point = Point.first(FALSE).next(() -> true);
+        assertThat(point.isRightConnected()).isTrue();
+    }
+
+    @Test
+    @DisplayName("이전 Point 오른쪽 연결 후 다음 Point의 오른쪽 연결 시도시 에러")
+    void test2() {
+        assertThatThrownBy(() -> {
+            Point.first(TRUE).next(() -> true);
+        }).isInstanceOf(IllegalStateException.class);
     }
 
 }

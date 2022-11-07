@@ -7,9 +7,9 @@ import java.util.List;
 public class Ladder {
     private final List<LadderLine> ladder = new ArrayList<>();
 
-    public Ladder(int ladderHeight, int sizeOfPerson) {
+    public Ladder(int ladderHeight, int sizeOfPerson, PointConnectStrategy pointConnectStrategy) {
         for (int i = 0; i < ladderHeight; i++) {
-            ladder.add(LadderLine.of(sizeOfPerson));
+            ladder.add(LadderLine.of(sizeOfPerson, pointConnectStrategy));
         }
     }
 

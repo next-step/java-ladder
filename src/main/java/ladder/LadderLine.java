@@ -13,23 +13,23 @@ public class LadderLine {
         this.points = points;
     }
 
-    public static LadderLine of(int sizeOfPerson) {
+    public static LadderLine of(int sizeOfPerson, PointConnectStrategy pointConnectStrategy) {
         List<Point> points = new ArrayList<>();
-        Point point = initFirst(points);
-        point = initBody(sizeOfPerson, points, point);
+        Point point = initFirst(points, pointConnectStrategy);
+        point = initBody(sizeOfPerson, points, point, pointConnectStrategy);
         initLast(points, point);
         return new LadderLine(points);
     }
 
-    private static Point initFirst(List<Point> points) {
-        Point point = Point.first(generatePoint());
+    private static Point initFirst(List<Point> points, PointConnectStrategy pointConnectStrategy) {
+        Point point = Point.first(pointConnectStrategy.isConnected());
         points.add(point);
         return point;
     }
 
-    private static Point initBody(int sizeOfPerson, List<Point> points, Point point) {
+    private static Point initBody(int sizeOfPerson, List<Point> points, Point point, PointConnectStrategy pointConnectStrategy) {
         for (int i = 1; i < sizeOfPerson - 1; i++) {
-            point = point.next();
+            point = point.next(pointConnectStrategy.isConnected());
             points.add(point);
         }
         return point;

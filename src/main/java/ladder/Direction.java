@@ -25,15 +25,15 @@ public class Direction {
         return of(FALSE, right);
     }
 
-    public Direction next(boolean nextRight) {
-        return of(this.right, nextRight);
-    }
-
-    public Direction next() {
+    public Direction next(PointConnectStrategy pointConnectStrategy) {
         if (this.right) {
             return next(FALSE);
         }
-        return next(generatePoint());
+        return next(pointConnectStrategy.isConnected());
+    }
+
+    public Direction next(boolean nextRight) {
+        return of(this.right, nextRight);
     }
 
     public Direction last() {

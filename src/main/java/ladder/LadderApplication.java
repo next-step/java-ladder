@@ -5,7 +5,7 @@ public class LadderApplication {
         Persons persons = new Persons(InputView.inputPersonNames());
         Results results = new Results(InputView.inputPlayResults());
         int ladderHeight = InputView.inputLadderHeight();
-        Ladder ladder = new Ladder(ladderHeight, persons.countOfPersons());
+        Ladder ladder = new Ladder(ladderHeight, persons.countOfPersons(), new RandomNumberPointConnectStrategy());
 
         OutputView.printLadder(persons, ladderHeight, ladder, results);
 
