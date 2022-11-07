@@ -3,7 +3,6 @@ package ladder;
 import java.util.Objects;
 
 import static java.lang.Boolean.FALSE;
-import static ladder.LadderPointGenerator.generatePoint;
 
 public class Direction {
     private final boolean left;
