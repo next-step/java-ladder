@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Lines {
+	private final static int FIRST_INDEX = 0;
+	private final static int PREV_INDEX = 0;
+
 	private final List<Line> lines;
 
 	public Lines(final int countOfPlayer) {
@@ -15,11 +18,11 @@ public class Lines {
 		this.lines = result;
 	}
 
-	private Line getPrevLine(final List<Line> result, final int i) {
-		if (i == 0) {
+	private Line getPrevLine(final List<Line> result, final int index) {
+		if (index == 0) {
 			return null;
 		}
-		return result.get(i - 1);
+		return result.get(index - PREV_INDEX);
 	}
 
 	public int size() {
