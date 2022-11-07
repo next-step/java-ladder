@@ -38,14 +38,20 @@ public class Line {
             throw new MismatchPersonBarsException();
         }
 
-        if (IntStream.range(0, bars.size())
-                .anyMatch(i -> isFirstBarInvalid(i) || isBarInvalid(i))) {
+        if (isAnyMatchBarInvalid()) {
             throw new InvalidLineException();
         }
     }
 
+    private boolean isAnyMatchBarInvalid() {
+        return IntStream.range(0, bars.size())
+                .anyMatch(i -> isFirstBarInvalid(i) || isBarInvalid(i));
+    }
+
     private boolean isBarInvalid(int index) {
-        return index != 0 && getBar(index - 1).isAvailable() && getBar(index).isAvailable();
+        return index != 0
+                && getBar(index - 1).isAvailable()
+                && getBar(index).isAvailable();
     }
 
     private boolean isFirstBarInvalid(int index) {
