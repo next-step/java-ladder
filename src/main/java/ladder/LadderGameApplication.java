@@ -46,7 +46,7 @@ public class LadderGameApplication {
     }
 
     private static int displaySize(final Users users) {
-        return users.getMaxNameSize() + users.names().size();
+        return Users.MAX_NAME_SIZE + users.names().size();
     }
 
     private static void showExecutionResult(final UserInput input, final Ladder ladder) {

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 public class Users {
-    private static final int MAX_NAME_SIZE = 5;
+    public static final int MAX_NAME_SIZE = 5;
     
     private final List<User> users;
 
@@ -32,10 +32,6 @@ public class Users {
             names.add(user.getName());
         }
         return names;
-    }
-
-    public int getMaxNameSize() {
-        return MAX_NAME_SIZE;
     }
 
     public int getOrder(final User user) {
