@@ -23,13 +23,25 @@ public class LadderLine {
 		Point point = Point.first(booleanSupplier.getAsBoolean());
 		points.add(point);
 
-		for (int i = 1; i < personCount; i++) {
-			point = point.next(booleanSupplier);
+		int maxCount = personCount - 1;
+		for (int i = 1; i <= maxCount; i++) {
+			point = getNextPoint(booleanSupplier, point, isLast(maxCount, i));
 			points.add(point);
 		}
 
-		points.add(point.last());
 		return new LadderLine(points);
+	}
+
+	private static boolean isLast(int maxCount, int i) {
+		return i == maxCount;
+	}
+
+	private static Point getNextPoint(BooleanSupplier booleanSupplier, Point point, boolean isLast) {
+		if (isLast) {
+			return point.last();
+		}
+
+		return point.next(booleanSupplier);
 	}
 
 	public int move(int index) {

@@ -7,7 +7,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 /**
  * Created by seungwoo.song on 2022-11-04
  */
-public class LadderLineTest {
+class LadderLineTest {
 
 	@Test
 	void 생성() {
@@ -22,7 +22,6 @@ public class LadderLineTest {
 		int index = 0;
 
 		LadderLine ladderLine = LadderLine.of(personCount, () -> true);
-
 		assertThat(ladderLine.move(index)).isEqualTo(1);
 	}
 }
