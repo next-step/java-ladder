@@ -12,6 +12,9 @@ public class Ladder {
     private final Lines lines;
 
     public Ladder(final Users users, final Lines lines) {
+        if (users.count() < 1) {
+            throw new IllegalArgumentException("Number of people is greater than 1.");
+        }
         this.users = users;
         this.lines = lines;
     }
@@ -21,8 +24,8 @@ public class Ladder {
     }
     
     public static Ladder of(final Users users, final int height, final Results results) {
-        if (users.count() < 1 || height < 1) {
-            throw new IllegalArgumentException("Number of people or height is greater than 1.");
+        if (height < 1) {
+            throw new IllegalArgumentException("Number of height is greater than 1.");
         }
         return new Ladder(users, new Lines(createLines(users.count(), height), results));
     }
