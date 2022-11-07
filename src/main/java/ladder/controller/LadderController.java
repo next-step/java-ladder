@@ -8,8 +8,7 @@ import ladder.dto.MembersDto;
 
 import java.util.List;
 
-import static ladder.view.InputView.askMaxLadderHeight;
-import static ladder.view.InputView.askParticipatedPeople;
+import static ladder.view.InputView.*;
 import static ladder.view.ResultView.printLadderResult;
 
 public class LadderController {
@@ -20,6 +19,8 @@ public class LadderController {
     public static void play() {
         List<String> memberNames = askParticipatedPeople();
         LadderMembers members = new LadderMembers(LadderMembers.addMember(memberNames));
+        List<String> ladderResults = askLadderResult();
+        LadderResults results = new LadderResults(LadderResults.addResult(ladderResults, memberCount));
         LadderHeight ladderHeight = new LadderHeight(askMaxLadderHeight());
         Ladder ladder = new Ladder(members.memberCount(), ladderHeight);
         printLadderResult(new MembersDto(members), new LadderDto(ladder));
