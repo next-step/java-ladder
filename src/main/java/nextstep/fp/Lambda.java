@@ -42,8 +42,9 @@ public class Lambda {
 	public static int sumAll(final List<Integer> numbers, final Predicate<Integer> predicate) {
 		int total = 0;
 		for (int number : numbers) {
-			if(predicate.test(number))
+			if (predicate.test(number)) {
 				total += number;
+			}
 		}
 		return total;
 	}
