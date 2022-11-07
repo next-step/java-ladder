@@ -27,7 +27,7 @@ public class LadderLine {
 
     private static Point initBody(int sizeOfPerson, List<Point> points, Point point, PointConnectStrategy pointConnectStrategy) {
         for (int i = 1; i < sizeOfPerson - 1; i++) {
-            point = point.next(pointConnectStrategy.isConnected());
+            point = point.next(pointConnectStrategy);
             points.add(point);
         }
         return point;

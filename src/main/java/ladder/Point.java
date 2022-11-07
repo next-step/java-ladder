@@ -20,7 +20,7 @@ public class Point {
     }
 
     public Point next(PointConnectStrategy pointConnectStrategy) {
-        return new Point(index + 1, direction.next(pointConnectStrategy.isConnected()));
+        return new Point(index + 1, direction.next(pointConnectStrategy));
     }
 
     public Point next(boolean right) {
