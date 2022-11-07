@@ -68,7 +68,7 @@ public class ResultView {
         return string.concat(BLANK.repeat(REPEAT_COUNT - string.length())).concat(BLANK);
     }
 
-    public static void printLadderGameResults(String selectedPerson, GameResult gameResult) {
+    public static void printLadderGameResults(String selectedPerson, GameResults gameResult) {
         System.out.println(GAME_RESULT_PRINT_TEXT);
         if (selectedPerson.equals(ALL_TEXT)) {
             printLadderGameAllResults(gameResult.getGameResults());

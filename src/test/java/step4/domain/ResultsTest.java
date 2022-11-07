@@ -1,7 +1,6 @@
 package step4.domain;
 
 import org.junit.jupiter.api.Test;
-import step4.domain.Results;
 
 import java.util.Collections;
 import java.util.List;

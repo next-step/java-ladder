@@ -11,7 +11,7 @@ public class LadderLevel {
     }
 
     public int getDirection(int startIndex) {
-        if (startIndex == 0) {
+        if (isFirstIndex(startIndex)) {
             return startIndex + getRightLine(startIndex);
         }
 
@@ -22,18 +22,34 @@ public class LadderLevel {
         return startIndex + getLeftLine(startIndex) + getRightLine(startIndex);
     }
 
+    private static boolean isFirstIndex(int startIndex) {
+        return startIndex == 0;
+    }
+
     private int getLeftLine(int startIndex) {
         if (this.lines.get(startIndex - 1).isLine()) {
-            return -1;
+            return goLeft();
         }
-        return 0;
+        return stay();
     }
 
     private int getRightLine(int startIndex) {
         if (this.lines.get(startIndex).isLine()) {
-            return 1;
+            return goRight();
         }
+        return stay();
+    }
+
+    private static int goRight() {
+        return 1;
+    }
+
+    private static int stay() {
         return 0;
+    }
+
+    private static int goLeft() {
+        return -1;
     }
 
     public List<Line> getLines() {

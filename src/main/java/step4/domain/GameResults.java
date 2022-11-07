@@ -4,11 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class GameResult {
+public class GameResults {
 
     private final Map<String, String> gameResults;
 
-    public GameResult(Users users, Results results, Ladders ladders) {
+    public GameResults(Users users, Results results, Ladders ladders) {
         this.gameResults = calculateGameResults(users, results, ladders);
     }
 

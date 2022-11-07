@@ -3,9 +3,6 @@ package step4.domain;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import step4.domain.Ladders;
-import step4.domain.RandomLineConditional;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LaddersTest {

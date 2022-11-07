@@ -1,10 +1,6 @@
 package step4.domain;
 
 import org.junit.jupiter.api.Test;
-import step4.domain.GameResult;
-import step4.domain.Ladders;
-import step4.domain.Results;
-import step4.domain.Users;
 
 import java.util.List;
 
@@ -24,6 +20,6 @@ class GameResultTest {
         });
         String selectedPerson = "pobi";
 
-        assertThat(new GameResult(users, results, ladder).getGameResults().get(selectedPerson)).isEqualTo("당첨");
+        assertThat(new GameResults(users, results, ladder).getGameResults().get(selectedPerson)).isEqualTo("당첨");
     }
 }
