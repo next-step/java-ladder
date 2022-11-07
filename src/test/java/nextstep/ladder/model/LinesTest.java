@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class LinesTest {
 
 	@Test
-	void 라인들은_플레이어의_숫자보다_1작다(){
+	void 라인들은_플레이어의_숫자보다_1작다() {
 		Lines lines = new Lines(4);
 		assertThat(lines.size()).isEqualTo(3);
 	}

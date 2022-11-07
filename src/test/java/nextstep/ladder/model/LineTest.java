@@ -13,9 +13,8 @@ import nextstep.ladder.model.Line;
 class LineTest {
 
 	@Test
-	void 이전_라인이_잇을경우_무조건_해당라인은_없다(){
+	void 이전_라인이_잇을경우_무조건_해당라인은_없다() {
 		Assertions.assertThat(Line.create(new Line(true))).isEqualTo(new Line(false));
 	}
-
 
 }

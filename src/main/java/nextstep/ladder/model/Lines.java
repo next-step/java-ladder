@@ -16,13 +16,13 @@ public class Lines {
 	}
 
 	private Line getPrevLine(final List<Line> result, final int i) {
-		if(i == 0){
+		if (i == 0) {
 			return null;
 		}
 		return result.get(i - 1);
 	}
 
-	public int size(){
+	public int size() {
 		return lines.size();
 	}
 

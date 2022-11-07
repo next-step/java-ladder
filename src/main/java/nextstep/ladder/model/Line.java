@@ -37,7 +37,7 @@ public class Line {
 
 	@Override
 	public String toString() {
-		if(hasLine){
+		if (hasLine) {
 			return "-----|";
 		}
 		return "     |";

@@ -12,14 +12,14 @@ import java.util.stream.Collectors;
 
 public class LadderGameController {
 
-    public static void main(String[] args) {
-        String[] strings = Input.inputPlayers();
-        Players players = Arrays.stream(strings)
-                .map(Player::new)
-                .collect(Collectors.collectingAndThen(Collectors.toList(), Players::new));
+	public static void main(String[] args) {
+		String[] strings = Input.inputPlayers();
+		Players players = Arrays.stream(strings)
+			.map(Player::new)
+			.collect(Collectors.collectingAndThen(Collectors.toList(), Players::new));
 
-        Ladder ladder = new Ladder(Input.inputLadderHeights(), players.number());
+		Ladder ladder = new Ladder(Input.inputLadderHeights(), players.number());
 
-        Output.outputResult(ladder, players);
-    }
+		Output.outputResult(ladder, players);
+	}
 }
