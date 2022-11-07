@@ -28,24 +28,21 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers) {
-	    return sumAll(numbers, a -> true);
+        return sumAll(numbers, a -> true);
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-		return sumAll(numbers, a -> a % 2 == 0);
+        return sumAll(numbers, a -> a % 2 == 0);
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
-	    return sumAll(numbers, a -> a > 3);
+        return sumAll(numbers, a -> a > 3);
     }
 
-	public static int sumAll(final List<Integer> numbers, final Predicate<Integer> predicate) {
-		int total = 0;
-		for (int number : numbers) {
-			if (predicate.test(number)) {
-				total += number;
-			}
-		}
-		return total;
-	}
+    public static int sumAll(final List<Integer> numbers, final Predicate<Integer> predicate) {
+        return numbers.stream()
+                      .filter(predicate)
+                      .mapToInt(Integer::intValue)
+                      .sum();
+    }
 }
