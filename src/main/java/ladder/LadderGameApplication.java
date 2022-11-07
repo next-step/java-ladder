@@ -18,7 +18,7 @@ import ladder.view.UserInput;
 public class LadderGameApplication {
     private static final int RESULT_SEARCH_COUNT = 2;
     private static final String ALL_USER_NAME = "all";
-    private static final ExecutionResultConsoleView executionView = new ExecutionResultConsoleView();
+    private static final ExecutionResultConsoleView EXECUTION_VIEW = new ExecutionResultConsoleView();
 
     public static void main(String[] args) {
         UserInput input = new UserInput();
@@ -38,7 +38,7 @@ public class LadderGameApplication {
     }
 
     private static void showLadder(final Users users,  final Ladder ladder) {
-        new LineConsoleView(new LineDisplayer(ladder.lines(), displaySize(users))).show();
+        new LineConsoleView(new LineDisplayer(ladder.getLines(), displaySize(users))).show();
     }
 
     private static void showResult(final Users users, final Results results) {
@@ -57,9 +57,9 @@ public class LadderGameApplication {
     
     private static void showExecutionResult(final String userName, final Ladder ladder) {
         if (ALL_USER_NAME.equals(userName)) {
-            executionView.show(ladder.getResult());
+            EXECUTION_VIEW.show(ladder.getResult());
             return;
         }
-        executionView.show(ladder.getResultBy(new User(userName)));
+        EXECUTION_VIEW.show(ladder.getResultBy(new User(userName)));
     }
 }

@@ -15,7 +15,7 @@ class LadderTest {
     @ParameterizedTest
     @CsvSource(value = { "4,5", "1,2" }, delimiter = ',')
     void lines(int countOfPerson, int height) {
-        assertThat(createLadder(countOfPerson, height).lines()).hasSize(height);
+        assertThat(createLadder(countOfPerson, height).getLines()).hasSize(height);
     }
 
     @DisplayName("사람 수 또는 높이가 1보다 작으면 예외를 발생시킨다.")
