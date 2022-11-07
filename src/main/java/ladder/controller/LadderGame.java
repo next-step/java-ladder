@@ -1,8 +1,6 @@
 package ladder.controller;
 
-import ladder.domain.LadderHeight;
-import ladder.domain.Line;
-import ladder.domain.Participant;
+import ladder.domain.*;
 import ladder.strategy.LineGenerateStrategy;
 import ladder.view.InputView;
 import ladder.view.ResultView;
@@ -17,16 +15,19 @@ public class LadderGame {
     private final Random rd = new Random();
 
     public void start() {
-        List<Participant> participants = inputView.getParticipantNames();
+        Participants participants = inputView.getParticipantNames();
+        ExpectedResults expectedResults = inputView.getExpectedResults(participants.size());
         LadderHeight ladderHeight = inputView.getLadderHeight();
-
-        List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < ladderHeight.getHeight(); i++) {
-            lines.add(new Line(participants.size(), lineGenerateStrategy()));
-        }
+        Lines lines = Lines.from(ladderHeight.getHeight(), participants.size(), lineGenerateStrategy());
 
         resultView.printParticipants(participants);
         resultView.printLadder(lines);
+        resultView.printExpectedResults(expectedResults);
+        Results results = lines.getResult(participants, expectedResults);
+
+        String desireParticipantName = inputView.getDesireParticipantName();
+        Participants desireParticipants = participants.getDesireParticipants(desireParticipantName);
+        resultView.printResults(results.getDesireResults(desireParticipants));
     }
 
     private LineGenerateStrategy lineGenerateStrategy() {
@@ -40,10 +41,14 @@ public class LadderGame {
     }
 
     private boolean getBooleanPoint(List<Boolean> points, int index) {
-        if (index == 0 || points.get(index - 1)) {
+        if (isFalsePoint(points, index)) {
             return false;
         }
         return rd.nextBoolean();
+    }
+
+    private boolean isFalsePoint(List<Boolean> points, int index) {
+        return index == 0 || points.get(index - 1);
     }
 
 }
