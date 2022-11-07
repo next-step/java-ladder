@@ -18,16 +18,13 @@ public class LadderInitializer {
     }
 
     private Ladder initLadder(List<String> names, int height) {
-        Ladder ladder = new Ladder(names, height);
-        addLadder(ladder, names.size(), height);
-        return ladder;
+        return new Ladder(names, height, initLines(names.size(), height));
     }
 
-    private void addLadder(Ladder ladder, int countOfPerson, int height) {
-        List<Line> lines = IntStream.range(0, height)
+    private List<Line> initLines(int countOfPerson, int height) {
+        return IntStream.range(0, height)
                 .mapToObj(i -> RandomLineFactory.getLine(countOfPerson))
                 .collect(Collectors.toUnmodifiableList());
-        ladder.addLines(lines);
     }
 
 }

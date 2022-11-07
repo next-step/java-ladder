@@ -9,13 +9,10 @@ public class Ladder {
     private final Lines lines;
     private final Users users;
 
-    public Ladder(List<String> names, int height) {
+    public Ladder(List<String> names, int height, List<Line> lines) {
         this.users = new Users(names);
         this.lines = new Lines(height);
-    }
-
-    public void addLines(List<Line> lines) {
-        this.lines.addLines(lines);
+        addLines(lines);
     }
 
     public List<Line> getLines() {
@@ -36,4 +33,9 @@ public class Ladder {
 
         return point.getIndex();
     }
+
+    private void addLines(List<Line> lines) {
+        this.lines.addLines(lines);
+    }
+
 }
