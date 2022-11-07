@@ -3,54 +3,55 @@ package nextstep.fp;
 import java.util.List;
 
 public class Lambda {
-    public static void printAllOld(List<Integer> numbers) {
-        System.out.println("printAllOld");
 
-        for (int number : numbers) {
-            System.out.println(number);
-        }
-    }
+	public static void printAllOld(List<Integer> numbers) {
+		System.out.println("printAllOld");
 
-    public static void printAllLambda(List<Integer> numbers) {
-        System.out.println("printAllLambda");
+		for (int number : numbers) {
+			System.out.println(number);
+		}
+	}
 
-        numbers.forEach(System.out::println);
-    }
+	public static void printAllLambda(List<Integer> numbers) {
+		System.out.println("printAllLambda");
 
-    public static void runThread() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("Hello from thread");
-            }
-        }).start();
-    }
+		numbers.forEach(System.out::println);
+	}
 
-    public static int sumAll(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            total += number;
-        }
-        return total;
-    }
+	public static void runThread() {
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				System.out.println("Hello from thread");
+			}
+		}).start();
+	}
 
-    public static int sumAllEven(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number % 2 == 0) {
-                total += number;
-            }
-        }
-        return total;
-    }
+	public static int sumAll(List<Integer> numbers, Conditional conditional) {
+		int total = 0;
+		for (int number : numbers) {
+			total += validNumber(number, conditional);
+		}
+		return total;
+	}
 
-    public static int sumAllOverThree(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number > 3) {
-                total += number;
-            }
-        }
-        return total;
-    }
+	public static int validNumber(int number, Conditional conditional) {
+		if (conditional.isValid(number)) {
+			return number;
+		}
+		return 0;
+	}
+
+	public static int sumAll(List<Integer> numbers) {
+		return sumAll(numbers, number -> true);
+	}
+
+	public static int sumAllEven(List<Integer> numbers) {
+		return sumAll(numbers, number -> number % 2 == 0);
+	}
+
+	public static int sumAllOverThree(List<Integer> numbers) {
+		return sumAll(numbers, number -> number > 3);
+	}
+
 }
