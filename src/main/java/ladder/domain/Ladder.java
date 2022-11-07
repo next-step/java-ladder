@@ -9,25 +9,14 @@ public class Ladder {
     private final Lines lines;
     private final Users users;
 
-    public Ladder(List<String> names, int height) {
+    public Ladder(List<String> names, int height, List<Line> lines) {
         this.users = new Users(names);
         this.lines = new Lines(height);
-    }
-
-    public void addLines(List<Line> lines) {
-        this.lines.addLines(lines);
-    }
-
-    public Line getLine(int index) {
-        return this.lines.getLine(index);
+        addLines(lines);
     }
 
     public List<Line> getLines() {
         return this.lines.getLines();
-    }
-
-    public int getHeight() {
-        return this.lines.getHeight();
     }
 
     public List<String> getNames() {
@@ -38,17 +27,15 @@ public class Ladder {
         return this.users.getMaxNameLength();
     }
 
-    public int getCountOfPerson() {
-        return this.users.getCountOfPerson();
-    }
-
     public int getEndPoint(String name) {
-        int currentPoint = this.users.getIndex(name);
+        Point point = new Point(this.users.getIndex(name));
+        getLines().forEach(point::move);
 
-        for(Line line : getLines()) {
-            currentPoint += line.move(currentPoint);
-        }
-
-        return currentPoint;
+        return point.getIndex();
     }
+
+    private void addLines(List<Line> lines) {
+        this.lines.addLines(lines);
+    }
+
 }
