@@ -1,6 +1,5 @@
 package ladder.domain.line;
 
-import static ladder.domain.line.BarHelper.getBars;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -20,13 +19,13 @@ class LineTest {
     void init_line() {
         assertAll(
                 () -> assertDoesNotThrow(
-                        () -> new Line(4, getBars(List.of(false, true, false, true)))),
+                        () -> new Line(4, BarHelper.getBars(List.of(false, true, false, true)))),
                 () -> assertThatExceptionOfType(InvalidLineException.class)
-                        .isThrownBy(() -> new Line(4, getBars(List.of(false, true, true, false)))),
+                        .isThrownBy(() -> new Line(4, BarHelper.getBars(List.of(false, true, true, false)))),
                 () -> assertThatExceptionOfType(InvalidLineException.class)
-                        .isThrownBy(() -> new Line(4, getBars(List.of(true, false, true, false)))),
+                        .isThrownBy(() -> new Line(4, BarHelper.getBars(List.of(true, false, true, false)))),
                 () -> assertThatExceptionOfType(MismatchPersonBarsException.class)
-                        .isThrownBy(() -> new Line(4, getBars(List.of(false, true, false))))
+                        .isThrownBy(() -> new Line(4, BarHelper.getBars(List.of(false, true, false))))
         );
     }
 

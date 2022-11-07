@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import static ladder.domain.line.BarHelper.getBars;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -15,6 +14,7 @@ import ladder.domain.exception.InvalidNameLengthException;
 import ladder.domain.exception.MismatchHeightLinesException;
 import ladder.domain.exception.MismatchPersonBarsException;
 import ladder.domain.exception.NullNamesException;
+import ladder.domain.line.BarHelper;
 import ladder.domain.line.Line;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,10 +28,10 @@ class LadderTest {
 
         assertDoesNotThrow(() -> ladder.addLines(
                 List.of(
-                        new Line(3, getBars(List.of(false, false, true))),
-                        new Line(3, getBars(List.of(false, true, false))),
-                        new Line(3, getBars(List.of(false, true, false))),
-                        new Line(3, getBars(List.of(false, false, true)))
+                        new Line(3, BarHelper.getBars(List.of(false, false, true))),
+                        new Line(3, BarHelper.getBars(List.of(false, true, false))),
+                        new Line(3, BarHelper.getBars(List.of(false, true, false))),
+                        new Line(3, BarHelper.getBars(List.of(false, false, true)))
                 )
         ));
     }
@@ -45,10 +45,10 @@ class LadderTest {
                 .isThrownBy(() ->
                         ladder.addLines(
                                 List.of(
-                                        new Line(3, getBars(List.of(false, true, true))),
-                                        new Line(3, getBars(List.of(false, false, true))),
-                                        new Line(3, getBars(List.of(false, true, false))),
-                                        new Line(3, getBars(List.of(false, false, true)))
+                                        new Line(3, BarHelper.getBars(List.of(false, true, true))),
+                                        new Line(3, BarHelper.getBars(List.of(false, false, true))),
+                                        new Line(3, BarHelper.getBars(List.of(false, true, false))),
+                                        new Line(3, BarHelper.getBars(List.of(false, false, true)))
                                 )
                         ));
     }
@@ -62,10 +62,10 @@ class LadderTest {
                 .isThrownBy(() ->
                         ladder.addLines(
                                 List.of(
-                                        new Line(3, getBars(List.of(false, false, true))),
-                                        new Line(3, getBars(List.of(false, true, false))),
-                                        new Line(3, getBars(List.of(false, true, false))),
-                                        new Line(3, getBars(List.of(true, false, true)))
+                                        new Line(3, BarHelper.getBars(List.of(false, false, true))),
+                                        new Line(3, BarHelper.getBars(List.of(false, true, false))),
+                                        new Line(3, BarHelper.getBars(List.of(false, true, false))),
+                                        new Line(3, BarHelper.getBars(List.of(true, false, true)))
                                 )
                         ));
     }
@@ -79,10 +79,10 @@ class LadderTest {
                 .isThrownBy(() ->
                         ladder.addLines(
                                 List.of(
-                                        new Line(3, getBars(List.of(false, false, true))),
-                                        new Line(3, getBars(List.of(false, false))),
-                                        new Line(3, getBars(List.of(false, false, true))),
-                                        new Line(3, getBars(List.of(false, false, true)))
+                                        new Line(3, BarHelper.getBars(List.of(false, false, true))),
+                                        new Line(3, BarHelper.getBars(List.of(false, false))),
+                                        new Line(3, BarHelper.getBars(List.of(false, false, true))),
+                                        new Line(3, BarHelper.getBars(List.of(false, false, true)))
                                 )
                         ));
     }
@@ -96,9 +96,9 @@ class LadderTest {
                 .isThrownBy(() ->
                         ladder.addLines(
                                 List.of(
-                                        new Line(3, getBars(List.of(false, false, true))),
-                                        new Line(3, getBars(List.of(false, false, true))),
-                                        new Line(3, getBars(List.of(false, false, true)))
+                                        new Line(3, BarHelper.getBars(List.of(false, false, true))),
+                                        new Line(3, BarHelper.getBars(List.of(false, false, true))),
+                                        new Line(3, BarHelper.getBars(List.of(false, false, true)))
                                 )
                         ));
     }
@@ -141,11 +141,11 @@ class LadderTest {
         Ladder ladder = new Ladder(List.of("abc", "def", "ghi"), 5);
         ladder.addLines(
                 List.of(
-                        new Line(3, getBars(List.of(false, false, true))),
-                        new Line(3, getBars(List.of(false, true, false))),
-                        new Line(3, getBars(List.of(false, false, true))),
-                        new Line(3, getBars(List.of(false, true, false))),
-                        new Line(3, getBars(List.of(false, false, true)))
+                        new Line(3, BarHelper.getBars(List.of(false, false, true))),
+                        new Line(3, BarHelper.getBars(List.of(false, true, false))),
+                        new Line(3, BarHelper.getBars(List.of(false, false, true))),
+                        new Line(3, BarHelper.getBars(List.of(false, true, false))),
+                        new Line(3, BarHelper.getBars(List.of(false, false, true)))
                 )
         );
 
