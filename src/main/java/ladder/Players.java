@@ -10,6 +10,9 @@ public class Players {
     public Players(String input) {
         List<String> playersOfString = Stream.of(input.split(",")).collect(Collectors.toList());
         this.players = playersOfString.stream().map(Player::new).collect(Collectors.toUnmodifiableList());
+        if (playersOfString.size() < 2) {
+            throw new IllegalArgumentException("2명이상 입력해주세요");
+        }
     }
 
     public List<Player> getPlayers() {
