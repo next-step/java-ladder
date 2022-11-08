@@ -4,12 +4,12 @@ public class Ladder {
 
     private final Participants participants;
     private final LadderHeight height;
-    private final BridgeLines bridgeLines;
+    private final Lines lines;
 
-    public Ladder(final Participants participants, final LadderHeight height, final BridgeLinesStrategy strategy) {
+    public Ladder(final Participants participants, final LadderHeight height, final Lines lines) {
         this.participants = participants;
         this.height = height;
-        this.bridgeLines = strategy.create(participants.size() - 1, height);
+        this.lines = lines;
     }
 
     public Participants getParticipants() {
@@ -20,12 +20,12 @@ public class Ladder {
         return this.height;
     }
 
-    public BridgeLines getBridgeLines() {
-        return bridgeLines;
+    public Lines getLines() {
+        return this.lines;
     }
 
-    public BridgeLine getBridgeLine(final int index) {
-        return this.bridgeLines.getBridgeLines()
-                               .get(index);
+    public Line getLine(final int index) {
+        return this.lines.getLines()
+                         .get(index);
     }
 }

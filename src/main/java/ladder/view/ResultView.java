@@ -38,8 +38,8 @@ public class ResultView {
                     continue;
                 }
 
-                if (ladder.getBridgeLine(i - 1)
-                          .isConnected(h)) {
+                if (ladder.getLine(h)
+                          .isConnected(i - 1)) {
                     System.out.print(CONNECTION_STRING + LINE_STRING);
                     continue;
                 }

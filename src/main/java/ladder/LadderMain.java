@@ -14,6 +14,7 @@ public class LadderMain {
                                                                     .map(Participant::new)
                                                                     .collect(Collectors.toList()));
         final LadderHeight ladderHeight = new LadderHeight(InputView.inputLadderHeight());
-        ResultView.print(new Ladder(participants, ladderHeight, new BridgeLinesRandomStrategy()));
+        final Ladder ladder = LadderFactory.create(participants, ladderHeight);
+        ResultView.print(ladder);
     }
 }
