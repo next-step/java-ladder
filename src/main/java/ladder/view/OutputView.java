@@ -14,6 +14,7 @@ public class OutputView {
 	public static final String LADDER_COLUMN_EDGE_MARK = "|";
 	public static final String LADDER_COLUMN_WIDTH_NOT_EMPTY_MARK = "-";
 	public static final String EMPTY_MARK = " ";
+	public static final String ALL = "all";
 
 	private StringBuilder result = new StringBuilder();
 
@@ -43,34 +44,38 @@ public class OutputView {
 	}
 
 	private void addLadder(Ladder ladder) {
-		ladder.stream()
-			.forEach(this::addRow);
+		ladder.forEach(this::addRow);
 	}
 
-	private void addRow(LadderRow ladderRow) {
-		result.append(StringUtil.getMarks(Person.MAX_LENGTH_NAME - 1, EMPTY_MARK));
+	private void addRow(LadderLine ladderLine) {
+		addMargine();
 
-		ladderRow.stream()
-			.forEach(this::addColumn);
+		ladderLine.forEach(point -> {
+			addEdge();
+			addWidth(point);
+		});
 
 		changeLine();
+	}
+
+	private StringBuilder addMargine() {
+		return result.append(StringUtil.getMarks(Person.MAX_LENGTH_NAME - 1, EMPTY_MARK));
+	}
+
+	private void addEdge() {
+		result.append(LADDER_COLUMN_EDGE_MARK);
 	}
 
 	private StringBuilder changeLine() {
 		return result.append(System.lineSeparator());
 	}
 
-	private void addColumn(LadderColumn column) {
-		if (column instanceof LadderColumnEdge) {
-			result.append(LADDER_COLUMN_EDGE_MARK);
-			return;
-		}
-
+	private void addWidth(Point column) {
 		result.append(getLadderColumnWidthMark(column));
 	}
 
-	private String getLadderColumnWidthMark(LadderColumn column) {
-		if (column.isNotEmpty()) {
+	private String getLadderColumnWidthMark(Point point) {
+		if (point.isMark()) {
 			return getMarks(LADDER_COLUMN_WIDTH_NOT_EMPTY_MARK);
 		}
 
@@ -81,12 +86,8 @@ public class OutputView {
 		return StringUtil.getMarks(Person.MAX_LENGTH_NAME, mark);
 	}
 
-	private boolean isSingle(Persons selectedPersons) {
-		return selectedPersons.size() == 1;
-	}
-
 	public void print(LadderGameResults ladderGameResults, InputDTO inputDTO, String selectedPerson) {
-		if ("all".equals(selectedPerson)) {
+		if (ALL.equals(selectedPerson)) {
 			printSingleResult(ladderGameResults, inputDTO.getPersons());
 			return;
 		}

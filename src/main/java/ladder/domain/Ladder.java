@@ -1,26 +1,69 @@
 package ladder.domain;
 
 import java.util.AbstractList;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.function.BooleanSupplier;
 
 /**
- * Created by seungwoo.song on 2022-10-17
+ * Created by seungwoo.song on 2022-11-04
  */
-public class Ladder extends AbstractList<LadderRow> {
+public class Ladder extends AbstractList<LadderLine> {
 
-	private final List<LadderRow> ladderRows;
+	private final List<LadderLine> ladderLines;
 
-	public Ladder(List<LadderRow> ladderRows) {
-		this.ladderRows = ladderRows;
+	public Ladder(List<LadderLine> ladderLines) {
+		this.ladderLines = ladderLines;
 	}
 
-	@Override
-	public LadderRow get(int index) {
-		return ladderRows.get(index);
+	public static Ladder of(int rowCount, int personCount, BooleanSupplier booleanSupplier) {
+		if (rowCount <= 0 || personCount <= 0 || booleanSupplier == null) {
+			throw new IllegalArgumentException("잘못됩 입력값 입니다.");
+		}
+
+		List<LadderLine> ladderLine = new ArrayList<>();
+		for (int i = 0; i < rowCount; i++) {
+			ladderLine.add(LadderLine.of(personCount, booleanSupplier));
+		}
+		return new Ladder(ladderLine);
 	}
 
-	@Override
-	public int size() {
-		return ladderRows.size();
+	public int getResultIndex(int startIndex) {
+		int index = startIndex;
+
+		for (int i = 0; i < ladderLines.size(); i++) {
+			LadderLine ladderLine = ladderLines.get(i);
+			index = ladderLine.move(index);
+		}
+
+		return index;
+	}
+
+	@Override public LadderLine get(int index) {
+		return ladderLines.get(index);
+	}
+
+	@Override public int size() {
+		return ladderLines.size();
+	}
+
+	//===================================================
+
+	@Override public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		Ladder ladder = (Ladder)o;
+		return Objects.equals(ladderLines, ladder.ladderLines);
+	}
+
+	@Override public int hashCode() {
+		return Objects.hash(ladderLines);
+	}
+
+	@Override public String toString() {
+		return "Ladder{" + "ladderLines=" + ladderLines + '}';
 	}
 }

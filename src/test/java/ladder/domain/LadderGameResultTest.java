@@ -4,9 +4,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Created by seungwoo.song on 2022-10-24
+ * Created by seungwoo.song on 2022-11-07
  */
 class LadderGameResultTest {
 

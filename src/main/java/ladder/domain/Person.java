@@ -11,21 +11,13 @@ public class Person {
 	private String name;
 	private int position;
 
-	public Person(String name) {
-		this(name, 0);
-	}
-
 	public Person(String name, int index) {
 		if (name.length() > MAX_LENGTH_NAME) {
 			throw new IllegalArgumentException("이름은 5글자 이하여야 합니다.");
 		}
 
 		this.name = name;
-		this.position = getPosition(index);
-	}
-
-	private int getPosition(int index) {
-		return index * 2;
+		this.position = index;
 	}
 
 	public String getName() {

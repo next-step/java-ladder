@@ -72,7 +72,7 @@ public class InputDTO {
 		return persons;
 	}
 
-	public int personCount() {
+	public int personSize() {
 		return persons.size();
 	}
 

@@ -61,26 +61,6 @@ public class LadderGameResults extends AbstractList<LadderGameResult> {
 	}
 
 	public LadderGameResult get(Person person) {
-		if (isOdd(person.getPosition())) {
-			throw new IllegalArgumentException("잘못된 위치 입니다. " + person);
-		}
-
-		return get(getIndex(person.getPosition()));
-	}
-
-	private int getIndex(int position) {
-		return position / 2;
-	}
-
-	private boolean isOdd(int position) {
-		return position % 2 != 0;
-	}
-
-	public LadderGameResults get(Persons persons) {
-		List<LadderGameResult> collect = persons.stream()
-			.map(this::get)
-			.collect(Collectors.toList());
-
-		return new LadderGameResults(collect);
+		return get(person.getPosition());
 	}
 }

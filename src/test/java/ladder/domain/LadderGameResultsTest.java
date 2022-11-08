@@ -25,14 +25,6 @@ class LadderGameResultsTest {
 	}
 
 	@Test
-	void 결과값_조회_다건_성공() {
-		LadderGameResults ladderGameResults = LadderGameResults.of(List.of("꽝", "1000"));
-		Persons persons = Persons.of(List.of(new Person("test", 0)));
-
-		assertThat(ladderGameResults.get(persons)).isEqualTo(LadderGameResults.of(List.of("꽝")));
-	}
-
-	@Test
 	void 결과값_조회_실패() {
 		LadderGameResults ladderGameResults = LadderGameResults.of(List.of("꽝", "1000"));
 

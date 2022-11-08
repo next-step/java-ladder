@@ -14,7 +14,7 @@ public class RandomUtil {
 	private RandomUtil() {
 	}
 
-	public static boolean random() {
+	public static boolean generateRandomBoolean() {
 		return random(MAX_BOOLEAN_NUMBER) == 1;
 	}
 
