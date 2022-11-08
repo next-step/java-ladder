@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import ladder.exception.CreatingParticipantFailureException;
-
 import java.util.Objects;
 import java.util.Optional;
 
@@ -34,7 +32,7 @@ public final class Participant {
                 .orElseThrow(() -> {
                     final String exceptionMessage = String.format("참가자 이름 길이는 최소 %d, 최대 %d 입니다.",
                             MINIMUM_NAME_LENGTH, MAXIMUM_NAME_LENGTH);
-                    throw new CreatingParticipantFailureException(exceptionMessage);
+                    throw new IllegalArgumentException(exceptionMessage);
                 });
     }
 
