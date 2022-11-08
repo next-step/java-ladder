@@ -1,6 +1,8 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static ladder.util.RandomValueGenerator.generate;
@@ -10,6 +12,14 @@ public class LadderLine {
 
     public LadderLine(List<Point> points) {
         this.points = points;
+    }
+
+    public LadderLine(Point... points) {
+        this(Arrays.asList(points));
+    }
+
+    public List<Point> getPoints(){
+        return Collections.unmodifiableList(points);
     }
 
     public int move(int position) {

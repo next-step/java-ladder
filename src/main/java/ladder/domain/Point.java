@@ -37,6 +37,10 @@ public class Point {
         return new Point(0, Direction.first(right));
     }
 
+    public boolean hasLine(){
+        return direction.isLeft();
+    }
+
     @Override
     public String toString() {
         return "Point{" +

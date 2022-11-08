@@ -5,24 +5,24 @@ import ladder.strategy.LineGenerateStrategy;
 import java.util.*;
 
 public class Lines {
-    private final List<Line> lines;
+    private final List<LadderLine> lines;
 
-    public Lines(List<Line> lines) {
+    public Lines(List<LadderLine> lines) {
         this.lines = lines;
     }
 
-    public Lines(Line... lines) {
+    public Lines(LadderLine... lines) {
         this(Arrays.asList(lines));
     }
 
-    public List<Line> getLines() {
+    public List<LadderLine> getLines() {
         return Collections.unmodifiableList(lines);
     }
 
     public static Lines from(int linesSize, int lineSize, LineGenerateStrategy strategy) {
-        List<Line> result = new ArrayList<>();
+        List<LadderLine> result = new ArrayList<>();
         for (int i = 0; i < linesSize; i++) {
-            result.add(Line.from(lineSize, strategy));
+            result.add(LadderLine.init(lineSize));
         }
         return new Lines(result);
     }
@@ -37,22 +37,10 @@ public class Lines {
     }
 
     public int getEachResult(int participantOrder) {
-        int index = participantOrder;
-        for (Line line : lines) {
-            if (line.isLastPoint(index)) {
-                if (line.isMoveBackwards(index)) {
-                    index--;
-                }
-                continue;
-            }
-            if (line.isMoveAhead(index)) {
-                index++;
-                continue;
-            }
-            if (line.isMoveBackwards(index)) {
-                index--;
-            }
+        int result = participantOrder;
+        for (LadderLine line : lines) {
+            result = line.move(result);
         }
-        return index;
+        return result;
     }
 }

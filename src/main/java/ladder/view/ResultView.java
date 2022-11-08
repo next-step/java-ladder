@@ -32,11 +32,11 @@ public class ResultView {
                         .forEach(this::printLine));
     }
 
-    private void printLine(Line line) {
+    private void printLine(LadderLine line) {
         line.getPoints()
                 .forEach(point -> {
                     String result = LINE_WITH_NO_BRIDGE;
-                    if (point) {
+                    if (point.hasLine()) {
                         result = LINE_WITH_BRIDGE;
                     }
                     System.out.print(result);
