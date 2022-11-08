@@ -5,14 +5,12 @@ import java.util.Objects;
 public class Ladder {
 
     private final Participants participants;
-    private final LadderHeight height;
     private final Lines lines;
 
-    public Ladder(final Participants participants, final LadderHeight height, final Lines lines) {
-        validateOrThrow(participants, height, lines);
+    public Ladder(final Participants participants, final Lines lines) {
+        validateOrThrow(participants, lines);
 
         this.participants = participants;
-        this.height = height;
         this.lines = lines;
     }
 
@@ -20,8 +18,8 @@ public class Ladder {
         return new Participants(participants);
     }
 
-    public LadderHeight getHeight() {
-        return this.height;
+    public int getHeight() {
+        return this.lines.size();
     }
 
     public Lines getLines() {
@@ -33,9 +31,9 @@ public class Ladder {
                          .get(index);
     }
 
-    private void validateOrThrow(final Participants participants, final LadderHeight height, final Lines lines) {
-        if (Objects.isNull(participants) || Objects.isNull(height) || Objects.isNull(lines)) {
-            throw new IllegalArgumentException("null인 멤버 변수를 포함할 수 없습니다.");
+    private void validateOrThrow(final Participants participants, final Lines lines) {
+        if (Objects.isNull(participants) || Objects.isNull(lines)) {
+            throw new IllegalArgumentException("참가자나 사다리 라인은 null이 될 수 없습니다.");
         }
     }
 }

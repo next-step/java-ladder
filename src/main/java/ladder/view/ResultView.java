@@ -27,11 +27,9 @@ public class ResultView {
                                  .map(name -> addLeftPaddingString(name, Participant.MAXIMUM_NAME_LENGTH))
                                  .collect(Collectors.joining(" ")));
 
-        final int intLadderHeight = ladder.getHeight()
-                                          .getValue();
         final int participantsSize = ladder.getParticipants()
                                            .size();
-        for (int h = 0; h < intLadderHeight; h++) {
+        for (int h = 0; h < ladder.getHeight(); h++) {
             for (int i = 0; i < participantsSize; i++) {
                 if (i == 0) {
                     System.out.print(DISCONNECTION_STRING + LINE_STRING);

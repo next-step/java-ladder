@@ -12,6 +12,6 @@ public class LadderFactory {
         Lines lines = new Lines(IntStream.range(0, height.getValue())
                                          .mapToObj(index -> LineFactory.create(participants.size()))
                                          .collect(Collectors.toList()));
-        return new Ladder(participants, height, lines);
+        return new Ladder(participants, lines);
     }
 }

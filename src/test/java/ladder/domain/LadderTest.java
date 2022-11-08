@@ -19,13 +19,11 @@ public class LadderTest {
         final Participants participants = new Participants(Stream.of("woody", "jacob", "tate", "test")
                                                                  .map(Participant::new)
                                                                  .collect(Collectors.toList()));
-        final LadderHeight ladderHeight = new LadderHeight(5);
-        final Ladder ladder = new Ladder(participants, ladderHeight, new Lines(List.of(new Line(List.of(true)))));
+        final Ladder ladder = new Ladder(participants, new Lines(List.of(new Line(List.of(true)))));
 
         assertAll(
                 () -> assertThat(ladder.getParticipants()
                                        .size()).isEqualTo(4),
-                () -> assertThat(ladder.getHeight()).isEqualTo(new LadderHeight(5)),
                 () -> assertThat(ladder.getLines()
                                        .size()).isEqualTo(1)
         );
@@ -37,15 +35,11 @@ public class LadderTest {
         final Participants participants = new Participants(Stream.of("woody", "jacob", "tate", "test")
                                                                  .map(Participant::new)
                                                                  .collect(Collectors.toList()));
-        final LadderHeight ladderHeight = new LadderHeight(5);
-        final Ladder ladder = new Ladder(participants, ladderHeight, new Lines(List.of(new Line(List.of(true)))));
 
         assertAll(
-                () -> assertThatThrownBy(() -> new Ladder(null, ladderHeight,
+                () -> assertThatThrownBy(() -> new Ladder(null,
                         new Lines(List.of(new Line(List.of(true)))))),
-                () -> assertThatThrownBy(() -> new Ladder(participants, null,
-                        new Lines(List.of(new Line(List.of(true)))))),
-                () -> assertThatThrownBy(() -> new Ladder(participants, ladderHeight, null))
+                () -> assertThatThrownBy(() -> new Ladder(participants, null))
         );
     }
 }
