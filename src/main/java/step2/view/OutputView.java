@@ -23,10 +23,9 @@ public class OutputView {
 	}
 
 	private static void printLadder(Line line) {
-		for (boolean step : line.getLine()) {
-			System.out.print(LADDER_HEIGHT);
-			System.out.print(step ? LADDER_STEP : LADDER_SPACE);
-		}
+		line.getLine().stream()
+				.map(step -> LADDER_HEIGHT + (step ? LADDER_STEP : LADDER_SPACE))
+				.forEach(System.out::print);
 		System.out.print(LADDER_HEIGHT);
 	}
 }

@@ -6,13 +6,10 @@ import java.util.Random;
 import java.util.stream.IntStream;
 
 public class Line {
-	private final List<Boolean> line = new ArrayList<>();
+	private final List<Boolean> line;
 
-	public Line(int userCnt) {
-		Random random = new Random();
-		line.add(random.nextBoolean());
-		IntStream.range(1, userCnt - 1)
-				.forEach(i -> line.add(!line.get(i - 1) && random.nextBoolean()));
+	public Line(List<Boolean> line){
+		this.line = line;
 	}
 
 	public List<Boolean> getLine() {
