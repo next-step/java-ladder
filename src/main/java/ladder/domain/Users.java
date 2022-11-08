@@ -24,7 +24,8 @@ public class Users
     }
 
     public List<User> getUserList() {
-        return list;
+        return list.stream()
+            .collect(Collectors.toUnmodifiableList());
     }
 
     private static void valid(String[] names) {
