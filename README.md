@@ -11,9 +11,8 @@
 ## 2단계 - 사다리(생성)
 
 ### 1. Point
-* 라인 배열의 요소
-* boolean 값을 가진다.
-* true 연결 o / false 연결 x
+* boolean left / right 를 요소로 갖는다.
+* direction enum 을 리턴한다.
 
 ### 2. Line 
 * 사다리 게임에 라인
@@ -21,12 +20,12 @@
 * 생성 시 connect 메서드로 포인트를 입력한다.
 * true 값 뒤에는 true 가 또 나올 수 없으므로 validation 을 한다.
 
-## 3. InputView
+## 3. Ladder
+* 사다리 라인을 그린다.
+
+## 4. InputView
 * 이름 리스트를 받는다. validation -> 5글자
 * 최대 사다리 높이를 받는다. validation -> 숫자
-
-## 4. Ladder
-* 사다리 라인을 그린다.
 
 ## 5. ResultView
 * 이름 리스트 뷰
