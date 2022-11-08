@@ -1,5 +1,7 @@
 package ladder.view;
 
+import ladder.domain.Name;
+
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -8,18 +10,12 @@ import java.util.stream.Collectors;
 
 public class InputView {
 
-    public static List<String> inputPeople() {
+    public static List<Name> inputPeople() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
 
         String peopleString = new Scanner(System.in).nextLine();
         return Arrays.stream(peopleString.split(","))
-                .filter(name -> !name.isBlank())
-                .map(String::trim)
-                .peek(name -> {
-                    if (name.length() > 5) {
-                        throw new IllegalArgumentException("이름은 5글자 이하여야 합니다.");
-                    }
-                })
+                .map(Name::new)
                 .collect(Collectors.toList());
     }
 

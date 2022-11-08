@@ -1,6 +1,7 @@
 package ladder.view;
 
 import ladder.domain.Ladder;
+import ladder.domain.Name;
 import ladder.domain.Point;
 
 import java.util.List;
@@ -8,14 +9,14 @@ import java.util.stream.Collectors;
 
 public class ResultView {
 
-    public static void PrintResult(List<String> names, Ladder ladder, int height) {
+    public static void PrintResult(List<Name> names, Ladder ladder, int height) {
         printNames(names);
         printLadder(ladder, names.size(), height);
     }
 
-    private static void printNames(List<String> names) {
+    private static void printNames(List<Name> names) {
         String nameString = names.stream()
-                .map(name -> String.format("%5s", name))
+                .map(name -> String.format("%5s", name.get()))
                 .collect(Collectors.joining(" "));
         System.out.println(nameString);
     }
