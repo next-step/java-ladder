@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class StreamStudy {
 
@@ -29,13 +28,12 @@ public class StreamStudy {
             .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-        List<String> sortedWords = words.stream()
+        words.stream()
             .filter(word -> word.length() > 12)
             .distinct()
             .sorted(Comparator.comparing(String::length).reversed())
-            .collect(Collectors.toList());
-
-        IntStream.range(0, 100).forEach(index -> System.out.println(sortedWords.get(index)));
+            .limit(100)
+            .forEach(System.out::println);
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {

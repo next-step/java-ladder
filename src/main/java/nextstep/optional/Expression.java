@@ -16,13 +16,8 @@ enum Expression {
     }
 
     static Expression of(String expression) {
-        for (Expression v : values()) {
-            if (matchExpression(v, expression)) {
-                return v;
-            }
-        }
         return Arrays.stream(values())
-            .filter(v -> matchExpression(v, expression))
+            .filter(value -> matchExpression(value, expression))
             .findFirst()
             .orElseThrow(() -> new IllegalArgumentException(String.format("%s는 사칙연산에 해당하지 않는 표현식입니다.", expression)));
     }
