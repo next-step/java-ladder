@@ -15,17 +15,6 @@ public class LadderTest {
     }
 
     @Test
-    @DisplayName("1개 가로줄 생성 확인")
-    void one_point() {
-        Ladder targetLadder = new Ladder(5, 6, (lineSize, maxConnectCount, connectLine) -> {});
-
-        targetLadder.connectLine(targetLadder.getLine(2), targetLadder.getLine(3), 1);
-
-        assertThat(targetLadder.getLine(2).hasPoint(1)).isTrue();
-        assertThat(targetLadder.getLine(3).hasPoint(1)).isTrue();
-    }
-
-    @Test
     @DisplayName("생성자를 통한 1개 가로줄 생성 확인")
     void generator_one_point() {
         Ladder targetLadder = new Ladder(5, 6, (lineSize, maxConnectCount, connectLine) -> {

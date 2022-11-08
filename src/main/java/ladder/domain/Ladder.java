@@ -43,7 +43,7 @@ public class Ladder {
                 .findAny();
     }
 
-    public void connectLine(Line line, Line rightLine, int pointIndex) {
+    private void connectLine(Line line, Line rightLine, int pointIndex) {
         line.setPoint(pointIndex, Point.RIGHT);
         rightLine.setPoint(pointIndex, Point.LEFT);
     }
