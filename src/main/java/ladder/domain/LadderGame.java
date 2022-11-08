@@ -22,7 +22,7 @@ public class LadderGame {
     }
 
     private Points moveByLine(Points points, Line line) {
-        return points.movedPoints(line);
+        MoveStrategy moveStrategy = new MoveByLine(line);
+        return points.movedPoints(moveStrategy);
     }
-
 }

@@ -28,10 +28,13 @@ public class GameRunner {
         resultView.printLadder(ladder, initialInformation.maxNameSize());
         resultView.printNames(initialInformation.getWinningItems(), initialInformation.maxNameSize());
 
-        for (int i = 0; i < 2; i++) {
+        while(true) {
             String resultName = inputView.enterResultName();
             Points filteredPoints = ladderGame.filteredResultByName(resultName);
             resultView.printResult(filteredPoints, initialInformation.getWinningItems());
+            if (resultName.equals("all")) {
+                break;
+            }
         }
     }
 }

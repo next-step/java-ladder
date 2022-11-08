@@ -43,35 +43,35 @@ class PointsTest {
     static Stream<Arguments> movedPointsParam() {
         return Stream.of(
                 Arguments.arguments(
-                        new Line(new ArrayList<>(List.of(true))),
                         new Points(new ArrayList<>(List.of(
                                 new Point("kero", 0,  2),
                                 new Point("giro", 1,  2)
                         ))),
+                        new MoveByLine(new Line(new ArrayList<>(List.of(true)))),
                         new Points(new ArrayList<>(List.of(
                                 new Point("kero", 1,  2),
                                 new Point("giro", 0,  2)
                         )))
                 ),
                 Arguments.arguments(
-                        new Line(new ArrayList<>(List.of(false))),
                         new Points(new ArrayList<>(List.of(
                                 new Point("kero", 0,  2),
                                 new Point("giro", 1,  2)
                         ))),
+                        new MoveByLine(new Line(new ArrayList<>(List.of(false)))),
                         new Points(new ArrayList<>(List.of(
                                 new Point("kero", 0,  2),
                                 new Point("giro", 1,  2)
                         )))
                 ),
                 Arguments.arguments(
-                        new Line(new ArrayList<>(List.of(true, false, true))),
                         new Points(new ArrayList<>(List.of(
                                 new Point("kero", 0,  4),
                                 new Point("giro", 1,  4),
                                 new Point("zero", 2,  4),
                                 new Point("hero", 3,  4)
                         ))),
+                        new MoveByLine(new Line(new ArrayList<>(List.of(true, false, true)))),
                         new Points(new ArrayList<>(List.of(
                                 new Point("kero", 1,  4),
                                 new Point("giro", 0,  4),
@@ -85,8 +85,8 @@ class PointsTest {
     @DisplayName("movedPoints 성공")
     @ParameterizedTest(name = "{displayName} {index}")
     @MethodSource("movedPointsParam")
-    void movedPoints(Line line, Points points, Points expectedPoints) {
-        Points movedPoints = points.movedPoints(line);
+    void movedPoints(Points points, MoveStrategy moveStrategy, Points expectedPoints) {
+        Points movedPoints = points.movedPoints(moveStrategy);
         assertThat(movedPoints).isEqualTo(expectedPoints);
     }
 

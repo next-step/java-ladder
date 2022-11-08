@@ -51,8 +51,15 @@ public class ResultView extends View {
 
     private String lineConvertString(Line line, int nameMaxLength) {
         String lineString = line.line().stream()
-                .map(point -> point ? HORIZONTAL_ROAD.repeat(nameMaxLength) : EMPTY_HORIZONTAL_ROAD.repeat(nameMaxLength))
+                .map(point -> pointConvertString(point, nameMaxLength))
                 .collect(Collectors.joining(VERTICAL_ROAD));
         return VERTICAL_ROAD + lineString + VERTICAL_ROAD;
+    }
+
+    private String pointConvertString(Boolean point, int nameMaxLength) {
+        if (Boolean.TRUE.equals(point)) {
+            return HORIZONTAL_ROAD.repeat(nameMaxLength);
+        }
+        return EMPTY_HORIZONTAL_ROAD.repeat(nameMaxLength);
     }
 }

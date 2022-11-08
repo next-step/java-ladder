@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.text.MessageFormat;
 import java.util.Objects;
 
 public class Point {
@@ -7,23 +8,34 @@ public class Point {
 
     private final Location location;
 
+    private final Location maxLocation;
+
     public Point(String name, int location, int maxLocation) {
-        this(name, new Location(location, maxLocation));
+        this(name, new Location(location), new Location(maxLocation));
     }
 
-    private Point(String name, Location location) {
+    private Point(String name, Location location, Location maxLocation) {
         this.name = name;
         this.location = location;
+        this.maxLocation = maxLocation;
+        validateLocation();
+    }
+    private void validateLocation() {
+        if (location.compareTo(Location.ZERO) < 0 || location.compareTo(maxLocation) >= 0 ) {
+            throw new IllegalArgumentException(MessageFormat.format(
+                    "위치는 0이상, {0}미만이여야 하니다. 현재 입력합 위치: {1}",
+                    maxLocation,
+                    location
+            ));
+        }
     }
 
-    public Point movedPoint(Line line){
-        if (line.movableToLeft(location.currentLocation())) {
-            return new Point(this.name, location.frontLocation());
-        }
-        if (line.movableToRight(location.currentLocation())) {
-            return new Point(this.name, location.behindLocation());
-        }
-        return this;
+    public Point frontPoint() {
+        return new Point(this.name, location.frontLocation(), this.maxLocation);
+    }
+
+    public Point behindPoint() {
+        return new Point(this.name, location.behindLocation(), this.maxLocation);
     }
 
     public boolean isNameEqual(String targetName) {
@@ -39,7 +51,7 @@ public class Point {
     }
 
     public boolean isMatch(int location) {
-        return this.location.isMatch(location);
+        return this.location.currentLocation() == location;
     }
 
     public int location() {

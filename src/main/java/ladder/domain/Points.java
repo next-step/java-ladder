@@ -21,9 +21,9 @@ public class Points {
         this.points = points;
     }
 
-    public Points movedPoints(Line line) {
+    public Points movedPoints(MoveStrategy moveStrategy) {
         List<Point> movedPoints = this.points.stream()
-                .map(point -> point.movedPoint(line))
+                .map(moveStrategy::move)
                 .collect(Collectors.toList());
         return new Points(movedPoints);
     }

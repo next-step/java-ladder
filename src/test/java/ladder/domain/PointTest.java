@@ -5,8 +5,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
@@ -43,41 +41,53 @@ class PointTest {
         assertThat(thrown).isInstanceOf(IllegalArgumentException.class);
     }
 
-    static Stream<Arguments> movedPointParam() {
+    static Stream<Arguments> frontPointParam() {
         return Stream.of(
                 Arguments.arguments(
-                        new Line(new ArrayList<>(List.of(true))),
-                        new Point("kero", 0, 2),
-                        new Point("kero", 1, 2)
-                ),
-                Arguments.arguments(
-                        new Line(new ArrayList<>(List.of(false))),
-                        new Point("kero", 0, 2),
+                        new Point("kero", 1, 2),
                         new Point("kero", 0, 2)
                 ),
                 Arguments.arguments(
-                        new Line(new ArrayList<>(List.of(true, false))),
-                        new Point("kero", 1, 3),
-                        new Point("kero", 0, 3)
-                ),
-                Arguments.arguments(
-                        new Line(new ArrayList<>(List.of(false, true))),
-                        new Point("kero", 1, 3),
-                        new Point("kero", 2, 3)
-                ),
-                Arguments.arguments(
-                        new Line(new ArrayList<>(List.of(false, false))),
-                        new Point("kero", 1, 3),
+                        new Point("kero", 2, 3),
                         new Point("kero", 1, 3)
+                ),
+                Arguments.arguments(
+                        new Point("kero", 100, 101),
+                        new Point("kero", 99, 101)
                 )
         );
     }
 
-    @DisplayName("movedPoint 성공")
+    @DisplayName("frontPoint 성공")
     @ParameterizedTest(name = "{displayName} {index}")
-    @MethodSource("movedPointParam")
-    void movedPoint(Line line, Point point, Point expectedPoint) {
-        Point movedPoint = point.movedPoint(line);
-        assertThat(movedPoint).isEqualTo(expectedPoint);
+    @MethodSource("frontPointParam")
+    void frontPoint(Point point, Point expectedPoint) {
+        Point frontPoint = point.frontPoint();
+        assertThat(frontPoint).isEqualTo(expectedPoint);
+    }
+
+    static Stream<Arguments> behindPointParam() {
+        return Stream.of(
+                Arguments.arguments(
+                        new Point("kero", 0, 2),
+                        new Point("kero", 1, 2)
+                ),
+                Arguments.arguments(
+                        new Point("kero", 1, 3),
+                        new Point("kero", 2, 3)
+                ),
+                Arguments.arguments(
+                        new Point("kero", 99, 101),
+                        new Point("kero", 100, 101)
+                )
+        );
+    }
+
+    @DisplayName("behindPoint 성공")
+    @ParameterizedTest(name = "{displayName} {index}")
+    @MethodSource("behindPointParam")
+    void behindPoint(Point point, Point expectedPoint) {
+        Point behindPoint = point.behindPoint();
+        assertThat(behindPoint).isEqualTo(expectedPoint);
     }
 }

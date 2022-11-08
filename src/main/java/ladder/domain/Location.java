@@ -1,18 +1,13 @@
 package ladder.domain;
 
-import java.text.MessageFormat;
 import java.util.Objects;
 
-public class Location {
-
+public class Location implements Comparable<Location> {
+    public static final Location ZERO = new Location(0);
     private final int location;
 
-    private final int maxLocation;
-
-    public Location(int location, int maxLocation) {
+    public Location(int location) {
         this.location = location;
-        this.maxLocation = maxLocation;
-        validateLocation();
     }
 
     public int currentLocation() {
@@ -20,25 +15,11 @@ public class Location {
     }
 
     public Location frontLocation() {
-        return new Location(location - 1, this.maxLocation);
+        return new Location(location - 1);
     }
 
     public Location behindLocation() {
-        return new Location(location + 1, this.maxLocation);
-    }
-
-    public boolean isMatch(int location) {
-        return location == this.location;
-    }
-
-    private void validateLocation() {
-        if (location < 0 || location >= maxLocation) {
-            throw new IllegalArgumentException(MessageFormat.format(
-                    "위치는 0이상, {0}미만이여야 하니다. 현재 입력합 위치: {1}",
-                    maxLocation,
-                    location
-            ));
-        }
+        return new Location(location + 1);
     }
 
     @Override
@@ -46,18 +27,21 @@ public class Location {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Location location1 = (Location) o;
-        return location == location1.location && maxLocation == location1.maxLocation;
+        return location == location1.location;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(location, maxLocation);
+        return Objects.hash(location);
     }
 
     @Override
     public String toString() {
-        return "Location{" +
-                "location=" + location +
-                '}';
+        return Integer.toString(location);
+    }
+
+    @Override
+    public int compareTo(Location o) {
+        return Integer.compare(this.location, o.location);
     }
 }
