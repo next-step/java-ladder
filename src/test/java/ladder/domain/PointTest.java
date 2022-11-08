@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.domain.ladder.Point;
 import org.junit.jupiter.api.Test;
 
 import static java.lang.Boolean.FALSE;

@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.user;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -36,7 +36,7 @@ public class Participants {
                 .collect(Collectors.toList());
         if (result.isEmpty())
             throw new IllegalArgumentException("cannot find a participant with the name " + desireParticipantName);
-        return new Participants(result);
+        return new Participants(Collections.unmodifiableList(result));
     }
 
     @Override

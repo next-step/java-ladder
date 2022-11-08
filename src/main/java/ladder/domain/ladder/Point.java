@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 public class Point {
     private final int index;
@@ -37,7 +37,7 @@ public class Point {
         return new Point(0, Direction.first(right));
     }
 
-    public boolean hasLine(){
+    public boolean hasLine() {
         return direction.isLeft();
     }
 

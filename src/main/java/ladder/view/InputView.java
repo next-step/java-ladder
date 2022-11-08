@@ -1,11 +1,12 @@
 package ladder.view;
 
-import ladder.domain.*;
+import ladder.domain.ladder.LadderHeight;
+import ladder.domain.result.ExpectedResult;
+import ladder.domain.result.ExpectedResults;
+import ladder.domain.user.Participant;
+import ladder.domain.user.Participants;
 
-import java.util.Arrays;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class InputView {
@@ -25,7 +26,7 @@ public class InputView {
         List<Participant> result = Arrays.stream(splitInput)
                 .map(Participant::new)
                 .collect(Collectors.toList());
-        return new Participants(result);
+        return new Participants(Collections.unmodifiableList(result));
     }
 
     public ExpectedResults getExpectedResults(int size) {
@@ -38,7 +39,7 @@ public class InputView {
         List<ExpectedResult> result = Arrays.stream(splitInput)
                 .map(ExpectedResult::new)
                 .collect(Collectors.toList());
-        return new ExpectedResults(result);
+        return new ExpectedResults(Collections.unmodifiableList(result));
     }
 
     public LadderHeight getLadderHeight() {

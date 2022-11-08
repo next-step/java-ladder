@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,7 +18,7 @@ public class LadderLine {
         this(Arrays.asList(points));
     }
 
-    public List<Point> getPoints(){
+    public List<Point> getPoints() {
         return Collections.unmodifiableList(points);
     }
 
