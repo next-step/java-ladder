@@ -28,13 +28,13 @@ public class StreamStudyTest {
     }
 
     @Test
-    public void map() throws Exception {
+    public void map() {
         List<Integer> doubleNumbers = StreamStudy.doubleNumbers(numbers);
         doubleNumbers.forEach(System.out::println);
     }
 
     @Test
-    public void sumAll() throws Exception {
+    public void sumAll() {
         long sum = StreamStudy.sumAll(numbers);
         assertThat(sum).isEqualTo(21);
     }
