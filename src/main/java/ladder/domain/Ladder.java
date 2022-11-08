@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.Objects;
+import java.util.stream.IntStream;
 
 public class Ladder {
 
@@ -19,7 +20,7 @@ public class Ladder {
     }
 
     public int getHeight() {
-        return this.lines.size();
+        return this.lines.height();
     }
 
     public Lines getLines() {
@@ -29,6 +30,53 @@ public class Ladder {
     public Line getLine(final int index) {
         return this.lines.getLines()
                          .get(index);
+    }
+
+    public int getLastVerticalLineIndex(final Participant participant) {
+        return this.getLastVerticalLineIndex(this.participants.indexOf(participant));
+    }
+
+    private int getLastVerticalLineIndex(final int firstVerticalLineIndex) {
+        return IntStream.range(0, this.lines.height())
+                        .reduce(firstVerticalLineIndex, (curVerticalLineIndex, curLineHeight) -> {
+                            if (canMoveLeft(curVerticalLineIndex, curLineHeight)) {
+                                return curVerticalLineIndex - 1;
+                            }
+
+                            if (canMoveRight(curVerticalLineIndex, curLineHeight)) {
+                                return curVerticalLineIndex + 1;
+                            }
+
+                            return curVerticalLineIndex;
+                        });
+    }
+
+    private boolean canMoveLeft(final int verticalLineIndex, final int curLineHeight) {
+        if (isFirstVerticalLineIndex(verticalLineIndex)) {
+            return false;
+        }
+
+        return this.lines.getLine(curLineHeight)
+                         .isConnected(verticalLineIndex - 1);
+    }
+
+    private boolean canMoveRight(final int verticalLineIndex, final int curLineHeight) {
+        if (isLastVerticalLineIndex(verticalLineIndex)) {
+            return false;
+        }
+
+        return this.lines.getLine(curLineHeight)
+                         .isConnected(verticalLineIndex);
+    }
+
+
+    private boolean isFirstVerticalLineIndex(final int verticalLineIndex) {
+        return verticalLineIndex == 0;
+    }
+
+
+    private boolean isLastVerticalLineIndex(final int verticalLineIndex) {
+        return verticalLineIndex == this.lines.width();
     }
 
     private void validateOrThrow(final Participants participants, final Lines lines) {

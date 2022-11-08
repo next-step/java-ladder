@@ -30,6 +30,10 @@ public class Participants {
         return this.participants.size();
     }
 
+    public int indexOf(final Participant participant) {
+        return this.participants.indexOf(participant);
+    }
+
     private void validateOrThrow(final List<Participant> participants) {
         if (Objects.isNull(participants) || participants.size() == 0) {
             throw new IllegalArgumentException("참가자는 최소 1명 이상이여야 합니다.");

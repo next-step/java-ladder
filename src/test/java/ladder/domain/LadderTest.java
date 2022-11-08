@@ -25,7 +25,7 @@ public class LadderTest {
                 () -> assertThat(ladder.getParticipants()
                                        .size()).isEqualTo(4),
                 () -> assertThat(ladder.getLines()
-                                       .size()).isEqualTo(1)
+                                       .height()).isEqualTo(1)
         );
     }
 

@@ -13,12 +13,21 @@ public class Lines {
         this.lines = lines;
     }
 
-    public int size() {
+    public int height() {
         return this.lines.size();
+    }
+
+    public int width() {
+        return this.lines.get(0)
+                         .size();
     }
 
     public List<Line> getLines() {
         return this.lines;
+    }
+
+    public Line getLine(final int index) {
+        return this.lines.get(index);
     }
 
     private void validateLinesOrThrow(final List<Line> lines) {
