@@ -13,6 +13,7 @@ public class OutputView {
 	public void printResult(Participants participants, Ladder ladder) {
 		System.out.println("실행결과");
 
+		System.out.print("     ");
 		participants.getNames()
 			.forEach(participant -> System.out.print(participant + "  "));
 		System.out.println();

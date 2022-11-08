@@ -20,15 +20,15 @@ public class Line {
 	}
 
 	public Boolean hasRightLine(int index) {
-		return index != points.size() && !points.get(index);
+		return index != points.size() && points.get(index);
 	}
 
 	public Boolean hasLeftLine(int index) {
-		return index != 0 && !points.get(index - 1);
+		return index != 0 && points.get(index - 1);
 	}
 
 	public Boolean hasEitherLine(int index){
-		return hasRightLine(index) || hasLeftLine(index);}
+		return hasLeftLine(index) || hasRightLine(index);}
 
 	private void addPoint(int index, PointStrategy pointStrategy) {
 		points.add(pointStrategy.isAddible(index, this));
