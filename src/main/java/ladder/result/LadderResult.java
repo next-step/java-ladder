@@ -1,7 +1,5 @@
 package ladder.result;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import ladder.user.Player;
 import ladder.user.UserName;
@@ -22,7 +20,7 @@ public class LadderResult {
             .orElseThrow(() -> new IllegalArgumentException("존재 하지 않는 플레이어입니다."));
     }
 
-    public List<Award> getValues() {
-        return new ArrayList<>(result.values());
+    public int size() {
+        return result.size();
     }
 }

@@ -76,7 +76,7 @@ public class ResultView {
     }
 
     private static void printAllUserResult(UserNames userNames, LadderResult result) {
-        for (int i = 0; i < result.getValues().size(); i++) {
+        for (int i = 0; i < result.size(); i++) {
             System.out.println(userNames.getUserNames().get(i).getName() + " : " + result.getTargetPlayer(userNames.getUserNames().get(i)).getAward());
         }
     }
