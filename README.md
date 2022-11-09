@@ -5,3 +5,4 @@
 [X] 스트림 실습 2
 [X] Optional 요구사항 1
 [X] Optional 요구사항 2
+[X] Optional 요구사항 3
