@@ -19,8 +19,63 @@
 - [x] map, reduce, filter 실습 1 // List에 담긴 모든 숫자 중 3보다 큰 숫자를 2배 한 후 모든 값의 합을 구한다.
 - [x] map, reduce, filter 실습 2 // nextstep.fp.StreamStudy 클래스의 printLongestWordTop100() 메서드를 구현
 #### Optional
-- [ ] 요구사항 1 - Optional을 활용해 조건에 따른 반환
-- [ ] 요구사항 2 - Optional에서 값을 반환
-- [ ] 요구사항 3 - Optional에서 exception 처리
+- [x] 요구사항 1 - Optional을 활용해 조건에 따른 반환
+- [x] 요구사항 2 - Optional에서 값을 반환
+- [x] 요구사항 3 - Optional에서 exception 처리
 
+## Note
+##### Better optional practice
+```java
+// ASIS
+    public static boolean ageIsInRange2(User user) {
+        return Optional.ofNullable(user)
+            .filter(optUser ->
+                Objects.nonNull(optUser.getAge())
+                && optUser.getAge() >= 30
+                && optUser.getAge() <= 45)
+            .isPresent();
+    }
+// TOBE
+    public static boolean ageIsInRange2(User user) {
+        return Optional.ofNullable(user)
+            .map(optUser -> optUser.getAge())
+            .filter(age -> 30 <= age && age <= 45)
+            .isPresent();
+    }
+```
 
+##### Optional Exception
+```java
+// Need to wrap with {}
+    static Expression of(String expression) {
+        return Arrays.stream(values())
+            .filter(value -> matchExpression(value, expression))
+            .findFirst()
+            .orElseThrow(() -> {
+                throw new IllegalArgumentException(
+                    String.format("%s는 사칙연산에 해당하지 않는 표현식입니다.", expression));
+            });
+    }
+
+```
+
+##### Lamda and Exception
+- 미리 정의된 @FunctionInterface does not throw Checked Exception(e.g, IOException)
+- 따라서, 람다에서 CheckedException을 던지고 싶을땐,
+1) Create custom @FunctionInterface
+```java
+@FunctionalInterface
+interface Processor {
+	String process(BufferedReader b) throws IOException;
+}
+
+```
+2) 람다 안에서 CheckedException잡아서, Unchecked로 전환하기
+```java
+Function<BufferedReader, String> f = (BufferedReader b) -> {
+	try {
+		return b.readLine();
+	} catch (IOException e) {
+		throw new RuntimeException(e);
+	}
+}
