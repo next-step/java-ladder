@@ -16,6 +16,10 @@ public class Awards {
         return awards.get(position.getPosition());
     }
 
+    public List<Award> getValues() {
+        return awards;
+    }
+
     @Override
     public boolean equals(Object o) {
 

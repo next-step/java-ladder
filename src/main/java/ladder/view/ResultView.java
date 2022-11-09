@@ -5,6 +5,7 @@ import ladder.ladder.Ladder;
 import ladder.ladder.Point;
 import ladder.ladder.Row;
 import ladder.result.Award;
+import ladder.result.Awards;
 import ladder.result.LadderResult;
 import ladder.user.UserName;
 import ladder.user.UserNames;
@@ -15,9 +16,10 @@ public class ResultView {
     private static final String HORIZONTAL_BLANK_LINE = "     ";
     private static final String HORIZONTAL_FULL_LINE = "-----";
 
-    public static void printResult(UserNames userNames, Ladder ladder, LadderResult gameResult) {
+    public static void printResult(UserNames userNames, Ladder ladder, LadderResult gameResult, Awards awards) {
         printUserNames(userNames);
         printLadder(ladder);
+        printAwards(awards);
         printResult(userNames, gameResult);
     }
 
@@ -25,17 +27,26 @@ public class ResultView {
         System.out.println("실행 결과");
         System.out.println();
         for (UserName userName : userNames.getUserNames()) {
-            if (userName.getName().length() == UserName.USER_NAME_LENGTH) {
-                System.out.println(userName.getName());
-            }
-            System.out.printf("%4s ", userName.getName());
+            System.out.print(formatName(userName));
         }
         System.out.println();
+    }
+
+    private static String formatName(UserName userName) {
+        if (userName.getName().length() == UserName.USER_NAME_LENGTH) {
+            return userName.getName();
+        }
+        return String.format("%4s ", userName.getName());
     }
 
     private static void printLadder(Ladder ladder) {
         ladder.getLadderLines()
             .forEach(ResultView::printLowLine);
+    }
+
+    private static void printAwards(Awards awards) {
+        awards.getValues().forEach(award -> System.out.printf("%-4s ", award.getAward()));
+        System.out.println();
     }
 
     private static void printLowLine(Row row) {
@@ -49,13 +60,15 @@ public class ResultView {
     }
 
     private static void printConnectLine(Point point) {
-        if (point.getDirection().isRight()) {
-            System.out.print(VERTICAL_LINE);
-            System.out.print(HORIZONTAL_FULL_LINE);
-        } else {
-            System.out.print(VERTICAL_LINE);
-            System.out.print(HORIZONTAL_BLANK_LINE);
+        System.out.print(VERTICAL_LINE);
+        System.out.print(printLine(point.getDirection().isRight()));
+    }
+
+    private static String printLine(Boolean isRight) {
+        if (isRight) {
+            return HORIZONTAL_FULL_LINE;
         }
+        return HORIZONTAL_BLANK_LINE;
     }
 
     private static void printResult(UserNames userNames, LadderResult result) {

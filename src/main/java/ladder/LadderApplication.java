@@ -19,6 +19,6 @@ public class LadderApplication {
         LadderGenerator ladderGenerator = new LadderGenerator(new RowGenerator());
         Ladder ladder = ladderGenerator.create(userNames.size(), ladderHeight);
 
-        ResultView.printResult(userNames, ladder, ladder.play(new Players(userNames), awards));
+        ResultView.printResult(userNames, ladder, ladder.play(new Players(userNames), awards), awards);
     }
 }
