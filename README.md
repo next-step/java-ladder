@@ -7,3 +7,20 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+## 🚀 1단계 - 자바8 스트림, 람다, Optional
+
+### 요구사항
+
+#### Lambda
+- [ ] 익명 클래스를 람다로 전환 nextstep.fp.CarTest
+- [ ] 람다를 활용해 중복 제거 // nextstep.fp.Lambda의 sumAll, sumAllEven, sumAllOverThree method 소스 코드를 확인하고 중복 제거한다.
+#### Stream 
+- [ ] map, reduce, filter 실습 1 // List에 담긴 모든 숫자 중 3보다 큰 숫자를 2배 한 후 모든 값의 합을 구한다.
+- [ ] map, reduce, filter 실습 2 // nextstep.fp.StreamStudy 클래스의 printLongestWordTop100() 메서드를 구현
+#### Optional
+- [ ] 요구사항 1 - Optional을 활용해 조건에 따른 반환
+- [ ] 요구사항 2 - Optional에서 값을 반환
+- [ ] 요구사항 3 - Optional에서 exception 처리
+
+
