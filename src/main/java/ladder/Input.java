@@ -32,6 +32,9 @@ public class Input {
 
     public static List<String> players() {
         String input = input();
+        if (!input.contains(SEPARATOR)) {
+            throw new IllegalArgumentException("구분자 ',' 를 입력해주세요");
+        }
         return Stream.of(input.split(SEPARATOR)).collect(Collectors.toList());
     }
 }
