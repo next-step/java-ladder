@@ -1,7 +1,6 @@
 package ladder;
 
 import java.util.List;
-import java.util.Random;
 
 public class View {
     private final static String COLUMN = "|";
@@ -13,27 +12,25 @@ public class View {
 
         boolean[] check = new boolean[ladders * participants.size()];
 
-        for (int i = 1; i <= ladders * participants.size(); i++) {
-            if (new Random().nextInt(9) < 4) {
-                for (int j = 0; j < 4; j++) {
-                    if (!check[i - 1]) {
-                        System.out.print(BLANK);
-                        check[i] = !check[i];
-                    }
+        for (int i = 0; i <= ladders; i++) {
+            if (i == 0) {
+                for (Player participant : participants) {
+                    System.out.print(participant.getName() + "\t");
                 }
-            } else {
-                for (int j = 0; j < 4; j++) {
-                    System.out.print(ROW);
-                    check[i] = true;
-                }
-            }
-
-            if (i % participants.size() == 0) {
-                System.out.print(COLUMN);
                 System.out.println();
                 continue;
             }
+            for (int k = 0; k < participants.get(0).getName().length(); k++) {
+                System.out.print(BLANK);
+            }
             System.out.print(COLUMN);
+            for (int j = 0; j < participants.size() - 1; j++) {
+                for (int k = 0; k < 5; k++) {
+                    System.out.print(ROW);
+                }
+                System.out.print(COLUMN);
+            }
+            System.out.println();
         }
     }
 }
