@@ -32,9 +32,21 @@ public class Input {
 
     public static List<String> players() {
         String input = input();
+        validateSeparator(input);
+        List<String> players = Stream.of(input.split(SEPARATOR)).collect(Collectors.toList());
+        validatePlayersLength(players);
+        return players;
+    }
+
+    private static void validatePlayersLength(List<String> players) {
+        if (players.size() < 2) {
+            throw new IllegalArgumentException("2명이상 입력해주세요");
+        }
+    }
+
+    private static void validateSeparator(String input) {
         if (!input.contains(SEPARATOR)) {
             throw new IllegalArgumentException("구분자 ',' 를 입력해주세요");
         }
-        return Stream.of(input.split(SEPARATOR)).collect(Collectors.toList());
     }
 }
