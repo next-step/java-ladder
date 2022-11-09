@@ -25,41 +25,39 @@ public class View {
                 System.out.print(BLANK);
             }
             System.out.print(COLUMN);
-            for (int j = 1; j < participants.size(); j++) {
-                int random = new Random().nextInt(9) + 1;
-                if (j == participants.size() - 1) {
-                    if (!check[i][participants.size() - 3]) {
-                        for (int k = 0; k < 4; k++) {
-                            System.out.print(ROW);
-                        }
-                        check[i][participants.size() - 2] = true;
-                    } else {
-                        for (int k = 0; k < 4; k++) {
-                            System.out.print(BLANK);
-                        }
-                    }
-                    System.out.print(COLUMN);
-                    break;
-                }
-                if (!check[i][0]) {
+            int randoms = new Random().nextInt(9) + 1;
+            if (i == 0) {
+                if (randoms > 4) {
                     for (int k = 0; k < 4; k++) {
                         System.out.print(ROW);
                     }
-                    System.out.print(COLUMN);
                     check[i][0] = true;
-                    continue;
-                }
-                if (random > 4) {
-                    if (!check[i][j - 1]) {
-                        for (int k = 0; k < 4; k++) {
-                            System.out.print(ROW);
-                        }
-                        check[i][j] = true;
-                    } else {
-                        for (int k = 0; k < 4; k++) {
-                            System.out.print(BLANK);
-                        }
+                    check[i + 1][0] = true;
+                } else {
+                    for (int k = 0; k < 4; k++) {
+                        System.out.print(BLANK);
                     }
+                }
+            }
+            if (i >= 1) {
+                if (!check[i - 1][0]) {
+                    for (int k = 0; k < 4; k++) {
+                        System.out.print(ROW);
+                    }
+                    check[i][0] = true;
+                } else {
+                    for (int k = 0; k < 4; k++) {
+                        System.out.print(BLANK);
+                    }
+                }
+            }
+            System.out.print(COLUMN);
+            for (int j = 1; j < participants.size() - 1; j++) {
+                if (!check[i][j - 1]) {
+                    for (int k = 0; k < 4; k++) {
+                        System.out.print(ROW);
+                    }
+                    check[i][j] = true;
                 } else {
                     for (int k = 0; k < 4; k++) {
                         System.out.print(BLANK);
