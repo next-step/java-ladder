@@ -1,11 +1,11 @@
 package ladder;
 
-public class LadderMain {
+public class LadderApplication {
     public static void main(String[] args) {
         Persons persons = new Persons(InputView.inputPersonNames());
         Results results = new Results(InputView.inputPlayResults());
         int ladderHeight = InputView.inputLadderHeight();
-        Ladder ladder = new Ladder(ladderHeight, persons.countOfPersons(), new HorizontalLineRandomStrategy());
+        Ladder ladder = new Ladder(ladderHeight, persons.countOfPersons(), new RandomNumberPointConnectStrategy());
 
         OutputView.printLadder(persons, ladderHeight, ladder, results);
 
