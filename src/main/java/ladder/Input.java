@@ -42,6 +42,15 @@ public class Input {
         if (players.size() < 2) {
             throw new IllegalArgumentException("2명이상 입력해주세요");
         }
+        for (String player : players) {
+            validatePlayerName(player);
+        }
+    }
+
+    private static void validatePlayerName(String player) {
+        if (player.length() > 5) {
+            throw new IllegalArgumentException("이름은 최대 5글자만 입력 가능합니다.");
+        }
     }
 
     private static void validateSeparator(String input) {
