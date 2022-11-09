@@ -6,11 +6,18 @@ public class LadderResult {
     private static final int MIN_WORD_LENGTH = 1;
     private static final int MAX_WORD_LENGTH = 5;
     private static final String RESULT_WORD_LENGTH_MESSAGE = "글자수는 " + MIN_WORD_LENGTH + "~" + MAX_WORD_LENGTH + " 사이로 입력해주세요.";
+
+    private int memberIndex;
     private final String result;
 
     public LadderResult(String result) {
         checkNull(result);
         validateSize(result);
+        this.result = result;
+    }
+
+    public LadderResult(int memberIndex, String result) {
+        this.memberIndex = memberIndex;
         this.result = result;
     }
 
@@ -37,5 +44,9 @@ public class LadderResult {
     @Override
     public int hashCode() {
         return Objects.hash(result);
+    }
+
+    String result() {
+        return result;
     }
 }

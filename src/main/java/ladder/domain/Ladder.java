@@ -14,11 +14,23 @@ public class Ladder {
         this.lines = create(countOfMember, ladderHeight, new RandomLineCreateStrategy());
     }
 
+    Ladder(List<LadderLine> ladderLines) {
+        this.lines = ladderLines;
+    }
+
     private static List<LadderLine> create(int countOfMember, LadderHeight ladderHeight, LineCreateStrategy lineCreateStrategy) {
         List<LadderLine> values = new ArrayList<>();
         IntStream.range(0, ladderHeight.height())
                 .forEach(count -> values.add(new LadderLine(countOfMember, lineCreateStrategy)));
         return values;
+    }
+
+    int playLinesByMember(int firstPart) {
+        int changePart = firstPart;
+        for (LadderLine line : lines) {
+            changePart = line.drawPart(changePart);
+        }
+        return changePart;
     }
 
     public List<LadderLine> lines() {
