@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -33,6 +34,6 @@ public class Line {
     }
 
     public List<Point> getPoints() {
-        return points;
+        return Collections.unmodifiableList(points);
     }
 }

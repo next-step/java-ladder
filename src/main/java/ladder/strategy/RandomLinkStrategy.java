@@ -13,9 +13,13 @@ public class RandomLinkStrategy implements LinkStrategy {
     public List<Integer> link(int column) {
         List<Integer> result = new ArrayList<>();
         IntStream.range(0, column)
-            .filter(i -> random.nextBoolean() && !result.contains(i - 1))
+            .filter(i -> isLinkable(i, result))
             .forEach(result::add);
 
         return result;
+    }
+
+    private boolean isLinkable(final int index, final List<Integer> linked) {
+        return random.nextBoolean() && !linked.contains(index - 1);
     }
 }
