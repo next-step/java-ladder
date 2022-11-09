@@ -10,8 +10,7 @@ public class LadderController {
     public static void main(String[] args) {
         List<String> nameList = InputView.InputNameList();
         Integer height = InputView.InputHeight();
-        Ladder ladder = new Ladder(nameList.size(), height);
-        ResultView.printNameList(nameList);
+        Ladder ladder = new Ladder(nameList, height);
         ResultView.printLadder(ladder);
     }
 }

@@ -5,36 +5,27 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Ladder {
-    private static final String INIT_HEIGHT = "  |";
-    private static final String TRUE_WIDTH = "-----|";
-    private static final String FALSE_WIDTH = "     |";
 
+    private final List<Name> nameList = new ArrayList<>();
     private final List<Line> lines = new ArrayList<>();
 
-    public Ladder(int countOfPerson, int height) {
+    public Ladder(List<String> nameList, int height) {
+        for (String name : nameList) {
+            this.nameList.add(new Name(name));
+        }
+
         for (int i = 0; i < height; i++) {
-            lines.add(new Line(countOfPerson));
+            lines.add(new Line(nameList.size()));
         }
     }
 
-    public List<String> getLines() {
-        return lines.stream()
-                .map(line -> makeStringLine(line.getPoints()))
+    public List<String> names() {
+        return nameList.stream()
+                .map(Name::name)
                 .collect(Collectors.toList());
     }
 
-    private String makeStringLine(List<Boolean> lines) {
-        StringBuilder stringLine = new StringBuilder();
-        stringLine.append(INIT_HEIGHT);
-
-        for (Boolean line : lines) {
-            if (line) {
-                stringLine.append(TRUE_WIDTH);
-            } else {
-                stringLine.append(FALSE_WIDTH);
-            }
-        }
-
-        return stringLine.toString();
+    public List<Line> lines() {
+        return lines;
     }
 }
