@@ -1,6 +1,12 @@
 package ladder.view;
 
-import ladder.domain.*;
+import ladder.domain.ladder.LadderLine;
+import ladder.domain.ladder.Lines;
+import ladder.domain.result.ExpectedResult;
+import ladder.domain.result.ExpectedResults;
+import ladder.domain.result.Results;
+import ladder.domain.user.Participant;
+import ladder.domain.user.Participants;
 
 import java.util.Map;
 import java.util.Optional;
@@ -9,7 +15,6 @@ public class ResultView {
 
     private final static String SPACE_TEXT = " ";
     private final static int DEFAULT_NAME_SPACE_COUNT = 6;
-    private final static String LADDER_MSG = "사다리 결과";
     private final static String LINE_WITH_BRIDGE = "-----|";
     private final static String LINE_WITH_NO_BRIDGE = "     |";
     private final static String RESULT_MSG = "실행 결과";
@@ -32,11 +37,11 @@ public class ResultView {
                         .forEach(this::printLine));
     }
 
-    private void printLine(Line line) {
+    private void printLine(LadderLine line) {
         line.getPoints()
                 .forEach(point -> {
                     String result = LINE_WITH_NO_BRIDGE;
-                    if (point) {
+                    if (point.hasLine()) {
                         result = LINE_WITH_BRIDGE;
                     }
                     System.out.print(result);

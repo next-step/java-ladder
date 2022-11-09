@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.result;
 
 public class ExpectedResult {
 
