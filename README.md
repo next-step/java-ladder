@@ -16,8 +16,8 @@
 - [x] 익명 클래스를 람다로 전환 nextstep.fp.CarTest
 - [x] 람다를 활용해 중복 제거 // nextstep.fp.Lambda의 sumAll, sumAllEven, sumAllOverThree method 소스 코드를 확인하고 중복 제거한다.
 #### Stream 
-- [ ] map, reduce, filter 실습 1 // List에 담긴 모든 숫자 중 3보다 큰 숫자를 2배 한 후 모든 값의 합을 구한다.
-- [ ] map, reduce, filter 실습 2 // nextstep.fp.StreamStudy 클래스의 printLongestWordTop100() 메서드를 구현
+- [x] map, reduce, filter 실습 1 // List에 담긴 모든 숫자 중 3보다 큰 숫자를 2배 한 후 모든 값의 합을 구한다.
+- [x] map, reduce, filter 실습 2 // nextstep.fp.StreamStudy 클래스의 printLongestWordTop100() 메서드를 구현
 #### Optional
 - [ ] 요구사항 1 - Optional을 활용해 조건에 따른 반환
 - [ ] 요구사항 2 - Optional에서 값을 반환
