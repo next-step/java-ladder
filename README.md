@@ -7,3 +7,22 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+## 3단계 - 사다리(게임 실행)
+* pobi   lulu   jin   didi
+|     |     |-----|
+|     |     |     |
+|     |-----|     |
+|-----|     |-----|
+|     |-----|     |
+꽝    3000    꽝    5000
+
+* [pobi, lulu, jin, didi]
+* [false, false, true]
+* [false, false, false]
+* [false, true, false]
+* [true, false, true]
+* [false, true, false]
+* [꽝, 3000, 꽝, 5000]
+
+(0)
