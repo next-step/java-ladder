@@ -20,7 +20,6 @@ public class OutputView {
     private OutputView() {
     }
 
-
     public static void printLadderResult(final Ladder ladder) {
         System.out.println("\n사다리 결과");
         printParticipants(ladder.getParticipants());
