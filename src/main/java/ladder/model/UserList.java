@@ -3,6 +3,7 @@ package ladder.model;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class UserList {
     private static final String DELIMITER = ",";
@@ -22,5 +23,13 @@ public class UserList {
 
     public User getUser(int index) {
         return userList.get(index);
+    }
+
+    public int size() {
+        return userList.size();
+    }
+
+    public Stream<User> stream() {
+        return userList.stream();
     }
 }

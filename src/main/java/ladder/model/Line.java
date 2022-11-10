@@ -3,6 +3,7 @@ package ladder.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 public class Line {
     private static final int MIN_POINT_SIZE = 2;
@@ -23,6 +24,14 @@ public class Line {
         validateContinuousLine(points);
 
         this.points = new ArrayList<>(points);
+    }
+
+    public int size() {
+        return points.size();
+    }
+
+    public boolean getPoint(int index) {
+        return points.get(index);
     }
 
     private void validateContinuousLine(List<Boolean> points) {
