@@ -98,5 +98,5 @@
   - validation : null체크, 멤버와의 사이즈 일치 체크
 - [x] Result : 게임결과에 해당하는 비즈니스 로직 생성
 - [x] 사다리 게임 실행 로직 구현
-- [ ] InputView : 결과 보고싶은사람 입력 받음
-- [ ] ResultView : 해당하는 결과 출력 (all 포함) 
+- [x] InputView : 결과 보고싶은사람 입력 받음
+- [x] ResultView : 해당하는 결과 출력 (all 포함) 

@@ -46,7 +46,19 @@ public class LadderResult {
         return Objects.hash(result);
     }
 
-    String result() {
+    @Override
+    public String toString() {
+        return "LadderResult{" +
+                "memberIndex=" + memberIndex +
+                ", result='" + result + '\'' +
+                '}';
+    }
+
+    public int memberIndex() {
+        return memberIndex;
+    }
+
+    public String result() {
         return result;
     }
 }

@@ -6,10 +6,12 @@ import ladder.domain.LadderMembers;
 import ladder.domain.LadderResults;
 import ladder.dto.LadderDto;
 import ladder.dto.MembersDto;
+import ladder.dto.ResultsDto;
 
 import java.util.List;
 
 import static ladder.view.InputView.*;
+import static ladder.view.ResultView.printLadderCreation;
 import static ladder.view.ResultView.printLadderResult;
 
 public class LadderController {
@@ -25,6 +27,8 @@ public class LadderController {
         LadderResults results = new LadderResults(LadderResults.addResult(ladderResults, memberCount));
         LadderHeight ladderHeight = new LadderHeight(askMaxLadderHeight());
         Ladder ladder = new Ladder(memberCount, ladderHeight);
-        printLadderResult(new MembersDto(members), new LadderDto(ladder));
+
+        printLadderCreation(new MembersDto(members), new LadderDto(ladder), ladderResults);
+        printLadderResult(askResultMember(), new ResultsDto(new MembersDto(members), results.playedByMembers(ladder)));
     }
 }

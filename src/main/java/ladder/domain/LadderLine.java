@@ -18,7 +18,7 @@ public class LadderLine {
     }
 
     public int drawPart(int part) {
-        if(!isFirstPart(part) && getLeftPart(part)) {
+        if (!isFirstPart(part) && getLeftPart(part)) {
             return part - 1;
         }
         if (!isLastPart(part) && getRightPart(part)) {
@@ -51,7 +51,7 @@ public class LadderLine {
     }
 
     private static Boolean makePart(List<Boolean> values, int count, LineCreateStrategy lineCreateStrategy) {
-        if(values.isEmpty() || values.get(count - 1)) {
+        if (values.isEmpty() || values.get(count - 1)) {
             return false;
         }
         return lineCreateStrategy.create();

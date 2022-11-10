@@ -17,7 +17,7 @@ class LadderResultsTest {
     @CsvSource(value = {"\"꽝,5000,꽝,3000\",3", "\"꽝,5000,꽝,3000\",5"})
     @DisplayName("사다리 실행 결과를 입력한 그 개수와 멤버의 수가 일치하지 않으면 에러 발생한다.")
     void inputLadderResultTest_isNotSameSizeThanMemberCount_occurredException(String results, int memberCount) {
-        List<String> ladderResults = LadderResultExpression.validateLadderResult( results);
+        List<String> ladderResults = LadderResultExpression.validateLadderResult(results);
         assertThatThrownBy(() -> new LadderResults(LadderResults.addResult(ladderResults, memberCount)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
