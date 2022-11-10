@@ -3,12 +3,17 @@ package ladder;
 import java.util.Objects;
 
 public class User {
-    private static final int MAX_NAME_LENGTH = 5;
+    public static final int MAX_NAME_LENGTH = 5;
+
     private String name;
 
     public User(String name) {
         valid(name);
         this.name = name;
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     private void valid(String name) {

@@ -1,6 +1,7 @@
 package ladder;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Points {
     private static final Random random = new Random();
@@ -15,6 +16,12 @@ public class Points {
 
     public Points(List<Point> points) {
         this.points = points;
+    }
+
+    public List<Boolean> connections() {
+        return points.stream()
+                .map(Point::connected)
+                .collect(Collectors.toList());
     }
 
     private static boolean randomBoolean() {
@@ -51,8 +58,6 @@ public class Points {
 
     @Override
     public String toString() {
-        return "Points{" +
-                "points=" + points +
-                '}';
+        return "Points{" + "points=" + points + '}';
     }
 }

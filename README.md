@@ -16,4 +16,4 @@
 [X] Points 생성시 최소 1개는 연결시키기
 [X] Point value 변수를 connected 변수로 변경
 [X] Points 생성자 리팩토링
-[] 서비스 로직 작업
+[X] 서비스 로직 작업
