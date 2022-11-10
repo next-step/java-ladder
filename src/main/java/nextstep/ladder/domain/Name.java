@@ -4,7 +4,7 @@ import nextstep.ladder.exception.ErrorMessage;
 import nextstep.ladder.exception.InvalidLengthOfNameException;
 
 public class Name {
-    private static final int LENGTH_OF_NAME_MAX_VALUE = 5;
+    public static final int LENGTH_OF_NAME_MAX_VALUE = 5;
 
     private final String name;
 
@@ -21,5 +21,9 @@ public class Name {
 
     private boolean isValidLengthOfName(String name) {
         return name.length() <= LENGTH_OF_NAME_MAX_VALUE;
+    }
+
+    public String getName() {
+        return name;
     }
 }

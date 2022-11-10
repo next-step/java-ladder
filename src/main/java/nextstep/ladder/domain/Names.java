@@ -15,4 +15,12 @@ public class Names {
     public static Names of(List<String> names) {
         return new Names(names);
     }
+
+    public int getNamesSize() {
+        return names.size();
+    }
+
+    public List<Name> getNames() {
+        return names;
+    }
 }
