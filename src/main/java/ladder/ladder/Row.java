@@ -5,25 +5,18 @@ import java.util.Objects;
 
 public class Row {
 
-    private final List<Boolean> points;
+    private final List<Point> points;
 
-    public Row(List<Boolean> points) {
+    public Row(List<Point> points) {
         this.points = points;
     }
 
-    public List<Boolean> getPoints() {
+    public List<Point> getPoints() {
         return points;
     }
 
     public Position move(Position position) {
-        if (points.get(position.getPosition())) {
-            return position.moveRight();
-        }
-
-        if (position.getPosition() > 0 && points.get(position.getPosition() - 1)) {
-            return position.moveLeft();
-        }
-        return position;
+        return points.get(position.getPosition()).move();
     }
 
     @Override

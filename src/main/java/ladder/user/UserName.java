@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class UserName {
 
-    private static final int USER_NAME_LENGTH = 5;
+    public static final int USER_NAME_LENGTH = 5;
     private final String name;
 
     public UserName(String name) {

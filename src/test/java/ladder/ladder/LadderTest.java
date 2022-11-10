@@ -1,23 +1,48 @@
 package ladder.ladder;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.List;
-import ladder.ladder.Ladder;
-import ladder.ladder.Row;
+import ladder.result.Award;
+import ladder.result.Awards;
 import ladder.result.LadderResult;
-import org.assertj.core.api.Assertions;
+import ladder.user.Players;
+import ladder.user.UserName;
+import ladder.user.UserNames;
 import org.junit.jupiter.api.Test;
 
 class LadderTest {
 
     @Test
     void 사다리_게임_검증() {
-        Row first = new Row(List.of(true, false, false));
-        Row second = new Row(List.of(false, true, false));
-        Row third = new Row(List.of(true, false, false));
+        Row first = new Row(List.of(right(0), left(1), straight(2)));
+        Row second = new Row(List.of(straight(0), right(1), left(2)));
+        Row third = new Row(List.of(right(0), left(1), straight(2)));
         Ladder ladder = new Ladder(List.of(first, second, third));
-        LadderResult result = ladder.play(3);
-        Assertions.assertThat(result.getTarget(0)).isEqualTo(2);
-        Assertions.assertThat(result.getTarget(1)).isEqualTo(1);
-        Assertions.assertThat(result.getTarget(2)).isEqualTo(0);
+        UserName playerA = new UserName("aa");
+        UserName playerB = new UserName("bb");
+        UserName playerC = new UserName("cc");
+        Players players = new Players(new UserNames(List.of(playerA, playerB, playerC)));
+        Award firstAward = new Award("꽝");
+        Award secondAward = new Award("100");
+        Award thirdAward = new Award("300");
+        Awards awards = new Awards(List.of(firstAward, secondAward, thirdAward));
+
+        LadderResult result = ladder.play(players, awards);
+        assertThat(result.getTargetPlayer(playerA)).isEqualTo(thirdAward);
+        assertThat(result.getTargetPlayer(playerB)).isEqualTo(secondAward);
+        assertThat(result.getTargetPlayer(playerC)).isEqualTo(firstAward);
+    }
+
+    private Point right(int position) {
+        return new Point(position, Direction.of(false, true));
+    }
+
+    private Point left(int position) {
+        return new Point(position, Direction.of(true, false));
+    }
+
+    private Point straight(int position) {
+        return new Point(position, Direction.of(false, false));
     }
 }

@@ -1,11 +1,12 @@
 package ladder.view;
 
 import java.util.List;
+import ladder.ladder.Ladder;
+import ladder.ladder.Point;
+import ladder.ladder.Row;
 import ladder.result.Award;
 import ladder.result.Awards;
-import ladder.ladder.Ladder;
 import ladder.result.LadderResult;
-import ladder.ladder.Row;
 import ladder.user.UserName;
 import ladder.user.UserNames;
 
@@ -18,15 +19,24 @@ public class ResultView {
     public static void printResult(UserNames userNames, Ladder ladder, LadderResult gameResult, Awards awards) {
         printUserNames(userNames);
         printLadder(ladder);
-        printResult(userNames, gameResult, awards);
+        printAwards(awards);
+        printResult(userNames, gameResult);
     }
 
     private static void printUserNames(UserNames userNames) {
         System.out.println("실행 결과");
         System.out.println();
-        userNames.getUserNames()
-            .forEach(username -> System.out.printf("%-5s ", username.getName()));
+        for (UserName userName : userNames.getUserNames()) {
+            System.out.print(formatName(userName));
+        }
         System.out.println();
+    }
+
+    private static String formatName(UserName userName) {
+        if (userName.getName().length() == UserName.USER_NAME_LENGTH) {
+            return userName.getName();
+        }
+        return String.format("%4s ", userName.getName());
     }
 
     private static void printLadder(Ladder ladder) {
@@ -34,47 +44,53 @@ public class ResultView {
             .forEach(ResultView::printLowLine);
     }
 
+    private static void printAwards(Awards awards) {
+        awards.getValues().forEach(award -> System.out.printf("%-4s ", award.getAward()));
+        System.out.println();
+    }
+
     private static void printLowLine(Row row) {
-        List<Boolean> points = row.getPoints();
+        List<Point> points = row.getPoints();
 
         System.out.print(HORIZONTAL_BLANK_LINE);
-        for (Boolean point : points) {
+        for (Point point : points) {
             printConnectLine(point);
         }
         System.out.println();
     }
 
-    private static void printConnectLine(Boolean point) {
-        if (point) {
-            System.out.print(VERTICAL_LINE);
-            System.out.print(HORIZONTAL_FULL_LINE);
-        } else {
-            System.out.print(VERTICAL_LINE);
-            System.out.print(HORIZONTAL_BLANK_LINE);
-        }
+    private static void printConnectLine(Point point) {
+        System.out.print(VERTICAL_LINE);
+        System.out.print(printLine(point.getDirection().isRight()));
     }
 
-    private static void printResult(UserNames userNames, LadderResult result, Awards awards) {
+    private static String printLine(Boolean isRight) {
+        if (isRight) {
+            return HORIZONTAL_FULL_LINE;
+        }
+        return HORIZONTAL_BLANK_LINE;
+    }
+
+    private static void printResult(UserNames userNames, LadderResult result) {
         while (true) {
-            UserName userName = InputView.inputUserNameResult();
+            UserName inputUserName = InputView.inputUserNameResult();
             System.out.println("실행 결과");
-            if (userName.getName().equals("all")) {
-                printAllUserResult(userNames, result, awards);
+            if (inputUserName.getName().equals("all")) {
+                printAllUserResult(userNames, result);
                 break;
             }
-            printFindOneUserResult(userNames, result, userName, awards);
+            printFindOneUserResult(result, inputUserName);
         }
     }
 
-    private static void printFindOneUserResult(UserNames userNames, LadderResult result, UserName userName, Awards awards) {
-        int userIndex = userNames.findUserIndex(userName);
-        Award award = awards.getAward(result.getTarget(userIndex));
+    private static void printFindOneUserResult(LadderResult result, UserName inputUserName) {
+        Award award = result.getTargetPlayer(inputUserName);
         System.out.println(award.getAward());
     }
 
-    private static void printAllUserResult(UserNames userNames, LadderResult result, Awards awards) {
-        for (int i = 0; i < result.getValues().size(); i++) {
-            System.out.println(userNames.getUserNames().get(i).getName() + " : " + awards.getAward(result.getTarget(i)).getAward());
+    private static void printAllUserResult(UserNames userNames, LadderResult result) {
+        for (int i = 0; i < result.size(); i++) {
+            System.out.println(userNames.getUserNames().get(i).getName() + " : " + result.getTargetPlayer(userNames.getUserNames().get(i)).getAward());
         }
     }
 }

@@ -3,7 +3,11 @@ package ladder.ladder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import ladder.result.Award;
+import ladder.result.Awards;
 import ladder.result.LadderResult;
+import ladder.user.Player;
+import ladder.user.Players;
 
 public class Ladder {
 
@@ -17,12 +21,12 @@ public class Ladder {
         return rows;
     }
 
-    public LadderResult play(int CountOfPeople) {
-        Map<Integer, Position> result = new HashMap<>();
+    public LadderResult play(Players players, Awards awards) {
+        Map<Player, Award> result = new HashMap<>();
 
-        for (int index = 0; index < CountOfPeople; index++) {
+        for (int index = 0; index < players.size(); index++) {
             Position destination = descending(index);
-            result.put(index, destination);
+            result.put(new Player(players.getPlayers().get(index).getUserName(), new Position(index)), awards.getAward(destination));
         }
         return new LadderResult(result);
     }
