@@ -26,9 +26,8 @@ public class Points {
     }
 
     private boolean needConnection() {
-        if (points.stream().allMatch(point -> !point.connected())) {
-            return true;
-        }
+        if (points.isEmpty()) return randomBoolean();
+        if (points.stream().allMatch(point -> !point.connected())) return true;
 
         return !lastConnected() && randomBoolean();
     }
