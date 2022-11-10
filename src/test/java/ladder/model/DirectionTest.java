@@ -37,4 +37,24 @@ class DirectionTest {
         assertThat(direction.isDown()).isTrue();
     }
 
+    @DisplayName("처음 생성되는 방향은 왼쪽 이동이 불가능하다.")
+    @Test
+    void first() {
+        Direction direction = Direction.first(true);
+        assertThat(direction.isLeft()).isFalse();
+    }
+
+    @DisplayName("마지막 생성되는 방향은 오른쪽 이동이 불가능하다.")
+    @Test
+    void last() {
+        Direction direction = Direction.first(true).last();
+        assertThat(direction.isRight()).isFalse();
+    }
+
+    @DisplayName("이전 방향을 기준으로 다음 방향이 생성된다.")
+    @Test
+    void next() {
+        Direction direction = Direction.first(false).next(false);
+        assertThat(direction).isEqualTo(new Direction(false, false));
+    }
 }
