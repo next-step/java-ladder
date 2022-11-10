@@ -25,10 +25,10 @@ public class PointsTest {
         assertThat(new Points(2)).isNotEqualTo(new Points(Arrays.asList(notConnectedPoint, notConnectedPoint)));
     }
 
-    @Test
-    public void 첫번째는_연결되거나_연결_안될_수_있음() {
-        assertThat(new Points(1, () -> true)).isEqualTo(new Points(Arrays.asList(connectedPoint)));
-    }
+//    @Test
+//    public void 첫번째는_연결되거나_연결_안될_수_있음() {
+//        assertThat(new Points(1, () -> true)).isEqualTo(new Points(Arrays.asList(connectedPoint)));
+//    }
 
     @Test
     public void connections() {

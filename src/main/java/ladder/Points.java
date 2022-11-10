@@ -9,7 +9,7 @@ public class Points {
 
     public Points(int count) {
         for (int i = 0; i < count; i++) {
-            addPoint(needConnection());
+            addPoint();
         }
     }
 
@@ -17,15 +17,15 @@ public class Points {
         this.points = points;
     }
 
-    private boolean randomBoolean() {
+    private static boolean randomBoolean() {
         return random.nextBoolean();
     }
 
-    private void addPoint(boolean connected) {
-        points.add(new Point(connected));
+    private void addPoint() {
+        points.add(new Point(connectable()));
     }
 
-    private boolean needConnection() {
+    private boolean connectable() {
         if (points.isEmpty()) return randomBoolean();
         if (points.stream().allMatch(point -> !point.connected())) return true;
 
