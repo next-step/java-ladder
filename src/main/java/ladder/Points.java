@@ -1,9 +1,6 @@
 package ladder;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Random;
+import java.util.*;
 
 public class Points {
     private static final Random random = new Random();
@@ -11,14 +8,8 @@ public class Points {
     private List<Point> points = new ArrayList<>();
 
     public Points(int count) {
-        boolean lastConnected = false;
         for (int i = 0; i < count; i++) {
-            boolean nextConnected = !lastConnected && randomBoolean();
-            if (points.stream().allMatch(point -> !point.connected())) {
-                nextConnected = true;
-            }
-            points.add(new Point(nextConnected));
-            lastConnected = nextConnected;
+            addPoint(needConnection());
         }
     }
 
@@ -28,6 +19,22 @@ public class Points {
 
     private boolean randomBoolean() {
         return random.nextBoolean();
+    }
+
+    private void addPoint(boolean connected) {
+        points.add(new Point(connected));
+    }
+
+    private boolean needConnection() {
+        if (points.stream().allMatch(point -> !point.connected())) {
+            return true;
+        }
+
+        return !lastConnected() && randomBoolean();
+    }
+
+    private boolean lastConnected() {
+        return points.get(points.size() - 1).connected();
     }
 
     @Override
