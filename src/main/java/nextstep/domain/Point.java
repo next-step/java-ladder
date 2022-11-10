@@ -40,4 +40,8 @@ public class Point {
         }
         return PASS;
     }
+
+    public boolean isPoint() {
+        return left;
+    }
 }

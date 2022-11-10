@@ -11,13 +11,6 @@ public class Line {
     private List<Point> points = new ArrayList<>();
     private LineStrategy lineStrategy;
 
-    public Line(List<Point> points) {
-        if (points.get(points.size() - 1).rightPoint()) {
-            throw new IllegalArgumentException("올바른 사다리가 아닙니다");
-        }
-        this.points = points;
-    }
-
     public Line(int countPerson, LineStrategy lineStrategy) {
         if (countPerson < MINIMUM_NUMBER_OF_PEOPLE) {
             throw new IllegalArgumentException("최소 2명 이상이 필요하다.");
