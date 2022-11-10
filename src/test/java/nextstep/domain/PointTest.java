@@ -17,9 +17,21 @@ public class PointTest {
     }
 
     @Test
-    void insert() {
+    void insert_false_when_left_is_true() {
         Point point = Point.init(true).insert(false);
         assertThat(point.move()).isEqualTo(LEFT);
+    }
+
+    @Test
+    void insert_true_when_left_is_false() {
+        Point point = Point.init(false).insert(true);
+        assertThat(point.move()).isEqualTo(RIGHT);
+    }
+
+    @Test
+    void insert_false_when_left_is_false() {
+        Point point = Point.init(false).insert(false);
+        assertThat(point.move()).isEqualTo(PASS);
     }
 
     @Test
