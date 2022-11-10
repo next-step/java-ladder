@@ -1,10 +1,9 @@
 package nextstep.view;
 
-import nextstep.domain.Ladder;
-import nextstep.domain.Line;
-import nextstep.domain.Player;
+import nextstep.domain.*;
 
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class Output {
@@ -12,9 +11,10 @@ public class Output {
     private static final String SPACE_BETWEEN_NAMES = "   ";
     private static final String SPACE_BETWEEN_RESULTS = "    ";
     private static final String RESULT_MESSAGE = "\n실행결과\n%s";
-    private static final String LADDER_LINE_SPACE = "     ";
-    private static final String VERTICAL_LINE = "|";
-    private static final String HORIZONTAL_LINE = "-----";
+    private static final String EMPTY_LINE = "     |";
+    private static final String HORIZONTAL_LINE = "-----|";
+    private static final String INPUT_PERSON_MESSAGE = "결과를 보고 싶은 사람은?";
+    private static final Scanner sc = new Scanner(System.in);
 
     public static void printName(List<Player> players) {
         StringBuilder sb = new StringBuilder();
@@ -36,7 +36,7 @@ public class Output {
         System.out.print(sb);
     }
 
-    public static void printResult(List<String> result) {
+    public static void printResult(Result result) {
         StringBuilder sb = new StringBuilder();
 
         String getResult = result.stream()
@@ -44,20 +44,55 @@ public class Output {
 
         sb.append(getResult);
         System.out.println(sb);
+        System.out.println();
     }
 
     private static void getLine(StringBuilder sb, Line line) {
-        sb.append(LADDER_LINE_SPACE);
-        sb.append(VERTICAL_LINE);
         line.getPoints().stream()
-                .forEachOrdered(idx -> sb.append(print(idx)).append(VERTICAL_LINE));
+                .forEachOrdered(point -> sb.append(print(point)));
         sb.append("\n");
     }
 
-    private static String print(Boolean idx) {
-        if (idx == true) {
+    private static String print(Point point) {
+        if (point.isPoint()) {
             return HORIZONTAL_LINE;
         }
-        return LADDER_LINE_SPACE;
+        return EMPTY_LINE;
+    }
+
+    public static void printResult(Players players, Result result, Ladder ladder) {
+        while (true) {
+            System.out.println(INPUT_PERSON_MESSAGE);
+            String player = sc.nextLine();
+
+            if (player.equals("all")) {
+                printAllPlayersResult(players, result, ladder);
+                break;
+            }
+
+            printPlayerResult(players, result, ladder, player);
+        }
+    }
+
+    public static void printAllPlayersResult(Players players, Result result, Ladder ladder) {
+        System.out.println(RESULT_MESSAGE);
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < players.getPlayersSize(); i++) {
+            int idx = ladder.search(i);
+            sb.append(players.getPlayers().get(i).getName() + " : " + result.get(idx)).append("\n");
+        }
+        System.out.println(sb);
+    }
+
+    public static void printPlayerResult(Players players, Result result, Ladder ladder, String player) {
+        System.out.println(RESULT_MESSAGE);
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < players.getPlayersSize(); i++) {
+            int idx = ladder.search(i);
+            if (players.getPlayers().get(i).getName().equals(player)) {
+                sb.append(result.get(idx)).append("\n");
+            }
+        }
+        System.out.println(sb);
     }
 }
