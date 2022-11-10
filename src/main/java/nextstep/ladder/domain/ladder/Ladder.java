@@ -8,7 +8,11 @@ import nextstep.ladder.domain.linestrategy.LineGenerator;
 
 public class Ladder {
 
-	private final List<Line> ladder = new ArrayList<>();
+	private List<Line> ladder = new ArrayList<>();
+
+	public Ladder(List<Line> ladder) {
+		this.ladder = ladder;
+	}
 
 	public Ladder(int length, int height, LineGenerator lineGenerator) {
 		IntStream.range(0, height)
@@ -16,6 +20,13 @@ public class Ladder {
 	}
 
 	public List<Line> getLadder() {
-		return this.ladder;
+		return ladder;
+	}
+
+	public int getEnd(int start) {
+		for (Line line : ladder) {
+			start = line.getNextPoint(start);
+		}
+		return start;
 	}
 }

@@ -8,7 +8,7 @@ import nextstep.ladder.domain.linestrategy.LineGenerator;
 
 public class Line {
 
-	private final List<Boolean> points = new ArrayList<>();
+	private List<Boolean> points = new ArrayList<>();
 
 	public Line (int length, LineGenerator lineGenerator) {
 		IntStream.range(0, length - 1)
@@ -16,7 +16,19 @@ public class Line {
 	}
 
 	public List<Boolean> getPoints() {
-		return this.points;
+		return points;
+	}
+
+	public int getNextPoint(int index) {
+		if (hasLeftLine(index)) {
+			return index - 1;
+		}
+
+		if (hasRightLine(index)) {
+			return index + 1;
+		}
+
+		return index;
 	}
 
 	public Boolean hasRightLine(int index) {
