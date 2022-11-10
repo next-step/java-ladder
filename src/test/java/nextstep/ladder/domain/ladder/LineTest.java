@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import nextstep.ladder.domain.movestrategy.RandomPointStrategy;
+import nextstep.ladder.domain.linestrategy.RandomLineGenerator;
 
 class LineTest {
 
@@ -13,7 +13,7 @@ class LineTest {
 	@Test
 	void Given_Length_Then_GenerateLadder() {
 		int length = 2;
-		Line line = new Line(length, new RandomPointStrategy());
+		Line line = new Line(length, new RandomLineGenerator());
 
 		assertThat(line.getPoints()).hasSize(length - 1);
 	}

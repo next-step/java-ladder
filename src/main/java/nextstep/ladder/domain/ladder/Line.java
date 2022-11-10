@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import nextstep.ladder.domain.movestrategy.PointStrategy;
+import nextstep.ladder.domain.linestrategy.LineGenerator;
 
 public class Line {
 
-	private List<Boolean> points = new ArrayList<>();
+	private final List<Boolean> points = new ArrayList<>();
 
-	public Line (int length, PointStrategy pointStrategy) {
+	public Line (int length, LineGenerator lineGenerator) {
 		IntStream.range(0, length - 1)
-			.forEach(index -> addPoint(index, pointStrategy));
+			.forEach(index -> addPoint(index, lineGenerator));
 	}
 
 	public List<Boolean> getPoints() {
@@ -27,10 +27,11 @@ public class Line {
 		return index != 0 && points.get(index - 1);
 	}
 
-	public Boolean hasEitherLine(int index){
-		return hasLeftLine(index) || hasRightLine(index);}
+	public Boolean hasLine(int index) {
+		return hasLeftLine(index) || hasRightLine(index);
+	}
 
-	private void addPoint(int index, PointStrategy pointStrategy) {
-		points.add(pointStrategy.isAddible(index, this));
+	private void addPoint(int index, LineGenerator lineGenerator) {
+		points.add(lineGenerator.generatePoint(index, this));
 	}
 }

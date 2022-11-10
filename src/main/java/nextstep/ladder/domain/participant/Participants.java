@@ -9,8 +9,8 @@ public class Participants {
 	private final List<String> names;
 
 	public Participants(List<String> names) {
-		checkNames(names);
-		names.forEach(this::checkName);
+		checkIsEmpty(names);
+		names.forEach(this::checkNameLength);
 		this.names = names;
 	}
 
@@ -18,13 +18,13 @@ public class Participants {
 		return names.size();
 	}
 
-	public void checkNames(List<String> names) {
+	public void checkIsEmpty(List<String> names) {
 		if (names.isEmpty()) {
 			throw new BadRequestException("이름은 공백일 수 없습니다.");
 		}
 	}
 
-	public void checkName(String name) {
+	public void checkNameLength(String name) {
 		if (name == null || name.length() == 0 || name.length() > 5) {
 			throw new BadRequestException("입력가능한 이름 글자수가 아닙니다.");
 		}
