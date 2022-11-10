@@ -17,13 +17,13 @@ public class RandomLineGenerator implements LineGenerator {
     }
 
     private Line createAfterSecondPoints(Line line, int pointCount) {
-        Line addedLine = line;
+        Line accumulatedLine = line;
         while (pointCount > 0) {
             pointCount--;
-            boolean nextPoint = addedLine.isLastPointTrue() ? false : getRandomBoolean();
-            addedLine = addedLine.addPoint(nextPoint);
+            boolean nextPoint = !accumulatedLine.last() && getRandomBoolean();
+            accumulatedLine = accumulatedLine.addedLine(nextPoint);
         }
-        return addedLine;
+        return accumulatedLine;
     }
 
     private Line createFirstPointLine() {

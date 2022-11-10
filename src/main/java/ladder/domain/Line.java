@@ -5,26 +5,35 @@ import java.util.List;
 import java.util.Objects;
 
 public class Line {
+    private static final int START_POINT_INDEX = 0;
     private final List<Boolean> line;
 
     public Line(List<Boolean> line) {
         this.line = line;
     }
 
-    public Line addPoint(boolean point) {
+    public Line addedLine(boolean point) {
         ArrayList<Boolean> newLine = new ArrayList<>(line);
         newLine.add(point);
         return new Line(newLine);
     }
 
-    public boolean isLastPointTrue() {
-        if (line.size() == 0) {
-            throw new IndexOutOfBoundsException("point가 하나도 담겨있지 않습니다.");
+    public boolean last() {
+        if (line.isEmpty()) {
+            throw new IndexOutOfBoundsException("line에 값이 없습니다.");
         }
         return line.get(line.size() - 1);
     }
 
-    public List<Boolean> getLine() {
+    public boolean movableToLeft(int index) {
+        return index > START_POINT_INDEX && line.get(index - 1);
+    }
+
+    public boolean movableToRight(int index) {
+        return index < line.size() && line.get(index);
+    }
+
+    public List<Boolean> line() {
         return line;
     }
 

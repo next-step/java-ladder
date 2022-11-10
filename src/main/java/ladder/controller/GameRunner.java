@@ -1,8 +1,6 @@
 package ladder.controller;
 
-import ladder.domain.Ladder;
-import ladder.domain.Line;
-import ladder.domain.RandomLineGenerator;
+import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -11,16 +9,32 @@ import java.util.List;
 public class GameRunner {
     public static void main(String[] args) {
         InputView inputView = new InputView();
-        List<String> participantNames = inputView.enterParticipantName();
-        int ladderHeight = inputView.enterLadderHeight();
-
-        Ladder ladder = new Ladder(participantNames, ladderHeight, new RandomLineGenerator());
-        int namesMaxLength = ladder.getNamesMaxLength();
-        List<Line> lines = ladder.getLines();
-
         ResultView resultView = new ResultView();
-        resultView.printResultInitMessage();
-        resultView.printParticipantNames(participantNames, namesMaxLength);
-        resultView.printLadder(lines, namesMaxLength);
+
+        List<String> participantNames = inputView.enterParticipantName();
+        List<String> winningItemNames = inputView.enterWinningItems(participantNames.size());
+        int ladderHeight = inputView.enterLadderHeight();
+        InitialInformation initialInformation = new InitialInformation(participantNames, winningItemNames, ladderHeight);
+
+        Ladder ladder = new Ladder(
+                initialInformation.getLadderHeight(),
+                initialInformation.calculatedLadderLength(),
+                new RandomLineGenerator()
+        );
+        LadderGame ladderGame = new LadderGame(ladder, initialInformation.getParticipants());
+
+        resultView.printLadderInitMessage();
+        resultView.printNames(initialInformation.getParticipants(), initialInformation.maxNameSize());
+        resultView.printLadder(ladder, initialInformation.maxNameSize());
+        resultView.printNames(initialInformation.getWinningItems(), initialInformation.maxNameSize());
+
+        while(true) {
+            String resultName = inputView.enterResultName();
+            Points filteredPoints = ladderGame.filteredResultByName(resultName);
+            resultView.printResult(filteredPoints, initialInformation.getWinningItems());
+            if (resultName.equals("all")) {
+                break;
+            }
+        }
     }
 }
