@@ -16,4 +16,10 @@ public class PointsTest {
     public void 연속으로_연결하면_안됨() {
         assertThat(new Points(2)).isNotEqualTo(new Points(Arrays.asList(new Point(true), new Point(true))));
     }
+
+    @Test
+    public void 연결이_하나라도_있어야함() {
+        assertThat(new Points(2)).isNotEqualTo(new Points(Arrays.asList(new Point(false), new Point(false))));
+    }
+
 }

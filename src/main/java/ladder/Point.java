@@ -9,6 +9,10 @@ public class Point {
         this.value = value;
     }
 
+    public boolean connected() {
+        return value;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

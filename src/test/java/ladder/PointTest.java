@@ -9,4 +9,9 @@ public class PointTest {
     public void 생성() {
         assertThat(new Point(true)).isEqualTo(new Point(true));
     }
+
+    @Test
+    public void 연결_여부() {
+        assertThat(new Point(true).connected()).isTrue();
+    }
 }

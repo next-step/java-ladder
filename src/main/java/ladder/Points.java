@@ -12,10 +12,13 @@ public class Points {
 
     public Points(int count) {
         boolean lastConnected = false;
-        for (int i = 0; i < count; i ++) {
+        for (int i = 0; i < count; i++) {
             boolean nextConnected = !lastConnected && randomBoolean();
-            lastConnected = nextConnected;
+            if (points.stream().allMatch(point -> !point.connected())) {
+                nextConnected = true;
+            }
             points.add(new Point(nextConnected));
+            lastConnected = nextConnected;
         }
     }
 
