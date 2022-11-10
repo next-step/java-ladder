@@ -14,18 +14,18 @@ public class LadderGameApp {
 
     public static void main(String[] args) {
         final InputView inputView = new InputView();
-        AskParticipantNamesDto askParticipantNamesDto = inputView.askParticipantNames();
-        Names names = askParticipantNamesDto.getNames();
+        final AskParticipantNamesDto askParticipantNamesDto = inputView.askParticipantNames();
+        final Names names = askParticipantNamesDto.getNames();
 
-        AskHeightOfLadderDto askHeightOfLadderDto = inputView.askHeightOfLadder();
-        int heightOfLadder = askHeightOfLadderDto.getHeight();
+        final AskHeightOfLadderDto askHeightOfLadderDto = inputView.askHeightOfLadder();
+        final int heightOfLadder = askHeightOfLadderDto.getHeight();
 
-        LineGenerationStrategy lineGenerationStrategy = new RandomLineGenerationStrategy();
+        final LineGenerationStrategy lineGenerationStrategy = new RandomLineGenerationStrategy();
 
-        Ladder ladder = Ladder.of(lineGenerationStrategy, names.getNamesSize(), heightOfLadder);
+        final Ladder ladder = Ladder.of(lineGenerationStrategy, names.getNamesSize(), heightOfLadder);
 
-        ResultView resultView = new ResultView();
-        LadderCreateResultDto ladderCreateResultDto = LadderCreateResultDto.of(names, ladder);
+        final ResultView resultView = new ResultView();
+        final LadderCreateResultDto ladderCreateResultDto = LadderCreateResultDto.of(names, ladder);
         resultView.showLadderCreateResult(ladderCreateResultDto);
     }
 }

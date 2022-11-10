@@ -7,7 +7,7 @@ public class Names {
     private final List<Name> names = new ArrayList<>();
 
     private Names(List<String> names) {
-        for (String name : names) {
+        for (final String name : names) {
             this.names.add(Name.of(name));
         }
     }

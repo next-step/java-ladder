@@ -9,7 +9,7 @@ public class Ladder {
 
     public static Ladder of(LineGenerationStrategy lineGenerationStrategy, int countOfPerson,
         int height) {
-        Lines lines = Lines.of(lineGenerationStrategy, countOfPerson, height);
+        final Lines lines = Lines.of(lineGenerationStrategy, countOfPerson, height);
         return new Ladder(lines);
     }
 

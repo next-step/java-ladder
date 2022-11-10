@@ -35,14 +35,14 @@ public class ResultView {
     }
 
     private String makeLadderString(Ladder ladder) {
-        Lines lines = ladder.getLines();
+        final Lines lines = ladder.getLines();
         return lines.getLines().stream()
             .map(this::makeLineString)
             .collect(Collectors.joining(LINE_BREAK));
     }
 
     private String makeLineString(Line line) {
-        List<Boolean> points = line.getPoints();
+        final List<Boolean> points = line.getPoints();
         return BLANK.repeat(Name.LENGTH_OF_NAME_MAX_VALUE) +
             VERTICAL_LINE +
             points.stream()
