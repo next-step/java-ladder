@@ -3,14 +3,14 @@ package ladder;
 import java.util.Objects;
 
 public class Point {
-    private boolean value;
+    private boolean connected;
 
-    public Point(boolean value) {
-        this.value = value;
+    public Point(boolean connected) {
+        this.connected = connected;
     }
 
     public boolean connected() {
-        return value;
+        return connected;
     }
 
     @Override
@@ -18,18 +18,18 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return value == point.value;
+        return connected == point.connected;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(value);
+        return Objects.hash(connected);
     }
 
     @Override
     public String toString() {
         return "Point{" +
-                "value=" + value +
+                "value=" + connected +
                 '}';
     }
 }
