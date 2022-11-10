@@ -3,30 +3,44 @@ package ladder.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class Line {
 
-    private final List<Direction> line = new ArrayList<>();
+    private final List<Direction> directions = new ArrayList<>();
     private final DirectionGenerator directionGenerator;
 
-    public Line(int people, DirectionGenerator directionGenerator) {
+    public Line(int directionCount, DirectionGenerator directionGenerator) {
         this.directionGenerator = directionGenerator;
-        create(people);
+        create(directionCount);
     }
 
-    private void create(int people) {
+    private void create(int directionCount) {
         Direction direction = Direction.first(directionGenerator.generate());
-        line.add(direction);
+        directions.add(direction);
 
-        for (int i = 1; i < people - 1; i++) {
+        for (int i = 1; i < directionCount - 1; i++) {
             direction = direction.next(directionGenerator.generate());
-            line.add(direction);
+            directions.add(direction);
         }
 
-        line.add(direction.last());
+        directions.add(direction.last());
     }
 
-    public List<Direction> getLine() {
-        return Collections.unmodifiableList(line);
+    public List<Direction> getDirections() {
+        return Collections.unmodifiableList(directions);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Line line1 = (Line) o;
+        return Objects.equals(directions, line1.directions);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(directions);
     }
 }
