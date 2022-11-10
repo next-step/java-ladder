@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class DirectionTest {
 
@@ -56,5 +57,13 @@ class DirectionTest {
     void next() {
         Direction direction = Direction.first(false).next(false);
         assertThat(direction).isEqualTo(new Direction(false, false));
+    }
+
+    @DisplayName("양방향일 경우 예외가 발생한다.")
+    @Test
+    void validate() {
+        assertThatThrownBy(() -> {
+            new Direction(true, true);
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 }

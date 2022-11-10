@@ -8,8 +8,15 @@ public class Direction {
     private final boolean right;
 
     public Direction(boolean left, boolean right) {
+        validate(left, right);
         this.left = left;
         this.right = right;
+    }
+
+    private void validate(boolean left, boolean right) {
+        if (left && right) {
+            throw new IllegalArgumentException("이동이 불가능합니다.");
+        }
     }
 
     public static Direction first(boolean right) {
@@ -21,7 +28,10 @@ public class Direction {
     }
 
     public Direction next(boolean direction) {
-        return new Direction(right, direction);
+        if (right) {
+            return new Direction(true, false);
+        }
+        return new Direction(false, direction);
     }
 
     public boolean isRight() {
