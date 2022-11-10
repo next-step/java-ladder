@@ -18,6 +18,6 @@ public class LadderApplication {
         Output.printLadder(ladder);
         Output.printResult(result);
 
-        Input.printPlayerResult(playerNames, result, ladder);
+        Output.printResult(playerNames, result, ladder);
     }
 }
