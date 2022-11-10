@@ -28,7 +28,7 @@ public class LinesTest {
 
         lines.getValue().forEach(line -> {
             List<Point> linked = line.getPoints().stream()
-                .filter(Point::isLinked)
+                .filter(line::isLinkedPoint)
                 .collect(Collectors.toList());
             assertAll(
                 () -> assertThat(linked.size()).isEqualTo(2),

@@ -8,7 +8,6 @@ public class Point {
 
     private final int x;
     private final int y;
-    private boolean isLinked;
 
     public Point(final int x, final int y) {
         validate(x);
@@ -16,21 +15,12 @@ public class Point {
 
         this.x = x;
         this.y = y;
-        this.isLinked = false;
     }
 
     private void validate(final int value) {
         if (value < 0) {
             throw new IllegalArgumentException(ERROR_NEGATIVE_VALUE);
         }
-    }
-
-    public boolean isLinked() {
-        return isLinked;
-    }
-
-    public void link() {
-        this.isLinked = true;
     }
 
     public int getY() {

@@ -50,4 +50,8 @@
   - [x] 결과 계산 메소드 추가
 - [x] Line 클래스 수정
   - [x] 이동 메소드 추가
+  - [x] Point들의 연결 여부를 관리하는 필드 추가
+  - [x] Point의 연결 여부 확인 메소드 추가
+- [x] Point 클래스 수정
+  - [x] isLinked 필드 제거
 - [x] LadderApplication 클래스 수정

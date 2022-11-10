@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,6 +12,7 @@ public class Line {
     private final static String ERROR_NEGATIVE_VALUE = "0 이상의 값만 입력 가능합니다.";
 
     private final List<Point> points;
+    private final List<Integer> linkedColumns = new ArrayList<>();
 
     public Line(final int row, final int lastColumn) {
         validate(row);
@@ -27,22 +29,23 @@ public class Line {
     }
 
     public void link(final LinkStrategy strategy) {
-        List<Integer> linked = strategy.link(points.size() - 1);
-        points.stream()
-            .filter(point -> linked.contains(point.getY()))
-            .forEach(Point::link);
+        linkedColumns.addAll(strategy.link(points.size() - 1));
     }
 
     public int move(final int currentColumnNumber) {
-        if (points.get(currentColumnNumber).isLinked()) {
+        if (linkedColumns.contains(currentColumnNumber)) {
             return currentColumnNumber + 1;
         }
 
-        if (currentColumnNumber != 0 && points.get(currentColumnNumber - 1).isLinked()) {
+        if (currentColumnNumber != 0 && linkedColumns.contains(currentColumnNumber - 1)) {
             return currentColumnNumber - 1;
         }
 
         return currentColumnNumber;
+    }
+
+    public boolean isLinkedPoint(final Point point) {
+        return linkedColumns.contains(point.getY());
     }
 
     public List<Point> getPoints() {

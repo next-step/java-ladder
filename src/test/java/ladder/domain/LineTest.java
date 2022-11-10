@@ -28,7 +28,7 @@ class LineTest {
         line.link(new TestLinkStrategy());
 
         assertThat(line.getPoints().stream()
-            .filter(Point::isLinked)
+            .filter(line::isLinkedPoint)
             .collect(Collectors.toList())).containsOnly(new Point(0, 0), new Point(0, 2));
     }
 
@@ -39,5 +39,14 @@ class LineTest {
         line.link(new TestLinkStrategy());
 
         assertThat(line.move(1)).isZero();
+    }
+
+    @Test
+    @DisplayName("isLinkedPoint 메소드는 특정 Point의 연결 여부를 반환한다.")
+    void isLinkedPoint() {
+        Line line = new Line(0, 5);
+        line.link(new TestLinkStrategy());
+
+        assertThat(line.isLinkedPoint(new Point(0, 0))).isTrue();
     }
 }

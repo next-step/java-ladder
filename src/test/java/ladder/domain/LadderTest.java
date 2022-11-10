@@ -53,7 +53,7 @@ class LadderTest {
 
         ladder.getLines().forEach(line -> {
             List<Point> linked = line.getPoints().stream()
-                .filter(Point::isLinked)
+                .filter(line::isLinkedPoint)
                 .collect(Collectors.toList());
             assertAll(
                 () -> assertThat(linked.size()).isEqualTo(2),

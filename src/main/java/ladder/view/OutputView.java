@@ -42,13 +42,13 @@ public class OutputView {
         STRING_BUILDER.append("\t\t");
         line.getPoints().forEach(point -> {
             STRING_BUILDER.append(POINT);
-            STRING_BUILDER.append(checkLinked(point));
+            STRING_BUILDER.append(checkLinked(point, line));
         });
         System.out.println(STRING_BUILDER);
     }
 
-    private static String checkLinked(final Point point) {
-        if (point.isLinked()) {
+    private static String checkLinked(final Point point, final Line line) {
+        if (line.isLinkedPoint(point)) {
             return LINK;
         }
 
