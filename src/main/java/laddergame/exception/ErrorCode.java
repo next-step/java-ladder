@@ -1,4 +1,4 @@
-package laddergame;
+package laddergame.exception;
 
 public enum ErrorCode {
     NULL_OR_EMPTY_INPUT("공백이거나 null 일 수 없다."),

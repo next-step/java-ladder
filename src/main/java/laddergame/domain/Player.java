@@ -1,4 +1,7 @@
-package laddergame;
+package laddergame.domain;
+
+import laddergame.exception.ErrorCode;
+import laddergame.exception.LadderGameException;
 
 import java.util.Objects;
 

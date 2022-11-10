@@ -1,5 +1,8 @@
-package laddergame;
+package laddergame.domain;
 
+import laddergame.domain.Player;
+import laddergame.exception.ErrorCode;
+import laddergame.exception.LadderGameException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
