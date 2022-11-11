@@ -33,7 +33,7 @@ public class StreamStudy {
             .sorted()
             .distinct()
             .limit(100)
-            .map(word -> word.toLowerCase())
+            .map(String::toLowerCase)
             .forEach(System.out::println);
     }
 
