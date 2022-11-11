@@ -23,14 +23,7 @@ public class Line {
         }
     }
 
-    public boolean connected(int index) {
-        if (index < 0 || index >= points.size()) {
-            throw new IllegalArgumentException("조회 위치가 범위를 초과하였습니다.");
-        }
-        return points.get(index);
-    }
-
-    public int size() {
-        return points.size();
+    public List<Boolean> getPoints() {
+        return points;
     }
 }

@@ -27,9 +27,7 @@ public class Ladder {
         return lines;
     }
 
-    public List<String> getNames() {
-        return this.names.getNames().stream()
-                .map(Name::getName)
-                .collect(Collectors.toList());
+    public Names getNames() {
+        return names;
     }
 }
