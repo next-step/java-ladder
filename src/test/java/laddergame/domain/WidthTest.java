@@ -21,6 +21,6 @@ class WidthTest {
 
     @Test
     void 열_생성() {
-        assertThat(new Width(2).createRow()).isInstanceOf(Row.class);
+        assertThat(new Width(2).createRow().getStates()).hasSize(2);
     }
 }

@@ -3,10 +3,12 @@ package laddergame.domain;
 import laddergame.exception.ErrorCode;
 import laddergame.exception.LadderGameException;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Width {
-    public static final int MINUM_WIDTH = 1;
+    public static final int MINIMUM_WIDTH = 1;
     private final int width;
 
     public Width(int width) {
@@ -15,7 +17,7 @@ public class Width {
     }
 
     private void validateOverMinimum(int width) {
-        if (width < MINUM_WIDTH) {
+        if (width < MINIMUM_WIDTH) {
             throw new LadderGameException(ErrorCode.WIDTH_UNDER_MINIMUM);
         }
     }
@@ -34,6 +36,10 @@ public class Width {
     }
 
     public Row createRow() {
-        return new Row();
+        List<State> states = new ArrayList<>();
+        for (int i = 0; i < width; i++) {
+            states.add(new State());
+        }
+        return new Row(states);
     }
 }
