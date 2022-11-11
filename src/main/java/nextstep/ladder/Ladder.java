@@ -23,11 +23,11 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
-    public List<Line> getLines() {
-        return lines;
-    }
-
     public Names getNames() {
         return names;
+    }
+
+    public List<Line> getLines() {
+        return lines;
     }
 }
