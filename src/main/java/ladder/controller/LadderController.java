@@ -7,5 +7,6 @@ public class LadderController {
 
     public void run() {
         Names names = new Names(InputView.inputNames());
+        InputView.inputHeight();
     }
 }
