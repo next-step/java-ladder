@@ -26,7 +26,7 @@ public class Lambda {
         }).start();
     }
 
-    public static int sumAll(List<Integer> numbers, Conditional<Integer> conditional) {
+    public static int sumAll(List<Integer> numbers, Conditional conditional) {
         return numbers.stream()
             .filter(conditional::isCondition)
             .reduce(0, Integer::sum);
