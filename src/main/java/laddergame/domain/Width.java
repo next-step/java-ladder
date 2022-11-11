@@ -38,7 +38,7 @@ public class Width {
     public Row createRow() {
         List<State> states = new ArrayList<>();
         for (int i = 0; i < width; i++) {
-            states.add(new State());
+            states.add(new State(true));
         }
         return new Row(states);
     }

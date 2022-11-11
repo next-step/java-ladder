@@ -74,11 +74,12 @@ Ladder 사다리
 Ladder : List<Row>
 
 Row : List<State>
+- [x] 사다리의 한 행에 연속된 라인을 그릴 수 없다.
 
 State 상태 값 - 사다리 라인 유무
 
-- [ ] 라인이 존재하면 true 이고, 존재하지 않으면 false 이다.
-- [ ] 단, 바로 전에 라인이 존재하면 이후에 라인이 존재할 수 없다.
+- [x] 라인이 존재하면 true 이고, 존재하지 않으면 false 이다.
+- [x] 이전 라인 값이 true 이면 다음 라인 값을 false로 생성 한다.
 
 RandomStateGenerator 
 - [ ] 랜덤으로 상태 값을 생성한다. true/false
