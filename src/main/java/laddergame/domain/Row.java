@@ -3,9 +3,10 @@ package laddergame.domain;
 import laddergame.exception.ErrorCode;
 import laddergame.exception.LadderGameException;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Row {
     private final List<State> states;
@@ -27,16 +28,10 @@ public class Row {
         }
     }
 
-    public Row(boolean... inputs) {
-        this(toStates(inputs));
-    }
-
-    private static List<State> toStates(boolean[] inputs) {
-        List<State> states = new ArrayList<>();
-        for (boolean state : inputs) {
-            states.add(new State(state));
-        }
-        return states;
+    public Row(Boolean... inputs) {
+        this(Arrays.stream(inputs)
+                .map(State::valueOf)
+                .collect(Collectors.toList()));
     }
 
     public List<State> getStates() {

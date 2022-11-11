@@ -38,7 +38,7 @@ public class Width {
 
     public Row createRow(Generator generator) {
         List<State> states = new ArrayList<>();
-        State previous = new State(false);
+        State previous = State.valueOf(false);
         for (int i = 0; i < width; i++) {
             State now = previous.next(generator);
             states.add(now);

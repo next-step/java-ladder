@@ -4,9 +4,9 @@ import laddergame.Generator;
 import laddergame.exception.ErrorCode;
 import laddergame.exception.LadderGameException;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Height {
     public static final int MINIMUM_OF_HEIGHT = 1;
@@ -24,11 +24,9 @@ public class Height {
     }
 
     public Ladder createLadder(Width width, Generator generator) {
-        List<Row> rows = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            rows.add(width.createRow(generator));
-        }
-        return new Ladder(rows);
+        return new Ladder(IntStream.range(0, height)
+                .mapToObj(i -> width.createRow(generator))
+                .collect(Collectors.toList()));
     }
 
     @Override

@@ -1,6 +1,5 @@
 package laddergame.domain;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -13,9 +12,8 @@ public class Ladder {
         this.rows = rows;
     }
 
-    public Ladder(Row... inputs) {
-        this.rows = new ArrayList<>();
-        rows.addAll(Arrays.asList(inputs));
+    public Ladder(Row... rows) {
+        this(Arrays.asList(rows));
     }
 
     public List<Row> getRows() {

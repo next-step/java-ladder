@@ -2,13 +2,27 @@ package laddergame.domain;
 
 import laddergame.Generator;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class State {
+
+    private static final Map<Boolean, State> cache;
     private final boolean state;
 
-    public State(boolean state) {
+    static {
+        cache = new HashMap<>();
+        cache.put(true, new State(true));
+        cache.put(false, new State(false));
+    }
+
+    private State(boolean state) {
         this.state = state;
+    }
+
+    public static State valueOf(Boolean value) {
+        return cache.get(value);
     }
 
     public State next(Generator generator) {
