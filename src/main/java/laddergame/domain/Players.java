@@ -37,4 +37,8 @@ public class Players {
     public List<Player> getPlayers() {
         return this.players;
     }
+
+    public Width findWidth() {
+        return new Width(players.size() - 1);
+    }
 }
