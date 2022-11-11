@@ -18,23 +18,23 @@ class PlayersTest {
     public void 플레이어_사다리_게임_순서_검증(String name, int expected) {
         Players players = Players.of(Arrays.array("a", "b", "c", "d"));
 
-        Optional<Integer> result = players.findPlayerNumber(name);
+        Optional<Player> result = players.findPlayer(name);
 
-        assertThat(result).isEqualTo(Optional.of(expected));
+        assertThat(result.get().getId()).isEqualTo(expected);
     }
 
     @Test
     public void all_결과_검증시_플레이어_없음_오류_없음_검증() {
         Players players = Players.of(Arrays.array("a", "b", "c", "d"));
 
-        Optional<Integer> result = players.findPlayerNumber("all");
+        Optional<Player> result = players.findPlayer("all");
 
         assertThat(result).isEqualTo(Optional.empty());
     }
 
     @Test
     public void 플레이어_이름_존재하지_않는_경우_오류_검증() {
-        assertThatThrownBy(() -> Players.of(Arrays.array("a", "b", "c", "d")).findPlayerNumber("bella"))
+        assertThatThrownBy(() -> Players.of(Arrays.array("a", "b", "c", "d")).findPlayer("bella"))
                 .isInstanceOf(WrongParameterException.class);
     }
 }
