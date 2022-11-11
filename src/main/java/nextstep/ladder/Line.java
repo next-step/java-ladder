@@ -3,7 +3,7 @@ package nextstep.ladder;
 import java.util.List;
 
 public class Line {
-    private List<Boolean> points;
+    private final List<Boolean> points;
 
     public Line(List<Boolean> points) {
         if (points == null || points.size() <= 1) {

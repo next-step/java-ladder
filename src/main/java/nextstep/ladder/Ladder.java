@@ -5,8 +5,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Ladder {
-    private Names names;
-    private List<Line> lines;
+    private final Names names;
+    private final List<Line> lines;
 
     public Ladder(Names names, LadderHeight maxHeight) {
         this(names, generateLines(names.count(), maxHeight));
