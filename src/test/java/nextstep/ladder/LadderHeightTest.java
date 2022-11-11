@@ -5,10 +5,10 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-public class LadderMaxHeightTest {
+public class LadderHeightTest {
     @ParameterizedTest
     @ValueSource(ints = {-1, 0, 1})
-    void test(int value) {
-        assertThatIllegalArgumentException().isThrownBy(() -> new LadderMaxHeight(value));
+    void invalid_height(int value) {
+        assertThatIllegalArgumentException().isThrownBy(() -> new LadderHeight(value));
     }
 }

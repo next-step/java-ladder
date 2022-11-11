@@ -2,7 +2,6 @@ package nextstep.ladder.ui;
 
 import nextstep.ladder.Ladder;
 import nextstep.ladder.Line;
-import nextstep.ladder.Name;
 
 import java.util.List;
 
@@ -11,13 +10,14 @@ public class ResultView {
     private static final String NOT_CONNECTED = "     |";
     private static final String CONNECTED = "-----|";
 
-    public static void printNames(List<Name> names) {
-        names.forEach(name -> System.out.printf(NAME_FORMAT, name.getName()));
-        System.out.println();
+    public static void printLadder(Ladder ladder) {
+        printNames(ladder.getNames());
+        ladder.getLines().forEach(ResultView::printLine);
     }
 
-    public static void printLadder(Ladder ladder) {
-        ladder.getLines().forEach(ResultView::printLine);
+    private static void printNames(List<String> names) {
+        names.forEach(name -> System.out.printf(NAME_FORMAT, name));
+        System.out.println();
     }
 
     private static void printLine(Line line) {
