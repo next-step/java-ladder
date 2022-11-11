@@ -31,6 +31,10 @@ public class Line {
         return Collections.unmodifiableList(directions);
     }
 
+    public int size() {
+        return directions.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

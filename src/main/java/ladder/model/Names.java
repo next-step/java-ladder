@@ -29,4 +29,8 @@ public class Names {
     public List<Name> getNames() {
         return names;
     }
+
+    public int size() {
+        return names.size();
+    }
 }
