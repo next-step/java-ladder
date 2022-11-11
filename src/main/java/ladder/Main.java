@@ -18,12 +18,10 @@ public class Main {
         showLadder(ladderGame);
         showReward(ladderGame.getLadderRewards());
 
-        String player = scanPlayerResult();
-
         LadderRewards result = ladderGame.getResult();
 
-        players.findPlayerNumber(player).ifPresentOrElse(
-                number -> showResultByPlayer(result.get(number), players.getPlayer(number))
+        players.findPlayer(scanPlayerResult()).ifPresentOrElse(
+                player -> showResultByPlayer(result.get(player.getId()), player)
                 , () -> showResultAll(result, players)
         );
     }
