@@ -5,8 +5,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class LineFactory {
+    private static final Random random = new Random();
+
     public static Line randomLine(int countOfPerson) {
-        Random random = new Random();
         return new Line(Stream.generate(random::nextBoolean)
                 .flatMap(connected -> {
                     if (connected) {
