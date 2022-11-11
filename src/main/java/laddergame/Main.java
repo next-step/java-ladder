@@ -5,6 +5,7 @@ import laddergame.domain.Ladder;
 import laddergame.domain.Players;
 import laddergame.domain.Width;
 import laddergame.view.InputView;
+import laddergame.view.OutputView;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,5 +14,7 @@ public class Main {
 
         Width width = players.findWidth();
         Ladder ladder = height.createLadder(width, new RandomStateGenerator());
+
+        OutputView.printResult(players, ladder);
     }
 }
