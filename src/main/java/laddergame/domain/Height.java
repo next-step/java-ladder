@@ -7,13 +7,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Height {
+    public static final int MINIMUM_OF_HEIGHT = 1;
     private final int height;
 
     public Height(int height) {
-        if (height < 1) {
+        validateOverMinimum(height);
+        this.height = height;
+    }
+
+    private void validateOverMinimum(int height) {
+        if (height < MINIMUM_OF_HEIGHT) {
             throw new LadderGameException(ErrorCode.HEIGHT_UNDER_MINIMUM);
         }
-        this.height = height;
     }
 
     public Ladder createLadder(Width width) {
