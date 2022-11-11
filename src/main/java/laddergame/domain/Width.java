@@ -32,4 +32,8 @@ public class Width {
     public int hashCode() {
         return Objects.hash(width);
     }
+
+    public Row createRow() {
+        return new Row();
+    }
 }
