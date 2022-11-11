@@ -26,6 +26,10 @@ public class Lambda {
         }).start();
     }
 
+    public static int sumAll(List<Integer> numbers) {
+        return sumAll(numbers, t -> true);
+    }
+
     public static int sumAll(List<Integer> numbers, Conditional conditional) {
         return numbers.stream()
             .filter(conditional::isCondition)
