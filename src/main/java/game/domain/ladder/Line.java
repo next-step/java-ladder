@@ -1,15 +1,15 @@
-package game.dto;
+package game.domain.ladder;
 
 import java.util.List;
 
-public class LineDto {
+public class Line {
     private final List<Boolean> points;
 
-    public LineDto(List<Boolean> points) {
+    public Line(List<Boolean> points) {
         this.points = points;
     }
 
-    public List<Boolean> getLines() {
+    public List<Boolean> points() {
         return points;
     }
 }

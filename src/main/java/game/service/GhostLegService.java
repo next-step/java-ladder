@@ -1,6 +1,8 @@
-package game.domain;
+package game.service;
 
 import game.constant.Case;
+import game.domain.ladder.LadderResult;
+import game.domain.ladder.Ladders;
 import game.util.RandomNumberGenerator;
 
 import java.util.List;
@@ -8,6 +10,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class GhostLegService {
+
+    private final String ALL_PEOPLE = "all";
+
     public List<Boolean> generateRandomLines(int listSize) {
         return Stream.generate(RandomNumberGenerator::randomBoolean)
                 .limit(listSize - 1)
@@ -75,5 +80,12 @@ public class GhostLegService {
             return points.get(index - 2);
         }
         return !points.get(index);
+    }
+
+    public List<LadderResult> findLadderResults(List<String> people, String person, List<String> results, Ladders ladders) {
+        if (ALL_PEOPLE.equals(person)) {
+            return ladders.findAllLadderResults(people, results);
+        }
+        return List.of(ladders.findOneLadderResult(person, people.indexOf(person), results));
     }
 }

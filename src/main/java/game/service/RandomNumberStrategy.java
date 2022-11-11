@@ -1,4 +1,4 @@
-package game.domain;
+package game.service;
 
 import game.util.RandomNumberGenerator;
 
