@@ -5,6 +5,7 @@ import laddergame.exception.LadderGameException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Row {
     private final List<State> states;
@@ -21,7 +22,7 @@ public class Row {
     }
 
     private void comparePreviousState(State previous, State now) {
-        if (previous.equals(now)) {
+        if (previous.isExist() && now.isExist()) {
             throw new LadderGameException(ErrorCode.LADDER_LINE_EXIT_CONTINOUSLY);
         }
     }
@@ -40,5 +41,25 @@ public class Row {
 
     public List<State> getStates() {
         return this.states;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Row row = (Row) o;
+        return Objects.equals(states, row.states);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(states);
+    }
+
+    @Override
+    public String toString() {
+        return "Row{" +
+                "states=" + states +
+                '}';
     }
 }

@@ -1,5 +1,6 @@
 package laddergame.domain;
 
+import laddergame.ManualGenerator;
 import laddergame.exception.ErrorCode;
 import laddergame.exception.LadderGameException;
 import org.junit.jupiter.api.Test;
@@ -21,6 +22,7 @@ class WidthTest {
 
     @Test
     void 열_생성() {
-        assertThat(new Width(2).createRow().getStates()).hasSize(2);
+        assertThat(new Width(4).createRow(new ManualGenerator(true, false, false, false)))
+                .isEqualTo(new Row(true, false, false, false));
     }
 }

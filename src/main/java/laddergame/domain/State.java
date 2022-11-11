@@ -1,5 +1,7 @@
 package laddergame.domain;
 
+import laddergame.Generator;
+
 import java.util.Objects;
 
 public class State {
@@ -9,11 +11,12 @@ public class State {
         this.state = state;
     }
 
-    public State next(boolean state) {
-        if (this.state) {
+    public State next(Generator generator) {
+        boolean next = generator.generate();
+        if (isExist()) {
             return new State(false);
         }
-        return new State(state);
+        return new State(next);
     }
 
     @Override
@@ -34,6 +37,10 @@ public class State {
         return "State{" +
                 "state=" + state +
                 '}';
+    }
+
+    public boolean isExist() {
+        return this.state;
     }
 }
 

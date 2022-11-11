@@ -1,5 +1,6 @@
 package laddergame.domain;
 
+import laddergame.Generator;
 import laddergame.exception.ErrorCode;
 import laddergame.exception.LadderGameException;
 
@@ -35,10 +36,13 @@ public class Width {
         return Objects.hash(width);
     }
 
-    public Row createRow() {
+    public Row createRow(Generator generator) {
         List<State> states = new ArrayList<>();
+        State previous = new State(false);
         for (int i = 0; i < width; i++) {
-            states.add(new State(true));
+            State now = previous.next(generator);
+            states.add(now);
+            previous = now;
         }
         return new Row(states);
     }
