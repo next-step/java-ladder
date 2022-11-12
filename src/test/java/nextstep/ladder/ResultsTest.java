@@ -12,7 +12,7 @@ public class ResultsTest {
         Players players = new Players(new String[]{"A", "B", "C", "D"});
 
         Assertions.assertThatIllegalArgumentException().isThrownBy(
-                () -> new Results(new String[]{"a", "b"}, players.getSize())
+                () -> new Results(new String[]{"a", "b"}, players.size())
         );
     }
 }

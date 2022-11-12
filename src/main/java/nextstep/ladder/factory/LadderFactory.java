@@ -9,15 +9,15 @@ import java.util.Random;
 import java.util.stream.IntStream;
 
 public class LadderFactory {
+    private static final int ZERO = 0;
 
     private static final Random RANDOM = new Random();
 
     public static Ladder createRandomLadder(int height, int countPerson) {
         List<Line> lines = new ArrayList<>();
 
-        for (int i = 0; i < height; i++) {
-            lines.add(createLine(countPerson));
-        }
+        IntStream.range(ZERO, height)
+                .forEach(i -> lines.add(createLine(countPerson)));
 
         return new Ladder(lines);
     }

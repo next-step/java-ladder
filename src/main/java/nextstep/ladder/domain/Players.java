@@ -42,7 +42,7 @@ public class Players {
         players.set(number + 1, player);
     }
 
-    public int getSize() {
+    public int size() {
         return players.size();
     }
 

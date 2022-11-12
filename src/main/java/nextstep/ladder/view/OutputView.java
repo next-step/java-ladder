@@ -55,7 +55,7 @@ public class OutputView {
 
     public static void outputAllResult(Players players, Results results) {
         System.out.println("실행 결과");
-        for (int i = 0; i < players.getSize(); i++) {
+        for (int i = 0; i < players.size(); i++) {
             System.out.println(players.getPlayer(i) + " : " + results.getResult(i));
         }
     }
