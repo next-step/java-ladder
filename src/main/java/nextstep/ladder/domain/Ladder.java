@@ -15,7 +15,7 @@ public class Ladder {
 
     private List<Row> buildRows(final int rowCount, final int columnCount) {
         return IntStream.range(0, rowCount)
-                .mapToObj(i -> new Row(columnCount))
+                .mapToObj(i -> Row.ofSize(columnCount))
                 .collect(Collectors.toList());
     }
 

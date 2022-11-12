@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,6 +24,6 @@ public class Players {
     }
 
     public List<Player> asList() {
-        return this.players;
+        return Collections.unmodifiableList(this.players);
     }
 }

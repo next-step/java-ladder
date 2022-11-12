@@ -1,27 +1,36 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.vertexDrawStrategies.RandomVertexDrawStrategy;
+import nextstep.ladder.domain.vertexDrawStrategies.VertexDrawStrategy;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Row {
     private final List<Boolean> vertexes;
 
-    public Row(final int columnSize) {
-        this.vertexes = drawRandomVertexes(columnSize - 1);
-    }
-
-    Row(final List<Boolean> vertexes) {
+    private Row(final List<Boolean> vertexes) {
         this.vertexes = vertexes;
         validateVertexes(vertexes);
     }
 
-    private List<Boolean> drawRandomVertexes(final int columnSize) {
+    public static Row ofSize(final int columnSize) {
+        return new Row(drawRandomVertexes(columnSize - 1, new RandomVertexDrawStrategy()));
+    }
+
+    public static Row ofSizeAndStrategy(final int columnSize, VertexDrawStrategy vertexDrawStrategy) {
+        return new Row(drawRandomVertexes(columnSize - 1, vertexDrawStrategy));
+    }
+
+    public static Row ofVertexes(final List<Boolean> vertexes) {
+        return new Row(vertexes);
+    }
+
+    private static List<Boolean> drawRandomVertexes(final int columnSize, final VertexDrawStrategy vertexDrawStrategy) {
         List<Boolean> vertexes = new ArrayList<>();
-        Random random = new Random();
         boolean lastVertexDrawn = false;
         for (int i = 0; i < columnSize; i++) {
-            boolean isDraw = random.nextBoolean() && !lastVertexDrawn;
+            boolean isDraw = vertexDrawStrategy.shouldDraw() && !lastVertexDrawn;
             vertexes.add(isDraw);
             lastVertexDrawn = isDraw;
         }
