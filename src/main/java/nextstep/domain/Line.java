@@ -36,9 +36,9 @@ public class Line {
     }
 
     public int search(int idx) {
-        Direction direction = new Direction(idx);
+        Position position = new Position(idx);
         int point = points.get(idx).move();
-        return direction.move(point);
+        return position.move(point);
     }
 
     @Override

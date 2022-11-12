@@ -1,9 +1,9 @@
 package nextstep.domain;
 
-public class Direction {
+public class Position {
     private int direction;
 
-    public Direction(int direction) {
+    public Position(int direction) {
         this.direction = direction;
     }
 
