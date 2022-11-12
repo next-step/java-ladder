@@ -20,7 +20,7 @@ public class Ladder {
         }
     }
 
-    public int search(int idx) {
+    public int move(int idx) {
         for (Line line : lines) {
             idx = line.move(idx);
         }

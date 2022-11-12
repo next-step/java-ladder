@@ -88,7 +88,7 @@ public class Output {
         sb.setLength(0);
 
         for (int i = 0; i < players.getPlayersSize(); i++) {
-            int idx = ladder.search(i);
+            int idx = ladder.move(i);
             sb.append(players.getPlayers().get(i).getName());
             sb.append(" : ");
             sb.append(result.get(idx));
@@ -102,7 +102,7 @@ public class Output {
         sb.setLength(0);
 
         for (int i = 0; i < players.getPlayersSize(); i++) {
-            int idx = ladder.search(i);
+            int idx = ladder.move(i);
             if (players.getPlayers().get(i).getName().equals(player)) {
                 sb.append(result.get(idx)).append("\n");
             }
