@@ -1,9 +1,9 @@
 package ladder.domain;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Prizes {
 
@@ -35,9 +35,14 @@ public class Prizes {
             throw new IllegalArgumentException(ERROR_NOT_EQUAL_PARTICIPANTS_NUMBER);
         }
 
-        return IntStream.range(0, splited.length)
-            .mapToObj(i -> new Prize(splited[i], i))
+        return Arrays.stream(splited)
+            .map(Prize::new)
             .collect(Collectors.toList());
+    }
+
+    // TODO: validation
+    public Prize find(final int position) {
+        return value.get(position);
     }
 
     public List<Prize> getValue() {

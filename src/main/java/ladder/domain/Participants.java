@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -11,6 +12,7 @@ public class Participants {
     private final static String ERROR_EMPTY_VALUE = "입력 값이 누락되었습니다.";
     private final static String ERROR_UNDER_ONE_VALUE = "두 사람 이상 참여해야 합니다.";
     private final static String ERROR_NOT_EQUAL_SIZE = "입력 값 크기가 참여자 수와 동일하지 않습니다.";
+    private final static String ERROR_NOT_FOUND = "존재하지 않는 사용자입니다.";
     private final static String SEPARATOR = ",";
 
     private final List<Participant> value;
@@ -56,6 +58,13 @@ public class Participants {
             Participant participant = value.get(i);
             participant.changePosition(positions.get(i));
         });
+    }
+
+    public Participant findByName(final String name) {
+        return value.stream()
+            .filter(participant -> participant.isEqualName(name))
+            .findFirst()
+            .orElseThrow(() -> new NoSuchElementException(ERROR_NOT_FOUND));
     }
 
     public List<Participant> getValue() {

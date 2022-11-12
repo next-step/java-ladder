@@ -6,7 +6,7 @@ public class Prize {
 
     private final String name;
 
-    public Prize(final String name, final int column) {
+    public Prize(final String name) {
         validateName(name);
         this.name = name;
     }

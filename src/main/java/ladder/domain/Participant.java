@@ -17,6 +17,14 @@ public class Participant {
         this.position = position;
     }
 
+    public boolean isEqualName(final String name) {
+        return this.name.equals(new Name(name));
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

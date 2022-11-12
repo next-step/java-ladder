@@ -16,4 +16,10 @@ class ParticipantTest {
 
         assertThat(participant).isEqualTo(new Participant("jordy", 5));
     }
+
+    @Test
+    @DisplayName("isEqualName 메소드는 입력된 이름 값과 같은 이름을 가지고 있는지 판단한다.")
+    void isEqualName() {
+        assertThat(new Participant("jordy", 0).isEqualName("jordy")).isTrue();
+    }
 }

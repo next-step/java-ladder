@@ -27,9 +27,9 @@ public class LadderApplication {
         ladder.play(participants);
 
         String participant = inputParticipant();
-        printGameResult(result, participant);
+        printGameResult(participant, participants, prizes);
 
         String all = inputParticipant();
-        printGameResult(result, all);
+        printGameResult(all, participants, prizes);
     }
 }

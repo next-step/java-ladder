@@ -1,10 +1,8 @@
 package ladder.view;
 
 import java.util.List;
-import java.util.Map;
 import ladder.domain.Ladder;
 import ladder.domain.Line;
-import ladder.domain.Name;
 import ladder.domain.Participant;
 import ladder.domain.Participants;
 import ladder.domain.Point;
@@ -64,21 +62,25 @@ public class OutputView {
         });
     }
 
-    public static void printGameResult(final Map<Name, Prize> result, final String name) {
+    public static void printGameResult(final String name, final Participants participants, final Prizes prizes) {
         System.out.println("\n실행 결과");
         if (name.equals(ALL)) {
-            printAllGameResult(result);
+            printAllGameResult(participants, prizes);
             return;
         }
 
-        System.out.printf("%s : %s", name, result.get(new Name(name)));
-        System.out.println();
+        Participant participant = participants.findByName(name);
+        printParticipantResult(participant, prizes.find(participant.getPosition()));
     }
 
-    private static void printAllGameResult(final Map<Name, Prize> result) {
-        result.forEach(((name, prize) -> {
-            System.out.printf("%s : %s", name, prize);
-            System.out.println();
-        }));
+    private static void printAllGameResult(final Participants participants, final Prizes prizes) {
+        participants.getValue().forEach(participant -> {
+            printParticipantResult(participant, prizes.find(participant.getPosition()));
+        });
+    }
+
+    private static void printParticipantResult(final Participant participant, final Prize prize) {
+        System.out.printf("%s : %s", participant, prize);
+        System.out.println();
     }
 }

@@ -39,7 +39,7 @@ public class Ladder {
         }
 
         List<Integer> result = new ArrayList<>();
-        IntStream.range(0, lines.size())
+        IntStream.range(0, participants.size())
             .map(lines::move)
             .forEach(result::add);
         participants.move(result);
