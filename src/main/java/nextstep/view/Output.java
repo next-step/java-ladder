@@ -89,7 +89,10 @@ public class Output {
 
         for (int i = 0; i < players.getPlayersSize(); i++) {
             int idx = ladder.search(i);
-            sb.append(players.getPlayers().get(i).getName() + " : " + result.get(idx)).append("\n");
+            sb.append(players.getPlayers().get(i).getName());
+            sb.append(" : ");
+            sb.append(result.get(idx));
+            sb.append(System.lineSeparator());
         }
         System.out.println(sb);
     }
