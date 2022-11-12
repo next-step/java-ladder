@@ -1,14 +1,14 @@
 package nextstep.domain;
 
 public class Position {
-    private int direction;
+    private int position;
 
-    public Position(int direction) {
-        this.direction = direction;
+    public Position(int position) {
+        this.position = position;
     }
 
     public int move(int point) {
-        direction += point;
-        return direction;
+        position += point;
+        return position;
     }
 }
