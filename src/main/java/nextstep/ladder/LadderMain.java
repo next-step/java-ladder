@@ -12,7 +12,7 @@ public class LadderMain {
         int height = InputView.inputLadderHeight();
 
         LadderFactory ladderFactory = new LadderFactory();
-        Ladder ladder = ladderFactory.createRandomLadder(height, players.countPerson());
+        Ladder ladder = ladderFactory.createRandomLadder(height, players.countPlayers());
 
         OutputView.outputResult(players, ladder);
     }

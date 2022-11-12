@@ -41,7 +41,7 @@ public class OutputView {
     }
 
     private static void outputPerson(Players person) {
-        person.getPerson()
+        person.getPlayers()
                 .forEach(p -> System.out.print(p + TAB));
 
         System.out.println();

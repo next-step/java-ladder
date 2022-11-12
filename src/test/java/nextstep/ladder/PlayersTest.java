@@ -1,17 +1,18 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.Players;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class PersonTest {
+public class PlayersTest {
 
     @Test
     void 성공테스트() {
-        Players person = new Players(new String[]{"num1","num2"});
+        Players players = new Players(new String[]{"num1","num2"});
 
-        assertThat(person).isEqualTo(new Players(new String[]{"num1", "num2"}));
+        assertThat(players).isEqualTo(new Players(new String[]{"num1", "num2"}));
     }
 
     @Test
@@ -26,5 +27,14 @@ public class PersonTest {
         assertThatIllegalArgumentException().isThrownBy(
                 () -> new Players(new String[]{"123456"})
         );
+    }
+
+    @Test
+    void changePosition() {
+        Players players = new Players(new String[]{"A", "B", "C", "D"});
+
+        players.changePositions(1);
+
+        assertThat(players).isEqualTo(new Players(new String[]{"A", "C", "B", "D"}));
     }
 }

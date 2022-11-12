@@ -28,12 +28,18 @@ public class Players {
         }
     }
 
-    public int countPerson() {
+    public int countPlayers() {
         return players.size();
     }
 
-    public List<String> getPerson() {
+    public List<String> getPlayers() {
         return players;
+    }
+
+    public void changePositions(int number) {
+        String player = players.get(number);
+        players.set(number, players.get(number + 1));
+        players.set(number + 1, player);
     }
 
     @Override
