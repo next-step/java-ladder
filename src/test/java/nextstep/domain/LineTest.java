@@ -16,7 +16,7 @@ class LineTest {
     @Test
     void test_Equal_subtract_one_from_number_If_create_line_with_Same_number_of_people() {
         Line line = new Line(NUMBER_OF_PEOPLE, RandomLineStrategy.getInstance());
-        assertThat(line.getPoints().size()).isEqualTo(NUMBER_OF_PEOPLE);
+        assertThat(line.getDirections().size()).isEqualTo(NUMBER_OF_PEOPLE);
     }
 
     @Test
@@ -30,7 +30,7 @@ class LineTest {
         );
 
         Line line = new Line(NUMBER_OF_PEOPLE, () -> true);
-        List<Direction> directions = line.getPoints();
+        List<Direction> directions = line.getDirections();
         assertThat(directions).isEqualTo(directions);
     }
 

@@ -20,7 +20,7 @@ public class Line {
         directions = of(countPerson, lineStrategy);
     }
 
-    public List<Direction> getPoints() {
+    public List<Direction> getDirections() {
         return Collections.unmodifiableList(directions);
     }
 
@@ -28,7 +28,8 @@ public class Line {
         directions.add(Direction.init(false));
 
         for (int point = 1; point < count - 1; point++) {
-            directions.add(directions.get(point - 1).insert(lineStrategy.generate()));
+            Direction insert = directions.get(point - 1).insert(lineStrategy.generate());
+            directions.add(insert);
         }
         directions.add(directions.get(count - 2).last());
 

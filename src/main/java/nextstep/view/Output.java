@@ -50,7 +50,7 @@ public class Output {
     }
 
     private static void getLine(StringBuilder sb, Line line) {
-        line.getPoints().stream()
+        line.getDirections().stream()
                 .forEachOrdered(point -> sb.append(print(point)));
         sb.append("\n");
     }
@@ -67,13 +67,20 @@ public class Output {
             System.out.println(INPUT_PERSON_MESSAGE);
             String player = sc.nextLine();
 
-            if (player.equals("all")) {
-                printAllPlayersResult(players, result, ladder);
+            if (compareAllPlayers(players, result, ladder, player)) {
                 break;
             }
 
             printPlayerResult(players, result, ladder, player);
         }
+    }
+
+    private static boolean compareAllPlayers(Players players, Result result, Ladder ladder, String player) {
+        if (player.equals("all")) {
+            printAllPlayersResult(players, result, ladder);
+            return true;
+        }
+        return false;
     }
 
     public static void printAllPlayersResult(Players players, Result result, Ladder ladder) {
