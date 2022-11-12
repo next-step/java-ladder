@@ -2,12 +2,12 @@ package ladder.model;
 
 import java.util.Objects;
 
-public class Name {
+public class User {
 
     private static final int MAX_LENGTH = 5;
     private final String name;
 
-    public Name(String name) {
+    public User(String name) {
         validate(name);
         this.name = name;
     }
@@ -26,8 +26,8 @@ public class Name {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Name name1 = (Name) o;
-        return Objects.equals(name, name1.name);
+        User user1 = (User) o;
+        return Objects.equals(name, user1.name);
     }
 
     @Override

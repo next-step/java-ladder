@@ -9,9 +9,9 @@ public class LadderController {
     private final DirectionGenerator directionGenerator = new RandomDirectionGenerator();
 
     public void run() {
-        Names names = new Names(InputView.inputNames());
-        Ladder ladder = new Ladder(names.size(), InputView.inputHeight(), directionGenerator);
+        Users users = new Users(InputView.inputNames());
+        Ladder ladder = new Ladder(users.size(), InputView.inputHeight(), directionGenerator);
 
-        OutputView.printLadderResult(new LadderResult(names, ladder));
+        OutputView.printLadderResult(new LadderResult(users, ladder));
     }
 }

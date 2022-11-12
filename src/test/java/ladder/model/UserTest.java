@@ -8,12 +8,12 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class NameTest {
+class UserTest {
 
     @Test
     void create() {
-        Name name = new Name("수정");
-        assertThat(name).isEqualTo(new Name("수정"));
+        User user = new User("수정");
+        assertThat(user).isEqualTo(new User("수정"));
     }
 
     @DisplayName("이름이 공백이면 예외가 발생한다.")
@@ -21,7 +21,7 @@ class NameTest {
     @NullAndEmptySource
     void validateNameIsBlank(String input) {
         assertThatThrownBy(() -> {
-            new Name(input);
+            new User(input);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -29,7 +29,7 @@ class NameTest {
     @Test
     void validateNameLength() {
         assertThatThrownBy(() -> {
-            new Name("123456");
+            new User("123456");
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }

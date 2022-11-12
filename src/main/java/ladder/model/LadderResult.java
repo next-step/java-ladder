@@ -9,8 +9,8 @@ public class LadderResult {
     private List<String> names = new ArrayList<>();
     private List<Line> ladder = new ArrayList<>();
 
-    public LadderResult(Names names, Ladder ladder) {
-        this.names = names.getNames().stream().map(Name::getName).collect(Collectors.toList());
+    public LadderResult(Users users, Ladder ladder) {
+        this.names = users.getUsers().stream().map(User::getName).collect(Collectors.toList());
         this.ladder = ladder.getLines();
     }
 
