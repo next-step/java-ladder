@@ -42,6 +42,10 @@ public class Players {
         players.set(number + 1, player);
     }
 
+    public int getSize() {
+        return players.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -54,4 +58,6 @@ public class Players {
     public int hashCode() {
         return Objects.hash(players);
     }
+
+
 }

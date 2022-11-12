@@ -12,7 +12,7 @@ public class LadderFactory {
 
     private static final Random RANDOM = new Random();
 
-    public Ladder createRandomLadder(int height, int countPerson) {
+    public static Ladder createRandomLadder(int height, int countPerson) {
         List<Line> lines = new ArrayList<>();
 
         for (int i = 0; i < height; i++) {
@@ -22,7 +22,7 @@ public class LadderFactory {
         return new Ladder(lines);
     }
 
-    private Line createLine(int countPerson) {
+    private static Line createLine(int countPerson) {
         List<Boolean> points = new ArrayList<>();
 
         IntStream.range(0, countPerson - 1)
@@ -31,14 +31,14 @@ public class LadderFactory {
         return new Line(points);
     }
 
-    public boolean addPoint(int point, List<Boolean> points) {
+    public static boolean addPoint(int point, List<Boolean> points) {
         if (isPreviousTrue(point, points)) {
             return false;
         }
         return RANDOM.nextBoolean();
     }
 
-    private boolean isPreviousTrue(int point, List<Boolean> points) {
+    private static boolean isPreviousTrue(int point, List<Boolean> points) {
         return point > 0 && points.get(point - 1);
     }
 }

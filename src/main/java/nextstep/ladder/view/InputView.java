@@ -1,5 +1,8 @@
 package nextstep.ladder.view;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
@@ -20,6 +23,17 @@ public class InputView {
             return SCANNER.nextInt();
         } catch (Exception e) {
             throw new IllegalArgumentException("숫자만 입력 가능합니다", e);
+        }
+    }
+
+    public static List<String> inputResult() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        try {
+            String[] results = SCANNER.nextLine().trim().split(",");
+            return Arrays.asList(results);
+
+        } catch (Exception e) {
+            throw new IllegalArgumentException("잘못된 입력 값입니다.", e);
         }
     }
 }
