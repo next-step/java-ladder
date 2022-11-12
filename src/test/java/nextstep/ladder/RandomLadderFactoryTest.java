@@ -1,6 +1,6 @@
 package nextstep.ladder;
 
-import nextstep.ladder.factory.RandomLadderFactory;
+import nextstep.ladder.factory.LadderFactory;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +10,7 @@ public class RandomLadderFactoryTest {
 
     @Test
     void 앞죄표가_true일_경우() {
-        RandomLadderFactory randomLadderFactory = new RandomLadderFactory();
+        LadderFactory randomLadderFactory = new LadderFactory();
         boolean result = randomLadderFactory.addPoint(3, Arrays.asList(true, false, true));
         Assertions.assertThat(result).isFalse();
     }
