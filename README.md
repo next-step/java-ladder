@@ -4,7 +4,7 @@
 * CarTest 
   - 익명 클래스를 람다로 전환 
 
-* Lambda - sumAll(), sumAllEven()
+* Lambda - sumAll(), sumAllEven(), sumAllOverThree()
   - 람다를 활용해 중복 제거
 
 * StreamStudy - sumOverThreeAndDouble()
