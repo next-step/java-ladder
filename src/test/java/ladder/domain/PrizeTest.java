@@ -27,10 +27,4 @@ class PrizeTest {
             isInstanceOf(IllegalArgumentException.class).
             hasMessage("0 이상의 값만 입력 가능합니다.");
     }
-
-    @Test
-    @DisplayName("isSameColumn 메소드는 입력 값과 Prize 객체의 column 값이 같은지 확인한다.")
-    void isSameColumn() {
-        assertThat(new Prize("5000", 2).isSameColumn(2)).isTrue();
-    }
 }
