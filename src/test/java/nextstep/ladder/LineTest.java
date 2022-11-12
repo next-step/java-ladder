@@ -18,7 +18,8 @@ public class LineTest {
         };
 
         line.generateConnection();
-        assertThat(line.toString()).isEqualTo("     |-----|-----|");
+        assertThat(line.getPointSize()).isEqualTo(3);
+        assertThat(line.getPoints()).containsOnly(true);
     }
 
 }

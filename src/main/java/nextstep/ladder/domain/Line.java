@@ -14,6 +14,18 @@ public class Line {
         }
     }
 
+    public List<Boolean> getPoints() {
+        return points;
+    }
+
+    public int getPointSize() {
+        return points.size();
+    }
+
+    public boolean getPoint(int index) {
+        return points.get(index);
+    }
+
     public void generateConnection() {
         Random random = new Random();
 
@@ -39,25 +51,5 @@ public class Line {
     private void connectPoints(int firstIndex, int secondIndex) {
         points.set(firstIndex, true);
         points.set(secondIndex, true);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("     ");
-        for (int i = 0; i < points.size() - 1; i++) {
-            stringBuilder.append("|");
-            stringBuilder.append(getConnectionString(i, i + 1));
-        }
-        stringBuilder.append("|");
-        return stringBuilder.toString();
-    }
-
-    private String getConnectionString(int leftIndex, int rightIndex) {
-        if (points.get(leftIndex) && points.get(rightIndex)) {
-            return "-----";
-        } else {
-            return "     ";
-        }
     }
 }

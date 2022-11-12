@@ -3,6 +3,8 @@ package nextstep.ladder.view;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+import nextstep.ladder.domain.Name;
 
 public class InputView {
 
@@ -10,17 +12,10 @@ public class InputView {
 
     private InputView() {}
 
-    public static List<String> readParticipantNames() {
+    public static List<Name> readParticipantNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         List<String> names = Arrays.asList(SCANNER.nextLine().split(","));
-        names.forEach(InputView::checkNameLength);
-        return names;
-    }
-
-    private static void checkNameLength(String name) {
-        if (name.length() > 5) {
-            throw new IllegalArgumentException("이름은 최대 5글자까지 입력할 수 있습니다.");
-        }
+        return names.stream().map(Name::new).collect(Collectors.toList());
     }
 
     public static int readLadderHeight() {

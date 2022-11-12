@@ -13,14 +13,11 @@ public class Ladder {
         }
     }
 
-    public void generateLines() {
-        lines.forEach(Line::generateConnection);
+    public List<Line> getLines() {
+        return lines;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        lines.forEach(line -> stringBuilder.append(line.toString()).append("\n"));
-        return stringBuilder.toString();
+    public void generateLines() {
+        lines.forEach(Line::generateConnection);
     }
 }
