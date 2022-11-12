@@ -14,14 +14,14 @@ class LineTest {
     private static List<Direction> directions;
 
     @Test
-    void test_Equal_subtract_one_from_number_If_create_line_with_Same_number_of_people() {
+    void 인원수에_따라_Line_객체_생성시_해당_인원수만큼_direction_을_반환한다() {
         Line line = new Line(NUMBER_OF_PEOPLE, RandomLineStrategy.getInstance());
         assertThat(line.getDirections().size()).isEqualTo(NUMBER_OF_PEOPLE);
     }
 
     @Test
-    void test_Equal_listOf_TrueFalseTrueFalse_If_create_line_with_Number_of_people() {
-        LineTest.directions = Arrays.asList(
+    void true_로_시작하는_Line_객체_생성시_TrueFalseTrueFalse_형태로_directions_를_반환한다() {
+        directions = Arrays.asList(
                 Direction.init(true),
                 Direction.init(false),
                 Direction.init(true),
