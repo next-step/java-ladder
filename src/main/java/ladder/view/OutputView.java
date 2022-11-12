@@ -5,8 +5,11 @@ import java.util.Map;
 import ladder.domain.Ladder;
 import ladder.domain.Line;
 import ladder.domain.Name;
+import ladder.domain.Participant;
+import ladder.domain.Participants;
 import ladder.domain.Point;
 import ladder.domain.Prize;
+import ladder.domain.Prizes;
 
 public class OutputView {
 
@@ -20,16 +23,16 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printLadderResult(final Ladder ladder) {
+    public static void printLadderResult(final Participants participants, final Ladder ladder, final Prizes prizes) {
         System.out.println("\n사다리 결과");
-        printParticipants(ladder.getParticipants());
+        printParticipants(participants.getValue());
         System.out.println();
         ladder.getLines().forEach(OutputView::printLine);
-        printPrizes(ladder.getPrizes());
+        printPrizes(prizes.getValue());
         System.out.println();
     }
 
-    private static void printParticipants(final List<Name> participants) {
+    private static void printParticipants(final List<Participant> participants) {
         participants.forEach(p -> {
             System.out.print(" ".repeat(PLACE - p.toString().length()));
             System.out.print(p + " ");

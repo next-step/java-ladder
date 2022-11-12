@@ -3,6 +3,8 @@ package ladder.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.List;
+import java.util.stream.IntStream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -29,5 +31,19 @@ public class ParticipantsTest {
     void size() {
         Participants participants = new Participants("jordy,penda,kero");
         assertThat(participants.size()).isEqualTo(3);
+    }
+
+    @Test
+    @DisplayName("move 메소드는 참여자의 위치를 이동시킨다.")
+    void move() {
+        Participants participants = new Participants("jordy,penda,kero,cobb");
+        List<Integer> positions = List.of(1, 0, 3, 2);
+        participants.move(positions);
+
+        String[] splited = "jordy,penda,kero,cobb".split(",");
+        List<Participant> value = participants.getValue();
+        IntStream.range(0, participants.size()).forEach(i -> {
+            assertThat(value.get(i)).isEqualTo(new Participant(splited[i], positions.get(i)));
+        });
     }
 }

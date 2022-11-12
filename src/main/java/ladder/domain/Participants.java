@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -9,6 +10,7 @@ public class Participants {
 
     private final static String ERROR_EMPTY_VALUE = "입력 값이 누락되었습니다.";
     private final static String ERROR_UNDER_ONE_VALUE = "두 사람 이상 참여해야 합니다.";
+    private final static String ERROR_NOT_EQUAL_SIZE = "입력 값 크기가 참여자 수와 동일하지 않습니다.";
     private final static String SEPARATOR = ",";
 
     private final List<Participant> value;
@@ -41,7 +43,40 @@ public class Participants {
         return value.size();
     }
 
+    public void move(List<Integer> positions) {
+        if (positions == null || positions.isEmpty()) {
+            throw new IllegalArgumentException(ERROR_EMPTY_VALUE);
+        }
+
+        if (value.size() != positions.size()) {
+            throw new IllegalArgumentException(ERROR_NOT_EQUAL_SIZE);
+        }
+
+        IntStream.range(0, value.size()).forEach(i -> {
+            Participant participant = value.get(i);
+            participant.changePosition(positions.get(i));
+        });
+    }
+
     public List<Participant> getValue() {
         return Collections.unmodifiableList(value);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (!(o instanceof Participants)) {
+            return false;
+        }
+
+        return this.value.equals(((Participants) o).value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(value);
     }
 }

@@ -7,25 +7,24 @@ import static ladder.view.InputView.inputLadderHeight;
 import static ladder.view.OutputView.printGameResult;
 import static ladder.view.OutputView.printLadderResult;
 
-import java.util.Map;
-import ladder.domain.Name;
-import ladder.domain.Prize;
+import ladder.domain.Participants;
 import ladder.domain.Ladder;
+import ladder.domain.Prizes;
 import ladder.strategy.RandomLinkStrategy;
 
 public class LadderApplication {
 
     public static void main(String[] args) {
-        String participants = inputParticipants();
-        String prizes = inputPrizes();
+        Participants participants = new Participants(inputParticipants());
+        Prizes prizes = new Prizes(inputPrizes(), participants.size());
         int height = inputLadderHeight();
 
-        Ladder ladder = new Ladder(participants, height, prizes);
+        Ladder ladder = new Ladder(participants.size(), height);
         ladder.draw(new RandomLinkStrategy());
 
-        printLadderResult(ladder);
+        printLadderResult(participants, ladder, prizes);
 
-        Map<Name, Prize> result = ladder.play();
+        ladder.play(participants);
 
         String participant = inputParticipant();
         printGameResult(result, participant);

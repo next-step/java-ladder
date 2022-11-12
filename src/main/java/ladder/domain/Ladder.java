@@ -1,61 +1,51 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.stream.IntStream;
 import ladder.strategy.LinkStrategy;
 
 public class Ladder {
 
+    private final static String ERROR_EMPTY_VALUE = "입력 값이 누락되었습니다.";
     private final static String ERROR_ZERO_OR_NEGATIVE_VALUE = "0보다 큰 값만 입력 가능합니다.";
 
-    private final Participants participants;
     private final Lines lines;
-    private final Prizes prizes;
 
-    public Ladder(final String participants, final int height, final String prizes) {
-        validateHeight(height);
-        this.participants = new Participants(participants);
-        this.lines = new Lines(height, this.participants.size());
-        this.prizes = new Prizes(prizes, this.participants.size());
+    public Ladder(final int totalParticipantsNumber, final int height) {
+        validate(totalParticipantsNumber);
+        validate(height);
+
+        this.lines = new Lines(height, totalParticipantsNumber);
     }
 
-    private void validateHeight(final int input) {
-        if (input <= 0) {
+    private void validate(final int value) {
+        if (value <= 0) {
             throw new IllegalArgumentException(ERROR_ZERO_OR_NEGATIVE_VALUE);
         }
     }
 
     public void draw(final LinkStrategy strategy) {
+        if (strategy == null) {
+            throw new IllegalArgumentException(ERROR_EMPTY_VALUE);
+        }
+
         lines.draw(strategy);
     }
 
-    public Map<Name, Prize> play() {
-        Map<Name, Prize> result = new HashMap<>();
-        List<Name> names = participants.getNames();
-        IntStream.range(0, names.size()).forEach(i -> {
-            Name participant = names.get(i);
-            Prize prize = move(i);
-            result.put(participant, prize);
-        });
+    public void play(final Participants participants) {
+        if (participants == null) {
+            throw new IllegalArgumentException(ERROR_EMPTY_VALUE);
+        }
 
-        return result;
-    }
-
-    private Prize move(final int startColumnNumber) {
-        return getPrizes().get(lines.move(startColumnNumber));
-    }
-
-    public List<Name> getParticipants() {
-        return participants.getNames();
+        List<Integer> result = new ArrayList<>();
+        IntStream.range(0, lines.size())
+            .map(lines::move)
+            .forEach(result::add);
+        participants.move(result);
     }
 
     public List<Line> getLines() {
         return lines.getValue();
-    }
-
-    public List<Prize> getPrizes() {
-        return prizes.getValue();
     }
 }
