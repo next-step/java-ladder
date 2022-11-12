@@ -10,7 +10,7 @@ public class Direction {
 
     public Direction(boolean left, boolean right) {
         if (left && right) {
-            throw new IllegalArgumentException("유효한 사다리가 아닙니다.");
+            throw new IllegalArgumentException("그 방향으로 갈 수 없습니다.");
         }
         this.left = left;
         this.right = right;
