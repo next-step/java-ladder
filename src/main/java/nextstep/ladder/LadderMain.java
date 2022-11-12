@@ -12,12 +12,13 @@ public class LadderMain {
         Players players = new Players(InputView.inputPerson());
         Results result = new Results(InputView.inputResult(), players.getSize());
 
-        int height = InputView.inputLadderHeight();
+        Ladder ladder = LadderFactory.createRandomLadder(InputView.inputLadderHeight(), players.countPlayers());
 
-        Ladder ladder = LadderFactory.createRandomLadder(height, players.countPlayers());
-
-        OutputView.outputResult(players, ladder, result);
+        OutputView.outputLadderResult(players, ladder, result);
 
         ladder.run(players);
+
+        String player = InputView.inputPlayerWhoWantGetResult();
+
     }
 }

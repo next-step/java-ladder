@@ -36,4 +36,14 @@ public class InputView {
             throw new IllegalArgumentException("잘못된 입력 값입니다.", e);
         }
     }
+
+    public static String inputPlayerWhoWantGetResult() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        try {
+            return SCANNER.next();
+
+        } catch (Exception e) {
+            throw new IllegalArgumentException("잘못된 입력 값입니다.", e);
+        }
+    }
 }

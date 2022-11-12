@@ -12,7 +12,7 @@ public class OutputView {
     private static final String VERTICAL_LINE = "|";
     private static final String TAB = "\t";
 
-    public static void outputResult(Players players, Ladder ladder, Results results) {
+    public static void outputLadderResult(Players players, Ladder ladder, Results results) {
         System.out.println("사다리 결과\n");
 
         outputPerson(players);
