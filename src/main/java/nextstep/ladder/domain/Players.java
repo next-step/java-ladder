@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Person {
+public class Players {
 
-    private List<String> people = new ArrayList<>();
+    private List<String> players = new ArrayList<>();
 
-    public Person(String[] people) {
+    public Players(String[] people) {
         for (String person : people) {
             checkDuplicate(person);
             checkNameLength(person);
-            this.people.add(person);
+            this.players.add(person);
         }
     }
 
@@ -23,29 +23,29 @@ public class Person {
     }
 
     private void checkDuplicate(String person) {
-        if (this.people.contains(person)) {
+        if (this.players.contains(person)) {
             throw new IllegalArgumentException("이름은 중복으로 입력 불가합니다.");
         }
     }
 
     public int countPerson() {
-        return people.size();
+        return players.size();
     }
 
     public List<String> getPerson() {
-        return people;
+        return players;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Person person1 = (Person) o;
-        return Objects.equals(people, person1.people);
+        Players person1 = (Players) o;
+        return Objects.equals(players, person1.players);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(people);
+        return Objects.hash(players);
     }
 }

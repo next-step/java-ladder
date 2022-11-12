@@ -2,7 +2,7 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Person;
+import nextstep.ladder.domain.Players;
 
 public class OutputView {
 
@@ -11,10 +11,10 @@ public class OutputView {
     private static final String VERTICAL_LINE = "|";
     private static final String TAB = "\t";
 
-    public static void outputResult(Person people, Ladder ladder) {
+    public static void outputResult(Players players, Ladder ladder) {
         System.out.println("실행결과\n");
 
-        outputPerson(people);
+        outputPerson(players);
         outputLadder(ladder);
     }
 
@@ -40,7 +40,7 @@ public class OutputView {
 
     }
 
-    private static void outputPerson(Person person) {
+    private static void outputPerson(Players person) {
         person.getPerson()
                 .forEach(p -> System.out.print(p + TAB));
 
