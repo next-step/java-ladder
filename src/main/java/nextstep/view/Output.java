@@ -15,9 +15,11 @@ public class Output {
     private static final String HORIZONTAL_LINE = "-----|";
     private static final String INPUT_PERSON_MESSAGE = "결과를 보고 싶은 사람은?";
     private static final Scanner sc = new Scanner(System.in);
+    private static StringBuilder sb = new StringBuilder();
 
     public static void printName(List<Player> players) {
-        StringBuilder sb = new StringBuilder();
+
+        sb.setLength(0);
 
         String result = players.stream()
                 .map(Player::getName)
@@ -28,7 +30,7 @@ public class Output {
     }
 
     public static void printLadder(Ladder ladder) {
-        StringBuilder sb = new StringBuilder();
+        sb.setLength(0);
 
         ladder.getLines().stream()
                 .forEachOrdered(line -> getLine(sb, line));
@@ -37,7 +39,7 @@ public class Output {
     }
 
     public static void printResult(Result result) {
-        StringBuilder sb = new StringBuilder();
+        sb.setLength(0);
 
         String getResult = result.stream()
                 .collect(Collectors.joining(SPACE_BETWEEN_RESULTS));
@@ -76,7 +78,8 @@ public class Output {
 
     public static void printAllPlayersResult(Players players, Result result, Ladder ladder) {
         System.out.println(RESULT_MESSAGE);
-        StringBuilder sb = new StringBuilder();
+        sb.setLength(0);
+
         for (int i = 0; i < players.getPlayersSize(); i++) {
             int idx = ladder.search(i);
             sb.append(players.getPlayers().get(i).getName() + " : " + result.get(idx)).append("\n");
@@ -86,7 +89,8 @@ public class Output {
 
     public static void printPlayerResult(Players players, Result result, Ladder ladder, String player) {
         System.out.println(RESULT_MESSAGE);
-        StringBuilder sb = new StringBuilder();
+        sb.setLength(0);
+
         for (int i = 0; i < players.getPlayersSize(); i++) {
             int idx = ladder.search(i);
             if (players.getPlayers().get(i).getName().equals(player)) {
