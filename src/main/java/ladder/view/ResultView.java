@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.model.Direction;
 import ladder.model.Ladder;
 import ladder.model.Line;
 import ladder.model.Users;
@@ -25,7 +26,7 @@ public class ResultView {
     private void printLine(Line line) {
         System.out.print("|");
         for (int i = 0; i < line.size() - 1; ++i) {
-            if (line.getPoint(i)) {
+            if (line.get(i) == Direction.RIGHT) {
                 System.out.print("-----");
             } else {
                 System.out.print("     ");

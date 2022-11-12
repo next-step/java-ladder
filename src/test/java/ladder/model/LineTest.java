@@ -4,15 +4,23 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static ladder.model.Direction.*;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatNoException;
 
 public class LineTest {
     @Test
     void testSuccessCreateLine() {
-        List<Boolean> points = List.of(true, false, true ,false);
+        List<Boolean> points = List.of(true, false, false);
 
-        assertThatNoException().isThrownBy(() -> new Line(points));
+        assertThatNoException().isThrownBy(() -> {
+            Line line = new Line(points);
+            assertThat(line.get(0)).isEqualTo(RIGHT);
+            assertThat(line.get(1)).isEqualTo(LEFT);
+            assertThat(line.get(2)).isEqualTo(DOWN);
+        });
+
     }
 
     @Test
