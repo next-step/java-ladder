@@ -12,7 +12,7 @@ public class RandomLadderFactory implements LadderFactory {
 
     private static final Random RANDOM = new Random();
 
-    public Ladder creatLadder(int height, int countPerson) {
+    public Ladder createLadder(int height, int countPerson) {
         List<Line> lines = new ArrayList<>();
 
         for (int i = 0; i < height; i++) {

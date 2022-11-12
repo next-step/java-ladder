@@ -3,5 +3,5 @@ package nextstep.ladder.factory;
 import nextstep.ladder.domain.Ladder;
 
 public interface LadderFactory {
-    Ladder creatLadder(int height, int countPerson);
+    Ladder createLadder(int height, int countPerson);
 }
