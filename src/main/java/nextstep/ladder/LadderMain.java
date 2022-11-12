@@ -10,15 +10,26 @@ import nextstep.ladder.view.OutputView;
 public class LadderMain {
     public static void main(String[] args) {
         Players players = new Players(InputView.inputPerson());
-        Results result = new Results(InputView.inputResult(), players.getSize());
+        Results results = new Results(InputView.inputResult(), players.getSize());
 
         Ladder ladder = LadderFactory.createRandomLadder(InputView.inputLadderHeight(), players.countPlayers());
 
-        OutputView.outputLadderResult(players, ladder, result);
+        OutputView.outputLadderResult(players, ladder, results);
 
         ladder.run(players);
 
-        String player = InputView.inputPlayerWhoWantGetResult();
+        outputResult(players, results, InputView.inputPlayerWhoWantGetResult());
+    }
 
+    private static void outputResult(Players players, Results results, String player) {
+        if (wantAllResult(player)) {
+            OutputView.outputAllResult(players, results);
+            return;
+        }
+        OutputView.outputOneResult(results.getResult(players.getIndex(player)));
+    }
+
+    private static boolean wantAllResult(String player) {
+        return player.equals("all");
     }
 }

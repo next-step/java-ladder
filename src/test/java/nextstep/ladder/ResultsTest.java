@@ -5,8 +5,6 @@ import nextstep.ladder.domain.Results;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
 public class ResultsTest {
 
     @Test
@@ -14,7 +12,7 @@ public class ResultsTest {
         Players players = new Players(new String[]{"A", "B", "C", "D"});
 
         Assertions.assertThatIllegalArgumentException().isThrownBy(
-                () -> new Results(Arrays.asList("a", "b"), players.getSize())
+                () -> new Results(new String[]{"a", "b"}, players.getSize())
         );
     }
 }

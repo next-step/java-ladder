@@ -37,8 +37,6 @@ public class OutputView {
                 .forEach(r -> System.out.print(r + TAB));
     }
 
-
-
     private static void outputLines(Line line) {
         for (boolean bool : line.getPoints()) {
             System.out.print(VERTICAL_LINE);
@@ -55,5 +53,15 @@ public class OutputView {
 
     }
 
+    public static void outputAllResult(Players players, Results results) {
+        System.out.println("실행 결과");
+        for (int i = 0; i < players.getSize(); i++) {
+            System.out.println(players.getPlayer(i) + " : " + results.getResult(i));
+        }
+    }
 
+    public static void outputOneResult(String result) {
+        System.out.println("실행 결과");
+        System.out.println(result);
+    }
 }

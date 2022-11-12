@@ -37,4 +37,10 @@ public class PlayersTest {
 
         assertThat(players).isEqualTo(new Players(new String[]{"A", "C", "B", "D"}));
     }
+
+    @Test
+    void getIndex() {
+        Players players = new Players(new String[]{"A", "B", "C", "D"});
+        assertThat(players.getIndex("A")).isEqualTo(0);
+    }
 }

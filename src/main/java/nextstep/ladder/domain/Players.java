@@ -12,7 +12,7 @@ public class Players {
         for (String person : people) {
             checkDuplicate(person);
             checkNameLength(person);
-            this.players.add(person);
+            this.players.add(person.trim());
         }
     }
 
@@ -44,6 +44,14 @@ public class Players {
 
     public int getSize() {
         return players.size();
+    }
+
+    public int getIndex(String player) {
+        return players.indexOf(player);
+    }
+
+    public String getPlayer(int number) {
+        return players.get(number);
     }
 
     @Override

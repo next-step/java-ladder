@@ -1,17 +1,16 @@
 package nextstep.ladder.view;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
+
+    private static final String COMMA = ",";
     private static final Scanner SCANNER = new Scanner(System.in);
 
     public static String[] inputPerson() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         try {
-            return SCANNER.nextLine().trim().split(",");
+            return SCANNER.nextLine().split(COMMA);
         } catch (Exception e) {
             throw new IllegalArgumentException("잘못된 입력 값입니다.", e);
         }
@@ -26,19 +25,24 @@ public class InputView {
         }
     }
 
-    public static List<String> inputResult() {
+    public static String[] inputResult() {
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         try {
-            String[] results = SCANNER.nextLine().trim().split(",");
-            return Arrays.asList(results);
-
+            return SCANNER.nextLine().split(COMMA);
         } catch (Exception e) {
             throw new IllegalArgumentException("잘못된 입력 값입니다.", e);
         }
     }
 
+    private static String[] trim(String[] results) {
+        for (String result : results) {
+            result.trim();
+        }
+        return results;
+    }
+
     public static String inputPlayerWhoWantGetResult() {
-        System.out.println("결과를 보고 싶은 사람은?");
+        System.out.println("\n결과를 보고 싶은 사람은?");
         try {
             return SCANNER.next();
 
