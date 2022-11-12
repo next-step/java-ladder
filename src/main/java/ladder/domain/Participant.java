@@ -37,7 +37,7 @@ public class Participant {
 
         Participant that = (Participant) o;
 
-        if (this.name != that.name) {
+        if (!this.name.equals(that.name)) {
             return false;
         }
 

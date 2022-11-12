@@ -59,7 +59,7 @@ public class ParticipantsTest {
     @DisplayName("findByName 메소드에 존재하지 않는 참여자의 이름을 입력하면 실패한다.")
     void findByName_with_not_found() {
         Participants participants = new Participants("jordy,penda,kero,cobb");
-        assertThatThrownBy(() -> participants.findByName("jordy"))
+        assertThatThrownBy(() -> participants.findByName("xxx"))
             .isInstanceOf(NoSuchElementException.class)
             .hasMessage("존재하지 않는 사용자입니다.");
     }

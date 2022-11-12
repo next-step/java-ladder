@@ -37,4 +37,13 @@ public class LinesTest {
             );
         });
     }
+
+    @Test
+    @DisplayName("move 메소드는 입력한 시작 위치가 사다리를 따라 연결된 끝 위치를 반환한다.")
+    void move() {
+        Lines lines = new Lines(5, 5);
+        lines.draw(new TestLinkStrategy());
+
+        assertThat(lines.move(0)).isOne();
+    }
 }

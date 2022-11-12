@@ -41,10 +41,6 @@ public class Lines {
         return currentColumnNumber.get();
     }
 
-    public int size() {
-        return value.size();
-    }
-
     public List<Line> getValue() {
         return Collections.unmodifiableList(value);
     }

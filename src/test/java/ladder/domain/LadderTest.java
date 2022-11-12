@@ -39,7 +39,7 @@ class LadderTest {
     }
 
     @Test
-    @DisplayName("play 메소드는 사다리 게임을 진행한 후 결과를 반환한다.")
+    @DisplayName("play 메소드는 사다리 게임을 진행한다.")
     void play() {
         Participants participants = new Participants("jordy,penda,kero,cobb");
         Ladder ladder = new Ladder(participants.size(), 5);
