@@ -35,7 +35,7 @@ public class Line {
         return Collections.unmodifiableList(points);
     }
 
-    public int search(int idx) {
+    public int move(int idx) {
         Position position = new Position(idx);
         int point = points.get(idx).move();
         return position.move(point);

@@ -22,7 +22,7 @@ public class Ladder {
 
     public int search(int idx) {
         for (Line line : lines) {
-            idx = line.search(idx);
+            idx = line.move(idx);
         }
         return idx;
     }
