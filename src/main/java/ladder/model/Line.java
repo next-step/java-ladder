@@ -3,7 +3,6 @@ package ladder.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Stream;
 
 public class Line {
     private static final int MIN_POINT_SIZE = 2;

@@ -2,18 +2,18 @@ package ladder.view;
 
 import ladder.model.Ladder;
 import ladder.model.Line;
-import ladder.model.UserList;
+import ladder.model.Users;
 
 public class ResultView {
-    public void printResult(UserList userList, Ladder ladder) {
+    public void printResult(Users users, Ladder ladder) {
         System.out.println("실행 결과");
         System.out.println();
-        printUserList(userList);
+        printUserList(users);
         printLadder(ladder);
     }
 
-    private void printUserList(UserList userList) {
-        userList.stream()
+    private void printUserList(Users users) {
+        users.stream()
                 .forEach(user -> System.out.printf("%-6s", user.getName()));
         System.out.println();
     }
