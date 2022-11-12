@@ -1,6 +1,8 @@
 package nextstep.fp;
 
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Lambda {
     public static void printAllOld(List<Integer> numbers) {
@@ -24,6 +26,12 @@ public class Lambda {
                 System.out.println("Hello from thread");
             }
         }).start();
+    }
+
+    public static int sum(List<Integer> numbers, Predicate<Integer> predicate) {
+        return numbers.stream()
+            .filter(predicate::test)
+            .reduce(0, Integer::sum);
     }
 
     public static int sumAll(List<Integer> numbers) {
