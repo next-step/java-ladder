@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Line {
     private static final int MINIMUM_NUMBER_OF_PEOPLE = 2;
-    private List<Point> points = new ArrayList<>();
+    private List<Direction> directions = new ArrayList<>();
     private LineStrategy lineStrategy;
 
     public Line(int countPerson, LineStrategy lineStrategy) {
@@ -17,34 +17,34 @@ public class Line {
         }
         this.lineStrategy = lineStrategy;
 
-        points = of(countPerson, lineStrategy);
+        directions = of(countPerson, lineStrategy);
     }
 
-    public List<Point> getPoints() {
-        return Collections.unmodifiableList(points);
+    public List<Direction> getPoints() {
+        return Collections.unmodifiableList(directions);
     }
 
-    public List<Point> of(int count, LineStrategy lineStrategy) {
-        points.add(Point.init(false));
+    public List<Direction> of(int count, LineStrategy lineStrategy) {
+        directions.add(Direction.init(false));
 
         for (int point = 1; point < count - 1; point++) {
-            points.add(points.get(point - 1).insert(lineStrategy.generate()));
+            directions.add(directions.get(point - 1).insert(lineStrategy.generate()));
         }
-        points.add(points.get(count - 2).last());
+        directions.add(directions.get(count - 2).last());
 
-        return Collections.unmodifiableList(points);
+        return Collections.unmodifiableList(directions);
     }
 
     public int move(int idx) {
         Position position = new Position(idx);
-        int point = points.get(idx).move();
+        int point = directions.get(idx).move();
         return position.move(point);
     }
 
     @Override
     public String toString() {
         return "Line{" +
-                "points=" + points +
+                "points=" + directions +
                 '}';
     }
 }

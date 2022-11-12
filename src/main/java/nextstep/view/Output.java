@@ -55,8 +55,8 @@ public class Output {
         sb.append("\n");
     }
 
-    private static String print(Point point) {
-        if (point.isPoint()) {
+    private static String print(Direction direction) {
+        if (direction.isPoint()) {
             return HORIZONTAL_LINE;
         }
         return EMPTY_LINE;

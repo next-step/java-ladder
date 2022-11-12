@@ -1,6 +1,6 @@
 package nextstep.domain;
 
-public class Point {
+public class Direction {
 
     private static final int LEFT = -1;
     private static final int PASS = 0;
@@ -8,7 +8,7 @@ public class Point {
     private boolean left;
     private boolean right;
 
-    public Point(boolean left, boolean right) {
+    public Direction(boolean left, boolean right) {
         if (left && right) {
             throw new IllegalArgumentException("유효한 사다리가 아닙니다.");
         }
@@ -16,19 +16,19 @@ public class Point {
         this.right = right;
     }
 
-    public static Point init(boolean right) {
-        return new Point(false, right);
+    public static Direction init(boolean right) {
+        return new Direction(false, right);
     }
 
-    public Point last() {
-        return new Point(this.right, false);
+    public Direction last() {
+        return new Direction(this.right, false);
     }
 
-    public Point insert(boolean right) {
+    public Direction insert(boolean right) {
         if (this.right) {
-            return new Point(true, false);
+            return new Direction(true, false);
         }
-        return new Point(false, right);
+        return new Direction(false, right);
     }
 
     public int move() {
