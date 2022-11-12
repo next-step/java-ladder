@@ -1,9 +1,9 @@
 package ladder.domain;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Participants {
 
@@ -11,11 +11,14 @@ public class Participants {
     private final static String ERROR_UNDER_ONE_VALUE = "두 사람 이상 참여해야 합니다.";
     private final static String SEPARATOR = ",";
 
-    private final List<Name> names;
+    private final List<Participant> value;
 
     public Participants(final String names) {
         validate(names);
-        this.names = split(names);
+        String[] splited = split(names);
+        this.value = IntStream.range(0, splited.length)
+            .mapToObj(i -> new Participant(splited[i], i))
+            .collect(Collectors.toList());
     }
 
     private void validate(final String value) {
@@ -24,12 +27,10 @@ public class Participants {
         }
     }
 
-    private List<Name> split(final String value) {
-        List<Name> result = Arrays.stream(value.split(SEPARATOR))
-            .map(Name::new)
-            .collect(Collectors.toList());
+    private String[] split(final String value) {
+        String[] result = value.split(SEPARATOR);
 
-        if (result.size() <= 1) {
+        if (result.length <= 1) {
             throw new IllegalArgumentException(ERROR_UNDER_ONE_VALUE);
         }
 
@@ -37,10 +38,10 @@ public class Participants {
     }
 
     public int size() {
-        return names.size();
+        return value.size();
     }
 
-    public List<Name> getNames() {
-        return Collections.unmodifiableList(names);
+    public List<Participant> getValue() {
+        return Collections.unmodifiableList(value);
     }
 }
