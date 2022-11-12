@@ -1,6 +1,6 @@
 package nextstep.fp;
 
 @FunctionalInterface
-public interface Conditional<T> {
-    boolean isCondition(T t);
+public interface Conditional {
+    boolean isCondition(int num);
 }
