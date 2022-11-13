@@ -6,7 +6,13 @@ public enum Direction {
     DOWN(new Axis(1, 0)),
     ;
 
-    Direction(Axis axis) {
+    private Axis axis;
 
+    Direction(Axis axis) {
+        this.axis = axis;
+    }
+
+    public Axis getAxis() {
+        return axis;
     }
 }
