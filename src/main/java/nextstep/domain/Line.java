@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Line {
     private static final int MINIMUM_NUMBER_OF_PEOPLE = 2;
-    private List<Boolean> points = new ArrayList<>();
+    private List<Direction> directions = new ArrayList<>();
     private LineStrategy lineStrategy;
 
     public Line(int countPerson, LineStrategy lineStrategy) {
@@ -17,39 +17,35 @@ public class Line {
         }
         this.lineStrategy = lineStrategy;
 
-        points = of(countPerson, lineStrategy);
+        directions = of(countPerson, lineStrategy);
     }
 
-    public List<Boolean> getPoints() {
-        return Collections.unmodifiableList(points);
+    public List<Direction> getDirections() {
+        return Collections.unmodifiableList(directions);
     }
 
-    public List<Boolean> of(int count, LineStrategy lineStrategy) {
-        for (int i = 0; i < count - 1; i++) {
-            points.add(false);
-        }
+    private List<Direction> of(int count, LineStrategy lineStrategy) {
+        directions.add(Direction.init(false));
 
-        for (int point = 0; point < points.size(); point++) {
-            points.set(point, setStrategy(point, lineStrategy));
+        for (int point = 1; point < count - 1; point++) {
+            Direction insert = directions.get(point - 1).insert(lineStrategy.generate());
+            directions.add(insert);
         }
+        directions.add(directions.get(count - 2).last());
 
-        return Collections.unmodifiableList(points);
+        return Collections.unmodifiableList(directions);
     }
 
-    private Boolean setStrategy(int point, LineStrategy lineStrategy) {
-        if (hasNotStrategy(point) == false) {
-            return lineStrategy.generate();
-        }
-        return false;
+    public int move(int idx) {
+        Position position = new Position(idx);
+        int point = directions.get(idx).move();
+        return position.move(point);
     }
 
-    private boolean hasNotStrategy(int point) {
-        if (point < 0 || point > points.size() + 1) {
-            throw new IllegalArgumentException("해당 point 에 line 을 놓을 수 없다.");
-        }
-
-        // 양사이드 true 체크
-        return point > 0 && points.get(point - 1).equals(true)
-                || point < points.size() - 1 && points.get(point + 1).equals(true);
+    @Override
+    public String toString() {
+        return "Line{" +
+                "points=" + directions +
+                '}';
     }
 }

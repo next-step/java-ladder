@@ -12,12 +12,19 @@ public class Ladder {
 
     public Ladder(int height, int countPerson, LineStrategy lineStrategy) {
         if (height < MINIMUM_LADDER_LENGTH) {
-            throw new IllegalArgumentException("사다리의 높이는 1 이상의 양수이어야 한다.");
+            throw new IllegalArgumentException("사다리의 높이는 " + MINIMUM_LADDER_LENGTH + " 이상의 양수이어야 한다.");
         }
 
         for (int i = 0; i < height; i++) {
             lines.add(new Line(countPerson, lineStrategy));
         }
+    }
+
+    public int move(int idx) {
+        for (Line line : lines) {
+            idx = line.move(idx);
+        }
+        return idx;
     }
 
     public List<Line> getLines() {

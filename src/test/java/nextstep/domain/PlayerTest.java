@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class PlayerTest {
 
     @Test
-    void test_Throw_IllegalArgumentException_If_create_More_than_Five_letters_name() {
+    void 이름이_5글자_이상으로_Player_생성시_예외가_반환된다() {
         assertThatThrownBy(() -> new Player("abcdef"))
                 .isInstanceOf(IllegalArgumentException.class);
     }

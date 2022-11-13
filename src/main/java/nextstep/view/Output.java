@@ -1,22 +1,25 @@
 package nextstep.view;
 
-import nextstep.domain.Ladder;
-import nextstep.domain.Line;
-import nextstep.domain.Player;
+import nextstep.domain.*;
 
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class Output {
 
     private static final String SPACE_BETWEEN_NAMES = "   ";
-    private static final String RESULT_MESSAGE = "\n실행결과\n %s";
-    private static final String LADDER_LINE_SPACE = "     ";
-    private static final String VERTICAL_LINE = "|";
-    private static final String HORIZONTAL_LINE = "-----";
+    private static final String SPACE_BETWEEN_RESULTS = "    ";
+    private static final String RESULT_MESSAGE = "\n실행결과\n%s";
+    private static final String EMPTY_LINE = "     |";
+    private static final String HORIZONTAL_LINE = "-----|";
+    private static final String INPUT_PERSON_MESSAGE = "결과를 보고 싶은 사람은?";
+    private static final Scanner sc = new Scanner(System.in);
+    private static StringBuilder sb = new StringBuilder();
 
     public static void printName(List<Player> players) {
-        StringBuilder sb = new StringBuilder();
+
+        sb.setLength(0);
 
         String result = players.stream()
                 .map(Player::getName)
@@ -27,26 +30,83 @@ public class Output {
     }
 
     public static void printLadder(Ladder ladder) {
-        StringBuilder sb = new StringBuilder();
+        sb.setLength(0);
 
         ladder.getLines().stream()
                 .forEachOrdered(line -> getLine(sb, line));
 
+        System.out.print(sb);
+    }
+
+    public static void printResult(Result result) {
+        sb.setLength(0);
+
+        String getResult = result.stream()
+                .collect(Collectors.joining(SPACE_BETWEEN_RESULTS));
+
+        sb.append(getResult);
         System.out.println(sb);
+        System.out.println();
     }
 
     private static void getLine(StringBuilder sb, Line line) {
-        sb.append(LADDER_LINE_SPACE);
-        sb.append(VERTICAL_LINE);
-        line.getPoints().stream()
-                .forEachOrdered(idx -> sb.append(print(idx)).append(VERTICAL_LINE));
+        line.getDirections().stream()
+                .forEachOrdered(point -> sb.append(print(point)));
         sb.append("\n");
     }
 
-    private static String print(Boolean idx) {
-        if (idx == true) {
+    private static String print(Direction direction) {
+        if (direction.isPoint()) {
             return HORIZONTAL_LINE;
         }
-        return LADDER_LINE_SPACE;
+        return EMPTY_LINE;
+    }
+
+    public static void printResult(Players players, Result result, Ladder ladder) {
+        while (true) {
+            System.out.println(INPUT_PERSON_MESSAGE);
+            String player = sc.nextLine();
+
+            if (compareAllPlayers(players, result, ladder, player)) {
+                break;
+            }
+
+            printPlayerResult(players, result, ladder, player);
+        }
+    }
+
+    private static boolean compareAllPlayers(Players players, Result result, Ladder ladder, String player) {
+        if (player.equals("all")) {
+            printAllPlayersResult(players, result, ladder);
+            return true;
+        }
+        return false;
+    }
+
+    public static void printAllPlayersResult(Players players, Result result, Ladder ladder) {
+        System.out.println(RESULT_MESSAGE);
+        sb.setLength(0);
+
+        for (int i = 0; i < players.getPlayersSize(); i++) {
+            int idx = ladder.move(i);
+            sb.append(players.getPlayers().get(i).getName());
+            sb.append(" : ");
+            sb.append(result.get(idx));
+            sb.append(System.lineSeparator());
+        }
+        System.out.println(sb);
+    }
+
+    public static void printPlayerResult(Players players, Result result, Ladder ladder, String player) {
+        System.out.println(RESULT_MESSAGE);
+        sb.setLength(0);
+
+        for (int i = 0; i < players.getPlayersSize(); i++) {
+            int idx = ladder.move(i);
+            if (players.getPlayers().get(i).getName().equals(player)) {
+                sb.append(result.get(idx)).append("\n");
+            }
+        }
+        System.out.println(sb);
     }
 }
