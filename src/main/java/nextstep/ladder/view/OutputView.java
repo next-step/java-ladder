@@ -1,9 +1,6 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Players;
-import nextstep.ladder.domain.Results;
+import nextstep.ladder.domain.*;
 
 public class OutputView {
 
@@ -38,9 +35,9 @@ public class OutputView {
     }
 
     private static void outputLines(Line line) {
-        for (boolean bool : line.getPoints()) {
+        for (Point point : line.getPoints()) {
             System.out.print(VERTICAL_LINE);
-            System.out.print(getLine(bool));
+            System.out.print(getLine(point.isPoint()));
         }
         System.out.println(VERTICAL_LINE);
     }

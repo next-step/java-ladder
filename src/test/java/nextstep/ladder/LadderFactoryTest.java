@@ -17,12 +17,4 @@ public class LadderFactoryTest {
         Ladder ladder = ladderFactory.createRandomLadder(5, 4);
         assertThat(ladder.getLines().size()).isEqualTo(5);
     }
-
-//    @Test
-//    void 앞죄표가_true일_경우() {
-//        LadderFactory randomLadderFactory = new LadderFactory();
-//        boolean result = randomLadderFactory.addPoint(3, Arrays.asList(true, false, true));
-//        Assertions.assertThat(result).isFalse();
-//    }
-
 }
