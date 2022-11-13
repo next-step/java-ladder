@@ -1,7 +1,7 @@
 package ladder.domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -39,11 +39,16 @@ public class Line {
         return currentColumnNumber;
     }
 
-    public boolean isLinkedPoint(final Point point) {
-        return linkedColumns.contains(point.getY());
+    public List<Boolean> getAllIsLinked() {
+        Boolean[] result = new Boolean[points.size()];
+        points.forEach(point -> {
+            result[point.getY()] = isLinkedPoint(point);
+        });
+
+        return Arrays.asList(result);
     }
 
-    public List<Point> getPoints() {
-        return Collections.unmodifiableList(points);
+    private boolean isLinkedPoint(final Point point) {
+        return linkedColumns.contains(point.getY());
     }
 }

@@ -40,15 +40,15 @@ public class OutputView {
     private static void printLine(final Line line) {
         STRING_BUILDER.setLength(0);
         STRING_BUILDER.append("\t\t");
-        line.getPoints().forEach(point -> {
+        line.getAllIsLinked().forEach(linked -> {
             STRING_BUILDER.append(POINT);
-            STRING_BUILDER.append(checkLinked(point, line));
+            STRING_BUILDER.append(checkLinked(linked));
         });
         System.out.println(STRING_BUILDER);
     }
 
-    private static String checkLinked(final Point point, final Line line) {
-        if (line.isLinkedPoint(point)) {
+    private static String checkLinked(final boolean linked) {
+        if (linked) {
             return LINK;
         }
 

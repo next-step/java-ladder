@@ -19,9 +19,7 @@ class LineTest {
         Line line = new Line(new PositiveInt(0), new PositiveInt(5));
         line.link(new TestLinkStrategy());
 
-        assertThat(line.getPoints().stream()
-            .filter(line::isLinkedPoint)
-            .collect(Collectors.toList())).containsOnly(new Point(0, 0), new Point(0, 2));
+        assertThat(line.getAllIsLinked()).isEqualTo(List.of(true, false, true, false, false));
     }
 
     @Test
@@ -34,11 +32,11 @@ class LineTest {
     }
 
     @Test
-    @DisplayName("isLinkedPoint 메소드는 특정 Point의 연결 여부를 반환한다.")
+    @DisplayName("getAllIsLinked 메소드는 특정 Point의 연결 여부를 반환한다.")
     void isLinkedPoint() {
         Line line = new Line(new PositiveInt(0), new PositiveInt(5));
         line.link(new TestLinkStrategy());
 
-        assertThat(line.isLinkedPoint(new Point(0, 0))).isTrue();
+        assertThat(line.getAllIsLinked()).isEqualTo(List.of(true, false, true, false, false));
     }
 }

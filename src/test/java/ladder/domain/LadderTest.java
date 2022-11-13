@@ -19,14 +19,7 @@ class LadderTest {
         ladder.draw(new TestLinkStrategy());
 
         ladder.getLines().forEach(line -> {
-            List<Point> linked = line.getPoints().stream()
-                .filter(line::isLinkedPoint)
-                .collect(Collectors.toList());
-            assertAll(
-                () -> assertThat(linked.size()).isEqualTo(2),
-                () -> assertThat(linked.get(0).getY()).isEqualTo(0),
-                () -> assertThat(linked.get(1).getY()).isEqualTo(2)
-            );
+            assertThat(line.getAllIsLinked()).isEqualTo(List.of(true, false, true));
         });
     }
 
