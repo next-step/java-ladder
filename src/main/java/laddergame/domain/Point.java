@@ -9,6 +9,7 @@ import java.util.Objects;
 public class Point {
 
     private static final Map<Boolean, Point> cache;
+
     private final boolean point;
 
     static {

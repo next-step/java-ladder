@@ -10,6 +10,7 @@ import java.util.Objects;
 
 public class Width {
     public static final int MINIMUM_WIDTH = 1;
+
     private final int width;
 
     public Width(int width) {

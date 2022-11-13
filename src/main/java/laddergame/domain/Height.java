@@ -10,6 +10,7 @@ import java.util.stream.IntStream;
 
 public class Height {
     public static final int MINIMUM_OF_HEIGHT = 1;
+
     private final int height;
 
     public Height(int height) {
