@@ -1,7 +1,6 @@
 package nextstep.domain;
 
 import nextstep.strategy.RandomLineStrategy;
-import nextstep.view.Output;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

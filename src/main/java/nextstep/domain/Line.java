@@ -24,7 +24,7 @@ public class Line {
         return Collections.unmodifiableList(directions);
     }
 
-    public List<Direction> of(int count, LineStrategy lineStrategy) {
+    private List<Direction> of(int count, LineStrategy lineStrategy) {
         directions.add(Direction.init(false));
 
         for (int point = 1; point < count - 1; point++) {
