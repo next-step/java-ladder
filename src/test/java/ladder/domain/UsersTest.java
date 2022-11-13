@@ -35,7 +35,7 @@ class UsersTest {
     }
 
     @DisplayName("존재하지 않는 사용자 이름은 예외를 발생시킨다.")
-    @ValueSource(strings = { "martin", "kara" })
+    @ValueSource(strings = { "mark", "kara" })
     @ParameterizedTest
     void getStartIndex_when_not_exist(String name) {
         Users users = Users.from(names);

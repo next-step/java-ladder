@@ -1,5 +1,7 @@
 package ladder;
 
+import static ladder.domain.User.*;
+
 import java.util.stream.IntStream;
 
 import ladder.domain.Ladder;
@@ -46,7 +48,7 @@ public class LadderGameApplication {
     }
 
     private static int displaySize(final Users users) {
-        return Users.MAX_NAME_SIZE + users.names().size();
+        return MAX_NAME_SIZE + users.names().size();
     }
 
     private static void showExecutionResult(final UserInput input, final Ladder ladder) {

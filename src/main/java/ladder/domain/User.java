@@ -1,16 +1,14 @@
 package ladder.domain;
 
 public class User {
+    public static final int MAX_NAME_SIZE = 5;
+    
     private final String name;
 
-    public User(final String name, final int maxNameSize) {
-        if (name == null || name.isBlank() || name.length() > maxNameSize) {
-            throw new IllegalArgumentException("The maximum length of a name cannot exceed "+ maxNameSize +" characters.");
-        }
-        this.name = name;
-    }
-
     public User(final String name) {
+        if (name == null || name.isBlank() || name.length() > MAX_NAME_SIZE) {
+            throw new IllegalArgumentException("The maximum length of a name cannot exceed "+ MAX_NAME_SIZE +" characters.");
+        }
         this.name = name;
     }
 

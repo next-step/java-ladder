@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 public class Users {
-    public static final int MAX_NAME_SIZE = 5;
-    
     private final List<User> users;
 
     public Users(final List<User> users) {
@@ -17,7 +15,7 @@ public class Users {
     public static Users from(final List<String> names) {
         List<User> users = new ArrayList<>();
         for (String name: names) {
-            users.add(new User(name, MAX_NAME_SIZE));
+            users.add(new User(name));
         }
         return new Users(users);
     }
