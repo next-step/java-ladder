@@ -19,4 +19,8 @@ public class User {
     public String getName() {
         return name;
     }
+
+    public boolean equals(String name) {
+        return this.name.equals(name);
+    }
 }
