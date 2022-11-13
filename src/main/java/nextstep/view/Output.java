@@ -88,13 +88,16 @@ public class Output {
         System.out.println(RESULT_MESSAGE);
         sb.setLength(0);
 
-        for (int i = 0; i < players.getPlayersSize(); i++) {
-            int idx = ladder.move(i);
-            sb.append(players.getPlayers().get(i).getName())
+        int idx = 0;
+        for (Player player : players.getPlayers()) {
+            idx = ladder.move(idx);
+            sb.append(player.getName())
                     .append(DELIMITER)
                     .append(result.get(idx))
                     .append(System.lineSeparator());
+            idx++;
         }
+
         System.out.println(sb);
     }
 
