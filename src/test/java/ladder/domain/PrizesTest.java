@@ -36,6 +36,6 @@ public class PrizesTest {
     @DisplayName("find 메소드는 입력한 위치에 있는 Prize 객체를 반환한다.")
     void find() {
         Prizes prizes = new Prizes("x,5000,2000", 3);
-        assertThat(prizes.find(2)).isEqualTo(new Prize("2000"));
+        assertThat(prizes.find(new PositiveInt(2))).isEqualTo(new Prize("2000"));
     }
 }

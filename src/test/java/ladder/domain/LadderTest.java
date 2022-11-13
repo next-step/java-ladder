@@ -32,8 +32,8 @@ class LadderTest {
                 .collect(Collectors.toList());
             assertAll(
                 () -> assertThat(linked.size()).isEqualTo(2),
-                () -> assertThat(linked.get(0).getY()).isEqualTo(0),
-                () -> assertThat(linked.get(1).getY()).isEqualTo(2)
+                () -> assertThat(linked.get(0).getY()).isEqualTo(PositiveInt.zero()),
+                () -> assertThat(linked.get(1).getY()).isEqualTo(new PositiveInt(2))
             );
         });
     }

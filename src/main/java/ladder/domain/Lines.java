@@ -18,7 +18,7 @@ public class Lines {
         validate(column);
 
         IntStream.range(0, row)
-            .mapToObj(i -> new Line(i, column))
+            .mapToObj(i -> new Line(new PositiveInt(i), new PositiveInt(column)))
             .forEach(value::add);
     }
 
@@ -35,7 +35,7 @@ public class Lines {
     public int move(final int startColumnNumber) {
         AtomicInteger currentColumnNumber = new AtomicInteger(startColumnNumber);
         value.forEach(line -> {
-            currentColumnNumber.set(line.move(currentColumnNumber.get()));
+            currentColumnNumber.set(line.move(new PositiveInt(currentColumnNumber.get())).getValue());
         });
 
         return currentColumnNumber.get();

@@ -9,36 +9,31 @@ import ladder.strategy.LinkStrategy;
 
 public class Line {
 
-    private final static String ERROR_NEGATIVE_VALUE = "0 이상의 값만 입력 가능합니다.";
-
     private final List<Point> points;
-    private final List<Integer> linkedColumns = new ArrayList<>();
+    private final List<PositiveInt> linkedColumns = new ArrayList<>();
 
-    public Line(final int row, final int lastColumn) {
-        validate(row);
-        validate(lastColumn);
-        this.points = IntStream.range(0, lastColumn)
-            .mapToObj(i -> new Point(row, i))
+    public Line(final PositiveInt row, final PositiveInt lastColumn) {
+        this.points = IntStream.range(0, lastColumn.getValue())
+            .mapToObj(i -> new Point(row, new PositiveInt(i)))
             .collect(Collectors.toList());
-    }
-
-    private void validate(final int value) {
-        if (value < 0) {
-            throw new IllegalArgumentException(ERROR_NEGATIVE_VALUE);
-        }
     }
 
     public void link(final LinkStrategy strategy) {
         linkedColumns.addAll(strategy.link(points.size() - 1));
     }
 
-    public int move(final int currentColumnNumber) {
+    public PositiveInt move(final PositiveInt currentColumnNumber) {
         if (linkedColumns.contains(currentColumnNumber)) {
-            return currentColumnNumber + 1;
+            return currentColumnNumber.plus(1);
         }
 
-        if (currentColumnNumber != 0 && linkedColumns.contains(currentColumnNumber - 1)) {
-            return currentColumnNumber - 1;
+        if (currentColumnNumber.equals(PositiveInt.zero())) {
+            return currentColumnNumber;
+        }
+
+        PositiveInt previous = currentColumnNumber.minus(1);
+        if (linkedColumns.contains(previous)) {
+            return previous;
         }
 
         return currentColumnNumber;

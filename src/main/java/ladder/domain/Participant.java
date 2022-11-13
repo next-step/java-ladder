@@ -5,23 +5,22 @@ import java.util.Objects;
 public class Participant {
 
     private final Name name;
-    private int position;
+    private PositiveInt position;
 
-    // TODO: validation
     public Participant(final String name, final int position) {
         this.name = new Name(name);
-        this.position = position;
+        this.position = new PositiveInt(position);
     }
 
     public void changePosition(final int position) {
-        this.position = position;
+        this.position = new PositiveInt(position);
     }
 
     public boolean isEqualName(final String name) {
         return this.name.equals(new Name(name));
     }
 
-    public int getPosition() {
+    public PositiveInt getPosition() {
         return position;
     }
 
@@ -41,7 +40,7 @@ public class Participant {
             return false;
         }
 
-        return this.position == that.position;
+        return this.position.equals(that.position);
     }
 
     @Override

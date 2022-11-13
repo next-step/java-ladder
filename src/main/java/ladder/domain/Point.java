@@ -4,26 +4,20 @@ import java.util.Objects;
 
 public class Point {
 
-    private final static String ERROR_NEGATIVE_VALUE = "0 이상의 값만 입력 가능합니다.";
-
-    private final int x;
-    private final int y;
+    private final PositiveInt x;
+    private final PositiveInt y;
 
     public Point(final int x, final int y) {
-        validate(x);
-        validate(y);
+        this.x = new PositiveInt(x);
+        this.y = new PositiveInt(y);
+    }
 
+    public Point(final PositiveInt x, final PositiveInt y) {
         this.x = x;
         this.y = y;
     }
 
-    private void validate(final int value) {
-        if (value < 0) {
-            throw new IllegalArgumentException(ERROR_NEGATIVE_VALUE);
-        }
-    }
-
-    public int getY() {
+    public PositiveInt getY() {
         return y;
     }
 
@@ -39,11 +33,11 @@ public class Point {
 
         Point that = (Point) o;
 
-        if (this.x != that.x) {
+        if (!this.x.equals(that.x)) {
             return false;
         }
 
-        return this.y == that.y;
+        return this.y.equals(that.y);
     }
 
     @Override
