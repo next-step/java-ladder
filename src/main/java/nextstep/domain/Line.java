@@ -28,8 +28,8 @@ public class Line {
         points.add(Point.init(lineStrategy.generate()));
 
         for (int point = 1; point < count - 1; point++) {
-            Point insert = points.get(point - 1).insert(lineStrategy.generate());
-            points.add(insert);
+            Point addition = points.get(point - 1).insert(lineStrategy.generate());
+            points.add(addition);
         }
         points.add(points.get(count - 2).last());
 
