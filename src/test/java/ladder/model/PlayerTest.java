@@ -8,7 +8,7 @@ class PlayerTest {
 
     @Test
     public void 플레이어_이름_5자_초과_오류_검증() {
-        assertThatThrownBy(() -> new Player("bellas"))
+        assertThatThrownBy(() -> new Player("bellas", 1))
                 .isInstanceOf(RuntimeException.class);
     }
 

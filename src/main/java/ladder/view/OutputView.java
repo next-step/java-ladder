@@ -1,15 +1,14 @@
 package ladder.view;
 
-import ladder.model.Ladder;
-import ladder.model.LadderLine;
-import ladder.model.Players;
-import ladder.model.Point;
+import ladder.model.*;
 
 import java.util.List;
 
 public class OutputView {
 
+    private static final String ALL_PLAYER = "all";
     private static final String BAR = "|";
+    private static final String COLON = " : ";
     private static final String LADDER_LINE = "------";
 
     private OutputView() {
@@ -39,11 +38,30 @@ public class OutputView {
         nextLine();
     }
 
-    public static void showLadder(Ladder ladder) {
-        ladder.getLadderLine().stream().forEach(ladderLine -> {
+    public static void showLadder(LadderGame ladderGame) {
+        ladderGame.getLadder().getLadderLine().stream().forEach(ladderLine -> {
             showLadderLine(ladderLine);
             nextLine();
         });
+    }
+
+    public static void showReward(LadderRewards ladderRewards) {
+        ladderRewards.getRewards()
+                .forEach(reward -> nextTab(reward.getResult()));
+
+        nextLine();
+    }
+
+    public static void showResultByPlayer(Reward reward, Player player) {
+        show(player.getName() + COLON + reward.getResult());
+    }
+
+    public static void showResultAll(LadderRewards ladderRewards, Players players) {
+        List<Player> playerInfos = players.getPlayers();
+
+        for (int i = 0; i < playerInfos.size(); i++) {
+            show(playerInfos.get(i).getName() + COLON + ladderRewards.get(i).getResult());
+        }
     }
 
     private static void showLadderLine(LadderLine ladderLine) {
