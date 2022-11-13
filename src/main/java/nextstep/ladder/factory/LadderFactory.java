@@ -31,7 +31,7 @@ public class LadderFactory {
         return new Line(points);
     }
 
-    public static boolean addPoint(int point, List<Boolean> points) {
+    private static boolean addPoint(int point, List<Boolean> points) {
         if (isPreviousPointConnected(point, points)) {
             return false;
         }
