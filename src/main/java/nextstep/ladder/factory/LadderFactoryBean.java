@@ -7,6 +7,8 @@ import nextstep.ladder.engine.LineCreator;
 
 public class LadderFactoryBean {
 
+    private LadderFactoryBean() {}
+
     public static LadderCreator createLadderFactory() {
 
         final LineCreator lineCreator = new CodeLineCreator();
