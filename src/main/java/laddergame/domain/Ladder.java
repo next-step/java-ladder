@@ -29,7 +29,7 @@ public class Ladder {
         return new Ladder(lines);
     }
 
-    public List<Line> getRows() {
+    public List<Line> getLines() {
         return lines;
     }
 

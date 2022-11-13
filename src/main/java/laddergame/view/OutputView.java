@@ -26,7 +26,7 @@ public class OutputView {
     }
 
     private static void printLadder(Ladder ladder) {
-        for (Line line : ladder.getRows()) {
+        for (Line line : ladder.getLines()) {
             System.out.print(EMPTY + MAIN_LINE);
             for (Point point : line.getStates()) {
                 System.out.print(createLine(point));
