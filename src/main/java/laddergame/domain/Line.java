@@ -2,7 +2,9 @@ package laddergame.domain;
 
 import laddergame.exception.ErrorCode;
 import laddergame.exception.LadderGameException;
+import laddergame.util.ValueGenerator;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -14,6 +16,19 @@ public class Line {
     public Line(List<Point> points) {
         validateContinuous(points);
         this.points = points;
+    }
+
+    public static Line create(Width width, ValueGenerator valueGenerator) {
+        List<Point> points = new ArrayList<>();
+        Point previous = Point.valueOf(false);
+        Count count = new Count(0);
+        while (width.bigger(count)) {
+            Point now = previous.next(valueGenerator);
+            points.add(now);
+            previous = now;
+            count.plus();
+        }
+        return new Line(points);
     }
 
     private void validateContinuous(List<Point> points) {

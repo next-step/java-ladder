@@ -14,7 +14,7 @@ public class Main {
         Height height = new Height(InputView.enterHeight());
 
         Width width = new Width(players);
-        Ladder ladder = height.createLadder(width, new RandomValueGenerator());
+        Ladder ladder = Ladder.create(height, width, new RandomValueGenerator());
 
         OutputView.printResult(players, ladder);
     }

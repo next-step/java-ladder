@@ -2,7 +2,6 @@ package laddergame.domain;
 
 import laddergame.exception.ErrorCode;
 import laddergame.exception.LadderGameException;
-import laddergame.util.ManualValueGenerator;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
@@ -21,13 +20,8 @@ class WidthTest {
     }
 
     @Test
-    void 열_생성() {
-        assertThat(new Width(4).createRow(new ManualValueGenerator(true, false, false, false)))
-                .isEqualTo(new Line(true, false, false, false));
-    }
-
-    @Test
     void 플레이어수_빼기_1이_너비() {
+        assertThat(new Count(2).equals(new Count(2))).isTrue();
         assertThat(new Width(new Players("a", "b", "c"))).isEqualTo(new Width(2));
     }
 }

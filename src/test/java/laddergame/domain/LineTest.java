@@ -2,10 +2,10 @@ package laddergame.domain;
 
 import laddergame.exception.ErrorCode;
 import laddergame.exception.LadderGameException;
+import laddergame.util.ManualValueGenerator;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThatNoException;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 class LineTest {
     @Test
@@ -18,5 +18,11 @@ class LineTest {
     @Test
     void 정상() {
         assertThatNoException().isThrownBy(() -> new Line(true, false, true, false));
+    }
+
+    @Test
+    void 너비만큼_Point_생성() {
+        assertThat(Line.create(new Width(2), new ManualValueGenerator(true, false)))
+                .isEqualTo(new Line(true, false));
     }
 }

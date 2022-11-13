@@ -1,5 +1,8 @@
 package laddergame.domain;
 
+import laddergame.util.ValueGenerator;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -14,6 +17,16 @@ public class Ladder {
 
     public Ladder(Line... lines) {
         this(Arrays.asList(lines));
+    }
+
+    public static Ladder create(Height height, Width width, ValueGenerator valueGenerator) {
+        List<Line> lines = new ArrayList<>();
+        Count count = new Count(0);
+        while (height.bigger(count)) {
+            lines.add(Line.create(width, valueGenerator));
+            count.plus();
+        }
+        return new Ladder(lines);
     }
 
     public List<Line> getRows() {
