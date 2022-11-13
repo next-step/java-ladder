@@ -10,28 +10,29 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class LineTest {
 
-    private static final int NUMBER_OF_PEOPLE = 5;
-    private static List<Direction> directions;
+    private static final int NUMBER_OF_PEOPLE = 4;
+    private static List<Point> point;
 
     @Test
     void 인원수에_따라_Line_객체_생성시_해당_인원수만큼_direction_을_반환한다() {
         Line line = new Line(NUMBER_OF_PEOPLE, RandomLineStrategy.getInstance());
-        assertThat(line.getDirections().size()).isEqualTo(NUMBER_OF_PEOPLE);
+        assertThat(line.getPoints().size()).isEqualTo(NUMBER_OF_PEOPLE);
     }
 
     @Test
     void true_로_시작하는_Line_객체_생성시_TrueFalseTrueFalse_형태로_directions_를_반환한다() {
-        directions = Arrays.asList(
-                Direction.init(true),
-                Direction.init(false),
-                Direction.init(true),
-                Direction.init(false),
-                Direction.init(false)
+        point = Arrays.asList(
+                Point.init(true),
+                Point.init(true).insert(false),
+                Point.init(false).insert(true),
+                Point.init(true).last()
         );
 
+        System.out.println("point --> " + point);
         Line line = new Line(NUMBER_OF_PEOPLE, () -> true);
-        List<Direction> directions = line.getDirections();
-        assertThat(directions).isEqualTo(directions);
+        System.out.println("line --> " + line);
+        List<Point> points = line.getPoints();
+        assertThat(points.size()).isEqualTo(point.size());
     }
 
 }

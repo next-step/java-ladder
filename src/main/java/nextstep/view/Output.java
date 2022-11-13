@@ -50,13 +50,13 @@ public class Output {
     }
 
     private static void getLine(StringBuilder sb, Line line) {
-        line.getDirections().stream()
+        line.getPoints().stream()
                 .forEachOrdered(point -> sb.append(print(point)));
         sb.append("\n");
     }
 
-    private static String print(Direction direction) {
-        if (direction.isPoint()) {
+    private static String print(Point point) {
+        if (point.isPoint()) {
             return HORIZONTAL_LINE;
         }
         return EMPTY_LINE;
