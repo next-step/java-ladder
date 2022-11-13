@@ -8,21 +8,11 @@ import ladder.strategy.LinkStrategy;
 public class Ladder {
 
     private final static String ERROR_EMPTY_VALUE = "입력 값이 누락되었습니다.";
-    private final static String ERROR_ZERO_OR_NEGATIVE_VALUE = "0보다 큰 값만 입력 가능합니다.";
 
     private final Lines lines;
 
     public Ladder(final int totalParticipantsNumber, final int height) {
-        validate(totalParticipantsNumber);
-        validate(height);
-
         this.lines = new Lines(height, totalParticipantsNumber);
-    }
-
-    private void validate(final int value) {
-        if (value <= 0) {
-            throw new IllegalArgumentException(ERROR_ZERO_OR_NEGATIVE_VALUE);
-        }
     }
 
     public void draw(final LinkStrategy strategy) {

@@ -13,14 +13,6 @@ import org.junit.jupiter.api.Test;
 class LadderTest {
 
     @Test
-    @DisplayName("음수를 할당하는 경우 Ladder 객체를 생성하는데 실패한다.")
-    void create_with_negative_value() {
-        assertThatThrownBy(() -> new Ladder(-3, -2)).
-            isInstanceOf(IllegalArgumentException.class).
-            hasMessage("0보다 큰 값만 입력 가능합니다.");
-    }
-
-    @Test
     @DisplayName("draw 메소드는 사다리를 그려준다.")
     void draw() {
         Ladder ladder = new Ladder(3, 5);

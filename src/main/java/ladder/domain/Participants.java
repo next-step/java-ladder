@@ -18,17 +18,10 @@ public class Participants {
     private final List<Participant> value;
 
     public Participants(final String names) {
-        validate(names);
         String[] splited = split(names);
         this.value = IntStream.range(0, splited.length)
             .mapToObj(i -> new Participant(splited[i], i))
             .collect(Collectors.toList());
-    }
-
-    private void validate(final String value) {
-        if (value == null || value.isEmpty()) {
-            throw new IllegalArgumentException(ERROR_EMPTY_VALUE);
-        }
     }
 
     private String[] split(final String value) {

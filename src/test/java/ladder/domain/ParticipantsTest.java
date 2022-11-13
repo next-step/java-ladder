@@ -12,14 +12,6 @@ import org.junit.jupiter.api.Test;
 public class ParticipantsTest {
 
     @Test
-    @DisplayName("빈 값을 할당하는 경우 Participants 객체를 생성하는데 실패한다.")
-    void create_with_empty_value() {
-        assertThatThrownBy(() -> new Participants("")).
-            isInstanceOf(IllegalArgumentException.class).
-            hasMessage("입력 값이 누락되었습니다.");
-    }
-
-    @Test
     @DisplayName("참여자가 한 사람 이하인 경우 Participants 객체를 생성하는데 실패한다.")
     void create_with_one_person() {
         assertThatThrownBy(() -> new Participants("jordy")).
