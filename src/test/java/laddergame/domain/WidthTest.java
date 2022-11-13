@@ -25,4 +25,9 @@ class WidthTest {
         assertThat(new Width(4).createRow(new ManualValueGenerator(true, false, false, false)))
                 .isEqualTo(new Line(true, false, false, false));
     }
+
+    @Test
+    void 플레이어수_빼기_1이_너비() {
+        assertThat(new Width(new Players("a", "b", "c"))).isEqualTo(new Width(2));
+    }
 }

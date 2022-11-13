@@ -18,6 +18,10 @@ public class Width {
         this.width = width;
     }
 
+    public Width(Players players) {
+        this(players.count() - 1);
+    }
+
     private void validateOverMinimum(int width) {
         if (width < MINIMUM_WIDTH) {
             throw new LadderGameException(ErrorCode.WIDTH_UNDER_MINIMUM);
