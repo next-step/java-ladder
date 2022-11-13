@@ -7,11 +7,11 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class RandomLineGeneratorTest {
+class LineGeneratorTest {
 
     @Test
     void shouldGenerateProperSizeOfLine() {
-        RandomLineGenerator generator = new RandomLineGenerator(() -> true);
+        LineGenerator generator = new LineGenerator(() -> true);
 
         List<HorizontalLine> result = generator.generate(new LineGenerateDto(2, 5));
 
@@ -21,7 +21,7 @@ class RandomLineGeneratorTest {
 
     @Test
     void shouldAlwaysGenerateLine() {
-        RandomLineGenerator generator = new RandomLineGenerator(() -> false);
+        LineGenerator generator = new LineGenerator(() -> false);
 
         List<HorizontalLine> result = generator.generate(new LineGenerateDto(2, 5));
         List<Direction> units = result.get(0).getUnits();
@@ -32,7 +32,7 @@ class RandomLineGeneratorTest {
 
     @Test
     void shouldNotAlwaysGenerateLine() {
-        RandomLineGenerator generator = new RandomLineGenerator(() -> true);
+        LineGenerator generator = new LineGenerator(() -> true);
 
         List<HorizontalLine> result = generator.generate(new LineGenerateDto(2, 5));
         List<Direction> units = result.get(0).getUnits();

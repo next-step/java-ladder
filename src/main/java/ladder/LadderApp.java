@@ -8,6 +8,7 @@ import ladder.ui.OutputView;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -23,7 +24,7 @@ public class LadderApp {
             LadderResult ladderResult = new LadderResult(inputView.getResult(), users.size());
             LadderLength ladderLength = new LadderLength(inputView.getVerticalLine());
 
-            Ladder ladder = LadderFactory.getLadder(users.size(), ladderLength);
+            Ladder ladder = LadderFactory.getLadder(users.size(), ladderLength, new LineGenerator(() -> new Random().nextBoolean()));
             OutputView.printLadder(users, ladder, ladderResult);
 
             while (true) {
@@ -42,7 +43,8 @@ public class LadderApp {
     }
 
     private static List<UserResult> getUserResults(Users users, LadderResult ladderResult, List<Position> userPositions, List<Position> resultPositions) {
-        return OrderPosition.order(userPositions, resultPositions)
+        OrderPosition orderPosition = new OrderPosition();
+        return orderPosition.order(userPositions, resultPositions)
                 .stream()
                 .map((entry) -> {
                     User user = users.findUserByPosition(entry.getKey());

@@ -13,10 +13,6 @@ public class User {
         return this.name.equals(userName);
     }
 
-    public int maxLength(String result) {
-        return Math.max(this.name.length(), result.length());
-    }
-
     public UserName getName() {
         return name;
     }

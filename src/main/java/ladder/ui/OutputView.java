@@ -42,14 +42,15 @@ public abstract class OutputView {
             Position position = new Position(i);
             User user = users.findUserByPosition(position);
             Result result = ladderResult.findResultByPosition(position);
-            maxInterval = Math.max(getMaxLength(user, result), maxInterval);
+            maxInterval = Math.max(maxLength(user, result), maxInterval);
         }
         return maxInterval + ADDITIONAL_SPACE;
     }
 
-    private static int getMaxLength(User user, Result result) {
-        return user.maxLength(result.getResult());
+    private static int maxLength(User user, Result result) {
+        return Math.max(user.getName().length(), result.getResult().length());
     }
+
 
     private static void printName(List<UserResult> userResults, int maxInterval) {
         userResults.stream()

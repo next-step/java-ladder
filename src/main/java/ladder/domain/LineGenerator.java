@@ -8,11 +8,11 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class RandomLineGenerator {
+public class LineGenerator {
 
     private final Supplier<Boolean> lineGeneratePolicy;
 
-    public RandomLineGenerator(Supplier<Boolean> lineGeneratePolicy) {
+    public LineGenerator(Supplier<Boolean> lineGeneratePolicy) {
         this.lineGeneratePolicy = lineGeneratePolicy;
     }
 

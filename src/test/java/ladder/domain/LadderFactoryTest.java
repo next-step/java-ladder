@@ -1,30 +1,17 @@
 package ladder.domain;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LadderFactoryTest {
 
     @Test
-    void shouldMapLine() {
-        List<HorizontalLine> horizontalLine = List.of(new HorizontalLine(List.of(new Direction(), new Direction(), new Direction())));
+    void shouldGenerateLadder() {
+        Ladder ladder = LadderFactory.getLadder(2, new LadderLength(2), new LineGenerator(() -> false));
 
-        List<VerticalLine> verticalLines = LadderFactory.verticalLines(horizontalLine, 3);
-
-        assertThat(verticalLines.size()).isEqualTo(3);
-    }
-
-    @Test
-    @DisplayName("추가하고자 하는 라인 행수와 유저 개수가 맞지 않을떄는 예외가 발생해야 합니다.")
-    void shouldNotMapLine_whenDifferentNum() {
-        List<HorizontalLine> horizontalLine = List.of(new HorizontalLine(List.of(new Direction(), new Direction(), new Direction())));
-
-        assertThatThrownBy(() -> LadderFactory.verticalLines(horizontalLine, 2)).isInstanceOf(IllegalArgumentException.class);
+        assertThat(ladder.getLadderLength()).isEqualTo(new LadderLength(2));
+        assertThat(ladder.getLines().size()).isEqualTo(2);
     }
 
 }

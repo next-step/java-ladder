@@ -1,11 +1,9 @@
 package ladder.domain;
 
-import ladder.dto.LineGenerateDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.function.Supplier;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -22,19 +20,11 @@ class LadderTest {
          *  |-----|
          *  |-----|
          */
-        Ladder ladder = getLadder(numOfUsers, ladderLength, () -> false);
+        Ladder ladder = LadderFactory.getLadder(numOfUsers, new LadderLength(ladderLength), new LineGenerator(() -> false));
         List<Position> resultA = ladder.play(List.of(new Position(0)));
         List<Position> resultB = ladder.play(List.of(new Position(1)));
 
         assertThat(resultA).containsOnly(new Position(0));
         assertThat(resultB).containsOnly(new Position(1));
     }
-
-
-    private Ladder getLadder(int numberOfUsers, int ladderLength, Supplier<Boolean> lineGenerationPolicy) {
-        List<HorizontalLine> horizontalLines = LadderFactory.horizontalLines(new LineGenerateDto(numberOfUsers, ladderLength), new RandomLineGenerator(lineGenerationPolicy));
-        List<VerticalLine> verticalLines = LadderFactory.verticalLines(horizontalLines, numberOfUsers);
-        return new Ladder(verticalLines, new LadderLength(ladderLength));
-    }
-
 }

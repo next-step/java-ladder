@@ -11,14 +11,13 @@ class VerticalLineTest {
 
     @Test
     void shouldMovePosition() {
-        List<VerticalLine> verticalLine = getVerticalLines();
-        Position horizontalPosition = new Position(0);
-        LadderPosition position = new LadderPosition(horizontalPosition);
+        VerticalLine verticalLine = new VerticalLine(List.of(new Direction(), new Direction()), new Position(1));
+        LadderPosition ladderPosition = new LadderPosition(new Position(0));
 
-        verticalLine.get(0).move(position);
+        verticalLine.move(ladderPosition);
 
-        assertThat(position.getHorizontalPosition()).isEqualTo(new Position(1));
-        assertThat(position.length()).isEqualTo(1);
+        assertThat(ladderPosition.getHorizontalPosition()).isEqualTo(new Position(0));
+        assertThat(ladderPosition.length()).isEqualTo(2);
     }
 
     @Test
@@ -28,20 +27,4 @@ class VerticalLineTest {
         assertThat(line.isSamePosition(new Position(0))).isTrue();
         assertThat(line.isSamePosition(new Position(1))).isFalse();
     }
-
-    /***
-     * 테스트 케이스 사다리 모양
-     * | ---- |
-     * | ---- |
-     */
-    private List<VerticalLine> getVerticalLines() {
-        Direction unitA = new Direction();
-        Direction unitB = new Direction();
-
-        unitA.addNext(unitB);
-        HorizontalLine horizontalLineA = new HorizontalLine(List.of(unitA, unitB));
-        HorizontalLine horizontalLineB = new HorizontalLine(List.of(unitA, unitB));
-        return LadderFactory.verticalLines(List.of(horizontalLineA, horizontalLineB), 2);
-    }
-
 }

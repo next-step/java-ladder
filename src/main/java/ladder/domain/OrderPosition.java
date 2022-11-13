@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 
 public class OrderPosition {
 
-    public static List<Map.Entry<Position, Position>> order(List<Position> userPositions, List<Position> resultPositions) {
+    public List<Map.Entry<Position, Position>> order(List<Position> userPositions, List<Position> resultPositions) {
         return IntStream.range(0, userPositions.size())
                 .mapToObj((idx) -> Map.entry(userPositions.get(idx), resultPositions.get(idx)))
                 .sorted(Map.Entry.comparingByKey())
