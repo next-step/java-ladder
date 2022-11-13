@@ -32,13 +32,13 @@ public class LadderFactory {
     }
 
     public static boolean addPoint(int point, List<Boolean> points) {
-        if (isPreviousTrue(point, points)) {
+        if (isPreviousPointConnected(point, points)) {
             return false;
         }
         return RANDOM.nextBoolean();
     }
 
-    private static boolean isPreviousTrue(int point, List<Boolean> points) {
+    private static boolean isPreviousPointConnected(int point, List<Boolean> points) {
         return point > 0 && points.get(point - 1);
     }
 }
