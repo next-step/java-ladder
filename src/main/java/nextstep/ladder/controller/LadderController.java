@@ -38,6 +38,7 @@ public class LadderController {
 			outputView.printResultHeader();
 			if (ALL.equals(participant)) {
 				resultMap.forEach(outputView::printNameAndResult);
+				return;
 			} else if (participants.hasName(participant)) {
 				outputView.printResult(resultMap.get(participant));
 			}

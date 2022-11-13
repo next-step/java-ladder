@@ -10,9 +10,6 @@ public class RandomLineGenerator implements LineGenerator {
 
 	@Override
 	public Boolean generatePoint(int index, Line line) {
-		if (line.hasLine(index)) {
-			return false;
-		}
 		return generateRandomBoolean();
 	}
 
