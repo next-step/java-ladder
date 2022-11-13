@@ -6,18 +6,18 @@ import java.util.Objects;
 
 public class Ladder {
 
-    private final List<Row> rows;
+    private final List<Line> lines;
 
-    public Ladder(List<Row> rows) {
-        this.rows = rows;
+    public Ladder(List<Line> lines) {
+        this.lines = lines;
     }
 
-    public Ladder(Row... rows) {
-        this(Arrays.asList(rows));
+    public Ladder(Line... lines) {
+        this(Arrays.asList(lines));
     }
 
-    public List<Row> getRows() {
-        return rows;
+    public List<Line> getRows() {
+        return lines;
     }
 
     @Override
@@ -25,18 +25,18 @@ public class Ladder {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ladder ladder = (Ladder) o;
-        return Objects.equals(rows, ladder.rows);
+        return Objects.equals(lines, ladder.lines);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(rows);
+        return Objects.hash(lines);
     }
 
     @Override
     public String toString() {
         return "Ladder{" +
-                "rows=" + rows +
+                "rows=" + lines +
                 '}';
     }
 }

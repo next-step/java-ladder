@@ -7,16 +7,16 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class RowTest {
+class LineTest {
     @Test
     void 연속해서_State_true() {
-        assertThatThrownBy(() -> new Row(true, true, false, false))
+        assertThatThrownBy(() -> new Line(true, true, false, false))
                 .isInstanceOf(LadderGameException.class)
                 .hasMessage(ErrorCode.LADDER_LINE_EXIT_CONTINOUSLY.getMessage());
     }
 
     @Test
     void 정상() {
-        assertThatNoException().isThrownBy(() -> new Row(true, false, true, false));
+        assertThatNoException().isThrownBy(() -> new Line(true, false, true, false));
     }
 }

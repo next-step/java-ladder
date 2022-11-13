@@ -23,6 +23,6 @@ class WidthTest {
     @Test
     void 열_생성() {
         assertThat(new Width(4).createRow(new ManualGenerator(true, false, false, false)))
-                .isEqualTo(new Row(true, false, false, false));
+                .isEqualTo(new Line(true, false, false, false));
     }
 }

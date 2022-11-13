@@ -6,55 +6,55 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class State {
+public class Point {
 
-    private static final Map<Boolean, State> cache;
-    private final boolean state;
+    private static final Map<Boolean, Point> cache;
+    private final boolean point;
 
     static {
         cache = new HashMap<>();
-        cache.put(true, new State(true));
-        cache.put(false, new State(false));
+        cache.put(true, new Point(true));
+        cache.put(false, new Point(false));
     }
 
-    private State(boolean state) {
-        this.state = state;
+    private Point(boolean point) {
+        this.point = point;
     }
 
-    public static State valueOf(Boolean value) {
+    public static Point valueOf(Boolean value) {
         return cache.get(value);
     }
 
-    public State next(Generator generator) {
+    public Point next(Generator generator) {
         boolean next = generator.generate();
         if (isExist()) {
-            return new State(false);
+            return new Point(false);
         }
-        return new State(next);
+        return new Point(next);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        State state1 = (State) o;
-        return state == state1.state;
+        Point point1 = (Point) o;
+        return point == point1.point;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(state);
+        return Objects.hash(point);
     }
 
     @Override
     public String toString() {
-        return "State{" +
-                "state=" + state +
+        return "Point{" +
+                "point=" + point +
                 '}';
     }
 
     public boolean isExist() {
-        return this.state;
+        return this.point;
     }
 }
 

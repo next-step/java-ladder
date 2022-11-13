@@ -36,14 +36,14 @@ public class Width {
         return Objects.hash(width);
     }
 
-    public Row createRow(Generator generator) {
-        List<State> states = new ArrayList<>();
-        State previous = State.valueOf(false);
+    public Line createRow(Generator generator) {
+        List<Point> points = new ArrayList<>();
+        Point previous = Point.valueOf(false);
         for (int i = 0; i < width; i++) {
-            State now = previous.next(generator);
-            states.add(now);
+            Point now = previous.next(generator);
+            points.add(now);
             previous = now;
         }
-        return new Row(states);
+        return new Line(points);
     }
 }

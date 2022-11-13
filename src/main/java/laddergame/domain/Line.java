@@ -8,53 +8,53 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class Row {
-    private final List<State> states;
+public class Line {
+    private final List<Point> points;
 
-    public Row(List<State> states) {
-        validateContinuous(states);
-        this.states = states;
+    public Line(List<Point> points) {
+        validateContinuous(points);
+        this.points = points;
     }
 
-    private void validateContinuous(List<State> states) {
-        for (int i = 1; i < states.size(); i++) {
-            comparePreviousState(states.get(i - 1), states.get(i));
+    private void validateContinuous(List<Point> points) {
+        for (int i = 1; i < points.size(); i++) {
+            comparePreviousState(points.get(i - 1), points.get(i));
         }
     }
 
-    private void comparePreviousState(State previous, State now) {
+    private void comparePreviousState(Point previous, Point now) {
         if (previous.isExist() && now.isExist()) {
             throw new LadderGameException(ErrorCode.LADDER_LINE_EXIT_CONTINOUSLY);
         }
     }
 
-    public Row(Boolean... inputs) {
+    public Line(Boolean... inputs) {
         this(Arrays.stream(inputs)
-                .map(State::valueOf)
+                .map(Point::valueOf)
                 .collect(Collectors.toList()));
     }
 
-    public List<State> getStates() {
-        return this.states;
+    public List<Point> getStates() {
+        return this.points;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Row row = (Row) o;
-        return Objects.equals(states, row.states);
+        Line line = (Line) o;
+        return Objects.equals(points, line.points);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(states);
+        return Objects.hash(points);
     }
 
     @Override
     public String toString() {
         return "Row{" +
-                "states=" + states +
+                "states=" + points +
                 '}';
     }
 }

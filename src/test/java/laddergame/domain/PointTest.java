@@ -11,24 +11,24 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 
-class StateTest {
+class PointTest {
     public static Stream<Arguments> providedStates() {
         return Stream.of(
-                Arguments.of(State.valueOf(true), (Generator) () -> true, State.valueOf(false)),
-                Arguments.of(State.valueOf(true), (Generator) () -> false, State.valueOf(false)),
-                Arguments.of(State.valueOf(false), (Generator) () -> true, State.valueOf(true)),
-                Arguments.of(State.valueOf(false), (Generator) () -> false, State.valueOf(false))
+                Arguments.of(Point.valueOf(true), (Generator) () -> true, Point.valueOf(false)),
+                Arguments.of(Point.valueOf(true), (Generator) () -> false, Point.valueOf(false)),
+                Arguments.of(Point.valueOf(false), (Generator) () -> true, Point.valueOf(true)),
+                Arguments.of(Point.valueOf(false), (Generator) () -> false, Point.valueOf(false))
         );
     }
 
     @ParameterizedTest
     @MethodSource("providedStates")
-    void 이전_상태가_True_이면_항상_false_그외_입력값_그대로(State previous, Generator generator, State expected) {
+    void 이전_상태가_True_이면_항상_false_그외_입력값_그대로(Point previous, Generator generator, Point expected) {
         assertThat(previous.next(generator)).isEqualTo(expected);
     }
 
     @Test
     void 캐시() {
-        assertThatNoException().isThrownBy(() -> State.valueOf(true));
+        assertThatNoException().isThrownBy(() -> Point.valueOf(true));
     }
 }

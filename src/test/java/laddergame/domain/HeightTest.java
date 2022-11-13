@@ -25,8 +25,8 @@ class HeightTest {
         assertThat(new Height(2).createLadder(new Width(2),
                 new ManualGenerator(true, false, false, true)))
                 .isEqualTo(new Ladder(
-                        new Row(true, false),
-                        new Row(false, true))
+                        new Line(true, false),
+                        new Line(false, true))
                 );
     }
 }

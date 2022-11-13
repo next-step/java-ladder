@@ -26,18 +26,18 @@ public class OutputView {
     }
 
     private static void printLadder(Ladder ladder) {
-        for (Row row : ladder.getRows()) {
+        for (Line line : ladder.getRows()) {
             System.out.print(EMPTY + MAIN_LINE);
-            for (State state : row.getStates()) {
-                System.out.print(createLine(state));
+            for (Point point : line.getStates()) {
+                System.out.print(createLine(point));
                 System.out.print(MAIN_LINE);
             }
             System.out.println();
         }
     }
 
-    private static String createLine(State state) {
-        if (state.isExist()) {
+    private static String createLine(Point point) {
+        if (point.isExist()) {
             return SUB_LINE;
         }
         return EMPTY;
