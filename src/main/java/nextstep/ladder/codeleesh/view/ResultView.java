@@ -1,9 +1,8 @@
-package nextstep.ladder.view;
+package nextstep.ladder.codeleesh.view;
 
-import nextstep.ladder.dto.LadderWinningResultDto;
-import nextstep.ladder.dto.LineDto;
-import nextstep.ladder.dto.ParticipationNameDto;
-import nextstep.ladder.dto.PointDto;
+import nextstep.ladder.codeleesh.dto.LineDto;
+import nextstep.ladder.codeleesh.dto.ParticipationNameDto;
+import nextstep.ladder.codeleesh.dto.PointDto;
 
 import java.util.List;
 import java.util.Map;
@@ -13,6 +12,7 @@ public class ResultView {
     private static final String DELIMITER = "|";
     private static final String EMPTY = " ";
     private static final String THREE_EMPTY = "   ";
+    private static final String ALL_RESULT = "all";
 
     private ResultView() {}
 
@@ -86,18 +86,18 @@ public class ResultView {
         return "     ";
     }
 
-    public static void resultName(final String name, final LadderWinningResultDto ladderWinningResultDto) {
+    public static boolean checkResultName(final String name, final LadderWinningResult ladderWinningResultDto) {
 
         resultTitlePrint();
 
-        final Map<String, String> ladderResultDtoMap = ladderWinningResultDto.getLadderResultDto();
-        if ("all".equals(name)) {
+        final Map<String, String> ladderResultDtoMap = ladderWinningResultDto.getLadderResult();
+        if (ALL_RESULT.equals(name)) {
             printOfAll(ladderResultDtoMap);
-            return ;
+            return true;
         }
         if (ladderResultDtoMap.containsKey(name)) {
             System.out.println(ladderResultDtoMap.get(name));
-            return ;
+            return false;
         }
 
         throw new IllegalArgumentException("해당 사용자는 존재하지 않습니다.");

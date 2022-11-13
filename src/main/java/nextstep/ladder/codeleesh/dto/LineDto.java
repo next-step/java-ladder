@@ -1,7 +1,7 @@
-package nextstep.ladder.dto;
+package nextstep.ladder.codeleesh.dto;
 
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Point;
+import nextstep.ladder.codeleesh.domain.Line;
+import nextstep.ladder.codeleesh.domain.Point;
 
 import java.util.List;
 import java.util.Objects;
@@ -17,7 +17,14 @@ public class LineDto {
         this.pointsDto = pointsDto;
     }
 
-    public static LineDto from(final Line line) {
+    public static List<LineDto> from(final List<Line> lines) {
+
+        return lines.stream()
+                .map(LineDto::from)
+                .collect(Collectors.toList());
+    }
+
+    private static LineDto from(final Line line) {
 
         final List<PointDto> collect = IntStream.range(0, line.getPoints().size() - 1)
                 .mapToObj(i -> {

@@ -1,16 +1,19 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.codeleesh.domain;
+
+import nextstep.ladder.engine.LineCreator;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class LineCreator {
+public class CodeLineCreator implements LineCreator {
 
     private static final Random RANDOM = new Random();
 
-    private LineCreator() {}
+    public CodeLineCreator() {}
 
-    public static Line create(final int countOfPerson) {
+    @Override
+    public Line create(final int countOfPerson) {
 
         final List<Point> points = new ArrayList<>();
         final Point point = Point.first(generate());

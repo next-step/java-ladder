@@ -1,7 +1,7 @@
-package nextstep.ladder.dto;
+package nextstep.ladder.codeleesh.dto;
 
-import nextstep.ladder.domain.Direction;
-import nextstep.ladder.domain.Point;
+import nextstep.ladder.codeleesh.domain.Direction;
+import nextstep.ladder.codeleesh.domain.Point;
 
 public class PointDto {
 
