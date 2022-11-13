@@ -1,20 +1,24 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Person;
+import nextstep.ladder.domain.Players;
+import nextstep.ladder.domain.Results;
 import nextstep.ladder.factory.LadderFactory;
-import nextstep.ladder.factory.RandomLadderFactory;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
 public class LadderMain {
     public static void main(String[] args) {
-        Person person = new Person(InputView.inputPerson());
-        int height = InputView.inputLadderHeight();
+        Players players = new Players(InputView.inputPerson());
+        Results results = new Results(InputView.inputResult(), players.size());
 
-        LadderFactory ladderFactory = new RandomLadderFactory();
-        Ladder ladder = ladderFactory.creatLadder(height, person.countPerson());
+        Ladder ladder = LadderFactory.createRandomLadder(InputView.inputLadderHeight(), players.countPlayers());
 
-        OutputView.outputResult(person, ladder);
+        OutputView.outputLadderResult(players, ladder, results);
+
+        ladder.run(players);
+
+        OutputView.outputResult(players, results, InputView.inputPlayerWhoWantGetResult());
     }
+
 }

@@ -13,4 +13,10 @@ public class Ladder {
     public List<Line> getLines() {
         return lines;
     }
+
+    public void run(Players players) {
+        for (Line line : lines) {
+            line.checkPointAndChangePosition(players);
+        }
+    }
 }
