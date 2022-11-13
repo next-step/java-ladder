@@ -23,4 +23,8 @@ public class Ladder {
         }
         return axis.getCol();
     }
+
+    public int getWidth() {
+        return lines.get(0).size();
+    }
 }
