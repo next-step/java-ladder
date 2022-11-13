@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.*;
+
 public class LadderTest {
 
     private Ladder ladder;
@@ -30,6 +32,6 @@ public class LadderTest {
         Players players = new Players(new String[]{"A", "B", "C", "D"});
         ladder.run(players);
 
-        Assertions.assertThat(players).isEqualTo(new Players(new String[]{"A", "D", "C", "B"}));
+        assertThat(players).isEqualTo(new Players(new String[]{"A", "D", "C", "B"}));
     }
 }
