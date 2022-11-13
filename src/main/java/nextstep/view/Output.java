@@ -13,6 +13,7 @@ public class Output {
     private static final String RESULT_MESSAGE = "\n실행결과\n%s";
     private static final String EMPTY_LINE = "     |";
     private static final String HORIZONTAL_LINE = "-----|";
+    private static final String DELIMITER = " : ";
     private static final String INPUT_PERSON_MESSAGE = "결과를 보고 싶은 사람은?";
     private static final Scanner sc = new Scanner(System.in);
     private static StringBuilder sb = new StringBuilder();
@@ -89,10 +90,10 @@ public class Output {
 
         for (int i = 0; i < players.getPlayersSize(); i++) {
             int idx = ladder.move(i);
-            sb.append(players.getPlayers().get(i).getName());
-            sb.append(" : ");
-            sb.append(result.get(idx));
-            sb.append(System.lineSeparator());
+            sb.append(players.getPlayers().get(i).getName())
+                    .append(DELIMITER)
+                    .append(result.get(idx))
+                    .append(System.lineSeparator());
         }
         System.out.println(sb);
     }
