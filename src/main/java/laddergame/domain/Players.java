@@ -19,7 +19,7 @@ public class Players {
         return this.players;
     }
 
-    public Width findWidth() {
-        return new Width(players.size() - 1);
+    public int count() {
+        return this.players.size();
     }
 }

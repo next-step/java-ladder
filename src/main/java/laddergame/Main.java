@@ -13,7 +13,7 @@ public class Main {
         Players players = new Players(InputView.enterPlayerNames());
         Height height = new Height(InputView.enterHeight());
 
-        Width width = players.findWidth();
+        Width width = new Width(players.count() - 1);
         Ladder ladder = height.createLadder(width, new RandomValueGenerator());
 
         OutputView.printResult(players, ladder);
