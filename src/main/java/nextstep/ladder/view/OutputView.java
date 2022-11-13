@@ -37,7 +37,7 @@ public class OutputView {
     private static void outputLines(Line line) {
         for (Point point : line.getPoints()) {
             System.out.print(VERTICAL_LINE);
-            System.out.print(getLine(point.isPoint()));
+            System.out.print(getLine(point.isConnection()));
         }
         System.out.println(VERTICAL_LINE);
     }

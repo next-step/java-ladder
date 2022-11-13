@@ -22,7 +22,7 @@ public class Line {
 
     public void checkPointAndChangePosition(Players players) {
         IntStream.range(ZERO, size())
-                .filter(point -> points.get(point).isPoint())
+                .filter(point -> points.get(point).isConnection())
                 .forEach(i -> players.changePositions(i));
     }
 

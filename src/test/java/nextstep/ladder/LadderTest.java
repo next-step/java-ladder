@@ -4,12 +4,10 @@ import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Players;
 import nextstep.ladder.domain.Point;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
@@ -20,11 +18,13 @@ public class LadderTest {
     @BeforeEach
     void init() {
         List<Line> lineList = new ArrayList<>();
-        lineList.add(new Line(Arrays.asList(new Point(false), new Point(true), new Point(false))));
-        lineList.add(new Line(Arrays.asList(new Point(true), new Point(false), new Point(false))));
-        lineList.add(new Line(Arrays.asList(new Point(false), new Point(false), new Point(true))));
-        lineList.add(new Line(Arrays.asList(new Point(true), new Point(false), new Point(false))));
-        lineList.add(new Line(Arrays.asList(new Point(false), new Point(true), new Point(false))));
+
+
+        lineList.add(new Line(List.of(new Point(false), new Point(true), new Point(false))));
+        lineList.add(new Line(List.of(new Point(true), new Point(false), new Point(false))));
+        lineList.add(new Line(List.of(new Point(false), new Point(false), new Point(true))));
+        lineList.add(new Line(List.of(new Point(true), new Point(false), new Point(false))));
+        lineList.add(new Line(List.of(new Point(false), new Point(true), new Point(false))));
         ladder = new Ladder(lineList);
 
     }
