@@ -68,20 +68,15 @@ public class Output {
             System.out.println(INPUT_PERSON_MESSAGE);
             String player = sc.nextLine();
 
-            if (compareAllPlayers(players, result, ladder, player)) {
-                break;
-            }
-
+            compareAllPlayers(players, result, ladder, player);
             printPlayerResult(players, result, ladder, player);
         }
     }
 
-    private static boolean compareAllPlayers(Players players, Result result, Ladder ladder, String player) {
+    private static void compareAllPlayers(Players players, Result result, Ladder ladder, String player) {
         if (player.equals("all")) {
             printAllPlayersResult(players, result, ladder);
-            return true;
         }
-        return false;
     }
 
     public static void printAllPlayersResult(Players players, Result result, Ladder ladder) {
@@ -90,10 +85,10 @@ public class Output {
 
         int idx = 0;
         for (Player player : players.getPlayers()) {
-            idx = ladder.move(idx);
+            int moveIdx = ladder.move(idx);
             sb.append(player.getName())
                     .append(DELIMITER)
-                    .append(result.get(idx))
+                    .append(result.get(moveIdx))
                     .append(System.lineSeparator());
             idx++;
         }
