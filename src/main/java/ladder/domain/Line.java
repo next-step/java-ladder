@@ -10,7 +10,7 @@ import ladder.strategy.LinkStrategy;
 public class Line {
 
     private final List<Point> points;
-    private final List<PositiveInt> linkedColumns = new ArrayList<>();
+    private final List<Integer> linkedColumns = new ArrayList<>();
 
     public Line(final PositiveInt row, final PositiveInt lastColumn) {
         this.points = IntStream.range(0, lastColumn.getValue())
@@ -22,16 +22,16 @@ public class Line {
         linkedColumns.addAll(strategy.link(points.size() - 1));
     }
 
-    public PositiveInt move(final PositiveInt currentColumnNumber) {
+    public int move(final int currentColumnNumber) {
         if (linkedColumns.contains(currentColumnNumber)) {
-            return currentColumnNumber.plus(1);
+            return currentColumnNumber + 1;
         }
 
-        if (currentColumnNumber.equals(PositiveInt.zero())) {
+        if (currentColumnNumber == 0) {
             return currentColumnNumber;
         }
 
-        PositiveInt previous = currentColumnNumber.minus(1);
+        int previous = currentColumnNumber - 1;
         if (linkedColumns.contains(previous)) {
             return previous;
         }

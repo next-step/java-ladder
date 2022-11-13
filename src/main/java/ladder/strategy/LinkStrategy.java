@@ -5,5 +5,5 @@ import ladder.domain.PositiveInt;
 
 public interface LinkStrategy {
 
-    List<PositiveInt> link(final int column);
+    List<Integer> link(final int column);
 }

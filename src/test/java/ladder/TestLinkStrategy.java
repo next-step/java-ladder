@@ -7,7 +7,7 @@ import ladder.strategy.LinkStrategy;
 public class TestLinkStrategy implements LinkStrategy {
 
     @Override
-    public List<PositiveInt> link(int column) {
-        return List.of(PositiveInt.zero(), new PositiveInt(2));
+    public List<Integer> link(int column) {
+        return List.of(0, 2);
     }
 }

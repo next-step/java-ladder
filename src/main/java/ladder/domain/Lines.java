@@ -35,7 +35,7 @@ public class Lines {
     public int move(final int startColumnNumber) {
         AtomicInteger currentColumnNumber = new AtomicInteger(startColumnNumber);
         value.forEach(line -> {
-            currentColumnNumber.set(line.move(new PositiveInt(currentColumnNumber.get())).getValue());
+            currentColumnNumber.set(line.move(currentColumnNumber.get()));
         });
 
         return currentColumnNumber.get();

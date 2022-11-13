@@ -17,8 +17,8 @@ public class Point {
         this.y = y;
     }
 
-    public PositiveInt getY() {
-        return y;
+    public int getY() {
+        return y.getValue();
     }
 
     @Override
