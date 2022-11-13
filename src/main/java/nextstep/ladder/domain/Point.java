@@ -8,14 +8,14 @@ public class Point {
 
     private static final Random RANDOM = new Random();
 
-    private boolean point;
+    private boolean connection;
 
-    public Point(boolean point) {
-        this.point = point;
+    public Point(boolean connection) {
+        this.connection = connection;
     }
 
-    public boolean isPoint() {
-        return point;
+    public boolean isConnection() {
+        return connection;
     }
 
     public static Point addPoint(int point, List<Point> points) {
@@ -26,19 +26,19 @@ public class Point {
     }
 
     private static boolean isPreviousPointConnected(Point point) {
-        return point.isPoint();
+        return point.isConnection();
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Point point1 = (Point) o;
-        return point == point1.point;
+        Point point = (Point) o;
+        return connection == point.connection;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(point);
+        return Objects.hash(connection);
     }
 }
