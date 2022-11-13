@@ -18,11 +18,11 @@ public class LadderFactoryTest {
         assertThat(ladder.getLines().size()).isEqualTo(5);
     }
 
-    @Test
-    void 앞죄표가_true일_경우() {
-        LadderFactory randomLadderFactory = new LadderFactory();
-        boolean result = randomLadderFactory.addPoint(3, Arrays.asList(true, false, true));
-        Assertions.assertThat(result).isFalse();
-    }
+//    @Test
+//    void 앞죄표가_true일_경우() {
+//        LadderFactory randomLadderFactory = new LadderFactory();
+//        boolean result = randomLadderFactory.addPoint(3, Arrays.asList(true, false, true));
+//        Assertions.assertThat(result).isFalse();
+//    }
 
 }

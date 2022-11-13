@@ -18,18 +18,7 @@ public class LadderMain {
 
         ladder.run(players);
 
-        outputResult(players, results, InputView.inputPlayerWhoWantGetResult());
+        OutputView.outputResult(players, results, InputView.inputPlayerWhoWantGetResult());
     }
 
-    private static void outputResult(Players players, Results results, String player) {
-        if (wantAllResult(player)) {
-            OutputView.outputAllResult(players, results);
-            return;
-        }
-        OutputView.outputOneResult(results.getResult(players.getIndex(player)));
-    }
-
-    private static boolean wantAllResult(String player) {
-        return player.equals("all");
-    }
 }

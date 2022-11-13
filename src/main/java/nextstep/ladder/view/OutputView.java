@@ -53,7 +53,16 @@ public class OutputView {
 
     }
 
-    public static void outputAllResult(Players players, Results results) {
+    public static void outputResult(Players players, Results results, String player) {
+        if (player.equals("all")) {
+            outputAllResult(players, results);
+            return;
+        }
+
+        outputOneResult(results.getResult(players.getIndex(player)));
+    }
+
+    private static void outputAllResult(Players players, Results results) {
         System.out.println("실행 결과");
         for (int i = 0; i < players.size(); i++) {
             System.out.println(players.getPlayer(i) + " : " + results.getResult(i));
