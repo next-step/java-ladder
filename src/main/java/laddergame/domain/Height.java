@@ -1,8 +1,8 @@
 package laddergame.domain;
 
-import laddergame.Generator;
 import laddergame.exception.ErrorCode;
 import laddergame.exception.LadderGameException;
+import laddergame.util.ValueGenerator;
 
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -24,9 +24,9 @@ public class Height {
         }
     }
 
-    public Ladder createLadder(Width width, Generator generator) {
+    public Ladder createLadder(Width width, ValueGenerator valueGenerator) {
         return new Ladder(IntStream.range(0, height)
-                .mapToObj(i -> width.createRow(generator))
+                .mapToObj(i -> width.createRow(valueGenerator))
                 .collect(Collectors.toList()));
     }
 

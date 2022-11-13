@@ -1,8 +1,8 @@
-package laddergame;
+package laddergame.util;
 
 import java.util.Random;
 
-public class RandomStateGenerator implements Generator {
+public class RandomValueGenerator implements ValueGenerator {
     private static final Random random = new Random();
 
     @Override

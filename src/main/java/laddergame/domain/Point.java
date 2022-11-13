@@ -1,6 +1,6 @@
 package laddergame.domain;
 
-import laddergame.Generator;
+import laddergame.util.ValueGenerator;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,8 +26,8 @@ public class Point {
         return cache.get(value);
     }
 
-    public Point next(Generator generator) {
-        boolean next = generator.generate();
+    public Point next(ValueGenerator valueGenerator) {
+        boolean next = valueGenerator.generate();
         if (isExist()) {
             return new Point(false);
         }

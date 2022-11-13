@@ -1,12 +1,12 @@
-package laddergame;
+package laddergame.util;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class ManualGenerator implements Generator {
+public class ManualValueGenerator implements ValueGenerator {
     private final Queue<Boolean> states;
 
-    public ManualGenerator(boolean... inputs) {
+    public ManualValueGenerator(boolean... inputs) {
         this.states = new LinkedList<>();
         for (boolean input : inputs) {
             states.add(input);

@@ -1,8 +1,8 @@
 package laddergame.domain;
 
-import laddergame.ManualGenerator;
 import laddergame.exception.ErrorCode;
 import laddergame.exception.LadderGameException;
+import laddergame.util.ManualValueGenerator;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
@@ -23,7 +23,7 @@ class HeightTest {
     @Test
     void 사다리_생성() {
         assertThat(new Height(2).createLadder(new Width(2),
-                new ManualGenerator(true, false, false, true)))
+                new ManualValueGenerator(true, false, false, true)))
                 .isEqualTo(new Ladder(
                         new Line(true, false),
                         new Line(false, true))

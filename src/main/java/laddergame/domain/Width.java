@@ -1,8 +1,8 @@
 package laddergame.domain;
 
-import laddergame.Generator;
 import laddergame.exception.ErrorCode;
 import laddergame.exception.LadderGameException;
+import laddergame.util.ValueGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,11 +37,11 @@ public class Width {
         return Objects.hash(width);
     }
 
-    public Line createRow(Generator generator) {
+    public Line createRow(ValueGenerator valueGenerator) {
         List<Point> points = new ArrayList<>();
         Point previous = Point.valueOf(false);
         for (int i = 0; i < width; i++) {
-            Point now = previous.next(generator);
+            Point now = previous.next(valueGenerator);
             points.add(now);
             previous = now;
         }
