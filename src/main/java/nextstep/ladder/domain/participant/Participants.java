@@ -35,11 +35,8 @@ public class Participants {
 	}
 
 	public boolean hasName(String input) {
-		names.stream()
-			.filter(name -> name.equals(input))
-			.findAny()
-			.orElseThrow(() -> new BadRequestException("일치하는 참가자의 이름이 존재하지 않습니다."));
-		return true;
+		return names.stream()
+			.anyMatch(name -> name.equals(input));
 	}
 
 	public int indexOf(String name) {
