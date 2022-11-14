@@ -37,10 +37,10 @@
 - 규칙 6: 모든 엔티티를 작게 유지한다.
 
 ### TODO
-- [ ] Apply Step1 Feedbacks
+- [x] Apply Step1 Feedbacks
 
 InputView :
-- [ ] 사다리 게임에 참여하는 사람 이름 목록을 입력 받을 수 있다.
+- [x] 사다리 게임에 참여하는 사람 이름 목록을 입력 받을 수 있다.
 	- 제약 조건 :
 		- Person Name
 			- 1 <= lengh of each person name <= 5
@@ -55,7 +55,7 @@ InputView :
 			- 사람 이름이 Non-numeric할 경우
 			- 사람수가 2명이하인경우
 			- 쉼표 기준으로 사람 이름을 구분하지 못할 경우
-- [ ] 최대 사다리 높이를 입력 받을 수 있다.
+- [x] 최대 사다리 높이를 입력 받을 수 있다.
 	- 제약 조건 :
 		- Ladder Height
 			- 1 <= ladder height <= Integer.MAX
@@ -67,11 +67,11 @@ InputView :
 			- 사다리 높이가 Empty일 경우
 			- 사라디 높이가 Non-Numeric할 경우
 
-- [ ] OutputView:
+- [x] OutputView:
 	- 입력 받은 사람 이름을 출력 할 수 있다.
 	- 입력 받은 사람 이름 목록과, 사다리 높이를 기준으로 생성한 사다리를 출력 할 수 있다.
 
-- [ ] Domain :
+- [x] Domain :
 	- 입력 받은 사람 이름 목록과, 사다리 높이를 기준으로 사다리를 생성할 수 있다.
 
 
