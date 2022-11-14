@@ -38,4 +38,11 @@ public class LineTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Line(List.of(false, true, true)));
     }
+
+    @Test
+    void line_of_countOfPerson() {
+        Line line = Line.of(4);
+        System.out.println(line);
+        assertThat(line.size()).isEqualTo(4);
+    }
 }
