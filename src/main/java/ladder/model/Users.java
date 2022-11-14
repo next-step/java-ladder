@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Users {
 
-    private List<User> users = new ArrayList<>();
+    private final List<User> users = new ArrayList<>();
 
     public Users(String inputNames) {
         splitNames(inputNames);
@@ -24,6 +24,10 @@ public class Users {
         if (users.contains(user)) {
             throw new IllegalArgumentException("중복된 사용자입니다.");
         }
+    }
+
+    public User findByIndex(int index) {
+        return users.get(index);
     }
 
     public List<User> getUsers() {
