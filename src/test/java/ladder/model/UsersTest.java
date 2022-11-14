@@ -6,20 +6,20 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class NamesTest {
+class UsersTest {
 
     @DisplayName("이름이 생성된다.")
     @Test
     void create() {
-        Names names = new Names("a,b,c");
-        assertThat(names.getNames()).containsExactly(new Name("a"), new Name("b"), new Name("c"));
+        Users users = new Users("a,b,c");
+        assertThat(users.getUsers()).containsExactly(new User("a"), new User("b"), new User("c"));
     }
 
     @DisplayName("이름이 중복되면 예외가 발생한다.")
     @Test
     void validateDuplicate() {
         assertThatThrownBy(() -> {
-            new Names("a,a,b");
+            new Users("a,a,b");
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }

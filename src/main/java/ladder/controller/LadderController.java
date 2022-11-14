@@ -9,9 +9,20 @@ public class LadderController {
     private final DirectionGenerator directionGenerator = new RandomDirectionGenerator();
 
     public void run() {
-        Names names = new Names(InputView.inputNames());
-        Ladder ladder = new Ladder(names.size(), InputView.inputHeight(), directionGenerator);
+        Users users = new Users(InputView.inputNames());
+        Results results = new Results(InputView.inputResults());
+        Ladder ladder = new Ladder(users.size(), InputView.inputHeight(), directionGenerator);
 
-        OutputView.printLadderResult(new LadderResult(names, ladder));
+        GameResult gameResult = ladder.play(users, results);
+
+        OutputView.printLadderResult(new LadderResult(users, ladder, results));
+        printGameResult(gameResult);
+    }
+
+    private void printGameResult(GameResult gameResult) {
+        boolean gameEnd = false;
+        while (!gameEnd) {
+            gameEnd = OutputView.printGameResult(gameResult, InputView.inputName());
+        }
     }
 }

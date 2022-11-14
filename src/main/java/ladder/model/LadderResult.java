@@ -2,23 +2,28 @@ package ladder.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LadderResult {
 
-    private List<String> names = new ArrayList<>();
+    private List<User> users = new ArrayList<>();
     private List<Line> ladder = new ArrayList<>();
+    private List<Result> results = new ArrayList<>();
 
-    public LadderResult(Names names, Ladder ladder) {
-        this.names = names.getNames().stream().map(Name::getName).collect(Collectors.toList());
+    public LadderResult(Users users, Ladder ladder, Results results) {
+        this.users = users.getUsers();
         this.ladder = ladder.getLines();
+        this.results = results.getResults();
     }
 
-    public List<String> getNames() {
-        return names;
+    public List<User> getUsers() {
+        return users;
     }
 
     public List<Line> getLadder() {
         return ladder;
+    }
+
+    public List<Result> getResults() {
+        return results;
     }
 }

@@ -11,8 +11,6 @@ class LadderTest {
     @Test
     void create() {
         Ladder ladder = new Ladder(3, 2, () -> true);
-
         assertThat(ladder.getLines()).hasSize(2);
-        assertThat(ladder.getLines()).contains(new Line(3, () -> true));
     }
 }
