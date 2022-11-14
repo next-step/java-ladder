@@ -22,4 +22,18 @@ public class Name {
     public boolean equals(String target) {
         return name.equals(target);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Name)) {
+            return false;
+        }
+
+        return name.equals(((Name) obj).name);
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
 }

@@ -60,7 +60,7 @@ public class ResultView {
 
     public static void printAllResult(Map<Name, String> results) {
         for (Map.Entry<Name, String> entry: results.entrySet()) {
-            System.out.println(entry.getKey() + " : " + entry.getValue());
+            System.out.println(entry.getKey().getName() + " : " + entry.getValue());
         }
         System.out.println();
     }
