@@ -9,9 +9,10 @@ import java.util.stream.Collectors;
 
 public class ResultView {
 
-    public static void PrintResult(List<Name> names, Ladder ladder, int height) {
+    public static void PrintResult(List<Name> names, Ladder ladder, int height, List<String> results) {
         printNames(names);
         printLadder(ladder, names.size(), height);
+        printResults(results);
     }
 
     private static void printNames(List<Name> names) {
@@ -25,6 +26,13 @@ public class ResultView {
         for (int i = 0; i < height; i++) {
             printHorizontalLine(ladder, peopleCount, i);
         }
+    }
+
+    private static void printResults(List<String> results) {
+        String resultsString = results.stream()
+                .map(result -> String.format("%5.5s", result))
+                .collect(Collectors.joining(" "));
+        System.out.println(resultsString);
     }
 
     private static void printHorizontalLine(Ladder ladder, int peopleCount, int horizontalIndex) {

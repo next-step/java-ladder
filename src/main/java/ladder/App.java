@@ -11,10 +11,11 @@ import java.util.List;
 public class App {
     public static void main(String[] args) {
         List<Name> names = InputView.inputPeople();
+        List<String> results = InputView.inputResults();
         int height = InputView.inputHeight();
 
         Ladder ladder = new Ladder(height, names.size(), new RandomLadderConnectDecider());
 
-        ResultView.PrintResult(names, ladder, height);
+        ResultView.PrintResult(names, ladder, height, results);
     }
 }
