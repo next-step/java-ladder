@@ -1,11 +1,13 @@
 package nextstep.ladder.domain.participant;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import nextstep.ladder.exception.BadRequestException;
 
 public class ParticipantsOrderByInput {
 
+	private static String ALL = "all";
 	private final List<String> names;
 
 	public ParticipantsOrderByInput(List<String> names) {
@@ -34,9 +36,13 @@ public class ParticipantsOrderByInput {
 		return this.names;
 	}
 
-	public boolean hasName(String input) {
+	public List<String> getMatchedName(String input) {
+		if (ALL.equals(input)) {
+			return getNames();
+		}
 		return names.stream()
-			.anyMatch(name -> name.equals(input));
+			.filter(name -> name.equals(input))
+			.collect(Collectors.toList());
 	}
 
 	public int indexOf(String name) {

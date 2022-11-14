@@ -1,7 +1,6 @@
 package nextstep.ladder.controller;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.ladder.Results;
@@ -24,24 +23,14 @@ public class LadderController {
 		OutputView outputView = new OutputView();
 		outputView.printLadder(participantsOrderByInput, ladder, results);
 
-		Map<String, String> resultMap = new HashMap<>();
-
-		participantsOrderByInput.getNames()
-			.forEach(name -> {
-				int end = ladder.getEnd(participantsOrderByInput.indexOf(name));
-				String result = results.get(end);
-				resultMap.put(name, result);
-			});
-
-		while (true) {
+		while (!results.isDone()) {
 			String participant = inputView.getParticipant();
+
+			List<String> names = participantsOrderByInput.getMatchedName(participant);
+			names.forEach(name -> results.put(name, ladder.getEnd(participantsOrderByInput.indexOf(name))));
+
 			outputView.printResultHeader();
-			if (ALL.equals(participant)) {
-				resultMap.forEach(outputView::printNameAndResult);
-				return;
-			} else if (participantsOrderByInput.hasName(participant)) {
-				outputView.printResult(resultMap.get(participant));
-			}
+			names.forEach(name -> outputView.printNameAndResult(name, results.get(name)));
 		}
 	}
 }

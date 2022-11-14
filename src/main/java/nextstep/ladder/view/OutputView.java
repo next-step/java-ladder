@@ -30,10 +30,6 @@ public class OutputView {
 		System.out.println("실행 결과");
 	}
 
-	public void printResult(String result) {
-		System.out.println(result);
-	}
-
 	public void printNameAndResult(String name, String result) {
 		System.out.println(name + " : " + result);
 	}
