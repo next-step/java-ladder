@@ -22,10 +22,11 @@ public class ResultView {
     }
 
     private static void printNames(Ladder ladder) {
-        System.out.println(ladder.names().stream()
+        String nameList = ladder.names().stream()
                 .map(name -> name + NAME_SPACE)
-                .collect(Collectors.joining())
-        );
+                .collect(Collectors.joining());
+
+        System.out.println(nameList);
     }
 
     private static void printLines(Ladder ladder) {
