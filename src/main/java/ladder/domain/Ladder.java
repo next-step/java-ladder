@@ -6,12 +6,12 @@ import java.util.stream.Collectors;
 
 public class Ladder {
 
-    private final List<Name> nameList = new ArrayList<>();
+    private final List<Player> playerList = new ArrayList<>();
     private final List<Line> lines = new ArrayList<>();
 
     public Ladder(List<String> nameList, int height) {
         for (String name : nameList) {
-            this.nameList.add(new Name(name));
+            this.playerList.add(new Player(name));
         }
 
         for (int i = 0; i < height; i++) {
@@ -20,8 +20,8 @@ public class Ladder {
     }
 
     public List<String> names() {
-        return nameList.stream()
-                .map(Name::name)
+        return playerList.stream()
+                .map(Player::name)
                 .collect(Collectors.toList());
     }
 

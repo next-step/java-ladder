@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class NameTest {
+class PlayerTest {
 
     @DisplayName("이름 생성")
     @Test
@@ -14,9 +14,9 @@ class NameTest {
         String name = "LEE";
 
         // when
-        Name nameResult = new Name(name);
+        Player playerResult = new Player(name);
 
         // then
-        assertThat(nameResult).isEqualTo(new Name("LEE"));
+        assertThat(playerResult).isEqualTo(new Player("LEE"));
     }
 }
