@@ -14,7 +14,7 @@ class PointTest {
         boolean current = true;
 
         // when
-        Point first = Point.first(current);
+        Point first = Point.first(() -> current);
 
         // then
         assertThat(first).isEqualTo(new Point(false, true, 0));
@@ -27,8 +27,8 @@ class PointTest {
         boolean current = true;
 
         // when
-        Point first = Point.first(current);
-        Point next = first.next(true);
+        Point first = Point.first(() -> current);
+        Point next = first.next(() -> false);
 
         // then
         assertThat(next).isEqualTo(new Point(true, false, 1));
@@ -41,8 +41,8 @@ class PointTest {
         boolean current = true;
 
         // when
-        Point first = Point.first(current);
-        Point next = first.next(true);
+        Point first = Point.first(() -> current);
+        Point next = first.next(() -> true);
         Point last = next.last();
 
         // then

@@ -1,12 +1,14 @@
 package ladder.domain;
 
+import ladder.strategy.RandomStrategy;
+
 import java.util.Objects;
 
 public class Point {
     private static final Integer INIT_POINT_INDEX = 0;
 
     private final Boolean left;
-    private final Boolean current;
+    private Boolean current;
     private final Integer index;
 
     public Point(Boolean left, Boolean current, Integer index) {
@@ -15,15 +17,16 @@ public class Point {
         this.index = index;
     }
 
-    public static Point first(Boolean current) {
-        return new Point(false, current, INIT_POINT_INDEX);
+    public static Point first(RandomStrategy random) {
+        return new Point(false, random.randomBoolean(), INIT_POINT_INDEX);
     }
 
-    public Point next(Boolean current) {
-        if (this.current && current) {
-            current = false;
+    public Point next(RandomStrategy random) {
+        boolean next = random.randomBoolean();
+        if (this.current && next) {
+            next = false;
         }
-        return new Point(this.current, current, this.index + 1);
+        return new Point(this.current, next, this.index + 1);
     }
 
     public Point last() {

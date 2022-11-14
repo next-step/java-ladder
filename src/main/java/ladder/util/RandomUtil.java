@@ -1,11 +1,15 @@
 package ladder.util;
 
+import ladder.strategy.RandomStrategy;
+
 import java.util.Random;
 
-public class RandomUtil {
+public class RandomUtil implements RandomStrategy {
     private static final Random random = new Random();
 
-    public static Boolean randomBoolean() {
+    @Override
+    public boolean randomBoolean() {
         return random.nextBoolean();
     }
+
 }
