@@ -1,19 +1,17 @@
 package nextstep.fp;
 
 import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 public class Lambda {
-    public static void printAllOld(List<Integer> numbers) {
+    public static void printAllOld(final List<Integer> numbers) {
         System.out.println("printAllOld");
 
-        for (int number : numbers) {
+        for (final int number : numbers) {
             System.out.println(number);
         }
     }
 
-    public static void printAllLambda(List<Integer> numbers) {
+    public static void printAllLambda(final List<Integer> numbers) {
         System.out.println("printAllLambda");
 
         numbers.forEach(System.out::println);
@@ -28,23 +26,23 @@ public class Lambda {
         }).start();
     }
 
-    public static int sum(List<Integer> numbers, Predicate<Integer> predicate) {
+    public static int sum(final List<Integer> numbers, final Conditional predicate) {
         return numbers.stream()
             .filter(predicate::test)
             .reduce(0, Integer::sum);
     }
 
-    public static int sumAll(List<Integer> numbers) {
+    public static int sumAll(final List<Integer> numbers) {
         int total = 0;
-        for (int number : numbers) {
+        for (final int number : numbers) {
             total += number;
         }
         return total;
     }
 
-    public static int sumAllEven(List<Integer> numbers) {
+    public static int sumAllEven(final List<Integer> numbers) {
         int total = 0;
-        for (int number : numbers) {
+        for (final int number : numbers) {
             if (number % 2 == 0) {
                 total += number;
             }
@@ -52,9 +50,9 @@ public class Lambda {
         return total;
     }
 
-    public static int sumAllOverThree(List<Integer> numbers) {
+    public static int sumAllOverThree(final List<Integer> numbers) {
         int total = 0;
-        for (int number : numbers) {
+        for (final int number : numbers) {
             if (number > 3) {
                 total += number;
             }

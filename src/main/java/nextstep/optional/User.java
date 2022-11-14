@@ -1,13 +1,12 @@
 package nextstep.optional;
 
-import java.util.Objects;
 import java.util.Optional;
 
 public class User {
-    private String name;
-    private Integer age;
+    private final String name;
+    private final Integer age;
 
-    public User(String name, Integer age) {
+    public User(final String name, final Integer age) {
         this.name = name;
         this.age = age;
     }
@@ -20,11 +19,11 @@ public class User {
         return age;
     }
 
-    public boolean matchName(String name) {
+    public boolean matchName(final String name) {
         return this.name.equals(name);
     }
 
-    public static boolean ageIsInRange1(User user) {
+    public static boolean ageIsInRange1(final User user) {
         boolean isInRange = false;
 
         if (user != null && user.getAge() != null
@@ -35,11 +34,11 @@ public class User {
         return isInRange;
     }
 
-    public static boolean ageIsInRange2(User user) {
+    public static boolean ageIsInRange2(final User user) {
         return Optional.ofNullable(user)
-            .map(optUser -> optUser.getAge())
-            .filter(age -> 30 <= age && age <= 45)
-            .isPresent();
+            .map(User::getAge)
+            .stream()
+            .anyMatch(age -> 30 <= age && age <= 45);
     }
 
     @Override
@@ -52,14 +51,14 @@ public class User {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (this == obj)
             return true;
         if (obj == null)
             return false;
         if (getClass() != obj.getClass())
             return false;
-        User other = (User) obj;
+        final User other = (User) obj;
         if (age == null) {
             if (other.age != null)
                 return false;
