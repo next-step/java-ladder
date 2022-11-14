@@ -11,7 +11,18 @@ public class LadderController {
     public void run() {
         Users users = new Users(InputView.inputNames());
         Ladder ladder = new Ladder(users.size(), InputView.inputHeight(), directionGenerator);
+        Results results = new Results(InputView.inputResults());
 
-        OutputView.printLadderResult(new LadderResult(users, ladder));
+        GameResult gameResult = ladder.play(users, results);
+
+        OutputView.printLadderResult(new LadderResult(users, ladder, results));
+        printGameResult(gameResult);
+    }
+
+    private void printGameResult(GameResult gameResult) {
+        boolean gameEnd = false;
+        while (!gameEnd) {
+            gameEnd = OutputView.printGameResult(gameResult, InputView.inputName());
+        }
     }
 }

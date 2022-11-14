@@ -64,4 +64,27 @@ public class OutputView {
         }
         System.out.print(EMPTY_LINE);
     }
+
+    public static boolean printGameResult(GameResult result, String name) {
+        System.out.println("실행 결과");
+        Map<User, Result> gameResult = result.getGameResult();
+
+        if (name.equals("all")) {
+            printAllGameResult(gameResult);
+            return GAME_END;
+        }
+
+        printOneGameResult(name, gameResult);
+        return CONTINUE;
+    }
+
+    private static void printAllGameResult(Map<User, Result> gameResult) {
+        gameResult.keySet()
+                .stream().map(key -> key + " : " + gameResult.get(key))
+                .forEach(System.out::println);
+    }
+
+    private static void printOneGameResult(String name, Map<User, Result> gameResult) {
+        System.out.println(gameResult.get(new User(name)));
+    }
 }
