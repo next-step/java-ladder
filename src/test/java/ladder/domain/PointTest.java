@@ -17,10 +17,10 @@ class PointTest {
         Point first = Point.first(() -> current);
 
         // then
-        assertThat(first).isEqualTo(new Point(false, true, 0));
+        assertThat(first).isEqualTo(Point.first(() -> current));
     }
 
-    @DisplayName("next 실행 시 left 가 true, current 가 true 면 current 는 자동으로 false 가 된다. / 인덱스가 1 증가한다.")
+    @DisplayName("next 실행 시 left 가 true, current 가 true 면 current 는 자동으로 false 가 된다.")
     @Test
     void next() {
         // given
@@ -31,10 +31,10 @@ class PointTest {
         Point next = first.next(() -> false);
 
         // then
-        assertThat(next).isEqualTo(new Point(true, false, 1));
+        assertThat(next).isEqualTo(Point.first(() -> current).next(() -> false));
     }
 
-    @DisplayName("last 실행 시 current 는 항상 false 이다. / 인덱스가 1 증가한다.")
+    @DisplayName("last 실행 시 current 는 항상 false 이다.")
     @Test
     void last() {
         // given
@@ -46,7 +46,7 @@ class PointTest {
         Point last = next.last();
 
         // then
-        assertThat(last).isEqualTo(new Point(false, false, 2));
+        assertThat(last).isEqualTo(Point.first(() -> current).next(() -> true).last());
     }
 
 }

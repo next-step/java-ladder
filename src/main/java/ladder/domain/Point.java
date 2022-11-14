@@ -11,7 +11,7 @@ public class Point {
     private final Boolean current;
     private final Integer index;
 
-    public Point(Boolean left, Boolean current, Integer index) {
+    private Point(Boolean left, Boolean current, Integer index) {
         this.left = left;
         this.current = current;
         this.index = index;
