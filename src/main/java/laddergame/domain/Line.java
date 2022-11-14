@@ -72,4 +72,14 @@ public class Line {
                 "states=" + points +
                 '}';
     }
+
+    public int move(int index) {
+        if (index < this.points.size() && this.points.get(index).isExist()) {
+            return index + 1;
+        }
+        if (index > 0 && this.points.get(index - 1).isExist()) {
+            return index - 1;
+        }
+        return index;
+    }
 }
