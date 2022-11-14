@@ -39,4 +39,11 @@ public class InputView {
         }
         return height;
     }
+
+    public static Name inputShowResult() {
+        System.out.println("결과를 보고 싶은 사람은?");
+
+        String name = new Scanner(System.in).next();
+        return new Name(name);
+    }
 }

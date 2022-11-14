@@ -18,4 +18,8 @@ public class Name {
     public String getName() {
         return name;
     }
+
+    public boolean equals(String target) {
+        return name.equals(target);
+    }
 }

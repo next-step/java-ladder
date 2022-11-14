@@ -5,6 +5,7 @@ import ladder.domain.Name;
 import ladder.domain.Point;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ResultView {
@@ -50,5 +51,17 @@ public class ResultView {
         }
 
         System.out.print("     |");
+    }
+
+    public static void printPersonResult(String result) {
+        System.out.println(result);
+        System.out.println();
+    }
+
+    public static void printAllResult(Map<Name, String> results) {
+        for (Map.Entry<Name, String> entry: results.entrySet()) {
+            System.out.println(entry.getKey() + " : " + entry.getValue());
+        }
+        System.out.println();
     }
 }
