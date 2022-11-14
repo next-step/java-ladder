@@ -1,50 +1,40 @@
 package ladder.model;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Line {
 
-    private final List<Direction> directions = new ArrayList<>();
+    private final List<Point> points = new ArrayList<>();
     private final DirectionGenerator directionGenerator;
 
-    public Line(int directionCount, DirectionGenerator directionGenerator) {
+    public Line(int sizeOfPerson, DirectionGenerator directionGenerator) {
         this.directionGenerator = directionGenerator;
-        create(directionCount);
+        create(sizeOfPerson);
     }
 
-    private void create(int directionCount) {
-        Direction direction = Direction.first(directionGenerator.generate());
-        directions.add(direction);
+    private void create(int sizeOfPerson) {
+        Point point = Point.first(directionGenerator.generate());
+        points.add(point);
 
-        for (int i = 1; i < directionCount - 1; i++) {
-            direction = direction.next(directionGenerator.generate());
-            directions.add(direction);
+        for (int i = 1; i < sizeOfPerson - 1; i++) {
+            point = point.next(directionGenerator.generate());
+            points.add(point);
         }
 
-        directions.add(direction.last());
+        points.add(point.last());
+    }
+
+    public int move(int position) {
+        return points.get(position).move();
     }
 
     public List<Direction> getDirections() {
-        return Collections.unmodifiableList(directions);
+        return points.stream().map(Point::getDirection).collect(Collectors.toUnmodifiableList());
     }
 
     public int size() {
-        return directions.size();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Line line1 = (Line) o;
-        return Objects.equals(directions, line1.directions);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(directions);
+        return points.size();
     }
 }
