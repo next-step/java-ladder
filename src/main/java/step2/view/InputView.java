@@ -15,12 +15,14 @@ public class InputView {
 		int ladderHeight;
 		System.out.println("최대 사다리 높이는 몇 개인가요?");
 
-		try {
-			ladderHeight = scanner.nextInt();
-		} catch (InputMismatchException e) {
-			System.out.println("잘못된 입력입니다. 정수를 입력해주세요");
-			scanner = new Scanner(System.in);
-			ladderHeight = scanner.nextInt();
+		while(true){
+			try {
+				ladderHeight = scanner.nextInt();
+				break;
+			} catch (InputMismatchException e) {
+				System.out.println("잘못된 입력입니다. 정수를 입력해주세요");
+				scanner = new Scanner(System.in);
+			}
 		}
 
 		return ladderHeight;

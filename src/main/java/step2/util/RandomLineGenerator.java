@@ -2,8 +2,8 @@ package step2.util;
 
 import step2.model.Users;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
 
