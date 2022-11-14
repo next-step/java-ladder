@@ -28,10 +28,6 @@ public class InputView {
         } catch (InputMismatchException e) {
             throw new IllegalArgumentException("숫자가 입력되어야 합니다.", e);
         }
-
-        if (height <= 0) {
-            throw new IllegalArgumentException("1 이상의 숫자가 입력되어야 합니다.");
-        }
         return height;
     }
 }

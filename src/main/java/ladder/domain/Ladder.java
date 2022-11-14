@@ -9,8 +9,15 @@ public class Ladder {
     private final List<Line> lines;
 
     public Ladder(int height, int peopleCount, LadderPointGenerator ladderPointGenerator) {
+        validate(height);
         lines = initLine(height, peopleCount);
         ladderPointGenerator.generate(getLineSize(), maxLineCount(height, peopleCount), this::connectLineIfPossible);
+    }
+
+    private void validate(int height) {
+        if (height <= 0) {
+            throw new IllegalArgumentException("사다리 높이는 1 보다 커야 합니다.");
+        }
     }
 
     private List<Line> initLine(int height, int peopleCount) {
