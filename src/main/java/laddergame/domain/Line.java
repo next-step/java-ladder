@@ -18,6 +18,12 @@ public class Line {
         this.points = points;
     }
 
+    public Line(Boolean... inputs) {
+        this(Arrays.stream(inputs)
+                .map(Point::valueOf)
+                .collect(Collectors.toList()));
+    }
+
     public static Line create(Width width, ValueGenerator valueGenerator) {
         List<Point> points = new ArrayList<>();
         Point previous = Point.valueOf(false);
@@ -41,12 +47,6 @@ public class Line {
         if (previous.isExist() && now.isExist()) {
             throw new LadderGameException(ErrorCode.LADDER_LINE_EXIT_CONTINOUSLY);
         }
-    }
-
-    public Line(Boolean... inputs) {
-        this(Arrays.stream(inputs)
-                .map(Point::valueOf)
-                .collect(Collectors.toList()));
     }
 
     public List<Point> getStates() {
