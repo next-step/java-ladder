@@ -10,8 +10,8 @@ public class LadderController {
 
     public void run() {
         Users users = new Users(InputView.inputNames());
-        Ladder ladder = new Ladder(users.size(), InputView.inputHeight(), directionGenerator);
         Results results = new Results(InputView.inputResults());
+        Ladder ladder = new Ladder(users.size(), InputView.inputHeight(), directionGenerator);
 
         GameResult gameResult = ladder.play(users, results);
 
