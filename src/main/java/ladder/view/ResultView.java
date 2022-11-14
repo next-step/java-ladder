@@ -16,7 +16,7 @@ public class ResultView {
 
     private static void printNames(List<Name> names) {
         String nameString = names.stream()
-                .map(name -> String.format("%5s", name.get()))
+                .map(name -> String.format("%5s", name.getName()))
                 .collect(Collectors.joining(" "));
         System.out.println(nameString);
     }
