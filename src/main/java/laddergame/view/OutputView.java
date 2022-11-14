@@ -2,6 +2,8 @@ package laddergame.view;
 
 import laddergame.domain.*;
 
+import java.util.Map;
+
 public class OutputView {
 
     public static final String EMPTY = "     ";
@@ -11,11 +13,19 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printResult(Players players, Ladder ladder) {
+    public static void printLadder(Players players, Ladder ladder, Results results) {
         System.out.println();
         System.out.println("실행 결과");
         printPlayers(players);
         printLadder(ladder);
+        printResults(results);
+    }
+
+    private static void printResults(Results results) {
+        for (Result result : results.getResults()) {
+            System.out.printf("%6s", result.getResult());
+        }
+        System.out.println();
     }
 
     private static void printPlayers(Players players) {
@@ -41,5 +51,14 @@ public class OutputView {
             return SUB_LINE;
         }
         return EMPTY;
+    }
+
+    public static void printResult(Map<Player, Result> totalResult, Player name) {
+        System.out.println("실행결과");
+        if (name.equals(new Player("all"))) {
+            totalResult.forEach((key, value) -> System.out.printf("%s : %s \n", key.getName(), value.getResult()));
+            return;
+        }
+        System.out.println(totalResult.get(name));
     }
 }

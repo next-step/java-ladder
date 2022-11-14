@@ -25,11 +25,11 @@ public class Players {
         return this.players.size();
     }
 
-    public TotalResult startGame(Ladder ladder, List<String> result) {
+    public Map<Player, Result> startGame(Ladder ladder, Results results) {
         Map<Player, Result> total = new HashMap<>();
         for (int i = 0; i < players.size(); i++) {
-            total.put(players.get(i), new Result(result.get(ladder.ride(i))));
+            total.put(players.get(i), results.find(ladder.ride(i)));
         }
-        return new TotalResult(total);
+        return total;
     }
 }
