@@ -30,6 +30,8 @@ public class ResultView {
     }
 
     private static void printLines(Ladder ladder) {
+        System.out.println(RESULT_MESSAGE);
+
         ladder.lines()
                 .forEach(line -> System.out.println(line.currentPoints()
                         .stream()
