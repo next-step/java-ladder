@@ -38,7 +38,8 @@ public class User {
         return Optional.ofNullable(user)
                 .filter(u -> u.getAge() != null)
                 .map(User::getAge)
-                .filter(age -> user.getAge() >= 30 && user.getAge() <= 45)
+                .filter(age -> age >= 30)
+                .filter(age -> age <= 45)
                 .isPresent();
     }
 
