@@ -10,12 +10,17 @@ public class Ladder {
     private List<LadderLine> ladderLine;
     private int width;
 
-    public Ladder(int playerCount, int height) {
-        this.ladderLine = IntStream.range(0, height)
+    private Ladder(List<LadderLine> ladderLine, int width) {
+        this.ladderLine = ladderLine;
+        this.width = width;
+    }
+
+    public static Ladder of(int playerCount, int height) {
+        List<LadderLine> ladderLine = IntStream.range(0, height)
                 .mapToObj(i -> LadderLine.create(playerCount))
                 .collect(Collectors.toList());
 
-        this.width = playerCount;
+        return new Ladder(ladderLine, playerCount);
     }
 
     public List<LadderLine> getLadderLine() {

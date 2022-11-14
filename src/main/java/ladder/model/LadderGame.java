@@ -6,7 +6,7 @@ public class LadderGame {
     private LadderRewards ladderRewards;
 
     public LadderGame(String[] ladderReward, int playerCount, int height) {
-        this.ladder = new Ladder(playerCount, height);
+        this.ladder = Ladder.of(playerCount, height);
         this.ladderRewards = LadderRewards.of(ladderReward);
     }
 
