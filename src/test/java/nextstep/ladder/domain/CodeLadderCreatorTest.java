@@ -1,8 +1,8 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.codeleesh.domain.Ladder;
-import nextstep.ladder.codeleesh.domain.CodeLadderCreator;
 import nextstep.ladder.codeleesh.domain.Line;
+import nextstep.ladder.codeleesh.domain.Point;
 import nextstep.ladder.engine.LadderCreator;
 import nextstep.ladder.factory.LadderFactoryBean;
 import org.junit.jupiter.api.DisplayName;
@@ -22,11 +22,12 @@ class CodeLadderCreatorTest {
 
         final LadderCreator ladderFactory = LadderFactoryBean.createLadderFactory();
         final Ladder ladder = ladderFactory.create(4, 5);
-
         final List<Line> lines = ladder.getLines();
+        final List<Point> points = lines.get(0).getPoints();
+
         assertAll(
                 () -> assertThat(lines).hasSize(5),
-                () -> assertThat(lines.get(0).getPoints()).hasSize(4)
+                () -> assertThat(points).hasSize(4)
         );
     }
 }
