@@ -7,11 +7,13 @@ import java.util.stream.IntStream;
 
 public class Ladder {
     private final List<Line> lines;
+    private final LadderConnectDecider ladderConnectDecider;
 
-    public Ladder(int height, int peopleCount, LadderPointGenerator ladderPointGenerator) {
+    public Ladder(int height, int peopleCount, LadderConnectDecider ladderConnectDecider) {
         validate(height);
+        this.ladderConnectDecider = ladderConnectDecider;
         lines = initLine(height, peopleCount);
-        ladderPointGenerator.generate(getLineSize(), maxLineCount(height, peopleCount), this::connectLineIfPossible);
+        buildLadder(height);
     }
 
     private void validate(int height) {
@@ -26,11 +28,22 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
-    private int maxLineCount(int height, int peopleCount) {
-        return height * (peopleCount / 2);
+    private void buildLadder(int height) {
+        for (int i = 0; i < height; i++) {
+            connectFloor();
+        }
+    }
+
+    private void connectFloor() {
+        for (int lineNumber = 0; lineNumber < getLineSize() - 1; lineNumber++) {
+            connectLineIfPossible(lineNumber);
+        }
     }
 
     private void connectLineIfPossible(int lineNumber) {
+        if (!ladderConnectDecider.decide()) {
+            return;
+        }
         Line line = getLine(lineNumber);
         Line rightLine = getLine(lineNumber + 1);
         Optional<Integer> pointIndex = getAvailablePoint(line, rightLine);
@@ -47,7 +60,7 @@ public class Ladder {
 
         return lineEmptyPoints.stream()
                 .filter(rightLineEmptyPoints::contains)
-                .findAny();
+                .findFirst();
     }
 
     private void connectLine(Line line, Line rightLine, int pointIndex) {
