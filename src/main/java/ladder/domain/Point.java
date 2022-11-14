@@ -8,7 +8,7 @@ public class Point {
     private static final Integer INIT_POINT_INDEX = 0;
 
     private final Boolean left;
-    private Boolean current;
+    private final Boolean current;
     private final Integer index;
 
     public Point(Boolean left, Boolean current, Integer index) {
