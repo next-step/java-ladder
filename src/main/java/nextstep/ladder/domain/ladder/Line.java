@@ -46,6 +46,7 @@ public class Line {
 	private void addPoint(int index, LineGenerator lineGenerator) {
 		if (this.hasLine(index)) {
 			points.add(false);
+			return;
 		}
 		points.add(lineGenerator.generatePoint());
 	}

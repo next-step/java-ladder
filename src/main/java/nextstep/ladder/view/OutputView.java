@@ -3,7 +3,7 @@ package nextstep.ladder.view;
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.ladder.Line;
 import nextstep.ladder.domain.ladder.Results;
-import nextstep.ladder.domain.participant.Participants;
+import nextstep.ladder.domain.participant.ParticipantsOrderByInput;
 
 public class OutputView {
 
@@ -11,10 +11,10 @@ public class OutputView {
 	private static final String BLANK = " ";
 	private static final Integer MAX_NAME_LENGTH = 5;
 
-	public void printLadder(Participants participants, Ladder ladder, Results results) {
+	public void printLadder(ParticipantsOrderByInput participantsOrderByInput, Ladder ladder, Results results) {
 		System.out.println("사다리 결과");
 
-		participants.getNames()
+		participantsOrderByInput.getNames()
 			.forEach(participant -> System.out.print(getInput(participant)));
 		System.out.println();
 

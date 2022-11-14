@@ -6,7 +6,7 @@ import java.util.Map;
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.ladder.Results;
 import nextstep.ladder.domain.linestrategy.RandomLineGenerator;
-import nextstep.ladder.domain.participant.Participants;
+import nextstep.ladder.domain.participant.ParticipantsOrderByInput;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
@@ -16,19 +16,19 @@ public class LadderController {
 
 	public void draw() {
 		InputView inputView = new InputView();
-		Participants participants = new Participants(inputView.getParticipants());
-		Results results = new Results(participants.size(), inputView.getResults());
+		ParticipantsOrderByInput participantsOrderByInput = new ParticipantsOrderByInput(inputView.getParticipants());
+		Results results = new Results(participantsOrderByInput.size(), inputView.getResults());
 
-		Ladder ladder = new Ladder(participants.size(), inputView.getLadderHeight(), new RandomLineGenerator());
+		Ladder ladder = new Ladder(participantsOrderByInput.size(), inputView.getLadderHeight(), new RandomLineGenerator());
 
 		OutputView outputView = new OutputView();
-		outputView.printLadder(participants, ladder, results);
+		outputView.printLadder(participantsOrderByInput, ladder, results);
 
 		Map<String, String> resultMap = new HashMap<>();
 
-		participants.getNames()
+		participantsOrderByInput.getNames()
 			.forEach(name -> {
-				int end = ladder.getEnd(participants.indexOf(name));
+				int end = ladder.getEnd(participantsOrderByInput.indexOf(name));
 				String result = results.get(end);
 				resultMap.put(name, result);
 			});
@@ -39,7 +39,7 @@ public class LadderController {
 			if (ALL.equals(participant)) {
 				resultMap.forEach(outputView::printNameAndResult);
 				return;
-			} else if (participants.hasName(participant)) {
+			} else if (participantsOrderByInput.hasName(participant)) {
 				outputView.printResult(resultMap.get(participant));
 			}
 		}

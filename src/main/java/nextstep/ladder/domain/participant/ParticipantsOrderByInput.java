@@ -4,11 +4,11 @@ import java.util.List;
 
 import nextstep.ladder.exception.BadRequestException;
 
-public class Participants {
+public class ParticipantsOrderByInput {
 
 	private final List<String> names;
 
-	public Participants(List<String> names) {
+	public ParticipantsOrderByInput(List<String> names) {
 		validateIsEmpty(names);
 		names.forEach(this::validateNameLength);
 		this.names = names;

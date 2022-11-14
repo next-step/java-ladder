@@ -56,7 +56,7 @@ class LineTest {
 	@DisplayName("라인이 존재하지 않는 경우 false 를 반환한다.")
 	@Test
 	void Given_HasNoLine_Then_False() {
-		assertThat(LINE.hasLine(4)).isFalse();
+		assertThat(LINE.hasLine(5)).isFalse();
 	}
 
 	@DisplayName("다음 라인에서 포인트를 반환한다.")
