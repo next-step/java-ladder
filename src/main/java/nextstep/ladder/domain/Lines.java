@@ -1,7 +1,6 @@
 package nextstep.ladder.domain;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Lines {
 
@@ -12,9 +11,6 @@ public class Lines {
     }
 
     public List<Line> getLines() {
-        return this.lines.stream()
-                .map(Line::getPoints)
-                .map(Line::new)
-                .collect(Collectors.toList());
+        return this.lines;
     }
 }
