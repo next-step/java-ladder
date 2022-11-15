@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 
 public class Line {
 
-     private static final Random RANDOM = new Random();
+    private static final Random RANDOM = new Random();
 
     private final List<Boolean> points = new ArrayList<>();
 
@@ -35,6 +35,19 @@ public class Line {
             return false;
         }
         return currentPoint;
+    }
+
+    public int move(int index)
+    {
+        if (index > 0 && points.get(index - 1)) {
+            return --index;
+        }
+
+        if (index == points.size()) {
+            return points.get(index - 1) ? --index : index;
+        }
+
+        return points.get(index) ? ++index : index;
     }
 }
 
