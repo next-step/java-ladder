@@ -3,7 +3,6 @@ package laddergame.domain;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -20,12 +19,14 @@ class PlayersTest {
                 new Line(true, false)
         );
         Results results = new Results(List.of("1000", "100", "꽝"));
+        Players players = new Players("a", "b", "c");
 
-        assertThat(new Players("a", "b", "c").startGame(ladder, results))
-                .isEqualTo(Map.of(
-                        new Player("a"), new Result("100"),
-                        new Player("b"), new Result("꽝"),
-                        new Player("c"), new Result("1000"))
-                );
+        players.executeGame(ladder, results);
+
+        assertThat(players.getPlayers()).contains(
+                new Player("a", "100"),
+                new Player("b", "꽝"),
+                new Player("c", "1000")
+        );
     }
 }

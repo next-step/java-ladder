@@ -1,6 +1,7 @@
 package laddergame;
 
 import laddergame.domain.*;
+import laddergame.util.Mapper;
 import laddergame.util.RandomValueGenerator;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
@@ -18,9 +19,10 @@ public class Main {
         Ladder ladder = Ladder.create(height, width, new RandomValueGenerator());
         OutputView.printLadder(players, ladder, results);
 
-        Map<Player, Result> totalResult = players.startGame(ladder, results);
+        players.executeGame(ladder, results);
+        Map<Name, Result> totalResult = Mapper.toMap(players);
         while (true) {
-            Player name = new Player(InputView.enterNameForShowResult());
+            Name name = new Name(InputView.enterNameForShowResult());
             OutputView.printResult(totalResult, name);
         }
     }

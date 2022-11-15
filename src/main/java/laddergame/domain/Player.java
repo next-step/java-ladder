@@ -1,47 +1,46 @@
 package laddergame.domain;
 
-import laddergame.exception.ErrorCode;
-import laddergame.exception.LadderGameException;
-
 import java.util.Objects;
 
 public class Player {
-    private static final int MAXIMUM_NAME_LENGTH = 5;
+    private final Name name;
+    private Result result;
 
-    private final String name;
+    private Player(Name name, Result result) {
+        this.name = name;
+        this.result = result;
+    }
 
     public Player(String name) {
-        validateNullOrEmpty(name);
-        validateLengthOverMaximum(name);
-        this.name = name;
+        this(new Name(name), (Result) null);
     }
 
-    private void validateLengthOverMaximum(String name) {
-        if(name.length() > MAXIMUM_NAME_LENGTH) {
-            throw new LadderGameException(ErrorCode.NAME_OVER_MAXMUM_LENGTH);
-        }
+    public Player(String name, String result) {
+        this(new Name(name), new Result(result));
     }
 
-    private void validateNullOrEmpty(String name) {
-        if (Objects.isNull(name) || name.isEmpty()) {
-            throw new LadderGameException(ErrorCode.NULL_OR_EMPTY_INPUT);
-        }
+    public void saveResult(Result result) {
+        this.result = result;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Player)) return false;
         Player player = (Player) o;
-        return Objects.equals(name, player.name);
+        return Objects.equals(name, player.name) && Objects.equals(result, player.result);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(name, result);
     }
 
-    public String getName() {
+    public Name getName() {
         return this.name;
+    }
+
+    public Result getResult() {
+        return result;
     }
 }

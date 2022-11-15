@@ -53,9 +53,9 @@ public class OutputView {
         return EMPTY;
     }
 
-    public static void printResult(Map<Player, Result> totalResult, Player name) {
+    public static void printResult(Map<Name, Result> totalResult, Name name) {
         System.out.println("실행결과");
-        if (name.equals(new Player("all"))) {
+        if (name.equals(new Name("all"))) {
             totalResult.forEach((key, value) -> System.out.printf("%s : %s \n", key.getName(), value.getResult()));
             return;
         }
