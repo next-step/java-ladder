@@ -2,6 +2,7 @@ package ladder.view;
 
 
 import ladder.domain.Line;
+import ladder.domain.Result;
 import ladder.domain.User;
 
 import java.util.List;
@@ -17,19 +18,20 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printLadder(List<User> userList, List<Line> lines)
+    public static void printLadder(List<User> userList, List<Line> lines, List<Result> results)
     {
-        System.out.println("실행결과");
+        System.out.println("사다리 결과");
         printUser(userList);
         printLine(lines);
+        printResult(results);
     }
 
     private static void printLine(List<Line> lines)
     {
         lines.forEach(line -> {
-                System.out.print("\n" + BLANK.repeat(3));
+                System.out.print(BLANK.repeat(3));
                 printLines(line.getPoints());
-                System.out.print(LADDER_SHAPE);
+                System.out.print(LADDER_SHAPE+"\n");
             });
     }
 
@@ -56,10 +58,22 @@ public class OutputView {
             .collect(Collectors.joining(BLANK)));
     }
 
+    private static void printResult(List<Result> userList) {
+        System.out.println(userList.stream()
+            .map(result -> String.format("%4s ", result.getResult()))
+            .collect(Collectors.joining(BLANK)));
+    }
+
     private static String outputPersonName(String name) {
         if (name.length() < LINE_LENGTH_MAX) {
             return String.format("%4s ", name);
         }
         return name;
+    }
+
+    public static boolean printLadderResult(List<String> ladderResult) {
+        ladderResult.forEach(System.out::println);
+
+        return ladderResult.size() != 1;
     }
 }
