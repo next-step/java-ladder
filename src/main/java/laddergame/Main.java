@@ -19,8 +19,9 @@ public class Main {
         OutputView.printLadder(players, ladder, results);
 
         Map<Player, Result> totalResult = players.startGame(ladder, results);
-
-        Player name = new Player(InputView.enterNameForShowResult());
-        OutputView.printResult(totalResult, name);
+        while (true) {
+            Player name = new Player(InputView.enterNameForShowResult());
+            OutputView.printResult(totalResult, name);
+        }
     }
 }
