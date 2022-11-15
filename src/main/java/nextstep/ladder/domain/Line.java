@@ -11,7 +11,6 @@ public class Line {
         for (int i = 0; i < count; i++) {
             connects.add(connectable(i, linePredicate));
         }
-        connects.add(count, false);
     }
 
     public List<Boolean> connects() {
