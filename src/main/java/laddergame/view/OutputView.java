@@ -59,6 +59,6 @@ public class OutputView {
             totalResult.forEach((key, value) -> System.out.printf("%s : %s \n", key.getName(), value.getResult()));
             return;
         }
-        System.out.println(totalResult.get(name));
+        System.out.println(totalResult.get(name).getResult());
     }
 }
