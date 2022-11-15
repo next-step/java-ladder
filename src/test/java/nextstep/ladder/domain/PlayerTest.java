@@ -9,7 +9,6 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class PlayerTest {
-
     @DisplayName("사다리 플레이어는 이름이 공백일 수 없다.")
     @ParameterizedTest
     @NullAndEmptySource
