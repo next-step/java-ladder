@@ -12,12 +12,16 @@ public class Line {
         points = new ArrayList<>();
         points.add(generator.generate());
         for (int i = 1; i < countOfPerson-1; i++) {
-            if (prevIsTrue(i)) {
-                points.add(false);
-                continue;
-            }
-            points.add(generator.generate());
+            createPoint(generator, i);
         }
+    }
+
+    private void createPoint(LineGenerator generator, int i) {
+        if (prevIsTrue(i)) {
+            points.add(false);
+            return;
+        }
+        points.add(generator.generate());
     }
 
     private boolean prevIsTrue(int i) {
