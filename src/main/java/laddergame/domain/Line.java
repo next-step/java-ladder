@@ -24,6 +24,18 @@ public class Line {
                 .collect(Collectors.toList()));
     }
 
+    private void validateContinuous(List<Point> points) {
+        for (int i = 1; i < points.size(); i++) {
+            comparePreviousState(points.get(i - 1), points.get(i));
+        }
+    }
+
+    private void comparePreviousState(Point previous, Point now) {
+        if (previous.isExist() && now.isExist()) {
+            throw new LadderGameException(ErrorCode.LADDER_LINE_EXIT_CONTINOUSLY);
+        }
+    }
+
     public static Line create(Width width, ValueGenerator valueGenerator) {
         List<Point> points = new ArrayList<>();
         Point previous = Point.valueOf(false);
@@ -37,17 +49,24 @@ public class Line {
         return new Line(points);
     }
 
-    private void validateContinuous(List<Point> points) {
-        for (int i = 1; i < points.size(); i++) {
-            comparePreviousState(points.get(i - 1), points.get(i));
+    public int move(int index) {
+        if (moveLeft(index)) {
+            return index + 1;
         }
+        if (moveRight(index)) {
+            return index - 1;
+        }
+        return index;
     }
 
-    private void comparePreviousState(Point previous, Point now) {
-        if (previous.isExist() && now.isExist()) {
-            throw new LadderGameException(ErrorCode.LADDER_LINE_EXIT_CONTINOUSLY);
-        }
+    private boolean moveLeft(int index) {
+        return index < this.points.size() && this.points.get(index).isExist();
     }
+
+    private boolean moveRight(int index) {
+        return index > 0 && this.points.get(index - 1).isExist();
+    }
+
 
     public List<Point> getStates() {
         return this.points;
@@ -71,15 +90,5 @@ public class Line {
         return "Row{" +
                 "states=" + points +
                 '}';
-    }
-
-    public int move(int index) {
-        if (index < this.points.size() && this.points.get(index).isExist()) {
-            return index + 1;
-        }
-        if (index > 0 && this.points.get(index - 1).isExist()) {
-            return index - 1;
-        }
-        return index;
     }
 }

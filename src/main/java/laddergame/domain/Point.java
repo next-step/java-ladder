@@ -34,6 +34,10 @@ public class Point {
         return new Point(next);
     }
 
+    public boolean isExist() {
+        return this.point;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -52,10 +56,6 @@ public class Point {
         return "Point{" +
                 "point=" + point +
                 '}';
-    }
-
-    public boolean isExist() {
-        return this.point;
     }
 }
 
