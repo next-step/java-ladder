@@ -1,24 +1,26 @@
-package nextstep.ladder.dto;
+package nextstep.ladder.codeleesh.view;
 
-import nextstep.ladder.domain.*;
+import nextstep.ladder.codeleesh.domain.Ladder;
+import nextstep.ladder.codeleesh.domain.Line;
+import nextstep.ladder.codeleesh.domain.Point;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LadderWinningResultDto {
+public class LadderWinningResult {
 
-    private final Map<String, String> ladderResultDto;
+    private final Map<String, String> ladderResult;
 
-    public LadderWinningResultDto(final Map<String, String> ladderResultDto) {
+    private LadderWinningResult(final Map<String, String> ladderResult) {
 
-        this.ladderResultDto = ladderResultDto;
+        this.ladderResult = ladderResult;
     }
 
-    public static LadderWinningResultDto of(final Ladder ladder, final List<String> participationNames
+    public static LadderWinningResult of(final Ladder ladder, final List<String> participationNames
             , final List<String> resultNames) {
 
-        return new LadderWinningResultDto(collect(convert(ladder), participationNames, resultNames));
+        return new LadderWinningResult(collect(convert(ladder), participationNames, resultNames));
     }
 
     private static Map<String, String> collect(final Map<Integer, Integer> ladderResult
@@ -63,13 +65,13 @@ public class LadderWinningResultDto {
         return line.getPoints().get(point);
     }
 
-    public Map<String, String> getLadderResultDto() {
+    public Map<String, String> getLadderResult() {
 
-        return ladderResultDto;
+        return ladderResult;
     }
 
     public String findByName(final String key) {
 
-        return this.ladderResultDto.get(key);
+        return this.ladderResult.get(key);
     }
 }

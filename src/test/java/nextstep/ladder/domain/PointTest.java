@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.codeleesh.domain.Direction;
+import nextstep.ladder.codeleesh.domain.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -11,7 +13,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
+@DisplayName("위치 테스트")
 class PointTest {
 
     @DisplayName("현재 위치를 구한다")

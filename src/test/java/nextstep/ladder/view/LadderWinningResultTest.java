@@ -1,6 +1,9 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.view;
 
-import nextstep.ladder.dto.LadderWinningResultDto;
+import nextstep.ladder.codeleesh.domain.Ladder;
+import nextstep.ladder.codeleesh.domain.Line;
+import nextstep.ladder.codeleesh.domain.Point;
+import nextstep.ladder.codeleesh.view.LadderWinningResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,7 +13,8 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-class LadderWinningResultDtoTest {
+@DisplayName("사다리 결과 테스트")
+class LadderWinningResultTest {
 
     private Ladder 사다리;
 
@@ -52,7 +56,7 @@ class LadderWinningResultDtoTest {
 
         final List<String> 참가자 = List.of("pobi", "honux", "crong", "jk");
         final List<String> 상품 = List.of("꽝", "5000", "꽝", "3000");
-        final LadderWinningResultDto 최종결과 = LadderWinningResultDto.of(사다리, 참가자, 상품);
+        final LadderWinningResult 최종결과 = LadderWinningResult.of(사다리, 참가자, 상품);
 
         assertAll(
                 () -> assertThat(최종결과.findByName("pobi")).isEqualTo("3000"),

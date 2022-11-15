@@ -1,6 +1,6 @@
-package nextstep.ladder.dto;
+package nextstep.ladder.codeleesh.dto;
 
-import nextstep.ladder.domain.ParticipationNames;
+import nextstep.ladder.codeleesh.domain.ParticipationNames;
 
 import java.util.List;
 import java.util.stream.Collectors;

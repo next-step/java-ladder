@@ -1,4 +1,4 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.codeleesh.domain;
 
 import java.util.List;
 
