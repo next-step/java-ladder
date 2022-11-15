@@ -13,6 +13,7 @@ public class Output {
     private static final String RESULT_MESSAGE = "\n실행결과\n%s";
     private static final String EMPTY_LINE = "     |";
     private static final String HORIZONTAL_LINE = "-----|";
+    private static final String DELIMITER = " : ";
     private static final String INPUT_PERSON_MESSAGE = "결과를 보고 싶은 사람은?";
     private static final Scanner sc = new Scanner(System.in);
     private static StringBuilder sb = new StringBuilder();
@@ -50,13 +51,13 @@ public class Output {
     }
 
     private static void getLine(StringBuilder sb, Line line) {
-        line.getDirections().stream()
+        line.getPoints().stream()
                 .forEachOrdered(point -> sb.append(print(point)));
         sb.append("\n");
     }
 
-    private static String print(Direction direction) {
-        if (direction.isPoint()) {
+    private static String print(Point point) {
+        if (point.isPoint()) {
             return HORIZONTAL_LINE;
         }
         return EMPTY_LINE;
@@ -67,33 +68,31 @@ public class Output {
             System.out.println(INPUT_PERSON_MESSAGE);
             String player = sc.nextLine();
 
-            if (compareAllPlayers(players, result, ladder, player)) {
-                break;
-            }
-
+            compareAllPlayers(players, result, ladder, player);
             printPlayerResult(players, result, ladder, player);
         }
     }
 
-    private static boolean compareAllPlayers(Players players, Result result, Ladder ladder, String player) {
+    private static void compareAllPlayers(Players players, Result result, Ladder ladder, String player) {
         if (player.equals("all")) {
             printAllPlayersResult(players, result, ladder);
-            return true;
         }
-        return false;
     }
 
     public static void printAllPlayersResult(Players players, Result result, Ladder ladder) {
         System.out.println(RESULT_MESSAGE);
         sb.setLength(0);
 
-        for (int i = 0; i < players.getPlayersSize(); i++) {
-            int idx = ladder.move(i);
-            sb.append(players.getPlayers().get(i).getName());
-            sb.append(" : ");
-            sb.append(result.get(idx));
-            sb.append(System.lineSeparator());
+        int idx = 0;
+        for (Player player : players.getPlayers()) {
+            int moveIdx = ladder.move(idx);
+            sb.append(player.getName())
+                    .append(DELIMITER)
+                    .append(result.get(moveIdx))
+                    .append(System.lineSeparator());
+            idx++;
         }
+
         System.out.println(sb);
     }
 

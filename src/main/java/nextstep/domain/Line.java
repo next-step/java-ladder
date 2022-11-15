@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Line {
     private static final int MINIMUM_NUMBER_OF_PEOPLE = 2;
-    private List<Direction> directions = new ArrayList<>();
+    private List<Point> points = new ArrayList<>();
     private LineStrategy lineStrategy;
 
     public Line(int countPerson, LineStrategy lineStrategy) {
@@ -17,35 +17,36 @@ public class Line {
         }
         this.lineStrategy = lineStrategy;
 
-        directions = of(countPerson, lineStrategy);
+        points = of(countPerson, lineStrategy);
     }
 
-    public List<Direction> getDirections() {
-        return Collections.unmodifiableList(directions);
+    public List<Point> getPoints() {
+        return Collections.unmodifiableList(points);
     }
 
-    private List<Direction> of(int count, LineStrategy lineStrategy) {
-        directions.add(Direction.init(false));
+    private List<Point> of(int count, LineStrategy lineStrategy) {
+        points.add(Point.init(lineStrategy.generate()));
 
         for (int point = 1; point < count - 1; point++) {
-            Direction insert = directions.get(point - 1).insert(lineStrategy.generate());
-            directions.add(insert);
+            Point addition = points.get(point - 1).insert(lineStrategy.generate());
+            points.add(addition);
         }
-        directions.add(directions.get(count - 2).last());
+        points.add(points.get(count - 2).last());
 
-        return Collections.unmodifiableList(directions);
+        return Collections.unmodifiableList(points);
     }
 
     public int move(int idx) {
         Position position = new Position(idx);
-        int point = directions.get(idx).move();
-        return position.move(point);
+        Direction point = points.get(idx).move();
+        return position.move(point.moveDirections());
     }
 
     @Override
     public String toString() {
         return "Line{" +
-                "points=" + directions +
+                "points=" + points +
+                ", lineStrategy=" + lineStrategy +
                 '}';
     }
 }
