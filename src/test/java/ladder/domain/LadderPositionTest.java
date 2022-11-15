@@ -9,25 +9,25 @@ class LadderPositionTest {
 
     @Test
     void shouldIncreasePosition() {
-        LadderPosition position = new LadderPosition(new HorizontalPosition(0));
+        LadderPosition position = new LadderPosition(new Position(0));
 
         position.next();
 
-        assertThat(position.getHorizontalPosition()).isEqualTo(new HorizontalPosition(1));
+        assertThat(position.getHorizontalPosition()).isEqualTo(new Position(1));
     }
 
     @Test
     void shouldDecreasePosition() {
-        LadderPosition position = new LadderPosition(new HorizontalPosition(1));
+        LadderPosition position = new LadderPosition(new Position(1));
 
         position.previous();
 
-        assertThat(position.getHorizontalPosition()).isEqualTo(new HorizontalPosition(0));
+        assertThat(position.getHorizontalPosition()).isEqualTo(new Position(0));
     }
 
     @Test
     void shouldValidateArrived() {
-        LadderPosition position = new LadderPosition(new HorizontalPosition(1));
+        LadderPosition position = new LadderPosition(new Position(1));
 
         position.down();
 

@@ -1,30 +1,32 @@
 package ladder.domain;
 
+import java.util.Objects;
+
 public class User {
     private final UserName name;
 
-    private final HorizontalPosition position;
-
-
-    private User(UserName userName, HorizontalPosition position) {
-        this.name = userName;
-        this.position = position;
+    public User(String name) {
+        this.name = new UserName(name);
     }
 
-    public static User withNameAndPosition(UserName userName, HorizontalPosition position) {
-        return new User(userName, position);
+    public boolean isSameName(UserName userName) {
+        return this.name.equals(userName);
     }
 
     public UserName getName() {
         return name;
     }
 
-    public boolean isSameName(UserName name) {
-        return this.name.equals(name);
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(name, user.name);
     }
 
-    public HorizontalPosition getPosition() {
-        return new HorizontalPosition(position.getPosition());
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
-
 }

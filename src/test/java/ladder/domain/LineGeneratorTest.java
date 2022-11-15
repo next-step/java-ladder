@@ -24,7 +24,7 @@ class LineGeneratorTest {
         LineGenerator generator = new LineGenerator(() -> false);
 
         List<HorizontalLine> result = generator.generate(new LineGenerateDto(2, 5));
-        List<LineUnit> units = result.get(0).getUnits();
+        List<Direction> units = result.get(0).getUnits();
 
         assertThat(units.get(0).hasNext()).isTrue();
         assertThat(units.get(1).hasPrevious()).isTrue();
@@ -35,7 +35,7 @@ class LineGeneratorTest {
         LineGenerator generator = new LineGenerator(() -> true);
 
         List<HorizontalLine> result = generator.generate(new LineGenerateDto(2, 5));
-        List<LineUnit> units = result.get(0).getUnits();
+        List<Direction> units = result.get(0).getUnits();
 
         assertThat(units.get(0).hasNext()).isFalse();
         assertThat(units.get(1).hasPrevious()).isFalse();

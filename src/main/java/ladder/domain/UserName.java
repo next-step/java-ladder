@@ -39,4 +39,7 @@ public class UserName {
         return Objects.hash(name);
     }
 
+    public int length() {
+        return this.name.length();
+    }
 }

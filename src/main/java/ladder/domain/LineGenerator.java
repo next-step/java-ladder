@@ -23,19 +23,19 @@ public class LineGenerator {
     }
 
     private HorizontalLine createHorizontalLine(int numberOfUser) {
-        List<LineUnit> units = new ArrayList<>();
+        List<Direction> units = new ArrayList<>();
         for (int i = 0; i < numberOfUser; i++) {
             units.add(getUnit(units, i));
         }
         return new HorizontalLine(units);
     }
 
-    private LineUnit getUnit(List<LineUnit> units, int index) {
-        LineUnit unit = new LineUnit();
+    private Direction getUnit(List<Direction> units, int index) {
+        Direction unit = new Direction();
         if (index == 0) {
             return unit;
         }
-        LineUnit previousUnit = units.get(index - 1);
+        Direction previousUnit = units.get(index - 1);
         if (!previousUnit.canAddNext() || lineGeneratePolicy.get()) {
             return unit;
         }
