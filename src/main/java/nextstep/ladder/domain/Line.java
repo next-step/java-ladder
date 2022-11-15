@@ -20,7 +20,7 @@ public class Line {
         }
     }
 
-    private Boolean prevIsTrue(int i) {
+    private boolean prevIsTrue(int i) {
         return points.get(i - 1);
     }
 
