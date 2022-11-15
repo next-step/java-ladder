@@ -5,6 +5,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Users {
+
     private final List<User> users;
 
     public Users(List<User> users) {

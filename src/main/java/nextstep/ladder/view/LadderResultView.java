@@ -6,6 +6,7 @@ import nextstep.ladder.domain.User;
 import java.util.List;
 
 public class LadderResultView {
+
     public void printLadder(List<User> users, List<Line> lines) {
         printUsers(users);
         printLines(lines);

@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import java.util.List;
 
 public class Ladder {
+
     private final Users users;
     private final Lines lines;
 

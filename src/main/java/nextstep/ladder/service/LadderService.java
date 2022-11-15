@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 public class LadderService {
 
     private static final String REGEX = ",";
+
     private final Ladder ladder;
 
     public LadderService(String inputNames, int height) {
