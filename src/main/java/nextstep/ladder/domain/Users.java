@@ -1,8 +1,8 @@
 package nextstep.ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class Users {
 
@@ -13,10 +13,7 @@ public class Users {
     }
 
     public List<User> getUsers() {
-        return this.users.stream()
-                .map(User::getName)
-                .map(User::new)
-                .collect(Collectors.toList());
+        return Collections.unmodifiableList(users);
     }
 
     public int getUserSize() {
