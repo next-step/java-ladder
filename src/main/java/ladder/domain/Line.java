@@ -3,19 +3,40 @@ package ladder.domain;
 import static ladder.domain.Point.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
 public abstract class Line {
     private static final Random random = new Random();
     
-    private final int length;
+    private final Points points;
 
-    protected Line(int countOfPerson) {
-        length = countOfPerson * 2 - 1;
+    protected Line(final int countOfPerson) {
+        points = new Points(createPoints(countOfPerson * 2 - 1));
+    }
+    
+    protected Line(final Points points) {
+        this.points = points;
     }
 
+    public int getEndIndex(int startIndex) {
+        return points.getEndIndex(startIndex);
+    }
+
+    public int getOrderByNextLine(int nextLineIndex) {
+        return points.getNextLineOrderBy(nextLineIndex);
+    }
+
+    public int getNextLineIndexBy(int order) {
+        return points.getVerticalIndex(order);
+    }
+    
     public List<Point> getPoints() {
+        return Collections.unmodifiableList(points.getAll());
+    }
+    
+    private List<Point> createPoints(int length) {
         List<Point> points = new ArrayList<>();
         points.add(VERTICAL_LINE);
 
@@ -28,7 +49,7 @@ public abstract class Line {
         return points;
     }
     
-    private Point choice(Point before, boolean canAddHorizonNextTime, boolean isBeforeLast) {
+    private Point choice(final Point before, final boolean canAddHorizonNextTime, final boolean isBeforeLast) {
         if (!canAddHorizonNextTime) {
             return BLANK;
         }
@@ -40,7 +61,7 @@ public abstract class Line {
 
     protected abstract Point choiceBeforeLast(Point before);
         
-    protected static Point choicePoint(List<Point> points) {
+    protected static Point choicePoint(final List<Point> points) {
         return points.get(random.nextInt(points.size()));
     }
 }

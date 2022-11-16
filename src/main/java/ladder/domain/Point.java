@@ -5,7 +5,7 @@ import java.util.List;
 public enum Point {
     VERTICAL_LINE, HORIZON, BLANK;
     
-    public static List<Point> next(Point now) {
+    public static List<Point> next(final Point now) {
         if (now == VERTICAL_LINE) {
             return List.of(HORIZON, BLANK);
         }
@@ -20,11 +20,11 @@ public enum Point {
         }
     }
     
-    private static boolean isNotVerticalLine(Point before) {
+    private static boolean isNotVerticalLine(final Point before) {
         return VERTICAL_LINE != before;
     }
     
-    private static boolean isNotHorizon(Point before) {
+    private static boolean isNotHorizon(final Point before) {
         return HORIZON != before;
     }
 }
