@@ -2,6 +2,7 @@ package game.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Ladders {
     private final List<Line> lines;
@@ -26,18 +27,22 @@ public class Ladders {
         int path = startPoint;
 
         for (int height = 0; height < lines().size(); height++) {
-            int left = path > 0 ? path - 1 : -1;
-            int right = path;
-
-            if (left >= 0 && lines().get(height).points().get(left)) {
-                path -= 1;
-            }
-
-            if (right < lines().get(0).points().size() && lines().get(height).points().get(right)) {
-                path += 1;
-            }
+            path = lines.get(height).movePoint(path);
         }
 
         return new LadderResult(person, results.get(path));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ladders ladders = (Ladders) o;
+        return Objects.equals(lines, ladders.lines);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(lines);
     }
 }

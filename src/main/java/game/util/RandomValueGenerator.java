@@ -1,6 +1,6 @@
 package game.util;
 
-public class RandomNumberGenerator {
+public class RandomValueGenerator {
     public static int randomNumber(int bound) {
         return SingletonRandom.getInstance().nextInt(bound);
     }

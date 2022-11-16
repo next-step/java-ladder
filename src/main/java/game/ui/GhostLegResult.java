@@ -1,17 +1,13 @@
 package game.ui;
 
-import game.domain.ladder.LadderResult;
-import game.domain.ladder.Ladders;
-import game.domain.ladder.Line;
+import game.domain.ladder.*;
 import game.service.GhostLegService;
-import game.service.RandomNumberStrategy;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GhostLegResult {
-    private final String DELIMITER = ",";
-    private final int MAX_NAME_LENGTH = 5;
+    private static final String DELIMITER = ",";
+    private static final int MAX_NAME_LENGTH = 5;
 
     private Ladders ghostLeg;
 
@@ -50,17 +46,16 @@ public class GhostLegResult {
 
     private void printLeg(int heightOfLeg, int numOfPeople) {
         GhostLegService ghostLegService = new GhostLegService();
+        ValueStrategy valueStrategy = new RandomValueStrategy();
 
-        List<Line> ladders = new ArrayList<>();
-        for (int height = 1; height <= heightOfLeg; height++) {
-            System.out.print("     |");
-            List<Boolean> filteredLines = ghostLegService.filterLines(ghostLegService.generateRandomLines(numOfPeople), new RandomNumberStrategy());
-            printLines(filteredLines);
-            ladders.add(new Line(filteredLines));
+        List<Line> lines = ghostLegService.generateRandomLines(heightOfLeg, numOfPeople, valueStrategy);
+        for (int height = 0; height < heightOfLeg; height++) {
+            System.out.print(" ".repeat(numOfPeople) + "|");
+            printLines(lines.get(height));
             System.out.println();
         }
 
-        ghostLeg = new Ladders(ladders);
+        ghostLeg = new Ladders(lines);
     }
 
     private void printResult(List<String> people, List<String> results) {
@@ -97,19 +92,29 @@ public class GhostLegResult {
         }
     }
 
-    public void printLines(List<Boolean> filteredLines) {
-        filteredLines.forEach(IS_LADDER -> {
-            checkIfIsLadderOrNot(IS_LADDER);
-            System.out.print("|");
-        });
+    public void printLines(Line line) {
+        List<Point> points = line.points();
+        for (int count = 0; count < points.size() - 1; count++) {
+            printAfterCheckIfIsLineOrNot(points.get(count).direction().isRight());
+        }
     }
 
-    private void checkIfIsLadderOrNot(Boolean is_ladder) {
-        if (is_ladder) {
-            System.out.print("-----");
+    public void printAfterCheckIfIsLineOrNot(boolean isRight) {
+        if (isRight) {
+            printLine();
             return;
         }
 
-        System.out.print("     ");
+        printEmptySpace();
+    }
+
+    private void printLine() {
+        System.out.print("-".repeat(MAX_NAME_LENGTH));
+        System.out.print("|");
+    }
+
+    private void printEmptySpace() {
+        System.out.print(" ".repeat(MAX_NAME_LENGTH));
+        System.out.print("|");
     }
 }
