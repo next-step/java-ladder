@@ -9,7 +9,6 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Line {
-
     private final List<Point> points;
 
     private Line(List<Point> points) {
