@@ -51,6 +51,10 @@ public class Line {
         return Objects.hash(points);
     }
 
+    public List<Point> getPoints() {
+        return points;
+    }
+
     @Override
     public String
     toString() {

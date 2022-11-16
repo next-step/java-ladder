@@ -66,4 +66,8 @@ public class Direction {
                 ", right=" + right +
                 '}';
     }
+
+    public boolean getLeft() {
+        return left;
+    }
 }

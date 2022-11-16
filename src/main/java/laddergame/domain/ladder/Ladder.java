@@ -48,4 +48,8 @@ public class Ladder {
     public int hashCode() {
         return Objects.hash(lines);
     }
+
+    public List<Line> getLines() {
+        return lines;
+    }
 }
