@@ -1,4 +1,4 @@
-package laddergame.domain;
+package laddergame.domain.ladder;
 
 import laddergame.exception.ErrorCode;
 import laddergame.exception.LadderGameException;
@@ -32,5 +32,9 @@ public class Height {
     @Override
     public int hashCode() {
         return Objects.hash(height);
+    }
+
+    public int getHeight() {
+        return height;
     }
 }

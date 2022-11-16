@@ -1,5 +1,6 @@
 package laddergame.domain;
 
+import laddergame.domain.ladder.Height;
 import laddergame.exception.ErrorCode;
 import laddergame.exception.LadderGameException;
 import org.junit.jupiter.api.Test;

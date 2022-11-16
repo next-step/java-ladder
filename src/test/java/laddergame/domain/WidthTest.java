@@ -1,5 +1,6 @@
 package laddergame.domain;
 
+import laddergame.domain.ladder.Width;
 import laddergame.exception.ErrorCode;
 import laddergame.exception.LadderGameException;
 import org.junit.jupiter.api.Test;
@@ -20,7 +21,7 @@ class WidthTest {
     }
 
     @Test
-    void 플레이어수_빼기_1이_너비() {
-        assertThat(new Width(new Players("a", "b", "c"))).isEqualTo(new Width(2));
+    void 플레이어수_너비() {
+        assertThat(new Width(new Players("a", "b", "c"))).isEqualTo(new Width(3));
     }
 }

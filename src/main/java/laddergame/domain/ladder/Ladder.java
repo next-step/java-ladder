@@ -20,10 +20,10 @@ public class Ladder {
                 .collect(Collectors.toList()));
     }
 
-    public static Ladder create(int width, int height, ValueGenerator generator) {
+    public static Ladder create(Size size, ValueGenerator generator) {
         List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            lines.add(Line.create(width, generator));
+        for (int i = 0; i < size.height(); i++) {
+            lines.add(Line.create(size.width(), generator));
         }
         return new Ladder(lines);
     }

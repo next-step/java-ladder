@@ -1,5 +1,6 @@
-package laddergame.domain;
+package laddergame.domain.ladder;
 
+import laddergame.domain.Players;
 import laddergame.exception.ErrorCode;
 import laddergame.exception.LadderGameException;
 
@@ -16,7 +17,7 @@ public class Width {
     }
 
     public Width(Players players) {
-        this(players.count() - 1);
+        this(players.count());
     }
 
     private void validateOverMinimum(int width) {
@@ -43,5 +44,9 @@ public class Width {
         return "Width{" +
                 "width=" + width +
                 '}';
+    }
+
+    public int getWidth() {
+        return width;
     }
 }
