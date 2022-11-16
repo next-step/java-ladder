@@ -17,11 +17,6 @@ public class Players {
         this(Arrays.asList(names));
     }
 
-    public Players(Player... players) {
-        this.players = Arrays.stream(players)
-                .collect(Collectors.toList());
-    }
-
     public List<Player> getPlayers() {
         return this.players;
     }
