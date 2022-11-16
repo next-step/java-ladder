@@ -1,13 +1,24 @@
 package nextstep.ladder.domain;
 
+import nextstep.exception.CustomException;
+import nextstep.ladder.exception.UserErrorCode;
+
 import java.util.Objects;
 
 public class User {
 
+    public static final int NAME_MAXIMUM_VALUE = 5;
     private final String name;
 
     public User(String name) {
+        validateName(name);
         this.name = name;
+    }
+
+    private void validateName(String name) {
+        if (name.length() > NAME_MAXIMUM_VALUE) {
+            throw new CustomException(UserErrorCode.USER_NAME_LENGTH_BAD_REQUEST);
+        }
     }
 
     public String getName() {
