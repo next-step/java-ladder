@@ -19,6 +19,15 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
+    public static List<String> inputResults() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+
+        String input = new Scanner(System.in).nextLine();
+        return Arrays.stream(input.split(","))
+                .collect(Collectors.toList());
+
+    }
+
     public static int inputHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요.");
 
@@ -28,10 +37,13 @@ public class InputView {
         } catch (InputMismatchException e) {
             throw new IllegalArgumentException("숫자가 입력되어야 합니다.", e);
         }
-
-        if (height <= 0) {
-            throw new IllegalArgumentException("1 이상의 숫자가 입력되어야 합니다.");
-        }
         return height;
+    }
+
+    public static Name inputShowResult() {
+        System.out.println("결과를 보고 싶은 사람은?");
+
+        String name = new Scanner(System.in).next();
+        return new Name(name);
     }
 }
