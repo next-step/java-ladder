@@ -3,6 +3,8 @@ package nextstep.fp;
 import java.util.List;
 
 public class Lambda {
+    private static final Integer DIVIDE_EVEN = 2;
+
     public static void printAllOld(List<Integer> numbers) {
         System.out.println("printAllOld");
 
@@ -28,7 +30,7 @@ public class Lambda {
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        return sum(numbers, number -> number % 2 == 0);
+        return sum(numbers, number -> number % DIVIDE_EVEN == 0);
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {

@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class StreamStudy {
+    private static final Integer MAX_WORDS_SIZE = 12;
+    private static final Integer MAX_PRINT_SIZE = 100;
 
     public static long countWords() throws IOException {
         String contents = Files.readString(Paths
@@ -16,7 +18,7 @@ public class StreamStudy {
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
         return words.stream()
-                .filter(w -> w.length() > 12)
+                .filter(word -> word.length() > 12)
                 .count();
     }
 
@@ -28,9 +30,9 @@ public class StreamStudy {
         // TODO 이 부분에 구현한다.
         words.stream()
                 .distinct()
-                .filter(w -> w.length() > 12)
+                .filter(w -> w.length() > MAX_WORDS_SIZE)
                 .sorted(Comparator.comparingInt(String::length).reversed())
-                .limit(100)
+                .limit(MAX_PRINT_SIZE)
                 .map(String::toLowerCase)
                 .forEach(System.out::println);
     }
@@ -48,8 +50,8 @@ public class StreamStudy {
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
         return numbers.stream()
-                .filter(n -> n > 3)
-                .mapToInt(n -> 2 * n)
+                .filter(number -> number > 3)
+                .mapToInt(number -> 2 * number)
                 .sum();
     }
 }
