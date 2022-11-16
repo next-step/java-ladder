@@ -35,3 +35,24 @@
 - [x] InputView 클래스 추가
 - [x] OutputView 클래스 추가
 - [x] LadderApplication 클래스 추가
+
+## TO DO LIST(Step3)
+- [x] InputView 클래스 수정
+  - [x] 사다리 타기 결과 입력 메소드 추가
+  - [x] 결과 확인 입력 메소드 추가
+- [x] OutputView 클래스 수정
+  - [x] 사다리 결과에 실행 결과 출력 추가
+  - [x] 단일 결과 출력 메소드 추가
+  - [x] 전체 결과 출력 메소드 추가
+- [x] Prize 클래스 추가
+- [x] Prizes 클래스 추가
+- [x] Ladder 클래스 수정
+  - [x] 실행 결과 필드 추가
+  - [x] 결과 계산 메소드 추가
+- [x] Line 클래스 수정
+  - [x] 이동 메소드 추가
+  - [x] Point들의 연결 여부를 관리하는 필드 추가
+  - [x] Point의 연결 여부 확인 메소드 추가
+- [x] Point 클래스 수정
+  - [x] isLinked 필드 제거
+- [x] LadderApplication 클래스 수정
