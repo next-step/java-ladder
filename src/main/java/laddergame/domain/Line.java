@@ -34,6 +34,10 @@ public class Line {
         return new Line(points);
     }
 
+    public int move(int index) {
+        return points.get(index).move();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

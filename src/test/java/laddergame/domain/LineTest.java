@@ -24,4 +24,14 @@ public class LineTest {
                         new Point(1, true, false),
                         new Point(2, false, false)));
     }
+
+    @Test
+    void 이동() {
+        Line line = Line.of(new Point(0, false, true),
+                new Point(1, true, false),
+                new Point(2, false, false));
+        assertThat(line.move(0)).isEqualTo(1);
+        assertThat(line.move(1)).isEqualTo(0);
+        assertThat(line.move(2)).isEqualTo(2);
+    }
 }

@@ -197,7 +197,7 @@ Ladder
 Line : List<Point>
 
 - [x] Width 만큼 Point를 만든다.
-- [ ] 현재 Line의 Point에서 이동해 다음 Line의 Point를 구한다.
+- [x] 현재 Line의 Point에서 이동해 다음 Line의 Point를 구한다.
 
 Point : Line에서 현재 위치와 Direction을 가진다.
 
