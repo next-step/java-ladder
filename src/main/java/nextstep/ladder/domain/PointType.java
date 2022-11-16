@@ -4,18 +4,9 @@ import java.util.Arrays;
 
 public enum PointType {
 
-    NODE(true) {
-        @Override
-        public boolean isNode() {
-            return true;
-        }
-    },
-    NOTHING(false) {
-        @Override
-        public boolean isNode() {
-            return false;
-        }
-    };
+    NODE(true),
+
+    NOTHING(false);
 
     private final boolean value;
 
@@ -30,6 +21,8 @@ public enum PointType {
             .orElse(PointType.NOTHING);
     }
 
-    public abstract boolean isNode();
+    public boolean isNode() {
+        return value;
+    }
 
 }

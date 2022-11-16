@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 public final class LadderLine {
     public static final int MIN_POINTS_SIZE = 2;
@@ -27,13 +28,13 @@ public final class LadderLine {
     }
 
     private static void validateConnectedPoints(final List<Point> points) {
-        Point prevPoint = points.get(FIRST_INDEX);
-        for (int i = SECOND_INDEX; i < points.size(); i++) {
-            final Point currPoint = points.get(i);
-            if (prevPoint.isNode() && currPoint.isNode())  {
-                throw new IllegalArgumentException("Points can not be connected in a row");
-            }
-            prevPoint = currPoint;
+        IntStream.range(SECOND_INDEX, points.size())
+            .forEach(i -> validateConnectedInRow(points.get(i - 1), points.get(i)));
+    }
+
+    private static void validateConnectedInRow(final Point prevPoint, final Point currPoint) {
+        if (prevPoint.isConnectedInRow(currPoint))  {
+            throw new IllegalArgumentException("Points can not be connected in a row");
         }
     }
 

@@ -9,17 +9,12 @@ public enum RandomWrapper implements RandomValueGenerator {
 
     private static final Random random = new Random();
 
-    private static void updateSeed() {
-        random.setSeed(System.nanoTime());
-    }
-
     public static RandomWrapper getInstance() {
         return INSTANCE;
     }
 
     @Override
     public boolean nextValue() {
-        updateSeed();
         return random.nextBoolean();
     }
 }

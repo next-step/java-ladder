@@ -17,6 +17,10 @@ public final class Point {
         return this.type.isNode();
     }
 
+    public boolean isConnectedInRow(final Point otherPoint) {
+        return isNode() && otherPoint.isNode();
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) {

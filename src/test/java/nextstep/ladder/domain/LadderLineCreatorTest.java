@@ -6,10 +6,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class LadderLineCreatorImplTest {
+class LadderLineCreatorTest {
 
     private final RandomValueGenerator trueGenerator = () -> true;
-    private final LadderLineCreator target = new LadderLineCreatorImpl(trueGenerator);
+    private final LadderLineCreator target = new LadderLineCreator(trueGenerator);
 
     @DisplayName("주어진 포인트 사이즈 수만큼 포인트를 가지고있는 사다리 라인을 만들수 있어야 한다")
     @ParameterizedTest

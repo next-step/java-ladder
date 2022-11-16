@@ -47,6 +47,10 @@ public final class PositiveNumber {
         return value < positiveNumber.value;
     }
 
+    public int intValue() {
+        return value;
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) {

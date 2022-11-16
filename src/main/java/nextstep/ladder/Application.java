@@ -5,9 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderCreator;
-import nextstep.ladder.domain.LadderCreatorImpl;
 import nextstep.ladder.domain.LadderLineCreator;
-import nextstep.ladder.domain.LadderLineCreatorImpl;
 import nextstep.ladder.domain.PlayerName;
 import nextstep.ladder.domain.PlayerNames;
 import nextstep.ladder.domain.PositiveNumber;
@@ -46,11 +44,11 @@ public class Application {
     }
 
     private static LadderCreator getLadderCreator() {
-        return new LadderCreatorImpl(getLadderLineCreator());
+        return new LadderCreator(getLadderLineCreator());
     }
 
     private static LadderLineCreator getLadderLineCreator() {
-        return new LadderLineCreatorImpl(getRandomValueGenerator());
+        return new LadderLineCreator(getRandomValueGenerator());
     }
 
     private static RandomValueGenerator getRandomValueGenerator() {
