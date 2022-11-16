@@ -201,10 +201,10 @@ Line : List<Point>
 
 Point : Line에서 현재 위치와 Direction을 가진다.
 
-- [ ] 현재 Point에서 다음 Point를 구한다.
+- [x] 현재 Point에서 다음 Point를 구한다.
   - 현재 위치 + 1
-  - 랜덤 값을 전달해 다음 Direction을 생성한다.
-- [ ] Direction에 따라 좌/우로 움직인다.
+  - 다음 Direction을 생성한다.
+- [x] Direction에 따라 좌/우로 움직인다.
   - 현재 위치에서 Direction이 정한 방향으로 이동한다.
 
 Direction : 각 Point의 좌/우 방향(이동 가능 여부)을 가진다.
