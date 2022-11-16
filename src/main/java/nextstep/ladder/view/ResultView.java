@@ -9,13 +9,15 @@ import nextstep.ladder.domain.Player;
 
 public class ResultView {
 
-  private static final String CONNECT = "-----";
-  private static final String DISCONNECT = "     ";
+  private static final String CONNECT = "-";
+  private static final String DISCONNECT = " ";
+  private static final int LADDER_WIDTH = 5;
   private static final String BAR = "|";
 
-  private static final String LADDER_PADDING = "   ";
-  private static final String PLAYER_PADDING = " ";
-  private static final String PLAYER_SEPARATION = " ";
+  private static final String SPACE = " ";
+  private static final int LADDER_PADDING_SIZE = 2;
+  private static final int PLAYER_SEPARATION_SIZE = 1;
+
   private final OutputConsumer outputConsumer;
 
   public ResultView(OutputConsumer outputConsumer) {
@@ -29,33 +31,32 @@ public class ResultView {
 
   private String formatPlayer(final List<Player> players) {
     return players.stream()
-                  .map(player -> center(player.name(), 5, ' '))
-                  .collect(Collectors.joining(PLAYER_SEPARATION, PLAYER_PADDING, PLAYER_PADDING));
+                  .map(player -> center(player.name(), 5))
+                  .collect(Collectors.joining(repeat(SPACE, PLAYER_SEPARATION_SIZE)));
   }
 
   private String formatLine(final Line line) {
     return line.connects()
                .stream()
                .map(this::formatConnect)
-               .collect(Collectors.joining(BAR, LADDER_PADDING + BAR, BAR + LADDER_PADDING));
+               .collect(Collectors.joining(BAR, repeat(SPACE, LADDER_PADDING_SIZE) + BAR, BAR + repeat(SPACE, LADDER_PADDING_SIZE)));
   }
 
   private String formatConnect(final boolean connect) {
     if(connect) {
-      return CONNECT;
+      return repeat(CONNECT, LADDER_WIDTH);
     }
-    return DISCONNECT;
+    return repeat(DISCONNECT, LADDER_WIDTH);
   }
 
-  public static String center(final String name, final int size, final char padding) {
-    final int emptySize = size - name.length();
-    if (emptySize <= 0) {
+  private String repeat(final String character, final int count) {
+    return character.repeat(count);
+  }
+
+  private String center(final String name, final int size) {
+    if (name.length() == size) {
       return name;
     }
-    final int rightPadding = emptySize / 2;
-    final int leftPadding = emptySize - rightPadding;
-    return String.valueOf(padding).repeat(leftPadding)
-            + name
-            + String.valueOf(padding).repeat(rightPadding);
+    return String.format("%4s ", name);
   }
 }
