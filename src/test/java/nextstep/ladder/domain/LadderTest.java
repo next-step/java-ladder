@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class LadderTest {
 
-    @DisplayName("사다리 플레이어 수와 높이를 입력 받는다.")
+    @DisplayName("사다리 플레이어 수와 높이를 입력 받아 입렵받은 높이의 사다리를 생성한다.")
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 18, 23, 32})
     public void spec01(final int height) {
