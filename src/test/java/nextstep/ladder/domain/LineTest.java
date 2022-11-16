@@ -30,4 +30,15 @@ class LineTest {
             assertThat(!(connects.get(i) && connects.get(i + 1))).isTrue();
         }
     }
+
+    @DisplayName("라인은 연결 전략에 의해 사다리 연결을 생성산다.")
+    @ParameterizedTest
+    @ValueSource(booleans = {true, false})
+    public void spec03(final boolean linePredicate) {
+        final Line line = new Line(new PlayerCount(2), () -> linePredicate);
+        final List<Boolean> connects = line.connects();
+        for (int i = 0; i < connects.size()-1; i++) {
+            assertThat(connects.get(i)).isEqualTo(linePredicate);
+        }
+    }
 }
