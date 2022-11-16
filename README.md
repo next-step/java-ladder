@@ -191,7 +191,7 @@ Results
 
 Ladder
 
-- [ ] Height 만큼 Line을 만든다.
+- [x] Height 만큼 Line을 만든다.
 - [ ] Ladder의 현재 위치에서 다음 위치로 이동한다.
 
 Line : List<Point>
