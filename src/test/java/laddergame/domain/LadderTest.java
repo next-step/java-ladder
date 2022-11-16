@@ -13,4 +13,14 @@ public class LadderTest {
                 Line.of(new Point(0, false, true), new Point(1, true, false)),
                 Line.of(new Point(0, false, true), new Point(1, true, false))));
     }
+
+    @Test
+    void 이동() {
+        Ladder ladder = Ladder.of(
+                Line.of(new Point(0, false, true), new Point(1, true, false)),
+                Line.of(new Point(0, false, true), new Point(1, true, false))
+        );
+        assertThat(ladder.ride(0)).isEqualTo(0);
+        assertThat(ladder.ride(1)).isEqualTo(1);
+    }
 }
