@@ -209,11 +209,11 @@ Point : Line에서 현재 위치와 Direction을 가진다.
 
 Direction : 각 Point의 좌/우 방향(이동 가능 여부)을 가진다.
 
-- [ ] 왼쪽 방향과 오른쪽 방향으로 모두 이동 가능할 수 없다.
-- [ ] 현재 Point 방향에서 다음 Point의 방향을 정한다.
+- [x] 왼쪽 방향과 오른쪽 방향으로 모두 이동 가능할 수 없다.
+- [x] 현재 Point 방향에서 다음 Point의 방향을 정한다.
   - 현재 오른쪽 방향이 true면 다음 오른쪽 방향은 false 다.
   - 현재 오른쪽 방향이 flase면 다음 오른쪽 방향은 true/false 모두 가능하다.
-- [ ] 현재 Point에서 어떤 방향으로 이동할지 정한다.
+- [x] 현재 Point에서 어떤 방향으로 이동할지 정한다.
   - right가 true면 + 1
   - left가 true면 - 1
   - 둘다 false면 0
