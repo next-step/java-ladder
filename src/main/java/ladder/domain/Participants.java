@@ -13,4 +13,12 @@ public class Participants {
         }
         this.participants = participants;
     }
+
+    public int countOfMember(){
+        return participants.size();
+    }
+
+    public List<Participant> getParticipants() {
+        return participants;
+    }
 }
