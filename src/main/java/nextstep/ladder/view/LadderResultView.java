@@ -7,7 +7,7 @@ import java.util.List;
 
 public class LadderResultView {
 
-    private static final String BLANK = "    ";
+    private static final String BLANK = "     ";
     private static final String LINE = "-----";
     private static final String DIVISION_LINE = "|";
 
@@ -38,11 +38,15 @@ public class LadderResultView {
     }
 
     private void printUsers(List<User> users) {
-        StringBuilder nameString = new StringBuilder(users.get(0).getName());
-        for (int i = 1; i < users.size(); i++) {
-            nameString.append("  ");
-            nameString.append(users.get(i).getName());
+        StringBuilder nameString = new StringBuilder();
+        for (User user : users) {
+            nameString.append(formattingUserName(user.getName()));
         }
         System.out.println(nameString);
+    }
+
+    private String formattingUserName(String userName) {
+        int columnLength = LINE.length() + DIVISION_LINE.length();
+        return String.format("%" + columnLength + "s", userName);
     }
 }
