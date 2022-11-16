@@ -156,3 +156,65 @@ Point 상태 값 - 사다리 라인 유무
 RandomValueGenerator
 
 - [x] 랜덤으로 상태 값을 생성한다. true/false
+
+----
+
+## 4단계 - 사다리(리팩토링)
+
+Height 사다리 높이
+
+- [x] 높이는 1보다 작을 수 없다.
+
+Width 사다리 너비
+
+- [x] 사다리 너비를 구한다. (참가자수)
+- [x] 너비는 1보다 작을 수 없다.
+
+Player 참가자
+
+- [x] 이름은 공백이거나 null 일 수 없다.
+- [x] 이름은 최대 5글자 이다.
+
+Players
+
+- [x] 문자열로 참가자 목록을 입력 받으면, 콤마를 기준으로 파싱해 Player를 생성한다.
+
+Result 결과
+
+- [x] 공백이거나 null 일 수 없다.
+
+Results
+
+- [x] 문자열로 입력 받은 결과를 파싱해서 Result를 생성한다.
+
+---
+
+Ladder
+
+- [ ] Height 만큼 Line을 만든다.
+- [ ] Ladder의 현재 위치에서 다음 위치로 이동한다.
+
+Line : List<Point>
+
+- [ ] Width 만큼 Point를 만든다.
+- [ ] 현재 Line의 Point에서 이동해 다음 Line의 Point를 구한다.
+
+Point : Line에서 현재 위치와 Direction을 가진다.
+
+- [ ] 현재 Point에서 다음 Point를 구한다.
+  - 현재 위치 + 1
+  - 랜덤 값을 전달해 다음 Direction을 생성한다.
+- [ ] Direction에 따라 좌/우로 움직인다.
+  - 현재 위치에서 Direction이 정한 방향으로 이동한다.
+
+Direction : 각 Point의 좌/우 방향(이동 가능 여부)을 가진다.
+
+- [ ] 왼쪽 방향과 오른쪽 방향으로 모두 이동 가능할 수 없다.
+- [ ] 현재 Point 방향에서 다음 Point의 방향을 정한다.
+  - 현재 오른쪽 방향이 true면 다음 오른쪽 방향은 false 다.
+  - 현재 오른쪽 방향이 flase면 다음 오른쪽 방향은 true/false 모두 가능하다.
+- [ ] 현재 Point에서 어떤 방향으로 이동할지 정한다.
+  - right가 true면 + 1
+  - left가 true면 - 1
+  - 둘다 false면 0
+
