@@ -13,7 +13,7 @@ public class LadderResults {
         this.results = results;
     }
 
-    public static List<LadderResult> addResult(List<String> results, int memberCount) {
+    public static List<LadderResult> createResult(List<String> results, int memberCount) {
         validateCountSize(results, memberCount);
         return results.stream()
                 .map(LadderResult::new)

@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LadderMembers {
     private static final int MINIMUM_MEMBERS_SIZE = 2;
@@ -18,6 +19,13 @@ public class LadderMembers {
         return gameMembers.stream()
                 .map(LadderMember::new)
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    public LadderMember findByMember(int memberIndex) {
+        return IntStream.range(memberIndex, memberIndex + 1)
+                .mapToObj(members::get)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("해당하는 member가 없습니다."));
     }
 
     private static void checkSize(List<LadderMember> members) {

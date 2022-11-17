@@ -24,11 +24,11 @@ public class LadderController {
         int memberCount = memberNames.size();
         LadderMembers members = new LadderMembers(LadderMembers.addMember(memberNames));
         List<String> ladderResults = askLadderResult();
-        LadderResults results = new LadderResults(LadderResults.addResult(ladderResults, memberCount));
+        LadderResults results = new LadderResults(LadderResults.createResult(ladderResults, memberCount));
         LadderHeight ladderHeight = new LadderHeight(askMaxLadderHeight());
         Ladder ladder = new Ladder(memberCount, ladderHeight);
 
         printLadderCreation(new MembersDto(members), new LadderDto(ladder), ladderResults);
-        printLadderResult(askResultMember(), new ResultsDto(new MembersDto(members), results.playedByMembers(ladder)));
+        printLadderResult(askResultMember(), new ResultsDto(members, results.playedByMembers(ladder)));
     }
 }
