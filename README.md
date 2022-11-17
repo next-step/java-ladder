@@ -58,6 +58,7 @@
 - [x] LadderApplication 클래스 수정
 
 ## TO DO LIST(Step4)
+- [x] PositiveInt.plus 메소드 추가
 - [x] Point 클래스 수정
   - [x] x 필드 제거
   - [ ] move 메소드 추가
