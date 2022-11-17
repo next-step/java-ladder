@@ -1,5 +1,6 @@
-package laddergame.domain;
+package laddergame.domain.ladder;
 
+import laddergame.domain.Players;
 import laddergame.exception.ErrorCode;
 import laddergame.exception.LadderGameException;
 
@@ -8,15 +9,15 @@ import java.util.Objects;
 public class Width {
     public static final int MINIMUM_WIDTH = 1;
 
-    private final Count width;
+    private final int width;
 
     public Width(int width) {
         validateOverMinimum(width);
-        this.width = new Count(width);
+        this.width = width;
     }
 
     public Width(Players players) {
-        this(players.count() - 1);
+        this(players.count());
     }
 
     private void validateOverMinimum(int width) {
@@ -38,14 +39,14 @@ public class Width {
         return Objects.hash(width);
     }
 
-    public boolean bigger(Count count) {
-        return this.width.bigger(count);
-    }
-
     @Override
     public String toString() {
         return "Width{" +
                 "width=" + width +
                 '}';
+    }
+
+    public int getWidth() {
+        return width;
     }
 }

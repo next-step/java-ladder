@@ -1,4 +1,4 @@
-package laddergame.domain;
+package laddergame.domain.ladder;
 
 import laddergame.exception.ErrorCode;
 import laddergame.exception.LadderGameException;
@@ -8,11 +8,11 @@ import java.util.Objects;
 public class Height {
     public static final int MINIMUM_OF_HEIGHT = 1;
 
-    private final Count height;
+    private final int height;
 
     public Height(int height) {
         validateOverMinimum(height);
-        this.height = new Count(height);
+        this.height = height;
     }
 
     private void validateOverMinimum(int height) {
@@ -34,7 +34,7 @@ public class Height {
         return Objects.hash(height);
     }
 
-    public boolean bigger(Count count) {
-        return this.height.bigger(count);
+    public int getHeight() {
+        return height;
     }
 }

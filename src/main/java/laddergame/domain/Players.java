@@ -17,24 +17,11 @@ public class Players {
         this(Arrays.asList(names));
     }
 
-    public Players(Player... players) {
-        this.players = Arrays.stream(players)
-                .collect(Collectors.toList());
-    }
-
     public List<Player> getPlayers() {
         return this.players;
     }
 
     public int count() {
         return this.players.size();
-    }
-
-    public void executeGame(Ladder ladder, Results results) {
-        for (Player player : players) {
-            int startIndex = players.indexOf(player);
-            int endIndex = ladder.ride(startIndex);
-            player.saveResult(results.find(endIndex));
-        }
     }
 }
