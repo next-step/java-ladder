@@ -4,36 +4,27 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PointTest {
 
-    @DisplayName("위치가 오른쪽으로 이동한다.")
+    @DisplayName("방향이 오른쪽이면 위치가 1증가한다.")
     @Test
     void moveRight() {
-        Point point = new Point(0, new Direction(false, true));
-        assertThat(point.move()).isEqualTo(1);
+        Point point = new Point(new Position(0), new Direction(false, true));
+        assertThat(point.move()).isEqualTo(new Position(1));
     }
 
-    @DisplayName("위치가 왼쪽으로 이동한다.")
+    @DisplayName("방향이 왼쪽이면 위치가 1감소한다.")
     @Test
     void moveLeft() {
-        Point point = new Point(1, new Direction(true, false));
-        assertThat(point.move()).isEqualTo(0);
+        Point point = new Point(new Position(1), new Direction(true, false));
+        assertThat(point.move()).isEqualTo(new Position(0));
     }
 
-    @DisplayName("위치가 아래로 이동한다.")
+    @DisplayName("방향이 움직이지 않으면 위치는 그대로다.")
     @Test
-    void moveDown() {
-        Point point = new Point(1, new Direction(false, false));
-        assertThat(point.move()).isEqualTo(1);
-    }
-
-    @DisplayName("위치가 음수이면 예외가 발생한다.")
-    @Test
-    void validatePosition() {
-        assertThatThrownBy(() -> {
-            new Point(-1, new Direction(false, false));
-        }).isInstanceOf(IllegalArgumentException.class);
+    void moveNone() {
+        Point point = new Point(new Position(1), new Direction(false, false));
+        assertThat(point.move()).isEqualTo(new Position(1));
     }
 }

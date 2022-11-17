@@ -30,7 +30,7 @@ public class Ladder {
     private int getTarget(int position) {
         int target = position;
         for (Line line : lines) {
-            target = line.move(target);
+            target = line.move(target).getPosition();
         }
         return target;
     }

@@ -4,43 +4,34 @@ import java.util.Objects;
 
 public class Point {
 
-    private static final int FIRST_POSITION = 0;
-
-    private final int position;
+    private final Position position;
     private final Direction direction;
 
-    public Point(int position, Direction direction) {
-        validate(position);
+    public Point(Position position, Direction direction) {
         this.position = position;
         this.direction = direction;
     }
 
-    private void validate(int position) {
-        if (position < 0) {
-            throw new IllegalArgumentException("위치는 음수일 수 없습니다.");
-        }
-    }
-
-    public int move() {
+    public Position move() {
         if (direction.isRight()) {
-            return position + 1;
+            return position.goNext();
         }
         if (direction.isLeft()) {
-            return position - 1;
+            return position.goBack();
         }
         return position;
     }
 
     public static Point first(boolean nextDirection) {
-        return new Point(FIRST_POSITION, Direction.first(nextDirection));
+        return new Point(Position.first(), Direction.first(nextDirection));
     }
 
     public Point next(boolean nextDirection) {
-        return new Point(position + 1, direction.next(nextDirection));
+        return new Point(position.goNext(), direction.next(nextDirection));
     }
 
     public Point last() {
-        return new Point(position + 1, direction.last());
+        return new Point(position.goNext(), direction.last());
     }
 
     public Direction getDirection() {

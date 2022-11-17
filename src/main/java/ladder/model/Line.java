@@ -26,7 +26,7 @@ public class Line {
         points.add(point.last());
     }
 
-    public int move(int position) {
+    public Position move(int position) {
         return points.get(position).move();
     }
 
