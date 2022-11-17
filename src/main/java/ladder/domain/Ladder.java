@@ -4,28 +4,25 @@ import ladder.util.RandomUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
-
-    private final List<Player> playerList = new ArrayList<>();
+    private final Players players;
     private final List<Line> lines = new ArrayList<>();
+    private final Results results;
 
-    public Ladder(List<String> nameList, int height) {
-        nameList.forEach((name) -> this.playerList.add(new Player(name)));
-
+    public Ladder(int size, int height, Players players, Results results) {
         IntStream.range(0, height)
-                .forEach((i) -> lines.add(new Line(nameList.size(), new RandomUtil())));
-    }
-
-    public List<String> names() {
-        return playerList.stream()
-                .map(Player::name)
-                .collect(Collectors.toList());
+                .forEach((i) -> lines.add(new Line(size, new RandomUtil())));
+        this.players = players;
+        this.results = results;
     }
 
     public List<Line> lines() {
         return lines;
+    }
+
+    public List<String> names() {
+        return this.players.names();
     }
 }
