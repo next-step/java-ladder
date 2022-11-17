@@ -1,9 +1,9 @@
 package ladder.strategy;
 
 import java.util.List;
-import ladder.domain.PositiveInt;
+import ladder.domain.Direction;
 
 public interface LinkStrategy {
 
-    List<Integer> link(final int column);
+    List<Direction> link(final int column);
 }
