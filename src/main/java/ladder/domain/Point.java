@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.strategy.RandomStrategy;
+import ladder.strategy.ConnectionStrategy;
 
 import java.util.Objects;
 
@@ -17,12 +17,12 @@ public class Point {
         this.index = index;
     }
 
-    public static Point first(RandomStrategy random) {
-        return new Point(false, random.randomBoolean(), INIT_POINT_INDEX);
+    public static Point first(ConnectionStrategy connection) {
+        return new Point(false, connection.isConnected(), INIT_POINT_INDEX);
     }
 
-    public Point next(RandomStrategy random) {
-        boolean next = random.randomBoolean();
+    public Point next(ConnectionStrategy connection) {
+        boolean next = connection.isConnected();
         if (this.current && next) {
             next = false;
         }
