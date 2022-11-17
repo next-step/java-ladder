@@ -14,7 +14,7 @@ class LineTest {
         int count = 5;
 
         // when
-        Line line = new Line(count);
+        Line line = new Line(count, () -> true);
 
         // then
         assertThat(line.currentPoints()).hasSize(count);

@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.util.RandomUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,7 +16,7 @@ public class Ladder {
         nameList.forEach((name) -> this.playerList.add(new Player(name)));
 
         IntStream.range(0, height)
-                .forEach((i) -> lines.add(new Line(nameList.size())));
+                .forEach((i) -> lines.add(new Line(nameList.size(), new RandomUtil())));
     }
 
     public List<String> names() {

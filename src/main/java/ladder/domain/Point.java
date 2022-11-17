@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import ladder.strategy.ConnectionStrategy;
-
 import java.util.Objects;
 
 public class Point {
@@ -17,12 +15,12 @@ public class Point {
         this.index = index;
     }
 
-    public static Point first(ConnectionStrategy connection) {
-        return new Point(false, connection.isConnected(), INIT_POINT_INDEX);
+    public static Point first(boolean isConnected) {
+        return new Point(false, isConnected, INIT_POINT_INDEX);
     }
 
-    public Point next(ConnectionStrategy connection) {
-        boolean next = connection.isConnected();
+    public Point next(boolean isConnected) {
+        boolean next = isConnected;
         if (this.current && next) {
             next = false;
         }

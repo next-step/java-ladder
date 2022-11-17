@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.util.RandomUtil;
+import ladder.strategy.ConnectionStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,12 +11,12 @@ public class Line {
 
     private final List<Point> points = new ArrayList<>();
 
-    public Line(int countOfPerson) {
-        Point point = Point.first(new RandomUtil());
+    public Line(int countOfPerson, ConnectionStrategy connection) {
+        Point point = Point.first(connection.isConnected());
         this.points.add(point);
 
         for (int i = START_LINE_BODY_INDEX; i < countOfPerson; i++) {
-            point = point.next(new RandomUtil());
+            point = point.next(connection.isConnected());
             this.points.add(point);
         }
 
