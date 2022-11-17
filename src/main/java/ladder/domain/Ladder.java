@@ -3,6 +3,7 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder {
 
@@ -10,13 +11,10 @@ public class Ladder {
     private final List<Line> lines = new ArrayList<>();
 
     public Ladder(List<String> nameList, int height) {
-        for (String name : nameList) {
-            this.playerList.add(new Player(name));
-        }
+        nameList.forEach((name) -> this.playerList.add(new Player(name)));
 
-        for (int i = 0; i < height; i++) {
-            lines.add(new Line(nameList.size()));
-        }
+        IntStream.range(0, height)
+                .forEach((i) -> lines.add(new Line(nameList.size())));
     }
 
     public List<String> names() {
