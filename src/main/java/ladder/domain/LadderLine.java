@@ -18,6 +18,12 @@ public class LadderLine {
     }
 
     public int drawPart(int part) {
+        if (isFirstPart(part) && getRightPart(part)) {
+            return part + 1;
+        }
+        if (isLastPart(part) && getLeftPart(part)) {
+            return part - 1;
+        }
         if (!isFirstPart(part) && getLeftPart(part)) {
             return part - 1;
         }

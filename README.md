@@ -101,5 +101,5 @@
 - [x] InputView : 결과 보고싶은사람 입력 받음
 - [x] ResultView : 해당하는 결과 출력 (all 포함) 
 - [x] LadderResult : 검증로직 추가
-- [ ] LadderLine : 사다리 실행 로직 수정
+- [x] LadderLine : 사다리 실행 로직 수정
 - [ ] 메소드 함수명 수정
