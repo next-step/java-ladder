@@ -17,6 +17,8 @@ public class LadderResult {
     }
 
     public LadderResult(int memberIndex, String result) {
+        checkNull(result);
+        validateSize(result);
         this.memberIndex = memberIndex;
         this.result = result;
     }
@@ -44,14 +46,6 @@ public class LadderResult {
     @Override
     public int hashCode() {
         return Objects.hash(result);
-    }
-
-    @Override
-    public String toString() {
-        return "LadderResult{" +
-                "memberIndex=" + memberIndex +
-                ", result='" + result + '\'' +
-                '}';
     }
 
     public int memberIndex() {
