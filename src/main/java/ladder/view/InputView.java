@@ -27,8 +27,8 @@ public class InputView {
 
     public static List<String> inputResultList() {
         System.out.println(INPUT_RESULT_LIST_MESSAGE);
-        String inputNameList = SCANNER.nextLine();
-        return makeList(inputNameList);
+        String inputResultList = SCANNER.nextLine();
+        return makeList(inputResultList);
     }
 
     public static Integer InputHeight() {
