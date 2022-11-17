@@ -18,7 +18,7 @@ public class Lines {
         validate(column);
 
         IntStream.range(0, row)
-            .mapToObj(i -> new Line(new PositiveInt(i), new PositiveInt(column)))
+            .mapToObj(i -> new Line(new PositiveInt(column)))
             .forEach(value::add);
     }
 
