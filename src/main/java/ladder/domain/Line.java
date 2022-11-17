@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Line {
+    private static final Integer START_LINE_BODY_INDEX = 2;
 
     private final List<Point> points = new ArrayList<>();
 
@@ -14,7 +15,7 @@ public class Line {
         Point point = Point.first(new RandomUtil());
         this.points.add(point);
 
-        for (int i = 0; i < countOfPerson - 2; i++) {
+        for (int i = START_LINE_BODY_INDEX; i < countOfPerson; i++) {
             point = point.next(new RandomUtil());
             this.points.add(point);
         }
