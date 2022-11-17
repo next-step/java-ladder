@@ -61,7 +61,7 @@
 - [x] PositiveInt.plus 메소드 추가
 - [x] Point 클래스 수정
   - [x] x 필드 제거
-  - [ ] move 메소드 추가
+  - [x] move 메소드 추가
 - [x] Direction 클래스 추가
 - [ ] RandomLinkStrategy.link 메소드 수정
 - [ ] Line.move 메소드 수정
