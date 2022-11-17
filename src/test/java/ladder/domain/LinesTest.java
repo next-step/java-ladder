@@ -37,6 +37,6 @@ public class LinesTest {
         Lines lines = new Lines(5, 5);
         lines.draw(new TestLinkStrategy());
 
-        assertThat(lines.move(0)).isOne();
+        assertThat(lines.move(new Point(0))).isEqualTo(new Point(1));
     }
 }

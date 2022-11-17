@@ -31,7 +31,7 @@ class LadderTest {
         ladder.play(participants);
 
         Participants expected = new Participants("jordy,penda,kero,cobb");
-        expected.move(List.of(1, 0, 3, 2));
+        expected.move(List.of(new Point(1), new Point(0), new Point(3), new Point(2)));
         assertThat(participants).isEqualTo(expected);
     }
 }

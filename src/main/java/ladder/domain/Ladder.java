@@ -28,7 +28,7 @@ public class Ladder {
             throw new IllegalArgumentException(ERROR_EMPTY_VALUE);
         }
 
-        List<Integer> result = new ArrayList<>();
+        List<Point> result = new ArrayList<>();
         IntStream.range(0, participants.size())
             .mapToObj(i -> lines.move(new Point(i)))
             .forEach(result::add);

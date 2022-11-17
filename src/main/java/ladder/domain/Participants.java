@@ -38,7 +38,7 @@ public class Participants {
         return value.size();
     }
 
-    public void move(List<Integer> positions) {
+    public void move(List<Point> positions) {
         if (positions == null || positions.isEmpty()) {
             throw new IllegalArgumentException(ERROR_EMPTY_VALUE);
         }
@@ -49,7 +49,7 @@ public class Participants {
 
         IntStream.range(0, value.size()).forEach(i -> {
             Participant participant = value.get(i);
-            participant.changePosition(positions.get(i));
+            participant.changePosition(positions.get(i).getIndex());
         });
     }
 

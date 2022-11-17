@@ -69,4 +69,4 @@
   - [x] linkedColumns 필드 제거
   - [x] move 메소드 수정
   - [x] getAllIsLinked 메소드 수정
-- [ ] Lines.move 메소드 수정
+- [x] Lines.move 메소드 수정
