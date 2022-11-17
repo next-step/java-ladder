@@ -35,13 +35,17 @@ public class Ladder {
     }
 
     private List<String> findResult(String playerName) {
-        List<String> resultList = new ArrayList<>();
         int playerIndex = this.players.findIndex(playerName);
+        int resultIndex = getResultIndex(playerIndex);
+        return List.of(this.results.findName(resultIndex));
+    }
+
+    private int getResultIndex(int playerIndex) {
+        int resultIndex = playerIndex;
         for (Line line : lines) {
-            playerIndex = line.nextIndex(playerIndex);
+            resultIndex = line.nextIndex(playerIndex);
         }
-        resultList.add(this.results.findName(playerIndex));
-        return resultList;
+        return resultIndex;
     }
 
     private List<String> findResultAll() {
