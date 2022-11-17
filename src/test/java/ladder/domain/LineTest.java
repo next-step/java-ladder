@@ -25,7 +25,7 @@ class LineTest {
         Line line = new Line(new PositiveInt(5));
         line.link(new TestLinkStrategy());
 
-        assertThat(line.move(1)).isEqualTo(0);
+        assertThat(line.move(new Point(1))).isEqualTo(new Point(0));
     }
 
     @Test

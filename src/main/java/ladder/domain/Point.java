@@ -17,8 +17,8 @@ public class Point {
         this.index = index;
     }
 
-    public int getIndex() {
-        return index.getValue();
+    public Point(final int index) {
+        this.index = new PositiveInt(index);
     }
 
     public Point move(final Direction direction) {
@@ -35,6 +35,14 @@ public class Point {
         }
 
         return this;
+    }
+
+    public PositiveInt getIndex() {
+        return index;
+    }
+
+    public int getIndexValue() {
+        return index.getValue();
     }
 
     @Override

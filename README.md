@@ -64,5 +64,9 @@
   - [x] move 메소드 추가
 - [x] Direction 클래스 추가
 - [x] RandomLinkStrategy.link 메소드 수정
-- [ ] Line.move 메소드 수정
+- [x] Line 클래스 수정
+  - [x] points 필드 제거
+  - [x] linkedColumns 필드 제거
+  - [x] move 메소드 수정
+  - [x] getAllIsLinked 메소드 수정
 - [ ] Lines.move 메소드 수정
