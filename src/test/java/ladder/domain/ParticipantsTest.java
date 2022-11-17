@@ -30,13 +30,13 @@ public class ParticipantsTest {
     @DisplayName("move 메소드는 참여자의 위치를 이동시킨다.")
     void move() {
         Participants participants = new Participants("jordy,penda,kero,cobb");
-        List<Integer> positions = List.of(1, 0, 3, 2);
+        List<Point> positions = List.of(new Point(1), new Point(0), new Point(3), new Point(2));
         participants.move(positions);
 
         String[] splited = "jordy,penda,kero,cobb".split(",");
         List<Participant> value = participants.getValue();
         IntStream.range(0, participants.size()).forEach(i -> {
-            assertThat(value.get(i)).isEqualTo(new Participant(splited[i], positions.get(i)));
+            assertThat(value.get(i)).isEqualTo(new Participant(splited[i], positions.get(i).getIndexValue()));
         });
     }
 

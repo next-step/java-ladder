@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import static ladder.domain.Direction.LEFT;
+import static ladder.domain.Direction.RIGHT;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +32,6 @@ public class Line {
     }
 
     private boolean isLinked(final Direction direction) {
-        return direction == LEFT;
+        return direction == RIGHT;
     }
 }

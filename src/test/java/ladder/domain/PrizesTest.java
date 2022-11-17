@@ -9,14 +9,6 @@ import org.junit.jupiter.api.Test;
 public class PrizesTest {
 
     @Test
-    @DisplayName("빈 값을 할당하는 경우 Prizes 객체를 생성하는데 실패한다.")
-    void create_with_empty_value() {
-        assertThatThrownBy(() -> new Prizes("", 3)).
-            isInstanceOf(IllegalArgumentException.class).
-            hasMessage("입력 값이 누락되었습니다.");
-    }
-
-    @Test
     @DisplayName("결과가 한 개 이하인 경우 Prizes 객체를 생성하는데 실패한다.")
     void create_with_one_prize() {
         assertThatThrownBy(() -> new Prizes("x", 3)).
