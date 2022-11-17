@@ -4,6 +4,7 @@ import ladder.util.RandomUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.IntStream;
 
 public class Ladder {
@@ -26,15 +27,27 @@ public class Ladder {
         return this.players.names();
     }
 
-    public int findResult(int index) {
-        for (Line line : lines) {
-            Point point = line.getPoints().get(index);
-            if (point.getCurrent()) {
-                index++;
-            } else if (point.getLeft()) {
-                index--;
-            }
+    public List<String> result(String playerName) {
+        if (!Objects.equals(playerName, "all")) {
+            return findResult(playerName);
         }
-        return index;
+        return findResultAll();
+    }
+
+    private List<String> findResult(String playerName) {
+        List<String> resultList = new ArrayList<>();
+        int playerIndex = this.players.findIndex(playerName);
+        for (Line line : lines) {
+            playerIndex = line.nextIndex(playerIndex);
+        }
+        resultList.add(this.results.findName(playerIndex));
+        return resultList;
+    }
+
+    private List<String> findResultAll() {
+        List<String> resultList = new ArrayList<>();
+        this.players.names()
+                .forEach((name) -> resultList.addAll(findResult(name)));
+        return resultList;
     }
 }

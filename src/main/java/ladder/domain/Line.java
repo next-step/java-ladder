@@ -32,4 +32,10 @@ public class Line {
     public List<Point> getPoints() {
         return points;
     }
+
+    public int nextIndex(int playerIndex) {
+        return this.getPoints()
+                .get(playerIndex)
+                .nextIndex(playerIndex);
+    }
 }

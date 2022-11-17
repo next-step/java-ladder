@@ -51,4 +51,14 @@ public class Point {
     public int hashCode() {
         return Objects.hash(left, current, index);
     }
+
+    public int nextIndex(int playerIndex) {
+        if (this.current) {
+            return playerIndex + 1;
+        }
+        if (this.left) {
+            return playerIndex - 1;
+        }
+        return playerIndex;
+    }
 }
