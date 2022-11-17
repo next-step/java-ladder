@@ -18,17 +18,10 @@ public class Line {
         this.points = points;
     }
 
-    public static Line create(Width width, ValueGenerator valueGenerator) {
-        List<Point> points = new ArrayList<>();
-        Point previous = Point.valueOf(false);
-        Count count = new Count(0);
-        while (width.bigger(count)) {
-            Point now = previous.next(valueGenerator);
-            points.add(now);
-            previous = now;
-            count.plus();
-        }
-        return new Line(points);
+    public Line(Boolean... inputs) {
+        this(Arrays.stream(inputs)
+                .map(Point::valueOf)
+                .collect(Collectors.toList()));
     }
 
     private void validateContinuous(List<Point> points) {
@@ -43,11 +36,37 @@ public class Line {
         }
     }
 
-    public Line(Boolean... inputs) {
-        this(Arrays.stream(inputs)
-                .map(Point::valueOf)
-                .collect(Collectors.toList()));
+    public static Line create(Width width, ValueGenerator valueGenerator) {
+        List<Point> points = new ArrayList<>();
+        Point previous = Point.valueOf(false);
+        Count count = new Count(0);
+        while (width.bigger(count)) {
+            Point now = previous.next(valueGenerator);
+            points.add(now);
+            previous = now;
+            count.plus();
+        }
+        return new Line(points);
     }
+
+    public int move(int index) {
+        if (moveLeft(index)) {
+            return index + 1;
+        }
+        if (moveRight(index)) {
+            return index - 1;
+        }
+        return index;
+    }
+
+    private boolean moveLeft(int index) {
+        return index < this.points.size() && this.points.get(index).isExist();
+    }
+
+    private boolean moveRight(int index) {
+        return index > 0 && this.points.get(index - 1).isExist();
+    }
+
 
     public List<Point> getStates() {
         return this.points;

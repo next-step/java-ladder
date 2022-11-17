@@ -29,6 +29,14 @@ public class Ladder {
         return new Ladder(lines);
     }
 
+    public int ride(int start) {
+        int end = start;
+        for (Line line : lines) {
+            end = line.move(end);
+        }
+        return end;
+    }
+
     public List<Line> getLines() {
         return lines;
     }
