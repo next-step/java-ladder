@@ -28,4 +28,8 @@ public class Line {
                 .map(Point::getCurrent)
                 .collect(Collectors.toList());
     }
+
+    public List<Point> getPoints() {
+        return points;
+    }
 }

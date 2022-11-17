@@ -35,6 +35,10 @@ public class Point {
         return current;
     }
 
+    public Boolean getLeft() {
+        return left;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

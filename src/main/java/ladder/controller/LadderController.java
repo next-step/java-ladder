@@ -11,10 +11,10 @@ import java.util.List;
 public class LadderController {
     public static void main(String[] args) {
         List<String> nameList = InputView.inputNameList();
-        List<String> resultList = InputView.inputResultList();
-        Integer height = InputView.InputHeight();
         Players players = new Players(nameList);
+        List<String> resultList = InputView.inputResultList();
         Results results = new Results(nameList.size(), resultList);
+        Integer height = InputView.InputHeight();
         Ladder ladder = new Ladder(nameList.size(), height, players, results);
         ResultView.printLadder(ladder);
     }

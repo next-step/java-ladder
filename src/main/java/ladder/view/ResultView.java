@@ -19,6 +19,11 @@ public class ResultView {
     public static void printLadder(Ladder ladder) {
         printNames(ladder);
         printLines(ladder);
+        printResult(ladder);
+    }
+
+    private static void printResult(Ladder ladder) {
+        System.out.println(ladder.findResult(0));
     }
 
     private static void printNames(Ladder ladder) {

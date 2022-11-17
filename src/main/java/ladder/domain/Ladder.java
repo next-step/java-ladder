@@ -25,4 +25,16 @@ public class Ladder {
     public List<String> names() {
         return this.players.names();
     }
+
+    public int findResult(int index) {
+        for (Line line : lines) {
+            Point point = line.getPoints().get(index);
+            if (point.getCurrent()) {
+                index++;
+            } else if (point.getLeft()) {
+                index--;
+            }
+        }
+        return index;
+    }
 }
