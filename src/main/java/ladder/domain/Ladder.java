@@ -2,9 +2,7 @@ package ladder.domain;
 
 import ladder.strategy.ConnectionStrategy;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Ladder {
     private static final String ALL_PLAYER = "all";
@@ -27,23 +25,35 @@ public class Ladder {
         return this.players.names();
     }
 
-    public List<String> result(String playerName) {
+    public List<String> results() {
+        return this.results.results();
+    }
+
+    public Map<String, String> result(String playerName) {
         if (!Objects.equals(playerName, ALL_PLAYER)) {
             return findResult(playerName);
         }
         return findResultAll();
     }
 
-    private List<String> findResult(String playerName) {
+    private Map<String, String> findResult(String playerName) {
+        Player player = this.players.findByName(playerName);
         int playerIndex = this.players.findIndex(playerName);
         int resultIndex = this.lines.nextIndex(playerIndex);
-        return List.of(this.results.findName(resultIndex));
+        String result = this.results.findName(resultIndex);
+        return makeResultMap(player, result);
     }
 
-    private List<String> findResultAll() {
-        List<String> resultList = new ArrayList<>();
+    private Map<String, String> findResultAll() {
+        Map<String,String> resultMap = new HashMap<>();
         this.players.names()
-                .forEach((name) -> resultList.addAll(findResult(name)));
-        return resultList;
+                .forEach((name) -> resultMap.putAll(findResult(name)));
+        return resultMap;
+    }
+
+    private Map<String, String> makeResultMap(Player player, String result) {
+        Map<String,String> resultMap = new HashMap<>();
+        resultMap.put(player.name(), result);
+        return resultMap;
     }
 }

@@ -20,10 +20,9 @@ public class Lines {
     }
 
     public int nextIndex(int playerIndex) {
-        int resultIndex = playerIndex;
         for (Line line : this.lines) {
-            resultIndex = line.nextIndex(playerIndex);
+            playerIndex = line.nextIndex(playerIndex);
         }
-        return resultIndex;
+        return playerIndex;
     }
 }

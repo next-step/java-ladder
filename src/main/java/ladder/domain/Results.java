@@ -4,6 +4,7 @@ import ladder.exception.InvalidResultSizeException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Results {
     private static final String VALIDATE_SIZE = "실행 결과는 참여자 수와 같아야 합니다.";
@@ -20,5 +21,11 @@ public class Results {
     public String findName(int playerIndex) {
         return resultList.get(playerIndex)
                 .getResult();
+    }
+
+    public List<String> results() {
+        return resultList.stream()
+                .map(Result::getResult)
+                .collect(Collectors.toList());
     }
 }

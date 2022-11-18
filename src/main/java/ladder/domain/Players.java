@@ -28,4 +28,11 @@ public class Players {
                 .findFirst()
                 .orElseThrow(() -> new NotFoundNameException(NOT_FOUND_NAME_MESSAGE)));
     }
+
+    public Player findByName(String playerName) {
+        return playerList.stream()
+                .filter(player -> Objects.equals(player.name(), playerName))
+                .findFirst()
+                .orElseThrow(() -> new NotFoundNameException(NOT_FOUND_NAME_MESSAGE));
+    }
 }
