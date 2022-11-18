@@ -13,20 +13,15 @@ public class Players {
     private final List<Player> playerList = new ArrayList<>();
 
     public Players(List<String> nameList) {
-        nameList.forEach((name) -> this.playerList.add(new Player(name)));
+        for (int i = 0; i < nameList.size(); i++) {
+            playerList.add(new Player(nameList.get(i), i));
+        }
     }
 
     public List<String> names() {
         return playerList.stream()
                 .map(Player::name)
                 .collect(Collectors.toList());
-    }
-
-    public int findIndex(String playerName) {
-        return playerList.indexOf(playerList.stream()
-                .filter(player -> Objects.equals(player.name(), playerName))
-                .findFirst()
-                .orElseThrow(() -> new NotFoundNameException(NOT_FOUND_NAME_MESSAGE)));
     }
 
     public Player findByName(String playerName) {

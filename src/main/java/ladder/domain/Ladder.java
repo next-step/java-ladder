@@ -38,8 +38,7 @@ public class Ladder {
 
     private Map<String, String> findResult(String playerName) {
         Player player = this.players.findByName(playerName);
-        int playerIndex = this.players.findIndex(playerName);
-        int resultIndex = this.lines.nextIndex(playerIndex);
+        int resultIndex = this.lines.nextIndex(player);
         String result = this.results.findName(resultIndex);
         return makeResultMap(player, result);
     }

@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class Line {
     private static final Integer START_LINE_BODY_INDEX = 2;
 
-    private final List<Point> points = new ArrayList<>();
+    private List<Point> points = new ArrayList<>();
 
     public Line(int countOfPerson, ConnectionStrategy connection) {
         Point point = Point.first(connection.isConnected());
@@ -21,6 +21,10 @@ public class Line {
         }
 
         this.points.add(point.last());
+    }
+
+    public Line(List<Point> points) {
+        this.points = points;
     }
 
     public List<Boolean> currentPoints() {

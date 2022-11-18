@@ -7,6 +7,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class PointTest {
 
+    public static final Point point1 = Point.first(true);
+    public static final Point point2 = point1.next(false);
+    public static final Point point3 = point2.last();
+
     @DisplayName("첫번째 Point 생성 시 left 는 false 이다.")
     @Test
     void create_first() {
