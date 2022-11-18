@@ -1,26 +1,26 @@
 package ladder.domain;
 
-import ladder.util.RandomUtil;
+import ladder.strategy.ConnectionStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.IntStream;
 
 public class Ladder {
+    private static final String ALL_PLAYER = "all";
+
     private final Players players;
-    private final List<Line> lines = new ArrayList<>();
+    private final Lines lines;
     private final Results results;
 
-    public Ladder(int size, int height, Players players, Results results) {
-        IntStream.range(0, height)
-                .forEach((i) -> lines.add(new Line(size, new RandomUtil())));
+    public Ladder(int size, int height, ConnectionStrategy connection, Players players, Results results) {
+        this.lines = new Lines(size, height, connection);
         this.players = players;
         this.results = results;
     }
 
     public List<Line> lines() {
-        return lines;
+        return this.lines.getLines();
     }
 
     public List<String> names() {
@@ -28,7 +28,7 @@ public class Ladder {
     }
 
     public List<String> result(String playerName) {
-        if (!Objects.equals(playerName, "all")) {
+        if (!Objects.equals(playerName, ALL_PLAYER)) {
             return findResult(playerName);
         }
         return findResultAll();
@@ -36,16 +36,8 @@ public class Ladder {
 
     private List<String> findResult(String playerName) {
         int playerIndex = this.players.findIndex(playerName);
-        int resultIndex = getResultIndex(playerIndex);
+        int resultIndex = this.lines.nextIndex(playerIndex);
         return List.of(this.results.findName(resultIndex));
-    }
-
-    private int getResultIndex(int playerIndex) {
-        int resultIndex = playerIndex;
-        for (Line line : lines) {
-            resultIndex = line.nextIndex(playerIndex);
-        }
-        return resultIndex;
     }
 
     private List<String> findResultAll() {
