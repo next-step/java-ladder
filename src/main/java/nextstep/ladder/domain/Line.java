@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Line {
@@ -11,5 +12,9 @@ public class Line {
 
     public int move(final int position) {
         return crosses.get(position).move();
+    }
+
+    public List<Cross> getCrosses() {
+        return Collections.unmodifiableList(crosses);
     }
 }

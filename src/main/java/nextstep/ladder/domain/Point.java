@@ -17,6 +17,10 @@ public class Point {
         return new Point(false, current);
     }
 
+    public static Point of(final boolean left, final boolean current) {
+        return new Point(left, current);
+    }
+
     public Point next(final Movable movable) {
         if (this.current) {
             return next(false);
@@ -58,5 +62,9 @@ public class Point {
         int result = (left ? 1 : 0);
         result = 31 * result + (current ? 1 : 0);
         return result;
+    }
+
+    public boolean isLeft() {
+        return left;
     }
 }

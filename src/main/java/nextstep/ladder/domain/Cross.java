@@ -42,4 +42,8 @@ public class Cross {
         }
         return position;
     }
+
+    public Point getPoint() {
+        return point;
+    }
 }

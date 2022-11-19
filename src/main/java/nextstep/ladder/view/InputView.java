@@ -16,13 +16,13 @@ public class InputView {
     private InputView() {
     }
 
-    public static List<String> getParticipants() {
+    public static List<String> getPeople() {
         System.out.println(PARTICIPANT_MESSAGE);
         String[] inputs = scanner.nextLine().split(COMMA_SEPARATOR);
         return Arrays.stream(inputs).collect(Collectors.toList());
     }
 
-    public static int getLadderHeight() {
+    public static int getHeight() {
         System.out.println();
         System.out.println(LADDER_HEIGHT_MESSAGE);
         return Integer.parseInt(scanner.nextLine());

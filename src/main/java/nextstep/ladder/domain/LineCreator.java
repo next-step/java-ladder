@@ -3,7 +3,6 @@ package nextstep.ladder.domain;
 import nextstep.ladder.utils.RandomValueGenerator;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class LineCreator {
@@ -19,6 +18,6 @@ public class LineCreator {
         }
 
         crosses.add(cross.last());
-        return new Line(Collections.unmodifiableList(crosses));
+        return new Line(crosses);
     }
 }
