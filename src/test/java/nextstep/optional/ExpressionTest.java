@@ -10,7 +10,7 @@ class ExpressionTest {
 
     @Test
     void of() {
-        assertThat(Expression.of("+")).isEqualTo(Expression.PLUS);
+        assertThat(Expression.of("+")).isSameAs(Expression.PLUS);
     }
 
     @Test
