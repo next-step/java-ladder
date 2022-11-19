@@ -17,8 +17,15 @@ public class Point {
         return new Point(false, current);
     }
 
-    public Point next(final boolean current) {
-        return new Point(this.current, current);
+    public Point next(final Movable movable) {
+        if (this.current) {
+            return next(false);
+        }
+        return next(movable.generate());
+    }
+
+    public Point next(final boolean nextCurrent) {
+        return new Point(this.current, nextCurrent);
     }
 
     public Point last() {
@@ -32,7 +39,24 @@ public class Point {
         if (left) {
             return Direction.LEFT;
         }
-        return Direction.SOUTH;
+        return Direction.DOWN;
     }
 
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Point)) return false;
+
+        Point point = (Point) o;
+
+        if (left != point.left) return false;
+        return current == point.current;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (left ? 1 : 0);
+        result = 31 * result + (current ? 1 : 0);
+        return result;
+    }
 }

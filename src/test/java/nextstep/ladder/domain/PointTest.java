@@ -1,7 +1,6 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.Direction;
-import nextstep.ladder.domain.Point;
+import nextstep.ladder.utils.RandomValueGenerator;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -16,9 +15,21 @@ class PointTest {
     }
 
     @Test
-    void next() {
+    void move() {
         Point point = Point.first(true).next(false);
         assertThat(point.move()).isEqualTo(Direction.LEFT);
+    }
+
+    @Test
+    void next() {
+        Point point = Point.first(true).next(new RandomValueGenerator());
+        assertThat(point.move()).isEqualTo(Direction.LEFT);
+
+        Point nextTruePoint = Point.first(false).next(() -> true);
+        assertThat(nextTruePoint.move()).isEqualTo(Direction.RIGHT);
+
+        Point nextFalsePoint = Point.first(false).next(() -> false);
+        assertThat(nextFalsePoint.move()).isEqualTo(Direction.DOWN);
     }
 
     @Test
@@ -39,8 +50,9 @@ class PointTest {
     }
 
      @Test
-     void south() {
+     void down() {
          Point point = Point.first(false).next(false);
-         assertThat(point.move()).isEqualTo(Direction.SOUTH);
+         assertThat(point.move()).isEqualTo(Direction.DOWN);
      }
+
 }
