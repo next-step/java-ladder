@@ -1,16 +1,16 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.Names;
+import nextstep.ladder.domain.Name;
+import nextstep.ladder.exception.IllegalNameLengthException;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class NameTest {
 
     @Test
-    void 이름을_입력_받는다(){
-        String names = "sienna,dong,meme";
-        assertThat(new Names(names).names()).isEqualTo("sienna,dong,meme");
-
+    void 이름은_5자_제한() {
+        String name = "ThisNameIsOver5";
+        Assertions.assertThatThrownBy(() -> new Name(name))
+            .isInstanceOf(IllegalNameLengthException.class);
     }
 }
