@@ -8,5 +8,6 @@ public class LadderController {
     public void startGame() {
         String names = InputView.askForPlayerNames();
         Names playerNames = new Names(names);
+        int height = InputView.askForMaxHeight();
     }
 }
