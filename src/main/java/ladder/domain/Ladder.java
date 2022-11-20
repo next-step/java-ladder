@@ -1,31 +1,58 @@
 package ladder.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import ladder.strategy.ConnectionStrategy;
+
+import java.util.*;
 
 public class Ladder {
+    private static final String ALL_PLAYER = "all";
 
-    private final List<Player> playerList = new ArrayList<>();
-    private final List<Line> lines = new ArrayList<>();
+    private final Players players;
+    private final Lines lines;
+    private final Results results;
 
-    public Ladder(List<String> nameList, int height) {
-        for (String name : nameList) {
-            this.playerList.add(new Player(name));
-        }
-
-        for (int i = 0; i < height; i++) {
-            lines.add(new Line(nameList.size()));
-        }
-    }
-
-    public List<String> names() {
-        return playerList.stream()
-                .map(Player::name)
-                .collect(Collectors.toList());
+    public Ladder(int size, int height, ConnectionStrategy connection, Players players, Results results) {
+        this.lines = new Lines(size, height, connection);
+        this.players = players;
+        this.results = results;
     }
 
     public List<Line> lines() {
-        return lines;
+        return this.lines.getLines();
+    }
+
+    public List<String> names() {
+        return this.players.names();
+    }
+
+    public List<String> results() {
+        return this.results.results();
+    }
+
+    public Map<String, String> result(String playerName) {
+        if (!Objects.equals(playerName, ALL_PLAYER)) {
+            return findResult(playerName);
+        }
+        return findResultAll();
+    }
+
+    private Map<String, String> findResult(String playerName) {
+        Player player = this.players.findByName(playerName);
+        int resultIndex = this.lines.nextIndex(player);
+        String result = this.results.findName(resultIndex);
+        return makeResultMap(player, result);
+    }
+
+    private Map<String, String> findResultAll() {
+        Map<String,String> resultMap = new HashMap<>();
+        this.players.names()
+                .forEach((name) -> resultMap.putAll(findResult(name)));
+        return resultMap;
+    }
+
+    private Map<String, String> makeResultMap(Player player, String result) {
+        Map<String,String> resultMap = new HashMap<>();
+        resultMap.put(player.name(), result);
+        return resultMap;
     }
 }

@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import ladder.strategy.RandomStrategy;
-
 import java.util.Objects;
 
 public class Point {
@@ -17,12 +15,12 @@ public class Point {
         this.index = index;
     }
 
-    public static Point first(RandomStrategy random) {
-        return new Point(false, random.randomBoolean(), INIT_POINT_INDEX);
+    public static Point first(boolean isConnected) {
+        return new Point(false, isConnected, INIT_POINT_INDEX);
     }
 
-    public Point next(RandomStrategy random) {
-        boolean next = random.randomBoolean();
+    public Point next(boolean isConnected) {
+        boolean next = isConnected;
         if (this.current && next) {
             next = false;
         }
@@ -48,5 +46,15 @@ public class Point {
     @Override
     public int hashCode() {
         return Objects.hash(left, current, index);
+    }
+
+    public int nextIndex(int playerIndex) {
+        if (this.current) {
+            return playerIndex + 1;
+        }
+        if (this.left) {
+            return playerIndex - 1;
+        }
+        return playerIndex;
     }
 }
