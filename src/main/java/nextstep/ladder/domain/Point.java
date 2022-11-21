@@ -9,7 +9,31 @@ public class Point {
         this.direction = direction;
     }
 
-    public Direction direction(){
+    public static Point first(DirectionStrategy strategy) {
+        if (strategy.isRight()) {
+            return new Point(Direction.RIGHT);
+        }
+        return new Point(Direction.STRAIGHT);
+    }
+
+    public static Point next(Point previous, DirectionStrategy strategy) {
+        if (previous.direction == Direction.RIGHT) {
+            return new Point(Direction.LEFT);
+        }
+        if (strategy.isRight()) {
+            return new Point(Direction.RIGHT);
+        }
+        return new Point(Direction.STRAIGHT);
+    }
+
+    public static Point last(Point previous, DirectionStrategy strategy) {
+        if (previous.direction == Direction.RIGHT) {
+            return new Point(Direction.LEFT);
+        }
+        return new Point(Direction.STRAIGHT);
+    }
+
+    public Direction direction() {
         return direction;
     }
 
