@@ -14,9 +14,9 @@ public class LadderController {
         List<String> nameList = InputView.inputNameList();
         Players players = new Players(nameList);
         List<String> resultList = InputView.inputResultList();
-        Results results = new Results(nameList.size(), resultList);
+        Results results = new Results(players, resultList);
         Integer height = InputView.inputHeight();
-        Ladder ladder = new Ladder(nameList.size(), height, new RandomUtil(), players, results);
+        Ladder ladder = new Ladder(height, new RandomUtil(), players, results);
         ResultView.printLadder(ladder);
 
         String resultPlayer = InputView.inputResultPlayer();

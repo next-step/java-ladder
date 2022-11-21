@@ -30,4 +30,8 @@ public class Players {
                 .findFirst()
                 .orElseThrow(() -> new NotFoundNameException(NOT_FOUND_NAME_MESSAGE));
     }
+
+    public Integer playerSize() {
+        return this.playerList.size();
+    }
 }

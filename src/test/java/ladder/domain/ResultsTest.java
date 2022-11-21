@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.*;
 
 class ResultsTest {
 
-    public final static Results results = new Results(2, List.of("꽝", "1000"));
+    public final static Results results = new Results(PlayersTest.players, List.of("꽝", "1000"));
 
     @Test
     @DisplayName("인덱스로 결과 값 찾기")

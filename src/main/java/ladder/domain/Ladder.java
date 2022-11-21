@@ -11,8 +11,8 @@ public class Ladder {
     private final Lines lines;
     private final Results results;
 
-    public Ladder(int size, int height, ConnectionStrategy connection, Players players, Results results) {
-        this.lines = new Lines(size, height, connection);
+    public Ladder(int height, ConnectionStrategy connection, Players players, Results results) {
+        this.lines = new Lines(players.playerSize(), height, connection);
         this.players = players;
         this.results = results;
     }
