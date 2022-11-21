@@ -12,7 +12,7 @@ public class Ladder {
         this(Arrays.asList(line));
     }
 
-    private Ladder(List<Line> lines) {
+    public Ladder(List<Line> lines) {
         this.lines = lines;
     }
 

@@ -31,4 +31,7 @@ public class Names {
         return playersName;
     }
 
+    public int size() {
+        return names().size();
+    }
 }

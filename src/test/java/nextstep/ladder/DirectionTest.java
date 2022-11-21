@@ -18,6 +18,5 @@ public class DirectionTest {
         List<Direction> points= Arrays.stream(Direction.values())
             .collect(Collectors.toList());
         assertThat(points.size()).isEqualTo(3);
-
     }
 }
