@@ -18,7 +18,7 @@ public class LadderFactoryTest {
         FixDirectionStrategy strategy = new FixDirectionStrategy();
 
         Ladder ladder = LadderFactory.from(new Names("name,pobi,meme"),new Height(2),strategy);
-        assertThat(ladder.lines())
+        assertThat(ladder.ladder())
             .isEqualTo(Arrays.asList(new Line(points),new Line(points)));
     }
 }

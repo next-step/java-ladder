@@ -8,7 +8,7 @@ public class Line {
 
     private List<Point> points;
 
-    public Line(Point point){
+    public Line(Point point) {
         this(Arrays.asList(point));
     }
 
@@ -16,7 +16,7 @@ public class Line {
         this.points = points;
     }
 
-    public List<Point> points() {
+    public List<Point> line() {
         return points;
     }
 

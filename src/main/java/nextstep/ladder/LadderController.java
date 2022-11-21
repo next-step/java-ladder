@@ -12,5 +12,6 @@ public class LadderController {
         int height = InputView.askForMaxHeight();
         Ladder ladder = LadderFactory.from(playerNames,new Height(height),randomDirectionStrategy);
         ResultView.showName(playerNames);
+        ResultView.showLadder(ladder);
     }
 }

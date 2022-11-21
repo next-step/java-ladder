@@ -18,6 +18,6 @@ public class LadderTest {
     void 사다리_생성() {
         Line line = new Line(new Point(Direction.LEFT));
         Ladder ladder = new Ladder(line);
-        assertThat(ladder.lines()).isEqualTo(Arrays.asList(line));
+        assertThat(ladder.ladder()).isEqualTo(Arrays.asList(line));
     }
 }

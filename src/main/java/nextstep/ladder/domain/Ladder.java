@@ -16,7 +16,7 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public List<Line> lines() {
+    public List<Line> ladder() {
         return lines;
     }
 

@@ -14,6 +14,6 @@ public class LineTest {
     @Test
     void 점이_모여_선(){
         Line line = new Line(new Point(Direction.LEFT));
-        assertThat(line.points()).isEqualTo(Arrays.asList(new Point(Direction.LEFT)));
+        assertThat(line.line()).isEqualTo(Arrays.asList(new Point(Direction.LEFT)));
     }
 }
