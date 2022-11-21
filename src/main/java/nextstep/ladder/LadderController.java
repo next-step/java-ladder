@@ -10,7 +10,7 @@ public class LadderController {
         String names = InputView.askForPlayerNames();
         Names playerNames = new Names(names);
         int height = InputView.askForMaxHeight();
-        Ladder ladder = LadderFactory.from(playerNames,new Height(height),randomDirectionStrategy);
+        Ladder ladder = LadderFactory.from(playerNames, new Height(height), randomDirectionStrategy);
         ResultView.showName(playerNames);
         ResultView.showLadder(ladder);
     }

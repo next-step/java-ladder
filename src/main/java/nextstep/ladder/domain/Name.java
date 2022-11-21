@@ -11,15 +11,16 @@ public class Name {
     private String name;
 
     public Name(String name) {
-        if(name.length() >MAX_LENGTH_NAME ){
+        if (name.length() > MAX_LENGTH_NAME) {
             throw new IllegalNameLengthException("이름은 5자를 초과할 수 없습니다");
         }
         this.name = name;
     }
 
-    public String name(){
+    public String name() {
         return name;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

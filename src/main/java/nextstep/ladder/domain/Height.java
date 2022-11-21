@@ -8,7 +8,7 @@ public class Height {
         this.height = height;
     }
 
-    public int height(){
-        return  height;
+    public int height() {
+        return height;
     }
 }

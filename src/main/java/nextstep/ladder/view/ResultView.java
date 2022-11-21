@@ -11,9 +11,7 @@ public class ResultView {
     public static final String LADDER_LINE = "|-----";
     public static final String LADDER_NO_LINE = "|     ";
 
-
     public static void showName(Names playerNames) {
-        StringBuilder builder = new StringBuilder();
         playerNames.names()
             .stream()
             .map(Name::name)
@@ -24,20 +22,9 @@ public class ResultView {
         System.out.println(SMALL_SPACE);
     }
 
-    private static String makeName(String name) {
-        StringBuilder builder = new StringBuilder();
-        int space = MAX_LENGTH - name.length();
-
-        for (int i = 0; i < space; i++) {
-            builder.append(SMALL_SPACE);
-        }
-
-        builder.append(name);
-        return builder.toString();
-    }
-
     public static void showLadder(Ladder ladder) {
-        ladder.ladder().stream()
+        ladder.ladder()
+            .stream()
             .map(Line::line)
             .forEach(line -> showLine(line));
     }
@@ -56,4 +43,17 @@ public class ResultView {
         }
         System.out.print(LADDER_NO_LINE);
     }
+
+    private static String makeName(String name) {
+        StringBuilder builder = new StringBuilder();
+        int space = MAX_LENGTH - name.length();
+
+        for (int i = 0; i < space; i++) {
+            builder.append(SMALL_SPACE);
+        }
+
+        builder.append(name);
+        return builder.toString();
+    }
+
 }
