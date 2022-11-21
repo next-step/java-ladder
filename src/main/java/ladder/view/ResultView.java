@@ -1,8 +1,8 @@
 package ladder.view;
 
 import ladder.domain.Ladder;
+import ladder.domain.LadderResult;
 
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ResultView {
@@ -25,8 +25,9 @@ public class ResultView {
 
     public static void printResult(Ladder ladder, String playerName) {
         System.out.println(RESULT_MESSAGE);
-        Map<String, String> result = ladder.result(playerName);
-        result.forEach((key, value) -> System.out.println(key + " : " + value));
+        LadderResult ladderResult = ladder.findLadderResult(playerName);
+        ladderResult.resultList()
+                .forEach(System.out::println);
     }
 
     private static void printNames(Ladder ladder) {

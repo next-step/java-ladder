@@ -29,30 +29,25 @@ public class Ladder {
         return this.results.results();
     }
 
-    public Map<String, String> result(String playerName) {
-        if (!Objects.equals(playerName, ALL_PLAYER)) {
-            return findResult(playerName);
+    public LadderResult findLadderResult(String playerName) {
+        Players players = findPlayers(playerName);
+        Results results = findResults(players);
+        return new LadderResult(players, results);
+    }
+
+    private Players findPlayers(String playerName) {
+        if (Objects.equals(playerName, ALL_PLAYER)) {
+            return this.players;
         }
-        return findResultAll();
+        return new Players(List.of(this.players.findByName(playerName).name()));
     }
 
-    private Map<String, String> findResult(String playerName) {
-        Player player = this.players.findByName(playerName);
-        int resultIndex = this.lines.nextIndex(player);
-        String result = this.results.findName(resultIndex);
-        return makeResultMap(player, result);
-    }
-
-    private Map<String, String> findResultAll() {
-        Map<String,String> resultMap = new HashMap<>();
-        this.players.names()
-                .forEach((name) -> resultMap.putAll(findResult(name)));
-        return resultMap;
-    }
-
-    private Map<String, String> makeResultMap(Player player, String result) {
-        Map<String,String> resultMap = new HashMap<>();
-        resultMap.put(player.name(), result);
-        return resultMap;
+    private Results findResults(Players players) {
+        List<String> result = new ArrayList<>();
+        for (Player player : players.getPlayerList()) {
+            int resultIndex = this.lines.nextIndex(player);
+            result.add(this.results.findName(resultIndex));
+        }
+        return new Results(players, result);
     }
 }

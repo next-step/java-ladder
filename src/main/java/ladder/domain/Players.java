@@ -34,4 +34,8 @@ public class Players {
     public Integer playerSize() {
         return this.playerList.size();
     }
+
+    public List<Player> getPlayerList() {
+        return playerList;
+    }
 }
