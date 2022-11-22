@@ -1,15 +1,10 @@
 package ladder.domain;
 
-import static ladder.domain.Direction.LEFT;
-import static ladder.domain.Direction.RIGHT;
-
 import java.util.Objects;
 
 public class Point {
 
     private final static String ERROR_EMPTY_VALUE = "입력 값이 누락되었습니다.";
-    private final static int LEFT_VALUE = -1;
-    private final static int RIGHT_VALUE = 1;
 
     private final PositiveInt index;
 
@@ -22,19 +17,14 @@ public class Point {
     }
 
     public Point move(final Direction direction) {
+        validate(direction);
+        return direction.move(index);
+    }
+
+    private void validate(final Direction direction) {
         if (direction == null) {
             throw new IllegalArgumentException(ERROR_EMPTY_VALUE);
         }
-
-        if (direction == LEFT) {
-            return new Point(index.plus(LEFT_VALUE));
-        }
-
-        if (direction == RIGHT) {
-            return new Point(index.plus(RIGHT_VALUE));
-        }
-
-        return this;
     }
 
     public PositiveInt getIndex() {
