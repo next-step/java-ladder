@@ -1,4 +1,4 @@
-package nextstep.game;
+package game;
 
 import game.domain.ladder.*;
 import org.junit.jupiter.api.BeforeEach;

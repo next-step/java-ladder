@@ -1,4 +1,4 @@
-package nextstep.game;
+package game;
 
 import game.domain.ladder.Direction;
 import org.junit.jupiter.api.Order;

@@ -1,6 +1,5 @@
-package nextstep.game.util;
+package game.util;
 
-import game.util.RandomValueGenerator;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
