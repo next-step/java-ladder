@@ -11,8 +11,8 @@ public class Results {
 
     private final List<Result> resultList = new ArrayList<>();
 
-    public Results(int size, List<String> inputResultList) {
-        if (inputResultList.size() != size) {
+    public Results(Players players, List<String> inputResultList) {
+        if (inputResultList.size() != players.playerSize()) {
             throw new InvalidResultSizeException(VALIDATE_SIZE);
         }
         inputResultList.forEach((result) -> this.resultList.add(new Result(result)));
