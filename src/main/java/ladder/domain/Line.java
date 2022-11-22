@@ -40,6 +40,6 @@ public class Line {
     public int nextIndex(int playerIndex) {
         return this.getPoints()
                 .get(playerIndex)
-                .nextIndex(playerIndex);
+                .nextIndex();
     }
 }
