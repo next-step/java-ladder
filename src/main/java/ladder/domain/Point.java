@@ -4,21 +4,35 @@ import java.util.Objects;
 
 public class Point {
 
-    private final PositiveInt x;
-    private final PositiveInt y;
+    private final static String ERROR_EMPTY_VALUE = "입력 값이 누락되었습니다.";
 
-    public Point(final int x, final int y) {
-        this.x = new PositiveInt(x);
-        this.y = new PositiveInt(y);
+    private final PositiveInt index;
+
+    public Point(final PositiveInt index) {
+        this.index = index;
     }
 
-    public Point(final PositiveInt x, final PositiveInt y) {
-        this.x = x;
-        this.y = y;
+    public Point(final int index) {
+        this.index = new PositiveInt(index);
     }
 
-    public int getY() {
-        return y.getValue();
+    public Point move(final Direction direction) {
+        validate(direction);
+        return direction.move(index);
+    }
+
+    private void validate(final Direction direction) {
+        if (direction == null) {
+            throw new IllegalArgumentException(ERROR_EMPTY_VALUE);
+        }
+    }
+
+    public PositiveInt getIndex() {
+        return index;
+    }
+
+    public int getIndexValue() {
+        return index.getValue();
     }
 
     @Override
@@ -31,17 +45,11 @@ public class Point {
             return false;
         }
 
-        Point that = (Point) o;
-
-        if (!this.x.equals(that.x)) {
-            return false;
-        }
-
-        return this.y.equals(that.y);
+        return this.index.equals(((Point) o).index);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.x, this.y);
+        return Objects.hashCode(this.index);
     }
 }

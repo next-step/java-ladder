@@ -16,23 +16,30 @@ public class Ladder {
     }
 
     public void draw(final LinkStrategy strategy) {
-        if (strategy == null) {
-            throw new IllegalArgumentException(ERROR_EMPTY_VALUE);
-        }
-
+        validateStrategy(strategy);
         lines.draw(strategy);
     }
 
+    private void validateStrategy(final LinkStrategy strategy) {
+        if (strategy == null) {
+            throw new IllegalArgumentException(ERROR_EMPTY_VALUE);
+        }
+    }
+
     public void play(final Participants participants) {
+        validateParticipants(participants);
+
+        List<Point> result = new ArrayList<>();
+        IntStream.range(0, participants.size())
+            .mapToObj(i -> lines.move(new Point(i)))
+            .forEach(result::add);
+        participants.move(result);
+    }
+
+    private void validateParticipants(final Participants participants) {
         if (participants == null) {
             throw new IllegalArgumentException(ERROR_EMPTY_VALUE);
         }
-
-        List<Integer> result = new ArrayList<>();
-        IntStream.range(0, participants.size())
-            .map(lines::move)
-            .forEach(result::add);
-        participants.move(result);
     }
 
     public List<Line> getLines() {

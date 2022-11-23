@@ -16,4 +16,11 @@ class PositiveIntTest {
             isInstanceOf(IllegalArgumentException.class).
             hasMessage("0 이상의 값만 입력 가능합니다.");
     }
+
+    @Test
+    @DisplayName("plus 메소드는 현재 value와 입력 받은 값을 더한 PositiveInt 객체를 반환한다.")
+    void plus() {
+        PositiveInt x = new PositiveInt(5);
+        assertThat(x.plus(3)).isEqualTo(new PositiveInt(8));
+    }
 }

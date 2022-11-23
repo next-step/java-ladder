@@ -64,7 +64,7 @@ public class OutputView {
 
     public static void printGameResult(final String name, final Participants participants, final Prizes prizes) {
         System.out.println("\n실행 결과");
-        if (name.equals(ALL)) {
+        if (ALL.equals(name)) {
             printAllGameResult(participants, prizes);
             return;
         }

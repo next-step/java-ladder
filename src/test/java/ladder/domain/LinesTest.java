@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import ladder.TestLinkStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -37,6 +36,6 @@ public class LinesTest {
         Lines lines = new Lines(5, 5);
         lines.draw(new TestLinkStrategy());
 
-        assertThat(lines.move(0)).isOne();
+        assertThat(lines.move(new Point(0))).isEqualTo(new Point(1));
     }
 }

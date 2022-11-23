@@ -12,8 +12,8 @@ public class Participant {
         this.position = new PositiveInt(position);
     }
 
-    public void changePosition(final int position) {
-        this.position = new PositiveInt(position);
+    public void changePosition(final PositiveInt position) {
+        this.position = position;
     }
 
     public boolean isEqualName(final String name) {

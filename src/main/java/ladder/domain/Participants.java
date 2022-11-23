@@ -38,7 +38,16 @@ public class Participants {
         return value.size();
     }
 
-    public void move(List<Integer> positions) {
+    public void move(List<Point> positions) {
+        validate(positions);
+
+        IntStream.range(0, value.size()).forEach(i -> {
+            Participant participant = value.get(i);
+            participant.changePosition(positions.get(i).getIndex());
+        });
+    }
+
+    private void validate(List<Point> positions) {
         if (positions == null || positions.isEmpty()) {
             throw new IllegalArgumentException(ERROR_EMPTY_VALUE);
         }
@@ -46,11 +55,6 @@ public class Participants {
         if (value.size() != positions.size()) {
             throw new IllegalArgumentException(ERROR_NOT_EQUAL_SIZE);
         }
-
-        IntStream.range(0, value.size()).forEach(i -> {
-            Participant participant = value.get(i);
-            participant.changePosition(positions.get(i));
-        });
     }
 
     public Participant findByName(final String name) {

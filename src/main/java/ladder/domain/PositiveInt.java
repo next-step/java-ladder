@@ -19,6 +19,14 @@ public class PositiveInt {
         }
     }
 
+    public PositiveInt plus(final int value) {
+        if (value == 0) {
+            return this;
+        }
+
+        return new PositiveInt(this.value + value);
+    }
+
     public int getValue() {
         return value;
     }
