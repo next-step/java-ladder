@@ -1,8 +1,5 @@
 package nextstep.ladder.domain;
 
-import static nextstep.ladder.domain.Direction.LEFT;
-import static nextstep.ladder.domain.Direction.RIGHT;
-
 public class Cross {
     private final int position;
     private final Point point;
@@ -24,6 +21,10 @@ public class Cross {
         return new Cross(0, Point.first(right));
     }
 
+    /**
+     * 마지막 point(people - 1) 직전인지 check 하기 위해 people -2로 검사
+     * @param people
+     */
     public boolean untilBeforeLastPoint(final int people) {
         return position < people - 2;
     }
@@ -33,14 +34,7 @@ public class Cross {
     }
 
     public int move() {
-        if (point.move() == RIGHT) {
-            return position + 1;
-        }
-
-        if (point.move() == LEFT) {
-            return position - 1;
-        }
-        return position;
+        return point.move().movePosition(this.position);
     }
 
     public Point getPoint() {
