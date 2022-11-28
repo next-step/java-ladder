@@ -1,6 +1,9 @@
 package ladder.view;
 
-import ladder.dto.*;
+import ladder.dto.LadderDto;
+import ladder.dto.LineDto;
+import ladder.dto.MembersDto;
+import ladder.dto.ResultsDto;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,7 +28,7 @@ public class ResultView {
 
     public static void printLadderResult(String resultMember, ResultsDto resultsDto) {
         System.out.println(RESULT);
-        if(resultMember.equals("all")) {
+        if (resultMember.equals("all")) {
             resultsDto.values()
                     .forEach(result -> System.out.printf(MEMBER_RESULT_MESSAGE, result.memberName(), result.result()));
         }
@@ -54,7 +57,7 @@ public class ResultView {
     }
 
     private static String printLines(LineDto line) {
-        return line.parts()
+        return line.points()
                 .stream()
                 .map(ResultView::getPart)
                 .collect(Collectors.joining());

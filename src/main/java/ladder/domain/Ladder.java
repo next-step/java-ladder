@@ -28,7 +28,7 @@ public class Ladder {
     int playLinesByMember(int firstPart) {
         int changePart = firstPart;
         for (LadderLine line : lines) {
-            changePart = line.drawPart(changePart);
+            changePart = line.move(changePart);
         }
         return changePart;
     }

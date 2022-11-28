@@ -1,17 +1,22 @@
 package ladder.dto;
 
 import ladder.domain.LadderLine;
+import ladder.domain.Point;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LineDto {
-    private final List<Boolean> parts;
+    private final List<Boolean> points;
 
     public LineDto(LadderLine ladderLine) {
-        this.parts = ladderLine.parts();
+        this.points = ladderLine.points()
+                .stream()
+                .map(Point::direction).collect(Collectors.toUnmodifiableList());
+
     }
 
-    public List<Boolean> parts() {
-        return parts;
+    public List<Boolean> points() {
+        return points;
     }
 }
