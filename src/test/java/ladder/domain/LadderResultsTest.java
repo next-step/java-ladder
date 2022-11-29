@@ -6,8 +6,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -25,11 +28,41 @@ class LadderResultsTest {
     @Test
     @DisplayName("사다리 생성하고, 사다리 실행 결과를 넣어 Result를 반환한다.")
     void test() {
-        LadderLine line1 = new LadderLine(List.of(false, true, false, true));
-        LadderLine line2 = new LadderLine(List.of(false, false, true, false));
-        LadderLine line3 = new LadderLine(List.of(false, true, false, false));
-        LadderLine line4 = new LadderLine(List.of(false, false, true, false));
-        LadderLine line5 = new LadderLine(List.of(false, true, false, true));
+        List<Point> points1 = new ArrayList<>();
+        points1.add(new Point(0, Direction.first(TRUE)));
+        points1.add(new Point(1, Direction.of(TRUE, FALSE)));
+        points1.add(new Point(2, Direction.of(FALSE, TRUE)));
+        points1.add(new Point(3, Direction.of(TRUE, FALSE)));
+
+        List<Point> points2 = new ArrayList<>();
+        points2.add(new Point(points1.get(0).getIndex(), Direction.of(FALSE, FALSE)));
+        points2.add(new Point(points1.get(1).getIndex(), Direction.of(FALSE, TRUE)));
+        points2.add(new Point(points1.get(2).getIndex(), Direction.of(TRUE, FALSE)));
+        points2.add(new Point(points1.get(3).getIndex(), Direction.of(FALSE, FALSE)));
+
+        List<Point> points3 = new ArrayList<>();
+        points3.add(new Point(points2.get(0).getIndex(), Direction.of(FALSE, TRUE)));
+        points3.add(new Point(points2.get(1).getIndex(), Direction.of(TRUE, FALSE)));
+        points3.add(new Point(points2.get(2).getIndex(), Direction.of(FALSE, FALSE)));
+        points3.add(new Point(points2.get(3).getIndex(), Direction.of(FALSE, FALSE)));
+
+        List<Point> points4 = new ArrayList<>();
+        points4.add(new Point(points3.get(0).getIndex(), Direction.of(FALSE, FALSE)));
+        points4.add(new Point(points3.get(1).getIndex(), Direction.of(FALSE, TRUE)));
+        points4.add(new Point(points3.get(2).getIndex(), Direction.of(TRUE, FALSE)));
+        points4.add(new Point(points3.get(3).getIndex(), Direction.of(FALSE, FALSE)));
+
+        List<Point> points5 = new ArrayList<>();
+        points5.add(new Point(points4.get(0).getIndex(), Direction.of(FALSE, TRUE)));
+        points5.add(new Point(points4.get(1).getIndex(), Direction.of(TRUE, FALSE)));
+        points5.add(new Point(points4.get(2).getIndex(), Direction.of(FALSE, TRUE)));
+        points5.add(new Point(points4.get(3).getIndex(), Direction.of(TRUE, FALSE)));
+
+        LadderLine line1 = new LadderLine(points1);
+        LadderLine line2 = new LadderLine(points2);
+        LadderLine line3 = new LadderLine(points3);
+        LadderLine line4 = new LadderLine(points4);
+        LadderLine line5 = new LadderLine(points5);
         Ladder ladder = new Ladder(List.of(line1, line2, line3, line4, line5));
 
         LadderResult result1 = new LadderResult("꽝");

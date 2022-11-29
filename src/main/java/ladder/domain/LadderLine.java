@@ -4,66 +4,50 @@ import ladder.strategy.LineCreateStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class LadderLine {
-    private final List<Boolean> parts;
+    private final List<Point> points;
 
     public LadderLine(int countOfMember, LineCreateStrategy lineCreateStrategy) {
         this(createLine(countOfMember, lineCreateStrategy));
     }
 
-    public LadderLine(List<Boolean> parts) {
-        this.parts = parts;
+    public LadderLine(List<Point> points) {
+        this.points = points;
     }
 
-    public int drawPart(int part) {
-        if (isFirstPart(part) && getRightPart(part)) {
-            return part + 1;
+    public int move(int position) {
+        return points.get(position).move();
+    }
+
+    private static List<Point> createLine(int countOfMember, LineCreateStrategy lineCreateStrategy) {
+        List<Point> points = new ArrayList<>();
+        Point point = initFirst(points, lineCreateStrategy);
+        point = initBody(countOfMember, points, point, lineCreateStrategy);
+        initLast(points, point);
+        return points;
+    }
+
+    private static Point initBody(int countOfMember, List<Point> points, Point point, LineCreateStrategy lineCreateStrategy) {
+        for (int i = 1; i < countOfMember - 1; i++) {
+            point = point.next(lineCreateStrategy);
+            points.add(point);
         }
-        if (isLastPart(part) && getLeftPart(part)) {
-            return part - 1;
-        }
-        if (!isFirstPart(part) && getLeftPart(part)) {
-            return part - 1;
-        }
-        if (!isLastPart(part) && getRightPart(part)) {
-            return part + 1;
-        }
-        return part;
+        return point;
     }
 
-    private boolean getLeftPart(int part) {
-        return parts.get(part);
+    private static void initLast(List<Point> points, Point point) {
+        point = point.last();
+        points.add(point);
     }
 
-    private boolean getRightPart(int part) {
-        return parts.get(part + 1);
+    private static Point initFirst(List<Point> points, LineCreateStrategy lineCreateStrategy) {
+        Point point = Point.first(lineCreateStrategy.create());
+        points.add(point);
+        return point;
     }
 
-    private boolean isLastPart(int part) {
-        return part == parts.size() - 1;
-    }
-
-    private boolean isFirstPart(int part) {
-        return part == 0;
-    }
-
-    private static List<Boolean> createLine(int countOfMember, LineCreateStrategy lineCreateStrategy) {
-        List<Boolean> values = new ArrayList<>(countOfMember);
-        IntStream.range(0, countOfMember)
-                .forEach(count -> values.add(makePart(values, count, lineCreateStrategy)));
-        return values;
-    }
-
-    private static Boolean makePart(List<Boolean> values, int count, LineCreateStrategy lineCreateStrategy) {
-        if (values.isEmpty() || values.get(count - 1)) {
-            return false;
-        }
-        return lineCreateStrategy.create();
-    }
-
-    public List<Boolean> parts() {
-        return List.copyOf(parts);
+    public List<Point> points() {
+        return List.copyOf(points);
     }
 }
