@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class LadderFactory {
-    private Names names;
-    private Height height;
+    private final Names names;
+    private final Height height;
 
     public static Ladder from(Names names, Height height, DirectionStrategy strategy) {
         List<Line> lines = new ArrayList<>();

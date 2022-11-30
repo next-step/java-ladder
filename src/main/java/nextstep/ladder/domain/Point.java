@@ -3,7 +3,7 @@ package nextstep.ladder.domain;
 import java.util.Objects;
 
 public class Point {
-    private Direction direction;
+    private final Direction direction;
 
     public Point(Direction direction) {
         this.direction = direction;

@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Line {
 
-    private List<Point> points;
+    private final List<Point> points;
 
     public Line(Point point) {
         this(Arrays.asList(point));

@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Ladder {
 
-    private List<Line> lines;
+    private final List<Line> lines;
 
     public Ladder(Line line) {
         this(Arrays.asList(line));

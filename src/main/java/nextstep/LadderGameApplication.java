@@ -1,13 +1,13 @@
 package nextstep;
 
 import nextstep.ladder.LadderController;
-import nextstep.ladder.domain.RandomDirectionImpl;
+import nextstep.ladder.domain.RandomDirectionStrategy;
 
 public class LadderGameApplication {
 
     public static void main(String[] args) {
 
-        RandomDirectionImpl randomDirection = new RandomDirectionImpl();
+        RandomDirectionStrategy randomDirection = new RandomDirectionStrategy();
         new LadderController().startGame(randomDirection);
     }
 }

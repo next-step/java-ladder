@@ -5,11 +5,11 @@ import nextstep.ladder.domain.*;
 import java.util.List;
 
 public class ResultView {
-    public static final int MAX_LENGTH = 6;
-    public static final String LONG_SPACE = "     ";
-    public static final String SMALL_SPACE = " ";
-    public static final String LADDER_LINE = "|-----";
-    public static final String LADDER_NO_LINE = "|     ";
+    private static final int MAX_LENGTH_OF_PRINT_NAME = 6;
+    private static final String LONG_SPACE = "     ";
+    private static final String SMALL_SPACE = " ";
+    private static final String LADDER_LINE = "|-----";
+    private static final String LADDER_NO_LINE = "|     ";
 
     public static void showName(Names playerNames) {
         playerNames.names()
@@ -46,7 +46,7 @@ public class ResultView {
 
     private static String makeName(String name) {
         StringBuilder builder = new StringBuilder();
-        int space = MAX_LENGTH - name.length();
+        int space = MAX_LENGTH_OF_PRINT_NAME - name.length();
 
         for (int i = 0; i < space; i++) {
             builder.append(SMALL_SPACE);
