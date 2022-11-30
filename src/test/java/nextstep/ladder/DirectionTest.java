@@ -13,10 +13,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class DirectionTest {
 
     @Test
-    @DisplayName("좌표는 좌,우로 총 두가지 방향으로 이루어져있다.")
+    @DisplayName("좌표는 좌,우,직선으로 총 세가지 방향으로 이루어져있다.")
     void 좌표_좌_우(){
         List<Direction> points= Arrays.stream(Direction.values())
             .collect(Collectors.toList());
-        assertThat(points.size()).isEqualTo(2);
+        assertThat(points.size()).isEqualTo(3);
     }
 }

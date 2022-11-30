@@ -13,7 +13,7 @@ public class Point {
         if (strategy.isRight()) {
             return new Point(Direction.RIGHT);
         }
-        return new Point(Direction.LEFT);
+        return new Point(Direction.STRAIGHT);
     }
 
     public static Point next(Point previous, DirectionStrategy strategy) {
@@ -23,14 +23,14 @@ public class Point {
         if (strategy.isRight()) {
             return new Point(Direction.RIGHT);
         }
-        return new Point(Direction.LEFT);
+        return new Point(Direction.STRAIGHT);
     }
 
     public static Point last(Point previous, DirectionStrategy strategy) {
         if (previous.direction == Direction.RIGHT) {
             return new Point(Direction.LEFT);
         }
-        return new Point(Direction.LEFT);
+        return new Point(Direction.STRAIGHT);
     }
 
     public Direction direction() {
