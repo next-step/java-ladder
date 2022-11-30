@@ -8,7 +8,7 @@ public class Point {
 
     private static final int DEFAULT_POSITION = 0;
     private final Direction direction;
-    private final int position;
+    private int position;
 
     public Point(Direction direction) {
         this(direction, DEFAULT_POSITION);
@@ -38,7 +38,7 @@ public class Point {
 
     public static Point last(Point previous) {
         if (previous.direction == Direction.RIGHT) {
-            return new Point(Direction.LEFT, previous.position -1);
+            return new Point(Direction.LEFT, previous.position - 1);
         }
         return new Point(Direction.STRAIGHT, previous.position);
     }
@@ -74,5 +74,9 @@ public class Point {
     @Override
     public int hashCode() {
         return Objects.hash(direction);
+    }
+
+    public int move() {
+        return position + direction.value();
     }
 }

@@ -19,6 +19,6 @@ public class LadderFactoryTest {
 
         Ladder ladder = LadderFactory.from(new Names("name,pobi,meme"),new Height(2),strategy);
         assertThat(ladder.ladder())
-            .isEqualTo(Arrays.asList(new Line(points),new Line(points)));
+            .isEqualTo(Arrays.asList(new Line( points),new Line(points)));
     }
 }

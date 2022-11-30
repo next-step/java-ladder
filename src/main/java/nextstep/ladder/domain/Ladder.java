@@ -1,18 +1,21 @@
 package nextstep.ladder.domain;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 public class Ladder {
 
     private final List<Line> lines;
+
+    private final HashMap<Integer, Integer> result;
 
     public Ladder(Line line) {
         this(Arrays.asList(line));
     }
 
     public Ladder(List<Line> lines) {
+        this.result = new HashMap<>();
         this.lines = lines;
     }
 
@@ -20,16 +23,22 @@ public class Ladder {
         return lines;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Ladder ladder = (Ladder) o;
-        return Objects.equals(lines, ladder.lines);
+    public void move(int numberOfPlayer) {
+        for (int startPosition = 0; startPosition < numberOfPlayer; startPosition++) {
+            result.put(startPosition, moveLine(startPosition));
+        }
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(lines);
+    public HashMap<Integer, Integer> result() {
+        return result;
+    }
+
+    private int moveLine(int startPosition) {
+        int destination = startPosition;
+        for (Line line : lines) {
+            destination = line.move(destination);
+        }
+        return destination;
+
     }
 }

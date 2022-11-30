@@ -6,10 +6,14 @@ public enum Direction {
     RIGHT(1),
 
     STRAIGHT(0);
-    private int direction;
+    public int direction;
 
     Direction(int direction) {
         this.direction = direction;
+    }
+
+    public int value(){
+        return direction;
     }
 
 }
