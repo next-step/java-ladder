@@ -1,30 +1,35 @@
 package nextstep.ladder.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
 
-    private final int sizeOfPerson;
+    private final List<String> people;
     private final List<Line> lines;
 
-    public Ladder(final int sizeOfPerson, final List<Line> lines) {
-        this.sizeOfPerson = sizeOfPerson;
+    public Ladder(final List<String> people, final List<Line> lines) {
+        this.people = people;
         this.lines = lines;
     }
 
-    public void play() {
-        for (int i = 0; i < sizeOfPerson; i++) {
-            move(i);
+    public List<LadderResult> play() {
+        List<LadderResult> list = new ArrayList<>();
+        int bound = people.size();
+        for (int i = 0; i < bound; i++) {
+            LadderResult move = move(i);
+            list.add(move);
         }
+        return list;
     }
 
-    public int move(final int position) {
+    public LadderResult move(final int position) {
         int result = position;
         for (Line line : lines) {
             result = line.move(result);
         }
-        return result;
+        return new LadderResult(people.get(position), result);
     }
 
     public List<Line> getLines() {

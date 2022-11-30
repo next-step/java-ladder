@@ -15,11 +15,11 @@ public class ResultView {
     private ResultView() {
     }
 
-    public static void printResult(final List<String> people, final Ladder ladder) {
-        System.out.println();
-        System.out.println(RESULT_MESSAGE);
+    public static void printResult(final List<String> people, final Ladder ladder, final List<String> playResults) {
+        System.out.println("\n" + RESULT_MESSAGE);
         printPeople(people);
         printLadder(ladder);
+        printPlayResult(playResults);
     }
 
     private static void printPeople(final List<String> people) {
@@ -35,6 +35,13 @@ public class ResultView {
                 .stream()
                 .map(ResultView::getLines)
                 .forEach(System.out::println);
+    }
+
+    private static void printPlayResult(final List<String> playResults) {
+        for (String result : playResults) {
+            System.out.printf("%5s ", result);
+        }
+        System.out.println();
     }
 
     private static String getLines(final Line line) {
