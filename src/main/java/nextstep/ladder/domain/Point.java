@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.exception.IllegalDirectionException;
+
 import java.util.Objects;
 
 public class Point {
@@ -35,6 +37,18 @@ public class Point {
 
     public Direction direction() {
         return direction;
+    }
+
+    public void validFirst() {
+        if (this.direction == Direction.LEFT) {
+            throw new IllegalDirectionException("첫번째 점은 왼쪽방향을 가질 수 없습니다");
+        }
+    }
+
+    public void validLast() {
+        if (this.direction == Direction.RIGHT) {
+            throw new IllegalDirectionException("마지막 점은 오른쪽 방향을 가질 수 없습니다");
+        }
     }
 
     @Override

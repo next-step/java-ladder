@@ -1,10 +1,18 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.exception.IllegalDirectionException;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import static nextstep.ladder.domain.Direction.RIGHT;
+import static nextstep.ladder.domain.Direction.STRAIGHT;
+
 public class Line {
+
+    private static final int FIRST_POINT = 0;
+    private static final int NEXT_POINT = 1;
 
     private final List<Point> points;
 
@@ -13,11 +21,35 @@ public class Line {
     }
 
     public Line(List<Point> points) {
-        this.points = points;
+        this.points = validPoint(points);
     }
 
     public List<Point> line() {
         return points;
+    }
+
+    private List<Point> validPoint(List<Point> points) {
+        validFirst(points.get(FIRST_POINT));
+
+        for (int i = FIRST_POINT; i < points.size() - NEXT_POINT; i++) {
+            validMiddle(points.get(i), points.get(i + NEXT_POINT));
+        }
+        validLast(points.get(points.size() - 1));
+        return points;
+    }
+
+    private void validFirst(Point firstPoint) {
+        firstPoint.validFirst();
+    }
+
+    private void validLast(Point lastPoint) {
+        lastPoint.validLast();
+    }
+
+    private void validMiddle(Point previous, Point current) {
+        if (previous.direction() == current.direction() && current.direction() != STRAIGHT) {
+            throw new IllegalDirectionException("중간점은 겹칠 수 없습니다");
+        }
     }
 
     @Override
