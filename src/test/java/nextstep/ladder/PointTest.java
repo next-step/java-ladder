@@ -21,4 +21,5 @@ public class PointTest {
         FixDirectionStrategy strategy = new FixDirectionStrategy();
         assertThat(Point.first(strategy)).isEqualTo(new Point(Direction.RIGHT));
     }
+
 }

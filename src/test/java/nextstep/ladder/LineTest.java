@@ -8,7 +8,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 
-import java.util.Arrays;
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -18,9 +17,9 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class LineTest {
     @Test
     void 점이_모여_선() {
-        Line line = new Line(new Point(Direction.LEFT));
+        Line line = new Line(new Point(Direction.STRAIGHT));
         assertThat(line.line())
-            .isEqualTo(asList(new Point(Direction.LEFT)));
+            .isEqualTo(asList(new Point(Direction.STRAIGHT)));
     }
 
 

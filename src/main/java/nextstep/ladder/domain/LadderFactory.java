@@ -28,7 +28,7 @@ public class LadderFactory {
             points.add(point);
         }
 
-        Point last = Point.last(point, strategy);
+        Point last = Point.last(point);
         points.add(last);
 
         return new Line(points);
