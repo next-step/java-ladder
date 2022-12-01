@@ -5,12 +5,12 @@ import java.util.Objects;
 public class LadderResult {
 
     private final String name;
-    private final int position;
+    private final String result;
 
 
-    public LadderResult(final String name, final int position) {
+    public LadderResult(final String name, final String result) {
         this.name = name;
-        this.position = position;
+        this.result = result;
     }
 
     @Override
@@ -20,14 +20,22 @@ public class LadderResult {
 
         LadderResult that = (LadderResult) o;
 
-        if (position != that.position) return false;
-        return Objects.equals(name, that.name);
+        if (!Objects.equals(name, that.name)) return false;
+        return Objects.equals(result, that.result);
     }
 
     @Override
     public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + position;
+        int result1 = name != null ? name.hashCode() : 0;
+        result1 = 31 * result1 + (result != null ? result.hashCode() : 0);
+        return result1;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getResult() {
         return result;
     }
 }
