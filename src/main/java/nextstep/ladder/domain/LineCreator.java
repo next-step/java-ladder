@@ -7,7 +7,10 @@ import java.util.List;
 
 public class LineCreator {
 
-    public Line create(final int sizeOfPerson) {
+    private LineCreator() {
+    }
+
+    public static Line create(final int sizeOfPerson) {
         List<Cross> crosses = new ArrayList<>();
         Cross cross = Cross.first(new RandomValueGenerator().generate());
         crosses.add(cross);

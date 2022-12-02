@@ -4,17 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LadderCreator {
-    private LineCreator lineCreator;
 
-    public LadderCreator(LineCreator lineCreator) {
-        this.lineCreator = lineCreator;
+    private LadderCreator() {
     }
 
-    public Ladder create(int countOfPerson, int height) {
+    public static Ladder create(final List<String> people, final int height, final List<String> playResults) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            lines.add(lineCreator.create(countOfPerson));
+            lines.add(LineCreator.create(people.size()));
         }
-        return new Ladder(countOfPerson, lines);
+        return new Ladder(people, lines, playResults);
     }
 }
