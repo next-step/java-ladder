@@ -2,12 +2,13 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ResultView {
     private static final int MAX_LENGTH_OF_PRINT_NAME = 6;
     private static final int MAX_LENGTH_OF_PRINT_RESULT = 6;
+    private static final String TARGET_IS_ALL = "all";
+    private static final String COLON_WITH_SPACE = " : ";
     private static final String LONG_SPACE = "     ";
     private static final String SMALL_SPACE = " ";
     private static final String LADDER_LINE = "|-----";
@@ -74,20 +75,20 @@ public class ResultView {
     }
 
     public static void showTargetResult(Result result, ResultOfGame resultOfGame, String target) {
-        if(target.equals("all")){
-            showAllResult(result,resultOfGame);
+        if (target.equals(TARGET_IS_ALL)) {
+            showAllResult(result, resultOfGame);
             return;
         }
         System.out.println(result.result(resultOfGame.targetResult(target)));
     }
 
-    public static void showAllResult(Result result,ResultOfGame resultOfGame) {
+    public static void showAllResult(Result result, ResultOfGame resultOfGame) {
         StringBuilder builder = new StringBuilder();
         List<Integer> results = resultOfGame.allResult();
 
         for (int i = 0; i < results.size(); i++) {
             builder.append(resultOfGame.names().names().get(i).name());
-            builder.append(" : ");
+            builder.append(COLON_WITH_SPACE);
             builder.append(result.result(results.get(i)));
             builder.append("\n");
         }

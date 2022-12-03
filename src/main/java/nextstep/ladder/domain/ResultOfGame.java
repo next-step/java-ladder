@@ -14,11 +14,11 @@ public class ResultOfGame {
         this.result = result;
     }
 
-    public Names names(){
+    public Names names() {
         return names;
     }
 
-    public Integer targetResult(String target) {
+    public int targetResult(String target) {
         return result.get(index(target));
     }
 
@@ -27,6 +27,7 @@ public class ResultOfGame {
         allResults.addAll(result.values());
         return allResults;
     }
+
     private int index(String target) {
         return names.index(target);
     }
