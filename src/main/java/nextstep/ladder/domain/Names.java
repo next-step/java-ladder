@@ -23,6 +23,11 @@ public class Names {
         return names().size();
     }
 
+    public int index(String target) {
+        Name targetName = new Name(target);
+        return playersName.indexOf(targetName);
+    }
+
     private List<Name> from(String names) {
         List<String> playersName = splitByByComma(names);
         return playersName
@@ -49,4 +54,6 @@ public class Names {
     public int hashCode() {
         return Objects.hash(playersName);
     }
+
+
 }

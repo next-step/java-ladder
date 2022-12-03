@@ -55,17 +55,13 @@ public class LineTest {
     @Test
     @DisplayName("선 안에 있는 점은 위치를 이동한다")
     void 위치_이동() {
-        List<Point> points1 = asList(new Point(Direction.STRAIGHT), new Point(Direction.RIGHT), new Point(Direction.STRAIGHT));
+        List<Point> points1 = asList(new Point(Direction.STRAIGHT), new Point(Direction.RIGHT), new Point(Direction.LEFT),new Point(Direction.STRAIGHT));
         Line line1 = new Line(points1);
 
         int startAtFirst = line1.move(0);
         int startAtMiddle = line1.move(1);
 
-        assertThat(startAtFirst).isEqualTo(0 + 1 + 0);
-        assertThat(startAtMiddle).isEqualTo(1 + 0);
-
-
+        assertThat(startAtFirst).isEqualTo(0);
+        assertThat(startAtMiddle).isEqualTo(1);
     }
-
-
 }

@@ -28,7 +28,7 @@ public class Point {
 
     public static Point next(Point previous, DirectionStrategy strategy) {
         if (previous.direction == Direction.RIGHT) {
-            return new Point(Direction.LEFT, previous.position - 1);
+            return new Point(Direction.LEFT, previous.position + 1);
         }
         if (strategy.isRight()) {
             return new Point(Direction.RIGHT, previous.position + 1);
@@ -38,17 +38,13 @@ public class Point {
 
     public static Point last(Point previous) {
         if (previous.direction == Direction.RIGHT) {
-            return new Point(Direction.LEFT, previous.position - 1);
+            return new Point(Direction.LEFT, previous.position + 1);
         }
         return new Point(Direction.STRAIGHT, previous.position);
     }
 
     public Direction direction() {
         return direction;
-    }
-
-    public int position() {
-        return position;
     }
 
     public void validFirst() {

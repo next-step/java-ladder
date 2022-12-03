@@ -72,4 +72,8 @@ public class ResultView {
         builder.append(name);
         return builder.toString();
     }
+
+    public static void showTargetResult(Result result,Integer index){
+        System.out.print(result.result(index));
+    }
 }

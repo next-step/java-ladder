@@ -19,7 +19,7 @@ public class LadderTest {
     @Test
     @DisplayName("사다리는 여러개의 선으로 이루어진다")
     void 사다리_생성() {
-        Line line = new Line(new Point(Direction.RIGHT));
+        Line line = new Line(new Point(Direction.STRAIGHT));
         Ladder ladder = new Ladder(line);
         assertThat(ladder.ladder()).isEqualTo(Arrays.asList(line));
     }
