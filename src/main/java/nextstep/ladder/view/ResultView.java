@@ -2,10 +2,12 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ResultView {
     private static final int MAX_LENGTH_OF_PRINT_NAME = 6;
+    private static final int MAX_LENGTH_OF_PRINT_RESULT = 6;
     private static final String LONG_SPACE = "     ";
     private static final String SMALL_SPACE = " ";
     private static final String LADDER_LINE = "|-----";
@@ -29,6 +31,13 @@ public class ResultView {
             .forEach(line -> showLine(line));
     }
 
+    public static void showResult(Result result) {
+        result.results()
+            .stream()
+            .map(ResultView::makeResult)
+            .forEach(result1 -> System.out.print(result1));
+    }
+
     private static void showLine(List<Point> line) {
         System.out.print(LONG_SPACE);
         line.stream()
@@ -44,16 +53,23 @@ public class ResultView {
         System.out.print(LADDER_NO_LINE);
     }
 
-    private static String makeName(String name) {
+    private static String makeResult(String result) {
         StringBuilder builder = new StringBuilder();
-        int space = MAX_LENGTH_OF_PRINT_NAME - name.length();
-
+        int space = (MAX_LENGTH_OF_PRINT_RESULT - result.length());
         for (int i = 0; i < space; i++) {
             builder.append(SMALL_SPACE);
         }
-
-        builder.append(name);
+        builder.append(result);
         return builder.toString();
     }
 
+    private static String makeName(String name) {
+        StringBuilder builder = new StringBuilder();
+        int space = MAX_LENGTH_OF_PRINT_NAME - name.length();
+        for (int i = 0; i < space; i++) {
+            builder.append(SMALL_SPACE);
+        }
+        builder.append(name);
+        return builder.toString();
+    }
 }
