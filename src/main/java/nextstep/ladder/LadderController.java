@@ -22,6 +22,6 @@ public class LadderController {
         ResultView.showResult(result);
 
         String target = InputView.askWantToKnow();
-        ResultView.showTargetResult(result,resultOfGame.targetResult(target));
+        ResultView.showTargetResult(result,resultOfGame,target);
     }
 }

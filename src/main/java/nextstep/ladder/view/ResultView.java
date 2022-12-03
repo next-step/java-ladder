@@ -73,7 +73,24 @@ public class ResultView {
         return builder.toString();
     }
 
-    public static void showTargetResult(Result result,Integer index){
-        System.out.print(result.result(index));
+    public static void showTargetResult(Result result, ResultOfGame resultOfGame, String target) {
+        if(target.equals("all")){
+            showAllResult(result,resultOfGame);
+            return;
+        }
+        System.out.println(result.result(resultOfGame.targetResult(target)));
+    }
+
+    public static void showAllResult(Result result,ResultOfGame resultOfGame) {
+        StringBuilder builder = new StringBuilder();
+        List<Integer> results = resultOfGame.allResult();
+
+        for (int i = 0; i < results.size(); i++) {
+            builder.append(resultOfGame.names().names().get(i).name());
+            builder.append(" : ");
+            builder.append(result.result(results.get(i)));
+            builder.append("\n");
+        }
+        System.out.println(builder);
     }
 }

@@ -33,14 +33,14 @@ public class Point {
         if (strategy.isRight()) {
             return new Point(Direction.RIGHT, previous.position + 1);
         }
-        return new Point(Direction.STRAIGHT, previous.position);
+        return new Point(Direction.STRAIGHT, previous.position + 1);
     }
 
     public static Point last(Point previous) {
         if (previous.direction == Direction.RIGHT) {
             return new Point(Direction.LEFT, previous.position + 1);
         }
-        return new Point(Direction.STRAIGHT, previous.position);
+        return new Point(Direction.STRAIGHT, previous.position + 1);
     }
 
     public Direction direction() {
