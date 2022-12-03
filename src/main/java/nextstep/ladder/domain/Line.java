@@ -3,7 +3,6 @@ package nextstep.ladder.domain;
 import nextstep.ladder.exception.IllegalDirectionException;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -33,7 +32,6 @@ public class Line {
 
     private List<Point> validPoint(List<Point> points) {
         points.get(FIRST_POINT).validFirst();
-
         for (int i = FIRST_POINT; i < points.size() - NEXT_POINT; i++) {
             validMiddle(points.get(i), points.get(i + NEXT_POINT));
         }

@@ -24,7 +24,7 @@ public class InputView {
         return scanner.next();
     }
 
-    public static String askWantToKnow() {
+    public static String askForTarget() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("\n");
         System.out.println("결과를 보고 싶은 사람은?");

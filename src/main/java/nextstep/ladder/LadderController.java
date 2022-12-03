@@ -10,7 +10,7 @@ public class LadderController {
 
     public void startGame(DirectionStrategy randomDirectionStrategy) {
         Names playerNames = new Names(InputView.askForPlayerNames());
-        Result result = new Result(InputView.askForResult());
+        Result result = new Result(InputView.askForResult(),playerNames);
         int height = InputView.askForMaxHeight();
 
         Ladder ladder = from(playerNames, new Height(height), randomDirectionStrategy);
@@ -21,7 +21,7 @@ public class LadderController {
         ResultView.showLadder(ladder);
         ResultView.showResult(result);
 
-        String target = InputView.askWantToKnow();
+        String target = InputView.askForTarget();
         ResultView.showTargetResult(result,resultOfGame,target);
     }
 }

@@ -18,8 +18,8 @@ public class ResultOfGame {
         return names;
     }
 
-    public Integer targetResult(String wantToKnow) {
-        return result.get(index(wantToKnow));
+    public Integer targetResult(String target) {
+        return result.get(index(target));
     }
 
     public List<Integer> allResult() {
@@ -27,7 +27,7 @@ public class ResultOfGame {
         allResults.addAll(result.values());
         return allResults;
     }
-    private int index(String wantToKnow) {
-        return names.index(wantToKnow);
+    private int index(String target) {
+        return names.index(target);
     }
 }
