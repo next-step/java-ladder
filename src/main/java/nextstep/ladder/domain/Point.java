@@ -1,40 +1,63 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.exception.IllegalDirectionException;
+
 import java.util.Objects;
 
 public class Point {
-    private Direction direction;
 
-    public Point(Direction direction) {
-        this.direction = direction;
-    }
+    private static final int DEFAULT_POSITION = 0;
+    private static final int MOVE_POSITION = 1;
+    private final Direction direction;
+    private int position;
 
     public static Point first(DirectionStrategy strategy) {
         if (strategy.isRight()) {
-            return new Point(Direction.RIGHT);
+            return new Point(Direction.RIGHT, DEFAULT_POSITION);
         }
-        return new Point(Direction.LEFT);
+        return new Point(Direction.STRAIGHT, DEFAULT_POSITION);
     }
 
     public static Point next(Point previous, DirectionStrategy strategy) {
         if (previous.direction == Direction.RIGHT) {
-            return new Point(Direction.LEFT);
+            return new Point(Direction.LEFT, previous.position + MOVE_POSITION);
         }
         if (strategy.isRight()) {
-            return new Point(Direction.RIGHT);
+            return new Point(Direction.RIGHT, previous.position + MOVE_POSITION);
         }
-        return new Point(Direction.LEFT);
+        return new Point(Direction.STRAIGHT, previous.position + MOVE_POSITION);
     }
 
-    public static Point last(Point previous, DirectionStrategy strategy) {
+    public static Point last(Point previous) {
         if (previous.direction == Direction.RIGHT) {
-            return new Point(Direction.LEFT);
+            return new Point(Direction.LEFT, previous.position + MOVE_POSITION);
         }
-        return new Point(Direction.LEFT);
+        return new Point(Direction.STRAIGHT, previous.position + MOVE_POSITION);
+    }
+
+    public Point(Direction direction) {
+        this(direction, DEFAULT_POSITION);
+    }
+
+    public Point(Direction direction, int position) {
+        this.direction = direction;
+        this.position = position;
     }
 
     public Direction direction() {
         return direction;
+    }
+
+    public void validFirst() {
+        if (this.direction == Direction.LEFT) {
+            throw new IllegalDirectionException("첫번째 점은 왼쪽방향을 가질 수 없습니다");
+        }
+    }
+
+    public void validLast() {
+        if (this.direction == Direction.RIGHT) {
+            throw new IllegalDirectionException("마지막 점은 오른쪽 방향을 가질 수 없습니다");
+        }
     }
 
     @Override
@@ -48,5 +71,9 @@ public class Point {
     @Override
     public int hashCode() {
         return Objects.hash(direction);
+    }
+
+    public int move() {
+        return position + direction.value();
     }
 }

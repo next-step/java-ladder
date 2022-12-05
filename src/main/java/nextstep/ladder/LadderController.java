@@ -4,14 +4,24 @@ import nextstep.ladder.domain.*;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
+import static nextstep.ladder.domain.LadderFactory.from;
+
 public class LadderController {
 
     public void startGame(DirectionStrategy randomDirectionStrategy) {
-        String names = InputView.askForPlayerNames();
-        Names playerNames = new Names(names);
+        Names playerNames = new Names(InputView.askForPlayerNames());
+        Result result = new Result(InputView.askForResult(),playerNames);
         int height = InputView.askForMaxHeight();
-        Ladder ladder = LadderFactory.from(playerNames, new Height(height), randomDirectionStrategy);
+
+        Ladder ladder = from(playerNames, new Height(height), randomDirectionStrategy);
+        ladder.move(playerNames.size());
+        ResultOfGame resultOfGame = new ResultOfGame(playerNames, ladder.result());
+
         ResultView.showName(playerNames);
         ResultView.showLadder(ladder);
+        ResultView.showResult(result);
+
+        String target = InputView.askForTarget();
+        ResultView.showTargetResult(result,resultOfGame,target);
     }
 }

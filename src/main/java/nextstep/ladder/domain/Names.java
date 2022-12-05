@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Names {
@@ -22,6 +23,11 @@ public class Names {
         return names().size();
     }
 
+    public int index(String target) {
+        Name targetName = new Name(target);
+        return playersName.indexOf(targetName);
+    }
+
     private List<Name> from(String names) {
         List<String> playersName = splitByByComma(names);
         return playersName
@@ -35,4 +41,19 @@ public class Names {
         Collections.addAll(playersName, names.split(DELIMITER_COMMA));
         return playersName;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Names names = (Names) o;
+        return Objects.equals(playersName, names.playersName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(playersName);
+    }
+
+
 }

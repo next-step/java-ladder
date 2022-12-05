@@ -8,7 +8,7 @@ public class Name {
 
     private static final int MAX_LENGTH_NAME = 5;
 
-    private String name;
+    private final String name;
 
     public Name(String name) {
         if (name.length() > MAX_LENGTH_NAME) {
