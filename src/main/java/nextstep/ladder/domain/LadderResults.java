@@ -1,17 +1,14 @@
 package nextstep.ladder.domain;
 
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class LadderResults {
 
     private final Map<String, String> results;
 
-    public LadderResults(final List<LadderResult> results) {
-        this.results = results.stream()
-                .collect(Collectors.toMap(LadderResult::getName, LadderResult::getResult, (a, b) -> b));
+    public LadderResults(final Map<String, String> map) {
+        this.results = map;
     }
 
     public String getResult(final String name) {
@@ -24,4 +21,5 @@ public class LadderResults {
     public Map<String, String> getResults() {
         return Collections.unmodifiableMap(results);
     }
+
 }
