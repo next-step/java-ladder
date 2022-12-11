@@ -8,11 +8,11 @@ public class LadderCreator {
     private LadderCreator() {
     }
 
-    public static Ladder create(final List<String> people, final int height, final List<String> playResults) {
+    public static Ladder create(final int sizeOfPerson, final int height) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            lines.add(LineCreator.create(people.size()));
+            lines.add(LineCreator.create(sizeOfPerson));
         }
-        return new Ladder(people, lines, playResults);
+        return new Ladder(lines);
     }
 }

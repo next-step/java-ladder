@@ -6,32 +6,26 @@ import java.util.List;
 
 public class Ladder {
 
-    private final List<String> people;
-    private final List<String> playResults;
     private final List<Line> lines;
 
-    public Ladder(final List<String> people, final List<Line> lines, final List<String> playResults) {
-        this.people = people;
+    public Ladder(final List<Line> lines) {
         this.lines = lines;
-        this.playResults = playResults;
     }
 
-    public LadderResults play() {
-        List<LadderResult> list = new ArrayList<>();
-        int bound = people.size();
-        for (int i = 0; i < bound; i++) {
-            LadderResult move = move(i);
-            list.add(move);
+    public PlayResults play(int sizeOfPerson) {
+        List<PlayResult> result = new ArrayList<>();
+        for (int i = 0; i < sizeOfPerson; i++) {
+            result.add(move(i));
         }
-        return new LadderResults(list);
+        return new PlayResults(result);
     }
 
-    public LadderResult move(final int position) {
+    private PlayResult move(final int position) {
         int result = position;
         for (Line line : lines) {
             result = line.move(result);
         }
-        return new LadderResult(people.get(position), playResults.get(result));
+        return new PlayResult(position, result);
     }
 
     public List<Line> getLines() {
