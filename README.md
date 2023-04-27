@@ -4,8 +4,8 @@
 
 ### 람다
 
-- [] MoveStrategy에 대한 익명 클래스로 구현하고 있는 것을 람다를 적용해 구현한다.
-- [] nextstep.fp.Lambda의 sumAll, SumAllEven, sumAllOverThree method를 람다를 활용해 중복을 제거한다.
+- [x] MoveStrategy에 대한 익명 클래스로 구현하고 있는 것을 람다를 적용해 구현한다.
+- [x] nextstep.fp.Lambda의 sumAll, SumAllEven, sumAllOverThree method를 람다를 활용해 중복을 제거한다.
 
 ### 스트림
 
