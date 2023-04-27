@@ -19,12 +19,12 @@
 
 ### Optional
 
-- [] nextstep.optional.User의 ageIsInRange2() 메서드를 구현한다.
-  - [] 30살 이상, 45살 이하에 해당하는 User가 존재하는 경우 true를 반환하는 메서드를 구현한다.
-  - [] agesInRange1() 메서드와 같은 기능을 Optional을 활용해 구현한다.
-  - [] nextstep.optional.UserTest의 테스트를 모두 pass해야 한다
-- [] nextstep.optional.Users의 getUser() 메서드를 자바 8의 stream과 Optional을 활용해 구현한다.
-  - [] 자바 8의 stream과 Optional을 사용하도록 리팩토링한다.
-  - [] UsersTest의 단위 테스트를 통과해야 한다.
-- [] nextstep.optional.ExpressionTest의 테스트가 통과되도록 Expressiondml of 메서드를 구현한다.
-  - [] of 메서드를 구현할 때 자바 8의 stream을 기반으로 구현한다.
+- [x] nextstep.optional.User의 ageIsInRange2() 메서드를 구현한다.
+  - [x] 30살 이상, 45살 이하에 해당하는 User가 존재하는 경우 true를 반환하는 메서드를 구현한다.
+  - [x] agesInRange1() 메서드와 같은 기능을 Optional을 활용해 구현한다.
+  - [x] nextstep.optional.UserTest의 테스트를 모두 pass해야 한다
+- [x] nextstep.optional.Users의 getUser() 메서드를 자바 8의 stream과 Optional을 활용해 구현한다.
+  - [x] 자바 8의 stream과 Optional을 사용하도록 리팩토링한다.
+  - [x] UsersTest의 단위 테스트를 통과해야 한다.
+- [x] nextstep.optional.ExpressionTest의 테스트가 통과되도록 Expressiondml of 메서드를 구현한다.
+  - [x] of 메서드를 구현할 때 자바 8의 stream을 기반으로 구현한다.
