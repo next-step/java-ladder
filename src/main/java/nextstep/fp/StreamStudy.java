@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 
 public class StreamStudy {
 
-    private static final int DEFAULT_SUM = 0;
     private static final int DOUBLE = 2;
     private static final int NUMBER_CONDITION = 3;
     private static final int LENGTH_CONDITION = 12;
@@ -46,13 +45,13 @@ public class StreamStudy {
 
     public static long sumAll(List<Integer> numbers) {
         return numbers.stream()
-                .reduce(DEFAULT_SUM, Integer::sum);
+                .reduce(0, Integer::sum);
     }
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
         return numbers.stream()
                 .filter(n -> n > NUMBER_CONDITION)
                 .map(n -> n * DOUBLE)
-                .reduce(DEFAULT_SUM, Integer::sum);
+                .reduce(0, Integer::sum);
     }
 }

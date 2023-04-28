@@ -3,7 +3,6 @@ package nextstep.fp;
 import java.util.List;
 
 public class Lambda {
-    private static final int ZERO = 0;
     private static final int EVEN_CONDITION = 2;
     private static final int OVER_CONDITION = 3;
 
@@ -33,7 +32,7 @@ public class Lambda {
     public static int sumWithCondition(List<Integer> numbers, Conditional conditional) {
         return numbers.stream()
                 .filter(conditional::meetsCondition)
-                .reduce(ZERO, Integer::sum);
+                .reduce(0, Integer::sum);
     }
 
     public static int sumAll(List<Integer> numbers) {
@@ -45,7 +44,7 @@ public class Lambda {
     }
 
     private static boolean isEvenNumber(int n) {
-        return n % EVEN_CONDITION == ZERO;
+        return n % EVEN_CONDITION == 0;
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
