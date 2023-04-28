@@ -3,8 +3,6 @@ package nextstep.fp;
 import java.util.List;
 
 public class Lambda {
-    private static final int EVEN_CONDITION = 2;
-    private static final int OVER_CONDITION = 3;
 
     public static void printAllOld(List<Integer> numbers) {
         System.out.println("printAllOld");
@@ -44,7 +42,7 @@ public class Lambda {
     }
 
     private static boolean isEvenNumber(int n) {
-        return n % EVEN_CONDITION == 0;
+        return n % 2 == 0;
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
@@ -52,6 +50,6 @@ public class Lambda {
     }
 
     private static boolean isOverThree(int n) {
-        return n > OVER_CONDITION;
+        return n > 3;
     }
 }
