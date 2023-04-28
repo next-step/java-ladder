@@ -19,4 +19,4 @@
 ### Optional
 - [X] Optional을 활용해 ageIsInRange2() 메소드에 구현
 - [X] Optional을 사용하도록 리팩토링한 후 UsersTest의 단위 테스트가 통과
-- [ ] nextstep.optional.ExpressionTest의 테스트가 통과하도록 Expression의 of 메소드를 구현
+- [X] nextstep.optional.ExpressionTest의 테스트가 통과하도록 Expression의 of 메소드를 구현
