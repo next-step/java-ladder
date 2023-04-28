@@ -3,6 +3,10 @@ package nextstep.fp;
 import java.util.List;
 
 public class Lambda {
+    private static final int DEFAULT_SUM = 0;
+    private static final int EVEN_CONDITION = 2;
+    private static final int OVER_CONDITION = 3;
+
     public static void printAllOld(List<Integer> numbers) {
         System.out.println("printAllOld");
 
@@ -27,30 +31,27 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            total += number;
-        }
-        return total;
+        return numbers.stream()
+                .reduce(DEFAULT_SUM, Integer::sum);
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number % 2 == 0) {
-                total += number;
-            }
-        }
-        return total;
+        return numbers.stream()
+                .filter(Lambda::isEvenNumber)
+                .reduce(DEFAULT_SUM, Integer::sum);
+    }
+
+    private static boolean isEvenNumber(Integer n) {
+        return n % EVEN_CONDITION == DEFAULT_SUM;
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number > 3) {
-                total += number;
-            }
-        }
-        return total;
+        return numbers.stream()
+                .filter(Lambda::isOverThree)
+                .reduce(DEFAULT_SUM, Integer::sum);
+    }
+
+    private static boolean isOverThree(Integer n) {
+        return n > OVER_CONDITION;
     }
 }
