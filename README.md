@@ -8,7 +8,7 @@
 - [X] DEFAULT_SUM 은 오히려 가독성을 해치는 일
 - [X] 함수명에서 even임을 명시했기 때문에 n % 2 == 0 이 더 직관적
 - [X] OVER_CONDITION도 마찬가지
-- [ ] StreamStudy.java 중복이 존재
+- [X] StreamStudy.java 중복이 존재
 
 ---
 

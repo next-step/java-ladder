@@ -16,9 +16,7 @@ public class StreamStudy {
     private static final int LONGEST_LIMIT = 100;
 
     public static long countWords() throws IOException {
-        String contents = Files.readString(Paths
-                .get("src/main/resources/fp/war-and-peace.txt"));
-        List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
+        List<String> words = readFile();
 
         return words.stream()
                 .filter(w -> w.length() > LENGTH_CONDITION)
@@ -26,15 +24,20 @@ public class StreamStudy {
     }
 
     public static void printLongestWordTop100() throws IOException {
-        String contents = Files.readString(Paths
-                .get("src/main/resources/fp/war-and-peace.txt"));
-        List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
+        List<String> words = readFile();
 
         words.stream()
                 .distinct()
                 .sorted(Comparator.comparing(String::length).reversed())
                 .limit(LONGEST_LIMIT)
                 .forEach(System.out::println);
+    }
+
+    private static List<String> readFile() throws IOException {
+        String contents = Files.readString(Paths
+                .get("src/main/resources/fp/war-and-peace.txt"));
+        List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
+        return words;
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
