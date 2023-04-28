@@ -3,6 +3,12 @@
 ---
 
 ## Step1 - 스트림, 람다, Optional
+### Step1 1차 피드백 수정
+- [ ] 람다 실습 2 - 람다를 활용해 중복 제거 의 요구조건을 충족
+- [ ] DEFAULT_SUM 은 오히려 가독성을 해치는 일
+- [ ] 함수명에서 even임을 명시했기 때문에 n % 2 == 0 이 더 직관적
+- [ ] OVER_CONDITION도 마찬가지
+- [ ] StreamStudy.java 중복이 존재
 
 ---
 
