@@ -23,7 +23,7 @@ public class StreamStudyTest {
     }
 
     @Test
-    public void prißntLongestWordTop100() throws Exception {
+    public void printLongestWordTop100() throws Exception {
         StreamStudy.printLongestWordTop100();
     }
 
