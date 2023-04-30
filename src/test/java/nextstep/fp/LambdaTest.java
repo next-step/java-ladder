@@ -1,5 +1,8 @@
 package nextstep.fp;
 
+import nextstep.fp.prediate.AlwaysTrueSumPredicate;
+import nextstep.fp.prediate.EvenNumbersSumPredicate;
+import nextstep.fp.prediate.GreaterThanThreeSumPredicate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -33,19 +36,19 @@ public class LambdaTest {
 
     @Test
     public void sumAll() throws Exception {
-        int sum = Lambda.sumAll(numbers);
+        int sum = Lambda.sumAllByPredicate(numbers, new AlwaysTrueSumPredicate());
         assertThat(sum).isEqualTo(21);
     }
 
     @Test
     public void sumAllEven() throws Exception {
-        int sum = Lambda.sumAllEven(numbers);
+        int sum = Lambda.sumAllByPredicate(numbers, new EvenNumbersSumPredicate());
         assertThat(sum).isEqualTo(12);
     }
 
     @Test
     public void sumAllOverThree() throws Exception {
-        int sum = Lambda.sumAllOverThree(numbers);
+        int sum = Lambda.sumAllByPredicate(numbers, new GreaterThanThreeSumPredicate());
         assertThat(sum).isEqualTo(15);
     }
 }
