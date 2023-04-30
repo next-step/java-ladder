@@ -20,7 +20,11 @@
 
 ### 다양한 stream method 실습
 - [X] List에 담긴 모든 숫자 중 3보다 큰 숫자를 2배 한 후 모든 값의 합을 구한다.
+<<<<<<< HEAD
 - [X] nextstep.fp.StreamStudy 클래스의 printLongestWordTop100() 메서드를 구현
+=======
+- [ ] nextstep.fp.StreamStudy 클래스의 printLongestWordTop100() 메서드를 구현
+>>>>>>> 93543ae (study - List에 담긴 모든 숫자 중 3보다 큰 숫자를 2배 한 후 모든 값의 합을 구한다.)
 
 ### Optional
 - [X] Optional을 활용해 ageIsInRange2() 메소드에 구현
