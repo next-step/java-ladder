@@ -53,4 +53,10 @@ public class Lambda {
         }
         return total;
     }
+
+    public static int sumByCondition(List<Integer> numbers, SumCondition sumCondition) {
+        return numbers.stream()
+                .filter(sumCondition::test)
+                .reduce(0, Integer::sum);
+    }
 }
