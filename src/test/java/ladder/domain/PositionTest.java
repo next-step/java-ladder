@@ -13,7 +13,7 @@ public class PositionTest {
 
   @BeforeEach
   public void setUp() {
-    position = new Position(2);
+    position = Position.firstPosition().moveNext().moveNext();
   }
 
   @Test

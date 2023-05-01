@@ -6,7 +6,7 @@ public class Direction {
   private final boolean left;
   private final boolean right;
 
-  public Direction(boolean left, boolean right) {
+  private Direction(boolean left, boolean right) {
     validateDirection(left, right);
 
     this.left = left;
