@@ -12,7 +12,7 @@ public class Participants {
 
     private final List<Name> names;
 
-    public Participants(List<Name> names) {
+    private Participants(List<Name> names) {
         this.names = names;
     }
 
@@ -26,7 +26,7 @@ public class Participants {
 
     private static List<Name> initNameList(String[] splitNames) {
         return Arrays.stream(splitNames)
-                .map(Name::new)
+                .map(Name::from)
                 .collect(Collectors.toList());
     }
 
@@ -41,5 +41,10 @@ public class Participants {
         if (names.length != distinctNames.size()) {
             throw new IllegalArgumentException("같은 이름을 입력했습니다.");
         }
+    }
+
+    @Override
+    public String toString() {
+        return "" + names;
     }
 }

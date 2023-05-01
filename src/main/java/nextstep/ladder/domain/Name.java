@@ -5,15 +5,19 @@ public class Name {
 
     private final String name;
 
-    public Name(String name) {
+    private Name(String name) {
+        checkNameValidation(name);
         String stripName = name.strip();
-        checkNameValidation(stripName);
         this.name = stripName.strip();
+    }
+
+    public static Name from(String name) {
+        return new Name(name);
     }
 
     private void checkNameValidation(String name) {
         isNullOrEmpty(name);
-        checkNameLength(name);
+        checkNameLength(name.strip());
     }
 
     private void isNullOrEmpty(String name) {
@@ -36,4 +40,8 @@ public class Name {
         }
     }
 
+    @Override
+    public String toString() {
+        return String.format("%5s",name);
+    }
 }
