@@ -10,7 +10,7 @@ class LadderTest {
     @Test
     @DisplayName("Ladder 높이와 사람 수를 가지고 생성한다.")
     void test01() {
-        Ladder ladder = new Ladder(4, 5);
+        Ladder ladder = new Ladder(5, 4);
 
         assertThat(ladder.lines()).hasSize(4);
     }
