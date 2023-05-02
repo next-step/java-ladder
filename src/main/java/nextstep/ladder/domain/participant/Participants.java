@@ -31,4 +31,8 @@ public class Participants {
                 .map(Participant::getName)
                 .collect(Collectors.toList());
     }
+
+    public int getSize() {
+        return this.participants.size();
+    }
 }
