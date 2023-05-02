@@ -10,4 +10,8 @@ public class Line {
     public Line(int participantsCount) {
         this.points = LadderUtil.makeLadderLine(participantsCount);
     }
+
+    public List<Boolean> getLine() {
+        return this.points;
+    }
 }

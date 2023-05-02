@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lines {
+
     private final List<Line> lines;
+
 
     public Lines(int ladderLength, int participantsCount) {
         final List<Line> lines = new ArrayList<>();
@@ -14,5 +16,9 @@ public class Lines {
         }
 
         this.lines = lines;
+    }
+
+    public List<Line> getLines() {
+        return this.lines;
     }
 }

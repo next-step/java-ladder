@@ -13,6 +13,7 @@ public class LadderUtil {
     public static List<Boolean> makeLadderLine(int participantsCount) {
         boolean status = false;
         final List<Boolean> ladderRow = new ArrayList<>();
+        ladderRow.add(status);
 
         for (int i = 0; i < participantsCount - 1; i++) {
             status = makeNextLine(status);

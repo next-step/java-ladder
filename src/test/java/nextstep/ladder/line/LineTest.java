@@ -13,6 +13,6 @@ public class LineTest {
         assertThat(new Line(3))
                 .extracting("points")
                 .asList()
-                .hasSize(2);
+                .hasSize(3);
     }
 }

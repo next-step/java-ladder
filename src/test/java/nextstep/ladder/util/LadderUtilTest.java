@@ -11,13 +11,13 @@ public class LadderUtilTest {
     @DisplayName("라인만들기 테스트")
     void makeLadderLine() {
         assertThat(LadderUtil.makeLadderLine(3))
-                .hasSize(2);
+                .hasSize(3);
     }
 
     @Test
     @DisplayName("참가자가 1명일때 라인만들기")
     void makeLadderLineAtOne() {
         assertThat(LadderUtil.makeLadderLine(1))
-                .hasSize(0);
+                .hasSize(1);
     }
 }
