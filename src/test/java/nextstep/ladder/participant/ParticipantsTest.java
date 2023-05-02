@@ -37,6 +37,6 @@ public class ParticipantsTest {
     void nameList() {
         assertThat(new Participants("1,2,3,4,5").getNames())
                 .hasSize(5)
-                .containsExactly("1", "2", "3", "4", "5");
+                .containsExactly("1","2","3","4","5");
     }
 }

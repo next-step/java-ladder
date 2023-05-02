@@ -1,19 +1,17 @@
 package nextstep.ladder.domain.participant;
 
 import java.util.Objects;
+import java.util.Optional;
 
 public class Name {
     private final String name;
 
     public Name(final String name) {
-        this.checkNameLength(name);
-        this.name = name;
-    }
-
-    private void checkNameLength(String name) {
-        if (name == null || name.isBlank() || name.length() > 5) {
-            throw new IllegalArgumentException("이름은 빈 칸, 혹은 5글자를 초과할 수 없습니다.");
-        }
+        this.name = Optional.ofNullable(name)
+                .filter(n -> n.length() > 0)
+                .filter(n -> n.length() < 6)
+                .filter(n -> !n.isBlank())
+                .orElseThrow(() -> new IllegalArgumentException("이름은 빈 칸, 혹은 5글자를 초과할 수 없습니다."));
     }
 
     String getName() {

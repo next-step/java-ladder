@@ -1,7 +1,7 @@
 package nextstep.ladder.domain.participant;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Participants {
@@ -13,17 +13,14 @@ public class Participants {
 
 
     private List<Participant> splitParticipants(String names) {
-        this.checkNames(names);
+        final List<String> nameList = List.of(Optional.ofNullable(names)
+                .filter(n -> !n.isBlank())
+                .map(n -> n.split(","))
+                .orElseThrow(() -> new IllegalArgumentException("참여자 이름은 빈값일 수 없습니다.")));
 
-        return Arrays.stream(names.split(","))
+        return nameList.stream()
                 .map(name -> new Participant(new Name(name)))
                 .collect(Collectors.toList());
-    }
-
-    private void checkNames(String names) {
-        if (names == null || names.isBlank()) {
-            throw new IllegalArgumentException("참여자 이름은 빈값일 수 없습니다.");
-        }
     }
 
     public List<String> getNames() {
