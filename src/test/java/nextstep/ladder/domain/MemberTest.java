@@ -4,7 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class MemberTest {
 
@@ -13,12 +12,6 @@ class MemberTest {
     void test01() {
         Member member = new Member("rang");
 
-        assertThat(member).isEqualTo(new Member("rang"));
-    }
-
-    @Test
-    @DisplayName("이름이 5글자 초과하면 에러 발생")
-    void test02() {
-        assertThatThrownBy(() -> new Member("saerang")).isInstanceOf(IllegalArgumentException.class);
+        assertThat(member.name()).isEqualTo("rang");
     }
 }

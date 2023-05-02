@@ -3,19 +3,14 @@ package nextstep.ladder.domain;
 import java.util.Objects;
 
 public class Member {
-    public static final int MAX_NAME_LENGTH = 5;
-    private final String name;
+    private final Name name;
 
     public Member(String name) {
-        if (name == null || name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException(String.format("이름은 %d 글자를 초과할 수 없습니다. name:" + name, MAX_NAME_LENGTH));
-        }
-
-        this.name = name;
+        this.name = new Name(name);
     }
 
     public String name() {
-        return this.name;
+        return this.name.name();
     }
 
     @Override
