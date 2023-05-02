@@ -15,9 +15,10 @@ class ParticipantsTest {
     @DisplayName("참가자 생성 기능")
     void createParticipants(String input) {
         String[] splitNames = input.split(",");
+        Participants participants = Participants.init(splitNames);
 
-        assertThat(Participants.init(splitNames))
-                .isInstanceOf(Participants.class);
+        assertThat(participants.getNumberOfNames())
+                .isEqualTo(4);
     }
 
     @ParameterizedTest

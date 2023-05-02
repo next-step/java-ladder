@@ -43,8 +43,12 @@ public class Participants {
         }
     }
 
+    public int getNumberOfNames() {
+        return names.size();
+    }
+
     @Override
     public String toString() {
-        return "" + names;
+        return "" + names + " ";
     }
 }

@@ -23,4 +23,14 @@ class RoundTest {
                 .isTrue();
     }
 
+    @Test
+    @DisplayName("Round 진행 및 종료 테스트")
+    void hasNoMoreRoundTest() {
+        Round round = Round.valueOf(Heights.from(1));
+        round.drawLadder(Participants.init(new String[]{"a", "b"}), previous -> false);
+
+        assertThat(round.hasMoreRound())
+                .isFalse();
+    }
+
 }

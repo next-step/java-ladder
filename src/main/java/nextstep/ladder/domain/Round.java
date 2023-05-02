@@ -12,9 +12,9 @@ public class Round {
         return new Round(heights);
     }
 
-    public void startRadder(Participants participants) {
+    public Lines drawLadder(Participants participants, DrawStrategy drawStrategy) {
         heights.countDown();
-
+        return Lines.init(participants, drawStrategy);
     }
 
     public boolean hasMoreRound() {

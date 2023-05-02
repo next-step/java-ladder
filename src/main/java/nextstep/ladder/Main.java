@@ -1,8 +1,7 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.Heights;
-import nextstep.ladder.domain.Participants;
-import nextstep.ladder.domain.Round;
+import nextstep.ladder.domain.*;
+import nextstep.ladder.domain.RandomDrawStrategy;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
@@ -15,8 +14,8 @@ public class Main {
 
         OutputView.resultOutput(participants);
         while (round.hasMoreRound()) {
-            round.startRadder(participants);
+            Lines lines = round.drawLadder(participants, new RandomDrawStrategy());
+            OutputView.printLadders(lines);
         }
-
     }
 }
