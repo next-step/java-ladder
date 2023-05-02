@@ -6,9 +6,11 @@ import java.util.List;
 
 public class Ladder {
 
+  private final MoveStrategy moveStrategy;
   private final List<LadderLine> ladderLines;
 
   public Ladder(int countOfUsers, int ladderHeight) {
+    this.moveStrategy = new DirectionMoveStrategy();
     this.ladderLines = createLadderLines(countOfUsers, ladderHeight);
   }
 
@@ -20,7 +22,7 @@ public class Ladder {
     List<LadderLine> ladderLineList = new ArrayList<>();
 
     for (int i = 0; i < ladderHeight; i++) {
-      ladderLineList.add(LadderLine.createPoints(countOfUsers, new DirectionMoveStrategy()));
+      ladderLineList.add(LadderLine.createPoints(countOfUsers, moveStrategy));
     }
 
     return ladderLineList;
