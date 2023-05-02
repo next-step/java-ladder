@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,8 +14,9 @@ public class Users {
     users = splitUsers(inputUsers);
   }
 
-  public User findUserByIndex(int index) {
-    return  users.get(index);
+  public List<User> unmodifiableUsers() {
+
+    return Collections.unmodifiableList(users);
   }
 
   public int countOfUser() {

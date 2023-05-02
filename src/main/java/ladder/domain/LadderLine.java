@@ -6,13 +6,14 @@ import java.util.List;
 
 public class LadderLine {
 
+  private static final int FIRST_AND_LAST_COUNT = 2;
   private final List<Point> points;
 
   private LadderLine(List<Point> points) {
     this.points = points;
   }
 
-  public List<Point> line() {
+  public List<Point> points() {
     return Collections.unmodifiableList(points);
   }
 
@@ -22,7 +23,7 @@ public class LadderLine {
 
     userPoints.add(point);
 
-    for (int index = 0; index < countOfUser - 1; index++) {
+    for (int index = 0; index < countOfUser - FIRST_AND_LAST_COUNT; index++) {
       point = point.createNextPoint(moveStrategy);
       userPoints.add(point);
     }
