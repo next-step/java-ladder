@@ -8,7 +8,7 @@ public class Member {
 
     public Member(String name) {
         if (name == null || name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException(String.format("이름은 %d 글자를 초과할 수 없습니다.", MAX_NAME_LENGTH));
+            throw new IllegalArgumentException(String.format("이름은 %d 글자를 초과할 수 없습니다. name:" + name, MAX_NAME_LENGTH));
         }
 
         this.name = name;
