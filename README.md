@@ -7,3 +7,10 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+
+step2
+1. 4명의 이름을 받는 input 개발 , 이름은 (,) 로 구분한다.
+2. 4명이 아닐경우 exception
+3. 최대 사다리 높이를 받는 input 개발
+4. 받은 정보로 사다리 생성
