@@ -16,11 +16,11 @@ class LineTest {
     }
 
     @Test
-    @DisplayName("0번째 Point 는 항상 false 이다.")
+    @DisplayName("0번째 Point 는 원하는 값을 갖는다.")
     void test02() {
         Line line = new Line(true, false, false);
 
-        assertThat(line.points()).containsExactly(false, false, false);
+        assertThat(line.points()).containsExactly(true, false, false);
     }
 
     @Test

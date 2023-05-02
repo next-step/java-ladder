@@ -27,11 +27,18 @@ public class Line {
     }
 
     private boolean canNotHavePoint(int index) {
-        return index == 0 || points.get(index - 1);
+        return index > 0 && points.get(index - 1);
     }
 
 
     public List<Boolean> points() {
         return Collections.unmodifiableList(this.points);
+    }
+
+    @Override
+    public String toString() {
+        return "Line{" +
+                "points=" + points +
+                '}';
     }
 }
