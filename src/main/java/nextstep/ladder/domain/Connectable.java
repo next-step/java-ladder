@@ -12,4 +12,11 @@ public class Connectable {
         return status;
     }
 
+    @Override
+    public String toString() {
+        return "Connectable{" +
+                "status=" + status +
+                '}';
+    }
+
 }
