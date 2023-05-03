@@ -18,4 +18,11 @@ public class Ladder {
         return lineColumns;
     }
 
+    @Override
+    public String toString() {
+        return "Ladder{" +
+                "lineColumns=" + lineColumns +
+                '}';
+    }
+
 }

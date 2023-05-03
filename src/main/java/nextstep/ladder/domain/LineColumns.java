@@ -25,4 +25,11 @@ public class LineColumns {
         return columns;
     }
 
+    @Override
+    public String toString() {
+        return "LineColumns{" +
+                "columns=" + columns +
+                '}';
+    }
+
 }

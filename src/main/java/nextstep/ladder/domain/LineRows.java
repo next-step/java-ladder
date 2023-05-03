@@ -41,4 +41,11 @@ public class LineRows {
         return connectables;
     }
 
+    @Override
+    public String toString() {
+        return "\nLineRows{" +
+                "connectables=" + connectables +
+                '}';
+    }
+
 }
