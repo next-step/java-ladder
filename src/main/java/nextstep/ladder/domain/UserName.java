@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 public class UserName {
 
     private static final int MAX_LENGTH = 5;
+    
     private final String name;
 
     private UserName(String name) {
