@@ -16,12 +16,16 @@ public final class ResultView {
         throw new IllegalCallerException("잘못된 객체생성 입니다.");
     }
 
-    public static void draw(Participants participants, Ladder ladder) {
+    public static void drawResultMessage() {
         System.out.println("\n실행결과\n");
+    }
 
+    public static void drawParticipants(Participants participants) {
         String drewUserNames = drawUserNames(participants);
         System.out.println(drewUserNames);
+    }
 
+    public static void drawLadder(Ladder ladder) {
         String drewLines = drawLines(ladder.getLineColumns());
         System.out.println(drewLines);
     }

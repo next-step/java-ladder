@@ -13,7 +13,9 @@ public class LadderApplication {
         LadderHeight ladderHeight = LadderHeight.from(InputView.showLadderHeightConsole());
 
         Ladder ladder = Ladder.create(ladderHeight, participants);
-        ResultView.draw(participants, ladder);
+        ResultView.drawResultMessage();
+        ResultView.drawParticipants(participants);
+        ResultView.drawLadder(ladder);
     }
 
 }
