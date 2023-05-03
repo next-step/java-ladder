@@ -8,11 +8,17 @@ import java.util.stream.IntStream;
 
 public class LineRows {
 
-    private final List<Connectable> connectables = new ArrayList<>();
+    private final List<Connectable> connectables;
 
-    public void initialize(int userCount, BooleanGenerator booleanGenerator) {
+    private LineRows(List<Connectable> connectables) {
+        this.connectables = connectables;
+    }
+
+    public static LineRows initialize(int userCount, BooleanGenerator booleanGenerator) {
+        LineRows lineRows = new LineRows(new ArrayList<>());
         IntStream.range(0, userCount - 1)
-                .forEach(index -> addConnect(index, booleanGenerator));
+                .forEach(index -> lineRows.addConnect(index, booleanGenerator));
+        return lineRows;
     }
 
     private void addConnect(int index, BooleanGenerator booleanGenerator) {

@@ -11,8 +11,7 @@ class LineRowsTest {
     @Test
     @DisplayName("연결여부 리스트를 갖는다.(테스트를 위해 BooleanGenerator: return false only)")
     void test01() {
-        LineRows lineRows = new LineRows();
-        lineRows.initialize(5, () -> false);
+        LineRows lineRows = LineRows.initialize(5, () -> false);
 
         System.out.println(lineRows.getConnectables());
 
@@ -23,8 +22,7 @@ class LineRowsTest {
     @DisplayName("사용자 수 보다 하나작은 연결여부 리스트를 생성한다.")
     void test02() {
         int userCount = 5;
-        LineRows lineRows = new LineRows();
-        lineRows.initialize(5, new RandomBooleanGenerator());
+        LineRows lineRows = LineRows.initialize(5, new RandomBooleanGenerator());
 
         assertThat(lineRows.getConnectables()).hasSize(userCount - 1);
     }
@@ -32,8 +30,7 @@ class LineRowsTest {
     @Test
     @DisplayName("연속해서 연결된 값(true)를 가질 수 없다.(테스트를 위해 BooleanGenerator: return true only)")
     void test03() {
-        LineRows lineRows = new LineRows();
-        lineRows.initialize(10, () -> true);
+        LineRows lineRows = LineRows.initialize(10, () -> true);
 
         System.out.println(lineRows.getConnectables());
 
