@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class NameTest {
     @Test
-    @DisplayName("이름이 5글자 초과하면 에러 발생")
+    @DisplayName("Name 생성")
     void test01() {
         Name name = new Name("rang");
 

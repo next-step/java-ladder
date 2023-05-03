@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.support.DefaultRandomBoolean;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,7 +12,7 @@ public class Ladder {
 
     public Ladder(int countOfNumber, int height) {
         lines = IntStream.range(0, height)
-                         .mapToObj(h -> new Line(countOfNumber))
+                         .mapToObj(h -> new Line(countOfNumber, new DefaultRandomBoolean()))
                          .collect(Collectors.toList());
     }
 
