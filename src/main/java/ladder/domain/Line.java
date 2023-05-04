@@ -36,18 +36,10 @@ public class Line {
 
 	public void addPoint(boolean randomBoolean) {
 		if (this.beforePoint.equals(new BeforePoint(true))) {
-			this.addFalse();
+			this.beforePoint = new BeforePoint(false);
+			this.points.add(false);
 			return;
 		}
-		this.addRandomBoolean(randomBoolean);
-	}
-
-	private void addFalse() {
-		this.beforePoint = new BeforePoint(false);
-		this.points.add(false);
-	}
-
-	private void addRandomBoolean(Boolean randomBoolean) {
 		this.beforePoint = new BeforePoint(randomBoolean);
 		this.points.add(randomBoolean);
 	}
