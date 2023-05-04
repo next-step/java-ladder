@@ -3,14 +3,13 @@ package ladder.view;
 import ladder.domain.LadderGame;
 import ladder.domain.LadderLine;
 
+import static ladder.utils.LadderUtil.*;
+
 public class ResultView {
 
-  private static final String CONNECTION = "-----";
-  private static final String DISCONNECTION = "     ";
-  private static final String SINGLE_POINT = "|";
 
   public static void showLadder(LadderGame ladderGame) {
-    System.out.println("실행 결과");
+    System.out.println(RESULT_MESSAGE);
 
     ladderGame.users().forEach(user -> System.out.printf("%5s ", user.name()));
     System.out.println();

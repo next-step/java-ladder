@@ -4,10 +4,10 @@ import ladder.domain.LadderHeight;
 
 import java.util.Scanner;
 
-public class InputView {
+import static ladder.utils.LadderUtil.HEIGHT_INPUT_MESSAGE;
+import static ladder.utils.LadderUtil.USERS_INPUT_MESSAGE;
 
-  public static final String USERS_INPUT_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
-  public static final String HEIGHT_INPUT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
+public class InputView {
 
   private static final Scanner SCANNER = new Scanner(System.in);
 

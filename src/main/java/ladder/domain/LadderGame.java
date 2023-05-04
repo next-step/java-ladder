@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import javax.sound.sampled.Line;
 import java.util.List;
 
 public class LadderGame {
