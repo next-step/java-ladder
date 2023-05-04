@@ -3,6 +3,7 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Ladder {
 
@@ -21,9 +22,8 @@ public class Ladder {
   private List<LadderLine> createLadderLines(int countOfUsers, int ladderHeight) {
     List<LadderLine> ladderLineList = new ArrayList<>();
 
-    for (int i = 0; i < ladderHeight; i++) {
-      ladderLineList.add(LadderLine.createPoints(countOfUsers, moveStrategy));
-    }
+    IntStream.range(0, ladderHeight)
+            .forEach((i) -> ladderLineList.add(LadderLine.createPoints(countOfUsers, moveStrategy)));
 
     return ladderLineList;
   }
