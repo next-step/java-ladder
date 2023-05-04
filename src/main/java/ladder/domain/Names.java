@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class Names {
 
-	public static final int MAX_LENGTH = 5;
+	public static final int MAX_LENGTH = 10;
 	private final List<String> names = new ArrayList<>();
 
 	public Names(String inputNames) {

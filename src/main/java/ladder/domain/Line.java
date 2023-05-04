@@ -1,22 +1,32 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Line {
 
-	private static final Random random = new Random();
+	private static final Random RANDOM;
+	private static final String TRUE_TEXT;
+	private static final String FALSE_TEXT;
 
 	private final List<Boolean> points;
 	private boolean beforePoint;
 
+	static {
+		RANDOM = new Random();
+		TRUE_TEXT = String.join("", Collections.nCopies(Names.MAX_LENGTH, "-"));
+		FALSE_TEXT = String.join("", Collections.nCopies(Names.MAX_LENGTH, " "));
+	}
+
 	public Line(int countOfPerson) {
 		this.points = new ArrayList<>();
 		this.beforePoint = false;
-		IntStream.range(0, countOfPerson - 1).forEach(i -> this.addPoint(Line.random.nextBoolean()));
+		IntStream.range(0, countOfPerson - 1).forEach(i -> this.addPoint(Line.RANDOM.nextBoolean()));
 	}
 
 	// TC를 수월하게 작성하기 위한 생성자, 프로덕션 코드에서 사용금지.
@@ -45,6 +55,13 @@ public class Line {
 
 	public List<Boolean> getPoints() {
 		return this.points;
+	}
+
+	@Override
+	public String toString() {
+		return this.points.stream()
+			.map(point -> point ? Line.TRUE_TEXT : Line.FALSE_TEXT)
+			.collect(Collectors.joining(Height.HEIGHT_TEXT, Height.HEIGHT_TEXT, Height.HEIGHT_TEXT));
 	}
 
 	@Override

@@ -17,4 +17,8 @@ public class Ladder {
 		this.height = new Height(height);
 		IntStream.range(0, height).forEach(i -> this.lines.add(new Line(countOfPerson)));
 	}
+
+	public List<Line> getLines() {
+		return this.lines;
+	}
 }
