@@ -10,10 +10,6 @@ public class BeforePoint {
 		this.beforePoint = beforePoint;
 	}
 
-	public boolean is() {
-		return this.beforePoint;
-	}
-
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)

@@ -35,7 +35,7 @@ public class Line {
 	}
 
 	public void addPoint(boolean randomBoolean) {
-		if (this.beforePoint.is()) {
+		if (this.beforePoint.equals(new BeforePoint(true))) {
 			this.addFalse();
 			return;
 		}
