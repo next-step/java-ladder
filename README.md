@@ -22,8 +22,10 @@
   - 랜덤으로 채우되 가로라인이 인접하게 채울수는 없다.
   - 라인 내, 가로라인의 개수는 `참가할 사람의 수 - 1`과 일치한다.
   - boolean 값이 들어갈 수 있으며 true는 가로 라인을 채운다는 의미이고 false는 채우지 않는다는 의미이다.
-- [ ] 높이를 채운다.
+- [x] 높이를 채운다.
   - 총 라인의 수는 `입력받은 최대 사다리 높이`와 일치한다.
+  - 참여할 사람이 1보다 작으면 IllegalArgumentException 발생
+  - 사다리 최대 높이가 1보다 작으면 IllegalArgumentException 발생
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
