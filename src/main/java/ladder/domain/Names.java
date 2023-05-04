@@ -7,6 +7,7 @@ import java.util.Objects;
 
 public class Names {
 
+	public static final int MAX_LENGTH = 5;
 	private final List<String> names = new ArrayList<>();
 
 	public Names(String inputNames) {
@@ -21,6 +22,14 @@ public class Names {
 				}
 				this.names.add(name);
 			});
+	}
+
+	public int countOfPerson() {
+		return this.names.size();
+	}
+
+	public List<String> getNames() {
+		return this.names;
 	}
 
 	@Override
