@@ -9,8 +9,7 @@ public class LadderMain {
 
 	public static void main(String[] args) {
 		Names names = new Names(InputView.inputNames());
-		int height = InputView.inputHeight();
-		Ladder ladder = new Ladder(names.countOfPerson(), height);
+		Ladder ladder = new Ladder(names.countOfPerson(), InputView.inputHeight());
 		ResultView.printNames(names);
 		ResultView.printLadder(ladder);
 	}

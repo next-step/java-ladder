@@ -7,7 +7,8 @@ import java.util.Objects;
 
 public class Names {
 
-	public static final int MAX_LENGTH = 10;
+	public static final int MAX_LENGTH = 5;
+
 	private final List<String> names = new ArrayList<>();
 
 	public Names(String inputNames) {
@@ -17,7 +18,7 @@ public class Names {
 				if (name.isBlank()) {
 					throw new IllegalArgumentException("이름은 비어있을 수 없습니다.");
 				}
-				if (name.length() > 5) {
+				if (name.length() > Names.MAX_LENGTH) {
 					throw new IllegalArgumentException("이름은 최대 5자까지 가능합니다.");
 				}
 				this.names.add(name);

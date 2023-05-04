@@ -5,17 +5,16 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Line {
 
 	private static final Random RANDOM;
-	private static final String TRUE_TEXT;
-	private static final String FALSE_TEXT;
+	public static final String TRUE_TEXT;
+	public static final String FALSE_TEXT;
 
-	private final List<Boolean> points;
-	private boolean beforePoint;
+	private final Points points;
+	private BeforePoint beforePoint;
 
 	static {
 		RANDOM = new Random();
@@ -24,19 +23,19 @@ public class Line {
 	}
 
 	public Line(int countOfPerson) {
-		this.points = new ArrayList<>();
-		this.beforePoint = false;
+		this.points = new Points(new ArrayList<>());
+		this.beforePoint = new BeforePoint(false);
 		IntStream.range(0, countOfPerson - 1).forEach(i -> this.addPoint(Line.RANDOM.nextBoolean()));
 	}
 
 	// TC를 수월하게 작성하기 위한 생성자, 프로덕션 코드에서 사용금지.
 	public Line(List<Boolean> points, boolean beforePoint) {
-		this.points = points;
-		this.beforePoint = beforePoint;
+		this.points = new Points(points);
+		this.beforePoint = new BeforePoint(beforePoint);
 	}
 
 	public void addPoint(boolean randomBoolean) {
-		if (this.beforePoint) {
+		if (this.beforePoint.is()) {
 			this.addFalse();
 			return;
 		}
@@ -44,24 +43,18 @@ public class Line {
 	}
 
 	private void addFalse() {
-		this.beforePoint = false;
+		this.beforePoint = new BeforePoint(false);
 		this.points.add(false);
 	}
 
 	private void addRandomBoolean(Boolean randomBoolean) {
-		this.beforePoint = randomBoolean;
+		this.beforePoint = new BeforePoint(randomBoolean);
 		this.points.add(randomBoolean);
-	}
-
-	public List<Boolean> getPoints() {
-		return this.points;
 	}
 
 	@Override
 	public String toString() {
-		return this.points.stream()
-			.map(point -> point ? Line.TRUE_TEXT : Line.FALSE_TEXT)
-			.collect(Collectors.joining(Height.HEIGHT_TEXT, Height.HEIGHT_TEXT, Height.HEIGHT_TEXT));
+		return this.points.createLineText();
 	}
 
 	@Override
@@ -71,7 +64,7 @@ public class Line {
 		if (o == null || getClass() != o.getClass())
 			return false;
 		Line line = (Line)o;
-		return beforePoint == line.beforePoint && Objects.equals(points, line.points);
+		return Objects.equals(points, line.points) && Objects.equals(beforePoint, line.beforePoint);
 	}
 
 	@Override

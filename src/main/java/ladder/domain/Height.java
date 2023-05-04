@@ -3,6 +3,7 @@ package ladder.domain;
 public class Height {
 
 	public static String HEIGHT_TEXT = "|";
+
 	private final int height;
 
 	public Height(int height) {
