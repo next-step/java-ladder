@@ -3,6 +3,7 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.IntStream;
 
 public class Line {
 
@@ -14,9 +15,7 @@ public class Line {
 	public Line(int countOfPerson) {
 		this.points = new ArrayList<>();
 		this.beforePoint = false;
-		for (int i = 0; i < countOfPerson - 1; i++) {
-			this.addPoint();
-		}
+		IntStream.range(0, countOfPerson - 1).forEach(i -> this.addPoint());
 	}
 
 	private void addPoint() {
