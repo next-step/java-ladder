@@ -21,9 +21,9 @@ class UsersTest {
   @DisplayName(",를 구분자로 여러 유저 생성")
   public void create_유저들() {
     assertAll(
-            () -> assertThat(users.findUserByIndex(0).name()).isEqualTo("pobi"),
-            () -> assertThat(users.findUserByIndex(1).name()).isEqualTo("oneny"),
-            () -> assertThat(users.findUserByIndex(2).name()).isEqualTo("twony")
+            () -> assertThat(users.unmodifiableUsers().get(0).name()).isEqualTo("pobi"),
+            () -> assertThat(users.unmodifiableUsers().get(1).name()).isEqualTo("oneny"),
+            () -> assertThat(users.unmodifiableUsers().get(2).name()).isEqualTo("twony")
     );
   }
 

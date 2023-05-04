@@ -19,7 +19,7 @@ public class LadderLineTest {
 
   @Test
   public void create_Line() {
-    List<Point> points = ladderLine.line();
+    List<Point> points = ladderLine.points();
 
     assertAll(
             () -> assertThat(points.get(0).canMovePrevious()).isFalse(),
