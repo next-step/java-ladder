@@ -4,7 +4,9 @@ public class Height implements Comparable<Height> {
     private final int value;
 
     public Height(int value) {
-        // TODO add constraint
+        if (value <= 0) {
+            throw new IllegalArgumentException("must be positive:" + value);
+        }
         this.value = value;
     }
 
