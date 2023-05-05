@@ -3,12 +3,12 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.IntStream;
 
 public class Line {
 
-	private static final Random RANDOM = new Random();
+	private static final ThreadLocalRandom RANDOM = ThreadLocalRandom.current();
 
 	private final Points points;
 	private BeforePoint beforePoint;
