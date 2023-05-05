@@ -14,4 +14,8 @@ public class Name {
             throw new IllegalArgumentException("이름을 입력해주세요.");
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }
