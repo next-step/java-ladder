@@ -51,10 +51,12 @@ public class Line {
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o)
+		if (this == o) {
 			return true;
-		if (o == null || getClass() != o.getClass())
+		}
+		if (o == null || getClass() != o.getClass()) {
 			return false;
+		}
 		Line line = (Line)o;
 		return Objects.equals(points, line.points) && Objects.equals(beforePoint, line.beforePoint);
 	}
