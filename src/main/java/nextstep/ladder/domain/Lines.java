@@ -11,9 +11,6 @@ public class Lines {
         this.lines = lines;
     }
 
-    public Lines() {
-    }
-
     public static Lines drawLines(Participants participants, DrawStrategy drawStrategy) {
         List<Line> lines = new ArrayList<>();
         boolean previous = false;
@@ -25,5 +22,9 @@ public class Lines {
 
     public int numberOfLines() {
         return lines.size();
+    }
+
+    public List<Line> getLines() {
+        return lines;
     }
 }

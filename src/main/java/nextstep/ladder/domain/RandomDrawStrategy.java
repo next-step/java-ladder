@@ -16,7 +16,6 @@ public class RandomDrawStrategy implements DrawStrategy {
     public boolean draw(int index, boolean previous) {
         if (index == 0) {
             boolean result = RANDOM.nextInt(4) >= 1;
-            System.out.println("result = " + result);
             return result;
         }
 
