@@ -4,13 +4,15 @@ import nextstep.ladder.domain.*;
 
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public final class ResultView {
 
-    private static final String FIRST_COLUMN = "    |";
     private static final String NEW_LINE = "\n";
-    private static final String CONNECTED_ROW = "-----|";
-    private static final String UNCONNECTED_ROW = "     |";
+    private static final String WHITE_SPACE_CHAR = " ";
+    private static final String COLUMN_LINE_CHAR = "|";
+    private static final String ROW_LINE_CHAR = "-";
+    private static final int ROW_WIDTH_LENGTH = 5;
 
     private ResultView() {
         throw new IllegalCallerException("잘못된 객체생성 입니다.");
@@ -33,7 +35,7 @@ public final class ResultView {
     private static String drawLines(LineColumns lineColumns) {
         return lineColumns.getColumns()
                 .stream()
-                .map(column -> FIRST_COLUMN + drawRows(column))
+                .map(column -> drawFirstColumn() + drawRows(column))
                 .collect(Collectors.joining(NEW_LINE));
     }
 
@@ -53,7 +55,25 @@ public final class ResultView {
     }
 
     private static Function<ConnectionStatus, String> drawRow() {
-        return connectionStatus -> connectionStatus.isConnected() ? CONNECTED_ROW : UNCONNECTED_ROW;
+        return connectionStatus -> connectionStatus.isConnected() ? drawConnectedRow() : drawUnconnectedRow();
+    }
+
+    private static String drawFirstColumn() {
+        return repeatChar(ROW_WIDTH_LENGTH - 1, WHITE_SPACE_CHAR) + COLUMN_LINE_CHAR;
+    }
+
+    private static String drawConnectedRow() {
+        return repeatChar(ROW_WIDTH_LENGTH, ROW_LINE_CHAR) + COLUMN_LINE_CHAR;
+    }
+
+    private static String drawUnconnectedRow() {
+        return repeatChar(ROW_WIDTH_LENGTH, WHITE_SPACE_CHAR) + COLUMN_LINE_CHAR;
+    }
+
+    private static String repeatChar(int repeatCount, String anyChar) {
+        return IntStream.rangeClosed(1, repeatCount)
+                .mapToObj(n -> anyChar)
+                .collect(Collectors.joining());
     }
 
 }
