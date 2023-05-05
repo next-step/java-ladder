@@ -7,7 +7,6 @@ import static ladder.utils.LadderUtil.*;
 
 public class ResultView {
 
-
   public static void showLadder(LadderGame ladderGame) {
     System.out.println(RESULT_MESSAGE);
 

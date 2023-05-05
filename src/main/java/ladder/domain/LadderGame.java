@@ -6,8 +6,8 @@ public class LadderGame {
   private final Users users;
   private final Ladder ladder;
 
-  public LadderGame(String users, int ladderHeight) {
-    this.users = new Users(users);
+  public LadderGame(Users users, int ladderHeight) {
+    this.users = users;
     this.ladder = new Ladder(this.users.countOfUser(), ladderHeight);
   }
 

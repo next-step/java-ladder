@@ -10,8 +10,8 @@ public class Users {
   private static final String USERS_DELIMITER = ",";
   private final List<User> users;
 
-  public Users(String inputUsers) {
-    users = splitUsers(inputUsers);
+  private Users(List<User> users) {
+    this.users = users;
   }
 
   public List<User> unmodifiableUsers() {
@@ -23,9 +23,9 @@ public class Users {
     return users.size();
   }
 
-  private List<User> splitUsers(String inputUsers) {
-    return Arrays.stream(inputUsers.split(USERS_DELIMITER))
+  public static Users createUsers(String inputUsers) {
+    return new Users(Arrays.stream(inputUsers.split(USERS_DELIMITER))
             .map(User::new)
-            .collect(Collectors.toList());
+            .collect(Collectors.toList()));
   }
 }

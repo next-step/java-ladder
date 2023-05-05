@@ -13,7 +13,7 @@ public class User {
   }
 
   private static void validateUserName(String name) {
-    if (name.length() > NAME_LENGTH) {
+    if (name.length() > NAME_LENGTH || name.isEmpty()) {
       throw new IllegalArgumentException(ILLEGAL_NAME_MESSAGE + name);
     }
   }

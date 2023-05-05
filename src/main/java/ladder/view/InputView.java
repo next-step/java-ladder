@@ -1,6 +1,7 @@
 package ladder.view;
 
 import ladder.domain.LadderHeight;
+import ladder.domain.Users;
 
 import java.util.Scanner;
 
@@ -11,10 +12,10 @@ public class InputView {
 
   private static final Scanner SCANNER = new Scanner(System.in);
 
-  public static String inputUsers() {
+  public static Users inputUsers() {
     System.out.println(USERS_INPUT_MESSAGE);
 
-    return SCANNER.nextLine();
+    return Users.createUsers(SCANNER.nextLine());
   }
 
   public static LadderHeight inputHeight() {
