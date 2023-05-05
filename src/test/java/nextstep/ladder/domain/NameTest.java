@@ -29,4 +29,11 @@ public class NameTest {
                 .isEqualTo(input);
     }
 
+    @Test
+    @DisplayName("이름이 5자 초과일 경우 에러 반환 테스트")
+    void moreFiveNameErrorTest() {
+        assertThatThrownBy(() -> new Name("python"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
