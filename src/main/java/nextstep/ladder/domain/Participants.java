@@ -25,8 +25,10 @@ public class Participants {
         return userNames.size();
     }
 
-    public List<UserName> getUserNames() {
-        return userNames;
+    public List<String> getUserNames() {
+        return userNames.stream()
+                .map(UserName::getName)
+                .collect(Collectors.toUnmodifiableList());
     }
 
 }

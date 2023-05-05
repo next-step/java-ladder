@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -25,12 +24,8 @@ class ParticipantsTest {
     @DisplayName("참여자는 사용자 이름을 반환한다.")
     void test01() {
         Participants participants = Participants.of(input);
-        List<String> actual = participants.getUserNames()
-                .stream()
-                .map(UserName::getName)
-                .collect(Collectors.toUnmodifiableList());
 
-        assertThat(actual).isEqualTo(expected);
+        assertThat(participants.getUserNames()).isEqualTo(expected);
     }
 
     @Test
