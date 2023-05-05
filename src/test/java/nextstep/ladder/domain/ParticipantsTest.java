@@ -1,8 +1,6 @@
 package nextstep.ladder.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -20,8 +18,8 @@ public class ParticipantsTest {
         List<String> names = List.of(splitNames);
         Participants participants = Participants.from(names);
 
-        assertThat(participants)
-                .isInstanceOf(Participants.class);
+        assertThat(participants.countOfParticipants())
+                .isEqualTo(4);
     }
 
 }
