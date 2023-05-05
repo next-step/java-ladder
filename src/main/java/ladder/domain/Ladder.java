@@ -1,5 +1,8 @@
 package ladder.domain;
 
+import ladder.strategy.DirectionMoveStrategy;
+import ladder.strategy.MoveStrategy;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

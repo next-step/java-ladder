@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.strategy.MoveStrategy;
+
 public class Point {
 
   private final Position position;
