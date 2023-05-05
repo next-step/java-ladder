@@ -20,4 +20,18 @@ public class LinesTest {
                 .isEqualTo(names.size());
     }
 
+    @Test
+    @DisplayName("직전 라인이 그려졌을 때 다음 라인 그리지 않는 테스트")
+    void trueAfterFalseTest() {
+        List<String> names = List.of("a,b,c".split(","));
+        Participants participants = Participants.from(names);
+        Lines newLines = Lines.drawLines(participants, (index, previous) -> index != 0 && !previous);
+
+        Lines resultLines = new Lines(List.of(new Line(false), new Line(true), new Line(false)));
+
+        assertThat(newLines.getLines())
+                .usingRecursiveComparison()
+                .isEqualTo(resultLines.getLines());
+    }
+
 }
