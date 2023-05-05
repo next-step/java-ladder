@@ -10,27 +10,19 @@ public class Names {
 	private static final String DELIMITER = ",";
 	public static final int LENGTH_MAXIMUM = 5;
 
-	private final List<String> names = new ArrayList<>();
+	private final List<Name> names = new ArrayList<>();
 
 	public Names(String inputNames) {
 		Arrays.stream(inputNames.trim().split(Names.DELIMITER))
 			.map(String::trim)
-			.forEach(name -> {
-				if (name.isBlank()) {
-					throw new IllegalArgumentException("이름은 비어있을 수 없습니다.");
-				}
-				if (name.length() > Names.LENGTH_MAXIMUM) {
-					throw new IllegalArgumentException(String.format("이름은 최대 %d자까지 가능합니다.", Names.LENGTH_MAXIMUM));
-				}
-				this.names.add(name);
-			});
+			.forEach(name -> this.names.add(new Name(name)));
 	}
 
 	public int countOfPerson() {
 		return this.names.size();
 	}
 
-	public List<String> getNames() {
+	public List<Name> getNames() {
 		return this.names;
 	}
 

@@ -7,9 +7,9 @@ import org.junit.jupiter.api.Test;
 
 public class LadderTest {
 
-	@DisplayName("참가할 사람 수 예외 케이스")
+	@DisplayName("참가할 사람 예외 케이스 - 이름 예외")
 	@Test
 	void test1() {
-		assertThatIllegalArgumentException().isThrownBy(() -> new Ladder(0, 5));
+		assertThatIllegalArgumentException().isThrownBy(() -> new Ladder(new Names(""), 5));
 	}
 }

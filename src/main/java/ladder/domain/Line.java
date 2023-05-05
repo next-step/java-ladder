@@ -19,7 +19,6 @@ public class Line {
 		IntStream.range(0, countOfPerson - 1).forEach(i -> this.addPoint(Line.RANDOM.nextBoolean()));
 	}
 
-	// TC를 수월하게 작성하기 위한 생성자, 프로덕션 코드에서 사용금지.
 	public Line(List<Boolean> points, boolean beforePoint) {
 		this.points = new Points(points);
 		this.beforePoint = new BeforePoint(beforePoint);

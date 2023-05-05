@@ -6,6 +6,7 @@ import java.util.stream.IntStream;
 
 import ladder.domain.Ladder;
 import ladder.domain.Line;
+import ladder.domain.Name;
 import ladder.domain.Names;
 import ladder.domain.Points;
 
@@ -17,9 +18,9 @@ public class ResultView {
 
 	public static void printNames(Names names) {
 		System.out.println("\n실행결과");
-		for (String name : names.getNames()) {
-			ResultView.printNameBlank(name);
-			System.out.print(name);
+		for (Name name : names.getNames()) {
+			ResultView.printNameBlank(name.getName());
+			System.out.print(name.getName());
 		}
 		System.out.println();
 	}
