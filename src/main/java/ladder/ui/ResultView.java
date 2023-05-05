@@ -18,27 +18,40 @@ public class ResultView {
 
 	public static void printNames(Names names) {
 		System.out.println("\n실행결과");
+		StringBuilder stringBuilder = new StringBuilder();
 		for (Name name : names.getNames()) {
-			ResultView.printNameBlank(name.getName());
-			System.out.print(name.getName());
+			stringBuilder.append(ResultView.nameBlank(name.getName()));
+			stringBuilder.append(name.getName());
 		}
-		System.out.println();
+		System.out.println(stringBuilder);
 	}
 
-	private static void printNameBlank(String name) {
+	private static String nameBlank(String name) {
+		StringBuilder stringBuilder = new StringBuilder();
 		IntStream.range(0, Names.LENGTH_MAXIMUM + 1 - name.length())
-			.forEach(i -> System.out.print(" "));
+			.forEach(i -> stringBuilder.append(" "));
+		return stringBuilder.toString();
 	}
 
 	public static void printLadder(Ladder ladder) {
+		StringBuilder stringBuilder = new StringBuilder();
 		for (Line line : ladder.getLines()) {
-			ResultView.printLadderBlank();
-			ResultView.printLineText(line.getPoints());
+			stringBuilder.append(ResultView.ladderBlank());
+			stringBuilder.append(ResultView.lineText(line.getPoints()));
+			stringBuilder.append("\n");
 		}
+		System.out.println(stringBuilder);
 	}
 
-	public static void printLineText(Points points) {
-		String lineText = points.getPoints().stream()
+	private static String ladderBlank() {
+		StringBuilder stringBuilder = new StringBuilder();
+		IntStream.range(0, Names.LENGTH_MAXIMUM)
+			.forEach(i -> stringBuilder.append(" "));
+		return stringBuilder.toString();
+	}
+
+	private static String lineText(Points points) {
+		return points.getPoints().stream()
 			.map(point -> {
 				if (point) {
 					return ResultView.TRUE_TEXT;
@@ -46,12 +59,5 @@ public class ResultView {
 				return ResultView.FALSE_TEXT;
 			})
 			.collect(Collectors.joining(ResultView.HEIGHT_TEXT, ResultView.HEIGHT_TEXT, ResultView.HEIGHT_TEXT));
-
-		System.out.println(lineText);
-	}
-
-	private static void printLadderBlank() {
-		IntStream.range(0, Names.LENGTH_MAXIMUM)
-			.forEach(i -> System.out.print(" "));
 	}
 }
