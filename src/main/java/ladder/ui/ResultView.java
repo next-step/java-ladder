@@ -12,8 +12,8 @@ import ladder.domain.Points;
 public class ResultView {
 
 	private static final String HEIGHT_TEXT = "|";
-	private static final String TRUE_TEXT = String.join("", Collections.nCopies(Names.MAX_LENGTH, "-"));
-	private static final String FALSE_TEXT = String.join("", Collections.nCopies(Names.MAX_LENGTH, " "));
+	private static final String TRUE_TEXT = String.join("", Collections.nCopies(Names.LENGTH_MAXIMUM, "-"));
+	private static final String FALSE_TEXT = String.join("", Collections.nCopies(Names.LENGTH_MAXIMUM, " "));
 
 	public static void printNames(Names names) {
 		System.out.println("\n실행결과");
@@ -25,7 +25,7 @@ public class ResultView {
 	}
 
 	private static void printNameBlank(String name) {
-		IntStream.range(0, Names.MAX_LENGTH + 1 - name.length())
+		IntStream.range(0, Names.LENGTH_MAXIMUM + 1 - name.length())
 			.forEach(i -> System.out.print(" "));
 	}
 
@@ -50,7 +50,7 @@ public class ResultView {
 	}
 
 	private static void printLadderBlank() {
-		IntStream.range(0, Names.MAX_LENGTH)
+		IntStream.range(0, Names.LENGTH_MAXIMUM)
 			.forEach(i -> System.out.print(" "));
 	}
 }
