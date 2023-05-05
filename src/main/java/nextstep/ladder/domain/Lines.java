@@ -2,9 +2,9 @@ package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Lines {
+    private static final int FIRST_INDEX = 0;
 
     private List<Line> lines;
 
@@ -16,7 +16,7 @@ public class Lines {
         List<Line> lines = new ArrayList<>();
         boolean previous = false;
 
-        for (int i = 0; i < participants.countOfParticipants(); i++) {
+        for (int i = FIRST_INDEX; i < participants.countOfParticipants(); i++) {
             boolean draw = drawStrategy.draw(i, previous);
             lines.add(new Line(draw));
             previous = draw;

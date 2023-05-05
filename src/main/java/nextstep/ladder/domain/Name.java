@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 public class Name {
+    private static final int NAME_MAX_LENGTH = 5;
 
     private final String name;
 
@@ -21,7 +22,7 @@ public class Name {
     }
 
     private void overLengthRule(String name) {
-        if (name.length() > 5) {
+        if (name.length() > NAME_MAX_LENGTH) {
             throw new IllegalArgumentException("이름은 5글자를 초과할 수 없습니다.");
         }
     }

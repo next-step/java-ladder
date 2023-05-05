@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
+    private static final int FIRST_INDEX = 0;
 
     private final List<Lines> lines;
 
@@ -13,7 +14,7 @@ public class Ladder {
     }
 
     public static Ladder from(Heights heights, Participants participants, DrawStrategy drawStrategy) {
-        List<Lines> lines = IntStream.range(0, heights.getHeights())
+        List<Lines> lines = IntStream.range(FIRST_INDEX, heights.getHeights())
                 .mapToObj(i -> Lines.drawLines(participants, drawStrategy))
                 .collect(Collectors.toList());
 
