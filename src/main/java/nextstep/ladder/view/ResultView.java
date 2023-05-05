@@ -46,14 +46,14 @@ public final class ResultView {
     }
 
     private static String drawRows(LineRows column) {
-        return column.getConnectables()
+        return column.getConnectionStatuses()
                 .stream()
                 .map(drawRow())
                 .collect(Collectors.joining());
     }
 
-    private static Function<Connectable, String> drawRow() {
-        return connectable -> connectable.isConnected() ? CONNECTED_ROW : UNCONNECTED_ROW;
+    private static Function<ConnectionStatus, String> drawRow() {
+        return connectionStatus -> connectionStatus.isConnected() ? CONNECTED_ROW : UNCONNECTED_ROW;
     }
 
 }

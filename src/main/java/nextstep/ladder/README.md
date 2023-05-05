@@ -69,7 +69,7 @@ pobi  honux crong   jk
 - [x] 연속해서 연결된 값을 가질 수 없다.
 - [x] 연결여부 리스트를 반환한다.
 
-### 연결여부 (Connectable)
+### 연결여부 (ConnectionStatus)
 - [x] 연결상태를 갖는다.
 - [x] 연결여부를 반환한다.
 

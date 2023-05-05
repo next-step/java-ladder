@@ -8,10 +8,10 @@ import java.util.stream.IntStream;
 
 public class LineRows {
 
-    private final List<Connectable> connectables;
+    private final List<ConnectionStatus> connectionStatuses;
 
-    private LineRows(List<Connectable> connectables) {
-        this.connectables = connectables;
+    private LineRows(List<ConnectionStatus> connectionStatuses) {
+        this.connectionStatuses = connectionStatuses;
     }
 
     public static LineRows initialize(int userCount, BooleanGenerator booleanGenerator) {
@@ -23,28 +23,28 @@ public class LineRows {
 
     private void addConnect(int index, BooleanGenerator booleanGenerator) {
         if (isNotAddableTrue(index)) {
-            connectables.add(new Connectable(false));
+            connectionStatuses.add(new ConnectionStatus(false));
             return;
         }
-        connectables.add(new Connectable(booleanGenerator.getBoolean()));
+        connectionStatuses.add(new ConnectionStatus(booleanGenerator.getBoolean()));
     }
 
     private boolean isNotAddableTrue(int index) {
-        return index != 0 && getConnectable(index - 1).isConnected();
+        return index != 0 && getConnectionStatus(index - 1).isConnected();
     }
 
-    private Connectable getConnectable(int index) {
-        return connectables.get(index);
+    private ConnectionStatus getConnectionStatus(int index) {
+        return connectionStatuses.get(index);
     }
 
-    public List<Connectable> getConnectables() {
-        return connectables;
+    public List<ConnectionStatus> getConnectionStatuses() {
+        return connectionStatuses;
     }
 
     @Override
     public String toString() {
         return "\nLineRows{" +
-                "connectables=" + connectables +
+                "connectionStatuses=" + connectionStatuses +
                 '}';
     }
 

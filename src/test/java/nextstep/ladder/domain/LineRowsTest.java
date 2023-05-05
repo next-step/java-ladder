@@ -13,9 +13,9 @@ class LineRowsTest {
     void test01() {
         LineRows lineRows = LineRows.initialize(5, () -> false);
 
-        System.out.println(lineRows.getConnectables());
+        System.out.println(lineRows.getConnectionStatuses());
 
-        assertThat(lineRows.getConnectables()).doesNotContain(new Connectable(true));
+        assertThat(lineRows.getConnectionStatuses()).doesNotContain(new ConnectionStatus(true));
     }
 
     @Test
@@ -24,7 +24,7 @@ class LineRowsTest {
         int userCount = 5;
         LineRows lineRows = LineRows.initialize(5, new RandomBooleanGenerator());
 
-        assertThat(lineRows.getConnectables()).hasSize(userCount - 1);
+        assertThat(lineRows.getConnectionStatuses()).hasSize(userCount - 1);
     }
 
     @Test
@@ -32,11 +32,11 @@ class LineRowsTest {
     void test03() {
         LineRows lineRows = LineRows.initialize(10, () -> true);
 
-        System.out.println(lineRows.getConnectables());
+        System.out.println(lineRows.getConnectionStatuses());
 
-        Boolean actual = lineRows.getConnectables()
+        Boolean actual = lineRows.getConnectionStatuses()
                 .stream()
-                .map(Connectable::isConnected)
+                .map(ConnectionStatus::isConnected)
                 .reduce((prev, next) -> prev && next)
                 .get();
 

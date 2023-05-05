@@ -5,14 +5,14 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class ConnectableTest {
+class ConnectionStatusTest {
 
     @Test
     @DisplayName("연결여부 상태를 반환한다.")
     void test01() {
-        Connectable connectable = new Connectable(true);
+        ConnectionStatus connectionStatus = new ConnectionStatus(true);
 
-        assertThat(connectable.isConnected()).isTrue();
+        assertThat(connectionStatus.isConnected()).isTrue();
     }
 
 }

@@ -1,10 +1,10 @@
 package nextstep.ladder.domain;
 
-public class Connectable {
+public class ConnectionStatus {
 
     private final boolean status;
 
-    public Connectable(boolean status) {
+    public ConnectionStatus(boolean status) {
         this.status = status;
     }
 
@@ -14,7 +14,7 @@ public class Connectable {
 
     @Override
     public String toString() {
-        return "Connectable{" +
+        return "ConnectionStatus{" +
                 "status=" + status +
                 '}';
     }
