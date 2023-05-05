@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
@@ -9,18 +8,10 @@ import java.util.stream.IntStream;
 
 public class Line {
 
-	private static final Random RANDOM;
-	public static final String TRUE_TEXT;
-	public static final String FALSE_TEXT;
+	private static final Random RANDOM = new Random();
 
 	private final Points points;
 	private BeforePoint beforePoint;
-
-	static {
-		RANDOM = new Random();
-		TRUE_TEXT = String.join("", Collections.nCopies(Names.MAX_LENGTH, "-"));
-		FALSE_TEXT = String.join("", Collections.nCopies(Names.MAX_LENGTH, " "));
-	}
 
 	public Line(int countOfPerson) {
 		this.points = new Points(new ArrayList<>());
@@ -44,9 +35,8 @@ public class Line {
 		this.points.add(randomBoolean);
 	}
 
-	@Override
-	public String toString() {
-		return this.points.createLineText();
+	public Points getPoints() {
+		return this.points;
 	}
 
 	@Override

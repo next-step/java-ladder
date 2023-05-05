@@ -2,7 +2,6 @@ package ladder.domain;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class Points {
 
@@ -16,10 +15,8 @@ public class Points {
 		this.points.add(point);
 	}
 
-	public String createLineText() {
-		return this.points.stream()
-			.map(point -> point ? Line.TRUE_TEXT : Line.FALSE_TEXT)
-			.collect(Collectors.joining(Height.HEIGHT_TEXT, Height.HEIGHT_TEXT, Height.HEIGHT_TEXT));
+	public List<Boolean> getPoints() {
+		return this.points;
 	}
 
 	@Override
