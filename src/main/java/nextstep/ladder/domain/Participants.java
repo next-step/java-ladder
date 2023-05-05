@@ -19,4 +19,8 @@ public class Participants {
         return new Participants(participants);
     }
 
+    public int countOfParticipants() {
+        return participants.size();
+    }
+
 }
