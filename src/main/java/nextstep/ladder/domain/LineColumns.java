@@ -14,10 +14,10 @@ public class LineColumns {
         this.columns = columns;
     }
 
-    public static LineColumns create(int height, int userCount) {
+    public static LineColumns create(int columnLength, int rowLength) {
         return new LineColumns(
-                IntStream.range(0, height)
-                        .mapToObj(index -> LineRows.initialize(userCount, new RandomBooleanGenerator()))
+                IntStream.range(0, columnLength)
+                        .mapToObj(index -> LineRows.initialize(rowLength, new RandomBooleanGenerator()))
                         .collect(Collectors.toUnmodifiableList()));
     }
 
