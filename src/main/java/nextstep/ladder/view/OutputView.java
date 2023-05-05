@@ -27,8 +27,6 @@ public class OutputView {
 
     private static void printLadderLines(Ladder ladder) {
         for (Lines lines : ladder.getLadder()) {
-
-            System.out.print(EMPTY_LINE);
             printLines(lines);
             System.out.println();
         }

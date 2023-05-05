@@ -25,7 +25,7 @@ public class RandomDrawStrategyTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {0, 1, 2, 3})
+    @ValueSource(ints = {1, 2, 3})
     @DisplayName("라인 그리기")
     void drawLineTest(int input) {
         DrawStrategy drawStrategy = new RandomDrawStrategy(new StaticTrueRandom());

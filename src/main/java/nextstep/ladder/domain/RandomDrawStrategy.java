@@ -15,8 +15,7 @@ public class RandomDrawStrategy implements DrawStrategy {
     @Override
     public boolean draw(int index, boolean previous) {
         if (index == 0) {
-            boolean result = RANDOM.nextInt(4) >= 1;
-            return result;
+            return false;
         }
 
         if (previous) {
