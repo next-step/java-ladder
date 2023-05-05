@@ -14,9 +14,7 @@ public class LinesTest {
     void createLinesTest() {
         List<String> names = List.of("a,b,c,d,e".split(","));
         Participants participants = Participants.from(names);
-        Lines lines = new Lines();
-
-        Lines newLines = lines.drawLines(participants, (index, previous) -> true);
+        Lines newLines = Lines.drawLines(participants, (index, previous) -> true);
 
         assertThat(newLines.numberOfLines())
                 .isEqualTo(names.size());

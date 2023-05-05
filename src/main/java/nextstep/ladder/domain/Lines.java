@@ -14,7 +14,7 @@ public class Lines {
     public Lines() {
     }
 
-    public Lines drawLines(Participants participants, DrawStrategy drawStrategy) {
+    public static Lines drawLines(Participants participants, DrawStrategy drawStrategy) {
         List<Line> lines = new ArrayList<>();
         boolean previous = false;
         for (int i = 0; i < participants.countOfParticipants(); i++) {
