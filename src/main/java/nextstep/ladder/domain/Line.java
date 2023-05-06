@@ -9,13 +9,16 @@ import java.util.stream.IntStream;
 
 public class Line {
     private final List<Point> points = new ArrayList<>();
+    private final int countOfMember;
 
     public Line(int countOfMember, RandomBoolean randomBoolean) {
-        IntStream.range(0, countOfMember - 1)
+        this.countOfMember = countOfMember;
+        IntStream.range(0, this.countOfMember)
                  .forEachOrdered(i -> this.addPoint(i, randomBoolean.nextBoolean()));
     }
 
     public Line(Boolean... booleans) {
+        this.countOfMember = booleans.length;
         IntStream.range(0, booleans.length)
                  .forEachOrdered(i -> this.addPoint(i, booleans[i]));
     }
@@ -31,11 +34,15 @@ public class Line {
 
         Point beforePoint = points.get(index - 1);
 
-        if (beforePoint.isRight()) {
+        if (this.canNotHaveRightPoint(beforePoint.isRight())) {
             return beforePoint.right(false);
         }
 
         return beforePoint.right(isPoint);
+    }
+
+    private boolean canNotHaveRightPoint(boolean isBeforeRight) {
+        return countOfMember - 1 == points.size() || isBeforeRight;
     }
 
     public List<Point> points() {
