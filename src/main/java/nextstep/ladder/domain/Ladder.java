@@ -2,7 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Ladder {
     private static final int FIRST_INDEX = 0;
@@ -14,8 +14,8 @@ public class Ladder {
     }
 
     public static Ladder from(Heights heights, Participants participants, DrawStrategy drawStrategy) {
-        List<Lines> lines = IntStream.range(FIRST_INDEX, heights.getHeights())
-                .mapToObj(i -> Lines.drawLines(participants, drawStrategy))
+        List<Lines> lines = Stream.generate(() -> Lines.drawLines(participants, drawStrategy))
+                .limit(heights.getHeights())
                 .collect(Collectors.toList());
 
         return new Ladder(lines);
