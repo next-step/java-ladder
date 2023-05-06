@@ -19,6 +19,10 @@ public class Point {
         return new Point(this.right, right);
     }
 
+    public boolean isRight() {
+        return this.right;
+    }
+
     public int move() {
         if (left) {
             return -1;
@@ -42,5 +46,13 @@ public class Point {
     @Override
     public int hashCode() {
         return Objects.hash(left);
+    }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "left=" + left +
+                ", right=" + right +
+                '}';
     }
 }
