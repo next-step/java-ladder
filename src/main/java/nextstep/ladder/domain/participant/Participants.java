@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.participant;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -13,12 +14,10 @@ public class Participants {
 
 
     private List<Participant> splitParticipants(String names) {
-        final List<String> nameList = List.of(Optional.ofNullable(names)
-                .filter(n -> !n.isBlank())
-                .map(n -> n.split(","))
-                .orElseThrow(() -> new IllegalArgumentException("참여자 이름은 빈값일 수 없습니다.")));
-
-        return nameList.stream()
+        return Arrays.stream(Optional.ofNullable(names)
+                        .filter(n -> !n.isBlank())
+                        .map(n -> n.split(","))
+                        .orElseThrow(() -> new IllegalArgumentException("참여자 이름은 빈값일 수 없습니다.")))
                 .map(name -> new Participant(new Name(name)))
                 .collect(Collectors.toList());
     }
