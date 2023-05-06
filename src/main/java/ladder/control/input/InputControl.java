@@ -1,7 +1,7 @@
-package ladder.control;
+package ladder.control.input;
 
-import ladder.view.DummyView;
 import ladder.view.View;
+import ladder.view.input.DummyView;
 
 import java.util.Scanner;
 

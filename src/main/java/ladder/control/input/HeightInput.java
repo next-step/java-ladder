@@ -1,6 +1,5 @@
-package ladder.control;
+package ladder.control.input;
 
-import ladder.model.Height;
 import ladder.view.View;
 
 public class HeightInput extends InputControl<Height> {

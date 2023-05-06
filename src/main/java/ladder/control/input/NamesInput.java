@@ -1,4 +1,4 @@
-package ladder.control;
+package ladder.control.input;
 
 import ladder.model.Name;
 import ladder.model.Names;
