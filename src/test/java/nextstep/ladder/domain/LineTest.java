@@ -18,9 +18,10 @@ class LineTest {
 
         Line line = new Line(3, randomBoolean);
 
-        assertThat(line.points()).hasSize(2);
+        assertThat(line.points()).hasSize(3);
         assertThat(line.points()).containsExactly(new Point(false, true),
-                                                  new Point(true, false));
+                                                  new Point(true, false),
+                                                  new Point(false, false));
     }
 
     @Test
