@@ -31,7 +31,7 @@ public class OutputView {
 
     private static String convertLineView(Line line) {
         String convertLine = line.points().stream()
-                                 .map(OutputView::convertPoint)
+                                 .map(p -> convertPoint(p.isRight()))
                                  .collect(Collectors.joining());
 
         return DEFAULT_HEIGHT + convertLine;
