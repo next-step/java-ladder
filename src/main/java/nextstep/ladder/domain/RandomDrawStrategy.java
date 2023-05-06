@@ -6,10 +6,10 @@ public class RandomDrawStrategy implements DrawStrategy {
     private static final int FIRST_INDEX = 0;
     private static final int RANDOM_BOUND = 5;
     private static final int RANDOM_CONDITION = 2;
-    private Random RANDOM = new Random();
+    private Random random = new Random();
 
-    public RandomDrawStrategy(Random RANDOM) {
-        this.RANDOM = RANDOM;
+    public RandomDrawStrategy(Random random) {
+        this.random = random;
     }
 
     public RandomDrawStrategy() {
@@ -21,6 +21,6 @@ public class RandomDrawStrategy implements DrawStrategy {
             return false;
         }
 
-        return RANDOM.nextInt(RANDOM_BOUND) >= RANDOM_CONDITION;
+        return random.nextInt(RANDOM_BOUND) >= RANDOM_CONDITION;
     }
 }
