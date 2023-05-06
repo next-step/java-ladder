@@ -1,4 +1,6 @@
-package ladder.view;
+package ladder.view.input;
+
+import ladder.view.View;
 
 public class NameView implements View {
     @Override
