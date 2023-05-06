@@ -5,7 +5,7 @@ import java.util.Arrays;
 enum Expression {
     PLUS("+"), MINUS("-"), TIMES("*"), DIVIDE("/");
 
-    private String expression;
+    private final String expression;
 
     Expression(String expression) {
         this.expression = expression;
