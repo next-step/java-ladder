@@ -4,9 +4,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class StreamStudyTest {
     private List<Integer> numbers;
@@ -24,7 +27,14 @@ public class StreamStudyTest {
 
     @Test
     public void printLongestWordTop100() throws Exception {
-        StreamStudy.printLongestWordTop100();
+        Collection<String> actualWords = StreamStudy.printLongestWordTop100();
+        Collection<String> dedupeActualWords = actualWords.stream()
+                .distinct()
+                .collect(Collectors.toList());
+        assertAll("",
+                () -> assertThat(actualWords).hasSize(100),
+                () -> assertThat(dedupeActualWords).as("").hasSize(100)
+        );
     }
 
     @Test
