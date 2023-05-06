@@ -10,10 +10,12 @@ public class ResultView {
   public static void showLadder(LadderGame ladderGame) {
     System.out.println(RESULT_MESSAGE);
 
-    ladderGame.users().forEach(user -> System.out.printf("%5s ", user.name()));
+    ladderGame.users().forEach(user -> System.out.printf(USER_FIELD, user.name()));
     System.out.println();
 
     ladderGame.ladderLines().forEach(ResultView::showLadderLines);
+
+    ladderGame.ladderRewards().forEach(ladderReward -> System.out.printf(USER_FIELD, ladderReward.reward()));
   }
 
   private static void showLadderLines(LadderLine ladderLine) {

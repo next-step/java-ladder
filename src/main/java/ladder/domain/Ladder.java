@@ -10,23 +10,27 @@ import java.util.stream.IntStream;
 
 public class Ladder {
 
-  private final MoveStrategy moveStrategy;
   private final List<LadderLine> ladderLines;
+  private final LadderRewards ladderRewards;
 
-  public Ladder(int countOfUsers, int ladderHeight) {
-    this.moveStrategy = new DirectionMoveStrategy();
+  public Ladder(int countOfUsers, int ladderHeight, LadderRewards ladderRewards) {
     this.ladderLines = createLadderLines(countOfUsers, ladderHeight);
+    this.ladderRewards = ladderRewards;
   }
 
   public List<LadderLine> unmodifiableLadderLines() {
     return Collections.unmodifiableList(ladderLines);
   }
 
+  public List<LadderReward> unmodifiableLadderRewards() {
+    return ladderRewards.ladderRewards();
+  }
+
   private List<LadderLine> createLadderLines(int countOfUsers, int ladderHeight) {
     List<LadderLine> ladderLineList = new ArrayList<>();
 
     IntStream.range(0, ladderHeight)
-            .forEach((i) -> ladderLineList.add(LadderLine.createPoints(countOfUsers, moveStrategy)));
+            .forEach((i) -> ladderLineList.add(LadderLine.createPoints(countOfUsers, new DirectionMoveStrategy())));
 
     return ladderLineList;
   }

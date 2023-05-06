@@ -6,9 +6,9 @@ public class LadderGame {
   private final Users users;
   private final Ladder ladder;
 
-  public LadderGame(Users users, int ladderHeight) {
+  public LadderGame(Users users, int ladderHeight, LadderRewards ladderRewards) {
     this.users = users;
-    this.ladder = new Ladder(this.users.countOfUser(), ladderHeight);
+    this.ladder = new Ladder(this.users.countOfUser(), ladderHeight, ladderRewards);
   }
 
   public List<User> users() {
@@ -17,5 +17,9 @@ public class LadderGame {
 
   public List<LadderLine> ladderLines() {
     return ladder.unmodifiableLadderLines();
+  }
+
+  public List<LadderReward> ladderRewards() {
+    return ladder.unmodifiableLadderRewards();
   }
 }

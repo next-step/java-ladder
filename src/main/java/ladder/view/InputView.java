@@ -1,6 +1,7 @@
 package ladder.view;
 
 import ladder.domain.LadderHeight;
+import ladder.domain.LadderRewards;
 import ladder.domain.Users;
 
 import java.util.Scanner;
@@ -22,5 +23,11 @@ public class InputView {
     System.out.println(HEIGHT_INPUT_MESSAGE);
 
     return new LadderHeight(SCANNER.nextInt());
+  }
+
+  public static LadderRewards inputRewards(int countOfUsers) {
+    System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+
+    return LadderRewards.createRewards(SCANNER.nextLine(), countOfUsers);
   }
 }
