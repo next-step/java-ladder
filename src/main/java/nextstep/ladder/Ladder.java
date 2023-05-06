@@ -1,7 +1,8 @@
 package nextstep.ladder;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder {
 
@@ -15,12 +16,10 @@ public class Ladder {
         this.lines = lines;
     }
 
-    private static List<Line> createLines(int personCount, int ladderHeight) {
-        List<Line> ladder = new ArrayList<>();
-        for (int i = 0; i < ladderHeight; i++) {
-            ladder.add(new Line(personCount));
-        }
-        return ladder;
+    private static List<Line> createLines(final int personCount, final int ladderHeight) {
+        return IntStream.range(0, ladderHeight)
+                 .mapToObj(value -> new Line(personCount))
+                 .collect(Collectors.toList());
     }
 
     public List<Line> getLines() {
