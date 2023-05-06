@@ -16,8 +16,20 @@ public class Ladder {
                          .collect(Collectors.toList());
     }
 
+    public Ladder(List<Line> lines) {
+        this.lines = lines;
+    }
+
     public List<Line> lines() {
         return Collections.unmodifiableList(this.lines);
+    }
+
+    public int move(int currentPosition) {
+        int position = currentPosition;
+        for (Line line : lines) {
+            position = line.position(position);
+        }
+        return position;
     }
 
     @Override
