@@ -8,11 +8,13 @@ import java.util.Objects;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.IntStream.range;
 
 public class LadderRow {
     private final List<Boolean> row;
 
     public LadderRow(List<Boolean> row) {
+        validateOverlapped(row);
         this.row = Collections.unmodifiableList(row);
     }
 
@@ -31,6 +33,16 @@ public class LadderRow {
             throw new IllegalArgumentException("the width of ladder must be positive:" + width);
         }
     }
+
+    private static void validateOverlapped(List<Boolean> row) {
+        range(0, row.size() - 1)
+                .filter(i -> row.get(i) && row.get(i) == row.get(i + 1))
+                .findFirst()
+                .ifPresent((same) -> {
+                    throw new IllegalArgumentException("adjacent values cannot be `true`");
+                });
+    }
+
 
     public int size() {
         return row.size();
