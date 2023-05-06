@@ -6,8 +6,7 @@ import ladder.domain.Users;
 
 import java.util.Scanner;
 
-import static ladder.utils.LadderUtil.HEIGHT_INPUT_MESSAGE;
-import static ladder.utils.LadderUtil.USERS_INPUT_MESSAGE;
+import static ladder.utils.LadderUtil.*;
 
 public class InputView {
 
@@ -26,8 +25,12 @@ public class InputView {
   }
 
   public static LadderRewards inputRewards(int countOfUsers) {
-    System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+    System.out.println(REWARDS_INPUT_MESSAGE);
 
     return LadderRewards.createRewards(SCANNER.nextLine(), countOfUsers);
+  }
+
+  public static String inputUserName() {
+    return SCANNER.next();
   }
 }

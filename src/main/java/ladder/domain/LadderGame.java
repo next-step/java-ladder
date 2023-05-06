@@ -1,6 +1,8 @@
 package ladder.domain;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LadderGame {
   private final Users users;
@@ -21,5 +23,25 @@ public class LadderGame {
 
   public List<LadderReward> ladderRewards() {
     return ladder.unmodifiableLadderRewards();
+  }
+
+  public LadderResult play() {
+    Map<User, LadderReward> rewardsOfUsers = new HashMap<>();
+
+    ladderLines().forEach(this::swapUsers);
+
+    for (int i = 0; i < users.countOfUser(); i++) {
+      rewardsOfUsers.put(users.userByIndex(i), ladder.rewardByIndex(i));
+    }
+
+    return new LadderResult(rewardsOfUsers);
+  }
+
+  private void swapUsers(LadderLine ladderLine) {
+    ladderLine.points().forEach(point -> {
+      if (point.canMovePrevious()) {
+        users.userSwap(point.currentPreviousUserPosition(), point.currentUserPosition());
+      }
+    });
   }
 }

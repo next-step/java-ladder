@@ -21,9 +21,16 @@ public class Users {
             .collect(Collectors.toList()));
   }
 
-  public List<User> unmodifiableUsers() {
+  public User userByIndex(int index) {
+    return users.get(index);
+  }
 
+  public List<User> unmodifiableUsers() {
     return Collections.unmodifiableList(users);
+  }
+
+  public void userSwap(int prevIndex, int currentIndex) {
+    Collections.swap(users, prevIndex, currentIndex);
   }
 
   public int countOfUser() {

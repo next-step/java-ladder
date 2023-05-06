@@ -1,9 +1,6 @@
 package ladder;
 
-import ladder.domain.LadderGame;
-import ladder.domain.LadderHeight;
-import ladder.domain.LadderRewards;
-import ladder.domain.Users;
+import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -16,5 +13,8 @@ public class LadderApplication {
 
     LadderGame ladderGame = new LadderGame(users, ladderHeight.height(), ladderRewards);
     ResultView.showLadder(ladderGame);
+
+    LadderResult ladderResult = ladderGame.play();
+    ResultView.showResult(ladderResult);
   }
 }

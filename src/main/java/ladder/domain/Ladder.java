@@ -26,6 +26,10 @@ public class Ladder {
     return ladderRewards.ladderRewards();
   }
 
+  public LadderReward rewardByIndex(int index) {
+    return ladderRewards.ladderRewards().get(index);
+  }
+
   private List<LadderLine> createLadderLines(int countOfUsers, int ladderHeight) {
     List<LadderLine> ladderLineList = new ArrayList<>();
 
