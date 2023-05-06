@@ -13,11 +13,11 @@ public class Line {
     }
 
     public Line(List<Boolean> points) {
-        validPoints(points);
+        validatePoints(points);
         this.points = points;
     }
 
-    private static void validPoints(List<Boolean> points) {
+    private static void validatePoints(List<Boolean> points) {
         for (int i = 0; i < points.size() - 1; i++) {
             if (points.get(i) && points.get(i + 1)) {
                 throw new IllegalArgumentException("잘못된 사다리입니다.");
