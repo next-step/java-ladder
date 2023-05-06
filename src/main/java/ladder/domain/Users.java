@@ -5,13 +5,20 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static ladder.utils.LadderUtil.DELIMITER;
+
 public class Users {
 
-  private static final String USERS_DELIMITER = ",";
   private final List<User> users;
 
   private Users(List<User> users) {
     this.users = users;
+  }
+
+  public static Users createUsers(String inputUsers) {
+    return new Users(Arrays.stream(inputUsers.split(DELIMITER))
+            .map(User::new)
+            .collect(Collectors.toList()));
   }
 
   public List<User> unmodifiableUsers() {
@@ -21,11 +28,5 @@ public class Users {
 
   public int countOfUser() {
     return users.size();
-  }
-
-  public static Users createUsers(String inputUsers) {
-    return new Users(Arrays.stream(inputUsers.split(USERS_DELIMITER))
-            .map(User::new)
-            .collect(Collectors.toList()));
   }
 }

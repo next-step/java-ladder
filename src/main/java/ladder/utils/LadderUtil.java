@@ -8,4 +8,5 @@ public class LadderUtil {
   public static final String CONNECTION = "-----";
   public static final String DISCONNECTION = "     ";
   public static final String SINGLE_POINT = "|";
+  public static final String DELIMITER = ",";
 }
