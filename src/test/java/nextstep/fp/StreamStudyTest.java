@@ -29,10 +29,13 @@ public class StreamStudyTest {
         List<String> actualWords = (List<String>) StreamStudy.printLongestWordTop100();
         assertAll("",
                 () -> assertThat(actualWords)
+                        .as("길이가 12 초과해야한다")
+                        .noneMatch(string -> string.length() <= 12),
+                () -> assertThat(actualWords)
                         .as("100개의 원소를 갖는다")
                         .hasSize(100),
                 () -> assertThat(actualWords)
-                        .as("중복된 문자가 없어야한다")
+                        .as("중복을 허용하지 않는다")
                         .doesNotHaveDuplicates(),
                 () -> assertThat(actualWords)
                         .as("소문자로만 구성되어야 한다")
