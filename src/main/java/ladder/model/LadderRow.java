@@ -4,6 +4,7 @@ import ladder.strategy.LadderGenerationStrategy;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
@@ -15,12 +16,20 @@ public class LadderRow {
         this.row = Collections.unmodifiableList(row);
     }
 
-    public static LadderRow create(Width width, LadderGenerationStrategy strategy) {
-        List<Boolean> values = Stream.iterate(strategy.first(), strategy::next)
-                .limit(width.value())
-                .collect(toList());
+    public static LadderRow create(int width, LadderGenerationStrategy strategy) {
+        validate(width, strategy);
 
-        return new LadderRow(values);
+        return new LadderRow(Stream.iterate(strategy.first(), strategy::next)
+                .limit(width)
+                .collect(toList())
+        );
+    }
+
+    private static void validate(int width, LadderGenerationStrategy strategy) {
+        Objects.requireNonNull(strategy);
+        if (width <= 0) {
+            throw new IllegalArgumentException("the width of ladder must be positive:" + width);
+        }
     }
 
     public int size() {

@@ -1,11 +1,13 @@
 package ladder;
 
-import ladder.control.HeightInput;
-import ladder.control.NamesInput;
-import ladder.model.Height;
+import ladder.control.input.HeightInput;
+import ladder.control.input.NamesInput;
+import ladder.model.Ladder;
+import ladder.model.LadderGame;
 import ladder.model.Names;
-import ladder.view.HeightView;
-import ladder.view.NameView;
+import ladder.strategy.RandomStrategy;
+import ladder.view.input.HeightView;
+import ladder.view.input.NameView;
 
 public class Application {
     public static void main(String[] args) {
@@ -13,7 +15,11 @@ public class Application {
         HeightInput heightInput = new HeightInput(new HeightView());
 
         Names names = namesInput.getValue();
-        Height height = heightInput.getValue();
 
+        int width = names.size();
+        int height = heightInput.getValue();
+
+        Ladder ladder = Ladder.create(width, height, new RandomStrategy());
+        LadderGame game = new LadderGame(names, ladder);
     }
 }

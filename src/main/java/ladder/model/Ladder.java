@@ -15,12 +15,15 @@ public class Ladder {
         this.rows = Collections.unmodifiableList(rows);
     }
 
-    public static Ladder create(Width width, Height height, LadderGenerationStrategy strategy) {
-        List<LadderRow> rows = Stream.generate(() -> LadderRow.create(width, strategy))
-                .limit(height.value())
-                .collect(toList());
+    public static Ladder create(int width, int height, LadderGenerationStrategy strategy) {
+        if (height <= 0) {
+            throw new IllegalArgumentException("the height of ladder must be positive:" + height);
+        }
 
-        return new Ladder(rows);
+        return new Ladder(Stream.generate(() -> LadderRow.create(width, strategy))
+                .limit(height)
+                .collect(toList())
+        );
     }
 
     public int width() {
