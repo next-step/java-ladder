@@ -27,13 +27,13 @@ public class LadderRewards {
                     .collect(Collectors.toList()));
   }
 
-  public List<LadderReward> ladderRewards() {
-    return Collections.unmodifiableList(ladderRewards);
-  }
-
   private static void validateLadderRewards(int countOfRewards, int countOfUsers) {
     if (countOfRewards != countOfUsers) {
       throw new IllegalArgumentException(ILLEGAL_COUNT_MESSAGE);
     }
+  }
+
+  public List<LadderReward> ladderRewards() {
+    return Collections.unmodifiableList(ladderRewards);
   }
 }

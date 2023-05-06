@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import ladder.strategy.DirectionMoveStrategy;
 import ladder.strategy.MoveStrategy;
 
 import java.util.ArrayList;
@@ -14,10 +13,6 @@ public class LadderLine {
 
   private LadderLine(List<Point> points) {
     this.points = points;
-  }
-
-  public List<Point> points() {
-    return Collections.unmodifiableList(points);
   }
 
   public static LadderLine createPoints(int countOfUser, MoveStrategy moveStrategy) {
@@ -34,5 +29,9 @@ public class LadderLine {
     userPoints.add(point.createLastPoint());
 
     return new LadderLine(userPoints);
+  }
+
+  public List<Point> points() {
+    return Collections.unmodifiableList(points);
   }
 }
