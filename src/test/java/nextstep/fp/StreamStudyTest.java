@@ -4,9 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -27,13 +26,20 @@ public class StreamStudyTest {
 
     @Test
     public void printLongestWordTop100() throws Exception {
-        Collection<String> actualWords = StreamStudy.printLongestWordTop100();
-        Collection<String> dedupeActualWords = actualWords.stream()
-                .distinct()
-                .collect(Collectors.toList());
+        List<String> actualWords = (List<String>) StreamStudy.printLongestWordTop100();
         assertAll("",
-                () -> assertThat(actualWords).hasSize(100),
-                () -> assertThat(dedupeActualWords).as("").hasSize(100)
+                () -> assertThat(actualWords)
+                        .as("100개의 원소를 갖는다")
+                        .hasSize(100),
+                () -> assertThat(actualWords)
+                        .as("중복된 문자가 없어야한다")
+                        .doesNotHaveDuplicates(),
+                () -> assertThat(actualWords)
+                        .as("소문자로만 구성되어야 한다")
+                        .noneMatch(string -> string.matches(".*[A-Z].*")),
+                () -> assertThat(actualWords)
+                        .as("문자열의 길이 순서로 정렬되어있어야만 한다")
+                        .isSortedAccordingTo(Comparator.comparingInt(String::length))
         );
     }
 
