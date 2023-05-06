@@ -34,11 +34,11 @@ public class OutputView {
                                  .map(p -> convertPoint(p.isRight()))
                                  .collect(Collectors.joining());
 
-        return DEFAULT_HEIGHT + convertLine;
+        return convertLine.trim();
     }
 
     private static String convertPoint(Boolean point) {
-        return point ? DEFAULT_LINE + DEFAULT_HEIGHT : DEFAULT_SPACE_LINE + DEFAULT_HEIGHT;
+        return point ? DEFAULT_HEIGHT + DEFAULT_LINE : DEFAULT_HEIGHT + DEFAULT_SPACE_LINE;
     }
 
 }
