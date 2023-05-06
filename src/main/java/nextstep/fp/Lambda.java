@@ -1,6 +1,9 @@
 package nextstep.fp;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.function.BiFunction;
+import java.util.function.Predicate;
 
 public class Lambda {
     public static void printAllOld(List<Integer> numbers) {
@@ -26,12 +29,14 @@ public class Lambda {
         }).start();
     }
 
+    public static int sumStrategy(List<Integer> numbers, Predicate<Integer> predicate) {
+        return numbers.stream()
+                .filter(predicate)
+                .reduce(0, Integer::sum);
+    }
+
     public static int sumAll(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            total += number;
-        }
-        return total;
+        return sumStrategy(numbers, integer -> true);
     }
 
     public static int sumAllEven(List<Integer> numbers) {
