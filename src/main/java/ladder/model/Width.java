@@ -1,9 +1,9 @@
 package ladder.model;
 
-public class Height implements Comparable<Height> {
+public class Width implements Comparable<Width> {
     private final int value;
 
-    public Height(int value) {
+    public Width(int value) {
         if (value <= 0) {
             throw new IllegalArgumentException("must be positive:" + value);
         }
@@ -15,7 +15,7 @@ public class Height implements Comparable<Height> {
     }
 
     @Override
-    public int compareTo(Height o) {
+    public int compareTo(Width o) {
         return Integer.compare(this.value, o.value);
     }
 }
