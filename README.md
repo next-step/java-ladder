@@ -17,3 +17,11 @@
 - [x] Optional 실습1 : 조건에 따른 반환
 - [x] Optional 실습2 : 값을 반환
 - [x] Optional 실습3 : exception 처리
+
+
+
+## STEP2 
+
+### TDD 진행에 관하여
+  - 한방에 모든 테스트를 작성하고 개발할수가 없다. 전체 요구사항을 잘게 쪼개서
+  - 설계 >> RED Test >> 구현 >> Green Test >> 리팩토링 :: 이 flow를 짧게 여러번 반복하고 있습니다
