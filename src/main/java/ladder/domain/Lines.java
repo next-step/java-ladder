@@ -9,6 +9,7 @@ public class Lines {
     private Lines() {
         this.lines = new HashSet<>();
     }
+
     public static Lines of(int height, int width, int count) {
         Lines lines = new Lines();
         while (lines.lineCount() < count) {
@@ -26,10 +27,10 @@ public class Lines {
     }
 
     private boolean isExistSameColumnAndAdjacentRow(Line otherLine) {
-       return !this.lines.stream()
-               .filter(line -> line.isSameColum(otherLine))
-               .filter(line -> line.isAdjacentRow(otherLine))
-               .findFirst().isPresent();
+        return !this.lines.stream()
+                .filter(line -> line.isSameColum(otherLine))
+                .filter(line -> line.isAdjacentRow(otherLine))
+                .findFirst().isPresent();
     }
 
     public int lineCount() {

@@ -4,7 +4,6 @@ import ladder.control.Preferences;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class Ladder {
     private final int column;
@@ -20,14 +19,13 @@ public class Ladder {
     public List<String> rendering() {
         List<String> strings = new ArrayList<>();
         StringBuilder lineBuilder;
-        for(int columnIndex = 0; columnIndex< column; columnIndex++) {
+        for (int columnIndex = 0; columnIndex < column; columnIndex++) {
             lineBuilder = new StringBuilder();
-            for(int rowIndex = 0; rowIndex< row; rowIndex++ ) {
+            for (int rowIndex = 0; rowIndex < row; rowIndex++) {
                 lineBuilder.append("|");
                 if (lines.existLine(columnIndex, rowIndex)) {
                     lineBuilder.append("------");
-                }
-                else {
+                } else {
                     lineBuilder.append("      ");
                 }
             }

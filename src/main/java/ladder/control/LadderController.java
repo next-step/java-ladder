@@ -11,8 +11,8 @@ public class LadderController {
         Users users = presenter.users();
         int height = presenter.ladderHeight();
         int width = users.count();
-        Ladder ladder = new Ladder(height,width);
+        Ladder ladder = new Ladder(height, width);
 
-        presenter.renderingLadder(users.names(),ladder);
+        presenter.renderingLadder(users.names(), ladder);
     }
 }
