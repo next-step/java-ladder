@@ -12,40 +12,41 @@ public class LambdaTest {
     private List<Integer> numbers;
 
     @BeforeEach
-    public void setup() {
+    void setup() {
         numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
     }
 
     @Test
-    public void printAllOld() throws Exception {
+    void printAllOld() {
         Lambda.printAllOld(numbers);
     }
 
     @Test
-    public void printAllLambda() throws Exception {
+    void printAllLambda() {
         Lambda.printAllLambda(numbers);
     }
 
     @Test
-    public void runThread() throws Exception {
-        Lambda.runThread();
+    void runThread() {
+        Lambda.runThreadLambda();
     }
 
     @Test
-    public void sumAll() throws Exception {
-        int sum = Lambda.sumAll(numbers);
+    void sumAll() {
+        int sum = Lambda.sumAll(numbers, number -> true);
         assertThat(sum).isEqualTo(21);
     }
 
     @Test
-    public void sumAllEven() throws Exception {
-        int sum = Lambda.sumAllEven(numbers);
+    void sumAllEven() {
+        int sum = Lambda.sumAll(numbers, number -> number % 2 == 0);
         assertThat(sum).isEqualTo(12);
     }
 
     @Test
-    public void sumAllOverThree() throws Exception {
-        int sum = Lambda.sumAllOverThree(numbers);
+    void sumAllOverThree() {
+        int sum = Lambda.sumAll(numbers, number -> number > 3);
         assertThat(sum).isEqualTo(15);
     }
+
 }
