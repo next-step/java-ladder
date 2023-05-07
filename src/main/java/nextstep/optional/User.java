@@ -11,6 +11,18 @@ public class User {
         this.age = age;
     }
 
+
+    public static boolean ageIsInRange2(User user) {
+        return Optional.ofNullable(user)
+                .map(User::getAge)
+                .filter(User::isBetweenAge)
+                .isPresent();
+    }
+
+    private static boolean isBetweenAge(Integer age) {
+        return 30 <= age && age <= 45;
+    }
+
     public String getName() {
         return name;
     }
@@ -33,15 +45,6 @@ public class User {
         }
         return isInRange;
     }
-
-    public static boolean ageIsInRange2(User user) {
-        return Optional.ofNullable(user)
-                .map(User::getAge)
-                .filter(age -> age >= 30)
-                .filter(age -> age <= 45)
-                .isPresent();
-    }
-
     @Override
     public int hashCode() {
         final int prime = 31;
