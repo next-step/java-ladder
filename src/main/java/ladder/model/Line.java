@@ -37,8 +37,8 @@ public class Line {
 
     private void validatePoints(List<Boolean> points) {
         IntStream.range(0, points.size() - 1)
-                .filter(i -> points.get(i) == points.get(i+1))
+                .filter(i -> points.get(i) && points.get(i+1))
                 .findAny()
-                .ifPresent(i -> {throw new IllegalArgumentException("");});
+                .ifPresent(i -> {throw new IllegalArgumentException("사다리 한 라인에 가로 라인이 겹칠 수 없습니다.");});
     }
 }
