@@ -40,10 +40,7 @@ public final class ResultView {
     }
 
     private static String drawUserNames(Participants participants) {
-        return participants.getUserNames()
-                .stream()
-                .map(name -> String.format("%5s", name))
-                .collect(Collectors.joining(WHITE_SPACE_CHAR));
+        return String.join(WHITE_SPACE_CHAR, participants.getUserNames());
     }
 
     private static String drawRows(LineRows column) {

@@ -3,20 +3,32 @@ package nextstep.ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
+
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class UserNameTest {
 
-    @Test
-    @DisplayName("입력된 사용자 이름을 반환한다.")
-    void test01() {
-        String expected = "1";
-        UserName userName = UserName.add(expected);
+    private static Stream<Arguments> provideArgumentsForFormattedNameTest() {
+        return Stream.of(
+                Arguments.of("a", "    a"),
+                Arguments.of("ab", "   ab"),
+                Arguments.of("abc", "  abc"),
+                Arguments.of("abcd", " abcd"),
+                Arguments.of("abcde", "abcde")
+        );
+    }
 
-        assertThat(userName.getName())
+    @MethodSource("provideArgumentsForFormattedNameTest")
+    @ParameterizedTest
+    @DisplayName("입력된 사용자 이름을 우측정렬 형식에 맞게 반환한다.")
+    void test01(String input, String expected) {
+        assertThat(UserName.add(input).formattedName())
                 .isEqualTo(expected);
     }
 
@@ -36,5 +48,5 @@ class UserNameTest {
         assertThatThrownBy(() -> UserName.add(name))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-    
+
 }

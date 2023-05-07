@@ -27,7 +27,7 @@ public class Participants {
 
     public List<String> getUserNames() {
         return userNames.stream()
-                .map(UserName::getName)
+                .map(UserName::formattedName)
                 .collect(Collectors.toUnmodifiableList());
     }
 

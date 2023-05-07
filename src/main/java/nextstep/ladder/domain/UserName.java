@@ -1,13 +1,22 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.formatter.Formatter;
+import nextstep.ladder.domain.formatter.NameFormatter;
+
 public class UserName {
 
     private static final int MAX_LENGTH = 5;
-    
+
     private final String name;
+    private final Formatter formatter;
 
     private UserName(String name) {
+        this(name, new NameFormatter());
+    }
+
+    public UserName(String name, Formatter formatter) {
         this.name = name;
+        this.formatter = formatter;
     }
 
     public static UserName add(String name) {
@@ -26,6 +35,10 @@ public class UserName {
 
     public String getName() {
         return name;
+    }
+
+    public String formattedName() {
+        return formatter.format(name);
     }
 
 }
