@@ -12,7 +12,6 @@ public final class ResultView {
     private static final String WHITE_SPACE_CHAR = " ";
     private static final String COLUMN_LINE_CHAR = "|";
     private static final String ROW_LINE_CHAR = "-";
-    private static final int ROW_WIDTH_LENGTH = 5;
 
     private ResultView() {
         throw new IllegalCallerException("잘못된 객체생성 입니다.");
@@ -55,15 +54,15 @@ public final class ResultView {
     }
 
     private static String drawFirstColumn() {
-        return repeatChar(ROW_WIDTH_LENGTH - 1, WHITE_SPACE_CHAR) + COLUMN_LINE_CHAR;
+        return repeatChar(UserName.getMaxLength() - 1, WHITE_SPACE_CHAR) + COLUMN_LINE_CHAR;
     }
 
     private static String drawConnectedRow() {
-        return repeatChar(ROW_WIDTH_LENGTH, ROW_LINE_CHAR) + COLUMN_LINE_CHAR;
+        return repeatChar(UserName.getMaxLength(), ROW_LINE_CHAR) + COLUMN_LINE_CHAR;
     }
 
     private static String drawUnconnectedRow() {
-        return repeatChar(ROW_WIDTH_LENGTH, WHITE_SPACE_CHAR) + COLUMN_LINE_CHAR;
+        return repeatChar(UserName.getMaxLength(), WHITE_SPACE_CHAR) + COLUMN_LINE_CHAR;
     }
 
     private static String repeatChar(int repeatCount, String anyChar) {

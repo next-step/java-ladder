@@ -19,6 +19,10 @@ public class UserName {
         this.formatter = formatter;
     }
 
+    public static int getMaxLength() {
+        return MAX_LENGTH;
+    }
+
     public static UserName add(String name) {
         validate(name);
         return new UserName(name);
