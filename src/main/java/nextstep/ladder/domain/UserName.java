@@ -33,10 +33,6 @@ public class UserName {
         }
     }
 
-    public String getName() {
-        return name;
-    }
-
     public String formattedName() {
         return formatter.format(name);
     }
