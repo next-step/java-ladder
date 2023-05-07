@@ -13,7 +13,7 @@ public class LadderTest {
     @DisplayName("사다리 생성 테스트")
     void createLadderTest() {
         List<String> names = List.of("a,b,c".split(","));
-        Participants participants = Participants.from(names);
+        LadderInputs participants = LadderInputs.from(names);
         Ladder ladder = Ladder.from(new Heights(5), participants, (index, previous) -> true);
 
         assertThat(ladder.getLadderHeights())

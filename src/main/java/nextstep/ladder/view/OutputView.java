@@ -6,7 +6,7 @@ public class OutputView {
     private static final String EMPTY_LINE = "     |";
     private static final String DRAW_LINE = "-----|";
 
-    public static void printLadder(Participants participants, Ladder ladder) {
+    public static void printLadder(LadderInputs participants, Ladder ladder) {
         printResultMention();
         printParticipants(participants);
         printLadderLines(ladder);
@@ -18,9 +18,9 @@ public class OutputView {
         System.out.println();
     }
 
-    private static void printParticipants(Participants participants) {
-        for (Name name : participants.getParticipants()) {
-            System.out.printf("%6s", name.getName());
+    private static void printParticipants(LadderInputs participants) {
+        for (Input input : participants.getInputs()) {
+            System.out.printf("%6s", input.getInput());
         }
         System.out.println();
     }

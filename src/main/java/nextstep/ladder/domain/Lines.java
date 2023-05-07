@@ -12,11 +12,11 @@ public class Lines {
         this.lines = lines;
     }
 
-    public static Lines drawLines(Participants participants, DrawStrategy drawStrategy) {
+    public static Lines drawLines(LadderInputs participants, DrawStrategy drawStrategy) {
         List<Line> lines = new ArrayList<>();
         boolean previous = false;
 
-        for (int i = FIRST_INDEX; i < participants.countOfParticipants(); i++) {
+        for (int i = FIRST_INDEX; i < participants.countOfInputs(); i++) {
             boolean draw = drawStrategy.draw(i, previous);
             lines.add(new Line(draw));
             previous = draw;

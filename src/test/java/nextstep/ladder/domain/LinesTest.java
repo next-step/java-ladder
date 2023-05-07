@@ -13,7 +13,7 @@ public class LinesTest {
     @DisplayName("가로 줄 생성 테스트")
     void createLinesTest() {
         List<String> names = List.of("a,b,c,d,e".split(","));
-        Participants participants = Participants.from(names);
+        LadderInputs participants = LadderInputs.from(names);
         Lines newLines = Lines.drawLines(participants, (index, previous) -> true);
 
         assertThat(newLines.numberOfLines())
@@ -24,7 +24,7 @@ public class LinesTest {
     @DisplayName("직전 라인이 그려졌을 때 다음 라인 그리지 않는 테스트")
     void trueAfterFalseTest() {
         List<String> names = List.of("a,b,c".split(","));
-        Participants participants = Participants.from(names);
+        LadderInputs participants = LadderInputs.from(names);
         Lines newLines = Lines.drawLines(participants, (index, previous) -> index != 0 && !previous);
 
         Lines resultLines = new Lines(List.of(new Line(false), new Line(true), new Line(false)));

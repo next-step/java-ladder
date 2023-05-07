@@ -9,33 +9,33 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class NameTest {
+public class InputTest {
 
     @ParameterizedTest
     @NullAndEmptySource
-    @DisplayName("이름이 빈 값이거나 null일 경우 예외처리")
+    @DisplayName("입력값이 빈 값이거나 null일 경우 예외처리")
     void nullOrEmptyTest(String input) {
-        assertThatThrownBy(() -> new Name(input))
+        assertThatThrownBy(() -> new Input(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("이름을 입력해주세요.");
+                .hasMessage("값을 입력해주세요.");
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"a", "go", "iam", "test", "given"})
-    @DisplayName("이름 생성 테스트")
+    @ValueSource(strings = {"a", "go", "iam", "test", "given", "꽝", "5000", "3000"})
+    @DisplayName("입력값 생성 테스트")
     void nameTest(String input) {
-        Name name = new Name(input);
+        Input name = new Input(input);
 
-        assertThat(name.getName())
+        assertThat(name.getInput())
                 .isEqualTo(input);
     }
 
     @Test
-    @DisplayName("이름이 5자 초과일 경우 에러 반환 테스트")
+    @DisplayName("입력값이 5자 초과일 경우 에러 반환 테스트")
     void moreFiveNameErrorTest() {
-        assertThatThrownBy(() -> new Name("python"))
+        assertThatThrownBy(() -> new Input("python"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("이름은 5글자를 초과할 수 없습니다.");
+                .hasMessage("5글자를 초과할 수 없습니다.");
     }
 
 }
