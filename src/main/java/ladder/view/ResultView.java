@@ -12,7 +12,8 @@ public class ResultView {
     private static final String HEIGHT = "|";
     private static final String EMPTY_LIME = "     ";
 
-    private ResultView() {}
+    private ResultView() {
+    }
 
     public static void showResult(Users users, Ladder ladder) {
         System.out.println("실행결과");
