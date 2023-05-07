@@ -33,5 +33,15 @@ public class LinesTest {
                 .usingRecursiveComparison()
                 .isEqualTo(resultLines.getLines());
     }
+//
+//    @Test
+//    @DisplayName("라인 결과 테스트")
+//    void lineResultTest() {
+//        List<String> names = List.of("a,b,c,d,e".split(","));
+//        LadderInputs participants = LadderInputs.from(names);
+//        Lines newLines = Lines.drawLines(participants, (index, previous) -> index != 0 && !previous);
+//
+//
+//    }
 
 }
