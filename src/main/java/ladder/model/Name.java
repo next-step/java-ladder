@@ -1,7 +1,7 @@
 package ladder.model;
 
 public class Name {
-    private static final int MAX_LENGTH = 5;
+    public static final int MAX_LENGTH = 5;
     private final String value;
 
     public Name(String value) {
