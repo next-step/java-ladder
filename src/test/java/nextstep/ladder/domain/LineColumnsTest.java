@@ -12,8 +12,8 @@ class LineColumnsTest {
     void test01() {
         int height = 5;
         LineColumns lineColumns = LineColumns.create(height, 5);
-        
-        assertThat(lineColumns.getColumns()).hasSize(height);
+
+        assertThat(lineColumns.getRows()).hasSize(height);
     }
 
 }

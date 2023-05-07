@@ -8,10 +8,10 @@ import java.util.stream.IntStream;
 
 public class LineColumns {
 
-    private final List<LineRows> columns;
+    private final List<LineRows> rows;
 
-    public LineColumns(List<LineRows> columns) {
-        this.columns = columns;
+    public LineColumns(List<LineRows> rows) {
+        this.rows = rows;
     }
 
     public static LineColumns create(int columnLength, int rowLength) {
@@ -21,14 +21,14 @@ public class LineColumns {
                         .collect(Collectors.toUnmodifiableList()));
     }
 
-    public List<LineRows> getColumns() {
-        return columns;
+    public List<LineRows> getRows() {
+        return rows;
     }
 
     @Override
     public String toString() {
         return "LineColumns{" +
-                "columns=" + columns +
+                "rows=" + rows +
                 '}';
     }
 

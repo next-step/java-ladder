@@ -33,9 +33,9 @@ public final class ResultView {
     }
 
     private static String drawLines(LineColumns lineColumns) {
-        return lineColumns.getColumns()
+        return lineColumns.getRows()
                 .stream()
-                .map(column -> drawFirstColumn() + drawRows(column))
+                .map(rows -> drawFirstColumn() + drawRows(rows))
                 .collect(Collectors.joining(NEW_LINE));
     }
 
@@ -43,8 +43,8 @@ public final class ResultView {
         return String.join(WHITE_SPACE_CHAR, participants.getUserNames());
     }
 
-    private static String drawRows(LineRows column) {
-        return column.getConnectionStatuses()
+    private static String drawRows(LineRows rows) {
+        return rows.getConnectionStatuses()
                 .stream()
                 .map(drawRow())
                 .collect(Collectors.joining());

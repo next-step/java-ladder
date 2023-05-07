@@ -16,7 +16,7 @@ class LadderTest {
         Ladder ladder = new Ladder(LineColumns.create(ladderHeight.getHeight(), participants.count()));
         LineColumns lineColumns = ladder.getLineColumns();
 
-        assertThat(lineColumns.getColumns()).hasSize(ladderHeight.getHeight());
+        assertThat(lineColumns.getRows()).hasSize(ladderHeight.getHeight());
     }
 
 }
