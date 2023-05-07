@@ -1,6 +1,7 @@
 package ladder.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -24,15 +25,19 @@ public class Line {
         return new Line(points);
     }
 
-    public static boolean hasPrevious(List<Boolean> points, int index) {
+    public int size() {
+        return points.size();
+    }
+
+    public List<Boolean> getPoints() {
+        return Collections.unmodifiableList(points);
+    }
+
+    private static boolean hasPrevious(List<Boolean> points, int index) {
         if (index <= 0) {
             return false;
         }
         return points.get(index - 1);
-    }
-
-    public int size() {
-        return points.size();
     }
 
     private void validatePoints(List<Boolean> points) {
