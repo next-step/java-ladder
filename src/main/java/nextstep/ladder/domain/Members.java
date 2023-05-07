@@ -1,0 +1,24 @@
+package nextstep.ladder.domain;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class Members {
+    private final List<Member> members;
+
+    public Members(List<Member> members) {
+        this.members = members;
+    }
+
+    public int position(String name) {
+        return members.indexOf(new Member(name));
+    }
+
+    public int countOfMember() {
+        return members.size();
+    }
+
+    public List<String> names() {
+        return members.stream().map(Member::name).collect(Collectors.toList());
+    }
+}
