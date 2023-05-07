@@ -19,4 +19,12 @@ public class ExpressionTest {
                     Expression.of("&");
                 });
     }
+
+    @Test
+    public void validExpression() {
+        assertThat(Expression.of("+")).isEqualTo(Expression.PLUS);
+        assertThat(Expression.of("-")).isEqualTo(Expression.MINUS);
+        assertThat(Expression.of("/")).isEqualTo(Expression.DIVIDE);
+        assertThat(Expression.of("*")).isEqualTo(Expression.TIMES);
+    }
 }
