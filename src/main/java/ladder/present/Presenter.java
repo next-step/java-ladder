@@ -38,7 +38,8 @@ public class Presenter {
     }
 
     private void renderingLadderArea(Ladder ladder) {
-        throw new RuntimeException("Not Yet Implemented");
+        List<String> randering = ladder.rendering();
+        randering.stream().forEach(s -> System.out.println(s));
     }
 
     private void renderingUserArea(String userNames) {
