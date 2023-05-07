@@ -10,13 +10,11 @@ public class Ladder {
     private final int column;
     private final int row;
     private final Lines lines;
-    private final Pillars pillars;
 
     public Ladder(int column, int row) {
         this.column = column;
         this.row = row;
-        this.pillars = new Pillars(column, row);
-        this.lines = new Lines(column, row, Preferences.lineCount(row));
+        this.lines = Lines.of(column, row, Preferences.lineCount(row));
     }
 
     public List<String> rendering() {

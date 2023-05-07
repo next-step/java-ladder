@@ -6,16 +6,34 @@ import java.util.Set;
 public class Lines {
     private final Set<Line> lines;
 
-    public Lines(int height, int width, int count) {
-        Set<Line> newLines = new HashSet<>();
-        while (newLines.size() >= count) {
-            newLines.add(Line.any(LineStrategyRandom.of(height, width)));
+    private Lines() {
+        this.lines = new HashSet<>();
+    }
+    public static Lines of(int height, int width, int count) {
+        Lines lines = new Lines();
+        while (lines.lineCount() <= count) {
+            Line anyLine = Line.any(LineStrategyRandom.of(height, width));
+
+            if (lines.isExistSameColumnAndAdjacentRow(anyLine)) {
+                lines.append(anyLine);
+            }
         }
-        lines = newLines;
+        return lines;
+    }
+
+    private void append(Line anyLine) {
+        this.lines.add(anyLine);
+    }
+
+    private boolean isExistSameColumnAndAdjacentRow(Line otherLine) {
+       return !this.lines.stream()
+               .filter(line -> line.isSameColum(otherLine))
+               .filter(line -> line.isAdjacentRow(otherLine))
+               .findFirst().isPresent();
     }
 
     public int lineCount() {
-        throw new RuntimeException("Not Yet Implemented");
+        return this.lines.size();
     }
 
     public Set<Line> allLines() {

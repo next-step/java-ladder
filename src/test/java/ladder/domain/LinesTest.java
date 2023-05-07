@@ -13,7 +13,7 @@ public class LinesTest {
     public void linesInstance() {
         //given
         //when
-        Lines lines = new Lines(100, 20, 20);
+        Lines lines = Lines.of(100, 20, 20);
         //then
         assertAll("",
                 () -> assertThat(lines.lineCount())

@@ -24,4 +24,12 @@ public class Line {
     public boolean isYourPosition(int i, int j) {
         return horizontalPosition == i && verticalPosition == j;
     }
+
+    public boolean isSameColum(Line otherLine) {
+        return this.verticalPosition == otherLine.verticalPosition;
+    }
+
+    public boolean isAdjacentRow(Line otherLine) {
+        return Math.abs(this.horizontalPosition - otherLine.horizontalPosition) <= 1;
+    }
 }
