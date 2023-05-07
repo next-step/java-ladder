@@ -8,6 +8,7 @@ import ladder.domain.Ladder;
 import ladder.domain.Line;
 import ladder.domain.Name;
 import ladder.domain.Names;
+import ladder.domain.Point;
 import ladder.domain.Points;
 
 public class ResultView {
@@ -53,7 +54,7 @@ public class ResultView {
 	private static String lineText(Points points) {
 		return points.getPoints().stream()
 			.map(point -> {
-				if (point) {
+				if (point.equals(Point.of(true))) {
 					return ResultView.TRUE_TEXT;
 				}
 				return ResultView.FALSE_TEXT;

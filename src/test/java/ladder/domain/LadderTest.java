@@ -7,9 +7,10 @@ import org.junit.jupiter.api.Test;
 
 public class LadderTest {
 
-	@DisplayName("참가할 사람 예외 케이스 - 이름 예외")
+	@DisplayName("사다리를 생성한다.")
 	@Test
 	void test1() {
-		assertThatIllegalArgumentException().isThrownBy(() -> new Ladder(new Names(""), 5));
+		Ladder ladder = Ladder.of(new Points(true, false, true), new Points(false, true, false));
+		assertThat(ladder).isEqualTo(Ladder.of(new Points(true, false, true), new Points(false, true, false)));
 	}
 }
