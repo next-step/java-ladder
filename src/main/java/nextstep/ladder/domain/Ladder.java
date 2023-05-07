@@ -9,19 +9,30 @@ import java.util.stream.IntStream;
 
 public class Ladder {
     private final List<Line> lines;
+    private final Members members;
 
-    public Ladder(int countOfNumber, int height) {
-        lines = IntStream.range(0, height)
-                         .mapToObj(h -> new Line(countOfNumber, new DefaultRandomBoolean()))
-                         .collect(Collectors.toList());
+    public Ladder(Members members, int height) {
+        this.members = members;
+        this.lines = IntStream.range(0, height)
+                              .mapToObj(h -> new Line(members.countOfMember(), new DefaultRandomBoolean()))
+                              .collect(Collectors.toList());
     }
 
-    public Ladder(List<Line> lines) {
+    public Ladder(Members members, List<Line> lines) {
+        this.members = members;
         this.lines = lines;
     }
 
     public List<Line> lines() {
         return Collections.unmodifiableList(this.lines);
+    }
+
+    public int move(String memberName) {
+        int position = members.position(memberName);
+        for (Line line : lines) {
+            position = line.position(position);
+        }
+        return position;
     }
 
     public int move(int currentPosition) {
