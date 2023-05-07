@@ -16,7 +16,20 @@ public class Result {
         }
     }
 
+    public Result move(int value) {
+        return new Result(index + value);
+    }
+
     public int getResult() {
         return index;
+    }
+
+    public boolean isSameIndex(int value) {
+        return index == value;
+    }
+
+    @Override
+    public String toString() {
+        return "" + index;
     }
 }

@@ -27,4 +27,28 @@ public class ResultTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {0, 1, 2, 3})
+    @DisplayName("양수 이동 테스트")
+    void movePositiveTest(int input) {
+        Result result = new Result(input);
+        Result movedResult = result.move(1);
+
+        assertThat(movedResult)
+                .usingRecursiveComparison()
+                .isEqualTo(new Result(input + 1));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3})
+    @DisplayName("음수 이동 테스트")
+    void moveNegativeTest(int input) {
+        Result result = new Result(input);
+        Result movedResult = result.move(-1);
+
+        assertThat(movedResult)
+                .usingRecursiveComparison()
+                .isEqualTo(new Result(input - 1));
+    }
+
 }
