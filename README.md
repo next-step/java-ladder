@@ -10,10 +10,10 @@
 
 ## STEP 1 학습테스트 & 요구사항 체크리스트
 
-- [ ] lambda 실습 1 : MoveStrategy에 대한 익명 클래스로 구현하고 있는데 람다를 적용
-- [ ] lambda 실습 2 : 3보다 큰 수만을 더하는 로직구현, 중복코드 제거
-- [ ] map, reduce, filter 실습 1 : List에 담긴 모든 숫자 중 3보다 큰 숫자를 2배 한 후 모든 값의 합을 구한다
-- [ ] map, reduce, filter 실습 2 : printLongestWordTop100() 메서드를 구현
-- [ ] Optional 실습1 : 조건에 따른 반환
-- [ ] Optional 실습2 : 값을 반환
-- [ ] Optional 실습3 : exception 처리
+- [x] lambda 실습 1 : MoveStrategy에 대한 익명 클래스로 구현하고 있는데 람다를 적용
+- [x] lambda 실습 2 : 3보다 큰 수만을 더하는 로직구현, 중복코드 제거
+- [x] map, reduce, filter 실습 1 : List에 담긴 모든 숫자 중 3보다 큰 숫자를 2배 한 후 모든 값의 합을 구한다
+- [x] map, reduce, filter 실습 2 : printLongestWordTop100() 메서드를 구현
+- [x] Optional 실습1 : 조건에 따른 반환
+- [x] Optional 실습2 : 값을 반환
+- [x] Optional 실습3 : exception 처리
