@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Set;
 
 public class Users {
-    List<User> users;
+    private final List<User> users;
 
-    public Users(List<User> collect) {
-        throw new RuntimeException("Not Yet Implemented");
+    public Users(List<User> users) {
+        this.users = users;
     }
 
     public int count() {

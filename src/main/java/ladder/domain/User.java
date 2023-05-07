@@ -1,9 +1,9 @@
 package ladder.domain;
 
 public class User {
-    String name;
+    private final String name;
 
-    public User(String string) {
-        throw new RuntimeException("Not Yet Implemented");
+    public User(String name) {
+        this.name = name;
     }
 }
