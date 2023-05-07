@@ -39,7 +39,7 @@ pobi  honux crong   jk
 ## 구현할 기능 목록
 ### 사용자명 (UserName)
 - [x] 사용자 이름은 1~5자이다.
-- [x] 사용자 이름을 반환한다.
+- [x] 사용자 이름을 형식에 맞게 반환한다.
 
 ### 참여자 (Participants)
 - [x] InputView 로 부터 받은 입력값을 정제하여 초기화한다.
