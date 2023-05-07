@@ -1,5 +1,6 @@
 package ladder.present;
 
+import ladder.control.Preferences;
 import ladder.domain.Ladder;
 import ladder.domain.User;
 import ladder.domain.Users;
@@ -29,7 +30,19 @@ public class Presenter {
         return Integer.parseInt(scanner.nextLine());
     }
 
-    public void renderingLadder(Users users, Ladder ladder) {
-        throw new RuntimeException();
+    public void renderingLadder(List<String> userNames, Ladder ladder) {
+        String collect = userNames.stream().collect(Collectors.joining(Preferences.userDelimiter()));
+
+        renderingUserArea(collect);
+        renderingLadderArea(ladder);
+    }
+
+    private void renderingLadderArea(Ladder ladder) {
+        throw new RuntimeException("Not Yet Implemented");
+    }
+
+    private void renderingUserArea(String userNames) {
+        System.out.println(userNames);
+
     }
 }

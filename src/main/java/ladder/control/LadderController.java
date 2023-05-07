@@ -13,6 +13,6 @@ public class LadderController {
         int width = users.count();
         Ladder ladder = new Ladder(height,width);
 
-        presenter.renderingLadder(users,ladder);
+        presenter.renderingLadder(users.names(),ladder);
     }
 }
