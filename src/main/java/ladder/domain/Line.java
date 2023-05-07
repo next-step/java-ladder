@@ -20,4 +20,8 @@ public class Line {
     public int getVerticalPosition() {
         return verticalPosition;
     }
+
+    public boolean isYourPosition(int i, int j) {
+        return horizontalPosition == i && verticalPosition == j;
+    }
 }

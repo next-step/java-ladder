@@ -2,6 +2,7 @@ package ladder.domain;
 
 import ladder.control.Preferences;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -19,11 +20,21 @@ public class Ladder {
     }
 
     public List<String> rendering() {
-        Set<Line> lines1 = lines.allLines();
+        List<String> strings = new ArrayList<>();
+        StringBuilder lineBuilder;
         for(int i = 0; i< column; i++) {
+            lineBuilder = new StringBuilder();
             for(int j = 0; j< row; j++ ) {
-
+                lineBuilder.append("|");
+                if (lines.existLine(i, j)) {
+                    lineBuilder.append("------");
+                }
+                else {
+                    lineBuilder.append("      ");
+                }
             }
+            strings.add(lineBuilder.toString());
         }
+        return strings;
     }
 }

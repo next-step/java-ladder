@@ -21,4 +21,8 @@ public class Lines {
     public Set<Line> allLines() {
         return lines;
     }
+
+    public boolean existLine(int i, int j) {
+        return lines.stream().filter(line -> line.isYourPosition(i, j)).findFirst().isPresent();
+    }
 }
