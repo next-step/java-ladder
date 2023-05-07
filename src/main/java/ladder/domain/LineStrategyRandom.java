@@ -11,7 +11,7 @@ public class LineStrategyRandom implements LineStrategy {
 
     public LineStrategyRandom(int heightLimit, int widthLimit) {
         this.heightLimit = heightLimit;
-        this.widthLimit = widthLimit;
+        this.widthLimit = widthLimit-1;
         this.random = new Random();
     }
 

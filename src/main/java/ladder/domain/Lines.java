@@ -11,7 +11,7 @@ public class Lines {
     }
     public static Lines of(int height, int width, int count) {
         Lines lines = new Lines();
-        while (lines.lineCount() <= count) {
+        while (lines.lineCount() < count) {
             Line anyLine = Line.any(LineStrategyRandom.of(height, width));
 
             if (lines.isExistSameColumnAndAdjacentRow(anyLine)) {
