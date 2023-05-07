@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 public class LadderTest {
 
-	@DisplayName("사다리를 생성한다.")
+	@DisplayName("유효한 좌표 목록으로 사다리 생성 시, 객체를 반환한다.")
 	@Test
 	void test1() {
 		Ladder ladder = Ladder.of(new Points(true, false, true), new Points(false, true, false));

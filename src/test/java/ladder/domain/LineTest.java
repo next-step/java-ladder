@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 public class LineTest {
 
-	@DisplayName("좌표목록으로 라인을 생성한다.")
+	@DisplayName("유효한 좌표 목록으로 가로 라인 생성 시, 객체를 반환한다.")
 	@Test
 	void test1() {
 		Points points = new Points(true, false, true, false);
