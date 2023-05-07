@@ -1,6 +1,6 @@
 package ladder.domain;
 
-public class Pillar {
+public class Pillars {
     int height;
 
 }

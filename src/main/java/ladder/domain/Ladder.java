@@ -2,8 +2,9 @@ package ladder.domain;
 
 public class Ladder {
     Lines lines;
-    Pillar pillar;
+    Pillars pillars;
 
     public Ladder(int height, int width) {
+
     }
 }
