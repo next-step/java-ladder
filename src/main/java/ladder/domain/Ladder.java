@@ -20,11 +20,11 @@ public class Ladder {
     public List<String> rendering() {
         List<String> strings = new ArrayList<>();
         StringBuilder lineBuilder;
-        for(int i = 0; i< column; i++) {
+        for(int columnIndex = 0; columnIndex< column; columnIndex++) {
             lineBuilder = new StringBuilder();
-            for(int j = 0; j< row; j++ ) {
+            for(int rowIndex = 0; rowIndex< row; rowIndex++ ) {
                 lineBuilder.append("|");
-                if (lines.existLine(i, j)) {
+                if (lines.existLine(columnIndex, rowIndex)) {
                     lineBuilder.append("------");
                 }
                 else {

@@ -21,8 +21,8 @@ public class Line {
         return verticalPosition;
     }
 
-    public boolean isYourPosition(int i, int j) {
-        return horizontalPosition == i && verticalPosition == j;
+    public boolean isYourPosition(int column, int row) {
+        return (verticalPosition == column) && (horizontalPosition == row);
     }
 
     public boolean isSameColum(Line otherLine) {

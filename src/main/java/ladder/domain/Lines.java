@@ -40,7 +40,7 @@ public class Lines {
         return lines;
     }
 
-    public boolean existLine(int i, int j) {
-        return lines.stream().filter(line -> line.isYourPosition(i, j)).findFirst().isPresent();
+    public boolean existLine(int columnIndex, int rowIndex) {
+        return lines.stream().filter(line -> line.isYourPosition(columnIndex, rowIndex)).findFirst().isPresent();
     }
 }
