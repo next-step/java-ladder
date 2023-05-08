@@ -1,7 +1,7 @@
 package ladder.present;
 
 import ladder.control.Preferences;
-import ladder.domain.Ladder;
+import ladder.domain.LadderRender;
 import ladder.domain.User;
 import ladder.domain.Users;
 import ladder.exception.OutOfLadderHeightException;
@@ -50,15 +50,15 @@ public class Presenter {
         }
     }
 
-    public void renderingLadder(List<String> userNames, Ladder ladder) {
+    public void renderingLadder(List<String> userNames, LadderRender ladderRender) {
         String collect = userNames.stream().collect(Collectors.joining(Preferences.userDelimiter()));
 
         renderingUserArea(collect);
-        renderingLadderArea(ladder);
+        renderingLadderArea(ladderRender);
     }
 
-    private void renderingLadderArea(Ladder ladder) {
-        List<String> randering = ladder.rendering();
+    private void renderingLadderArea(LadderRender ladderRender) {
+        List<String> randering = ladderRender.rendering();
         randering.stream().forEach(s -> System.out.println(s));
     }
 
