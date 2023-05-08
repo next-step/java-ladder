@@ -28,7 +28,7 @@
   - 사다리 최대 높이가 1보다 작으면 IllegalArgumentException 발생
 
 ### 추가 요구사항 체크리스트
-- [ ] 실행 결과를 입력한다.
+- [x] 실행 결과를 입력한다.
   - 결과는 ,로 구분한다.
   - 빈값 입력 시 IllegalArgumentException 발생
   - 입력할 수 있는 문자는 `꽝`과 `숫자`로 제한한다. 그외 문자 입력 시 IllegalArgumentException 발생
