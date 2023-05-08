@@ -3,15 +3,17 @@ package nextstep.ladder;
 
 import nextstep.ladder.domain.line.Lines;
 import nextstep.ladder.domain.participant.Participants;
+import nextstep.ladder.domain.reward.Rewards;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
 public class LadderGame {
     public static void main(String[] args) {
         final Participants participants = new Participants(InputView.participantNames());
-        final String rewards = InputView.ladderRewards();
-        final Lines lines = new Lines(InputView.ladderHeight(), participants.getSize(),rewards);
 
-        OutputView.printLadderResult(participants, lines);
+        final Lines lines = new Lines(InputView.ladderHeight(), participants.getSize());
+        final Rewards rewards = new Rewards(participants.getSize(), InputView.ladderRewards());
+
+        OutputView.printLadderResult(participants, lines, rewards);
     }
 }

@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.participant;
 
+import java.util.Objects;
 import java.util.Optional;
 
 public class Participant {
@@ -12,5 +13,18 @@ public class Participant {
 
     String getName() {
         return this.name.getName();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Participant that = (Participant) o;
+        return Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

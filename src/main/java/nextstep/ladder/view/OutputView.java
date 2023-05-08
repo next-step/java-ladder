@@ -3,6 +3,7 @@ package nextstep.ladder.view;
 import nextstep.ladder.domain.line.Line;
 import nextstep.ladder.domain.line.Lines;
 import nextstep.ladder.domain.participant.Participants;
+import nextstep.ladder.domain.reward.Rewards;
 
 public class OutputView {
     private static final String BLANK = "   ";
@@ -14,7 +15,7 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printLadderResult(Participants participants, Lines lines) {
+    public static void printLadderResult(Participants participants, Lines lines, Rewards rewards) {
         System.out.println("사다리 결과");
         System.out.println();
 
@@ -27,7 +28,7 @@ public class OutputView {
         lines.getLines()
                 .forEach(OutputView::printLadderOneLine);
 
-        lines.getRewards()
+        rewards.getRewards()
                 .stream()
                 .map(reward -> BLANK + reward)
                 .forEach(System.out::print);
