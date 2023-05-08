@@ -36,4 +36,8 @@ public class LadderRewards {
   public List<LadderReward> ladderRewards() {
     return Collections.unmodifiableList(ladderRewards);
   }
+
+  public LadderReward rewardByIndex(int index) {
+    return ladderRewards.get(index);
+  }
 }

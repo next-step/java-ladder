@@ -8,9 +8,9 @@ public class LadderGame {
   private final Users users;
   private final Ladder ladder;
 
-  public LadderGame(Users users, int ladderHeight, LadderRewards ladderRewards) {
+  public LadderGame(Users users, int ladderHeight) {
     this.users = users;
-    this.ladder = new Ladder(this.users.countOfUser(), ladderHeight, ladderRewards);
+    this.ladder = new Ladder(this.users.countOfUser(), ladderHeight);
   }
 
   public List<User> users() {
@@ -21,17 +21,13 @@ public class LadderGame {
     return ladder.unmodifiableLadderLines();
   }
 
-  public List<LadderReward> ladderRewards() {
-    return ladder.unmodifiableLadderRewards();
-  }
-
-  public LadderResult play() {
+  public LadderResult play(LadderRewards ladderRewards) {
     Map<User, LadderReward> rewardsOfUsers = new HashMap<>();
 
     ladderLines().forEach(this::iterateLines);
 
     for (int i = 0; i < users.countOfUser(); i++) {
-      rewardsOfUsers.put(users.userByIndex(i), ladder.rewardByIndex(i));
+      rewardsOfUsers.put(users.userByIndex(i), ladderRewards.rewardByIndex(i));
     }
 
     return new LadderResult(rewardsOfUsers);

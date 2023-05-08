@@ -11,10 +11,10 @@ public class LadderApplication {
     LadderRewards ladderRewards = InputView.inputRewards(users.countOfUser());
     LadderHeight ladderHeight = InputView.inputHeight();
 
-    LadderGame ladderGame = new LadderGame(users, ladderHeight.height(), ladderRewards);
-    ResultView.showLadder(ladderGame);
+    LadderGame ladderGame = new LadderGame(users, ladderHeight.height());
+    ResultView.showLadder(ladderGame, ladderRewards);
 
-    LadderResult ladderResult = ladderGame.play();
+    LadderResult ladderResult = ladderGame.play(ladderRewards);
     ResultView.showResult(ladderResult);
   }
 }

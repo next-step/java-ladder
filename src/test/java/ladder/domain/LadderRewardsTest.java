@@ -16,10 +16,10 @@ public class LadderRewardsTest {
 
 
     assertAll(
-            () -> assertThat(ladderRewards.ladderRewards().get(0).reward()).isEqualTo("꽝"),
-            () -> assertThat(ladderRewards.ladderRewards().get(1).reward()).isEqualTo("1000"),
-            () -> assertThat(ladderRewards.ladderRewards().get(2).reward()).isEqualTo("꽝"),
-            () -> assertThat(ladderRewards.ladderRewards().get(3).reward()).isEqualTo("4000")
+            () -> assertThat(ladderRewards.rewardByIndex(0).reward()).isEqualTo("꽝"),
+            () -> assertThat(ladderRewards.rewardByIndex(1).reward()).isEqualTo("1000"),
+            () -> assertThat(ladderRewards.rewardByIndex(2).reward()).isEqualTo("꽝"),
+            () -> assertThat(ladderRewards.rewardByIndex(3).reward()).isEqualTo("4000")
     );
   }
 
