@@ -21,7 +21,7 @@ public class LinesTest {
                 () -> assertThat(lines.allLines())
                         .as("모든 Line 의 위치는 범위 내 이어야한다")
                         .allMatch(line -> {
-                            return line.getHorizontalPosition() < 100 && line.getVerticalPosition() < 20;
+                            return line.columnPosition() < 100 && line.rowPosition() < 20;
                         })
         );
 
