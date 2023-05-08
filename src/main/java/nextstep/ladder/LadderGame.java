@@ -9,6 +9,7 @@ import nextstep.ladder.view.OutputView;
 public class LadderGame {
     public static void main(String[] args) {
         final Participants participants = new Participants(InputView.participantNames());
+        final String result = InputView.ladderResult();
         final Lines lines = new Lines(InputView.ladderHeight(), participants.getSize());
 
         OutputView.printResult(participants, lines);
