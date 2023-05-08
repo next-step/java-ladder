@@ -50,15 +50,19 @@ public class ResultView {
   private static void showResultReward(String userName, LadderResult ladderResult) {
     if (userName.equals(ALL_USERS)) {
       System.out.println(REWARD_RESULT_MESSAGE);
-      ladderResult.users().forEach(user -> {
-        System.out.printf(REWARD_OF_USER, user.name(), rewardOrNone(ladderResult.rewardOfUser(user.name())));
-        System.out.println();
-      });
+      printUserAndReward(ladderResult);
       return;
     }
 
     System.out.println(REWARD_RESULT_MESSAGE);
     System.out.println(rewardOrNone(ladderResult.rewardOfUser(userName)));
+  }
+
+  private static void printUserAndReward(LadderResult ladderResult) {
+    ladderResult.users().forEach(user -> {
+      System.out.printf(REWARD_OF_USER, user.name(), rewardOrNone(ladderResult.rewardOfUser(user.name())));
+      System.out.println();
+    });
   }
 
   private static String rewardOrNone(LadderReward ladderReward) {
