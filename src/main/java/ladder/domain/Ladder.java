@@ -4,6 +4,8 @@ import ladder.control.Preferences;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder {
     private final int column;
@@ -20,20 +22,30 @@ public class Ladder {
         List<String> strings = new ArrayList<>();
 
         for (int rowIndex = 0; rowIndex < row; rowIndex++) {
-            StringBuilder lineBuilder;
-            lineBuilder = new StringBuilder();
-            for (int columnIndex = 0; columnIndex < column; columnIndex++) {
-
-
-                lineBuilder.append(Preferences.pillarShape());
-                if (lines.existLine(columnIndex, rowIndex)) {
-                    lineBuilder.append(Preferences.allocatedLineShape());
-                } else {
-                    lineBuilder.append(Preferences.emptyLineShape());
-                }
-            }
-            strings.add(lineBuilder.toString());
+            strings.add(renderingRow(rowIndex));
         }
         return strings;
+    }
+
+    private String renderingRow(int rowIndex) {
+//        return IntStream.rangeClosed(0, rowIndex)
+//                .mapToObj(columnIndex -> pixelRendering(columnIndex, rowIndex))
+//                .collect(Collectors.joining());
+
+        StringBuilder lineBuilder;
+        lineBuilder = new StringBuilder();
+        for (int columnIndex = 0; columnIndex < column; columnIndex++) {
+            lineBuilder.append(pixelRendering(columnIndex,rowIndex));
+        }
+        String string = lineBuilder.toString();
+        return string;
+    }
+
+    private String pixelRendering(int columnIndex, int rowIndex) {
+        return Preferences.pillarShape() + lineShape(columnIndex, rowIndex);
+    }
+
+    private String lineShape(int columnIndex, int rowIndex) {
+        return lines.existLine(columnIndex, rowIndex) ? Preferences.allocatedLineShape() : Preferences.emptyLineShape();
     }
 }
