@@ -16,8 +16,8 @@ public class Lines {
     public static Lines of(int column, int row, int count) {
         Lines lines = new Lines();
         for (int i = 0; lines.lineCount() < count; i++) {
-            addLineSuitableOnly(lines, Line.any(LineStrategyRandom.ofLimit(column, row)));
             addLineInfiniteLoopWatchDog(i);
+            addLineSuitableOnly(lines, Line.any(LineStrategyRandom.ofLimit(column, row)));
         }
         return lines;
     }
