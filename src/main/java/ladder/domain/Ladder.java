@@ -31,18 +31,10 @@ public class Ladder {
         return IntStream.range(0, columnRange)
                 .mapToObj(columnIndex -> pixelRendering(columnIndex, rowIndex))
                 .collect(Collectors.joining());
-
-//        StringBuilder lineBuilder;
-//        lineBuilder = new StringBuilder();
-//        for (int columnIndex = 0; columnIndex < column; columnIndex++) {
-//            lineBuilder.append(pixelRendering(columnIndex,rowIndex));
-//        }
-//        String string = lineBuilder.toString();
-//        return string;
     }
 
     private String pixelRendering(int columnIndex, int rowIndex) {
-        return Preferences.pillarShape() + lineShape(columnIndex, rowIndex);
+        return Preferences.pillarShape().concat(lineShape(columnIndex, rowIndex));
     }
 
     private String lineShape(int columnIndex, int rowIndex) {
