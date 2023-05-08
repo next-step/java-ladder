@@ -2,6 +2,17 @@ package ladder.control;
 
 public class Preferences {
 
+    private static final int MAX_COLUMN = 50;
+    private static final int MAX_ROW = 50;
+
+    public static int maxColumnPolicy() {
+        return MAX_COLUMN;
+    }
+
+    public static int maxRowPolicy() {
+        return MAX_ROW;
+    }
+
     public static String userDelimiter() {
         return ", ";
     }
