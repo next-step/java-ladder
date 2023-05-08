@@ -10,6 +10,10 @@ public class Line {
 		this.points = points;
 	}
 
+	public int nextIndex(int index) {
+		return this.points.nextIndex(index);
+	}
+
 	public Points getPoints() {
 		return this.points;
 	}

@@ -25,6 +25,10 @@ public class Results {
 		return this.results.size();
 	}
 
+	public Result indexOf(int index) {
+		return this.results.get(index);
+	}
+
 	public List<Result> getResults() {
 		return results;
 	}

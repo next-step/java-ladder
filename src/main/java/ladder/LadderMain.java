@@ -5,9 +5,11 @@ import java.util.List;
 
 import ladder.domain.Height;
 import ladder.domain.Ladder;
+import ladder.domain.LadderGame;
 import ladder.domain.Names;
 import ladder.domain.Points;
 import ladder.domain.Results;
+import ladder.domain.ResultsBoard;
 import ladder.ui.InputView;
 import ladder.ui.ResultView;
 
@@ -25,5 +27,8 @@ public class LadderMain {
 		ResultView.printNames(names);
 		ResultView.printLadder(ladder);
 		ResultView.printResults(results);
+
+		LadderGame ladderGame = new LadderGame(ladder, names);
+		ResultsBoard resultsBoard = ladderGame.makeResultsBoard(names, results);
 	}
 }

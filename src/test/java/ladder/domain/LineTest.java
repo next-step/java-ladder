@@ -10,8 +10,8 @@ public class LineTest {
 	@DisplayName("유효한 좌표 목록으로 가로 라인 생성 시, 객체를 반환한다.")
 	@Test
 	void test1() {
-		Points points = new Points(true, false, true, false);
+		Points points = Points.of(true, false, true, false);
 		Line line = new Line(points);
-		assertThat(line).isEqualTo(new Line(new Points(true, false, true, false)));
+		assertThat(line).isEqualTo(new Line(Points.of(true, false, true, false)));
 	}
 }

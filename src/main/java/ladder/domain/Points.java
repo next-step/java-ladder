@@ -14,7 +14,7 @@ public class Points {
 
 	private final List<Point> points;
 
-	public Points(Boolean... points) {
+	private Points(Boolean... points) {
 		this(Arrays.stream(points).map(Point::of).collect(Collectors.toList()));
 	}
 
@@ -26,6 +26,10 @@ public class Points {
 				throw new IllegalArgumentException("인접한 좌표를 모두 채울 수 없습니다.");
 			});
 		this.points = points;
+	}
+
+	public static Points of(Boolean... points) {
+		return new Points(points);
 	}
 
 	public static List<Point> generate(Names names) {
@@ -46,6 +50,40 @@ public class Points {
 			return;
 		}
 		points.add(Point.of(randomBoolean));
+	}
+
+	public int nextIndex(int index) {
+		if (index == 0) {
+			return this.stopOrRight(index);
+		}
+		if (index < this.points.size()) {
+			return this.stopOrRightOrLeft(index);
+		}
+		return this.stopOrLeft(index);
+	}
+
+	private int stopOrRight(int index) {
+		if (this.points.get(index).equals(Point.of(true))) {
+			return index + 1;
+		}
+		return index;
+	}
+
+	private int stopOrRightOrLeft(int index) {
+		if (this.points.get(index - 1).equals(Point.of(true))) {
+			return index - 1;
+		}
+		if (this.points.get(index).equals(Point.of(true))) {
+			return index + 1;
+		}
+		return index;
+	}
+
+	private int stopOrLeft(int index) {
+		if (this.points.get(index - 1).equals(Point.of(true))) {
+			return index - 1;
+		}
+		return index;
 	}
 
 	public List<Point> getPoints() {

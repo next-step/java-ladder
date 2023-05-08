@@ -22,6 +22,10 @@ public class Names {
 		return this.names.size();
 	}
 
+	public Name indexOf(int index) {
+		return this.names.get(index);
+	}
+
 	public List<Name> getNames() {
 		return this.names;
 	}
@@ -42,4 +46,5 @@ public class Names {
 	public int hashCode() {
 		return Objects.hash(names);
 	}
+
 }

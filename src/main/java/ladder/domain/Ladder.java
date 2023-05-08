@@ -20,6 +20,13 @@ public class Ladder {
 		}
 	}
 
+	public int finalIndex(int index) {
+		for(Line line : this.lines) {
+			index = line.nextIndex(index);
+		}
+		return index;
+	}
+
 	public List<Line> getLines() {
 		return lines;
 	}
