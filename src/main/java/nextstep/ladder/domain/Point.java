@@ -3,56 +3,62 @@ package nextstep.ladder.domain;
 import java.util.Objects;
 
 public class Point {
-    private final boolean left;
-    private final boolean right;
+    private final PointType pointType;
 
     public Point(boolean left, boolean right) {
         if (left && right) {
             throw new IllegalArgumentException("Point 는 양쪽이 true 일 수 없습니다.");
         }
 
-        this.left = left;
-        this.right = right;
+        this.pointType = getPointType(left, right);
     }
 
-    public Point right(boolean right) {
-        return new Point(this.right, right);
-    }
-
-    public boolean isRight() {
-        return this.right;
-    }
-
-    public int move() {
+    private PointType getPointType(boolean left, boolean right) {
         if (left) {
-            return -1;
+            return PointType.LEFT;
         }
 
         if (right) {
-            return 1;
+            return PointType.RIGHT;
         }
 
-        return 0;
+        return PointType.NONE;
+    }
+
+
+    public Point right(boolean right) {
+        return new Point(pointType.right(), right);
+    }
+
+    public boolean isRight() {
+        return pointType.right();
+    }
+
+    public int move() {
+        return this.pointType.move();
+    }
+
+    public Point(PointType pointType) {
+        this.pointType = pointType;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Point point1 = (Point) o;
-        return left == point1.left;
+        Point point = (Point) o;
+        return pointType == point.pointType;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(left);
+        return Objects.hash(pointType);
     }
 
     @Override
     public String toString() {
         return "Point{" +
-                "left=" + left +
-                ", right=" + right +
+                "pointType=" + pointType +
                 '}';
     }
 }

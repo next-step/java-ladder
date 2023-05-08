@@ -9,25 +9,19 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class LadderTest {
+class ResultMatchTest {
 
     @Test
-    @DisplayName("Ladder 높이와 사람 수를 가지고 생성한다.")
+    @DisplayName("ResultMatch 의 match 테스트")
     void test01() {
-        Ladder ladder = new Ladder(getMembers("rang1", "rang2"), 4);
+        Result result = new Result(List.of("1", "꽝", "2"));
+        Members members = getMembers("name1", "name2", "name3");
+        Ladder ladder = new Ladder(members, getLines());
+        ResultMatch resultMatch = new ResultMatch(result, ladder);
 
-        assertThat(ladder.lines()).hasSize(4);
-    }
+        String match = resultMatch.match("name1");
 
-    @Test
-    @DisplayName("사다리의 마지막 위치를 가져온다.")
-    void test02() {
-        Ladder ladder = new Ladder(getMembers("rang1", "rang2", "rang3"),
-                                   getLines());
-
-        assertThat(ladder.move("rang1")).isEqualTo(0);
-        assertThat(ladder.move("rang2")).isEqualTo(1);
-        assertThat(ladder.move("rang3")).isEqualTo(2);
+        assertThat(match).isEqualTo("1");
     }
 
     private static Members getMembers(String... names) {
@@ -35,8 +29,11 @@ class LadderTest {
         return new Members(members);
     }
 
+    // |   |---|   |
+    // |   |---|   |
     private static List<Line> getLines() {
         return List.of(new Line(false, true, false),
                        new Line(false, true, false));
     }
+
 }

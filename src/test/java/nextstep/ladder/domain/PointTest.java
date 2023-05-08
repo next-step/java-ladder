@@ -39,10 +39,10 @@ class PointTest {
     }
 
     @Test
-    @DisplayName("양쪽에 Point 가 없으면 현재 위치")
+    @DisplayName("양쪽에 Point 가 없으면 이동하지 않음")
     void test05() {
-        Point point = new Point(true, false);
+        Point point = new Point(false, false);
 
-        assertThat(point.move()).isEqualTo(-1);
+        assertThat(point.move()).isEqualTo(0);
     }
 }

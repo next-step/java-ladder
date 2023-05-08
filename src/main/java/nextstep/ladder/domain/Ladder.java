@@ -35,14 +35,6 @@ public class Ladder {
         return position;
     }
 
-    public int move(int currentPosition) {
-        int position = currentPosition;
-        for (Line line : lines) {
-            position = line.position(position);
-        }
-        return position;
-    }
-
     @Override
     public String toString() {
         return "Ladder{" +
