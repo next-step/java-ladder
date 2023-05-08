@@ -28,8 +28,10 @@ public class StreamStudy {
     public static void printLongestWordTop100() throws IOException {
         List<String> words = readFile();
 
+        words = removeDuplicateWord(words);
+
         words.stream()
-                .distinct()
+                .filter(StreamStudy::filterLongestWordOver12)
                 .sorted(Comparator.comparing(String::length).reversed())
                 .limit(LONGEST_LIMIT)
                 .forEach(System.out::println);
@@ -38,6 +40,16 @@ public class StreamStudy {
     private static List<String> readFile() throws IOException {
         String contents = Files.readString(Paths.get(READ_FILE));
         return Arrays.asList(contents.split(FILE_SPLIT_REGEX));
+    }
+
+    private static List<String> removeDuplicateWord(List<String> requestWords) {
+        return requestWords.stream()
+                .distinct()
+                .collect(Collectors.toList());
+    }
+
+    private static boolean filterLongestWordOver12(String requestWord) {
+        return requestWord.length() >= LENGTH_CONDITION;
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
