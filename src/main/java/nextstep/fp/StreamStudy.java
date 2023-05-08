@@ -33,7 +33,7 @@ public class StreamStudy {
                 .filter( e1 -> e1.length() > 12)
                 .sorted(Comparator.comparing(String::length).reversed())
                 .distinct()
-                .map(r -> r.toLowerCase())
+                .map(String::toLowerCase)
                 .forEach(System.out::println);
     }
 
@@ -49,6 +49,6 @@ public class StreamStudy {
         return numbers.stream()
                 .filter(x -> x > 3)
                 .map(x -> 2 * x)
-                .reduce(0, (x, y) -> x + y);
+                .reduce(0, Integer::sum);
     }
 }
