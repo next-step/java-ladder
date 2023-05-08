@@ -19,12 +19,16 @@ public class Ladder {
     }
 
     public List<String> rendering() {
-        List<String> strings = new ArrayList<>();
+        return IntStream.range(0, row)
+                .mapToObj(rowIndex -> renderingRow(rowIndex, column))
+                .collect(Collectors.toList());
 
-        for (int rowIndex = 0; rowIndex < row; rowIndex++) {
-            strings.add(renderingRow(rowIndex,column));
-        }
-        return strings;
+//        List<String> strings = new ArrayList<>();
+//
+//        for (int rowIndex = 0; rowIndex < row; rowIndex++) {
+//            strings.add(renderingRow(rowIndex,column));
+//        }
+//        return strings;
     }
 
     private String renderingRow(int rowIndex,int columnRange) {
