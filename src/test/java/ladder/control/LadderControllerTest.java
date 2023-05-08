@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 
-public class LadderRenderControllerTest {
+public class LadderControllerTest {
 
 
     @AfterEach
