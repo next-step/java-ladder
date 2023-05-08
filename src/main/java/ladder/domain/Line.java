@@ -5,7 +5,7 @@ public class Line {
     private final Row row;
 
     public Line(int columnPosition, int rowPosition) {
-        this.column = new Column(columnPosition);
+        this.column = Column.of(columnPosition);
         this.row = new Row(rowPosition);
     }
 
