@@ -22,23 +22,23 @@ public class Ladder {
         List<String> strings = new ArrayList<>();
 
         for (int rowIndex = 0; rowIndex < row; rowIndex++) {
-            strings.add(renderingRow(rowIndex));
+            strings.add(renderingRow(rowIndex,column));
         }
         return strings;
     }
 
-    private String renderingRow(int rowIndex) {
-//        return IntStream.rangeClosed(0, rowIndex)
-//                .mapToObj(columnIndex -> pixelRendering(columnIndex, rowIndex))
-//                .collect(Collectors.joining());
+    private String renderingRow(int rowIndex,int columnRange) {
+        return IntStream.range(0, columnRange)
+                .mapToObj(columnIndex -> pixelRendering(columnIndex, rowIndex))
+                .collect(Collectors.joining());
 
-        StringBuilder lineBuilder;
-        lineBuilder = new StringBuilder();
-        for (int columnIndex = 0; columnIndex < column; columnIndex++) {
-            lineBuilder.append(pixelRendering(columnIndex,rowIndex));
-        }
-        String string = lineBuilder.toString();
-        return string;
+//        StringBuilder lineBuilder;
+//        lineBuilder = new StringBuilder();
+//        for (int columnIndex = 0; columnIndex < column; columnIndex++) {
+//            lineBuilder.append(pixelRendering(columnIndex,rowIndex));
+//        }
+//        String string = lineBuilder.toString();
+//        return string;
     }
 
     private String pixelRendering(int columnIndex, int rowIndex) {
