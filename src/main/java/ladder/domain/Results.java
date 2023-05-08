@@ -21,6 +21,10 @@ public class Results {
 		return this.results.size();
 	}
 
+	public List<Result> getResults() {
+		return results;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)

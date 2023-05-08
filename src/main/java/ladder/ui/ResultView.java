@@ -10,6 +10,8 @@ import ladder.domain.Name;
 import ladder.domain.Names;
 import ladder.domain.Point;
 import ladder.domain.Points;
+import ladder.domain.Result;
+import ladder.domain.Results;
 
 public class ResultView {
 
@@ -18,7 +20,7 @@ public class ResultView {
 	private static final String FALSE_TEXT = String.join("", Collections.nCopies(Names.LENGTH_MAXIMUM, " "));
 
 	public static void printNames(Names names) {
-		System.out.println("\n실행결과");
+		System.out.println("\n사다리 결과");
 		StringBuilder stringBuilder = new StringBuilder();
 		for (Name name : names.getNames()) {
 			stringBuilder.append(ResultView.nameBlank(name.getName()));
@@ -41,7 +43,7 @@ public class ResultView {
 			stringBuilder.append(ResultView.lineText(line.getPoints()));
 			stringBuilder.append("\n");
 		}
-		System.out.println(stringBuilder);
+		System.out.print(stringBuilder);
 	}
 
 	private static String ladderBlank() {
@@ -60,5 +62,14 @@ public class ResultView {
 				return ResultView.FALSE_TEXT;
 			})
 			.collect(Collectors.joining(ResultView.HEIGHT_TEXT, ResultView.HEIGHT_TEXT, ResultView.HEIGHT_TEXT));
+	}
+
+	public static void printResults(Results results) {
+		StringBuilder stringBuilder = new StringBuilder();
+		for (Result result : results.getResults()) {
+			stringBuilder.append(result.getResult());
+			stringBuilder.append("    ");
+		}
+		System.out.println(stringBuilder);
 	}
 }

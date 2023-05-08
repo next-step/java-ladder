@@ -24,5 +24,6 @@ public class LadderMain {
 		Ladder ladder = new Ladder(pointsList);
 		ResultView.printNames(names);
 		ResultView.printLadder(ladder);
+		ResultView.printResults(results);
 	}
 }
