@@ -4,11 +4,11 @@ import java.util.Objects;
 import java.util.Optional;
 
 public class User {
-    private final static int MINIMUM_AGE = 30;
-    private final static int MAXIMUM_AGE = 45;
+    private static final int MINIMUM_AGE = 30;
+    private static final int MAXIMUM_AGE = 45;
 
-    private String name;
-    private Integer age;
+    private final String name;
+    private final Integer age;
 
     public User(String name, Integer age) {
         this.name = name;
