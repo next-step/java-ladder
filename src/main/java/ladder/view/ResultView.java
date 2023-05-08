@@ -19,16 +19,20 @@ public class ResultView {
   }
 
   public static void showResult(LadderResult ladderResult) {
-    while (true) {
+    boolean continueGame = true;
+
+    while (continueGame) {
       System.out.println(USER_INPUT_MESSAGE);
       String userName = InputView.inputUserName();
 
-      if (userName.equalsIgnoreCase(END_GAME)) {
-        break;
-      }
+      continueGame = isContinueGame(userName);
 
       showResultReward(userName, ladderResult);
     }
+  }
+
+  private static boolean isContinueGame(String userName) {
+    return !userName.equalsIgnoreCase(END_GAME);
   }
 
   private static void showLadderLines(LadderLine ladderLine) {
@@ -45,6 +49,11 @@ public class ResultView {
   }
 
   private static void showResultReward(String userName, LadderResult ladderResult) {
+    if (!isContinueGame(userName)) {
+      System.out.println(END_GAME_MESSAGE);
+      return;
+    }
+
     if (userName.equals(ALL_USERS)) {
       System.out.println(REWARD_RESULT_MESSAGE);
       printUserAndReward(ladderResult);

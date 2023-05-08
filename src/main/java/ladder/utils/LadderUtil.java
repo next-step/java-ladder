@@ -8,6 +8,7 @@ public class LadderUtil {
   public static final String REWARDS_INPUT_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
   public static final String LADDER_RESULT_MESSAGE = "사다리 결과";
   public static final String REWARD_RESULT_MESSAGE = "실행 결과";
+  public static final String END_GAME_MESSAGE = "게임을 종료하겠습니다.";
   public static final String ALL_USERS = "all";
   public static final String NONE_USER = "해당하는 유저가 없습니다.";
   public static final String END_GAME = "quit";
