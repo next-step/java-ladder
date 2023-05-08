@@ -7,6 +7,8 @@ public class Preferences {
     private static final String SHAPE_OF_PILLAR = "|";
     private static final String SHAPE_OF_EMPTY_LINE = "      ";
     private static final String SHAPE_OF_ALLOCATED_LINE = "------";
+    private static final int INFINITE_LOOP_THRESHOLD = 10000;
+
 
 
 
@@ -55,5 +57,9 @@ public class Preferences {
 
     public static String emptyLineShape() {
         return SHAPE_OF_EMPTY_LINE;
+    }
+
+    public static int circuitBreakerTriggerLoopCount() {
+        return INFINITE_LOOP_THRESHOLD;
     }
 }
