@@ -10,7 +10,7 @@ public class Line {
     }
 
     public static Line any(LineStrategy lineStrategy) {
-        return new Line(lineStrategy.horizontalPosition(), lineStrategy.verticalPosition());
+        return new Line(lineStrategy.anyRow(), lineStrategy.anyColumn());
     }
 
     public int columnPosition() {

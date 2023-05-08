@@ -13,7 +13,7 @@ public class Lines {
     public static Lines of(int column, int row, int count) {
         Lines lines = new Lines();
         for (int i = 0; lines.lineCount() < count || i < 100000; i++) {
-            Line anyLine = Line.any(LineStrategyRandom.of(column, row));
+            Line anyLine = Line.any(LineStrategyRandom.ofLimit(column, row));
 
             if (lines.isExistSameColumnAndAdjacentRow(anyLine)) {
                 lines.append(anyLine);
