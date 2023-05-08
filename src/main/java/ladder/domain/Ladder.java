@@ -13,7 +13,7 @@ public class Ladder {
     public Ladder(int column, int row) {
         this.column = column;
         this.row = row;
-        this.lines = Lines.of(column, row, Preferences.lineCount(row));
+        this.lines = Lines.of(column, row, Preferences.createLineCount(column,row));
     }
 
     public List<String> rendering() {
