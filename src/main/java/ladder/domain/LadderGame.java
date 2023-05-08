@@ -28,7 +28,7 @@ public class LadderGame {
   public LadderResult play() {
     Map<User, LadderReward> rewardsOfUsers = new HashMap<>();
 
-    ladderLines().forEach(this::swapUsers);
+    ladderLines().forEach(this::iterateLines);
 
     for (int i = 0; i < users.countOfUser(); i++) {
       rewardsOfUsers.put(users.userByIndex(i), ladder.rewardByIndex(i));
@@ -37,11 +37,13 @@ public class LadderGame {
     return new LadderResult(rewardsOfUsers);
   }
 
-  private void swapUsers(LadderLine ladderLine) {
-    ladderLine.points().forEach(point -> {
-      if (point.canMovePrevious()) {
-        users.userSwap(point.currentPreviousUserPosition(), point.currentUserPosition());
-      }
-    });
+  private void iterateLines(LadderLine ladderLine) {
+    ladderLine.points().forEach(this::swapUsers);
+  }
+
+  private void swapUsers(Point point) {
+    if (point.canMovePrevious()) {
+      users.userSwap(point.currentPreviousUserPosition(), point.currentUserPosition());
+    }
   }
 }
