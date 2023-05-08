@@ -10,7 +10,7 @@ public class Line {
     }
 
     public static Line any(LineStrategy lineStrategy) {
-        return new Line(lineStrategy.anyRow(), lineStrategy.anyColumn());
+        return new Line(lineStrategy.anyColumn(), lineStrategy.anyRow());
     }
 
     public int columnPosition() {
@@ -25,11 +25,11 @@ public class Line {
         return (column.getValue() == columnPosition) && (row.getValue() == rowPosition);
     }
 
-    public boolean isSameColum(Line otherLine) {
-        return this.column.getValue() == otherLine.column.getValue();
+    public boolean isSameRow(Line otherLine) {
+        return this.row.isSame(otherLine.row);
     }
 
-    public boolean isAdjacentRow(Line otherLine) {
+    public boolean isAdjacentColumn(Line otherLine) {
         return Math.abs(this.columnPosition() - otherLine.columnPosition()) <= 1;
     }
 }
