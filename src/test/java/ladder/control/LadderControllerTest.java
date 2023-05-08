@@ -24,7 +24,7 @@ public class LadderControllerTest {
         //given
         consoleInput(
                 "pobi,honux,crong,jk" + System.lineSeparator() +
-                        "5" + System.lineSeparator()
+                        "7" + System.lineSeparator()
         );
         //when
         //then
