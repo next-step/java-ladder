@@ -34,4 +34,16 @@ public class Line {
 
         return random.nextBoolean();
     }
+
+    boolean nextPoint(int x) {
+        if (x + 1 <= this.points.size() - 1) {
+            return this.points.get(x + 1);
+        }
+
+        return false;
+    }
+
+    boolean currentPoint(int x) {
+        return this.points.get(x);
+    }
 }

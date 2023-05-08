@@ -11,6 +11,10 @@ public class Participant {
                 .orElseThrow(() -> new IllegalArgumentException("이름은 빈 칸일 수 없습니다."));
     }
 
+    public boolean isParticipant(String name) {
+        return this.name.isName(name);
+    }
+
     String getName() {
         return this.name.getName();
     }

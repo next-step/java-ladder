@@ -3,6 +3,7 @@ package nextstep.ladder.view;
 import nextstep.ladder.domain.line.Line;
 import nextstep.ladder.domain.line.Lines;
 import nextstep.ladder.domain.participant.Participants;
+import nextstep.ladder.domain.reward.Reward;
 import nextstep.ladder.domain.reward.Rewards;
 
 public class OutputView {
@@ -30,7 +31,7 @@ public class OutputView {
 
         rewards.getRewards()
                 .stream()
-                .map(reward -> BLANK + reward)
+                .map(reward -> BLANK + reward.getReward())
                 .forEach(System.out::print);
     }
 
@@ -44,4 +45,11 @@ public class OutputView {
 
         System.out.println();
     }
+
+    public static void printRewardOnePerson(Reward reward){
+        System.out.println("실행 결과");
+        System.out.println(reward.getReward());
+    }
+
+
 }

@@ -36,4 +36,8 @@ public class Rewards {
     public List<Reward> getRewards() {
         return rewards;
     }
+
+    public Reward getRewardBy(int index) {
+        return this.rewards.get(index);
+    }
 }
