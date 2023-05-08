@@ -11,10 +11,14 @@ public class Results {
 
 	private final List<Result> results = new ArrayList<>();
 
-	public Results(String inputResults) {
+	public Results(String inputResults, Names names) {
 		Arrays.stream(inputResults.trim().split(Results.DELIMITER))
 			.map(String::trim)
 			.forEach(result -> this.results.add(new Result(result)));
+
+		if (this.size() != names.countOfPerson()) {
+			throw new IllegalArgumentException("실행결과 목록과 참여자 수는 크기가 같아야 합니다.");
+		}
 	}
 
 	public int size() {

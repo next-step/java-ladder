@@ -15,7 +15,7 @@ public class LadderMain {
 
 	public static void main(String[] args) {
 		Names names = new Names(InputView.inputNames());
-		Results results = new Results(InputView.inputResults());
+		Results results = new Results(InputView.inputResults(), names);
 		Height height = new Height(InputView.inputHeight());
 		List<Points> pointsList = new ArrayList<>();
 		for (int i = 0; i < height.getHeight(); i++) {
