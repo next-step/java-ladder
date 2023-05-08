@@ -20,11 +20,13 @@ public class LadderGame {
 
         while (true) {
             final String selectedParticipant = InputView.resultSelect();
-            OutputView.printRewardOnePerson(lines.rewardOnePerson(participants, rewards, selectedParticipant));
 
             if (ALL.equals(selectedParticipant)) {
+                OutputView.printRewardAll(lines.rewardAll(participants, rewards));
                 break;
             }
+
+            OutputView.printRewardOnePerson(lines.rewardOnePerson(participants, rewards, selectedParticipant));
         }
     }
 }

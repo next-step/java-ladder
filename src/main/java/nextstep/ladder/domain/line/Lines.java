@@ -1,11 +1,11 @@
 package nextstep.ladder.domain.line;
 
 import nextstep.ladder.domain.participant.Participants;
-import nextstep.ladder.domain.reward.Reward;
 import nextstep.ladder.domain.reward.Rewards;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lines {
     private final List<Line> lines;
@@ -24,7 +24,7 @@ public class Lines {
         return lines;
     }
 
-    public Reward rewardOnePerson(Participants participants, Rewards rewards, String name) {
+    public String rewardOnePerson(Participants participants, Rewards rewards, String name) {
         int y = 0;
         int x = participants.indexByName(name);
 
@@ -38,7 +38,13 @@ public class Lines {
             y += 1;
         }
 
-        return rewards.getRewardBy(x);
+        return rewards.getRewardBy(x).getReward();
+    }
+
+    public List<String> rewardAll(Participants participants, Rewards rewards) {
+        return participants.getNames()
+                .stream().map(name -> name + " : " + this.rewardOnePerson(participants, rewards, name))
+                .collect(Collectors.toList());
     }
 
     private boolean isMoveLeft(int x, int y) {

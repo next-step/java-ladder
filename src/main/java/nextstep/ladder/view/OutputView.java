@@ -3,8 +3,9 @@ package nextstep.ladder.view;
 import nextstep.ladder.domain.line.Line;
 import nextstep.ladder.domain.line.Lines;
 import nextstep.ladder.domain.participant.Participants;
-import nextstep.ladder.domain.reward.Reward;
 import nextstep.ladder.domain.reward.Rewards;
+
+import java.util.List;
 
 public class OutputView {
     private static final String BLANK = "   ";
@@ -46,10 +47,13 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printRewardOnePerson(Reward reward){
+    public static void printRewardOnePerson(String reward) {
         System.out.println("실행 결과");
-        System.out.println(reward.getReward());
+        System.out.println(reward);
     }
 
-
+    public static void printRewardAll(List<String> rewards){
+        System.out.println("실행 결과");
+        rewards.forEach(System.out::println);
+    }
 }
