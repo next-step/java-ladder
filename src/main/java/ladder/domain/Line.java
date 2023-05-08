@@ -1,35 +1,35 @@
 package ladder.domain;
 
 public class Line {
-    int horizontalPosition;
-    int verticalPosition;
+    private final Column column;
+    private final Row row;
 
-    public Line(int horizontalPosition, int verticalPosition) {
-        this.horizontalPosition = horizontalPosition;
-        this.verticalPosition = verticalPosition;
+    public Line(int columnPosition, int rowPosition) {
+        this.column = new Column(columnPosition);
+        this.row = new Row(rowPosition);
     }
 
     public static Line any(LineStrategy lineStrategy) {
         return new Line(lineStrategy.horizontalPosition(), lineStrategy.verticalPosition());
     }
 
-    public int getHorizontalPosition() {
-        return horizontalPosition;
+    public int columnPosition() {
+        return column.getValue();
     }
 
-    public int getVerticalPosition() {
-        return verticalPosition;
+    public int rowPosition() {
+        return row.getValue();
     }
 
-    public boolean isYourPosition(int column, int row) {
-        return (verticalPosition == column) && (horizontalPosition == row);
+    public boolean isExisit(int columnPosition, int rowPosition) {
+        return (column.getValue() == columnPosition) && (row.getValue() == rowPosition);
     }
 
     public boolean isSameColum(Line otherLine) {
-        return this.verticalPosition == otherLine.verticalPosition;
+        return this.column.getValue() == otherLine.column.getValue();
     }
 
     public boolean isAdjacentRow(Line otherLine) {
-        return Math.abs(this.horizontalPosition - otherLine.horizontalPosition) <= 1;
+        return Math.abs(this.columnPosition() - otherLine.columnPosition()) <= 1;
     }
 }

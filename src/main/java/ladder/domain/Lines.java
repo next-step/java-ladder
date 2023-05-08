@@ -10,10 +10,10 @@ public class Lines {
         this.lines = new HashSet<>();
     }
 
-    public static Lines of(int height, int width, int count) {
+    public static Lines of(int column, int row, int count) {
         Lines lines = new Lines();
         for (int i = 0; lines.lineCount() < count || i < 100000; i++) {
-            Line anyLine = Line.any(LineStrategyRandom.of(height, width));
+            Line anyLine = Line.any(LineStrategyRandom.of(column, row));
 
             if (lines.isExistSameColumnAndAdjacentRow(anyLine)) {
                 lines.append(anyLine);
@@ -42,6 +42,6 @@ public class Lines {
     }
 
     public boolean existLine(int columnIndex, int rowIndex) {
-        return lines.stream().filter(line -> line.isYourPosition(columnIndex, rowIndex)).findFirst().isPresent();
+        return lines.stream().filter(line -> line.isExisit(columnIndex, rowIndex)).findFirst().isPresent();
     }
 }
