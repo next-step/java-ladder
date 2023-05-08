@@ -25,11 +25,11 @@ public class Ladder {
             for (int columnIndex = 0; columnIndex < column; columnIndex++) {
 
 
-                lineBuilder.append("|");
+                lineBuilder.append(Preferences.pillarShape());
                 if (lines.existLine(columnIndex, rowIndex)) {
-                    lineBuilder.append("------");
+                    lineBuilder.append(Preferences.allocatedLineShape());
                 } else {
-                    lineBuilder.append("      ");
+                    lineBuilder.append(Preferences.emptyLineShape());
                 }
             }
             strings.add(lineBuilder.toString());
