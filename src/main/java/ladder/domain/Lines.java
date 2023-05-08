@@ -53,6 +53,6 @@ public class Lines {
     }
 
     public boolean existLine(int columnIndex, int rowIndex) {
-        return lines.stream().filter(line -> line.isExisit(columnIndex, rowIndex)).findFirst().isPresent();
+        return lines.stream().anyMatch(line -> line.isExisit(columnIndex, rowIndex));
     }
 }
