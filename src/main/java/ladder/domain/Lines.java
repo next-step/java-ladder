@@ -12,7 +12,7 @@ public class Lines {
 
     public static Lines of(int column, int row, int count) {
         Lines lines = new Lines();
-        for (int i = 0; lines.lineCount() < count || i < 100000; i++) {
+        for (int i = 0; lines.lineCount() < count ; i++) {
             Line anyLine = Line.any(LineStrategyRandom.ofLimit(column, row));
 
             if (lines.isExistSameColumnAndAdjacentRow(anyLine)) {
@@ -27,10 +27,9 @@ public class Lines {
     }
 
     private boolean isExistSameColumnAndAdjacentRow(Line otherLine) {
-        return !this.lines.stream()
-                .filter(line -> line.isSameColum(otherLine))
-                .filter(line -> line.isAdjacentRow(otherLine))
-                .findFirst().isPresent();
+        return this.lines.stream()
+                .filter(line -> line.isSameRow(otherLine))
+                .noneMatch(line -> line.isAdjacentColumn(otherLine));
     }
 
     public int lineCount() {
