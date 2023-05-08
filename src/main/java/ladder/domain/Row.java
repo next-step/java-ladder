@@ -10,4 +10,8 @@ public class Row {
     public int getValue() {
         return value;
     }
+
+    public boolean isSame(Row otherRow) {
+        return this.value == otherRow.value;
+    }
 }
