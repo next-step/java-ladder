@@ -4,6 +4,8 @@ import ladder.control.Preferences;
 import ladder.domain.Ladder;
 import ladder.domain.User;
 import ladder.domain.Users;
+import ladder.exception.OutOfLadderHeightException;
+import ladder.exception.OutOfUsersCountException;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,18 +22,32 @@ public class Presenter {
     public Users users() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String s = scanner.nextLine();
-        String[] split = s.split(",");
-
+        String[] inputUsers = s.split(",");
+        validateInputUsersCount(inputUsers.length);
         return new Users(
-                Arrays.stream(split)
+                Arrays.stream(inputUsers)
                         .map(User::new)
                         .collect(Collectors.toList())
         );
     }
 
+    private void validateInputUsersCount(int usersCount) {
+        if(usersCount > Preferences.maxUserCount()) {
+            throw new OutOfUsersCountException();
+        }
+    }
+
     public int ladderHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        return Integer.parseInt(scanner.nextLine());
+        int height = Integer.parseInt(scanner.nextLine());
+        validateInputLadderHeight(height);
+        return height;
+    }
+
+    private void validateInputLadderHeight(int height) {
+        if(height > Preferences.maxLadderHeight()) {
+            throw new OutOfLadderHeightException();
+        }
     }
 
     public void renderingLadder(List<String> userNames, Ladder ladder) {

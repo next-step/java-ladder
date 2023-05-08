@@ -2,15 +2,15 @@ package ladder.control;
 
 public class Preferences {
 
-    private static final int MAX_COLUMN = 50;
-    private static final int MAX_ROW = 50;
+    private static final int MAX_COLUMN_AND_USER_COUNT = 50;
+    private static final int MAX_ROW_AND_RADDER_HEIGHT = 50;
 
     public static int maxColumnPolicy() {
-        return MAX_COLUMN;
+        return MAX_COLUMN_AND_USER_COUNT;
     }
 
     public static int maxRowPolicy() {
-        return MAX_ROW;
+        return MAX_ROW_AND_RADDER_HEIGHT;
     }
 
     public static String userDelimiter() {
@@ -31,5 +31,12 @@ public class Preferences {
 
     private static int defaultLadderCreatePolicy(int column) {
         return column * 2 - 1;
+    }
+
+    public static int maxUserCount() {
+        return MAX_COLUMN_AND_USER_COUNT;
+    }
+    public static int maxLadderHeight() {
+        return MAX_ROW_AND_RADDER_HEIGHT;
     }
 }
