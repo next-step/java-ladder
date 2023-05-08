@@ -1,10 +1,23 @@
 package ladder.domain;
 
+import ladder.control.Preferences;
+
 public class Row {
     private final int value;
+    private static final Row[] ROW_CACHE = new Row[Preferences.maxRowPolicy() + 1];
 
-    public Row(int value) {
+    static {
+        for(int i=0 ; i<=Preferences.maxRowPolicy() ; i++) {
+            ROW_CACHE[i] = new Row(i);
+        }
+    }
+
+    private Row(int value) {
         this.value = value;
+    }
+
+    public static Row of(int value) {
+        return ROW_CACHE[value];
     }
 
     public int getValue() {
