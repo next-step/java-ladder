@@ -10,8 +10,8 @@ public class LineStrategyRandom implements LineStrategy {
     private final Random random;
 
     public LineStrategyRandom(int columnLimit, int rowLimit) {
-        this.columnLimit = columnLimit;
-        this.rowLimit = rowLimit - 1;
+        this.columnLimit = columnLimit-1;
+        this.rowLimit = rowLimit;
         this.random = new Random();
     }
 
