@@ -6,7 +6,7 @@ public class Line {
 
     public Line(int columnPosition, int rowPosition) {
         this.column = Column.of(columnPosition);
-        this.row = new Row(rowPosition);
+        this.row = Row.of(rowPosition);
     }
 
     public static Line any(LineStrategy lineStrategy) {
