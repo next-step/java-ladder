@@ -12,14 +12,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 class LineTest {
 
     @Test
-    @DisplayName("라인의 개수는 (사람 수 - 1) 이다")
+    @DisplayName("라인은 포인트를 가지고 있다.")
     void test01() {
-        TestRandomBoolean randomBoolean = new TestRandomBoolean(new LinkedList<>(List.of(true, false, false, true)));
+        TestRandomBoolean randomBoolean = new TestRandomBoolean(new LinkedList<>(List.of(true, false)));
 
-        Line line = new Line(5, randomBoolean);
+        Line line = new Line(3, randomBoolean);
 
-        assertThat(line.points()).hasSize(4);
-        assertThat(line.points()).containsExactly(true, false, false, true);
+        assertThat(line.points()).hasSize(3);
+        assertThat(line.points()).containsExactly(new Point(false, true),
+                                                  new Point(true, false),
+                                                  new Point(false, false));
     }
 
     @Test
@@ -27,7 +29,9 @@ class LineTest {
     void test02() {
         Line line = new Line(true, false, false);
 
-        assertThat(line.points()).containsExactly(true, false, false);
+        assertThat(line.points()).containsExactly(new Point(false, true),
+                                                  new Point(true, false),
+                                                  new Point(false, false));
     }
 
     @Test
@@ -35,6 +39,32 @@ class LineTest {
     void test03() {
         Line line = new Line(false, true, true);
 
-        assertThat(line.points()).containsExactly(false, true, false);
+        assertThat(line.points()).containsExactly(new Point(false, false),
+                                                  new Point(false, true),
+                                                  new Point(true, false));
+    }
+
+    @Test
+    @DisplayName("라인에서 이전 포지션에 선이 있으면 현재 포지션에서 1 증가한다.")
+    void test04() {
+        Line line = new Line(false, true, false);
+
+        assertThat(line.position(2)).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("라인에서 다음 포인트에 선이 있으면 현재 포지션에서 1 증가한다.")
+    void test05() {
+        Line line = new Line(true, false, false);
+
+        assertThat(line.position(0)).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("라인에서 다음 포인트에 선이 있으면 현재 포지션에서 1 감소한다.")
+    void test06() {
+        Line line = new Line(false, false, true);
+
+        assertThat(line.position(0)).isEqualTo(0);
     }
 }

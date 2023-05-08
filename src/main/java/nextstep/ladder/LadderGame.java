@@ -1,20 +1,27 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Member;
+import nextstep.ladder.domain.Members;
+import nextstep.ladder.domain.Result;
+import nextstep.ladder.domain.ResultMatch;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
-import java.util.List;
-
 public class LadderGame {
     public static void main(String[] args) {
-        List<Member> members = InputView.members();
+        Members members = InputView.members();
+        Result result = InputView.result(members.countOfMember());
         int height = InputView.ladderHeight();
 
-        Ladder ladder = new Ladder(members.size(), height);
+        Ladder ladder = new Ladder(members, height);
 
         OutputView.endMessage();
-        OutputView.gameResult(members, ladder);
+        OutputView.ladderResult(members, ladder);
+        OutputView.runResult(result);
+
+        ResultMatch resultMatch = new ResultMatch(result, ladder);
+
+        String memberName = InputView.match();
+        OutputView.gameResult(resultMatch, members, memberName);
     }
 }

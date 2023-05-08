@@ -8,40 +8,48 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class Line {
-    private final List<Boolean> points = new ArrayList<>();
+    private final List<Point> points = new ArrayList<>();
+    private final int countOfMember;
 
     public Line(int countOfMember, RandomBoolean randomBoolean) {
-        IntStream.range(0, countOfMember - 1)
-                 .forEach(i -> this.addPoint(i, randomBoolean.nextBoolean()));
+        this.countOfMember = countOfMember;
+        IntStream.range(0, this.countOfMember)
+                 .forEachOrdered(i -> this.addPoint(i, randomBoolean.nextBoolean()));
     }
 
     public Line(Boolean... booleans) {
+        this.countOfMember = booleans.length;
         IntStream.range(0, booleans.length)
                  .forEachOrdered(i -> this.addPoint(i, booleans[i]));
     }
 
     private void addPoint(int index, boolean isPoint) {
-        if (this.canNotHavePoint(index)) {
-            points.add(false);
-            return;
+        points.add(getPoint(index, isPoint));
+    }
+
+    private Point getPoint(int index, boolean isPoint) {
+        if (index == 0) {
+            return new Point(false, isPoint);
         }
 
-        points.add(isPoint);
+        Point beforePoint = points.get(index - 1);
+
+        if (this.canNotHaveRightPoint(beforePoint.isRight())) {
+            return beforePoint.right(false);
+        }
+
+        return beforePoint.right(isPoint);
     }
 
-    private boolean canNotHavePoint(int index) {
-        return index > 0 && points.get(index - 1);
+    private boolean canNotHaveRightPoint(boolean isBeforeRight) {
+        return countOfMember - 1 == points.size() || isBeforeRight;
     }
 
-
-    public List<Boolean> points() {
+    public List<Point> points() {
         return Collections.unmodifiableList(this.points);
     }
 
-    @Override
-    public String toString() {
-        return "Line{" +
-                "points=" + points +
-                '}';
+    public int position(int currentPosition) {
+        return currentPosition + points.get(currentPosition).move();
     }
 }
