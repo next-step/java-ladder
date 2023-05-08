@@ -9,9 +9,9 @@ public class LadderController {
         Presenter presenter = new Presenter();
 
         Users users = presenter.users();
-        int height = presenter.ladderHeight();
-        int width = users.count();
-        Ladder ladder = new Ladder(height, width);
+        int row = presenter.ladderHeight();
+        int column = users.count();
+        Ladder ladder = new Ladder(column, row);
 
         presenter.renderingLadder(users.names(), ladder);
     }
