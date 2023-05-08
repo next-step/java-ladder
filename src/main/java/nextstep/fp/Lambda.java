@@ -7,6 +7,10 @@ import java.util.stream.Collectors;
 public class Lambda {
 
 
+    private static final int ZERO = 0;
+    private static final int TWO = 2;
+    private static final int THREE = 3;
+
     public static void printAllOld(List<Integer> numbers) {
         System.out.println("printAllOld");
 
@@ -23,35 +27,36 @@ public class Lambda {
         new Thread(() -> System.out.println("Hello from thread")).start();
     }
 
-    public static int sumWithCondition(List<Integer> numbers, Predicate<Integer> satisfyCondition) {
-
-        List<Integer> sum = filterSatisfyNumber(numbers, satisfyCondition);
-
-        return sum.stream().reduce(0,Integer::sum);
-    }
-
     public static int sumAll(List<Integer> numbers) {
-        return sumWithCondition(numbers, number -> true);
+
+        return numbers.stream()
+                .reduce(ZERO, Integer::sum);
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        return sumWithCondition(numbers, Lambda::isEvenNumber);
+
+        List<Integer> evenNumbers = filterSatisfyNumber(numbers, Lambda::isEvenNumber);
+
+        return sumAll(evenNumbers);
     }
 
     private static boolean isEvenNumber(int n) {
-        return n % 2 == 0;
+        return n % TWO == ZERO;
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
-        return sumWithCondition(numbers, Lambda::isOverThree);
+
+        List<Integer> overThreeNumbers = filterSatisfyNumber(numbers, Lambda::isOverThree);
+
+        return sumAll(overThreeNumbers);
     }
 
     private static boolean isOverThree(int n) {
-        return n > 3;
+        return n > THREE;
     }
 
-    private static List<Integer> filterSatisfyNumber(List<Integer> numberList, Predicate<Integer> satisfyCondition) {
-        return numberList.stream()
+    private static List<Integer> filterSatisfyNumber(List<Integer> numbers, Predicate<Integer> satisfyCondition) {
+        return numbers.stream()
                 .filter(satisfyCondition)
                 .collect(Collectors.toList());
     }
