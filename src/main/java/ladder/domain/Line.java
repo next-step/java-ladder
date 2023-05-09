@@ -21,7 +21,7 @@ public class Line {
         return row.getValue();
     }
 
-    public boolean isExisit(int columnPosition, int rowPosition) {
+    public boolean isExist(int columnPosition, int rowPosition) {
         return (column.getValue() == columnPosition) && (row.getValue() == rowPosition);
     }
 

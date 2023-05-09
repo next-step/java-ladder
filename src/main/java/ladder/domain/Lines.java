@@ -58,6 +58,6 @@ public class Lines {
     }
 
     public boolean existLine(int columnIndex, int rowIndex) {
-        return lines.stream().anyMatch(line -> line.isExisit(columnIndex, rowIndex));
+        return lines.stream().anyMatch(line -> line.isExist(columnIndex, rowIndex));
     }
 }
