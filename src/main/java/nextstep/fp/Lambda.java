@@ -1,14 +1,13 @@
 package nextstep.fp;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 public class Lambda {
     public static void printAllOld(List<Integer> numbers) {
         System.out.println("printAllOld");
 
-        for (int number : numbers) {
-            System.out.println(number);
-        }
+        numbers.forEach(System.out::println);
     }
 
     public static void printAllLambda(List<Integer> numbers) {
@@ -17,40 +16,27 @@ public class Lambda {
         numbers.forEach(System.out::println);
     }
 
-    public static void runThread() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("Hello from thread");
-            }
-        }).start();
+    public static void runInThread() {
+        new Thread(() -> System.out.println("Hello from thread"))
+                .start();
     }
 
-    public static int sumAll(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            total += number;
-        }
-        return total;
+    public static int sumAllNumbers(List<Integer> numbers) {
+        return calculateSum(numbers, (number) -> true);
     }
 
-    public static int sumAllEven(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number % 2 == 0) {
-                total += number;
-            }
-        }
-        return total;
+    public static int sumAllEvenNumbers(List<Integer> numbers) {
+        return calculateSum(numbers, (number) -> number % 2 == 0);
     }
 
-    public static int sumAllOverThree(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number > 3) {
-                total += number;
-            }
-        }
-        return total;
+    public static int sumAllGreaterThanThree(List<Integer> numbers) {
+        return calculateSum(numbers, (number) -> number > 3);
+    }
+
+    private static int calculateSum(List<Integer> numbers, Predicate<Integer> filter) {
+        return numbers.stream()
+                .filter(filter)
+                .mapToInt(Integer::intValue)
+                .sum();
     }
 }
