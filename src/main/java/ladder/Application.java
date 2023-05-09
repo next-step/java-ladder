@@ -25,7 +25,7 @@ public class Application {
         int height = heightInput.getValue();
 
         Ladder ladder = Ladder.create(width - 1, height, new RandomStrategy());
-        LadderGame game = new LadderGame(names, ladder);
+        LadderGame game = new LadderGame(names, ladder, ladderResults);
 
         LadderGameOutput output = new LadderGameOutput(new ResultView(), game);
         output.print(Name.MAX_LENGTH + 1);
