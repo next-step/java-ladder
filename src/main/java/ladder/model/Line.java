@@ -17,27 +17,9 @@ public class Line {
         List<Boolean> points = new ArrayList<>();
 
         IntStream.range(0, countOfUser - 1)
-                .forEach(i -> {
-                    boolean point = lineGenerator.generate(hasPrevious(points, i));
-                    points.add(point);
-                });
+                .forEach(i -> points.add(createNextPoint(points, i, lineGenerator)));
 
         return new Line(points);
-    }
-
-    public int size() {
-        return points.size();
-    }
-
-    public List<Boolean> getPoints() {
-        return Collections.unmodifiableList(points);
-    }
-
-    private static boolean hasPrevious(List<Boolean> points, int index) {
-        if (index <= 0) {
-            return false;
-        }
-        return points.get(index - 1);
     }
 
     private void validatePoints(List<Boolean> points) {
@@ -47,5 +29,27 @@ public class Line {
                 .ifPresent(i -> {
                     throw new IllegalArgumentException("사다리 한 라인에 가로 라인이 겹칠 수 없습니다.");
                 });
+    }
+
+    private static boolean createNextPoint(List<Boolean> points, int index, LineGenerator lineGenerator) {
+        if (hasPrevious(points, index)) {
+            return false;
+        }
+        return lineGenerator.generate();
+    }
+
+    private static boolean hasPrevious(List<Boolean> points, int index) {
+        if (index <= 0) {
+            return false;
+        }
+        return points.get(index - 1);
+    }
+
+    public int size() {
+        return points.size();
+    }
+
+    public List<Boolean> getPoints() {
+        return Collections.unmodifiableList(points);
     }
 }

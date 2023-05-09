@@ -5,6 +5,8 @@ import ladder.model.RandomLineGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
@@ -20,6 +22,6 @@ public class LineTest {
     @Test
     void lineCreate() {
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> Line.of(3, hasPrevious -> true));
+                .isThrownBy(() -> new Line(List.of(true, true, true)));
     }
 }

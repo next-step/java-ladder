@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.model.Ladder;
+import ladder.model.RandomLineGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +11,7 @@ public class LadderTest {
     @DisplayName("참여자 수, 사다리 높이 기준으로 사다리를 생성한다")
     @Test
     void create() {
-        Ladder ladder = Ladder.of(4, 5);
+        Ladder ladder = Ladder.of(4, 5, new RandomLineGenerator());
         assertThat(ladder.height()).isEqualTo(5);
     }
 }
