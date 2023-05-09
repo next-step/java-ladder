@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,5 +19,11 @@ public class NamesTest {
 	@Test
 	void test2() {
 		assertThat(new Names("pobi,honux,crong,jk").countOfPerson()).isEqualTo(4);
+	}
+
+	@DisplayName("동명이인이 포함된 문자열로 이름 목록 생성 시, 예외를 던진다.")
+	@Test
+	void test3() {
+		assertThatIllegalArgumentException().isThrownBy(() -> new Names("pobi,honux,crong,pobi"));
 	}
 }
