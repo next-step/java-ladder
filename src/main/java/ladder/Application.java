@@ -1,6 +1,6 @@
 package ladder;
 
-import ladder.control.input.HeightInput;
+import ladder.control.input.IntegerInput;
 import ladder.control.input.multiple.LadderResultsInput;
 import ladder.control.input.multiple.MultipleInput;
 import ladder.control.input.multiple.NamesInput;
@@ -21,7 +21,7 @@ public class Application {
     public static void main(String[] args) {
         MultipleInput<Name> namesInput = new NamesInput(new NameView());
         MultipleInput<LadderResult> ladderResultInput = new LadderResultsInput(new LadderResultView());
-        HeightInput heightInput = new HeightInput(new HeightView());
+        IntegerInput heightInput = new IntegerInput(new HeightView());
 
         Names names = new Names(namesInput.getValue());
         LadderResults ladderResults = new LadderResults(ladderResultInput.getValue());

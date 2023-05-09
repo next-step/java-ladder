@@ -2,9 +2,9 @@ package ladder.control.input;
 
 import ladder.view.View;
 
-public class HeightInput extends InputControl<Integer> {
+public class IntegerInput extends InputControl<Integer> {
 
-    public HeightInput(View view) {
+    public IntegerInput(View view) {
         super(view);
     }
 
