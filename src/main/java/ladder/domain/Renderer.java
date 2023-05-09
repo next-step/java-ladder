@@ -6,12 +6,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class LadderRender {
+public class Renderer {
     private final int column;
     private final int row;
     private final Lines lines;
 
-    public LadderRender(int column, int row) {
+    public Renderer(int column, int row) {
         this.column = column;
         this.row = row;
         this.lines = Lines.of(column, row, Preferences.createLineCount(column, row));

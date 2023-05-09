@@ -1,6 +1,6 @@
 package ladder.control;
 
-import ladder.domain.LadderRender;
+import ladder.domain.Renderer;
 import ladder.domain.Users;
 import ladder.present.Presenter;
 
@@ -11,7 +11,7 @@ public class LadderController {
         Users users = presenter.users();
         int row = presenter.ladderHeight();
         int column = users.count();
-        LadderRender ladderRender = new LadderRender(column, row);
+        Renderer ladderRender = new Renderer(column, row);
 
         presenter.renderingLadder(users.names(), ladderRender);
     }
