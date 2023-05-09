@@ -1,23 +1,25 @@
 package ladder;
 
 import ladder.control.input.HeightInput;
+import ladder.control.input.LadderResultsInput;
+import ladder.control.input.MultipleInput;
 import ladder.control.input.NamesInput;
 import ladder.control.output.LadderGameOutput;
-import ladder.model.Ladder;
-import ladder.model.LadderGame;
-import ladder.model.Name;
-import ladder.model.Names;
+import ladder.model.*;
 import ladder.strategy.RandomStrategy;
 import ladder.view.input.HeightView;
+import ladder.view.input.LadderResultView;
 import ladder.view.input.NameView;
 import ladder.view.result.ResultView;
 
 public class Application {
     public static void main(String[] args) {
-        NamesInput namesInput = new NamesInput(new NameView());
+        MultipleInput<Name> namesInput = new NamesInput(new NameView());
+        MultipleInput<LadderResult> ladderResultInput = new LadderResultsInput(new LadderResultView());
         HeightInput heightInput = new HeightInput(new HeightView());
 
-        Names names = namesInput.getValue();
+        Names names = new Names(namesInput.getValue());
+        LadderResults ladderResults = new LadderResults(ladderResultInput.getValue());
 
         int width = names.size();
         int height = heightInput.getValue();
