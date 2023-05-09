@@ -11,6 +11,7 @@ public class ResultView {
     private static final String LINE = "-----";
     private static final String HEIGHT = "|";
     private static final String EMPTY_LIME = "     ";
+    private static final String BLANK = "\t";
 
     private ResultView() {
     }
@@ -23,8 +24,11 @@ public class ResultView {
 
     private static void showUsers(Users users) {
         List<String> names = getNames(users);
-        names.forEach(name -> System.out.printf("%-6s", name));
-        System.out.println();
+        String printNames = names.stream()
+                .map(name -> String.format("%5s", name))
+                .collect(Collectors.joining(" "));
+
+        System.out.println(printNames);
     }
 
     private static void showLadder(Ladder ladder) {
@@ -38,11 +42,14 @@ public class ResultView {
                 .map(ResultView::convertPoint)
                 .collect(Collectors.joining());
 
-        System.out.println(line + HEIGHT);
+        System.out.println(BLANK + line + HEIGHT);
     }
 
     private static String convertPoint(Boolean point) {
-        return point ? HEIGHT + LINE : HEIGHT + EMPTY_LIME;
+        if (point) {
+            return HEIGHT + LINE;
+        }
+        return HEIGHT + EMPTY_LIME;
     }
 
     private static List<String> getNames(Users users) {
