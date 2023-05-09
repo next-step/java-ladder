@@ -1,4 +1,4 @@
-package ladder.view.result;
+package ladder.view.result.output;
 
 import ladder.model.LadderGame;
 

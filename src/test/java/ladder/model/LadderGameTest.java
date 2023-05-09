@@ -1,5 +1,8 @@
 package ladder.model;
 
+import ladder.model.ladder.Ladder;
+import ladder.model.participant.Names;
+import ladder.model.result.LadderResults;
 import ladder.strategy.RandomStrategy;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -45,7 +48,7 @@ class LadderGameTest {
     public void 참가자_수와_결과_개수가_같지_않으면_예외가_난다() {
         Names names = Names.of("test1", "test2");
         Ladder ladder = Ladder.create(1, 2, new RandomStrategy());
-        
+
         LadderResults results = LadderResults.of("test1");
 
         assertThatIllegalArgumentException()

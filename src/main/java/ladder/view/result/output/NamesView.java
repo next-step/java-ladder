@@ -1,6 +1,6 @@
-package ladder.view.result;
+package ladder.view.result.output;
 
-import ladder.model.Names;
+import ladder.model.participant.Names;
 
 public class NamesView implements FormattableView {
     private final Names names;

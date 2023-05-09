@@ -1,11 +1,16 @@
 package ladder;
 
 import ladder.control.input.HeightInput;
-import ladder.control.input.LadderResultsInput;
-import ladder.control.input.MultipleInput;
-import ladder.control.input.NamesInput;
+import ladder.control.input.multiple.LadderResultsInput;
+import ladder.control.input.multiple.MultipleInput;
+import ladder.control.input.multiple.NamesInput;
 import ladder.control.output.LadderGameOutput;
-import ladder.model.*;
+import ladder.model.LadderGame;
+import ladder.model.ladder.Ladder;
+import ladder.model.participant.Name;
+import ladder.model.participant.Names;
+import ladder.model.result.LadderResult;
+import ladder.model.result.LadderResults;
 import ladder.strategy.RandomStrategy;
 import ladder.view.input.HeightView;
 import ladder.view.input.LadderResultView;

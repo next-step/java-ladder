@@ -1,7 +1,7 @@
-package ladder.view.result;
+package ladder.view.result.output;
 
-import ladder.model.Ladder;
-import ladder.model.LadderRow;
+import ladder.model.ladder.Ladder;
+import ladder.model.ladder.LadderRow;
 
 public class LadderView implements FormattableView {
     private static final String LADDER_STEP = "-";

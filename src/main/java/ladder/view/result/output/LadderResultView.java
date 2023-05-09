@@ -1,6 +1,6 @@
-package ladder.view.result;
+package ladder.view.result.output;
 
-import ladder.model.LadderResults;
+import ladder.model.result.LadderResults;
 
 public class LadderResultView implements FormattableView {
 

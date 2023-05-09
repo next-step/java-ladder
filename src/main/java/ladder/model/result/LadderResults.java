@@ -1,4 +1,4 @@
-package ladder.model;
+package ladder.model.result;
 
 import java.util.List;
 import java.util.function.Consumer;

@@ -1,5 +1,6 @@
 package ladder.model;
 
+import ladder.model.ladder.LadderRow;
 import ladder.strategy.RandomStrategy;
 import org.junit.jupiter.api.Test;
 

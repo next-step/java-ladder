@@ -1,4 +1,4 @@
-package ladder.model;
+package ladder.model.participant;
 
 import java.util.Arrays;
 import java.util.Iterator;

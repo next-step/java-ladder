@@ -3,7 +3,7 @@ package ladder.control.output;
 
 import ladder.model.LadderGame;
 import ladder.view.View;
-import ladder.view.result.LadderGameView;
+import ladder.view.result.output.LadderGameView;
 
 public class LadderGameOutput {
     private final View outputView;

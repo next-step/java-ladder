@@ -1,5 +1,6 @@
-package ladder.control.input;
+package ladder.control.input.multiple;
 
+import ladder.control.input.InputControl;
 import ladder.view.View;
 
 import java.util.List;

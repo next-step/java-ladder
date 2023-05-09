@@ -1,4 +1,4 @@
-package ladder.model;
+package ladder.model.ladder;
 
 import ladder.strategy.LadderGenerationStrategy;
 

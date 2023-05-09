@@ -1,6 +1,6 @@
-package ladder.control.input;
+package ladder.control.input.multiple;
 
-import ladder.model.LadderResult;
+import ladder.model.result.LadderResult;
 import ladder.view.View;
 
 public class LadderResultsInput extends MultipleInput<LadderResult> {

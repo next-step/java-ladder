@@ -1,6 +1,6 @@
-package ladder.control.input;
+package ladder.control.input.multiple;
 
-import ladder.model.Name;
+import ladder.model.participant.Name;
 import ladder.view.View;
 
 public class NamesInput extends MultipleInput<Name> {

@@ -1,5 +1,9 @@
 package ladder.model;
 
+import ladder.model.ladder.Ladder;
+import ladder.model.participant.Names;
+import ladder.model.result.LadderResults;
+
 public class LadderGame {
     private final Names participants;
     private final Ladder ladder;
