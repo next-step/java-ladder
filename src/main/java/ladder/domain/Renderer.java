@@ -20,13 +20,6 @@ public class Renderer {
         this.users = users;
     }
 
-//    public Renderer(int column, int row, Users users) {
-//        this.column = column;
-//        this.row = row;
-//        this.lines = Lines.of(column, row, Preferences.createLineCount(column, row));
-//        this.names = users.names();
-//    }
-
     private List<String> renderingSceneLadderArea() {
         return IntStream.range(0, row)
                 .mapToObj(rowIndex -> renderingHorizontal(rowIndex, column))
@@ -40,7 +33,8 @@ public class Renderer {
     }
 
     private String renderingPixel(int columnIndex, int rowIndex) {
-        return Preferences.pillarShape().concat(lineShape(columnIndex, rowIndex));
+        return Preferences.pillarShape()
+                .concat(lineShape(columnIndex, rowIndex));
     }
 
     private String lineShape(int columnIndex, int rowIndex) {
