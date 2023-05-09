@@ -33,7 +33,7 @@
   - 빈값 입력 시 IllegalArgumentException 발생
   - 입력할 수 있는 문자는 `꽝`과 `숫자`로 제한한다. 그외 문자 입력 시 IllegalArgumentException 발생
   - 참여자 수와 실행결과 목록 수가 일치하지 않을 경우 IllegalArgumentException 발생
-- [ ] 결과를 보고 싶은 사람을 입력한다.
+- [x] 결과를 보고 싶은 사람을 입력한다.
   - 없는 사람 입력 시 IllegalArgumentException 발생
   - 빈값 입력 시 IllegalArgumentException 발생
   - 개인 또는 all로만 입력 가능하다. (두명은 입력할 수 없다.)
