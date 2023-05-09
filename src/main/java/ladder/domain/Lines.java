@@ -13,7 +13,11 @@ public class Lines {
         this.lines = new HashSet<>();
     }
 
-    public static Lines of(int column, int row, int count) {
+    public static Lines of(int column, int row) {
+        return Lines.of(column, row, Preferences.createLineCount(column, row));
+    }
+
+    public static Lines of(int column, int row,int count) {
         Lines lines = new Lines();
         for (int i = 0; lines.lineCount() < count; i++) {
             addLineInfiniteLoopWatchDog(i);
@@ -33,6 +37,7 @@ public class Lines {
             lines.append(anyLine);
         }
     }
+
 
     private void append(Line anyLine) {
         this.lines.add(anyLine);
