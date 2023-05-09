@@ -11,12 +11,18 @@ public class ResultsBoard {
 		this.resultBoard = resultBoard;
 	}
 
+	public Map<Name, Result> getResultBoard() {
+		return resultBoard;
+	}
+
 	@Override
 	public boolean equals(Object o) {
-		if (this == o)
+		if (this == o) {
 			return true;
-		if (o == null || getClass() != o.getClass())
+		}
+		if (o == null || getClass() != o.getClass()) {
 			return false;
+		}
 		ResultsBoard that = (ResultsBoard)o;
 		return Objects.equals(resultBoard, that.resultBoard);
 	}

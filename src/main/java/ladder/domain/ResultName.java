@@ -18,6 +18,14 @@ public class ResultName {
 		this.resultName = trim;
 	}
 
+	public boolean isAll() {
+		return this.resultName.equals("all");
+	}
+
+	public String getResultName() {
+		return resultName;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) {

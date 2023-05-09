@@ -31,6 +31,9 @@ public class LadderMain {
 
 		LadderGame ladderGame = new LadderGame(ladder, names);
 		ResultsBoard resultsBoard = ladderGame.makeResultsBoard(names, results);
-		ResultName resultName = new ResultName(names, InputView.inputResultName());
+		for (int i = 0; i < 5; i++) {
+			ResultName resultName = new ResultName(names, InputView.inputResultName());
+			ResultView.printGameResult(resultsBoard, resultName);
+		}
 	}
 }

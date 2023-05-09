@@ -1,6 +1,7 @@
 package ladder.ui;
 
 import java.util.Collections;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -11,7 +12,9 @@ import ladder.domain.Names;
 import ladder.domain.Point;
 import ladder.domain.Points;
 import ladder.domain.Result;
+import ladder.domain.ResultName;
 import ladder.domain.Results;
+import ladder.domain.ResultsBoard;
 
 public class ResultView {
 
@@ -71,5 +74,15 @@ public class ResultView {
 			stringBuilder.append("    ");
 		}
 		System.out.println(stringBuilder);
+	}
+
+	public static void printGameResult(ResultsBoard resultsBoard, ResultName resultName) {
+		System.out.println("\n실행 결과");
+		Map<Name, Result> resultBoard = resultsBoard.getResultBoard();
+		if (resultName.isAll()) {
+			resultBoard.forEach((k, v) -> System.out.printf("%s : %s%n", k.getName(), v.getResult()));
+			return;
+		}
+		System.out.println(resultBoard.get(new Name(resultName.getResultName())).getResult());
 	}
 }
