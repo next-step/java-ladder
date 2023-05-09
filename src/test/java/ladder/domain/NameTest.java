@@ -25,4 +25,10 @@ public class NameTest {
 	void test3() {
 		assertThatIllegalArgumentException().isThrownBy(() -> new Name("pobipo"));
 	}
+
+	@DisplayName("`all` 문자열로 이름 생성 시, 예외를 던진다.")
+	@Test
+	void test4() {
+		assertThatIllegalArgumentException().isThrownBy(() -> new Name("all"));
+	}
 }

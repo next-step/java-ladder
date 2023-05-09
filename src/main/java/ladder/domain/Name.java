@@ -13,6 +13,9 @@ public class Name {
 		if (name.length() > Names.LENGTH_MAXIMUM) {
 			throw new IllegalArgumentException(String.format("이름은 최대 %d자까지 가능합니다.", Names.LENGTH_MAXIMUM));
 		}
+		if (name.equals("all")) {
+			throw new IllegalArgumentException("이름은 all로 입력할 수 없습니다.");
+		}
 		this.name = name;
 	}
 
