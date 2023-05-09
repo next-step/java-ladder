@@ -13,8 +13,6 @@ public class LadderController {
         int row = presenter.ladderHeight();
         int column = users.count();
         Lines lines = Lines.of(column, row);
-        Renderer ladderRender = new Renderer(column, row, lines,users);
-
-        presenter.renderingLadder(ladderRender.renderingSceneWithUser());
+        presenter.renderingLadder(new Renderer(column, row, lines,users).renderingSceneWithUser());
     }
 }
