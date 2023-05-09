@@ -5,6 +5,8 @@ import java.util.Map;
 
 public class Results {
 
+    private static final int FIRST_INDEX = 0;
+
     private Map<Integer, Result> results;
 
     public Results(Map<Integer, Result> results) {
@@ -14,7 +16,7 @@ public class Results {
     public static Results init(LadderInputs participants) {
         Map<Integer, Result> results = new HashMap<>();
 
-        for (int i = 0; i < participants.countOfInputs(); i++) {
+        for (int i = FIRST_INDEX; i < participants.countOfInputs(); i++) {
             results.put(i, new Result(i));
         }
 
@@ -22,23 +24,20 @@ public class Results {
     }
 
     public Result updateValue(int index, int move) {
-        for (int key : results.keySet()) {
-            if (results.get(key).isSameIndex(index)) {
-                return results.get(key).move(move);
-            }
-        }
-
-        throw new IllegalArgumentException("나올 수 없는 값입니다.");
+        return results.keySet()
+                .stream()
+                .filter(key -> results.get(key).isSameIndex(index))
+                .map(key -> results.get(key).move(move))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("나올 수 없는 값입니다."));
     }
 
     public Integer equalValueKey(int index) {
-        for (int key : results.keySet()) {
-            if (results.get(key).isSameIndex(index)) {
-                return key;
-            }
-        }
-
-        throw new IllegalArgumentException("나올 수 없는 값입니다.");
+        return results.keySet()
+                .stream()
+                .filter(key -> results.get(key).isSameIndex(index))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("나올 수 없는 값입니다."));
     }
 
 }
