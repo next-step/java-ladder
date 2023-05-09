@@ -12,15 +12,15 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder of(int countOfUser, int ladderSize) {
-        List<Line> lines = IntStream.range(0, ladderSize)
+    public static Ladder of(int countOfUser, int ladderHeight) {
+        List<Line> lines = IntStream.range(0, ladderHeight)
                 .mapToObj(size -> Line.of(countOfUser, new RandomLineGenerator()))
                 .collect(Collectors.toList());
 
         return new Ladder(lines);
     }
 
-    public int size() {
+    public int height() {
         return this.lines.size();
     }
 
