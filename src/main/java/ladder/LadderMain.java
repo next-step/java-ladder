@@ -8,6 +8,7 @@ import ladder.domain.Ladder;
 import ladder.domain.LadderGame;
 import ladder.domain.Names;
 import ladder.domain.Points;
+import ladder.domain.ResultName;
 import ladder.domain.Results;
 import ladder.domain.ResultsBoard;
 import ladder.ui.InputView;
@@ -30,5 +31,6 @@ public class LadderMain {
 
 		LadderGame ladderGame = new LadderGame(ladder, names);
 		ResultsBoard resultsBoard = ladderGame.makeResultsBoard(names, results);
+		ResultName resultName = new ResultName(names, InputView.inputResultName());
 	}
 }
