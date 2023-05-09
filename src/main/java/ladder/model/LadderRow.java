@@ -36,11 +36,15 @@ public class LadderRow {
 
     private static void validateOverlapped(List<Boolean> row) {
         range(0, row.size() - 1)
-                .filter(i -> row.get(i) && row.get(i) == row.get(i + 1))
+                .filter(index -> isOverlapped(row, index))
                 .findFirst()
                 .ifPresent((same) -> {
                     throw new IllegalArgumentException("adjacent values cannot be `true`");
                 });
+    }
+
+    private static boolean isOverlapped(List<Boolean> row, int i) {
+        return row.get(i) && row.get(i) == row.get(i + 1);
     }
 
 
