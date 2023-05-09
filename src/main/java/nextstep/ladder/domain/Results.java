@@ -40,4 +40,7 @@ public class Results {
                 .orElseThrow(() -> new IllegalArgumentException("나올 수 없는 값입니다."));
     }
 
+    public String matchResult(int key, LadderInputs reward) {
+        return reward.getInput(results.get(key).getResult());
+    }
 }

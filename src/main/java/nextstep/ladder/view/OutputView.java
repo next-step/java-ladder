@@ -45,4 +45,25 @@ public class OutputView {
         }
         return EMPTY_LINE;
     }
+
+    private static void printRewardMention() {
+        System.out.println();
+        System.out.println("실행 결과");
+    }
+
+    public static void printResultAll(Results ladderResults, LadderInputs participants, LadderInputs reward) {
+        printRewardMention();
+        for (int i = 0; i < participants.countOfInputs(); i++) {
+            System.out.println(participants.getInput(i) + " : " + ladderResults.matchResult(i, reward));
+        }
+    }
+
+    public static void printResult(String matchResult) {
+        printRewardMention();
+        System.out.println(matchResult);
+    }
+
+    public static void printNoName(Input name) {
+        System.out.println(name.getInput() + "이라는 이름은 없습니다! 다시 입력해주세요!!");
+    }
 }

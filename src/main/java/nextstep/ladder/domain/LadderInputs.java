@@ -2,8 +2,11 @@ package nextstep.ladder.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LadderInputs {
+
+    private static final int FIRST_INDEX = 0;
 
     private final List<Input> inputs;
 
@@ -25,6 +28,21 @@ public class LadderInputs {
         }
 
         return LadderInputs.from(inputs);
+    }
+
+    public boolean hasName(Input name) {
+        return inputs.contains(name);
+    }
+
+    public int nameIndex(Input name) {
+        return IntStream.range(FIRST_INDEX, inputs.size())
+                .filter(i -> inputs.get(i).equals(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("이름이 없습니다."));
+    }
+
+    public String getInput(int index) {
+        return inputs.get(index).getInput();
     }
 
     public int countOfInputs() {

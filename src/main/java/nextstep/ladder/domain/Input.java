@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import java.util.Objects;
+
 public class Input {
     private static final int INPUT_MAX_LENGTH = 5;
 
@@ -29,5 +31,18 @@ public class Input {
 
     public String getInput() {
         return input;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Input input1 = (Input) o;
+        return Objects.equals(input, input1.input);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(input);
     }
 }

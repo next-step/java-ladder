@@ -59,4 +59,22 @@ class ResultsTest {
                 .isEqualTo(0);
     }
 
+    @Test
+    @DisplayName("결과 확인 테스트")
+    void matchResultTest() {
+        LadderInputs participants = LadderInputs.from(List.of("a,b".split(",")));
+        Results results = Results.init(participants);
+
+        LadderInputs reward = LadderInputs.from(List.of("1000", "2000"));
+
+        String aReward = results.matchResult(0, reward);
+        String bReward = results.matchResult(1, reward);
+
+        assertThat(aReward)
+                .isEqualTo("1000");
+
+        assertThat(bReward)
+                .isEqualTo("2000");
+    }
+
 }

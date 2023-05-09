@@ -56,4 +56,45 @@ public class LadderInputsTest {
                 .hasMessage("참여할 사람 수와 결과 개수가 맞지 않습니다.");
     }
 
+    @Test
+    @DisplayName("이름 포함 여부 테스트")
+    void hasNameTest() {
+        String[] splitNames = "pobi,honux,crong".split(",");
+        List<String> names = List.of(splitNames);
+        LadderInputs participants = LadderInputs.from(names);
+
+        assertThat(participants.hasName(new Input("pobi")))
+                .isTrue();
+    }
+
+    @Test
+    @DisplayName("이름 미포함 여부 테스트")
+    void noNameTest() {
+        String[] splitNames = "pobi,honux,crong".split(",");
+        List<String> names = List.of(splitNames);
+        LadderInputs participants = LadderInputs.from(names);
+
+        assertThat(participants.hasName(new Input("jk")))
+                .isFalse();
+    }
+
+    @Test
+    @DisplayName("이름 가져오기 테스트")
+    void nameIndexTest() {
+        String[] splitNames = "pobi,honux,crong".split(",");
+        List<String> names = List.of(splitNames);
+        LadderInputs participants = LadderInputs.from(names);
+
+        assertThat(participants.nameIndex(new Input("pobi")))
+                .isEqualTo(0);
+
+        assertThat(participants.nameIndex(new Input("honux")))
+                .isEqualTo(1);
+
+        assertThat(participants.nameIndex(new Input("crong")))
+                .isEqualTo(2);
+
+    }
+
+
 }
