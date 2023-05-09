@@ -1,4 +1,4 @@
-package nextstep.ladder.reward;
+package nextstep.ladder.domain.reward;
 
 import nextstep.ladder.domain.reward.Reward;
 import nextstep.ladder.domain.reward.Rewards;

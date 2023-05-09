@@ -2,6 +2,7 @@ package nextstep.ladder.domain.line;
 
 import nextstep.ladder.domain.participant.Participants;
 import nextstep.ladder.domain.reward.Rewards;
+import nextstep.ladder.vo.DirectionType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,10 @@ public class Lines {
 
     public Lines(int ladderLength, int participantsCount) {
         this.lines = this.makeLine(ladderLength, participantsCount);
+    }
+
+    public Lines(List<Line> lines) {
+        this.lines = lines;
     }
 
     private List<Line> makeLine(int ladderLength, int participantsCount) {
@@ -25,34 +30,31 @@ public class Lines {
     }
 
     public String rewardOnePerson(Participants participants, Rewards rewards, String name) {
-        int y = 0;
-        int x = participants.indexByName(name);
+        int col = 0;
+        int row = participants.indexByName(name);
 
-        while (y < this.lines.size()) {
-            if (this.isMoveLeft(x, y)) {
-                x -= 1;
-            } else if (this.isMoveRight(x, y)) {
-                x += 1;
-            }
-
-            y += 1;
+        while (col < this.lines.size()) {
+            row += DirectionType
+                    .checkDirection(row, col, this)
+                    .moveRow();
+            col += 1;
         }
 
-        return rewards.getRewardBy(x).getReward();
+        return rewards.getRewardBy(row).getReward();
+    }
+
+    public boolean isLeftDirection(int row, int col) {
+        return this.lines.get(col).currentPoint(row);
+    }
+
+    public boolean isRightDirection(int row, int col) {
+        return this.lines.get(col).nextPoint(row);
     }
 
     public List<String> rewardAll(Participants participants, Rewards rewards) {
         return participants.getNames()
                 .stream().map(name -> name + " : " + this.rewardOnePerson(participants, rewards, name))
                 .collect(Collectors.toList());
-    }
-
-    private boolean isMoveLeft(int x, int y) {
-        return this.lines.get(y).currentPoint(x);
-    }
-
-    private boolean isMoveRight(int x, int y) {
-        return this.lines.get(y).nextPoint(x);
     }
 
     public List<Line> getLines() {

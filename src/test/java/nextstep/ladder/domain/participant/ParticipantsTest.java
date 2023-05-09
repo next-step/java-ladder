@@ -1,4 +1,4 @@
-package nextstep.ladder.participant;
+package nextstep.ladder.domain.participant;
 
 import nextstep.ladder.domain.participant.Name;
 import nextstep.ladder.domain.participant.Participant;
