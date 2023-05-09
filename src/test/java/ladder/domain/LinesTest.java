@@ -7,14 +7,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class LinesTest {
-    @DisplayName("")
+    @DisplayName("Lines 가 생성된다")
     @Test
     public void linesInstance() {
         //given
         //when
-        Lines lines = Lines.of(100, 20, 20);
+        Lines lines = Lines.of(40, 20, 20);
         //then
-        assertAll("",
+        assertAll("Lines 가 입력한 파라미터에 맞게 생성된다",
                 () -> assertThat(lines.lineCount())
                         .as("생성 라인 수대로 잘 만들어진다")
                         .isEqualTo(20),
