@@ -18,7 +18,7 @@ public class NamesInput extends InputControl<Names> {
 
     @Override
     protected Names input() {
-        String value = scanner.nextLine();
+        String value = SCANNER.nextLine();
         List<Name> names = stream(value.split(DELIMITER))
                 .map(Name::new)
                 .collect(toList()

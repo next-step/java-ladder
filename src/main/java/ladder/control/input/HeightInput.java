@@ -10,7 +10,7 @@ public class HeightInput extends InputControl<Integer> {
 
     @Override
     protected Integer input() {
-        int value = Integer.parseInt(scanner.nextLine());
+        int value = Integer.parseInt(SCANNER.nextLine());
         return value;
     }
 }
