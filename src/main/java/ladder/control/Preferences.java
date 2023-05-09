@@ -2,12 +2,16 @@ package ladder.control;
 
 public class Preferences {
 
+
     private static final int MAX_COLUMN_AND_USER_COUNT = 50;
     private static final int MAX_ROW_AND_RADDER_HEIGHT = 50;
     private static final String SHAPE_OF_PILLAR = "|";
     private static final String SHAPE_OF_EMPTY_LINE = "      ";
     private static final String SHAPE_OF_ALLOCATED_LINE = "------";
     private static final int INFINITE_LOOP_THRESHOLD = 10000;
+
+    private Preferences() {
+    }
 
     public static int maxColumnPolicy() {
         return MAX_COLUMN_AND_USER_COUNT;

@@ -19,5 +19,4 @@ public class Users {
                 .map(User::getName)
                 .collect(Collectors.toList());
     }
-
 }
