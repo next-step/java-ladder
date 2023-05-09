@@ -45,9 +45,17 @@ class InputViewTest {
     @DisplayName("사람 이름 다중 입력 테스트")
     void test_person_name_multiple_to_array(){
         InputUtil.testInputStream("crong, honox, pobi");
-        assertThat(InputView.enterNames())
+        assertThat(InputView.enterPlayers())
                 .contains("crong")
                 .contains("honox")
                 .contains("pobi");
+    }
+
+
+    @Test
+    @DisplayName("사다리 높이 입력 테스트")
+    void test_ladder_value(){
+        InputUtil.testInputStream("5");
+        assertThat(InputView.enterHeight()).isEqualTo(5);
     }
 }
