@@ -20,6 +20,7 @@ public class NamesInput extends InputControl<Names> {
     protected Names input() {
         String value = SCANNER.nextLine();
         List<Name> names = stream(value.split(DELIMITER))
+                .map(String::trim)
                 .map(Name::new)
                 .collect(toList()
                 );

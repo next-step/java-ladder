@@ -22,7 +22,7 @@ public class Application {
         int width = names.size();
         int height = heightInput.getValue();
 
-        Ladder ladder = Ladder.create(width, height, new RandomStrategy());
+        Ladder ladder = Ladder.create(width - 1, height, new RandomStrategy());
         LadderGame game = new LadderGame(names, ladder);
 
         LadderGameOutput output = new LadderGameOutput(new ResultView(), game);

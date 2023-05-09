@@ -5,8 +5,13 @@ public class LadderGame {
     private final Ladder ladder;
 
     public LadderGame(Names names, Ladder ladder) {
-        if (names.size() != ladder.width()) {
-            throw new IllegalArgumentException("the number of participants and ladder size are not same");
+        if (names.size() < 2) {
+            throw new IllegalArgumentException("ladder game requires at least two participants");
+        }
+        if (names.size() != ladder.width() + 1) {
+            throw new IllegalArgumentException(
+                    "The number of participants must be greater than the width of the ladder by 1"
+            );
         }
 
         this.participants = names;

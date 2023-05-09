@@ -3,8 +3,6 @@ package ladder.view.result;
 import ladder.model.Ladder;
 import ladder.model.LadderRow;
 
-import java.util.stream.IntStream;
-
 public class LadderView implements FormattableView {
     private static final String LADDER_STEP = "-";
     private static final String LADDER_STILE = "|";
@@ -28,10 +26,12 @@ public class LadderView implements FormattableView {
     }
 
     private void renderRow(LadderRow row, int formatWidth) {
-        IntStream.range(0, row.size())
-                .mapToObj(row::exists)
-                .map((existence) -> ladderExpression(formatWidth, existence))
-                .forEach(System.out::print);
+        System.out.print(ladderExpression(formatWidth, false));
+
+        for (int column = 0; column < row.size(); column++) {
+            boolean existence = row.exists(column);
+            System.out.print(ladderExpression(formatWidth, existence));
+        }
     }
 
     private String ladderExpression(int width, boolean exists) {
