@@ -1,6 +1,7 @@
 package ladder.model.participant;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -10,11 +11,7 @@ public class Names implements Iterable<Name> {
     private final List<Name> names;
 
     public Names(List<Name> names) {
-        this.names = names;
-    }
-
-    public Names(Name... names) {
-        this.names = List.of(names);
+        this.names = Collections.unmodifiableList(names);
     }
 
     public static Names of(String... names) {
@@ -24,6 +21,10 @@ public class Names implements Iterable<Name> {
         );
     }
 
+    public static Names of(Name... names) {
+        return new Names(List.of(names));
+    }
+
     public int size() {
         return names.size();
     }
@@ -31,5 +32,9 @@ public class Names implements Iterable<Name> {
     @Override
     public Iterator<Name> iterator() {
         return names.iterator();
+    }
+
+    public boolean contains(Name name) {
+        return names.contains(name);
     }
 }
