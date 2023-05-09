@@ -11,9 +11,4 @@ public class Line {
     public boolean hasLine() {
         return line;
     }
-
-    @Override
-    public String toString() {
-        return "" + line;
-    }
 }

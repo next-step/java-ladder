@@ -27,9 +27,4 @@ public class Result {
     public boolean isSameIndex(int value) {
         return index == value;
     }
-
-    @Override
-    public String toString() {
-        return "" + index;
-    }
 }
