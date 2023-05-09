@@ -9,6 +9,7 @@ public class Preferences {
     private static final String SHAPE_OF_EMPTY_LINE = "      ";
     private static final String SHAPE_OF_ALLOCATED_LINE = "------";
     private static final int INFINITE_LOOP_THRESHOLD = 10000;
+    private static final int LADDER_COLUMN_CLAMP_SIZE = 1;
 
     private Preferences() {
     }
@@ -62,5 +63,9 @@ public class Preferences {
 
     public static int circuitBreakerTriggerLoopCount() {
         return INFINITE_LOOP_THRESHOLD;
+    }
+
+    public static int ColumnClampingSize() {
+        return LADDER_COLUMN_CLAMP_SIZE;
     }
 }
