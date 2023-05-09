@@ -14,6 +14,7 @@ public class Main {
         Heights heights = InputView.inputHeights();
 
         Ladder ladder = Ladder.from(heights, participants, new RandomDrawStrategy());
-        OutputView.printLadder(participants, ladder);
+        OutputView.printLadder(participants, ladder, results);
+
     }
 }

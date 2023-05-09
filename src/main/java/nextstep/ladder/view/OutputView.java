@@ -6,19 +6,20 @@ public class OutputView {
     private static final String EMPTY_LINE = "     |";
     private static final String DRAW_LINE = "-----|";
 
-    public static void printLadder(LadderInputs participants, Ladder ladder) {
+    public static void printLadder(LadderInputs participants, Ladder ladder, LadderInputs results) {
         printResultMention();
-        printParticipants(participants);
+        printInputs(participants);
         printLadderLines(ladder);
+        printInputs(results);
     }
 
     private static void printResultMention() {
         System.out.println();
-        System.out.println("실행결과");
+        System.out.println("사다리 결과");
         System.out.println();
     }
 
-    private static void printParticipants(LadderInputs participants) {
+    private static void printInputs(LadderInputs participants) {
         for (Input input : participants.getInputs()) {
             System.out.printf("%6s", input.getInput());
         }
