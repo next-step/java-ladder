@@ -10,11 +10,6 @@ public class NamesView implements FormattableView {
     }
 
     @Override
-    public void render() {
-        render(0);
-    }
-
-    @Override
     public void render(int formatWidth) {
         names.forEach((name) -> {
             System.out.printf("%" + formatWidth + "s", name);

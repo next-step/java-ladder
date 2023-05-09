@@ -13,11 +13,6 @@ public class LadderView implements FormattableView {
     }
 
     @Override
-    public void render() {
-        render(0);
-    }
-
-    @Override
     public void render(int formatWidth) {
         for (int index = 0; index < ladder.height(); index++) {
             renderRow(ladder.rowAt(index), formatWidth);

@@ -3,24 +3,20 @@ package ladder.control.output;
 
 import ladder.model.LadderGame;
 import ladder.view.View;
-import ladder.view.result.LadderView;
-import ladder.view.result.NamesView;
+import ladder.view.result.LadderGameView;
 
 public class LadderGameOutput {
     private final View outputView;
-    private final NamesView namesView;
-    private final LadderView ladderView;
+    private final LadderGameView gameView;
 
     public LadderGameOutput(View outputView, LadderGame game) {
         this.outputView = outputView;
-        
-        this.namesView = new NamesView(game.participants());
-        this.ladderView = new LadderView(game.ladder());
+        this.gameView = new LadderGameView(game);
+
     }
 
     public void print(int formatWidth) {
         outputView.render();
-        namesView.render(formatWidth);
-        ladderView.render(formatWidth);
+        gameView.render(formatWidth);
     }
 }
