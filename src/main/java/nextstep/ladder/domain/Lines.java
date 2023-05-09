@@ -69,4 +69,9 @@ public class Lines {
     public List<Line> getLines() {
         return lines;
     }
+
+    @Override
+    public String toString() {
+        return "" + lines;
+    }
 }

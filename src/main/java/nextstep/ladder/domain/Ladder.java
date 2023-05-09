@@ -20,6 +20,16 @@ public class Ladder {
         return new Ladder(lines);
     }
 
+    public Results getResults(Results previousResults) {
+        Results results = previousResults;
+        for (Lines line : lines) {
+            results = line.followLine(previousResults);
+            previousResults = results;
+        }
+
+        return results;
+    }
+
     public int getLadderHeights() {
         return lines.size();
     }
