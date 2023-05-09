@@ -9,9 +9,6 @@ public class Preferences {
     private static final String SHAPE_OF_ALLOCATED_LINE = "------";
     private static final int INFINITE_LOOP_THRESHOLD = 10000;
 
-
-
-
     public static int maxColumnPolicy() {
         return MAX_COLUMN_AND_USER_COUNT;
     }
@@ -26,7 +23,7 @@ public class Preferences {
 
     public static int createLineCount(int column, int row) {
         int min = Math.min(canCreateAnyCasePolicy(column, row), defaultLadderCreatePolicy(column));
-        System.out.printf("사다리는 %d개 만듭니다\n",min);
+        System.out.printf("사다리 Line 은 %d 개 만듭니다%s", min, System.lineSeparator());
         return min;
     }
 
