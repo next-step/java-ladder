@@ -19,9 +19,9 @@ class LineTest {
         Line line = new Line(3, randomBoolean);
 
         assertThat(line.points()).hasSize(3);
-        assertThat(line.points()).containsExactly(new Point(false, true),
-                                                  new Point(true, false),
-                                                  new Point(false, false));
+        assertThat(line.points()).containsExactly(PointType.RIGHT,
+                                                  PointType.LEFT,
+                                                  PointType.NONE);
     }
 
     @Test
@@ -29,9 +29,9 @@ class LineTest {
     void test02() {
         Line line = new Line(true, false, false);
 
-        assertThat(line.points()).containsExactly(new Point(false, true),
-                                                  new Point(true, false),
-                                                  new Point(false, false));
+        assertThat(line.points()).containsExactly(PointType.RIGHT,
+                                                  PointType.LEFT,
+                                                  PointType.NONE);
     }
 
     @Test
@@ -39,9 +39,9 @@ class LineTest {
     void test03() {
         Line line = new Line(false, true, true);
 
-        assertThat(line.points()).containsExactly(new Point(false, false),
-                                                  new Point(false, true),
-                                                  new Point(true, false));
+        assertThat(line.points()).containsExactly(PointType.NONE,
+                                                  PointType.RIGHT,
+                                                  PointType.LEFT);
     }
 
     @Test

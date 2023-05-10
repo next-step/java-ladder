@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class Line {
-    private final List<Point> points = new ArrayList<>();
+    private final List<PointType> points = new ArrayList<>();
     private final int countOfMember;
 
     public Line(int countOfMember, RandomBoolean randomBoolean) {
@@ -27,25 +27,25 @@ public class Line {
         points.add(getPoint(index, isPoint));
     }
 
-    private Point getPoint(int index, boolean isPoint) {
+    private PointType getPoint(int index, boolean isPoint) {
         if (index == 0) {
-            return new Point(false, isPoint);
+            return PointType.findPointType(false, isPoint);
         }
 
-        Point beforePoint = points.get(index - 1);
+        PointType beforePoint = points.get(index - 1);
 
-        if (this.canNotHaveRightPoint(beforePoint.isRight())) {
-            return beforePoint.right(false);
+        if (this.canNotHaveRightPoint(beforePoint.right())) {
+            return beforePoint.afterPointType(false);
         }
 
-        return beforePoint.right(isPoint);
+        return beforePoint.afterPointType(isPoint);
     }
 
     private boolean canNotHaveRightPoint(boolean isBeforeRight) {
         return countOfMember - 1 == points.size() || isBeforeRight;
     }
 
-    public List<Point> points() {
+    public List<PointType> points() {
         return Collections.unmodifiableList(this.points);
     }
 
