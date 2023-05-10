@@ -8,20 +8,20 @@ import java.util.stream.IntStream;
 
 public class Lines {
 
-    private final List<LineRows> rows;
+    private final List<Points> rows;
 
-    public Lines(List<LineRows> rows) {
+    public Lines(List<Points> rows) {
         this.rows = rows;
     }
 
-    public static Lines create(int columnLength, int rowLength) {
+    public static Lines create(int lineSize, int pointSize) {
         return new Lines(
-                IntStream.range(0, columnLength)
-                        .mapToObj(index -> LineRows.initialize(rowLength, new RandomBooleanGenerator()))
+                IntStream.range(0, lineSize)
+                        .mapToObj(index -> Points.initialize(pointSize, new RandomBooleanGenerator()))
                         .collect(Collectors.toUnmodifiableList()));
     }
 
-    public List<LineRows> getRows() {
+    public List<Points> getRows() {
         return rows;
     }
 

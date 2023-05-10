@@ -6,19 +6,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class LineRows {
+public class Points {
 
     private final List<ConnectionStatus> connectionStatuses;
 
-    private LineRows(List<ConnectionStatus> connectionStatuses) {
+    private Points(List<ConnectionStatus> connectionStatuses) {
         this.connectionStatuses = connectionStatuses;
     }
 
-    public static LineRows initialize(int userCount, BooleanGenerator booleanGenerator) {
-        LineRows lineRows = new LineRows(new ArrayList<>());
+    public static Points initialize(int userCount, BooleanGenerator booleanGenerator) {
+        Points points = new Points(new ArrayList<>());
         IntStream.range(0, userCount - 1)
-                .forEach(index -> lineRows.addConnect(index, booleanGenerator));
-        return lineRows;
+                .forEach(index -> points.addConnect(index, booleanGenerator));
+        return points;
     }
 
     private void addConnect(int index, BooleanGenerator booleanGenerator) {
