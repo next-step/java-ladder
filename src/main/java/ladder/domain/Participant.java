@@ -12,5 +12,7 @@ public class Participant {
   }
 
 
-
+  public Name getName() {
+    return name;
+  }
 }

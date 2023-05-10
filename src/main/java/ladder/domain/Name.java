@@ -19,4 +19,7 @@ public class Name {
     return name.length() > 5;
   }
 
+  public String name() {
+    return name;
+  }
 }

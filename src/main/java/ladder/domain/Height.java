@@ -21,5 +21,9 @@ public class Height {
     return height < MIN_HEIGHT;
   }
 
+  public int height() {
+    return height;
+  }
+
 
 }
