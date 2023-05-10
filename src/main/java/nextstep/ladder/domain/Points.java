@@ -14,9 +14,9 @@ public class Points {
         this.connectionStatuses = connectionStatuses;
     }
 
-    public static Points initialize(int userCount, BooleanGenerator booleanGenerator) {
+    public static Points initialize(int size, BooleanGenerator booleanGenerator) {
         Points points = new Points(new ArrayList<>());
-        IntStream.range(0, userCount - 1)
+        IntStream.range(0, size)
                 .forEach(index -> points.addConnect(index, booleanGenerator));
         return points;
     }

@@ -17,7 +17,7 @@ public class Lines {
     public static Lines create(int lineSize, int pointSize) {
         return new Lines(
                 IntStream.range(0, lineSize)
-                        .mapToObj(index -> Points.initialize(pointSize, new RandomBooleanGenerator()))
+                        .mapToObj(index -> Points.initialize(pointSize - 1, new RandomBooleanGenerator()))
                         .collect(Collectors.toUnmodifiableList()));
     }
 

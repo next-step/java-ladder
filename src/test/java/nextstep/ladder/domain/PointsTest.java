@@ -19,12 +19,12 @@ class PointsTest {
     }
 
     @Test
-    @DisplayName("사용자 수 보다 하나작은 연결여부 리스트를 생성한다.")
+    @DisplayName("초기값 수 만큼 연결여부 리스트를 생성한다.")
     void test02() {
-        int userCount = 5;
-        Points points = Points.initialize(5, new RandomBooleanGenerator());
+        int pointSize = 5;
+        Points points = Points.initialize(pointSize, new RandomBooleanGenerator());
 
-        assertThat(points.getConnectionStatuses()).hasSize(userCount - 1);
+        assertThat(points.getConnectionStatuses()).hasSize(pointSize);
     }
 
     @Test
