@@ -9,9 +9,9 @@ public class LadderGame {
   private final Users users;
   private final Ladder ladder;
 
-  public LadderGame(Users users, int ladderHeight) {
+  public LadderGame(Users users, Ladder ladder) {
     this.users = users;
-    this.ladder = new Ladder(this.users.countOfUser(), ladderHeight);
+    this.ladder = ladder;
   }
 
   public List<User> users() {
