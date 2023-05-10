@@ -1,5 +1,7 @@
 package ladder.model;
 
+import ladder.generator.BooleanGenerator;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

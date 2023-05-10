@@ -1,7 +1,7 @@
 package ladder;
 
 import ladder.model.Ladder;
-import ladder.model.RandomBooleanGenerator;
+import ladder.generator.RandomBooleanGenerator;
 import ladder.model.Users;
 import ladder.view.InputView;
 import ladder.view.ResultView;

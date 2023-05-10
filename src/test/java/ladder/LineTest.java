@@ -1,7 +1,7 @@
 package ladder;
 
 import ladder.model.Line;
-import ladder.model.RandomBooleanGenerator;
+import ladder.generator.RandomBooleanGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
