@@ -10,7 +10,7 @@
 - [X] Input 클래스명을 좀 더 사다리 게임에 특화되게 수정
 - [X] LadderInputs 클래스 생성자 접근 제어자 수정
 - [ ] Lines 클래스의 UpdateResults 메서드는 좀 더 객체지향적으로 수정
-- [ ] LadderInputsTest의 testFixture 생성
+- [X] LadderInputsTest의 testFixture 생성
 
 ---
 

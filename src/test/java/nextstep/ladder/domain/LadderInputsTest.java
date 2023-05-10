@@ -12,6 +12,11 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LadderInputsTest {
 
+    private LadderInputs testLadderInputSetup(String stringInputs) {
+        List<String> names = List.of(stringInputs.split(","));
+        return LadderInputs.from(names);
+    }
+
     @ParameterizedTest
     @ValueSource(strings = {"pobi,honux,crong,jk", "pobi, honux, crong, jk"})
     @DisplayName("참가자 객체 생성 테스트")
@@ -27,9 +32,7 @@ public class LadderInputsTest {
     @Test
     @DisplayName("실행 결과 생성 테스트")
     void createResultsTest() {
-        String[] splitNames = "pobi,honux,crong,jk".split(",");
-        List<String> names = List.of(splitNames);
-        LadderInputs participants = LadderInputs.from(names);
+        LadderInputs participants = testLadderInputSetup("pobi,honux,crong,jk");
 
         String inputResults = "꽝,5000,꽝,3000";
         String[] splitResults = inputResults.split(",");
@@ -43,9 +46,7 @@ public class LadderInputsTest {
     @Test
     @DisplayName("실행 결과 개수와 참여할 사람 이름 수가 안맞을 경우 에러 반환 테스트")
     void notEqualsResultsCountToParticipants() {
-        String[] splitNames = "pobi,honux,crong".split(",");
-        List<String> names = List.of(splitNames);
-        LadderInputs participants = LadderInputs.from(names);
+        LadderInputs participants = testLadderInputSetup("pobi,honux,crong");
 
         String inputResults = "꽝,5000,꽝,3000";
         String[] splitResults = inputResults.split(",");
@@ -59,9 +60,7 @@ public class LadderInputsTest {
     @Test
     @DisplayName("이름 포함 여부 테스트")
     void hasNameTest() {
-        String[] splitNames = "pobi,honux,crong".split(",");
-        List<String> names = List.of(splitNames);
-        LadderInputs participants = LadderInputs.from(names);
+        LadderInputs participants = testLadderInputSetup("pobi,honux,crong");
 
         assertThat(participants.hasName(new LadderInput("pobi")))
                 .isTrue();
@@ -70,9 +69,7 @@ public class LadderInputsTest {
     @Test
     @DisplayName("이름 미포함 여부 테스트")
     void noNameTest() {
-        String[] splitNames = "pobi,honux,crong".split(",");
-        List<String> names = List.of(splitNames);
-        LadderInputs participants = LadderInputs.from(names);
+        LadderInputs participants = testLadderInputSetup("pobi,honux,crong");
 
         assertThat(participants.hasName(new LadderInput("jk")))
                 .isFalse();
@@ -81,9 +78,7 @@ public class LadderInputsTest {
     @Test
     @DisplayName("이름 가져오기 테스트")
     void nameIndexTest() {
-        String[] splitNames = "pobi,honux,crong".split(",");
-        List<String> names = List.of(splitNames);
-        LadderInputs participants = LadderInputs.from(names);
+        LadderInputs participants = testLadderInputSetup("pobi,honux,crong");
 
         assertThat(participants.nameIndex(new LadderInput("pobi")))
                 .isEqualTo(0);
@@ -95,6 +90,5 @@ public class LadderInputsTest {
                 .isEqualTo(2);
 
     }
-
 
 }
