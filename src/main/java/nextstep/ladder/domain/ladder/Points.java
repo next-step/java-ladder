@@ -45,11 +45,14 @@ public class Points {
         return connectionStatuses.size();
     }
 
+    public boolean isConnected(int index) {
+        return getConnectionStatus(index).isConnected();
+    }
+
     @Override
     public String toString() {
         return "\nLineRows{" +
                 "connectionStatuses=" + connectionStatuses +
                 '}';
     }
-
 }

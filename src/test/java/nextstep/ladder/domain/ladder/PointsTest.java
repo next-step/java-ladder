@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class PointsTest {
 
@@ -52,5 +53,15 @@ class PointsTest {
 
         assertThat(points.size()).isEqualTo(pointSize);
     }
-    
+
+    @Test
+    @DisplayName("points 는 특정위치의 연결여부를 반환한다.")
+    void test05() {
+        Points points = Points.initialize(5, () -> true);
+        assertAll(
+                () -> assertThat(points.isConnected(0)).isTrue(),
+                () -> assertThat(points.isConnected(1)).isFalse()
+        );
+    }
+
 }
