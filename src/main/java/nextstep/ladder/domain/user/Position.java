@@ -1,5 +1,7 @@
 package nextstep.ladder.domain.user;
 
+import nextstep.ladder.domain.ladder.Lines;
+
 public class Position {
 
     private int x;
@@ -28,6 +30,10 @@ public class Position {
 
     public int getX() {
         return x;
+    }
+
+    public boolean movable(Lines lines) {
+        return y < lines.size();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.user;
 
+import nextstep.ladder.domain.ladder.Lines;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -27,4 +28,18 @@ class PositionTest {
                 .isThrownBy(position::moveDown);
     }
 
+    @Test
+    @DisplayName("Lines를 기준으로 움직임 가능 여부를 판단한다.")
+    void test03() {
+        int linesSize = 2;
+        Lines lines = Lines.create(linesSize, 1);
+
+        Position position = new Position(0);
+
+        position.moveDown();
+        assertThat(position.movable(lines)).isTrue();
+        position.moveDown();
+        assertThat(position.movable(lines)).isFalse();
+    }
+    
 }
