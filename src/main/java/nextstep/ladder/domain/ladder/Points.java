@@ -4,6 +4,7 @@ import nextstep.ladder.domain.generator.BooleanGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.IntStream;
 
 public class Points {
@@ -47,6 +48,19 @@ public class Points {
 
     public boolean isConnected(int index) {
         return getConnectionStatus(index).isConnected();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Points points = (Points) o;
+        return Objects.equals(connectionStatuses, points.connectionStatuses);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(connectionStatuses);
     }
 
     @Override

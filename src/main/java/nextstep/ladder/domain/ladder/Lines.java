@@ -29,6 +29,10 @@ public class Lines {
         return rows.size();
     }
 
+    public Points getRow(int index) {
+        return rows.get(index);
+    }
+
     @Override
     public String toString() {
         return "LineColumns{" +
