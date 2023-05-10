@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.participant;
 
+import java.util.Objects;
 import java.util.Optional;
 
 public class Participant {
@@ -10,7 +11,24 @@ public class Participant {
                 .orElseThrow(() -> new IllegalArgumentException("이름은 빈 칸일 수 없습니다."));
     }
 
+    public boolean isParticipant(String name) {
+        return this.name.isName(name);
+    }
+
     String getName() {
         return this.name.getName();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Participant that = (Participant) o;
+        return Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

@@ -18,6 +18,10 @@ public class Name {
         return this.name;
     }
 
+    public boolean isName(String name) {
+        return this.name.equals(name);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

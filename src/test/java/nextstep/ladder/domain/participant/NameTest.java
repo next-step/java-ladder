@@ -1,4 +1,4 @@
-package nextstep.ladder.participant;
+package nextstep.ladder.domain.participant;
 
 import nextstep.ladder.domain.participant.Name;
 import org.junit.jupiter.api.DisplayName;
@@ -31,7 +31,16 @@ public class NameTest {
                 () -> assertThatThrownBy(() -> new Name("123456"))
                         .isInstanceOf(IllegalArgumentException.class)
         );
+    }
 
+    @Test
+    @DisplayName("이름이 맞으면 true 틀리면 false 출력")
+    void checkName() {
+        final Name name = new Name("1");
 
+        assertThat(name.isName("1"))
+                .isTrue();
+        assertThat(name.isName("2"))
+                .isFalse();
     }
 }
