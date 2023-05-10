@@ -1,7 +1,7 @@
 package ladder;
 
 import ladder.model.Ladder;
-import ladder.model.RandomLineGenerator;
+import ladder.model.RandomBooleanGenerator;
 import ladder.model.Users;
 import ladder.view.InputView;
 import ladder.view.ResultView;
@@ -15,7 +15,7 @@ public class LadderApplication {
         int ladderHeight = InputView.inputLadderHeight();
 
         Users users = Users.of(userNames);
-        Ladder ladder = Ladder.of(users.size(), ladderHeight, new RandomLineGenerator());
+        Ladder ladder = Ladder.of(users.size(), ladderHeight, new RandomBooleanGenerator());
 
         ResultView.showResult(users, ladder);
     }

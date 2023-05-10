@@ -22,20 +22,20 @@ public class Line {
                 });
     }
 
-    public static Line of(int countOfUser, LineGenerator lineGenerator) {
+    public static Line of(int countOfUser, BooleanGenerator booleanGenerator) {
         List<Boolean> points = new ArrayList<>();
 
         IntStream.range(0, countOfUser - 1)
-                .forEach(i -> points.add(createNextPoint(points, i, lineGenerator)));
+                .forEach(i -> points.add(createNextPoint(points, i, booleanGenerator)));
 
         return new Line(points);
     }
 
-    private static boolean createNextPoint(List<Boolean> points, int index, LineGenerator lineGenerator) {
+    private static boolean createNextPoint(List<Boolean> points, int index, BooleanGenerator booleanGenerator) {
         if (hasPrevious(points, index)) {
             return false;
         }
-        return lineGenerator.generate();
+        return booleanGenerator.generate();
     }
 
     private static boolean hasPrevious(List<Boolean> points, int index) {

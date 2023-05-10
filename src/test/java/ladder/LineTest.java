@@ -1,7 +1,7 @@
 package ladder;
 
 import ladder.model.Line;
-import ladder.model.RandomLineGenerator;
+import ladder.model.RandomBooleanGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +14,7 @@ public class LineTest {
     @DisplayName("라인의 길이는 사람 수 보다 하나 적다")
     @Test
     void lineSize() {
-        Line line = Line.of(3, new RandomLineGenerator());
+        Line line = Line.of(3, new RandomBooleanGenerator());
         assertThat(line.size()).isEqualTo(2);
     }
 

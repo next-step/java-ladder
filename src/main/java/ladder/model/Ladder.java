@@ -12,9 +12,9 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder of(int countOfUser, int ladderHeight, LineGenerator lineGenerator) {
+    public static Ladder of(int countOfUser, int ladderHeight, BooleanGenerator booleanGenerator) {
         List<Line> lines = IntStream.range(0, ladderHeight)
-                .mapToObj(size -> Line.of(countOfUser, lineGenerator))
+                .mapToObj(size -> Line.of(countOfUser, booleanGenerator))
                 .collect(Collectors.toList());
 
         return new Ladder(lines);

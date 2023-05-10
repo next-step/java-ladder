@@ -2,7 +2,7 @@ package ladder.model;
 
 import java.util.Random;
 
-public class RandomLineGenerator implements LineGenerator {
+public class RandomBooleanGenerator implements BooleanGenerator {
     private static final Random RANDOM = new Random();
 
     @Override

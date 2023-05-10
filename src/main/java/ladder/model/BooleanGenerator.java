@@ -1,6 +1,6 @@
 package ladder.model;
 
 @FunctionalInterface
-public interface LineGenerator {
+public interface BooleanGenerator {
     boolean generate();
 }
