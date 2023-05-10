@@ -41,6 +41,10 @@ public class Points {
         return connectionStatuses;
     }
 
+    public int size() {
+        return connectionStatuses.size();
+    }
+
     @Override
     public String toString() {
         return "\nLineRows{" +

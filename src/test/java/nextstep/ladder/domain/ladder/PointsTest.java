@@ -43,4 +43,14 @@ class PointsTest {
         assertThat(actual).isFalse();
     }
 
+
+    @Test
+    @DisplayName("points 는 가지고 있는 연결여부 리스트의 크기를 반환한다.")
+    void test04() {
+        int pointSize = 5;
+        Points points = Points.initialize(pointSize, new RandomBooleanGenerator());
+
+        assertThat(points.size()).isEqualTo(pointSize);
+    }
+    
 }
