@@ -1,7 +1,10 @@
 package ladder.domain;
 
+import ladder.strategy.MoveStrategy;
+
 public class Point {
 
+  private static final int PREVIOUS_NUMBER = 1;
   private final Position position;
   private final Direction direction;
 
@@ -16,6 +19,10 @@ public class Point {
 
   public int currentUserPosition() {
     return position.currentPosition();
+  }
+
+  public int currentPreviousUserPosition() {
+    return position.currentPosition() - PREVIOUS_NUMBER;
   }
 
   public boolean canMoveNext() {

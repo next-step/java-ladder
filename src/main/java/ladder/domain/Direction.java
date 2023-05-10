@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.strategy.MoveStrategy;
+
 public class Direction {
 
   private static final String ILLEGAL_DIRECTION_MESSAGE = "라인이 겹칠 수 없습니다.";

@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.strategy.DirectionMoveStrategy;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -7,11 +9,9 @@ import java.util.stream.IntStream;
 
 public class Ladder {
 
-  private final MoveStrategy moveStrategy;
   private final List<LadderLine> ladderLines;
 
   public Ladder(int countOfUsers, int ladderHeight) {
-    this.moveStrategy = new DirectionMoveStrategy();
     this.ladderLines = createLadderLines(countOfUsers, ladderHeight);
   }
 
@@ -23,7 +23,7 @@ public class Ladder {
     List<LadderLine> ladderLineList = new ArrayList<>();
 
     IntStream.range(0, ladderHeight)
-            .forEach((i) -> ladderLineList.add(LadderLine.createPoints(countOfUsers, moveStrategy)));
+            .forEach((i) -> ladderLineList.add(LadderLine.createPoints(countOfUsers, new DirectionMoveStrategy())));
 
     return ladderLineList;
   }
