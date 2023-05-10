@@ -3,6 +3,8 @@ package nextstep.ladder.domain.user;
 import nextstep.ladder.domain.formatter.Formatter;
 import nextstep.ladder.domain.formatter.NameFormatter;
 
+import java.util.Objects;
+
 public class UserName {
 
     private static final int MAX_LENGTH = 5;
@@ -39,6 +41,19 @@ public class UserName {
 
     public String formattedName() {
         return formatter.format(name);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserName userName = (UserName) o;
+        return Objects.equals(name, userName.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 
 }

@@ -31,4 +31,8 @@ public class Participants {
                 .collect(Collectors.toUnmodifiableList());
     }
 
+    public int getUserLocation(String name) {
+        return userNames.indexOf(UserName.add(name));
+    }
+    
 }
