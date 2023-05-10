@@ -10,7 +10,7 @@ public class LadderInputs {
 
     private final List<LadderInput> ladderInputs;
 
-    public LadderInputs(List<LadderInput> ladderInputs) {
+    private LadderInputs(List<LadderInput> ladderInputs) {
         this.ladderInputs = ladderInputs;
     }
 
