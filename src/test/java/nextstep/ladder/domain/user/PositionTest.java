@@ -1,9 +1,12 @@
 package nextstep.ladder.domain.user;
 
 import nextstep.ladder.domain.ladder.Lines;
+import nextstep.ladder.domain.ladder.Points;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -41,5 +44,17 @@ class PositionTest {
         position.moveDown();
         assertThat(position.movable(lines)).isFalse();
     }
-    
+
+    @Test
+    @DisplayName("Lines 를 이용해 연결된 위치로 이동한다.")
+    void test04() {
+        Points points = Points.initialize(2, () -> true);
+        Lines lines = new Lines(List.of(points));
+        Position position = new Position(0);
+        position.move(lines);
+
+        assertThat(position.getX()).isEqualTo(1);
+        assertThat(position.movable(lines)).isFalse();
+    }
+
 }

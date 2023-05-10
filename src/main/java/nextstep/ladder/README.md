@@ -108,7 +108,7 @@ jk : 5000
 - [x] x의 값을 반환한다. `new`
 - [x] Lines size를 통해 움직임 가능 여부를 반환한다. `new`
   - NOTE: y가 lines.length 까지만 이동이 가능하다.
-- [ ] Lines과 Points를 이용해 연결 된 위치로 이동한다.
+- [x] Lines과 Points를 이용해 연결 된 위치로 이동한다.
   - NOTE: 이동시 x는 좌우로 이동이 가능, y는 무조건 아래로 한번 이동한다.
 
 ### 입력 (InputView)
