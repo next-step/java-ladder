@@ -13,10 +13,10 @@ class LadderTest {
         Participants participants = Participants.of("pobi,honux,crong,jk");
         LadderHeight ladderHeight = LadderHeight.from(5);
 
-        Ladder ladder = new Ladder(LineColumns.create(ladderHeight.getHeight(), participants.count()));
-        LineColumns lineColumns = ladder.getLineColumns();
+        Ladder ladder = new Ladder(Lines.create(ladderHeight.getHeight(), participants.count()));
+        Lines lines = ladder.getLineColumns();
 
-        assertThat(lineColumns.getRows()).hasSize(ladderHeight.getHeight());
+        assertThat(lines.getRows()).hasSize(ladderHeight.getHeight());
     }
 
 }

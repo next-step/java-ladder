@@ -31,8 +31,8 @@ public final class ResultView {
         System.out.println(drewLines);
     }
 
-    private static String drawLines(LineColumns lineColumns) {
-        return lineColumns.getRows()
+    private static String drawLines(Lines lines) {
+        return lines.getRows()
                 .stream()
                 .map(rows -> drawFirstColumn() + drawRows(rows))
                 .collect(Collectors.joining(NEW_LINE));

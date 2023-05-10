@@ -2,20 +2,20 @@ package nextstep.ladder.domain;
 
 public class Ladder {
 
-    private final LineColumns lineColumns;
+    private final Lines lines;
 
-    public Ladder(LineColumns lineColumns) {
-        this.lineColumns = lineColumns;
+    public Ladder(Lines lines) {
+        this.lines = lines;
     }
 
-    public LineColumns getLineColumns() {
-        return lineColumns;
+    public Lines getLineColumns() {
+        return lines;
     }
 
     @Override
     public String toString() {
         return "Ladder{" +
-                "lineColumns=" + lineColumns +
+                "lineColumns=" + lines +
                 '}';
     }
 
