@@ -57,7 +57,8 @@ public class Lines {
         return lines;
     }
 
-    public boolean existLine(int columnIndex, int rowIndex) {
-        return lines.stream().anyMatch(line -> line.isExist(columnIndex, rowIndex));
+    public boolean existLine(Line otherLine) {
+        return lines.stream().anyMatch(line -> line.isSameRow(otherLine));
     }
+
 }

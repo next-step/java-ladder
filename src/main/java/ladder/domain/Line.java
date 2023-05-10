@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import java.util.Objects;
+
 public class Line {
     private final Column column;
     private final Row row;
@@ -7,6 +9,11 @@ public class Line {
     public Line(int columnPosition, int rowPosition) {
         this.column = Column.of(columnPosition);
         this.row = Row.of(rowPosition);
+    }
+
+    public Line(Column column, Row row) {
+        this.column = column;
+        this.row = row;
     }
 
     public static Line any(LineStrategy lineStrategy) {
@@ -21,7 +28,7 @@ public class Line {
         return row.getValue();
     }
 
-    public boolean isExist(int columnPosition, int rowPosition) {
+    public boolean isSame(int columnPosition, int rowPosition) {
         return (column.getValue() == columnPosition) && (row.getValue() == rowPosition);
     }
 
@@ -31,5 +38,18 @@ public class Line {
 
     public boolean isAdjacentColumn(Line otherLine) {
         return Math.abs(this.columnPosition() - otherLine.columnPosition()) <= 1;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Line otherLine = (Line) o;
+        return this.hashCode() == otherLine.hashCode();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(column, row);
     }
 }

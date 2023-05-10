@@ -22,23 +22,23 @@ public class Renderer {
 
     private List<String> renderingSceneLadderArea() {
         return IntStream.range(0, row)
-                .mapToObj(rowIndex -> renderingHorizontal(rowIndex, column))
+                .mapToObj(rowIndex -> renderingHorizontal(Row.of(rowIndex), Column.of(column)))
                 .collect(Collectors.toList());
     }
 
-    private String renderingHorizontal(int rowIndex, int columnRange) {
-        return IntStream.range(0, columnRange)
-                .mapToObj(columnIndex -> renderingPixel(columnIndex, rowIndex))
+    private String renderingHorizontal(Row index, Column range) {
+        return IntStream.range(0, range.getValue())
+                .mapToObj(columnIndex -> renderingPixel( Column.of(columnIndex), index))
                 .collect(Collectors.joining());
     }
 
-    private String renderingPixel(int columnIndex, int rowIndex) {
+    private String renderingPixel(Column columnIndex, Row rowIndex) {
         return Preferences.pillarShape()
                 .concat(lineShape(columnIndex, rowIndex));
     }
 
-    private String lineShape(int columnIndex, int rowIndex) {
-        return lines.existLine(columnIndex, rowIndex) ? Preferences.allocatedLineShape() : Preferences.emptyLineShape();
+    private String lineShape(Column columnIndex, Row rowIndex) {
+        return lines.existLine(new Line(columnIndex,rowIndex)) ? Preferences.allocatedLineShape() : Preferences.emptyLineShape();
     }
 
     public Scene renderingSceneWithUser() {
