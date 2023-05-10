@@ -1,18 +1,18 @@
 package ladder;
 
 import ladder.domain.*;
-import ladder.view.InputView;
 import ladder.view.ResultView;
 
 import static ladder.domain.LadderMachine.createLadderGame;
 import static ladder.domain.LadderMachine.playLadderGame;
+import static ladder.view.InputView.*;
 
 public class LadderApplication {
 
   public static void main(String[] args) {
-    Users users = InputView.inputUsers();
-    LadderRewards ladderRewards = InputView.inputRewards(users.countOfUser());
-    LadderHeight ladderHeight = InputView.inputHeight();
+    Users users = inputUsers();
+    LadderRewards ladderRewards = inputRewards(users.countOfUser());
+    LadderHeight ladderHeight = inputHeight();
 
     LadderGame ladderGame = createLadderGame(users, ladderHeight.height());
     ResultView.showLadder(ladderGame, ladderRewards);
