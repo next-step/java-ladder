@@ -1,4 +1,4 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.ladder;
 
 import nextstep.ladder.domain.generator.RandomBooleanGenerator;
 import org.junit.jupiter.api.DisplayName;

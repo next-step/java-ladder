@@ -1,6 +1,11 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.*;
+import nextstep.ladder.domain.ladder.ConnectionStatus;
+import nextstep.ladder.domain.ladder.Ladder;
+import nextstep.ladder.domain.ladder.Lines;
+import nextstep.ladder.domain.ladder.Points;
+import nextstep.ladder.domain.user.Participants;
+import nextstep.ladder.domain.user.UserName;
 
 import java.util.function.Function;
 import java.util.stream.Collectors;
