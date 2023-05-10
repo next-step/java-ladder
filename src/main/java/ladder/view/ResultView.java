@@ -11,7 +11,8 @@ public class ResultView {
     private static final String LINE = "-----";
     private static final String HEIGHT = "|";
     private static final String EMPTY_LIME = "     ";
-    private static final String BLANK = "\t";
+    private static final String BLANK = " ";
+    private static final String LADDER_BLANK = "    ";
 
     private ResultView() {
     }
@@ -26,7 +27,7 @@ public class ResultView {
         List<String> names = getNames(users);
         String printNames = names.stream()
                 .map(name -> String.format("%5s", name))
-                .collect(Collectors.joining(" "));
+                .collect(Collectors.joining(BLANK));
 
         System.out.println(printNames);
     }
@@ -46,15 +47,15 @@ public class ResultView {
     private static void showLine(List<Boolean> points) {
         String line = points.stream()
                 .map(ResultView::convertPoint)
-                .collect(Collectors.joining());
+                .collect(Collectors.joining(HEIGHT, HEIGHT, HEIGHT));
 
-        System.out.println(BLANK + line + HEIGHT);
+        System.out.println(LADDER_BLANK + line);
     }
 
     private static String convertPoint(Boolean point) {
         if (point) {
-            return HEIGHT + LINE;
+            return LINE;
         }
-        return HEIGHT + EMPTY_LIME;
+        return EMPTY_LIME;
     }
 }
