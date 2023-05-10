@@ -3,17 +3,43 @@ package nextstep.ladder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Line {
+public class Line implements LineMakeable {
     private List<Boolean> points = new ArrayList<>();
 
-    public Line(int countOfPerson) {
+    public Line(int countOfPerson, List<Boolean> makeables) {
+        makeLine(countOfPerson, makeables);
+    }
+
+    public void makeLine(int countOfPerson, List<Boolean> makeables) {
+        boolean prevLine = false;
+
         for (int i = 0; i < countOfPerson - 1; i++) {
-            points.add(true);
+            prevLine = makeLine(prevLine, makeables.get(i));
         }
     }
 
+    private boolean makeLine(boolean prevLine, boolean makeCriteria) {
+        if (isMakeable(prevLine, makeCriteria)) {
+            points.add(true);
+            return true;
+        }
+        points.add(false);
+        return false;
+    }
 
     public List<Boolean> points() {
         return points;
+    }
+
+    @Override
+    public boolean isMakeable(boolean prevLine, boolean makeCriteria) {
+        return !prevLine && makeCriteria;
+    }
+
+    @Override
+    public String toString() {
+        return "Line{" +
+                "points=" + points +
+                '}';
     }
 }
