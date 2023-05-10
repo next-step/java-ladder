@@ -4,6 +4,7 @@ import nextstep.ladder.domain.ladder.ConnectionStatus;
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.ladder.Lines;
 import nextstep.ladder.domain.ladder.Points;
+import nextstep.ladder.domain.user.ExecuteResults;
 import nextstep.ladder.domain.user.Participants;
 import nextstep.ladder.domain.user.UserName;
 
@@ -76,4 +77,7 @@ public final class ResultView {
                 .collect(Collectors.joining());
     }
 
+    public static void drawExecuteResults(ExecuteResults executeResults) {
+        System.out.println(executeResults);
+    }
 }
