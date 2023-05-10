@@ -26,28 +26,38 @@ public class Lambda {
         }).start();
     }
 
-    public static int sumAll(List<Integer> numbers) {
+    /**
+     * [리펙토링 목표]
+     * 1. 변경되는 부분과 변경되지 않는 부분을 찾아서 분리한다.
+     * 2. 변경되는 부분은 Interface로 추출하여 구현체를 변경할 수 있도록 한다.
+     *
+     * [변경되는 부분]
+     * if 문 안의 조건이 자주 변경된다 => Interface로 추출
+     */
+    public static int sumAll(List<Integer> numbers, Conditional conditional) {
         int total = 0;
         for (int number : numbers) {
-            total += number;
-        }
-        return total;
-    }
-
-    public static int sumAllEven(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number % 2 == 0) {
+            if (conditional.test(number)) {
                 total += number;
             }
         }
         return total;
     }
 
-    public static int sumAllOverThree(List<Integer> numbers) {
+    public static int sumAllEven(List<Integer> numbers, Conditional conditional) {
         int total = 0;
         for (int number : numbers) {
-            if (number > 3) {
+            if (conditional.test(number)) {
+                total += number;
+            }
+        }
+        return total;
+    }
+
+    public static int sumAllOverThree(List<Integer> numbers, Conditional conditional) {
+        int total = 0;
+        for (int number : numbers) {
+            if (conditional.test(number)) {
                 total += number;
             }
         }
