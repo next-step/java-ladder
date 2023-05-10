@@ -26,4 +26,13 @@ class LinesTest {
         assertThat(lines.getRows().get(0).getConnectionStatuses()).hasSize(userCount - 1);
     }
 
+    @Test
+    @DisplayName("크기를 반환한다.")
+    void test03() {
+        int height = 5;
+        int userCount = 5;
+        Lines lines = Lines.create(height, userCount);
+        assertThat(lines.size()).isEqualTo(height);
+    }
+
 }

@@ -25,11 +25,14 @@ public class Lines {
         return rows;
     }
 
+    public int size() {
+        return rows.size();
+    }
+
     @Override
     public String toString() {
         return "LineColumns{" +
                 "rows=" + rows +
                 '}';
     }
-
 }
