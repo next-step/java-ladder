@@ -13,15 +13,6 @@ public class Line {
         this.points = points;
     }
 
-    public static Line of(int countOfUser, LineGenerator lineGenerator) {
-        List<Boolean> points = new ArrayList<>();
-
-        IntStream.range(0, countOfUser - 1)
-                .forEach(i -> points.add(createNextPoint(points, i, lineGenerator)));
-
-        return new Line(points);
-    }
-
     private void validatePoints(List<Boolean> points) {
         IntStream.range(0, points.size() - 1)
                 .filter(i -> points.get(i) && points.get(i + 1))
@@ -29,6 +20,15 @@ public class Line {
                 .ifPresent(i -> {
                     throw new IllegalArgumentException("사다리 한 라인에 가로 라인이 겹칠 수 없습니다.");
                 });
+    }
+
+    public static Line of(int countOfUser, LineGenerator lineGenerator) {
+        List<Boolean> points = new ArrayList<>();
+
+        IntStream.range(0, countOfUser - 1)
+                .forEach(i -> points.add(createNextPoint(points, i, lineGenerator)));
+
+        return new Line(points);
     }
 
     private static boolean createNextPoint(List<Boolean> points, int index, LineGenerator lineGenerator) {

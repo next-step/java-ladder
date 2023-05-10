@@ -31,6 +31,12 @@ public class ResultView {
         System.out.println(printNames);
     }
 
+    private static List<String> getNames(Users users) {
+        return users.getUsers().stream()
+                .map(user -> user.getName().getName())
+                .collect(Collectors.toList());
+    }
+
     private static void showLadder(Ladder ladder) {
         ladder.getLines().stream()
                 .map(Line::getPoints)
@@ -50,11 +56,5 @@ public class ResultView {
             return HEIGHT + LINE;
         }
         return HEIGHT + EMPTY_LIME;
-    }
-
-    private static List<String> getNames(Users users) {
-        return users.getUsers().stream()
-                .map(user -> user.getName().getName())
-                .collect(Collectors.toList());
     }
 }
