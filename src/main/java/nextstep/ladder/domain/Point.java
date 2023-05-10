@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.Objects;
 
+@Deprecated
 public class Point {
     private final PointType pointType;
 
