@@ -22,9 +22,9 @@ public class Main {
     }
 
     private static boolean printResult(Results ladderResults, LadderInputs participants, LadderInputs reward) {
-        Input name = InputView.inputReward();
+        LadderInput name = InputView.inputReward();
 
-        if (name.equals(new Input("all"))) {
+        if (name.equals(new LadderInput("all"))) {
             OutputView.printResultAll(ladderResults, participants, reward);
             return false;
         }

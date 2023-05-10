@@ -63,7 +63,7 @@ public class LadderInputsTest {
         List<String> names = List.of(splitNames);
         LadderInputs participants = LadderInputs.from(names);
 
-        assertThat(participants.hasName(new Input("pobi")))
+        assertThat(participants.hasName(new LadderInput("pobi")))
                 .isTrue();
     }
 
@@ -74,7 +74,7 @@ public class LadderInputsTest {
         List<String> names = List.of(splitNames);
         LadderInputs participants = LadderInputs.from(names);
 
-        assertThat(participants.hasName(new Input("jk")))
+        assertThat(participants.hasName(new LadderInput("jk")))
                 .isFalse();
     }
 
@@ -85,13 +85,13 @@ public class LadderInputsTest {
         List<String> names = List.of(splitNames);
         LadderInputs participants = LadderInputs.from(names);
 
-        assertThat(participants.nameIndex(new Input("pobi")))
+        assertThat(participants.nameIndex(new LadderInput("pobi")))
                 .isEqualTo(0);
 
-        assertThat(participants.nameIndex(new Input("honux")))
+        assertThat(participants.nameIndex(new LadderInput("honux")))
                 .isEqualTo(1);
 
-        assertThat(participants.nameIndex(new Input("crong")))
+        assertThat(participants.nameIndex(new LadderInput("crong")))
                 .isEqualTo(2);
 
     }

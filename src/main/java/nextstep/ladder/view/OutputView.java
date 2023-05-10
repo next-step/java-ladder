@@ -20,8 +20,8 @@ public class OutputView {
     }
 
     private static void printInputs(LadderInputs participants) {
-        for (Input input : participants.getInputs()) {
-            System.out.printf("%6s", input.getInput());
+        for (LadderInput ladderInput : participants.getInputs()) {
+            System.out.printf("%6s", ladderInput.getLadderInput());
         }
         System.out.println();
     }
@@ -63,7 +63,7 @@ public class OutputView {
         System.out.println(matchResult);
     }
 
-    public static void printNoName(Input name) {
-        System.out.println(name.getInput() + "이라는 이름은 없습니다! 다시 입력해주세요!!");
+    public static void printNoName(LadderInput name) {
+        System.out.println(name.getLadderInput() + "이라는 이름은 없습니다! 다시 입력해주세요!!");
     }
 }

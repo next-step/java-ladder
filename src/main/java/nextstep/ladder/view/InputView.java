@@ -1,7 +1,7 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Heights;
-import nextstep.ladder.domain.Input;
+import nextstep.ladder.domain.LadderInput;
 import nextstep.ladder.domain.LadderInputs;
 
 import java.util.List;
@@ -30,9 +30,9 @@ public class InputView {
         return heights;
     }
 
-    public static Input inputReward() {
+    public static LadderInput inputReward() {
         System.out.println();
         System.out.println("결과를 보고 싶은 사람은?");
-        return new Input(SCANNER.nextLine());
+        return new LadderInput(SCANNER.nextLine());
     }
 }
