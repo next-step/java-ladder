@@ -41,9 +41,9 @@ class LadderGameTest {
     }
 
     @Test
-    public void 참가자_수는_사다리_너비보다_1만큼_더_커야_한다() {
+    public void 참가자_수는_사다리_기둥_수와_같아야_한다() {
         Names names = Names.of("test1", "test2");
-        Ladder ladder = Ladder.create(1, 2, new RandomStrategy());
+        Ladder ladder = Ladder.create(2, 2, new RandomStrategy());
         LadderResults results = LadderResults.of("test1", "test2");
 
         assertThatCode(() -> new LadderGame(names, ladder, results))
@@ -53,7 +53,7 @@ class LadderGameTest {
     @Test
     public void 참가자는_최소_2명이어야_한다() {
         Names names = Names.of("test1");
-        Ladder ladder = Ladder.create(1, 2, new RandomStrategy());
+        Ladder ladder = Ladder.create(2, 2, new RandomStrategy());
         LadderResults results = LadderResults.of("test1", "test2");
 
         assertThatIllegalArgumentException()
@@ -61,11 +61,11 @@ class LadderGameTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {2, 3})
-    public void 참가자_수와_사다리_너비가_맞지_않으면_예외가_난다(int width) {
-        Names names = Names.of("test1", "test2");
-        Ladder ladder = Ladder.create(width, 2, new RandomStrategy());
-        LadderResults results = LadderResults.of("test1", "test2");
+    @ValueSource(ints = {2, 4})
+    public void 참가자_수와_사다리_기둥_수가_맞지_않으면_예외가_난다(int stiles) {
+        Names names = Names.of("test1", "test2", "test3");
+        Ladder ladder = Ladder.create(stiles, 2, new RandomStrategy());
+        LadderResults results = LadderResults.of("test1", "test2", "test3");
 
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new LadderGame(names, ladder, results));
@@ -74,7 +74,7 @@ class LadderGameTest {
     @Test
     public void 참가자_수와_결과_개수가_같지_않으면_예외가_난다() {
         Names names = Names.of("test1", "test2");
-        Ladder ladder = Ladder.create(1, 2, new RandomStrategy());
+        Ladder ladder = Ladder.create(2, 2, new RandomStrategy());
 
         LadderResults results = LadderResults.of("test1");
 
