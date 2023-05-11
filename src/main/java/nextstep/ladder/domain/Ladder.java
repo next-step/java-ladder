@@ -2,10 +2,9 @@ package nextstep.ladder.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Ladder {
-    private static final int FIRST_INDEX = 0;
 
     private final List<Lines> lines;
 
@@ -13,12 +12,22 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder from(Heights heights, Participants participants, DrawStrategy drawStrategy) {
-        List<Lines> lines = IntStream.range(FIRST_INDEX, heights.getHeights())
-                .mapToObj(i -> Lines.drawLines(participants, drawStrategy))
+    public static Ladder from(Heights heights, LadderInputs participants, DrawStrategy drawStrategy) {
+        List<Lines> lines = Stream.generate(() -> Lines.drawLines(participants, drawStrategy))
+                .limit(heights.getHeights())
                 .collect(Collectors.toList());
 
         return new Ladder(lines);
+    }
+
+    public Results getResults(Results previousResults) {
+        Results results = previousResults;
+        for (Lines line : lines) {
+            results = line.followLine(previousResults);
+            previousResults = results;
+        }
+
+        return results;
     }
 
     public int getLadderHeights() {
