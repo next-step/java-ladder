@@ -6,8 +6,8 @@ import ladder.control.input.multiple.NamesInput;
 import ladder.control.input.single.IntegerInput;
 import ladder.control.input.single.NameInput;
 import ladder.control.output.LadderGameOutput;
+import ladder.control.output.LadderMatchOutput;
 import ladder.model.LadderGame;
-import ladder.model.LadderMatch;
 import ladder.model.ladder.Ladder;
 import ladder.model.participant.Name;
 import ladder.model.participant.Names;
@@ -18,9 +18,8 @@ import ladder.view.input.HeightView;
 import ladder.view.input.LadderResultView;
 import ladder.view.input.NameView;
 import ladder.view.input.ResultNameView;
+import ladder.view.result.LadderResultInfoView;
 import ladder.view.result.ResultView;
-
-import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
@@ -39,18 +38,17 @@ public class Application {
         Ladder ladder = Ladder.create(stiles, height, new RandomStrategy());
         LadderGame game = new LadderGame(names, ladder, ladderResults);
 
-        LadderGameOutput output = new LadderGameOutput(new ResultView(), game);
-        output.print(Name.MAX_LENGTH + 1);
+        LadderGameOutput gameOutput = new LadderGameOutput(new ResultView(), game);
+        gameOutput.print(Name.MAX_LENGTH + 1);
 
         while (true) {
             Name name = nameInput.getValue();
-
-            if (name == NameInput.ALL) {
-                List<LadderMatch> result = game.resultAll();
+            if (name.equals(NameInput.ALL)) {
+                new LadderMatchOutput(new LadderResultInfoView(), game.resultAll()).print();
+                return;
+            } else {
+                new LadderMatchOutput(new LadderResultInfoView(), game.resultOf(name)).print();
             }
-
-            LadderResult result = game.resultOf(name);
-
         }
     }
 }
