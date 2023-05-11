@@ -1,8 +1,11 @@
-package ladder;
+package ladder.view;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import ladder.domain.Ladder;
+import ladder.domain.Line;
+import ladder.domain.Names;
 
 public class OutputView {
 

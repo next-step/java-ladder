@@ -1,10 +1,12 @@
-package ladder;
+package ladder.view;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
+import ladder.domain.Ladder;
+import ladder.domain.Names;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
