@@ -1,4 +1,4 @@
-package ladder.view;
+package ladder.view.output;
 
 import java.util.stream.IntStream;
 import ladder.domain.Ladders;
