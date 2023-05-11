@@ -18,8 +18,8 @@ import ladder.view.input.HeightView;
 import ladder.view.input.LadderResultView;
 import ladder.view.input.NameView;
 import ladder.view.input.ResultNameView;
-import ladder.view.result.LadderResultInfoView;
-import ladder.view.result.ResultView;
+import ladder.view.result.game.info.LadderGameInfoView;
+import ladder.view.result.match.info.LadderMatchInfoView;
 
 public class Application {
     public static void main(String[] args) {
@@ -38,16 +38,16 @@ public class Application {
         Ladder ladder = Ladder.create(stiles, height, new RandomStrategy());
         LadderGame game = new LadderGame(names, ladder, ladderResults);
 
-        LadderGameOutput gameOutput = new LadderGameOutput(new ResultView(), game);
+        LadderGameOutput gameOutput = new LadderGameOutput(new LadderGameInfoView(), game);
         gameOutput.print(Name.MAX_LENGTH + 1);
 
         while (true) {
             Name name = nameInput.getValue();
             if (name.equals(NameInput.ALL)) {
-                new LadderMatchOutput(new LadderResultInfoView(), game.resultAll()).print();
+                new LadderMatchOutput(new LadderMatchInfoView(), game.resultAll()).print();
                 return;
             } else {
-                new LadderMatchOutput(new LadderResultInfoView(), game.resultOf(name)).print();
+                new LadderMatchOutput(new LadderMatchInfoView(), game.resultOf(name)).print();
             }
         }
     }

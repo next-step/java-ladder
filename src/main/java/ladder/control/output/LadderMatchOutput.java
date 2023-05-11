@@ -3,8 +3,8 @@ package ladder.control.output;
 import ladder.model.LadderMatch;
 import ladder.model.result.LadderResult;
 import ladder.view.View;
-import ladder.view.result.LadderMatchResultView;
-import ladder.view.result.LadderMatchesView;
+import ladder.view.result.match.LadderMatchResultView;
+import ladder.view.result.match.LadderMatchesView;
 
 import java.util.List;
 

@@ -1,8 +1,8 @@
-package ladder.view.result;
+package ladder.view.result.game.info;
 
 import ladder.view.View;
 
-public class ResultView implements View {
+public class LadderGameInfoView implements View {
 
     @Override
     public void render() {

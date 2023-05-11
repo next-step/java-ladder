@@ -1,4 +1,4 @@
-package ladder.view.result;
+package ladder.view.result.match;
 
 import ladder.model.result.LadderResult;
 import ladder.view.View;
