@@ -4,7 +4,6 @@ import ladder.common.Constants;
 import ladder.util.RandomUtil;
 import ladder.util.ViewUtil;
 
-import javax.swing.text.View;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,19 +14,29 @@ public class Line {
     private List<Boolean> points = new ArrayList<Boolean>();
 
     public Line(int countOfPerson) {
-        IntStream.range(0, countOfPerson-1)
+        IntStream.range(0, countOfPerson - 1)
                 .forEach(i -> {
+                    if(i == 0 || !points.get(i-1) && i != countOfPerson-2){
                         points.add(RandomUtil.getRandomBoolean());
+                        return;
+                    }
+
+                    if(points.stream().allMatch(Boolean.FALSE::equals)){
+                        points.add(true);
+                        return;
+                    }
+
+                    points.add(false);
                 });
     }
 
     @Override
     public String toString() {
-        return lineToString();
+        return pointsToString();
     }
 
-    private String lineToString() {
-        return ViewUtil.concatInput(ViewUtil.setPrefix(6),String.format("|%s|",convertToString()));
+    private String pointsToString() {
+        return ViewUtil.concatInput(ViewUtil.setPrefix(6), String.format("|%s|", convertToString()));
 
     }
 
