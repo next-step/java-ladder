@@ -25,7 +25,8 @@ public class LadderMain {
 		ResultView.printLadder(ladder);
 		ResultView.printResults(results);
 
-		LadderGame ladderGame = new LadderGame(ladder, names);
+		LadderGame ladderGame = new LadderGame();
+		ladderGame.start(ladder, names);
 		ResultsBoard resultsBoard = ladderGame.makeResultsBoard(names, results);
 		for (int i = 0; i < LadderMain.RESULT_CHECK_TRY_COUNT; i++) {
 			ResultName resultName = new ResultName(names, InputView.inputResultName());

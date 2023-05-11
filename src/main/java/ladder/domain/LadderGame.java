@@ -8,12 +8,11 @@ import java.util.Objects;
 
 public class LadderGame {
 
-	private final List<Integer> finalIndexes;
+	private final List<Integer> finalIndexes = new ArrayList<>();
 
-	public LadderGame(Ladder ladder, Names names) {
-		this.finalIndexes = new ArrayList<>();
+	public void start(Ladder ladder, Names names) {
 		for (int i = 0; i < names.countOfPerson(); i++) {
-			finalIndexes.add(ladder.finalIndex(i));
+			this.finalIndexes.add(ladder.finalIndex(i));
 		}
 	}
 
