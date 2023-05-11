@@ -3,14 +3,15 @@ package ladder.domain;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.IntStream;
 
 public class LadderGame {
   private final Users users;
   private final Ladder ladder;
 
-  public LadderGame(Users users, int ladderHeight) {
+  public LadderGame(Users users, Ladder ladder) {
     this.users = users;
-    this.ladder = new Ladder(this.users.countOfUser(), ladderHeight);
+    this.ladder = ladder;
   }
 
   public List<User> users() {
@@ -26,9 +27,8 @@ public class LadderGame {
 
     ladderLines().forEach(this::iterateLines);
 
-    for (int i = 0; i < users.countOfUser(); i++) {
-      rewardsOfUsers.put(users.userByIndex(i), ladderRewards.rewardByIndex(i));
-    }
+    IntStream.range(0, users.countOfUser())
+            .forEach((index) -> rewardsOfUsers.put(users.userByIndex(index), ladderRewards.rewardByIndex(index)));
 
     return new LadderResult(rewardsOfUsers);
   }

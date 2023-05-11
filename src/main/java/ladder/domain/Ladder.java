@@ -11,19 +11,19 @@ public class Ladder {
 
   private final List<LadderLine> ladderLines;
 
-  public Ladder(int countOfUsers, int ladderHeight) {
-    this.ladderLines = createLadderLines(countOfUsers, ladderHeight);
+  public Ladder(LadderLine ladderLine, int ladderHeight) {
+    this.ladderLines = createLadderLines(ladderLine, ladderHeight);
   }
 
   public List<LadderLine> unmodifiableLadderLines() {
     return Collections.unmodifiableList(ladderLines);
   }
 
-  private List<LadderLine> createLadderLines(int countOfUsers, int ladderHeight) {
+  private List<LadderLine> createLadderLines(LadderLine ladderLine, int ladderHeight) {
     List<LadderLine> ladderLineList = new ArrayList<>();
 
     IntStream.range(0, ladderHeight)
-            .forEach((i) -> ladderLineList.add(LadderLine.createPoints(countOfUsers, new DirectionMoveStrategy())));
+            .forEach((i) -> ladderLineList.add(ladderLine));
 
     return ladderLineList;
   }
