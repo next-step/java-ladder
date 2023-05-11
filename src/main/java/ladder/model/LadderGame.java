@@ -6,6 +6,10 @@ import ladder.model.participant.Names;
 import ladder.model.result.LadderResult;
 import ladder.model.result.LadderResults;
 
+import java.util.List;
+
+import static java.util.stream.Collectors.toList;
+
 public class LadderGame {
     private final Names participants;
     private final Ladder ladder;
@@ -41,6 +45,12 @@ public class LadderGame {
         int startIndex = participants.indexOf(name);
         int endIndex = ladder.resultOf(startIndex);
         return results.get(endIndex);
+    }
+
+    public List<LadderMatch> resultAll() {
+        return participants.stream()
+                .map(name -> new LadderMatch(name, resultOf(name)))
+                .collect(toList());
     }
 
     public Names participants() {

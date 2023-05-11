@@ -5,6 +5,8 @@ import ladder.model.participant.Name;
 import ladder.view.View;
 
 public class NameInput extends InputControl<Name> {
+    public static Name ALL = new Name("all");
+
     public NameInput(View view) {
         super(view);
     }

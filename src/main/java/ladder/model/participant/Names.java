@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 
@@ -32,6 +33,10 @@ public class Names implements Iterable<Name> {
     @Override
     public Iterator<Name> iterator() {
         return names.iterator();
+    }
+
+    public Stream<Name> stream() {
+        return names.stream();
     }
 
     public boolean contains(Name name) {

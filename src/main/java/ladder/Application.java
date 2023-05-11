@@ -7,6 +7,7 @@ import ladder.control.input.single.IntegerInput;
 import ladder.control.input.single.NameInput;
 import ladder.control.output.LadderGameOutput;
 import ladder.model.LadderGame;
+import ladder.model.LadderMatch;
 import ladder.model.ladder.Ladder;
 import ladder.model.participant.Name;
 import ladder.model.participant.Names;
@@ -16,7 +17,10 @@ import ladder.strategy.RandomStrategy;
 import ladder.view.input.HeightView;
 import ladder.view.input.LadderResultView;
 import ladder.view.input.NameView;
+import ladder.view.input.ResultNameView;
 import ladder.view.result.ResultView;
+
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
@@ -37,5 +41,16 @@ public class Application {
 
         LadderGameOutput output = new LadderGameOutput(new ResultView(), game);
         output.print(Name.MAX_LENGTH + 1);
+
+        while (true) {
+            Name name = nameInput.getValue();
+
+            if (name == NameInput.ALL) {
+                List<LadderMatch> result = game.resultAll();
+            }
+
+            LadderResult result = game.resultOf(name);
+
+        }
     }
 }
