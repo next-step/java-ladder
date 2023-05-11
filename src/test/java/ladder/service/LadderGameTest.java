@@ -42,8 +42,13 @@ class LadderGameTest {
     @Test
     @DisplayName("사다리 높이 입력 테스트")
     void test_ladder_value(){
-        LadderGame ladderGame = new LadderGame();
         ladderGame.setHeight("5");
         assertThat(ladderGame.getHeight()).isEqualTo(5);
+    }
+
+    @Test
+    @DisplayName("라인을 생성 한다")
+    void test_line_list(){
+        ladderGame.makeLine();
     }
 }

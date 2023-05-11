@@ -12,6 +12,8 @@ public class Application {
         ladderGame.setPlayer(InputView.showMessage(InputMessages.PLAYER_NAMES_QUESTION));
         ladderGame.setHeight(InputView.showMessage(InputMessages.MAXIMUM_LADDER_HEIGHT_QUESTION));
 
+        ladderGame.makeLine();
+
         ResultView.getResultHeader();
     }
 }

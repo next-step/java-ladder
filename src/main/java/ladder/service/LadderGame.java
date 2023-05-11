@@ -1,9 +1,11 @@
 package ladder.service;
 
+import ladder.model.Line;
 import ladder.util.StringParseUtil;
-import ladder.view.InputMessages;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class LadderGame {
     private static final String COMMA =",";
@@ -12,9 +14,9 @@ public class LadderGame {
 
     private int height;
 
-    public LadderGame() {
+    private List<Line> lines = new ArrayList<>();
 
-    }
+    public LadderGame() {}
 
     public void setPlayer(String names) {
         this.players = lengthValidate(StringParseUtil.splitString(names,COMMA));
@@ -37,5 +39,11 @@ public class LadderGame {
 
     public String[] getPlayers() {
         return players;
+    }
+
+    public void makeLine() {
+        for (int i = 0; i < height; i++) {
+            lines.add(new Line(players.length));
+        }
     }
 }
