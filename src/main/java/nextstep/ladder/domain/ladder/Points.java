@@ -18,11 +18,11 @@ public class Points {
     public static Points initialize(int size, BooleanGenerator booleanGenerator) {
         Points points = new Points(new ArrayList<>());
         IntStream.range(0, size)
-                .forEach(index -> points.addConnect(index, booleanGenerator));
+                .forEach(index -> points.addConnectionStatus(index, booleanGenerator));
         return points;
     }
 
-    private void addConnect(int index, BooleanGenerator booleanGenerator) {
+    private void addConnectionStatus(int index, BooleanGenerator booleanGenerator) {
         if (isNotAddableTrue(index)) {
             connectionStatuses.add(new ConnectionStatus(false));
             return;
