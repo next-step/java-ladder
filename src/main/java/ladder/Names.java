@@ -54,10 +54,10 @@ public class Names {
         return names.size();
     }
 
-    public int lengthSum() {
+    public int properWidth() {
         return names.stream()
             .map(x -> x.length())
-            .reduce(0, (a,b) -> a + b);
+            .reduce(0, (a,b) -> a + b) / count();
     }
 
 }

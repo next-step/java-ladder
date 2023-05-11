@@ -16,7 +16,7 @@ public class LadderApplication {
             int height = InputView.nextInt();
             Ladder ladder = Ladder.of(height, names.count() - 1);
 
-            int width = names.lengthSum() / names.count();
+            int width = names.properWidth();
 
             OutputView.printResult();
             OutputView.printNames(names, width);

@@ -6,50 +6,71 @@ import java.util.stream.IntStream;
 
 public class OutputView {
 
-    private enum Indicator {
+    private enum Delimiter {
         WHITE_SPACE(" "),
         HORIZONTAL_LINE("-"),
-        VERTICAL_LINE("|");
+        VERTICAL_LINE("|"),
+        LINE_SEPARATOR("\n");
 
         private final String value;
 
-        Indicator(String value) {
+        Delimiter(String value) {
             this.value = value;
         }
     }
 
     public static void printNames(Names names, int width) {
-        System.out.println(joinString(concatDelimiter(Indicator.WHITE_SPACE.value, width), names.names()));
+        System.out.println(joinString(widthLengthDelimiter(Delimiter.WHITE_SPACE.value, width), names.names()));
     }
 
     private static String joinString(String delimiter, List<String> list) {
         return String.join(delimiter, list);
     }
 
-    private static String concatDelimiter(String delimiter, int length) {
-        return widthIndicator(length, delimiter);
+    private static String widthLengthDelimiter(String delimiter, int length) {
+        return IntStream.range(0, length)
+            .mapToObj(i -> delimiter)
+            .collect(Collectors.joining());
     }
 
     public static void printLadder(Ladder ladder, int width) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Line line : ladder.lines()) {
-            stringBuilder.append(widthIndicator(width / 5, Indicator.WHITE_SPACE.value));
-            stringBuilder.append(Indicator.VERTICAL_LINE.value);
-            for (Boolean point : line.points()) {
-                stringBuilder.append(widthIndicator(width,
-                    (point.equals(Boolean.TRUE)) ? Indicator.HORIZONTAL_LINE.value
-                        : Indicator.WHITE_SPACE.value));
-                stringBuilder.append(Indicator.VERTICAL_LINE.value);
-            }
-            stringBuilder.append("\n");
-        }
-        System.out.println(stringBuilder);
+        System.out.println(ladderIndicator(ladder, width));
     }
 
-    private static String widthIndicator(int width, String WHITE_SPACE) {
-        return IntStream.range(0, width)
-            .mapToObj(i -> WHITE_SPACE)
-            .collect(Collectors.joining());
+    private static String ladderIndicator(Ladder ladder, int width) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Line line : ladder.lines()) {
+            stringBuilder.append(leadingSpace(width))
+                .append(verticalLine())
+                .append(horizontalLine(line, width))
+                .append(lineSeparator());
+        }
+        return stringBuilder.toString();
+    }
+
+    private static String lineSeparator() {
+        return Delimiter.LINE_SEPARATOR.value;
+    }
+
+    private static String verticalLine() {
+        return Delimiter.VERTICAL_LINE.value;
+    }
+
+    private static String leadingSpace(int width) {
+        return widthLengthDelimiter(Delimiter.WHITE_SPACE.value, width / 5);
+    }
+
+    private static String horizontalLine(Line line, int width) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Boolean point : line.points()) {
+            stringBuilder.append(widthLengthDelimiter(delimiterOf(point), width))
+                .append(verticalLine());
+        }
+        return stringBuilder.toString();
+    }
+
+    private static String delimiterOf(Boolean point) {
+        return point.equals(Boolean.TRUE) ? Delimiter.HORIZONTAL_LINE.value : Delimiter.WHITE_SPACE.value;
     }
 
     public static void printResult() {

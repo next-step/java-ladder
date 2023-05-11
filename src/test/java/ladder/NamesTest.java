@@ -10,7 +10,7 @@ public class NamesTest {
 
     @Test
     void 이름_길이_합() {
-        assertThat(Names.of("a, b, c").lengthSum()).isEqualTo(3);
+        assertThat(Names.of("a, b, c").properWidth()).isEqualTo(3);
     }
 
     @Test
