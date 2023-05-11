@@ -1,7 +1,7 @@
 package ladder.controller;
 
 import ladder.domain.Height;
-import ladder.domain.LadderGame;
+import ladder.domain.LadderCreator;
 import ladder.domain.Ladders;
 import ladder.domain.Participants;
 import ladder.domain.strategy.RandomPointGenerationStrategy;
@@ -16,11 +16,11 @@ public class LadderController {
     Participants participants = InputNamesView.scanPlayerNames();
     Height height = InputHeightView.scanLadderHeight();
 
-    LadderGame ladderGame = new LadderGame(height, participants);
-    Ladders ladders = ladderGame.createLadder(new RandomPointGenerationStrategy());
+    LadderCreator ladderCreator = new LadderCreator(height, participants);
+    Ladders ladders = ladderCreator.createLadders(new RandomPointGenerationStrategy());
 
     OutputNamesView.printParticipantsNames(participants);
-    OutputLaddersView.printLadder(ladders);
+    OutputLaddersView.printLadderOfRow(ladders);
   }
 
 }

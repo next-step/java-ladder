@@ -5,15 +5,13 @@ import java.util.List;
 public class Ladders {
 
   private final Lines lines;
-  private final Height height;
 
-  public Ladders(Lines lines, Height height) {
+  public Ladders(Lines lines) {
     this.lines = lines;
-    this.height = height;
   }
 
   public int height() {
-    return height.height();
+    return lines.height();
   }
 
   public List<Boolean> getRow(int rowNumber) {

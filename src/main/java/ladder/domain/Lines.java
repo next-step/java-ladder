@@ -13,4 +13,8 @@ public class Lines {
   public Line getRow(int rowNumber) {
     return lines.get(rowNumber);
   }
+
+  public int height() {
+    return lines.size();
+  }
 }
