@@ -2,11 +2,8 @@ package ladder.view.output;
 
 import java.util.stream.IntStream;
 import ladder.domain.Ladders;
-import ladder.domain.Participants;
 
-public class OutputView {
-
-
+public class OutputLaddersView {
   private static final String LADDER = "|-----";
   private static final String NOT_LADDER = "|     ";
   private static final String START_EMPTY_SPACE = "     ";
@@ -16,7 +13,7 @@ public class OutputView {
     IntStream.range(0, ladders.height()).forEach(rowNumber -> {
       printStartEmptySpace();
       ladders.getRow(rowNumber).stream()
-          .map(OutputView::ladder)
+          .map(OutputLaddersView::ladder)
           .forEach(System.out::print);
       printLastLine();
     });
@@ -36,13 +33,5 @@ public class OutputView {
   private static void printStartEmptySpace() {
     System.out.print(START_EMPTY_SPACE);
   }
-
-  public static void printParticipantsNames(Participants participants) {
-    participants.getParticipants()
-                .forEach(participant -> System.out.printf("%-6s", participant.getName().name()));
-    System.out.println();
-  }
-
-
 
 }
