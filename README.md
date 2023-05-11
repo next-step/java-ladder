@@ -7,3 +7,9 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+## 2단계 구현할 기능
+* 참여자 입력 기능
+* 사다리 높이 입력 기능
+* 사다리 생성 - Line 객체 생성
+* 참여자, 사다리 출력 기능
