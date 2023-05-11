@@ -8,6 +8,7 @@ import nextstep.ladder.domain.user.ExecuteResults;
 import nextstep.ladder.domain.user.Participants;
 import nextstep.ladder.domain.user.UserName;
 
+import java.util.Arrays;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -45,7 +46,7 @@ public final class ResultView {
     }
 
     private static String drawUserNames(Participants participants) {
-        return String.join(WHITE_SPACE_CHAR, participants.getUserNames());
+        return String.join(WHITE_SPACE_CHAR, participants.getFormattedUserNames());
     }
 
     private static String drawRows(Points points) {
@@ -80,4 +81,11 @@ public final class ResultView {
     public static void drawExecuteResults(ExecuteResults executeResults) {
         System.out.println(executeResults);
     }
+
+    public static void drawUserResult(String... results) {
+        System.out.println("\n실행결과");
+        Arrays.stream(results)
+                .forEach(System.out::println);
+    }
+
 }

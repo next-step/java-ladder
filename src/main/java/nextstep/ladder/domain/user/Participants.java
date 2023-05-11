@@ -25,14 +25,18 @@ public class Participants {
         return userNames.size();
     }
 
-    public List<String> getUserNames() {
+    public List<String> getFormattedUserNames() {
         return userNames.stream()
                 .map(UserName::formattedName)
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public int getUserLocation(String name) {
-        return userNames.indexOf(UserName.add(name));
+    public List<UserName> getUserNames() {
+        return userNames;
     }
-    
+
+    public int getUserLocation(UserName userName) {
+        return userNames.indexOf(userName);
+    }
+
 }

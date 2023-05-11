@@ -8,6 +8,7 @@ import java.util.Objects;
 public class UserName {
 
     private static final int MAX_LENGTH = 5;
+    private static final String USER_ALL = "all";
 
     private final String name;
     private final Formatter formatter;
@@ -39,8 +40,16 @@ public class UserName {
         }
     }
 
+    public String getName() {
+        return name;
+    }
+
     public String formattedName() {
         return formatter.format(name);
+    }
+
+    public boolean isAll() {
+        return USER_ALL.equals(name);
     }
 
     @Override

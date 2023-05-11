@@ -10,7 +10,7 @@ class ExecuteResultsTest {
     @DisplayName("위치를 입력하면 해당값을 반환한다.")
     void test01() {
         ExecuteResults results = ExecuteResults.of("a,b,c");
-        Assertions.assertThat(results.getResult(0)).isEqualTo("a");
+        Assertions.assertThat(results.getResult(0)).isEqualTo(new Result("a"));
     }
-    
+
 }
