@@ -23,9 +23,9 @@ public class LadderGame {
         if (names.size() < 2) {
             throw new IllegalArgumentException("ladder game requires at least two participants");
         }
-        if (names.size() != ladder.width() + 1) {
+        if (names.size() != ladder.countOfStiles()) {
             throw new IllegalArgumentException(
-                    "The number of participants must be greater than the width of the ladder by 1"
+                    "The number of participants must be equal to the count of stiles in ladder"
             );
         }
         if (names.size() != results.size()) {

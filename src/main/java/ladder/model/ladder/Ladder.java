@@ -30,10 +30,6 @@ public class Ladder {
         );
     }
 
-    public int width() {
-        return rows.get(0).width();
-    }
-
     public int height() {
         return rows.size();
     }
@@ -41,7 +37,7 @@ public class Ladder {
     public int countOfStiles() {
         return rows.get(0).stiles().size();
     }
-    
+
 
     public List<LadderRow> rows() {
         return rows;

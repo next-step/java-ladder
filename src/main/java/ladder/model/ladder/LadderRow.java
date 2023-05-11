@@ -28,7 +28,7 @@ public class LadderRow {
 
     public static LadderRow of(Boolean... connections) {
         if (connections.length < 1) {
-            throw new IllegalArgumentException("the length of input must be >= 1:" + connections.length);
+            throw new IllegalArgumentException("the length of input must be >= 1: " + connections.length);
         }
 
         List<Stile> result = Stream.generate(Stile::new)
