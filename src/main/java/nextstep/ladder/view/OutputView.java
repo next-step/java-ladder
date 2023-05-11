@@ -36,7 +36,7 @@ public class OutputView {
 
     private static String convertLineView(Line line) {
         String convertLine = line.points().stream()
-                                 .map(p -> convertPoint(p.right()))
+                                 .map(p -> convertPoint(p.isRight()))
                                  .collect(Collectors.joining());
 
         return convertLine.trim();

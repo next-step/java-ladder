@@ -15,11 +15,11 @@ class PointTypeTest {
         assertThat(sut).isEqualTo(pointType);
     }
 
-    @CsvSource(value = {"NONE,0", "LEFT,-1", "RIGHT,1"})
-    @ParameterizedTest(name = "PointType {0} 에서 이동하면 {1} 이다")
-    void test02(PointType pointType, int position) {
-        int sut = pointType.move();
+    @CsvSource(value = {"NONE,0,0", "LEFT,0,-1", "RIGHT,0,1"})
+    @ParameterizedTest(name = "PointType.{0} {1} 에서 이동하면 {2} 이다")
+    void test02(PointType pointType, int position, int movedPosition) {
+        Position sut = pointType.move(new Position(position));
 
-        assertThat(sut).isEqualTo(position);
+        assertThat(sut).isEqualTo(new Position(movedPosition));
     }
 }

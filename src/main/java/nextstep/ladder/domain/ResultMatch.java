@@ -10,7 +10,7 @@ public class ResultMatch {
     }
 
     public String match(String memberName) {
-        int resultPosition = ladder.move(memberName);
+        Position resultPosition = ladder.move(memberName);
         return result.result(resultPosition);
     }
 }

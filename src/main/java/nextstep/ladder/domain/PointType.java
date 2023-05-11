@@ -36,11 +36,11 @@ public enum PointType {
         return PointType.NONE;
     }
 
-    public int move() {
-        return this.position;
+    public Position move(Position currentPosition) {
+        return currentPosition.move(this.position);
     }
 
-    public boolean right() {
+    public boolean isRight() {
         return this.right;
     }
 }

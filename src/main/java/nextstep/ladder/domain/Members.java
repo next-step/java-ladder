@@ -10,8 +10,8 @@ public class Members {
         this.members = members;
     }
 
-    public int position(String name) {
-        return members.indexOf(new Member(name));
+    public Position position(String name) {
+        return new Position(members.indexOf(new Member(name)));
     }
 
     public int countOfMember() {

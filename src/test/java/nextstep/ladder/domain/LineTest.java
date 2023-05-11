@@ -49,7 +49,7 @@ class LineTest {
     void test04() {
         Line line = new Line(false, true, false);
 
-        assertThat(line.position(2)).isEqualTo(1);
+        assertThat(line.position(new Position(2))).isEqualTo(new Position(1));
     }
 
     @Test
@@ -57,7 +57,7 @@ class LineTest {
     void test05() {
         Line line = new Line(true, false, false);
 
-        assertThat(line.position(0)).isEqualTo(1);
+        assertThat(line.position(new Position(0))).isEqualTo(new Position(1));
     }
 
     @Test
@@ -65,6 +65,6 @@ class LineTest {
     void test06() {
         Line line = new Line(false, false, true);
 
-        assertThat(line.position(0)).isEqualTo(0);
+        assertThat(line.position(new Position(0))).isEqualTo(new Position(0));
     }
 }

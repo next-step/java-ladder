@@ -14,7 +14,7 @@ class ResultTest {
     void test01() {
         Result result = new Result(List.of("1", "꽝", "2"));
 
-        String findResult = result.result(0);
+        String findResult = result.result(new Position(0));
 
         assertThat(findResult).isEqualTo("1");
     }

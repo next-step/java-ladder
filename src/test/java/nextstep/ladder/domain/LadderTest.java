@@ -25,9 +25,9 @@ class LadderTest {
         Ladder ladder = new Ladder(getMembers("rang1", "rang2", "rang3"),
                                    getLines());
 
-        assertThat(ladder.move("rang1")).isEqualTo(0);
-        assertThat(ladder.move("rang2")).isEqualTo(1);
-        assertThat(ladder.move("rang3")).isEqualTo(2);
+        assertThat(ladder.move("rang1")).isEqualTo(new Position(0));
+        assertThat(ladder.move("rang2")).isEqualTo(new Position(1));
+        assertThat(ladder.move("rang3")).isEqualTo(new Position(2));
     }
 
     private static Members getMembers(String... names) {

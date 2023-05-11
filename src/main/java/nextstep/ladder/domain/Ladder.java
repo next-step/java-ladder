@@ -27,12 +27,10 @@ public class Ladder {
         return Collections.unmodifiableList(this.lines);
     }
 
-    public int move(String memberName) {
-        int position = members.position(memberName);
-        for (Line line : lines) {
-            position = line.position(position);
-        }
-        return position;
+    public Position move(String memberName) {
+        Position position = members.position(memberName);
+        return lines.stream()
+                    .reduce(position, (beforePosition, line) -> line.position(beforePosition), (a, b) -> b);
     }
 
     @Override

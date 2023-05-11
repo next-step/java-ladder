@@ -34,7 +34,7 @@ public class Line {
 
         PointType beforePoint = points.get(index - 1);
 
-        if (this.canNotHaveRightPoint(beforePoint.right())) {
+        if (this.canNotHaveRightPoint(beforePoint.isRight())) {
             return beforePoint.afterPointType(false);
         }
 
@@ -49,7 +49,7 @@ public class Line {
         return Collections.unmodifiableList(this.points);
     }
 
-    public int position(int currentPosition) {
-        return currentPosition + points.get(currentPosition).move();
+    public Position position(Position currentPosition) {
+        return points.get(currentPosition.value()).move(currentPosition);
     }
 }
