@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import ladder.domain.strategy.NextPointGenerationStrategy;
 
 public class Line {
 
