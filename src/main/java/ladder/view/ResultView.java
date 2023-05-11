@@ -22,7 +22,8 @@ public class ResultView {
     }
 
     private static int getMaxNameLength(LadderGame ladderGame) {
-        return ladderGame.fetchParticipants().fetchNames()
+        return ladderGame.fetchParticipants()
+                .fetchNames()
                 .stream()
                 .mapToInt(name -> name.fetchName().length())
                 .max()

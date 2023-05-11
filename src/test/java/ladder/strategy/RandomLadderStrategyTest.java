@@ -29,19 +29,19 @@ class RandomLadderStrategyTest {
                 .withMessage("랜덤 전략 생성자에 null 을 전달 할 수 없습니다");
     }
 
-    @DisplayName("사다리의 라인의 첫번째 선은 랜덤하게 생성된다")
+    @DisplayName("사다리 라인의 첫번째 수평선은 랜덤하게 생성된다")
     @Test
     void firstLineTest() {
         assertThat(ladderStrategy.firstLine()).isIn(true, false);
     }
 
-    @DisplayName("이전 사다리가 있는 경우, 다음 사다리는 생성되지 않는다")
+    @DisplayName("이전 사다리 라인에 수평선이 있는 경우, 다음 수평선은 생성되지 않는다")
     @Test
     void nextLineTestWhenPreviousLineExists() {
         assertThat(ladderStrategy.nextLine(true)).isFalse();
     }
 
-    @DisplayName("이전 사다리가 선이 없는 경우, 다음 사다리는 랜덤하게 생성된다")
+    @DisplayName("이전 사다리 라인에 수평선이 없는 경우, 다음 수평선은 랜덤하게 생성된다")
     @Test
     void nextLineTestWhenPreviousLineDoesNotExist() {
         assertThat(ladderStrategy.nextLine(false)).isIn(true, false);
