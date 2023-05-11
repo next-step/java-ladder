@@ -21,11 +21,19 @@ public class LadderResults {
         );
     }
 
+    public static LadderResults of(LadderResult... results) {
+        return new LadderResults(List.of(results));
+    }
+
     public int size() {
         return ladderResults.size();
     }
 
     public void forEach(Consumer<? super LadderResult> action) {
         ladderResults.forEach(action);
+    }
+
+    public LadderResult get(int index) {
+        return ladderResults.get(index);
     }
 }

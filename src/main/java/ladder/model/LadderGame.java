@@ -1,7 +1,9 @@
 package ladder.model;
 
 import ladder.model.ladder.Ladder;
+import ladder.model.participant.Name;
 import ladder.model.participant.Names;
+import ladder.model.result.LadderResult;
 import ladder.model.result.LadderResults;
 
 public class LadderGame {
@@ -29,6 +31,16 @@ public class LadderGame {
         if (names.size() != results.size()) {
             throw new IllegalArgumentException("The size of names doesn't match the size of result");
         }
+    }
+
+    public LadderResult resultOf(Name name) {
+        if (!participants.contains(name)) {
+            throw new IllegalArgumentException(name + "is not a participant of this game");
+        }
+
+        int startIndex = participants.indexOf(name);
+        int endIndex = ladder.resultOf(startIndex);
+        return results.get(endIndex);
     }
 
     public Names participants() {

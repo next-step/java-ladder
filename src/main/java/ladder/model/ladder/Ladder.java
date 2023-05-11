@@ -15,6 +15,10 @@ public class Ladder {
         this.rows = Collections.unmodifiableList(rows);
     }
 
+    public static Ladder of(LadderRow... rows) {
+        return new Ladder(List.of(rows));
+    }
+
     public static Ladder create(int stiles, int height, LadderGenerationStrategy strategy) {
         if (height <= 0) {
             throw new IllegalArgumentException("the height of ladder must be positive:" + height);
@@ -37,11 +41,7 @@ public class Ladder {
     public int countOfStiles() {
         return rows.get(0).stiles().size();
     }
-
-
-    public LadderRow rowAt(int index) {
-        return rows.get(index);
-    }
+    
 
     public List<LadderRow> rows() {
         return rows;
@@ -51,7 +51,7 @@ public class Ladder {
         if (stileIndex < 0 || stileIndex >= countOfStiles()) {
             throw new IndexOutOfBoundsException("invalid index of stile:" + stileIndex);
         }
-        
+
         int result = stileIndex;
 
         for (int depth = 0; depth < height(); depth++) {

@@ -37,4 +37,8 @@ public class Names implements Iterable<Name> {
     public boolean contains(Name name) {
         return names.contains(name);
     }
+
+    public int indexOf(Name name) {
+        return names.indexOf(name);
+    }
 }
