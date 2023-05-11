@@ -4,13 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Points {
-
-	private static final ThreadLocalRandom RANDOM = ThreadLocalRandom.current();
 
 	private final List<Point> points;
 
@@ -31,24 +28,24 @@ public class Points {
 		return new Points(points);
 	}
 
-	public static List<Point> generate(Names names) {
+	public static List<Point> generate(Names names, PointGenerator pointGenerator) {
 		List<Point> points = new ArrayList<>();
 		for (int i = 0; i < names.countOfPerson() - 1; i++) {
-			Points.addPoint(points, RANDOM.nextBoolean());
+			Points.addPoint(points, pointGenerator.point());
 		}
 		return points;
 	}
 
-	private static void addPoint(List<Point> points, boolean randomBoolean) {
+	private static void addPoint(List<Point> points, boolean point) {
 		if (points.size() == 0) {
-			points.add(Point.of(randomBoolean));
+			points.add(Point.of(point));
 			return;
 		}
 		if (points.get(points.size() - 1).equals(Point.of(true))) {
 			points.add(Point.of(false));
 			return;
 		}
-		points.add(Point.of(randomBoolean));
+		points.add(Point.of(point));
 	}
 
 	public int nextIndex(int index) {

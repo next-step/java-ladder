@@ -5,6 +5,7 @@ import ladder.domain.Ladder;
 import ladder.domain.LadderGame;
 import ladder.domain.Lines;
 import ladder.domain.Names;
+import ladder.domain.RandomPointGenerator;
 import ladder.domain.ResultName;
 import ladder.domain.Results;
 import ladder.domain.ResultsBoard;
@@ -20,7 +21,7 @@ public class LadderMain {
 		Results results = new Results(InputView.inputResults(), names);
 		Height height = new Height(InputView.inputHeight());
 
-		Ladder ladder = new Ladder(Lines.of(height, names));
+		Ladder ladder = new Ladder(Lines.of(height, names, new RandomPointGenerator()));
 		ResultView.printNames(names);
 		ResultView.printLadder(ladder);
 		ResultView.printResults(results);

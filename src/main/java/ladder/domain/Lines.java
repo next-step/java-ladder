@@ -8,10 +8,10 @@ public class Lines {
 
 	private final List<Line> lines;
 
-	public static Lines of(Height height, Names names) {
+	public static Lines of(Height height, Names names, PointGenerator pointGenerator) {
 		List<Line> lines = new ArrayList<>();
 		for (int i = 0; i < height.getHeight(); i++) {
-			lines.add(new Line(new Points(Points.generate(names))));
+			lines.add(new Line(new Points(Points.generate(names, pointGenerator))));
 		}
 		return new Lines(lines);
 	}
