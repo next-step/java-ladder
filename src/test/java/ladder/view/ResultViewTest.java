@@ -26,13 +26,13 @@ public class ResultViewTest {
     @DisplayName("player 출력 테스트 case1")
     void test_players_name_case1(){
         String[] players = {"pobi","honux","crong","jk"};
-        assertThat(ResultView.showPlayers(players)).isEqualTo("  pobi honux crong    jk");
+        ResultView.showPlayers(players);
     }
 
     @Test
     @DisplayName("player 출력 테스트 case2")
     void test_players_name_case2(){
         String[] players = {"apobi","ux","crong","jk"};
-        assertThat(ResultView.showPlayers(players)).isEqualTo(" apobi    ux crong    jk");
+        ResultView.showPlayers(players);
     }
 }

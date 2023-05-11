@@ -46,4 +46,8 @@ public class LadderGame {
             lines.add(new Line(players.length));
         }
     }
+
+    public List<Line> getLines() {
+        return this.lines;
+    }
 }

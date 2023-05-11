@@ -1,4 +1,4 @@
-package ladder.view;
+package ladder.common;
 
 public class InputMessages {
     public static final String PLAYER_NAMES_QUESTION = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";

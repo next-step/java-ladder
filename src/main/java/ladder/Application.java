@@ -1,7 +1,7 @@
 package ladder;
 
 import ladder.service.LadderGame;
-import ladder.view.InputMessages;
+import ladder.common.InputMessages;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -15,5 +15,7 @@ public class Application {
         ladderGame.makeLine();
 
         ResultView.getResultHeader();
+        ResultView.showPlayers(ladderGame.getPlayers());
+        ResultView.showLines(ladderGame.getLines());
     }
 }

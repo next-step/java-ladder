@@ -1,8 +1,11 @@
 package ladder.view;
 
+import ladder.model.Line;
+import ladder.util.ViewUtil;
+
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class ResultView {
     public static void getResultHeader() {
@@ -13,13 +16,17 @@ public class ResultView {
         return value ? "-" : " ";
     }
 
-    public static String showPlayers(String[] players) {
+    public static void showPlayers(String[] players) {
+        System.out.println(arrayToString(players));
+    }
+
+    private static String arrayToString(String[] players) {
         return Arrays.stream(players)
-                .map(ResultView::adjustGap)
+                .map(ViewUtil::adjustGap)
                 .collect(Collectors.joining());
     }
 
-    public static String adjustGap(String input){
-        return " ".repeat(6-input.length()).concat(input);
+    public static void showLines(List<Line> lines) {
+        lines.forEach(line -> System.out.println(line.toString()));
     }
 }
