@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -8,37 +7,34 @@ import java.util.stream.Collectors;
 
 public class Ladder {
 
-	private final List<Line> lines = new ArrayList<>();
+	private final Lines lines;
 
-	public static Ladder of(Points... pointsList) {
-		return new Ladder(Arrays.stream(pointsList).collect(Collectors.toList()));
+	public static Ladder of(Line... lines) {
+		return new Ladder(Arrays.stream(lines).collect(Collectors.toList()));
 	}
 
-	public Ladder(List<Points> pointsList) {
-		for (Points points : pointsList) {
-			this.lines.add(new Line(points));
-		}
+	private Ladder(List<Line> lines) {
+		this(new Lines(lines));
+	}
+
+	public Ladder(Lines lines) {
+		this.lines = lines;
 	}
 
 	public int finalIndex(int index) {
-		for(Line line : this.lines) {
-			index = line.nextIndex(index);
-		}
-		return index;
+		return this.lines.finalIndex(index);
 	}
 
 	public List<Line> getLines() {
-		return lines;
+		return lines.getLines();
 	}
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o) {
+		if (this == o)
 			return true;
-		}
-		if (o == null || getClass() != o.getClass()) {
+		if (o == null || getClass() != o.getClass())
 			return false;
-		}
 		Ladder ladder = (Ladder)o;
 		return Objects.equals(lines, ladder.lines);
 	}

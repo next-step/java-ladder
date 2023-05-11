@@ -6,6 +6,10 @@ public class Line {
 
 	private final Points points;
 
+	public static Line of(Boolean... points) {
+		return new Line(Points.of(points));
+	}
+
 	public Line(Points points) {
 		this.points = points;
 	}

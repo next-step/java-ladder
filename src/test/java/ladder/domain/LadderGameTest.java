@@ -16,11 +16,11 @@ public class LadderGameTest {
 	@BeforeEach
 	void before() {
 		this.ladder = Ladder.of(
-			Points.of(true, false, true),
-			Points.of(false, true, false),
-			Points.of(true, false, false),
-			Points.of(false, true, false),
-			Points.of(true, false, true)
+			Line.of(true, false, true),
+			Line.of(false, true, false),
+			Line.of(true, false, false),
+			Line.of(false, true, false),
+			Line.of(true, false, true)
 		);
 		this.names = new Names("pobi,honux,crong,jk");
 	}
