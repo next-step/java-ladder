@@ -1,5 +1,6 @@
-package ladder.control.input;
+package ladder.control.input.single;
 
+import ladder.control.input.InputControl;
 import ladder.view.View;
 
 public class IntegerInput extends InputControl<Integer> {
@@ -10,7 +11,6 @@ public class IntegerInput extends InputControl<Integer> {
 
     @Override
     protected Integer input() {
-        int value = Integer.parseInt(SCANNER.nextLine());
-        return value;
+        return Integer.parseInt(SCANNER.nextLine());
     }
 }
