@@ -5,10 +5,12 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class StreamStudy {
+    private final static int WORD_LIMIT = 100;
 
     public static long countWords() throws IOException {
         String contents = new String(Files.readAllBytes(Paths
@@ -27,7 +29,14 @@ public class StreamStudy {
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-        // TODO 이 부분에 구현한다.
+        List<String> top100Word = words.stream().filter(w -> w.length() > 12)
+                .sorted((str1, str2) -> str2.length() - str1.length())
+                .distinct()
+                .map(String::toLowerCase)
+                .limit(WORD_LIMIT)
+                .collect(Collectors.toList());
+
+        System.out.println(top100Word);
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
