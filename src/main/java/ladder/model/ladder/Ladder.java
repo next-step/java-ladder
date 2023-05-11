@@ -15,28 +15,29 @@ public class Ladder {
         this.rows = Collections.unmodifiableList(rows);
     }
 
-    public static Ladder create(int width, int height, LadderGenerationStrategy strategy) {
+    public static Ladder create(int stiles, int height, LadderGenerationStrategy strategy) {
         if (height <= 0) {
             throw new IllegalArgumentException("the height of ladder must be positive:" + height);
         }
 
-        return new Ladder(Stream.generate(() -> LadderRow.create(width, strategy))
+        return new Ladder(Stream.generate(() -> LadderRow.create(stiles, strategy))
                 .limit(height)
                 .collect(toList())
         );
     }
 
     public int width() {
-        return rows.get(0).size();
+        return rows.get(0).width();
     }
 
     public int height() {
         return rows.size();
     }
 
-    public boolean exists(int row, int column) {
-        return rows.get(row).exists(column);
+    public int countOfStiles() {
+        return rows.get(0).stiles().size();
     }
+
 
     public LadderRow rowAt(int index) {
         return rows.get(index);
@@ -44,5 +45,20 @@ public class Ladder {
 
     public List<LadderRow> rows() {
         return rows;
+    }
+
+    public int resultOf(int stileIndex) {
+        if (stileIndex < 0 || stileIndex >= countOfStiles()) {
+            throw new IndexOutOfBoundsException("invalid index of stile:" + stileIndex);
+        }
+        
+        int result = stileIndex;
+
+        for (int depth = 0; depth < height(); depth++) {
+            LadderRow row = rows.get(depth);
+            result = row.nextStile(result);
+        }
+
+        return result;
     }
 }

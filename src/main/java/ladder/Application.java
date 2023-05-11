@@ -26,10 +26,10 @@ public class Application {
         Names names = new Names(namesInput.getValue());
         LadderResults ladderResults = new LadderResults(ladderResultInput.getValue());
 
-        int width = names.size();
+        int stiles = names.size();
         int height = heightInput.getValue();
 
-        Ladder ladder = Ladder.create(width - 1, height, new RandomStrategy());
+        Ladder ladder = Ladder.create(stiles, height, new RandomStrategy());
         LadderGame game = new LadderGame(names, ladder, ladderResults);
 
         LadderGameOutput output = new LadderGameOutput(new ResultView(), game);

@@ -4,51 +4,54 @@ import ladder.model.ladder.LadderRow;
 import ladder.strategy.RandomStrategy;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.*;
 
 class LadderRowTest {
     @Test
-    public void 사다리_가로_라인이_겹치는_경우_예외_발생() throws Exception {
-        //given
-        List<Boolean> overlapped = List.of(true, false, true, true);
-
-        //when, then
+    public void 사다리_가로_연결이_겹치는_경우_예외_발생() throws Exception {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new LadderRow(overlapped));
+                .isThrownBy(() -> LadderRow.of(true, false, true, true));
     }
 
     @Test
-    public void 사다리_가로_라인이_안_겹치는_경우엔_잘_생성되어야_한다() throws Exception {
-        //given
-        List<Boolean> overlapped = List.of(false, false, true, false);
-
-        //when, then
-        assertThatCode(() -> new LadderRow(overlapped))
+    public void 사다리_가로_연결이_안_겹치는_경우엔_잘_생성되어야_한다() throws Exception {
+        assertThatCode(() -> LadderRow.of(false, false, true, false))
                 .doesNotThrowAnyException();
     }
 
     @Test
-    public void 설정한_width_만큼_생성되어야_한다() throws Exception {
+    public void 설정한_사다리_기둥_수_만큼_생성되어야_한다() throws Exception {
         //given
-        int width = 5;
-        LadderRow row = LadderRow.create(width, new RandomStrategy());
+        int stiles = 5;
+        LadderRow row = LadderRow.create(stiles, new RandomStrategy());
 
         //when, then
-        assertThat(row.size()).isEqualTo(width);
+        assertThat(row.stiles().size()).isEqualTo(stiles);
+        assertThat(row.width()).isEqualTo(stiles - 1); // 너비는 기둥 수 - 1 이다.
+
     }
 
     @Test
-    public void 사다리_칸_존재여부를_확인할_수_있다() throws Exception {
+    public void 사다리_기둥_개수는_1보다_커야_한다() throws Exception {
+        // exception
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> LadderRow.create(1, new RandomStrategy()));
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> LadderRow.create(0, new RandomStrategy()));
+
+        // ok
+        assertThatCode(() -> LadderRow.of(false, false))
+                .doesNotThrowAnyException();
+    }
+
+    @Test
+    public void 사다리_연결에_따른_이동_후_결과를_제대로_구할_수_있다() throws Exception {
         //given
-        LadderRow row = new LadderRow(List.of(false, false, true, false));
+        LadderRow row = LadderRow.of(true, false); // |--|  |
 
         //when, then
-        assertThat(row.exists(0)).isFalse();
-        assertThat(row.exists(1)).isFalse();
-        assertThat(row.exists(2)).isTrue();
-        assertThat(row.exists(3)).isFalse();
-
+        assertThat(row.nextStile(0)).isEqualTo(1);
+        assertThat(row.nextStile(1)).isEqualTo(0);
+        assertThat(row.nextStile(2)).isEqualTo(2);
     }
 }

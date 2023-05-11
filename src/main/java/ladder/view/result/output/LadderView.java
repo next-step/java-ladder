@@ -6,10 +6,15 @@ import ladder.model.ladder.LadderRow;
 public class LadderView implements FormattableView {
     private static final String LADDER_STEP = "-";
     private static final String LADDER_STILE = "|";
+    private static final String LADDER_NONE = " ";
     private final Ladder ladder;
 
     public LadderView(Ladder ladder) {
         this.ladder = ladder;
+    }
+
+    private static String padding(int formatWidth) {
+        return " ".repeat(formatWidth - 1);
     }
 
     @Override
@@ -21,16 +26,14 @@ public class LadderView implements FormattableView {
     }
 
     private void renderRow(LadderRow row, int formatWidth) {
-        System.out.print(ladderExpression(formatWidth, false));
-
-        for (int column = 0; column < row.size(); column++) {
-            boolean existence = row.exists(column);
-            System.out.print(ladderExpression(formatWidth, existence));
-        }
+        System.out.print(padding(formatWidth));
+        row.stiles().forEach(
+                stile -> System.out.print(ladderExpression(formatWidth, stile.isRightConnected()))
+        );
     }
 
-    private String ladderExpression(int width, boolean exists) {
-        String step = exists ? LADDER_STEP : " ";
-        return step.repeat(width - LADDER_STILE.length()) + LADDER_STILE;
+    private String ladderExpression(int width, boolean rightConnected) {
+        String step = rightConnected ? LADDER_STEP : LADDER_NONE;
+        return LADDER_STILE + step.repeat(width - LADDER_STILE.length());
     }
 }
