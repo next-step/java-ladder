@@ -44,6 +44,14 @@ public class PointTest {
         assertThat(point).isEqualTo(new Point(0, false, true));
     }
 
+    @DisplayName("각 라인의 마지막 Point를 생성할 수 있다")
+    @Test
+    void lastPoint() {
+        Point point = new Point(1, false, true);
+        Point lastPoint = point.createLast();
+        assertThat(lastPoint).isEqualTo(new Point(2, true, false));
+    }
+
     @DisplayName("현재 Point에서 다음 위치의 Point를 생성할 수 있다")
     @Test
     void nextPoint() {

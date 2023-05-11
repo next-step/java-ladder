@@ -14,6 +14,12 @@ public class Point {
         this.right = right;
     }
 
+    private void validatePoint(boolean left, boolean right) {
+        if (left && right) {
+            throw new IllegalArgumentException("사다리 한 위치에 가로 라인이 겹칠 수 없습니다.");
+        }
+    }
+
     public Point(int position, boolean left, boolean right) {
         this(new Position(position), left, right);
     }
@@ -23,7 +29,14 @@ public class Point {
     }
 
     public Point createNext(boolean right) {
-        return new Point(this.position.right(), this.right, right);
+        if (this.right) {
+            return new Point(this.position.right(), true, false);
+        }
+        return new Point(this.position.right(), false, right);
+    }
+
+    public Point createLast() {
+        return new Point(this.position.right(), this.right, false);
     }
 
     public Position move() {
@@ -34,12 +47,6 @@ public class Point {
             return position.right();
         }
         return position;
-    }
-
-    private void validatePoint(boolean left, boolean right) {
-        if (left && right) {
-            throw new IllegalArgumentException("사다리 한 위치에 가로 라인이 겹칠 수 없습니다.");
-        }
     }
 
     @Override
@@ -60,5 +67,9 @@ public class Point {
         result = 31 * result + (left ? 1 : 0);
         result = 31 * result + (right ? 1 : 0);
         return result;
+    }
+
+    public boolean getRight() {
+        return this.right;
     }
 }
