@@ -33,3 +33,4 @@
   > `ageIsInRange1()` 메서드와 동일한 기능  
   > 메소드 인자로 받은 `User`를 `Optional`로 생성하여 메서드 구현
 - [x] `Users` 클래스의 `getUser()` 메서드를 `stream`과 `Optional`을 활용해 리팩토링
+- [x] `Expression`의 `of` 메서드를 `stream` 기반으로 리팩토링
