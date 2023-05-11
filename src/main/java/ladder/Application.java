@@ -14,7 +14,7 @@ public class Application {
 
         ladderGame.makeLine();
 
-        ResultView.getResultHeader();
+        ResultView.showResultHeader();
         ResultView.showPlayers(ladderGame.getPlayers());
         ResultView.showLines(ladderGame.getLines());
     }

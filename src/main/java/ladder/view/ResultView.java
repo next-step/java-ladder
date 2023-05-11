@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.common.Constants;
 import ladder.model.Line;
 import ladder.util.ViewUtil;
 
@@ -8,12 +9,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ResultView {
-    public static void getResultHeader() {
+    public static void showResultHeader() {
         System.out.println("실행결과");
     }
 
     public static String getPoint(boolean value) {
-        return value ? "-" : " ";
+        return value ? Constants.DASH : Constants.SPACE_BAR;
     }
 
     public static void showPlayers(String[] players) {
