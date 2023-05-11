@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.*;
 class LadderRowTest {
     @Test
     public void 사다리_가로_연결이_겹치는_경우_예외_발생() throws Exception {
-        assertThatIllegalArgumentException()
+        assertThatIllegalStateException()
                 .isThrownBy(() -> LadderRow.of(true, false, true, true));
     }
 

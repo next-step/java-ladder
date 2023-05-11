@@ -10,6 +10,10 @@ public class Stile {
     }
 
     public static void connect(Stile left, Stile right) {
+        if (left.isLeftConnected() || right.isRightConnected()) {
+            throw new IllegalStateException("One of the stiles is already connected to another stile");
+        }
+
         left.right = right;
         right.left = left;
     }
