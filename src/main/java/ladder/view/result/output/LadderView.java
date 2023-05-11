@@ -19,10 +19,7 @@ public class LadderView implements FormattableView {
 
     @Override
     public void render(int formatWidth) {
-        for (int index = 0; index < ladder.height(); index++) {
-            renderRow(ladder.rowAt(index), formatWidth);
-            System.out.println();
-        }
+        ladder.rows().forEach(row -> renderRow(row, formatWidth));
     }
 
     private void renderRow(LadderRow row, int formatWidth) {
@@ -30,6 +27,7 @@ public class LadderView implements FormattableView {
         row.stiles().forEach(
                 stile -> System.out.print(ladderExpression(formatWidth, stile.isRightConnected()))
         );
+        System.out.println();
     }
 
     private String ladderExpression(int width, boolean rightConnected) {
