@@ -7,3 +7,28 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+## 요구사항
+### step2
+- [ ] 참가자 리스트 생성 : Names
+  - [ ] 참가자 이름 입력 : InputView
+    - [ ] 쉼표 구분
+      - [ ] "pobi,crong,honux,jk" -> ["pobi", "crong", "honux", "jk"]
+  - [x] 참가자 이름 생성 : Name
+    - [x] 5글자 이내
+      - [x] abcde -> ok
+      - [x] abcdef -> IllegalArgumentException("참가자 이름 가능 길이를 초과했습니다 : 6")
+      - [x] null -> IllegalArgumentException("참가자 이름은 빈 값일 수 없습니다.")
+      - [x] "", " " -> IllegalArgumentException("참가자 이름은 빈 값일 수 없습니다.")
+- [ ] 사다리 생성 : Ladder
+  - [ ] 사다리 높이 입력 : InputView
+  - [x] 라인 생성 : Line
+    - [x] (입력 개수 길이 - 1)의 랜덤한 Boolean 리스트
+      - [x] 랜덤 생성
+    - [x] 연속으로 가로 라인이 놓일수 없음
+      - [x] [false, true, false] -> ok
+      - [x] [true, true, false] -> IllegalArgumentException("겹치는 가로라인이 존재합니다.")
+  - [ ] 높이 길이의 라인 리스트
+- [ ] 실행 결과 출력 : OutputView
+  - [ ] 참가자 리스트 출력 : 
+  - [ ] 사다리 출력 : LadderIndicator
