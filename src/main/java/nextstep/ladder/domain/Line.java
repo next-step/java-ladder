@@ -11,4 +11,19 @@ public class Line {
     public boolean hasLine() {
         return line;
     }
+
+    public int judgeDirection(Line previousLine) {
+        if (previousLine.hasLine()) {
+            return 1;
+        }
+
+        return judgeDirectionByCurrent();
+    }
+
+    private int judgeDirectionByCurrent() {
+        if (line) {
+            return -1;
+        }
+        return 0;
+    }
 }
