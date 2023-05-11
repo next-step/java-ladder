@@ -1,6 +1,5 @@
-package ladder.model;
+package ladder.model.result;
 
-import ladder.model.result.LadderResult;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
