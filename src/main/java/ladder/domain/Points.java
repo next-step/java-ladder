@@ -19,12 +19,11 @@ public class Points {
 	}
 
 	public Points(List<Point> points) {
-		IntStream.range(0, points.size() - 1)
-			.filter(i -> points.get(i).equals(Point.of(true)) && points.get(i + 1).equals(Point.of(true)))
-			.findFirst()
-			.ifPresent(i -> {
-				throw new IllegalArgumentException("인접한 좌표를 모두 채울 수 없습니다.");
-			});
+		boolean match = IntStream.range(0, points.size() - 1)
+			.anyMatch(i -> points.get(i).equals(Point.of(true)) && points.get(i + 1).equals(Point.of(true)));
+		if (match) {
+			throw new IllegalArgumentException("인접한 좌표를 모두 채울 수 없습니다.");
+		}
 		this.points = points;
 	}
 
