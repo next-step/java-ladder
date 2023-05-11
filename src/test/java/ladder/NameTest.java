@@ -10,6 +10,11 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class NameTest {
 
     @Test
+    void 이름_길이() {
+        assertThat(Name.of("abcd").length()).isEqualTo(4);
+    }
+
+    @Test
     void 이름_널() {
         assertThatExceptionOfType(IllegalArgumentException.class)
             .isThrownBy(() -> Name.of(null))

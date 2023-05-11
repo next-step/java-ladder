@@ -42,4 +42,8 @@ public class Name {
         return Objects.hash(name);
     }
 
+    public int length() {
+        return name.length();
+    }
+
 }

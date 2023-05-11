@@ -4,18 +4,25 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
+import java.util.Iterator;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
 public class LineTest {
 
     @Test
+    void 길이() {
+        assertThat(Line.of(4).length()).isEqualTo(3);
+    }
+
+    @Test
     void 라인_랜덤생성() {
-        List<Boolean> actual = Line.of(4).points();
-        assertAll(
-            () -> assertThat(actual).doesNotContainSubsequence(List.of(true, true)),
-            () -> assertThat(actual).hasSize(3)
-        );
+        assertThat(Line.of(4).points()).hasSize(3);
+    }
+
+    @Test
+    void 다음포인트() {
+        assertThat(Line.nextPoint(Boolean.TRUE)).isEqualTo(Boolean.FALSE);
     }
 
     @Test

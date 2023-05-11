@@ -14,13 +14,17 @@ public class Line {
     private final List<Boolean> points;
 
     private Line(List<Boolean> points) {
-        if (isNotValid(points)) {
-            throw new IllegalArgumentException("겹치는 가로라인이 존재합니다.");
-        }
-        this.points = points;
+        this.points = valid(points);
     }
 
-    private boolean isNotValid(List<Boolean> points) {
+    private List<Boolean> valid(List<Boolean> points) {
+        if (hasOverlapping(points)) {
+            throw new IllegalArgumentException("겹치는 가로라인이 존재합니다.");
+        }
+        return points;
+    }
+
+    private boolean hasOverlapping(List<Boolean> points) {
         return IntStream.range(1, points.size())
             .anyMatch(i -> isOverlapping(points.get(i - 1), points.get(i)));
     }
@@ -38,12 +42,12 @@ public class Line {
     }
 
     private static List<Boolean> randomList(int size) {
-        return Stream.iterate(nextPoint(Boolean.FALSE), Line::nextPoint)
+        return Stream.iterate(randomPoint(), Line::nextPoint)
             .limit(size)
             .collect(Collectors.toList());
     }
 
-    private static Boolean nextPoint(Boolean prev) {
+    public static Boolean nextPoint(Boolean prev) {
         if (isTrue(prev)) {
             return Boolean.FALSE;
         }
@@ -77,6 +81,10 @@ public class Line {
 
     public List<Boolean> points() {
         return List.copyOf(points);
+    }
+
+    public int length() {
+        return points().size();
     }
 
 }
