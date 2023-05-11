@@ -1,11 +1,10 @@
 package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
-import ladder.domain.Ladder;
-import ladder.domain.Line;
 import org.junit.jupiter.api.Test;
 
 public class LadderTest {
@@ -16,6 +15,18 @@ public class LadderTest {
         assertAll(
             () -> assertThat(actual.height()).isEqualTo(5),
             () -> assertThat(actual.width()).isEqualTo(3)
+        );
+    }
+
+    @Test
+    void 사다리생성_널_빈값() {
+        assertAll(
+            () -> assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> Ladder.of(null))
+                .withMessageMatching("사다리는 빈 값일 수 없습니다."),
+            () -> assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> Ladder.of(List.of()))
+                .withMessageMatching("사다리는 빈 값일 수 없습니다.")
         );
     }
 

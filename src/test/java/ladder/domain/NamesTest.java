@@ -4,14 +4,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
-import ladder.domain.Names;
 import org.junit.jupiter.api.Test;
 
 public class NamesTest {
 
     @Test
-    void 이름_길이_합() {
-        assertThat(Names.of("a, b, c").properWidth()).isEqualTo(3);
+    void 이름_너비() {
+        assertThat(Names.of("a, b, c").properWidth()).isEqualTo(1);
     }
 
     @Test

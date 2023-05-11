@@ -10,7 +10,14 @@ public class Ladder {
     private final List<Line> lines;
 
     private Ladder(List<Line> lines) {
-        this.lines = lines;
+        this.lines = valid(lines);
+    }
+
+    private List<Line> valid(List<Line> lines) {
+        if (lines == null || lines.isEmpty()) {
+            throw new IllegalArgumentException("사다리는 빈 값일 수 없습니다.");
+        }
+        return lines;
     }
 
     public static Ladder of(List<Line> lines) {

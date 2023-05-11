@@ -18,10 +18,17 @@ public class Line {
     }
 
     private List<Boolean> valid(List<Boolean> points) {
+        if (isNullOrEmpty(points)) {
+            throw new IllegalArgumentException("라인은 빈 값일 수 없습니다.");
+        }
         if (hasOverlapping(points)) {
             throw new IllegalArgumentException("겹치는 가로라인이 존재합니다.");
         }
         return points;
+    }
+
+    private boolean isNullOrEmpty(List<Boolean> points) {
+        return points == null || points.isEmpty();
     }
 
     private boolean hasOverlapping(List<Boolean> points) {
