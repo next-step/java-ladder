@@ -18,3 +18,7 @@
   > `CarTest`
 - [x] 람다를 활용해 중복 제거
   > `Lambda` 클래스의 `sumAll`, `sumAllEven`, `sumAllOverThree` 메소드
+
+### 스트림 실습
+- [x] `StreamStudyTest` 클래스의 `sumOverThreeAndDouble()` 테스트 구현
+  > `map`, `reduce`, `filter` 활용
