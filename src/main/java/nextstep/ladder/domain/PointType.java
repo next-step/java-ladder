@@ -5,7 +5,6 @@ public enum PointType {
     RIGHT(1, false, true),
     NONE(0, false, false);
 
-
     private final int position;
     private final boolean left;
     private final boolean right;
