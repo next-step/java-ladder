@@ -2,21 +2,21 @@ package nextstep.optional;
 
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 
-public class ExpressionTest {
+class ExpressionTest {
     @Test
-    public void of() {
-        assertThat(Expression.PLUS == Expression.of("+")).isTrue();
+    void of() {
+        assertThat(Expression.of("+")).isEqualTo(Expression.PLUS);
     }
 
     @Test
-    public void notValidExpression() {
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> {
-                    Expression.of("&");
-                });
+    void notValidExpression() {
+        String invalidExpression = "&";
+        assertThatThrownBy(() -> Expression.of(invalidExpression))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(invalidExpression + "는 사칙연산에 해당하지 않는 표현식입니다.");
     }
 }

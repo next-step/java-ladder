@@ -5,10 +5,14 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class StreamStudy {
+    private static int MINIMUM_PRINT_WORD_LENGTH = 12;
+    private static long MAXIMUM_PRINT_SIZE = 100;
 
     public static long countWords() throws IOException {
         String contents = new String(Files.readAllBytes(Paths
@@ -27,7 +31,21 @@ public class StreamStudy {
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-        // TODO 이 부분에 구현한다.
+        words.stream()
+                .filter(longerThanMinimumWordLength())
+                .distinct()
+                .sorted(sortByStringLengthInDescendingOrder())
+                .limit(MAXIMUM_PRINT_SIZE)
+                .map(String::toLowerCase)
+                .forEach(System.out::println);
+    }
+
+    private static Predicate<String> longerThanMinimumWordLength() {
+        return word -> word.length() > MINIMUM_PRINT_WORD_LENGTH;
+    }
+
+    private static Comparator<String> sortByStringLengthInDescendingOrder() {
+        return Comparator.comparingInt(String::length).reversed();
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
@@ -39,6 +57,10 @@ public class StreamStudy {
     }
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
-        return 0;
+        return numbers.stream()
+                .filter(number -> number > 3)
+                .map(number -> number * 2)
+                .reduce(Integer::sum)
+                .orElse(0);
     }
 }
