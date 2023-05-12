@@ -13,7 +13,7 @@ public class Result {
         return results;
     }
 
-    public String result(int index) {
-        return results.get(index);
+    public String result(Position position) {
+        return results.get(position.value());
     }
 }
