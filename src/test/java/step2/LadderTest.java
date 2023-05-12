@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class LadderFactoryTest {
+class LadderTest {
 
     @DisplayName("Line은 참여 인원의 수 - 1 만큼 true나 false를 갖는다.")
     @ParameterizedTest
@@ -45,7 +45,7 @@ class LadderFactoryTest {
     void test7() throws Exception {
         //given
         LineStrategyImpl lineStrategy = new LineStrategyImpl();
-        List<Boolean> movable = lineStrategy.getLine(4);
+        List<Boolean> movable = lineStrategy.getLine(100);
 
         //when
         boolean result = IntStream.range(0, movable.size() - 1).anyMatch(i -> isEquals(movable, i));
@@ -55,13 +55,40 @@ class LadderFactoryTest {
     }
 
     @DisplayName("깊이에 따라 사다리가 생성된다.")
-    @Test
-    void test8() throws Exception {
+    @ParameterizedTest
+    @ValueSource(ints = {2, 3, 4, 5})
+    void test8(int input) throws Exception {
+        //given
         List<Person> personList = new ArrayList<>(List.of(new Person("a"), new Person("b")));
-        Ladder ladder =
-            Ladder.of(new LineStrategyImpl(), new Depth(3), new Participants(personList));
 
-        assertThat(ladder.getLines()).hasSize(3);
+        //when
+        Ladder ladder =
+            Ladder.of(new LineStrategyImpl(), new Depth(input), new Participants(personList));
+
+        //then
+        assertThat(ladder.getLines()).hasSize(input);
+    }
+
+    @DisplayName("깊으는 1이상이어야 한다.")
+    @Test
+    void test9() throws Exception {
+
+        assertThatThrownBy(() -> {
+            new Depth(0);
+        })
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("사다리의 깊이는 1이상이어야 합니다.");
+    }
+
+    @DisplayName("사람의 이름이 5글자가 넘어갈 시 예외를 던진다.")
+    @Test
+    void test1() throws Exception {
+
+        assertThatThrownBy(() -> {
+            new Person("abcdes");
+        })
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("이름은 최대 5글자여야 합니다.");
     }
 
     private boolean isEquals(final List<Boolean> movable, final int i) {
