@@ -2,6 +2,7 @@ package ladder.view;
 
 import ladder.model.Ladder;
 import ladder.model.Line;
+import ladder.model.Point;
 import ladder.model.Users;
 
 import java.util.List;
@@ -12,7 +13,6 @@ public class ResultView {
     private static final String HEIGHT = "|";
     private static final String EMPTY_LIME = "     ";
     private static final String BLANK = " ";
-    private static final String LADDER_BLANK = "    ";
 
     private ResultView() {
     }
@@ -44,16 +44,16 @@ public class ResultView {
                 .forEach(ResultView::showLine);
     }
 
-    private static void showLine(List<Boolean> points) {
+    private static void showLine(List<Point> points) {
         String line = points.stream()
                 .map(ResultView::convertPoint)
-                .collect(Collectors.joining(HEIGHT, HEIGHT, HEIGHT));
+                .collect(Collectors.joining(HEIGHT));
 
-        System.out.println(LADDER_BLANK + line);
+        System.out.println(line + HEIGHT);
     }
 
-    private static String convertPoint(Boolean point) {
-        if (point) {
+    private static String convertPoint(Point point) {
+        if (point.getLeft()) {
             return LINE;
         }
         return EMPTY_LIME;

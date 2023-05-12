@@ -16,7 +16,7 @@ public class Ladder {
 
     public static Ladder of(int countOfUser, int ladderHeight, BooleanGenerator booleanGenerator) {
         List<Line> lines = IntStream.range(0, ladderHeight)
-                .mapToObj(size -> Line.of(countOfUser, booleanGenerator))
+                .mapToObj(size -> Line.create(countOfUser, booleanGenerator))
                 .collect(Collectors.toList());
 
         return new Ladder(lines);
