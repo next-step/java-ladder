@@ -10,23 +10,7 @@ public class Result {
 		if (result.isBlank()) {
 			throw new IllegalArgumentException("실행 결과는 빈값일 수 없습니다.");
 		}
-		if (this.isValidString(result) == false && this.isNumeric(result) == false) {
-			throw new IllegalArgumentException("실행 결과는 `꽝`이나 `숫자`만 입력할 수 있습니다.");
-		}
 		this.result = result;
-	}
-
-	private boolean isValidString(String result) {
-		return result.equals("꽝");
-	}
-
-	private boolean isNumeric(String result) {
-		try {
-			Integer.parseInt(result);
-			return true;
-		} catch (NumberFormatException e) {
-			return false;
-		}
 	}
 
 	public String getResult() {
