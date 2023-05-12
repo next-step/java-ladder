@@ -1,21 +1,48 @@
 package ladder.domain;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.stream.IntStream;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Ladder {
 
 	private final Lines lines;
-	private final Height height;
 
-	public Ladder(Names names, int height) {
-		this.lines = new Lines(new ArrayList<>());
-		this.height = new Height(height);
-		IntStream.range(0, height).forEach(i -> this.lines.add(new Line(names.countOfPerson())));
+	public static Ladder of(Line... lines) {
+		return new Ladder(Arrays.stream(lines).collect(Collectors.toList()));
+	}
+
+	private Ladder(List<Line> lines) {
+		this(new Lines(lines));
+	}
+
+	public Ladder(Lines lines) {
+		this.lines = lines;
+	}
+
+	public int finalIndex(int index) {
+		return this.lines.finalIndex(index);
 	}
 
 	public List<Line> getLines() {
-		return this.lines.getLines();
+		return lines.getLines();
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		Ladder ladder = (Ladder)o;
+		return Objects.equals(lines, ladder.lines);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(lines);
 	}
 }

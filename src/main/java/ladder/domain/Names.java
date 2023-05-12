@@ -15,11 +15,25 @@ public class Names {
 	public Names(String inputNames) {
 		Arrays.stream(inputNames.trim().split(Names.DELIMITER))
 			.map(String::trim)
-			.forEach(name -> this.names.add(new Name(name)));
+			.forEach(e -> {
+				Name name = new Name(e);
+				if (this.isExist(name)) {
+					throw new IllegalArgumentException("이미 존재하는 이름입니다.");
+				}
+				this.names.add(name);
+			});
 	}
 
 	public int countOfPerson() {
 		return this.names.size();
+	}
+
+	public Name indexOf(int index) {
+		return this.names.get(index);
+	}
+
+	public boolean isExist(Name name) {
+		return this.names.stream().anyMatch(e -> e.equals(name));
 	}
 
 	public List<Name> getNames() {

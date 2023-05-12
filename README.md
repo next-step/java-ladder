@@ -27,6 +27,22 @@
   - 참여할 사람이 1보다 작으면 IllegalArgumentException 발생
   - 사다리 최대 높이가 1보다 작으면 IllegalArgumentException 발생
 
+### 추가 요구사항 체크리스트
+- [x] 실행 결과를 입력한다.
+  - 결과는 ,로 구분한다.
+  - 빈값 입력 시 IllegalArgumentException 발생
+  - 참여자 수와 실행결과 목록 수가 일치하지 않을 경우 IllegalArgumentException 발생
+- [x] 결과를 보고 싶은 사람을 입력한다.
+  - 없는 사람 입력 시 IllegalArgumentException 발생
+  - 빈값 입력 시 IllegalArgumentException 발생
+  - 개인 또는 all로만 입력 가능하다. (두명은 입력할 수 없다.)
+- [x] `사다리 결과` 문자열을 출력한다.
+- [x] 참여할 사람 이름 입력 시, 사람 이름은 "all"로 입력할 수 없도록 막는다.
+- [x] 참여할 사람 이름 입력 시, 동명이인 안된다.
+- [x] 실행 결과를 만든다.
+- [x] 실행 결과를 출력한다.
+
+
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
   
