@@ -16,12 +16,12 @@ public class LadderGameRunner {
         Scanner scanner = new Scanner(System.in);
         InputView inputView = new InputView();
 
-        String names = getNames(scanner, inputView);
-        Participants participants = new Participants(Split.of(names));
-        int count = getCount(scanner, inputView);
-        Ladder ladder = Ladder.of(new LineStrategyImpl(), new Depth(count), participants);
+        var names = getNames(scanner, inputView);
+        var participants = new Participants(Split.of(names));
+        var count = getCount(scanner, inputView);
+        var ladder = Ladder.of(new LineStrategyImpl(), new Depth(count), participants);
 
-        LadderGame ladderGame = LadderGame.create(ladder, participants);
+        var ladderGame = LadderGame.create(ladder, participants);
 
         ResultView resultView = new ResultView(ladderGame);
         resultView.printResult();
