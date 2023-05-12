@@ -9,7 +9,6 @@ public class Line {
     private List<Boolean> points;
 
     public Line(int countOfPeople, LineStrategy lineStrategy) {
-
         Validation.countOfParticipants(countOfPeople);
         int initialCapacity = countOfPeople - 1;
         init(lineStrategy, initialCapacity);
@@ -17,6 +16,10 @@ public class Line {
 
     private void init(final LineStrategy lineStrategy, final int initialCapacity) {
         this.points = lineStrategy.getLine(initialCapacity);
+    }
+
+    public List<Boolean> getPoints() {
+        return points;
     }
 
     @Override
@@ -34,9 +37,5 @@ public class Line {
     @Override
     public int hashCode() {
         return Objects.hash(points);
-    }
-
-    public List<Boolean> getPoints() {
-        return points;
     }
 }
