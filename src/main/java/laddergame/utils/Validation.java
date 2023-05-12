@@ -4,7 +4,7 @@ public class Validation {
 
     private static final int MIN_PERSON = 1;
     private static final int MAX_NAME_LENGTH = 5;
-    private static final int MIN_DEPTH = 0;
+    private static final int MIN_DEPTH = 1;
 
     private Validation() {
     }
@@ -14,6 +14,7 @@ public class Validation {
             throw new IllegalArgumentException("사다리의 깊이는 1이상이어야 합니다.");
         }
     }
+
     public static void lengthOfName(final int length) {
         if (length > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("이름은 최대 5글자여야 합니다.");
