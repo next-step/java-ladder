@@ -14,7 +14,7 @@ class LineTest {
     int numberOfParticipants = 10;
     NextPointGenerationStrategy generationStrategy = () -> true;
 
-    Line line = new Line(numberOfParticipants, generationStrategy);
+    Line line = Line.createLine(numberOfParticipants, generationStrategy);
 
     List<Boolean> points = line.getPoints();
     boolean previousConnection = points.get(0);
