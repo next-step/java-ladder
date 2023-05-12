@@ -1,6 +1,7 @@
 package laddergame.domain;
 
-public interface LineStrategy {
-    boolean isMovable();
+import java.util.List;
 
+public interface LineStrategy {
+    List<Boolean> getLine(int count);
 }
