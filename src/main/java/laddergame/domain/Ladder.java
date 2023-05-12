@@ -13,7 +13,7 @@ public class Ladder {
     }
 
     public static Ladder of(LineStrategy lineStrategy, Depth depth, Participants participants) {
-        List<Line> lines = new ArrayList<>();
+        List<Line> lines = new ArrayList<>(depth.size());
         IntStream.range(0, depth.size())
             .forEach(e -> lines.add(new Line(participants.size(), lineStrategy)));
         return new Ladder(lines);

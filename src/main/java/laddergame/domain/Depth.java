@@ -3,6 +3,7 @@ package laddergame.domain;
 import laddergame.utils.Validation;
 
 public class Depth {
+
     private final int count;
 
     public Depth(final int count) {

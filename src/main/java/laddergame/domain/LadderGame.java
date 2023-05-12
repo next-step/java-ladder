@@ -23,5 +23,4 @@ public class LadderGame {
     public List<Line> getLinePerDepth() {
         return ladder.getLines();
     }
-
 }

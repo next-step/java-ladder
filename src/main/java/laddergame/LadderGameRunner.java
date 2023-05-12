@@ -19,8 +19,8 @@ public class LadderGameRunner {
         String names = getNames(scanner, inputView);
         Participants participants = new Participants(Split.of(names));
         int count = getCount(scanner, inputView);
-
         Ladder ladder = Ladder.of(new LineStrategyImpl(), new Depth(count), participants);
+
         LadderGame ladderGame = LadderGame.create(ladder, participants);
 
         ResultView resultView = new ResultView(ladderGame);
