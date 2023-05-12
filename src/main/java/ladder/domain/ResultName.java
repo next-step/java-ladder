@@ -4,11 +4,13 @@ import java.util.Objects;
 
 public class ResultName {
 
+	public static final String ALL_PARTICIPANTS = "all";
+
 	private final String resultName;
 
 	public ResultName(Names names, String input) {
 		String trim = input.trim();
-		if (trim.equals("all")) {
+		if (trim.equals(ALL_PARTICIPANTS)) {
 			this.resultName = trim;
 			return;
 		}
@@ -19,7 +21,7 @@ public class ResultName {
 	}
 
 	public boolean isAll() {
-		return this.resultName.equals("all");
+		return this.resultName.equals(ALL_PARTICIPANTS);
 	}
 
 	public String getResultName() {
