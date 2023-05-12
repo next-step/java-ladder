@@ -23,14 +23,14 @@ public class OutputView {
     }
 
     public static void printNames(Names names, int width) {
-        System.out.println(joinString(widthLengthDelimiter(Delimiter.WHITE_SPACE.value, width), names.names()));
+        System.out.println(joinString(horizontalDelimiter(Delimiter.WHITE_SPACE.value, width), names.names()));
     }
 
     private static String joinString(String delimiter, List<String> list) {
         return String.join(delimiter, list);
     }
 
-    private static String widthLengthDelimiter(String delimiter, int length) {
+    private static String horizontalDelimiter(String delimiter, int length) {
         return IntStream.range(0, length)
             .mapToObj(i -> delimiter)
             .collect(Collectors.joining());
@@ -43,9 +43,8 @@ public class OutputView {
     private static String ladderIndicator(Ladder ladder, int width) {
         StringBuilder stringBuilder = new StringBuilder();
         for (Line line : ladder.lines()) {
-            stringBuilder.append(leadingSpace(width))
-                .append(verticalLine())
-                .append(horizontalLine(line, width))
+            stringBuilder.append(verticalLine())
+                .append(rightPartOfLine(line, width))
                 .append(lineSeparator());
         }
         return stringBuilder.toString();
@@ -59,14 +58,10 @@ public class OutputView {
         return Delimiter.VERTICAL_LINE.value;
     }
 
-    private static String leadingSpace(int width) {
-        return widthLengthDelimiter(Delimiter.WHITE_SPACE.value, width / 5);
-    }
-
-    private static String horizontalLine(Line line, int width) {
+    private static String rightPartOfLine(Line line, int width) {
         StringBuilder stringBuilder = new StringBuilder();
         for (Boolean point : line.points()) {
-            stringBuilder.append(widthLengthDelimiter(delimiterOf(point), width))
+            stringBuilder.append(horizontalDelimiter(delimiterOf(point), width))
                 .append(verticalLine());
         }
         return stringBuilder.toString();
