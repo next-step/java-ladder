@@ -17,35 +17,44 @@ public class LambdaTest {
     }
 
     @Test
-    public void printAllOld() throws Exception {
+    public void printAllOld(){
         Lambda.printAllOld(numbers);
     }
 
     @Test
-    public void printAllLambda() throws Exception {
+    public void printAllLambda(){
         Lambda.printAllLambda(numbers);
     }
 
     @Test
-    public void runThread() throws Exception {
+    public void runThread(){
         Lambda.runThread();
     }
 
     @Test
-    public void sumAll() throws Exception {
-        int sum = Lambda.sumAll(numbers);
+    public void sumAll(){
+        Conditional condition = number -> true;
+
+        int sum = Lambda.sumAll(numbers,condition);
+
         assertThat(sum).isEqualTo(21);
     }
 
     @Test
-    public void sumAllEven() throws Exception {
-        int sum = Lambda.sumAllEven(numbers);
+    public void sumAllEven(){
+        Conditional condition = number -> number % 2 == 0;
+
+        int sum = Lambda.sumAll(numbers,condition);
+
         assertThat(sum).isEqualTo(12);
     }
 
     @Test
-    public void sumAllOverThree() throws Exception {
-        int sum = Lambda.sumAllOverThree(numbers);
+    public void sumAllOverThree(){
+        Conditional condition = number -> number > 3;
+
+        int sum = Lambda.sumAll(numbers,condition);
+
         assertThat(sum).isEqualTo(15);
     }
 }
