@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.type;
 
 import java.util.function.Function;
 

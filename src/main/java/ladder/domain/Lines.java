@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import ladder.strategy.PointGenerator;
+
 public class Lines {
 
 	private final List<Line> lines;

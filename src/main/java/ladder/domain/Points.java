@@ -7,6 +7,9 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import ladder.strategy.PointGenerator;
+import ladder.type.DirectionType;
+
 public class Points {
 
 	private final List<Point> points;
