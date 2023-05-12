@@ -36,6 +36,9 @@ public class Lambda {
         return total;
     }
 
+    public static int sumAll(List<Integer> numbers) {
+        return sumAll(numbers, number -> true);
+    }
     public static int sumAllEven(List<Integer> numbers) {
         return sumAll(numbers, (number) -> number % 2 == 0);
     }

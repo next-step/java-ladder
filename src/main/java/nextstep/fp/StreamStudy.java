@@ -29,7 +29,7 @@ public class StreamStudy {
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
         List<String> collect = words.stream()
-                .filter(e -> e.length() > 12)
+                .filter(word -> word.length() > 12)
                 .sorted(Comparator.comparing(String::length))
                 .distinct()
                 .limit(100)
@@ -49,7 +49,7 @@ public class StreamStudy {
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
         return numbers.stream()
-                .filter(e -> e > 3)
+                .filter(number -> number > 3)
                 .map(e -> e * 2)
                 .reduce(0, Integer::sum);
     }
