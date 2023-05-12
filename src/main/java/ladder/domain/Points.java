@@ -60,26 +60,26 @@ public class Points {
 
 	private int stopOrRight(int index) {
 		if (this.points.get(index).equals(Point.of(true))) {
-			return index + 1;
+			return DirectionType.RIGHT.move(index);
 		}
-		return index;
+		return DirectionType.DOWN.move(index);
 	}
 
 	private int stopOrRightOrLeft(int index) {
 		if (this.points.get(index - 1).equals(Point.of(true))) {
-			return index - 1;
+			return DirectionType.LEFT.move(index);
 		}
 		if (this.points.get(index).equals(Point.of(true))) {
-			return index + 1;
+			return DirectionType.RIGHT.move(index);
 		}
-		return index;
+		return DirectionType.DOWN.move(index);
 	}
 
 	private int stopOrLeft(int index) {
 		if (this.points.get(index - 1).equals(Point.of(true))) {
-			return index - 1;
+			return DirectionType.LEFT.move(index);
 		}
-		return index;
+		return DirectionType.DOWN.move(index);
 	}
 
 	public List<Point> getPoints() {
