@@ -20,7 +20,7 @@ public class LadderController {
     Ladders ladders = ladderCreator.createLadders(new RandomPointGenerationStrategy());
 
     OutputNamesView.printParticipantsNames(participants);
-    OutputLaddersView.printLadderOfRow(ladders);
+    OutputLaddersView.printRow(ladders);
   }
 
 }
