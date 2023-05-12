@@ -1,4 +1,4 @@
-package ladder.model;
+package ladder.model.participant;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

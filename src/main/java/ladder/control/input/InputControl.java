@@ -6,9 +6,9 @@ import ladder.view.input.DummyView;
 import java.util.Scanner;
 
 public abstract class InputControl<T> {
-    protected static final Scanner scanner = new Scanner(System.in);
+    protected static final Scanner SCANNER = new Scanner(System.in);
 
-    View view = new DummyView();
+    private View view = new DummyView();
 
     public InputControl() {
     }
