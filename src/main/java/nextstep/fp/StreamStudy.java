@@ -6,6 +6,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class StreamStudy {
@@ -27,7 +29,6 @@ public class StreamStudy {
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-        // TODO 이 부분에 구현한다.
         words.stream()
             .filter(word -> word.length() > 12)
             .distinct()
@@ -45,10 +46,10 @@ public class StreamStudy {
         return numbers.stream().reduce(0, (x, y) -> x + y);
     }
 
-    public static long sumOverThreeAndDouble(List<Integer> numbers) {
+    public static long sumOverThreeAndDouble(List<Integer> numbers, Predicate<Integer> filter, Function<Integer, Integer> mapper) {
         return numbers.stream()
-            .filter(number -> number > 3)
-            .map(number -> number * 2)
+            .filter(filter)
+            .map(mapper)
             .reduce(Integer::sum)
             .orElse(0);
     }
