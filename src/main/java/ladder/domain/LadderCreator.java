@@ -28,7 +28,7 @@ public class LadderCreator {
 
   private List<Line> createLines(NextPointGenerationStrategy generationStrategy) {
     return IntStream.range(0, getHeight())
-        .mapToObj(i -> new Line(participants.size(), generationStrategy))
+        .mapToObj(i -> Line.createLine(participants.size(), generationStrategy))
         .collect(Collectors.toList());
   }
 

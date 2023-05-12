@@ -8,11 +8,11 @@ public class Line {
 
   private final List<Boolean> points;
 
-  public Line(int numberOfParticipants, NextPointGenerationStrategy generationStrategy) {
-    this.points = createLine(numberOfParticipants, generationStrategy);
+  private Line(List<Boolean> points) {
+    this.points = points;
   }
 
-  private List<Boolean> createLine(int numberOfParticipants, NextPointGenerationStrategy generationStrategy) {
+  public static Line createLine(int numberOfParticipants, NextPointGenerationStrategy generationStrategy) {
     List<Boolean> points = new ArrayList<>();
     boolean previousConnectionStatus = false;
 
@@ -21,10 +21,10 @@ public class Line {
       points.add(previousConnectionStatus);
     }
 
-    return points;
+    return new Line(points);
   }
 
-  private boolean decideNextConnectionStatus(boolean previousConnectionStatus, NextPointGenerationStrategy generationStrategy) {
+  private static boolean decideNextConnectionStatus(boolean previousConnectionStatus, NextPointGenerationStrategy generationStrategy) {
     return !previousConnectionStatus && generationStrategy.nextBoolean();
   }
 
