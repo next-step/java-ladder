@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import exception.ExceptionCode;
+import exception.LadderGameException;
 import java.util.List;
 import ladder.domain.ladder.DefaultLadderGenerator;
 import ladder.domain.ladder.LadderGenerator;

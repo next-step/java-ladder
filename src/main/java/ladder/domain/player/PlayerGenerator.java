@@ -9,7 +9,13 @@ import java.util.stream.Collectors;
 
 public class PlayerGenerator {
 
+  private static final int MIN_PLAYER_REQUIRED_CNT = 2;
+
   public List<Player> generatePlayerList(List<String> players) {
+    if (MIN_PLAYER_REQUIRED_CNT > players.size()) {
+      throw new LadderGameException(ExceptionCode.MIN_PLAYER_COUNT_REQUIRED);
+    }
+
     final Set<Player> playerSet = players.stream()
         .map(Player::new)
         .collect(Collectors.toSet());

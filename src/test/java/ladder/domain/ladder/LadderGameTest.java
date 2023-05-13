@@ -45,4 +45,30 @@ public class LadderGameTest extends BaseTest {
         ExceptionCode.DUPLICATE_PLAYER_IN_GAME
     );
   }
+
+  @Test
+  @DisplayName("LadderGame | 사다리게임에 참가한 플레이어는 최소 두명 이상이어야한다")
+  void 사다리게임에_참가한_플레이어는_최소_두명_이상이어야한다() {
+    // given
+    List<String> 플레이어_이름_목록 = Arrays.asList("sight");
+
+    // when & then
+    super.assertThatThrowsLadderGameException(
+        () -> new LadderGame(플레이어_이름_목록, 사다리_높이),
+        ExceptionCode.MIN_PLAYER_COUNT_REQUIRED
+    );
+  }
+
+  @Test
+  @DisplayName("LadderGame | 사다리게임의 사다리 높이는 최소 1 이상이어야한다.")
+  void 사다리게임의_사다리_높이는_최소_1_이상이어야한다() {
+    // given
+    List<String> 플레이어_이름_목록 = Arrays.asList("sight", "seol");
+
+    // when & then
+    super.assertThatThrowsLadderGameException(
+        () -> new LadderGame(플레이어_이름_목록, 0),
+        ExceptionCode.MIN_LADDER_HEIGHT_REQUIRED
+    );
+  }
 }

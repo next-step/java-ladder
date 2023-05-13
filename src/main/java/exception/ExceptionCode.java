@@ -2,6 +2,10 @@ package exception;
 
 public enum ExceptionCode {
 
+  // game
+  MIN_LADDER_HEIGHT_REQUIRED("사다리 게임에 필요한 최소높이를 충족시키지 못합니다."),
+  MIN_PLAYER_COUNT_REQUIRED("사다리 게임에 필요한 인원수보다 작습니다."),
+
   // ladder
   CANNOT_CONNECT_CONTINUOUS_POINT("사다리의 라인에서 포인트를 연속해서 연결 할 수 없습니다."),
   CANNOT_CONNECT_POINT_IN_REVERSE_ORDER("사다리는 왼쪽에서 오른쪽으로만 연결 할 수 있습니다."),

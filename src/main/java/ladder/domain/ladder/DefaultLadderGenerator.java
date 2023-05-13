@@ -1,5 +1,7 @@
 package ladder.domain.ladder;
 
+import exception.ExceptionCode;
+import exception.LadderGameException;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -11,6 +13,7 @@ import ladder.domain.random.RandomBooleanGenerator;
 public class DefaultLadderGenerator implements LadderGenerator {
 
   private final RandomBooleanGenerator randomBooleanGenerator;
+  private static final int MIN_LADDER_HEIGHT_SIZE = 1;
 
   public DefaultLadderGenerator() {
     this.randomBooleanGenerator = new DefaultRandomBooleanGenerator();
@@ -18,10 +21,17 @@ public class DefaultLadderGenerator implements LadderGenerator {
 
   @Override
   public List<Line> generateLadderLines(int playerCnt, int ladderHeight) {
+    throwIfHeightNotValid(ladderHeight);
     return IntStream.range(0, ladderHeight)
         .mapToObj(i -> new Line(playerCnt))
         .map(this::connectPointInLineIfPossible)
         .collect(Collectors.toList());
+  }
+
+  private void throwIfHeightNotValid(int ladderHeight) {
+    if(MIN_LADDER_HEIGHT_SIZE > ladderHeight) {
+      throw new LadderGameException(ExceptionCode.MIN_LADDER_HEIGHT_REQUIRED);
+    }
   }
 
   /**
