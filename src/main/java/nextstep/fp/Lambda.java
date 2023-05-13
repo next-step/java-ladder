@@ -26,6 +26,12 @@ public class Lambda {
         }).start();
     }
 
+    public static int subAllByCondition(List<Integer> numbers, Conditional conditional) {
+        return numbers.stream()
+                .filter((number) -> conditional.isAddPossible(number))
+                .reduce(0, Integer::sum);
+    }
+
     public static int sumAll(List<Integer> numbers) {
         int total = 0;
         for (int number : numbers) {
