@@ -20,16 +20,7 @@ public class Users {
     }
 
     public static List<String> splitNames(String names) {
-        List<String> splitNames = Arrays.asList(names.split(NAME_DELIMITER));
-        if (hasNameLengthOverInList(splitNames)) {
-            throw new IllegalArgumentException("이름이 " + NAME_DELIMITER + "로 구분되지 않았거나 글자 수를 초과하였습니다.");
-        }
-        return splitNames;
-    }
-
-    private static boolean hasNameLengthOverInList(List<String> names) {
-        return names.stream()
-                .anyMatch(User::isNameLengthOver);
+        return Arrays.asList(names.split(NAME_DELIMITER));
     }
 
     public String getUserName(int index) {
@@ -53,7 +44,7 @@ public class Users {
         return Objects.hash(users);
     }
 
-    public int size() {
+    public int numberOfUsers() {
         return users.size();
     }
 }

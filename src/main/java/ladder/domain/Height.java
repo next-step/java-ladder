@@ -3,8 +3,8 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Height {
-    private final int MIN_HEIGHT = 1;
-    private final int MAX_HEIGHT = 30;
+    private static final int MIN_HEIGHT = 1;
+    private static final int MAX_HEIGHT = 30;
     private final int height;
 
     public Height(int height) {

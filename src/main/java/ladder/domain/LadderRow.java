@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import ladder.domain2.DrawStrategy;
-
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
