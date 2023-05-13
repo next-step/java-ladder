@@ -1,6 +1,7 @@
 package nextstep;
 
 import nextstep.domain.Ladder;
+import nextstep.domain.Participants;
 import nextstep.view.InputView;
 
 public class LadderGame {
@@ -9,6 +10,7 @@ public class LadderGame {
         String[] participants = InputView.participants();
         int height = InputView.height();
 
+        Participants part = Participants.participate(participants);
         Ladder ladder = Ladder.makeLadder(height, participants.length);
     }
 }
