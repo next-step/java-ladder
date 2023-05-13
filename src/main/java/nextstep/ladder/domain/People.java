@@ -21,4 +21,11 @@ public class People {
     int size() {
         return people.size();
     }
+
+    @Override
+    public String toString() {
+        return "People{" +
+                "people=" + people +
+                '}';
+    }
 }

@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 public class Person {
+
     private static final int NAME_LENGTH_MAX = 5;
 
     private final String name;
@@ -14,5 +15,12 @@ public class Person {
 
     public String name() {
         return this.name;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }

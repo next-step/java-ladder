@@ -1,21 +1,20 @@
 package nextstep.ladder.view;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import nextstep.ladder.domain.People;
+
 import java.util.Scanner;
 
 public class InputView {
 
     private final Scanner scanner = new Scanner(System.in);
 
-    public List<String> inputPeople() {
+    public People people() {
         ResultView.printPeopleInputCommand();
-        return new ArrayList<>(Arrays.asList(nextLine().split(",")));
+        return new People(nextLine().split(","));
     }
 
-    public int inputMaxLadderHeight() {
-        ResultView.printMaxLadderHeightInputCommand();
+    public int height() {
+        ResultView.printHeightInputCommand();
         return Integer.parseInt(nextLine());
     }
 
