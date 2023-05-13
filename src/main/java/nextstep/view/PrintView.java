@@ -4,29 +4,30 @@ import nextstep.domain.Ladder;
 import nextstep.domain.Line;
 import nextstep.domain.Participants;
 
-import java.util.List;
-
 public class PrintView {
 
-    public static void printTitle() {
+    public static void printResult(Participants participants, Ladder ladder) {
+        printTitle();
+        printParticipants(participants);
+        printLadder(ladder);
+    }
+
+    private static void printTitle() {
         System.out.println("실행 결과");
     }
 
-    public static void printParticipants(Participants participants) {
+    private static void printParticipants(Participants participants) {
         participants.forEach(x -> System.out.printf("%6s", x));
         System.out.println();
     }
 
-    public static void printLadder(Ladder ladder) {
+    private static void printLadder(Ladder ladder) {
         ladder.forEach(PrintView::printLine);
     }
 
     private static void printLine(Line line) {
-        List<Boolean> points = line.points();
-
         System.out.print("     |");
-        points.stream()
-                .map(line::changeBooleanIntoLine)
+        line.booleanToLineStream()
                 .forEach(x -> {
                     System.out.print(x);
                     System.out.print("|");

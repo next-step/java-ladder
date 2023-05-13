@@ -8,14 +8,12 @@ import nextstep.view.PrintView;
 public class LadderGame {
 
     public static void main(String[] args) {
-        String[] participants = InputView.participants();
+        String[] splitedParticipants = InputView.participants();
         int height = InputView.height();
 
-        Participants part = Participants.participate(participants);
-        Ladder ladder = Ladder.makeLadder(height, participants.length);
+        Participants participants = Participants.participate(splitedParticipants);
+        Ladder ladder = Ladder.makeLadder(height, participants.count());
 
-        PrintView.printTitle();
-        PrintView.printParticipants(part);
-        PrintView.printLadder(ladder);
+        PrintView.printResult(participants, ladder);
     }
 }
