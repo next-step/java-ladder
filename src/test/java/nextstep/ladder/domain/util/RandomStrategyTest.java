@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.util;
 
+import nextstep.ladder.domain.Step;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -48,7 +49,7 @@ public class RandomStrategyTest {
     void drawNextLineTrueTest() {
         DrawStrategy drawStrategy = new RandomStrategy(new StaticTrueRandom());
 
-        assertThat(drawStrategy.drawNextPosition(false))
+        assertThat(drawStrategy.drawNextPosition(Step.firstStep(false)))
                 .isTrue();
     }
 
@@ -58,7 +59,7 @@ public class RandomStrategyTest {
     void drawNextLineFalseTest(boolean input) {
         DrawStrategy drawStrategy = new RandomStrategy(new StaticFalseRandom());
 
-        assertThat(drawStrategy.drawNextPosition(input))
+        assertThat(drawStrategy.drawNextPosition(Step.firstStep(input)))
                 .isFalse();
     }
 
@@ -67,7 +68,7 @@ public class RandomStrategyTest {
     void drawNextLineCheckPrevious() {
         DrawStrategy drawStrategy = new RandomStrategy();
 
-        assertThat(drawStrategy.drawNextPosition(true))
+        assertThat(drawStrategy.drawNextPosition(Step.firstStep(true)))
                 .isFalse();
     }
 

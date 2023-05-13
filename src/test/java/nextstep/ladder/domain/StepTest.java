@@ -71,4 +71,13 @@ public class StepTest {
                 .isEqualTo(Direction.LEFT);
     }
 
+    @Test
+    @DisplayName("현재 스텝이 그려졌는지 확인")
+    void hasPreviousStepTest() {
+        Step step = Step.firstStep(true);
+
+        assertThat(step.hasStep())
+                .isTrue();
+    }
+
 }

@@ -1,5 +1,7 @@
 package nextstep.ladder.domain.util;
 
+import nextstep.ladder.domain.Step;
+
 import java.util.Random;
 
 public class RandomStrategy implements DrawStrategy {
@@ -19,8 +21,8 @@ public class RandomStrategy implements DrawStrategy {
     }
 
     @Override
-    public boolean drawNextPosition(boolean previous) {
-        if (previous) {
+    public boolean drawNextPosition(Step step) {
+        if (step.hasStep()) {
             return false;
         }
 

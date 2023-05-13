@@ -42,4 +42,8 @@ public class Step {
         }
         return PASS;
     }
+
+    public boolean hasStep() {
+        return currentPosition;
+    }
 }
