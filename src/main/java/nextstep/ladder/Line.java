@@ -3,7 +3,7 @@ package nextstep.ladder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Line implements LineMakeable {
+public class Line {
     private List<Boolean> points = new ArrayList<>();
 
     public Line(int countOfPerson, List<Boolean> makeables) {
@@ -31,7 +31,6 @@ public class Line implements LineMakeable {
         return points;
     }
 
-    @Override
     public boolean isMakeable(boolean prevLine, boolean makeCriteria) {
         return !prevLine && makeCriteria;
     }
