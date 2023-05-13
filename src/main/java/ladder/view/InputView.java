@@ -13,10 +13,16 @@ public class InputView {
     public static List<String> inputUserNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String names = SCANNER.nextLine();
-        return splitNames(names);
+        return split(names);
     }
 
-    private static List<String> splitNames(String names) {
+    public static List<String> inputRewards() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String rewards = SCANNER.nextLine();
+        return split(rewards);
+    }
+
+    private static List<String> split(String names) {
         return List.of(names.split(DELIMITER));
     }
 
