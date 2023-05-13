@@ -33,8 +33,16 @@ public class ResultView {
     private static void printLine(Line line, int maxOutputNameLength) {
         System.out.print(EMPTY_SPACE.repeat(maxOutputNameLength / 2) + LADDER_VERTICAL);
         String result = IntStream.range(0, line.countOfLine() - 1)
-                .mapToObj(i -> line.determineFormattedLinePart(i, maxOutputNameLength))
+                .mapToObj(index -> determineFormattedLine(line, maxOutputNameLength, index))
                 .collect(Collectors.joining(LADDER_VERTICAL));
         System.out.printf("%s%s%s", result, LADDER_VERTICAL, EMPTY_SPACE.repeat(maxOutputNameLength / 2));
     }
+
+    private static String determineFormattedLine(Line line, int maxOutputNameLength, int index) {
+        if (line.hasHorizontalLine(index)) {
+            return LADDER_HORIZONTAL.repeat(maxOutputNameLength);
+        }
+        return EMPTY_SPACE.repeat(maxOutputNameLength);
+    }
 }
+

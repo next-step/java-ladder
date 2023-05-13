@@ -1,7 +1,9 @@
 package ladder.domain;
 
+import ladder.strategy.FixedLadderStrategy;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -26,5 +28,23 @@ class LineTest {
     void createLine(int width) {
         Line line = new Line(width);
         Assertions.assertThat(line.fetchLines().size()).isEqualTo(width);
+    }
+
+    @DisplayName("고정 라인 생성 전략에 true 를 전달하면 모든 라인이 생성된다")
+    @Test
+    void generateLinesCreateTest() {
+        Line line = new Line(5, new FixedLadderStrategy(true));
+        for (boolean hasLine : line.fetchLines()) {
+            Assertions.assertThat(hasLine).isTrue();
+        }
+    }
+
+    @DisplayName("고정 라인 생성 전략은 false 를 전달하면 모든 라인이 생성되지 않는다")
+    @Test
+    void generateLinesNotCreateTest() {
+        Line line = new Line(5, new FixedLadderStrategy(false));
+        for (boolean hasLine : line.fetchLines()) {
+            Assertions.assertThat(hasLine).isFalse();
+        }
     }
 }

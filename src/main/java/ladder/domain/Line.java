@@ -27,7 +27,7 @@ public class Line {
         }
     }
 
-    public List<Boolean> generateLines(int width, LadderStrategy ladderStrategy) {
+    private List<Boolean> generateLines(int width, LadderStrategy ladderStrategy) {
         return Stream.iterate(ladderStrategy.firstLine(), ladderStrategy::nextLine)
                 .limit(width)
                 .collect(Collectors.toList());
@@ -40,5 +40,8 @@ public class Line {
     public int countOfLine() {
         return lines.size();
     }
-}
 
+    public boolean hasHorizontalLine(int index) {
+        return lines.get(index);
+    }
+}
