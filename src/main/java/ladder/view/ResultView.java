@@ -4,37 +4,30 @@ import ladder.domain.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static ladder.domain.UserName.EMPTY_SPACE;
+
 public class ResultView {
+
+    public static final int NAME_PADDING = 3;
 
     private static final String LADDER_VERTICAL = "|";
     private static final String LADDER_HORIZONTAL = "-";
-    private static final String EMPTY_SPACE = " ";
-    private static final int NAME_PADDING = 3;
-    private static int maxNameLength;
+    private static int maxOutputNameLength;
 
     private ResultView() {
     }
 
     public static void printResult(LadderGame ladderGame) {
-        maxNameLength = getMaxNameLength(ladderGame);
+        maxOutputNameLength = ladderGame.calculateMaxNameLength() + NAME_PADDING;
         printParticipantNames(ladderGame);
         printLadderLines(ladderGame);
-    }
-
-    private static int getMaxNameLength(LadderGame ladderGame) {
-        return ladderGame.fetchParticipants()
-                .fetchNames()
-                .stream()
-                .mapToInt(name -> name.fetchName().length())
-                .max()
-                .orElse(0) + NAME_PADDING;
     }
 
     private static void printLadderLines(LadderGame ladderGame) {
         ladderGame.fetchLadder()
                 .fetchLines()
                 .forEach(line -> {
-                    printLine(line, ResultView.maxNameLength);
+                    printLine(line, ResultView.maxOutputNameLength);
                     System.out.print(System.lineSeparator());
                 });
     }
@@ -43,7 +36,7 @@ public class ResultView {
         System.out.println(ladderGame.fetchParticipants()
                 .fetchNames()
                 .stream()
-                .map(userName -> centerAlignName(userName.fetchName()))
+                .map(userName -> userName.centerAlignName(maxOutputNameLength))
                 .collect(Collectors.joining(EMPTY_SPACE)));
     }
 
@@ -57,14 +50,8 @@ public class ResultView {
 
     private static String getFormattedLine(Line line, int index) {
         if (line.fetchLines().get(index)) {
-            return String.format("%s%s", EMPTY_SPACE, LADDER_HORIZONTAL.repeat(maxNameLength - 1));
+            return LADDER_HORIZONTAL.repeat(maxOutputNameLength);
         }
-        return EMPTY_SPACE.repeat(maxNameLength);
-    }
-
-    private static String centerAlignName(String name) {
-        int leftPadding = (maxNameLength - name.length()) / 2;
-        int rightPadding = maxNameLength - leftPadding - name.length();
-        return String.format("%s%s%s", EMPTY_SPACE.repeat(leftPadding), name, EMPTY_SPACE.repeat(rightPadding));
+        return EMPTY_SPACE.repeat(maxOutputNameLength);
     }
 }

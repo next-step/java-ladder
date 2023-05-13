@@ -1,8 +1,10 @@
 package ladder.domain;
 
 public class LadderGame {
+
     private final Participants participants;
     private final Ladder ladder;
+
 
     public LadderGame(Participants participants, Ladder ladder) {
         validateLadder(participants, ladder);
@@ -20,6 +22,14 @@ public class LadderGame {
 
     public Ladder fetchLadder() {
         return ladder;
+    }
+
+    public int calculateMaxNameLength() {
+        return participants.fetchNames()
+                .stream()
+                .mapToInt(UserName::calculateNameLength)
+                .max()
+                .orElse(0); //  + NAME_PADDING;
     }
 }
 
