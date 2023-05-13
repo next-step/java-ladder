@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 public class Participant {
 
