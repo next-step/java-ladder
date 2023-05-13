@@ -13,12 +13,16 @@ public class Participants implements Iterable<Participant>{
         this.participants = participants;
     }
 
-    public static Participants participate(String[] participants) {
+    public static Participants participate(String... participants) {
         List<Participant> collect = Arrays.stream(participants)
                 .map(Participant::new)
                 .collect(Collectors.toList());
 
         return new Participants(collect);
+    }
+
+    public int count() {
+        return this.participants.size();
     }
 
     @Override
