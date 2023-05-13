@@ -1,6 +1,7 @@
 package utils;
 
 import java.util.List;
+import ladder.domain.Line.LinePoint;
 
 public class ListUtils {
 
@@ -9,5 +10,17 @@ public class ListUtils {
       return true;
     }
     return false;
+  }
+
+  public static <T> boolean hasNotElementAt (List<T> list, int index) {
+    return !hasElementAt(list, index);
+  }
+
+  public static <T> int getEndIndex(List<T> list) {
+    if (CollectionUtils.isNullOrEmpty(list)) {
+      return 0;
+    }
+
+    return list.size() - 1;
   }
 }

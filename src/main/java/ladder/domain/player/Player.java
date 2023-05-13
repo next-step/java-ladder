@@ -6,7 +6,6 @@ import java.util.Objects;
 
 public class Player {
   private final String name;
-
   private static final int MAX_NAME_LENGTH = 5;
 
   public Player(String name) {
@@ -39,10 +38,5 @@ public class Player {
   @Override
   public int hashCode() {
     return Objects.hash(name);
-  }
-
-  @Override
-  public String toString() {
-    return String.format("%5s", name);
   }
 }

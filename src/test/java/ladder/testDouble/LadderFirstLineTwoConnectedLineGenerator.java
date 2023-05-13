@@ -29,7 +29,7 @@ public class LadderFirstLineTwoConnectedLineGenerator implements LadderGenerator
 
   private void connectFirstTwo(List<Line> lines) {
     Line line = lines.get(0);
-    line.connectRight(0);
-    line.connectRight(1);
+    line.connect(0, 1);
+    line.connect(1, 2);
   }
 }

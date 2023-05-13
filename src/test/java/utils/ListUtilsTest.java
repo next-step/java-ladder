@@ -1,6 +1,7 @@
 package utils;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -48,5 +49,33 @@ public class ListUtilsTest {
     // then
     Assertions.assertThat(hasElementAt)
         .isTrue();
+  }
+
+  @Test
+  @DisplayName("ListUtils.getEndIndex() | 리스트의 마지막 인덱스를 반환한다. ")
+  void 리스트_마지막_인덱스_반환() {
+    // given
+    List<Integer> list = Arrays.asList(1, 2, 3);
+
+    // when
+    int endIndex = ListUtils.getEndIndex(list);
+
+    // then
+    Assertions.assertThat(endIndex)
+        .isEqualTo(2);
+  }
+
+  @Test
+  @DisplayName("ListUtils.getEndIndex() | 리스트가 비어있는 경우 마지막 인덱스는 0으로 반환한다. ")
+  void 리스트_마지막_인덱스_반환_empty_list() {
+    // given
+    List<Integer> list = Collections.emptyList();
+
+    // when
+    int endIndex = ListUtils.getEndIndex(list);
+
+    // then
+    Assertions.assertThat(endIndex)
+        .isEqualTo(0);
   }
 }

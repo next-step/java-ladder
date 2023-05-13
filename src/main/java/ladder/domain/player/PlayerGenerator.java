@@ -2,25 +2,23 @@ package ladder.domain.player;
 
 import exception.ExceptionCode;
 import exception.LadderGameException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class PlayerGenerator {
 
   public List<Player> generatePlayerList(List<String> players) {
-    throwIfDuplicatePlayerFound(players);
-    return players.stream()
+    final Set<Player> playerSet = players.stream()
         .map(Player::new)
-        .collect(Collectors.toList());
-  }
+        .collect(Collectors.toSet());
 
-  private void throwIfDuplicatePlayerFound(List<String> players) {
-    long distinctPlayerCnt = players.stream()
-        .distinct()
-        .count();
 
-    if (distinctPlayerCnt != players.size()) {
+    if (playerSet.size() != players.size()) {
       throw new LadderGameException(ExceptionCode.DUPLICATE_PLAYER_IN_GAME);
     }
+
+    return new ArrayList<>(playerSet);
   }
 }
