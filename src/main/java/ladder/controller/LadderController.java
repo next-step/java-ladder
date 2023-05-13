@@ -1,7 +1,7 @@
 package ladder.controller;
 
 import ladder.domain.Height;
-import ladder.domain.LadderGame;
+import ladder.domain.Ladder;
 import ladder.domain.RandomDrawStrategy;
 import ladder.domain.Users;
 import ladder.view.InputView;
@@ -17,14 +17,13 @@ public class LadderController {
     }
 
     public void startGame() {
-        LadderGame ladderGame = createLadderGame();
-        ladderGame.drawAll(new RandomDrawStrategy());
-        outputView.printLadder(ladderGame);
+        Ladder ladder = createLadder();
+        outputView.printLadder(ladder);
     }
 
-    private LadderGame createLadderGame() {
+    private Ladder createLadder() {
         Users users = new Users(inputView.readNames());
         Height height = new Height(inputView.readHeight());
-        return new LadderGame(users, height);
+        return Ladder.of(users, height, new RandomDrawStrategy());
     }
 }

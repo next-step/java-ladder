@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import ladder.domain2.DrawStrategy;
-
 import java.util.Random;
 
 public class RandomDrawStrategy implements DrawStrategy {

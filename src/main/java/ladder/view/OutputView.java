@@ -1,6 +1,6 @@
 package ladder.view;
 
-import ladder.domain.LadderGame;
+import ladder.domain.Ladder;
 
 import java.util.List;
 
@@ -9,12 +9,12 @@ public class OutputView {
     private static final String VERTICAL_LINE_STRING = "|";
     private static final String HORIZONTAL_LINE_STRING = "-";
 
-    public void printLadder(LadderGame ladderGame) {
+    public void printLadder(Ladder ladder) {
         System.out.println("실행결과\n");
-        
-        printParticipants(ladderGame.getParticipants());
-        for (int i = 0; i < ladderGame.height(); i++) {
-            printLine(ladderGame.checkRightConnections(i));
+
+        printParticipants(ladder.getUserNames());
+        for (int i = 0; i < ladder.height(); i++) {
+            printLine(ladder.hasRightConnections(i));
         }
     }
 
