@@ -22,6 +22,16 @@ public class Ladder {
         return new Ladder(lines);
     }
 
+    public Results move() {
+        Results results = Results.firstMove(lines.get(0));
+
+        for (int i = 1; i < lines.size(); i++) {
+            results = results.nextMove(lines.get(i));
+        }
+
+        return results;
+    }
+
     public int getLadderHeights() {
         return lines.size();
     }

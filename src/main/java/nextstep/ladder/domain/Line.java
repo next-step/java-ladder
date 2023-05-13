@@ -9,7 +9,7 @@ public class Line {
 
     private List<Step> steps;
 
-    private Line(List<Step> steps) {
+    public Line(List<Step> steps) {
         this.steps = steps;
     }
 
@@ -29,5 +29,26 @@ public class Line {
 
     public int numberOfSteps() {
         return steps.size();
+    }
+
+    public List<Position> stepsToPositions() {
+        List<Position> positions = new ArrayList<>();
+
+        for (int i = 0; i < steps.size(); i++) {
+            positions.add(new Position(i, steps.get(i)));
+        }
+
+        return positions;
+    }
+
+    public List<Position> stepsToPositions(Results results) {
+        List<Position> positions = new ArrayList<>();
+
+        for (int i = 0; i < steps.size(); i++) {
+            int matchedKey = results.matchedKeyOfValue(i);
+            positions.add(new Position(results.getValue(matchedKey), steps.get(i)));
+        }
+
+        return positions;
     }
 }
