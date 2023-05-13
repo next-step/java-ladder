@@ -45,7 +45,8 @@ class PointTest {
     @Test
     @DisplayName("last 포인트 생성")
     void last() {
-        Point last = Point.last(true);
+        Point first = Point.first(true);
+        Point last = first.last();
         assertThat(last).isEqualTo(new Point(true, false));
     }
 }

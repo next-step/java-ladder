@@ -17,8 +17,8 @@ public class Point {
         return new Point(false, right);
     }
 
-    public static Point last(boolean left) {
-        return new Point(left, false);
+    public Point last() {
+        return new Point(direction.isRight(), false);
     }
 
     public Point next(boolean nextRight) {
