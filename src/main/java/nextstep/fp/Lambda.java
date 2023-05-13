@@ -20,38 +20,13 @@ public class Lambda {
     }
 
     public static void runThread() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("Hello from thread");
-            }
-        }).start();
+        new Thread(() -> System.out.println("Hello from thread")).start();
     }
 
-    public static int sumAll(List<Integer> numbers) {
+    public static int sumAll(List<Integer> numbers, Conditional conditional) {
         return numbers.stream()
-                .mapToInt(Integer::intValue)
-                .sum();
-    }
-
-    public static int sumAllEven(List<Integer> numbers) {
-        return numbers.stream()
-                .mapToInt(Integer::intValue)
-                .filter(number -> number % 2 == 0)
-                .sum();
-    }
-
-    public static int sumAllOverThree(List<Integer> numbers) {
-        return numbers.stream()
-                .mapToInt(Integer::intValue)
-                .filter(number -> number > 3)
-                .sum();
-    }
-
-    public static int sumAll(List<Integer> numbers, Predicate<Integer> conditional) {
-        return numbers.stream()
-                .mapToInt(Integer::intValue)
                 .filter(conditional::test)
+                .mapToInt(it -> it)
                 .sum();
     }
 }
