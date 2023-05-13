@@ -8,7 +8,9 @@ import java.util.stream.Collectors;
 public class Participants {
 
     public static final int MINIMUM_OF_PARTICIPANT = 1;
+
     private static final String USER_NAME_DELIMITER = ",";
+
     private final List<UserName> userNames;
 
     public Participants(String names) {
@@ -45,5 +47,11 @@ public class Participants {
 
     public int countParticipantPerson() {
         return userNames.size();
+    }
+
+    public String centerAlignedParticipantNames(int maxOutputNameLength) {
+        return userNames.stream()
+                .map(userName -> userName.centerAlignName(maxOutputNameLength))
+                .collect(Collectors.joining(UserName.EMPTY_SPACE));
     }
 }

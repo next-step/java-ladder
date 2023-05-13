@@ -16,10 +16,6 @@ public class LadderGame {
         ladder.validateWidth(participants.countParticipantPerson());
     }
 
-    public Participants fetchParticipants() {
-        return participants;
-    }
-
     public Ladder fetchLadder() {
         return ladder;
     }
@@ -30,6 +26,10 @@ public class LadderGame {
                 .mapToInt(UserName::calculateNameLength)
                 .max()
                 .orElse(0); //  + NAME_PADDING;
+    }
+
+    public String formatCenterAlignedParticipantNames(int maxOutputNameLength) {
+        return participants.centerAlignedParticipantNames(maxOutputNameLength);
     }
 }
 

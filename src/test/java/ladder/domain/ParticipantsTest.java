@@ -32,4 +32,14 @@ class ParticipantsTest {
         Participants participants = new Participants(inputNames);
         Assertions.assertThat(participants.fetchNames()).size().isEqualTo(3);
     }
+
+    @DisplayName("참여 이름 문자열을 공백과 함께 중앙 정렬 할수 있다")
+    @Test
+    void centerAlignedParticipantNamesTest() {
+        String inputNames = "aaa,bbb,ccc";
+        Participants participants = new Participants(inputNames);
+        String centerAlignedParticipantNames = participants.centerAlignedParticipantNames(10);
+        Assertions.assertThat(centerAlignedParticipantNames).isEqualTo("   aaa        bbb        ccc    ");
+    }
 }
+

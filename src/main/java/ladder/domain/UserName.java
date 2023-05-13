@@ -17,9 +17,9 @@ public class UserName {
         }
     }
 
-    public String centerAlignName(int maxNameLength) {
-        int leftPadding = (maxNameLength - name.length()) / 2;
-        int rightPadding = maxNameLength - leftPadding - name.length();
+    public String centerAlignName(int maxOutputNameLength) {
+        int leftPadding = (maxOutputNameLength - name.length()) / 2;
+        int rightPadding = maxOutputNameLength - leftPadding - name.length();
         return String.format("%s%s%s", EMPTY_SPACE.repeat(leftPadding), name, EMPTY_SPACE.repeat(rightPadding));
     }
 
