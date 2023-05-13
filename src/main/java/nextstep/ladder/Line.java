@@ -4,35 +4,40 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
+
+    private static final double HALF = 0.5;
+
     private List<Boolean> points = new ArrayList<>();
 
-    public Line(int countOfPerson, List<Boolean> makeables) {
-        makeLine(countOfPerson, makeables);
+    public Line(int countOfPerson) {
+        makeLine(countOfPerson);
     }
 
-    public void makeLine(int countOfPerson, List<Boolean> makeables) {
-        boolean prevLine = false;
-
-        for (int i = 0; i < countOfPerson - 1; i++) {
-            prevLine = makeLine(prevLine, makeables.get(i));
+    public void makeLine(int countOfPerson) {
+        for (int i = 0; i < countOfPerson; i++) {
+            makePoint(i);
         }
     }
 
-    private boolean makeLine(boolean prevLine, boolean makeCriteria) {
-        if (isMakeable(prevLine, makeCriteria)) {
+    private void makePoint(int idx) {
+        if (idx == 0) {
+            points.add(false);
+            return;
+        }
+
+        if (isMakeable(idx)) {
             points.add(true);
-            return true;
+            return;
         }
         points.add(false);
-        return false;
+    }
+
+    private boolean isMakeable(int idx) {
+        return points.get(idx - 1) == false && HALF < Math.random();
     }
 
     public List<Boolean> points() {
         return points;
-    }
-
-    public boolean isMakeable(boolean prevLine, boolean makeCriteria) {
-        return !prevLine && makeCriteria;
     }
 
     @Override
