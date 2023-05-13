@@ -16,8 +16,8 @@
   - [X] 이동해야할 방향 판단 기능
 - [X] Position 생성 (이동할 위치값)
   - [X] 이동할 위치값 생성 기능
-- [ ] RandomDrawStrategy 생성
-  - [ ] 랜덤하게 사다리 선 그리기 기능
+- [X] RandomDrawStrategy 생성
+  - [X] 랜덤하게 사다리 선 그리기 기능
 - [ ] Line 생성 (사다리의 행)
   - [ ] 행 단위 이동 기능
 - [ ] LadderInput 생성
