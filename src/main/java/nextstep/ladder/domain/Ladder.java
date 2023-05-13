@@ -6,7 +6,7 @@ import java.util.List;
 public class Ladder {
     private final List<Line> coordinate = new ArrayList<>();
 
-    public Ladder(List<String> people, int height) {
+    public Ladder(People people, int height) {
 
         for (int i = 0; i < height; i++) {
             coordinate.add(new Line(people.size()));
