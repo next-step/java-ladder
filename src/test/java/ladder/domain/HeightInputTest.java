@@ -19,7 +19,7 @@ class HeightInputTest {
     @Test
     @DisplayName("사용자가 입력한 높이에 따라 사다리 높이 객체를 반환한다.")
     void ladderHeightTest() {
-        assertThat(new HeightInput(TEST_HEIGHT).ladderHeightByInput())
+        assertThat(new HeightInput(TEST_HEIGHT).ladderHeight())
                 .isEqualTo(new LadderHeight(TEST_HEIGHT));
     }
 

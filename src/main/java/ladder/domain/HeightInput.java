@@ -8,7 +8,7 @@ public class HeightInput {
         this.heightInput = heightInput;
     }
 
-    public LadderHeight ladderHeightByInput() {
+    public LadderHeight ladderHeight() {
         return new LadderHeight(this.heightInput);
     }
 }
