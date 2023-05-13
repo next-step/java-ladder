@@ -10,7 +10,6 @@ class PointTest {
     @DisplayName("좌표 생성")
     void create() {
         // given
-        int position = 0;
         Point point = new Point(false, false);
 
         // when
