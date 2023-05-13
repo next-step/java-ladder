@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import java.util.Objects;
+
 public class LadderInput {
 
     private static final int INPUT_LENGTH = 5;
@@ -32,5 +34,18 @@ public class LadderInput {
 
     public String getLadderInput() {
         return this.ladderInput;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LadderInput that = (LadderInput) o;
+        return Objects.equals(ladderInput, that.ladderInput);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ladderInput);
     }
 }
