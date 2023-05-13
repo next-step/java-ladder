@@ -11,7 +11,7 @@ public class PlayerTest extends BaseTest {
   @ValueSource(strings = {"브루스윌리스", "도널드 트럼프"})
   void 사다리게임_참가_유저의_이름은_최대_5글자(String given) {
      // when & then
-    super.assertLadderGameExceptionThrows(
+    super.assertThatThrowsLadderGameException(
         () -> new Player(given),
         ExceptionCode.EXCEED_PLAYER_NAME_LENGTH
     );

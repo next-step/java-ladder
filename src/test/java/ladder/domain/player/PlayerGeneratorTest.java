@@ -24,7 +24,7 @@ public class PlayerGeneratorTest extends BaseTest {
     List<String> 플레이어_이름_목록 = Arrays.asList("sight", "sight", "seol");
 
     // when & then
-    super.assertLadderGameExceptionThrows(
+    super.assertThatThrowsLadderGameException(
         () -> new LadderGame(플레이어_이름_목록, 사다리_높이),
         ExceptionCode.DUPLICATE_PLAYER_IN_GAME
     );

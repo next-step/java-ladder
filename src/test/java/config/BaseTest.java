@@ -6,7 +6,7 @@ import org.assertj.core.api.Assertions;
 import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 
 public abstract class BaseTest {
-  protected void assertLadderGameExceptionThrows (ThrowingCallable executable, ExceptionCode exceptionCode) {
+  protected void assertThatThrowsLadderGameException(ThrowingCallable executable, ExceptionCode exceptionCode) {
     Assertions.assertThatThrownBy(executable)
         .isInstanceOf(LadderGameException.class)
         .extracting("exceptionCode")
