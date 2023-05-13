@@ -11,28 +11,28 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.*;
 
-class LineTest {
+class ConnectionsTest {
     @ParameterizedTest(name = "[{index}/3] {displayName}")
     @MethodSource("consecutiveConnections")
     @DisplayName("가로 라인의 연결선이 연속해서 존재할 경우, IllegalArgumentException 예외 발생")
     void consecutive_connections_then_throw_IllegalArgumentException(List<Boolean> consecutiveConnections) {
-        assertThatThrownBy(() -> new Line(consecutiveConnections))
+        assertThatThrownBy(() -> new Connections(consecutiveConnections))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("가로 라인의 연결선은 연속해서 존재할 수 없습니다.");
     }
 
     @ParameterizedTest(name = "[{index}/9] {displayName}")
     @MethodSource("validConnections")
-    @DisplayName("가로 라인 연견설이 연속해서 존재하지 않을 경우, Line 객체 생성")
+    @DisplayName("가로 라인 연견설이 연속해서 존재하지 않을 경우, Connections 객체 생성")
     void valid_connections(List<Boolean> validConnections) {
-        assertThat(new Line(validConnections))
-                .isInstanceOf(Line.class);
+        assertThat(new Connections(validConnections))
+                .isInstanceOf(Connections.class);
     }
 
     @Test
     @DisplayName("가로 라인의 연결선이 null일 경우, IllegalArgumentException 예외 발생")
     void null_connections_then_throw_IllegalArgumentException() {
-        assertThatThrownBy(() -> new Line(null))
+        assertThatThrownBy(() -> new Connections(null))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("가로 라인의 연결선은 null이 될 수 없습니다.");
     }
