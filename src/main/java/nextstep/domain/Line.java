@@ -3,6 +3,7 @@ package nextstep.domain;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Line implements Iterable<Boolean> {
     private final LineStrategy strategy;
@@ -26,19 +27,20 @@ public class Line implements Iterable<Boolean> {
         return strategy.addLine();
     }
 
-    public List<Boolean> points() {
-        return points;
+    public Stream<String> booleanToLineStream() {
+        return this.points.stream()
+                .map(this::changeBooleanIntoString);
+    }
+
+    private String changeBooleanIntoString(Boolean b) {
+        if (b)
+            return "-----";
+
+        return "     ";
     }
 
     @Override
     public Iterator<Boolean> iterator() {
         return points.iterator();
-    }
-
-    public String changeBooleanIntoLine(Boolean b) {
-        if (b)
-            return "-----";
-
-        return "     ";
     }
 }
