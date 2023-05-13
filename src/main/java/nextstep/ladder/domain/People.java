@@ -18,8 +18,8 @@ public class People {
                 collect(Collectors.toList()));
     }
 
-    int size() {
-        return people.size();
+    public List<Person> value() {
+        return people;
     }
 
     @Override

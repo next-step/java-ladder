@@ -1,6 +1,9 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Person;
+
+import java.util.List;
 
 public class ResultView {
 
@@ -14,15 +17,44 @@ public class ResultView {
 
     public static void printResult(Ladder ladder) {
         System.out.println("실행결과");
-        printNewLine();
+        System.out.println();
 
-        System.out.println("ladder.people() = " + ladder.people());
+        printLadder(ladder);
+
         System.out.println("ladder.lines() = " + ladder.lines());
     }
 
-    private static void printNewLine() {
-        System.out.println();
+    private static void printLadder(Ladder ladder) {
+        printNames(ladder);
+        printLines(ladder);
     }
 
+    private static void printNames(Ladder ladder) {
+        System.out.println(makeNames(ladder));
+    }
 
+    private static StringBuilder makeNames(Ladder ladder) {
+        StringBuilder sb = new StringBuilder();
+
+        List<Person> people = ladder.people().value();
+        for (int i = 0; i < people.size(); i++) {
+            String name = people.get(i).name();
+
+            if (i == 0) {
+                sb.append(name);
+                continue;
+            }
+
+            for (int j = 0; j < 6 - name.length(); j++) {
+                sb.append(' ');
+            }
+            sb.append(name);
+        }
+        return sb;
+    }
+
+    private static void printLines(Ladder ladder) {
+
+
+    }
 }

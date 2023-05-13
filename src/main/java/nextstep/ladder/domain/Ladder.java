@@ -22,7 +22,7 @@ public class Ladder {
     }
 
     private void addLine() {
-        lines.add(new Line(people.size()));
+        lines.add(new Line(people.value().size()));
     }
 
     public People people() {
