@@ -1,5 +1,7 @@
 package ladder.domain.player;
 
+import exception.ExceptionCode;
+import exception.LadderGameException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,7 +20,7 @@ public class PlayerGenerator {
         .count();
 
     if (distinctPlayerCnt != players.size()) {
-      throw new IllegalArgumentException("중복된 플레이어가 존재합니다. 플레이어 목록을 확인하세요");
+      throw new LadderGameException(ExceptionCode.DUPLICATE_PLAYER_IN_GAME);
     }
   }
 }

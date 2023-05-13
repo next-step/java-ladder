@@ -3,7 +3,7 @@ package ladder.domain;
 import java.util.List;
 import ladder.domain.ladder.DefaultLadderGenerator;
 import ladder.domain.ladder.LadderGenerator;
-import ladder.domain.ladder.Line;
+import ladder.domain.Line.Line;
 import ladder.domain.player.Player;
 import ladder.domain.player.PlayerGenerator;
 

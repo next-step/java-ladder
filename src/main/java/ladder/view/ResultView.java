@@ -2,7 +2,7 @@ package ladder.view;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import ladder.domain.ladder.Line;
+import ladder.domain.Line.Line;
 import ladder.domain.player.Player;
 
 public class ResultView {

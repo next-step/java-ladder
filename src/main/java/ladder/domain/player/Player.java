@@ -1,5 +1,7 @@
 package ladder.domain.player;
 
+import exception.LadderGameException;
+import exception.ExceptionCode;
 import java.util.Objects;
 
 public class Player {
@@ -14,7 +16,7 @@ public class Player {
 
   private void throwIfHasInvalidName(String name) {
     if(name.length() > MAX_NAME_LENGTH) {
-      throw new IllegalArgumentException("사다리게임 플레이어 최대 허용 이름 길이를 초과하였습니다.");
+      throw new LadderGameException(ExceptionCode.EXCEED_PLAYER_NAME_LENGTH);
     }
   }
 

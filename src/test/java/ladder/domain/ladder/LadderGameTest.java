@@ -1,5 +1,7 @@
 package ladder.domain.ladder;
 
-public class LadderGameTest {
+import config.BaseTest;
+
+public class LadderGameTest extends BaseTest {
 
 }

@@ -3,6 +3,7 @@ package ladder.domain.ladder;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import ladder.domain.Line.Line;
 
 public class DefaultLadderGenerator implements LadderGenerator {
 
