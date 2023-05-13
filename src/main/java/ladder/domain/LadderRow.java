@@ -13,7 +13,9 @@ public class LadderRow {
 
     public LadderRow(int size) {
         connectedPoints = new Boolean[size];
-        connectedPoints = Arrays.stream(connectedPoints).map(point -> random.nextBoolean()).toArray(Boolean[]::new);
+        connectedPoints = Arrays.stream(connectedPoints)
+        .map(point -> random.nextBoolean())
+        .toArray(Boolean[]::new);
     }
 
     public int size() {
