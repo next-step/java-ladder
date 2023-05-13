@@ -13,10 +13,10 @@ import static org.assertj.core.api.Assertions.*;
 
 class LineTest {
     @ParameterizedTest(name = "[{index}/3] {displayName}")
-    @MethodSource("invalidConnections")
+    @MethodSource("consecutiveConnections")
     @DisplayName("가로 라인의 연결선이 연속해서 존재할 경우, IllegalArgumentException 예외 발생")
-    void invalid_connections(List<Boolean> invalidConnections) {
-        assertThatThrownBy(() -> new Line(invalidConnections))
+    void consecutive_connections_then_throw_IllegalArgumentException(List<Boolean> consecutiveConnections) {
+        assertThatThrownBy(() -> new Line(consecutiveConnections))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("가로 라인의 연결선은 연속해서 존재할 수 없습니다.");
     }
@@ -29,7 +29,15 @@ class LineTest {
                 .isInstanceOf(Line.class);
     }
 
-    static Stream<Arguments> invalidConnections() {
+    @Test
+    @DisplayName("가로 라인의 연결선이 null일 경우, IllegalArgumentException 예외 발생")
+    void null_connections_then_throw_IllegalArgumentException() {
+        assertThatThrownBy(() -> new Line(null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("가로 라인의 연결선은 null이 될 수 없습니다.");
+    }
+
+    static Stream<Arguments> consecutiveConnections() {
         return Stream.of(
                 Arguments.arguments(List.of(true, true)),
                 Arguments.arguments(List.of(false, true, true)),

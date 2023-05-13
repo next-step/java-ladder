@@ -13,6 +13,10 @@ public class Line {
     }
 
     private void validateConnections(List<Boolean> connections) {
+        if(connections == null) {
+            throw new IllegalArgumentException("가로 라인의 연결선은 null이 될 수 없습니다.");
+        }
+
         if(containsConsecutiveConnections(connections)) {
             throw new IllegalArgumentException("가로 라인의 연결선은 연속해서 존재할 수 없습니다.");
         }
