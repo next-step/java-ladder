@@ -19,12 +19,7 @@ public class Lambda {
   }
 
   public static void runThread() {
-    new Thread(new Runnable() {
-      @Override
-      public void run() {
-        System.out.println("Hello from thread");
-      }
-    }).start();
+    new Thread(() -> System.out.println("Hello from thread")).start();
   }
 
   public static int sumAll(List<Integer> numbers) {
@@ -41,6 +36,6 @@ public class Lambda {
 
   private static int sum(SumStrategy sumStrategy, List<Integer> numbers) {
     return numbers.stream().filter(sumStrategy::isAddable)
-        .reduce(0, (n1, n2)->n1 + n2);
+        .reduce(0, (n1, n2) -> n1 + n2);
   }
 }
