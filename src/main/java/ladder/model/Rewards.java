@@ -11,7 +11,11 @@ public class Rewards {
         this.rewards = rewards;
     }
 
-    public static Rewards of(List<String> rewards) {
+    public static Rewards of(int countOfUser, List<String> rewards) {
+        if (rewards.size() != countOfUser) {
+            throw new IllegalArgumentException("게임 결과는 참여자 수와 동일해야 합니다.");
+        }
+
         return new Rewards(rewards.stream()
                 .map(Reward::new)
                 .collect(Collectors.toList()));
