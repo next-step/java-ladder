@@ -1,7 +1,6 @@
 package nextstep.fp;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Lambda {
     public static void printAllOld(List<Integer> numbers) {
