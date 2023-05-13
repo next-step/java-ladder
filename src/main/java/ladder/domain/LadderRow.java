@@ -21,6 +21,16 @@ public class LadderRow {
         return new LadderRow(points);
     }
 
+    public int width() {
+        return points.size();
+    }
+
+    public List<Boolean> hasRightConnections() {
+        return points.stream()
+                .map(Point::isRight)
+                .collect(Collectors.toList());
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

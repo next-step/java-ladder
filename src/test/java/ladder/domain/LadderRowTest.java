@@ -31,4 +31,18 @@ class LadderRowTest {
         assertThat(ladderRow).isEqualTo(new LadderRow(expectedList));
     }
 
+    @Test
+    @DisplayName("Connection 확인")
+    void hasConnections() {
+        // given
+        int width = 4;
+        LadderRow ladderRow = LadderRow.of(width, () -> true);
+
+        // when
+        List<Boolean> actual = ladderRow.hasRightConnections();
+
+        // then
+        assertThat(actual).isEqualTo(List.of(true, false, true, false));
+    }
+
 }

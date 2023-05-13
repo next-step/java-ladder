@@ -21,6 +21,24 @@ public class Ladder {
         return new Ladder(users, ladderRows);
     }
 
+    public int width() {
+        return ladderRows.get(0).width();
+    }
+
+    public int height() {
+        return ladderRows.size();
+    }
+
+    public List<String> getUserNames() {
+        return IntStream.range(0, width())
+                .mapToObj(users::getUserName)
+                .collect(Collectors.toList());
+    }
+
+    public List<Boolean> hasRightConnections(int heightPosition) {
+        return ladderRows.get(heightPosition).hasRightConnections();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

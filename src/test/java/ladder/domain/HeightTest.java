@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import ladder.domain2.Height;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -14,10 +13,10 @@ class HeightTest {
     @DisplayName("높이 생성")
     void create(int heightInt) {
         // given
-        ladder.domain2.Height height = new ladder.domain2.Height(heightInt);
+        Height height = new Height(heightInt);
 
         // then
-        assertThat(height).isEqualTo(new ladder.domain2.Height(heightInt));
+        assertThat(height).isEqualTo(new Height(heightInt));
         assertThat(height.getHeight()).isEqualTo(heightInt);
     }
 

@@ -5,10 +5,6 @@ import java.util.Objects;
 public class Point {
     private final Direction direction;
 
-    public Point(Direction direction) {
-        this.direction = direction;
-    }
-
     public Point(boolean left, boolean right) {
         this.direction = Direction.of(left, right);
     }
@@ -26,6 +22,10 @@ public class Point {
             return new Point(true, false);
         }
         return new Point(false, nextRight);
+    }
+
+    public boolean isRight() {
+        return direction.isRight();
     }
 
     @Override

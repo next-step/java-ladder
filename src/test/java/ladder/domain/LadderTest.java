@@ -34,6 +34,8 @@ class LadderTest {
 
         // then
         assertThat(ladder).isEqualTo(new Ladder(users, ladderRows));
+        assertThat(ladder.width()).isEqualTo(users.numberOfUsers());
+        assertThat(ladder.height()).isEqualTo(height.getHeight());
     }
 
     @Test
@@ -46,4 +48,14 @@ class LadderTest {
         assertThat(ladder).isEqualTo(Ladder.of(users, height, () -> true));
     }
 
+    @Test
+    @DisplayName("유저 이름 확인")
+    void userNames() {
+        // given
+        Ladder ladder = Ladder.of(users, height, () -> true);
+        List<String> userNames = List.of("pobi", "honux", "crong", "jk");
+
+        // then
+        assertThat(ladder.getUserNames()).isEqualTo(userNames);
+    }
 }

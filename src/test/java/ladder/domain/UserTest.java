@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import ladder.domain2.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +12,7 @@ class UserTest {
     void name() {
         // given
         String name = "pobi";
-        ladder.domain2.User user = new ladder.domain2.User(name);
+        User user = new User(name);
 
         // when
         String actual = user.getName();
@@ -27,11 +26,11 @@ class UserTest {
     void nameException() {
         // when
         assertThatThrownBy(() -> {
-            new ladder.domain2.User(null);
+            new User(null);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름이 입력되지 않았습니다.");
         assertThatThrownBy(() -> {
-            new ladder.domain2.User("");
+            new User("");
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름이 입력되지 않았습니다.");
     }
