@@ -1,14 +1,17 @@
 package nextstep.ladder.view;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
 
     private final Scanner scanner = new Scanner(System.in);
 
-    public String[] inputPeople() {
+    public List<String> inputPeople() {
         ResultView.printPeopleInputCommand();
-        return nextLine().split(",");
+        return new ArrayList<>(Arrays.asList(nextLine().split(",")));
     }
 
     public int inputMaxLadderHeight() {

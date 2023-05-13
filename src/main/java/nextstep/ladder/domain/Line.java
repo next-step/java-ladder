@@ -10,7 +10,7 @@ public class Line {
     private static final boolean NON_EXIST_POINT = false;
     private static final double HALF = 0.5;
 
-    private List<Boolean> points = new ArrayList<>();
+    private final List<Boolean> points = new ArrayList<>();
 
     public Line(int countOfPerson) {
         makeLine(countOfPerson);
