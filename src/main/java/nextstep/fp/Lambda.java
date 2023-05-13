@@ -40,6 +40,7 @@ public class Lambda {
   }
 
   private static int sum(SumStrategy sumStrategy, List<Integer> numbers) {
-    return numbers.stream().filter(sumStrategy::isAddable).mapToInt(Integer::intValue).sum();
+    return numbers.stream().filter(sumStrategy::isAddable)
+        .reduce(0, (n1, n2)->n1 + n2);
   }
 }
