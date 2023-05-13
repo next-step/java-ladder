@@ -25,7 +25,7 @@ public class LadderGame {
                 .stream()
                 .mapToInt(UserName::calculateNameLength)
                 .max()
-                .orElse(0); //  + NAME_PADDING;
+                .orElse(0);
     }
 
     public String formatCenterAlignedParticipantNames(int maxOutputNameLength) {
