@@ -6,13 +6,17 @@ public class Ladder {
     private final LadderRow[] rows;
 
     public Ladder(int height, int personSize) {
+        validate(height, personSize);
+
+        rows = Arrays.stream(new LadderRow[height])
+                .map(row -> new LadderRow(personSize - 1, RandomStrategy.getInstance()))
+                .toArray(LadderRow[]::new);
+    }
+
+    private static void validate(int height, int personSize) {
         if (height < 0 || personSize < 0) {
             throw new IllegalArgumentException("음수는 입력할 수 없습니다.");
         }
-
-        rows = Arrays.stream(new LadderRow[height])
-                .map(row -> new LadderRow(personSize - 1))
-                .toArray(LadderRow[]::new);
     }
 
     public Ladder(LadderRow[] ladderRows) {

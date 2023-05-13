@@ -5,17 +5,16 @@ import java.util.Random;
 
 public class LadderRow {
     private Boolean[] connectedPoints;
-    private static final Random random = new Random();
 
     public LadderRow(Boolean[] connectedPoints) {
         this.connectedPoints = connectedPoints;
     }
 
-    public LadderRow(int size) {
+    public LadderRow(int size, ConnectStrategy connectStrategy) {
         connectedPoints = new Boolean[size];
         connectedPoints = Arrays.stream(connectedPoints)
-        .map(point -> random.nextBoolean())
-        .toArray(Boolean[]::new);
+                .map(point -> connectStrategy.nextBoolean())
+                .toArray(Boolean[]::new);
     }
 
     public int size() {
