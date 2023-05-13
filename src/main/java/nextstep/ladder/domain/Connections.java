@@ -1,10 +1,12 @@
 package nextstep.ladder.domain;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.IntStream;
 
 public class Connections {
     private static final int START_INDEX_OF_CONNECTIONS = 0;
+    private static final int ONE = 1;
     private final List<Boolean> connections;
 
     public Connections(List<Boolean> connections) {
@@ -28,10 +30,23 @@ public class Connections {
     }
 
     private int beforeLastIndexOf(List<Boolean> connections) {
-        return connections.size() - 1;
+        return connections.size() - ONE;
     }
 
     private boolean isConsecutiveConnections(List<Boolean> connections, int index) {
-        return connections.get(index) && connections.get(index + 1);
+        return connections.get(index) && connections.get(index + ONE);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Connections)) return false;
+        Connections that = (Connections) o;
+        return Objects.equals(connections, that.connections);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(connections);
     }
 }
