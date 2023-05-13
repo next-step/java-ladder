@@ -3,6 +3,7 @@ package nextstep;
 import nextstep.domain.Ladder;
 import nextstep.domain.Participants;
 import nextstep.view.InputView;
+import nextstep.view.PrintView;
 
 public class LadderGame {
 
@@ -12,5 +13,9 @@ public class LadderGame {
 
         Participants part = Participants.participate(participants);
         Ladder ladder = Ladder.makeLadder(height, participants.length);
+
+        PrintView.printTitle();
+        PrintView.printParticipants(part);
+        PrintView.printLadder(ladder);
     }
 }

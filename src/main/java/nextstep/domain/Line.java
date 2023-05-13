@@ -1,9 +1,10 @@
 package nextstep.domain;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public class Line {
+public class Line implements Iterable<Boolean> {
     private final LineStrategy strategy;
     private final List<Boolean> points = new ArrayList<>();
 
@@ -27,5 +28,17 @@ public class Line {
 
     public List<Boolean> points() {
         return points;
+    }
+
+    @Override
+    public Iterator<Boolean> iterator() {
+        return points.iterator();
+    }
+
+    public String changeBooleanIntoLine(Boolean b) {
+        if (b)
+            return "-----";
+
+        return "     ";
     }
 }
