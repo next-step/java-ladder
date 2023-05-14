@@ -21,6 +21,10 @@ public class Participants {
         this.names = names;
     }
 
+    public int size() {
+        return names.size();
+    }
+
     private static List<ParticipantName> participantsNames(String[] names) {
         return Arrays.stream(names)
                 .map(String::trim)

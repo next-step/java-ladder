@@ -13,6 +13,10 @@ public class LadderFactory {
         this.lineFactory = lineFactory;
     }
 
+    public Ladder create(Participants participants, int height) {
+        return create(participants.size(), height);
+    }
+
     public Ladder create(int numberOfLine, int height) {
         validateHeight(height);
         return new Ladder(lines(numberOfLine, height));
