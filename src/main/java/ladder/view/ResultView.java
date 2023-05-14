@@ -1,10 +1,10 @@
 package ladder.view;
 
-import ladder.common.Constants;
 import ladder.model.Line;
+import ladder.model.Player;
+import ladder.model.Players;
 import ladder.util.ViewUtil;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,21 +13,21 @@ public class ResultView {
         System.out.println("실행결과");
     }
 
-    public static String getPoint(boolean value) {
-        return value ? Constants.DASH : Constants.SPACE_BAR;
+    public static void showContents(String result) {
+        System.out.println(result);
     }
 
-    public static void showPlayers(String[] players) {
-        System.out.println(arrayToString(players));
+    public static void showPlayers(Players players) {
+        showContents(arrayToString(players));
     }
 
-    private static String arrayToString(String[] players) {
-        return Arrays.stream(players)
-                .map(ViewUtil::adjustGap)
+    private static String arrayToString(Players players) {
+        return players.getPlayers().stream()
+                .map(player -> ViewUtil.adjustGap(player.getName()))
                 .collect(Collectors.joining());
     }
 
     public static void showLines(List<Line> lines) {
-        lines.forEach(line -> System.out.println(line.toString()));
+        lines.forEach(line -> showContents(line.toString()));
     }
 }

@@ -1,8 +1,10 @@
 package ladder.util;
 
-import ladder.common.Constants;
-
 public class ViewUtil {
+    public static final String SPACE_BAR = " ";
+    private ViewUtil() {
+    }
+
     public static String adjustGap(String input){
         return concatInput(setPrefix(6-input.length()),input);
     }
@@ -12,6 +14,6 @@ public class ViewUtil {
     }
 
     public static String setPrefix(int limit) {
-        return Constants.SPACE_BAR.repeat(limit);
+        return SPACE_BAR.repeat(limit);
     }
 }
