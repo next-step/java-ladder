@@ -4,7 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class DirectionTest {
     @Test
@@ -16,10 +15,10 @@ public class DirectionTest {
     }
 
     @Test
-    @DisplayName("사다리가 좌우 동시에 연결되어있을경우 exception")
+    @DisplayName("사다리가 좌우 동시에 연결하려할 경우 오른쪽 사다리 연결안함.")
     void checkDuplicateDirection() {
-        assertThatThrownBy(() -> Direction.first(true).next(true))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThat(Direction.first(true).next(true).move())
+                .isEqualTo(-1);
     }
 
     @Test

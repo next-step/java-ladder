@@ -22,7 +22,11 @@ public class Direction {
     }
 
     public Direction next(boolean right) {
-        return new Direction(this.right, right);
+        if (this.right) {
+            return new Direction(true, false);
+        }
+
+        return new Direction(false, right);
     }
 
     public Direction last() {
