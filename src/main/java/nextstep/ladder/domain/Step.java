@@ -37,6 +37,10 @@ public class Step {
             return RIGHT;
         }
 
+        return moveByPreviousPosition();
+    }
+
+    private Direction moveByPreviousPosition() {
         if (previousPosition) {
             return LEFT;
         }

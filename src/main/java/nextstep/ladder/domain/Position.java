@@ -15,9 +15,14 @@ public class Position {
             return this.position + 1;
         }
 
+        return moveLeftOrStay();
+    }
+
+    private int moveLeftOrStay() {
         if (step.move() == Direction.LEFT) {
             return this.position - 1;
         }
+
         return this.position;
     }
 }
