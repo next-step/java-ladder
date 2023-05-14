@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.exception.OutOfColumnRangeException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -27,8 +28,8 @@ class ColumnTest {
         //when
         //then
         assertThatThrownBy(() -> {
-
-        }).isInstanceOf(Object.class)
-                .hasMessageContaining("추가");
+            Column.of(51);
+        }).isInstanceOf(OutOfColumnRangeException.class)
+                .hasMessageContaining("사용 가능한 Column 의 범위에서 초과하였습니다");
     }
 }
