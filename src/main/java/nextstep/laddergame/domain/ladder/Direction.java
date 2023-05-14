@@ -25,6 +25,10 @@ public class Direction {
         return new Direction(this.right, right);
     }
 
+    public Direction last() {
+        return new Direction(this.right, false);
+    }
+
     public DirectionType move() {
         return DirectionType.checkDirection(this.left, this.right);
     }
