@@ -8,6 +8,10 @@ public class Participants {
 
     protected static final String PARTICIPANT_SEPARATOR = ",";
 
+    private static final String NO_PARTICIPANT_MSG = "1명이상의 참가인원이 있어야합니다.";
+
+    private static final int MIN_PARTICIPANT_NUMBER = 1;
+
     private final List<Participant> participants;
 
     public Participants(String participantChunk) {
@@ -15,7 +19,14 @@ public class Participants {
     }
 
     public Participants(List<Participant> participants) {
+        if(noParticipant(participants)) {
+            throw new IllegalArgumentException(NO_PARTICIPANT_MSG);
+        }
         this.participants = participants;
+    }
+
+    private boolean noParticipant(List<Participant> participants) {
+        return participants.size() < MIN_PARTICIPANT_NUMBER;
     }
 
     private static List<Participant> of(String participantChunk) {
