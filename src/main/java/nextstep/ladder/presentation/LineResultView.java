@@ -12,19 +12,15 @@ public class LineResultView {
     }
 
     public void printLine() {
-        System.out.println(line());
-    }
-
-    private StringBuilder line() {
-        StringBuilder printLine = initialLine();
+        StringBuilder printFormatOfLine = initialPrintFormatOfLine();
         line.connections().stream()
                 .map(ConnectionResultView::new)
-                .forEach(connectionResultView -> printLine.append(connectionResultView.connection()).append(VERTICAL_BAR));
+                .forEach(connectionResultView -> printFormatOfLine.append(connectionResultView.connection()).append(VERTICAL_BAR));
 
-        return printLine;
+        System.out.println(printFormatOfLine);
     }
 
-    private StringBuilder initialLine() {
+    private StringBuilder initialPrintFormatOfLine() {
         return new StringBuilder()
                 .append(String.format(INITIAL_LINE_PRINT_FORMAT, VERTICAL_BAR));
     }

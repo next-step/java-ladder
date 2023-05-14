@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,6 +14,10 @@ public class Ladder {
 
     public Ladder(List<Line> lines) {
         this.lines = lines;
+    }
+
+    public List<Line> lines() {
+        return Collections.unmodifiableList(lines);
     }
 
     @Override

@@ -11,6 +11,10 @@ public class ParticipantName {
         this.name = name;
     }
 
+    public String name() {
+        return name;
+    }
+
     private void validateName(String name) {
         if(name == null || name.isBlank()) {
             throw new IllegalArgumentException("이름은 null이거나 공백일 수 없습니다: " + name);

@@ -25,6 +25,12 @@ public class Participants {
         return names.size();
     }
 
+    public List<String> names() {
+        return names.stream()
+                .map(ParticipantName::name)
+                .collect(Collectors.toUnmodifiableList());
+    }
+
     private static List<ParticipantName> participantsNames(String[] names) {
         return Arrays.stream(names)
                 .map(String::trim)
