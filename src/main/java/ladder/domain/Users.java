@@ -1,12 +1,12 @@
 package ladder.domain;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import static ladder.utils.StringSplitter.splitStrings;
+
 public class Users {
-    private static final String NAME_DELIMITER = ",";
     private final List<User> users;
 
     public Users(List<String> users) {
@@ -16,15 +16,21 @@ public class Users {
     }
 
     public Users(String users) {
-        this(Users.splitNames(users));
-    }
-
-    public static List<String> splitNames(String names) {
-        return Arrays.asList(names.split(NAME_DELIMITER));
+        this(splitStrings(users));
     }
 
     public String getUserName(int index) {
         return users.get(index).getName();
+    }
+
+    public List<String> getUserNames() {
+        return users.stream()
+                .map(User::getName)
+                .collect(Collectors.toList());
+    }
+
+    public int findUser(String userName) {
+        return users.indexOf(new User(userName));
     }
 
     @Override
