@@ -13,6 +13,10 @@ public class Lines {
         this.lines = new HashSet<>();
     }
 
+    public Lines(Set<Line> lines) {
+        this.lines = lines;
+    }
+
     public static Lines of(int column, int row) {
         return Lines.of(column, row, Preferences.createLineCount(column, row));
     }
