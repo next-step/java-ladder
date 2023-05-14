@@ -52,37 +52,16 @@ public class Points {
 	}
 
 	public int nextIndex(int index) {
-		if (index == 0) {
-			return this.stopOrRight(index);
-		}
-		if (index < this.points.size()) {
-			return this.stopOrRightOrLeft(index);
-		}
-		return this.stopOrLeft(index);
+		DirectionType type = DirectionType.of(index, this.points.size());
+		return type.nextIndex(index, this);
 	}
 
-	private int stopOrRight(int index) {
-		if (this.points.get(index).equals(Point.of(true))) {
-			return DirectionType.RIGHT.move(index);
-		}
-		return DirectionType.DOWN.move(index);
+	public boolean isRight(int index) {
+		return this.points.get(index).equals(Point.of(true));
 	}
 
-	private int stopOrRightOrLeft(int index) {
-		if (this.points.get(index - 1).equals(Point.of(true))) {
-			return DirectionType.LEFT.move(index);
-		}
-		if (this.points.get(index).equals(Point.of(true))) {
-			return DirectionType.RIGHT.move(index);
-		}
-		return DirectionType.DOWN.move(index);
-	}
-
-	private int stopOrLeft(int index) {
-		if (this.points.get(index - 1).equals(Point.of(true))) {
-			return DirectionType.LEFT.move(index);
-		}
-		return DirectionType.DOWN.move(index);
+	public boolean isLeft(int index) {
+		return this.points.get(index - 1).equals(Point.of(true));
 	}
 
 	public List<Point> getPoints() {
