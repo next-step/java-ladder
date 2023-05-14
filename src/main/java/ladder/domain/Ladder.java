@@ -22,7 +22,7 @@ public class Ladder {
     }
 
     public int width() {
-        return ladderRows.get(0).width();
+        return users.numberOfUsers();
     }
 
     public int height() {
@@ -30,9 +30,7 @@ public class Ladder {
     }
 
     public List<String> getUserNames() {
-        return IntStream.range(0, width())
-                .mapToObj(users::getUserName)
-                .collect(Collectors.toList());
+        return users.getUserNames();
     }
 
     public List<Boolean> hasRightConnections(int heightPosition) {
