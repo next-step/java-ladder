@@ -3,6 +3,7 @@ package nextstep.laddergame.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -14,15 +15,28 @@ public class Line {
         this.checkParticipantCounts(participantCounts);
 
         final List<Position> positionsList = new ArrayList<>();
-        Direction direction = Direction.first(random.nextBoolean());
+        Direction direction = null;
 
         for (int i = 0; i < participantCounts; i++) {
+            direction = this.makeDirection(direction, i, participantCounts - 1);
             positionsList.add(new Position(i, direction));
-            direction = direction.next(random.nextBoolean());
         }
 
         this.positions = positionsList;
     }
+
+    private Direction makeDirection(Direction direction, int currentIndex, int lastIndex) {
+        if (Objects.isNull(direction)) {
+            return Direction.first(random.nextBoolean());
+        }
+
+        if (currentIndex == lastIndex) {
+            return direction.last();
+        }
+
+        return direction.next(random.nextBoolean());
+    }
+
 
     private void checkParticipantCounts(int participantCounts) {
         if (participantCounts == 0) {
@@ -30,10 +44,15 @@ public class Line {
         }
     }
 
+    public int nextIndex(int currentIndex) {
+        return this.positions.get(currentIndex)
+                .moveResult();
+    }
+
     public List<Boolean> getLineToPrint() {
         return this.positions
                 .stream()
-                .map(Position::isRightDirection)
+                .map(Position::isLeftDirection)
                 .collect(Collectors.toList());
     }
 }

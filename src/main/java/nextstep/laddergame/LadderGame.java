@@ -18,15 +18,15 @@ public class LadderGame {
 
         OutputView.printLadderResult(participants, ladder, rewards);
 
-//        while (true) {
-//            final String selectedParticipant = InputView.resultSelect();
-//
-//            if (ALL.equals(selectedParticipant)) {
-//                OutputView.printRewardAll(lines.rewardAll(participants, rewards));
-//                break;
-//            }
-//
-//            OutputView.printRewardOnePerson(lines.rewardOnePerson(participants, rewards, selectedParticipant));
-//        }
+        while (true) {
+            final String selectedParticipant = InputView.resultSelect();
+
+            if (ALL.equals(selectedParticipant)) {
+                OutputView.printRewardAll(ladder.ladderGameAllPerson(participants, rewards));
+                break;
+            }
+
+            OutputView.printRewardOnePerson(ladder.ladderGameOnePerson(participants, rewards, selectedParticipant));
+        }
     }
 }

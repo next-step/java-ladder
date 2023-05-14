@@ -9,7 +9,7 @@ import nextstep.laddergame.domain.reward.Rewards;
 import java.util.List;
 
 public class OutputView {
-    private static final String BLANK = "   ";
+    private static final String BLANK = "     ";
     private static final String LADDER_COLUMN = "|";
     private static final String LADDER_TRUE_ROW = "------";
     private static final String LADDER_FALSE_ROW = "      ";

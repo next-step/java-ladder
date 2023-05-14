@@ -1,5 +1,8 @@
 package nextstep.laddergame.domain.ladder;
 
+import nextstep.laddergame.domain.participant.Participants;
+import nextstep.laddergame.domain.reward.Rewards;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -23,5 +26,24 @@ public class Ladder {
 
     public List<Line> getLinesToPrint() {
         return this.lines;
+    }
+
+    public String ladderGameOnePerson(Participants participants, Rewards rewards, String selectedParticipant) {
+        int currentIndex = participants.indexByName(selectedParticipant);
+
+        for (Line line : this.lines) {
+            currentIndex = line
+                    .nextIndex(currentIndex);
+        }
+
+        return rewards.getRewardBy(currentIndex)
+                .getReward();
+    }
+
+    public List<String> ladderGameAllPerson(Participants participants, Rewards rewards) {
+        return participants.getNames()
+                .stream()
+                .map(name -> name + " : " + this.ladderGameOnePerson(participants, rewards, name))
+                .collect(Collectors.toList());
     }
 }

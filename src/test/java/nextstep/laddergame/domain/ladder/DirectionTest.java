@@ -50,10 +50,10 @@ public class DirectionTest {
 
     @Test
     @DisplayName("사다리 유무 확인")
-    void isRightLine() {
+    void isLeftDirection() {
         final Direction direction = Direction.first(true);
 
-        assertThat(direction.isRightDirection())
-                .isTrue();
+        assertThat(direction.isLeftDirection())
+                .isFalse();
     }
 }

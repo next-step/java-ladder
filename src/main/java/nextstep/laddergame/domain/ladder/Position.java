@@ -13,7 +13,7 @@ public class Position {
         return this.position + this.direction.move();
     }
 
-    public boolean isRightDirection() {
-        return this.direction.isRightDirection();
+    public boolean isLeftDirection() {
+        return this.direction.isLeftDirection();
     }
 }

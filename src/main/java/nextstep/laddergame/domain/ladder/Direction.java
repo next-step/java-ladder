@@ -39,7 +39,7 @@ public class Direction {
                 .moveRow();
     }
 
-    public boolean isRightDirection() {
-        return this.right;
+    public boolean isLeftDirection() {
+        return this.left;
     }
 }
