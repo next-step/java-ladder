@@ -25,6 +25,6 @@ class ParticipantNameTest {
         // when, then
         assertThatThrownBy(() -> new ParticipantName(moreThanFiveCharactersName))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("이름의 길이는 5를 초과할 수 없습니다: " + moreThanFiveCharactersName.length());
+                .hasMessage("이름의 길이는 5를 초과할 수 없습니다: " + moreThanFiveCharactersName);
     }
 }
