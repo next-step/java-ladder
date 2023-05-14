@@ -39,11 +39,11 @@ public class Lines {
     }
 
 
-    private void append(Line anyLine) {
+    public void append(Line anyLine) {
         this.lines.add(anyLine);
     }
 
-    private boolean isExistSameColumnAndAdjacentRow(Line otherLine) {
+    public boolean isExistSameColumnAndAdjacentRow(Line otherLine) {
         return this.lines.stream()
                 .filter(line -> line.isSameRow(otherLine))
                 .noneMatch(line -> line.isAdjacentColumn(otherLine));

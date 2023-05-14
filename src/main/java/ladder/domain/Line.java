@@ -20,9 +20,9 @@ public class Line {
         return new Line(lineStrategy.anyColumn(), lineStrategy.anyRow());
     }
 
-    public int rowPosition() {
-        return row.getValue();
-    }
+//    public int rowPosition() {
+//        return row.getValue();
+//    }
 
     public boolean isSame(int columnPosition, int rowPosition) {
         return column.sameValue(columnPosition) && row.sameValue(rowPosition);
