@@ -29,12 +29,18 @@ public class InputView {
         return new Height(Integer.parseInt(SCANNER.nextLine()));
     }
 
-    private static Participants parseParticipants(String inputNames) {
-        List<Participant> participants = Arrays.stream(inputNames.split(COMMA))
-                .map(Participant::new)
-                .collect(Collectors.toList());
+    public static String inputLadderResults() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
 
-        return new Participants(participants);
+        return SCANNER.nextLine();
+    }
+
+    public static Participant inputParticipantNameForResult() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        String inputNames = SCANNER.nextLine();
+
+        return new Participant(inputNames);
+
     }
 
 }
