@@ -21,6 +21,7 @@ public class LadderHeight {
         return height < MIN_LADDER_HEIGHT;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
