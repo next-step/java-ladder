@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 public class InputView {
 
     private static final String DELIMITER = ",";
+    public static final int MAX_NAME_LENGTH = 5;
     private static final Scanner scanner = new Scanner(System.in);
 
     public static List<String> getParticipantsName() {
@@ -19,9 +20,11 @@ public class InputView {
 
     private static void validateInput(String[] split) {
         Arrays.stream(split)
-                .filter(s -> s.length() > 5)
+                .filter(s -> s.length() > MAX_NAME_LENGTH)
                 .findAny()
-                .orElseThrow(IllegalArgumentException::new);
+                .ifPresent(s -> {
+                    throw new IllegalArgumentException(s + "는 입력할 수 없습니다.");
+                });
     }
     
     public static int getLadderHeight() {
