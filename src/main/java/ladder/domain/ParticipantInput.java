@@ -16,4 +16,8 @@ public class ParticipantInput{
     private boolean isEmpty(String source) {
         return source == null || source.isEmpty();
     }
+
+    public Participants participants() {
+        return new Participants(this.participantChunk);
+    }
 }
