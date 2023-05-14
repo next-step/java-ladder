@@ -15,6 +15,7 @@ public class LadderController {
 
         LadderGame ladderGame = new LadderGame(participantNames, height, new RandomLadderPointGenerateStrategy());
 
-        OutputView.printParticipantNamesAndLadders(ladderGame);
+        OutputView.printParticipantNames(ladderGame.getParticipantNames());
+        OutputView.printLadders(ladderGame.getLines());
     }
 }
