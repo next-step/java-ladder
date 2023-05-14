@@ -1,6 +1,7 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Person;
 
 import java.util.List;
@@ -12,16 +13,12 @@ public class ResultView {
     }
 
     static void printHeightInputCommand() {
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        System.out.println("\n최대 사다리 높이는 몇 개인가요?");
     }
 
     public static void printResult(Ladder ladder) {
-        System.out.println("실행결과");
-        System.out.println();
-
+        System.out.println("\n실행결과\n");
         printLadder(ladder);
-
-        System.out.println("ladder.lines() = " + ladder.lines());
     }
 
     private static void printLadder(Ladder ladder) {
@@ -33,7 +30,7 @@ public class ResultView {
         System.out.println(makeNames(ladder));
     }
 
-    private static StringBuilder makeNames(Ladder ladder) {
+    private static String makeNames(Ladder ladder) {
         StringBuilder sb = new StringBuilder();
 
         List<Person> people = ladder.people().value();
@@ -50,11 +47,36 @@ public class ResultView {
             }
             sb.append(name);
         }
-        return sb;
+        return sb.toString();
     }
 
     private static void printLines(Ladder ladder) {
+        System.out.println(makeLines(ladder));
+    }
 
+    private static String makeLines(Ladder ladder) {
+        StringBuilder sb = new StringBuilder();
+        List<Line> lines = ladder.lines();
 
+        for (Line line : lines) {
+            List<Boolean> points = line.points();
+
+            for (int j = 0; j < points.size(); j++) {
+                if (j == 0) {
+
+                    
+                }
+
+                if (points.get(j)) {
+                    sb.append("-----");
+                } else {
+                    sb.append("     ");
+                }
+                sb.append("|");
+            }
+            sb.append("\n");
+        }
+
+        return sb.toString();
     }
 }
