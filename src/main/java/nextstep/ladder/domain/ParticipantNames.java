@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class ParticipantNames {
@@ -10,14 +11,7 @@ public class ParticipantNames {
     }
 
     public List<ParticipantName> getNames() {
-        return names;
-    }
-
-    public int getFirstParticipantNameLength() {
-        return names.stream()
-                .findFirst()
-                .map(name -> name.getName().length())
-                .orElse(0);
+        return Collections.unmodifiableList(names);
     }
 
     public int size() {
