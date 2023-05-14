@@ -4,6 +4,7 @@ package nextstep.laddergame.domain.ladder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class Line {
     private static final Random random = new Random();
@@ -27,5 +28,12 @@ public class Line {
         if (participantCounts == 0) {
             throw new IllegalArgumentException("참여자 수는 한 명 이상이어야합니다.");
         }
+    }
+
+    public List<Boolean> getLineToPrint() {
+        return this.positions
+                .stream()
+                .map(Position::isRightDirection)
+                .collect(Collectors.toList());
     }
 }

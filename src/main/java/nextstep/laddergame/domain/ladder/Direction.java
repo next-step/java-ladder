@@ -38,4 +38,8 @@ public class Direction {
                 .checkDirection(this.left, this.right)
                 .moveRow();
     }
+
+    public boolean isRightDirection() {
+        return this.right;
+    }
 }

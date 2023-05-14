@@ -12,4 +12,8 @@ public class Position {
     public int moveResult() {
         return this.position + this.direction.move();
     }
+
+    public boolean isRightDirection() {
+        return this.direction.isRightDirection();
+    }
 }

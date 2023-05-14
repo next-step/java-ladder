@@ -20,4 +20,8 @@ public class Ladder {
             throw new IllegalArgumentException("사다리 높이는 1칸 이상이여야합니다.");
         }
     }
+
+    public List<Line> getLinesToPrint() {
+        return this.lines;
+    }
 }

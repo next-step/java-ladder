@@ -47,4 +47,13 @@ public class DirectionTest {
         assertThat(direction.move())
                 .isEqualTo(0);
     }
+
+    @Test
+    @DisplayName("사다리 유무 확인")
+    void isRightLine() {
+        final Direction direction = Direction.first(true);
+
+        assertThat(direction.isRightDirection())
+                .isTrue();
+    }
 }
