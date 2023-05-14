@@ -2,6 +2,7 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.People;
 import nextstep.ladder.domain.Person;
 
 import java.util.List;
@@ -57,14 +58,19 @@ public class ResultView {
     private static String makeLines(Ladder ladder) {
         StringBuilder sb = new StringBuilder();
         List<Line> lines = ladder.lines();
+        People people = ladder.people();
+        int firstNameLength = people.firstNameLength();
 
         for (Line line : lines) {
             List<Boolean> points = line.points();
 
             for (int j = 0; j < points.size(); j++) {
                 if (j == 0) {
-
-                    
+                    for (int i = 0; i < firstNameLength; i++) {
+                        sb.append(" ");
+                    }
+                    sb.append("|");
+                    continue;
                 }
 
                 if (points.get(j)) {
