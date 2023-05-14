@@ -3,7 +3,15 @@ package nextstep.ladder.vo;
 import nextstep.ladder.domain.line.Lines;
 
 public enum DirectionType {
-    DOWN, LEFT, RIGHT;
+    DOWN(() -> 0),
+    LEFT(() -> -1),
+    RIGHT(() -> 1);
+
+    private final MoveStrategy moveStrategy;
+
+    DirectionType(MoveStrategy moveStrategy) {
+        this.moveStrategy = moveStrategy;
+    }
 
     public static DirectionType checkDirection(int row, int col, Lines lines) {
         if (lines.isLeftDirection(row, col)) {
@@ -16,12 +24,6 @@ public enum DirectionType {
     }
 
     public int moveRow() {
-        if (this.equals(LEFT)) {
-            return -1;
-        }
-        if (this.equals(RIGHT)) {
-            return 1;
-        }
-        return 0;
+        return moveStrategy.move();
     }
 }
