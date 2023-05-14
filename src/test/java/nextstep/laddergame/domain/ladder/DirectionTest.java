@@ -1,0 +1,51 @@
+package nextstep.laddergame.domain.ladder;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+public class DirectionTest {
+    @Test
+    @DisplayName("생성 테스트")
+    void create() {
+        final Direction direction = Direction.first(true).next(false);
+        assertThat(direction)
+                .isInstanceOf(Direction.class);
+    }
+
+    @Test
+    @DisplayName("사다리가 좌우 동시에 연결되어있을경우 exception")
+    void checkDuplicateDirection() {
+        assertThatThrownBy(() -> Direction.first(true).next(true))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("사다리 왼쪽으로 이동하는 기능 확인")
+    void moveLeft() {
+        final Direction direction = Direction.first(true).next(false);
+
+        assertThat(direction.move())
+                .isEqualTo(DirectionType.LEFT);
+    }
+
+    @Test
+    @DisplayName("사다리 오른쪽으로 이동하는 기능 확인")
+    void moveRight() {
+        final Direction direction = Direction.first(false).next(true);
+
+        assertThat(direction.move())
+                .isEqualTo(DirectionType.RIGHT);
+    }
+
+    @Test
+    @DisplayName("사다리 좌우로 이동하지 않는 기능 확인")
+    void moveDown() {
+        final Direction direction = Direction.first(false).next(false);
+
+        assertThat(direction.move())
+                .isEqualTo(DirectionType.PASS);
+    }
+}

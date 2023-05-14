@@ -1,4 +1,4 @@
-package nextstep.laddergame.vo;
+package nextstep.laddergame.domain.ladder;
 
 @FunctionalInterface
 public interface MoveStrategy {

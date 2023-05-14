@@ -1,9 +1,7 @@
-package nextstep.laddergame.vo;
-
-import nextstep.laddergame.domain.ladder.Lines;
+package nextstep.laddergame.domain.ladder;
 
 public enum DirectionType {
-    DOWN(() -> 0),
+    PASS(() -> 0),
     LEFT(() -> -1),
     RIGHT(() -> 1);
 
@@ -13,14 +11,18 @@ public enum DirectionType {
         this.moveStrategy = moveStrategy;
     }
 
-    public static DirectionType checkDirection(int row, int col, Lines lines) {
-        if (lines.isLeftDirection(row, col)) {
+    public static DirectionType checkDirection(boolean left, boolean right) {
+        if (left && right) {
+            throw new IllegalArgumentException("양쪽이 전부 연결된 사다리는 이동할 수 없습니다.");
+        }
+
+        if (left) {
             return LEFT;
         }
-        if (lines.isRightDirection(row, col)) {
+        if (right) {
             return RIGHT;
         }
-        return DOWN;
+        return PASS;
     }
 
     public int moveRow() {
