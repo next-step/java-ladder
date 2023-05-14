@@ -38,7 +38,6 @@ public class Lines {
         }
     }
 
-
     public void append(Line anyLine) {
         this.lines.add(anyLine);
     }
@@ -60,5 +59,4 @@ public class Lines {
     public boolean existLine(Line otherLine) {
         return lines.stream().anyMatch(line -> line.isSameRow(otherLine));
     }
-
 }
