@@ -19,16 +19,6 @@ public class Lines {
         this.lines = new ArrayList<>(lines);
     }
 
-    public static Lines linesOf(PointStrategy pointStrategy,
-            int countOfPerson,
-            int height
-            ) {
-        List<Line> lines = new ArrayList<>();
-        for(int index = 0; index < height; index ++) {
-            lines.add(lineOf(countOfPerson,pointStrategy));
-        }
-        return new Lines(lines);
-    }
 
     public int size() {
         return this.lines.size();

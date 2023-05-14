@@ -29,11 +29,5 @@ class LinesTest {
                 .hasMessage("사다리 정보가 비어있습니다.");
     }
 
-    @Test
-    @DisplayName("참가자와 사다리 높이에 맞춰 사다리 전체를 생성한다")
-    void createLinesTest() {
-        assertThat(linesOf(new RandomPointStrategy(), 5, 5).size())
-                .isEqualTo(5);
-    }
 
 }

@@ -1,6 +1,12 @@
 package ladder.domain;
 
+import static ladder.domain.Line.lineOf;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import ladder.util.PointStrategy;
+import ladder.util.RandomPointStrategy;
 
 public class LadderHeight {
 
@@ -15,6 +21,14 @@ public class LadderHeight {
             throw new IllegalArgumentException(TOO_LOW_MSG);
         }
         this.height = height;
+    }
+
+    public Lines linesByHeight(int countOfPerson, PointStrategy pointStrategy) {
+        List<Line> lines = new ArrayList<>();
+        for(int index = 0; index < this.height; index ++) {
+            lines.add(lineOf(countOfPerson,pointStrategy));
+        }
+        return new Lines(lines);
     }
 
     private boolean tooShort(int height) {
