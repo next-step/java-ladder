@@ -14,7 +14,7 @@ public class LadderRow {
 
     public static LadderRow of(int width, DrawStrategy drawStrategy) {
         Point firstPoint = Point.first(drawStrategy.draw());
-        List<Point> points = Stream.iterate(firstPoint, p -> p.next(drawStrategy.draw()))
+        List<Point> points = Stream.iterate(firstPoint, p -> p.next(drawStrategy))
                 .limit(width - 1)
                 .collect(Collectors.toList());
         points.add(points.get(width - 2).last());

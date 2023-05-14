@@ -3,25 +3,34 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Point {
+    private static final boolean CONNECTED = true;
+    private static final boolean NOT_CONNECTED = false;
     private final Direction direction;
+
+    public Point(Direction direction) {
+        this.direction = direction;
+    }
 
     public Point(boolean left, boolean right) {
         this.direction = Direction.of(left, right);
     }
 
     public static Point first(boolean right) {
-        return new Point(false, right);
+        return new Point(NOT_CONNECTED, right);
     }
 
     public Point last() {
-        return new Point(direction.isRight(), false);
+        return new Point(direction.isRight(), NOT_CONNECTED);
     }
 
-    public Point next(boolean nextRight) {
+    public Point next(DrawStrategy drawStrategy) {
         if (direction.isRight()) {
-            return new Point(true, false);
+            return new Point(Direction.LEFT);
         }
-        return new Point(false, nextRight);
+        if (drawStrategy.draw()) {
+            return new Point(Direction.RIGHT);
+        }
+        return new Point(Direction.NONE);
     }
 
     public boolean isRight() {

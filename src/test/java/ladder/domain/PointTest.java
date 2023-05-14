@@ -27,7 +27,7 @@ class PointTest {
     @DisplayName("다음 포인트 생성")
     void next() {
         Point first = Point.first(false);
-        Point next = first.next(true);
+        Point next = first.next(() -> true);
 
         assertThat(next).isEqualTo(new Point(false, true));
     }
@@ -36,7 +36,7 @@ class PointTest {
     @DisplayName("다음 포인트 생성 - 오른쪽 true")
     void nextRightTrue() {
         Point first = Point.first(true);
-        Point next = first.next(true);
+        Point next = first.next(() -> true);
 
         assertThat(next).isEqualTo(new Point(true, false));
     }
