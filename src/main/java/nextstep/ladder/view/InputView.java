@@ -16,11 +16,11 @@ public class InputView {
     private InputView() {
     }
 
-    public static Participants inputAndExtractParticipantNames() {
+    public static Participants inputParticipantsNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String inputNames = SCANNER.nextLine();
 
-        return extractNames(inputNames);
+        return parseParticipants(inputNames);
     }
 
     public static Height inputMaxLadderHeight() {
@@ -29,9 +29,9 @@ public class InputView {
         return new Height(Integer.parseInt(SCANNER.nextLine()));
     }
 
-    private static ParticipantNames extractNames(String inputNames) {
-        List<ParticipantName> participantNames = Arrays.stream(inputNames.split(COMMA))
-                .map(ParticipantName::new)
+    private static Participants parseParticipants(String inputNames) {
+        List<Participant> participants = Arrays.stream(inputNames.split(COMMA))
+                .map(Participant::new)
                 .collect(Collectors.toList());
 
         return new Participants(participants);

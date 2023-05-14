@@ -10,7 +10,7 @@ import nextstep.ladder.view.OutputView;
 public class LadderController {
 
     public static void main(String[] args) {
-        Participants participants = InputView.inputAndExtractParticipantNames();
+        Participants participants = InputView.inputParticipantsNames();
         Height height = InputView.inputMaxLadderHeight();
 
         LadderGame ladderGame = new LadderGame(participants, height, new RandomLadderPointGenerateStrategy());
