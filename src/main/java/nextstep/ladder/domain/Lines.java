@@ -8,12 +8,12 @@ import java.util.stream.IntStream;
 public class Lines {
     private final List<Line> lines;
 
-    public Lines(int countOfParticipant, Height height, GenerateLadderPointStrategy generateLadderPointStrategy) {
+    public Lines(int countOfParticipant, int height, GenerateLadderPointStrategy generateLadderPointStrategy) {
         this.lines = setLines(countOfParticipant, height, generateLadderPointStrategy);
     }
 
-    private List<Line> setLines(int countOfParticipant, Height height, GenerateLadderPointStrategy generateLadderPointStrategy) {
-        return IntStream.range(0, height.getHeight())
+    private List<Line> setLines(int countOfParticipant, int height, GenerateLadderPointStrategy generateLadderPointStrategy) {
+        return IntStream.range(0, height)
                 .mapToObj(i -> new Line(countOfParticipant, generateLadderPointStrategy))
                 .collect(Collectors.toList());
     }
