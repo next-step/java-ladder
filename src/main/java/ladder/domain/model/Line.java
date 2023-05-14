@@ -9,13 +9,18 @@ import java.util.stream.IntStream;
 
 public class Line {
     private static final Random RANDOM = new Random();
+    private static final int RANGE_START = 0;
+    private static final int ZERO = 0;
+
 
     private List<Boolean> points = new ArrayList<>();
 
     public Line(int countOfPerson) {
-        IntStream.range(0, countOfPerson - 1)
+        int rangeEnd = countOfPerson - 1;
+
+        IntStream.range(RANGE_START, rangeEnd)
                 .forEach(count -> {
-                    if (count == 0 || !points.get(count - 1)) {
+                    if (count == ZERO || !points.get(count - 1)) {
                         connectLine(() -> RANDOM.nextBoolean());
                         return;
                     }

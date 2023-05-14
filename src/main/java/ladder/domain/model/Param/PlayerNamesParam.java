@@ -7,13 +7,13 @@ import ladder.exception.PlayerNameArgumentException;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class PlayerNamesParam implements BaseParam {
     private static final String DELIMITER = ",";
     private static final String TRIM = " ";
     private static final int MINIMUM_NUMBER_OF_PEOPLE = 2;
+
     private String playersName;
 
     public PlayerNamesParam(String playersName) {

@@ -17,6 +17,8 @@ public class OutPutView {
     private static final String LADDER_CONNECTION_SUCCESS_DELIMITER = "-";
     private static final String LADDER_CONNECTION_FALE_DELIMITER = " ";
     private static final String LADDER_HEIGHT = "|";
+    private static final int START_RANGE = 0;
+    private static final int END_RANGE = 5;
 
     public static void outputGame(Lines lines, PlayerNames playerNames) {
         List<Line> lines1 = lines.getLines();
@@ -33,7 +35,7 @@ public class OutPutView {
                             .map(aBoolean -> {
                                 String delimiter = aBoolean ? LADDER_CONNECTION_SUCCESS_DELIMITER : LADDER_CONNECTION_FALE_DELIMITER;
                                 String height = LADDER_HEIGHT;
-                                return IntStream.range(0, 5)
+                                return IntStream.range(START_RANGE, END_RANGE)
                                         .mapToObj(i -> delimiter)
                                         .collect(Collectors.joining()) + height;
                             })
@@ -43,14 +45,16 @@ public class OutPutView {
     }
 
     public static void outputPlayerNames(PlayerNames playerNames) {
-        String playerNamesString = playerNames.getPlayerNames().stream()
+        String playerNamesString = playerNames.getPlayerNames()
+                .stream()
                 .map(playerName -> playerName.getName())
                 .collect(Collectors.joining(" "));
+
         System.out.println(playerNamesString);
     }
 
     public static String firstLadder() {
-        return IntStream.range(0, 5)
+        return IntStream.range(START_RANGE, END_RANGE)
                 .mapToObj(i -> LADDER_CONNECTION_FALE_DELIMITER)
                 .collect(Collectors.joining());
     }

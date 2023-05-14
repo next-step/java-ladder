@@ -5,6 +5,7 @@ import ladder.exception.LadderHeightArgumentException;
 
 public class LadderHeightParam implements BaseParam {
     private static int MINIMUM_HEIGHT = 1;
+
     private int height;
 
     public LadderHeightParam(int height) {
