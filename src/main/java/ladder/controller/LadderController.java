@@ -14,8 +14,6 @@ import ladder.ui.ResultView;
 
 public class LadderController {
 
-	private static final int RESULT_CHECK_TRY_COUNT = 5;
-
 	public static void start() {
 		Names names = new Names(InputView.inputNames());
 		Results results = new Results(InputView.inputResults(), names);
@@ -29,9 +27,12 @@ public class LadderController {
 		LadderGame ladderGame = new LadderGame();
 		ladderGame.start(ladder, names);
 		ResultsBoard resultsBoard = ladderGame.makeResultsBoard(names, results);
-		for (int i = 0; i < RESULT_CHECK_TRY_COUNT; i++) {
+		while (true) {
 			ResultName resultName = new ResultName(names, InputView.inputResultName());
 			ResultView.printGameResult(resultsBoard, resultName);
+			if (resultName.isAll()) {
+				return;
+			}
 		}
 	}
 }
