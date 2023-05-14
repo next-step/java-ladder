@@ -3,6 +3,10 @@ package nextstep.optional;
 import java.util.Optional;
 
 public class User {
+
+    private static final int MAX_RANGE_AGE = 45;
+    private static final int MIN_RANGE_AGE = 30;
+
     private String name;
     private Integer age;
 
@@ -42,7 +46,7 @@ public class User {
     }
 
     private static boolean isInRange(Integer age) {
-        return age >= 30 && age <= 45;
+        return age >= MIN_RANGE_AGE && age <= MAX_RANGE_AGE;
     }
 
     @Override
