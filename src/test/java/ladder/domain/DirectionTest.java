@@ -11,19 +11,19 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class DirectionTest {
     @ParameterizedTest(name = "{0}, {1}")
     @CsvSource({
-            "false, true",
-            "true, false",
-            "false, false"
+            "false, true, RIGHT",
+            "true, false, LEFT",
+            "false, false, NONE"
     })
     @DisplayName("방향 생성")
-    void create(boolean left, boolean right) {
+    void create(boolean left, boolean right, Direction expected) {
         // given
         Direction direction = Direction.of(left, right);
 
         // when
-        assertThat(direction.isLeft()).isEqualTo(left);
-        assertThat(direction.isRight()).isEqualTo(right);
+        assertThat(direction).isSameAs(expected);
     }
+
 
     @Test
     @DisplayName("두 방향 true 예외")

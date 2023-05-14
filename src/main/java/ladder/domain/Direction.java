@@ -3,8 +3,8 @@ package ladder.domain;
 import java.util.Arrays;
 
 public enum Direction {
-    LEFT(false, true),
-    RIGHT(true, false),
+    LEFT(true, false),
+    RIGHT(false, true),
     NONE(false, false);
 
     private static final String EXCEPTION_BOTH_TRUE = "가로 라인은 한 좌표에 하나만 가질 수 있습니다.";
