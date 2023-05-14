@@ -28,7 +28,7 @@ public class DirectionTest {
         final Direction direction = Direction.first(true).next(false);
 
         assertThat(direction.move())
-                .isEqualTo(DirectionType.LEFT);
+                .isEqualTo(-1);
     }
 
     @Test
@@ -37,15 +37,15 @@ public class DirectionTest {
         final Direction direction = Direction.first(false).next(true);
 
         assertThat(direction.move())
-                .isEqualTo(DirectionType.RIGHT);
+                .isEqualTo(1);
     }
 
     @Test
     @DisplayName("사다리 좌우로 이동하지 않는 기능 확인")
-    void moveDown() {
+    void movePass() {
         final Direction direction = Direction.first(false).next(false);
 
         assertThat(direction.move())
-                .isEqualTo(DirectionType.PASS);
+                .isEqualTo(0);
     }
 }
