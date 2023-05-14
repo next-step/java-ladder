@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 public class LineTest {
 
     @Test
-    @DisplayName("사다리의 첫 시작은 False 값으로 시작해야한다. | 로 시작해야 함")
+    @DisplayName("사다리의 첫 시작은 False 값으로 시작해야한다.")
     void firstIndexFalseTest() {
         assertDoesNotThrow(() -> new Line(Arrays.asList(false, true)));
     }
