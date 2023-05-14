@@ -3,8 +3,6 @@ package ladder.domain;
 import ladder.control.Preferences;
 import ladder.exception.OutOfColumnRangeException;
 
-import java.util.Objects;
-
 public class Column {
     private final int value;
     private static final Column[] COLUMNS_CACHE = new Column[Preferences.maxColumnPolicy()+1];
@@ -24,10 +22,6 @@ public class Column {
         return COLUMNS_CACHE[value];
     }
 
-    public int getValue() {
-        return value;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -39,5 +33,13 @@ public class Column {
     @Override
     public int hashCode() {
         return value;
+    }
+
+    public boolean sameValue(int columnPosition) {
+        return this.value == columnPosition;
+    }
+
+    public boolean isAdjacent(Column other) {
+        return Math.abs(this.value - other.value) <= 1;
     }
 }

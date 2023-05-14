@@ -20,16 +20,12 @@ public class Line {
         return new Line(lineStrategy.anyColumn(), lineStrategy.anyRow());
     }
 
-    public int columnPosition() {
-        return column.getValue();
-    }
-
     public int rowPosition() {
         return row.getValue();
     }
 
     public boolean isSame(int columnPosition, int rowPosition) {
-        return (column.getValue() == columnPosition) && (row.getValue() == rowPosition);
+        return column.sameValue(columnPosition) && row.sameValue(rowPosition);
     }
 
     public boolean isSameRow(Line otherLine) {
@@ -37,7 +33,7 @@ public class Line {
     }
 
     public boolean isAdjacentColumn(Line otherLine) {
-        return Math.abs(this.columnPosition() - otherLine.columnPosition()) <= 1;
+        return otherLine.column.isAdjacent(this.column);
     }
 
     @Override

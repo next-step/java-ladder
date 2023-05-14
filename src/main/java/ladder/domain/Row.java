@@ -40,4 +40,8 @@ public class Row {
         Row otherRow = (Row) o;
         return this.hashCode() == otherRow.hashCode();
     }
+
+    public boolean sameValue(int rowPosition) {
+        return this.value == rowPosition;
+    }
 }
