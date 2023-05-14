@@ -1,6 +1,8 @@
-package laddergame.domain;
+package laddergame.domain.ladder;
 
 import java.util.List;
+import laddergame.domain.line.Line;
+import laddergame.domain.person.Participants;
 
 public class LadderGame {
 

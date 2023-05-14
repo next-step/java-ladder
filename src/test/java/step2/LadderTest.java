@@ -6,12 +6,13 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
-import laddergame.domain.Depth;
-import laddergame.domain.Ladder;
-import laddergame.domain.Line;
-import laddergame.domain.LineStrategyImpl;
-import laddergame.domain.Participants;
-import laddergame.domain.Person;
+import laddergame.domain.ladder.Depth;
+import laddergame.domain.ladder.Ladder;
+import laddergame.domain.line.Line;
+import laddergame.domain.line.LineStatus;
+import laddergame.domain.line.Connection;
+import laddergame.domain.person.Participants;
+import laddergame.domain.person.Person;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,19 +20,21 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class LadderTest {
 
-    @DisplayName("Line은 참여 인원의 수 - 1 만큼 true나 false를 갖는다.")
+    @DisplayName("line 생성 시 참여 인원의 수 - 1 만큼 connection이나 detachment를 갖는다.")
     @ParameterizedTest
     @ValueSource(ints = {2, 3, 4})
     void test2(int input) throws Exception {
-        Line line = new Line(input, new LineStrategyImpl());
+        Line line = new Line(input, new Connection());
 
-        assertThat(line.getPoints()).hasSize(input - 1);
+        assertThat(line.getPoints())
+            .hasSize(input - 1);
+
     }
 
     @DisplayName("참여 인원은 1이상이어야 한다.")
     @Test
     void test6() throws Exception {
-        LineStrategyImpl lineStrategy = new LineStrategyImpl();
+        Connection lineStrategy = new Connection();
 
         assertThatThrownBy(() -> {
             new Line(1, lineStrategy);
@@ -44,8 +47,8 @@ class LadderTest {
     @Test
     void test7() throws Exception {
         //given
-        LineStrategyImpl lineStrategy = new LineStrategyImpl();
-        List<Boolean> movable = lineStrategy.getLine(100);
+        Connection lineStrategy = new Connection();
+        List<LineStatus> movable = lineStrategy.getConnection(100);
 
         //when
         boolean result = IntStream.range(0, movable.size() - 1).anyMatch(i -> isEquals(movable, i));
@@ -63,7 +66,7 @@ class LadderTest {
 
         //when
         Ladder ladder =
-            Ladder.of(new LineStrategyImpl(), new Depth(input), new Participants(personList));
+            Ladder.of(new Connection(), Depth.of(input), new Participants(personList));
 
         //then
         assertThat(ladder.getLines()).hasSize(input);
@@ -74,7 +77,7 @@ class LadderTest {
     void test9() throws Exception {
 
         assertThatThrownBy(() -> {
-            new Depth(0);
+            Depth.of(0);
         })
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("사다리의 깊이는 1이상이어야 합니다.");
@@ -91,7 +94,8 @@ class LadderTest {
             .hasMessageContaining("이름은 최대 5글자여야 합니다.");
     }
 
-    private boolean isEquals(final List<Boolean> movable, final int i) {
-        return movable.get(i) && movable.get(i + 1);
+    private boolean isEquals(final List<LineStatus> movable, final int i) {
+        return movable.get(i) == LineStatus.CONNECTION
+            && movable.get(i + 1) == LineStatus.CONNECTION;
     }
 }

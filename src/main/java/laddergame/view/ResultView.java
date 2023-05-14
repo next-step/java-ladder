@@ -1,8 +1,11 @@
 package laddergame.view;
 
+import static laddergame.domain.line.LineStatus.CONNECTION;
+
 import java.util.List;
-import laddergame.domain.LadderGame;
-import laddergame.domain.Line;
+import laddergame.domain.ladder.LadderGame;
+import laddergame.domain.line.Line;
+import laddergame.domain.line.LineStatus;
 
 public class ResultView {
 
@@ -37,13 +40,13 @@ public class ResultView {
         List<Line> linePerDepth = ladderGame.getLinePerDepth();
         linePerDepth.forEach(line -> {
             sb.append(HEIGHT_LINE);
-            line.getPoints().forEach(isTrue -> printLine(sb, isTrue));
+            line.getPoints().forEach(status -> printLine(sb, status));
             sb.append(NEW_LINE);
         });
     }
 
-    private void printLine(final StringBuilder sb, final Boolean isTrue) {
-        if (isTrue) {
+    private void printLine(final StringBuilder sb, final LineStatus status) {
+        if (status == CONNECTION) {
             sb.append(WIDTH_LINE).append(HEIGHT_LINE);
             return;
         }

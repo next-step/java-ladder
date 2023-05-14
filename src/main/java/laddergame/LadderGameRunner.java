@@ -1,12 +1,12 @@
 package laddergame;
 
 import java.util.Scanner;
-import laddergame.domain.Depth;
-import laddergame.domain.Ladder;
-import laddergame.domain.LadderGame;
-import laddergame.domain.LineStrategyImpl;
-import laddergame.domain.Participants;
-import laddergame.utils.Split;
+import laddergame.domain.ladder.Depth;
+import laddergame.domain.ladder.Ladder;
+import laddergame.domain.ladder.LadderGame;
+import laddergame.domain.line.Connection;
+import laddergame.domain.person.Participants;
+import laddergame.utils.CommaSplit;
 import laddergame.view.InputView;
 import laddergame.view.ResultView;
 
@@ -17,10 +17,9 @@ public class LadderGameRunner {
         InputView inputView = new InputView();
 
         var names = getNames(scanner, inputView);
-        var participants = new Participants(Split.of(names));
+        var participants = new Participants(names);
         var count = getCount(scanner, inputView);
-        var ladder = Ladder.of(new LineStrategyImpl(), new Depth(count), participants);
-
+        var ladder = Ladder.of(new Connection(), Depth.of(count), participants);
         var ladderGame = LadderGame.create(ladder, participants);
 
         ResultView resultView = new ResultView(ladderGame);
@@ -32,8 +31,9 @@ public class LadderGameRunner {
         return scanner.nextInt();
     }
 
-    private static String getNames(final Scanner scanner, final InputView inputView) {
+    private static String[] getNames(final Scanner scanner, final InputView inputView) {
         inputView.printNameComment();
-        return scanner.next();
+        String names = scanner.next();
+        return CommaSplit.of(names);
     }
 }

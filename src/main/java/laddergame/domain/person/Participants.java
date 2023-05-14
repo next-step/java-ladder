@@ -1,8 +1,9 @@
-package laddergame.domain;
+package laddergame.domain.person;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import laddergame.domain.person.Person;
 
 public class Participants {
 

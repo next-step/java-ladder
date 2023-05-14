@@ -1,10 +1,10 @@
 package laddergame.utils;
 
-public class Split {
+public class CommaSplit {
 
     private static final String DELIMITER = ",";
 
-    private Split(){}
+    private CommaSplit(){}
 
     public static String[] of(String str){
         return str.split(DELIMITER);
