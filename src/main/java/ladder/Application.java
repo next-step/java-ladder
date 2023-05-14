@@ -43,7 +43,7 @@ public class Application {
 
         while (true) {
             Name name = nameInput.getValue();
-            if (name.equals(NameInput.ALL)) {
+            if (Name.isAll(name)) {
                 new LadderMatchOutput(new LadderMatchInfoView(), game.resultAll()).print();
                 return;
             } else {

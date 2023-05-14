@@ -3,12 +3,17 @@ package ladder.model.participant;
 import java.util.Objects;
 
 public class Name implements Comparable<Name> {
+    public static final String ALL = "all";
     public static final int MAX_LENGTH = 5;
     private final String value;
 
     public Name(String value) {
         validate(value);
         this.value = value;
+    }
+
+    public static boolean isAll(Name name) {
+        return name.value.equalsIgnoreCase(ALL);
     }
 
     private void validate(String value) {
