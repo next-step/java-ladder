@@ -43,4 +43,12 @@ public class LadderInputs {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("이름이 없습니다."));
     }
+
+    public List<LadderInput> getInputs() {
+        return ladderInputs;
+    }
+
+    public String getInput(int index) {
+        return ladderInputs.get(index).getLadderInput();
+    }
 }

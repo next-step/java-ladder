@@ -19,10 +19,12 @@ public class Line {
         Step step = Step.firstStep(drawStrategy.drawFirstPosition());
         steps.add(step);
 
-        for (int i = 1; i < numberOfParticipants; i++) {
+        for (int i = 1; i < numberOfParticipants - 1; i++) {
             step = step.nextStep(drawStrategy.drawNextPosition(step));
             steps.add(step);
         }
+
+        steps.add(step.lastStep());
 
         return new Line(steps);
     }
@@ -50,5 +52,9 @@ public class Line {
         }
 
         return positions;
+    }
+
+    public List<Step> getSteps() {
+        return steps;
     }
 }

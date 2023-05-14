@@ -45,4 +45,8 @@ public class Results {
     public int getValue(int key) {
         return results.get(key);
     }
+
+    public String matchedResult(int key, LadderInputs reward) {
+        return reward.getInput(results.get(key));
+    }
 }

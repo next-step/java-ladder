@@ -46,4 +46,8 @@ public class Step {
     public boolean hasStep() {
         return currentPosition;
     }
+
+    public boolean hasPreviousStep() {
+        return previousPosition;
+    }
 }

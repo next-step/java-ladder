@@ -153,4 +153,31 @@ public class ResultsTest {
                 .isEqualTo(new Results(expected));
     }
 
+    @Test
+    @DisplayName("결과 확인 테스트")
+    void matchedResultTest() {
+        Step step1 = Step.firstStep(true);
+        Step step2 = step1.nextStep(false);
+        Step step3 = step2.lastStep();
+
+        List<String> inputs = List.of("1000, 2000, 3000".split(","));
+        LadderInputs reward = LadderInputs.from(inputs);
+
+        Line line = new Line(List.of(step1, step2, step3));
+        Results results = Results.firstMove(line);
+
+        String reward1 = results.matchedResult(0, reward);
+        String reward2 = results.matchedResult(1, reward);
+        String reward3 = results.matchedResult(2, reward);
+
+        assertThat(reward1)
+                .isEqualTo("2000");
+
+        assertThat(reward2)
+                .isEqualTo("1000");
+
+        assertThat(reward3)
+                .isEqualTo("3000");
+    }
+
 }
