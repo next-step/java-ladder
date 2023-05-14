@@ -3,15 +3,18 @@ package nextstep.ladder.domain;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Line {
     private final Connections connections;
 
     public Line(Boolean...connections) {
-        this(Arrays.asList(connections));
+        this(Arrays.stream(connections)
+                .map(Connection::new)
+                .collect(Collectors.toUnmodifiableList()));
     }
 
-    public Line(List<Boolean> connections) {
+    public Line(List<Connection> connections) {
         this(new Connections(connections));
     }
 
@@ -19,7 +22,7 @@ public class Line {
         this.connections = connections;
     }
 
-    public List<Boolean> connections() {
+    public List<Connection> connections() {
         return connections.connections();
     }
 

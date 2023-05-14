@@ -40,9 +40,10 @@ class LineFactoryTest {
         return numberOfConnections -> new Connections(evenElementTrueList(numberOfConnections));
     }
 
-    private List<Boolean> evenElementTrueList(int size) {
+    private List<Connection> evenElementTrueList(int size) {
         return IntStream.range(0, size)
                 .mapToObj(index -> index % 2 == 0)
+                .map(Connection::new)
                 .collect(Collectors.toUnmodifiableList());
     }
 }

@@ -15,33 +15,33 @@ public class RandomConnectionsFactory implements ConnectionsFactory {
         return new Connections(createConnections(numberOfConnections));
     }
 
-    private List<Boolean> createConnections(int numberOfConnections) {
+    private List<Connection> createConnections(int numberOfConnections) {
         if(numberOfConnections == ZERO) {
             return Collections.emptyList();
         }
 
-        List<Boolean> connections = new ArrayList<>();
-        connections.add(randomBoolean());
+        List<Connection> connections = new ArrayList<>();
+        connections.add(randomConnection());
 
         IntStream.range(ONE, numberOfConnections)
-                .mapToObj(index -> createConnection(previousElementOf(connections, index)))
+                .mapToObj(index -> createConnection(previousConnection(connections, index)))
                 .forEach(connections::add);
         return connections;
     }
 
-    private Boolean createConnection(boolean previousElement) {
-        if(previousElement) {
-            return false;
+    private Connection createConnection(Connection previousConnection) {
+        if(previousConnection.isConnected()) {
+            return new Connection(false);
         }
 
-        return randomBoolean();
+        return randomConnection();
     }
 
-    private Boolean previousElementOf(List<Boolean> connections, int index) {
+    private Connection previousConnection(List<Connection> connections, int index) {
         return connections.get(index - ONE);
     }
 
-    private Boolean randomBoolean() {
-        return ThreadLocalRandom.current().nextBoolean();
+    private Connection randomConnection() {
+        return new Connection(ThreadLocalRandom.current().nextBoolean());
     }
 }

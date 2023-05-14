@@ -8,18 +8,18 @@ import java.util.stream.IntStream;
 public class Connections {
     private static final int START_INDEX_OF_CONNECTIONS = 0;
     private static final int ONE = 1;
-    private final List<Boolean> connections;
+    private final List<Connection> connections;
 
-    public Connections(List<Boolean> connections) {
+    public Connections(List<Connection> connections) {
         validateConnections(connections);
         this.connections = connections;
     }
 
-    public List<Boolean> connections() {
+    public List<Connection> connections() {
         return Collections.unmodifiableList(connections);
     }
 
-    private void validateConnections(List<Boolean> connections) {
+    private void validateConnections(List<Connection> connections) {
         if(connections == null) {
             throw new IllegalArgumentException("가로 라인의 연결선은 null이 될 수 없습니다.");
         }
@@ -29,17 +29,17 @@ public class Connections {
         }
     }
 
-    private boolean containsConsecutiveConnections(List<Boolean> connections) {
+    private boolean containsConsecutiveConnections(List<Connection> connections) {
         return IntStream.range(START_INDEX_OF_CONNECTIONS, beforeLastIndexOf(connections))
                 .anyMatch(index -> isConsecutiveConnections(connections, index));
     }
 
-    private int beforeLastIndexOf(List<Boolean> connections) {
+    private int beforeLastIndexOf(List<Connection> connections) {
         return connections.size() - ONE;
     }
 
-    private boolean isConsecutiveConnections(List<Boolean> connections, int index) {
-        return connections.get(index) && connections.get(index + ONE);
+    private boolean isConsecutiveConnections(List<Connection> connections, int index) {
+        return connections.get(index).isConnected() && connections.get(index + ONE).isConnected();
     }
 
     @Override

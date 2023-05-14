@@ -15,7 +15,7 @@ class ConnectionsTest {
     @ParameterizedTest(name = "[{index}/3] {displayName}")
     @MethodSource("consecutiveConnections")
     @DisplayName("가로 라인의 연결선이 연속해서 존재할 경우, IllegalArgumentException 예외 발생")
-    void consecutive_connections_then_throw_IllegalArgumentException(List<Boolean> consecutiveConnections) {
+    void consecutive_connections_then_throw_IllegalArgumentException(List<Connection> consecutiveConnections) {
         assertThatThrownBy(() -> new Connections(consecutiveConnections))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("가로 라인의 연결선은 연속해서 존재할 수 없습니다.");
@@ -24,7 +24,7 @@ class ConnectionsTest {
     @ParameterizedTest(name = "[{index}/9] {displayName}")
     @MethodSource("validConnections")
     @DisplayName("가로 라인 연견설이 연속해서 존재하지 않을 경우, Connections 객체 생성")
-    void valid_connections(List<Boolean> validConnections) {
+    void valid_connections(List<Connection> validConnections) {
         assertThat(new Connections(validConnections))
                 .isInstanceOf(Connections.class);
     }
@@ -39,23 +39,23 @@ class ConnectionsTest {
 
     static Stream<Arguments> consecutiveConnections() {
         return Stream.of(
-                Arguments.arguments(List.of(true, true)),
-                Arguments.arguments(List.of(false, true, true)),
-                Arguments.arguments(List.of(true, true, false))
+                Arguments.arguments(List.of(new Connection(true), new Connection(true))),
+                Arguments.arguments(List.of(new Connection(false), new Connection(true), new Connection(true))),
+                Arguments.arguments(List.of(new Connection(true), new Connection(true), new Connection(false)))
         );
     }
 
     static Stream<Arguments> validConnections() {
         return Stream.of(
                 Arguments.arguments(List.of()),
-                Arguments.arguments(List.of(false)),
-                Arguments.arguments(List.of(true)),
-                Arguments.arguments(List.of(true, false)),
-                Arguments.arguments(List.of(false, true)),
-                Arguments.arguments(List.of(true, false, false)),
-                Arguments.arguments(List.of(false, true, false)),
-                Arguments.arguments(List.of(false, false, true)),
-                Arguments.arguments(List.of(true, false, true))
+                Arguments.arguments(List.of(new Connection(false))),
+                Arguments.arguments(List.of(new Connection(true))),
+                Arguments.arguments(List.of(new Connection(true), new Connection(false))),
+                Arguments.arguments(List.of(new Connection(false), new Connection(true))),
+                Arguments.arguments(List.of(new Connection(true), new Connection(false), new Connection(false))),
+                Arguments.arguments(List.of(new Connection(false), new Connection(true), new Connection(false))),
+                Arguments.arguments(List.of(new Connection(false), new Connection(false), new Connection(true))),
+                Arguments.arguments(List.of(new Connection(true), new Connection(false), new Connection(true)))
         );
     }
 }

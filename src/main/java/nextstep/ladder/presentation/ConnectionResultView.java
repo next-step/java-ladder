@@ -1,12 +1,14 @@
 package nextstep.ladder.presentation;
 
+import nextstep.ladder.domain.Connection;
+
 public class ConnectionResultView {
     private static final String EMPTY_SPACE = " ";
     private static final String DASH = "-";
     private static final int CONNECTION_PRINT_LENGTH = 5;
-    private final boolean connection;
+    private final Connection connection;
 
-    public ConnectionResultView(boolean connection) {
+    public ConnectionResultView(Connection connection) {
         this.connection = connection;
     }
 
@@ -15,7 +17,7 @@ public class ConnectionResultView {
     }
 
     private String connectionMark() {
-        if(connection) {
+        if(connection.isConnected()) {
             return DASH;
         }
 
