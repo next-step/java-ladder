@@ -8,6 +8,9 @@ import java.util.stream.Stream;
 
 public class Ladder {
 
+    private static final int FIRST_INDEX = 0;
+    private static final int SECOND_INDEX = 1;
+
     private List<Line> lines;
 
     public Ladder(List<Line> lines) {
@@ -23,9 +26,9 @@ public class Ladder {
     }
 
     public Results move() {
-        Results results = Results.firstMove(lines.get(0));
+        Results results = Results.firstMove(lines.get(FIRST_INDEX));
 
-        for (int i = 1; i < lines.size(); i++) {
+        for (int i = SECOND_INDEX; i < lines.size(); i++) {
             results = results.nextMove(lines.get(i));
         }
 

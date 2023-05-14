@@ -7,6 +7,9 @@ import java.util.List;
 
 public class Line {
 
+    private static final int FIRST_INDEX = 0;
+    private static final int SECOND_INDEX = 1;
+
     private List<Step> steps;
 
     public Line(List<Step> steps) {
@@ -15,11 +18,12 @@ public class Line {
 
     public static Line draw(int numberOfParticipants, DrawStrategy drawStrategy) {
         List<Step> steps = new ArrayList<>();
+        int beforeLastIndex = numberOfParticipants - 1;
 
         Step step = Step.firstStep(drawStrategy.drawFirstPosition());
         steps.add(step);
 
-        for (int i = 1; i < numberOfParticipants - 1; i++) {
+        for (int i = SECOND_INDEX; i < beforeLastIndex; i++) {
             step = step.nextStep(drawStrategy.drawNextPosition(step));
             steps.add(step);
         }
@@ -36,7 +40,7 @@ public class Line {
     public List<Position> stepsToPositions() {
         List<Position> positions = new ArrayList<>();
 
-        for (int i = 0; i < steps.size(); i++) {
+        for (int i = FIRST_INDEX; i < steps.size(); i++) {
             positions.add(new Position(i, steps.get(i)));
         }
 
@@ -46,7 +50,7 @@ public class Line {
     public List<Position> stepsToPositions(Results results) {
         List<Position> positions = new ArrayList<>();
 
-        for (int i = 0; i < steps.size(); i++) {
+        for (int i = FIRST_INDEX; i < steps.size(); i++) {
             int matchedKey = results.matchedKeyOfValue(i);
             positions.add(new Position(results.getValue(matchedKey), steps.get(i)));
         }

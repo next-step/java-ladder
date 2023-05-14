@@ -6,6 +6,9 @@ import java.util.Map;
 
 public class Results {
 
+    private static final int FIRST_INDEX = 0;
+
+
     private final Map<Integer, Integer> results;
 
     public Results(Map<Integer, Integer> results) {
@@ -16,7 +19,7 @@ public class Results {
         Map<Integer, Integer> results = new HashMap<>();
         List<Position> positions = line.stepsToPositions();
 
-        for (int i = 0; i < positions.size(); i++) {
+        for (int i = FIRST_INDEX; i < positions.size(); i++) {
             results.put(i, positions.get(i).move());
         }
 
@@ -27,7 +30,7 @@ public class Results {
         Map<Integer, Integer> newResults = new HashMap<>();
         List<Position> positions = line.stepsToPositions(this);
 
-        for (int i = 0; i < positions.size(); i++) {
+        for (int i = FIRST_INDEX; i < positions.size(); i++) {
             newResults.put(matchedKeyOfValue(i), positions.get(i).move());
         }
 
