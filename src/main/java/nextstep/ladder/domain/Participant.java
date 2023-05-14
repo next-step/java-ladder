@@ -1,10 +1,10 @@
 package nextstep.ladder.domain;
 
-public class ParticipantName {
+public class Participant {
     private static final int MAX_NAME_LENGTH = 5;
     private final String name;
 
-    public ParticipantName(String name) {
+    public Participant(String name) {
         validateParticipantName(name);
 
         this.name = name;

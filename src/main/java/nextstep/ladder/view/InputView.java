@@ -1,8 +1,8 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Height;
-import nextstep.ladder.domain.ParticipantName;
-import nextstep.ladder.domain.ParticipantNames;
+import nextstep.ladder.domain.Participant;
+import nextstep.ladder.domain.Participants;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -16,7 +16,7 @@ public class InputView {
     private InputView() {
     }
 
-    public static ParticipantNames inputAndExtractParticipantNames() {
+    public static Participants inputAndExtractParticipantNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String inputNames = SCANNER.nextLine();
 
@@ -34,7 +34,7 @@ public class InputView {
                 .map(ParticipantName::new)
                 .collect(Collectors.toList());
 
-        return new ParticipantNames(participantNames);
+        return new Participants(participants);
     }
 
 }

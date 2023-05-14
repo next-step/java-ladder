@@ -1,16 +1,16 @@
 package nextstep.ladder.domain;
 
 public class LadderGame {
-    private final ParticipantNames participantNames;
+    private final Participants participants;
     private final Lines lines;
 
-    public LadderGame(ParticipantNames participantNames, Height height, GenerateLadderPointStrategy generateLadderPointStrategy) {
-        this.participantNames = participantNames;
-        this.lines = new Lines(participantNames.size(), height, generateLadderPointStrategy);
+    public LadderGame(Participants participants, Height height, GenerateLadderPointStrategy generateLadderPointStrategy) {
+        this.participants = participants;
+        this.lines = new Lines(participants.size(), height, generateLadderPointStrategy);
     }
 
-    public ParticipantNames getParticipantNames() {
-        return participantNames;
+    public Participants getParticipantNames() {
+        return participants;
     }
 
     public Lines getLines() {
