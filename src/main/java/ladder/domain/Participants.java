@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,7 +23,7 @@ public class Participants {
         if(noParticipant(participants)) {
             throw new IllegalArgumentException(NO_PARTICIPANT_MSG);
         }
-        this.participants = participants;
+        this.participants = new ArrayList<>(participants);
     }
 
     private boolean noParticipant(List<Participant> participants) {
@@ -38,4 +39,6 @@ public class Participants {
     public int countOfPerson() {
         return this.participants.size();
     }
+
+
 }
