@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
@@ -12,6 +13,10 @@ public class Connections {
     public Connections(List<Boolean> connections) {
         validateConnections(connections);
         this.connections = connections;
+    }
+
+    public List<Boolean> connections() {
+        return Collections.unmodifiableList(connections);
     }
 
     private void validateConnections(List<Boolean> connections) {

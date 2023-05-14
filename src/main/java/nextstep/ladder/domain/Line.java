@@ -19,6 +19,10 @@ public class Line {
         this.connections = connections;
     }
 
+    public List<Boolean> connections() {
+        return connections.connections();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
