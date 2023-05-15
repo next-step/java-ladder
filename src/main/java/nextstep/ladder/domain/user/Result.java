@@ -1,22 +1,22 @@
 package nextstep.ladder.domain.user;
 
-import nextstep.ladder.domain.formatter.Formatter;
-import nextstep.ladder.domain.formatter.NameFormatter;
+import nextstep.ladder.domain.formatter.Format;
+import nextstep.ladder.domain.formatter.NameFormat;
 
 import java.util.Objects;
 
 public class Result {
 
     private final String value;
-    private final Formatter formatter;
+    private final Format format;
 
     public Result(String value) {
-        this(value, new NameFormatter());
+        this(value, new NameFormat());
     }
 
-    public Result(String value, Formatter formatter) {
+    public Result(String value, Format format) {
         this.value = value;
-        this.formatter = formatter;
+        this.format = format;
     }
 
     public String getValue() {
@@ -38,7 +38,7 @@ public class Result {
 
     @Override
     public String toString() {
-        return formatter.format(value);
+        return format.formalize(value);
     }
 
 }

@@ -1,7 +1,7 @@
 package nextstep.ladder.domain.user;
 
-import nextstep.ladder.domain.formatter.Formatter;
-import nextstep.ladder.domain.formatter.NameFormatter;
+import nextstep.ladder.domain.formatter.Format;
+import nextstep.ladder.domain.formatter.NameFormat;
 
 import java.util.Objects;
 
@@ -11,15 +11,15 @@ public class UserName {
     private static final String USER_ALL = "all";
 
     private final String name;
-    private final Formatter formatter;
+    private final Format format;
 
     private UserName(String name) {
-        this(name, new NameFormatter());
+        this(name, new NameFormat());
     }
 
-    public UserName(String name, Formatter formatter) {
+    public UserName(String name, Format format) {
         this.name = name;
-        this.formatter = formatter;
+        this.format = format;
     }
 
     public static int getMaxLength() {
@@ -45,7 +45,7 @@ public class UserName {
     }
 
     public String formattedName() {
-        return formatter.format(name);
+        return format.formalize(name);
     }
 
     public boolean isAll() {

@@ -1,9 +1,9 @@
 package nextstep.ladder.domain.formatter;
 
-public class NameFormatter implements Formatter {
+public class NameFormat implements Format {
 
     @Override
-    public String format(String input) {
+    public String formalize(String input) {
         return String.format("%5s", input);
     }
 

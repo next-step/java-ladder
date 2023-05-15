@@ -1,8 +1,8 @@
 package nextstep.ladder.domain.formatter;
 
 @FunctionalInterface
-public interface Formatter {
+public interface Format {
 
-    String format(String input);
+    String formalize(String input);
 
 }
