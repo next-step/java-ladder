@@ -9,6 +9,7 @@ public class LadderGame {
 
     public static void main(String[] args) {
         String[] splitedParticipants = InputView.participants();
+        String[] gameResult = InputView.gameResult();
         int height = InputView.height();
 
         Participants participants = Participants.participate(splitedParticipants);

@@ -6,6 +6,8 @@ import nextstep.domain.Participants;
 
 public class PrintView {
 
+    private PrintView() {}
+
     public static void printResult(Participants participants, Ladder ladder) {
         printTitle();
         printParticipants(participants);
