@@ -1,5 +1,7 @@
 package nextstep.ladder;
 
+import nextstep.ladder.view.InputView;
+
 public class App {
 
     public static void main(String[] args) {
@@ -9,6 +11,7 @@ public class App {
         int height = ladderGame.inputLadderHeight();
         ladderGame.saveLadder(height);
         ladderGame.addLine();
+        ladderGame.printResultText();
         ladderGame.printPlayerName();
         ladderGame.printLadderLine();
     }

@@ -45,6 +45,10 @@ public class LadderGame {
                 .collect(Collectors.toList());
     }
 
+    public void printResultText() {
+        ResultView.printResultText();
+    }
+
     public void printPlayerName() {
         ResultView.printPlayerName(playerList);
         System.out.println();

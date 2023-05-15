@@ -11,7 +11,11 @@ public class ResultView {
     private static final String SPACE_HORIZONTAL_LINE = "     ";
     private static final String VERTICAL_LINE = "|";
     private static final String NAME_LENGTH_FIVE_FORMAT_PATTERN = "%-5s";
+    private static final String RESULT_TEXT = "실행결과";
 
+    public static void printResultText() {
+        System.out.println(RESULT_TEXT);
+    }
 
     public static void printPlayerName(List<Player> playerList) {
         StringBuilder sb = new StringBuilder();
