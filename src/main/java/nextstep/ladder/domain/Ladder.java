@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
+    private static final int MIN_WIDTH = 2;
+    private static final int MIN_HEIGHT = 1;
     private final BridgeStrategy strategy;
     private final int height;
     private final int width;
@@ -25,12 +27,12 @@ public class Ladder {
     }
 
     private void validate(int width, int height) {
-        if (width < 2 || height < 1) {
+        if (width < MIN_WIDTH || height < MIN_HEIGHT) {
             throw new IllegalArgumentException("높이는 1 이상, 넓이는 2 이상이여야 합니다.");
         }
     }
 
-    public List<Line> create() {
+    private List<Line> create() {
         return IntStream.rangeClosed(1, height)
                 .mapToObj(i -> new Line(width, strategy))
                 .collect(Collectors.toList());

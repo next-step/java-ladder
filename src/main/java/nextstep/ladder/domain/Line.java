@@ -11,16 +11,9 @@ public class Line {
     private final List<Boolean> points;
 
     public Line(int width, BridgeStrategy strategy) {
-        validate(width);
         this.strategy = strategy;
         this.points = generatePoints(width);
         validateDuplicate();
-    }
-
-    private void validate(int width) {
-        if (width < 1) {
-            throw new IllegalArgumentException("넓이는 1 이상이여야 합니다.");
-        }
     }
 
     private List<Boolean> generatePoints(int width) {
