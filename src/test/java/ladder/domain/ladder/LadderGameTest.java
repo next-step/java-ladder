@@ -5,6 +5,8 @@ import exception.ExceptionCode;
 import java.util.Arrays;
 import java.util.List;
 import ladder.domain.LadderGame;
+import ladder.domain.ladder.setting.LadderGameSetting;
+import ladder.domain.player.DefaultPlayerGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -13,9 +15,15 @@ import org.junit.jupiter.api.Test;
 public class LadderGameTest extends BaseTest {
 
   int 사다리_높이;
+  LadderGameSetting gameSetting;
+
   @BeforeEach
   void test() {
     사다리_높이 = 5;
+    gameSetting = LadderGameSetting.builder()
+        .playerGenerator(new DefaultPlayerGenerator())
+        .ladderGenerator(new DefaultLadderGenerator())
+        .build();
   }
 
   @Test
@@ -25,7 +33,7 @@ public class LadderGameTest extends BaseTest {
     List<String> 플레이어_이름_목록 = Arrays.asList("s1", "s2", "seol");
 
     // when & then
-    LadderGame ladderGame = new LadderGame(플레이어_이름_목록, 사다리_높이);
+    LadderGame ladderGame = new LadderGame(플레이어_이름_목록, 사다리_높이, gameSetting);
 
     Assertions.assertThat(ladderGame)
         .extracting("ladderLines")
@@ -41,7 +49,7 @@ public class LadderGameTest extends BaseTest {
 
     // when & then
     super.assertThatThrowsLadderGameException(
-        () -> new LadderGame(플레이어_이름_목록, 사다리_높이),
+        () -> new LadderGame(플레이어_이름_목록, 사다리_높이, gameSetting),
         ExceptionCode.DUPLICATE_PLAYER_IN_GAME
     );
   }
@@ -54,7 +62,7 @@ public class LadderGameTest extends BaseTest {
 
     // when & then
     super.assertThatThrowsLadderGameException(
-        () -> new LadderGame(플레이어_이름_목록, 사다리_높이),
+        () -> new LadderGame(플레이어_이름_목록, 사다리_높이, gameSetting),
         ExceptionCode.MIN_PLAYER_COUNT_REQUIRED
     );
   }
@@ -67,7 +75,7 @@ public class LadderGameTest extends BaseTest {
 
     // when & then
     super.assertThatThrowsLadderGameException(
-        () -> new LadderGame(플레이어_이름_목록, 0),
+        () -> new LadderGame(플레이어_이름_목록, 0, gameSetting),
         ExceptionCode.MIN_LADDER_HEIGHT_REQUIRED
     );
   }

@@ -1,25 +1,18 @@
 package ladder.domain;
 
-import exception.ExceptionCode;
-import exception.LadderGameException;
 import java.util.List;
-import ladder.domain.ladder.DefaultLadderGenerator;
-import ladder.domain.ladder.LadderGenerator;
 import ladder.domain.Line.Line;
+import ladder.domain.ladder.setting.LadderGameSetting;
 import ladder.domain.player.Player;
-import ladder.domain.player.PlayerGenerator;
 
 public class LadderGame {
 
   private final List<Player> players;
   private final List<Line> ladderLines;
 
-  public LadderGame (List<String> playerNames, int ladderHeight) {
-    final PlayerGenerator playerGenerator = new PlayerGenerator();
-    final LadderGenerator ladderGenerator = new DefaultLadderGenerator();
-
-    this.players = playerGenerator.generatePlayerList(playerNames);
-    this.ladderLines = ladderGenerator.generateLadderLines(playerNames.size(), ladderHeight);
+  public LadderGame(List<String> playerNames, int ladderHeight, LadderGameSetting gameSetting) {
+    this.players = gameSetting.generatePlayer(playerNames);
+    this.ladderLines = gameSetting.generateLadderLine(this.players.size(), ladderHeight);
   }
 
   public void play() {
