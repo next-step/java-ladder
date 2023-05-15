@@ -12,13 +12,18 @@ public class OutputView {
 
     private static final String RESULT = "실행결과";
 
+    private static final String BLANK = " ";
+
+    private static final int MAX_NAME_LENGTH = 5;
+
     public static void resultBanner() {
         printSource(RESULT);
     }
 
     public static void printParticipants(Participants participants) {
         System.out.println(participants.immutableGet().stream()
-                .map(participant -> participant.toString() + "  ")
+                .map(participant -> BLANK.repeat(participant.restSpace())
+                        + participant + BLANK)
                 .collect(Collectors.joining()));
     }
 

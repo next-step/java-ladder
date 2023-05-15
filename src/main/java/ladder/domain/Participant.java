@@ -20,6 +20,10 @@ public class Participant {
         this.value = participant;
     }
 
+    public int restSpace() {
+        return NAME_MAX_LENGTH - value.length();
+    }
+
     private boolean empty(String source) {
         return source == null || source.isEmpty();
     }
