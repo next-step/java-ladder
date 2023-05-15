@@ -14,6 +14,10 @@ public class Lines {
     this.lines = lines;
   }
 
+  Lines(Line... lines) {
+    this.lines = List.of(lines);
+  }
+
   public static Lines createLines(LadderSizeInfo sizeInfo,
       NextPointGenerationStrategy generationStrategy) {
     List<Line> lines = Stream.generate(() -> Line.createLine(sizeInfo.getNumberOfParticipants(), generationStrategy))
