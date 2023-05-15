@@ -37,6 +37,25 @@ public class Ladder {
         return ladderRows.get(heightPosition).hasRightConnections();
     }
 
+    public int climbUser(User user) {
+        int position = users.findUser(user);
+        for (int i = 0; i < height(); i++) {
+            position += ladderRows.get(i).move(position);
+        }
+        return position;
+    }
+
+    public int climbUser(String userName) {
+        return climbUser(new User(userName));
+    }
+
+    public List<Integer> climbAll() {
+        return getUserNames().stream()
+                .map(User::new)
+                .map(this::climbUser)
+                .collect(Collectors.toList());
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

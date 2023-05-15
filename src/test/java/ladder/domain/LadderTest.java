@@ -58,4 +58,35 @@ class LadderTest {
         // then
         assertThat(ladder.getUserNames()).isEqualTo(userNames);
     }
+
+    @Test
+    @DisplayName("실행 결과 - 특정 유저")
+    void climb() {
+        // given
+        Ladder ladder = Ladder.of(users, height, () -> true);
+        Result result = new Result("꽝, 5000, 꽝,3000");
+
+        // when
+        int actual = ladder.climbUser("pobi");
+        int actual2 = ladder.climbUser("crong");
+
+        // then
+        assertThat(result.getResultByPosition(actual)).isEqualTo("5000");
+        assertThat(result.getResultByPosition(actual2)).isEqualTo("3000");
+    }
+
+    @Test
+    @DisplayName("실행 결과 - 전체")
+    void climbAll() {
+        // given
+        Ladder ladder = Ladder.of(users, height, () -> true);
+        Result result = new Result("꽝, 5000, 꽝,3000");
+
+        // when
+        List<Integer> actual = ladder.climbAll();
+
+        // then
+        assertThat(result.getResultByPosition(actual.get(0))).isEqualTo("5000");
+        assertThat(result.getResultByPosition(actual.get(2))).isEqualTo("3000");
+    }
 }
