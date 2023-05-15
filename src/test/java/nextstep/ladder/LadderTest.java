@@ -22,4 +22,15 @@ public class LadderTest {
                 () -> assertThat(lines.get(0).size()).isEqualTo(participants.size() - 1)
         );
     }
+
+
+    /*   @Test
+    void 겹치는_가로라인이_존재하면_예외를_발생한다() {
+        List<String> participants = List.of("pobi", "honux", "crong", "jk");
+        int ladderHeight = 5;
+
+        Ladder ladder = new Ladder(participants.size(), ladderHeight);
+        List<Line> lines = ladder.create();
+
+    }*/
 }
