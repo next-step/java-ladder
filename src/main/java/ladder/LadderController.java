@@ -1,6 +1,6 @@
 package ladder;
 
-import ladder.Model.LadderLine;
+
 import ladder.Model.LadderMap;
 import ladder.View.*;
 
@@ -11,8 +11,7 @@ public class LadderController {
         List<String> attendances = InputView.TypeAttendances();
         int maxHeight = InputView.TypeMaxHeights();
         LadderMap ladderMap = new LadderMap(attendances.size(), maxHeight);
-        for(LadderLine ladderline : ladderMap.ladderLines()){
-            System.out.println(ladderline.lines());
-        }
+        ResultView.printResultHeader();
+        ResultView.printResultBody(attendances, ladderMap);
     }
 }
