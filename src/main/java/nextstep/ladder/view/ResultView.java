@@ -24,8 +24,13 @@ public final class ResultView {
         throw new IllegalCallerException("잘못된 객체생성 입니다.");
     }
 
-    public static void drawResultMessage() {
+    public static void drawInputResult(Participants participants,
+                                       ExecuteResults executeResults,
+                                       Ladder ladder) {
         System.out.println("\n실행결과\n");
+        drawParticipants(participants);
+        drawLadder(ladder);
+        drawExecuteResults(executeResults);
     }
 
     public static void drawParticipants(Participants participants) {

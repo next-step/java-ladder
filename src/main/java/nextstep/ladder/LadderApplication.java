@@ -19,11 +19,11 @@ public class LadderApplication {
 
         Ladder ladder = new Ladder(Lines.create(ladderHeight.getHeight(), participants.count()));
 
-        ResultView.drawResultMessage();
-        ResultView.drawParticipants(participants);
-        ResultView.drawLadder(ladder);
-        ResultView.drawExecuteResults(executeResults);
+        ResultView.drawInputResult(participants, executeResults, ladder);
+        execute(participants, executeResults, ladder);
+    }
 
+    private static void execute(Participants participants, ExecuteResults executeResults, Ladder ladder) {
         executeResults.execute(participants, ladder);
 
         RepeatStatus repeatStatus = new RepeatStatus(true);
