@@ -37,6 +37,16 @@ public class Point {
         return direction.isRight();
     }
 
+    public int move() {
+        if (direction.isLeft()) {
+            return -1;
+        }
+        if (direction.isRight()) {
+            return +1;
+        }
+        return 0;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

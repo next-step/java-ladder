@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import static ladder.utils.StringSplitter.splitStrings;
 
 public class Users {
+    private static final int OUT_OF_BOUND = -1;
     private final List<User> users;
 
     public Users(List<String> users) {
@@ -29,8 +30,16 @@ public class Users {
                 .collect(Collectors.toList());
     }
 
-    public int findUser(String userName) {
-        return users.indexOf(new User(userName));
+    public int findUser(User user) {
+        int userPosition = users.indexOf(user);
+        if (userPosition == OUT_OF_BOUND) {
+            throw new IllegalArgumentException("해당하는 사용자가 없습니다.");
+        }
+        return userPosition;
+    }
+
+    public int numberOfUsers() {
+        return users.size();
     }
 
     @Override
@@ -48,9 +57,5 @@ public class Users {
     @Override
     public int hashCode() {
         return Objects.hash(users);
-    }
-
-    public int numberOfUsers() {
-        return users.size();
     }
 }

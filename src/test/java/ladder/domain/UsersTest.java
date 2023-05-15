@@ -24,4 +24,18 @@ class UsersTest {
         assertThat(actual.getUserName(2)).isEqualTo("crong");
         assertThat(actual.getUserName(3)).isEqualTo("jk");
     }
+
+    @Test
+    @DisplayName("유저 찾기")
+    void findUser() {
+        // given
+        String names = "pobi,honux,crong,jk";
+        Users users = new Users(names);
+
+        // when
+        int position = users.findUser(new User("honux"));
+
+        // then
+        assertThat(position).isEqualTo(1);
+    }
 }
