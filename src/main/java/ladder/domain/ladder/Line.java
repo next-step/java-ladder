@@ -12,11 +12,13 @@ public class Line {
     this.points = points;
   }
 
-  public static Line createLine(int numberOfParticipants, NextPointGenerationStrategy generationStrategy) {
+  public static Line createLine(int numberOfParticipants,
+      NextPointGenerationStrategy generationStrategy) {
     List<Boolean> points = new ArrayList<>();
 
     for (int i = 0; i < numberOfParticipants - 1; i++) {
-      boolean previousConnectionStatus = decideNextConnectionStatus(previousConnectionStatus(i, points), generationStrategy);
+      boolean previousConnectionStatus = decideNextConnectionStatus(
+          previousConnectionStatus(i, points), generationStrategy);
       points.add(previousConnectionStatus);
     }
 
@@ -27,10 +29,11 @@ public class Line {
     if (i == 0) {
       return false;
     }
-    return points.get(i-1);
+    return points.get(i - 1);
   }
 
-  private static boolean decideNextConnectionStatus(boolean previousConnectionStatus, NextPointGenerationStrategy generationStrategy) {
+  private static boolean decideNextConnectionStatus(boolean previousConnectionStatus,
+      NextPointGenerationStrategy generationStrategy) {
     return !previousConnectionStatus && generationStrategy.nextBoolean();
   }
 
@@ -39,7 +42,7 @@ public class Line {
   }
 
   public boolean isRightConnected(int index) {
-    if(isLastIndex(index)) {
+    if (isLastIndex(index)) {
       return false;
     }
     return points.get(index);
@@ -50,6 +53,13 @@ public class Line {
   }
 
   public boolean isLeftConnected(int index) {
+    if (isFirstIndex(index)) {
+      return false;
+    }
     return points.get(index - 1);
+  }
+
+  private static boolean isFirstIndex(int indexOfResult) {
+    return indexOfResult == 0;
   }
 }

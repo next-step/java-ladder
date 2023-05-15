@@ -45,15 +45,13 @@ public class Lines {
       return indexOfResult + 1;
     }
 
-    if (isNotFirstIndex(indexOfResult) && getRow(i).isLeftConnected(indexOfResult)) {
+    if (getRow(i).isLeftConnected(indexOfResult)) {
       return indexOfResult - 1;
     }
 
     return indexOfResult;
   }
 
-  private static boolean isNotFirstIndex(int indexOfResult) {
-    return indexOfResult > 0;
-  }
+
 
 }
