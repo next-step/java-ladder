@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -19,7 +20,7 @@ public class Ladder {
 
     public static Ladder of(int height, int width) {
         return of(IntStream.range(0, height)
-            .mapToObj(i -> Line.of(width + 1))
+            .mapToObj(i -> Line.of(LineRandom.of(new Random()),width + 1))
             .collect(Collectors.toList()));
     }
 

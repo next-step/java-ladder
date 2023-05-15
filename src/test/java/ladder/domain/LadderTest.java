@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import org.junit.jupiter.api.Test;
 
 public class LadderTest {
@@ -32,7 +34,8 @@ public class LadderTest {
 
     @Test
     void 사다리생성() {
-        Line line = Line.of(List.of(false, false));
+        Line line = Line.of(size -> IntStream.range(0, size).mapToObj(x -> Boolean.FALSE).collect(Collectors.toList())
+            ,2);
         assertAll(
             () -> assertThat(Ladder.of(List.of(line, line))).isEqualTo(Ladder.of(List.of(line, line))),
             () -> assertThat(Ladder.of(List.of(line, line)).height()).isEqualTo(2)

@@ -11,35 +11,34 @@ public class LineTest {
 
     @Test
     void 길이() {
-        assertThat(Line.of(4).length()).isEqualTo(3);
+        assertThat(Line.of(i -> List.of(false, false, false), 4).length()).isEqualTo(3);
     }
 
     @Test
     void 라인_랜덤생성() {
-        assertThat(Line.of(4).points()).hasSize(3);
+        assertThat(Line.of(i -> List.of(false, false, false),4).points()).hasSize(3);
     }
 
     @Test
-    void 라인_비정상_생성() {
-        assertThatExceptionOfType(IllegalArgumentException.class)
-            .isThrownBy(() -> Line.of(List.of(true, true, false)))
-            .withMessageMatching("겹치는 가로라인이 존재합니다.");
+    void 라인_겹침_입력() {
+        assertThat(Line.of(i -> List.of(true, true, true, true, true), 4)).isEqualTo(Line.of(i -> List.of(true, false, true, false, true), 4));
     }
 
     @Test
     void 라인_널_빈값() {
         assertAll(
             () -> assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> Line.of(null))
+                .isThrownBy(() -> Line.of(i -> null, 1))
                 .withMessageMatching("라인은 빈 값일 수 없습니다."),
             () -> assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> Line.of(List.of()))
+                .isThrownBy(() -> Line.of(i -> List.of(), 1))
                 .withMessageMatching("라인은 빈 값일 수 없습니다.")
         );
     }
+
     @Test
     void 라인_정상_생성() {
-        assertThat(Line.of(List.of(false, false, true))).isEqualTo(Line.of(List.of(false, false, true)));
+        assertThat(Line.of(i -> List.of(false, false, true), 4)).isEqualTo(Line.of(i -> List.of(false, false, true), 4));
     }
 
 }

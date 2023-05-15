@@ -3,11 +3,11 @@ package ladder.domain;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.stream.IntStream;
 
-public class LineRandom {
+public class LineRandom implements LineStrategy {
 
-    private static Random random;
+    private final Random random;
 
     public LineRandom(Random random) {
         this.random = random;
@@ -17,20 +17,14 @@ public class LineRandom {
         return new LineRandom(random);
     }
 
-    public List<Boolean> randomList(int size) {
-        return Stream.iterate(randomPoint(), this::nextPoint)
-            .limit(size)
+    @Override
+    public List<Boolean> listSizeOf(int size) {
+        return IntStream.range(0, size)
+            .mapToObj(i -> randomBoolean())
             .collect(Collectors.toList());
     }
 
-    public Boolean nextPoint(Boolean prev) {
-        if (prev.equals(Boolean.TRUE)) {
-            return Boolean.FALSE;
-        }
-        return randomPoint();
-    }
-
-    private boolean randomPoint() {
+    private Boolean randomBoolean() {
         return random.nextBoolean();
     }
 

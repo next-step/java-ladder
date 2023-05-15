@@ -1,9 +1,8 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Random;
-import java.util.stream.IntStream;
 
 public class Line {
 
@@ -13,12 +12,8 @@ public class Line {
         this.points = valid(points);
     }
 
-    public static Line of(List<Boolean> points) {
-        return new Line(points);
-    }
-
-    public static Line of(int countOfPerson) {
-        return of(LineRandom.of(new Random()).randomList(countOfPerson - 1));
+    public static Line of(LineStrategy lineStrategy, int countOfPerson) {
+        return new Line(lineStrategy.listSizeOf(countOfPerson - 1));
     }
 
     public List<Boolean> points() {
@@ -26,7 +21,7 @@ public class Line {
     }
 
     public int length() {
-        return points().size();
+        return points.size();
     }
 
     @Override
@@ -50,23 +45,27 @@ public class Line {
         if (isNullOrEmpty(points)) {
             throw new IllegalArgumentException("라인은 빈 값일 수 없습니다.");
         }
-        if (hasOverlapping(points)) {
-            throw new IllegalArgumentException("겹치는 가로라인이 존재합니다.");
+        return overlappingRemovedList(points);
+    }
+
+    private List<Boolean> overlappingRemovedList(List<Boolean> points) {
+        List<Boolean> ret = new ArrayList<>(points);
+        for (int i = 1; i < ret.size() ; i++) {
+            ret.set(i, unOverlappedPoint(ret, i));
         }
-        return points;
+        return ret;
+    }
+
+    private Boolean unOverlappedPoint(List<Boolean> points, int i) {
+        return isOverlapping(points, i) ? Boolean.FALSE : points.get(i);
+    }
+
+    private boolean isOverlapping(List<Boolean> points, int i) {
+        return i != 0 && points.get(i - 1).equals(Boolean.TRUE) && points.get(i).equals(Boolean.TRUE);
     }
 
     private boolean isNullOrEmpty(List<Boolean> points) {
         return points == null || points.isEmpty();
-    }
-
-    private boolean hasOverlapping(List<Boolean> points) {
-        return IntStream.range(1, points.size())
-            .anyMatch(i -> isOverlapping(points.get(i - 1), points.get(i)));
-    }
-
-    private boolean isOverlapping(Boolean a, Boolean b) {
-        return a.equals(Boolean.TRUE) && b.equals(Boolean.TRUE);
     }
 
 }
