@@ -49,13 +49,6 @@ public class Ladder {
         return climbUser(new User(userName));
     }
 
-    public List<Integer> climbAll() {
-        return getUserNames().stream()
-                .map(User::new)
-                .map(this::climbUser)
-                .collect(Collectors.toList());
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
