@@ -7,9 +7,15 @@ import java.util.stream.IntStream;
 public class Ladder {
     private final int height;
     private final int width;
-    public Ladder(int participantNum, int ladderHeight) {
-        this.width = participantNum;
-        this.height = ladderHeight;
+
+    public static List<Line> of(List<String> participantsName, int ladderHeight) {
+        Ladder ladder = new Ladder(participantsName.size(), ladderHeight);
+        return ladder.create();
+    }
+
+    private Ladder(int width, int height) {
+        this.width = width;
+        this.height = height;
     }
 
     public List<Line> create() {
