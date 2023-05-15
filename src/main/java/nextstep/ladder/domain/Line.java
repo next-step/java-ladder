@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 import java.util.List;
 import java.util.Random;
@@ -43,10 +43,6 @@ public class Line {
                 points.set(i, false);
             }
         }
-    }
-
-    void print() {
-        points.forEach(System.out::println);
     }
 
     public List<Boolean> getPoints() {

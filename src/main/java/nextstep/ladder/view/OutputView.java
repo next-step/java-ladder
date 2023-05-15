@@ -1,4 +1,6 @@
-package nextstep.ladder;
+package nextstep.ladder.view;
+
+import nextstep.ladder.domain.Line;
 
 import java.util.List;
 import java.util.stream.Collectors;
