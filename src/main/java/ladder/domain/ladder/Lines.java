@@ -14,10 +14,10 @@ public class Lines {
     this.lines = lines;
   }
 
-  public static Lines createLines(Height height, Participants participants,
+  public static Lines createLines(LadderSizeInfo sizeInfo,
       NextPointGenerationStrategy generationStrategy) {
-    List<Line> lines = Stream.generate(() -> Line.createLine(participants.size(), generationStrategy))
-        .limit(height.height())
+    List<Line> lines = Stream.generate(() -> Line.createLine(sizeInfo.getNumberOfParticipants(), generationStrategy))
+        .limit(sizeInfo.getHeight())
         .collect(Collectors.toList());
     return new Lines(lines);
   }

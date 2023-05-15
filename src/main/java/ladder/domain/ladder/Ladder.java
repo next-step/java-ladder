@@ -35,14 +35,14 @@ public class Ladder {
     this.lines = lines;
   }
 
-  public static Ladder createLadders(Height height, Participants participants, NextPointGenerationStrategy generationStrategy) {
-    Lines lines = createLines(height, participants, generationStrategy);
+  public static Ladder createLadder(LadderSizeInfo sizeInfo, NextPointGenerationStrategy generationStrategy) {
+    Lines lines = createLines(sizeInfo, generationStrategy);
     return new Ladder(lines);
   }
 
-  private static Lines createLines(Height height, Participants participants,
+  private static Lines createLines(LadderSizeInfo sizeInfo,
       NextPointGenerationStrategy generationStrategy) {
-    return Lines.createLines(height, participants, generationStrategy);
+    return Lines.createLines(sizeInfo, generationStrategy);
   }
 
   public int height() {

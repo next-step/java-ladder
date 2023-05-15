@@ -3,6 +3,7 @@ package ladder.controller;
 import java.util.List;
 import ladder.domain.ladder.Height;
 import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.LadderSizeInfo;
 import ladder.domain.participant.Name;
 import ladder.domain.ladder.MatchResult;
 import ladder.domain.prize.Prize;
@@ -29,9 +30,10 @@ public class LadderController {
     // 사다리 높이 입력 받기
     Height height = InputHeightView.scanLadderHeight();
 
+    LadderSizeInfo ladderSizeInfo = new LadderSizeInfo(height, participants);
+
     // 사다리 만들기
-    Ladder ladder = Ladder.createLadders(height, participants,
-        new RandomPointGenerationStrategy());
+    Ladder ladder = Ladder.createLadder(ladderSizeInfo, new RandomPointGenerationStrategy());
 
     // 사다리 모양 출력하기 (참가자 이름, 사다리 모양, 사다리 실행 결과)
     OutputNamesView.printParticipantsNames(participants);
