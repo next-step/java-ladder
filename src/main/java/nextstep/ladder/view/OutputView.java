@@ -42,7 +42,7 @@ public class OutputView {
 
     private static String drawLine(Line line) {
         return line.getPoints().stream()
-                .map(i -> i ? BRIDGE_EXISTS : BRIDGE_NOT_EXISTS)
+                .map(bridgePresence -> bridgePresence ? BRIDGE_EXISTS : BRIDGE_NOT_EXISTS)
                 .collect(Collectors.joining(LADDER_BAR, LADDER_BAR, LADDER_BAR));
     }
 }
