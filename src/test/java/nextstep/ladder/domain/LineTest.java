@@ -4,6 +4,9 @@ import nextstep.ladder.domain.strategy.BridgeStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 
 class LineTest {
@@ -16,5 +19,17 @@ class LineTest {
 
         assertThatNoException()
                 .isThrownBy(() -> new Line(width, strategy));
+    }
+
+    @DisplayName("getter 호출 시 라인의 다리 리스트 여부를 가져 온다.")
+    @Test
+    void when_callingGetter_Expects_returnBridgeLists() {
+        int width = 6;
+        BridgeStrategy strategy = () -> true;
+        List<Boolean> expected= List.of(true, false, true, false, true);
+
+        Line line = new Line(width, strategy);
+
+        assertThat(line.getPoints()).isEqualTo(expected);
     }
 }
