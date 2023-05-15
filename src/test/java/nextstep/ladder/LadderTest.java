@@ -1,5 +1,6 @@
 package nextstep.ladder;
 
+import nextstep.ladder.domain.LadderGame;
 import nextstep.ladder.domain.LadderResult;
 import nextstep.ladder.domain.LadderResults;
 import nextstep.ladder.domain.Lines;
@@ -48,20 +49,23 @@ public class LadderTest {
     @DisplayName("참가자 수와 결과 수가 일치하지 않으면 예외를 던진다.")
     void validateLadderResults_test() {
         Participants participants = new Participants(List.of(new Participant("a")));
-        String inputLadderResults = "꽝, 1000";
+        List<LadderResult> inputLadderResults = List.of(new LadderResult("꽝"), new LadderResult("1000"));
 
-        assertThatThrownBy(() -> new LadderResults(participants, inputLadderResults))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(
+                () -> new LadderGame(participants, new Lines(1, 1, new RandomLadderPointGenerateStrategy()), inputLadderResults)
+        );
     }
 
     @Test
     @DisplayName("존재 하지 않는 참가자의 결과를 요구하면 예외를 던진다.")
     void ladderResultByParticipantThrow_test() {
         Participants participants = new Participants(List.of(new Participant("a")));
-        String inputLadderResults = "꽝";
-        LadderResults ladderResults = new LadderResults(participants, inputLadderResults);
+        List<LadderResult> inputLadderResults = List.of(new LadderResult("꽝"));
+        LadderGame ladderGame = new LadderGame(participants, new Lines(1, 1, new RandomLadderPointGenerateStrategy()), inputLadderResults);
 
-        assertThatThrownBy(() -> ladderResults.getLadderResultByParticipant(new Participant("b")))
+        LadderResults ladderResults = ladderGame.play();
+
+        assertThatThrownBy(() -> ladderResults.getResultForParticipant(new Participant("b")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
