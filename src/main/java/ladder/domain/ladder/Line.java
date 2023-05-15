@@ -1,7 +1,8 @@
 package ladder.domain.ladder;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import ladder.domain.strategy.NextPointGenerationStrategy;
 
 public class Line {
@@ -18,28 +19,14 @@ public class Line {
 
   public static Line createLine(int numberOfParticipants,
       NextPointGenerationStrategy generationStrategy) {
-    List<Boolean> points = new ArrayList<>();
+    List<Boolean> booleans = Stream.iterate(generationStrategy.first(),
+            generationStrategy::nextBoolean)
+        .limit(numberOfParticipants - 1)
+        .collect(Collectors.toList());
 
-    for (int i = 0; i < numberOfParticipants - 1; i++) {
-      boolean previousConnectionStatus = decideNextConnectionStatus(
-          previousConnectionStatus(i, points), generationStrategy);
-      points.add(previousConnectionStatus);
-    }
-
-    return new Line(points);
+    return new Line(booleans);
   }
 
-  private static boolean previousConnectionStatus(int i, List<Boolean> points) {
-    if (i == 0) {
-      return false;
-    }
-    return points.get(i - 1);
-  }
-
-  private static boolean decideNextConnectionStatus(boolean previousConnectionStatus,
-      NextPointGenerationStrategy generationStrategy) {
-    return !previousConnectionStatus && generationStrategy.nextBoolean();
-  }
 
   public List<Boolean> getPoints() {
     return points;
