@@ -27,4 +27,32 @@ class LineTest {
     }
   }
 
+  @Test
+  void 오른쪽이_연결된_경우_boolean_true_검증() {
+    Line line = Line.createLine(3, () -> true);
+
+    assertThat(line.isRightConnected(0)).isTrue();
+  }
+
+  @Test
+  void 사다리_마지막_인덱스는_오른쪽이_연결되지_않음_검증() {
+    Line line = Line.createLine(3, () -> true);
+
+    assertThat(line.isRightConnected(2)).isFalse();
+  }
+
+  @Test
+  void 왼쪽이_연결된_경우_boolean_true_검증() {
+    Line line = Line.createLine(3, () -> true);
+
+    assertThat(line.isLeftConnected(1)).isTrue();
+  }
+
+  @Test
+  void 사다리_첫_인덱스는_왼쪽이_연결되지_않음_검증() {
+    Line line = Line.createLine(3, () -> true);
+
+    assertThat(line.isLeftConnected(0)).isFalse();
+  }
+
 }

@@ -12,6 +12,10 @@ public class Line {
     this.points = points;
   }
 
+  Line(Boolean... points) {
+    this.points = List.of(points);
+  }
+
   public static Line createLine(int numberOfParticipants,
       NextPointGenerationStrategy generationStrategy) {
     List<Boolean> points = new ArrayList<>();
