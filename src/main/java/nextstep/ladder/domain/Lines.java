@@ -9,10 +9,17 @@ public class Lines {
     private final List<Line> lines;
 
     public Lines(int countOfParticipant, int height, GenerateLadderPointStrategy generateLadderPointStrategy) {
-        this.lines = setLines(countOfParticipant, height, generateLadderPointStrategy);
+        this.lines = generateLines(countOfParticipant, height, generateLadderPointStrategy);
     }
 
-    private List<Line> setLines(int countOfParticipant, int height, GenerateLadderPointStrategy generateLadderPointStrategy) {
+    public int move(int position) {
+        for (Line line : lines) {
+            position = line.move(position);
+        }
+        return position;
+    }
+
+    private List<Line> generateLines(int countOfParticipant, int height, GenerateLadderPointStrategy generateLadderPointStrategy) {
         return IntStream.range(0, height)
                 .mapToObj(i -> new Line(countOfParticipant, generateLadderPointStrategy))
                 .collect(Collectors.toList());
