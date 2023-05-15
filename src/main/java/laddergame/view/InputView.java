@@ -9,4 +9,8 @@ public class InputView {
     public void printDepthComment() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
     }
+
+    public void printExecutionResult(){
+        System.out.println("실행 결과를 입력하세요.");
+    }
 }
