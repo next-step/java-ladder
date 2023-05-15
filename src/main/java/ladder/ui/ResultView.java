@@ -1,16 +1,17 @@
 package ladder.ui;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import ladder.domain.Cross;
 import ladder.domain.Ladder;
 import ladder.domain.Line;
 import ladder.domain.Name;
 import ladder.domain.Names;
-import ladder.domain.Point;
-import ladder.domain.Points;
 import ladder.domain.Result;
 import ladder.domain.ResultName;
 import ladder.domain.Results;
@@ -43,10 +44,20 @@ public class ResultView {
 		StringBuilder stringBuilder = new StringBuilder();
 		for (Line line : ladder.getLines()) {
 			stringBuilder.append(ResultView.ladderBlank());
-			stringBuilder.append(ResultView.lineText(line.getPoints()));
+			stringBuilder.append(ResultView.lineText(line.getCrosses()));
 			stringBuilder.append("\n");
 		}
 		System.out.print(stringBuilder);
+	}
+
+	private static String lineText(List<Cross> crosses) {
+		crosses = new ArrayList<>(crosses.subList(0, crosses.size() - 1));
+		return crosses.stream().map(cross -> {
+			if (cross.isCurrent()) {
+				return ResultView.TRUE_TEXT;
+			}
+			return ResultView.FALSE_TEXT;
+		}).collect(Collectors.joining(ResultView.HEIGHT_TEXT, ResultView.HEIGHT_TEXT, ResultView.HEIGHT_TEXT));
 	}
 
 	private static String ladderBlank() {
@@ -54,17 +65,6 @@ public class ResultView {
 		IntStream.range(0, Names.LENGTH_MAXIMUM)
 			.forEach(i -> stringBuilder.append(" "));
 		return stringBuilder.toString();
-	}
-
-	private static String lineText(Points points) {
-		return points.getPoints().stream()
-			.map(point -> {
-				if (point.equals(Point.of(true))) {
-					return ResultView.TRUE_TEXT;
-				}
-				return ResultView.FALSE_TEXT;
-			})
-			.collect(Collectors.joining(ResultView.HEIGHT_TEXT, ResultView.HEIGHT_TEXT, ResultView.HEIGHT_TEXT));
 	}
 
 	public static void printResults(Results results) {

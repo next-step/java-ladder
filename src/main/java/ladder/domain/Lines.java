@@ -10,10 +10,14 @@ public class Lines {
 
 	private final List<Line> lines;
 
+	public static Lines of(Line... lines) {
+		return new Lines(List.of(lines));
+	}
+
 	public static Lines of(Height height, Names names, PointGenerator pointGenerator) {
 		List<Line> lines = new ArrayList<>();
 		for (int i = 0; i < height.getHeight(); i++) {
-			lines.add(new Line(new Points(Points.generate(names, pointGenerator))));
+			lines.add(new Line(Crosses.of(names, pointGenerator)));
 		}
 		return new Lines(lines);
 	}
@@ -30,7 +34,7 @@ public class Lines {
 	}
 
 	public List<Line> getLines() {
-		return lines;
+		return this.lines;
 	}
 
 	@Override

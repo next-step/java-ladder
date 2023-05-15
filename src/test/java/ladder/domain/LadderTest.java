@@ -10,19 +10,26 @@ public class LadderTest {
 	@DisplayName("유효한 좌표 목록으로 사다리 생성 시, 객체를 반환한다.")
 	@Test
 	void test1() {
-		Ladder ladder = Ladder.of(Line.of(true, false, true), Line.of(false, true, false));
-		assertThat(ladder).isEqualTo(Ladder.of(Line.of(true, false, true), Line.of(false, true, false)));
+		Ladder ladder = Ladder.of(
+			Line.of(Crosses.of(true, false, true)),
+			Line.of(Crosses.of(false, true, false))
+		);
+
+		assertThat(ladder).isEqualTo(Ladder.of(
+			Line.of(Crosses.of(true, false, true)),
+			Line.of(Crosses.of(false, true, false))
+		));
 	}
 
 	@DisplayName("유효한 사다리 생성 후, 최종 인덱스를 구한다.")
 	@Test
 	void test2() {
 		Ladder ladder = Ladder.of(
-			Line.of(true, false, true),
-			Line.of(false, true, false),
-			Line.of(true, false, false),
-			Line.of(false, true, false),
-			Line.of(true, false, true)
+			Line.of(Crosses.of(true, false, true)),
+			Line.of(Crosses.of(false, true, false)),
+			Line.of(Crosses.of(true, false, false)),
+			Line.of(Crosses.of(false, true, false)),
+			Line.of(Crosses.of(true, false, true))
 		);
 
 		assertThat(ladder.finalIndex(0)).isEqualTo(0);
