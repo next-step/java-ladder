@@ -60,6 +60,17 @@ class LadderTest {
     }
 
     @Test
+    @DisplayName("라인의 오른쪽 연결 확인")
+    void hasRightConnections() {
+        // given
+        Ladder ladder = Ladder.of(users, height, () -> true);
+        List<Boolean> hasRightConnections = List.of(true, false, true, false);
+
+        // then
+        assertThat(ladder.hasRightConnections(0)).isEqualTo(hasRightConnections);
+    }
+
+    @Test
     @DisplayName("실행 결과 - 특정 유저")
     void climb() {
         // given
@@ -73,20 +84,5 @@ class LadderTest {
         // then
         assertThat(result.getResultByPosition(actual)).isEqualTo("5000");
         assertThat(result.getResultByPosition(actual2)).isEqualTo("3000");
-    }
-
-    @Test
-    @DisplayName("실행 결과 - 전체")
-    void climbAll() {
-        // given
-        Ladder ladder = Ladder.of(users, height, () -> true);
-        Result result = new Result("꽝, 5000, 꽝,3000");
-
-        // when
-        List<Integer> actual = ladder.climbAll();
-
-        // then
-        assertThat(result.getResultByPosition(actual.get(0))).isEqualTo("5000");
-        assertThat(result.getResultByPosition(actual.get(2))).isEqualTo("3000");
     }
 }
