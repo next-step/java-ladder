@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import ladder.util.PointStrategy;
-import ladder.util.RandomPointStrategy;
 
 public class LadderHeight {
 

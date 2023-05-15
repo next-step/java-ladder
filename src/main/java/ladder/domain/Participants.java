@@ -39,7 +39,7 @@ public class Participants {
     }
 
     public List<Participant> immutableGet() {
-        return unmodifiableList(this.participants)
+        return unmodifiableList(this.participants);
     }
 
     public int countOfPerson() {

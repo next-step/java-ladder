@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import static java.util.Collections.unmodifiableList;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -53,11 +55,15 @@ public class Line {
         return new Line(points);
     }
 
-    public static boolean noParticipant(int countOfPerson) {
+    private static boolean noParticipant(int countOfPerson) {
         return countOfPerson < MIN_PARTICIPANT_NUMBER;
     }
 
     public int size() {
         return this.points.size();
+    }
+
+    public List<Boolean> immutableGet() {
+        return unmodifiableList(this.points);
     }
 }

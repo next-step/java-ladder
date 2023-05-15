@@ -27,4 +27,13 @@ class LinesTest {
                 .hasMessage("사다리 정보가 비어있습니다.");
     }
 
+    @Test
+    @DisplayName("데이터 수정이 일어날 경우 익셉션을 발생한다.")
+    void immutableTest() {
+        assertThatThrownBy(() -> new Lines(
+                List.of(lineOf(1, new RandomPointStrategy())))
+                .immutableGet().add(new Line(new ArrayList<>())))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

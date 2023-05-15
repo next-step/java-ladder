@@ -46,5 +46,12 @@ public class LineTest {
                 .isEqualTo(10);
     }
 
+    @Test
+    @DisplayName("내부 라인에 대한 Get 을 호출한경우 내부 데이터를 수정할 수 없다.")
+    void immutableTest() {
+        assertThatThrownBy(() -> lineOf(10, new RandomPointStrategy()).immutableGet().add(false))
+                .isInstanceOf(UnsupportedOperationException.class);
+    }
+
 
 }
