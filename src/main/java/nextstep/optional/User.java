@@ -37,7 +37,6 @@ public class User {
 
     public static boolean ageIsInRange2(User user) {
         return Optional.ofNullable(user)
-                .filter( Objects::nonNull)
                 .filter( u -> u.getAge() != null && u.getAge() >= 30 && u.getAge() <= 45)
                 .isPresent();
     }
