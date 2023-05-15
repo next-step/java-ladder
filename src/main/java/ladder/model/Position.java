@@ -16,12 +16,12 @@ public class Position {
         }
     }
 
-    public Position right() {
-        return new Position(this.position + 1);
+    public int right() {
+        return this.position + 1;
     }
 
-    public Position left() {
-        return new Position(this.position - 1);
+    public int left() {
+        return this.position - 1;
     }
 
     @Override
@@ -37,5 +37,9 @@ public class Position {
     @Override
     public int hashCode() {
         return position;
+    }
+
+    public int getPosition() {
+        return this.position;
     }
 }

@@ -20,21 +20,21 @@ public class PointTest {
     @Test
     void left() {
         Point point = new Point(1, true, false);
-        assertThat(point.move()).isEqualTo(new Position(0));
+        assertThat(point.move()).isEqualTo(0);
     }
 
     @DisplayName("우측에 라인이 있는 경우 우측으로 이동한다")
     @Test
     void right() {
         Point point = new Point(1, false, true);
-        assertThat(point.move()).isEqualTo(new Position(2));
+        assertThat(point.move()).isEqualTo(2);
     }
 
     @DisplayName("양쪽 모두 라인이 없는 경우 이동하지 않는다")
     @Test
     void pass() {
         Point point = new Point(1, false, false);
-        assertThat(point.move()).isEqualTo(new Position(1));
+        assertThat(point.move()).isEqualTo(1);
     }
 
     @DisplayName("각 라인의 첫번째 Point를 생성할 수 있다")

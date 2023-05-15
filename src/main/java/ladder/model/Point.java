@@ -39,14 +39,14 @@ public class Point {
         return new Point(this.position.right(), this.right, false);
     }
 
-    public Position move() {
+    public int move() {
         if (left) {
             return position.left();
         }
         if (right) {
             return position.right();
         }
-        return position;
+        return position.getPosition();
     }
 
     @Override
