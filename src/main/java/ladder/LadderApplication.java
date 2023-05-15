@@ -8,6 +8,10 @@ import ladder.view.OutputView;
 public class LadderApplication {
 
     public static void main(String[] args) {
+        playLadderGameUntilException();
+    }
+
+    private static void playLadderGameUntilException() {
         while(isGameThrowException()){}
     }
 
