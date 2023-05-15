@@ -12,10 +12,4 @@ public class Prize {
     return prize;
   }
 
-  @Override
-  public String toString() {
-    return "Prize{" +
-        "prize='" + prize + '\'' +
-        '}';
-  }
 }

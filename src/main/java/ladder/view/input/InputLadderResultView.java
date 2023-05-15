@@ -2,6 +2,7 @@ package ladder.view.input;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import ladder.domain.prize.Prize;
 import ladder.domain.prize.Prizes;
 
@@ -19,20 +20,19 @@ public class InputLadderResultView extends InputView {
   }
 
   private static List<Prize> toList(String[] splitLadderResult) {
-    return List.of(splitLadderResult)
-        .stream()
+    return Stream.of(splitLadderResult)
         .map(Prize::new)
         .collect(Collectors.toList());
 
   }
-  private static void validateSize(String[] laddersResult, int sizeOfParticipant) {
-    if (isNotSameSize(laddersResult, sizeOfParticipant)) {
+  private static void validateSize(String[] prizes, int sizeOfParticipant) {
+    if (isNotSameSize(prizes, sizeOfParticipant)) {
       throw new IllegalArgumentException("참여자 수와 결과의 수가 다릅니다.");
     }
   }
 
-  private static boolean isNotSameSize(String[] laddersResult, int sizeOfParticipant) {
-    return laddersResult.length != sizeOfParticipant;
+  private static boolean isNotSameSize(String[] prizes, int sizeOfParticipant) {
+    return prizes.length != sizeOfParticipant;
   }
 
   private static String[] split(String result) {
