@@ -28,15 +28,19 @@ public class LadderApplication {
 
         RepeatStatus repeatStatus = new RepeatStatus(true);
         while (repeatStatus.repeatable()) {
-            UserName inputUserName = UserName.add(InputView.showUserResultConsole());
-            if (inputUserName.isAll()) {
-                repeatStatus.stop();
-                ResultView.drawUserResult(executeResults.toArray());
-                break;
-            }
-            Result result = executeResults.getResult(inputUserName);
-            ResultView.drawUserResult(result.getValue());
+            drawUserResult(executeResults, repeatStatus);
         }
+    }
+
+    private static void drawUserResult(ExecuteResults executeResults, RepeatStatus repeatStatus) {
+        UserName inputUserName = UserName.add(InputView.showUserResultConsole());
+        if (inputUserName.isAll()) {
+            repeatStatus.stop();
+            ResultView.drawUserResult(executeResults.toArray());
+            return;
+        }
+        Result result = executeResults.getResult(inputUserName);
+        ResultView.drawUserResult(result.getValue());
     }
 
     static class RepeatStatus {
