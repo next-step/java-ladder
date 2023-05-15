@@ -49,12 +49,9 @@ public class Ladder {
         }
 
         int result = stileIndex;
-
-        for (int depth = 0; depth < height(); depth++) {
-            LadderRow row = rows.get(depth);
+        for (LadderRow row : rows) {
             result = row.nextStile(result);
         }
-
         return result;
     }
 }

@@ -32,10 +32,10 @@ public class Application {
         Names names = new Names(namesInput.getValue());
         LadderResults ladderResults = new LadderResults(ladderResultInput.getValue());
 
-        int stiles = names.size();
+        int countOfNames = names.count();
         int height = heightInput.getValue();
 
-        Ladder ladder = Ladder.create(stiles, height, new RandomStrategy());
+        Ladder ladder = Ladder.create(countOfNames, height, new RandomStrategy());
         LadderGame game = new LadderGame(names, ladder, ladderResults);
 
         LadderGameOutput gameOutput = new LadderGameOutput(new LadderGameInfoView(), game);
@@ -43,7 +43,7 @@ public class Application {
 
         while (true) {
             Name name = nameInput.getValue();
-            if (name.equals(NameInput.ALL)) {
+            if (Name.isAll(name)) {
                 new LadderMatchOutput(new LadderMatchInfoView(), game.resultAll()).print();
                 return;
             } else {

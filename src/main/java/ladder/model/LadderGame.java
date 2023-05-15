@@ -24,16 +24,16 @@ public class LadderGame {
     }
 
     private static void validate(Names names, Ladder ladder, LadderResults results) {
-        if (names.size() < 2) {
+        if (names.count() < 2) {
             throw new IllegalArgumentException("ladder game requires at least two participants");
         }
-        if (names.size() != ladder.countOfStiles()) {
+        if (names.count() != ladder.countOfStiles()) {
             throw new IllegalArgumentException(
                     "The number of participants must be equal to the count of stiles in ladder"
             );
         }
-        if (names.size() != results.size()) {
-            throw new IllegalArgumentException("The size of names doesn't match the size of result");
+        if (names.count() != results.size()) {
+            throw new IllegalArgumentException("The count of names doesn't match the size of result");
         }
     }
 

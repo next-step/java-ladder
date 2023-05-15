@@ -26,7 +26,7 @@ public class Names implements Iterable<Name> {
         return new Names(List.of(names));
     }
 
-    public int size() {
+    public int count() {
         return names.size();
     }
 
