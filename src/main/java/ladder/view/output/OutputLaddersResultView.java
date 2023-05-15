@@ -1,12 +1,14 @@
 package ladder.view.output;
 
-import ladder.domain.LaddersResult;
+import ladder.domain.prize.Prizes;
 
 public class OutputLaddersResultView {
 
 
-  public static void printLaddersResult(LaddersResult laddersResult) {
-    laddersResult.results().forEach(result -> System.out.printf("%-6s", result));
+  public static void printPrizes(Prizes prizes) {
+    prizes.getPrizes().forEach(prize -> System.out.printf("%-6s", prize.getPrize()));
+    System.out.println();
+    System.out.println();
   }
 
 }

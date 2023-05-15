@@ -1,9 +1,7 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import ladder.domain.strategy.NextPointGenerationStrategy;
 
 public class Line {
@@ -38,5 +36,16 @@ public class Line {
 
   public List<Boolean> getPoints() {
     return points;
+  }
+
+  public boolean isRightConnected(int index) {
+    if(index == points.size()) {
+      return false;
+    }
+    return points.get(index);
+  }
+
+  public boolean isLeftConnected(int index) {
+    return points.get(index - 1);
   }
 }

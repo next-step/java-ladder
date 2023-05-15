@@ -1,8 +1,9 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import ladder.domain.participant.Participants;
 import ladder.domain.strategy.NextPointGenerationStrategy;
 
 public class Lines {
@@ -28,4 +29,23 @@ public class Lines {
   public int height() {
     return lines.size();
   }
+
+  public int getLastIndex(int startIndex) {
+    int indexOfResult = startIndex;
+
+    for (int i = 0; i < height(); i++) {
+
+      if (getRow(i).isRightConnected(indexOfResult)) {
+        indexOfResult++;
+      }
+
+      else if (indexOfResult > 0 && getRow(i).isLeftConnected(indexOfResult)) {
+        indexOfResult--;
+      }
+
+    }
+
+    return indexOfResult;
+  }
+
 }

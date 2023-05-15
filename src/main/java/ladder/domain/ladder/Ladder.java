@@ -1,11 +1,20 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import ladder.domain.participant.Name;
+import ladder.domain.participant.Participants;
+import ladder.domain.prize.Prize;
+import ladder.domain.prize.Prizes;
 import ladder.domain.strategy.NextPointGenerationStrategy;
 
-public class Ladders {
+public class Ladder {
 
   private final Lines lines;
+  private final Map<Name, Prize> matchResult = new HashMap<>();
 
   /**
    * 객체 자신이 가지는 상태 값 이상으로의 값을 통해 객체를 생성할 필요할 있는 경우는 => 정적 팩토리 메서드 활용하자.
@@ -22,13 +31,13 @@ public class Ladders {
    * 2. 생성 자체를 호출하는 곳이 해당 객체를 상태 값으로 가지는 대상이 책임을 이행하다 보니 현재 정적 팩토리 메서드가 많이 사용되고 있다
    * 괜찮을까??
    */
-  private Ladders(Lines lines) {
+  private Ladder(Lines lines) {
     this.lines = lines;
   }
 
-  public static Ladders createLadders(Height height, Participants participants, NextPointGenerationStrategy generationStrategy) {
+  public static Ladder createLadders(Height height, Participants participants, NextPointGenerationStrategy generationStrategy) {
     Lines lines = createLines(height, participants, generationStrategy);
-    return new Ladders(lines);
+    return new Ladder(lines);
   }
 
   private static Lines createLines(Height height, Participants participants,
@@ -42,5 +51,27 @@ public class Ladders {
 
   public List<Boolean> getRow(int rowNumber) {
     return lines.getRow(rowNumber).getPoints();
+  }
+
+  public Prize getIndexOfResult(Name name, Participants participants, Prizes prizes) {
+
+    if (matchResult.containsKey(name)) {
+      return matchResult.get(name);
+    }
+
+    int startIndex = participants.indexOf(name);
+    int lastIndex = lines.getLastIndex(startIndex);
+    Prize prize = prizes.getPrize(lastIndex);
+    matchResult.put(name, prize);
+
+    return prize;
+  }
+
+
+  public List<MatchResult> getAllResults(Participants participants, Prizes prizes) {
+    return participants.getParticipants().stream()
+        .map(participant -> new MatchResult(participant,getIndexOfResult(participant.getName(), participants, prizes)))
+        .collect(Collectors.toList());
+
   }
 }

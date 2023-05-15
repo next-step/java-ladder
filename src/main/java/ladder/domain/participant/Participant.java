@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.participant;
 
 import java.util.Objects;
 
@@ -33,5 +33,12 @@ public class Participant {
   @Override
   public int hashCode() {
     return Objects.hash(name);
+  }
+
+  @Override
+  public String toString() {
+    return "Participant{" +
+        "name=" + name +
+        '}';
   }
 }

@@ -1,6 +1,6 @@
 package ladder.view.output;
 
-import ladder.domain.Participants;
+import ladder.domain.participant.Participants;
 
 public class OutputNamesView {
 
