@@ -9,7 +9,7 @@ import java.util.List;
 public class Line {
     private final List<Point> points;
 
-    private Line(List<Point> points) {
+    public Line(List<Point> points) {
         this.points = points;
     }
 
@@ -26,6 +26,10 @@ public class Line {
         points.add(point.createLast());
 
         return new Line(points);
+    }
+
+    public int move(int position) {
+        return points.get(position).move();
     }
 
     public int size() {

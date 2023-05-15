@@ -1,7 +1,6 @@
 package ladder;
 
 import ladder.model.Point;
-import ladder.model.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

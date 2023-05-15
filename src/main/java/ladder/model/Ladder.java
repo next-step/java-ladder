@@ -26,6 +26,10 @@ public class Ladder {
         return this.lines.size();
     }
 
+    public Line getLineByHeight(int height) {
+        return lines.get(height);
+    }
+
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }

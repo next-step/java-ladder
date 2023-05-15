@@ -72,8 +72,4 @@ public class Point {
     public boolean getLeft() {
         return this.left;
     }
-
-    public boolean getRight() {
-        return this.right;
-    }
 }

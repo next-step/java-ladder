@@ -21,6 +21,10 @@ public class Rewards {
                 .collect(Collectors.toList()));
     }
 
+    public String getRewardByIndex(int index) {
+        return rewards.get(index).getReward();
+    }
+
     public List<Reward> getRewards() {
         return Collections.unmodifiableList(rewards);
     }

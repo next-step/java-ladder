@@ -23,6 +23,10 @@ public class Users {
         return this.users.size();
     }
 
+    public String getUserNameByIndex(int index) {
+        return users.get(index).getName().getName();
+    }
+
     public List<User> getUsers() {
         return Collections.unmodifiableList(users);
     }
