@@ -1,5 +1,6 @@
 package nextstep.ladder;
 
+import nextstep.ladder.controller.LadderGame;
 import nextstep.ladder.domain.strategy.RandomBridgeStrategy;
 
 public class Application {
