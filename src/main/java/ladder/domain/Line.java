@@ -3,18 +3,47 @@ package ladder.domain;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class Line {
-
-    private static final Random RANDOM = new Random();
 
     private final List<Boolean> points;
 
     private Line(List<Boolean> points) {
         this.points = valid(points);
+    }
+
+    public static Line of(List<Boolean> points) {
+        return new Line(points);
+    }
+
+    public static Line of(int countOfPerson) {
+        return of(LineRandom.of(new Random()).randomList(countOfPerson - 1));
+    }
+
+    public List<Boolean> points() {
+        return List.copyOf(points);
+    }
+
+    public int length() {
+        return points().size();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Line line = (Line) o;
+        return Objects.equals(points, line.points);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(points);
     }
 
     private List<Boolean> valid(List<Boolean> points) {
@@ -37,61 +66,7 @@ public class Line {
     }
 
     private boolean isOverlapping(Boolean a, Boolean b) {
-        return isTrue(a) && isTrue(b);
-    }
-
-    public static Line of(List<Boolean> points) {
-        return new Line(points);
-    }
-
-    public static Line of(int countOfPerson) {
-        return new Line(randomList(countOfPerson - 1));
-    }
-
-    private static List<Boolean> randomList(int size) {
-        return Stream.iterate(randomPoint(), Line::nextPoint)
-            .limit(size)
-            .collect(Collectors.toList());
-    }
-
-    public static Boolean nextPoint(Boolean prev) {
-        if (isTrue(prev)) {
-            return Boolean.FALSE;
-        }
-        return randomPoint();
-    }
-
-    private static boolean isTrue(Boolean prev) {
-        return prev.equals(Boolean.TRUE);
-    }
-
-    private static boolean randomPoint() {
-        return RANDOM.nextBoolean();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Line line = (Line) o;
-        return Objects.equals(points, line.points);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(points);
-    }
-
-    public List<Boolean> points() {
-        return List.copyOf(points);
-    }
-
-    public int length() {
-        return points().size();
+        return a.equals(Boolean.TRUE) && b.equals(Boolean.TRUE);
     }
 
 }

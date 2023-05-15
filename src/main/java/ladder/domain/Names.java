@@ -9,27 +9,24 @@ public class Names {
 
     public static final String DELIMITER = ",";
 
-    private final List<String> names;
+    private final List<Name> names;
 
-    private Names(List<String> names) {
-        this.names = names;
+    private Names(List<Name> names) {
+        this.names = valid(names);
     }
 
     public static Names of(String names) {
         return of(Arrays.stream(splitString(names))
             .map(String::trim)
+            .map(Name::of)
             .collect(Collectors.toList()));
     }
 
-    private static String[] splitString(String names) {
-        return names.split(DELIMITER);
-    }
-
-    public static Names of(List<String> names) {
+    public static Names of(List<Name> names) {
         return new Names(names);
     }
 
-    public List<String> names() {
+    public List<Name> names() {
         return List.copyOf(names);
     }
 
@@ -54,10 +51,31 @@ public class Names {
         return names.size();
     }
 
+    @Override
+    public String toString() {
+        return "Names{" +
+            "names=" + names +
+            '}';
+    }
+
     public int properWidth() {
         return names.stream()
             .map(x -> x.length())
             .reduce(0, (a,b) -> a + b) / count();
+    }
+
+    private static String[] splitString(String names) {
+        return names.split(DELIMITER);
+    }
+
+    private List<Name> valid(List<Name> names) {
+        if (names == null || names.size() == 0) {
+            throw new IllegalArgumentException("이름 목록은 빈 값일 수 없습니다.");
+        }
+        if (names.size() == 1) {
+            throw new IllegalArgumentException("참가자는 두 명 이상이어야 합니다.");
+        }
+        return names;
     }
 
 }

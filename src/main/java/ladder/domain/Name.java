@@ -10,17 +10,6 @@ public class Name {
         this.name = valid(name);
     }
 
-    private String valid(String name) {
-        if (isNotValid(name)) {
-            throw new IllegalArgumentException("이름은 빈값일 수 없습니다.");
-        }
-        return name;
-    }
-
-    private boolean isNotValid(String name) {
-        return name == null || name.isBlank();
-    }
-
     public static Name of(String name) {
         return new Name(name);
     }
@@ -44,6 +33,21 @@ public class Name {
 
     public int length() {
         return name.length();
+    }
+
+    public String name() {
+        return name;
+    }
+
+    private String valid(String name) {
+        if (isNotValid(name)) {
+            throw new IllegalArgumentException("이름은 빈값일 수 없습니다.");
+        }
+        return name;
+    }
+
+    private boolean isNotValid(String name) {
+        return name == null || name.isBlank();
     }
 
 }

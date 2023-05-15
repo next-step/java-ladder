@@ -5,39 +5,31 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import ladder.domain.Ladder;
 import ladder.domain.Line;
+import ladder.domain.Name;
 import ladder.domain.Names;
 
 public class OutputView {
 
-    private enum Delimiter {
-        WHITE_SPACE(" "),
-        HORIZONTAL_LINE("-"),
-        VERTICAL_LINE("|"),
-        LINE_SEPARATOR("\n");
-
-        private final String value;
-
-        Delimiter(String value) {
-            this.value = value;
-        }
+    public static void printResult() {
+        System.out.println("\n실행결과\n");
     }
 
     public static void printNames(Names names, int width) {
-        System.out.println(joinString(horizontalDelimiter(Delimiter.WHITE_SPACE.value, width), names.names()));
+        System.out.println(joinString(horizontalDelimiter(Delimiter.WHITE_SPACE.value(), width), names.names()));
     }
 
-    private static String joinString(String delimiter, List<String> list) {
-        return String.join(delimiter, list);
+    public static void printLadder(Ladder ladder, int width) {
+        System.out.println(ladderIndicator(ladder, width));
+    }
+
+    private static String joinString(String delimiter, List<Name> list) {
+        return String.join(delimiter, list.stream().map(Name::name).collect(Collectors.toList()));
     }
 
     private static String horizontalDelimiter(String delimiter, int length) {
         return IntStream.range(0, length)
             .mapToObj(i -> delimiter)
             .collect(Collectors.joining());
-    }
-
-    public static void printLadder(Ladder ladder, int width) {
-        System.out.println(ladderIndicator(ladder, width));
     }
 
     private static String ladderIndicator(Ladder ladder, int width) {
@@ -51,11 +43,11 @@ public class OutputView {
     }
 
     private static String lineSeparator() {
-        return Delimiter.LINE_SEPARATOR.value;
+        return Delimiter.LINE_SEPARATOR.value();
     }
 
     private static String verticalLine() {
-        return Delimiter.VERTICAL_LINE.value;
+        return Delimiter.VERTICAL_LINE.value();
     }
 
     private static String rightPartOfLine(Line line, int width) {
@@ -68,11 +60,7 @@ public class OutputView {
     }
 
     private static String delimiterOf(Boolean point) {
-        return point.equals(Boolean.TRUE) ? Delimiter.HORIZONTAL_LINE.value : Delimiter.WHITE_SPACE.value;
-    }
-
-    public static void printResult() {
-        System.out.println("\n실행결과\n");
+        return point.equals(Boolean.TRUE) ? Delimiter.HORIZONTAL_LINE.value() : Delimiter.WHITE_SPACE.value();
     }
 
 }

@@ -13,13 +13,6 @@ public class Ladder {
         this.lines = valid(lines);
     }
 
-    private List<Line> valid(List<Line> lines) {
-        if (lines == null || lines.isEmpty()) {
-            throw new IllegalArgumentException("사다리는 빈 값일 수 없습니다.");
-        }
-        return lines;
-    }
-
     public static Ladder of(List<Line> lines) {
         return new Ladder(lines);
     }
@@ -57,6 +50,13 @@ public class Ladder {
 
     public List<Line> lines() {
         return List.copyOf(lines);
+    }
+
+    private List<Line> valid(List<Line> lines) {
+        if (lines == null || lines.isEmpty()) {
+            throw new IllegalArgumentException("사다리는 빈 값일 수 없습니다.");
+        }
+        return lines;
     }
 
 }

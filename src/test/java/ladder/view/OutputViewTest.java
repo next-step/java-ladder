@@ -6,6 +6,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
 import ladder.domain.Ladder;
+import ladder.domain.Name;
 import ladder.domain.Names;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,7 +31,7 @@ public class OutputViewTest {
 
     @Test
     void 실행결과_이름_출력() {
-        OutputView.printNames(Names.of(List.of("a", "b", "c")), 3);
+        OutputView.printNames(Names.of(List.of(Name.of("a"), Name.of("b"), Name.of("c"))), 3);
 
         assertThat(output.toString()).containsPattern("(\\S{1,5} {0,3}){3}");
     }

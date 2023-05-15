@@ -20,11 +20,6 @@ public class LineTest {
     }
 
     @Test
-    void 다음포인트() {
-        assertThat(Line.nextPoint(Boolean.TRUE)).isEqualTo(Boolean.FALSE);
-    }
-
-    @Test
     void 라인_비정상_생성() {
         assertThatExceptionOfType(IllegalArgumentException.class)
             .isThrownBy(() -> Line.of(List.of(true, true, false)))
