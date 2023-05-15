@@ -31,6 +31,10 @@ public class Participants {
     return participants.indexOf(new Participant(name));
   }
 
+  public int indexOf(Participant participant) {
+    return participants.indexOf(participant);
+  }
+
   public boolean containsName(Name name) {
     return participants.contains(new Participant(name));
   }

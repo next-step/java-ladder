@@ -3,9 +3,10 @@ package ladder.controller;
 import java.util.List;
 import ladder.domain.ladder.Height;
 import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.LadderGame;
 import ladder.domain.ladder.LadderSizeInfo;
-import ladder.domain.participant.Name;
 import ladder.domain.ladder.MatchResult;
+import ladder.domain.participant.Participant;
 import ladder.domain.prize.Prize;
 import ladder.domain.prize.Prizes;
 import ladder.domain.participant.Participants;
@@ -40,17 +41,19 @@ public class LadderController {
     OutputLaddersView.printLadder(ladder);
     OutputLaddersResultView.printPrizes(prizes);
 
+    LadderGame ladderGame = new LadderGame(ladder, participants, prizes);
+
     // 사다리에 따라 결과 계산하기 (logic)
     while(true) {
-      Name name = InputNamesView.scanPlayerName(participants);
+      Participant participant = InputNamesView.scanPlayerName(participants);
 
-      if (name.isAll()) {
-        List<MatchResult> allResults = ladder.getAllResults(participants, prizes);
+      if (participant.isAll()) {
+        List<MatchResult> allResults = ladderGame.getAllResults();
         OutputPrizeResultView.printAllResults(allResults);
         break;
       }
 
-      Prize prize = ladder.getIndexOfResult(name, participants, prizes);
+      Prize prize = ladderGame.getPrize(participant);
       OutputPrizeResultView.printResult(prize);
 
     }

@@ -1,20 +1,13 @@
 package ladder.domain.ladder;
 
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import ladder.domain.participant.Name;
-import ladder.domain.participant.Participants;
-import ladder.domain.prize.Prize;
-import ladder.domain.prize.Prizes;
 import ladder.domain.strategy.NextPointGenerationStrategy;
 
 public class Ladder {
 
   private final Lines lines;
-  private final Map<Name, Prize> matchResult = new HashMap<>();
+
 
   /**
    * 객체 자신이 가지는 상태 값 이상으로의 값을 통해 객체를 생성할 필요할 있는 경우는 => 정적 팩토리 메서드 활용하자.
@@ -49,25 +42,9 @@ public class Ladder {
     return lines.getRow(rowNumber).getPoints();
   }
 
-  public Prize getIndexOfResult(Name name, Participants participants, Prizes prizes) {
-
-    if (matchResult.containsKey(name)) {
-      return matchResult.get(name);
-    }
-
-    int startIndex = participants.indexOf(name);
-    int lastIndex = lines.getLastIndex(startIndex);
-    Prize prize = prizes.getPrize(lastIndex);
-    matchResult.put(name, prize);
-
-    return prize;
+  public int getIndexOfResult(int startIndex) {
+    return lines.getLastIndex(startIndex);
   }
 
 
-  public List<MatchResult> getAllResults(Participants participants, Prizes prizes) {
-    return participants.getParticipants().stream()
-        .map(participant -> new MatchResult(participant,getIndexOfResult(participant.getName(), participants, prizes)))
-        .collect(Collectors.toList());
-
-  }
 }

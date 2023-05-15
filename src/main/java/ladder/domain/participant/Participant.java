@@ -35,10 +35,8 @@ public class Participant {
     return Objects.hash(name);
   }
 
-  @Override
-  public String toString() {
-    return "Participant{" +
-        "name=" + name +
-        '}';
+
+  public boolean isAll() {
+    return name.isAll();
   }
 }

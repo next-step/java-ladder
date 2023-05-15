@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import ladder.domain.participant.Name;
+import ladder.domain.participant.Participant;
 import ladder.domain.participant.Participants;
 
 public class InputNamesView extends InputView {
@@ -29,12 +30,12 @@ public class InputNamesView extends InputView {
         .collect(Collectors.toList());
   }
 
-  public static Name scanPlayerName(Participants participants) {
+  public static Participant scanPlayerName(Participants participants) {
     System.out.println("결과를 보고 싶은 사람은?");
     String inputName = SCANNER.nextLine();
     Name name = new Name(inputName);
     validateName(participants, name);
-    return name;
+    return new Participant(name);
   }
 
   private static void validateName(Participants participants, Name name) {
