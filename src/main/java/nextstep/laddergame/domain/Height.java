@@ -11,4 +11,8 @@ public class Height {
 
     this.height = height;
   }
+
+  public boolean equals(int height) {
+    return this.height == height;
+  }
 }
