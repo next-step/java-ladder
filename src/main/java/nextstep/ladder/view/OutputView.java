@@ -1,6 +1,7 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.Participants;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,9 +23,9 @@ public class OutputView {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
     }
 
-    public static void printLadder(List<String> participantsName, List<Line> ladderLines) {
+    public static void printResult(Participants participants, List<Line> ladderLines) {
         System.out.println("실행결과\n");
-        participantsName.forEach(name -> System.out.print(nameFormat(name)));
+        participants.forEach(name -> System.out.print(nameFormat(name)));
 
         System.out.println();
         printLadder(ladderLines);

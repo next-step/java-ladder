@@ -1,7 +1,10 @@
 package nextstep.ladder;
 
+import nextstep.ladder.domain.Height;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.Participants;
+import nextstep.ladder.domain.strategy.BridgeStrategy;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
@@ -9,22 +12,29 @@ import java.util.List;
 
 public class LadderGame {
 
-    public static void run() {
-        List<String> participantsName = getParticipants();
-        int height = getLadderHeight();
+    private final BridgeStrategy strategy;
 
-        List<Line> ladder = Ladder.of(participantsName, height);
-
-        OutputView.printLadder(participantsName,ladder);
+    public LadderGame(BridgeStrategy strategy) {
+        this.strategy = strategy;
     }
 
-    private static int getLadderHeight() {
+    public void run() {
+        Participants participants = new Participants(getParticipants());
+        Height height = new Height(getLadderHeight());
+
+        List<Line> ladder = Ladder.of(participants)
+                .create(height, strategy);
+
+        OutputView.printResult(participants, ladder);
+    }
+
+    private int getLadderHeight() {
         OutputView.printAskLadderHeightMessage();
         return InputView.getLadderHeight();
     }
 
-    private static List<String> getParticipants() {
+    private String getParticipants() {
         OutputView.printParticipantsMessage();
-        return InputView.getParticipantsName();
+        return InputView.getParticipants();
     }
 }
