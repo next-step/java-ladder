@@ -4,7 +4,7 @@ import nextstep.ladder.domain.strategy.BridgeStrategy;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Line {
     private final BridgeStrategy strategy;
@@ -17,8 +17,8 @@ public class Line {
     }
 
     private List<Boolean> generatePoints(int width) {
-        return IntStream.rangeClosed(0, width)
-                .mapToObj(i -> strategy.makeBridge())
+        return Stream.generate(strategy::makeBridge)
+                .limit(width - 1)
                 .collect(Collectors.toList());
     }
 

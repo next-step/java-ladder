@@ -5,7 +5,7 @@ import nextstep.ladder.domain.strategy.RandomBridgeStrategy;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Ladder {
     private static final int MIN_WIDTH = 2;
@@ -33,8 +33,8 @@ public class Ladder {
     }
 
     private List<Line> create() {
-        return IntStream.rangeClosed(1, height)
-                .mapToObj(i -> new Line(width, strategy))
+        return Stream.generate(() -> new Line(width, strategy))
+                .limit(height)
                 .collect(Collectors.toList());
     }
 }
