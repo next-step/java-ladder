@@ -1,11 +1,14 @@
 package nextstep.ladder.view;
 
+import nextstep.ladder.domain.LadderResult;
 import nextstep.ladder.domain.LadderResults;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Lines;
 import nextstep.ladder.domain.Participant;
 import nextstep.ladder.domain.Participants;
 
+import java.util.Map;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -25,8 +28,8 @@ public class OutputView {
         System.out.println(formatLines(lines));
     }
 
-    public static void printLadderResults(LadderResults ladderResults) {
-        System.out.println(formatLadderResults(ladderResults) + NEWLINE);
+    public static void printInputResults(List<LadderResult> inputLadderResults) {
+        System.out.println(formatLadderResults(inputLadderResults) + NEWLINE);
     }
 
     public static void printResultByParticipant(Participant inputParticipant, LadderResults ladderResults) {
@@ -39,12 +42,12 @@ public class OutputView {
     }
 
     private static void printAllParticipantResults(LadderResults ladderResults) {
-        ladderResults.getLadderResults().forEach((participant, result) ->
+        ladderResults.getAllResults().forEach((participant, result) ->
                 System.out.println(participant.getName() + " : " + result.getResult()));
     }
 
     private static void printSingleParticipantResult(Participant participant, LadderResults ladderResults) {
-        System.out.println(ladderResults.getLadderResultByParticipant(participant).getResult());
+        System.out.println(ladderResults.getResultForParticipant(participant).getResult());
     }
 
     private static void printHeader() {
@@ -75,8 +78,8 @@ public class OutputView {
         return ladder.toString();
     }
 
-    private static String formatLadderResults(LadderResults ladderResults) {
-        return ladderResults.getLadderResults().values().stream()
+    private static String formatLadderResults(List<LadderResult> inputLadderResults) {
+        return inputLadderResults.stream()
                 .map(ladderResult -> String.format(PARTICIPANT_NAME_FORMAT, ladderResult.getResult()))
                 .collect(Collectors.joining());
     }
