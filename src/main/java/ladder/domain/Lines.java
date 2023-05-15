@@ -1,10 +1,7 @@
 package ladder.domain;
 
-import static ladder.domain.Line.lineOf;
-
 import java.util.ArrayList;
 import java.util.List;
-import ladder.util.PointStrategy;
 
 public class Lines {
 
@@ -18,7 +15,6 @@ public class Lines {
         }
         this.lines = new ArrayList<>(lines);
     }
-
 
     public int size() {
         return this.lines.size();

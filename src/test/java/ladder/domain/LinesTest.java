@@ -1,8 +1,6 @@
 package ladder.domain;
 
 import static ladder.domain.Line.lineOf;
-import static ladder.domain.Lines.linesOf;
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -28,6 +26,5 @@ class LinesTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사다리 정보가 비어있습니다.");
     }
-
 
 }
