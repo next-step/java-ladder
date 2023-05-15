@@ -1,17 +1,21 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.strategy.BridgeStrategy;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LineTest {
 
+    @DisplayName("중복된 다리가 있을 경우 예외를 발생한다.")
     @Test
-    void 이전에_다리가_있으면_중복되면_안된다() {
+    void when_hasDuplicateBridge_Expect_throwException() {
         int width = 5;
 
-        Line line = new Line(width);
+        BridgeStrategy strategy = () -> true;
 
-        assertThat(line.hasDuplicate()).isFalse();
+        assertThatThrownBy(() -> new Line(width, strategy))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
