@@ -36,14 +36,10 @@ public class Ladder {
   }
 
   public static Ladder createLadder(LadderSizeInfo sizeInfo, NextPointGenerationStrategy generationStrategy) {
-    Lines lines = createLines(sizeInfo, generationStrategy);
+    Lines lines = Lines.createLines(sizeInfo, generationStrategy);
     return new Ladder(lines);
   }
 
-  private static Lines createLines(LadderSizeInfo sizeInfo,
-      NextPointGenerationStrategy generationStrategy) {
-    return Lines.createLines(sizeInfo, generationStrategy);
-  }
 
   public int height() {
     return lines.height();
