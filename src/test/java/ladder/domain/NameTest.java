@@ -2,6 +2,7 @@ package ladder.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
+import ladder.domain.participant.Name;
 import org.junit.jupiter.api.Test;
 
 class NameTest {

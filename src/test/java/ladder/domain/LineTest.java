@@ -3,6 +3,7 @@ package ladder.domain;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
+import ladder.domain.ladder.Line;
 import ladder.domain.strategy.NextPointGenerationStrategy;
 import org.junit.jupiter.api.Test;
 

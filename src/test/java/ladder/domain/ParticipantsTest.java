@@ -4,6 +4,9 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import ladder.domain.participant.Name;
+import ladder.domain.participant.Participant;
+import ladder.domain.participant.Participants;
 import org.junit.jupiter.api.Test;
 
 class ParticipantsTest {
