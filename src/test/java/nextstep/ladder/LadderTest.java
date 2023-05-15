@@ -1,0 +1,25 @@
+package nextstep.ladder;
+
+import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
+
+public class LadderTest {
+
+    @Test
+    void 높이와_참여자가_주어졌을때_높이와_참여자에_따른_크기의_리스트를_생성한다() {
+        List<String> participants = List.of("pobi", "honux", "crong", "jk");
+        int ladderHeight = 5;
+
+        Ladder ladder = new Ladder(participants.size(), ladderHeight);
+        List<Line> lines = ladder.create();
+
+        assertAll(
+                () -> assertThat(lines).hasSize(ladderHeight),
+                () -> assertThat(lines.get(0).size()).isEqualTo(participants.size() - 1)
+        );
+    }
+}
