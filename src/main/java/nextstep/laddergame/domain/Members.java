@@ -9,4 +9,8 @@ public class Members {
   public Members(List<Member> members) {
     this.members = members;
   }
+
+  public boolean equalsSize(int size) {
+    return this.members.size() == size;
+  }
 }
