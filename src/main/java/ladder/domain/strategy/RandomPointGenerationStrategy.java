@@ -4,17 +4,24 @@ import java.util.Random;
 
 public class RandomPointGenerationStrategy implements NextPointGenerationStrategy {
 
-  private static final Random RANDOM = new Random();
+  private final Random random;
 
+  public RandomPointGenerationStrategy() {
+    random = new Random();
+  }
+
+  public RandomPointGenerationStrategy(Random random) {
+    this.random = random;
+  }
   @Override
   public boolean first() {
-    return RANDOM.nextBoolean();
+    return random.nextBoolean();
   }
 
   @Override
   public boolean nextBoolean(boolean prev) {
     if (!prev) {
-      return RANDOM.nextBoolean();
+      return random.nextBoolean();
     }
     return false;
   }
