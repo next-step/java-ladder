@@ -43,22 +43,4 @@ public class LadderApplication {
         ResultView.drawUserResult(result.getValue());
     }
 
-    static class RepeatStatus {
-
-        private boolean repeat;
-
-        public RepeatStatus(boolean repeat) {
-            this.repeat = repeat;
-        }
-
-        public boolean repeatable() {
-            return repeat;
-        }
-
-        public void stop() {
-            repeat = false;
-        }
-
-    }
-
 }
