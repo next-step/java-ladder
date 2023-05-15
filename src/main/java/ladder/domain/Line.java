@@ -16,11 +16,11 @@ public class Line {
 	}
 
 	public int nextIndex(int index) {
-		return crosses.move(index);
+		return this.crosses.move(index);
 	}
 
 	public List<Cross> getCrosses() {
-		return crosses.getCrosses();
+		return this.crosses.getCrosses();
 	}
 
 	@Override

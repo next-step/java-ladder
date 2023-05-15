@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -47,7 +48,7 @@ public class Crosses {
 	}
 
 	public List<Cross> getCrosses() {
-		return this.crosses;
+		return Collections.unmodifiableList(this.crosses);
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
 
@@ -12,7 +13,7 @@ public class ResultsBoard {
 	}
 
 	public Map<Name, Result> getResultBoard() {
-		return resultBoard;
+		return Collections.unmodifiableMap(this.resultBoard);
 	}
 
 	@Override
