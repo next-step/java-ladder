@@ -7,21 +7,18 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Line {
-    private final BridgeStrategy strategy;
     private final List<Boolean> points;
 
     public Line(int width, BridgeStrategy strategy) {
-        this.strategy = strategy;
-        this.points = generatePoints(width);
+        this.points = generatePoints(width, strategy);
         validateDuplicate();
     }
 
-    private List<Boolean> generatePoints(int width) {
+    private List<Boolean> generatePoints(int width, BridgeStrategy strategy) {
         return Stream.generate(strategy::makeBridge)
                 .limit(width - 1)
                 .collect(Collectors.toList());
     }
-
 
     private void validateDuplicate() {
         for (int i = 1; i < points.size(); i++) {
