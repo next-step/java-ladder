@@ -15,10 +15,6 @@ public class MatchResult {
     this.prize = prize;
   }
 
-  public String getMatchResult() {
-  return participant.getName().name() + " : " + prize.getPrize();
-  }
-
   public String getPrize() {
     return prize.getPrize();
   }
