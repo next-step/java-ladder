@@ -27,12 +27,12 @@ public class LadderController {
 		LadderGame ladderGame = new LadderGame();
 		ladderGame.start(ladder, names);
 		ResultsBoard resultsBoard = ladderGame.makeResultsBoard(names, results);
-		while (true) {
+
+		boolean all = false;
+		while (all == false) {
 			ResultName resultName = new ResultName(names, InputView.inputResultName());
 			ResultView.printGameResult(resultsBoard, resultName);
-			if (resultName.isAll()) {
-				return;
-			}
+			all = resultName.isAll();
 		}
 	}
 }
