@@ -39,10 +39,14 @@ public class Line {
   }
 
   public boolean isRightConnected(int index) {
-    if(index == points.size()) {
+    if(isLastIndex(index)) {
       return false;
     }
     return points.get(index);
+  }
+
+  private boolean isLastIndex(int index) {
+    return index == points.size();
   }
 
   public boolean isLeftConnected(int index) {

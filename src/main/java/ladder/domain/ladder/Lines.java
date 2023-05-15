@@ -34,18 +34,26 @@ public class Lines {
     int indexOfResult = startIndex;
 
     for (int i = 0; i < height(); i++) {
-
-      if (getRow(i).isRightConnected(indexOfResult)) {
-        indexOfResult++;
-      }
-
-      else if (indexOfResult > 0 && getRow(i).isLeftConnected(indexOfResult)) {
-        indexOfResult--;
-      }
-
+      indexOfResult = updateIndexOfResult(indexOfResult, i);
     }
 
     return indexOfResult;
+  }
+
+  private int updateIndexOfResult(int indexOfResult, int i) {
+    if (getRow(i).isRightConnected(indexOfResult)) {
+      return indexOfResult + 1;
+    }
+
+    if (isNotFirstIndex(indexOfResult) && getRow(i).isLeftConnected(indexOfResult)) {
+      return indexOfResult - 1;
+    }
+
+    return indexOfResult;
+  }
+
+  private static boolean isNotFirstIndex(int indexOfResult) {
+    return indexOfResult > 0;
   }
 
 }
