@@ -28,4 +28,8 @@ public class Participant {
         return source.length() > NAME_MAX_LENGTH;
     }
 
+    @Override
+    public String toString() {
+        return value;
+    }
 }

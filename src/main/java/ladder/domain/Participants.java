@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import static java.util.Collections.unmodifiableList;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -36,9 +38,18 @@ public class Participants {
                 .collect(Collectors.toList());
     }
 
+    public List<Participant> immutableGet() {
+        return unmodifiableList(this.participants)
+    }
+
     public int countOfPerson() {
         return this.participants.size();
     }
 
-
+    @Override
+    public String toString() {
+        return "Participants{" +
+                "participants=" + participants +
+                '}';
+    }
 }
