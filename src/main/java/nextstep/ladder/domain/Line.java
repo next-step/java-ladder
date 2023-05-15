@@ -1,48 +1,56 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.strategy.BridgeStrategy;
+
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Line {
-    private final Random random = new Random();
+    private final BridgeStrategy strategy;
     private final List<Boolean> points;
 
-    public Line(int width) {
+    public Line(int width, BridgeStrategy strategy) {
+        validate(width);
+        this.strategy = strategy;
         this.points = generatePoints(width);
-        eraseDuplicate();
+        validateDuplicate();
+    }
+
+    private void validate(int width) {
+        if (width < 1) {
+            throw new IllegalArgumentException("넓이는 1 이상이여야 합니다.");
+        }
     }
 
     private List<Boolean> generatePoints(int width) {
-        return IntStream.rangeClosed(1, width - 1)
-                .mapToObj(i -> makeBridge())
+        return IntStream.rangeClosed(0, width)
+                .mapToObj(i -> strategy.makeBridge())
                 .collect(Collectors.toList());
     }
 
-    private boolean makeBridge() {
-        return random.nextBoolean();
-    }
 
-    public int size() {
-        return points.size();
-    }
-
-    public boolean hasDuplicate() {
+    private void validateDuplicate() {
         for (int i = 1; i < points.size(); i++) {
-            if (points.get(i - 1) && points.get(i)) {
-                return true;
-            }
+            setFalseIfPreviousHasBridge(i);
+            throwExceptionWhenDuplicateBridgeExists(i);
         }
-        return false;
     }
 
-    private void eraseDuplicate() {
-        for (int i = 1; i < points.size(); i++) {
-            if (points.get(i - 1) && points.get(i)) {
-                points.set(i, false);
-            }
+    private void setFalseIfPreviousHasBridge(int index) {
+        if (hasDuplicate(index)) {
+            points.set(index, false);
         }
+    }
+
+    private void throwExceptionWhenDuplicateBridgeExists(int index) {
+        if (hasDuplicate(index)) {
+            throw new IllegalArgumentException("중복된 다리가 있습니다.");
+        }
+    }
+
+    private boolean hasDuplicate(int index) {
+        return points.get(index - 1) && points.get(index);
     }
 
     public List<Boolean> getPoints() {
