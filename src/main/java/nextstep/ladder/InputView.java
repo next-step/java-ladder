@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public class InputView {
 
     private static final String DELIMITER = ",";
-    public static final int MAX_NAME_LENGTH = 5;
+    private static final int MAX_NAME_LENGTH = 5;
     private static final Scanner scanner = new Scanner(System.in);
 
     public static List<String> getParticipantsName() {

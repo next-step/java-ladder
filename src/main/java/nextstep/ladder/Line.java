@@ -48,4 +48,8 @@ public class Line {
     void print() {
         points.forEach(System.out::println);
     }
+
+    public List<Boolean> getPoints() {
+        return points;
+    }
 }
