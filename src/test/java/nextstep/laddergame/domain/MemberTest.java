@@ -14,4 +14,11 @@ public class MemberTest {
     assertThatThrownBy(() -> new Member(null)).isInstanceOf(IllegalArgumentException.class);
   }
 
+  @DisplayName("사람은 최대 5글자까지 이름을 가질 수 있다.")
+  @Test
+  public void member_throwException_ifOver5Length() {
+    assertThatThrownBy(() -> new Member("123456")).isInstanceOf(IllegalArgumentException.class);
+    assertThatThrownBy(() -> new Member("1234567")).isInstanceOf(IllegalArgumentException.class);
+  }
+
 }
