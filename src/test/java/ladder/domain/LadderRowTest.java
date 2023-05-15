@@ -14,6 +14,7 @@ class LadderRowTest {
         List<Point> points = List.of(Point.first(true), new Point(true, false));
         LadderRow ladderRow = new LadderRow(points);
         assertThat(ladderRow).isEqualTo(new LadderRow(points));
+        assertThat(ladderRow.width()).isEqualTo(2);
     }
 
     @Test
