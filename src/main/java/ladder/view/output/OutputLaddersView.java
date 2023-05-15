@@ -9,9 +9,9 @@ public class OutputLaddersView {
   private static final String START_EMPTY_SPACE = "     ";
   private static final String LAST = "|";
 
-  public static void printRow(Ladder ladder) {
+  public static void printLadder(Ladder ladder) {
     IntStream.range(0, height(ladder)).forEach(rowNumber -> {
-      printRowOfLadders(ladder, rowNumber);
+      printRowOfLadder(ladder, rowNumber);
     });
   }
 
@@ -19,7 +19,7 @@ public class OutputLaddersView {
     return ladder.height();
   }
 
-  private static void printRowOfLadders(Ladder ladder, int rowNumber) {
+  private static void printRowOfLadder(Ladder ladder, int rowNumber) {
     printStartEmptySpaceOfRow();
     printRow(ladder, rowNumber);
     printLastLineOfRow();

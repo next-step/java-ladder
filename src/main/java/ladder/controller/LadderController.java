@@ -37,7 +37,7 @@ public class LadderController {
 
     // 사다리 모양 출력하기 (참가자 이름, 사다리 모양, 사다리 실행 결과)
     OutputNamesView.printParticipantsNames(participants);
-    OutputLaddersView.printRow(ladder);
+    OutputLaddersView.printLadder(ladder);
     OutputLaddersResultView.printPrizes(prizes);
 
     // 사다리에 따라 결과 계산하기 (logic)
