@@ -3,7 +3,6 @@ package ladder.domain.ladder;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import ladder.domain.participant.Participants;
 import ladder.domain.strategy.NextPointGenerationStrategy;
 
 public class Lines {

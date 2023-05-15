@@ -2,7 +2,6 @@ package ladder.domain.ladder;
 
 
 import ladder.domain.participant.Participant;
-import ladder.domain.participant.Participants;
 import ladder.domain.prize.Prize;
 
 public class MatchResult {
