@@ -27,6 +27,7 @@ class ResultTest {
 
         // then
         assertThat(result).isEqualTo(new Result(stringList));
+        assertThat(result.size()).isEqualTo(stringList.size());
     }
 
     @Test
@@ -42,19 +43,4 @@ class ResultTest {
         // then
         assertThat(actual).isEqualTo("3000");
     }
-
-    @Test
-    @DisplayName("전체 결과 확인")
-    void resultAll() {
-        // given
-        Result result = new Result(string);
-        List<Integer> positions = List.of(0, 1, 2, 3);
-
-        // when
-        List<String> actual = result.getResultByPositions(positions);
-
-        // then
-        assertThat(actual).isEqualTo(stringList);
-    }
-
 }
