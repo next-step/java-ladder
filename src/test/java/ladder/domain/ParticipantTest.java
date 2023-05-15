@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -31,5 +32,12 @@ public class ParticipantTest {
         assertThatThrownBy(() -> new Participant("abcdef"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("참가자 이름은 5자를 초과할 수 없습니다.");
+    }
+
+    @Test
+    @DisplayName("참여자 이름이 1 일경우 나머지 공간인 4를 리턴한다.")
+    void restSpaceTest() {
+        assertThat(new Participant("a").restSpace())
+                .isEqualTo(4);
     }
 }
