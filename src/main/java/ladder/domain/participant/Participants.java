@@ -27,10 +27,6 @@ public class Participants {
   }
 
 
-  public int indexOf(Name name) {
-    return participants.indexOf(new Participant(name));
-  }
-
   public int indexOf(Participant participant) {
     return participants.indexOf(participant);
   }
