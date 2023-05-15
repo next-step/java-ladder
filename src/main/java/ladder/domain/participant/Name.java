@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Name {
 
+  private static final String ALL = "all";
   private final String name;
 
   public Name(String name) {
@@ -43,6 +44,6 @@ public class Name {
   }
 
   public boolean isAll() {
-    return name.equals("all");
+    return name.equals(ALL);
   }
 }
