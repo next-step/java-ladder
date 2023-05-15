@@ -1,13 +1,21 @@
 package laddergame.domain.line;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.IntStream;
+import laddergame.domain.ladder.Depth;
+import laddergame.domain.person.Participants;
 
 public class Line {
 
     private List<LineStatus> points;
 
     private static final int MIN_PERSON = 1;
+
+    public Line(List<LineStatus> lines) {
+        this.points = lines;
+    }
 
     public Line(int countOfPeople, ConnectionStrategy connectionStrategy) {
         validateCountOfParticipants(countOfPeople);
@@ -17,6 +25,17 @@ public class Line {
 
     public List<LineStatus> getPoints() {
         return points;
+    }
+
+    public static List<Line> list(
+        Depth depth,
+        Participants participants,
+        ConnectionStrategy connectionStrategy
+    ) {
+        List<Line> lines = new ArrayList<>(depth.size());
+        IntStream.range(0, depth.size())
+            .forEach(e -> lines.add(new Line(participants.getCount(), connectionStrategy)));
+        return lines;
     }
 
     private void validateCountOfParticipants(final int countOfPeople) {

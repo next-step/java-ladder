@@ -1,26 +1,32 @@
 package laddergame.domain.ladder;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.IntStream;
-import laddergame.domain.line.ConnectionStrategy;
 import laddergame.domain.line.Line;
-import laddergame.domain.person.Participants;
+import laddergame.domain.results.Match;
+import laddergame.domain.results.MatchStrategy;
 
 public class Ladder {
 
     private final List<Line> lines;
+    private final MatchStrategy matchStrategy;
 
-    private Ladder(List<Line> lines) {
+    public Ladder(List<Line> lines, MatchStrategy matchStrategy) {
         this.lines = lines;
+        this.matchStrategy = matchStrategy;
     }
 
-    public static Ladder of(ConnectionStrategy connectionStrategy, Depth depth, Participants participants) {
-        List<Line> lines = new ArrayList<>(depth.size());
-        IntStream.range(0, depth.size())
-            .forEach(e -> lines.add(new Line(participants.size(), connectionStrategy)));
-        return new Ladder(lines);
+    public Ladder(List<Line> lines) {
+        this.lines = lines;
+        this.matchStrategy = new Match();
+    }
+
+    public static Ladder of(List<Line> lines, MatchStrategy matchStrategy) {
+        return new Ladder(lines, matchStrategy);
+    }
+
+    public int getMatchedIndex(int position) {
+        return matchStrategy.getMatchedIndex(position, lines);
     }
 
     public List<Line> getLines() {

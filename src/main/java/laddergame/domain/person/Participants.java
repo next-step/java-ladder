@@ -3,13 +3,12 @@ package laddergame.domain.person;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import laddergame.domain.person.Person;
 
 public class Participants {
 
     private final List<Person> personList;
 
-    public Participants(String[] names) {
+    private Participants(String[] names) {
         this(Arrays.stream(names).map(Person::new).collect(Collectors.toList()));
     }
 
@@ -17,11 +16,29 @@ public class Participants {
         this.personList = personList;
     }
 
-    public int size() {
-        return personList.size();
+    public static Participants of(String[] names){
+        return new Participants(names);
     }
 
     public List<String> getNames(){
         return personList.stream().map(Person::getName).collect(Collectors.toList());
+    }
+
+    public String getName(int index){
+        return personList.get(index).getName();
+    }
+
+    public int getPosition(final String name) {
+        return personList.stream()
+            .filter(p -> p.getName().equals(name))
+            .findFirst()
+            .map(personList::indexOf)
+            .orElseThrow(() -> {
+                throw new IllegalArgumentException("찾을 수 없는 참가자입니다.");
+            });
+    }
+
+    public int getCount() {
+        return personList.size();
     }
 }
