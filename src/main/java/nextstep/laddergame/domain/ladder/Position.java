@@ -4,7 +4,7 @@ public class Position {
     private final int position;
     private final Direction direction;
 
-    public Position(int position, Direction direction) {
+    private Position(int position, Direction direction) {
         this.position = position;
         this.direction = direction;
     }
@@ -15,5 +15,17 @@ public class Position {
 
     public boolean isLeftDirection() {
         return this.direction.isLeftDirection();
+    }
+
+    public static Position first(boolean isPoint) {
+        return new Position(0, Direction.first(isPoint));
+    }
+
+    public Position next(int index, boolean isPoint) {
+        return new Position(index, direction.next(isPoint));
+    }
+
+    public Position last(int index) {
+        return new Position(index, this.direction.last());
     }
 }

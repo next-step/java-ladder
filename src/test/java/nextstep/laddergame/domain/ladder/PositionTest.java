@@ -9,7 +9,8 @@ public class PositionTest {
     @ParameterizedTest(name = "이동 결과 확인")
     @CsvSource(value = {"true,false,-1", "false,true,1", "false,false,0"})
     void moveResult(boolean left, boolean right, int result) {
-        final Position position = new Position(0, Direction.first(left).next(right));
+        final Position position = Position.first(left)
+                .next(0, right);
 
         assertThat(position.moveResult())
                 .isEqualTo(result);
