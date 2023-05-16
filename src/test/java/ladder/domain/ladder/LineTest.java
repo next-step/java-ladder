@@ -23,6 +23,12 @@ class LineTest {
     }
   }
 
+
+  @Test
+  void 하나의_row에_true가_연속해지_나오는_경우_생성자를_통해_예외_검증() {
+    assertThatIllegalArgumentException().isThrownBy(() -> new Line(true, true, true, false, true));
+  }
+
   @Test
   void 오른쪽이_연결된_경우_boolean_true_검증() {
     Line line = new Line(true, false, true);
