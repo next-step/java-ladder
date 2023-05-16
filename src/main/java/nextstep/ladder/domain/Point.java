@@ -16,4 +16,14 @@ public class Point {
         return left;
     }
 
+    public int nextX(int x) {
+        if (right) {
+            return x + 1;
+        }
+        if (left) {
+            return x - 1;
+        }
+        return x;
+    }
+
 }

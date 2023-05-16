@@ -5,21 +5,28 @@ import java.util.Collections;
 import java.util.List;
 
 public class Rows {
-    List<Row> lines;
+    List<Row> rows;
 
-    public Rows(List<Row> lines) {
-        this.lines = lines;
+    public Rows(List<Row> rows) {
+        this.rows = rows;
     }
 
     public static Rows of(int usersCount, int height, PointGenerator generator) {
-        List<Row> lines = new ArrayList<>();
+        List<Row> rows = new ArrayList<>();
         for (int y = 0; y < height; y++) {
-            lines.add(Row.of(generator, usersCount));
+            rows.add(Row.of(generator, usersCount));
         }
-        return new Rows(lines);
+        return new Rows(rows);
+    }
+
+    public int getResultX(int x) {
+        for (int i = 0; i < rows.size(); i++) {
+            x = rows.get(i).getNextX(x);
+        }
+        return x;
     }
 
     public List<Row> getPoints() {
-        return Collections.unmodifiableList(lines);
+        return Collections.unmodifiableList(rows);
     }
 }

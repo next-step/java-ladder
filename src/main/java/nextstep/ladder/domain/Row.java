@@ -27,6 +27,10 @@ public class Row {
         return movableLeft;
     }
 
+    public int getNextX(int x) {
+        return row.get(x).nextX(x);
+    }
+
     public List<Point> getRow() {
         return Collections.unmodifiableList(row);
     }
