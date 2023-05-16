@@ -16,7 +16,7 @@ public class LadderHeight {
     private final int height;
 
     public LadderHeight(int height) {
-        if(tooShort(height)) {
+        if (tooShort(height)) {
             throw new IllegalArgumentException(TOO_LOW_MSG);
         }
         this.height = height;
@@ -24,8 +24,8 @@ public class LadderHeight {
 
     public Lines linesByHeight(int countOfPerson, PointStrategy pointStrategy) {
         List<Line> lines = new ArrayList<>();
-        for(int index = 0; index < this.height; index ++) {
-            lines.add(lineOf(countOfPerson,pointStrategy));
+        for (int index = 0; index < this.height; index++) {
+            lines.add(lineOf(countOfPerson, pointStrategy));
         }
         return new Lines(lines);
     }
