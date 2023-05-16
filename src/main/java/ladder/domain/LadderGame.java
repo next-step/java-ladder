@@ -19,18 +19,12 @@ public class LadderGame {
     private static void startGame() {
 
         Participants participants = participantInput().participants();
-
         printBlank();
-
         Lines lines = heightInput().linesByHeight(participants.countOfPerson(),
                 new RandomPointStrategy());
-
         resultBanner();
-
         printBlank();
-
         printParticipants(participants);
-
         lines.immutableGet().forEach(OutputView::printLine);
     }
 
