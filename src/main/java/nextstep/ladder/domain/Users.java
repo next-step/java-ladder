@@ -22,6 +22,18 @@ public class Users {
         return new Users(users);
     }
 
+    public void setResult(int idx, String result) {
+        users.get(idx).setResult(result);
+    }
+
+    public String getResultByName(String name) {
+        return users.stream()
+                .filter(o -> o.isSameName(name))
+                .map(o -> o.getResult())
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("입력하신 이름은 없습니다."));
+    }
+
     public List<User> getUsers() {
         return Collections.unmodifiableList(users);
     }
