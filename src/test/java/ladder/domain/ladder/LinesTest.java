@@ -7,16 +7,27 @@ import org.junit.jupiter.api.Test;
 class LinesTest {
 
   @Test
-  void 사다리_시작위치에_따른_사다리_이동_결과_검증() {
-    Line line1 = new Line(true, false);
-    Line line2 = new Line(false, false);
-    Line line3 = new Line(false, true);
+  void 사다리_0번출발_1번도착() {
+    Line line = new Line(true, false);
+    Lines lines = new Lines(line);
 
-    Lines lines = new Lines(line1, line2, line3);
+    assertThat(lines.getLastIndex(0)).isEqualTo(1);
+  }
 
-    assertThat(lines.getLastIndex(0)).isEqualTo(2);
+  @Test
+  void 사다리_1번출발_0번도착() {
+    Line line = new Line(true, false);
+    Lines lines = new Lines(line);
+
     assertThat(lines.getLastIndex(1)).isEqualTo(0);
-    assertThat(lines.getLastIndex(2)).isEqualTo(1);
+  }
+
+  @Test
+  void 사다리_2번출발_2번도착() {
+    Line line = new Line(true, false);
+    Lines lines = new Lines(line);
+
+    assertThat(lines.getLastIndex(2)).isEqualTo(2);
   }
 
 }
