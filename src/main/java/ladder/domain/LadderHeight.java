@@ -2,7 +2,6 @@ package ladder.domain;
 
 import static ladder.domain.Line.lineOf;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -18,9 +17,7 @@ public class LadderHeight {
     private final int height;
 
     public LadderHeight(int height) {
-        if (tooShort(height)) {
-            throw new IllegalArgumentException(TOO_LOW_MSG);
-        }
+        checkTooShort(height);
         this.height = height;
     }
 
@@ -31,8 +28,10 @@ public class LadderHeight {
         return new Lines(lines);
     }
 
-    private boolean tooShort(int height) {
-        return height < MIN_LADDER_HEIGHT;
+    private void checkTooShort(int height) {
+        if(height < MIN_LADDER_HEIGHT) {
+            throw new IllegalArgumentException(TOO_LOW_MSG);
+        }
     }
 
 
