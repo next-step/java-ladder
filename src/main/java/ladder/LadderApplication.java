@@ -1,9 +1,7 @@
 package ladder;
 
-import ladder.model.Ladder;
+import ladder.model.*;
 import ladder.generator.RandomBooleanGenerator;
-import ladder.model.Rewards;
-import ladder.model.Users;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -20,6 +18,10 @@ public class LadderApplication {
         Ladder ladder = Ladder.of(users.size(), ladderHeight, new RandomBooleanGenerator());
         Rewards rewards = Rewards.of(users.size(), inputRewards);
 
+        LadderGame ladderGame = new LadderGame(ladder, users, rewards);
+        List<GameResult> gameResults = ladderGame.play();
+
         ResultView.showResult(users, ladder, rewards);
+        ResultView.showGameResult(gameResults);
     }
 }

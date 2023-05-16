@@ -28,6 +28,16 @@ public class InputView {
 
     public static int inputLadderHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        return SCANNER.nextInt();
+        return inputNumber();
+    }
+
+    public static String inputUserName() {
+        return SCANNER.nextLine();
+    }
+
+    private static int inputNumber() {
+        int input = SCANNER.nextInt();
+        SCANNER.nextLine();
+        return input;
     }
 }

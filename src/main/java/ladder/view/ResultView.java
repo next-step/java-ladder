@@ -4,17 +4,43 @@ import ladder.model.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class ResultView {
     private static final String LINE = "-----";
     private static final String HEIGHT = "|";
     private static final String EMPTY_LIME = "     ";
+    private static final String NEWLINE = "\n";
+    private static final String PRINT_ALL = "all";
 
     private ResultView() {
     }
 
+    public static void showGameResult(List<GameResult> gameResults) {
+        while(true) {
+            System.out.println(NEWLINE + "결과를 보고 싶은 사람은?");
+            String userName = InputView.inputUserName();
+
+            System.out.println(NEWLINE + "실행 결과");
+            if (PRINT_ALL.equals(userName)) {
+                printAllResult(gameResults);
+                return;
+            }
+
+            gameResults.stream()
+                    .filter(gameResult -> userName.equals(gameResult.getName()))
+                    .forEach(gameResult -> System.out.println(gameResult.getReward()));
+        }
+    }
+
+    private static void printAllResult(List<GameResult> gameResults) {
+        gameResults.forEach(gameResult -> {
+            System.out.println(gameResult.getName() + " : " + gameResult.getReward());
+        });
+    }
+
     public static void showResult(Users users, Ladder ladder, Rewards rewards) {
-        System.out.println("사다리 결과");
+        System.out.println(NEWLINE + "사다리 결과" + NEWLINE);
         showUsers(users);
         showLadder(ladder);
         showRewards(rewards);
