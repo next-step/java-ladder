@@ -1,9 +1,5 @@
 package ladder.domain.ladder;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 import ladder.domain.participant.Participant;
 import ladder.domain.participant.Participants;
 import ladder.domain.prize.Prize;
@@ -13,29 +9,25 @@ public class LadderGame {
 
   private final Ladder ladder;
   private final Participants participants;
-  private final Prizes prizes;
-  private final Map<Participant, Prize> results = new HashMap<>();
 
-  public LadderGame(Ladder ladder, Participants participants, Prizes prizes) {
+  public LadderGame(Ladder ladder, Participants participants) {
     this.ladder = ladder;
     this.participants = participants;
-    this.prizes = prizes;
   }
 
-  public Prize getPrize(Participant participant) {
-    if (results.containsKey(participant)) {
-      return results.get(participant);
-    }
+  public int getPrizeIndex(Participant participant) {
     int startIndex = participants.indexOf(participant);
-    int endIndex = ladder.getIndexOfResult(startIndex);
-    Prize prize = prizes.getPrize(endIndex);
-    results.put(participant, prize);
-    return prize;
+    return ladder.getIndexOfResult(startIndex);
   }
 
-  public List<MatchResult> getAllResults() {
-    return participants.getParticipants().stream()
-        .map(participant -> new MatchResult(participant, getPrize(participant)))
-        .collect(Collectors.toList());
+
+  public MatchResults play(Prizes prizes) {
+    MatchResults matchResults = new MatchResults();
+    for (Participant participant : participants.getParticipants()) {
+      int prizeIndex = getPrizeIndex(participant);
+      Prize prize = prizes.getPrize(prizeIndex);
+      matchResults.addMatchResult(participant, prize);
+    }
+    return matchResults;
   }
 }

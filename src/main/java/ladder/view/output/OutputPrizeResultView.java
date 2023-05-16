@@ -1,18 +1,17 @@
 package ladder.view.output;
 
-import java.util.List;
-import ladder.domain.ladder.MatchResult;
+import java.util.Map;
+import ladder.domain.participant.Participant;
 import ladder.domain.prize.Prize;
 
 public class OutputPrizeResultView {
 
 
-  public static void printAllResults(List<MatchResult> allResults) {
+  public static void printAllResults(Map<Participant, Prize> allResults) {
     System.out.println();
     System.out.println("실행 결과");
-    for (MatchResult matchResult : allResults) {
-      System.out.printf("%s : %s%n", matchResult.getParticipantName(), matchResult.getPrize());
-    }
+    allResults.forEach((participant, prize) -> System.out.printf("%s : %s%n", participant.getName().name(), prize.getPrize()));
+    System.out.println();
   }
 
   public static void printResult(Prize prize) {
