@@ -3,6 +3,7 @@ package nextstep;
 import nextstep.domain.Line;
 import org.junit.jupiter.api.Test;
 
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -16,10 +17,11 @@ public class LineTest {
         Line line = new Line(3, () -> true);
 
         // when
-        Stream<String> stringStream = line.booleanToLineStream();
+        Stream<Boolean> stringStream = line.lineStream();
 
         // then
-        assertThat(stringStream).containsExactly("-----", "     ");
+        assertThat(stringStream.collect(Collectors.toList()))
+                .containsExactly(true, false);
     }
 
     @Test

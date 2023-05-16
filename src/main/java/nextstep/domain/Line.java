@@ -1,11 +1,10 @@
 package nextstep.domain;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class Line implements Iterable<Boolean> {
+public class Line {
     private final LineStrategy strategy;
     private final List<Boolean> points = new ArrayList<>();
 
@@ -27,22 +26,10 @@ public class Line implements Iterable<Boolean> {
         return strategy.addLine();
     }
 
-    public Stream<String> booleanToLineStream() {
-        return this.points.stream()
-                .map(this::changeBooleanIntoString);
+    public Stream<Boolean> lineStream() {
+        return this.points.stream();
     }
 
-    private String changeBooleanIntoString(Boolean b) {
-        if (b)
-            return "-----";
-
-        return "     ";
-    }
-
-    @Override
-    public Iterator<Boolean> iterator() {
-        return points.iterator();
-    }
 
     public int trace(int position) {
 

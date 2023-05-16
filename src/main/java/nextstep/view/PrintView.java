@@ -37,12 +37,20 @@ public class PrintView {
 
     private static void printLine(Line line) {
         System.out.print("     |");
-        line.booleanToLineStream()
-                .forEach(x -> {
-                    System.out.print(x);
-                    System.out.print("|");
-                });
+        line.lineStream()
+            .map(PrintView::booleanIntoString)
+            .forEach(x -> {
+                System.out.print(x);
+                System.out.print("|");
+            });
         System.out.println();
+    }
+
+    private static String booleanIntoString(Boolean b) {
+        if (b)
+            return "-----";
+
+        return "     ";
     }
 
     public static void printFinalResult(String participant, Record record) {
