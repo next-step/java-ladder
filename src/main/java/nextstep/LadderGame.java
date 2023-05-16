@@ -2,6 +2,7 @@ package nextstep;
 
 import nextstep.domain.Ladder;
 import nextstep.domain.Participants;
+import nextstep.domain.Record;
 import nextstep.view.InputView;
 import nextstep.view.PrintView;
 
@@ -14,7 +15,8 @@ public class LadderGame {
 
         Participants participants = Participants.participate(splitedParticipants);
         Ladder ladder = Ladder.makeLadder(height, participants.count());
+        Record record = participants.go(ladder, gameResult);
 
-        PrintView.printResult(participants, ladder);
+        PrintView.printResult(participants, ladder, gameResult);
     }
 }

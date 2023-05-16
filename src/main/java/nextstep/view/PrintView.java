@@ -4,14 +4,22 @@ import nextstep.domain.Ladder;
 import nextstep.domain.Line;
 import nextstep.domain.Participants;
 
+import java.util.Arrays;
+
 public class PrintView {
 
     private PrintView() {}
 
-    public static void printResult(Participants participants, Ladder ladder) {
+    public static void printResult(Participants participants, Ladder ladder, String[] gameResult) {
         printTitle();
         printParticipants(participants);
         printLadder(ladder);
+        printDestination(gameResult);
+    }
+
+    private static void printDestination(String[] gameResult) {
+        Arrays.stream(gameResult)
+                .forEach(x -> System.out.printf("%6s", x));
     }
 
     private static void printTitle() {
