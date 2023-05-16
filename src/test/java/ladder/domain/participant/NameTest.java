@@ -1,14 +1,15 @@
-package ladder.domain;
+package ladder.domain.participant;
 
 import static org.assertj.core.api.Assertions.*;
 
+import ladder.domain.participant.Name;
 import org.junit.jupiter.api.Test;
 
 class NameTest {
 
   @Test
   void 이름이_5자_이하인_경우는_정상적으로_객체_생성() {
-    assertThat(new Name("pobi")).isInstanceOf(Name.class);
+    assertThatNoException().isThrownBy(() -> new Name("abcde"));
   }
 
   @Test

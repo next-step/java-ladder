@@ -1,6 +1,6 @@
 package ladder.view.input;
 
-import ladder.domain.Height;
+import ladder.domain.ladder.Height;
 
 public class InputHeightView extends InputView{
 

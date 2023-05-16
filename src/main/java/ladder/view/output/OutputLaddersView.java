@@ -1,7 +1,7 @@
 package ladder.view.output;
 
 import java.util.stream.IntStream;
-import ladder.domain.Ladders;
+import ladder.domain.ladder.Ladder;
 
 public class OutputLaddersView {
   private static final String LADDER = "|-----";
@@ -9,24 +9,24 @@ public class OutputLaddersView {
   private static final String START_EMPTY_SPACE = "     ";
   private static final String LAST = "|";
 
-  public static void printRow(Ladders ladders) {
-    IntStream.range(0, height(ladders)).forEach(rowNumber -> {
-      printRowOfLadders(ladders, rowNumber);
+  public static void printLadder(Ladder ladder) {
+    IntStream.range(0, height(ladder)).forEach(rowNumber -> {
+      printRowOfLadder(ladder, rowNumber);
     });
   }
 
-  private static int height(Ladders ladders) {
-    return ladders.height();
+  private static int height(Ladder ladder) {
+    return ladder.height();
   }
 
-  private static void printRowOfLadders(Ladders ladders, int rowNumber) {
+  private static void printRowOfLadder(Ladder ladder, int rowNumber) {
     printStartEmptySpaceOfRow();
-    printRow(ladders, rowNumber);
+    printRow(ladder, rowNumber);
     printLastLineOfRow();
   }
 
-  private static void printRow(Ladders ladders, int rowNumber) {
-    ladders.getRow(rowNumber).stream()
+  private static void printRow(Ladder ladder, int rowNumber) {
+    ladder.getRow(rowNumber).stream()
         .map(OutputLaddersView::ladder)
         .forEach(System.out::print);
   }

@@ -1,9 +1,10 @@
-package ladder.domain;
+package ladder.domain.participant;
 
 import java.util.Objects;
 
 public class Name {
 
+  private static final String ALL = "all";
   private final String name;
 
   public Name(String name) {
@@ -40,5 +41,9 @@ public class Name {
   @Override
   public int hashCode() {
     return Objects.hash(name);
+  }
+
+  public boolean isAll() {
+    return name.equals(ALL);
   }
 }

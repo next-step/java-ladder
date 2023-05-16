@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.participant;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,5 +27,11 @@ public class Participants {
   }
 
 
+  public int indexOf(Participant participant) {
+    return participants.indexOf(participant);
+  }
 
+  public boolean containsName(Name name) {
+    return participants.contains(new Participant(name));
+  }
 }
