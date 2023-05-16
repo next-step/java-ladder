@@ -11,6 +11,10 @@ public class Computer {
         return soundcard;
     }
 
+    public String getUsbVersion() {
+        return getSoundcard().getUsb().getVersion();
+    }
+
     public static class Soundcard {
         private USB usb;
 
