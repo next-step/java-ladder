@@ -8,11 +8,11 @@ public class TestLinesGenerator implements LinesGenerator {
     @Override
     public Lines generate(final int width, final int height) {
         Lines lines = new Lines();
-        lines.addLine(getLine(width - WIDTH_OUT_OF_RANGE_BLOCK_NUMBER, height));
+        lines.addLine(makeLine(width - WIDTH_OUT_OF_RANGE_BLOCK_NUMBER, height));
         return lines;
     }
 
-    private Line getLine(final int x, final int y) {
+    private Line makeLine(final int x, final int y) {
         return new Line(new Position(x, y), new Position(x + WIDTH_NEXT_NUMBER, y));
     }
 

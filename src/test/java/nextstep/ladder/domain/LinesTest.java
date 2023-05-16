@@ -1,11 +1,8 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Lines;
-import nextstep.ladder.domain.Position;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -18,14 +15,18 @@ class LinesTest {
         lines.addLine(new Line(new Position(0, 0), new Position(1, 0)));
     }
 
-    @ParameterizedTest(name = "Line클래스 next 메소드 호출 시 이동된 포지션 결과 검증.")
-    @CsvSource(value = {
-            "0|0|1|1",
-            "1|0|0|1",
-            "2|0|2|1"
-    }, delimiter = '|')
-    public void 포지션_이동_위치_검증(int x, int y, int move_x, int move_y) {
-        assertThat(lines.next(new Position(x, y))).isEqualTo(new Position(move_x, move_y));
+    @DisplayName("Lines 클래스에 Line 클래스에 Position이 겹칠경우 addLine을 호출하더라도 Line이 추가되면 안된다.")
+    @Test
+    void 중복_라인_검증() {
+        lines.addLine(new Line(new Position(1, 0), new Position(2, 0)));
+        assertThat(lines.hasLine(new Line(new Position(1, 0), new Position(2, 0)))).isFalse();
+    }
+
+    @DisplayName("Lines 클래스에 Line 클래스에 Position이 겹치지 않을 경우 addLine 호출시 Line이 추가되야 한다.")
+    @Test
+    void 라인_추가_결과_검증() {
+        lines.addLine(new Line(new Position(2, 0), new Position(3, 0)));
+        assertThat(lines.hasLine(new Line(new Position(2, 0), new Position(3, 0)))).isTrue();
     }
 
 
