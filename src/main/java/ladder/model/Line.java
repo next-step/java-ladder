@@ -1,55 +1,53 @@
 package ladder.model;
 
+import ladder.generator.BooleanGenerator;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
 public class Line {
-    private final List<Boolean> points;
+    private final List<Point> points;
 
-    public Line(List<Boolean> points) {
-        validatePoints(points);
+    public Line(List<Point> points) {
+        validateLine(points);
         this.points = points;
     }
 
-    public static Line of(int countOfUser, LineGenerator lineGenerator) {
-        List<Boolean> points = new ArrayList<>();
+    private void validateLine(List<Point> points) {
+        IntStream.range(0, points.size() - 1)
+                .filter(i -> !points.get(i).isRightNextDirection(points.get(i+1)))
+                .findFirst()
+                .ifPresent(i -> {
+                    throw new IllegalArgumentException("사다리를 생성할 수 없습니다.");
+                });
+    }
 
-        IntStream.range(0, countOfUser - 1)
-                .forEach(i -> points.add(createNextPoint(points, i, lineGenerator)));
+    public static Line create(int countOfUser, BooleanGenerator booleanGenerator) {
+        List<Point> points = new ArrayList<>();
+
+        Point point = Point.createFirst(booleanGenerator.generate());
+        points.add(point);
+
+        for (int i = 1; i < countOfUser - 1; i++) {
+            point = point.createNext(booleanGenerator.generate());
+            points.add(point);
+        }
+        points.add(point.createLast());
 
         return new Line(points);
     }
 
-    private void validatePoints(List<Boolean> points) {
-        IntStream.range(0, points.size() - 1)
-                .filter(i -> points.get(i) && points.get(i + 1))
-                .findAny()
-                .ifPresent(i -> {
-                    throw new IllegalArgumentException("사다리 한 라인에 가로 라인이 겹칠 수 없습니다.");
-                });
-    }
-
-    private static boolean createNextPoint(List<Boolean> points, int index, LineGenerator lineGenerator) {
-        if (hasPrevious(points, index)) {
-            return false;
-        }
-        return lineGenerator.generate();
-    }
-
-    private static boolean hasPrevious(List<Boolean> points, int index) {
-        if (index <= 0) {
-            return false;
-        }
-        return points.get(index - 1);
+    public int move(int position) {
+        return points.get(position).move();
     }
 
     public int size() {
         return points.size();
     }
 
-    public List<Boolean> getPoints() {
+    public List<Point> getPoints() {
         return Collections.unmodifiableList(points);
     }
 }

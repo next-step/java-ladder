@@ -12,10 +12,6 @@ public class Name {
         this.name = name;
     }
 
-    public String getName() {
-        return this.name;
-    }
-
     private void validateName(String name) {
         if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException("유효하지 않은 이름입니다.");
@@ -38,5 +34,9 @@ public class Name {
     @Override
     public int hashCode() {
         return name != null ? name.hashCode() : 0;
+    }
+
+    public String getName() {
+        return this.name;
     }
 }

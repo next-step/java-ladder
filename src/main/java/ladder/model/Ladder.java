@@ -1,5 +1,7 @@
 package ladder.model;
 
+import ladder.generator.BooleanGenerator;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,9 +14,9 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder of(int countOfUser, int ladderHeight, LineGenerator lineGenerator) {
+    public static Ladder of(int countOfUser, int ladderHeight, BooleanGenerator booleanGenerator) {
         List<Line> lines = IntStream.range(0, ladderHeight)
-                .mapToObj(size -> Line.of(countOfUser, lineGenerator))
+                .mapToObj(size -> Line.create(countOfUser, booleanGenerator))
                 .collect(Collectors.toList());
 
         return new Ladder(lines);
@@ -22,6 +24,10 @@ public class Ladder {
 
     public int height() {
         return this.lines.size();
+    }
+
+    public Line getLineByHeight(int height) {
+        return lines.get(height);
     }
 
     public List<Line> getLines() {
