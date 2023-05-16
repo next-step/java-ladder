@@ -7,7 +7,10 @@ public class RandomPointGenerator implements PointGenerator {
 	private static final ThreadLocalRandom RANDOM = ThreadLocalRandom.current();
 
 	@Override
-	public boolean point() {
-		return RANDOM.nextBoolean();
+	public boolean point(boolean current) {
+		if (current == false) {
+			return RANDOM.nextBoolean();
+		}
+		return false;
 	}
 }

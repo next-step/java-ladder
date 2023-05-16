@@ -30,16 +30,15 @@ public class PointTest {
 	@Test
 	void test3() {
 		Point point = Point.first(true);
-		assertThat(point.nextPoint(() -> true)).isFalse();
-		assertThat(point.nextPoint(() -> false)).isFalse();
+		assertThat(point.nextPoint(e -> false)).isFalse();
 	}
 
 	@DisplayName("이전 좌표가 false일 때, 다음 좌표를 구한다.")
 	@Test
 	void test4() {
 		Point point = Point.first(false);
-		assertThat(point.nextPoint(() -> true)).isTrue();
-		assertThat(point.nextPoint(() -> false)).isFalse();
+		assertThat(point.nextPoint(e -> true)).isTrue();
+		assertThat(point.nextPoint(e -> false)).isFalse();
 	}
 
 	@DisplayName("좌표 객체는 매번 새로운 객체를 반환하지 않고 캐싱한다.")

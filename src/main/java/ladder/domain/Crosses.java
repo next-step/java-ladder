@@ -28,7 +28,7 @@ public class Crosses {
 	public static Crosses of(Names names, PointGenerator pointGenerator) {
 		List<Cross> crosses = new ArrayList<>();
 
-		Point point = Point.first(pointGenerator.point());
+		Point point = Point.first(pointGenerator.point(false));
 		crosses.add(new Cross(0, point));
 		for (int i = 1; i < names.countOfPerson() - 1; i++) {
 			point = point.next(point.nextPoint(pointGenerator));

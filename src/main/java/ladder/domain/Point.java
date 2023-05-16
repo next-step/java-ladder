@@ -49,11 +49,7 @@ public class Point {
 	}
 
 	public boolean nextPoint(PointGenerator pointGenerator) {
-		boolean nextPoint = false;
-		if (this.isCurrent() == false) {
-			nextPoint = pointGenerator.point();
-		}
-		return nextPoint;
+		return pointGenerator.point(this.current);
 	}
 
 	public boolean isCurrent() {
