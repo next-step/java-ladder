@@ -9,7 +9,7 @@ import nextstep.view.PrintView;
 public class LadderGame {
 
     public static void main(String[] args) {
-        String[] splitedParticipants = InputView.participants();
+        String[] splitedParticipants = InputView.allParticipants();
         String[] gameResult = InputView.gameResult();
         int height = InputView.height();
 
@@ -18,5 +18,8 @@ public class LadderGame {
         Record record = participants.go(ladder, gameResult);
 
         PrintView.printResult(participants, ladder, gameResult);
+
+        String participant = InputView.participant();
+        PrintView.printFinalResult(participant, record);
     }
 }

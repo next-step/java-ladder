@@ -1,10 +1,9 @@
 package nextstep.view;
 
-import nextstep.domain.Ladder;
-import nextstep.domain.Line;
-import nextstep.domain.Participants;
+import nextstep.domain.*;
 
 import java.util.Arrays;
+import java.util.Map;
 
 public class PrintView {
 
@@ -20,6 +19,7 @@ public class PrintView {
     private static void printDestination(String[] gameResult) {
         Arrays.stream(gameResult)
                 .forEach(x -> System.out.printf("%6s", x));
+        System.out.println();
     }
 
     private static void printTitle() {
@@ -43,5 +43,10 @@ public class PrintView {
                     System.out.print("|");
                 });
         System.out.println();
+    }
+
+    public static void printFinalResult(String participant, Record record) {
+        Map<Participant, String> finalResult = record.value(participant);
+        finalResult.forEach((x, y) -> System.out.println(x + ":" + y));
     }
 }
