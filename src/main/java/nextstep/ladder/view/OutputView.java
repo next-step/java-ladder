@@ -3,11 +3,10 @@ package nextstep.ladder.view;
 import nextstep.ladder.domain.LadderResult;
 import nextstep.ladder.domain.LadderResults;
 import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Lines;
+import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Participant;
 import nextstep.ladder.domain.Participants;
 
-import java.util.Map;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,8 +23,8 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printLadders(Lines lines) {
-        System.out.println(formatLines(lines));
+    public static void printLadders(Ladder ladder) {
+        System.out.println(formatLines(ladder));
     }
 
     public static void printInputResults(List<LadderResult> inputLadderResults) {
@@ -62,8 +61,8 @@ public class OutputView {
         System.out.println(names);
     }
 
-    private static String formatLines(Lines lines) {
-        return lines.getLines().stream()
+    private static String formatLines(Ladder ladder) {
+        return ladder.getLines().stream()
                 .map(OutputView::formatSingleLine)
                 .collect(Collectors.joining(NEWLINE));
     }

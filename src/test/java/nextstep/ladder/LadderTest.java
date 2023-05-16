@@ -3,7 +3,7 @@ package nextstep.ladder;
 import nextstep.ladder.domain.LadderGame;
 import nextstep.ladder.domain.LadderResult;
 import nextstep.ladder.domain.LadderResults;
-import nextstep.ladder.domain.Lines;
+import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Participant;
 import nextstep.ladder.domain.Participants;
 import nextstep.ladder.domain.strategy.RandomLadderPointGenerateStrategy;
@@ -52,7 +52,7 @@ public class LadderTest {
         List<LadderResult> inputLadderResults = List.of(new LadderResult("꽝"), new LadderResult("1000"));
 
         assertThatThrownBy(
-                () -> new LadderGame(participants, new Lines(1, 1, new RandomLadderPointGenerateStrategy()), inputLadderResults)
+                () -> new LadderGame(participants, new Ladder(1, 1, new RandomLadderPointGenerateStrategy()), inputLadderResults)
         );
     }
 
@@ -61,7 +61,7 @@ public class LadderTest {
     void ladderResultByParticipantThrow_test() {
         Participants participants = new Participants(List.of(new Participant("a")));
         List<LadderResult> inputLadderResults = List.of(new LadderResult("꽝"));
-        LadderGame ladderGame = new LadderGame(participants, new Lines(1, 1, new RandomLadderPointGenerateStrategy()), inputLadderResults);
+        LadderGame ladderGame = new LadderGame(participants, new Ladder(1, 1, new RandomLadderPointGenerateStrategy()), inputLadderResults);
 
         LadderResults ladderResults = ladderGame.play();
 
@@ -75,7 +75,7 @@ public class LadderTest {
         int height = 5;
         int numberOfParticipants = 4;
 
-        assertThatThrownBy(() -> new Lines(numberOfParticipants, height, size -> List.of(true, true, true, true)))
+        assertThatThrownBy(() -> new Ladder(numberOfParticipants, height, size -> List.of(true, true, true, true)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -84,9 +84,9 @@ public class LadderTest {
     void tests() {
         int height = 5;
         int numberOfParticipants = 4;
-        Lines lines = new Lines(numberOfParticipants, height, new RandomLadderPointGenerateStrategy());
+        Ladder ladder = new Ladder(numberOfParticipants, height, new RandomLadderPointGenerateStrategy());
 
-        Assertions.assertThat(height).isEqualTo(lines.getLines().size());
+        Assertions.assertThat(height).isEqualTo(ladder.getLines().size());
     }
 
     @Test
@@ -94,9 +94,9 @@ public class LadderTest {
     void testSI() {
         int height = 5;
         int numberOfParticipants = 4;
-        Lines lines = new Lines(numberOfParticipants, height, new RandomLadderPointGenerateStrategy());
+        Ladder ladder = new Ladder(numberOfParticipants, height, new RandomLadderPointGenerateStrategy());
 
-        lines.getLines().forEach(line -> Assertions.assertThat(numberOfParticipants - 1).isEqualTo(line.getPoints().size()));
+        ladder.getLines().forEach(line -> Assertions.assertThat(numberOfParticipants - 1).isEqualTo(line.getPoints().size()));
     }
 
 }

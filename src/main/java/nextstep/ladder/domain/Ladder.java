@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Lines {
+public class Ladder {
     private final List<Line> lines;
 
-    public Lines(int countOfParticipant, int height, GenerateLadderPointStrategy generateLadderPointStrategy) {
+    public Ladder(int countOfParticipant, int height, GenerateLadderPointStrategy generateLadderPointStrategy) {
         this.lines = generateLines(countOfParticipant, height, generateLadderPointStrategy);
     }
 
