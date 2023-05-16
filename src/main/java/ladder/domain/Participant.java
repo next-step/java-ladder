@@ -8,7 +8,7 @@ public class Participant {
 
     private final int NAME_MAX_LENGTH = 5;
 
-    private final String value;
+    private final String participant;
 
     public Participant(String participant) {
         if(empty(participant)) {
@@ -17,11 +17,11 @@ public class Participant {
         if(longerThanFive(participant)) {
             throw new IllegalArgumentException(TOO_LONG_NAME_MSG);
         }
-        this.value = participant;
+        this.participant = participant;
     }
 
     public int restSpace() {
-        return NAME_MAX_LENGTH - value.length();
+        return NAME_MAX_LENGTH - participant.length();
     }
 
     private boolean empty(String source) {
@@ -34,6 +34,6 @@ public class Participant {
 
     @Override
     public String toString() {
-        return value;
+        return participant;
     }
 }
