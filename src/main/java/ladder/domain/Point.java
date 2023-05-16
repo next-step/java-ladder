@@ -45,13 +45,7 @@ public class Point {
 	}
 
 	public DirectionType direction() {
-		if (this.current) {
-			return DirectionType.RIGHT;
-		}
-		if (this.left) {
-			return DirectionType.LEFT;
-		}
-		return DirectionType.DOWN;
+		return DirectionType.of(this);
 	}
 
 	public boolean nextPoint(PointGenerator pointGenerator) {
