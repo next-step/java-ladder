@@ -41,6 +41,10 @@ public class Point {
         return position.getPosition();
     }
 
+    public boolean isRightNextDirection(Point point) {
+        return this.direction.hasRight() == point.getLeft();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

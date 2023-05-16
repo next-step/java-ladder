@@ -5,12 +5,23 @@ import ladder.generator.BooleanGenerator;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Line {
     private final List<Point> points;
 
     public Line(List<Point> points) {
+        validateLine(points);
         this.points = points;
+    }
+
+    private void validateLine(List<Point> points) {
+        IntStream.range(0, points.size() - 1)
+                .filter(i -> !points.get(i).isRightNextDirection(points.get(i+1)))
+                .findFirst()
+                .ifPresent(i -> {
+                    throw new IllegalArgumentException("사다리를 생성할 수 없습니다.");
+                });
     }
 
     public static Line create(int countOfUser, BooleanGenerator booleanGenerator) {
