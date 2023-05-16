@@ -16,7 +16,7 @@ public class OutputView {
 
         participant.getParticipants().stream()
                 .forEach(name -> {
-                    System.out.print(name + "   ");
+                    System.out.printf("%5s ", name);
                 });
         System.out.println("");
 

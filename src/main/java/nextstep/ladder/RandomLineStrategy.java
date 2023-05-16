@@ -13,9 +13,8 @@ public class RandomLineStrategy implements LineStrategy{
 
     @Override
     public boolean drawLine(boolean lastLine) {
-        boolean line = random.nextBoolean();
-        if(!lastLine && line)
-            return true;
+        if(!lastLine)
+            return random.nextBoolean();
         return false;
     }
 }

@@ -26,34 +26,10 @@ public class Lambda {
             }
         }).start();
     }
-
-    public static int sumAll(List<Integer> numbers, Predicate<Integer> predicate) {
-        int total = 0;
-        for (int number : numbers) {
-            if(predicate.test(number)) {
-                total += number;
-            }
-        }
-        return total;
-    }
-
-    public static int sumAllEven(List<Integer> numbers, Predicate<Integer> predicate) {
-        int total = 0;
-        for (int number : numbers) {
-            if(predicate.test(number)) {
-                total += number;
-            }
-        }
-        return total;
-    }
-
-    public static int sumAllOverThree(List<Integer> numbers, Predicate<Integer> predicate) {
-        int total = 0;
-        for (int number : numbers) {
-            if(predicate.test(number)) {
-                total += number;
-            }
-        }
-        return total;
+    public static int sum(List<Integer> numbers, Conditional c){
+        return numbers.stream()
+                .filter(c::test)
+                .mapToInt(Integer::intValue)
+                .sum();
     }
 }

@@ -6,20 +6,16 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private int height = 0;
-    private Participant participant;
+    private final Height height;
+    private final Participant participant;
     private final List<Line> lines;
 
     public Ladder(int height) {
-        validateHeight(height);
-        this.height = height;
-        this.participant = new Participant();
-        this.lines = new ArrayList<>();
+        this(height, new Participant(), new RandomLineStrategy());
     }
 
     public Ladder(int height, Participant participant, LineStrategy lineStrategy) {
-        validateHeight(height);
-        this.height = height;
+        this.height = new Height(height);
         this.participant = participant;
         this.lines = drawLine(height, participant, lineStrategy);
     }
@@ -30,14 +26,8 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
-    private void validateHeight(int height) {
-        if (height < 2) {
-            throw new IllegalArgumentException("사다리 높이는 2 이상이어야 합니다.");
-        }
-    }
-
     public int getHeight() {
-        return height;
+        return height.height();
     }
 
     public Participant getParticipant() {
@@ -46,5 +36,9 @@ public class Ladder {
 
     public List<Line> getLines() {
         return lines;
+    }
+
+    public int getLineSize(){
+        return lines.size();
     }
 }

@@ -18,7 +18,7 @@ public class LadderTest {
         Participant participant = new Participant("test","test1","test2");
         Ladder ladder = new Ladder(height, participant, new RandomLineStrategy());
 
-        assertThat(ladder.getLines().size()).isEqualTo(height);
+        assertThat(ladder.getLineSize()).isEqualTo(height);
     }
 
 
@@ -27,7 +27,7 @@ public class LadderTest {
     public void 사다리_높이_Validate_테스트() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> {
-                    Ladder ladder = new Ladder(1);
+                    new Ladder(1);
                 });
     }
 }

@@ -24,7 +24,7 @@ public class NameTest {
     public void Name_Null_Black_테스트(String name) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> {
-                    Name person = new Name(name);
+                    new Name(name);
                 });
     }
 

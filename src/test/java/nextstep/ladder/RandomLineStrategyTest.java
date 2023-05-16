@@ -26,7 +26,7 @@ public class RandomLineStrategyTest {
     }
 
     @Test
-    @DisplayName("drawLine_테스트")
+    @DisplayName("Random값과 직전 라인에 따른 라인 그리기 테스트")
     public void drawLine_테스트(){
 
         RandomLineStrategy lineTrue = new RandomLineStrategy(new RandomTrue());
