@@ -23,13 +23,13 @@ public class Line {
         if (isEmptyArray(points)) {
             throw new IllegalArgumentException(EMPTY_MSG);
         }
-        if (firstTrue(points)) {
+        if (isFirstTrue(points)) {
             throw new IllegalArgumentException(FIRST_TRUE_MSG);
         }
         this.points = points;
     }
 
-    private boolean firstTrue(List<Boolean> points) {
+    private boolean isFirstTrue(List<Boolean> points) {
         return points.get(0);
     }
 
