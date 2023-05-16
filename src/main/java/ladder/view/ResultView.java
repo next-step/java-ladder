@@ -29,7 +29,11 @@ public class ResultView {
 
             gameResults.stream()
                     .filter(gameResult -> userName.equals(gameResult.getName()))
-                    .forEach(gameResult -> System.out.println(gameResult.getReward()));
+                    .findFirst()
+                    .ifPresentOrElse(
+                            gameResult -> System.out.println(gameResult.getReward()),
+                            () -> System.out.println("다시 입력해 주세요")
+                    );
         }
     }
 
