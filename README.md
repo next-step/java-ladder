@@ -7,3 +7,12 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+### 람다
+* 익명클래스를 람다로 전환
+* 람다를 활용한 중복 제거
+
+### 스트림
+* src/main/resources/fp 아래의 war-and-peace.txt 를 사용해 요구사항 만족
+
+### Optional
