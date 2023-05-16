@@ -62,28 +62,38 @@ public class LinesTest {
     @Test
     public void canMakeLine() {
         //given
-        Line line11 = new Line(1, 1);
-        Line line22 = new Line(2, 2);
-        Lines lines = new Lines(Set.of(line11, line22));
-        Line line33 = new Line(3, 3);
-        Line line23 = new Line(2, 3);
-        Line line21 = new Line(2, 1);
-        Line line12 = new Line(1, 2);
+        Line lineA = new Line(11, 11);
+        Line lineB = new Line(6, 6);
+        Lines lines = new Lines(Set.of(lineA, lineB));
+
+        Line notNearA = new Line(3, 3);
+        Line nearA = new Line(11, 10);
+        Line nearB1 = new Line(6, 7);
+        Line nearB2 = new Line(6, 5);
+        Line notNearB1 = new Line(7, 6);
+        Line notNearB2 = new Line(5,6);
         //when
         //then
-        assertAll("Lines 가 입력한 파라미터에 맞게 생성된다",
-                () -> assertThat(lines.isExistSameColumnAndAdjacentRow(line33))
-                        .as("line33 은 SameColumn && AdjacentRow 에 위치하지 않는다")
+        assertAll("Lines 가 입력한 파라미터에 맞게 생성된다",//isExistSameColumnAndAdjacentRow
+                () -> assertThat(lines.isNear(notNearA))
+                        .as("notNearA 은 SameColumn && AdjacentRow 에 위치하지 않는다")
                         .isFalse(),
-                () -> assertThat(lines.isExistSameColumnAndAdjacentRow(line23))
-                        .as("line23 은 SameColumn && AdjacentRow 에 위치한다")
+                () -> assertThat(lines.isNear(nearA))
+                        .as("nearA 은 SameColumn && AdjacentRow 에 위치한다")
                         .isTrue(),
-                () -> assertThat(lines.isExistSameColumnAndAdjacentRow(line21))
-                        .as("line21 은 SameColumn && AdjacentRow 에 위치한다")
+                () -> assertThat(lines.isNear(nearB1))
+                        .as("nearB1 은 SameColumn && AdjacentRow 에 위치한다")
                         .isTrue(),
-                () -> assertThat(lines.isExistSameColumnAndAdjacentRow(line12))
+                () -> assertThat(lines.isNear(nearB2))
+                        .as("nearB2 은 SameColumn && AdjacentRow 에 위치한다")
+                        .isTrue(),
+                () -> assertThat(lines.isNear(notNearB1))
                         .as("line33 은 SameColumn && AdjacentRow 에 위치한다")
-                        .isTrue()
+                        .isFalse(),
+                () -> assertThat(lines.isNear(notNearB2))
+                        .as("line33 은 SameColumn && AdjacentRow 에 위치한다")
+                        .isFalse()
+
         );
 
     }
