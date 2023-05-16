@@ -5,6 +5,8 @@ import static ladder.domain.Line.lineOf;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import ladder.util.PointStrategy;
 
 public class LadderHeight {
@@ -23,10 +25,9 @@ public class LadderHeight {
     }
 
     public Lines linesByHeight(int countOfPerson, PointStrategy pointStrategy) {
-        List<Line> lines = new ArrayList<>();
-        for (int index = 0; index < this.height; index++) {
-            lines.add(lineOf(countOfPerson, pointStrategy));
-        }
+        List<Line> lines = Stream.generate(() -> lineOf(countOfPerson, pointStrategy))
+                .limit(this.height)
+                .collect(Collectors.toList());
         return new Lines(lines);
     }
 
