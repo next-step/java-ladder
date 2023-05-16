@@ -8,30 +8,21 @@ import java.util.stream.IntStream;
 
 public class Line {
 
-    private static final int MINIMUM_RANDOM_NUMBER = 0;
-
-    private List<Boolean> points = new ArrayList<>();
+    private final List<Boolean> points;
 
     public Line(int countOfPerson) {
+        List<Boolean> points = new ArrayList<>();
         IntStream.range(0, countOfPerson - 1)
-                .forEach(this::addPoint);
+                .forEach(index -> addPoint(points, index));
+        this.points = points;
     }
 
-    private void addPoint(int index) {
-        if (index == 0) {
-            points.add(isRandomNumberMoreThanZero(RandomUtil.generator()));
-            return;
-        }
-        if (!points.get(index - 1)) {
-            points.add(isRandomNumberMoreThanZero(RandomUtil.generator()));
+    private void addPoint(List<Boolean> points, int index) {
+        if (index == 0 || !points.get(index - 1)) {
+            points.add(RandomUtil.generator());
             return;
         }
         points.add(false);
-    }
-
-    private boolean isRandomNumberMoreThanZero(int randomNumber) {
-        if (randomNumber > MINIMUM_RANDOM_NUMBER) return true;
-        return false;
     }
 
     public List<Boolean> getPoints() {

@@ -7,7 +7,9 @@ public class Player {
     private final String name;
 
     public Player(String name) {
-        if (name.length() > NAME_MAX_LENGTH) throw new IllegalArgumentException(NAME_OVER_LENGTH_ERROR_TEXT);
+        if (name.length() > NAME_MAX_LENGTH) {
+            throw new IllegalArgumentException(NAME_OVER_LENGTH_ERROR_TEXT);
+        }
         this.name = name;
     }
 

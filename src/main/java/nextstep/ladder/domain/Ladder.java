@@ -1,22 +1,30 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.util.RandomUtil;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.IntStream;
+
 public class Ladder {
 
-    private final int height;
-
-    private final int width;
+    private List<Line> lines;
 
     public Ladder(int height, int width) {
-        this.height = height;
-        this.width = width;
+        addLine(height, width);
     }
 
-    public int getHeight() {
-        return height;
+    private void addLine(int height, int width) {
+        List<Line> lines = new ArrayList<>();
+        IntStream.range(0, height)
+                .mapToObj(i -> new Line(width))
+                .forEach(lines::add);
+        this.lines = lines;
     }
 
-    public int getWidth() {
-        return width;
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(this.lines);
     }
 
 }
