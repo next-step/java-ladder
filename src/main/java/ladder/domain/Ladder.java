@@ -1,16 +1,15 @@
 package ladder.domain;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class Ladder {
 
 	private final Lines lines;
 
 	public static Ladder of(Line... lines) {
-		return new Ladder(Arrays.stream(lines).collect(Collectors.toList()));
+		return new Ladder(List.of(lines));
 	}
 
 	private Ladder(List<Line> lines) {
@@ -26,7 +25,7 @@ public class Ladder {
 	}
 
 	public List<Line> getLines() {
-		return lines.getLines();
+		return Collections.unmodifiableList(this.lines.getLines());
 	}
 
 	@Override

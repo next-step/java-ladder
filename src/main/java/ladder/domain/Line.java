@@ -1,25 +1,26 @@
 package ladder.domain;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Line {
 
-	private final Points points;
+	private final Crosses crosses;
 
-	public static Line of(Boolean... points) {
-		return new Line(Points.of(points));
+	public static Line of(Crosses crosses) {
+		return new Line(crosses);
 	}
 
-	public Line(Points points) {
-		this.points = points;
+	public Line(Crosses crosses) {
+		this.crosses = crosses;
 	}
 
 	public int nextIndex(int index) {
-		return this.points.nextIndex(index);
+		return this.crosses.move(index);
 	}
 
-	public Points getPoints() {
-		return this.points;
+	public List<Cross> getCrosses() {
+		return this.crosses.getCrosses();
 	}
 
 	@Override
@@ -31,11 +32,11 @@ public class Line {
 			return false;
 		}
 		Line line = (Line)o;
-		return Objects.equals(points, line.points);
+		return Objects.equals(crosses, line.crosses);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(points);
+		return Objects.hash(crosses);
 	}
 }

@@ -1,20 +1,22 @@
 package ladder.type;
 
-import java.util.function.Function;
+import java.util.Arrays;
+
+import ladder.domain.Point;
 
 public enum DirectionType {
+	RIGHT(Point.first(false).next(true)), LEFT(Point.first(true).next(false)), DOWN(Point.first(false).next(false));
 
-	LEFT(i -> i - 1),
-	DOWN(i -> i),
-	RIGHT(i -> i + 1);
+	private final Point point;
 
-	private final Function<Integer, Integer> move;
-
-	DirectionType(Function<Integer, Integer> move) {
-		this.move = move;
+	DirectionType(Point point) {
+		this.point = point;
 	}
 
-	public int move(int index) {
-		return move.apply(index);
+	public static DirectionType of(Point point) {
+		return Arrays.stream(values())
+			.filter(e -> e.point.equals(point))
+			.findAny()
+			.orElseThrow(() -> new IllegalArgumentException("유효하지 않은 방향타입 입니다."));
 	}
 }

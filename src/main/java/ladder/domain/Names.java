@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -37,7 +38,7 @@ public class Names {
 	}
 
 	public List<Name> getNames() {
-		return this.names;
+		return Collections.unmodifiableList(this.names);
 	}
 
 	@Override
