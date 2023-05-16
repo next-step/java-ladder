@@ -22,15 +22,6 @@ public class Ladder implements Iterable<Line>{
         return new Ladder(ladder);
     }
 
-    public List<Line> ladder() {
-        return ladder;
-    }
-
-    @Override
-    public Iterator<Line> iterator() {
-        return ladder.iterator();
-    }
-
     public int climb(int position) {
 
         for (Line line : ladder) {
@@ -38,5 +29,14 @@ public class Ladder implements Iterable<Line>{
         }
 
         return position;
+    }
+
+    public List<Line> ladder() {
+        return ladder;
+    }
+
+    @Override
+    public Iterator<Line> iterator() {
+        return ladder.iterator();
     }
 }
