@@ -1,10 +1,14 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.LadderGame;
+import nextstep.ladder.domain.LadderResult;
+import nextstep.ladder.domain.LadderResults;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Lines;
-import nextstep.ladder.domain.ParticipantNames;
+import nextstep.ladder.domain.Participant;
+import nextstep.ladder.domain.Participants;
 
+import java.util.Map;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -14,39 +18,58 @@ public class OutputView {
     private static final String LADDER_VERTICAL_LINE = "|";
     private static final String LADDER_SPACE = " ";
     private static final String NEWLINE = System.lineSeparator();
+    private static final String PARTICIPANT_NAME_ALL = "all";
+    private static final int MAX_NAME_LENGTH = 5;
 
     private OutputView() {
     }
 
-    public static void printParticipantNamesAndLadders(LadderGame ladderGame) {
-        System.out.println("실행 결과" + NEWLINE);
-
-        String output = formatParticipantNames(ladderGame.getParticipantNames()) +
-                formatLines(ladderGame.getParticipantNames().getFirstParticipantNameLength(), ladderGame.getLines());
-
-        System.out.println(output);
+    public static void printLadders(Lines lines) {
+        System.out.println(formatLines(lines));
     }
 
-    private static String formatParticipantNames(ParticipantNames participantNames) {
-        int lastIndex = participantNames.getNames().size() - 1;
+    public static void printInputResults(List<LadderResult> inputLadderResults) {
+        System.out.println(formatLadderResults(inputLadderResults) + NEWLINE);
+    }
 
-        String names = participantNames.getNames().stream()
-                .limit(lastIndex)
-                .map(participantName -> String.format(PARTICIPANT_NAME_FORMAT, participantName.getName()))
+    public static void printResultByParticipant(Participant inputParticipant, LadderResults ladderResults) {
+        printHeader();
+        if (inputParticipant.getName().equals(PARTICIPANT_NAME_ALL)) {
+            printAllParticipantResults(ladderResults);
+        } else {
+            printSingleParticipantResult(inputParticipant, ladderResults);
+        }
+    }
+
+    private static void printAllParticipantResults(LadderResults ladderResults) {
+        ladderResults.getAllResults().forEach((participant, result) ->
+                System.out.println(participant.getName() + " : " + result.getResult()));
+    }
+
+    private static void printSingleParticipantResult(Participant participant, LadderResults ladderResults) {
+        System.out.println(ladderResults.getResultForParticipant(participant).getResult());
+    }
+
+    private static void printHeader() {
+        System.out.println("실행 결과");
+    }
+
+    public static void printParticipantNames(Participants participants) {
+        String names = participants.getParticipants().stream()
+                .map(participant -> String.format(PARTICIPANT_NAME_FORMAT, participant.getName()))
                 .collect(Collectors.joining());
 
-        return names + String.format(PARTICIPANT_NAME_FORMAT, participantNames.getNames().get(lastIndex).getName()) + NEWLINE;
+        System.out.println(names);
     }
 
-
-    private static String formatLines(int firstParticipantNameLength, Lines lines) {
+    private static String formatLines(Lines lines) {
         return lines.getLines().stream()
-                .map(line -> formatSingleLine(firstParticipantNameLength, line))
-                .collect(Collectors.joining(NEWLINE)) + NEWLINE;
+                .map(OutputView::formatSingleLine)
+                .collect(Collectors.joining(NEWLINE));
     }
 
-    private static String formatSingleLine(int firstParticipantNameLength, Line line) {
-        StringBuilder ladder = new StringBuilder(LADDER_SPACE.repeat(firstParticipantNameLength) + LADDER_VERTICAL_LINE);
+    private static String formatSingleLine(Line line) {
+        StringBuilder ladder = new StringBuilder(LADDER_SPACE.repeat(MAX_NAME_LENGTH) + LADDER_VERTICAL_LINE);
 
         line.getPoints().stream()
                 .map(point -> point ? LADDER_HORIZONTAL_LINE : LADDER_EMPTY_SPACE)
@@ -54,4 +77,11 @@ public class OutputView {
 
         return ladder.toString();
     }
+
+    private static String formatLadderResults(List<LadderResult> inputLadderResults) {
+        return inputLadderResults.stream()
+                .map(ladderResult -> String.format(PARTICIPANT_NAME_FORMAT, ladderResult.getResult()))
+                .collect(Collectors.joining());
+    }
+
 }
