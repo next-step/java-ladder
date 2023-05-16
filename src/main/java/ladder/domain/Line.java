@@ -45,14 +45,18 @@ public class Line {
             return new Line(points);
         }
 
-        points.add(pointStrategy.injectFalse());
+        addForceFalse(points);
+
         IntStream.range(SKIP_FIRST_INDEX, countOfPerson).forEachOrdered(index -> {
-            final boolean previous = points.get(index - 1);
-            points.add(previous ? pointStrategy.injectFalse()
-                    : pointStrategy.point());
+            final boolean previousValue = points.get(index - 1);
+            points.add(previousValue ? false : pointStrategy.point());
         });
 
         return new Line(points);
+    }
+
+    private static void addForceFalse(List<Boolean> points) {
+        points.add(0,false);
     }
 
     private static boolean noParticipant(int countOfPerson) {
