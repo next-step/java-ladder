@@ -2,6 +2,7 @@ package nextstep.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Line {
@@ -32,15 +33,19 @@ public class Line {
 
 
     public int trace(int position) {
+        return IntStream.rangeClosed(position - 1, position)
+                .filter(x -> isValidPosition(x) && points.get(x))
+                .map(x -> hasLinePosition(position, x))
+                .findAny()
+                .orElse(position);
+    }
 
-        if (isValidPosition(position - 1) && points.get(position - 1)) {
+    private int hasLinePosition(int position, int x) {
+        if (x == position - 1) {
             return position - 1;
         }
-        if (isValidPosition(position) && points.get(position)) {
-            return position + 1;
-        }
 
-        return position;
+        return position + 1;
     }
 
     private boolean isValidPosition(int position) {
