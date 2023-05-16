@@ -43,4 +43,20 @@ public class Line implements Iterable<Boolean> {
     public Iterator<Boolean> iterator() {
         return points.iterator();
     }
+
+    public int trace(int position) {
+
+        if (isValidPosition(position - 1) && points.get(position - 1)) {
+            return position - 1;
+        }
+        if (isValidPosition(position) && points.get(position)) {
+            return position + 1;
+        }
+
+        return position;
+    }
+
+    private boolean isValidPosition(int position) {
+        return position >= 0 && position < points.size();
+    }
 }

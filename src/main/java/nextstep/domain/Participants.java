@@ -29,4 +29,16 @@ public class Participants implements Iterable<Participant>{
     public Iterator<Participant> iterator() {
         return participants.iterator();
     }
+
+    public Record go(Ladder ladder, String... gameResult) {
+
+        Record record = new Record();
+
+        for (int i = 0; i < participants.size(); i++) {
+            int destination = ladder.climb(i);
+            record.add(participants.get(i), gameResult[destination]);
+        }
+
+        return record;
+    }
 }

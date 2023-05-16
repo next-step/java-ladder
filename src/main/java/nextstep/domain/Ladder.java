@@ -30,4 +30,13 @@ public class Ladder implements Iterable<Line>{
     public Iterator<Line> iterator() {
         return ladder.iterator();
     }
+
+    public int climb(int position) {
+
+        for (Line line : ladder) {
+            position = line.trace(position);
+        }
+
+        return position;
+    }
 }
