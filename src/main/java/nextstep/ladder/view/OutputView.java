@@ -41,7 +41,7 @@ public class OutputView {
     }
 
     private static String printStep(Step step) {
-        if (step.hasPreviousStep()) {
+        if (step.isLeft()) {
             return DRAW_LINE;
         }
         return EMPTY_LINE;

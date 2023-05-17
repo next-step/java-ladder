@@ -13,8 +13,11 @@ public class StepTest {
     void dontMoveTest() {
         Step step = Step.firstStep(false).nextStep(false);
 
-        assertThat(step.move())
-                .isEqualTo(Direction.PASS);
+        assertThat(step.isRight())
+                .isFalse();
+
+        assertThat(step.isLeft())
+                .isFalse();
     }
 
     @Test
@@ -22,8 +25,8 @@ public class StepTest {
     void leftMoveTest() {
         Step step = Step.firstStep(true).nextStep(false);
 
-        assertThat(step.move())
-                .isEqualTo(Direction.LEFT);
+        assertThat(step.isLeft())
+                .isTrue();
     }
 
     @Test
@@ -31,8 +34,8 @@ public class StepTest {
     void rightMoveTest() {
         Step step = Step.firstStep(false).nextStep(true);
 
-        assertThat(step.move())
-                .isEqualTo(Direction.RIGHT);
+        assertThat(step.isRight())
+                .isTrue();
     }
 
     @Test
@@ -48,13 +51,15 @@ public class StepTest {
     void firstStepTest() {
         Step step1 = Step.firstStep(false);
 
-        assertThat(step1.move())
-                .isEqualTo(Direction.PASS);
+        assertThat(step1.isRight())
+                .isFalse();
+        assertThat(step1.isLeft())
+                .isFalse();
 
         Step step2 = Step.firstStep(true);
 
-        assertThat(step2.move())
-                .isEqualTo(Direction.RIGHT);
+        assertThat(step2.isRight())
+                .isTrue();
     }
 
     @Test
@@ -62,13 +67,15 @@ public class StepTest {
     void nextStepTest() {
         Step step1 = Step.firstStep(false).lastStep();
 
-        assertThat(step1.move())
-                .isEqualTo(Direction.PASS);
+        assertThat(step1.isRight())
+                .isFalse();
+        assertThat(step1.isLeft())
+                .isFalse();
 
         Step step2 = Step.firstStep(true).lastStep();
 
-        assertThat(step2.move())
-                .isEqualTo(Direction.LEFT);
+        assertThat(step2.isLeft())
+                .isTrue();
     }
 
     @Test
@@ -76,7 +83,7 @@ public class StepTest {
     void hasPreviousStepTest() {
         Step step = Step.firstStep(true);
 
-        assertThat(step.hasStep())
+        assertThat(step.isRight())
                 .isTrue();
     }
 

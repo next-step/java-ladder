@@ -22,7 +22,7 @@ public class RandomStrategy implements DrawStrategy {
 
     @Override
     public boolean drawNextPosition(Step step) {
-        if (step.hasStep()) {
+        if (step.isRight()) {
             return false;
         }
 

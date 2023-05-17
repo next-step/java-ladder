@@ -13,7 +13,7 @@ public class Position {
     }
 
     public int move() {
-        if (step.move() == Direction.RIGHT) {
+        if (step.isRight()) {
             return this.position + MOVE;
         }
 
@@ -21,7 +21,7 @@ public class Position {
     }
 
     private int moveLeftOrStay() {
-        if (step.move() == Direction.LEFT) {
+        if (step.isLeft()) {
             return this.position - MOVE;
         }
 

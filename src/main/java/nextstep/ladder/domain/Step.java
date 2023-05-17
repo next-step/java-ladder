@@ -1,7 +1,5 @@
 package nextstep.ladder.domain;
 
-import static nextstep.ladder.domain.Direction.*;
-
 public class Step {
 
     private final boolean previousPosition;
@@ -32,26 +30,11 @@ public class Step {
         return new Step(this.currentPosition, false);
     }
 
-    public Direction move() {
-        if (currentPosition) {
-            return RIGHT;
-        }
-
-        return moveByPreviousPosition();
-    }
-
-    private Direction moveByPreviousPosition() {
-        if (previousPosition) {
-            return LEFT;
-        }
-        return PASS;
-    }
-
-    public boolean hasStep() {
+    public boolean isRight() {
         return currentPosition;
     }
 
-    public boolean hasPreviousStep() {
+    public boolean isLeft() {
         return previousPosition;
     }
 }
