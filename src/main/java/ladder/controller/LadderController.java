@@ -28,9 +28,7 @@ public class LadderController {
 
     Height height = InputHeightView.scanLadderHeight();
 
-    LadderSizeInfo ladderSizeInfo = new LadderSizeInfo(height, participants);
-
-    Ladder ladder = Ladder.createLadder(ladderSizeInfo, new RandomPointGenerationStrategy());
+    Ladder ladder = Ladder.createLadder(height, participants, new RandomPointGenerationStrategy());
 
     OutputNamesView.printParticipantsNames(participants);
     OutputLaddersView.printLadder(ladder);

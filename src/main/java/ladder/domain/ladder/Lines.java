@@ -3,6 +3,7 @@ package ladder.domain.ladder;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import ladder.domain.participant.Participants;
 import ladder.domain.strategy.NextPointGenerationStrategy;
 
 public class Lines {
@@ -17,10 +18,10 @@ public class Lines {
     this.lines = List.of(lines);
   }
 
-  public static Lines createLines(LadderSizeInfo sizeInfo,
+  public static Lines createLines(Height height, Participants participants,
       NextPointGenerationStrategy generationStrategy) {
-    List<Line> lines = Stream.generate(() -> Line.createLine(sizeInfo.getNumberOfParticipants(), generationStrategy))
-        .limit(sizeInfo.getHeight())
+    List<Line> lines = Stream.generate(() -> Line.createLine(participants.size(), generationStrategy))
+        .limit(height.height())
         .collect(Collectors.toList());
     return new Lines(lines);
   }
@@ -36,19 +37,19 @@ public class Lines {
   public int getLastIndex(int startIndex) {
     int indexOfResult = startIndex;
 
-    for (int i = 0; i < height(); i++) {
-      indexOfResult = updateIndexOfResult(indexOfResult, i);
+    for (int rowNumber = 0; rowNumber < height(); rowNumber++) {
+      indexOfResult = updateIndexOfResult(indexOfResult, rowNumber);
     }
 
     return indexOfResult;
   }
 
-  private int updateIndexOfResult(int indexOfResult, int i) {
-    if (getRow(i).isRightConnected(indexOfResult)) {
+  private int updateIndexOfResult(int indexOfResult, int rowNumber) {
+    if (getRow(rowNumber).isRightConnected(indexOfResult)) {
       return indexOfResult + 1;
     }
 
-    if (getRow(i).isLeftConnected(indexOfResult)) {
+    if (getRow(rowNumber).isLeftConnected(indexOfResult)) {
       return indexOfResult - 1;
     }
 

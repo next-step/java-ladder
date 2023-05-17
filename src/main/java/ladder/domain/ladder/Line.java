@@ -30,8 +30,9 @@ public class Line {
 
   public static Line createLine(int numberOfParticipants,
       NextPointGenerationStrategy generationStrategy) {
+    int limitsOfGeneration = numberOfParticipants - 1;
     List<Boolean> booleans = Stream.iterate(generationStrategy.first(), generationStrategy::nextBoolean)
-        .limit(numberOfParticipants - 1)
+        .limit(limitsOfGeneration)
         .collect(Collectors.toList());
 
     return new Line(booleans);

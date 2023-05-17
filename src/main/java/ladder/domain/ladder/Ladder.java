@@ -2,6 +2,7 @@ package ladder.domain.ladder;
 
 
 import java.util.List;
+import ladder.domain.participant.Participants;
 import ladder.domain.strategy.NextPointGenerationStrategy;
 
 public class Ladder {
@@ -12,8 +13,8 @@ public class Ladder {
     this.lines = lines;
   }
 
-  public static Ladder createLadder(LadderSizeInfo sizeInfo, NextPointGenerationStrategy generationStrategy) {
-    Lines lines = Lines.createLines(sizeInfo, generationStrategy);
+  public static Ladder createLadder(Height height, Participants participants, NextPointGenerationStrategy generationStrategy) {
+    Lines lines = Lines.createLines(height, participants, generationStrategy);
     return new Ladder(lines);
   }
 
