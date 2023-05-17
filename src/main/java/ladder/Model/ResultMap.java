@@ -16,7 +16,7 @@ public class ResultMap {
         return resultMap.get(key);
     }
 
-    public Map<String, Integer> all() {
+    public Map<String, Integer> of() {
         return resultMap;
     }
 }

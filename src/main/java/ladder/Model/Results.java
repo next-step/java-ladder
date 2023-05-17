@@ -20,4 +20,8 @@ public class Results {
         return results;
     }
 
+    public String get(int index) {
+        return results.get(index);
+    }
+
 }
