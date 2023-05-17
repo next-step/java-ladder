@@ -4,7 +4,7 @@ import nextstep.ladder.domain.Height;
 import nextstep.ladder.domain.LadderGame;
 import nextstep.ladder.domain.LadderResult;
 import nextstep.ladder.domain.LadderResults;
-import nextstep.ladder.domain.Lines;
+import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Participants;
 import nextstep.ladder.domain.strategy.RandomLadderPointGenerateStrategy;
 import nextstep.ladder.view.InputView;
@@ -19,13 +19,13 @@ public class LadderController {
         List<LadderResult> inputLadderResults = InputView.inputLadderResults();
         Height height = InputView.inputMaxLadderHeight();
 
-        Lines lines = new Lines(participants.size(), height.getHeight(), new RandomLadderPointGenerateStrategy());
+        Ladder ladder = new Ladder(participants.size(), height.getHeight(), new RandomLadderPointGenerateStrategy());
 
         OutputView.printParticipantNames(participants);
-        OutputView.printLadders(lines);
+        OutputView.printLadders(ladder);
         OutputView.printInputResults(inputLadderResults);
 
-        LadderGame ladderGame = new LadderGame(participants, lines, inputLadderResults);
+        LadderGame ladderGame = new LadderGame(participants, ladder, inputLadderResults);
         LadderResults ladderResults = ladderGame.play();
 
         OutputView.printResultByParticipant(InputView.inputParticipantNameForResult(), ladderResults);

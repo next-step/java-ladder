@@ -7,12 +7,12 @@ import java.util.stream.IntStream;
 
 public class LadderGame {
     private final Participants participants;
-    private final Lines lines;
+    private final Ladder ladder;
     private final List<LadderResult> results;
 
-    public LadderGame(Participants participants, Lines lines, List<LadderResult> results) {
+    public LadderGame(Participants participants, Ladder ladder, List<LadderResult> results) {
         this.participants = participants;
-        this.lines = lines;
+        this.ladder = ladder;
 
         validateResults(results);
         this.results = results;
@@ -36,7 +36,7 @@ public class LadderGame {
     }
 
     private LadderResult calculateResult(int index) {
-        return results.get(lines.move(index));
+        return results.get(ladder.move(index));
     }
 
 }
