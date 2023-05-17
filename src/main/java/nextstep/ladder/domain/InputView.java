@@ -9,16 +9,18 @@ import java.util.Optional;
 import java.util.Scanner;
 
 public class InputView {
+    private static final Scanner SCANNER = new Scanner(System.in);
+
     public LadderInput initRadderInformation() {
-        Scanner scanner = new Scanner(System.in);
+
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        List<String> users = StringToList(scanner.next());
+        List<String> users = StringToList(SCANNER.next());
         nameLengthValidate(users);
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
-        List<String> results = StringToList(scanner.next());
+        List<String> results = StringToList(SCANNER.next());
         validateResultsSize(users, results);
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        int height = Optional.ofNullable(scanner.nextInt()).orElseThrow(() -> new IllegalArgumentException("최대 사다리 높이는 몇 개인가요?"));
+        int height = Optional.ofNullable(SCANNER.nextInt()).orElseThrow(() -> new IllegalArgumentException("최대 사다리 높이는 몇 개인가요?"));
         return new LadderInput(users, height, results);
     }
 
@@ -29,15 +31,15 @@ public class InputView {
     }
 
     public ResultInput initResultInput() {
-        Scanner scanner = new Scanner(System.in);
+
         System.out.println("");
         System.out.println("결과를 보고 싶은 사람은?");
-        String name = scanner.next();
+        String name = SCANNER.next();
         return new ResultInput(name);
     }
 
-    public void nameLengthValidate(List<String> participants) {
-        participants.stream()
+    public void nameLengthValidate(List<String> users) {
+        users.stream()
                 .filter(o -> o.length() <= 5 && o.length() >= 1)
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("이름은 최대 5글자 최소1글자 입니다."));
