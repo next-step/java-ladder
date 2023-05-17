@@ -25,6 +25,6 @@ public class Ladder {
     }
 
     public List<Line> lines() {
-        return this.lines;
+        return lines.stream().collect(Collectors.toUnmodifiableList());
     }
 }
