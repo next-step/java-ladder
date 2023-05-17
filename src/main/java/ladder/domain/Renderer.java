@@ -25,9 +25,9 @@ public class Renderer {
                 .collect(Collectors.toList());
     }
 
-    private String renderingHorizontal(Row index, int range) {
+    private String renderingHorizontal(Row rowIndex, int range) {
         return IntStream.range(0, range)
-                .mapToObj(columnIndex -> renderingPixel( Column.of(columnIndex), index))
+                .mapToObj(columnIndex -> renderingPixel( Column.of(columnIndex), rowIndex))
                 .collect(Collectors.joining());
     }
 
