@@ -23,11 +23,6 @@ public class Line {
     }
 
     private void addPoint(int idx) {
-        if (BEGIN_INDEX == idx) {
-            points.add(NON_EXIST_POINT);
-            return;
-        }
-
         if (isMakeable(idx)) {
             points.add(EXIST_POINT);
             return;
@@ -36,7 +31,11 @@ public class Line {
     }
 
     private boolean isMakeable(int idx) {
-        return isPrevPointNonExist(idx) && existCriteria();
+        return isNotBeginIndex(idx) && isPrevPointNonExist(idx) && existCriteria();
+    }
+
+    private boolean isNotBeginIndex(int idx) {
+        return BEGIN_INDEX != idx;
     }
 
     private boolean isPrevPointNonExist(int idx) {
