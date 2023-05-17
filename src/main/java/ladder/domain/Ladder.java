@@ -1,0 +1,34 @@
+package ladder.domain;
+
+import ladder.strategy.AddLineStrategy;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+import java.util.stream.IntStream;
+
+public class Ladder {
+
+    private List<Line> lines;
+
+    public Ladder(int height, int width) {
+        createLines(height, width);
+    }
+
+    private void createLines(int height, int width) {
+        List<Line> lines = new ArrayList<>();
+
+        AddLineStrategy addLineStrategy = new AddLineStrategy(new Random());
+
+        IntStream.range(0, height)
+                .mapToObj(i -> new Line(width, addLineStrategy))
+                .forEach(lines::add);
+
+        this.lines = lines;
+    }
+
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(this.lines);
+    }
+}
