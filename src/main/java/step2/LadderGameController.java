@@ -9,15 +9,7 @@ import step2.view.ResultView;
 
 public class LadderGameController {
 
-//    public void start() {
-//        GameUsers gameUsers = new GameUsers(InputView.readUserNames());
-//        Ladder baseLadder = new Ladder(InputView.readLadderHeight(), gameUsers.getUserCount() - 1);
-//        LadderGenerator ladderGenerator = new LadderGenerator(new RandomBridgeBuildStrategy());
-//        Ladder result = ladderGenerator.buildBridges(baseLadder);
-//        ResultView.displayLadder(gameUsers, result);
-//    }
-
-    public static void main(String[] args){
+    public void start() {
         GameUsers gameUsers = new GameUsers(InputView.readUserNames());
         Ladder baseLadder = new Ladder(InputView.readLadderHeight(), gameUsers.getUserCount());
         LadderGenerator ladderGenerator = new LadderGenerator(new RandomBridgeBuildStrategy());
