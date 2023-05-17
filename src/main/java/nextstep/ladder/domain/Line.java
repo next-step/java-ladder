@@ -18,19 +18,36 @@ public class Line {
 
     public static Line draw(int numberOfParticipants, DrawStrategy drawStrategy) {
         List<Step> steps = new ArrayList<>();
-        int beforeLastIndex = numberOfParticipants - 1;
 
+        Step step = drawFirstStep(steps, drawStrategy);
+
+        step = drawNextStep(numberOfParticipants, drawStrategy, steps, step);
+
+        drawLastStep(steps, step);
+
+        return new Line(steps);
+    }
+
+    private static Step drawFirstStep(List<Step> steps, DrawStrategy drawStrategy) {
         Step step = Step.firstStep(drawStrategy.drawFirstPosition());
         steps.add(step);
+
+        return step;
+    }
+
+    private static Step drawNextStep(int numberOfParticipants, DrawStrategy drawStrategy, List<Step> steps, Step step) {
+        int beforeLastIndex = numberOfParticipants - 1;
 
         for (int i = SECOND_INDEX; i < beforeLastIndex; i++) {
             step = step.nextStep(drawStrategy.drawNextPosition(step));
             steps.add(step);
         }
 
-        steps.add(step.lastStep());
+        return step;
+    }
 
-        return new Line(steps);
+    private static void drawLastStep(List<Step> steps, Step step) {
+        steps.add(step.lastStep());
     }
 
     public int numberOfSteps() {

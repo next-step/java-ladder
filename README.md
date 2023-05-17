@@ -5,7 +5,7 @@
 ## Step4 - 사다리(리팩터링)
 ### Step4 1차 피드백 수정
 - [ ] Ladder 클래스의 move 메서드 firstMove와 nextMove를 하나의 함수로 구현
-- [ ] Line 클래스의 draw 메서드 분리
+- [X] Line 클래스의 draw 메서드 분리
 - [ ] Position 클래스의 move 메서드 구현
 - [ ] Step 생성 시 필드에 값을 바로 저장
 
