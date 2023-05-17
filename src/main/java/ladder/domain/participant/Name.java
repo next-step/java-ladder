@@ -5,6 +5,8 @@ import java.util.Objects;
 public class Name {
   private final String name;
 
+  private static final String ALL = "all";
+
   public Name(String name) {
     validateLength(name);
     this.name = name;
@@ -42,6 +44,6 @@ public class Name {
   }
 
   public boolean isAll() {
-    return name.equals("all");
+    return name.equals(ALL);
   }
 }
