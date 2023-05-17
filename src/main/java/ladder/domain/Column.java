@@ -35,11 +35,11 @@ public class Column {
         return value;
     }
 
-    public boolean sameValue(int columnPosition) {
-        return this.value == columnPosition;
-    }
-
     public boolean isAdjacent(Column other) {
         return Math.abs(this.value - other.value) <= 1;
+    }
+
+    public boolean isSame(Column other) {
+        return equals(other);
     }
 }
