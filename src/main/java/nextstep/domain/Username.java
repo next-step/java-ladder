@@ -17,4 +17,12 @@ public class Username {
                     String.format("이름의 길이는 %d글자를 초과할 수 없습니다.", LENGTH_MAX));
         }
     }
+
+    public int length() {
+        return name.length();
+    }
+
+    public String getName() {
+        return name;
+    }
 }

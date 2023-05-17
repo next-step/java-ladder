@@ -11,9 +11,9 @@ public class OutputView {
     private static final String PILLAR = "|";
     private static final String FOODHOLDER = "-";
 
-    public static void outputUserNames(List<String> usernames) {
+    public static void outputUserNames(List<Username> usernames) {
         usernames.forEach(name -> System.out.print(
-                " ".repeat(Username.LENGTH_MAX - name.length()) + name + " "));
+                " ".repeat(Username.LENGTH_MAX - name.length()) + name.getName() + " "));
     }
 
     public static void outputLadder(Lines lines) {
