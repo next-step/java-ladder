@@ -1,7 +1,9 @@
 package ladder.controller;
 
+import ladder.domain.Ladder;
 import ladder.domain.Player;
 import ladder.view.InputView;
+import ladder.view.ResultView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,6 +23,12 @@ public class LadderController {
 
         List<Player> players = addPlayers(inputView.inputPlayers());
         int ladderHeight = inputView.inputLadderHeight();
+
+        Ladder ladder = new Ladder(ladderHeight, players.size());
+
+        ResultView resultView = new ResultView();
+
+        resultView.printResult(players, ladder.getLines());
     }
 
     private static List<Player> addPlayers(String playerText) {
