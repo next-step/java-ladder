@@ -1,56 +1,93 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Position;
-import nextstep.ladder.domain.Users;
+import nextstep.ladder.domain.*;
 
 public class OutputView {
 
+    private static final int NEXT_WIDTH_NUMBER = 1;
     private static final int WIDTH_OUT_OF_RANGE_BLOCK_NUMBER = 1;
     private static final int NAME_PADDING_RANGE = 5;
+    private static final int RESULT_PADDING_RANGE = 5;
+
+    private static final String ALL_USER = "all";
 
     private static final String HEIGHT_SEPARATOR = "|";
     private static final String LINE_SEPARATOR = "-----";
     private static final String NOT_LINE_SEPARATOR = "     ";
 
-    private static final String LADDER_RESULT_MENT = "실행결과";
+    private static final String USER_RESULT_FORMAT = "%s : %s";
 
-    public static void drawLadder(Ladder ladder, Users users) {
-        System.out.println(LADDER_RESULT_MENT);
+    private static final String LADDER_MENT = "사다리 결과";
+    private static final String RESULT_MENT = "실행 결과";
+
+    public static void drawLadder(LadderGame ladderGame) {
+        System.out.println(LADDER_MENT);
         System.out.println();
-        drawUsers(users);
-        for (int height = 0; height < ladder.height(); height++) {
-            drawHeight(ladder, users, height);
+        drawLadderUsers(ladderGame);
+        for (int height = 0; height < ladderGame.ladderHeight(); height++) {
+            drawLadderHeight(ladderGame, height);
         }
+        drawLadderResults(ladderGame);
     }
 
-    private static void drawUsers(Users users) {
-        for (String name : users.userNames()) {
+    private static void drawLadderUsers(final LadderGame ladderGame) {
+        for (String name : ladderGame.inGameUserNames()) {
             System.out.printf("%-" + NAME_PADDING_RANGE + "s ", name);
         }
         System.out.println();
     }
 
-    private static void drawHeight(Ladder ladder, Users users, int height) {
-        for (int width = 0; width < users.userCount() - WIDTH_OUT_OF_RANGE_BLOCK_NUMBER; width++) {
+    private static void drawLadderHeight(final LadderGame ladderGame, int height) {
+        for (int width = 0; width < ladderGame.ladderWidth() - WIDTH_OUT_OF_RANGE_BLOCK_NUMBER; width++) {
             System.out.print(HEIGHT_SEPARATOR);
-            drawLine(ladder, height, width);
+            drawLadderLine(ladderGame, width, height);
         }
         System.out.print(HEIGHT_SEPARATOR);
         System.out.println();
     }
 
-    private static void drawLine(Ladder ladder, int height, int width) {
-        if (ladder.hasLine(getLine(height, width), height)) {
+    private static void drawLadderLine(final LadderGame ladderGame, int width, int height) {
+        if (ladderGame.ladderHasLine(makeLine(width, height))) {
             System.out.print(LINE_SEPARATOR);
             return;
         }
         System.out.print(NOT_LINE_SEPARATOR);
     }
 
-    private static Line getLine(int height, int width) {
-        return new Line(new Position(width, height), new Position(width + 1, height));
+    private static Line makeLine(final int width, final int height) {
+        return new Line(new Position(width, height), new Position(width + NEXT_WIDTH_NUMBER, height));
+    }
+
+    private static void drawLadderResults(final LadderGame ladderGame) {
+        for (String result : ladderGame.inGameResults()) {
+            System.out.printf("%-" + RESULT_PADDING_RANGE + "s ", result);
+        }
+        System.out.println();
+    }
+
+    public static void drawResult(final LadderGame ladderGame, final String userName) {
+        if (userName.equals(ALL_USER)) {
+            drawAllResult(ladderGame);
+            return;
+        }
+        drawUserResult(ladderGame, userName);
+    }
+
+    private static void drawUserResult(final LadderGame ladderGame, final String userName) {
+        System.out.println(RESULT_MENT);
+        System.out.println(ladderGame.userResult(userName));
+    }
+
+    private static void drawAllResult(final LadderGame ladderGame) {
+        System.out.println(RESULT_MENT);
+        for (String userName : ladderGame.inGameUserNames()) {
+            System.out.printf(USER_RESULT_FORMAT, userName, ladderGame.userResult(userName));
+            newLine();
+        }
+    }
+
+    private static void newLine() {
+        System.out.println();
     }
 
 }

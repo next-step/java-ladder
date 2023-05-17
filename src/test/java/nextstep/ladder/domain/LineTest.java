@@ -1,12 +1,13 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Position;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LineTest {
 
@@ -44,6 +45,25 @@ class LineTest {
     void 라인_위치_중복_검증(int x, int y, int next_x, int next_y, boolean result) {
         Line parameterLine = new Line(new Position(x, y), new Position(next_x, next_y));
         assertThat(line.isConflict(parameterLine)).isEqualTo(result);
+    }
+
+    @ParameterizedTest(name = "라인에 이동과 관련된 테스트로 라인이 가지고있는 2개에 Position중 하나를 넘기게되면" +
+            "반대에 Position이 리턴되야한다.")
+    @CsvSource(value = {
+            "0|0|1|0",
+            "1|0|2|0",
+            "0|0|2|0",
+            "3|4|4|4",
+    }, delimiter = '|')
+    void 라인_이동_위치_검증(int x, int y, int next_x, int next_y) {
+        Line parameterLine = new Line(new Position(x, y), new Position(next_x, next_y));
+        assertThat(parameterLine.move(new Position(x, y))).isEqualTo(new Position(next_x, next_y));
+    }
+
+    @DisplayName("라인이 보유하지 않은 Position으로 이동요청을 할 경우 에러를 던진다.")
+    @Test
+    void 라인_이동_에러_검증() {
+        assertThatThrownBy(() -> line.move(new Position(10, 10))).isInstanceOf(IllegalArgumentException.class);
     }
 
 }

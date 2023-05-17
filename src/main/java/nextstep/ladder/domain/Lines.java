@@ -23,4 +23,13 @@ public class Lines {
         return lines.contains(line);
     }
 
+    public Position move(final Position position) {
+        return this.lines
+                .stream()
+                .filter(line -> line.hasPosition(position))
+                .map(line -> line.move(position).nextHeightPosition())
+                .findFirst()
+                .orElse(position.nextHeightPosition());
+    }
+
 }

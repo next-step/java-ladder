@@ -21,4 +21,9 @@ public class UserName {
     public String getName() {
         return name;
     }
+
+    public boolean isMatchName(final String userName) {
+        return name.equals(userName);
+    }
+
 }
