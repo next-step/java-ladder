@@ -3,10 +3,6 @@ package ladder.domain.participant;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import ladder.domain.participant.Name;
-import ladder.domain.participant.Participant;
-import ladder.domain.participant.Participants;
 import org.junit.jupiter.api.Test;
 
 class ParticipantsTest {
@@ -15,11 +11,7 @@ class ParticipantsTest {
     List<Name> names = List.of(new Name("Alice"), new Name("Bob"), new Name("Carol"));
     Participants participants = new Participants(names);
 
-    List<Participant> expectedParticipants = names.stream()
-        .map(Participant::new)
-        .collect(Collectors.toList());
-
-    assertThat(participants.getParticipants()).isEqualTo(expectedParticipants);
+    assertThat(participants.getParticipants()).isEqualTo(names);
   }
 
 }

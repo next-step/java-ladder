@@ -1,37 +1,30 @@
 package ladder.domain.participant;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Participants {
 
-  private final List<Participant> participants;
+  private final List<Name> names;
 
 
   public Participants(List<Name> names) {
-    this.participants = toParticipants(names);
+    this.names = names;
   }
 
-  private List<Participant> toParticipants(List<Name> names) {
-    return names.stream()
-        .map(Participant::new)
-        .collect(Collectors.toList());
-  }
-
-  public List<Participant> getParticipants() {
-    return participants;
+  public List<Name> getParticipants() {
+    return names;
   }
 
   public int size() {
-    return participants.size();
+    return names.size();
   }
 
 
-  public int indexOf(Participant participant) {
-    return participants.indexOf(participant);
+  public int indexOf(Name name) {
+    return names.indexOf(name);
   }
 
   public boolean containsName(Name name) {
-    return participants.contains(new Participant(name));
+    return names.contains(name);
   }
 }
