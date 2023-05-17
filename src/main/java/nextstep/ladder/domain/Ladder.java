@@ -1,28 +1,23 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Ladder {
 
-    private static final int BEGIN_INDEX = 0;
-
     private final People people;
-    private final List<Line> lines = new ArrayList<>();
+    private final List<Line> lines;
 
     public Ladder(People people, int height) {
         this.people = people;
-        makeLadder(height);
+        this.lines = generateLadder(height);
     }
 
-    private void makeLadder(int height) {
-        for (int i = BEGIN_INDEX; i < height; i++) {
-            addLine();
-        }
-    }
-
-    private void addLine() {
-        lines.add(new Line(people.value().size()));
+    private List<Line> generateLadder(int height) {
+        return Stream.generate(() -> new Line(people.value().size()))
+                .limit(height)
+                .collect(Collectors.toList());
     }
 
     public People people() {
