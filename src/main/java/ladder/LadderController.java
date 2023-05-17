@@ -6,8 +6,6 @@ import ladder.View.*;
 
 import java.util.List;
 
-import static java.lang.System.exit;
-
 public class LadderController {
     public void start() {
         List<String> attendances = InputView.typeAttendances();
