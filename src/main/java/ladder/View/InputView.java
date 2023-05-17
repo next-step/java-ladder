@@ -2,6 +2,7 @@ package ladder.View;
 
 import ladder.Model.AttendantName;
 import ladder.Model.Height;
+import ladder.Model.Results;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -27,6 +28,19 @@ public class InputView {
                         .map(s -> new AttendantName(s).name())
                         .collect(Collectors.toList()))
                 .orElseThrow(IllegalArgumentException::new);
+    }
+
+    public static Results TypeResult(int width) {
+        System.out.println("");
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String results = SCANNER.nextLine();
+
+        try {
+            return new Results(results, width);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return TypeResult(width);
+        }
     }
 
     public static int TypeMaxHeights() {
