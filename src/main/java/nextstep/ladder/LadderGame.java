@@ -13,8 +13,6 @@ public class LadderGame {
 
     private static final String NAME_REX_PATTERN = ",";
 
-    private final List<Player> players = new ArrayList<>();
-
     private Ladder ladder;
 
     public static void main(String[] args) {
@@ -24,22 +22,24 @@ public class LadderGame {
 
     public void run() {
 
-        inputPlayers();
+        List<Player> players = new ArrayList<>();
 
-        saveLadder(new Ladder(inputLadderHeight(), this.players.size()));
+        inputPlayers(players);
 
-        ResultView.printResult(this.players, ladder.getLines());
+        saveLadder(new Ladder(inputLadderHeight(), players.size()));
+
+        ResultView.printResult(players, ladder.getLines());
 
     }
 
-    private void inputPlayers() {
-        addPlayers(InputView.inputPlayers());
+    private void inputPlayers(List<Player> players) {
+        addPlayers(players, InputView.inputPlayers());
     }
 
-    private void addPlayers(String players) {
-        Arrays.stream(players.split(NAME_REX_PATTERN))
+    private void addPlayers(List<Player> players, String inputPlayers) {
+        Arrays.stream(inputPlayers.split(NAME_REX_PATTERN))
                 .map(Player::new)
-                .forEach(this.players::add);
+                .forEach(players::add);
     }
 
     private int inputLadderHeight() {
