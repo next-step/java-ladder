@@ -7,19 +7,10 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class LinesTest {
+class LadderTest {
 
     @Test
-    void 라인들을_생성한다() {
-        // given & when
-        Lines lines = new Lines(4, 3);
-
-        // then
-        assertThat(lines.getLines().size()).isEqualTo(3);
-    }
-
-    @Test
-    void 사다리의_목적지를_찾는다() {
+    void 유저의_사다리결과를_반환한다() {
         // given
         List<Line> tempLines = new ArrayList<>();
         Line line1 = new Line(List.of(true, false));
@@ -27,9 +18,12 @@ class LinesTest {
         tempLines.add(line1);
         tempLines.add(line2);
         Lines lines = new Lines(tempLines);
+        Usernames usernames = new Usernames(List.of("pobi", "honux", "crong"));
+        Username username = new Username("pobi");
+        Ladder ladder = new Ladder(lines, usernames.size());
 
         // when
-        int result = lines.findDestination(0);
+        int result = ladder.getResult(username, usernames);
 
         // then
         assertThat(result).isEqualTo(2);
