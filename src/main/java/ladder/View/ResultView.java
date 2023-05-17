@@ -1,7 +1,7 @@
 package ladder.View;
 
 import ladder.Model.LadderLine;
-import ladder.Model.LadderMap;
+import ladder.Model.Ladder;
 
 import java.util.List;
 
@@ -17,9 +17,9 @@ public class ResultView {
         System.out.println("");
     }
 
-    public static void printResultBody(List<String> attendances, LadderMap ladderMap) {
+    public static void printResultBody(List<String> attendances, Ladder ladder) {
         printAttendances(attendances);
-        printLadder(ladderMap);
+        printLadder(ladder);
     }
 
     private static void printAttendances(List<String> attendances) {
@@ -30,8 +30,8 @@ public class ResultView {
         System.out.println("");
     }
 
-    private static void printLadder(LadderMap ladderMap) {
-        ladderMap.ladderLines().forEach(ResultView::printLadderLine);
+    private static void printLadder(Ladder ladder) {
+        ladder.ladderLines().forEach(ResultView::printLadderLine);
     }
 
     private static void printLadderLine(LadderLine ladderLine) {

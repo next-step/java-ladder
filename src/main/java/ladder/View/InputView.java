@@ -1,7 +1,7 @@
 package ladder.View;
 
 import ladder.Model.AttendantName;
-import ladder.Model.MaxHeight;
+import ladder.Model.Height;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -35,7 +35,7 @@ public class InputView {
         String inputMaxHeights = SCANNER.nextLine();
 
         try {
-            return new MaxHeight(inputMaxHeights).height();
+            return new Height(inputMaxHeights).height();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return TypeMaxHeights();

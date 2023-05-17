@@ -3,12 +3,14 @@ package ladder.Model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LadderMap {
+public class Ladder {
     private final List<LadderLine> ladderLines = new ArrayList<>();
 
-    public LadderMap(int numberOfPerson, int height) {
+    private final MakeLineStrategy makeLineStrategy = new MakeLineStrategyRandom();
+
+    public Ladder(int numberOfPerson, int height) {
         for (int idx = 0; idx < height; idx++) {
-            ladderLines.add(new LadderLine(numberOfPerson - 1));
+            ladderLines.add(new LadderLine(numberOfPerson - 1, makeLineStrategy));
         }
     }
 

@@ -1,23 +1,21 @@
 package ladder.Model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class LadderLine {
-
-    private final MakeLineStrategy makeLineStrategy = new MakeLineStrategyRandom();
-
     private final ArrayList<Boolean> ladderLine = new ArrayList<>();
 
-    public LadderLine(int width) {
+    public LadderLine(int width, MakeLineStrategy makeLineStrategy) {
         Boolean made = false;
 
         for (int idx = 0; idx < width; idx++) {
-            made = makeLineStrategy.MakeLine(made);
+            made = makeLineStrategy.makeLine(made);
             ladderLine.add(made);
         }
     }
 
-    public ArrayList<Boolean> lines() {
+    public List<Boolean> lines() {
         return ladderLine;
     }
 }
