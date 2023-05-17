@@ -11,8 +11,9 @@ class LadderTest {
     void ladder() {
         Players players = Players.from("a,b,c");
         Height height = new Height(5);
+        MoveStrategy moveStrategy = new DirectionMoveStrategy();
 
-        Ladder ladder = new Ladder(players.size(), height.getHeight());
+        Ladder ladder = new Ladder(players.size(), height.getHeight(), moveStrategy);
 
         assertThat(ladder.getLadder().stream().findFirst().get().size()).isEqualTo(players.size());
         assertThat(ladder.getLadder().size()).isEqualTo(height.getHeight());
