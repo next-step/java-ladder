@@ -35,25 +35,37 @@ public class ResultView {
     }
 
     private static void printLadderLine(LadderLine ladderLine) {
-        printLadderHorizonLine(false);
-        System.out.print(VERTICAL_LINE);
-
-        ladderLine.lines().forEach(
-                b -> {
-                    printLadderHorizonLine(b);
-                    System.out.print(VERTICAL_LINE);
-                }
-        );
+        for (int idx = 0; idx <= ladderLine.size(); idx++) {
+            printLadderHorizonLine(ladderLine, idx - 1);
+            printLadderVerticalLine(ladderLine, idx);
+        }
 
         System.out.println("");
     }
 
-    private static void printLadderHorizonLine(Boolean exist) {
+    private static void printLadderHorizonLine(LadderLine ladderLine, int idx) {
+        if (idx < 0) {
+            System.out.print(HORIZON_NO_LINE);
+            return;
+        }
+
+        Boolean exist = ladderLine.horizonLines().get(idx);
         if (exist) {
             System.out.print(HORIZON_LINE);
             return;
         }
 
         System.out.print(HORIZON_NO_LINE);
+    }
+
+    private static void printLadderVerticalLine(LadderLine ladderLine, int idx) {
+        if (idx < 0) {
+            return;
+        }
+
+        Boolean exist = ladderLine.verticalLines().get(idx);
+        if (exist) {
+            System.out.print(VERTICAL_LINE);
+        }
     }
 }
