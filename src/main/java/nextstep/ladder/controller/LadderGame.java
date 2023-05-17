@@ -19,14 +19,16 @@ public class LadderGame {
 
     public void run() {
         Participants participants = new Participants(getParticipants());
+
         Result result = Result.of(participants, getResults());
 
         Height height = new Height(getLadderHeight());
 
-        List<Line> ladder = Ladder.of(participants)
+        List<Line> ladder = Ladder.of(participants, result)
                 .create(height, strategy);
 
-        OutputView.printResult(participants, ladder);
+        OutputView.printResult(participants, result, ladder);
+
     }
 
     private int getLadderHeight() {

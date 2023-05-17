@@ -1,13 +1,14 @@
 package nextstep.ladder.domain;
 
+import java.util.Iterator;
 import java.util.List;
 
 import static nextstep.ladder.utils.Util.convertArrayToList;
 
-public class Result {
+public class Result implements Iterable<String> {
 
     public static final String DELIMITER = ",";
-    private List<String> results;
+    private final List<String> results;
 
     public static Result of(Participants participants, String resultList) {
         String[] splitResults = resultList.split(DELIMITER);
@@ -23,5 +24,10 @@ public class Result {
 
     private Result(List<String> results) {
         this.results = List.copyOf(results);
+    }
+
+    @Override
+    public Iterator<String> iterator() {
+        return results.iterator();
     }
 }
