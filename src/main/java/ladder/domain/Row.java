@@ -20,10 +20,6 @@ public class Row {
         return ROW_CACHE[value];
     }
 
-    public int getValue() {
-        return value;
-    }
-
     public boolean isSame(Row otherRow) {
         return this.value == otherRow.value;
     }
@@ -43,5 +39,9 @@ public class Row {
 
     public boolean sameValue(int rowPosition) {
         return this.value == rowPosition;
+    }
+
+    public boolean isAdjucent(Row other) {
+            return Math.abs(this.value - other.value) <= 1;
     }
 }
