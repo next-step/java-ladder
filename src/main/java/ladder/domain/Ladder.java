@@ -1,11 +1,12 @@
 package ladder.domain;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Ladder {
+public class Ladder implements Iterable<HorizontalLine> {
 
     public static final int MINIMUM_HEIGHT = 1;
     private final List<HorizontalLine> lines;
@@ -38,6 +39,11 @@ public class Ladder {
     @Override
     public int hashCode() {
         return Objects.hash(lines);
+    }
+
+    @Override
+    public Iterator<HorizontalLine> iterator() {
+        return lines.iterator();
     }
 
 }

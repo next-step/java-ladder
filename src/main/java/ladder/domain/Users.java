@@ -1,10 +1,11 @@
 package ladder.domain;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Users {
+public class Users implements Iterable<User> {
 
     private final List<User> users;
 
@@ -18,4 +19,8 @@ public class Users {
         return users.size();
     }
 
+    @Override
+    public Iterator<User> iterator() {
+        return users.iterator();
+    }
 }

@@ -1,10 +1,11 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
-public class HorizontalLine {
+public class HorizontalLine implements Iterable<Boolean> {
 
     public static final int LAST_LINE = 1;
     private List<Boolean> points = new ArrayList<>();
@@ -35,4 +36,10 @@ public class HorizontalLine {
     public int hashCode() {
         return Objects.hash(points);
     }
+
+    @Override
+    public Iterator<Boolean> iterator() {
+        return points.iterator();
+    }
+
 }
