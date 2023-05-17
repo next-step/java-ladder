@@ -1,12 +1,12 @@
 package nextstep.domain;
 
-public class UserName {
+public class Username {
 
     public static final int LENGTH_MAX = 5;
 
     private final String name;
 
-    public UserName(String name) {
+    public Username(String name) {
         validateNameLength(name);
         this.name = name;
     }
