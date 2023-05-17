@@ -11,11 +11,19 @@ public class Line {
     private final List<Boolean> points;
 
     public Line(LineCreateStrategy strategy, int peopleCount) {
-        this.points = strategy.create(peopleCount - 1);
+        List<Boolean> line = strategy.create(peopleCount - 1);
+        validateLine(line);
+        this.points = line;
     }
 
     public Line(List<Boolean> points) {
         this.points = points;
+    }
+
+    private void validateLine(List<Boolean> line) {
+        if (!line.contains(false)) {
+            throw new IllegalArgumentException("연속적으로 라인이 생성될 수 없습니다.");
+        }
     }
 
     public int getDirection(int start) {
