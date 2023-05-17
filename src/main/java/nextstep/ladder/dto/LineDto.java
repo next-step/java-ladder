@@ -1,16 +1,19 @@
 package nextstep.ladder.dto;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class LineDto {
     private final List<Boolean> line;
-    public LineDto(List<Boolean> line) {
-        this.line = new ArrayList<>(line);
+    private LineDto(List<Boolean> line) {
+        this.line = Collections.unmodifiableList(line);
     }
 
     public List<Boolean> getLine() {
-        return Collections.unmodifiableList(line);
+        return line;
+    }
+
+    public static LineDto from(List<Boolean> line) {
+        return new LineDto(line);
     }
 }
