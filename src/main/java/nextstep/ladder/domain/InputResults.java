@@ -3,10 +3,10 @@ package nextstep.ladder.domain;
 import java.util.Collections;
 import java.util.List;
 
-public class LadderResults {
+public class InputResults {
     private List<String> results;
 
-    public LadderResults(List<String> results) {
+    public InputResults(List<String> results) {
         this.results = results;
     }
 
@@ -17,4 +17,6 @@ public class LadderResults {
     public List<String> getResults() {
         return Collections.unmodifiableList(results);
     }
+
+   
 }

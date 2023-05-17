@@ -1,38 +1,36 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.dto.PointDto;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Ladder {
-    private Users users;
-    private Rows rows;
-    private LadderResults results;
+    List<Row> ladder;
 
-    public Ladder(Users users, Rows rows, LadderResults results) {
-        this.users = users;
-        this.rows = rows;
-        this.results = results;
+    public Ladder(List<Row> ladder) {
+        this.ladder = ladder;
     }
 
-    public static Ladder of(List<String> names, int height, PointGenerator generator, LadderResults results) {
-        return new Ladder(Users.of(names), Rows.of(names.size(), height, generator), results);
-    }
-
-    public void play() {
-        for (int i = 0; i < users.getUsers().size(); i++) {
-            int x = rows.getResultX(i);
-            users.setResult(i, results.getResult(x));
+    public static Ladder of(int usersCount, int height, PointGenerator generator) {
+        List<Row> ladder = new ArrayList<>();
+        for (int y = 0; y < height; y++) {
+            ladder.add(Row.of(generator, usersCount));
         }
+        return new Ladder(ladder);
     }
 
-    public Users getUsers() {
-        return users;
+    public int getResultX(int x) {
+        for (int i = 0; i < ladder.size(); i++) {
+            x = ladder.get(i).getNextX(x);
+        }
+        return x;
     }
 
-    public Rows getRows() {
-        return rows;
-    }
-
-    public LadderResults getResults() {
-        return results;
+    public List<List<PointDto>> toLadderDto() {
+        return ladder.stream()
+                .map(Row::toPointDtos)
+                .collect(Collectors.toList());
     }
 }
