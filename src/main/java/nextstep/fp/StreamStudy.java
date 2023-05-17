@@ -27,7 +27,17 @@ public class StreamStudy {
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-        // TODO 이 부분에 구현한다.
+        List<String> longestWordTop100 = getLongestWordTop100(words);
+        longestWordTop100.stream().forEach(s -> System.out.println(s.toLowerCase()));
+    }
+
+    private static List<String> getLongestWordTop100(List<String> words) {
+        return words.stream()
+                .filter(w -> w.length() > 12)
+                .sorted()
+                .distinct()
+                .limit(100)
+                .collect(Collectors.toList());
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
@@ -39,6 +49,9 @@ public class StreamStudy {
     }
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
-        return 0;
+        List<Integer> numbersOverThree = numbers.stream()
+                .filter(n -> n > 3)
+                .collect(Collectors.toList());
+        return sumAll(doubleNumbers(numbersOverThree));
     }
 }
