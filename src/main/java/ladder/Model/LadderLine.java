@@ -28,7 +28,7 @@ public class LadderLine {
     }
 
     public int size() {
-        return ladderHorizonLine.size();
+        return ladderVerticalLine.size();
     }
 
 }

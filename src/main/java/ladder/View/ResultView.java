@@ -2,6 +2,7 @@ package ladder.View;
 
 import ladder.Model.LadderLine;
 import ladder.Model.Ladder;
+import ladder.Model.Results;
 
 import java.util.List;
 
@@ -13,16 +14,10 @@ public class ResultView {
 
     public static void printResultHeader() {
         System.out.println("");
-        System.out.println("실행결과");
+        System.out.println("사다리 결과");
         System.out.println("");
     }
-
-    public static void printResultBody(List<String> attendances, Ladder ladder) {
-        printAttendances(attendances);
-        printLadder(ladder);
-    }
-
-    private static void printAttendances(List<String> attendances) {
+    public static void printAttendances(List<String> attendances) {
         attendances.forEach(s -> {
             System.out.print(" ".repeat(PRINT_WIDTH + 1 - s.length()));
             System.out.print(s);
@@ -30,12 +25,20 @@ public class ResultView {
         System.out.println("");
     }
 
-    private static void printLadder(Ladder ladder) {
+    public static void printLadder(Ladder ladder) {
         ladder.ladderLines().forEach(ResultView::printLadderLine);
     }
 
+    public static void printTypedResult(Results results){
+        results.of().forEach(s -> {
+            System.out.print(" ".repeat(PRINT_WIDTH + 1 - s.length()));
+            System.out.print(s);
+        });
+        System.out.println("");
+    }
+
     private static void printLadderLine(LadderLine ladderLine) {
-        for (int idx = 0; idx <= ladderLine.size(); idx++) {
+        for (int idx = 0; idx < ladderLine.size(); idx++) {
             printLadderHorizonLine(ladderLine, idx - 1);
             printLadderVerticalLine(ladderLine, idx);
         }
