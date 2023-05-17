@@ -7,7 +7,10 @@ public class User {
         this.name = name;
     }
 
-    public String getName() {
-        return this.name;
+    public String getFiveCharacterName() {
+        if (name.length() < 5) {
+            return String.format("%-5s", name);
+        }
+        return name.substring(0, 5);
     }
 }

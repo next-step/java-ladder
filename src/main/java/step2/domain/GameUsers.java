@@ -11,4 +11,13 @@ public class GameUsers {
                 .map(User::new)
                 .collect(Collectors.toList());
     }
+
+    public int getUserCount() {
+        return users.size();
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
 }
