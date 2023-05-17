@@ -21,6 +21,10 @@ public class Usernames {
         return usernames.size();
     }
 
+    public int getUsernameIndex(Username username) {
+        return usernames.indexOf(username);
+    }
+
     public List<Username> getUsernames() {
         return usernames;
     }
