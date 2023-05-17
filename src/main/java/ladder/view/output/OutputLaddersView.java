@@ -26,7 +26,7 @@ public class OutputLaddersView {
   }
 
   private static void printRow(Ladder ladder, int rowNumber) {
-    ladder.getRow(rowNumber).stream()
+    ladder.getPointsOfRow(rowNumber).stream()
         .map(OutputLaddersView::ladder)
         .forEach(System.out::print);
   }
