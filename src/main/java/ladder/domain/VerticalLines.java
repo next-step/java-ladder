@@ -2,6 +2,7 @@ package ladder.domain;
 
 import ladder.exception.IllegalVerticalLineWidthException;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class VerticalLines {
@@ -24,7 +25,7 @@ public class VerticalLines {
     }
 
     public Set<VerticalLine> getVerticalLineSet() {
-        return verticalLineSet;
+        return Set.copyOf(verticalLineSet);
     }
 
     public int getMaxWidth() {
@@ -40,5 +41,13 @@ public class VerticalLines {
 
     public int getSize() {
         return verticalLineSet.size();
+    }
+
+    public static VerticalLines create(int count) {
+        HashSet<VerticalLine> verticalLineHashSet = new HashSet<>();
+        for (int i = 0; i < count; i++) {
+            verticalLineHashSet.add(new VerticalLine(i));
+        }
+        return new VerticalLines(verticalLineHashSet, count);
     }
 }

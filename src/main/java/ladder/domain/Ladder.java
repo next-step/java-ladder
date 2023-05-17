@@ -6,7 +6,7 @@ import ladder.exception.NotEnoughVerticalLinesException;
 import java.util.Set;
 
 public class Ladder {
-    private static final int MINIMUM_VERTICAL_LINES_QUANTITY = 2;
+    static final int MINIMUM_VERTICAL_LINES_QUANTITY = 2;
 
     private final VerticalLines verticalLines;
     private final HorizontalLines horizontalLines;

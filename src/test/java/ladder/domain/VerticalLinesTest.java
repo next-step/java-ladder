@@ -45,4 +45,9 @@ public class VerticalLinesTest {
     void 주어진_index에_해당하는_VerticalLine이_없으면_null을_반환한다() {
         assertThat(new VerticalLines(verticalLineSet, 2).getVerticalLineByIndex(5)).isNull();
     }
+
+    @Test
+    void 숫자_만큼의_VerticalLine들을_만들_수_있다() {
+        assertThat(VerticalLines.create(3).getSize()).isEqualTo(3);
+    }
 }

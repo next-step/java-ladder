@@ -49,4 +49,10 @@ public class HorizontalLinesTest {
         assertThatThrownBy(() -> new HorizontalLines(Set.of(horizontalLine), 3))
                 .isInstanceOf(IllegalHorizontalLineHeightException.class);
     }
+
+    @Test
+    void HorizontalLine들의_갯수를_반환할_수_있다() {
+        HorizontalLines horizontalLines = new HorizontalLines(horizontalLineSet, 3);
+        assertThat(horizontalLines.getSize()).isEqualTo(2);
+    }
 }

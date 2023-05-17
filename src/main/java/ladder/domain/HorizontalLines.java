@@ -25,7 +25,7 @@ public class HorizontalLines {
     }
 
     public Set<HorizontalLine> getHorizontalLineSet() {
-        return horizontalLineSet;
+        return Set.copyOf(horizontalLineSet);
     }
 
     public Set<HorizontalLine> getHorizontalLineSetByHeight(int height) {
@@ -36,5 +36,9 @@ public class HorizontalLines {
 
     public int getMaxHeight() {
         return maxHeight;
+    }
+
+    public int getSize() {
+        return horizontalLineSet.size();
     }
 }

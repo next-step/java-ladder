@@ -1,8 +1,10 @@
 package ladder.domain;
 
+import ladder.exception.IllegalHorizontalLineHeightException;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class HorizontalLineTest {
     private final VerticalLine verticalLine0 = new VerticalLine(0);
@@ -40,5 +42,11 @@ public class HorizontalLineTest {
         assertThat(horizontalLine.isConnected(verticalLine0)).isTrue();
         assertThat(horizontalLine.isConnected(verticalLine1)).isTrue();
         assertThat(horizontalLine.isConnected(verticalLine2)).isFalse();
+    }
+
+    @Test
+    void 음수_높이를_가지면_예외가_발생한다() {
+        assertThatThrownBy(() -> new HorizontalLine(adjacentVerticalLines, -1))
+                .isInstanceOf(IllegalHorizontalLineHeightException.class);
     }
 }
