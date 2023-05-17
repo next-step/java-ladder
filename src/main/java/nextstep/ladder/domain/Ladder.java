@@ -29,7 +29,14 @@ public class Ladder {
     public LadderDto toDto() {
         return lines.stream()
                 .map(Line::toDto)
-                .collect(Collectors.collectingAndThen(Collectors.toList(), LadderDto::new));
+                .collect(Collectors.collectingAndThen(Collectors.toList(), LadderDto::from));
+    }
+
+    public Position move(Position position) {
+        for (Line line : lines) {
+            position = position.move(line);
+        }
+        return position;
     }
 
     @Override
