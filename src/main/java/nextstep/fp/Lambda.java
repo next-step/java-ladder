@@ -26,6 +26,7 @@ public class Lambda {
             }
         }).start();
     }
+  
     public static int sum(List<Integer> numbers, Conditional c){
         return numbers.stream()
                 .filter(c::test)
