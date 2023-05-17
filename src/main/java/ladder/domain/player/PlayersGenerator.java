@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.player;
 
 import java.util.Arrays;
 import java.util.List;
@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 public class PlayersGenerator {
     private static final String DEFAULT_SEPARATOR = ",";
+
     private PlayersGenerator() {
     }
 
