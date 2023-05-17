@@ -1,59 +1,57 @@
 package nextstep.ladder.domain;
 
 
+import nextstep.ladder.dto.LadderGameDto;
+import nextstep.ladder.dto.PointDto;
+import nextstep.ladder.dto.ResultInput;
+import nextstep.ladder.dto.UserDto;
+
+import java.util.List;
+
 public class ResultView {
     private static final String COLUMN = "|";
     private static final String LINE = "_____";
     private static final String EMPTY_LINE = "     ";
-    private Ladder ladder;
 
-
-    public ResultView(Ladder ladder) {
-        this.ladder = ladder;
-    }
-
-    public ResultView() {
-    }
-
-    public void printLadder() {
-        for (User user : ladder.getUsers().getUsers()) {
+    public void printLadder(List<UserDto> userDtos, List<List<PointDto>> ladder, List<String> results) {
+        for (UserDto user : userDtos) {
             System.out.print(user.getName() + EMPTY_LINE);
         }
         System.out.println("");
-        for (Row row : ladder.getRows().getPoints()) {
-            printRow(row);
+        for (List<PointDto> points : ladder) {
+            printRow(points);
             System.out.println("");
         }
-        for (String result : ladder.getResults().getResults()) {
+        for (String result : results) {
             System.out.print(result + EMPTY_LINE);
         }
     }
 
-    public void printResult(String name, boolean isAll) {
+    public void printResult(ResultInput resultInput, LadderGameDto ladderGame) {
         System.out.println("실행결과");
-        System.out.println(getResult(name, isAll));
+        System.out.println(getResult(resultInput, ladderGame));
     }
 
-    public String getResult(String name, boolean isAll) {
+    public String getResult(ResultInput resultInput, LadderGameDto ladderGame) {
         String result = "";
-        if (isAll) {
-            for (User user : ladder.getUsers().getUsers()) {
+        if (resultInput.isAll()) {
+            for (UserDto user : ladderGame.getUserDtos()) {
                 result += user.getName() + " : " + user.getResult() + "\n";
             }
             return result;
         }
-        return name + " : " + ladder.getUsers().getResultByName(name);
+        return resultInput.getName() + " : " + ladderGame.findResultByUserName(resultInput.getName());
     }
 
-    public void printRow(Row row) {
-        for (Point point : row.getRow()) {
+    public void printRow(List<PointDto> points) {
+        for (PointDto point : points) {
             System.out.print(COLUMN);
             System.out.print(getLine(point));
         }
     }
 
-    public String getLine(Point point) {
-        if (point.movableRight()) {
+    public String getLine(PointDto point) {
+        if (point.isRight()) {
             return LINE;
         }
         return EMPTY_LINE;
