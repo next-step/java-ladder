@@ -47,4 +47,8 @@ public class Participants implements Iterable<String> {
     public Iterator<String> iterator() {
         return participants.iterator();
     }
+
+    public boolean isNotSameNum(int length) {
+        return participants.size() != length;
+    }
 }

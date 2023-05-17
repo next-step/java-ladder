@@ -1,14 +1,13 @@
 package nextstep.ladder.controller;
 
-import nextstep.ladder.domain.Height;
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Participants;
+import nextstep.ladder.domain.*;
 import nextstep.ladder.domain.strategy.BridgeStrategy;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
 import java.util.List;
+
+import static nextstep.ladder.view.InputView.getResults;
 
 public class LadderGame {
 
@@ -20,6 +19,8 @@ public class LadderGame {
 
     public void run() {
         Participants participants = new Participants(getParticipants());
+        Result result = Result.of(participants, getResults());
+
         Height height = new Height(getLadderHeight());
 
         List<Line> ladder = Ladder.of(participants)
