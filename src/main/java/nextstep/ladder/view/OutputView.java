@@ -16,15 +16,7 @@ public class OutputView {
     public static final String BRIDGE_EXISTS = "-----";
     public static final String LADDER_BAR = "|";
 
-    public static void printParticipantsMessage() {
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-    }
-
-    public static void printAskLadderHeightMessage() {
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
-    }
-
-    public static void printResult(Participants participants, Result results, List<Line> ladderLines) {
+    public static void printLadder(Participants participants, Result results, List<Line> ladderLines) {
         System.out.println("실행결과\n");
         participants.forEach(name -> System.out.print(nameFormat(name)));
 
