@@ -10,11 +10,9 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private final MoveStratege moveStrategy;
     private final List<Line> ladderLines;
 
     public Ladder(int countOfUsers, int ladderHeight) {
-        this.moveStrategy = new RandomMovableStrategy();
         this.ladderLines = createLadderLines(countOfUsers, ladderHeight);
     }
 
@@ -22,7 +20,7 @@ public class Ladder {
         List<Line> lines = new ArrayList<>();
 
         return IntStream.range(0, ladderHeight)
-                .mapToObj(i -> Line.generatePoints(countOfUsers, moveStrategy))
+                .mapToObj(i -> Line.generatePoints(countOfUsers, new RandomMovableStrategy()))
                 .collect(Collectors.toList());
     }
 
