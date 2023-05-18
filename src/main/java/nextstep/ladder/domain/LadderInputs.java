@@ -10,12 +10,12 @@ public class LadderInputs {
 
     private final List<LadderInput> ladderInputs;
 
-    private LadderInputs(List<LadderInput> ladderInputs) {
+    public LadderInputs(List<LadderInput> ladderInputs) {
         this.ladderInputs = ladderInputs;
     }
 
-    public static LadderInputs from(List<String> inputs) {
-        List<LadderInput> newLadderInputs = inputs.stream()
+    public static LadderInputs from(List<String> ladderInputs) {
+        List<LadderInput> newLadderInputs = ladderInputs.stream()
                 .map(input -> new LadderInput(input.strip()))
                 .collect(Collectors.toList());
 
@@ -24,32 +24,31 @@ public class LadderInputs {
 
     public static LadderInputs from(List<String> ladderInputs, LadderInputs participants) {
         if (ladderInputs.size() != participants.countOfInputs()) {
-            throw new IllegalArgumentException("참여할 사람 수와 결과 개수가 맞지 않습니다.");
+            throw new IllegalArgumentException("참가자 수와 결과 개수가 일치하지 않습니다.");
         }
-
         return LadderInputs.from(ladderInputs);
-    }
-
-    public boolean hasName(LadderInput name) {
-        return ladderInputs.contains(name);
-    }
-
-    public int nameIndex(LadderInput name) {
-        return IntStream.range(FIRST_INDEX, ladderInputs.size())
-                .filter(i -> ladderInputs.get(i).equals(name))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("이름이 없습니다."));
-    }
-
-    public String getInput(int index) {
-        return ladderInputs.get(index).getLadderInput();
     }
 
     public int countOfInputs() {
         return ladderInputs.size();
     }
 
+    public boolean hasName(LadderInput ladderInput) {
+        return ladderInputs.contains(ladderInput);
+    }
+
+    public int nameIndex(LadderInput ladderInput) {
+        return IntStream.range(FIRST_INDEX, ladderInputs.size())
+                .filter(i -> ladderInputs.get(i).equals(ladderInput))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("이름이 없습니다."));
+    }
+
     public List<LadderInput> getInputs() {
         return ladderInputs;
+    }
+
+    public String getInput(int index) {
+        return ladderInputs.get(index).getLadderInput();
     }
 }

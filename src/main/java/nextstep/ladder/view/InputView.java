@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
+
     private static final Scanner SCANNER = new Scanner(System.in);
     private static final String DELIMITER = ",";
 
@@ -35,4 +36,5 @@ public class InputView {
         System.out.println("결과를 보고 싶은 사람은?");
         return new LadderInput(SCANNER.nextLine());
     }
+
 }

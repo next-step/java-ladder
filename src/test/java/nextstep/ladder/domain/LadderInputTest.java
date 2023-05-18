@@ -12,30 +12,29 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class LadderInputTest {
 
     @ParameterizedTest
-    @NullAndEmptySource
-    @DisplayName("입력값이 빈 값이거나 null일 경우 예외처리")
-    void nullOrEmptyTest(String input) {
-        assertThatThrownBy(() -> new LadderInput(input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("값을 입력해주세요.");
+    @ValueSource(strings = {"a", "go", "iam", "test", "given", "꽝", "4000"})
+    @DisplayName("입력값 생성 테스트")
+    void ladderInputTest(String input) {
+        LadderInput ladderInput = new LadderInput(input);
+
+        assertThat(ladderInput.getLadderInput())
+                .isEqualTo(input);
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"a", "go", "iam", "test", "given", "꽝", "5000", "3000"})
-    @DisplayName("입력값 생성 테스트")
-    void nameTest(String input) {
-        LadderInput name = new LadderInput(input);
-
-        assertThat(name.getLadderInput())
-                .isEqualTo(input);
+    @NullAndEmptySource
+    @DisplayName("입력값이 없거나 null일 경우 예외 처리")
+    void nullOrEmptyTest(String input) {
+        assertThatThrownBy(() -> new LadderInput(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("입력값이 없습니다.");
     }
 
     @Test
     @DisplayName("입력값이 5자 초과일 경우 에러 반환 테스트")
-    void moreFiveNameErrorTest() {
+    void moreFiveLengthErrorTest() {
         assertThatThrownBy(() -> new LadderInput("python"))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("5글자를 초과할 수 없습니다.");
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
 }

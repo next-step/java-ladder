@@ -3,42 +3,45 @@ package nextstep.ladder.domain;
 import java.util.Objects;
 
 public class LadderInput {
-    private static final int INPUT_MAX_LENGTH = 5;
+
+    private static final int INPUT_LENGTH = 5;
 
     private final String ladderInput;
 
     public LadderInput(String ladderInput) {
-        checkInputRule(ladderInput);
+        checkInputValidation(ladderInput);
+        checkNullOrEmpty(ladderInput);
+
         this.ladderInput = ladderInput;
     }
 
-    private void checkInputRule(String ladderInput) {
-        hasNullOrEmpty(ladderInput);
-        overLengthRule(ladderInput);
+    private void checkInputValidation(String ladderInput) {
+        checkNullOrEmpty(ladderInput);
+        checkInputLength(ladderInput);
     }
 
-    private void hasNullOrEmpty(String ladderInput) {
+    private void checkNullOrEmpty(String ladderInput) {
         if (ladderInput == null || ladderInput.isEmpty()) {
-            throw new IllegalArgumentException("값을 입력해주세요.");
+            throw new IllegalArgumentException("입력값이 없습니다.");
         }
     }
 
-    private void overLengthRule(String ladderInput) {
-        if (ladderInput.length() > INPUT_MAX_LENGTH) {
-            throw new IllegalArgumentException("5글자를 초과할 수 없습니다.");
+    private void checkInputLength(String ladderInput) {
+        if (ladderInput.length() > INPUT_LENGTH) {
+            throw new IllegalArgumentException("입력값이 5자를 초과했습니다.");
         }
     }
 
     public String getLadderInput() {
-        return ladderInput;
+        return this.ladderInput;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        LadderInput ladderInput1 = (LadderInput) o;
-        return Objects.equals(ladderInput, ladderInput1.ladderInput);
+        LadderInput that = (LadderInput) o;
+        return Objects.equals(ladderInput, that.ladderInput);
     }
 
     @Override

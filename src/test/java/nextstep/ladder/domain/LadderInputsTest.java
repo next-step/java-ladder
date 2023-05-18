@@ -13,17 +13,15 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class LadderInputsTest {
 
     private LadderInputs testLadderInputSetup(String stringInputs) {
-        List<String> names = List.of(stringInputs.split(","));
-        return LadderInputs.from(names);
+        List<String> inputs = List.of(stringInputs.split(","));
+        return LadderInputs.from(inputs);
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"pobi,honux,crong,jk", "pobi, honux, crong, jk"})
     @DisplayName("참가자 객체 생성 테스트")
     void createParticipantsTest(String inputNames) {
-        String[] splitNames = inputNames.split(",");
-        List<String> names = List.of(splitNames);
-        LadderInputs participants = LadderInputs.from(names);
+        LadderInputs participants = testLadderInputSetup(inputNames);
 
         assertThat(participants.countOfInputs())
                 .isEqualTo(4);
@@ -31,7 +29,7 @@ public class LadderInputsTest {
 
     @Test
     @DisplayName("실행 결과 생성 테스트")
-    void createResultsTest() {
+    void crateResultsTest() {
         LadderInputs participants = testLadderInputSetup("pobi,honux,crong,jk");
 
         String inputResults = "꽝,5000,꽝,3000";
@@ -44,7 +42,7 @@ public class LadderInputsTest {
     }
 
     @Test
-    @DisplayName("실행 결과 개수와 참여할 사람 이름 수가 안맞을 경우 에러 반환 테스트")
+    @DisplayName("실행 결과와 참가자의 개수가 맞지 않을 경우 에러 반환 테스트")
     void notEqualsResultsCountToParticipants() {
         LadderInputs participants = testLadderInputSetup("pobi,honux,crong");
 
@@ -54,21 +52,22 @@ public class LadderInputsTest {
 
         assertThatThrownBy(() -> LadderInputs.from(results, participants))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("참여할 사람 수와 결과 개수가 맞지 않습니다.");
+                .hasMessage("참가자 수와 결과 개수가 일치하지 않습니다.");
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {"pobi","honux","crong"})
     @DisplayName("이름 포함 여부 테스트")
-    void hasNameTest() {
+    void hasNameTest(String input) {
         LadderInputs participants = testLadderInputSetup("pobi,honux,crong");
 
-        assertThat(participants.hasName(new LadderInput("pobi")))
+        assertThat(participants.hasName(new LadderInput(input)))
                 .isTrue();
     }
 
     @Test
     @DisplayName("이름 미포함 여부 테스트")
-    void noNameTest() {
+    void hasNoNameTest() {
         LadderInputs participants = testLadderInputSetup("pobi,honux,crong");
 
         assertThat(participants.hasName(new LadderInput("jk")))
@@ -88,7 +87,6 @@ public class LadderInputsTest {
 
         assertThat(participants.nameIndex(new LadderInput("crong")))
                 .isEqualTo(2);
-
     }
 
 }

@@ -1,52 +1,49 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.util.DrawStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
 
-    @ParameterizedTest
-    @ValueSource(booleans = {true, false})
-    @DisplayName("라인 생성 테스트")
-    void createLineTest(boolean input) {
-        Line line = new Line(input);
+    @Test
+    @DisplayName("가로 라인 생성 테스트")
+    void drawLineTest() {
+        Line line = Line.draw(5, new DrawStrategy() {
+            @Override
+            public boolean drawFirstPosition() {
+                return false;
+            }
 
-        assertThat(line.hasLine())
-                .isEqualTo(input);
+            @Override
+            public boolean drawNextPosition(Step previousStep) {
+                return false;
+            }
+        });
+
+        assertThat(line.numberOfSteps())
+                .isEqualTo(5);
     }
 
     @Test
-    @DisplayName("오른쪽 이동 판단 테스트")
-    void moveRightTest() {
-        Line previousLine = new Line(true);
-        Line currentLine = new Line(false);
+    @DisplayName("가로 라인 결과 인덱스 변환 테스트")
+    void firstStepToPositionTest() {
+        Step step1 = Step.firstStep(true);
+        Step step2 = step1.lastStep();
 
-        assertThat(currentLine.judgeDirection(previousLine))
-                .isEqualTo(1);
+        Line line = new Line(List.of(step1, step2));
+        List<Position> positions = line.stepsToPositions();
+
+        assertThat(positions.get(0))
+                .usingRecursiveComparison()
+                .isEqualTo(new Position(0, step1));
+
+        assertThat(positions.get(1))
+                .usingRecursiveComparison()
+                .isEqualTo(new Position(1, step2));
     }
-
-    @Test
-    @DisplayName("왼쪽 이동 판단 테스트")
-    void moveLeftTest() {
-        Line previousLine = new Line(false);
-        Line currentLine = new Line(true);
-
-        assertThat(currentLine.judgeDirection(previousLine))
-                .isEqualTo(-1);
-    }
-
-    @Test
-    @DisplayName("이동하지 않음 판단 테스트")
-    void stayTest() {
-        Line previousLine = new Line(false);
-        Line currentLine = new Line(false);
-
-        assertThat(currentLine.judgeDirection(previousLine))
-                .isEqualTo(0);
-    }
-
 }

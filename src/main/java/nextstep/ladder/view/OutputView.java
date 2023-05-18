@@ -3,6 +3,7 @@ package nextstep.ladder.view;
 import nextstep.ladder.domain.*;
 
 public class OutputView {
+
     private static final String EMPTY_LINE = "     |";
     private static final String DRAW_LINE = "-----|";
 
@@ -27,20 +28,20 @@ public class OutputView {
     }
 
     private static void printLadderLines(Ladder ladder) {
-        for (Lines lines : ladder.getLadder()) {
-            printLines(lines);
+        for (Line line : ladder.getLines()) {
+            printLines(line);
             System.out.println();
         }
     }
 
-    private static void printLines(Lines lines) {
-        for (Line line : lines.getLines()) {
-            System.out.print(printHasLine(line));
+    private static void printLines(Line line) {
+        for (Step step : line.getSteps()) {
+            System.out.print(printStep(step));
         }
     }
 
-    private static String printHasLine(Line line) {
-        if (line.hasLine()) {
+    private static String printStep(Step step) {
+        if (step.isLeft()) {
             return DRAW_LINE;
         }
         return EMPTY_LINE;
@@ -51,19 +52,19 @@ public class OutputView {
         System.out.println("실행 결과");
     }
 
-    public static void printResultAll(Results ladderResults, LadderInputs participants, LadderInputs reward) {
+    public static void printResultAll(Results results, LadderInputs participants, LadderInputs reward) {
         printRewardMention();
         for (int i = 0; i < participants.countOfInputs(); i++) {
-            System.out.println(participants.getInput(i) + " : " + ladderResults.matchResult(i, reward));
+            System.out.println(participants.getInput(i) + " : " + results.matchedResult(i, reward));
         }
     }
 
-    public static void printResult(String matchResult) {
-        printRewardMention();
-        System.out.println(matchResult);
+    public static void printNotExistsName(LadderInput name) {
+        System.out.println(name.getLadderInput() + "이라는 이름은 없습니다. 다시 입력해주세요.");
     }
 
-    public static void printNoName(LadderInput name) {
-        System.out.println(name.getLadderInput() + "이라는 이름은 없습니다! 다시 입력해주세요!!");
+    public static void printResult(String matchedResult) {
+        printRewardMention();
+        System.out.println(matchedResult);
     }
 }

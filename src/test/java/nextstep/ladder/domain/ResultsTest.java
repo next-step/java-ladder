@@ -7,19 +7,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
-class ResultsTest {
+public class ResultsTest {
 
     @Test
-    @DisplayName("객체 생성 테스트")
-    void initResultsTest() {
-        LadderInputs participants = LadderInputs.from(List.of("a,b".split(",")));
-        Results results = Results.init(participants);
+    @DisplayName("첫번째 라인 이동 테스트")
+    void firstMovePositionTest() {
+        Step step1 = Step.firstStep(true);
+        Step step2 = step1.lastStep();
 
-        Map<Integer, Result> expected = new HashMap<>();
-        expected.put(0, new Result(0));
-        expected.put(1, new Result(1));
+        Line line = new Line(List.of(step1, step2));
+        Results results = Results.firstMove(line);
+
+        Map<Integer, Integer> expected = new HashMap<>();
+        expected.put(0, 1);
+        expected.put(1, 0);
 
         assertThat(results)
                 .usingRecursiveComparison()
@@ -27,54 +30,154 @@ class ResultsTest {
     }
 
     @Test
-    @DisplayName("결과 값 업데이트 테스트")
-    void updateValueTest() {
-        LadderInputs participants = LadderInputs.from(List.of("a,b".split(",")));
-        Results results = Results.init(participants);
+    @DisplayName("첫번째 라인 이동 안함 테스트")
+    void firstDontMovePositionTest() {
+        Step step1 = Step.firstStep(false);
+        Step step2 = step1.lastStep();
 
-        assertThat(results.updateValue(0, 1))
-                .usingRecursiveComparison()
-                .isEqualTo(new Result(1));
+        Line line = new Line(List.of(step1, step2));
+        Results results = Results.firstMove(line);
 
-        assertThat(results.updateValue(1, -1))
+        Map<Integer, Integer> expected = new HashMap<>();
+        expected.put(0, 0);
+        expected.put(1, 1);
+
+        assertThat(results)
                 .usingRecursiveComparison()
-                .isEqualTo(new Result(0));
+                .isEqualTo(new Results(expected));
     }
 
     @Test
-    @DisplayName("key 반환 테스트")
-    void equalValueKeyTest() {
-        Map<Integer, Result> previousResults = new HashMap<>();
-        previousResults.put(0, new Result(1));
-        previousResults.put(1, new Result(0));
+    @DisplayName("첫번째 라인 여러 값일 때 테스트")
+    void firstManyValueTest() {
+        Step step1 = Step.firstStep(true);
+        Step step2 = step1.nextStep(false);
+        Step step3 = step2.nextStep(true);
+        Step step4 = step3.nextStep(false);
+        Step step5 = step4.nextStep(false);
+        Step step6 = step5.lastStep();
 
-        Results results = new Results(previousResults);
+        Line line = new Line(List.of(step1, step2, step3, step4, step5, step6));
+        Results results = Results.firstMove(line);
 
-        assertThat(results.equalValueKey(0))
+        Map<Integer, Integer> expected = new HashMap<>();
+        expected.put(0, 1);
+        expected.put(1, 0);
+        expected.put(2, 3);
+        expected.put(3, 2);
+        expected.put(4, 4);
+        expected.put(5, 5);
+
+        assertThat(results)
                 .usingRecursiveComparison()
-                .isEqualTo(1);
+                .isEqualTo(new Results(expected));
+    }
 
-        assertThat(results.equalValueKey(1))
+    @Test
+    @DisplayName("두번째줄 라인 이동 테스트")
+    void overSecondMovePositionTest() {
+        Step step1 = Step.firstStep(true);
+        Step step2 = step1.lastStep();
+
+        Line line = new Line(List.of(step1, step2));
+        Results results = Results.firstMove(line).nextMove(line);
+
+        Map<Integer, Integer> expected = new HashMap<>();
+        expected.put(0, 0);
+        expected.put(1, 1);
+
+        assertThat(results)
                 .usingRecursiveComparison()
-                .isEqualTo(0);
+                .isEqualTo(new Results(expected));
+    }
+
+    @Test
+    @DisplayName("두번째줄 3개값 라인 이동 테스트")
+    void overSecondMoveTriplePositionTest() {
+        Step step1 = Step.firstStep(true);
+        Step step2 = step1.nextStep(false);
+        Step step3 = step2.lastStep();
+
+        Step step11 = Step.firstStep(false);
+        Step step12 = step11.nextStep(true);
+        Step step13 = step12.lastStep();
+
+
+        Line line1 = new Line(List.of(step1, step2, step3));
+        Line line2 = new Line(List.of(step11, step12, step13));
+        Results results1 = Results.firstMove(line1);
+        Results results = results1.nextMove(line2);
+
+        Map<Integer, Integer> expected = new HashMap<>();
+        expected.put(0, 2);
+        expected.put(1, 0);
+        expected.put(2, 1);
+
+        assertThat(results)
+                .usingRecursiveComparison()
+                .isEqualTo(new Results(expected));
+    }
+
+    @Test
+    @DisplayName("두번째줄 여러값 라인 이동 테스트")
+    void overSecondMoveManyPositionTest() {
+        Step step1 = Step.firstStep(true);
+        Step step2 = step1.nextStep(false);
+        Step step3 = step2.nextStep(true);
+        Step step4 = step3.nextStep(false);
+        Step step5 = step4.nextStep(false);
+        Step step6 = step5.lastStep();
+
+        Step step11 = Step.firstStep(false);
+        Step step12 = step11.nextStep(true);
+        Step step13 = step12.nextStep(false);
+        Step step14 = step13.nextStep(true);
+        Step step15 = step14.nextStep(false);
+        Step step16 = step15.lastStep();
+
+        Line line1 = new Line(List.of(step1, step2, step3, step4, step5, step6));
+        Line line2 = new Line(List.of(step11, step12, step13, step14, step15, step16));
+        Results results1 = Results.firstMove(line1);
+        Results results = results1.nextMove(line2);
+
+        Map<Integer, Integer> expected = new HashMap<>();
+        expected.put(0, 2);
+        expected.put(1, 0);
+        expected.put(2, 4);
+        expected.put(3, 1);
+        expected.put(4, 3);
+        expected.put(5, 5);
+
+        assertThat(results)
+                .usingRecursiveComparison()
+                .isEqualTo(new Results(expected));
     }
 
     @Test
     @DisplayName("결과 확인 테스트")
-    void matchResultTest() {
-        LadderInputs participants = LadderInputs.from(List.of("a,b".split(",")));
-        Results results = Results.init(participants);
+    void matchedResultTest() {
+        Step step1 = Step.firstStep(true);
+        Step step2 = step1.nextStep(false);
+        Step step3 = step2.lastStep();
 
-        LadderInputs reward = LadderInputs.from(List.of("1000", "2000"));
+        List<String> inputs = List.of("1000, 2000, 3000".split(","));
+        LadderInputs reward = LadderInputs.from(inputs);
 
-        String aReward = results.matchResult(0, reward);
-        String bReward = results.matchResult(1, reward);
+        Line line = new Line(List.of(step1, step2, step3));
+        Results results = Results.firstMove(line);
 
-        assertThat(aReward)
+        String reward1 = results.matchedResult(0, reward);
+        String reward2 = results.matchedResult(1, reward);
+        String reward3 = results.matchedResult(2, reward);
+
+        assertThat(reward1)
+                .isEqualTo("2000");
+
+        assertThat(reward2)
                 .isEqualTo("1000");
 
-        assertThat(bReward)
-                .isEqualTo("2000");
+        assertThat(reward3)
+                .isEqualTo("3000");
     }
 
 }
