@@ -3,6 +3,7 @@ package nextstep.view;
 import nextstep.domain.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -40,25 +41,16 @@ public class OutputView {
                 " ".repeat(Math.max((Username.LENGTH_MAX - result.length()), 0)) + result + " "));
     }
 
-    public static void outputExecutionResult(List<Integer> ladderResults,
-                                             InputResults inputResults,
-                                             Usernames usernames) {
+    public static void outputExecutionResult(Map<Username, String> results) {
         System.out.printf("%n실행 결과%n");
-        List<String> results = inputResults.getResults();
 
-        if (ladderResults.size() == 1) {
-            System.out.println(results.get(ladderResults.get(0)));
+        if (results.size() == 1) {
+            results.values().forEach(System.out::println);
             return;
         }
 
-        List<String> finalResults = ladderResults.stream()
-                .map(results::get)
-                .collect(Collectors.toList());
-
-        for (int index = 0; index < usernames.size(); index++) {
-            List<Username> names = usernames.getUsernames();
-            Username username = names.get(index);
-            System.out.printf("%s : %s%n", username.getName(), finalResults.get(index));
+        for (Username username : results.keySet()) {
+            System.out.printf("%s : %s%n", username.getName(), results.get(username));
         }
     }
 }

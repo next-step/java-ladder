@@ -41,7 +41,7 @@ public class InputView {
 
     public static String inputUsernameForResult() {
         SCANNER.nextLine();
-        System.out.printf("%n%n결과를 보고 싶은 사람은?%n");
-        return SCANNER.nextLine();
+        System.out.printf("%n결과를 보고 싶은 사람은?%n");
+        return SCANNER.next();
     }
 }
