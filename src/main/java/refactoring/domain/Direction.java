@@ -1,6 +1,7 @@
-package refactoring;
+package refactoring.domain;
 
-import static refactoring.LineStatus.DETACHMENT;
+import static refactoring.domain.LineStatus.CONNECTION;
+import static refactoring.domain.LineStatus.DETACHMENT;
 
 import java.util.Objects;
 
@@ -16,8 +17,8 @@ public class Direction {
         this.current = current;
     }
 
-    public static Direction last(final LineStatus before) {
-        return new Direction(before, DETACHMENT);
+    public Direction last() {
+        return new Direction(current, DETACHMENT);
     }
 
     public static Direction first(final LineStatus current) {
@@ -26,6 +27,12 @@ public class Direction {
 
     public static Direction of(final LineStatus before, final LineStatus current) {
         return new Direction(before, current);
+    }
+
+    public Direction next() {
+        return this.current == CONNECTION
+            ? new Direction(this.current, DETACHMENT)
+            : new Direction(this.current, LineStatus.generate());
     }
 
     @Override
@@ -43,5 +50,9 @@ public class Direction {
     @Override
     public int hashCode() {
         return Objects.hash(before, current);
+    }
+
+    public int move() {
+        return Movement.next(before, current);
     }
 }
