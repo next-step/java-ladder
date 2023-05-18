@@ -17,12 +17,15 @@ public class Line {
     }
 
     public Line(List<Boolean> points) {
+        validateLine(points);
         this.points = points;
     }
 
     private void validateLine(List<Boolean> line) {
-        if (!line.contains(false)) {
-            throw new IllegalArgumentException("연속적으로 라인이 생성될 수 없습니다.");
+        for (int index = 0; index < line.size() - 1; index++) {
+            if (line.get(index) && line.get(index + 1)) {
+                throw new IllegalArgumentException("연속적으로 라인이 생성될 수 없습니다.");
+            }
         }
     }
 
