@@ -54,4 +54,10 @@ public class Lambda {
         }
         return total;
     }
+
+    public static int sumStrategy(List<Integer> numbers, Predicate<Integer> predicate) {
+        return numbers.stream()
+                .filter(predicate)
+                .reduce(0, Integer::sum);
+    }
 }
