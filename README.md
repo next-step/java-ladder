@@ -60,9 +60,18 @@ pobi  honux crong   jk
   - [x] 참여자 수와 결과 수가 일치 해야한다
     - [x] 일치하지 않으면 예외 발생하기
 - [x] 출력 결과는 사다리가 출력 되고 `OutputView`의 이름 출력 로직과 동일한 방식 사용
+- [x] 결과 보고 싶은 사람 입력 받기
+  - [x] participant에 포함 되거나, all이 아닐 경우 예외 발생하기
+
   
 - [ ] 이름에 해당하는 결과값을 매칭한다
-  
+  - [ ] Map에 participants의 list를 각각 key로 등록한다.
+  - [ ] list의 index가 있을때 index -1 , index에 해당하는 값을 사다리 list에서 값을 찾는다.
+    - [ ] index가 true이면 index ++
+    - [ ] index -1 이 true이면 index --
+    - [ ] false면 그냥 index 유지
+- all 입력하거나 지난 번 호출 했을 경우 caching 하기
+
 - [ ] 사다리 실행 결과 출력
   - [ ] 결과를 보고 싶은 사람을 입력 받는다
     - [ ] 참여자에 이름이 없을 경우 예외를 발생한다.

@@ -51,4 +51,13 @@ public class Participants implements Iterable<String> {
     public boolean isNotSameNum(int length) {
         return participants.size() != length;
     }
+
+    public void contains(String name) {
+        if (name.equals("all")) {
+            return;
+        }
+        if (!participants.contains(name)) {
+            throw new IllegalArgumentException("일치하는 참여자가 없습니다.");
+        }
+    }
 }

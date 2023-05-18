@@ -7,6 +7,7 @@ import nextstep.ladder.view.OutputView;
 
 import java.util.List;
 
+import static nextstep.ladder.view.InputView.getParticipantsToCheckResult;
 import static nextstep.ladder.view.InputView.getResults;
 
 public class LadderGame {
@@ -29,6 +30,11 @@ public class LadderGame {
 
         OutputView.printResult(participants, result, ladder);
 
+        String participantToCheckResult = getParticipantsToCheckResult();
+        // validate
+        participants.contains(participantToCheckResult);
+
+        result.calculateResult(participants, participantToCheckResult, ladder);
     }
 
     private int getLadderHeight() {
