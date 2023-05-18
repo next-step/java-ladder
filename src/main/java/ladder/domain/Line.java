@@ -11,11 +11,17 @@ public class Line {
     private final List<Boolean> points;
 
     public Line(int countOfPerson, LineCreateStrategy lineCreateStrategy) {
+        this.points = createPoints(countOfPerson, lineCreateStrategy);
+    }
+
+    private List<Boolean> createPoints(int countOfPerson, LineCreateStrategy lineCreateStrategy) {
 
         List<Boolean> points = new ArrayList<>();
+
         IntStream.range(0, countOfPerson - 1)
                 .forEach(index -> addPoint(points, index, lineCreateStrategy));
-        this.points = points;
+
+        return points;
     }
 
     private void addPoint(List<Boolean> points, int index, LineCreateStrategy lineCreateStrategy) {
