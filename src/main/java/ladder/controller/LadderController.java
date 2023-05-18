@@ -27,11 +27,11 @@ public class LadderController {
     private void printResultUntilExit(Ladder ladder, ResultUser resultUser) {
         boolean endFlag = false;
         while (!endFlag) {
-            endFlag = printResultOrEnd(ladder, resultUser);
+            endFlag = printResultOrEnd(resultUser);
         }
     }
 
-    private boolean printResultOrEnd(Ladder ladder, ResultUser resultUser) {
+    private boolean printResultOrEnd(ResultUser resultUser) {
         String userName = inputView.readUserName();
         if (userName.equals(ALL_MESSAGE)) {
             outputView.printAllResult(resultUser);
