@@ -32,6 +32,10 @@ public class Line {
         return otherLine.column.isAdjacent(this.column);
     }
 
+    public boolean isSame(Line other) {
+        return column.isSame(other.column) && row.isSame(other.row);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -44,17 +48,4 @@ public class Line {
     public int hashCode() {
         return Objects.hash(column, row);
     }
-
-    public boolean isAdjacentRow(Line otherLine) {
-        return this.row.isAdjacent(otherLine.row);
-    }
-
-    public boolean isSameColumn(Line otherLine) {
-        return this.column.isSame(otherLine.column);
-    }
-
-    public boolean isSame(Line other) {
-        return column.isSame(other.column) && row.isSame(other.row);
-    }
-
 }

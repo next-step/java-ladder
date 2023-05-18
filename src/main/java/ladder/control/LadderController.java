@@ -8,7 +8,6 @@ import ladder.present.Presenter;
 public class LadderController {
     public static void main(String[] args) {
         Presenter presenter = new Presenter();
-
         Users users = presenter.users();
         int row = presenter.ladderHeight();
         int column = users.count();
