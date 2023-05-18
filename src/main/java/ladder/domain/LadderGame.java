@@ -6,9 +6,9 @@ public class LadderGame {
     private final Users users;
     private final Ladder ladder;
 
-    public LadderGame(String users, int ladderHeight) {
+    public LadderGame(String users, LadderHeight ladderHeight) {
         this.users = new Users(users);
-        this.ladder = new Ladder(this.users.getUsersSize(), ladderHeight);
+        this.ladder = new Ladder(this.users.getUsersSize(), ladderHeight.getHeight());
     }
 
     public List<User> getUnmodifiableUsers() {

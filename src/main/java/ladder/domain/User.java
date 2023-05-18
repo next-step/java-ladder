@@ -11,7 +11,7 @@ public class User {
     }
 
     private static void validateUserName(String name) {
-        if (name.length() > NAME_LENGTH) {
+        if (name.length() > NAME_LENGTH || name.isBlank()) {
             throw new IllegalArgumentException(EXCEPTION_MESSAGE_NAMELENGTH + name);
         }
     }
