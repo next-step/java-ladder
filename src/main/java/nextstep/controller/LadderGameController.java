@@ -4,9 +4,6 @@ import nextstep.domain.*;
 import nextstep.view.InputView;
 import nextstep.view.OutputView;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class LadderGameController {
 
     public static void main(String[] args) {
@@ -21,18 +18,10 @@ public class LadderGameController {
         OutputView.outputLadderResult(inputResults.getResults());
 
         Ladder ladder = new Ladder(lines, usernames.size());
-        List<Integer> ladderResults = getLadderResult(ladder, usernames);
-        OutputView.outputExecutionResult(ladderResults, inputResults, usernames);
-        ladderResults = getLadderResult(ladder, usernames);
-        OutputView.outputExecutionResult(ladderResults, inputResults, usernames);
-    }
-
-    private static List<Integer> getLadderResult(Ladder ladder, Usernames usernames) {
-        String input = InputView.inputUsernameForResult();
-
-        if (input.equals("all")) {
-            return ladder.getResults();
-        }
-        return List.of(ladder.getResult(new Username(input), usernames));
+        LadderResult ladderResult = new LadderResult(ladder, usernames);
+        Username name = new Username(InputView.inputUsernameForResult());
+        OutputView.outputExecutionResult(ladderResult.getLadderResult(name, inputResults));
+        name = new Username(InputView.inputUsernameForResult());
+        OutputView.outputExecutionResult(ladderResult.getLadderResult(name, inputResults));
     }
 }
