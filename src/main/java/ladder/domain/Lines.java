@@ -46,10 +46,10 @@ public class Lines {
         this.lines.add(anyLine);
     }
 
-    private boolean existSameColumnAndAdjacentRow(Line otherLine) {
-        return this.lines.stream()
-                .filter(line -> line.isAdjacentRow(otherLine))
-                .noneMatch(line -> line.isSameColumn(otherLine));
+    public boolean hasCrossIntersection(Line otherLine) {
+        return lines.stream()
+                .filter(line -> line.isSameRow(otherLine))
+                .noneMatch(line -> line.isAdjacentColumn(otherLine));
     }
 
     public int lineCount() {
@@ -62,9 +62,5 @@ public class Lines {
 
     public boolean existLine(Line otherLine) {
         return lines.stream().anyMatch(line -> line.isSame(otherLine));
-    }
-
-    public boolean hasCrossIntersection(Line other) {
-        return existSameColumnAndAdjacentRow(other);
     }
 }

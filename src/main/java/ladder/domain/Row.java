@@ -37,10 +37,6 @@ public class Row {
         return this.hashCode() == otherRow.hashCode();
     }
 
-    public boolean sameValue(int rowPosition) {
-        return this.value == rowPosition;
-    }
-
     public boolean isAdjacent(Row other) {
             return Math.abs(this.value - other.value) <= 1;
     }
