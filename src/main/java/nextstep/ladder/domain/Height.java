@@ -5,7 +5,11 @@ public class Height {
     private final int height;
     private static final int MIN_HEIGHT = 1;
 
-    public Height(int height) {
+    public static Height of(int height) {
+        return new Height(height);
+    }
+
+    private Height(int height) {
         validateHeight(height);
         this.height = height;
     }
