@@ -37,7 +37,7 @@ public class Lines {
     }
 
     private static void addLineSuitableOnly(Lines lines, Line anyLine) {
-        if (lines.hasCrossIntersection(anyLine)) {
+        if (!lines.hasCrossIntersection(anyLine)) {
             lines.append(anyLine);
         }
     }
@@ -49,7 +49,7 @@ public class Lines {
     public boolean hasCrossIntersection(Line otherLine) {
         return lines.stream()
                 .filter(line -> line.isSameRow(otherLine))
-                .noneMatch(line -> line.isAdjacentColumn(otherLine));
+                .anyMatch(line -> line.isAdjacentColumn(otherLine));
     }
 
     public int lineCount() {
