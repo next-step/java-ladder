@@ -58,4 +58,21 @@ class ParticipantsTest {
         assertThatThrownBy(() -> participants.contains(name))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+
+    @DisplayName("참여자 리스트에서 입력받은 이름의 인덱스를 반환한다")
+    @Test
+    public void when_NameIsGiven_Expects_ReturnItsIndex() {
+        Participants participants = new Participants("a,b,c,d,e");
+
+        assertThat(participants.indexOf("b")).isEqualTo(1);
+    }
+
+    @DisplayName("참여자 리스트의 최대 인덱스를 반환한다.")
+    @Test
+    void maxIndex() {
+        Participants participants = new Participants("a,b,c,d,e");
+
+        assertThat(participants.maxIndex()).isEqualTo(4);
+    }
 }
