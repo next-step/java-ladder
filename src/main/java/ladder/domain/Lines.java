@@ -46,7 +46,7 @@ public class Lines {
         this.lines.add(anyLine);
     }
 
-    private boolean isExistSameColumnAndAdjacentRow(Line otherLine) {
+    private boolean existSameColumnAndAdjacentRow(Line otherLine) {
         return this.lines.stream()
                 .filter(line -> line.isAdjacentRow(otherLine))
                 .noneMatch(line -> line.isSameColumn(otherLine));
@@ -65,6 +65,6 @@ public class Lines {
     }
 
     public boolean existAdjacentLine(Line other) {
-        return isExistSameColumnAndAdjacentRow(other);
+        return existSameColumnAndAdjacentRow(other);
     }
 }

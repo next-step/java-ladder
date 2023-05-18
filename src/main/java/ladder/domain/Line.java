@@ -46,7 +46,7 @@ public class Line {
     }
 
     public boolean isAdjacentRow(Line otherLine) {
-        return this.row.isAdjucent(otherLine.row);
+        return this.row.isAdjacent(otherLine.row);
     }
 
     public boolean isSameColumn(Line otherLine) {

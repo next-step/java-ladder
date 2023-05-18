@@ -41,7 +41,7 @@ public class Row {
         return this.value == rowPosition;
     }
 
-    public boolean isAdjucent(Row other) {
+    public boolean isAdjacent(Row other) {
             return Math.abs(this.value - other.value) <= 1;
     }
 }
