@@ -47,4 +47,30 @@ public class LadderRowTest {
         assertThat(ladderRowWithAlwaysConnect.print())
                 .isEqualTo("|-----|     |-----|     |");
     }
+
+    @Test
+    @DisplayName("isRightConnected 메소드는, 오른쪽으로 연결되어 있는지 여부를 반환한다.")
+    void isRightConnected() {
+        assertThat(ladderRow.isRightConnected(1)).isEqualTo(false);
+        assertThat(ladderRow.isRightConnected(2)).isEqualTo(true);
+    }
+
+    @Test
+    @DisplayName("isLeftConnected 메소드는, 오른쪽으로 연결되어 있는지 여부를 반환한다.")
+    void isLeftConnected() {
+        assertThat(ladderRow.isLeftConnected(1)).isEqualTo(true);
+        assertThat(ladderRow.isLeftConnected(2)).isEqualTo(false);
+    }
+
+    @Test
+    @DisplayName("사다리간에 연속된 줄이 생기면, 결과가 중복될 수 있으므로 생성시에 제거해준다.")
+    void construct_with_removing_continuous_point() {
+        LadderRow ladderRowWithAlwaysConnect = new LadderRow(
+                new Boolean[] {
+                        true, true, true, true
+                }
+        );
+        assertThat(ladderRowWithAlwaysConnect.print())
+                .isEqualTo("|-----|     |-----|     |");
+    }
 }

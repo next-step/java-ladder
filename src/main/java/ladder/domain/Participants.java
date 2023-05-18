@@ -10,10 +10,6 @@ public class Participants {
         this.names = names;
     }
 
-    public int getSize() {
-        return names.size();
-    }
-
     public int getIndexOf(String name) {
         return IntStream.range(0, names.size())
                 .filter(i -> names.get(i).equals(name))

@@ -1,5 +1,6 @@
 package ladder;
 
+import ladder.domain.InputNameType;
 import ladder.domain.Ladder;
 import ladder.util.InputScanner;
 import ladder.util.OutputPrinter;
@@ -16,15 +17,16 @@ public class LadderApplication {
 
         while (true) {
             String name = InputScanner.readNameToShowResult();
-            List<String> participantNames = getParticipantNames(name, names);
-            OutputPrinter.printMatchingResult(participantNames, ladder, results);
+            OutputPrinter.printMatchingResult(transformName(name, names), ladder, results);
         }
     }
 
-    private static List<String> getParticipantNames(String name, List<String> names) {
-        if (name.equals("all"))
+    private static List<String> transformName(String inputName, List<String> names) {
+        InputNameType inputNameType = InputNameType.of(inputName);
+        if (inputNameType == InputNameType.ALL) {
             return names;
+        }
 
-        return List.of(name);
+        return List.of(inputName);
     }
 }
