@@ -1,6 +1,8 @@
 package ladder.domain.participant;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Participants {
 
@@ -9,6 +11,12 @@ public class Participants {
 
   public Participants(List<Name> names) {
     this.names = names;
+  }
+
+  public Participants(String... names) {
+    this(Arrays.stream(names)
+        .map(Name::new)
+        .collect(Collectors.toList()));
   }
 
   public List<Name> getParticipants() {
