@@ -14,7 +14,7 @@ public class LadderTest {
     @Test
     void when_ParticipantsAndHeightOfLadderIsGiven_Expect_HeightSizeOfLineList() {
         Participants participants = new Participants("pobi,honux,crong,jk");
-        Height height = new Height(5);
+        Height height = Height.of(5);
         BridgeStrategy strategy = () -> true;
 
         List<Line> ladder = Ladder.of(participants).create(height, strategy);
