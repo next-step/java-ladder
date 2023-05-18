@@ -35,6 +35,10 @@ public class Direction {
             : new Direction(this.current, LineStatus.generate());
     }
 
+    public int move() {
+        return Movement.next(before, current);
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) {
@@ -50,9 +54,5 @@ public class Direction {
     @Override
     public int hashCode() {
         return Objects.hash(before, current);
-    }
-
-    public int move() {
-        return Movement.next(before, current);
     }
 }
