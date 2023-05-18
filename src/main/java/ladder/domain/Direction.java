@@ -33,4 +33,14 @@ public enum Direction {
     public boolean isRight() {
         return right;
     }
+
+    public int move() {
+        if (isRight()) {
+            return 1;
+        }
+        if (isLeft()) {
+            return -1;
+        }
+        return 0;
+    }
 }

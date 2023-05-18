@@ -31,4 +31,14 @@ class DirectionTest {
         assertThatThrownBy(() -> Direction.of(true, true))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest
+    @CsvSource(value = {"LEFT, -1", "RIGHT, 1", "NONE, 0"}, delimiter = ',')
+    @DisplayName("방향에 따라 움직이는 방향 확인")
+    void move(Direction direction, int expected) {
+        // when
+        int actual = direction.move();
+
+        assertThat(actual).isEqualTo(expected);
+    }
 }
