@@ -2,16 +2,16 @@ package ladder.strategy;
 
 import java.util.Random;
 
-public class AddLineStrategy implements LineStrategy {
+public class RandomLineCreateStrategy implements LineCreateStrategy {
 
     private final Random random;
 
-    public AddLineStrategy(Random random) {
+    public RandomLineCreateStrategy(Random random) {
         this.random = random;
     }
 
     @Override
-    public boolean generate() {
+    public boolean createLine() {
         return random.nextBoolean();
     }
 }

@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.strategy.AddLineStrategy;
+import ladder.strategy.RandomLineCreateStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -15,7 +15,7 @@ public class LineTest {
     @ParameterizedTest
     @ValueSource(ints = {3, 5, 7, 4, 8})
     public void 라인_생성_테스트(int countOfPerson) {
-        Line line1 = new Line(countOfPerson, new AddLineStrategy(new Random()));
+        Line line1 = new Line(countOfPerson, new RandomLineCreateStrategy(new Random()));
 
         assertThat(line1.getPoints()).hasSize(countOfPerson -1);
     }

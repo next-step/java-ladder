@@ -1,8 +1,7 @@
 package ladder.domain;
 
-import ladder.strategy.AddLineStrategy;
+import ladder.strategy.RandomLineCreateStrategy;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -19,7 +18,7 @@ public class Ladder {
 
     private void createLines(int height, int width) {
 
-        AddLineStrategy addLineStrategy = new AddLineStrategy(new Random());
+        RandomLineCreateStrategy addLineStrategy = new RandomLineCreateStrategy(new Random());
 
         this.lines = IntStream.range(0, height)
                 .mapToObj(i -> new Line(width, addLineStrategy))
