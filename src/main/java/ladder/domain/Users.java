@@ -10,14 +10,24 @@ public class Users {
     private static final int OUT_OF_BOUND = -1;
     private final List<User> users;
 
-    public Users(List<String> users) {
-        this.users = users.stream()
-                .map(User::new)
-                .collect(Collectors.toList());
+    public Users(List<User> users) {
+        this.users = users;
     }
 
-    public Users(String users) {
-        this(splitStrings(users));
+    public static Users of(List<String> users) {
+        return new Users(
+                users.stream()
+                        .map(User::new)
+                        .collect(Collectors.toList())
+        );
+    }
+
+    public static Users of(String users) {
+        return new Users(
+                splitStrings(users).stream()
+                        .map(User::new)
+                        .collect(Collectors.toList())
+        );
     }
 
     public String getUserName(int index) {

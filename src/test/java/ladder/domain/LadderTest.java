@@ -3,6 +3,8 @@ package ladder.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,7 +19,7 @@ class LadderTest {
     @BeforeEach
     void setUp() {
         height = new Height(5);
-        users = new Users(List.of("pobi", "honux", "crong", "jk"));
+        users = Users.of(List.of("pobi", "honux", "crong", "jk"));
     }
 
     @Test
@@ -70,19 +72,18 @@ class LadderTest {
         assertThat(ladder.hasRightConnections(0)).isEqualTo(hasRightConnections);
     }
 
-    @Test
-    @DisplayName("실행 결과 - 특정 유저")
-    void climb() {
+    @ParameterizedTest(name = "{0}, {1}")
+    @CsvSource(value = {"pobi, 1", "honux, 0", "crong, 3", "jk, 2"})
+    @DisplayName("실행 결과 - 특정 유저의 결과")
+    void climb(String userName, int expected) {
         // given
         Ladder ladder = Ladder.of(users, height, () -> true);
-        Result result = new Result("꽝, 5000, 꽝,3000");
+        ResultInput resultInput = ResultInput.of("꽝, 5000, 꽝,3000");
 
         // when
-        int actual = ladder.climbUser("pobi");
-        int actual2 = ladder.climbUser("crong");
+        int actual = ladder.climbUser(userName);
 
         // then
-        assertThat(result.getResultByPosition(actual)).isEqualTo("5000");
-        assertThat(result.getResultByPosition(actual2)).isEqualTo("3000");
+        assertThat(resultInput.getResultByPosition(actual)).isEqualTo(resultInput.getResultByPosition(expected));
     }
 }
