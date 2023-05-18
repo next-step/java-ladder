@@ -2,6 +2,7 @@ package nextstep.ladder;
 
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Player;
+import nextstep.ladder.domain.Result;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
@@ -26,9 +27,11 @@ public class LadderGame {
 
         inputPlayers(players, InputView.inputPlayers());
 
-        saveLadder(new Ladder(inputLadderHeight(), players.size()));
+        Result result = new Result(InputView.inputResult());
 
-        ResultView.printResult(players, ladder.getLines());
+        saveLadder(new Ladder(InputView.inputLadderHeight(), players.size()));
+
+        ResultView.printResult(players, ladder.getLines(), result);
 
     }
 
