@@ -2,11 +2,10 @@ package ladder.domain;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Ladder {
     private final LadderRow[] rows;
-    private final List<String> participantNames;
+    private final Participants participants;
     ;
     public Ladder(int height, List<String> names) {
         validate(height, names.size());
@@ -15,29 +14,22 @@ public class Ladder {
                 .map(row -> new LadderRow(names.size() - 1, RandomStrategy.getInstance()))
                 .toArray(LadderRow[]::new);
 
-        this.participantNames = names;
+        this.participants = new Participants(names);
     }
 
     public Ladder(LadderRow[] ladderRows, List<String> names) {
         rows = ladderRows;
-        this.participantNames = names;
+        this.participants = new Participants(names);
     }
 
 
     public int getResultPosition(String name) {
-        int curPosition = findIndex(name);
+        int curPosition = participants.getIndexOf(name);
         for (int i = 0; i < rows.length; i++) {
             curPosition = rows[i].move(curPosition);
         }
 
         return curPosition;
-    }
-
-    private int findIndex(String name) {
-        return IntStream.range(0, participantNames.size())
-                .filter(i -> participantNames.get(i).equals(name))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 이름입니다."));
     }
 
     private static void validate(int height, int personSize) {
