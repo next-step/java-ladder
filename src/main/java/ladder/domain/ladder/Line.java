@@ -33,7 +33,7 @@ public class Line {
     Point point = Point.first(generationStrategy);
     points.add(point);
 
-    while(point.untilBeforeLastPoint(numberOfParticipants)) {
+    while(point.untilBeforeLastIndexOfPoint(numberOfParticipants)) {
       point = point.next(generationStrategy);
       points.add(point);
     }
