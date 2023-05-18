@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 class LadderTest {
@@ -17,18 +18,34 @@ class LadderTest {
         Participants participants = Participants.of("pobi,honux,crong,jk");
         LadderHeight ladderHeight = LadderHeight.from(5);
 
-        Ladder ladder = new Ladder(Lines.create(ladderHeight.getHeight(), participants.count()));
-        Lines lines = ladder.getLineColumns();
+        assertThatNoException()
+                .isThrownBy(() -> Ladder.create(ladderHeight.getHeight(), participants.count()));
+    }
 
-        assertThat(lines.getRows()).hasSize(ladderHeight.getHeight());
+    @Test
+    @DisplayName("사용자 수보다 하나작은 points 를 생성한다.")
+    void test02() {
+        int height = 5;
+        int userCount = 5;
+        Ladder ladder = Ladder.create(height, userCount);
+
+        assertThat(ladder.getRows().get(0).getConnectionStatuses()).hasSize(userCount - 1);
+    }
+
+    @Test
+    @DisplayName("크기를 반환한다.")
+    void test03() {
+        int height = 5;
+        int userCount = 5;
+        Ladder ladder = Ladder.create(height, userCount);
+        assertThat(ladder.getRows()).hasSize(height);
     }
 
     @Test
     @DisplayName("참여자 위치를 입력하면 실행결과를 반환한다.")
-    void test02() {
+    void test04() {
         Points points = Points.initialize(2, () -> true);
-        Lines lines = new Lines(List.of(points));
-        Ladder ladder = new Ladder(lines);
+        Ladder ladder = new Ladder(List.of(points));
 
         assertAll(
                 () -> assertThat(ladder.getResult(0)).isEqualTo(1),

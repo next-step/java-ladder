@@ -1,7 +1,8 @@
 package nextstep.ladder.domain.user;
 
-import nextstep.ladder.domain.ladder.Lines;
 import nextstep.ladder.domain.ladder.Points;
+
+import java.util.List;
 
 public class Position {
 
@@ -33,12 +34,12 @@ public class Position {
         return x;
     }
 
-    public boolean movable(Lines lines) {
-        return y < lines.size();
+    public boolean movable(List<Points> rows) {
+        return y < rows.size();
     }
 
-    public void move(Lines lines) {
-        Points points = lines.getRow(y);
+    public void move(List<Points> rows) {
+        Points points = rows.get(y);
         Direction movableDirection = getMovableDirection(points);
         movableDirection.move(this);
     }

@@ -2,7 +2,6 @@ package nextstep.ladder;
 
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.ladder.LadderHeight;
-import nextstep.ladder.domain.ladder.Lines;
 import nextstep.ladder.domain.user.ExecuteResults;
 import nextstep.ladder.domain.user.Participants;
 import nextstep.ladder.domain.user.Result;
@@ -17,7 +16,7 @@ public class LadderApplication {
         ExecuteResults executeResults = ExecuteResults.of(InputView.showExecuteResultsConsole());
         LadderHeight ladderHeight = LadderHeight.from(InputView.showLadderHeightConsole());
 
-        Ladder ladder = new Ladder(Lines.create(ladderHeight.getHeight(), participants.count()));
+        Ladder ladder = Ladder.create(ladderHeight.getHeight(), participants.count());
 
         ResultView.drawInputResult(participants, executeResults, ladder);
         execute(participants, executeResults, ladder);

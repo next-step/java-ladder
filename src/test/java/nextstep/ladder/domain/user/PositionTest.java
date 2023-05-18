@@ -1,6 +1,6 @@
 package nextstep.ladder.domain.user;
 
-import nextstep.ladder.domain.ladder.Lines;
+import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.ladder.Points;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -35,26 +35,26 @@ class PositionTest {
     @DisplayName("Lines를 기준으로 움직임 가능 여부를 판단한다.")
     void test03() {
         int linesSize = 2;
-        Lines lines = Lines.create(linesSize, 1);
+        Ladder ladder = Ladder.create(linesSize, 1);
 
         Position position = new Position(0);
 
         position.moveDown();
-        assertThat(position.movable(lines)).isTrue();
+        assertThat(position.movable(ladder.getRows())).isTrue();
         position.moveDown();
-        assertThat(position.movable(lines)).isFalse();
+        assertThat(position.movable(ladder.getRows())).isFalse();
     }
 
     @Test
     @DisplayName("Lines 를 이용해 연결된 위치로 이동한다.")
     void test04() {
         Points points = Points.initialize(2, () -> true);
-        Lines lines = new Lines(List.of(points));
+        Ladder ladder = new Ladder(List.of(points));
         Position position = new Position(0);
-        position.move(lines);
+        position.move(ladder.getRows());
 
         assertThat(position.getX()).isEqualTo(1);
-        assertThat(position.movable(lines)).isFalse();
+        assertThat(position.movable(ladder.getRows())).isFalse();
     }
 
 }

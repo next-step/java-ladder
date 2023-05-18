@@ -2,13 +2,13 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.ladder.ConnectionStatus;
 import nextstep.ladder.domain.ladder.Ladder;
-import nextstep.ladder.domain.ladder.Lines;
 import nextstep.ladder.domain.ladder.Points;
 import nextstep.ladder.domain.user.ExecuteResults;
 import nextstep.ladder.domain.user.Participants;
 import nextstep.ladder.domain.user.UserName;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -39,13 +39,12 @@ public final class ResultView {
     }
 
     public static void drawLadder(Ladder ladder) {
-        String drewLines = drawLines(ladder.getLineColumns());
+        String drewLines = drawLines(ladder.getRows());
         System.out.println(drewLines);
     }
 
-    private static String drawLines(Lines lines) {
-        return lines.getRows()
-                .stream()
+    private static String drawLines(List<Points> rows) {
+        return rows.stream()
                 .map(points -> drawFirstColumn() + drawRows(points))
                 .collect(Collectors.joining(NEW_LINE));
     }
