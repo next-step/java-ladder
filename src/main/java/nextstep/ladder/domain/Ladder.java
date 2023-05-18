@@ -10,7 +10,6 @@ public class Ladder {
 
     private final Participants participant;
 
-
     public static Ladder of(Participants participants) {
         return new Ladder(participants);
     }
@@ -18,7 +17,6 @@ public class Ladder {
     private Ladder(Participants participants) {
         this.participant = participants;
     }
-
 
     public List<Line> create(Height height, BridgeStrategy strategy) {
         return Stream.generate(() -> new Line(participant.number(), strategy))
