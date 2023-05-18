@@ -1,7 +1,7 @@
 package nextstep.laddergame.ui;
 
 import java.util.Scanner;
-import nextstep.laddergame.domain.Height;
+import nextstep.laddergame.domain.LadderInfo;
 import nextstep.laddergame.domain.Members;
 import nextstep.laddergame.factory.MembersFactory;
 import nextstep.laddergame.util.StringUtils;
@@ -20,10 +20,11 @@ public class InputView {
     return MembersFactory.createMembers(names);
   }
 
-  public static Height inputLadderHeight() {
+  public static LadderInfo inputLadderHeight(int width) {
     System.out.println("최대 사다리 높이는 몇 개인가요?");
     int height = Integer.parseInt(getInput().trim());
-    return new Height(height);
+
+    return new LadderInfo(height, width);
   }
 
   private static String getInput() {
