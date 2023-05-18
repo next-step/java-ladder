@@ -38,15 +38,20 @@ public class Ladder {
     }
 
     public int climbUser(User user) {
-        int position = users.findUser(user);
-        for (int i = 0; i < height(); i++) {
-            position += ladderRows.get(i).move(position);
-        }
-        return position;
+        return IntStream.range(0, height())
+                .reduce(users.findUser(user), (acc, i) -> {
+                    return acc + ladderRows.get(i).move(acc);
+                });
     }
 
     public int climbUser(String userName) {
         return climbUser(new User(userName));
+    }
+
+    public List<Integer> climbAll() {
+        return users.getUserNames().stream()
+                .map(this::climbUser)
+                .collect(Collectors.toList());
     }
 
     @Override

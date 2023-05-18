@@ -1,7 +1,8 @@
 package ladder.view;
 
 import ladder.domain.Ladder;
-import ladder.domain.Result;
+import ladder.domain.ResultInput;
+import ladder.domain.ResultUser;
 import ladder.domain.User;
 
 import java.util.List;
@@ -13,14 +14,14 @@ public class OutputView {
     private static final String VERTICAL_LINE_STRING = "|";
     private static final String HORIZONTAL_LINE_STRING = "-";
 
-    public void printLadder(Ladder ladder, Result result) {
+    public void printLadder(Ladder ladder, ResultInput resultInput) {
         System.out.println(RESULT_MESSAGE);
         System.out.println();
 
         printParticipants(ladder.getUserNames());
         IntStream.range(0, ladder.height())
                 .forEach(i -> printLine(ladder.hasRightConnections(i)));
-        printInputResults(result);
+        printInputResults(resultInput);
     }
 
     private void printParticipants(List<String> names) {
@@ -38,29 +39,27 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printInputResults(Result result) {
-        int size = result.size();
+    public void printInputResults(ResultInput resultInput) {
+        int size = resultInput.size();
         IntStream.range(0, size)
-                .forEach(i -> System.out.printf("%6s", result.getResultByPosition(i)));
+                .forEach(i -> System.out.printf("%6s", resultInput.getResultByPosition(i)));
         System.out.println();
     }
 
-    public void printUserResult(User user, Ladder ladder, Result result) {
+    public void printUserResult(User user, ResultUser resultUser) {
         System.out.println(RESULT_MESSAGE);
-        int resultPosition = ladder.climbUser(user);
-        System.out.println(result.getResultByPosition(resultPosition));
+        System.out.println(resultUser.getResultByUser(user));
         System.out.println();
     }
 
-    public void printAllResult(Ladder ladder, Result result) {
+    public void printAllResult(ResultUser resultUser) {
         System.out.println(RESULT_MESSAGE);
-        List<String> userNames = ladder.getUserNames();
 
-        userNames.forEach(userName -> {
-            int resultPosition = ladder.climbUser(userName);
-            System.out.printf("%s : ", userName);
-            System.out.println(result.getResultByPosition(resultPosition));
-        });
+        resultUser.getUserNames()
+                .forEach(userName -> {
+                    System.out.printf("%s : ", userName);
+                    System.out.println(resultUser.getResultByUser(userName));
+                });
         System.out.println();
     }
 }

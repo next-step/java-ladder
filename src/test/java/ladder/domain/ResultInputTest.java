@@ -9,7 +9,7 @@ import java.util.List;
 import static ladder.utils.StringSplitter.splitStrings;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class ResultTest {
+class ResultInputTest {
     private String string;
     private List<String> stringList;
 
@@ -20,25 +20,25 @@ class ResultTest {
     }
 
     @Test
-    @DisplayName("결과를 입력받아 저장한다")
+    @DisplayName("실행 결과를 Result 객체에 저장한다")
     void create() {
         // when
-        Result result = new Result(string);
+        ResultInput resultInput = ResultInput.of(string);
 
         // then
-        assertThat(result).isEqualTo(new Result(stringList));
-        assertThat(result.size()).isEqualTo(stringList.size());
+        assertThat(resultInput).isEqualTo(new ResultInput(stringList));
+        assertThat(resultInput.size()).isEqualTo(stringList.size());
     }
 
     @Test
     @DisplayName("특정 위치의 결과 확인")
     void result() {
         // given
-        Result result = new Result(string);
+        ResultInput resultInput = ResultInput.of(string);
         int position = 3;
 
         // when
-        String actual = result.getResultByPosition(position);
+        String actual = resultInput.getResultByPosition(position);
 
         // then
         assertThat(actual).isEqualTo("3000");

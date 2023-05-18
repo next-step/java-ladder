@@ -17,33 +17,35 @@ public class LadderController {
 
     public void startGame() {
         Ladder ladder = createLadder();
-        Result result = new Result(inputView.readResult());
-        outputView.printLadder(ladder, result);
-        printResultUntilExit(ladder, result);
+        ResultInput resultInput = ResultInput.of(inputView.readResult());
+        ResultUser resultUser = ResultUser.of(ladder, resultInput);
+
+        outputView.printLadder(ladder, resultInput);
+        printResultUntilExit(ladder, resultUser);
     }
 
-    private void printResultUntilExit(Ladder ladder, Result result) {
+    private void printResultUntilExit(Ladder ladder, ResultUser resultUser) {
         boolean endFlag = false;
         while (!endFlag) {
-            endFlag = printResultOrEnd(ladder, result);
+            endFlag = printResultOrEnd(ladder, resultUser);
         }
     }
 
-    private boolean printResultOrEnd(Ladder ladder, Result result) {
+    private boolean printResultOrEnd(Ladder ladder, ResultUser resultUser) {
         String userName = inputView.readUserName();
         if (userName.equals(ALL_MESSAGE)) {
-            outputView.printAllResult(ladder, result);
+            outputView.printAllResult(resultUser);
             return false;
         }
         if (userName.equals(EXIT_MESSAGE)) {
             return true;
         }
-        outputView.printUserResult(new User(userName), ladder, result);
+        outputView.printUserResult(new User(userName), resultUser);
         return false;
     }
 
     private Ladder createLadder() {
-        Users users = new Users(inputView.readNames());
+        Users users = Users.of(inputView.readNames());
         Height height = new Height(inputView.readHeight());
         return Ladder.of(users, height, new RandomDrawStrategy());
     }
