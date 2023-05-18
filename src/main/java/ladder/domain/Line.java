@@ -26,7 +26,7 @@ public class Line {
 
     private void addPoint(List<Boolean> points, int index, LineCreateStrategy lineCreateStrategy) {
         if (index == 0 || !points.get(index - 1)) {
-            points.add(lineCreateStrategy.createLine());
+            points.add(lineCreateStrategy.canCreateLine());
             return;
         }
         points.add(false);

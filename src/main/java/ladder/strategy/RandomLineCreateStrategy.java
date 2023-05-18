@@ -11,7 +11,7 @@ public class RandomLineCreateStrategy implements LineCreateStrategy {
     }
 
     @Override
-    public boolean createLine() {
+    public boolean canCreateLine() {
         return random.nextBoolean();
     }
 }
