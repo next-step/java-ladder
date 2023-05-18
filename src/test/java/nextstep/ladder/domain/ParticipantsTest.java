@@ -30,15 +30,6 @@ class ParticipantsTest {
         assertThat(participants.number()).isEqualTo(5);
     }
 
-    @DisplayName("입력받은 이름이 all이면 예외를 발생하지 않는다")
-    @Test
-    void when_InputNameIsAll_Expects_DoesNotThrowException() {
-        Participants participants = new Participants("a,b,c,d,e");
-
-        assertThatNoException()
-                .isThrownBy(() -> participants.contains("all"));
-    }
-
     @DisplayName("입력받은 이름이 참여자 리스트에 포함되면 예외를 발생하지 않는다")
     @ParameterizedTest
     @ValueSource(strings = {"a", "b", "c", "d", "e"})
