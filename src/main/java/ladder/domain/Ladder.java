@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
@@ -17,15 +18,12 @@ public class Ladder {
     }
 
     private void createLines(int height, int width) {
-        List<Line> lines = new ArrayList<>();
 
         AddLineStrategy addLineStrategy = new AddLineStrategy(new Random());
 
-        IntStream.range(0, height)
+        this.lines = IntStream.range(0, height)
                 .mapToObj(i -> new Line(width, addLineStrategy))
-                .forEach(lines::add);
-
-        this.lines = lines;
+                .collect(Collectors.toList());
     }
 
     public List<Line> getLines() {

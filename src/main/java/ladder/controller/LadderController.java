@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class LadderController {
 
@@ -32,12 +33,9 @@ public class LadderController {
     }
 
     private static List<Player> addPlayers(String playerText) {
-        List<Player> players = new ArrayList<>();
 
-        Arrays.stream(playerText.split(NAME_REX_PATTERN))
+        return Arrays.stream(playerText.split(NAME_REX_PATTERN))
                 .map(Player::new)
-                .forEach(players::add);
-
-        return players;
+                .collect(Collectors.toList());
     }
 }
