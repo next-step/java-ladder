@@ -31,6 +31,7 @@ public class OutputView {
   }
 
   private static void printMembers(Members members) {
+    System.out.println("실행결과");
     for (Member member : members.getMembers()) {
       String name = member.getName();
       String blank = " ".repeat(6 - name.length());
