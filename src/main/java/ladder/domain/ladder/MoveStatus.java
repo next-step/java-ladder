@@ -10,4 +10,8 @@ public enum MoveStatus {
     MoveStatus(int move) {
         this.move = move;
     }
+
+    public int value() {
+        return move;
+    }
 }

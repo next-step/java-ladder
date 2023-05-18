@@ -15,11 +15,6 @@ public class LadderGame {
     this.participants = participants;
   }
 
-  private int getPrizeIndex(Name participant) {
-    int startIndex = participants.indexOf(participant);
-    return ladder.getIndexOfResult(startIndex);
-  }
-
 
   public MatchResults play(Prizes prizes) {
     MatchResults matchResults = new MatchResults();
@@ -29,5 +24,10 @@ public class LadderGame {
       matchResults.addMatchResult(participant, prize);
     }
     return matchResults;
+  }
+
+  private int getPrizeIndex(Name participant) {
+    int startIndex = participants.indexOf(participant);
+    return ladder.getIndexOfResult(startIndex);
   }
 }

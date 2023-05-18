@@ -9,12 +9,9 @@ public class MatchResults {
 
   private final Map<Name, Prize> results = new LinkedHashMap<>();
 
-
-
   public void addMatchResult(Name participant, Prize prize) {
     results.put(participant, prize);
   }
-
 
   public Map<Name, Prize> getAllResults() {
     return results;

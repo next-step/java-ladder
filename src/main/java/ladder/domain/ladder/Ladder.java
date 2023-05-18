@@ -15,10 +15,6 @@ public class Ladder {
     this.lines = lines;
   }
 
-  Ladder (Line... lines){
-    this(List.of(lines));
-  }
-
   public static Ladder createLadder(Height height, Participants participants, NextPointGenerationStrategy generationStrategy) {
     List<Line> lines = Stream.generate(() -> Line.createLine(participants.size(), generationStrategy))
         .limit(height.height())
@@ -35,7 +31,9 @@ public class Ladder {
     return lines.get(rowNumber);
   }
 
-  public List<Boolean> getPointsOfRow(int rowNumber) {
+
+
+  public List<Point> getPointsOfRow(int rowNumber) {
     return getRow(rowNumber).getPoints();
   }
 
@@ -44,25 +42,11 @@ public class Ladder {
   public int getIndexOfResult(int startIndex) {
     int indexOfResult = startIndex;
 
-    for (int rowNumber = 0; rowNumber < height(); rowNumber++) {
-      indexOfResult = updateIndexOfResult(indexOfResult, rowNumber);
+    for (Line line : lines) {
+      indexOfResult = line.move(indexOfResult);
     }
 
     return indexOfResult;
   }
-
-  private int updateIndexOfResult(int indexOfResult, int rowNumber) {
-    if (getRow(rowNumber).isRightConnected(indexOfResult)) {
-      return indexOfResult + 1;
-    }
-
-    if (getRow(rowNumber).isLeftConnected(indexOfResult)) {
-      return indexOfResult - 1;
-    }
-
-    return indexOfResult;
-  }
-
-
 
 }

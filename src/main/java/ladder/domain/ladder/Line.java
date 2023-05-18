@@ -1,67 +1,56 @@
 package ladder.domain.ladder;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 import ladder.domain.strategy.NextPointGenerationStrategy;
 
 public class Line {
 
-  private final List<Boolean> points;
+  private final List<Point> points;
 
-  private Line(List<Boolean> points) {
+  private Line(List<Point> points) {
     validateNotContinuous(points);
     this.points = points;
   }
 
-  private void validateNotContinuous(List<Boolean> points) {
+  private void validateNotContinuous(List<Point> points) {
     IntStream.range(0, points.size() - 1)
-        .filter(i -> points.get(i) && points.get(i + 1))
-        .findAny()
-        .ifPresent(i -> {
-          throw new IllegalArgumentException("연속된 true 값이 존재합니다.");
+        .forEach(index -> {
+          if (points.get(index).isContinuous(points.get(index + 1))) {
+            throw new IllegalArgumentException("연속된 포인트가 존재합니다.");
+          }
         });
   }
 
-  Line(Boolean... points) {
+  Line(Point... points) {
     this(List.of(points));
   }
 
   public static Line createLine(int numberOfParticipants,
       NextPointGenerationStrategy generationStrategy) {
-    int limitsOfGeneration = numberOfParticipants - 1;
-    List<Boolean> booleans = Stream.iterate(generationStrategy.first(), generationStrategy::nextBoolean)
-        .limit(limitsOfGeneration)
-        .collect(Collectors.toList());
+    List<Point> points = new ArrayList<>();
+    Point point = Point.first(generationStrategy);
+    points.add(point);
 
-    return new Line(booleans);
+    while(point.untilBeforeLastPoint(numberOfParticipants)) {
+      point = point.next(generationStrategy);
+      points.add(point);
+    }
+
+    points.add(point.last());
+
+    return new Line(points);
   }
 
 
-  public List<Boolean> getPoints() {
+  public List<Point> getPoints() {
     return points;
   }
 
-  public boolean isRightConnected(int index) {
-    if (isLastIndex(index)) {
-      return false;
-    }
-    return points.get(index);
+
+  public int move(int indexOfResult) {
+    return points.get(indexOfResult).move();
   }
 
-  private boolean isLastIndex(int index) {
-    return index == points.size();
-  }
-
-  public boolean isLeftConnected(int index) {
-    if (isFirstIndex(index)) {
-      return false;
-    }
-    return points.get(index - 1);
-  }
-
-  private static boolean isFirstIndex(int indexOfResult) {
-    return indexOfResult == 0;
-  }
 }

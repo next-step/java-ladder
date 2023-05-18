@@ -4,6 +4,8 @@ import static ladder.domain.ladder.MoveStatus.LEFT;
 import static ladder.domain.ladder.MoveStatus.NONE;
 import static ladder.domain.ladder.MoveStatus.RIGHT;
 
+import ladder.domain.strategy.NextPointGenerationStrategy;
+
 public class Direction {
 
   private final boolean left;
@@ -19,8 +21,12 @@ public class Direction {
     return new Direction(left, current);
   }
 
-  public static Direction first(boolean current) {
-   return of(false, current);
+  public static Direction first(NextPointGenerationStrategy strategy) {
+   return of(false, strategy.nextBoolean(false));
+  }
+
+  public Direction last() {
+    return of(this.current, false);
   }
 
   public static Direction last(boolean left) {
@@ -45,13 +51,21 @@ public class Direction {
     return current;
   }
 
-  public MoveStatus move() {
-    if (left) {
-      return LEFT;
+  public int move() {
+    if (this.left) {
+      return LEFT.value();
     }
-    if (current) {
-      return RIGHT;
+    if (this.current) {
+      return RIGHT.value();
     }
-    return NONE;
+    return NONE.value();
+  }
+
+  public Direction next(NextPointGenerationStrategy strategy) {
+    return of(current, strategy.nextBoolean(current));
+  }
+
+  public boolean isContinuous(Direction direction) {
+    return this.current && direction.current;
   }
 }
