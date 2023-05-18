@@ -52,4 +52,9 @@ public class Line {
     public boolean isSameColumn(Line otherLine) {
         return this.column.isSame(otherLine.column);
     }
+
+    public boolean isSame(Line other) {
+        return column.isSame(other.column) && row.isSame(other.row);
+    }
+
 }

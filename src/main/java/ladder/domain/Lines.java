@@ -61,7 +61,7 @@ public class Lines {
     }
 
     public boolean existLine(Line otherLine) {
-        return lines.stream().anyMatch(line -> line.isSameRow(otherLine));
+        return lines.stream().anyMatch(line -> line.isSame(otherLine));
     }
 
     public boolean existAdjacentLine(Line other) {
