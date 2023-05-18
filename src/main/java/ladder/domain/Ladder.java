@@ -39,9 +39,7 @@ public class Ladder {
 
     public int climbUser(User user) {
         return IntStream.range(0, height())
-                .reduce(users.findUser(user), (acc, i) -> {
-                    return acc + ladderRows.get(i).move(acc);
-                });
+                .reduce(users.findUser(user), (acc, i) -> acc + ladderRows.get(i).move(acc));
     }
 
     public int climbUser(String userName) {
