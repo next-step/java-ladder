@@ -24,7 +24,7 @@ public class LadderGame {
 
         List<Player> players = new ArrayList<>();
 
-        inputPlayers(players);
+        inputPlayers(players, InputView.inputPlayers());
 
         saveLadder(new Ladder(inputLadderHeight(), players.size()));
 
@@ -32,18 +32,14 @@ public class LadderGame {
 
     }
 
-    private void inputPlayers(List<Player> players) {
-        addPlayers(players, InputView.inputPlayers());
+    private void inputPlayers(List<Player> players, String inputPlayers) {
+        addPlayers(players, inputPlayers);
     }
 
     private void addPlayers(List<Player> players, String inputPlayers) {
         Arrays.stream(inputPlayers.split(NAME_REX_PATTERN))
                 .map(Player::new)
                 .forEach(players::add);
-    }
-
-    private int inputLadderHeight() {
-        return InputView.inputLadderHeight();
     }
 
     private void saveLadder(Ladder ladder) {
