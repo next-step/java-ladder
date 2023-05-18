@@ -1,5 +1,6 @@
 package nextstep.laddergame.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Members {
@@ -10,7 +11,11 @@ public class Members {
     this.members = members;
   }
 
-  public boolean equalsSize(int size) {
-    return this.members.size() == size;
+  public int getSize() {
+    return members.size();
+  }
+
+  public List<Member> getMembers() {
+    return Collections.unmodifiableList(members);
   }
 }
