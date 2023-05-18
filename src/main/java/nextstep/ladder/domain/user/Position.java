@@ -40,25 +40,27 @@ public class Position {
 
     public void move(List<Points> rows) {
         Points points = rows.get(y);
-        Direction movableDirection = getMovableDirection(points);
-        movableDirection.move(this);
+        moveToDirection(points);
+        moveDown();
     }
 
-    private Direction getMovableDirection(Points points) {
+    private void moveToDirection(Points points) {
         final int maxPositionX = points.size();
         if (isFarLeft() && points.isConnected(x)) {
-            return Direction.RIGHT;
+            moveRight();
+            return;
         }
         if (isFarRight(maxPositionX) && points.isConnected(x - 1)) {
-            return Direction.LEFT;
+            moveLeft();
+            return;
         }
         if (isNotFarLeft() && points.isConnected(x - 1)) {
-            return Direction.LEFT;
+            moveLeft();
+            return;
         }
         if (isNotFarRight(maxPositionX) && points.isConnected(x)) {
-            return Direction.RIGHT;
+            moveRight();
         }
-        return Direction.NONE;
     }
 
     private boolean isFarRight(int rowSize) {
