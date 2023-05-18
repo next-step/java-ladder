@@ -26,12 +26,17 @@ public class Line {
                 .forEach(i -> this.add(i, booleans[i]));
     }
 
-    private void add(int i, boolean generator) {
-        points.add(existPoint(i) ? false : generator);
+    private void add(int index, boolean generator) {
+        if (existPoint(index)) {
+            points.add(false);
+            return;
+        }
+
+        points.add(generator);
     }
 
-    private boolean existPoint(int i) {
-        return i > 0 && points.get(i - 1);
+    private boolean existPoint(int index) {
+        return index > 0 && points.get(index - 1);
     }
 
     public String drawLine() {
