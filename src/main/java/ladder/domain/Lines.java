@@ -37,7 +37,7 @@ public class Lines {
     }
 
     private static void addLineSuitableOnly(Lines lines, Line anyLine) {
-        if (lines.isExistSameColumnAndAdjacentRow(anyLine)) {
+        if (!lines.isNear(anyLine)) {
             lines.append(anyLine);
         }
     }
@@ -46,10 +46,10 @@ public class Lines {
         this.lines.add(anyLine);
     }
 
-    public boolean isExistSameColumnAndAdjacentRow(Line otherLine) {
+    private boolean isExistSameColumnAndAdjacentRow(Line otherLine) {
         return this.lines.stream()
-                .filter(line -> line.isSameRow(otherLine))
-                .noneMatch(line -> line.isAdjacentColumn(otherLine));
+                .filter(line -> line.isAdjacentRow(otherLine))
+                .noneMatch(line -> line.isSameColumn(otherLine));
     }
 
     public int lineCount() {
@@ -62,5 +62,9 @@ public class Lines {
 
     public boolean existLine(Line otherLine) {
         return lines.stream().anyMatch(line -> line.isSameRow(otherLine));
+    }
+
+    public boolean isNear(Line other) {
+        return !isExistSameColumnAndAdjacentRow(other);
     }
 }
