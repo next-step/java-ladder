@@ -13,14 +13,14 @@ public class Ladder {
     private List<Line> lines;
 
     public Ladder(int height, int width) {
-        createLines(height, width);
+        this.lines = createLines(height, width);
     }
 
-    private void createLines(int height, int width) {
+    private List<Line> createLines(int height, int width) {
 
         RandomLineCreateStrategy addLineStrategy = new RandomLineCreateStrategy(new Random());
 
-        this.lines = IntStream.range(0, height)
+        return IntStream.range(0, height)
                 .mapToObj(i -> new Line(width, addLineStrategy))
                 .collect(Collectors.toList());
     }
