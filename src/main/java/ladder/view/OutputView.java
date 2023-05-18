@@ -2,7 +2,7 @@ package ladder.view;
 
 import ladder.domain.Ladder;
 import ladder.domain.ResultInput;
-import ladder.domain.ResultUser;
+import ladder.domain.ResultUsers;
 import ladder.domain.User;
 
 import java.util.List;
@@ -46,19 +46,19 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printUserResult(User user, ResultUser resultUser) {
+    public void printUserResult(User user, ResultUsers resultUsers) {
         System.out.println(RESULT_MESSAGE);
-        System.out.println(resultUser.getResultByUser(user));
+        System.out.println(resultUsers.getResultByUser(user));
         System.out.println();
     }
 
-    public void printAllResult(ResultUser resultUser) {
+    public void printAllResult(ResultUsers resultUsers) {
         System.out.println(RESULT_MESSAGE);
 
-        resultUser.getUserNames()
+        resultUsers.getUserNames()
                 .forEach(userName -> {
                     System.out.printf("%s : ", userName);
-                    System.out.println(resultUser.getResultByUser(userName));
+                    System.out.println(resultUsers.getResultByUser(userName));
                 });
         System.out.println();
     }

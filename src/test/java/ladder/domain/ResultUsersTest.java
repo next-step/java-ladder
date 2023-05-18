@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class ResultUserTest {
+public class ResultUsersTest {
     private static final Users users = Users.of("pobi,crong,honux,jk");
     private static final Ladder ladder = Ladder.of(users, new Height(5), () -> true);
 
@@ -18,10 +18,10 @@ public class ResultUserTest {
     void create(String userName, String expected) {
         // given
         ResultInput resultInput = ResultInput.of("꽝,5000,꽝,3000");
-        ResultUser resultUser = ResultUser.of(ladder, resultInput);
+        ResultUsers resultUsers = ResultUsers.of(ladder, resultInput);
 
         // when
-        String actual = resultUser.getResultByUser(userName);
+        String actual = resultUsers.getResultByUser(userName);
 
         // then
         assertThat(actual).isEqualTo(expected);
@@ -35,7 +35,7 @@ public class ResultUserTest {
 
 
         // when
-        assertThatThrownBy(() -> ResultUser.of(ladder, resultInput))
+        assertThatThrownBy(() -> ResultUsers.of(ladder, resultInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("사용자 수와 결과 수가 일치하지 않습니다.");
     }

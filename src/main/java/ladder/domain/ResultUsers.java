@@ -5,20 +5,20 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class ResultUser {
+public class ResultUsers {
     private final Map<User, String> result;
 
-    public ResultUser(Map<User, String> result) {
+    public ResultUsers(Map<User, String> result) {
         this.result = result;
     }
 
-    public static ResultUser of(Ladder ladder, ResultInput resultInput) {
+    public static ResultUsers of(Ladder ladder, ResultInput resultInput) {
         List<String> userNames = ladder.getUserNames();
         List<Integer> positions = ladder.climbAll();
         if (userNames.size() != resultInput.size()) {
             throw new IllegalArgumentException("사용자 수와 결과 수가 일치하지 않습니다.");
         }
-        return new ResultUser(
+        return new ResultUsers(
                 IntStream.range(0, userNames.size())
                         .boxed()
                         .collect(Collectors.toMap(
