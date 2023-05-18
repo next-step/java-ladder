@@ -10,6 +10,7 @@ public class Ladder {
 
     private final Participants participant;
 
+
     public static Ladder of(Participants participants) {
         return new Ladder(participants);
     }

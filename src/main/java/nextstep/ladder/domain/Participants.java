@@ -60,4 +60,12 @@ public class Participants implements Iterable<String> {
             throw new IllegalArgumentException("일치하는 참여자가 없습니다.");
         }
     }
+
+    public int indexOf(String name) {
+        return participants.indexOf(name);
+    }
+
+    public int maxIndex() {
+        return participants.size() - 1;
+    }
 }

@@ -14,6 +14,10 @@ public class Line {
         validateDuplicate();
     }
 
+    protected Line(List<Boolean> points) {
+        this.points = List.copyOf(points);
+    }
+
     private List<Boolean> generatePoints(int width, BridgeStrategy strategy) {
         return Stream.generate(strategy::makeBridge)
                 .limit(width - 1)
@@ -45,5 +49,9 @@ public class Line {
 
     public List<Boolean> getPoints() {
         return points;
+    }
+
+    public boolean get(int index) {
+        return points.get(index);
     }
 }

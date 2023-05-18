@@ -64,12 +64,12 @@ pobi  honux crong   jk
   - [x] participant에 포함 되거나, all이 아닐 경우 예외 발생하기
 
   
-- [ ] 이름에 해당하는 결과값을 매칭한다
-  - [ ] Map에 participants의 list를 각각 key로 등록한다.
-  - [ ] list의 index가 있을때 index -1 , index에 해당하는 값을 사다리 list에서 값을 찾는다.
-    - [ ] index가 true이면 index ++
-    - [ ] index -1 이 true이면 index --
-    - [ ] false면 그냥 index 유지
+- [x] 이름에 해당하는 결과값을 매칭한다
+  - [x] Map에 participants의 list를 각각 key로 등록한다.
+  - [x] list의 index가 있을때 index -1 , index에 해당하는 값을 사다리 list에서 값을 찾는다.
+    - [x] index가 true이면 index ++
+    - [x] index -1 이 true이면 index --
+    - [x] false면 그냥 index 유지
 - all 입력하거나 지난 번 호출 했을 경우 caching 하기
 
 - [ ] 사다리 실행 결과 출력
