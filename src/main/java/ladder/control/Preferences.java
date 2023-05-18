@@ -33,7 +33,7 @@ public class Preferences {
     }
 
     private static int canCreateAnyCasePolicy(int column, int row) {
-        return  ((column - 1) / 2) * row;
+        return ((column - 1) / 2) * row;
         // 예시에서 참가자 4명, 7개사다리, 높이5 였는데
         // 참가자4명, 높이5 일때, 사다리 7개를 만들지 못하는 경우가 발생함. 이에 무조건 사다리를 만들수 있는 수로만 사다리의 생성을 제한함
     }
@@ -45,6 +45,7 @@ public class Preferences {
     public static int maxUserCount() {
         return MAX_COLUMN_AND_USER_COUNT;
     }
+
     public static int maxLadderHeight() {
         return MAX_ROW_AND_RADDER_HEIGHT;
     }

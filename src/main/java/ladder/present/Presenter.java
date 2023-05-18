@@ -32,7 +32,7 @@ public class Presenter {
     }
 
     private void validateInputUsersCount(int usersCount) {
-        if(usersCount > Preferences.maxUserCount()) {
+        if (usersCount > Preferences.maxUserCount()) {
             throw new OutOfUsersCountException();
         }
     }
@@ -45,12 +45,12 @@ public class Presenter {
     }
 
     private void validateInputLadderHeight(int height) {
-        if(height > Preferences.maxLadderHeight()) {
+        if (height > Preferences.maxLadderHeight()) {
             throw new OutOfLadderHeightException();
         }
     }
 
-    public void renderingLadder( Scene scene) {
+    public void renderingLadder(Scene scene) {
         renderingUserArea(scene.userArea());
         renderingLadderArea(scene);
     }

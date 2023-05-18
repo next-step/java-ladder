@@ -27,7 +27,7 @@ public class Renderer {
 
     private String renderingHorizontal(Row rowIndex, int range) {
         return IntStream.range(0, range)
-                .mapToObj(columnIndex -> renderingPixel( Column.of(columnIndex), rowIndex))
+                .mapToObj(columnIndex -> renderingPixel(Column.of(columnIndex), rowIndex))
                 .collect(Collectors.joining());
     }
 
@@ -37,11 +37,11 @@ public class Renderer {
     }
 
     private String lineShape(Column columnIndex, Row rowIndex) {
-        return lines.existLine(new Line(columnIndex,rowIndex)) ? Preferences.allocatedLineShape() : Preferences.emptyLineShape();
+        return lines.existLine(new Line(columnIndex, rowIndex)) ? Preferences.allocatedLineShape() : Preferences.emptyLineShape();
     }
 
     public Scene renderingSceneWithUser() {
-        return new Scene(renderingSceneLadderArea(),renderingSceneUserArea());
+        return new Scene(renderingSceneLadderArea(), renderingSceneUserArea());
     }
 
     private String renderingSceneUserArea() {

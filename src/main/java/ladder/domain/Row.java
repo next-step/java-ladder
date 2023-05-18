@@ -3,14 +3,15 @@ package ladder.domain;
 import ladder.control.Preferences;
 
 public class Row {
-    private final int value;
     private static final Row[] ROW_CACHE = new Row[Preferences.maxRowPolicy() + 1];
 
     static {
-        for(int i=0 ; i<=Preferences.maxRowPolicy() ; i++) {
+        for (int i = 0; i <= Preferences.maxRowPolicy(); i++) {
             ROW_CACHE[i] = new Row(i);
         }
     }
+
+    private final int value;
 
     private Row(int value) {
         this.value = value;
@@ -38,6 +39,6 @@ public class Row {
     }
 
     public boolean isAdjacent(Row other) {
-            return Math.abs(this.value - other.value) <= 1;
+        return Math.abs(this.value - other.value) <= 1;
     }
 }

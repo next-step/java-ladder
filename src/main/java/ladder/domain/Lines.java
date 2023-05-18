@@ -21,7 +21,7 @@ public class Lines {
         return Lines.of(column, row, Preferences.createLineCount(column, row));
     }
 
-    public static Lines of(int column, int row,int count) {
+    public static Lines of(int column, int row, int count) {
         Lines lines = new Lines();
         for (int i = 0; lines.lineCount() < count; i++) {
             addLineInfiniteLoopWatchDog(i);
@@ -31,7 +31,7 @@ public class Lines {
     }
 
     private static void addLineInfiniteLoopWatchDog(int i) {
-        if(i> Preferences.circuitBreakerTriggerLoopCount()) {
+        if (i > Preferences.circuitBreakerTriggerLoopCount()) {
             throw new UnableReachLineCount();
         }
     }

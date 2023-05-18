@@ -21,6 +21,7 @@ class ColumnTest {
                 () -> assertThat(Column.of(2)).as("숫자가 다르면 동일하지 않다").isNotEqualTo(Column.of(4))
         );
     }
+
     @DisplayName("범위를 초과한 value 입력시 예외가 발생한다")
     @Test
     public void outOfColumnRangeException() {

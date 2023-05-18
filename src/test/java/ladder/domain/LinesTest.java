@@ -70,8 +70,8 @@ public class LinesTest {
         Line nearA = new Line(10, 11);
         Line nearB1 = new Line(7, 6);
         Line nearB2 = new Line(5, 6);
-        Line notNearB1 = new Line( 6,7);
-        Line notNearB2 = new Line(6,5);
+        Line notNearB1 = new Line(6, 7);
+        Line notNearB2 = new Line(6, 5);
         //when
         //then
         assertAll("Lines 가 입력한 파라미터에 맞게 생성된다",//isExistSameColumnAndAdjacentRow

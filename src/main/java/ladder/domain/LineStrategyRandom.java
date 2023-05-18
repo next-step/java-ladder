@@ -12,7 +12,7 @@ public class LineStrategyRandom implements LineStrategy {
     private final Random random;
 
     private LineStrategyRandom(int columnLimit, int rowLimit) {
-        this.columnLimit = columnLimit- Preferences.ColumnClampingSize();
+        this.columnLimit = columnLimit - Preferences.ColumnClampingSize();
         this.rowLimit = rowLimit;
         this.random = new Random();
     }

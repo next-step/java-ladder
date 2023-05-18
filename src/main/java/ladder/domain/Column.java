@@ -4,19 +4,22 @@ import ladder.control.Preferences;
 import ladder.exception.OutOfColumnRangeException;
 
 public class Column {
-    private final int value;
-    private static final Column[] COLUMNS_CACHE = new Column[Preferences.maxColumnPolicy()+1];
+    private static final Column[] COLUMNS_CACHE = new Column[Preferences.maxColumnPolicy() + 1];
+
     static {
-        for(int i=0 ; i<=Preferences.maxColumnPolicy() ; i++) {
+        for (int i = 0; i <= Preferences.maxColumnPolicy(); i++) {
             COLUMNS_CACHE[i] = new Column(i);
         }
     }
+
+    private final int value;
+
     private Column(int value) {
         this.value = value;
     }
 
     public static Column of(int value) {
-        if(value>Preferences.maxColumnPolicy()) {
+        if (value > Preferences.maxColumnPolicy()) {
             throw new OutOfColumnRangeException();
         }
         return COLUMNS_CACHE[value];
