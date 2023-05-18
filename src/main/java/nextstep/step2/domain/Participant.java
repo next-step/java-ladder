@@ -13,6 +13,6 @@ public class Participant {
     }
 
     public String toNameString() {
-        return name.toString();
+        return name.getName();
     }
 }
