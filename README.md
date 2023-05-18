@@ -1,5 +1,9 @@
 # 사다리 게임
 
+## PR 링크 정리
+- step1 : https://github.com/next-step/java-ladder/pull/1680
+- step2 : https://github.com/next-step/java-ladder/pull/1790
+
 ## 진행 방법
 
 * 사다리 게임 게임 요구사항을 파악한다.
