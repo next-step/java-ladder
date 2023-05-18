@@ -5,6 +5,7 @@ import ladder.util.ViewUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -40,6 +41,23 @@ public class Line {
             return true;
         }
         return false;
+    }
+
+    public int next(int current){
+
+        for (int i = 0; i < points.size(); i++) {
+            if(i == current && points.get(i)){
+                return current+1;
+            }
+        }
+
+        for (int i = 0; i < points.size(); i++) {
+            if( i == current -1 && points.get(i)){
+                return current-1;
+            }
+        }
+
+        return current;
     }
 
     @Override

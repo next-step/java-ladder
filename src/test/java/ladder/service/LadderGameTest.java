@@ -14,7 +14,9 @@ class LadderGameTest {
 
     @BeforeEach
     void setUp() {
-        ladderGame = new LadderGame();
+        String[] names = {"1","2","3"};
+        int height = 1;
+        ladderGame = new LadderGame(names, height);
 
     }
 
@@ -22,7 +24,7 @@ class LadderGameTest {
     @DisplayName("사람 이름 최대 5글자 이상시 Exception 발생")
     void test_person_name_length_check_with_exception(){
         assertThatThrownBy(
-                () ->  new Player("123456"))
+                () ->  new Player(1, "123456"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("사람에 이름을 최대5글자까지 부여할 수 있습니다");
     }

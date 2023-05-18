@@ -10,16 +10,25 @@ import static ladder.service.LadderGame.COMMA;
 
 public class Application {
     public static void main(String[] args) {
-        LadderGame ladderGame = new LadderGame();
-
-        ladderGame.setPlayer(
-                StringParseUtil.splitString(InputView.showMessage(InputMessages.PLAYER_NAMES_QUESTION), COMMA));
-        ladderGame.setHeight(StringParseUtil.parseToInt(InputView.showMessage(InputMessages.MAXIMUM_LADDER_HEIGHT_QUESTION)));
+        LadderGame ladderGame = new LadderGame(
+                StringParseUtil.splitString(InputView.showMessage(InputMessages.PLAYER_NAMES_QUESTION), COMMA),
+                StringParseUtil.splitString(InputView.showMessage(InputMessages.RUN_RESULT_QUESTION), COMMA),
+                StringParseUtil.parseToInt(InputView.showMessage(InputMessages.MAXIMUM_LADDER_HEIGHT_QUESTION))
+        );
 
         ladderGame.makeLine();
 
         ResultView.showResultHeader();
         ResultView.showPlayers(ladderGame.getPlayers());
         ResultView.showLines(ladderGame.getLines());
+        ResultView.showResults(ladderGame.getResults());
+
+        String name = null;
+        while(true){
+            name = InputView.showMessage(InputMessages.SPECIFIC_PLAYER_CHOICE_QUESTION);
+
+            System.out.println("실행 결과");
+            System.out.println(ladderGame.result(name));
+        }
     }
 }

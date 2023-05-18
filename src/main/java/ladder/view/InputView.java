@@ -1,7 +1,5 @@
 package ladder.view;
 
-import ladder.util.StringParseUtil;
-
 import java.util.Scanner;
 
 public class InputView {
