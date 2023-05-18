@@ -4,6 +4,7 @@ import static ladder.domain.ladder.MoveStatus.LEFT;
 import static ladder.domain.ladder.MoveStatus.NONE;
 import static ladder.domain.ladder.MoveStatus.RIGHT;
 
+import java.util.Objects;
 import ladder.domain.strategy.NextPointGenerationStrategy;
 
 public class Direction {
@@ -66,6 +67,23 @@ public class Direction {
   }
 
   public boolean isContinuous(Direction direction) {
-    return this.current && direction.current;
+    return isBothTrue(this.current, direction.current);
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Direction direction = (Direction) o;
+    return left == direction.left && current == direction.current;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(left, current);
   }
 }

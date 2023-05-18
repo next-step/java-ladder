@@ -15,6 +15,10 @@ public class Ladder {
     this.lines = lines;
   }
 
+  Ladder (Line... lines) {
+    this(List.of(lines));
+  }
+
   public static Ladder createLadder(Height height, Participants participants, NextPointGenerationStrategy generationStrategy) {
     List<Line> lines = Stream.generate(() -> Line.createLine(participants.size(), generationStrategy))
         .limit(height.height())

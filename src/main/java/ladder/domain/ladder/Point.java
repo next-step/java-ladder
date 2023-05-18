@@ -1,5 +1,6 @@
 package ladder.domain.ladder;
 
+import java.util.Objects;
 import ladder.domain.strategy.NextPointGenerationStrategy;
 
 public class Point {
@@ -10,6 +11,10 @@ public class Point {
   private Point(int index, Direction direction) {
     this.index = index;
     this.direction = direction;
+  }
+
+  public static Point of(int index, boolean left, boolean current) {
+    return new Point(index, Direction.of(left, current));
   }
 
   public static Point first(NextPointGenerationStrategy strategy){
@@ -24,7 +29,7 @@ public class Point {
     return index + direction.move();
   }
 
-  public boolean untilBeforeLastPoint(int numberOfParticipants) {
+  public boolean untilBeforeLastIndexOfPoint(int numberOfParticipants) {
     return index < numberOfParticipants - 2;
   }
 
@@ -39,5 +44,22 @@ public class Point {
 
   public Direction getDirection() {
     return direction;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Point point = (Point) o;
+    return index == point.index && Objects.equals(direction, point.direction);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(index, direction);
   }
 }
