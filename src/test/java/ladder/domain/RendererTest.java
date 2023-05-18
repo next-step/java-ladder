@@ -53,6 +53,5 @@ public class RendererTest {
                             .isEqualTo(actual.get(index));
                 })
         );
-
     }
 }
