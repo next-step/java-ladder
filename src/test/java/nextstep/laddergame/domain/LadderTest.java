@@ -9,13 +9,11 @@ import org.junit.jupiter.api.Test;
 
 public class LadderTest {
 
-  @DisplayName("사다리는 입력받은 높이 만큼의 Row를 갖는다.")
+  @DisplayName("사다리 높이(Row 갯수)가 1보다 작으면 예외를 던진다.")
   @Test
-  public void ladder_throwException_ifNotEqualHeightAndRowsSize() {
-    Height height = new Height(2);
+  public void ladder_throwException_ifRowLess1() {
     List<Row> rows = new ArrayList<>();
-
-    assertThatThrownBy(() -> new Ladder(rows, height)).isInstanceOf(IllegalArgumentException.class);
+    assertThatThrownBy(() -> new Ladder(rows)).isInstanceOf(IllegalArgumentException.class);
   }
 
 }
