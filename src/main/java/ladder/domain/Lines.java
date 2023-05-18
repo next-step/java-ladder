@@ -37,7 +37,7 @@ public class Lines {
     }
 
     private static void addLineSuitableOnly(Lines lines, Line anyLine) {
-        if (!lines.isNear(anyLine)) {
+        if (lines.existAdjacentLine(anyLine)) {
             lines.append(anyLine);
         }
     }
@@ -64,7 +64,7 @@ public class Lines {
         return lines.stream().anyMatch(line -> line.isSameRow(otherLine));
     }
 
-    public boolean isNear(Line other) {
-        return !isExistSameColumnAndAdjacentRow(other);
+    public boolean existAdjacentLine(Line other) {
+        return isExistSameColumnAndAdjacentRow(other);
     }
 }

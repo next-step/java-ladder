@@ -75,22 +75,22 @@ public class LinesTest {
         //when
         //then
         assertAll("Lines 가 입력한 파라미터에 맞게 생성된다",//isExistSameColumnAndAdjacentRow
-                () -> assertThat(lines.isNear(notNearA))
+                () -> assertThat(lines.existAdjacentLine(notNearA))
                         .as("notNearA 은 SameColumn && AdjacentRow 에 위치하지 않는다")
                         .isFalse(),
-                () -> assertThat(lines.isNear(nearA))
+                () -> assertThat(lines.existAdjacentLine(nearA))
                         .as("nearA 은 SameColumn && AdjacentRow 에 위치한다")
                         .isTrue(),
-                () -> assertThat(lines.isNear(nearB1))
+                () -> assertThat(lines.existAdjacentLine(nearB1))
                         .as("nearB1 은 SameColumn && AdjacentRow 에 위치한다")
                         .isTrue(),
-                () -> assertThat(lines.isNear(nearB2))
+                () -> assertThat(lines.existAdjacentLine(nearB2))
                         .as("nearB2 은 SameColumn && AdjacentRow 에 위치한다")
                         .isTrue(),
-                () -> assertThat(lines.isNear(notNearB1))
+                () -> assertThat(lines.existAdjacentLine(notNearB1))
                         .as("line33 은 SameColumn && AdjacentRow 에 위치한다")
                         .isFalse(),
-                () -> assertThat(lines.isNear(notNearB2))
+                () -> assertThat(lines.existAdjacentLine(notNearB2))
                         .as("line33 은 SameColumn && AdjacentRow 에 위치한다")
                         .isFalse()
 
