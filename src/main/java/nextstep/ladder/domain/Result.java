@@ -1,17 +1,17 @@
 package nextstep.ladder.domain;
 
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import static nextstep.ladder.utils.Util.convertArrayToList;
 
 public class Result implements Iterable<String> {
 
     public static final String DELIMITER = ",";
+    public static final String ALL = "all";
+    public static final String COLON = " : ";
+    public static final String LINE_BREAK = "\n";
     private final List<String> results;
-    private final Map<String, String> gameResults = new HashMap<>();
 
     public static Result of(Participants participants, String resultList) {
         String[] splitResults = resultList.split(DELIMITER);
@@ -34,19 +34,55 @@ public class Result implements Iterable<String> {
         return results.iterator();
     }
 
-    public String calculateResult(Participants participants, String name, List<Line> ladder) {
+    public String gameResult(Participants participants, String name, List<Line> ladder) {;
+        if (name.equals(ALL)) {
+            return makeAllResult(participants, ladder);
+        }
+
+        validateName(participants, name);
+        int index = calculateIndexOfResult(participants, name, ladder);
+        return results.get(index);
+    }
+
+    private String makeAllResult(Participants participants, List<Line> ladder) {
+        StringBuilder result = new StringBuilder();
+        participants.forEach(participant -> {
+            int index = calculateIndexOfResult(participants, participant, ladder);
+            result.append(participant).append(COLON).append(results.get(index)).append(LINE_BREAK);
+        });
+        return result.toString();
+    }
+
+    private void validateName(Participants participants, String name) {
+        participants.contains(name);
+    }
+
+    private int calculateIndexOfResult(Participants participants, String name, List<Line> ladder) {
         int index = participants.indexOf(name);
         int maxIndex = participants.maxIndex();
 
         for (Line line : ladder) {
-            if (index != maxIndex && line.get(index)) {
-                index++;
-                continue;
-            }
-            if (index - 1 >= 0 && line.get(index - 1)) {
-                index--;
-            }
+            index = calculateIndex(index, maxIndex, line);
         }
-        return results.get(index);
+        return index;
+    }
+
+    private int calculateIndex(int index, int maxIndex, Line line) {
+        if (checkIndexLine(index, maxIndex, line)) {
+            index++;
+            return index;
+        }
+        if (checkPreviousIndexLine(index, line)) {
+            index--;
+        }
+        return index;
+    }
+
+    private static boolean checkPreviousIndexLine(int index, Line line) {
+        return index - 1 >= 0 && line.get(index - 1);
+    }
+
+    private static boolean checkIndexLine(int index, int maxIndex, Line line) {
+        return index != maxIndex && line.get(index);
     }
 }
