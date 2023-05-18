@@ -38,7 +38,7 @@ class ResultTest {
                 new Line(List.of(true, false, true))
         );
 
-        String gameResult = result.calculateResult(participants, "pobi", lines);
+        String gameResult = result.gameResult(participants, "pobi", lines);
 
         assertThat(gameResult).isEqualTo("꽝");
     }
@@ -55,7 +55,7 @@ class ResultTest {
                 new Line(List.of(true, false, true))
         );
 
-        String gameResult = result.calculateResult(participants, "honux", lines);
+        String gameResult = result.gameResult(participants, "honux", lines);
 
         assertThat(gameResult).isEqualTo("3000");
     }
@@ -72,7 +72,7 @@ class ResultTest {
                 new Line(List.of(true, false, true))
         );
 
-        String gameResult = result.calculateResult(participants, "crong", lines);
+        String gameResult = result.gameResult(participants, "crong", lines);
 
         assertThat(gameResult).isEqualTo("꽝");
     }
@@ -89,8 +89,28 @@ class ResultTest {
                 new Line(List.of(true, false, true))
         );
 
-        String gameResult = result.calculateResult(participants, "jk", lines);
+        String gameResult = result.gameResult(participants, "jk", lines);
 
         assertThat(gameResult).isEqualTo("5000");
+    }
+
+    @Test
+    void testAll() {
+        Participants participants = new Participants("pobi,honux,crong,jk");
+        Result result = Result.of(participants, "꽝,5000,꽝,3000");
+        List<Line> lines = List.of(
+                new Line(List.of(true, false, true)),
+                new Line(List.of(false, true, false)),
+                new Line(List.of(true, false, false)),
+                new Line(List.of(false, true, false)),
+                new Line(List.of(true, false, true))
+        );
+
+        String gameResult = result.gameResult(participants, "all", lines);
+
+        assertThat(gameResult).isEqualTo("pobi : 꽝\n" +
+                "honux : 3000\n" +
+                "crong : 꽝\n" +
+                "jk : 5000\n");
     }
 }
