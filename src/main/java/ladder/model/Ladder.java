@@ -20,7 +20,7 @@ public class Ladder {
     }
 
 
-    public int result(int start){
+    public int end(int start){
 
         for (int i = 0; i < lines.size(); i++) {
             Line stage = lines.get(i);

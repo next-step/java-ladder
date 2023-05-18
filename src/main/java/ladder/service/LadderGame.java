@@ -3,6 +3,7 @@ package ladder.service;
 import ladder.model.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LadderGame {
     public static final String COMMA =",";
@@ -48,14 +49,24 @@ public class LadderGame {
         return ladder.getLines();
     }
 
-    public List<Result> getResults() {return results.results();}
+    public List<Result> getResults() {return results.list();}
 
-    public String result(String player){
-        int index = players.playerSequence(player);
+    public String result(String name){
+        if(name.equals("all")){
+            return players.getPlayers().stream()
+                    .map(player -> {
+                        return player.getName() + " : " + getValue(player.getName());
+                    }).collect(Collectors.joining("\n"));
 
-        int result = ladder.result(index);
+        }
 
-        return  results.results().get(result).value();
+        return getValue(name);
+    }
+
+    private String getValue(String name) {
+        return results.list()
+                .get(ladder.end(players.playerSequence(name)))
+                .value();
     }
 
 }

@@ -23,8 +23,8 @@ public class Application {
         ResultView.showLines(ladderGame.getLines());
         ResultView.showResults(ladderGame.getResults());
 
-        String name = null;
-        while(true){
+        String name = "";
+        while(!name.equals("all")){
             name = InputView.showMessage(InputMessages.SPECIFIC_PLAYER_CHOICE_QUESTION);
 
             System.out.println("실행 결과");
