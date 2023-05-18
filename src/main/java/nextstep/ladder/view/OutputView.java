@@ -23,6 +23,7 @@ public class OutputView {
         System.out.println();
         printLadder(ladderLines);
         results.forEach(result -> System.out.print(nameFormat(result)));
+        System.out.println();
     }
 
     private static String nameFormat(String name) {
@@ -43,5 +44,10 @@ public class OutputView {
 
     private static String drawBridge(Boolean point) {
         return point ? BRIDGE_EXISTS : BRIDGE_NOT_EXISTS;
+    }
+
+    public static void printResult(String gameResult) {
+        System.out.println("실행결과");
+        System.out.println(gameResult);
     }
 }

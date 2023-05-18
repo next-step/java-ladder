@@ -2,13 +2,12 @@ package nextstep.ladder.controller;
 
 import nextstep.ladder.domain.*;
 import nextstep.ladder.domain.strategy.BridgeStrategy;
-import nextstep.ladder.view.InputView;
-import nextstep.ladder.view.OutputView;
 
 import java.util.List;
 
-import static nextstep.ladder.view.InputView.getParticipantsToCheckResult;
-import static nextstep.ladder.view.InputView.getResults;
+import static nextstep.ladder.view.InputView.*;
+import static nextstep.ladder.view.OutputView.printLadder;
+import static nextstep.ladder.view.OutputView.printResult;
 
 public class LadderGame {
 
@@ -20,30 +19,18 @@ public class LadderGame {
 
     public void run() {
         Participants participants = new Participants(getParticipants());
-
         Result result = Result.of(participants, getResults());
 
-        Height height = new Height(getLadderHeight());
+        Height height = Height.of(getLadderHeight());
 
-        List<Line> ladder = Ladder.of(participants, result)
+        List<Line> ladder = Ladder.of(participants)
                 .create(height, strategy);
 
-        OutputView.printResult(participants, result, ladder);
+        printLadder(participants, result, ladder);
 
-        String participantToCheckResult = getParticipantsToCheckResult();
-        // validate
-        participants.contains(participantToCheckResult);
-
-        result.calculateResult(participants, participantToCheckResult, ladder);
-    }
-
-    private int getLadderHeight() {
-        OutputView.printAskLadderHeightMessage();
-        return InputView.getLadderHeight();
-    }
-
-    private String getParticipants() {
-        OutputView.printParticipantsMessage();
-        return InputView.getParticipants();
+        while (true){
+            String gameResult = result.gameResult(participants, getParticipantName(), ladder);
+            printResult(gameResult);
+        }
     }
 }
