@@ -8,7 +8,7 @@ public class MyLadderFactory implements LadderFatory {
 
     private final LineFactory myLineFactory;
 
-    public MyLadderFactory(MyLineFactory myLineFactory) {
+    public MyLadderFactory(LineFactory myLineFactory) {
         this.myLineFactory = myLineFactory;
     }
 
@@ -16,11 +16,7 @@ public class MyLadderFactory implements LadderFatory {
     public Ladder create(final int depth, final int countOfPlayer) {
         validate(depth);
         List<Line> myLines = new ArrayList<>(depth);
-        for (int i = 0; i < depth; i++) {
-            myLines.add(i ,myLineFactory.create(countOfPlayer));
-        }
-//        IntStream.range(0, depth).forEach(i -> myLines.add(i ,myLineFactory.create(countOfPlayer)));
-
+        IntStream.range(0, depth).forEach(i -> myLines.add(i ,myLineFactory.create(countOfPlayer)));
         return new MyLadder(myLines, countOfPlayer);
     }
 

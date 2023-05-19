@@ -15,4 +15,9 @@ public class MatchResults implements Match {
     public String getResult(int position){
         return store.get(position);
     }
+
+    @Override
+    public Map<Integer, String> getAll() {
+        return store;
+    }
 }

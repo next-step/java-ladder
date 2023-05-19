@@ -38,7 +38,6 @@ public class LadderView {
         System.out.println(sb);
     }
 
-
     private void printNames(final StringBuilder sb) {
         players.getNames().forEach(name -> sb.append(name.get()).append(BLANK));
         sb.append(NEW_LINE);
@@ -46,18 +45,26 @@ public class LadderView {
 
     private void printLadder(final StringBuilder sb) {
         for (final Line line : ladder.get()) {
-            List<Point> points = line.getPoint();
-            for (final Point point : points) {
-                LineStatus lineStatus = point.getConnection();
-                if (lineStatus == CONNECTION) {
-                    sb.append(HEIGHT_LINE).append(WIDTH_LINE);
-                } else {
-                    sb.append(HEIGHT_LINE).append(BLANK);
-                }
-            }
+            drawPoint(sb, line.getPoint());
             sb.append(NEW_LINE);
         }
     }
 
+    private void drawPoint(final StringBuilder sb, final List<Point> points) {
+        for (final Point point : points) {
+            LineStatus lineStatus = point.getConnection();
+            drawLine(sb, lineStatus);
+        }
+    }
+
+    private void drawLine(final StringBuilder sb, final LineStatus lineStatus) {
+        if (lineStatus == CONNECTION) {
+            sb.append(HEIGHT_LINE).append(WIDTH_LINE);
+            return;
+        }
+        sb.append(HEIGHT_LINE).append(BLANK);
+    }
 }
+
+
 
