@@ -21,7 +21,11 @@ public class Line {
     }
 
     public boolean isSame(int columnPosition, int rowPosition) {
-        return column.isSame(Column.of(columnPosition)) && row.isSame(Row.of(rowPosition));
+        return this.isSame(new Line(columnPosition, rowPosition));
+    }
+
+    public boolean isSame(Line other) {
+        return column.isSame(other.column) && row.isSame(other.row);
     }
 
     public boolean isSameRow(Line otherLine) {
@@ -30,10 +34,6 @@ public class Line {
 
     public boolean isAdjacentColumn(Line otherLine) {
         return otherLine.column.isAdjacent(this.column);
-    }
-
-    public boolean isSame(Line other) {
-        return column.isSame(other.column) && row.isSame(other.row);
     }
 
     @Override
