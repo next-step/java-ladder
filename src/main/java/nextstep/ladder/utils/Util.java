@@ -13,4 +13,9 @@ public class Util {
     public static List<String> convertArrayToList(String[] splitResults) {
         return Arrays.stream(splitResults).collect(Collectors.toList());
     }
+
+    public static List<String> separateToList(String participants, String delimiter) {
+        return Arrays.stream(participants.split(delimiter))
+                .collect(Collectors.toList());
+    }
 }
