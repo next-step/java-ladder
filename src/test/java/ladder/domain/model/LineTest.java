@@ -17,10 +17,14 @@ class LineTest {
 
     @BeforeEach
     public void setLine() {
-        this.line1 = new Line(4);
-        this.line2 = new Line(4);
-        this.line3 = new Line(4);
-        this.line4 = new Line(4);
+        this.line1 = new Line();
+        line1.calculatorLine(4);
+        this.line2 = new Line();
+        line2.calculatorLine(4);
+        this.line3 = new Line();
+        line3.calculatorLine(4);
+        this.line4 = new Line();
+        line4.calculatorLine(4);
     }
 
     @Test

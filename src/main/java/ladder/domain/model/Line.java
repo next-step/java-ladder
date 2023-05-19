@@ -15,7 +15,7 @@ public class Line {
 
     private List<Boolean> points = new ArrayList<>();
 
-    public Line(int countOfPerson) {
+    void calculatorLine(int countOfPerson) {
         int rangeEnd = countOfPerson - 1;
 
         IntStream.range(RANGE_START, rangeEnd)

@@ -1,6 +1,5 @@
 package ladder.domain.model;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -10,7 +9,11 @@ public class Lines {
 
     public Lines(int personCount, int ladderHeight) {
         lines = IntStream.range(0, ladderHeight)
-                .mapToObj(i -> new Line(personCount))
+                .mapToObj(i -> {
+                    Line line = new Line();
+                    line.calculatorLine(personCount);
+                    return line;
+                })
                 .collect(Collectors.toList());
     }
 
