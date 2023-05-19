@@ -40,12 +40,9 @@ public class Lambda {
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number > 3) {
-                total += number;
-            }
-        }
-        return total;
+        return numbers.stream()
+                .filter(number -> number > 3)
+                .mapToInt(Integer::intValue)
+                .sum();
     }
 }
