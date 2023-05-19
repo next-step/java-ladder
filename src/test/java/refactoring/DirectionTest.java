@@ -1,19 +1,20 @@
 package refactoring;
 
 import static org.assertj.core.api.BDDAssertions.then;
-import static refactoring.LineStatus.CONNECTION;
-import static refactoring.LineStatus.DETACHMENT;
+import static refactoring.domain.LineStatus.CONNECTION;
+import static refactoring.domain.LineStatus.DETACHMENT;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import refactoring.domain.Direction;
 
 class DirectionTest {
 
-    @DisplayName("첫 플레이어에 대해 연결된 방향을 생성하다.")
+    @DisplayName("첫 플레이어에 대해 연결된 방향을 생성한다.")
     @Test
     void test1() throws Exception {
         //when
-        Direction first = Direction.first(CONNECTION);
+        var first = Direction.first(CONNECTION);
 
         then(first).isEqualTo(new Direction(DETACHMENT, CONNECTION));
     }
@@ -22,7 +23,7 @@ class DirectionTest {
     @Test
     void test2() throws Exception {
         //when
-        Direction first = Direction.first(DETACHMENT);
+        var first = Direction.first(DETACHMENT);
 
         then(first).isEqualTo(new Direction(DETACHMENT, DETACHMENT));
     }
@@ -31,7 +32,8 @@ class DirectionTest {
     @Test
     void test3() throws Exception {
         //when
-        Direction last = Direction.last(CONNECTION);
+        var direction = new Direction(DETACHMENT, CONNECTION);
+        var last = direction.last();
 
         then(last).isEqualTo(new Direction(CONNECTION, DETACHMENT));
     }
@@ -40,7 +42,8 @@ class DirectionTest {
     @Test
     void test4() throws Exception {
         //when
-        Direction last = Direction.last(DETACHMENT);
+        var direction = new Direction(CONNECTION, DETACHMENT);
+        var last = direction.last();
 
         then(last).isEqualTo(new Direction(DETACHMENT, DETACHMENT));
     }
@@ -49,7 +52,7 @@ class DirectionTest {
     @Test
     void test5() throws Exception {
         //when
-        Direction direction = Direction.of(DETACHMENT, CONNECTION);
+        var direction = Direction.of(DETACHMENT, CONNECTION);
 
         then(direction).isEqualTo(new Direction(DETACHMENT, CONNECTION));
     }
@@ -58,18 +61,9 @@ class DirectionTest {
     @Test
     void test6() throws Exception {
         //when
-        Direction direction = Direction.of(CONNECTION, DETACHMENT);
+        var direction = Direction.of(CONNECTION, DETACHMENT);
 
         then(direction).isEqualTo(new Direction(CONNECTION, DETACHMENT));
     }
 
-    @DisplayName("중간에 두 플레이어의 방향이 연속을 connection이 나올 경우 detachment가 된다.")
-    @Test
-    void test7() throws Exception {
-        //given when
-        var connection = StatusFilter.filter(CONNECTION);
-        var currentStatus = StatusFilter.filter(connection);
-
-        then(currentStatus).isEqualTo(DETACHMENT);
-    }
 }

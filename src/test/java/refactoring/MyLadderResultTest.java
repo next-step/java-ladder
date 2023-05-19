@@ -17,11 +17,32 @@ import refactoring.domain.Match;
 import refactoring.domain.MatchResults;
 import refactoring.domain.MyLadder;
 import refactoring.domain.MyLine;
+import refactoring.domain.Players;
 import refactoring.domain.Point;
 import refactoring.domain.Results;
 
 class MyLadderResultTest {
 
+    @DisplayName("참여자의 이름이 중복될 시 예외를 던집니다.")
+    @Test
+    void test4() throws Exception {
+        assertThatThrownBy(() -> {
+            Players.of(new String[]{"a", "a"});
+        })
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("중복된 참여자입니다.");
+    }
+
+    @DisplayName("입력한 참여자가 없을 시 예외를 던집니다.")
+    @Test
+    void test6() throws Exception {
+        Players player = Players.of(new String[]{"a", "b"});
+        assertThatThrownBy(() -> {
+            player.getIndex("c");
+        })
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("찾을 수 없는 참가자 입니다.");
+    }
 
     @DisplayName("참가자 수와 실행 결과의 수가 일치하지 않으면 예외를 던진다.")
     @Test
