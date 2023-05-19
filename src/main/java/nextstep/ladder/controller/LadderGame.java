@@ -1,13 +1,13 @@
 package nextstep.ladder.controller;
 
-import nextstep.ladder.domain.*;
+import nextstep.ladder.domain.Height;
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Participants;
+import nextstep.ladder.domain.Result;
 import nextstep.ladder.domain.strategy.BridgeStrategy;
-
-import java.util.List;
 
 import static nextstep.ladder.view.InputView.*;
 import static nextstep.ladder.view.OutputView.printLadder;
-import static nextstep.ladder.view.OutputView.printResult;
 
 public class LadderGame {
 
@@ -23,14 +23,13 @@ public class LadderGame {
 
         Height height = new Height(getLadderHeight());
 
-        List<Line> ladder = Ladder.of(participants)
-                .create(height, strategy);
+        Ladder ladder = Ladder.of(participants,height,strategy);
 
         printLadder(participants, result, ladder);
 
-        while (true){
-            String gameResult = result.gameResult(participants, getParticipantName(), ladder);
-            printResult(gameResult);
-        }
+//        while (true){
+//            String gameResult = result.gameResult(participants, getParticipantName(), ladder);
+//            printResult(gameResult);
+//        }
     }
 }

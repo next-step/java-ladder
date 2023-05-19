@@ -1,10 +1,10 @@
 package nextstep.ladder.view;
 
+import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Participants;
 import nextstep.ladder.domain.Result;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -16,12 +16,12 @@ public class OutputView {
     public static final String BRIDGE_EXISTS = "-----";
     public static final String LADDER_BAR = "|";
 
-    public static void printLadder(Participants participants, Result results, List<Line> ladderLines) {
+    public static void printLadder(Participants participants, Result results, Ladder ladder) {
         System.out.println("실행결과\n");
         participants.forEach(name -> System.out.print(nameFormat(name)));
 
         System.out.println();
-        printLadder(ladderLines);
+        printLadder(ladder);
         results.forEach(result -> System.out.print(nameFormat(result)));
         System.out.println();
     }
@@ -30,10 +30,9 @@ public class OutputView {
         return SPACE.repeat(MAX_NAME_LENGTH - name.length()) + name + SPACE;
     }
 
-    private static void printLadder(List<Line> ladder) {
-        for (Line line : ladder) {
-            System.out.println(FRONT_SPACE + drawLine(line));
-        }
+    private static void printLadder(Ladder ladder) {
+        ladder.forEach(line ->
+                System.out.println(FRONT_SPACE + drawLine(line)));
     }
 
     private static String drawLine(Line line) {
