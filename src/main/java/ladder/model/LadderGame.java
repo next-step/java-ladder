@@ -17,19 +17,11 @@ public class LadderGame {
     public List<GameResult> play() {
         List<GameResult> gameResults = new ArrayList<>();
         for (int i = 0; i < users.size(); i++) {
-            int lastPosition = calculateLastPositionOfUser(i);
+            int lastPosition = ladder.calculateLastPositionByIndex(i);
 
             GameResult gameResult = new GameResult(users.getUserNameByIndex(i), rewards.getRewardByIndex(lastPosition));
             gameResults.add(gameResult);
         }
         return gameResults;
-    }
-
-    public int calculateLastPositionOfUser(int index) {
-        for (int height = 0; height < ladder.height(); height++) {
-            Line line = ladder.getLineByHeight(height);
-            index = line.move(index);
-        }
-        return index;
     }
 }

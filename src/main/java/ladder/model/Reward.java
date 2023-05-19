@@ -17,7 +17,7 @@ public class Reward {
 
     private void validateReward(String reward) {
         Matcher matcher = pattern.matcher(reward);
-        if(!DEFAULT_REWARD.equals(reward) && !matcher.find()) {
+        if (!DEFAULT_REWARD.equals(reward) && !matcher.find()) {
             throw new IllegalArgumentException("적절하지 않은 게임 실행 결과입니다.");
         }
     }

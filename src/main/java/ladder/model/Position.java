@@ -24,6 +24,10 @@ public class Position {
         return this.position - 1;
     }
 
+    public boolean validateRight(Position position) {
+        return this.position + 1 == position.position;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
