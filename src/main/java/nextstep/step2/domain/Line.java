@@ -12,8 +12,16 @@ public class Line {
     private List<Boolean> points = new ArrayList<>();
 
     public Line(int countOfParticipant, BooleanGenerator generator) {
+        validate(countOfParticipant);
+
         IntStream.range(0, countOfParticipant - 1)
                 .forEach(i -> this.add(i, generator.generator()));
+    }
+
+    private void validate(int countOfParticipant) {
+        if (countOfParticipant <= 0) {
+            throw new IllegalArgumentException("사다리 게임의 참여자가 존재하지 않습니다.");
+        }
     }
 
     private void add(int index, boolean generator) {

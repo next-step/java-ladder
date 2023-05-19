@@ -1,8 +1,10 @@
 package nextstep.step2.domain;
 
+import nextstep.step2.generator.RandomBooleanGenerator;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class LineTest {
 
@@ -11,6 +13,14 @@ class LineTest {
         final var actual = createMockLine();
 
         assertThat(actual.points()).containsExactly(false, false, false);
+    }
+
+    @Test
+    void 참여이원이_존재하지_않으면_예외를_던진다() {
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> new Line(0, new RandomBooleanGenerator())
+        );
     }
 
     private Line createMockLine() {
