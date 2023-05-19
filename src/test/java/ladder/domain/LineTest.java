@@ -130,6 +130,6 @@ public class LineTest {
                         }))
                         .as("항상 33,33 을 생성하는 전략")
                         .isEqualTo(new Line(33, 33))
-                );
+        );
     }
 }

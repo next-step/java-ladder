@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class LineStrategyRandomTest {
 
-    private LineStrategy lineStrategy = LineStrategyRandom.ofLimit(10, 555);
+    private final LineStrategy lineStrategy = LineStrategyRandom.ofLimit(10, 555);
 
     @DisplayName("지정한 Limit 범위 내로 값이 생성된다")
     @RepeatedTest(300)
