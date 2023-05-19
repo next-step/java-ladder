@@ -17,7 +17,7 @@ public class ResultView {
     }
 
     public static void showGameResult(List<GameResult> gameResults) {
-        while(true) {
+        while (true) {
             System.out.println(NEWLINE + "결과를 보고 싶은 사람은?");
             String userName = InputView.inputUserName();
 
