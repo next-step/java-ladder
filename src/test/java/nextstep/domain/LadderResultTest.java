@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static nextstep.domain.LineTest.lineFixture;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderResultTest {
@@ -27,10 +28,5 @@ class LadderResultTest {
 
         // then
         assertThat(result).containsValues("3");
-    }
-
-    private static Line lineFixture(Boolean... points) {
-        return new Line(Arrays.stream(points)
-                .collect(Collectors.toList()));
     }
 }
