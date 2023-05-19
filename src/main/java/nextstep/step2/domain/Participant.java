@@ -15,10 +15,6 @@ public class Participant {
     }
 
     public String name() {
-        return padRight(name.getName());
-    }
-
-    private String padRight(String name) {
-        return String.format("%-" + PAD_BLANK + "s", name);
+        return name.getName();
     }
 }

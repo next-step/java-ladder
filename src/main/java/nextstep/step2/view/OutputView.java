@@ -13,6 +13,7 @@ public class OutputView {
     private static final String LADDER = "|";
     private static final String LINE_LADDER = "-----";
     private static final String BLANK = "     ";
+    private static final int PAD_BLANK = 5;
 
     private OutputView() {
     }
@@ -26,10 +27,14 @@ public class OutputView {
 
     private static void printParticipants(List<Participant> participants) {
         final var names = participants.stream()
-                .map(Participant::name)
+                .map(participant -> OutputView.padRight(participant.name()))
                 .collect(Collectors.joining(" "));
 
         System.out.println(names);
+    }
+
+    private static String padRight(String name) {
+        return String.format("%-" + PAD_BLANK + "s", name);
     }
 
     private static void printLadder(List<Line> lines) {
@@ -45,7 +50,11 @@ public class OutputView {
     }
 
     private static String convertLine(Boolean point) {
-        return LADDER + (point ? LINE_LADDER : BLANK);
+        if (point) {
+            return LADDER + LINE_LADDER;
+        }
+
+        return LADDER + BLANK;
     }
 
 }
