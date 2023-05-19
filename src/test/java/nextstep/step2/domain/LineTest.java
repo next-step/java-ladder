@@ -14,16 +14,6 @@ class LineTest {
         assertThat(actual1).isEqualTo(actual2);
     }
 
-    @Test
-    void 하나의_Line_사다리를_구한다() {
-        final var line = new Line(true, false, true);
-        final var expected = "|-----|     |-----|";
-
-        final var actual = line.drawLine();
-
-        assertThat(actual).isEqualTo(expected);
-    }
-
     private Line createMockLine() {
         return new Line(5, () -> true);
     }

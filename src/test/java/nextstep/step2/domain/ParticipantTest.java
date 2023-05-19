@@ -13,6 +13,6 @@ class ParticipantTest {
         final var actual1 = new Participant(name);
         final var actual2 = new Participant(new Name(name));
 
-        assertThat(actual1.toNameString()).isEqualTo(actual2.toNameString());
+        assertThat(actual1.name()).isEqualTo(actual2.name());
     }
 }
