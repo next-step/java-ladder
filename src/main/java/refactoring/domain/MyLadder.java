@@ -1,23 +1,28 @@
-package refactoring;
+package refactoring.domain;
 
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class Ladder {
+public class MyLadder implements Ladder{
 
-    private final List<Line> lines;
+    private final List<Line> myLines;
     private final int countOfPlayer;
 
-    public Ladder(final List<Line> lines, final int countOfPlayer) {
-        this.lines = lines;
+    public MyLadder(final List<Line> myLines, final int countOfPlayer) {
+        this.myLines = myLines;
         this.countOfPlayer = countOfPlayer;
     }
 
-    public MatchResults match(Results results) {
+    @Override
+    public Match match(Results results, Match matchResults) {
         validate(results);
-        MatchResults matchResults = new MatchResults();
         IntStream.range(0, countOfPlayer).forEach(i -> matchResults.put(i, getResult(i, results)));
         return matchResults;
+    }
+
+    @Override
+    public List<Line> get() {
+        return myLines;
     }
 
     private void validate(final Results results) {
@@ -28,8 +33,8 @@ public class Ladder {
 
     private String getResult(final int position, final Results results) {
         int target = position;
-        for (Line line : lines) {
-            target = line.toResult(target);
+        for (Line myLine : myLines) {
+            target = myLine.toResult(target);
         }
        return results.get(target);
     }

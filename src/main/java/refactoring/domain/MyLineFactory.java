@@ -1,14 +1,12 @@
-package refactoring;
+package refactoring.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import refactoring.domain.LineStatus;
-import refactoring.domain.Point;
 
-public class LineGenerator {
+public class MyLineFactory implements LineFactory {
 
-
+    @Override
     public Line create(final int countOfPlayer) {
         List<Point> points = new ArrayList<>(countOfPlayer);
 
@@ -21,7 +19,7 @@ public class LineGenerator {
         }
 
         points.add(point.last());
-        return new Line(Collections.unmodifiableList(points));
+        return new MyLine(Collections.unmodifiableList(points));
     }
 
 }

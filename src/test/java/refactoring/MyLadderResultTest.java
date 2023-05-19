@@ -11,9 +11,16 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import refactoring.domain.Direction;
+import refactoring.domain.Ladder;
+import refactoring.domain.Line;
+import refactoring.domain.Match;
+import refactoring.domain.MatchResults;
+import refactoring.domain.MyLadder;
+import refactoring.domain.MyLine;
 import refactoring.domain.Point;
+import refactoring.domain.Results;
 
-class LadderResultTest {
+class MyLadderResultTest {
 
 
     @DisplayName("참가자 수와 실행 결과의 수가 일치하지 않으면 예외를 던진다.")
@@ -22,14 +29,14 @@ class LadderResultTest {
 
         var results = new Results(new String[]{"1000", "0"});
 
-        Line first = new Line(get3Points(0, 1, 2));
-        Line second = new Line(get3Points(1, 0, 2));
-        Line third = new Line(get3Points(2, 1, 0));
+        MyLine first = new MyLine(get3Points(0, 1, 2));
+        MyLine second = new MyLine(get3Points(1, 0, 2));
+        MyLine third = new MyLine(get3Points(2, 1, 0));
 
-        Ladder ladder = new Ladder(List.of(first, second, third), 3);
+        Ladder myLadder = new MyLadder(List.of(first, second, third), 3);
 
         assertThatThrownBy(() -> {
-            ladder.match(results);
+            myLadder.match(results, new MatchResults());
         })
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("참여자와 실행결과의 수가 일치하지 않습니다.");
@@ -49,7 +56,7 @@ class LadderResultTest {
 
     @Nested
     @DisplayName("참여자가 짝수일 경우")
-    class Ladder_Particiapants2 {
+    class MyLadder_Particiapants2 {
 
         @DisplayName(" line이 없다면, 첫 번째 사람이 첫 번째 결과에 매칭된다. ")
         @Test
@@ -59,11 +66,11 @@ class LadderResultTest {
             Point first = new Point(0, new Direction(DETACHMENT, DETACHMENT));
             Point second = new Point(1, new Direction(DETACHMENT, DETACHMENT));
 
-            Line line = new Line(List.of(first, second));
-            Ladder ladder = new Ladder(List.of(line), 2);
+            Line myLine = new MyLine(List.of(first, second));
+            Ladder myLadder = new MyLadder(List.of(myLine), 2);
 
             //when
-            MatchResults match = ladder.match(results);
+            Match match = myLadder.match(results, new MatchResults());
 
             then(match.getResult(0)).isEqualTo("1000");
             then(match.getResult(1)).isEqualTo("0");
@@ -77,12 +84,12 @@ class LadderResultTest {
             Point first = new Point(0, new Direction(DETACHMENT, CONNECTION));
             Point second = new Point(1, new Direction(CONNECTION, DETACHMENT));
 
-            Line line = new Line(List.of(first, second));
+            Line myLine = new MyLine(List.of(first, second));
 
-            Ladder ladder = new Ladder(List.of(line), 2);
+            Ladder myLadder = new MyLadder(List.of(myLine), 2);
 
             //when
-            MatchResults match = ladder.match(results);
+            Match match = myLadder.match(results, new MatchResults());
 
             then(match.getResult(0)).isEqualTo("0");
             then(match.getResult(1)).isEqualTo("1000");
@@ -105,13 +112,13 @@ class LadderResultTest {
             Point first1 = new Point(0, new Direction(DETACHMENT, CONNECTION));
             Point second1 = new Point(1, new Direction(CONNECTION, DETACHMENT));
 
-            Line line = new Line(List.of(first, second));
-            Line line1 = new Line(List.of(first1, second1));
+            Line myLine = new MyLine(List.of(first, second));
+            Line myLine1 = new MyLine(List.of(first1, second1));
 
-            Ladder ladder = new Ladder(List.of(line, line1), 2);
+            Ladder myLadder = new MyLadder(List.of(myLine, myLine1), 2);
 
             //when
-            MatchResults match = ladder.match(results);
+            Match match = myLadder.match(results, new MatchResults());
 
             //then
             then(match.getResult(0)).isEqualTo("1000");
@@ -132,14 +139,14 @@ class LadderResultTest {
             Point first2 = new Point(0, new Direction(DETACHMENT, CONNECTION));
             Point second2 = new Point(1, new Direction(CONNECTION, DETACHMENT));
 
-            Line line = new Line(List.of(first, second));
-            Line line1 = new Line(List.of(first1, second1));
-            Line line2 = new Line(List.of(first2, second2));
+            Line myLine = new MyLine(List.of(first, second));
+            Line myLine1 = new MyLine(List.of(first1, second1));
+            Line myLine2 = new MyLine(List.of(first2, second2));
 
-            Ladder ladder = new Ladder(List.of(line, line1, line2), 2);
+            MyLadder myLadder = new MyLadder(List.of(myLine, myLine1, myLine2), 2);
 
             //when
-            MatchResults match = ladder.match(results);
+            Match match = myLadder.match(results, new MatchResults());
 
             //then
             then(match.getResult(0)).isEqualTo("0");
@@ -150,7 +157,7 @@ class LadderResultTest {
 
     @Nested
     @DisplayName("참여자가 홀수(a,b,c)일 경우")
-    class Participants3 {
+    class Players3 {
 
         /*
           a b c
@@ -165,11 +172,11 @@ class LadderResultTest {
             Point second = new Point(1, new Direction(CONNECTION, DETACHMENT));
             Point third = new Point(2, new Direction(DETACHMENT, DETACHMENT));
 
-            Line line = new Line(List.of(first, second, third));
-            Ladder ladder = new Ladder(List.of(line), 3);
+            Line myLine = new MyLine(List.of(first, second, third));
+            Ladder myLadder = new MyLadder(List.of(myLine), 3);
 
             //when
-            MatchResults match = ladder.match(results);
+            Match match = myLadder.match(results, new MatchResults());
 
             //then
             then(match.getResult(0)).isEqualTo("2");
@@ -200,14 +207,14 @@ class LadderResultTest {
             Point second2 = new Point(1, new Direction(DETACHMENT, CONNECTION));
             Point third2 = new Point(2, new Direction(CONNECTION, DETACHMENT));
 
-            Line line = new Line(List.of(first, second, third));
-            Line line1 = new Line(List.of(first1, second1, third1));
-            Line line2 = new Line(List.of(first2, second2, third2));
+            Line myLine = new MyLine(List.of(first, second, third));
+            Line myLine1 = new MyLine(List.of(first1, second1, third1));
+            Line myLine2 = new MyLine(List.of(first2, second2, third2));
 
-            Ladder ladder = new Ladder(List.of(line, line1, line2), 3);
+            Ladder myLadder = new MyLadder(List.of(myLine, myLine1, myLine2), 3);
 
             //when
-            MatchResults match = ladder.match(results);
+            Match match = myLadder.match(results, new MatchResults());
 
             //then
             then(match.getResult(0)).isEqualTo("3");
