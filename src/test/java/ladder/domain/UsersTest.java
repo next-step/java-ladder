@@ -12,7 +12,7 @@ public class UsersTest {
 
     @BeforeEach
     public void setUp() {
-        users = new Users("test,kim,cent,wow");
+        users = Users.splitUsers("test,kim,cent,wow");
     }
 
     @DisplayName("유저 이름 생성 테스트")

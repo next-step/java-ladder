@@ -6,24 +6,22 @@ import ladder.strategy.RandomMovableStrategy;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private final MoveStratege moveStrategy;
     private final List<Line> ladderLines;
 
     public Ladder(int countOfUsers, int ladderHeight) {
-        this.moveStrategy = new RandomMovableStrategy();
         this.ladderLines = createLadderLines(countOfUsers, ladderHeight);
     }
 
     private List<Line> createLadderLines(int countOfUsers, int ladderHeight) {
-        List<Line> LineCollections = new ArrayList<>();
+        List<Line> lines = new ArrayList<>();
 
-        IntStream.range(0, ladderHeight)
-                .forEach((i) -> LineCollections.add(Line.generatePoints(countOfUsers, moveStrategy)));
-
-        return LineCollections;
+        return IntStream.range(0, ladderHeight)
+                .mapToObj(i -> Line.generatePoints(countOfUsers, new RandomMovableStrategy()))
+                .collect(Collectors.toList());
     }
 
 
