@@ -6,8 +6,8 @@ public class LadderGame {
     private final Ladder ladder;
     private Position[] positions;
 
-    public LadderGame(Ladder ladder, int countOfPlayers) {
-        this.ladder = ladder;
+    public LadderGame(int countOfPlayers, int height, MoveStrategy moveStrategy) {
+        this.ladder = new Ladder(countOfPlayers, height, moveStrategy);
         this.positions = new Position[countOfPlayers];
     }
 
@@ -27,5 +27,9 @@ public class LadderGame {
                     positions[idx].position = positions[idx].move();
                 });
         ladder.removeByIndex(0);
+    }
+
+    public Ladder getLadder() {
+        return ladder;
     }
 }

@@ -10,12 +10,10 @@ public class Application {
         Results results = InputView.inputResults(players.size());
         Height height = InputView.inputHeight();
         MoveStrategy moveStrategy = new DirectionMoveStrategy();
-        Ladder ladder = new Ladder(players.size(), height.getHeight(), moveStrategy);
+        LadderGame ladderGame = new LadderGame(players.size(), height.getHeight(), moveStrategy);
+        ResultView.showLadder(ladderGame.getLadder(), players, results);
 
-        ResultView.showLadder(ladder, players, results);
-        LadderGame ladderGame = new LadderGame(ladder, players.size());
         PlayerResult playerResult = new PlayerResult(players, results, ladderGame.getPosition());
-
         ResultView.showResult(playerResult);
     }
 }
