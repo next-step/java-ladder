@@ -17,7 +17,7 @@ public class Line {
 
     private void validateLine(List<Point> points) {
         IntStream.range(0, points.size() - 1)
-                .filter(i -> !points.get(i).isRightNextDirection(points.get(i+1)))
+                .filter(i -> !points.get(i).validateRight(points.get(i+1)))
                 .findFirst()
                 .ifPresent(i -> {
                     throw new IllegalArgumentException("사다리를 생성할 수 없습니다.");

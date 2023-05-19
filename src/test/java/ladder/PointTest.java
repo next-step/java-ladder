@@ -58,4 +58,24 @@ public class PointTest {
         Point nextPoint = point.createNext(true);
         assertThat(nextPoint).isEqualTo(new Point(2, false, true));
     }
+
+    @DisplayName("현재 Point의 우측 Point인지 검증 (성공)")
+    @Test
+    void validateRight() {
+        Point point = new Point(1, false, true);
+        Point nextPoint = new Point(2, true, false);
+
+        assertThat(point.validateRight(nextPoint)).isTrue();
+    }
+
+    @DisplayName("현재 Point의 우측 Point인지 검증 (실패)")
+    @Test
+    void validateRight2() {
+        Point point = new Point(1, false, true);
+        Point wrongNextPoint1 = new Point(2, false, false);
+        Point wrongNextPoint2 = new Point(1, true, false);
+
+        assertThat(point.validateRight(wrongNextPoint1)).isFalse();
+        assertThat(point.validateRight(wrongNextPoint2)).isFalse();
+    }
 }
