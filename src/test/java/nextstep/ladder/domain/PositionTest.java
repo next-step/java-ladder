@@ -26,11 +26,20 @@ class PositionTest {
     }
 
     @Test
-    @DisplayName("포지션은 이동한다")
-    void move() {
+    @DisplayName("포지션은 오른쪽으로 이동한다")
+    void moveRight() {
         Position position = Position.from(1);
-        Position moved = position.move(new Line(List.of(false, true, false), () -> false));
+        Position moved = position.move(new Line(List.of(Boolean.FALSE, Boolean.TRUE, Boolean.FALSE), () -> Boolean.FALSE));
 
         assertThat(moved).isEqualTo(Position.from(2));
+    }
+
+    @Test
+    @DisplayName("포지션은 왼쪽으로 이동한다")
+    void moveLeft() {
+        Position position = Position.from(1);
+        Position moved = position.move(new Line(List.of(Boolean.TRUE, Boolean.FALSE, Boolean.FALSE), () -> Boolean.FALSE));
+
+        assertThat(moved).isEqualTo(Position.from(0));
     }
 }
