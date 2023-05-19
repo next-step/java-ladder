@@ -17,8 +17,15 @@ class ColumnTest {
         //when
         //then
         assertAll("동등성을 검증한다",
-                () -> assertThat(Column.of(1)).as("숫자가 같으면 동일하다").isEqualTo(Column.of(1)),
-                () -> assertThat(Column.of(2)).as("숫자가 다르면 동일하지 않다").isNotEqualTo(Column.of(4))
+                () -> assertThat(Column.of(1))
+                        .as("숫자가 같으면 동일하다")
+                        .isEqualTo(Column.of(1)),
+                () -> assertThat(Column.of(2))
+                        .as("숫자가 다르면 동일하지 않다")
+                        .isNotEqualTo(Column.of(4)),
+                () -> assertThat(Column.of(22).isSame(Column.of(22)))
+                        .as("숫자가 같으면 동일하다")
+                        .isTrue()
         );
     }
 
