@@ -10,7 +10,7 @@ public class LadderGameService {
     // singleton 적용
     private static LadderGameService ladderGameService = null;
 
-    protected LadderGameService() {
+    private LadderGameService() {
 
     }
 
@@ -24,5 +24,4 @@ public class LadderGameService {
     public Lines startGame(PlayerNames playerNames, LadderHeight ladderHeight) {
         return new Lines(playerNames.getCount(), ladderHeight.getHeight());
     }
-
 }
