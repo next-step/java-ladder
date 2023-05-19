@@ -1,22 +1,13 @@
 package nextstep.step2.domain;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Participants {
 
-    private static final String NAME_DELIMITER = ",";
     private static final int MINIMUM_USER_COUNT = 0;
 
     private final List<Participant> participants;
-
-    public Participants(String name) {
-        this(Arrays.stream(name.split(NAME_DELIMITER))
-                .map(Participant::new)
-                .collect(Collectors.toList())
-        );
-    }
 
     public Participants(List<Participant> participants) {
         validate(participants.size());
