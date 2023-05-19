@@ -52,10 +52,8 @@ public class Participants implements Iterable<String> {
         return participants.size() != length;
     }
 
-    public void contains(String name) {
-        if (!participants.contains(name)) {
-            throw new IllegalArgumentException("일치하는 참여자가 없습니다.");
-        }
+    public boolean isNotContaining(String name) {
+        return !participants.contains(name);
     }
 
     public int indexOf(String name) {

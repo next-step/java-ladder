@@ -33,21 +33,19 @@ class ParticipantsTest {
     @DisplayName("입력받은 이름이 참여자 리스트에 포함되면 예외를 발생하지 않는다")
     @ParameterizedTest
     @ValueSource(strings = {"a", "b", "c", "d", "e"})
-    void when_ParticipantListContainsName_Expects_DoesNotThrowException(String name) {
+    void when_ParticipantListContainsName_Expects_returnFalse(String name) {
         Participants participants = new Participants("a,b,c,d,e");
 
-        assertThatNoException()
-                .isThrownBy(() -> participants.contains(name));
+        assertThat(participants.isNotContaining(name)).isFalse();
     }
 
-    @DisplayName("입력받은 이름이 참여자 리스트에 포함되지 않으면 예외를 발생한다")
+    @DisplayName("입력받은 이름이 참여자 리스트에 포함되지 않으면")
     @ParameterizedTest
     @ValueSource(strings = {"g", "h", "i", "j", "k"})
-    void when_ParticipantListDoesNotContainsName_Expects_ThrowException(String name) {
+    void when_ParticipantListIsNotContainingName_Expects_returnTrue(String name) {
         Participants participants = new Participants("a,b,c,d,e");
 
-        assertThatThrownBy(() -> participants.contains(name))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThat(participants.isNotContaining(name)).isTrue();
     }
 
 

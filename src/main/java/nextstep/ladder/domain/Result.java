@@ -34,7 +34,7 @@ public class Result implements Iterable<String> {
         return results.iterator();
     }
 
-    public String gameResult(Participants participants, String name, List<Line> ladder) {;
+    public String gameResult(Participants participants, String name, List<Line> ladder) {
         if (name.equals(ALL)) {
             return makeAllResult(participants, ladder);
         }
@@ -54,7 +54,9 @@ public class Result implements Iterable<String> {
     }
 
     private void validateName(Participants participants, String name) {
-        participants.contains(name);
+        if (participants.isNotContaining(name)) {
+            throw new IllegalArgumentException("일치하는 참여자가 없습니다.");
+        }
     }
 
     private int calculateIndexOfResult(Participants participants, String name, List<Line> ladder) {
