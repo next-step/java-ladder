@@ -1,9 +1,8 @@
 package ladder.domain.strategy;
 
-
+@FunctionalInterface
 public interface NextPointGenerationStrategy {
 
-  boolean first();
   boolean nextBoolean(boolean prev);
 
 }

@@ -1,5 +1,7 @@
 package ladder.domain.prize;
 
+import java.util.Objects;
+
 public class Prize {
 
   private final String prize;
@@ -12,4 +14,20 @@ public class Prize {
     return prize;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Prize prize1 = (Prize) o;
+    return Objects.equals(prize, prize1.prize);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(prize);
+  }
 }

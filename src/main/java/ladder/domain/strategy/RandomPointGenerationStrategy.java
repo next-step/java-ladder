@@ -13,10 +13,6 @@ public class RandomPointGenerationStrategy implements NextPointGenerationStrateg
   public RandomPointGenerationStrategy(Random random) {
     this.random = random;
   }
-  @Override
-  public boolean first() {
-    return random.nextBoolean();
-  }
 
   @Override
   public boolean nextBoolean(boolean prev) {

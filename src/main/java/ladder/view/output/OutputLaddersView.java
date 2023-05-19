@@ -2,6 +2,7 @@ package ladder.view.output;
 
 import java.util.stream.IntStream;
 import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.Point;
 
 public class OutputLaddersView {
   private static final String LADDER = "|-----";
@@ -22,17 +23,17 @@ public class OutputLaddersView {
   private static void printRowOfLadder(Ladder ladder, int rowNumber) {
     printStartEmptySpaceOfRow();
     printRow(ladder, rowNumber);
-    printLastLineOfRow();
   }
 
   private static void printRow(Ladder ladder, int rowNumber) {
-    ladder.getRow(rowNumber).stream()
+    ladder.getPointsOfRow(rowNumber).stream()
         .map(OutputLaddersView::ladder)
         .forEach(System.out::print);
+    System.out.println();
   }
 
-  private static String ladder(Boolean connection) {
-    if(connection) {
+  private static String ladder(Point point) {
+    if(point.getDirection().current()) {
       return LADDER;
     }
     return NOT_LADDER;

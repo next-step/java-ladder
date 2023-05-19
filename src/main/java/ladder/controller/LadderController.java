@@ -4,9 +4,8 @@ import java.util.Map;
 import ladder.domain.ladder.Height;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.LadderGame;
-import ladder.domain.ladder.LadderSizeInfo;
 import ladder.domain.ladder.MatchResults;
-import ladder.domain.participant.Participant;
+import ladder.domain.participant.Name;
 import ladder.domain.prize.Prize;
 import ladder.domain.prize.Prizes;
 import ladder.domain.participant.Participants;
@@ -28,9 +27,7 @@ public class LadderController {
 
     Height height = InputHeightView.scanLadderHeight();
 
-    LadderSizeInfo ladderSizeInfo = new LadderSizeInfo(height, participants);
-
-    Ladder ladder = Ladder.createLadder(ladderSizeInfo, new RandomPointGenerationStrategy());
+    Ladder ladder = Ladder.createLadder(height, participants, new RandomPointGenerationStrategy());
 
     OutputNamesView.printParticipantsNames(participants);
     OutputLaddersView.printLadder(ladder);
@@ -40,10 +37,10 @@ public class LadderController {
     MatchResults results = ladderGame.play(prizes);
 
     while(true) {
-      Participant participant = InputNamesView.scanPlayerName(participants);
+      Name participant = InputNamesView.scanPlayerName(participants);
 
       if (participant.isAll()) {
-        Map<Participant, Prize> allResults = results.getAllResults();
+        Map<Name, Prize> allResults = results.getAllResults();
         OutputPrizeResultView.printAllResults(allResults);
         break;
       }

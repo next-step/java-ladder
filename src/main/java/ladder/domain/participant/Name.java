@@ -3,9 +3,9 @@ package ladder.domain.participant;
 import java.util.Objects;
 
 public class Name {
+  private final String name;
 
   private static final String ALL = "all";
-  private final String name;
 
   public Name(String name) {
     validateLength(name);
