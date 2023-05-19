@@ -52,4 +52,36 @@ class ColumnTest {
         }).isInstanceOf(OutOfColumnRangeException.class)
                 .hasMessageContaining("사용 가능한 Column 의 범위에서 초과하였습니다");
     }
+
+    @DisplayName("인접한 Column 인지를 판단하는 메서드 isAdjacent() 를 검증한다")
+    @Test
+    public void isAdjacent() {
+        //given
+        Column six = Column.of(6);
+        Column seven = Column.of(7);
+        Column eight = Column.of(8);
+        Column nine = Column.of(9);
+        //when
+        //then
+        assertAll("동등성을 검증한다",
+                () -> assertThat(six.isAdjacent(seven))
+                        .as("인접한 Column 은 isAdjacent() 메서드가 True 를 반환한다")
+                        .isTrue(),
+                () -> assertThat(seven.isAdjacent(eight))
+                        .as("인접한 Column 은 isAdjacent() 메서드가 True 를 반환한다")
+                        .isTrue(),
+                () -> assertThat(eight.isAdjacent(nine))
+                        .as("인접한 Column 은 isAdjacent() 메서드가 True 를 반환한다")
+                        .isTrue(),
+                () -> assertThat(six.isAdjacent(eight))
+                        .as("인접하지 않은 Column 은 isAdjacent() 메서드가 False 를 반환한다")
+                        .isFalse(),
+                () -> assertThat(seven.isAdjacent(nine))
+                        .as("인접하지 않은 Column 은 isAdjacent() 메서드가 False 를 반환한다")
+                        .isFalse(),
+                () -> assertThat(six.isAdjacent(nine))
+                        .as("인접하지 않은 Column 은 isAdjacent() 메서드가 False 를 반환한다")
+                        .isFalse()
+        );
+    }
 }
