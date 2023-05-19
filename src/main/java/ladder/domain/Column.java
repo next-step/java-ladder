@@ -19,10 +19,10 @@ public class Column {
     }
 
     public static Column of(int value) {
-        if (value > Preferences.maxColumnPolicy()) {
-            throw new OutOfColumnRangeException();
+        if ((0 <= value) && (value <= Preferences.maxColumnPolicy())) {
+            return COLUMNS_CACHE[value];
         }
-        return COLUMNS_CACHE[value];
+        throw new OutOfColumnRangeException();
     }
 
     @Override
