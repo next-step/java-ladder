@@ -4,6 +4,9 @@ import nextstep.ladder.domain.ExecutionResult;
 import nextstep.ladder.domain.Gamers;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.RandomConnector;
+import nextstep.ladder.dto.ExecutionResultDto;
+import nextstep.ladder.dto.GamersDto;
+import nextstep.ladder.dto.LadderDto;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
@@ -18,13 +21,13 @@ public class LadderApplication {
         int height = InputView.inputLadderHeight();
         Ladder ladder = Ladder.ofHeightAndCountOfPerson(height, gamers.size(), new RandomConnector());
 
-        ResultView.printGamers(gamers.toDto());
-        ResultView.printLadder(ladder.toDto());
+        ResultView.printGamers(GamersDto.from(gamers));
+        ResultView.printLadder(LadderDto.from(ladder));
         ResultView.printResult(executionResult);
 
         Gamers climbedGamers = gamers.climb(ladder);
-        ExecutionResult result = ExecutionResult.of(climbedGamers, executionResult);
+        ExecutionResult result = climbedGamers.matchResult(executionResult);
         String target = InputView.inputResultTarget();
-        ResultView.printResultTarget(result.toDto(), target);
+        ResultView.printResultTarget(ExecutionResultDto.from(result), target);
     }
 }
