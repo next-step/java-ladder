@@ -16,11 +16,6 @@ public class Line {
                 .forEach(i -> this.add(i, generator.generator()));
     }
 
-    public Line(Boolean... booleans) {
-        IntStream.range(0, booleans.length)
-                .forEach(i -> this.add(i, booleans[i]));
-    }
-
     private void add(int index, boolean generator) {
         if (existPoint(index)) {
             points.add(false);
