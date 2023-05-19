@@ -1,11 +1,9 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.dto.LadderDto;
-
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class Ladder {
     private final List<Line> lines;
@@ -26,12 +24,6 @@ public class Ladder {
         return new Ladder(height, countOfPerson, connector);
     }
 
-    public LadderDto toDto() {
-        return lines.stream()
-                .map(Line::toDto)
-                .collect(Collectors.collectingAndThen(Collectors.toList(), LadderDto::from));
-    }
-
     public Position move(Position position) {
         for (Line line : lines) {
             position = position.move(line);
@@ -50,5 +42,9 @@ public class Ladder {
     @Override
     public int hashCode() {
         return Objects.hash(lines);
+    }
+
+    public List<Line> getLadder() {
+        return Collections.unmodifiableList(lines);
     }
 }

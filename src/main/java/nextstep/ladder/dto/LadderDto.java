@@ -1,7 +1,10 @@
 package nextstep.ladder.dto;
 
+import nextstep.ladder.domain.Ladder;
+
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LadderDto {
     private final List<LineDto> ladder;
@@ -13,7 +16,9 @@ public class LadderDto {
         return ladder;
     }
 
-    public static LadderDto from(List<LineDto> ladder) {
-        return new LadderDto(ladder);
+    public static LadderDto from(Ladder ladder) {
+        return ladder.getLadder().stream()
+                .map(LineDto::from)
+                .collect(Collectors.collectingAndThen(Collectors.toUnmodifiableList(), LadderDto::new));
     }
 }

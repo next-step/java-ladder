@@ -1,7 +1,5 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.dto.NameDto;
-
 import java.util.Objects;
 
 public class Name {
@@ -22,10 +20,6 @@ public class Name {
 
     public static Name from(String name) {
         return new Name(name);
-    }
-
-    public NameDto toDto() {
-        return new NameDto(name);
     }
 
     @Override

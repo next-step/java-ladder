@@ -14,17 +14,17 @@ class ExecutionResultTest {
     @Test
     @DisplayName("정적 팩토리 메소드")
     void of() {
-        ExecutionResult result = ExecutionResult.of(GamersTest.getGamers(), List.of("0", "1", "2", "3"));
+        ExecutionResult result = GamersTest.getGamers().matchResult(List.of("0", "1", "2", "3"));
 
         assertThat(result).isEqualTo(getExecutionResult());
     }
 
-    private static ExecutionResult getExecutionResult() {
-        Map<String, String> results = new HashMap<>();
-        results.put("pobi", "0");
-        results.put("honux", "1");
-        results.put("crong", "2");
-        results.put("jk", "3");
-        return new ExecutionResult(results);
+    public static ExecutionResult getExecutionResult() {
+        Map<Gamer, Result> results = new HashMap<>();
+        results.put(Gamer.of("pobi", 0), Result.from("0"));
+        results.put(Gamer.of("honux", 1), Result.from("1"));
+        results.put(Gamer.of("crong", 2), Result.from("2"));
+        results.put(Gamer.of("jk", 3), Result.from("3"));
+        return ExecutionResult.of(results);
     }
 }

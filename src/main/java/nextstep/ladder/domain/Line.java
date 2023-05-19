@@ -1,8 +1,7 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.dto.LineDto;
-
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -40,10 +39,6 @@ public class Line {
         return new Line(countOfPerson, connector);
     }
 
-    public LineDto toDto() {
-        return LineDto.from(points);
-    }
-
     public boolean canMoveOnRight(int index) {
         return canMove(index);
     }
@@ -58,6 +53,10 @@ public class Line {
         } catch (IndexOutOfBoundsException e) {
             return false;
         }
+    }
+
+    public List<Boolean> getLine() {
+        return Collections.unmodifiableList(points);
     }
 
     @Override

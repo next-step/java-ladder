@@ -1,33 +1,23 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.dto.ExecutionResultDto;
-import nextstep.ladder.dto.GamerDto;
-
-import java.util.List;
+import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class ExecutionResult {
 
-    private final Map<String, String> results;
+    private final Map<Gamer, Result> results;
 
-    public ExecutionResult(Map<String, String> results) {
+    public ExecutionResult(Map<Gamer, Result> results) {
         this.results = results;
     }
 
-    public static ExecutionResult of(Gamers climbedGamers, List<String> results) {
-        List<GamerDto> gamers = climbedGamers.toDto().getGamers();
-        return gamers.stream()
-                .collect(Collectors.collectingAndThen(
-                        Collectors.toMap(
-                                GamerDto::getName,
-                                gamerDto -> results.get(gamerDto.getPosition())),
-                        ExecutionResult::new));
+    public static ExecutionResult of(Map<Gamer, Result> results) {
+        return new ExecutionResult(results);
     }
 
-    public ExecutionResultDto toDto() {
-        return ExecutionResultDto.of(results);
+    public Map<Gamer, Result> getResults() {
+        return Collections.unmodifiableMap(results);
     }
 
     @Override

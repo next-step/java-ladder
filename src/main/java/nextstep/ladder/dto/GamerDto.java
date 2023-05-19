@@ -1,5 +1,7 @@
 package nextstep.ladder.dto;
 
+import nextstep.ladder.domain.Gamer;
+
 public class GamerDto {
     private final String name;
     private final int position;
@@ -9,8 +11,8 @@ public class GamerDto {
         this.position = position;
     }
 
-    public static GamerDto of(String name, int position) {
-        return new GamerDto(name, position);
+    public static GamerDto from(Gamer gamer) {
+        return new GamerDto(gamer.getName(), gamer.getPosition());
     }
 
     public String getName() {
