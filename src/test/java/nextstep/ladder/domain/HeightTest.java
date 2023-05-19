@@ -14,7 +14,7 @@ class HeightTest {
     @Test
     void when_HeightIsUnderOne_Expects_ThrowException() {
 
-        assertThatThrownBy(() -> Height.of(0))
+        assertThatThrownBy(() -> new Height(0))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -24,6 +24,6 @@ class HeightTest {
     void when_HeightIsUnderOne_Expects_ThrowException(int height) {
 
         assertThatNoException()
-                .isThrownBy(() -> Height.of(height));
+                .isThrownBy(() -> new Height(height));
     }
 }

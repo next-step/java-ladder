@@ -21,7 +21,7 @@ public class LadderGame {
         Participants participants = new Participants(getParticipants());
         Result result = Result.of(participants, getResults());
 
-        Height height = Height.of(getLadderHeight());
+        Height height = new Height(getLadderHeight());
 
         List<Line> ladder = Ladder.of(participants)
                 .create(height, strategy);
