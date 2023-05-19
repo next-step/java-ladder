@@ -1,5 +1,6 @@
 package nextstep.domain;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,28 +8,32 @@ import java.util.stream.Collectors;
 
 public class LadderResult {
 
-    private Ladder ladder;
-    private Usernames usernames;
+    private final Map<Username, String> ladderResult;
 
-    public LadderResult(Ladder ladder, Usernames usernames) {
-        this.ladder = ladder;
-        this.usernames = usernames;
+    public LadderResult(Ladder ladder, Usernames usernames, InputResults inputResults) {
+        ladderResult = toLadderResult(ladder, usernames, inputResults);
     }
 
-    public Map<Username, String> getLadderResult(Username name, InputResults inputResults) {
+    private static Map<Username, String> toLadderResult(Ladder ladder,
+                                                        Usernames usernames,
+                                                        InputResults inputResults) {
         List<Integer> ladderResults = ladder.getResults();
         List<String> results = inputResults.getResults();
-
-        if (name.equals(new Username("all"))) {
-            return match(ladderResults, results);
-        }
-
-        Map<Username, String> finalResults = new LinkedHashMap<>();
-        finalResults.put(name, results.get(ladder.getResult(usernames.getUsernameIndex(name))));
-        return finalResults;
+        return match(ladderResults, results, usernames);
     }
 
-    private Map<Username, String> match(List<Integer> ladderResults, List<String> results) {
+    public Map<Username, String> getLadderResult(Username name) {
+        if (name.equals(new Username("all"))) {
+            return ladderResult;
+        }
+        return new HashMap<>(){{
+            this.put(name, ladderResult.get(name));
+        }};
+    }
+
+    private static Map<Username, String> match(List<Integer> ladderResults,
+                                               List<String> results,
+                                               Usernames usernames) {
         Map<Username, String> finalResults = new LinkedHashMap<>();
         List<String> inputResults = ladderResults.stream()
                 .map(results::get)
