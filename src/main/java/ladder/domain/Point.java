@@ -3,8 +3,6 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Point {
-    private static final boolean CONNECTED = true;
-    private static final boolean NOT_CONNECTED = false;
     private final Direction direction;
 
     public Point(Direction direction) {
@@ -16,11 +14,11 @@ public class Point {
     }
 
     public static Point first(boolean right) {
-        return new Point(NOT_CONNECTED, right);
+        return new Point(false, right);
     }
 
     public Point last() {
-        return new Point(direction.isRight(), NOT_CONNECTED);
+        return new Point(direction.isRight(), false);
     }
 
     public Point next(DrawStrategy drawStrategy) {
@@ -35,6 +33,10 @@ public class Point {
 
     public boolean isRight() {
         return direction.isRight();
+    }
+
+    public int move() {
+        return direction.move();
     }
 
     @Override

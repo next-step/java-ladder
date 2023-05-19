@@ -31,6 +31,10 @@ public class LadderRow {
                 .collect(Collectors.toList());
     }
 
+    public int move(int position) {
+        return points.get(position).move();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

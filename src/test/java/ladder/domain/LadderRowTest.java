@@ -14,6 +14,7 @@ class LadderRowTest {
         List<Point> points = List.of(Point.first(true), new Point(true, false));
         LadderRow ladderRow = new LadderRow(points);
         assertThat(ladderRow).isEqualTo(new LadderRow(points));
+        assertThat(ladderRow.width()).isEqualTo(2);
     }
 
     @Test
@@ -32,7 +33,7 @@ class LadderRowTest {
     }
 
     @Test
-    @DisplayName("Connection 확인")
+    @DisplayName("가로 라인의 오른쪽 연결 확인")
     void hasConnections() {
         // given
         int width = 4;

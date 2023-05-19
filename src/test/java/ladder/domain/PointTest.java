@@ -17,14 +17,14 @@ class PointTest {
     }
 
     @Test
-    @DisplayName("first 포인트 생성")
+    @DisplayName("가로라인 가장 왼쪽 포인트 생성")
     void first() {
         Point point = Point.first(true);
         assertThat(point).isEqualTo(new Point(false, true));
     }
 
     @Test
-    @DisplayName("다음 포인트 생성")
+    @DisplayName("가로라인 중간 포인트 생성")
     void next() {
         Point first = Point.first(false);
         Point next = first.next(() -> true);
@@ -33,7 +33,7 @@ class PointTest {
     }
 
     @Test
-    @DisplayName("다음 포인트 생성 - 오른쪽 true")
+    @DisplayName("중간 포인트 생성 - 오른쪽 true")
     void nextRightTrue() {
         Point first = Point.first(true);
         Point next = first.next(() -> true);
@@ -42,7 +42,7 @@ class PointTest {
     }
 
     @Test
-    @DisplayName("last 포인트 생성")
+    @DisplayName("가로라인 가장 오른쪽 포인트 생성")
     void last() {
         Point first = Point.first(true);
         Point last = first.last();
