@@ -1,7 +1,6 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.dto.GamerDto;
-
+import java.util.List;
 import java.util.Objects;
 
 public class Gamer {
@@ -17,12 +16,20 @@ public class Gamer {
         return new Gamer(Name.from(name), Position.from(position));
     }
 
-    public GamerDto toDto() {
-        return GamerDto.of(name.toString(), position.toInt());
-    }
-
     public Gamer climb(Ladder ladder) {
         return new Gamer(name, ladder.move(position));
+    }
+
+    public Result match(List<String> executionResult) {
+        return Result.from(executionResult.get(position.toInt()));
+    }
+
+    public String getName() {
+        return name.toString();
+    }
+
+    public int getPosition() {
+        return position.toInt();
     }
 
     @Override
