@@ -18,7 +18,7 @@ class ResultTest {
 
     @BeforeEach
     void setUp() {
-        this.participants = new Participants("pobi,honux,crong,jk");
+        this.participants = new Participants(List.of("pobi", "honux", "crong", "jk"));
         this.result = Result.of(participants, "꽝,5000,꽝,3000");
         this.lines = List.of(
                 new Line(List.of(true, false, true)),

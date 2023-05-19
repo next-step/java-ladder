@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderTest {
@@ -16,7 +18,8 @@ public class LadderTest {
 
     @BeforeEach
     void setUp() {
-        this.participants = new Participants("pobi,honux,crong,jk");
+        List<String> participants = List.of("pobi", "honux", "crong", "jk");
+        this.participants = new Participants(participants);
         this.height = new Height(5);
         this.strategy = () -> true;
     }
