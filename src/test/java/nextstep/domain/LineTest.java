@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LineTest {
@@ -19,6 +20,25 @@ class LineTest {
         assertDoesNotThrow(() -> {
             new Line(new LineRandom(), 5);
         });
+    }
+
+    @ParameterizedTest
+    @MethodSource
+    void 연속된_라인을_생성하면_예외가_발생한다(List<Boolean> line) {
+        // given & when & then
+        assertThatThrownBy(() -> {
+            new Line(line);
+        })
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("연속적으로 라인이 생성될 수 없습니다.");
+    }
+
+    private static Stream<Arguments> 연속된_라인을_생성하면_예외가_발생한다() {
+        return Stream.of(
+                Arguments.of(List.of(true, true, false)),
+                Arguments.of(List.of(false, true, true)),
+                Arguments.of(List.of(false, true, true, false))
+        );
     }
 
     @ParameterizedTest
