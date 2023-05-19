@@ -19,8 +19,8 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
-    public int getResult(Username username, Usernames usernames) {
-        return results.get(usernames.getUsernameIndex(username));
+    public int getResult(int position) {
+        return results.get(position);
     }
 
     public List<Integer> getResults() {

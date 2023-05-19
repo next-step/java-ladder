@@ -24,7 +24,7 @@ public class LadderResult {
         }
 
         Map<Username, String> finalResults = new LinkedHashMap<>();
-        finalResults.put(name, results.get(ladder.getResult(name, usernames)));
+        finalResults.put(name, results.get(ladder.getResult(usernames.getUsernameIndex(name))));
         return finalResults;
     }
 
