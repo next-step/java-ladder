@@ -49,4 +49,7 @@ public class Point {
     public int hashCode() {
         return Objects.hash(index, direction);
     }
+    public LineStatus getConnection(){
+        return direction.getStatus();
+    }
 }

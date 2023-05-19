@@ -1,4 +1,4 @@
-package refactoring;
+package refactoring.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +11,16 @@ public class Results {
         this.results = new ArrayList<>(List.of(results));
     }
 
+    public static Results of(final String[] results){
+        return new Results(results);
+    }
+
     public String get(final int target) {
         return results.get(target);
+    }
+
+    public List<String> get() {
+        return results;
     }
 
     public int size() {

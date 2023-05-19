@@ -3,10 +3,11 @@ package refactoring.domain;
 import static refactoring.domain.LineStatus.CONNECTION;
 import static refactoring.domain.LineStatus.DETACHMENT;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Direction {
-
 
     private final LineStatus before;
     private final LineStatus current;
@@ -54,5 +55,9 @@ public class Direction {
     @Override
     public int hashCode() {
         return Objects.hash(before, current);
+    }
+
+    public LineStatus getStatus() {
+        return current;
     }
 }

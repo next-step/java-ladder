@@ -16,4 +16,8 @@ public class Name {
             throw new IllegalArgumentException("이름의 길이는 5자 이하여야 합니다.");
         }
     }
+
+    public String get() {
+        return name;
+    }
 }
