@@ -5,14 +5,9 @@ import nextstep.step2.generator.BooleanGenerator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Line {
-
-    static final String LADDER = "|";
-    static final String LINE_LADDER = "-----";
-    static final String BLANK = "     ";
 
     private List<Boolean> points = new ArrayList<>();
 
@@ -39,14 +34,8 @@ public class Line {
         return index > 0 && points.get(index - 1);
     }
 
-    public String drawLine() {
-        return points.stream()
-                .map(this::convertLine)
-                .collect(Collectors.joining()) + LADDER;
-    }
-
-    private String convertLine(boolean point) {
-        return LADDER + (point ? LINE_LADDER : BLANK);
+    public List<Boolean> points() {
+        return points;
     }
 
     @Override

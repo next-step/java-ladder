@@ -1,7 +1,6 @@
 package nextstep.step2.domain;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Participants {
 
@@ -21,13 +20,11 @@ public class Participants {
         }
     }
 
-    public int count() {
-        return participants.size();
+    public List<Participant> participants() {
+        return participants;
     }
 
-    public String toParticipants() {
-        return participants.stream()
-                .map(Participant::toNameString)
-                .collect(Collectors.joining(" "));
+    public int count() {
+        return participants.size();
     }
 }

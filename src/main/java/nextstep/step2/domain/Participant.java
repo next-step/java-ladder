@@ -12,7 +12,7 @@ public class Participant {
         this.name = name;
     }
 
-    public String toNameString() {
+    public String name() {
         return name.getName();
     }
 }
