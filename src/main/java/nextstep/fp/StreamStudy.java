@@ -53,4 +53,4 @@ public class StreamStudy {
                 .map(number -> number * 2)
                 .reduce(0, (x, y) -> x + y);
     }
-}림
+}
