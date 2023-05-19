@@ -35,6 +35,15 @@ class GamersTest {
         assertThat(climbed).isEqualTo(getGamers());
     }
 
+    @Test
+    @DisplayName("모든 게이머의 결과를 매칭")
+    void matchResult() {
+        Gamers gamers = getGamers();
+        ExecutionResult actual = gamers.matchResult(List.of("0", "1", "2", "3"));
+
+        assertThat(actual).isEqualTo(ExecutionResultTest.getExecutionResult());
+    }
+
     public static Gamers getGamers() {
         List<Gamer> gamers = List.of(
                 Gamer.of("pobi", 0),
