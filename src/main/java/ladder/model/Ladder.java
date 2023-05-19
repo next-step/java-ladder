@@ -22,12 +22,15 @@ public class Ladder {
         return new Ladder(lines);
     }
 
-    public int height() {
-        return this.lines.size();
+    public int calculateLastPositionByIndex(int index) {
+        for (Line line : lines) {
+            index = line.move(index);
+        }
+        return index;
     }
 
-    public Line getLineByHeight(int height) {
-        return lines.get(height);
+    public int height() {
+        return this.lines.size();
     }
 
     public List<Line> getLines() {
