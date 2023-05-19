@@ -1,10 +1,10 @@
-package ladder.domain.line;
+package ladder.domain.ladder.line;
 
 import config.BaseTest;
 import exception.ExceptionCode;
 import java.util.List;
-import ladder.domain.Line.LineGenerator;
-import ladder.domain.Line.LinePoint;
+import ladder.domain.ladder.line.LineGenerator;
+import ladder.domain.ladder.line.LinePoint;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

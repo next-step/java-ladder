@@ -1,7 +1,8 @@
 package ladder.domain.player;
 
 import java.util.List;
+import ladder.domain.ladder.player.LadderGamePlayerInfo;
 
 public interface PlayerGenerator {
-  List<Player> generatePlayerList(List<String> players);
+  LadderGamePlayerInfo generatePlayerList(List<String> players);
 }

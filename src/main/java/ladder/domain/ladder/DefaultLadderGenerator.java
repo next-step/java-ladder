@@ -5,8 +5,8 @@ import exception.LadderGameException;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import ladder.domain.Line.Line;
-import ladder.domain.Line.LinePoint;
+import ladder.domain.ladder.line.Line;
+import ladder.domain.ladder.line.LinePoint;
 import ladder.domain.random.DefaultRandomBooleanGenerator;
 import ladder.domain.random.RandomBooleanGenerator;
 
@@ -20,12 +20,14 @@ public class DefaultLadderGenerator implements LadderGenerator {
   }
 
   @Override
-  public List<Line> generateLadderLines(int playerCnt, int ladderHeight) {
+  public Ladder generateLadderLines(int playerCnt, int ladderHeight) {
     throwIfHeightNotValid(ladderHeight);
-    return IntStream.range(0, ladderHeight)
+    final List<Line> lines = IntStream.range(0, ladderHeight)
         .mapToObj(i -> new Line(playerCnt))
         .map(this::connectPointInLineIfPossible)
         .collect(Collectors.toList());
+
+    return new Ladder(lines);
   }
 
   private void throwIfHeightNotValid(int ladderHeight) {

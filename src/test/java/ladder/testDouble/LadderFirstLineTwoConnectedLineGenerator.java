@@ -3,8 +3,9 @@ package ladder.testDouble;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.LadderGenerator;
-import ladder.domain.Line.Line;
+import ladder.domain.ladder.line.Line;
 
 /**
  * 첫번째 라인의 두 포인트만 연속으로 연결되어있는
@@ -18,13 +19,13 @@ import ladder.domain.Line.Line;
 public class LadderFirstLineTwoConnectedLineGenerator implements LadderGenerator {
 
   @Override
-  public List<Line> generateLadderLines(int playerCnt, int ladderHeight) {
+  public Ladder generateLadderLines(int playerCnt, int ladderHeight) {
     List<Line> lines = IntStream.range(0, ladderHeight)
         .mapToObj(i -> new Line(playerCnt))
         .collect(Collectors.toList());
 
     connectFirstTwo(lines);
-    return lines;
+    return new Ladder(lines);
   }
 
   private void connectFirstTwo(List<Line> lines) {

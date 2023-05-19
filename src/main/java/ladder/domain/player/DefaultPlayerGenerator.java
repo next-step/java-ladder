@@ -6,13 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import ladder.domain.ladder.player.LadderGamePlayerInfo;
 
 public class DefaultPlayerGenerator implements PlayerGenerator {
 
   private static final int MIN_PLAYER_REQUIRED_CNT = 2;
 
   @Override
-  public List<Player> generatePlayerList(List<String> players) {
+  public LadderGamePlayerInfo generatePlayerList(List<String> players) {
     if (MIN_PLAYER_REQUIRED_CNT > players.size()) {
       throw new LadderGameException(ExceptionCode.MIN_PLAYER_COUNT_REQUIRED);
     }
@@ -26,6 +27,6 @@ public class DefaultPlayerGenerator implements PlayerGenerator {
       throw new LadderGameException(ExceptionCode.DUPLICATE_PLAYER_IN_GAME);
     }
 
-    return new ArrayList<>(playerSet);
+    return new LadderGamePlayerInfo(playerSet);
   }
 }

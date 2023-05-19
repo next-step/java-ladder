@@ -1,4 +1,4 @@
-package ladder.domain.Line;
+package ladder.domain.ladder.line;
 
 import exception.ExceptionCode;
 import exception.LadderGameException;

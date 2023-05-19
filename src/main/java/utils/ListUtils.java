@@ -1,7 +1,6 @@
 package utils;
 
 import java.util.List;
-import ladder.domain.Line.LinePoint;
 
 public class ListUtils {
 

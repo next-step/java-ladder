@@ -1,9 +1,8 @@
-package ladder.domain.Line;
+package ladder.domain.ladder.line;
 
 import exception.ExceptionCode;
 import exception.LadderGameException;
 import java.util.List;
-import java.util.stream.Collectors;
 import ladder.domain.ladder.LadderPointDirection;
 import utils.ListUtils;
 

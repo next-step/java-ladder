@@ -1,9 +1,9 @@
-package ladder.domain.line;
+package ladder.domain.ladder.line;
 
 import config.BaseTest;
 import exception.ExceptionCode;
-import ladder.domain.Line.Line;
-import ladder.domain.Line.LinePoint;
+import ladder.domain.ladder.line.Line;
+import ladder.domain.ladder.line.LinePoint;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

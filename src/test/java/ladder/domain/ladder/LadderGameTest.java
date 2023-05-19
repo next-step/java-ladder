@@ -17,13 +17,13 @@ public class LadderGameTest extends BaseTest {
   int 사다리_높이;
   LadderGameSetting gameSetting;
 
+  List<String> 기본_게임_보상_목록;
+
   @BeforeEach
   void test() {
     사다리_높이 = 5;
-    gameSetting = LadderGameSetting.builder()
-        .playerGenerator(new DefaultPlayerGenerator())
-        .ladderGenerator(new DefaultLadderGenerator())
-        .build();
+    gameSetting = LadderGameSetting.withDefaultSetting();
+    기본_게임_보상_목록 = List.of("꽝", "5000", "꽝", "3000");
   }
 
   @Test
@@ -33,12 +33,10 @@ public class LadderGameTest extends BaseTest {
     List<String> 플레이어_이름_목록 = Arrays.asList("s1", "s2", "seol");
 
     // when & then
-    LadderGame ladderGame = new LadderGame(플레이어_이름_목록, 사다리_높이, gameSetting);
+    LadderGame ladderGame = new LadderGame(플레이어_이름_목록, 기본_게임_보상_목록, 사다리_높이, gameSetting);
 
-    Assertions.assertThat(ladderGame)
-        .extracting("ladderLines")
-        .asList()
-        .hasSize(사다리_높이);
+    Assertions.assertThat(ladderGame.getLadderLineSize())
+        .isEqualTo(사다리_높이);
   }
 
   @Test
@@ -49,7 +47,7 @@ public class LadderGameTest extends BaseTest {
 
     // when & then
     super.assertThatThrowsLadderGameException(
-        () -> new LadderGame(플레이어_이름_목록, 사다리_높이, gameSetting),
+        () -> new LadderGame(플레이어_이름_목록, 기본_게임_보상_목록, 사다리_높이, gameSetting),
         ExceptionCode.DUPLICATE_PLAYER_IN_GAME
     );
   }
@@ -62,7 +60,7 @@ public class LadderGameTest extends BaseTest {
 
     // when & then
     super.assertThatThrowsLadderGameException(
-        () -> new LadderGame(플레이어_이름_목록, 사다리_높이, gameSetting),
+        () -> new LadderGame(플레이어_이름_목록, 기본_게임_보상_목록, 사다리_높이, gameSetting),
         ExceptionCode.MIN_PLAYER_COUNT_REQUIRED
     );
   }
@@ -75,7 +73,7 @@ public class LadderGameTest extends BaseTest {
 
     // when & then
     super.assertThatThrowsLadderGameException(
-        () -> new LadderGame(플레이어_이름_목록, 0, gameSetting),
+        () -> new LadderGame(플레이어_이름_목록, 기본_게임_보상_목록, 0, gameSetting),
         ExceptionCode.MIN_LADDER_HEIGHT_REQUIRED
     );
   }

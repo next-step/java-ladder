@@ -1,4 +1,4 @@
-package ladder.domain.Line;
+package ladder.domain.ladder.line;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,29 +1,36 @@
 package ladder.domain;
 
 import java.util.List;
-import ladder.domain.Line.Line;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.player.LadderGamePlayerInfo;
+import ladder.domain.ladder.reword.LadderGameRewordInfo;
 import ladder.domain.ladder.setting.LadderGameSetting;
-import ladder.domain.player.Player;
 
 public class LadderGame {
 
-  private final List<Player> players;
-  private final List<Line> ladderLines;
+  private final LadderGamePlayerInfo playerInfo;
+  private final Ladder ladder;
+  private final LadderGameRewordInfo gameReword;
 
-  public LadderGame(List<String> playerNames, int ladderHeight, LadderGameSetting gameSetting) {
-    this.players = gameSetting.generatePlayer(playerNames);
-    this.ladderLines = gameSetting.generateLadderLine(this.players.size(), ladderHeight);
+  public LadderGame(List<String> playerNames, List<String> rewords, int ladderHeight, LadderGameSetting gameSetting) {
+    this.playerInfo = gameSetting.generatePlayer(playerNames);
+    this.ladder = gameSetting.generateLadderLine(this.playerInfo.getPlayerSize(), ladderHeight);
+    this.gameReword = gameSetting.generateReword(rewords);
   }
 
   public void play() {
     // TODO
   }
 
-  public List<Player> getPlayers() {
-    return players;
+  public LadderGamePlayerInfo getPlayerInfo() {
+    return playerInfo;
   }
 
-  public List<Line> getLadderLines() {
-    return ladderLines;
+  public Ladder getLadder() {
+    return ladder;
+  }
+
+  public int getLadderLineSize () {
+    return ladder.getLineSize();
   }
 }
