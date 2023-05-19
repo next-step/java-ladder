@@ -7,12 +7,14 @@ import ladder.exception.PlayerNameArgumentException;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-public class PlayerNamesParam implements BaseParam {
+public class PlayerNamesParam {
     private static final String DELIMITER = ",";
     private static final String TRIM = " ";
     private static final int MINIMUM_NUMBER_OF_PEOPLE = 2;
+    private static final int MAX_NAME_SIZE = 5;
 
     private String playersName;
 
@@ -23,7 +25,6 @@ public class PlayerNamesParam implements BaseParam {
         this.playersName = playersName;
     }
 
-    @Override
     public PlayerNames convertParamToModel() {
         List<String> playersNames = Arrays.stream(playersName.replaceAll(TRIM, "")
                 .split(DELIMITER)).collect(Collectors.toList());
@@ -34,9 +35,14 @@ public class PlayerNamesParam implements BaseParam {
 
         playersNames = fillOrRightAlign(playersNames);
 
-        return new PlayerNames(playersNames.stream()
+
+        List<String> finalPlayersNames = playersNames;
+        Supplier<PlayerNames> supplier = () -> new PlayerNames(finalPlayersNames.stream()
                 .map(name -> new PlayerName(name))
                 .collect(Collectors.toList()));
+
+        return supplier.get();
+
     }
 
     boolean isSmallerThanMinimum(int count) {
@@ -45,7 +51,7 @@ public class PlayerNamesParam implements BaseParam {
 
     List<String> fillOrRightAlign(List<String> playersNames) {
         return playersNames.stream()
-                .map(name -> name.length() < 5 ? String.format("%5s", name) : name)
+                .map(name -> name.length() < MAX_NAME_SIZE ? String.format("%5s", name) : name)
                 .collect(Collectors.toList());
     }
 }
