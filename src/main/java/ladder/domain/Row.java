@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import ladder.control.Preferences;
+import ladder.exception.OutOfRoWRangeException;
 
 public class Row {
     private static final Row[] ROW_CACHE = new Row[Preferences.maxRowPolicy() + 1];
@@ -18,7 +19,15 @@ public class Row {
     }
 
     public static Row of(int value) {
+        validateMaxRow(value);
         return ROW_CACHE[value];
+    }
+
+    private static void validateMaxRow(int value) {
+        if ((0 <= value) && (value <= Preferences.maxRowPolicy())) {
+            return;
+        }
+        throw new OutOfRoWRangeException();
     }
 
     public boolean isSame(Row otherRow) {
@@ -38,7 +47,4 @@ public class Row {
         return this.hashCode() == otherRow.hashCode();
     }
 
-    public boolean isAdjacent(Row other) {
-        return Math.abs(this.value - other.value) <= 1;
-    }
 }
