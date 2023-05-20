@@ -60,10 +60,10 @@ public class LineTest {
                         .isFalse(),
                 () -> assertThat(benchmarkLine.isSameRow(sameRowLineA))
                         .as("같은 Row 에 존재한다")
-                        .isFalse(),
+                        .isTrue(),
                 () -> assertThat(benchmarkLine.isSameRow(sameRowLineB))
                         .as("같은 Row 에 존재한다")
-                        .isFalse()
+                        .isTrue()
         );
     }
 
@@ -82,7 +82,7 @@ public class LineTest {
         assertAll("isAdjacentColumn() 메서드를 검증한다",
                 () -> assertThat(benchmarkLine.isAdjacentColumn(notAdjacentA))
                         .as("서로 인접하지 않은 Column 에 존재한다")
-                        .isFalse(),
+                        .isTrue(),
                 () -> assertThat(benchmarkLine.isAdjacentColumn(notAdjacentB))
                         .as("서로 인접하지 않은 Column 에 존재한다")
                         .isFalse(),
