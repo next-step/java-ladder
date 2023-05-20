@@ -10,14 +10,14 @@
 
 ## 기능 요구사항
 ### LineStrategy
-- [ ] true 혹은 false 중 하나를 가진다.
+- [X] true 혹은 false 중 하나를 가진다.
 
 ### LadderRow
-- [ ] 주어진 width만큼의 line 생성 여부를 LineStrategy에 따라 결정한다.
-- [ ] 단, 연달아 line을 생성하지 않는다. 
+- [X] 주어진 width만큼의 line 생성 여부를 LineStrategy에 따라 결정한다.
+- [X] 단, 연달아 line을 생성하지 않는다. 
 
 ### Ladder
-- [ ] 주어진 height만큼의 Row 리스트를 가진다.
+- [X] 주어진 height만큼의 Row 리스트를 가진다.
 
 ### Player
 - [ ] 5자 이내의 이름을 가진다.
