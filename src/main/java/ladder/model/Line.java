@@ -44,20 +44,27 @@ public class Line {
     }
 
     public int next(int current){
-
-        for (int i = 0; i < points.size(); i++) {
-            if(i == current && points.get(i)){
-                return current+1;
-            }
+        if(isRight(current)){
+            return current+1;
         }
 
-        for (int i = 0; i < points.size(); i++) {
-            if( i == current -1 && points.get(i)){
-                return current-1;
-            }
+        if(isLeft(current)){
+            return current-1;
         }
 
         return current;
+    }
+
+    private boolean isLeft(int current) {
+        return IntStream.range(0, points.size() - 1)
+                .filter(i -> i == current -1 && points.get(i))
+                .findAny().isPresent();
+    }
+
+    private boolean isRight(int current) {
+        return IntStream.range(0, points.size() - 1)
+                .filter(i -> i == current && points.get(i))
+                .findAny().isPresent();
     }
 
     @Override
