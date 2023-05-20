@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Row {
-    private static final List<Row> ROW_CACHE = new ArrayList<>( Preferences.maxRowPolicy() + 1);
+    private static final List<Row> ROW_CACHE = new ArrayList<>(Preferences.maxRowPolicy() + 1);
 
     static {
         for (int i = 0; i <= Preferences.maxRowPolicy(); i++) {

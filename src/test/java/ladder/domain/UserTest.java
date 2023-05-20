@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import ladder.control.Preferences;
-import ladder.exception.OutOfRoWRangeException;
 import ladder.exception.OutOfUserNameLengthException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

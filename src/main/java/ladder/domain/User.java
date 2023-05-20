@@ -11,7 +11,7 @@ public class User {
     }
 
     private void validateUsernameLength(String name) {
-        if(name.length() > 5) {
+        if (name.length() > 5) {
             throw new OutOfUserNameLengthException();
         }
     }
