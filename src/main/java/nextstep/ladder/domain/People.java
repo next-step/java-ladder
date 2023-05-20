@@ -8,11 +8,12 @@ import java.util.stream.Collectors;
 public class People {
 
     private static final int BEGIN_INDEX = 0;
+
     private final List<Person> people;
 
     public People(List<Person> people) {
         if (people.size() == 0) {
-            throw new RuntimeException("사람 이름이 입력되지 않았습니다.");
+            throw new IllegalStateException("사람 이름이 입력되지 않았습니다.");
         }
         this.people = people;
     }
