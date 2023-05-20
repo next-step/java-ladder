@@ -1,12 +1,14 @@
 package ladder.domain;
 
-import ladder.control.Preferences;
 import ladder.exception.UnableReachLineCount;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.prefs.Preferences;
 
 public class Ladder {
+    private static final int INFINITE_LOOP_THRESHOLD = 10000;
+
     private final Set<Line> lines;
 
     private Ladder() {
@@ -18,7 +20,24 @@ public class Ladder {
     }
 
     public static Ladder of(int column, int row) {
-        return Ladder.of(column, row, Preferences.createLineCount(column, row));
+        return Ladder.of(column, row, createLineCount(column, row));
+    }
+
+    private static int createLineCount(int column, int row) {
+            int min = Math.min(canCreateAnyCasePolicy(column, row), defaultLadderCreatePolicy(column));
+            System.out.printf("사다리 Line 은 %d 개 만듭니다%s", min, System.lineSeparator());
+            return min;
+    }
+
+    private static int defaultLadderCreatePolicy(int column) {
+            return column * 2 - 1;
+    }
+
+    private static int canCreateAnyCasePolicy(int column, int row) {
+        return ((column - 1) / 2) * row;
+        // 예시에서 참가자 4명, 7개사다리, 높이5 였는데
+        // 참가자4명, 높이5 일때, 사다리 7개를 만들지 못하는 경우가 발생함. 이에 무조건 사다리를 만들수 있는 수로만 사다리의 생성을 제한함
+
     }
 
     public static Ladder of(int column, int row, int count) {
@@ -31,7 +50,7 @@ public class Ladder {
     }
 
     private static void addLineInfiniteLoopWatchDog(int i) {
-        if (i > Preferences.circuitBreakerTriggerLoopCount()) {
+        if (i > INFINITE_LOOP_THRESHOLD) {
             throw new UnableReachLineCount();
         }
     }

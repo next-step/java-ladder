@@ -15,8 +15,8 @@ public class UsersTest {
     @BeforeEach
     public void beforeEach() {
         User kilby = new User("kilby");
-        User david = new User("Dawon-Kahng");
-        User feynman = new User("feynman");
+        User david = new User("Kahng");
+        User feynman = new User("fyman");
         users = new Users(List.of(kilby, david, feynman));
     }
 
@@ -39,7 +39,7 @@ public class UsersTest {
         List<String> names = users.names();
         //then
         assertThat(names).as("").contains("kilby");
-        assertThat(names).as("").contains("Dawon-Kahng");
-        assertThat(names).as("").contains("feynman");
+        assertThat(names).as("").contains("Kahng");
+        assertThat(names).as("").contains("fyman");
     }
 }

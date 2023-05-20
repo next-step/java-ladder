@@ -1,12 +1,16 @@
 package ladder.domain;
 
-import ladder.control.Preferences;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Renderer {
+    private static final String SHAPE_OF_PILLAR = "|";
+    private static final String SHAPE_OF_EMPTY_LINE = "      ";
+    private static final String SHAPE_OF_ALLOCATED_LINE = "------";
+    private static final String USERS_DELIMITER = ", ";
+
     private final int columnLimit;
     private final int rowLimit;
     private final Ladder ladder;
@@ -32,12 +36,11 @@ public class Renderer {
     }
 
     private String renderingPixel(Column columnIndex, Row rowIndex) {
-        return Preferences.pillarShape()
-                .concat(lineShape(columnIndex, rowIndex));
+        return  SHAPE_OF_PILLAR.concat(lineShape(columnIndex, rowIndex));
     }
 
     private String lineShape(Column columnIndex, Row rowIndex) {
-        return ladder.existLine(new Line(columnIndex, rowIndex)) ? Preferences.allocatedLineShape() : Preferences.emptyLineShape();
+        return ladder.existLine(new Line(columnIndex, rowIndex)) ? SHAPE_OF_ALLOCATED_LINE : SHAPE_OF_EMPTY_LINE;
     }
 
     public Scene renderingSceneWithUser() {
@@ -46,6 +49,6 @@ public class Renderer {
 
     private String renderingSceneUserArea() {
         return users.names().stream()
-                .collect(Collectors.joining(Preferences.userDelimiter()));
+                .collect(Collectors.joining(USERS_DELIMITER));
     }
 }

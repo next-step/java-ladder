@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import ladder.control.Preferences;
 import ladder.exception.OutOfRoWRangeException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -30,7 +29,7 @@ public class RowTest {
         //when
         //then
         assertThatThrownBy(() -> {
-            Row.of(Preferences.maxRowPolicy() + 1);
+            Row.of(51);
         }).isInstanceOf(OutOfRoWRangeException.class)
                 .hasMessageContaining("사용 가능한 Row 의 범위에서 초과하였습니다");
     }

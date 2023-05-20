@@ -1,10 +1,11 @@
 package ladder.domain;
 
-import ladder.control.Preferences;
 
 import java.util.Random;
 
 public class LineStrategyRandom implements LineStrategy {
+
+    private static final int LADDER_COLUMN_CLAMP_SIZE = 1;
 
     private final int columnLimit;
     private final int rowLimit;
@@ -12,7 +13,7 @@ public class LineStrategyRandom implements LineStrategy {
     private final Random random;
 
     private LineStrategyRandom(int columnLimit, int rowLimit) {
-        this.columnLimit = columnLimit - Preferences.ColumnClampingSize();
+        this.columnLimit = columnLimit - LADDER_COLUMN_CLAMP_SIZE;
         this.rowLimit = rowLimit;
         this.random = new Random();
     }

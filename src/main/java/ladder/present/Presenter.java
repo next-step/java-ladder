@@ -1,6 +1,5 @@
 package ladder.present;
 
-import ladder.control.Preferences;
 import ladder.domain.Scene;
 import ladder.domain.User;
 import ladder.domain.Users;
@@ -13,6 +12,8 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class Presenter {
+    private static final int MAX_ROW_AND_RADDER_HEIGHT = 50;
+    private static final int MAX_COLUMN_AND_USER_COUNT = 50;
     private final Scanner scanner;
 
     public Presenter() {
@@ -32,7 +33,7 @@ public class Presenter {
     }
 
     private void validateInputUsersCount(int usersCount) {
-        if (usersCount > Preferences.maxUserCount()) {
+        if (usersCount > MAX_COLUMN_AND_USER_COUNT) {
             throw new OutOfUsersCountException();
         }
     }
@@ -45,7 +46,7 @@ public class Presenter {
     }
 
     private void validateInputLadderHeight(int height) {
-        if (height > Preferences.maxLadderHeight()) {
+        if (height > MAX_ROW_AND_RADDER_HEIGHT) {
             throw new OutOfLadderHeightException();
         }
     }
