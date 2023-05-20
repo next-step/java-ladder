@@ -11,4 +11,8 @@ public class LadderGame {
                 .collect(Collectors.toList());
         return UserNames.of(userNames);
     }
+
+    public LadderHeight readLadderHeight(int height){
+        return new LadderHeight(height);
+    }
 }

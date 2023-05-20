@@ -1,6 +1,7 @@
 package nextstep.ladder.controller;
 
 import nextstep.ladder.domain.LadderGame;
+import nextstep.ladder.domain.LadderHeight;
 import nextstep.ladder.domain.UserNames;
 import nextstep.ladder.view.InputView;
 
@@ -15,7 +16,7 @@ public class LadderGameController {
 
     public void playLadderGame() {
         String names = inputView.readUserNames();
-        int ladderHeight = inputView.readLadderHeight();
+        LadderHeight ladderHeight = ladderGame.readLadderHeight(inputView.readLadderHeight());
         UserNames userNames = ladderGame.creatUser(names);
     }
 }
