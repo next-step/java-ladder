@@ -26,19 +26,19 @@ public class Lambda {
         }).start();
     }
 
-    public static int sumAll(List<Integer> numbers, Conditional c) {
-        int total = 0;
-        for (int number : numbers) {
-            total += getNumberByConditional(c, number);
-        }
-        return total;
+    public static int sumAll(List<Integer> numbers) {
+        return sum(numbers, n -> true);
     }
 
-    private static int getNumberByConditional(Conditional c, int number) {
-        if (c.test(number)) {
-            return number;
-        }
-        return 0;
+    public static int sumAllEven(List<Integer> numbers) {
+        return sum(numbers, n -> n % 2 == 0);
     }
 
+    public static int sumAllOverThree(List<Integer> numbers) {
+        return sum(numbers, n -> n > 3);
+    }
+
+    private static int sum(List<Integer> numbers, Conditional c) {
+        return numbers.stream().filter(c::test).reduce(0, Integer::sum);
+    }
 }
