@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Position {
 
-    private static final int NEXT_ROW_NUMBER = 1;
+    private static final int NEXT_HEIGHT_NUMBER = 1;
 
     private final int x;
     private final int y;
@@ -14,8 +14,12 @@ public class Position {
         this.y = y;
     }
 
-    public Position nextRowPosition() {
-        return new Position(this.x, this.y + NEXT_ROW_NUMBER);
+    public Position nextHeightPosition() {
+        return new Position(this.x, this.y + NEXT_HEIGHT_NUMBER);
+    }
+
+    public boolean isNotMatch(Position position) {
+        return !this.equals(position);
     }
 
     @Override
