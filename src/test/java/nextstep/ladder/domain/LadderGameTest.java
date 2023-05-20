@@ -16,10 +16,12 @@ class LadderGameTest {
     private static final int HEIGHT = 5;
 
     private LadderGame ladderGame;
+    private Results results;
 
     @BeforeEach
     void setUp() {
-        ladderGame = new LadderGame(USERNAMES, RESULTS, HEIGHT, new TestLinesGenerator());
+        ladderGame = new LadderGame(USERNAMES, HEIGHT, new TestLinesGenerator());
+        results = Results.toResults(RESULTS, HEIGHT);
     }
 
     @DisplayName("kim,lian,lizzy,lego 파라미터로 사다리 생성 시 사다리에 가로 길이는 4가 되야한다.")
@@ -43,7 +45,7 @@ class LadderGameTest {
     }, delimiter = '|')
     void 사다리_결과_검증(String userName, String result) {
         ladderGame.play();
-        assertThat(ladderGame.userResult(userName)).isEqualTo(result);
+        assertThat(results.reuslt(ladderGame.userCurrentPosition(userName))).isEqualTo(result);
     }
 
 }

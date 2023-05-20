@@ -20,7 +20,8 @@ public class Ladder {
     }
 
     public boolean hasLine(final Line line) {
-        return ladderLines.stream().anyMatch(lines -> lines.hasLine(line));
+        return ladderLines.stream()
+                .anyMatch(lines -> lines.hasLine(line));
     }
 
     public int height() {

@@ -12,10 +12,10 @@ public class Users {
     private static final int START_HEIGHT = 0;
     private static final String USER_NAME_SEPARATOR = ",";
 
-    private final List<User> users;
+    private final List<User> values;
 
-    private Users(List<User> users) {
-        this.users = users;
+    private Users(List<User> values) {
+        this.values = values;
     }
 
     public static Users toUsers(final String userNames) {
@@ -35,21 +35,21 @@ public class Users {
     }
 
     public int userCount() {
-        return users.size();
+        return values.size();
     }
 
     public List<String> userNames() {
-        return users.stream()
+        return values.stream()
                 .map(User::name)
                 .collect(Collectors.toList());
     }
 
     public List<User> unmodifiableUsers() {
-        return Collections.unmodifiableList(users);
+        return Collections.unmodifiableList(values);
     }
 
     public Position findUserResultPosition(final String userName) {
-        return users.stream()
+        return values.stream()
                 .filter(user -> user.isMatchName(userName))
                 .map(User::currentPosition)
                 .findFirst()

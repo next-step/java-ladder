@@ -20,14 +20,14 @@ public class OutputView {
     private static final String LADDER_MENT = "사다리 결과";
     private static final String RESULT_MENT = "실행 결과";
 
-    public static void drawLadder(LadderGame ladderGame) {
+    public static void drawLadder(final LadderGame ladderGame, Results results) {
         System.out.println(LADDER_MENT);
         System.out.println();
         drawLadderUsers(ladderGame);
         for (int height = 0; height < ladderGame.ladderHeight(); height++) {
             drawLadderHeight(ladderGame, height);
         }
-        drawLadderResults(ladderGame);
+        drawLadderResults(results);
     }
 
     private static void drawLadderUsers(final LadderGame ladderGame) {
@@ -58,30 +58,31 @@ public class OutputView {
         return new Line(new Position(width, height), new Position(width + NEXT_WIDTH_NUMBER, height));
     }
 
-    private static void drawLadderResults(final LadderGame ladderGame) {
-        for (String result : ladderGame.inGameResults()) {
+    private static void drawLadderResults(final Results results) {
+        for (String result : results.results()) {
             System.out.printf("%-" + RESULT_PADDING_RANGE + "s ", result);
         }
         System.out.println();
     }
 
-    public static void drawResult(final LadderGame ladderGame, final String userName) {
+    public static void drawResult(final LadderGame ladderGame, final Results results, final String userName) {
         if (userName.equals(ALL_USER)) {
-            drawAllResult(ladderGame);
+            drawAllResult(ladderGame, results);
             return;
         }
-        drawUserResult(ladderGame, userName);
+        drawUserResult(ladderGame, results, userName);
     }
 
-    private static void drawUserResult(final LadderGame ladderGame, final String userName) {
+    private static void drawUserResult(final LadderGame ladderGame, final Results results, final String userName) {
         System.out.println(RESULT_MENT);
-        System.out.println(ladderGame.userResult(userName));
+        System.out.println(results.reuslt(ladderGame.userCurrentPosition(userName)));
+
     }
 
-    private static void drawAllResult(final LadderGame ladderGame) {
+    private static void drawAllResult(final LadderGame ladderGame, final Results results) {
         System.out.println(RESULT_MENT);
         for (String userName : ladderGame.inGameUserNames()) {
-            System.out.printf(USER_RESULT_FORMAT, userName, ladderGame.userResult(userName));
+            System.out.printf(USER_RESULT_FORMAT, userName, results.reuslt(ladderGame.userCurrentPosition(userName)));
             newLine();
         }
     }
