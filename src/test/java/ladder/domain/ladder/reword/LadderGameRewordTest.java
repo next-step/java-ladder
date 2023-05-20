@@ -15,7 +15,7 @@ public class LadderGameRewordTest extends BaseTest {
 
     // when & then
     super.assertThatThrowsLadderGameException(
-        () -> new LadderGameReword(-1),
+        () -> new LadderGameReword(invalidPrize),
         ExceptionCode.REWORD_MUST_POSITIVE_ZERO
     );
   }
