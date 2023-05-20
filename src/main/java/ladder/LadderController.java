@@ -12,8 +12,9 @@ public class LadderController {
         Results results = InputView.typeResult(attendances.size());
         int maxHeight = InputView.typeMaxHeights();
 
-        Ladder ladder = new Ladder(attendances.size(), maxHeight);
-        ResultMap resultMap = new LadderGame(attendances, ladder).resultMap();
+        Ladder ladder = new Ladder(attendances, maxHeight);
+        LadderGame game = new LadderGame(attendances, ladder);
+        ResultMap resultMap = game.resultMap(ladder);
 
         ResultView.printResultHeader();
         ResultView.printAttendances(attendances);
