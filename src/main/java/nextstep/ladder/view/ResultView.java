@@ -3,8 +3,13 @@ package nextstep.ladder.view;
 import nextstep.ladder.domain.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class ResultView {
+
+    private static final int BEGIN_INDEX = 0;
+    private static final int NAME_SPACE = 6;
 
     static void printPeopleInputCommand() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
@@ -29,23 +34,21 @@ public class ResultView {
     }
 
     private static String makeNames(Ladder ladder) {
-        StringBuilder sb = new StringBuilder();
-
         List<Person> people = ladder.people().value();
-        for (int i = 0; i < people.size(); i++) {
-            String name = people.get(i).name();
 
-            if (i == 0) {
-                sb.append(name);
-                continue;
-            }
+        return IntStream.range(BEGIN_INDEX, people.size())
+                .mapToObj(i -> {
+                    String name = people.get(i).name();
 
-            for (int j = 0; j < 6 - name.length(); j++) {
-                sb.append(' ');
-            }
-            sb.append(name);
-        }
-        return sb.toString();
+                    if (BEGIN_INDEX == i) {
+                        return name;
+                    }
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(" ".repeat(NAME_SPACE - name.length()));
+                    sb.append(name);
+                    return sb.toString();
+                })
+                .collect(Collectors.joining());
     }
 
     private static void printLines(Ladder ladder) {
