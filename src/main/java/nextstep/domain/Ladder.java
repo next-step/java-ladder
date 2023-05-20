@@ -12,11 +12,11 @@ public class Ladder implements Iterable<Line>{
         this.ladder = ladder;
     }
 
-    public static Ladder makeLadder(int height, int countOfPerson) {
+    public static Ladder makeLadder(int height, int countOfPerson, LineStrategy strategy) {
         List<Line> ladder = new ArrayList<>();
 
         for (int i = 0; i < height; i++) {
-            ladder.add(new Line(countOfPerson, new Random()::nextBoolean));
+            ladder.add(new Line(countOfPerson, strategy));
         }
 
         return new Ladder(ladder);

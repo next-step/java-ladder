@@ -12,7 +12,7 @@ public class LadderTest {
     @Test
     void 사다리의_높이는_입력받은_높이와_같다() {
 
-        Ladder ladder = Ladder.makeLadder(5, 3);
+        Ladder ladder = Ladder.makeLadder(5, 3, () -> true);
 
         assertThat(ladder.ladder()).hasSize(5);
     }
@@ -22,7 +22,7 @@ public class LadderTest {
     void 사다리_탄_후의_위치는_0이상_참가자_수_미만(int position) {
 
         // given
-        Ladder ladder = Ladder.makeLadder(5, 4);
+        Ladder ladder = Ladder.makeLadder(5, 4, () -> true);
 
         // when
         int result = ladder.climb(position);
