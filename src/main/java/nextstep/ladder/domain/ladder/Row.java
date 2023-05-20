@@ -19,11 +19,11 @@ public class Row {
     public static Row initialize(int size, BooleanGenerator booleanGenerator) {
         Row row = new Row(new ArrayList<>(), size);
         IntStream.range(0, size)
-                .forEach(index -> row.addPointType(index, booleanGenerator));
+                .forEach(index -> row.addConnectionType(index, booleanGenerator));
         return row;
     }
 
-    private void addPointType(int index, BooleanGenerator booleanGenerator) {
+    private void addConnectionType(int index, BooleanGenerator booleanGenerator) {
         if (index == 0) {
             connectionTypes.add(ConnectionType.getRightOrNone(booleanGenerator.getBoolean()));
             return;
