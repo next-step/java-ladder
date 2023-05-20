@@ -9,13 +9,13 @@ import java.util.stream.IntStream;
 public class Renderer {
     private final int columnLimit;
     private final int rowLimit;
-    private final Lines lines;
+    private final Ladder ladder;
     private final Users users;
 
-    public Renderer(int columnLimit, int rowLimit, Lines lines, Users users) {
+    public Renderer(int columnLimit, int rowLimit, Ladder ladder, Users users) {
         this.columnLimit = columnLimit;
         this.rowLimit = rowLimit;
-        this.lines = lines;
+        this.ladder = ladder;
         this.users = users;
     }
 
@@ -37,7 +37,7 @@ public class Renderer {
     }
 
     private String lineShape(Column columnIndex, Row rowIndex) {
-        return lines.existLine(new Line(columnIndex, rowIndex)) ? Preferences.allocatedLineShape() : Preferences.emptyLineShape();
+        return ladder.existLine(new Line(columnIndex, rowIndex)) ? Preferences.allocatedLineShape() : Preferences.emptyLineShape();
     }
 
     public Scene renderingSceneWithUser() {

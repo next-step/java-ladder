@@ -22,7 +22,7 @@ public class RendererTest {
                         new User("c")
                 )
         );
-        Lines lines = new Lines(
+        Ladder ladder = new Ladder(
                 Set.of(
                         new Line(0, 0),
                         new Line(1, 1),
@@ -35,7 +35,7 @@ public class RendererTest {
                 "|      |      |------|      ",
                 "|      |      |      |      "
         );
-        Renderer renderer = new Renderer(4, 4, lines, users);
+        Renderer renderer = new Renderer(4, 4, ladder, users);
         //when
         Scene scene = renderer.renderingSceneWithUser();
         List<String> actual = scene.getLadderArea();
