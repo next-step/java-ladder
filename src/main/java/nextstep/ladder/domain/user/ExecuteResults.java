@@ -48,8 +48,8 @@ public class ExecuteResults {
                         o -> o,
                         userName -> {
                             int userLocation = participants.getUserLocation(userName);
-                            int resultLocation = ladder.getResult(userLocation);
-                            return getResult(resultLocation);
+                            Position leafPosition = ladder.getLeaf(userLocation);
+                            return getResult(leafPosition.getCurrentPosition());
                         }, (x, y) -> x, LinkedHashMap::new));
         userNameResultMap.putAll(result);
     }

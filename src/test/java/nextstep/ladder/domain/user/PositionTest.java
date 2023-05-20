@@ -1,60 +1,27 @@
 package nextstep.ladder.domain.user;
 
-import nextstep.ladder.domain.ladder.Ladder;
-import nextstep.ladder.domain.ladder.Points;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class PositionTest {
 
     @Test
-    @DisplayName("x는 좌측과 우측으로 이동한다.")
+    @DisplayName("Position 은 현재 위치를 갖고, 반환한다.")
     void test01() {
-        Position position = new Position(0);
-        position.moveRight();
-        position.moveRight();
-        position.moveRight();
-        position.moveLeft();
-        assertThat(position.getX()).isEqualTo(2);
+        int currentPosition = 3;
+        Position position = new Position(currentPosition);
+        assertThat(position.getCurrentPosition()).isSameAs(currentPosition);
     }
 
     @Test
-    @DisplayName("y는 아래로만 이동한다.(값을 반환하지 않아 에러여부만 확인)")
+    @DisplayName("Position 은 MovePoint를 받아 새로운 위치를 반환한다.")
     void test02() {
         Position position = new Position(0);
-        Assertions.assertThatNoException()
-                .isThrownBy(position::moveDown);
-    }
-
-    @Test
-    @DisplayName("Lines를 기준으로 움직임 가능 여부를 판단한다.")
-    void test03() {
-        int linesSize = 2;
-        Ladder ladder = Ladder.create(linesSize, 1);
-
-        Position position = new Position(0);
-
-        position.moveDown();
-        assertThat(position.movable(ladder.getRows())).isTrue();
-        position.moveDown();
-        assertThat(position.movable(ladder.getRows())).isFalse();
-    }
-
-    @Test
-    @DisplayName("Lines 를 이용해 연결된 위치로 이동한다.")
-    void test04() {
-        Points points = Points.initialize(2, () -> true);
-        Ladder ladder = new Ladder(List.of(points));
-        Position position = new Position(0);
-        position.move(ladder.getRows());
-
-        assertThat(position.getX()).isEqualTo(1);
-        assertThat(position.movable(ladder.getRows())).isFalse();
+        Position movedPosition = position.move(1);
+        assertThat(movedPosition).isNotEqualTo(position);
+        assertThat(movedPosition.getCurrentPosition()).isSameAs(1);
     }
 
 }

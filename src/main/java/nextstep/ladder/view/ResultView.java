@@ -1,8 +1,8 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.ladder.ConnectionStatus;
+import nextstep.ladder.domain.ladder.ConnectionType;
 import nextstep.ladder.domain.ladder.Ladder;
-import nextstep.ladder.domain.ladder.Points;
+import nextstep.ladder.domain.ladder.Row;
 import nextstep.ladder.domain.user.ExecuteResults;
 import nextstep.ladder.domain.user.Participants;
 import nextstep.ladder.domain.user.UserName;
@@ -43,7 +43,7 @@ public final class ResultView {
         System.out.println(drewLines);
     }
 
-    private static String drawLines(List<Points> rows) {
+    private static String drawLines(List<Row> rows) {
         return rows.stream()
                 .map(points -> drawFirstColumn() + drawRows(points))
                 .collect(Collectors.joining(NEW_LINE));
@@ -53,15 +53,15 @@ public final class ResultView {
         return String.join(WHITE_SPACE_CHAR, participants.getFormattedUserNames());
     }
 
-    private static String drawRows(Points points) {
-        return points.getConnectionStatuses()
+    private static String drawRows(Row row) {
+        return row.getConnectionTypes()
                 .stream()
                 .map(drawRow())
-                .collect(Collectors.joining());
+                .collect(Collectors.joining(COLUMN_LINE_CHAR));
     }
 
-    private static Function<ConnectionStatus, String> drawRow() {
-        return connectionStatus -> connectionStatus.isConnected() ? drawConnectedRow() : drawUnconnectedRow();
+    private static Function<ConnectionType, String> drawRow() {
+        return connectionType -> connectionType.isRight() ? drawConnectedRow() : drawUnconnectedRow();
     }
 
     private static String drawFirstColumn() {
@@ -69,11 +69,11 @@ public final class ResultView {
     }
 
     private static String drawConnectedRow() {
-        return repeatChar(UserName.getMaxLength(), ROW_LINE_CHAR) + COLUMN_LINE_CHAR;
+        return repeatChar(UserName.getMaxLength(), ROW_LINE_CHAR);
     }
 
     private static String drawUnconnectedRow() {
-        return repeatChar(UserName.getMaxLength(), WHITE_SPACE_CHAR) + COLUMN_LINE_CHAR;
+        return repeatChar(UserName.getMaxLength(), WHITE_SPACE_CHAR);
     }
 
     private static String repeatChar(int repeatCount, String anyChar) {

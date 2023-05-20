@@ -23,13 +23,13 @@ class LadderTest {
     }
 
     @Test
-    @DisplayName("사용자 수보다 하나작은 points 를 생성한다.")
+    @DisplayName("사용자 수만큼 point 를 생성한다.")
     void test02() {
         int height = 5;
         int userCount = 5;
         Ladder ladder = Ladder.create(height, userCount);
 
-        assertThat(ladder.getRows().get(0).getConnectionStatuses()).hasSize(userCount - 1);
+        assertThat(ladder.getRows().get(0).getConnectionTypes()).hasSize(userCount);
     }
 
     @Test
@@ -44,12 +44,12 @@ class LadderTest {
     @Test
     @DisplayName("참여자 위치를 입력하면 실행결과를 반환한다.")
     void test04() {
-        Points points = Points.initialize(2, () -> true);
-        Ladder ladder = new Ladder(List.of(points));
+        Row row = Row.initialize(2, () -> true);
+        Ladder ladder = new Ladder(List.of(row));
 
         assertAll(
-                () -> assertThat(ladder.getResult(0)).isEqualTo(1),
-                () -> assertThat(ladder.getResult(1)).isEqualTo(0)
+                () -> assertThat(ladder.getLeaf(0).getCurrentPosition()).isEqualTo(1),
+                () -> assertThat(ladder.getLeaf(1).getCurrentPosition()).isZero()
         );
     }
 
