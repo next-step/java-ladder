@@ -3,12 +3,15 @@ package ladder.domain;
 import ladder.control.Preferences;
 import ladder.exception.OutOfColumnRangeException;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Column {
-    private static final Column[] COLUMNS_CACHE = new Column[Preferences.maxColumnPolicy() + 1];
+    private static final List<Column> COLUMNS_CACHE = new ArrayList<>(Preferences.maxColumnPolicy() + 1);
 
     static {
         for (int i = 0; i <= Preferences.maxColumnPolicy(); i++) {
-            COLUMNS_CACHE[i] = new Column(i);
+            COLUMNS_CACHE.add(i, new Column(i));
         }
     }
 
@@ -20,7 +23,7 @@ public class Column {
 
     public static Column of(int value) {
         if ((0 <= value) && (value <= Preferences.maxColumnPolicy())) {
-            return COLUMNS_CACHE[value];
+            return COLUMNS_CACHE.get(value);
         }
         throw new OutOfColumnRangeException();
     }
