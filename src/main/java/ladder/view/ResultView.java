@@ -2,10 +2,10 @@ package ladder.view;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import ladder.domain.ladder.line.HorizontalLadderLine;
-import ladder.domain.ladder.line.point.LinePoint;
 import ladder.domain.ladder.ladder.Ladder;
+import ladder.domain.ladder.line.HorizontalLadderLine;
 import ladder.domain.ladder.line.point.LadderPointDirection;
+import ladder.domain.ladder.line.point.LinePoint;
 import ladder.domain.ladder.player.LadderGamePlayerInfo;
 import ladder.domain.player.Player;
 import ladder.domain.result.LadderGamePlayerResult;
@@ -67,7 +67,7 @@ public class ResultView {
   }
 
   private String stringifyPlayerResult(LadderGamePlayerResult playResult) {
-    return String.format("%-5s : %s", playResult.getPlayerName(), stringifyRewordView(playResult.getReword()));
+    return String.format("%-5s : %s", playResult.getPlayerName(), stringifyRewordView(playResult.getRewordPrize()));
   }
 
   private String stringifyRewordView(int reword) {

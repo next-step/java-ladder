@@ -17,7 +17,7 @@ public class LadderGamePlayerResult {
     return player.getPlayerName();
   }
 
-  public int getReword() {
+  public int getRewordPrize() {
     return reword.getRewordPrize();
   }
 }

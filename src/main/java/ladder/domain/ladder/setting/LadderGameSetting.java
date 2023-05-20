@@ -1,8 +1,8 @@
 package ladder.domain.ladder.setting;
 
 import java.util.List;
-import ladder.domain.ladder.ladder.Ladder;
 import ladder.domain.ladder.ladder.DefaultLadderGenerator;
+import ladder.domain.ladder.ladder.Ladder;
 import ladder.domain.ladder.ladder.LadderGenerator;
 import ladder.domain.ladder.player.LadderGamePlayerInfo;
 import ladder.domain.ladder.simulator.DefaultLadderGameSimulator;

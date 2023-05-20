@@ -5,7 +5,6 @@ import ladder.domain.ladder.line.point.LadderPointDirection;
 public class Player {
 
   private final PlayerName playerName;
-
   private final PlayerPosition playerPosition;
 
   public Player(String name, int currentLine) {
