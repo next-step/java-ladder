@@ -2,44 +2,34 @@ package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Line {
 
     private static final int BEGIN_INDEX = 0;
-    private static final boolean EXIST_POINT = true;
-    private static final boolean NON_EXIST_POINT = false;
+    private static final boolean EMPTY_POINT = false;
     private static final double HALF = 0.5;
 
-    private final List<Boolean> points = new ArrayList<>();
+    private final List<Boolean> points;
 
     public Line(int countOfPerson) {
-        makeLine(countOfPerson);
+        points = generateLine(countOfPerson);
     }
 
-    public void makeLine(int countOfPerson) {
-        for (int i = BEGIN_INDEX; i < countOfPerson; i++) {
-            addPoint(i);
+    public List<Boolean> generateLine(int countOfPerson) {
+        List<Boolean> points = new ArrayList<>();
+
+        IntStream.range(BEGIN_INDEX, countOfPerson)
+                .forEach(idx -> points.add(createPoint(idx, points)));
+
+        return points;
+    }
+
+    private Boolean createPoint(int idx, List<Boolean> points) {
+        if (BEGIN_INDEX == idx) {
+            return EMPTY_POINT;
         }
-    }
-
-    private void addPoint(int idx) {
-        if (isMakeable(idx)) {
-            points.add(EXIST_POINT);
-            return;
-        }
-        points.add(NON_EXIST_POINT);
-    }
-
-    private boolean isMakeable(int idx) {
-        return isNotBeginIndex(idx) && isPrevPointNonExist(idx) && existCriteria();
-    }
-
-    private boolean isNotBeginIndex(int idx) {
-        return BEGIN_INDEX != idx;
-    }
-
-    private boolean isPrevPointNonExist(int idx) {
-        return NON_EXIST_POINT == points.get(idx - 1);
+        return EMPTY_POINT == points.get(idx - 1) && existCriteria();
     }
 
     private boolean existCriteria() {
