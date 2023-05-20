@@ -1,7 +1,6 @@
 package nextstep.fp;
 
 import java.util.List;
-import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
 public class Lambda {
@@ -30,13 +29,10 @@ public class Lambda {
 
     public static int sum(List<Integer> numbers, Predicate<Integer> predicate) {
         int total = 0;
-        for (int number : numbers) {
-            if (!predicate.test(number)) {
-                continue;
-            }
-            total += number;
-        }
-        return total;
+
+        return numbers.stream()
+                .filter(number -> predicate.test(number))
+                .reduce(0, (x, y) -> x + y);
     }
 
     public static int sumAll(List<Integer> numbers) {
