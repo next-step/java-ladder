@@ -29,10 +29,14 @@ public class Line {
         if (BEGIN_INDEX == idx) {
             return EMPTY_POINT;
         }
-        return EMPTY_POINT == points.get(idx - 1) && existCriteria();
+        return isPrevPointEmpty(idx, points) && isCurrPointNonEmpty();
     }
 
-    private boolean existCriteria() {
+    private boolean isPrevPointEmpty(int idx, List<Boolean> points) {
+        return EMPTY_POINT == points.get(idx - 1);
+    }
+
+    private boolean isCurrPointNonEmpty() {
         return HALF < Math.random();
     }
 
