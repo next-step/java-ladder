@@ -17,16 +17,11 @@ public class LadderApplication {
 
         while (true) {
             String name = InputScanner.readNameToShowResult();
-            OutputPrinter.printMatchingResult(transformName(name, names), ladder, results);
+            OutputPrinter.printMatchingResult(
+                    InputNameType.from(name).name(names, name),
+                    ladder,
+                    results
+            );
         }
-    }
-
-    private static List<String> transformName(String inputName, List<String> names) {
-        InputNameType inputNameType = InputNameType.of(inputName);
-        if (inputNameType == InputNameType.ALL) {
-            return names;
-        }
-
-        return List.of(inputName);
     }
 }
