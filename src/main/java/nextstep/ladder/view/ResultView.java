@@ -56,33 +56,29 @@ public class ResultView {
     }
 
     private static String makeLines(Ladder ladder) {
-        StringBuilder sb = new StringBuilder();
-        Lines lines = ladder.lines();
         People people = ladder.people();
-        int firstNameLength = people.firstNameLength();
+        Lines lines = ladder.lines();
 
-        for (Line line : lines.value()) {
-            List<Boolean> points = line.points();
+        return lines.value().stream()
+                .map(line -> {
+                    StringBuilder sb = new StringBuilder();
+                    IntStream.range(BEGIN_INDEX, line.points().size())
+                            .mapToObj(idx -> generatePointString(people, line, idx)
+                            )
+                            .forEach(sb::append);
 
-            for (int j = 0; j < points.size(); j++) {
-                if (j == 0) {
-                    for (int i = 0; i < firstNameLength; i++) {
-                        sb.append(" ");
-                    }
-                    sb.append("|");
-                    continue;
-                }
-
-                if (points.get(j)) {
-                    sb.append("-----");
-                } else {
-                    sb.append("     ");
-                }
-                sb.append("|");
-            }
-            sb.append("\n");
-        }
-
-        return sb.toString();
+                    sb.append("\n");
+                    return sb.toString();
+                })
+                .collect(Collectors.joining());
     }
+
+    private static String generatePointString(People people, Line line, int idx) {
+        if (BEGIN_INDEX == idx) {
+            return " ".repeat(people.firstPersonNameLength()) + "|";
+        }
+        return line.points().get(idx) ? "-----|" : "     |";
+    }
+
 }
+

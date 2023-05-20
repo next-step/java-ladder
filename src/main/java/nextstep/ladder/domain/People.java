@@ -20,7 +20,7 @@ public class People {
                 collect(Collectors.toList());
     }
 
-    public int firstNameLength() {
+    public int firstPersonNameLength() {
         Optional<Person> firstPerson = Optional.ofNullable(people.get(BEGIN_INDEX));
         return firstPerson.map(person -> person.name().length()).orElse(0);
     }

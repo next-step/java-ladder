@@ -13,7 +13,7 @@ public class PeopleTest {
         People people = new People(new String[]{"pobi", "honux"});
 
         //when
-        int firstNameLength = people.firstNameLength();
+        int firstNameLength = people.firstPersonNameLength();
 
         //then
         assertThat(firstNameLength).isEqualTo(4);
