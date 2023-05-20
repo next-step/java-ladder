@@ -18,8 +18,15 @@ public class LadderGame {
         Record record = participants.go(ladder, gameResult);
 
         PrintView.printResult(participants, ladder, gameResult);
+        showRecord(record);
+    }
 
+    private static void showRecord(Record record) {
         String participant = InputView.participant();
         PrintView.printFinalResult(participant, record);
+
+        if (!participant.equals("all")) {
+            showRecord(record);
+        }
     }
 }
