@@ -3,12 +3,15 @@ package ladder.domain;
 import ladder.control.Preferences;
 import ladder.exception.OutOfRoWRangeException;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Row {
-    private static final Row[] ROW_CACHE = new Row[Preferences.maxRowPolicy() + 1];
+    private static final List<Row> ROW_CACHE = new ArrayList<>( Preferences.maxRowPolicy() + 1);
 
     static {
         for (int i = 0; i <= Preferences.maxRowPolicy(); i++) {
-            ROW_CACHE[i] = new Row(i);
+            ROW_CACHE.add(i, new Row(i));
         }
     }
 
@@ -20,7 +23,7 @@ public class Row {
 
     public static Row of(int value) {
         validateMaxRow(value);
-        return ROW_CACHE[value];
+        return ROW_CACHE.get(value);
     }
 
     private static void validateMaxRow(int value) {
@@ -46,5 +49,4 @@ public class Row {
         Row otherRow = (Row) o;
         return this.hashCode() == otherRow.hashCode();
     }
-
 }
