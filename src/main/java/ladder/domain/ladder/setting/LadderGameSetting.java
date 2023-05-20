@@ -5,9 +5,6 @@ import ladder.domain.ladder.ladder.Ladder;
 import ladder.domain.ladder.ladder.DefaultLadderGenerator;
 import ladder.domain.ladder.ladder.LadderGenerator;
 import ladder.domain.ladder.player.LadderGamePlayerInfo;
-import ladder.domain.ladder.reword.DefaultRewordGenerator;
-import ladder.domain.ladder.reword.LadderGameRewordInfo;
-import ladder.domain.ladder.reword.RewordGenerator;
 import ladder.domain.ladder.simulator.DefaultLadderGameSimulator;
 import ladder.domain.ladder.simulator.LadderGameSimulator;
 import ladder.domain.player.DefaultPlayerGenerator;
@@ -17,14 +14,11 @@ public class LadderGameSetting {
 
   private final PlayerGenerator playerGenerator;
   private final LadderGenerator ladderGenerator;
-  private final RewordGenerator rewordGenerator;
-
   private final LadderGameSimulator gameSimulator;
 
-  private LadderGameSetting(PlayerGenerator playerGenerator, LadderGenerator ladderGenerator, RewordGenerator rewordGenerator, LadderGameSimulator gameSimulator) {
+  private LadderGameSetting(PlayerGenerator playerGenerator, LadderGenerator ladderGenerator, LadderGameSimulator gameSimulator) {
     this.playerGenerator = playerGenerator;
     this.ladderGenerator = ladderGenerator;
-    this.rewordGenerator = rewordGenerator;
     this.gameSimulator = gameSimulator;
   }
 
@@ -45,10 +39,6 @@ public class LadderGameSetting {
     return ladderGenerator.generateLadderLines(playerCnt, ladderHeight);
   }
 
-  public LadderGameRewordInfo generateReword(List<String> rewords) {
-    return rewordGenerator.generateReword(rewords);
-  }
-
   public LadderGameSimulator getGameSimulator() {
     return gameSimulator;
   }
@@ -57,7 +47,6 @@ public class LadderGameSetting {
 
     private PlayerGenerator playerGenerator;
     private LadderGenerator ladderGenerator;
-    private RewordGenerator rewordGenerator;
     private LadderGameSimulator gameSimulator;
 
     public LadderGameSettingBuilder playerGenerator(PlayerGenerator playerGenerator) {
@@ -67,11 +56,6 @@ public class LadderGameSetting {
 
     public LadderGameSettingBuilder ladderGenerator(LadderGenerator ladderGenerator) {
       this.ladderGenerator = ladderGenerator;
-      return this;
-    }
-
-    public LadderGameSettingBuilder rewordGenerator(RewordGenerator rewordGenerator) {
-      this.rewordGenerator = rewordGenerator;
       return this;
     }
 
@@ -94,13 +78,6 @@ public class LadderGameSetting {
       return this.ladderGenerator;
     }
 
-    private RewordGenerator getOrDefaultRewordGenerator() {
-      if (this.rewordGenerator == null) {
-        return new DefaultRewordGenerator();
-      }
-      return this.rewordGenerator;
-    }
-
     private LadderGameSimulator getOrDefaultGameSimulator() {
       if (this.gameSimulator == null) {
         return new DefaultLadderGameSimulator();
@@ -111,9 +88,8 @@ public class LadderGameSetting {
     public LadderGameSetting build () {
       final PlayerGenerator playerGenerator = getOrDefaultPlayerGenerator();
       final LadderGenerator ladderGenerator = getOrDefaultLadderGenerator();
-      final RewordGenerator rewordGenerator = getOrDefaultRewordGenerator();
       final LadderGameSimulator gameSimulator = getOrDefaultGameSimulator();
-      return new LadderGameSetting(playerGenerator, ladderGenerator, rewordGenerator, gameSimulator);
+      return new LadderGameSetting(playerGenerator, ladderGenerator, gameSimulator);
     }
   }
 }

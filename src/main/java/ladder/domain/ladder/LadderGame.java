@@ -20,8 +20,8 @@ public class LadderGame {
   public LadderGame(List<String> playerNames, List<String> rewords, int ladderHeight, LadderGameSetting gameSetting) {
     this.playerInfo = gameSetting.generatePlayer(playerNames);
     this.ladder = gameSetting.generateLadderLine(this.playerInfo.getPlayerSize(), ladderHeight);
-    this.gameReword = gameSetting.generateReword(rewords);
     this.gameSimulator = gameSetting.getGameSimulator();
+    this.gameReword = new LadderGameRewordInfo(rewords);
   }
 
   public LadderGameResult play() {
