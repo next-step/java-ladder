@@ -36,7 +36,7 @@ public class Renderer {
     }
 
     private String renderingPixel(Column columnIndex, Row rowIndex) {
-        return  SHAPE_OF_PILLAR.concat(lineShape(columnIndex, rowIndex));
+        return SHAPE_OF_PILLAR.concat(lineShape(columnIndex, rowIndex));
     }
 
     private String lineShape(Column columnIndex, Row rowIndex) {
