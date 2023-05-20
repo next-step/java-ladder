@@ -23,6 +23,10 @@ public class LadderRow {
         lines = generateLines(width);
     }
 
+    public List<Boolean> getLines() {
+        return lines;
+    }
+
     private List<Boolean> generateLines(int width) {
         List<Boolean> newLines = new ArrayList();
         newLines.add(generateLine());

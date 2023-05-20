@@ -10,6 +10,10 @@ public class Ladder {
         rows = generateRows(height, countOfPlayers);
     }
 
+    public List<LadderRow> getRows() {
+        return rows;
+    }
+
     private List<LadderRow> generateRows(int height, int countOfPlayers) {
         List<LadderRow> newRows = new ArrayList();
 
