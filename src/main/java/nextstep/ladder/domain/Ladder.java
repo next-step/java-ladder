@@ -7,11 +7,11 @@ import java.util.stream.Stream;
 public class Ladder {
 
     private final People people;
-    private final List<Line> lines;
+    private final Lines lines;
 
     public Ladder(People people, int height) {
         this.people = people;
-        this.lines = generateLadder(height);
+        this.lines = new Lines(generateLadder(height));
     }
 
     private List<Line> generateLadder(int height) {
@@ -24,7 +24,7 @@ public class Ladder {
         return people;
     }
 
-    public List<Line> lines() {
-        return lines.stream().collect(Collectors.toUnmodifiableList());
+    public Lines lines() {
+        return lines;
     }
 }
