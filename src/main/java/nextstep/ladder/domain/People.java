@@ -11,17 +11,13 @@ public class People {
 
     private final List<Person> people;
 
-    public People(List<Person> people) {
-        if (people.size() == 0) {
+    public People(String[] people) {
+        if (people.length == 0) {
             throw new IllegalStateException("사람 이름이 입력되지 않았습니다.");
         }
-        this.people = people;
-    }
-
-    public People(String[] people) {
-        this(Arrays.stream(people).
+        this.people = Arrays.stream(people).
                 map(Person::new).
-                collect(Collectors.toList()));
+                collect(Collectors.toList());
     }
 
     public int firstNameLength() {
