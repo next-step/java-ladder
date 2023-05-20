@@ -2,8 +2,9 @@ package ladder;
 
 import java.io.IOException;
 import java.util.List;
-import ladder.domain.LadderGame;
+import ladder.domain.ladder.LadderGame;
 import ladder.domain.ladder.setting.LadderGameSetting;
+import ladder.domain.result.LadderGameResult;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -23,7 +24,23 @@ public class LadderGameApplication {
 
     resultView.printPlayers(game.getPlayerInfo());
     resultView.printLadders(game.getLadder());
-    game.play();
+    LadderGameResult playResult = game.play();
+
+    while(true) {
+      String resultUserName = inputView.getResultUserName();
+
+      if("끝".equals(resultUserName)) {
+        break;
+      }
+
+      if("all".equals(resultUserName)) {
+        resultView.showAllRewordResult(playResult);
+      }
+
+      if("all".equals(resultUserName)) {
+        resultView.showAllRewordResult(playResult);
+      }
+    }
 
     inputView.tearDown();
   }

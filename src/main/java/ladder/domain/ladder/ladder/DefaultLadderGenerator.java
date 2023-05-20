@@ -1,12 +1,12 @@
-package ladder.domain.ladder;
+package ladder.domain.ladder.ladder;
 
 import exception.ExceptionCode;
 import exception.LadderGameException;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import ladder.domain.ladder.line.Line;
-import ladder.domain.ladder.line.LinePoint;
+import ladder.domain.ladder.line.HorizontalLadderLine;
+import ladder.domain.ladder.line.point.LinePoint;
 import ladder.domain.random.DefaultRandomBooleanGenerator;
 import ladder.domain.random.RandomBooleanGenerator;
 
@@ -22,8 +22,8 @@ public class DefaultLadderGenerator implements LadderGenerator {
   @Override
   public Ladder generateLadderLines(int playerCnt, int ladderHeight) {
     throwIfHeightNotValid(ladderHeight);
-    final List<Line> lines = IntStream.range(0, ladderHeight)
-        .mapToObj(i -> new Line(playerCnt))
+    final List<HorizontalLadderLine> lines = IntStream.range(0, ladderHeight)
+        .mapToObj(i -> new HorizontalLadderLine(playerCnt))
         .map(this::connectPointInLineIfPossible)
         .collect(Collectors.toList());
 
@@ -39,7 +39,7 @@ public class DefaultLadderGenerator implements LadderGenerator {
   /**
    * 라인을 연결할 수 있는 경우애서 랜덤으로 연결한다.
    */
-  private Line connectPointInLineIfPossible(Line line) {
+  private HorizontalLadderLine connectPointInLineIfPossible(HorizontalLadderLine line) {
     int pointSize = line.getPointSize();
     for (int i = 0; i < pointSize; i++) {
       connectPointIfPossible(line, i);
@@ -48,25 +48,25 @@ public class DefaultLadderGenerator implements LadderGenerator {
     return line;
   }
 
-  private void connectPointIfPossible(Line line, int linePointIdx) {
+  private void connectPointIfPossible(HorizontalLadderLine line, int linePointIdx) {
     final boolean allowedToConnect = randomBooleanGenerator.getBoolean();
     if (!allowedToConnect) {
       return;
     }
 
-    final LinePoint point = line.getPoint(linePointIdx);
+    final LinePoint point = line.getPointAt(linePointIdx);
     if (point.isEndPoint()) {
       return;
     }
 
-    final LinePoint nextPoint = line.getPoint(linePointIdx + 1);
+    final LinePoint nextPoint = line.getPointAt(linePointIdx + 1);
     if (point.isStartPoint()) {
       point.connect(nextPoint);
       return;
     }
 
     // 이전 라인이 이어져있으면 넘어감
-    if (line.isPrePointConnected(point)) {
+    if (line.isPreviousPointConnected(point)) {
       return;
     }
 

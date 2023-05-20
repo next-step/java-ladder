@@ -3,6 +3,7 @@ package ladder.domain.ladder.line;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import ladder.domain.ladder.line.point.LinePoint;
 
 public class LineGenerator {
 

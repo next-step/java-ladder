@@ -3,7 +3,6 @@ package ladder.domain.ladder.reword;
 import exception.ExceptionCode;
 import exception.LadderGameException;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -19,10 +18,6 @@ public class LadderGameRewordInfo {
     this.rewords = rawRewords.stream()
         .map(this::createReword)
         .collect(Collectors.toUnmodifiableList());
-  }
-
-  public Iterator<LadderGameReword> getRewords() {
-    return rewords.iterator();
   }
 
   public LadderGameReword getRewordAt(int lineIndex) {

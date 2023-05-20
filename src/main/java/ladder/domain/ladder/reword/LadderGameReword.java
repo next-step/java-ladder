@@ -39,4 +39,9 @@ public class LadderGameReword {
   public int hashCode() {
     return Objects.hash(rewordPrize);
   }
+
+  @Override
+  public String toString() {
+    return "LadderGameReword{rewordPrize=" + rewordPrize + '}';
+  }
 }

@@ -1,8 +1,7 @@
-package ladder.domain.ladder.line;
+package ladder.domain.ladder.line.point;
 
 import exception.ExceptionCode;
 import exception.LadderGameException;
-import ladder.domain.ladder.LadderPointDirection;
 
 public class LinePoint {
 

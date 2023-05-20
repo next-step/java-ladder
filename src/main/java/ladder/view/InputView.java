@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class InputView {
@@ -36,5 +37,10 @@ public class InputView {
     return Arrays.stream(reader.readLine().split(","))
         .map(String::strip)
         .collect(Collectors.toList());
+  }
+
+  public String getResultUserName() throws IOException {
+    System.out.println("결과를 보고 싶은 사람은?");
+    return reader.readLine();
   }
 }
