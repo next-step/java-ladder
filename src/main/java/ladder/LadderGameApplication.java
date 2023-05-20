@@ -17,7 +17,6 @@ public class LadderGameApplication {
     List<String> rewords = inputView.getRewords();
 
     int ladderHeight = inputView.ladderHeight();
-
     LadderGameSetting gameSetting = LadderGameSetting.withDefaultSetting();
 
     LadderGame game = new LadderGame(playerName, rewords, ladderHeight, gameSetting);
@@ -37,9 +36,7 @@ public class LadderGameApplication {
         resultView.showAllRewordResult(playResult);
       }
 
-      if("all".equals(resultUserName)) {
-        resultView.showAllRewordResult(playResult);
-      }
+      resultView.showRewordResult(playResult, resultUserName);
     }
 
     inputView.tearDown();

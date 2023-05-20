@@ -54,6 +54,18 @@ public class ResultView {
     System.out.println(result);
   }
 
+  public void showRewordResult(LadderGameResult playResult, String resultUserName) {
+    System.out.println("실행 결과");
+
+    LadderGamePlayerResult playerResult = playResult.resultOfPlayer(resultUserName);
+    if (playerResult == null) {
+      System.out.println("해당 이름을 가진 유저는 게임 목록에 없습니다.");
+      return;
+    }
+
+    System.out.println(stringifyPlayerResult(playerResult));
+  }
+
   private String stringifyPlayerResult(LadderGamePlayerResult playResult) {
     return String.format("%-5s : %s", playResult.getPlayerName(), stringifyRewordView(playResult.getReword()));
   }

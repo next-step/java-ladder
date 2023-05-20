@@ -39,8 +39,4 @@ public class LadderGame {
   public Ladder getLadder() {
     return ladder;
   }
-
-  public LadderGameRewordInfo getGameReword() {
-    return gameReword;
-  }
 }
