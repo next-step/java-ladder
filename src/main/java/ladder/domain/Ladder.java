@@ -6,28 +6,28 @@ import ladder.exception.UnableReachLineCount;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Lines {
+public class Ladder {
     private final Set<Line> lines;
 
-    private Lines() {
+    private Ladder() {
         this.lines = new HashSet<>();
     }
 
-    public Lines(Set<Line> lines) {
+    public Ladder(Set<Line> lines) {
         this.lines = lines;
     }
 
-    public static Lines of(int column, int row) {
-        return Lines.of(column, row, Preferences.createLineCount(column, row));
+    public static Ladder of(int column, int row) {
+        return Ladder.of(column, row, Preferences.createLineCount(column, row));
     }
 
-    public static Lines of(int column, int row, int count) {
-        Lines lines = new Lines();
-        for (int i = 0; lines.lineCount() < count; i++) {
+    public static Ladder of(int column, int row, int count) {
+        Ladder ladder = new Ladder();
+        for (int i = 0; ladder.lineCount() < count; i++) {
             addLineInfiniteLoopWatchDog(i);
-            addLineSuitableOnly(lines, Line.any(LineStrategyRandom.ofLimit(column, row)));
+            addLineSuitableOnly(ladder, Line.any(LineStrategyRandom.ofLimit(column, row)));
         }
-        return lines;
+        return ladder;
     }
 
     private static void addLineInfiniteLoopWatchDog(int i) {
@@ -36,9 +36,9 @@ public class Lines {
         }
     }
 
-    private static void addLineSuitableOnly(Lines lines, Line anyLine) {
-        if (!lines.hasCrossIntersection(anyLine)) {
-            lines.append(anyLine);
+    private static void addLineSuitableOnly(Ladder ladder, Line anyLine) {
+        if (!ladder.hasCrossIntersection(anyLine)) {
+            ladder.append(anyLine);
         }
     }
 
