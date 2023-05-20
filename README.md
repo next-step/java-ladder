@@ -55,3 +55,84 @@ StreamStudy 클래스에서의 중복 제거 (File 에 저장되어있는 Datase
 ```
 - 위 2가지 사항에 대해서 수정반영 했습니다
 
+## 추가학습 - 이펙티브 자바 아이템28 배열보다는 리스트를 사용하라
+
+- 배열보다 리스트를 사용하는것을 추천하는데 이유
+```text
+
+```
+
+### 배열보다 리스트를 사용해야하는 이유 : 공변과 불공변 개념
+- 배열 사용시에는 아래의 코드가 Compile Time 에는 문제없으나, Runtime 에 Exception 이 발생한다 
+```text
+Object[] objectArray = new Long[1];
+objectArray[0] = "문자열 저장에 실패하는 코드"; //ArrayStoreException을 던진다.
+```
+- 반면 리스트 사용시에는 컴파일타임에 문제가 발생한다.
+```text
+List<Object> objects = new ArrayList<Long>(); // 컴파일 에러 발생
+o1.add("실행조차 되지 않음");
+```
+- 공변과 불공변 개념으로 인해 
+- Object 는 Long 의 상위 타입
+- Object[] 는 Long[] 의 상위 타입으로 인식함. 이를 `공변(covariant)` 이라고  
+- List<Object>은 List<Long>의 하위 타입도 아니고 상위 타입도 아니다. 왜냐하면 제네릭이 `불공변(contravariant)`이기 때문
+
+### 정말 배열이 하나도 메리트가 없을까?
+- List 의 구현체에 따라 상황이 많이 달라질수 있을꺼같아서 `Array VS ArrayList` 상황만을 상정한다면
+- 타입안정성, 오류검출 시점 이라는 두가지 관점에서 배열은 나쁜 선택지인데, 다른장점은 없을까?
+- 혹시 `시간복잡도` 혹은 `공간복잡도` 관점에서 이득볼수있지 않을까? 하는 생각으로 `ArrayList 구현코드`를 살펴봤다
+
+```java
+public class ArrayList<E> {
+    
+    transient Object[] elementData; // non-private to simplify nested class access
+     
+    public ArrayList(int initialCapacity) {
+        if (initialCapacity > 0) {
+            this.elementData = new Object[initialCapacity];
+        } else if (initialCapacity == 0) {
+            this.elementData = EMPTY_ELEMENTDATA;
+        } else {
+            throw new IllegalArgumentException("Illegal Capacity: "+ initialCapacity);
+        }
+    }
+}
+```
+- ArrayList 는 내부적으로 Object[] 을 사용하고 있었다. 
+- 그렇다면 결론은 Array 나 ArrayList 나 시간복잡도, 공간복잡도는 완전히 동일함을 확인
+
+### JDK 는 왜 Wrapper Class 에서 배열을 사용한걸까?
+- Wrapper Class 인 `Long` 의 JDK 코드를 열어보면 (corretto 11.0.17 기준)
+```java
+private static class LongCache {
+    private LongCache(){}
+
+    static final Long cache[] = new Long[-(-128) + 127 + 1];
+
+    static {
+        for(int i = 0; i < cache.length; i++)
+            cache[i] = new Long(i - 128);
+    }
+}
+```
+- 공간 & 시간 복잡도를 동시에 줄이기 위해 자주 사용되는 범위의 인스턴스를 미리 생성해두는데 왜 배열을 사용한걸까??
+- List 구현을 포함한 JCF도 JDK 에 포함되기 때문에 외부 클래스 의존성을 최소화하기 위함이 아니였을까..? 라고 추측해봤는데요
+- 한문장으로 제 결론을 정리해보면 
+```
+DIP 를 지키기 위해서 JDK 에서 lang 패키지의 Long 클래스가, util 패키지의 ArrayList 에 의존성이 생기지 않게 하기 위해 어쩔수 없이 배열을 사용했다고 생각합니다.
+왜냐하면 자신보다 변하기 쉬운것에 의존성이 생기면 안되니까요
+```
+
+### 결론 JDK 개발자 말고 나같은 App 개발자들은 배열을 쓰면 안되는걸까?
+- 제 생각에는 99.9%는 그런거같습니다. 왜냐하면 득보다 실이 많기 때문인데요
+- 외부에서의 요구조건 혹은 반환타입이 명시적으로 Array Type 이 아닌경우에는 List 를 사용하는게 아래의 장점을 가지고 있습니다
+```text
+stream 사용 가능
+타입 안정성 (타입에러를 컴파일시점에 알수 있음 by 제네릭)
+
+```
+- 그럼에도 불구하고 0.1% 경우에 Array 를 써야만 하는 경우를 억지로 쥐어짜내보면 `극한의 성능`과 `Multi-Thread 환경에서 Thread-Safe 한 자료구조 필요` 상황이 있을꺼같은데
+  - 극한의 성능이 필요하다 >> MIPS 가 높은 컴퓨터로 바꾸거나, 분산처리등의 아키텍쳐 적인 방법으로 처리한다
+  - Multi-Thread 환경에서 Thread-Safe 한 자료구조 필요하다 >> SynchronizedCollection / Concurrent** 류의 자료구조를 사용
+- 다른 방법으로 Workaround 가 충분히 가능하다고 생각해서.. 아마 `Array 는 웹 백엔드 개발 한정으로는 필요가.. 그닥?? 없을지도?? 모르겠다? 는 결론에 도달`했습니다
