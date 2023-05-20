@@ -32,9 +32,9 @@ public class RandomLineStrategyTest {
         RandomLineStrategy lineTrue = new RandomLineStrategy(new RandomTrue());
         RandomLineStrategy linefalse = new RandomLineStrategy(new RandomFalse());
 
-        assertThat(lineTrue.drawLine(false)).isTrue();
-        assertThat(lineTrue.drawLine(true)).isFalse();
-        assertThat(linefalse.drawLine(false)).isFalse();
-        assertThat(linefalse.drawLine(true)).isFalse();
+        assertThat(lineTrue.drawLine()).isTrue();
+        assertThat(lineTrue.drawLine()).isFalse();
+        assertThat(linefalse.drawLine()).isFalse();
+        assertThat(linefalse.drawLine()).isFalse();
     }
 }

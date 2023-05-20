@@ -13,6 +13,6 @@ public class LineTest {
     public void Line_생성_테스트(){
         Participant participants = new Participant("test","test2");
         Line line = new Line(participants, new RandomLineStrategy());
-        assertThat(participants.getParticipantSize()-1).isEqualTo(line.getPointSize());
+        assertThat(participants.getParticipantSize()).isEqualTo(line.getPointSize());
     }
 }
