@@ -19,7 +19,7 @@ public class Ladder {
   }
 
   public LinePoint getPointAt (Player player) {
-    return this.horizontalLines.get(player.getCurrentHeight() - 1)
+    return this.horizontalLines.get(player.getCurrentHeight())
         .getPointAt(player.getCurrentLine());
   }
 

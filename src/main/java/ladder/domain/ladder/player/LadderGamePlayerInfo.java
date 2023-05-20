@@ -1,7 +1,5 @@
 package ladder.domain.ladder.player;
 
-import exception.ExceptionCode;
-import exception.LadderGameException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -26,14 +24,5 @@ public class LadderGamePlayerInfo {
 
   public List<Player> getPlayers() {
     return players;
-  }
-
-  public Player getPlayerNameAt(String playerName) {
-    Player player = this.playerMap.get(playerName);
-    if (player == null) {
-      throw new LadderGameException(ExceptionCode.PLAYER_NOT_FOUND);
-    }
-
-    return player;
   }
 }

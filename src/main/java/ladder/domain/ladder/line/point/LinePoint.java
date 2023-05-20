@@ -36,10 +36,6 @@ public class LinePoint {
     return isEnd;
   }
 
-  public boolean isNotEdgePoint() {
-    return !isStart && !isEnd;
-  }
-
   public int getIndex() {
     return index;
   }

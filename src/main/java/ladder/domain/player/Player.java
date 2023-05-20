@@ -9,7 +9,7 @@ public class Player {
 
   public Player(String name, int currentLine) {
     this.playerName = new PlayerName(name);
-    this.playerPosition = new PlayerPosition(currentLine, 1);
+    this.playerPosition = new PlayerPosition(currentLine);
   }
 
   public String getPlayerName() {

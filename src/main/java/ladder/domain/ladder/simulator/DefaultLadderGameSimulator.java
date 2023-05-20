@@ -12,7 +12,7 @@ public class DefaultLadderGameSimulator implements LadderGameSimulator {
 
   @Override
   public LadderGamePlayerResult simulateSinglePlayer(Player player, Ladder ladder, LadderGameRewordInfo rewordInfo) {
-    while (player.getCurrentHeight() <= ladder.getLadderHeight()) {
+    while (player.getCurrentHeight() < ladder.getLadderHeight()) {
       final LinePoint currentPoint = ladder.getPointAt(player);
       LadderPointDirection direction = currentPoint.getPointDirection();
       player.move(direction);

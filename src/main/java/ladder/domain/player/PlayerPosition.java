@@ -10,10 +10,10 @@ public class PlayerPosition {
   private int currentHeight;
   private LadderPointDirection previousMove;
 
-  public PlayerPosition(int currentLine, int currentHeight) {
+  public PlayerPosition(int currentLine) {
     this.currentLine = currentLine;
-    this.currentHeight = currentHeight;
-    this.previousMove = LadderPointDirection.NONE;
+    this.currentHeight = 0;
+    this.previousMove = null;
   }
 
   public int getCurrentLine() {
@@ -40,11 +40,17 @@ public class PlayerPosition {
   }
 
   public void move (LadderPointDirection direction) {
+    if (direction == LadderPointDirection.NONE) {
+      this.goDown();
+      return;
+    }
+
     if (isHorizontallyMovable(direction)) {
       this.moveHorizontally(direction);
       return;
     }
 
+    // 이동 할 수 없는 경우 아래로 이동
     this.goDown();
   }
 
@@ -63,18 +69,14 @@ public class PlayerPosition {
   }
 
   private boolean isHorizontallyMovable(LadderPointDirection moveTryDirection) {
-    if (isStartPosition() && moveTryDirection != LadderPointDirection.NONE) {
+    if (isStartPosition()) {
       return true;
-    }
-
-    if (moveTryDirection == LadderPointDirection.NONE) {
-      return false;
     }
 
     return previousMove.getOppositeDirection() != moveTryDirection;
   }
 
   private boolean isStartPosition() {
-    return this.currentHeight == 0 && this.currentLine == 0;
+    return previousMove == null;
   }
 }

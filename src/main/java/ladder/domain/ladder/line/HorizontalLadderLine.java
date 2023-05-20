@@ -51,10 +51,6 @@ public class HorizontalLadderLine {
   }
 
   private boolean isConnected(LinePoint linePoint1, LinePoint linePoint2) {
-    if(linePoint2.getIndex() - linePoint1.getIndex() != 1) {
-      throw new LadderGameException(ExceptionCode.CONNECTION_CHECKED_NOT_SUPPORTED);
-    }
-
     return linePoint1.getPointDirection() == LadderPointDirection.RIGHT &&
         linePoint2.getPointDirection() == LadderPointDirection.LEFT;
   }

@@ -86,7 +86,7 @@ public class LadderGameTest extends BaseTest {
 
     // then
     Assertions.assertThat(ladderGame.getPlayerInfo().getPlayers())
-        .allMatch(player -> player.getCurrentHeight() == 사다리_높이 + 1);
+        .allMatch(player -> player.getCurrentHeight() == 사다리_높이);
   }
 
   @Test
