@@ -12,10 +12,15 @@ public class UsersTest {
         assertThat(users.getUser("crong")).isEqualTo(new User("crong", 35));
     }
 
-
     @Test
     public void getDefaultUser() {
         Users users = new Users();
         assertThat(users.getUser("codesquard")).isEqualTo(Users.DEFAULT_USER);
+    }
+
+    @Test
+    public void getDefaultUserByNull() {
+        Users users = new Users();
+        assertThat(users.getUser(null)).isEqualTo(Users.DEFAULT_USER);
     }
 }
