@@ -1,16 +1,35 @@
 package ladder.domain;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class Ladder {
     private final LadderRow[] rows;
-
-    public Ladder(int height, int personSize) {
-        validate(height, personSize);
+    private final Participants participants;
+    ;
+    public Ladder(int height, List<String> names) {
+        validate(height, names.size());
 
         rows = Arrays.stream(new LadderRow[height])
-                .map(row -> new LadderRow(personSize - 1, RandomStrategy.getInstance()))
+                .map(row -> new LadderRow(names.size() - 1, RandomStrategy.getInstance()))
                 .toArray(LadderRow[]::new);
+
+        this.participants = new Participants(names);
+    }
+
+    public Ladder(LadderRow[] ladderRows, List<String> names) {
+        rows = ladderRows;
+        this.participants = new Participants(names);
+    }
+
+
+    public int getResultPosition(String name) {
+        int curPosition = participants.getIndexOf(name);
+        for (int i = 0; i < rows.length; i++) {
+            curPosition = rows[i].move(curPosition);
+        }
+
+        return curPosition;
     }
 
     private static void validate(int height, int personSize) {
@@ -19,14 +38,10 @@ public class Ladder {
         }
     }
 
-    public Ladder(LadderRow[] ladderRows) {
-        rows = ladderRows;
-    }
 
-    @Override
-    public String toString() {
+    public String print() {
         return Arrays.stream(rows)
-                .map(row -> row.toString())
+                .map(row -> row.print())
                 .reduce("", (left, right) -> left + right + "\n");
     }
 }
