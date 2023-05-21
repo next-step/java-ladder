@@ -10,27 +10,24 @@ public class Line {
     private final List<Boolean> points = new ArrayList<>();
 
     public Line(int countOfPerson, LineStrategy strategy) {
-
         this.strategy = strategy;
-        points.add(strategy.addLine());
 
-        for (int i = 1; i < countOfPerson - 1; i++) {
+        for (int i = 0; i < countOfPerson - 1; i++) {
             points.add(addLine(i));
         }
     }
 
     private boolean addLine(int index) {
-        if (points.get(index - 1)) {
-            return false;
+        if (index == 0 || !points.get(index - 1)) {
+            return strategy.addLine();
         }
 
-        return strategy.addLine();
+        return false;
     }
 
     public Stream<Boolean> lineStream() {
         return this.points.stream();
     }
-
 
     public int trace(int position) {
         return IntStream.rangeClosed(position - 1, position)
@@ -40,15 +37,15 @@ public class Line {
                 .orElse(position);
     }
 
+    private boolean isValidPosition(int position) {
+        return position >= 0 && position < points.size();
+    }
+
     private int hasLinePosition(int position, int x) {
         if (x == position - 1) {
             return position - 1;
         }
 
         return position + 1;
-    }
-
-    private boolean isValidPosition(int position) {
-        return position >= 0 && position < points.size();
     }
 }
