@@ -12,23 +12,20 @@ public class InputView {
   }
 
   private static final String MEMBER_DELIMITER = ",";
-  private static final Scanner sc = new Scanner(System.in);
+  private static final Scanner SCANNER = new Scanner(System.in);
 
-  public static Members inputMembers() {
+  public static String[] inputMembers() {
     System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-    String[] names = getInput().split(MEMBER_DELIMITER);
-    return MembersFactory.createMembers(names);
+    return getInput().split(MEMBER_DELIMITER);
   }
 
-  public static LadderInfo inputLadderHeight(int width) {
+  public static int inputLadderHeight() {
     System.out.println("최대 사다리 높이는 몇 개인가요?");
-    int height = Integer.parseInt(getInput().trim());
-
-    return new LadderInfo(height, width);
+    return Integer.parseInt(getInput().trim());
   }
 
   private static String getInput() {
-    String input = sc.nextLine();
+    String input = SCANNER.nextLine();
     StringUtils.checkNullOrBlank(input);
     return input;
   }
