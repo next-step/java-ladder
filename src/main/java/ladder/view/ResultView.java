@@ -2,6 +2,7 @@ package ladder.view;
 
 import ladder.domain.Line;
 import ladder.domain.Player;
+import ladder.domain.LadderReward;
 
 import java.util.List;
 
@@ -13,23 +14,25 @@ public class ResultView {
     private static final String VERTICAL_LINE = "|";
     private static final String NAME_LENGTH_FIVE_FORMAT_PATTERN = "%5s";
     private static final String RESULT_TEXT = "실행결과";
+    private static final String LADDER_COMPLETE_TEXT = "사다리 결과";
 
     public ResultView() {}
 
-    public void printResult(List<Player> players, List<Line> lines) {
+    public void printResult(List<Player> players, List<Line> lines, List<LadderReward> ladderRewards) {
         printResultText();
         printPlayerName(players);
         printLadderLine(lines);
+        printLadderResult(ladderRewards);
     }
 
     private void printResultText() {
-        System.out.println(RESULT_TEXT);
+        System.out.println(LADDER_COMPLETE_TEXT);
     }
 
-    private void printPlayerName(List<Player> playerList) {
+    private void printPlayerName(List<Player> players) {
         StringBuilder sb = new StringBuilder();
 
-        playerList.stream()
+        players.stream()
                 .map(Player::getName)
                 .forEach(name -> sb.append(String.format(NAME_LENGTH_FIVE_FORMAT_PATTERN, name)).append(" "));
 
@@ -40,11 +43,11 @@ public class ResultView {
         lines.forEach(line -> System.out.println(getLineText(line.getPoints())));
     }
 
-    private String getLineText(List<Boolean> pointList) {
+    private String getLineText(List<Boolean> points) {
         StringBuilder sb = new StringBuilder();
 
         sb.append(SPACE_START_HORIZONTAL_LINE);
-        pointList.forEach(hasHorizontalLine -> addHorizontalLine(sb, hasHorizontalLine));
+        points.forEach(hasHorizontalLine -> addHorizontalLine(sb, hasHorizontalLine));
         sb.append(VERTICAL_LINE);
 
         return sb.toString();
@@ -58,5 +61,15 @@ public class ResultView {
         if (!hasHorizontalLine) {
             sb.append(SPACE_HORIZONTAL_LINE);
         }
+    }
+
+    private void printLadderResult(List<LadderReward> ladderRewards) {
+        StringBuilder sb = new StringBuilder();
+
+        ladderRewards.stream()
+                .map(LadderReward::getReward)
+                .forEach(name -> sb.append(String.format(NAME_LENGTH_FIVE_FORMAT_PATTERN, name)).append(" "));
+
+        System.out.println(sb.toString());
     }
 }

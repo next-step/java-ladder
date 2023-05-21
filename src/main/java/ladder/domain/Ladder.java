@@ -8,7 +8,7 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Ladder {
+public class  Ladder {
 
     private List<Line> lines;
 
