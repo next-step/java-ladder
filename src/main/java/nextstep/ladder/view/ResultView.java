@@ -1,7 +1,14 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.*;
+import nextstep.ladder.domain.ladder.ConnectionType;
+import nextstep.ladder.domain.ladder.Ladder;
+import nextstep.ladder.domain.ladder.Row;
+import nextstep.ladder.domain.user.ExecuteResults;
+import nextstep.ladder.domain.user.Participants;
+import nextstep.ladder.domain.user.UserName;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -12,14 +19,18 @@ public final class ResultView {
     private static final String WHITE_SPACE_CHAR = " ";
     private static final String COLUMN_LINE_CHAR = "|";
     private static final String ROW_LINE_CHAR = "-";
-    private static final int ROW_WIDTH_LENGTH = 5;
 
     private ResultView() {
         throw new IllegalCallerException("잘못된 객체생성 입니다.");
     }
 
-    public static void drawResultMessage() {
+    public static void drawInputResult(Participants participants,
+                                       ExecuteResults executeResults,
+                                       Ladder ladder) {
         System.out.println("\n실행결과\n");
+        drawParticipants(participants);
+        drawLadder(ladder);
+        drawExecuteResults(executeResults);
     }
 
     public static void drawParticipants(Participants participants) {
@@ -28,51 +39,57 @@ public final class ResultView {
     }
 
     public static void drawLadder(Ladder ladder) {
-        String drewLines = drawLines(ladder.getLineColumns());
+        String drewLines = drawLines(ladder.getRows());
         System.out.println(drewLines);
     }
 
-    private static String drawLines(LineColumns lineColumns) {
-        return lineColumns.getColumns()
-                .stream()
-                .map(column -> drawFirstColumn() + drawRows(column))
+    private static String drawLines(List<Row> rows) {
+        return rows.stream()
+                .map(points -> drawFirstColumn() + drawRows(points))
                 .collect(Collectors.joining(NEW_LINE));
     }
 
     private static String drawUserNames(Participants participants) {
-        return participants.getUserNames()
-                .stream()
-                .map(name -> String.format("%5s", name))
-                .collect(Collectors.joining(WHITE_SPACE_CHAR));
+        return String.join(WHITE_SPACE_CHAR, participants.getFormattedUserNames());
     }
 
-    private static String drawRows(LineRows column) {
-        return column.getConnectionStatuses()
+    private static String drawRows(Row row) {
+        return row.getConnectionTypes()
                 .stream()
                 .map(drawRow())
-                .collect(Collectors.joining());
+                .collect(Collectors.joining(COLUMN_LINE_CHAR));
     }
 
-    private static Function<ConnectionStatus, String> drawRow() {
-        return connectionStatus -> connectionStatus.isConnected() ? drawConnectedRow() : drawUnconnectedRow();
+    private static Function<ConnectionType, String> drawRow() {
+        return connectionType -> connectionType.isRight() ? drawConnectedRow() : drawUnconnectedRow();
     }
 
     private static String drawFirstColumn() {
-        return repeatChar(ROW_WIDTH_LENGTH - 1, WHITE_SPACE_CHAR) + COLUMN_LINE_CHAR;
+        return repeatChar(UserName.getMaxLength() - 1, WHITE_SPACE_CHAR) + COLUMN_LINE_CHAR;
     }
 
     private static String drawConnectedRow() {
-        return repeatChar(ROW_WIDTH_LENGTH, ROW_LINE_CHAR) + COLUMN_LINE_CHAR;
+        return repeatChar(UserName.getMaxLength(), ROW_LINE_CHAR);
     }
 
     private static String drawUnconnectedRow() {
-        return repeatChar(ROW_WIDTH_LENGTH, WHITE_SPACE_CHAR) + COLUMN_LINE_CHAR;
+        return repeatChar(UserName.getMaxLength(), WHITE_SPACE_CHAR);
     }
 
     private static String repeatChar(int repeatCount, String anyChar) {
         return IntStream.rangeClosed(1, repeatCount)
                 .mapToObj(n -> anyChar)
                 .collect(Collectors.joining());
+    }
+
+    public static void drawExecuteResults(ExecuteResults executeResults) {
+        System.out.println(executeResults);
+    }
+
+    public static void drawUserResult(String... results) {
+        System.out.println("\n실행결과");
+        Arrays.stream(results)
+                .forEach(System.out::println);
     }
 
 }

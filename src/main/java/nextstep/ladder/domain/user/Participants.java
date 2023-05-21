@@ -1,4 +1,4 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.user;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,10 +25,18 @@ public class Participants {
         return userNames.size();
     }
 
-    public List<String> getUserNames() {
+    public List<String> getFormattedUserNames() {
         return userNames.stream()
-                .map(UserName::getName)
+                .map(UserName::formattedName)
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    public List<UserName> getUserNames() {
+        return userNames;
+    }
+
+    public int getUserLocation(UserName userName) {
+        return userNames.indexOf(userName);
     }
 
 }
