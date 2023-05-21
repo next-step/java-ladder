@@ -6,7 +6,7 @@ import nextstep.ladder.LadderRow;
 import nextstep.ladder.Persons;
 import nextstep.ladder.drawPolicy.RandomDraw;
 import nextstep.ladder.view.InputView;
-import nextstep.ladder.view.Resul트tView;
+import nextstep.ladder.view.ResultView;
 
 import java.util.ArrayList;
 import java.util.List;
