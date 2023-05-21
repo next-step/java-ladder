@@ -8,16 +8,18 @@ import nextstep.ladder.util.RandomUtil;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.IntStream;
 
 public class LadderGame {
 
     private static final String NAME_REX_PATTERN = ",";
 
+    private static final String ALL_PLAYER = "all";
+
     private Ladder ladder;
+
+    private Result result;
 
     public static void main(String[] args) {
         LadderGame game = new LadderGame();
@@ -30,11 +32,15 @@ public class LadderGame {
 
         inputPlayers(players, InputView.inputPlayers());
 
-//        Result result = new Result(InputView.inputResult());
+        result = new Result(InputView.inputResult());
 
         saveLadder(new Ladder(InputView.inputLadderHeight()));
-        addLines(ladder.getHeight(), players.size());
-        ResultView.printResult(players, ladder.getLines());
+        addLadderLines(ladder.getHeight(), players.size());
+
+        ResultView.printLadderResult(players, ladder.getLines(), result);
+
+        String inputPlayer = InputView.inputPlayer();
+        printPlayerResult(inputPlayer, players);
 
     }
 
@@ -52,7 +58,7 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
-    private void addLines(int height, int width) {
+    private void addLadderLines(int height, int width) {
         IntStream.range(0, height)
                 .mapToObj(i -> new Line(() -> RandomUtil.generatorPoints(width - 1)))
                 .forEach(this::addLine);
@@ -60,6 +66,24 @@ public class LadderGame {
 
     private void addLine(Line line) {
         this.ladder.addLine(line);
+    }
+
+    private void printPlayerResult(String inputPlayer, List<Player> players) {
+
+        ResultView.printResultText();
+
+        if (ALL_PLAYER.equals(inputPlayer)) {
+            IntStream.range(0, players.size()).forEach(index -> printPlayerResultWithName(index, players.get(index)));
+            return;
+        }
+
+        int point = players.indexOf(new Player(inputPlayer));
+        ResultView.printPlayerResult(result.getValue(players.get(point).getPlayerResultIndex(point, ladder)));
+
+    }
+
+    private void printPlayerResultWithName(int index, Player player) {
+        ResultView.printPlayerResultWithName(player.getName(), result.getValue(player.getPlayerResultIndex(index, ladder)));
     }
 
 }

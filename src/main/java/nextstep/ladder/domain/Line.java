@@ -12,19 +12,22 @@ public class Line {
     private final List<Boolean> points;
 
     public Line(Supplier<List<Boolean>> supplierPoints) {
-//        List<Boolean> points = new ArrayList<>();
-//        IntStream.range(0, countOfPerson - 1)
-//                .forEach(index -> addPoint(points, index));
         this.points = supplierPoints.get();
     }
 
-//    private void addPoint(List<Boolean> points, int index) {
-//        if (index == 0 || !points.get(index - 1)) {
-//            points.add(RandomUtil.generator());
-//            return;
-//        }
-//        points.add(false);
-//    }
+    public boolean hasLeftPoint(int currentPlayerPoint) {
+        if (currentPlayerPoint == 0) {
+            return false;
+        }
+        return points.get(currentPlayerPoint - 1);
+    }
+
+    public boolean hasRightPoint(int currentPlayerPoint) {
+        if (points.size() == currentPlayerPoint || points.size() < currentPlayerPoint) {
+            return false;
+        }
+        return points.get(currentPlayerPoint);
+    }
 
     public List<Boolean> getPoints() {
         return points;

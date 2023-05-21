@@ -14,6 +14,10 @@ public class Result {
         this.values = Arrays.asList(values.split(RESULT_REX_PATTERN));
     }
 
+    public String getValue(int index) {
+        return values.get(index);
+    }
+
     public List<String> getValues() {
         return Collections.unmodifiableList(values);
     }

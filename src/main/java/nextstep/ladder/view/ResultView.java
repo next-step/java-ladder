@@ -14,20 +14,21 @@ public class ResultView {
     private static final String VERTICAL_LINE = "|";
     private static final String NAME_LENGTH_FIVE_FORMAT_PATTERN = "%-5s";
     private static final String RESULT_TEXT = "실행결과";
+    private static final String PLAYER_NAME_AND_RESULT_TEXT = "%s : %s";
 
-    public static void printResult(List<Player> players, List<Line> lines) {
-        printResultText();
+    public static void printLadderResult(List<Player> players, List<Line> lines, Result result) {
         printPlayerName(players);
         printLadderLine(lines);
+        printResultValues(result.getValues());
     }
 
-    private static void printResultText() {
+    public static void printResultText() {
         System.out.println(RESULT_TEXT);
     }
 
-    private static void printPlayerName(List<Player> playerList) {
+    private static void printPlayerName(List<Player> players) {
         StringBuilder sb = new StringBuilder();
-        playerList.stream().map(Player::getName).forEach(name -> sb.append(String.format(NAME_LENGTH_FIVE_FORMAT_PATTERN, name)).append(" "));
+        players.stream().map(Player::getName).forEach(name -> sb.append(String.format(NAME_LENGTH_FIVE_FORMAT_PATTERN, name)).append(" "));
         System.out.println(sb.toString());
     }
 
@@ -35,10 +36,10 @@ public class ResultView {
         lines.forEach(line -> System.out.println(getLineText(line.getPoints())));
     }
 
-    private static String getLineText(List<Boolean> pointList) {
+    private static String getLineText(List<Boolean> points) {
         StringBuilder sb = new StringBuilder();
         sb.append(SPACE_START_HORIZONTAL_LINE);
-        pointList.forEach(hasHorizontalLine -> getHorizontalLine(sb, hasHorizontalLine));
+        points.forEach(hasHorizontalLine -> getHorizontalLine(sb, hasHorizontalLine));
         sb.append(VERTICAL_LINE);
         return sb.toString();
     }
@@ -51,6 +52,20 @@ public class ResultView {
         if (!hasHorizontalLine) {
             sb.append(SPACE_HORIZONTAL_LINE);
         }
+    }
+
+    private static void printResultValues(List<String> values) {
+        StringBuilder sb = new StringBuilder();
+        values.stream().forEach(name -> sb.append(String.format(NAME_LENGTH_FIVE_FORMAT_PATTERN, name)).append(" "));
+        System.out.println(sb.toString());
+    }
+
+    public static void printPlayerResult(String result) {
+        System.out.println(result);
+    }
+
+    public static void printPlayerResultWithName(String playerName, String result) {
+        System.out.println(String.format(PLAYER_NAME_AND_RESULT_TEXT, playerName, result));
     }
 
 }
