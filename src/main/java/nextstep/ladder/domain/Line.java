@@ -1,25 +1,27 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.dto.LineDto;
-
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
 public class Line {
     private final List<Boolean> points;
+    private final Connector connector;
     public Line(int countOfPerson, Connector connector) {
         this.points = new ArrayList<>();
+        this.connector = connector;
         for (int i = 1; i < countOfPerson; i++) {
-            points.add(connect(connector));
+            points.add(connect());
         }
     }
 
-    public Line(List<Boolean> expected) {
-        this.points = new ArrayList<>(expected);
+    public Line(List<Boolean> points, Connector connector) {
+        this.points = new ArrayList<>(points);
+        this.connector = connector;
     }
 
-    private boolean connect(Connector connector) {
+    private boolean connect() {
         if (canConnectPoints()) {
             return connector.connect();
         }
@@ -37,8 +39,24 @@ public class Line {
         return new Line(countOfPerson, connector);
     }
 
-    public LineDto toDto() {
-        return new LineDto(points);
+    public boolean canMoveOnRight(int index) {
+        return canMove(index);
+    }
+
+    public boolean canMoveOnLeft(int index) {
+        return canMove(index - 1);
+    }
+
+    private boolean canMove(int index) {
+        try {
+            return points.get(index);
+        } catch (IndexOutOfBoundsException e) {
+            return false;
+        }
+    }
+
+    public List<Boolean> getLine() {
+        return Collections.unmodifiableList(points);
     }
 
     @Override
