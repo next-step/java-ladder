@@ -7,15 +7,15 @@ import java.util.List;
 public class Line {
     private List<Boolean> points;
 
-    public Line(int countOfPerson) {
-        points = drawLine(countOfPerson);
+    public Line(int ladderWeight) {
+        points = drawLine(ladderWeight);
     }
 
-    protected List<Boolean> drawLine(int countOfPerson) {
-        ArrayList<Boolean> newLine = new ArrayList<>(countOfPerson);
+    protected List<Boolean> drawLine(int ladderWeight) {
+        ArrayList<Boolean> newLine = new ArrayList<>(ladderWeight);
 
         newLine.add(createFirstBoolean());
-        for (int i = 1; i < countOfPerson; i++) {
+        for (int i = 1; i < ladderWeight; i++) {
             newLine.add(generateBooleanWithPreviousValue(newLine.get(i - 1)));
         }
         return newLine;
