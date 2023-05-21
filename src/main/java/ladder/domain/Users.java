@@ -10,9 +10,13 @@ public class Users implements Iterable<User> {
     private final List<User> users;
 
     public Users(String[] users) {
-        this.users = Arrays.stream(users)
+        this(Arrays.stream(users)
             .map(User::new)
-            .collect(Collectors.toList());
+            .collect(Collectors.toList()));
+    }
+
+    public Users(List<User> users) {
+        this.users = users;
     }
 
     public int count() {

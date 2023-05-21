@@ -1,19 +1,21 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class HorizontalLine implements Iterable<Boolean> {
 
-    public static final int LAST_LINE = 1;
-    private List<Boolean> points = new ArrayList<>();
+    private static final int LAST_LINE = 1;
+
+    private final List<Boolean> points;
 
     public HorizontalLine(int countOfPerson, LineStrategy lineStrategy) {
-        for (int i = 0; i < countOfPerson - LAST_LINE; i++) {
-            points.add(lineStrategy.add());
-        }
+        this(IntStream.rangeClosed(1, countOfPerson - LAST_LINE)
+            .mapToObj(i -> lineStrategy.add())
+            .collect(Collectors.toList()));
     }
 
     public HorizontalLine(List<Boolean> points) {

@@ -18,6 +18,12 @@ class LadderTest {
         assertThat(new Ladder(countOfPerson, height, () -> true)).isEqualTo(expected);
     }
 
+    @ParameterizedTest
+    @MethodSource("nonAddArgs")
+    void nonAddTest(int countOfPerson, int height, Ladder expected) {
+        assertThat(new Ladder(countOfPerson, height, () -> false)).isEqualTo(expected);
+    }
+
     @Test
     void LadderExceptionTest() {
         assertThatThrownBy(() -> new Ladder(1, 0, () -> true))
@@ -30,6 +36,14 @@ class LadderTest {
             Arguments.of(1, 1, new Ladder(List.of(new HorizontalLine(List.of())))),
             Arguments.of(2, 2, new Ladder(List.of(new HorizontalLine(List.of(true)),
                 new HorizontalLine(List.of(true)))))
+        );
+    }
+
+    static Stream<Arguments> nonAddArgs() {
+        return Stream.of(
+            Arguments.of(1, 1, new Ladder(List.of(new HorizontalLine(List.of())))),
+            Arguments.of(2, 2, new Ladder(List.of(new HorizontalLine(List.of(false)),
+                new HorizontalLine(List.of(false)))))
         );
     }
 
