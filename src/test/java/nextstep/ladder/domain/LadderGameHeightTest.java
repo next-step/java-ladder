@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-class LadderHeightTest {
+class LadderGameHeightTest {
 
     @ParameterizedTest
     @ValueSource(ints = {1,2,3,4,5})

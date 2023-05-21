@@ -7,11 +7,12 @@ import java.util.List;
 public class Line {
     private List<Boolean> points;
 
-    public Line(int ladderWeight) {
-        points = drawLine(ladderWeight);
+    public Line(int countOfPerson) {
+        points = drawLine(countOfPerson);
     }
 
-    protected List<Boolean> drawLine(int ladderWeight) {
+    protected List<Boolean> drawLine(int countOfPerson) {
+        int ladderWeight = countOfPerson - 1;
         ArrayList<Boolean> newLine = new ArrayList<>(ladderWeight);
 
         newLine.add(createFirstBoolean());
@@ -32,7 +33,7 @@ public class Line {
         return RandomBooleanGenerator.getRandomBoolean();
     }
 
-    protected List<Boolean> toList() {
+    public List<Boolean> toList() {
         return Collections.unmodifiableList(points);
     }
 }

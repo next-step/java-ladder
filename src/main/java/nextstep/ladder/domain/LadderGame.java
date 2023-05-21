@@ -5,10 +5,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Ladder {
+public class LadderGame {
     private List<Line> lines;
 
-    private Ladder(LadderHeight ladderHeight, int ladderWeight) {
+    public static LadderHeight readLadderHeight(int height) {
+        return new LadderHeight(height);
+    }
+
+    private LadderGame(LadderHeight ladderHeight, int ladderWeight) {
         lines = IntStream.range(0, ladderHeight.height())
                 .mapToObj(i -> drawLine(ladderWeight))
                 .collect(Collectors.toList());
@@ -18,11 +22,11 @@ public class Ladder {
         return new Line(ladderWidth);
     }
 
-    public static Ladder create(LadderHeight ladderHeight, int countOfPerson) {
-        return new Ladder(ladderHeight, countOfPerson);
+    public static LadderGame create(LadderHeight ladderHeight, int countOfPerson) {
+        return new LadderGame(ladderHeight, countOfPerson);
     }
 
-    public List<Line> toList(){
+    public List<Line> toList() {
         return Collections.unmodifiableList(lines);
     }
 
