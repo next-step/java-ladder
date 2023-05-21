@@ -12,7 +12,7 @@ public class LadderApplication {
         Users users = new Users(InputView.enterNames());
         int height = InputView.enterHeight();
 
-        Ladder ladder = new Ladder(users.count(), height, new RandomLineStrategy());
+        Ladder ladder = Ladder.create(users.count(), height, new RandomLineStrategy());
         OutputView.outputLadder(users, ladder);
     }
 

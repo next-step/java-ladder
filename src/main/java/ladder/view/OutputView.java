@@ -1,6 +1,7 @@
 package ladder.view;
 
 import ladder.domain.Ladder;
+import ladder.domain.Point;
 import ladder.domain.Users;
 
 public class OutputView {
@@ -18,11 +19,11 @@ public class OutputView {
         });
     }
 
-    private static void printPoint(Boolean point) {
-        if (point) {
+    private static void printPoint(Point point) {
+        if (point.hasRightLine()) {
             System.out.print("     |");
         }
-        if (!point) {
+        if (!point.hasRightLine()) {
             System.out.print("-----|");
         }
     }
