@@ -46,15 +46,18 @@ public class Participants implements Iterable<String> {
         return participants.size() != length;
     }
 
-    public boolean isNotContaining(String name) {
-        return !participants.contains(name);
-    }
-
     public int indexOf(String name) {
         return participants.indexOf(name);
     }
 
     public int maxIndex() {
         return participants.size() - 1;
+    }
+
+    public void validateResultInput(String input) {
+        if (participants.contains(input) || Code.contains(input)) {
+            return;
+        }
+        throw new IllegalArgumentException("Input은 코드나 참여자에 포함되어야 합니다.");
     }
 }
