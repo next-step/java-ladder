@@ -1,7 +1,7 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.User;
-import nextstep.ladder.domain.Users;
+import nextstep.ladder.domain.user.User;
+import nextstep.ladder.domain.user.Users;
 
 import java.util.Arrays;
 import java.util.Scanner;
