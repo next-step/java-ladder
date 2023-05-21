@@ -1,7 +1,8 @@
 package ladder.View;
 
 import ladder.Model.LadderLine;
-import ladder.Model.LadderMap;
+import ladder.Model.Ladder;
+import ladder.Model.Results;
 
 import java.util.List;
 
@@ -13,16 +14,10 @@ public class ResultView {
 
     public static void printResultHeader() {
         System.out.println("");
-        System.out.println("실행결과");
+        System.out.println("사다리 결과");
         System.out.println("");
     }
-
-    public static void printResultBody(List<String> attendances, LadderMap ladderMap) {
-        printAttendances(attendances);
-        printLadder(ladderMap);
-    }
-
-    private static void printAttendances(List<String> attendances) {
+    public static void printAttendances(List<String> attendances) {
         attendances.forEach(s -> {
             System.out.print(" ".repeat(PRINT_WIDTH + 1 - s.length()));
             System.out.print(s);
@@ -30,30 +25,50 @@ public class ResultView {
         System.out.println("");
     }
 
-    private static void printLadder(LadderMap ladderMap) {
-        ladderMap.ladderLines().forEach(ResultView::printLadderLine);
+    public static void printLadder(Ladder ladder) {
+        ladder.ladderLines().forEach(ResultView::printLadderLine);
+    }
+
+    public static void printTypedResult(Results results){
+        results.of().forEach(s -> {
+            System.out.print(" ".repeat(PRINT_WIDTH + 1 - s.length()));
+            System.out.print(s);
+        });
+        System.out.println("");
     }
 
     private static void printLadderLine(LadderLine ladderLine) {
-        printLadderHorizonLine(false);
-        System.out.print(VERTICAL_LINE);
-
-        ladderLine.lines().forEach(
-                b -> {
-                    printLadderHorizonLine(b);
-                    System.out.print(VERTICAL_LINE);
-                }
-        );
+        for (int idx = 0; idx < ladderLine.size(); idx++) {
+            printLadderHorizonLine(ladderLine, idx - 1);
+            printLadderVerticalLine(ladderLine, idx);
+        }
 
         System.out.println("");
     }
 
-    private static void printLadderHorizonLine(Boolean exist) {
+    private static void printLadderHorizonLine(LadderLine ladderLine, int idx) {
+        if (idx < 0) {
+            System.out.print(HORIZON_NO_LINE);
+            return;
+        }
+
+        Boolean exist = ladderLine.horizonLines().get(idx);
         if (exist) {
             System.out.print(HORIZON_LINE);
             return;
         }
 
         System.out.print(HORIZON_NO_LINE);
+    }
+
+    private static void printLadderVerticalLine(LadderLine ladderLine, int idx) {
+        if (idx < 0) {
+            return;
+        }
+
+        Boolean exist = ladderLine.verticalLines().get(idx);
+        if (exist) {
+            System.out.print(VERTICAL_LINE);
+        }
     }
 }

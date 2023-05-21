@@ -4,7 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class MakeLineStrategyTest {
     @Test
@@ -14,7 +13,7 @@ class MakeLineStrategyTest {
         Boolean expected = false;
 
         Boolean input = true;
-        Boolean actual = makeLineStrategy.MakeLine(input);
+        Boolean actual = makeLineStrategy.makeLine(input);
 
         assertThat(actual).isEqualTo(expected);
     }
