@@ -1,19 +1,22 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.util.RandomUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Ladder {
+
+    private static final String HEIGHT_ERROR_MESSAGE = "높이는 0보다 커야 합니다.";
 
     private List<Line> lines = new ArrayList<>();
 
     private int height;
 
     public Ladder(int height) {
+        if (1 > height) {
+            throw new IllegalArgumentException(HEIGHT_ERROR_MESSAGE);
+        }
         this.height = height;
     }
 
