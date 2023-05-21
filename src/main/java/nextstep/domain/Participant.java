@@ -1,13 +1,24 @@
 package nextstep.domain;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class Participant {
 
+    private static final Map<String, Participant> participantCache = new HashMap<>();
     private final String name;
 
-    public Participant(String name) {
+    private Participant(String name) {
         this.name = name;
+    }
+
+    public static Participant of(String name) {
+        if (participantCache.get(name) == null) {
+            participantCache.put(name, new Participant(name));
+        }
+
+        return participantCache.get(name);
     }
 
     @Override

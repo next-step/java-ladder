@@ -15,8 +15,8 @@ public class RecordTest {
 
         // given
         Record record = new Record();
-        record.add(new Participant("abc"), "1000");
-        record.add(new Participant("def"), "2000");
+        record.add(Participant.of("abc"), "1000");
+        record.add(Participant.of("def"), "2000");
 
         // when
         Map<Participant, String> result1 = record.value("abc");
@@ -32,8 +32,8 @@ public class RecordTest {
 
         // given
         Record record = new Record();
-        record.add(new Participant("abc"), "1000");
-        record.add(new Participant("def"), "2000");
+        record.add(Participant.of("abc"), "1000");
+        record.add(Participant.of("def"), "2000");
 
         // when
         Map<Participant, String> result = record.value("all");

@@ -17,7 +17,7 @@ public class Record {
         }
 
         Map<Participant, String> resultMap = new HashMap<>();
-        Participant key = new Participant(name);
+        Participant key = Participant.of(name);
         String value = record.get(key);
 
         resultMap.put(key, value);
