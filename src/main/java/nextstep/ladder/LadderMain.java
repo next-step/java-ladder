@@ -4,7 +4,6 @@ import nextstep.ladder.domain.user.Users;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
-
 public class LadderMain {
 
     private static final InputView inputView = new InputView();
