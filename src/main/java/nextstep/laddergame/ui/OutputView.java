@@ -8,6 +8,8 @@ import nextstep.laddergame.domain.Row;
 
 public class OutputView {
 
+  private static final int LINE_WIDTH = 5;
+
   private OutputView() {
   }
 
@@ -16,28 +18,29 @@ public class OutputView {
     printLadder(ladder);
   }
 
-  private static void printLadder(Ladder ladder) {
-    for (Row row : ladder.getRows()) {
-      for (Point point : row.getPoints()) {
-        if (point.checkLeftWay()) {
-          System.out.print("-".repeat(5));
-        } else {
-          System.out.print(" ".repeat(5));
-        }
-        System.out.print("|");
-      }
-      System.out.println();
-    }
-  }
-
   private static void printMembers(Members members) {
     System.out.println("실행결과");
-    for (Member member : members.getMembers()) {
-      String name = member.getName();
-      String blank = " ".repeat(6 - name.length());
-      System.out.print(blank + name);
-    }
+    members.getMembers().forEach(OutputView::printMember);
     System.out.println();
   }
 
+  private static void printMember(Member member) {
+    String name = member.getName();
+    String blank = " ".repeat(LINE_WIDTH + 1 - name.length());
+    System.out.print(blank + name);
+  }
+
+  private static void printLadder(Ladder ladder) {
+    ladder.getRows().forEach(OutputView::printRow);
+  }
+
+  private static void printRow(Row row) {
+    row.getPoints().forEach(OutputView::printLine);
+    System.out.println();
+  }
+
+  private static void printLine(Point point) {
+    String line = point.checkLeftWay() ? "-" : " ";
+    System.out.print(line.repeat(LINE_WIDTH) + "|");
+  }
 }
