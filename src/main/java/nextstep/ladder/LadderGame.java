@@ -1,14 +1,17 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Player;
 import nextstep.ladder.domain.Result;
+import nextstep.ladder.util.RandomUtil;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class LadderGame {
 
@@ -27,11 +30,11 @@ public class LadderGame {
 
         inputPlayers(players, InputView.inputPlayers());
 
-        Result result = new Result(InputView.inputResult());
+//        Result result = new Result(InputView.inputResult());
 
-        saveLadder(new Ladder(InputView.inputLadderHeight(), players.size()));
-
-        ResultView.printResult(players, ladder.getLines(), result);
+        saveLadder(new Ladder(InputView.inputLadderHeight()));
+        addLines(ladder.getHeight(), players.size());
+        ResultView.printResult(players, ladder.getLines());
 
     }
 
@@ -47,6 +50,16 @@ public class LadderGame {
 
     private void saveLadder(Ladder ladder) {
         this.ladder = ladder;
+    }
+
+    private void addLines(int height, int width) {
+        IntStream.range(0, height)
+                .mapToObj(i -> new Line(() -> RandomUtil.generatorPoints(width - 1)))
+                .forEach(this::addLine);
+    }
+
+    private void addLine(Line line) {
+        this.ladder.addLine(line);
     }
 
 }

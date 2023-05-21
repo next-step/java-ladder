@@ -15,7 +15,7 @@ public class ResultView {
     private static final String NAME_LENGTH_FIVE_FORMAT_PATTERN = "%-5s";
     private static final String RESULT_TEXT = "실행결과";
 
-    public static void printResult(List<Player> players, List<Line> lines, Result result) {
+    public static void printResult(List<Player> players, List<Line> lines) {
         printResultText();
         printPlayerName(players);
         printLadderLine(lines);

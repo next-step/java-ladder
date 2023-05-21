@@ -9,18 +9,20 @@ import java.util.stream.IntStream;
 
 public class Ladder {
 
-    private List<Line> lines;
+    private List<Line> lines = new ArrayList<>();
 
-    public Ladder(int height, int width) {
-        addLine(height, width);
+    private int height;
+
+    public Ladder(int height) {
+        this.height = height;
     }
 
-    private void addLine(int height, int width) {
-        List<Line> lines = new ArrayList<>();
-        IntStream.range(0, height)
-                .mapToObj(i -> new Line(width))
-                .forEach(lines::add);
-        this.lines = lines;
+    public void addLine(Line line) {
+        lines.add(line);
+    }
+
+    public int getHeight() {
+        return height;
     }
 
     public List<Line> getLines() {
