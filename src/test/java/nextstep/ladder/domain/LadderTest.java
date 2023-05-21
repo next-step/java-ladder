@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LadderTest {
 
@@ -18,6 +19,13 @@ public class LadderTest {
         ladder2.getLines().forEach(line -> {
             assertThat(line.getPoints()).hasSize(5);
         });
+    }
+
+    @Test
+    void height() {
+        assertThatThrownBy(() -> {
+            Ladder ladder = new Ladder(0);
+        }).hasMessageContaining("높이는 0보다 커야 합니다.");
     }
 
 }
