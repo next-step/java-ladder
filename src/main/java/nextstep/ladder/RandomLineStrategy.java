@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
 
 public class RandomLineStrategy implements LineStrategy {
     private Random random = new Random();
-    private boolean lastLine;
+    private boolean lastLine = false;
 
     public RandomLineStrategy() {
     }
@@ -18,8 +18,8 @@ public class RandomLineStrategy implements LineStrategy {
     }
 
     @Override
-    public List<Boolean> generate(int size) {
-        return IntStream.rangeClosed(1, size)
+    public List<Boolean> generate(int countOfVerticalLine) {
+        return IntStream.rangeClosed(1, countOfVerticalLine-1)
                 .mapToObj(i -> drawLine())
                 .collect(Collectors.toList());
     }

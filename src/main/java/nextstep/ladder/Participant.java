@@ -28,4 +28,9 @@ public class Participant {
     public int getParticipantSize(){
         return participants.size();
     }
+
+    public String getParticipant(int index) {
+        Name name = participants.get(index);
+        return name.name();
+    }
 }

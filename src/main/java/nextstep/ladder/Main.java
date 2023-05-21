@@ -10,9 +10,16 @@ public class Main {
     public static void main(String[] args) {
         String[] names = InputView.inputName();
         Participant participant = new Participant(names);
+        String[] result = InputView.inputResult();
+        LadderResult ladderResult = new LadderResult(result);
         int height = InputView.inputHeight();
-        Ladder ladder = new Ladder(height, participant, new RandomLineStrategy());
+        Ladder ladder = new Ladder(height, participant.getParticipantSize(), new RandomLineStrategy());
 
-        OutputView.showLadder(ladder);
+
+        LadderGame ladderGame = new LadderGame(ladder, participant, ladderResult);
+        ladderGame.start();
+
+        OutputView.showLadder(ladderGame);
+        OutputView.showResult(ladderGame);
     }
 }
