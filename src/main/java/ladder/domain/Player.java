@@ -4,9 +4,13 @@ public class Player {
 
     private final String name;
 
-    public Player(String name){
+    public Player(String name) {
         validlength(name);
         this.name = name;
+    }
+
+    public String name() {
+        return name;
     }
 
     private void validlength(String name) {
