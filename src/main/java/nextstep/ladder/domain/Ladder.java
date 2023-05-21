@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 public class Ladder implements Iterable<Line>{
 
     private final List<Line> ladder;
-    private final Map<String, String> gameResult;
+    private final GameResult gameResult;
 
     public static Ladder of(Participants participants, Height height, BridgeStrategy strategy) {
         return new Ladder(participants, height, strategy);
@@ -17,7 +17,7 @@ public class Ladder implements Iterable<Line>{
 
     private Ladder(Participants participants, Height height, BridgeStrategy strategy) {
         this.ladder = create(participants,height, strategy);
-        this.gameResult = new LinkedHashMap<>();
+        this.gameResult = new GameResult();
     }
 
     public List<Line> create(Participants participants, Height height, BridgeStrategy strategy) {
@@ -40,8 +40,9 @@ public class Ladder implements Iterable<Line>{
             int index = calculateIndexOfResult(participants, name);
             gameResult.put(name, result.get(index));
         });
-        return gameResult;
+        return gameResult.getGameResult();
     }
+
     private int calculateIndexOfResult(Participants participants, String name) {
         int index = participants.indexOf(name);
         int maxIndex = participants.maxIndex();
