@@ -8,7 +8,7 @@ public class LadderMain {
     private static final InputView INPUT_VIEW = new InputView();
     private static final ResultView RESULT_VIEW = new ResultView();
 
-    public static void main(String args[]){
+    public static void main(String[] args){
         LadderController ladderController = new LadderController(INPUT_VIEW, RESULT_VIEW);
         ladderController.play();
     }
