@@ -4,9 +4,14 @@ import nextstep.ladder.domain.generator.BooleanGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Row {
+
+    private static final String COLUMN_DELIMITER = "|";
+    private static final String OUTPUT_PREFIX = "    " + COLUMN_DELIMITER;
+    private static final String OUTPUT_SUFFIX = COLUMN_DELIMITER;
 
     private final List<ConnectionType> connectionTypes;
     private final int connectionSize;
@@ -48,7 +53,11 @@ public class Row {
     }
 
     private boolean isLast(int index) {
-        return index == connectionSize - 1;
+        return index == lastIndex();
+    }
+
+    private long lastIndex() {
+        return connectionSize - 1L;
     }
 
     public List<ConnectionType> getConnectionTypes() {
@@ -58,6 +67,18 @@ public class Row {
     public int getMovePoint(int currentPosition) {
         ConnectionType currenConnectionType = connectionTypes.get(currentPosition);
         return currenConnectionType.getMovePoint();
+    }
+
+    @Override
+    public String toString() {
+        return OUTPUT_PREFIX + drawLines() + OUTPUT_SUFFIX;
+    }
+
+    private String drawLines() {
+        return connectionTypes.stream()
+                .limit(lastIndex())
+                .map(ConnectionType::toOutput)
+                .collect(Collectors.joining(COLUMN_DELIMITER));
     }
 
 }

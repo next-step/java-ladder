@@ -1,14 +1,16 @@
 package nextstep.ladder.domain.ladder;
 
 public enum ConnectionType {
-    LEFT(-1),
-    RIGHT(1),
-    NONE(0);
+    LEFT(-1, "     "),
+    RIGHT(1, "-----"),
+    NONE(0, "     ");
 
     private final int movePoint;
+    private final String output;
 
-    ConnectionType(int movePoint) {
+    ConnectionType(int movePoint, String output) {
         this.movePoint = movePoint;
+        this.output = output;
     }
 
     public static ConnectionType getRightOrNone(boolean isRight) {
@@ -20,6 +22,10 @@ public enum ConnectionType {
 
     public int getMovePoint() {
         return movePoint;
+    }
+
+    public String toOutput() {
+        return output;
     }
 
     public boolean isRight() {

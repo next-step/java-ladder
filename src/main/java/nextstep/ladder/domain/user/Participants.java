@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 public class Participants {
 
     private static final String USER_NAME_DELIMITER = ",";
+    private static final String OUTPUT_NAME_DELIMITER = " ";
 
     private final List<UserName> userNames;
 
@@ -39,4 +40,8 @@ public class Participants {
         return userNames.indexOf(userName);
     }
 
+    @Override
+    public String toString() {
+        return String.join(OUTPUT_NAME_DELIMITER, getFormattedUserNames());
+    }
 }

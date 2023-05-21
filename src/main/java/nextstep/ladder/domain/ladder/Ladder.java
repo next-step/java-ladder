@@ -37,9 +37,9 @@ public class Ladder {
 
     @Override
     public String toString() {
-        return "Ladder{" +
-                "rows=" + rows +
-                '}';
+        return rows.stream()
+                .map(Row::toString)
+                .collect(Collectors.joining("\n"));
     }
 
 }

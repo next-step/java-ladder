@@ -34,13 +34,6 @@ public class ExecuteResults {
         return userNameResultMap.get(userName);
     }
 
-    @Override
-    public String toString() {
-        return results.stream()
-                .map(Result::toString)
-                .collect(Collectors.joining(" "));
-    }
-
     public void execute(Participants participants, Ladder ladder) {
         Map<UserName, Result> result = participants.getUserNames()
                 .stream()
@@ -65,6 +58,13 @@ public class ExecuteResults {
         return String.join(RESULT_DELIMITER,
                 userName.getName(),
                 userNameResultMap.get(userName).getValue());
+    }
+
+    @Override
+    public String toString() {
+        return results.stream()
+                .map(Result::toString)
+                .collect(Collectors.joining(" "));
     }
 
 }
