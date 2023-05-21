@@ -25,6 +25,6 @@ class InputViewTest {
         Arrays.stream(names).forEach((name) -> users.add(new User(name)));
 
         //then
-        assertThat(users.toString()).isEqualTo("A,B,C,D,E");
+        assertThat(users.userCount()).isEqualTo(5);
     }
 }

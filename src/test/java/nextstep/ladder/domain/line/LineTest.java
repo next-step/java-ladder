@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.line;
 
+import nextstep.ladder.domain.line.generator.TestLineGenerator;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

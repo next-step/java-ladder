@@ -1,4 +1,4 @@
-package nextstep.ladder.domain.line;
+package nextstep.ladder.domain.line.generator;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;

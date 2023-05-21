@@ -1,5 +1,7 @@
 package nextstep.ladder.domain.line;
 
+import nextstep.ladder.domain.line.generator.LineGenerator;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -21,5 +23,9 @@ public class Line {
     @Override
     public int hashCode() {
         return Objects.hash(line);
+    }
+
+    public boolean hasLine(int width) {
+        return this.line.get(width);
     }
 }

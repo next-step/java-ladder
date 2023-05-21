@@ -19,6 +19,6 @@ public class User {
 
     @Override
     public String toString() {
-        return this.name;
+        return String.format("%-" + MAX_USER_NAME + "s ", this.name);
     }
 }

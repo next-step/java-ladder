@@ -1,18 +1,19 @@
 package nextstep.ladder.domain.line;
 
+import nextstep.ladder.domain.line.generator.LineGenerator;
+import nextstep.ladder.domain.user.Users;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.IntStream;
 
 public class Ladder {
 
-    private static final int START = 0;
     private final List<Line> lines = new ArrayList<>();
 
-    public Ladder(LineGenerator lineGenerator, int ladderHeight, int countOfPerson) {
-        IntStream.range(START, ladderHeight)
-                .forEach(i -> lines.add(new Line(lineGenerator, countOfPerson)));
+    public Ladder(LineGenerator lineGenerator, LadderHeight ladderHeight, Users users) {
+        ladderHeight.toStream()
+                .forEach(i -> lines.add(new Line(lineGenerator, users.userCount())));
     }
 
     @Override
@@ -30,5 +31,9 @@ public class Ladder {
     @Override
     public int hashCode() {
         return Objects.hash(lines);
+    }
+
+    public boolean hasLine(int height, int width) {
+        return this.lines.get(height).hasLine(width);
     }
 }

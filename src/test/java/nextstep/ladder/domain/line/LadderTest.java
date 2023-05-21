@@ -1,5 +1,9 @@
 package nextstep.ladder.domain.line;
 
+
+import nextstep.ladder.domain.line.generator.TestLineGenerator;
+import nextstep.ladder.domain.user.User;
+import nextstep.ladder.domain.user.Users;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -13,15 +17,16 @@ class LadderTest {
     @Test
     public void Ladder_생성테스트() {
         //given
-        LineGenerator lineGenerator = new TestLineGenerator();
-        List<Boolean> line1 = new ArrayList<>(Arrays.asList(true, false, true));
-        List<Boolean> line2 = new ArrayList<>(Arrays.asList(true, false, true));
         List<List<Boolean>> lineList = new ArrayList<>();
-        lineList.add(line1);
-        lineList.add(line2);
+        lineList.add(new ArrayList<>(Arrays.asList(true, false, true)));
+        lineList.add(new ArrayList<>(Arrays.asList(true, false, true)));
+        Users users = new Users();
+        users.add(new User("A"));
+        users.add(new User("B"));
+        users.add(new User("C"));
 
         //when
-        Ladder ladder = new Ladder(lineGenerator, 2, 3);
+        Ladder ladder = new Ladder(new TestLineGenerator(), new LadderHeight(2), users);
 
         //then
         assertThat(ladder).isEqualTo(lineList);
