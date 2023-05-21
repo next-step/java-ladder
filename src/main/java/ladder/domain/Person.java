@@ -7,15 +7,15 @@ public class Person {
     public Person(String name) {
         validateName(name);
 
-        this.name = name;
+        this.name = name.trim();
     }
 
     private void validateName(String name) {
-        if (name == null || name.isEmpty()) {
+        if (name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException("이름이 Null 또는 빈값이 입력되었습니다.");
         }
 
-        if (name.length() > MAX_NAME_LENGTH) {
+        if (name.trim().length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("이름이 최대허용길이(" + MAX_NAME_LENGTH + ")를 초과하였습니다");
         }
     }
