@@ -44,22 +44,24 @@ class ParticipantsTest {
         assertThat(participants.number()).isEqualTo(5);
     }
 
-    @DisplayName("입력받은 이름이 참여자 리스트에 포함되면 예외를 발생하지 않는다")
+    @DisplayName("입력받은 값이 참여자 리스트에 포함되면 예외를 발생하지 않는다")
     @ParameterizedTest
     @ValueSource(strings = {"a", "b", "c", "d", "e"})
     void when_ParticipantListContainsName_Expects_returnFalse(String name) {
         Participants participants = new Participants(this.participants);
 
-        assertThat(participants.isNotContaining(name)).isFalse();
+        assertThatNoException()
+                .isThrownBy(() -> participants.validateResultInput(name));
     }
 
-    @DisplayName("입력받은 이름이 참여자 리스트에 포함되지 않으면")
+    @DisplayName("입력받은 이름이 참여자 리스트에 포함되지 않으면 예외를 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {"g", "h", "i", "j", "k"})
     void when_ParticipantListIsNotContainingName_Expects_returnTrue(String name) {
         Participants participants = new Participants(this.participants);
 
-        assertThat(participants.isNotContaining(name)).isTrue();
+        assertThatThrownBy(() -> participants.validateResultInput(name))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
 
@@ -77,5 +79,23 @@ class ParticipantsTest {
         Participants participants = new Participants(this.participants);
 
         assertThat(participants.maxIndex()).isEqualTo(4);
+    }
+
+    @DisplayName("입력한 값과 길이가 같으면 false를 반환한다.")
+    @Test
+    void test1() {
+        Participants participants = new Participants(this.participants);
+
+        assertThat(participants.isNotSameNum(this.participants.size()))
+                .isFalse();
+    }
+
+    @DisplayName("입력한 값과 길이가 같지 않으면 true를 반환한다.")
+    @Test
+    void test2() {
+        Participants participants = new Participants(this.participants);
+
+        assertThat(participants.isNotSameNum(this.participants.size() - 1))
+                .isTrue();
     }
 }
