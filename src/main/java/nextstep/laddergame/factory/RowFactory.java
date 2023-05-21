@@ -12,26 +12,26 @@ public class RowFactory {
   private RowFactory() {
   }
 
-  static public Row createRow(int width, LineStrategy lineStrategy) {
+  public static Row createRow(int width, LineStrategy lineStrategy) {
     List<Point> points = initPoints(width);
     return new Row(makeLines(lineStrategy, points));
   }
 
-  static private List<Point> initPoints(int width) {
+  private static List<Point> initPoints(int width) {
     return IntStream.range(0, width)
         .mapToObj(i -> new Point())
         .collect(Collectors.toList());
   }
 
-  static private List<Point> makeLines(LineStrategy lineStrategy, List<Point> points) {
+  private static List<Point> makeLines(LineStrategy lineStrategy, List<Point> points) {
     IntStream.range(0, points.size() - 1)
-        .filter(i -> lineStrategy.isCreateLine(points.get(i), points.get(i + 1)))
+        .filter(i -> lineStrategy.canCreateLine(points.get(i), points.get(i + 1)))
         .forEach(i -> makeLine(points.get(i), points.get(i + 1)));
 
     return points;
   }
 
-  static private void makeLine(Point leftPont, Point rightPoint) {
+  private static void makeLine(Point leftPont, Point rightPoint) {
     leftPont.createLineWithRightPoint();
     rightPoint.createLineWithLeftPoint();
   }
