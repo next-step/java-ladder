@@ -24,7 +24,7 @@ public class Row {
     }
 
     private void addConnectionType(int index, BooleanGenerator booleanGenerator) {
-        if (index == 0) {
+        if (isFirst(index)) {
             connectionTypes.add(ConnectionType.getRightOrNone(booleanGenerator.getBoolean()));
             return;
         }
@@ -35,12 +35,20 @@ public class Row {
             return;
         }
 
-        if (index == connectionSize - 1) {
+        if (isLast(index)) {
             connectionTypes.add(ConnectionType.NONE);
             return;
         }
 
         connectionTypes.add(ConnectionType.getRightOrNone(booleanGenerator.getBoolean()));
+    }
+
+    private boolean isFirst(int index) {
+        return index == 0;
+    }
+
+    private boolean isLast(int index) {
+        return index == connectionSize - 1;
     }
 
     public List<ConnectionType> getConnectionTypes() {
