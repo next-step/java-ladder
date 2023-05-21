@@ -41,7 +41,7 @@ public class LadderRow {
     }
 
     private Boolean generateLine(boolean prev) {
-        if (prev == true) {
+        if (prev) {
             return false;
         }
         return lineStrategy.isConnectable();
