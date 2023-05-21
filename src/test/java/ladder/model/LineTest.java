@@ -34,6 +34,6 @@ class LineTest {
         //then
         List<Boolean> expected01 = List.of(false, true, false);
         List<Boolean> expected02 = List.of(false, false, false);
-        Assertions.assertThat(actual).isIn(expected01,expected02);
+        Assertions.assertThat(actual).isIn(expected01, expected02);
     }
 }

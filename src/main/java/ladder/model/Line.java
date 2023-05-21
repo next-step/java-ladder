@@ -30,5 +30,4 @@ public class Line {
         return strategy.addLine();
     }
 
-
 }

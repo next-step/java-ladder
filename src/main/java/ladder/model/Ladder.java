@@ -2,10 +2,10 @@ package ladder.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Ladder {
     private final List<Line> ladder;
+
     private Ladder(List<Line> ladder) {
         this.ladder = ladder;
     }
