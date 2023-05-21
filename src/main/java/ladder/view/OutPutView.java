@@ -1,8 +1,6 @@
 package ladder.view;
 
-import ladder.domain.model.Line;
-import ladder.domain.model.Lines;
-import ladder.domain.model.PlayerNames;
+import ladder.domain.model.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,13 +12,14 @@ public class OutPutView {
         // 생성자 내부 호출 -> 명시적 Exception
         throw new AssertionError();
     }
+
     private static final String LADDER_CONNECTION_SUCCESS_DELIMITER = "-";
     private static final String LADDER_CONNECTION_FALE_DELIMITER = " ";
     private static final String LADDER_HEIGHT = "|";
     private static final int START_RANGE = 0;
     private static final int END_RANGE = 5;
 
-    public static void outputGame(Lines lines, PlayerNames playerNames) {
+    public static void outputGame(Lines lines, PlayerNames playerNames, WinResults winResults) {
         List<Line> lines1 = lines.getLines();
 
         outputPlayerNames(playerNames);
@@ -42,6 +41,8 @@ public class OutPutView {
                             .collect(Collectors.joining());
                     System.out.println(newline);
                 });
+
+        outputResult(winResults);
     }
 
     public static void outputPlayerNames(PlayerNames playerNames) {
@@ -57,5 +58,25 @@ public class OutPutView {
         return IntStream.range(START_RANGE, END_RANGE)
                 .mapToObj(i -> LADDER_CONNECTION_FALE_DELIMITER)
                 .collect(Collectors.joining());
+    }
+
+    public static void outputResult(WinResults winResults) {
+        String playerNamesString = winResults.getWinResults()
+                .stream()
+                .map(winResult -> winResult.getWinResult())
+                .collect(Collectors.joining(" "));
+
+        System.out.println(playerNamesString);
+    }
+
+    public static void outPutWinResult(Player player, WinResults winResults) {
+        System.out.println("실행결과");
+        System.out.println(player.getPlayerName().trim() + " : " + winResults.searchWinResult(player).trim());
+    }
+
+    public static void outPutWinResults(Players players, WinResults winResults) {
+        System.out.println("실행결과");
+        players.getPlayers()
+                .forEach(player -> System.out.println(player.getPlayerName().trim() + " : " + winResults.searchWinResult(player).trim()));
     }
 }

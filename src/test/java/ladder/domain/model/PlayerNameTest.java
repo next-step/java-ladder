@@ -17,3 +17,4 @@ class PlayerNameTest {
                 .hasMessageContaining("최대이름 글자를 초과하였습니다.");
     }
 }
+

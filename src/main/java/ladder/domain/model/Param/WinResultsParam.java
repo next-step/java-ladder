@@ -1,10 +1,8 @@
 package ladder.domain.model.Param;
 
-import ladder.domain.model.PlayerName;
-import ladder.domain.model.PlayerNames;
+import ladder.Utils;
 import ladder.domain.model.WinResult;
 import ladder.domain.model.WinResults;
-import ladder.exception.PlayerCountArgumentException;
 import ladder.exception.WinResultsArgumentException;
 
 import java.util.Arrays;
@@ -25,10 +23,15 @@ public class WinResultsParam {
         this.winResultsString = winResultsString;
     }
 
-    public WinResults convertParamToModel() {
+    public WinResults convertParamToModel(int playerCount) {
         List<String> winResults = Arrays.stream(winResultsString.replaceAll(TRIM, "")
                 .split(DELIMITER)).collect(Collectors.toList());
 
+        if (playerCount != winResults.size()) {
+            throw new WinResultsArgumentException("플레이어 수와 결과 값이 일치하지 않습니다.");
+        }
+
+        winResults = Utils.fillOrRightAlign(winResults);
         List<String> finalWinResults = winResults;
         Supplier<WinResults> supplier = () -> new WinResults(finalWinResults.stream()
                 .map(result -> new WinResult(result))

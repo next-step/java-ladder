@@ -1,8 +1,6 @@
 package ladder.domain.service;
 
-import ladder.domain.model.LadderHeight;
-import ladder.domain.model.Lines;
-import ladder.domain.model.PlayerNames;
+import ladder.domain.model.Ladder;
 
 import java.util.Objects;
 
@@ -21,7 +19,7 @@ public class LadderGameService {
         return ladderGameService;
     }
 
-    public Lines startGame(PlayerNames playerNames, LadderHeight ladderHeight) {
-        return new Lines(playerNames.getCount(), ladderHeight.getHeight());
+    public void startGame(Ladder ladder) {
+        ladder.playGame();
     }
 }

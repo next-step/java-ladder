@@ -6,4 +6,8 @@ public class WinResult {
     public WinResult(String winResult) {
         this.winResult = winResult;
     }
+
+    public String getWinResult() {
+        return winResult;
+    }
 }

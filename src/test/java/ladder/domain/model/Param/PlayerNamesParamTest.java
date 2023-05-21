@@ -8,7 +8,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PlayerNamesParamTest {
 
-
     @Test
     public void 생성자_테스트() {
         assertThatThrownBy(() -> {
@@ -26,3 +25,4 @@ class PlayerNamesParamTest {
 
     }
 }
+
