@@ -13,10 +13,10 @@ class LineTest {
     @Test
     public void Line_생성테스트() {
         //given
-        List<Boolean> list = new ArrayList<>(Arrays.asList(true, true, true, true));
+        List<Boolean> list = new ArrayList<>(Arrays.asList(true, false, true));
 
         // when
-        Line line = new Line(new TestLineGenerator(), 4);
+        Line line = new Line(new TestLineGenerator(), 3);
 
         //then
         assertThat(line).isEqualTo(list);
