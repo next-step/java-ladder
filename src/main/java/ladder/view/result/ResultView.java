@@ -27,13 +27,10 @@ public class ResultView {
 
     private static String drawLine(Line line) {
         StringBuilder sb = new StringBuilder("    |");
-        line.getPoints().forEach(bool -> {
-            if (bool) {
-                sb.append("-----|");
-            } else {
-                sb.append("     |");
-            }
-        });
+        String result = line.getPoints().stream()
+                .map(bool -> bool ? "-----|" : "     |")
+                .collect(Collectors.joining());
+        sb.append(result);
         return sb.append("\n").toString();
     }
 
