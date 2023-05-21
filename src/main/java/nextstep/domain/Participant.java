@@ -14,10 +14,7 @@ public class Participant {
     }
 
     public static Participant of(String name) {
-        if (participantCache.get(name) == null) {
-            participantCache.put(name, new Participant(name));
-        }
-
+        participantCache.computeIfAbsent(name, Participant::new);
         return participantCache.get(name);
     }
 
