@@ -15,7 +15,7 @@ public class Ladder {
     }
 
     private List<LadderRow> generateRows(int height, int countOfPlayers) {
-        List<LadderRow> newRows = new ArrayList();
+        final List<LadderRow> newRows = new ArrayList();
 
         for (int i=0; i<height; i++) {
             newRows.add(new LadderRow(countOfPlayers - 1));

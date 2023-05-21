@@ -5,7 +5,6 @@ import ladder.strategy.RandomLineStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class LadderRow {
     private static final LineStrategy DEFAULT_STRATEGY = new RandomLineStrategy();
@@ -28,7 +27,7 @@ public class LadderRow {
     }
 
     private List<Boolean> generateLines(int width) {
-        List<Boolean> newLines = new ArrayList();
+        final List<Boolean> newLines = new ArrayList();
         newLines.add(generateLine());
         for (int i = 1; i < width; i++) {
             newLines.add(generateLine(newLines.get(i-1)));
