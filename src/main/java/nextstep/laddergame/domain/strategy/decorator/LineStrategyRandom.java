@@ -13,7 +13,7 @@ public class LineStrategyRandom extends LineStrategyDecorator {
   }
 
   @Override
-  public boolean isCreateLine(Point leftPoint, Point rightPoint) {
-    return random.nextBoolean() && super.isCreateLine(leftPoint, rightPoint);
+  public boolean canCreateLine(Point leftPoint, Point rightPoint) {
+    return random.nextBoolean() && super.canCreateLine(leftPoint, rightPoint);
   }
 }

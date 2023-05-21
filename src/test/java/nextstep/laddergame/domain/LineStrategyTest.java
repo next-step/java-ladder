@@ -15,7 +15,7 @@ public class LineStrategyTest {
     Point leftPoint = new Point();
     leftPoint.createLineWithLeftPoint();
 
-    assertThat(lineStrategyNotTwoWay.isCreateLine(leftPoint, new Point())).isFalse();
+    assertThat(lineStrategyNotTwoWay.canCreateLine(leftPoint, new Point())).isFalse();
   }
 
   @DisplayName("이미 오른쪽으로 Line이 만들어진 rightPoint는 왼쪽으로 Line을 만들 수 없다.")
@@ -25,7 +25,7 @@ public class LineStrategyTest {
     Point rightPoint = new Point();
     rightPoint.createLineWithRightPoint();
 
-    assertThat(lineStrategyNotTwoWay.isCreateLine(new Point(), rightPoint)).isFalse();
+    assertThat(lineStrategyNotTwoWay.canCreateLine(new Point(), rightPoint)).isFalse();
   }
 
 }

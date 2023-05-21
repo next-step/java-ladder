@@ -12,7 +12,7 @@ public class LineStrategyDecorator implements LineStrategy {
   }
 
   @Override
-  public boolean isCreateLine(Point leftPoint, Point rightPoint) {
-    return lineStrategy.isCreateLine(leftPoint, rightPoint);
+  public boolean canCreateLine(Point leftPoint, Point rightPoint) {
+    return lineStrategy.canCreateLine(leftPoint, rightPoint);
   }
 }

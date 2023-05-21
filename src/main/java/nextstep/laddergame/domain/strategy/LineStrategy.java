@@ -5,5 +5,5 @@ import nextstep.laddergame.domain.Point;
 @FunctionalInterface
 public interface LineStrategy {
 
-  boolean isCreateLine(Point leftPoint, Point rightPoint);
+  boolean canCreateLine(Point leftPoint, Point rightPoint);
 }
