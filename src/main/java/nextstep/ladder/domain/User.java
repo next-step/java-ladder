@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class LadderGame {
+public class User {
 
     public UserNames creatUser(String names) {
         List<String> userNames = Arrays.stream(names.split(","))
@@ -12,7 +12,4 @@ public class LadderGame {
         return UserNames.of(userNames);
     }
 
-    public LadderHeight readLadderHeight(int height){
-        return new LadderHeight(height);
-    }
 }

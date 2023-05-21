@@ -1,22 +1,21 @@
 package nextstep.ladder.controller;
 
-import nextstep.ladder.domain.LadderGame;
-import nextstep.ladder.domain.LadderHeight;
-import nextstep.ladder.domain.UserNames;
+import nextstep.ladder.domain.*;
 import nextstep.ladder.view.InputView;
 
 public class LadderGameController {
     private InputView inputView;
-    private LadderGame ladderGame;
+    private User user;
+
 
     public LadderGameController() {
         inputView = new InputView();
-        ladderGame = new LadderGame();
+        user = new User();
     }
 
     public void playLadderGame() {
         String names = inputView.readUserNames();
-        LadderHeight ladderHeight = ladderGame.readLadderHeight(inputView.readLadderHeight());
-        UserNames userNames = ladderGame.creatUser(names);
+        LadderHeight ladderHeight = LadderCreator.readLadderHeight(inputView.readLadderHeight());
+        UserNames userNames = user.creatUser(names);
     }
 }

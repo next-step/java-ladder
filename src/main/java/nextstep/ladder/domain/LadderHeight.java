@@ -18,4 +18,8 @@ public class LadderHeight {
     private boolean isInvalidHeight(int height) {
         return height < MIN_LADDER_HEIGHT;
     }
+
+    public int height(){
+        return height;
+    }
 }

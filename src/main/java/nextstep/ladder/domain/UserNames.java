@@ -24,4 +24,8 @@ public class UserNames {
         return userNames;
     }
 
+    public int count() {
+        return userNames.size();
+    }
+
 }
