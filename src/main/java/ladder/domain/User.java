@@ -6,7 +6,10 @@ public class User {
     public static final int MAXIMUM_USER_NAME_LENGTH = 5;
     private final String name;
 
-    public User(String name) {
+    public static User create(String name) {
+        return new User(name);
+    }
+    private User(String name) {
         validateName(name);
         this.name = name;
     }

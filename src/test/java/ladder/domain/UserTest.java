@@ -13,7 +13,7 @@ class UserTest {
     @ValueSource(strings = {"abcdef","abcdefg"})
     void 참여자_생성_이름_5글자_초과(String userName) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new User(userName))
+                .isThrownBy(() -> User.create(userName))
                 .withMessageMatching("참여자 이름은 최대 5글자 입니다.");
     }
 

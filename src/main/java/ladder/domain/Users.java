@@ -9,7 +9,7 @@ public class Users {
 
     public static Users create(String[] usersArr) {
         List<User> users = Arrays.stream(usersArr)
-                .map(User::new)
+                .map(User::create)
                 .collect(Collectors.toList());
 
         return Users.create(users);
