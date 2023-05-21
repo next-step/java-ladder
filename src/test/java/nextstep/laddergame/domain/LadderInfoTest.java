@@ -2,6 +2,7 @@ package nextstep.laddergame.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,9 +14,14 @@ public class LadderInfoTest {
   @DisplayName("사다리의 높이와 넓이는 1보다 작을 수 없다.")
   @Test
   public void heightAndWidth_throwException_ifLessThan1() {
-    assertThatThrownBy(() -> new LadderInfo(-1, 1)).isInstanceOf(IllegalArgumentException.class);
-    assertThatThrownBy(() -> new LadderInfo(1, -1)).isInstanceOf(IllegalArgumentException.class);
-    assertThatThrownBy(() -> new LadderInfo(0, 0)).isInstanceOf(IllegalArgumentException.class);
+    assertAll(
+        () -> assertThatThrownBy(() -> new LadderInfo(-1, 1))
+            .isInstanceOf(IllegalArgumentException.class),
+        () -> assertThatThrownBy(() -> new LadderInfo(1, -1))
+            .isInstanceOf(IllegalArgumentException.class),
+        () -> assertThatThrownBy(() -> new LadderInfo(0, 0))
+            .isInstanceOf(IllegalArgumentException.class)
+    );
   }
 
   @DisplayName("높이만큼의 Row수를 갖는 Ladder를 생성한다.")

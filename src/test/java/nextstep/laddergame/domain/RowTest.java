@@ -19,16 +19,22 @@ public class RowTest {
   @DisplayName("Point가 Line을 2방향 전부 가지고 있으면 예외를 던진다.")
   @Test
   public void row_throwException_ifTwoWayLine() {
+    List<Point> points = make3Point();
+    assertThatThrownBy(() -> new Row(points)).isInstanceOf(IllegalArgumentException.class);
+  }
+
+  private List<Point> make3Point() {
     List<Point> points = new ArrayList<>();
     Point point1 = new Point();
     point1.createLineWithRightPoint();
+
     Point point2 = new Point(); // Line을 양방향으로 가지고 있음.
     point2.createLineWithLeftPoint();
     point2.createLineWithRightPoint();
+
     Point point3 = new Point();
     point3.createLineWithLeftPoint();
-
-    assertThatThrownBy(() -> new Row(points)).isInstanceOf(IllegalArgumentException.class);
+    return points;
   }
 
 }
