@@ -20,7 +20,7 @@ public class InputView {
         return scanner.next();
     }
 
-    public static String getParticipantName() {
+    public static String getNameOrCodeForResult() {
         System.out.println("결과를 보고 싶은 사람은?");
         return scanner.next();
     }
