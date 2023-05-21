@@ -1,15 +1,25 @@
 package nextstep.view;
 
-import nextstep.domain.Ladder;
-import nextstep.domain.Line;
-import nextstep.domain.Participants;
+import nextstep.domain.*;
+
+import java.util.Arrays;
+import java.util.Map;
 
 public class PrintView {
 
-    public static void printResult(Participants participants, Ladder ladder) {
+    private PrintView() {}
+
+    public static void printResult(Participants participants, Ladder ladder, String[] gameResult) {
         printTitle();
         printParticipants(participants);
         printLadder(ladder);
+        printDestination(gameResult);
+    }
+
+    private static void printDestination(String[] gameResult) {
+        Arrays.stream(gameResult)
+                .forEach(x -> System.out.printf("%6s", x));
+        System.out.println();
     }
 
     private static void printTitle() {
@@ -27,11 +37,24 @@ public class PrintView {
 
     private static void printLine(Line line) {
         System.out.print("     |");
-        line.booleanToLineStream()
-                .forEach(x -> {
-                    System.out.print(x);
-                    System.out.print("|");
-                });
+        line.lineStream()
+            .map(PrintView::booleanIntoString)
+            .forEach(x -> {
+                System.out.print(x);
+                System.out.print("|");
+            });
         System.out.println();
+    }
+
+    private static String booleanIntoString(Boolean b) {
+        if (b)
+            return "-----";
+
+        return "     ";
+    }
+
+    public static void printFinalResult(String participant, Record record) {
+        Map<Participant, String> finalResult = record.value(participant);
+        finalResult.forEach((x, y) -> System.out.println(x + ":" + y));
     }
 }
