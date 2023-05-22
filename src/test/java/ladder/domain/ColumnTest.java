@@ -36,7 +36,7 @@ class ColumnTest {
         //when
         //then
         assertThatThrownBy(() -> {
-            Column.of(51);
+            Column.of(-1);
         }).isInstanceOf(OutOfColumnRangeException.class)
                 .hasMessageContaining("사용 가능한 Column 의 범위에서 초과하였습니다");
     }

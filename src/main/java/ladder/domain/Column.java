@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Column {
-    private static final int MAX_COLUMN_AND_USER_COUNT = 50;
+    private static final int COLUMN_CACHE_MAX = 50;
 
-    private static final List<Column> COLUMNS_CACHE = new ArrayList<>(MAX_COLUMN_AND_USER_COUNT + 1);
+    private static final List<Column> COLUMNS_CACHE = new ArrayList<>(COLUMN_CACHE_MAX + 1);
 
     static {
-        for (int i = 0; i <= MAX_COLUMN_AND_USER_COUNT; i++) {
+        for (int i = 0; i <= COLUMN_CACHE_MAX; i++) {
             COLUMNS_CACHE.add(i, new Column(i));
         }
     }
@@ -23,10 +23,13 @@ public class Column {
     }
 
     public static Column of(int value) {
-        if ((0 <= value) && (value <= MAX_COLUMN_AND_USER_COUNT)) {
+        if(value <0) {
+            throw new OutOfColumnRangeException();
+        }
+        if (value <= COLUMN_CACHE_MAX) {
             return COLUMNS_CACHE.get(value);
         }
-        throw new OutOfColumnRangeException();
+        return new Column(value);
     }
 
     @Override
