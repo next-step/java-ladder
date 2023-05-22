@@ -26,22 +26,22 @@ public class Participants {
         return userNames.size();
     }
 
-    public List<String> getFormattedUserNames() {
-        return userNames.stream()
-                .map(UserName::formattedName)
-                .collect(Collectors.toUnmodifiableList());
-    }
-
     public List<UserName> getUserNames() {
         return userNames;
     }
 
-    public int getUserLocation(UserName userName) {
+    public int userLocation(UserName userName) {
         return userNames.indexOf(userName);
     }
 
     @Override
     public String toString() {
         return String.join(OUTPUT_NAME_DELIMITER, getFormattedUserNames());
+    }
+
+    private List<String> getFormattedUserNames() {
+        return userNames.stream()
+                .map(UserName::formattedName)
+                .collect(Collectors.toUnmodifiableList());
     }
 }

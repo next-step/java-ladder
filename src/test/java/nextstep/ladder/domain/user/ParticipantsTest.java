@@ -30,7 +30,7 @@ class ParticipantsTest {
     void test02() {
         String user = "crong";
         int expected = users.indexOf(user);
-        assertThat(participants.getUserLocation(UserName.add(user))).isEqualTo(expected);
+        assertThat(participants.userLocation(UserName.add(user))).isEqualTo(expected);
     }
 
 }

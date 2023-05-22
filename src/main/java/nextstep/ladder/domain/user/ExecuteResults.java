@@ -22,7 +22,8 @@ public class ExecuteResults {
 
     public static ExecuteResults of(String input) {
         return new ExecuteResults(
-                Arrays.stream(input.split(USER_NAME_DELIMITER)).map(Result::new)
+                Arrays.stream(input.split(USER_NAME_DELIMITER))
+                        .map(Result::new)
                         .collect(Collectors.toUnmodifiableList()));
     }
 
@@ -40,7 +41,7 @@ public class ExecuteResults {
                 .collect(Collectors.toMap(
                         o -> o,
                         userName -> {
-                            int userLocation = participants.getUserLocation(userName);
+                            int userLocation = participants.userLocation(userName);
                             Position leafPosition = ladder.getLeaf(userLocation);
                             return getResult(leafPosition.getCurrentPosition());
                         }, (x, y) -> x, LinkedHashMap::new));
