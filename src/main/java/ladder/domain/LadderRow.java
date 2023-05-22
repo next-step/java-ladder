@@ -57,7 +57,7 @@ public class LadderRow {
         }
 
         return Arrays.stream(connectedPoints)
-                .map(point -> (point == true) ? "|-----" : "|     ")
+                .map(isConnected -> isConnected ? "|-----" : "|     ")
                 .reduce((left, right) -> left + right)
                 .map(row -> row + "|")
                 .orElse("");
