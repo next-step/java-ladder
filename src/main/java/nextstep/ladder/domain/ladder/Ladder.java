@@ -22,10 +22,6 @@ public class Ladder {
                         .collect(Collectors.toUnmodifiableList()));
     }
 
-    public List<Row> getRows() {
-        return rows;
-    }
-
     public Position getLeaf(int userLocation) {
         Position userPosition = new Position(userLocation);
         for (Row row : rows) {
