@@ -42,7 +42,7 @@ public class ExecuteResults {
                         o -> o,
                         userName -> {
                             int userLocation = participants.userLocation(userName);
-                            Position leafPosition = ladder.getLeaf(userLocation);
+                            Position leafPosition = ladder.leafPosition(userLocation);
                             return getResult(leafPosition.getCurrentPosition());
                         }, (x, y) -> x, LinkedHashMap::new));
         userNameResultMap.putAll(result);

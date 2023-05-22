@@ -64,7 +64,7 @@ public class Row {
         return connectionTypes;
     }
 
-    public int getMovePoint(int currentPosition) {
+    public int movePoint(int currentPosition) {
         ConnectionType currenConnectionType = connectionTypes.get(currentPosition);
         return currenConnectionType.getMovePoint();
     }

@@ -29,8 +29,8 @@ class LadderTest {
         Ladder ladder = new Ladder(List.of(row));
 
         assertAll(
-                () -> assertThat(ladder.getLeaf(0).getCurrentPosition()).isEqualTo(1),
-                () -> assertThat(ladder.getLeaf(1).getCurrentPosition()).isZero()
+                () -> assertThat(ladder.leafPosition(0).getCurrentPosition()).isEqualTo(1),
+                () -> assertThat(ladder.leafPosition(1).getCurrentPosition()).isZero()
         );
     }
 
