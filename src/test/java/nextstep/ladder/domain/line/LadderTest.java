@@ -1,7 +1,6 @@
 package nextstep.ladder.domain.line;
 
 
-import nextstep.ladder.domain.line.generator.TestLineGenerator;
 import nextstep.ladder.domain.user.User;
 import nextstep.ladder.domain.user.Users;
 import org.junit.jupiter.api.Test;
