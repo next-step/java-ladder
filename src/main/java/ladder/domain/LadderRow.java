@@ -1,16 +1,30 @@
 package ladder.domain;
 
+import ladder.strategy.LineStrategy;
+import ladder.strategy.RandomLineStrategy;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class LadderRow {
 
+    private static final LineStrategy DEFAULT_STRATEGY = new RandomLineStrategy();
     private List<Boolean> lines;
-    private static final ThreadLocalRandom RANDOM = ThreadLocalRandom.current();
+    private LineStrategy lineStrategy;
 
     public LadderRow(int width) {
+        lineStrategy = DEFAULT_STRATEGY;
         lines = generateLines(width);
+    }
+
+    public LadderRow(int width, LineStrategy lineStrategy) {
+        this.lineStrategy = lineStrategy;
+        lines = generateLines(width);
+    }
+
+    public List<Boolean> getLines() {
+        return Collections.unmodifiableList(lines);
     }
 
     private List<Boolean> generateLines(int width) {
@@ -24,14 +38,14 @@ public class LadderRow {
     }
 
     private Boolean generateLine() {
-        return RANDOM.nextBoolean();
+        return lineStrategy.isConnectable();
     }
 
     private Boolean generateLine(boolean preValue) {
         if (preValue) {
             return false;
         }
-        return RANDOM.nextBoolean();
+        return lineStrategy.isConnectable();
     }
 
     public int size() {
