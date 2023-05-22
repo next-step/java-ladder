@@ -1,5 +1,6 @@
 package ladder.domain.model;
 
+import ladder.domain.model.strategy.CheckConnectStrategy;
 import ladder.domain.model.strategy.ConnectionStrategy;
 
 import java.util.ArrayList;
@@ -12,10 +13,9 @@ public class Line {
     private static final int RANGE_START = 0;
     private static final int ZERO = 0;
 
-
     private List<Boolean> points = new ArrayList<>();
 
-    public Line(int countOfPerson) {
+    void calculatorLine(int countOfPerson) {
         int rangeEnd = countOfPerson - 1;
 
         IntStream.range(RANGE_START, rangeEnd)
@@ -26,6 +26,31 @@ public class Line {
                     }
                     connectLine(() -> false);
                 });
+    }
+
+    public Player getConnectNumber(Player player, CheckConnectStrategy checkConnectStrategy) {
+        int result = player.getResult();
+
+        if (isResultPullRight(result)) {
+            player.move(result + checkConnectStrategy.getLeftConnectResult(player, points));
+            return player;
+        }
+
+        if (isResultPullLeft(result)) {
+            player.move(result + checkConnectStrategy.getRightConnectResult(player, points));
+            return player;
+        }
+
+        player.move(result + checkConnectStrategy.getConnectResult(player, points));
+        return player;
+    }
+
+    boolean isResultPullRight(int result) {
+        return result >= points.size();
+    }
+
+    boolean isResultPullLeft(int result) {
+        return result <= 0;
     }
 
     public List<Boolean> getLine() {

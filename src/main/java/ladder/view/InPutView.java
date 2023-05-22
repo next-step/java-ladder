@@ -1,7 +1,9 @@
 package ladder.view;
 
 import ladder.domain.model.Param.LadderHeightParam;
+import ladder.domain.model.Param.PlayerNameParam;
 import ladder.domain.model.Param.PlayerNamesParam;
+import ladder.domain.model.Param.WinResultsParam;
 
 import java.util.Scanner;
 
@@ -10,6 +12,7 @@ public class InPutView {
         // 생성자 내부 호출 -> 명시적 Exception
         throw new AssertionError();
     }
+
     private final static Scanner SCANNER = new Scanner(System.in);
 
     public static PlayerNamesParam askPlayerNames() {
@@ -25,4 +28,24 @@ public class InPutView {
 
         return new LadderHeightParam(height);
     }
+
+    public static WinResultsParam askWinResults() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String WinResults = SCANNER.nextLine();
+
+        return new WinResultsParam(WinResults);
+    }
+
+    public static void newLineRemove() {
+        SCANNER.nextLine();
+    }
+
+    public static PlayerNameParam askPlayerWinResults() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        String playerName = SCANNER.nextLine();
+
+        return new PlayerNameParam(playerName);
+    }
+
+    //결과를 보고 싶은 사람은?
 }

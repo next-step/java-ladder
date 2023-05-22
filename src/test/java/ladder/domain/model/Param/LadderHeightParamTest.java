@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class LadderHeightParamTest {
 
     @ParameterizedTest
-    @ValueSource(ints = {-1,0,-2,-3})
+    @ValueSource(ints = {-1, 0, -2, -3})
     void 모델_객체로_변환테스트(int height) {
         assertThatThrownBy(() -> {
             new LadderHeightParam(height);
