@@ -1,0 +1,34 @@
+package nextstep.ladder.domain.line;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+public class WinningCategories {
+
+    private static final String SPLIT_REGEX = ",";
+    private final List<WinningCategory> winningCategories = new ArrayList<>();
+
+    public WinningCategories(String input) {
+        String[] winningCategories = input.split(SPLIT_REGEX);
+        for (String name : winningCategories) {
+            this.winningCategories.add(new WinningCategory(name));
+        }
+    }
+
+    protected int size() {
+        return this.winningCategories.size();
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        WinningCategories that = (WinningCategories) o;
+        return Objects.equals(winningCategories, that.winningCategories);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(winningCategories);
+    }
+}
