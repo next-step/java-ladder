@@ -1,17 +1,19 @@
 package nextstep.ladder.controller;
 
-import nextstep.ladder.domain.Height;
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Participants;
+import nextstep.ladder.domain.*;
 import nextstep.ladder.domain.strategy.BridgeStrategy;
-import nextstep.ladder.view.InputView;
-import nextstep.ladder.view.OutputView;
+import nextstep.ladder.utils.Util;
 
 import java.util.List;
+import java.util.Map;
+
+import static nextstep.ladder.view.InputView.*;
+import static nextstep.ladder.view.OutputView.printLadder;
+import static nextstep.ladder.view.OutputView.printResult;
 
 public class LadderGame {
 
+    public static final String DELIMITER = ",";
     private final BridgeStrategy strategy;
 
     public LadderGame(BridgeStrategy strategy) {
@@ -19,22 +21,33 @@ public class LadderGame {
     }
 
     public void run() {
-        Participants participants = new Participants(getParticipants());
+        Participants participants = new Participants(getParticipantNames());
+        LadderResult result = LadderResult.of(participants, getResultList());
         Height height = new Height(getLadderHeight());
+        Ladder ladder = Ladder.of(participants,height,strategy);
 
-        List<Line> ladder = Ladder.of(participants)
-                .create(height, strategy);
+        printLadder(participants, result, ladder);
 
-        OutputView.printResult(participants, ladder);
+        Map<String, String> gameResult = ladder.generateResult(participants, result);
+        loopResult(participants, gameResult);
     }
 
-    private int getLadderHeight() {
-        OutputView.printAskLadderHeightMessage();
-        return InputView.getLadderHeight();
+    private void loopResult(Participants participants, Map<String, String> gameResult) {
+        while (true){
+            String input = getNameOrCodeForResult();
+            if (input.equals(Code.EXIT.getCode())) {
+                break;
+            }
+            participants.validateResultInput(input);
+            printResult(input, gameResult);
+        }
     }
 
-    private String getParticipants() {
-        OutputView.printParticipantsMessage();
-        return InputView.getParticipants();
+    private List<String> getResultList() {
+        return Util.separateToList(getResults(), DELIMITER);
+    }
+
+    private List<String> getParticipantNames() {
+        return Util.separateToList(getParticipants(), DELIMITER);
     }
 }

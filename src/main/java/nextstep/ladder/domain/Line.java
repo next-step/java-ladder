@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.strategy.BridgeStrategy;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -12,6 +13,10 @@ public class Line {
     public Line(int width, BridgeStrategy strategy) {
         this.points = generatePoints(width, strategy);
         validateDuplicate();
+    }
+
+    Line(List<Boolean> points) {
+        this.points = List.copyOf(points);
     }
 
     private List<Boolean> generatePoints(int width, BridgeStrategy strategy) {
@@ -44,6 +49,10 @@ public class Line {
     }
 
     public List<Boolean> getPoints() {
-        return points;
+        return Collections.unmodifiableList(points);
+    }
+
+    public boolean get(int index) {
+        return points.get(index);
     }
 }

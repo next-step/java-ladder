@@ -23,6 +23,7 @@ class HeightTest {
     @ValueSource(ints = {1,2,3,4,5})
     void when_HeightIsUnderOne_Expects_ThrowException(int height) {
 
-        assertThatNoException().isThrownBy(() -> new Height(height));
+        assertThatNoException()
+                .isThrownBy(() -> new Height(height));
     }
 }
