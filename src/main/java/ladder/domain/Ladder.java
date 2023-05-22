@@ -25,5 +25,9 @@ public class Ladder {
         return rows.size();
     }
 
+    public List<LadderRow> getRows() {
+        return rows;
+    }
+
 
 }

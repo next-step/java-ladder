@@ -14,13 +14,13 @@ public class PlayerGroup {
     public List<String> getPlayerNames() {
         return playerList.stream()
                 .map(player -> player.name())
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
     }
 
     private List<Player> convertToList(String playerNames) {
         return Arrays.stream(playerNames.split(","))
                 .map(name -> new Player(name.trim()))
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public int size() {
