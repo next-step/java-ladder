@@ -28,7 +28,7 @@ public class LadderRow {
     }
 
     private List<Boolean> generateLines(int width) {
-        List<Boolean> newLines = new ArrayList<>();
+        final List<Boolean> newLines = new ArrayList<>();
         newLines.add(generateLine());
         for (int i = 1; i < width; i++) {
             newLines.add(generateLine(newLines.get(i - 1)));
