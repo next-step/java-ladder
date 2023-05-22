@@ -11,6 +11,6 @@ public class AlwaysConnectStrategy implements ConnectStrategy{
         return INSTANCE;
     }
 
-    private AlwaysConnectStrategy() {};
+    private AlwaysConnectStrategy() {}
 
 }

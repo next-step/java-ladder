@@ -18,8 +18,8 @@ public class OutputPrinter {
         printReducedResult(matchingResult, result -> System.out.println(result));
     }
 
-    public static <T> void printReducedResult(List<T> strings, Consumer<String> ifPresentConsumer) {
-        strings.stream()
+    public static <T> void printReducedResult(List<T> list, Consumer<String> ifPresentConsumer) {
+        list.stream()
                 .map(name -> name + "  ")
                 .reduce((left, right) -> left + right)
                 .ifPresent(ifPresentConsumer);

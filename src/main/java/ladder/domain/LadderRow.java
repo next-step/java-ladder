@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import java.util.Arrays;
-import java.util.Random;
 
 public class LadderRow {
     private Boolean[] connectedPoints;

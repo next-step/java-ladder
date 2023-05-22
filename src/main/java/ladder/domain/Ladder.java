@@ -6,7 +6,7 @@ import java.util.List;
 public class Ladder {
     private final LadderRow[] rows;
     private final Participants participants;
-    ;
+
     public Ladder(int height, List<String> names) {
         validate(height, names.size());
 

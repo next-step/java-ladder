@@ -11,6 +11,8 @@ public class LadderApplication {
     public static void main(String[] args) {
         List<String> names = InputScanner.readNames();
         List<String> results = InputScanner.readMatchingResult();
+        validSameSize(names.size(), results.size());
+
         int height = InputScanner.readLadderHeight();
         Ladder ladder = new Ladder(height, names);
         OutputPrinter.printDisplay(names, ladder, results);
@@ -22,6 +24,12 @@ public class LadderApplication {
                     ladder,
                     results
             );
+        }
+    }
+
+    private static void validSameSize(int namesSize, int resultsSize) {
+        if (namesSize != resultsSize) {
+            throw new IllegalArgumentException("입력된 이름의 수와 결과의 수는 동일해야 합니다.");
         }
     }
 }
