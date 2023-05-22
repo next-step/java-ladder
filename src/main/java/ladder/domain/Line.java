@@ -38,6 +38,10 @@ public class Line {
         return this.points.size();
     }
 
+    public List<Point> points() {
+        return points;
+    }
+
     private Line(List<Point> points) {
         validateLine(points);
         this.points = points;
