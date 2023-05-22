@@ -1,5 +1,6 @@
 package ladder.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Move {
@@ -8,19 +9,24 @@ public class Move {
     public Move() {
     }
 
-    public int down(LadderLine ladderLine, int index) {
-        int result = index;
+    public List<Integer> down(LadderLine ladderLine, List<Integer> oldIndexes) {
+        List<Integer> newIndexes = new ArrayList<>();
 
+        oldIndexes.forEach(integer -> {
+            int result = integer;
+            if (moveLeft(ladderLine, integer)) {
+                newIndexes.add(result - 1);
+                return;
+            }
 
-        if (moveLeft(ladderLine, index)) {
-            return result - 1;
-        }
+            if (moveRight(ladderLine, integer)) {
+                newIndexes.add(result + 1);
+                return;
+            }
+            newIndexes.add(result);
+        });
 
-        if (moveRight(ladderLine, index)) {
-            return result + 1;
-        }
-
-        return result;
+        return newIndexes;
     }
 
     private boolean moveLeft(LadderLine ladderLine, int index) {

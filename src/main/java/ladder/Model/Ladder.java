@@ -2,18 +2,18 @@ package ladder.Model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class Ladder {
     private final List<LadderLine> ladderLines = new ArrayList<>();
-
     private final MakeLineStrategy makeLineStrategy = new MakeLineStrategyRandom();
     private final Move move = new Move();
     private final ResultMap resultMap = new ResultMap();
+    private List<Integer> currentIndexes = new ArrayList<>();
 
     public Ladder(List<String> attendances, int height) {
         for (int idx = 0; idx < height; idx++) {
             ladderLines.add(new LadderLine(attendances.size() - 1, makeLineStrategy));
+            currentIndexes.add(idx);
         }
     }
 
@@ -21,16 +21,14 @@ public class Ladder {
         return ladderLines;
     }
 
-    public void moveDown(String name, int index) {
-        AtomicInteger positionX = new AtomicInteger(index);
+    public void moveDown(List<String> attendances) {
+        for (LadderLine ladderLine : ladderLines) {
+            currentIndexes = move.down(ladderLine, currentIndexes);
+        }
 
-        ladderLines.forEach(
-                ladderLine -> {
-                    positionX.set(move.down(ladderLine, positionX.get()));
-                }
-        );
-
-        resultMap.put(name, positionX.get());
+        for (int idx = 0; idx < attendances.size(); idx++){
+            resultMap.put(attendances.get(idx), currentIndexes.get(idx));
+        }
     }
 
     public ResultMap resultMap() {
