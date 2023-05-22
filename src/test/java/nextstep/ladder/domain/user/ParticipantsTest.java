@@ -25,12 +25,4 @@ class ParticipantsTest {
         assertThat(participants.count()).isEqualTo(users.size());
     }
 
-    @Test
-    @DisplayName("사용자 이름을 입력하면 참여순서를 반환한다.")
-    void test02() {
-        String user = "crong";
-        int expected = users.indexOf(user);
-        assertThat(participants.userLocation(UserName.add(user))).isEqualTo(expected);
-    }
-
 }

@@ -22,8 +22,7 @@ public class Ladder {
                         .collect(Collectors.toUnmodifiableList()));
     }
 
-    public Position leafPosition(int userLocation) {
-        Position userPosition = new Position(userLocation);
+    public Position leafPosition(Position userPosition) {
         for (Row row : rows) {
             int movePoint = row.movePoint(userPosition.getCurrentPosition());
             userPosition = userPosition.move(movePoint);

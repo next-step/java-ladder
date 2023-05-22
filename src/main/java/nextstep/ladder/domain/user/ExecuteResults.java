@@ -13,7 +13,7 @@ public class ExecuteResults {
     private static final String USER_NAME_DELIMITER = ",";
     private static final String RESULT_DELIMITER = " : ";
 
-    private final Map<UserName, Result> userNameResultMap = new LinkedHashMap<>();
+    private final Map<UserName, Position> userLeafPositionMap = new LinkedHashMap<>();
     private final List<Result> results;
 
     public ExecuteResults(List<Result> results) {
@@ -27,29 +27,19 @@ public class ExecuteResults {
                         .collect(Collectors.toUnmodifiableList()));
     }
 
-    public Result getResult(int index) {
-        return results.get(index);
-    }
-
-    public Result getResult(UserName userName) {
-        return userNameResultMap.get(userName);
-    }
-
     public void execute(Participants participants, Ladder ladder) {
-        Map<UserName, Result> result = participants.getUserNames()
-                .stream()
-                .collect(Collectors.toMap(
-                        o -> o,
-                        userName -> {
-                            int userLocation = participants.userLocation(userName);
-                            Position leafPosition = ladder.leafPosition(userLocation);
-                            return getResult(leafPosition.getCurrentPosition());
-                        }, (x, y) -> x, LinkedHashMap::new));
-        userNameResultMap.putAll(result);
+        Map<UserName, Position> leafPositionMap = participants.climb(ladder);
+        userLeafPositionMap.clear();
+        userLeafPositionMap.putAll(leafPositionMap);
     }
 
-    public String[] toArray() {
-        return userNameResultMap.keySet()
+    public Result toUserResult(UserName userName) {
+        Position userLeafPosition = userLeafPositionMap.get(userName);
+        return results.get(userLeafPosition.getCurrentPosition());
+    }
+
+    public String[] toAllResults() {
+        return userLeafPositionMap.keySet()
                 .stream()
                 .map(this::mapToString)
                 .toArray(String[]::new);
@@ -58,7 +48,7 @@ public class ExecuteResults {
     private String mapToString(UserName userName) {
         return String.join(RESULT_DELIMITER,
                 userName.getName(),
-                userNameResultMap.get(userName).getValue());
+                toUserResult(userName).getValue());
     }
 
     @Override

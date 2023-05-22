@@ -1,7 +1,11 @@
 package nextstep.ladder.domain.user;
 
+import nextstep.ladder.domain.ladder.Ladder;
+
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Participants {
@@ -26,12 +30,16 @@ public class Participants {
         return userNames.size();
     }
 
-    public List<UserName> getUserNames() {
-        return userNames;
+    public Map<UserName, Position> climb(Ladder ladder) {
+        return userNames.stream()
+                .collect(Collectors.toMap(
+                        o -> o,
+                        userName -> ladder.leafPosition(userPosition(userName)),
+                        (x, y) -> x, LinkedHashMap::new));
     }
 
-    public int userLocation(UserName userName) {
-        return userNames.indexOf(userName);
+    private Position userPosition(UserName userName) {
+        return new Position(userNames.indexOf(userName));
     }
 
     @Override

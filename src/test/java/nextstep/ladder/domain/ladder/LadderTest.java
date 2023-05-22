@@ -1,6 +1,7 @@
 package nextstep.ladder.domain.ladder;
 
 import nextstep.ladder.domain.user.Participants;
+import nextstep.ladder.domain.user.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -28,9 +29,12 @@ class LadderTest {
         Row row = Row.initialize(2, () -> true);
         Ladder ladder = new Ladder(List.of(row));
 
+        Position zeroPosition = new Position(0);
+        Position onePosition = new Position(1);
+
         assertAll(
-                () -> assertThat(ladder.leafPosition(0).getCurrentPosition()).isEqualTo(1),
-                () -> assertThat(ladder.leafPosition(1).getCurrentPosition()).isZero()
+                () -> assertThat(ladder.leafPosition(zeroPosition)).isEqualTo(onePosition),
+                () -> assertThat(ladder.leafPosition(onePosition)).isEqualTo(zeroPosition)
         );
     }
 
