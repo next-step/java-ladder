@@ -60,10 +60,6 @@ public class Row {
         return connectionSize - 1L;
     }
 
-    public List<ConnectionType> getConnectionTypes() {
-        return connectionTypes;
-    }
-
     public int movePoint(int currentPosition) {
         ConnectionType currenConnectionType = connectionTypes.get(currentPosition);
         return currenConnectionType.getMovePoint();
