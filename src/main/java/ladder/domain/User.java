@@ -9,6 +9,11 @@ public class User {
     public static User create(String name) {
         return new User(name);
     }
+
+    public String name() {
+        return this.name;
+    }
+
     private User(String name) {
         validateName(name);
         this.name = name;
