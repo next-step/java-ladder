@@ -5,16 +5,17 @@ import lombok.Getter;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.lang.System.*;
-
 @Getter
 public class Ladder {
     private List<Line> lines = new ArrayList<>();
 
+    public static Ladder createLadder(int countOfUsers, int height, BridgeStrategy strategy) {
+        return new Ladder(countOfUsers, height, strategy);
+    }
 
-    public Ladder(int countOfUsers, int height) {
+    private Ladder(int countOfUsers, int height, BridgeStrategy strategy) {
         for (int i = 0; i < height; i++) {
-            Line line = new Line(countOfUsers);
+            Line line = Line.createLine(countOfUsers, strategy);
             lines.add(line);
         }
     }
@@ -24,13 +25,20 @@ public class Ladder {
         int height = lines.size();
         for (int i = 0; i < height; i++) {
             Line line = lines.get(i);
-            List<Boolean> points = line.getBridges();
-            for (Boolean point : points) {
-                result += "|";
-                result += point ? "-----" : "     ";
-            }
-            result += "|\n";
+            result += line.status();
         }
         return result;
+    }
+
+    public int findLastPosition(int position) {
+        if (lines.isEmpty()) {
+            return position;
+        }
+
+        int currentPosition = position;
+        for (Line line : lines) {
+            currentPosition = line.getNextPosition(currentPosition);
+        }
+        return currentPosition;
     }
 }

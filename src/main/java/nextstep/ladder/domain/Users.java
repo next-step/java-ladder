@@ -2,16 +2,17 @@ package nextstep.ladder.domain;
 
 import lombok.Getter;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Getter
 public class Users {
     private List<User> users = new ArrayList<>();
 
-    public Users (List<String> names) {
+    public Users(List<String> names) {
         for (int i = 0; i < names.size(); i++) {
-            users.add(new User(names.get(i), i));
+            User user = new User(names.get(i), i);
+            users.add(user);
         }
     }
 
