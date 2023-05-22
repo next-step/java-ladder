@@ -9,14 +9,6 @@ public class UnmodifiableLinePoint extends LinePoint {
     super(linePoint);
   }
 
-  public UnmodifiableLinePoint(int index) {
-    super(index);
-  }
-
-  public UnmodifiableLinePoint(int index, boolean isStart, boolean isEnd) {
-    super(index, isStart, isEnd);
-  }
-
   @Override
   public void connect(LinePoint targetPoint) {
     throw new LadderGameException(ExceptionCode.CANNOT_MODIFY_LADDER_AFTER_CREATED);
