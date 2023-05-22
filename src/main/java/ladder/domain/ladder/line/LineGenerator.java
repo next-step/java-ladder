@@ -11,7 +11,7 @@ public class LineGenerator {
     final int lastIdx = countOfPerson - 1;
     return IntStream.range(0, countOfPerson)
         .mapToObj(i -> createLinePoint(i, lastIdx))
-        .collect(Collectors.toList());
+        .collect(Collectors.toUnmodifiableList());
   }
 
   private LinePoint createLinePoint(int index, int lastIndex) {

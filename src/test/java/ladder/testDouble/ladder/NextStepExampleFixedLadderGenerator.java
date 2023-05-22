@@ -1,4 +1,4 @@
-package ladder.testDouble;
+package ladder.testDouble.ladder;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,7 +25,7 @@ public class NextStepExampleFixedLadderGenerator implements LadderGenerator {
 
     List<HorizontalLadderLine> lines = IntStream.range(0, fixedLadderHeight)
         .mapToObj(i -> new HorizontalLadderLine(fixedPlayerCnt))
-        .collect(Collectors.toList());
+        .collect(Collectors.toUnmodifiableList());
 
     connectLikeSiteExample(lines);
     return new Ladder(lines);

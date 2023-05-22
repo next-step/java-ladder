@@ -14,7 +14,7 @@ public class PlayerGeneratorTest extends BaseTest {
 
   @BeforeEach
   void setup() {
-    sut = new DefaultPlayerGenerator();
+    sut = DefaultPlayerGenerator.getInstance();
   }
 
   @Test

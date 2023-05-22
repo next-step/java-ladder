@@ -45,7 +45,7 @@ public class ResultView {
     return String.format("%-6s", "|") ;
   }
 
-  public void showAllRewordResult(LadderGameResult playResult) {
+  public void showAllRewardResult(LadderGameResult playResult) {
     System.out.println("실행 결과");
     String result = playResult.getPlayerResultMap().values().stream()
         .map(this::stringifyPlayerResult)
@@ -54,7 +54,7 @@ public class ResultView {
     System.out.println(result);
   }
 
-  public void showRewordResult(LadderGameResult playResult, String resultUserName) {
+  public void showRewardResult(LadderGameResult playResult, String resultUserName) {
     System.out.println("실행 결과");
 
     LadderGamePlayerResult playerResult = playResult.resultOfPlayer(resultUserName);
@@ -67,13 +67,13 @@ public class ResultView {
   }
 
   private String stringifyPlayerResult(LadderGamePlayerResult playResult) {
-    return String.format("%-5s : %s", playResult.getPlayerName(), stringifyRewordView(playResult.getRewordPrize()));
+    return String.format("%-5s : %s", playResult.getPlayerName(), stringifyRewardView(playResult.getRewardPrize()));
   }
 
-  private String stringifyRewordView(int reword) {
-   if (reword == 0) {
+  private String stringifyRewardView(int reward) {
+   if (reward == 0) {
      return "꽝";
    }
-   return String.valueOf(reword);
+   return String.valueOf(reward);
   }
 }

@@ -4,13 +4,13 @@ import config.BaseTest;
 import java.util.Arrays;
 import java.util.List;
 import ladder.domain.ladder.player.LadderGamePlayerInfo;
-import ladder.domain.ladder.reword.LadderGameReword;
-import ladder.domain.ladder.reword.LadderGameRewordInfo;
+import ladder.domain.ladder.reward.LadderGameReward;
+import ladder.domain.ladder.reward.LadderGameRewardInfo;
 import ladder.domain.ladder.setting.LadderGameSetting;
 import ladder.domain.player.DefaultPlayerGenerator;
 import ladder.domain.player.PlayerGenerator;
 import ladder.domain.result.LadderGameResult;
-import ladder.testDouble.NextStepExampleFixedLadderGenerator;
+import ladder.testDouble.ladder.NextStepExampleFixedLadderGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -21,14 +21,14 @@ public class LadderGameTest extends BaseTest {
   int 사다리_높이;
   LadderGameSetting gameSetting;
   PlayerGenerator playerGenerator;
-  LadderGameRewordInfo 게임_보상_기본;
+  LadderGameRewardInfo 게임_보상_기본;
 
   @BeforeEach
   void test() {
     사다리_높이 = 5;
-    게임_보상_기본 = new LadderGameRewordInfo(List.of("꽝", "5000", "꽝", "3000"));
-    gameSetting = LadderGameSetting.withDefaultSetting();
-    playerGenerator = new DefaultPlayerGenerator();
+    게임_보상_기본 = new LadderGameRewardInfo(List.of("꽝", "5000", "꽝", "3000"));
+    gameSetting = new LadderGameSetting();
+    playerGenerator = DefaultPlayerGenerator.getInstance();
   }
 
   @Test
@@ -37,10 +37,7 @@ public class LadderGameTest extends BaseTest {
     // given
     List<String> 플레이어_이름_목록 = Arrays.asList("a","b", "c", "d");
     LadderGamePlayerInfo 플레이어_정보 = playerGenerator.generatePlayerList(플레이어_이름_목록);
-
-    gameSetting = LadderGameSetting.builder()
-        .ladderGenerator(new NextStepExampleFixedLadderGenerator())
-        .build();
+    gameSetting = new LadderGameSetting(new NextStepExampleFixedLadderGenerator());
 
     LadderGame ladderGame = new LadderGame(플레이어_이름_목록.size(), 사다리_높이, gameSetting);
 
@@ -66,9 +63,7 @@ public class LadderGameTest extends BaseTest {
     List<String> 플레이어_이름_목록 = Arrays.asList("pobi","honux", "crong", "jk");
     LadderGamePlayerInfo 플레이어_정보 = playerGenerator.generatePlayerList(플레이어_이름_목록);
 
-    gameSetting = LadderGameSetting.builder()
-        .ladderGenerator(new NextStepExampleFixedLadderGenerator())
-        .build();
+    gameSetting = new LadderGameSetting(new NextStepExampleFixedLadderGenerator());
 
     LadderGame ladderGame = new LadderGame(플레이어_이름_목록.size(), 사다리_높이, gameSetting);
 
@@ -77,9 +72,9 @@ public class LadderGameTest extends BaseTest {
 
     // then
     var mapAssert = Assertions.assertThat(result.getPlayerResultMap());
-    mapAssert.extractingByKey("pobi").extracting("reword").isEqualTo(new LadderGameReword(0));
-    mapAssert.extractingByKey("honux").extracting("reword").isEqualTo(new LadderGameReword(3000));
-    mapAssert.extractingByKey("crong").extracting("reword").isEqualTo(new LadderGameReword(0));
-    mapAssert.extractingByKey("jk").extracting("reword").isEqualTo(new LadderGameReword(5000));
+    mapAssert.extractingByKey("pobi").extracting("reward").isEqualTo(new LadderGameReward(0));
+    mapAssert.extractingByKey("honux").extracting("reward").isEqualTo(new LadderGameReward(3000));
+    mapAssert.extractingByKey("crong").extracting("reward").isEqualTo(new LadderGameReward(0));
+    mapAssert.extractingByKey("jk").extracting("reward").isEqualTo(new LadderGameReward(5000));
   }
 }

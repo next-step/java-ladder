@@ -6,7 +6,7 @@ import exception.LadderGameException;
 public class PlayerName {
   private static final int MAX_NAME_LENGTH = 5;
 
-  private String name;
+  private final String name;
 
   public PlayerName(String name) {
     throwIfHasInvalidName(name);
