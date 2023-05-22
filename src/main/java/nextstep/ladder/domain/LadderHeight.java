@@ -4,13 +4,13 @@ import java.security.InvalidParameterException;
 
 public class LadderHeight {
 
-    private static int MIN_LADDER_HEIGHT = 1;
+    private static final int MIN_LADDER_HEIGHT = 1;
 
     private int height;
 
     public LadderHeight(int height) {
         if (isInvalidHeight(height)) {
-            throw new InvalidParameterException("입력한 최대 사다리 높이를 확인하세요");
+            throw new InvalidParameterException("입력한 사다리 높이를 확인하세요. 높이: " + height);
         }
         this.height = height;
     }
@@ -19,7 +19,7 @@ public class LadderHeight {
         return height < MIN_LADDER_HEIGHT;
     }
 
-    public int height(){
+    public int getHeight() {
         return height;
     }
 }

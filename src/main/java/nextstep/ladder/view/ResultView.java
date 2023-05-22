@@ -14,7 +14,7 @@ public class ResultView {
     private static final String BLANK_HORIZONTAL_LINE = "     ";
 
     private ResultView() {
-
+        throw new AssertionError();
     }
 
     public static void printUserNames(List<UserName> userNames) {
@@ -42,6 +42,11 @@ public class ResultView {
         String ladder = line.toList().stream()
                 .map(l -> isLine(l))
                 .collect(Collectors.joining(VERTICAL_LINE));
+
+//        if(line.size() == 1) {
+//            return BLANK + VERTICAL_LINE + ladder;
+//        }
+
         return BLANK + VERTICAL_LINE + ladder + VERTICAL_LINE;
     }
 

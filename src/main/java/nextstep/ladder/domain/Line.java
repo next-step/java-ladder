@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -8,13 +9,19 @@ public class Line {
     private List<Boolean> points;
 
     public Line(int countOfPerson) {
+        if (countOfPerson < 1) {
+            throw new InvalidParameterException();
+        }
+        if (countOfPerson == 1) {
+            points = new ArrayList<>();
+            return;
+        }
         points = drawLine(countOfPerson);
     }
 
     protected List<Boolean> drawLine(int countOfPerson) {
         int ladderWeight = countOfPerson - 1;
-        ArrayList<Boolean> newLine = new ArrayList<>(ladderWeight);
-
+        final List<Boolean> newLine = new ArrayList<>(ladderWeight);
         newLine.add(createFirstBoolean());
         for (int i = 1; i < ladderWeight; i++) {
             newLine.add(generateBooleanWithPreviousValue(newLine.get(i - 1)));
@@ -31,6 +38,10 @@ public class Line {
             return Boolean.FALSE;
         }
         return RandomBooleanGenerator.getRandomBoolean();
+    }
+
+    public int size() {
+        return points.size();
     }
 
     public List<Boolean> toList() {

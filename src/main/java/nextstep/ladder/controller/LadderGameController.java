@@ -1,21 +1,20 @@
 package nextstep.ladder.controller;
 
-import nextstep.ladder.domain.*;
+import nextstep.ladder.domain.LadderGame;
+import nextstep.ladder.domain.LadderHeight;
+import nextstep.ladder.domain.UserNames;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
 public class LadderGameController {
-    private User user;
-
 
     public LadderGameController() {
-        user = new User();
     }
 
     public void playLadderGame() {
         String names = InputView.readUserNames();
-        LadderHeight ladderHeight = LadderGame.readLadderHeight(InputView.readLadderHeight());
-        UserNames userNames = user.creatUser(names);
+        LadderHeight ladderHeight = new LadderHeight(InputView.readLadderHeight());
+        UserNames userNames = UserNames.of(names.split(","));
 
         LadderGame ladderGame = LadderGame.create(ladderHeight, userNames.count());
 
@@ -25,4 +24,6 @@ public class LadderGameController {
         ResultView.printUserNames(userNames.userNames());
         ResultView.printLadder(ladderGame.toList());
     }
+
+
 }

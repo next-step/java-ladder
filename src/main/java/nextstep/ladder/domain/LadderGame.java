@@ -8,12 +8,8 @@ import java.util.stream.IntStream;
 public class LadderGame {
     private List<Line> lines;
 
-    public static LadderHeight readLadderHeight(int height) {
-        return new LadderHeight(height);
-    }
-
     private LadderGame(LadderHeight ladderHeight, int ladderWeight) {
-        lines = IntStream.range(0, ladderHeight.height())
+        lines = IntStream.range(0, ladderHeight.getHeight())
                 .mapToObj(i -> drawLine(ladderWeight))
                 .collect(Collectors.toList());
     }

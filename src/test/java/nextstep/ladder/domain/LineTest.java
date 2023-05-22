@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class LineTest {
 
@@ -38,4 +39,18 @@ class LineTest {
         return !(previousValue && nowValue);
     }
 
+    @DisplayName("한 명일 경우, 가로 라인을 갖지 않는다.")
+    @ParameterizedTest
+    @ValueSource(ints = {1})
+    public void Line_엣지_케이스_테스트(int countOfPerson) throws Exception {
+        Line line = new Line(countOfPerson);
+        assertThat(line.toList()).size().isEqualTo(0);
+    }
+
+    @DisplayName("Line 초기값은 양수여야 한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {-1, -12, -22, 0})
+    public void Line_예외_테스트(int countOfPerson) throws Exception {
+        assertThatIllegalArgumentException().isThrownBy(() -> new Line(countOfPerson));
+    }
 }

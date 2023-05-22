@@ -1,24 +1,27 @@
 package nextstep.ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class UserNames {
-    private List<UserName> userNames;
+    private final List<UserName> userNames;
 
     private UserNames() {
         userNames = new ArrayList<>();
     }
 
-    public static UserNames of(List<String> names) {
-        UserNames userNames = new UserNames();
-        userNames.userNames = names.stream()
+    private UserNames(List<UserName> userNames) {
+        this.userNames = userNames;
+    }
+
+    public static UserNames of(String[] names) {
+        List<UserName> userNames = Arrays.stream(names)
                 .map(name -> UserName.of(name))
                 .collect(Collectors.toList());
-
-        return userNames;
+        return new UserNames(userNames);
     }
 
     public List<UserName> userNames() {

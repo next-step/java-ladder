@@ -6,7 +6,7 @@ import java.util.List;
 
 public class RandomBooleanGenerator {
 
-    private static List<Boolean> booleanList = new ArrayList<>(2);
+    private static final List<Boolean> booleanList = new ArrayList<>(2);
 
     static {
         booleanList.add(Boolean.TRUE);
@@ -14,6 +14,7 @@ public class RandomBooleanGenerator {
     }
 
     private RandomBooleanGenerator() {
+        throw new AssertionError();
     }
 
     static boolean getRandomBoolean() {
