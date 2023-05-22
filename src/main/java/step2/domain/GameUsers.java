@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class GameUsers {
-    List<User> users;
+    private final List<User> users;
 
     public GameUsers(List<String> userNames) {
         this.users = userNames.stream()

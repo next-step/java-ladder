@@ -3,7 +3,11 @@ package step2.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.stream.IntStream;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class LadderTest {
 
@@ -27,4 +31,21 @@ public class LadderTest {
 
         assertEquals(userCount, ladder.getLines().size());
     }
+
+    @Test
+    @DisplayName("옆 라인과 겹치게 다리를 지을 수 없다.")
+    void testBridgeDoesNotOverlapWithAdjacentBridges() {
+        int height = 5;
+        int width = 3;
+        Ladder ladder = new Ladder(height, width);
+        ladder.buildBridges(() -> true);
+        ArrayList<Line> lines = ladder.getLines();
+
+        IntStream.range(1, width)
+                .forEach(i -> IntStream.range(0, height)
+                        .forEach(h -> {
+                            assertFalse(lines.get(i - 1).isPresent(h) && lines.get(i).isPresent(h));
+                        }));
+    }
+
 }
