@@ -1,6 +1,7 @@
 package nextstep.ladder.domain.line;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,9 +12,7 @@ public class WinningCategories {
 
     public WinningCategories(String input) {
         String[] winningCategories = input.split(SPLIT_REGEX);
-        for (String name : winningCategories) {
-            this.winningCategories.add(new WinningCategory(name));
-        }
+        Arrays.stream(winningCategories).forEach((name) -> this.winningCategories.add(new WinningCategory(name)));
     }
 
     protected int size() {
