@@ -6,6 +6,8 @@ import nextstep.view.OutputView;
 
 public class LadderGameController {
 
+
+
     public static void main(String[] args) {
         Usernames usernames = new Usernames(InputView.inputUserNames());
         InputResults inputResults
@@ -24,7 +26,7 @@ public class LadderGameController {
             Username name = new Username(InputView.inputUsernameForResult());
             OutputView.outputExecutionResult(ladderResult.getLadderResult(name));
 
-            if (name.equals(new Username("all"))) {
+            if (name.equals(Username.ALL)) {
                 break;
             }
         }

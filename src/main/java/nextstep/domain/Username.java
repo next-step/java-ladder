@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Username {
 
     public static final int LENGTH_MAX = 5;
+    public static final String ALL = "all";
 
     private final String name;
 
