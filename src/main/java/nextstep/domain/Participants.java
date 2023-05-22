@@ -15,7 +15,7 @@ public class Participants implements Iterable<Participant>{
 
     public static Participants participate(String... participants) {
         List<Participant> collect = Arrays.stream(participants)
-                .map(Participant::new)
+                .map(Participant::of)
                 .collect(Collectors.toList());
 
         return new Participants(collect);

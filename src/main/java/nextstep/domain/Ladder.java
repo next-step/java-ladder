@@ -3,7 +3,6 @@ package nextstep.domain;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
 
 public class Ladder implements Iterable<Line>{
     private final List<Line> ladder;
