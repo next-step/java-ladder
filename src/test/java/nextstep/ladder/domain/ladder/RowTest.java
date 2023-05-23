@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.ladder;
 
+import nextstep.ladder.domain.user.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +12,8 @@ class RowTest {
     @DisplayName("연결이 되어있지 않다면 움직이지 않는다.(테스트를 위해 BooleanGenerator: return false only)")
     void test01() {
         Row row = Row.initialize(5, () -> false);
-        assertThat(row.movePoint(0)).isZero();
+        assertThat(row.connectionType(new Position(0)))
+                .isSameAs(ConnectionType.NONE);
     }
 
     @Test
@@ -19,10 +21,14 @@ class RowTest {
     void test02() {
         Row row = Row.initialize(5, () -> true);
 
-        assertThat(row.movePoint(0)).isOne();
-        assertThat(row.movePoint(1)).isEqualTo(-1);
-        assertThat(row.movePoint(2)).isOne();
-        assertThat(row.movePoint(3)).isEqualTo(-1);
+        assertThat(row.connectionType(new Position(0)))
+                .isSameAs(ConnectionType.RIGHT);
+        assertThat(row.connectionType(new Position(1)))
+                .isSameAs(ConnectionType.LEFT);
+        assertThat(row.connectionType(new Position(2)))
+                .isSameAs(ConnectionType.RIGHT);
+        assertThat(row.connectionType(new Position(3)))
+                .isSameAs(ConnectionType.LEFT);
     }
 
 }

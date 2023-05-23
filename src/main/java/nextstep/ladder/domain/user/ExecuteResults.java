@@ -2,11 +2,11 @@ package nextstep.ladder.domain.user;
 
 import nextstep.ladder.domain.ladder.Ladder;
 
-import java.util.Arrays;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+import static java.util.stream.Collectors.*;
 
 public class ExecuteResults {
 
@@ -14,17 +14,21 @@ public class ExecuteResults {
     private static final String RESULT_DELIMITER = " : ";
 
     private final Map<UserName, Position> userLeafPositionMap = new LinkedHashMap<>();
-    private final List<Result> results;
+    private final Map<Position, Result> resultMap;
 
-    public ExecuteResults(List<Result> results) {
-        this.results = results;
+    public ExecuteResults(Map<Position, Result> resultMap) {
+        this.resultMap = resultMap;
     }
 
     public static ExecuteResults of(String input) {
+        String[] userNames = input.split(USER_NAME_DELIMITER);
         return new ExecuteResults(
-                Arrays.stream(input.split(USER_NAME_DELIMITER))
-                        .map(Result::new)
-                        .collect(Collectors.toUnmodifiableList()));
+                IntStream.range(0, userNames.length)
+                        .boxed()
+                        .collect(collectingAndThen(
+                                toUnmodifiableMap(Position::new, i -> new Result(userNames[i])),
+                                LinkedHashMap::new
+                        )));
     }
 
     public void execute(Participants participants, Ladder ladder) {
@@ -35,7 +39,7 @@ public class ExecuteResults {
 
     public Result toUserResult(UserName userName) {
         Position userLeafPosition = userLeafPositionMap.get(userName);
-        return results.get(userLeafPosition.getCurrentPosition());
+        return resultMap.get(userLeafPosition);
     }
 
     public String[] toAllResults() {
@@ -53,9 +57,10 @@ public class ExecuteResults {
 
     @Override
     public String toString() {
-        return results.stream()
+        return resultMap.values()
+                .stream()
                 .map(Result::toString)
-                .collect(Collectors.joining(" "));
+                .collect(joining(" "));
     }
 
 }

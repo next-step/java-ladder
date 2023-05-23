@@ -54,9 +54,8 @@ public class Row {
         return connectionSize - 1;
     }
 
-    public int movePoint(int currentPosition) {
-        ConnectionType currenConnectionType = connectionTypeMap.get(new Position(currentPosition));
-        return currenConnectionType.getMovePoint();
+    public ConnectionType connectionType(Position currentPosition) {
+        return connectionTypeMap.get(currentPosition);
     }
 
     @Override

@@ -1,15 +1,17 @@
 package nextstep.ladder.domain.ladder;
 
-public enum ConnectionType {
-    LEFT(-1, "     "),
-    RIGHT(1, "-----"),
-    NONE(0, "     ");
+import nextstep.ladder.domain.user.Position;
 
-    private final int movePoint;
+public enum ConnectionType {
+    LEFT(new Position(-1), "     "),
+    RIGHT(new Position(1), "-----"),
+    NONE(new Position(0), "     ");
+
+    private final Position movePosition;
     private final String output;
 
-    ConnectionType(int movePoint, String output) {
-        this.movePoint = movePoint;
+    ConnectionType(Position movePosition, String output) {
+        this.movePosition = movePosition;
         this.output = output;
     }
 
@@ -20,10 +22,6 @@ public enum ConnectionType {
         return NONE;
     }
 
-    public int getMovePoint() {
-        return movePoint;
-    }
-
     public String toOutput() {
         return output;
     }
@@ -32,4 +30,7 @@ public enum ConnectionType {
         return this == RIGHT;
     }
 
+    public Position applyPosition(Position userPosition) {
+        return userPosition.move(movePosition);
+    }
 }

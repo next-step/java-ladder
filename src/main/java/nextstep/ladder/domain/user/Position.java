@@ -1,5 +1,7 @@
 package nextstep.ladder.domain.user;
 
+import nextstep.ladder.domain.ladder.ConnectionType;
+
 import java.util.Objects;
 
 public class Position {
@@ -10,12 +12,8 @@ public class Position {
         this.currentPosition = currentPosition;
     }
 
-    public Position move(int movePoint) {
-        return new Position(currentPosition + movePoint);
-    }
-
-    public int getCurrentPosition() {
-        return currentPosition;
+    public Position move(Position movePosition) {
+        return new Position(currentPosition + movePosition.currentPosition);
     }
 
     @Override
@@ -36,7 +34,7 @@ public class Position {
     }
 
     public Position beforePosition() {
-        return move(-1);
+        return ConnectionType.LEFT.applyPosition(this);
     }
 
 }

@@ -24,8 +24,8 @@ public class Ladder {
 
     public Position leafPosition(Position userPosition) {
         for (Row row : rows) {
-            int movePoint = row.movePoint(userPosition.getCurrentPosition());
-            userPosition = userPosition.move(movePoint);
+            ConnectionType currentConnectionType = row.connectionType(userPosition);
+            userPosition = currentConnectionType.applyPosition(userPosition);
         }
         return userPosition;
     }
