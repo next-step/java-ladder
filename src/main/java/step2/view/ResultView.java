@@ -29,9 +29,7 @@ public class ResultView {
 
     private static void printNames(List<Name> names) {
         StringBuilder namesToPrint = new StringBuilder();
-        for (Name name : names) {
-            namesToPrint.append(buildEachNameForPrint(name));
-        }
+        names.forEach(name -> namesToPrint.append(buildEachNameForPrint(name)));
         System.out.println(namesToPrint);
     }
 
@@ -47,10 +45,11 @@ public class ResultView {
     private static void printEachLine(Line line) {
         StringBuilder lineBuilder = new StringBuilder();
         lineBuilder.append(initLineBuilder());
-        for (Boolean point : line.getPoints()) {
-            lineBuilder.append(buildEachHorizontal(point));
-            lineBuilder.append(VERTICAL);
-        }
+        line.getPoints().forEach(point -> {
+                    lineBuilder.append(buildEachHorizontal(point));
+                    lineBuilder.append(VERTICAL);
+                }
+        );
         System.out.println(lineBuilder);
     }
 

@@ -12,11 +12,11 @@ import static org.assertj.core.api.Assertions.*;
 class LineTest {
 
 
-    @DisplayName("사람의 수만큼 Line을 생성한다.")
+    @DisplayName("사람의 수만큼 Horizontal Line을 생성한다.")
     @ParameterizedTest
     @ValueSource(ints = {2, 3, 4, 5})
     void generateLineTest(int countOfPerson) {
-        assertThat(new Line(countOfPerson).getPoints()).hasSize(countOfPerson);
+        assertThat(new Line(countOfPerson).getPoints()).hasSize(countOfPerson - 1);
     }
 
     @DisplayName("라인 생성 전략(라인을 만들지 않음)에 따라 적절한 return을 한다.")

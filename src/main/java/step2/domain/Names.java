@@ -8,7 +8,9 @@ public class Names {
 
     public Names(List<String> names) {
         validateNames(names);
-        this.names = names.stream().map(Name::new).collect(Collectors.toList());
+        this.names = names.stream()
+                .map(Name::new)
+                .collect(Collectors.toList());
     }
 
     private void validateNames(List<String> names) {

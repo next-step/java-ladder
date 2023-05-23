@@ -1,17 +1,17 @@
 package step2.domain;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Lines {
     private final List<Line> lines;
     private final Height height;
 
     public static Lines of(int countOfPerson, int height) {
-        List<Line> newLine = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            newLine.add(new Line(countOfPerson));
-        }
+        List<Line> newLine = IntStream.range(0, height)
+                .mapToObj(i -> new Line(countOfPerson))
+                .collect(Collectors.toList());
         return new Lines(newLine, height);
     }
 
@@ -22,9 +22,5 @@ public class Lines {
 
     public List<Line> getLines() {
         return lines;
-    }
-
-    public Height getHeight() {
-        return height;
     }
 }
