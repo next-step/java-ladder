@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 import nextstep.ladder.drawPolicy.AllDraw;
+import nextstep.ladder.view.ResultView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +18,7 @@ public class LadderRowTest {
 
     @Test
     void drawLadderRow() {
-        var acutualLadderRow = ladderRow.drawLadderRow();
+        var acutualLadderRow = ladderRow.drawLadderRow(ResultView.COLUMN, ResultView.ROW);
         var expectLadderRow = "|-----|     |-----|     |     ";
 
         assertThat(acutualLadderRow).isEqualTo(expectLadderRow);

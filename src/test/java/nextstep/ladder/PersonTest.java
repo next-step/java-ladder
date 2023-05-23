@@ -12,5 +12,4 @@ public class PersonTest {
         assertThatThrownBy(() -> new Person("tomson"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
 }
