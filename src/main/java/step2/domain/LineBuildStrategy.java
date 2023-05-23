@@ -1,5 +1,7 @@
 package step2.domain;
 
+import java.util.List;
+
 interface LineBuildStrategy {
-    boolean build();
+    List<Boolean> build(int countOfPerson);
 }

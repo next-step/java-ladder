@@ -1,6 +1,5 @@
 package step2.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
@@ -15,15 +14,7 @@ public class Line {
     }
 
     private List<Boolean> makePoints(int countOfPerson, LineBuildStrategy lineBuildStrategy) {
-        List<Boolean> points = new ArrayList<>();
-        for (int i = 0; i < countOfPerson - 1; i++) {
-            if (i != 0 && points.get(i - 1)) {
-                points.add(false);
-                continue;
-            }
-            points.add(lineBuildStrategy.build());
-        }
-        return points;
+        return lineBuildStrategy.build(countOfPerson);
     }
 
     public Line(List<Boolean> points) {

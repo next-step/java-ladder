@@ -1,15 +1,16 @@
 package step2.view;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
     public static final Scanner scanner = new Scanner(System.in);
-    private static final String NAME_DELIMITER = ", ";
+    private static final String NAME_DELIMITER = ",";
 
     public static List<String> inputNames() {
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요");
-        return List.of(scanner.nextLine().split(NAME_DELIMITER));
+        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        return Arrays.asList(scanner.nextLine().split(NAME_DELIMITER));
     }
 
     public static int inputLadderHeight() {

@@ -23,4 +23,8 @@ public class Lines {
     public List<Line> getLines() {
         return lines;
     }
+
+    public Height getHeight() {
+        return height;
+    }
 }
