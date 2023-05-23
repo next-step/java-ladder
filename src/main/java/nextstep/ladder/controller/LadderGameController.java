@@ -12,11 +12,12 @@ public class LadderGameController {
     }
 
     public void playLadderGame() {
-        String names = InputView.readUserNames();
+        String[] names = InputView.readUserNames();
+        String[] results = InputView.readGameResult();
         LadderHeight ladderHeight = new LadderHeight(InputView.readLadderHeight());
-        UserNames userNames = UserNames.of(names.split(","));
+        UserNames userNames = UserNames.of(names);
 
-        LadderGame ladderGame = LadderGame.create(ladderHeight, userNames.count());
+        LadderGame ladderGame = LadderGame.create(ladderHeight, userNames);
 
         ResultView.printMessage("실행결과");
         ResultView.printBlankLine();

@@ -1,25 +1,30 @@
 package nextstep.ladder.domain;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LadderGame {
-    private List<Line> lines;
+    private final UserNames userNames;
+    private final List<Line> lines;
 
-    private LadderGame(LadderHeight ladderHeight, int ladderWeight) {
+    private final Map<String, Integer> gameResult;
+
+    private LadderGame(LadderHeight ladderHeight, UserNames userNames) {
+        this.userNames = userNames;
         lines = IntStream.range(0, ladderHeight.getHeight())
-                .mapToObj(i -> drawLine(ladderWeight))
+                .mapToObj(i -> drawLine(userNames.count()))
                 .collect(Collectors.toList());
+
+        gameResult = new HashMap<>();
     }
 
     private Line drawLine(int ladderWidth) {
         return Line.of(ladderWidth);
     }
 
-    public static LadderGame create(LadderHeight ladderHeight, int countOfPerson) {
-        return new LadderGame(ladderHeight, countOfPerson);
+    public static LadderGame create(LadderHeight ladderHeight, UserNames userNames) {
+        return new LadderGame(ladderHeight, userNames);
     }
 
     public List<Line> toList() {
