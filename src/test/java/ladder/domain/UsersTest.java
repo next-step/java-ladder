@@ -18,7 +18,8 @@ class UsersTest {
     void Users_객체생성() {
         String[] userNames = {"user1", "user2", "user3"};
 
-        List<String> userNameList = Arrays.stream(userNames)
+        List<User> userNameList = Arrays.stream(userNames)
+                .map(User::create)
                 .limit(userNames.length)
                 .collect(Collectors.toList());
 
