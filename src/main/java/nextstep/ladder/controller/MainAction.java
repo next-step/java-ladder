@@ -2,14 +2,10 @@ package nextstep.ladder.controller;
 
 import nextstep.ladder.Height;
 import nextstep.ladder.Ladder;
-import nextstep.ladder.LadderRow;
 import nextstep.ladder.Persons;
 import nextstep.ladder.drawPolicy.RandomDraw;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainAction {
 
@@ -19,10 +15,9 @@ public class MainAction {
 
         ResultView.printResult(persons);
 
-        List<LadderRow> ladderRowList = initLadderRows(persons, ladderHeight);
-        Ladder ladder = new Ladder(ladderRowList);
+        Ladder ladder = new Ladder(persons, ladderHeight, new RandomDraw());
 
-        ResultView.printLadder(ladder.drawLadder());
+        ResultView.printLadder(ladder.getLadder());
     }
 
     private static Height initHeight() {
@@ -34,15 +29,5 @@ public class MainAction {
         InputView.printPersonInput();
         return new Persons(InputView.stringInput()
                 .split(","));
-    }
-
-    private static List<LadderRow> initLadderRows(Persons persons, Height ladderHeight) {
-        List<LadderRow> ladderRowList = new ArrayList<>();
-
-        for (int i = 0; i < ladderHeight.getHeight(); i++) {
-            LadderRow ladderRow = new LadderRow(persons.personListSize(), new RandomDraw());
-            ladderRowList.add(ladderRow);
-        }
-        return ladderRowList;
     }
 }

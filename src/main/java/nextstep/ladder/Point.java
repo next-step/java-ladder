@@ -1,7 +1,7 @@
 package nextstep.ladder;
 
+import java.util.Objects;
 import nextstep.ladder.drawPolicy.DrawablePolicy;
-import nextstep.ladder.drawPolicy.RandomDraw;
 
 public class Point {
 

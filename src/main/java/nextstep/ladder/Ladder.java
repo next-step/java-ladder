@@ -1,7 +1,8 @@
 package nextstep.ladder;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+import nextstep.ladder.drawPolicy.DrawablePolicy;
 
 public class Ladder {
 
@@ -11,9 +12,16 @@ public class Ladder {
         this.ladderRows = ladderRows;
     }
 
-    public String drawLadder() {
-        return ladderRows.stream()
-                .map(LadderRow::drawLadderRow)
-                .collect(Collectors.joining("\n"));
+    public Ladder(Persons persons, Height height, DrawablePolicy drawablePolicy){
+        ladderRows = new ArrayList<>();
+
+        for (int i = 0; i < height.getHeight(); i++) {
+            LadderRow ladderRow = new LadderRow(persons.personListSize(), drawablePolicy);
+            ladderRows.add(ladderRow);
+        }
+    }
+
+    public List<LadderRow> getLadder() {
+        return ladderRows;
     }
 }

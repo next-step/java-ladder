@@ -1,7 +1,7 @@
 package nextstep.ladder;
 
+import java.util.Objects;
 import nextstep.ladder.drawPolicy.DrawablePolicy;
-import nextstep.ladder.drawPolicy.RandomDraw;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,9 +11,6 @@ public class LadderRow {
     private List<Point> points;
     private final DrawablePolicy randomDraw;
     private final int PERSON_COUNT;
-
-    private static final String COLUMN = "|" ;
-    private static final String ROW = "-" ;
 
     public LadderRow(int personCount, DrawablePolicy randomDraw) {
         this.randomDraw = randomDraw;
@@ -40,20 +37,20 @@ public class LadderRow {
         return Point.createInstance(currentPoint, randomDraw);
     }
 
-    public String drawLadderRow() {
+    public String drawLadderRow(String column, String row) {
         StringBuilder stringBuilder = new StringBuilder();
         points.stream()
-                .map(this::drawLadderRowStem)
+                .map(t -> drawLadderRowStem(t, row))
                 .forEach(t -> {
-                    stringBuilder.append(COLUMN);
+                    stringBuilder.append(column);
                     stringBuilder.append(t);
                 });
         return stringBuilder.toString();
     }
 
-    private String drawLadderRowStem(Point point) {
+    private String drawLadderRowStem(Point point, String row) {
         if (point.isRightConnected()) {
-            return ROW.repeat(PERSON_COUNT);
+            return row.repeat(PERSON_COUNT);
         }
         return " ".repeat(PERSON_COUNT);
     }
