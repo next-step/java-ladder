@@ -1,15 +1,14 @@
 package nextstep.ladder;
 
+import java.util.List;
 import nextstep.ladder.drawPolicy.AllDraw;
 import nextstep.ladder.drawPolicy.NoDraw;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LadderTest {
 
@@ -33,13 +32,13 @@ class LadderTest {
     }
 
     @Test
-    void drawLadder() {
-        var actualLadder = ladder.drawLadder();
-        var expectLadder =
-                "|-----|     |-----|     |     \n" +
-                "|     |     |     |     |     \n" +
-                "|     |     |     |     |     \n" +
-                "|-----|     |-----|     |     ";
+    void getLadder() {
+        var actualLadder = ladder.getLadder();
+        var expectLadder = List.of(new LadderRow(5, new AllDraw()),
+                new LadderRow(5, new NoDraw()),
+                new LadderRow(5, new NoDraw()),
+                new LadderRow(5, new AllDraw())
+                );
 
         assertThat(actualLadder).isEqualTo(expectLadder);
     }

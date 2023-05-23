@@ -54,4 +54,21 @@ public class LadderRow {
         }
         return " ".repeat(PERSON_COUNT);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        LadderRow ladderRow = (LadderRow) o;
+        return Objects.equals(points, ladderRow.points);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(points);
+    }
 }

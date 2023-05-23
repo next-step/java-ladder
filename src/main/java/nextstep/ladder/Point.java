@@ -50,4 +50,21 @@ public class Point {
     public boolean isRightConnected() {
         return rightConnected;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Point point = (Point) o;
+        return leftConnected == point.leftConnected && rightConnected == point.rightConnected;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(leftConnected, rightConnected);
+    }
 }
