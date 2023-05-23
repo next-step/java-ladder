@@ -15,7 +15,7 @@ public class LadderGame {
     }
 
     private Line drawLine(int ladderWidth) {
-        return new Line(ladderWidth);
+        return Line.of(ladderWidth);
     }
 
     public static LadderGame create(LadderHeight ladderHeight, int countOfPerson) {

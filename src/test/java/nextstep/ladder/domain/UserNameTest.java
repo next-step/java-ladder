@@ -20,7 +20,7 @@ class UserNameTest {
     @ParameterizedTest
     @NullSource
     @EmptySource
-    public void 이름_NULL_테스트(String name) throws Exception {
+    public void 이름_예외_테스트(String name) throws Exception {
         assertThatIllegalArgumentException().isThrownBy(() -> UserName.of(name));
     }
 

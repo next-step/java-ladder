@@ -12,14 +12,17 @@ public class UserName {
     }
 
     public static UserName of(String name) {
-        if (isInValidName(name)) {
-            throw new IllegalArgumentException("이름을 확인하세요. name: " + name);
-        }
+        isInValidName(name);
         return new UserName(name);
     }
 
-    private static boolean isInValidName(String name) {
-        return Objects.isNull(name) || name.isEmpty() || name.length() > MAX_NAME_LENGTH;
+    private static void isInValidName(String name) {
+        if (Objects.isNull(name) || name.isEmpty()) {
+            throw new IllegalArgumentException("이름을 확인 하세요.");
+        }
+        if (name.length() > MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException("이름이 5자를 초과했습니다.");
+        }
     }
 
     public String name() {

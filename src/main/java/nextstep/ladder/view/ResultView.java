@@ -43,10 +43,6 @@ public class ResultView {
                 .map(l -> isLine(l))
                 .collect(Collectors.joining(VERTICAL_LINE));
 
-//        if(line.size() == 1) {
-//            return BLANK + VERTICAL_LINE + ladder;
-//        }
-
         return BLANK + VERTICAL_LINE + ladder + VERTICAL_LINE;
     }
 
