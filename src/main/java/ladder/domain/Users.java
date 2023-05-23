@@ -7,17 +7,6 @@ import java.util.stream.Collectors;
 public class Users {
     private final List<User> users;
 
-    public static Users create(String[] usersArr) {
-        List<User> users = Arrays.stream(usersArr)
-                .map(User::create)
-                .collect(Collectors.toList());
-
-        return Users.create(users);
-    }
-
-    public static Users create(List<User> users) {
-        return new Users(users);
-    }
 
     private Users(List<User> users) {
         validateUsers(users);
@@ -28,6 +17,14 @@ public class Users {
         if (isEmpty(users)) {
             throw new IllegalArgumentException("Users is Empty");
         }
+    }
+
+    public static Users create(List<String> userNames) {
+        List<User> users = userNames.stream()
+                .map(User::create)
+                .collect(Collectors.toList());
+
+        return new Users(users);
     }
 
     private boolean isEmpty(List<User> users) {

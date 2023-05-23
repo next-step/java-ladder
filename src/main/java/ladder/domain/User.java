@@ -6,14 +6,6 @@ public class User {
     public static final int MAXIMUM_USER_NAME_LENGTH = 5;
     private final String name;
 
-    public static User create(String name) {
-        return new User(name);
-    }
-
-    public String name() {
-        return this.name;
-    }
-
     private User(String name) {
         validateName(name);
         this.name = name;
@@ -23,6 +15,14 @@ public class User {
         if (name.length() > MAXIMUM_USER_NAME_LENGTH) {
             throw new IllegalArgumentException("참여자 이름은 최대 5글자 입니다.");
         }
+    }
+
+    public static User create(String name) {
+        return new User(name);
+    }
+
+    public String name() {
+        return this.name;
     }
 
 }
