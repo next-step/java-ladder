@@ -19,12 +19,12 @@ public class Users {
         }
     }
 
-    public static Users create(List<String> userNames) {
-        List<User> users = userNames.stream()
-                .map(User::create)
-                .collect(Collectors.toList());
-
+    public static Users create(List<User> users) {
         return new Users(users);
+    }
+
+    public List<User> users() {
+        return this.users;
     }
 
     private boolean isEmpty(List<User> users) {

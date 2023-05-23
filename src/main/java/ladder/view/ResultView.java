@@ -15,8 +15,11 @@ public class ResultView {
         System.out.println("실행 결과");
     }
 
-    public static void printUsers(List<User> users) {
-        String userNames = users.stream()
+    public static void printUsers(Users users) {
+//        String userNames = users.stream()
+//                .map(user -> String.format("%6s", user.name()))
+//                .collect(Collectors.joining());
+        String userNames = users.users().stream()
                 .map(user -> String.format("%6s", user.name()))
                 .collect(Collectors.joining());
 
