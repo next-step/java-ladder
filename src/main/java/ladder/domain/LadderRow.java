@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import java.util.Arrays;
-import java.util.Random;
 
 public class LadderRow {
     private Boolean[] connectedPoints;
@@ -58,7 +57,7 @@ public class LadderRow {
         }
 
         return Arrays.stream(connectedPoints)
-                .map(point -> (point == true) ? "|-----" : "|     ")
+                .map(isConnected -> isConnected ? "|-----" : "|     ")
                 .reduce((left, right) -> left + right)
                 .map(row -> row + "|")
                 .orElse("");

@@ -3,25 +3,26 @@ package ladder.util;
 import ladder.domain.Ladder;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 public class OutputPrinter {
 
     public static void printDisplay(List<String> names, Ladder ladder, List<String> matchingResult) {
         System.out.println("실행 결과");
-        names.stream()
-                .map(name -> name + "  ")
-                .reduce((left, right) -> left + right)
-                .ifPresent(reduce -> {
-                    System.out.println(reduce);
-                    System.out.println(ladder.print());
-                });
 
-        matchingResult.stream()
+        printReducedResult(names, result -> {
+            System.out.println(result);
+            System.out.println(ladder.print());
+        });
+
+        printReducedResult(matchingResult, result -> System.out.println(result));
+    }
+
+    public static <T> void printReducedResult(List<T> list, Consumer<String> ifPresentConsumer) {
+        list.stream()
                 .map(name -> name + "  ")
                 .reduce((left, right) -> left + right)
-                .ifPresent(reduce -> {
-                    System.out.println(reduce);
-                });
+                .ifPresent(ifPresentConsumer);
     }
 
     public static void printMatchingResult(List<String> participantNames,

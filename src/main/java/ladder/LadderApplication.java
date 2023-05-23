@@ -11,22 +11,25 @@ public class LadderApplication {
     public static void main(String[] args) {
         List<String> names = InputScanner.readNames();
         List<String> results = InputScanner.readMatchingResult();
+        validSameSize(names.size(), results.size());
+
         int height = InputScanner.readLadderHeight();
         Ladder ladder = new Ladder(height, names);
         OutputPrinter.printDisplay(names, ladder, results);
 
         while (true) {
             String name = InputScanner.readNameToShowResult();
-            OutputPrinter.printMatchingResult(transformName(name, names), ladder, results);
+            OutputPrinter.printMatchingResult(
+                    InputNameType.from(name).name(names, name),
+                    ladder,
+                    results
+            );
         }
     }
 
-    private static List<String> transformName(String inputName, List<String> names) {
-        InputNameType inputNameType = InputNameType.of(inputName);
-        if (inputNameType == InputNameType.ALL) {
-            return names;
+    private static void validSameSize(int namesSize, int resultsSize) {
+        if (namesSize != resultsSize) {
+            throw new IllegalArgumentException("입력된 이름의 수와 결과의 수는 동일해야 합니다.");
         }
-
-        return List.of(inputName);
     }
 }
