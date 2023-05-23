@@ -4,6 +4,9 @@ import java.util.Objects;
 
 public class Direction {
 
+    private static final int MOVE_LEFT = -1;
+    private static final int MOVE_RIGHT = 1;
+
     private final boolean leftLine;
     private final boolean rightLine;
 
@@ -11,6 +14,16 @@ public class Direction {
         checkValid(leftLine, rightLine);
         this.leftLine = leftLine;
         this.rightLine = rightLine;
+    }
+
+    public int move() {
+        if (leftLine) {
+            return MOVE_LEFT;
+        }
+        if (rightLine) {
+            return MOVE_RIGHT;
+        }
+        return 0;
     }
 
     public Direction createNext(LineStrategy lineStrategy) {
@@ -29,10 +42,6 @@ public class Direction {
 
     public boolean hasLeftLine() {
         return leftLine;
-    }
-
-    public boolean hasRightLine() {
-        return rightLine;
     }
 
     private static void checkValid(boolean leftLine, boolean rightLine) {

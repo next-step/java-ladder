@@ -23,6 +23,10 @@ public class Users implements Iterable<User> {
         return users.size();
     }
 
+    public User get(int index) {
+        return users.get(index);
+    }
+
     @Override
     public Iterator<User> iterator() {
         return users.iterator();

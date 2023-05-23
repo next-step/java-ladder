@@ -35,6 +35,12 @@ class DirectionTest {
         assertThat(direction.createLast()).isEqualTo(expected);
     }
 
+    @ParameterizedTest
+    @MethodSource("moveArgs")
+    void move(Direction direction, int expected) {
+        assertThat(direction.move()).isEqualTo(expected);
+    }
+
     static Stream<Arguments> createNextArgs() {
         return Stream.of(
             Arguments.of(nonDirection, true, rightDirection),
@@ -54,5 +60,12 @@ class DirectionTest {
         );
     }
 
+    static Stream<Arguments> moveArgs() {
+        return Stream.of(
+            Arguments.of(nonDirection, 0),
+            Arguments.of(leftDirection, -1),
+            Arguments.of(rightDirection, 1)
+        );
+    }
 
 }

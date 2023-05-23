@@ -18,6 +18,10 @@ public class Point {
         return new Point(0, new Direction(false, lineStrategy.add()));
     }
 
+    public int move() {
+        return position + direction.move();
+    }
+
     public Point createNext(LineStrategy lineStrategy) {
         return new Point(position + NEXT_POSITION, direction.createNext(lineStrategy));
     }
@@ -28,10 +32,6 @@ public class Point {
 
     public boolean hasLeftLine() {
         return direction.hasLeftLine();
-    }
-
-    public boolean hasRightLine() {
-        return direction.hasRightLine();
     }
 
     @Override

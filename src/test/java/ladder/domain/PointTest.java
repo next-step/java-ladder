@@ -31,6 +31,12 @@ class PointTest {
         assertThat(point.createLast()).isEqualTo(expected);
     }
 
+    @ParameterizedTest
+    @MethodSource("moveArgs")
+    void move(Point point, int expected) {
+        assertThat(point.move()).isEqualTo(expected);
+    }
+
     static Stream<Arguments> createNextArgs() {
         return Stream.of(
             Arguments.of(
@@ -52,6 +58,14 @@ class PointTest {
                 1, DirectionTest.leftDirection, new Point(2, DirectionTest.nonDirection)
             ),
             Arguments.of(2, DirectionTest.rightDirection, new Point(3, DirectionTest.leftDirection))
+        );
+    }
+
+    static Stream<Arguments> moveArgs() {
+        return Stream.of(
+            Arguments.of(new Point(1, DirectionTest.nonDirection), 1),
+            Arguments.of(new Point(2, DirectionTest.leftDirection), 1),
+            Arguments.of(new Point(3, DirectionTest.rightDirection), 4)
         );
     }
 

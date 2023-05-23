@@ -28,6 +28,10 @@ public class HorizontalLine implements Iterable<Point> {
         return new HorizontalLine(points);
     }
 
+    public int move(int position) {
+        return points.get(position).move();
+    }
+
     private static Point getLastPoint(List<Point> points) {
         return points.get(points.size() - 1);
     }
