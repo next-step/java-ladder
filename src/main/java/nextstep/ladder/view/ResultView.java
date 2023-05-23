@@ -2,6 +2,7 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.line.Ladder;
 import nextstep.ladder.domain.line.LadderHeight;
+import nextstep.ladder.domain.line.WinningCategories;
 import nextstep.ladder.domain.user.Users;
 
 import java.util.stream.IntStream;
@@ -43,6 +44,10 @@ public class ResultView {
             return;
         }
         System.out.print(NO_LINE_SEPARATOR);
+    }
+
+    public void printWinningCategory(WinningCategories winningCategories) {
+        System.out.println(winningCategories.toString());
     }
 }
 

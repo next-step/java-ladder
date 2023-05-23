@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class WinningCategories {
 
@@ -29,5 +30,10 @@ public class WinningCategories {
     @Override
     public int hashCode() {
         return Objects.hash(winningCategories);
+    }
+
+    @Override
+    public String toString() {
+        return winningCategories.stream().map(WinningCategory::toString).collect(Collectors.joining(""));
     }
 }

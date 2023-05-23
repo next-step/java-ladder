@@ -23,9 +23,11 @@
 - 사다리 높이에 대한 정보를 가지고 있음
 - 사다리 높이에 대한 검증
 
-### Result
+### WinningCategory
 - 실행 결과에 대한 정보를 가지고 있음 
 
-### Position
-- 사다리를 탈때 위치를 가지고 있는 객체
-- Line에서 true를 만나면 오른쪽으로 한칸 이동하고 false면 아래로 이동
+### WinningCategories
+- WinningCategory 일급컬렉션
+
+### LadderGame
+- ladder, users를 가지고 사다리의 결과를 생성하는 객체
