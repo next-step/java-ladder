@@ -1,9 +1,10 @@
 package nextstep.ladder.domain.ladder;
 
 import nextstep.ladder.domain.generator.BooleanGenerator;
+import nextstep.ladder.domain.user.Position;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -13,55 +14,48 @@ public class Row {
     private static final String OUTPUT_PREFIX = "    " + COLUMN_DELIMITER;
     private static final String OUTPUT_SUFFIX = COLUMN_DELIMITER;
 
-    private final List<ConnectionType> connectionTypes;
+    private final Map<Position, ConnectionType> connectionTypeMap;
     private final int connectionSize;
 
-    public Row(List<ConnectionType> connectionTypes, int connectionSize) {
-        this.connectionTypes = connectionTypes;
+    public Row(Map<Position, ConnectionType> connectionTypeMap, int connectionSize) {
+        this.connectionTypeMap = connectionTypeMap;
         this.connectionSize = connectionSize;
     }
 
     public static Row initialize(int size, BooleanGenerator booleanGenerator) {
-        Row row = new Row(new ArrayList<>(), size);
+        Row row = new Row(new LinkedHashMap<>(), size);
         IntStream.range(0, size)
-                .forEach(index -> row.addConnectionType(index, booleanGenerator));
+                .mapToObj(Position::new)
+                .forEach(position -> row.addConnectionType(position, booleanGenerator));
         return row;
     }
 
-    private void addConnectionType(int index, BooleanGenerator booleanGenerator) {
-        if (isFirst(index)) {
-            connectionTypes.add(ConnectionType.getRightOrNone(booleanGenerator.getBoolean()));
+    private void addConnectionType(Position position, BooleanGenerator booleanGenerator) {
+        if (position.isFirst()) {
+            connectionTypeMap.put(position, ConnectionType.getRightOrNone(booleanGenerator.getBoolean()));
             return;
         }
 
-        ConnectionType beforeConnection = connectionTypes.get(index - 1);
+        ConnectionType beforeConnection = connectionTypeMap.get(position.beforePosition());
         if (beforeConnection.isRight()) {
-            connectionTypes.add(ConnectionType.LEFT);
+            connectionTypeMap.put(position, ConnectionType.LEFT);
             return;
         }
 
-        if (isLast(index)) {
-            connectionTypes.add(ConnectionType.NONE);
+        if (position.equals(new Position(lastIndex()))) {
+            connectionTypeMap.put(position, ConnectionType.NONE);
             return;
         }
 
-        connectionTypes.add(ConnectionType.getRightOrNone(booleanGenerator.getBoolean()));
+        connectionTypeMap.put(position, ConnectionType.getRightOrNone(booleanGenerator.getBoolean()));
     }
 
-    private boolean isFirst(int index) {
-        return index == 0;
-    }
-
-    private boolean isLast(int index) {
-        return index == lastIndex();
-    }
-
-    private long lastIndex() {
-        return connectionSize - 1L;
+    private int lastIndex() {
+        return connectionSize - 1;
     }
 
     public int movePoint(int currentPosition) {
-        ConnectionType currenConnectionType = connectionTypes.get(currentPosition);
+        ConnectionType currenConnectionType = connectionTypeMap.get(new Position(currentPosition));
         return currenConnectionType.getMovePoint();
     }
 
@@ -71,7 +65,8 @@ public class Row {
     }
 
     private String drawLines() {
-        return connectionTypes.stream()
+        return connectionTypeMap.values()
+                .stream()
                 .limit(lastIndex())
                 .map(ConnectionType::toOutput)
                 .collect(Collectors.joining(COLUMN_DELIMITER));

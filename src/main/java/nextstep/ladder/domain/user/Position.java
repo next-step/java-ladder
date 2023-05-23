@@ -31,4 +31,12 @@ public class Position {
         return Objects.hash(currentPosition);
     }
 
+    public boolean isFirst() {
+        return currentPosition == 0;
+    }
+
+    public Position beforePosition() {
+        return move(-1);
+    }
+
 }
