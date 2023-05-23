@@ -27,7 +27,6 @@ public class LadderResult implements Iterable<String> {
         return results.iterator();
     }
 
-
     public String get(int index) {
         return results.get(index);
     }
