@@ -6,6 +6,18 @@ public class Point {
     private final boolean left;
     private final boolean right;
 
+    private Point(boolean left, boolean right) {
+        validatePoint(left, right);
+        this.left = left;
+        this.right = right;
+    }
+
+    private void validatePoint(boolean left, boolean right) {
+        if (left && right == true) {
+            throw new IllegalArgumentException("가로 라인이 겹칠 수 없습니다.");
+        }
+    }
+
     public static Point create(boolean left, boolean right) {
         return new Point(left, right);
     }
@@ -24,18 +36,6 @@ public class Point {
 
     public static Point createLast(boolean canMoveToRight) {
         return Point.create(canMoveToRight, false);
-    }
-
-    private Point(boolean left, boolean right) {
-        validatePoint(left, right);
-        this.left = left;
-        this.right = right;
-    }
-
-    private void validatePoint(boolean left, boolean right) {
-        if (left && right == true) {
-            throw new IllegalArgumentException("가로 라인이 겹칠 수 없습니다.");
-        }
     }
 
     public boolean canMoveToLeft() {
