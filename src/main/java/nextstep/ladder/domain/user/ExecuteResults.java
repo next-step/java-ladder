@@ -2,11 +2,13 @@ package nextstep.ladder.domain.user;
 
 import nextstep.ladder.domain.ladder.Ladder;
 
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.IntStream;
 
-import static java.util.stream.Collectors.*;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toMap;
 
 public class ExecuteResults {
 
@@ -22,13 +24,14 @@ public class ExecuteResults {
 
     public static ExecuteResults of(String input) {
         String[] userNames = input.split(USER_NAME_DELIMITER);
-        return new ExecuteResults(
-                IntStream.range(0, userNames.length)
-                        .boxed()
-                        .collect(collectingAndThen(
-                                toUnmodifiableMap(Position::new, i -> new Result(userNames[i])),
-                                LinkedHashMap::new
-                        )));
+        LinkedHashMap<Position, Result> map = IntStream.range(0, userNames.length)
+                .boxed()
+                .collect(toMap(
+                        Position::new,
+                        i -> new Result(userNames[i]),
+                        (a, b) -> b,
+                        LinkedHashMap::new));
+        return new ExecuteResults(Collections.unmodifiableMap(map));
     }
 
     public void execute(Participants participants, Ladder ladder) {
