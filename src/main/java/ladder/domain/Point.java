@@ -3,7 +3,8 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Point {
-    private final boolean left ,right;
+    private final boolean left;
+    private final boolean right;
 
     public static Point create(boolean left, boolean right) {
         return new Point(left, right);
