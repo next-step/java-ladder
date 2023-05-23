@@ -38,8 +38,8 @@ public class Lambda {
 
     private static int getSum(List<Integer> numbers, Conditional conditional) {
         return numbers.stream()
-                .filter(number -> conditional.isSummable(number))
+                .filter(conditional::isSummable)
                 .mapToInt(Integer::intValue)
-                .reduce(0, (total, n) -> total + n);
+                .reduce(0, Integer::sum);
     }
 }
