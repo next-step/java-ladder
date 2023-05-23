@@ -1,7 +1,7 @@
 package config;
 
-import exception.LadderGameException;
 import exception.ExceptionCode;
+import exception.LadderGameException;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 

@@ -1,15 +1,21 @@
-package ladder.domain.Line;
+package ladder.domain.ladder.line.point;
 
 import exception.ExceptionCode;
 import exception.LadderGameException;
-import ladder.domain.ladder.LadderPointDirection;
 
 public class LinePoint {
 
-  private LadderPointDirection pointDirection;
-  private final int index;
-  private final boolean isStart;
-  private final boolean isEnd;
+  protected LadderPointDirection pointDirection;
+  protected final int index;
+  protected final boolean isStart;
+  protected final boolean isEnd;
+
+  public LinePoint (LinePoint linePoint) {
+    this.index = linePoint.index;
+    this.isStart = linePoint.isStart;
+    this.isEnd = linePoint.isEnd;
+    this.pointDirection = linePoint.pointDirection;
+  }
 
   public LinePoint (int index) {
     this.index = index;
@@ -35,10 +41,6 @@ public class LinePoint {
 
   public boolean isEndPoint() {
     return isEnd;
-  }
-
-  public boolean isNotEdgePoint() {
-    return !isStart && !isEnd;
   }
 
   public int getIndex() {

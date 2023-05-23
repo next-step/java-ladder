@@ -1,42 +1,29 @@
 package ladder.domain.player;
 
-import exception.LadderGameException;
-import exception.ExceptionCode;
-import java.util.Objects;
+import ladder.domain.ladder.line.point.LadderPointDirection;
 
 public class Player {
-  private final String name;
-  private static final int MAX_NAME_LENGTH = 5;
 
-  public Player(String name) {
-    throwIfHasInvalidName(name);
-    this.name = name;
+  private final PlayerName playerName;
+  private final PlayerPosition playerPosition;
+
+  public Player(String name, int currentLine) {
+    this.playerName = new PlayerName(name);
+    this.playerPosition = new PlayerPosition(currentLine);
   }
 
-  private void throwIfHasInvalidName(String name) {
-    if(name.length() > MAX_NAME_LENGTH) {
-      throw new LadderGameException(ExceptionCode.EXCEED_PLAYER_NAME_LENGTH);
-    }
+  public String getPlayerName() {
+    return this.playerName.getName();
+  }
+  public int getCurrentHeight() {
+    return this.playerPosition.getCurrentHeight();
   }
 
-  public String getName() {
-    return name;
+  public int getCurrentLine() {
+    return this.playerPosition.getCurrentLine();
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Player that = (Player) o;
-    return Objects.equals(name, that.name);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(name);
+  public void move(LadderPointDirection direction) {
+    this.playerPosition.move(direction);
   }
 }

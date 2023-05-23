@@ -1,8 +1,9 @@
-package ladder.domain.Line;
+package ladder.domain.ladder.line;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import ladder.domain.ladder.line.point.LinePoint;
 
 public class LineGenerator {
 
@@ -10,7 +11,7 @@ public class LineGenerator {
     final int lastIdx = countOfPerson - 1;
     return IntStream.range(0, countOfPerson)
         .mapToObj(i -> createLinePoint(i, lastIdx))
-        .collect(Collectors.toList());
+        .collect(Collectors.toUnmodifiableList());
   }
 
   private LinePoint createLinePoint(int index, int lastIndex) {

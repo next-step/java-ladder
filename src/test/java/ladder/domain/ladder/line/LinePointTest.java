@@ -1,10 +1,9 @@
-package ladder.domain.line;
+package ladder.domain.ladder.line;
 
 import config.BaseTest;
 import exception.ExceptionCode;
 import java.util.List;
-import ladder.domain.Line.LineGenerator;
-import ladder.domain.Line.LinePoint;
+import ladder.domain.ladder.line.point.LinePoint;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -27,5 +26,4 @@ public class LinePointTest extends BaseTest {
         ExceptionCode.CANNOT_CONNECT_POINT_IN_REVERSE_ORDER
     );
   }
-
 }
