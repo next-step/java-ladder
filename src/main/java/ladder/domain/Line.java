@@ -13,7 +13,7 @@ public class Line {
         return new Line(request.getWidth(), request.getStrategy());
     }
 
-    private Line(Width width, GenerateStrategy strategy) {
+    public Line(Width width, GenerateStrategy strategy) {
         this.points = generateLine(width, strategy);
     }
 
