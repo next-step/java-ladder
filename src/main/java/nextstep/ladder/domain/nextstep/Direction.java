@@ -1,5 +1,7 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.nextstep;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public class Direction {
@@ -27,8 +29,8 @@ public class Direction {
         return new Direction(false, current);
     }
 
-    public Direction last(boolean previous) {
-        return new Direction(previous, false);
+    public Direction last() {
+        return new Direction(this.current, false);
     }
 
     public int move() {
@@ -36,16 +38,16 @@ public class Direction {
             return -1;
         }
         if (current) {
-            return +1;
+            return 1;
         }
         return 0;
     }
 
     public Direction next(boolean current) {
         if (this.current) {
-            return new Direction(true, false);
+            return new Direction(this.current, false);
         }
-        return new Direction(false, current);
+        return new Direction(this.current, current);
     }
 
     @Override
@@ -59,5 +61,9 @@ public class Direction {
     @Override
     public int hashCode() {
         return Objects.hash(previous, current);
+    }
+
+    public List<Boolean> get() {
+        return Arrays.asList(previous, current);
     }
 }

@@ -2,7 +2,7 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.LadderResult;
 import nextstep.ladder.domain.Participants;
-import nextstep.ladder.domain.Point;
+import nextstep.ladder.domain.nextstep.Point;
 import nextstep.ladder.domain.nextstep.NextStepLadder;
 import nextstep.ladder.domain.nextstep.NextStepLine;
 
