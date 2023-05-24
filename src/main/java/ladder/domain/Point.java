@@ -3,13 +3,12 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Point {
-    private final boolean left;
-    private final boolean right;
+    private final Direction direction;
+    private final Position position;
 
-    private Point(boolean left, boolean right) {
-        validatePoint(left, right);
-        this.left = left;
-        this.right = right;
+    private Point(Direction direction, Position position) {
+        this.direction = direction;
+        this.position = position;
     }
 
     private void validatePoint(boolean left, boolean right) {
@@ -18,32 +17,32 @@ public class Point {
         }
     }
 
-    public static Point create(boolean left, boolean right) {
-        return new Point(left, right);
+    public static Point create(Direction direction, int position) {
+        return new Point(direction, Position.create(position));
     }
 
     public static Point createFirst(boolean right) {
-        return Point.create(false, right);
+        return Point.create(Direction.createFirst(right), 0);
     }
 
-    public static Point createNext(boolean canMoveToLeft, boolean canMoveToRight) {
-        if (canMoveToLeft) {
-            return Point.create(true, false);
-        }
-
-        return Point.create(false, canMoveToRight);
+    public Point createNext(boolean right) {
+        return Point.create(this.direction.createNext(right), this.position.moveToRight());
     }
 
-    public static Point createLast(boolean canMoveToRight) {
-        return Point.create(canMoveToRight, false);
+    public Point createLast() {
+        return Point.create(this.direction.createLast(), this.position.moveToRight());
+    }
+
+    public Position position() {
+        return this.position;
     }
 
     public boolean canMoveToLeft() {
-        return this.left;
+        return this.direction.canMoveToLeft();
     }
 
     public boolean canMoveToRight() {
-        return this.right;
+        return this.direction.canMoveToRight();
     }
 
     @Override
@@ -51,11 +50,11 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return right == point.right && left == point.left;
+        return Objects.equals(direction, point.direction) && Objects.equals(position, point.position);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(right, left);
+        return Objects.hash(direction, position);
     }
 }

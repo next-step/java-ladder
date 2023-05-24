@@ -14,7 +14,7 @@ class PointTest {
     @ParameterizedTest
     @CsvSource({"false,false", "false,true", "true,false"})
     void Point객체_생성_정상(boolean canMoveToLeft, boolean canMoveToRight) {
-        Point point = Point.create(canMoveToLeft, canMoveToRight);
+        Point point = Point.create(Direction.create(canMoveToLeft, canMoveToRight), 1);
         assertThat(point.canMoveToLeft()).isEqualTo(canMoveToLeft);
         assertThat(point.canMoveToRight()).isEqualTo(canMoveToRight);
     }
@@ -22,10 +22,10 @@ class PointTest {
     @DisplayName("Point객체 생성_가로라인이 겹치는 경우")
     @Test
     void Point객체_생성_가로라인이_겹치는_경우() {
-        Point current = Point.create(false, true);
+        Point current = Point.create(Direction.create(false, true), 1);
 
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> Point.create(current.canMoveToRight(), current.canMoveToRight()))
+                .isThrownBy(() -> Point.create(Direction.create(current.canMoveToRight(), current.canMoveToRight()), current.position().moveToRight()))
                 .withMessageMatching("가로 라인이 겹칠 수 없습니다.");
     }
 
@@ -35,7 +35,7 @@ class PointTest {
     void 양방향모두_가능하게_생성되면_안됨(boolean canMoveToLeft, boolean canMoveToRight) {
 
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> Point.create(canMoveToLeft, canMoveToRight))
+                .isThrownBy(() -> Point.create(Direction.create(canMoveToLeft, canMoveToRight), 1))
                 .withMessageMatching("가로 라인이 겹칠 수 없습니다.");
     }
 
@@ -51,18 +51,18 @@ class PointTest {
     @DisplayName("Point객체 생성 테스트_중간생성의 경우")
     @ParameterizedTest
     @CsvSource({"false,false", "false,true", "true,false"})
-    void 중간생성_가로라인이_겹치면_안된다(boolean canMoveToLeft, boolean canMoveToRight) {
-        Point point = Point.createNext(canMoveToLeft, canMoveToRight);
-        assertThat(point.canMoveToLeft()).isEqualTo(canMoveToLeft);
-        assertThat(point.canMoveToRight()).isEqualTo(canMoveToRight);
+    void 중간생성(boolean canMoveToLeft, boolean canMoveToRight) {
+        Point currentPoint = Point.create(Direction.create(canMoveToLeft, canMoveToRight), 1);
+        Point nextPoint = currentPoint.createNext(canMoveToRight);
+        assertThat(currentPoint.canMoveToRight()).isEqualTo(nextPoint.canMoveToLeft());
     }
 
     @DisplayName("Point객체 생성 테스트_마지막생성의 경우")
-    @ParameterizedTest
-    @ValueSource(booleans = {true, false})
-    void 마지막생성_오른쪽으로는_갈수없다(boolean input) {
-        Point point = Point.createLast(input);
-        assertThat(point.canMoveToLeft()).isEqualTo(input);
-        assertThat(point.canMoveToRight()).isFalse();
+    @Test
+    void 마지막생성_오른쪽으로는_갈수없다() {
+        Point current = Point.create(Direction.create(false, true), 1);
+        Point last = current.createLast();
+        assertThat(current.canMoveToRight()).isEqualTo(last.canMoveToLeft());
+        assertThat(last.canMoveToRight()).isFalse();
     }
 }
