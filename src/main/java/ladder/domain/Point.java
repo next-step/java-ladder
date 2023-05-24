@@ -11,11 +11,6 @@ public class Point {
         this.position = position;
     }
 
-    private void validatePoint(boolean left, boolean right) {
-        if (left && right == true) {
-            throw new IllegalArgumentException("가로 라인이 겹칠 수 없습니다.");
-        }
-    }
 
     public static Point create(Direction direction, int position) {
         return new Point(direction, Position.create(position));

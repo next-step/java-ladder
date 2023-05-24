@@ -26,7 +26,7 @@ class PointTest {
 
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> Point.create(Direction.create(current.canMoveToRight(), current.canMoveToRight()), current.position().moveToRight()))
-                .withMessageMatching("가로 라인이 겹칠 수 없습니다.");
+                .withMessageMatching("양방향으로 진행할 수 없습니다.");
     }
 
     @DisplayName("Point객체 생성(정적팩토리메서드)_검증")
@@ -36,7 +36,7 @@ class PointTest {
 
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> Point.create(Direction.create(canMoveToLeft, canMoveToRight), 1))
-                .withMessageMatching("가로 라인이 겹칠 수 없습니다.");
+                .withMessageMatching("양방향으로 진행할 수 없습니다.");
     }
 
     @DisplayName("Point객체 생성 테스트_첫번째생성의 경우")
