@@ -1,9 +1,9 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.nextstep;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class DirectionTest {
 
@@ -51,14 +51,14 @@ class DirectionTest {
     @DisplayName("마지막 index일 경우 previous 값이 false면 0을 반환한다.")
     @Test
     void name5() {
-        Direction direction = Direction.first(false).last(false);
+        Direction direction = Direction.first(false).last();
         assertThat(direction.move()).isEqualTo(0);
     }
 
     @DisplayName("마지막 index일 경우 previous 값이 true면 -1을 반환한다.")
     @Test
     void name6() {
-        Direction direction = Direction.first(true).last(true);
+        Direction direction = Direction.first(true).last();
         assertThat(direction.move()).isEqualTo(-1);
     }
 }

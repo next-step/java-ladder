@@ -1,9 +1,9 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.nextstep;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class PointTest {
 
@@ -49,7 +49,7 @@ class PointTest {
     @Test
     void name5() {
         int maxIndex = 5;
-        Point point = new Point(maxIndex, Direction.first(true).last(true));
+        Point point = new Point(maxIndex, Direction.first(true).last());
         assertThat(point.move()).isEqualTo(maxIndex-1);
     }
 
@@ -57,7 +57,7 @@ class PointTest {
     @Test
     void name7() {
         int maxIndex = 5;
-        Point point = new Point(maxIndex, Direction.first(false).last(false));
+        Point point = new Point(maxIndex, Direction.first(false).last());
         assertThat(point.move()).isEqualTo(maxIndex);
     }
 }
