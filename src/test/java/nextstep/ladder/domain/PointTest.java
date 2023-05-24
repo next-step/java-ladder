@@ -35,4 +35,15 @@ class PointTest {
         assertThatThrownBy(() -> new Point(1, true, true))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("index가 0이면 previous의 값과 무관하게 current 값으로만 이동한다.")
+    @Test
+    void name4() {
+        new Point(0, false, true);
+    }
+    @DisplayName("index가 max일 경우 current 값과 무관하게 previous 값으로만 이동한다.")
+    @Test
+    void name5() {
+
+    }
 }
