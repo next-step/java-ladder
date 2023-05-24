@@ -29,18 +29,22 @@ public class Ladder {
     }
 
     public Map<String, String> start(Participant participant, LadderResult ladderResult) {
-        int position = 0;
-        Map<String, String> result = new HashMap<>();
+        int arrivedVerticalIndex = 0;
+        Map<String, String> gameResult = new HashMap<>();
 
-        for (int i = 0; i < vertical; i++) {
-            position = i;
-            for (int j = 0; j < lines.size(); j++) {
-                Line line = lines.get(j);
-                position = line.moveLine(position);
-            }
-            result.put(participant.getParticipant(i), ladderResult.getResult(position));
+        for (int startVerticalIndex = 0; startVerticalIndex < vertical; startVerticalIndex++) {
+            arrivedVerticalIndex = moveToGoal(startVerticalIndex);
+            gameResult.put(participant.getParticipant(startVerticalIndex), ladderResult.getResult(arrivedVerticalIndex));
         }
-        return result;
+        return gameResult;
+    }
+
+    private int moveToGoal(int verticalIndex) {
+        for (int j = 0; j < lines.size(); j++) {
+            Line line = lines.get(j);
+            verticalIndex = line.moveLine(verticalIndex);
+        }
+        return verticalIndex;
     }
 
     public int getHeight() {

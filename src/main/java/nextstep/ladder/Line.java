@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Line {
     private List<Boolean> points;
@@ -13,11 +14,18 @@ public class Line {
         return points;
     }
 
-    public int getPointSize() {
-        return points.size();
-    }
-
     public int moveLine(int verticalLine) {
+
+        if (isNotFirstAndLastVertical(verticalLine)) {
+            if (checkLeftLine(verticalLine)) {
+                return goToLeft(verticalLine);
+            }
+
+            if (checkRightLine(verticalLine)) {
+                return goToRight(verticalLine);
+            }
+            return verticalLine;
+        }
 
         if (isFirstVertical(verticalLine)) {
             if (checkRightLine(verticalLine)) {
@@ -26,29 +34,17 @@ public class Line {
             return verticalLine;
         }
 
-        if (isLastVertical(verticalLine)) {
-            if (checkLeftLine(verticalLine)) {
-                return goToLeft(verticalLine);
-            }
-            return verticalLine;
-        }
-
-        if (checkRightLine(verticalLine)) {
-            return goToRight(verticalLine);
-        }
-
         if (checkLeftLine(verticalLine)) {
             return goToLeft(verticalLine);
         }
-
         return verticalLine;
     }
 
-    private int goToRight(int vertical){
+    private int goToRight(int vertical) {
         return vertical + 1;
     }
 
-    private int goToLeft(int vertical){
+    private int goToLeft(int vertical) {
         return vertical - 1;
     }
 
@@ -60,11 +56,28 @@ public class Line {
         return points.get(vertical);
     }
 
+    private boolean isNotFirstAndLastVertical(int vertical) {
+        return !isFirstVertical(vertical) && !isLastVertical(vertical);
+    }
+
     private boolean isFirstVertical(int vertical) {
         return vertical == 0;
     }
 
     private boolean isLastVertical(int vertical) {
         return vertical == points.size();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Line line = (Line) o;
+        return Objects.equals(points, line.points);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(points);
     }
 }

@@ -17,7 +17,6 @@ public class Main {
 
 
         LadderGame ladderGame = new LadderGame(ladder, participant, ladderResult);
-        ladderGame.start();
 
         OutputView.showLadder(ladderGame);
         OutputView.showResult(ladderGame);

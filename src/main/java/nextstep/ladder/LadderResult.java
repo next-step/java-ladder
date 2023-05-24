@@ -13,19 +13,18 @@ import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 
-public class LadderResult{
+public class LadderResult {
 
     private List<String> result;
 
-    LadderResult(){
+    private LadderResult() {
 
     }
 
-    public LadderResult(String[] result) {
+    public LadderResult(String... result) {
         this.result = Arrays.stream(result)
                 .collect(Collectors.toList());
     }
-
 
     @Override
     public boolean equals(Object o) {
@@ -44,7 +43,7 @@ public class LadderResult{
         return result.get(index);
     }
 
-    public List<String> getResult(){
+    public List<String> getResult() {
         return result;
     }
 }

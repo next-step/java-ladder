@@ -6,15 +6,12 @@ public class Height {
 
     private final int height;
 
-    public Height(){
-        this(0);
-    }
-
-    public Height (int height){
+    public Height(int height) {
         validateHeight(height);
         this.height = height;
     }
-    public Height(String height){
+
+    public Height(String height) {
         this(Integer.parseInt(height));
     }
 
@@ -24,14 +21,14 @@ public class Height {
         }
     }
 
-    public int height(){
+    public int height() {
         return height;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if(this == obj) return true;
-        if(obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
         Height height1 = (Height) obj;
         return height == height1.height;
     }

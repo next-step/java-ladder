@@ -50,15 +50,19 @@ public class OutputView {
 
     public static void showResult(LadderGame ladderGame) {
         Scanner scanner = new Scanner(System.in);
-        Map<String, String> gameResult = ladderGame.gameResult();
-        System.out.println("결과를 보고 싶은 사람은");
-        String name = scanner.nextLine();
-
-        System.out.println("실행 결과");
-        System.out.println(gameResult.get(name));
+        Map<String, String> gameResult = ladderGame.play();
 
         System.out.println("결과를 보고 싶은 사람은");
-        String all = scanner.nextLine();
+        String who = scanner.nextLine();
+
+        while(!who.equals("all")){
+
+            System.out.println("실행 결과");
+            System.out.println(gameResult.get(who));
+
+            System.out.println("결과를 보고 싶은 사람은");
+            who = scanner.nextLine();
+        }
 
         System.out.println("실행 결과");
         for (Name participant : ladderGame.getParticipants()) {

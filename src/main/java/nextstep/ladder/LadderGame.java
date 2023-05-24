@@ -8,7 +8,7 @@ public class LadderGame {
     private Ladder ladder;
     private Participant participant;
     private LadderResult result;
-    private Map<String, String> gameResult;
+
 
     private LadderGame() {
 
@@ -20,8 +20,8 @@ public class LadderGame {
         this.result = result;
     }
 
-    public void start(){
-        gameResult = ladder.start(participant, result);
+    public Map<String, String> play() {
+        return ladder.start(participant, result);
     }
 
     @Override
@@ -41,19 +41,15 @@ public class LadderGame {
         return participant;
     }
 
-    public List<Name> getParticipants(){
+    public List<Name> getParticipants() {
         return participant.getParticipants();
     }
 
-    public LadderResult getResult(){
+    public LadderResult getResult() {
         return result;
     }
 
     public Ladder getLadder() {
         return ladder;
-    }
-
-    public Map<String, String> gameResult(){
-        return gameResult;
     }
 }
