@@ -1,6 +1,4 @@
-package nextstep.ladder.domain;
-
-import nextstep.ladder.domain.strategy.BridgeStrategy;
+package nextstep.ladder.domain.nextstep;
 
 public class Point {
 
@@ -8,8 +6,8 @@ public class Point {
 
     private final Direction direction;
 
-    public static Point first(BridgeStrategy strategy) {
-        return new Point(0, Direction.first(strategy.makeBridge()));
+    public static Point first(Direction first) {
+        return new Point(0, first);
     }
 
     public Point(int index, Direction direction) {
@@ -21,8 +19,7 @@ public class Point {
         return index + direction.move();
     }
 
-
-/*    public void setFirst() {
-        this.direction.
-    }*/
+    public Direction getDirection() {
+        return direction;
+    }
 }
