@@ -14,8 +14,7 @@ public class LadderRow {
     private LineStrategy lineStrategy;
 
     public LadderRow(int width) {
-        lineStrategy = DEFAULT_STRATEGY;
-        lines = generateLines(width);
+        this(width, DEFAULT_STRATEGY);
     }
 
     public LadderRow(int width, LineStrategy lineStrategy) {
