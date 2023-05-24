@@ -96,7 +96,34 @@ pobi  honux crong   jk
 ## Step 4 요구사항에 따른 기능 목록
 - In -> Out 방식으로 TDD를 도전한다.
 - Point 클래스 분리 -> 최대한 작은 객체 Point 부터 확장해 나가기
-- [ ] Point 객체 분리 -> 꼭 분리 해야할까? 너무 복잡해 질것 같은데.
+- [x] Point 객체 분리
+  - [x] Direction 객체 분리
+```
+전체적인 로직은 다음과 같다.
+index를 받는다. index가 n개이면 한 line에 point 개수는 n-1개 이다.
+-> 처음이면 (index == 0) ->  0번 Point인 boolean 값만 확인해서 방향을 결정한다.
+-> 마지막이면 (index == n ) -> n-1번 Point인 boolean 값만 확인해서 방향을 결정한다.
+-> 처음과 마지막이 아니라면 
+    index == n 일때, n-1, n번 Point를 비교해서 방향을 결정한다.
+    n-1 번째 boolean 값을 left, n 번째 boolean 값을 right 라고 하면, 
+    true  false -> index-- : 왼쪽으로 이동
+    false true  -> index++ : 오른쪽으로 이동
+    false false -> index 유지 : index 유지해서 그다음 line으로 이동
+    true  true  -> 예외 발생
+    
+ -> 전체적으로 평가했을때, Point는 index를 받아 이후 결과 계산을 통해 이후 index를 반환해 줘야 한다.
+ 
+ index가 0 (처음)이면 previous의 값과 무관하게 current 값으로만 이동한다. -> previous 값을 가질 수 없다.
+ index가 n (마지막)이면 current의 값과 무관하게 previous 값으로만 이동한다 -> current 값을 가질 수 없다.
+ -> parameter 분리를 위해서 Direction 객체를 생성한다.
+ 
+ - Point는 index를 받아 Direction을 통해서 index를 계산한다.
+ 
+ 
+```
+
+  - Point는 2개의 boolean 값을 가지고 있다. left, current
+  - 그런데 처음 index일 경우는 
 
 
 - 책임주도설계 방식으로 책임에 따라 인터페이스 분리
@@ -104,4 +131,4 @@ pobi  honux crong   jk
     - [x] 사다리 생성하기 -> 참여자와 Height를 가지고 있다.
     - [x] 사다리 실행을 통해 결과 얻기
     - [x] Line 객체 생성
-    - [ ] Line에서 Point를 이용해서 이동시키기.
+    - [ ] Line에서 index를 받아 결과 index를 계산
