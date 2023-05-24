@@ -5,6 +5,8 @@ import java.util.Objects;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import ladder.domain.line.Line;
+import ladder.domain.line.LineRandom;
 
 public class Ladder {
 

@@ -1,9 +1,10 @@
-package ladder.domain;
+package ladder.domain.line;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.Random;
+import ladder.domain.line.LineRandom;
 import org.junit.jupiter.api.Test;
 
 public class LineRandomTest {

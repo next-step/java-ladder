@@ -1,10 +1,12 @@
-package ladder.domain;
+package ladder.domain.name;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
+import ladder.domain.name.Name;
+import ladder.domain.name.Names;
 import org.junit.jupiter.api.Test;
 
 public class NamesTest {

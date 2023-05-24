@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.name;
 
 import java.util.Objects;
 
@@ -31,12 +31,23 @@ public class Name {
         return Objects.hash(name);
     }
 
+    @Override
+    public String toString() {
+        return "Name{" +
+            "name='" + name + '\'' +
+            '}';
+    }
+
     public int length() {
         return name.length();
     }
 
     public String name() {
         return name;
+    }
+
+    public Name clone() {
+        return Name.of(name);
     }
 
     private String valid(String name) {

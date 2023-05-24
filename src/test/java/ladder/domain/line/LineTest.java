@@ -1,10 +1,11 @@
-package ladder.domain;
+package ladder.domain.line;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
+import ladder.domain.line.Line;
 import org.junit.jupiter.api.Test;
 
 public class LineTest {

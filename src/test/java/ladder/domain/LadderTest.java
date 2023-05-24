@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import ladder.domain.line.Line;
 import org.junit.jupiter.api.Test;
 
 public class LadderTest {
