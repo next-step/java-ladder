@@ -32,7 +32,7 @@ class PointTest {
     @DisplayName("index가 0일때 current 값이 true 일 경우 1 증가한 index를 반환한다.")
     @Test
     void name4() {
-        Point point = new Point(0, Direction.of(true));
+        Point point = new Point(0, Direction.first(true));
         assertThat(point.move()).isEqualTo(1);
 
     }
@@ -40,7 +40,7 @@ class PointTest {
     @DisplayName("index가 0일때 current 값이 false 일 경우 원래 index를 반환한다.")
     @Test
     void name6() {
-        Point point = new Point(0, Direction.of(false));
+        Point point = new Point(0, Direction.first(false));
         assertThat(point.move()).isEqualTo(0);
 
     }
@@ -49,7 +49,7 @@ class PointTest {
     @Test
     void name5() {
         int maxIndex = 5;
-        Point point = new Point(maxIndex, Direction.of(true).last());
+        Point point = new Point(maxIndex, Direction.first(true).last(true));
         assertThat(point.move()).isEqualTo(maxIndex-1);
     }
 
@@ -57,7 +57,7 @@ class PointTest {
     @Test
     void name7() {
         int maxIndex = 5;
-        Point point = new Point(maxIndex, Direction.of(false).last());
+        Point point = new Point(maxIndex, Direction.first(false).last(false));
         assertThat(point.move()).isEqualTo(maxIndex);
     }
 }
