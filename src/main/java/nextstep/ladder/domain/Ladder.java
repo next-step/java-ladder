@@ -2,22 +2,22 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.strategy.BridgeStrategy;
 
-import java.util.*;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Ladder implements Iterable<Line>{
+public class Ladder implements Iterable<Line> {
 
     private final List<Line> ladder;
-    private final GameResult gameResult;
 
     public static Ladder of(Participants participants, Height height, BridgeStrategy strategy) {
         return new Ladder(participants, height, strategy);
     }
 
     private Ladder(Participants participants, Height height, BridgeStrategy strategy) {
-        this.ladder = create(participants,height, strategy);
-        this.gameResult = new GameResult();
+        this.ladder = create(participants, height, strategy);
     }
 
     public List<Line> create(Participants participants, Height height, BridgeStrategy strategy) {
@@ -36,6 +36,7 @@ public class Ladder implements Iterable<Line>{
     }
 
     public Map<String, String> generateResult(Participants participants, LadderResult result) {
+        GameResult gameResult = new GameResult();
         participants.forEach(name -> {
             int index = calculateIndexOfResult(participants, name);
             gameResult.put(name, result.get(index));
