@@ -1,7 +1,6 @@
 package nextstep.ladder.domain.engine;
 
 import nextstep.ladder.domain.Height;
-import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Participants;
 import nextstep.ladder.domain.strategy.BridgeStrategy;
 

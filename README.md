@@ -97,7 +97,15 @@ pobi  honux crong   jk
 - In -> Out 방식으로 TDD를 도전한다.
 - Point 클래스 분리 -> 최대한 작은 객체 Point 부터 확장해 나가기
 - [x] Point 객체 분리
+  - Point는 previous, current boolean 값 가진 Direction과 index를 연결.
   - [x] Direction 객체 분리
+    - Direction에서 strategy 따라 boolean 값 생성.
+- NextStepLineCreator : List<Point>를 생성해야함
+  - Point는 각 index를 가지고 있으며 각 index에 따라서 direction을 생성해야함..
+  - Direction 생성할 때, previous, current를 각 index 마다 생성한다. 
+    - 이때, random 값을 통해 생성, previous가 true -> current는 false로 고정.
+    - 그리고 0번 index의 previous, 마지막 index의 current는 모두 false로 설정.
+    - 
 ```
 전체적인 로직은 다음과 같다.
 index를 받는다. index가 n개이면 한 line에 point 개수는 n-1개 이다.
