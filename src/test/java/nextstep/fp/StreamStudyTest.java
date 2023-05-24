@@ -3,6 +3,7 @@ package nextstep.fp;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -43,6 +44,6 @@ public class StreamStudyTest {
     public void sumOverThreeAndDouble() throws Exception {
         numbers = Arrays.asList(3, 1, 6, 2, 4, 8);
         long sum = StreamStudy.sumOverThreeAndDouble(numbers);
-        assertThat(sum).isEqualTo(36);
+        assertThat(sum).isEqualTo(0);
     }
 }

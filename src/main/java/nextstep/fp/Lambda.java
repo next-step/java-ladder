@@ -1,6 +1,7 @@
 package nextstep.fp;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Lambda {
     public static void printAllOld(List<Integer> numbers) {
@@ -27,30 +28,18 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            total += number;
-        }
-        return total;
+        AtomicInteger total = new AtomicInteger();
+        numbers.forEach(number -> total.addAndGet(number));
+        return total.get();
     }
 
-    public static int sumAllEven(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number % 2 == 0) {
-                total += number;
+    public static int sumAllConditional(List<Integer> numbers, Conditional c) {
+        AtomicInteger total = new AtomicInteger();
+        numbers.forEach(number -> {
+            if (c.validate(number)) {
+                total.addAndGet(number);
             }
-        }
-        return total;
-    }
-
-    public static int sumAllOverThree(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number > 3) {
-                total += number;
-            }
-        }
-        return total;
+        });
+        return total.get();
     }
 }
