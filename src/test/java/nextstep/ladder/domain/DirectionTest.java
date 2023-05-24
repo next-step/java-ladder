@@ -39,12 +39,12 @@ class DirectionTest {
     @Test
     void name4() {
         Direction direction = Direction.of(false);
-        assertThat(direction.move()).isEqualTo(1);
+        assertThat(direction.move()).isEqualTo(0);
     }
 
     @DisplayName("첫 번째 index일 경우 current 값이 true이면 1을 반환한다. ")
     @Test
-    void name4() {
+    void name7() {
         Direction direction = Direction.of(true);
         assertThat(direction.move()).isEqualTo(1);
     }
@@ -56,10 +56,10 @@ class DirectionTest {
         assertThat(direction.move()).isEqualTo(0);
     }
 
-    @DisplayName("마지막 index일 경우 previous 값이 true면 1을 반환한다.")
+    @DisplayName("마지막 index일 경우 previous 값이 true면 -1을 반환한다.")
     @Test
     void name6() {
         Direction direction = Direction.of(true).last();
-        assertThat(direction.move()).isEqualTo(1);
+        assertThat(direction.move()).isEqualTo(-1);
     }
 }
