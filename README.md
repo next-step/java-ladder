@@ -7,3 +7,7 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+## STEP-2 요구사항
+- 이름과 높이을 입력받는다.
+- 사다리 게임을 생성한다.
