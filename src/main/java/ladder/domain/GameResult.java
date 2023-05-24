@@ -32,4 +32,8 @@ public class GameResult {
     public int size() {
         return this.gameResults.size();
     }
+
+    public String getResultByIndex(int index) {
+        return this.gameResults.get(index);
+    }
 }
