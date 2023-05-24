@@ -1,8 +1,6 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.line.Ladder;
-import nextstep.ladder.domain.line.LadderHeight;
-import nextstep.ladder.domain.line.WinningCategories;
+import nextstep.ladder.domain.line.*;
 import nextstep.ladder.domain.line.generator.RandomLineGenerator;
 import nextstep.ladder.domain.user.Users;
 import nextstep.ladder.view.InputView;
@@ -24,5 +22,11 @@ public class LadderMain {
         );
         resultView.printLadder(ladder, ladderHeight, users);
         resultView.printWinningCategory(winningCategories);
+
+        LadderGame ladderGame = new LadderGame(ladder, users);
+        ladderGame.start();
+
+        resultView.printResult(inputView.askWhoWinningCategory(), winningCategories, ladderGame.toResult());
+
     }
 }

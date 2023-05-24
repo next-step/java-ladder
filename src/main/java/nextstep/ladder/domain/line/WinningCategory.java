@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class WinningCategory {
 
+    private static final String PRINT_FORMAT = "%-5s ";
     private final String name;
 
     public WinningCategory(String name) {
@@ -25,6 +26,6 @@ public class WinningCategory {
 
     @Override
     public String toString() {
-        return String.format("%-5s ", this.name);
+        return String.format(PRINT_FORMAT, this.name);
     }
 }

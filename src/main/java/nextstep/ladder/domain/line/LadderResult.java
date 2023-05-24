@@ -2,9 +2,8 @@ package nextstep.ladder.domain.line;
 
 import nextstep.ladder.domain.user.User;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
+import java.util.stream.Stream;
 
 public class LadderResult {
 
@@ -16,6 +15,10 @@ public class LadderResult {
 
     public Integer get(User key) {
         return result.get(key);
+    }
+
+    public Stream<User> keyStream() {
+        return result.keySet().stream();
     }
 
     @Override

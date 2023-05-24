@@ -27,6 +27,10 @@ public class WinningCategories {
         return Objects.equals(winningCategories, that.winningCategories);
     }
 
+    public WinningCategory find(Integer index) {
+        return this.winningCategories.get(index);
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(winningCategories);
