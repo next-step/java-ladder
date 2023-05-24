@@ -8,7 +8,14 @@ public class WinningCategory {
     private final String name;
 
     public WinningCategory(String name) {
+        validate(name);
         this.name = name;
+    }
+
+    private void validate(String name) {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("입력값이 null이거나 빈값일 수는 없습니다.");
+        }
     }
 
     @Override

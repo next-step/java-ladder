@@ -2,6 +2,7 @@ package nextstep.ladder.domain.user;
 
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class UsersTest {
@@ -16,5 +17,10 @@ class UsersTest {
 
         //then
         assertThat(users.userCount()).isEqualTo(5);
+    }
+
+    @Test
+    public void Invalid_입력값() {
+        assertThatIllegalArgumentException().isThrownBy(() -> new Users(""));
     }
 }

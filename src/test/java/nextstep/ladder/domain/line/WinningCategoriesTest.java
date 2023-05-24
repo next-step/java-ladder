@@ -2,6 +2,7 @@ package nextstep.ladder.domain.line;
 
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class WinningCategoriesTest {
@@ -13,5 +14,10 @@ class WinningCategoriesTest {
 
         //then
         assertThat(winningCategories.size()).isEqualTo(4);
+    }
+
+    @Test
+    public void Invalid_입력값() {
+        assertThatIllegalArgumentException().isThrownBy(() -> new WinningCategories(""));
     }
 }
