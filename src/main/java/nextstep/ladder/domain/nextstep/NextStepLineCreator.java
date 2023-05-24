@@ -1,7 +1,5 @@
 package nextstep.ladder.domain.nextstep;
 
-import nextstep.ladder.domain.Direction;
-import nextstep.ladder.domain.Point;
 import nextstep.ladder.domain.engine.Line;
 import nextstep.ladder.domain.engine.LineCreator;
 import nextstep.ladder.domain.strategy.BridgeStrategy;
@@ -14,15 +12,16 @@ public class NextStepLineCreator implements LineCreator {
 
     @Override
     public Line create(int width, BridgeStrategy strategy) {
-        Direction first = Direction.first(strategy.makeBridge());
         List<Point> points = new ArrayList<>();
-        points.add(Point.first(strategy));
+        Direction first = Direction.first(strategy.makeBridge());
+        points.add(Point.first(first));
 
-        for (int index = SECOND_INDEX; index < width - 1; index++) {
+        for (int index = SECOND_INDEX; index < width-1; index++) {
             first = first.next(strategy.makeBridge());
             points.add(new Point(index, first));
         }
-        points.add(new Point(width, first.last(strategy.makeBridge())));
+        points.add(new Point(width - 1, first.last()));
         return new NextStepLine(points);
+
     }
 }
