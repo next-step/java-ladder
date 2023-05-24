@@ -1,8 +1,10 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.dto.PointDto;
+
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Row {
     List<Point> row;
@@ -27,9 +29,11 @@ public class Row {
         return movableLeft;
     }
 
-    public List<Point> getRow() {
-        return Collections.unmodifiableList(row);
+    public int getNextX(int x) {
+        return row.get(x).nextX(x);
     }
 
-
+    public List<PointDto> toPointDtos() {
+        return row.stream().map(Point::toDto).collect(Collectors.toList());
+    }
 }

@@ -1,12 +1,12 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.dto.UserDto;
+
 public class User {
 
     private static final int USER_NAME_MIN_LENGTH = 1;
     private static final int USER_NAME_MAX_LENGTH = 5;
     private final String name;
-
-    private boolean win;
 
     public User(String name) {
         validateNameLength(name);
@@ -19,7 +19,7 @@ public class User {
         }
     }
 
-    public String getName() {
-        return name;
+    public UserDto toUserDto() {
+        return new UserDto(name);
     }
 }

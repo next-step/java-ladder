@@ -1,8 +1,11 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.dto.UserDto;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Users {
     List<User> users;
@@ -21,5 +24,11 @@ public class Users {
 
     public List<User> getUsers() {
         return Collections.unmodifiableList(users);
+    }
+
+    public List<UserDto> toUserDtos() {
+        return users.stream()
+                .map(User::toUserDto)
+                .collect(Collectors.toList());
     }
 }

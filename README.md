@@ -12,29 +12,16 @@
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
 
 
-- Ladder: 사다리
-    1. of: 사다리 생성
+- LadderGame: 사다리 게임
 - Users: User 일급 콜렉션
-    1. of: Users 생성
 - User: 사다리게임 참가자
-    1. validateNameLength: 이름 길이 검증
-    2. getName: 출력을 위한 name 가져오기
 - Row: Point 일급 콜렉션
-    1. of: Row 생성
-    2. getMovableLeft: 현재 point에서 왼쪽으로 이동할수 있는지여부
-    3. getRow: 출력용
 - Point: 사다리 이동 가능 지점
-    1. movableRight: 오른쪽으로 이동할수 있는지
-    2. movableLeft: 왼쪽으로 이동할수 있는지
-- Rows: Rows 일급컬랙션
-    1. of: Rows생성
-    2. getPoints: 출력
+- Ladder: Rows 일급컬랙션
 - RandomPointGenerator
-    1. generate left right 무작위로 생성한 point
 - InputView :사다리게임 정보 입력
-    1. initRadderInformation: 정보 입력
-    2. nameLengthValidate: 이름 길이 검
-    3. inputToParticipants: input ","로 split
+- ResultView:사다리게임 출력
+
 
 
 

@@ -22,6 +22,6 @@ public class InputViewTest {
     @Test
     void 참가자_이름설정_테스트() {
         InputView inputView = new InputView();
-        assertThat(inputView.inputToUsers("test1,test2")).containsExactly("test1", "test2");
+        assertThat(inputView.StringToList("test1,test2")).containsExactly("test1", "test2");
     }
 }
