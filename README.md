@@ -131,4 +131,4 @@ index를 받는다. index가 n개이면 한 line에 point 개수는 n-1개 이�
     - [x] 사다리 생성하기 -> 참여자와 Height를 가지고 있다.
     - [x] 사다리 실행을 통해 결과 얻기
     - [x] Line 객체 생성
-    - [ ] Line에서 index를 받아 결과 index를 계산
+    - [x] Line에서 index를 받아 결과 index를 계산
