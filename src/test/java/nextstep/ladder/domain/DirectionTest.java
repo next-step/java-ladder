@@ -3,8 +3,7 @@ package nextstep.ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 class DirectionTest {
 
@@ -36,14 +35,31 @@ class DirectionTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("첫번째 index일 경우 previous의 값과 무관하게 current 값으로만 이동한다.")
+    @DisplayName("첫 번째 index일 경우 current 값이 false이면 0을 반환한다. ")
     @Test
     void name4() {
-
+        Direction direction = Direction.of(false);
+        assertThat(direction.move()).isEqualTo(1);
     }
-    @DisplayName("마지막 index일 경우 current 값과 무관하게 previous 값으로만 이동한다.")
+
+    @DisplayName("첫 번째 index일 경우 current 값이 true이면 1을 반환한다. ")
+    @Test
+    void name4() {
+        Direction direction = Direction.of(true);
+        assertThat(direction.move()).isEqualTo(1);
+    }
+
+    @DisplayName("마지막 index일 경우 previous 값이 false면 0을 반환한다.")
     @Test
     void name5() {
+        Direction direction = Direction.of(false).last();
+        assertThat(direction.move()).isEqualTo(0);
+    }
 
+    @DisplayName("마지막 index일 경우 previous 값이 true면 1을 반환한다.")
+    @Test
+    void name6() {
+        Direction direction = Direction.of(true).last();
+        assertThat(direction.move()).isEqualTo(1);
     }
 }
