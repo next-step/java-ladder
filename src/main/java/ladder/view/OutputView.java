@@ -11,8 +11,8 @@ public class OutputView {
 
     private static final String SPACE = " ";
     private static final String FIRST_SPACE = "    ";
-    private static final String BRIDGE_EXIST = "------";
-    private static final String BRIDGE_NOT_EXIST = "      ";
+    private static final String BRIDGE_EXIST = "-----";
+    private static final String BRIDGE_NOT_EXIST = "     ";
     private static final String LADDER_BAR = "|";
 
     public static void print(Participants participants, Ladder ladder) {
@@ -25,7 +25,7 @@ public class OutputView {
     }
 
     private static String nameFormatting(String name) {
-        return SPACE.repeat(Participant.NAME_LENGTH_LIMIT - name.length()) + name + SPACE;
+        return String.format("%5s", name) + SPACE;
     }
 
     private static void printLadder(List<Line> lines) {

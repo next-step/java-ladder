@@ -7,7 +7,11 @@ public class Participants {
     private static final int ONE = 1;
     private final List<Participant> participants;
 
-    public Participants(List<Participant> participants) {
+    public static Participants from(List<Participant> participants) {
+        return new Participants(participants);
+    }
+
+    private Participants(List<Participant> participants) {
         participantsValidation(participants);
         this.participants = participants;
     }
@@ -30,7 +34,4 @@ public class Participants {
         }
     }
 
-    public static Participants from(List<Participant> participants) {
-        return new Participants(participants);
-    }
 }

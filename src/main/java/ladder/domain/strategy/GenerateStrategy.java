@@ -1,7 +1,7 @@
 package ladder.domain.strategy;
 
 @FunctionalInterface
-public interface LadderStrategy {
+public interface GenerateStrategy {
 
     boolean makeLine();
 

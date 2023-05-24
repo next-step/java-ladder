@@ -1,16 +1,19 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import ladder.domain.request.LadderRequest;
-import ladder.domain.strategy.LadderStrategy;
+import ladder.domain.strategy.GenerateStrategy;
 
 public class Line {
 
     private final List<Boolean> points;
 
-    public Line(Width width, LadderStrategy strategy) {
+    public static Line from(LadderRequest request) {
+        return new Line(request.getWidth(), request.getStrategy());
+    }
+
+    private Line(Width width, GenerateStrategy strategy) {
         this.points = generateLine(width, strategy);
     }
 
@@ -18,28 +21,17 @@ public class Line {
         return this.points;
     }
 
-    private List<Boolean> generateLine(Width width, LadderStrategy strategy) {
-        return lineValidate(Stream.generate(strategy::makeLine)
-                .limit(width.getWidthCount())
-                .collect(Collectors.toList()));
-    }
+    private List<Boolean> generateLine(Width width, GenerateStrategy strategy) {
+        List<Boolean> lines = new ArrayList<>();
+        boolean before = false;
 
-    private List<Boolean> lineValidate(List<Boolean> points) {
-        for (int i = 0; i < points.size() - 1; i++) {
-            previousHasBridge(points, i);
+        for (int i = 0; i <= width.getWidthCount() - 1; i++) {
+            boolean after = !before && strategy.makeLine();
+            lines.add(after);
+            before = after;
         }
 
-        return points;
-    }
-
-    private static void previousHasBridge(List<Boolean> points, int i) {
-        if (points.get(i) == points.get(i + 1)) {
-            points.set(i + 1, false);
-        }
-    }
-
-    public static Line from(LadderRequest request) {
-        return new Line(request.getWidth(), request.getStrategy());
+        return lines;
     }
 
 }

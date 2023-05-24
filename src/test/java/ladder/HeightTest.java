@@ -32,13 +32,4 @@ public class HeightTest {
                 .hasMessage(LadderException.HEIGHT_UNDER_ZERO.getMessage());
     }
 
-    @Test
-    void ttt() {
-        String a = "AaA";
-        String b = "aaa";
-
-        List<String> s = Arrays.asList("AaA", "aaa");
-
-        s.stream().distinct().forEach(System.out::println);
-    }
 }

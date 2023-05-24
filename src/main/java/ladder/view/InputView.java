@@ -22,7 +22,7 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
-    public static Height maxHeight() {
+    public static Height height() {
         System.out.println(INPUT_MAX_HEIGHT);
         return Height.from(Integer.parseInt(scanner.nextLine()));
     }

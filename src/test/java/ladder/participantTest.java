@@ -1,21 +1,19 @@
 package ladder;
 
-import static ladder.domain.exception.LadderException.*;
+import static ladder.domain.Participant.PARTICIPANT_NAME_IS_NULL;
+import static ladder.domain.Participant.PARTICIPANT_NAME_OVER_LIMIT;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import ladder.domain.Participant;
-import ladder.domain.exception.LadderException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 public class participantTest {
@@ -31,10 +29,10 @@ public class participantTest {
     @ParameterizedTest
     @DisplayName("참가자 생성 예외 테스트")
     @MethodSource("participantValidationArgument")
-    void generateParticipantExceptionTest(String name, Class<Exception> clazz, LadderException exception) {
+    void generateParticipantExceptionTest(String name, Class<Exception> clazz, String exception) {
         Assertions.assertThatThrownBy(() -> Participant.from(name))
                 .isInstanceOf(clazz)
-                .hasMessage(exception.getMessage());
+                .hasMessage(exception);
     }
 
     static Stream<Arguments> participantValidationArgument() {

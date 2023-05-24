@@ -2,7 +2,7 @@ package ladder.domain.strategy;
 
 import java.util.Random;
 
-public class RandomLadderStrategy implements  LadderStrategy{
+public class BooleanRandomGenerator implements GenerateStrategy {
 
     private final Random random = new Random();
 

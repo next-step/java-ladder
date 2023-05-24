@@ -2,15 +2,15 @@ package ladder.domain.request;
 
 import ladder.domain.Height;
 import ladder.domain.Width;
-import ladder.domain.strategy.LadderStrategy;
+import ladder.domain.strategy.GenerateStrategy;
 
 public class LadderRequest {
 
     private final Height height;
     private final Width width;
-    private final LadderStrategy strategy;
+    private final GenerateStrategy strategy;
 
-    public LadderRequest(Height height, Width width, LadderStrategy strategy) {
+    public LadderRequest(Height height, Width width, GenerateStrategy strategy) {
         this.height = height;
         this.width = width;
         this.strategy = strategy;
@@ -24,11 +24,11 @@ public class LadderRequest {
         return this.width;
     }
 
-    public LadderStrategy getStrategy() {
+    public GenerateStrategy getStrategy() {
         return this.strategy;
     }
 
-    public static LadderRequest of(Height height, Width width, LadderStrategy strategy) {
+    public static LadderRequest of(Height height, Width width, GenerateStrategy strategy) {
         return new LadderRequest(height, width, strategy);
     }
 }
