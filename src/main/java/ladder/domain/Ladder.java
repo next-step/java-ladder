@@ -42,4 +42,11 @@ public class Ladder {
         return lines;
     }
 
+    public int move(int index) {
+        for (Line line : lines) {
+            index = line.move(index);
+        }
+        return index;
+    }
+
 }

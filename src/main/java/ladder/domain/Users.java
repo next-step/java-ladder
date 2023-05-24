@@ -19,6 +19,10 @@ public class Users {
         }
     }
 
+    private boolean isEmpty(List<User> users) {
+        return users == null || users.isEmpty();
+    }
+
     public static Users create(List<User> users) {
         return new Users(users);
     }
@@ -27,11 +31,11 @@ public class Users {
         return this.users;
     }
 
-    private boolean isEmpty(List<User> users) {
-        return users == null || users.isEmpty();
-    }
-
     public int size() {
         return users.size();
+    }
+
+    public User getUserByIndex(int index) {
+        return this.users.get(index);
     }
 }
