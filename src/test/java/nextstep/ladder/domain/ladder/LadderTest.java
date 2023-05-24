@@ -1,6 +1,7 @@
 package nextstep.ladder.domain.ladder;
 
 import nextstep.ladder.domain.user.Participants;
+import nextstep.ladder.domain.user.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -23,33 +24,17 @@ class LadderTest {
     }
 
     @Test
-    @DisplayName("사용자 수만큼 point 를 생성한다.")
-    void test02() {
-        int height = 5;
-        int userCount = 5;
-        Ladder ladder = Ladder.create(height, userCount);
-
-        assertThat(ladder.getRows().get(0).getConnectionTypes()).hasSize(userCount);
-    }
-
-    @Test
-    @DisplayName("크기를 반환한다.")
-    void test03() {
-        int height = 5;
-        int userCount = 5;
-        Ladder ladder = Ladder.create(height, userCount);
-        assertThat(ladder.getRows()).hasSize(height);
-    }
-
-    @Test
     @DisplayName("참여자 위치를 입력하면 실행결과를 반환한다.")
-    void test04() {
+    void test02() {
         Row row = Row.initialize(2, () -> true);
         Ladder ladder = new Ladder(List.of(row));
 
+        Position zeroPosition = new Position(0);
+        Position onePosition = new Position(1);
+
         assertAll(
-                () -> assertThat(ladder.getLeaf(0).getCurrentPosition()).isEqualTo(1),
-                () -> assertThat(ladder.getLeaf(1).getCurrentPosition()).isZero()
+                () -> assertThat(ladder.leafPosition(zeroPosition)).isEqualTo(onePosition),
+                () -> assertThat(ladder.leafPosition(onePosition)).isEqualTo(zeroPosition)
         );
     }
 

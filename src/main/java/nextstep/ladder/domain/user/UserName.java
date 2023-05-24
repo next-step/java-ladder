@@ -22,10 +22,6 @@ public class UserName {
         this.format = format;
     }
 
-    public static int getMaxLength() {
-        return MAX_LENGTH;
-    }
-
     public static UserName add(String name) {
         validate(name);
         return new UserName(name);

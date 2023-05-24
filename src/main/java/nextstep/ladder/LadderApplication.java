@@ -35,10 +35,10 @@ public class LadderApplication {
         UserName inputUserName = UserName.add(InputView.showUserResultConsole());
         if (inputUserName.isAll()) {
             repeatStatus.stop();
-            ResultView.drawUserResult(executeResults.toArray());
+            ResultView.drawUserResult(executeResults.toAllResults());
             return;
         }
-        Result result = executeResults.getResult(inputUserName);
+        Result result = executeResults.toUserResult(inputUserName);
         ResultView.drawUserResult(result.getValue());
     }
 

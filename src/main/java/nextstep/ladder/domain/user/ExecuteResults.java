@@ -2,60 +2,51 @@ package nextstep.ladder.domain.user;
 
 import nextstep.ladder.domain.ladder.Ladder;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toMap;
 
 public class ExecuteResults {
 
     private static final String USER_NAME_DELIMITER = ",";
     private static final String RESULT_DELIMITER = " : ";
 
-    private final Map<UserName, Result> userNameResultMap = new LinkedHashMap<>();
-    private final List<Result> results;
+    private final Map<UserName, Position> userLeafPositionMap = new LinkedHashMap<>();
+    private final Map<Position, Result> resultMap;
 
-    public ExecuteResults(List<Result> results) {
-        this.results = results;
+    public ExecuteResults(Map<Position, Result> resultMap) {
+        this.resultMap = resultMap;
     }
 
     public static ExecuteResults of(String input) {
-        return new ExecuteResults(
-                Arrays.stream(input.split(USER_NAME_DELIMITER)).map(Result::new)
-                        .collect(Collectors.toUnmodifiableList()));
-    }
-
-    public Result getResult(int index) {
-        return results.get(index);
-    }
-
-    public Result getResult(UserName userName) {
-        return userNameResultMap.get(userName);
-    }
-
-    @Override
-    public String toString() {
-        return results.stream()
-                .map(Result::toString)
-                .collect(Collectors.joining(" "));
+        String[] userNames = input.split(USER_NAME_DELIMITER);
+        LinkedHashMap<Position, Result> map = IntStream.range(0, userNames.length)
+                .boxed()
+                .collect(toMap(
+                        Position::new,
+                        i -> new Result(userNames[i]),
+                        (a, b) -> b,
+                        LinkedHashMap::new));
+        return new ExecuteResults(Collections.unmodifiableMap(map));
     }
 
     public void execute(Participants participants, Ladder ladder) {
-        Map<UserName, Result> result = participants.getUserNames()
-                .stream()
-                .collect(Collectors.toMap(
-                        o -> o,
-                        userName -> {
-                            int userLocation = participants.getUserLocation(userName);
-                            Position leafPosition = ladder.getLeaf(userLocation);
-                            return getResult(leafPosition.getCurrentPosition());
-                        }, (x, y) -> x, LinkedHashMap::new));
-        userNameResultMap.putAll(result);
+        Map<UserName, Position> leafPositionMap = participants.climb(ladder);
+        userLeafPositionMap.clear();
+        userLeafPositionMap.putAll(leafPositionMap);
     }
 
-    public String[] toArray() {
-        return userNameResultMap.keySet()
+    public Result toUserResult(UserName userName) {
+        Position userLeafPosition = userLeafPositionMap.get(userName);
+        return resultMap.get(userLeafPosition);
+    }
+
+    public String[] toAllResults() {
+        return userLeafPositionMap.keySet()
                 .stream()
                 .map(this::mapToString)
                 .toArray(String[]::new);
@@ -64,7 +55,15 @@ public class ExecuteResults {
     private String mapToString(UserName userName) {
         return String.join(RESULT_DELIMITER,
                 userName.getName(),
-                userNameResultMap.get(userName).getValue());
+                toUserResult(userName).getValue());
+    }
+
+    @Override
+    public String toString() {
+        return resultMap.values()
+                .stream()
+                .map(Result::toString)
+                .collect(joining(" "));
     }
 
 }

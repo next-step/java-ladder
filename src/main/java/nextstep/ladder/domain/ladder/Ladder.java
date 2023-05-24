@@ -22,24 +22,19 @@ public class Ladder {
                         .collect(Collectors.toUnmodifiableList()));
     }
 
-    public List<Row> getRows() {
-        return rows;
-    }
-
-    public Position getLeaf(int userLocation) {
-        Position userPosition = new Position(userLocation);
+    public Position leafPosition(Position userPosition) {
         for (Row row : rows) {
-            int movePoint = row.getMovePoint(userPosition.getCurrentPosition());
-            userPosition = userPosition.move(movePoint);
+            ConnectionType currentConnectionType = row.connectionType(userPosition);
+            userPosition = currentConnectionType.applyPosition(userPosition);
         }
         return userPosition;
     }
 
     @Override
     public String toString() {
-        return "Ladder{" +
-                "rows=" + rows +
-                '}';
+        return rows.stream()
+                .map(Row::toString)
+                .collect(Collectors.joining("\n"));
     }
 
 }
