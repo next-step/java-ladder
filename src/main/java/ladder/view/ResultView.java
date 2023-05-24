@@ -8,11 +8,11 @@ import java.util.stream.Collectors;
 
 public class ResultView {
 
-    public static final String NAME_FORMAT = "%6s";
-    public static final String PILLAR = "|";
-    public static final String CONNECTED_LINE = "-----";
-    public static final String NOT_CONNECTED_LINE = "     ";
-    public static final String FIRST_WHITE_SPACE= "     ";
+    private static final String NAME_FORMAT = "%6s";
+    private static final String PILLAR = "|";
+    private static final String CONNECTED_LINE = "-----";
+    private static final String NOT_CONNECTED_LINE = "     ";
+    private static final String FIRST_WHITE_SPACE= "     ";
 
     public void printLadder(Ladder ladder, PlayerGroup playerGroup) {
         System.out.println("[실행 결과]\n");
