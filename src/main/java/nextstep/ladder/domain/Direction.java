@@ -1,24 +1,38 @@
 package nextstep.ladder.domain;
 
+import java.util.Objects;
+
 public class Direction {
 
     private final boolean previous;
     private final boolean current;
 
+
     public Direction(boolean previous, boolean current) {
         if (current && previous) {
-            throw new IllegalArgumentException("겹치게 사다리를 놓을 수 없습니다!");
+            current = false;
         }
         this.previous = previous;
         this.current = current;
+        validateDuplicate(previous, current);
     }
 
-    public static Direction of(boolean current) {
+    private void validateDuplicate(boolean previous, boolean current) {
+        if (previous && current) {
+            throw new IllegalArgumentException("연속으로 다리를 놓을 수 없습니다!");
+        }
+    }
+
+    public static Direction first(boolean current) {
         return new Direction(false, current);
     }
 
+    public Direction last(boolean previous) {
+        return new Direction(previous, false);
+    }
+
     public int move() {
-        if (previous){
+        if (previous) {
             return -1;
         }
         if (current) {
@@ -27,7 +41,23 @@ public class Direction {
         return 0;
     }
 
-    public Direction last() {
-        return new Direction(this.current, false);
+    public Direction next(boolean current) {
+        if (this.current) {
+            return new Direction(true, false);
+        }
+        return new Direction(false, current);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Direction direction = (Direction) o;
+        return previous == direction.previous && current == direction.current;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(previous, current);
     }
 }

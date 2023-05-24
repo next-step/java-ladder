@@ -28,38 +28,37 @@ class DirectionTest {
         assertThat(direction.move()).isEqualTo(0);
     }
 
-    @DisplayName("이전값이 true이고 현재 값이 true이면 예외를 발생한다.")
+    @DisplayName("연속으로 true 값 설정이 불가하게 current 값이 false로 설정된다.")
     @Test
     void name3() {
-        assertThatThrownBy(() -> new Direction(true, true))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThat(new Direction(true, true)).isEqualTo(new Direction(true, false));
     }
 
     @DisplayName("첫 번째 index일 경우 current 값이 false이면 0을 반환한다. ")
     @Test
     void name4() {
-        Direction direction = Direction.of(false);
+        Direction direction = Direction.first(false);
         assertThat(direction.move()).isEqualTo(0);
     }
 
     @DisplayName("첫 번째 index일 경우 current 값이 true이면 1을 반환한다. ")
     @Test
     void name7() {
-        Direction direction = Direction.of(true);
+        Direction direction = Direction.first(true);
         assertThat(direction.move()).isEqualTo(1);
     }
 
     @DisplayName("마지막 index일 경우 previous 값이 false면 0을 반환한다.")
     @Test
     void name5() {
-        Direction direction = Direction.of(false).last();
+        Direction direction = Direction.first(false).last(false);
         assertThat(direction.move()).isEqualTo(0);
     }
 
     @DisplayName("마지막 index일 경우 previous 값이 true면 -1을 반환한다.")
     @Test
     void name6() {
-        Direction direction = Direction.of(true).last();
+        Direction direction = Direction.first(true).last(true);
         assertThat(direction.move()).isEqualTo(-1);
     }
 }
