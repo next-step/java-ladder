@@ -1,6 +1,5 @@
 package nextstep.ladder.domain.nextstep;
 
-import nextstep.ladder.domain.Point;
 import nextstep.ladder.domain.engine.Line;
 
 import java.util.List;
@@ -17,5 +16,9 @@ public class NextStepLine implements Line {
     @Override
     public int move(int index) {
         return points.get(index).move();
+    }
+
+    public List<Point> getPoints() {
+        return points;
     }
 }
