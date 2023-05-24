@@ -2,23 +2,16 @@ package nextstep.ladder.domain;
 
 public class Point {
 
-    private int index;
-    private final boolean previous;
-    private final boolean current;
+    private final int index;
 
-    Point(int index, boolean previous, boolean current) {
+    private final Direction direction;
+
+    Point(int index, Direction direction) {
         this.index = index;
-        this.previous = previous;
-        this.current = current;
+        this.direction = direction;
     }
 
     public int move() {
-        if (previous){
-            this.index--;
-        }
-        if (current) {
-            this.index++;
-        }
-        return this.index;
+        return index + direction.move();
     }
 }
