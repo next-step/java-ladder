@@ -15,8 +15,9 @@ class LadderGameTest {
     @BeforeEach
     void setUp() {
         String[] names = {"1","2","3"};
+        String[] results = {"1","2","3"};
         int height = 1;
-        ladderGame = new LadderGame(names, height);
+        ladderGame = new LadderGame(names,results,height);
 
     }
 

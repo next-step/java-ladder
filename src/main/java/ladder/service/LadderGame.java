@@ -13,29 +13,16 @@ public class LadderGame {
 
     private int height;
 
-    public LadderGame(String[] names, int height) {
-        this.setPlayer(names);
-        this.setHeight(height);
+    private LadderGame(Players players, Ladder ladder, Results results, int height) {
+        this.players = players;
+        this.ladder = ladder;
+        this.results = results;
+        this.height = height;
     }
 
     public LadderGame(String[] names, String[] results, int height) {
-        this(names, height);
-        this.setResult(results);
+        this(new Players(names), new Ladder(), new Results(results), height);
     }
-
-    private void setPlayer(String[] names) {
-        this.players = new Players(names);
-    }
-
-    private void setHeight(int height) {
-        this.height = height;
-        this.ladder = new Ladder();
-    }
-
-    private void setResult(String[] result) {
-        this.results =  new Results(result);
-    }
-
 
     public Players getPlayers() {
         return players;
@@ -54,12 +41,10 @@ public class LadderGame {
     public String result(String name){
         if(name.equals("all")){
             return players.getPlayers().stream()
-                    .map(player -> {
-                        return player.getName() + " : " + getValue(player.getName());
-                    }).collect(Collectors.joining("\n"));
+                    .map(player -> player.getName() + " : " + getValue(player.getName()))
+                    .collect(Collectors.joining("\n"));
 
         }
-
         return getValue(name);
     }
 

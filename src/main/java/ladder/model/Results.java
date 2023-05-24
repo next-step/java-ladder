@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Results {
-    private List<Result> results;
+    private final List<Result> results;
 
     public Results(String[] values)
     {
