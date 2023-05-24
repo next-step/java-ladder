@@ -57,9 +57,8 @@ public class Line {
         return points;
     }
 
-    public int move(int index) {
-        Point point = points.get(index);
-        return 0;
+    public int move(int position) {
+        return points.get(position).move();
     }
 
 }

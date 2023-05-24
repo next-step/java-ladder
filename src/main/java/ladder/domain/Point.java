@@ -40,6 +40,16 @@ public class Point {
         return this.direction.canMoveToRight();
     }
 
+    public int move() {
+        if (direction.canMoveToLeft()) {
+            return position.moveToLeft();
+        }
+        if (direction.canMoveToRight()) {
+            return position.moveToRight();
+        }
+        return position.position();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -52,4 +62,5 @@ public class Point {
     public int hashCode() {
         return Objects.hash(direction, position);
     }
+
 }
