@@ -19,7 +19,7 @@ class PointTest {
     @Test
     void name1() {
         Point point = new Point(1, false, true);
-        assertThat(point.move()).isEqualTo(0);
+        assertThat(point.move()).isEqualTo(2);
     }
 
     @DisplayName("index가 1일때, 이전값이 false이고 현재 값이 false이면 1를 반환한다.")
