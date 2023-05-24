@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class Persons {
 
-    List<Person> personList;
+    private List<Person> personList;
 
     public Persons(String[] nameArray) {
         personList = Arrays.stream(nameArray).

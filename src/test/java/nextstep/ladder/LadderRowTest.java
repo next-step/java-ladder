@@ -17,10 +17,10 @@ public class LadderRowTest {
     }
 
     @Test
-    void drawLadderRow() {
-        var acutualLadderRow = ladderRow.drawLadderRow(ResultView.COLUMN, ResultView.ROW);
-        var expectLadderRow = "|-----|     |-----|     |     ";
+    void getPoints() {
+        var acutualPoints = ladderRow.getPoints();
+        var expectPoints = new LadderRow(5, new AllDraw()).getPoints();
 
-        assertThat(acutualLadderRow).isEqualTo(expectLadderRow);
+        assertThat(acutualPoints).isEqualTo(expectPoints);
     }
 }
