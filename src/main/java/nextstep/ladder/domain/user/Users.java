@@ -23,8 +23,13 @@ public class Users {
         return this.users.size();
     }
 
+    public User findUser(int index) {
+        return this.users.get(index);
+    }
+
     @Override
     public String toString() {
         return users.stream().map(User::toString).collect(Collectors.joining(""));
     }
+
 }

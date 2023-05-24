@@ -31,3 +31,6 @@
 
 ### LadderGame
 - ladder, users를 가지고 사다리의 결과를 생성하는 객체
+
+### LadderResult
+- LadderGame의 결과를 담는 객체

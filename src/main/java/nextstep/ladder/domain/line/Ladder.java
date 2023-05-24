@@ -1,11 +1,13 @@
 package nextstep.ladder.domain.line;
 
 import nextstep.ladder.domain.line.generator.LineGenerator;
+import nextstep.ladder.domain.line.move.MovingStrategy;
 import nextstep.ladder.domain.user.Users;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Ladder {
 
@@ -15,6 +17,17 @@ public class Ladder {
         ladderHeight.toStream()
                 .forEach(i -> lines.add(new Line(lineGenerator, users.userCount())));
     }
+
+    public boolean hasLine(int height, int width) {
+        return this.lines.get(height).hasLine(width);
+    }
+
+    public Integer move(int index) {
+        AtomicInteger position = new AtomicInteger(index);
+        lines.forEach(line -> position.set(MovingStrategy.move(line, position.get())));
+        return position.get();
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -33,7 +46,4 @@ public class Ladder {
         return Objects.hash(lines);
     }
 
-    public boolean hasLine(int height, int width) {
-        return this.lines.get(height).hasLine(width);
-    }
 }
