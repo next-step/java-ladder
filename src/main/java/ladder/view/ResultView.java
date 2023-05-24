@@ -1,8 +1,6 @@
 package ladder.view;
 
 import ladder.domain.*;
-
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class ResultView {
@@ -16,9 +14,6 @@ public class ResultView {
     }
 
     public static void printUsers(Users users) {
-//        String userNames = users.stream()
-//                .map(user -> String.format("%6s", user.name()))
-//                .collect(Collectors.joining());
         String userNames = users.users().stream()
                 .map(user -> String.format("%6s", user.name()))
                 .collect(Collectors.joining());
