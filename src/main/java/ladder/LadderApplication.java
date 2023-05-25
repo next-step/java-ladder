@@ -4,6 +4,8 @@ import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
+import javax.xml.transform.Result;
+
 public class LadderApplication {
     public static void main(String[] args) throws Exception {
         Users users = InputView.inputUsers();
@@ -14,6 +16,27 @@ public class LadderApplication {
         ResultView.printLadder(ladderGame, ladderRewards);
 
         LadderGameResult ladderResult = ladderGame.play(ladderRewards);
-        ResultView.showResult(ladderResult);
+        execute(ladderResult);
+    }
+
+    private static void execute(LadderGameResult ladderResult) {
+
+        GameStatus gameStatusStatus = new GameStatus(true);
+        while(gameStatusStatus.repeatable())
+        {
+            drawUserResult(ladderResult , gameStatusStatus);
+        }
+    }
+
+    private static void drawUserResult(LadderGameResult ladderResult, GameStatus gameStatus) {
+        User inputUser = new User(InputView.inputUserName());
+
+        if( ResultView.isContinueGame(inputUser.name()) == false )
+        {
+            gameStatus.stop();
+        }
+
+        ResultView.showResultReward(inputUser.name(), ladderResult);
+
     }
 }
