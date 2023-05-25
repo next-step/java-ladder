@@ -15,11 +15,13 @@ public class RandomLineGenerator implements LineGenerator {
     public List<Boolean> generator(int countOfPerson) {
         AtomicBoolean previousBridge = new AtomicBoolean(false);
         return IntStream.range(START, countOfPerson)
-                .mapToObj(i-> {
-                    boolean hasBridge = !previousBridge.get() && random.nextBoolean();
-                    previousBridge.set(hasBridge);
-                    return hasBridge;
-                })
+                .mapToObj(i-> generateBridgeStatus(previousBridge))
                 .collect(Collectors.toList());
+    }
+
+    private static boolean generateBridgeStatus(AtomicBoolean previousBridge) {
+        boolean hasBridge = !previousBridge.get() && random.nextBoolean();
+        previousBridge.set(hasBridge);
+        return hasBridge;
     }
 }

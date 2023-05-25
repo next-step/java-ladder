@@ -1,18 +1,19 @@
 package nextstep.ladder.domain.user;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Users {
 
-    private static final int START = 0;
-    private static final int WIDTH_OUT_OF_RANGE_BLOCK_NUMBER = 1;
-    private final List<User> users;
+    private static final String SPLIT_REGEX = ",";
+    private final List<User> users = new ArrayList<>();
 
-    public Users() {
-        this.users = new ArrayList<>();
+    public Users(String input) {
+        validate(input);
+        String[] names = input.split(SPLIT_REGEX);
+        Arrays.stream(names).forEach((name) -> users.add(new User(name)));
     }
 
     public void add(User user) {
@@ -23,12 +24,19 @@ public class Users {
         return this.users.size();
     }
 
-    public IntStream toStream() {
-        return IntStream.range(START, this.users.size() - WIDTH_OUT_OF_RANGE_BLOCK_NUMBER);
+    public User findUser(int index) {
+        return this.users.get(index);
+    }
+
+    private void validate(String input) {
+        if (input == null || input.isEmpty()) {
+            throw new IllegalArgumentException("입력값이 null이거나 빈값일 수는 없습니다.");
+        }
     }
 
     @Override
     public String toString() {
         return users.stream().map(User::toString).collect(Collectors.joining(""));
     }
+
 }

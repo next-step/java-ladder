@@ -22,3 +22,15 @@
 ### LadderHeight 
 - 사다리 높이에 대한 정보를 가지고 있음
 - 사다리 높이에 대한 검증
+
+### WinningCategory
+- 실행 결과에 대한 정보를 가지고 있음 
+
+### WinningCategories
+- WinningCategory 일급컬렉션
+
+### LadderGame
+- ladder, users를 가지고 사다리의 결과를 생성하는 객체
+
+### LadderResult
+- LadderGame의 결과를 담는 객체

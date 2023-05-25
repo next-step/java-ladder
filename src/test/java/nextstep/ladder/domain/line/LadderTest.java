@@ -1,8 +1,5 @@
 package nextstep.ladder.domain.line;
 
-
-import nextstep.ladder.domain.line.generator.TestLineGenerator;
-import nextstep.ladder.domain.user.User;
 import nextstep.ladder.domain.user.Users;
 import org.junit.jupiter.api.Test;
 
@@ -20,10 +17,7 @@ class LadderTest {
         List<List<Boolean>> lineList = new ArrayList<>();
         lineList.add(new ArrayList<>(Arrays.asList(true, false, true)));
         lineList.add(new ArrayList<>(Arrays.asList(true, false, true)));
-        Users users = new Users();
-        users.add(new User("A"));
-        users.add(new User("B"));
-        users.add(new User("C"));
+        Users users = new Users("A,B,C");
 
         //when
         Ladder ladder = new Ladder(new TestLineGenerator(), new LadderHeight(2), users);
