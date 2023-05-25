@@ -43,9 +43,10 @@ public class LadderTest {
 
     private static void assertThatLegsAreNotPlacedConsecutivelyInLevel(Ladder ladder, long level, long width) {
         for (int place = 1; place < width; place++) {
-            var previousLeg = ladder.legs.hasLegOnRightSideOf(new Position(level, place - 1));
-            var currentLeg = ladder.legs.hasLegOnRightSideOf(new Position(level, place));
-            assert !(previousLeg && currentLeg);
+            var currentPosition = new Position(level, place);
+            var currentLeg = ladder.legs.hasLegOnRightSideOf(currentPosition);
+            var leftLeg = ladder.legs.hasLegOnRightSideOf(currentPosition.getLeftPosition());
+            assert !(leftLeg && currentLeg);
         }
     }
 }
