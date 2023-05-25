@@ -5,8 +5,8 @@ public class Ladder {
     public final Users users;
     public final Legs legs;
 
-    public Ladder(Users users, Natural levels, GenerationStrategy strategy) {
-        this.height = levels;
+    public Ladder(Users users, Natural height, GenerationStrategy strategy) {
+        this.height = height;
         this.users = users;
         legs = new Legs(height, users.size(), strategy);
     }

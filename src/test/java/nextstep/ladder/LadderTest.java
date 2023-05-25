@@ -12,9 +12,8 @@ public class LadderTest {
     public void levelAndUsersAreSet() {
         var levels = new Natural(5);
         var users = new Users(List.of("erik", "jake", "david"));
-        var strategy = new AlwaysGenerateStrategy();
 
-        var ladder = new Ladder(users, levels, strategy);
+        var ladder = new Ladder(users, levels, () -> true);
 
         assertThat(ladder.height).isEqualTo(levels);
         assertThat(ladder.users).containsExactly("erik", "jake", "david");
@@ -25,8 +24,7 @@ public class LadderTest {
         assertThatThrownBy(() -> {
             var levels = new Natural(-1);
             var users = new Users(List.of());
-            var strategy = new AlwaysGenerateStrategy();
-            new Ladder(users, levels, strategy);
+            new Ladder(users, levels, () -> true);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("Negative value given for natural number");
     }
@@ -35,9 +33,8 @@ public class LadderTest {
     public void legsAreNotPlacedConsecutively() {
         var height = new Natural(5);
         var users = new Users(List.of("erik", "jake", "david"));
-        var strategy = new AlwaysGenerateStrategy();
 
-        var ladder = new Ladder(users, height, strategy);
+        var ladder = new Ladder(users, height, () -> true);
 
         for (int level = 0; level < height.value(); level++) {
             assertThatLegsAreNotPlacedConsecutivelyInLevel(ladder, level, users.size().value());
@@ -46,8 +43,8 @@ public class LadderTest {
 
     private static void assertThatLegsAreNotPlacedConsecutivelyInLevel(Ladder ladder, long level, long width) {
         for (int place = 1; place < width; place++) {
-            var previousLeg = ladder.legs.hasLegOnRightSide(new Position(level, place - 1));
-            var currentLeg = ladder.legs.hasLegOnRightSide(new Position(level, place));
+            var previousLeg = ladder.legs.hasLegOnRightSideOf(new Position(level, place - 1));
+            var currentLeg = ladder.legs.hasLegOnRightSideOf(new Position(level, place));
             assert !(previousLeg && currentLeg);
         }
     }

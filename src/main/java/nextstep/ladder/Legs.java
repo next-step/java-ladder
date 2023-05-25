@@ -5,10 +5,10 @@ import java.util.Set;
 import java.util.stream.LongStream;
 
 public class Legs {
-    private final Set<Position> legs;
+    private final Set<Position> legLeftPositions;
 
     public Legs(Natural height, Natural width, GenerationStrategy strategy) {
-        legs = new HashSet<>();
+        legLeftPositions = new HashSet<>();
         placeLegs(height, width, strategy);
     }
 
@@ -19,24 +19,27 @@ public class Legs {
     }
 
     private void placeLegsInLevel(Natural level, Natural width, GenerationStrategy strategy) {
-        LongStream.range(0, width.value())
+        LongStream.range(0, width.value() - 1)
                 .mapToObj(Natural::new)
                 .map(place -> new Position(level, place))
                 .forEach(position -> placeLegWithStrategy(strategy, position));
     }
 
     private void placeLegWithStrategy(GenerationStrategy strategy, Position position) {
-        var isPlaceable = isOnTheLeftEdge(position) || !hasLegOnRightSide(position.getLeftPosition());
-        if (strategy.shouldPlace(isPlaceable)) {
-            legs.add(position);
+        if (isLegPlaceableOnPosition(position) && strategy.shouldPlace()) {
+            legLeftPositions.add(position);
         }
+    }
+
+    private boolean isLegPlaceableOnPosition(Position position) {
+        return isOnTheLeftEdge(position) || !hasLegOnRightSideOf(position.getLeftPosition());
     }
 
     private boolean isOnTheLeftEdge(Position position) {
         return position.place.value() == 0;
     }
 
-    public boolean hasLegOnRightSide(Position position) {
-        return legs.contains(position);
+    public boolean hasLegOnRightSideOf(Position position) {
+        return legLeftPositions.contains(position);
     }
 }
