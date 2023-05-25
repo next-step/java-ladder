@@ -3,19 +3,21 @@ package ladder.view;
 import ladder.domain.Ladder;
 import ladder.domain.LadderRow;
 import ladder.domain.PlayerGroup;
+import ladder.domain.ResultGroup;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class ResultView {
 
-    private static final String NAME_FORMAT = "%6s";
+    private static final String NAME_FORMAT = "%-6s";
     private static final String PILLAR = "|";
     private static final String CONNECTED_LINE = "-----";
     private static final String NOT_CONNECTED_LINE = "     ";
     private static final String FIRST_WHITE_SPACE= "     ";
 
     public void printLadder(Ladder ladder, PlayerGroup playerGroup) {
-        System.out.println("[실행 결과]\n");
+        System.out.println("사다리 결과\n");
         printPlayerNames(playerGroup);
         ladder.getRows()
                 .stream()
@@ -23,11 +25,19 @@ public class ResultView {
     }
 
     private void printPlayerNames(PlayerGroup playerGroup) {
-        String playerNames = playerGroup.getPlayerNames()
-                .stream()
-                .map(name -> String.format(NAME_FORMAT, name))
-                .collect(Collectors.joining());
+        String playerNames = convertToString(playerGroup.getPlayerNames());
         System.out.println(playerNames);
+    }
+
+    public void printResultGroup(ResultGroup resultGroup) {
+        String resultGroups = convertToString(resultGroup.getResultNames());
+        System.out.println(resultGroups);
+    }
+
+    private String convertToString(List<String> list) {
+        return list.stream()
+                .map(string -> String.format(NAME_FORMAT, string))
+                .collect(Collectors.joining());
     }
 
     private void printRow(LadderRow ladderRow) {
