@@ -9,7 +9,7 @@ public class ResultTest {
     @Test
     @DisplayName("결과값이 null이나 Empty이면 예외를 던진다.")
     void create_NullOrEmpty_ThrowException() {
-        Assertions.assertThatNullPointerException().isThrownBy(new Result(""));
-        Assertions.assertThatNullPointerException().isThrownBy(new Result(null));
+        Assertions.assertThatIllegalArgumentException().isThrownBy(() -> new Result(""));
+        Assertions.assertThatIllegalArgumentException().isThrownBy(() -> new Result(null));
     }
 }
