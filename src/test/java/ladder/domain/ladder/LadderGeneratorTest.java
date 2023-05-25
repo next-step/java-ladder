@@ -22,7 +22,7 @@ public class LadderGeneratorTest extends BaseTest {
   }
 
   @Test
-  @DisplayName("LadderGenerator | 사다리게임의 사다리 높이는 최소 1 이상이어야한다.")
+  @DisplayName("사다리게임의 사다리 높이는 최소 1 이상이어야한다.")
   void 사다리게임의_사다리_높이는_최소_1_이상이어야한다() {
     // given
     List<String> 플레이어_이름_목록 = Arrays.asList("s1");
@@ -36,7 +36,7 @@ public class LadderGeneratorTest extends BaseTest {
   }
 
   @Test
-  @DisplayName("LadderGenerator | 사다리게임의 높이만큼 라인이 생성된다")
+  @DisplayName("사다리게임의 높이만큼 라인이 생성된다")
   void 사다리게임의_높이만큼_라인이_생성된다() {
     // given
     List<String> 플레이어_이름_목록 = Arrays.asList("s1", "s2", "seol");

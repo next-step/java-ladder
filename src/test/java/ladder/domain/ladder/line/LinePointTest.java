@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 public class LinePointTest extends BaseTest {
 
   @Test
-  @DisplayName("LinePoint.connect | 역방향으로는 연결 할 수 없다.")
+  @DisplayName("역방향으로는 연결 할 수 없다.")
   void 라인_포인트는_역방향으로_연결_할_수_없다() {
 
     // given

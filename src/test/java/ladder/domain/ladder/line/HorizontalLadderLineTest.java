@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 public class HorizontalLadderLineTest extends BaseTest {
 
   @Test
-  @DisplayName("HorizontalLadderLine.connect() | 사다리는 한 라인에 포인트를 연속해서 이을 수 없다.")
+  @DisplayName("사다리는 한 라인에 포인트를 연속해서 이을 수 없다.")
   void 사다리_라인에서_연속해서_포인트를_이을_수_없음() {
     // given
     HorizontalLadderLine line = new HorizontalLadderLine(10);
@@ -22,7 +22,7 @@ public class HorizontalLadderLineTest extends BaseTest {
   }
 
   @Test
-  @DisplayName("HorizontalLadderLine.getPointAt() | 사다리 라인에서 존재하지 않는 포인트는 가져올 수 없다")
+  @DisplayName("사다리 라인에서 존재하지 않는 포인트는 가져올 수 없다")
   void 사다리_라인에서_존재하지_않는_포인트는_가져올_수_없다() {
     // given
     HorizontalLadderLine line = new HorizontalLadderLine(10);
