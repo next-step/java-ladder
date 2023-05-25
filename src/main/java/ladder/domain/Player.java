@@ -18,7 +18,7 @@ public class Player {
 
     private void nullCheck(String name) {
         if (Objects.isNull(name)) {
-            throw new NullPointerException(("참여자의 이름값은 null일 수 없습니다."));
+            throw new NullPointerException("참여자의 이름값은 null일 수 없습니다.");
         }
     }
 
