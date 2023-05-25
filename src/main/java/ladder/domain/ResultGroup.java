@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 public class ResultGroup {
 
     private final List<Result> resultList;
+    private static final String DELIMITER = ",";
 
     public ResultGroup(String resultNames) {
         this.resultList = convertToList(resultNames);
