@@ -14,4 +14,8 @@ public class Users implements Iterable<String> {
     public Iterator<String> iterator() {
         return users.iterator();
     }
+
+    public Natural size() {
+        return new Natural(users.size());
+    }
 }
