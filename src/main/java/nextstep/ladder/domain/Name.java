@@ -7,7 +7,7 @@ public class Name {
 
     public Name(String name) {
         if (name.length() > MAX_LENGTH) {
-            throw new IllegalArgumentException("사람 이름은 최대 5글자까지 부여할 수 있습니다.");
+            throw new IllegalArgumentException("사람 이름은 최대 " + MAX_LENGTH + "글자까지 부여할 수 있습니다.");
         }
         this.name = name;
     }

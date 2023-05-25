@@ -13,13 +13,13 @@ public class Output {
     private static final String HORIZONTAL_NO_LINE_MARK = " ".repeat(Name.MAX_LENGTH);
     private static final String VERTICAL_LINE_MARK = "|";
 
-    public void printResult(LadderGame ladderGame) {
+    public static void printResult(LadderGame ladderGame) {
         System.out.println(RESULT_HEADER);
         printName(ladderGame);
         printLadder(ladderGame);
     }
 
-    private void printName(LadderGame ladderGame) {
+    private static void printName(LadderGame ladderGame) {
         ladderGame.getNames()
                 .stream()
                 .map(name -> name + WHITE_SPACE.repeat(Name.MAX_LENGTH - name.length() + 1))
@@ -27,12 +27,12 @@ public class Output {
         System.out.println();
     }
 
-    private void printLadder(LadderGame ladderGame) {
+    private static void printLadder(LadderGame ladderGame) {
         ladderGame.getLadder()
-                .forEach(this::printLine);
+                .forEach(Output::printLine);
     }
 
-    private void printLine(List<Boolean> line) {
+    private static void printLine(List<Boolean> line) {
         String joinedLine = line.stream()
                 .map(existLine -> existLine ? HORIZONTAL_LINE_MARK : HORIZONTAL_NO_LINE_MARK)
                 .collect(Collectors.joining(VERTICAL_LINE_MARK, VERTICAL_LINE_MARK, VERTICAL_LINE_MARK));

@@ -1,4 +1,4 @@
-package nextstep.ladder.util;
+package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,8 +7,9 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class CombinationUtil {
-    public static List<Boolean> generateNonAdjacentBooleanCombination(int n) {
+public class RandomAmongAllNonAdjacentCombinationLineStrategy implements LineStrategy {
+    @Override
+    public List<Boolean> generate(int n) {
         List<Boolean> combination = new ArrayList<>(Collections.nCopies(n, false));
         generateNonAdjacentCombination(n).forEach(index -> combination.set(index, true));
         return combination;

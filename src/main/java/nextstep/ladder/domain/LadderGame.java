@@ -11,6 +11,11 @@ public class LadderGame {
         this.names = new Names(names);
     }
 
+    public LadderGame(int height, List<Name> names, LineStrategy lineStrategy) {
+        this.ladder = new Ladder(height, names.size(), lineStrategy);
+        this.names = new Names(names);
+    }
+
     public List<List<Boolean>> getLadder() {
         return ladder.getLines();
     }
