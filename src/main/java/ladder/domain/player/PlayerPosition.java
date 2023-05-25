@@ -1,7 +1,5 @@
 package ladder.domain.player;
 
-import exception.ExceptionCode;
-import exception.LadderGameException;
 import ladder.domain.ladder.line.point.LadderPointDirection;
 
 public class PlayerPosition {
@@ -24,29 +22,9 @@ public class PlayerPosition {
     return currentHeight;
   }
 
-  public void goDown() {
-    this.previousMove = LadderPointDirection.NONE;
-    this.currentHeight++;
-  }
-
-  private void goLeft() {
-    this.previousMove = LadderPointDirection.LEFT;
-    this.currentLine--;
-  }
-
-  private void goRight() {
-    this.previousMove = LadderPointDirection.RIGHT;
-    this.currentLine++;
-  }
-
   public void move (LadderPointDirection direction) {
-    if (direction == LadderPointDirection.NONE) {
-      this.goDown();
-      return;
-    }
-
-    if (isHorizontallyMovable(direction)) {
-      this.moveHorizontally(direction);
+    boolean isMoved = direction.move(this);
+    if (isMoved) {
       return;
     }
 
@@ -54,18 +32,29 @@ public class PlayerPosition {
     this.goDown();
   }
 
-  private void moveHorizontally(LadderPointDirection direction) {
-    if (direction == LadderPointDirection.RIGHT) {
-      this.goRight();
-      return;
+  public boolean goDown() {
+    this.previousMove = LadderPointDirection.NONE;
+    this.currentHeight++;
+    return true;
+  }
+
+  public boolean goLeft() {
+    if (isNotHorizontallyMovable(LadderPointDirection.LEFT)) {
+      return false;
+    }
+    this.previousMove = LadderPointDirection.LEFT;
+    this.currentLine--;
+    return true;
+  }
+
+  public boolean goRight() {
+    if (isNotHorizontallyMovable(LadderPointDirection.RIGHT)) {
+      return false;
     }
 
-    if (direction == LadderPointDirection.LEFT) {
-      this.goLeft();
-      return;
-    }
-
-    throw new LadderGameException(ExceptionCode.CANNOT_MOVE_INVALID_DIRECTION);
+    this.previousMove = LadderPointDirection.RIGHT;
+    this.currentLine++;
+    return true;
   }
 
   private boolean isHorizontallyMovable(LadderPointDirection moveTryDirection) {
@@ -74,6 +63,10 @@ public class PlayerPosition {
     }
 
     return previousMove.getOppositeDirection() != moveTryDirection;
+  }
+
+  private boolean isNotHorizontallyMovable(LadderPointDirection moveTryDirection) {
+    return !isHorizontallyMovable(moveTryDirection);
   }
 
   private boolean isStartPosition() {
