@@ -42,6 +42,30 @@ public class Line {
         return false;
     }
 
+    public int next(int current){
+        if(isRight(current)){
+            return current+1;
+        }
+
+        if(isLeft(current)){
+            return current-1;
+        }
+
+        return current;
+    }
+
+    private boolean isLeft(int current) {
+        return IntStream.range(0, points.size() - 1)
+                .filter(i -> i == current -1 && points.get(i))
+                .findAny().isPresent();
+    }
+
+    private boolean isRight(int current) {
+        return IntStream.range(0, points.size() - 1)
+                .filter(i -> i == current && points.get(i))
+                .findAny().isPresent();
+    }
+
     @Override
     public String toString() {
         return pointsToString();

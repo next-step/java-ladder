@@ -1,17 +1,25 @@
 package ladder.model;
 
+import ladder.common.InputMessages;
+
 public class Player {
 
+    private int sequence;
     private String name;
 
-    public Player(String name) {
+    public Player(int sequence, String name) {
         if(name.length() > 5){
-            throw new IllegalArgumentException("사람에 이름을 최대5글자까지 부여할 수 있습니다");
+            throw new IllegalArgumentException(InputMessages.MAXIMUM_PLAYER_NAME_LENGTH);
         }
         this.name = name;
+        this.sequence = sequence;
     }
 
     public String getName() {
         return name;
+    }
+
+    public int getSequence() {
+        return sequence;
     }
 }
