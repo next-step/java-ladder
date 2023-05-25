@@ -18,12 +18,12 @@ public class BinaryRandomlyLadderLineConnector implements LadderLineConnector {
     }
 
     final LinePoint point = line.getPointAt(linePointIdx);
-    if (point.isEndPoint()) {
+    if (line.isEndPoint(point)) {
       return line;
     }
 
     final LinePoint nextPoint = line.getPointAt(linePointIdx + 1);
-    if (point.isStartPoint()) {
+    if (line.isStartPoint(nextPoint)) {
       point.connect(nextPoint);
       return line;
     }
