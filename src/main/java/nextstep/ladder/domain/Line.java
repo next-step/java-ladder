@@ -11,8 +11,8 @@ public class Line {
 
     private final List<Boolean> points;
 
-    public Line(Supplier<List<Boolean>> supplierPoints) {
-        this.points = supplierPoints.get();
+    public Line(List<Boolean> points) {
+        this.points = points;
     }
 
     public boolean hasLeftPoint(int currentPlayerPoint) {
@@ -31,6 +31,22 @@ public class Line {
 
     public List<Boolean> getPoints() {
         return points;
+    }
+
+    public static List<Boolean> generatePoints(Supplier<Boolean> pointSupplier, int count) {
+        List<Boolean> points = new ArrayList<>();
+        for (int index = 0; index < count; index++) {
+            addPoint(points, index, pointSupplier.get());
+        }
+        return points;
+    }
+
+    private static void addPoint(List<Boolean> points, int index, boolean point) {
+        if (index == 0 || !points.get(index - 1)) {
+            points.add(point);
+            return;
+        }
+        points.add(false);
     }
 
 }

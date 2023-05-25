@@ -61,10 +61,12 @@ public class ResultView {
     }
 
     public static void printPlayerResult(String result) {
+        printResultText();
         System.out.println(result);
     }
 
     public static void printPlayerResultWithName(String playerName, String result) {
+        printResultText();
         System.out.println(String.format(PLAYER_NAME_AND_RESULT_TEXT, playerName, result));
     }
 

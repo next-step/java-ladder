@@ -19,25 +19,6 @@ public class Player {
         return name;
     }
 
-    public int getPlayerResultIndex(int currentPoint, Ladder ladder) {
-        int point = currentPoint;
-        for (int index = 0; index < ladder.getHeight(); index++) {
-            point = calculationPoint(index, point, ladder);
-        }
-        return point;
-    }
-
-    private int calculationPoint(int lineIndex, int point, Ladder ladder) {
-        Line line = ladder.getLines().get(lineIndex);
-        if (line.hasLeftPoint(point)) {
-            return point - 1;
-        }
-        if (line.hasRightPoint(point)) {
-            return point + 1;
-        }
-        return point;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
