@@ -9,44 +9,26 @@ import java.util.stream.IntStream;
 
 public class Line {
 
-    private final List<Boolean> points;
+    private final List<Point> points;
 
-    public Line(List<Boolean> points) {
+    public Line(List<Point> points) {
         this.points = points;
     }
 
-    public boolean hasLeftPoint(int currentPlayerPoint) {
-        if (currentPlayerPoint == 0) {
-            return false;
-        }
-        return points.get(currentPlayerPoint - 1);
-    }
-
-    public boolean hasRightPoint(int currentPlayerPoint) {
-        if (points.size() == currentPlayerPoint || points.size() < currentPlayerPoint) {
-            return false;
-        }
-        return points.get(currentPlayerPoint);
-    }
-
-    public List<Boolean> getPoints() {
-        return points;
-    }
-
-    public static List<Boolean> generatePoints(Supplier<Boolean> pointSupplier, int count) {
-        List<Boolean> points = new ArrayList<>();
-        for (int index = 0; index < count; index++) {
-            addPoint(points, index, pointSupplier.get());
+    public static List<Point> generatePoints(Supplier<Point> pointSupplier, int width) {
+        List<Point> points = new ArrayList<>();
+        for (int index = 0; index < width; index++) {
+            addPoint(points, pointSupplier.get());
         }
         return points;
     }
 
-    private static void addPoint(List<Boolean> points, int index, boolean point) {
-        if (index == 0 || !points.get(index - 1)) {
-            points.add(point);
-            return;
-        }
-        points.add(false);
+    private static void addPoint(List<Point> points, Point point) {
+        points.add(point);
     }
 
+    public List<Point> getPoints() {
+        return points;
+    }
+    
 }

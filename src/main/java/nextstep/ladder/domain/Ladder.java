@@ -36,6 +36,7 @@ public class Ladder {
         return point;
     }
 
+    // TODO 해야함 졸려서잠
     private int calculationPoint(int lineIndex, int point, Ladder ladder) {
         Line line = ladder.getLines().get(lineIndex);
         if (line.hasLeftPoint(point)) {
@@ -50,7 +51,11 @@ public class Ladder {
     private List<Line> createLines(int width) {
         List<Line> lines = new ArrayList<>();
         for (int heightNumber = 0; heightNumber < height; heightNumber++) {
-            lines.add(new Line(Line.generatePoints(RandomUtil::generator, width - 1)));
+            lines.add(
+                    new Line(
+                            Line.generatePoints(() -> new Point(PointStatus.getRandomStatus(PointStatus.values().length)), width)
+                    )
+            );
         }
         return lines;
     }
