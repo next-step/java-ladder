@@ -8,14 +8,18 @@ public class LinePoint {
   protected LadderPointDirection pointDirection;
   protected final int index;
 
-  public LinePoint (LinePoint linePoint) {
+  protected LinePoint (LinePoint linePoint) {
     this.index = linePoint.index;
     this.pointDirection = linePoint.pointDirection;
   }
 
-  public LinePoint (int index) {
+  private LinePoint (int index) {
     this.index = index;
     this.pointDirection = LadderPointDirection.NONE;
+  }
+
+  public static LinePoint first() {
+    return new LinePoint(0);
   }
 
   public LadderPointDirection getPointDirection() {
@@ -33,5 +37,9 @@ public class LinePoint {
 
     this.pointDirection = LadderPointDirection.RIGHT;
     targetPoint.pointDirection = LadderPointDirection.LEFT;
+  }
+
+  public LinePoint next() {
+    return new LinePoint(index+1);
   }
 }
