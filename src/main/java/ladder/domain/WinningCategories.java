@@ -4,24 +4,24 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ResultGroup {
+public class WinningCategories {
 
-    private final List<Result> resultList;
+    private final List<WinningCategory> winningCategoryList;
     private static final String DELIMITER = ",";
 
-    public ResultGroup(String resultNames) {
-        this.resultList = convertToList(resultNames);
+    public WinningCategories(String resultNames) {
+        this.winningCategoryList = convertToList(resultNames);
     }
 
     public List<String> getResultNames() {
-        return resultList.stream()
-                .map(Result::getResultName)
+        return winningCategoryList.stream()
+                .map(WinningCategory::getResultName)
                 .collect(Collectors.toList());
     }
 
-    private List<Result> convertToList(String resultList) {
+    private List<WinningCategory> convertToList(String resultList) {
         return Arrays.stream(resultList.split(","))
-                .map(result -> new Result(result.trim()))
+                .map(result -> new WinningCategory(result.trim()))
                 .collect(Collectors.toUnmodifiableList());
     }
 

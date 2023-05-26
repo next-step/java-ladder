@@ -6,15 +6,15 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-public class ResultGroupTest {
+public class WinningCategoriesTest {
 
     @Test
     @DisplayName("실행결과를 입력받아 결과그룹 객체를 생성할 수 있다.")
     void create_ReceiveResultList_ContainsExactly() {
         String input = "꽝,5000,꽝,5000";
 
-        ResultGroup resultGroup = new ResultGroup(input);
-        List<String> resultNames = resultGroup.getResultNames();
+        WinningCategories winningCategories = new WinningCategories(input);
+        List<String> resultNames = winningCategories.getResultNames();
 
         Assertions.assertThat(resultNames)
                 .containsExactly("꽝", "5000", "꽝", "5000")

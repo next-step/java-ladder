@@ -2,11 +2,11 @@ package ladder.domain;
 
 import java.util.Objects;
 
-public class Result {
+public class WinningCategory {
 
     private final String resultName;
 
-    public Result(String resultName) {
+    public WinningCategory(String resultName) {
         validateName(resultName);
         this.resultName = resultName;
     }

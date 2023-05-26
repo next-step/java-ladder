@@ -3,7 +3,7 @@ package ladder.view;
 import ladder.domain.Ladder;
 import ladder.domain.LadderRow;
 import ladder.domain.PlayerGroup;
-import ladder.domain.ResultGroup;
+import ladder.domain.WinningCategories;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,8 +29,8 @@ public class ResultView {
         System.out.println(playerNames);
     }
 
-    public void printResultGroup(ResultGroup resultGroup) {
-        String resultGroups = convertToString(resultGroup.getResultNames());
+    public void printResultGroup(WinningCategories winningCategories) {
+        String resultGroups = convertToString(winningCategories.getResultNames());
         System.out.println(resultGroups);
     }
 
