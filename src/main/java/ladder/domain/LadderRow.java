@@ -10,6 +10,7 @@ import java.util.List;
 public class LadderRow {
 
     private static final LineStrategy DEFAULT_STRATEGY = new RandomLineStrategy();
+    private static final int MIN_WIDTH = 0;
     private List<Boolean> lines;
     private LineStrategy lineStrategy;
 
@@ -24,6 +25,25 @@ public class LadderRow {
 
     public List<Boolean> getLines() {
         return Collections.unmodifiableList(lines);
+    }
+
+    public boolean hasLine(int width) {
+        if (width >= this.lines.size()) {
+            return false;
+        }
+        return this.lines.get(width);
+    }
+
+    public boolean isNotEnd(int position) {
+        return position >= MIN_WIDTH && position < this.lines.size();
+    }
+
+    public boolean isLeftEnd(int position) {
+        return position == MIN_WIDTH;
+    }
+
+    public boolean isRightEnd(int position) {
+        return position >= this.lines.size();
     }
 
     private List<Boolean> generateLines(int width) {
