@@ -21,7 +21,7 @@ public class Position {
 
     public Position move(MovingStrategy movingStrategy, Line line) {
         Moving moving = movingStrategy.nextMoving(line, width);
-        return new Position(height + moving.vertical(), width + moving.horizontal());
+        return new Position(height + moving.displacement().vertical(), width + moving.displacement().horizontal());
     }
 
     @Override

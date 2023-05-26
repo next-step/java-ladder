@@ -1,37 +1,25 @@
 package ladder.domain.moving;
 
 public enum Moving {
-    LEFT(1, -1, Boolean.TRUE, Boolean.FALSE),
-    RIGHT(1, 1, Boolean.FALSE, Boolean.TRUE),
-    FORWARD(1, 0, Boolean.FALSE, Boolean.FALSE),
-    STOP(0, 0, null, null);
+    LEFT(Displacement.LEFT, Type.LEFT),
+    RIGHT(Displacement.RIGHT, Type.RIGHT),
+    FORWARD(Displacement.FORWARD, Type.FORWARD),
+    STOP(Displacement.STOP, Type.STOP);
 
-    private final int vertical;
-    private final int horizontal;
-    private final Boolean left;
-    private final Boolean right;
+    private final Displacement displacement;
+    private final Type type;
 
-    Moving(int vertical, int horizontal, Boolean left, Boolean right) {
-        this.vertical = vertical;
-        this.horizontal = horizontal;
-        this.left = left;
-        this.right = right;
+    Moving(Displacement displacement, Type type) {
+        this.displacement = displacement;
+        this.type = type;
     }
 
-    public int vertical() {
-        return vertical;
+    public Displacement displacement() {
+        return displacement;
     }
 
-    public int horizontal() {
-        return horizontal;
-    }
-
-    public Boolean left() {
-        return left;
-    }
-
-    public Boolean right() {
-        return right;
+    public Type type() {
+        return type;
     }
 
 }

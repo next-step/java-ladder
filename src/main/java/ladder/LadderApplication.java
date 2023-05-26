@@ -11,6 +11,8 @@ import ladder.view.OutputView;
 
 public class LadderApplication {
 
+    public static final String ALL_RESULTS = "all";
+
     public static void main(String[] args) {
         playLadderGameUntilException();
     }
@@ -60,7 +62,7 @@ public class LadderApplication {
     private static void printGameResult(Names names, LadderResult ladderResults, GameResult gameResult) {
         OutputView.printGameResultOf();
         String name = InputView.nextString();
-        while (!name.equals("all")) {
+        while (!name.equals(ALL_RESULTS)) {
             OutputView.printGameResultOf(gameResult, ladderResults, Name.of(name));
             OutputView.printGameResultOf();
             name = InputView.nextString();

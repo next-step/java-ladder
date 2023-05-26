@@ -3,10 +3,11 @@ package ladder.domain.pointer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import ladder.domain.Ladder;
 import ladder.domain.line.Line;
 import ladder.domain.moving.MovingStrategy;
-import ladder.domain.name.Name;
 import ladder.domain.name.Names;
 import ladder.domain.position.Position;
 
@@ -19,12 +20,9 @@ public class Pointers {
     }
 
     public static Pointers of(Names names) {
-        List<Pointer> pointers = new ArrayList<>();
-        List<Name> nameList = names.names();
-        for (int i = 0; i < nameList.size(); i++) {
-            pointers.add(Pointer.of(nameList.get(i), Position.of(0, i)));
-        }
-        return new Pointers(pointers);
+        return new Pointers(IntStream.range(0, names.names().size())
+            .mapToObj(i -> Pointer.of(names.names().get(i), Position.of(0, i)))
+            .collect(Collectors.toList()));
     }
 
     public static Pointers of(List<Pointer> pointers) {
@@ -56,17 +54,21 @@ public class Pointers {
     }
 
     public Pointers destinationOf(MovingStrategy movingStrategy, Ladder ladder) {
-        List<Pointer> ret = new ArrayList<>(pointers);
+        List<Pointer> pointerList = new ArrayList<>(pointers);
         for (Line line : ladder.lines()) {
-            for (int i = 0; i < ret.size(); i++) {
-                ret.set(i, ret.get(i).move(movingStrategy.nextMoving(line, ret.get(i).position().width())));
-            }
+            pointerList = nextPointerList(movingStrategy, pointerList, line);
         }
-        return new Pointers(ret);
+        return new Pointers(pointerList);
     }
 
     public List<Pointer> pointers() {
         return List.copyOf(pointers);
+    }
+
+    private List<Pointer> nextPointerList(MovingStrategy movingStrategy, List<Pointer> pointerList, Line line) {
+        return pointerList.stream()
+            .map(pointer -> pointer.move(movingStrategy.nextMoving(line, pointer.position().width())))
+            .collect(Collectors.toList());
     }
 
 }

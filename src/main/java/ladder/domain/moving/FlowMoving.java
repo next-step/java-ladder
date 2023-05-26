@@ -22,7 +22,7 @@ public class FlowMoving implements MovingStrategy {
             return Moving.STOP;
         }
         return Arrays.stream(Moving.values())
-            .filter(v -> v.left().equals(properLeft(line, pos)) && v.right().equals(properRight(line, pos)))
+            .filter(v -> v.type().left().equals(properLeft(line, pos)) && v.type().right().equals(properRight(line, pos)))
             .findFirst()
             .orElse(Moving.STOP);
     }
