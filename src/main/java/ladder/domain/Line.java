@@ -31,7 +31,7 @@ public class Line {
         validateUserCount(usersCount);
         List<Point> points = new ArrayList<>();
         Point currentPoint = Point.createFirst(pointGenerator.generate());
-        points.add(Point.createFirst(pointGenerator.generate()));
+        points.add(currentPoint);
 
         for (int i = 1; i < usersCount - 1; i++) {
             Point nextPoint = currentPoint.createNext(pointGenerator.generate());
