@@ -9,13 +9,23 @@ class HorizontalLineTest {
 
     @Test
     void addTest() {
-        assertThat(new HorizontalLine(3, () -> true)).isEqualTo(new HorizontalLine(List.of(true, true)));
+        assertThat(HorizontalLine.create(3, () -> true))
+            .isEqualTo(new HorizontalLine(List.of(
+                new Point(0, DirectionTest.rightDirection),
+                new Point(1, DirectionTest.leftDirection),
+                new Point(2, DirectionTest.nonDirection)
+            )));
     }
 
     @Test
     void nonAddTest() {
-        assertThat(new HorizontalLine(4, () -> false)).isEqualTo(
-            new HorizontalLine(List.of(false, false, false)));
+        assertThat(HorizontalLine.create(4, () -> false)).isEqualTo(
+            new HorizontalLine(List.of(
+                new Point(0, DirectionTest.nonDirection),
+                new Point(1, DirectionTest.nonDirection),
+                new Point(2, DirectionTest.nonDirection),
+                new Point(3, DirectionTest.nonDirection)
+            )));
     }
 
 }

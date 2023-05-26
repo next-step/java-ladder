@@ -4,20 +4,36 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.IntStream;
 
-public class HorizontalLine implements Iterable<Boolean> {
+public class HorizontalLine implements Iterable<Point> {
 
-    public static final int LAST_LINE = 1;
-    private List<Boolean> points = new ArrayList<>();
+    private static final int LAST_LINE = 1;
+    private static final int SECOND_LINE = 1;
 
-    public HorizontalLine(int countOfPerson, LineStrategy lineStrategy) {
-        for (int i = 0; i < countOfPerson - LAST_LINE; i++) {
-            points.add(lineStrategy.add());
-        }
+    private final List<Point> points;
+
+    public HorizontalLine(List<Point> points) {
+        this.points = points;
     }
 
-    public HorizontalLine(List<Boolean> points) {
-        this.points = points;
+    public static HorizontalLine create(int countOfPerson, LineStrategy lineStrategy) {
+        List<Point> points = new ArrayList<>(List.of(Point.createFirst(lineStrategy)));
+
+        IntStream.range(SECOND_LINE, countOfPerson - LAST_LINE)
+            .forEach(i -> points.add(getLastPoint(points).createNext(lineStrategy)));
+
+        points.add(getLastPoint(points).createLast());
+
+        return new HorizontalLine(points);
+    }
+
+    public int move(int position) {
+        return points.get(position).move();
+    }
+
+    private static Point getLastPoint(List<Point> points) {
+        return points.get(points.size() - 1);
     }
 
     @Override
@@ -38,7 +54,7 @@ public class HorizontalLine implements Iterable<Boolean> {
     }
 
     @Override
-    public Iterator<Boolean> iterator() {
+    public Iterator<Point> iterator() {
         return points.iterator();
     }
 
