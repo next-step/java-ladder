@@ -1,9 +1,8 @@
 package ladder.view;
 
 import ladder.domain.*;
-import ladder.dto.GameResultDto;
-
-import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class ResultView {
@@ -19,6 +18,7 @@ public class ResultView {
         System.out.println("사다리 결과");
         System.out.println();
     }
+
     public static void printResultInfoMessage() {
         System.out.println("실행 결과");
     }
@@ -57,9 +57,10 @@ public class ResultView {
                 .collect(Collectors.joining());
 
         System.out.println(results);
+        System.out.println();
     }
 
-    public static void printGamesResult(List<GameResultDto> gameResultDtoList) {
+    public static void printGamesResult(GameExecutionResult gameExecutionResult) {
         while (true) {
             String userName = InputView.inputNameForGetResult();
             if (EXIT.equals(userName)) {
@@ -68,25 +69,25 @@ public class ResultView {
 
             printResultInfoMessage();
             if (RESULT_ALL.equals(userName)) {
-                printAllResult(gameResultDtoList);
+                printAllResult(gameExecutionResult);
                 System.out.println();
                 continue;
             }
 
-            gameResultDtoList.stream()
-                    .filter(gameResultDto -> userName.equals(gameResultDto.getName()))
-                    .findFirst()
-                    .ifPresentOrElse(
-                            gameResultDto -> System.out.println(gameResultDto.getResult()),
-                            () -> System.out.println("다시 입력해 주세요.")
-                    );
+            Optional<String> userResult = Optional.ofNullable(gameExecutionResult.getResultByUserName(userName));
+            userResult.ifPresentOrElse(result ->
+                    System.out.println(result),
+                    () -> System.out.println("해당 사용자가 없습니다. 다시 입력해 주세요.")
+            );
+
             System.out.println();
         }
     }
 
-    private static void printAllResult(List<GameResultDto> gameResultDtoList) {
-        gameResultDtoList.forEach(result -> {
-            System.out.println(result.getName() + " : " + result.getResult());
+    private static void printAllResult(GameExecutionResult gameExecutionResult) {
+        Map<String, String> executionResult = gameExecutionResult.getExecutionResult();
+        executionResult.forEach((key, value) -> {
+            System.out.println(key + " : " + value);
         });
     }
 }

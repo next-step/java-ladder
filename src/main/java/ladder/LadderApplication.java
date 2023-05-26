@@ -1,12 +1,9 @@
 package ladder;
 
 import ladder.domain.*;
-import ladder.dto.GameResultDto;
 import ladder.generator.RandomPointGenerator;
 import ladder.view.InputView;
 import ladder.view.ResultView;
-
-import javax.xml.transform.Result;
 import java.util.List;
 
 public class LadderApplication {
@@ -25,7 +22,7 @@ public class LadderApplication {
         ResultView.printLadderGameResult(gameResult);
 
         LadderGame ladderGame = new LadderGame(users, ladder, gameResult);
-        List<GameResultDto> gameResultDtos = ladderGame.execute();
-        ResultView.printGamesResult(gameResultDtos);
+        GameExecutionResult gameExecutionResult = ladderGame.execute();
+        ResultView.printGamesResult(gameExecutionResult);
     }
 }

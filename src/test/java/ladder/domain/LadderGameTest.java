@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import ladder.dto.GameResultDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.List;
@@ -26,10 +25,8 @@ class LadderGameTest {
     @Test
     void execute() {
         LadderGame ladderGame = new LadderGame(users, ladder, gameResult);
-        List<GameResultDto> gameResultDtoList = ladderGame.execute();
+        GameExecutionResult gameExecutionResult = ladderGame.execute();
 
-        assertThat(gameResultDtoList).contains(new GameResultDto("user1", "2000"));
-
-
+        assertThat(gameExecutionResult.getResultByUserName("user1")).isEqualTo("2000");
     }
 }

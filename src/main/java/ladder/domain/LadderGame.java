@@ -1,9 +1,5 @@
 package ladder.domain;
-
-import ladder.dto.GameResultDto;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class LadderGame {
     private final Users users;
@@ -16,16 +12,14 @@ public class LadderGame {
         this.gameResult = gameResult;
     }
 
-    public List<GameResultDto> execute() {
-        List<GameResultDto> gameResultDtoList = new ArrayList<>();
+    public GameExecutionResult execute() {
+        Map<String, String> userResult = new LinkedHashMap<>();
         for (int i = 0; i < users.size(); i++) {
             int resultPosition = ladder.move(i);
-            GameResultDto gameResultDto = new GameResultDto(users.getUserByIndex(i).name(), gameResult.getResultByIndex(resultPosition));
-
-            gameResultDtoList.add(gameResultDto);
+            userResult.put(users.getUserByIndex(i).name(), gameResult.getResultByIndex(resultPosition));
         }
 
-        return gameResultDtoList;
+        return GameExecutionResult.create(userResult);
     }
 
 }
