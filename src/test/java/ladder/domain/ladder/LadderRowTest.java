@@ -1,5 +1,6 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
+import ladder.domain.LadderRow;
 import ladder.strategy.LineStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

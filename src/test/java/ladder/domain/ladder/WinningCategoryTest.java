@@ -1,5 +1,6 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
+import ladder.domain.WinningCategory;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
