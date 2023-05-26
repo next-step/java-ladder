@@ -19,4 +19,6 @@ public class UserTest {
         assertThatThrownBy(() -> new User("except"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+
 }

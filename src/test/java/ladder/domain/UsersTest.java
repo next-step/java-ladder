@@ -33,4 +33,17 @@ public class UsersTest {
         assertThat(users.getUsersSize()).isEqualTo(4);
     }
 
+    @DisplayName("유저 위치 변경")
+    @Test
+    public void userPositionSwap(){
+        users.userSwap(0,2);
+        users.userSwap(1,3);
+        assertAll(
+                () -> assertThat(users.unmodifiableUsers().get(0).name()).isEqualTo("cent"),
+                () -> assertThat(users.unmodifiableUsers().get(1).name()).isEqualTo("wow"),
+                () -> assertThat(users.unmodifiableUsers().get(2).name()).isEqualTo("test"),
+                () -> assertThat(users.unmodifiableUsers().get(3).name()).isEqualTo("kim")
+        );
+    }
+
 }
