@@ -13,9 +13,13 @@ public class PlayerGroup {
     }
 
     public List<String> getPlayerNames() {
-        return playerList.stream()
+        return this.playerList.stream()
                 .map(player -> player.name())
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    public Player findPlayer(int index) {
+        return this.playerList.get(index);
     }
 
     private List<Player> convertToList(String playerNames) {
@@ -25,6 +29,6 @@ public class PlayerGroup {
     }
 
     public int size() {
-        return playerList.size();
+        return this.playerList.size();
     }
 }
