@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 public class LadderGameRewardInfoTest extends BaseTest {
 
   @Test
-  @DisplayName("LadderGameReward | 사다리게임 보상에서 꽝의 보상은 0으로 간주한다")
+  @DisplayName("사다리게임 보상에서 꽝의 보상은 0으로 간주한다")
   void 사다리게임_보상에서_꽝의_보상은_0으로_간주한다() {
     // given
     List<String> 라인별_보상_목록 = List.of("꽝");

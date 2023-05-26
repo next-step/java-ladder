@@ -37,7 +37,7 @@ public class HorizontalLadderLine {
   }
 
   public boolean isPreviousPointConnected(LinePoint point) {
-    if (point.isStartPoint()) {
+    if (this.isStartPoint(point)) {
       return false;
     }
 
@@ -62,5 +62,15 @@ public class HorizontalLadderLine {
   private boolean isConnected(LinePoint linePoint1, LinePoint linePoint2) {
     return linePoint1.getPointDirection() == LadderPointDirection.RIGHT &&
         linePoint2.getPointDirection() == LadderPointDirection.LEFT;
+  }
+
+  public boolean isEndPoint(LinePoint point) {
+    int index = point.getIndex();
+    int pointSize = points.size();
+    return index == pointSize - 1;
+  }
+
+  public boolean isStartPoint(LinePoint point) {
+    return point.getIndex() == 0;
   }
 }

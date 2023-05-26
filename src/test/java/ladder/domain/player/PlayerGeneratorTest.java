@@ -18,7 +18,7 @@ public class PlayerGeneratorTest extends BaseTest {
   }
 
   @Test
-  @DisplayName("PlayerGenerator | 플레이어목록에 동일한 이름이 있는 경우, 플레이어 목록을 생성 할 수 없다.")
+  @DisplayName("플레이어목록에 동일한 이름이 있는 경우, 플레이어 목록을 생성 할 수 없다.")
   void 플레이어_생성시_이름은_고유해야한다() {
     // given
     List<String> 플레이어_이름_목록 = Arrays.asList("sight", "sight", "seol");
@@ -31,7 +31,7 @@ public class PlayerGeneratorTest extends BaseTest {
   }
 
   @Test
-  @DisplayName("PlayerGenerator | 플레이어는 최소 두명 이상아여야 생성 할 수 있다.")
+  @DisplayName("플레이어는 최소 두명 이상아여야 생성 할 수 있다.")
   void 플레이어_목록은_최소_두명_이상이여야_한다() {
     // given
     List<String> 플레이어_이름_목록 = Arrays.asList("sight");

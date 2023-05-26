@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 public class PlayerPositionTest extends BaseTest {
 
   @Test
-  @DisplayName("PlayerPosition.move() | 사다리게임 참가자는 같은 높이에서 이동한 방향으로 다시 돌아가지 않는다 (좌우)")
+  @DisplayName("사다리게임 참가자는 같은 높이에서 이동한 방향으로 다시 돌아가지 않는다 (좌우)")
   void 같은_높이에서_좌우_반복이동시_원위치_안됨_좌우() {
 
     // given
@@ -26,7 +26,7 @@ public class PlayerPositionTest extends BaseTest {
   }
 
   @Test
-  @DisplayName("PlayerPosition.move() | 사다리게임 참가자는 같은 높이에서 이동한 방향으로 다시 돌아가지 않는다 (우좌)")
+  @DisplayName("사다리게임 참가자는 같은 높이에서 이동한 방향으로 다시 돌아가지 않는다 (우좌)")
   void 같은_높이에서_좌우_반복이동시_원위치_안됨_반대() {
 
     // given
@@ -43,7 +43,7 @@ public class PlayerPositionTest extends BaseTest {
   }
 
   @Test
-  @DisplayName("PlayerPosition.move() | 사다리게임에서 좌우로 이동 할 수 없는 경우 아래로 이동한다.")
+  @DisplayName("사다리게임에서 좌우로 이동 할 수 없는 경우 아래로 이동한다.")
   void 같은_높이에서_좌우_이동_안되면_아래로_이동() {
 
     // given

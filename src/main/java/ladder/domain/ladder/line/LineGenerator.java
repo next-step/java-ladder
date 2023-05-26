@@ -1,28 +1,23 @@
 package ladder.domain.ladder.line;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import ladder.domain.ladder.line.point.LinePoint;
 
 public class LineGenerator {
 
   public List<LinePoint> generateNotConnectedPoints (int countOfPerson) {
-    final int lastIdx = countOfPerson - 1;
-    return IntStream.range(0, countOfPerson)
-        .mapToObj(i -> createLinePoint(i, lastIdx))
-        .collect(Collectors.toUnmodifiableList());
-  }
+    final List<LinePoint> linePoints = new ArrayList<>(countOfPerson);
 
-  private LinePoint createLinePoint(int index, int lastIndex) {
-    if (index  == 0) {
-      return new LinePoint(index, true, false);
+    LinePoint currentPoint = LinePoint.first();
+    linePoints.add(currentPoint);
+
+    for (int i = 1; i < countOfPerson; i++) {
+      LinePoint next = currentPoint.next();
+      linePoints.add(next);
+      currentPoint = next;
     }
 
-    if (index == lastIndex) {
-      return new LinePoint(index, false, true);
-    }
-
-    return new LinePoint(index);
+    return  linePoints;
   }
 }

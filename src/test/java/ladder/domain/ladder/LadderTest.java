@@ -20,7 +20,7 @@ public class LadderTest extends BaseTest {
   }
 
   @Test
-  @DisplayName("Ladder | 사다리는 한번 생성이 완료되면, 추가로 연결 할 수 없다.")
+  @DisplayName("사다리는 한번 생성이 완료되면, 추가로 연결 할 수 없다.")
   void 사다리_생성_후_연결불가() {
 
     // given
