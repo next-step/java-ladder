@@ -11,9 +11,11 @@ import java.util.stream.IntStream;
 public class  Ladder {
 
     private List<Line> lines;
+    private int height;
 
     public Ladder(int height, int width) {
         this.lines = createLines(height, width);
+        this.height = height;
     }
 
     private List<Line> createLines(int height, int width) {
@@ -27,5 +29,9 @@ public class  Ladder {
 
     public List<Line> getLines() {
         return Collections.unmodifiableList(this.lines);
+    }
+
+    public int getHeight() {
+        return this.height;
     }
 }

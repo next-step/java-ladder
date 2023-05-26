@@ -3,6 +3,7 @@ package ladder.view;
 import ladder.domain.Line;
 import ladder.domain.Player;
 import ladder.domain.LadderReward;
+import ladder.domain.Result;
 
 import java.util.List;
 
@@ -15,17 +16,19 @@ public class ResultView {
     private static final String NAME_LENGTH_FIVE_FORMAT_PATTERN = "%5s";
     private static final String RESULT_TEXT = "실행결과";
     private static final String LADDER_COMPLETE_TEXT = "사다리 결과";
+    private static final String PLAYER_NAME_AND_RESULT_TEXT = "%s : %s";
+
 
     public ResultView() {}
 
-    public void printResult(List<Player> players, List<Line> lines, List<LadderReward> ladderRewards) {
-        printResultText();
+    public void printResult(List<Player> players, List<Line> lines, Result result) {
+        printLadderResultText();
         printPlayerName(players);
         printLadderLine(lines);
-        printLadderResult(ladderRewards);
+        printLadderResult(result);
     }
 
-    private void printResultText() {
+    private void printLadderResultText() {
         System.out.println(LADDER_COMPLETE_TEXT);
     }
 
@@ -63,13 +66,24 @@ public class ResultView {
         }
     }
 
-    private void printLadderResult(List<LadderReward> ladderRewards) {
+    private void printLadderResult(Result result) {
         StringBuilder sb = new StringBuilder();
 
-        ladderRewards.stream()
-                .map(LadderReward::getReward)
+        result.getValues().stream()
                 .forEach(name -> sb.append(String.format(NAME_LENGTH_FIVE_FORMAT_PATTERN, name)).append(" "));
 
         System.out.println(sb.toString());
+    }
+
+    public void printResultText() {
+        System.out.println(RESULT_TEXT);
+    }
+
+    public static void printPlayerResult(String result) {
+        System.out.println(result);
+    }
+
+    public static void printPlayerResultWithName(String playerName, String result) {
+        System.out.println(String.format(PLAYER_NAME_AND_RESULT_TEXT, playerName, result));
     }
 }

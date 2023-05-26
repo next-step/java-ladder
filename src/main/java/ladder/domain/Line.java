@@ -35,4 +35,18 @@ public class Line {
     public List<Boolean> getPoints() {
         return points;
     }
+
+    public boolean hasLeftPoint(int currentPlayerPoint) {
+        if (currentPlayerPoint == 0) {
+            return false;
+        }
+        return points.get(currentPlayerPoint - 1);
+    }
+
+    public boolean hasRightPoint(int currentPlayerPoint) {
+        if (points.size() == currentPlayerPoint || points.size() < currentPlayerPoint) {
+            return false;
+        }
+        return points.get(currentPlayerPoint);
+    }
 }
