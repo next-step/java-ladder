@@ -28,15 +28,11 @@ public class StreamStudy {
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-        if(words == null){
-            return;
-        }
-
         words.stream()
                 .filter(word -> word.length() >= 12)
                 .distinct()
-                .sorted((word1, word2) -> word2.length() - word1.length())
-                .map(word -> word.toLowerCase())
+                .sorted(Comparator.comparing(String::length).reversed())
+                .map(String::toLowerCase)
                 .forEach(System.out::println);
     }
 
@@ -56,6 +52,6 @@ public class StreamStudy {
         return numbers.stream()
                 .filter(number -> number > 3)
                 .map(number -> number * 2)
-                .reduce(0, (x, y) -> x + y);
+                .reduce(0, Integer::sum);
     }
 }
