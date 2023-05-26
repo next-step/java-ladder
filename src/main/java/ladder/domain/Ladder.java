@@ -11,6 +11,14 @@ public class Ladder {
         rows = generateRows(height, countOfPlayers);
     }
 
+    public int move(int index) {
+        int position = index;
+        for (LadderRow row : rows) {
+            position = MovingStrategy.move(row, position);
+        }
+        return position;
+    }
+
     private List<LadderRow> generateRows(int height, int countOfPlayers) {
         final List<LadderRow> newRows = new ArrayList<>();
 
