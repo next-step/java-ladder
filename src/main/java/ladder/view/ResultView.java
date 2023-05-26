@@ -1,11 +1,10 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.LadderRow;
-import ladder.domain.PlayerGroup;
-import ladder.domain.WinningCategories;
+import ladder.domain.*;
 
+import javax.print.MultiDocPrintService;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class ResultView {
@@ -15,9 +14,12 @@ public class ResultView {
     private static final String CONNECTED_LINE = "-----";
     private static final String NOT_CONNECTED_LINE = "     ";
     private static final String FIRST_WHITE_SPACE= "     ";
+    private static final Player ALL_USER = new Player("all");
+    private static final Scanner SCANNER = new Scanner(System.in);
 
     public void printLadder(Ladder ladder, PlayerGroup playerGroup) {
         System.out.println("사다리 결과\n");
+
         printPlayerNames(playerGroup);
         ladder.getRows()
                 .stream()
@@ -32,6 +34,26 @@ public class ResultView {
     public void printResultGroup(WinningCategories winningCategories) {
         String resultGroups = convertToString(winningCategories.getResultNames());
         System.out.println(resultGroups);
+    }
+
+    public void printResult(WinningCategories winningCategories, LadderResult ladderResult) {
+        System.out.println("결과를 보고 싶은 사람은?");
+        Player player = new Player(SCANNER.nextLine());
+
+        System.out.println("\n실행결과");
+        if (ALL_USER.equals(player)) {
+            printAllPlayerResult(winningCategories, ladderResult);
+            return;
+        }
+        System.out.println(winningCategories.find(ladderResult.get(player)).toString());
+        this.printResult(winningCategories, ladderResult);
+    }
+
+    private void printAllPlayerResult(WinningCategories winningCategories, LadderResult ladderResult) {
+        ladderResult.keyStream()
+                .forEach(player ->
+                    System.out.printf("%s : %s\n", player.name(), winningCategories.find(ladderResult.get(player)).toString())
+                );
     }
 
     private String convertToString(List<String> list) {

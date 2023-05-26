@@ -1,6 +1,7 @@
 package ladder.controller;
 
 import ladder.domain.Ladder;
+import ladder.domain.LadderGame;
 import ladder.domain.PlayerGroup;
 import ladder.domain.WinningCategories;
 import ladder.view.InputView;
@@ -27,5 +28,10 @@ public class LadderController {
 
         resultView.printLadder(ladder, playerGroup);
         resultView.printResultGroup(winningCategories);
+
+        LadderGame ladderGame = new LadderGame(ladder, playerGroup);
+        ladderGame.start();
+
+        resultView.printResult(winningCategories, ladderGame.getLadderResult());
     }
 }
