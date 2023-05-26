@@ -12,6 +12,10 @@ public class LadderGame {
         this.lines = new Lines(names.size(), height);
     }
 
+    public Result getEachResult(Name name, Results results) {
+        return results.get(lines.getResultIndex(names.indexOf(name)));
+    }
+
     public List<Name> getNames() {
         return names.getNames();
     }

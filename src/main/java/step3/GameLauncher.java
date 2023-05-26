@@ -6,8 +6,6 @@ import step3.domain.Results;
 import step3.view.InputView;
 import step3.view.ResultView;
 
-import java.util.List;
-
 public class GameLauncher {
     public static void main(String[] args) {
         Names names = new Names(InputView.inputNames());
@@ -16,6 +14,7 @@ public class GameLauncher {
 
         LadderGame ladderGame = new LadderGame(names, height);
 
+        ResultView.printLadderGame(ladderGame, results);
         ResultView.printResult(ladderGame, results);
     }
 }

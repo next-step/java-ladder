@@ -9,7 +9,6 @@ import java.util.Random;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RandomTest {
-
     @Test
     public void randomTest() {
         Random random = new Random();

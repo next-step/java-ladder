@@ -40,7 +40,7 @@ public class Line {
     }
 
     public int nextIndex(int nowIndex) {
-        if (nowIndex < points.size() - 1 && points.get(nowIndex)) {
+        if (nowIndex < points.size() && points.get(nowIndex)) {
             return nowIndex + 1;
         }
 

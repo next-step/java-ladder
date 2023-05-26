@@ -23,8 +23,8 @@ public class Names {
         return names.size();
     }
 
-    public int indexOf(String name) {
-        return names.indexOf(new Name(name));
+    public int indexOf(Name name) {
+        return names.indexOf(name);
     }
 
     public List<Name> getNames() {

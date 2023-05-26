@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import step3.domain.Height;
 
 class HeightTest {
-
     @DisplayName("사다리 높이는 0보다 커야 한다.")
     @Test
     public void heightTest() {

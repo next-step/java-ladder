@@ -28,5 +28,4 @@ public class Lines {
         }
         return resultIndex;
     }
-
 }

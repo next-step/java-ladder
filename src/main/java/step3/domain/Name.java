@@ -1,5 +1,7 @@
 package step3.domain;
 
+import step3.view.ResultView;
+
 import java.util.Objects;
 
 public class Name {
@@ -18,6 +20,10 @@ public class Name {
 
         if (input.length() > MAX_LENGTH) {
             throw new IllegalArgumentException(String.format("입력값은 %d자를 넘길 수 없습니다.", MAX_LENGTH));
+        }
+
+        if (input.equals(ResultView.ALL)) {
+            throw new IllegalArgumentException(String.format("입력값은 %s일 수 없습니다.", ResultView.ALL));
         }
     }
 
