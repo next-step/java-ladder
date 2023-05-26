@@ -10,6 +10,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class NamesTest {
 
+    public static Names testNames = new Names(List.of("pobi", "honux", "crong", "jk"));
+
     @DisplayName("사람은 적어도 2명 이상이어야 한다.")
     @Test
     public void namesSizeTest() {

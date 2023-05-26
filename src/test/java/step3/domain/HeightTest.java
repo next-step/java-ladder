@@ -10,7 +10,7 @@ class HeightTest {
     @DisplayName("사다리 높이는 0보다 커야 한다.")
     @Test
     public void heightTest() {
-        Assertions.assertThatThrownBy(() -> new Height(0))
+        Assertions.assertThatThrownBy(() -> Height.validateHeight(0))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

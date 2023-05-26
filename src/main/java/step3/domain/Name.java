@@ -7,17 +7,17 @@ public class Name {
     private final String name;
 
     public Name(String name) {
-        validateName(name);
+        validateInput(name);
         this.name = name;
     }
 
-    private void validateName(String name) {
-        if (name.isBlank()) {
-            throw new IllegalArgumentException("이름은 빈값일 수 없습니다.");
+    public static void validateInput(String input) {
+        if (input.isBlank()) {
+            throw new IllegalArgumentException("입력값은 빈값일 수 없습니다.");
         }
 
-        if (name.length() > MAX_LENGTH) {
-            throw new IllegalArgumentException(String.format("이름은 %d자를 넘길 수 없습니다.", MAX_LENGTH));
+        if (input.length() > MAX_LENGTH) {
+            throw new IllegalArgumentException(String.format("입력값은 %d자를 넘길 수 없습니다.", MAX_LENGTH));
         }
     }
 

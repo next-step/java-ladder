@@ -38,4 +38,16 @@ public class Line {
     public List<Boolean> getPoints() {
         return points;
     }
+
+    public int nextIndex(int nowIndex) {
+        if (nowIndex < points.size() - 1 && points.get(nowIndex)) {
+            return nowIndex + 1;
+        }
+
+        if (nowIndex != 0 && points.get(nowIndex - 1)) {
+            return nowIndex - 1;
+        }
+
+        return nowIndex;
+    }
 }

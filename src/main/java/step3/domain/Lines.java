@@ -20,4 +20,13 @@ public class Lines {
     public List<Line> getLines() {
         return lines;
     }
+
+    public int getResultIndex(int nameIndex) {
+        int resultIndex = nameIndex;
+        for (Line line : lines) {
+            resultIndex = line.nextIndex(resultIndex);
+        }
+        return resultIndex;
+    }
+
 }

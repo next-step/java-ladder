@@ -13,10 +13,18 @@ public class Names {
                 .collect(Collectors.toList());
     }
 
-    private void validateNames(List<String> names) {
+    private static void validateNames(List<String> names) {
         if (names.size() < 2) {
             throw new IllegalArgumentException("게임을 실행하려면 사람이 적어도 2명은 있어야 합니다.");
         }
+    }
+
+    public int size() {
+        return names.size();
+    }
+
+    public int indexOf(String name) {
+        return names.indexOf(new Name(name));
     }
 
     public List<Name> getNames() {

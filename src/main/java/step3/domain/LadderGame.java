@@ -4,12 +4,11 @@ import java.util.List;
 
 public class LadderGame {
     private final Names names;
-    private final Height height;
     private final Lines lines;
 
-    public LadderGame(List<String> names, int height) {
-        this.names = new Names(names);
-        this.height = new Height(height);
+    public LadderGame(Names names, int height) {
+        Height.validateHeight(height);
+        this.names = names;
         this.lines = new Lines(names.size(), height);
     }
 

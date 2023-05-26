@@ -12,7 +12,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LineTest {
 
-
     @DisplayName("사람의 수만큼 Horizontal Line을 생성한다.")
     @ParameterizedTest
     @ValueSource(ints = {2, 3, 4, 5})
