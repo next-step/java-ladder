@@ -3,6 +3,7 @@ package ladder.domain;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class LadderResult {
 
@@ -29,11 +30,11 @@ public class LadderResult {
             return false;
         }
         LadderResult that = (LadderResult) o;
-        return result != null ? result.equals(that.result) : that.result == null;
+        return Objects.equals(result, that.result);
     }
 
     @Override
     public int hashCode() {
-        return result != null ? result.hashCode() : 0;
+        return Objects.hash(result);
     }
 }

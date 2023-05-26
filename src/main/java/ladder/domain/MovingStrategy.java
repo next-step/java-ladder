@@ -6,10 +6,10 @@ public class MovingStrategy {
 
     public static int move(LadderRow ladderRow, int position) {
         if (moveLeft(ladderRow, position)) {
-            return position = NEXT_MOVE;
+            return position - NEXT_MOVE;
         }
         if (moveRight(ladderRow, position)) {
-            return position = NEXT_MOVE;
+            return position + NEXT_MOVE;
         }
         return position;
     }
@@ -27,6 +27,6 @@ public class MovingStrategy {
             return false;
         }
 
-        return (ladderRow.isNotEnd(position - NEXT_MOVE) && ladderRow.hasLine(position - NEXT_MOVE));
+        return (ladderRow.isNotEnd(position + NEXT_MOVE) && ladderRow.hasLine(position));
     }
 }

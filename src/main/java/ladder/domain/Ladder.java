@@ -11,6 +11,10 @@ public class Ladder {
         rows = generateRows(height, countOfPlayers);
     }
 
+    public boolean hasLine(int height, int width) {
+        return this.rows.get(height).hasLine(width);
+    }
+
     public int move(int index) {
         int position = index;
         for (LadderRow row : rows) {
@@ -37,5 +41,22 @@ public class Ladder {
         return rows;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Ladder)) {
+            return false;
+        }
 
+        Ladder ladder = (Ladder) o;
+
+        return rows.equals(ladder.rows);
+    }
+
+    @Override
+    public int hashCode() {
+        return rows.hashCode();
+    }
 }
