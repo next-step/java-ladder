@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 public class WinningCategories {
 
     private final List<WinningCategory> winningCategoryList;
-    private static final String DELIMITER = ",";
 
     public WinningCategories(String resultNames) {
         this.winningCategoryList = convertToList(resultNames);

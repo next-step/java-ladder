@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 public class PlayerGroup {
 
     private final List<Player> playerList;
+    private static final String DELIMITER = ",";
 
     public PlayerGroup(String playerNames) {
         this.playerList = convertToList(playerNames);
@@ -18,7 +19,7 @@ public class PlayerGroup {
     }
 
     private List<Player> convertToList(String playerNames) {
-        return Arrays.stream(playerNames.split(","))
+        return Arrays.stream(playerNames.split(DELIMITER))
                 .map(name -> new Player(name.trim()))
                 .collect(Collectors.toUnmodifiableList());
     }
