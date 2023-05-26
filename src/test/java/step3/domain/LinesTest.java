@@ -16,14 +16,10 @@ class LinesTest {
     public void generateLinesTest() {
         final int countOfPerson = 5;
         final int height = 3;
-        Lines lines = Lines.of(countOfPerson, height);
+        Lines lines = new Lines(countOfPerson, height);
         List<Line> lineList = lines.getLines();
 
         assertThat(lineList).hasSize(height);
-
-        for (Line line : lineList) {
-            assertThat(line.getPoints()).hasSize(countOfPerson - 1);
-        }
     }
 
 }

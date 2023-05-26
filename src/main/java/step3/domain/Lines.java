@@ -6,18 +6,15 @@ import java.util.stream.IntStream;
 
 public class Lines {
     private final List<Line> lines;
-    private final Height height;
 
-    public static Lines of(int countOfPerson, int height) {
-        List<Line> newLine = IntStream.range(0, height)
+    public Lines(int countOfPerson, int height) {
+        this.lines = IntStream.range(0, height)
                 .mapToObj(i -> new Line(countOfPerson))
                 .collect(Collectors.toList());
-        return new Lines(newLine, height);
     }
 
-    public Lines(List<Line> lines, int height) {
+    public Lines(List<Line> lines) {
         this.lines = lines;
-        this.height = new Height(height);
     }
 
     public List<Line> getLines() {

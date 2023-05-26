@@ -15,13 +15,16 @@ public class DefalutLineBuildStrategy implements LineBuildStrategy {
     public List<Boolean> build(int countOfPerson) {
         List<Boolean> points = new ArrayList<>();
         for (int i = 0; i < countOfPerson - 1; i++) {
-            if (i != 0 && points.get(i - 1)) {
-                points.add(false);
-                continue;
-            }
-            points.add(random.nextBoolean());
+            points.add(makePoint(points, i));
         }
         return points;
+    }
+
+    private static boolean makePoint(List<Boolean> points, int index) {
+        if (index != 0 && points.get(index - 1)) {
+            return false;
+        }
+        return random.nextBoolean();
     }
 
     public static DefalutLineBuildStrategy getInstance() {
