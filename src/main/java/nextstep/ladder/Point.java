@@ -5,8 +5,10 @@ import nextstep.ladder.drawPolicy.DrawablePolicy;
 
 public class Point {
 
+    private static final int DISTANCE = 1;
     private final boolean leftConnected;
     private final boolean rightConnected;
+
 
     public static Point createInstance(Point currentPoint, DrawablePolicy randomDraw) {
         return currentPoint.next(randomDraw);
@@ -49,6 +51,16 @@ public class Point {
 
     public boolean isRightConnected() {
         return rightConnected;
+    }
+
+    public int calculateMovedIndex(int index){
+        if(isRightConnected()){
+            return index + DISTANCE;
+        }
+        if(isLeftConnected()){
+            return index - DISTANCE;
+        }
+        return index;
     }
 
     @Override

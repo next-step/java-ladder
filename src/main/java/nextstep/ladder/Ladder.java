@@ -24,4 +24,12 @@ public class Ladder {
     public List<LadderRow> getLadder() {
         return ladderRows;
     }
+
+    public int getResultIndex(int index){
+        int currentIndex = index;
+        for(LadderRow ladderRow : ladderRows){
+            currentIndex = ladderRow.movedPointIndex(currentIndex);
+        }
+        return currentIndex;
+    }
 }
