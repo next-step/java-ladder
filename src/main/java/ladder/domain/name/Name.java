@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.name;
 
 import java.util.Objects;
 
@@ -37,6 +37,10 @@ public class Name {
 
     public String name() {
         return name;
+    }
+
+    public Name clone() {
+        return Name.of(name);
     }
 
     private String valid(String name) {

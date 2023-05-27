@@ -20,6 +20,13 @@ public class InputViewTest {
     }
 
     @Test
+    void 실행결과입력_문구() {
+        InputView.askLadderResult();
+
+        assertThat(output.toString()).contains("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+    }
+
+    @Test
     void 높이입력() {
         System.setIn(new ByteArrayInputStream("5".getBytes(StandardCharsets.UTF_8)));
 

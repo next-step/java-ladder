@@ -20,4 +20,8 @@ public class InputView {
         return new Scanner(System.in).nextInt();
     }
 
+    public static void askLadderResult() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+    }
+
 }

@@ -3,15 +3,25 @@ package ladder.view;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import ladder.domain.result.GameResult;
 import ladder.domain.Ladder;
-import ladder.domain.Line;
-import ladder.domain.Name;
-import ladder.domain.Names;
+import ladder.domain.result.LadderResult;
+import ladder.domain.line.Line;
+import ladder.domain.name.Name;
+import ladder.domain.name.Names;
 
 public class OutputView {
 
     public static void printResult() {
         System.out.println("\n실행결과\n");
+    }
+
+    public static void printLadderResult() {
+        System.out.println("사다리 결과\n");
+    }
+
+    public static void printGameResultOf() {
+        System.out.println("결과를 보고 싶은 사람은?");
     }
 
     public static void printNames(Names names, int width) {
@@ -20,6 +30,18 @@ public class OutputView {
 
     public static void printLadder(Ladder ladder, int width) {
         System.out.println(ladderIndicator(ladder, width));
+    }
+
+    public static void printLadderResult(LadderResult ladderResult, int width) {
+        System.out.println(joinResultString(horizontalDelimiter(Delimiter.WHITE_SPACE.value(), width), ladderResult.results()));
+    }
+
+    public static void printGameResultOf(GameResult gameResult, LadderResult ladderResult, Name name) {
+        System.out.println(ladderResult.results().get(gameResult.resultOf(name)));
+    }
+
+    private static String joinResultString(String delimiter, List<String> results) {
+        return String.join(delimiter, results);
     }
 
     private static String joinString(String delimiter, List<Name> list) {
@@ -61,6 +83,18 @@ public class OutputView {
 
     private static String delimiterOf(Boolean point) {
         return point.equals(Boolean.TRUE) ? Delimiter.HORIZONTAL_LINE.value() : Delimiter.WHITE_SPACE.value();
+    }
+
+    public static void printGameResultOfAll(GameResult gameResult, LadderResult ladderResult, Names names) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("실행 결과\n");
+        for (Name name : names.names()) {
+            stringBuilder.append(name.name())
+                .append(" : ")
+                .append(ladderResult.results().get(gameResult.resultOf(name)))
+                .append("\n");
+        }
+        System.out.println(stringBuilder);
     }
 
 }
