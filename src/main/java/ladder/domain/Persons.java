@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Persons {
     public static final String DELIMITER = ",";
@@ -13,8 +14,12 @@ public class Persons {
     public Persons(String namesOfPersons) {
         validateNames(namesOfPersons);
 
-        persons = Arrays.stream(namesOfPersons.split(DELIMITER))
-                .map(Person::new)
+        String[] names = namesOfPersons.split(DELIMITER);
+//        persons = Arrays.stream(namesOfPersons.split(DELIMITER))
+//                .map(s -> new Person(s))
+//                .collect(Collectors.toCollection(ArrayList::new));
+        persons = IntStream.range(0, names.length)
+                .mapToObj(i -> new Person(names[i], i))
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 

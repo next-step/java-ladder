@@ -15,20 +15,20 @@ public class PersonTest {
     @NullAndEmptySource
     void 입력값검증_NullAndEmpty(String name) {
         assertThatThrownBy(() -> {
-            Person person = new Person(name);
+            Person person = new Person(name, 0);
         }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("이름이 Null 또는 빈값이 입력되었습니다.");
     }
 
     @Test
     void 입력값검증_이름최대길이() {
         assertThatThrownBy(() -> {
-            Person person = new Person("ethann");
+            Person person = new Person("ethann", 0);
         }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("이름이 최대허용길이(5)를 초과하였습니다");
     }
 
     @ParameterizedTest(name = "{displayName} [{index}] {arguments}")
     @ValueSource(strings = {"j", "jerry"})
     void 정상생성검증(String name) {
-        Assertions.assertThat(new Person(name)).isEqualTo(name);
+        Assertions.assertThat(new Person(name, 0)).isEqualTo(name);
     }
 }

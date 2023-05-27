@@ -3,11 +3,13 @@ package ladder.domain;
 public class Person {
     public static final int MAX_NAME_LENGTH = 5;
     private final String name;
+    private int position;
 
-    public Person(String name) {
+    public Person(String name, int position) {
         validateName(name);
 
         this.name = name.trim();
+        this.position = position;
     }
 
     private void validateName(String name) {
