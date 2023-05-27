@@ -14,7 +14,9 @@ public class LadderGameApplication {
         ResultView.players(players.getNames());
 
         Integer ladderHeight = InputView.ladderHeight();
-        Ladder ladder = Ladder.create(ladderHeight,players);
+        Ladder ladder = new Ladder(players, ladderHeight);
+        ladder.operate();
 
+        ResultView.result(ladder);
     }
 }

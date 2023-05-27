@@ -1,25 +1,39 @@
 package ladder.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Ladder {
-    private LadderHeight height;
+    private final Players players;
+    private final LadderHeight height;
+    private List<LadderLine> lines;
 
-    private Integer maxLineCountEachRow;
-
-    public Ladder(LadderHeight height, Integer maxLineCountEachRow) {
-        this.height = height;
-        this.maxLineCountEachRow = maxLineCountEachRow;
+    public Ladder(Players players, Integer height) {
+        this(players, new LadderHeight(height));
     }
 
-    public static Ladder create(Integer height, Players players) {
-        LadderHeight ladderHeight = new LadderHeight(height);
-        return new Ladder(ladderHeight, players.count() - 1);
+    private Ladder(Players players, LadderHeight height) {
+        this.players = players;
+        this.height = height;
+    }
+
+    public void operate() {
+        List<LadderLine> lines =new ArrayList<>();
+        for (int i = 0; i < height.getValue(); i++) {
+            lines.add(LadderLine.generate(players.count()));
+        }
+        this.lines = lines;
     }
 
     public LadderHeight getHeight() {
         return height;
     }
 
-    public Integer getMaxLineCountEachRow() {
-        return maxLineCountEachRow;
+    public List<LadderLine> getLines() {
+        return lines;
+    }
+
+    public List<String> getPlayerNames() {
+        return players.getNames();
     }
 }

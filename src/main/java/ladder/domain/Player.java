@@ -4,7 +4,7 @@ import java.util.Optional;
 
 public class Player {
 
-    private static final int MAX_NAME_LENGTH = 5;
+    public static final int MAX_NAME_LENGTH = 5;
 
     private String name;
 

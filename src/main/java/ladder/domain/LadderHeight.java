@@ -3,7 +3,7 @@ package ladder.domain;
 import java.util.Objects;
 
 public class LadderHeight {
-    private Integer height;
+    private final Integer height;
 
     public LadderHeight(Integer height) {
         validate(height);
@@ -14,6 +14,10 @@ public class LadderHeight {
         if (height < 0) {
             throw new IllegalArgumentException("사다리 높이는 음수일 수 없습니다.");
         }
+    }
+
+    public Integer getValue() {
+        return height;
     }
 
     @Override
