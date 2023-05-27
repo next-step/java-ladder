@@ -11,10 +11,8 @@ public class Players {
         this.players = players;
     }
 
-    public static Players create(String[] names) {
-        return new Players(Stream.of(names)
-                .map(Player::new)
-                .collect(Collectors.toList()));
+    public static Players create(List<String> names) {
+        return new Players(names.stream().map(Player::new).collect(Collectors.toList()));
     }
 
     public List<String> getNames() {
@@ -23,5 +21,7 @@ public class Players {
                 .collect(Collectors.toList());
     }
 
-
+    public int count() {
+        return players.size();
+    }
 }
