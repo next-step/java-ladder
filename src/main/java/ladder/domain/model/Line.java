@@ -9,14 +9,14 @@ public class Line {
     }
 
     public void movePlayer(Player player) {
-        int result = player.getResult();
+        int point = player.getPoint();
 
-        if (isResultPullRight(result)) {
+        if (isPointPullRight(point)) {
             player.moveLeft(points.getPoints());
             return;
         }
 
-        if (isResultPullLeft(result)) {
+        if (isPointPullLeft(point)) {
             player.moveRight(points.getPoints());
             return;
         }
@@ -24,11 +24,11 @@ public class Line {
     }
 
 
-    boolean isResultPullRight(int result) {
+    boolean isPointPullRight(int result) {
         return result >= points.getPoints().size();
     }
 
-    boolean isResultPullLeft(int result) {
+    boolean isPointPullLeft(int result) {
         return result <= 0;
     }
 

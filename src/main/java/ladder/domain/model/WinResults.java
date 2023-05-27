@@ -23,6 +23,6 @@ public class WinResults {
     }
 
     public String searchWinResult(Player player) {
-        return winResultMap.get(player.getResult());
+        return winResultMap.get(player.getPoint());
     }
 }

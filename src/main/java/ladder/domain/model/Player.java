@@ -4,11 +4,11 @@ import java.util.List;
 
 public class Player {
     private PlayerName playerName;
-    private int result;
+    private int point;
 
     public Player(PlayerName playerName, int result) {
         this.playerName = playerName;
-        this.result = result;
+        this.point = result;
     }
 
     public boolean equalPlayerName(String playerName) {
@@ -31,29 +31,29 @@ public class Player {
     }
 
     public void moveLeft(List<Boolean> points) {
-        if (points.get(result - 1)) {
-            result += Direction.LEFT.value;
+        if (points.get(point - 1)) {
+            point += Direction.LEFT.value;
         }
     }
 
     public void moveRight(List<Boolean> points) {
-        if (points.get(result)) {
-            result += Direction.RIGHT.value;
+        if (points.get(point)) {
+            point += Direction.RIGHT.value;
         }
     }
 
     public void move(List<Boolean> points) {
-        if (points.get(result - 1)) {
-            result += Direction.LEFT.value;
+        if (points.get(point - 1)) {
+            point += Direction.LEFT.value;
             return;
         }
-        if (points.get(result)) {
-            result += Direction.RIGHT.value;
+        if (points.get(point)) {
+            point += Direction.RIGHT.value;
         }
     }
 
-    public int getResult() {
-        return result;
+    public int getPoint() {
+        return point;
     }
 
     public String getPlayerName() {
