@@ -14,6 +14,10 @@ public class LadderRow {
     private List<Boolean> lines;
     private LineStrategy lineStrategy;
 
+    public LadderRow(List<Boolean> lines) {
+        this.lines = lines;
+    }
+
     public LadderRow(int width) {
         this(width, DEFAULT_STRATEGY);
     }
