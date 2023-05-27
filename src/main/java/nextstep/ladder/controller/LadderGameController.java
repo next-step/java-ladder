@@ -12,10 +12,10 @@ public class LadderGameController {
     }
 
     public void playLadderGame() {
-        String[] names = InputView.readUserNames();
+        UserNames userNames = UserNames.of(InputView.readUserNames());
         String[] results = InputView.readGameResult();
         LadderHeight ladderHeight = new LadderHeight(InputView.readLadderHeight());
-        UserNames userNames = UserNames.of(names);
+
 
         LadderGame ladderGame = LadderGame.create(ladderHeight, userNames);
 
@@ -23,7 +23,7 @@ public class LadderGameController {
         ResultView.printBlankLine();
 
         ResultView.printUserNames(userNames.userNames());
-        ResultView.printLadder(ladderGame.toList());
+        ResultView.printLadder(ladderGame.getLines());
     }
 
 

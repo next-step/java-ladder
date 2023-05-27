@@ -19,6 +19,10 @@ public class UserNames {
         this.userNames = userNames;
     }
 
+    public static UserNames of(List<UserName> userNames) {
+        return new UserNames(userNames);
+    }
+
     public static UserNames of(String[] names) {
         if(names.length < MIN_COUNT_OF_PERSON) {
             throw new IllegalArgumentException("사다리 게임 진행을 위한 최소 인원 수는 2명입니다.");

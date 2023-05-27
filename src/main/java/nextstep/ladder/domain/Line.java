@@ -7,8 +7,8 @@ import java.util.List;
 public class Line {
     private final List<Boolean> points;
 
-    private Line(int countOfPerson) {
-        points = drawLine(countOfPerson);
+    private Line(int width) {
+        points = drawLine(width);
     }
 
     private Line(List<Boolean> points) {
@@ -36,7 +36,6 @@ public class Line {
             throw new IllegalArgumentException("가로 라인은 겹칠 수 없습니다.");
         }
     }
-
 
     protected List<Boolean> drawLine(int countOfPerson) {
         if (countOfPerson == 0) {
