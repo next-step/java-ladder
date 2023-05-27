@@ -20,8 +20,7 @@ public class Player {
 
     public enum Direction {
         LEFT(-1),
-        RIGHT(1),
-        NONE(0);
+        RIGHT(1);
 
         private final int value;
 
@@ -43,12 +42,11 @@ public class Player {
         }
     }
 
-    public void connectResult(List<Boolean> points) {
+    public void move(List<Boolean> points) {
         if (points.get(result - 1)) {
             result += Direction.LEFT.value;
             return;
         }
-
         if (points.get(result)) {
             result += Direction.RIGHT.value;
         }

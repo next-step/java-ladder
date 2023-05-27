@@ -23,7 +23,7 @@ public class Lines {
 
     public void move(Player player) {
         lines.stream()
-                .forEach(line -> line.moveLine(player));
+                .forEach(line -> line.movePlayer(player));
     }
 
     @Override

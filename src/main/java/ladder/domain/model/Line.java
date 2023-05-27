@@ -8,7 +8,7 @@ public class Line {
         points.calculatorLine(countOfPerson);
     }
 
-    public void moveLine(Player player) {
+    public void movePlayer(Player player) {
         int result = player.getResult();
 
         if (isResultPullRight(result)) {
@@ -20,7 +20,7 @@ public class Line {
             player.moveRight(points.getPoints());
             return;
         }
-        player.connectResult(points.getPoints());
+        player.move(points.getPoints());
     }
 
 
