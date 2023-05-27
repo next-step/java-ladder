@@ -2,11 +2,9 @@ package ladder.domain.ladder;
 
 import ladder.domain.player.Player;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Stream;
 
 public class LadderResult {
 
@@ -18,14 +16,6 @@ public class LadderResult {
 
     public Integer get(Player key) {
         return result.get(key);
-    }
-
-    public Stream<Player> keyStream() {
-        return result.keySet().stream();
-    }
-
-    public Map<Player, Integer> getResult() {
-        return Collections.unmodifiableMap(result);
     }
 
     @Override
