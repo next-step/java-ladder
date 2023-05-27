@@ -9,6 +9,10 @@ public class LadderHeight {
         this.height = height;
     }
 
+    public int getHeight() {
+        return height;
+    }
+
     private void validateHeight(int height) {
         if (height < 1) {
             throw new IllegalArgumentException("사다리의 높이는 1이상이어야 합니다.");

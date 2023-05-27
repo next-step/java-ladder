@@ -12,8 +12,8 @@ public class LadderGameTest {
     @DisplayName("사다리타기 게임을 올바르게 수행하고 결과가 잘 이루어진다")
     void gameStart_Process_ResultIn() {
         PlayerGroup playerGroup = new PlayerGroup("june1,june2,jun3");
-        int height = 2;
-        Ladder ladder = new Ladder(height, playerGroup.size());
+        LadderHeight ladderHeight = new LadderHeight(2);
+        Ladder ladder = new Ladder(ladderHeight, playerGroup.size());
         LadderGame ladderGame = new LadderGame(ladder, playerGroup);
 
         ladderGame.start();

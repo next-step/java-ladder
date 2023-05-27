@@ -2,6 +2,7 @@ package ladder.controller;
 
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.LadderGame;
+import ladder.domain.ladder.LadderHeight;
 import ladder.domain.player.PlayerGroup;
 import ladder.domain.WinningCategories;
 import ladder.view.InputView;
@@ -20,11 +21,11 @@ public class LadderController {
     public void play() {
         String playerNames = inputView.readPlayerNames();
         String winningList = inputView.readResultGroup();
-        int height = inputView.readHeight();
+        LadderHeight ladderHeight = new LadderHeight(inputView.readHeight());
 
         PlayerGroup playerGroup = new PlayerGroup(playerNames);
         WinningCategories winningCategories = new WinningCategories(winningList);
-        Ladder ladder = new Ladder(height, playerGroup.size());
+        Ladder ladder = new Ladder(ladderHeight, playerGroup.size());
 
         resultView.printLadder(ladder, playerGroup);
         resultView.printResultGroup(winningCategories);
