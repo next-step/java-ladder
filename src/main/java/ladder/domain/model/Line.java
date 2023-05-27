@@ -1,6 +1,5 @@
 package ladder.domain.model;
 
-import ladder.domain.model.strategy.CheckConnectStrategy;
 import ladder.domain.model.strategy.ConnectionStrategy;
 
 import java.util.ArrayList;
@@ -28,22 +27,22 @@ public class Line {
                 });
     }
 
-    public Player getConnectNumber(Player player, CheckConnectStrategy checkConnectStrategy) {
+    public void moveLine(Player player) {
         int result = player.getResult();
 
         if (isResultPullRight(result)) {
-            player.move(result + checkConnectStrategy.getLeftConnectResult(player, points));
-            return player;
+            player.moveLeft(points);
+            return;
         }
 
         if (isResultPullLeft(result)) {
-            player.move(result + checkConnectStrategy.getRightConnectResult(player, points));
-            return player;
+            player.moveRight(points);
+            return;
         }
-
-        player.move(result + checkConnectStrategy.getConnectResult(player, points));
-        return player;
+        player.connectResult(points);
     }
+
+
 
     boolean isResultPullRight(int result) {
         return result >= points.size();

@@ -21,7 +21,6 @@ public class LadderHeightParam {
         return height < MINIMUM_HEIGHT;
     }
 
-
     public LadderHeight convertParamToModel() {
         Supplier<LadderHeight> supplier = () -> new LadderHeight(height);
         return supplier.get();

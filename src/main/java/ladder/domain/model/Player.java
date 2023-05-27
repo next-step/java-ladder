@@ -1,5 +1,7 @@
 package ladder.domain.model;
 
+import java.util.List;
+
 public class Player {
     private PlayerName playerName;
     private int result;
@@ -16,12 +18,44 @@ public class Player {
                 .equals(playerName);
     }
 
-    public int getResult() {
-        return result;
+    public enum Direction {
+        LEFT(-1),
+        RIGHT(1),
+        NONE(0);
+
+        private final int value;
+
+        Direction(int value) {
+            this.value = value;
+        }
+
     }
 
-    public void move(int index) {
-        result = index;
+    public void moveLeft(List<Boolean> points) {
+        if (points.get(result - 1)) {
+            result += Direction.LEFT.value;
+        }
+    }
+
+    public void moveRight(List<Boolean> points) {
+        if (points.get(result)) {
+            result += Direction.RIGHT.value;
+        }
+    }
+
+    public void connectResult(List<Boolean> points) {
+        if (points.get(result - 1)) {
+            result += Direction.LEFT.value;
+            return;
+        }
+
+        if (points.get(result)) {
+            result += Direction.RIGHT.value;
+        }
+    }
+
+    public int getResult() {
+        return result;
     }
 
     public String getPlayerName() {

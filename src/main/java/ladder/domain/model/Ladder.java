@@ -13,7 +13,7 @@ public class Ladder {
 
     public void playGame() {
         IntStream.range(0, players.getPlayerCount())
-                .forEach(index -> lines.getConnectNumber(players.getPlayers().get(index)));
+                .forEach(index -> lines.move(players.getPlayers().get(index)));
     }
     // 사다리 타기 게임의 특징
     // 왼쪽, 오른쪽 확인 후 트루인지 확인

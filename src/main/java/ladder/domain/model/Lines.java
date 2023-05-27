@@ -1,7 +1,5 @@
 package ladder.domain.model;
 
-import ladder.domain.model.strategy.CheckConnect;
-
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -23,11 +21,9 @@ public class Lines {
         return lines;
     }
 
-    public void getConnectNumber(Player player) {
-        for (int i = 0; i < lines.size(); i++) { // 0 , 1, 2
-            lines.get(i)
-                    .getConnectNumber(player, new CheckConnect());
-        }
+    public void move(Player player) {
+        lines.stream()
+                .forEach(line -> line.moveLine(player));
     }
 
     @Override
