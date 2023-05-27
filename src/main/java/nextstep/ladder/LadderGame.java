@@ -7,7 +7,6 @@ import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
 import java.util.*;
-import java.util.stream.IntStream;
 
 public class LadderGame {
 
@@ -28,12 +27,10 @@ public class LadderGame {
 
         Result result = new Result(InputView.inputResult());
         Ladder ladder = new Ladder(InputView.inputLadderHeight(), players.size());
-//        addLadderLines(ladder.getHeight(), players.size());
 
         ResultView.printLadderResult(players, ladder.getLines(), result);
 
         String inputPlayer = InputView.inputPlayer();
-        printPlayerResult(result, inputPlayer, players, ladder);
 
     }
 
@@ -45,20 +42,6 @@ public class LadderGame {
         Arrays.stream(inputPlayers.split(NAME_REX_PATTERN))
                 .map(Player::new)
                 .forEach(players::add);
-    }
-    private void printPlayerResult(Result result, String inputPlayer, List<Player> players, Ladder ladder) {
-        if (ALL_PLAYER.equals(inputPlayer)) {
-            IntStream.range(0, players.size()).forEach(index -> printPlayerResultWithName(result, index, players.get(index), ladder));
-            return;
-        }
-
-        int point = players.indexOf(new Player(inputPlayer));
-        ResultView.printPlayerResult(result.getValue(ladder.getPlayerResultIndex(point)));
-
-    }
-
-    private void printPlayerResultWithName(Result result, int index, Player player, Ladder ladder) {
-        ResultView.printPlayerResultWithName(player.getName(), result.getValue(ladder.getPlayerResultIndex(index)));
     }
 
 }
