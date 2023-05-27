@@ -11,7 +11,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class PointTest {
 
@@ -74,6 +73,23 @@ class PointTest {
                 Arguments.of(new NoDraw(), true, false, Point.createInstance(new AllDraw())),
                 Arguments.of(new AllDraw(), false, true, Point.createInstance(new NoDraw())),
                 Arguments.of(new AllDraw(), true, false, Point.createInstance(new AllDraw()))
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("calculateMovedIndexTestArguments")
+    void calculateMovedTestIndex(boolean left, boolean right, int currentIndex, int movedIndex) {
+        Point point = new Point(left, right);
+        var actualMovedIndex = point.calculateMovedIndex(currentIndex);
+
+        assertThat(actualMovedIndex).isEqualTo(movedIndex);
+    }
+
+    public static Stream<Arguments> calculateMovedIndexTestArguments() {
+        return Stream.of(
+                Arguments.of(true, false, 2, 1),
+                Arguments.of(false, true, 2, 3),
+                Arguments.of(false, false, 2, 2)
         );
     }
 }

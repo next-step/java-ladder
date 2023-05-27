@@ -5,7 +5,7 @@ import nextstep.ladder.drawPolicy.DrawablePolicy;
 
 public class Point {
 
-    private static final int DISTANCE = 1;
+    public static final int DISTANCE = 1;
     private final boolean leftConnected;
     private final boolean rightConnected;
 
@@ -40,7 +40,7 @@ public class Point {
         return new Point(false, drawable.draw());
     }
 
-    private Point(boolean leftConnected, boolean rightConnected) {
+    protected Point(boolean leftConnected, boolean rightConnected) {
         this.leftConnected = leftConnected;
         this.rightConnected = rightConnected;
     }
