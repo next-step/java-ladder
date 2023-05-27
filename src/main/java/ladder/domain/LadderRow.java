@@ -35,7 +35,7 @@ public class LadderRow {
     }
 
     public boolean isNotEnd(int position) {
-        return position >= MIN_WIDTH && position < this.lines.size();
+        return position >= MIN_WIDTH && position <= this.lines.size();
     }
 
     public boolean isLeftEnd(int position) {

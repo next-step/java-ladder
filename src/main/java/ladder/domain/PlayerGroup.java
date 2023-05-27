@@ -12,6 +12,10 @@ public class PlayerGroup {
         this.playerList = convertToList(playerNames);
     }
 
+    public List<Player> getPlayerList() {
+        return Collections.unmodifiableList(playerList);
+    }
+
     public List<String> getPlayerNames() {
         return this.playerList.stream()
                 .map(player -> player.name())

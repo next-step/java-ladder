@@ -32,6 +32,6 @@ public class LadderController {
         LadderGame ladderGame = new LadderGame(ladder, playerGroup);
         ladderGame.start();
 
-        resultView.printResult(winningCategories, ladderGame.getLadderResult());
+        resultView.printResult(winningCategories, playerGroup, ladderGame.getLadderResult());
     }
 }

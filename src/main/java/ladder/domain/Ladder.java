@@ -11,10 +11,6 @@ public class Ladder {
         rows = generateRows(height, countOfPlayers);
     }
 
-    public boolean hasLine(int height, int width) {
-        return this.rows.get(height).hasLine(width);
-    }
-
     public int move(int index) {
         int position = index;
         for (LadderRow row : rows) {
