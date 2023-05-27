@@ -1,8 +1,12 @@
 package ladder.view;
 
 import ladder.domain.*;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.LadderResult;
+import ladder.domain.ladder.LadderRow;
+import ladder.domain.player.Player;
+import ladder.domain.player.PlayerGroup;
 
-import javax.print.MultiDocPrintService;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;

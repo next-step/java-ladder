@@ -1,8 +1,8 @@
 package ladder.controller;
 
-import ladder.domain.Ladder;
-import ladder.domain.LadderGame;
-import ladder.domain.PlayerGroup;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.LadderGame;
+import ladder.domain.player.PlayerGroup;
 import ladder.domain.WinningCategories;
 import ladder.view.InputView;
 import ladder.view.ResultView;

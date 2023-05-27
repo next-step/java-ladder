@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import ladder.strategy.LineStrategy;
 import ladder.strategy.RandomLineStrategy;

@@ -1,6 +1,7 @@
 package ladder.domain.ladder;
 
-import ladder.domain.*;
+import ladder.domain.player.Player;
+import ladder.domain.player.PlayerGroup;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
