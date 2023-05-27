@@ -63,7 +63,6 @@ public class OutPutView {
     public static void outputResult(WinResults winResults) {
         String playerNamesString = winResults.getWinResults()
                 .stream()
-                .map(winResult -> winResult.getWinResult())
                 .collect(Collectors.joining(" "));
 
         System.out.println(playerNamesString);

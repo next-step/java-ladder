@@ -1,35 +1,31 @@
 package ladder.domain.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private Points poins = new Points();
-
-    private List<Boolean> points = new ArrayList<>();
-
+    private Points points = new Points();
     public void calculatorLine(int countOfPerson) {
-        poins.calculatorLine(countOfPerson);
+        points.calculatorLine(countOfPerson);
     }
 
     public void moveLine(Player player) {
         int result = player.getResult();
 
         if (isResultPullRight(result)) {
-            player.moveLeft(points);
+            player.moveLeft(points.getPoints());
             return;
         }
 
         if (isResultPullLeft(result)) {
-            player.moveRight(points);
+            player.moveRight(points.getPoints());
             return;
         }
-        player.connectResult(points);
+        player.connectResult(points.getPoints());
     }
 
 
     boolean isResultPullRight(int result) {
-        return result >= points.size();
+        return result >= points.getPoints().size();
     }
 
     boolean isResultPullLeft(int result) {
@@ -37,13 +33,13 @@ public class Line {
     }
 
     public List<Boolean> getLine() {
-        return points;
+        return points.getPoints();
     }
 
     @Override
     public String toString() {
         return "Line{" +
-                "points=" + points +
+                "points=" + points.getPoints() +
                 '}';
     }
 }

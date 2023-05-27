@@ -1,4 +1,4 @@
-package ladder.domain.model;
+package ladder.view;
 
 public enum SearchType {
     ALL("ALL");
@@ -9,11 +9,7 @@ public enum SearchType {
         this.searchType = searchType;
     }
 
-    public boolean equals(String searchType) {
+    public boolean equalsSearchType(String searchType) {
         return this.searchType.equals(searchType);
-    }
-
-    public boolean notEquals(String searchType) {
-        return !this.searchType.equals(searchType);
     }
 }

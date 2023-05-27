@@ -1,7 +1,6 @@
-package ladder.domain.model.Param;
+package ladder.param;
 
 import ladder.NameUtils;
-import ladder.domain.model.WinResult;
 import ladder.domain.model.WinResults;
 import ladder.exception.WinResultsArgumentException;
 
@@ -33,9 +32,6 @@ public class WinResultsParam {
         winResults = NameUtils.fillOrRightAlign(winResults);
         List<String> finalWinResults = winResults;
 
-        return  new WinResults(finalWinResults.stream()
-                .map(result -> new WinResult(result))
-                .collect(Collectors.toList()));
-
+        return  new WinResults(finalWinResults);
     }
 }

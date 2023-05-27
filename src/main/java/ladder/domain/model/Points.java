@@ -34,4 +34,8 @@ public class Points {
         }
         points.add(false);
     }
+
+    public List<Boolean> getPoints() {
+        return points;
+    }
 }

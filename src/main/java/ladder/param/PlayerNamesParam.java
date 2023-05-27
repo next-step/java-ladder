@@ -1,4 +1,4 @@
-package ladder.domain.model.Param;
+package ladder.param;
 
 import ladder.NameUtils;
 import ladder.domain.model.PlayerName;

@@ -1,14 +1,15 @@
 package ladder.controller;
 
 import ladder.domain.model.*;
-import ladder.domain.model.Param.LadderHeightParam;
-import ladder.domain.model.Param.PlayerNameParam;
-import ladder.domain.model.Param.PlayerNamesParam;
-import ladder.domain.model.Param.WinResultsParam;
+import ladder.param.LadderHeightParam;
+import ladder.param.PlayerNameParam;
+import ladder.param.PlayerNamesParam;
+import ladder.param.WinResultsParam;
 import ladder.domain.service.LadderGameService;
 import ladder.domain.service.PlayerService;
 import ladder.view.InPutView;
 import ladder.view.OutPutView;
+import ladder.view.SearchType;
 
 public class LadderGameController {
     public static void main(String[] args) {
@@ -41,11 +42,11 @@ public class LadderGameController {
         PlayerNameParam playerNameParam = InPutView.askPlayerWinResults();
 
 
-        if (SearchType.ALL.equals(playerNameParam.getPlayerName())) {
+        if (SearchType.ALL.equalsSearchType(playerNameParam.getPlayerName())) {
             OutPutView.outPutWinResults(players, winResults);
         }
 
-        if (SearchType.ALL.notEquals(playerNameParam.getPlayerName())) {
+        if (!SearchType.ALL.equalsSearchType(playerNameParam.getPlayerName())) {
             Player player = playerService.searchPlayerResult(players, playerNameParam);
             OutPutView.outPutWinResult(player, winResults);
         }

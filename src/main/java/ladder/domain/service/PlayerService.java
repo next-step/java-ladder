@@ -1,6 +1,6 @@
 package ladder.domain.service;
 
-import ladder.domain.model.Param.PlayerNameParam;
+import ladder.param.PlayerNameParam;
 import ladder.domain.model.Player;
 import ladder.domain.model.PlayerNames;
 import ladder.domain.model.Players;

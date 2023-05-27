@@ -1,4 +1,4 @@
-package ladder.domain.model.Param;
+package ladder.param;
 
 import ladder.domain.model.LadderHeight;
 import ladder.exception.LadderHeightArgumentException;

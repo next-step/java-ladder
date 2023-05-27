@@ -1,6 +1,7 @@
-package ladder.domain.model.Param;
+package ladder.domain.model.param;
 
 import ladder.exception.LadderHeightArgumentException;
+import ladder.param.LadderHeightParam;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 

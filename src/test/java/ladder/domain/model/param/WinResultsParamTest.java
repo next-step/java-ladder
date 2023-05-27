@@ -1,6 +1,7 @@
-package ladder.domain.model.Param;
+package ladder.domain.model.param;
 
 import ladder.exception.WinResultsArgumentException;
+import ladder.param.WinResultsParam;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
