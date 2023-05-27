@@ -6,14 +6,6 @@ public class User {
     public static final int MAXIMUM_USER_NAME_LENGTH = 5;
     private final String name;
 
-    public static User create(String name) {
-        return new User(name);
-    }
-
-    public String name() {
-        return this.name;
-    }
-
     private User(String name) {
         validateName(name);
         this.name = name;
@@ -25,16 +17,12 @@ public class User {
         }
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(name, user.name);
+    public static User create(String name) {
+        return new User(name);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
+    public String name() {
+        return this.name;
     }
+
 }

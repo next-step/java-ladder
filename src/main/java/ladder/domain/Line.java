@@ -8,6 +8,21 @@ import java.util.List;
 public class Line {
     private final List<Point> points;
 
+    private Line(List<Point> points) {
+        validateLine(points);
+        this.points = points;
+    }
+
+    private void validateLine(List<Point> points) {
+        if (isEmpty(points)) {
+            throw new IllegalArgumentException("Line is Empty");
+        }
+    }
+
+    private boolean isEmpty(List<Point> points) {
+        return points == null || points.isEmpty();
+    }
+
     public static Line create(List<Point> points) {
         return new Line(points);
     }
@@ -16,14 +31,14 @@ public class Line {
         validateUserCount(usersCount);
         List<Point> points = new ArrayList<>();
         Point currentPoint = Point.createFirst(pointGenerator.generate());
-        points.add(Point.createFirst(pointGenerator.generate()));
+        points.add(currentPoint);
 
         for (int i = 1; i < usersCount - 1; i++) {
-            Point nextPoint = Point.createNext(currentPoint.canMoveToRight(), pointGenerator.generate());
+            Point nextPoint = currentPoint.createNext(pointGenerator.generate());
             points.add(nextPoint);
             currentPoint = nextPoint;
         }
-        points.add(Point.createLast(currentPoint.canMoveToRight()));
+        points.add(currentPoint.createLast());
 
         return create(points);
     }
@@ -42,18 +57,8 @@ public class Line {
         return points;
     }
 
-    private Line(List<Point> points) {
-        validateLine(points);
-        this.points = points;
+    public int move(int position) {
+        return points.get(position).move();
     }
 
-    private void validateLine(List<Point> points) {
-        if (isEmpty(points)) {
-            throw new IllegalArgumentException("Line is Empty");
-        }
-    }
-
-    private boolean isEmpty(List<Point> points) {
-        return points == null || points.isEmpty();
-    }
 }

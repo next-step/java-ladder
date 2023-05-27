@@ -1,20 +1,28 @@
 package ladder;
 
-import ladder.domain.Ladder;
-import ladder.domain.User;
+import ladder.domain.*;
 import ladder.generator.RandomPointGenerator;
 import ladder.view.InputView;
 import ladder.view.ResultView;
-
 import java.util.List;
 
 public class LadderApplication {
     public static void main(String[] args) {
-        List<User> users = InputView.inputUsers();
-        int height = InputView.inputHeight();
+        List<User> userList = InputView.inputUsers();
+        Users users = Users.create(userList);
 
-        ResultView.printResultInfoMessage();
+        GameResult gameResult = InputView.inputLadderGameResults();
+
+        int height = InputView.inputHeight();
+        Ladder ladder = Ladder.create(userList.size(), height, new RandomPointGenerator());
+
+        ResultView.printLadderInfoMessage();
         ResultView.printUsers(users);
-        ResultView.printLadder(Ladder.create(users.size(), height, new RandomPointGenerator()));
+        ResultView.printLadder(ladder);
+        ResultView.printLadderGameResult(gameResult);
+
+        LadderGame ladderGame = new LadderGame(users, ladder, gameResult);
+        GameExecutionResult gameExecutionResult = ladderGame.execute();
+        ResultView.printGamesResult(gameExecutionResult);
     }
 }
