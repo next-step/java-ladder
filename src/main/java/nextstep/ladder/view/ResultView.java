@@ -4,6 +4,7 @@ import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Lines;
 import nextstep.ladder.domain.UserName;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,6 +22,13 @@ public class ResultView {
     public static void printUserNames(List<UserName> userNames) {
         String names = userNames.stream()
                 .map(userName -> String.format("%6s", userName.name()))
+                .collect(Collectors.joining());
+        System.out.println(names);
+    }
+
+    public static void printResultNames(String[] resultNames) {
+        String names = Arrays.stream(resultNames)
+                .map(name -> String.format("%6s", name))
                 .collect(Collectors.joining());
         System.out.println(names);
     }

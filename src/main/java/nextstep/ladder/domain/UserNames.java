@@ -37,6 +37,10 @@ public class UserNames {
         return Collections.unmodifiableList(userNames);
     }
 
+    public String userName(int index) {
+        return userNames.get(index).name();
+    }
+
     public int count() {
         return userNames.size();
     }
