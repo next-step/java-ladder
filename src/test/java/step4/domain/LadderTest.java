@@ -23,9 +23,9 @@ public class LadderTest {
                 new Line(List.of(true, false, false)),
                 new Line(List.of(false, true, false)),
                 new Line(List.of(true, false, true))));
-        Assertions.assertThat(ladder.findPositionByIndex(0)).isEqualTo(0);
-        Assertions.assertThat(ladder.findPositionByIndex(1)).isEqualTo(3);
-        Assertions.assertThat(ladder.findPositionByIndex(2)).isEqualTo(2);
-        Assertions.assertThat(ladder.findPositionByIndex(3)).isEqualTo(1);
+        Assertions.assertThat(ladder.findResultPositionByIndex(0)).isEqualTo(0);
+        Assertions.assertThat(ladder.findResultPositionByIndex(1)).isEqualTo(3);
+        Assertions.assertThat(ladder.findResultPositionByIndex(2)).isEqualTo(2);
+        Assertions.assertThat(ladder.findResultPositionByIndex(3)).isEqualTo(1);
     }
 }

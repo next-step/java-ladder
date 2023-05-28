@@ -18,7 +18,7 @@ public class DefaultLineBuilder implements LineBuilder {
     @Override
     public List<Boolean> buildLine(int countOfPerson) {
         List<Boolean> line = new ArrayList<>();
-        for (int i = 0; i < countOfPerson; i++) {
+        for (int i = 0; i < countOfPerson - 1; i++) {
             line.add(makeEachPartOfLine(line, i));
         }
         return line;

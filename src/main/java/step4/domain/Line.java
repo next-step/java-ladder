@@ -1,5 +1,6 @@
 package step4.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Line {
@@ -37,5 +38,9 @@ public class Line {
 
     private boolean isLastPosition(int initPosition) {
         return initPosition == line.size();
+    }
+
+    public List<Boolean> getLine() {
+        return Collections.unmodifiableList(line);
     }
 }
