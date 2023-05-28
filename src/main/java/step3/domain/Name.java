@@ -13,7 +13,7 @@ public class Name {
         this.name = name;
     }
 
-    public static void validateInput(String input) {
+    private static void validateInput(String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException("입력값은 빈값일 수 없습니다.");
         }

@@ -40,14 +40,22 @@ public class Line {
     }
 
     public int nextIndex(int nowIndex) {
-        if (nowIndex < points.size() && points.get(nowIndex)) {
+        if (isMovableToRight(nowIndex)) {
             return nowIndex + 1;
         }
 
-        if (nowIndex != 0 && points.get(nowIndex - 1)) {
+        if (isMovableToLeft(nowIndex)) {
             return nowIndex - 1;
         }
 
         return nowIndex;
+    }
+
+    private boolean isMovableToRight(int nowIndex) {
+        return nowIndex < points.size() && points.get(nowIndex);
+    }
+
+    private boolean isMovableToLeft(int nowIndex) {
+        return nowIndex != 0 && points.get(nowIndex - 1);
     }
 }

@@ -3,9 +3,14 @@ package step3.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.ArgumentsSources;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -25,23 +30,27 @@ class LineTest {
                 .isInstanceOf(IllegalStateException.class);
     }
 
-    @DisplayName("사다리타기 - 움직이지 않음")
-    @Test
-    public void testLine_움직이지_않음() {
-        Line line1 = new Line(4, count -> List.of(false, false, false));
-        assertThat(line1.nextIndex(0)).isEqualTo(0);
-        assertThat(line1.nextIndex(1)).isEqualTo(1);
-        assertThat(line1.nextIndex(2)).isEqualTo(2);
-        assertThat(line1.nextIndex(3)).isEqualTo(3);
+    @DisplayName("사다리타기 - 다음 라인으로 이동")
+    @ParameterizedTest
+    @MethodSource("testMoveLineTestCase")
+    public void testMoveLine(Line line, Map<Integer, Integer> resultMap) {
+        resultMap.keySet()
+                .forEach(
+                        key -> assertThat(line.nextIndex(key))
+                                .isEqualTo(resultMap.get(key)));
     }
 
-    @DisplayName("사다리타기 - 이동")
-    @Test
-    public void testLine_이동() {
-        Line line1 = new Line(4, count -> List.of(true, false, true));
-        assertThat(line1.nextIndex(0)).isEqualTo(1);
-        assertThat(line1.nextIndex(1)).isEqualTo(0);
-        assertThat(line1.nextIndex(2)).isEqualTo(3);
-        assertThat(line1.nextIndex(3)).isEqualTo(2);
+    static Stream<Arguments> testMoveLineTestCase() {
+        return Stream.of(
+                Arguments.arguments(
+                        new Line(4, count -> List.of(false, false, false)),
+                        Map.of(0, 0, 1, 1, 2, 2, 3, 3)),
+                Arguments.arguments(
+                        new Line(4, count -> List.of(true, false, true)),
+                        Map.of(0, 1, 1, 0, 2, 3, 3, 2)),
+                Arguments.arguments(
+                        new Line(4, count -> List.of(false, true, false)),
+                        Map.of(0, 0, 1, 2, 2, 1, 3, 3))
+        );
     }
 }
