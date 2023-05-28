@@ -15,7 +15,7 @@ class LineRandomTest {
         LineCreateStrategy strategy = new LineRandom();
 
         // when
-        List<Boolean> result = strategy.create(4);
+        List<Point> result = strategy.create(4);
 
         // then
         assertThat(result.size()).isEqualTo(4);
