@@ -27,4 +27,11 @@ public class LadderRowTest {
         List<Boolean> expected = new ArrayList<>(Arrays.asList(true, false, true));
         assertThat(ladderRow.isEqualTo(expected)).isTrue();
     }
+
+    @Test
+    @DisplayName("주어진 x좌표가 이동할 수 있는 방향을 반환한다.")
+    void 이동가능한_방향() {
+        LadderRow ladderRow = new LadderRow(3, lineStrategyTrue);
+        assertThat(ladderRow.determineDirection(0)).isEqualTo(Direction.RIGHT);
+    }
 }

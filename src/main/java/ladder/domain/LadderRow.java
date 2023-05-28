@@ -30,7 +30,7 @@ public class LadderRow {
         final List<Boolean> newLines = new ArrayList();
         newLines.add(generateLine());
         for (int i = 1; i < width; i++) {
-            newLines.add(generateLine(newLines.get(i-1)));
+            newLines.add(generateLine(newLines.get(i - 1)));
         }
         return newLines;
     }
@@ -44,6 +44,24 @@ public class LadderRow {
             return false;
         }
         return lineStrategy.isConnectable();
+    }
+
+    public Direction determineDirection(int x) {
+        if (!isOnRightEdge(x) && lines.get(x)) {
+            return Direction.RIGHT;
+        }
+        if (!isOnLeftEdge(x) && lines.get(x - 1)) {
+            return Direction.LEFT;
+        }
+        return Direction.DOWN;
+    }
+
+    private boolean isOnLeftEdge(int x) {
+        return x == 0;
+    }
+
+    private boolean isOnRightEdge(int x) {
+        return x == lines.size();
     }
 
     public int size() {

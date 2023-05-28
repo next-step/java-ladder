@@ -12,4 +12,11 @@ public class PointTest {
         Point point = new Point(0,0);
         assertThat(point.move(Direction.RIGHT)).isEqualTo(new Point(1,0));
     }
+
+    @Test
+    @DisplayName("주어진 y좌표에 일치 여부를 반환한다.")
+    void Y좌표_일치() {
+        Point point = new Point(0,0);
+        assertThat(point.isOnY(0)).isTrue();
+    }
 }

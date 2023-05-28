@@ -15,11 +15,11 @@
 ### LadderRow
 - [X] 주어진 width만큼의 line 생성 여부를 LineStrategy에 따라 결정한다.
 - [X] 단, 연달아 line을 생성하지 않는다. 
-- [ ] 주어진 Point에서 나아갈 수 있는 Direction을 반환한다. 
+- [X] 주어진 x좌표에서 나아갈 수 있는 Direction을 반환한다. 
 
 ### Ladder
 - [X] 주어진 height만큼의 Row 리스트를 가진다.
-- [ ] 모든 Player에 대해 사다리타기를 수행한 후 Result를 반환한다.
+- [X] 모든 Player에 대해 사다리타기를 수행한 후 Result를 반환한다.
 
 ### Point
 - [X] 사다리 내 교차점의 좌표를 가진다.

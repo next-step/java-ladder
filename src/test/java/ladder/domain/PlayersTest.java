@@ -17,4 +17,12 @@ public class PlayersTest {
         Players players = new Players(names);
         assertThat(players.size()).isEqualTo(3);
     }
+
+    @Test
+    @DisplayName("주어진 인덱스의 요소를 반환한다.")
+    public void get() {
+        List<String> names = List.of("ayla", "jenna", "andy");
+        Players players = new Players(names);
+        assertThat(players.get(0).getName()).isEqualTo("ayla");
+    }
 }

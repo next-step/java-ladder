@@ -1,12 +1,18 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Result {
-    private HashMap<Player, Prize> matchingResult;
+    private final Map<Player, Prize> matchingResult;
 
     public Result() {
         this.matchingResult = new HashMap<Player, Prize>();
+    }
+
+    public Map<Player, Prize> getMatchingResult() {
+        return Collections.unmodifiableMap(matchingResult);
     }
 
     public void put(Player player, Prize prize) {

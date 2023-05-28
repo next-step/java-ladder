@@ -23,6 +23,10 @@ public class Point {
         return new Point(this.x + direction.getX(), this.y + direction.getY());
     }
 
+    public boolean isOnY(int y) {
+        return this.y == y;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -35,4 +39,5 @@ public class Point {
     public int hashCode() {
         return Objects.hash(x, y);
     }
+
 }
