@@ -17,13 +17,12 @@ public class Lines {
                 .collect(Collectors.toList());
     }
 
-    public List<Line> getLines() {
-        return lines;
+    public Lines(List<Line> lines) {
+        this.lines = lines;
     }
 
-    public void move(Player player) {
-        lines.stream()
-                .forEach(line -> line.movePlayer(player));
+    public List<Line> getLines() {
+        return lines;
     }
 
     @Override

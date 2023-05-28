@@ -20,22 +20,15 @@ class PlayerTest {
         points.add(true);
     }
 
-
     @Test
     void moveLeft() {
-        player.moveLeft(points);
+        player.moveLeft();
         assertThat(player.getPoint()).isEqualTo(0);
     }
 
     @Test
     void moveRight() {
-        player.moveRight(points);
+        player.moveRight();
         assertThat(player.getPoint()).isEqualTo(2);
-    }
-
-    @Test
-    void move() {
-        player.move(points);
-        assertThat(player.getPoint()).isEqualTo(0);
     }
 }
