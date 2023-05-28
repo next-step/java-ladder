@@ -5,8 +5,9 @@ import java.util.Random;
 public class RandomUtil {
 
     private static final Random random = new Random();
-    public static boolean generator() {
-        return random.nextBoolean();
+
+    public static int generator(int number) {
+        return random.nextInt(number);
     }
 
 }

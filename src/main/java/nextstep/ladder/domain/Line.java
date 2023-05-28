@@ -3,30 +3,43 @@ package nextstep.ladder.domain;
 import nextstep.ladder.util.RandomUtil;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Line {
 
-    private final List<Boolean> points;
+    private List<Point> points;
 
-    public Line(int countOfPerson) {
-        List<Boolean> points = new ArrayList<>();
-        IntStream.range(0, countOfPerson - 1)
-                .forEach(index -> addPoint(points, index));
-        this.points = points;
+    public Line(int pointSize) {
+        this.points = createPoints(pointSize);
     }
 
-    private void addPoint(List<Boolean> points, int index) {
-        if (index == 0 || !points.get(index - 1)) {
-            points.add(RandomUtil.generator());
+    public List<Point> getPoints() {
+        return Collections.unmodifiableList(points);
+    }
+
+    private List<Point> createPoints(int pointSize) {
+        List<Point> points = new ArrayList<>();
+        for (int index = 0; index < pointSize; index++) {
+            addPoint(points, index, pointSize);
+        }
+        return points;
+    }
+
+    private void addPoint(List<Point> points, int index, int pointSize) {
+        int totalSizeBound = PointStatus.TOTAL_INDEX_SIZE;
+        int twoResultSizeBound = PointStatus.TWO_RESULT_SIZE;
+        if (index == 0) {
+            points.add(Point.createFirst(() -> RandomUtil.generator(twoResultSizeBound)));
             return;
         }
-        points.add(false);
-    }
-
-    public List<Boolean> getPoints() {
-        return points;
+        if (pointSize - 1 == index) {
+            points.add(Point.createLast(() -> RandomUtil.generator(twoResultSizeBound), points.get(index - 1)));
+            return;
+        }
+        Point point = Point.create(() -> RandomUtil.generator(totalSizeBound), points.get(index - 1));
+        // LEFT 일때 points list 값 바꾸기
+        points.add(point);
     }
 
 }
