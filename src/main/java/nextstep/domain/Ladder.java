@@ -44,7 +44,7 @@ public class Ladder {
     }
 
     public Map<Username, String> getResult(Username name) {
-        if (name.equals(new Username("all"))) {
+        if (name.equals(Username.ALL)) {
             return result;
         }
         return Map.of(name, result.get(name));
