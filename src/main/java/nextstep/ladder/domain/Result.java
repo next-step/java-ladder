@@ -1,25 +1,22 @@
 package nextstep.ladder.domain;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 public class Result {
 
-    private static final String RESULT_REX_PATTERN = ",";
+    private final ResultId id;
 
-    private final List<String> values;
+    private String value;
 
-    public Result(String values) {
-        this.values = Arrays.asList(values.split(RESULT_REX_PATTERN));
+    public Result(ResultId id, String value) {
+        this.id = id;
+        this.value = value;
     }
 
-    public String getValue(int index) {
-        return values.get(index);
+    public ResultId getId() {
+        return id;
     }
 
-    public List<String> getValues() {
-        return Collections.unmodifiableList(values);
+    public String getValue() {
+        return value;
     }
 
 }
