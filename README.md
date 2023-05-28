@@ -21,12 +21,6 @@
 - [X] 주어진 height만큼의 Row 리스트를 가진다.
 - [ ] 모든 Player에 대해 사다리타기를 수행한 후 Result를 반환한다.
 
-### Player
-- [X] 5자 이내의 이름을 가진다.
-
-### Players
-- [X] Player 리스트를 가진다.
-
 ### Point
 - [ ] 사다리 내 교차점의 좌표를 가진다.
 - [ ] 주어진 Direction에 해당되는 새로운 Point 객체를 반환한다.
@@ -34,6 +28,12 @@
 ### Direction
 - [ ] RIGHT, LEFT, DOWN 중 하나의 값을 가진다.
 - [ ] 각 방향에 맞는 좌표 이동 범위 정보를 반환한다.
+
+### Player
+- [X] 5자 이내의 이름을 가진다.
+
+### Players
+- [X] Player 리스트를 가진다.
 
 ### Prize
 - [ ] 5자 이내의 이름을 가진다.
