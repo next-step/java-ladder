@@ -6,15 +6,29 @@
 * 모든 피드백을 완료하면 다음 단계를 도전하고 앞의 과정을 반복한다.
 
 ## 온라인 코드 리뷰 과정
-* [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+* [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](htㅇtps://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
 
 ## 2단계 - 사다리(생성) 기능 요구사항
 - 도메인
   - Player
     - [x] 사다리 게임에 참여하는 사람들의 이름을 받아서 멤버들을 생성할 수 있다.
+    - [x] 참여자의 이름값이 null이면 예외를 던진다.
     - [x] 참여하는 사람의 이름이 5글자가 넘어가면 예외를 던진다.
   - LadderRow
     - [x] 주어진 width만큼의 line 생성 여부를 LineStrategy 에 따라 결정한다.
     - [x] 단, 연달아 line을 생성하지 않는다.
   - Ladder
-    - [ ] 요청받은 사다리 높이(height)만큼 사다리를 만들 수 있다.
+    - [x] 요청받은 사다리 높이(height)만큼 사다리를 만들 수 있다.
+
+## 3단계 - 사다(게임실행) 기능 요구사항
+
+- 도메인
+  - Result
+    - [x] null이나 공백을 입력받으면 assertThatIllegalArgumentException 예외를 던진다. 
+  - ResultGroup
+    - [x] 실행결과를 입력받아 결과 객체를 생성할 수 있다.
+  - [ ] 특정 참여자 이름의 입력값을 받아 해당하는 결과를 도출해낼 수 있다.
+
+- 출력
+  - [ ] 특정 참여자의 결과를 출력할 수 있다.
+  - [ ] "all" 입력값을 받아 모두의 결과를 출력할 수 있다.

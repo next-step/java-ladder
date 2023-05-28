@@ -1,7 +1,10 @@
 package ladder.controller;
 
-import ladder.domain.Ladder;
-import ladder.domain.PlayerGroup;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.LadderGame;
+import ladder.domain.ladder.LadderHeight;
+import ladder.domain.player.PlayerGroup;
+import ladder.domain.WinningCategories;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -17,11 +20,19 @@ public class LadderController {
 
     public void play() {
         String playerNames = inputView.readPlayerNames();
-        int height = inputView.readHeight();
+        String winningList = inputView.readResultGroup();
+        LadderHeight ladderHeight = new LadderHeight(inputView.readHeight());
 
         PlayerGroup playerGroup = new PlayerGroup(playerNames);
-        Ladder ladder = new Ladder(height, playerGroup.size());
+        WinningCategories winningCategories = new WinningCategories(winningList);
+        Ladder ladder = new Ladder(ladderHeight, playerGroup.size());
 
         resultView.printLadder(ladder, playerGroup);
+        resultView.printResultGroup(winningCategories);
+
+        LadderGame ladderGame = new LadderGame(ladder, playerGroup);
+        ladderGame.start();
+
+        resultView.printResult(winningCategories, playerGroup, ladderGame.getLadderResult());
     }
 }
