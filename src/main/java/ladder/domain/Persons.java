@@ -15,9 +15,7 @@ public class Persons {
         validateNames(namesOfPersons);
 
         String[] names = namesOfPersons.split(DELIMITER);
-//        persons = Arrays.stream(namesOfPersons.split(DELIMITER))
-//                .map(s -> new Person(s))
-//                .collect(Collectors.toCollection(ArrayList::new));
+
         persons = IntStream.range(0, names.length)
                 .mapToObj(i -> new Person(names[i], i))
                 .collect(Collectors.toCollection(ArrayList::new));
@@ -35,5 +33,11 @@ public class Persons {
 
     public int getCount() {
         return persons.size();
+    }
+
+    public String[] getNames() {
+        return persons.stream()
+                .map(Person::toString)
+                .toArray(String[]::new);
     }
 }

@@ -2,16 +2,18 @@ package ladder.domain;
 
 import ladder.domain.enums.Direction;
 
-import java.awt.*;
-
 public class VerticalLine {
-    private final Direction connectDirection;
+    public final Direction connectDirection;
 
     public VerticalLine(Direction connectDirection) {
         this.connectDirection = connectDirection;
     }
 
-    public int getNextPosition(int position) {
-        return position + connectDirection.getValue();
+    public int getNextPosition(int currentPosition) {
+        return currentPosition + connectDirection.getValue();
+    }
+
+    public boolean hasRightConnection() {
+        return connectDirection.equals(Direction.RIGHT);
     }
 }

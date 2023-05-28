@@ -5,25 +5,30 @@ import ladder.domain.enums.Direction;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Line {
     private List<VerticalLine> verticalLines = new ArrayList<>();
 
-    public Line(int countOfPerson) {
-        Random random = new Random();
+    Random random = new Random();
 
-        Direction lastDirection = Direction.STAY;
-        for (int i = 0; i < countOfPerson; i++) {
-            if (lastDirection == Direction.RIGHT) {
-                verticalLines.add(new VerticalLine(Direction.LEFT));
-                lastDirection = Direction.LEFT;
+    public Line(int width) {
+        for (int i = 0; i < width; i++) {
+ //           if (Direction.getRightOrNone().equals(Direction.NONE) || i == width - 1) {\
+            if (random.nextBoolean() || i == width - 1) {
+                verticalLines.add(new VerticalLine(Direction.NONE));
                 continue;
             }
 
-            if (i < countOfPerson - 1) {
-                lastDirection = Direction.getRightOrStay();
-                verticalLines.add(new VerticalLine(lastDirection));
-            }
+            verticalLines.add(new VerticalLine(Direction.RIGHT));
+            verticalLines.add(new VerticalLine(Direction.LEFT));
+            i++;
         }
     }
+
+    public List<VerticalLine> getVerticalLines() {
+        return verticalLines;
+    }
+
 }
