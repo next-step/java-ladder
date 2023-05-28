@@ -15,30 +15,26 @@ public enum Direction {
         this.value = value;
     }
 
-//    public static Direction of(int number) {
-//        return Arrays.stream(Direction.values())
-//                .filter(direction -> direction.value == number)
-//                .findFirst()
-//                .orElseThrow(() -> new IllegalArgumentException(
-//                        "유효하지 않은 Direction 값이 입력되었습니다. (입력값 : " + number + ")"));
-//    }
-
     public int getValue() {
         return value;
     }
 
-//    public static Direction getRightOrNone() {
-////        return of(random.nextInt(RIGHT.value + 1));
-//        if (random.nextBoolean()) {
-//            return RIGHT;
-//        }
-//        return NONE;
-//    }
-//
-//    public static Direction getLeftOrNone() {
-//        if (random.nextBoolean()) {
-//            return LEFT;
-//        }
-//        return NONE;
-//    }
+    private static Direction getRightOrNone() {
+        if (random.nextBoolean()) {
+            return RIGHT;
+        }
+        return NONE;
+    }
+
+    public static Direction getConnectDirection(Direction previous, boolean isLast) {
+        if (previous.equals(RIGHT)) {
+            return LEFT;
+        }
+
+        if (isLast) {
+            return NONE;
+        }
+
+        return getRightOrNone();
+    }
 }

@@ -14,16 +14,10 @@ public class Line {
     Random random = new Random();
 
     public Line(int width) {
+        Direction direction = Direction.NONE; // 초기값
         for (int i = 0; i < width; i++) {
- //           if (Direction.getRightOrNone().equals(Direction.NONE) || i == width - 1) {\
-            if (random.nextBoolean() || i == width - 1) {
-                verticalLines.add(new VerticalLine(Direction.NONE));
-                continue;
-            }
-
-            verticalLines.add(new VerticalLine(Direction.RIGHT));
-            verticalLines.add(new VerticalLine(Direction.LEFT));
-            i++;
+            direction = Direction.getConnectDirection(direction, i == width - 1);
+            verticalLines.add(new VerticalLine(direction));
         }
     }
 
