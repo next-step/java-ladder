@@ -1,5 +1,6 @@
 package nextstep.ladder.view;
 
+import nextstep.ladder.domain.ExecuteResults;
 import nextstep.ladder.domain.People;
 
 import java.util.Scanner;
@@ -11,6 +12,11 @@ public class InputView {
     public People people() {
         ResultView.printPeopleInputCommand();
         return new People(nextLine().split(","));
+    }
+
+    public ExecuteResults executeResults() {
+        ResultView.printExecuteResultCommand();
+        return new ExecuteResults(nextLine().split(","));
     }
 
     public int height() {
