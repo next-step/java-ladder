@@ -27,8 +27,11 @@ public class StreamStudy {
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-        words.stream().filter(x -> x.length() > 12).distinct()
-            .sorted().limit(100)
+        words.stream()
+            .filter(x -> x.length() > 12)
+            .distinct()
+            .sorted()
+            .limit(100)
             .forEach(x -> System.out.println(x.toLowerCase()));
     }
 
