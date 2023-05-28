@@ -9,27 +9,31 @@ import java.util.stream.IntStream;
 public class Line {
 
     private final List<Boolean> points;
+    private LineCreateStrategy lineCreateStrategy;
 
     public Line(int countOfPerson, LineCreateStrategy lineCreateStrategy) {
-        this.points = createPoints(countOfPerson, lineCreateStrategy);
+        this.lineCreateStrategy = lineCreateStrategy;
+
+        List<Boolean> points = createPoints(countOfPerson);
+        validatePoints(points);
+        this.points = points;
     }
 
-    private List<Boolean> createPoints(int countOfPerson, LineCreateStrategy lineCreateStrategy) {
+    private List<Boolean> createPoints(int countOfPerson) {
 
-        List<Boolean> points = new ArrayList<>();
-
-        IntStream.range(0, countOfPerson - 1)
-                .forEach(index -> addPoint(points, index, lineCreateStrategy));
-
-        return points;
+        return lineCreateStrategy.build(countOfPerson);
     }
 
-    private void addPoint(List<Boolean> points, int index, LineCreateStrategy lineCreateStrategy) {
-        if (index == 0 || !points.get(index - 1)) {
-            points.add(lineCreateStrategy.canCreateLine());
-            return;
+    private void validatePoints(List<Boolean> points) {
+        for (int i = 1; i < points.size(); i++) {
+            isThereConsecutiveTrue(points.get(i - 1), points.get(i));
         }
-        points.add(false);
+    }
+
+    private void isThereConsecutiveTrue(boolean line1, boolean line2) {
+        if (line1 && line2) {
+            throw new IllegalStateException("연속된 가로줄은 있을 수 없습니다.");
+        }
     }
 
     public List<Boolean> getPoints() {
@@ -48,5 +52,9 @@ public class Line {
             return false;
         }
         return points.get(currentPlayerPoint);
+    }
+
+    public Line(List<Boolean> points) {
+        this.points = points;
     }
 }

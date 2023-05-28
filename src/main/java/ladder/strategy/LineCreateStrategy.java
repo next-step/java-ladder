@@ -1,6 +1,8 @@
 package ladder.strategy;
 
+import java.util.List;
+
 public interface LineCreateStrategy {
 
-    boolean canCreateLine();
+    List<Boolean> build(int countOfPerson);
 }

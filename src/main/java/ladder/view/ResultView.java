@@ -18,21 +18,18 @@ public class ResultView {
     private static final String LADDER_COMPLETE_TEXT = "사다리 결과";
     private static final String PLAYER_NAME_AND_RESULT_TEXT = "%s : %s";
 
-
-    public ResultView() {}
-
-    public void printResult(List<Player> players, List<Line> lines, Result result) {
+    public static void printResult(List<Player> players, List<Line> lines, Result result) {
         printLadderResultText();
         printPlayerName(players);
         printLadderLine(lines);
         printLadderResult(result);
     }
 
-    private void printLadderResultText() {
+    private static void printLadderResultText() {
         System.out.println(LADDER_COMPLETE_TEXT);
     }
 
-    private void printPlayerName(List<Player> players) {
+    private static void printPlayerName(List<Player> players) {
         StringBuilder sb = new StringBuilder();
 
         players.stream()
@@ -42,11 +39,11 @@ public class ResultView {
         System.out.println(sb.toString());
     }
 
-    private void printLadderLine(List<Line> lines) {
+    private static void printLadderLine(List<Line> lines) {
         lines.forEach(line -> System.out.println(getLineText(line.getPoints())));
     }
 
-    private String getLineText(List<Boolean> points) {
+    private static String getLineText(List<Boolean> points) {
         StringBuilder sb = new StringBuilder();
 
         sb.append(SPACE_START_HORIZONTAL_LINE);
@@ -56,7 +53,7 @@ public class ResultView {
         return sb.toString();
     }
 
-    private void addHorizontalLine(StringBuilder sb, boolean hasHorizontalLine) {
+    private static void addHorizontalLine(StringBuilder sb, boolean hasHorizontalLine) {
         sb.append(VERTICAL_LINE);
         if (hasHorizontalLine) {
             sb.append(HORIZONTAL_LINE);
@@ -66,7 +63,7 @@ public class ResultView {
         }
     }
 
-    private void printLadderResult(Result result) {
+    private static void printLadderResult(Result result) {
         StringBuilder sb = new StringBuilder();
 
         result.getValues().stream()
@@ -75,7 +72,7 @@ public class ResultView {
         System.out.println(sb.toString());
     }
 
-    public void printResultText() {
+    public static void printResultText() {
         System.out.println(RESULT_TEXT);
     }
 
