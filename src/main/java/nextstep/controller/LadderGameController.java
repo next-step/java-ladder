@@ -6,8 +6,6 @@ import nextstep.view.OutputView;
 
 public class LadderGameController {
 
-
-
     public static void main(String[] args) {
         Usernames usernames = new Usernames(InputView.inputUserNames());
         InputResults inputResults
