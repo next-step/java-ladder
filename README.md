@@ -36,11 +36,11 @@
 - [X] Player 리스트를 가진다.
 
 ### Prize
-- [ ] 5자 이내의 이름을 가진다.
+- [X] 5자 이내의 이름을 가진다.
 
 ### Prizes
-- [ ] Prize 리스트를 가진다.
-- [ ] 주어진 index에 해당되는 Prize를 반환한다.
+- [X] Prize 리스트를 가진다.
+- [X] 주어진 index에 해당되는 Prize를 반환한다.
 
 ### Result
 - [ ] Player과 Prize 쌍으로 이루어진 Map을 가진다.
