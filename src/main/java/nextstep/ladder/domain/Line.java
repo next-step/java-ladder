@@ -13,7 +13,11 @@ public class Line {
     private final List<Boolean> points;
 
     public Line(int countOfPerson) {
-        points = generateLine(countOfPerson);
+        this.points = generateLine(countOfPerson);
+    }
+
+    public Line(List<Boolean> mockPoints) {
+        this.points = mockPoints;
     }
 
     public List<Boolean> generateLine(int countOfPerson) {

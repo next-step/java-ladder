@@ -19,6 +19,15 @@ public class Ladder {
         this.lines = new Lines(generateLadder(height));
     }
 
+    public Ladder(People people, ExecuteResults executeResults, Lines mockLines) {
+        if (people.value().size() != executeResults.value().size()) {
+            throw new RuntimeException("참여할 사람 수와 실행 결과 수는 일치해야 합니다.");
+        }
+        this.people = people;
+        this.executeResults = executeResults;
+        this.lines = mockLines;
+    }
+
     private List<Line> generateLadder(int height) {
         return Stream.generate(() -> new Line(people.value().size()))
                 .limit(height)
