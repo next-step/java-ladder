@@ -20,11 +20,15 @@ public class LadderGameController {
         Lines ladder = new Lines(ladderHeight, userNames.count());
         ResultMap result = ladder.getResult(userNames, results);
 
+        printLadder(userNames, results, ladder);
+        ResultView.printResult(userNames.userNames(), result);
+    }
+
+    private void printLadder(UserNames userNames, String[] results, Lines ladder) {
         ResultView.printMessage("실행결과");
         ResultView.printBlankLine();
-
-        ResultView.printUserNames(userNames.userNames());
-        ResultView.printLadder(ladder);
-        ResultView.printResultNames(results);
+        ResultView.printLadder(userNames.userNames(), ladder, results);
     }
+
+
 }

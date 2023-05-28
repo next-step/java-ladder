@@ -66,8 +66,8 @@ public class Lines {
     }
 
     private int move(int position) {
-        for (int i = 0; i < height; i++) {
-            position = lines.get(i).movePin(position);
+        for (int height = 0; height < this.height; height++) {
+            position = lines.get(height).movePin(position);
         }
         return position;
     }

@@ -50,7 +50,7 @@ public class Line {
             return new ArrayList<>();
         }
 
-        int width = countOfPerson - 1;
+        int width = countOfPerson;
         final List<Boolean> newLine = new ArrayList<>(width);
         newLine.add(createFirstBoolean());
         for (int i = 1; i < width; i++) {
@@ -103,5 +103,4 @@ public class Line {
         }
         return points.get(index);
     }
-
 }
