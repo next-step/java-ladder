@@ -1,12 +1,6 @@
 package ladder;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 import ladder.domain.Height;
-import ladder.domain.exception.LadderException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -29,7 +23,7 @@ public class HeightTest {
 
         Assertions.assertThatThrownBy(() -> Height.from(height))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LadderException.HEIGHT_UNDER_ZERO.getMessage());
+                .hasMessage(Height.HEIGHT_UNDER_ZERO);
     }
 
 }

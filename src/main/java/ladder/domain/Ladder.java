@@ -11,7 +11,7 @@ public class Ladder {
     public static Ladder of(LadderRequest request) {
         List<Line> tempLines = new ArrayList<>();
         for (int i = 0; i <= request.getHeight(); i++) {
-            tempLines.add(Line.from(request));
+            tempLines.add(Line.from(request.getWidth(), request.getStrategy()));
         }
         return new Ladder(tempLines);
     }
