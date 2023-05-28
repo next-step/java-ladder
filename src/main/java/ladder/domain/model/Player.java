@@ -1,8 +1,8 @@
 package ladder.domain.model;
 
-import java.util.List;
-
 public class Player {
+    private static final int LEFT = -1;
+    private static final int RIGHT = 1;
     private PlayerName playerName;
     private int point;
 
@@ -18,37 +18,45 @@ public class Player {
                 .equals(playerName);
     }
 
-    public enum Direction {
-        LEFT(-1),
-        RIGHT(1);
+    public void move(Lines lines) {
+        lines.getLines().forEach(line -> {
+            if (line.isPointFullLeft(point) && line.isRightConnect(point)) {
+                moveRight();
+                return;
+            }
 
-        private final int value;
+            if (line.isPointFullLeft(point)) {
+                return;
+            }
 
-        Direction(int value) {
-            this.value = value;
-        }
+            if (line.isPointFullRight(point) && line.isLeftConnect(point)) {
+                moveLeft();
+                return;
+            }
 
+            if (line.isPointFullRight(point)) {
+                return;
+            }
+
+            move(line);
+        });
     }
 
-    public void moveLeft(List<Boolean> points) {
-        if (points.get(point - 1)) {
-            point += Direction.LEFT.value;
-        }
+    public void moveLeft() {
+        point += LEFT;
     }
 
-    public void moveRight(List<Boolean> points) {
-        if (points.get(point)) {
-            point += Direction.RIGHT.value;
-        }
+    public void moveRight() {
+        point += RIGHT;
     }
 
-    public void move(List<Boolean> points) {
-        if (points.get(point - 1)) {
-            point += Direction.LEFT.value;
+    public void move(Line line) {
+        if (line.isLeftConnect(point)) {
+            moveLeft();
             return;
         }
-        if (points.get(point)) {
-            point += Direction.RIGHT.value;
+        if (line.isRightConnect(point)) {
+            moveRight();
         }
     }
 
