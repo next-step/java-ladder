@@ -24,13 +24,14 @@ public class ResultView {
     }
 
     public static void printResult(Ladder ladder) {
-        System.out.println("\n실행결과\n");
         printLadder(ladder);
     }
 
     private static void printLadder(Ladder ladder) {
+        System.out.println("\n사다리 결과\n");
         printNames(ladder);
         printLines(ladder);
+        printExecuteResults(ladder);
     }
 
     private static void printNames(Ladder ladder) {
@@ -70,8 +71,32 @@ public class ResultView {
                             .mapToObj(idx -> generatePointString(people, line, idx)
                             )
                             .forEach(sb::append);
+                    return sb.toString();
+                })
+                .collect(Collectors.joining("\n"));
+    }
 
-                    sb.append("\n");
+    private static void printExecuteResults(Ladder ladder) {
+        System.out.println(makeExecuteResults(ladder));
+    }
+
+    private static String makeExecuteResults(Ladder ladder) {
+        List<ExecuteResult> executeResults = ladder.executeResults().value();
+        List<Person> people = ladder.people().value();
+
+        return IntStream.range(BEGIN_INDEX, executeResults.size())
+                .mapToObj(i -> {
+                    String executeName = executeResults.get(i).name();
+                    String peopleName = people.get(i).name();
+
+                    StringBuilder sb = new StringBuilder();
+                    if (BEGIN_INDEX == i) {
+                        sb.append(executeName);
+                        sb.append(" ".repeat(NAME_SPACE - peopleName.length()));
+                        return sb.toString();
+                    }
+                    sb.append(" ".repeat(NAME_SPACE - executeName.length()));
+                    sb.append(executeName);
                     return sb.toString();
                 })
                 .collect(Collectors.joining());
