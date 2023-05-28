@@ -1,6 +1,5 @@
 package nextstep.ladder;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -18,16 +17,24 @@ public class RandomLineStrategy implements LineStrategy {
     }
 
     @Override
-    public List<Boolean> generate(int countOfVerticalLine) {
-        return IntStream.rangeClosed(1, countOfVerticalLine-1)
-                .mapToObj(i -> drawLine())
+    public List<Cross> generate(int countOfVerticalLine) {
+        return IntStream.rangeClosed(0, countOfVerticalLine - 1)
+                .mapToObj(i -> drawLine(i, countOfVerticalLine))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public boolean drawLine() {
+    public Cross drawLine(int index, int size) {
+        boolean last = lastLine;
         boolean point = !lastLine && random.nextBoolean();
         this.lastLine = point;
-        return point;
+
+        if (index == 0) {
+            return new Cross(false, point);
+        }
+        if (index == size - 1) {
+            return new Cross(last, false);
+        }
+        return new Cross(last, point);
     }
 }

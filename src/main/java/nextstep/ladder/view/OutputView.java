@@ -25,11 +25,12 @@ public class OutputView {
         for (int i = 0; i < height; i++) {
             System.out.print("     |");
             Line line = lines.get(i);
-            List<Boolean> point = line.getPoints();
+            List<Cross> point = line.getCrosses();
 
             point.stream()
-                    .forEach(p -> {
-                                if (p) {
+                    .limit(point.size()-1)
+                    .forEach(cross -> {
+                                if (cross.getPoint()) {
                                     System.out.print("-----|");
                                 } else {
                                     System.out.print("     |");

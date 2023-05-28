@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Participant {
 
-    private List<Name> participants;
+    private final List<Name> participants;
 
     public Participant(String... names) {
         validateParticipant(names);
@@ -32,5 +32,9 @@ public class Participant {
     public String getParticipant(int index) {
         Name name = participants.get(index);
         return name.name();
+    }
+
+    public boolean isSameSize(int vertical) {
+        return participants.size() == vertical;
     }
 }

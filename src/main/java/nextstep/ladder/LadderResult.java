@@ -15,15 +15,15 @@ import java.util.stream.LongStream;
 
 public class LadderResult {
 
-    private List<String> result;
-
-    private LadderResult() {
-
-    }
+    private final List<String> result;
 
     public LadderResult(String... result) {
         this.result = Arrays.stream(result)
                 .collect(Collectors.toList());
+    }
+
+    public boolean isSameSize(int vertical) {
+        return result.size() == vertical;
     }
 
     @Override
@@ -46,4 +46,6 @@ public class LadderResult {
     public List<String> getResult() {
         return result;
     }
+
+
 }

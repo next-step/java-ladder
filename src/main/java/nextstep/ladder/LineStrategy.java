@@ -1,9 +1,10 @@
 package nextstep.ladder;
 
+import java.awt.*;
 import java.util.List;
 
 public interface LineStrategy {
-    boolean drawLine();
+    Cross drawLine(int index, int size);
 
-    List<Boolean> generate(int size);
+    List<Cross> generate(int size);
 }

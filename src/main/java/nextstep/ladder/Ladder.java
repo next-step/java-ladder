@@ -39,10 +39,14 @@ public class Ladder {
         return gameResult;
     }
 
+    public boolean isRightCondition(Participant participant, LadderResult result) {
+        return participant.isSameSize(vertical) && result.isSameSize(vertical);
+    }
+
     private int moveToGoal(int verticalIndex) {
         for (int j = 0; j < lines.size(); j++) {
             Line line = lines.get(j);
-            verticalIndex = line.moveLine(verticalIndex);
+            verticalIndex = line.move(verticalIndex);
         }
         return verticalIndex;
     }
@@ -58,5 +62,6 @@ public class Ladder {
     public int getLineSize() {
         return lines.size();
     }
+
 
 }
