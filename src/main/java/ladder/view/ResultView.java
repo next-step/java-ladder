@@ -1,6 +1,9 @@
 package ladder.view;
 
+import ladder.dto.Ladder;
 import ladder.dto.Line;
+import ladder.dto.Players;
+import ladder.dto.Point;
 
 import java.util.List;
 
@@ -15,24 +18,24 @@ public class ResultView {
         System.out.println();
     }
 
-    public static void viewPlayerNames(List<String> players) {
-        for (int i = 0; i < players.size(); i++) {
+    public static void viewPlayerNames(Players players) {
+        for (int i = 0; i < players.getCountOrPerson(); i++) {
             printBlankBeforName(players, i);
-            System.out.print(players.get(i));
+            System.out.print(players.getPlayerName(i));
             System.out.print(" ");
         }
         System.out.println();
     }
 
-    private static void printBlankBeforName(List<String> players, int i) {
+    private static void printBlankBeforName(Players players, int i) {
         if (i != 0) {
-            System.out.print(" ".repeat(5 - players.get(i).length()));
+            System.out.print(" ".repeat(5 - players.getPlayerName(i).length()));
         }
     }
 
-    public static void viewLadder(List<String> players, List<Line> ladder) {
-        ladder.forEach(line -> {
-            System.out.print(" ".repeat(players.get(0).length() - 1));
+    public static void viewLadder(Players players, Ladder ladder) {
+        ladder.getLines().forEach(line -> {
+            System.out.print(" ".repeat(players.getPlayerName(0).length() - 1));
             System.out.print(LADDER_LEG);
             viewLine(line);
             System.out.println();
@@ -46,8 +49,8 @@ public class ResultView {
         });
     }
 
-    private static void viewPoint(Boolean point) {
-        if (point) {
+    private static void viewPoint(Point point) {
+        if (point.isTrue()) {
             System.out.print(LADDER_BOTTOM_TRUE);
             return;
         }

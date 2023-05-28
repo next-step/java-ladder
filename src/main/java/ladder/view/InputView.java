@@ -1,5 +1,8 @@
 package ladder.view;
 
+import ladder.dto.PlayerName;
+import ladder.dto.Players;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -16,15 +19,14 @@ public class InputView {
         //
     }
 
-    public static List<String> getPlayerNames() {
+    public static Players getPlayers() {
         System.out.println(QUESTION_PLAYER_NAMES);
         String nameInput = scanner.next();
         System.out.println();
 
         List<String> names = Arrays.stream(nameInput.split(",")).collect(Collectors.toList());
-        validateNames(names);
 
-        return names;
+        return new Players(names);
     }
 
     public static int getLadderHeight() {
@@ -32,22 +34,7 @@ public class InputView {
         int ladderHeight = scanner.nextInt();
         System.out.println();
 
-        validateLadderHeight(ladderHeight);
-
         return ladderHeight;
     }
 
-    public static void validateNames(List<String> names) {
-        names.forEach((name) -> {
-            if (name.length() > 5) {
-                throw new IllegalArgumentException("이름은 5글자까지 가능합니다.");
-            }
-        });
-    }
-
-    public static void validateLadderHeight(int ladderHeight) {
-        if (ladderHeight <= 0) {
-            throw new IllegalArgumentException("양수만 가능합니다.");
-        }
-    }
 }

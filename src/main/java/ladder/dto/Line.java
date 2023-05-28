@@ -4,10 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private List<Boolean> points = new ArrayList<>();
+    private List<Point> points = new ArrayList<>();
 
     public Line() {
         //
+    }
+
+    public Line(List<Boolean> values) {
+        values.forEach(value -> points.add(new Point(value)));
     }
 
     public Line(int countOfPerson) {
@@ -15,35 +19,29 @@ public class Line {
             throw new IllegalArgumentException("양수여야 합니다.");
         }
 
-        this.points.add(getNewPoint());
-        for (int idx = 1; idx < countOfPerson -1; idx++) {
+        this.points.add(new Point());
+        for (int idx = 1; idx < countOfPerson - 1; idx++) {
             addNewPoint(idx);
         }
     }
 
     private void addNewPoint(int idx) {
-        if (validateLastIdx(idx - 1)) {
-            this.points.add(getNewPoint());
+        if (validateBeforeIdxHasTrue(idx)) {
+            this.points.add(new Point(false));
+            return;
         }
+        this.points.add(new Point());
     }
 
-    private boolean validateLastIdx(int lastIdx) {
-        if (this.points.get(lastIdx)) {
-            this.points.add(false);
+    public boolean validateBeforeIdxHasTrue(int idx) {
+        if (idx <= 0) {
             return false;
         }
-        return true;
+
+        return this.points.get(idx - 1).isTrue();
     }
 
-    private boolean getNewPoint() {
-        int random = (int) (Math.random() * 10);
-        if (random % 2 == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public List<Boolean> getPoints() {
+    public List<Point> getPoints() {
         return this.points;
     }
 }
