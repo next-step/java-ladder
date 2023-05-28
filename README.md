@@ -43,5 +43,6 @@
 - [X] 주어진 index에 해당되는 Prize를 반환한다.
 
 ### Result
-- [ ] Player과 Prize 쌍으로 이루어진 Map을 가진다.
-- [ ] 주어진 Player에 해당되는 Prize를 반환한다.
+- [X] Player과 Prize 쌍으로 이루어진 Map을 가진다.
+- [X] 주어진 Player의 이름에 해당되는 Prize 이름를 반환한다.
+- [X] 만일 주어진 Player 이름이 존재하지 않는 이름이라면 예외를 던진다.

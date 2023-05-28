@@ -3,7 +3,7 @@ package ladder.domain;
 public class Prize {
     private static final int MAX_NAME_LENGTH = 5;
 
-    private String name;
+    private final String name;
 
     public Prize(String name) {
         validateName(name);

@@ -11,6 +11,14 @@ public class Point {
         this.y = y;
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
     public Point move(Direction direction) {
         return new Point(this.x + direction.getX(), this.y + direction.getY());
     }
