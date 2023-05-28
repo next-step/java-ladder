@@ -16,12 +16,20 @@ public class Line {
     }
 
     public static Line of(int countOfPerson) {
+        validLineLength(countOfPerson);
         return new Line(countOfPerson);
     }
 
     public static Line of(List<Boolean> points) {
+        validLineLength(points.size());
         validLine(points);
         return new Line(points);
+    }
+
+    private static void validLineLength(int countOfPerson) {
+        if (countOfPerson < 2) {
+            throw new IllegalArgumentException("게임 진행을 위한 최소 인원수는 2명입니다.");
+        }
     }
 
     private static boolean validLine(List<Boolean> points) {
@@ -42,10 +50,10 @@ public class Line {
             return new ArrayList<>();
         }
 
-        int ladderWeight = countOfPerson - 1;
-        final List<Boolean> newLine = new ArrayList<>(ladderWeight);
+        int width = countOfPerson - 1;
+        final List<Boolean> newLine = new ArrayList<>(width);
         newLine.add(createFirstBoolean());
-        for (int i = 1; i < ladderWeight; i++) {
+        for (int i = 1; i < width; i++) {
             newLine.add(generateBooleanWithPreviousValue(newLine.get(i - 1)));
         }
         return newLine;
@@ -69,4 +77,31 @@ public class Line {
     public List<Boolean> toList() {
         return Collections.unmodifiableList(points);
     }
+
+    public int movePin(int index) {
+        if (canMoveLeft(index)) {
+            return index - 1;
+        }
+        if (catMoveRight(index)) {
+            return index + 1;
+        }
+        return index;
+    }
+
+    private boolean canMoveLeft(int index) {
+        int left = index - 1;
+        if (left < 0) {
+            return false;
+        }
+        return points.get(left);
+    }
+
+    private boolean catMoveRight(int index) {
+        int right = index + 1;
+        if (right >= points.size()) {
+            return false;
+        }
+        return points.get(index);
+    }
+
 }

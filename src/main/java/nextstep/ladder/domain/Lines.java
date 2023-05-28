@@ -1,8 +1,6 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -10,10 +8,13 @@ public class Lines {
 
     private static final int MIN_LINE_HEIGHT = 1;
     private static final int MIN_LINE_WIDTH = 2;
-    private List<Line> lines;
+    private final List<Line> lines;
+
+    private final int height;
 
     public Lines() {
         lines = new ArrayList<>();
+        height = lines.size();
     }
 
     public Lines(List<Line> lines) {
@@ -21,6 +22,7 @@ public class Lines {
         lines.stream()
                 .forEach(line -> validLineWidth(line.size()));
         this.lines = lines;
+        this.height = lines.size();
     }
 
 
@@ -30,6 +32,7 @@ public class Lines {
         lines = IntStream.range(0, ladderHeight.getHeight())
                 .mapToObj(i -> drawLine(countOfPerson))
                 .collect(Collectors.toList());
+        height = lines.size();
     }
 
     private void validLineHeight(int height) {
@@ -46,6 +49,27 @@ public class Lines {
 
     private Line drawLine(int ladderWidth) {
         return Line.of(ladderWidth);
+    }
+
+    public ResultMap getResult(UserNames userNames, String[] resultNames) {
+        if (userNames.count() != resultNames.length) {
+            throw new IllegalArgumentException();
+        }
+
+        Map<String, String> resultMap = new HashMap<>();
+        for (int start = 0; start < userNames.count(); start++) {
+            int end = move(start);
+            resultMap.put(userNames.userName(start), resultNames[end]);
+        }
+
+        return new ResultMap(resultMap);
+    }
+
+    private int move(int position) {
+        for (int i = 0; i < height; i++) {
+            position = lines.get(i).movePin(position);
+        }
+        return position;
     }
 
     public int size() {
