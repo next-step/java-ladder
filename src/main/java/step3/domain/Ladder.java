@@ -4,16 +4,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Lines {
+public class Ladder {
     private final List<Line> lines;
 
-    public Lines(int countOfPerson, int height) {
+    public Ladder(int countOfPerson, int height) {
         this.lines = IntStream.range(0, height)
                 .mapToObj(i -> new Line(countOfPerson))
                 .collect(Collectors.toList());
     }
 
-    public Lines(List<Line> lines) {
+    public Ladder(List<Line> lines) {
         this.lines = lines;
     }
 
@@ -21,8 +21,8 @@ public class Lines {
         return lines;
     }
 
-    public int getResultIndex(int nameIndex) {
-        int resultIndex = nameIndex;
+    public int findResultIndexBy(int initIndex) {
+        int resultIndex = initIndex;
         for (Line line : lines) {
             resultIndex = line.nextIndex(resultIndex);
         }

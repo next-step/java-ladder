@@ -1,16 +1,14 @@
-package step3.domain;
-
-import step3.view.ResultView;
+package step4.view;
 
 import java.util.Objects;
 
-public class Name {
+public abstract class InputStringValue {
     private static final int MAX_LENGTH = 5;
-    private final String name;
+    private final String value;
 
-    public Name(String name) {
-        validateInput(name);
-        this.name = name;
+    public InputStringValue(String value) {
+        validateInput(value);
+        this.value = value;
     }
 
     private static void validateInput(String input) {
@@ -31,17 +29,17 @@ public class Name {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Name name1 = (Name) o;
-        return Objects.equals(name, name1.name);
+        InputStringValue that = (InputStringValue) o;
+        return Objects.equals(value, that.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(value);
     }
 
     @Override
     public String toString() {
-        return name;
+        return value;
     }
 }
