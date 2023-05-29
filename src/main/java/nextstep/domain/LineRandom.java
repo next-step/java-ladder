@@ -9,25 +9,29 @@ public class LineRandom implements LineCreateStrategy {
     private static final Random RANDOM = new Random();
 
     @Override
-    public List<Boolean> create(int count) {
-        List<Boolean> line = new ArrayList<>();
+    public List<Point> create(int count) {
+        List<Point> line = new ArrayList<>();
         setLine(count, line);
         return line;
     }
 
-    private void setLine(int count, List<Boolean> line) {
-        line.add(RANDOM.nextBoolean());
-        boolean beforePosition = line.get(0);
-        for (int position = 1; position < count; position++) {
+    private void setLine(int count, List<Point> line) {
+        Point point = Point.first(RANDOM.nextBoolean());
+        line.add(point);
+        boolean beforePosition = line.get(0).isRight();
+        for (int position = 1; position < count - 1; position++) {
             boolean currentPosition = RANDOM.nextBoolean();
 
             if (beforePosition) {
-                line.add(false);
+                point = point.next(false);
+                line.add(point);
                 beforePosition = false;
                 continue;
             }
-            line.add(currentPosition);
+            point = point.next(currentPosition);
+            line.add(point);
             beforePosition = currentPosition;
         }
+        line.add(point.last());
     }
 }

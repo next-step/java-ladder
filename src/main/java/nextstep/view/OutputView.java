@@ -27,8 +27,9 @@ public class OutputView {
     private static void outputLine(Line line) {
         System.out.printf("%n" + " ".repeat(Username.LENGTH_MAX - 1) + PILLAR);
 
-        for (boolean point : line.getPoints()) {
-            if (point) {
+        List<Point> points = line.getPoints();
+        for (int i = 0; i < points.size() - 1; i++) {
+            if (points.get(i).isRight()) {
                 System.out.print(FOODHOLDER.repeat(Username.LENGTH_MAX) + PILLAR);
                 continue;
             }

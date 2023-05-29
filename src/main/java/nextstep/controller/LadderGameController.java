@@ -17,14 +17,13 @@ public class LadderGameController {
         OutputView.outputLadder(lines);
         OutputView.outputLadderResult(inputResults.getResults());
 
-        Ladder ladder = new Ladder(lines, usernames.size());
-        LadderResult ladderResult = new LadderResult(ladder, usernames, inputResults);
+        Ladder ladder = new Ladder(lines, usernames, inputResults);
 
         while (true) {
             Username name = new Username(InputView.inputUsernameForResult());
-            OutputView.outputExecutionResult(ladderResult.getLadderResult(name));
+            OutputView.outputExecutionResult(ladder.getResult(name));
 
-            if (name.equals(new Username("all"))) {
+            if (name.equals(Username.ALL)) {
                 break;
             }
         }

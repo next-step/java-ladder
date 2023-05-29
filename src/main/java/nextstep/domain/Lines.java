@@ -25,7 +25,7 @@ public class Lines {
 
     public int findDestination(int start) {
         for (Line line : lines) {
-            start += line.getDirection(start);
+            start += line.getDirection(start).getValue();
         }
         return start;
     }
