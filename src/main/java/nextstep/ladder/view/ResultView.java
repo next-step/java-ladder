@@ -135,7 +135,7 @@ public class ResultView {
                     .forEachOrdered(entry -> System.out.println(entry.getKey() + " : " + entry.getValue()));
             return;
         }
-        System.out.println(result.value().get(person));
+        System.out.println(result.get(person));
 
     }
 
