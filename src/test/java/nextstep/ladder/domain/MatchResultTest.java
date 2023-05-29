@@ -14,11 +14,13 @@ class MatchResultTest {
     private Lines lines;
     private ExecuteResults executeResults;
     private Ladder ladder;
+    private InputOutput inputOutput;
 
     @BeforeEach
     void setup() {
         people = new People(new String[]{"pobi", "honux", "crong", "jk"});
-        int verticalLineSize = people.value().size();
+        executeResults = new ExecuteResults(new String[]{"꽝1", "5000", "꽝2", "3000"});
+        inputOutput = new InputOutput(people, executeResults);
 
         lines = new Lines(Arrays.asList(
                 new Line(Arrays.asList(true, false, true)),
@@ -27,22 +29,33 @@ class MatchResultTest {
                 new Line(Arrays.asList(false, true, false)),
                 new Line(Arrays.asList(true, false, true))
         ));
-
-//        executeResults = new ExecuteResults(new String[]{"꽝1", "5000", "꽝2", "3000"});
-
+        int verticalLineSize = people.value().size();
         ladder = new Ladder(verticalLineSize, lines);
     }
 
     @ParameterizedTest
     @CsvSource(value = {"0:0", "1:3", "2:2", "3:1"}, delimiter = ':')
-    void findDestinationIndex(int input, int output) {
+    void findDestinationIndex(int startIdx, int destIdx) {
         //given
         Match match = new Match(ladder);
 
         //when
-        int resultIdx = match.findDestinationIdx(input);
+        int resultIdx = match.findDestinationIdx(startIdx);
 
         //then
-        assertThat(resultIdx).isEqualTo(output);
+        assertThat(resultIdx).isEqualTo(destIdx);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"pobi:꽝", "honux:3000", "crong:꽝", "jk:5000"}, delimiter = ':')
+    void 사다리_결과(String input, String output) {
+        //given
+        Match match = new Match(inputOutput, ladder);
+
+        //when
+        String result = match.result(input);
+
+        //then
+        assertThat(result).isEqualTo(output);
     }
 }

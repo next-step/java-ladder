@@ -7,16 +7,25 @@ import java.util.stream.IntStream;
 public class Match {
 
     private static final int BEGIN_IDX = 0;
+
+    private final InputOutput inputOutput;
     private final Ladder ladder;
     private Map<String, String> results = new HashMap<>();
 
-    public Match(Ladder ladder) {
+    public Match(InputOutput inputOutput, Ladder ladder) {
+        this.inputOutput = inputOutput;
         this.ladder = ladder;
     }
 
-    public int resultIdx(int input) {
+    public Match(Ladder ladder) {
+        this(null, ladder);
+    }
 
-        return findDestinationIdx(input);
+    public String result(String input) {
+        People people = inputOutput.people();
+        ExecuteResults executeResults = inputOutput.executeResults();
+
+        return "";
     }
 
     int findDestinationIdx(int startIdx) {
@@ -39,11 +48,11 @@ public class Match {
         return currentIdx / 2;
     }
 
-    private static boolean isMovableToLeft(int idx, String[] row) {
+    private boolean isMovableToLeft(int idx, String[] row) {
         return idx > BEGIN_IDX && "h".equals(row[idx - 1]);
     }
 
-    private static boolean isMovableToRight(int idx, String[] row, int columnLength) {
+    private boolean isMovableToRight(int idx, String[] row, int columnLength) {
         return idx < columnLength - 1 && "h".equals(row[idx + 1]);
     }
 
