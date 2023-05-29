@@ -23,23 +23,23 @@ public class ResultView {
         System.out.println("\n최대 사다리 높이는 몇 개인가요?");
     }
 
-    public static void printResult(Ladder ladder) {
-        printLadder(ladder);
+    public static void printResult(InputOutput inputOutput, Ladder ladder) {
+        printLadder(inputOutput, ladder);
     }
 
-    private static void printLadder(Ladder ladder) {
+    private static void printLadder(InputOutput inputOutput, Ladder ladder) {
         System.out.println("\n사다리 결과\n");
-        printNames(ladder);
-        printLines(ladder);
-        printExecuteResults(ladder);
+        printNames(inputOutput, ladder);
+        printLines(inputOutput, ladder);
+        printExecuteResults(inputOutput);
     }
 
-    private static void printNames(Ladder ladder) {
-        System.out.println(makeNames(ladder));
+    private static void printNames(InputOutput inputOutput, Ladder ladder) {
+        System.out.println(makeNames(inputOutput, ladder));
     }
 
-    private static String makeNames(Ladder ladder) {
-        List<Person> people = ladder.people().value();
+    private static String makeNames(InputOutput inputOutput, Ladder ladder) {
+        List<Person> people = inputOutput.people().value();
 
         return IntStream.range(BEGIN_INDEX, people.size())
                 .mapToObj(i -> {
@@ -56,12 +56,12 @@ public class ResultView {
                 .collect(Collectors.joining());
     }
 
-    private static void printLines(Ladder ladder) {
-        System.out.println(makeLines(ladder));
+    private static void printLines(InputOutput inputOutput, Ladder ladder) {
+        System.out.println(makeLines(inputOutput, ladder));
     }
 
-    private static String makeLines(Ladder ladder) {
-        People people = ladder.people();
+    private static String makeLines(InputOutput inputOutput, Ladder ladder) {
+        People people = inputOutput.people();
         Lines lines = ladder.lines();
 
         return lines.value().stream()
@@ -76,13 +76,13 @@ public class ResultView {
                 .collect(Collectors.joining("\n"));
     }
 
-    private static void printExecuteResults(Ladder ladder) {
-        System.out.println(makeExecuteResults(ladder));
+    private static void printExecuteResults(InputOutput inputOutput) {
+        System.out.println(makeExecuteResults(inputOutput));
     }
 
-    private static String makeExecuteResults(Ladder ladder) {
-        List<ExecuteResult> executeResults = ladder.executeResults().value();
-        List<Person> people = ladder.people().value();
+    private static String makeExecuteResults(InputOutput inputOutput) {
+        List<ExecuteResult> executeResults = inputOutput.executeResults().value();
+        List<Person> people = inputOutput.people().value();
 
         return IntStream.range(BEGIN_INDEX, executeResults.size())
                 .mapToObj(i -> {

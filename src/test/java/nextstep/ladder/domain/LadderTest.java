@@ -8,11 +8,10 @@ public class LadderTest {
 
     @Test
     void create() {
-        People people = new People(new String[]{"pobi", "honux", "crong", "jk"});
-        ExecuteResults executeResults = new ExecuteResults(new String[]{"꽝", "5000", "꽝", "3000"});
+        int verticalLineCount = 4;
         int height = 5;
 
-        Ladder ladder = new Ladder(people, executeResults, height);
+        Ladder ladder = new Ladder(verticalLineCount, height);
         assertThat(ladder.lines().value().size()).isEqualTo(height);
 
     }

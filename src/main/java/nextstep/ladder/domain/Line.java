@@ -12,15 +12,15 @@ public class Line {
 
     private final List<Boolean> points;
 
+    public Line(List<Boolean> points) {
+        this.points = points;
+    }
+
     public Line(int countOfPerson) {
-        this.points = generateLine(countOfPerson);
+        this(generateLine(countOfPerson));
     }
 
-    public Line(List<Boolean> mockPoints) {
-        this.points = mockPoints;
-    }
-
-    public List<Boolean> generateLine(int countOfPerson) {
+    public static List<Boolean> generateLine(int countOfPerson) {
         List<Boolean> points = new ArrayList<>();
 
         IntStream.range(BEGIN_INDEX, countOfPerson)
@@ -29,18 +29,18 @@ public class Line {
         return points;
     }
 
-    private Boolean createPoint(int idx, List<Boolean> points) {
+    private static Boolean createPoint(int idx, List<Boolean> points) {
         if (BEGIN_INDEX == idx) {
             return EMPTY_POINT;
         }
         return isPrevPointEmpty(idx, points) && isCurrPointNonEmpty();
     }
 
-    private boolean isPrevPointEmpty(int idx, List<Boolean> points) {
+    private static boolean isPrevPointEmpty(int idx, List<Boolean> points) {
         return EMPTY_POINT == points.get(idx - 1);
     }
 
-    private boolean isCurrPointNonEmpty() {
+    private static boolean isCurrPointNonEmpty() {
         return HALF < Math.random();
     }
 
