@@ -19,14 +19,5 @@ class LinesTest {
             System.out.println(line);
         }
     }
-
-    @Test
-    void getConnectNumber() {
-        List<Line> lines = ladderGame.getLines();
-        for (Line line : lines) {
-            System.out.println(line);
-        }
-
-    }
 }
 

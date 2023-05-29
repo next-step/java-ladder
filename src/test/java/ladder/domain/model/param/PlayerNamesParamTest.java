@@ -1,7 +1,8 @@
-package ladder.domain.model.Param;
+package ladder.domain.model.param;
 
 import ladder.exception.PlayerCountArgumentException;
 import ladder.exception.PlayerNameArgumentException;
+import ladder.param.PlayerNamesParam;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

@@ -1,13 +1,11 @@
-package ladder.domain.model.Param;
+package ladder.param;
 
-import ladder.Utils;
-import ladder.domain.model.WinResult;
+import ladder.NameUtils;
 import ladder.domain.model.WinResults;
 import ladder.exception.WinResultsArgumentException;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class WinResultsParam {
@@ -31,13 +29,9 @@ public class WinResultsParam {
             throw new WinResultsArgumentException("플레이어 수와 결과 값이 일치하지 않습니다.");
         }
 
-        winResults = Utils.fillOrRightAlign(winResults);
+        winResults = NameUtils.fillOrRightAlign(winResults);
         List<String> finalWinResults = winResults;
-        Supplier<WinResults> supplier = () -> new WinResults(finalWinResults.stream()
-                .map(result -> new WinResult(result))
-                .collect(Collectors.toList()));
 
-        return supplier.get();
-
+        return  new WinResults(finalWinResults);
     }
 }

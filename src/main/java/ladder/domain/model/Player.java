@@ -1,12 +1,14 @@
 package ladder.domain.model;
 
 public class Player {
+    private static final int LEFT = -1;
+    private static final int RIGHT = 1;
     private PlayerName playerName;
-    private int result;
+    private int point;
 
     public Player(PlayerName playerName, int result) {
         this.playerName = playerName;
-        this.result = result;
+        this.point = result;
     }
 
     public boolean equalPlayerName(String playerName) {
@@ -16,12 +18,50 @@ public class Player {
                 .equals(playerName);
     }
 
-    public int getResult() {
-        return result;
+    public void move(Lines lines) {
+        lines.getLines().forEach(line -> {
+            if (line.isPointFullLeft(point) && line.isRightConnect(point)) {
+                moveRight();
+                return;
+            }
+
+            if (line.isPointFullLeft(point)) {
+                return;
+            }
+
+            if (line.isPointFullRight(point) && line.isLeftConnect(point)) {
+                moveLeft();
+                return;
+            }
+
+            if (line.isPointFullRight(point)) {
+                return;
+            }
+
+            move(line);
+        });
     }
 
-    public void move(int index) {
-        result = index;
+    public void moveLeft() {
+        point += LEFT;
+    }
+
+    public void moveRight() {
+        point += RIGHT;
+    }
+
+    public void move(Line line) {
+        if (line.isLeftConnect(point)) {
+            moveLeft();
+            return;
+        }
+        if (line.isRightConnect(point)) {
+            moveRight();
+        }
+    }
+
+    public int getPoint() {
+        return point;
     }
 
     public String getPlayerName() {

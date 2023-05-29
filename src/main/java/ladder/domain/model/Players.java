@@ -17,6 +17,11 @@ public class Players {
         return players.size();
     }
 
+    public void move(Lines lines) {
+        players.stream()
+                .forEach(player -> player.move(lines));
+    }
+
     @Override
     public String toString() {
         return "Players{" +

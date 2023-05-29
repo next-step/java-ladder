@@ -1,21 +1,15 @@
 package ladder.domain.model;
 
-import java.util.stream.IntStream;
-
 public class Ladder {
     private Players players;
     private Lines lines;
 
     public Ladder(Players players, Lines lines) {
-        this.players = players;
-        this.lines = lines;
+        this.players = new Players(players.getPlayers());
+        this.lines = new Lines(lines.getLines());
     }
 
     public void playGame() {
-        IntStream.range(0, players.getPlayerCount())
-                .forEach(index -> lines.getConnectNumber(players.getPlayers().get(index)));
+        players.move(lines);
     }
-    // 사다리 타기 게임의 특징
-    // 왼쪽, 오른쪽 확인 후 트루인지 확인
-
 }

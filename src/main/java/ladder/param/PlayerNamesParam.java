@@ -1,6 +1,6 @@
-package ladder.domain.model.Param;
+package ladder.param;
 
-import ladder.Utils;
+import ladder.NameUtils;
 import ladder.domain.model.PlayerName;
 import ladder.domain.model.PlayerNames;
 import ladder.exception.PlayerCountArgumentException;
@@ -8,7 +8,6 @@ import ladder.exception.PlayerNameArgumentException;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class PlayerNamesParam {
@@ -33,14 +32,13 @@ public class PlayerNamesParam {
         if (isSmallerThanMinimum(playersNames.size())) {
             throw new PlayerCountArgumentException("최소인원 보다 작습니다.");
         }
-        playersNames = Utils.fillOrRightAlign(playersNames);
+        playersNames = NameUtils.fillOrRightAlign(playersNames);
 
         List<String> finalPlayersNames = playersNames;
-        Supplier<PlayerNames> supplier = () -> new PlayerNames(finalPlayersNames.stream()
+
+        return new PlayerNames(finalPlayersNames.stream()
                 .map(name -> new PlayerName(name))
                 .collect(Collectors.toList()));
-
-        return supplier.get();
 
     }
 

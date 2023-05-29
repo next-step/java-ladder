@@ -1,4 +1,4 @@
-package ladder.domain.model.Param;
+package ladder.param;
 
 import ladder.exception.PlayerNameArgumentException;
 

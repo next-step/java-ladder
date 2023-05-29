@@ -1,9 +1,9 @@
 package ladder.view;
 
-import ladder.domain.model.Param.LadderHeightParam;
-import ladder.domain.model.Param.PlayerNameParam;
-import ladder.domain.model.Param.PlayerNamesParam;
-import ladder.domain.model.Param.WinResultsParam;
+import ladder.param.LadderHeightParam;
+import ladder.param.PlayerNameParam;
+import ladder.param.PlayerNamesParam;
+import ladder.param.WinResultsParam;
 
 import java.util.Scanner;
 

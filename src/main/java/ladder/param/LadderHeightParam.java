@@ -1,9 +1,7 @@
-package ladder.domain.model.Param;
+package ladder.param;
 
 import ladder.domain.model.LadderHeight;
 import ladder.exception.LadderHeightArgumentException;
-
-import java.util.function.Supplier;
 
 public class LadderHeightParam {
     private static int MINIMUM_HEIGHT = 1;
@@ -21,9 +19,7 @@ public class LadderHeightParam {
         return height < MINIMUM_HEIGHT;
     }
 
-
     public LadderHeight convertParamToModel() {
-        Supplier<LadderHeight> supplier = () -> new LadderHeight(height);
-        return supplier.get();
+        return new LadderHeight(height);
     }
 }
