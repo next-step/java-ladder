@@ -6,10 +6,6 @@ import java.util.List;
 public class Ladder {
     private List<Line> lines = new ArrayList<>();
 
-    public Ladder() {
-        //
-    }
-
     public Ladder(int ladderHeight, Players players) {
         validateLadderHeight(ladderHeight);
 

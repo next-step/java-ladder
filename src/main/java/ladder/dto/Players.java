@@ -2,25 +2,44 @@ package ladder.dto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 public class Players {
-    private List<PlayerName> playerNames;
+    private List<Player> players = new ArrayList<>();
 
-    public Players(){
-        this.playerNames = new ArrayList<>();
+    public Players(List<String> names) {
+        validateNames(names);
+
+        AtomicInteger location = new AtomicInteger();
+        this.players = names
+                .stream()
+                .map(name -> new Player(name, location.getAndIncrement()))
+                .collect(Collectors.toList());
     }
 
-    public Players(List<String> names){
-        List<PlayerName> playerNames = new ArrayList<>();
-        names.forEach(name -> playerNames.add(new PlayerName(name)));
-        this.playerNames = playerNames;
+    public int getCountOrPerson() {
+        return this.players.size();
     }
 
-    public int getCountOrPerson(){
-        return this.playerNames.size();
+    public List<Player> getPlayers() {
+        return this.players;
     }
 
-    public String getPlayerName(int idx){
-        return this.playerNames.get(idx).getName();
+    public String getPlayerName(int idx) {
+        return this.players.get(idx).getName();
+    }
+
+    private void validateNames(List<String> names) {
+        if (names.size() != names.stream().distinct().count()) {
+            throw new IllegalArgumentException("중복되는 이름이 있습니다.");
+        }
+    }
+
+    public boolean hasPlayerName(String playerName) {
+        return players.stream()
+                .filter(player -> player.equalsName(playerName))
+                .findAny()
+                .isPresent();
     }
 }

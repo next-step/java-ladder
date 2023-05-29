@@ -2,13 +2,10 @@ package ladder.dto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Line {
     private List<Point> points = new ArrayList<>();
-
-    public Line() {
-        //
-    }
 
     public Line(List<Boolean> values) {
         values.forEach(value -> points.add(new Point(value)));
@@ -20,7 +17,7 @@ public class Line {
         }
 
         this.points.add(new Point());
-        for (int idx = 1; idx < countOfPerson - 1; idx++) {
+        for (int idx = 1; idx < countOfPerson - 1 ; idx++) {
             addNewPoint(idx);
         }
     }
@@ -41,7 +38,15 @@ public class Line {
         return this.points.get(idx - 1).isTrue();
     }
 
+    public Point getPoint(int idx) {
+        return this.points.get(idx);
+    }
+
     public List<Point> getPoints() {
         return this.points;
+    }
+
+    public int getLineSize() {
+        return this.points.size();
     }
 }
