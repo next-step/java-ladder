@@ -29,8 +29,8 @@ public class StreamStudy {
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
         System.out.println(words.stream()
-                .filter(word -> word.length() > 12)
                 .distinct()
+                .filter(word -> word.length() > 12)
                 .sorted(Comparator.comparing(String::length).reversed())
                 .limit(100)
                 .map(String::toLowerCase)
