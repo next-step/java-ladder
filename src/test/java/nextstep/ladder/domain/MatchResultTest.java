@@ -1,14 +1,16 @@
 package nextstep.ladder.domain;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Arrays;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class MatchResultTest {
 
     private People people;
-    private Line line1, line2, line3, line4, line5;
     private Lines lines;
     private ExecuteResults executeResults;
     private Ladder ladder;
@@ -18,27 +20,29 @@ class MatchResultTest {
         people = new People(new String[]{"pobi", "honux", "crong", "jk"});
         int verticalLineSize = people.value().size();
 
-        line1 = new Line(Arrays.asList(true, false, true));
-        line2 = new Line(Arrays.asList(false, true, false));
-        line3 = new Line(Arrays.asList(true, false, false));
-        line4 = new Line(Arrays.asList(false, true, false));
-        line5 = new Line(Arrays.asList(true, false, true));
-        lines = new Lines(Arrays.asList(line1, line2, line3, line4, line5));
+        lines = new Lines(Arrays.asList(
+                new Line(Arrays.asList(true, false, true)),
+                new Line(Arrays.asList(false, true, false)),
+                new Line(Arrays.asList(true, false, false)),
+                new Line(Arrays.asList(false, true, false)),
+                new Line(Arrays.asList(true, false, true))
+        ));
 
-        executeResults = new ExecuteResults(new String[]{"꽝", "5000", "꽝", "3000"});
+        executeResults = new ExecuteResults(new String[]{"꽝1", "5000", "꽝2", "3000"});
 
         ladder = new Ladder(verticalLineSize, lines);
     }
 
-    @Test
-    void 특정인의_결과_확인() {
+    @ParameterizedTest
+    @CsvSource(value = {"pobi:꽝1", "honux:3000", "crong:꽝2", "jk:5000"}, delimiter = ':')
+    void 특정인의_결과_확인(String input, String output) {
         //given
-        MatchResult matchResult = new MatchResult(ladder);
+        Match match = new Match(ladder);
 
         //when
-//        String result = matchResult.result("pobi");
+        String result = match.result(input);
 
         //then
-//        assertThat(result).isEqualTo("꽝");
+        assertThat(result).isEqualTo(output);
     }
 }

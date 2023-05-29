@@ -3,12 +3,12 @@ package nextstep.ladder.domain;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MatchResult {
+public class Match {
 
     private final Ladder ladder;
     private Map<String, String> results = new HashMap<>();
 
-    public MatchResult(Ladder ladder) {
+    public Match(Ladder ladder) {
         this.ladder = ladder;
     }
 

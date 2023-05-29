@@ -1,9 +1,6 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.ExecuteResults;
-import nextstep.ladder.domain.InputOutput;
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.People;
+import nextstep.ladder.domain.*;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
@@ -22,7 +19,7 @@ public class Main {
 
         ResultView.printResult(inputOutput, ladder);
 
-//        MatchResult matchResult = new MatchResult(ladder);
+        Match match = new Match(ladder);
 
 //        matchResult.result("pobi");
 
