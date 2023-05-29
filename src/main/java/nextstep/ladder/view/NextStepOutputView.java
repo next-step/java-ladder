@@ -60,7 +60,7 @@ public class NextStepOutputView {
     }
 
     public static void printResult(String input, Map<String, String> gameResult) {
-        if (input.equals(ALL)) {
+        if (input.equalsIgnoreCase(ALL)) {
             System.out.println("실행 결과");
             gameResult.forEach((k, v) -> System.out.println(k + COLON + v));
             return;

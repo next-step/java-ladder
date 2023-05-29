@@ -16,6 +16,15 @@ class CodeTest {
                 .isTrue();
     }
 
+    @DisplayName("input이 대문자(ALL)이면 true를 반환한다.")
+    @Test
+    void test2() {
+        String input = "ALL";
+
+        assertThat(Code.contains(input))
+                .isTrue();
+    }
+
     @DisplayName("input이 exit이면 true를 반환한다.")
     @Test
     void test3() {
@@ -24,10 +33,18 @@ class CodeTest {
         assertThat(Code.contains(input)).isTrue();
     }
 
+    @DisplayName("input이 대문자(EXIT)이면 true를 반환한다.")
+    @Test
+    void test4() {
+        String input = "EXIT";
+
+        assertThat(Code.contains(input)).isTrue();
+    }
+
 
     @DisplayName("input이 Code에 포함되지 않으면(all이나 exit이 아니면) false를 반환한다.")
     @Test
-    void test2() {
+    void test5() {
         String input = "aaa";
 
         assertThat(Code.contains(input)).isFalse();

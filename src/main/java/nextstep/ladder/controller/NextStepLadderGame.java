@@ -39,7 +39,7 @@ public class NextStepLadderGame {
     private void loopResult(Participants participants, Map<String, String> gameResult) {
         while (true){
             String input = getNameOrCodeForResult();
-            if (input.equals(Code.EXIT.getCode())) {
+            if (input.equalsIgnoreCase(String.valueOf(Code.EXIT))) {
                 break;
             }
             participants.validateResultInput(input);
