@@ -20,11 +20,15 @@ public class Line {
         return this.points;
     }
 
+    public int getSize() {
+        return this.points.size();
+    }
+
     private List<Boolean> generateLine(Width width, GenerateStrategy strategy) {
         List<Boolean> lines = new ArrayList<>();
         boolean before = false;
 
-        for (int i = 0; i <= width.getWidthSize(); i++) {
+        for (int i = 0; i < width.getWidthSize(); i++) {
             boolean after = !before && strategy.generateBoolean();
             lines.add(after);
             before = after;

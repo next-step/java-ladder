@@ -10,6 +10,7 @@ public class LadderApplication {
 
     public static void main(String[] args) {
         Participants participants = Participants.from(InputView.names());
+        LadderResultValue results = InputView.results();
 
         Height height = InputView.height();
 
@@ -18,6 +19,14 @@ public class LadderApplication {
 
         Ladder ladder = Ladder.of(request);
 
-        OutputView.print(participants, ladder);
+        LadderGame ladderGame = new LadderGame(ladder, participants, results);
+        OutputView.print(ladderGame);
+        ladderGame.process();
+
+        Participant participant = InputView.selectResult();
+        PrintDelegator printDelegator = ladderGame.getParticipantPosition(participant);
+
+        OutputView.selectResultPrint(printDelegator);
+
     }
 }
