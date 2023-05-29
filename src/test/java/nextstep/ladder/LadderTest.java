@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LadderTest {
 
@@ -32,6 +33,16 @@ class LadderTest {
         ladderRowList.add(ladderRow5);
 
         ladder = new Ladder(ladderRowList);
+    }
+
+    @Test
+    void create_사람수예외(){
+        Persons persons = new Persons(new String[]{});
+        Height height = new Height(1);
+
+        assertThatThrownBy(() -> new Ladder(persons, height, new AllDraw()))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("사다리 게임에 참여하는 사람은 0또는 음수가 될 수 없습니다");
     }
 
     @Test
