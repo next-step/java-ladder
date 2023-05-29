@@ -18,7 +18,7 @@ public class Person {
         return name;
     }
 
-    public boolean isEqualsName(String nameInput){
+    public boolean isEqualsName(String nameInput) {
         return name.equals(nameInput);
     }
 

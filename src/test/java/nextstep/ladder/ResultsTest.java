@@ -10,7 +10,7 @@ class ResultsTest {
     Results results;
 
     @BeforeEach
-    void init(){
+    void init() {
         results = new Results(new String[]{"A", "B"});
     }
 
@@ -25,7 +25,7 @@ class ResultsTest {
     @Test
     void getResultByIndexTest() {
         var acutualResult = results.getResultByIndex(1);
-        var expectResult = "B";
+        var expectResult = "B" ;
 
         assertThat(acutualResult).isEqualTo(expectResult);
     }

@@ -9,7 +9,7 @@ public class Result {
         this.result = result;
     }
 
-    public String getResult(){
+    public String getResult() {
         return result;
     }
 

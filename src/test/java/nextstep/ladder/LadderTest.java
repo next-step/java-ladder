@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 import java.util.List;
+
 import nextstep.ladder.drawPolicy.AllDraw;
 import nextstep.ladder.drawPolicy.NoDraw;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,7 +17,7 @@ class LadderTest {
     Ladder ladder;
 
     @BeforeEach
-    void init(){
+    void init() {
         ArrayList<LadderRow> ladderRowList = new ArrayList<>();
 
         LadderRow ladderRow1 = new LadderRow(5, new AllDraw());
@@ -36,7 +37,7 @@ class LadderTest {
     }
 
     @Test
-    void create_사람수예외(){
+    void create_사람수예외() {
         Persons persons = new Persons(new String[]{});
         Height height = new Height(1);
 
@@ -53,7 +54,7 @@ class LadderTest {
                 new LadderRow(5, new NoDraw()),
                 new LadderRow(5, new AllDraw()),
                 new LadderRow(5, new AllDraw())
-                );
+        );
 
         assertThat(actualLadder).isEqualTo(expectLadder);
     }

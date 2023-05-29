@@ -2,6 +2,7 @@ package nextstep.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import nextstep.ladder.drawPolicy.DrawablePolicy;
 
 public class Ladder {
@@ -12,7 +13,7 @@ public class Ladder {
         this.ladderRows = ladderRows;
     }
 
-    public Ladder(Persons persons, Height height, DrawablePolicy drawablePolicy){
+    public Ladder(Persons persons, Height height, DrawablePolicy drawablePolicy) {
         ladderRows = new ArrayList<>();
 
         if (persons.personListSize() <= 0) {
@@ -29,9 +30,9 @@ public class Ladder {
         return ladderRows;
     }
 
-    public int getResultIndex(int index){
+    public int getResultIndex(int index) {
         int currentIndex = index;
-        for(LadderRow ladderRow : ladderRows){
+        for (LadderRow ladderRow : ladderRows) {
             currentIndex = ladderRow.movedPointIndex(currentIndex);
         }
         return currentIndex;

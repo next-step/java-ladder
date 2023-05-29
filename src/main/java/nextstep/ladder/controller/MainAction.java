@@ -23,7 +23,7 @@ public class MainAction {
         ResultView.printLadderResults(results.getResults());
 
         // 결과 표출 while문
-        while(true) {
+        while (true) {
             printResultByInput(persons, results, ladder);
         }
     }

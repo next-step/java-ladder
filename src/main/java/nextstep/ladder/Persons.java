@@ -24,7 +24,7 @@ public class Persons {
         return personList.size();
     }
 
-    public Integer getPersonIndex(String name){
+    public Integer getPersonIndex(String name) {
         return personList.stream()
                 .filter(t -> t.isEqualsName(name))
                 .map(t -> personList.indexOf(new Person(name)))
@@ -32,7 +32,7 @@ public class Persons {
                 .orElseThrow(() -> new IllegalArgumentException("해당 참가자는 없습니다."));
     }
 
-    public String getPersonNameByIndex(int index){
+    public String getPersonNameByIndex(int index) {
         return personList.get(index).getName();
     }
 }

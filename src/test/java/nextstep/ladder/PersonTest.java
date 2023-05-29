@@ -9,13 +9,13 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class PersonTest {
 
     @Test
-    void personCreateFailureTest(){
+    void personCreateFailureTest() {
         assertThatThrownBy(() -> new Person("tomson"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void isEqualsNameTest(){
+    void isEqualsNameTest() {
         Person person = new Person("wotjd");
         assertThat(person.isEqualsName("wotjd"))
                 .isTrue();

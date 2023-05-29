@@ -12,7 +12,7 @@ public class LadderRowTest {
     LadderRow ladderRow;
 
     @BeforeEach
-    void init(){
+    void init() {
         ladderRow = new LadderRow(5, new AllDraw());
     }
 

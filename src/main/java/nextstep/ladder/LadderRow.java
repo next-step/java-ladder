@@ -41,7 +41,7 @@ public class LadderRow {
         return Collections.unmodifiableList(points);
     }
 
-    public int movedPointIndex(int currentIndex){
+    public int movedPointIndex(int currentIndex) {
         return points.get(currentIndex)
                 .calculateMovedIndex(currentIndex);
     }
