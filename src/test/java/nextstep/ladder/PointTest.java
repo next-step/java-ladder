@@ -11,6 +11,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PointTest {
 
@@ -91,5 +92,14 @@ class PointTest {
                 Arguments.of(false, true, 2, 3),
                 Arguments.of(false, false, 2, 2)
         );
+    }
+
+    @Test
+    void calculateMovedTestIndex_음수일경우예외() {
+        Point point = new Point(true, false);
+
+        assertThatThrownBy(() -> point.calculateMovedIndex(-1))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("사다리 포인트는 음수가 될 수 없습니다.");
     }
 }
