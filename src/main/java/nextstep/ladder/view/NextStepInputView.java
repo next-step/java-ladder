@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class InputView {
+public class NextStepInputView {
     private static final Scanner scanner = new Scanner(System.in);
     public static final String DELIMITER = ",";
 

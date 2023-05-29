@@ -9,7 +9,7 @@ import nextstep.ladder.view.NextStepOutputView;
 
 import java.util.Map;
 
-import static nextstep.ladder.view.InputView.*;
+import static nextstep.ladder.view.NextStepInputView.*;
 import static nextstep.ladder.view.NextStepOutputView.printResult;
 
 public class NextStepLadderGame {
