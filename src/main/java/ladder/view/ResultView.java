@@ -1,9 +1,9 @@
 package ladder.view;
 
 import ladder.domain.*;
+import ladder.domain.enums.Direction;
 
 import java.util.Arrays;
-import java.util.List;
 
 public class ResultView {
 
@@ -26,8 +26,8 @@ public class ResultView {
     }
 
     private void drawLine(Line line) {
-        line.getVerticalLines().stream()
-                .forEach(x -> System.out.print("|" + drawHorizontal(x.hasRightConnection())));
+        line.getPoints().stream()
+                .forEach(x -> System.out.print("|" + drawHorizontal(x.equals(Direction.RIGHT))));
         System.out.println("");
     }
 

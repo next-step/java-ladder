@@ -1,6 +1,5 @@
 package ladder.domain.enums;
 
-import java.util.Arrays;
 import java.util.Random;
 
 public enum Direction {
@@ -13,10 +12,6 @@ public enum Direction {
 
     Direction(int value) {
         this.value = value;
-    }
-
-    public int getValue() {
-        return value;
     }
 
     private static Direction getRightOrNone() {
@@ -36,5 +31,9 @@ public enum Direction {
         }
 
         return getRightOrNone();
+    }
+
+    public int getNextPosition(int currentPosition) {
+        return currentPosition + value;
     }
 }

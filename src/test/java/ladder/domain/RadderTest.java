@@ -3,8 +3,8 @@ package ladder.domain;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static ladder.domain.Line.MIN_WIDTH;
 import static ladder.domain.Radder.MIN_HEIGHT;
-import static ladder.domain.Radder.MIN_WIDTH;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class RadderTest {

@@ -4,25 +4,24 @@ import ladder.domain.enums.Direction;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Line {
-    private List<VerticalLine> verticalLines = new ArrayList<>();
-
-    Random random = new Random();
+    private List<Direction> points = new ArrayList<>();
+    public static final int MIN_WIDTH = 2;
 
     public Line(int width) {
+        if (width < MIN_WIDTH) {
+            throw new IllegalArgumentException("사다리 폭은 " + MIN_WIDTH + " 이상이어야 합니다.");
+        }
         Direction direction = Direction.NONE; // 초기값
         for (int i = 0; i < width; i++) {
             direction = Direction.getConnectDirection(direction, i == width - 1);
-            verticalLines.add(new VerticalLine(direction));
+            points.add(direction);
         }
     }
 
-    public List<VerticalLine> getVerticalLines() {
-        return verticalLines;
+    public List<Direction> getPoints() {
+        return points;
     }
 
 }
