@@ -10,44 +10,47 @@ public class Line {
     private static final boolean EMPTY_POINT = false;
     private static final double HALF = 0.5;
 
-    private final List<Boolean> points;
+    private final List<Boolean> horizontalLines;
+
+    public Line(List<Boolean> horizontalLines) {
+        this.horizontalLines = horizontalLines;
+    }
 
     public Line(int countOfPerson) {
-        points = generateLine(countOfPerson);
+        this(generateLine(countOfPerson));
     }
 
-    public List<Boolean> generateLine(int countOfPerson) {
-        List<Boolean> points = new ArrayList<>();
+    public static List<Boolean> generateLine(int countOfPerson) {
+        List<Boolean> horizontalLines = new ArrayList<>();
 
-        IntStream.range(BEGIN_INDEX, countOfPerson)
-                .forEach(idx -> points.add(createPoint(idx, points)));
-
-        return points;
+        IntStream.range(BEGIN_INDEX, countOfPerson - 1)
+                .forEach(idx -> horizontalLines.add(createPoint(idx, horizontalLines)));
+        return horizontalLines;
     }
 
-    private Boolean createPoint(int idx, List<Boolean> points) {
+    private static Boolean createPoint(int idx, List<Boolean> horizontalLines) {
         if (BEGIN_INDEX == idx) {
-            return EMPTY_POINT;
+            return isCurrPointNonEmpty();
         }
-        return isPrevPointEmpty(idx, points) && isCurrPointNonEmpty();
+        return isPrevPointEmpty(idx, horizontalLines) && isCurrPointNonEmpty();
     }
 
-    private boolean isPrevPointEmpty(int idx, List<Boolean> points) {
-        return EMPTY_POINT == points.get(idx - 1);
+    private static boolean isPrevPointEmpty(int idx, List<Boolean> horizontalLines) {
+        return EMPTY_POINT == horizontalLines.get(idx - 1);
     }
 
-    private boolean isCurrPointNonEmpty() {
+    private static boolean isCurrPointNonEmpty() {
         return HALF < Math.random();
     }
 
-    public List<Boolean> points() {
-        return points;
+    public List<Boolean> value() {
+        return horizontalLines;
     }
 
     @Override
     public String toString() {
         return "Line{" +
-                "points=" + points +
+                "horizontalLines=" + horizontalLines +
                 '}';
     }
 }
