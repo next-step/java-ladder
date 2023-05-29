@@ -5,17 +5,14 @@ import nextstep.ladder.domain.nextstep.NextStepLadder;
 import nextstep.ladder.domain.nextstep.NextStepLadderCreator;
 import nextstep.ladder.domain.nextstep.NextStepLineCreator;
 import nextstep.ladder.domain.strategy.BridgeStrategy;
-import nextstep.ladder.utils.Util;
 import nextstep.ladder.view.NextStepOutputView;
 
-import java.util.List;
 import java.util.Map;
 
 import static nextstep.ladder.view.InputView.*;
 import static nextstep.ladder.view.NextStepOutputView.printResult;
 
 public class NextStepLadderGame {
-    public static final String DELIMITER = ",";
     private final BridgeStrategy strategy;
 
     public NextStepLadderGame(BridgeStrategy strategy) {
@@ -23,8 +20,8 @@ public class NextStepLadderGame {
     }
 
     public void run() {
-        Participants participants = new Participants(getParticipantNames());
-        LadderResult result = LadderResult.of(participants, getResultList());
+        Participants participants = new Participants(getParticipants());
+        LadderResult result = LadderResult.of(participants, getResults());
         Height height = new Height(getLadderHeight());
 
         NextStepLineCreator lineCreator = new NextStepLineCreator();
@@ -48,13 +45,5 @@ public class NextStepLadderGame {
             participants.validateResultInput(input);
             printResult(input, gameResult);
         }
-    }
-
-    private List<String> getResultList() {
-        return Util.separateToList(getResults(), DELIMITER);
-    }
-
-    private List<String> getParticipantNames() {
-        return Util.separateToList(getParticipants(), DELIMITER);
     }
 }
