@@ -9,14 +9,14 @@ public class LadderHeight {
     private int height;
 
     public LadderHeight(int height) {
-        if (isInvalidHeight(height)) {
-            throw new InvalidParameterException("입력한 사다리 높이를 확인하세요. 높이: " + height);
-        }
+        validLadderHeight(height);
         this.height = height;
     }
 
-    private boolean isInvalidHeight(int height) {
-        return height < MIN_LADDER_HEIGHT;
+    private void validLadderHeight(int height) {
+        if (height < MIN_LADDER_HEIGHT) {
+            throw new InvalidParameterException("입력한 사다리 높이를 확인하세요. 높이: " + height);
+        }
     }
 
     public int getHeight() {
