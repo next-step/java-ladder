@@ -1,7 +1,8 @@
 package nextstep.ladder.domain;
 
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Match {
@@ -10,7 +11,6 @@ public class Match {
 
     private final InputOutput inputOutput;
     private final Ladder ladder;
-    private Map<String, String> results = new HashMap<>();
 
     public Match(InputOutput inputOutput, Ladder ladder) {
         this.inputOutput = inputOutput;
@@ -22,13 +22,20 @@ public class Match {
     }
 
     public String result(String input) {
-        People people = inputOutput.people();
-        ExecuteResults executeResults = inputOutput.executeResults();
-
-        return "";
+        Map<String, String> result = makeResult();
+        return result.get(input);
     }
 
-    int findDestinationIdx(int startIdx) {
+    private Map<String, String> makeResult() {
+        List<Person> people = inputOutput.people().value();
+        List<ExecuteResult> executeResults = inputOutput.executeResults().value();
+
+        return IntStream.range(BEGIN_IDX, people.size())
+                .boxed()
+                .collect(Collectors.toMap(i -> people.get(i).name(), i -> executeResults.get(findOutputIdx(i)).name()));
+    }
+
+    int findOutputIdx(int startIdx) {
         int currentIdx = startIdx * 2;
         String[][] ladder = this.ladder.result();
         int rowCount = ladder.length;
@@ -54,9 +61,5 @@ public class Match {
 
     private boolean isMovableToRight(int idx, String[] row, int columnLength) {
         return idx < columnLength - 1 && "h".equals(row[idx + 1]);
-    }
-
-    public Map<String, String> value() {
-        return results;
     }
 }

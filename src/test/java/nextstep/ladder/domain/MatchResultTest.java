@@ -35,19 +35,19 @@ class MatchResultTest {
 
     @ParameterizedTest
     @CsvSource(value = {"0:0", "1:3", "2:2", "3:1"}, delimiter = ':')
-    void findDestinationIndex(int startIdx, int destIdx) {
+    void findOutputIdx(int inputIdx, int outputIdx) {
         //given
         Match match = new Match(ladder);
 
         //when
-        int resultIdx = match.findDestinationIdx(startIdx);
+        int resultIdx = match.findOutputIdx(inputIdx);
 
         //then
-        assertThat(resultIdx).isEqualTo(destIdx);
+        assertThat(resultIdx).isEqualTo(outputIdx);
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"pobi:꽝", "honux:3000", "crong:꽝", "jk:5000"}, delimiter = ':')
+    @CsvSource(value = {"pobi:꽝1", "honux:3000", "crong:꽝2", "jk:5000"}, delimiter = ':')
     void 사다리_결과(String input, String output) {
         //given
         Match match = new Match(inputOutput, ladder);
