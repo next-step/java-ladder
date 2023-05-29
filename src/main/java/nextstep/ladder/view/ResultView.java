@@ -67,7 +67,7 @@ public class ResultView {
         return lines.value().stream()
                 .map(line -> {
                     StringBuilder sb = new StringBuilder();
-                    IntStream.range(BEGIN_INDEX, line.points().size())
+                    IntStream.range(BEGIN_INDEX, line.value().size())
                             .mapToObj(idx -> generatePointString(people, line, idx)
                             )
                             .forEach(sb::append);
@@ -106,7 +106,7 @@ public class ResultView {
         if (BEGIN_INDEX == idx) {
             return " ".repeat(people.firstPersonNameLength()) + "|";
         }
-        return line.points().get(idx) ? "-----|" : "     |";
+        return line.value().get(idx) ? "-----|" : "     |";
     }
 }
 

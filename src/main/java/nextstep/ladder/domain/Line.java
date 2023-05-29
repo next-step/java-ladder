@@ -10,10 +10,10 @@ public class Line {
     private static final boolean EMPTY_POINT = false;
     private static final double HALF = 0.5;
 
-    private final List<Boolean> points;
+    private final List<Boolean> horizontalLines;
 
-    public Line(List<Boolean> points) {
-        this.points = points;
+    public Line(List<Boolean> horizontalLines) {
+        this.horizontalLines = horizontalLines;
     }
 
     public Line(int countOfPerson) {
@@ -21,37 +21,37 @@ public class Line {
     }
 
     public static List<Boolean> generateLine(int countOfPerson) {
-        List<Boolean> points = new ArrayList<>();
+        List<Boolean> horizontalLines = new ArrayList<>();
 
         IntStream.range(BEGIN_INDEX, countOfPerson)
-                .forEach(idx -> points.add(createPoint(idx, points)));
+                .forEach(idx -> horizontalLines.add(createPoint(idx, horizontalLines)));
 
-        return points;
+        return horizontalLines;
     }
 
-    private static Boolean createPoint(int idx, List<Boolean> points) {
+    private static Boolean createPoint(int idx, List<Boolean> horizontalLines) {
         if (BEGIN_INDEX == idx) {
             return EMPTY_POINT;
         }
-        return isPrevPointEmpty(idx, points) && isCurrPointNonEmpty();
+        return isPrevPointEmpty(idx, horizontalLines) && isCurrPointNonEmpty();
     }
 
-    private static boolean isPrevPointEmpty(int idx, List<Boolean> points) {
-        return EMPTY_POINT == points.get(idx - 1);
+    private static boolean isPrevPointEmpty(int idx, List<Boolean> horizontalLines) {
+        return EMPTY_POINT == horizontalLines.get(idx - 1);
     }
 
     private static boolean isCurrPointNonEmpty() {
         return HALF < Math.random();
     }
 
-    public List<Boolean> points() {
-        return points;
+    public List<Boolean> value() {
+        return horizontalLines;
     }
 
     @Override
     public String toString() {
         return "Line{" +
-                "points=" + points +
+                "horizontalLines=" + horizontalLines +
                 '}';
     }
 }
