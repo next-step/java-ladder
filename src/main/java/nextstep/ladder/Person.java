@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public class Person {
 
-    private final String name;
     private final static int MAX_SIZE = 5;
+    private final String name;
 
     public Person(String name) {
         if (name.length() > MAX_SIZE) {

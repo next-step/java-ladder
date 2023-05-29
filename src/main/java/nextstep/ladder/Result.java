@@ -3,7 +3,7 @@ package nextstep.ladder;
 import java.util.Objects;
 
 public class Result {
-    private String result;
+    private final String result;
 
     public Result(String result) {
         this.result = result;
