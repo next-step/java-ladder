@@ -11,20 +11,20 @@ public class RadderTest {
 
     @Test
     void 생성검증() {
-        Assertions.assertThat(new Radder(4, 5)).isInstanceOf(Radder.class);
+        Assertions.assertThat(Radder.of(4, 5)).isInstanceOf(Radder.class);
     }
 
     @Test
     void 높이검증() {
         assertThatThrownBy(() -> {
-            Radder radder = new Radder(1, 1);
+            Radder radder = Radder.of(1, 1);
         }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("사다리 폭은 " + MIN_WIDTH + " 이상이어야 합니다.");
     }
 
     @Test
     void 넓이검증() {
         assertThatThrownBy(() -> {
-            Radder radder = new Radder(2, 0);
+            Radder radder = Radder.of(2, 0);
         }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("사다리 높이는 " + MIN_HEIGHT + " 이상이어야 합니다.");
     }
 

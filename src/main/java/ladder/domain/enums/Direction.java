@@ -33,7 +33,12 @@ public enum Direction {
         return getRightOrNone();
     }
 
+
     public int getNextPosition(int currentPosition) {
         return currentPosition + value;
+    }
+
+    public boolean isRight() {
+        return this.equals(Direction.RIGHT);
     }
 }

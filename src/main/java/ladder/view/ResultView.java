@@ -27,7 +27,7 @@ public class ResultView {
 
     private void drawLine(Line line) {
         line.getPoints().stream()
-                .forEach(x -> System.out.print("|" + drawHorizontal(x.equals(Direction.RIGHT))));
+                .forEach(x -> System.out.print("|" + drawHorizontal(x.isRight())));
         System.out.println("");
     }
 
