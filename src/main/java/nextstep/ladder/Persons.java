@@ -26,7 +26,7 @@ public class Persons {
 
     public Integer getPersonIndex(String name){
         return personList.stream()
-                .filter(t -> t.getName().equals(name))
+                .filter(t -> t.isEqualsName(name))
                 .map(t -> personList.indexOf(new Person(name)))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("해당 참가자는 없습니다."));

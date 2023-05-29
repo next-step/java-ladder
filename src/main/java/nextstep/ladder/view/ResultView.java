@@ -2,6 +2,7 @@ package nextstep.ladder.view;
 
 import java.util.stream.Collectors;
 
+import nextstep.ladder.Ladder;
 import nextstep.ladder.LadderRow;
 import nextstep.ladder.Persons;
 import nextstep.ladder.Point;
@@ -62,5 +63,12 @@ public class ResultView {
             return ROW.repeat(pointsSize);
         }
         return " ".repeat(pointsSize);
+    }
+
+    public static void printAllResults(Persons persons, Results results, Ladder ladder) {
+        for (int i = 0; i < persons.personListSize(); i++) {
+            System.out.println("실행 결과");
+            System.out.println(persons.getPersonNameByIndex(i) + " : " + results.getResultByIndex(ladder.getResultIndex(i)));
+        }
     }
 }

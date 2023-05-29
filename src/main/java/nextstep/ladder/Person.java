@@ -18,6 +18,10 @@ public class Person {
         return name;
     }
 
+    public boolean isEqualsName(String nameInput){
+        return name.equals(nameInput);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
