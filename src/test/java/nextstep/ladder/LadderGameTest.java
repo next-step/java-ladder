@@ -37,7 +37,7 @@ public class LadderGameTest {
     }
 
 
-    static class RandomTrue extends Random {
+    static class RandomFalse extends Random {
         @Override
         public boolean nextBoolean() {
             return false;
@@ -48,7 +48,7 @@ public class LadderGameTest {
     @DisplayName("LadderGame_play_method_test")
     public void LadderGame_play_method_test() {
 
-        RandomLineStrategy lineTrue = new RandomLineStrategy(new RandomTrue());
+        RandomLineStrategy lineTrue = new RandomLineStrategy(new RandomFalse());
 
         Ladder ladder = new Ladder(2, 3, lineTrue);
         Participant participant = new Participant("test", "test2", "test3");

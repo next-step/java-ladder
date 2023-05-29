@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.*;
 
 public class LineTest {
 
-    static class RandomTrue extends Random {
+    static class RandomFalse extends Random {
         @Override
         public boolean nextBoolean() {
             return false;
@@ -19,7 +19,7 @@ public class LineTest {
     @Test
     @DisplayName("move_method_test")
     public void move_method_test(){
-        Line line = new Line(5, new RandomLineStrategy(new RandomTrue()));
+        Line line = new Line(5, new RandomLineStrategy(new RandomFalse()));
 
 
         assertThat(line.move(0)).isEqualTo(0);
