@@ -23,4 +23,16 @@ public class Persons {
     public int personListSize() {
         return personList.size();
     }
+
+    public Integer getPersonIndex(String name){
+        return personList.stream()
+                .filter(t -> t.getName().equals(name))
+                .map(t -> personList.indexOf(new Person(name)))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("해당 참가자는 없습니다."));
+    }
+
+    public String getPersonNameByIndex(int index){
+        return personList.get(index).getName();
+    }
 }

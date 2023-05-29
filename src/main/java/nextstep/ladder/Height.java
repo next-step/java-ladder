@@ -2,8 +2,8 @@ package nextstep.ladder;
 
 public class Height {
 
-    private final long height;
     private final static int ZERO = 0;
+    private final long height;
 
     public Height(long height) {
         if (height <= ZERO) {

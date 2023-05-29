@@ -5,6 +5,8 @@ import java.util.stream.Collectors;
 import nextstep.ladder.LadderRow;
 import nextstep.ladder.Persons;
 import nextstep.ladder.Point;
+import nextstep.ladder.Result;
+import nextstep.ladder.Results;
 
 import java.util.List;
 
@@ -13,9 +15,13 @@ public class ResultView {
     public static final String COLUMN = "|" ;
     public static final String ROW = "-" ;
 
-    public static void printResult(Persons persons) {
-        System.out.println("실행 결과");
+    public static void printResult(Results results, int endIndex){
+        System.out.println("사다리 결과");
+        System.out.println(results.getResults().get(endIndex).getResult());
+    }
 
+    public static void printPerson(Persons persons) {
+        System.out.println("사다리 결과");
         printPersonsName(persons.getPersonsName());
     }
 
@@ -30,6 +36,13 @@ public class ResultView {
         System.out.println(ladder.stream()
                 .map(t -> drawLadderRow(t.getPoints()))
                 .collect(Collectors.joining("\n"))
+        );
+    }
+
+    public static void printLadderResults(List<Result> resultList) {
+        System.out.println(resultList.stream()
+                .map(Result::getResult)
+                .collect(Collectors.joining(" ".repeat(resultList.size())))
         );
     }
 
