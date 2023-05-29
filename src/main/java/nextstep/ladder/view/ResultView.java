@@ -29,16 +29,16 @@ public class ResultView {
 
     private static void printLadder(InputOutput inputOutput, Ladder ladder) {
         System.out.println("\n사다리 결과\n");
-        printNames(inputOutput, ladder);
+        printNames(inputOutput);
         printLines(inputOutput, ladder);
         printExecuteResults(inputOutput);
     }
 
-    private static void printNames(InputOutput inputOutput, Ladder ladder) {
-        System.out.println(makeNames(inputOutput, ladder));
+    private static void printNames(InputOutput inputOutput) {
+        System.out.println(makeNames(inputOutput));
     }
 
-    private static String makeNames(InputOutput inputOutput, Ladder ladder) {
+    private static String makeNames(InputOutput inputOutput) {
         List<Person> people = inputOutput.people().value();
 
         return IntStream.range(BEGIN_INDEX, people.size())
@@ -91,8 +91,8 @@ public class ResultView {
 
                     StringBuilder sb = new StringBuilder();
                     if (BEGIN_INDEX == i) {
+                        sb.append(" ".repeat(Math.abs(peopleName.length() - executeName.length())));
                         sb.append(executeName);
-                        sb.append(" ".repeat(NAME_SPACE - peopleName.length()));
                         return sb.toString();
                     }
                     sb.append(" ".repeat(NAME_SPACE - executeName.length()));
