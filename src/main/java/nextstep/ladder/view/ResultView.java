@@ -51,10 +51,7 @@ public class ResultView {
                     if (BEGIN_INDEX == i) {
                         return name;
                     }
-                    StringBuilder sb = new StringBuilder();
-                    sb.append(" ".repeat(NAME_SPACE - name.length()));
-                    sb.append(name);
-                    return sb.toString();
+                    return generateSpace(name) + name;
                 })
                 .collect(Collectors.joining());
     }
@@ -71,7 +68,7 @@ public class ResultView {
                 .mapToObj(i -> IntStream.range(BEGIN_INDEX, result[BEGIN_INDEX].length)
                         .mapToObj(j -> {
                             if (BEGIN_INDEX == j) {
-                                return generateSpace(firstPersonNameLength);
+                                return generateSpace(firstPersonNameLength) + "|";
                             }
                             return generateLine(result[i][j]);
                         })
@@ -80,7 +77,7 @@ public class ResultView {
     }
 
     private static String generateSpace(int firstPersonNameLength) {
-        return " ".repeat(firstPersonNameLength) + "|";
+        return " ".repeat(firstPersonNameLength);
     }
 
     private static String generateLine(String result) {
@@ -114,17 +111,23 @@ public class ResultView {
                     String executeName = executeResults.get(i).name();
                     String peopleName = people.get(i).name();
 
-                    StringBuilder sb = new StringBuilder();
                     if (BEGIN_INDEX == i) {
-                        sb.append(" ".repeat(Math.abs(peopleName.length() - executeName.length())));
-                        sb.append(executeName);
-                        return sb.toString();
+                        return generateSpace(executeName, peopleName) + executeName;
                     }
-                    sb.append(" ".repeat(NAME_SPACE - executeName.length()));
-                    sb.append(executeName);
-                    return sb.toString();
+                    return generateSpace(executeName) + executeName;
                 })
                 .collect(Collectors.joining());
+    }
+
+    private static String generateSpace(String executeName, String peopleName) {
+        if (peopleName.length() - executeName.length() > 0) {
+            return " ".repeat(peopleName.length() - executeName.length());
+        }
+        return "";
+    }
+
+    private static String generateSpace(String executeName) {
+        return " ".repeat(NAME_SPACE - executeName.length());
     }
 }
 
