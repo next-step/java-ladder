@@ -1,9 +1,9 @@
 package nextstep.ladder.controller;
 
 import nextstep.ladder.domain.*;
+import nextstep.ladder.domain.engine.LadderCreator;
+import nextstep.ladder.domain.factory.LadderFactoryBean;
 import nextstep.ladder.domain.nextstep.NextStepLadder;
-import nextstep.ladder.domain.nextstep.NextStepLadderCreator;
-import nextstep.ladder.domain.nextstep.NextStepLineCreator;
 import nextstep.ladder.domain.strategy.BridgeStrategy;
 import nextstep.ladder.view.NextStepOutputView;
 
@@ -24,15 +24,12 @@ public class NextStepLadderGame {
         LadderResult result = LadderResult.of(participants, getResults());
         Height height = new Height(getLadderHeight());
 
-        NextStepLineCreator lineCreator = new NextStepLineCreator();
-        NextStepLadderCreator ladderCreator = new NextStepLadderCreator(lineCreator);
+        LadderCreator ladderCreator = LadderFactoryBean.createLadderFactory();
         NextStepLadder ladder = (NextStepLadder) ladderCreator.create(participants, height, strategy);
-
 
         NextStepOutputView.printLadder(participants, result, ladder);
 
         GameResult gameResult = ladder.run(participants, result);
-
         loopResult(participants, gameResult.getGameResult());
     }
 
