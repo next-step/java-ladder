@@ -1,13 +1,18 @@
 package nextstep.ladder.view;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
+    public static final String DELIMITER = ",";
 
-    public static String getParticipants() {
+    public static List<String> getParticipants() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        return scanner.next();
+        String participants = scanner.next();
+        return separateToList(participants);
     }
     
     public static int getLadderHeight() {
@@ -15,9 +20,15 @@ public class InputView {
         return scanner.nextInt();
     }
 
-    public static String getResults() {
+    public static List<String> getResults() {
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
-        return scanner.next();
+        String results = scanner.next();
+        return separateToList(results);
+    }
+
+    private static List<String> separateToList(String results) {
+        return Arrays.stream(results.split(DELIMITER))
+                .collect(Collectors.toList());
     }
 
     public static String getNameOrCodeForResult() {
