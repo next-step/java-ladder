@@ -12,17 +12,11 @@ public class Match {
         this.ladder = ladder;
     }
 
-//    public String result(String personName) {
-//        List<Person> people = ladder.people().value();
-//        List<Line> lines = ladder.lines().value();
-//        List<ExecuteResult> executeResults = ladder.executeResults().value();
-//
-//        int peopleCnt = people.size();
-//        int height = lines.size();
-//
-//
-//        return "";
-//    }
+    public int resultIdx(int input) {
+        String[][] result = ladder.result();
+        
+        return 0;
+    }
 
     public Map<String, String> value() {
         return results;

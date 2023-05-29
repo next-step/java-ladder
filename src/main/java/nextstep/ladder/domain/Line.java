@@ -23,15 +23,14 @@ public class Line {
     public static List<Boolean> generateLine(int countOfPerson) {
         List<Boolean> horizontalLines = new ArrayList<>();
 
-        IntStream.range(BEGIN_INDEX, countOfPerson)
+        IntStream.range(BEGIN_INDEX, countOfPerson - 1)
                 .forEach(idx -> horizontalLines.add(createPoint(idx, horizontalLines)));
-
         return horizontalLines;
     }
 
     private static Boolean createPoint(int idx, List<Boolean> horizontalLines) {
         if (BEGIN_INDEX == idx) {
-            return EMPTY_POINT;
+            return isCurrPointNonEmpty();
         }
         return isPrevPointEmpty(idx, horizontalLines) && isCurrPointNonEmpty();
     }

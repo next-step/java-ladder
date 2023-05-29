@@ -28,21 +28,21 @@ class MatchResultTest {
                 new Line(Arrays.asList(true, false, true))
         ));
 
-        executeResults = new ExecuteResults(new String[]{"꽝1", "5000", "꽝2", "3000"});
+//        executeResults = new ExecuteResults(new String[]{"꽝1", "5000", "꽝2", "3000"});
 
         ladder = new Ladder(verticalLineSize, lines);
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"pobi:꽝1", "honux:3000", "crong:꽝2", "jk:5000"}, delimiter = ':')
-    void 특정인의_결과_확인(String input, String output) {
+    @CsvSource(value = {"0:0", "1:3", "2:2", "3:1"}, delimiter = ':')
+    void result_메서드(int input, int output) {
         //given
         Match match = new Match(ladder);
 
         //when
-        String result = match.result(input);
+        int resultIdx = match.resultIdx(input);
 
         //then
-        assertThat(result).isEqualTo(output);
+        assertThat(resultIdx).isEqualTo(output);
     }
 }

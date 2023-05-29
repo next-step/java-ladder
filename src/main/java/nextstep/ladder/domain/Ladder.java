@@ -18,10 +18,10 @@ public class Ladder {
     }
 
     public Ladder(int verticalLineCount, int height) {
-        this(verticalLineCount, new Lines(generateLadder(verticalLineCount, height)));
+        this(verticalLineCount, new Lines(generateLines(verticalLineCount, height)));
     }
 
-    private static List<Line> generateLadder(int verticalLineCount, int height) {
+    private static List<Line> generateLines(int verticalLineCount, int height) {
         return Stream.generate(() -> new Line(verticalLineCount))
                 .limit(height)
                 .collect(Collectors.toList());

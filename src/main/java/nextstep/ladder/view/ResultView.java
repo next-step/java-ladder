@@ -1,6 +1,9 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.*;
+import nextstep.ladder.domain.ExecuteResult;
+import nextstep.ladder.domain.InputOutput;
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Person;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -61,19 +64,41 @@ public class ResultView {
     }
 
     private static String makeLines(InputOutput inputOutput, Ladder ladder) {
-        People people = inputOutput.people();
-        Lines lines = ladder.lines();
+        int firstPersonNameLength = inputOutput.people().firstPersonNameLength();
+        String[][] result = ladder.result();
 
-        return lines.value().stream()
-                .map(line -> {
-                    StringBuilder sb = new StringBuilder();
-                    IntStream.range(BEGIN_INDEX, line.value().size())
-                            .mapToObj(idx -> generatePointString(people, line, idx)
-                            )
-                            .forEach(sb::append);
-                    return sb.toString();
-                })
+        return IntStream.range(BEGIN_INDEX, result.length)
+                .mapToObj(i -> IntStream.range(BEGIN_INDEX, result[BEGIN_INDEX].length)
+                        .mapToObj(j -> {
+                            if (BEGIN_INDEX == j) {
+                                return generateSpace(firstPersonNameLength);
+                            }
+                            return generateLine(result[i][j]);
+                        })
+                        .collect(Collectors.joining()))
                 .collect(Collectors.joining("\n"));
+    }
+
+    private static String generateSpace(int firstPersonNameLength) {
+        return " ".repeat(firstPersonNameLength) + "|";
+    }
+
+    private static String generateLine(String result) {
+        if (isVerticalLine(result)) {
+            return "|";
+        }
+        if (isHorizontalLine(result)) {
+            return "-----";
+        }
+        return "     ";
+    }
+
+    private static boolean isVerticalLine(String result) {
+        return "v".equals(result);
+    }
+
+    private static boolean isHorizontalLine(String result) {
+        return "h".equals(result);
     }
 
     private static void printExecuteResults(InputOutput inputOutput) {
@@ -100,13 +125,6 @@ public class ResultView {
                     return sb.toString();
                 })
                 .collect(Collectors.joining());
-    }
-
-    private static String generatePointString(People people, Line line, int idx) {
-        if (BEGIN_INDEX == idx) {
-            return " ".repeat(people.firstPersonNameLength()) + "|";
-        }
-        return line.value().get(idx) ? "-----|" : "     |";
     }
 }
 
