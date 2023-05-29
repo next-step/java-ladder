@@ -28,15 +28,23 @@ public class Match {
         currentIdx = IntStream.range(BEGIN_IDX, rowCount)
                 .reduce(currentIdx, (idx, i) -> {
                     String[] row = ladder[i];
-                    if (idx > BEGIN_IDX && "h".equals(row[idx - 1])) {
+                    if (isMovableToLeft(idx, row)) {
                         return idx - 2;
                     }
-                    if (idx < columnLength - 1 && "h".equals(row[idx + 1])) {
+                    if (isMovableToRight(idx, row, columnLength)) {
                         return idx + 2;
                     }
                     return idx;
                 });
         return currentIdx / 2;
+    }
+
+    private static boolean isMovableToLeft(int idx, String[] row) {
+        return idx > BEGIN_IDX && "h".equals(row[idx - 1]);
+    }
+
+    private static boolean isMovableToRight(int idx, String[] row, int columnLength) {
+        return idx < columnLength - 1 && "h".equals(row[idx + 1]);
     }
 
     public Map<String, String> value() {
