@@ -53,9 +53,9 @@ class MatchResultTest {
         Match match = new Match(inputOutput, ladder);
 
         //when
-        String result = match.result(input);
+        Result result = match.makeResult();
 
         //then
-        assertThat(result).isEqualTo(output);
+        assertThat(result.value().get(input)).isEqualTo(output);
     }
 }

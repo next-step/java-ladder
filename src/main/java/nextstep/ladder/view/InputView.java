@@ -24,6 +24,11 @@ public class InputView {
         return Integer.parseInt(nextLine());
     }
 
+    public String person() {
+        ResultView.printPersonInputCommand();
+        return nextLine();
+    }
+
     private String nextLine() {
         return scanner.nextLine();
     }

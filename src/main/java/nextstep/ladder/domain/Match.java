@@ -1,7 +1,7 @@
 package nextstep.ladder.domain;
 
+import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -21,18 +21,14 @@ public class Match {
         this(null, ladder);
     }
 
-    public String result(String input) {
-        Map<String, String> result = makeResult();
-        return result.get(input);
-    }
-
-    private Map<String, String> makeResult() {
+    public Result makeResult() {
         List<Person> people = inputOutput.people().value();
         List<ExecuteResult> executeResults = inputOutput.executeResults().value();
 
-        return IntStream.range(BEGIN_IDX, people.size())
+        return new Result(IntStream.range(BEGIN_IDX, people.size())
                 .boxed()
-                .collect(Collectors.toMap(i -> people.get(i).name(), i -> executeResults.get(findOutputIdx(i)).name()));
+                .collect(Collectors.toMap(i -> people.get(i).name(), i -> executeResults.get(findOutputIdx(i)).name(),
+                        (v1, v2) -> v1, LinkedHashMap::new)));
     }
 
     int findOutputIdx(int startIdx) {

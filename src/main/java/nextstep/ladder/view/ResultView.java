@@ -1,9 +1,6 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.ExecuteResult;
-import nextstep.ladder.domain.InputOutput;
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Person;
+import nextstep.ladder.domain.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,11 +23,7 @@ public class ResultView {
         System.out.println("\n최대 사다리 높이는 몇 개인가요?");
     }
 
-    public static void printResult(InputOutput inputOutput, Ladder ladder) {
-        printLadder(inputOutput, ladder);
-    }
-
-    private static void printLadder(InputOutput inputOutput, Ladder ladder) {
+    public static void printLadder(InputOutput inputOutput, Ladder ladder) {
         System.out.println("\n사다리 결과\n");
         printNames(inputOutput);
         printLines(inputOutput, ladder);
@@ -128,6 +121,26 @@ public class ResultView {
 
     private static String generateSpace(String executeName) {
         return " ".repeat(NAME_SPACE - executeName.length());
+    }
+
+    public static void printPersonInputCommand() {
+        System.out.println("\n결과를 보고 싶은 사람은?");
+    }
+
+    public static void printResult(Result result, String person) {
+        printResultCommand();
+
+        if ("all".equals(person)) {
+            result.value().entrySet().stream()
+                    .forEachOrdered(entry -> System.out.println(entry.getKey() + " : " + entry.getValue()));
+            return;
+        }
+        System.out.println(result.value().get(person));
+
+    }
+
+    private static void printResultCommand() {
+        System.out.println("\n실행 결과");
     }
 }
 

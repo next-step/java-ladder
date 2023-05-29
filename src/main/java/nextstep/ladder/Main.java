@@ -17,11 +17,13 @@ public class Main {
 
         Ladder ladder = new Ladder(verticalLineCount, height);
 
-        ResultView.printResult(inputOutput, ladder);
+        ResultView.printLadder(inputOutput, ladder);
 
-        Match match = new Match(ladder);
+        Match match = new Match(inputOutput, ladder);
+        Result result = match.makeResult();
+        String person = inputView.person();
 
-//        matchResult.result("pobi");
+        ResultView.printResult(result, person);
 
         inputView.close();
     }
