@@ -21,4 +21,12 @@ class ResultsTest {
 
         assertThat(acutualResults).isEqualTo(expectResults.getResults());
     }
+
+    @Test
+    void getResultByIndexTest() {
+        var acutualResult = results.getResultByIndex(1);
+        var expectResult = "B";
+
+        assertThat(acutualResult).isEqualTo(expectResult);
+    }
 }

@@ -36,4 +36,12 @@ class PersonsTest {
         assertThatThrownBy(() -> persons.getPersonIndex("GG"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void getPersonNameByIndexTest() {
+        var persons = new Persons(new String[]{"AA", "BB", "CC", "DD"});
+
+        assertThat(persons.getPersonNameByIndex(3))
+                .isEqualTo("DD");
+    }
 }
