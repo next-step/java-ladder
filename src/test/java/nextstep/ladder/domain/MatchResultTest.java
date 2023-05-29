@@ -35,12 +35,12 @@ class MatchResultTest {
 
     @ParameterizedTest
     @CsvSource(value = {"0:0", "1:3", "2:2", "3:1"}, delimiter = ':')
-    void result_메서드(int input, int output) {
+    void findDestinationIndex(int input, int output) {
         //given
         Match match = new Match(ladder);
 
         //when
-        int resultIdx = match.resultIdx(input);
+        int resultIdx = match.findDestinationIdx(input);
 
         //then
         assertThat(resultIdx).isEqualTo(output);
