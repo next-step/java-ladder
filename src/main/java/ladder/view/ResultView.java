@@ -52,18 +52,12 @@ public class ResultView {
         this.printResult(winningCategories, playerGroup, ladderResult);
     }
 
-    private void printAllPlayerResult(WinningCategories winningCategories, PlayerGroup playerGroup, LadderResult ladderResult) {
+    public void printAllPlayerResult(WinningCategories winningCategories, PlayerGroup playerGroup, LadderResult ladderResult) {
         playerGroup.getPlayerList()
                         .stream()
                         .forEach(player ->
                             System.out.printf("%s : %s\n", player.name(), winningCategories.find(ladderResult.get(player)).toString())
                         );
-
-//        ladderResult.keyStream()
-//                .forEach(player ->
-//                    System.out.printf("%s : %s\n", player.name(), winningCategories.find(ladderResult.get(player)).toString())
-//                    System.out.printf("%s : %s\n", player.name(), winningCategories.find(ladderResult.get(player)).toString())
-//                );
     }
 
     private String convertToString(List<String> list) {

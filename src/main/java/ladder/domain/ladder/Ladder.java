@@ -1,6 +1,7 @@
 package ladder.domain.ladder;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
@@ -34,7 +35,7 @@ public class Ladder {
     }
 
     public List<LadderRow> getRows() {
-        return rows;
+        return Collections.unmodifiableList(rows);
     }
 
     @Override
