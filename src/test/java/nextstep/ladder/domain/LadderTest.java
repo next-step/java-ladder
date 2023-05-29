@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LadderTest {
 
@@ -35,6 +37,20 @@ public class LadderTest {
         String[][] result = ladder.result();
 
         //then
-        System.out.println(Arrays.deepToString(result));
+        assertTrue(arrayContainsValue(result, "v"));
+        assertTrue(arrayContainsValue(result, "h"));
+        assertTrue(arrayContainsValue(result, null));
+        assertFalse(arrayContainsValue(result, "x"));
+    }
+
+    private boolean arrayContainsValue(String[][] array, String value) {
+        return Arrays.stream(array)
+                .flatMap(Arrays::stream)
+                .anyMatch(element -> {
+                    if (value == null) {
+                        return element == null;
+                    }
+                    return value.equals(element);
+                });
     }
 }
