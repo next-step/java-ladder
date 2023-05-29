@@ -15,22 +15,18 @@ public class Row {
 
     public static Row of(PointGenerator generator, int usersCount) {
         List<Point> row = new ArrayList<>();
-        for (int x = 0; x < usersCount; x++) {
-            row.add(generator.generate(existLeft(row, x), x));
+        Point point = Point.first(generator.generate());
+        row.add(point);
+        for (int i = 1; i < usersCount - 1; i++) {
+            point = point.next(generator.generate());
+            row.add(point);
         }
+        row.add(point.last());
         return new Row(row);
     }
 
-    public static boolean existLeft(List<Point> row, int x) {
-        boolean movableLeft = false;
-        if (x != 0) {
-            movableLeft = row.get(x - 1).movableRight();
-        }
-        return movableLeft;
-    }
-
-    public int getNextX(int x) {
-        return row.get(x).nextX(x);
+    public Position move(Position position) {
+        return position.move(row);
     }
 
     public List<PointDto> toPointDtos() {

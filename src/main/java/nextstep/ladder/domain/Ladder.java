@@ -22,10 +22,11 @@ public class Ladder {
     }
 
     public int getResultX(int x) {
-        for (int i = 0; i < ladder.size(); i++) {
-            x = ladder.get(i).getNextX(x);
+        Position position = new Position(x);
+        for (Row row : ladder) {
+            position = row.move(position);
         }
-        return x;
+        return position.getX();
     }
 
     public List<List<PointDto>> toLadderDto() {

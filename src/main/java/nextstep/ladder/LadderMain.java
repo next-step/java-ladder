@@ -11,7 +11,7 @@ public class LadderMain {
 
         LadderGame ladderGame = new LadderGame();//사다리 게임
         Users users = Users.of(ladderInput.getUsers());//유저
-        PointGenerator generator = new RandomPointGenerator(0, ladderInput.getUsersSize() - 1);//사다리 생성전략
+        PointGenerator generator = new RandomPointGenerator();//사다리 생성전략
         Ladder ladder = Ladder.of(ladderInput.getUsersSize(), ladderInput.getHeight(), generator);//사다리
         InputResults results = new InputResults(ladderInput.getResults());//입력한 결과
         ResultView resultView = new ResultView();//출력 view 생성
