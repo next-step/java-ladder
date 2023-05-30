@@ -11,6 +11,14 @@ public class Ladder {
         rows = generateRows(height, countOfPlayers);
     }
 
+    public Ladder(int height, LadderRow ladderRow) {
+        rows = new ArrayList();
+        for (int i=0; i < height; i++) {
+            LadderRow newLadderLow = ladderRow;
+            rows.add(newLadderLow);
+        }
+    }
+
     public List<LadderRow> getRows() {
         return rows;
     }

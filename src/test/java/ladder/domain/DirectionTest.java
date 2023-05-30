@@ -11,6 +11,6 @@ public class DirectionTest {
     void direction_생성() {
         Direction direction = Direction.RIGHT;
         assertThat(direction.getX()).isEqualTo(1);
-        assertThat(direction.getY()).isEqualTo(0);
+        assertThat(direction.getY()).isEqualTo(1);
     }
 }
