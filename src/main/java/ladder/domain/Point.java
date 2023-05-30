@@ -1,4 +1,4 @@
-package ladder.dto;
+package ladder.domain;
 
 public class Point {
     private boolean point;

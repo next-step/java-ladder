@@ -1,14 +1,9 @@
 package ladder;
 
-import ladder.dto.Ladder;
-import ladder.dto.Line;
-import ladder.dto.Players;
+import ladder.domain.*;
+import ladder.service.LadderGame;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static ladder.view.InputView.getLadderHeight;
-import static ladder.view.InputView.getPlayers;
+import static ladder.view.InputView.*;
 import static ladder.view.ResultView.*;
 
 public class LadderApplication {
@@ -16,10 +11,13 @@ public class LadderApplication {
     public static void main(String[] args) {
         Players players = getPlayers();
         Ladder ladder = new Ladder(getLadderHeight(), players);
+        Results results = getResults(players);
 
-        viewResult();
-        viewPlayerNames(players);
-        viewLadder(players, ladder);
+        LadderGame ladderGame = new LadderGame();
+        PlayerResults playerResults = ladderGame.makePlayResults(players, ladder, results);
+
+        viewResult(players, ladder, results);
+        viewPlayerResult(playerResults, getResultOfPlayer(players));
     }
 
 }
