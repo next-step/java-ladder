@@ -13,27 +13,26 @@ public class PrintView {
     }
 
     private static void printName(List<String> names) {
-        for (String name : names) {
-            int padding = 5 - name.length();
-            System.out.print(name);
-            for (int i = 0; i < padding; i++) {
-                System.out.print(" ");
-            }
-        }
+        names.stream()
+                .map(name -> {
+                    int padding = 5 - name.length();
+                    String paddedName = name + " ".repeat(padding);
+                    return paddedName;
+                })
+                .forEach(System.out::print);
         System.out.println();
     }
 
-
     private static void printLadder(Ladder ladder) {
         List<Line> lines = ladder.getLines();
-        for (Line line : lines) {
+        lines.forEach(line -> {
             printColumn();
-            for (Boolean point : line.getPoints()) {
+            line.getPoints().forEach(point -> {
                 printRow(point);
                 printColumn();
-            }
+            });
             System.out.println();
-        }
+        });
     }
 
     private static void printColumn(){
