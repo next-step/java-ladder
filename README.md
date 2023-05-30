@@ -21,6 +21,8 @@
 - RandomPointGenerator
 - InputView :사다리게임 정보 입력
 - ResultView:사다리게임 출력
+- Position: User의 Result를 찾는 위치 값
+- Derection: 다음 Position의 방향
 
 
 

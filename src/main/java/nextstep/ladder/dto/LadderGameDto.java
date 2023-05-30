@@ -27,9 +27,9 @@ public class LadderGameDto {
 
     public String findResultByUserName(String name) {
         return userDtos.stream()
-                .filter(o -> o.getResult() == name)
+                .filter(o -> name.equals(o.getName()))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(""))
+                .orElseThrow(() -> new IllegalArgumentException("검색하신 이름이 없습니다"))
                 .getResult();
     }
 

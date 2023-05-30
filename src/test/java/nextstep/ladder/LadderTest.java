@@ -19,15 +19,17 @@ public class LadderTest {
     void setup() {
         List<Row> rows = new ArrayList<>();
         List<Point> points = new ArrayList<>();
-        points.add(new Point(false, true));
-        points.add(new Point(true, false));
-        points.add(new Point(false, false));
+        Point point = Point.first(true);
+        points.add(point);
+        points.add(point.next(false));
+        points.add(point.last());
         Row row = new Row(points);
         rows.add(row);
         List<Point> points2 = new ArrayList<>();
-        points2.add(new Point(false, false));
-        points2.add(new Point(false, true));
-        points2.add(new Point(true, false));
+        Point point2 = Point.first(true);
+        points2.add(point2);
+        points2.add(point2.next(true));
+        points2.add(point2.last());
         Row row2 = new Row(points2);
         rows.add(row2);
         ladder = new Ladder(rows);
@@ -35,7 +37,7 @@ public class LadderTest {
 
     @Test
     void 사다리_생성_테스트() {
-        List<List<PointDto>> ladder = Ladder.of(3, 3, (left, x) -> new Point(false, false)).toLadderDto();
+        List<List<PointDto>> ladder = Ladder.of(3, 3, () -> false).toLadderDto();
         for (List<PointDto> row : ladder) {
             row.stream().forEach(o -> {
                 assertThat(o.isRight()).isFalse();

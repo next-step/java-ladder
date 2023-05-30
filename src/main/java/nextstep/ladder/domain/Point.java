@@ -3,29 +3,39 @@ package nextstep.ladder.domain;
 import nextstep.ladder.dto.PointDto;
 
 public class Point {
-    private boolean left, right;
+    private boolean left;
+    private boolean right;
 
-    public Point(boolean left, boolean right) {
+    private Point(boolean left, boolean right) {
         this.left = left;
         this.right = right;
     }
 
-    public boolean movableRight() {
-        return right;
+    public static Point first(boolean right) {
+        return new Point(false, right);
     }
 
-    public boolean movableLeft() {
-        return left;
+    public Point next(boolean right) {
+        boolean beforeRight = this.right;
+        if (beforeRight) {
+            right = false;
+        }
+        return new Point(beforeRight, right);
     }
 
-    public int nextX(int x) {
+    public Point last() {
+        boolean beforeRight = this.right;
+        return new Point(beforeRight, false);
+    }
+
+    public Direction getDirection() {
         if (right) {
-            return x + 1;
+            return Direction.RIGHT;
         }
         if (left) {
-            return x - 1;
+            return Direction.LEFT;
         }
-        return x;
+        return Direction.DOWN;
     }
 
     public PointDto toDto() {
