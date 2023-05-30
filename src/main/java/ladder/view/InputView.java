@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 import ladder.domain.Height;
-import ladder.domain.LadderResultValue;
+import ladder.domain.LadderResults;
 import ladder.domain.Participant;
 import ladder.domain.LadderResult;
 
@@ -31,9 +31,9 @@ public class InputView {
         return Height.from(Integer.parseInt(scanner.nextLine()));
     }
 
-    public static LadderResultValue results() {
+    public static LadderResults results() {
         System.out.println(INPUT_RESULT);
-        return new LadderResultValue(
+        return new LadderResults(
                 Arrays.stream(scanner.nextLine().split(DELIMITER))
                         .map(LadderResult::from)
                         .collect(Collectors.toList())

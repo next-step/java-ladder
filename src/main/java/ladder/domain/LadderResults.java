@@ -2,11 +2,11 @@ package ladder.domain;
 
 import java.util.List;
 
-public class LadderResultValue {
+public class LadderResults {
 
     private final List<LadderResult> results;
 
-    public LadderResultValue(List<LadderResult> results) {
+    public LadderResults(List<LadderResult> results) {
         this.results = results;
     }
 

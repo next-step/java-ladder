@@ -1,5 +1,6 @@
 package ladder;
 
+import java.util.List;
 import ladder.domain.*;
 import ladder.domain.request.LadderRequest;
 import ladder.domain.strategy.BooleanRandomGeneratorStrategy;
@@ -10,7 +11,7 @@ public class LadderApplication {
 
     public static void main(String[] args) {
         Participants participants = Participants.from(InputView.names());
-        LadderResultValue results = InputView.results();
+        LadderResults results = InputView.results();
 
         Height height = InputView.height();
 
@@ -21,12 +22,13 @@ public class LadderApplication {
 
         LadderGame ladderGame = new LadderGame(ladder, participants, results);
         OutputView.print(ladderGame);
-        ladderGame.process();
 
         Participant participant = InputView.selectResult();
-        PrintDelegator printDelegator = ladderGame.getParticipantPosition(participant);
+        List<LadderResultPrint> process = ladderGame.process(participant);
 
-        OutputView.selectResultPrint(printDelegator);
+//        PrintDelegator printDelegator = ladderGame.getParticipantPosition(participant);
+
+        OutputView.selectResultPrint(process);
 
     }
 }

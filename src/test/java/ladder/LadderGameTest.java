@@ -19,7 +19,7 @@ public class LadderGameTest {
         LadderRequest request = new LadderRequest(Height.from(5), Width.from(5), new BooleanRandomGeneratorStrategy());
         Ladder ladder = Ladder.of(request);
         Participants participants = Participants.from(List.of(new Participant("java"), new Participant("lami")));
-        LadderResultValue ladderResultValue = new LadderResultValue(List.of(LadderResult.from("꽝"), LadderResult.from("당첨")));
+        LadderResults ladderResultValue = new LadderResults(List.of(LadderResult.from("꽝"), LadderResult.from("당첨")));
 
         ladderGame = new LadderGame(ladder, participants, ladderResultValue);
     }

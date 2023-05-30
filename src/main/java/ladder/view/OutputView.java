@@ -3,6 +3,7 @@ package ladder.view;
 import java.util.List;
 import java.util.stream.Collectors;
 import ladder.domain.LadderGame;
+import ladder.domain.LadderResultPrint;
 import ladder.domain.Line;
 import ladder.domain.PrintDelegator;
 
@@ -25,9 +26,15 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void selectResultPrint(PrintDelegator delegator) {
+    public static void selectResultPrint(List<LadderResultPrint> results) {
         System.out.println("실행결과");
-        delegator.gerResultPrint();
+
+        if (results.size() != 1) {
+            results.stream().map(result -> result.getParticipantName() + " : " + result.getResult()).forEach(System.out::println);
+        }
+
+        System.out.println(results.get(0).getResult());
+
     }
 
     private static String stringFormatting(String name) {
