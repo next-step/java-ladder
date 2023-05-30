@@ -15,8 +15,15 @@ class NameTest {
 
     @Test
     @DisplayName("이름은 5글자를 초과할 수 없다")
-    public void invalidName() {
+    public void invalidName_longName() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Name("abcdef"));
+    }
+
+    @Test
+    @DisplayName("'all'이라는 이름은 사용할 수 없다")
+    public void invalidName_all() {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new Name("all"));
     }
 }

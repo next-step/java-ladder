@@ -7,7 +7,9 @@ import nextstep.ladder.view.Output;
 
 public class LadderGameApplication {
     public static void main(String[] args) {
-        LadderGame ladderGame = Input.initLadder(new RandomAmongAllNonAdjacentCombinationLineStrategy());
-        Output.printResult(ladderGame);
+        LadderGame ladderGame = Input.initLadderGame(new RandomAmongAllNonAdjacentCombinationLineStrategy());
+        Output.printLadderResult(ladderGame);
+        String nameToShowResult = Input.getNameToShowResult();
+        Output.printResult(ladderGame, nameToShowResult);
     }
 }
