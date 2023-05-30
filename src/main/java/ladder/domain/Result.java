@@ -1,14 +1,14 @@
 package ladder.domain;
 
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Result {
     private final Map<Player, Prize> matchingResult;
 
     public Result() {
-        this.matchingResult = new HashMap<Player, Prize>();
+        this.matchingResult = new LinkedHashMap<Player, Prize>();
     }
 
     public Map<Player, Prize> getMatchingResult() {
