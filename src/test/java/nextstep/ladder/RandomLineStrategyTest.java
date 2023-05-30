@@ -32,9 +32,8 @@ public class RandomLineStrategyTest {
         RandomLineStrategy lineTrue = new RandomLineStrategy(new RandomTrue());
         RandomLineStrategy linefalse = new RandomLineStrategy(new RandomFalse());
 
-        assertThat(lineTrue.drawLine()).isTrue();
-        assertThat(lineTrue.drawLine()).isFalse();
-        assertThat(linefalse.drawLine()).isFalse();
-        assertThat(linefalse.drawLine()).isFalse();
+        assertThat(lineTrue.drawLine(0, 3)).isEqualTo(new Cross(false, true));
+        assertThat(lineTrue.drawLine(1, 3)).isEqualTo(new Cross(true, false));
+        assertThat(linefalse.drawLine(2, 3)).isEqualTo(new Cross(false, false));
     }
 }

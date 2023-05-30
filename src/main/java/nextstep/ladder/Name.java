@@ -2,7 +2,7 @@ package nextstep.ladder;
 
 public class Name {
 
-    private String name;
+    private final String name;
 
     public Name(String name){
         validateName(name);

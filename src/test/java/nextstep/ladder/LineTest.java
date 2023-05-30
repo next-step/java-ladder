@@ -1,6 +1,5 @@
 package nextstep.ladder;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,29 +9,23 @@ import static org.assertj.core.api.Assertions.*;
 
 public class LineTest {
 
-    static class RandomTrue extends Random {
+    static class RandomFalse extends Random {
         @Override
         public boolean nextBoolean() {
-            return true;
+            return false;
         }
     }
 
     @Test
-    @DisplayName("Line_생성_테스트")
-    public void Line_생성_테스트() {
-        assertThat(new Line(2, new RandomLineStrategy(new RandomTrue()))).isEqualTo(new Line(2, new RandomLineStrategy(new RandomTrue())));
-    }
-
-    @Test
-    @DisplayName("moveLine_method_test")
-    public void moveLine_method_test(){
-        Line line = new Line(5, new RandomLineStrategy(new RandomTrue()));
+    @DisplayName("move_method_test")
+    public void move_method_test(){
+        Line line = new Line(5, new RandomLineStrategy(new RandomFalse()));
 
 
-        assertThat(line.moveLine(0)).isEqualTo(1);
-        assertThat(line.moveLine(1)).isEqualTo(0);
-        assertThat(line.moveLine(2)).isEqualTo(3);
-        assertThat(line.moveLine(3)).isEqualTo(2);
-        assertThat(line.moveLine(4)).isEqualTo(4);
+        assertThat(line.move(0)).isEqualTo(0);
+        assertThat(line.move(1)).isEqualTo(1);
+        assertThat(line.move(2)).isEqualTo(2);
+        assertThat(line.move(3)).isEqualTo(3);
+        assertThat(line.move(4)).isEqualTo(4);
     }
 }

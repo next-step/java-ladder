@@ -17,7 +17,7 @@ public class LadderGameTest {
     @DisplayName("LadderGame_생성_테스트")
     public void LadderGame_생성_테스트() {
 
-        Ladder ladder = new Ladder(5, 5);
+        Ladder ladder = new Ladder(5, 2);
         Participant participant = new Participant("test", "test2");
         LadderResult ladderResult = new LadderResult("1", "2");
 
@@ -25,11 +25,22 @@ public class LadderGameTest {
                 .isEqualTo(new LadderGame(ladder, participant, ladderResult));
     }
 
+    @Test
+    @DisplayName("LadderGame_exception_test")
+    public void LadderGame_exception_test(){
+        Ladder ladder = new Ladder(5, 5);
+        Participant participant = new Participant("test", "test2");
+        LadderResult ladderResult = new LadderResult("1","2","3");
 
-    static class RandomTrue extends Random {
+        assertThatThrownBy(() -> new LadderGame(ladder, participant, ladderResult))
+                .isInstanceOf(IllegalStateException.class);
+    }
+
+
+    static class RandomFalse extends Random {
         @Override
         public boolean nextBoolean() {
-            return true;
+            return false;
         }
     }
 
@@ -37,7 +48,7 @@ public class LadderGameTest {
     @DisplayName("LadderGame_play_method_test")
     public void LadderGame_play_method_test() {
 
-        RandomLineStrategy lineTrue = new RandomLineStrategy(new RandomTrue());
+        RandomLineStrategy lineTrue = new RandomLineStrategy(new RandomFalse());
 
         Ladder ladder = new Ladder(2, 3, lineTrue);
         Participant participant = new Participant("test", "test2", "test3");
@@ -46,8 +57,8 @@ public class LadderGameTest {
 
         Map<String, String> result = ladderGame.play();
 
-        Assertions.assertThat(result.get("test")).isEqualTo("1");
-        Assertions.assertThat(result.get("test2")).isEqualTo("2");
-        Assertions.assertThat(result.get("test3")).isEqualTo("3");
+        assertThat(result.get("test")).isEqualTo("1");
+        assertThat(result.get("test2")).isEqualTo("2");
+        assertThat(result.get("test3")).isEqualTo("3");
     }
 }

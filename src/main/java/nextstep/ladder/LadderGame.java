@@ -5,16 +5,12 @@ import java.util.Map;
 import java.util.Objects;
 
 public class LadderGame {
-    private Ladder ladder;
-    private Participant participant;
-    private LadderResult result;
-
-
-    private LadderGame() {
-
-    }
+    private final Ladder ladder;
+    private final Participant participant;
+    private final LadderResult result;
 
     public LadderGame(final Ladder ladder, final Participant participant, final LadderResult result) {
+        validateGame(ladder, participant, result);
         this.ladder = ladder;
         this.participant = participant;
         this.result = result;
@@ -22,6 +18,12 @@ public class LadderGame {
 
     public Map<String, String> play() {
         return ladder.start(participant, result);
+    }
+
+    private void validateGame(Ladder ladder, Participant participant, LadderResult result) {
+        if(!ladder.isRightCondition(participant, result)){
+            throw new IllegalStateException("참가자와 사다리타기 결과의 갯수가 같지 않습니다.");
+        }
     }
 
     @Override
