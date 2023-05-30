@@ -2,6 +2,7 @@ package nextstep.step2.view;
 
 import nextstep.step2.domain.Participant;
 import nextstep.step2.domain.Participants;
+import nextstep.step2.domain.Result;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -25,10 +26,25 @@ public class InputView {
                 .collect(Collectors.toList()));
     }
 
+    public static Result inputResult() {
+        System.out.println(System.lineSeparator() + "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요");
+
+        final var results = SCANNER.nextLine();
+
+        return new Result(Arrays.stream(results.split(NAME_DELIMITER))
+                .collect(Collectors.toList()));
+    }
+
     public static int inputLadderHeight() {
         System.out.println(System.lineSeparator() + "최대 사다리 높이는 몇 개인가요?");
 
         return SCANNER.nextInt();
     }
 
+    public static String participant() {
+        SCANNER.nextLine();
+        System.out.println(System.lineSeparator() + "결과를 보고 싶은 사람은?");
+
+        return SCANNER.nextLine();
+    }
 }

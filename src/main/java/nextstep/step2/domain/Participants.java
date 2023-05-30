@@ -20,11 +20,15 @@ public class Participants {
         }
     }
 
-    public List<Participant> participants() {
+    public List<Participant> getParticipants() {
         return participants;
     }
 
     public int count() {
         return participants.size();
+    }
+
+    public int position(String name) {
+        return participants.indexOf(new Participant(name));
     }
 }
