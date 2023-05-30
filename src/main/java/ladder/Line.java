@@ -10,11 +10,24 @@ public class Line {
 
     public Line(int countOfPerson) {
         for (int i = 0; i < countOfPerson - 1; i++) {
-            points.add(RandomValueGenerator.generate());
+            if (isInValidPosition(i)) {
+                points.add(false);
+            } else {
+                points.add(RandomValueGenerator.generate());
+            }
         }
     }
 
-    public List<Boolean> getPoints(){
+    private boolean isInValidPosition(int position) {
+        return isLeftTrue(position);
+    }
+
+    private boolean isLeftTrue(int position) {
+        return (position - 1 >= 0 && points.get(position - 1));
+    }
+
+
+    public List<Boolean> getPoints() {
         return points;
     }
 }
