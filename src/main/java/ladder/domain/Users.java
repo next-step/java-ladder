@@ -16,4 +16,8 @@ public class Users {
     private static String[] split(String inputNames) {
         return inputNames.split(",");
     }
+
+    public int count() {
+        return users.size();
+    }
 }
