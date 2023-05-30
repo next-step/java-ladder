@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class Persons {
 
-    private List<Person> personList;
+    private final List<Person> personList;
 
     public Persons(String[] nameArray) {
         personList = Arrays.stream(nameArray).
@@ -24,15 +24,15 @@ public class Persons {
         return personList.size();
     }
 
-    public Integer getPersonIndex(String name){
+    public Integer getPersonIndex(String name) {
         return personList.stream()
-                .filter(t -> t.getName().equals(name))
+                .filter(t -> t.isEqualsName(name))
                 .map(t -> personList.indexOf(new Person(name)))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("해당 참가자는 없습니다."));
     }
 
-    public String getPersonNameByIndex(int index){
+    public String getPersonNameByIndex(int index) {
         return personList.get(index).getName();
     }
 }

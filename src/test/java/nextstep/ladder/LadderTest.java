@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 import java.util.List;
+
 import nextstep.ladder.drawPolicy.AllDraw;
 import nextstep.ladder.drawPolicy.NoDraw;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,13 +10,14 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LadderTest {
 
     Ladder ladder;
 
     @BeforeEach
-    void init(){
+    void init() {
         ArrayList<LadderRow> ladderRowList = new ArrayList<>();
 
         LadderRow ladderRow1 = new LadderRow(5, new AllDraw());
@@ -35,6 +37,16 @@ class LadderTest {
     }
 
     @Test
+    void create_사람수예외() {
+        Persons persons = new Persons(new String[]{});
+        Height height = new Height(1);
+
+        assertThatThrownBy(() -> new Ladder(persons, height, new AllDraw()))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("사다리 게임에 참여하는 사람은 0또는 음수가 될 수 없습니다");
+    }
+
+    @Test
     void getLadder() {
         var actualLadder = ladder.getLadder();
         var expectLadder = List.of(new LadderRow(5, new AllDraw()),
@@ -42,7 +54,7 @@ class LadderTest {
                 new LadderRow(5, new NoDraw()),
                 new LadderRow(5, new AllDraw()),
                 new LadderRow(5, new AllDraw())
-                );
+        );
 
         assertThat(actualLadder).isEqualTo(expectLadder);
     }

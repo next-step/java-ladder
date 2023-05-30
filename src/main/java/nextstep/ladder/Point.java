@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 import java.util.Objects;
+
 import nextstep.ladder.drawPolicy.DrawablePolicy;
 
 public class Point {
@@ -15,18 +16,10 @@ public class Point {
     }
 
     public static Point createInstance(DrawablePolicy randomDraw) {
-        return firstPoint(randomDraw);
+        return new Point(false, randomDraw.draw());
     }
 
     public static Point lastInstance(Point currentPoint) {
-        return lastPoint(currentPoint);
-    }
-
-    private static Point firstPoint(DrawablePolicy drawable) {
-        return new Point(false, drawable.draw());
-    }
-
-    private static Point lastPoint(Point currentPoint) {
         return new Point(currentPoint.isRightConnected(), false);
     }
 
@@ -53,11 +46,14 @@ public class Point {
         return rightConnected;
     }
 
-    public int calculateMovedIndex(int index){
-        if(isRightConnected()){
+    public int calculateMovedIndex(int index) {
+        if (index < 0) {
+            throw new IllegalArgumentException("사다리 포인트는 음수가 될 수 없습니다.");
+        }
+        if (isRightConnected()) {
             return index + DISTANCE;
         }
-        if(isLeftConnected()){
+        if (isLeftConnected()) {
             return index - DISTANCE;
         }
         return index;

@@ -23,7 +23,7 @@ public class MainAction {
         ResultView.printLadderResults(results.getResults());
 
         // 결과 표출 while문
-        while(true) {
+        while (true) {
             printResultByInput(persons, results, ladder);
         }
     }
@@ -33,7 +33,7 @@ public class MainAction {
         String nameForResultInput = InputView.stringInput();
 
         if (nameForResultInput.equalsIgnoreCase("all")) {
-            printAllResults(persons, results, ladder);
+            ResultView.printAllResults(persons, results, ladder);
             return;
         }
 
@@ -41,13 +41,6 @@ public class MainAction {
         int endIndex = ladder.getResultIndex(startIndex);
         ResultView.printResult(results, endIndex);
 
-    }
-
-    private static void printAllResults(Persons persons, Results results, Ladder ladder) {
-        for (int i = 0; i < persons.personListSize(); i++) {
-            System.out.println("실행 결과");
-            System.out.println(persons.getPersonNameByIndex(i) + " : " + results.getResultByIndex(ladder.getResultIndex(i)));
-        }
     }
 
     private static Results initResults() {

@@ -10,7 +10,7 @@ import java.util.List;
 
 public class LadderRow {
 
-    private List<Point> points;
+    private final List<Point> points;
     private final DrawablePolicy randomDraw;
 
     public LadderRow(int personCount, DrawablePolicy randomDraw) {
@@ -41,7 +41,7 @@ public class LadderRow {
         return Collections.unmodifiableList(points);
     }
 
-    public int movedPointIndex(int currentIndex){
+    public int movedPointIndex(int currentIndex) {
         return points.get(currentIndex)
                 .calculateMovedIndex(currentIndex);
     }

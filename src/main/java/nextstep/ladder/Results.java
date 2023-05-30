@@ -20,7 +20,7 @@ public class Results {
         return Collections.unmodifiableList(results);
     }
 
-    public String getResultByIndex(int index){
+    public String getResultByIndex(int index) {
         return results.get(index).getResult();
     }
 
