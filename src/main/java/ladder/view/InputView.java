@@ -1,8 +1,7 @@
 package ladder.view;
 
-import ladder.dto.Player;
-import ladder.dto.Players;
-import ladder.dto.Results;
+import ladder.domain.Players;
+import ladder.domain.Results;
 
 import java.util.Arrays;
 import java.util.List;

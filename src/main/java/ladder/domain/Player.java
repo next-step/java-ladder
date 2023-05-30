@@ -1,6 +1,4 @@
-package ladder.dto;
-
-import java.util.List;
+package ladder.domain;
 
 public class Player {
     private String name;
@@ -19,7 +17,7 @@ public class Player {
     }
 
     public static void validateName(String name) {
-        if (name == null || name == "") {
+        if (name == null || name.equals("")) {
             throw new IllegalArgumentException("이름을 입력해주세요.");
         }
 

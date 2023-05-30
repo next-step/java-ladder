@@ -1,4 +1,4 @@
-package ladder.dto;
+package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;

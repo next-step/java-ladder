@@ -1,4 +1,4 @@
-package ladder.dto;
+package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ public class Results {
         validateResults(results, players);
         this.results = results
                 .stream()
-                .map(result -> new Result(result))
+                .map(Result::new)
                 .collect(Collectors.toList());
     }
 

@@ -1,7 +1,7 @@
 package ladder;
 
-import ladder.dto.Line;
-import ladder.dto.Player;
+import ladder.domain.Line;
+import ladder.domain.Player;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

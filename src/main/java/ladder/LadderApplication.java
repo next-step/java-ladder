@@ -1,10 +1,7 @@
 package ladder;
 
-import ladder.dto.*;
+import ladder.domain.*;
 import ladder.service.LadderGame;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static ladder.view.InputView.*;
 import static ladder.view.ResultView.*;

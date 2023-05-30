@@ -1,6 +1,6 @@
 package ladder;
 
-import ladder.dto.Point;
+import ladder.domain.Point;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

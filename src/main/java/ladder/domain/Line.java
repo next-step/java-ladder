@@ -1,8 +1,7 @@
-package ladder.dto;
+package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class Line {
     private List<Point> points = new ArrayList<>();
@@ -48,5 +47,8 @@ public class Line {
 
     public int getLineSize() {
         return this.points.size();
+    }
+    private boolean isStartLocation(int location) {
+        return location == 0;
     }
 }

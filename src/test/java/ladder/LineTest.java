@@ -1,9 +1,6 @@
 package ladder;
 
-import ladder.dto.Ladder;
-import ladder.dto.Line;
-import ladder.dto.Players;
-import org.junit.jupiter.api.BeforeEach;
+import ladder.domain.Line;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

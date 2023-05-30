@@ -1,11 +1,11 @@
 package ladder;
 
-import ladder.dto.Players;
+import ladder.domain.Players;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static ladder.dto.Player.validateName;
+import static ladder.domain.Player.validateName;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 

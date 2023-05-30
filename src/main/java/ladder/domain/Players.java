@@ -1,4 +1,4 @@
-package ladder.dto;
+package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,8 +38,6 @@ public class Players {
 
     public boolean hasPlayerName(String playerName) {
         return players.stream()
-                .filter(player -> player.equalsName(playerName))
-                .findAny()
-                .isPresent();
+                .anyMatch(player -> player.equalsName(playerName));
     }
 }

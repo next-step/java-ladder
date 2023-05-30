@@ -1,13 +1,12 @@
 package ladder;
 
-import ladder.dto.Ladder;
-import ladder.dto.Line;
-import ladder.dto.Players;
+import ladder.domain.Ladder;
+import ladder.domain.Players;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static ladder.dto.Ladder.validateLadderHeight;
+import static ladder.domain.Ladder.validateLadderHeight;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 

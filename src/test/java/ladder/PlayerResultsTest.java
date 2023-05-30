@@ -1,7 +1,7 @@
 package ladder;
 
-import ladder.dto.PlayerResult;
-import ladder.dto.PlayerResults;
+import ladder.domain.PlayerResult;
+import ladder.domain.PlayerResults;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
