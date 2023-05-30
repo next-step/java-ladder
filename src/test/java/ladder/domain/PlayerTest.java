@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class PlayerTest {
     @Test
@@ -12,5 +13,12 @@ public class PlayerTest {
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new Player("elizabeth");
         });
+    }
+
+    @Test
+    @DisplayName("주어진 이름과 일치하는지 비교한다.")
+    void 이름_비교() {
+        Player player = new Player("ayla");
+        assertThat(player.isNameEqual("ayla")).isTrue();
     }
 }

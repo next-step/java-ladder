@@ -21,7 +21,7 @@ public class Result {
 
     public String searchPlayer(String playerName) {
         return matchingResult.entrySet().stream()
-                .filter(entry -> entry.getKey().getName().equals(playerName))
+                .filter(entry -> entry.getKey().isNameEqual(playerName))
                 .map(entry -> entry.getValue().getName())
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("No prize found for player: " + playerName));
