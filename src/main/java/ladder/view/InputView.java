@@ -1,5 +1,7 @@
 package ladder.view;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
@@ -11,14 +13,14 @@ public class InputView {
     private static final String MAXIMUM_LADDER_HEIGHT_INPUT = "최대 사다리 높이는 몇 개인가요?";
     public static final String WHO_DO_YOU_WANT_INPUT = "결과를 보고 싶은 사람은?";
 
-    public String[] requestParticipants() {
+    public List<String> requestParticipants() {
         System.out.println(PARTICIPATION_MENT_INPUT);
-        return SCANNER.next().split(SPLITTER);
+        return Arrays.asList(SCANNER.next().split(SPLITTER));
     }
 
-    public String[] requestExecutionResults() {
+    public List<String> requestExecutionResults() {
         System.out.println(EXECUTION_RESULTS_INPUT);
-        return SCANNER.next().split(SPLITTER);
+        return Arrays.asList(SCANNER.next().split(SPLITTER));
     }
 
     public int requestMaximumLadderHeight() {
