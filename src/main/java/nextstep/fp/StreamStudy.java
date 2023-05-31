@@ -1,7 +1,6 @@
 package nextstep.fp;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -12,18 +11,24 @@ import java.util.stream.Collectors;
 
 public class StreamStudy {
 
-    public static long countWords() throws IOException {
-        String contents = new String(Files.readAllBytes(Paths
-                .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
+    private static final String contents;
+
+    static {
+        try {
+            contents = Files.readString(Paths.get("src/main/resources/fp/war-and-peace.txt"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static long countWords() {
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
         return words.stream()
                 .filter(word -> word.length() > 12)
                 .count();
     }
 
-    public static Collection<String> printLongestWordTop100() throws IOException {
-        String contents = new String(Files.readAllBytes(Paths
-                .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
+    public static Collection<String> printLongestWordTop100() {
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
         return words.stream()
                 .filter(word -> word.length() > 12)
