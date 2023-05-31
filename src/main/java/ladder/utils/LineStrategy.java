@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.utils;
 
 public interface LineStrategy {
     int anyRow();
