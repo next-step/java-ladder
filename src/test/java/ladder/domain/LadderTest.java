@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Set;
+import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -14,15 +15,15 @@ public class LadderTest {
     public void linesInstance() {
         //given
         //when
-        Ladder ladder = Ladder.of(40, 20, 20);
+        Ladder ladder = Ladder.of(40, 20);
         //then
-        assertAll("Lines 가 입력한 파라미터에 맞게 생성된다",
-                () -> assertThat(ladder.lineCount())
-                        .as("생성 라인 수대로 잘 만들어진다")
-                        .isEqualTo(20),
+        assertAll("Lines 가 입력한 파라미터에 맞게 생성되어야 한다",
                 () -> assertThat(ladder.allLines())
-                        .as("모든 Line 의 존재여부를 확인할 수 있다")
-                        .allMatch(ladder::existLine)
+                        .as("모든 Line 의 존재여부를 검증한다")
+                        .allMatch(ladder::existLine),
+                () -> assertThat(ladder.allLines())
+                        .as("모든 Line 은 CrossIntersection 하지 않음을 검증한다")
+                        .allMatch(ladder::hasCrossIntersection)
         );
     }
 

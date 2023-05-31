@@ -29,25 +29,6 @@ public class Ladder {
     }
 
     public static Ladder of(int column, int row) {
-        return Ladder.of(column, row, createLineCount(column, row));
-    }
-
-    private static int createLineCount(int column, int row) {
-        int count = ((column - 1) / 2) * row;
-        System.out.printf("사다리 Line 은 %d 개 만듭니다%s", count, System.lineSeparator());
-        return count;
-    }
-
-    public static Ladder of(int column, int row, int count) {
-        Ladder ladder = new Ladder(Column.of(column), Row.of(row), new HashSet<>());
-        for (int i = 0; ladder.lineCount() < count; i++) {
-            infiniteLoopWatchDog(i);
-            appendLine(ladder, Line.any(LineStrategyRandom.ofLimit(column, row)));
-        }
-        return ladder;
-    }
-
-    public static Ladder ofV2(int column, int row) {
         Random random = new Random();
         Ladder ladder = new Ladder(Column.of(column), Row.of(row), new HashSet<>());
         for (int i = 0; i < row; i++) {
