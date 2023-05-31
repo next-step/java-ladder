@@ -15,7 +15,7 @@ public class Ladder {
     public int move(int index) {
         int position = index;
         for (LadderRow row : rows) {
-//            position = MovingStrategy.move(row, position);
+            position = row.move(position);
         }
         return position;
     }
@@ -24,7 +24,7 @@ public class Ladder {
         final List<LadderRow> newRows = new ArrayList<>();
 
         for (int i = 0; i < height; i++) {
-            newRows.add(new LadderRow(countOfPlayers - 1));
+            newRows.add(new LadderRow(countOfPlayers));
         }
 
         return newRows;

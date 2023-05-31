@@ -20,6 +20,7 @@ public class LadderRow {
     public LadderRow(int countOfPlayers) {
         lines = generateLines(countOfPlayers);
     }
+
     public List<Point> getLines() {
         return Collections.unmodifiableList(lines);
     }
