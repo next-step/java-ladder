@@ -1,10 +1,11 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Players {
-    private List<Player> players;
+    private final List<Player> players;
 
     public Players(List<String> names) {
         players = names.stream()
@@ -13,10 +14,14 @@ public class Players {
     }
 
     public List<Player> getPlayers() {
-        return players;
+        return Collections.unmodifiableList(players);
     }
 
     public int size() {
         return players.size();
+    }
+
+    public Player get(int i) {
+        return players.get(i);
     }
 }

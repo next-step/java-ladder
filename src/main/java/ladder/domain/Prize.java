@@ -1,21 +1,17 @@
 package ladder.domain;
 
-public class Player {
+public class Prize {
     private static final int MAX_NAME_LENGTH = 5;
 
     private final String name;
 
-    public Player(String name) {
+    public Prize(String name) {
         validateName(name);
         this.name = name;
     }
 
     public String getName() {
         return name;
-    }
-
-    public boolean isNameEqual(String name) {
-        return this.name == name;
     }
 
     private void validateName(String name) {
