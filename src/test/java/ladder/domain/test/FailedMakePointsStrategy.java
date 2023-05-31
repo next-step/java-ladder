@@ -11,10 +11,19 @@ import java.util.stream.IntStream;
  */
 public class FailedMakePointsStrategy implements MakePointsStrategy {
 
+    private static final FailedMakePointsStrategy failedMakePointsStrategy = new FailedMakePointsStrategy();
+
+    public FailedMakePointsStrategy() {
+    }
+
     @Override
     public List<Boolean> makePoints(int countOfPerson) {
         List<Boolean> points = new ArrayList<>();
         IntStream.range(0, countOfPerson - 1).forEach(index -> points.add(true));
         return points;
+    }
+
+    public static FailedMakePointsStrategy getInstance() {
+        return failedMakePointsStrategy;
     }
 }
