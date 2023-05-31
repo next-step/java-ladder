@@ -48,4 +48,12 @@ public class Line {
     public int hashCode() {
         return Objects.hash(column, row);
     }
+
+    public Row getRow() {
+        return this.row;
+    }
+
+    public Column getColumn() {
+        return this.column;
+    }
 }

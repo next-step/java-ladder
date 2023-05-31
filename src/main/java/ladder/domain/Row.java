@@ -38,6 +38,10 @@ public class Row {
         return this.value == otherRow.value;
     }
 
+    public int getValue() {
+        return value;
+    }
+
     @Override
     public int hashCode() {
         return this.value;

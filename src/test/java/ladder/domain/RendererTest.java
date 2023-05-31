@@ -22,7 +22,7 @@ public class RendererTest {
                         new User("c")
                 )
         );
-        Ladder ladder = new Ladder(
+        Ladder ladder = Ladder.of(
                 Set.of(
                         new Line(0, 0),
                         new Line(1, 1),

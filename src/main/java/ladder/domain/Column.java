@@ -52,4 +52,12 @@ public class Column {
     public boolean isSame(Column other) {
         return equals(other);
     }
+
+    public int getValue() {
+        return this.value;
+    }
+
+    public boolean isGraterThan(Column other) {
+        return this.value-1 > other.value;
+    }
 }

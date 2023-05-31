@@ -32,7 +32,7 @@ public class LadderTest {
         //given
         Line line11 = new Line(1, 1);
         Line line22 = new Line(2, 2);
-        Ladder ladder = new Ladder(Set.of(line11, line22));
+        Ladder ladder = Ladder.of(Set.of(line11, line22));
 
         //when
         Line newLine11 = new Line(Column.of(1), Row.of(1));
@@ -64,7 +64,7 @@ public class LadderTest {
         //given
         Line lineA = new Line(11, 11);
         Line lineB = new Line(6, 6);
-        Ladder ladder = new Ladder(Set.of(lineA, lineB));
+        Ladder ladder = Ladder.of(Set.of(lineA, lineB));
 
         Line notNearA = new Line(3, 3);
         Line nearA = new Line(10, 11);
