@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.utils.ProbabilityStrategyRandom;
+
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Random;
@@ -27,16 +29,14 @@ public class Ladder {
     }
 
     public static Ladder of(int column, int row) {
-        Random random = new Random();
         Ladder ladder = new Ladder(Column.of(column), Row.of(row), new HashSet<>());
-
         IntStream.range(0, row)
                 .boxed()
                 .flatMap(i -> IntStream.range(0, column)
                         .mapToObj(j -> new Line(j, i))
                         .filter(ladder::isPossibilAddingLine)
                 )
-                .filter(line -> random.nextInt(100) > 30)
+                .filter(line -> ProbabilityStrategyRandom.of().result())
                 .forEach(ladder::append);
         return ladder;
     }
