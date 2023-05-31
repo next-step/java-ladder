@@ -25,13 +25,13 @@ public class PointTest {
     @Test
     @DisplayName("처음의 왼쪽값은 false 이다.")
     void leftOfFirstPoint_Value_False() {
-        assertThat(Point.first(lineStrategy)).left().isFalse();
+        assertThat(Point.first(lineStrategy).left()).isFalse();
     }
 
     @Test
     @DisplayName("마지막의 오른쪽의 값은 false 이다.")
     void rightOfLastPoint_Value_False() {
-        assertThat(Point.first(lineStrategy).last(lineStrategy)).right().isFalse();
+        assertThat(Point.first(lineStrategy).last().right()).isFalse();
     }
 
     @Test
@@ -44,7 +44,7 @@ public class PointTest {
     @Test
     @DisplayName("왼쪽이 false이고, 오른쪽이 true이면 오른쪽 이동한다.")
     void move_LeftFalse_rightTrue_MoveRight() {
-        Point point = Point.first(lineStrategyFalse).next(lineStrategyFalse);
+        Point point = Point.first(lineStrategyFalse).next(lineStrategyTrue);
         assertThat(point.move()).isEqualTo(Direction.RIGHT);
     }
 

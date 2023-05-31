@@ -1,32 +1,45 @@
 package ladder.domain.ladder;
 
+import ladder.strategy.LineStrategy;
+
 public class Point {
 
     private final boolean left;
-    private final boolean current;
+    private final boolean right;
 
-    private Point(boolean left, boolean current) {
-        if (left && current) {
-            throw new IllegalArgumentException("상태 값이 유효하지 않습니다.");
+    private Point(boolean left, boolean right) {
+        if (left && right) {
+            throw new IllegalArgumentException("true 값은 연속해서 위치할 수 없습니다.");
         }
         this.left = left;
-        this.current = current;
+        this.right = right;
     }
 
-    public static Point first(boolean current) {
-        return new Point(false, current);
+    public static Point first(LineStrategy lineStrategy) {
+        return new Point(false, lineStrategy.isConnectable());
     }
 
-    public Point next(boolean current) {
-        return new Point(this.current, current);
+    public Point next(LineStrategy lineStrategy) {
+        if (right) {
+            return new Point(right, false);
+        }
+        return new Point(right, lineStrategy.isConnectable());
     }
 
     public Point last() {
-        return new Point(this.current, false);
+        return new Point(this.right, false);
+    }
+
+    public boolean left() {
+        return left;
+    }
+
+    public boolean right() {
+        return right;
     }
 
     public Direction move() {
-        if (current) {
+        if (right) {
             return Direction.RIGHT;
         }
         if (left) {
