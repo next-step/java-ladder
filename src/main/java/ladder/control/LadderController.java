@@ -1,7 +1,7 @@
 package ladder.control;
 
 import ladder.domain.Ladder;
-import ladder.domain.Renderer;
+import ladder.present.Renderer;
 import ladder.domain.Scene;
 import ladder.domain.Users;
 import ladder.present.Presenter;

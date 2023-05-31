@@ -1,5 +1,10 @@
-package ladder.domain;
+package ladder.present;
 
+import ladder.domain.Ladder;
+import ladder.domain.Line;
+import ladder.domain.Scene;
+import ladder.domain.User;
+import ladder.domain.Users;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,9 +13,10 @@ import java.util.Set;
 import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class RendererTest {
+class RendererTest {
+
     @DisplayName("랜더링이 잘 되는지 검증한다")
     @Test
     public void ladderRendering() {
