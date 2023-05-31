@@ -1,11 +1,10 @@
 package ladder.domain;
 
-import ladder.exception.UnableReachLineCount;
-
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
+import java.util.stream.IntStream;
 
 public class Ladder {
 
@@ -30,17 +29,15 @@ public class Ladder {
     public static Ladder of(int column, int row) {
         Random random = new Random();
         Ladder ladder = new Ladder(Column.of(column), Row.of(row), new HashSet<>());
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < column; j++) {
-                if (random.nextInt(100) > 50) {
-                    Line line = new Line(j, i);
-                    if (ladder.isPossibilAddingLine(line)) {
-                        ladder.append(line);
 
-                    }
-                }
-            }
-        }
+        IntStream.range(0, row)
+                .boxed()
+                .flatMap(i -> IntStream.range(0, column)
+                        .mapToObj(j -> new Line(j, i))
+                        .filter(ladder::isPossibilAddingLine)
+                )
+                .filter(line -> random.nextInt(100) > 30)
+                .forEach(ladder::append);
         return ladder;
     }
 
