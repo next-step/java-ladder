@@ -9,19 +9,20 @@ public class Line {
     private final List<Point> points = new ArrayList<>();
 
     public Line(int countOfPerson, LadderGeneratorStrategy ladderGeneratorStrategy) {
-        boolean prePoint = false;
         for (int columnIndex = 0; columnIndex < countOfPerson - 1; columnIndex++) {
             Point point = new Point(ladderGeneratorStrategy, columnIndex);
-            if (prePoint) {
-                point = new Point(false);
-                prePoint = false;
-            }
             points.add(point);
 
-            if (point.isLadder()) {
-                prePoint = true;
-            }
+            columnIndex += doNotBuildLadderAtNextColumn(columnIndex + 1 < countOfPerson - 1, point.isLadder());
         }
+    }
+
+    private int doNotBuildLadderAtNextColumn(boolean validMaxIndex, boolean currentLadder) {
+        if (currentLadder && validMaxIndex) {
+            points.add(new Point(false));
+            return 1;
+        }
+        return 0;
     }
 
     public String lineToDash() {
