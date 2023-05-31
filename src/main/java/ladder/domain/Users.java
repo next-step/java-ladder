@@ -11,10 +11,17 @@ public class Users {
         users = Arrays.stream(split(userNames))
                 .map(name -> new User(name))
                 .collect(Collectors.toList());
+        validCountOfPerson(users.size());
     }
 
     private static String[] split(String inputNames) {
         return inputNames.split(",");
+    }
+
+    private void validCountOfPerson(int countOfPerson) {
+        if (countOfPerson < 2) {
+            throw new IllegalArgumentException("참여자 수는 2보다 작을 수 없습니다.");
+        }
     }
 
     public int count() {

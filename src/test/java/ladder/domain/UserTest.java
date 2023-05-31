@@ -10,6 +10,14 @@ import org.junit.jupiter.api.Test;
 public class UserTest {
 
     @Test
+    void 참여자는_최소_2이상이어야_한다() {
+        assertThatThrownBy(() -> {
+            new Users("yeju");
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+
+    @Test
     void 사람_이름은_쉼표를_기준으로_구분한다() {
         assertAll(() -> {
             assertThat(new Users("yeju,mimi,aiai"));
