@@ -1,40 +1,36 @@
 package ladder.domain;
 
 import ladder.domain.strategy.LadderGeneratorStrategy;
-import ladder.domain.strategy.LineGeneratorStrategy;
+import ladder.domain.strategy.RandomBuildLadder;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private List<Boolean> points = new ArrayList<>();
+    private List<Point> points = new ArrayList<>();
 
-    public Line (int countOfPerson, LadderGeneratorStrategy ladderGeneratorStrategy) {
-        for (int i = 0; i < countOfPerson - 1; i++) {
-            Boolean isBuild = isBuild(ladderGeneratorStrategy);
-            if (isBuild) {
-                points.add(true);
-                if (i != countOfPerson - 2) points.add(false);
-                i++;
+    public Line(int countOfPerson, LadderGeneratorStrategy ladderGeneratorStrategy) {
+        boolean prePoint = false;
+        for (int columnIndex = 0; columnIndex < countOfPerson - 1; columnIndex++) {
+            if (prePoint) {
+                points.add(new Point(false));
+                prePoint = false;
                 continue;
             }
-            points.add(false);
+
+            Point point = new Point(ladderGeneratorStrategy, columnIndex);
+            if (point.isLadder()) {
+                prePoint = true;
+            }
+            points.add(point);
         }
-    }
-
-    public Line (int countOfPerson, LineGeneratorStrategy lineGeneratorStrategy) {
-        this.points = lineGeneratorStrategy.generateLine(countOfPerson);
-    }
-
-    private Boolean isBuild (LadderGeneratorStrategy ladderGenerator) {
-        return ladderGenerator.isBuild();
     }
 
     public String lineToDash() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("    |");
-        points.forEach(ladder -> {
-            if (ladder) {
+        points.forEach(point -> {
+            if (point.isLadder()) {
                 stringBuilder.append("-----");
 
             } else {

@@ -6,4 +6,9 @@ public class DoNotBuildLadder implements LadderGeneratorStrategy {
     public Boolean isBuild() {
         return false;
     }
+
+    @Override
+    public Boolean isBuild(int variable) {
+        return isBuild();
+    }
 }
