@@ -4,6 +4,7 @@ import ladder.domain.*;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.LadderResult;
 import ladder.domain.ladder.LadderRow;
+import ladder.domain.ladder.Point;
 import ladder.domain.player.Player;
 import ladder.domain.player.PlayerGroup;
 
@@ -67,15 +68,15 @@ public class ResultView {
     }
 
     private void printRow(LadderRow ladderRow) {
-//        String rowString = ladderRow.getLines()
-//                .stream()
-//                .map(line -> convertToString(line))
-//                .collect(Collectors.joining(PILLAR));
-//        System.out.println(FIRST_WHITE_SPACE + PILLAR + rowString + PILLAR);
+        String rowString = ladderRow.getLines()
+                .stream()
+                .map(point -> convertToString(point))
+                .collect(Collectors.joining(PILLAR));
+        System.out.println(FIRST_WHITE_SPACE + PILLAR + rowString);
     }
 
-    private String convertToString(Boolean line) {
-        if (line) {
+    private String convertToString(Point point) {
+        if (point.right()) {
             return CONNECTED_LINE;
         }
         return NOT_CONNECTED_LINE;
