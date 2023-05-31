@@ -1,8 +1,7 @@
 package ladder.domain;
 
-import java.util.Objects;
-
 public class User {
+
     public static final int MAXIMUM_USER_NAME_LENGTH = 5;
     private final String name;
 

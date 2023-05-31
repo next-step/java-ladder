@@ -17,7 +17,7 @@ class GameExecutionResultTest {
     @Test
     void 객체가_비어있을_경우() {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> GameExecutionResult.create(Collections.EMPTY_MAP))
+                .isThrownBy(() -> GameExecutionResult.create(Collections.emptyMap()))
                 .withMessageMatching("GameExecutionResult is Empty");
     }
 
