@@ -3,17 +3,17 @@ package ladder.domain;
 import ladder.exception.OutOfRoWRangeException;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Row {
     private static final int ROW_CACHE_MAX = 50;
 
-    private static final List<Row> ROW_CACHE =
+    private static final Map<Integer,Row> ROW_CACHE =
             IntStream.rangeClosed(0, ROW_CACHE_MAX)
                     .boxed()
-                    .map(Row::new)
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toMap(i-> i,Row::new));
     private final int value;
 
     private Row(int value) {
@@ -24,10 +24,7 @@ public class Row {
         if (value < 0) {
             throw new OutOfRoWRangeException();
         }
-        if (value <= ROW_CACHE_MAX) {
-            return ROW_CACHE.get(value);
-        }
-        return new Row(value);
+        return ROW_CACHE.computeIfAbsent(value, Row::new);
     }
 
     public boolean isSame(Row otherRow) {
