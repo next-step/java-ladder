@@ -1,10 +1,10 @@
 package ladder.control;
 
 import ladder.domain.Ladder;
-import ladder.present.Renderer;
 import ladder.domain.Scene;
 import ladder.domain.Users;
 import ladder.present.Presenter;
+import ladder.present.Renderer;
 
 public class LadderController {
     public static void main(String[] args) {

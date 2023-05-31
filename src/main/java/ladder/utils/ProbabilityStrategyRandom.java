@@ -14,6 +14,7 @@ public class ProbabilityStrategyRandom implements ProbabilityStrategy {
     public static ProbabilityStrategyRandom of() {
         return SINGLETON;
     }
+
     @Override
     public boolean result() {
         return fiftyPercent();

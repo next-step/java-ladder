@@ -2,8 +2,6 @@ package ladder.domain;
 
 import ladder.exception.OutOfColumnRangeException;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -11,7 +9,7 @@ import java.util.stream.IntStream;
 public class Column {
     private static final int COLUMN_CACHE_MAX = 50;
 
-    private static final Map<Integer,Column> COLUMNS_CACHE =
+    private static final Map<Integer, Column> COLUMNS_CACHE =
             IntStream.rangeClosed(0, COLUMN_CACHE_MAX)
                     .boxed()
                     .collect(Collectors.toMap(i -> i, Column::new));
