@@ -1,66 +1,77 @@
 package ladder.domain.ladder;
 
 import ladder.strategy.LineStrategy;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.Arrays;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LadderRowTest {
 
-    private LineStrategy lineStrategy = () -> true;
-    private LadderRow ladderRow;
+    private LineStrategy pointTrue;
+    private LineStrategy pointFalse;
+
+    private LadderRow randomLadderRow;
+    private int countOfPlayer;
+
+    private LadderRow fixedLadderRow;
 
     @BeforeEach
     void setUp() {
-        ladderRow = new LadderRow(Arrays.asList(false, true, false));
-    }
+        pointTrue = () -> true;
+        pointFalse = () -> false;
 
+        countOfPlayer = 4;
+        randomLadderRow = new LadderRow(countOfPlayer);
 
-    @Test
-    @DisplayName("주어진 너비(width) 만큼의 line을 생성한다.")
-    public void create_Width_Line() {
-        LadderRow ladderRow = new LadderRow(5);
-        assertThat(ladderRow.size()).isEqualTo(5);
-    }
-
-    @Test
-    @DisplayName("연달아서 라인(true) 을 생성하지 않는다.")
-    public void create_DuplicateLine_Not() {
-        LadderRow ladderRow = new LadderRow(3, lineStrategy);
-        assertThat(ladderRow.getLines()).containsExactly(true, false, true);
-    }
-
-    @Test
-    @DisplayName("해당하는 곳의 라인이 있는지 판단하는 함수의 값을 확인한다.")
-    void hasLine_IfThereTrue_True() {
-        assertThat(ladderRow.hasLine(0)).isFalse();
-        assertThat(ladderRow.hasLine(1)).isTrue();
-        assertThat(ladderRow.hasLine(2)).isFalse();
+        /**
+         * 참가자 4명(point 4개), 너비가 3인 사다리.
+         *
+         * A  B   C  D ==> 참가자
+         * ㅣ-ㅣ   ㅣ- ㅣ ==> 사다리
+         */
+        List<Point> pointList = new ArrayList<>();
+        pointList.add(Point.first(pointTrue));
+        pointList.add(Point.first(pointTrue).next(pointFalse));
+        pointList.add(Point.first(pointTrue).next(pointFalse).next(pointTrue));
+        pointList.add(Point.first(pointTrue).next(pointFalse).next(pointTrue).last());
+        fixedLadderRow = new LadderRow(pointList);
     }
 
     @Test
-    @DisplayName("왼쪽의 끝인지 판단하는 함수의 값을 확인한다.")
-    void isLeftEnd_IfEnd_True() {
-        assertThat(ladderRow.isLeftEnd(0)).isTrue();
+    @DisplayName("라인의 제일 첫번째 Point의 left는 항상 false이다.")
+    void leftOfFirst_IsFalse_True() {
+        Assertions.assertThat(randomLadderRow.getLines().get(0)
+                .left()).isEqualTo(false);
     }
 
     @Test
-    @DisplayName("오른쪽의 끝인지 판단하는 함수의 값을 확인한다.")
-    void isRightEnd_IfEnd_True() {
-        assertThat(ladderRow.isRightEnd(3)).isTrue();
+    @DisplayName("라인의 제일 첫번째 Point의 left는 항상 false이다.")
+    void leftOfFirst_IsFalse_True() {
+        Assertions.assertThat(randomLadderRow.getLines().get(countOfPlayer - 1)
+                .right()).isEqualTo(false);
     }
 
-    @ParameterizedTest
-    @DisplayName("끝이 아닌지 판단하는 함수의 값을 확인한다.")
-    @ValueSource(ints = {0, 1, 2, 3})
-    void isNotEnd_IfNotEnd_Ture(int input) {
-        assertThat(ladderRow.isNotEnd(input)).isTrue();
+    @Test
+    @DisplayName("라인의 제일 첫번째 Point의 left는 false이다.")
+    void create_Width_Line() {
+        LadderRow ladderRow = new LadderRow(countOfPlayer);
+        Assertions.assertThat(ladderRow.size()).isEqualTo(countOfPlayer);
     }
 
+    /**
+     * A  B   C  D ==> 참가자
+     * ㅣ-ㅣ   ㅣ- ㅣ ==> 사다리
+     */
+    @Test
+    @DisplayName("지정된 곳에서 이동을 했을 시 도착지점을 결정한다.")
+    void move_StartFromPosition_ArriveExactly() {
+        Assertions.assertThat(fixedLadderRow.move(0)).isEqualTo(1);
+        Assertions.assertThat(fixedLadderRow.move(1)).isEqualTo(0);
+        Assertions.assertThat(fixedLadderRow.move(2)).isEqualTo(3);
+        Assertions.assertThat(fixedLadderRow.move(3)).isEqualTo(2);
+    }
 }
