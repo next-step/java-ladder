@@ -2,6 +2,9 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import ladder.domain.strategy.EvenNumberBuildLadder;
+import ladder.domain.strategy.OddNumberBuildLadder;
+import ladder.domain.strategy.RandomBuildLadder;
 
 public class Ladder {
 
@@ -11,7 +14,15 @@ public class Ladder {
         columns = new ArrayList<>(height);
 
         for (int i = 0; i < height; i++) {
-            columns.add(new Line(countOfPerson));
+            if (i == 0) {
+                columns.add(new Line(countOfPerson, new EvenNumberBuildLadder()));
+                continue;
+            }
+            if (i == 1) {
+                columns.add(new Line(countOfPerson, new OddNumberBuildLadder()));
+                continue;
+            }
+            columns.add(new Line(countOfPerson, new RandomBuildLadder()));
         }
     }
 

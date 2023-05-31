@@ -1,7 +1,7 @@
 package ladder.domain;
 
 import ladder.domain.strategy.LadderGeneratorStrategy;
-import ladder.domain.strategy.RandomBuildLadder;
+import ladder.domain.strategy.LineGeneratorStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,9 +9,9 @@ import java.util.List;
 public class Line {
     private List<Boolean> points = new ArrayList<>();
 
-    public Line (int countOfPerson) {
+    public Line (int countOfPerson, LadderGeneratorStrategy ladderGeneratorStrategy) {
         for (int i = 0; i < countOfPerson - 1; i++) {
-            Boolean isBuild = isBuild(new RandomBuildLadder());
+            Boolean isBuild = isBuild(ladderGeneratorStrategy);
             if (isBuild) {
                 points.add(true);
                 if (i != countOfPerson - 2) points.add(false);
@@ -22,7 +22,11 @@ public class Line {
         }
     }
 
-    public Boolean isBuild (LadderGeneratorStrategy ladderGenerator) {
+    public Line (int countOfPerson, LineGeneratorStrategy lineGeneratorStrategy) {
+        this.points = lineGeneratorStrategy.generateLine(countOfPerson);
+    }
+
+    private Boolean isBuild (LadderGeneratorStrategy ladderGenerator) {
         return ladderGenerator.isBuild();
     }
 
