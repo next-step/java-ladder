@@ -1,17 +1,18 @@
 package ladder.domain;
 
+import ladder.exception.OutOfColumnRangeException;
 import ladder.exception.OutOfRoWRangeException;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Row {
-    private static final int MAX_ROW = 50;
+    private static final int ROW_CACHE_MAX = 50;
 
-    private static final List<Row> ROW_CACHE = new ArrayList<>(MAX_ROW + 1);
+    private static final List<Row> ROW_CACHE = new ArrayList<>(ROW_CACHE_MAX + 1);
 
     static {
-        for (int i = 0; i <= MAX_ROW; i++) {
+        for (int i = 0; i <= ROW_CACHE_MAX; i++) {
             ROW_CACHE.add(i, new Row(i));
         }
     }
@@ -23,15 +24,13 @@ public class Row {
     }
 
     public static Row of(int value) {
-        validateMaxRow(value);
-        return ROW_CACHE.get(value);
-    }
-
-    private static void validateMaxRow(int value) {
-        if ((0 <= value) && (value <= MAX_ROW)) {
-            return;
+        if(value <0) {
+            throw new OutOfRoWRangeException();
         }
-        throw new OutOfRoWRangeException();
+        if (value <= ROW_CACHE_MAX) {
+            return ROW_CACHE.get(value);
+        }
+        return new Row(value);
     }
 
     public boolean isSame(Row otherRow) {

@@ -24,18 +24,6 @@ public class RowTest {
 
     @DisplayName("Preferences 에서 설정한 최대 범위를 초과하면 예외가 발생한다")
     @Test
-    public void outOfRoWRangeException() {
-        //given
-        //when
-        //then
-        assertThatThrownBy(() -> {
-            Row.of(51);
-        }).isInstanceOf(OutOfRoWRangeException.class)
-                .hasMessageContaining("사용 가능한 Row 의 범위에서 초과하였습니다");
-    }
-
-    @DisplayName("Preferences 에서 설정한 최대 범위를 초과하면 예외가 발생한다")
-    @Test
     public void outOfRoWRangeExceptionUnderZero() {
         //given
         //when
