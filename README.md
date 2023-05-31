@@ -80,6 +80,7 @@ pobi  honux crong   jk
   
 - [x] 테스트 리펙토링
 - [x] 전체적인 리펙토링
+
 ## Step 3 리뷰 후 피드백을 통한 변경 사항
 
 - Ladder 클래스에서 List<Line> 을 가지는 일급 컬렉션으로 변경
@@ -91,3 +92,51 @@ pobi  honux crong   jk
 - 자바 8의 스트림과 람다를 적용해 프로그래밍한다.
 - 규칙 6: 모든 엔티티를 작게 유지한다.
 - 규칙 7: 3개 이상의 인스턴스 변수를 가진 클래스를 쓰지 않는다.
+
+## Step 4 요구사항에 따른 기능 목록
+- In -> Out 방식으로 TDD를 도전한다.
+- Point 클래스 분리 -> 최대한 작은 객체 Point 부터 확장해 나가기
+- [x] Point 객체 분리
+  - Point는 previous, current boolean 값 가진 Direction과 index를 연결.
+  - [x] Direction 객체 분리
+    - Direction에서 strategy 따라 boolean 값 생성.
+- NextStepLineCreator : List<Point>를 생성해야함
+  - Point는 각 index를 가지고 있으며 각 index에 따라서 direction을 생성해야함..
+  - Direction 생성할 때, previous, current를 각 index 마다 생성한다. 
+    - 이때, random 값을 통해 생성, previous가 true -> current는 false로 고정.
+    - 그리고 0번 index의 previous, 마지막 index의 current는 모두 false로 설정.
+    - 
+```
+전체적인 로직은 다음과 같다.
+index를 받는다. index가 n개이면 한 line에 point 개수는 n-1개 이다.
+-> 처음이면 (index == 0) ->  0번 Point인 boolean 값만 확인해서 방향을 결정한다.
+-> 마지막이면 (index == n ) -> n-1번 Point인 boolean 값만 확인해서 방향을 결정한다.
+-> 처음과 마지막이 아니라면 
+    index == n 일때, n-1, n번 Point를 비교해서 방향을 결정한다.
+    n-1 번째 boolean 값을 left, n 번째 boolean 값을 right 라고 하면, 
+    true  false -> index-- : 왼쪽으로 이동
+    false true  -> index++ : 오른쪽으로 이동
+    false false -> index 유지 : index 유지해서 그다음 line으로 이동
+    true  true  -> 예외 발생
+    
+ -> 전체적으로 평가했을때, Point는 index를 받아 이후 결과 계산을 통해 이후 index를 반환해 줘야 한다.
+ 
+ index가 0 (처음)이면 previous의 값과 무관하게 current 값으로만 이동한다. -> previous 값을 가질 수 없다.
+ index가 n (마지막)이면 current의 값과 무관하게 previous 값으로만 이동한다 -> current 값을 가질 수 없다.
+ -> parameter 분리를 위해서 Direction 객체를 생성한다.
+ 
+ - Point는 index를 받아 Direction을 통해서 index를 계산한다.
+ 
+ 
+```
+
+  - Point는 2개의 boolean 값을 가지고 있다. left, current
+  - 그런데 처음 index일 경우는 
+
+
+- 책임주도설계 방식으로 책임에 따라 인터페이스 분리
+  - 역할
+    - [x] 사다리 생성하기 -> 참여자와 Height를 가지고 있다. -> LadderCreator
+    - [x] 사다리 실행을 통해 결과 얻기 -> Ladder
+    - [x] Line 객체 생성 -> LineCreator
+    - [x] Line에서 index를 받아 결과 index를 계산 -> Line

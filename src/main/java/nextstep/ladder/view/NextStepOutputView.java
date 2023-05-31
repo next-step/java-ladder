@@ -1,11 +1,17 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.*;
+import nextstep.ladder.domain.LadderResult;
+import nextstep.ladder.domain.Participants;
+import nextstep.ladder.domain.nextstep.Point;
+import nextstep.ladder.domain.nextstep.NextStepLadder;
+import nextstep.ladder.domain.nextstep.NextStepLine;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class OutputView {
+public class NextStepOutputView {
 
     private static final String SPACE = " ";
     private static final int MAX_NAME_LENGTH = 5;
@@ -17,7 +23,7 @@ public class OutputView {
     public static final String ALL = "all";
     public static final String COLON = " : ";
 
-    public static void printLadder(Participants participants, LadderResult results, Ladder ladder) {
+    public static void printLadder(Participants participants, LadderResult results, NextStepLadder ladder) {
         System.out.println("실행결과\n");
         participants.forEach(name -> System.out.print(nameFormat(name)));
 
@@ -31,14 +37,21 @@ public class OutputView {
         return SPACE.repeat(MAX_NAME_LENGTH - name.length()) + name + SPACE;
     }
 
-    private static void printLadder(Ladder ladder) {
+    private static void printLadder(NextStepLadder ladder) {
         ladder.forEach(line ->
-                System.out.println(FRONT_SPACE + drawLine(line)));
+                System.out.println(FRONT_SPACE + drawLine((NextStepLine) line)));
     }
 
-    private static String drawLine(Line line) {
-        return line.getPoints().stream()
-                .map(OutputView::drawBridge)
+    private static String drawLine(NextStepLine line) {
+        List<Point> points = line.getPoints();
+        List<Boolean> results = new ArrayList<>();
+
+        for (int index = 1; index < points.size(); index = index + 2) {
+            List<Boolean> result = points.get(index).getDirection().get();
+            results.addAll(result);
+        }
+        results.remove(results.size() - 1);
+        return results.stream().map(NextStepOutputView::drawBridge)
                 .collect(Collectors.joining(LADDER_BAR, LADDER_BAR, LADDER_BAR));
     }
 
@@ -47,7 +60,7 @@ public class OutputView {
     }
 
     public static void printResult(String input, Map<String, String> gameResult) {
-        if (input.equals(ALL)) {
+        if (input.equalsIgnoreCase(ALL)) {
             System.out.println("실행 결과");
             gameResult.forEach((k, v) -> System.out.println(k + COLON + v));
             return;
