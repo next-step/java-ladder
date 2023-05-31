@@ -23,7 +23,11 @@ public class Users {
 
     public String usersName() {
         StringBuilder stringBuilder = new StringBuilder();
-        users.forEach(user -> {stringBuilder.append(String.format("%5s", user.name())).append(" ");});
+        users.forEach(user -> {
+            stringBuilder
+                .append(String.format("%5s", user.name()))
+                .append(" ");
+        });
         return stringBuilder.toString();
     }
 }
