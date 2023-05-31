@@ -7,7 +7,11 @@ import java.util.stream.IntStream;
 
 public class RandomMakePointsStrategy implements MakePointsStrategy {
 
-    private final Random random = new Random();
+    private static final RandomMakePointsStrategy randomMakePointsStrategy = new RandomMakePointsStrategy();
+    private static final Random random = new Random();
+
+    public RandomMakePointsStrategy() {
+    }
 
     @Override
     public List<Boolean> makePoints(int countOfPerson) {
@@ -17,10 +21,14 @@ public class RandomMakePointsStrategy implements MakePointsStrategy {
     }
 
     private boolean makePoint(List<Boolean> points, int index) {
-        return validateMakePointIsPossible(points, index) ? false : random.nextBoolean();
+        return !isMakePointPossible(points, index) && random.nextBoolean();
     }
 
-    private boolean validateMakePointIsPossible(List<Boolean> points, int index) {
+    private boolean isMakePointPossible(List<Boolean> points, int index) {
         return index > 0 && points.get(index - 1);
+    }
+
+    public static RandomMakePointsStrategy getInstance() {
+        return randomMakePointsStrategy;
     }
 }

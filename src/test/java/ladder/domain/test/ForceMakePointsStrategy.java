@@ -11,6 +11,11 @@ import java.util.stream.IntStream;
  */
 public class ForceMakePointsStrategy implements MakePointsStrategy {
 
+    private static final ForceMakePointsStrategy forceMakePointsStrategy = new ForceMakePointsStrategy();
+
+    public ForceMakePointsStrategy() {
+    }
+
     @Override
     public List<Boolean> makePoints(int countOfPerson) {
         List<Boolean> points = new ArrayList<>();
@@ -19,10 +24,14 @@ public class ForceMakePointsStrategy implements MakePointsStrategy {
     }
 
     private boolean makePoint(List<Boolean> points, int index) {
-        return validateMakePointIsPossible(points, index) ? false : true;
+        return !isMakePointPossible(points, index);
     }
 
-    private boolean validateMakePointIsPossible(List<Boolean> points, int index) {
+    private boolean isMakePointPossible(List<Boolean> points, int index) {
         return index > 0 && points.get(index - 1);
+    }
+
+    public static ForceMakePointsStrategy getInstance() {
+        return forceMakePointsStrategy;
     }
 }
