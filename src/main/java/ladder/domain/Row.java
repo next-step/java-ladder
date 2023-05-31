@@ -1,22 +1,19 @@
 package ladder.domain;
 
-import ladder.exception.OutOfColumnRangeException;
 import ladder.exception.OutOfRoWRangeException;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Row {
     private static final int ROW_CACHE_MAX = 50;
 
-    private static final List<Row> ROW_CACHE = new ArrayList<>(ROW_CACHE_MAX + 1);
-
-    static {
-        for (int i = 0; i <= ROW_CACHE_MAX; i++) {
-            ROW_CACHE.add(i, new Row(i));
-        }
-    }
-
+    private static final List<Row> ROW_CACHE =
+            IntStream.rangeClosed(0, ROW_CACHE_MAX)
+                    .boxed()
+                    .map(Row::new)
+                    .collect(Collectors.toList());
     private final int value;
 
     private Row(int value) {
@@ -24,7 +21,7 @@ public class Row {
     }
 
     public static Row of(int value) {
-        if(value <0) {
+        if (value < 0) {
             throw new OutOfRoWRangeException();
         }
         if (value <= ROW_CACHE_MAX) {
