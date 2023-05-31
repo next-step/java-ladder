@@ -1,6 +1,7 @@
 package ladder.domain.ladder;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
@@ -14,7 +15,7 @@ public class Ladder {
     public int move(int index) {
         int position = index;
         for (LadderRow row : rows) {
-            position = MovingStrategy.move(row, position);
+            position = row.move(position);
         }
         return position;
     }
@@ -23,7 +24,7 @@ public class Ladder {
         final List<LadderRow> newRows = new ArrayList<>();
 
         for (int i = 0; i < height; i++) {
-            newRows.add(new LadderRow(countOfPlayers - 1));
+            newRows.add(new LadderRow(countOfPlayers));
         }
 
         return newRows;
@@ -34,7 +35,7 @@ public class Ladder {
     }
 
     public List<LadderRow> getRows() {
-        return rows;
+        return Collections.unmodifiableList(rows);
     }
 
     @Override

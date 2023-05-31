@@ -10,65 +10,50 @@ import java.util.List;
 public class LadderRow {
 
     private static final LineStrategy DEFAULT_STRATEGY = new RandomLineStrategy();
-    private static final int MIN_WIDTH = 0;
-    private List<Boolean> lines;
-    private LineStrategy lineStrategy;
+    private static final int MOVE_INSTANCE_UNIT = 1;
+    private List<Point> lines;
 
-    public LadderRow(List<Boolean> lines) {
+    public LadderRow(List<Point> lines) {
         this.lines = lines;
     }
 
-    public LadderRow(int width) {
-        this(width, DEFAULT_STRATEGY);
+    public LadderRow(int countOfPlayers) {
+        lines = generateLines(countOfPlayers);
     }
 
-    public LadderRow(int width, LineStrategy lineStrategy) {
-        this.lineStrategy = lineStrategy;
-        lines = generateLines(width);
-    }
-
-    public List<Boolean> getLines() {
+    public List<Point> getLines() {
         return Collections.unmodifiableList(lines);
     }
 
-    public boolean hasLine(int width) {
-        if (width >= this.lines.size()) {
-            return false;
-        }
-        return this.lines.get(width);
-    }
-
-    public boolean isNotEnd(int position) {
-        return position >= MIN_WIDTH && position <= this.lines.size();
-    }
-
-    public boolean isLeftEnd(int position) {
-        return position == MIN_WIDTH;
-    }
-
-    public boolean isRightEnd(int position) {
-        return position >= this.lines.size();
-    }
-
-    private List<Boolean> generateLines(int width) {
-        final List<Boolean> newLines = new ArrayList<>();
-        newLines.add(generateLine());
-        for (int i = 1; i < width; i++) {
+    private List<Point> generateLines(int countOfPlayers) {
+        final List<Point> newLines = new ArrayList<>();
+        newLines.add(Point.first(DEFAULT_STRATEGY));
+        for (int i = 1; i < countOfPlayers - 1; i++) {
             newLines.add(generateLine(newLines.get(i - 1)));
         }
+        newLines.add(newLines.get(countOfPlayers - 2).last());
 
         return newLines;
     }
 
-    private Boolean generateLine() {
-        return lineStrategy.isConnectable();
+    private Point generateLine(Point point) {
+        return point.next(DEFAULT_STRATEGY);
     }
 
-    private Boolean generateLine(boolean preValue) {
-        if (preValue) {
-            return false;
+    public int move(int position) {
+        Point point = lines.get(position);
+        Direction direction = point.move();
+        return toDistance(direction, position);
+    }
+
+    private int toDistance(Direction direction, int position) {
+        if (Direction.RIGHT.equals(direction)) {
+            return position + MOVE_INSTANCE_UNIT;
         }
-        return lineStrategy.isConnectable();
+        if (Direction.LEFT.equals(direction)) {
+            return position - MOVE_INSTANCE_UNIT;
+        }
+        return position;
     }
 
     public int size() {

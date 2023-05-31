@@ -4,6 +4,7 @@ import ladder.domain.*;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.LadderResult;
 import ladder.domain.ladder.LadderRow;
+import ladder.domain.ladder.Point;
 import ladder.domain.player.Player;
 import ladder.domain.player.PlayerGroup;
 
@@ -52,18 +53,12 @@ public class ResultView {
         this.printResult(winningCategories, playerGroup, ladderResult);
     }
 
-    private void printAllPlayerResult(WinningCategories winningCategories, PlayerGroup playerGroup, LadderResult ladderResult) {
+    public void printAllPlayerResult(WinningCategories winningCategories, PlayerGroup playerGroup, LadderResult ladderResult) {
         playerGroup.getPlayerList()
                         .stream()
                         .forEach(player ->
                             System.out.printf("%s : %s\n", player.name(), winningCategories.find(ladderResult.get(player)).toString())
                         );
-
-//        ladderResult.keyStream()
-//                .forEach(player ->
-//                    System.out.printf("%s : %s\n", player.name(), winningCategories.find(ladderResult.get(player)).toString())
-//                    System.out.printf("%s : %s\n", player.name(), winningCategories.find(ladderResult.get(player)).toString())
-//                );
     }
 
     private String convertToString(List<String> list) {
@@ -75,13 +70,13 @@ public class ResultView {
     private void printRow(LadderRow ladderRow) {
         String rowString = ladderRow.getLines()
                 .stream()
-                .map(line -> convertToString(line))
+                .map(point -> convertToString(point))
                 .collect(Collectors.joining(PILLAR));
-        System.out.println(FIRST_WHITE_SPACE + PILLAR + rowString + PILLAR);
+        System.out.println(FIRST_WHITE_SPACE + PILLAR + rowString);
     }
 
-    private String convertToString(Boolean line) {
-        if (line) {
+    private String convertToString(Point point) {
+        if (point.right()) {
             return CONNECTED_LINE;
         }
         return NOT_CONNECTED_LINE;

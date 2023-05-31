@@ -1,10 +1,10 @@
 package ladder.controller;
 
+import ladder.domain.WinningCategories;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.LadderGame;
 import ladder.domain.ladder.LadderHeight;
 import ladder.domain.player.PlayerGroup;
-import ladder.domain.WinningCategories;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 

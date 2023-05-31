@@ -9,7 +9,11 @@ public class LadderTest {
     @Test
     @DisplayName("주어진 높이(height) 만큼의 row를 생성한다.")
     public void create_Height_Success() {
-        Ladder ladder = new Ladder(new LadderHeight(5), 4);
-        Assertions.assertThat(ladder.height()).isEqualTo(5);
+        int height = 5;
+        int countOfPlayer =4;
+
+        Ladder ladder = new Ladder(new LadderHeight(height), countOfPlayer);
+        Assertions.assertThat(ladder.height()).isEqualTo(height);
     }
+
 }
