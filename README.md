@@ -37,9 +37,9 @@
 - 도메인
   - Point
     - left, right 값에 따라 이동을 잘할 수 있다.
-      - [ ] 왼쪽이 true이고 오른쪽이 오른쪽이 false이면 왼쪽(Left)으로 이동한다.
-      - [ ] 왼쪽이 false이고, 오른쪽이 true이면 오른쪽(Right)으로 이동한다.
-      - [ ] 왼쪽, 오른쪽 둘 다 false이면 밑(South)으로 이동한다.
+      - [x] 왼쪽이 true이고 오른쪽이 오른쪽이 false이면 왼쪽(Left)으로 이동한다.
+      - [x] 왼쪽이 false이고, 오른쪽이 true이면 오른쪽(Right)으로 이동한다.
+      - [x] 왼쪽, 오른쪽 둘 다 false이면 밑(South)으로 이동한다.
       
   - LadderRow
     - [ ] 가장 왼쪽의 값은 false이다.
