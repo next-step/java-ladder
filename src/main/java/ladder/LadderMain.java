@@ -4,6 +4,8 @@ import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
+import java.util.List;
+
 public class LadderMain {
 
     public static void main(String[] args) {
@@ -14,8 +16,8 @@ public class LadderMain {
         ExecutionResults executionResults = new ExecutionResults(inputView.requestExecutionResults(), participantNames.getParticipantsSize());
         int maximumLadderHeight = inputView.requestMaximumLadderHeight();
 
-        RandomMakePointsStrategy randomMakePointsStrategy = new RandomMakePointsStrategy();
-        Ladder ladder = new Ladder(participantNames.getParticipantsSize(), maximumLadderHeight, randomMakePointsStrategy); // 사다리 생성
+        List<Boolean> initializedPoints = Line.initializePoints(participantNames.getParticipantsSize(), RandomMakePointsStrategy.getInstance());
+        Ladder ladder = new Ladder(initializedPoints, maximumLadderHeight); // 사다리 생성
 
         LadderGame ladderGame = new LadderGame(ladder, participantNames, executionResults); // 사다리 게임 실행
 
