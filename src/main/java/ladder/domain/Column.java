@@ -4,17 +4,17 @@ import ladder.exception.OutOfColumnRangeException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Column {
     private static final int COLUMN_CACHE_MAX = 50;
 
-    private static final List<Column> COLUMNS_CACHE =
+    private static final Map<Integer,Column> COLUMNS_CACHE =
             IntStream.rangeClosed(0, COLUMN_CACHE_MAX)
                     .boxed()
-                    .map(Column::new)
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toMap(i -> i, Column::new));
 
     private final int value;
 
@@ -26,10 +26,7 @@ public class Column {
         if (value < 0) {
             throw new OutOfColumnRangeException();
         }
-        if (value <= COLUMN_CACHE_MAX) {
-            return COLUMNS_CACHE.get(value);
-        }
-        return new Column(value);
+        return COLUMNS_CACHE.computeIfAbsent(value, Column::new);
     }
 
     @Override
