@@ -50,7 +50,7 @@ public class LadderRowTest {
 
     @Test
     @DisplayName("라인의 제일 첫번째 Point의 left는 항상 false이다.")
-    void leftOfFirst_IsFalse_True() {
+    void rightOfLast_IsFalse_True() {
         Assertions.assertThat(randomLadderRow.getLines().get(countOfPlayer - 1)
                 .right()).isEqualTo(false);
     }

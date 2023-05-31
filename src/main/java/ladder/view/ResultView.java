@@ -67,11 +67,11 @@ public class ResultView {
     }
 
     private void printRow(LadderRow ladderRow) {
-        String rowString = ladderRow.getLines()
-                .stream()
-                .map(line -> convertToString(line))
-                .collect(Collectors.joining(PILLAR));
-        System.out.println(FIRST_WHITE_SPACE + PILLAR + rowString + PILLAR);
+//        String rowString = ladderRow.getLines()
+//                .stream()
+//                .map(line -> convertToString(line))
+//                .collect(Collectors.joining(PILLAR));
+//        System.out.println(FIRST_WHITE_SPACE + PILLAR + rowString + PILLAR);
     }
 
     private String convertToString(Boolean line) {

@@ -15,7 +15,7 @@ public class Ladder {
     public int move(int index) {
         int position = index;
         for (LadderRow row : rows) {
-            position = MovingStrategy.move(row, position);
+//            position = MovingStrategy.move(row, position);
         }
         return position;
     }
