@@ -2,6 +2,7 @@ package ladder.view;
 
 import ladder.domain.Ladder;
 import ladder.domain.Line;
+import ladder.domain.Users;
 
 public class OutputView {
 
@@ -17,8 +18,9 @@ public class OutputView {
         System.out.println("\n최대 사다리 높이는 몇 개인가요?");
     }
 
-    public static void result(Ladder ladder) {
+    public static void result(Users users, Ladder ladder) {
         System.out.println("\n실행결과");
+        System.out.println(users.usersName());
         for (Line line: ladder.getColumns()) {
             System.out.println(line.lineToDash());
         }

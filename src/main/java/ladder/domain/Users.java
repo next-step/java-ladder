@@ -20,4 +20,10 @@ public class Users {
     public int count() {
         return users.size();
     }
+
+    public String usersName() {
+        StringBuilder stringBuilder = new StringBuilder();
+        users.forEach(user -> {stringBuilder.append(String.format("%5s", user.name())).append(" ");});
+        return stringBuilder.toString();
+    }
 }

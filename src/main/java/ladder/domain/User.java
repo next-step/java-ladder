@@ -15,4 +15,8 @@ public class User {
     private boolean isOverLength(String name) {
         return name.length() > 5;
     }
+
+    public String name() {
+        return name;
+    }
 }

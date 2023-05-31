@@ -14,7 +14,7 @@ public class ladderGameController {
         OutputView.ladderHeight();
         Ladder ladder = new Ladder(InputView.getIntValue(), users.count());
 
-        OutputView.result(ladder);
+        OutputView.result(users, ladder);
     }
 
 }
