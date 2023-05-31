@@ -31,6 +31,7 @@ public class OutputView {
 
         if (results.size() != 1) {
             results.stream().map(result -> result.getParticipantName() + " : " + result.getResult()).forEach(System.out::println);
+            return;
         }
 
         System.out.println(results.get(0).getResult());

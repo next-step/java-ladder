@@ -17,7 +17,7 @@ public class Ladder {
         return new Ladder(tempLines);
     }
 
-    private Ladder(List<Line> lines) {
+    public Ladder(List<Line> lines) {
         this.lines = lines;
     }
 
@@ -28,29 +28,29 @@ public class Ladder {
     public int resultPosition(int currentPosition) {
         int position = currentPosition;
         for (Line line : lines) {
-            position = getPosition(currentPosition, position, line);
+            position = getPosition(position, line);
         }
 
         return position;
     }
 
-    private int getPosition(int currentPosition, int position, Line line) {
+    public List<Integer> resultPositions(List<Integer> positions) {
+        return positions.stream()
+                .map(this::resultPosition)
+                .collect(Collectors.toList());
+    }
+
+    private int getPosition(int position, Line line) {
         List<Boolean> points = line.getPoints();
-//        if (getLeftHasLine(currentPosition, points)) {
-//            position--;
-//        }
-//
-//        if (getRightHasLine(currentPosition, points)) {
-//            position++;
-//        }
-        position = getLeftHasLine(currentPosition, points) ? position - 1 : getRightHasLine(currentPosition, points) ? position + 1 : currentPosition;
+
+        position = getLeftHasLine(position, points) ? position - 1 : getRightHasLine(position, points) ? position + 1 : position;
         return position;
     }
 
     private Boolean getRightHasLine(int currentPosition, List<Boolean> points) {
         Boolean rightHasLine = false;
-        if (currentPosition != lines.size()) {
-             rightHasLine = points.get(currentPosition);
+        if (currentPosition != points.size()) {
+            rightHasLine = points.get(currentPosition);
         }
 
         return rightHasLine;
@@ -59,15 +59,10 @@ public class Ladder {
     private Boolean getLeftHasLine(int currentPosition, List<Boolean> points) {
         Boolean leftHasLine = false;
         if (currentPosition != 0) {
-             leftHasLine = points.get(currentPosition - 1);
+            leftHasLine = points.get(currentPosition - 1);
         }
-        return leftHasLine;
-    }
 
-    public List<Integer> resultPositions(List<Integer> positions) {
-        return positions.stream()
-                .map(this::resultPosition)
-                .collect(Collectors.toList());
+        return leftHasLine;
     }
 
 }

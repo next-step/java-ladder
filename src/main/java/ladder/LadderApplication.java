@@ -26,8 +26,6 @@ public class LadderApplication {
         Participant participant = InputView.selectResult();
         List<LadderResultPrint> process = ladderGame.process(participant);
 
-//        PrintDelegator printDelegator = ladderGame.getParticipantPosition(participant);
-
         OutputView.selectResultPrint(process);
 
     }

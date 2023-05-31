@@ -16,12 +16,12 @@ public class Line {
         this.points = generateLine(width, strategy);
     }
 
-    public List<Boolean> getPoints() {
-        return this.points;
+    public Line(List<Boolean> points) {
+        this.points = points;
     }
 
-    public int getSize() {
-        return this.points.size();
+    public List<Boolean> getPoints() {
+        return this.points;
     }
 
     private List<Boolean> generateLine(Width width, GenerateStrategy strategy) {
