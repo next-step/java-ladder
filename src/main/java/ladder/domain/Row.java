@@ -47,4 +47,8 @@ public class Row {
         Row otherRow = (Row) o;
         return this.hashCode() == otherRow.hashCode();
     }
+
+    public boolean isGraterThan(Row other) {
+        return this.value < other.value;
+    }
 }

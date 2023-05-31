@@ -8,7 +8,6 @@ import java.util.Random;
 import java.util.Set;
 
 public class Ladder {
-    private static final int INFINITE_LOOP_THRESHOLD = 10000;
 
     private final Column maxColumn;
     private final Row maxRow;
@@ -51,21 +50,8 @@ public class Ladder {
     }
 
     private boolean isEdgeExceeded(Line line) {
-        return this.maxColumn.isGraterThan(line.getColumn());
+        return this.maxColumn.isGraterThan(line.getColumn()) || this.maxRow.isGraterThan(line.getRow());
     }
-
-    private static void infiniteLoopWatchDog(int i) {
-        if (i > INFINITE_LOOP_THRESHOLD) {
-            throw new UnableReachLineCount();
-        }
-    }
-
-    private static void appendLine(Ladder ladder, Line anyLine) {
-        if (!ladder.hasCrossIntersection(anyLine)) {
-            ladder.append(anyLine);
-        }
-    }
-
 
     public void append(Line anyLine) {
         this.lines.add(anyLine);
@@ -75,10 +61,6 @@ public class Ladder {
         return lines.stream()
                 .filter(line -> line.isSameRow(otherLine))
                 .anyMatch(line -> line.isAdjacentColumn(otherLine));
-    }
-
-    public int lineCount() {
-        return this.lines.size();
     }
 
     public Set<Line> allLines() {
