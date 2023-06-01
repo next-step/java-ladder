@@ -56,5 +56,4 @@ public class MemberLocationTest {
 
     assertThat(nextMemberLocation.isEqualLocation(location)).isTrue();
   }
-
 }

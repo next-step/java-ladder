@@ -22,6 +22,7 @@ public class ApplicationGame {
   public static void main(String[] args) {
     Members members = MembersFactory.createMembers(InputView.inputMembers());
     Prizes prizes = PrizesFactory.createPrizes(InputView.inputResults(), members.getSize());
+
     LadderInfo ladderInfo = new LadderInfo(InputView.inputLadderHeight(), members.getSize());
 
     LineStrategy lineStrategy = new LineStrategyRandom(new LineStrategyNotTwoWay());

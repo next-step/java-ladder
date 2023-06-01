@@ -15,5 +15,4 @@ public class LadderTest {
     List<Row> rows = new ArrayList<>();
     assertThatThrownBy(() -> new Ladder(rows)).isInstanceOf(IllegalArgumentException.class);
   }
-
 }

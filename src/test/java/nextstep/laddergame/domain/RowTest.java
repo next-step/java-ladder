@@ -36,5 +36,4 @@ public class RowTest {
     point3.createLineWithLeftPoint();
     return points;
   }
-
 }
