@@ -22,4 +22,8 @@ public class Row {
   public List<Point> getPoints() {
     return Collections.unmodifiableList(points);
   }
+
+  public Point getPoint(int location) {
+    return points.get(location);
+  }
 }
