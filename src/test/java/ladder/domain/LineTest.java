@@ -5,6 +5,8 @@ import ladder.domain.test.ForceMakePointsStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.*;
 
 public class LineTest {
@@ -14,12 +16,10 @@ public class LineTest {
     void 요구사항_1() {
         // given
         int countOfPerson = 3;
-
-        // when
-        FailedMakePointsStrategy failedMakePointsStrategy = new FailedMakePointsStrategy();
+        List<Boolean> initializedPoints = Line.initializePoints(countOfPerson, FailedMakePointsStrategy.getInstance());
 
         // then
-        assertThatThrownBy(() -> new Line(countOfPerson, failedMakePointsStrategy))
+        assertThatThrownBy(() -> new Line(initializedPoints))
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessageContaining("연속된 가로줄은 허용하지 않습니다.");
     }
@@ -31,10 +31,10 @@ public class LineTest {
         int countOfPerson = 4;
         int currentIndex = 2;
         int expectedNextIndex = 3;
+        List<Boolean> initializedPoints = Line.initializePoints(countOfPerson, ForceMakePointsStrategy.getInstance());
 
         // when
-        ForceMakePointsStrategy forceMakePointsStrategy = new ForceMakePointsStrategy();
-        Line line = new Line(countOfPerson, forceMakePointsStrategy);
+        Line line = new Line(initializedPoints);
 
         // then
         assertThat(line.findNextIndex(currentIndex)).isEqualTo(expectedNextIndex);
@@ -47,10 +47,10 @@ public class LineTest {
         int countOfPerson = 4;
         int currentIndex = 3;
         int expectedNextIndex = 2;
+        List<Boolean> initializedPoints = Line.initializePoints(countOfPerson, ForceMakePointsStrategy.getInstance());
 
         // when
-        ForceMakePointsStrategy forceMakePointsStrategy = new ForceMakePointsStrategy();
-        Line line = new Line(countOfPerson, forceMakePointsStrategy);
+        Line line = new Line(initializedPoints);
 
         // then
         assertThat(line.findNextIndex(currentIndex)).isEqualTo(expectedNextIndex);

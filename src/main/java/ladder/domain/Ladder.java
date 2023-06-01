@@ -8,8 +8,8 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(int countOfPerson, int ladderHeight, MakePointsStrategy makePointsStrategy) {
-        this.lines = Stream.generate(() -> new Line(countOfPerson, makePointsStrategy))
+    public Ladder(List<Boolean> initializedPoints, int ladderHeight) {
+        this.lines = Stream.generate(() -> new Line(initializedPoints))
                 .limit(ladderHeight)
                 .collect(Collectors.toList());
     }

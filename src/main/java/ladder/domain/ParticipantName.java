@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class ParticipantName {
 
-    private static final String PARTICIPANTS_NAMES_ARE_LIMITED_TO_FIVE_CHARACTERS = "사다리 게임에 참여하는 사람의 이름은 최대 5글자입니다.";
+    private static final int PARTICIPANT_NAME_LENGTH_LIMIT = 5;
     private final String participantName;
 
     public ParticipantName(String participantName) {
@@ -13,9 +13,13 @@ public class ParticipantName {
     }
 
     private void validateParticipant(String participantName) {
-        if (participantName.length() > 5) {
-            throw new IllegalArgumentException(PARTICIPANTS_NAMES_ARE_LIMITED_TO_FIVE_CHARACTERS);
+        if (participantName.length() > PARTICIPANT_NAME_LENGTH_LIMIT) {
+            throw new IllegalArgumentException(sendExceptionMessageForParticipant(participantName));
         }
+    }
+
+    private String sendExceptionMessageForParticipant(String participantName) {
+        return String.format("사다리 게임에 참여하는 사람의 이름은 최대 5글자입니다. participantNameLength : %d", participantName.length());
     }
 
     public String getParticipantNameAsString() {

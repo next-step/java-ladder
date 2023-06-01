@@ -11,10 +11,9 @@ public class Line {
 
     private final List<Boolean> points;
 
-    public Line(int countOfPerson, MakePointsStrategy makePointsStrategy) {
-        List<Boolean> points = initializePoints(countOfPerson, makePointsStrategy);
-        validatePoints(points);
-        this.points = points;
+    public Line(List<Boolean> initializedPoints) {
+        validatePoints(initializedPoints);
+        this.points = initializedPoints;
     }
 
     private void validatePoints(List<Boolean> points) {
@@ -29,7 +28,7 @@ public class Line {
         return points.get(index - 1) && points.get(index);
     }
 
-    private List<Boolean> initializePoints(int countOfPerson, MakePointsStrategy makePointsStrategy) {
+    public static List<Boolean> initializePoints(int countOfPerson, MakePointsStrategy makePointsStrategy) {
         return makePointsStrategy.makePoints(countOfPerson);
     }
 
