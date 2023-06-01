@@ -13,7 +13,7 @@ class LineTest {
     @DisplayName("사람은 2명 미만일 수 없다")
     public void invalidCountOfPerson() {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Line(1, new RandomAmongAllNonAdjacentCombinationLineStrategy()));
+                .isThrownBy(() -> new Line(1, new RandomLineStrategy()));
     }
 
     @Test

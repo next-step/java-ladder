@@ -7,7 +7,7 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class RandomAmongAllNonAdjacentCombinationLineStrategy implements LineStrategy {
+public class RandomLineStrategy implements LineStrategy {
     @Override
     public List<Boolean> generate(int n) {
         List<Boolean> combination = new ArrayList<>(Collections.nCopies(n, false));
