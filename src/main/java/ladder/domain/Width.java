@@ -8,8 +8,8 @@ public class Width {
         this.width = width;
     }
 
-    public int getWidthCount() {
-        return this.width;
+    public int getWidthSize() {
+        return this.width - 1;
     }
 
     public static Width from(int width) {

@@ -4,7 +4,8 @@ import java.util.List;
 
 public class Participants {
 
-    private static final int ONE = 1;
+    private static final int MINIMUM_PARTICIPANT_COUNT = 2;
+
     private final List<Participant> participants;
 
     public static Participants from(List<Participant> participants) {
@@ -24,12 +25,16 @@ public class Participants {
         return participants.size();
     }
 
-    public int getLine() {
-        return getSize() - ONE;
+    public int getIndex(Participant participant) {
+        return participants.indexOf(participant);
+    }
+
+    public Participant getParticipant(int index) {
+        return participants.get(index);
     }
 
     private void participantsValidation(List<Participant> participants) {
-        if (participants.size() < 2) {
+        if (participants.size() < MINIMUM_PARTICIPANT_COUNT) {
             throw new IllegalStateException("사용자는 2명이상 입력해야 합니다.");
         }
     }

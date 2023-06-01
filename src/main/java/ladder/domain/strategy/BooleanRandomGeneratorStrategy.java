@@ -2,12 +2,12 @@ package ladder.domain.strategy;
 
 import java.util.Random;
 
-public class BooleanRandomGenerator implements GenerateStrategy {
+public class BooleanRandomGeneratorStrategy implements GenerateStrategy {
 
     private final Random random = new Random();
 
     @Override
-    public boolean makeLine() {
+    public boolean generateBoolean() {
         return random.nextBoolean();
     }
 }

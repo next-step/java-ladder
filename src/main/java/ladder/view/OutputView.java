@@ -2,10 +2,10 @@ package ladder.view;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import ladder.domain.Ladder;
+import ladder.domain.LadderGame;
+import ladder.domain.LadderResultPrint;
 import ladder.domain.Line;
-import ladder.domain.Participant;
-import ladder.domain.Participants;
+import ladder.domain.PrintDelegator;
 
 public class OutputView {
 
@@ -15,16 +15,30 @@ public class OutputView {
     private static final String BRIDGE_NOT_EXIST = "     ";
     private static final String LADDER_BAR = "|";
 
-    public static void print(Participants participants, Ladder ladder) {
-        System.out.println("실행결과\n");
-        participants.getParticipants().forEach(name -> System.out.print(nameFormatting(name.getName())));
+    public static void print(LadderGame ladderGame) {
+        System.out.println("실행결과");
+        ladderGame.getParticipants().forEach(name -> System.out.print(stringFormatting(name.getName())));
 
         System.out.println();
-        printLadder(ladder.getLines());
+        printLadder(ladderGame.getLines());
+
+        ladderGame.getResults().forEach(result -> System.out.print(stringFormatting(result.getResult())));
+        System.out.println();
+    }
+
+    public static void selectResultPrint(List<LadderResultPrint> results) {
+        System.out.println("실행결과");
+
+        if (results.size() != 1) {
+            results.stream().map(result -> result.getParticipantName() + " : " + result.getResult()).forEach(System.out::println);
+            return;
+        }
+
+        System.out.println(results.get(0).getResult());
 
     }
 
-    private static String nameFormatting(String name) {
+    private static String stringFormatting(String name) {
         return String.format("%5s", name) + SPACE;
     }
 
