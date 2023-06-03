@@ -28,5 +28,4 @@ public class MemberTest {
             .isInstanceOf(IllegalArgumentException.class)
     );
   }
-
 }

@@ -33,5 +33,4 @@ public class LadderInfoTest {
 
     assertThat(ladder.getRows().size()).isEqualTo(input);
   }
-
 }

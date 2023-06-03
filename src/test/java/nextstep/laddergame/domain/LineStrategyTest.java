@@ -27,5 +27,4 @@ public class LineStrategyTest {
 
     assertThat(lineStrategyNotTwoWay.canCreateLine(new Point(), rightPoint)).isFalse();
   }
-
 }
