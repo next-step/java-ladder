@@ -11,9 +11,11 @@ public class RadderController {
         InputView inputView = new InputView();
 
         String namesOfPersons = inputView.promptNamesOfPersons();
+        String prizes = inputView.promptPrizes();
         int heightOfRadder = inputView.promptHeightOfRadder();
 
         Persons persons = Persons.of(namesOfPersons);
+
         Radder radder = Radder.of(persons.getCount(), heightOfRadder);
 
         ResultView resultView = new ResultView();

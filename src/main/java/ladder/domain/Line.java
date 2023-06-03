@@ -15,7 +15,7 @@ public class Line {
         }
         Direction direction = Direction.NONE; // 초기값
         for (int i = 0; i < width; i++) {
-            direction = Direction.getConnectDirection(direction, i == width - 1);
+            direction = Direction.getConnected(direction, i == width - 1);
             points.add(direction);
         }
     }
