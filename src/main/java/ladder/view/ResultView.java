@@ -6,11 +6,11 @@ import java.util.Arrays;
 
 public class ResultView {
 
-    public void viewRadderResult(Persons persons, Radder radder, Prize prize) {
+    public void viewLadderResult(Persons persons, Ladder ladder, Prize prize) {
         System.out.println("사다리 결과\n");
 
         viewPersons(persons);
-        viewRadder(radder);
+        viewLadder(ladder);
         viewPrize(prize);
     }
 
@@ -20,8 +20,8 @@ public class ResultView {
         System.out.println("");
     }
 
-    private void viewRadder(Radder radder) {
-        radder.getLines().stream().forEach(this::drawLine);
+    private void viewLadder(Ladder ladder) {
+        ladder.getLines().stream().forEach(this::drawLine);
     }
 
     private void viewPrize(Prize prize) {
@@ -44,5 +44,14 @@ public class ResultView {
         }
 
         return result;
+    }
+
+    public void viewResultTitle() {
+        System.out.println("\n실행 결과");
+
+    }
+
+    public void viewPersonResult(Person person, String prize) {
+        System.out.println(person + " : " + prize);
     }
 }

@@ -6,33 +6,30 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import static ladder.domain.Line.MIN_WIDTH;
-import static ladder.domain.Radder.MIN_HEIGHT;
+import static ladder.domain.Ladder.MIN_HEIGHT;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-public class RadderTest {
+public class LadderTest {
 
     @Test
     void 생성검증() {
-        Assertions.assertThat(Radder.of(4, 5)).isInstanceOf(Radder.class);
+        Assertions.assertThat(Ladder.of(4, 5)).isInstanceOf(Ladder.class);
     }
 
     @Test
     void 높이검증() {
         assertThatThrownBy(() -> {
-            Radder radder = Radder.of(1, 1);
+            Ladder ladder = Ladder.of(1, 1);
         }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("사다리 폭은 " + MIN_WIDTH + " 이상이어야 합니다.");
     }
 
     @Test
     void 넓이검증() {
         assertThatThrownBy(() -> {
-            Radder radder = Radder.of(2, 0);
+            Ladder ladder = Ladder.of(2, 0);
         }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("사다리 높이는 " + MIN_HEIGHT + " 이상이어야 합니다.");
     }
 
@@ -43,8 +40,8 @@ public class RadderTest {
         Line line2 = new Line(Arrays.asList(Direction.NONE, Direction.RIGHT, Direction.LEFT, Direction.NONE));
         Line line3 = new Line(Arrays.asList(Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT));
 
-        Radder radder = new Radder(Arrays.asList(line1, line2, line3));
+        Ladder ladder = new Ladder(Arrays.asList(line1, line2, line3));
 
-        Assertions.assertThat(radder.getLastPosition(first)).isEqualTo(last);
+        Assertions.assertThat(ladder.getLastPosition(first)).isEqualTo(last);
     }
 }

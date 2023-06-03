@@ -24,11 +24,6 @@ public class Person {
         }
     }
 
-    public void move(Direction direction) {
-        position = direction.getNext(position);
-
-    }
-
     @Override
     public String toString() {
         return this.name;
@@ -37,5 +32,9 @@ public class Person {
     @Override
     public boolean equals(Object obj) {
         return this.name.equals(obj);
+    }
+
+    public int getPosition() {
+        return position;
     }
 }
