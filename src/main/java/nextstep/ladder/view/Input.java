@@ -15,6 +15,9 @@ public class Input {
     private static final String QUESTION_FOR_NAME_TO_SHOW_RESULT = "결과를 보고 싶은 사람은?";
     private static final String DELIMITER = ",";
 
+    private Input() {
+    }
+
     public static LadderGame initLadderGame(LineStrategy lineStrategy) {
         Scanner scanner = new Scanner(System.in);
 

@@ -14,6 +14,9 @@ public class Output {
     private static final String HORIZONTAL_NO_LINE_MARK = " ".repeat(Name.MAX_LENGTH);
     private static final String VERTICAL_LINE_MARK = "|";
 
+    private Output() {
+    }
+
     public static void printLadderResult(LadderGame ladderGame) {
         System.out.println(LADDER_RESULT_HEADER);
         System.out.println();

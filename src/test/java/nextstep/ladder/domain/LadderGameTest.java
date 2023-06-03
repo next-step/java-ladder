@@ -18,7 +18,7 @@ class LadderGameTest {
                         5,
                         List.of("pobi", "honux", "crong", "jk"),
                         List.of("꽝", "5000", "꽝"),
-                        new RandomAmongAllNonAdjacentCombinationLineStrategy()
+                        new RandomLineStrategy()
                 ));
     }
 

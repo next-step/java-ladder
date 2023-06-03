@@ -12,7 +12,7 @@ class LadderTest {
     @DisplayName("높이는 1 미만일 수 없다")
     public void invalidHeight() {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Ladder(0, 4, new RandomAmongAllNonAdjacentCombinationLineStrategy()));
+                .isThrownBy(() -> new Ladder(0, 4, new RandomLineStrategy()));
     }
 
     @Test
