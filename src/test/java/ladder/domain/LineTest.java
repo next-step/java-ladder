@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static ladder.domain.Line.MIN_WIDTH;
@@ -29,14 +30,9 @@ public class LineTest {
 
     @ParameterizedTest(name = "{displayName} [{index}] {arguments}")
     @CsvSource(value={"0, 1", "1, 0", "2, 2"})
-    void 이동검증(int current, int expected) {
-        List<Direction> points = new ArrayList<>();
-        points.add(Direction.RIGHT);
-        points.add(Direction.LEFT);
-        points.add(Direction.NONE);
+    void 이동검증(int current, int next) {
+        Line line = new Line(Arrays.asList(Direction.RIGHT, Direction.LEFT, Direction.NONE));
 
-        Line line = new Line(points);
-
-        Assertions.assertThat(line.getNextPosition(current)).isEqualTo(expected);
+        Assertions.assertThat(line.getNextPosition(current)).isEqualTo(next);
     }
 }
