@@ -1,24 +1,15 @@
 package ladder.domain;
 
-import java.math.BigDecimal;
-import java.nio.file.Path;
-import java.util.function.DoublePredicate;
-import java.util.function.IntPredicate;
-import java.util.function.LongPredicate;
-import java.util.stream.DoubleStream;
-import java.util.stream.IntStream;
-import java.util.stream.LongStream;
-
 public class Prize {
     public static final String DELIMITER = ",";
-    private final String[] prizes;
+    private final String[] descriptions;
 
-    private Prize(String[] prizes, int countOfPerson) {
-        if (prizes.length != countOfPerson) {
+    private Prize(String[] descriptions, int countOfPerson) {
+        if (descriptions.length != countOfPerson) {
             throw new IllegalArgumentException("입력한 상품의 개수가 참여자 수와 맞지 않습니다.");
         }
 
-        this.prizes = prizes;
+        this.descriptions = descriptions;
     }
 
     public static Prize of(String prizes, int countOfPerson) {
@@ -30,7 +21,7 @@ public class Prize {
     }
 
     public String getPrize(int position) {
-        if (position > prizes.length) {
+        if (position > descriptions.length) {
             throw new IndexOutOfBoundsException("입력된 수가 상품의 개수보다 큽니다.");
         }
 
@@ -38,6 +29,10 @@ public class Prize {
             throw new IndexOutOfBoundsException("입력된 수는 0 이상이어야 합니다.");
         }
 
-        return prizes[position];
+        return descriptions[position];
+    }
+
+    public String[] getDescriptions() {
+        return this.descriptions;
     }
 }

@@ -28,4 +28,10 @@ public class RadderTest {
         }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("사다리 높이는 " + MIN_HEIGHT + " 이상이어야 합니다.");
     }
 
+    @Test
+    void 최종포지션검증() {
+
+
+
+    }
 }

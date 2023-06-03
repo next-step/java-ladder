@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.domain.enums.Direction;
+
 public class Person {
     public static final int MAX_NAME_LENGTH = 5;
     private final String name;
@@ -20,6 +22,11 @@ public class Person {
         if (name.trim().length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("이름이 최대허용길이(" + MAX_NAME_LENGTH + ")를 초과하였습니다");
         }
+    }
+
+    public void move(Direction direction) {
+        position = direction.getNext(position);
+
     }
 
     @Override

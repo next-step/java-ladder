@@ -18,7 +18,7 @@ public class Radder {
     public static Radder of(int width, int height) {
         validateHeight(height);
 
-        return new Radder(Stream.generate(() -> new Line(width))
+        return new Radder(Stream.generate(() -> Line.createLineWithWidth(width))
                 .limit(height)
                 .collect(Collectors.toCollection(ArrayList::new)));
     }
@@ -31,5 +31,10 @@ public class Radder {
 
     public List<Line> getLines() {
         return lines;
+    }
+
+    public int getLastPosition(int position) {
+        return lines.stream()
+                .reduce(position, (pos, line) -> line.getNextPosition(pos), (a, b) -> b);
     }
 }
