@@ -31,4 +31,27 @@ public class PersonsTest {
 
         Assertions.assertThat(persons.getCount()).isEqualTo(count);
     }
+
+    @Test
+    void 이름포함() {
+        Persons persons = Persons.of("jerry, david");
+
+        Assertions.assertThat(persons.getList("jerry").size()).isEqualTo(1);
+    }
+
+    @Test
+    void 이름미포함() {
+        Persons persons = Persons.of("jerry, david");
+
+        assertThatThrownBy(() -> {
+            persons.getList("joy");
+        }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("입력하신 이름이 참여자에 존재하지 않습니다.");
+    }
+
+    @Test
+    void 이름all() {
+        Persons persons = Persons.of("jerry, david, joy");
+
+        Assertions.assertThat(persons.getList("all").size()).isEqualTo(3);
+    }
 }

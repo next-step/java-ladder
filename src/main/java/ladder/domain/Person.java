@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.domain.enums.Direction;
+
 public class Person {
     public static final int MAX_NAME_LENGTH = 5;
     private final String name;
@@ -30,5 +32,9 @@ public class Person {
     @Override
     public boolean equals(Object obj) {
         return this.name.equals(obj);
+    }
+
+    public int getPosition() {
+        return position;
     }
 }

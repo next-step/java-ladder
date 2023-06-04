@@ -40,4 +40,22 @@ public class Persons {
                 .map(Person::toString)
                 .toArray(String[]::new);
     }
+
+    private Person getPerson(String name) {
+        return persons.stream()
+                .filter(x -> x.equals(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("입력하신 이름이 참여자에 존재하지 않습니다."));
+    }
+
+    public List<Person> getList(String name) {
+        if (name.equals("all")) {
+            return persons;
+        }
+
+        return Arrays.asList(persons.stream()
+                .filter(x -> x.equals(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("입력하신 이름이 참여자에 존재하지 않습니다.")));
+    }
 }

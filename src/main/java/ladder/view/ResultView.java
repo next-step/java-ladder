@@ -1,19 +1,18 @@
 package ladder.view;
 
 import ladder.domain.*;
-import ladder.domain.enums.Direction;
 
 import java.util.Arrays;
 
 public class ResultView {
 
-    public void viewResult(Persons persons, Radder radder) {
-        System.out.println("실행결과\n");
+    public void viewLadderResult(Persons persons, Ladder ladder, Prize prize) {
+        System.out.println("사다리 결과\n");
 
         viewPersons(persons);
-        viewRadder(radder);
+        viewLadder(ladder);
+        viewPrize(prize);
     }
-
 
     private void viewPersons(Persons persons) {
         Arrays.stream(persons.getNames())
@@ -21,8 +20,14 @@ public class ResultView {
         System.out.println("");
     }
 
-    private void viewRadder(Radder radder) {
-        radder.getLines().stream().forEach(this::drawLine);
+    private void viewLadder(Ladder ladder) {
+        ladder.getLines().stream().forEach(this::drawLine);
+    }
+
+    private void viewPrize(Prize prize) {
+        Arrays.stream(prize.getDescriptions())
+                .forEach(s -> System.out.print(String.format("%-" + (Person.MAX_NAME_LENGTH + 1) + "s", s)));
+        System.out.println("");
     }
 
     private void drawLine(Line line) {
@@ -39,5 +44,14 @@ public class ResultView {
         }
 
         return result;
+    }
+
+    public void viewResultTitle() {
+        System.out.println("\n실행 결과");
+
+    }
+
+    public void viewPersonResult(Person person, String prize) {
+        System.out.println(person + " : " + prize);
     }
 }

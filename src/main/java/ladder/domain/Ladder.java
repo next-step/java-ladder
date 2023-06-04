@@ -5,20 +5,20 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Radder {
+public class Ladder {
     public static final int MIN_HEIGHT = 1;
     private List<Line> lines;
 
-    public Radder(List<Line> lines) {
+    public Ladder(List<Line> lines) {
         validateHeight(lines.size());
 
         this.lines = lines;
     }
 
-    public static Radder of(int width, int height) {
+    public static Ladder of(int width, int height) {
         validateHeight(height);
 
-        return new Radder(Stream.generate(() -> new Line(width))
+        return new Ladder(Stream.generate(() -> Line.createLineWithWidth(width))
                 .limit(height)
                 .collect(Collectors.toCollection(ArrayList::new)));
     }
@@ -31,5 +31,10 @@ public class Radder {
 
     public List<Line> getLines() {
         return lines;
+    }
+
+    public int getLastPosition(int position) {
+        return lines.stream()
+                .reduce(position, (x, line) -> line.getNextPosition(x), (x, y) -> y);
     }
 }

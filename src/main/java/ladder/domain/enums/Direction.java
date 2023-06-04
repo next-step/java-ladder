@@ -21,7 +21,7 @@ public enum Direction {
         return NONE;
     }
 
-    public static Direction getConnectDirection(Direction previous, boolean isLast) {
+    public static Direction getConnected(Direction previous, boolean isLast) {
         if (previous.equals(RIGHT)) {
             return LEFT;
         }
@@ -33,8 +33,7 @@ public enum Direction {
         return getRightOrNone();
     }
 
-
-    public int getNextPosition(int currentPosition) {
+    public int getNext(int currentPosition) {
         return currentPosition + value;
     }
 
