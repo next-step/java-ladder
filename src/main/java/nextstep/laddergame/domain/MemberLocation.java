@@ -23,12 +23,20 @@ public class MemberLocation {
 
   public MemberLocation goNextStep(Point point) {
     if (point.checkLeftWay()) {
-      return new MemberLocation(member, location - 1);
+      return goLeft();
     } else if (point.checkRightWay()) {
-      return new MemberLocation(member, location + 1);
+      return goRight();
     }
 
     return this;
+  }
+
+  private MemberLocation goLeft() {
+    return new MemberLocation(member, location - 1);
+  }
+
+  private MemberLocation goRight() {
+    return new MemberLocation(member, location + 1);
   }
 
   public Member getMember() {
