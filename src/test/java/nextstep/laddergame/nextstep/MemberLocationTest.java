@@ -31,7 +31,7 @@ public class MemberLocationTest {
 
     MemberLocation nextMemberLocation = memberLocation.goNextStep(point);
 
-    assertThat(nextMemberLocation.isEqualLocation(location - 1)).isTrue();
+    assertThat(nextMemberLocation).isEqualTo(new MemberLocation(member, location - 1));
   }
 
   @DisplayName("다음 단계로 넘어갈 때 Point 오른쪽에 길이 있다면 오른쪽으로 위치를 옮긴다.")
@@ -44,7 +44,7 @@ public class MemberLocationTest {
 
     MemberLocation nextMemberLocation = memberLocation.goNextStep(point);
 
-    assertThat(nextMemberLocation.isEqualLocation(location + 1)).isTrue();
+    assertThat(nextMemberLocation).isEqualTo(new MemberLocation(member, location + 1));
   }
 
   @DisplayName("다음 단계로 넘어갈 때 길이 없다면 위치를 그대로 유지한다.")
@@ -56,6 +56,6 @@ public class MemberLocationTest {
 
     MemberLocation nextMemberLocation = memberLocation.goNextStep(point);
 
-    assertThat(nextMemberLocation.isEqualLocation(location)).isTrue();
+    assertThat(nextMemberLocation).isEqualTo(new MemberLocation(member, location));
   }
 }

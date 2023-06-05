@@ -1,5 +1,6 @@
 package nextstep.laddergame.nextstep;
 
+import java.util.Objects;
 import nextstep.laddergame.engine.Location;
 import nextstep.laddergame.engine.Member;
 import nextstep.laddergame.engine.Point;
@@ -54,7 +55,20 @@ public class MemberLocation implements Location {
     return prizes.getPrize(location);
   }
 
-  public boolean isEqualLocation(int location) {
-    return location == this.location;
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    MemberLocation that = (MemberLocation) o;
+    return location == that.location && Objects.equals(member.getName(), that.member.getName());
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(member, location);
   }
 }
