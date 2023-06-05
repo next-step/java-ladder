@@ -1,4 +1,4 @@
-package nextstep.laddergame.util;
+package nextstep.laddergame.engine.util;
 
 public class StringUtils {
 

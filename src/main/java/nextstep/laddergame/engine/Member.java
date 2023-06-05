@@ -1,7 +1,7 @@
 package nextstep.laddergame.engine;
 
 import java.util.Objects;
-import nextstep.laddergame.util.StringUtils;
+import nextstep.laddergame.engine.util.StringUtils;
 
 public class Member {
 
