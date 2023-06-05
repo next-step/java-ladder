@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
 
 public class Members {
 
-  private List<Member> members;
+  private final List<Member> members;
 
   public Members(List<Member> members) {
     if (members.size() != new HashSet<>(members).size()) {

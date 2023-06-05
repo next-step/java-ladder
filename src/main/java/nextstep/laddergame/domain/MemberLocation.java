@@ -2,8 +2,8 @@ package nextstep.laddergame.domain;
 
 public class MemberLocation {
 
-  private Member member;
-  private int location;
+  private final Member member;
+  private final int location;
 
   public MemberLocation(Member member, int location) {
     if (member == null) {

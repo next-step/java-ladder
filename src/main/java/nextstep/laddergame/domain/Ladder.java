@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class Ladder {
 
-  private List<Row> rows;
+  private final List<Row> rows;
 
   public Ladder(List<Row> rows) {
     if (rows.size() < 1) {
@@ -21,12 +21,12 @@ public class Ladder {
   }
 
   public GameResult play(Members members, Prizes prizes) {
-    Map<Member, Prize> resultMap = getResultLocations(members).createResultMap(prizes);
+    Map<Member, Prize> gameResult = play(members).createGameResult(prizes);
 
-    return new GameResult(resultMap);
+    return new GameResult(gameResult);
   }
 
-  private MemberLocations getResultLocations(Members members) {
+  private MemberLocations play(Members members) {
     MemberLocations startLocations = members.createStartLocation();
 
     return rows.stream()

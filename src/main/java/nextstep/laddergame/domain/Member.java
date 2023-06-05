@@ -5,7 +5,7 @@ import nextstep.laddergame.util.StringUtils;
 
 public class Member {
 
-  private String name;
+  private final String name;
 
   public Member(String name) {
     StringUtils.checkNullOrBlank(name);

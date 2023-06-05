@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class MemberLocations {
 
-  private List<MemberLocation> memberLocations;
+  private final List<MemberLocation> memberLocations;
 
   public MemberLocations(List<MemberLocation> memberLocations) {
     this.memberLocations = memberLocations;
@@ -24,7 +24,7 @@ public class MemberLocations {
     return new MemberLocations(memberLocations);
   }
 
-  public Map<Member, Prize> createResultMap(Prizes prizes) {
+  public Map<Member, Prize> createGameResult(Prizes prizes) {
     return memberLocations.stream()
         .collect(Collectors
             .toMap(location -> location.getMember(), location -> location.getPrize(prizes)));

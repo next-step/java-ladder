@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Row {
 
-  private List<Point> points;
+  private final List<Point> points;
 
   public Row(List<Point> points) {
     if (points.size() < 1) {

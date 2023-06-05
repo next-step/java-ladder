@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Prizes {
 
-  private List<Prize> prizes;
+  private final List<Prize> prizes;
 
   public Prizes(List<Prize> prizes, int width) {
     if (prizes.size() != width) {

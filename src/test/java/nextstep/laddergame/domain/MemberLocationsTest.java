@@ -20,7 +20,7 @@ public class MemberLocationsTest {
     Prizes prizes = PrizesFactory
         .createPrizes(new String[]{"a보상", "b보상", "c보상"}, members.getSize());
 
-    Map<Member, Prize> resultMap = locations.createResultMap(prizes);
+    Map<Member, Prize> resultMap = locations.createGameResult(prizes);
 
     assertAll(
         () -> assertThat(resultMap.get(new Member("aaa"))).isEqualTo(new Prize("a보상")),
@@ -43,7 +43,7 @@ public class MemberLocationsTest {
     Point cPoint = new Point();
     locations = locations.goNextStep(new Row(List.of(aPoint, bPoint, cPoint)));
 
-    Map<Member, Prize> resultMap = locations.createResultMap(prizes);
+    Map<Member, Prize> resultMap = locations.createGameResult(prizes);
 
     assertAll(
         () -> assertThat(resultMap.get(new Member("aaa"))).isEqualTo(new Prize("b보상")),

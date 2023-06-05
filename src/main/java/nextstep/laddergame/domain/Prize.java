@@ -5,7 +5,7 @@ import nextstep.laddergame.util.StringUtils;
 
 public class Prize {
 
-  private String prize;
+  private final String prize;
 
   public Prize(String prize) {
     StringUtils.checkNullOrBlank(prize);
