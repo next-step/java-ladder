@@ -7,10 +7,8 @@ import nextstep.laddergame.engine.Member;
 import nextstep.laddergame.engine.Members;
 import nextstep.laddergame.engine.Prizes;
 import nextstep.laddergame.engine.strategy.LineStrategy;
+import nextstep.laddergame.factory.LadderFactoryBean;
 import nextstep.laddergame.factory.LineStrategyBean;
-import nextstep.laddergame.nextstep.NextStepLadderCreator;
-import nextstep.laddergame.nextstep.strategy.LineStrategyNotTwoWay;
-import nextstep.laddergame.nextstep.strategy.decorator.LineStrategyRandom;
 import nextstep.laddergame.ui.InputView;
 import nextstep.laddergame.ui.OutputView;
 
@@ -23,10 +21,10 @@ public class ApplicationGame {
     Members members = Members.createMembers(InputView.inputMembers());
     Prizes prizes = Prizes.createPrizes(InputView.inputResults(), members.getSize());
 
-    LadderCreator ladderCreator = new NextStepLadderCreator(InputView.inputLadderHeight(),
-        members.getSize());
-
+    LadderCreator ladderCreator = LadderFactoryBean
+        .createLadderFactory(InputView.inputLadderHeight(), members.getSize());
     LineStrategy lineStrategy = LineStrategyBean.createLineStrategy();
+
     Ladder ladder = ladderCreator.createLadder(lineStrategy);
     OutputView.printLadder(members, ladder, prizes);
 

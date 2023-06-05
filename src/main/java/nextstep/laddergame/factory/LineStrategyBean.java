@@ -9,5 +9,4 @@ public class LineStrategyBean {
   public static LineStrategy createLineStrategy(){
     return new LineStrategyRandom(new LineStrategyNotTwoWay());
   }
-
 }
