@@ -20,7 +20,7 @@ public class Ladder {
     return Collections.unmodifiableList(rows);
   }
 
-  public GameResult createGameResult(Members members, Prizes prizes) {
+  public GameResult play(Members members, Prizes prizes) {
     Map<Member, Prize> resultMap = getResultLocations(members).createResultMap(prizes);
 
     return new GameResult(resultMap);

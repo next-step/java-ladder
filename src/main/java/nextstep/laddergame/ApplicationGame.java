@@ -29,7 +29,7 @@ public class ApplicationGame {
     Ladder ladder = ladderInfo.generateLadder(lineStrategy);
     OutputView.printLadder(members, ladder, prizes);
 
-    GameResult gameResult = ladder.createGameResult(members, prizes);
+    GameResult gameResult = ladder.play(members, prizes);
     for (int i = 0; i < TRY_NUMBER; i++) {
       String member = InputView.inputMemberOfResult();
       if (member.equals(PRINT_ALL)) {
