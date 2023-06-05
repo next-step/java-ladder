@@ -2,10 +2,10 @@ package nextstep.laddergame.nextstep;
 
 import nextstep.laddergame.engine.Location;
 import nextstep.laddergame.engine.Member;
+import nextstep.laddergame.engine.Point;
 import nextstep.laddergame.engine.Prize;
 import nextstep.laddergame.engine.Prizes;
 import nextstep.laddergame.engine.Row;
-import nextstep.laddergame.engine.Point;
 
 public class MemberLocation implements Location {
 

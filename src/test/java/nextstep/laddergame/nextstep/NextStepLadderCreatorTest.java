@@ -4,8 +4,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-import nextstep.laddergame.engine.Ladder;
-import nextstep.laddergame.engine.LadderCreator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -30,8 +28,8 @@ public class NextStepLadderCreatorTest {
   @ParameterizedTest
   @ValueSource(ints = {1, 2, 3, 10})
   public void ladder_generateLadder(int input) {
-    LadderCreator ladderCreator = new NextStepLadderCreator(input, 1);
-    Ladder ladder = ladderCreator.createLadder((leftPoint, rightPoint) -> false);
+    NextStepLadderCreator ladderCreator = new NextStepLadderCreator(input, 1);
+    NextStepLadder ladder = ladderCreator.createLadder((leftPoint, rightPoint) -> false);
 
     assertThat(ladder.getRows().size()).isEqualTo(input);
   }

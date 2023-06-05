@@ -6,7 +6,7 @@ import nextstep.laddergame.nextstep.strategy.decorator.LineStrategyRandom;
 
 public class LineStrategyBean {
 
-  public static LineStrategy createLineStrategy(){
+  public static LineStrategy createLineStrategy() {
     return new LineStrategyRandom(new LineStrategyNotTwoWay());
   }
 }
