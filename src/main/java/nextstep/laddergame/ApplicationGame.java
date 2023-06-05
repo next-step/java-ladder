@@ -1,16 +1,15 @@
 package nextstep.laddergame;
 
-import nextstep.laddergame.domain.GameResult;
-import nextstep.laddergame.domain.Ladder;
-import nextstep.laddergame.domain.LadderInfo;
-import nextstep.laddergame.domain.Member;
-import nextstep.laddergame.domain.Members;
-import nextstep.laddergame.domain.Prizes;
-import nextstep.laddergame.domain.strategy.LineStrategy;
-import nextstep.laddergame.domain.strategy.LineStrategyNotTwoWay;
-import nextstep.laddergame.domain.strategy.decorator.LineStrategyRandom;
-import nextstep.laddergame.factory.MembersFactory;
-import nextstep.laddergame.factory.PrizesFactory;
+import nextstep.laddergame.engine.GameResult;
+import nextstep.laddergame.engine.Ladder;
+import nextstep.laddergame.engine.LadderCreator;
+import nextstep.laddergame.engine.Member;
+import nextstep.laddergame.engine.Members;
+import nextstep.laddergame.engine.Prizes;
+import nextstep.laddergame.engine.strategy.LineStrategy;
+import nextstep.laddergame.nextstep.NextStepLadderCreator;
+import nextstep.laddergame.nextstep.strategy.LineStrategyNotTwoWay;
+import nextstep.laddergame.nextstep.strategy.decorator.LineStrategyRandom;
 import nextstep.laddergame.ui.InputView;
 import nextstep.laddergame.ui.OutputView;
 
@@ -20,13 +19,14 @@ public class ApplicationGame {
   private static final String PRINT_ALL = "all";
 
   public static void main(String[] args) {
-    Members members = MembersFactory.createMembers(InputView.inputMembers());
-    Prizes prizes = PrizesFactory.createPrizes(InputView.inputResults(), members.getSize());
+    Members members = Members.createMembers(InputView.inputMembers());
+    Prizes prizes = Prizes.createPrizes(InputView.inputResults(), members.getSize());
 
-    LadderInfo ladderInfo = new LadderInfo(InputView.inputLadderHeight(), members.getSize());
+    LadderCreator ladderCreator = new NextStepLadderCreator(InputView.inputLadderHeight(),
+        members.getSize());
 
     LineStrategy lineStrategy = new LineStrategyRandom(new LineStrategyNotTwoWay());
-    Ladder ladder = ladderInfo.generateLadder(lineStrategy);
+    Ladder ladder = ladderCreator.createLadder(lineStrategy);
     OutputView.printLadder(members, ladder, prizes);
 
     GameResult gameResult = ladder.play(members, prizes);

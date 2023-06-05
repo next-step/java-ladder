@@ -2,14 +2,14 @@ package nextstep.laddergame.ui;
 
 import java.util.List;
 import java.util.Map;
-import nextstep.laddergame.domain.GameResult;
-import nextstep.laddergame.domain.Ladder;
-import nextstep.laddergame.domain.Member;
-import nextstep.laddergame.domain.Members;
-import nextstep.laddergame.domain.Point;
-import nextstep.laddergame.domain.Prize;
-import nextstep.laddergame.domain.Prizes;
-import nextstep.laddergame.domain.Row;
+import nextstep.laddergame.engine.GameResult;
+import nextstep.laddergame.engine.Ladder;
+import nextstep.laddergame.engine.Member;
+import nextstep.laddergame.engine.Members;
+import nextstep.laddergame.engine.Point;
+import nextstep.laddergame.engine.Prize;
+import nextstep.laddergame.engine.Prizes;
+import nextstep.laddergame.engine.Row;
 
 public class OutputView {
 
