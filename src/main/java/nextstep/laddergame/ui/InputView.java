@@ -1,7 +1,7 @@
 package nextstep.laddergame.ui;
 
 import java.util.Scanner;
-import nextstep.laddergame.util.StringUtils;
+import nextstep.laddergame.engine.util.StringUtils;
 
 public class InputView {
 
