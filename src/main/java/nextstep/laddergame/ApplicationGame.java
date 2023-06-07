@@ -18,8 +18,8 @@ public class ApplicationGame {
   private static final String PRINT_ALL = "all";
 
   public static void main(String[] args) {
-    Members members = Members.createMembers(InputView.inputMembers());
-    Prizes prizes = Prizes.createPrizes(InputView.inputResults(), members.getSize());
+    Members members = new Members(InputView.inputMembers());
+    Prizes prizes = new Prizes(InputView.inputResults(), members.getSize());
 
     LadderCreator ladderCreator = LadderFactoryBean
         .createLadderFactory(InputView.inputLadderHeight(), members.getSize());

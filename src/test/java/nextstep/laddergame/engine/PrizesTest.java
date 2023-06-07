@@ -12,7 +12,7 @@ public class PrizesTest {
   @Test
   public void createPrizes() {
     String[] results = {"꽝", "100", "1000"};
-    Prizes prizes = Prizes.createPrizes(results, results.length);
+    Prizes prizes = new Prizes(results, results.length);
 
     assertThat(prizes.getPrizes().size()).isEqualTo(results.length);
   }
@@ -22,7 +22,7 @@ public class PrizesTest {
   public void createPrizes_throwException_ifNotEqualWidth() {
     String[] results = {"꽝", "100", "1000"};
 
-    assertThatThrownBy(() -> Prizes.createPrizes(results, 2))
+    assertThatThrownBy(() -> new Prizes(results, 2))
         .isInstanceOf(IllegalArgumentException.class);
   }
 }

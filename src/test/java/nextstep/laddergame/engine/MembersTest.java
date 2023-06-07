@@ -12,7 +12,7 @@ public class MembersTest {
   @Test
   public void createMembers() {
     String[] names = {"1", "2", "3", "4", "5"};
-    Members members = Members.createMembers(names);
+    Members members = new Members(names);
 
     assertThat(members.getSize()).isEqualTo(names.length);
   }
@@ -22,7 +22,7 @@ public class MembersTest {
   public void createMembers_throwException_ifDuplicatedName() {
     String[] names = {"1", "1", "2", "3", "4"};
 
-    assertThatThrownBy(() -> Members.createMembers(names))
+    assertThatThrownBy(() -> new Members(names))
         .isInstanceOf(IllegalArgumentException.class);
   }
 }

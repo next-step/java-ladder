@@ -19,7 +19,7 @@ public class MemberLocationsTest {
   @DisplayName("참여자들의 시작하는 위치정보를 반환한다.")
   @Test
   public void createStartLocation() {
-    Members members = Members.createMembers(new String[]{"aaa", "bbb", "ccc"});
+    Members members = new Members(new String[]{"aaa", "bbb", "ccc"});
 
     MemberLocations memberLocations = MemberLocations.createStartLocation(members);
   }
@@ -27,10 +27,9 @@ public class MemberLocationsTest {
   @DisplayName("위치에 해당하는 보상을 매핑하여 Map으로 반환한다.")
   @Test
   public void createResultMap() {
-    Members members = Members.createMembers(new String[]{"aaa", "bbb", "ccc"});
+    Members members = new Members(new String[]{"aaa", "bbb", "ccc"});
     MemberLocations locations = MemberLocations.createStartLocation(members);
-    Prizes prizes = Prizes
-        .createPrizes(new String[]{"a보상", "b보상", "c보상"}, members.getSize());
+    Prizes prizes = new Prizes(new String[]{"a보상", "b보상", "c보상"}, members.getSize());
 
     Map<Member, Prize> resultMap = locations.createGameResult(prizes);
 
@@ -44,10 +43,9 @@ public class MemberLocationsTest {
   @DisplayName("다음 단계로 이동 후 위치에 해당하는 보상을 매핑하여 Map으로 반환한다.")
   @Test
   public void createResultMap_NextStep() {
-    Members members = Members.createMembers(new String[]{"aaa", "bbb", "ccc"});
+    Members members = new Members(new String[]{"aaa", "bbb", "ccc"});
     MemberLocations locations = MemberLocations.createStartLocation(members);
-    Prizes prizes = Prizes
-        .createPrizes(new String[]{"a보상", "b보상", "c보상"}, members.getSize());
+    Prizes prizes = new Prizes(new String[]{"a보상", "b보상", "c보상"}, members.getSize());
     Point aPoint = new Point();
     aPoint.createLineWithRightPoint();
     Point bPoint = new Point();

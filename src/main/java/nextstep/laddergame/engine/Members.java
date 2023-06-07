@@ -11,19 +11,25 @@ public class Members {
   private final List<Member> members;
 
   public Members(List<Member> members) {
-    if (members.size() != new HashSet<>(members).size()) {
-      throw new IllegalArgumentException("참여자 이름이 중복됩니다.");
-    }
+    validateMembers(members);
 
     this.members = members;
   }
 
-  public static Members createMembers(String[] names) {
+  public Members(String[] names) {
     List<Member> members = Arrays.stream(names)
         .map(name -> new Member(name))
         .collect(Collectors.toList());
 
-    return new Members(members);
+    validateMembers(members);
+
+    this.members = members;
+  }
+
+  private void validateMembers(List<Member> members) {
+    if (members.size() != new HashSet<>(members).size()) {
+      throw new IllegalArgumentException("참여자 이름이 중복됩니다.");
+    }
   }
 
   public int getSize() {
