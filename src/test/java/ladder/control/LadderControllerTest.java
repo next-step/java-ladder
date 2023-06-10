@@ -10,10 +10,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LadderControllerTest {
-    @AfterEach
-    public void wrapUp() {
-        System.setIn(System.in);
-    }
 
     @BeforeEach
     public void setUp() {
@@ -33,6 +29,11 @@ public class LadderControllerTest {
 
     private void consoleInput(String inputString) {
         System.setIn(new ByteArrayInputStream(inputString.getBytes()));
+    }
+
+    @AfterEach
+    public void wrapUp() {
+        System.setIn(System.in);
     }
 
     @DisplayName("실행 테스트를 자동화한다, 개발시 단순반복작업을 줄이고 시간을 아끼기 위한 테스트")
