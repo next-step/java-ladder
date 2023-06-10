@@ -4,23 +4,23 @@ import java.util.Random;
 
 public class ProbabilityStrategyRandom implements ProbabilityStrategy {
 
-    private static final ProbabilityStrategyRandom SINGLETON = new ProbabilityStrategyRandom();
-    private final Random random;
+  private static final ProbabilityStrategyRandom SINGLETON = new ProbabilityStrategyRandom();
+  private final Random random;
 
-    private ProbabilityStrategyRandom() {
-        random = new Random(System.currentTimeMillis());
-    }
+  private ProbabilityStrategyRandom() {
+    random = new Random(System.currentTimeMillis());
+  }
 
-    public static ProbabilityStrategyRandom of() {
-        return SINGLETON;
-    }
+  public static ProbabilityStrategyRandom of() {
+    return SINGLETON;
+  }
 
-    @Override
-    public boolean result() {
-        return fiftyPercent();
-    }
+  @Override
+  public boolean result() {
+    return fiftyPercent();
+  }
 
-    private boolean fiftyPercent() {
-        return random.nextInt(100) > 50;
-    }
+  private boolean fiftyPercent() {
+    return random.nextInt(100) > 50;
+  }
 }

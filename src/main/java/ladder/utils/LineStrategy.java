@@ -1,7 +1,8 @@
 package ladder.utils;
 
 public interface LineStrategy {
-    int anyRow();
 
-    int anyColumn();
+  int anyRow();
+
+  int anyColumn();
 }
