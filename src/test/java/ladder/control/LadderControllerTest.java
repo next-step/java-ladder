@@ -15,7 +15,7 @@ public class LadderControllerTest {
     public void setUp() {
         consoleInput(
                 List.of("pobi,honux,crong,jk",
-                                "꽝,5000,꽝,3000",
+                                //"꽝,5000,꽝,3000",
                                 "7",
                                 "pobi",
                                 "all",
