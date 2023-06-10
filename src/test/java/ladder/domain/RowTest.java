@@ -24,7 +24,7 @@ public class RowTest {
 
   @DisplayName("Preferences 에서 설정한 최대 범위를 초과하면 예외가 발생한다")
   @Test
-  public void outOfRoWRangeExceptionUnderZero() {
+  public void outOfRowRangeExceptionUnderZero() {
     //given
     //when
     //then

@@ -30,7 +30,7 @@ public class ComputerStoreTest {
   }
 
   @Test
-  public void getVersionWhenUSBIsNull() throws Exception {
+  public void getVersionWhenUsbIsNull() throws Exception {
     Computer computer = new Computer(new Soundcard(null));
     assertThat(ComputerStore.getVersion(computer)).isEqualTo(ComputerStore.UNKNOWN_VERSION);
   }
@@ -55,7 +55,7 @@ public class ComputerStoreTest {
   }
 
   @Test
-  public void getVersionOptionalWhenUSBIsNull() throws Exception {
+  public void getVersionOptionalWhenUsbIsNull() throws Exception {
     Computer computer = new Computer(new Soundcard(null));
     assertThat(ComputerStore.getVersionOptional(computer)).isEqualTo(ComputerStore.UNKNOWN_VERSION);
   }

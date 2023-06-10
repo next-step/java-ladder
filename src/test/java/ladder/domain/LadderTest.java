@@ -74,7 +74,7 @@ public class LadderTest {
     Line notNearB2 = new Line(6, 5);
     //when
     //then
-    assertAll("Lines 가 입력한 파라미터에 맞게 생성된다",//isExistSameColumnAndAdjacentRow
+    assertAll("Lines 가 입력한 파라미터에 맞게 생성된다",
         () -> assertThat(ladder.hasCrossIntersection(notNearA))
             .as("notNearA 은 SameColumn && AdjacentRow 에 위치하지 않는다")
             .isFalse(),
