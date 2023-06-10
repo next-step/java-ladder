@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-import ladder.exception.OutOfRoWRangeException;
+import ladder.exception.OutOfRowRangeException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -30,7 +30,7 @@ public class RowTest {
     //then
     assertThatThrownBy(() -> {
       Row.of(-1);
-    }).isInstanceOf(OutOfRoWRangeException.class)
+    }).isInstanceOf(OutOfRowRangeException.class)
         .hasMessageContaining("사용 가능한 Row 의 범위에서 초과하였습니다");
   }
 }

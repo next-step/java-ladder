@@ -1,7 +1,7 @@
 package nextstep.optional;
 
 import nextstep.optional.Computer.Soundcard;
-import nextstep.optional.Computer.USB;
+import nextstep.optional.Computer.UniversalSerialBus;
 
 public class ComputerStore {
 
@@ -12,9 +12,9 @@ public class ComputerStore {
     if (computer != null) {
       Soundcard soundcard = computer.getSoundcard();
       if (soundcard != null) {
-        USB usb = soundcard.getUsb();
-        if (usb != null) {
-          version = usb.getVersion();
+        UniversalSerialBus universalSerialBus = soundcard.getUsb();
+        if (universalSerialBus != null) {
+          version = universalSerialBus.getVersion();
         }
       }
     }

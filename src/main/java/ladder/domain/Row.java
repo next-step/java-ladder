@@ -3,7 +3,7 @@ package ladder.domain;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import ladder.exception.OutOfRoWRangeException;
+import ladder.exception.OutOfRowRangeException;
 
 public class Row {
 
@@ -21,7 +21,7 @@ public class Row {
 
   public static Row of(int value) {
     if (value < 0) {
-      throw new OutOfRoWRangeException();
+      throw new OutOfRowRangeException();
     }
     return ROW_CACHE.computeIfAbsent(value, Row::new);
   }

@@ -14,23 +14,23 @@ public class Computer {
 
   public static class Soundcard {
 
-    private final USB usb;
+    private final UniversalSerialBus universalSerialBus;
 
-    public Soundcard(USB usb) {
+    public Soundcard(UniversalSerialBus universalSerialBus) {
       super();
-      this.usb = usb;
+      this.universalSerialBus = universalSerialBus;
     }
 
-    public USB getUsb() {
-      return usb;
+    public UniversalSerialBus getUsb() {
+      return universalSerialBus;
     }
   }
 
-  public static class USB {
+  public static class UniversalSerialBus {
 
     private final String version;
 
-    public USB(String version) {
+    public UniversalSerialBus(String version) {
       super();
       this.version = version;
     }
