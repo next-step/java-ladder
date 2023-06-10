@@ -36,7 +36,7 @@ public class LadderControllerTest {
         System.setIn(System.in);
     }
 
-    @DisplayName("실행 테스트를 자동화한다, 개발시 단순반복작업을 줄이고 시간을 아끼기 위한 테스트")
+    @DisplayName("실행 테스트를 자동화한다, 개발시 단순반복작업을 줄이고 시간을 아끼기 위한 테스경")
     @Test
     public void ladderAppRunner() {
         //given
