@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'checkstyle'
+    id 'pmd'
 }
 
 version '1.0-SNAPSHOT'
@@ -12,6 +13,8 @@ repositories {
 dependencies {
     testImplementation 'org.assertj:assertj-core:3.22.0'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.8.2'
+    implementation 'org.slf4j:slf4j-api:2.0.5'
+    testImplementation 'org.slf4j:slf4j-simple:2.0.7'
 }
 
 java {
@@ -28,4 +31,18 @@ checkstyle {
     maxWarnings = 0
     configFile = file("${rootDir}/config/google-checkstyle.xml")
     toolVersion = "10.9.0"
+}
+
+pmd {
+    ignoreFailures = true
+    consoleOutput = true
+    rulesMinimumPriority = 5
+    ruleSets = ["${rootDir}/config/jpinpoint-rules.xml"]
+}
+
+pmdMain {
+    reports {
+        xml.destination = file("${pmd.reportsDir}/pmd-report.xml")
+        xml.enabled = true
+    }
 }
