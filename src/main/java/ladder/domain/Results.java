@@ -10,4 +10,7 @@ public class Results {
 
   List<String> results;
 
+  public List<String> getResults() {
+    return results;
+  }
 }

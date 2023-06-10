@@ -20,5 +20,6 @@ public class LadderController {
     Scene scene = new Renderer(column, row, ladder, users)
         .renderingSceneWithUser();
     presenter.renderingLadder(scene);
+    presenter.renderingResults(results);
   }
 }

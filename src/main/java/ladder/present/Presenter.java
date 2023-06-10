@@ -59,4 +59,8 @@ public class Presenter {
         ).collect(Collectors.toList())
     );
   }
+
+  public void renderingResults(Results results) {
+    log.info(String.join(",", results.getResults())); //.forEach(result -> log.info(result));
+  }
 }
