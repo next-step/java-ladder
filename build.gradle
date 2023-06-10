@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'checkstyle'
 }
 
 version '1.0-SNAPSHOT'
@@ -21,4 +22,10 @@ java {
 
 test {
     useJUnitPlatform()
+}
+
+checkstyle {
+    maxWarnings = 0
+    configFile = file("${rootDir}/google-checkstyle.xml")
+    toolVersion = "10.9.0"
 }
