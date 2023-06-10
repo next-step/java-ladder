@@ -1,7 +1,6 @@
 package ladder.present;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 import ladder.domain.Scene;
@@ -57,8 +56,8 @@ public class Presenter {
   }
 
   private void renderingLadderArea(Scene scene) {
-    List<String> randering = scene.getLadderArea();
-    randering.stream().forEach(s -> System.out.println(s));
+    scene.getLadderArea()
+        .forEach(System.out::println);
   }
 
   private void renderingUserArea(String userNames) {
