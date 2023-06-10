@@ -5,6 +5,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class LadderControllerTest {
 
@@ -22,9 +24,16 @@ public class LadderControllerTest {
     @Test
     public void ladderAppRunner() {
         //given
+        List<String> stringList = List.of(
+                "pobi,honux,crong,jk",
+                "꽝,5000,꽝,3000",
+                "7",
+                "pobi",
+                "all",
+                "q");
         consoleInput(
-                "pobi,honux,crong,jk" + System.lineSeparator() +
-                        "7" + System.lineSeparator()
+                stringList.stream()
+                        .collect(Collectors.joining(System.lineSeparator()))
         );
         //when
         //then
