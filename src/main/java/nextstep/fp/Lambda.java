@@ -2,28 +2,32 @@ package nextstep.fp;
 
 import java.util.List;
 import java.util.function.Predicate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Lambda {
 
+  private static final Logger log = LoggerFactory.getLogger(Lambda.class);
+
   public static void printAllOld(List<Integer> numbers) {
-    System.out.println("printAllOld");
+    log.info("printAllOld");
 
     for (int number : numbers) {
-      System.out.println(number);
+      log.info("{}", number);
     }
   }
 
   public static void printAllLambda(List<Integer> numbers) {
-    System.out.println("printAllLambda");
+    log.info("printAllLambda");
 
-    numbers.forEach(System.out::println);
+    numbers.forEach(i -> log.info("{}", i));
   }
 
   public static void runThread() {
     new Thread(new Runnable() {
       @Override
       public void run() {
-        System.out.println("Hello from thread");
+        log.info("Hello from thread");
       }
     }).start();
   }
