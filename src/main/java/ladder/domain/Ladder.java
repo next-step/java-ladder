@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -22,7 +21,7 @@ public class Ladder {
     this.lines = lines;
   }
 
-  public static Ladder of(Set<Line> lines,int columMax, int rowMax) {
+  public static Ladder of(Set<Line> lines, int columMax, int rowMax) {
     log.debug("테스트를 위한 생성자");
     return new Ladder(
         Column.of(columMax),

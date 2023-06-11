@@ -33,7 +33,7 @@ public class User {
     User other = (User) o;
     return this.name.equals(other.name);
   }
-  
+
   @Override
   public int hashCode() {
     return Objects.hash(name);
