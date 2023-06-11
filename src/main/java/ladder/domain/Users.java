@@ -20,4 +20,8 @@ public class Users {
         .map(User::getName)
         .collect(Collectors.toList());
   }
+
+  public List<User> getUsers() {
+    return this.users;
+  }
 }

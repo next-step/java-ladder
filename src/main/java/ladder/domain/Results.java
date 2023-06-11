@@ -24,12 +24,16 @@ public class Results {
         .collect(Collectors.toList());
   }
 
-  public void confirmUserPrize(List<User> users) {
-    userPrizeMap = IntStream.range(0, users.size()).boxed()
-        .collect(Collectors.toMap(
-            users::get,
+  public void confirmUserPrize(List<Integer> userOrder,Users users) {
+    userPrizeMap = userOrder.stream().collect(Collectors.toMap(
+            integer -> users.getUsers().get(integer),
             this.prizes::get
         ));
+//    userPrizeMap = IntStream.range(0, users.size()).boxed()
+//        .collect(Collectors.toMap(
+//            users::get,
+//            this.prizes::get
+//        ));
   }
 
   public List<String> findAllPrizesByUserOrAll(String s) {
