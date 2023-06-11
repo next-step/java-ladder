@@ -6,9 +6,12 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.IntStream;
 import ladder.utils.ProbabilityStrategyRandom;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Ladder {
 
+  private static final Logger log = LoggerFactory.getLogger(Ladder.class);
   private final Column maxColumn;
   private final Row maxRow;
   private final Set<Line> lines;
@@ -19,13 +22,11 @@ public class Ladder {
     this.lines = lines;
   }
 
-  public static Ladder of(Set<Line> lines) {
+  public static Ladder of(Set<Line> lines,int columMax, int rowMax) {
+    log.debug("테스트를 위한 생성자");
     return new Ladder(
-        Column.of(
-            lines.stream().map(line -> line.getColumn().getValue()).max(Comparator.naturalOrder())
-                .orElseThrow()),
-        Row.of(lines.stream().map(line -> line.getRow().getValue()).max(Comparator.naturalOrder())
-            .orElseThrow()),
+        Column.of(columMax),
+        Row.of(rowMax),
         lines
     );
   }

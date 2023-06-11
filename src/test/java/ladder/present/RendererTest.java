@@ -32,20 +32,19 @@ class RendererTest {
             new User("d")
         )
     );
-    Ladder ladder = Ladder.of(
-        Set.of(
-            new Line(0, 0),
-            new Line(1, 1),
-            new Line(2, 2)
-        )
+    Set<Line> lines = Set.of(
+        new Line(0, 0),
+        new Line(1, 1),
+        new Line(2, 2)
     );
+    Ladder ladder = Ladder.of(lines,4,4);
     List<String> expect = List.of(
         "|------|      |      |      ",
         "|      |------|      |      ",
         "|      |      |------|      ",
         "|      |      |      |      "
     );
-    Renderer renderer = new Renderer(users.count(), 4, ladder, users, new Results(List.of("0", "1","2","3")));
+    Renderer renderer = new Renderer(4, 4, ladder, users, new Results(List.of("0", "1","2","3")));
     //when
     Scene scene = renderer.renderingScene();
     List<String> actual = scene.getLadderArea();
