@@ -37,16 +37,17 @@ public class Presenter {
   }
 
   public void renderingLadder(Scene scene) {
-    renderingUserArea(scene.userArea());
-    renderingLadderArea(scene);
+    renderingHeader(scene.userArea());
+    renderingLadderBody(scene);
+    renderingFooter(scene);
   }
 
-  private void renderingLadderArea(Scene scene) {
+  private void renderingLadderBody(Scene scene) {
     scene.getLadderArea()
         .forEach(log::info);
   }
 
-  private void renderingUserArea(String userNames) {
+  private void renderingHeader(String userNames) {
     log.info(userNames);
   }
 
@@ -60,7 +61,7 @@ public class Presenter {
     );
   }
 
-  public void renderingResults(Scene scene) {
+  public void renderingFooter(Scene scene) {
     log.info(scene.resultArea());
   }
 }
