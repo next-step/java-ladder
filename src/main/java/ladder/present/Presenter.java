@@ -60,7 +60,7 @@ public class Presenter {
     );
   }
 
-  public void renderingResults(Results results) {
-    log.info(String.join(",", results.getResults())); //.forEach(result -> log.info(result));
+  public void renderingResults(Scene scene) {
+    log.info(scene.resultArea());
   }
 }

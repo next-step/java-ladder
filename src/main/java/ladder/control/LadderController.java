@@ -17,9 +17,9 @@ public class LadderController {
     int column = users.count();
 
     Ladder ladder = Ladder.of(column, row);
-    Scene scene = new Renderer(column, row, ladder, users)
-        .renderingSceneWithUser();
+    Scene scene = new Renderer(column, row, ladder, users, results)
+        .renderingScene();
     presenter.renderingLadder(scene);
-    presenter.renderingResults(results);
+    presenter.renderingResults(scene);
   }
 }

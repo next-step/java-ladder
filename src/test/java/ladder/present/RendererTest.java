@@ -8,6 +8,7 @@ import java.util.Set;
 import java.util.stream.IntStream;
 import ladder.domain.Ladder;
 import ladder.domain.Line;
+import ladder.domain.Results;
 import ladder.domain.Scene;
 import ladder.domain.User;
 import ladder.domain.Users;
@@ -43,9 +44,9 @@ class RendererTest {
         "|      |      |------|      ",
         "|      |      |      |      "
     );
-    Renderer renderer = new Renderer(4, 4, ladder, users);
+    Renderer renderer = new Renderer(4, 4, ladder, users,new Results(List.of("1","2","2")));
     //when
-    Scene scene = renderer.renderingSceneWithUser();
+    Scene scene = renderer.renderingScene();
     List<String> actual = scene.getLadderArea();
     //then
     assertAll("sdfs",

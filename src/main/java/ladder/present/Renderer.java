@@ -7,6 +7,7 @@ import java.util.stream.IntStream;
 import ladder.domain.Column;
 import ladder.domain.Ladder;
 import ladder.domain.Line;
+import ladder.domain.Results;
 import ladder.domain.Row;
 import ladder.domain.Scene;
 import ladder.domain.Users;
@@ -16,18 +17,39 @@ public class Renderer {
   private static final String SHAPE_OF_PILLAR = "|";
   private static final String SHAPE_OF_EMPTY_LINE = "      ";
   private static final String SHAPE_OF_ALLOCATED_LINE = "------";
-  private static final String USERS_DELIMITER = ", ";
 
   private final int columnLimit;
   private final int rowLimit;
   private final Ladder ladder;
   private final Users users;
+  private final Results results;
 
-  public Renderer(int columnLimit, int rowLimit, Ladder ladder, Users users) {
+  public Renderer(int columnLimit, int rowLimit, Ladder ladder, Users users, Results results) {
     this.columnLimit = columnLimit;
     this.rowLimit = rowLimit;
     this.ladder = ladder;
     this.users = users;
+    this.results = results;
+  }
+
+  private String renderingUserArea() {
+    return users.names()
+        .stream()
+        .map(this::unifyWith)
+        .collect(Collectors.joining())
+        .trim();
+  }
+
+  public String renderingResultArea() {
+    return results.getResults()
+        .stream()
+        .map(this::unifyWith)
+        .collect(Collectors.joining())
+        .trim();
+  }
+
+  private String unifyWith(String string) {
+    return String.format("%7s", string);
   }
 
   private List<String> renderingSceneLadderArea() {
@@ -51,12 +73,7 @@ public class Renderer {
         : SHAPE_OF_EMPTY_LINE;
   }
 
-  public Scene renderingSceneWithUser() {
-    return new Scene(renderingSceneLadderArea(), renderingSceneUserArea());
-  }
-
-  private String renderingSceneUserArea() {
-    return users.names().stream()
-        .collect(Collectors.joining(USERS_DELIMITER));
+  public Scene renderingScene() {
+    return new Scene(renderingSceneLadderArea(), renderingUserArea(),renderingResultArea());
   }
 }
