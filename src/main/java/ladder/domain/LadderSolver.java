@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -19,13 +20,12 @@ public class LadderSolver {
         .sorted(Comparator.comparingInt(line -> line.getRow().getValue()))
         .collect(Collectors.toList());
     for (Line line : orderedLines) {
-      log.info("수평 사다리인 Line 이 있어 Line[{},{}] 와 Line[{},{}] 가 swap 한다",
-          line.getRow().getValue(),
+      log.debug("수평 사다리인 Line 이 있어 {} 과 {} 이 swap 한다",
           line.getColumn().getValue(),
-          line.getRow().getValue(),
           line.getColumn().getValue()+1
       );
       Collections.swap(indexes, line.getColumn().getValue(), line.getColumn().getValue() + 1);
+      log.debug("{}", indexes);
     }
     return indexes;
   }

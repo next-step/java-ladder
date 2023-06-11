@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -9,7 +10,7 @@ public class Results {
 
   private final List<Prize> prizes;
 
-  Map<User, Prize> userPrizeMap;
+  private final Map<User, Prize> userPrizeMap = new HashMap<>();
 
   public Results(List<String> prizes) {
     this.prizes = prizes.stream()
@@ -23,17 +24,10 @@ public class Results {
         .collect(Collectors.toList());
   }
 
-  public void confirmUserPrize(List<Integer> userOrder, Users users) {
-    this.userPrizeMap = userOrder.stream().collect(Collectors.toMap(
-            integer -> users.getUsers().get(integer),
-            this.prizes::get
-        )
-    );
-//    userPrizeMap = IntStream.range(0, users.size()).boxed()
-//        .collect(Collectors.toMap(
-//            users::get,
-//            this.prizes::get
-//        ));
+  public void confirmUserPrize(List<Integer> orders, List<User> users) {
+    for(int i=0 ; i<orders.size() ; i++) {
+      userPrizeMap.put(users.get(orders.get(i)), prizes.get(i));
+    }
   }
 
   public List<String> findAllPrizesByUserOrAll(String s) {

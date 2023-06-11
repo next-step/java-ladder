@@ -30,7 +30,7 @@ public class Renderer {
     this.ladder = ladder;
     this.users = users;
     this.results = results;
-    results.confirmUserPrize(ladder.orderOnBottom(),users);
+    results.confirmUserPrize(ladder.orderOnBottom(),users.getUsers());
   }
 
   private String renderingUserArea() {
