@@ -3,8 +3,9 @@ package ladder.domain;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
+import ladder.exception.ResultIndecisiveException;
+import ladder.exception.UserNotFoundException;
 
 public class Results {
 
@@ -43,12 +44,11 @@ public class Results {
   }
 
   private void validate(String s) {
-    if (Optional.ofNullable(userPrizeMap).isEmpty()) {
-      throw new RuntimeException("not yet impl");
+    if (userPrizeMap.isEmpty()) {
+      throw new ResultIndecisiveException();
     }
     userPrizeMap.computeIfAbsent(new User(s), (key) -> {
-      System.out.println(key.getName());
-      throw new RuntimeException("not yet impl");
+      throw new UserNotFoundException(key);
     });
   }
 
