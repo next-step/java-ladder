@@ -28,7 +28,8 @@ class RendererTest {
         List.of(
             new User("a"),
             new User("b"),
-            new User("c")
+            new User("c"),
+            new User("d")
         )
     );
     Ladder ladder = Ladder.of(
@@ -44,7 +45,7 @@ class RendererTest {
         "|      |      |------|      ",
         "|      |      |      |      "
     );
-    Renderer renderer = new Renderer(4, 4, ladder, users,new Results(List.of("1","2","2")));
+    Renderer renderer = new Renderer(users.count(), 4, ladder, users, new Results(List.of("0", "1","2","3")));
     //when
     Scene scene = renderer.renderingScene();
     List<String> actual = scene.getLadderArea();

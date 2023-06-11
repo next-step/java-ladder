@@ -30,7 +30,7 @@ public class Renderer {
     this.ladder = ladder;
     this.users = users;
     this.results = results;
-    results.confirmUserPrize(ladder.orderOnBottom(),users.getUsers());
+    results.confirmUserPrize(ladder.orderOnBottom(), users.getUsers());
   }
 
   private String renderingUserArea() {
@@ -75,6 +75,6 @@ public class Renderer {
   }
 
   public Scene renderingScene() {
-    return new Scene(renderingSceneLadderArea(), renderingUserArea(),renderingResultArea());
+    return new Scene(renderingSceneLadderArea(), renderingUserArea(), renderingResultArea());
   }
 }

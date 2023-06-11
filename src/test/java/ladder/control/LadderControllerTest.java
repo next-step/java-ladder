@@ -17,8 +17,7 @@ public class LadderControllerTest {
                 "꽝,5000,꽝,3000",
                 "7",
                 "pobi",
-                "all",
-                "q")
+                "all")
             .stream()
             .collect(Collectors
                 .joining(System.lineSeparator())

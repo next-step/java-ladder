@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -13,6 +12,7 @@ import org.slf4j.LoggerFactory;
 public class LadderSolver {
 
   private static final Logger log = LoggerFactory.getLogger(LadderSolver.class);
+
   public static List<Integer> calculate(int participateCount, Set<Line> lines) {
     List<Integer> indexes = IntStream.range(0, participateCount).boxed()
         .collect(Collectors.toList());
@@ -22,7 +22,7 @@ public class LadderSolver {
     for (Line line : orderedLines) {
       log.debug("수평 사다리인 Line 이 있어 {} 과 {} 이 swap 한다",
           line.getColumn().getValue(),
-          line.getColumn().getValue()+1
+          line.getColumn().getValue() + 1
       );
       Collections.swap(indexes, line.getColumn().getValue(), line.getColumn().getValue() + 1);
       log.debug("{}", indexes);

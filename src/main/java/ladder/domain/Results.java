@@ -18,6 +18,10 @@ public class Results {
         .collect(Collectors.toList());
   }
 
+  private static boolean isAll(String s) {
+    return s.equals("all");
+  }
+
   public List<String> getPrizes() {
     return prizes.stream()
         .map(Prize::value)
@@ -25,7 +29,7 @@ public class Results {
   }
 
   public void confirmUserPrize(List<Integer> orders, List<User> users) {
-    for(int i=0 ; i<orders.size() ; i++) {
+    for (int i = 0; i < orders.size(); i++) {
       userPrizeMap.put(users.get(orders.get(i)), prizes.get(i));
     }
   }
@@ -52,10 +56,6 @@ public class Results {
     return userPrizeMap.keySet().stream()
         .map(this::resultRendering)
         .collect(Collectors.toList());
-  }
-
-  private static boolean isAll(String s) {
-    return s.equals("all");
   }
 
   private String resultRendering(User user) {

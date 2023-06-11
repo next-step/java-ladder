@@ -8,7 +8,7 @@ public class Scene {
   private final String userArea;
   private final String resultArea;
 
-  public Scene(List<String> ladderArea, String userArea,String resultArea) {
+  public Scene(List<String> ladderArea, String userArea, String resultArea) {
     this.ladderArea = ladderArea;
     this.userArea = userArea;
     this.resultArea = resultArea;

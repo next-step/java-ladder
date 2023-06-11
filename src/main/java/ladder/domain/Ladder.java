@@ -71,6 +71,6 @@ public class Ladder {
   }
 
   public List<Integer> orderOnBottom() {
-    return LadderSolver.calculate(this.maxColumn.getValue(),lines);
+    return LadderSolver.calculate(this.maxColumn.getValue(), lines);
   }
 }
