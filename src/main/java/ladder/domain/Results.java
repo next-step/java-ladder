@@ -37,10 +37,10 @@ public class Results {
   }
 
   public List<String> findAllPrizesByUserOrAll(String s) {
-    validate(s);
     if (isAll(s)) {
       return findAll();
     }
+    validate(s);
     return List.of(this.resultRendering(new User(s)));
   }
 
@@ -66,9 +66,9 @@ public class Results {
 
   private String resultRendering(User user) {
     return user.getName()
+        .concat(" : ")
         .concat(userPrizeMap
             .get(user)
-            .value()
-        );
+            .value());
   }
 }

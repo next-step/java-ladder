@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.Objects;
 import ladder.exception.OutOfUserNameLengthException;
 
 public class User {
@@ -19,5 +20,22 @@ public class User {
 
   public String getName() {
     return this.name;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    User other = (User) o;
+    return this.name.equals(other.name);
+  }
+  
+  @Override
+  public int hashCode() {
+    return Objects.hash(name);
   }
 }

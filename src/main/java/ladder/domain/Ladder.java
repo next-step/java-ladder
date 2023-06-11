@@ -71,6 +71,6 @@ public class Ladder {
   }
 
   public List<Integer> orderOnBottom() {
-    throw new RuntimeException("Not Yet Implemented");
+    return LadderSolver.calculate(this.maxColumn.getValue(),lines);
   }
 }
