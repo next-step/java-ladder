@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Results {
 
@@ -24,11 +23,12 @@ public class Results {
         .collect(Collectors.toList());
   }
 
-  public void confirmUserPrize(List<Integer> userOrder,Users users) {
-    userPrizeMap = userOrder.stream().collect(Collectors.toMap(
+  public void confirmUserPrize(List<Integer> userOrder, Users users) {
+    this.userPrizeMap = userOrder.stream().collect(Collectors.toMap(
             integer -> users.getUsers().get(integer),
             this.prizes::get
-        ));
+        )
+    );
 //    userPrizeMap = IntStream.range(0, users.size()).boxed()
 //        .collect(Collectors.toMap(
 //            users::get,
@@ -45,10 +45,11 @@ public class Results {
   }
 
   private void validate(String s) {
-    if(Optional.ofNullable(userPrizeMap).isEmpty()) {
+    if (Optional.ofNullable(userPrizeMap).isEmpty()) {
       throw new RuntimeException("not yet impl");
     }
     userPrizeMap.computeIfAbsent(new User(s), (key) -> {
+      System.out.println(key.getName());
       throw new RuntimeException("not yet impl");
     });
   }

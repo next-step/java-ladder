@@ -71,7 +71,6 @@ public class Ladder {
   }
 
   public List<Integer> orderOnBottom() {
-    System.out.println("hwllo");
-    return List.of(1, 2, 3);
+    throw new RuntimeException("Not Yet Implemented");
   }
 }
