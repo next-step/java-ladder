@@ -8,9 +8,12 @@ import java.util.Comparator;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class StreamStudyTest {
 
+  private static final Logger log = LoggerFactory.getLogger(StreamStudyTest.class);
   private List<Integer> numbers;
 
   @BeforeEach
@@ -21,7 +24,7 @@ public class StreamStudyTest {
   @Test
   public void countWords() throws Exception {
     long result = StreamStudy.countWords();
-    System.out.println("result : " + result);
+    log.info("result : {}", result);
   }
 
   @Test
@@ -49,7 +52,7 @@ public class StreamStudyTest {
   @Test
   public void map() throws Exception {
     List<Integer> doubleNumbers = StreamStudy.doubleNumbers(numbers);
-    doubleNumbers.forEach(System.out::println);
+    doubleNumbers.forEach(i -> log.info("{}", i));
   }
 
   @Test
