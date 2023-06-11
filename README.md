@@ -3,6 +3,8 @@
 ## PR 링크 정리
 - step1 : https://github.com/next-step/java-ladder/pull/1680
 - step2 : https://github.com/next-step/java-ladder/pull/1790
+- step3 : https://github.com/next-step/java-ladder/pull/1868
+- step4 : null
 
 ## 진행 방법
 
@@ -156,11 +158,10 @@ stream 사용 가능
 
 - [ ] 데이터와 로직의 분리 : 각각의 기능을 로직을 구현하기 위해 필요한 데이터객체와 로직을 처리하는 클래스를 분리한다
 - [ ] 모든 객체는 2개 이하의 인스턴스 변수만을 갖는다
-- [ ] TDD 로 구현한다
 
 #### 묵시적인 정책 정리
 
-- [ ] 결과 출력 상태에서 공백을 입력하거나, q 를 입력하면 프로그램을 종료한다
+- [ ] 결과 출력은 두번 하고 자동으로 종료된다
+
+#### 애매한거?
 - [ ] 출력부분이 복잡한듯 Presenter, Renderer, Scene 정리필요 있음 >> @todo
-- [ ] 
-- [ ] 
