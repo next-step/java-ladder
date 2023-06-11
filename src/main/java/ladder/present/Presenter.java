@@ -20,7 +20,7 @@ public class Presenter {
   }
 
   public Users users() {
-    log.info("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+    log.info("\n참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
     return new Users(
         Arrays.stream(
                 scanner.nextLine()
@@ -32,14 +32,14 @@ public class Presenter {
   }
 
   public int ladderHeight() {
-    log.info("최대 사다리 높이는 몇 개인가요?");
+    log.info("\n최대 사다리 높이는 몇 개인가요?");
     return Integer.parseInt(scanner.nextLine());
   }
 
   public void renderingLadder(Scene scene) {
     renderingHeader(scene.userArea());
     renderingLadderBody(scene);
-    renderingFooter(scene);
+    renderingFooter(scene.prizeArea());
   }
 
   private void renderingLadderBody(Scene scene) {
@@ -52,7 +52,7 @@ public class Presenter {
   }
 
   public Results results() {
-    log.info("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+    log.info("\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
     return new Results(
         Arrays.stream(
             scanner.nextLine()
@@ -61,7 +61,14 @@ public class Presenter {
     );
   }
 
-  public void renderingFooter(Scene scene) {
-    log.info(scene.resultArea());
+  public void renderingFooter(String string) {
+    log.info(string);
+  }
+
+  public void renderingResults(Scene scene, Results results) {
+    log.info("\n결과를 보고 싶은 사람은?");
+    String s = scanner.nextLine();
+    log.info("\n실행결과");
+    results.findAllPrizesByUserOrAll(s).forEach(log::info);
   }
 }

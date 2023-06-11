@@ -22,7 +22,7 @@ public class Scene {
     return userArea;
   }
 
-  public String resultArea() {
+  public String prizeArea() {
     return this.resultArea;
   }
 }
