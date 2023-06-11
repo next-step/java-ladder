@@ -43,11 +43,11 @@ public class Presenter {
 
   private void renderingLadderArea(Scene scene) {
     scene.getLadderArea()
-        .forEach(System.out::println);
+        .forEach(log::info);
   }
 
   private void renderingUserArea(String userNames) {
-    System.out.println(userNames);
+    log.info(userNames);
   }
 
   public Results results() {
