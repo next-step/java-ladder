@@ -36,14 +36,14 @@ public class Ladder {
         .boxed()
         .flatMap(i -> IntStream.range(0, column)
             .mapToObj(j -> new Line(j, i))
-            .filter(ladder::isPossibilAddingLine)
+            .filter(ladder::isPossibleAddingLine)
         )
         .filter(line -> ProbabilityStrategyRandom.of().result())
         .forEach(ladder::append);
     return ladder;
   }
 
-  private boolean isPossibilAddingLine(Line line) {
+  private boolean isPossibleAddingLine(Line line) {
     return !this.hasCrossIntersection(line)
         && this.isEdgeExceeded(line);
   }
