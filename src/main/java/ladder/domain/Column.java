@@ -27,6 +27,22 @@ public class Column {
     return COLUMNS_CACHE.computeIfAbsent(value, Column::new);
   }
 
+  public boolean isAdjacent(Column other) {
+    return Math.abs(this.value - other.value) <= 1;
+  }
+
+  public boolean isSame(Column other) {
+    return equals(other);
+  }
+
+  public int getValue() {
+    return this.value;
+  }
+
+  public boolean isGraterThan(Column other) {
+    return this.value - 1 > other.value;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -42,21 +58,5 @@ public class Column {
   @Override
   public int hashCode() {
     return value;
-  }
-
-  public boolean isAdjacent(Column other) {
-    return Math.abs(this.value - other.value) <= 1;
-  }
-
-  public boolean isSame(Column other) {
-    return equals(other);
-  }
-
-  public int getValue() {
-    return this.value;
-  }
-
-  public boolean isGraterThan(Column other) {
-    return this.value - 1 > other.value;
   }
 }

@@ -38,6 +38,14 @@ public class Line {
     return otherLine.column.isAdjacent(this.column);
   }
 
+  public Row getRow() {
+    return this.row;
+  }
+
+  public Column getColumn() {
+    return this.column;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -53,13 +61,5 @@ public class Line {
   @Override
   public int hashCode() {
     return Objects.hash(column, row);
-  }
-
-  public Row getRow() {
-    return this.row;
-  }
-
-  public Column getColumn() {
-    return this.column;
   }
 }
