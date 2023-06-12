@@ -57,7 +57,7 @@ public class Presenter {
         Arrays.stream(
             scanner.nextLine()
                 .split(",")
-        ).collect(Collectors.toList()),users.getUsers()
+        ).collect(Collectors.toList()), users.getUsers()
     );
   }
 

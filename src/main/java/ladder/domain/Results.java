@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -13,7 +12,7 @@ public class Results {
   private final List<Prize> prizes;
   private final Map<User, Prize> userPrizeMap;
 
-  public Results(List<String> prizes,List<User> users) {
+  public Results(List<String> prizes, List<User> users) {
     this.userPrizeMap = IntStream.range(0, prizes.size())
         .boxed()
         .collect(Collectors.toMap(
