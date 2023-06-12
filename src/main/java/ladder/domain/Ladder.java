@@ -15,7 +15,7 @@ public class Ladder {
   private final Row maxRow;
   private final Set<Line> lines;
 
-  public Ladder(Column maxColumn, Row maxRow, Set<Line> lines) {
+  private Ladder(Column maxColumn, Row maxRow, Set<Line> lines) {
     this.maxColumn = maxColumn;
     this.maxRow = maxRow;
     this.lines = lines;
