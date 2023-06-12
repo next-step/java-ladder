@@ -23,20 +23,14 @@ public class UsersTest {
   @DisplayName("관리하는 user 수를 리턴한다")
   @Test
   public void count() {
-    //given
-    //when
     int count = users.count();
-    //then
     assertThat(count).as("").isEqualTo(3);
   }
 
   @DisplayName("모든 유저의 이름을 가져온다")
   @Test
   public void names() {
-    //given
-    //when
     List<String> names = users.names();
-    //then
     assertThat(names).as("").contains("kilby");
     assertThat(names).as("").contains("Kahng");
     assertThat(names).as("").contains("fyman");

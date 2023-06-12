@@ -11,9 +11,6 @@ public class UserTest {
   @DisplayName("userName 의 길이가 5를 초과하는 경우 예외를 던진다")
   @Test
   public void userNameLength() {
-    //given
-    //when
-    //then
     assertThatThrownBy(() -> {
       new User("여섯글자이름");
     }).isInstanceOf(OutOfUserNameLengthException.class)

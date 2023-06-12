@@ -12,31 +12,25 @@ public class LineTest {
   @DisplayName("동일한 column, row 를 갖는 Line 이면 인스턴스가 다르더라도 동일한 객체로 취급하는 로직을 검증")
   @Test
   public void equals() {
-    //given
-    Line line11 = new Line(1, 1);
-    Line line22A = new Line(2, 2);
-    Line line22B = new Line(2, 2);
-    Line comparativeLine11 = new Line(1, 1);
+    Line benchmarkLine = new Line(1, 1);
 
-    //when
-    //then
     assertAll("동등성을 검증한다",
-        () -> assertThat(line22A)
+        () -> assertThat(new Line(2, 2))
             .as("column, row 숫자가 동일하면 equal 하다")
-            .isEqualTo(line22B),
-        () -> assertThat(line11)
+            .isEqualTo(new Line(2, 2)),
+        () -> assertThat(new Line(1, 1))
             .as("column, row 숫자가 다르면 equal 하지않다")
-            .isNotEqualTo(line22A),
-        () -> assertThat(comparativeLine11.isSame(1, 1))
+            .isNotEqualTo(new Line(2, 2)),
+        () -> assertThat(benchmarkLine.isSame(1, 1))
             .as("column, row 숫자가 동일하면 isSame 메서드가 True 를 반환한다")
             .isTrue(),
-        () -> assertThat(comparativeLine11.isSame(2, 1))
+        () -> assertThat(benchmarkLine.isSame(2, 1))
             .as("column, row 숫자가 다르면 isSame 메서드가 False 를 반환한다")
             .isFalse(),
-        () -> assertThat(comparativeLine11.isSame(1, 2))
+        () -> assertThat(benchmarkLine.isSame(1, 2))
             .as("column, row 숫자가 다르면 isSame 메서드가 False 를 반환한다")
             .isFalse(),
-        () -> assertThat(comparativeLine11.isSame(2, 2))
+        () -> assertThat(benchmarkLine.isSame(2, 2))
             .as("column, row 숫자가 다르면 isSame 메서드가 False 를 반환한다")
             .isFalse()
     );
@@ -45,25 +39,19 @@ public class LineTest {
   @DisplayName("두 Line 이 같은 Row 에 존재하는지 판단하는 메서드 isSameRow() 를 검증한다")
   @Test
   public void isSameRow() {
-    //given
     Line benchmarkLine = new Line(2, 2);
-    Line notSameRowLineA = new Line(2, 3);
-    Line notSameRowLineB = new Line(2, 1);
-    Line sameRowLineA = new Line(1, 2);
-    Line sameRowLineB = new Line(11, 2);
-    //when
-    //then
+
     assertAll("isSameRow() 메서드를 검증한다",
-        () -> assertThat(benchmarkLine.isSameRow(notSameRowLineA))
+        () -> assertThat(benchmarkLine.isSameRow(new Line(2, 3)))
             .as("서로다른 Row 에 존재한다")
             .isFalse(),
-        () -> assertThat(benchmarkLine.isSameRow(notSameRowLineB))
+        () -> assertThat(benchmarkLine.isSameRow(new Line(2, 1)))
             .as("서로다른 Row 에 존재한다")
             .isFalse(),
-        () -> assertThat(benchmarkLine.isSameRow(sameRowLineA))
+        () -> assertThat(benchmarkLine.isSameRow(new Line(1, 2)))
             .as("같은 Row 에 존재한다")
             .isTrue(),
-        () -> assertThat(benchmarkLine.isSameRow(sameRowLineB))
+        () -> assertThat(benchmarkLine.isSameRow(new Line(11, 2)))
             .as("같은 Row 에 존재한다")
             .isTrue()
     );
@@ -73,25 +61,18 @@ public class LineTest {
   @DisplayName("두 Line 이 서로 인접한 Colum 에 존재하는지 확인하는 isAdjacentColumn() 을 검증한다")
   @Test
   public void isAdjacentColumn() {
-    //given
     Line benchmarkLine = new Line(2, 2);
-    Line notAdjacentA = new Line(1, 2);
-    Line notAdjacentB = new Line(11, 2);
-    Line adjacentLineA = new Line(2, 3);
-    Line adjacentLineB = new Line(2, 1);
-    //when
-    //then
     assertAll("isAdjacentColumn() 메서드를 검증한다",
-        () -> assertThat(benchmarkLine.isAdjacentColumn(notAdjacentA))
+        () -> assertThat(benchmarkLine.isAdjacentColumn(new Line(1, 2)))
             .as("서로 인접하지 않은 Column 에 존재한다")
             .isTrue(),
-        () -> assertThat(benchmarkLine.isAdjacentColumn(notAdjacentB))
+        () -> assertThat(benchmarkLine.isAdjacentColumn(new Line(11, 2)))
             .as("서로 인접하지 않은 Column 에 존재한다")
             .isFalse(),
-        () -> assertThat(benchmarkLine.isAdjacentColumn(adjacentLineA))
+        () -> assertThat(benchmarkLine.isAdjacentColumn(new Line(2, 3)))
             .as("인접한 Column 에 존재한다")
             .isTrue(),
-        () -> assertThat(benchmarkLine.isAdjacentColumn(adjacentLineB))
+        () -> assertThat(benchmarkLine.isAdjacentColumn(new Line(2, 1)))
             .as("인접한 Column 에 존재한다")
             .isTrue()
     );
@@ -100,9 +81,6 @@ public class LineTest {
   @DisplayName("전략에 따라 Line 을 생성하는 any 메서드를 검증한다")
   @Test
   public void any() {
-    //given
-    //when
-    //then
     assertAll("",
         () -> assertThat(Line.any(
             new LineStrategy() {
