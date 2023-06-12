@@ -21,7 +21,7 @@ public class Ladder {
     this.lines = lines;
   }
 
-  public static Ladder of(Set<Line> lines, int columMax, int rowMax) {
+  public static Ladder of(int columMax, int rowMax, Set<Line> lines) {
     log.debug("테스트를 위한 생성자");
     return new Ladder(
         Column.of(columMax),
@@ -36,8 +36,7 @@ public class Ladder {
         .boxed()
         .flatMap(i -> IntStream.range(0, column)
             .mapToObj(j -> new Line(j, i))
-            .filter(ladder::isPossibleAddingLine)
-        )
+            .filter(ladder::isPossibleAddingLine))
         .filter(line -> ProbabilityStrategyRandom.of().result())
         .forEach(ladder::append);
     return ladder;

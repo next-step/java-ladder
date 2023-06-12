@@ -33,7 +33,7 @@ class RendererTest {
         new Line(1, 1),
         new Line(2, 2)
     );
-    Ladder ladder = Ladder.of(lines, 4, 4);
+    Ladder ladder = Ladder.of(4, 4, lines);
     List<String> expect = List.of(
         "|------|      |      |      ",
         "|      |------|      |      ",

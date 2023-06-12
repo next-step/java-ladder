@@ -28,7 +28,7 @@ public class LadderTest {
   public void exisit() {
     Line line11 = new Line(1, 1);
     Line line22 = new Line(2, 2);
-    Ladder ladder = Ladder.of(Set.of(line11, line22), 3, 3);
+    Ladder ladder = Ladder.of(3, 3, Set.of(line11, line22));
 
     assertAll("존재 여부를 확인",
         () -> assertThat(ladder.existLine(line11))
@@ -54,7 +54,7 @@ public class LadderTest {
   public void canMakeLine() {
     Line lineA = new Line(11, 11);
     Line lineB = new Line(6, 6);
-    Ladder ladder = Ladder.of(Set.of(lineA, lineB), 12, 12);
+    Ladder ladder = Ladder.of(12, 12, Set.of(lineA, lineB));
 
     assertAll("Lines 가 입력한 파라미터에 맞게 생성된다",
         () -> assertThat(ladder.hasCrossIntersection(new Line(3, 3)))
