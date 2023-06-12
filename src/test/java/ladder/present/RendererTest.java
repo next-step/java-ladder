@@ -40,8 +40,7 @@ class RendererTest {
         "|      |      |------|      ",
         "|      |      |      |      "
     );
-    Renderer renderer = new Renderer(4, 4, ladder, users, new Results(List.of("0", "1", "2", "3")));
-
+    Renderer renderer = Renderer.of(ladder, users, new Results(List.of("0", "1", "2", "3")));
     Scene scene = renderer.renderingScene();
     List<String> actual = scene.getLadderArea();
 

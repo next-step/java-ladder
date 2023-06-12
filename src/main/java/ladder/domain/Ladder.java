@@ -73,4 +73,12 @@ public class Ladder {
   public List<Integer> orderOnBottom() {
     return LadderSolver.calculate(this.maxColumn.getValue(), lines);
   }
+
+  public Column getMaxColumn() {
+    return maxColumn;
+  }
+
+  public Row getMaxRow() {
+    return maxRow;
+  }
 }

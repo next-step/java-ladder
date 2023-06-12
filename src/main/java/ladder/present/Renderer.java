@@ -24,13 +24,23 @@ public class Renderer {
   private final Users users;
   private final Results results;
 
-  public Renderer(int columnLimit, int rowLimit, Ladder ladder, Users users, Results results) {
+  private Renderer(int columnLimit, int rowLimit, Ladder ladder, Users users, Results results) {
     this.columnLimit = columnLimit;
     this.rowLimit = rowLimit;
     this.ladder = ladder;
     this.users = users;
     this.results = results;
     results.confirmUserPrize(ladder.orderOnBottom(), users.getUsers());
+  }
+
+  public static Renderer of(Ladder ladder, Users users, Results results) {
+    return new Renderer(
+        ladder.getMaxColumn().getValue(),
+        ladder.getMaxRow().getValue(),
+        ladder,
+        users,
+        results
+    );
   }
 
   private String renderingUserArea() {
