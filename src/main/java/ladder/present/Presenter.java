@@ -51,13 +51,13 @@ public class Presenter {
     log.info(userNames);
   }
 
-  public Results results() {
+  public Results results(Users users) {
     log.info("\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
     return new Results(
         Arrays.stream(
             scanner.nextLine()
                 .split(",")
-        ).collect(Collectors.toList())
+        ).collect(Collectors.toList()),users.getUsers()
     );
   }
 

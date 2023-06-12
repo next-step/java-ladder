@@ -4,16 +4,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import ladder.exception.ResultIndecisiveException;
 import ladder.exception.UserNotFoundException;
 
 public class Results {
 
   private final List<Prize> prizes;
+  private final Map<User, Prize> userPrizeMap;
 
-  private final Map<User, Prize> userPrizeMap = new HashMap<>();
-
-  public Results(List<String> prizes) {
+  public Results(List<String> prizes,List<User> users) {
+    this.userPrizeMap = IntStream.range(0, prizes.size())
+        .boxed()
+        .collect(Collectors.toMap(
+            users::get,
+            integer -> new Prize(prizes.get(integer))
+        ));
     this.prizes = prizes.stream()
         .map(Prize::new)
         .collect(Collectors.toList());
@@ -24,7 +30,8 @@ public class Results {
   }
 
   public List<String> getPrizes() {
-    return prizes.stream()
+    return userPrizeMap.values()
+        .stream()
         .map(Prize::value)
         .collect(Collectors.toList());
   }

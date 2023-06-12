@@ -12,7 +12,7 @@ public class LadderController {
   public static void main(String[] args) {
     Presenter presenter = new Presenter();
     Users users = presenter.users();
-    Results results = presenter.results();
+    Results results = presenter.results(users);
     int row = presenter.ladderHeight();
     int column = users.count();
 
