@@ -4,19 +4,24 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Users {
-    private final List<User> users;
 
-    public Users(List<User> users) {
-        this.users = users;
-    }
+  private final List<User> users;
 
-    public int count() {
-        return users.size();
-    }
+  public Users(List<User> users) {
+    this.users = users;
+  }
 
-    public List<String> names() {
-        return users.stream()
-                .map(User::getName)
-                .collect(Collectors.toList());
-    }
+  public int count() {
+    return users.size();
+  }
+
+  public List<String> names() {
+    return users.stream()
+        .map(User::getName)
+        .collect(Collectors.toList());
+  }
+
+  public List<User> getUsers() {
+    return this.users;
+  }
 }

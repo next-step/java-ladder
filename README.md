@@ -3,6 +3,8 @@
 ## PR 링크 정리
 - step1 : https://github.com/next-step/java-ladder/pull/1680
 - step2 : https://github.com/next-step/java-ladder/pull/1790
+- step3 : https://github.com/next-step/java-ladder/pull/1868
+- step4 : null
 
 ## 진행 방법
 
@@ -136,3 +138,30 @@ stream 사용 가능
   - 극한의 성능이 필요하다 >> MIPS 가 높은 컴퓨터로 바꾸거나, 분산처리등의 아키텍쳐 적인 방법으로 처리한다
   - Multi-Thread 환경에서 Thread-Safe 한 자료구조 필요하다 >> SynchronizedCollection / Concurrent** 류의 자료구조를 사용
 - 다른 방법으로 Workaround 가 충분히 가능하다고 생각해서.. 아마 `Array 는 웹 백엔드 개발 한정으로는 필요가.. 그닥?? 없을지도?? 모르겠다? 는 결론에 도달`했습니다
+
+<br>
+<br>
+<br>
+
+## Step3
+
+### 요구사항 정리
+
+#### 기능적 요구사항
+
+- [x] 실행 결과를 입력받는다 (ex 꽝,5000,꽝,3000)
+- [x] 사다리의 하단부에 결과를 배치해야한다
+- [x] 결과를 보고싶은 개인의 이름을 입력하면 해당하는 결과를 출력한다
+- [x] 결과 출력 상태에서 all 입력시 전체 참가자의 결과를 출력한다
+
+#### 비기능적 요구사항
+
+- [x] 데이터와 로직의 분리 : 각각의 기능을 로직을 구현하기 위해 필요한 데이터객체와 로직을 처리하는 클래스를 분리한다
+- [ ] 모든 객체는 2개 이하의 인스턴스 변수만을 갖는다
+
+#### 묵시적인 정책 정리
+
+- [ ] 결과 출력은 두번 하고 자동으로 종료된다
+
+#### 애매한거?
+- [ ] 출력부분이 복잡한듯 Presenter, Renderer, Scene 정리필요 있음 >> @todo

@@ -1,67 +1,74 @@
 package ladder.present;
 
+import java.util.Arrays;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+import ladder.domain.Results;
 import ladder.domain.Scene;
 import ladder.domain.User;
 import ladder.domain.Users;
-import ladder.exception.OutOfLadderHeightException;
-import ladder.exception.OutOfUsersCountException;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
-import java.util.stream.Collectors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Presenter {
-    private static final int MAX_ROW_AND_RADDER_HEIGHT = 50;
-    private static final int MAX_COLUMN_AND_USER_COUNT = 50;
-    private final Scanner scanner;
 
-    public Presenter() {
-        this.scanner = new Scanner(System.in);
-    }
+  private static final Logger log = LoggerFactory.getLogger(Presenter.class);
+  private final Scanner scanner;
 
-    public Users users() {
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        String s = scanner.nextLine();
-        String[] inputUsers = s.split(",");
-        validateInputUsersCount(inputUsers.length);
-        return new Users(
-                Arrays.stream(inputUsers)
-                        .map(User::new)
-                        .collect(Collectors.toList())
-        );
-    }
+  public Presenter() {
+    this.scanner = new Scanner(System.in);
+  }
 
-    private void validateInputUsersCount(int usersCount) {
-        if (usersCount > MAX_COLUMN_AND_USER_COUNT) {
-            throw new OutOfUsersCountException();
-        }
-    }
+  public Users users() {
+    log.info("\n참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+    return new Users(
+        Arrays.stream(
+                scanner.nextLine()
+                    .split(",")
+            )
+            .map(User::new)
+            .collect(Collectors.toList())
+    );
+  }
 
-    public int ladderHeight() {
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
-        int height = Integer.parseInt(scanner.nextLine());
-        validateInputLadderHeight(height);
-        return height;
-    }
+  public int ladderHeight() {
+    log.info("\n최대 사다리 높이는 몇 개인가요?");
+    return Integer.parseInt(scanner.nextLine());
+  }
 
-    private void validateInputLadderHeight(int height) {
-        if (height > MAX_ROW_AND_RADDER_HEIGHT) {
-            throw new OutOfLadderHeightException();
-        }
-    }
+  public void renderingLadder(Scene scene) {
+    renderingHeader(scene.userArea());
+    renderingLadderBody(scene);
+    renderingFooter(scene.prizeArea());
+  }
 
-    public void renderingLadder(Scene scene) {
-        renderingUserArea(scene.userArea());
-        renderingLadderArea(scene);
-    }
+  private void renderingLadderBody(Scene scene) {
+    scene.getLadderArea()
+        .forEach(log::info);
+  }
 
-    private void renderingLadderArea(Scene scene) {
-        List<String> randering = scene.getLadderArea();
-        randering.stream().forEach(s -> System.out.println(s));
-    }
+  private void renderingHeader(String userNames) {
+    log.info(userNames);
+  }
 
-    private void renderingUserArea(String userNames) {
-        System.out.println(userNames);
-    }
+  public Results results(Users users) {
+    log.info("\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+    return new Results(
+        Arrays.stream(
+            scanner.nextLine()
+                .split(",")
+        ).collect(Collectors.toList()), users.getUsers()
+    );
+  }
+
+  public void renderingFooter(String string) {
+    log.info(string);
+  }
+
+  public void renderingResults(Scene scene, Results results) {
+    log.info("\n결과를 보고 싶은 사람은?");
+    String s = scanner.nextLine();
+    log.info("\n실행결과");
+    results.findAllPrizesByUserOrAll(s).forEach(log::info);
+  }
 }
