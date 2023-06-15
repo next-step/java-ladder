@@ -41,19 +41,19 @@ public class Results {
     }
   }
 
-  public List<String> findAllPrizesByUserOrAll(String s) {
-    if (isAll(s)) {
+  public List<String> findAllPrizesByUserOrAll(String query) {
+    if (isAll(query)) {
       return findAll();
     }
-    validate(s);
-    return List.of(this.resultRendering(new User(s)));
+    validate(query);
+    return List.of(this.resultRendering(new User(query)));
   }
 
-  private void validate(String s) {
+  private void validate(String query) {
     if (userPrizeMap.isEmpty()) {
       throw new ResultIndecisiveException();
     }
-    userPrizeMap.computeIfAbsent(new User(s), (key) -> {
+    userPrizeMap.computeIfAbsent(new User(query), (key) -> {
       throw new UserNotFoundException(key);
     });
   }
