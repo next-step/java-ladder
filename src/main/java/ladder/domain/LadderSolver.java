@@ -17,14 +17,14 @@ public class LadderSolver {
     List<Integer> indexes = IntStream.range(0, participateCount).boxed()
         .collect(Collectors.toList());
     List<Line> orderedLines = lines.stream()
-        .sorted(Comparator.comparingInt(line -> line.getRow().valueOf()))
+        .sorted(Comparator.comparingInt(line -> line.getRow().getValue()))
         .collect(Collectors.toList());
     for (Line line : orderedLines) {
       log.debug("수평 사다리인 Line 이 있어 {} 과 {} 이 swap 한다",
-          line.getColumn().valueOf(),
-          line.getColumn().valueOf() + 1
+          line.getColumn().getValue(),
+          line.getColumn().getValue() + 1
       );
-      Collections.swap(indexes, line.getColumn().valueOf(), line.getColumn().valueOf() + 1);
+      Collections.swap(indexes, line.getColumn().getValue(), line.getColumn().getValue() + 1);
       log.debug("{}", indexes);
     }
     return indexes;
