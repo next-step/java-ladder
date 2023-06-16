@@ -4,11 +4,11 @@ package ladder.present;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import ladder.domain.Column;
+import ladder.domain.coordinate.Column;
 import ladder.domain.Ladder;
 import ladder.domain.Line;
 import ladder.domain.Results;
-import ladder.domain.Row;
+import ladder.domain.coordinate.Row;
 import ladder.domain.Scene;
 import ladder.domain.Users;
 
@@ -35,8 +35,8 @@ public class Renderer {
 
   public static Renderer of(Ladder ladder, Users users, Results results) {
     return new Renderer(
-        ladder.getMaxColumn().getValue(),
-        ladder.getMaxRow().getValue(),
+        ladder.getMaxColumn().valueOf(),
+        ladder.getMaxRow().valueOf(),
         ladder,
         users,
         results
