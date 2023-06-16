@@ -4,8 +4,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.IntStream;
-import ladder.domain.coordinate.Column;
-import ladder.domain.coordinate.Row;
 import ladder.utils.ProbabilityStrategyRandom;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -72,7 +70,7 @@ public class Ladder {
   }
 
   public List<Integer> orderOnBottom() {
-    return LadderSolver.calculate(this.maxColumn.valueOf(), lines);
+    return LadderSolver.calculate(this.maxColumn.getValue(), lines);
   }
 
   public Column getMaxColumn() {
