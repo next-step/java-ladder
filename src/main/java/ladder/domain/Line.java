@@ -1,6 +1,8 @@
 package ladder.domain;
 
 import java.util.Objects;
+import ladder.domain.coordinate.Column;
+import ladder.domain.coordinate.Row;
 import ladder.utils.LineStrategy;
 
 public class Line {
