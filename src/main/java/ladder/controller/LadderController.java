@@ -10,16 +10,14 @@ import ladder.view.ResultView;
 import java.util.List;
 
 public class LadderController {
-    private static Persons persons;
-    private static Prize prize;
-    private static Ladder ladder;
-
     public static void main(String[] args) {
-        InputView inputView = new InputView();
+        Persons persons;
+        Prize prize;
+        Ladder ladder;
 
-        String namesOfPersons = inputView.promptNamesOfPersons();
-        String prizes = inputView.promptPrizes();
-        int heightOfRadder = inputView.promptHeightOfRadder();
+        String namesOfPersons = InputView.promptNamesOfPersons();
+        String prizes = InputView.promptPrizes();
+        int heightOfRadder = InputView.promptHeightOfRadder();
 
         persons = Persons.of(namesOfPersons);
         prize = Prize.of(prizes, persons.getCount());
@@ -31,21 +29,17 @@ public class LadderController {
 
 
         while (true) {
-            String name = inputView.promptNameForResult();
+            String name = InputView.promptNameForResult();
 
             if (name == null || name.trim().isEmpty()) {
                 break;
             }
 
-            moveAndViewResult(name, resultView);
+            List<Person> listOfpersons = persons.getList(name);
+
+            resultView.viewResultTitle();
+            listOfpersons.stream()
+                    .forEach(x -> resultView.viewPersonResult(x, prize.getPrize(ladder.getLastPosition(x.getPosition()))));
         }
-    }
-
-    private static void moveAndViewResult(String name, ResultView resultView) {
-        List<Person> listOfpersons = persons.getList(name);
-
-        resultView.viewResultTitle();
-        listOfpersons.stream()
-                .forEach(x -> resultView.viewPersonResult(x, prize.getPrize(ladder.getLastPosition(x.getPosition()))));
     }
 }
