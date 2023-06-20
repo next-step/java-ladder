@@ -13,15 +13,23 @@ public class Results {
   private final Map<User, Prize> userPrizeMap;
 
   public Results(List<String> prizes, List<User> users) {
-    this.userPrizeMap = IntStream.range(0, prizes.size())
+    this.userPrizeMap = mappingUserToPrizes(prizes, users);
+    this.prizes = toPrizes(prizes);
+  }
+
+  private static List<Prize> toPrizes(List<String> prizes) {
+    return prizes.stream()
+        .map(Prize::new)
+        .collect(Collectors.toList());
+  }
+
+  private static Map<User, Prize> mappingUserToPrizes(List<String> prizes, List<User> users) {
+    return IntStream.range(0, prizes.size())
         .boxed()
         .collect(Collectors.toMap(
             users::get,
             integer -> new Prize(prizes.get(integer))
         ));
-    this.prizes = prizes.stream()
-        .map(Prize::new)
-        .collect(Collectors.toList());
   }
 
   private static boolean isAll(String s) {
