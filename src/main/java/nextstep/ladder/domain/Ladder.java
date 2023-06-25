@@ -1,13 +1,15 @@
 package nextstep.ladder.domain;
 
+import java.util.List;
+
 public class Ladder {
-    private int height;
+    private List<Line> lines;
 
-    public Ladder(int height) {
-        this.height = height;
+    public Ladder(List<Line> lines) {
+        this.lines = lines;
+    }
+    public List<Line> lines() {
+        return lines;
     }
 
-    public int ladderHeight() {
-        return this.height;
-    }
 }

@@ -1,8 +1,8 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.People;
 import nextstep.ladder.domain.Peoples;
+import nextstep.ladder.domain.Size;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,17 +23,13 @@ public class InputView {
 
     private Peoples split(String strings) {
         String[] splitStrings = strings.split(SPLIT);
-        List<People> collect = Arrays.stream(splitStrings).map(People::new).collect(Collectors.toList());
-        return new Peoples(collect);
+        List<People> peopleList = Arrays.stream(splitStrings).map(People::new).collect(Collectors.toList());
+        return new Peoples(peopleList);
     }
 
-    public Ladder requestLadderHeight() {
+    public Size requestLadderHeight(int countPeople) {
         System.out.println(REQUEST_LADDER_HEIGHT);
-        String ladderHeight = scanner.nextLine();
-        return convertLadder(ladderHeight);
-    }
-
-    private Ladder convertLadder(String ladderHeight) {
-        return new Ladder(Integer.parseInt(ladderHeight));
+        int height = Integer.parseInt(scanner.nextLine());
+        return new Size(countPeople, height);
     }
 }

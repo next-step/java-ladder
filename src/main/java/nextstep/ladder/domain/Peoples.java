@@ -9,4 +9,12 @@ public class Peoples {
     public Peoples(List<People> peoples) {
         this.peoples = peoples;
     }
+
+    public int manyPeople() {
+        return peoples.size();
+    }
+
+    public List<People> getPeoples() {
+        return peoples;
+    }
 }
