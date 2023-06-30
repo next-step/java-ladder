@@ -3,8 +3,8 @@ package nextstep.ladder.domain;
 import java.util.Map;
 
 public class Ladder {
-  private Map<LadderPoint, LadderBarStatus> ladderBarStatuses;
-  private int ladderLength;
+  private final Map<LadderPoint, LadderBarStatus> ladderBarStatuses;
+  private final int ladderLength;
 
   public Ladder(Map<LadderPoint, LadderBarStatus> ladderBarStatuses, int ladderLength) {
     this.ladderBarStatuses = ladderBarStatuses;

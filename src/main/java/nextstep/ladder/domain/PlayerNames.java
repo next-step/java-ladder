@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class PlayerNames {
 
-  Set<PlayerName> playerNames;
+  private final Set<PlayerName> playerNames;
 
   public PlayerNames(Set<PlayerName> playerNames) {
     this.playerNames = playerNames;

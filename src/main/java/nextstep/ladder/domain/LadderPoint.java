@@ -3,8 +3,8 @@ package nextstep.ladder.domain;
 import java.util.Objects;
 
 public class LadderPoint {
-  private Row row;
-  private Column column;
+  private final Row row;
+  private final Column column;
 
   public LadderPoint(int row, int ladderLen, int column, int playerCount) {
     this(new Row(row, ladderLen), new Column(column, playerCount));
