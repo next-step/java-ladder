@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Players {
-  Map<PlayerName, Player> players;
+  private final Map<PlayerName, Player> players;
 
   public Players(Map<PlayerName, Player> players) {
     this.players = players;
@@ -15,10 +15,6 @@ public class Players {
 
   public Player getPlayer(PlayerName playerName) {
     return this.players.get(playerName);
-  }
-
-  public Player getPlayer(Player player) {
-    return this.players.get(player.getPlayerName());
   }
 
   public List<Player> getPlayers() {
