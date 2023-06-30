@@ -15,6 +15,10 @@ public class Ladder {
     return this.ladderBarStatuses;
   }
 
+  public LadderBarStatus getLadderBarStatus(LadderPoint ladderPoint) {
+    return this.ladderBarStatuses.get(ladderPoint);
+  }
+
   public int getLadderLength() {
     return this.ladderLength;
   }
