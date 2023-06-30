@@ -8,6 +8,7 @@ import java.util.Map;
 
 public class Players {
   private final Map<PlayerName, Player> players;
+  private List<Player> cache;
 
   public Players(Map<PlayerName, Player> players) {
     this.players = players;
@@ -18,9 +19,14 @@ public class Players {
   }
 
   public List<Player> getPlayers() {
+    if (this.cache != null) {
+      return this.cache;
+    }
+
     List<Player> playerList = new ArrayList<>(this.players.values());
     Collections.sort(playerList, Comparator.comparingInt(Player::getOrder));
-    return playerList;
+    this.cache = playerList;
+    return this.cache;
   }
 
   public int size() {
