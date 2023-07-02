@@ -3,7 +3,7 @@ package nextstep.ladder.domain;
 import java.util.Objects;
 
 public class Row {
-  private int row;
+  private final int row;
 
   public Row(int row, int ladderLen) {
     validate(row, ladderLen);

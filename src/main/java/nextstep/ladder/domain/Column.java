@@ -3,7 +3,7 @@ package nextstep.ladder.domain;
 import java.util.Objects;
 
 public class Column {
-  private int column;
+  private final int column;
 
   public Column(int column, int playerCount) {
     validate(column, playerCount);

@@ -1,15 +1,26 @@
 package nextstep.ladder.domain;
 
+import java.util.Objects;
+
 public class PlayerName {
 
   private static final int MIN_LEN = 1;
   private static final int MAX_LEN = 5;
+  private static final String ALL = "all";
 
-  String name;
+  private final String name;
 
   public PlayerName(String name) {
     validate(name);
     this.name = name;
+  }
+
+  public String getName() {
+    return this.name;
+  }
+
+  public boolean isAll() {
+    return this.name.equals(ALL);
   }
 
   private void validate(String name) {
@@ -18,7 +29,20 @@ public class PlayerName {
     }
   }
 
-  public String getName() {
-    return this.name;
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    PlayerName that = (PlayerName) o;
+    return Objects.equals(getName(), that.getName());
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(getName());
   }
 }

@@ -1,15 +1,15 @@
 package nextstep.ladder.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class PlayerNames {
 
-  Set<PlayerName> playerNames;
+  private final List<PlayerName> playerNames;
 
-  public PlayerNames(Set<PlayerName> playerNames) {
+  public PlayerNames(List<PlayerName> playerNames) {
     this.playerNames = playerNames;
   }
 
@@ -17,14 +17,14 @@ public class PlayerNames {
   public PlayerNames(String[] playerNames) {
     this(Arrays.stream(playerNames)
         .map(PlayerName::new)
-        .collect(Collectors.toSet()));
+        .collect(Collectors.toList()));
   }
 
-  public Set<PlayerName> getPlayerNames() {
-    return new HashSet<>(playerNames);
+  public List<PlayerName> getPlayerNames() {
+    return new ArrayList<>(this.playerNames);
   }
 
   public int size() {
-    return playerNames.size();
+    return this.playerNames.size();
   }
 }
