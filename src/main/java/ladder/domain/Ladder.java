@@ -7,9 +7,9 @@ import java.util.stream.Stream;
 
 public class Ladder {
     public static final int MIN_HEIGHT = 1;
-    private List<Line> lines;
+    private final List<Line> lines;
 
-    public Ladder(List<Line> lines) {
+    private Ladder(List<Line> lines) {
         validateHeight(lines.size());
 
         this.lines = lines;
@@ -21,6 +21,10 @@ public class Ladder {
         return new Ladder(Stream.generate(() -> Line.createLineWithWidth(width))
                 .limit(height)
                 .collect(Collectors.toCollection(ArrayList::new)));
+    }
+
+    public static Ladder of(List<Line> lines) {
+        return new Ladder(lines);
     }
 
     private static void validateHeight(int height) {

@@ -20,6 +20,12 @@ public class InputView {
 
     public static String promptNameForResult() {
         System.out.println("\n결과를 보고 싶은 사람은?");
-        return new Scanner(System.in).nextLine();
+        String name =  new Scanner(System.in).nextLine();
+
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("입력값이 입력되지 않았습니다.");
+        }
+
+        return name;
     }
 }

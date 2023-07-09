@@ -34,7 +34,7 @@ public enum Direction {
     }
 
     public int getNext(int currentPosition) {
-        return currentPosition + value;
+        return currentPosition  + value;
     }
 
     public boolean isRight() {

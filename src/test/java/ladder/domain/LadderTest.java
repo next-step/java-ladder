@@ -40,7 +40,7 @@ public class LadderTest {
         Line line2 = new Line(Arrays.asList(Direction.NONE, Direction.RIGHT, Direction.LEFT, Direction.NONE));
         Line line3 = new Line(Arrays.asList(Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT));
 
-        Ladder ladder = new Ladder(Arrays.asList(line1, line2, line3));
+        Ladder ladder = Ladder.of(Arrays.asList(line1, line2, line3));
 
         Assertions.assertThat(ladder.getLastPosition(first)).isEqualTo(last);
     }
