@@ -3,7 +3,7 @@ package ladder.controller;
 import ladder.domain.Person;
 import ladder.domain.Persons;
 import ladder.domain.Prize;
-import ladder.domain.Ladder;
+import ladder.domain.JerryLadder;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -13,7 +13,7 @@ public class LadderController {
     public static void main(String[] args) {
         Persons persons = Persons.of(InputView.promptNamesOfPersons());
         Prize prize = new Prize(InputView.promptPrizes(), persons.getCount());
-        Ladder ladder = Ladder.of(persons.getCount(), InputView.promptHeightOfRadder());
+        JerryLadder ladder = JerryLadder.of(persons.getCount(), InputView.promptHeightOfRadder());
 
         ResultView.viewLadderResult(persons, ladder, prize);
 

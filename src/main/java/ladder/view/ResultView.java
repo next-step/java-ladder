@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 public class ResultView {
 
-    public static void viewLadderResult(Persons persons, Ladder ladder, Prize prize) {
+    public static void viewLadderResult(Persons persons, JerryLadder ladder, Prize prize) {
         System.out.println("사다리 결과\n");
 
         viewPersons(persons);
@@ -20,7 +20,7 @@ public class ResultView {
         System.out.println("");
     }
 
-    private static void viewLadder(Ladder ladder) {
+    private static void viewLadder(JerryLadder ladder) {
         ladder.getLines().stream().forEach(ResultView::drawLine);
     }
 

@@ -1,30 +1,32 @@
 package ladder.domain;
 
+import ladder.engine.Ladder;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Ladder {
+public class JerryLadder implements Ladder {
     public static final int MIN_HEIGHT = 1;
     private final List<JerryLine> lines;
 
-    private Ladder(List<JerryLine> lines) {
+    private JerryLadder(List<JerryLine> lines) {
         validateHeight(lines.size());
 
         this.lines = lines;
     }
 
-    public static Ladder of(int width, int height) {
+    public static JerryLadder of(int width, int height) {
         validateHeight(height);
 
-        return new Ladder(Stream.generate(() -> JerryLine.createLineWithWidth(width))
+        return new JerryLadder(Stream.generate(() -> JerryLine.createLineWithWidth(width))
                 .limit(height)
                 .collect(Collectors.toCollection(ArrayList::new)));
     }
 
-    public static Ladder of(List<JerryLine> lines) {
-        return new Ladder(lines);
+    public static JerryLadder of(List<JerryLine> lines) {
+        return new JerryLadder(lines);
     }
 
     private static void validateHeight(int height) {
