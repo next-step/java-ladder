@@ -1,14 +1,11 @@
 package ladder.domain;
 
 import ladder.domain.enums.Direction;
-import ladder.engine.Line;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static ladder.domain.JerryLineCreator.MIN_WIDTH;
-
-public class JerryLine implements Line {
+public class JerryLine implements ladder.engine.Line {
     private List<Direction> points = new ArrayList<>();
 //    public static final int MIN_WIDTH = 2;
 

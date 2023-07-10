@@ -10,7 +10,7 @@ import java.util.List;
 public class JerryLineCreator implements LineCreator {
     public static final int MIN_WIDTH = 2;
 
-    public Line createLine(int width) {
+    public JerryLine create(int width) {
         validateWidth(width);
 
         List<Direction> points = new ArrayList<>();

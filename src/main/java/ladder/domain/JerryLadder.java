@@ -1,17 +1,20 @@
 package ladder.domain;
 
 import ladder.engine.Ladder;
+import ladder.engine.Line;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class JerryLadder implements Ladder {
-    public static final int MIN_HEIGHT = 1;
-    private final List<JerryLine> lines;
+import static ladder.domain.JerryLadderCreator.MIN_HEIGHT;
 
-    private JerryLadder(List<JerryLine> lines) {
+public class JerryLadder implements Ladder {
+//    public static final int MIN_HEIGHT = 1;
+    private final List<Line> lines;
+
+    public JerryLadder(List<Line> lines) {
         validateHeight(lines.size());
 
         this.lines = lines;
@@ -25,7 +28,7 @@ public class JerryLadder implements Ladder {
                 .collect(Collectors.toCollection(ArrayList::new)));
     }
 
-    public static JerryLadder of(List<JerryLine> lines) {
+    public static JerryLadder of(List<Line> lines) {
         return new JerryLadder(lines);
     }
 
@@ -35,7 +38,7 @@ public class JerryLadder implements Ladder {
         }
     }
 
-    public List<JerryLine> getLines() {
+    public List<Line> getLines() {
         return lines;
     }
 

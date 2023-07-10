@@ -1,6 +1,7 @@
 package ladder.view;
 
 import ladder.domain.*;
+import ladder.engine.Line;
 
 import java.util.Arrays;
 
@@ -30,8 +31,8 @@ public class ResultView {
         System.out.println("");
     }
 
-    private static void drawLine(JerryLine line) {
-        line.getPoints().stream()
+    private static void drawLine(Line line) {
+        ((JerryLine)line).getPoints().stream()
                 .forEach(x -> System.out.print("|" + drawHorizontal(x.isRight())));
         System.out.println("");
     }
