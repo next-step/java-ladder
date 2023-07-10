@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Arrays;
 
-import static ladder.domain.JerryLine.MIN_WIDTH;
+import static ladder.domain.JerryLineCreator.MIN_WIDTH;
 import static ladder.domain.Ladder.MIN_HEIGHT;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
