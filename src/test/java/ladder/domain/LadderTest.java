@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Arrays;
 
-import static ladder.domain.Line.MIN_WIDTH;
+import static ladder.domain.JerryLine.MIN_WIDTH;
 import static ladder.domain.Ladder.MIN_HEIGHT;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
@@ -36,9 +36,9 @@ public class LadderTest {
     @ParameterizedTest(name = "{displayName} [{index}] {arguments}")
     @CsvSource(value={"0, 3", "1, 1", "2, 2", "3, 0"})
     void 최종이동검증(int first, int last) {
-        Line line1 = new Line(Arrays.asList(Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT));
-        Line line2 = new Line(Arrays.asList(Direction.NONE, Direction.RIGHT, Direction.LEFT, Direction.NONE));
-        Line line3 = new Line(Arrays.asList(Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT));
+        JerryLine line1 = new JerryLine(Arrays.asList(Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT));
+        JerryLine line2 = new JerryLine(Arrays.asList(Direction.NONE, Direction.RIGHT, Direction.LEFT, Direction.NONE));
+        JerryLine line3 = new JerryLine(Arrays.asList(Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT));
 
         Ladder ladder = Ladder.of(Arrays.asList(line1, line2, line3));
 

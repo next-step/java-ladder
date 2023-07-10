@@ -1,21 +1,22 @@
 package ladder.domain;
 
 import ladder.domain.enums.Direction;
+import ladder.engine.Line;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Line {
+public class JerryLine implements Line {
     private List<Direction> points = new ArrayList<>();
     public static final int MIN_WIDTH = 2;
 
-    public Line(List<Direction> points) {
+    public JerryLine(List<Direction> points) {
         validateWidth(points.size());
 
         this.points = points;
     }
 
-    public static Line createLineWithWidth(int width) {
+    public static JerryLine createLineWithWidth(int width) {
         validateWidth(width);
 
         List<Direction> points = new ArrayList<>();
@@ -26,7 +27,7 @@ public class Line {
             points.add(direction);
         }
 
-        return new Line(points);
+        return new JerryLine(points);
     }
 
     private static void validateWidth(int points) {

@@ -30,7 +30,7 @@ public class ResultView {
         System.out.println("");
     }
 
-    private static void drawLine(Line line) {
+    private static void drawLine(JerryLine line) {
         line.getPoints().stream()
                 .forEach(x -> System.out.print("|" + drawHorizontal(x.isRight())));
         System.out.println("");
