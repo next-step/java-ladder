@@ -4,6 +4,9 @@ import ladder.domain.Person;
 import ladder.domain.Persons;
 import ladder.domain.Prize;
 import ladder.domain.JerryLadder;
+import ladder.engine.Ladder;
+import ladder.engine.LadderCreator;
+import ladder.factory.LadderFactoryBean;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -13,7 +16,9 @@ public class LadderController {
     public static void main(String[] args) {
         Persons persons = Persons.of(InputView.promptNamesOfPersons());
         Prize prize = new Prize(InputView.promptPrizes(), persons.getCount());
-        JerryLadder ladder = JerryLadder.of(persons.getCount(), InputView.promptHeightOfRadder());
+
+        LadderCreator ladderCreator = LadderFactoryBean.createLadderFactory();
+        Ladder ladder = ladderCreator.create(persons.getCount(), InputView.promptHeightOfRadder());
 
         ResultView.viewLadderResult(persons, ladder, prize);
 

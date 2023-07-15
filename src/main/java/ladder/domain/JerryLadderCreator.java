@@ -1,13 +1,14 @@
 package ladder.domain;
 
 import ladder.engine.Ladder;
+import ladder.engine.LadderCreator;
 import ladder.engine.LineCreator;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class JerryLadderCreator {
+public class JerryLadderCreator implements LadderCreator {
     public static final int MIN_HEIGHT = 1;
     LineCreator lineCreator;
 
@@ -15,7 +16,7 @@ public class JerryLadderCreator {
         this.lineCreator = lineCreator;
     }
 
-    Ladder create(int width, int height) {
+    public Ladder create(int width, int height) {
         validateHeight(height);
 
         return new JerryLadder(Stream.generate(() -> lineCreator.create(width))
