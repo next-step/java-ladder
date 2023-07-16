@@ -14,48 +14,31 @@ public class LadderSolverTest {
 
   private static final Logger LOG = LoggerFactory.getLogger(LadderSolverTest.class);
 
-
-  private List<Integer> calculateGiven(int columnCount, Set<Line> lines) {
-    return LadderSolver.calculate(columnCount, lines);
-  }
-
-  private void calculateThen(List<Integer> expect, List<Integer> actual) {
-    assertThat(expect).hasSameElementsAs(actual);
-  }
-
-  @Test
-  @DisplayName("")
-  void name() {
-    calculateThen(
-        List.of(0, 1, 2, 3),
-        calculateGiven(
-            4, Set.of()
-        )
-    );
-  }
-
-
   @Test
   @DisplayName("")
   void name2() {
     final int participateCount = 4;
-    Set<Line> lines = Set.of(new Line(2, 2));
+    Set<Line> lines = Set.of(new Line(2, 2), new Line(0, 0));
 
     Ladder of = Ladder.of(participateCount, 10, lines);
     final List<Integer> expect = List.of(0, 1, 2, 3);
 
     final List<Integer> result = LadderSolver.calculate(participateCount, lines);
 
+    final List<String> participation = List.of("A", "B", "C", "D");
+    final List<String> prizes = List.of("철","동","금","은");
+
     Scene scene = Renderer.of(of,
-        Users.of(List.of("1번", "2번", "3번", "4번")),
+        Users.of(participation),
         new Results(
-            List.of("1번", "2번", "3번", "4번"),
+            prizes,
             Users.of(List.of("1", "2", "3", "4")).getUsers()
         )).renderingScene();
     LOG.info(scene.userArea());
     for (String horizontalLine : scene.getLadderArea()) {
       LOG.info(horizontalLine);
     }
+    LOG.info("\n\r");
     LOG.info(scene.prizeArea());
     assertThat(result).hasSameElementsAs(expect);
   }
