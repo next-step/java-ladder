@@ -4,20 +4,18 @@ public class Prize {
     public static final String DELIMITER = ",";
     private final String[] descriptions;
 
-    private Prize(String[] descriptions, int countOfPerson) {
+    public Prize(String prizes, int countOfPerson) {
+        if (prizes == null || prizes.trim().isEmpty()) {
+            throw new IllegalArgumentException("상품이 입력되지 않았습니다.");
+        }
+
+        String[] descriptions = prizes.split(DELIMITER);
+
         if (descriptions.length != countOfPerson) {
             throw new IllegalArgumentException("입력한 상품의 개수가 참여자 수와 맞지 않습니다.");
         }
 
         this.descriptions = descriptions;
-    }
-
-    public static Prize of(String prizes, int countOfPerson) {
-        if (prizes == null || prizes.trim().isEmpty()) {
-            throw new IllegalArgumentException("상품이 입력되지 않았습니다.");
-        }
-
-        return new Prize(prizes.split(DELIMITER), countOfPerson);
     }
 
     public String getPrize(int position) {

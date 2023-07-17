@@ -1,21 +1,16 @@
 package ladder.domain;
 
 import ladder.domain.enums.Direction;
+import ladder.engine.Line;
+import ladder.engine.LineCreator;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Line {
-    private List<Direction> points = new ArrayList<>();
+public class JerryLineCreator implements LineCreator {
     public static final int MIN_WIDTH = 2;
 
-    public Line(List<Direction> points) {
-        validateWidth(points.size());
-
-        this.points = points;
-    }
-
-    public static Line createLineWithWidth(int width) {
+    public JerryLine create(int width) {
         validateWidth(width);
 
         List<Direction> points = new ArrayList<>();
@@ -26,21 +21,12 @@ public class Line {
             points.add(direction);
         }
 
-        return new Line(points);
+        return new JerryLine(points);
     }
 
-    private static void validateWidth(int points) {
+    private void validateWidth(int points) {
         if (points < MIN_WIDTH) {
             throw new IllegalArgumentException("사다리 폭은 " + MIN_WIDTH + " 이상이어야 합니다.");
         }
     }
-
-    public List<Direction> getPoints() {
-        return points;
-    }
-
-    public int getNextPosition(int currentPosition) {
-        return points.get(currentPosition).getNext(currentPosition);
-    }
-
 }

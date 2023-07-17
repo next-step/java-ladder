@@ -1,12 +1,14 @@
 package ladder.view;
 
 import ladder.domain.*;
+import ladder.engine.Ladder;
+import ladder.engine.Line;
 
 import java.util.Arrays;
 
 public class ResultView {
 
-    public void viewLadderResult(Persons persons, Ladder ladder, Prize prize) {
+    public static void viewLadderResult(Persons persons, Ladder ladder, Prize prize) {
         System.out.println("사다리 결과\n");
 
         viewPersons(persons);
@@ -14,29 +16,29 @@ public class ResultView {
         viewPrize(prize);
     }
 
-    private void viewPersons(Persons persons) {
+    private static void viewPersons(Persons persons) {
         Arrays.stream(persons.getNames())
                 .forEach(s -> System.out.print(String.format("%-" + (Person.MAX_NAME_LENGTH + 1) + "s", s)));
         System.out.println("");
     }
 
-    private void viewLadder(Ladder ladder) {
-        ladder.getLines().stream().forEach(this::drawLine);
+    private static void viewLadder(Ladder ladder) {
+        ladder.getLines().stream().forEach(ResultView::drawLine);
     }
 
-    private void viewPrize(Prize prize) {
+    private static void viewPrize(Prize prize) {
         Arrays.stream(prize.getDescriptions())
                 .forEach(s -> System.out.print(String.format("%-" + (Person.MAX_NAME_LENGTH + 1) + "s", s)));
         System.out.println("");
     }
 
-    private void drawLine(Line line) {
-        line.getPoints().stream()
+    private static void drawLine(Line line) {
+        ((JerryLine)line).getPoints().stream()
                 .forEach(x -> System.out.print("|" + drawHorizontal(x.isRight())));
         System.out.println("");
     }
 
-    private String drawHorizontal(boolean needDrawLine) {
+    private static String drawHorizontal(boolean needDrawLine) {
         String result = String.format("%" + Person.MAX_NAME_LENGTH + "s", "");
 
         if (needDrawLine) {
@@ -46,12 +48,12 @@ public class ResultView {
         return result;
     }
 
-    public void viewResultTitle() {
+    public static void viewResultTitle() {
         System.out.println("\n실행 결과");
 
     }
 
-    public void viewPersonResult(Person person, String prize) {
+    public static void viewPersonResult(Person person, String prize) {
         System.out.println(person + " : " + prize);
     }
 }

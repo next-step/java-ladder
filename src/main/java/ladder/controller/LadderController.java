@@ -3,49 +3,38 @@ package ladder.controller;
 import ladder.domain.Person;
 import ladder.domain.Persons;
 import ladder.domain.Prize;
-import ladder.domain.Ladder;
+import ladder.domain.JerryLadder;
+import ladder.engine.Ladder;
+import ladder.engine.LadderCreator;
+import ladder.factory.LadderFactoryBean;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
 import java.util.List;
 
 public class LadderController {
-    private static Persons persons;
-    private static Prize prize;
-    private static Ladder ladder;
-
     public static void main(String[] args) {
-        InputView inputView = new InputView();
+        Persons persons = Persons.of(InputView.promptNamesOfPersons());
+        Prize prize = new Prize(InputView.promptPrizes(), persons.getCount());
 
-        String namesOfPersons = inputView.promptNamesOfPersons();
-        String prizes = inputView.promptPrizes();
-        int heightOfRadder = inputView.promptHeightOfRadder();
+        LadderCreator ladderCreator = LadderFactoryBean.createLadderFactory();
+        Ladder ladder = ladderCreator.create(persons.getCount(), InputView.promptHeightOfRadder());
 
-        persons = Persons.of(namesOfPersons);
-        prize = Prize.of(prizes, persons.getCount());
+        ResultView.viewLadderResult(persons, ladder, prize);
 
-        ladder = Ladder.of(persons.getCount(), heightOfRadder);
-
-        ResultView resultView = new ResultView();
-        resultView.viewLadderResult(persons, ladder, prize);
-
-
+        String nameToCheck;
         while (true) {
-            String name = inputView.promptNameForResult();
-
-            if (name == null || name.trim().isEmpty()) {
-                break;
+            try {
+                nameToCheck = InputView.promptNameForResult();
+            } catch (IllegalArgumentException e) {
+                return;
             }
 
-            moveAndViewResult(name, resultView);
+            List<Person> listOfpersons = persons.getList(nameToCheck);
+
+            ResultView.viewResultTitle();
+            listOfpersons.stream()
+                    .forEach(x -> ResultView.viewPersonResult(x, prize.getPrize(ladder.getLastPosition(x.getPosition()))));
         }
-    }
-
-    private static void moveAndViewResult(String name, ResultView resultView) {
-        List<Person> listOfpersons = persons.getList(name);
-
-        resultView.viewResultTitle();
-        listOfpersons.stream()
-                .forEach(x -> resultView.viewPersonResult(x, prize.getPrize(ladder.getLastPosition(x.getPosition()))));
     }
 }
