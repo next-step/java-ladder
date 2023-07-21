@@ -3,11 +3,9 @@ package nextstep.ladder.presentation;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Scanner;
-import java.util.zip.InflaterInputStream;
 import nextstep.ladder.domain.PlayerName;
 import nextstep.ladder.domain.PlayerNames;
-import nextstep.ladder.domain.dto.GameResults;
+import nextstep.ladder.domain.dto.Rewards;
 
 public class InputView {
 
@@ -25,10 +23,10 @@ public class InputView {
     return Integer.parseInt(readLine());
   }
 
-  public static GameResults getGameResults() {
+  public static Rewards getRewards() {
     System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
 
-    return new GameResults(readLine().split(","));
+    return new Rewards(readLine().split(","));
   }
 
   public static PlayerName printTargetResult() {

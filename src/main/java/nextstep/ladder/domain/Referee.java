@@ -4,13 +4,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import nextstep.ladder.domain.dto.GameResults;
+import nextstep.ladder.domain.dto.Rewards;
 
 public class Referee {
 
   private final static int POINT_START_INDEX = 0;
 
-  public static GameResults getResults(Ladder ladder, PlayerNames playerNames, GameResults gameResults) {
+  public static Rewards getResults(Ladder ladder, PlayerNames playerNames, Rewards rewards) {
 
     int ladderLength = ladder.getLadderLength();
     int playerCount = playerNames.size();
@@ -32,11 +32,10 @@ public class Referee {
 
     String[] processedResults = new String[playerCount];
     for (int i = 0; i < playerCount; i++) {
-      processedResults[resultIndexes.get(i)] = gameResults.getResult(i);
+      processedResults[resultIndexes.get(i)] = rewards.getRewards(i);
     }
 
-    // dto를 재사용하고 있는데 괜찮을까?
-    return new GameResults(processedResults);
+    return new Rewards(processedResults);
   }
 
   private static List<Integer> getResultIndexes(int size) {

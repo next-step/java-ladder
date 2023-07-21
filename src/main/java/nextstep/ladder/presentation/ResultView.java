@@ -7,7 +7,7 @@ import nextstep.ladder.domain.LadderBarStatus;
 import nextstep.ladder.domain.LadderPoint;
 import nextstep.ladder.domain.Player;
 import nextstep.ladder.domain.Players;
-import nextstep.ladder.domain.dto.GameResults;
+import nextstep.ladder.domain.dto.Rewards;
 
 public class ResultView {
 
@@ -16,7 +16,7 @@ public class ResultView {
   private static final String SPACE = " ";
   private static final int BAR_LENGTH = 5;
 
-  public static void printResult(Players players, Ladder ladder, GameResults gameResults) {
+  public static void printResult(Players players, Ladder ladder, Rewards rewards) {
     List<Player> playerList = players.getPlayers();
     System.out.println("실행 결과");
 
@@ -44,8 +44,8 @@ public class ResultView {
       stringBuilder.append("\n");
     }
 
-    for (String gameResult : gameResults.getResults()) {
-      stringBuilder.append(playerNamePrintForm(gameResult));
+    for (String reward : rewards.getRewards()) {
+      stringBuilder.append(playerNamePrintForm(reward));
     }
 
     System.out.println(stringBuilder);
