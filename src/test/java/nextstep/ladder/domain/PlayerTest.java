@@ -26,7 +26,7 @@ public class PlayerTest {
     }
 
     @ParameterizedTest
-    @CsvSource(delimiter = ':', value = {"kbc:.   kbc", "kang:.  kang", "kbc12:. kbc12"})
+    @CsvSource(delimiter = ':', value = {"kbc:.    kbc", "kang:.   kang", "kbc12:.  kbc12"})
     void 이름_출력_테스트(String name, String expected) {
         String playerName = new Player(name).toString();
 
