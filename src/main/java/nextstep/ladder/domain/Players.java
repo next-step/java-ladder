@@ -13,7 +13,7 @@ public class Players {
     }
 
     public Players(String[] players) {
-        this.players = Arrays.stream(players).map(Player::new).collect(Collectors.toList());
+        this(Arrays.stream(players).map(Player::new).collect(Collectors.toList()));
     }
 
     public int numberOfPlayers(){
