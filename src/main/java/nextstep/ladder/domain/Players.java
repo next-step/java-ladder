@@ -28,8 +28,8 @@ public class Players {
 
     @Override
     public String toString() {
-        return String.join("", this.players.stream()
+        return this.players.stream()
                 .map(Player::toString)
-                .collect(Collectors.toList()));
+                .collect(Collectors.joining(""));
     }
 }
