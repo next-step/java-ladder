@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,6 +10,10 @@ public class Players {
     public Players(List<Player> players) {
         checkPlayersSize(players);
         this.players = players;
+    }
+
+    public Players(String[] players) {
+        this.players = Arrays.stream(players).map(Player::new).collect(Collectors.toList());
     }
 
     public int numberOfPlayers(){
