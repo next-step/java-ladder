@@ -14,7 +14,7 @@
 1. 사람 이름을 입력 받음
     - 입력 시 (,) 로 구분 => InputView 활용.
     - 1~5자의 이름. trim 필요. 그 외 에러 처리 => Person 생성 중 확인 [x]
-    - 사람 수는 최소 2명 그 외 에러 처리 => 컨트롤러에서 처리
+    - 사람 수는 최소 2명 그 외 에러 처리 => People 객체에서 진행[x]
 
 2. 최대 사다리 높이 입력 받음
     - 최소 1개. 그 외 에러 처리 => Ladder 생성 중 확인
@@ -28,6 +28,7 @@
 
 4. 사다리 출력
     - Ladder toString으로 사다리 출력
+      - People toString과 Line toString으로 조합
     - Person 이름은 출력 시 공백 포함 6칸으로 고정 출력 [x]
     - Line, Point toString 시 ------| 방식으로 출력. 가운데 점은 6개 [x]
     - Ladder 객체를 기반으로 OutputView에서 출력
