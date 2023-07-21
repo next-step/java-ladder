@@ -13,14 +13,14 @@
 ## 기능 정의 - step 1 생성
 1. 사람 이름을 입력 받음
     - 입력 시 (,) 로 구분 => InputView 활용.
-    - 1~5자의 이름. trim 필요. 그 외 에러 처리 => Person 생성 중 확인 [x]
-    - 사람 수는 최소 2명 그 외 에러 처리 => People 객체에서 진행[x]
+    - 1~5자의 이름. trim 필요. 그 외 에러 처리 => Player 생성 중 확인 [x]
+    - 사람 수는 최소 2명 그 외 에러 처리 => Players 객체에서 진행[x]
 
 2. 최대 사다리 높이 입력 받음
     - 최소 1개. 그 외 에러 처리 => Ladder 생성 중 확인 [x]
 
 3. 사다리 생성
-    - Person 리스트와 사다리 높이를 매개 변수를 받는 Ladder 객체 생성 [x]
+    - Player 리스트와 사다리 높이를 매개 변수를 받는 Ladder 객체 생성 [x]
     - 사다리 생성 시 높이 만큼의 Line 객체 생성. [x]
        - 사람 수를 매개 변수로 받고, 각 라인별 가로 줄 여부를 가지고 있음  [x]
        - 가로 줄 여부는 랜덤으로 설정 하되 자신의 왼쪽 라인이 가로줄이 있을 시 무조선 X. [x]
@@ -28,8 +28,8 @@
 
 4. 사다리 출력
     - Ladder toString으로 사다리 출력 [x]
-      - People toString과 Line toString으로 조합 [x]
-    - Person 이름은 출력 시 공백 포함 6칸으로 고정 출력 [x]
+      - Players toString과 Line toString으로 조합 [x]
+    - Player 이름은 출력 시 공백 포함 6칸으로 고정 출력 [x]
     - Line, Point toString 시 ------| 방식으로 출력. 가운데 점은 6개 [x]
     - Ladder 객체를 기반으로 OutputView에서 출력
 

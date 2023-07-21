@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface PointFactory {
 
-    List<Point> createPoints(int countOfPerson);
+    List<Point> createPoints(int countOfPlayer);
 }

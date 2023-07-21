@@ -8,19 +8,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-public class PersonTest {
+public class PlayerTest {
 
     @Test
     void 이름_유효성_체크() {
         assertAll(
                 () -> assertThatIllegalArgumentException().isThrownBy(
-                        () -> new Person(null)
+                        () -> new Player(null)
                 ), () -> assertThatIllegalArgumentException().isThrownBy(
-                        () -> new Person("           ")
+                        () -> new Player("           ")
                 ), () -> assertThatIllegalArgumentException().isThrownBy(
-                        () -> new Person("")
+                        () -> new Player("")
                 ), () -> assertThatIllegalArgumentException().isThrownBy(
-                        () -> new Person("fiveover")
+                        () -> new Player("fiveover")
                 )
         );
     }
@@ -28,9 +28,9 @@ public class PersonTest {
     @ParameterizedTest
     @CsvSource(delimiter = ':', value = {"kbc:.   kbc", "kang:.  kang", "kbc12:. kbc12"})
     void 이름_출력_테스트(String name, String expected) {
-        String personName = new Person(name).toString();
+        String playerName = new Player(name).toString();
 
-        assertThat(personName).isEqualTo(expected.replace(".", ""));
+        assertThat(playerName).isEqualTo(expected.replace(".", ""));
     }
 
 

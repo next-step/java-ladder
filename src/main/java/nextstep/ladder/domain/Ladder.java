@@ -6,22 +6,22 @@ import java.util.stream.Collectors;
 
 public class Ladder {
 
-    public final People people;
+    public final Players players;
     private PointFactory pointFactory = new DefaultPointFactory();
 
     public final List<Line> ladder;
 
-    public Ladder(int ladderHeight, People people) {
+    public Ladder(int ladderHeight, Players players) {
         checkLadderHeight(ladderHeight);
 
-        this.people = people;
+        this.players = players;
 
         this.ladder = createLine(ladderHeight);
     }
 
     @Override
     public String toString() {
-        return people.toString() + "\n" + linesToString();
+        return players.toString() + "\n" + linesToString();
     }
 
     private String linesToString() {
@@ -34,7 +34,7 @@ public class Ladder {
         List<Line> lines = new ArrayList<>();
 
         for (int i = 0; i < ladderHeight; i++) {
-            ladder.add(new Line(people.people.size(), pointFactory));
+            ladder.add(new Line(players.numberOfPlayers(), pointFactory));
         }
 
         return lines;

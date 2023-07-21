@@ -13,7 +13,7 @@ public class LineTest {
         List<Point> points = List.of(
                 new Point(false), new Point(false), new Point(true), new Point(false), new Point(true));
 
-        Line line = new Line(5, countOfPerson -> points);
+        Line line = new Line(5, countOfPlayer -> points);
 
         String result = line.toString();
 

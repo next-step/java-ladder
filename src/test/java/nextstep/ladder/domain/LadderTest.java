@@ -10,9 +10,9 @@ public class LadderTest {
 
     @Test
     void 높이_유효성_테스트(){
-        People people = new People(List.of(new Person("kbc"), new Person("kbc2")));
+        Players players = new Players(List.of(new Player("kbc"), new Player("kbc2")));
 
         assertThatIllegalArgumentException().isThrownBy(
-                () -> new Ladder(0, people));
+                () -> new Ladder(0, players));
     }
 }

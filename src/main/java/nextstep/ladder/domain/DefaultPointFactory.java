@@ -7,11 +7,11 @@ import java.util.Random;
 public class DefaultPointFactory implements PointFactory{
     private Random random = new Random();
     @Override
-    public List<Point> createPoints(int countOfPerson) {
+    public List<Point> createPoints(int countOfPlayer) {
         List<Point> points = new ArrayList<>();
         points.add(new Point(false));
 
-        for (int i = 1; i < countOfPerson; i++) {
+        for (int i = 1; i < countOfPlayer; i++) {
             addPoint(points, i);
         }
 

@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 public class Line {
     private final List<Point> points;
 
-    public Line(int countOfPerson, PointFactory pointFactory) {
-        this.points = pointFactory.createPoints(countOfPerson);
+    public Line(int countOfPlayer, PointFactory pointFactory) {
+        this.points = pointFactory.createPoints(countOfPlayer);
     }
 
     @Override

@@ -7,18 +7,18 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-public class PeopleTest {
+public class PlayersTest {
     @Test
     void 참여자_길이_테스트(){
         assertThatIllegalArgumentException().isThrownBy(
-                () -> new People(List.of(new Person("kbc"))));
+                () -> new Players(List.of(new Player("kbc"))));
     }
 
     @Test
     void toString_테스트(){
-        People people = new People(List.of(new Person("kbc"), new Person("kbc2")));
+        Players players = new Players(List.of(new Player("kbc"), new Player("kbc2")));
 
-        String result = people.toString();
+        String result = players.toString();
 
         assertThat(result).isEqualTo("   kbc  kbc2");
     }
