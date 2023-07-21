@@ -25,6 +25,10 @@ public class LadderPoint {
     return ladderBarStatus;
   }
 
+  public boolean isMovable() {
+    return this.ladderBarStatus == LadderBarStatus.BAR;
+  }
+
   @Override
   public String toString() {
     return "LadderPoint{" +
