@@ -34,7 +34,7 @@ public class Ladder {
         List<Line> lines = new ArrayList<>();
 
         for (int i = 0; i < ladderHeight; i++) {
-            ladder.add(new Line(players.numberOfPlayers(), pointFactory));
+            lines.add(new Line(players.numberOfPlayers(), pointFactory));
         }
 
         return lines;
