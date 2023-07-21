@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 public class Ladder {
 
     public final Players players;
-    private PointFactory pointFactory = new DefaultPointFactory();
+    private final PointFactory pointFactory = new DefaultPointFactory();
 
     public final List<Line> ladder;
 
@@ -25,9 +25,9 @@ public class Ladder {
     }
 
     private String linesToString() {
-        return String.join("\n", ladder.stream()
+        return ladder.stream()
                 .map(Line::toString)
-                .collect(Collectors.toList()));
+                .collect(Collectors.joining("\n"));
     }
 
     private List<Line> createLine(int ladderHeight) {
