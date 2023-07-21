@@ -11,6 +11,10 @@ public class Point {
         this.point = point;
     }
 
+    public Boolean isMovable(){
+        return point;
+    }
+
     @Override
     public String toString() {
         if (point){
