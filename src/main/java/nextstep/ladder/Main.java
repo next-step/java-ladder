@@ -17,30 +17,26 @@ import nextstep.ladder.presentation.InputView;
 import nextstep.ladder.presentation.ResultView;
 
 public class Main {
-  private static final InputView inputView = new InputView();
-  private static final ResultView resultView = new ResultView();
-  private static final Referee referee = new Referee();
-
   public static void main(String[] args) {
-    PlayerNames playerNames = inputView.getPlayerNames();
-    GameResults inputGameResults = inputView.getGameResults();
+    PlayerNames playerNames = InputView.getPlayerNames();
+    GameResults inputGameResults = InputView.getGameResults();
 
-    int ladderLength = inputView.getLadderLength();
+    int ladderLength = InputView.getLadderLength();
     Ladder ladder = LadderFactory.createLadder(ladderLength, playerNames.size(), new RandomLadderBarStatusDecider());
-    GameResults evaluatedGameResults = referee.getResults(ladder, playerNames, inputGameResults);
+    GameResults evaluatedGameResults = Referee.getResults(ladder, playerNames, inputGameResults);
 
     Players players = new Players(toPlayerMap(playerNames, evaluatedGameResults));
 
-    resultView.printResult(players, ladder, inputGameResults);
+    ResultView.printResult(players, ladder, inputGameResults);
 
     while(true) {
-      PlayerName playerName = inputView.printTargetResult();
+      PlayerName playerName = InputView.printTargetResult();
       if (playerName.isAll()) {
-        resultView.printTargetsResult(players);
+        ResultView.printTargetsResult(players);
         continue;
       }
 
-      resultView.printTargetResult(players.getPlayer(playerName));
+      ResultView.printTargetResult(players.getPlayer(playerName));
     }
   }
 

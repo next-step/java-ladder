@@ -16,7 +16,7 @@ public class ResultView {
   private static final String SPACE = " ";
   private static final int BAR_LENGTH = 5;
 
-  public void printResult(Players players, Ladder ladder, GameResults gameResults) {
+  public static void printResult(Players players, Ladder ladder, GameResults gameResults) {
     List<Player> playerList = players.getPlayers();
     System.out.println("실행 결과");
 
@@ -51,7 +51,7 @@ public class ResultView {
     System.out.println(stringBuilder);
   }
 
-  public void printTargetsResult(Players players) {
+  public static void printTargetsResult(Players players) {
     StringBuilder stringBuilder = new StringBuilder();
     stringBuilder.append("실행 결과\n");
 
@@ -65,12 +65,12 @@ public class ResultView {
     System.out.println(stringBuilder);
   }
 
-  public void printTargetResult(Player player) {
+  public static void printTargetResult(Player player) {
     System.out.println(player.getResult());
   }
 
 
-  private String playerNamePrintForm(String name) {
+  private static String playerNamePrintForm(String name) {
     int spaceCount = BAR_LENGTH - name.length() + 1;
 
     return SPACE.repeat(spaceCount) + name;

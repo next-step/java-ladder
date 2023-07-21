@@ -10,7 +10,7 @@ public class Referee {
 
   private final static int POINT_START_INDEX = 0;
 
-  public GameResults getResults(Ladder ladder, PlayerNames playerNames, GameResults gameResults) {
+  public static GameResults getResults(Ladder ladder, PlayerNames playerNames, GameResults gameResults) {
 
     int ladderLength = ladder.getLadderLength();
     int playerCount = playerNames.size();
@@ -39,7 +39,7 @@ public class Referee {
     return new GameResults(processedResults);
   }
 
-  private List<Integer> getResultIndexes(int size) {
+  private static List<Integer> getResultIndexes(int size) {
     return IntStream
         .range(0, size)
         .boxed()
