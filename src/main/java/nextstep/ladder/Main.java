@@ -26,14 +26,18 @@ public class Main {
     Players players = ladder.play(playerNames, rewards.toMap());
 
     ResultView.printResult(players, ladderPoints, rewards);
-    while(true) {
-      PlayerName playerName = InputView.printTargetResult();
-      if (playerName.isAll()) {
-        ResultView.printAllPlayersResult(players);
-        break;
-      }
+    printGameResult(rewards, ladderPoints, players);
+  }
 
-      ResultView.printTargetResult(players.getPlayer(playerName));
+  private static void printGameResult(Rewards rewards, LadderPoints ladderPoints, Players players) {
+    PlayerName playerName = InputView.getPlayerName();
+
+    if (!playerName.isAll()) {
+      ResultView.printAPlayerResult(players.getPlayer(playerName));
+      printGameResult(rewards, ladderPoints, players);
+      return;
     }
+
+    ResultView.printAllPlayersResult(players);
   }
 }
