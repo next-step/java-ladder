@@ -22,7 +22,7 @@ public class PlayersTest {
 
         String result = players.toString();
 
-        assertThat(result).isEqualTo("   kbc  kbc2");
+        assertThat(result).isEqualTo("    kbc   kbc2");
     }
 
     @ParameterizedTest
