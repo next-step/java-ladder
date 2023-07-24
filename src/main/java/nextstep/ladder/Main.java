@@ -26,15 +26,15 @@ public class Main {
     Players players = ladder.play(playerNames, rewards.toMap());
 
     ResultView.printResult(players, ladderPoints, rewards);
-    printGameResult(rewards, ladderPoints, players);
+    printGameResult(players);
   }
 
-  private static void printGameResult(Rewards rewards, LadderPoints ladderPoints, Players players) {
+  private static void printGameResult(Players players) {
     PlayerName playerName = InputView.getPlayerName();
 
     if (!playerName.isAll()) {
       ResultView.printAPlayerResult(players.getPlayer(playerName));
-      printGameResult(rewards, ladderPoints, players);
+      printGameResult(players);
       return;
     }
 
