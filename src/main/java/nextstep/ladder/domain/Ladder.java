@@ -14,7 +14,7 @@ public class Ladder {
     return this.ladderPoints;
   }
 
-  public List<Player> play(PlayerNames playerNames, Map<Integer, String> rewards) {
+  public Players play(PlayerNames playerNames, Map<Integer, String> rewards) {
     PlayerStatuses playerStatuses = new PlayerStatuses(playerNames, this.ladderPoints);
 
     List<PlayerStatus> results = playerStatuses.go();
@@ -24,6 +24,6 @@ public class Ladder {
       players.add(new Player(playerStatus.getPlayerName(), reward));
     }
 
-    return players;
+    return new Players(players);
   }
 }

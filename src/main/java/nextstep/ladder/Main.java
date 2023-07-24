@@ -1,17 +1,12 @@
 package nextstep.ladder;
 
 
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.LadderFactory;
-import nextstep.ladder.domain.Player;
+import nextstep.ladder.domain.LadderPoints;
 import nextstep.ladder.domain.PlayerName;
 import nextstep.ladder.domain.PlayerNames;
 import nextstep.ladder.domain.Players;
 import nextstep.ladder.domain.RandomLadderBarStatusDecider;
-import nextstep.ladder.domain.Referee;
 import nextstep.ladder.domain.dto.Rewards;
 import nextstep.ladder.presentation.InputView;
 import nextstep.ladder.presentation.ResultView;
@@ -22,31 +17,23 @@ public class Main {
     Rewards rewards = InputView.getRewards();
 
     int ladderLength = InputView.getLadderLength();
-    Ladder ladder = LadderFactory.createLadder(ladderLength, playerNames.size(), new RandomLadderBarStatusDecider());
-    // Players players = ladder.play(playerNames, inputGameResults);
-    Rewards mappedRewards = Referee.getResults(ladder, playerNames, rewards);
+    LadderPoints ladderPoints = LadderPoints.of(
+        ladderLength,
+        playerNames.size(),
+        new RandomLadderBarStatusDecider());
 
-    Players players = new Players(toPlayerMap(playerNames, mappedRewards));
+    Ladder ladder = new Ladder(ladderPoints);
+    Players players = ladder.play(playerNames, rewards.toMap());
 
-    ResultView.printResult(players, ladder, rewards);
-
+    ResultView.printResult(players, ladderPoints);
     while(true) {
       PlayerName playerName = InputView.printTargetResult();
       if (playerName.isAll()) {
-        ResultView.printTargetsResult(players);
-        continue;
+        ResultView.printAllPlayersResult(players);
+        break;
       }
 
       ResultView.printTargetResult(players.getPlayer(playerName));
     }
-  }
-
-  private static Map<PlayerName, Player> toPlayerMap(PlayerNames playerNames, Rewards gameResults) {
-    return IntStream.range(0, playerNames.getPlayerNames().size())
-        .boxed()
-        .collect(Collectors.toMap(
-            i -> playerNames.getPlayerNames().get(i),
-            i -> new Player(playerNames.getPlayerNames().get(i), i, gameResults.getRewards(i))
-        ));
   }
 }

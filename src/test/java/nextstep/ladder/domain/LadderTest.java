@@ -32,7 +32,7 @@ class LadderTest {
         Rewards rewards = new Rewards(new String[]{"꽝", "5000", "쭈", "3000"});
         Ladder ladder = new Ladder(ladderPoints);
 
-        List<Player> players = ladder.play(playerNames, rewards.toMap());
+        Players players = ladder.play(playerNames, rewards.toMap());
 
         assertAll(
             () -> assertThat(players.get(0).getPlayerName().getName()).isEqualTo("pobi"),
