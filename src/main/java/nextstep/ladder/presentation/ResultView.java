@@ -1,10 +1,7 @@
 package nextstep.ladder.presentation;
 
 import java.util.List;
-import java.util.Map;
-import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderBarStatus;
-import nextstep.ladder.domain.LadderPoint;
 import nextstep.ladder.domain.LadderPoints;
 import nextstep.ladder.domain.Player;
 import nextstep.ladder.domain.Players;
@@ -65,7 +62,7 @@ public class ResultView {
         System.out.println(stringBuilder);
     }
 
-    public static void printTargetResult(Player player) {
+    public static void printAPlayerResult(Player player) {
         System.out.println(player.getResult());
     }
 

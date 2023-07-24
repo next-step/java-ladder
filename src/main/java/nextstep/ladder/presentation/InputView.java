@@ -29,7 +29,7 @@ public class InputView {
     return new Rewards(readLine().split(","));
   }
 
-  public static PlayerName printTargetResult() {
+  public static PlayerName getPlayerName() {
     System.out.println("결과를 보고 싶은 사람은?");
 
     String playerName = readLine();
