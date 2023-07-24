@@ -15,7 +15,7 @@ class LadderPointsTest {
 
     @BeforeEach
     void init() {
-        ladderPoints = LadderPoints.of(2, 2, new RandomLadderBarStatusDecider());
+        ladderPoints = LadderPoints.of(3, 3, new RandomLadderBarStatusDecider());
     }
 
     @DisplayName("next() : 다음 LadderPoint를 반환한다")
