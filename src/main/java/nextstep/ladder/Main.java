@@ -25,7 +25,7 @@ public class Main {
     Ladder ladder = new Ladder(ladderPoints);
     Players players = ladder.play(playerNames, rewards.toMap());
 
-    ResultView.printResult(players, ladderPoints);
+    ResultView.printResult(players, ladderPoints, rewards);
     while(true) {
       PlayerName playerName = InputView.printTargetResult();
       if (playerName.isAll()) {

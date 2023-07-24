@@ -17,14 +17,12 @@ public class ResultView {
     private static final String SPACE = " ";
     private static final int BAR_LENGTH = 5;
 
-    public static void printResult(Players players, LadderPoints ladderPoints) {
+    public static void printResult(Players players, LadderPoints ladderPoints, Rewards rewards) {
         List<Player> playerList = players.asList();
 
         StringBuilder stringBuilder = new StringBuilder("실행결과\n");
-        StringBuilder resultStringBuilder = new StringBuilder();
         for (Player player : playerList) {
             stringBuilder.append(playerNamePrintForm(player.getPlayerName().getName()));
-            resultStringBuilder.append(playerNamePrintForm(player.getResult()));
         }
         stringBuilder.append("\n");
 
@@ -46,7 +44,10 @@ public class ResultView {
             stringBuilder.append("\n");
         }
 
-        stringBuilder.append(resultStringBuilder);
+        for (String reward : rewards.getRewards()) {
+            stringBuilder.append(playerNamePrintForm(reward));
+        }
+
         System.out.println(stringBuilder);
     }
 
