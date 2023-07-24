@@ -19,13 +19,18 @@ public class LadderPoints {
         List<LadderPoint> ladderPoints = new ArrayList<>();
         for (int row = 0; row < ladderLength; row++) {
             LadderBarStatus cache = LadderBarStatus.EMPTY;
-            for (int column = 0; column < playerCount - 1; column++) {
-                cache = ladderBarStatusDecider.decide(cache);
-                ladderPoints.add(new LadderPoint(row, column, cache));
-            }
+            fillLadderBarStatus(playerCount, ladderBarStatusDecider, ladderPoints, row, cache);
         }
 
         return new LadderPoints(ladderLength, playerCount - 1, ladderPoints);
+    }
+
+    private static void fillLadderBarStatus(int playerCount, LadderBarStatusDecider ladderBarStatusDecider,
+        List<LadderPoint> ladderPoints, int row, LadderBarStatus cache) {
+        for (int column = 0; column < playerCount - 1; column++) {
+            cache = ladderBarStatusDecider.decide(cache);
+            ladderPoints.add(new LadderPoint(row, column, cache));
+        }
     }
 
     public LadderPoint head() {
