@@ -16,14 +16,24 @@ public class Players {
         this(Arrays.stream(players).map(Player::new).collect(Collectors.toList()));
     }
 
-    public int numberOfPlayers(){
-        return players.size();
-    }
-
     private void checkPlayersSize(List<Player> players) {
         if (players.size() <= 1) {
             throw new IllegalArgumentException("참여자는 2명 이상으로 설정 하세요");
         }
+    }
+
+    public int numberOfPlayers() {
+        return players.size();
+    }
+
+    public int indexOf(String name) {
+        int index = players.indexOf(new Player(name));
+
+        if (index < 0){
+            throw new IllegalArgumentException("찾으시는 참여자가 없습니다.");
+        }
+
+        return index;
     }
 
     @Override
