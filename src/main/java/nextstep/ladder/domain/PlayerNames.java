@@ -13,7 +13,6 @@ public class PlayerNames {
     this.playerNames = playerNames;
   }
 
-  // 생성자에 로직이 들어갔는데 괜찮은지?
   public PlayerNames(String[] playerNames) {
     this(Arrays.stream(playerNames)
         .map(PlayerName::new)
