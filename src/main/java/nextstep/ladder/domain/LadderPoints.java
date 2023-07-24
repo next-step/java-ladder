@@ -35,7 +35,7 @@ public class LadderPoints {
     public LadderPoint get(int row, int column) {
         int index = getLadderPointIndex(row, column);
 
-        if (column < 0 || index >= this.ladderPoints.size()) {
+        if (column < 0 || column >= this.columnCount || index >= this.ladderPoints.size()) {
             return new LadderPoint(-1, -1, LadderBarStatus.OUT);
         }
 
