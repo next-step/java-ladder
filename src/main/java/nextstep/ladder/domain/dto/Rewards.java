@@ -14,18 +14,9 @@ public class Rewards {
   public Rewards(String[] rewards) {
     this(List.of(rewards));
   }
-  
+
   public List<String> getRewards() {
     return this.rewards;
-  }
-  
-  public Map<Integer, String> toMap() {
-    Map<Integer, String> rewardMap = new HashMap<>();
-    for (int i = 0; i < rewards.size(); i++) {
-      rewardMap.put(i, rewards.get(i));
-    }
-
-    return rewardMap;
   }
 
   public String get(int index) {
