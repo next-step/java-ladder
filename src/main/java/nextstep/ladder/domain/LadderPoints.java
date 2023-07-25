@@ -47,22 +47,6 @@ public class LadderPoints {
         return this.ladderPoints.get(index);
     }
 
-    public LadderPoint next(LadderPoint ladderPoint) {
-        return this.next(ladderPoint.getRow(), ladderPoint.getColumn());
-    }
-
-    public LadderPoint next(int row, int column) {
-        if (row >= this.ladderLength && column >= this.columnCount) {
-            throw new IllegalArgumentException(String.format("다음 값이 사다리 범위내에 존재하지 않습니다. 입력한 값 : row=%d, column=%d", row, column));
-        }
-
-        if (column + 1 <= this.columnCount) {
-            return this.get(row, column + 1);
-        }
-
-        return this.get(row + 1, 0);
-    }
-
     private int getLadderPointIndex(int row, int column) {
         return row * this.columnCount + column;
     }
