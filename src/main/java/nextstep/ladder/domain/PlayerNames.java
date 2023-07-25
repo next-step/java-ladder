@@ -23,10 +23,6 @@ public class PlayerNames {
     return this.playerNames.get(index);
   }
 
-  public List<PlayerName> getPlayerNames() {
-    return new ArrayList<>(this.playerNames);
-  }
-
   public int size() {
     return this.playerNames.size();
   }

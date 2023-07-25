@@ -13,8 +13,4 @@ public class MatchingResult {
     public int getResult(int index) {
         return this.startToEnd.get(index);
     }
-
-    public List<Integer> asList() {
-        return this.startToEnd;
-    }
 }
