@@ -1,36 +1,35 @@
 package nextstep.ladder.domain;
 
-import static java.util.stream.Collectors.toMap;
-
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
+import nextstep.ladder.domain.dto.Rewards;
 
 public class Players {
-  private final List<Player> players;
 
-  public Players(List<Player> players) {
-    this.players = players;
-  }
+    private final List<Player> playerResults = new ArrayList<>();
 
-  public Player getPlayer(PlayerName playerName) {
-    return this.players.stream()
-        .filter(player -> player.getPlayerName().equals(playerName))
-        .findFirst()
-        .orElseThrow();
-  }
+    public Players(PlayerNames playerNames, MatchingResult matchingResult, Rewards rewards) {
+        for (int i = 0; i < playerNames.size(); i++) {
+            Player player = new Player(
+                playerNames.get(i),
+                rewards.get(matchingResult.getResult(i)));
+            this.playerResults.add(player);
+        }
+    }
 
-  public List<Player> asList() {
-    return this.players;
-  }
+    public String getResult(PlayerName playerName) {
+        return this.playerResults.stream()
+            .filter(player -> player.getPlayerName().equals(playerName))
+            .findFirst()
+            .orElseThrow()
+            .getResult();
+    }
 
-  public int size() {
-    return this.players.size();
-  }
+    public List<Player> asList() {
+        return this.playerResults;
+    }
 
-  public Player get(int index) {
-    return this.players.get(index);
-  }
+    public int size() {
+        return this.playerResults.size();
+    }
 }

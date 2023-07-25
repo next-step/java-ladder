@@ -3,6 +3,7 @@ package nextstep.ladder;
 
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderPoints;
+import nextstep.ladder.domain.MatchingResult;
 import nextstep.ladder.domain.PlayerName;
 import nextstep.ladder.domain.PlayerNames;
 import nextstep.ladder.domain.Players;
@@ -23,7 +24,8 @@ public class Main {
         new RandomLadderBarStatusDecider());
 
     Ladder ladder = new Ladder(ladderPoints);
-    Players players = ladder.play(playerNames, rewards.toMap());
+    MatchingResult matchingResult = ladder.play();
+    Players players = new Players(playerNames, matchingResult, rewards);
 
     ResultView.printResult(players, ladderPoints, rewards);
     printGameResult(players);
@@ -33,7 +35,7 @@ public class Main {
     PlayerName playerName = InputView.getPlayerName();
 
     if (!playerName.isAll()) {
-      ResultView.printAPlayerResult(players.getPlayer(playerName));
+      ResultView.printAPlayerResult(players.getResult(playerName));
       printGameResult(players);
       return;
     }

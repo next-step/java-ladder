@@ -14,11 +14,7 @@ public class Rewards {
   public Rewards(String[] rewards) {
     this(List.of(rewards));
   }
-
-  public String getReward(int index) {
-    return rewards.get(index);
-  }
-
+  
   public List<String> getRewards() {
     return this.rewards;
   }
@@ -30,5 +26,9 @@ public class Rewards {
     }
 
     return rewardMap;
+  }
+
+  public String get(int index) {
+    return this.rewards.get(index);
   }
 }

@@ -30,7 +30,7 @@ class LadderPointsTest {
     @DisplayName("next() : 다음 column이 playerCount과 같으면 다음 row의 첫번째 LadderPoint를 반환한다")
     @Test
     void next_columnSameWithPlayerCount() {
-        LadderPoint ladderPoint = ladderPoints.next(ladderPoints.get(0, 1));
+        LadderPoint ladderPoint = ladderPoints.next(ladderPoints.get(0, 2));
 
         assertThat(ladderPoint.getRow()).isEqualTo(1);
         assertThat(ladderPoint.getColumn()).isEqualTo(0);

@@ -7,12 +7,11 @@ public class PlayerStatuses {
 
     private final List<PlayerStatus> playerStatuses = new ArrayList<>();
 
-    public PlayerStatuses(PlayerNames playerNames, LadderPoints ladderPoints) {
-        List<PlayerName> playerNameList = playerNames.getPlayerNames();
+    public PlayerStatuses(LadderPoints ladderPoints) {
+        int playerCount = ladderPoints.getColumnCount() + 1;
 
-        for (int i = 0; i < playerNameList.size(); i++) {
-            PlayerName playerName = playerNameList.get(i);
-            this.playerStatuses.add(new PlayerStatus(playerName, ladderPoints, i));
+        for (int i = 0; i < playerCount; i++) {
+            this.playerStatuses.add(new PlayerStatus(ladderPoints, i));
         }
     }
 

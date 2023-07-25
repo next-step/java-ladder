@@ -10,20 +10,16 @@ public class Ladder {
     this.ladderPoints = ladderPoints;
   }
 
-  public LadderPoints ladderPoints() {
-    return this.ladderPoints;
-  }
-
-  public Players play(PlayerNames playerNames, Map<Integer, String> rewards) {
-    PlayerStatuses playerStatuses = new PlayerStatuses(playerNames, this.ladderPoints);
+  public MatchingResult play() {
+    PlayerStatuses playerStatuses = new PlayerStatuses(this.ladderPoints);
+    MatchingResult matchingResult = new MatchingResult();
 
     List<PlayerStatus> results = playerStatuses.go();
-    List<Player> players = new ArrayList<>();
-    for (PlayerStatus playerStatus : results) {
-      String reward = rewards.get(playerStatus.getLocation().getX());
-      players.add(new Player(playerStatus.getPlayerName(), reward));
+
+    for (int i = 0; i < results.size(); i++) {
+      matchingResult.add(i, results.get(i).getLocation().getX());
     }
 
-    return new Players(players);
+    return matchingResult;
   }
 }

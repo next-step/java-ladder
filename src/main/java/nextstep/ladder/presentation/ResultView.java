@@ -62,8 +62,8 @@ public class ResultView {
         System.out.println(stringBuilder);
     }
 
-    public static void printAPlayerResult(Player player) {
-        System.out.println(player.getResult());
+    public static void printAPlayerResult(String result) {
+        System.out.println(result);
     }
 
 

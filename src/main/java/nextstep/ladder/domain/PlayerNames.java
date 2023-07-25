@@ -19,6 +19,10 @@ public class PlayerNames {
         .collect(Collectors.toList()));
   }
 
+  public PlayerName get(int index) {
+    return this.playerNames.get(index);
+  }
+
   public List<PlayerName> getPlayerNames() {
     return new ArrayList<>(this.playerNames);
   }

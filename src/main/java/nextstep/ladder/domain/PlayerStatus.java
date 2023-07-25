@@ -2,17 +2,15 @@ package nextstep.ladder.domain;
 
 public class PlayerStatus {
 
-    private final PlayerName playerName;
     private final LadderPoints ladderPoints;
     private Location location;
 
-    public PlayerStatus(PlayerName playerName, LadderPoints ladderPoints, int x) {
-        this(playerName, ladderPoints,
+    public PlayerStatus(LadderPoints ladderPoints, int x) {
+        this(ladderPoints,
             new Location(ladderPoints.getLadderLength(), ladderPoints.getColumnCount(), x, 0));
     }
 
-    public PlayerStatus(PlayerName playerName, LadderPoints ladderPoints, Location location) {
-        this.playerName = playerName;
+    public PlayerStatus(LadderPoints ladderPoints, Location location) {
         this.ladderPoints = ladderPoints;
         this.location = location;
     }
@@ -25,9 +23,6 @@ public class PlayerStatus {
         return location.isMovable();
     }
 
-    public PlayerName getPlayerName() {
-        return playerName;
-    }
 
     public LadderPoints getLadderPoints() {
         return ladderPoints;
