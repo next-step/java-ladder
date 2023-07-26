@@ -11,14 +11,14 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 public class PlayersTest {
     @Test
-    void 참여자_길이_테스트(){
+    void 참여자_길이_테스트() {
         assertThatIllegalArgumentException().isThrownBy(
-                () -> new Players(List.of(new Player("kbc"))));
+                () -> new Players(List.of(Player.of("kbc"))));
     }
 
     @Test
-    void toString_테스트(){
-        Players players = new Players(List.of(new Player("kbc"), new Player("kbc2")));
+    void toString_테스트() {
+        Players players = new Players(List.of(Player.of("kbc"), Player.of("kbc2")));
 
         String result = players.toString();
 
@@ -27,8 +27,8 @@ public class PlayersTest {
 
     @ParameterizedTest
     @CsvSource(delimiter = ':', value = {"kbc:0", "kbc3:2", "kbc4:3"})
-    void Player_위치_반환_테스트(String name, int expected){
-        Players players = new Players(List.of(new Player("kbc"), new Player("kbc2"), new Player("kbc3"), new Player("kbc4")));
+    void Player_위치_반환_테스트(String name, int expected) {
+        Players players = new Players(List.of(Player.of("kbc"), Player.of("kbc2"), Player.of("kbc3"), Player.of("kbc4")));
 
         int index = players.indexOf(name);
 
@@ -36,13 +36,12 @@ public class PlayersTest {
     }
 
     @Test
-    void 없는_Player_찾기_유효성_체크(){
-        Players players = new Players(List.of(new Player("kbc"), new Player("kbc2")));
+    void 없는_Player_찾기_유효성_체크() {
+        Players players = new Players(List.of(Player.of("kbc"), Player.of("kbc2")));
 
         assertThatIllegalArgumentException().isThrownBy(
                 () -> players.indexOf("kbc3"));
     }
-
 
 
 }
