@@ -1,43 +1,40 @@
 package nextstep.ladder.domain;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
-public class Player {
+public class Player extends LadderItem {
 
-    private static final int NAME_MAX_LENGTH = 5;
-    private static final int NAME_PRINT_LENGTH = 7;
-    private static final String BLANK = " ";
-    private final String name;
+    public static final String NULL_CHECK_ERROR_MESSAGE = "참여자 이름을 입력해 주세요.";
+    public static final String LENGTH_CHECK_ERROR_MESSAGE = "참여자 이름은 1~5자로 설정 하세요.";
 
-    public Player(String name) {
-        nullCheck(name);
+    private static final Map<String, Player> playersMap = new HashMap<>();
 
-        name = name.trim();
+    public static Player of(String name) {
+        Player player = playersMap.get(name);
 
-        lengthCheck(name);
+        if (player == null) {
+            playersMap.put(name, new Player(name));
 
-        this.name = name;
+            player = playersMap.get(name);
+        }
+
+        return player;
     }
 
-    private void nullCheck(String name) {
-        if (Objects.isNull(name) || name.isBlank()) {
-            throw new IllegalArgumentException("참여자 이름을 입력해 주세요.");
-        }
-    }
-
-    private void lengthCheck(String name) {
-        if (NAME_MAX_LENGTH < name.length()) {
-            throw new IllegalArgumentException("참여자 이름은 1~5자로 설정 하세요.");
-        }
+    private Player(String name) {
+        super(name);
     }
 
     @Override
-    public String toString() {
-        return nameForPrint();
+    protected String nullCheckErrorMessage() {
+        return NULL_CHECK_ERROR_MESSAGE;
     }
 
-    private String nameForPrint() {
-        return BLANK.repeat(NAME_PRINT_LENGTH - name.length()) + name;
+    @Override
+    protected String lengthCheckErrorMessage() {
+        return LENGTH_CHECK_ERROR_MESSAGE;
     }
 
     @Override
