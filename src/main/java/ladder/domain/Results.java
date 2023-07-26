@@ -43,11 +43,11 @@ public class Results {
         .collect(Collectors.toList());
   }
 
-  public void confirmUserPrize(List<Integer> orders, List<User> users) {
-    for (int i = 0; i < orders.size(); i++) {
-      userPrizeMap.put(users.get(orders.get(i)), prizes.get(i));
-    }
-  }
+//  public void confirmUserPrize(List<Integer> orders, List<User> users) {
+////    for (int i = 0; i < orders.size(); i++) {
+////      userPrizeMap.put(users.get(orders.get(i)), prizes.get(i));
+////    }
+//  }
 
   public List<String> findAllPrizesByUserOrAll(String query) {
     if (isAll(query)) {

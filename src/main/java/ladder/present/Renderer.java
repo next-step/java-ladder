@@ -30,7 +30,6 @@ public class Renderer {
     this.ladder = ladder;
     this.users = users;
     this.results = results;
-    results.confirmUserPrize(ladder.calculateOrderAtBottom(), users.getUsers());
   }
 
   public static Renderer of(Ladder ladder, Users users, Results results) {
