@@ -5,15 +5,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Players {
-    public final List<Player> players;
+    private static final int NAME_PRINT_LENGTH = 7;
+    private static final String BLANK = " ";
+    private final List<Player> players;
 
     public Players(List<Player> players) {
         checkPlayersSize(players);
         this.players = players;
     }
 
-    public Players(String[] players) {
-        this(Arrays.stream(players).map(Player::new).collect(Collectors.toList()));
+    public Players(String... players) {
+        this(Arrays.stream(players).map(Player::of).collect(Collectors.toList()));
     }
 
     private void checkPlayersSize(List<Player> players) {
@@ -27,19 +29,29 @@ public class Players {
     }
 
     public int indexOf(String name) {
-        int index = players.indexOf(new Player(name));
+        int index = players.indexOf(Player.of(name));
 
-        if (index < 0){
+        if (index < 0) {
             throw new IllegalArgumentException("찾으시는 참여자가 없습니다.");
         }
 
         return index;
     }
 
+    public String getPlayerNameByIndex(int index) {
+        return players.get(index).toString();
+    }
+
     @Override
     public String toString() {
         return this.players.stream()
-                .map(Player::toString)
+                .map(this::nameForPrint)
                 .collect(Collectors.joining(""));
+    }
+
+    private String nameForPrint(Player player) {
+        String name = player.toString();
+
+        return BLANK.repeat(NAME_PRINT_LENGTH - name.length()) + name;
     }
 }
