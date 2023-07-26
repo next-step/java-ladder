@@ -1,8 +1,12 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderGameResult;
+import nextstep.ladder.domain.WinningItems;
 
 public interface LadderOutputView {
 
-    void ladderOutput(Ladder ladder);
+    void ladderOutput(Ladder ladder, WinningItems winningItems);
+
+    void ladderGameOutPut(LadderGameResult ladderGameResult);
 }
