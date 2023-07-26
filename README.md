@@ -59,7 +59,7 @@
    - 없는 이름 입력 시 Players 에서 에러처리 [x]
    
 4. 입력 받은 주체에 따라 결과 출력
-   - Player 객체의 위치, Line move 기반으로 최종 위치를 받는 movePlayer, movePlayerAll 기능 추가
+   - Player 객체의 위치, Line move 기반으로 최종 위치를 받는 movePlayer, movePlayerAll 기능 추가 [x]
    - LadderGame 객체를 활용하여 각 Player move 결과인 PlayerWinnings 리스트 객체를 가지고 있는 LadderGameResults 반환
    - all은 전체 결과 출력
    - 전체 출력 시 프로그램 종료
