@@ -49,8 +49,8 @@
 ---
 ## 기능 정의 - step 3 게임 실행
 1. 당첨 항목을 최대 사다리 높이전에 입력 받음.
-   - Player와 같은 로직 (5자 이내, 출력 시 공백 포함 등...) WinningItem
-   - Player 상위 추상 객체 필요(LadderItem??)
+   - Player와 같은 로직 (5자 이내, 출력 시 공백 포함 등...) WinningItem [x]
+   - Player 상위 추상 객체 필요(LadderItem) [x]
 2. 사다리 결과 출력 시 당첨 항목도 같이 출력
 3. 결과를 보고 싶은 사람 입력 받음.
    - Players 객체를 활용하여 입력받은 Player 객체 위치를 찾음 [x]
