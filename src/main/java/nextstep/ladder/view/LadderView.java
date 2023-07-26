@@ -1,7 +1,9 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderGameResult;
 import nextstep.ladder.domain.Players;
+import nextstep.ladder.domain.WinningItems;
 
 public class LadderView {
 
@@ -14,7 +16,7 @@ public class LadderView {
         this.ladderOutputView = ladderOutputView;
     }
 
-    public Players playersNameInput(){
+    public Players playersNameInput() {
         return ladderInputView.playersNameInput();
     }
 
@@ -22,7 +24,19 @@ public class LadderView {
         return ladderInputView.ladderHeightInput();
     }
 
-    public void ladderOutput(Ladder ladder) {
-        ladderOutputView.ladderOutput(ladder);
+    public void ladderOutput(Ladder ladder, WinningItems winningItems) {
+        ladderOutputView.ladderOutput(ladder, winningItems);
+    }
+
+    public WinningItems winningItemNameInput(int countOfPlayers) {
+        return ladderInputView.winningItemNameInput(countOfPlayers);
+    }
+
+    public String gameResultPlayerInput() {
+        return ladderInputView.gameResultPlayerInput();
+    }
+
+    public void ladderGameOutPut(LadderGameResult ladderGameResult) {
+        ladderOutputView.ladderGameOutPut(ladderGameResult);
     }
 }
