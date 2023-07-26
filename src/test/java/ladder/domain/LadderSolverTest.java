@@ -26,7 +26,7 @@ public class LadderSolverTest {
     final List<Integer> result = LadderSolver.calculate(participateCount, lines);
 
     final List<String> participation = List.of("A", "B", "C", "D");
-    final List<String> prizes = List.of("철","동","금","은");
+    final List<String> prizes = List.of("철", "동", "금", "은");
 
     Scene scene = Renderer.of(of,
         Users.of(participation),
@@ -47,20 +47,23 @@ public class LadderSolverTest {
   @Test
   @DisplayName("")
   void name3() {
-    int participateCount = 6;
-    Set<Line> lines = Set.of(new Line(2, 2), new Line(1, 1));
 
-    Ladder of = Ladder.of(participateCount, 10, lines);
+    Set<Line> lines = Set.of(
+        new Line(0, 0),
+        new Line(2, 2),
+        new Line(1, 1)
+    );
+
     final List<Integer> expect = List.of(0, 1, 2, 3);
+    final List<Integer> result = LadderSolver.calculate(4, lines);
 
-    final List<Integer> result = LadderSolver.calculate(participateCount, lines);
-
-    Scene scene = Renderer.of(of,
-        Users.of(List.of("1", "2", "3", "4", "5", "6")),
+    Scene scene = Renderer.of(Ladder.of(4, 4, lines),
+        Users.of(List.of("1", "2", "3", "4")),
         new Results(
-            List.of("1", "2", "3", "4", "5", "6"),
-            Users.of(List.of("a", "b", "c", "d", "e", "f")).getUsers()
-        )).renderingScene();
+            List.of("1", "2", "3", "4"),
+            Users.of(List.of("a", "b", "c", "d")).getUsers()
+        )
+    ).renderingScene();
     LOG.info(scene.userArea());
     for (String horizontalLine : scene.getLadderArea()) {
       LOG.info(horizontalLine);
