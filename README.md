@@ -48,21 +48,21 @@
 
 ---
 ## 기능 정의 - step 3 게임 실행
-1. 당첨 항목을 최대 사다리 높이전에 입력 받음.
+1. 당첨 항목을 최대 사다리 높이전에 입력 받음. [x]
    - Player와 같은 로직 (5자 이내, 출력 시 공백 포함 등...) WinningItem [x]
    - Player 상위 추상 객체 필요(LadderItem) [x]
-2. 사다리 결과 출력 시 당첨 항목도 같이 출력
-3. 결과를 보고 싶은 사람 입력 받음.
+2. 사다리 결과 출력 시 당첨 항목도 같이 출력 [x]
+3. 결과를 보고 싶은 사람 입력 받음. [x]
    - Players 객체를 활용하여 입력받은 Player 객체 위치를 찾음 [x]
    - Player 객체의 위치를 기반으로 Line의 결과를 도출 할 수 있는 move 기능 추가 [x]
      - 범위에서 벗어난 index 입력시 에러 처리 [x]
    - 없는 이름 입력 시 Players 에서 에러처리 [x]
    
-4. 입력 받은 주체에 따라 결과 출력
+4. 입력 받은 주체에 따라 결과 출력 [x]
    - Player 객체의 위치, Line move 기반으로 최종 위치를 받는 movePlayer, movePlayerAll 기능 추가 [x]
    - LadderGame 객체를 활용하여 각 Player move 결과인 PlayerWinnings 리스트 객체를 가지고 있는 LadderGameResults 반환 [x]
    - all은 전체 결과 출력 [x]
-   - 전체 출력 시 프로그램 종료
+   - 전체 출력 시 프로그램 종료 [x]
 
 ### 기존 요구사항
 #### 기능 요구사항
