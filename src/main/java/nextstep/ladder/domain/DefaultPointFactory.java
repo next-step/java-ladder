@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class DefaultPointFactory implements PointFactory{
-    private Random random = new Random();
+public class DefaultPointFactory implements PointFactory {
+    private final Random random = new Random();
+
     @Override
     public List<Point> createPoints(int countOfPlayer) {
         List<Point> points = new ArrayList<>();
@@ -19,7 +20,7 @@ public class DefaultPointFactory implements PointFactory{
     }
 
     private void addPoint(List<Point> points, int index) {
-        if (leftPoint(points, index).isMovable()){
+        if (leftPoint(points, index).isMovable()) {
             points.add(new Point(false));
             return;
         }

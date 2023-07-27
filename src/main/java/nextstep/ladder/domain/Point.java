@@ -11,13 +11,13 @@ public class Point {
         this.point = point;
     }
 
-    public Boolean isMovable(){
+    public Boolean isMovable() {
         return point;
     }
 
     @Override
     public String toString() {
-        if (point){
+        if (point) {
             return MOVABLE_LINE;
         }
 
