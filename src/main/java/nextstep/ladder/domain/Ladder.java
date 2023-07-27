@@ -1,25 +1,25 @@
 package nextstep.ladder.domain;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class Ladder {
-  private final Map<LadderPoint, LadderBarStatus> ladderBarStatuses;
-  private final int ladderLength;
-
-  public Ladder(Map<LadderPoint, LadderBarStatus> ladderBarStatuses, int ladderLength) {
-    this.ladderBarStatuses = ladderBarStatuses;
-    this.ladderLength = ladderLength;
+  private final LadderPoints ladderPoints;
+  public Ladder(LadderPoints ladderPoints) {
+    this.ladderPoints = ladderPoints;
   }
 
-  public Map<LadderPoint, LadderBarStatus> getLadderBarStatuses() {
-    return this.ladderBarStatuses;
-  }
+  public MatchingResult play() {
+    PlayerStatuses playerStatuses = new PlayerStatuses(this.ladderPoints);
+    MatchingResult matchingResult = new MatchingResult();
 
-  public LadderBarStatus getLadderBarStatus(LadderPoint ladderPoint) {
-    return this.ladderBarStatuses.get(ladderPoint);
-  }
+    List<PlayerStatus> results = playerStatuses.go();
 
-  public int getLadderLength() {
-    return this.ladderLength;
+    for (int i = 0; i < results.size(); i++) {
+      matchingResult.add(i, results.get(i).getLocation().getX());
+    }
+
+    return matchingResult;
   }
 }

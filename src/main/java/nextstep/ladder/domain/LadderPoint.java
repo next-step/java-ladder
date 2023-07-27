@@ -3,16 +3,39 @@ package nextstep.ladder.domain;
 import java.util.Objects;
 
 public class LadderPoint {
-  private final Row row;
-  private final Column column;
+  private final int row;
+  private final int column;
+  private final LadderBarStatus ladderBarStatus;
 
-  public LadderPoint(int row, int ladderLen, int column, int playerCount) {
-    this(new Row(row, ladderLen), new Column(column, playerCount));
-  }
-
-  public LadderPoint(Row row, Column column) {
+  public LadderPoint(int row, int column, LadderBarStatus ladderBarStatus) {
     this.row = row;
     this.column = column;
+    this.ladderBarStatus = ladderBarStatus;
+  }
+
+  public int getRow() {
+    return row;
+  }
+
+  public int getColumn() {
+    return column;
+  }
+
+  public LadderBarStatus getLadderBarStatus() {
+    return ladderBarStatus;
+  }
+
+  public boolean isMovable() {
+    return this.ladderBarStatus == LadderBarStatus.BAR;
+  }
+
+  @Override
+  public String toString() {
+    return "LadderPoint{" +
+        "row=" + row +
+        ", column=" + column +
+        ", ladderBarStatus=" + ladderBarStatus +
+        '}';
   }
 
   @Override
@@ -24,11 +47,12 @@ public class LadderPoint {
       return false;
     }
     LadderPoint that = (LadderPoint) o;
-    return Objects.equals(row, that.row) && Objects.equals(column, that.column);
+    return getRow() == that.getRow() && getColumn() == that.getColumn()
+        && getLadderBarStatus() == that.getLadderBarStatus();
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(row, column);
+    return Objects.hash(getRow(), getColumn(), getLadderBarStatus());
   }
 }

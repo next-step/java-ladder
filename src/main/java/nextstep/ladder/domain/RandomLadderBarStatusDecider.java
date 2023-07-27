@@ -5,8 +5,8 @@ import java.util.Random;
 public class RandomLadderBarStatusDecider implements LadderBarStatusDecider {
 
   @Override
-  public LadderBarStatus decide(LadderBarStatus ladderBarStatus) {
-    if (!ladderBarStatus.isEmpty()) {
+  public LadderBarStatus decide(LadderBarStatus beforeLadderBarStatus) {
+    if (!beforeLadderBarStatus.isEmpty()) {
       return LadderBarStatus.EMPTY;
     }
 

@@ -1,35 +1,35 @@
 package nextstep.ladder.domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
+import nextstep.ladder.domain.dto.Rewards;
 
 public class Players {
-  private final Map<PlayerName, Player> players;
-  private List<Player> cache;
 
-  public Players(Map<PlayerName, Player> players) {
-    this.players = players;
-  }
+    private final List<Player> playerResults = new ArrayList<>();
 
-  public Player getPlayer(PlayerName playerName) {
-    return this.players.get(playerName);
-  }
-
-  public List<Player> getPlayers() {
-    if (this.cache != null) {
-      return this.cache;
+    public Players(PlayerNames playerNames, MatchingResult matchingResult, Rewards rewards) {
+        for (int i = 0; i < playerNames.size(); i++) {
+            Player player = new Player(
+                playerNames.get(i),
+                rewards.get(matchingResult.getResult(i)));
+            this.playerResults.add(player);
+        }
     }
 
-    List<Player> playerList = new ArrayList<>(this.players.values());
-    Collections.sort(playerList, Comparator.comparingInt(Player::getOrder));
-    this.cache = playerList;
-    return this.cache;
-  }
+    public String getResult(PlayerName playerName) {
+        return this.playerResults.stream()
+            .filter(player -> player.getPlayerName().equals(playerName))
+            .findFirst()
+            .orElseThrow()
+            .getResult();
+    }
 
-  public int size() {
-    return this.players.size();
-  }
+    public List<Player> asList() {
+        return this.playerResults;
+    }
+
+    public int size() {
+        return this.playerResults.size();
+    }
 }

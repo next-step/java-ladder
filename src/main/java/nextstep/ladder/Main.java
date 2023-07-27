@@ -1,55 +1,45 @@
 package nextstep.ladder;
 
 
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.LadderFactory;
-import nextstep.ladder.domain.Player;
+import nextstep.ladder.domain.LadderPoints;
+import nextstep.ladder.domain.MatchingResult;
 import nextstep.ladder.domain.PlayerName;
 import nextstep.ladder.domain.PlayerNames;
 import nextstep.ladder.domain.Players;
 import nextstep.ladder.domain.RandomLadderBarStatusDecider;
-import nextstep.ladder.domain.Referee;
-import nextstep.ladder.domain.dto.GameResults;
+import nextstep.ladder.domain.dto.Rewards;
 import nextstep.ladder.presentation.InputView;
 import nextstep.ladder.presentation.ResultView;
 
 public class Main {
-  private static final InputView inputView = new InputView();
-  private static final ResultView resultView = new ResultView();
-  private static final Referee referee = new Referee();
-
   public static void main(String[] args) {
-    PlayerNames playerNames = inputView.getPlayerNames();
-    GameResults inputGameResults = inputView.getGameResults();
+    PlayerNames playerNames = InputView.getPlayerNames();
+    Rewards rewards = InputView.getRewards();
 
-    int ladderLength = inputView.getLadderLength();
-    Ladder ladder = LadderFactory.createLadder(ladderLength, playerNames.size(), new RandomLadderBarStatusDecider());
-    GameResults evaluatedGameResults = referee.getResults(ladder, playerNames, inputGameResults);
+    int ladderLength = InputView.getLadderLength();
+    LadderPoints ladderPoints = LadderPoints.of(
+        ladderLength,
+        playerNames.size(),
+        new RandomLadderBarStatusDecider());
 
-    Players players = new Players(toPlayerMap(playerNames, evaluatedGameResults));
+    Ladder ladder = new Ladder(ladderPoints);
+    MatchingResult matchingResult = ladder.play();
+    Players players = new Players(playerNames, matchingResult, rewards);
 
-    resultView.printResult(players, ladder, inputGameResults);
-
-    while(true) {
-      PlayerName playerName = inputView.printTargetResult();
-      if (playerName.isAll()) {
-        resultView.printTargetsResult(players);
-        continue;
-      }
-
-      resultView.printTargetResult(players.getPlayer(playerName));
-    }
+    ResultView.printResult(players, ladderPoints, rewards);
+    printGameResult(players);
   }
 
-  private static Map<PlayerName, Player> toPlayerMap(PlayerNames playerNames, GameResults gameResults) {
-    return IntStream.range(0, playerNames.getPlayerNames().size())
-        .boxed()
-        .collect(Collectors.toMap(
-            i -> playerNames.getPlayerNames().get(i),
-            i -> new Player(playerNames.getPlayerNames().get(i), i, gameResults.getResult(i))
-        ));
+  private static void printGameResult(Players players) {
+    PlayerName playerName = InputView.getPlayerName();
+
+    if (!playerName.isAll()) {
+      ResultView.printAPlayerResult(players.getResult(playerName));
+      printGameResult(players);
+      return;
+    }
+
+    ResultView.printAllPlayersResult(players);
   }
 }
