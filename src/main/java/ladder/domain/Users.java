@@ -11,8 +11,8 @@ public class Users {
     this.users = users;
   }
 
-  public static Users of(List<String> users) {
-    return new Users(users.stream()
+  public static Users of(List<String> names) {
+    return new Users(names.stream()
         .map(User::new)
         .collect(Collectors.toList()));
   }
