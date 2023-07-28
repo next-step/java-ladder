@@ -67,8 +67,9 @@ public class Presenter {
 
   public void renderingResults(Scene scene, Results results) {
     log.info("\n결과를 보고 싶은 사람은?");
-    String s = scanner.nextLine();
+    String command = scanner.nextLine();
+    log.info("{}",command);
     log.info("\n실행결과");
-    results.findAllPrizesByUserOrAll(s).forEach(log::info);
+    results.findAllPrizesByUserOrAll(command).forEach(log::info);
   }
 }
