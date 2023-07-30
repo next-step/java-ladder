@@ -45,7 +45,7 @@ public class LadderTest {
 
     @Test
     void movePlayerAll_테스트() {
-        List<PlayerWinnings> playerWinnings = ladder.movePlayerAll(winningItems);
+        List<PlayerWinnings> playerWinnings = ladder.movePlayer(winningItems);
 
         String result = playerWinnings.toString();
 
