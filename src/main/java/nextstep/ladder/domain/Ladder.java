@@ -11,16 +11,9 @@ public class Ladder {
 
     private final PointFactory pointFactory = new DefaultPointFactory();
 
-    public Ladder(int ladderHeight, int numberOfPlayers) {
-        checkLadderHeight(ladderHeight);
-
+    public Ladder(int numberOfPlayers, LineCreator lineCreator) {
         this.numberOfPlayers = numberOfPlayers;
-        this.ladder = createLine(ladderHeight);
-    }
-
-    public Ladder(List<Line> ladder, int numberOfPlayers) {
-        this.ladder = ladder;
-        this.numberOfPlayers = numberOfPlayers;
+        this.ladder = lineCreator.createLine(numberOfPlayers, pointFactory);
     }
 
     public MoveResult movePlayer(int playerIndex) {

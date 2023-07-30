@@ -26,7 +26,7 @@ public class LadderController {
     public Ladder createLadder(Players players, WinningItems winningItems) {
         int ladderHeight = ladderView.ladderHeightInput();
 
-        Ladder ladder = new Ladder(ladderHeight, players.numberOfPlayers());
+        Ladder ladder = new Ladder(ladderHeight, new DefaultLineCreator(ladderHeight));
 
         ladderView.ladderOutput(players, ladder, winningItems);
 
