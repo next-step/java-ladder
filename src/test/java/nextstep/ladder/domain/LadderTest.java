@@ -21,15 +21,7 @@ public class LadderTest {
                 new Line(players.numberOfPlayers(), c -> List.of(new Point(false), new Point(true), new Point(false))),
                 new Line(players.numberOfPlayers(), c -> List.of(new Point(false), new Point(false), new Point(true)))
         );
-        ladder = new Ladder(lines, players.numberOfPlayers());
-    }
-
-    @Test
-    void 높이_유효성_테스트() {
-        Players players = new Players(List.of(Player.of("kbc"), Player.of("kbc2")));
-
-        assertThatIllegalArgumentException().isThrownBy(
-                () -> new Ladder(0, players.numberOfPlayers()));
+        ladder = new Ladder(players.numberOfPlayers(), (c, f) -> lines);
     }
 
     @Test
