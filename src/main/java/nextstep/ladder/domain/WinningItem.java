@@ -2,23 +2,37 @@ package nextstep.ladder.domain;
 
 import java.util.Objects;
 
-public class WinningItem extends LadderItem {
+public class WinningItem {
 
-    public static final String NULL_CHECK_ERROR_MESSAGE = "당첨 항목을 입력해 주세요.";
-    public static final String LENGTH_CHECK_ERROR_MESSAGE = "당첨 항목은 1~5자로 설정 하세요.";
+    private static final int NAME_MAX_LENGTH = 5;
+
+    protected final String name;
 
     public WinningItem(String name) {
-        super(name);
+        nullCheck(name);
+
+        name = name.trim();
+
+        lengthCheck(name);
+
+        this.name = name;
+    }
+
+    private void nullCheck(String name) {
+        if (Objects.isNull(name) || name.isBlank()) {
+            throw new IllegalArgumentException("당첨 항목을 입력해 주세요.");
+        }
+    }
+
+    private void lengthCheck(String name) {
+        if (NAME_MAX_LENGTH < name.length()) {
+            throw new IllegalArgumentException("당첨 항목은 1~5자로 설정 하세요.");
+        }
     }
 
     @Override
-    protected String nullCheckErrorMessage() {
-        return NULL_CHECK_ERROR_MESSAGE;
-    }
-
-    @Override
-    protected String lengthCheckErrorMessage() {
-        return LENGTH_CHECK_ERROR_MESSAGE;
+    public String toString() {
+        return name;
     }
 
     @Override
