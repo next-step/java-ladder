@@ -8,7 +8,6 @@ import java.util.stream.IntStream;
 public class Ladder {
 
     private final List<Line> ladder;
-    private final Players players;
     private final int numberOfPlayers;
 
     private final PointFactory pointFactory = new DefaultPointFactory();
@@ -16,57 +15,31 @@ public class Ladder {
     public Ladder(int ladderHeight, int numberOfPlayers) {
         checkLadderHeight(ladderHeight);
 
-        this.players = null;
+        this.numberOfPlayers = numberOfPlayers;
         this.ladder = createLine(ladderHeight);
+    }
+
+    public Ladder(List<Line> ladder, int numberOfPlayers) {
+        this.ladder = ladder;
         this.numberOfPlayers = numberOfPlayers;
     }
 
-    public Ladder(int ladderHeight, Players players) {
-        checkLadderHeight(ladderHeight);
-
-        this.players = players;
-        this.ladder = createLine(ladderHeight);
-        this.numberOfPlayers = 0;
-    }
-
-    public Ladder(List<Line> ladder, Players players) {
-        this.players = players;
-        this.ladder = ladder;
-        this.numberOfPlayers = 0;
-    }
-
-    public PlayerWinnings movePlayer(String name, WinningItems winningItems) {
-        return createPlayerWinnings(players.indexOf(name), winningItems);
-    }
-
-    public List<PlayerWinnings> movePlayer(WinningItems winningItems) {
-        List<PlayerWinnings> playerWinnings = new ArrayList<>();
-        IntStream.range(0, players.numberOfPlayers())
-                .forEach(i -> playerWinnings.add(createPlayerWinnings(i, winningItems)));
-
-        return playerWinnings;
-    }
-
-    private PlayerWinnings createPlayerWinnings(int playerIndex, WinningItems winningItems) {
-        return new PlayerWinnings(Player.of(players.getPlayerNameByIndex(playerIndex)), winningItems.getWinningItem(move(playerIndex)));
-    }
-
-    private MoveResult movePlayer(int playerIndex) {
+    public MoveResult movePlayer(int playerIndex) {
         MoveResult moveResult = new MoveResult();
 
         moveResult.put(playerIndex, move(playerIndex));
 
-        return new MoveResult();
+        return moveResult;
     }
 
-    private MoveResult movePlayer() {
+    public MoveResult movePlayer() {
         MoveResult moveResult = new MoveResult();
 
         for (int playerIndex = 0; playerIndex < numberOfPlayers; playerIndex++) {
             moveResult.put(playerIndex, move(playerIndex));
         }
 
-        return new MoveResult();
+        return moveResult;
     }
 
     private int move(int index) {
@@ -81,7 +54,7 @@ public class Ladder {
         List<Line> lines = new ArrayList<>();
 
         for (int i = 0; i < ladderHeight; i++) {
-            lines.add(new Line(players.numberOfPlayers(), pointFactory));
+            lines.add(new Line(this.numberOfPlayers, pointFactory));
         }
 
         return lines;
@@ -95,7 +68,7 @@ public class Ladder {
 
     @Override
     public String toString() {
-        return players.toString() + "\n" + linesToString();
+        return linesToString();
     }
 
     private String linesToString() {

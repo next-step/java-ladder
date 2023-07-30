@@ -11,7 +11,6 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 public class LadderTest {
 
     private Ladder ladder;
-    private WinningItems winningItems;
 
     @BeforeEach
     void init() {
@@ -22,8 +21,7 @@ public class LadderTest {
                 new Line(players.numberOfPlayers(), c -> List.of(new Point(false), new Point(true), new Point(false))),
                 new Line(players.numberOfPlayers(), c -> List.of(new Point(false), new Point(false), new Point(true)))
         );
-        ladder = new Ladder(lines, players);
-        winningItems = new WinningItems(players.numberOfPlayers(), "꽝", "1000", "2000");
+        ladder = new Ladder(lines, players.numberOfPlayers());
     }
 
     @Test
@@ -31,24 +29,22 @@ public class LadderTest {
         Players players = new Players(List.of(Player.of("kbc"), Player.of("kbc2")));
 
         assertThatIllegalArgumentException().isThrownBy(
-                () -> new Ladder(0, players));
+                () -> new Ladder(0, players.numberOfPlayers()));
     }
 
     @Test
     void movePlayer_테스트() {
-        PlayerWinnings playerWinnings = ladder.movePlayer("kbc", winningItems);
+        MoveResult moveResult = ladder.movePlayer(0);
 
-        String result = playerWinnings.toString();
-
-        assertThat(result).isEqualTo("kbc: 2000");
+        assertThat(moveResult.getWinningItemIndex(0)).isEqualTo(2);
     }
 
     @Test
     void movePlayerAll_테스트() {
-        List<PlayerWinnings> playerWinnings = ladder.movePlayer(winningItems);
+        MoveResult moveResult = ladder.movePlayer();
 
-        String result = playerWinnings.toString();
-
-        assertThat(result).isEqualTo("[kbc: 2000, kbc1: 꽝, kbc2: 1000]");
+        assertThat(moveResult.getWinningItemIndex(0)).isEqualTo(2);
+        assertThat(moveResult.getWinningItemIndex(1)).isEqualTo(0);
+        assertThat(moveResult.getWinningItemIndex(2)).isEqualTo(1);
     }
 }

@@ -20,29 +20,25 @@ public class LadderGameTest {
                 new Line(players.numberOfPlayers(), c -> List.of(new Point(false), new Point(true), new Point(false))),
                 new Line(players.numberOfPlayers(), c -> List.of(new Point(false), new Point(false), new Point(true)))
         );
-        Ladder ladder = new Ladder(lines, players);
-        WinningItems winningItems = new WinningItems(players.numberOfPlayers(), "꽝", "1000", "2000");
+        Ladder ladder = new Ladder(lines, players.numberOfPlayers());
 
-        ladderGame = new LadderGame(ladder, winningItems);
+        ladderGame = new LadderGame(ladder);
     }
 
     @Test
     void 게임_실행_결과_테스트_한명() {
 
-        LadderGameResult ladderGameResult = ladderGame.gameStart("kbc");
+        MoveResult moveResult = ladderGame.gameStart(0);
 
-        String resultString = ladderGameResult.toString();
-
-        assertThat(resultString).isEqualTo("2000");
+        assertThat(moveResult.getWinningItemIndex(0)).isEqualTo(2);
     }
 
     @Test
     void 게임_실행_결과_테스트_전체() {
+        MoveResult moveResult = ladderGame.gameStart();
 
-        LadderGameResult ladderGameResult = ladderGame.gameStart("all");
-
-        String resultString = ladderGameResult.toString();
-
-        assertThat(resultString).isEqualTo("kbc: 2000\nkbc1: 꽝\nkbc2: 1000");
+        assertThat(moveResult.getWinningItemIndex(0)).isEqualTo(2);
+        assertThat(moveResult.getWinningItemIndex(1)).isEqualTo(0);
+        assertThat(moveResult.getWinningItemIndex(2)).isEqualTo(1);
     }
 }
