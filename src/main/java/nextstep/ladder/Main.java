@@ -19,7 +19,7 @@ public class Main {
 
             Ladder ladder = ladderController.createLadder(players, items);
 
-            ladderController.startGame(ladder, items);
+            ladderController.startGame(players, ladder, items);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

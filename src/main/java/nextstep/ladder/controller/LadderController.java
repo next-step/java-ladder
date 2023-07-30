@@ -7,6 +7,8 @@ import java.util.Objects;
 
 public class LadderController {
 
+    private static final String ALL_PLAYER = "all";
+
     private final LadderView ladderView;
 
     public LadderController(LadderView ladderView) {
@@ -17,33 +19,40 @@ public class LadderController {
         return ladderView.playersNameInput();
     }
 
-    public WinningItems ladderWinningItems(int countOfPlayers) {
-        return ladderView.winningItemNameInput(countOfPlayers);
+    public WinningItems ladderWinningItems(int numberOfPlayers) {
+        return ladderView.winningItemNameInput(numberOfPlayers);
     }
 
     public Ladder createLadder(Players players, WinningItems winningItems) {
         int ladderHeight = ladderView.ladderHeightInput();
 
-        Ladder ladder = new Ladder(ladderHeight, players);
+        Ladder ladder = new Ladder(ladderHeight, players.numberOfPlayers());
 
-        ladderView.ladderOutput(ladder, winningItems);
+        ladderView.ladderOutput(players, ladder, winningItems);
 
         return ladder;
     }
 
-    public void startGame(Ladder ladder, WinningItems winningItems) {
-        LadderGame ladderGame = new LadderGame(ladder, winningItems);
+    public void startGame(Players players, Ladder ladder, WinningItems winningItems) {
 
-        while (true) {
-            String name = ladderView.gameResultPlayerInput();
+        LadderGame ladderGame = new LadderGame(ladder);
 
-            LadderGameResult ladderGameResult = ladderGame.gameStart(name);
+        String name;
 
-            ladderView.ladderGameOutPut(ladderGameResult);
+        do {
+            name = ladderView.gameResultPlayerInput();
 
-            if (Objects.equals(name, "all")) {
-                break;
-            }
+            MoveResult moveResult = gameStart(name, players, ladderGame);
+
+            ladderView.ladderGameOutPut(moveResult.map(players, winningItems));
+
+        } while (!Objects.equals(name, ALL_PLAYER));
+    }
+
+    private MoveResult gameStart(String name, Players players, LadderGame ladderGame) {
+        if (Objects.equals(name, ALL_PLAYER)) {
+            return ladderGame.gameStart();
         }
+        return ladderGame.gameStart(players.indexOf(name));
     }
 }
