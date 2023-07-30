@@ -16,7 +16,7 @@ public class LadderGame {
 
     public LadderGameResult gameStart(String name) {
         if (Objects.equals(name, ALL_PLAYER)) {
-            return new LadderGameResult(ladder.movePlayerAll(winningItems));
+            return new LadderGameResult(ladder.movePlayer(winningItems));
         }
 
         return new LadderGameResult(ladder.movePlayer(name, winningItems));
