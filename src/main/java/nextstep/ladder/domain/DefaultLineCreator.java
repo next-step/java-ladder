@@ -3,7 +3,7 @@ package nextstep.ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DefaultLineCreator implements LineCreator{
+public class DefaultLineCreator implements LineCreator {
 
     private final int ladderHeight;
 
