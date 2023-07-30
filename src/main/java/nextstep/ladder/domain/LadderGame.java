@@ -1,7 +1,5 @@
 package nextstep.ladder.domain;
 
-import java.util.Objects;
-
 public class LadderGame {
 
     private final Ladder ladder;
