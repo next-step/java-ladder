@@ -38,8 +38,8 @@ public class Players {
         return index;
     }
 
-    public String getPlayerNameByIndex(int index) {
-        return players.get(index).toString();
+    public Player getPlayer(int index) {
+        return players.get(index);
     }
 
     @Override

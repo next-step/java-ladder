@@ -24,8 +24,8 @@ public class LadderView {
         return ladderInputView.ladderHeightInput();
     }
 
-    public void ladderOutput(Ladder ladder, WinningItems winningItems) {
-        ladderOutputView.ladderOutput(ladder, winningItems);
+    public void ladderOutput(Players players, Ladder ladder, WinningItems winningItems) {
+        ladderOutputView.ladderOutput(players, ladder, winningItems);
     }
 
     public WinningItems winningItemNameInput(int countOfPlayers) {
