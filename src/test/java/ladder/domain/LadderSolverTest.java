@@ -18,22 +18,23 @@ public class LadderSolverTest {
   @DisplayName("")
   void name2() {
     final int participateCount = 4;
-    Set<Line> lines = Set.of(new Line(2, 2), new Line(0, 0));
+    Set<Line> lines = Set.of(
+        new Line(2, 2),
+        new Line(0, 0)
+    );
 
-    Ladder of = Ladder.of(participateCount, 10, lines);
     final List<Integer> expect = List.of(0, 1, 2, 3);
-
     final List<Integer> result = LadderSolver.calculate(participateCount, lines);
 
-    final List<String> participation = List.of("A", "B", "C", "D");
-    final List<String> prizes = List.of("철", "동", "금", "은");
-
-    Scene scene = Renderer.of(of,
-        Users.of(participation),
-        new Results(
-            prizes,
-            Users.of(List.of("1", "2", "3", "4")).getUsers()
-        )).renderingScene();
+    Scene scene = getScene(
+        Ladder.of(participateCount, 10, lines),
+        List.of("A", "B", "C", "D"),
+        List.of("철", "동", "금", "은")
+    );
+    Results results = getResults(
+        List.of("A", "B", "C", "D"),
+        List.of("철", "동", "금", "은")
+    );
     LOG.info(scene.userArea());
     for (String horizontalLine : scene.getLadderArea()) {
       LOG.info(horizontalLine);
@@ -57,20 +58,37 @@ public class LadderSolverTest {
     final List<Integer> expect = List.of(0, 1, 2, 3);
     final List<Integer> result = LadderSolver.calculate(4, lines);
 
-    Scene scene = Renderer.of(Ladder.of(4, 4, lines),
-        Users.of(List.of("1", "2", "3", "4")),
-        new Results(
-            List.of("1", "2", "3", "4"),
-            Users.of(List.of("a", "b", "c", "d")).getUsers()
-        )
-    ).renderingScene();
-    LOG.info(scene.userArea());
+    Scene scene = getScene(
+        Ladder.of(4, 4, lines),
+        List.of("1", "2", "3", "4"),
+        List.of("")
+    );
     for (String horizontalLine : scene.getLadderArea()) {
       LOG.info(horizontalLine);
     }
     LOG.info(System.lineSeparator());
     LOG.info(scene.prizeArea());
 
+    //scene.
+
     assertThat(result).hasSameElementsAs(expect);
+  }
+
+
+  private static Scene getScene(Ladder ladder, List<String> usersNames, List<String> prizes) {
+    Scene scene = Renderer.of(ladder,
+        Users.of(usersNames),
+        new Results(
+            prizes,
+            Users.of(usersNames).getUsers()
+        )
+    ).renderingScene();
+    return scene;
+  }
+  private static Results getResults(List<String> usersNames, List<String> prizes) {
+    return new Results(
+        prizes,
+        Users.of(usersNames).getUsers()
+    );
   }
 }
