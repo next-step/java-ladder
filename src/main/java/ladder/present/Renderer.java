@@ -51,7 +51,7 @@ public class Renderer {
   }
 
   public String renderingResultArea() {
-    return results.getPrizes()
+    return results.getOriginalPrizes()
         .stream()
         .map(this::unifyWith)
         .collect(Collectors.joining())

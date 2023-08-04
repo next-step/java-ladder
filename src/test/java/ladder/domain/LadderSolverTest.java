@@ -42,12 +42,31 @@ public class LadderSolverTest {
         ),
         List.of("A", "B", "C", "D"),
         List.of("철", "동", "금", "은"),
-        10
+        9
     );
     ladderOutputs.print();
     final List<Integer> expect = List.of(1, 0, 3, 2);
     assertThat(ladderOutputs.getRating()).isEqualTo(expect);
   }
+
+  @Test
+  @DisplayName("2-1-0-3 결과가 나와야한다")
+  void 테스트_2_1_0_3_순서로_나와야한다() {
+    LadderOutputs ladderOutputs = testHelper(
+        Set.of(
+            new Line(0, 0),
+            new Line(1, 1),
+            new Line(0, 2)
+        ),
+        List.of("A", "B", "C", "D"),
+        List.of("철", "동", "금", "은"),
+        9
+    );
+    ladderOutputs.print();
+    final List<Integer> expect = List.of(2, 1, 0, 3);
+    assertThat(ladderOutputs.getRating()).isEqualTo(expect);
+  }
+
 
   private static LadderOutputs testHelper(
       Set<Line> lines,
@@ -57,13 +76,14 @@ public class LadderSolverTest {
   ) {
     validationCheck(lines, userNames, prizes);
     final int participateCount = userNames.size();
+    Ladder ladder = Ladder.of(participateCount, rowMax, lines);
 
     Scene scene = getScene(
-        Ladder.of(participateCount, rowMax, lines),
+        ladder,
         userNames,
         prizes
     );
-    Results results = getResults(userNames, prizes);
+    Results results = getResults(userNames, prizes, ladder);
     List<Integer> rating = LadderSolver.calculate(participateCount, lines);
     return new LadderOutputs(scene, results, rating);
   }
@@ -83,16 +103,18 @@ public class LadderSolverTest {
         Users.of(usersNames),
         new Results(
             prizes,
-            Users.of(usersNames).getUsers()
+            Users.of(usersNames).getUsers(),
+            ladder
         )
     ).renderingScene();
     return scene;
   }
 
-  private static Results getResults(List<String> usersNames, List<String> prizes) {
+  private static Results getResults(List<String> usersNames, List<String> prizes, Ladder ladder) {
     return new Results(
         prizes,
-        Users.of(usersNames).getUsers()
+        Users.of(usersNames).getUsers(),
+        ladder
     );
   }
 
@@ -129,6 +151,7 @@ class LadderOutputs {
     for (String horizontalLine : this.getScene().getLadderArea()) {
       LOG.info(horizontalLine);
     }
+
     LOG.info(this.scene.prizeArea());
     for (String rate : this.results.findAllPrizesByUserOrAll("all")) {
       LOG.info(rate);

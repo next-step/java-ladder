@@ -14,8 +14,8 @@ public class LadderControllerTest {
   public void setUp() {
     consoleInput(
         List.of("pobi,honux,crong,jkjk",
-                "꽝,5000,꽝,3000",
                 "7",
+                "꽝,5000,꽝,3000",
                 "pobi",
                 "all")
             .stream()

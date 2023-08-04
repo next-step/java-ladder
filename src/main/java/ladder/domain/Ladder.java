@@ -69,10 +69,6 @@ public class Ladder {
     return lines.stream().anyMatch(line -> line.isSame(otherLine));
   }
 
-  public List<Integer> calculateOrderAtBottom() {
-    return LadderSolver.calculate(this.maxColumn.getValue(), lines);
-  }
-
   public Column getMaxColumn() {
     return maxColumn;
   }
