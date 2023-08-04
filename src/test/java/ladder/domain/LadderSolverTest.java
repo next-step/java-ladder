@@ -15,56 +15,6 @@ public class LadderSolverTest {
 
   private static final Logger LOG = LoggerFactory.getLogger(LadderSolverTest.class);
 
-  private static LadderOutputs testHelper(
-      Set<Line> lines,
-      List<String> userNames,
-      List<String> prizes,
-      int rowMax
-  ) {
-    validationCheck(lines, userNames, prizes);
-    final int participateCount = userNames.size();
-    Ladder ladder = Ladder.of(participateCount, rowMax, lines);
-
-    Scene scene = getScene(
-        ladder,
-        userNames,
-        prizes
-    );
-    Results results = getResults(userNames, prizes, ladder);
-    List<Integer> rating = LadderSolver.calculate(participateCount, lines);
-    return new LadderOutputs(scene, results, rating);
-  }
-
-  private static void validationCheck(
-      Set<Line> lines,
-      List<String> userNames,
-      List<String> prizes) {
-    assertThat(lines).isNotNull();
-    assertThat(userNames).isNotEmpty();
-    assertThat(prizes).isNotEmpty();
-    assertThat(userNames).hasSize(prizes.size());
-  }
-
-  private static Scene getScene(Ladder ladder, List<String> usersNames, List<String> prizes) {
-    Scene scene = Renderer.of(ladder,
-        Users.of(usersNames),
-        new Results(
-            prizes,
-            Users.of(usersNames).getUsers(),
-            ladder
-        )
-    ).renderingScene();
-    return scene;
-  }
-
-  private static Results getResults(List<String> usersNames, List<String> prizes, Ladder ladder) {
-    return new Results(
-        prizes,
-        Users.of(usersNames).getUsers(),
-        ladder
-    );
-  }
-
   @Test
   @DisplayName("빈 사다리에서의 등수 계산을 검증한다. 0-1-2-3 결과가 나와야한다")
   void 빈_사다리() {
@@ -115,6 +65,57 @@ public class LadderSolverTest {
     ladderOutputs.print();
     final List<Integer> expect = List.of(2, 1, 0, 3);
     assertThat(ladderOutputs.getRating()).isEqualTo(expect);
+  }
+
+
+  private static LadderOutputs testHelper(
+      Set<Line> lines,
+      List<String> userNames,
+      List<String> prizes,
+      int rowMax
+  ) {
+    validationCheck(lines, userNames, prizes);
+    final int participateCount = userNames.size();
+    Ladder ladder = Ladder.of(participateCount, rowMax, lines);
+
+    Scene scene = getScene(
+        ladder,
+        userNames,
+        prizes
+    );
+    Results results = getResults(userNames, prizes, ladder);
+    List<Integer> rating = LadderSolver.calculate(participateCount, lines);
+    return new LadderOutputs(scene, results, rating);
+  }
+
+  private static void validationCheck(
+      Set<Line> lines,
+      List<String> userNames,
+      List<String> prizes) {
+    assertThat(lines).isNotNull();
+    assertThat(userNames).isNotEmpty();
+    assertThat(prizes).isNotEmpty();
+    assertThat(userNames).hasSize(prizes.size());
+  }
+
+  private static Scene getScene(Ladder ladder, List<String> usersNames, List<String> prizes) {
+    Scene scene = Renderer.of(ladder,
+        Users.of(usersNames),
+        new Results(
+            prizes,
+            Users.of(usersNames).getUsers(),
+            ladder
+        )
+    ).renderingScene();
+    return scene;
+  }
+
+  private static Results getResults(List<String> usersNames, List<String> prizes, Ladder ladder) {
+    return new Results(
+        prizes,
+        Users.of(usersNames).getUsers(),
+        ladder
+    );
   }
 
 }
