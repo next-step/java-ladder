@@ -18,15 +18,18 @@ public class LadderSolverTest {
   @Test
   @DisplayName("빈 사다리에서의 등수 계산을 검증한다")
   void 빈_사다리() {
-    Outputs outputs = testHelper(
+    LadderOutputs ladderOutputs = testHelper(
         Collections.emptySet(),
         List.of("A", "B", "C", "D"),
         List.of("철", "동", "금", "은"),
         10
     );
     final List<Integer> expect = List.of(0, 1, 2, 3);
-    outputs.print();
-    assertThat(outputs.getRating()).hasSameElementsAs(expect);
+    ladderOutputs.print();
+    assertThat(ladderOutputs.getRating())
+        .as("")
+        .isEqualTo(expect);
+        //.hasSameElementsAs(expect);
   }
 
 
@@ -34,7 +37,7 @@ public class LadderSolverTest {
   @DisplayName("")
   void name3() {
 
-    Outputs outputs = testHelper(
+    LadderOutputs ladderOutputs = testHelper(
         Set.of(
             new Line(0, 0),
             new Line(2, 0)
@@ -44,9 +47,41 @@ public class LadderSolverTest {
         List.of("철", "동", "금", "은"),
         10
     );
-    outputs.print();
+    ladderOutputs.print();
     final List<Integer> expect = List.of(1, 0, 3, 2);
-    assertThat(outputs.getRating()).hasSameElementsAs(expect);
+    assertThat(ladderOutputs.getRating()).isEqualTo(expect);
+    for(int s : ladderOutputs.getRating()) {
+      System.out.println("s="+s);
+    }
+  }
+
+  private static LadderOutputs testHelper(
+      Set<Line> lines,
+      List<String> userNames,
+      List<String> prizes,
+      int rowMax
+  ) {
+    validationCheck(lines, userNames, prizes);
+    final int participateCount = userNames.size();
+
+    Scene scene = getScene(
+        Ladder.of(participateCount, rowMax, lines),
+        userNames,
+        prizes
+    );
+    Results results = getResults(userNames, prizes);
+    List<Integer> rating = LadderSolver.calculate(participateCount, lines);
+    return new LadderOutputs(scene, results, rating);
+  }
+
+  private static void validationCheck(
+      Set<Line> lines,
+      List<String> userNames,
+      List<String> prizes) {
+    assertThat(lines).isNotNull();
+    assertThat(userNames).isNotEmpty();
+    assertThat(prizes).isNotEmpty();
+    assertThat(userNames).hasSize(prizes.size());
   }
 
   private static Scene getScene(Ladder ladder, List<String> usersNames, List<String> prizes) {
@@ -67,46 +102,17 @@ public class LadderSolverTest {
     );
   }
 
-  private static Outputs testHelper(
-      Set<Line> lines,
-      List<String> userNames,
-      List<String> prizes,
-      int rowMax
-  ) {
-    validationCheck(lines, userNames, prizes);
-    final int participateCount = userNames.size();
-
-    Scene scene = getScene(
-        Ladder.of(participateCount, rowMax, lines),
-        userNames,
-        prizes
-    );
-    Results results = getResults(userNames, prizes);
-    List<Integer> rating = LadderSolver.calculate(participateCount, lines);
-    return new Outputs(scene, results, rating);
-  }
-
-  private static void validationCheck(
-      Set<Line> lines,
-      List<String> userNames,
-      List<String> prizes) {
-    assertThat(lines).isNotNull();
-    assertThat(userNames).isNotEmpty();
-    assertThat(prizes).isNotEmpty();
-    assertThat(userNames).hasSize(prizes.size());
-  }
-
 }
 
-class Outputs {
+class LadderOutputs {
 
-  private static final Logger LOG = LoggerFactory.getLogger(Outputs.class);
+  private static final Logger LOG = LoggerFactory.getLogger(LadderOutputs.class);
 
   private final Scene scene;
   private final Results results;
   private final List<Integer> rating;
 
-  public Outputs(Scene scene, Results results, List<Integer> rating) {
+  public LadderOutputs(Scene scene, Results results, List<Integer> rating) {
     this.scene = scene;
     this.results = results;
     this.rating = rating;
