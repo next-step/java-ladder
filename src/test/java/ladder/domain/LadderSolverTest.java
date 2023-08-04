@@ -16,7 +16,7 @@ public class LadderSolverTest {
   private static final Logger LOG = LoggerFactory.getLogger(LadderSolverTest.class);
 
   @Test
-  @DisplayName("빈 사다리에서의 등수 계산을 검증한다")
+  @DisplayName("빈 사다리에서의 등수 계산을 검증한다. 0-1-2-3 결과가 나와야한다")
   void 빈_사다리() {
     LadderOutputs ladderOutputs = testHelper(
         Collections.emptySet(),
@@ -29,19 +29,16 @@ public class LadderSolverTest {
     assertThat(ladderOutputs.getRating())
         .as("")
         .isEqualTo(expect);
-        //.hasSameElementsAs(expect);
   }
 
-
   @Test
-  @DisplayName("")
-  void name3() {
+  @DisplayName("1-0-3-2 결과가 나와야한다")
+  void 테스트_1_0_3_2_순서로_나와야한다() {
 
     LadderOutputs ladderOutputs = testHelper(
         Set.of(
             new Line(0, 0),
             new Line(2, 0)
-            //new Line(1, 1)
         ),
         List.of("A", "B", "C", "D"),
         List.of("철", "동", "금", "은"),
@@ -50,9 +47,6 @@ public class LadderSolverTest {
     ladderOutputs.print();
     final List<Integer> expect = List.of(1, 0, 3, 2);
     assertThat(ladderOutputs.getRating()).isEqualTo(expect);
-    for(int s : ladderOutputs.getRating()) {
-      System.out.println("s="+s);
-    }
   }
 
   private static LadderOutputs testHelper(
@@ -138,6 +132,9 @@ class LadderOutputs {
     LOG.info(this.scene.prizeArea());
     for (String rate : this.results.findAllPrizesByUserOrAll("all")) {
       LOG.info(rate);
+    }
+    for (int rate : this.rating) {
+      LOG.info("[rating : {}]", rate);
     }
   }
 }
