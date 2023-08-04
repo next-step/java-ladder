@@ -2,6 +2,7 @@ package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import ladder.present.Renderer;
@@ -14,22 +15,17 @@ public class LadderSolverTest {
 
   private static final Logger LOG = LoggerFactory.getLogger(LadderSolverTest.class);
 
-
   @Test
-  @DisplayName("")
-  void name2() {
+  @DisplayName("빈 사다리에서의 등수 계산을 검증한다")
+  void 빈_사다리() {
     Outputs outputs = testHelper(
-        Set.of(
-            //new Line(2, 2),
-            //new Line(0, 0)
-        ),
+        Collections.emptySet(),
         List.of("A", "B", "C", "D"),
         List.of("철", "동", "금", "은"),
         10
     );
     final List<Integer> expect = List.of(0, 1, 2, 3);
     outputs.print();
-
     assertThat(outputs.getRating()).hasSameElementsAs(expect);
   }
 
@@ -38,31 +34,20 @@ public class LadderSolverTest {
   @DisplayName("")
   void name3() {
 
-    Set<Line> lines = Set.of(
-        new Line(0, 0),
-        new Line(2, 2),
-        new Line(1, 1)
+    Outputs outputs = testHelper(
+        Set.of(
+            new Line(0, 0),
+            new Line(2, 0)
+            //new Line(1, 1)
+        ),
+        List.of("A", "B", "C", "D"),
+        List.of("철", "동", "금", "은"),
+        10
     );
-
-    final List<Integer> expect = List.of(0, 1, 2, 3);
-    final List<Integer> result = LadderSolver.calculate(4, lines);
-
-    Scene scene = getScene(
-        Ladder.of(4, 4, lines),
-        List.of("1", "2", "3", "4"),
-        List.of("")
-    );
-    for (String horizontalLine : scene.getLadderArea()) {
-      LOG.info(horizontalLine);
-    }
-    LOG.info(System.lineSeparator());
-    LOG.info(scene.prizeArea());
-
-    //scene.
-
-    assertThat(result).hasSameElementsAs(expect);
+    outputs.print();
+    final List<Integer> expect = List.of(1, 0, 3, 2);
+    assertThat(outputs.getRating()).hasSameElementsAs(expect);
   }
-
 
   private static Scene getScene(Ladder ladder, List<String> usersNames, List<String> prizes) {
     Scene scene = Renderer.of(ladder,
@@ -81,7 +66,6 @@ public class LadderSolverTest {
         Users.of(usersNames).getUsers()
     );
   }
-
 
   private static Outputs testHelper(
       Set<Line> lines,
@@ -106,7 +90,7 @@ public class LadderSolverTest {
       Set<Line> lines,
       List<String> userNames,
       List<String> prizes) {
-    assertThat(lines).isNotEmpty();
+    assertThat(lines).isNotNull();
     assertThat(userNames).isNotEmpty();
     assertThat(prizes).isNotEmpty();
     assertThat(userNames).hasSize(prizes.size());
