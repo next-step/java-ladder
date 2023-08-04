@@ -14,34 +14,23 @@ public class LadderSolverTest {
 
   private static final Logger LOG = LoggerFactory.getLogger(LadderSolverTest.class);
 
+
   @Test
   @DisplayName("")
   void name2() {
-    final int participateCount = 4;
-    Set<Line> lines = Set.of(
-        new Line(2, 2),
-        new Line(0, 0)
+    Outputs outputs = testHelper(
+        Set.of(
+            //new Line(2, 2),
+            //new Line(0, 0)
+        ),
+        List.of("A", "B", "C", "D"),
+        List.of("철", "동", "금", "은"),
+        10
     );
-
     final List<Integer> expect = List.of(0, 1, 2, 3);
-    final List<Integer> result = LadderSolver.calculate(participateCount, lines);
+    outputs.print();
 
-    Scene scene = getScene(
-        Ladder.of(participateCount, 10, lines),
-        List.of("A", "B", "C", "D"),
-        List.of("철", "동", "금", "은")
-    );
-    Results results = getResults(
-        List.of("A", "B", "C", "D"),
-        List.of("철", "동", "금", "은")
-    );
-    LOG.info(scene.userArea());
-    for (String horizontalLine : scene.getLadderArea()) {
-      LOG.info(horizontalLine);
-    }
-    LOG.info("\n\r");
-    LOG.info(scene.prizeArea());
-    assertThat(result).hasSameElementsAs(expect);
+    assertThat(outputs.getRating()).hasSameElementsAs(expect);
   }
 
 
@@ -85,10 +74,80 @@ public class LadderSolverTest {
     ).renderingScene();
     return scene;
   }
+
   private static Results getResults(List<String> usersNames, List<String> prizes) {
     return new Results(
         prizes,
         Users.of(usersNames).getUsers()
     );
+  }
+
+
+  private static Outputs testHelper(
+      Set<Line> lines,
+      List<String> userNames,
+      List<String> prizes,
+      int rowMax
+  ) {
+    validationCheck(lines, userNames, prizes);
+    final int participateCount = userNames.size();
+
+    Scene scene = getScene(
+        Ladder.of(participateCount, rowMax, lines),
+        userNames,
+        prizes
+    );
+    Results results = getResults(userNames, prizes);
+    List<Integer> rating = LadderSolver.calculate(participateCount, lines);
+    return new Outputs(scene, results, rating);
+  }
+
+  private static void validationCheck(
+      Set<Line> lines,
+      List<String> userNames,
+      List<String> prizes) {
+    assertThat(lines).isNotEmpty();
+    assertThat(userNames).isNotEmpty();
+    assertThat(prizes).isNotEmpty();
+    assertThat(userNames).hasSize(prizes.size());
+  }
+
+}
+
+class Outputs {
+
+  private static final Logger LOG = LoggerFactory.getLogger(Outputs.class);
+
+  private final Scene scene;
+  private final Results results;
+  private final List<Integer> rating;
+
+  public Outputs(Scene scene, Results results, List<Integer> rating) {
+    this.scene = scene;
+    this.results = results;
+    this.rating = rating;
+  }
+
+  public Scene getScene() {
+    return scene;
+  }
+
+  public Results getResults() {
+    return results;
+  }
+
+  public List<Integer> getRating() {
+    return rating;
+  }
+
+  public void print() {
+    LOG.info(this.getScene().userArea());
+    for (String horizontalLine : this.getScene().getLadderArea()) {
+      LOG.info(horizontalLine);
+    }
+    LOG.info(this.scene.prizeArea());
+    for (String rate : this.results.findAllPrizesByUserOrAll("all")) {
+      LOG.info(rate);
+    }
   }
 }
