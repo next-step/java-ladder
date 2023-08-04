@@ -16,8 +16,8 @@ public class LadderSolverTest {
   private static final Logger LOG = LoggerFactory.getLogger(LadderSolverTest.class);
 
   @Test
-  @DisplayName("빈 사다리에서의 등수 계산을 검증한다. 0-1-2-3 결과가 나와야한다")
-  void 빈_사다리() {
+  @DisplayName("Verify ranking calculations on the empty ladder")
+  void emptyLadder() {
     LadderOutputs ladderOutputs = testHelper(
         Collections.emptySet(),
         List.of("A", "B", "C", "D"),
@@ -32,8 +32,8 @@ public class LadderSolverTest {
   }
 
   @Test
-  @DisplayName("1-0-3-2 결과가 나와야한다")
-  void 테스트_1_0_3_2_순서로_나와야한다() {
+  @DisplayName("1-0-3-2 results should come out")
+  void result_1_0_3_2() {
 
     LadderOutputs ladderOutputs = testHelper(
         Set.of(
@@ -50,8 +50,8 @@ public class LadderSolverTest {
   }
 
   @Test
-  @DisplayName("2-1-0-3 결과가 나와야한다")
-  void 테스트_2_1_0_3_순서로_나와야한다() {
+  @DisplayName("2-1-0-3 results should come out")
+  void results_2_1_0_3() {
     LadderOutputs ladderOutputs = testHelper(
         Set.of(
             new Line(0, 0),
