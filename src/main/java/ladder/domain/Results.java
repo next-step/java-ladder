@@ -17,27 +17,16 @@ public class Results {
     this.ratedUserPrizeMap = mappingUserToPrizes(prizes, users, ladder);
   }
 
-  private static Map<User, Prize> mappingUserToPrizes(List<String> prizes, List<User> users,
+  private static Map<User, Prize> mappingUserToPrizes(
+      List<String> prizes,
+      List<User> users,
       Ladder ladder) {
-//    Map<User, Prize> collect = IntStream.range(0, prizes.size())
-//        .boxed()
-//        .collect(Collectors.toMap(
-//            users::get,
-//            integer -> new Prize(prizes.get(integer))
-//        ));
 
     List<Integer> rating = LadderSolver.calculate(users.size(), ladder.allLines());
-
-//    Map<User, Prize> collect = rating.stream()
-//        .collect(Collectors.toMap(
-//            users::get,
-//            orderNumber -> new Prize(prizes.get(orderNumber))));
     Map<User, Prize> collect = new HashMap<>();
     for (int i = 0; i < users.size(); i++) {
       collect.put(users.get(i), new Prize(prizes.get(rating.get(i))));
-      //collect.put(users.get(rating.get(i)), new Prize(prizes.get(rating.get(i))));
     }
-
     return collect;
   }
 
@@ -45,16 +34,9 @@ public class Results {
     return s.equals("all");
   }
 
-
   public List<String> getOriginalPrizes() {
     return originalPrizes;
   }
-
-//  public void confirmUserPrize(List<Integer> orders, List<User> users) {
-////    for (int i = 0; i < orders.size(); i++) {
-////      userPrizeMap.put(users.get(orders.get(i)), prizes.get(i));
-////    }
-//  }
 
   public List<String> findAllPrizesByUserOrAll(String query) {
     if (isAll(query)) {

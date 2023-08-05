@@ -60,11 +60,4 @@ class RendererTest {
         })
     );
   }
-
-
-  @Test
-  @DisplayName("결과 출력 테스트")
-  void name() {
-
-  }
 }
