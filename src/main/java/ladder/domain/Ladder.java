@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.IntStream;
 import ladder.utils.ProbabilityStrategyRandom;
@@ -67,10 +66,6 @@ public class Ladder {
 
   public boolean existLine(Line otherLine) {
     return lines.stream().anyMatch(line -> line.isSame(otherLine));
-  }
-
-  public List<Integer> orderOnBottom() {
-    return LadderSolver.calculate(this.maxColumn.getValue(), lines);
   }
 
   public Column getMaxColumn() {

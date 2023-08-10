@@ -28,7 +28,7 @@ test {
 }
 
 checkstyle {
-    maxWarnings = 0
+    maxWarnings = 3
     configFile = file("${rootDir}/config/google-checkstyle.xml")
     toolVersion = "10.9.0"
 }

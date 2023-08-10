@@ -30,7 +30,6 @@ public class Renderer {
     this.ladder = ladder;
     this.users = users;
     this.results = results;
-    results.confirmUserPrize(ladder.orderOnBottom(), users.getUsers());
   }
 
   public static Renderer of(Ladder ladder, Users users, Results results) {
@@ -52,7 +51,7 @@ public class Renderer {
   }
 
   public String renderingResultArea() {
-    return results.getPrizes()
+    return results.getOriginalPrizes()
         .stream()
         .map(this::unifyWith)
         .collect(Collectors.joining())

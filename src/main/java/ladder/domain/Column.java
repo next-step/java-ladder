@@ -7,10 +7,8 @@ import ladder.exception.OutOfColumnRangeException;
 
 public class Column {
 
-  private static final int COLUMN_CACHE_MAX = 50;
-
   private static final Map<Integer, Column> COLUMNS_CACHE =
-      IntStream.rangeClosed(0, COLUMN_CACHE_MAX)
+      IntStream.rangeClosed(0, 50)
           .boxed()
           .collect(Collectors.toMap(i -> i, Column::new));
 

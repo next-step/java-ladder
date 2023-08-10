@@ -3,6 +3,7 @@ package ladder.present;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+import ladder.domain.Ladder;
 import ladder.domain.Results;
 import ladder.domain.Scene;
 import ladder.domain.User;
@@ -51,13 +52,13 @@ public class Presenter {
     log.info(userNames);
   }
 
-  public Results results(Users users) {
+  public Results results(Users users, Ladder ladder) {
     log.info("\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
     return new Results(
-        Arrays.stream(
-            scanner.nextLine()
-                .split(",")
-        ).collect(Collectors.toList()), users.getUsers()
+        Arrays.stream(scanner.nextLine().split(","))
+            .collect(Collectors.toList()),
+        users.getUsers(),
+        ladder
     );
   }
 
@@ -67,8 +68,9 @@ public class Presenter {
 
   public void renderingResults(Scene scene, Results results) {
     log.info("\n결과를 보고 싶은 사람은?");
-    String s = scanner.nextLine();
+    String command = scanner.nextLine();
+    log.info("{}", command);
     log.info("\n실행결과");
-    results.findAllPrizesByUserOrAll(s).forEach(log::info);
+    results.findAllPrizesByUserOrAll(command).forEach(log::info);
   }
 }

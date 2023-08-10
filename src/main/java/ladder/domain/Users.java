@@ -11,6 +11,13 @@ public class Users {
     this.users = users;
   }
 
+  public static Users of(List<String> names) {
+    return new Users(names.stream()
+        .map(User::new)
+        .collect(Collectors.toList()));
+  }
+
+
   public int count() {
     return users.size();
   }
