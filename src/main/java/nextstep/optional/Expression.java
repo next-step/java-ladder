@@ -9,7 +9,8 @@ enum Expression {
         this.expression = expression;
     }
 
-    private static boolean matchExpression(Expression e, String expression) {
+    private static boolean matchExpression(Expression e,
+                                           String expression) {
         return expression.equals(e.expression);
     }
 
