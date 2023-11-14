@@ -1,7 +1,8 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 public class Name {
 
+    private static final int MAX_LENGTH = 5;
     private final String name;
 
     public Name(String name) {
@@ -27,6 +28,6 @@ public class Name {
     }
 
     private static boolean isOverThenFive(String name) {
-        return name.length() > 5;
+        return name.length() > MAX_LENGTH;
     }
 }
