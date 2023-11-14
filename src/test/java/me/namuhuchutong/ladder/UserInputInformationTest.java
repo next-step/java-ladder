@@ -39,7 +39,7 @@ class UserInputInformationTest {
 
     @DisplayName("문자열과 최대 높이 10을 넘지 않는 경우 정상적으로 객체를 생성한다.")
     @Test
-    void test() {
+    void if_strings_with_comma_and_number_not_exceed_10_will_create_object() {
         //given
         String given = "a,b,c,d";
         int height = 5;
