@@ -10,8 +10,8 @@ class LineTest {
 
     @Test
     void 입력된_숫자_만큼_라인이_생성_된다() {
-        Line actual = new Line(List.of(Boolean.TRUE, Boolean.TRUE));
-        Line expected = new Line(List.of(Boolean.TRUE, Boolean.TRUE));
+        Line actual = new Line(2);
+        Line expected = new Line(List.of(Boolean.FALSE, Boolean.FALSE));
 
         assertThat(actual).isEqualTo(expected);
     }
@@ -38,5 +38,14 @@ class LineTest {
         boolean actual = line.canDraw(1);
 
         assertThat(actual).isTrue();
+    }
+
+    @Test
+    void 라인을_그릴_수_있다() {
+        Line actual = new Line(List.of(Boolean.FALSE, Boolean.FALSE, Boolean.FALSE));
+        actual.draw(1, true);
+        Line expected = new Line(List.of(Boolean.FALSE, Boolean.TRUE, Boolean.FALSE));
+
+        assertThat(actual).isEqualTo(expected);
     }
 }
