@@ -2,8 +2,6 @@ package nextstep.ladder.domain;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Line {
     private final List<Boolean> points;
@@ -12,10 +10,19 @@ public class Line {
         this.points = points;
     }
 
-    public Line(int countOfPerson) {
-        this.points = IntStream.range(0, countOfPerson)
-                .mapToObj(operand -> Boolean.TRUE)
-                .collect(Collectors.toList());
+    public boolean canDraw(int index) {
+        boolean previous = hasPreviousLine(index);
+        boolean next = hasNextLine(index);
+
+        return !previous && !next;
+    }
+
+    private boolean hasNextLine(int index) {
+        return index < points.size() - 1 && points.get(index + 1);
+    }
+
+    private boolean hasPreviousLine(int index) {
+        return index > 0 && points.get(index - 1);
     }
 
     @Override
