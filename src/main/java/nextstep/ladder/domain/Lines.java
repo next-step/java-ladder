@@ -11,6 +11,10 @@ public class Lines {
         this.lines = List.copyOf(lines);
     }
 
+    public List<Line> getAll() {
+        return this.lines;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -22,9 +26,5 @@ public class Lines {
     @Override
     public int hashCode() {
         return Objects.hash(lines);
-    }
-
-    public List<Line> getAll() {
-        return this.lines;
     }
 }

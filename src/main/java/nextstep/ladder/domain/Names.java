@@ -26,5 +26,4 @@ public class Names {
     public int hashCode() {
         return Objects.hash(names);
     }
-
 }
