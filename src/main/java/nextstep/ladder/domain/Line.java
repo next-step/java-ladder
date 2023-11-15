@@ -10,7 +10,6 @@ public class Line {
 
     public Line(int count) {
         this(Collections.nCopies(count, Boolean.FALSE));
-
     }
 
     public Line(List<Boolean> points) {
