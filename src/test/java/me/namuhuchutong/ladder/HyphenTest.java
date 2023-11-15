@@ -12,7 +12,7 @@ class HyphenTest {
     void check_hyphen_object_correct_element() {
         //given
         Character hyphen = '-';
-        LadderExpression created = Hyphen.create();
+        LadderExpression created = new Hyphen();
 
         //when
         boolean result = hyphen.equals(created.getValue());

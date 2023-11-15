@@ -12,7 +12,7 @@ class VerticalBarTest {
     void check_vertical_bar_object_correct_element() {
         //given
         Character verticalBar = '|';
-        LadderExpression created = VerticalBar.create();
+        LadderExpression created = new VerticalBar();
 
         //when
         boolean result = verticalBar.equals(created.getValue());

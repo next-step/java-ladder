@@ -4,11 +4,12 @@ public class VerticalBar extends LadderExpression {
 
     private static final char VERTICAL_BAR = '|';
 
-    public static VerticalBar create() {
-        return new VerticalBar();
+    public VerticalBar() {
+        super(VERTICAL_BAR);
     }
 
-    private VerticalBar() {
-        super(VERTICAL_BAR);
+    @Override
+    public String toString() {
+        return value.toString();
     }
 }

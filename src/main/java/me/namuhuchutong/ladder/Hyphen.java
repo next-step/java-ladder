@@ -4,11 +4,12 @@ public class Hyphen extends LadderExpression {
 
     private static final char HYPHEN = '-';
 
-    public static Hyphen create() {
-        return new Hyphen();
+    public Hyphen() {
+        super(HYPHEN);
     }
 
-    private Hyphen() {
-        super(HYPHEN);
+    @Override
+    public String toString() {
+        return value.toString();
     }
 }
