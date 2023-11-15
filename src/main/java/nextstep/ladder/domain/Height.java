@@ -18,4 +18,8 @@ public class Height {
     private boolean isPositive(int height) {
         return height > 0;
     }
+
+    public int height() {
+        return this.height;
+    }
 }
