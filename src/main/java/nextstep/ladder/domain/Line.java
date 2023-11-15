@@ -36,6 +36,10 @@ public class Line {
         this.points.set(index, maybeDraw);
     }
 
+    public List<Boolean> getAll() {
+        return this.points;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -48,5 +52,4 @@ public class Line {
     public int hashCode() {
         return Objects.hash(points);
     }
-
 }

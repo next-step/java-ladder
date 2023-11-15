@@ -38,8 +38,9 @@ public class LadderFactory {
 
     private static Line createLine(List<Name> playerNames,
                                    Supplier<Boolean> isDraw) {
-        Line line = new Line(playerNames.size());
-        IntStream.range(0, playerNames.size())
+        int lineCount = playerNames.size() - 1;
+        Line line = new Line(lineCount);
+        IntStream.range(0, lineCount)
                 .filter(line::canDraw)
                 .forEach(i -> line.draw(i, isDraw.get()));
 
