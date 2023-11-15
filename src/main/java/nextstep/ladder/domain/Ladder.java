@@ -5,13 +5,18 @@ import java.util.Objects;
 
 public class Ladder {
 
-    private List<Name> names;
+    private final Names names;
     private List<Line> lines;
 
-    public Ladder(List<Name> names,
+    public Ladder(Names names,
                   List<Line> lines) {
         this.names = names;
         this.lines = lines;
+    }
+
+    public Ladder(List<Name> names,
+                  List<Line> lines) {
+        this(new Names(names), lines);
     }
 
     @Override
