@@ -10,7 +10,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 class LineTest {
 
     @Test
-    void 입력된_숫자_만큼_라인이_생성_된다() {
+    @DisplayName("입력된 숫자 만큼 라인이 생성 된다")
+    void newLine1() {
         Line actual = new Line(2);
         Line expected = new Line(List.of(Boolean.FALSE, Boolean.FALSE));
 
@@ -18,7 +19,8 @@ class LineTest {
     }
 
     @Test
-    void 이전_위치에_가로선이_있을_경우_그릴_수_없다() {
+    @DisplayName("이전 위치에 가로선이 있을 경우 그릴 수 없다")
+    void newLine2() {
         Line line = new Line(List.of(Boolean.TRUE, Boolean.FALSE, Boolean.FALSE));
         boolean actual = line.canDraw(1);
 
@@ -26,7 +28,8 @@ class LineTest {
     }
 
     @Test
-    void 다음_위치에_가로선이_있을_경우_그릴_수_없다() {
+    @DisplayName("다음 위치에 가로선이 있을 경우 그릴 수 없다")
+    void newLine3() {
         Line line = new Line(List.of(Boolean.FALSE, Boolean.FALSE, Boolean.TRUE));
         boolean actual = line.canDraw(1);
 
@@ -34,7 +37,8 @@ class LineTest {
     }
 
     @Test
-    void 이전과_다음_위치에_가로선이_없을_경우_그릴_수_있다() {
+    @DisplayName("이전과 다음 위치에 가로선이 없을 경우 그릴 수 있다")
+    void newLine4() {
         Line line = new Line(List.of(Boolean.FALSE, Boolean.FALSE, Boolean.FALSE));
         boolean actual = line.canDraw(1);
 
@@ -42,7 +46,8 @@ class LineTest {
     }
 
     @Test
-    void 라인을_그릴_수_있다() {
+    @DisplayName("라인을 그릴 수 있다")
+    void draw() {
         Line actual = new Line(List.of(Boolean.FALSE, Boolean.FALSE, Boolean.FALSE));
         actual.draw(1, true);
         Line expected = new Line(List.of(Boolean.FALSE, Boolean.TRUE, Boolean.FALSE));

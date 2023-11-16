@@ -1,12 +1,14 @@
 package nextstep.ladder.domain;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class HeightTest {
 
     @Test
-    void 높이가_1_이하이면_예외가_발생_한다() {
+    @DisplayName("높이가 0 이하이면 예외가 발생 한다")
+    void newHeight() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> new Height(0));
     }
 
