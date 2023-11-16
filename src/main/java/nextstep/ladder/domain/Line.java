@@ -8,12 +8,12 @@ import java.util.Objects;
 public class Line {
     private List<Boolean> points;
 
-    public Line(int count) {
-        this(Collections.nCopies(count, Boolean.FALSE));
-    }
-
     public Line(List<Boolean> points) {
         this.points = new ArrayList<>(points);
+    }
+
+    public Line(int count) {
+        this(Collections.nCopies(count, Boolean.FALSE));
     }
 
     public boolean canDraw(int index) {

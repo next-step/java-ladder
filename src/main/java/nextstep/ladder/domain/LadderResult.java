@@ -9,13 +9,12 @@ public class LadderResult {
     private final Map<Name, String> values;
 
     public LadderResult(Map<Name, String> values) {
-        this.values = values;
+        this.values = Map.copyOf(values);
     }
 
     public LadderResult(Ladder ladder,
                         List<String> results) {
-        PlayerResults playerResults = ladder.playerResult();
-        this.values = Map.copyOf(playerResults.ladderResult(results));
+        this(ladder.playerResult().ladderResult(results));
     }
 
     public Map<Name, String> result() {
