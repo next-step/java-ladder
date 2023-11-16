@@ -15,6 +15,13 @@ public class Lines {
         return this.lines;
     }
 
+    public int findEndPoint(int startPoint) {
+        return lines.stream()
+                .reduce(startPoint,
+                        (point, line) -> point + line.calculatePoint(point),
+                        Integer::sum);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
