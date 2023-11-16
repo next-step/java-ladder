@@ -10,6 +10,6 @@ public class EmptySpace extends LadderExpression {
 
     @Override
     public String toString() {
-        return value.toString();
+        return value.toString().repeat(DEFAULT_SCAFFOLD_SIZE);
     }
 }
