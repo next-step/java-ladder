@@ -1,13 +1,12 @@
 package me.namuhuchutong.ladder.domain;
 
-import me.namuhuchutong.ladder.domain.wrapper.LadderExpression;
+import me.namuhuchutong.ladder.domain.wrapper.*;
 import me.namuhuchutong.ladder.domain.factory.ScaffoldFactory;
-import me.namuhuchutong.ladder.domain.wrapper.VerticalBar;
-import me.namuhuchutong.ladder.domain.wrapper.EmptySpace;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+
+import static java.util.Collections.*;
 
 public class Row {
 
@@ -16,7 +15,7 @@ public class Row {
     public static Row from(int participants, ScaffoldFactory factory) {
         List<LadderExpression> collect = initializeLadderRow();
         addScaffold(participants, collect, factory);
-        return new Row(Collections.unmodifiableList(collect));
+        return new Row(unmodifiableList(collect));
     }
 
     private static void addScaffold(int participants,
@@ -41,16 +40,14 @@ public class Row {
     }
 
     private void validateContinuousScaffold(List<LadderExpression> values) {
-        boolean scaffoldFound = false;
-        for(LadderExpression expression : values) {
-            if (expression.getValue().equals('|')) {
-                continue;
-            }
-            if (expression.getValue().equals('-') && scaffoldFound) {
-                throw new IllegalArgumentException("사다리 발판은 연속적일 수 없습니다.");
-            }
-            scaffoldFound = expression.getValue().equals('-');
-        }
+        Flag scaffoldFound = new Flag();
+        values.stream()
+              .filter(expression -> !(expression instanceof VerticalBar))
+              .forEach(expression -> {
+                  if ((expression instanceof Hyphen) && scaffoldFound.peek()) {
+                      throw new IllegalArgumentException("사다리 발판은 연속적일 수 없습니다.");
+                  }
+                  scaffoldFound.setFlag(expression instanceof Hyphen);});
     }
 
     @Override
