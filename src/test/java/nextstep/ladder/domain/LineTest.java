@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -45,6 +46,36 @@ class LineTest {
         Line actual = new Line(List.of(Boolean.FALSE, Boolean.FALSE, Boolean.FALSE));
         actual.draw(1, true);
         Line expected = new Line(List.of(Boolean.FALSE, Boolean.TRUE, Boolean.FALSE));
+
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("오른쪽으로 이동을 한다")
+    void calculatePoint1() {
+        Line line = new Line(List.of(Boolean.FALSE, Boolean.TRUE, Boolean.FALSE));
+        int actual = line.calculatePoint(1);
+        int expected = 1;
+
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("왼쪽으로 이동을 한다")
+    void calculatePoint2() {
+        Line line = new Line(List.of(Boolean.TRUE, Boolean.FALSE, Boolean.FALSE));
+        int actual = line.calculatePoint(1);
+        int expected = -1;
+
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("이동하지 않는다")
+    void calculatePoint3() {
+        Line line = new Line(List.of(Boolean.FALSE, Boolean.FALSE, Boolean.FALSE));
+        int actual = line.calculatePoint(1);
+        int expected = 0;
 
         assertThat(actual).isEqualTo(expected);
     }

@@ -40,6 +40,24 @@ public class Line {
         return this.points;
     }
 
+    public int calculatePoint(int point) {
+        if (canMoveRight(point)) {
+            return 1;
+        }
+        if (canMoveLeft(point)) {
+            return -1;
+        }
+        return 0;
+    }
+
+    private boolean canMoveRight(int point) {
+        return point < points.size() && points.get(point);
+    }
+
+    private boolean canMoveLeft(int point) {
+        return point > 0 && points.get(point - 1);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
