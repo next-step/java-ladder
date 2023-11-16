@@ -3,8 +3,8 @@ package me.namuhuchutong.ladder.dto;
 public class UserInputInformation {
 
     private static final String NOT_NUMERIC_AND_COMMA_REGEX = "^[A-Za-z,]+$";
-    private static final int ZERO = 0;
-    private static final int TEN = 10;
+    private static final int MINIMUM_HEIGHT = 0;
+    private static final int MAXIMUM_HEIGHT = 10;
 
     private final String inputNames;
     private final int ladderHeight;
@@ -17,7 +17,7 @@ public class UserInputInformation {
     }
 
     private void validateHeight(int ladderHeight) {
-        if (ladderHeight <= ZERO || TEN < ladderHeight) {
+        if (ladderHeight <= MINIMUM_HEIGHT || MAXIMUM_HEIGHT < ladderHeight) {
             throw new IllegalArgumentException("사다리 높이는 1~10 사이 입니다.");
         }
     }
