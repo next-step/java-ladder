@@ -18,13 +18,13 @@ public class StreamStudyTest {
 
     @Test
     public void countWords() throws Exception {
-        long result = StreamStudy.countWords();
+        long result = StreamStudy.countWords(number -> number > 12);
         System.out.println("result : " + result);
     }
 
     @Test
     public void printLongestWordTop100() throws Exception {
-        StreamStudy.printLongestWordTop100();
+        StreamStudy.printLongestWordTop100(number -> number > 12);
     }
 
     @Test
