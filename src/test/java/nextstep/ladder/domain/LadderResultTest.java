@@ -3,15 +3,17 @@ package nextstep.ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class LadderTest {
+class LadderResultTest {
 
     @Test
-    @DisplayName("사다리로 플레이어 결과 좌표를 알 수 있다")
-    void playerResults() {
+    @DisplayName("사다리로 결과를 알 수 있다")
+    void ladderResult() {
         Lines lines = new Lines(List.of(
                 new Line(List.of(Boolean.TRUE)),
                 new Line(List.of(Boolean.FALSE))));
@@ -19,9 +21,13 @@ class LadderTest {
                 new Name("pobi"),
                 new Name("honux")));
         Ladder ladder = new Ladder(names, lines);
+        List<String> result = List.of("꽝", "3000");
 
-        List<PlayerResult> actual = ladder.playerResults();
-        List<PlayerResult> expected = List.of(new PlayerResult(new Name("pobi"), 1), new PlayerResult(new Name("honux"), 0));
+        LadderResult actual = new LadderResult(ladder, result);
+        Map<PlayerResult, String> values = new HashMap<>();
+        values.put(new PlayerResult(new Name("pobi"), 1), "3000");
+        values.put(new PlayerResult(new Name("honux"), 0), "꽝");
+        LadderResult expected = new LadderResult(values);
 
         assertThat(actual).isEqualTo(expected);
     }

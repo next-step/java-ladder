@@ -34,4 +34,8 @@ public class Lines {
     public int hashCode() {
         return Objects.hash(lines);
     }
+
+    public int size() {
+        return this.lines.size();
+    }
 }

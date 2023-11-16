@@ -27,6 +27,10 @@ public class Ladder {
         return this.names;
     }
 
+    public List<PlayerResult> playerResults() {
+        return names.createResults(lines);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
