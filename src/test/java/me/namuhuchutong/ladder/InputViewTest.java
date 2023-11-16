@@ -1,6 +1,6 @@
 package me.namuhuchutong.ladder;
 
-import org.assertj.core.api.Assertions;
+import me.namuhuchutong.ladder.ui.InputView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,6 @@
-package me.namuhuchutong.ladder;
+package me.namuhuchutong.ladder.ui;
+
+import me.namuhuchutong.ladder.dto.LadderResult;
 
 public class OutputView {
 

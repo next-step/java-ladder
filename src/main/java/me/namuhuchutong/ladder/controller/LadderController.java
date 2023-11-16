@@ -1,4 +1,12 @@
-package me.namuhuchutong.ladder;
+package me.namuhuchutong.ladder.controller;
+
+import me.namuhuchutong.ladder.domain.Names;
+import me.namuhuchutong.ladder.domain.Rows;
+import me.namuhuchutong.ladder.domain.factory.ScaffoldFactory;
+import me.namuhuchutong.ladder.dto.LadderResult;
+import me.namuhuchutong.ladder.dto.UserInputInformation;
+import me.namuhuchutong.ladder.ui.InputView;
+import me.namuhuchutong.ladder.ui.OutputView;
 
 public class LadderController {
 

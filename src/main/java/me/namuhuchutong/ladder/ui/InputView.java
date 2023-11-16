@@ -1,4 +1,4 @@
-package me.namuhuchutong.ladder;
+package me.namuhuchutong.ladder.ui;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

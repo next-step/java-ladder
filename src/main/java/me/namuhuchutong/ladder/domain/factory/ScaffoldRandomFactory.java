@@ -1,4 +1,8 @@
-package me.namuhuchutong.ladder;
+package me.namuhuchutong.ladder.domain.factory;
+
+import me.namuhuchutong.ladder.domain.wrapper.LadderExpression;
+import me.namuhuchutong.ladder.domain.wrapper.EmptySpace;
+import me.namuhuchutong.ladder.domain.wrapper.Hyphen;
 
 import java.util.Random;
 

@@ -1,4 +1,4 @@
-package me.namuhuchutong.ladder;
+package me.namuhuchutong.ladder.domain.wrapper;
 
 public class VerticalBar extends LadderExpression {
 

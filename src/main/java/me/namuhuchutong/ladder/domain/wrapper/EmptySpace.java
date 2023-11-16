@@ -1,10 +1,10 @@
-package me.namuhuchutong.ladder;
+package me.namuhuchutong.ladder.domain.wrapper;
 
 public class EmptySpace extends LadderExpression {
 
     private static final Character EMPTY = ' ';
 
-    protected EmptySpace() {
+    public EmptySpace() {
         super(EMPTY);
     }
 

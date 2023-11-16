@@ -1,4 +1,6 @@
-package me.namuhuchutong.ladder;
+package me.namuhuchutong.ladder.domain;
+
+import me.namuhuchutong.ladder.domain.factory.ScaffoldFactory;
 
 import java.util.List;
 import java.util.stream.Stream;

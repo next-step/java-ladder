@@ -1,4 +1,9 @@
-package me.namuhuchutong.ladder;
+package me.namuhuchutong.ladder.domain;
+
+import me.namuhuchutong.ladder.domain.wrapper.LadderExpression;
+import me.namuhuchutong.ladder.domain.factory.ScaffoldFactory;
+import me.namuhuchutong.ladder.domain.wrapper.VerticalBar;
+import me.namuhuchutong.ladder.domain.wrapper.EmptySpace;
 
 import java.util.ArrayList;
 import java.util.Collections;

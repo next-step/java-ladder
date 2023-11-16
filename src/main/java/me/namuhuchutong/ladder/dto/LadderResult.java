@@ -1,4 +1,7 @@
-package me.namuhuchutong.ladder;
+package me.namuhuchutong.ladder.dto;
+
+import me.namuhuchutong.ladder.domain.Names;
+import me.namuhuchutong.ladder.domain.Rows;
 
 public class LadderResult {
 

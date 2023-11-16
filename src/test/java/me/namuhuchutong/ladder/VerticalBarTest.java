@@ -1,5 +1,7 @@
 package me.namuhuchutong.ladder;
 
+import me.namuhuchutong.ladder.domain.wrapper.LadderExpression;
+import me.namuhuchutong.ladder.domain.wrapper.VerticalBar;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
