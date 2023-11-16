@@ -17,6 +17,10 @@ public class PlayerResult {
         return this.endPoint;
     }
 
+    public Name name() {
+        return this.name;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -29,4 +33,5 @@ public class PlayerResult {
     public int hashCode() {
         return Objects.hash(name, endPoint);
     }
+
 }

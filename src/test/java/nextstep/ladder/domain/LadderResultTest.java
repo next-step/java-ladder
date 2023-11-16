@@ -24,9 +24,9 @@ class LadderResultTest {
         List<String> result = List.of("꽝", "3000");
 
         LadderResult actual = new LadderResult(ladder, result);
-        Map<PlayerResult, String> values = new HashMap<>();
-        values.put(new PlayerResult(new Name("pobi"), 1), "3000");
-        values.put(new PlayerResult(new Name("honux"), 0), "꽝");
+        Map<Name, String> values = new HashMap<>();
+        values.put(new Name("pobi"), "3000");
+        values.put(new Name("honux"), "꽝");
         LadderResult expected = new LadderResult(values);
 
         assertThat(actual).isEqualTo(expected);

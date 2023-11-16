@@ -1,14 +1,11 @@
 package nextstep.ladder.domain;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class LadderResult {
-    private final Map<PlayerResult, String> values;
+    private final Map<Name, String> values;
 
-    public LadderResult(Map<PlayerResult, String> values) {
+    public LadderResult(Map<Name, String> values) {
         this.values = values;
     }
 
@@ -20,9 +17,16 @@ public class LadderResult {
 
     private void calculateResults(Ladder ladder,
                                   List<String> results) {
-        for (PlayerResult playerResult : ladder.playerResults()) {
-            values.put(playerResult, results.get(playerResult.endPoint()));
-        }
+        ladder.playerResults()
+                .forEach(playerResult -> values.put(playerResult.name(), results.get(playerResult.endPoint())));
+    }
+
+    public Map<Name, String> result() {
+        return Collections.unmodifiableMap(this.values);
+    }
+
+    public String result(String name) {
+        return this.values.get(new Name(name));
     }
 
     @Override
@@ -37,4 +41,5 @@ public class LadderResult {
     public int hashCode() {
         return Objects.hash(values);
     }
+
 }
