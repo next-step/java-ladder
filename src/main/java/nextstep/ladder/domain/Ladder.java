@@ -27,7 +27,7 @@ public class Ladder {
         return this.names;
     }
 
-    public List<PlayerResult> playerResults() {
+    public PlayerResults playerResult() {
         return names.createResults(lines);
     }
 

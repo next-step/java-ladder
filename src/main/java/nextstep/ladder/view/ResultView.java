@@ -13,6 +13,7 @@ public class ResultView {
     private static final String HORIZONTAL_LINE = "-----";
     private static final String VERTICAL_LINE = "     ";
     private static final String START_LINE = "|";
+    private static final String ALL = "all";
 
     public void ladderResult(Ladder ladder,
                              List<String> result) {
@@ -57,7 +58,7 @@ public class ResultView {
     public void result(LadderResult ladderResult,
                        String name) {
         System.out.println(RESULT);
-        if (name.equals("all")) {
+        if (name.equals(ALL)) {
             ladderResult.result()
                     .forEach((player, result) -> System.out.println(player + " : " + result));
             return;

@@ -12,6 +12,8 @@ import java.util.Scanner;
 
 public class LadderController {
 
+    private static final String ALL = "all";
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         InputView inputView = new InputView(scanner);
@@ -29,7 +31,7 @@ public class LadderController {
         while (true) {
             String name = inputView.inputName();
             resultView.result(ladderResult, name);
-            if ("all".equals(name)) {
+            if (ALL.equals(name)) {
                 break;
             }
         }

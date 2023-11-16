@@ -1,6 +1,9 @@
 package nextstep.ladder.domain;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 public class LadderResult {
     private final Map<Name, String> values;
@@ -11,14 +14,8 @@ public class LadderResult {
 
     public LadderResult(Ladder ladder,
                         List<String> results) {
-        this.values = new HashMap<>();
-        calculateResults(ladder, results);
-    }
-
-    private void calculateResults(Ladder ladder,
-                                  List<String> results) {
-        ladder.playerResults()
-                .forEach(playerResult -> values.put(playerResult.name(), results.get(playerResult.endPoint())));
+        PlayerResults playerResults = ladder.playerResult();
+        this.values = Map.copyOf(playerResults.ladderResult(results));
     }
 
     public Map<Name, String> result() {

@@ -16,10 +16,10 @@ public class Names {
         return this.names;
     }
 
-    public List<PlayerResult> createResults(Lines lines) {
-        return IntStream.range(0, names.size())
+    public PlayerResults createResults(Lines lines) {
+        return new PlayerResults(IntStream.range(0, names.size())
                 .mapToObj(i -> new PlayerResult(names.get(i), lines.findEndPoint(i)))
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
     }
 
     @Override

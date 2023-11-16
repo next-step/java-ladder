@@ -12,16 +12,12 @@ class LadderTest {
     @Test
     @DisplayName("사다리로 플레이어 결과 좌표를 알 수 있다")
     void playerResults() {
-        Lines lines = new Lines(List.of(
-                new Line(List.of(Boolean.TRUE)),
-                new Line(List.of(Boolean.FALSE))));
-        Names names = new Names(List.of(
-                new Name("pobi"),
-                new Name("honux")));
+        Lines lines = new Lines(List.of(new Line(List.of(Boolean.TRUE)), new Line(List.of(Boolean.FALSE))));
+        Names names = new Names(List.of(new Name("pobi"), new Name("honux")));
         Ladder ladder = new Ladder(names, lines);
 
-        List<PlayerResult> actual = ladder.playerResults();
-        List<PlayerResult> expected = List.of(new PlayerResult(new Name("pobi"), 1), new PlayerResult(new Name("honux"), 0));
+        PlayerResults actual = ladder.playerResult();
+        PlayerResults expected = new PlayerResults(List.of(new PlayerResult(new Name("pobi"), 1), new PlayerResult(new Name("honux"), 0)));
 
         assertThat(actual).isEqualTo(expected);
     }
