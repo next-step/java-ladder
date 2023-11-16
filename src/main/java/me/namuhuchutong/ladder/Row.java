@@ -47,4 +47,11 @@ public class Row {
             scaffoldFound = expression.getValue().equals('-');
         }
     }
+
+    @Override
+    public String toString() {
+        return this.values.stream()
+                          .map(LadderExpression::toString)
+                          .reduce("", (previous, newOne) -> previous + newOne);
+    }
 }

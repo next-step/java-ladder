@@ -30,4 +30,11 @@ public class Names {
     public int size() {
         return this.values.size();
     }
+
+    public String getNames(String format) {
+        return this.values.stream()
+                          .map(Name::getName)
+                          .map(name -> String.format(format, name))
+                          .reduce("", (previous, newOne) -> previous + newOne);
+    }
 }

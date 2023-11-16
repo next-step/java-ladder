@@ -32,4 +32,12 @@ public class Rows {
     private boolean isLessThanZeroAndBiggerThanTen(List<Row> values) {
         return values.size() < 1 || 10 < values.size();
     }
+
+    @Override
+    public String toString() {
+        return this.values.stream()
+                          .map(Row::toString)
+                          .map(string -> string + "\n")
+                          .reduce("", (previous, newOne) -> previous + newOne);
+    }
 }
