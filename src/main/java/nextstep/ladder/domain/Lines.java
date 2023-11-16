@@ -35,7 +35,4 @@ public class Lines {
         return Objects.hash(lines);
     }
 
-    public int size() {
-        return this.lines.size();
-    }
 }
