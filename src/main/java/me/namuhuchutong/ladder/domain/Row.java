@@ -15,17 +15,17 @@ public class Row {
 
     public static Row from(int participants, ScaffoldFactory factory) {
         List<LadderExpressionEnum> collect = initializeLadderRow();
-        addScaffold(participants, collect, factory);
+        collect.addAll(addScaffold(participants, factory));
         return new Row(unmodifiableList(collect));
     }
 
-    private static void addScaffold(int participants,
-                                    List<LadderExpressionEnum> collect,
-                                    ScaffoldFactory factory) {
+    private static List<LadderExpressionEnum> addScaffold(int participants, ScaffoldFactory factory) {
+        List<LadderExpressionEnum> result = new ArrayList<>();
         for (int i = 1; i < participants; i++) {
-            collect.add(factory.createScaffold());
-            collect.add(VERTICAL_BAR);
+            result.add(factory.createScaffold());
+            result.add(VERTICAL_BAR);
         }
+        return result;
     }
 
     private static List<LadderExpressionEnum> initializeLadderRow() {
