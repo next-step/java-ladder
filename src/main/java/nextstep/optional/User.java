@@ -1,5 +1,9 @@
 package nextstep.optional;
 
+import java.util.Objects;
+import java.util.Optional;
+import java.util.function.Predicate;
+
 public class User {
     private String name;
     private Integer age;
@@ -33,7 +37,13 @@ public class User {
     }
 
     public static boolean ageIsInRange2(User user) {
-        return false;
+        Predicate<Integer> greaterThanOrEquals30 = number -> number >= 30;
+        Predicate<Integer> lessThanOrEquals45 = number -> number <= 45;
+
+        return Optional.ofNullable(user).stream()
+                .map(User::getAge)
+                .filter(Objects::nonNull)
+                .anyMatch(greaterThanOrEquals30.and(lessThanOrEquals45));
     }
 
     @Override
