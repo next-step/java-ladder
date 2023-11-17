@@ -2,10 +2,10 @@ package me.namuhuchutong.ladder;
 
 import me.namuhuchutong.ladder.domain.Row;
 import me.namuhuchutong.ladder.domain.factory.ScaffoldFactory;
-import me.namuhuchutong.ladder.domain.wrapper.Hyphen;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static me.namuhuchutong.ladder.domain.wrapper.LadderExpressionEnum.*;
 import static org.assertj.core.api.Assertions.*;
 
 class RowTest {
@@ -14,7 +14,7 @@ class RowTest {
     @Test
     void scaffold_should_not_be_continuous() {
         // given
-        ScaffoldFactory testFactory = Hyphen::new;
+        ScaffoldFactory testFactory = () -> HYPHEN;
 
         //when, then
         assertThatThrownBy(() -> Row.from(5, testFactory))

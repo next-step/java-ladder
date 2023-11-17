@@ -7,53 +7,54 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.Collections.*;
+import static me.namuhuchutong.ladder.domain.wrapper.LadderExpressionEnum.*;
 
 public class Row {
 
-    private final List<LadderExpression> values;
+    private final List<LadderExpressionEnum> values;
 
     public static Row from(int participants, ScaffoldFactory factory) {
-        List<LadderExpression> collect = initializeLadderRow();
+        List<LadderExpressionEnum> collect = initializeLadderRow();
         addScaffold(participants, collect, factory);
         return new Row(unmodifiableList(collect));
     }
 
     private static void addScaffold(int participants,
-                                    List<LadderExpression> collect,
+                                    List<LadderExpressionEnum> collect,
                                     ScaffoldFactory factory) {
         for (int i = 1; i < participants; i++) {
             collect.add(factory.createScaffold());
-            collect.add(new VerticalBar());
+            collect.add(VERTICAL_BAR);
         }
     }
 
-    private static List<LadderExpression> initializeLadderRow() {
-        List<LadderExpression> list = new ArrayList<>();
-        list.add(new EmptySpace());
-        list.add(new VerticalBar());
+    private static List<LadderExpressionEnum> initializeLadderRow() {
+        List<LadderExpressionEnum> list = new ArrayList<>();
+        list.add(EMPTY_SPACE);
+        list.add(VERTICAL_BAR);
         return list;
     }
 
-    public Row(List<LadderExpression> values) {
+    public Row(List<LadderExpressionEnum> values) {
         validateContinuousScaffold(values);
         this.values = values;
     }
 
-    private void validateContinuousScaffold(List<LadderExpression> values) {
-        Flag scaffoldFound = new Flag();
+    private void validateContinuousScaffold(List<LadderExpressionEnum> values) {
+        ContinuousScaffoldValidator validator = new ContinuousScaffoldValidator();
         values.stream()
-              .filter(expression -> !(expression instanceof VerticalBar))
-              .forEach(expression -> {
-                  if ((expression instanceof Hyphen) && scaffoldFound.peek()) {
-                      throw new IllegalArgumentException("사다리 발판은 연속적일 수 없습니다.");
-                  }
-                  scaffoldFound.setFlag(expression instanceof Hyphen);});
+              .filter(expression -> !expression.equals(VERTICAL_BAR))
+              .filter(validator::isContinuous)
+              .findAny()
+              .ifPresent(e -> {
+                  throw new IllegalArgumentException("사다리 발판은 연속적일 수 없습니다.");
+              });
     }
 
     @Override
     public String toString() {
         return this.values.stream()
-                          .map(LadderExpression::toString)
+                          .map(LadderExpressionEnum::convertToString)
                           .reduce("", (previous, newOne) -> previous + newOne);
     }
 }
