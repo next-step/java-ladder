@@ -37,17 +37,16 @@ public class ResultView {
 
     private void printLine(Line line) {
         System.out.print(BLANK_LINE);
-        System.out.print(START_LINE);
         line.getAll().forEach(this::printPoint);
         System.out.println();
     }
 
-    private void printPoint(Boolean point) {
-        if (point) {
-            System.out.print(HORIZONTAL_LINE + START_LINE);
+    private void printPoint(Point point) {
+        if (point.current()) {
+            System.out.print(START_LINE + HORIZONTAL_LINE);
             return;
         }
-        System.out.print(VERTICAL_LINE + START_LINE);
+        System.out.print(START_LINE + VERTICAL_LINE);
     }
 
     private void printResult(List<String> result) {

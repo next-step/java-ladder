@@ -1,10 +1,8 @@
 package nextstep.ladder.factory;
 
-import nextstep.ladder.domain.Height;
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Name;
+import nextstep.ladder.domain.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -38,12 +36,22 @@ public class LadderFactory {
 
     private static Line createLine(List<Name> playerNames,
                                    Supplier<Boolean> isDraw) {
-        int lineCount = playerNames.size() - 1;
-        Line line = new Line(lineCount);
-        IntStream.range(0, lineCount)
-                .filter(line::canDraw)
-                .forEach(i -> line.draw(i, isDraw.get()));
+        List<Point> list = new ArrayList<>();
+        int lineCount = playerNames.size();
+        Point point = Point.first(isDraw.get());
+        list.add(point);
+        for (int i = 1; i < lineCount - 1; i++) {
+            point = point.draw(mayBeDraw(isDraw, point));
+            list.add(point);
+        }
+        list.add(point.last());
 
-        return line;
+
+        return new Line(list);
+    }
+
+    private static boolean mayBeDraw(Supplier<Boolean> isDraw,
+                                     Point point) {
+        return point.canDrawNext() && isDraw.get();
     }
 }

@@ -35,6 +35,14 @@ public class Point {
         return Direction.STAY;
     }
 
+    public boolean canDrawNext() {
+        return !this.current;
+    }
+
+    public boolean current() {
+        return this.current;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

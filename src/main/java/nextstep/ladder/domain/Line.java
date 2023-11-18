@@ -1,62 +1,45 @@
 package nextstep.ladder.domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
 public class Line {
-    private List<Boolean> points;
+    private List<Point> points;
 
-    public Line(List<Boolean> points) {
-        this.points = new ArrayList<>(points);
+    public Line(List<Point> points) {
+        this.points = points;
     }
 
-    public Line(int count) {
-        this(Collections.nCopies(count, Boolean.FALSE));
+    public Line(List<Boolean> points,
+                int a) {
+        List<Point> list = new ArrayList<>();
+
+        Point point = Point.first(points.get(0));
+        list.add(point);
+        for (int i = 1; i < points.size() - 1; i++) {
+            point = point.draw(points.get(i));
+            list.add(point);
+        }
+        list.add(point.last());
+
+        this.points = new ArrayList<>(list);
     }
+
 
     public boolean canDraw(int index) {
-        boolean previous = hasPreviousLine(index);
-        boolean next = hasNextLine(index);
-
-        return !previous && !next;
+        return this.points.get(index).canDrawNext();
     }
 
-    private boolean hasNextLine(int index) {
-        return index < points.size() - 1 && points.get(index + 1);
-    }
 
-    private boolean hasPreviousLine(int index) {
-        return index > 0 && points.get(index - 1);
-    }
-
-    public void draw(int index,
-                     boolean maybeDraw) {
-        this.points.set(index, maybeDraw);
-    }
-
-    public List<Boolean> getAll() {
+    public List<Point> getAll() {
         return this.points;
     }
 
     public Direction nextDirection(int point) {
-        if (canMoveRight(point)) {
-            return Direction.RIGHT;
-        }
-        if (canMoveLeft(point)) {
-            return Direction.LEFT;
-        }
-        return Direction.STAY;
+        return this.points.get(point).move();
     }
 
-    private boolean canMoveRight(int point) {
-        return point < points.size() && points.get(point);
-    }
-
-    private boolean canMoveLeft(int point) {
-        return point > 0 && points.get(point - 1);
-    }
 
     @Override
     public boolean equals(Object o) {

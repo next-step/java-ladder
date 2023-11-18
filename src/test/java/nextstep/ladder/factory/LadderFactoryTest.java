@@ -15,8 +15,8 @@ class LadderFactoryTest {
     void 입력_받은_이름으로_사다리를_생성_할_수_있다() {
         Ladder actual = LadderFactory.create(List.of("pobi", "honux"), 2, () -> Boolean.TRUE);
         Ladder expected = new Ladder(List.of(new Name("pobi"), new Name("honux")),
-                List.of(new Line(List.of(Boolean.TRUE)),
-                        new Line(List.of(Boolean.TRUE))));
+                List.of(new Line(List.of(Boolean.TRUE), 0),
+                        new Line(List.of(Boolean.TRUE), 0)));
 
         assertThat(actual).isEqualTo(expected);
     }
