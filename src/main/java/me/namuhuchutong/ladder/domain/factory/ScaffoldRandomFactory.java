@@ -1,10 +1,10 @@
 package me.namuhuchutong.ladder.domain.factory;
 
-import me.namuhuchutong.ladder.domain.wrapper.LadderExpressionEnum;
+import me.namuhuchutong.ladder.domain.wrapper.LadderExpression;
 
 import java.util.Random;
 
-import static me.namuhuchutong.ladder.domain.wrapper.LadderExpressionEnum.*;
+import static me.namuhuchutong.ladder.domain.wrapper.LadderExpression.*;
 
 public class ScaffoldRandomFactory implements ScaffoldFactory {
 
@@ -16,7 +16,7 @@ public class ScaffoldRandomFactory implements ScaffoldFactory {
         this.createdBefore = false;
     }
 
-    public LadderExpressionEnum createScaffold() {
+    public LadderExpression createScaffold() {
         if (RANDOM.nextBoolean() && !createdBefore) {
             createdBefore = true;
             return HYPHEN;

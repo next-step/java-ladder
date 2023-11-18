@@ -1,8 +1,8 @@
 package me.namuhuchutong.ladder.domain;
 
-import me.namuhuchutong.ladder.domain.wrapper.LadderExpressionEnum;
+import me.namuhuchutong.ladder.domain.wrapper.LadderExpression;
 
-import static me.namuhuchutong.ladder.domain.wrapper.LadderExpressionEnum.*;
+import static me.namuhuchutong.ladder.domain.wrapper.LadderExpression.*;
 
 public class ContinuousScaffoldValidator {
 
@@ -12,7 +12,7 @@ public class ContinuousScaffoldValidator {
         this.flag = false;
     }
 
-    public boolean isContinuous(LadderExpressionEnum expression) {
+    public boolean isContinuous(LadderExpression expression) {
         if ((expression.equals(HYPHEN)) && (flag)) {
             return true;
         }

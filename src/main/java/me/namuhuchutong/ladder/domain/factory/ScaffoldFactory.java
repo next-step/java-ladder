@@ -1,9 +1,9 @@
 package me.namuhuchutong.ladder.domain.factory;
 
-import me.namuhuchutong.ladder.domain.wrapper.LadderExpressionEnum;
+import me.namuhuchutong.ladder.domain.wrapper.LadderExpression;
 
 @FunctionalInterface
 public interface ScaffoldFactory {
 
-    LadderExpressionEnum createScaffold();
+    LadderExpression createScaffold();
 }

@@ -7,20 +7,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.Collections.*;
-import static me.namuhuchutong.ladder.domain.wrapper.LadderExpressionEnum.*;
+import static me.namuhuchutong.ladder.domain.wrapper.LadderExpression.*;
 
 public class Row {
 
-    private final List<LadderExpressionEnum> values;
+    private final List<LadderExpression> values;
 
     public static Row from(int participants, ScaffoldFactory factory) {
-        List<LadderExpressionEnum> collect = initializeLadderRow();
+        List<LadderExpression> collect = initializeLadderRow();
         collect.addAll(addScaffold(participants, factory));
         return new Row(unmodifiableList(collect));
     }
 
-    private static List<LadderExpressionEnum> addScaffold(int participants, ScaffoldFactory factory) {
-        List<LadderExpressionEnum> result = new ArrayList<>();
+    private static List<LadderExpression> addScaffold(int participants, ScaffoldFactory factory) {
+        List<LadderExpression> result = new ArrayList<>();
         for (int i = 1; i < participants; i++) {
             result.add(factory.createScaffold());
             result.add(VERTICAL_BAR);
@@ -28,19 +28,19 @@ public class Row {
         return result;
     }
 
-    private static List<LadderExpressionEnum> initializeLadderRow() {
-        List<LadderExpressionEnum> list = new ArrayList<>();
+    private static List<LadderExpression> initializeLadderRow() {
+        List<LadderExpression> list = new ArrayList<>();
         list.add(EMPTY_SPACE);
         list.add(VERTICAL_BAR);
         return list;
     }
 
-    public Row(List<LadderExpressionEnum> values) {
+    public Row(List<LadderExpression> values) {
         validateContinuousScaffold(values);
         this.values = values;
     }
 
-    private void validateContinuousScaffold(List<LadderExpressionEnum> values) {
+    private void validateContinuousScaffold(List<LadderExpression> values) {
         ContinuousScaffoldValidator validator = new ContinuousScaffoldValidator();
         values.stream()
               .filter(expression -> !expression.equals(VERTICAL_BAR))
@@ -54,7 +54,7 @@ public class Row {
     @Override
     public String toString() {
         return this.values.stream()
-                          .map(LadderExpressionEnum::convertToString)
+                          .map(LadderExpression::convertToString)
                           .reduce("", (previous, newOne) -> previous + newOne);
     }
 }

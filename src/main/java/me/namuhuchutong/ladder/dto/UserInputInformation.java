@@ -18,7 +18,7 @@ public class UserInputInformation {
 
     private void validateHeight(int ladderHeight) {
         if (ladderHeight <= MINIMUM_HEIGHT || MAXIMUM_HEIGHT < ladderHeight) {
-            throw new IllegalArgumentException("사다리 높이는 1~10 사이 입니다.");
+            throw new IllegalArgumentException("사다리 높이 제한을 넘었습니다.");
         }
     }
 

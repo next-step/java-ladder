@@ -22,12 +22,12 @@ public class Names {
     }
 
     public Names(List<Name> values) {
-        validateAtLeastTwo(values);
+        validateAtLeastTwo(values.size());
         this.values = values;
     }
 
-    private void validateAtLeastTwo(List<Name> values) {
-        if (values.size() < MINIMUM_PEOPLE) {
+    private void validateAtLeastTwo(int size) {
+        if (size < MINIMUM_PEOPLE) {
             throw new IllegalArgumentException("사다리 게임은 최소 2명이 필요합니다.");
         }
     }

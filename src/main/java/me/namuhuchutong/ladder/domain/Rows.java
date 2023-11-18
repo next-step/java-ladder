@@ -25,18 +25,18 @@ public class Rows {
     }
 
     public Rows(List<Row> values) {
-        validateLadderHeight(values);
+        validateLadderHeight(values.size());
         this.values = values;
     }
 
-    private void validateLadderHeight(List<Row> values) {
-        if (isLessThanZeroOrBiggerThanTen(values)) {
+    private void validateLadderHeight(int size) {
+        if (isLessThanZeroOrBiggerThanTen(size)) {
             throw new IllegalArgumentException("높이가 1보다 작거나 10보다 크다면 사다리는 생성할 수 없습니다.");
         }
     }
 
-    private boolean isLessThanZeroOrBiggerThanTen(List<Row> values) {
-        return values.size() < MINIMUM_HEIGHT || MAXIMUM_HEIGHT < values.size();
+    private boolean isLessThanZeroOrBiggerThanTen(int size) {
+        return size < MINIMUM_HEIGHT || MAXIMUM_HEIGHT < size;
     }
 
     @Override
