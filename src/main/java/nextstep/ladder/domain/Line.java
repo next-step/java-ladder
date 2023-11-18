@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Line {
-    private List<Point> points;
+    private final List<Point> points;
 
     public Line(List<Point> points) {
         this.points = points;
@@ -15,7 +15,8 @@ public class Line {
     }
 
     public Direction nextDirection(int point) {
-        return this.points.get(point).move();
+        Point currentPoint = this.points.get(point);
+        return currentPoint.move();
     }
 
 
