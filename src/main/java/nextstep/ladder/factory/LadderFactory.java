@@ -1,10 +1,8 @@
 package nextstep.ladder.factory;
 
-import nextstep.ladder.domain.Height;
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Name;
+import nextstep.ladder.domain.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -18,32 +16,49 @@ public class LadderFactory {
     public static Ladder create(List<String> names,
                                 int height,
                                 Supplier<Boolean> isDraw) {
-        List<Name> playerNames = creatNames(names);
+        Names playerNames = creatNames(names);
         return new Ladder(playerNames, createLines(playerNames, new Height(height), isDraw));
     }
 
-    private static List<Name> creatNames(List<String> names) {
-        return names.stream()
+    private static Names creatNames(List<String> names) {
+        return new Names(names.stream()
                 .map(Name::new)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
     }
 
-    private static List<Line> createLines(List<Name> playerNames,
-                                          Height ladderheight,
-                                          Supplier<Boolean> isDraw) {
-        return IntStream.range(0, ladderheight.height())
+    private static Lines createLines(Names playerNames,
+                                     Height ladderheight,
+                                     Supplier<Boolean> isDraw) {
+        return new Lines(IntStream.range(0, ladderheight.height())
                 .mapToObj(value -> createLine(playerNames, isDraw))
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
     }
 
-    private static Line createLine(List<Name> playerNames,
+    private static Line createLine(Names playerNames,
                                    Supplier<Boolean> isDraw) {
-        int lineCount = playerNames.size() - 1;
-        Line line = new Line(lineCount);
-        IntStream.range(0, lineCount)
-                .filter(line::canDraw)
-                .forEach(i -> line.draw(i, isDraw.get()));
+        return new Line(createPoints(playerNames, isDraw));
+    }
 
-        return line;
+    private static List<Point> createPoints(Names playerNames,
+                                            Supplier<Boolean> isDraw) {
+        Point firstPoint = Point.first(isDraw.get());
+        List<Point> points = new ArrayList<>();
+        points.add(firstPoint);
+
+        Point previousPoint = firstPoint;
+        for (int i = 1; i < playerNames.size() - 1; i++) {
+            Point newPoint = previousPoint.draw(mayBeDraw(isDraw, previousPoint));
+            points.add(newPoint);
+            previousPoint = newPoint;
+        }
+
+        points.add(previousPoint.last());
+
+        return points;
+    }
+
+    private static boolean mayBeDraw(Supplier<Boolean> isDraw,
+                                     Point point) {
+        return point.canDrawNext() && isDraw.get();
     }
 }

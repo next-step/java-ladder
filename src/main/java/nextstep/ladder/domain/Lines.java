@@ -15,6 +15,16 @@ public class Lines {
         return this.lines;
     }
 
+    public int findEndPoint(int startPoint) {
+        int point = startPoint;
+        for (Line line : lines) {
+            Direction direction = line.nextDirection(point);
+            point = direction.move(point);
+        }
+
+        return point;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -27,4 +37,5 @@ public class Lines {
     public int hashCode() {
         return Objects.hash(lines);
     }
+
 }

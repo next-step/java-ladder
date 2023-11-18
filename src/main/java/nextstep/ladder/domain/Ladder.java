@@ -27,6 +27,18 @@ public class Ladder {
         return this.names;
     }
 
+    public int size() {
+        return this.names.size();
+    }
+
+    public Name name(int point) {
+        return this.names.name(point);
+    }
+
+    public int findEndPoint(int startPoint) {
+        return this.lines.findEndPoint(startPoint);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -39,4 +51,5 @@ public class Ladder {
     public int hashCode() {
         return Objects.hash(names, lines);
     }
+
 }

@@ -14,6 +14,14 @@ public class Names {
         return this.names;
     }
 
+    public int size() {
+        return names.size();
+    }
+
+    public Name name(int index) {
+        return this.names.get(index);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -26,4 +34,5 @@ public class Names {
     public int hashCode() {
         return Objects.hash(names);
     }
+
 }
