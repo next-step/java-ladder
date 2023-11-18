@@ -16,10 +16,13 @@ public class Lines {
     }
 
     public int findEndPoint(int startPoint) {
-        return lines.stream()
-                .reduce(startPoint,
-                        (point, line) -> point + line.calculatePoint(point),
-                        Integer::sum);
+        int point = startPoint;
+        for (Line line : lines) {
+            Direction direction = line.nextDirection(point);
+            point = direction.move(point);
+        }
+
+        return point;
     }
 
     @Override

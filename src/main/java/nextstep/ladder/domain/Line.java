@@ -40,14 +40,14 @@ public class Line {
         return this.points;
     }
 
-    public int calculatePoint(int point) {
+    public Direction nextDirection(int point) {
         if (canMoveRight(point)) {
-            return 1;
+            return Direction.RIGHT;
         }
         if (canMoveLeft(point)) {
-            return -1;
+            return Direction.LEFT;
         }
-        return 0;
+        return Direction.STAY;
     }
 
     private boolean canMoveRight(int point) {
