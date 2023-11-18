@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class LadderTest {
+class PlayerResultsTest {
 
     @Test
     @DisplayName("사다리로 플레이어 결과 좌표를 알 수 있다")
