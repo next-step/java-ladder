@@ -10,7 +10,7 @@ class PointTest {
     @Test
     @DisplayName("오른쪽으로 이동을 한다")
     void move1() {
-        Point point = new Point(Boolean.TRUE, Boolean.FALSE);
+        Point point = new Point(Boolean.FALSE, Boolean.TRUE);
 
         Direction actual = point.move();
         Direction expected = Direction.RIGHT;
@@ -21,7 +21,7 @@ class PointTest {
     @Test
     @DisplayName("왼쪽으로 이동을 한다")
     void move2() {
-        Point point = new Point(Boolean.FALSE, Boolean.TRUE);
+        Point point = new Point(Boolean.TRUE, Boolean.FALSE);
 
         Direction actual = point.move();
         Direction expected = Direction.LEFT;
@@ -36,6 +36,38 @@ class PointTest {
 
         Direction actual = point.move();
         Direction expected = Direction.STAY;
+
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("시작점의 자기 자신은 조건 없이 자신의 가로선을 그린다")
+    void newPoint1() {
+        Point actual = Point.first(Boolean.TRUE);
+        Point expected = new Point(Boolean.FALSE, Boolean.TRUE);
+
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("전점을 기준으로 왼쪽 선을 그린다")
+    void newPoint2() {
+        Point point = Point.first(Boolean.TRUE);
+
+        Point actual = point.draw(false);
+        Point expected = new Point(true, false);
+
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("전점을 기준으로 마지막 점을 그린다")
+    void newPoint3() {
+        Point point = Point.first(Boolean.TRUE);
+        point = point.draw(false);
+
+        Point actual = point.last();
+        Point expected = new Point(false, false);
 
         assertThat(actual).isEqualTo(expected);
     }
