@@ -11,9 +11,9 @@ public class LadderResult {
         this.values = Map.copyOf(values);
     }
 
-    public LadderResult(Ladder ladder,
+    public LadderResult(PlayerResults playerResults,
                         List<String> results) {
-        this(ladder.playerResult().ladderResult(results));
+        this(playerResults.ladderResult(results));
     }
 
     public Map<Name, String> result() {

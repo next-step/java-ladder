@@ -16,7 +16,7 @@ class LadderTest {
         Names names = new Names(List.of(new Name("pobi"), new Name("honux")));
         Ladder ladder = new Ladder(names, lines);
 
-        PlayerResults actual = ladder.playerResult();
+        PlayerResults actual = new PlayerResults(ladder);
         PlayerResults expected = new PlayerResults(List.of(new PlayerResult(new Name("pobi"), 1), new PlayerResult(new Name("honux"), 0)));
 
         assertThat(actual).isEqualTo(expected);

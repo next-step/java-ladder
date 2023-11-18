@@ -2,8 +2,6 @@ package nextstep.ladder.domain;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Names {
     private final List<Name> names;
@@ -16,10 +14,12 @@ public class Names {
         return this.names;
     }
 
-    public PlayerResults createResults(Lines lines) {
-        return new PlayerResults(IntStream.range(0, names.size())
-                .mapToObj(i -> new PlayerResult(names.get(i), lines.findEndPoint(i)))
-                .collect(Collectors.toList()));
+    public int size() {
+        return names.size();
+    }
+
+    public Name name(int index) {
+        return this.names.get(index);
     }
 
     @Override

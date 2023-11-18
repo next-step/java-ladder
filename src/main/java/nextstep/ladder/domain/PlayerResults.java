@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class PlayerResults {
 
@@ -11,6 +12,14 @@ public class PlayerResults {
 
     public PlayerResults(List<PlayerResult> playerResults) {
         this.playerResults = playerResults;
+    }
+
+    public PlayerResults(Ladder ladder) {
+        Names names = ladder.getNames();
+        Lines lines = ladder.getLines();
+        this.playerResults = IntStream.range(0, names.size())
+                .mapToObj(i -> new PlayerResult(names.name(i), lines.findEndPoint(i)))
+                .collect(Collectors.toList());
     }
 
     public Map<Name, String> ladderResult(List<String> results) {

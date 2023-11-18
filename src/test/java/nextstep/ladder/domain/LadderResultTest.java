@@ -22,8 +22,9 @@ class LadderResultTest {
                 new Name("honux")));
         Ladder ladder = new Ladder(names, lines);
         List<String> result = List.of("꽝", "3000");
+        PlayerResults playerResults = new PlayerResults(ladder);
 
-        LadderResult actual = new LadderResult(ladder, result);
+        LadderResult actual = new LadderResult(playerResults, result);
         Map<Name, String> values = new HashMap<>();
         values.put(new Name("pobi"), "3000");
         values.put(new Name("honux"), "꽝");
