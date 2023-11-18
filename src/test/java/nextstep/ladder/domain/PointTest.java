@@ -72,4 +72,25 @@ class PointTest {
         assertThat(actual).isEqualTo(expected);
     }
 
+    @Test
+    @DisplayName("전점을 기준으로 선이 있으면 그릴 수 없다")
+    void canDrawNext() {
+        Point point = Point.first(true);
+
+        boolean actual = point.canDrawNext();
+        boolean expected = false;
+
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("전점을 기준으로 선이 있으면 그릴 수 있다")
+    void canDrawNext2() {
+        Point point = Point.first(false);
+
+        boolean actual = point.canDrawNext();
+        boolean expected = true;
+
+        assertThat(actual).isEqualTo(expected);
+    }
 }

@@ -26,12 +26,6 @@ public class Line {
         this.points = new ArrayList<>(list);
     }
 
-
-    public boolean canDraw(int index) {
-        return this.points.get(index).canDrawNext();
-    }
-
-
     public List<Point> getAll() {
         return this.points;
     }
