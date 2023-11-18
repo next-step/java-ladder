@@ -15,10 +15,8 @@ public class PlayerResults {
     }
 
     public PlayerResults(Ladder ladder) {
-        Names names = ladder.getNames();
-        Lines lines = ladder.getLines();
-        this.playerResults = IntStream.range(0, names.size())
-                .mapToObj(i -> new PlayerResult(names.name(i), lines.findEndPoint(i)))
+        this.playerResults = IntStream.range(0, ladder.size())
+                .mapToObj(i -> new PlayerResult(ladder.name(i), ladder.findEndPoint(i)))
                 .collect(Collectors.toList());
     }
 
