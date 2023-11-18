@@ -24,6 +24,7 @@ public class LadderController {
 
     public void start() {
         UserInputInformation information = new UserInputInformation(inputView.inputStringNames(),
+                                                                    inputView.inputStringResults(),
                                                                     inputView.inputInteger());
         Names names = Names.from(information.getInputNames());
         Rows ladder = Rows.createLadder(information.getLadderHeight(),

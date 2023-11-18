@@ -7,13 +7,26 @@ public class UserInputInformation {
     private static final int MAXIMUM_HEIGHT = 10;
 
     private final String inputNames;
+
     private final int ladderHeight;
 
-    public UserInputInformation(String inputNames, int ladderHeight) {
+    private final String inputResults;
+
+    public UserInputInformation(String inputNames,  String inputResults, int ladderHeight) {
         validateNames(inputNames);
         validateHeight(ladderHeight);
+        validateNamesAndResultsLength(inputNames, inputResults);
         this.inputNames = inputNames;
         this.ladderHeight = ladderHeight;
+        this.inputResults = inputResults;
+    }
+
+    private void validateNamesAndResultsLength(String inputNames, String inputResults) {
+        String[] resultSplit = inputResults.split(",");
+        String[] namesSplit = inputNames.split(",");
+        if (resultSplit.length != namesSplit.length) {
+            throw new IllegalArgumentException("사용자 수와 결과 수는 동일해야 합니다.");
+        }
     }
 
     private void validateHeight(int ladderHeight) {
@@ -35,5 +48,9 @@ public class UserInputInformation {
 
     public int getLadderHeight() {
         return ladderHeight;
+    }
+
+    public String getInputResults() {
+        return inputResults;
     }
 }

@@ -12,6 +12,11 @@ public class InputView {
         return INPUT.nextLine();
     }
 
+    public String inputStringResults() {
+        printMessage("실행 결과를 입력하세요.");
+        return INPUT.nextLine();
+    }
+
     public int inputInteger() {
         printMessage("사다리의 높이를 입력하세요.");
         return inputIntegerFromStandardInput();
