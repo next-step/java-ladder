@@ -12,8 +12,8 @@ class LineTest {
     @Test
     @DisplayName("오른쪽으로 이동을 한다")
     void calculatePoint1() {
-        Line line = new Line(List.of(Boolean.FALSE, Boolean.TRUE, Boolean.FALSE), 0);
-        Direction actual = line.nextDirection(1);
+        Line line = new Line(List.of(Point.first(true), Point.first(true).last()));
+        Direction actual = line.nextDirection(0);
         Direction expected = Direction.RIGHT;
 
         assertThat(actual).isEqualTo(expected);
@@ -22,7 +22,7 @@ class LineTest {
     @Test
     @DisplayName("왼쪽으로 이동을 한다")
     void calculatePoint2() {
-        Line line = new Line(List.of(Boolean.TRUE, Boolean.FALSE, Boolean.FALSE), 0);
+        Line line = new Line(List.of(Point.first(true), Point.first(true).last()));
         Direction actual = line.nextDirection(1);
         Direction expected = Direction.LEFT;
 
@@ -32,8 +32,8 @@ class LineTest {
     @Test
     @DisplayName("이동하지 않는다")
     void calculatePoint3() {
-        Line line = new Line(List.of(Boolean.FALSE, Boolean.FALSE, Boolean.FALSE), 0);
-        Direction actual = line.nextDirection(1);
+        Line line = new Line(List.of(Point.first(false), Point.first(false).last()));
+        Direction actual = line.nextDirection(0);
         Direction expected = Direction.STAY;
 
         assertThat(actual).isEqualTo(expected);

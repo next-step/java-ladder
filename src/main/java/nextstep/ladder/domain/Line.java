@@ -1,6 +1,5 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -9,21 +8,6 @@ public class Line {
 
     public Line(List<Point> points) {
         this.points = points;
-    }
-
-    public Line(List<Boolean> points,
-                int a) {
-        List<Point> list = new ArrayList<>();
-
-        Point point = Point.first(points.get(0));
-        list.add(point);
-        for (int i = 1; i < points.size() - 1; i++) {
-            point = point.draw(points.get(i));
-            list.add(point);
-        }
-        list.add(point.last());
-
-        this.points = new ArrayList<>(list);
     }
 
     public List<Point> getAll() {

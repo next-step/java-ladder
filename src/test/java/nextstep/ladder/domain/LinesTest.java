@@ -13,8 +13,8 @@ class LinesTest {
     @DisplayName("시작점을 기준으로 끝을 알 수 있다")
     void findEndPoint() {
         Lines lines = new Lines(List.of(
-                new Line(List.of(Boolean.TRUE, Boolean.FALSE), 0),
-                new Line(List.of(Boolean.FALSE, Boolean.TRUE), 0)));
+                new Line(List.of(Point.first(true), Point.first(true).last())),
+                new Line(List.of(Point.first(false), Point.first(false).last()))));
 
         int actual = lines.findEndPoint(1);
         int expected = 0;

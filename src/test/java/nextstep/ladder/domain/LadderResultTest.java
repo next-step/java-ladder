@@ -14,9 +14,10 @@ class LadderResultTest {
     @Test
     @DisplayName("사다리로 결과를 알 수 있다")
     void ladderResult() {
+        Point point = Point.first(true);
         Lines lines = new Lines(List.of(
-                new Line(List.of(Boolean.TRUE), 0),
-                new Line(List.of(Boolean.FALSE), 0)));
+                new Line(List.of(Point.first(true), Point.first(true).draw(false))),
+                new Line(List.of(Point.first(false), Point.first(false).draw(false)))));
         Names names = new Names(List.of(
                 new Name("pobi"),
                 new Name("honux")));
