@@ -62,4 +62,15 @@ class UserInputInformationTest {
         assertThatThrownBy(() -> new UserInputInformation(givenInput, givenResults, givenHeight))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("실행 결과에 공백을 입력할 수 없다.")
+    @Test
+    void throw_exception_when_results_have_white_space() {
+        String givenInput = "a,b,c,d";
+        String givenResults = "a,b, c, d";
+        int givenHeight = 1;
+
+        assertThatThrownBy(() -> new UserInputInformation(givenInput, givenResults, givenHeight))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

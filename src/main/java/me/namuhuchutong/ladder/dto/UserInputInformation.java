@@ -15,10 +15,18 @@ public class UserInputInformation {
     public UserInputInformation(String inputNames,  String inputResults, int ladderHeight) {
         validateNames(inputNames);
         validateHeight(ladderHeight);
+        validateResults(inputResults);
         validateNamesAndResultsLength(inputNames, inputResults);
         this.inputNames = inputNames;
         this.ladderHeight = ladderHeight;
         this.inputResults = inputResults;
+    }
+
+    private void validateResults(String inputResults) {
+        String[] split = inputResults.split(" ");
+        if (split.length != 0) {
+            throw new IllegalArgumentException("공백은 허용하지 않습니다.");
+        }
     }
 
     private void validateNamesAndResultsLength(String inputNames, String inputResults) {
