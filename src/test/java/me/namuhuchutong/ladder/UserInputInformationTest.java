@@ -51,4 +51,15 @@ class UserInputInformationTest {
         assertThat(actualName).isEqualTo(expectedName);
         assertThat(actualHeight).isEqualTo(expectedHeight);
     }
+
+    @DisplayName("사용자 수와 결과 수가 동일하지 않다면 예외가 발생한다.")
+    @Test
+    void throw_exception_when_names_and_results_length_is_not_same() {
+        String givenInput = "a,b,c,d";
+        String givenResults = "a,b,c";
+        int givenHeight = 1;
+
+        assertThatThrownBy(() -> new UserInputInformation(givenInput, givenResults, givenHeight))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
