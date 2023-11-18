@@ -24,4 +24,4 @@
 - [X] ~~Lambda 실습 1~~
 - [X] ~~Lambda 실습 2~~
 - [X] ~~map, reduce, filter 실습 1~~
-- [ ] map, reduce, filter 실습 2
+- [X] ~~map, reduce, filter 실습 2~~
