@@ -6,14 +6,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 
-public class ExpressionTest {
+class ExpressionTest {
     @Test
-    public void of() {
+    void of() {
         assertThat(Expression.PLUS == Expression.of("+")).isTrue();
     }
 
     @Test
-    public void notValidExpression() {
+    void notValidExpression() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> {
                     Expression.of("&");
