@@ -1,6 +1,7 @@
 package me.namuhuchutong.ladder.controller;
 
 import me.namuhuchutong.ladder.domain.Names;
+import me.namuhuchutong.ladder.domain.Results;
 import me.namuhuchutong.ladder.domain.Rows;
 import me.namuhuchutong.ladder.domain.factory.ScaffoldFactory;
 import me.namuhuchutong.ladder.dto.LadderResult;
@@ -30,6 +31,7 @@ public class LadderController {
         Rows ladder = Rows.createLadder(information.getLadderHeight(),
                                         names.size(),
                                         scaffoldFactory);
+        Results results = Results.from(inputView.inputStringResults());
         outputView.printResult(new LadderResult(names, ladder));
     }
 }
