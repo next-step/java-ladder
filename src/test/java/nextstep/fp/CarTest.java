@@ -4,16 +4,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class CarTest {
+class CarTest {
     @Test
-    public void 이동() {
+    void 이동() {
         Car car = new Car("pobi", 0);
-        Car actual = car.move(new MoveStrategy() {
-            @Override
-            public boolean isMovable() {
-                return true;
-            }
-        });
+        Car actual = car.move(() -> true);
         assertThat(actual).isEqualTo(new Car("pobi", 1));
     }
 
