@@ -16,7 +16,7 @@ public class LadderResult {
         this(playerResults.ladderResult(results));
     }
 
-    public Map<Name, String> result() {
+    public Map<Name, String> results() {
         return this.values;
     }
 

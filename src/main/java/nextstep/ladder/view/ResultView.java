@@ -59,7 +59,7 @@ public class ResultView {
                        String name) {
         System.out.println(RESULT);
         if (name.equals(ALL)) {
-            ladderResult.result()
+            ladderResult.results()
                     .forEach((player, result) -> System.out.println(player + " : " + result));
             return;
         }
