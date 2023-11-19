@@ -11,13 +11,20 @@ import java.util.Random;
 public class Main {
     public static void main(String[] args) {
         UserNames userNames = Input.inputNames();
-        System.out.println("userNames = " + userNames);
-
         LadderHeight ladderHeight = Input.inputLadderHeight();
-        System.out.println("ladderHeight = " + ladderHeight);
 
         UserInput userInput = new UserInput(userNames, ladderHeight);
 
         Ladder ladder = new Ladder(userInput, idx -> new Random().nextBoolean());
+        printResult(ladder);
+    }
+
+    private static void printResult(final Ladder ladder) {
+        printMakingLadderResult(ladder);
+    }
+
+    private static void printMakingLadderResult(final Ladder ladder) {
+        System.out.println("\n실행결과\n");
+        System.out.println(ladder);
     }
 }
