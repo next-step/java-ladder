@@ -27,12 +27,12 @@ public class LadderController {
         int height = inputView.inputHeight();
         LadderInformation ladderInformation = new LadderInformation(names.size(), height);
 
-        Ladder lines = LadderFactory.create(ladderInformation, () -> new Random().nextBoolean());
-        PlayerResults playerResults = new PlayerResults(Names.from(names), lines, result);
+        Ladder ladder = LadderFactory.create(ladderInformation, () -> new Random().nextBoolean());
+        PlayerResults playerResults = new PlayerResults(Names.from(names), ladder, result);
 
-        resultView.printLadder(Names.from(names), lines, result);
+        resultView.printLadder(Names.from(names), ladder, result);
 
-        LadderResult ladderResult = new LadderResult(playerResults, lines);
+        LadderResult ladderResult = new LadderResult(playerResults, ladder);
 
         while (true) {
             String name = inputView.inputName();
