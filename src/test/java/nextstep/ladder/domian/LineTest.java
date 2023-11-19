@@ -1,5 +1,6 @@
 package nextstep.ladder.domian;
 
+import nextstep.ladder.domain.Line;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -24,6 +25,6 @@ public class LineTest {
         points.add(true);
         points.add(false);
         createLine(points);
-        assertThat(line.points).usingRecursiveComparison().isEqualTo(new Line(points));
+        assertThat(line.points()).usingRecursiveComparison().isEqualTo(points);
     }
 }
