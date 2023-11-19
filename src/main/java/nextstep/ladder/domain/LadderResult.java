@@ -1,42 +1,38 @@
 package nextstep.ladder.domain;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
 public class LadderResult {
-    private final Map<Name, String> values;
-
-    public LadderResult(Map<Name, String> values) {
-        this.values = Map.copyOf(values);
-    }
+    private final PlayerResults playerResults;
+    private final Lines lines;
 
     public LadderResult(PlayerResults playerResults,
-                        List<String> results) {
-        //this(playerResults.ladderResult(results));
-        this(Collections.EMPTY_MAP);
+                        Lines lines) {
+        this.playerResults = playerResults;
+        this.lines = lines;
     }
 
     public Map<Name, String> results() {
-        return this.values;
+        return this.playerResults.getAll();
     }
 
     public String result(String name) {
-        return this.values.get(new Name(name));
+        return this.playerResults.findByName(new Name(name));
     }
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LadderResult that = (LadderResult) o;
-        return Objects.equals(values, that.values);
+        return Objects.equals(playerResults, that.playerResults) && Objects.equals(lines, that.lines);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(values);
+        return Objects.hash(playerResults, lines);
     }
 
 }

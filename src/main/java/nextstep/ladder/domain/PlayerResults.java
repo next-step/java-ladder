@@ -1,15 +1,16 @@
 package nextstep.ladder.domain;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class PlayerResults {
 
-    private final List<PlayerResult> playerResults;
+    private final Map<Name, String> playerResults;
 
-    public PlayerResults(List<PlayerResult> playerResults) {
+    public PlayerResults(Map<Name, String> playerResults) {
         this.playerResults = playerResults;
     }
 
@@ -18,7 +19,15 @@ public class PlayerResults {
                          List<String> result) {
         this.playerResults = IntStream.range(0, names.size())
                 .mapToObj(i -> new PlayerResult(names.name(i), result.get(lines.findEndPoint(i))))
-                .collect(Collectors.toList());
+                .collect(Collectors.toMap(PlayerResult::name, PlayerResult::result, (s, s2) -> s));
+    }
+
+    public Map<Name, String> getAll() {
+        return this.playerResults;
+    }
+
+    public String findByName(Name name) {
+        return this.playerResults.get(name);
     }
 
     @Override
@@ -33,4 +42,5 @@ public class PlayerResults {
     public int hashCode() {
         return Objects.hash(playerResults);
     }
+
 }

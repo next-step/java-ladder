@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -20,8 +21,9 @@ class PlayerResultsTest {
         List<String> result = new ArrayList<>(List.of("꽝", "5000"));
 
         PlayerResults actual = new PlayerResults(names, lines, result);
-        PlayerResults expected = new PlayerResults(List.of(new PlayerResult(new Name("pobi"), "5000"),
-                new PlayerResult(new Name("honux"), "꽝")));
+        PlayerResults expected = new PlayerResults(Map.of(
+                new Name("pobi"), "5000",
+                new Name("honux"), "꽝"));
 
         assertThat(actual).isEqualTo(expected);
     }
