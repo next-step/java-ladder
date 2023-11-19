@@ -18,6 +18,7 @@ public class LadderController {
 
         resultView.printResult();
         resultView.printNames(names);
+        resultView.printLadder(ladder);
     }
 
 }

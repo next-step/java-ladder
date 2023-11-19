@@ -29,4 +29,8 @@ public class Line {
         }
     }
 
+    public List<Boolean> points() {
+        return this.points;
+    }
+
 }
