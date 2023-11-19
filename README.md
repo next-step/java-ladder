@@ -28,3 +28,10 @@
 - [X] ~~Optional 요구사항 1 - Optional을 활용해 조건에 따른 반환~~
 - [X] ~~Optional 요구사항 2 - Optional에서 값을 반환~~
 - [X] ~~Optional 요구사항 3 - Optional에서 exception 처리~~
+
+### 23.11.19 추가 피드백 사항
+
+- [ ] Lambda.java에서 프로덕션 코드에 있는 sumAll, sumAllEven, sumAllOverThree 코드에서 새로 만드신 sumAll 과 람다를 활용하도록 리팩터링하고,
+  기존에 있던 LambdaTest 코드를 통해 기존과 동일하게 동작하는지 검증
+- [ ] StreamStudy.java에서 String::toLowerCase를 호출 후 distinct() 호출로 로직 변경
+- [ ] User.java에서 filter를 반복해서 사용하기보다 map 함수를 이용하도록 로직 변경
