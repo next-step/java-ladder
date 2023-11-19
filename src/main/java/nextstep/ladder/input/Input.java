@@ -1,8 +1,14 @@
 package nextstep.ladder.input;
 
+import nextstep.ladder.domain.UserInput;
+
 import java.util.Scanner;
 
 public class Input {
+    private Input() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static UserNames inputNames() {
         Scanner scanner = new Scanner(System.in);
 
@@ -19,5 +25,12 @@ public class Input {
         int ladderHeight = scanner.nextInt();
 
         return new LadderHeight(ladderHeight);
+    }
+
+    public static UserInput input() {
+        UserNames userNames = inputNames();
+        LadderHeight ladderHeight = inputLadderHeight();
+
+        return new UserInput(userNames, ladderHeight);
     }
 }
