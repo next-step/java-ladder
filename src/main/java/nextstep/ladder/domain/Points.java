@@ -18,8 +18,14 @@ public class Points {
 
     public void drawNext(boolean mayBeDraw) {
         List<Point> list = new ArrayList<>(this.points);
-        list.add(getLast().draw(mayBeDraw));
+        Point last = getLast();
+        list.add(last.draw(isDraw(mayBeDraw, last)));
         this.points = list;
+    }
+
+    private static boolean isDraw(boolean mayBeDraw,
+                                  Point last) {
+        return last.canDrawNext() && mayBeDraw;
     }
 
     public void drawLast() {
@@ -35,6 +41,18 @@ public class Points {
     public Direction nextDirection(int point) {
         Point currentPoint = this.points.get(point);
         return currentPoint.move();
+    }
+
+    public List<Point> getAll() {
+        return this.points;
+    }
+
+    public Direction move(int point) {
+        return direction(point).move();
+    }
+
+    private Point direction(int point) {
+        return points.get(point);
     }
 
     @Override
