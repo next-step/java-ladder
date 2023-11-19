@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.IntFunction;
+import java.util.stream.Collectors;
 
 public class Line {
     private final List<Boolean> points;
@@ -39,14 +40,11 @@ public class Line {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("|");
+        final String delimiter = "|";
 
-        for (Boolean point : points) {
-            sb.append(generateLadderPointString(point));
-            sb.append("|");
-        }
-
-        return sb.toString();
+        return points.stream()
+                .map(this::generateLadderPointString)
+                .collect(Collectors.joining(delimiter, delimiter, delimiter));
     }
 
     private String generateLadderPointString(final Boolean bool) {

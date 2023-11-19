@@ -5,6 +5,7 @@ import nextstep.ladder.input.UserNames;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.IntFunction;
+import java.util.stream.Collectors;
 
 public class Ladder {
     private final UserNames userNames;
@@ -31,13 +32,8 @@ public class Ladder {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-
-        for (Line ladderLine : ladderLines) {
-            sb.append(ladderLine.toString());
-            sb.append("\n");
-        }
-
-        return sb.toString();
+        return ladderLines.stream()
+                .map(ladderLine -> ladderLine.toString() + "\n")
+                .collect(Collectors.joining());
     }
 }
