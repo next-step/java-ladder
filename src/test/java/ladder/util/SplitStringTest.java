@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class SplitStringTest {
 
@@ -26,9 +26,8 @@ class SplitStringTest {
     @NullAndEmptySource
     @DisplayName("null 혹은 비어있는 문자를 입력할 경우 오류가 발생한다.")
     void splitString_empty_null(String inputString) {
-        assertThatThrownBy(() -> SplitString.splitString(inputString))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("최소 한 글자 이상을 입력해야 합니다.");
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> SplitString.splitString(inputString))
+                .withMessage("최소 한 글자 이상을 입력해야 합니다.");
     }
-
 }
