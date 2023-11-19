@@ -15,7 +15,7 @@ class SplitStringTest {
     @Test
     @DisplayName(",를 구분자로하여 3개의문자를 입력하면 ,를 기준으로 3Size의 배열을 생성한다.")
     void splitString_comma() {
-        String inputString = "엄태권,태권,akfls221";
+        String inputString = "엄태권,태권,pobi";
 
         List<String> strings = SplitString.splitString(inputString);
 
