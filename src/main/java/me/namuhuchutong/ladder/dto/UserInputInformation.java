@@ -23,8 +23,7 @@ public class UserInputInformation {
     }
 
     private void validateResults(String inputResults) {
-        String[] split = inputResults.split(" ");
-        if (split.length != 0) {
+        if (inputResults.contains(" ")) {
             throw new IllegalArgumentException("공백은 허용하지 않습니다.");
         }
     }
