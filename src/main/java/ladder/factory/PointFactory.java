@@ -29,7 +29,7 @@ public class PointFactory {
     }
 
     private boolean creatable(Boolean point) {
-        return before != true && point != true;
+        return !(before == true && point == true);
     }
 
 }

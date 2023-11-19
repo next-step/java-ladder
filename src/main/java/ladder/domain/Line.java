@@ -24,7 +24,7 @@ public class Line {
         Boolean point1 = points.get(index);
         Boolean point2 = points.get(index + 1);
 
-        if (point1 == point2) {
+        if (point1 && point2) {
             throw new LineDuplicateException();
         }
     }

@@ -17,4 +17,8 @@ public class Names {
         return this.names.size();
     }
 
+    public List<Name> names() {
+        return this.names;
+    }
+
 }

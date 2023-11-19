@@ -17,4 +17,8 @@ public class Name {
         }
     }
 
+    public String name() {
+        return this.name;
+    }
+
 }
