@@ -1,5 +1,8 @@
 package ladder.domain;
 
+import ladder.exception.NameBlankException;
+import ladder.exception.NameExceedException;
+
 public class Name {
 
     private static final int MAX_LENGTH = 5;
@@ -12,8 +15,19 @@ public class Name {
     }
 
     private void validate(String name) {
+        validateBlank(name);
+        validateLength(name);
+    }
+
+    private void validateBlank(String name) {
+        if (name == null || name.isBlank()) {
+            throw new NameBlankException();
+        }
+    }
+
+    private void validateLength(String name) {
         if (name.length() > MAX_LENGTH) {
-            throw new IllegalArgumentException("사람 이름은 5자를 초과할 수 없습니다");
+            throw new NameExceedException();
         }
     }
 

@@ -14,12 +14,18 @@ public class ResultView {
     private static final String FULL_POINT = "-----";
     private static final String EMPTY_POINT = "     ";
 
-    public void printResult() {
+    public void printResult(Names names, Ladder ladder) {
+        printResultMessage();
+        printNames(names);
+        printLadder(ladder);
+    }
+
+    private void printResultMessage() {
         System.out.println();
         System.out.println(RESULT_MESSAGE);
     }
 
-    public void printNames(Names names) {
+    private void printNames(Names names) {
         System.out.println();
         names.names().stream().forEach(name -> printName(name));
     }
@@ -32,7 +38,7 @@ public class ResultView {
         return name.name().concat(NAME_INTERVAL);
     }
 
-    public void printLadder(Ladder ladder) {
+    private void printLadder(Ladder ladder) {
         System.out.println();
         ladder.lines().stream().forEach(line -> printLine(line));
     }
@@ -43,10 +49,11 @@ public class ResultView {
 
     private String lineText(Line line) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (Boolean point : line.points()) {
-            stringBuilder.append(LINE_SEPERATOR);
-            stringBuilder.append(pointText(point));
-        }
+        line.points().stream()
+            .forEach(point -> {
+                stringBuilder.append(LINE_SEPERATOR);
+                stringBuilder.append(pointText(point));
+            });
 
         return stringBuilder.toString();
     }

@@ -1,5 +1,6 @@
 package ladder.controller;
 
+import ladder.controller.dto.LadderRequest;
 import ladder.domain.Ladder;
 import ladder.domain.Names;
 import ladder.factory.PointFactory;
@@ -8,17 +9,23 @@ import ladder.view.ResultView;
 
 public class LadderController {
 
-    public static void main(String[] args) {
-        InputView inputView = new InputView();
-        ResultView resultView = new ResultView();
+    private final InputView inputView;
+    private final ResultView resultView;
+    private final PointFactory pointFactory;
 
-        Names names = new Names(inputView.names());
-        int ladderHeight = inputView.ladderHeight();
-        Ladder ladder = new Ladder(ladderHeight, names.size(), new PointFactory());
+    public LadderController(InputView inputView, ResultView resultView, PointFactory pointFactory) {
+        this.inputView = inputView;
+        this.resultView = resultView;
+        this.pointFactory = pointFactory;
+    }
 
-        resultView.printResult();
-        resultView.printNames(names);
-        resultView.printLadder(ladder);
+    public void run() {
+        LadderRequest request = new LadderRequest(inputView.names(), inputView.ladderHeight());
+
+        Names names = request.names();
+        Ladder ladder = new Ladder(request.ladderHeight(), names.size(), pointFactory);
+
+        resultView.printResult(names, ladder);
     }
 
 }
