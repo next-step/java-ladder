@@ -23,7 +23,7 @@ public class UserNames {
         return this.names.size() == size;
     }
 
-    public List<String> getNames() {
+    public List<String> names() {
         return this.names;
     }
 

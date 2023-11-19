@@ -20,7 +20,7 @@ class UserNamesTest {
 
         //then
         assertThat(userNames).isNotNull();
-        assertThat(userNames.getNames()).containsExactlyElementsOf(Arrays.asList(text.split(",")));
+        assertThat(userNames.names()).containsExactlyElementsOf(Arrays.asList(text.split(",")));
     }
 
     @ParameterizedTest
