@@ -14,7 +14,7 @@ public class Line {
         validate();
     }
 
-    public void validate() {
+    private void validate() {
         for (int i = 0; i < points.size() - 1; i++) {
             validateDuplicate(i);
         }

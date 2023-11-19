@@ -13,4 +13,8 @@ public class Names {
             .collect(Collectors.toList());
     }
 
+    public int size() {
+        return this.names.size();
+    }
+
 }
