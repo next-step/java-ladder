@@ -1,0 +1,31 @@
+package nextstep.ladder.domain;
+
+import nextstep.ladder.input.UserNames;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.IntFunction;
+
+public class Ladder {
+    private final UserNames userNames;
+    private final List<Line> ladderLines;
+
+    public Ladder(final UserInput userInput, final IntFunction<Boolean> lineBuilderStrategy) {
+        this.userNames = userInput.userNames();
+
+        this.ladderLines = initLadderLines(userInput, lineBuilderStrategy);
+    }
+
+    private List<Line> initLadderLines(final UserInput userInput, final IntFunction<Boolean> lineBuilderStrategy) {
+        List<Line> ladderLines = new ArrayList<>();
+
+        final int width = userInput.userNamesSize() - 1;
+        final int height = userInput.height();
+
+        for (int i = 0; i < height; i++) {
+            ladderLines.add(new Line(width, lineBuilderStrategy));
+        }
+
+        return ladderLines;
+    }
+}
