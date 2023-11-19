@@ -37,7 +37,6 @@ public class LineTest {
         points.add(true);
         points.add(true);
         points.add(false);
-        createLine(points);
-        assertThatThrownBy(() -> line.points()).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> createLine(points)).isInstanceOf(IllegalArgumentException.class);
     }
 }
