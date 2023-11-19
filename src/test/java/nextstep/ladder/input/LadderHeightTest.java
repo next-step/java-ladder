@@ -18,7 +18,7 @@ class LadderHeightTest {
 
         //then
         assertThat(ladderHeight).isNotNull();
-        assertThat(ladderHeight.getHeight()).isEqualTo(20);
+        assertThat(ladderHeight.height()).isEqualTo(20);
     }
 
     @ParameterizedTest

@@ -11,7 +11,7 @@ public class LadderHeight {
         this.height = height;
     }
 
-    public int getHeight() {
+    public int height() {
         return height;
     }
 
