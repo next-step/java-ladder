@@ -2,10 +2,14 @@ package nextstep.ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
 import java.util.Random;
 import java.util.function.IntFunction;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -41,5 +45,27 @@ class LineTest {
         for (int i = 1; i < points.size(); i++) {
             assertThat(points.get(i - 1) && points.get(i)).isFalse();
         }
+    }
+
+    @ParameterizedTest
+    @MethodSource("lineBuilderStrategyProvider")
+    @DisplayName("toString을 사용하면, true는 '-----'로 false는 '     '로 변환 후 각 열은 '|'로 구분된 문자열을 생성한다.")
+    void testLineToString(IntFunction<Boolean> lineBuilderStrategy, String expectedLineString) {
+        //given
+        final int width = 3;
+
+        //when
+        final Line line = new Line(width, lineBuilderStrategy);
+        final String lineString = line.toString();
+
+        //then
+        assertThat(lineString).isEqualTo(expectedLineString);
+    }
+
+    public static Stream<Arguments> lineBuilderStrategyProvider() {
+        return Stream.of(
+                Arguments.of((IntFunction<Boolean>) idx -> idx % 2 == 1, "|     |-----|     |"),
+                Arguments.of((IntFunction<Boolean>) idx -> idx % 2 == 0, "|-----|     |-----|")
+        );
     }
 }

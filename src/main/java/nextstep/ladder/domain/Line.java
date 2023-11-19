@@ -36,4 +36,24 @@ public class Line {
 
         return curPoint;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("|");
+
+        for (Boolean point : points) {
+            sb.append(generateLadderPointString(point));
+            sb.append("|");
+        }
+
+        return sb.toString();
+    }
+
+    private String generateLadderPointString(final Boolean bool) {
+        if (bool) {
+            return "-".repeat(5);
+        }
+
+        return " ".repeat(5);
+    }
 }
