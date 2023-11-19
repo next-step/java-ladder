@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.dto.Height;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

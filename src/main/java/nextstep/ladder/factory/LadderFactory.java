@@ -1,6 +1,7 @@
 package nextstep.ladder.factory;
 
 import nextstep.ladder.domain.*;
+import nextstep.ladder.dto.Height;
 
 import java.util.List;
 import java.util.function.Supplier;
