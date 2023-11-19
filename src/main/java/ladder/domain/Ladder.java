@@ -18,13 +18,13 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(this.lines);
+    }
+
     private void validate(int totalLine) {
         if (totalLine <= 0) {
             throw new IllegalArgumentException("최대 사다리 높이는 0개 이하로 생성할 수 없습니다.");
         }
-    }
-
-    public List<Line> getLines() {
-        return Collections.unmodifiableList(this.lines);
     }
 }
