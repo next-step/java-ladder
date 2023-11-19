@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 public class NamesTest {
 
@@ -15,4 +15,11 @@ public class NamesTest {
         assertThat(new Names(List.of(new Name("ryan"), new Name("jason"), new Name("brown")))).isInstanceOf(Names.class);
     }
 
+    @Test
+    @DisplayName("이름 목록은 이름이 2개 미만일 경우 예외를 발생시킨다.")
+    void createNamesWithLessThanTwoNames(){
+        assertThatThrownBy(() -> new Names(List.of(new Name("ryan"))))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이름은 최소 2개 이상이어야 합니다.");
+    }
 }
