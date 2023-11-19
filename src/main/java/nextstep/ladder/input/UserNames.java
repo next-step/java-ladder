@@ -17,10 +17,18 @@ public class UserNames {
         if (!isSameSize(splitTexts.length)) {
             throw new IllegalArgumentException("이름은 5글자 이하만 가능합니다.");
         }
+
+        if (size() < 2) {
+            throw new IllegalArgumentException("이름은 최소 2명 이상이 필요합니다.");
+        }
     }
 
     private boolean isSameSize(final int size) {
-        return this.names.size() == size;
+        return size() == size;
+    }
+
+    public int size() {
+        return this.names.size();
     }
 
     public List<String> names() {

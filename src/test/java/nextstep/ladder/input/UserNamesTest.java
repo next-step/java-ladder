@@ -32,4 +32,28 @@ class UserNamesTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름은 5글자 이하만 가능합니다.");
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", "A"})
+    @DisplayName("사람 이름이 2개 미만이면, IllegalArgumentException이 발생한다")
+    void throwIllegalExceptionIfNameCountIsLessThan2(String text) {
+        //given, when, then
+        assertThatThrownBy(() -> new UserNames(text))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이름은 최소 2명 이상이 필요합니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"pobi,honux,crong,jk", "A,B,C", "1,2,3,4,5,6"})
+    @DisplayName("size() 메서드를 사용하면, 몇개의 이름이 저장되어 있는지 반환한다.")
+    void testSize(String text) {
+        //given
+        final int expectedSize = text.split(",").length;
+
+        //when
+        UserNames userNames = new UserNames(text);
+
+        //then
+        assertThat(userNames.size()).isEqualTo(expectedSize);
+    }
 }
