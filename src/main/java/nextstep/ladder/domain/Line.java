@@ -11,11 +11,29 @@ public class Line {
         this.points = new ArrayList<>(width);
 
         for (int idx = 0; idx < width; idx++) {
-            addPoint(lineBuilderStrategy.apply(idx));
+            addPoint(idx, lineBuilderStrategy.apply(idx));
         }
     }
 
-    private void addPoint(boolean curPoint) {
+    List<Boolean> getPoints() {
+        return points;
+    }
+
+    private void addPoint(final int idx, boolean curPoint) {
+        if (idx > 0) {
+            boolean prePoint = this.points.get(idx - 1);
+
+            curPoint = adjustContinuousTrue(prePoint, curPoint);
+        }
+
         this.points.add(curPoint);
+    }
+
+    private boolean adjustContinuousTrue(final boolean prePoint, boolean curPoint) {
+        if (prePoint && curPoint) {
+            return false;
+        }
+
+        return curPoint;
     }
 }
