@@ -14,7 +14,6 @@ class LadderResultTest {
     @Test
     @DisplayName("사다리로 결과를 알 수 있다")
     void ladderResult() {
-        Point point = Point.first(true);
         Lines lines = new Lines(List.of(
                 new Line(List.of(Point.first(true), Point.first(true).draw(false))),
                 new Line(List.of(Point.first(false), Point.first(false).draw(false)))));
@@ -23,7 +22,7 @@ class LadderResultTest {
                 new Name("honux")));
         Ladder ladder = new Ladder(names, lines);
         List<String> result = List.of("꽝", "3000");
-        PlayerResults playerResults = new PlayerResults(ladder);
+        PlayerResults playerResults = new PlayerResults(names, lines, result);
 
         LadderResult actual = new LadderResult(playerResults, result);
         Map<Name, String> values = new HashMap<>();

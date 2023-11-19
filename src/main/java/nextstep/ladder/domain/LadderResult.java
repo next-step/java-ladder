@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -13,7 +14,8 @@ public class LadderResult {
 
     public LadderResult(PlayerResults playerResults,
                         List<String> results) {
-        this(playerResults.ladderResult(results));
+        //this(playerResults.ladderResult(results));
+        this(Collections.EMPTY_MAP);
     }
 
     public Map<Name, String> results() {

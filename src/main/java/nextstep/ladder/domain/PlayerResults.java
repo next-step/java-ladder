@@ -1,7 +1,6 @@
 package nextstep.ladder.domain;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -14,15 +13,12 @@ public class PlayerResults {
         this.playerResults = playerResults;
     }
 
-    public PlayerResults(Ladder ladder) {
-        this.playerResults = IntStream.range(0, ladder.size())
-                .mapToObj(i -> new PlayerResult(ladder.name(i), ladder.findEndPoint(i)))
+    public PlayerResults(Names names,
+                         Lines lines,
+                         List<String> result) {
+        this.playerResults = IntStream.range(0, names.size())
+                .mapToObj(i -> new PlayerResult(names.name(i), result.get(lines.findEndPoint(i))))
                 .collect(Collectors.toList());
-    }
-
-    public Map<Name, String> ladderResult(List<String> results) {
-        return playerResults.stream()
-                .collect(Collectors.toMap(PlayerResult::name, playerResult -> results.get(playerResult.endPoint()), (a, b) -> b));
     }
 
     @Override
