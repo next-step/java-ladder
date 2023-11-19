@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class LineTest {
     @Test
     @DisplayName("width와 사다리 생성 전략을 이용하여 Line 객체를 만들 수 있다.")
-    void testLadderConstructor() {
+    void testLineConstructor() {
         //given
         final int width = 5;
         final IntFunction<Boolean> lineBuilderStrategy = idx -> new Random().nextBoolean();
