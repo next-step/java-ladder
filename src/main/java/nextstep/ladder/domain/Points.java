@@ -6,27 +6,30 @@ import java.util.Objects;
 
 public class Points {
 
-    private final List<Point> points;
+    private List<Point> points;
 
     public Points(List<Point> points) {
         this.points = List.copyOf(points);
     }
 
-    public static List<Point> drawFirst(boolean mayBeDraw) {
-        return new ArrayList<>(List.of(Point.first(mayBeDraw)));
+    public static Points drawFirst(boolean mayBeDraw) {
+        return new Points(List.of(Point.first(mayBeDraw)));
     }
 
-    public List<Point> drawNext(Point point,
-                                boolean mayBeDraw) {
+    public void drawNext(boolean mayBeDraw) {
         List<Point> list = new ArrayList<>(this.points);
-        list.add(point.draw(mayBeDraw));
-        return List.copyOf(list);
+        list.add(getLast().draw(mayBeDraw));
+        this.points = list;
     }
 
-    public List<Point> drawLast(Point point) {
+    public void drawLast() {
         List<Point> list = new ArrayList<>(this.points);
-        list.add(point.last());
-        return List.copyOf(list);
+        list.add(getLast().last());
+        this.points = List.copyOf(list);
+    }
+
+    private Point getLast() {
+        return points.get(points.size() - 1);
     }
 
     public Direction nextDirection(int point) {
