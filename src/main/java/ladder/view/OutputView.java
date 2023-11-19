@@ -2,7 +2,6 @@ package ladder.view;
 
 import ladder.domain.Line;
 import ladder.domain.Ladder;
-import ladder.domain.Name;
 import ladder.domain.Names;
 import ladder.domain.Point;
 
