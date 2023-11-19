@@ -22,6 +22,6 @@
 
 **실습**
 > - [X] Lambda1. CarTest 내 MoveStrategy에 대한 익명 클래스로 구현하고 있는데 람다를 적용해 구현
-> - [ ] Lambda2. nextstep.fp.Lambda의 sumAll, sumAllEven, sumAllOverThree method 소스 코드를 확인하고 중복 제거
+> - [X] Lambda2. nextstep.fp.Lambda의 sumAll, sumAllEven, sumAllOverThree method 소스 코드를 확인하고 중복 제거
 
 </details>
