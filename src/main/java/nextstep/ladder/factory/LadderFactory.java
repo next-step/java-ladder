@@ -1,9 +1,10 @@
 package nextstep.ladder.factory;
 
-import nextstep.ladder.domain.*;
-import nextstep.ladder.dto.Height;
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.Points;
+import nextstep.ladder.dto.LadderInformation;
 
-import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -13,30 +14,16 @@ public class LadderFactory {
     private LadderFactory() {
     }
 
-    public static Ladder create(List<String> names,
-                                int height,
+    public static Ladder create(LadderInformation ladderInformation,
                                 Supplier<Boolean> isDraw) {
-        Names playerNames = creatNames(names);
-        return new Ladder(playerNames, createLines(playerNames, new Height(height), isDraw));
-    }
-
-    private static Names creatNames(List<String> names) {
-        return new Names(names.stream()
-                .map(Name::new)
+        return new Ladder(IntStream.range(0, ladderInformation.height())
+                .mapToObj(value -> createLine(ladderInformation.width(), isDraw))
                 .collect(Collectors.toList()));
     }
 
-    private static Lines createLines(Names playerNames,
-                                     Height ladderheight,
-                                     Supplier<Boolean> isDraw) {
-        return new Lines(IntStream.range(0, ladderheight.height())
-                .mapToObj(value -> createLine(playerNames, isDraw))
-                .collect(Collectors.toList()));
-    }
-
-    private static Line createLine(Names playerNames,
+    private static Line createLine(int lineSize,
                                    Supplier<Boolean> isDraw) {
-        return new Line(createPoints(playerNames.size(), isDraw));
+        return new Line(createPoints(lineSize, isDraw));
     }
 
     private static Points createPoints(int lineSize,
@@ -49,5 +36,4 @@ public class LadderFactory {
 
         return points;
     }
-
 }

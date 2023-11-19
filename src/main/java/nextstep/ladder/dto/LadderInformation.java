@@ -1,18 +1,18 @@
 package nextstep.ladder.dto;
 
-public class LinesInformation {
+public class LadderInformation {
 
     private final int width;
     private final Height height;
 
-    public LinesInformation(int width,
-                            Height height) {
+    public LadderInformation(int width,
+                             Height height) {
         this.width = width;
         this.height = height;
     }
 
-    public LinesInformation(int width,
-                            int height) {
+    public LadderInformation(int width,
+                             int height) {
         this(width, new Height(height));
     }
 

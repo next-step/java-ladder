@@ -17,7 +17,7 @@ public class ResultView {
 
 
     public void printLadder(Names names,
-                            Lines lines,
+                            Ladder lines,
                             List<String> result) {
         System.out.println(RESULT_LADDER);
         System.out.println();
@@ -33,7 +33,7 @@ public class ResultView {
         System.out.println();
     }
 
-    private void printLines(Lines lines) {
+    private void printLines(Ladder lines) {
         lines.getAll().forEach(this::printLine);
     }
 

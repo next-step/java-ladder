@@ -15,7 +15,7 @@ public class PlayerResults {
     }
 
     public PlayerResults(Names names,
-                         Lines lines,
+                         Ladder lines,
                          List<String> result) {
         this.playerResults = IntStream.range(0, names.size())
                 .mapToObj(i -> new PlayerResult(names.name(i), result.get(lines.findEndPoint(i))))

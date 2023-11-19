@@ -5,51 +5,37 @@ import java.util.Objects;
 
 public class Ladder {
 
-    private final Names names;
-    private final Lines lines;
+    private final List<Line> lines;
 
-    public Ladder(Names names,
-                  Lines lines) {
-        this.names = names;
-        this.lines = lines;
+    public Ladder(List<Line> lines) {
+        this.lines = List.copyOf(lines);
     }
 
-    public Ladder(List<Name> names,
-                  List<Line> lines) {
-        this(new Names(names), new Lines(lines));
-    }
-
-    public Lines getLines() {
+    public List<Line> getAll() {
         return this.lines;
     }
 
-    public Names getNames() {
-        return this.names;
-    }
-
-    public int size() {
-        return this.names.size();
-    }
-
-    public Name name(int point) {
-        return this.names.name(point);
-    }
-
     public int findEndPoint(int startPoint) {
-        return this.lines.findEndPoint(startPoint);
+        int point = startPoint;
+        for (Line line : lines) {
+            Direction direction = line.nextDirection(point);
+            point = direction.move(point);
+        }
+
+        return point;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Ladder ladder = (Ladder) o;
-        return Objects.equals(names, ladder.names) && Objects.equals(lines, ladder.lines);
+        Ladder lines1 = (Ladder) o;
+        return Objects.equals(lines, lines1.lines);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(names, lines);
+        return Objects.hash(lines);
     }
 
 }
