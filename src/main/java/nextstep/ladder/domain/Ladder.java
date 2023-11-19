@@ -32,6 +32,11 @@ public class Ladder {
 
     @Override
     public String toString() {
+        return this.userNames.toString() + "\n" +
+                this.ladderLinesToString();
+    }
+
+    private String ladderLinesToString() {
         return ladderLines.stream()
                 .map(ladderLine -> ladderLine.toString() + "\n")
                 .collect(Collectors.joining());

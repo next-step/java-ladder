@@ -37,6 +37,8 @@ public class UserNames {
 
     @Override
     public String toString() {
-        return this.names.toString();
+        return this.names.stream()
+                .map(s -> String.format("%-5s", s))
+                .collect(Collectors.joining(" "));
     }
 }
