@@ -28,4 +28,16 @@ public class Ladder {
 
         return ladderLines;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        for (Line ladderLine : ladderLines) {
+            sb.append(ladderLine.toString());
+            sb.append("\n");
+        }
+
+        return sb.toString();
+    }
 }
