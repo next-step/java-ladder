@@ -33,10 +33,12 @@ public class StreamStudy {
                 .filter(w -> w.length() > 12)
                 //12자가 넘는 단어 중 길이가 긴 순서로 100개의 단어를 추출한다.
                 .sorted(Comparator.comparingInt(String::length).reversed())
+                //단어를 소문자로 변환한다.
+                .map(String::toLowerCase)
                 //단어 중복을 허용하지 않는다. 즉, 서로 다른 단어 100개를 추출해야 한다.
                 .distinct()
-                //추출한 100개의 단어를 출력한다. 모든 단어는 소문자로 출력해야 한다.
-                .forEach(s -> System.out.println(s.toLowerCase()));
+                //추출한 100개의 단어를 출력한다.
+                .forEach(System.out::println);
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
