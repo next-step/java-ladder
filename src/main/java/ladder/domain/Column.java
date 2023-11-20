@@ -1,8 +1,8 @@
-package ladder;
+package ladder.domain;
 
 import java.util.Objects;
 
-class Column {
+public class Column {
     private final boolean marked;
 
     //TODO Line에 대해 Cache 처리
@@ -11,7 +11,7 @@ class Column {
         this.marked = marked;
     }
 
-    boolean isMarked() {
+    public boolean isMarked() {
         return marked;
     }
 

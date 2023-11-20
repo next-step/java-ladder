@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,6 @@ public class LadderTest {
         List<Row> rows = new Ladder().make(4, 5);
 
         for(Row row: rows){
-
             for(Column column: row.getColumns()){
                 System.out.print(column.isMarked() + " ");
             }

@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 public class Name {
 
@@ -21,4 +21,8 @@ public class Name {
         }
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
 }
