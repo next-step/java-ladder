@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.exception.LineSizeException;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -10,7 +12,7 @@ public class Line {
 
     public Line(int width, RuleStrategy ruleStrategy) {
         boolean beforePoint = false;
-
+        checkWidth(width);
         for(int i = 0; i < width; i++) {
             boolean point = beforePointCheck(beforePoint, ruleStrategy);
             this.points.add(point);
@@ -23,6 +25,12 @@ public class Line {
             return false;
         }
         return ruleStrategy.build();
+    }
+
+    private void checkWidth(int width) {
+        if(width < 2) {
+            throw new LineSizeException();
+        }
     }
 
     public List<Boolean> points() {

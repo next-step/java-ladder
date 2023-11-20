@@ -1,13 +1,14 @@
 package nextstep.ladder.domian;
 
 import nextstep.ladder.domain.Line;
+import nextstep.ladder.exception.LineSizeException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.*;
 
 public class LineTest {
 
@@ -26,5 +27,12 @@ public class LineTest {
         points.add(true);
         createLine(3);
         assertThat(line.points()).usingRecursiveComparison().isEqualTo(points);
+    }
+
+    @DisplayName("사다리는 최소 2개의 가로칸을 가져야 한다")
+    @Test
+    void 사다리는_최소_2개의_가로칸을_가져야_한다() {
+        assertThatThrownBy(() -> createLine(1))
+                .isInstanceOf(LineSizeException.class);
     }
 }
