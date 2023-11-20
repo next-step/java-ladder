@@ -4,7 +4,7 @@ public class Name {
 
     public static final int MAXIMUM_NAME_LENGTH = 5;
     public static final String PATTERN_CONTAINS_NUMBER_OR_SPECIAL_CHARACTERS = "^.*[0-9!@#$%^&*()\"\\[\\];',.<>/?\\-_=+{}:].*$";
-    private String name;
+    private final String name;
 
     public Name(String name){
         inputValidation(name);
