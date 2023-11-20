@@ -2,14 +2,15 @@ package ladder.view;
 
 import ladder.domain.Column;
 import ladder.domain.Name;
+import ladder.domain.Names;
 import ladder.domain.Row;
 
 import java.util.List;
 
 public class ResultView {
 
-    public static void printResult(List<Name> names, List<Row> Rows) {
-        names.forEach((name)->{
+    public static void printResult(Names names, List<Row> Rows) {
+        names.names().forEach((name)->{
             System.out.printf("%6s", name);
         });
         for(Row row: Rows){
