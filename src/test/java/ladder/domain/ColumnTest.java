@@ -12,6 +12,7 @@ public class ColumnTest {
     @DisplayName("Line는 true, false 값을 가질 수 있다.")
     void createPoint(){
         assertThat(Column.of(true)).isInstanceOf(Column.class);
+        assertThat(Column.of(false)).isInstanceOf(Column.class);
     }
 
 }

@@ -1,9 +1,7 @@
 package ladder;
 
-import ladder.domain.Ladder;
-import ladder.domain.Name;
-import ladder.domain.Names;
-import ladder.domain.Row;
+import ladder.domain.*;
+import ladder.domain.util.RandomBooleanGenerator;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -15,7 +13,7 @@ public class Application {
         Names names = InputView.inputNames();
         int height = InputView.inputHeight();
 
-        List<Row> ladder = new Ladder().make(names.names().size() - 1, height);
+        List<Row> ladder = new Ladder(names.names().size() - 1, height, new RandomBooleanGenerator()).makeLadder();
 
         ResultView.printResult(names, ladder);
     }

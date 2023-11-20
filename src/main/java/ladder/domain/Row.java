@@ -1,19 +1,23 @@
 package ladder.domain;
 
 
+import ladder.domain.util.BooleanGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Row{
 
-    private final List<Column> columns = new ArrayList<>();
-    private final int wallCount;
+    private final List<Column> columns;
+    private final int intervalCount;
+    private BooleanGenerator booleanGenerator;
 
-    public Row(int wallCount) {
-        inputValidation(wallCount);
-        this.wallCount = wallCount;
-        this.RecursiveMake(0);
+    public Row(int intervalCount, BooleanGenerator booleanGenerator) {
+        inputValidation(intervalCount);
+        this.intervalCount = intervalCount;
+        this.booleanGenerator = booleanGenerator;
+        this.columns = new ArrayList<>();
+        this.recursiveMake(0);
     }
 
     private void inputValidation(int wallCount) {
@@ -26,18 +30,20 @@ public class Row{
         return columns;
     }
 
-    private void RecursiveMake(int count){
-        if(count == this.wallCount){
+    private void recursiveMake(int count){
+        if(count == this.intervalCount){
             return;
         }
-        boolean marked = new Random().nextBoolean();
+        boolean marked = this.booleanGenerator.generate();
 
         if(beforeIsMarked(count, marked)){
             columns.add(Column.of(false));
-        }else{
-            columns.add(Column.of(marked));
+            recursiveMake(count+1);
+            return;
         }
-        RecursiveMake(count+1);
+
+        columns.add(Column.of(marked));
+        recursiveMake(count+1);
     }
 
     private boolean beforeIsMarked(int count, boolean marked) {
