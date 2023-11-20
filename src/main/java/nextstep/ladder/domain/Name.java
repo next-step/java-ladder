@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.exception.BlankNameException;
 import nextstep.ladder.exception.NameOverLengthException;
 
 public class Name {
@@ -13,6 +14,9 @@ public class Name {
     }
 
     private void validateNameLength(String name) {
+        if (name.isEmpty()) {
+            throw new BlankNameException();
+        }
         if (name.length() > MAX_NAME_LENGTH) {
             throw new NameOverLengthException();
         }
