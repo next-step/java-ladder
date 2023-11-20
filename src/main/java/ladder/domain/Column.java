@@ -2,10 +2,12 @@ package ladder;
 
 import java.util.Objects;
 
-class Line{
+class Column {
     private final boolean marked;
 
-    Line(boolean marked) {
+    //TODO Line에 대해 Cache 처리
+
+    Column(boolean marked) {
         this.marked = marked;
     }
 
@@ -17,8 +19,8 @@ class Line{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Line line = (Line) o;
-        return marked == line.marked;
+        Column column = (Column) o;
+        return marked == column.marked;
     }
 
     @Override
