@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.function.BooleanSupplier;
 
 public class Ladder {
-    private final UserNames userNames;
+    private final UserInput userInput;
     private final List<Line> ladderLines;
 
     public Ladder(final UserInput userInput, final BooleanSupplier lineBuilderStrategy) {
-        this.userNames = userInput.userNames();
+        this.userInput = userInput;
 
         this.ladderLines = initLadderLines(userInput, lineBuilderStrategy);
     }
@@ -28,7 +28,11 @@ public class Ladder {
     }
 
     public UserNames userNames() {
-        return this.userNames;
+        return this.userInput.userNames();
+    }
+
+    public UserResults userResults() {
+        return this.userInput.userResults();
     }
 
     public List<Line> ladderLines() {

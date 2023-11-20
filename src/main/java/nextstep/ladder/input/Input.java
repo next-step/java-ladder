@@ -1,8 +1,6 @@
 package nextstep.ladder.input;
 
-import nextstep.ladder.domain.LadderHeight;
-import nextstep.ladder.domain.UserInput;
-import nextstep.ladder.domain.UserNames;
+import nextstep.ladder.domain.*;
 
 import java.util.Scanner;
 
@@ -31,8 +29,18 @@ public class Input {
 
     public static UserInput input() {
         UserNames userNames = inputNames();
+        UserResults userResults = inputUserResults(userNames.size());
         LadderHeight ladderHeight = inputLadderHeight();
 
-        return new UserInput(userNames, ladderHeight);
+        return new UserInput(new UserData(userNames, userResults), ladderHeight);
+    }
+
+    private static UserResults inputUserResults(final int size) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String userResultsText = scanner.nextLine();
+
+        return new UserResults(userResultsText, size);
     }
 }

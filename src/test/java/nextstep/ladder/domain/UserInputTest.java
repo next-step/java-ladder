@@ -12,9 +12,10 @@ class UserInputTest {
         //given
         final UserNames userNames = new UserNames("A,B,C");
         final LadderHeight ladderHeight = new LadderHeight(5);
+        final UserResults userResults = new UserResults("꽝,1000,5000", userNames.size());
 
         //when
-        UserInput userInput = new UserInput(userNames, ladderHeight);
+        UserInput userInput = new UserInput(new UserData(userNames, userResults), ladderHeight);
 
         //then
         assertThat(userInput.userNames()).isEqualTo(userNames);

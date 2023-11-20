@@ -1,9 +1,6 @@
 package nextstep.ladder.util;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.LadderHeight;
-import nextstep.ladder.domain.UserInput;
-import nextstep.ladder.domain.UserNames;
+import nextstep.ladder.domain.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -44,10 +41,11 @@ class FormatterTest {
     @DisplayName("LadderFormat을 사용하면, 사다리가 Format에 맞춰서 출력된다. (사다리는 Line 목록을 가지고 있는데 각 Line은 Format에 맞춰서 true 값은 '-----'로 false 값은 '     '로 변환되고 각 값은 '|'로 구분된다.)")
     void testLadderFormat() {
         //given
-        final String userNamesText = "1,2,3,4";
-        final int userNamesSize = userNamesText.split(",").length;
+        final UserNames userNames = new UserNames("1,2,3,4");
+        final int userNamesSize = userNames.size();
+        final UserResults userResults = new UserResults("꽝,1000,5000,꽝", userNamesSize);
         final int height = 5;
-        final UserInput userInput = new UserInput(new UserNames(userNamesText), new LadderHeight(height));
+        final UserInput userInput = new UserInput(new UserData(userNames, userResults), new LadderHeight(height));
         final Deque<Boolean> booleans = makeTestBooleans(userNamesSize, height);
         final BooleanSupplier booleanSupplier = booleans::pop;
 
@@ -67,13 +65,14 @@ class FormatterTest {
     }
 
     @Test
-    @DisplayName("userNamesFormat 메서드와 LadderFormat 메서드의 결과를 합치면 사다리 생성 실행 결과가 된다.")
+    @DisplayName("userNamesFormat 메서드, LadderFormat 메서드, userResultsFormat 메서드의 결과를 합치면, 사다리 생성 실행 결과가 된다.")
     void testMakingLadderFormat() {
         //given
-        final String userNamesText = "pobi,honux,crong,jk";
-        final int userNamesSize = userNamesText.split(",").length;
+        final UserNames userNames = new UserNames("pobi,honux,crong,jk");
+        final int userNamesSize = userNames.size();
+        final UserResults userResults = new UserResults("꽝,1000,5000,꽝", userNamesSize);
         final int height = 5;
-        final UserInput userInput = new UserInput(new UserNames(userNamesText), new LadderHeight(height));
+        final UserInput userInput = new UserInput(new UserData(userNames, userResults), new LadderHeight(height));
         final Deque<Boolean> testBooleans = makeTestBooleans(userNamesSize, height);
         final BooleanSupplier booleanSupplier = testBooleans::pop;
 
@@ -81,8 +80,9 @@ class FormatterTest {
         final Ladder ladder = new Ladder(userInput, booleanSupplier);
         final String userNamesString = Formatter.userNamesFormat(ladder.userNames());
         final String ladderString = Formatter.ladderFormat(ladder.ladderLines());
+        final String userResultsString = Formatter.userResultsFormat(ladder.userResults());
 
-        final String result = userNamesString + "\n" + ladderString;
+        final String result = userNamesString + "\n" + ladderString + "\n" + userResultsString;
 
         //then
         assertThat(result)
@@ -92,21 +92,22 @@ class FormatterTest {
                                 "    |-----|     |-----|\n" +
                                 "    |-----|     |-----|\n" +
                                 "    |-----|     |-----|\n" +
-                                "    |-----|     |-----|"
+                                "    |-----|     |-----|\n" +
+                                "    꽝  1000  5000     꽝"
                 );
     }
 
-    private ArrayDeque<Boolean> makeTestBooleans(final int userNamesSize, final int height) {
-        final ArrayDeque<Boolean> booleans = new ArrayDeque<>();
+    @Test
+    @DisplayName("userResultsFormat 메서드를 사용하면, UserResults가 Format에 맞춰서 출력된다. (각 userResult는 문자열이 오른쪽 정렬로 5칸을 가지면서 한칸의 공백을 간격으로 한 문자열로 변환된다.)")
+    void testUserResultsFormat() {
+        //given
+        final int userNamesSize = 4;
+        final UserResults userResults = new UserResults("꽝,1000,5000,꽝", userNamesSize);
 
-        Boolean[] values = new Boolean[]{true, false};
+        //when
+        final String userResultsString = Formatter.userResultsFormat(userResults);
 
-        for (int row = 0; row < height; row++) {
-            for (int col = 0; col < userNamesSize - 1; col++) {
-                booleans.add(values[col % 2]);
-            }
-        }
-
-        return booleans;
+        //then
+        assertThat(userResultsString).isEqualTo("    꽝  1000  5000     꽝");
     }
 }

@@ -2,6 +2,7 @@ package nextstep.ladder.util;
 
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.UserNames;
+import nextstep.ladder.domain.UserResults;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,5 +39,11 @@ public class Formatter {
         }
 
         return " ".repeat(UserNames.NAME_MAX_LENGTH);
+    }
+
+    public static String userResultsFormat(final UserResults userResults) {
+        return userResults.results().stream()
+                .map(s -> String.format("%" + UserNames.NAME_MAX_LENGTH + "s", s))
+                .collect(Collectors.joining(" "));
     }
 }
