@@ -12,6 +12,8 @@ public class Main {
         final UserInput userInput = Input.input();
 
         Ladder ladder = new Ladder(userInput, () -> new Random().nextBoolean());
-        Result.printResult(ladder);
+        Result.printMakingLadderResult(ladder);
+
+        Result.printLadderRunResult(ladder.run());
     }
 }

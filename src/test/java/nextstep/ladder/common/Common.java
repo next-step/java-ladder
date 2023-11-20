@@ -4,6 +4,7 @@ import nextstep.ladder.domain.*;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.Random;
 import java.util.function.BooleanSupplier;
 
 public class Common {
@@ -21,15 +22,27 @@ public class Common {
         return booleans;
     }
 
-    public static Ladder makeLadder(final String userNamesText, final String userResultsText, final int height) {
+    public static Ladder makeFixedLadder(final String userNamesText, final String userResultsText, final int height) {
+        final UserInput userInput = makeUserInput(userNamesText, userResultsText, height);
+
+        final Deque<Boolean> booleans = makeTestBooleans(userInput.userNamesSize(), height);
+        final BooleanSupplier booleanSupplier = booleans::pop;
+
+        return new Ladder(userInput, booleanSupplier);
+    }
+
+    private static UserInput makeUserInput(final String userNamesText, final String userResultsText, final int height) {
         final UserNames userNames = new UserNames(userNamesText);
         final int userNamesSize = userNames.size();
         final UserResults userResults = new UserResults(userResultsText, userNamesSize);
 
-        final UserInput userInput = new UserInput(new UserData(userNames, userResults), new LadderHeight(height));
+        return new UserInput(new UserData(userNames, userResults), new LadderHeight(height));
+    }
 
-        final Deque<Boolean> booleans = makeTestBooleans(userNamesSize, height);
-        final BooleanSupplier booleanSupplier = booleans::pop;
+    public static Ladder makeRandomLadder(final String userNamesText, final String userResultsText, final int height) {
+        final UserInput userInput = makeUserInput(userNamesText, userResultsText, height);
+
+        final BooleanSupplier booleanSupplier = () -> new Random().nextBoolean();
 
         return new Ladder(userInput, booleanSupplier);
     }

@@ -11,6 +11,10 @@ public class LadderResult {
     }
 
     public void add(String userName, String userResult) {
-        result.put(userName, userResult);
+        this.result.put(userName, userResult);
+    }
+
+    public Map<String, String> result() {
+        return this.result;
     }
 }

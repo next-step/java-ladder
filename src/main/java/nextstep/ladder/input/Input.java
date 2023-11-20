@@ -43,4 +43,13 @@ public class Input {
 
         return new UserResults(userResultsText, size);
     }
+
+    public static String inputPrintUserName() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("\n결과를 보고 싶은 사람은?");
+        String userName = scanner.nextLine();
+
+        return userName;
+    }
 }

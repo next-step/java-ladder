@@ -41,7 +41,7 @@ class FormatterTest {
     @DisplayName("LadderFormat을 사용하면, 사다리가 Format에 맞춰서 출력된다. (사다리는 Line 목록을 가지고 있는데 각 Line은 Format에 맞춰서 true 값은 '-----'로 false 값은 '     '로 변환되고 각 값은 '|'로 구분된다.)")
     void testLadderFormat() {
         //given
-        final Ladder ladder = Common.makeLadder("1,2,3,4", "꽝,1000,5000,꽝", 5);
+        final Ladder ladder = Common.makeFixedLadder("1,2,3,4", "꽝,1000,5000,꽝", 5);
 
         //when
         final String ladderString = Formatter.ladderFormat(ladder.ladderLines());
@@ -61,7 +61,7 @@ class FormatterTest {
     @DisplayName("userNamesFormat 메서드, LadderFormat 메서드, userResultsFormat 메서드의 결과를 합치면, 사다리 생성 실행 결과가 된다.")
     void testMakingLadderFormat() {
         //given
-        final Ladder ladder = Common.makeLadder("pobi,honux,crong,jk", "꽝,1000,5000,꽝", 5);
+        final Ladder ladder = Common.makeFixedLadder("pobi,honux,crong,jk", "꽝,1000,5000,꽝", 5);
 
         //when
         final String userNamesString = Formatter.userNamesFormat(ladder.userNames());

@@ -54,7 +54,7 @@ public class Line {
     }
 
     private boolean isUserLastIdx(final int userIdx) {
-        return points.size() + 1 == userIdx;
+        return points.size() == userIdx;
     }
 
     private int moveWhenNormalIdx(final int userIdx) {
