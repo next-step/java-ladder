@@ -34,9 +34,6 @@ public class Lambda {
         return total;
     }
 
-    /**
-     * Refactoring
-     */
     public static int sumAllEven(List<Integer> numbers, Conditional c) {
         int total = 0;
         for (int number : numbers) {
@@ -47,9 +44,6 @@ public class Lambda {
         return total;
     }
 
-    /**
-     * Refactoring
-     */
     public static int sumAllOverThree(List<Integer> numbers, Conditional c) {
         int total = 0;
         for (int number : numbers) {
