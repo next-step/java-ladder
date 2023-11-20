@@ -40,11 +40,12 @@ public class Line {
 
     @Override
     public String toString() {
+        final String prefix = " ".repeat(UserNames.NAME_MAX_LENGTH - 1) + "|";
         final String delimiter = "|";
 
         return points.stream()
                 .map(this::generateLadderPointString)
-                .collect(Collectors.joining(delimiter, delimiter, delimiter));
+                .collect(Collectors.joining(delimiter, prefix, delimiter));
     }
 
     private String generateLadderPointString(final Boolean bool) {

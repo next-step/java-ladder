@@ -64,8 +64,8 @@ class LineTest {
 
     public static Stream<Arguments> lineBuilderStrategyProvider() {
         return Stream.of(
-                Arguments.of((IntFunction<Boolean>) idx -> idx % 2 == 1, "|     |-----|     |"),
-                Arguments.of((IntFunction<Boolean>) idx -> idx % 2 == 0, "|-----|     |-----|")
+                Arguments.of((IntFunction<Boolean>) idx -> idx % 2 == 1, "    |     |-----|     |"),
+                Arguments.of((IntFunction<Boolean>) idx -> idx % 2 == 0, "    |-----|     |-----|")
         );
     }
 }
