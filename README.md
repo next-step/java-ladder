@@ -92,10 +92,10 @@
 - [X] ~~UserInput에서 사용하는 LadderHeight, UserNames를 Domain 패키지로 이동~~
 - [X] ~~input 패키지에서 domain 패키지를 참조하는 방향으로만 의존성이 발생하도록 구현~~
 - 출력 형식을 만드는 일은 Formatter 클래스에서 구현
-  - [ ] Ladder 클래스
+  - [X] ~~Ladder 클래스~~
   - [X] ~~UserNames 클래스~~
 - [X] ~~adjustContinuousTrue의 로직 일부 변경~~
-- [ ] getPoints 메서드 접근제어자 변경
+- [X] ~~getPoints 메서드 접근제어자 변경~~
 - [X] ~~generateLadderPointString 메서드에서 사용하는 5라는 MagicNumber에 의미를 부여하자. (이름의 최대 길이라는 의미 부여 필요)~~
 - 출력결과를 미션 내용에 맞춰서 변경 필요
   - [X] ~~UserName 출력 결과 : 왼쪽 정렬 -> 오른쪽 정렬~~

@@ -3,7 +3,6 @@ package nextstep.ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.IntFunction;
-import java.util.stream.Collectors;
 
 public class Line {
     private final List<Boolean> points;
@@ -16,7 +15,7 @@ public class Line {
         }
     }
 
-    List<Boolean> getPoints() {
+    public List<Boolean> getPoints() {
         return points;
     }
 
@@ -36,23 +35,5 @@ public class Line {
         }
 
         return curPoint;
-    }
-
-    @Override
-    public String toString() {
-        final String prefix = " ".repeat(UserNames.NAME_MAX_LENGTH - 1) + "|";
-        final String delimiter = "|";
-
-        return points.stream()
-                .map(this::generateLadderPointString)
-                .collect(Collectors.joining(delimiter, prefix, delimiter));
-    }
-
-    private String generateLadderPointString(final Boolean bool) {
-        if (bool) {
-            return "-".repeat(UserNames.NAME_MAX_LENGTH);
-        }
-
-        return " ".repeat(UserNames.NAME_MAX_LENGTH);
     }
 }

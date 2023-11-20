@@ -1,6 +1,5 @@
 package nextstep.ladder.domain;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -23,30 +22,5 @@ class LadderTest {
 
         //then
         assertThat(ladder).isNotNull();
-    }
-
-    @Test
-    @Disabled
-    @DisplayName("toString을 사용하면, 사다리가 출력된다.")
-    void testLadderToString() {
-        //given
-        final String userNamesText = "1,2,3,4";
-        final UserInput userInput = new UserInput(new UserNames(userNamesText), new LadderHeight(5));
-        final IntFunction<Boolean> lineBuilderStrategy = idx -> idx % 2 == 0;
-
-        //when
-        final Ladder ladder = new Ladder(userInput, lineBuilderStrategy);
-        final String ladderString = ladder.toString();
-
-        //then
-        assertThat(ladderString)
-                .isEqualTo(
-                        "    1     2     3     4\n" +
-                                "    |-----|     |-----|\n" +
-                                "    |-----|     |-----|\n" +
-                                "    |-----|     |-----|\n" +
-                                "    |-----|     |-----|\n" +
-                                "    |-----|     |-----|\n"
-                );
     }
 }

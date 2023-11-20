@@ -9,12 +9,13 @@ public class Result {
     }
 
     public static void printResult(final Ladder ladder) {
+        System.out.println("\n실행결과\n");
+        
         printMakingLadderResult(ladder);
     }
 
     private static void printMakingLadderResult(final Ladder ladder) {
-        System.out.println("\n실행결과\n");
         System.out.println(Formatter.userNamesFormat(ladder.userNames()));
-        System.out.println(ladder);
+        System.out.println(Formatter.ladderFormat(ladder.ladderLines()));
     }
 }

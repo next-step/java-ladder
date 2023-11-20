@@ -3,7 +3,6 @@ package nextstep.ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.IntFunction;
-import java.util.stream.Collectors;
 
 public class Ladder {
     private final UserNames userNames;
@@ -32,14 +31,7 @@ public class Ladder {
         return this.userNames;
     }
 
-    @Override
-    public String toString() {
-        return this.ladderLinesToString();
-    }
-
-    private String ladderLinesToString() {
-        return ladderLines.stream()
-                .map(ladderLine -> ladderLine.toString() + "\n")
-                .collect(Collectors.joining());
+    public List<Line> ladderLines() {
+        return this.ladderLines;
     }
 }
