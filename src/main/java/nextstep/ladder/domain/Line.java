@@ -8,10 +8,10 @@ public class Line {
 
     private final List<Boolean> points = new ArrayList<>();
 
-    public Line(int height, RuleStrategy ruleStrategy) {
+    public Line(int width, RuleStrategy ruleStrategy) {
         boolean beforePoint = false;
 
-        for(int i = 0; i < height; i++) {
+        for(int i = 0; i < width; i++) {
             boolean point = beforePointCheck(beforePoint, ruleStrategy);
             this.points.add(point);
             beforePoint = point;
