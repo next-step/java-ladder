@@ -2,16 +2,16 @@ package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.IntFunction;
+import java.util.function.BooleanSupplier;
 
 public class Line {
     private final List<Boolean> points;
 
-    public Line(final int width, final IntFunction<Boolean> lineBuilderStrategy) {
+    public Line(final int width, final BooleanSupplier lineBuilderStrategy) {
         this.points = new ArrayList<>(width);
 
         for (int idx = 0; idx < width; idx++) {
-            addPoint(idx, lineBuilderStrategy.apply(idx));
+            addPoint(idx, lineBuilderStrategy.getAsBoolean());
         }
     }
 

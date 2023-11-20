@@ -100,7 +100,7 @@
 - 출력결과를 미션 내용에 맞춰서 변경 필요
   - [X] ~~UserName 출력 결과 : 왼쪽 정렬 -> 오른쪽 정렬~~
   - [X] ~~사다리를 최대 이름 길이에 맞춰서 이동~~
-- [ ] 사다리 생성 전략의 Class를 IntFunction<Boolean>에서 Supplier<Boolean>으로 변경
+- [X] ~~사다리 생성 전략의 Class를 IntFunction<Boolean>에서 Supplier<Boolean>으로 변경~~
   - 테스트 코드는 알려준 코드로 변경하기
 
 ---

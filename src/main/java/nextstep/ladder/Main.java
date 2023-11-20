@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args) {
         final UserInput userInput = Input.input();
 
-        Ladder ladder = new Ladder(userInput, idx -> new Random().nextBoolean());
+        Ladder ladder = new Ladder(userInput, () -> new Random().nextBoolean());
         Result.printResult(ladder);
     }
 }

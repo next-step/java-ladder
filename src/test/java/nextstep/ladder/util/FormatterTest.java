@@ -10,7 +10,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.function.IntFunction;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.function.BooleanSupplier;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -43,11 +45,14 @@ class FormatterTest {
     void testLadderFormat() {
         //given
         final String userNamesText = "1,2,3,4";
-        final UserInput userInput = new UserInput(new UserNames(userNamesText), new LadderHeight(5));
-        final IntFunction<Boolean> lineBuilderStrategy = idx -> idx % 2 == 0;
+        final int userNamesSize = userNamesText.split(",").length;
+        final int height = 5;
+        final UserInput userInput = new UserInput(new UserNames(userNamesText), new LadderHeight(height));
+        final Deque<Boolean> booleans = makeTestBooleans(userNamesSize, height);
+        final BooleanSupplier booleanSupplier = booleans::pop;
 
         //when
-        final Ladder ladder = new Ladder(userInput, lineBuilderStrategy);
+        final Ladder ladder = new Ladder(userInput, booleanSupplier);
         final String ladderString = Formatter.ladderFormat(ladder.ladderLines());
 
         //then
@@ -66,11 +71,14 @@ class FormatterTest {
     void testMakingLadderFormat() {
         //given
         final String userNamesText = "pobi,honux,crong,jk";
-        final UserInput userInput = new UserInput(new UserNames(userNamesText), new LadderHeight(5));
-        final IntFunction<Boolean> lineBuilderStrategy = idx -> idx % 2 == 0;
+        final int userNamesSize = userNamesText.split(",").length;
+        final int height = 5;
+        final UserInput userInput = new UserInput(new UserNames(userNamesText), new LadderHeight(height));
+        final Deque<Boolean> testBooleans = makeTestBooleans(userNamesSize, height);
+        final BooleanSupplier booleanSupplier = testBooleans::pop;
 
         //when
-        final Ladder ladder = new Ladder(userInput, lineBuilderStrategy);
+        final Ladder ladder = new Ladder(userInput, booleanSupplier);
         final String userNamesString = Formatter.userNamesFormat(ladder.userNames());
         final String ladderString = Formatter.ladderFormat(ladder.ladderLines());
 
@@ -86,5 +94,19 @@ class FormatterTest {
                                 "    |-----|     |-----|\n" +
                                 "    |-----|     |-----|"
                 );
+    }
+
+    private ArrayDeque<Boolean> makeTestBooleans(final int userNamesSize, final int height) {
+        final ArrayDeque<Boolean> booleans = new ArrayDeque<>();
+
+        Boolean[] values = new Boolean[]{true, false};
+
+        for (int row = 0; row < height; row++) {
+            for (int col = 0; col < userNamesSize - 1; col++) {
+                booleans.add(values[col % 2]);
+            }
+        }
+
+        return booleans;
     }
 }

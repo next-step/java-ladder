@@ -4,7 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Random;
-import java.util.function.IntFunction;
+import java.util.function.BooleanSupplier;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -15,7 +15,7 @@ class LadderTest {
         //given
         final String userNamesText = "1,2,3";
         final UserInput userInput = new UserInput(new UserNames(userNamesText), new LadderHeight(5));
-        final IntFunction<Boolean> lineBuilderStrategy = idx -> new Random().nextBoolean();
+        final BooleanSupplier lineBuilderStrategy = () -> new Random().nextBoolean();
 
         //when
         final Ladder ladder = new Ladder(userInput, lineBuilderStrategy);

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.Random;
-import java.util.function.IntFunction;
+import java.util.function.BooleanSupplier;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -15,7 +15,7 @@ class LineTest {
     void testLineConstructor() {
         //given
         final int width = 5;
-        final IntFunction<Boolean> lineBuilderStrategy = idx -> new Random().nextBoolean();
+        final BooleanSupplier lineBuilderStrategy = () -> new Random().nextBoolean();
 
         //when
         final Line line = new Line(width, lineBuilderStrategy);
@@ -29,7 +29,7 @@ class LineTest {
     void testLineCreationForNoConsecutiveTrueValues() {
         //given
         final int width = 5;
-        final IntFunction<Boolean> lineBuilderStrategy = idx -> true;
+        final BooleanSupplier lineBuilderStrategy = () -> true;
 
         //when
         final Line line = new Line(width, lineBuilderStrategy);
