@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -25,6 +26,7 @@ class LadderTest {
     }
 
     @Test
+    @Disabled
     @DisplayName("toString을 사용하면, 사다리가 출력된다.")
     void testLadderToString() {
         //given

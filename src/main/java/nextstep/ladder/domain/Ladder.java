@@ -28,10 +28,13 @@ public class Ladder {
         return ladderLines;
     }
 
+    public UserNames userNames() {
+        return this.userNames;
+    }
+
     @Override
     public String toString() {
-        return this.userNames.toString() + "\n" +
-                this.ladderLinesToString();
+        return this.ladderLinesToString();
     }
 
     private String ladderLinesToString() {

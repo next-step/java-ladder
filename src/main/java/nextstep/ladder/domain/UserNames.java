@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class UserNames {
-    static final int NAME_MAX_LENGTH = 5;
+    public static final int NAME_MAX_LENGTH = 5;
     private final List<String> names;
 
     public UserNames(final String userNamesText) {
@@ -34,12 +34,5 @@ public class UserNames {
 
     public List<String> names() {
         return this.names;
-    }
-
-    @Override
-    public String toString() {
-        return this.names.stream()
-                .map(s -> String.format("%" + NAME_MAX_LENGTH + "s", s))
-                .collect(Collectors.joining(" "));
     }
 }

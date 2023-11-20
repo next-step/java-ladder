@@ -1,6 +1,7 @@
 package nextstep.ladder.result;
 
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.util.Formatter;
 
 public class Result {
     private Result() {
@@ -13,6 +14,7 @@ public class Result {
 
     private static void printMakingLadderResult(final Ladder ladder) {
         System.out.println("\n실행결과\n");
+        System.out.println(Formatter.userNamesFormat(ladder.userNames()));
         System.out.println(ladder);
     }
 }

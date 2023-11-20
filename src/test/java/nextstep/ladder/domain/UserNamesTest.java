@@ -2,12 +2,9 @@ package nextstep.ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
-import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -58,27 +55,5 @@ class UserNamesTest {
 
         //then
         assertThat(userNames.size()).isEqualTo(expectedSize);
-    }
-
-    @ParameterizedTest
-    @MethodSource("userNamesTextProvider")
-    @DisplayName("toString을 사용하면, 각 문자열이 왼쪽 정렬로 5칸을 가지면서 한칸의 공백을 간격으로 한 문자열을 반환한다.")
-    void testNames(String text, String expected) {
-        //given
-        UserNames userNames = new UserNames(text);
-
-        //when
-        String actual = userNames.toString();
-
-        //then
-        assertThat(actual).isEqualTo(expected);
-    }
-
-    public static Stream<Arguments> userNamesTextProvider() {
-        return Stream.of(
-                Arguments.of("pobi,honux,crong,jk", " pobi honux crong    jk"),
-                Arguments.of("A,B,C", "    A     B     C"),
-                Arguments.of("1,2,3,4,5,6", "    1     2     3     4     5     6")
-        );
     }
 }
