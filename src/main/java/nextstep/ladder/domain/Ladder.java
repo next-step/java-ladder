@@ -16,16 +16,16 @@ public class Ladder {
     }
 
     private List<Line> initLadderLines(final UserInput userInput, final IntFunction<Boolean> lineBuilderStrategy) {
-        List<Line> ladderLines = new ArrayList<>();
+        List<Line> tempLadderLines = new ArrayList<>();
 
         final int width = userInput.userNamesSize() - 1;
         final int height = userInput.height();
 
         for (int i = 0; i < height; i++) {
-            ladderLines.add(new Line(width, lineBuilderStrategy));
+            tempLadderLines.add(new Line(width, lineBuilderStrategy));
         }
 
-        return ladderLines;
+        return tempLadderLines;
     }
 
     public UserNames userNames() {
