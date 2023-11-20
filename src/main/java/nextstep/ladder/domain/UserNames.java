@@ -35,4 +35,8 @@ public class UserNames {
     public List<String> names() {
         return this.names;
     }
+
+    public String get(final int userStartIdx) {
+        return this.names.get(userStartIdx);
+    }
 }

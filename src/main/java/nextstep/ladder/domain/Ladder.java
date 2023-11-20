@@ -38,4 +38,27 @@ public class Ladder {
     public List<Line> ladderLines() {
         return this.ladderLines;
     }
+
+    public LadderResult run() {
+        LadderResult ladderResult = new LadderResult();
+
+        for (int userIdx = 0; userIdx < userNames().size(); userIdx++) {
+            final int arrivalIdx = move(userIdx);
+
+            ladderResult.add(userNames().get(userIdx), userResults().get(arrivalIdx));
+        }
+
+        return ladderResult;
+    }
+
+    private int move(int userStartIdx) {
+        int userIdx = userStartIdx;
+
+        for (int topToBottomLadderHeight = 0; topToBottomLadderHeight < ladderLines().size(); topToBottomLadderHeight++) {
+            final Line line = ladderLines().get(topToBottomLadderHeight);
+            userIdx = line.move(userIdx);
+        }
+
+        return userIdx;
+    }
 }

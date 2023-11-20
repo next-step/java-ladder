@@ -36,4 +36,56 @@ public class Line {
 
         return curPoint;
     }
+
+    public int move(final int userIdx) {
+        if (isUserFirstIdx(userIdx)) {
+            return moveWhenFirstIdx(userIdx);
+        }
+
+        if (isUserLastIdx(userIdx)) {
+            return moveWhenLastIdx(userIdx);
+        }
+
+        return moveWhenNormalIdx(userIdx);
+    }
+
+    private boolean isUserFirstIdx(final int userIdx) {
+        return userIdx == 0;
+    }
+
+    private boolean isUserLastIdx(final int userIdx) {
+        return points.size() + 1 == userIdx;
+    }
+
+    private int moveWhenNormalIdx(final int userIdx) {
+        final int leftSideIdx = userIdx - 1;
+        if (points.get(leftSideIdx)) {
+            return userIdx - 1;
+        }
+
+        final int rightSideIdx = userIdx;
+        if (points.get(rightSideIdx)) {
+            return userIdx + 1;
+        }
+
+        return userIdx;
+    }
+
+    private int moveWhenLastIdx(final int userIdx) {
+        final int leftSideIdx = userIdx - 1;
+        if (points.get(leftSideIdx)) {
+            return userIdx - 1;
+        }
+
+        return userIdx;
+    }
+
+    private int moveWhenFirstIdx(final int userIdx) {
+        final int rightSideIdx = userIdx;
+        if (points.get(rightSideIdx)) {
+            return userIdx + 1;
+        }
+
+        return userIdx;
+    }
 }

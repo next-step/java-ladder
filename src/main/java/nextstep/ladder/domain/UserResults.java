@@ -31,4 +31,8 @@ public class UserResults {
     public List<String> results() {
         return this.results;
     }
+
+    public String get(final int arrivalIdx) {
+        return this.results.get(arrivalIdx);
+    }
 }
