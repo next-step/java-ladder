@@ -3,6 +3,8 @@ package nextstep.ladder.domian;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+
 public class NamesTest {
 
     private Names names;
@@ -23,6 +25,6 @@ public class NamesTest {
     @DisplayName("공백은 이름으로 인정하지 않는다")
     @Test
     void 공백은_이름으로_인정하지_않는다() {
-        new assertThatThrownBy(() -> new Names("pobi,,honux")).isInstanceOf(BlankNameException.class);
+        assertThatThrownBy(() -> new Names("pobi,,honux")).isInstanceOf(BlankNameException.class);
     }
 }
