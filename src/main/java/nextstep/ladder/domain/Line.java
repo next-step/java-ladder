@@ -14,7 +14,7 @@ public class Line {
     public Line(int width, RuleStrategy ruleStrategy) {
         boolean beforePoint = false;
         validateWidth(width);
-        for (int i = 0; i < width; i++) {
+        for (int i = 1; i < width; i++) {
             boolean point = beforePointCheck(beforePoint, ruleStrategy);
             this.points.add(point);
             beforePoint = point;

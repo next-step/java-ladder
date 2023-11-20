@@ -6,11 +6,11 @@ import nextstep.ladder.exception.NameOverLengthException;
 public class Name {
 
     private static final int MAX_NAME_LENGTH = 5;
-    private final String name;
+    private final String user;
 
     public Name(String name) {
         validateNameLength(name);
-        this.name = name;
+        this.user = name;
     }
 
     private void validateNameLength(String name) {
@@ -22,7 +22,7 @@ public class Name {
         }
     }
 
-    public String name() {
-        return name;
+    public String user() {
+        return user;
     }
 }
