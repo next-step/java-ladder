@@ -7,3 +7,23 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+---
+## 🚀 1단계 - 스트림, 람다, Optional
+### 요구사항
+#### 람다실습1 - 익명 클래스를 람다로 전환
+* CarTest에서 MoveStrategy에 대한 익명 클래스로 구현하고 있는데 람다를 적용해 구현한다.
+#### 람다실습2 - 람다를 활용해 중복 제거
+* Lambda에서 변경되는 부분을 인터페이스로 추출하여 중복 코드를 제거한다.
+#### map, reduce, filter 실습 1
+* List에 담긴 모든 숫자 중 3보다 큰 숫자를 2배 한 후 모든 값의 합을 구한다.
+#### map, reduce, filter 실습 2
+* 단어의 길이가 12자를 초과하는 단어를 추출한다.
+* 12자가 넘는 단어 중 길이가 긴 순서로 100개의 단어를 추출한다.
+* 단어 중복을 허용하지 않는다.
+* 추출한 100개의 단어를 모두 소문자로 출력한다.
+#### 요구사항 1 - Optional을 활용해 조건에 따른 반환
+* 30살 이상, 45살 이하에 해당하는 User가 존재하는 경우 true를 반환하는 메소드를 구현한다.
+#### 요구사항 2 - Optional에서 값을 반환
+* getUser() 메소드를 stream과 Optional을 활용해 구현한다.
+#### 요구사항 3 - Optional에서 exception 처리
+* stream을 사용하여 Expression의 of 메소드를 구현한다.
