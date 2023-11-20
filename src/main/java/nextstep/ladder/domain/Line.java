@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.exception.LineSizeException;
+import nextstep.ladder.strategy.RuleStrategy;
 
 import java.util.ArrayList;
 import java.util.Collections;
