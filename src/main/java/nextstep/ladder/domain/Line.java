@@ -31,7 +31,7 @@ public class Line {
     }
 
     private boolean adjustContinuousTrue(final boolean prePoint, boolean curPoint) {
-        if (prePoint && curPoint) {
+        if (prePoint) {
             return false;
         }
 
