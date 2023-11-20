@@ -33,7 +33,7 @@ class UserNamesTest {
         //given, when, then
         assertThatThrownBy(() -> new UserNames(text))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("이름은 5글자 이하만 가능합니다.");
+                .hasMessage("이름은 " + UserNames.NAME_MAX_LENGTH + "글자 이하만 가능합니다.");
     }
 
     @ParameterizedTest

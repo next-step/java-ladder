@@ -96,5 +96,5 @@
   - [ ] UserNames 클래스
 - [X] ~~adjustContinuousTrue의 로직 일부 변경~~
 - [ ] getPoints 메서드 접근제어자 변경
-- [ ] generateLadderPointString 메서드에서 사용하는 5라는 MagicNumber에 의미를 부여하자. (이름의 최대 길이라는 의미 부여 필요)
+- [X] ~~generateLadderPointString 메서드에서 사용하는 5라는 MagicNumber에 의미를 부여하자. (이름의 최대 길이라는 의미 부여 필요)~~
 - [ ] 출력결과를 미션 내용에 맞춰서 변경 필요 (왼쪽 정렬 -> 오른쪽 정렬)

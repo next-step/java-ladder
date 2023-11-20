@@ -49,9 +49,9 @@ public class Line {
 
     private String generateLadderPointString(final Boolean bool) {
         if (bool) {
-            return "-".repeat(5);
+            return "-".repeat(UserNames.NAME_MAX_LENGTH);
         }
 
-        return " ".repeat(5);
+        return " ".repeat(UserNames.NAME_MAX_LENGTH);
     }
 }
