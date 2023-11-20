@@ -34,20 +34,26 @@ public class Lambda {
         return total;
     }
 
-    public static int sumAllEven(List<Integer> numbers) {
+    /**
+     * Refactoring
+     */
+    public static int sumAllEven(List<Integer> numbers, Conditional c) {
         int total = 0;
         for (int number : numbers) {
-            if (number % 2 == 0) {
+            if (c.test(number)) {
                 total += number;
             }
         }
         return total;
     }
 
-    public static int sumAllOverThree(List<Integer> numbers) {
+    /**
+     * Refactoring
+     */
+    public static int sumAllOverThree(List<Integer> numbers, Conditional c) {
         int total = 0;
         for (int number : numbers) {
-            if (number > 3) {
+            if (c.test(number)) {
                 total += number;
             }
         }
