@@ -1,23 +1,22 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.Line;
-import ladder.domain.Name;
-import ladder.domain.Names;
+import ladder.domain.*;
 
 public class ResultView {
 
     private static final String RESULT_MESSAGE = "실행결과";
     private static final String NAME_INTERVAL = "  ";
     private static final String LINE_INTERVAL = "  ";
+    private static final String RESULT_INTERVAL = "    ";
     private static final String LINE_SEPERATOR = "|";
     private static final String FULL_POINT = "-----";
     private static final String EMPTY_POINT = "     ";
 
-    public void printResult(Names names, Ladder ladder) {
+    public void printResult(Names names, Ladder ladder, Results results) {
         printResultMessage();
         printNames(names);
         printLadder(ladder);
+        printResults(results);
     }
 
     private void printResultMessage() {
@@ -63,6 +62,14 @@ public class ResultView {
             return FULL_POINT;
         }
         return EMPTY_POINT;
+    }
+
+    public void printResults(Results results) {
+        results.results().stream().forEach(result -> printResult(result));
+    }
+
+    private void printResult(Result result) {
+        System.out.print(result.result() + RESULT_INTERVAL);
     }
 
 }
