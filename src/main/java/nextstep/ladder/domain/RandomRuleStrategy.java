@@ -7,7 +7,7 @@ public class RandomRuleStrategy implements RuleStrategy {
     private static final Random RANDOM = new Random();
 
     @Override
-    public boolean makingFootBoard() {
+    public boolean build() {
         return RANDOM.nextBoolean();
     }
 }

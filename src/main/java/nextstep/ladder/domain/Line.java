@@ -1,26 +1,31 @@
 package nextstep.ladder.domain;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Line {
 
-    private List<Boolean> points;
+    private final List<Boolean> points = new ArrayList<>();
 
-    public Line(List<Boolean> points) {
-        connectedLegCheck(points);
-        this.points = points;
+    public Line(int height, RuleStrategy ruleStrategy) {
+        boolean beforePoint = false;
+
+        for(int i = 0; i < height; i++) {
+            boolean point = beforePointCheck(beforePoint, ruleStrategy);
+            this.points.add(point);
+            beforePoint = point;
+        }
+    }
+
+    private boolean beforePointCheck(boolean beforePoint, RuleStrategy ruleStrategy) {
+        if(beforePoint) {
+            return false;
+        }
+        return ruleStrategy.build();
     }
 
     public List<Boolean> points() {
-        return points;
-    }
-
-    private void connectedLegCheck(List<Boolean> points) {
-        points.stream().reduce((first, second) -> {
-            if (first && second) {
-                throw new IllegalArgumentException("연속된 사다리는 생성할 수 없습니다.");
-            }
-            return second;
-        });
+        return Collections.unmodifiableList(points);
     }
 }
