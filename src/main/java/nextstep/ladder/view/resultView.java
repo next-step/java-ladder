@@ -23,8 +23,7 @@ public class resultView {
     }
 
     private static void printNames(List<Name> names) {
-        names.stream()
-                .forEach(name -> System.out.print(name.user() + NAME_BLANK));
+        names.stream().forEach(name -> System.out.print(name.user() + NAME_BLANK));
         System.out.println();
     }
 
