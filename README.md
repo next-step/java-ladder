@@ -89,8 +89,8 @@
 > 3. `toString`은 출력 포맷을 맞추기 위한 목적이 아니라, 개발자가 디버깅이나 로그를 남기는 과정에서 활용할 수 있는 형태로 구현하는 것을 추천
 > 4. 테스트를 위해 프로덕션 코드를 변경하는 것은 지양하자.
 
-- [ ] UserInput에서 사용하는 LadderHeight, UserNames를 Domain 패키지로 이동
-- [ ] input 패키지에서 domain 패키지를 참조하는 방향으로만 의존성이 발생하도록 구현
+- [X] ~~UserInput에서 사용하는 LadderHeight, UserNames를 Domain 패키지로 이동~~
+- [X] ~~input 패키지에서 domain 패키지를 참조하는 방향으로만 의존성이 발생하도록 구현~~
 - 출력 형식을 만드는 일은 Result 클래스에서 구현
   - [ ] Ladder 클래스
   - [ ] UserNames 클래스

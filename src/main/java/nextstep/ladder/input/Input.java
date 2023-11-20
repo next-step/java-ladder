@@ -1,6 +1,8 @@
 package nextstep.ladder.input;
 
+import nextstep.ladder.domain.LadderHeight;
 import nextstep.ladder.domain.UserInput;
+import nextstep.ladder.domain.UserNames;
 
 import java.util.Scanner;
 

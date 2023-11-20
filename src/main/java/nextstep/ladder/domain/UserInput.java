@@ -1,8 +1,5 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.input.LadderHeight;
-import nextstep.ladder.input.UserNames;
-
 public class UserInput {
     private final UserNames userNames;
     private final LadderHeight ladderHeight;

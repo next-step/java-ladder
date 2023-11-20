@@ -1,4 +1,4 @@
-package nextstep.ladder.input;
+package nextstep.ladder.domain;
 
 public class LadderHeight {
     private final int height;

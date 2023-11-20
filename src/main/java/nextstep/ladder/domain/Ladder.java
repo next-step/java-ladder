@@ -1,7 +1,5 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.input.UserNames;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.IntFunction;
