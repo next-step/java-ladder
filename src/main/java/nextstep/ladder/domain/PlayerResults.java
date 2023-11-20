@@ -8,21 +8,26 @@ import java.util.stream.IntStream;
 
 public class PlayerResults {
 
-    private final List<PlayerResult> playerResults;
+    private final Map<Name, String> playerResults;
 
-    public PlayerResults(List<PlayerResult> playerResults) {
+    public PlayerResults(Map<Name, String> playerResults) {
         this.playerResults = playerResults;
     }
 
-    public PlayerResults(Ladder ladder) {
-        this.playerResults = IntStream.range(0, ladder.size())
-                .mapToObj(i -> new PlayerResult(ladder.name(i), ladder.findEndPoint(i)))
-                .collect(Collectors.toList());
+    public PlayerResults(Names names,
+                         Ladder lines,
+                         List<String> result) {
+        this.playerResults = IntStream.range(0, names.size())
+                .mapToObj(i -> new PlayerResult(names.name(i), result.get(lines.findEndPoint(i))))
+                .collect(Collectors.toMap(PlayerResult::name, PlayerResult::result, (s, s2) -> s));
     }
 
-    public Map<Name, String> ladderResult(List<String> results) {
-        return playerResults.stream()
-                .collect(Collectors.toMap(PlayerResult::name, playerResult -> results.get(playerResult.endPoint()), (a, b) -> b));
+    public Map<Name, String> getAll() {
+        return this.playerResults;
+    }
+
+    public String findByName(Name name) {
+        return this.playerResults.get(name);
     }
 
     @Override
@@ -37,4 +42,5 @@ public class PlayerResults {
     public int hashCode() {
         return Objects.hash(playerResults);
     }
+
 }

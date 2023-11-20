@@ -1,4 +1,4 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.dto;
 
 public class Height {
 

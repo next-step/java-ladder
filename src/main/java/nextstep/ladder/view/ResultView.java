@@ -15,13 +15,15 @@ public class ResultView {
     private static final String START_LINE = "|";
     private static final String ALL = "all";
 
-    public void ladderResult(Ladder ladder,
-                             List<String> result) {
+
+    public void printLadder(Names names,
+                            Ladder lines,
+                            List<String> result) {
         System.out.println(RESULT_LADDER);
         System.out.println();
 
-        printName(ladder.getNames());
-        printLines(ladder.getLines());
+        printName(names);
+        printLines(lines);
         printResult(result);
         System.out.println();
     }
@@ -31,7 +33,7 @@ public class ResultView {
         System.out.println();
     }
 
-    private void printLines(Lines lines) {
+    private void printLines(Ladder lines) {
         lines.getAll().forEach(this::printLine);
     }
 
@@ -65,4 +67,5 @@ public class ResultView {
         System.out.println(ladderResult.result(name));
         System.out.println();
     }
+
 }

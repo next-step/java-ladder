@@ -5,16 +5,16 @@ import java.util.Objects;
 public class PlayerResult {
 
     private final Name name;
-    private final int endPoint;
+    private final String result;
 
     public PlayerResult(Name name,
-                        int endPoint) {
+                        String result) {
         this.name = name;
-        this.endPoint = endPoint;
+        this.result = result;
     }
 
-    public int endPoint() {
-        return this.endPoint;
+    public String result() {
+        return this.result;
     }
 
     public Name name() {
@@ -26,12 +26,11 @@ public class PlayerResult {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PlayerResult that = (PlayerResult) o;
-        return endPoint == that.endPoint && Objects.equals(name, that.name);
+        return Objects.equals(name, that.name) && Objects.equals(result, that.result);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, endPoint);
+        return Objects.hash(name, result);
     }
-
 }

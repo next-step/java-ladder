@@ -2,7 +2,9 @@ package nextstep.ladder.controller;
 
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderResult;
+import nextstep.ladder.domain.Names;
 import nextstep.ladder.domain.PlayerResults;
+import nextstep.ladder.dto.LadderInformation;
 import nextstep.ladder.factory.LadderFactory;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
@@ -23,12 +25,14 @@ public class LadderController {
         List<String> names = inputView.inputNames();
         List<String> result = inputView.inputResult();
         int height = inputView.inputHeight();
+        LadderInformation ladderInformation = new LadderInformation(names.size(), height);
 
-        Ladder ladder = LadderFactory.create(names, height, () -> new Random().nextBoolean());
-        PlayerResults playerResults = new PlayerResults(ladder);
-        LadderResult ladderResult = new LadderResult(playerResults, result);
+        Ladder ladder = LadderFactory.create(ladderInformation, () -> new Random().nextBoolean());
+        PlayerResults playerResults = new PlayerResults(Names.from(names), ladder, result);
 
-        resultView.ladderResult(ladder, result);
+        resultView.printLadder(Names.from(names), ladder, result);
+
+        LadderResult ladderResult = new LadderResult(playerResults, ladder);
 
         while (true) {
             String name = inputView.inputName();
