@@ -13,7 +13,7 @@ public class Line {
 
     public Line(int width, RuleStrategy ruleStrategy) {
         boolean beforePoint = false;
-        checkWidth(width);
+        validateWidth(width);
         for (int i = 0; i < width; i++) {
             boolean point = beforePointCheck(beforePoint, ruleStrategy);
             this.points.add(point);
@@ -28,7 +28,7 @@ public class Line {
         return ruleStrategy.build();
     }
 
-    private void checkWidth(int width) {
+    private void validateWidth(int width) {
         if (width < 2) {
             throw new LineSizeException();
         }
