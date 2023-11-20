@@ -13,11 +13,7 @@ public class Row{
     public Row(int wallCount) {
         inputValidation(wallCount);
         this.wallCount = wallCount;
-        this.make(0);
-    }
-
-    public List<Column> getColumns() {
-        return columns;
+        this.RecursiveMake(0);
     }
 
     private void inputValidation(int wallCount) {
@@ -26,22 +22,25 @@ public class Row{
         }
     }
 
-    public Row(List<Name> names){
-        this(names.size()-1);
+    public List<Column> getColumns() {
+        return columns;
     }
 
-    private void make(int count){
+    private void RecursiveMake(int count){
         if(count == this.wallCount){
             return;
         }
         boolean marked = new Random().nextBoolean();
 
-        if(marked && count>0 && this.columns.get(count-1).isMarked()){
-            columns.add(new Column(false));
+        if(beforeIsMarked(count, marked)){
+            columns.add(Column.of(false));
         }else{
-            columns.add(new Column(marked));
+            columns.add(Column.of(marked));
         }
+        RecursiveMake(count+1);
+    }
 
-        make(count+1);
+    private boolean beforeIsMarked(int count, boolean marked) {
+        return marked && count > 0 && this.columns.get(count - 1).isMarked();
     }
 }

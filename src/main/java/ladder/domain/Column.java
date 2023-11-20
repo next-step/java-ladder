@@ -5,10 +5,12 @@ import java.util.Objects;
 public class Column {
     private final boolean marked;
 
-    //TODO Line에 대해 Cache 처리
-
-    Column(boolean marked) {
+    private Column(boolean marked) {
         this.marked = marked;
+    }
+
+    public static Column of(boolean marked){
+        return ColumnCache.of(marked);
     }
 
     public boolean isMarked() {
@@ -26,5 +28,17 @@ public class Column {
     @Override
     public int hashCode() {
         return Objects.hash(marked);
+    }
+
+    static class ColumnCache{
+        private static final Column TRUE = new Column(true);
+        private static final Column FALSE = new Column(false);
+
+        static Column of(boolean marked){
+            if(marked){
+                return TRUE;
+            }
+            return FALSE;
+        }
     }
 }
