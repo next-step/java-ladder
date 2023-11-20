@@ -39,7 +39,7 @@ class LadderTest {
         //then
         assertThat(ladderString)
                 .isEqualTo(
-                        "1     2     3     4    \n" +
+                        "    1     2     3     4\n" +
                                 "    |-----|     |-----|\n" +
                                 "    |-----|     |-----|\n" +
                                 "    |-----|     |-----|\n" +

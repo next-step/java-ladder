@@ -39,7 +39,7 @@ public class UserNames {
     @Override
     public String toString() {
         return this.names.stream()
-                .map(s -> String.format("%-5s", s))
+                .map(s -> String.format("%" + NAME_MAX_LENGTH + "s", s))
                 .collect(Collectors.joining(" "));
     }
 }

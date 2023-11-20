@@ -76,9 +76,9 @@ class UserNamesTest {
 
     public static Stream<Arguments> userNamesTextProvider() {
         return Stream.of(
-                Arguments.of("pobi,honux,crong,jk", "pobi  honux crong jk   "),
-                Arguments.of("A,B,C", "A     B     C    "),
-                Arguments.of("1,2,3,4,5,6", "1     2     3     4     5     6    ")
+                Arguments.of("pobi,honux,crong,jk", " pobi honux crong    jk"),
+                Arguments.of("A,B,C", "    A     B     C"),
+                Arguments.of("1,2,3,4,5,6", "    1     2     3     4     5     6")
         );
     }
 }
