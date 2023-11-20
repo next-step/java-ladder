@@ -2,6 +2,7 @@ package ladder.controller;
 
 import ladder.controller.dto.LadderRequest;
 import ladder.domain.Ladder;
+import ladder.domain.Name;
 import ladder.domain.Names;
 import ladder.domain.Results;
 import ladder.factory.PointFactory;
@@ -28,6 +29,8 @@ public class LadderController {
         Results results = request.results();
 
         resultView.printResult(names, ladder, results);
+
+        Name resultTarget = new Name(inputView.resultTarget());
     }
 
 }

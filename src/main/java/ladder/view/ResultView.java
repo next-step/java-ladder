@@ -66,6 +66,7 @@ public class ResultView {
 
     public void printResults(Results results) {
         results.results().stream().forEach(result -> printResult(result));
+        System.out.println();
     }
 
     private void printResult(Result result) {
