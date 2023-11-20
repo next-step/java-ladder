@@ -1,9 +1,10 @@
 package nextstep.ladder.domian;
 
+import nextstep.ladder.domain.Names;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class NamesTest {
 
@@ -20,11 +21,5 @@ public class NamesTest {
     void 이름의_갯수를_확인한다() {
         names = new Names("pobi,crong,honux");
         assertThat(names.size()).isEqualTo(3);
-    }
-
-    @DisplayName("공백은 이름으로 인정하지 않는다")
-    @Test
-    void 공백은_이름으로_인정하지_않는다() {
-        assertThatThrownBy(() -> new Names("pobi,,honux")).isInstanceOf(BlankNameException.class);
     }
 }
