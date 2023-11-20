@@ -14,9 +14,4 @@ public class LadderHeight {
     public int height() {
         return height;
     }
-
-    @Override
-    public String toString() {
-        return String.valueOf(height);
-    }
 }
