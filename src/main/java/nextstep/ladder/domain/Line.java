@@ -53,22 +53,17 @@ public class Line {
         return userIdx == 0;
     }
 
-    private boolean isUserLastIdx(final int userIdx) {
-        return points.size() == userIdx;
-    }
-
-    private int moveWhenNormalIdx(final int userIdx) {
-        final int leftSideIdx = userIdx - 1;
-        if (points.get(leftSideIdx)) {
-            return userIdx - 1;
-        }
-
+    private int moveWhenFirstIdx(final int userIdx) {
         final int rightSideIdx = userIdx;
         if (points.get(rightSideIdx)) {
             return userIdx + 1;
         }
 
         return userIdx;
+    }
+
+    private boolean isUserLastIdx(final int userIdx) {
+        return points.size() == userIdx;
     }
 
     private int moveWhenLastIdx(final int userIdx) {
@@ -80,7 +75,12 @@ public class Line {
         return userIdx;
     }
 
-    private int moveWhenFirstIdx(final int userIdx) {
+    private int moveWhenNormalIdx(final int userIdx) {
+        final int leftSideIdx = userIdx - 1;
+        if (points.get(leftSideIdx)) {
+            return userIdx - 1;
+        }
+
         final int rightSideIdx = userIdx;
         if (points.get(rightSideIdx)) {
             return userIdx + 1;

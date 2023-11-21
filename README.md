@@ -122,7 +122,7 @@
 
 ### 23.11.21 추가 피드백 사항
 
-- [ ] move 메서드 내에서 사용되는 private 메서드의 배치를 move 메서드 내에서 사용되는 순서로 변경 <br />
+- [X] move 메서드 내에서 사용되는 private 메서드의 배치를 move 메서드 내에서 사용되는 순서로 변경 <br />
   (클린 코드 책의 "위에서 아래로 코드 읽기: 내려가기 규칙" 챕터를 참고)
 - [ ] LadderResult의 field에 private 추가
 - [ ] UserResult의 !isSameSize를 부정문으로 표현하기
