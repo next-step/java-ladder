@@ -11,6 +11,10 @@ public final class ResultView {
     private ResultView() {
     }
 
+    public static void printResultString() {
+        System.out.println("실행결과\n");
+    }
+
     public static void printNames(List<String> userNames) {
         userNames.forEach(name -> System.out.print(name + "  "));
     }

@@ -13,7 +13,7 @@ public class LadderGame {
 
         Ladder ladder = new Ladder(names.size(), maxHeightOfLadder);
 
-        System.out.println("실행결과\n");
+        ResultView.printResultString();
         ResultView.printNames(names);
         ResultView.printLadder(ladder);
     }
