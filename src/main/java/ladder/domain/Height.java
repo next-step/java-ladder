@@ -11,6 +11,10 @@ public class Height implements Comparable<Height>{
         this.height = height;
     }
 
+    public int height(){
+        return height;
+    }
+
     private void inputValidation(int height) {
         if(height < 1){
             throw new IllegalArgumentException("높이는 1 이상이어야 합니다.");

@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.domain.Height;
 import ladder.domain.Name;
 import ladder.domain.Names;
 
@@ -26,7 +27,7 @@ public class InputView {
 
     public static int inputHeight() {
         System.out.println(INPUT_HEIGHT);
-        return SCANNER.nextInt();
+        return new Height(SCANNER.nextInt()).height();
     }
 
     public static List<String> inputPrizes(int size) {
