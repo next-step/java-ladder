@@ -6,7 +6,7 @@ import me.namuhuchutong.ladder.domain.Rows;
 
 public class LadderResult {
 
-    private static final String OUTPUT_FORMAT = "%s\n%s\n%s";
+    private static final String OUTPUT_FORMAT = "%s\n%s%s";
     private static final String SIX_RIGHT_ALIGNMENT = "%6s";
 
     private final Names names;
