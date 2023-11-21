@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -55,7 +56,7 @@ public class LadderResult {
     }
 
     public Map<Name, Result> result() {
-        return this.resultMap;
+        return Collections.unmodifiableMap(this.resultMap);
     }
 
     public Result of(Name name) {

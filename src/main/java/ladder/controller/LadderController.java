@@ -24,11 +24,10 @@ public class LadderController {
         Names names = request.names();
         Ladder ladder = new Ladder(request.ladderHeight(), names.size(), rowFactory);
         Results results = request.results();
-        resultView.printLadder(names, ladder, results);
-
-        Name resultTarget = new Name(inputView.resultTarget());
         LadderResult ladderResult = new LadderResult(names, ladder, results);
-        resultView.printResult(ladderResult, resultTarget);
+
+        resultView.printLadder(names, ladder, results);
+        resultView.printResult(ladderResult, new Name(inputView.resultTarget()));
     }
 
 }
