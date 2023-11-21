@@ -6,44 +6,21 @@ import java.util.function.BooleanSupplier;
 
 public class Line {
     private final List<LadderMoveDirection> points;
-    private final Boolean[] hasRung;
+    private final Rungs rungs;
 
-    public Line(final int width, final BooleanSupplier lineBuilderStrategy) {
-        this.hasRung = buildBooleanArray(width, lineBuilderStrategy);
+    public Line(final int pointsSize, final BooleanSupplier lineBuilderStrategy) {
+        final int rungsWidth = pointsSize - 1;
+        this.rungs = new Rungs(rungsWidth, lineBuilderStrategy);
 
-        this.points = convertLineToPoints();
+        this.points = convertRungsToPoints(pointsSize);
     }
 
-    private Boolean[] buildBooleanArray(final int width, final BooleanSupplier lineBuilderStrategy) {
-        final Boolean[] tempBooleans = new Boolean[width];
-
-        tempBooleans[0] = lineBuilderStrategy.getAsBoolean();
-
-        for (int idx = 1; idx < tempBooleans.length; idx++) {
-            final boolean preBool = tempBooleans[idx - 1];
-            final boolean curBool = lineBuilderStrategy.getAsBoolean();
-
-            tempBooleans[idx] = adjustContinuousTrue(preBool, curBool);
-        }
-
-        return tempBooleans;
-    }
-
-    private boolean adjustContinuousTrue(final boolean preBool, boolean curBool) {
-        if (preBool) {
-            curBool = false;
-        }
-
-        return curBool;
-    }
-
-    private List<LadderMoveDirection> convertLineToPoints() {
-        if (this.hasRung == null) {
+    private List<LadderMoveDirection> convertRungsToPoints(final int pointsSize) {
+        if (this.rungs == null) {
             throw new IllegalStateException("hasRung is needed to initiate points");
         }
 
         final List<LadderMoveDirection> tempPoints = new ArrayList<>();
-        final int pointsSize = this.hasRung.length + 1;
 
         for (int curPointIdx = 0; curPointIdx < pointsSize; curPointIdx++) {
             tempPoints.add(selectDirection(curPointIdx));
@@ -66,7 +43,7 @@ public class Line {
 
 
     public Boolean[] getHasRung() {
-        return this.hasRung;
+        return this.rungs.rungs();
     }
 
     private boolean isFirstPointIdx(final int pointIdx) {
@@ -82,11 +59,11 @@ public class Line {
     }
 
     private boolean hasRightSideRungAtCurPointIdx(final int curPointIdx) {
-        return this.hasRung[curPointIdx];
+        return this.rungs.hasRungAtIdx(curPointIdx);
     }
 
     private boolean isLastPointIdx(final int pointIdx) {
-        final int pointsSize = this.hasRung.length + 1;
+        final int pointsSize = this.rungs.size() + 1;
 
         return pointIdx == pointsSize - 1;
     }
@@ -100,7 +77,7 @@ public class Line {
     }
 
     private boolean hasLeftSideRungAtCurPointIdx(final int curPointIdx) {
-        return this.hasRung[curPointIdx - 1];
+        return this.rungs.hasRungAtIdx(curPointIdx - 1);
     }
 
     private LadderMoveDirection selectDirectionWhenNormalIdx(final int curPointIdx) {

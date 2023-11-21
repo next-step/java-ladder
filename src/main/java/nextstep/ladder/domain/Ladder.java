@@ -17,11 +17,11 @@ public class Ladder {
     private List<Line> initLadderLines(final UserInput userInput, final BooleanSupplier lineBuilderStrategy) {
         List<Line> tempLadderLines = new ArrayList<>();
 
-        final int width = userInput.userNamesSize() - 1;
+        final int pointsSize = userInput.userNamesSize();
         final int height = userInput.height();
 
         for (int i = 0; i < height; i++) {
-            tempLadderLines.add(new Line(width, lineBuilderStrategy));
+            tempLadderLines.add(new Line(pointsSize, lineBuilderStrategy));
         }
 
         return tempLadderLines;

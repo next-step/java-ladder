@@ -20,33 +20,14 @@ class LineTest {
     @DisplayName("width와 사다리 생성 전략을 이용하여 Line 객체를 만들 수 있다.")
     void testLineConstructor() {
         //given
-        final int width = 5;
+        final int pointsSize = 5;
         final BooleanSupplier lineBuilderStrategy = () -> new Random().nextBoolean();
 
         //when
-        final Line line = new Line(width, lineBuilderStrategy);
+        final Line line = new Line(pointsSize, lineBuilderStrategy);
 
         //then
         assertThat(line).isNotNull();
-    }
-
-    @Test
-    @DisplayName("Line이 생성될 때, 연달아 true가 나오는 경우가 없다.")
-    void testLineCreationForNoConsecutiveTrueValues() {
-        //given
-        final int width = 5;
-        final BooleanSupplier lineBuilderStrategy = () -> true;
-
-        //when
-        final Line line = new Line(width, lineBuilderStrategy);
-        final Boolean[] hasRung = line.getHasRung();
-
-        //then
-        assertThat(hasRung).isNotEmpty();
-
-        for (int i = 1; i < hasRung.length; i++) {
-            assertThat(hasRung[i - 1] && hasRung[i]).isFalse();
-        }
     }
 
     @ParameterizedTest
@@ -54,12 +35,12 @@ class LineTest {
     @DisplayName("userIdx를 입력하고 move 메서드를 실행하면, 입력받은 Idx가 왼쪽 오른쪽 중에 어디로 가야할 지 판단 후 이동한 Idx 값을 반환한다.")
     void testMove(final int userIdx, final int expectedIdx) {
         //given
-        final int width = 4;
+        final int pointsSize = 5;
         final Deque<Boolean> booleans = new ArrayDeque<>(List.of(true, false, false, true));
         final BooleanSupplier lineBuilderStrategy = booleans::pop;
 
         //when
-        final Line line = new Line(width, lineBuilderStrategy);
+        final Line line = new Line(pointsSize, lineBuilderStrategy);
         final int movedIdx = line.move(userIdx);
 
         //then
