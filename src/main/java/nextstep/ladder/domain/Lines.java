@@ -19,4 +19,14 @@ public class Lines {
 
         this.lines = lines;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Line line : this.lines) {
+            stringBuilder.append(line.toString() + "\n");
+        }
+
+        return stringBuilder.toString();
+    }
 }

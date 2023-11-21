@@ -11,7 +11,6 @@ public class LadderApp {
 
         Ladder ladder = new Ladder(participants, InputView.inputLadderHeight());
 
-        ResultView.print(participants.toString());
-        ResultView.print(participants.toString());
+        ResultView.print(ladder.toString());
     }
 }

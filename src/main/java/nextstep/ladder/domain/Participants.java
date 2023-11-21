@@ -56,6 +56,10 @@ public class Participants {
         return participantTexts == null || participantTexts.isEmpty();
     }
 
+    public int countOfPerson() {
+        return this.participants.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -75,10 +79,6 @@ public class Participants {
                 .map(Participant::toString)
                 .collect(Collectors.toList());
 
-        return String.join("", collect);
-    }
-
-    public int countOfPerson() {
-        return this.participants.size();
+        return String.join("", collect) + "\n";
     }
 }

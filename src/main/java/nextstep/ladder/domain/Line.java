@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Line {
     private static final String EXIST_POINT_STR = "|-----";
@@ -15,20 +16,14 @@ public class Line {
         this.points = points;
     }
 
-    public Line (int countOfPerson, CreateStrategy strategy) {
+    public Line(int countOfPerson, CreateStrategy strategy) {
         List<Boolean> points = new ArrayList<>();
 
-        // 라인의 좌표 값에 선이 있는지 유무를 판단하는 로직 추가
-        boolean isBeforeExist = false;
-        for (int i = 1; i < countOfPerson; i++) {
-            if (strategy.isCreate() && !isBeforeExist) {
-                isBeforeExist = true;
-                points.add(true);
-            } else {
-                isBeforeExist = false;
-                points.add(false);
-            }
-        }
+        IntStream.range(0, countOfPerson - 1)
+        .forEach(i -> {
+            boolean shouldCreate = strategy.isCreate() && (i == 0 || !points.get(i - 1));
+            points.add(shouldCreate);
+        });
 
         this.points = points;
     }

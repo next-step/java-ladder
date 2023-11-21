@@ -7,5 +7,4 @@ public class ResultView {
     public static void print(String text) {
         System.out.println(text);
     }
-
 }
