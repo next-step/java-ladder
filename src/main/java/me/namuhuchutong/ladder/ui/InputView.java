@@ -24,13 +24,24 @@ public class InputView {
 
     private int inputIntegerFromStandardInput() {
         try {
-            return INPUT.nextInt();
+            int inputNumber = INPUT.nextInt();
+            cleanBuffer();
+            return inputNumber;
         } catch (InputMismatchException exception) {
             throw new IllegalArgumentException("숫자만 입력할 수 있습니다.");
         }
     }
 
+    private static void cleanBuffer() {
+        INPUT.nextLine();
+    }
+
     private void printMessage(String message) {
         System.out.println(message);
+    }
+
+    public String inputStringName() {
+        printMessage("결과를 보고 싶은 사람은?");
+        return INPUT.nextLine();
     }
 }
