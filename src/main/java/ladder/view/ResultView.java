@@ -20,8 +20,10 @@ public class ResultView {
 
     private static void printRow(Row row) {
         printNewLine();
+
+
         row.getColumns().forEach((col)->{
-            System.out.print(col.isMarked() ? "-----" : "     ");
+            System.out.print(col);
             System.out.print("|");
         });
     }

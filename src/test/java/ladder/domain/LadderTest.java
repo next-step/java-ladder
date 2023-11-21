@@ -11,9 +11,8 @@ public class LadderTest {
     @Test
     @DisplayName("사다리 생성 테스트")
     void createLadder(){
-        List<Row> rows = new Ladder(4, 5, new RandomBooleanGenerator()).makeLadder();
-
-        for(Row row: rows){
+        List<Row> ladder = Ladder.makeLadder(4, 5, new RandomBooleanGenerator());
+        for(Row row: ladder){
             for(Column column: row.getColumns()){
                 System.out.print(column.isMarked() + " ");
             }

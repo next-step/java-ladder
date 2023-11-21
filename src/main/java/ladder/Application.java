@@ -13,7 +13,7 @@ public class Application {
         Names names = InputView.inputNames();
         int height = InputView.inputHeight();
 
-        List<Row> ladder = new Ladder(names.names().size() - 1, height, new RandomBooleanGenerator()).makeLadder();
+        List<Row> ladder = Ladder.makeLadder(names.names().size() - 1, height, new RandomBooleanGenerator());
 
         ResultView.printResult(names, ladder);
     }
