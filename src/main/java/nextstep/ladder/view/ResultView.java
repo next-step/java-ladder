@@ -7,14 +7,13 @@ import nextstep.ladder.domain.Names;
 
 import java.util.List;
 
-import static java.util.prefs.Preferences.MAX_NAME_LENGTH;
-
 public class ResultView {
 
     private static final String START = "실행결과";
+    private static final int MAX_LENGTH = 5;
     private static final String LADDER_LINE = "|";
-    private static final String LADDER_POINT = "-".repeat(MAX_NAME_LENGTH);
-    private static final String LADDER_BLANK = " ".repeat(MAX_NAME_LENGTH);
+    private static final String LADDER_POINT = "-".repeat(MAX_LENGTH);
+    private static final String LADDER_BLANK = " ".repeat(MAX_LENGTH);
     private static final String LADDER_START = "   ";
     private static final String NAME_BLANK = "  ";
 
@@ -25,7 +24,7 @@ public class ResultView {
     }
 
     private static void printNames(List<Name> names) {
-        names.stream().forEach(name -> System.out.print(name.user() + NAME_BLANK));
+        names.stream().forEach(name -> System.out.print(name.value() + NAME_BLANK));
         System.out.println();
     }
 
