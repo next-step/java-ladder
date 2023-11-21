@@ -1,7 +1,6 @@
 package nextstep.optional;
 
 import java.util.Arrays;
-import java.util.stream.Stream;
 
 enum Expression {
     PLUS("+"), MINUS("-"), TIMES("*"), DIVIDE("/");
