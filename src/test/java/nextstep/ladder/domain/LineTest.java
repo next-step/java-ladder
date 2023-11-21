@@ -39,13 +39,13 @@ class LineTest {
 
         //when
         final Line line = new Line(width, lineBuilderStrategy);
-        final List<Boolean> points = line.getPoints();
+        final Boolean[] hasRung = line.getHasRung();
 
         //then
-        assertThat(points).isNotEmpty();
+        assertThat(hasRung).isNotEmpty();
 
-        for (int i = 1; i < points.size(); i++) {
-            assertThat(points.get(i - 1) && points.get(i)).isFalse();
+        for (int i = 1; i < hasRung.length; i++) {
+            assertThat(hasRung[i - 1] && hasRung[i]).isFalse();
         }
     }
 

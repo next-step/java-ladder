@@ -5,87 +5,119 @@ import java.util.List;
 import java.util.function.BooleanSupplier;
 
 public class Line {
-    private final List<Boolean> points;
+    private final List<LadderMoveDirection> points;
+    private final Boolean[] hasRung;
 
     public Line(final int width, final BooleanSupplier lineBuilderStrategy) {
-        this.points = new ArrayList<>(width);
+        this.hasRung = buildBooleanArray(width, lineBuilderStrategy);
 
-        for (int idx = 0; idx < width; idx++) {
-            addPoint(idx, lineBuilderStrategy.getAsBoolean());
-        }
+        this.points = convertLineToPoints();
     }
 
-    public List<Boolean> getPoints() {
-        return points;
-    }
+    private Boolean[] buildBooleanArray(final int width, final BooleanSupplier lineBuilderStrategy) {
+        final Boolean[] tempBooleans = new Boolean[width];
 
-    private void addPoint(final int idx, boolean curPoint) {
-        if (idx > 0) {
-            boolean prePoint = this.points.get(idx - 1);
+        tempBooleans[0] = lineBuilderStrategy.getAsBoolean();
 
-            curPoint = adjustContinuousTrue(prePoint, curPoint);
+        for (int idx = 1; idx < tempBooleans.length; idx++) {
+            final boolean preBool = tempBooleans[idx - 1];
+            final boolean curBool = lineBuilderStrategy.getAsBoolean();
+
+            tempBooleans[idx] = adjustContinuousTrue(preBool, curBool);
         }
 
-        this.points.add(curPoint);
+        return tempBooleans;
     }
 
-    private boolean adjustContinuousTrue(final boolean prePoint, boolean curPoint) {
-        if (prePoint) {
-            return false;
+    private boolean adjustContinuousTrue(final boolean preBool, boolean curBool) {
+        if (preBool) {
+            curBool = false;
         }
 
-        return curPoint;
+        return curBool;
+    }
+
+    private List<LadderMoveDirection> convertLineToPoints() {
+        if (this.hasRung == null) {
+            throw new IllegalStateException("hasRung is needed to initiate points");
+        }
+
+        final List<LadderMoveDirection> tempPoints = new ArrayList<>();
+        final int pointsSize = this.hasRung.length + 1;
+
+        for (int curPointIdx = 0; curPointIdx < pointsSize; curPointIdx++) {
+            tempPoints.add(selectDirection(curPointIdx));
+        }
+
+        return tempPoints;
+    }
+
+    private LadderMoveDirection selectDirection(final int curPointIdx) {
+        if (isFirstPointIdx(curPointIdx)) {
+            return selectDirectionWhenFirstIdx(curPointIdx);
+        }
+
+        if (isLastPointIdx(curPointIdx)) {
+            return selectDirectionWhenLastIdx(curPointIdx);
+        }
+
+        return selectDirectionWhenNormalIdx(curPointIdx);
+    }
+
+
+    public Boolean[] getHasRung() {
+        return this.hasRung;
+    }
+
+    private boolean isFirstPointIdx(final int pointIdx) {
+        return pointIdx == 0;
+    }
+
+    private LadderMoveDirection selectDirectionWhenFirstIdx(final int curPointIdx) {
+        if (hasRightSideRungAtCurPointIdx(curPointIdx)) {
+            return LadderMoveDirection.RIGHT;
+        }
+
+        return LadderMoveDirection.CENTER;
+    }
+
+    private boolean hasRightSideRungAtCurPointIdx(final int curPointIdx) {
+        return this.hasRung[curPointIdx];
+    }
+
+    private boolean isLastPointIdx(final int pointIdx) {
+        final int pointsSize = this.hasRung.length + 1;
+
+        return pointIdx == pointsSize - 1;
+    }
+
+    private LadderMoveDirection selectDirectionWhenLastIdx(final int curPointIdx) {
+        if (hasLeftSideRungAtCurPointIdx(curPointIdx)) {
+            return LadderMoveDirection.LEFT;
+        }
+
+        return LadderMoveDirection.CENTER;
+    }
+
+    private boolean hasLeftSideRungAtCurPointIdx(final int curPointIdx) {
+        return this.hasRung[curPointIdx - 1];
+    }
+
+    private LadderMoveDirection selectDirectionWhenNormalIdx(final int curPointIdx) {
+        if (hasLeftSideRungAtCurPointIdx(curPointIdx)) {
+            return LadderMoveDirection.LEFT;
+        }
+
+        if (hasRightSideRungAtCurPointIdx(curPointIdx)) {
+            return LadderMoveDirection.RIGHT;
+        }
+
+        return LadderMoveDirection.CENTER;
     }
 
     public int move(final int userIdx) {
-        if (isUserFirstIdx(userIdx)) {
-            return moveWhenFirstIdx(userIdx);
-        }
+        final LadderMoveDirection direction = this.points.get(userIdx);
 
-        if (isUserLastIdx(userIdx)) {
-            return moveWhenLastIdx(userIdx);
-        }
-
-        return moveWhenNormalIdx(userIdx);
-    }
-
-    private boolean isUserFirstIdx(final int userIdx) {
-        return userIdx == 0;
-    }
-
-    private int moveWhenFirstIdx(final int userIdx) {
-        final int rightSideIdx = userIdx;
-        if (points.get(rightSideIdx)) {
-            return userIdx + 1;
-        }
-
-        return userIdx;
-    }
-
-    private boolean isUserLastIdx(final int userIdx) {
-        return points.size() == userIdx;
-    }
-
-    private int moveWhenLastIdx(final int userIdx) {
-        final int leftSideIdx = userIdx - 1;
-        if (points.get(leftSideIdx)) {
-            return userIdx - 1;
-        }
-
-        return userIdx;
-    }
-
-    private int moveWhenNormalIdx(final int userIdx) {
-        final int leftSideIdx = userIdx - 1;
-        if (points.get(leftSideIdx)) {
-            return userIdx - 1;
-        }
-
-        final int rightSideIdx = userIdx;
-        if (points.get(rightSideIdx)) {
-            return userIdx + 1;
-        }
-
-        return userIdx;
+        return direction.move(userIdx);
     }
 }
