@@ -1,5 +1,6 @@
 package nextstep.ladder;
 
+import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
 import java.util.List;
@@ -7,15 +8,13 @@ import java.util.List;
 public class LadderGame {
 
     public static void main(String[] args) {
-        int countOfPerson = 3;
-        int maxHeightOfLadder = 3;
+        List<String> names = InputView.inputNames();
+        int maxHeightOfLadder = InputView.inputMaxHeightOfLadder();
 
-        List<String> userNames = List.of("crong", "honux", "pobi");
+        Ladder ladder = new Ladder(names.size(), maxHeightOfLadder);
 
-
-        Ladder ladder = new Ladder(countOfPerson, maxHeightOfLadder);
-
-        ResultView.printNames(userNames);
+        System.out.println("실행결과\n");
+        ResultView.printNames(names);
         ResultView.printLadder(ladder);
     }
 }
