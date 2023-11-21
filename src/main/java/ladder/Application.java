@@ -24,7 +24,9 @@ public class Application {
         Map<Name, String> result = LadderGame.playing(names, prizes, randomLadder);
 
         ResultView.printResult(names, randomLadder, prizes);
-        ResultView.printPersonPrize(InputView.inputPersonName(), result);
+
+        String resultTarget = InputView.inputPersonName();
+        ResultView.printPersonPrize(resultTarget, result);
     }
 
 
