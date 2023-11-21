@@ -8,6 +8,14 @@ import java.util.Random;
 import java.util.function.BooleanSupplier;
 
 public class Common {
+    /**
+     * 각 Line이 랜덤인 사다리를 생성한다.
+     * <pre>
+     *     |-----|     |     |-----|
+     *     |     |-----|     |     |
+     *     |-----|     |-----|     |
+     * </pre>
+     */
     public static Ladder makeRandomLadder(final String userNamesText, final String userResultsText, final int height) {
         final UserInput userInput = makeUserInput(userNamesText, userResultsText, height);
 
@@ -16,6 +24,15 @@ public class Common {
         return new Ladder(userInput, booleanSupplier);
     }
 
+
+    /**
+     * 각 Line이 너비만큼 연결, 비연결, 연결, 비연결 ... 순으로 된 사다리를 생성한다.
+     * <pre>
+     *     |-----|     |-----|     |
+     *     |-----|     |-----|     |
+     *     |-----|     |-----|     |
+     * </pre>
+     */
     public static Ladder makeFixedLadder(final String userNamesText, final String userResultsText, final int height) {
         final UserInput userInput = makeUserInput(userNamesText, userResultsText, height);
 
