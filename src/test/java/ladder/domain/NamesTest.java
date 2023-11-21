@@ -16,7 +16,7 @@ class NamesTest {
         List<String> names = List.of("pobi", "honux", "crong");
         Names joinMembers = new Names(names);
 
-        Assertions.assertThat(joinMembers.countJoinMembers()).isEqualTo(3);
+        Assertions.assertThat(joinMembers.countPlayers()).isEqualTo(3);
     }
 
     @Test
