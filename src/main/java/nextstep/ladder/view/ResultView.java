@@ -7,7 +7,7 @@ import nextstep.ladder.domain.Names;
 
 import java.util.List;
 
-public class resultView {
+public class ResultView {
 
     private static final String START = "실행결과";
     private static final String LADDER_LINE = "|";

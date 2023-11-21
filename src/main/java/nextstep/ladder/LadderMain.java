@@ -6,9 +6,9 @@ import nextstep.ladder.strategy.RandomRuleStrategy;
 import nextstep.ladder.strategy.RuleStrategy;
 
 import static nextstep.ladder.view.InputView.*;
-import static nextstep.ladder.view.resultView.printLadder;
+import static nextstep.ladder.view.ResultView.printLadder;
 
-public class ladderMain {
+public class LadderMain {
 
     private static RuleStrategy ruleStrategy = new RandomRuleStrategy();
 
