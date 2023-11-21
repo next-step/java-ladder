@@ -1,6 +1,5 @@
 package ladder.domain.ladder;
 
-import ladder.domain.RandomLadder;
 import ladder.domain.util.RandomBooleanGenerator;
 
 public class RandomLadderFactory extends LadderFactory{

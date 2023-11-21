@@ -1,30 +1,12 @@
-package ladder;
+package ladder.domain;
 
-import ladder.domain.*;
-import ladder.domain.ladder.LadderFactory;
-import ladder.domain.ladder.RandomLadderFactory;
-import ladder.view.InputView;
-import ladder.view.ResultView;
+import ladder.domain.ladder.RandomLadder;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class LadderGame {
-
-    private static final LadderFactory LADDER_FACTORY = new RandomLadderFactory();
-
-    public static void main(String[] args) {
-        Names names = InputView.inputNames();
-        int height = InputView.inputHeight();
-        List<String> prizes = InputView.inputPrizes(names.names().size());
-
-        RandomLadder randomLadder = LADDER_FACTORY.createLadder(names.names().size() - 1, height);
-        Map<Name, String> result = playing(names, prizes, randomLadder);
-
-        ResultView.printResult(names, randomLadder, prizes);
-        ResultView.printPersonPrize(InputView.inputPersonName(), result);
-    }
 
     public static Map<Name, String> playing(Names names, List<String> prizes, RandomLadder randomLadder) {
         Map<Name, String> result = new HashMap<>();
@@ -60,5 +42,4 @@ public class LadderGame {
     private static boolean canMoveLeft(RandomLadder randomLadder, int currentPosition, int i) {
         return currentPosition > 0 && randomLadder.isMarked(i, currentPosition - 1);
     }
-
 }

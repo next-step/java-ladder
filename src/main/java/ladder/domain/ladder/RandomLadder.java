@@ -1,5 +1,6 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
+import ladder.domain.Row;
 import ladder.domain.util.BooleanGenerator;
 import ladder.domain.util.RandomBooleanGenerator;
 

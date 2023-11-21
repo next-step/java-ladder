@@ -1,6 +1,7 @@
 package ladder.domain;
 
-import ladder.LadderGame;
+import ladder.Application;
+import ladder.domain.ladder.RandomLadder;
 import ladder.domain.util.RandomBooleanGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

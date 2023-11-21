@@ -1,6 +1,7 @@
 package ladder.view;
 
 import ladder.domain.*;
+import ladder.domain.ladder.RandomLadder;
 
 import java.util.List;
 import java.util.Map;
