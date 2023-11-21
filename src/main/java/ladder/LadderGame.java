@@ -23,7 +23,7 @@ public class LadderGame {
         ResultView.printPersonPrize(InputView.inputPersonName(), result);
     }
 
-    private static Map<Name, String> playing(Names names, List<String> prizes, Ladder ladder) {
+    public static Map<Name, String> playing(Names names, List<String> prizes, Ladder ladder) {
         Map<Name, String> result = new HashMap<>();
         for(Name name: names.names()){
             int currentPosition = names.names().indexOf(name);
