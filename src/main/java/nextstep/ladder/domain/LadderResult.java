@@ -4,7 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class LadderResult {
-    Map<String, String> result;
+    private final Map<String, String> result;
 
     public LadderResult() {
         this.result = new LinkedHashMap<>();
