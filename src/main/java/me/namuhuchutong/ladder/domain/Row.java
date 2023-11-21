@@ -1,7 +1,7 @@
 package me.namuhuchutong.ladder.domain;
 
-import me.namuhuchutong.ladder.domain.wrapper.*;
 import me.namuhuchutong.ladder.domain.factory.ScaffoldFactory;
+import me.namuhuchutong.ladder.domain.wrapper.Point;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,39 +11,39 @@ import static me.namuhuchutong.ladder.domain.wrapper.LadderExpression.*;
 
 public class Row {
 
-    private final List<LadderExpression> values;
+    private final List<Point> values;
 
     public static Row from(int participants, ScaffoldFactory factory) {
-        List<LadderExpression> collect = initializeLadderRow();
-        collect.addAll(addScaffold(participants, factory));
-        return new Row(unmodifiableList(collect));
+        List<Point> initializedRow = initializeLadderRow();
+        initializedRow.addAll(addScaffold(participants, factory));
+        return new Row(unmodifiableList(initializedRow));
     }
 
-    private static List<LadderExpression> addScaffold(int participants, ScaffoldFactory factory) {
-        List<LadderExpression> result = new ArrayList<>();
+    private static List<Point> addScaffold(int participants, ScaffoldFactory factory) {
+        List<Point> result = new ArrayList<>();
         for (int i = 1; i < participants; i++) {
-            result.add(factory.createScaffold());
-            result.add(VERTICAL_BAR);
+            result.add(new Point(factory));
+            result.add(new Point(VERTICAL_BAR));
         }
         return result;
     }
 
-    private static List<LadderExpression> initializeLadderRow() {
-        List<LadderExpression> list = new ArrayList<>();
-        list.add(EMPTY_SPACE);
-        list.add(VERTICAL_BAR);
+    private static List<Point> initializeLadderRow() {
+        List<Point> list = new ArrayList<>();
+        list.add(new Point(EMPTY_SPACE));
+        list.add(new Point(VERTICAL_BAR));
         return list;
     }
 
-    public Row(List<LadderExpression> values) {
+    public Row(List<Point> values) {
         validateContinuousScaffold(values);
         this.values = values;
     }
 
-    private void validateContinuousScaffold(List<LadderExpression> values) {
+    private void validateContinuousScaffold(List<Point> values) {
         ContinuousScaffoldValidator validator = new ContinuousScaffoldValidator();
         values.stream()
-              .filter(expression -> !expression.equals(VERTICAL_BAR))
+              .filter(point -> !point.isVerticalBar())
               .filter(validator::isContinuous)
               .findAny()
               .ifPresent(e -> {
@@ -54,7 +54,7 @@ public class Row {
     @Override
     public String toString() {
         return this.values.stream()
-                          .map(LadderExpression::convertToString)
+                          .map(Point::convertToString)
                           .reduce("", (previous, newOne) -> previous + newOne);
     }
 }
