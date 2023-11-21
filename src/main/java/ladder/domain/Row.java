@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import ladder.exception.LineDuplicateException;
-import ladder.factory.ColFactory;
 
 import java.util.List;
 
@@ -9,8 +8,8 @@ public class Row {
 
     private final List<Boolean> cols;
 
-    public Row(int col, ColFactory factory) {
-        this.cols = factory.cols(col);
+    public Row(List<Boolean> cols) {
+        this.cols = cols;
         validate();
     }
 

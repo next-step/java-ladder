@@ -18,4 +18,8 @@ public class Results {
         return Collections.unmodifiableList(this.results);
     }
 
+    public Result result(int index) {
+        return this.results.get(index);
+    }
+
 }

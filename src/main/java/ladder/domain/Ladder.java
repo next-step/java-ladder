@@ -1,7 +1,7 @@
 package ladder.domain;
 
 import ladder.exception.InvalidLadderException;
-import ladder.factory.ColFactory;
+import ladder.factory.RowFactory;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,12 +13,9 @@ public class Ladder {
 
     private final List<Row> rows = new ArrayList<>();
 
-    public Ladder(int row, int col, ColFactory factory) {
+    public Ladder(int row, int col, RowFactory factory) {
         validate(col);
-
-        for (int i = 0; i < row; i++) {
-            this.rows.add(new Row(col - 1, factory));
-        }
+        this.rows.addAll(factory.rows(row, col - 1));
     }
 
     private void validate(int col) {

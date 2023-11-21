@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,7 +19,11 @@ public class Names {
     }
 
     public List<Name> names() {
-        return this.names;
+        return Collections.unmodifiableList(this.names);
+    }
+
+    public Name name(int index) {
+        return this.names.get(index);
     }
 
 }

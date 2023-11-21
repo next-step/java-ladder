@@ -2,7 +2,6 @@ package ladder;
 
 import ladder.domain.Row;
 import ladder.exception.LineDuplicateException;
-import ladder.fixture.FixedColFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +16,7 @@ public class RowTest {
     public void line_duplicate() {
         assertThatExceptionOfType(LineDuplicateException.class)
             .isThrownBy(() -> {
-                new Row(3, new FixedColFactory(Arrays.asList(false, true, true)));
+                new Row(Arrays.asList(false, true, true));
             })
             .withMessageMatching("가로 라인은 겹칠 수 없습니다");
     }

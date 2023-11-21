@@ -2,8 +2,11 @@ package ladder.view;
 
 import ladder.domain.*;
 
+import java.util.Map;
+
 public class ResultView {
 
+    private static final String LADDER_MESSAGE = "사다리 결과";
     private static final String RESULT_MESSAGE = "실행결과";
     private static final String NAME_INTERVAL = "  ";
     private static final String ROW_INTERVAL = "  ";
@@ -11,17 +14,19 @@ public class ResultView {
     private static final String ROW_SEPERATOR = "|";
     private static final String FULL_COL = "-----";
     private static final String EMPTY_COL = "     ";
+    private static final String RESULT_DELIMITER = " : ";
+    private static final Name ALL = new Name("all");
 
-    public void printResult(Names names, Ladder ladder, Results results) {
-        printResultMessage();
+    public void printLadder(Names names, Ladder ladder, Results results) {
+        printLadderMessage();
         printNames(names);
         printLadder(ladder);
         printResults(results);
     }
 
-    private void printResultMessage() {
+    private void printLadderMessage() {
         System.out.println();
-        System.out.println(RESULT_MESSAGE);
+        System.out.println(LADDER_MESSAGE);
     }
 
     private void printNames(Names names) {
@@ -67,10 +72,39 @@ public class ResultView {
     public void printResults(Results results) {
         results.results().stream().forEach(result -> printResult(result));
         System.out.println();
+        System.out.println();
     }
 
     private void printResult(Result result) {
         System.out.print(result.result() + RESULT_INTERVAL);
+    }
+
+    public void printResult(LadderResult ladderResult, Name name) {
+        System.out.println();
+        System.out.println(RESULT_MESSAGE);
+        System.out.println(resultText(ladderResult, name));
+    }
+
+    private String resultText(LadderResult ladderResult, Name name) {
+        if (name.equals(ALL)) {
+            return allResultText(ladderResult);
+        }
+
+        return ladderResult.of(name).result();
+    }
+
+    private String allResultText(LadderResult ladderResult) {
+        StringBuilder stringBuilder = new StringBuilder();
+        Map<Name, Result> result = ladderResult.result();
+        for (Map.Entry<Name, Result> entry : result.entrySet()) {
+            stringBuilder.append(resultText(entry.getKey(), entry.getValue()));
+        }
+
+        return stringBuilder.toString();
+    }
+
+    private String resultText(Name name, Result result) {
+        return name.name() + RESULT_DELIMITER + result.result() + "\n";
     }
 
 }
