@@ -11,7 +11,7 @@ public class Ladder {
 
     public Ladder(int countOfPerson, int maxHeightOfLadder) {
         this.lines = IntStream.range(0, maxHeightOfLadder)
-                .mapToObj(idx -> new Line(countOfPerson))
+                .mapToObj(idx -> Line.of(countOfPerson))
                 .collect(Collectors.toList());
     }
 

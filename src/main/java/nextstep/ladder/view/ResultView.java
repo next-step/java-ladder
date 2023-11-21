@@ -2,6 +2,7 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.Ladder;
 import nextstep.ladder.Line;
+import nextstep.ladder.Point;
 
 import java.util.List;
 
@@ -27,11 +28,11 @@ public final class ResultView {
 
     }
 
-    private static void printPoint(boolean point) {
+    private static void printPoint(Point point) {
         String pointTruePrint = "-----";
         String pointFalsePrint = "     ";
 
-        if (point == true) {
+        if (point.isActive()) {
             System.out.print(pointTruePrint + "|");
             return;
         }

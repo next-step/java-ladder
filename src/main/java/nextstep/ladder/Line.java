@@ -2,17 +2,29 @@ package nextstep.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Line {
-    private final List<Boolean> points = new ArrayList<>();
+    private final List<Point> points;
 
-    public Line(int countOfPerson) {
-        IntStream.range(0, countOfPerson - 1)
-                .forEach(idx -> points.add(false));
+    public Line(List<Point> points) {
+        this.points = points;
     }
 
-    public List<Boolean> points() {
+    public static Line of(int countOfPerson) {
+        List<Point> points = new ArrayList<>();
+        Point point = new Point();
+        points.add(0, point);
+
+        for (int idx = 1; idx < countOfPerson - 1; idx++) {
+            Point nextPoint = point.nextPoint();
+            points.add(nextPoint);
+            point = nextPoint;
+        }
+
+        return new Line(points);
+    }
+
+    public List<Point> points() {
         return new ArrayList<>(points);
     }
 }
