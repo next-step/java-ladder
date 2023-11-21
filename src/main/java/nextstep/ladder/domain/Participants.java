@@ -77,4 +77,8 @@ public class Participants {
 
         return String.join("", collect);
     }
+
+    public int countOfPerson() {
+        return this.participants.size();
+    }
 }
