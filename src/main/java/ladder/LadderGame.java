@@ -46,9 +46,10 @@ public class LadderGame {
 
     private static int moveOrStay(Names names, Ladder ladder, int currentPosition, int i) {
         if(canMoveRight(names, ladder, currentPosition, i)){
-            currentPosition++;
-        } else if(canMoveLeft(ladder, currentPosition, i)){
-            currentPosition--;
+            return ++currentPosition;
+        }
+        if(canMoveLeft(ladder, currentPosition, i)){
+            return --currentPosition;
         }
         return currentPosition;
     }
