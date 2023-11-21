@@ -6,7 +6,6 @@ import static nextstep.ladder.exception.ExceptionMessage.*;
 
 public class Name {
 
-    public static final String EMPTY = "\\s";
     private String name;
 
     public Name(String name) {
