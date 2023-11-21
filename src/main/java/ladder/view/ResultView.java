@@ -6,11 +6,11 @@ public class ResultView {
 
     private static final String RESULT_MESSAGE = "실행결과";
     private static final String NAME_INTERVAL = "  ";
-    private static final String LINE_INTERVAL = "  ";
+    private static final String ROW_INTERVAL = "  ";
     private static final String RESULT_INTERVAL = "    ";
-    private static final String LINE_SEPERATOR = "|";
-    private static final String FULL_POINT = "-----";
-    private static final String EMPTY_POINT = "     ";
+    private static final String ROW_SEPERATOR = "|";
+    private static final String FULL_COL = "-----";
+    private static final String EMPTY_COL = "     ";
 
     public void printResult(Names names, Ladder ladder, Results results) {
         printResultMessage();
@@ -39,29 +39,29 @@ public class ResultView {
 
     private void printLadder(Ladder ladder) {
         System.out.println();
-        ladder.lines().stream().forEach(line -> printLine(line));
+        ladder.rows().stream().forEach(row -> printRow(row));
     }
 
-    private void printLine(Line line) {
-        System.out.println(LINE_INTERVAL + lineText(line) + LINE_SEPERATOR);
+    private void printRow(Row row) {
+        System.out.println(ROW_INTERVAL + rowText(row) + ROW_SEPERATOR);
     }
 
-    private String lineText(Line line) {
+    private String rowText(Row row) {
         StringBuilder stringBuilder = new StringBuilder();
-        line.points().stream()
-            .forEach(point -> {
-                stringBuilder.append(LINE_SEPERATOR);
-                stringBuilder.append(pointText(point));
+        row.cols().stream()
+            .forEach(col -> {
+                stringBuilder.append(ROW_SEPERATOR);
+                stringBuilder.append(colText(col));
             });
 
         return stringBuilder.toString();
     }
 
-    private String pointText(Boolean point) {
-        if (point) {
-            return FULL_POINT;
+    private String colText(Boolean col) {
+        if (col) {
+            return FULL_COL;
         }
-        return EMPTY_POINT;
+        return EMPTY_COL;
     }
 
     public void printResults(Results results) {
