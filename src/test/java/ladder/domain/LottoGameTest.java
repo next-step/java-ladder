@@ -17,8 +17,8 @@ public class LottoGameTest {
     void createLottoGameResult(){
         Names names = new Names(List.of(new Name("ryan"), new Name("jason"), new Name("brown")));
         List<String> prizes = List.of("꽝", "꽝", "3등");
-        Ladder ladder = new Ladder(names.names().size()-1, 6, new RandomBooleanGenerator()).makeLadder();
-        Map<Name, String> result = LadderGame.playing(names, prizes, ladder);
+        RandomLadder randomLadder = new RandomLadder(names.names().size()-1, 6, new RandomBooleanGenerator()).makeLadder();
+        Map<Name, String> result = LadderGame.playing(names, prizes, randomLadder);
         assertThat(prizes).containsAll(result.values());
     }
 }

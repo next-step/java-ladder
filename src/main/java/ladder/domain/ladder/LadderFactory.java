@@ -1,7 +1,7 @@
 package ladder.domain.ladder;
 
-import ladder.domain.Ladder;
+import ladder.domain.RandomLadder;
 
 public abstract class LadderFactory {
-    public abstract Ladder createLadder(int height, int intervalCount);
+    public abstract RandomLadder createLadder(int height, int intervalCount);
 }

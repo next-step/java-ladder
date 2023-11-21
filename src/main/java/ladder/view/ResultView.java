@@ -7,9 +7,9 @@ import java.util.Map;
 
 public class ResultView {
 
-    public static void printResult(Names names, Ladder ladder, List<String> prizes) {
+    public static void printResult(Names names, RandomLadder randomLadder, List<String> prizes) {
         names.names().forEach(ResultView::printName);
-        ladder.rows().forEach(ResultView::printRow);
+        randomLadder.rows().forEach(ResultView::printRow);
         System.out.println();
         prizes.forEach(ResultView::printPrize);
     }

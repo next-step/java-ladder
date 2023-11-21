@@ -1,21 +1,20 @@
 package ladder.domain;
 
 import ladder.domain.util.BooleanGenerator;
+import ladder.domain.util.RandomBooleanGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Ladder {
+public class RandomLadder {
 
     private final List<Row> rows = new ArrayList<>();
     private final int intervalCount;
     private final int height;
-    private final BooleanGenerator booleanGenerator;
 
-    public Ladder(int intervalCount, int height, BooleanGenerator booleanGenerator) {
+    public RandomLadder(int intervalCount, int height, BooleanGenerator booleanGenerator) {
         this.intervalCount = intervalCount;
         this.height = height;
-        this.booleanGenerator = booleanGenerator;
     }
 
     public int size(){
@@ -26,9 +25,9 @@ public class Ladder {
         return this.rows;
     }
 
-    public Ladder makeLadder(){
+    public RandomLadder makeLadder(){
         for(int i = 0; i < this.height; i++){
-            this.rows.add(new Row(this.intervalCount, this.booleanGenerator));
+            this.rows.add(new Row(this.intervalCount, new RandomBooleanGenerator()));
         }
         return this;
     }

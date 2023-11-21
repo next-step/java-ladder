@@ -8,15 +8,14 @@ import java.util.List;
 
 public class Row{
 
-    private final List<Column> columns;
+    private final List<Column> columns = new ArrayList<>();;
     private final int intervalCount;
-    private BooleanGenerator booleanGenerator;
+    private final BooleanGenerator booleanGenerator;
 
     public Row(int intervalCount, BooleanGenerator booleanGenerator) {
         inputValidation(intervalCount);
         this.intervalCount = intervalCount;
         this.booleanGenerator = booleanGenerator;
-        this.columns = new ArrayList<>();
         this.recursiveMake(0);
     }
 
