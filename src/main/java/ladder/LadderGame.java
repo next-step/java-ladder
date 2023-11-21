@@ -1,6 +1,8 @@
 package ladder;
 
 import ladder.domain.*;
+import ladder.domain.ladder.LadderFactory;
+import ladder.domain.ladder.RandomLadderFactory;
 import ladder.domain.util.RandomBooleanGenerator;
 import ladder.view.InputView;
 import ladder.view.ResultView;
@@ -11,12 +13,14 @@ import java.util.Map;
 
 public class LadderGame {
 
+    private static final LadderFactory LADDER_FACTORY = new RandomLadderFactory();
+
     public static void main(String[] args) {
         Names names = InputView.inputNames();
         int height = InputView.inputHeight();
         List<String> prizes = InputView.inputPrizes(names.names().size());
 
-        Ladder ladder = new Ladder(names.names().size() - 1, height, new RandomBooleanGenerator()).makeLadder();
+        Ladder ladder = LADDER_FACTORY.createLadder(names.names().size() - 1, height);
         Map<Name, String> result = playing(names, prizes, ladder);
 
         ResultView.printResult(names, ladder, prizes);
