@@ -28,6 +28,14 @@ public class Row {
         }
     }
 
+    public Boolean isBoundary(int position) {
+        return position < 0 || position == cols.size();
+    }
+
+    public Boolean available(int position) {
+        return cols.get(position);
+    }
+
     public List<Boolean> cols() {
         return this.cols;
     }

@@ -22,7 +22,7 @@ public class Names {
         return Collections.unmodifiableList(this.names);
     }
 
-    public Name name(int index) {
+    public Name of(int index) {
         return this.names.get(index);
     }
 
