@@ -9,6 +9,8 @@ import java.util.List;
 
 public class Line {
 
+    private static final int MIN_WIDTH = 2;
+
     private final List<Boolean> points = new ArrayList<>();
 
     public Line(int width, RuleStrategy ruleStrategy) {
@@ -21,17 +23,17 @@ public class Line {
         }
     }
 
+    private void validateWidth(int width) {
+        if (width < MIN_WIDTH) {
+            throw new LineSizeException();
+        }
+    }
+
     private boolean beforePointCheck(boolean beforePoint, RuleStrategy ruleStrategy) {
         if (beforePoint) {
             return false;
         }
         return ruleStrategy.build();
-    }
-
-    private void validateWidth(int width) {
-        if (width < 2) {
-            throw new LineSizeException();
-        }
     }
 
     public List<Boolean> points() {
