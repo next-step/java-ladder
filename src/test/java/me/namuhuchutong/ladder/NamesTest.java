@@ -1,6 +1,7 @@
 package me.namuhuchutong.ladder;
 
 import me.namuhuchutong.ladder.domain.Names;
+import me.namuhuchutong.ladder.domain.wrapper.Name;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -26,6 +27,28 @@ class NamesTest {
         String givenNames = "a";
 
         assertThatThrownBy(() -> Names.from(givenNames))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("존재하지 않는 이름을 찾을 경우 예외가 발생한다.")
+    @Test
+    void throw_exception_when_name_is_not_exist() {
+        String givenNames = "a,b,c";
+        Name givenName = new Name("d");
+        Names createdNames = Names.from(givenNames);
+
+        assertThatThrownBy(() -> createdNames.getSequence(givenName))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("주어진 인덱스가 범위를 벗어날 경우 예외가 발생한다.")
+    @Test
+    void throw_exception_when_index_is_exceed() {
+        String givenNames = "a,b,c";
+        Names createdNames = Names.from(givenNames);
+        int givenIndex = 10;
+
+        assertThatThrownBy(() -> createdNames.getNthName(givenIndex))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

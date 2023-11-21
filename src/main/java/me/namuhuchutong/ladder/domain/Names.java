@@ -4,6 +4,7 @@ import me.namuhuchutong.ladder.domain.wrapper.Name;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.*;
 
@@ -41,5 +42,31 @@ public class Names {
                           .map(Name::getName)
                           .map(name -> String.format(format, name))
                           .reduce("", (previous, newOne) -> previous + newOne);
+    }
+
+    public Stream<Name> stream() {
+        return this.values.stream();
+    }
+
+    public int getSequence(Name name) {
+        validateContains(name);
+        return this.values.indexOf(name);
+    }
+
+    private void validateContains(Name name) {
+        if (!this.values.contains(name)) {
+            throw new IllegalArgumentException("존재하지 않는 이름입니다.");
+        }
+    }
+
+    public Name getNthName(Integer index) {
+        validateIndex(index);
+        return this.values.get(index);
+    }
+
+    private void validateIndex(Integer index) {
+        if(index < 0 || this.values.size() - 1 < index) {
+            throw new IllegalArgumentException("인덱스가 이름 수의 범위를 벗어났습니다. - " + index);
+        }
     }
 }

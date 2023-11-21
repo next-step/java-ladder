@@ -1,6 +1,7 @@
 package me.namuhuchutong.ladder.domain;
 
 import me.namuhuchutong.ladder.domain.factory.ScaffoldFactory;
+import me.namuhuchutong.ladder.domain.wrapper.Movements;
 import me.namuhuchutong.ladder.domain.wrapper.Point;
 
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.List;
 
 import static java.util.Collections.*;
 import static me.namuhuchutong.ladder.domain.wrapper.LadderExpression.*;
+import static me.namuhuchutong.ladder.domain.wrapper.Movements.*;
 
 public class Row {
 
@@ -49,6 +51,24 @@ public class Row {
               .ifPresent(e -> {
                   throw new IllegalArgumentException("사다리 발판은 연속적일 수 없습니다.");
               });
+    }
+
+    public int move(int startPoint) {
+        Movements movement = findDestination(startPoint);
+        return movement.move(startPoint);
+    }
+
+    private Movements findDestination(int startPoint) {
+        Point left = this.values.get(startPoint - 1);
+        Point right = startPoint == this.values.size() - 1 ?
+                this.values.get(startPoint) : this.values.get(startPoint + 1);
+        if (left.isHyphen()) {
+            return MOVE_LEFT;
+        }
+        if (right.isHyphen()) {
+            return MOVE_RIGHT;
+        }
+        return STOP;
     }
 
     @Override

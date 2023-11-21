@@ -39,6 +39,14 @@ public class Rows {
         return size < MINIMUM_HEIGHT || MAXIMUM_HEIGHT < size;
     }
 
+    public int move(int startPoint) {
+        int currentPoint = startPoint;
+        for (Row row : values) {
+            currentPoint = row.move(currentPoint);
+        }
+        return currentPoint;
+    }
+
     @Override
     public String toString() {
         return this.values.stream()

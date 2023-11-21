@@ -28,4 +28,15 @@ public class Results {
                            .map(resultName -> String.format(format, resultName))
                            .reduce("", (previous, newOne) -> previous + newOne);
     }
+
+    public Result getNthResult(Integer index) {
+        validateIndex(index);
+        return this.results.get(index);
+    }
+
+    private void validateIndex(Integer index) {
+        if (index < 0 || this.results.size() - 1 < index) {
+            throw new IllegalArgumentException("인덱스가 실행결과 수의 범위를 벗어났습니다. -" + index);
+        }
+    }
 }
