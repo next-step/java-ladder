@@ -4,7 +4,6 @@ import me.namuhuchutong.ladder.domain.wrapper.Result;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.*;
 
@@ -12,9 +11,8 @@ public class Results {
 
     private final List<Result> results;
 
-    public static Results from(String inputResults) {
-        String[] split = inputResults.split(",");
-        List<Result> collect = Arrays.stream(split)
+    public static Results from(String results) {
+        List<Result> collect = Arrays.stream(results.split(","))
                                      .map(Result::new)
                                      .collect(toUnmodifiableList());
         return new Results(collect);
@@ -22,5 +20,12 @@ public class Results {
 
     public Results(List<Result> results) {
         this.results = results;
+    }
+
+    public String getResults(String format) {
+        return this.results.stream()
+                           .map(Result::getResult)
+                           .map(resultName -> String.format(format, resultName))
+                           .reduce("", (previous, newOne) -> previous + newOne);
     }
 }
