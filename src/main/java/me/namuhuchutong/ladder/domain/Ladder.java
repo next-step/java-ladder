@@ -28,10 +28,10 @@ public class Ladder {
     public NameAndResult startLadderGame() {
         OddConvertor oddConvertor = new OddConvertor(names.size());
         LadderGameResultSequence sequence = names.stream()
-                                                .map(name -> oddConvertor.convert(names.getSequence(name)))
-                                                .map(rows::move)
-                                                .collect(collectingAndThen(toUnmodifiableList(),
-                                                                           LadderGameResultSequence::new));
+                                                 .map(name -> oddConvertor.convert(names.getSequence(name)))
+                                                 .map(rows::move)
+                                                 .collect(collectingAndThen(toUnmodifiableList(),
+                                                                            LadderGameResultSequence::new));
         return linkNameAndResult(sequence);
     }
 
