@@ -3,11 +3,12 @@ package nextstep.ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Participants {
     public static final String INPUT_EMPTY_MSG = "참여할 사람은 반드시 입력해야 합니다.";
     public static final String INVALID_PARTICIPANT_COUNT_MSG = "참가자는 2명 이상이어야 합니다.";
-    private final static String SPLIT_TEXT = ",";
+    private static final String SPLIT_TEXT = ",";
 
     private final List<Participant> participants;
 
@@ -66,5 +67,14 @@ public class Participants {
     @Override
     public int hashCode() {
         return Objects.hash(participants);
+    }
+
+    @Override
+    public String toString() {
+        List<String> collect = this.participants.stream()
+                .map(Participant::toString)
+                .collect(Collectors.toList());
+
+        return String.join("", collect);
     }
 }

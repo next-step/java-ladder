@@ -32,4 +32,10 @@ class ParticipantsTest {
             new Participants("bobo");
         });
     }
+
+    @Test
+    void toStringTest() {
+            assertThat(new Participants("bobo,mo").toString())
+                    .isEqualTo("bobo  mo    ");
+    }
 }
