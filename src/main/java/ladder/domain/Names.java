@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Names {
 
@@ -20,6 +21,5 @@ public class Names {
             throw new IllegalArgumentException("이름은 최소 2개 이상이어야 합니다.");
         }
     }
-
 
 }

@@ -7,12 +7,34 @@ import java.util.List;
 
 public class Ladder {
 
-    public static List<Row> makeLadder(int intervalCount,int height, BooleanGenerator booleanGenerator){
-        List<Row> rows = new ArrayList<>();;
-        for(int i = 0; i < height; i++){
-            rows.add(new Row(intervalCount, booleanGenerator));
+    private final List<Row> rows = new ArrayList<>();
+    private final int intervalCount;
+    private final int height;
+    private final BooleanGenerator booleanGenerator;
+
+    public Ladder(int intervalCount, int height, BooleanGenerator booleanGenerator) {
+        this.intervalCount = intervalCount;
+        this.height = height;
+        this.booleanGenerator = booleanGenerator;
+    }
+
+    public int size(){
+        return this.rows.size();
+    }
+
+    public List<Row> rows(){
+        return this.rows;
+    }
+
+    public Ladder makeLadder(){
+        for(int i = 0; i < this.height; i++){
+            this.rows.add(new Row(this.intervalCount, this.booleanGenerator));
         }
-        return rows;
+        return this;
+    }
+
+    public boolean isMarked(int rowCount, int index){
+        return this.rows.get(rowCount).isMarked(index);
     }
 
 }

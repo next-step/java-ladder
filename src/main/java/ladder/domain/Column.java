@@ -44,6 +44,9 @@ public class Column {
 
     @Override
     public String toString() {
-        return this.isMarked() ? "-----" : "     ";
+        if(this.isMarked()){
+            return "-----";
+        }
+        return "     ";
     }
 }

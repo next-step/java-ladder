@@ -26,6 +26,10 @@ public class Row{
         }
     }
 
+    public boolean isMarked(int index){
+        return this.columns.get(index).isMarked();
+    }
+
     public List<Column> getColumns() {
         return columns;
     }
