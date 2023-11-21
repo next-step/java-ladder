@@ -18,13 +18,26 @@ public class InputView {
         return SplitString.splitString(scanner.nextLine());
     }
 
+    public static List<String> requestResults() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+
+        return SplitString.splitString(scanner.nextLine());
+    }
+
     public static int requestTotalLines() {
-        System.out.println("최대 사다리 높이는 몇 개인가요?)");
+        System.out.println("최대 사다리 높이는 몇 개인가요?");
 
         try {
-            return scanner.nextInt();
+            int totalLines = scanner.nextInt();
+            scanner.nextLine();
+            return totalLines;
         } catch (InputMismatchException exception) {
             throw new IllegalArgumentException("숫자만 입력할 수 있습니다.");
         }
+    }
+
+    public static String requestResultGamer() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        return scanner.nextLine();
     }
 }
