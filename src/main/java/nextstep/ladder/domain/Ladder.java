@@ -23,7 +23,7 @@ public class Ladder {
         }
     }
 
-    public List<Line> height() {
+    public List<Line> lines() {
         return lines;
     }
 }

@@ -15,6 +15,6 @@ public class LadderTest {
     @Test
     void 사다리를_생성한다() {
         ladder = new Ladder(3, 3, () -> true);
-        assertThat(ladder.height()).hasSize(3);
+        assertThat(ladder.lines()).hasSize(3);
     }
 }

@@ -21,7 +21,7 @@ public class ResultView {
     public static void printLadder(Names names, Ladder ladder) {
         System.out.println(START);
         printNames(names.nameList());
-        printLadderLine(ladder.height());
+        printLadderLine(ladder.lines());
     }
 
     private static void printNames(List<Name> names) {
