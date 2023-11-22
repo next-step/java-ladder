@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Name {
 
-    private static final int MAXIMUM_NAME_LENGTH = 5;
+    private static final int MAXIMUM_SIZE = 5;
 
     private final String name;
 
@@ -14,7 +14,7 @@ public class Name {
     }
 
     private void validateName(String name) {
-        if (name.length() > MAXIMUM_NAME_LENGTH) {
+        if (name.length() > MAXIMUM_SIZE) {
             throw new IllegalArgumentException("이름의 크기는 5자를 넘을 수 없습니다.");
         }
     }
