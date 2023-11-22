@@ -3,6 +3,8 @@ package ladder.domain;
 import ladder.exception.NameBlankException;
 import ladder.exception.NameExceedException;
 
+import java.util.Objects;
+
 public class Name {
 
     private static final int MAX_LENGTH = 5;
@@ -33,6 +35,19 @@ public class Name {
 
     public String name() {
         return this.name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Name name1 = (Name) o;
+        return Objects.equals(name, name1.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 
 }
