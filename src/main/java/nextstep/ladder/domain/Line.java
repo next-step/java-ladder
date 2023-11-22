@@ -7,9 +7,9 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Line {
-    private static final String EXIST_POINT_STR = "|-----";
-    private static final String EMPTY_POINT_STR = "|     ";
-    private static final String END_STR = "|";
+    private static final String EXIST_POINT_STR = "-----";
+    private static final String EMPTY_POINT_STR = "     ";
+    private static final String DELIMITER_STR = "|";
     private List<Boolean> points;
 
     public Line(List<Boolean> points) {
@@ -51,9 +51,8 @@ public class Line {
 
     @Override
     public String toString() {
-        List<String> pointStrList = this.points.stream()
+        return this.points.stream()
                 .map(this::getRadderStr)
-                .collect(Collectors.toList());
-        return String.join("", pointStrList) + END_STR;
+                .collect(Collectors.joining(DELIMITER_STR, DELIMITER_STR, DELIMITER_STR));
     }
 }
