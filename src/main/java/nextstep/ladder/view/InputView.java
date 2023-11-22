@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class InputView {
 
     public static final String DELIMITER = ",";
-    private Scanner sc;
-    private InputValidator inputValidator;
+    private final Scanner sc;
+    private final InputValidator inputValidator;
 
     public InputView() {
         this.sc = new Scanner(System.in);
@@ -27,6 +27,7 @@ public class InputView {
     }
 
     public int inputHeight() {
+        print("");
         print("최대 사다리 높이는 몇 개인가요?");
 
         try {
