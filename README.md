@@ -10,4 +10,4 @@
 스트림
 ---------------------------------------------------------
 - [x] map, reduce, filter 실습 1
-- [ ] map, reduce, filter 실습 2
+- [x] map, reduce, filter 실습 2
