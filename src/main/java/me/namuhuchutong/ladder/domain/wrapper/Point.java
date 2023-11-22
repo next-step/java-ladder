@@ -27,8 +27,8 @@ public class Point {
         return this.ladderExpression.equals(HYPHEN);
     }
 
-    public boolean isVerticalBar() {
-        return this.ladderExpression.equals(VERTICAL_BAR);
+    public boolean isNotVerticalBar() {
+        return !this.ladderExpression.equals(VERTICAL_BAR);
     }
 
     @Override

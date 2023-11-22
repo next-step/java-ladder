@@ -45,7 +45,7 @@ public class Row {
     private void validateContinuousScaffold(List<Point> values) {
         ContinuousScaffoldValidator validator = new ContinuousScaffoldValidator();
         values.stream()
-              .filter(point -> !point.isVerticalBar())
+              .filter(Point::isNotVerticalBar)
               .filter(validator::isContinuous)
               .findAny()
               .ifPresent(e -> {
