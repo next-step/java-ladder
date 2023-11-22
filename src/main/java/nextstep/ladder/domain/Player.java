@@ -12,12 +12,6 @@ public class Player {
     private Width widthPosition;
     private Height heightPosition;
 
-    public Player(Name name, Width widthPosition, Height heightPosition) {
-        this.name = name;
-        this.widthPosition = widthPosition;
-        this.heightPosition = heightPosition;
-    }
-
     private Player(String name, int widthPosition, int heightPosition) {
         this.name = new Name(name);
         this.widthPosition = new Width(widthPosition);
@@ -46,6 +40,9 @@ public class Player {
         private String name;
         private int widthPosition;
         private int heightPosition;
+
+        private PlayerBuilder() {
+        }
 
         public PlayerBuilder name(String name) {
             this.name = name;

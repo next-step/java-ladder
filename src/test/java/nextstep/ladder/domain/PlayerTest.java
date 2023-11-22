@@ -1,8 +1,5 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.wrapper.Width;
-import nextstep.ladder.domain.wrapper.Height;
-import nextstep.ladder.domain.wrapper.Name;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,9 +11,20 @@ public class PlayerTest {
     @Test
     void createPlayer() {
         // given
-        Name name = new Name("홍길동");
-        Width width = new Width(0);
-        Height height = new Height(0);
-        assertThat(new Player(name, width, height)).isEqualTo(new Player(name, width, height));
+        String name = "홍길동";
+        int widthPosition = 0;
+        int heightPosition = 1;
+        Player player = Player.PlayerBuilder.builder()
+            .name(name)
+            .widthPosition(widthPosition)
+            .heightPosition(heightPosition)
+            .build();
+
+        // when & then
+        assertThat(player).isEqualTo(Player.PlayerBuilder.builder()
+            .name(name)
+            .widthPosition(widthPosition)
+            .heightPosition(heightPosition)
+            .build());
     }
 }
