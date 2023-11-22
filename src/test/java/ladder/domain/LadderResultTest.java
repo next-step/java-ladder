@@ -14,12 +14,10 @@ class LadderResultTest {
     @Test
     @DisplayName("사다리타기를 끝내고 최종 포지션이 0, 1인 2명의 참가자가 있는경우 각각의 결과는 결과의 index와 동일하다.")
     void findPlayerResult() {
-        Names names = new Names(List.of("엄태권", "태권"));
+        GamersResult gamersResult = new GamersResult(Map.of(new Name("엄태권"), 0, new Name("태권"), 1));
         Results results = new Results(List.of("꽝", "당첨"), 2);
-        Positions positions = new Positions(List.of(new Position(0), new Position(1)));
-        Gamers gamers = new Gamers(names, positions);
 
-        LadderResult ladderResult = LadderResult.createLadderResult(gamers, results);
+        LadderResult ladderResult = LadderResult.createLadderResult(gamersResult, results);
         Map<Name, Result> playerResult1 = ladderResult.findPlayerResult("엄태권");
         Map<Name, Result> playerResult2 = ladderResult.findPlayerResult("태권");
 
@@ -30,12 +28,10 @@ class LadderResultTest {
     @Test
     @DisplayName("모든 사람(all)의 결과를 검색할 경우 모든 참여자의 결과를 반환한다.")
     void findPlayerResult_all() {
-        Names names = new Names(List.of("엄태권", "태권"));
+        GamersResult gamersResult = new GamersResult(Map.of(new Name("엄태권"), 0, new Name("태권"), 1));
         Results results = new Results(List.of("꽝", "당첨"), 2);
-        Positions positions = new Positions(List.of(new Position(0), new Position(1)));
-        Gamers gamers = new Gamers(names, positions);
 
-        LadderResult ladderResult = LadderResult.createLadderResult(gamers, results);
+        LadderResult ladderResult = LadderResult.createLadderResult(gamersResult, results);
         Map<Name, Result> playerResult = ladderResult.findPlayerResult("all");
 
         assertThat(playerResult).hasSize(2)
@@ -46,11 +42,10 @@ class LadderResultTest {
     @Test
     @DisplayName("사다리 게임에 참여하지 않는 사람의 결과를 검색시 오류가 발생한다.")
     void findPlayerResult_없는사람() {
-        Names names = new Names(List.of("엄태권", "태권"));
+        GamersResult gamersResult = new GamersResult(Map.of(new Name("엄태권"), 0, new Name("태권"), 1));
         Results results = new Results(List.of("꽝", "당첨"), 2);
-        Gamers gamers = Gamers.createGamers(names);
 
-        LadderResult ladderResult = LadderResult.createLadderResult(gamers, results);
+        LadderResult ladderResult = LadderResult.createLadderResult(gamersResult, results);
 
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> ladderResult.findPlayerResult("없는사람"))

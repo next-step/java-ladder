@@ -14,16 +14,11 @@ public class LadderResult {
         this.ladderResult = ladderResult;
     }
 
-    public static LadderResult createLadderResult(Gamers gamers, Results results) {
+    public static LadderResult createLadderResult(GamersResult gamersResult, Results results) {
         Map<Name, Result> ladderResult = new HashMap<>();
 
-        for (int i = 0; i < gamers.countGamers(); i++) {
-            Name name = gamers.findName(i);
-            Position position = gamers.findPosition(i);
-            Result result = results.getResult(position.getPosition());
-
-            ladderResult.put(name, result);
-        }
+        gamersResult.getGamersResults()
+                .forEach((key, value) -> ladderResult.put(key, results.getResult(value)));
 
         return new LadderResult(ladderResult);
     }
