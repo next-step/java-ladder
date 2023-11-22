@@ -2,6 +2,8 @@ package nextstep.ladder.util;
 
 import nextstep.ladder.domain.Bridges;
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.wrapper.Height;
+import nextstep.ladder.domain.wrapper.Width;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +19,9 @@ public class LadderBuilder {
         RANDOM = new Random();
     }
 
-    public static Ladder buildLadder(int xAxis, int yAxis) {
-        return new Ladder(IntStream.range(0, yAxis)
-            .mapToObj(i -> buildBridges(xAxis))
+    public static Ladder buildLadder(Width width, Height height) {
+        return new Ladder(IntStream.range(0, height.value())
+            .mapToObj(i -> buildBridges(width.value()))
             .collect(Collectors.toUnmodifiableList()));
     }
 
