@@ -17,7 +17,7 @@ public class Name {
 
     private void validateNone(String name) {
         if (isNone(name)) {
-            throw new IllegalArgumentException(NAME_IS_NONE.message());
+            throw new IllegalArgumentException(CAN_NOT_NONE.message());
         }
     }
 
@@ -27,7 +27,7 @@ public class Name {
 
     private void validateRange(String name) {
         if (isOutOfRange(name)) {
-            throw new IllegalArgumentException(NAME_OUT_OF_RANGE.message());
+            throw new IllegalArgumentException(OUT_OF_RANGE.message());
         }
     }
 

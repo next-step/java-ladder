@@ -1,10 +1,12 @@
 package nextstep.ladder.domain.wrapper;
 
+import nextstep.ladder.exception.ExceptionMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 
+import static nextstep.ladder.exception.ExceptionMessage.*;
 import static org.assertj.core.api.Assertions.*;
 
 public class NameTest {
@@ -19,7 +21,7 @@ public class NameTest {
     @Test
     void createNameWhenNameSizeOverFive() {
         assertThatThrownBy(() -> new Name("여섯글자이름")).isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("이름은 최대 5글자 까지 입니다.");
+            .hasMessage(OUT_OF_RANGE.message());
     }
 
     @DisplayName("이름의 글자 수가 빈 문자열이면 예외를 던진다.")
@@ -27,6 +29,6 @@ public class NameTest {
     @NullAndEmptySource
     void createNameWhenNameEmpty(String name) {
         assertThatThrownBy(() -> new Name(name)).isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("이름은 비어 있을 수 없습니다.");
+            .hasMessage(CAN_NOT_NONE.message());
     }
 }
