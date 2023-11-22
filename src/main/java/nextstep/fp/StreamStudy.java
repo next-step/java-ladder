@@ -43,8 +43,16 @@ public class StreamStudy {
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
         return numbers.stream()
-                .filter(n -> n > 3)
-                .map(x -> x * 2)
+                .filter(StreamStudy::isOverThree)
+                .map(StreamStudy::numberDouble)
                 .reduce(0 , Integer::sum);
+    }
+
+    private static boolean isOverThree(Integer number) {
+        return number > 3;
+    }
+
+    private static Integer numberDouble(Integer number) {
+        return number * 2;
     }
 }
