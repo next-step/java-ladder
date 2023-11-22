@@ -12,6 +12,12 @@ public class InputView {
     private static final String DELIMITER = ",";
     private static final Scanner scanner = new Scanner(System.in);
 
+    public static InputView inputView() {
+        return new InputView();
+    }
+
+    private InputView() {}
+
     public List<String> names() {
         System.out.println(ASK_NAMES);
         return splitedString();

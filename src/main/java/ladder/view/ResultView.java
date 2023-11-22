@@ -15,7 +15,12 @@ public class ResultView {
     private static final String FULL_COL = "-----";
     private static final String EMPTY_COL = "     ";
     private static final String RESULT_DELIMITER = " : ";
-    private static final Name ALL = new Name("all");
+
+    public static ResultView resultView() {
+        return new ResultView();
+    }
+
+    private ResultView() {}
 
     public void printLadder(Names names, Ladder ladder, Results results) {
         printLadderMessage();
@@ -86,7 +91,7 @@ public class ResultView {
     }
 
     private String resultText(LadderResult ladderResult, Name name) {
-        if (name.equals(ALL)) {
+        if (name.isAll()) {
             return allResultText(ladderResult);
         }
 

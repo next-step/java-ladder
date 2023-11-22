@@ -20,20 +20,20 @@ public class Row {
     }
 
     private void validateDuplicate(int index) {
-        Boolean col1 = cols.get(index);
-        Boolean col2 = cols.get(index + 1);
+        Boolean col1 = this.find(index);
+        Boolean col2 = this.find(index + 1);
 
         if (col1 && col2) {
             throw new LineDuplicateException();
         }
     }
 
-    public Boolean isBoundary(int position) {
-        return position < 0 || position == cols.size();
+    public Boolean movable(int position) {
+        return this.find(position);
     }
 
-    public Boolean movable(int position) {
-        return cols.get(position);
+    private Boolean find(int index) {
+        return this.cols.get(index);
     }
 
     public List<Boolean> cols() {

@@ -8,7 +8,7 @@ import ladder.view.ResultView;
 public class LadderApplication {
 
     public static void main(String[] args) {
-        LadderController controller = new LadderController(new InputView(), new ResultView(), new RowFactory());
+        LadderController controller = new LadderController(InputView.inputView(), ResultView.resultView(), new RowFactory());
         controller.run();
     }
 

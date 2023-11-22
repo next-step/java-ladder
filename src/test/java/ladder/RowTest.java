@@ -4,8 +4,6 @@ import ladder.domain.Row;
 import ladder.exception.LineDuplicateException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
 
@@ -22,13 +20,6 @@ public class RowTest {
                 new Row(Arrays.asList(false, true, true));
             })
             .withMessageMatching("가로 라인은 겹칠 수 없습니다");
-    }
-
-    @ParameterizedTest
-    @ValueSource(ints = {-1, 3})
-    @DisplayName("행의 경계값을 벗어나는지 확인할 수 있다")
-    public void row_boundary(int index) {
-        assertThat(new Row(Arrays.asList(true, false, false)).isBoundary(index)).isTrue();
     }
 
     @Test
