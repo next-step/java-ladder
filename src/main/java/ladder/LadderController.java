@@ -1,18 +1,15 @@
 package ladder;
 
-import ladder.domain.Gamers;
-import ladder.domain.Ladder;
+import ladder.domain.GamersResult;
 import ladder.domain.LadderResult;
-import ladder.domain.Name;
 import ladder.domain.Names;
-import ladder.domain.Result;
+import ladder.domain.Ladder;
 import ladder.domain.Results;
 import ladder.stretagy.RandomPointStrategy;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
 import java.util.List;
-import java.util.Map;
 
 public class LadderController {
 
@@ -21,22 +18,15 @@ public class LadderController {
         List<String> gameResults = InputView.requestResults();
         int totalLineCount = InputView.requestTotalLines();
 
-        Gamers gamers = Gamers.createGamers(new Names(memberNames));
-        Ladder ladder = Ladder.createLadder(totalLineCount, gamers, new RandomPointStrategy());
-        Results results = new Results(gameResults, gamers.countGamers());
+        Names joinMembers = new Names(memberNames);
+        Ladder ladder = new Ladder(totalLineCount, joinMembers.countPlayers(), new RandomPointStrategy());
+        Results results = new Results(gameResults, joinMembers.countPlayers());
 
-        OutputView.printLadder(gamers, ladder, results);
+        OutputView.printLadder(joinMembers, ladder, results);
 
-        LadderResult ladderResult = LadderResult.createLadderResult(gamers, results);
+        GamersResult gamersResult = GamersResult.createGamersResult(joinMembers, ladder);
+        LadderResult ladderResult = LadderResult.createLadderResult(gamersResult, results);
 
-        while (true) {
-            String name = InputView.requestResultGamer();
-            Map<Name, Result> userResult = ladderResult.findPlayerResult(name);
-            OutputView.printLadderResult(userResult, name);
-
-            if (name.equals(LadderResult.ALL_USERS)) {
-                break;
-            }
-        }
+        OutputView.printLadderResult(ladderResult);
     }
 }
