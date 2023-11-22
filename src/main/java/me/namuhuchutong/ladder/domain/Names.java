@@ -65,8 +65,12 @@ public class Names {
     }
 
     private void validateIndex(Integer index) {
-        if(index < 0 || this.values.size() - 1 < index) {
+        if(index < 0 || isBiggerThanSize(index)) {
             throw new IllegalArgumentException("인덱스가 이름 수의 범위를 벗어났습니다. - " + index);
         }
+    }
+
+    private boolean isBiggerThanSize(Integer index) {
+        return this.values.size() - 1 < index;
     }
 }

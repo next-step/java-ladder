@@ -16,8 +16,12 @@ public class LadderGameResultSequence {
     }
 
     private void validateIndex(int index) {
-        if (index < 0 || this.sequence.size() - 1 < index) {
+        if (index < 0 || isBiggerThanSize(index)) {
             throw new IllegalArgumentException("주어진 인덱스가 시퀀스 수의 범위를 벗어났습니다. - " + index);
         }
+    }
+
+    private boolean isBiggerThanSize(int index) {
+        return this.sequence.size() - 1 < index;
     }
 }
