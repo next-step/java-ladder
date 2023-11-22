@@ -26,31 +26,29 @@ public class Lambda {
         }).start();
     }
 
+    /**
+     * 주어진 조건이 만족되는 정수들에 한해 총 합계를 구합니다.
+     *
+     * @param numbers 정수 리스트
+     * @param condition 판별 조건
+     *
+     * @return 조건이 만족되는 정수들의 합계
+     */
+    public static int sumAllOnlyIf(List<Integer> numbers, ConditionOnInt condition) {
+        return numbers.stream()
+                .filter(condition::test)
+                .reduce(0, Integer::sum);
+    }
+
     public static int sumAll(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            total += number;
-        }
-        return total;
+        return sumAllOnlyIf(numbers, (value) -> true);
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number % 2 == 0) {
-                total += number;
-            }
-        }
-        return total;
+        return sumAllOnlyIf(numbers, (value) -> value % 2 == 0);
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number > 3) {
-                total += number;
-            }
-        }
-        return total;
+        return sumAllOnlyIf(numbers, (value) -> value > 3);
     }
 }
