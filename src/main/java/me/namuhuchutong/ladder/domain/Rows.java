@@ -12,6 +12,7 @@ public class Rows {
     private static final String NEW_LINE = "\n";
     private static final int MINIMUM_HEIGHT = 1;
     private static final int MAXIMUM_HEIGHT = 10;
+    private static final String BLANK = "";
 
     private final List<Row> values;
 
@@ -25,18 +26,26 @@ public class Rows {
     }
 
     public Rows(List<Row> values) {
-        validateLadderHeight(values);
+        validateLadderHeight(values.size());
         this.values = values;
     }
 
-    private void validateLadderHeight(List<Row> values) {
-        if (isLessThanZeroOrBiggerThanTen(values)) {
-            throw new IllegalArgumentException("높이가 1보다 작거나 10보다 크다면 사다리는 생성할 수 없습니다.");
+    private void validateLadderHeight(int size) {
+        if (isOutOfHeightCondition(size)) {
+            throw new IllegalArgumentException("사다리 높이 조건을 벗어났습니다. - " + size);
         }
     }
 
-    private boolean isLessThanZeroOrBiggerThanTen(List<Row> values) {
-        return values.size() < MINIMUM_HEIGHT || MAXIMUM_HEIGHT < values.size();
+    private boolean isOutOfHeightCondition(int size) {
+        return size < MINIMUM_HEIGHT || MAXIMUM_HEIGHT < size;
+    }
+
+    public int move(int startPoint) {
+        int currentPoint = startPoint;
+        for (Row row : values) {
+            currentPoint = row.move(currentPoint);
+        }
+        return currentPoint;
     }
 
     @Override
@@ -44,6 +53,6 @@ public class Rows {
         return this.values.stream()
                           .map(Row::toString)
                           .map(string -> string + NEW_LINE)
-                          .reduce("", (previous, newOne) -> previous + newOne);
+                          .reduce(BLANK, (previous, newOne) -> previous + newOne);
     }
 }

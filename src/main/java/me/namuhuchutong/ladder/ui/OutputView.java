@@ -7,4 +7,8 @@ public class OutputView {
     public void printResult(LadderResult result) {
         System.out.println(result.getResult());
     }
+
+    public void printNameAndResult(String result) {
+        System.out.println(result);
+    }
 }

@@ -1,26 +1,30 @@
 package me.namuhuchutong.ladder.domain;
 
-import me.namuhuchutong.ladder.domain.wrapper.*;
 import me.namuhuchutong.ladder.domain.factory.ScaffoldFactory;
+import me.namuhuchutong.ladder.domain.wrapper.LadderExpression;
+import me.namuhuchutong.ladder.domain.wrapper.Movements;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.Collections.*;
-import static me.namuhuchutong.ladder.domain.wrapper.LadderExpressionEnum.*;
+import static me.namuhuchutong.ladder.domain.wrapper.LadderExpression.*;
+import static me.namuhuchutong.ladder.domain.wrapper.Movements.*;
 
 public class Row {
 
-    private final List<LadderExpressionEnum> values;
+    private static final String BLANK = "";
+
+    private final List<LadderExpression> values;
 
     public static Row from(int participants, ScaffoldFactory factory) {
-        List<LadderExpressionEnum> collect = initializeLadderRow();
-        collect.addAll(addScaffold(participants, factory));
-        return new Row(unmodifiableList(collect));
+        List<LadderExpression> initializedRow = initializeLadderRow();
+        initializedRow.addAll(addScaffold(participants, factory));
+        return new Row(unmodifiableList(initializedRow));
     }
 
-    private static List<LadderExpressionEnum> addScaffold(int participants, ScaffoldFactory factory) {
-        List<LadderExpressionEnum> result = new ArrayList<>();
+    private static List<LadderExpression> addScaffold(int participants, ScaffoldFactory factory) {
+        List<LadderExpression> result = new ArrayList<>();
         for (int i = 1; i < participants; i++) {
             result.add(factory.createScaffold());
             result.add(VERTICAL_BAR);
@@ -28,22 +32,22 @@ public class Row {
         return result;
     }
 
-    private static List<LadderExpressionEnum> initializeLadderRow() {
-        List<LadderExpressionEnum> list = new ArrayList<>();
+    private static List<LadderExpression> initializeLadderRow() {
+        List<LadderExpression> list = new ArrayList<>();
         list.add(EMPTY_SPACE);
         list.add(VERTICAL_BAR);
         return list;
     }
 
-    public Row(List<LadderExpressionEnum> values) {
+    public Row(List<LadderExpression> values) {
         validateContinuousScaffold(values);
         this.values = values;
     }
 
-    private void validateContinuousScaffold(List<LadderExpressionEnum> values) {
+    private void validateContinuousScaffold(List<LadderExpression> values) {
         ContinuousScaffoldValidator validator = new ContinuousScaffoldValidator();
         values.stream()
-              .filter(expression -> !expression.equals(VERTICAL_BAR))
+              .filter(this::filteringVerticalBar)
               .filter(validator::isContinuous)
               .findAny()
               .ifPresent(e -> {
@@ -51,10 +55,36 @@ public class Row {
               });
     }
 
+    private boolean filteringVerticalBar(LadderExpression expression) {
+        return expression.equals(HYPHEN);
+    }
+
+    public int move(int startPoint) {
+        Movements movement = findDestination(startPoint);
+        return movement.move(startPoint);
+    }
+
+    private Movements findDestination(int startPoint) {
+        LadderExpression left = this.values.get(startPoint - 1);
+        LadderExpression right = isEndOfCollection(startPoint) ?
+                this.values.get(startPoint) : this.values.get(startPoint + 1);
+        if (left.equals(HYPHEN)) {
+            return MOVE_LEFT;
+        }
+        if (right.equals(HYPHEN)) {
+            return MOVE_RIGHT;
+        }
+        return STOP;
+    }
+
+    private boolean isEndOfCollection(int startPoint) {
+        return startPoint == this.values.size() - 1;
+    }
+
     @Override
     public String toString() {
         return this.values.stream()
-                          .map(LadderExpressionEnum::convertToString)
-                          .reduce("", (previous, newOne) -> previous + newOne);
+                          .map(LadderExpression::convertToString)
+                          .reduce(BLANK, (previous, newOne) -> previous + newOne);
     }
 }

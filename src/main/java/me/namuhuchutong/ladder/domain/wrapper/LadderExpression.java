@@ -1,6 +1,6 @@
 package me.namuhuchutong.ladder.domain.wrapper;
 
-public enum LadderExpressionEnum {
+public enum LadderExpression {
 
     EMPTY_SPACE(' ', 5) {
 
@@ -27,7 +27,7 @@ public enum LadderExpressionEnum {
     private final Character character;
     private final int scaffoldSize;
 
-    LadderExpressionEnum(Character character, int scaffoldSize) {
+    LadderExpression(Character character, int scaffoldSize) {
         this.character = character;
         this.scaffoldSize = scaffoldSize;
     }
