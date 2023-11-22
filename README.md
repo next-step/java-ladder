@@ -9,5 +9,5 @@
 
 스트림
 ---------------------------------------------------------
-- [ ] map, reduce, filter 실습 1
+- [x] map, reduce, filter 실습 1
 - [ ] map, reduce, filter 실습 2
