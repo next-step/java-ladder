@@ -29,11 +29,14 @@ public class LadderController {
 
         LadderResult ladderResult = LadderResult.createLadderResult(gamers, results);
 
-        while (!ladderResult.isEndResult()) {
+        while (true) {
             String name = InputView.requestResultGamer();
-            Map<Name, Result> playerResult = ladderResult.findPlayerResult(name);
+            Map<Name, Result> userResult = ladderResult.findPlayerResult(name);
+            OutputView.printLadderResult(userResult, name);
 
-            OutputView.printLadderResult(playerResult);
+            if (name.equals(LadderResult.ALL_USERS)) {
+                break;
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 package ladder.view;
 
 import ladder.domain.Gamers;
+import ladder.domain.LadderResult;
 import ladder.domain.Line;
 import ladder.domain.Ladder;
 import ladder.domain.Name;
@@ -67,13 +68,13 @@ public class OutputView {
                 .forEach(result -> System.out.printf(PRINT_NAME, result));
     }
 
-    public static void printLadderResult(Map<Name, Result> gameResult) {
+    public static void printLadderResult(Map<Name, Result> ladderResult, String name) {
         System.out.println(RESULT_MESSAGE);
-        if (gameResult.size() == 1) {
-            gameResult.forEach((key, value) -> System.out.println(value));
+        if (name.equals(LadderResult.ALL_USERS)) {
+            ladderResult.forEach((key, value) -> System.out.println(key + " : " + value));
             return;
         }
 
-        gameResult.forEach((key, value) -> System.out.println(key + " : " + value));
+        ladderResult.forEach((key, value) -> System.out.println(value));
     }
 }

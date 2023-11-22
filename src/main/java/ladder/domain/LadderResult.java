@@ -7,9 +7,8 @@ import java.util.Objects;
 
 public class LadderResult {
 
-    private static final String ALL_USERS = "ALL";
+    public static final String ALL_USERS = "all";
     private final Map<Name, Result> ladderResult;
-    private boolean isEnd = false;
 
     public LadderResult(Map<Name, Result> ladderResult) {
         this.ladderResult = ladderResult;
@@ -32,9 +31,8 @@ public class LadderResult {
     public Map<Name, Result> findPlayerResult(String name) {
         validate(name);
 
-        if (isAllUsers(name)) {
-            this.isEnd = true;
-            return Collections.unmodifiableMap(this.ladderResult);
+        if (name.equals(ALL_USERS)) {
+            return findAllPlayersResult();
         }
 
         Map<Name, Result> singleResult = new HashMap<>();
@@ -45,19 +43,14 @@ public class LadderResult {
         return Collections.unmodifiableMap(singleResult);
     }
 
+    private Map<Name, Result> findAllPlayersResult() {
+        return Collections.unmodifiableMap(this.ladderResult);
+    }
+
     private void validate(String name) {
-        if (!isAllUsers(name) && !this.ladderResult.containsKey(new Name(name))) {
+        if (!this.ladderResult.containsKey(new Name(name))) {
             throw new IllegalArgumentException("참가자 명단에 없는 사람입니다. 참가자 명단에 있는 사람 혹은 all을 입력 부탁드립니다.");
         }
-    }
-
-    private boolean isAllUsers(String name) {
-        String upperCaseName = name.toUpperCase();
-        return upperCaseName.equals(ALL_USERS);
-    }
-
-    public boolean isEndResult() {
-        return this.isEnd;
     }
 
     @Override
@@ -65,11 +58,11 @@ public class LadderResult {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LadderResult that = (LadderResult) o;
-        return isEnd == that.isEnd && Objects.equals(ladderResult, that.ladderResult);
+        return Objects.equals(ladderResult, that.ladderResult);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ladderResult, isEnd);
+        return Objects.hash(ladderResult);
     }
 }
