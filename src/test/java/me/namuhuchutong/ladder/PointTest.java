@@ -35,9 +35,4 @@ class PointTest {
 
         assertThat(actual).isFalse();
     }
-
-    @DisplayName("")
-    @Test
-    void test() {
-    }
 }
