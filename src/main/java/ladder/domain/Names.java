@@ -21,8 +21,12 @@ public class Names {
         return Collections.unmodifiableList(this.names);
     }
 
-    public int countJoinMembers() {
+    public int countPlayers() {
         return this.names.size();
+    }
+
+    public Name getName(int index) {
+        return this.names.get(index);
     }
 
     private void validate(int joinMembersCount) {
