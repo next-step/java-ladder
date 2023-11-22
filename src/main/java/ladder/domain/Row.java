@@ -40,4 +40,8 @@ public class Row {
         return this.cols;
     }
 
+    public int size() {
+        return this.cols.size();
+    }
+
 }
