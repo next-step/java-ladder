@@ -1,7 +1,5 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.exception.ExceptionMessage;
-
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -10,7 +8,8 @@ import static nextstep.ladder.exception.ExceptionMessage.*;
 
 public class Ladder {
 
-    private List<Bridges> ladder;
+    private final List<Bridges> ladder;
+
     public Ladder(List<List<Boolean>> ladder) {
         this.ladder = ladder.stream()
             .map(Bridges::new)

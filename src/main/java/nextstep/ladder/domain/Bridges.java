@@ -8,7 +8,7 @@ import static nextstep.ladder.exception.ExceptionMessage.*;
 
 public class Bridges {
 
-    private List<Boolean> bridges;
+    private final List<Boolean> bridges;
 
     public Bridges(List<Boolean> bridges) {
         if (existStraight(bridges)) {
