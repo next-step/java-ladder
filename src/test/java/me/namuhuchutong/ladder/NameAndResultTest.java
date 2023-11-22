@@ -1,6 +1,6 @@
 package me.namuhuchutong.ladder;
 
-import me.namuhuchutong.ladder.domain.NameAndResult;
+import me.namuhuchutong.ladder.dto.NameAndResult;
 import me.namuhuchutong.ladder.domain.wrapper.Name;
 import me.namuhuchutong.ladder.domain.wrapper.Result;
 import org.junit.jupiter.api.DisplayName;

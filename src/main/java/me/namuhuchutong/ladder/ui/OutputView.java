@@ -1,6 +1,6 @@
 package me.namuhuchutong.ladder.ui;
 
-import me.namuhuchutong.ladder.domain.NameAndResult;
+import me.namuhuchutong.ladder.dto.NameAndResult;
 import me.namuhuchutong.ladder.domain.wrapper.Result;
 import me.namuhuchutong.ladder.dto.LadderResult;
 

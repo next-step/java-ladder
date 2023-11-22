@@ -3,6 +3,7 @@ package me.namuhuchutong.ladder.domain;
 import me.namuhuchutong.ladder.domain.wrapper.Name;
 import me.namuhuchutong.ladder.domain.wrapper.OddNumber;
 import me.namuhuchutong.ladder.domain.wrapper.Result;
+import me.namuhuchutong.ladder.dto.NameAndResult;
 
 import java.util.List;
 import java.util.Map;

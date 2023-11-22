@@ -1,4 +1,4 @@
-package me.namuhuchutong.ladder.domain;
+package me.namuhuchutong.ladder.dto;
 
 import me.namuhuchutong.ladder.domain.wrapper.Name;
 import me.namuhuchutong.ladder.domain.wrapper.Result;
@@ -16,8 +16,15 @@ public class NameAndResult {
 
     public Result getResult(String inputName) {
         Name name = new Name(inputName);
+        if (name.getName().equals("all")) {
+            return getAllResults();
+        }
         return Optional.ofNullable(values.get(name))
                        .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 키 값입니다. - " + name));
+    }
+
+    private Result getAllResults() {
+        return null;
     }
 
     @Override
