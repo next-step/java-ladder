@@ -18,6 +18,10 @@ public class Player {
         this.axisY = axisY;
     }
 
+    public String name() {
+        return this.name.toString();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
