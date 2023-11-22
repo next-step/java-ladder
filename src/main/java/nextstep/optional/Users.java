@@ -2,7 +2,6 @@ package nextstep.optional;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 public class Users {
     static final User DEFAULT_USER = new User("codesquad", 100);
@@ -14,8 +13,8 @@ public class Users {
             new User("honux", 45));
 
     User getUser(String name) {
-         return users.stream()
-                .filter(u-> u.matchName(name))
+        return users.stream()
+                .filter(u -> u.matchName(name))
                 .findFirst()
                 .orElse(DEFAULT_USER);
 
