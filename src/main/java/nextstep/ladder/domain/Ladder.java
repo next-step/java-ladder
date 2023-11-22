@@ -1,8 +1,12 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.exception.ExceptionMessage;
+
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+
+import static nextstep.ladder.exception.ExceptionMessage.*;
 
 public class Ladder {
 
@@ -14,8 +18,16 @@ public class Ladder {
     }
 
     public boolean isMovable(int xAxis, int yAxis) {
+        validateIndex(yAxis);
+
         return ladder.get(yAxis)
             .isMovable(xAxis);
+    }
+
+    private void validateIndex(int yAxis) {
+        if (yAxis < 0 || yAxis >= ladder.size()) {
+            throw new IllegalArgumentException(OUT_OF_INDEX.message());
+        }
     }
 
     @Override

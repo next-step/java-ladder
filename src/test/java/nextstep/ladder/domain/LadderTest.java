@@ -1,6 +1,5 @@
 package nextstep.ladder.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -8,8 +7,8 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
+import static nextstep.ladder.exception.ExceptionMessage.*;
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class LadderTest {
 
@@ -35,5 +34,18 @@ public class LadderTest {
 
         // when & then
         assertThat(ladder.isMovable(xAxis, yAxis)).isEqualTo(expected);
+    }
+
+    @DisplayName("인자로 받은 사다리의 높이가 인덱스 범위를 벗어나면 예외를 던진다.")
+    @Test
+    void isMovableWhenOutOfIndex() {
+        // given
+        Ladder ladder = new Ladder(List.of
+            (List.of(true, false, true),
+             List.of(true, false, true)));
+
+        // when & then
+        assertThatThrownBy(() -> ladder.isMovable(2, 2)).isInstanceOf(IllegalArgumentException.class)
+            .hasMessage(OUT_OF_INDEX.message());
     }
 }

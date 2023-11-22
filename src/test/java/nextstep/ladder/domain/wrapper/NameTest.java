@@ -1,6 +1,5 @@
 package nextstep.ladder.domain.wrapper;
 
-import nextstep.ladder.exception.ExceptionMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
