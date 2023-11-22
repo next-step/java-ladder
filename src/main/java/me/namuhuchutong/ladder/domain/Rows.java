@@ -30,12 +30,12 @@ public class Rows {
     }
 
     private void validateLadderHeight(int size) {
-        if (isLessThanZeroOrBiggerThanTen(size)) {
-            throw new IllegalArgumentException("높이가 1보다 작거나 10보다 크다면 사다리는 생성할 수 없습니다.");
+        if (isOutOfHeightCondition(size)) {
+            throw new IllegalArgumentException("사다리 높이 조건을 벗어났습니다. - " + size);
         }
     }
 
-    private boolean isLessThanZeroOrBiggerThanTen(int size) {
+    private boolean isOutOfHeightCondition(int size) {
         return size < MINIMUM_HEIGHT || MAXIMUM_HEIGHT < size;
     }
 
