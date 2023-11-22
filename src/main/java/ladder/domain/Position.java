@@ -13,6 +13,7 @@ public class Position {
     private Position forward() {
         return new Position(this.position + 1);
     }
+
     private Position backward() {
         return new Position(this.position - 1);
     }
@@ -26,7 +27,7 @@ public class Position {
             return backward();
         }
 
-        return null;
+        return this;
     }
 
     private Boolean canForward(Row row) {
@@ -40,7 +41,11 @@ public class Position {
     }
 
     private boolean isBoundary(Row row) {
-        return this.position >= row.size();
+        return this.position < 0 || this.position >= row.size();
+    }
+
+    public int position() {
+        return this.position;
     }
 
     @Override

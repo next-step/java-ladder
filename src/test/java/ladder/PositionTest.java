@@ -27,4 +27,12 @@ public class PositionTest {
         assertThat(position.moved(row)).isEqualTo(new Position(1));
     }
 
+    @Test
+    @DisplayName("양쪽에 발판이 놓여 있지 않은 경우 위치가 변경되지 않는다")
+    public void position_not_move() {
+        Row row = new Row(Arrays.asList(true, false, false));
+        Position position = new Position(3);
+        assertThat(position.moved(row)).isEqualTo(new Position(3));
+    }
+
 }

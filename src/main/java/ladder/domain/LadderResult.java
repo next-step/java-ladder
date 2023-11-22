@@ -16,8 +16,8 @@ public class LadderResult {
         Map<Name, Result> ladderResult = new HashMap<>();
         for (int nameIdx = 0; nameIdx < names.size(); nameIdx++) {
             Name name = names.of(nameIdx);
-            int position = position(ladder, nameIdx);
-            Result result = results.of(position);
+            Position position = position(ladder, nameIdx);
+            Result result = results.find(position);
 
             ladderResult.put(name, result);
         }
@@ -25,34 +25,12 @@ public class LadderResult {
         return ladderResult;
     }
 
-    private int position(Ladder ladder, int startPosition) {
-        int position = startPosition;
+    private Position position(Ladder ladder, int startPosition) {
+        Position position = new Position(startPosition);
         for (Row row : ladder.rows()) {
-            position = moved(position, row);
+            position = position.moved(row);
         }
         return position;
-    }
-
-    private int moved(int position, Row row) {
-        if (canForward(position, row)) {
-            return position + 1;
-        }
-
-        if (canBackward(position, row)) {
-            return position - 1;
-        }
-
-        return position;
-    }
-
-    private Boolean canForward(int position, Row row) {
-        return !row.isBoundary(position) && row.movable(position);
-    }
-
-    private Boolean canBackward(int position, Row row) {
-        int backwardPosition = position - 1;
-
-        return !row.isBoundary(backwardPosition) && row.movable(backwardPosition);
     }
 
     public Map<Name, Result> result() {
