@@ -5,6 +5,7 @@ import me.namuhuchutong.ladder.domain.wrapper.OddNumber;
 import me.namuhuchutong.ladder.domain.wrapper.Result;
 import me.namuhuchutong.ladder.dto.NameAndResult;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.IntStream;
@@ -40,8 +41,11 @@ public class Ladder {
         Map<Name, Result> collect = names.stream()
                                          .map(names::getSequence)
                                          .map(integer -> entry(names.getNthName(integer),
-                                                                   results.getNthResult(sequence.convert(integer))))
-                                         .collect(toMap(Entry::getKey, Entry::getValue));
+                                                               results.getNthResult(sequence.convert(integer))))
+                                         .collect(toMap(Entry::getKey,
+                                                        Entry::getValue,
+                                                        (oldValue, newValue) -> oldValue,
+                                                        LinkedHashMap::new));
         return new NameAndResult(collect);
     }
 
