@@ -14,9 +14,13 @@ public class Name {
     }
 
     private void validateName(String name) {
-        if (name.length() > MAXIMUM_SIZE) {
-            throw new IllegalArgumentException("이름의 크기는 5자를 넘을 수 없습니다.");
+        if (isOutOfNameLength(name)) {
+            throw new IllegalArgumentException("이름 크기 범위를 벗어났습니다. - " + name);
         }
+    }
+
+    private static boolean isOutOfNameLength(String name) {
+        return name.length() > MAXIMUM_SIZE || name.isBlank();
     }
 
     public String getName() {
