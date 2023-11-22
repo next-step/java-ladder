@@ -1,7 +1,5 @@
 package me.namuhuchutong.ladder.ui;
 
-import me.namuhuchutong.ladder.dto.NameAndResult;
-import me.namuhuchutong.ladder.domain.wrapper.Result;
 import me.namuhuchutong.ladder.dto.LadderResult;
 
 public class OutputView {
@@ -10,11 +8,7 @@ public class OutputView {
         System.out.println(result.getResult());
     }
 
-    public void printNameAndResult(Result result) {
+    public void printNameAndResult(String result) {
         System.out.println(result);
-    }
-
-    public void printNameAndResultAll(NameAndResult nameAndResult) {
-        System.out.println(nameAndResult);
     }
 }

@@ -2,7 +2,6 @@ package me.namuhuchutong.ladder.controller;
 
 import me.namuhuchutong.ladder.domain.*;
 import me.namuhuchutong.ladder.domain.factory.ScaffoldFactory;
-import me.namuhuchutong.ladder.domain.wrapper.Result;
 import me.namuhuchutong.ladder.dto.LadderResult;
 import me.namuhuchutong.ladder.dto.NameAndResult;
 import me.namuhuchutong.ladder.dto.UserInputInformation;
@@ -34,16 +33,15 @@ public class LadderController {
         Results results = Results.from(information.getInputResults());
         outputView.printResult(new LadderResult(names, rows, results));
         NameAndResult nameAndResult = new Ladder(rows, names, results).startLadderGame();
-        showGameResult(nameAndResult);
+        showEachResult(names, nameAndResult);
+        outputView.printNameAndResult(nameAndResult.getAllResults());
     }
 
-    private void showGameResult(NameAndResult nameAndResult) {
+    private void showEachResult(Names names, NameAndResult nameAndResult) {
         String inputName = inputView.inputStringName();
-        while (!"all".equals(inputName)) {
-            Result result = nameAndResult.getResult(inputName);
-            outputView.printNameAndResult(result);
+        while (names.contains(inputName)) {
+            outputView.printNameAndResult(nameAndResult.getResult(inputName));
             inputName = inputView.inputStringName();
         }
-        outputView.printNameAndResultAll(nameAndResult);
     }
 }
