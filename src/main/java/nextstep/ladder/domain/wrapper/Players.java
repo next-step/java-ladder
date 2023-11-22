@@ -4,6 +4,7 @@ import nextstep.ladder.domain.Player;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import static nextstep.ladder.exception.ExceptionMessage.*;
 
@@ -29,6 +30,12 @@ public class Players {
             .map(player -> player.name().toLowerCase())
             .distinct()
             .count();
+    }
+
+    public List<String> names() {
+        return players.stream()
+            .map(Player::name)
+            .collect(Collectors.toUnmodifiableList());
     }
 
     @Override
