@@ -38,7 +38,7 @@ public class Lambda {
         return sum(numbers, number -> number > 3);
     }
 
-    public static int sum(List<Integer> numbers, Conditional conditional) {
+    private static int sum(List<Integer> numbers, Conditional conditional) {
         int total = 0;
 
         for (int number : numbers) {
