@@ -34,7 +34,7 @@ public class RowTest {
     @Test
     @DisplayName("행에서 이동가능한 위치를 확인할 수 있다")
     public void row_available() {
-        assertThat(new Row(Arrays.asList(true, false, false)).available(0)).isTrue();
+        assertThat(new Row(Arrays.asList(true, false, false)).movable(0)).isTrue();
     }
 
 }

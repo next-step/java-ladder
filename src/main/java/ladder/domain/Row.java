@@ -32,7 +32,7 @@ public class Row {
         return position < 0 || position == cols.size();
     }
 
-    public Boolean available(int position) {
+    public Boolean movable(int position) {
         return cols.get(position);
     }
 

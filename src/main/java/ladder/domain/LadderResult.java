@@ -46,13 +46,13 @@ public class LadderResult {
     }
 
     private Boolean canForward(int position, Row row) {
-        return !row.isBoundary(position) && row.available(position);
+        return !row.isBoundary(position) && row.movable(position);
     }
 
     private Boolean canBackward(int position, Row row) {
         int backwardPosition = position - 1;
 
-        return !row.isBoundary(backwardPosition) && row.available(backwardPosition);
+        return !row.isBoundary(backwardPosition) && row.movable(backwardPosition);
     }
 
     public Map<Name, Result> result() {
