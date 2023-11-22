@@ -79,6 +79,6 @@ public class Participants {
                 .map(Participant::toString)
                 .collect(Collectors.toList());
 
-        return String.join("", collect) + "\n";
+        return String.join("", collect);
     }
 }

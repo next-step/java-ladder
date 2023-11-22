@@ -12,7 +12,7 @@ public class Ladder {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(participants.toString());
+        stringBuilder.append(participants.toString() + "\n");
         stringBuilder.append(lines.toString());
         return stringBuilder.toString();
     }
