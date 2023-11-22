@@ -66,7 +66,7 @@ public class Row {
 
     private Movements findDestination(int startPoint) {
         LadderExpression left = this.values.get(startPoint - 1);
-        LadderExpression right = startPoint == this.values.size() - 1 ?
+        LadderExpression right = isEndOfCollection(startPoint) ?
                 this.values.get(startPoint) : this.values.get(startPoint + 1);
         if (left.equals(HYPHEN)) {
             return MOVE_LEFT;
@@ -75,6 +75,10 @@ public class Row {
             return MOVE_RIGHT;
         }
         return STOP;
+    }
+
+    private boolean isEndOfCollection(int startPoint) {
+        return startPoint == this.values.size() - 1;
     }
 
     @Override
