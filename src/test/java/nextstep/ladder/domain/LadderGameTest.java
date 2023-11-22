@@ -1,10 +1,13 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.controller.dto.GameInfo;
+import nextstep.ladder.domain.wrapper.Players;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -22,10 +25,15 @@ public class LadderGameTest {
             new Bridges(List.of(false, false, false)),
             new Bridges(List.of(false, true, false))
             ));
-
-        GameInfo gameInfo = new GameInfo(names, ladder);
+        Players players = new Players(IntStream.range(0, names.length)
+            .mapToObj(i -> Player.PlayerBuilder.builder()
+                .name(names[i])
+                .widthPosition(i)
+                .heightPosition(1)
+                .build())
+            .collect(Collectors.toUnmodifiableList()));
 
         // when & then
-        assertThat(new LadderGame(gameInfo)).isEqualTo(new LadderGame(gameInfo));
+        assertThat(new LadderGame(ladder, players)).isEqualTo(new LadderGame(ladder, players));
     }
 }
