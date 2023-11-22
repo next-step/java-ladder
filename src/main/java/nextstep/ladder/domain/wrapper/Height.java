@@ -11,18 +11,17 @@ public class Height {
 
     public Height(int value) {
         validatePositive(value);
-
         this.value = value;
+    }
+
+    private void validatePositive(int value) {
+        if (value <= 0) {
+            throw new IllegalArgumentException(NOT_POSITIVE.message());
+        }
     }
 
     public int value() {
         return this.value;
-    }
-
-    private void validatePositive(int val) {
-        if (val <= 0) {
-            throw new IllegalArgumentException(NOT_POSITIVE.message());
-        }
     }
 
     @Override

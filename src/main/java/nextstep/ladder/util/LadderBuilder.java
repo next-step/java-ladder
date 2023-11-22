@@ -25,11 +25,11 @@ public class LadderBuilder {
             .collect(Collectors.toUnmodifiableList()));
     }
 
-    private static Bridges buildBridges(int xAxis) {
+    private static Bridges buildBridges(int width) {
         List<Boolean> bridges = initFirstBridge();
 
-        IntStream.range(1, xAxis)
-            .forEach(i -> createByWhetherPreviousExists(bridges, i - 1));
+        IntStream.range(1, width)
+            .forEach(current -> createByWhetherPreviousExists(bridges, current - 1));
 
         return new Bridges(bridges);
     }

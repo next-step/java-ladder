@@ -24,14 +24,14 @@ public class Bridges {
             .anyMatch(i -> bridges.get(i) && bridges.get(i + 1));
     }
 
-    public boolean isMovable(int xAxis) {
-        validateIndex(xAxis);
+    public boolean isMovable(int widthPosition) {
+        validateIndex(widthPosition);
 
-        return this.bridges.get(xAxis);
+        return this.bridges.get(widthPosition);
     }
 
-    private void validateIndex(int xAxis) {
-        if (xAxis < 0 || xAxis >= bridges.size()) {
+    private void validateIndex(int widthPosition) {
+        if (widthPosition < 0 || widthPosition >= bridges.size()) {
             throw new IllegalArgumentException(OUT_OF_INDEX.message());
         }
     }

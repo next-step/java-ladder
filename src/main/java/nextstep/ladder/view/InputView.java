@@ -14,7 +14,7 @@ public class InputView {
     }
 
     public String[] inputPlayerName() {
-        print("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
 
         try {
             String input = input();
@@ -27,8 +27,8 @@ public class InputView {
     }
 
     public int inputHeight() {
-        print("");
-        print("최대 사다리 높이는 몇 개인가요?");
+        println("");
+        println("최대 사다리 높이는 몇 개인가요?");
 
         try {
             String input = input();
@@ -40,7 +40,7 @@ public class InputView {
         }
     }
 
-    private void print(String message) {
+    private void println(String message) {
         System.out.println(message);
     }
 

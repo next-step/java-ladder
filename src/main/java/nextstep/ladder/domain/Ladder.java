@@ -14,15 +14,15 @@ public class Ladder {
         this.ladder = ladder;
     }
 
-    public boolean isMovable(int xAxis, int yAxis) {
-        validateIndex(yAxis);
+    public boolean isMovable(int widthPosition, int heightPosition) {
+        validateIndex(heightPosition);
 
-        return ladder.get(yAxis)
-            .isMovable(xAxis);
+        return ladder.get(heightPosition)
+            .isMovable(widthPosition);
     }
 
-    private void validateIndex(int yAxis) {
-        if (yAxis < 0 || yAxis >= ladder.size()) {
+    private void validateIndex(int heightPosition) {
+        if (heightPosition < 0 || heightPosition >= ladder.size()) {
             throw new IllegalArgumentException(OUT_OF_INDEX.message());
         }
     }

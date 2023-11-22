@@ -70,6 +70,6 @@ public class PlayersTest {
             .collect(Collectors.toList()));
 
         // when & then
-        assertThat(players.names()).isEqualTo(List.of("홍길동", "전창길", "코난"));
+        assertThat(players.name()).isEqualTo(List.of("홍길동", "전창길", "코난"));
     }
 }

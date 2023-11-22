@@ -22,7 +22,7 @@ public class LadderGame {
     }
 
     public List<String> playersName() {
-        return players.names();
+        return players.name();
     }
 
     public List<List<Boolean>> ladder() {

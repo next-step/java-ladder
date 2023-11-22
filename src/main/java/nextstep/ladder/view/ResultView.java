@@ -28,19 +28,19 @@ public class ResultView {
     private void printPlayersName(LadderGame ladderGame) {
         List<String> names = ladderGame.playersName();
         names.forEach(name -> print(name + SPACE.repeat(SIZE_BETWEEN_NAME - name.length())));
+
         println("");
     }
 
     private void printBooleanLadder(LadderGame ladderGame) {
-        List<List<Boolean>> booleanLadder = ladderGame.ladder();
-
-        booleanLadder.forEach(this::printBooleanBridges);
+        ladderGame.ladder()
+            .forEach(this::printBooleanBridges);
     }
 
     private void printBooleanBridges(List<Boolean> booleanBridges) {
         booleanBridges.forEach(this::printTruOrNot);
-
         print(LADDER_POLE);
+
         println("");
     }
 

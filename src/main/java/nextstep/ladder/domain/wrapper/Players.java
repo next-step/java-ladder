@@ -11,13 +11,14 @@ import static nextstep.ladder.exception.ExceptionMessage.*;
 public class Players {
 
     private final List<Player> players;
+
     public Players(List<Player> players) {
-        validateNameUnique(players);
+        validateDuplicateName(players);
 
         this.players = players;
     }
 
-    private void validateNameUnique(List<Player> players) {
+    private void validateDuplicateName(List<Player> players) {
         long countOfName = countName(players);
 
         if (countOfName != players.size()) {
@@ -32,7 +33,7 @@ public class Players {
             .count();
     }
 
-    public List<String> names() {
+    public List<String> name() {
         return players.stream()
             .map(Player::name)
             .collect(Collectors.toUnmodifiableList());
