@@ -9,13 +9,19 @@ import java.util.Objects;
 public class Player {
 
     private Name name;
-    private Width width;
-    private Height height;
+    private Width widthPosition;
+    private Height heightPosition;
 
-    public Player(Name name, Width width, Height height) {
+    public Player(Name name, Width widthPosition, Height heightPosition) {
         this.name = name;
-        this.width = width;
-        this.height = height;
+        this.widthPosition = widthPosition;
+        this.heightPosition = heightPosition;
+    }
+
+    private Player(String name, int widthPosition, int heightPosition) {
+        this.name = new Name(name);
+        this.widthPosition = new Width(widthPosition);
+        this.heightPosition = new Height(heightPosition);
     }
 
     public String name() {
@@ -27,11 +33,41 @@ public class Player {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Player player = (Player) o;
-        return Objects.equals(name, player.name) && Objects.equals(width, player.width) && Objects.equals(height, player.height);
+        return Objects.equals(name, player.name) && Objects.equals(widthPosition, player.widthPosition) && Objects.equals(heightPosition, player.heightPosition);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, width, height);
+        return Objects.hash(name, widthPosition, heightPosition);
+    }
+
+    public static class PlayerBuilder {
+
+        private String name;
+        private int widthPosition;
+        private int heightPosition;
+
+        public PlayerBuilder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public PlayerBuilder widthPosition(int widthPosition) {
+            this.widthPosition = widthPosition;
+            return this;
+        }
+
+        public PlayerBuilder heightPosition(int heightPosition) {
+            this.heightPosition = heightPosition;
+            return this;
+        }
+
+        public static PlayerBuilder builder() {
+            return new PlayerBuilder();
+        }
+
+        public Player build() {
+            return new Player(this.name, this.widthPosition, this.heightPosition);
+        }
     }
 }
