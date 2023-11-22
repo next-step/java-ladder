@@ -20,7 +20,7 @@ public class BridgeTest {
     @Test
     void createBridgesWhenTruInARow() {
         assertThatThrownBy(() -> new Bridges(List.of(true, true, false))).isInstanceOf(IllegalArgumentException.class)
-            .hasMessage(CAN_NOT_TRUE_STRAIGHT.message());
+            .hasMessage(NOT_TRUE_STRAIGHT.message());
     }
 
     @DisplayName("인자로 받은 위치의 다리가 이동 가능한지 확인한다.")

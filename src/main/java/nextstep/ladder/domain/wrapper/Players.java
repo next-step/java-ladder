@@ -20,7 +20,7 @@ public class Players {
         long countOfName = countName(players);
 
         if (countOfName != players.size()) {
-            throw new IllegalArgumentException(CAN_NOT_EQUAL_NAME.message());
+            throw new IllegalArgumentException(NOT_EQUAL_NAME.message());
         }
     }
 

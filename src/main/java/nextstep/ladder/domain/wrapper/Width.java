@@ -2,11 +2,11 @@ package nextstep.ladder.domain.wrapper;
 
 import java.util.Objects;
 
-public class AxisX {
+public class Width {
 
     private int position;
 
-    public AxisX(int position) {
+    public Width(int position) {
         this.position = position;
     }
 
@@ -14,8 +14,8 @@ public class AxisX {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AxisX axisX = (AxisX) o;
-        return position == axisX.position;
+        Width width = (Width) o;
+        return position == width.position;
     }
 
     @Override

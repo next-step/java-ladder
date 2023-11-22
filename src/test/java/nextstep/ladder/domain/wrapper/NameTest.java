@@ -28,6 +28,6 @@ public class NameTest {
     @NullAndEmptySource
     void createNameWhenNameEmpty(String name) {
         assertThatThrownBy(() -> new Name(name)).isInstanceOf(IllegalArgumentException.class)
-            .hasMessage(CAN_NOT_NONE.message());
+            .hasMessage(NOT_NONE.message());
     }
 }

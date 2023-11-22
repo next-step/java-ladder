@@ -1,7 +1,7 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.wrapper.AxisX;
-import nextstep.ladder.domain.wrapper.AxisY;
+import nextstep.ladder.domain.wrapper.Width;
+import nextstep.ladder.domain.wrapper.Height;
 import nextstep.ladder.domain.wrapper.Name;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,8 +15,8 @@ public class PlayerTest {
     void createPlayer() {
         // given
         Name name = new Name("홍길동");
-        AxisX axisX = new AxisX(0);
-        AxisY axisY = new AxisY(0);
-        assertThat(new Player(name, axisX, axisY)).isEqualTo(new Player(name, axisX, axisY));
+        Width width = new Width(0);
+        Height height = new Height(0);
+        assertThat(new Player(name, width, height)).isEqualTo(new Player(name, width, height));
     }
 }

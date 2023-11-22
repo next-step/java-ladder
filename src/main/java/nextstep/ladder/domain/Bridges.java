@@ -12,7 +12,7 @@ public class Bridges {
 
     public Bridges(List<Boolean> bridges) {
         if (existStraight(bridges)) {
-            throw new IllegalArgumentException(CAN_NOT_TRUE_STRAIGHT.message());
+            throw new IllegalArgumentException(NOT_TRUE_STRAIGHT.message());
         }
 
         this.bridges = bridges;

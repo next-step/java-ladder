@@ -17,7 +17,7 @@ public class Name {
 
     private void validateNone(String name) {
         if (isNone(name)) {
-            throw new IllegalArgumentException(CAN_NOT_NONE.message());
+            throw new IllegalArgumentException(NOT_NONE.message());
         }
     }
 

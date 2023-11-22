@@ -1,7 +1,7 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.wrapper.AxisX;
-import nextstep.ladder.domain.wrapper.AxisY;
+import nextstep.ladder.domain.wrapper.Width;
+import nextstep.ladder.domain.wrapper.Height;
 import nextstep.ladder.domain.wrapper.Name;
 
 import java.util.Objects;
@@ -9,13 +9,13 @@ import java.util.Objects;
 public class Player {
 
     private Name name;
-    private AxisX axisX;
-    private AxisY axisY;
+    private Width width;
+    private Height height;
 
-    public Player(Name name, AxisX axisX, AxisY axisY) {
+    public Player(Name name, Width width, Height height) {
         this.name = name;
-        this.axisX = axisX;
-        this.axisY = axisY;
+        this.width = width;
+        this.height = height;
     }
 
     public String name() {
@@ -27,11 +27,11 @@ public class Player {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Player player = (Player) o;
-        return Objects.equals(name, player.name) && Objects.equals(axisX, player.axisX) && Objects.equals(axisY, player.axisY);
+        return Objects.equals(name, player.name) && Objects.equals(width, player.width) && Objects.equals(height, player.height);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, axisX, axisY);
+        return Objects.hash(name, width, height);
     }
 }

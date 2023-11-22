@@ -20,11 +20,11 @@ public class PlayersTest {
 
         assertThat(
             new Players(IntStream.range(0, names.length)
-                .mapToObj(i -> new Player(new Name(names[i]), new AxisX(i), new AxisY(0)))
+                .mapToObj(i -> new Player(new Name(names[i]), new Width(i), new Height(0)))
                 .collect(Collectors.toList())))
         .isEqualTo(
             new Players(IntStream.range(0, names.length)
-                .mapToObj(i -> new Player(new Name(names[i]), new AxisX(i), new AxisY(0)))
+                .mapToObj(i -> new Player(new Name(names[i]), new Width(i), new Height(0)))
                 .collect(Collectors.toList()))
         );
     }
@@ -37,8 +37,8 @@ public class PlayersTest {
 
         // when & then
         assertThatThrownBy(() -> new Players(IntStream.range(0, names.length)
-            .mapToObj(i -> new Player(new Name(names[i]), new AxisX(i), new AxisY(0)))
+            .mapToObj(i -> new Player(new Name(names[i]), new Width(i), new Height(0)))
             .collect(Collectors.toList()))).isInstanceOf(IllegalArgumentException.class)
-            .hasMessage(CAN_NOT_EQUAL_NAME.message());
+            .hasMessage(NOT_EQUAL_NAME.message());
     }
 }

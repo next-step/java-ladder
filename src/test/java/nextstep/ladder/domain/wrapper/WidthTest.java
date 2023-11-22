@@ -5,11 +5,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class AxisXTest {
+public class WidthTest {
 
-    @DisplayName("X축의 값을 생성한다.")
+    @DisplayName("인자로 너비 값을 받아 생성한다.")
     @Test
     void createAxisX() {
-        assertThat(new AxisX(0)).isEqualTo(new AxisX(0));
+        assertThat(new Width(0)).isEqualTo(new Width(0));
     }
 }
