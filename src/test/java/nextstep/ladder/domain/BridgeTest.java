@@ -23,16 +23,16 @@ public class BridgeTest {
             .hasMessage("사다리의 다리는 연속으로 존재할 수 없습니다.");
     }
 
-    @DisplayName("사다리 x축의 특정 위치의 다리가 이동 가능한지 확인한다.")
+    @DisplayName("인자로 받은 위치의 다리가 이동 가능한지 확인한다.")
     @Test
     void isMovable() {
         // given
         Bridges bridges = new Bridges(List.of(true, false, true));
 
         // when
-        int position = 1;
+        int xAxis = 1;
 
         // then
-        assertThat(bridges.isMovable(position)).isFalse();
+        assertThat(bridges.isMovable(xAxis)).isFalse();
     }
 }
