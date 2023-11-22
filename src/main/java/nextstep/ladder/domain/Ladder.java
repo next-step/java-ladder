@@ -2,7 +2,6 @@ package nextstep.ladder.domain;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 import static nextstep.ladder.exception.ExceptionMessage.*;
 
@@ -10,10 +9,8 @@ public class Ladder {
 
     private final List<Bridges> ladder;
 
-    public Ladder(List<List<Boolean>> ladder) {
-        this.ladder = ladder.stream()
-            .map(Bridges::new)
-            .collect(Collectors.toUnmodifiableList());
+    public Ladder(List<Bridges> ladder) {
+        this.ladder = ladder;
     }
 
     public boolean isMovable(int xAxis, int yAxis) {

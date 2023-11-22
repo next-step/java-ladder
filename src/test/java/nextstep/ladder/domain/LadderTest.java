@@ -16,11 +16,11 @@ public class LadderTest {
     @Test
     void createLadder() {
         assertThat(new Ladder(List.of(
-            List.of(true, false, true),
-            List.of(false, true, false)
+            new Bridges(List.of(true, false, true)),
+            new Bridges(List.of(false, true, false))
         ))).isEqualTo(new Ladder(List.of(
-            List.of(true, false, true),
-            List.of(false, true, false))));
+            new Bridges(List.of(true, false, true)),
+            new Bridges(List.of(false, true, false)))));
     }
 
     @DisplayName("사다리의 높이와 다리의 위치 값을 인자로 받아 해당 다리가 이동 가능한 지 확인한다.")
@@ -29,8 +29,8 @@ public class LadderTest {
     void isMovable(int xAxis, int yAxis, boolean expected) {
         // given
         Ladder ladder = new Ladder(List.of
-            (List.of(true, false, true),
-             List.of(true, false, true)));
+            (new Bridges(List.of(true, false, true)),
+             new Bridges(List.of(true, false, true))));
 
         // when & then
         assertThat(ladder.isMovable(xAxis, yAxis)).isEqualTo(expected);
@@ -41,8 +41,8 @@ public class LadderTest {
     void isMovableWhenOutOfIndex() {
         // given
         Ladder ladder = new Ladder(List.of
-            (List.of(true, false, true),
-             List.of(true, false, true)));
+            (new Bridges(List.of(true, false, true)),
+             new Bridges(List.of(true, false, true))));
 
         // when & then
         assertThatThrownBy(() -> ladder.isMovable(2, 2)).isInstanceOf(IllegalArgumentException.class)
