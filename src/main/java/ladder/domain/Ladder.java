@@ -2,7 +2,6 @@ package ladder.domain;
 
 import ladder.stretagy.PointBuildStrategy;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,36 +18,18 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
-    public static Ladder createLadder(int totalLine, Gamers gamers, PointBuildStrategy pointBuildStrategy) {
-        Ladder ladder = new Ladder(totalLine, gamers.countGamers(), pointBuildStrategy);
-        ladder.ladderMove(gamers);
-
-        return ladder;
-    }
-
     public List<Line> getLines() {
         return Collections.unmodifiableList(this.lines);
     }
 
-    private void ladderMove(Gamers gamers) {
-        List<Position> endPositions = new ArrayList<>();
-
-        for (int i = 0; i < gamers.countGamers(); i++) {
-            Position startPosition = new Position(i);
-            Position endPosition = findEndPoint(startPosition);
-
-            endPositions.add(endPosition);
-        }
-
-        gamers.recordEndPosition(endPositions);
-    }
-
-    private Position findEndPoint(Position position) {
+    public int ladderMove(int startPosition) {
         for (Line line : lines) {
-            position = position.move(line);
+            Direction direction = line.move(startPosition);
+            startPosition = direction.move(startPosition);
         }
-        return position;
+        return startPosition;
     }
+
 
     private void validate(int totalLine) {
         if (totalLine <= 0) {
