@@ -8,7 +8,7 @@ import java.util.List;
 import static nextstep.ladder.exception.ExceptionMessage.*;
 import static org.assertj.core.api.Assertions.*;
 
-public class BridgeTest {
+public class BridgesTest {
 
     @DisplayName("사다리의 x축인 다리를 생성한다.")
     @Test
@@ -45,5 +45,18 @@ public class BridgeTest {
         // when & then
         assertThatThrownBy(() -> bridges.isMovable(3)).isInstanceOf(IllegalArgumentException.class)
             .hasMessage(OUT_OF_INDEX.message());
+    }
+
+    @DisplayName("Bridges로 포장된 값을 List<Boolean> 타입으로 변환해서 반환한다.")
+    @Test
+    void toBooleans() {
+        // given
+        Bridges bridges = new Bridges(List.of(true, false, true));
+
+        // when
+        List<Boolean> booleans = bridges.toBooleans();
+
+        // then
+        assertThat(booleans).isEqualTo(List.of(true, false, true));
     }
 }

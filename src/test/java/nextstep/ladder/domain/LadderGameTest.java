@@ -34,6 +34,6 @@ public class LadderGameTest {
             .collect(Collectors.toUnmodifiableList()));
 
         // when & then
-        assertThat(new LadderGame(ladder, players)).isEqualTo(new LadderGame(ladder, players));
+        assertThat(new LadderGame(players, ladder)).isEqualTo(new LadderGame(players, ladder));
     }
 }

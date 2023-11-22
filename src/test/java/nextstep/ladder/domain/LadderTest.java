@@ -48,4 +48,21 @@ public class LadderTest {
         assertThatThrownBy(() -> ladder.isMovable(2, 2)).isInstanceOf(IllegalArgumentException.class)
             .hasMessage(OUT_OF_INDEX.message());
     }
+
+    @DisplayName("Ladder로 포장된 값을 List<List<Boolean>으로 변환해 반환한다.")
+    @Test
+    void ladderToBoolean() {
+        // given
+        Ladder ladder = new Ladder(List.of
+            (new Bridges(List.of(true, false, true)),
+             new Bridges(List.of(true, false, true))));
+
+        // when
+        List<List<Boolean>> booleanLadder = ladder.ladderToBoolean();
+
+        // then
+        assertThat(booleanLadder).isEqualTo(List.of(
+            List.of(true, false, true),
+            List.of(true, false, true)));
+    }
 }

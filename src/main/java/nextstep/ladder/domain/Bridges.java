@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static nextstep.ladder.exception.ExceptionMessage.*;
@@ -33,6 +34,11 @@ public class Bridges {
         if (xAxis < 0 || xAxis >= bridges.size()) {
             throw new IllegalArgumentException(OUT_OF_INDEX.message());
         }
+    }
+
+    public List<Boolean> toBooleans() {
+        return this.bridges.stream()
+            .collect(Collectors.toUnmodifiableList());
     }
 
     @Override

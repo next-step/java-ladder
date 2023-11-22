@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import static nextstep.ladder.exception.ExceptionMessage.*;
 
@@ -24,6 +25,12 @@ public class Ladder {
         if (yAxis < 0 || yAxis >= ladder.size()) {
             throw new IllegalArgumentException(OUT_OF_INDEX.message());
         }
+    }
+
+    public List<List<Boolean>> ladderToBoolean() {
+        return ladder.stream()
+            .map(Bridges::toBooleans)
+            .collect(Collectors.toUnmodifiableList());
     }
 
     @Override
