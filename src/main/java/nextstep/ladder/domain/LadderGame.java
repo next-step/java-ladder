@@ -8,8 +8,8 @@ import java.util.Objects;
 
 public class LadderGame {
 
-    private Players players;
-    private Ladder ladder;
+    private final Players players;
+    private final Ladder ladder;
 
     public LadderGame(GameInfo gameInfo) {
         this.players = gameInfo.players();

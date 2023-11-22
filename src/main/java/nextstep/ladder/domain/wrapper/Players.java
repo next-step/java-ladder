@@ -10,7 +10,7 @@ import static nextstep.ladder.exception.ExceptionMessage.*;
 
 public class Players {
 
-    private List<Player> players;
+    private final List<Player> players;
     public Players(List<Player> players) {
         validateNameUnique(players);
 

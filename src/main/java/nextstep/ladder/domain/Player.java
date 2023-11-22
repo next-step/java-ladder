@@ -8,7 +8,7 @@ import java.util.Objects;
 
 public class Player {
 
-    private Name name;
+    private final Name name;
     private Width widthPosition;
     private Height heightPosition;
 

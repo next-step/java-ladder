@@ -1,6 +1,5 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.controller.dto.GameInfo;
 import nextstep.ladder.domain.wrapper.Players;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
