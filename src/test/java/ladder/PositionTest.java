@@ -19,4 +19,12 @@ public class PositionTest {
         assertThat(position.moved(row)).isEqualTo(new Position(2));
     }
 
+    @Test
+    @DisplayName("현재 발판이 놓여 있지 않으며, 뒤쪽 발판이 놓여 있는 경우 왼쪽으로 이동한다")
+    public void position_backward() {
+        Row row = new Row(Arrays.asList(false, true, false));
+        Position position = new Position(2);
+        assertThat(position.moved(row)).isEqualTo(new Position(1));
+    }
+
 }

@@ -13,10 +13,17 @@ public class Position {
     private Position forward() {
         return new Position(this.position + 1);
     }
+    private Position backward() {
+        return new Position(this.position - 1);
+    }
 
     public Position moved(Row row) {
         if (canForward(row)) {
             return forward();
+        }
+
+        if (canBackward(row)) {
+            return backward();
         }
 
         return null;
@@ -24,6 +31,12 @@ public class Position {
 
     private Boolean canForward(Row row) {
         return !isBoundary(row) && row.movable(this.position);
+    }
+
+    private Boolean canBackward(Row row) {
+        Position backward = backward();
+
+        return !backward.isBoundary(row) && row.movable(backward.position);
     }
 
     private boolean isBoundary(Row row) {
