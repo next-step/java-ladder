@@ -2,7 +2,7 @@ package ladder;
 
 import ladder.domain.Ladder;
 import ladder.exception.InvalidLadderException;
-import ladder.factory.RowFactory;
+import ladder.factory.RandomRowStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +17,7 @@ public class LadderTest {
     public void line_duplicate() {
         assertThatExceptionOfType(InvalidLadderException.class)
             .isThrownBy(() -> {
-                new Ladder(5, 1, new RowFactory());
+                new Ladder(5, 1, new RandomRowStrategy());
             })
             .withMessageMatching("사다리게임 참여 인원이 부족합니다");
     }
@@ -25,7 +25,7 @@ public class LadderTest {
     @Test
     @DisplayName("사다리 높이만큼 다리를 놓을 수 있다")
     public void ladder_height() {
-        assertThat(new Ladder(5, 4, new RowFactory()))
+        assertThat(new Ladder(5, 4, new RandomRowStrategy()))
             .extracting(Ladder::rows)
             .asList()
             .hasSize(5);

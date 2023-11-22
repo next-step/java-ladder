@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class RowFactory {
+public class RandomRowStrategy implements RowStrategy {
 
     private static final Random RANDOM = new Random();
 
