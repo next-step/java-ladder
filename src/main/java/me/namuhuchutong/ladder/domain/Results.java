@@ -9,10 +9,12 @@ import static java.util.stream.Collectors.*;
 
 public class Results {
 
+    private static final String COMMA_REGEX = ",";
+
     private final List<Result> results;
 
     public static Results from(String results) {
-        List<Result> collect = Arrays.stream(results.split(","))
+        List<Result> collect = Arrays.stream(results.split(COMMA_REGEX))
                                      .map(Result::new)
                                      .collect(toUnmodifiableList());
         return new Results(collect);

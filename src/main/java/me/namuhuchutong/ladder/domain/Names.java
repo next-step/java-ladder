@@ -10,13 +10,13 @@ import static java.util.stream.Collectors.*;
 
 public class Names {
 
-    private static final String COMMA_SPLIT_REGEX = ",";
+    private static final String COMMA_REGEX = ",";
     private static final int MINIMUM_SIZE = 2;
 
     private final List<Name> values;
 
     public static Names from(String names) {
-        List<Name> collect = Arrays.stream(names.split(COMMA_SPLIT_REGEX))
+        List<Name> collect = Arrays.stream(names.split(COMMA_REGEX))
                                    .map(Name::new)
                                    .collect(toUnmodifiableList());
         return new Names(collect);

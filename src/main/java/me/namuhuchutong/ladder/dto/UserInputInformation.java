@@ -5,6 +5,8 @@ public class UserInputInformation {
     private static final String NOT_NUMERIC_AND_COMMA_REGEX = "^[A-Za-z,]+$";
     private static final int MINIMUM_HEIGHT = 0;
     private static final int MAXIMUM_HEIGHT = 10;
+    private static final String COMMA_REGEX = ",";
+    private static final String WHITE_SPACE = " ";
 
     private final String inputNames;
 
@@ -23,14 +25,14 @@ public class UserInputInformation {
     }
 
     private void validateResults(String inputResults) {
-        if (inputResults.contains(" ")) {
+        if (inputResults.contains(WHITE_SPACE)) {
             throw new IllegalArgumentException("공백은 허용하지 않습니다.");
         }
     }
 
     private void validateNamesAndResultsLength(String inputNames, String inputResults) {
-        String[] resultSplit = inputResults.split(",");
-        String[] namesSplit = inputNames.split(",");
+        String[] resultSplit = inputResults.split(COMMA_REGEX);
+        String[] namesSplit = inputNames.split(COMMA_REGEX);
         if (resultSplit.length != namesSplit.length) {
             throw new IllegalArgumentException("사용자 수와 결과 수는 동일해야 합니다.");
         }

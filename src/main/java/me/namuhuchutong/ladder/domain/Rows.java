@@ -12,6 +12,7 @@ public class Rows {
     private static final String NEW_LINE = "\n";
     private static final int MINIMUM_HEIGHT = 1;
     private static final int MAXIMUM_HEIGHT = 10;
+    private static final String BLANK = "";
 
     private final List<Row> values;
 
@@ -52,6 +53,6 @@ public class Rows {
         return this.values.stream()
                           .map(Row::toString)
                           .map(string -> string + NEW_LINE)
-                          .reduce("", (previous, newOne) -> previous + newOne);
+                          .reduce(BLANK, (previous, newOne) -> previous + newOne);
     }
 }

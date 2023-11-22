@@ -13,6 +13,8 @@ import static me.namuhuchutong.ladder.domain.wrapper.Movements.*;
 
 public class Row {
 
+    private static final String BLANK = "";
+
     private final List<LadderExpression> values;
 
     public static Row from(int participants, ScaffoldFactory factory) {
@@ -79,6 +81,6 @@ public class Row {
     public String toString() {
         return this.values.stream()
                           .map(LadderExpression::convertToString)
-                          .reduce("", (previous, newOne) -> previous + newOne);
+                          .reduce(BLANK, (previous, newOne) -> previous + newOne);
     }
 }
