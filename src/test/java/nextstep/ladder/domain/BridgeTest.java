@@ -1,11 +1,12 @@
 package nextstep.ladder.domain;
 
-import org.assertj.core.api.Assertions;
+import nextstep.ladder.exception.ExceptionMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static nextstep.ladder.exception.ExceptionMessage.*;
 import static org.assertj.core.api.Assertions.*;
 
 public class BridgeTest {
@@ -20,7 +21,7 @@ public class BridgeTest {
     @Test
     void createBridgesWhenTruInARow() {
         assertThatThrownBy(() -> new Bridges(List.of(true, true, false))).isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("사다리의 다리는 연속으로 존재할 수 없습니다.");
+            .hasMessage(CAN_NOT_TRUE_STRAIGHT.message());
     }
 
     @DisplayName("인자로 받은 위치의 다리가 이동 가능한지 확인한다.")
@@ -34,5 +35,16 @@ public class BridgeTest {
 
         // then
         assertThat(bridges.isMovable(xAxis)).isFalse();
+    }
+
+    @DisplayName("인자로 받은 위치 값이 인덱스 범위를 벗어나면 예외를 발생시킨다.")
+    @Test
+    void isMovableWhenOutOfRange() {
+        // given
+        Bridges bridges = new Bridges(List.of(true, false, true));
+
+        // when & then
+        assertThatThrownBy(() -> bridges.isMovable(3)).isInstanceOf(IllegalArgumentException.class)
+            .hasMessage(OUT_OF_INDEX.message());
     }
 }

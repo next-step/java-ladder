@@ -12,7 +12,7 @@ public class Bridges {
 
     public Bridges(List<Boolean> bridges) {
         if (existStraight(bridges)) {
-            throw new IllegalArgumentException(BRIDGE_CAN_NOT_TRUE_STRAIGHT.message());
+            throw new IllegalArgumentException(CAN_NOT_TRUE_STRAIGHT.message());
         }
 
         this.bridges = bridges;
@@ -24,7 +24,15 @@ public class Bridges {
     }
 
     public boolean isMovable(int xAxis) {
+        validateIndex(xAxis);
+
         return this.bridges.get(xAxis);
+    }
+
+    private void validateIndex(int xAxis) {
+        if (xAxis < 0 || xAxis >= bridges.size()) {
+            throw new IllegalArgumentException(OUT_OF_INDEX.message());
+        }
     }
 
     @Override
