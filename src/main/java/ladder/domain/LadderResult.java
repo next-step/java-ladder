@@ -43,7 +43,7 @@ public class LadderResult {
     }
 
     private void validate(String name) {
-        if (!this.ladderResult.containsKey(new Name(name))) {
+        if (!name.equals(ALL_USERS) && !this.ladderResult.containsKey(new Name(name))) {
             throw new IllegalArgumentException("참가자 명단에 없는 사람입니다. 참가자 명단에 있는 사람 혹은 all을 입력 부탁드립니다.");
         }
     }
