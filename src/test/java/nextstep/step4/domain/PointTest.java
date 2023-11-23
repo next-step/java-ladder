@@ -4,7 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PointTest {
     @Test
@@ -15,15 +14,6 @@ class PointTest {
 
         //then
         assertThat(point).isNotNull();
-    }
-
-    @Test
-    @DisplayName("왼쪽, 오른쪽 각각의 사다리 존재 유무가 true, true이면, Point 객체는 생성시에 IllegalArgumentException이 발생한다.")
-    void testPointConstructorWithTrueTrue() {
-        //given, when, then
-        assertThatThrownBy(() -> Point.first(true).next(true))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("양쪽에 사다리가 존재할 수 없습니다.");
     }
 
     @Test

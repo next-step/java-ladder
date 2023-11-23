@@ -5,14 +5,23 @@ public class Point {
     private final boolean hasRightRung;
 
     private Point(final boolean hasLeftRung, final boolean hasRightRung) {
-        if (hasLeftRung && hasRightRung) {
-            throw new IllegalArgumentException("양쪽에 사다리가 존재할 수 없습니다.");
-        }
+        validatePoint(hasLeftRung, hasRightRung);
+
         this.hasLeftRung = hasLeftRung;
         this.hasRightRung = hasRightRung;
     }
 
-    public Point next(final boolean hasRightRung) {
+    private void validatePoint(final boolean hasLeftRung, final boolean hasRightRung) {
+        if (hasLeftRung && hasRightRung) {
+            throw new IllegalArgumentException("양쪽에 사다리가 존재할 수 없습니다.");
+        }
+    }
+
+    public Point next(boolean hasRightRung) {
+        if (this.hasRightRung) {
+            hasRightRung = false;
+        }
+
         return new Point(this.hasRightRung, hasRightRung);
     }
 
