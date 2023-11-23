@@ -33,7 +33,7 @@ public class Result {
     }
 
     private static String printLadderLine(Line line) {
-        final String prefix = " ".repeat(5) + "|";
+        final String prefix = " ".repeat(UserInputTexts.MAX_TEXT_LENGTH - 1) + "|";
         final String delimiter = "|";
 
         return line.getHasRungs().stream()
@@ -43,10 +43,10 @@ public class Result {
 
     private static String generateLadderPointString(final boolean bool) {
         if (bool) {
-            return "-".repeat(5);
+            return "-".repeat(UserInputTexts.MAX_TEXT_LENGTH);
         }
 
-        return " ".repeat(5);
+        return " ".repeat(UserInputTexts.MAX_TEXT_LENGTH);
     }
 
     private static void printLadderReuslts(final UserInputTexts userInputTexts) {
