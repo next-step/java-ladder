@@ -12,6 +12,10 @@ public class Point {
         this.hasRightRung = hasRightRung;
     }
 
+    public Point next(final boolean hasRightRung) {
+        return new Point(this.hasRightRung, hasRightRung);
+    }
+
     public MoveDirection move() {
         if (hasLeftRung) {
             return MoveDirection.LEFT;

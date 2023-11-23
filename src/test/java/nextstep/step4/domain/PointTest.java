@@ -64,4 +64,14 @@ class PointTest {
         //then
         assertThat(direction).isEqualTo(MoveDirection.NONE);
     }
+
+    @Test
+    @DisplayName("next() 메서드를 사용하면, 현재 Point 오른쪽에 위치하는 Point 객체를 생성할 수 있다.")
+    void testNext() {
+        //given, when
+        Point point = new Point(false, false).next(true);
+
+        //then
+        assertThat(point).isNotNull();
+    }
 }
