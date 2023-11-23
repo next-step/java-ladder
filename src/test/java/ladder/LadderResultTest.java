@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.Map;
 
+import static ladder.fixture.LadderFixture.ladderRowFixture;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class LadderResultTest {
@@ -27,19 +28,10 @@ public class LadderResultTest {
 
     private LadderResult ladderResult() {
         Names names = new Names(Arrays.asList("pobi", "honux", "crong", "jk"));
-        Ladder ladder = new Ladder(5, 4, fixedRowStrategy());
+        Ladder ladder = new Ladder(5, 4, new FixedRowStrategy(ladderRowFixture()));
         Results results = new Results(Arrays.asList("꽝", "1등", "2등", "3등"));
 
         return new LadderResult(names, ladder, results);
-    }
-
-    private FixedRowStrategy fixedRowStrategy() {
-        return new FixedRowStrategy(Arrays.asList(
-            Arrays.asList(true, false, true)
-            , Arrays.asList(false, true, false)
-            , Arrays.asList(true, false, false)
-            , Arrays.asList(false, true, false)
-            , Arrays.asList(true, false, true)));
     }
 
 }

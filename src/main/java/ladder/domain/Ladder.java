@@ -28,4 +28,12 @@ public class Ladder {
         return Collections.unmodifiableList(this.rows);
     }
 
+    public Position positionFrom(Position startPosition) {
+        Position position = startPosition;
+        for (Row row : this.rows) {
+            position = position.moved(row);
+        }
+        return position;
+    }
+
 }

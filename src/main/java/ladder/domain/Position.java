@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Position {
 
-    private int position;
+    private final int position;
 
     public Position(int position) {
         this.position = position;

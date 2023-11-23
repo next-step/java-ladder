@@ -26,11 +26,7 @@ public class LadderResult {
     }
 
     private Position position(Ladder ladder, int startPosition) {
-        Position position = new Position(startPosition);
-        for (Row row : ladder.rows()) {
-            position = position.moved(row);
-        }
-        return position;
+        return ladder.positionFrom(new Position(startPosition));
     }
 
     public Map<Name, Result> result() {
