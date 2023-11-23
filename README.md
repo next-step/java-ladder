@@ -157,6 +157,7 @@
 
 - In -> Out 방식의 TDD
   - [X] ~~Point 클래스 생성~~
+    - [X] ~~생성자 입력으로 true, true를 넣게 되면 예외가 발생한다.~~
   - [ ] Line 클래스 생성
   - [ ] Ladder 클래스 생성
   - [ ] Input 클래스 생성
