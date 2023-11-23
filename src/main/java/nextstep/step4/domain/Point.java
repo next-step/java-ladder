@@ -16,8 +16,8 @@ public class Point {
         return new Point(this.hasRightRung, hasRightRung);
     }
 
-    public Point last(final boolean hasLeftRung) {
-        return new Point(hasLeftRung, false);
+    public Point last() {
+        return new Point(this.hasRightRung, false);
     }
 
     public MoveDirection move() {
