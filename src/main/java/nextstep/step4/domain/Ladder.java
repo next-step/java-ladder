@@ -57,4 +57,16 @@ public class Ladder {
     private Point buildLastPoint(final Point point) {
         return point.last();
     }
+
+    public UserInputTexts userNames() {
+        return this.userData.getUserNames();
+    }
+
+    public UserInputTexts userResults() {
+        return this.userData.getUserResults();
+    }
+
+    public List<Line> body() {
+        return this.lines;
+    }
 }

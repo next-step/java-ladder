@@ -32,4 +32,8 @@ public class UserInputTexts {
     public int size() {
         return this.texts.size();
     }
+
+    public List<String> getTexts() {
+        return texts;
+    }
 }
