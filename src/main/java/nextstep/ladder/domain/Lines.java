@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lines {
+    public static final String NEW_LINE = "\n";
     private final List<Line> lines;
 
     public Lines(List<Line> lines) {
@@ -23,9 +24,7 @@ public class Lines {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (Line line : this.lines) {
-            stringBuilder.append(line.toString() + "\n");
-        }
+        this.lines.forEach(l -> stringBuilder.append(l.toString()).append(NEW_LINE));
 
         return stringBuilder.toString();
     }
