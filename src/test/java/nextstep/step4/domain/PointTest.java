@@ -25,4 +25,43 @@ class PointTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("양쪽에 사다리가 존재할 수 없습니다.");
     }
+
+    @Test
+    @DisplayName("왼쪽에만 사다리가 존재하는 경우 move메서드를 사용하면, 왼쪽 방향을 반환한다.")
+    void testMoveWhenOnlyLeftRungIsTrue() {
+        //given
+        Point point = new Point(true, false);
+
+        //when
+        MoveDirection direction = point.move();
+
+        //then
+        assertThat(direction).isEqualTo(MoveDirection.LEFT);
+    }
+
+    @Test
+    @DisplayName("오른쪽에만 사다리가 존재하는 경우 move메서드를 사용하면, 오른쪽 방향을 반환한다.")
+    void testMoveWhenOnlyRightRungIsTrue() {
+        //given
+        Point point = new Point(false, true);
+
+        //when
+        MoveDirection direction = point.move();
+
+        //then
+        assertThat(direction).isEqualTo(MoveDirection.RIGHT);
+    }
+
+    @Test
+    @DisplayName("양쪽 다 사다리가 존재하지 않는 경우 move메서드를 사용하면, 이동하지 않는다.")
+    void testMoveWhenNoRungIsTrue() {
+        //given
+        Point point = new Point(false, false);
+
+        //when
+        MoveDirection direction = point.move();
+
+        //then
+        assertThat(direction).isEqualTo(MoveDirection.NONE);
+    }
 }

@@ -11,4 +11,16 @@ public class Point {
         this.hasLeftRung = hasLeftRung;
         this.hasRightRung = hasRightRung;
     }
+
+    public MoveDirection move() {
+        if (hasLeftRung) {
+            return MoveDirection.LEFT;
+        }
+
+        if (hasRightRung) {
+            return MoveDirection.RIGHT;
+        }
+
+        return MoveDirection.NONE;
+    }
 }
