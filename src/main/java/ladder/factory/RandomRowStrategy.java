@@ -10,12 +10,19 @@ public class RandomRowStrategy implements RowStrategy {
 
     private static final Random RANDOM = new Random();
 
+    private final int row;
+    private final int col;
     private Boolean before = false;
 
-    public List<Row> rows(int row, int col) {
+    public RandomRowStrategy(int row, int col) {
+        this.row = row;
+        this.col = col - 1;
+    }
+
+    public List<Row> rows() {
         List<Row> result = new ArrayList<>();
-        for (int i = 0; i < row; i++) {
-            result.add(row(col));
+        for (int i = 0; i < this.row; i++) {
+            result.add(row(this.col));
         }
 
         return result;

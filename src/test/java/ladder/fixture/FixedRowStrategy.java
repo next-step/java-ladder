@@ -18,7 +18,7 @@ public class FixedRowStrategy implements RowStrategy {
         this.givenRows = result;
     }
 
-    public List<Row> rows(int row, int col) {
+    public List<Row> rows() {
         return this.givenRows;
     }
 

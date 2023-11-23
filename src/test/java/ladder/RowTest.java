@@ -1,7 +1,10 @@
 package ladder;
 
+import ladder.domain.Ladder;
 import ladder.domain.Row;
+import ladder.exception.InvalidColSizeException;
 import ladder.exception.LineDuplicateException;
+import ladder.factory.RandomRowStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,6 +14,16 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 
 public class RowTest {
+
+    @Test
+    @DisplayName("열 개수가 2개 이하일 경우 에러 발생한다")
+    public void col_minimum() {
+        assertThatExceptionOfType(InvalidColSizeException.class)
+            .isThrownBy(() -> {
+                new Ladder(new RandomRowStrategy(5, 1));
+            })
+            .withMessageMatching("열 최소 개수를 만족하지 않습니다");
+    }
 
     @Test
     @DisplayName("가로 라인이 겹칠 경우 에러 발생한다")

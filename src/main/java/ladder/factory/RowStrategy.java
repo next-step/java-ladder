@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface RowStrategy {
 
-    List<Row> rows(int row, int col);
+    List<Row> rows();
 
 }

@@ -1,10 +1,13 @@
 package ladder.domain;
 
+import ladder.exception.InvalidColSizeException;
 import ladder.exception.LineDuplicateException;
 
 import java.util.List;
 
 public class Row {
+
+    private static final int MIN_COUNT_OF_COLS = 2;
 
     private final List<Boolean> cols;
 
@@ -14,7 +17,18 @@ public class Row {
     }
 
     private void validate() {
-        for (int i = 0; i < cols.size() - 1; i++) {
+        validateSize();
+        validateDuplicate();
+    }
+
+    private void validateSize() {
+        if(this.cols.size() < MIN_COUNT_OF_COLS) {
+            throw new InvalidColSizeException();
+        }
+    }
+
+    private void validateDuplicate() {
+        for (int i = 0; i < this.cols.size() - 1; i++) {
             validateDuplicate(i);
         }
     }

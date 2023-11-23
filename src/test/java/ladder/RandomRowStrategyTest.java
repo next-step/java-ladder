@@ -12,7 +12,7 @@ public class RandomRowStrategyTest {
     @Test
     @DisplayName("row를 생성할 수 있다")
     public void row() {
-        assertThat(new RandomRowStrategy().rows(5, 3)).hasSize(5);
+        assertThat(new RandomRowStrategy(5, 3).rows()).hasSize(5);
     }
 
 }
