@@ -2,6 +2,8 @@ package nextstep.step4.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -18,6 +20,16 @@ class UserInputTextsTest {
 
         //then
         assertThat(userInputTexts).isNotNull();
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", "pobi"})
+    @DisplayName("참여할 사람들의 수가 1명 이하이면, IllegalArgumentException이 발생한다.")
+    void testUserInputTextsConstructorWithNamesSizeIsLessThan2(final String text) {
+        //given, when, then
+        assertThatThrownBy(() -> new UserInputTexts(text))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이름 및 실행결과는 " + UserInputTexts.MIN_SIZE + "개 이상이어야 합니다.");
     }
 
     @Test
