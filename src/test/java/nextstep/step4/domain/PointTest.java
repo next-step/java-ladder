@@ -11,17 +11,17 @@ class PointTest {
     @DisplayName("왼쪽, 오른쪽 각각의 사다리 존재 유무를 입력으로, Point 클래스를 생성한다.")
     void testPointConstructor() {
         //given, when
-        Point point = new Point(true, false);
+        Point point = Point.first(false);
 
         //then
         assertThat(point).isNotNull();
     }
 
     @Test
-    @DisplayName("왼쪽, 오른쪽 각각의 사다리 존재 유무 입력으로 true, true 를 넣게 되면, IllegalArgumentException이 발생한다.")
+    @DisplayName("왼쪽, 오른쪽 각각의 사다리 존재 유무가 true, true이면, Point 객체는 생성시에 IllegalArgumentException이 발생한다.")
     void testPointConstructorWithTrueTrue() {
         //given, when, then
-        assertThatThrownBy(() -> new Point(true, true))
+        assertThatThrownBy(() -> Point.first(true).next(true))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("양쪽에 사다리가 존재할 수 없습니다.");
     }
@@ -30,7 +30,7 @@ class PointTest {
     @DisplayName("왼쪽에만 사다리가 존재하는 경우 move메서드를 사용하면, 왼쪽 방향을 반환한다.")
     void testMoveWhenOnlyLeftRungIsTrue() {
         //given
-        Point point = new Point(true, false);
+        Point point = Point.first(true).next(false);
 
         //when
         MoveDirection direction = point.move();
@@ -43,7 +43,7 @@ class PointTest {
     @DisplayName("오른쪽에만 사다리가 존재하는 경우 move메서드를 사용하면, 오른쪽 방향을 반환한다.")
     void testMoveWhenOnlyRightRungIsTrue() {
         //given
-        Point point = new Point(false, true);
+        Point point = Point.first(true);
 
         //when
         MoveDirection direction = point.move();
@@ -56,7 +56,7 @@ class PointTest {
     @DisplayName("양쪽 다 사다리가 존재하지 않는 경우 move메서드를 사용하면, 이동하지 않는다.")
     void testMoveWhenNoRungIsTrue() {
         //given
-        Point point = new Point(false, false);
+        Point point = Point.first(false).next(false);
 
         //when
         MoveDirection direction = point.move();
@@ -69,7 +69,7 @@ class PointTest {
     @DisplayName("next() 메서드를 사용하면, 현재 Point 오른쪽에 위치하는 Point 객체를 생성할 수 있다.")
     void testNext() {
         //given, when
-        Point point = new Point(false, false).next(true);
+        Point point = Point.first(false).next(true);
 
         //then
         assertThat(point).isNotNull();
