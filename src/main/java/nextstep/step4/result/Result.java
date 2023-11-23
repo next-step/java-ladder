@@ -1,6 +1,8 @@
 package nextstep.step4.result;
 
+import nextstep.ladder.input.Input;
 import nextstep.step4.domain.Ladder;
+import nextstep.step4.domain.LadderResult;
 import nextstep.step4.domain.Line;
 import nextstep.step4.domain.UserInputTexts;
 
@@ -47,5 +49,22 @@ public class Result {
         }
 
         return " ".repeat(UserInputTexts.MAX_TEXT_LENGTH);
+    }
+
+    public static void printLadderRunResult(final LadderResult ladderResult) {
+        boolean stopFlag = false;
+
+        while (!stopFlag) {
+            final String userName = Input.inputPrintUserName();
+
+            final String runResult = ladderResult.get(userName);
+            System.out.println("\n실행 결과\n" + runResult);
+
+            stopFlag = checkStopFlag(userName);
+        }
+    }
+
+    private static boolean checkStopFlag(final String userName) {
+        return "all".equals(userName);
     }
 }
