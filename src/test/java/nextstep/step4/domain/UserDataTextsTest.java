@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class UserInputTextsTest {
+class UserDataTextsTest {
     @Test
     @DisplayName("참여할 사람들의 이름을 입력으로 UserInputTexts 객체를 생성할 수 있다.")
     void testUserInputTextsConstructor() {

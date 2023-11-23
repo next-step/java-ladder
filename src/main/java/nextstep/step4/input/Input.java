@@ -1,6 +1,7 @@
 package nextstep.step4.input;
 
 import nextstep.step4.domain.LadderHeight;
+import nextstep.step4.domain.UserData;
 import nextstep.step4.domain.UserInputTexts;
 
 import java.util.Scanner;
@@ -31,5 +32,12 @@ public class Input {
         int ladderHeight = scanner.nextInt();
 
         return new LadderHeight(ladderHeight);
+    }
+
+    public static UserData inputLadderUserData() {
+        UserInputTexts userNames = Input.inputUserNames();
+        UserInputTexts userResults = Input.inputUserResults();
+
+        return new UserData(userNames, userResults);
     }
 }
