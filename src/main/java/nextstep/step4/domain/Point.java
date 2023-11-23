@@ -27,4 +27,8 @@ public class Point {
 
         return MoveDirection.NONE;
     }
+
+    public static Point first(final boolean hasRightRung) {
+        return new Point(false, hasRightRung);
+    }
 }

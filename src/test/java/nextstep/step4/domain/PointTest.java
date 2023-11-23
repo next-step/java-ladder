@@ -74,4 +74,14 @@ class PointTest {
         //then
         assertThat(point).isNotNull();
     }
+
+    @Test
+    @DisplayName("first() 메서드를 사용하면, 맨 왼쪽에 위치하는 Point 객체를 생성할 수 있다.")
+    void testFirst() {
+        //given, when
+        Point point = Point.first(false);
+
+        //then
+        assertThat(point).isNotNull();
+    }
 }
