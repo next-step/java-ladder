@@ -1,5 +1,6 @@
 package nextstep.step4;
 
+import nextstep.step4.domain.Ladder;
 import nextstep.step4.domain.LadderHeight;
 import nextstep.step4.domain.UserData;
 import nextstep.step4.input.Input;
@@ -9,5 +10,6 @@ public class Main {
         final UserData userData = Input.inputLadderUserData();
         final LadderHeight ladderHeight = Input.inputLadderHeight();
 
+        Ladder ladder = new Ladder(userData, ladderHeight);
     }
 }

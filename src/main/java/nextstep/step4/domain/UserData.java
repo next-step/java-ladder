@@ -16,4 +16,8 @@ public class UserData {
     public UserInputTexts getUserResults() {
         return userResults;
     }
+
+    public int size() {
+        return this.userNames.size();
+    }
 }

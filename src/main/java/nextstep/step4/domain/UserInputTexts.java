@@ -28,4 +28,8 @@ public class UserInputTexts {
             throw new IllegalArgumentException("이름 및 실행결과는 5글자까지만 허용합니다.");
         }
     }
+
+    public int size() {
+        return this.texts.size();
+    }
 }

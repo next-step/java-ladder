@@ -14,4 +14,8 @@ public class LadderHeight {
             throw new IllegalArgumentException("최대 사다리 높이는 1보다 커야합니다.");
         }
     }
+
+    public int value() {
+        return this.height;
+    }
 }

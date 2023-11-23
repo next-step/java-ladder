@@ -166,6 +166,7 @@
   - [X] ~~Line 클래스 생성~~
     - [X] ~~move 메서드를 사용하면, 이동한 Index 값을 반환한다.~~
   - [X] ~~Ladder 클래스 생성~~
+    - [X] ~~UserData와 LadderHeight를 입력으로 Ladder 객체 생성~~
   - [X] Input 클래스 생성
     - [X] ~~참여할 사람 이름 입력받기~~
       - UserInputTexts 클래스 생성
