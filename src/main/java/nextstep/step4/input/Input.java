@@ -13,4 +13,13 @@ public class Input {
 
         return new UserInputTexts(nameTexts);
     }
+
+    public static UserInputTexts inputUserResults() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String resultTexts = scanner.nextLine();
+
+        return new UserInputTexts(resultTexts);
+    }
 }
