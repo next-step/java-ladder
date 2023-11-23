@@ -1,5 +1,6 @@
 package nextstep.step4.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
@@ -14,5 +15,17 @@ public class Line {
         final MoveDirection moveDirection = point.move();
 
         return moveDirection.move(index);
+    }
+
+    public List<Boolean> getHasRungs() {
+        List<Boolean> hasRungs = new ArrayList<>();
+
+        for (int idx = 0; idx < this.points.size() - 1; idx++) {
+            final Point point = this.points.get(idx);
+
+            hasRungs.add(point.hasRightRung());
+        }
+
+        return hasRungs;
     }
 }

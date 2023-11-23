@@ -25,7 +25,28 @@ public class Result {
     }
 
     private static void printLadderBody(final List<Line> body) {
-        throw new UnsupportedOperationException("Result::printLadderBody not implemented yet");
+        final String printBody = body.stream()
+                .map(Result::printLadderLine)
+                .collect(Collectors.joining("\n"));
+
+        System.out.println(printBody);
+    }
+
+    private static String printLadderLine(Line line) {
+        final String prefix = " ".repeat(5) + "|";
+        final String delimiter = "|";
+
+        return line.getHasRungs().stream()
+                .map(Result::generateLadderPointString)
+                .collect(Collectors.joining(delimiter, prefix, delimiter));
+    }
+
+    private static String generateLadderPointString(final boolean bool) {
+        if (bool) {
+            return "-".repeat(5);
+        }
+
+        return " ".repeat(5);
     }
 
     private static void printLadderReuslts(final UserInputTexts userInputTexts) {

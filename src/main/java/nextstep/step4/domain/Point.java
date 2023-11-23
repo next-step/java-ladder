@@ -44,4 +44,8 @@ public class Point {
 
         return MoveDirection.NONE;
     }
+
+    public boolean hasRightRung() {
+        return hasRightRung;
+    }
 }
