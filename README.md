@@ -156,7 +156,7 @@
 ### 기능목록
 
 - In -> Out 방식의 TDD
-  - [ ] Point 클래스 생성
+  - [X] ~~Point 클래스 생성~~
   - [ ] Line 클래스 생성
   - [ ] Ladder 클래스 생성
   - [ ] Input 클래스 생성
