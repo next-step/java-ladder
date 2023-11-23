@@ -9,6 +9,6 @@ public class LadderCame {
 
     public static void main(String[] args) {
         List<String> persons = StringParser.split(InputView.personName());
-
+        int ladderHeight = InputView.inputLadderHeight();
     }
 }
