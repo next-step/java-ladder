@@ -14,6 +14,10 @@ public class UserInputTexts {
     }
 
     private void validateTexts(final String[] tempNames) {
+        if (tempNames.length < 2) {
+            throw new IllegalArgumentException("이름 및 실행결과는 2개 이상이어야 합니다.");
+        }
+
         for (final String name : tempNames) {
             throwExceptionIfNameLengthIsLongerThan5(name);
         }
