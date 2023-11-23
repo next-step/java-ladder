@@ -66,6 +66,18 @@ class PointTest {
     }
 
     @Test
+    @DisplayName("이전 값으로 true를 입력한 후 연달아 next() 메서드에 true를 넣어도, 뒤에 입력한 true는 false로 변환 후 Point 객체가 생성된다.")
+    void testNextWithTrueTrue() {
+        //given, when
+        Point point = Point.first(true).next(true);
+        final MoveDirection direction = point.move();
+
+        //then
+        assertThat(point).isNotNull();
+        assertThat(direction).isEqualTo(MoveDirection.LEFT);
+    }
+
+    @Test
     @DisplayName("first() 메서드를 사용하면, 맨 왼쪽에 위치하는 Point 객체를 생성할 수 있다.")
     void testFirst() {
         //given, when
