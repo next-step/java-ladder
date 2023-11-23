@@ -23,6 +23,10 @@ public class Player {
                 .orElseThrow(() -> new IllegalArgumentException("유저의 이름은 1 ~ 5자리로 이루어져야 합니다."));
     }
 
+    public long nameLength() {
+        return name.length();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -38,8 +42,6 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Player{" +
-                "name='" + name + '\'' +
-                '}';
+        return name.toString();
     }
 }
