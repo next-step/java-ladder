@@ -27,6 +27,10 @@ public class Player {
         return name.length();
     }
 
+    public String name() {
+        return name;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -42,6 +46,6 @@ public class Player {
 
     @Override
     public String toString() {
-        return name.toString();
+        return name;
     }
 }

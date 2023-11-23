@@ -1,7 +1,8 @@
 package ladder.utils;
 
 public final class StringUtils {
-    private StringUtils(){}
+    private StringUtils() {
+    }
 
     public static String leftPad(String message, long size, String pad) {
         return String.format("%" + size + "s", message).replace(" ", pad);

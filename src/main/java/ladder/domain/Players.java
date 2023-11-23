@@ -24,8 +24,13 @@ public class Players {
 
     private long nameLengthMax(List<Player> players) {
         return players.stream()
-                .mapToLong(player -> player.nameLength())
-                .max().getAsLong();
+                .mapToLong(Player::nameLength)
+                .max()
+                .orElseThrow();
+    }
+
+    public int size() {
+        return players.size();
     }
 
     public List<Player> players() {

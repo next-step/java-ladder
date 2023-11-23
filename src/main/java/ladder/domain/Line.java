@@ -2,6 +2,7 @@ package ladder.domain;
 
 import ladder.strategy.PathStrategy;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -28,6 +29,10 @@ public class Line {
         return Stream.generate(() -> Boolean.FALSE)
                 .limit(size)
                 .collect(Collectors.toList());
+    }
+
+    public List<Boolean> paths() {
+        return Collections.unmodifiableList(paths);
     }
 
     @Override
