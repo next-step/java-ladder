@@ -17,6 +17,10 @@ public class Point {
         }
     }
 
+    public static Point first(final boolean hasRightRung) {
+        return new Point(false, hasRightRung);
+    }
+
     public Point next(boolean hasRightRung) {
         if (this.hasRightRung) {
             hasRightRung = false;
@@ -39,9 +43,5 @@ public class Point {
         }
 
         return MoveDirection.NONE;
-    }
-
-    public static Point first(final boolean hasRightRung) {
-        return new Point(false, hasRightRung);
     }
 }
