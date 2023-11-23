@@ -9,12 +9,12 @@ import java.util.stream.Collectors;
 
 public class Result {
     public static void printMakingLadderResult(final Ladder ladder) {
-        printLadderUserNames(ladder.userNames());
+        printLadderUserInputTexts(ladder.userNames());
         printLadderBody(ladder.body());
-        printLadderReuslts(ladder.userResults());
+        printLadderUserInputTexts(ladder.userResults());
     }
 
-    private static void printLadderUserNames(final UserInputTexts userInputTexts) {
+    private static void printLadderUserInputTexts(final UserInputTexts userInputTexts) {
         final List<String> texts = userInputTexts.getTexts();
 
         final String printUserNames = texts.stream()
@@ -47,9 +47,5 @@ public class Result {
         }
 
         return " ".repeat(UserInputTexts.MAX_TEXT_LENGTH);
-    }
-
-    private static void printLadderReuslts(final UserInputTexts userInputTexts) {
-        throw new UnsupportedOperationException("Result::printLadderReuslts not implemented yet");
     }
 }
