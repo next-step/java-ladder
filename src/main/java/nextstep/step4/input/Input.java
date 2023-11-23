@@ -1,5 +1,6 @@
 package nextstep.step4.input;
 
+import nextstep.step4.domain.LadderHeight;
 import nextstep.step4.domain.UserInputTexts;
 
 import java.util.Scanner;
@@ -21,5 +22,14 @@ public class Input {
         String resultTexts = scanner.nextLine();
 
         return new UserInputTexts(resultTexts);
+    }
+
+    public static LadderHeight inputLadderHeight() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        int ladderHeight = scanner.nextInt();
+
+        return new LadderHeight(ladderHeight);
     }
 }
