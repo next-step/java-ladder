@@ -2,8 +2,6 @@ package me.namuhuchutong.ladder.domain;
 
 import me.namuhuchutong.ladder.domain.wrapper.LadderExpression;
 
-import static me.namuhuchutong.ladder.domain.wrapper.LadderExpression.*;
-
 public class ContinuousScaffoldValidator {
 
     private boolean flag;
@@ -13,10 +11,10 @@ public class ContinuousScaffoldValidator {
     }
 
     public boolean isContinuous(LadderExpression expression) {
-        if (expression.equals(HYPHEN) && (flag)) {
+        if (expression.isHyphen() && (flag)) {
             return true;
         }
-        this.flag = expression.equals(HYPHEN);
+        this.flag = expression.isHyphen();
         return false;
     }
 }

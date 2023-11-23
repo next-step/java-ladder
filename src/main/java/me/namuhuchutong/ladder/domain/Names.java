@@ -73,9 +73,4 @@ public class Names {
     private boolean isBiggerThanSize(Integer index) {
         return this.values.size() - 1 < index;
     }
-
-    public boolean contains(String inputStringName) {
-        Name name = new Name(inputStringName);
-        return this.values.contains(name);
-    }
 }

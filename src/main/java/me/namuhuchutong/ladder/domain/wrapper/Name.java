@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Name {
 
     private static final int MAXIMUM_SIZE = 5;
+    private static final String ALL = "all";
 
     private final String name;
 
@@ -25,6 +26,10 @@ public class Name {
 
     public String getName() {
         return name;
+    }
+
+    public boolean isNotAll() {
+        return !ALL.equals(this.name);
     }
 
     @Override

@@ -18,8 +18,7 @@ public class NameAndResult {
         this.values = values;
     }
 
-    public String getResult(String inputName) {
-        Name name = new Name(inputName);
+    public String getResult(Name name) {
         return Optional.ofNullable(values.get(name))
                        .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 키 값입니다. - " + name))
                        .getResult();

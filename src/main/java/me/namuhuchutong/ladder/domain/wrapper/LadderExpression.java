@@ -32,5 +32,9 @@ public enum LadderExpression {
         this.scaffoldSize = scaffoldSize;
     }
 
+    public boolean isHyphen() {
+        return this.character.equals('-');
+    }
+
     abstract public String convertToString();
 }
