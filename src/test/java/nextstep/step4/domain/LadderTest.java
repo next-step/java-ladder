@@ -46,4 +46,22 @@ class LadderTest {
         //then
         assertThat(ladder).isNotNull();
     }
+
+    @Test
+    @DisplayName("run 메서드를 실행하면, 게임 실행결과가 출력된다.")
+    void testRun() {
+        //given
+        final UserData userData = new UserData(
+                new UserInputTexts("pobi,honux,crong,jk"),
+                new UserInputTexts("꽝,5000,꽝,3000")
+        );
+        final LadderHeight ladderHeight = new LadderHeight(5);
+        final Ladder ladder = new Ladder(userData, ladderHeight);
+
+        //when
+        final LadderResult ladderResult = ladder.run();
+
+        //then
+        assertThat(ladderResult).isNotNull();
+    }
 }

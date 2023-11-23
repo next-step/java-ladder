@@ -69,4 +69,8 @@ public class Ladder {
     public List<Line> body() {
         return this.lines;
     }
+
+    public LadderResult run() {
+        return new LadderResult();
+    }
 }
