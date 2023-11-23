@@ -38,4 +38,8 @@ public class UserInputTexts {
     public List<String> getTexts() {
         return texts;
     }
+
+    public String get(final int userIdx) {
+        return this.texts.get(userIdx);
+    }
 }

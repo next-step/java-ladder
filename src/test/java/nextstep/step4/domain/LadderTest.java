@@ -1,11 +1,11 @@
 package nextstep.step4.domain;
 
-import nextstep.step4.common.Common;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static nextstep.step4.common.Common.buildTrueFalseTrueLine;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderTest {
@@ -49,15 +49,31 @@ class LadderTest {
     }
 
     @Test
-    @DisplayName("run 메서드를 실행하면, 게임 실행결과가 출력된다.")
+    @DisplayName("run 메서드를 실행하면, 게임 실행결과가 생성된다.")
     void testRun() {
         //given
-        final Ladder ladder = Common.makeDefaultLadder();
+        final UserData userData = new UserData(
+                new UserInputTexts("pobi,honux,crong,jk"),
+                new UserInputTexts("꽝,5000,꽝,3000")
+        );
+        final List<Line> lines = List.of(
+                new Line(buildTrueFalseTrueLine()),
+                new Line(buildTrueFalseTrueLine()),
+                new Line(buildTrueFalseTrueLine())
+        );
+
+        final Ladder ladder = new Ladder(userData, lines);
 
         //when
         final LadderResult ladderResult = ladder.run();
+        final String result = ladderResult.get("all");
 
         //then
-        assertThat(ladderResult).isNotNull();
+        assertThat(result).isEqualTo(
+                "pobi : 5000\n" +
+                        "honux : 꽝\n" +
+                        "crong : 3000\n" +
+                        "jk : 꽝"
+        );
     }
 }

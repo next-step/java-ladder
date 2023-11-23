@@ -1,8 +1,6 @@
 package nextstep.step4.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Ladder {
     private final List<Line> lines;
@@ -71,6 +69,24 @@ public class Ladder {
     }
 
     public LadderResult run() {
-        return new LadderResult();
+        Map<String, String> ladderResult = new LinkedHashMap<>();
+
+        for (int userIdx = 0; userIdx < userNames().size(); userIdx++) {
+            final int arrivalIdx = move(userIdx);
+
+            ladderResult.put(userNames().get(userIdx), userResults().get(arrivalIdx));
+        }
+
+        return new LadderResult(ladderResult);
+    }
+
+    private int move(final int userIdx) {
+        int arrivalIdx = userIdx;
+
+        for (final Line line : this.lines) {
+            arrivalIdx = line.move(arrivalIdx);
+        }
+
+        return arrivalIdx;
     }
 }
