@@ -6,33 +6,56 @@ import java.util.Objects;
 
 public class Point {
 
-    private final boolean point;
+    private final boolean left;
+    private final boolean current;
 
-    public Point(boolean point) {
-        this.point = point;
+    public Point(boolean left, boolean current) {
+        this.left = left;
+        this.current = current;
     }
 
-    public Point nextPoint(PointBuildStrategy pointBuildStrategy) {
-        if (this.point) {
-            return new Point(false);
+    public static Point createFirstPoint (PointBuildStrategy pointBuildStrategy) {
+        return new Point(false, pointBuildStrategy.build());
+    }
+
+    public static Point createNextPoint(boolean leftPoint, PointBuildStrategy pointBuildStrategy) {
+        if (leftPoint) {
+            return new Point(true, false);
         }
-        return new Point(pointBuildStrategy.build());
+
+        return new Point(false, pointBuildStrategy.build());
+    }
+
+    public Point createLastPoint() {
+        return new Point(this.current, false);
+    }
+
+    public Direction move() {
+        if (this.current) {
+            return Direction.RIGHT;
+        }
+
+        if (this.left) {
+            return Direction.LEFT;
+        }
+
+        return Direction.STAY;
     }
 
     public boolean canDraw() {
-        return this.point;
+        return current;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Point point1 = (Point) o;
-        return point == point1.point;
+        Point point = (Point) o;
+        return left == point.left && current == point.current;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(point);
+        return Objects.hash(left, current);
     }
 }

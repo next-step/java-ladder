@@ -18,21 +18,12 @@ class LineTest {
         assertThat(line.getPoints()).hasSize(3);
     }
 
-    @ParameterizedTest(name = "2명의 참가자가 있을경우(true,false) {0}번째 사람은 오른쪽으로 이동할 수 있다. {1}")
-    @CsvSource(value = {"0, true", "1, false"})
-    void canMoveRight(int userIndex, boolean expected) {
+    @ParameterizedTest(name = "2명의 참가자가 있을경우(true,false) {0}번째 사람은 {1}쪽으로 움직인다.")
+    @CsvSource(value = {"0, RIGHT", "1, LEFT"})
+    void canMoveRight(int userIndex, Direction expected) {
         int totalMemberCount = 2;
         Line line = Line.createLine(totalMemberCount, () -> true);
 
-        assertThat(line.canMoveRight(userIndex)).isEqualTo(expected);
-    }
-
-    @ParameterizedTest(name = "3명의 참가자가 있을경우(true,false) {0}번째 사람은 오른쪽으로 이동할 수 있다. {1}")
-    @CsvSource(value = {"0, false", "1, true", "2, false"})
-    void canMoveLeft(int userIndex, boolean expected) {
-        int totalMemberCount = 3;
-        Line line = Line.createLine(totalMemberCount, () -> true);
-
-        assertThat(line.canMoveLeft(userIndex)).isEqualTo(expected);
+        assertThat(line.move(userIndex)).isEqualTo(expected);
     }
 }

@@ -1,10 +1,10 @@
 package ladder.view;
 
-import ladder.domain.Gamers;
-import ladder.domain.Line;
-import ladder.domain.Ladder;
+import ladder.domain.LadderResult;
 import ladder.domain.Name;
 import ladder.domain.Names;
+import ladder.domain.Ladder;
+import ladder.domain.Line;
 import ladder.domain.Point;
 import ladder.domain.Result;
 import ladder.domain.Results;
@@ -25,10 +25,10 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printLadder(Gamers gamers, Ladder ladder, Results results) {
+    public static void printLadder(Names joinMembers, Ladder ladder, Results results) {
         System.out.println(LADDER_RESULT_MESSAGE);
 
-        printNames(gamers.getNames());
+        printNames(joinMembers);
         printLines(ladder.getLines());
         printResults(results);
 
@@ -48,7 +48,8 @@ public class OutputView {
     private static void printLine(Line line) {
         System.out.print(BLANK + LINE_DIVISION);
 
-        line.getPoints()
+        line.getPoints().stream()
+                .limit(line.pointSize() - 1)
                 .forEach(OutputView::printPoint);
 
         System.out.println();
@@ -67,13 +68,30 @@ public class OutputView {
                 .forEach(result -> System.out.printf(PRINT_NAME, result));
     }
 
-    public static void printLadderResult(Map<Name, Result> gameResult) {
+    public static void printLadderResult(LadderResult ladderResult) {
+        boolean progress = true;
+
+        while (progress) {
+            String name = InputView.requestResultGamer();
+            Map<Name, Result> userResult = ladderResult.findPlayerResult(name);
+            OutputView.printGameResult(userResult, name);
+
+            progress = isProgress(name);
+        }
+    }
+
+    private static void printGameResult(Map<Name, Result> ladderResult, String name) {
         System.out.println(RESULT_MESSAGE);
-        if (gameResult.size() == 1) {
-            gameResult.forEach((key, value) -> System.out.println(value));
+
+        if (name.equals(LadderResult.ALL_USERS)) {
+            ladderResult.forEach((key, value) -> System.out.println(key + " : " + value));
             return;
         }
 
-        gameResult.forEach((key, value) -> System.out.println(key + " : " + value));
+        ladderResult.forEach((key, value) -> System.out.println(value));
+    }
+
+    private static boolean isProgress(String name) {
+        return !name.equals(LadderResult.ALL_USERS);
     }
 }

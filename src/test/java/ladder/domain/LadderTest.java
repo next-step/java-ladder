@@ -3,6 +3,7 @@ package ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -19,6 +20,14 @@ class LadderTest {
         Ladder ladder = new Ladder(totalLineCount, joinMemberCount, () -> true);
 
         assertThat(ladder.getLines()).hasSize(5);
+    }
+
+    @ParameterizedTest(name = "2명의 참가자와 1줄의 사다리(false, true)가 있을 경우 {0}번째 사람의 최종 포지션은 {1}이다.")
+    @CsvSource(value = {"0, 1","1,0"})
+    void ladderMove(int userIndex, int expected) {
+        Ladder ladder = new Ladder(1, 2, () -> true);
+
+        assertThat(ladder.ladderMove(userIndex)).isEqualTo(expected);
     }
 
     @ParameterizedTest(name = "사다리의 높이를 {0} 으로 생성시 오류가 발생한다.")
