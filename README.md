@@ -192,11 +192,11 @@
 - 책임 주도 설계(인터페이스) 기반 구현
   - 책임을 설계
     - [X] ~~입력을 처리할 책임 (InputHandler)~~
-      - [ ] ConsoleInputHandler 구현체 생성
+      - [X] ~~ConsoleInputHandler 구현체 생성~~
         - [X] ~~inputUserNames 메서드 구현~~
         - [X] ~~inputUserResults 메서드 구현~~
         - [X] ~~inputLadderHeight 메서드 구현~~
-        - [ ] inputGamePlayerName 메서드 구현
+        - [X] ~~inputGamePlayerName 메서드 구현~~
     - [X] ~~사용자 입력을 가져올 책임 (UserInputProvider)~~
       - [X] ~~UserNames 구현체 생성~~
       - [X] ~~UserResults 구현체 생성~~

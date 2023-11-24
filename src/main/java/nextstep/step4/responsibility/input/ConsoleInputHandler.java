@@ -39,6 +39,11 @@ public class ConsoleInputHandler implements InputHandler {
 
     @Override
     public String inputGamePlayerName() {
-        return null;
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("\n결과를 보고 싶은 사람은?");
+        String userName = scanner.nextLine();
+
+        return userName;
     }
 }
