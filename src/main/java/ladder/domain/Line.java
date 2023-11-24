@@ -17,8 +17,7 @@ public class Line {
             throw new IllegalArgumentException("최소 너비는 2 이상입니다.");
         }
 
-        this.paths = generatePaths(size);
-        pathStrategy.initialize(paths);
+        this.paths = pathStrategy.generate(size);
     }
 
     public static Line of(long size, PathStrategy pathStrategy) {

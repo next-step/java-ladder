@@ -2,39 +2,35 @@ package ladder.strategy;
 
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class RandomPathStrategy implements PathStrategy {
 
     private static final Random random = new Random();
 
+    private boolean checked;
+
+    public RandomPathStrategy() {
+        this.checked = false;
+    }
+
     @Override
-    public void initialize(List<Boolean> paths) {
-        for (int index = 0; index < paths.size(); index++) {
-
-            if (editablePath(paths, index)) {
-                paths.set(index, random());
-                continue;
-            }
-
-            paths.set(index, Boolean.FALSE);
-        }
+    public List<Boolean> generate(long size) {
+        return Stream.generate(() -> randomIfPreviousNotChecked())
+                .limit(size)
+                .collect(Collectors.toList());
     }
 
-    private boolean editablePath(List<Boolean> paths, int index) {
-        return firstPath(index) || previousPathNotMovable(paths, index);
+    private boolean randomIfPreviousNotChecked() {
+        checked = notChecked() ? random() : false;
+        return checked;
     }
 
-    private boolean firstPath(int index) {
-        return index == 0;
+    private boolean notChecked() {
+        return !checked;
     }
 
-    private boolean previousPathNotMovable(List<Boolean> paths, int index) {
-        return previousPath(paths, index).equals(Boolean.FALSE);
-    }
-
-    private Boolean previousPath(List<Boolean> paths, int index) {
-        return paths.get(index - 1);
-    }
 
     private Boolean random() {
         return random.nextBoolean();
