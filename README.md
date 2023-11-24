@@ -193,6 +193,6 @@
   - 책임을 설계
     - [ ] 입력을 처리할 책임 (InputHandler)
     - [ ] 출력을 처리할 책임 (OutputHandler)
-    - [ ] 게임을 진행할 책임 (GameRunnable)
+    - [X] ~~게임을 진행할 책임 (GameRunnable)~~
     - [ ] 사다리에서 Index를 움직일 책임 (IndexHorizontalMover)
     - [ ] 게임 결과를 만들어낼 책임 (GameResultHandler)
