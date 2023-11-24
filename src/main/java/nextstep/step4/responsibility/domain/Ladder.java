@@ -42,12 +42,20 @@ public class Ladder implements GameRunnable {
 
         for (int idx = firstIdx + 1; idx < lastIdx; idx++) {
             boolean preBool = curBool;
-            curBool = new Random().nextBoolean();
+            curBool = adjustConsequtiveTrue(preBool);
 
             rowMovers[idx] = buildMiddleMover(preBool, curBool);
         }
 
         rowMovers[lastIdx] = buildLastMover(curBool);
+    }
+
+    private boolean adjustConsequtiveTrue(final boolean preBool) {
+        if (preBool) {
+            return false;
+        }
+
+        return new Random().nextBoolean();
     }
 
     private IndexHorizontalMover buildFirstMover(final boolean curBool) {
@@ -60,11 +68,11 @@ public class Ladder implements GameRunnable {
 
     private IndexHorizontalMover buildMiddleMover(final boolean preBool, final boolean curBool) {
         if (preBool) {
-            return new RightMover();
+            return new LeftMover();
         }
 
         if (curBool) {
-            return new LeftMover();
+            return new RightMover();
         }
 
         return new NoneMover();
@@ -99,7 +107,9 @@ public class Ladder implements GameRunnable {
         int arrivalIdx = userIdx;
 
         for (final IndexHorizontalMover[] rowMovers : this.indexHorizontalMovers) {
-            arrivalIdx = rowMovers[userIdx].moveHorizontal(arrivalIdx);
+            final IndexHorizontalMover mover = rowMovers[arrivalIdx];
+
+            arrivalIdx = mover.moveHorizontal(arrivalIdx);
         }
 
         return arrivalIdx;
