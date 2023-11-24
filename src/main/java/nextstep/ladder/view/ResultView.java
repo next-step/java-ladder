@@ -2,16 +2,7 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.LadderGame;
 
-import java.util.List;
-
 public class ResultView {
-
-    private static final String SPACE = " ";
-    public static final int SIZE_BETWEEN_NAME = 6;
-    public static final String TRUE_BRIDGE = "-----";
-    public static final String FALSE_BRIDGE = "     ";
-    public static final String LADDER_POLE = "|";
-
 
     public void printLadder(LadderGame ladderGame) {
         printBanner();
@@ -26,33 +17,11 @@ public class ResultView {
     }
 
     private void printPlayersName(LadderGame ladderGame) {
-        List<String> names = ladderGame.playersName();
-        names.forEach(name -> print(name + SPACE.repeat(SIZE_BETWEEN_NAME - name.length())));
-
-        println("");
+        println(ladderGame.playersName());
     }
 
     private void printBooleanLadder(LadderGame ladderGame) {
-        ladderGame.ladder()
-            .forEach(this::printBooleanBridges);
-    }
-
-    private void printBooleanBridges(List<Boolean> booleanBridges) {
-        booleanBridges.forEach(this::printTruOrNot);
-        print(LADDER_POLE);
-
-        println("");
-    }
-
-    private void printTruOrNot(boolean booleanBridge) {
-        System.out.print(LADDER_POLE);
-
-        if (booleanBridge) {
-            print(TRUE_BRIDGE);
-            return;
-        }
-
-        print(FALSE_BRIDGE);
+        print(ladderGame.ladder());
     }
 
     private void println(String message) {

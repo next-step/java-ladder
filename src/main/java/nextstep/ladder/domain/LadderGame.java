@@ -3,7 +3,6 @@ package nextstep.ladder.domain;
 import nextstep.ladder.controller.dto.GameInfo;
 import nextstep.ladder.domain.wrapper.Players;
 
-import java.util.List;
 import java.util.Objects;
 
 public class LadderGame {
@@ -21,12 +20,12 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
-    public List<String> playersName() {
-        return players.name();
+    public String playersName() {
+        return players.names();
     }
 
-    public List<List<Boolean>> ladder() {
-        return ladder.ladderToBoolean();
+    public String ladder() {
+        return ladder.toString();
     }
 
     @Override

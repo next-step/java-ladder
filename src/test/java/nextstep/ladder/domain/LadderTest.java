@@ -7,6 +7,9 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
+import static nextstep.ladder.domain.Bridges.FALSE_BRIDGE;
+import static nextstep.ladder.domain.Bridges.TRUE_BRIDGE;
+import static nextstep.ladder.domain.Ladder.LADDER_POLE;
 import static nextstep.ladder.exception.ExceptionMessage.*;
 import static org.assertj.core.api.Assertions.*;
 
@@ -49,7 +52,7 @@ public class LadderTest {
             .hasMessage(OUT_OF_INDEX.message());
     }
 
-    @DisplayName("Ladder로 포장된 값을 List<List<Boolean>으로 변환해 반환한다.")
+    @DisplayName("Ladder로 포장된 값을 String 타입의 사다리 모양으로 변환해 반환한다.")
     @Test
     void ladderToBoolean() {
         // given
@@ -58,11 +61,12 @@ public class LadderTest {
              new Bridges(List.of(true, false, true))));
 
         // when
-        List<List<Boolean>> booleanLadder = ladder.ladderToBoolean();
+        String stringLadder = ladder.toString();
 
         // then
-        assertThat(booleanLadder).isEqualTo(List.of(
-            List.of(true, false, true),
-            List.of(true, false, true)));
+        assertThat(stringLadder).isEqualTo(
+            LADDER_POLE+ TRUE_BRIDGE + LADDER_POLE + FALSE_BRIDGE + LADDER_POLE + TRUE_BRIDGE + LADDER_POLE + "\n" +
+                LADDER_POLE+ TRUE_BRIDGE + LADDER_POLE + FALSE_BRIDGE + LADDER_POLE + TRUE_BRIDGE + LADDER_POLE
+        );
     }
 }

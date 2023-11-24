@@ -8,6 +8,9 @@ import static nextstep.ladder.exception.ExceptionMessage.*;
 
 public class Ladder {
 
+    public static final String LADDER_POLE = "|";
+    private static final String LINE_BREAK = "\n";
+
     private final List<Bridges> ladder;
 
     public Ladder(List<Bridges> ladder) {
@@ -27,12 +30,6 @@ public class Ladder {
         }
     }
 
-    public List<List<Boolean>> ladderToBoolean() {
-        return ladder.stream()
-            .map(Bridges::toBooleans)
-            .collect(Collectors.toUnmodifiableList());
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -44,5 +41,16 @@ public class Ladder {
     @Override
     public int hashCode() {
         return Objects.hash(ladder);
+    }
+
+    @Override
+    public String toString() {
+        return ladder.stream()
+            .map(this::setUpSide)
+            .collect(Collectors.joining(LINE_BREAK));
+    }
+
+    private String setUpSide(Bridges bridges) {
+        return LADDER_POLE + bridges.toString() + LADDER_POLE;
     }
 }

@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import static nextstep.ladder.exception.ExceptionMessage.*;
-
 public class Players {
 
     private final List<Player> players;
@@ -16,10 +14,10 @@ public class Players {
         this.players = players;
     }
 
-    public List<String> name() {
+    public String names() {
         return players.stream()
-            .map(Player::name)
-            .collect(Collectors.toUnmodifiableList());
+            .map(player -> String.format("%-6s", player.name()))
+            .collect(Collectors.joining());
     }
 
     @Override

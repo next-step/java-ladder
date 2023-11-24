@@ -5,9 +5,13 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static nextstep.ladder.domain.Ladder.*;
 import static nextstep.ladder.exception.ExceptionMessage.*;
 
 public class Bridges {
+
+    public static final String TRUE_BRIDGE = "-----";
+    public static final String FALSE_BRIDGE = "     ";
 
     private final List<Boolean> bridges;
 
@@ -36,11 +40,6 @@ public class Bridges {
         }
     }
 
-    public List<Boolean> toBooleans() {
-        return this.bridges.stream()
-            .collect(Collectors.toUnmodifiableList());
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -52,5 +51,12 @@ public class Bridges {
     @Override
     public int hashCode() {
         return Objects.hash(bridges);
+    }
+
+    @Override
+    public String toString() {
+        return bridges.stream()
+            .map(bridge -> bridge ? TRUE_BRIDGE : FALSE_BRIDGE)
+            .collect(Collectors.joining(LADDER_POLE));
     }
 }

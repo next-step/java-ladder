@@ -4,7 +4,6 @@ import nextstep.ladder.domain.Player;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -27,6 +26,6 @@ public class PlayersTest {
             .collect(Collectors.toList()));
 
         // when & then
-        assertThat(players.name()).isEqualTo(List.of("홍길동", "전창길", "코난"));
+        assertThat(players.names()).isEqualTo("홍길동   전창길   코난    ");
     }
 }

@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static nextstep.ladder.domain.Bridges.*;
+import static nextstep.ladder.domain.Ladder.*;
 import static nextstep.ladder.exception.ExceptionMessage.*;
 import static org.assertj.core.api.Assertions.*;
 
@@ -47,16 +49,16 @@ public class BridgesTest {
             .hasMessage(OUT_OF_INDEX.message());
     }
 
-    @DisplayName("Bridges로 포장된 값을 List<Boolean> 타입으로 변환해서 반환한다.")
+    @DisplayName("Bridges의 boolean값을 사다리의 다리모양(String)으로 변환해 반환한다.")
     @Test
     void toBooleans() {
         // given
         Bridges bridges = new Bridges(List.of(true, false, true));
 
         // when
-        List<Boolean> booleans = bridges.toBooleans();
+        String stringBridges = bridges.toString();
 
         // then
-        assertThat(booleans).isEqualTo(List.of(true, false, true));
+        assertThat(stringBridges).isEqualTo(TRUE_BRIDGE + LADDER_POLE + FALSE_BRIDGE + LADDER_POLE + TRUE_BRIDGE);
     }
 }
