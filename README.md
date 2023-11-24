@@ -193,8 +193,13 @@
   - 책임을 설계
     - [X] ~~입력을 처리할 책임 (InputHandler)~~
       - [ ] ConsoleInputHandler 구현체 생성
+        - [ ] inputUserNames 메서드 구현
+        - [ ] inputUserResults 메서드 구현
+        - [ ] inputLadderHeight 메서드 구현
+        - [ ] inputGamePlayerName 메서드 구현
     - [X] ~~사용자 입력을 가져올 책임 (UserInputProvider)~~
-      - [ ] UserNames 구현체, UserResults 구현체 생성
+      - [ ] UserNames 구현체 생성
+      - [ ] UserResults 구현체 생성
     - [X] ~~출력을 처리할 책임 (OutputHandler)~~
       - [ ] ConsoleOutputHandler 구현체 생성
     - [X] ~~게임을 진행할 책임 (GameRunnable)~~
