@@ -35,4 +35,9 @@ public class UserNames implements UserInputProvider {
     public String get(final int index) {
         return this.names.get(index);
     }
+
+    @Override
+    public int size() {
+        return this.names.size();
+    }
 }

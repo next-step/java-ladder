@@ -35,4 +35,9 @@ public class UserResults implements UserInputProvider {
     public String get(final int index) {
         return this.results.get(index);
     }
+
+    @Override
+    public int size() {
+        return this.results.size();
+    }
 }
