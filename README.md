@@ -203,9 +203,9 @@
     - [X] ~~출력을 처리할 책임 (OutputHandler)~~
       - [ ] ConsoleOutputHandler 구현체 생성
     - [X] ~~게임을 진행할 책임 (GameRunnable)~~
-      - [ ] Ladder 구현체 생성
+      - [X] ~~Ladder 구현체 생성~~
         - [X] ~~생성자 정의~~
-        - [ ] run 메서드 구현
+        - [X] ~~run 메서드 구현~~
     - [X] ~~사다리에서 Index를 움직일 책임 (IndexHorizontalMover)~~
       - [X] ~~LeftMover, RightMover, NoneMover 구현체 생성~~
     - [X] ~~게임 결과를 제공할 책임 (GameResultProvider)~~

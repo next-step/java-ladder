@@ -1,5 +1,7 @@
 package nextstep.step4.responsibility.domain;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Random;
 
 public class Ladder implements GameRunnable {
@@ -78,6 +80,36 @@ public class Ladder implements GameRunnable {
 
     @Override
     public GameResultProvider run() {
-        return null;
+        Map<String, String> result = new LinkedHashMap<>();
+
+        for (int userIdx = 0; userIdx < userNamesSize(); userIdx++) {
+            final int arrivalIdx = move(userIdx);
+
+            result.put(userNames().get(userIdx), userResults().get(arrivalIdx));
+        }
+
+        return new LadderResult(result);
+    }
+
+    private int userNamesSize() {
+        return this.userData.size();
+    }
+
+    private int move(final int userIdx) {
+        int arrivalIdx = userIdx;
+
+        for (final IndexHorizontalMover[] rowMovers : this.indexHorizontalMovers) {
+            arrivalIdx = rowMovers[userIdx].moveHorizontal(arrivalIdx);
+        }
+
+        return arrivalIdx;
+    }
+
+    private UserInputProvider userNames() {
+        return this.userData.getUserNames();
+    }
+
+    private UserInputProvider userResults() {
+        return this.userData.getUserResults();
     }
 }
