@@ -23,7 +23,7 @@ public class GameInfo {
     }
 
     public Ladder ladder() {
-        return LadderBuilder.buildLadder(new Width(names.length - 1), new Height(height));
+        return LadderBuilder.build(new Width(names.length - 1), new Height(height));
     }
 
     public Players players() {

@@ -5,11 +5,10 @@ import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.wrapper.Height;
 import nextstep.ladder.domain.wrapper.Width;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class LadderBuilder {
 
@@ -19,42 +18,40 @@ public class LadderBuilder {
         RANDOM = new Random();
     }
 
-    public static Ladder buildLadder(Width width, Height height) {
-        return new Ladder(IntStream.range(0, height.value())
-            .mapToObj(i -> buildBridges(width.value()))
-            .collect(Collectors.toUnmodifiableList()));
+    public static Ladder build(Width width, Height height) {
+        List<Bridges> ladder = Stream.generate(width::value)
+            .map(LadderBuilder::buildBridges)
+            .limit(height.value())
+            .collect(Collectors.toUnmodifiableList());
+
+        return new Ladder(ladder);
     }
 
     private static Bridges buildBridges(int width) {
-        List<Boolean> bridges = initFirstBridge();
+        BridgeBuilder bridgeBuilder = new BridgeBuilder();
 
-        IntStream.range(1, width)
-            .forEach(current -> createByWhetherPreviousExists(bridges, current - 1));
-
-        return new Bridges(bridges);
+        return Stream.generate(RANDOM::nextBoolean)
+            .map(bridgeBuilder::build)
+            .limit(width)
+            .collect(Collectors.collectingAndThen(Collectors.toList(), Bridges::new));
     }
 
-    private static List<Boolean> initFirstBridge() {
-        List<Boolean> bridges = new ArrayList<>();
-        bridges.add(createBridgeRandomly());
+    static class BridgeBuilder {
 
-        return bridges;
-    }
+        private boolean bridge;
 
-    private static void createByWhetherPreviousExists(List<Boolean> bridges, int previous) {
-        if (existPreviousBridge(bridges.get(previous))) {
-            bridges.add(false);
-            return;
+        private BridgeBuilder() {
+            this.bridge = RANDOM.nextBoolean();
         }
 
-        bridges.add(createBridgeRandomly());
-    }
+        private boolean build(boolean bridge) {
+            if (this.bridge) {
+                this.bridge = false;
+                return false;
+            }
 
-    private static boolean existPreviousBridge(boolean previousBridge) {
-        return previousBridge;
-    }
-
-    private static boolean createBridgeRandomly() {
-        return RANDOM.nextBoolean();
+            this.bridge = bridge;
+            return bridge;
+        }
     }
 }
