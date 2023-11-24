@@ -10,12 +10,16 @@ import java.util.stream.Stream;
 
 public class Ladder {
 
+    public static final int HEIGHT_MIN = 2;
     private final List<Line> lines;
 
     private Ladder(long width, long height, PathStrategy pathStrategy) {
+        validateHeight(height);
         this.lines = generateLadder(width, height, pathStrategy);
+    }
 
-        if (height < 2) {
+    private void validateHeight(long height) {
+        if (height < HEIGHT_MIN) {
             throw new IllegalArgumentException("최소 높이는 2개 이상입니다.");
         }
     }

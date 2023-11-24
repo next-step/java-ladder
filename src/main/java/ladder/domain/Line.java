@@ -5,19 +5,21 @@ import ladder.strategy.PathStrategy;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Line {
 
+    public static final int SIZE_MIN = 2;
     private final List<Boolean> paths;
 
     private Line(long size, PathStrategy pathStrategy) {
-        if (size < 2) {
-            throw new IllegalArgumentException("최소 너비는 2 이상입니다.");
-        }
-
+        validateSize(size);
         this.paths = pathStrategy.generate(size);
+    }
+
+    private void validateSize(long size) {
+        if (size < SIZE_MIN) {
+            throw new IllegalArgumentException("최소 너비는 1 이상입니다.");
+        }
     }
 
     public static Line of(long size, PathStrategy pathStrategy) {
