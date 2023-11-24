@@ -195,5 +195,5 @@
     - [X] ~~사용자 입력을 가져올 책임 (UserInputProvider)~~
     - [X] ~~출력을 처리할 책임 (OutputHandler)~~
     - [X] ~~게임을 진행할 책임 (GameRunnable)~~
-    - [ ] 사다리에서 Index를 움직일 책임 (IndexHorizontalMover)
+    - [X] ~~사다리에서 Index를 움직일 책임 (IndexHorizontalMover)~~
     - [X] ~~게임 결과를 제공할 책임 (GameResultProvider)~~
