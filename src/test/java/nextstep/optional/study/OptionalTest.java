@@ -139,4 +139,44 @@ public class OptionalTest {
         assertThatThrownBy(name::get)
                 .isExactlyInstanceOf(NoSuchElementException.class);
     }
+
+    static class Student {
+        private final String name;
+
+        Student(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
+        }
+    }
+
+    @Test
+    @DisplayName("map은 Optional의 내부 값이 null이어도 객체를 만들 수 있다.")
+    void map() {
+        // given
+        Student student = null;
+
+        // when
+        Optional<Student> optionalStudent = Optional.ofNullable(student);
+
+        // then
+        assertThatCode(() -> optionalStudent.map(Student::getName))
+                .doesNotThrowAnyException();
+    }
+
+    @Test
+    @DisplayName("filter는 Optional의 내부 값이 null이어도 객체를 필터링할 수 있다.")
+    void filter() {
+        // given
+        Student student = null;
+
+        // when
+        Optional<Student> optionalStudent = Optional.ofNullable(student);
+
+        // then
+        assertThatCode(() -> optionalStudent.filter(student1 -> student1.getName().equals("suchan")))
+                .doesNotThrowAnyException();
+    }
 }
