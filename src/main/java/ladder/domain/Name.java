@@ -8,6 +8,7 @@ import java.util.Objects;
 public class Name {
 
     private static final int MAX_LENGTH = 5;
+    private static final String ALL = "all";
 
     private final String name;
 
@@ -31,6 +32,10 @@ public class Name {
         if (name.length() > MAX_LENGTH) {
             throw new NameExceedException();
         }
+    }
+
+    public boolean isAll() {
+        return this.name.equals(ALL);
     }
 
     public String name() {
