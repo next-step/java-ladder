@@ -105,11 +105,15 @@ public class Ladder implements GameRunnable {
         return arrivalIdx;
     }
 
-    private UserInputProvider userNames() {
+    public UserInputProvider userNames() {
         return this.userData.getUserNames();
     }
 
-    private UserInputProvider userResults() {
+    public UserInputProvider userResults() {
         return this.userData.getUserResults();
+    }
+
+    public IndexHorizontalMover[][] indexHorizontalMovers() {
+        return this.indexHorizontalMovers;
     }
 }

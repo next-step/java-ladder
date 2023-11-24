@@ -1,9 +1,10 @@
 package nextstep.step4.responsibility;
 
-import nextstep.step4.responsibility.domain.GameRunnable;
+import nextstep.step4.responsibility.domain.GameResultProvider;
 import nextstep.step4.responsibility.domain.Ladder;
 import nextstep.step4.responsibility.domain.UserData;
 import nextstep.step4.responsibility.input.ConsoleInputHandler;
+import nextstep.step4.responsibility.output.ConsoleOutputHandler;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,7 +12,11 @@ public class Main {
         final UserData userData = consoleInputHandler.inputUserData();
         final int height = consoleInputHandler.inputLadderHeight();
 
-        GameRunnable gameRunner = new Ladder(userData, height);
-        gameRunner.run();
+        final Ladder ladder = new Ladder(userData, height);
+        final GameResultProvider gameResult = ladder.run();
+
+        final ConsoleOutputHandler consoleOutputHandler = new ConsoleOutputHandler(ladder);
+        consoleOutputHandler.outputMakingLadderResult();
+        consoleOutputHandler.outputGameResult(gameResult);
     }
 }

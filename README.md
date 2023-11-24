@@ -201,7 +201,7 @@
       - [X] ~~UserNames 구현체 생성~~
       - [X] ~~UserResults 구현체 생성~~
     - [X] ~~출력을 처리할 책임 (OutputHandler)~~
-      - [ ] ConsoleOutputHandler 구현체 생성
+      - [X] ~~ConsoleOutputHandler 구현체 생성~~
     - [X] ~~게임을 진행할 책임 (GameRunnable)~~
       - [X] ~~Ladder 구현체 생성~~
         - [X] ~~생성자 정의~~
