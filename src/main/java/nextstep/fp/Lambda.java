@@ -26,19 +26,7 @@ public class Lambda {
         }).start();
     }
 
-    public static int sumAll(List<Integer> numbers, SumCondition sumCondition) {
-        return numbers.stream()
-                .filter(sumCondition::isSatisfiedCondition)
-                .reduce(0, Integer::sum);
-    }
-
-    public static int sumAllEven(List<Integer> numbers, SumCondition sumCondition) {
-        return numbers.stream()
-                .filter(sumCondition::isSatisfiedCondition)
-                .reduce(0, Integer::sum);
-    }
-
-    public static int sumAllOverThree(List<Integer> numbers, SumCondition sumCondition) {
+    public static int sumWithCondition(List<Integer> numbers, SumCondition sumCondition) {
         return numbers.stream()
                 .filter(sumCondition::isSatisfiedCondition)
                 .reduce(0, Integer::sum);
