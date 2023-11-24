@@ -53,10 +53,10 @@ public class Ladder {
 
     @Override
     public String toString() {
-        StringBuffer stringBuffer = new StringBuffer();
+        StringBuilder stringBuilder = new StringBuilder();
         for (Line line : lines) {
-            stringBuffer.append(line).append("\n");
+            stringBuilder.append(line).append("\n");
         }
-        return stringBuffer.toString();
+        return stringBuilder.toString();
     }
 }

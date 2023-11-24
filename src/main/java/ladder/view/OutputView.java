@@ -9,8 +9,6 @@ public class OutputView {
     private static final String BLANK = " ";
 
     public void printLadder(PlayLadder playLadder) {
-
-
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer.append("실행결과").append("\n");
         printHeader(playLadder, stringBuffer);
@@ -22,10 +20,7 @@ public class OutputView {
 
     private void printHeader(PlayLadder playLadder, StringBuffer stringBuffer) {
         playLadder.players()
-                .stream()
-                .forEach(player -> {
-                    stringBuffer.append(ladderHeader(player.name(), playLadder.nameLengthMax()));
-                });
+                .forEach(player -> stringBuffer.append(ladderHeader(player.name(), playLadder.nameLengthMax())));
     }
 
     private String ladderHeader(String name, long nameLengthMax) {
@@ -37,14 +32,10 @@ public class OutputView {
         String offPath = BLANK.repeat((int)playLadder.nameLengthMax());
 
         playLadder.ladder()
-                .stream()
                 .forEach(line -> {
-                    stringBuffer.append(offPath + "|");
+                    stringBuffer.append(offPath).append("|");
                     line.paths()
-                            .stream()
-                            .forEach(path -> {
-                                stringBuffer.append(createPath(path, onPath, offPath)).append("|");
-                            });
+                            .forEach(path -> stringBuffer.append(createPath(path, onPath, offPath)).append("|"));
                     stringBuffer.append("\n");
                 });
     }
