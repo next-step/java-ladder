@@ -17,7 +17,9 @@ public class StreamStudy {
 
         long count = 0;
         for (String w : words) {
-            if (w.length() > 12) count++;
+            if (w.length() > 12) {
+                count++;
+            }
         }
         return count;
     }
@@ -38,7 +40,10 @@ public class StreamStudy {
         return numbers.stream().reduce(0, (x, y) -> x + y);
     }
 
+    //List에 담긴 모든 숫자 중 3보다 큰 숫자를 2배 한 후 모든 값의 합을 구한다.
+    // 지금까지 학습한 map, reduce, filter를 활용해 구현해야 한다.
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
-        return 0;
+        return numbers.stream().filter(number -> number > 3).map(number -> ((long) number) * 2)
+                .reduce(0L, (x, y) -> x + y);
     }
 }
