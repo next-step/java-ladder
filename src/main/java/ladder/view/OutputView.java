@@ -4,6 +4,10 @@ import ladder.domain.PlayLadder;
 import ladder.utils.StringUtils;
 
 public class OutputView {
+
+    private static final String DASH = "-";
+    private static final String BLANK = " ";
+
     public void printLadder(PlayLadder playLadder) {
 
 
@@ -29,8 +33,8 @@ public class OutputView {
     }
 
     private void createBody(PlayLadder playLadder, StringBuffer stringBuffer) {
-        String onPath = StringUtils.repeat("-", (int) playLadder.nameLengthMax());
-        String offPath = StringUtils.repeat(" ", (int) playLadder.nameLengthMax());
+        String onPath = DASH.repeat((int)playLadder.nameLengthMax());
+        String offPath = BLANK.repeat((int)playLadder.nameLengthMax());
 
         playLadder.ladder()
                 .stream()

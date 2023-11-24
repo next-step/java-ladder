@@ -12,11 +12,4 @@ class StringUtilsTest {
         Assertions.assertThat(StringUtils.leftPad("abc", 5, " ")).isEqualTo("  abc");
         Assertions.assertThat(StringUtils.leftPad("---", 5, "-")).isEqualTo("-----");
     }
-
-    @Test
-    @DisplayName("문자열을 숫자만큼 반복해서 찍는다")
-    public void repeat(){
-        Assertions.assertThat(StringUtils.repeat(" ", 5)).isEqualTo("     ");
-        Assertions.assertThat(StringUtils.repeat("-", 5)).isEqualTo("-----");
-    }
 }
