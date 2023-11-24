@@ -1,4 +1,4 @@
-package nextstep.step4.domain;
+package nextstep.step4.inout.domain;
 
 import java.util.List;
 

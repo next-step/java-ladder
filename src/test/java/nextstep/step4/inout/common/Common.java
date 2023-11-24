@@ -1,6 +1,6 @@
-package nextstep.step4.common;
+package nextstep.step4.inout.common;
 
-import nextstep.step4.domain.*;
+import nextstep.step4.inout.domain.*;
 
 import java.util.List;
 

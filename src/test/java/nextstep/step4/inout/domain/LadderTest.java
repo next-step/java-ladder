@@ -1,11 +1,11 @@
-package nextstep.step4.domain;
+package nextstep.step4.inout.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static nextstep.step4.common.Common.buildTrueFalseTrueLine;
+import static nextstep.step4.inout.common.Common.buildTrueFalseTrueLine;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderTest {

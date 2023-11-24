@@ -1,10 +1,10 @@
-package nextstep.step4.result;
+package nextstep.step4.inout.result;
 
 import nextstep.ladder.input.Input;
-import nextstep.step4.domain.Ladder;
-import nextstep.step4.domain.LadderResult;
-import nextstep.step4.domain.Line;
-import nextstep.step4.domain.UserInputTexts;
+import nextstep.step4.inout.domain.Ladder;
+import nextstep.step4.inout.domain.LadderResult;
+import nextstep.step4.inout.domain.Line;
+import nextstep.step4.inout.domain.UserInputTexts;
 
 import java.util.List;
 import java.util.stream.Collectors;

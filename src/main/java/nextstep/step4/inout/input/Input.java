@@ -1,8 +1,8 @@
-package nextstep.step4.input;
+package nextstep.step4.inout.input;
 
-import nextstep.step4.domain.LadderHeight;
-import nextstep.step4.domain.UserData;
-import nextstep.step4.domain.UserInputTexts;
+import nextstep.step4.inout.domain.LadderHeight;
+import nextstep.step4.inout.domain.UserData;
+import nextstep.step4.inout.domain.UserInputTexts;
 
 import java.util.Scanner;
 

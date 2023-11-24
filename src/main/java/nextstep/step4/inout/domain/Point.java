@@ -1,4 +1,4 @@
-package nextstep.step4.domain;
+package nextstep.step4.inout.domain;
 
 public class Point {
     private final boolean hasLeftRung;
