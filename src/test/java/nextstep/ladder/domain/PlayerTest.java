@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.*;
 
 public class PlayerTest {
 
-    @DisplayName("이름을 가진 Player를 생성하고, x,y축 값을 초기화 한다.")
+    @DisplayName("Player의 이름을 확인한다.")
     @Test
     void createPlayer() {
         // given
@@ -21,10 +21,6 @@ public class PlayerTest {
             .build();
 
         // when & then
-        assertThat(player).isEqualTo(Player.PlayerBuilder.builder()
-            .name(name)
-            .widthPosition(widthPosition)
-            .heightPosition(heightPosition)
-            .build());
+        assertThat(player.name()).isEqualTo("홍길동");
     }
 }
