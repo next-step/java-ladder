@@ -1,8 +1,6 @@
 package ladder_v2.view;
 
 import ladder_v2.domain.*;
-
-import java.sql.SQLOutput;
 import java.util.List;
 
 
@@ -30,9 +28,7 @@ public class OutputView {
     }
 
     private static void ladderPrint(Ladder ladder) {
-        ladder.lines().forEach(line -> {
-            eachLinePrint(line);
-        });
+        ladder.lines().forEach(OutputView::eachLinePrint);
     }
 
     private static void eachLinePrint(Line line) {
@@ -66,13 +62,17 @@ public class OutputView {
     public static void printFinalResult(Name name, GameResult result) {
         System.out.println(GAME_RESULT);
         if(name.name().equals(ALL)){
-            result.result().forEach((key,value)-> {
-                System.out.println();
-                System.out.printf(FINAL_RESULT_FORMAT,key,value);
-            });
+            printAll(result);
             return;
         }
         System.out.printf(FINAL_RESULT_FORMAT,name.name(), result.result().get(name.name()));
+    }
+
+    private static void printAll(GameResult result) {
+        result.result().forEach((key, value)-> {
+            System.out.println();
+            System.out.printf(FINAL_RESULT_FORMAT,key,value);
+        });
     }
 
 }
