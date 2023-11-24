@@ -22,8 +22,10 @@ public class LadderLine {
     private static List<Coordinate> makeLine(People people, CoordinateGeneration coordinateGeneration) {
         Coordinate coordinate = Coordinate.valueOf(false);
 
-        return Stream.iterate(coordinate, preCoordinate -> preCoordinate.next(coordinateGeneration.generate()))
-                .limit(people.count()).collect(Collectors.toList());
+        return Stream
+                .iterate(coordinate, preCoordinate -> preCoordinate.next(coordinateGeneration.generate()))
+                .limit(people.count())
+                .collect(Collectors.toList());
 
     }
 

@@ -2,9 +2,10 @@ package ladder.domain;
 
 import ladder.domain.strategy.CoordinateGeneration;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Ladder {
     private final List<LadderLine> ladder;
@@ -14,13 +15,12 @@ public class Ladder {
     }
 
     private static List<LadderLine> makeLadder(People people, Height heightCount, CoordinateGeneration coordinateGeneration) {
-        List<LadderLine> list = new ArrayList<>();
-        for (int i = 0; i < heightCount.find(); i++) {
-            list.add(new LadderLine(people, coordinateGeneration));
-        }
-        return list;
-    }
+        return Stream
+                .generate(() -> new LadderLine(people, coordinateGeneration))
+                .limit(heightCount.find())
+                .collect(Collectors.toList());
 
+    }
 
     public List<LadderLine> draw() {
         return Collections.unmodifiableList(ladder);
