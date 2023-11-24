@@ -40,4 +40,9 @@ public class UserNames implements UserInputProvider {
     public int size() {
         return this.names.size();
     }
+
+    @Override
+    public List<String> getList() {
+        return this.names;
+    }
 }

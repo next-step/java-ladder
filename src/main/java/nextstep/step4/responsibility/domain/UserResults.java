@@ -40,4 +40,9 @@ public class UserResults implements UserInputProvider {
     public int size() {
         return this.results.size();
     }
+
+    @Override
+    public List<String> getList() {
+        return this.results;
+    }
 }
