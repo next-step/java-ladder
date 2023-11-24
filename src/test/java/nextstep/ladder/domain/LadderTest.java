@@ -11,7 +11,7 @@ class LadderTest {
 
     @Test
     @DisplayName("성공 - 사다리가 만들어진다")
-    void success_generate_line() {
+    void success_generate_ladder() {
         Height height = new Height(5);
         int countOfPerson = 4;
 
