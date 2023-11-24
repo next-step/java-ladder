@@ -25,15 +25,14 @@ public class LineFactory {
     }
 
     private static void validatePoints(List<Boolean> points) {
-        for (int index = 0; index < points.size() - 1; index++) {
-            adjustPoints(points, index);
-        }
+        IntStream.range(0, points.size() - 1)
+                .forEach(index -> adjustPoints(points, index));
     }
 
     private static void adjustPoints(List<Boolean> points, int index) {
         Boolean prev = points.get(index);
         Boolean next = points.get(index + 1);
-        if(prev && next){
+        if (prev && next) {
             points.set(index + 1, false);
         }
     }

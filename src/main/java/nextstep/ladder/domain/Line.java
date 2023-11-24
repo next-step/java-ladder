@@ -25,4 +25,7 @@ public class Line {
         return points.size();
     }
 
+    public List<Boolean> points() {
+        return points;
+    }
 }
