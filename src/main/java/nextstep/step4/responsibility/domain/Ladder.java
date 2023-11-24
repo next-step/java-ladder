@@ -15,6 +15,11 @@ public class Ladder implements GameRunnable {
         this.indexHorizontalMovers = buildIndexHorizontalMovers(height, size);
     }
 
+    public Ladder(final UserData userData, final IndexHorizontalMover[][] movers) {
+        this.userData = userData;
+        this.indexHorizontalMovers = movers;
+    }
+
     private IndexHorizontalMover[][] buildIndexHorizontalMovers(final int height, final int size) {
         final IndexHorizontalMover[][] tempMovers = new IndexHorizontalMover[height][size];
 
