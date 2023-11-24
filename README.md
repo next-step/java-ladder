@@ -192,7 +192,7 @@
 - 책임 주도 설계(인터페이스) 기반 구현
   - 책임을 설계
     - [X] ~~입력을 처리할 책임 (InputHandler)~~
-    - [ ] 사용자 입력을 가져올 책임 (UserInputProvider)
+    - [X] ~~사용자 입력을 가져올 책임 (UserInputProvider)~~
     - [ ] 출력을 처리할 책임 (OutputHandler)
     - [X] ~~게임을 진행할 책임 (GameRunnable)~~
     - [ ] 사다리에서 Index를 움직일 책임 (IndexHorizontalMover)
