@@ -58,7 +58,7 @@ public class Ladder {
 
     /**
      * 사다리를 하나 정의합니다.
-     * 이 정적 팩토리 메서드는 입력으로 사다리 라인 객체의 리스트를 받습니다.
+     * 이 정적 팩토리 메서드는 입력으로 사다리 라인 객체의 목록을 받습니다.
      * 파라미터 상 순서가 앞선 사다리 라인이 상층에 쌓이고 파라미터 상 뒤에 오는 사다리 라인이 하층에 쌓입니다.
      *
      * @param lines 사다리 라인들
@@ -67,6 +67,28 @@ public class Ladder {
      */
     public static Ladder of(LadderLine... lines) {
         return new Ladder(List.of(lines));
+    }
+
+    /**
+     * 사다리를 하나 정의합니다.
+     * 이 정적 팩토리 메서드는 입력으로 사다리 라인 객체의 리스트를 받습니다.
+     * 파라미터 상 순서가 앞선 사다리 라인이 상층에 쌓이고 파라미터 상 뒤에 오는 사다리 라인이 하층에 쌓입니다.
+     *
+     * @param lines 사다리 라인들
+     *
+     * @return 생성된 사다리 객체
+     */
+    public static Ladder of(List<LadderLine> lines) {
+        return new Ladder(List.copyOf(lines));
+    }
+
+    /**
+     * 이 사다리의 깊이를 반환합니다.
+     *
+     * @return 사다리 깊이
+     */
+    public int howLongDepth() {
+        return this.lines.size();
     }
 
     @Override

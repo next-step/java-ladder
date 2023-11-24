@@ -22,9 +22,9 @@ public class LadderLine {
     private final List<Boolean> connectionInfo;
 
     private LadderLine(List<Boolean> connectionInfo) {
-        this.theNumberOfColumn = connectionInfo.size();
+        this.theNumberOfColumn = connectionInfo.size() + 1;
 
-        for (int i = 0; i < this.theNumberOfColumn-1; i++) {
+        for (int i = 0; i < connectionInfo.size()-1; i++) {
             if (connectionInfo.get(i) == true && connectionInfo.get(i+1) == true) {
                 throw new IllegalArgumentException("사다리의 컬럼 간 연결이 같은 라인에서 연속으로 연결될 수 없습니다.");
             }
