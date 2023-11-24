@@ -3,7 +3,6 @@ package nextstep.ladder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 /**
  * 사다리의 한 줄을 정의합니다.
@@ -26,12 +25,24 @@ public class LadderLine {
         this.theNumberOfColumn = connectionInfo.size() + 1;
 
         for (int i = 0; i < connectionInfo.size()-1; i++) {
-            if (connectionInfo.get(i) == true && connectionInfo.get(i+1) == true) {
-                throw new IllegalArgumentException("사다리의 컬럼 간 연결이 같은 라인에서 연속으로 연결될 수 없습니다.");
-            }
+            checkSuccessiveConnection(connectionInfo, i);
         }
 
         this.connectionInfo = connectionInfo;
+    }
+
+    private static void checkSuccessiveConnection(List<Boolean> connectionInfo, int checkPosition) {
+        if (connectionInfo.get(checkPosition) == false) {
+            return;
+        }
+
+        if (checkPosition > 0 && connectionInfo.get(checkPosition-1) == true) {
+            throw new IllegalArgumentException("사다리의 컬럼 간 연결이 같은 라인에서 연속으로 연결될 수 없습니다.");
+        }
+
+        if (checkPosition < connectionInfo.size()-1 && connectionInfo.get(checkPosition+1) == true) {
+            throw new IllegalArgumentException("사다리의 컬럼 간 연결이 같은 라인에서 연속으로 연결될 수 없습니다.");
+        }
     }
 
     /**
