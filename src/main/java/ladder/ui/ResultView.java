@@ -12,7 +12,7 @@ public class ResultView {
     public static void printTitle(People people) {
         System.out.printf("실행결과%n%n");
 
-        people.call().forEach(item -> System.out.printf(String.format("%5s ", item)));
+        people.call().forEach(item -> System.out.printf(String.format("%6s ", item)));
         System.out.println();
     }
 
@@ -27,7 +27,7 @@ public class ResultView {
 
     private static String drawCoordinate(Coordinate coordinate) {
         if (coordinate.find()) {
-            return "---- |";
+            return "-----|";
         }
         return "     |";
     }

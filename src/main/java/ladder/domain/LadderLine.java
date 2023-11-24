@@ -2,12 +2,12 @@ package ladder.domain;
 
 import ladder.domain.strategy.CoordinateGeneration;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class LadderLine {
-    private static final int ONE = 1;
     private final List<Coordinate> line;
 
 
@@ -21,17 +21,10 @@ public class LadderLine {
 
     private static List<Coordinate> makeLine(People people, CoordinateGeneration coordinateGeneration) {
         Coordinate coordinate = Coordinate.valueOf(false);
-        List<Coordinate> lineList = new ArrayList<>(List.of(coordinate));
 
-        for (int i = ONE; i < people.count(); i++) {
-            lineList.add(lineList.get(minusOne(i)).next(coordinateGeneration.generate()));
-        }
+        return Stream.iterate(coordinate, preCoordinate -> preCoordinate.next(coordinateGeneration.generate()))
+                .limit(people.count()).collect(Collectors.toList());
 
-        return lineList;
-    }
-
-    private static int minusOne(int countOfPerson) {
-        return countOfPerson - ONE;
     }
 
     public List<Coordinate> draw() {
