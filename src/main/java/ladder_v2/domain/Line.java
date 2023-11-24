@@ -30,4 +30,7 @@ public class Line {
         return points;
     }
 
+    public Direction move(int i) {
+        return points.get(i).move();
+    }
 }

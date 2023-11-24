@@ -1,5 +1,6 @@
 package ladder_v2.domain;
 
+import ladder.domain.Height;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +11,6 @@ public class LadderTest {
     @Test
     @DisplayName("Ladder는 최소 1개의 Line을 가져야 한다.")
     void createLadderWithException() {
-        assertThatIllegalArgumentException().isThrownBy(() -> Ladder.of(0,0));
+        assertThatIllegalArgumentException().isThrownBy(() -> new Ladder(0,new Height(0)));
     }
 }

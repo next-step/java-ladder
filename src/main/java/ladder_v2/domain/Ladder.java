@@ -1,24 +1,33 @@
 package ladder_v2.domain;
 
+import ladder.domain.Height;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
 
-    private List<Line> lines = new ArrayList<>();
+    private final List<Line> lines = new ArrayList<>();
+    private final int pointCount;
+    private final Height height;
 
-    public static Ladder of(int pointCount, int height) {
-        if (height < 1) {
+    public Ladder(int pointCount, Height height) {
+        if (height.height() < 1) {
             throw new IllegalArgumentException("Ladder는 최소 1개의 Line을 가져야 한다.");
         }
-        return new Ladder().make(pointCount, height);
+        this.pointCount = pointCount;
+        this.height = height;
+        make(pointCount);
     }
 
-    private Ladder make(int pointCount, int height) {
-        for (int i = 0; i < height; i++) {
+    private void make(int pointCount) {
+        for (int i = 0; i < this.height.height(); i++) {
             lines.add(Line.of(pointCount));
         }
-        return this;
+    }
+
+    public int pointCount() {
+        return pointCount;
     }
 
     public List<Line> lines() {
