@@ -1,5 +1,6 @@
 package nextstep.step4.responsibility.input;
 
+import nextstep.step4.responsibility.domain.UserData;
 import nextstep.step4.responsibility.domain.UserInputProvider;
 import nextstep.step4.responsibility.domain.UserNames;
 import nextstep.step4.responsibility.domain.UserResults;
@@ -7,6 +8,13 @@ import nextstep.step4.responsibility.domain.UserResults;
 import java.util.Scanner;
 
 public class ConsoleInputHandler implements InputHandler {
+    public UserData inputUserData() {
+        final UserInputProvider userNames = inputUserNames();
+        final UserInputProvider userResults = inputUserResults();
+
+        return new UserData(userNames, userResults);
+    }
+
     @Override
     public UserInputProvider inputUserNames() {
         Scanner scanner = new Scanner(System.in);
