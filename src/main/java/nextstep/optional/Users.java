@@ -13,10 +13,10 @@ public class Users {
             new User("jk", 40),
             new User("honux", 45));
 
-    Optional<User> getUser(String name) {
+    User getUser(String name) {
         return Optional.of(users.stream()
                 .filter(user -> user.matchName(name))
                 .findFirst()
-                .orElse(DEFAULT_USER));
+                .orElse(DEFAULT_USER)).get();
     }
 }
