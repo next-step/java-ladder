@@ -24,12 +24,6 @@ public class Line {
         return new Line(size, pathStrategy);
     }
 
-    private List<Boolean> generatePaths(long size) {
-        return Stream.generate(() -> Boolean.FALSE)
-                .limit(size)
-                .collect(Collectors.toList());
-    }
-
     public List<Boolean> paths() {
         return Collections.unmodifiableList(paths);
     }

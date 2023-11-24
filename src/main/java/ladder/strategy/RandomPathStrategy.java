@@ -17,7 +17,7 @@ public class RandomPathStrategy implements PathStrategy {
 
     @Override
     public List<Boolean> generate(long size) {
-        return Stream.generate(() -> randomIfPreviousNotChecked())
+        return Stream.generate(this::randomIfPreviousNotChecked)
                 .limit(size)
                 .collect(Collectors.toList());
     }

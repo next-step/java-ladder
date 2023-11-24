@@ -1,8 +1,6 @@
 package ladder.domain;
 
 import java.util.Objects;
-import java.util.Optional;
-import java.util.function.Predicate;
 
 public class Player {
     private static final int NAME_LENGTH_MAX = 5;
