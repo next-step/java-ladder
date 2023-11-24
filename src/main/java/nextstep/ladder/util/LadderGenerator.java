@@ -11,6 +11,8 @@ import java.util.Random;
  * 사다리 라인을 생성하는 유틸 모음집
  */
 public class LadderGenerator {
+    private static final Random RANDOM = new Random();
+
     private LadderGenerator() {
     }
 
@@ -26,23 +28,41 @@ public class LadderGenerator {
             throw new IllegalArgumentException("컬럼을 0개 이하로 지정할 수 없으나 " + theNumberOfColumn + "개로 지정되어 호출되었습니다.");
         }
 
-        List<Boolean> connectionInfo = new ArrayList<>(theNumberOfColumn-1);
-
-        for (int i = 0; i < theNumberOfColumn - 1; i++) {
-            connectionInfo.add(false);
+        if (theNumberOfColumn == 1) {
+            return LadderLine.of(new ArrayList<Boolean>());
         }
 
-        for (int i = 0; i < theNumberOfColumn - 1; i++) {
-            if (i != 0 && connectionInfo.get(i-1) == true) {
-                continue;
-            }
 
-            Random random = new Random();
-            boolean connectFlag = random.nextBoolean();
-            connectionInfo.set(i, connectFlag);
+        List<Boolean> connectionInfo = new ArrayList<>(theNumberOfColumn-1);
+
+        connectionInfo.add(determineRandomConnection());
+        for (int i = 1; i < theNumberOfColumn - 1; i++) {
+            connectionInfo.add(
+                    tryConnect(determineRandomConnection(), connectionInfo.get(i-1))
+            );
         }
 
         return LadderLine.of(connectionInfo);
+    }
+
+    private static boolean determineRandomConnection() {
+        return RANDOM.nextBoolean();
+    }
+
+    /**
+     * 이번에 연결할지 말지 판단합니다.
+     *
+     * @param isConnected 이번에 연결할지 말지를 나타내는 플래그입니다. 상황에 따라 연결을 요청해도 연결되지 않을 수 있습니다.
+     * @param isConnectedWithBeforeColumn 이전 컬럼 연결 여부를 나타냅니다. 이전 컬럼과의 연결 여부가 다음 컬럼 연결에 영향을 미칩니다.
+     *
+     * @return 다음 컬럼과 연결할지 말지 계산된 값입니다. true면 연결을 false면 미연결을 의미합니다.
+     */
+    private static Boolean tryConnect(boolean isConnected, Boolean isConnectedWithBeforeColumn) {
+        if (isConnectedWithBeforeColumn) {
+            return false;
+        }
+
+        return isConnected;
     }
 
     public static Ladder generateRandomLadder(int theNumberOfColumn, int depth) {
