@@ -111,8 +111,10 @@ public class Renderer {
      * @param names 출력할 이름 목록
      */
     public static void printNames(List<Name> names) {
+        final int COLUMN_SYMBOL_LENGTH = 1;
+
         for (Name name : names) {
-            simplePrintWithWidth(name.toPrintableSting(), COLUMN_WIDTH);
+            simplePrintWithWidth(name.toPrintableSting(), COLUMN_WIDTH + COLUMN_SYMBOL_LENGTH);
         }
         newLine();
     }
