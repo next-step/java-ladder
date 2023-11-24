@@ -28,31 +28,6 @@ public class Bridges {
             .anyMatch(i -> bridges.get(i) && bridges.get(i + 1));
     }
 
-    public boolean isMovable(int widthPosition) {
-        validateIndex(widthPosition);
-
-        return this.bridges.get(widthPosition);
-    }
-
-    private void validateIndex(int widthPosition) {
-        if (widthPosition < 0 || widthPosition >= bridges.size()) {
-            throw new IllegalArgumentException(OUT_OF_INDEX.message());
-        }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Bridges bridges1 = (Bridges) o;
-        return Objects.equals(bridges, bridges1.bridges);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(bridges);
-    }
-
     @Override
     public String toString() {
         return bridges.stream()
