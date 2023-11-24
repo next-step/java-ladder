@@ -205,6 +205,6 @@
     - [X] ~~게임을 진행할 책임 (GameRunnable)~~
       - [ ] Ladder 구현체 생성
     - [X] ~~사다리에서 Index를 움직일 책임 (IndexHorizontalMover)~~
-      - [ ] LeftMover, RightMover, NoneMover 구현체 생성
+      - [X] ~~LeftMover, RightMover, NoneMover 구현체 생성~~
     - [X] ~~게임 결과를 제공할 책임 (GameResultProvider)~~
       - [ ] LadderResult 구현체 생성
