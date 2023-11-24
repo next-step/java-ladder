@@ -51,7 +51,6 @@ public class StreamStudy {
         return numbers.stream()
                 .filter(number -> number > 3)
                 .map(x -> 2 * x)
-                .collect(Collectors.toList())
-                .stream().reduce(0, Integer::sum);
+                .reduce(0, Integer::sum);
     }
 }
