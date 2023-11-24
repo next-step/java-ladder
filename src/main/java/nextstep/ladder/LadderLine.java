@@ -3,6 +3,7 @@ package nextstep.ladder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * 사다리의 한 줄을 정의합니다.
@@ -119,17 +120,9 @@ public class LadderLine {
      * @return 생성된 출력용 문자열
      */
     public String toPrintableString(String columSymbol, String connectionSymbol, String noConnectionSymbol) {
-        StringBuilder lineString = new StringBuilder(columSymbol);
-
-        for (boolean isConnected : connectionInfo) {
-            if (isConnected) {
-                lineString.append(connectionSymbol).append(columSymbol);
-                continue;
-            }
-
-            lineString.append(noConnectionSymbol).append(columSymbol);
-        }
-
-        return lineString.toString();
+        return connectionInfo.stream()
+                .map(isConnected -> isConnected ? connectionSymbol : noConnectionSymbol)
+                .map(connectionString -> connectionString + columSymbol)
+                .reduce(columSymbol, (acc, value) -> acc + value);
     }
 }

@@ -83,17 +83,22 @@ public class Renderer {
      * @param ladder 출력할 사다리
      */
     public static void printLadder(Ladder ladder) {
+        // 연결이 있음을 표현하는 문자열
         StringBuilder connectionSymbol = new StringBuilder();
+        // 연결이 없음을 표현하는 문자열
         StringBuilder noConnectionSymbol = new StringBuilder();
         for (int i = 0; i < COLUMN_WIDTH; i++) {
             connectionSymbol.append(CONNECTION_SYMBOL);
             noConnectionSymbol.append(' ');
         }
 
-        List<String> ladderLineStrings = ladder.toPrintableStrings(
-                String.valueOf(COLUMN_SYMBOL),
-                connectionSymbol.toString(),
-                noConnectionSymbol.toString());
+        List<String> ladderLineStrings = ladder
+                .toPrintableStrings(
+                        String.valueOf(COLUMN_SYMBOL),
+                        connectionSymbol.toString(),
+                        noConnectionSymbol.toString()
+                );
+
         for (String ladderLineString : ladderLineStrings) {
             simplePrint(ladderLineString);
         }
@@ -107,7 +112,7 @@ public class Renderer {
      */
     public static void printNames(List<Name> names) {
         for (Name name : names) {
-            Renderer.simplePrintWithWidth(name.toPrintableSting(), COLUMN_WIDTH);
+            simplePrintWithWidth(name.toPrintableSting(), COLUMN_WIDTH);
         }
         newLine();
     }
