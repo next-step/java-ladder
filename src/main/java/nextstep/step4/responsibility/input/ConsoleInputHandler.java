@@ -2,6 +2,7 @@ package nextstep.step4.responsibility.input;
 
 import nextstep.step4.responsibility.domain.UserInputProvider;
 import nextstep.step4.responsibility.domain.UserNames;
+import nextstep.step4.responsibility.domain.UserResults;
 
 import java.util.Scanner;
 
@@ -18,7 +19,12 @@ public class ConsoleInputHandler implements InputHandler {
 
     @Override
     public UserInputProvider inputUserResults() {
-        return null;
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String resultTexts = scanner.nextLine();
+
+        return new UserResults(resultTexts);
     }
 
     @Override
