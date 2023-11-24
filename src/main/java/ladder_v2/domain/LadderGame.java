@@ -11,12 +11,17 @@ public class LadderGame {
 
         for(int i = 0; i < ladder.pointCount(); i++){
             Position position = new Position(i);
-            for(Line line: ladder.lines()){
-                Direction direction =line.points().get(position.position()).move();
-                position = position.move(direction);
-            }
+            position = move(ladder, position);
             result.put(players.get(i).name(), rewards.get(position.position()));
         }
         return new GameResult(result);
+    }
+
+    private static Position move(Ladder ladder, Position position) {
+        for(Line line: ladder.lines()){
+            Direction direction =line.points().get(position.position()).move();
+            position = position.move(direction);
+        }
+        return position;
     }
 }
