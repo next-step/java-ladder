@@ -18,12 +18,17 @@ public class Line {
     public Line make(int count){
         Point point = Point.first();
         points.add(point);
+        point = addMiddlePoint(count, point);
+        points.add(point.last());
+        return this;
+    }
+
+    private Point addMiddlePoint(int count, Point point) {
         for(int i = 1; i < count - 1; i++){
             point = point.middle();
             points.add(point);
         }
-        points.add(point.last());
-        return this;
+        return point;
     }
 
     public List<Point> points() {
