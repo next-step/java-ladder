@@ -5,22 +5,26 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 public class Player {
+    private static final int NAME_LENGTH_MAX = 5;
     private final String name;
 
     private Player(String name) {
-        this.name = validateName(name);
+        validateName(name);
+        this.name = name;
     }
 
     public static Player from(String name) {
         return new Player(name);
     }
 
-    private String validateName(String name) {
-        return Optional.ofNullable(name)
-                .map(String::trim)
-                .filter(Predicate.not(String::isBlank))
-                .filter(text -> text.length() <= 5)
-                .orElseThrow(() -> new IllegalArgumentException("유저의 이름은 1 ~ 5자리로 이루어져야 합니다."));
+    private void validateName(String name) {
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("이름은 필수값입니다.");
+        }
+
+        if (name.length() > NAME_LENGTH_MAX) {
+            throw new IllegalArgumentException("이름은 최대 5자리입니다.");
+        }
     }
 
     public long nameLength() {
