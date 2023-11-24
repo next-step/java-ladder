@@ -1,7 +1,9 @@
 package nextstep.step4.responsibility.output;
 
-public interface OutputHandler {
-    void outputMakingLadderResult(String makingLadderResult);
+import nextstep.step4.responsibility.domain.GameResultProvider;
 
-    void outputGameResult(String gameResult);
+public interface OutputHandler {
+    void outputMakingLadderResult();
+
+    void outputGameResult(GameResultProvider gameResult);
 }
