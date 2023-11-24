@@ -108,4 +108,28 @@ public class LadderLine {
                 ", connectionInfo=" + connectionInfo +
                 '}';
     }
+
+    /**
+     * 출력용 문자열로 바꿉니다.
+     *
+     * @param columSymbol 컬럼을 나타낼 때 사용할 기호입니다.
+     * @param connectionSymbol 컬럼과 컬럼이 연결되었을 때 사용할 기호입니다.
+     * @param noConnectionSymbol 컬럼과 컬럼이 연결되지 않았을 때 사용할 기호입니다.
+     *
+     * @return 생성된 출력용 문자열
+     */
+    public String toPrintableString(String columSymbol, String connectionSymbol, String noConnectionSymbol) {
+        StringBuilder lineString = new StringBuilder(columSymbol);
+
+        for (boolean isConnected : connectionInfo) {
+            if (isConnected) {
+                lineString.append(connectionSymbol).append(columSymbol);
+                continue;
+            }
+
+            lineString.append(noConnectionSymbol).append(columSymbol);
+        }
+
+        return lineString.toString();
+    }
 }

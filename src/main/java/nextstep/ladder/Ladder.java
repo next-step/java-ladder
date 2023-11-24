@@ -114,4 +114,20 @@ public class Ladder {
                 "lines=" + lines +
                 '}';
     }
+
+
+    /**
+     * 출력용 문자열로 바꿉니다.
+     *
+     * @param columSymbol 컬럼을 나타낼 때 사용할 기호입니다.
+     * @param connectionSymbol 컬럼과 컬럼이 연결되었을 때 사용할 기호입니다.
+     * @param noConnectionSymbol 컬럼과 컬럼이 연결되지 않았을 때 사용할 기호입니다.
+     *
+     * @return 생성된 출력용 문자열
+     */
+    public List<String> toPrintableStrings(String columnSymbol, String connectionSymbol, String noConnectionSymbol) {
+        return this.lines.stream()
+                .map(line -> line.toPrintableString(columnSymbol, connectionSymbol, noConnectionSymbol))
+                .collect(Collectors.toList());
+    }
 }
