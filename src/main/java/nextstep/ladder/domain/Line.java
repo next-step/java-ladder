@@ -11,7 +11,7 @@ public class Line {
 
     public Line(List<Boolean> points) {
         validatePointsContinuity(points);
-        this.points = points;
+        this.points = new ArrayList<>(points);
     }
 
     private void validatePointsContinuity(List<Boolean> points) {

@@ -7,4 +7,8 @@ public class Height {
     public Height(int height) {
         this.height = height;
     }
+
+    public int height() {
+        return height;
+    }
 }
