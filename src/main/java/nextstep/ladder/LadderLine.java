@@ -76,6 +76,14 @@ public class LadderLine {
         return LadderLine.of(booleanConnectionInfo);
     }
 
+    public int howManyColumns() {
+        return this.theNumberOfColumn;
+    }
+
+    public boolean hasTheSameNumberOfColumn(int theNumberOfColumn) {
+        return this.theNumberOfColumn == theNumberOfColumn;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
