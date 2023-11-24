@@ -1,6 +1,6 @@
 package nextstep.ladder.domian;
 
-import nextstep.ladder.domain.Result;
+import nextstep.ladder.domain.Results;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -22,5 +22,12 @@ public class ResultsTest {
         result = new Results("꽝,5000,꽝,3000");
         int size = 4;
         assertThat(result.validateSize(4)).isTrue();
+    }
+
+    @DisplayName("지정한 결과만 가져온다.")
+    @Test
+    void 지정한_결과만_가져온다() {
+        result = new Results("꽝,5000,꽝,3000");
+        assertThat(result.get(1).value()).isEqualTo("5000");
     }
 }
