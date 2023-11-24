@@ -4,21 +4,23 @@ import ladder.domain.strategy.CoordinateGeneration;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
 
 public class Ladder {
     private final List<LadderLine> ladder;
 
-    public Ladder(People people, Height heightCount, CoordinateGeneration coordinateGeneration) {
-        this.ladder = makeLadder(people, heightCount, coordinateGeneration);
+    public Ladder(List<LadderLine> list) {
+        this.ladder = list;
     }
 
-    private static List<LadderLine> makeLadder(People people, Height heightCount, CoordinateGeneration coordinateGeneration) {
+    public static Ladder of(People people, Height heightCount, CoordinateGeneration coordinateGeneration) {
         return Stream
-                .generate(() -> new LadderLine(people, coordinateGeneration))
+                .generate(() -> LadderLine.of(people, coordinateGeneration))
                 .limit(heightCount.find())
-                .collect(Collectors.toList());
+                .collect(collectingAndThen(toList(), Ladder::new));
 
     }
 

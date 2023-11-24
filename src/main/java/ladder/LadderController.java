@@ -19,7 +19,7 @@ public class LadderController {
         People people = new People(inputNames());
         Height height = new Height(inputHeight());
 
-        Ladder ladder = new Ladder(people, height, COORDINATE_GENERATION);
+        Ladder ladder = Ladder.of(people, height, COORDINATE_GENERATION);
 
         printTitle(people);
         printLadder(ladder);

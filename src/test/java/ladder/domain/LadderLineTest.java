@@ -28,7 +28,7 @@ public class LadderLineTest {
             add(Coordinate.valueOf(true));
         }};
 
-        LadderLine ladderLine = new LadderLine(people, COORDINATE_GENERATION);
+        LadderLine ladderLine = LadderLine.of(people, COORDINATE_GENERATION);
 
         assertThat(ladderLine.draw()).hasSize(people.count()).isEqualTo(result);
     }

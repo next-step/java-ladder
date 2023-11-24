@@ -21,7 +21,7 @@ public class LadderTest {
         People people = new People(nameList);
         Height heightCount = new Height(5);
 
-        Ladder ladder = new Ladder(people, heightCount, COORDINATE_GENERATION);
+        Ladder ladder = Ladder.of(people, heightCount, COORDINATE_GENERATION);
 
         assertThat(ladder.draw()).hasSize(5);
 
