@@ -19,7 +19,7 @@ public class ResultView {
 
     public static void printLadder(Names names, Ladder ladder) {
         System.out.println(START);
-        printNames(names.nameList());
+        printNames(names.values());
         printLadderLine(ladder.lines());
     }
 

@@ -16,7 +16,7 @@ public class Names {
                 .forEach(name -> this.values.add(new Name(name)));
     }
 
-    public List<Name> nameList() {
+    public List<Name> values() {
         return Collections.unmodifiableList(values);
     }
 
