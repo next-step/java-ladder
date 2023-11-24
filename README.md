@@ -192,8 +192,14 @@
 - 책임 주도 설계(인터페이스) 기반 구현
   - 책임을 설계
     - [X] ~~입력을 처리할 책임 (InputHandler)~~
+      - [ ] ConsoleInputHandler 구현체 생성
     - [X] ~~사용자 입력을 가져올 책임 (UserInputProvider)~~
+      - [ ] UserNames 구현체, UserResults 구현체 생성
     - [X] ~~출력을 처리할 책임 (OutputHandler)~~
+      - [ ] ConsoleOutputHandler 구현체 생성
     - [X] ~~게임을 진행할 책임 (GameRunnable)~~
+      - [ ] Ladder 구현체 생성
     - [X] ~~사다리에서 Index를 움직일 책임 (IndexHorizontalMover)~~
+      - [ ] LeftMover, RightMover, NoneMover 구현체 생성
     - [X] ~~게임 결과를 제공할 책임 (GameResultProvider)~~
+      - [ ] LadderResult 구현체 생성
