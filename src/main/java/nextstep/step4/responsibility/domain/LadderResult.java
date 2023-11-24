@@ -22,8 +22,11 @@ public class LadderResult implements GameResultProvider {
         StringBuilder sb = new StringBuilder();
 
         for (Map.Entry<String, String> entry : this.result.entrySet()) {
-            sb.append(String.format("%s : %s%n", entry.getKey(), entry.getValue()));
+            sb.append(String.format("%s : %s", entry.getKey(), entry.getValue()));
+            sb.append("\n");
         }
+
+        sb.deleteCharAt(sb.length() - 1);
 
         return sb.toString();
     }
