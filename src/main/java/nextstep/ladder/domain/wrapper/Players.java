@@ -13,24 +13,7 @@ public class Players {
     private final List<Player> players;
 
     public Players(List<Player> players) {
-        validateDuplicateName(players);
-
         this.players = players;
-    }
-
-    private void validateDuplicateName(List<Player> players) {
-        long countOfName = countName(players);
-
-        if (countOfName != players.size()) {
-            throw new IllegalArgumentException(NOT_EQUAL_NAME.message());
-        }
-    }
-
-    private long countName(List<Player> players) {
-        return players.stream()
-            .map(player -> player.name().toLowerCase())
-            .distinct()
-            .count();
     }
 
     public List<String> name() {
