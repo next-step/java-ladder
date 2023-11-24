@@ -25,10 +25,5 @@ public class PeopleTest {
         assertThat(people.count()).isEqualTo(4);
     }
 
-    @Test
-    @DisplayName("사람 수에 맞게 사다리 좌표 수 구하기")
-    void 사다리_좌표갯수_확인() {
 
-        assertThat(people.ofCoordinateCount()).isEqualTo(3);
-    }
 }

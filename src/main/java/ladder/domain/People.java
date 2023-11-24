@@ -15,10 +15,6 @@ public class People {
         return names.size();
     }
 
-    public int ofCoordinateCount() {
-        return count() - 1;
-    }
-
     public List<Name> call() {
         return Collections.unmodifiableList(names);
     }

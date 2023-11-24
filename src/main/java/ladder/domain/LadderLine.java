@@ -20,10 +20,10 @@ public class LadderLine {
     }
 
     private static List<Coordinate> makeLine(People people, CoordinateGeneration coordinateGeneration) {
-        Coordinate coordinate = Coordinate.valueOf(coordinateGeneration.generate());
+        Coordinate coordinate = Coordinate.valueOf(false);
         List<Coordinate> lineList = new ArrayList<>(List.of(coordinate));
 
-        for (int i = ONE; i < people.ofCoordinateCount(); i++) {
+        for (int i = ONE; i < people.count(); i++) {
             lineList.add(lineList.get(minusOne(i)).next(coordinateGeneration.generate()));
         }
 

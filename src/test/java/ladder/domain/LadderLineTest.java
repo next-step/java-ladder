@@ -22,6 +22,7 @@ public class LadderLineTest {
         List<String> nameList = new ArrayList<>(Arrays.asList("a", "b", "c", "d"));
         People people = new People(nameList);
         List<Coordinate> result = new ArrayList<>() {{
+            add(Coordinate.valueOf(false));
             add(Coordinate.valueOf(true));
             add(Coordinate.valueOf(false));
             add(Coordinate.valueOf(true));
@@ -29,6 +30,6 @@ public class LadderLineTest {
 
         LadderLine ladderLine = new LadderLine(people, COORDINATE_GENERATION);
 
-        assertThat(ladderLine.draw()).hasSize(people.ofCoordinateCount()).isEqualTo(result);
+        assertThat(ladderLine.draw()).hasSize(people.count()).isEqualTo(result);
     }
 }

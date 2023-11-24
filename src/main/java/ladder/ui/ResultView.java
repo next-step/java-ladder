@@ -21,14 +21,14 @@ public class ResultView {
     }
 
     private static void drawLine(LadderLine ladderLine) {
-        System.out.print("    |");
+        //System.out.print("    |");
         ladderLine.draw().forEach(item -> System.out.print(drawCoordinate(item)));
         System.out.println();
     }
 
     private static String drawCoordinate(Coordinate coordinate) {
         if (coordinate.find()) {
-            return "-----|";
+            return "---- |";
         }
         return "     |";
     }
