@@ -18,9 +18,7 @@ public class Line {
         IntStream.range(0, points.size() - 1)
                 .filter(i -> points.get(i) && points.get(i + 1))
                 .findFirst()
-                .ifPresent(i -> {
-                    throw new LineDuplicateException();
-                });
+                .ifPresent(i -> {throw new LineDuplicateException();});
     }
 
     public int size() {
