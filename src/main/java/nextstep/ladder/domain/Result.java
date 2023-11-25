@@ -4,12 +4,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class LadderResult {
-    public static final String LADDER_RESULT_EMPTY_MSG = "사다리의 결과는 공백 일 수 없습니다.";
+public class Result {
+    public static final String RESULT_EMPTY_MSG = "결과는 공백 일 수 없습니다.";
     public static final String RESULT_DELIMITER = ",";
+    public static final String INVALID_RESULT_COUNT_MSG = "참가자의 수와 결과의 수는 다를 수 없습니다.";
     private String[] results;
 
-    public LadderResult(final int countOfPerson, final String resultText) {
+    public Result(final int countOfPerson, final String resultText) {
         emptyCheck(resultText);
 
         final String[] results = resultText.split(RESULT_DELIMITER);
@@ -21,13 +22,13 @@ public class LadderResult {
 
     private static void resultNumberCheck(final int countOfPerson, final String[] results) {
         if (results.length != countOfPerson) {
-            throw new IllegalArgumentException("참가자의 수와 사다리 결과의 수는 다를 수 없습니다.");
+            throw new IllegalArgumentException(INVALID_RESULT_COUNT_MSG);
         }
     }
 
     private void emptyCheck(final String resultText) {
         if (isNullOrEmpty(resultText)) {
-            throw new IllegalArgumentException(LADDER_RESULT_EMPTY_MSG);
+            throw new IllegalArgumentException(RESULT_EMPTY_MSG);
         }
     }
 

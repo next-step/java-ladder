@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.strategy.RandomCreateStrategy;
+
 import java.util.ArrayList;
 import java.util.List;
 
