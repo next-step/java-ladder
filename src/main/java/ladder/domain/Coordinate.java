@@ -27,7 +27,7 @@ public class Coordinate {
 
     }
 
-    public boolean find() {
+    public boolean exist() {
         return state;
     }
 

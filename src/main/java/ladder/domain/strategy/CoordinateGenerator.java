@@ -1,5 +1,5 @@
 package ladder.domain.strategy;
 
-public interface CoordinateGeneration {
+public interface CoordinateGenerator {
     boolean generate();
 }

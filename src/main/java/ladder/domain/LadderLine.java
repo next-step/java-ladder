@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.domain.strategy.CoordinateGeneration;
+import ladder.domain.strategy.CoordinateGenerator;
 
 import java.util.Collections;
 import java.util.List;
@@ -16,7 +16,7 @@ public class LadderLine {
         this.line = list;
     }
 
-    public static LadderLine of(People people, CoordinateGeneration coordinateGeneration) {
+    public static LadderLine of(People people, CoordinateGenerator coordinateGeneration) {
         Coordinate coordinate = Coordinate.valueOf(false);
 
         return Stream

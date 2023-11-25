@@ -1,12 +1,20 @@
 package ladder.domain;
 
+import java.util.InputMismatchException;
 import java.util.Objects;
 
 public class Height {
+    private static final int MIN_COUNT = 1;
     private final int count;
 
     public Height(int count) {
+        validate(count);
         this.count = count;
+    }
+    private void validate(int count){
+        if(count< MIN_COUNT){
+            throw new InputMismatchException("사다리 높이는 1개 이상이어야합니다.");
+        }
     }
 
     public int find() {

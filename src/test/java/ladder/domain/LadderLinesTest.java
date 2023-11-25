@@ -1,7 +1,7 @@
 package ladder.domain;
 
-import ladder.domain.strategy.CoordinateGeneration;
-import ladder.domain.strategy.ManualCoordinateGeneration;
+import ladder.domain.strategy.CoordinateGenerator;
+import ladder.domain.strategy.ManualCoordinateGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,8 +11,8 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LadderTest {
-    private static final CoordinateGeneration COORDINATE_GENERATION = new ManualCoordinateGeneration();
+public class LadderLinesTest {
+    private static final CoordinateGenerator COORDINATE_GENERATION = new ManualCoordinateGenerator();
 
     @Test
     @DisplayName("원하는 사다리 길이 만큼 사다리가 생성되는지 확인")
@@ -21,7 +21,7 @@ public class LadderTest {
         People people = new People(nameList);
         Height heightCount = new Height(5);
 
-        Ladder ladder = Ladder.of(people, heightCount, COORDINATE_GENERATION);
+        LadderLines ladder = LadderLines.of(people, heightCount, COORDINATE_GENERATION);
 
         assertThat(ladder.draw()).hasSize(5);
 

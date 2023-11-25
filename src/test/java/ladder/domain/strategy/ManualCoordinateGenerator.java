@@ -1,6 +1,6 @@
 package ladder.domain.strategy;
 
-public class ManualCoordinateGeneration implements CoordinateGeneration {
+public class ManualCoordinateGenerator implements CoordinateGenerator {
     @Override
     public boolean generate() {
         return true;

@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.domain.strategy.CoordinateGeneration;
+import ladder.domain.strategy.CoordinateGenerator;
 
 import java.util.Collections;
 import java.util.List;
@@ -9,18 +9,18 @@ import java.util.stream.Stream;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
-public class Ladder {
+public class LadderLines {
     private final List<LadderLine> ladder;
 
-    public Ladder(List<LadderLine> list) {
+    public LadderLines(List<LadderLine> list) {
         this.ladder = list;
     }
 
-    public static Ladder of(People people, Height heightCount, CoordinateGeneration coordinateGeneration) {
+    public static LadderLines of(People people, Height heightCount, CoordinateGenerator coordinateGeneration) {
         return Stream
                 .generate(() -> LadderLine.of(people, coordinateGeneration))
                 .limit(heightCount.find())
-                .collect(collectingAndThen(toList(), Ladder::new));
+                .collect(collectingAndThen(toList(), LadderLines::new));
 
     }
 

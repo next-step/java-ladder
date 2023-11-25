@@ -1,7 +1,7 @@
 package ladder.domain;
 
-import ladder.domain.strategy.CoordinateGeneration;
-import ladder.domain.strategy.ManualCoordinateGeneration;
+import ladder.domain.strategy.CoordinateGenerator;
+import ladder.domain.strategy.ManualCoordinateGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderLineTest {
 
-    private static final CoordinateGeneration COORDINATE_GENERATION = new ManualCoordinateGeneration();
+    private static final CoordinateGenerator COORDINATE_GENERATION = new ManualCoordinateGenerator();
 
     @Test
     @DisplayName("사다리가 사람수만큼 전략에 맞취 생성되는지 확인")

@@ -15,7 +15,7 @@ public class People {
         return names.size();
     }
 
-    public List<Name> call() {
+    public List<Name> values() {
         return Collections.unmodifiableList(names);
     }
 }

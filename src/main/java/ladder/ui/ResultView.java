@@ -1,7 +1,7 @@
 package ladder.ui;
 
 import ladder.domain.Coordinate;
-import ladder.domain.Ladder;
+import ladder.domain.LadderLines;
 import ladder.domain.LadderLine;
 import ladder.domain.People;
 
@@ -12,11 +12,11 @@ public class ResultView {
     public static void printTitle(People people) {
         System.out.printf("실행결과%n%n");
 
-        people.call().forEach(item -> System.out.printf(String.format("%5s ", item)));
+        people.values().forEach(item -> System.out.printf(String.format("%5s ", item)));
         System.out.println();
     }
 
-    public static void printLadder(Ladder ladder) {
+    public static void printLadder(LadderLines ladder) {
         ladder.draw().forEach(ResultView::drawLine);
     }
 
@@ -26,7 +26,7 @@ public class ResultView {
     }
 
     private static String drawCoordinate(Coordinate coordinate) {
-        if (coordinate.find()) {
+        if (coordinate.exist()) {
             return "-----|";
         }
         return "     |";
