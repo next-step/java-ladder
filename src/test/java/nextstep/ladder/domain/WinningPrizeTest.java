@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.wrapper.Height;
 import nextstep.ladder.domain.wrapper.Width;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +11,11 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 
 public class WinningPrizeTest {
+
+    @AfterEach
+    void clear() {
+        Coordinate.clear();
+    }
 
     @DisplayName("플레이어를 인자로 받아 해당 플레이어의 당첨 결과를 반환한다.")
     @Test

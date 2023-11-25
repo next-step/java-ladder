@@ -1,9 +1,8 @@
-package nextstep.ladder.domain.wrapper;
+package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.Bridges;
-import nextstep.ladder.domain.Coordinate;
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Player;
+import nextstep.ladder.domain.wrapper.Height;
+import nextstep.ladder.domain.wrapper.Width;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,6 +13,11 @@ import java.util.stream.IntStream;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PlayersTest {
+
+    @AfterEach
+    void clear() {
+        Coordinate.clear();
+    }
 
     @DisplayName("플레이어들의 이름을 가져온다.")
     @Test

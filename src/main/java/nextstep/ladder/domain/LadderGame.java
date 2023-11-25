@@ -1,12 +1,10 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.controller.dto.GameInfo;
-import nextstep.ladder.domain.wrapper.Players;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class LadderGame {
 

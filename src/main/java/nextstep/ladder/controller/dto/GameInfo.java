@@ -5,7 +5,7 @@ import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Player;
 import nextstep.ladder.domain.WinningPrize;
 import nextstep.ladder.domain.wrapper.Height;
-import nextstep.ladder.domain.wrapper.Players;
+import nextstep.ladder.domain.Players;
 import nextstep.ladder.domain.wrapper.Width;
 import nextstep.ladder.util.LadderBuilder;
 

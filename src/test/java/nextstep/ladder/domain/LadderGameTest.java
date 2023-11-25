@@ -1,9 +1,8 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.wrapper.Height;
-import nextstep.ladder.domain.wrapper.Players;
 import nextstep.ladder.domain.wrapper.Width;
-import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,6 +14,11 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LadderGameTest {
+
+    @AfterEach
+    void clear() {
+        Coordinate.clear();
+    }
 
     @DisplayName("사다리 게임을 실행해 Players의 위치 값을 변경한다.")
     @Test

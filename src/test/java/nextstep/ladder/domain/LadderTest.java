@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.wrapper.Height;
 import nextstep.ladder.domain.wrapper.Width;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +11,11 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 
 public class LadderTest {
+
+    @AfterEach
+    void clear() {
+        Coordinate.clear();
+    }
 
     @DisplayName("Ladder로 포장된 값을 String 타입의 사다리 모양으로 변환해 반환한다.")
     @Test

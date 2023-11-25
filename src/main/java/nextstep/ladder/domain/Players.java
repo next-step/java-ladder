@@ -1,8 +1,5 @@
-package nextstep.ladder.domain.wrapper;
+package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.Coordinate;
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Player;
 import nextstep.ladder.exception.ExceptionMessage;
 
 import java.util.List;

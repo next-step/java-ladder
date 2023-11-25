@@ -2,9 +2,7 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.wrapper.Height;
 import nextstep.ladder.domain.wrapper.Width;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.util.List;
 
@@ -12,11 +10,16 @@ import static org.assertj.core.api.Assertions.*;
 
 public class PlayerTest {
 
-    @BeforeAll
-    static void setUp() {
+    @BeforeEach
+    void setUp() {
         Width width = new Width(5);
         Height height = new Height(5);
         Coordinate.init(width, height);
+    }
+
+    @AfterEach
+    void clear() {
+        Coordinate.clear();
     }
 
     @DisplayName("Player의 이름을 확인한다.")
