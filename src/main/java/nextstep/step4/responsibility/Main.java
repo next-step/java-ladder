@@ -9,9 +9,9 @@ import nextstep.step4.responsibility.output.ConsoleOutputHandler;
 
 public class Main {
     public static void main(String[] args) {
-        final InputHandler consoleInputHandler = new ConsoleInputHandler();
-        final UserData userData = consoleInputHandler.inputUserData();
-        final int height = consoleInputHandler.inputLadderHeight();
+        final InputHandler inputHandler = new ConsoleInputHandler();
+        final UserData userData = inputHandler.inputUserData();
+        final int height = inputHandler.inputLadderHeight();
 
         final Ladder ladder = new Ladder(userData, height);
         final GameResultProvider gameResult = ladder.run();
