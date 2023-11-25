@@ -1,21 +1,23 @@
 package nextstep.ladder.controller.dto;
 
+import nextstep.ladder.domain.Coordinate;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Player;
+import nextstep.ladder.domain.WinningPrize;
 import nextstep.ladder.domain.wrapper.Height;
 import nextstep.ladder.domain.wrapper.Players;
 import nextstep.ladder.domain.wrapper.Width;
 import nextstep.ladder.util.LadderBuilder;
 
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class GameInfo {
 
-    public static final int START_POINT = 1;
-
     private String[] names;
     private int height;
+    private String[] prizes;
 
     public GameInfo(String[] names, int height) {
         this.names = names;
@@ -28,11 +30,11 @@ public class GameInfo {
 
     public Players players() {
         return new Players(IntStream.range(0, names.length)
-            .mapToObj(i -> Player.PlayerBuilder.builder()
-                .name(names[i])
-                .widthPosition(i)
-                .heightPosition(START_POINT)
-                .build())
+            .mapToObj(i -> new Player(names[i], Coordinate.of(i, 0)))
             .collect(Collectors.toUnmodifiableList()));
+    }
+
+    public WinningPrize winningPrize() {
+        return new WinningPrize(List.of(prizes), height);
     }
 }
