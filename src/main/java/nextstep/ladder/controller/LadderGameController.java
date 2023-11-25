@@ -35,7 +35,6 @@ public class LadderGameController {
 
     private void gameResult(LadderGame ladderGame) {
         while (true) {
-            System.out.println("");
             String name = inputView.inputName();
 
             if ("all".equals(name)) {
