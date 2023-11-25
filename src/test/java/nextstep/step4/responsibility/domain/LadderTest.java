@@ -4,6 +4,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
+import java.util.Map;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderTest {
@@ -74,14 +76,15 @@ class LadderTest {
 
         //when
         final GameResultProvider ladderResult = ladder.run();
-        final String result = ladderResult.getResult("all");
+        final Map<String, String> result = ladderResult.getAllResult();
 
         //then
         assertThat(result).isEqualTo(
-                "pobi : 5000\n" +
-                        "honux : 꽝\n" +
-                        "crong : 3000\n" +
-                        "jk : 꽝"
+                Map.of(
+                        "pobi", "5000",
+                        "honux", "꽝",
+                        "crong", "3000",
+                        "jk", "꽝")
         );
     }
 

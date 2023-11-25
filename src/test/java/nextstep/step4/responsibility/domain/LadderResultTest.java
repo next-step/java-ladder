@@ -60,7 +60,7 @@ class LadderResultTest {
     }
 
     @Test
-    @DisplayName("getResult() 메서드의 입력으로 존재하지 않는 이름을 넣으면, '존재하지 않는 이름입니다.'를 반환한다.")
+    @DisplayName("getResult() 메서드의 입력으로 존재하지 않는 이름을 넣으면, null을 반환한다.")
     void testGetWithNonExistentName() {
         //given
         final LadderResult ladderResult = new LadderResult(results);
@@ -69,24 +69,6 @@ class LadderResultTest {
         final String result = ladderResult.getResult("noData");
 
         //then
-        assertThat(result).isEqualTo("존재하지 않는 이름입니다.");
-    }
-
-    @Test
-    @DisplayName("getResult() 메서드의 입력으로 'all'을 넣으면, 모든 결과를 반환한다.")
-    void testGetWithAll() {
-        //given
-        final LadderResult ladderResult = new LadderResult(results);
-
-        //when
-        final String result = ladderResult.getResult("all");
-
-        //then
-        assertThat(result).isEqualTo(
-                "pobi : 5000\n" +
-                        "honux : 꽝\n" +
-                        "crong : 3000\n" +
-                        "jk : 꽝"
-        );
+        assertThat(result).isNull();
     }
 }

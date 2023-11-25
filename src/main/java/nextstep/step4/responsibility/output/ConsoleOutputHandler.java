@@ -4,6 +4,7 @@ import nextstep.step4.responsibility.domain.*;
 import nextstep.step4.responsibility.input.ConsoleInputHandler;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ConsoleOutputHandler implements OutputHandler {
@@ -69,11 +70,37 @@ public class ConsoleOutputHandler implements OutputHandler {
         while (!stopFlag) {
             final String userName = inputHandler.inputGamePlayerName();
 
-            final String runResult = gameResult.getResult(userName);
+            final String runResult = getConsoleResult(gameResult, userName);
             System.out.println("\n실행 결과\n" + runResult);
 
             stopFlag = checkStopFlag(userName);
         }
+    }
+
+    private String getConsoleResult(final GameResultProvider gameResult, final String userName) {
+        if ("all".equals(userName)) {
+            return buildAllResult(gameResult.getAllResult());
+        }
+
+        String result = gameResult.getResult(userName);
+        if (result == null) {
+            result = "존재하지 않는 사용자입니다.";
+        }
+
+        return result;
+    }
+
+    private String buildAllResult(final Map<String, String> result) {
+        StringBuilder sb = new StringBuilder();
+
+        for (Map.Entry<String, String> entry : result.entrySet()) {
+            sb.append(String.format("%s : %s", entry.getKey(), entry.getValue()));
+            sb.append("\n");
+        }
+
+        sb.deleteCharAt(sb.length() - 1);
+
+        return sb.toString();
     }
 
     private boolean checkStopFlag(final String userName) {
