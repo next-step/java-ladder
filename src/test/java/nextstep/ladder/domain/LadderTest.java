@@ -1,13 +1,12 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.wrapper.Height;
+import nextstep.ladder.domain.wrapper.Width;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static nextstep.ladder.domain.Bridges.FALSE_BRIDGE;
-import static nextstep.ladder.domain.Bridges.TRUE_BRIDGE;
-import static nextstep.ladder.domain.Ladder.LADDER_POLE;
 import static org.assertj.core.api.Assertions.*;
 
 public class LadderTest {
@@ -27,19 +26,19 @@ public class LadderTest {
         assertThat(stringLadder).isEqualTo("|-----|     |-----|\n|-----|     |-----|");
     }
 
-    @DisplayName("인자로 사다리의 좌표 값을 전달받아 해당 사다리가 이동 가능한 지 확인한다.")
+    @DisplayName("인자로 플레이어를 받아 사다리를 타게한다. 사다리 타기가 완료된 플레이어를 반환한다.")
     @Test
-    void isMovable() {
+    void climb() {
         Ladder ladder = new Ladder(List.of
             (new Bridges(List.of(true, false, true)),
              new Bridges(List.of(true, false, true))));
-        int x = 0;
-        int y = 1;
+        Coordinate.init(new Width(4), new Height(2));
+        Player player = new Player("홍길동", Coordinate.of(0, 0));
 
         // when
-        boolean result = ladder.isMovable(x, y);
+        Player finished = ladder.climb(player);
 
         // then
-        assertThat(result).isTrue();
+        assertThat(finished.isEqualCoordinate(Coordinate.of(0, 2))).isTrue();
     }
 }

@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.exception.ExceptionMessage;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,8 +16,12 @@ public class Ladder {
         this.ladder = ladder;
     }
 
-    public boolean isMovable(int x, int y) {
-        return ladder.get(y).isMovable(x);
+    public Player climb(Player player) {
+        return ladder.stream()
+            .map(player::move)
+            .skip(ladder.size() - 1)
+            .findFirst()
+            .orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.NOT_FINISH.message()));
     }
 
     @Override
