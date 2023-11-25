@@ -8,6 +8,7 @@ import nextstep.ladder.view.ResultView;
 public class LadderApp {
     public static void main(String[] args) {
         Participants participants = new Participants(InputView.inputParticipants());
+        final String ladderResult = InputView.inputLadderResult();
 
         Ladder ladder = new Ladder(participants, InputView.inputLadderHeight());
 
