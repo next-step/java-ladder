@@ -1,8 +1,9 @@
 package nextstep.step4.responsibility.domain;
 
+import nextstep.step4.responsibility.util.RandomGenerator;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Random;
 
 public class Ladder implements GameRunnable {
     private final UserData userData;
@@ -41,54 +42,17 @@ public class Ladder implements GameRunnable {
     private void initRowMovers(final IndexHorizontalMover[] rowMovers) {
         final int firstIdx = 0;
         final int lastIdx = rowMovers.length - 1;
-        boolean curBool = new Random().nextBoolean();
 
-        rowMovers[firstIdx] = buildFirstMover(curBool);
+        Mover mover = Mover.first(RandomGenerator.nextBoolean());
+        rowMovers[firstIdx] = mover;
 
         for (int idx = firstIdx + 1; idx < lastIdx; idx++) {
-            boolean preBool = curBool;
-            curBool = adjustConsequtiveTrue(preBool);
-
-            rowMovers[idx] = buildMiddleMover(preBool, curBool);
+            mover = ((Mover) rowMovers[idx - 1]);
+            rowMovers[idx] = mover.next(RandomGenerator.nextBoolean());
         }
 
-        rowMovers[lastIdx] = buildLastMover(curBool);
-    }
-
-    private boolean adjustConsequtiveTrue(final boolean preBool) {
-        if (preBool) {
-            return false;
-        }
-
-        return new Random().nextBoolean();
-    }
-
-    private IndexHorizontalMover buildFirstMover(final boolean curBool) {
-        if (curBool) {
-            return Mover.RIGHT;
-        }
-
-        return Mover.NONE;
-    }
-
-    private IndexHorizontalMover buildMiddleMover(final boolean preBool, final boolean curBool) {
-        if (preBool) {
-            return Mover.LEFT;
-        }
-
-        if (curBool) {
-            return Mover.RIGHT;
-        }
-
-        return Mover.NONE;
-    }
-
-    private IndexHorizontalMover buildLastMover(final boolean curBool) {
-        if (curBool) {
-            return Mover.LEFT;
-        }
-
-        return Mover.NONE;
+        mover = ((Mover) rowMovers[lastIdx - 1]);
+        rowMovers[lastIdx] = mover.last();
     }
 
     @Override
