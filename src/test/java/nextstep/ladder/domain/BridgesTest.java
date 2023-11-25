@@ -7,8 +7,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
-import static nextstep.ladder.domain.Bridges.*;
-import static nextstep.ladder.domain.Ladder.*;
 import static nextstep.ladder.exception.ExceptionMessage.*;
 import static org.assertj.core.api.Assertions.*;
 
@@ -41,6 +39,6 @@ public class BridgesTest {
         Bridges bridges = new Bridges(List.of(true, false, true));
 
         // when & then
-        assertThat(bridges.isMovable(x)).isEqualTo(expectedReuslt);
+        assertThat(bridges.isMovableSide(x)).isEqualTo(expectedReuslt);
     }
 }
