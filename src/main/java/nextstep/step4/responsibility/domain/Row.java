@@ -1,17 +1,19 @@
 package nextstep.step4.responsibility.domain;
 
-public class Row {
-    private final IndexHorizontalMover[] row;
+import java.util.List;
 
-    public Row(final IndexHorizontalMover[] row) {
+public class Row {
+    private final List<IndexHorizontalMover> row;
+
+    public Row(final List<IndexHorizontalMover> row) {
         this.row = row;
     }
 
     public IndexHorizontalMover get(final int index) {
-        return this.row[index];
+        return this.row.get(index);
     }
 
     public int size() {
-        return this.row.length;
+        return this.row.size();
     }
 }

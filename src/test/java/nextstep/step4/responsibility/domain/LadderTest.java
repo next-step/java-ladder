@@ -94,8 +94,8 @@ class LadderTest {
         final List<Row> movers = new ArrayList<>();
 
         for (int row = 0; row < 5; row++) {
-            final IndexHorizontalMover[] tempRow = {Mover.RIGHT, Mover.LEFT, Mover.RIGHT, Mover.LEFT};
-            movers.add(new Row(tempRow));
+            final List<IndexHorizontalMover> tempMover = List.of(Mover.RIGHT, Mover.LEFT, Mover.RIGHT, Mover.LEFT);
+            movers.add(new Row(tempMover));
         }
 
         return movers;

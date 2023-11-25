@@ -34,27 +34,27 @@ public class Ladder implements GameRunnable {
     }
 
     private Row buildRow(final int size) {
-        final IndexHorizontalMover[] tempMovers = new IndexHorizontalMover[size];
+        final List<IndexHorizontalMover> tempMovers = new ArrayList<>();
 
-        initMovers(tempMovers);
+        initMovers(tempMovers, size);
 
         return new Row(tempMovers);
     }
 
-    private void initMovers(final IndexHorizontalMover[] tempMovers) {
+    private void initMovers(final List<IndexHorizontalMover> tempMovers, final int size) {
         final int firstIdx = 0;
-        final int lastIdx = tempMovers.length - 1;
+        final int lastIdx = size - 1;
 
         Mover mover = Mover.first(RandomGenerator.nextBoolean());
-        tempMovers[firstIdx] = mover;
+        tempMovers.add(mover);
 
         for (int idx = firstIdx + 1; idx < lastIdx; idx++) {
-            mover = ((Mover) tempMovers[idx - 1]);
-            tempMovers[idx] = mover.next(RandomGenerator.nextBoolean());
+            mover = ((Mover) tempMovers.get(idx - 1));
+            tempMovers.add(mover.next(RandomGenerator.nextBoolean()));
         }
 
-        mover = ((Mover) tempMovers[lastIdx - 1]);
-        tempMovers[lastIdx] = mover.last();
+        mover = ((Mover) tempMovers.get(lastIdx - 1));
+        tempMovers.add(mover.last());
     }
 
     @Override
