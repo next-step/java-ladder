@@ -1,11 +1,12 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.wrapper.Height;
-import nextstep.ladder.domain.wrapper.Players;
 import nextstep.ladder.domain.wrapper.Width;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -29,19 +30,30 @@ public class PlayerTest {
         assertThat(player.name()).isEqualTo("홍길동");
     }
 
-    @DisplayName("Player의 좌표를 인자로 받은 위치로 이동한다.")
+    @DisplayName("좌표 값을 인자로 받아 자신의 좌표 값과 일치하는 지 확인한다.")
+    @Test
+    void isEqualWith() {
+        // given
+        String name = "홍길동";
+        Player player = new Player(name, Coordinate.of(1, 0));
+        Coordinate target = Coordinate.of(1, 0);
+
+        // when & then
+        assertThat(player.isEqualCoordinate(target)).isTrue();
+    }
+
+    @DisplayName("사다리의 다리를 인자로 받아 자신의 좌표 값을 다음 이동 가능한 좌표 값으로 옮기고 자신을 반환한다.")
     @Test
     void move() {
         // given
         String name = "홍길동";
         Player player = new Player(name, Coordinate.of(1, 0));
+        Bridges bridges = new Bridges(List.of(true, false, true, false));
 
         // when
-        int x = 2;
-        int y = 1;
-        player.move(x, y);
+        Player movedPlayer = player.move(bridges);
 
         // then
-        assertThat(player.isMatching(Coordinate.of(2, 1))).isTrue();
+        assertThat(movedPlayer.isEqualCoordinate(Coordinate.of(0, 1))).isTrue();
     }
 }

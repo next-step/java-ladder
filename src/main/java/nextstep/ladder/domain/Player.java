@@ -16,11 +16,12 @@ public class Player {
         return this.name.toString();
     }
 
-    public boolean isMatching(Coordinate coordinate) {
+    public boolean isEqualCoordinate(Coordinate coordinate) {
         return this.coordinate.equals(coordinate);
     }
 
-    public void move(int x, int y) {
-        this.coordinate = Coordinate.of(x, y);
+    public Player move(Bridges bridge) {
+        coordinate = coordinate.findNextCoordinate(bridge);
+        return this;
     }
 }
