@@ -10,13 +10,16 @@ import nextstep.ladder.view.ResultView;
 public class LadderApp {
     public static void main(String[] args) {
         final Participants participants = new Participants(InputView.inputParticipants());
-        final Result result = new Result(participants.countOfPerson(), InputView.inputLadderResult());
+        final Result result = new Result(participants.countOfPerson(), InputView.inputResult());
         final Height ladderHeight = new Height(InputView.inputLadderHeight());
 
         ResultView.println(participants.toString());
         final Ladder ladder = new Ladder(participants.countOfPerson(), ladderHeight.get());
         ResultView.print(ladder.toString());
-        ResultView.print(result.toString());
+        ResultView.println(result.toString());
 
+        ladder.start(participants, result);
+
+        InputView.inputParticipantLadderResult();
     }
 }
