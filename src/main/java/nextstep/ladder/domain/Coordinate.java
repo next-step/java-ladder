@@ -17,8 +17,8 @@ public class Coordinate {
     private static final int[] DIRECTIONS = {0 , -1};
     public static final int DEPTH_ADJUSTMENT = 1;
 
-    private int x;
-    private int y;
+    private final int x;
+    private final int y;
 
     private Coordinate(int x, int y) {
         this.x = x;
