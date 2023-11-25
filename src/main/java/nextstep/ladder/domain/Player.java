@@ -1,55 +1,26 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.wrapper.Width;
-import nextstep.ladder.domain.wrapper.Height;
 import nextstep.ladder.domain.wrapper.Name;
 
 public class Player {
 
     private final Name name;
-    private Width widthPosition;
-    private Height heightPosition;
+    private Coordinate coordinate;
 
-    private Player(String name, int widthPosition, int heightPosition) {
+    public Player(String name, Coordinate coordinate) {
         this.name = new Name(name);
-        this.widthPosition = new Width(widthPosition);
-        this.heightPosition = new Height(heightPosition);
+        this.coordinate = coordinate;
     }
 
     public String name() {
         return this.name.toString();
     }
 
-    public static class PlayerBuilder {
+    public Coordinate currentCoordinate() {
+        return this.coordinate;
+    }
 
-        private String name;
-        private int widthPosition;
-        private int heightPosition;
-
-        private PlayerBuilder() {
-        }
-
-        public PlayerBuilder name(String name) {
-            this.name = name;
-            return this;
-        }
-
-        public PlayerBuilder widthPosition(int widthPosition) {
-            this.widthPosition = widthPosition;
-            return this;
-        }
-
-        public PlayerBuilder heightPosition(int heightPosition) {
-            this.heightPosition = heightPosition;
-            return this;
-        }
-
-        public static PlayerBuilder builder() {
-            return new PlayerBuilder();
-        }
-
-        public Player build() {
-            return new Player(this.name, this.widthPosition, this.heightPosition);
-        }
+    public void move(int x, int y) {
+        this.coordinate = Coordinate.of(x, y);
     }
 }
