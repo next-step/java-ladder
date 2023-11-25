@@ -2,6 +2,8 @@ package nextstep.ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
@@ -33,15 +35,12 @@ public class BridgesTest {
     }
 
     @DisplayName("인자로 사다리의 다리 위치 값을 전달 받아 해당 다리가 이동 가능한 지 확인한다.")
-    @Test
-    void isMovable() {
+    @ParameterizedTest
+    @CsvSource({"0,true", "1,false", "3,false"})
+    void isMovable(int x, boolean expectedReuslt) {
         Bridges bridges = new Bridges(List.of(true, false, true));
-        int x = 1;
 
-        // when
-        boolean result = bridges.isMovable(x);
-
-        // then
-        assertThat(result).isFalse();
+        // when & then
+        assertThat(bridges.isMovable(x)).isEqualTo(expectedReuslt);
     }
 }

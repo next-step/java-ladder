@@ -27,8 +27,16 @@ public class Bridges {
             .anyMatch(i -> bridges.get(i) && bridges.get(i + 1));
     }
 
-    public boolean isMovable(int x) {
-        return bridges.get(x);
+    public boolean isMovable(int nextCoordinate) {
+        if (isOutOfRange(nextCoordinate)) {
+            return false;
+        }
+
+        return bridges.get(nextCoordinate);
+    }
+
+    private boolean isOutOfRange(int nextCoordinate) {
+        return nextCoordinate < 0 || nextCoordinate >= bridges.size();
     }
 
     @Override
