@@ -26,6 +26,20 @@ public class InputView {
         }
     }
 
+    public String[] inputPrize(int numOfPlayers) {
+        println("");
+        println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+
+        try {
+            String input = input();
+            inputValidator.validatePrizes(input, DELIMITER, numOfPlayers);
+            return input.split(DELIMITER);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputPrize(numOfPlayers);
+        }
+    }
+
     public int inputHeight() {
         println("");
         println("최대 사다리 높이는 몇 개인가요?");
@@ -37,6 +51,18 @@ public class InputView {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputHeight();
+        }
+    }
+
+    public String inputName() {
+        println("");
+        println("결과를 보고 싶은 사람은?");
+
+        try {
+            return input();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputName();
         }
     }
 

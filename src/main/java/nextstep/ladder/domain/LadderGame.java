@@ -30,6 +30,10 @@ public class LadderGame {
         return ladder.toString();
     }
 
+    public String prizes() {
+        return winningPrize.toString();
+    }
+
     public Players play() {
         List<Player> finished = IntStream.range(0, players.numOfPlayers())
             .mapToObj(i -> players.moveOne(i, ladder))

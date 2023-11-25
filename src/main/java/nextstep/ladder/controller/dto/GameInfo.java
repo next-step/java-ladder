@@ -19,9 +19,10 @@ public class GameInfo {
     private int height;
     private String[] prizes;
 
-    public GameInfo(String[] names, int height) {
+    public GameInfo(String[] names, int height, String[] prizes) {
         this.names = names;
         this.height = height;
+        this.prizes = prizes;
     }
 
     public Ladder ladder() {
