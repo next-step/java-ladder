@@ -33,16 +33,16 @@ public class Point {
         return new Point(this.hasRightRung, false);
     }
 
-    public MoveDirection move() {
+    public int move(int index) {
         if (hasLeftRung) {
-            return MoveDirection.LEFT;
+            return index - 1;
         }
 
         if (hasRightRung) {
-            return MoveDirection.RIGHT;
+            return index + 1;
         }
 
-        return MoveDirection.NONE;
+        return index;
     }
 
     public boolean hasRightRung() {

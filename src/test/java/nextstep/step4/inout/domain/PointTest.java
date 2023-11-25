@@ -17,42 +17,45 @@ class PointTest {
     }
 
     @Test
-    @DisplayName("왼쪽에만 사다리가 존재하는 경우 move메서드를 사용하면, 왼쪽 방향을 반환한다.")
+    @DisplayName("왼쪽에만 사다리가 존재하는 경우 move메서드를 사용하면, 왼쪽으로 이동한다.")
     void testMoveWhenOnlyLeftRungIsTrue() {
         //given
+        int index = 1;
         Point point = Point.first(true).next(false);
 
         //when
-        MoveDirection direction = point.move();
+        final int movedIndex = point.move(index);
 
         //then
-        assertThat(direction).isEqualTo(MoveDirection.LEFT);
+        assertThat(movedIndex).isEqualTo(0);
     }
 
     @Test
-    @DisplayName("오른쪽에만 사다리가 존재하는 경우 move메서드를 사용하면, 오른쪽 방향을 반환한다.")
+    @DisplayName("오른쪽에만 사다리가 존재하는 경우 move메서드를 사용하면, 오른쪽으로 이동한다.")
     void testMoveWhenOnlyRightRungIsTrue() {
         //given
+        int index = 1;
         Point point = Point.first(true);
 
         //when
-        MoveDirection direction = point.move();
+        final int movedIndex = point.move(index);
 
         //then
-        assertThat(direction).isEqualTo(MoveDirection.RIGHT);
+        assertThat(movedIndex).isEqualTo(2);
     }
 
     @Test
     @DisplayName("양쪽 다 사다리가 존재하지 않는 경우 move메서드를 사용하면, 이동하지 않는다.")
     void testMoveWhenNoRungIsTrue() {
         //given
+        int index = 1;
         Point point = Point.first(false).next(false);
 
         //when
-        MoveDirection direction = point.move();
+        final int movedIndex = point.move(index);
 
         //then
-        assertThat(direction).isEqualTo(MoveDirection.NONE);
+        assertThat(movedIndex).isEqualTo(1);
     }
 
     @Test
@@ -66,15 +69,16 @@ class PointTest {
     }
 
     @Test
-    @DisplayName("이전 값으로 true를 입력한 후 연달아 next() 메서드에 true를 넣어도, 뒤에 입력한 true는 false로 변환 후 Point 객체가 생성된다.")
+    @DisplayName("이전 값으로 true를 입력한 후 연달아 next() 메서드에 true를 넣어도, 뒤에 입력한 true는 false로 변환 후 Point 객체가 생성되고 move를 사용하면 왼쪽으로 이동한다.")
     void testNextWithTrueTrue() {
         //given, when
+        int index = 1;
         Point point = Point.first(true).next(true);
-        final MoveDirection direction = point.move();
+        final int movedIndex = point.move(index);
 
         //then
         assertThat(point).isNotNull();
-        assertThat(direction).isEqualTo(MoveDirection.LEFT);
+        assertThat(movedIndex).isEqualTo(0);
     }
 
     @Test

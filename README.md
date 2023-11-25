@@ -216,7 +216,7 @@
 
 - In -> Out 방식의 TDD
   - [X] ~~`Random`은 한 번만 생성해서 재사용하거나, `Random`을 포장한 다른 객체를 활용하자~~
-  - [ ] `Point` 와 `MoveDirection`이 사실상 같은 역할로 보인다. `move` 메서드에서 바로 계산을 해주자.
+  - [X] ~~`Point` 와 `MoveDirection`이 사실상 같은 역할로 보인다. `move` 메서드에서 바로 계산을 해주자.~~
 - 책임 주도 설계
   - [ ] `main`메서드에서 구현체 대신에 인터페이스를 사용하자. (InputHandler)
   - [ ] IndexHorizontalMover[][] 대신에 컬렉션을 사용하자.
