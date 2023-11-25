@@ -30,6 +30,13 @@ public class Players {
             .orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.NOT_EXIST_PLAYER.message()));
     }
 
+    public Player findPlayerBy(String name) {
+        return players.stream()
+            .filter(player -> player.isEqualName(name))
+            .findAny()
+            .orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.NOT_EXIST_PLAYER.message()));
+    }
+
     public int numOfPlayers() {
         return players.size();
     }

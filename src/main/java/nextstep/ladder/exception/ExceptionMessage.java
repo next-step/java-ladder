@@ -10,7 +10,7 @@ public enum ExceptionMessage {
     COORDINATE_IS_NOT_INIT("좌표 초기화가 아직 이뤄지지 않았습니다."),
     COORDINATE_OUR_OF_RANGE("x값 또는 y값이 좌표의 범위를 벗어납니다."),
     NOT_FINISH("사다리 타기를 완료하지 못했습니다."),
-    NOT_EXIST_PLAYER("해당 좌표 값에 존재하는 Player가 없습니다.");
+    NOT_EXIST_PLAYER("해당 조건에 일치하는 Player가 없습니다.");
 
     private final String message;
 

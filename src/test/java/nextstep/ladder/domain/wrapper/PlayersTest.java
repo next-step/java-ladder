@@ -73,4 +73,22 @@ public class PlayersTest {
         // then
         assertThat(player.isEqualCoordinate(Coordinate.of(2, 5))).isTrue();
     }
+
+    @DisplayName("인자로 받은 이름과 일치하는 플레이어를 찾아 반환한다.")
+    @Test
+    void findPlayerBy() {
+        String[] names = {"홍길동", "전창길", "코난", "브라이언"};
+        Coordinate.init(new Width(names.length), new Height(5));
+
+        Players players = new Players(IntStream.range(0, names.length)
+            .mapToObj(i -> new Player(names[i], Coordinate.of(i, 0)))
+            .collect(Collectors.toList()));
+
+        // when
+        String name = "홍길동";
+        Player player = players.findPlayerBy(name);
+
+        // then
+        assertThat(player.name()).isEqualTo("홍길동");
+    }
 }
