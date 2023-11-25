@@ -27,6 +27,10 @@ public class Bridges {
             .anyMatch(i -> bridges.get(i) && bridges.get(i + 1));
     }
 
+    public boolean isMovable(int x) {
+        return bridges.get(x);
+    }
+
     @Override
     public String toString() {
         return bridges.stream()

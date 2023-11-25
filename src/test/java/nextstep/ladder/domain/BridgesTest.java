@@ -31,4 +31,17 @@ public class BridgesTest {
         // then
         assertThat(stringBridges).isEqualTo("-----|     |-----");
     }
+
+    @DisplayName("인자로 사다리의 다리 위치 값을 전달 받아 해당 다리가 이동 가능한 지 확인한다.")
+    @Test
+    void isMovable() {
+        Bridges bridges = new Bridges(List.of(true, false, true));
+        int x = 1;
+
+        // when
+        boolean result = bridges.isMovable(x);
+
+        // then
+        assertThat(result).isFalse();
+    }
 }
