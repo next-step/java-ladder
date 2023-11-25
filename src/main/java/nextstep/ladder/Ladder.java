@@ -7,9 +7,9 @@ import java.util.stream.IntStream;
 
 public class Ladder {
 
-    private static final int MIN_COUNT_OF_PERSON = 1;
+    private static final int MIN_COUNT_OF_PERSON = 2;
 
-    private static final int MIN_HEIGHT_OF_HEIGHT = 0;
+    private static final int MIN_HEIGHT_OF_MAX_HEIGHT = 0;
 
     private final List<Line> lines;
 
@@ -18,8 +18,8 @@ public class Ladder {
             throw new IllegalArgumentException("참여자는 최소 " + MIN_COUNT_OF_PERSON + "명 이상이어야 합니다.");
         }
 
-        if (maxHeightOfLadder < MIN_HEIGHT_OF_HEIGHT) {
-            throw new IllegalArgumentException("높이는 최소 " + MIN_HEIGHT_OF_HEIGHT + "이상이어야 합니다.");
+        if (maxHeightOfLadder < MIN_HEIGHT_OF_MAX_HEIGHT) {
+            throw new IllegalArgumentException("최대 높이는 최소 " + MIN_HEIGHT_OF_MAX_HEIGHT + "이상이어야 합니다.");
         }
 
         this.lines = IntStream.range(0, maxHeightOfLadder)
