@@ -39,4 +39,31 @@ public class Line {
     public List<Boolean> points() {
         return Collections.unmodifiableList(points);
     }
+
+    public int move(int position) {
+        if (isLeftPoint(position)) {
+            return position + 1;
+        }
+        if (isRightPoint(position)) {
+            return position - 1;
+        }
+        return position;
+    }
+
+    private boolean isLeftPoint(int position) {
+        return !boundaryCheck(position) && moveCheck(position);
+    }
+
+    private boolean isRightPoint(int position) {
+        int rightPosition = position - 1;
+        return !boundaryCheck(rightPosition) && moveCheck(rightPosition);
+    }
+
+    private boolean boundaryCheck(int position) {
+        return position < 0 || position == points.size();
+    }
+
+    private boolean moveCheck(int position) {
+        return points.get(position);
+    }
 }

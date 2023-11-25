@@ -23,4 +23,8 @@ public class Names {
     public int size() {
         return values.size();
     }
+
+    public Name get(int i) {
+        return values.get(i);
+    }
 }
