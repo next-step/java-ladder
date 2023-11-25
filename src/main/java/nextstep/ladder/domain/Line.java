@@ -16,16 +16,16 @@ public class Line {
         this.points = points;
     }
 
-    public Line(int countOfPerson, CreateStrategy strategy) {
+    public Line(int width, CreateStrategy strategy) {
         List<Boolean> points = new ArrayList<>();
         points.add(false);
 
-        for (int i = 1; i < countOfPerson; i++) {
+        for (int i = 1; i < width; i++) {
             final boolean create = strategy.isCreate(points.get(i - 1));
             points.add(create);
         }
 
-        this.points = points.subList(1, countOfPerson);
+        this.points = points.subList(1, width);
     }
 
     private String getRadderStr(boolean point) {

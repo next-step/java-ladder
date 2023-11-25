@@ -11,11 +11,11 @@ public class Lines {
         this.lines = lines;
     }
 
-    public Lines(int countOfPerson, int ladderHeight) {
+    public Lines(int width, int height) {
         List<Line> lines = new ArrayList<>();
 
-        for (int i = 0; i < ladderHeight; i++) {
-            lines.add(new Line(countOfPerson, new RandomCreateStrategy()));
+        for (int i = 0; i < height; i++) {
+            lines.add(new Line(width, new RandomCreateStrategy()));
         }
 
         this.lines = lines;
