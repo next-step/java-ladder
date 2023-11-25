@@ -2,57 +2,59 @@ package nextstep.step4.responsibility.domain;
 
 import nextstep.step4.responsibility.util.RandomGenerator;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Ladder implements GameRunnable {
     private final UserData userData;
-    private final IndexHorizontalMover[][] indexHorizontalMovers;
+    private final List<Row> rows;
 
     public Ladder(final UserData userData, final int height) {
         this.userData = userData;
 
         final int size = userData.size();
-        this.indexHorizontalMovers = buildIndexHorizontalMovers(height, size);
+        this.rows = buildRows(height, size);
     }
 
-    public Ladder(final UserData userData, final IndexHorizontalMover[][] movers) {
+    public Ladder(final UserData userData, final List<Row> rows) {
         this.userData = userData;
-        this.indexHorizontalMovers = movers;
+        this.rows = rows;
     }
 
-    private IndexHorizontalMover[][] buildIndexHorizontalMovers(final int height, final int size) {
-        final IndexHorizontalMover[][] tempMovers = new IndexHorizontalMover[height][size];
+    private List<Row> buildRows(final int height, final int size) {
+        final List<Row> tempRows = new ArrayList<>();
 
         for (int row = 0; row < height; row++) {
-            tempMovers[row] = buildRowHorizontalMover(size);
+            tempRows.add(buildRow(size));
         }
 
-        return tempMovers;
+        return tempRows;
     }
 
-    private IndexHorizontalMover[] buildRowHorizontalMover(final int size) {
-        final IndexHorizontalMover[] rowMovers = new IndexHorizontalMover[size];
+    private Row buildRow(final int size) {
+        final IndexHorizontalMover[] tempMovers = new IndexHorizontalMover[size];
 
-        initRowMovers(rowMovers);
+        initMovers(tempMovers);
 
-        return rowMovers;
+        return new Row(tempMovers);
     }
 
-    private void initRowMovers(final IndexHorizontalMover[] rowMovers) {
+    private void initMovers(final IndexHorizontalMover[] tempMovers) {
         final int firstIdx = 0;
-        final int lastIdx = rowMovers.length - 1;
+        final int lastIdx = tempMovers.length - 1;
 
         Mover mover = Mover.first(RandomGenerator.nextBoolean());
-        rowMovers[firstIdx] = mover;
+        tempMovers[firstIdx] = mover;
 
         for (int idx = firstIdx + 1; idx < lastIdx; idx++) {
-            mover = ((Mover) rowMovers[idx - 1]);
-            rowMovers[idx] = mover.next(RandomGenerator.nextBoolean());
+            mover = ((Mover) tempMovers[idx - 1]);
+            tempMovers[idx] = mover.next(RandomGenerator.nextBoolean());
         }
 
-        mover = ((Mover) rowMovers[lastIdx - 1]);
-        rowMovers[lastIdx] = mover.last();
+        mover = ((Mover) tempMovers[lastIdx - 1]);
+        tempMovers[lastIdx] = mover.last();
     }
 
     @Override
@@ -75,8 +77,8 @@ public class Ladder implements GameRunnable {
     private int move(final int userIdx) {
         int arrivalIdx = userIdx;
 
-        for (final IndexHorizontalMover[] rowMovers : this.indexHorizontalMovers) {
-            final IndexHorizontalMover mover = rowMovers[arrivalIdx];
+        for (final Row row : this.rows) {
+            final IndexHorizontalMover mover = row.get(arrivalIdx);
 
             arrivalIdx = mover.moveHorizontal(arrivalIdx);
         }
@@ -92,7 +94,7 @@ public class Ladder implements GameRunnable {
         return this.userData.getUserResults();
     }
 
-    public IndexHorizontalMover[][] indexHorizontalMovers() {
-        return this.indexHorizontalMovers;
+    public List<Row> indexHorizontalMovers() {
+        return this.rows;
     }
 }

@@ -31,23 +31,23 @@ public class ConsoleOutputHandler implements OutputHandler {
         System.out.println(printUserNames);
     }
 
-    private void printLadderBody(final IndexHorizontalMover[][] movers) {
-        for (final IndexHorizontalMover[] rowMover : movers) {
+    private void printLadderBody(final List<Row> rows) {
+        for (final Row rowMover : rows) {
             final String rowMoversString = printLadderRowMovers(rowMover);
 
             System.out.println(rowMoversString);
         }
     }
 
-    private String printLadderRowMovers(final IndexHorizontalMover[] rowMover) {
+    private String printLadderRowMovers(final Row row) {
         StringBuilder sb = new StringBuilder();
         final String delimiter = "|";
         final String prefix = " ".repeat(UserNames.MAX_NAME_LENGTH - 1) + delimiter;
 
         sb.append(prefix);
 
-        for (int idx = 0; idx < rowMover.length - 1; idx++) {
-            sb.append(convertToLadderLineString(rowMover[idx]));
+        for (int idx = 0; idx < row.size() - 1; idx++) {
+            sb.append(convertToLadderLineString(row.get(idx)));
             sb.append(delimiter);
         }
 

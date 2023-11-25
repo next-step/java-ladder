@@ -4,6 +4,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -34,10 +36,10 @@ class LadderTest {
                 new UserNames("pobi,honux,crong,jk"),
                 new UserResults("꽝,5000,꽝,3000")
         );
-        final IndexHorizontalMover[][] movers = buildMovers();
+        final List<Row> rows = buildRows();
 
         //when
-        final Ladder ladder = new Ladder(userData, movers);
+        final Ladder ladder = new Ladder(userData, rows);
 
         //then
         assertThat(ladder).isNotNull();
@@ -70,7 +72,7 @@ class LadderTest {
                 new UserResults("꽝,5000,꽝,3000")
         );
 
-        final IndexHorizontalMover[][] movers = buildMovers();
+        final List<Row> movers = buildRows();
 
         final Ladder ladder = new Ladder(userData, movers);
 
@@ -88,11 +90,12 @@ class LadderTest {
         );
     }
 
-    private IndexHorizontalMover[][] buildMovers() {
-        final IndexHorizontalMover[][] movers = new IndexHorizontalMover[5][4];
+    private List<Row> buildRows() {
+        final List<Row> movers = new ArrayList<>();
 
         for (int row = 0; row < 5; row++) {
-            movers[row] = new IndexHorizontalMover[]{Mover.RIGHT, Mover.LEFT, Mover.RIGHT, Mover.LEFT};
+            final IndexHorizontalMover[] tempRow = {Mover.RIGHT, Mover.LEFT, Mover.RIGHT, Mover.LEFT};
+            movers.add(new Row(tempRow));
         }
 
         return movers;
