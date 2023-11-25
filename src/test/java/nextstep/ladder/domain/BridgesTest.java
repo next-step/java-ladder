@@ -29,6 +29,6 @@ public class BridgesTest {
         String stringBridges = bridges.toString();
 
         // then
-        assertThat(stringBridges).isEqualTo(TRUE_BRIDGE + LADDER_POLE + FALSE_BRIDGE + LADDER_POLE + TRUE_BRIDGE);
+        assertThat(stringBridges).isEqualTo("-----|     |-----");
     }
 }

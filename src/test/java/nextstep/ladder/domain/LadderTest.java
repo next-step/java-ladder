@@ -24,9 +24,6 @@ public class LadderTest {
         String stringLadder = ladder.toString();
 
         // then
-        assertThat(stringLadder).isEqualTo(
-            LADDER_POLE+ TRUE_BRIDGE + LADDER_POLE + FALSE_BRIDGE + LADDER_POLE + TRUE_BRIDGE + LADDER_POLE + "\n" +
-                LADDER_POLE+ TRUE_BRIDGE + LADDER_POLE + FALSE_BRIDGE + LADDER_POLE + TRUE_BRIDGE + LADDER_POLE
-        );
+        assertThat(stringLadder).isEqualTo("|-----|     |-----|\n|-----|     |-----|");
     }
 }
