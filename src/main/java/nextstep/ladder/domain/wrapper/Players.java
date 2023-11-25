@@ -1,7 +1,9 @@
 package nextstep.ladder.domain.wrapper;
 
 import nextstep.ladder.domain.Coordinate;
+import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Player;
+import nextstep.ladder.exception.ExceptionMessage;
 
 import java.util.List;
 import java.util.Objects;
@@ -21,12 +23,19 @@ public class Players {
             .collect(Collectors.joining());
     }
 
-    // TODO : 마무리해야함
     public Player findPlayerBy(Coordinate coordinate) {
         return players.stream()
-            .filter(player -> player.isMatching(coordinate))
+            .filter(player -> player.isEqualCoordinate(coordinate))
             .findAny()
-            .orElseThrow(() -> new IllegalArgumentException("해당 좌표 값에 존재하는 Player가 없습니다."));
+            .orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.NOT_EXIST_PLAYER.message()));
+    }
+
+    public int numOfPlayers() {
+        return players.size();
+    }
+
+    public Player moveOne(int playerNo, Ladder ladder) {
+        return ladder.climb(players.get(playerNo));
     }
 
     @Override
@@ -35,11 +44,6 @@ public class Players {
         if (o == null || getClass() != o.getClass()) return false;
         Players players1 = (Players) o;
         return Objects.equals(players, players1.players);
-    }
-
-    public void move(int playerNo, int x, int y) {
-        players.get(playerNo)
-            .move(x, y);
     }
 
     @Override
