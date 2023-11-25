@@ -42,6 +42,16 @@ public class PlayerTest {
         assertThat(player.isEqualCoordinate(target)).isTrue();
     }
 
+    @DisplayName("인자로 받은 이름과 자신의 이름이 일치하는 지 확인한다.")
+    @Test
+    void isEqualName() {
+        // given
+        Player player = new Player("홍길동", Coordinate.of(1, 0));
+
+        // when & then
+        assertThat(player.isEqualName("홍길동")).isTrue();
+    }
+
     @DisplayName("사다리의 다리를 인자로 받아 자신의 좌표 값을 다음 이동 가능한 좌표 값으로 옮기고 자신을 반환한다.")
     @Test
     void move() {

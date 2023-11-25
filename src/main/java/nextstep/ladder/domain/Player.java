@@ -24,4 +24,8 @@ public class Player {
         coordinate = coordinate.findNextCoordinate(bridge);
         return this;
     }
+
+    public boolean isEqualName(String name) {
+        return name().equals(name);
+    }
 }
