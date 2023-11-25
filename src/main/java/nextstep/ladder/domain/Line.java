@@ -18,14 +18,14 @@ public class Line {
 
     public Line(int countOfPerson, CreateStrategy strategy) {
         List<Boolean> points = new ArrayList<>();
+        points.add(false);
 
-        IntStream.range(0, countOfPerson - 1)
-        .forEach(i -> {
-            boolean shouldCreate = strategy.isCreate() && (i == 0 || !points.get(i - 1));
-            points.add(shouldCreate);
-        });
+        for (int i = 1; i < countOfPerson; i++) {
+            final boolean create = strategy.isCreate(points.get(i - 1));
+            points.add(create);
+        }
 
-        this.points = points;
+        this.points = points.subList(1, countOfPerson);
     }
 
     private String getRadderStr(boolean point) {

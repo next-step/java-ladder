@@ -1,5 +1,5 @@
 package nextstep.ladder.domain;
 
 public interface CreateStrategy {
-    public boolean isCreate();
+    public boolean isCreate(boolean beforeExist);
 }

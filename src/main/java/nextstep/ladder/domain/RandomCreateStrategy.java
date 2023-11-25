@@ -4,14 +4,25 @@ import java.util.Random;
 
 public class RandomCreateStrategy implements CreateStrategy {
 
-    @Override
-    public boolean isCreate() {
-        int number = new Random().nextInt(10);
+    private boolean beforeExist;
 
-        if (number < 4) {
-            return true;
+    public RandomCreateStrategy() {
+        this.beforeExist = false;
+    }
+
+    @Override
+    public boolean isCreate(boolean beforeExist) {
+        boolean isCraete = false;
+
+        if (new Random().nextBoolean() && isBeforeNotExist(beforeExist)) {
+            isCraete = true;
         }
 
-        return false;
+        this.beforeExist = beforeExist;
+        return isCraete;
+    }
+
+    private static boolean isBeforeNotExist(final boolean beforeExist) {
+        return !beforeExist;
     }
 }
