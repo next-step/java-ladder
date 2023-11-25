@@ -15,7 +15,7 @@ public class StreamStudyTest {
 
     @BeforeEach
     public void setup() {
-        numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        numbers = List.of(1, 2, 3, 4, 5, 6);
     }
 
     @Test
@@ -43,14 +43,14 @@ public class StreamStudyTest {
 
     @Test
     public void sumOverThreeAndDouble() throws Exception {
-        numbers = Arrays.asList(3, 1, 6, 2, 4, 8);
+        numbers = List.of(3, 1, 6, 2, 4, 8);
         long sum = StreamStudy.sumOverThreeAndDouble(numbers);
         assertThat(sum).isEqualTo(36);
     }
 
     @Test
     public void sumOverThreeAndDoubleWithCondition() throws Exception {
-        numbers = Arrays.asList(3, 1, 6, 2, 4, 8);
+        numbers = List.of(3, 1, 6, 2, 4, 8);
         Condition condition = number -> number > 3 ? number * 2 : 0;
         long sum = StreamStudy.sumOverThreeAndDouble(numbers, condition);
         assertThat(sum).isEqualTo(36);
@@ -58,7 +58,7 @@ public class StreamStudyTest {
 
     @Test
     public void sumOverThreeAndDoubleWithStream() throws Exception {
-        numbers = Arrays.asList(3, 1, 6, 2, 4, 8);
+        numbers = List.of(3, 1, 6, 2, 4, 8);
         Predicate<Integer> predicate = number -> number > 3;
         Function<Integer, Integer> function = number -> number * 2;
         long sum = StreamStudy.sumOverThreeAndDouble(numbers, predicate, function);
