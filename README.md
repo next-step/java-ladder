@@ -21,6 +21,7 @@
   * [Step4](#step4)
     * [프로그래밍 요구사항](#프로그래밍-요구사항-2)
     * [기능목록](#기능목록-3)
+    * [23.11.25 추가 피드백 사항](#231125-추가-피드백-사항)
 
 <!-- TOC -->
 
@@ -210,3 +211,15 @@
       - [X] ~~LeftMover, RightMover, NoneMover 구현체 생성~~
     - [X] ~~게임 결과를 제공할 책임 (GameResultProvider)~~
       - [X] ~~LadderResult 구현체 생성~~
+
+### 23.11.25 추가 피드백 사항
+
+- In -> Out 방식의 TDD
+  - [ ] `Random`은 한 번만 생성해서 재사용하거나, `Random`을 포장한 다른 객체를 활용하자
+  - [ ] `Point` 와 `MoveDirection`이 사실상 같은 역할로 보인다. `move` 메서드에서 바로 계산을 해주자.
+- 책임 주도 설계
+  - [ ] `main`메서드에서 구현체 대신에 인터페이스를 사용하자. (InputHandler)
+  - [ ] IndexHorizontalMover[][] 대신에 컬렉션을 사용하자.
+  - [ ] Mover 객체를 enum 으로도 구현 해보고, 각 객체가 next() 같은 메서드를 통해서 생성의 역할도 하자
+  - [ ] 도메인에서 출력의 결과를 만드는 것은 지양하자. (OutputHandler의 구현체가 달라지면, buildAllResult의 결과도 달라져야할 수 있으므로 도메인에서 구현하지 말자.)
+    - Console에서만 LadderResult를 쓸 생각이라면, output 패키지로 이동 후 객체 생성 과정을 Main으로 이전하자.
