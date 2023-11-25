@@ -6,6 +6,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static nextstep.ladder.exception.ExceptionMessage.*;
 import static org.assertj.core.api.Assertions.*;
 
@@ -64,5 +66,23 @@ public class CoordinateTest {
         // when & then
         assertThatThrownBy(() -> Coordinate.init(new Width(3), new Height(5))).isInstanceOf(IllegalArgumentException.class)
             .hasMessage(COORDINATE_IS_INIT.message());
+    }
+
+    @DisplayName("사다리의 다리를 인자로 받아 이동 가능한 다음 좌표 값을 반환한다.")
+    @Test
+    void findNextCoordinate() {
+        // given
+        Width width = new Width(5);
+        Height height = new Height(5);
+        Coordinate.init(width, height);
+
+        Coordinate coordinate = Coordinate.of(0, 0);
+        Bridges bridges = new Bridges(List.of(true, false, true, false));
+
+        // when
+        Coordinate nextCoordinate = coordinate.findNextCoordinate(bridges);
+
+        // then
+        assertThat(nextCoordinate).isEqualTo(Coordinate.of(1, 1));
     }
 }

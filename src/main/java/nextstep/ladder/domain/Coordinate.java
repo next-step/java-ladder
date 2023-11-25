@@ -2,12 +2,11 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.wrapper.Height;
 import nextstep.ladder.domain.wrapper.Width;
-import nextstep.ladder.exception.ExceptionMessage;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static nextstep.ladder.exception.ExceptionMessage.*;
@@ -15,9 +14,10 @@ import static nextstep.ladder.exception.ExceptionMessage.*;
 public class Coordinate {
 
     private static final List<Coordinate> COORDINATES = new ArrayList<>();
+    private static final int[] DIRECTIONS = {0 , -1};
+    public static final int DEPTH_ADJUSTMENT = 1;
 
     private int x;
-
     private int y;
 
     private Coordinate(int x, int y) {
@@ -29,7 +29,7 @@ public class Coordinate {
         validateInit();
 
         List<Coordinate> init = Stream.iterate(0, i -> i + 1)
-            .limit(height.value())
+            .limit(height.value() + 1)
             .flatMap(i -> create(width, i))
             .collect(Collectors.toUnmodifiableList());
 
@@ -65,5 +65,25 @@ public class Coordinate {
 
     protected static void clear() {
         COORDINATES.clear();
+    }
+
+    public Coordinate findNextCoordinate(Bridges bridge) {
+        return Arrays.stream(DIRECTIONS)
+            .filter(direction -> bridge.isMovableSide(x + direction))
+            .mapToObj(direction -> movableSide(direction, x + direction))
+            .findAny()
+            .orElse(Coordinate.of(x, nextHeight(y)));
+    }
+
+    private Coordinate movableSide(int direction, int next) {
+        if (direction == DIRECTIONS[0]) {
+            return Coordinate.of(next + DEPTH_ADJUSTMENT, nextHeight(y));
+        }
+
+        return Coordinate.of(next, nextHeight(y));
+    }
+
+    private int nextHeight(int y) {
+        return y + DEPTH_ADJUSTMENT;
     }
 }
