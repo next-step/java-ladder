@@ -24,9 +24,9 @@ public class ComputerStore {
 
     public static String getVersionOptional(Computer computer) {
         return Optional.ofNullable(computer)
-                .flatMap(c -> Optional.ofNullable(c.getSoundcard()))
-                .flatMap(s -> Optional.ofNullable(s.getUsb()))
-                .flatMap(u -> Optional.ofNullable(u.getVersion()))
+                .map(Computer::getSoundcard)
+                .map(Soundcard::getUsb)
+                .map(USB::getVersion)
                 .orElse(UNKNOWN_VERSION);
     }
 }
