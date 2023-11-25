@@ -92,7 +92,7 @@ class LadderTest {
         final IndexHorizontalMover[][] movers = new IndexHorizontalMover[5][4];
 
         for (int row = 0; row < 5; row++) {
-            movers[row] = new IndexHorizontalMover[]{new RightMover(), new LeftMover(), new RightMover(), new LeftMover()};
+            movers[row] = new IndexHorizontalMover[]{Mover.RIGHT, Mover.LEFT, Mover.RIGHT, Mover.LEFT};
         }
 
         return movers;

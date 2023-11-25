@@ -27,9 +27,9 @@ class IndexHorizontalMoverTest {
 
     public static Stream<Arguments> indexHorizontalMoversProvider() {
         return Stream.of(
-                Arguments.of(new LeftMover(), 0),
-                Arguments.of(new NoneMover(), 1),
-                Arguments.of(new RightMover(), 2)
+                Arguments.of(Mover.LEFT, 0),
+                Arguments.of(Mover.NONE, 1),
+                Arguments.of(Mover.RIGHT, 2)
         );
     }
 }

@@ -55,7 +55,7 @@ public class ConsoleOutputHandler implements OutputHandler {
     }
 
     private String convertToLadderLineString(final IndexHorizontalMover rowMover) {
-        if (rowMover instanceof RightMover) {
+        if (rowMover == Mover.RIGHT) {
             return "-".repeat(UserNames.MAX_NAME_LENGTH);
         }
 

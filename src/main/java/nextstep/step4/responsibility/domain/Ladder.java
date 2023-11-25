@@ -65,30 +65,30 @@ public class Ladder implements GameRunnable {
 
     private IndexHorizontalMover buildFirstMover(final boolean curBool) {
         if (curBool) {
-            return new RightMover();
+            return Mover.RIGHT;
         }
 
-        return new NoneMover();
+        return Mover.NONE;
     }
 
     private IndexHorizontalMover buildMiddleMover(final boolean preBool, final boolean curBool) {
         if (preBool) {
-            return new LeftMover();
+            return Mover.LEFT;
         }
 
         if (curBool) {
-            return new RightMover();
+            return Mover.RIGHT;
         }
 
-        return new NoneMover();
+        return Mover.NONE;
     }
 
     private IndexHorizontalMover buildLastMover(final boolean curBool) {
         if (curBool) {
-            return new LeftMover();
+            return Mover.LEFT;
         }
 
-        return new NoneMover();
+        return Mover.NONE;
     }
 
     @Override
