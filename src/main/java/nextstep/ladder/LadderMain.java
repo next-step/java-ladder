@@ -1,12 +1,11 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Names;
+import nextstep.ladder.domain.*;
 import nextstep.ladder.strategy.RandomRuleStrategy;
 import nextstep.ladder.strategy.RuleStrategy;
 
 import static nextstep.ladder.view.InputView.*;
-import static nextstep.ladder.view.ResultView.printLadder;
+import static nextstep.ladder.view.ResultView.*;
 
 public class LadderMain {
 
@@ -14,8 +13,13 @@ public class LadderMain {
 
     public static void main(String[] args) {
         Names names = new Names(inputNames());
+        Results results = new Results(inputResult());
+        results.validateSize(names.size());
         int height = inputHeight();
         Ladder ladder = new Ladder(height, names.size(), ruleStrategy);
-        printLadder(names, ladder);
+        LadderResult ladderResult = new LadderResult(results.of(names, ladder));
+
+        printLadder(names, ladder, results);
+        printUserResult(ladderResult, new Name(inputResultName()));
     }
 }

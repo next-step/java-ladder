@@ -32,7 +32,7 @@ public class Results {
 
     public Map<Name, Result> of(Names names, Ladder ladder) {
         Map<Name, Result> result = new HashMap<>();
-        for(int nameIdx = 0; nameIdx < names.size(); nameIdx++) {
+        for (int nameIdx = 0; nameIdx < names.size(); nameIdx++) {
             Name name = names.get(nameIdx);
             int position = ladder.move(nameIdx);
             result.put(name, get(position));
