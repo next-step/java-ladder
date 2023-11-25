@@ -14,6 +14,10 @@ public class Ladder {
         this.ladder = ladder;
     }
 
+    public boolean isMovable(int x, int y) {
+        return ladder.get(y).isMovable(x);
+    }
+
     @Override
     public String toString() {
         return ladder.stream()

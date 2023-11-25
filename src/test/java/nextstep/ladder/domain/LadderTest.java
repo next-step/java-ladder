@@ -26,4 +26,20 @@ public class LadderTest {
         // then
         assertThat(stringLadder).isEqualTo("|-----|     |-----|\n|-----|     |-----|");
     }
+
+    @DisplayName("인자로 사다리의 좌표 값을 전달받아 해당 사다리가 이동 가능한 지 확인한다.")
+    @Test
+    void isMovable() {
+        Ladder ladder = new Ladder(List.of
+            (new Bridges(List.of(true, false, true)),
+             new Bridges(List.of(true, false, true))));
+        int x = 0;
+        int y = 1;
+
+        // when
+        boolean result = ladder.isMovable(x, y);
+
+        // then
+        assertThat(result).isTrue();
+    }
 }
