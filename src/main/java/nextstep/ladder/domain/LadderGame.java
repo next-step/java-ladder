@@ -3,6 +3,11 @@ package nextstep.ladder.domain;
 import nextstep.ladder.controller.dto.GameInfo;
 import nextstep.ladder.domain.wrapper.Players;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
 public class LadderGame {
 
     private final Players players;
@@ -23,5 +28,13 @@ public class LadderGame {
 
     public String ladder() {
         return ladder.toString();
+    }
+
+    public Players play() {
+        List<Player> finished = IntStream.range(0, players.numOfPlayers())
+            .mapToObj(i -> players.moveOne(i, ladder))
+            .collect(Collectors.toUnmodifiableList());
+
+        return new Players(finished);
     }
 }
