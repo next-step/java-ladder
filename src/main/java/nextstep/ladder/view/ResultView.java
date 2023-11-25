@@ -67,11 +67,12 @@ public class ResultView {
     private static void printAllResult(LadderResult ladderResult) {
         StringBuilder builder = new StringBuilder();
         for (Map.Entry<Name, Result> entry : ladderResult.results().entrySet()) {
-            builder.append(entry.getKey().value());
-            builder.append(" : ");
-            builder.append(entry.getValue().value());
-            builder.append("\n");
+            builder.append(printReusltText(entry.getKey(), entry.getValue()));
         }
         System.out.println(builder.toString());
+    }
+
+    private static String printReusltText(Name name, Result result) {
+        return name.value() + " : " + result.value() + "\n";
     }
 }

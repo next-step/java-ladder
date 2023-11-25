@@ -15,8 +15,7 @@ public class LadderMain {
         Names names = new Names(inputNames());
         Results results = new Results(inputResult());
         results.validateSize(names.size());
-        int height = inputHeight();
-        Ladder ladder = new Ladder(height, names.size(), ruleStrategy);
+        Ladder ladder = new Ladder(inputHeight(), names.size(), ruleStrategy);
         LadderResult ladderResult = new LadderResult(results.of(names, ladder));
 
         printLadder(names, ladder, results);
