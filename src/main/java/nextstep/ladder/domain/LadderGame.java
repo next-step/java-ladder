@@ -12,14 +12,16 @@ public class LadderGame {
 
     private final Players players;
     private final Ladder ladder;
+    private final WinningPrize winningPrize;
 
-    public LadderGame(Players players, Ladder ladder) {
+    public LadderGame(Players players, Ladder ladder, WinningPrize winningPrize) {
         this.players = players;
         this.ladder = ladder;
+        this.winningPrize = winningPrize;
     }
 
     public LadderGame(GameInfo gameInfo) {
-        this(gameInfo.players(), gameInfo.ladder());
+        this(gameInfo.players(), gameInfo.ladder(), gameInfo.winningPrize());
     }
 
     public String playersName() {
@@ -36,5 +38,10 @@ public class LadderGame {
             .collect(Collectors.toUnmodifiableList());
 
         return new Players(finished);
+    }
+
+    public String findReusltBy(String name) {
+        Player player = players.findPlayerBy(name);
+        return winningPrize.findWinningPrizeBy(player);
     }
 }
