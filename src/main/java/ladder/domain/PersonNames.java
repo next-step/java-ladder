@@ -1,26 +1,34 @@
 package ladder.domain;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class PersonNames {
 
-    private final List<Name> personNames;
+    private final List<Name> names;
 
-    public PersonNames(String[] personNames) {
-        this.personNames = Arrays.stream(personNames)
+    public PersonNames() {
+        this(new ArrayList<>());
+    }
+
+    public PersonNames(String[] names) {
+        this(Arrays.stream(names)
             .map(Name::new)
-            .collect(Collectors.toList());
+            .collect(Collectors.toList())
+        );
+    }
+
+    public PersonNames(List<Name> names) {
+        this.names = names;
     }
 
     public int size() {
-        return personNames.size();
+        return names.size();
     }
 
     @Override
     public String toString() {
-        return personNames.stream()
+        return names.stream()
             .map(Name::toString)
             .collect(Collectors.joining());
     }
