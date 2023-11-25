@@ -41,22 +41,22 @@ public class Line {
     }
 
     public int move(int position) {
-        if (isLeftPoint(position)) {
+        if (isRightPositionMove(position)) {
             return position + 1;
         }
-        if (isRightPoint(position)) {
+        if (isLeftPositionMove(position)) {
             return position - 1;
         }
         return position;
     }
 
-    private boolean isLeftPoint(int position) {
+    private boolean isRightPositionMove(int position) {
         return !boundaryCheck(position) && moveCheck(position);
     }
 
-    private boolean isRightPoint(int position) {
-        int rightPosition = position - 1;
-        return !boundaryCheck(rightPosition) && moveCheck(rightPosition);
+    private boolean isLeftPositionMove(int position) {
+        int leftPosition = position - 1;
+        return !boundaryCheck(leftPosition) && moveCheck(leftPosition);
     }
 
     private boolean boundaryCheck(int position) {

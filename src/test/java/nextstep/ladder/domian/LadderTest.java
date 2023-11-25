@@ -17,4 +17,11 @@ public class LadderTest {
         ladder = new Ladder(3, 3, () -> true);
         assertThat(ladder.lines()).hasSize(3);
     }
+
+    @DisplayName("사다리를 이동한다")
+    @Test
+    void 사다리를_이동한다() {
+        ladder = new Ladder(1, 2, () -> true);
+        assertThat(ladder.move(0)).isEqualTo(1);
+    }
 }

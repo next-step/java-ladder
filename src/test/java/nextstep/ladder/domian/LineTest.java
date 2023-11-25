@@ -15,8 +15,8 @@ public class LineTest {
 
     private Line line;
 
-    void createLine(int height) {
-        line = new Line(height, () -> true);
+    void createLine(int width) {
+        line = new Line(width, () -> true);
     }
 
     @DisplayName("사다리 가로칸을 생성한다")
@@ -35,5 +35,12 @@ public class LineTest {
     void 사다리는_최소_2개의_가로칸을_가져야_한다() {
         assertThatThrownBy(() -> createLine(1))
                 .isInstanceOf(LineSizeException.class);
+    }
+
+    @DisplayName("사다리를 이동한다")
+    @Test
+    void 사다리를_이동한다() {
+        createLine(2);
+        assertThat(line.move(0)).isEqualTo(1);
     }
 }
