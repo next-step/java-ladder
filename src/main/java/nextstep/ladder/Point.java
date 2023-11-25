@@ -4,6 +4,8 @@ import java.security.SecureRandom;
 
 public class Point {
 
+    private static final SecureRandom secureRandom = new SecureRandom();
+
     private final boolean active;
 
     public Point(boolean active) {
@@ -11,7 +13,7 @@ public class Point {
     }
 
     public Point() {
-        this.active = new SecureRandom().nextBoolean();
+        this.active = secureRandom.nextBoolean();
     }
 
     public boolean isActive() {
