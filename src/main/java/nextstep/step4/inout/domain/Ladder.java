@@ -1,6 +1,11 @@
 package nextstep.step4.inout.domain;
 
-import java.util.*;
+import nextstep.step4.inout.util.RandomGenerator;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Ladder {
     private final List<Line> lines;
@@ -45,11 +50,11 @@ public class Ladder {
     }
 
     private Point buildFirstPoint() {
-        return Point.first(new Random().nextBoolean());
+        return Point.first(RandomGenerator.nextBoolean());
     }
 
     private Point buildNextPoint(Point point) {
-        return point.next(new Random().nextBoolean());
+        return point.next(RandomGenerator.nextBoolean());
     }
 
     private Point buildLastPoint(final Point point) {
