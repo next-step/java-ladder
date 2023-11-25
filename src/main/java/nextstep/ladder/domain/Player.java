@@ -16,8 +16,8 @@ public class Player {
         return this.name.toString();
     }
 
-    public Coordinate currentCoordinate() {
-        return this.coordinate;
+    public boolean isMatching(Coordinate coordinate) {
+        return this.coordinate.equals(coordinate);
     }
 
     public void move(int x, int y) {

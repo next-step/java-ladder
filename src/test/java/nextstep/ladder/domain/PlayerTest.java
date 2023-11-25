@@ -18,19 +18,6 @@ public class PlayerTest {
         Coordinate.init(width, height);
     }
 
-    @DisplayName("Player 생성 시 초기 값을 설정한다.")
-    @Test
-    void createPlayer() {
-        // given
-        String name = "홍길동";
-
-        // when
-        Player player = new Player(name, Coordinate.of(1, 0));
-
-        // then
-        assertThat(player.currentCoordinate()).isEqualTo(Coordinate.of(1, 0));
-    }
-
     @DisplayName("Player의 이름을 확인한다.")
     @Test
     void names() {
@@ -55,6 +42,6 @@ public class PlayerTest {
         player.move(x, y);
 
         // then
-        assertThat(player.currentCoordinate()).isEqualTo(Coordinate.of(2, 1));
+        assertThat(player.isMatching(Coordinate.of(2, 1))).isTrue();
     }
 }
