@@ -21,7 +21,7 @@ class LadderTest {
 
         assertThat(lines)
                 .hasSize(height.height())
-                .allSatisfy(line -> assertThat(line.size()).isEqualTo(countOfPerson - 1));
+                .allSatisfy(line -> assertThat(line.size()).isEqualTo(countOfPerson));
     }
 
 }

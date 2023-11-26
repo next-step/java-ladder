@@ -1,10 +1,13 @@
 package nextstep.ladder.ui;
 
+import nextstep.ladder.domain.Direction;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Names;
 
 import java.util.List;
+
+import static nextstep.ladder.domain.Direction.RIGHT;
 
 public class OutputView {
 
@@ -31,12 +34,12 @@ public class OutputView {
 
     private static void printLine(Line line) {
         System.out.print(BLANK);
-        line.points().forEach(point -> System.out.print(WALL + judgeLineOrBlank(point)));
+        line.directions().forEach(point -> System.out.print(WALL + judgeLineOrBlank(point)));
         System.out.println(WALL);
     }
 
-    private static String judgeLineOrBlank(Boolean point) {
-        if (point) {
+    private static String judgeLineOrBlank(Direction direction) {
+        if (direction == RIGHT) {
             return LINE;
         }
         return BLANK;
