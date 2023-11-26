@@ -16,4 +16,8 @@ public class PersonNames {
 
         this.names = nameList;
     }
+
+    public int size() {
+        return this.names.size();
+    }
 }

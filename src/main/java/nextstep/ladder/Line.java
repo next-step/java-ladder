@@ -30,4 +30,11 @@ public class Line {
     public List<Boolean> points() {
         return this.points;
     }
+
+    @Override
+    public String toString() {
+        return "Line{" +
+                "points=" + points +
+                '}';
+    }
 }

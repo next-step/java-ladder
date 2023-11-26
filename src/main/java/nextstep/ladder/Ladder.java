@@ -11,6 +11,10 @@ public class Ladder {
         this.lines = new ArrayList<>(lines);
     }
 
+    public Ladder(int personCount, int height, LineStrategy ladderFactory) {
+        this.lines = LadderFactory.createLadder(personCount, height, ladderFactory);
+    }
+
     public void validate(List<Line> lines) {
         checkLinesSizeIsValid(lines);
     }
@@ -27,5 +31,12 @@ public class Ladder {
 
     public List<Line> lines() {
         return this.lines;
+    }
+
+    @Override
+    public String toString() {
+        return "Ladder{" +
+                "lines=" + lines +
+                '}';
     }
 }
