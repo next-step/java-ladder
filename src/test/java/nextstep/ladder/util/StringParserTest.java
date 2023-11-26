@@ -13,11 +13,10 @@ class StringParserTest {
     @DisplayName("성공 - 참여자의 이름을 쉼표로 구분한다.")
     void success_string_parse() {
         String text = "pobi,honux,crong,jk";
-        int size = 4;
 
         List<String> persons = StringParser.split(text);
 
-        assertThat(persons).hasSize(size);
+        assertThat(persons).isEqualTo(List.of("pobi", "honux", "crong", "jk"));
     }
 
 }

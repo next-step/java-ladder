@@ -2,7 +2,7 @@ package nextstep.ladder.ui;
 
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Participants;
+import nextstep.ladder.domain.Names;
 
 import java.util.List;
 
@@ -15,12 +15,12 @@ public class OutputView {
     private static final String LINE = "-----";
     private static final String BLANK = "     ";
 
-    public static void printParticipants(Participants participants) {
+    public static void printParticipants(Names names) {
         System.out.println();
         System.out.println("실행 결과");
         System.out.println();
 
-        participants.names().forEach(System.out::print);
+        names.names().forEach(System.out::print);
     }
 
     public static void printLadder(Ladder ladder) {

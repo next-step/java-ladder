@@ -4,10 +4,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Participants {
+public class Names {
     private final List<Name> names;
 
-    public Participants(List<String> persons) {
+    public Names(List<String> persons) {
         this.names = persons.stream()
                 .map(Name::new)
                 .collect(Collectors.toList());

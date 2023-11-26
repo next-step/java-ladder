@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class Line {
-    private List<Boolean> points = new ArrayList<>();
+    private final List<Boolean> points;
 
     public Line(List<Boolean> points) {
         validatePointsContinuity(points);
