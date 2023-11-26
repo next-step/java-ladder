@@ -1,6 +1,7 @@
 package nextstep.ladder.domian;
 
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderResult;
 import nextstep.ladder.domain.Names;
 import nextstep.ladder.domain.Results;
 import nextstep.ladder.exception.ResultSizeMismatchException;
@@ -41,7 +42,8 @@ public class ResultsTest {
         Names names = new Names("a,b");
         Ladder ladder = new Ladder(2, names.size(), () -> true);
         result = new Results("꽝,5000");
-        assertThat(result.of(names, ladder).get(names.get(0)).value()).isEqualTo("꽝");
+        LadderResult ladderResult = result.of(names, ladder);
+        assertThat(ladderResult.result(names.get(0)).value()).isEqualTo("꽝");
     }
 
     @DisplayName("결과는 참여자 수와 같지 않으면 에러가 발생한다.")

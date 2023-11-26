@@ -34,6 +34,8 @@
 
 ![img.png](resultImg.png)
 
+![img.png](img.png)
+
 ### 프로그래밍 요구사항
 - 자바8의 스트림, 람다를 사용해 함수형 프로그래밍하는 경험
 - In -> Out, Out -> In 방식으로 도메인 객체를 설계하는 경험
