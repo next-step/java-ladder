@@ -22,9 +22,9 @@ public class Point {
     @Override
     public String toString() {
         if (this.status) {
-            return "-----|";
+            return Ladder.LINE_WITH_POINTS.getShape();
         }
 
-        return "     |";
+        return Ladder.LINE_ONLY.getShape();
     }
 }
