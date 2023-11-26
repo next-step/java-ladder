@@ -2,7 +2,7 @@ package step2.model;
 
 public class Point {
 
-    private boolean status = false;
+    private boolean status;
 
     public Point(boolean status) {
         this.status = status;
@@ -12,11 +12,15 @@ public class Point {
     }
 
     public Point create(Point point, RandomStrategy randomStrategy) {
-        if (point != null && !point.status) {
+        if (point == null || !point.status) {
             return new Point(randomStrategy.hasPoint());
         }
 
         return new Point(false);
+    }
+
+    public boolean getStatus() {
+        return this.status;
     }
 
     @Override

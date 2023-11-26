@@ -8,20 +8,16 @@ public class LadderGame {
 
     private final List<Line> lines;
 
-    public LadderGame(List<Line> lines) {
-        this.lines = lines;
-    }
-
     public LadderGame(final int lineHeight, final int playersCount) {
         List<Line> result = new ArrayList<>();
 
         IntStream.range(0, lineHeight)
-                .forEach(line -> result.add(new Line(playersCount)));
+                .forEach(line -> result.add(new Line(playersCount, new PointRandomStrategy())));
 
         this.lines = result;
     }
 
-    public int getLineSize() {
-        return this.lines.size();
+    public List<Line> getLines() {
+        return this.lines;
     }
 }
