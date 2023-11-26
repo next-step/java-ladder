@@ -1,4 +1,6 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.calculator;
+
+import nextstep.ladder.domain.calculator.LineCountCalculator;
 
 import java.util.Random;
 
