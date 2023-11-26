@@ -1,12 +1,11 @@
 package me.namuhuchutong.ladder;
 
 import me.namuhuchutong.ladder.domain.engine.LineCreator;
-import me.namuhuchutong.ladder.domain.engine.ScaffoldFactory;
+import me.namuhuchutong.ladder.domain.engine.ScaffoldDiscriminator;
 import me.namuhuchutong.ladder.domain.implement.RowCreator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static me.namuhuchutong.ladder.domain.implement.wrapper.LadderExpression.*;
 import static org.assertj.core.api.Assertions.*;
 
 class RowTest {
@@ -15,9 +14,9 @@ class RowTest {
     @Test
     void scaffold_should_not_be_continuous() {
         LineCreator lineCreator = new RowCreator();
-        ScaffoldFactory testFactory = () -> HYPHEN;
+        ScaffoldDiscriminator discriminator = () -> true;
 
-        assertThatThrownBy(() -> lineCreator.createLine(5, testFactory))
+        assertThatThrownBy(() -> lineCreator.createLine(5, discriminator))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

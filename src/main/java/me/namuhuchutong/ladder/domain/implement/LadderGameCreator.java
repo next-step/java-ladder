@@ -13,18 +13,18 @@ public class LadderGameCreator implements LadderCreator {
 
     private final LineCreator lineCreator;
 
-    private final ScaffoldFactory scaffoldFactory;
+    private final ScaffoldDiscriminator scaffoldDiscriminator;
 
-    public LadderGameCreator(LineCreator lineCreator, ScaffoldFactory scaffoldFactory) {
+    public LadderGameCreator(LineCreator lineCreator, ScaffoldDiscriminator scaffoldDiscriminator) {
         this.lineCreator = lineCreator;
-        this.scaffoldFactory = scaffoldFactory;
+        this.scaffoldDiscriminator = scaffoldDiscriminator;
     }
 
     @Override
     public Ladder createLadder(UserInputInformation information) {
         Names names = Names.from(information.getInputNames());
         Rows rows = Stream.generate(() -> lineCreator.createLine(names.size(),
-                                                                 scaffoldFactory))
+                                                                 scaffoldDiscriminator))
                              .limit(information.getLadderHeight())
                              .collect(collectingAndThen(toUnmodifiableList(),
                                                         Rows::new));
