@@ -16,6 +16,17 @@ public class PersonNames implements Iterable<Name> {
         }
 
         this.names = nameList;
+        validate(this.names);
+    }
+
+    private void validate(List<Name> names) {
+        checkNameSizeIsValid(names);
+    }
+
+    private void checkNameSizeIsValid(List<Name> names) {
+        if (names.isEmpty()) {
+            throw new IllegalArgumentException("이름의 갯수는 최소 1개 이상이어야 합니다.");
+        }
     }
 
     public int size() {
