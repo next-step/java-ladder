@@ -36,5 +36,9 @@ public enum LadderExpression {
         return this.character.equals('-');
     }
 
+    public boolean isNotVerticalBar() {
+        return !this.character.equals('|');
+    }
+
     abstract public String convertToString();
 }

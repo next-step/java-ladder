@@ -31,7 +31,7 @@ public class Row implements Line {
     }
 
     private boolean filteringVerticalBar(LadderExpression expression) {
-        return expression.equals(HYPHEN);
+        return expression.isNotVerticalBar();
     }
 
     @Override
