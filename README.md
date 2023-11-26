@@ -7,3 +7,24 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+# Step1 기능구현
+## 람다(lambda)
+- CarTest MoveStrategy 람다로 적용
+- fp.lambda의 sumAll, sumAllEven, sumAllOverThree 메서드의 중복 제거
+## 스트림(stream)
+- fp.StreamStudyTest sumOverThreeAndDouble() 테스트 통과
+- fp.StreamStudy printLongestWordTop100() 메서드 
+  - 단어의 길이가 12자를 초과하는 단어를 추출한다. 
+  - 12자가 넘는 단어 중 길이가 긴 순서로 100개의 단어를 추출한다.
+  - 단어 중복을 허용하지 않는다. 즉, 서로 다른 단어 100개를 추출해야 한다.
+  - 추출한 100개의 단어를 출력한다. 모든 단어는 소문자로 출력해야 한다.
+## Optional
+- Optinal을 활용해 조건에 따른 반환
+  - optional.UserTest의 테스트가 모두 pass
+- Optional에서 값을 반환
+  - optional.Users의 getUser()메서드를 stream, Optional로 리팩토링
+- Optional에서 exception 처리
+  - optional.ExpressionTest의 테스트가 통과하도록 Expression의 of메서드를 구현
+
+
