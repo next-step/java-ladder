@@ -30,10 +30,10 @@ public class RowCreator implements LineCreator {
         return new Row(unmodifiableList(initializedRow));
     }
 
-    private List<LadderExpression> addScaffold(int participants, ScaffoldDiscriminator factory) {
+    private List<LadderExpression> addScaffold(int participants, ScaffoldDiscriminator discriminator) {
         List<LadderExpression> result = new ArrayList<>();
         for (int i = 1; i < participants; i++) {
-            result.add(addScaffoldByCondition(factory));
+            result.add(addScaffoldByCondition(discriminator));
             result.add(VERTICAL_BAR);
         }
         return result;
