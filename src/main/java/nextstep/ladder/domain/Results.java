@@ -15,11 +15,10 @@ public class Results {
                 .forEach(name -> this.results.add(new Result(name)));
     }
 
-    public boolean validateSize(int size) {
+    public void validateSize(int size) {
         if (results.size() != size) {
             throw new ResultSizeMismatchException();
         }
-        return true;
     }
 
     public List<Result> values() {

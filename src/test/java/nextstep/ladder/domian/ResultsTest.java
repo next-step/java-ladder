@@ -3,10 +3,12 @@ package nextstep.ladder.domian;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Names;
 import nextstep.ladder.domain.Results;
+import nextstep.ladder.exception.ResultSizeMismatchException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ResultsTest {
 
@@ -23,7 +25,7 @@ public class ResultsTest {
     void 결과는_참여자_수와_같아야_한다() {
         result = new Results("꽝,5000,꽝,3000");
         int size = 4;
-        assertThat(result.validateSize(4)).isTrue();
+        result.validateSize(size);
     }
 
     @DisplayName("지정한 결과만 가져온다.")
@@ -40,5 +42,13 @@ public class ResultsTest {
         Ladder ladder = new Ladder(2, names.size(), () -> true);
         result = new Results("꽝,5000");
         assertThat(result.of(names, ladder).get(names.get(0)).value()).isEqualTo("꽝");
+    }
+
+    @DisplayName("결과는 참여자 수와 같지 않으면 에러가 발생한다.")
+    @Test
+    void 결과는_참여자_수와_같지_않으면_에러가_발생한다() {
+        result = new Results("꽝,5000,꽝,3000");
+        int size = 5;
+        assertThatThrownBy(() -> result.validateSize(size)).isInstanceOf(ResultSizeMismatchException.class);
     }
 }
