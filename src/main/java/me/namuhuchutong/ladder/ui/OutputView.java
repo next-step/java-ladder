@@ -1,11 +1,9 @@
 package me.namuhuchutong.ladder.ui;
 
-import me.namuhuchutong.ladder.domain.engine.dto.LadderResult;
-
 public class OutputView {
 
-    public void printResult(LadderResult result) {
-        System.out.println(result.getResult());
+    public void printResult(String ladderString) {
+        System.out.println(ladderString);
     }
 
     public void printNameAndResult(String result) {

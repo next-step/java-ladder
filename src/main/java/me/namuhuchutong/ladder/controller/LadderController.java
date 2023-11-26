@@ -1,28 +1,24 @@
 package me.namuhuchutong.ladder.controller;
 
-import me.namuhuchutong.ladder.domain.engine.ScaffoldFactory;
-import me.namuhuchutong.ladder.domain.implement.Ladder;
-import me.namuhuchutong.ladder.domain.implement.Names;
-import me.namuhuchutong.ladder.domain.implement.Results;
-import me.namuhuchutong.ladder.domain.implement.Rows;
-import me.namuhuchutong.ladder.domain.implement.wrapper.Name;
-import me.namuhuchutong.ladder.domain.engine.dto.LadderResult;
+import me.namuhuchutong.ladder.domain.engine.Ladder;
+import me.namuhuchutong.ladder.domain.engine.LadderCreator;
 import me.namuhuchutong.ladder.domain.engine.dto.NameAndResult;
 import me.namuhuchutong.ladder.domain.engine.dto.UserInputInformation;
 import me.namuhuchutong.ladder.ui.InputView;
 import me.namuhuchutong.ladder.ui.OutputView;
 
+import static me.namuhuchutong.ladder.beans.FactoryBean.*;
+
 public class LadderController {
+
+    private static final String ALL = "all";
 
     private final InputView inputView;
 
-    private final ScaffoldFactory scaffoldFactory;
-
     private final OutputView outputView;
 
-    public LadderController(InputView inputView, ScaffoldFactory scaffoldFactory, OutputView outputView) {
+    public LadderController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
-        this.scaffoldFactory = scaffoldFactory;
         this.outputView = outputView;
     }
 
@@ -30,22 +26,23 @@ public class LadderController {
         UserInputInformation information = new UserInputInformation(inputView.inputStringNames(),
                                                                     inputView.inputStringResults(),
                                                                     inputView.inputInteger());
-        Names names = Names.from(information.getInputNames());
-        Rows rows = Rows.createLadder(information.getLadderHeight(),
-                                      names.size(),
-                                      scaffoldFactory);
-        Results results = Results.from(information.getInputResults());
-        outputView.printResult(new LadderResult(names, rows, results));
-        NameAndResult nameAndResult = new Ladder(rows, names, results).startLadderGame();
+        LadderCreator ladderCreator = ladderCreator();
+        Ladder ladder = ladderCreator.createLadder(information);
+        NameAndResult nameAndResult = ladder.startLadderGame();
+        outputView.printResult(nameAndResult.showLadderToString());
         showEachResult(nameAndResult);
         outputView.printNameAndResult(nameAndResult.getAllResults());
     }
 
     private void showEachResult (NameAndResult nameAndResult) {
-        Name name = new Name(inputView.inputStringName());
-        while (name.isNotAll()) {
-            outputView.printNameAndResult(nameAndResult.getResult(name));
-            name = new Name(inputView.inputStringName());
+        String input = inputView.inputStringName();
+        while (isNotAll(input)) {
+            outputView.printNameAndResult(nameAndResult.getResult(input));
+            input = inputView.inputStringName();
         }
+    }
+
+    private boolean isNotAll(String input) {
+        return !ALL.equals(input);
     }
 }
