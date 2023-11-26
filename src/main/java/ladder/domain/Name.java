@@ -19,7 +19,12 @@ public class Name {
 
     private void validateTextLengthLimitOver(String value) {
         if (value.length() > NAME_LENGTH_LIMIT) {
-            throw new IllegalArgumentException(NAME_LENGTH_LIMIT + "자 이하만 입력가능합니다.");
+            throw new IllegalArgumentException("이름은 " + NAME_LENGTH_LIMIT + "자 이하만 입력가능합니다.");
         }
+    }
+
+    @Override
+    public String toString() {
+        return value;
     }
 }
