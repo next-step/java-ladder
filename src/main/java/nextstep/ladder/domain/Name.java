@@ -3,6 +3,8 @@ package nextstep.ladder.domain;
 import nextstep.ladder.exception.BlankNameException;
 import nextstep.ladder.exception.NameOverLengthException;
 
+import java.util.Objects;
+
 public class Name {
 
     private static final int MAX_NAME_LENGTH = 5;
@@ -25,5 +27,18 @@ public class Name {
 
     public String value() {
         return value;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Name name1 = (Name) obj;
+        return Objects.equals(value, name1.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
     }
 }

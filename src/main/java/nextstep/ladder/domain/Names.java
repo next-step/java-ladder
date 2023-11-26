@@ -16,11 +16,15 @@ public class Names {
                 .forEach(name -> this.values.add(new Name(name)));
     }
 
-    public List<Name> nameList() {
+    public List<Name> values() {
         return Collections.unmodifiableList(values);
     }
 
     public int size() {
         return values.size();
+    }
+
+    public Name get(int i) {
+        return values.get(i);
     }
 }
