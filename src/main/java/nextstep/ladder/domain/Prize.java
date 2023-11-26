@@ -10,6 +10,6 @@ public class Prize {
 
     @Override
     public String toString() {
-        return prize;
+        return String.format("%5s ", prize);
     }
 }

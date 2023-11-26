@@ -19,30 +19,39 @@ public class LineFactory {
             return new Line(List.of(STAY));
         }
         List<Direction> directions = new ArrayList<>();
-        for (int index = 0; directions.size() < countOfPerson; index++) {
-            addDirection(countOfPerson, index, directions);
+        while (directions.size() < countOfPerson) {
+            addDirection(countOfPerson, directions);
         }
         adjustDirections(directions);
         return new Line(directions);
     }
 
-    private static void addDirection(int countOfPerson, int index, List<Direction> directions) {
-        int numberOfDirection = directionByIndex(countOfPerson, index);
-        Direction direction = of(numberOfDirection);
+    private static void addDirection(int countOfPerson, List<Direction> directions) {
+        Direction direction = of(randomDirection(countOfPerson, directions.size()));
 
         directions.add(direction);
-        if (direction == RIGHT) {
+        boolean continuity = false;
+        if (direction == RIGHT && isContainSize(countOfPerson, directions)) {
             directions.add(LEFT);
+            continuity = true;
+        }
+
+        if (continuity && isContainSize(countOfPerson, directions)) {
+            directions.add(STAY);
         }
     }
 
-    private static int directionByIndex(int countOfPerson, int index) {
-        if (index == 0) {
+    private static boolean isContainSize(int countOfPerson, List<Direction> directions) {
+        return directions.size() < countOfPerson;
+    }
+
+    private static int randomDirection(int countOfPerson, int directionSize) {
+        if (directionSize == 0) {
             return random.nextInt(2); // 0,  1
         }
 
-        if (index == countOfPerson - 1) {
-            return random.nextInt(2) - 1; // -1, 0
+        if (directionSize == countOfPerson - 1) {
+            return random.nextInt(2) - 1;// -1, 0
         }
 
         return random.nextInt(3) - 1; // -1, 0, 1
@@ -54,11 +63,25 @@ public class LineFactory {
     }
 
     private static void adjustDirection(List<Direction> directions, int index) {
-        Direction prev = directions.get(index);
-        Direction next = directions.get(index + 1);
-        if (LEFT == prev && LEFT == next) {
-            directions.set(index + 1, RIGHT);
+        int prevIndex = index;
+        int nextIndex = index + 1;
+        if (isLastIndexSetStay(directions, prevIndex, nextIndex)) {
+            return;
         }
+
+        Direction prev = directions.get(prevIndex);
+        Direction next = directions.get(nextIndex);
+        if (LEFT == prev && LEFT == next) {
+            directions.set(nextIndex, RIGHT);
+        }
+    }
+
+    private static boolean isLastIndexSetStay(List<Direction> directions, int prevIndex, int nextIndex) {
+        if (directions.get(prevIndex) == LEFT && nextIndex == directions.size() - 1) {
+            directions.set(nextIndex, STAY);
+            return true;
+        }
+        return false;
     }
 
 }

@@ -1,9 +1,6 @@
 package nextstep.ladder.ui;
 
-import nextstep.ladder.domain.Direction;
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Names;
+import nextstep.ladder.domain.*;
 
 import java.util.List;
 
@@ -20,7 +17,7 @@ public class OutputView {
 
     public static void printParticipants(Names names) {
         System.out.println();
-        System.out.println("실행 결과");
+        System.out.println("사다리 결과");
         System.out.println();
 
         names.names().forEach(System.out::print);
@@ -35,7 +32,7 @@ public class OutputView {
     private static void printLine(Line line) {
         System.out.print(BLANK);
         line.directions().forEach(point -> System.out.print(WALL + judgeLineOrBlank(point)));
-        System.out.println(WALL);
+        System.out.println();
     }
 
     private static String judgeLineOrBlank(Direction direction) {
@@ -43,5 +40,9 @@ public class OutputView {
             return LINE;
         }
         return BLANK;
+    }
+
+    public static void printPrizes(Prizes prizes) {
+        prizes.prizes().forEach(System.out::print);
     }
 }
