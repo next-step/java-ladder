@@ -21,7 +21,7 @@ public class LadderResult {
         this.results = results;
     }
 
-    public String getResult() {
+    public String showLadderToString() {
         String formattedNames = this.names.getNames(SIX_RIGHT_ALIGNMENT);
         String rowsString = this.rows.toString();
         String resultsString = this.results.getResults(SIX_RIGHT_ALIGNMENT);

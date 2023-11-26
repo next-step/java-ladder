@@ -14,11 +14,15 @@ public class NameAndResult {
 
     private final Map<Name, Result> values;
 
-    public NameAndResult(Map<Name, Result> values) {
+    private final LadderResult ladderResult;
+
+    public NameAndResult(Map<Name, Result> values, LadderResult ladderResult) {
         this.values = values;
+        this.ladderResult = ladderResult;
     }
 
-    public String getResult(Name name) {
+    public String getResult(String input) {
+        Name name = new Name(input);
         return Optional.ofNullable(values.get(name))
                        .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 키 값입니다. - " + name))
                        .getResult();
@@ -29,5 +33,9 @@ public class NameAndResult {
                           .stream()
                           .map(key -> key + DELIMITER + this.values.get(key))
                           .collect(Collectors.joining(NEW_LINE));
+    }
+
+    public String showLadderToString() {
+        return this.ladderResult.showLadderToString();
     }
 }

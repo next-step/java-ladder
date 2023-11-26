@@ -1,6 +1,7 @@
 package me.namuhuchutong.ladder.domain.implement;
 
 import me.namuhuchutong.ladder.domain.engine.Ladder;
+import me.namuhuchutong.ladder.domain.engine.dto.LadderResult;
 import me.namuhuchutong.ladder.domain.implement.wrapper.Name;
 import me.namuhuchutong.ladder.domain.implement.wrapper.OddNumber;
 import me.namuhuchutong.ladder.domain.implement.wrapper.Result;
@@ -48,7 +49,7 @@ public class LadderGame implements Ladder {
                                                         Entry::getValue,
                                                         (oldValue, newValue) -> oldValue,
                                                         LinkedHashMap::new));
-        return new NameAndResult(collect);
+        return new NameAndResult(collect, new LadderResult(names, rows, results));
     }
 
     static class OddConvertor {
