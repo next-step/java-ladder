@@ -12,6 +12,7 @@ public class Names {
 
     private static final String COMMA_REGEX = ",";
     private static final int MINIMUM_SIZE = 2;
+    private static final String BLANK = "";
 
     private final List<Name> values;
 
@@ -41,7 +42,7 @@ public class Names {
         return this.values.stream()
                           .map(Name::getName)
                           .map(name -> String.format(format, name))
-                          .reduce("", (previous, newOne) -> previous + newOne);
+                          .reduce(BLANK, (previous, newOne) -> previous + newOne);
     }
 
     public Stream<Name> stream() {
