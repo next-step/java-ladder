@@ -1,6 +1,7 @@
 package nextstep.ladder.domian;
 
 import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.Point;
 import nextstep.ladder.exception.LineSizeException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,12 +23,8 @@ public class LineTest {
     @DisplayName("사다리 가로칸을 생성한다")
     @Test
     void 가로_칸을_생성한다() {
-        List<Boolean> points = new ArrayList<>();
-        points.add(true);
-        points.add(false);
-        points.add(true);
         createLine(3);
-        assertThat(line.points()).usingRecursiveComparison().isEqualTo(points);
+        assertThat(line.points()).usingRecursiveComparison().isEqualTo(new Line(3, () -> true).points());
     }
 
     @DisplayName("사다리는 최소 2개의 가로칸을 가져야 한다")

@@ -30,14 +30,14 @@ public class ResultView {
     }
 
     private static void printLadderLine(List<Line> ladder) {
-        ladder.stream().forEach(line -> System.out.println(LADDER_START + printLine(line) + LADDER_LINE));
+        ladder.stream().forEach(line -> System.out.println(LADDER_START + printLine(line)));
     }
 
     private static String printLine(Line line) {
         StringBuilder builder = new StringBuilder();
         line.points().stream().forEach(point -> {
             builder.append(LADDER_LINE);
-            builder.append(printLadderPoint(point));
+            builder.append(printLadderPoint(point.isRight()));
         });
         return builder.toString();
     }

@@ -11,14 +11,15 @@ public class Line {
 
     private static final int MIN_WIDTH = 2;
 
-    private final List<Boolean> points = new ArrayList<>();
+    private final List<Point> points = new ArrayList<>();
 
     public Line(int width, RuleStrategy ruleStrategy) {
         boolean beforePoint = false;
         validateWidth(width);
-        for (int i = 1; i < width; i++) {
+        for (int i = 1; i <= width; i++) {
             boolean point = beforePointCheck(beforePoint, ruleStrategy);
-            this.points.add(point);
+            point = lastPointCheck(width, point);
+            this.points.add(new Point(beforePoint, point));
             beforePoint = point;
         }
     }
@@ -36,34 +37,25 @@ public class Line {
         return ruleStrategy.build();
     }
 
-    public List<Boolean> points() {
+    private boolean lastPointCheck(int width, boolean point) {
+        if (points.size() == width - 1) {
+            return false;
+        }
+        return point;
+    }
+
+    public List<Point> points() {
         return Collections.unmodifiableList(points);
     }
 
     public int move(int position) {
-        if (isRightPositionMove(position)) {
+        Point point = this.points.get(position);
+        if (point.move().equals(Move.RIGHT)) {
             return position + 1;
         }
-        if (isLeftPositionMove(position)) {
+        if (point.move().equals(Move.LEFT)) {
             return position - 1;
         }
         return position;
-    }
-
-    private boolean isRightPositionMove(int position) {
-        return !boundaryCheck(position) && moveCheck(position);
-    }
-
-    private boolean isLeftPositionMove(int position) {
-        int leftPosition = position - 1;
-        return !boundaryCheck(leftPosition) && moveCheck(leftPosition);
-    }
-
-    private boolean boundaryCheck(int position) {
-        return position < 0 || position == points.size();
-    }
-
-    private boolean moveCheck(int position) {
-        return points.get(position);
     }
 }
