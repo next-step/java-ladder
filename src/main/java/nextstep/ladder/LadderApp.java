@@ -16,8 +16,9 @@ public class LadderApp {
         ResultView.println(result.toString());
 
         final LadderResult ladderResult = ladder.start(participants, result);
-        System.out.println(ladderResult);
-        InputView.inputParticipantLadderResult();
 
+        while (ladderResult.isNotFinished()) {
+            ResultView.println(ladderResult.getParticipantResult(InputView.inputParticipantLadderResult()));
+        }
     }
 }
