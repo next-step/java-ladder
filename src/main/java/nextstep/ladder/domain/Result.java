@@ -44,4 +44,8 @@ public class Result {
 
         return String.join("", collect);
     }
+
+    public String of(final Position endPosition) {
+        return this.results[endPosition.get()];
+    }
 }

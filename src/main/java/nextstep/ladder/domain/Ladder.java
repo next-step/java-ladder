@@ -1,5 +1,8 @@
 package nextstep.ladder.domain;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Ladder {
     private Lines lines;
 
@@ -7,8 +10,16 @@ public class Ladder {
         this.lines = new Lines(width, height);
     }
 
-    public void start(final Participants participants, final Result result) {
-        throw new UnsupportedOperationException("Unsupported start");
+    public LadderResult start(final Participants participants, final Result result) {
+        LadderResult ladderResult = new LadderResult();
+        for (int i = 0; i < participants.countOfPerson(); i++) {
+            final Participant participant = participants.of(i);
+            final Position endPosition = lines.move(Position.of(i));
+
+            ladderResult.put(participant, result.of(endPosition));
+        }
+
+        return ladderResult;
     }
 
     @Override

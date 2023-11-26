@@ -81,4 +81,8 @@ public class Participants {
 
         return String.join("", collect);
     }
+
+    public Participant of(final int index) {
+        return participants.get(index);
+    }
 }

@@ -30,4 +30,18 @@ public class Lines {
 
         return stringBuilder.toString();
     }
+
+    public Position move(final Position startPosition) {
+        Position currentPosition = startPosition;
+        for (Line line: this.lines) {
+            System.out.println("pre");
+            System.out.println(currentPosition.toString());
+            currentPosition = line.move(currentPosition);
+            System.out.println("post");
+            System.out.println(currentPosition.toString());
+        }
+        System.out.println("============");
+
+        return currentPosition;
+    }
 }

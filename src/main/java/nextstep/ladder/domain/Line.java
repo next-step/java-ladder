@@ -37,6 +37,18 @@ public class Line {
         return EMPTY_POINT_STR;
     }
 
+    public Position move(final Position startPosition) {
+        if (startPosition.isFirstPosition()) {
+            return startPosition.movePostPosition(points);
+        }
+
+        if (startPosition.isLastPosition(this.points)) {
+            return startPosition.movePrePosition(this.points);
+        }
+
+        return startPosition.move(points);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

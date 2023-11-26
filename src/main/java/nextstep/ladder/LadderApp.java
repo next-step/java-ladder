@@ -1,9 +1,6 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.Height;
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Result;
-import nextstep.ladder.domain.Participants;
+import nextstep.ladder.domain.*;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
@@ -18,8 +15,9 @@ public class LadderApp {
         ResultView.print(ladder.toString());
         ResultView.println(result.toString());
 
-        ladder.start(participants, result);
-
+        final LadderResult ladderResult = ladder.start(participants, result);
+        System.out.println(ladderResult);
         InputView.inputParticipantLadderResult();
+
     }
 }
