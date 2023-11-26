@@ -6,9 +6,9 @@ import me.namuhuchutong.ladder.domain.implement.Names;
 import me.namuhuchutong.ladder.domain.implement.Results;
 import me.namuhuchutong.ladder.domain.implement.Rows;
 import me.namuhuchutong.ladder.domain.implement.wrapper.Name;
-import me.namuhuchutong.ladder.dto.LadderResult;
-import me.namuhuchutong.ladder.dto.NameAndResult;
-import me.namuhuchutong.ladder.dto.UserInputInformation;
+import me.namuhuchutong.ladder.domain.engine.dto.LadderResult;
+import me.namuhuchutong.ladder.domain.engine.dto.NameAndResult;
+import me.namuhuchutong.ladder.domain.engine.dto.UserInputInformation;
 import me.namuhuchutong.ladder.ui.InputView;
 import me.namuhuchutong.ladder.ui.OutputView;
 

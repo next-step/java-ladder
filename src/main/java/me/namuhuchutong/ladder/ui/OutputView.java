@@ -1,6 +1,6 @@
 package me.namuhuchutong.ladder.ui;
 
-import me.namuhuchutong.ladder.dto.LadderResult;
+import me.namuhuchutong.ladder.domain.engine.dto.LadderResult;
 
 public class OutputView {
 

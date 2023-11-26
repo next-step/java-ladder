@@ -1,4 +1,4 @@
-package me.namuhuchutong.ladder.dto;
+package me.namuhuchutong.ladder.domain.engine.dto;
 
 import me.namuhuchutong.ladder.domain.implement.wrapper.Name;
 import me.namuhuchutong.ladder.domain.implement.wrapper.Result;

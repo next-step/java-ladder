@@ -3,7 +3,7 @@ package me.namuhuchutong.ladder.domain.implement;
 import me.namuhuchutong.ladder.domain.implement.wrapper.Name;
 import me.namuhuchutong.ladder.domain.implement.wrapper.OddNumber;
 import me.namuhuchutong.ladder.domain.implement.wrapper.Result;
-import me.namuhuchutong.ladder.dto.NameAndResult;
+import me.namuhuchutong.ladder.domain.engine.dto.NameAndResult;
 
 import java.util.LinkedHashMap;
 import java.util.List;
