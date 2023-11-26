@@ -22,5 +22,5 @@
   * [X] 요구사항 4 : 추출한 100개의 단어를 출력한다. 모든 단어는 소문자로 출력해야 한
     * map(String::toLowerCase) 적용 -> forEach(System.out::println) 으로 출
 * [X] Optional 실습 1 : Optional을 활용해 조건에 따른 반환
-* [ ] Optional 실습 2 : Optional에서 값을 반환
+* [X] Optional 실습 2 : Optional에서 값을 반환
 * [ ] Optional 실습 3 : Optional에서 exception 처리
