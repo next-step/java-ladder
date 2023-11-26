@@ -13,9 +13,15 @@ import static me.namuhuchutong.ladder.domain.implement.wrapper.LadderExpression.
 
 public class RowCreator implements LineCreator {
 
+    private final ScaffoldDiscriminator scaffoldDiscriminator;
+
+    public RowCreator(ScaffoldDiscriminator scaffoldDiscriminator) {
+        this.scaffoldDiscriminator = scaffoldDiscriminator;
+    }
+
     @Override
-    public Line createLine(int participants, ScaffoldDiscriminator factory) {
-        return from(participants, factory);
+    public Line createLine(int participants) {
+        return from(participants, scaffoldDiscriminator);
     }
 
     private Line from(int participants, ScaffoldDiscriminator factory) {

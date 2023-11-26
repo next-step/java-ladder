@@ -2,5 +2,5 @@ package me.namuhuchutong.ladder.domain.engine;
 
 public interface LineCreator {
 
-    Line createLine(int participants, ScaffoldDiscriminator discriminator);
+    Line createLine(int participants);
 }
