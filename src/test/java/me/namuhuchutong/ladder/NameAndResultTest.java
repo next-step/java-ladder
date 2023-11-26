@@ -17,10 +17,9 @@ class NameAndResultTest {
     void throw_exception_when_key_is_not_exist() {
         Map<Name, Result> givenMap = Map.of(new Name("test"), new Result("test"));
         String givenName = "hello";
-        Name name = new Name(givenName);
-        NameAndResult nameAndResult = new NameAndResult(givenMap);
+        NameAndResult nameAndResult = new NameAndResult(givenMap, null);
 
-        assertThatThrownBy(() -> nameAndResult.getResult(name))
+        assertThatThrownBy(() -> nameAndResult.getResult(givenName))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
