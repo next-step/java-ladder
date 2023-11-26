@@ -1,5 +1,6 @@
 package me.namuhuchutong.ladder.domain.implement;
 
+import me.namuhuchutong.ladder.domain.engine.Ladder;
 import me.namuhuchutong.ladder.domain.implement.wrapper.Name;
 import me.namuhuchutong.ladder.domain.implement.wrapper.OddNumber;
 import me.namuhuchutong.ladder.domain.implement.wrapper.Result;
@@ -13,7 +14,7 @@ import java.util.stream.IntStream;
 import static java.util.Map.*;
 import static java.util.stream.Collectors.*;
 
-public class Ladder {
+public class LadderGame implements Ladder {
 
     private final Rows rows;
 
@@ -21,12 +22,13 @@ public class Ladder {
 
     private final Results results;
 
-    public Ladder(Rows rows, Names names, Results results) {
+    public LadderGame(Rows rows, Names names, Results results) {
         this.rows = rows;
         this.names = names;
         this.results = results;
     }
 
+    @Override
     public NameAndResult startLadderGame() {
         OddConvertor oddConvertor = new OddConvertor(names.size());
         LadderGameResultSequence sequence = names.stream()
