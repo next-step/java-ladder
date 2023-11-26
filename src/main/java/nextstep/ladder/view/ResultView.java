@@ -6,7 +6,10 @@ import nextstep.ladder.Point;
 
 import java.util.List;
 
+import static nextstep.ladder.Name.MAX_LENGTH_OF_NAME;
+
 public final class ResultView {
+
 
     private ResultView() {
     }
@@ -16,7 +19,9 @@ public final class ResultView {
     }
 
     public static void printNames(List<String> userNames) {
-        userNames.forEach(name -> System.out.print(name + "  "));
+        userNames.stream()
+                .map(userName -> userName.concat(" ".repeat(MAX_LENGTH_OF_NAME - userName.length() + 1)))
+                .forEach(System.out::print);
     }
 
     public static void printLadder(Ladder ladder) {
@@ -26,7 +31,7 @@ public final class ResultView {
     }
 
     private static void printLine(Line line) {
-        System.out.print("     |");
+        System.out.print("|");
         line.points().forEach(ResultView::printPoint);
         System.out.println("");
 
