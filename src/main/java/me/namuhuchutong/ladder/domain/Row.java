@@ -1,6 +1,6 @@
 package me.namuhuchutong.ladder.domain;
 
-import me.namuhuchutong.ladder.domain.factory.ScaffoldFactory;
+import me.namuhuchutong.ladder.domain.engine.ScaffoldFactory;
 import me.namuhuchutong.ladder.domain.wrapper.LadderExpression;
 import me.namuhuchutong.ladder.domain.wrapper.Movements;
 

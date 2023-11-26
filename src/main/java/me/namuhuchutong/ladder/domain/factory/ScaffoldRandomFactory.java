@@ -1,5 +1,6 @@
 package me.namuhuchutong.ladder.domain.factory;
 
+import me.namuhuchutong.ladder.domain.engine.ScaffoldFactory;
 import me.namuhuchutong.ladder.domain.wrapper.LadderExpression;
 
 import java.util.Random;

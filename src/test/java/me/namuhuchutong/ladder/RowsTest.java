@@ -1,7 +1,7 @@
 package me.namuhuchutong.ladder;
 
 import me.namuhuchutong.ladder.domain.Rows;
-import me.namuhuchutong.ladder.domain.factory.ScaffoldFactory;
+import me.namuhuchutong.ladder.domain.engine.ScaffoldFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
