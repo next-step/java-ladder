@@ -6,7 +6,6 @@ import me.namuhuchutong.ladder.domain.implement.wrapper.Movements;
 
 import java.util.List;
 
-import static me.namuhuchutong.ladder.domain.implement.wrapper.LadderExpression.*;
 import static me.namuhuchutong.ladder.domain.implement.wrapper.Movements.*;
 
 public class Row implements Line {
@@ -42,20 +41,20 @@ public class Row implements Line {
     }
 
     private Movements findDestination(int startPoint) {
-        LadderExpression left = findExpression(startPoint);
+        LadderExpression left = findExpression(startPoint - 1);
         LadderExpression right = isEndOfCollection(startPoint) ?
                 findExpression(startPoint) : findExpression(startPoint + 1);
-        if (left.equals(HYPHEN)) {
+        if (left.isHyphen()) {
             return MOVE_LEFT;
         }
-        if (right.equals(HYPHEN)) {
+        if (right.isHyphen()) {
             return MOVE_RIGHT;
         }
         return STOP;
     }
 
     private LadderExpression findExpression(int startPoint) {
-        return this.values.get(startPoint - 1);
+        return this.values.get(startPoint);
     }
 
     private boolean isEndOfCollection(int startPoint) {
