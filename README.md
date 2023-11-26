@@ -9,7 +9,7 @@
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
 
 # STEP 1
-* [ ] 람다 실습 1 : 익명 클래스를 람다로 전환
+* [X] 람다 실습 1 : 익명 클래스를 람다로 전환
 * [ ] 람다 실습 2 : 람다를 활용해 중복제거
 * [ ] Map, Reduce, Filter 실습 1 : 리스트 숫자 중 3보다 큰 숫자를 2배 한 후 모든 값의 합 구하기
 * [ ] Map, Reduce, Filter 실습 2 : printLongestWordTop100() 메서드를 구현
