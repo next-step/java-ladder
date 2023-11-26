@@ -5,6 +5,7 @@ public class LadderApplication {
         String inputNames = InputView.inputNames();
         PersonNames personNames = new PersonNames(inputNames);
         int inputHeight = InputView.inputHeight();
-        Ladder ladder = new Ladder(personNames.size(), inputHeight, new RandomLine());
+        Ladder ladder = new Ladder(personNames.size() - 1, inputHeight, new RandomLine());
+        OutputView.printLadder(personNames, ladder);
     }
 }

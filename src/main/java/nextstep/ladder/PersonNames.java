@@ -1,9 +1,10 @@
 package nextstep.ladder;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public class PersonNames {
+public class PersonNames implements Iterable<Name> {
     private final List<Name> names;
 
     public PersonNames(String inputNames) {
@@ -19,5 +20,10 @@ public class PersonNames {
 
     public int size() {
         return this.names.size();
+    }
+
+    @Override
+    public Iterator<Name> iterator() {
+        return this.names.iterator();
     }
 }

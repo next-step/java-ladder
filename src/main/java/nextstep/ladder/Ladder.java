@@ -1,9 +1,10 @@
 package nextstep.ladder;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public class Ladder {
+public class Ladder implements Iterable<Line> {
     private final List<Line> lines;
 
     public Ladder(List<Line> lines) {
@@ -38,5 +39,10 @@ public class Ladder {
         return "Ladder{" +
                 "lines=" + lines +
                 '}';
+    }
+
+    @Override
+    public Iterator<Line> iterator() {
+        return this.lines.iterator();
     }
 }
