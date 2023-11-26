@@ -1,6 +1,6 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.BooleanSupplier;
 
@@ -20,76 +20,64 @@ public class Line {
             throw new IllegalStateException("hasRung is needed to initiate points");
         }
 
-        final List<LadderMoveDirection> tempPoints = new ArrayList<>();
+        final LadderMoveDirection[] tempPoints = initPoints(pointsSize);
 
-        for (int curPointIdx = 0; curPointIdx < pointsSize; curPointIdx++) {
-            tempPoints.add(selectDirection(curPointIdx));
-        }
+        calculateDirections(tempPoints);
+
+        return List.of(tempPoints);
+    }
+
+    private LadderMoveDirection[] initPoints(final int pointsSize) {
+        final LadderMoveDirection[] tempPoints = new LadderMoveDirection[pointsSize];
+        Arrays.fill(tempPoints, LadderMoveDirection.CENTER);
 
         return tempPoints;
     }
 
-    private LadderMoveDirection selectDirection(final int curPointIdx) {
-        if (isFirstPointIdx(curPointIdx)) {
-            return selectDirectionWhenFirstIdx(curPointIdx);
+    private void calculateDirections(final LadderMoveDirection[] tempPoints) {
+        final int pointsSize = tempPoints.length;
+        int curPointIdx = 0;
+
+        while (curPointIdx < pointsSize) {
+            curPointIdx = calculateDirectionAtPointIdx(curPointIdx, tempPoints);
+        }
+    }
+
+    private int calculateDirectionAtPointIdx(int curPointIdx, final LadderMoveDirection[] tempPoints) {
+        final int lastIdx = tempPoints.length - 1;
+
+        if (isNormalIdx(curPointIdx, lastIdx) && hasRightSideRung(curPointIdx)) {
+            tempPoints[curPointIdx++] = LadderMoveDirection.RIGHT;
+            tempPoints[curPointIdx] = LadderMoveDirection.LEFT;
+
+            return curPointIdx + 1;
         }
 
-        if (isLastPointIdx(curPointIdx)) {
-            return selectDirectionWhenLastIdx(curPointIdx);
+        if (isLastIdx(curPointIdx, lastIdx) && hasLeftSideRung(curPointIdx)) {
+            tempPoints[curPointIdx] = LadderMoveDirection.LEFT;
         }
 
-        return selectDirectionWhenNormalIdx(curPointIdx);
+        return curPointIdx + 1;
     }
 
-
-    public Boolean[] getHasRung() {
-        return this.rungs.rungs();
+    private boolean isNormalIdx(final int curPointIdx, final int lastIdx) {
+        return curPointIdx != lastIdx;
     }
 
-    private boolean isFirstPointIdx(final int pointIdx) {
-        return pointIdx == 0;
+    private boolean isLastIdx(final int curPointIdx, final int lastIdx) {
+        return !isNormalIdx(curPointIdx, lastIdx);
     }
 
-    private LadderMoveDirection selectDirectionWhenFirstIdx(final int curPointIdx) {
-        if (hasRightSideRungAtCurPointIdx(curPointIdx)) {
-            return LadderMoveDirection.RIGHT;
-        }
-
-        return LadderMoveDirection.CENTER;
-    }
-
-    private boolean hasRightSideRungAtCurPointIdx(final int curPointIdx) {
+    private boolean hasRightSideRung(final int curPointIdx) {
         return this.rungs.hasRungAtIdx(curPointIdx);
     }
 
-    private boolean isLastPointIdx(final int pointIdx) {
-        final int pointsSize = this.rungs.size() + 1;
-
-        return pointIdx == pointsSize - 1;
-    }
-
-    private LadderMoveDirection selectDirectionWhenLastIdx(final int curPointIdx) {
-        if (hasLeftSideRungAtCurPointIdx(curPointIdx)) {
-            return LadderMoveDirection.LEFT;
-        }
-
-        return LadderMoveDirection.CENTER;
-    }
-
-    private boolean hasLeftSideRungAtCurPointIdx(final int curPointIdx) {
+    private boolean hasLeftSideRung(final int curPointIdx) {
         return this.rungs.hasRungAtIdx(curPointIdx - 1);
     }
 
-    private LadderMoveDirection selectDirectionWhenNormalIdx(final int curPointIdx) {
-        if (hasLeftSideRungAtCurPointIdx(curPointIdx)) {
-            return LadderMoveDirection.LEFT;
-        }
-
-        if (hasRightSideRungAtCurPointIdx(curPointIdx)) {
-            return LadderMoveDirection.RIGHT;
-        }
-
-        return LadderMoveDirection.CENTER;
+    public Boolean[] getHasRung() {
+        return this.rungs.rungs();
     }
 
     public int move(final int userIdx) {
