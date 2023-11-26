@@ -1,43 +1,19 @@
 package me.namuhuchutong.ladder.domain.implement;
 
-import me.namuhuchutong.ladder.domain.engine.ScaffoldFactory;
+import me.namuhuchutong.ladder.domain.engine.Line;
 import me.namuhuchutong.ladder.domain.implement.wrapper.LadderExpression;
 import me.namuhuchutong.ladder.domain.implement.wrapper.Movements;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import static java.util.Collections.*;
 import static me.namuhuchutong.ladder.domain.implement.wrapper.LadderExpression.*;
 import static me.namuhuchutong.ladder.domain.implement.wrapper.Movements.*;
 
-public class Row {
+public class Row implements Line {
 
     private static final String BLANK = "";
 
     private final List<LadderExpression> values;
-
-    public static Row from(int participants, ScaffoldFactory factory) {
-        List<LadderExpression> initializedRow = initializeLadderRow();
-        initializedRow.addAll(addScaffold(participants, factory));
-        return new Row(unmodifiableList(initializedRow));
-    }
-
-    private static List<LadderExpression> addScaffold(int participants, ScaffoldFactory factory) {
-        List<LadderExpression> result = new ArrayList<>();
-        for (int i = 1; i < participants; i++) {
-            result.add(factory.createScaffold());
-            result.add(VERTICAL_BAR);
-        }
-        return result;
-    }
-
-    private static List<LadderExpression> initializeLadderRow() {
-        List<LadderExpression> list = new ArrayList<>();
-        list.add(EMPTY_SPACE);
-        list.add(VERTICAL_BAR);
-        return list;
-    }
 
     public Row(List<LadderExpression> values) {
         validateContinuousScaffold(values);
@@ -59,6 +35,7 @@ public class Row {
         return expression.equals(HYPHEN);
     }
 
+    @Override
     public int move(int startPoint) {
         Movements movement = findDestination(startPoint);
         return movement.move(startPoint);
