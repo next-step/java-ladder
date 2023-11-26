@@ -1,6 +1,6 @@
 package me.namuhuchutong.ladder;
 
-import me.namuhuchutong.ladder.domain.wrapper.OddNumber;
+import me.namuhuchutong.ladder.domain.implement.wrapper.OddNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

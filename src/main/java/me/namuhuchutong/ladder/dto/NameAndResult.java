@@ -1,7 +1,7 @@
 package me.namuhuchutong.ladder.dto;
 
-import me.namuhuchutong.ladder.domain.wrapper.Name;
-import me.namuhuchutong.ladder.domain.wrapper.Result;
+import me.namuhuchutong.ladder.domain.implement.wrapper.Name;
+import me.namuhuchutong.ladder.domain.implement.wrapper.Result;
 
 import java.util.Map;
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package me.namuhuchutong.ladder.domain;
+package me.namuhuchutong.ladder.domain.implement;
 
 import java.util.List;
 

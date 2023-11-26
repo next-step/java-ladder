@@ -1,11 +1,11 @@
-package me.namuhuchutong.ladder.domain.factory;
+package me.namuhuchutong.ladder.domain.implement.factory;
 
 import me.namuhuchutong.ladder.domain.engine.ScaffoldFactory;
-import me.namuhuchutong.ladder.domain.wrapper.LadderExpression;
+import me.namuhuchutong.ladder.domain.implement.wrapper.LadderExpression;
 
 import java.util.Random;
 
-import static me.namuhuchutong.ladder.domain.wrapper.LadderExpression.*;
+import static me.namuhuchutong.ladder.domain.implement.wrapper.LadderExpression.*;
 
 public class ScaffoldRandomFactory implements ScaffoldFactory {
 

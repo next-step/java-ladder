@@ -1,8 +1,8 @@
-package me.namuhuchutong.ladder.domain;
+package me.namuhuchutong.ladder.domain.implement;
 
-import me.namuhuchutong.ladder.domain.wrapper.Name;
-import me.namuhuchutong.ladder.domain.wrapper.OddNumber;
-import me.namuhuchutong.ladder.domain.wrapper.Result;
+import me.namuhuchutong.ladder.domain.implement.wrapper.Name;
+import me.namuhuchutong.ladder.domain.implement.wrapper.OddNumber;
+import me.namuhuchutong.ladder.domain.implement.wrapper.Result;
 import me.namuhuchutong.ladder.dto.NameAndResult;
 
 import java.util.LinkedHashMap;

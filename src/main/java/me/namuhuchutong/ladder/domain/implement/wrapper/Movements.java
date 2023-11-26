@@ -1,8 +1,8 @@
-package me.namuhuchutong.ladder.domain.wrapper;
+package me.namuhuchutong.ladder.domain.implement.wrapper;
 
 import java.util.function.Function;
 
-import static me.namuhuchutong.ladder.domain.wrapper.Movements.Constants.*;
+import static me.namuhuchutong.ladder.domain.implement.wrapper.Movements.Constants.*;
 
 public enum Movements {
 

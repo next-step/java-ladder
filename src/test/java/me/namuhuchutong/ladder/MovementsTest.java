@@ -3,7 +3,7 @@ package me.namuhuchutong.ladder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static me.namuhuchutong.ladder.domain.wrapper.Movements.*;
+import static me.namuhuchutong.ladder.domain.implement.wrapper.Movements.*;
 import static org.assertj.core.api.Assertions.*;
 
 

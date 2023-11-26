@@ -1,6 +1,6 @@
-package me.namuhuchutong.ladder.domain;
+package me.namuhuchutong.ladder.domain.implement;
 
-import me.namuhuchutong.ladder.domain.wrapper.Name;
+import me.namuhuchutong.ladder.domain.implement.wrapper.Name;
 
 import java.util.Arrays;
 import java.util.List;

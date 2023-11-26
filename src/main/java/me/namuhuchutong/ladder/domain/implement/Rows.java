@@ -1,4 +1,4 @@
-package me.namuhuchutong.ladder.domain;
+package me.namuhuchutong.ladder.domain.implement;
 
 import me.namuhuchutong.ladder.domain.engine.ScaffoldFactory;
 

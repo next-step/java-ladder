@@ -1,11 +1,11 @@
 package me.namuhuchutong.ladder;
 
-import me.namuhuchutong.ladder.domain.Row;
+import me.namuhuchutong.ladder.domain.implement.Row;
 import me.namuhuchutong.ladder.domain.engine.ScaffoldFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static me.namuhuchutong.ladder.domain.wrapper.LadderExpression.*;
+import static me.namuhuchutong.ladder.domain.implement.wrapper.LadderExpression.*;
 import static org.assertj.core.api.Assertions.*;
 
 class RowTest {

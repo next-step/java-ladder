@@ -1,15 +1,15 @@
-package me.namuhuchutong.ladder.domain;
+package me.namuhuchutong.ladder.domain.implement;
 
 import me.namuhuchutong.ladder.domain.engine.ScaffoldFactory;
-import me.namuhuchutong.ladder.domain.wrapper.LadderExpression;
-import me.namuhuchutong.ladder.domain.wrapper.Movements;
+import me.namuhuchutong.ladder.domain.implement.wrapper.LadderExpression;
+import me.namuhuchutong.ladder.domain.implement.wrapper.Movements;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.Collections.*;
-import static me.namuhuchutong.ladder.domain.wrapper.LadderExpression.*;
-import static me.namuhuchutong.ladder.domain.wrapper.Movements.*;
+import static me.namuhuchutong.ladder.domain.implement.wrapper.LadderExpression.*;
+import static me.namuhuchutong.ladder.domain.implement.wrapper.Movements.*;
 
 public class Row {
 

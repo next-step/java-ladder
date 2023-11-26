@@ -1,6 +1,6 @@
 package me.namuhuchutong.ladder.domain.engine;
 
-import me.namuhuchutong.ladder.domain.wrapper.LadderExpression;
+import me.namuhuchutong.ladder.domain.implement.wrapper.LadderExpression;
 
 @FunctionalInterface
 public interface ScaffoldFactory {

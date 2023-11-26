@@ -1,8 +1,11 @@
 package me.namuhuchutong.ladder.controller;
 
-import me.namuhuchutong.ladder.domain.*;
 import me.namuhuchutong.ladder.domain.engine.ScaffoldFactory;
-import me.namuhuchutong.ladder.domain.wrapper.Name;
+import me.namuhuchutong.ladder.domain.implement.Ladder;
+import me.namuhuchutong.ladder.domain.implement.Names;
+import me.namuhuchutong.ladder.domain.implement.Results;
+import me.namuhuchutong.ladder.domain.implement.Rows;
+import me.namuhuchutong.ladder.domain.implement.wrapper.Name;
 import me.namuhuchutong.ladder.dto.LadderResult;
 import me.namuhuchutong.ladder.dto.NameAndResult;
 import me.namuhuchutong.ladder.dto.UserInputInformation;

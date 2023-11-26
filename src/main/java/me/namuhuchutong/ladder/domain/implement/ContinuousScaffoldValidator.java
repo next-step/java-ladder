@@ -1,6 +1,6 @@
-package me.namuhuchutong.ladder.domain;
+package me.namuhuchutong.ladder.domain.implement;
 
-import me.namuhuchutong.ladder.domain.wrapper.LadderExpression;
+import me.namuhuchutong.ladder.domain.implement.wrapper.LadderExpression;
 
 public class ContinuousScaffoldValidator {
 

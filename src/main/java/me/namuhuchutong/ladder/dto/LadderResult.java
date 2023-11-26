@@ -1,8 +1,8 @@
 package me.namuhuchutong.ladder.dto;
 
-import me.namuhuchutong.ladder.domain.Names;
-import me.namuhuchutong.ladder.domain.Results;
-import me.namuhuchutong.ladder.domain.Rows;
+import me.namuhuchutong.ladder.domain.implement.Names;
+import me.namuhuchutong.ladder.domain.implement.Results;
+import me.namuhuchutong.ladder.domain.implement.Rows;
 
 public class LadderResult {
 
