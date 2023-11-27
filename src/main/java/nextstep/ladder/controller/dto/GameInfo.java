@@ -1,8 +1,6 @@
 package nextstep.ladder.controller.dto;
 
-import nextstep.ladder.domain.Position;
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Player;
 import nextstep.ladder.domain.WinningPrize;
 import nextstep.ladder.domain.wrapper.Height;
 import nextstep.ladder.domain.Players;
@@ -30,12 +28,10 @@ public class GameInfo {
     }
 
     public Players players() {
-        return new Players(IntStream.range(0, names.length)
-            .mapToObj(i -> new Player(names[i], Position.get(i)))
-            .collect(Collectors.toUnmodifiableList()));
+        return new Players(List.of(names));
     }
 
     public WinningPrize winningPrize() {
-        return new WinningPrize(List.of(prizes), height);
+        return new WinningPrize(List.of(prizes));
     }
 }

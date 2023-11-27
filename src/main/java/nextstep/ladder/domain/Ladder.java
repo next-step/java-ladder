@@ -1,10 +1,7 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.exception.ExceptionMessage;
-
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Ladder {
 
@@ -15,14 +12,6 @@ public class Ladder {
 
     public Ladder(List<Bridges> ladder) {
         this.ladder = ladder;
-    }
-
-    public Player climb(Player player) {
-        return ladder.stream()
-            .map(player::move)
-            .skip(ladder.size() - 1)
-            .findFirst()
-            .orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.NOT_FINISH.message()));
     }
 
     public int climb(int startPosition) {

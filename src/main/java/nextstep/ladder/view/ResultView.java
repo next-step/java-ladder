@@ -1,5 +1,6 @@
 package nextstep.ladder.view;
 
+import nextstep.ladder.controller.dto.GameResult;
 import nextstep.ladder.domain.LadderGame;
 
 import java.util.Arrays;
@@ -31,17 +32,17 @@ public class ResultView {
         print(ladderGame.prizes());
     }
 
-    public void printResultBy(String name, LadderGame ladderGame) {
+    public void printResultBy(String name, GameResult gameResult) {
         printBanner("실행 결과");
-        print(ladderGame.findReusltBy(name));
+        print(gameResult.prize(name));
     }
 
-    public void printResultAll(LadderGame ladderGame) {
+    public void printResultAll(GameResult gameResult, LadderGame ladderGame) {
         printBanner("실행 결과");
 
         String[] names = ladderGame.playersName().split("\\s+");
         Arrays.stream(names)
-            .forEach(name -> println(name + " : " + ladderGame.findReusltBy(name)));
+            .forEach(name -> println(name + " : " + gameResult.prize(name)));
     }
 
     private void println(String message) {

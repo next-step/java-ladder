@@ -14,11 +14,6 @@ import static org.assertj.core.api.Assertions.*;
 
 public class LadderTest {
 
-    @AfterEach
-    void clear() {
-        Position.clear();
-    }
-
     @DisplayName("Ladder로 포장된 값을 String 타입의 사다리 모양으로 변환해 반환한다.")
     @Test
     void ladderToBoolean() {

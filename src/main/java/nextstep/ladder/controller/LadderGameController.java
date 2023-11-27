@@ -1,7 +1,7 @@
 package nextstep.ladder.controller;
 
 import nextstep.ladder.controller.dto.GameInfo;
-import nextstep.ladder.domain.Position;
+import nextstep.ladder.controller.dto.GameResult;
 import nextstep.ladder.domain.LadderGame;
 import nextstep.ladder.domain.wrapper.Height;
 import nextstep.ladder.domain.wrapper.Width;
@@ -23,26 +23,25 @@ public class LadderGameController {
         String[] prizes = inputView.inputPrize(names.length);
         int height = inputView.inputHeight();
 
-        Position.init(new Width(names.length), new Height(height));
         GameInfo gameInfo = new GameInfo(names, height, prizes);
         LadderGame ladderGame = new LadderGame(gameInfo);
 
         resultView.printLadder(ladderGame);
 
-        ladderGame.play();
-        gameResult(ladderGame);
+        GameResult result = ladderGame.play();
+        gameResult(result, ladderGame);
     }
 
-    private void gameResult(LadderGame ladderGame) {
+    private void gameResult(GameResult gameResult, LadderGame ladderGame) {
         while (true) {
             String name = inputView.inputName();
 
             if ("all".equals(name)) {
-                resultView.printResultAll(ladderGame);
+                resultView.printResultAll(gameResult, ladderGame);
                 break;
             }
 
-            resultView.printResultBy(name, ladderGame);
+            resultView.printResultBy(name, gameResult);
         }
     }
 }

@@ -1,8 +1,9 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.controller.dto.GameInfo;
+import nextstep.ladder.controller.dto.GameResult;
 
-import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -34,16 +35,11 @@ public class LadderGame {
         return winningPrize.toString();
     }
 
-    public Players play() {
-        List<Player> finished = IntStream.range(0, players.numOfPlayers())
-            .mapToObj(i -> players.moveOne(i, ladder))
-            .collect(Collectors.toUnmodifiableList());
+    public GameResult play() {
+        Map<String, String> result = IntStream.range(0, players.numOfPlayers())
+            .boxed()
+            .collect(Collectors.toMap(players::name, i -> winningPrize.prize(ladder.climb(i))));
 
-        return new Players(finished);
-    }
-
-    public String findReusltBy(String name) {
-        Player player = players.findPlayerBy(name);
-        return winningPrize.findWinningPrizeBy(player);
+        return new GameResult(result);
     }
 }

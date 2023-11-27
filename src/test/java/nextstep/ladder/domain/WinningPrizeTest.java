@@ -1,8 +1,5 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.wrapper.Height;
-import nextstep.ladder.domain.wrapper.Width;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,26 +9,17 @@ import static org.assertj.core.api.Assertions.*;
 
 public class WinningPrizeTest {
 
-    @AfterEach
-    void clear() {
-        Position.clear();
-    }
-
-    @DisplayName("플레이어를 인자로 받아 해당 플레이어의 당첨 결과를 반환한다.")
+    @DisplayName("위치 값을 인자로 받아 해당하는 당첨결과를 반환한다.")
     @Test
     void findWinningPrizeBy() {
         // given
-        int height = 5;
-        Position.init(new Width(4), new Height(height));
-
-        Player player = new Player("홍길동", Position.get(2));
-        WinningPrize winningPrize = new WinningPrize(List.of("꽝", "5000", "꽝", "3000"), height);
+        WinningPrize winningPrize = new WinningPrize(List.of("꽝", "5000", "꽝", "3000"));
 
         // when
-        String name = "홍길동";
-        String winningResult = winningPrize.findWinningPrizeBy(player);
+        int position = 2;
+        String prize = winningPrize.prize(position);
 
         // then
-        assertThat(winningResult).isEqualTo("꽝");
+        assertThat(prize).isEqualTo("꽝");
     }
 }

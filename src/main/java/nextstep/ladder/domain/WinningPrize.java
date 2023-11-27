@@ -1,7 +1,5 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.exception.ExceptionMessage;
-
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,31 +8,26 @@ import java.util.stream.IntStream;
 
 public class WinningPrize {
 
-    private final Map<Position, String> winningPrize;
+    private final Map<Integer, String> prizes;
 
-    public WinningPrize(List<String> prizes, int height) {
-        this.winningPrize = IntStream.range(0, prizes.size())
+    public WinningPrize(List<String> prizes) {
+        this.prizes = IntStream.range(0, prizes.size())
             .boxed()
             .collect(Collectors.toMap(
-                Position::get,
+                i -> i,
                 prizes::get,
                 (oldVal, newVal) -> newVal,
                 LinkedHashMap::new
             ));
     }
 
-    public String findWinningPrizeBy(Player player) {
-        Position position = winningPrize.keySet().stream()
-            .filter(player::isEqualCoordinate)
-            .findFirst()
-            .orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.NOT_EXIST_PLAYER.message()));
-
-        return winningPrize.get(position);
+    public String prize(int position) {
+        return prizes.get(position);
     }
 
     @Override
     public String toString() {
-        return winningPrize.values().stream()
+        return prizes.values().stream()
             .map(val ->String.format("%-6s", val))
             .collect(Collectors.joining());
     }
