@@ -1,7 +1,8 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.lines;
 
 import java.util.List;
 import java.util.Objects;
+import nextstep.ladder.domain.Line;
 
 public class Lines {
 
@@ -16,18 +17,18 @@ public class Lines {
     }
 
     private void validateLines(List<Line> lines) {
-        validateLinesCount();
+        validateLinesCount(lines);
         validateSameLength(lines);
         validateLineOverlapping(lines);
     }
 
-    private void validateLinesCount() {
-        if (isMinimumSize()) {
+    private void validateLinesCount(List<Line> lines) {
+        if (isMinimumSize(lines)) {
             throw new IllegalStateException(LINES_COUNT_EXCEPTION);
         }
     }
 
-    private boolean isMinimumSize() {
+    private boolean isMinimumSize(List<Line> lines) {
         return lines.size() <= MIN_SIZE;
     }
 
