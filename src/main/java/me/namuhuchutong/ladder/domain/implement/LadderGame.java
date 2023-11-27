@@ -1,11 +1,10 @@
 package me.namuhuchutong.ladder.domain.implement;
 
 import me.namuhuchutong.ladder.domain.engine.Ladder;
-import me.namuhuchutong.ladder.domain.engine.dto.LadderResult;
 import me.namuhuchutong.ladder.domain.implement.wrapper.Name;
 import me.namuhuchutong.ladder.domain.implement.wrapper.OddNumber;
 import me.namuhuchutong.ladder.domain.implement.wrapper.Result;
-import me.namuhuchutong.ladder.domain.engine.dto.NameAndResult;
+import me.namuhuchutong.ladder.domain.engine.dto.LadderResult;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -30,7 +29,7 @@ public class LadderGame implements Ladder {
     }
 
     @Override
-    public NameAndResult startLadderGame() {
+    public LadderResult startLadderGame() {
         OddConvertor oddConvertor = new OddConvertor(names.size());
         LadderGameResultSequence sequence = names.stream()
                                                  .map(name -> oddConvertor.convert(names.getSequence(name)))
@@ -40,8 +39,8 @@ public class LadderGame implements Ladder {
         return linkNameAndResult(sequence);
     }
 
-    private NameAndResult linkNameAndResult(LadderGameResultSequence sequence) {
-        Map<Name, Result> collect = names.stream()
+    private LadderResult linkNameAndResult(LadderGameResultSequence sequence) {
+        Map<Name, Result> nameAndResult = names.stream()
                                          .map(names::getSequence)
                                          .map(integer -> entry(names.getNthName(integer),
                                                                results.getNthResult(sequence.convert(integer))))
@@ -49,7 +48,12 @@ public class LadderGame implements Ladder {
                                                         Entry::getValue,
                                                         (oldValue, newValue) -> oldValue,
                                                         LinkedHashMap::new));
-        return new NameAndResult(collect, new LadderResult(names, rows, results));
+        Map<String, String> collect = nameAndResult.keySet()
+                                                   .stream()
+                                                   .collect(toMap(Name::toString,
+                                                                  key -> nameAndResult.get(key)
+                                                                                      .toString()));
+        return LadderResult.from(collect, new LadderInformation(names, rows, results));
     }
 
     static class OddConvertor {

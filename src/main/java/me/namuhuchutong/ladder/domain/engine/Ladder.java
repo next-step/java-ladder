@@ -1,8 +1,8 @@
 package me.namuhuchutong.ladder.domain.engine;
 
-import me.namuhuchutong.ladder.domain.engine.dto.NameAndResult;
+import me.namuhuchutong.ladder.domain.engine.dto.LadderResult;
 
 public interface Ladder {
 
-    NameAndResult startLadderGame();
+    LadderResult startLadderGame();
 }
