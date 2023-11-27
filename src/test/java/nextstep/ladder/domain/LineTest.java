@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static nextstep.ladder.domain.Direction.*;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class LineTest {
 
@@ -27,6 +28,22 @@ public class LineTest {
         return Stream.of(
                 Arguments.of(List.of(RIGHT, LEFT, LEFT, STAY)),
                 Arguments.of(List.of(STAY, RIGHT, LEFT, LEFT))
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideDirection")
+    @DisplayName("성공 - 위치에 해당하는 방향을 구한다.")
+    void success_find_direction(int index, Direction direction) {
+        Line line = new Line(new int[]{0, 1, -1});
+        assertThat(line.move(index)).isEqualTo(direction);
+    }
+
+    private static Stream<Arguments> provideDirection() {
+        return Stream.of(
+                Arguments.of(0, STAY),
+                Arguments.of(1, RIGHT),
+                Arguments.of(2, LEFT)
         );
     }
 }
