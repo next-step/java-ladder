@@ -14,16 +14,17 @@ public class OutputView {
         printHeader(playLadder, stringBuffer);
         stringBuffer.append("\n");
         createBody(playLadder, stringBuffer);
+        createFooter(playLadder, stringBuffer);
 
         System.out.println(stringBuffer);
     }
 
     private void printHeader(PlayLadder playLadder, StringBuffer stringBuffer) {
         playLadder.players()
-                .forEach(player -> stringBuffer.append(ladderHeader(player.name(), playLadder.nameLengthMax())));
+                .forEach(player -> stringBuffer.append(fixedRow(player.name(), playLadder.nameLengthMax())));
     }
 
-    private String ladderHeader(String name, long nameLengthMax) {
+    private String fixedRow(String name, long nameLengthMax) {
         return StringUtils.leftPad(name, nameLengthMax + 1, " ");
     }
 
@@ -42,5 +43,10 @@ public class OutputView {
 
     private String createPath(Boolean path, String onPath, String offPath) {
         return path ? onPath : offPath;
+    }
+
+    private void createFooter(PlayLadder playLadder, StringBuffer stringBuffer) {
+        playLadder.prizes()
+                .forEach(prize -> stringBuffer.append(fixedRow(prize.value(), playLadder.nameLengthMax())));
     }
 }

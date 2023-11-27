@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.controller.LadderSize;
 import ladder.strategy.PathStrategy;
 
 import java.util.Collections;
@@ -22,6 +23,10 @@ public class Ladder {
         if (height < HEIGHT_MIN) {
             throw new IllegalArgumentException("최소 높이는 2개 이상입니다.");
         }
+    }
+
+    public static Ladder of(LadderSize ladderSize, PathStrategy pathStrategy) {
+        return new Ladder(ladderSize.width(), ladderSize.height(), pathStrategy);
     }
 
     public static Ladder of(long width, long height, PathStrategy pathStrategy) {

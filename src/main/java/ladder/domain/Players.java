@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,6 +11,10 @@ public class Players {
     private Players(List<Player> players) {
         this.players = players;
         this.nameLengthMax = nameLengthMax(players);
+    }
+
+    public static Players of(String... names) {
+        return of(Arrays.asList(names));
     }
 
     public static Players of(List<String> names) {
