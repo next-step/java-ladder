@@ -1,5 +1,7 @@
 package nextstep.ladder.view;
 
+import nextstep.ladder.domain.util.InputParser;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -8,16 +10,17 @@ public class InputView {
     public static final String PARTICIPANTS_INPUT_MSG = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     public static final String RESULT_INPUT_MSG = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String PARTICIPANT_LADDER_RESULT_INPUT_MSG = "결과를 보고 싶은 사람은?";
-    public static final String RESULT_EMPTY_MSG = "결과는 공백 일 수 없습니다.";
-    public static final String RESULT_DELIMITER = ",";
     public static final String INVALID_RESULT_COUNT_MSG = "참가자의 수와 결과의 수는 다를 수 없습니다.";
+
 
     private InputView() {
     }
 
-    public static String inputParticipants() {
+    public static String[] inputParticipants() {
         System.out.println(PARTICIPANTS_INPUT_MSG);
-        return SCANNER.next();
+        final String participantTexts = SCANNER.next();
+
+        return InputParser.parse(participantTexts);
     }
 
     public static int inputLadderHeight() {
@@ -28,12 +31,10 @@ public class InputView {
     public static String[] inputResult(final int countOfPerson) {
         System.out.println(RESULT_INPUT_MSG);
         final String resultText = SCANNER.next();
-
-        emptyCheck(resultText);
-
-        final String[] results = resultText.split(RESULT_DELIMITER);
+        final String[] results = InputParser.parse(resultText);
 
         resultNumberCheck(countOfPerson, results);
+
         return results;
     }
 
@@ -42,18 +43,6 @@ public class InputView {
             throw new IllegalArgumentException(INVALID_RESULT_COUNT_MSG);
         }
     }
-
-    private static void emptyCheck(final String resultText) {
-        if (isNullOrEmpty(resultText)) {
-            throw new IllegalArgumentException(RESULT_EMPTY_MSG);
-        }
-    }
-
-    private static boolean isNullOrEmpty(final String resultText) {
-        return resultText == null || resultText.isEmpty();
-    }
-
-
     public static String inputParticipantLadderResult() {
         System.out.println(PARTICIPANT_LADDER_RESULT_INPUT_MSG);
         return SCANNER.next();

@@ -15,7 +15,6 @@ public class LadderResult {
         ladderResult.put(participant, result);
     }
 
-
     public String participantResult() {
         return toString();
     }

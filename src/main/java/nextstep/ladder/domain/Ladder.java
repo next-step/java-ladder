@@ -7,7 +7,6 @@ import java.util.List;
 
 public class Ladder {
     public static final String NEW_LINE = "\n";
-
     private final List<Line> lines;
 
     public Ladder(final int width, final int height) {
