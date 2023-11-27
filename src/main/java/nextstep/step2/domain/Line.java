@@ -30,7 +30,7 @@ public class Line {
         return previousValue;
     }
 
-    public List<Boolean> line() {
+    public List<Boolean> points() {
         return points;
     }
 }

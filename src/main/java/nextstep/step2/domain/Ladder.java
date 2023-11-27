@@ -5,12 +5,22 @@ import java.util.List;
 
 public class Ladder {
 
-    private final List<Line> lines = new ArrayList<>();
+    private final List<Line> lines;
+
+    public Ladder(List<Line> lines) {
+        this.lines = lines;
+    }
 
     public Ladder(int height, int personCount) {
+        this(makeLines(height, personCount));
+    }
+
+    private static List<Line> makeLines(int height, int personCount) {
+        List<Line> newLines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            lines.add(new Line(personCount));
+            newLines.add(new Line(personCount));
         }
+        return newLines;
     }
 
     public List<Line> lines() {

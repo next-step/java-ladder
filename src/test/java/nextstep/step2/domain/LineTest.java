@@ -10,7 +10,7 @@ class LineTest {
     @Test
     void test() {
         Line line = new Line(5);
-        assertThat(line.line().size()).isEqualTo(4);
+        assertThat(line.points()).hasSize(4);
 
         OutputView.printLine(line);
     }
