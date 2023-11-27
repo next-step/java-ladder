@@ -20,6 +20,11 @@ public class LadderGameController {
         this.names = new ArrayList<>();
     }
 
+    public static void main(String[] args) {
+        LadderGameController gameController = new LadderGameController();
+        gameController.play();
+    }
+
     public void play() {
         init();
 
@@ -51,4 +56,5 @@ public class LadderGameController {
         Renderer.printNames(this.names);
         Renderer.printLadder(ladder);
     }
+
 }
