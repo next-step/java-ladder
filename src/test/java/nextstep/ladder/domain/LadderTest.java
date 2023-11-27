@@ -13,11 +13,17 @@ public class LadderTest {
     void determine_ladder_width() {
         // given
         List<String> names = List.of("pobi", "honux", "crong", "jk");
-
         // when
-        Ladder result = new Ladder(names);
+        Ladder result = new Ladder(names, createLines());
 
         // then
-        assertThat(result).isEqualTo(new Ladder(5));
+        assertThat(result).isEqualTo(new Ladder(5, createLines()));
+    }
+
+    private List<Line> createLines() {
+        Line line1 = new Line(List.of(true, false, true));
+        Line line2 = new Line(List.of(false, true, false));
+        Line line3 = new Line(List.of(false, false, true));
+        return List.of(line1, line2, line3);
     }
 }

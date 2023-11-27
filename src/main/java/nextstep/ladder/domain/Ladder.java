@@ -1,17 +1,21 @@
 package nextstep.ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Ladder {
     private final int width;
+    private final Lines lines;
 
-    public Ladder(List<String> names) {
-        width = createWidthBy(names);
+    public Ladder(List<String> names, List<Line> lines) {
+        this.width = createWidthBy(names);
+        this.lines = new Lines(lines);
     }
 
-    public Ladder(int width) {
+    public Ladder(int width, List<Line> lines) {
         this.width = width;
+        this.lines = new Lines(lines);
     }
 
     private int createWidthBy(List<String> names) {
@@ -30,18 +34,19 @@ public class Ladder {
             return false;
         }
         Ladder ladder = (Ladder) o;
-        return width == ladder.width;
+        return width == ladder.width && Objects.equals(lines, ladder.lines);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(width);
+        return Objects.hash(width, lines);
     }
 
     @Override
     public String toString() {
         return "Ladder{" +
                 "width=" + width +
+                ", lines=" + lines +
                 '}';
     }
 }
