@@ -1,7 +1,7 @@
-package nextstep.controller;
+package ladder.view;
 
-import nextstep.ladder.Ladder;
-import nextstep.ladder.Name;
+import ladder.domain.Ladder;
+import ladder.domain.Name;
 
 import java.util.List;
 

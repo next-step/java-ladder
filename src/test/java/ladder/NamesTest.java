@@ -1,8 +1,7 @@
 package ladder;
 
-import nextstep.ladder.Name;
-import nextstep.ladder.Names;
-import org.assertj.core.api.Assertions;
+import ladder.domain.Name;
+import ladder.domain.Names;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

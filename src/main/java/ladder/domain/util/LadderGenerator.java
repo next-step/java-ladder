@@ -1,7 +1,7 @@
-package nextstep.ladder.util;
+package ladder.domain.util;
 
-import nextstep.ladder.Ladder;
-import nextstep.ladder.LadderLine;
+import ladder.domain.Ladder;
+import ladder.domain.LadderLine;
 
 import java.util.ArrayList;
 import java.util.List;

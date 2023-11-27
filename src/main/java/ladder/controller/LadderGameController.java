@@ -1,9 +1,11 @@
-package nextstep.controller;
+package ladder.controller;
 
-import nextstep.ladder.Ladder;
-import nextstep.ladder.Name;
-import nextstep.ladder.Names;
-import nextstep.ladder.util.LadderGenerator;
+import ladder.view.Prompt;
+import ladder.view.Renderer;
+import ladder.domain.Ladder;
+import ladder.domain.Name;
+import ladder.domain.Names;
+import ladder.domain.util.LadderGenerator;
 
 import java.util.ArrayList;
 import java.util.List;

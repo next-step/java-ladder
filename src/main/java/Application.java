@@ -1,4 +1,4 @@
-import nextstep.controller.LadderGameController;
+import ladder.controller.LadderGameController;
 
 public class Application {
     public static void main(String[] args) {
