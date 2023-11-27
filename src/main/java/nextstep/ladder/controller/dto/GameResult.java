@@ -1,6 +1,7 @@
 package nextstep.ladder.controller.dto;
 
 import java.util.Map;
+import java.util.Set;
 
 public class GameResult {
 
@@ -12,5 +13,9 @@ public class GameResult {
 
     public String prize(String name) {
         return result.get(name);
+    }
+
+    public Set<String> names() {
+        return result.keySet();
     }
 }

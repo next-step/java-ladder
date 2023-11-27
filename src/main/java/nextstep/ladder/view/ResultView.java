@@ -4,6 +4,7 @@ import nextstep.ladder.controller.dto.GameResult;
 import nextstep.ladder.domain.LadderGame;
 
 import java.util.Arrays;
+import java.util.Set;
 
 public class ResultView {
 
@@ -32,17 +33,20 @@ public class ResultView {
         print(ladderGame.prizes());
     }
 
-    public void printResultBy(String name, GameResult gameResult) {
+    public boolean printResultBy(String name, GameResult gameResult) {
         printBanner("실행 결과");
+
+        if ("all".equals(name)) {
+            printAll(gameResult);
+            return true;
+        }
+
         print(gameResult.prize(name));
+        return false;
     }
 
-    public void printResultAll(GameResult gameResult, LadderGame ladderGame) {
-        printBanner("실행 결과");
-
-        String[] names = ladderGame.playersName().split("\\s+");
-        Arrays.stream(names)
-            .forEach(name -> println(name + " : " + gameResult.prize(name)));
+    public void printAll(GameResult gameResult) {
+        gameResult.names().forEach(name -> println(name + " : " + gameResult.prize(name)));
     }
 
     private void println(String message) {

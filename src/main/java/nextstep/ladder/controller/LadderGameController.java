@@ -3,8 +3,6 @@ package nextstep.ladder.controller;
 import nextstep.ladder.controller.dto.GameInfo;
 import nextstep.ladder.controller.dto.GameResult;
 import nextstep.ladder.domain.LadderGame;
-import nextstep.ladder.domain.wrapper.Height;
-import nextstep.ladder.domain.wrapper.Width;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
@@ -29,19 +27,17 @@ public class LadderGameController {
         resultView.printLadder(ladderGame);
 
         GameResult result = ladderGame.play();
-        gameResult(result, ladderGame);
+        showResult(result);
     }
 
-    private void gameResult(GameResult gameResult, LadderGame ladderGame) {
-        while (true) {
-            String name = inputView.inputName();
+    private void showResult(GameResult gameResult) {
+        String name = inputView.inputName();
+        boolean isAll = resultView.printResultBy(name, gameResult);
 
-            if ("all".equals(name)) {
-                resultView.printResultAll(gameResult, ladderGame);
-                break;
-            }
-
-            resultView.printResultBy(name, gameResult);
+        if (isAll) {
+            return;
         }
+
+        showResult(gameResult);
     }
 }
