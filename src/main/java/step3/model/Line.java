@@ -1,4 +1,4 @@
-package step2.model;
+package step3.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,7 @@ import java.util.stream.IntStream;
 public class Line {
 
     private final List<Point> points;
+    private static final int FIRST_INDEX = 0;
 
     public Line(int playersCount, RandomStrategy randomStrategy) {
         List<Point> result = new ArrayList<>();
@@ -37,5 +38,13 @@ public class Line {
 
     public List<Point> getPoints() {
         return this.points;
+    }
+
+    public int move(int pointIndex) {
+        if (pointIndex > FIRST_INDEX && points.get(pointIndex - 1).getStatus()) {
+            return --pointIndex;
+        }
+        return points.get(pointIndex).getStatus() ?
+                ++pointIndex : pointIndex;
     }
 }

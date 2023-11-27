@@ -2,8 +2,8 @@ package step2;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import step2.model.Point;
-import step2.model.PointRandomStrategy;
+import step3.model.Point;
+import step3.model.PointRandomStrategy;
 import step2.teststrategy.PointFalseStrategy;
 import step2.teststrategy.PointTrueStrategy;
 

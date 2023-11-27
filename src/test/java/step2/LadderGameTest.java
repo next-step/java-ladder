@@ -3,7 +3,7 @@ package step2;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import step2.model.LadderGame;
+import step3.model.LadderGame;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

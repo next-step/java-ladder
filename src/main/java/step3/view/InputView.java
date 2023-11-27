@@ -1,6 +1,7 @@
-package step2.view;
+package step3.view;
 
-import step2.model.Player;
+import step3.model.Player;
+import step3.model.Prize;
 
 import java.util.Arrays;
 import java.util.List;
@@ -32,5 +33,20 @@ public class InputView {
         if (lineHeight == 0 || lineHeight < 0) {
             throw new IllegalArgumentException("사다리 높이가 0이거나 음수일 수 없습니다.");
         }
+    }
+
+    public static List<Prize> inputLadderPrizes() {
+        scanner.nextLine();
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String result = scanner.nextLine();
+
+        return Arrays.stream(result.split(SERARATOR))
+                .map(Prize::new)
+                .collect(Collectors.toList());
+    }
+
+    public static Player inputLadderResultPlayer() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        return new Player(scanner.nextLine());
     }
 }

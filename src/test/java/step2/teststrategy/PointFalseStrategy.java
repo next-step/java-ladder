@@ -1,6 +1,6 @@
 package step2.teststrategy;
 
-import step2.model.RandomStrategy;
+import step3.model.RandomStrategy;
 
 public class PointFalseStrategy implements RandomStrategy {
 

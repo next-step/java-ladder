@@ -3,10 +3,10 @@ package step2;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import step2.model.Ladder;
-import step2.model.Line;
-import step2.model.Point;
-import step2.model.PointRandomStrategy;
+import step3.model.Ladder;
+import step3.model.Line;
+import step3.model.Point;
+import step3.model.PointRandomStrategy;
 import step2.teststrategy.PointFalseStrategy;
 import step2.teststrategy.PointTrueStrategy;
 
