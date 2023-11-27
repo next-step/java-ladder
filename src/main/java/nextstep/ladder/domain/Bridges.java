@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -11,6 +12,8 @@ public class Bridges {
 
     public static final String TRUE_BRIDGE = "-----";
     public static final String FALSE_BRIDGE = "     ";
+    private static final int[] DIRECTIONS = {0 , -1};
+    public static final int DEPTH_ADJUSTMENT = 1;
 
     private final List<Boolean> bridges;
 
@@ -27,7 +30,23 @@ public class Bridges {
             .anyMatch(i -> bridges.get(i) && bridges.get(i + 1));
     }
 
-    public boolean isMovableSide(int nextCoordinate) {
+    public int move(int currentPosition) {
+        return Arrays.stream(DIRECTIONS)
+            .filter(direction -> isMovable(currentPosition + direction))
+            .map(direction -> movableSide(direction, currentPosition + direction))
+            .findAny()
+            .orElse(currentPosition);
+    }
+
+    private int movableSide(int direction, int next) {
+        if (direction == DIRECTIONS[0]) {
+            return next + DEPTH_ADJUSTMENT;
+        }
+
+        return next;
+    }
+
+    public boolean isMovable(int nextCoordinate) {
         if (isOutOfRange(nextCoordinate)) {
             return false;
         }

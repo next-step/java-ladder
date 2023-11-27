@@ -39,6 +39,17 @@ public class BridgesTest {
         Bridges bridges = new Bridges(List.of(true, false, true));
 
         // when & then
-        assertThat(bridges.isMovableSide(x)).isEqualTo(expectedReuslt);
+        assertThat(bridges.isMovable(x)).isEqualTo(expectedReuslt);
+    }
+
+    @DisplayName("사다리 위치 값을 인자로 받아 다음 위치로 이동한다.")
+    @Test
+    void move() {
+        // given
+        Bridges bridges = new Bridges(List.of(true, false, true));
+        int position = 0;
+
+        // when & then
+        assertThat(bridges.move(position)).isEqualTo(1);
     }
 }
