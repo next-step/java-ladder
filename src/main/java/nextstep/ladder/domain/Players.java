@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.wrapper.Name;
 import nextstep.ladder.exception.ExceptionMessage;
 
 import java.util.List;
@@ -8,38 +9,36 @@ import java.util.stream.Collectors;
 
 public class Players {
 
-    private final List<Player> players;
+    public static final int MINIMUN_PLAYERS = 2;
 
-    public Players(List<Player> players) {
-        this.players = players;
+    private final List<Name> players;
+
+    public Players(List<String> names) {
+        validateNumOfPlayers(names);
+
+        players = names.stream()
+            .map(Name::new)
+            .collect(Collectors.toUnmodifiableList());
+    }
+
+    private void validateNumOfPlayers(List<String> names) {
+        if (names.size() < MINIMUN_PLAYERS) {
+            throw new IllegalArgumentException(ExceptionMessage.NOT_ENOUGH_PLAYER.message());
+        }
     }
 
     public String names() {
         return players.stream()
-            .map(player -> String.format("%-6s", player.name()))
+            .map(player -> String.format("%-6s", player.toString()))
             .collect(Collectors.joining());
     }
 
-    public Player findPlayerBy(Position position) {
-        return players.stream()
-            .filter(player -> player.isEqualCoordinate(position))
-            .findAny()
-            .orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.NOT_EXIST_PLAYER.message()));
-    }
-
-    public Player findPlayerBy(String name) {
-        return players.stream()
-            .filter(player -> player.isEqualName(name))
-            .findAny()
-            .orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.NOT_EXIST_PLAYER.message()));
+    public String name(int startPosition) {
+        return players.get(startPosition).toString();
     }
 
     public int numOfPlayers() {
         return players.size();
-    }
-
-    public Player moveOne(int playerNo, Ladder ladder) {
-        return ladder.climb(players.get(playerNo));
     }
 
     @Override
