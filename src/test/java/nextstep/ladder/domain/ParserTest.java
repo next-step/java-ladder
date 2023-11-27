@@ -24,7 +24,7 @@ class ParserTest {
     @DisplayName("숫자가 아닐경우 예외발생")
     @Test
     void 숫자가_아닐경우() {
-        assertThatThrownBy(()-> Parser.numberFormatParsing("7층"))
+        assertThatThrownBy(() -> Parser.numberFormatParsing("7층"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("숫자가 아닙니다.");
     }

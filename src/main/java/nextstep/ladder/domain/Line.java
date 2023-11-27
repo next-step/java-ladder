@@ -11,7 +11,7 @@ public class Line {
     private List<Boolean> step;
 
     public Line(int participantCount) {
-        int stepSpace = participantCount-1;
+        int stepSpace = participantCount - 1;
         step = new ArrayList<>(stepMaker(stepSpace));
     }
 

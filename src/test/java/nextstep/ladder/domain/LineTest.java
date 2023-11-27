@@ -4,8 +4,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class LineTest {
     @DisplayName("참가자 수 -1 만큼의 계단공간이 생긴다.")
     @Test

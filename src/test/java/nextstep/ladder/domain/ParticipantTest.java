@@ -11,7 +11,7 @@ class ParticipantTest {
     @DisplayName("참가자가 2명보다 적다면 예외발생")
     @Test
     void getParticipant() {
-        assertThatThrownBy(()-> new Participant("choi"))
+        assertThatThrownBy(() -> new Participant("choi"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("최소 2명 이상 참가해야됩니다.");
     }

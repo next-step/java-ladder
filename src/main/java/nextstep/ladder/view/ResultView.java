@@ -9,6 +9,7 @@ public class ResultView {
     private static final String CONNECTION = "-----";
     private static final String DISCONNECTION = "     ";
     private static final String LEG = "|";
+
     private ResultView() {
     }
 
@@ -20,12 +21,14 @@ public class ResultView {
         names.stream().forEach(name -> System.out.print(String.format("%6s", name)));
         System.out.println();
     }
+
     public static void printLadder(List<Line> ladder) {
         ladder.stream().forEach(line -> {
             System.out.print(disconnectionStep());
             printLine(line.getLine());
         });
     }
+
     private static void printLine(List<Boolean> line) {
         StringBuffer lineDisplay = new StringBuffer();
         line.stream()
@@ -41,10 +44,10 @@ public class ResultView {
     }
 
     private static String connectionStep() {
-        return CONNECTION+LEG;
+        return CONNECTION + LEG;
     }
 
     private static String disconnectionStep() {
-        return DISCONNECTION+LEG;
+        return DISCONNECTION + LEG;
     }
 }

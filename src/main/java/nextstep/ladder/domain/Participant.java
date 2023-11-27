@@ -19,6 +19,7 @@ public class Participant {
     public int size() {
         return participant.size();
     }
+
     public List<Name> getParticipant() {
         return Collections.unmodifiableList(participant);
     }
