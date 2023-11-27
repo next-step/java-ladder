@@ -6,19 +6,19 @@ import static ladder.domain.Name.NAME_SIZE;
 
 public class Point {
 
-    private final Boolean point;
+    private final Boolean value;
 
-    public Point(Boolean point) {
-        this.point = point;
+    public Point(Boolean value) {
+        this.value = value;
     }
 
     public boolean isTrue() {
-        return point == Boolean.TRUE;
+        return value == Boolean.TRUE;
     }
 
     @Override
     public String toString() {
-        if (point == null) {
+        if (value == null) {
             return "|";
         }
         if (isTrue()) {
@@ -36,13 +36,13 @@ public class Point {
             return false;
         }
 
-        Point point1 = (Point) object;
+        Point point = (Point) object;
 
-        return Objects.equals(point, point1.point);
+        return Objects.equals(value, point.value);
     }
 
     @Override
     public int hashCode() {
-        return point != null ? point.hashCode() : 0;
+        return value != null ? value.hashCode() : 0;
     }
 }

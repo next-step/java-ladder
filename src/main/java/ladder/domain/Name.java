@@ -5,26 +5,26 @@ import ladder.domain.exception.LadderException;
 public class Name {
 
     public static final int NAME_SIZE = 5;
-    private final String name;
+    private final String value;
 
-    public Name(String name) {
-        String trimmedName = name.trim();
+    public Name(String value) {
+        String trimmedName = value.trim();
         validate(trimmedName);
-        this.name = trimmedName;
+        this.value = trimmedName;
     }
 
-    private void validate(String name) {
-        if (!isValid(name)) {
+    private void validate(String value) {
+        if (!isValid(value)) {
             throw new LadderException("사람 이름은 1자 이상 5자 이하 입니다.");
         }
     }
 
-    private static boolean isValid(String name) {
-        return !name.isEmpty() && name.length() <= NAME_SIZE;
+    private static boolean isValid(String value) {
+        return !value.isEmpty() && value.length() <= NAME_SIZE;
     }
 
     @Override
     public String toString() {
-        return " ".repeat(NAME_SIZE + 1 - name.length()) + name;
+        return " ".repeat(NAME_SIZE + 1 - value.length()) + value;
     }
 }
