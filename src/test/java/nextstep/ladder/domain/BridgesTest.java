@@ -43,13 +43,13 @@ public class BridgesTest {
     }
 
     @DisplayName("사다리 위치 값을 인자로 받아 다음 위치로 이동한다.")
-    @Test
-    void move() {
+    @ParameterizedTest
+    @CsvSource({"0,0", "1,2", "2,1", "3,3"})
+    void move(int position, int expectedReuslt) {
         // given
-        Bridges bridges = new Bridges(List.of(true, false, true));
-        int position = 0;
+        Bridges bridges = new Bridges(List.of(false, true, false));
 
         // when & then
-        assertThat(bridges.move(position)).isEqualTo(1);
+        assertThat(bridges.move(position)).isEqualTo(expectedReuslt);
     }
 }
