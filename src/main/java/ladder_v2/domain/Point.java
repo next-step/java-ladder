@@ -23,6 +23,9 @@ public class Point {
     public boolean isRight() {
         return right;
     }
+    public boolean isLeft() {
+        return left;
+    }
 
     public static Point first() {
         return Point.of(false, random.nextBoolean());

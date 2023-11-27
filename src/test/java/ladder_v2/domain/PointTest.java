@@ -13,5 +13,11 @@ class PointTest {
         assertThat(Point.first().middle()).isInstanceOf(Point.class);
     }
 
+    @Test
+    @DisplayName("Point의 첫번째 포인트는 left는 무조건 false이다.")
+    void leftOfFirstPointShouldBeFalse() {
+        assertThat(Point.first().isLeft()).isFalse();
+    }
+
 
 }
