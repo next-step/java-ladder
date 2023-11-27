@@ -2,9 +2,7 @@ package ladder.generator;
 
 import ladder.domain.LadderLine;
 import ladder.domain.generator.Generator;
-import ladder.domain.generator.RandomLadderGenerator;
 import ladder.domain.generator.RandomLadderLineGenerator;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;

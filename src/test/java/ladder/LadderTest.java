@@ -2,8 +2,11 @@ package ladder;
 
 import ladder.domain.Ladder;
 import ladder.domain.LadderLine;
+import ladder.domain.generator.RandomLadderLineGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -38,5 +41,18 @@ public class LadderTest {
                             "| | | | |"
                     );
                 });
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 5, 10})
+    @DisplayName("[LadderGenerator.of] 라인 생성기와 함께 depth를 지정해서 요청하면 -> 지정된 depth를 가진 Ladder 생성")
+    public void ladderDepthTest(int depth) {
+        Ladder ladder = Ladder.of(
+                () -> LadderLine.of("|-|"),
+                depth
+        );
+
+        assertThat(ladder.howLongDepth())
+                .isEqualTo(depth);
     }
 }

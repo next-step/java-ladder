@@ -84,8 +84,28 @@ public class Ladder {
         return new Ladder(List.copyOf(lines));
     }
 
-    public static Ladder of(Generator<Ladder> ladderGenerator) {
-        return ladderGenerator.make();
+    /**
+     * 사다리를 하나 정의합니다.
+     * 이 정적 팩토리 메서드는 입력으로 사다리 라인 생성기를 받습니다.
+     * 생성기가 생성하는 사다리 라인에 따라 사다리를 구성합니다.
+     *
+     * @param generator 사다리 생성기
+     * @param depth 라인을 몇 개나 생성할 것인지 설정합니다.
+     *
+     * @return 생성된 사다리 객체
+     */
+    public static Ladder of(Generator<LadderLine> generator, int depth) {
+        if (depth <= 0) {
+            throw new IllegalArgumentException("사다리 라인을 " + depth + "개 생성하라고 설정되었습니다.");
+        }
+
+        List<LadderLine> lines = new ArrayList<>(depth);
+
+        for (int i = 0; i < depth; i++) {
+            lines.add(generator.make());
+        }
+
+        return Ladder.of(lines);
     }
 
     /**
