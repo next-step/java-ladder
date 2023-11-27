@@ -10,11 +10,6 @@ import java.util.Objects;
  */
 public class LadderLine {
     /**
-     * 이 사다리의 한 줄이 몇 개의 컬럼으로 이루어져 있는지 나타냅니다.
-     */
-    private final int theNumberOfColumn;
-
-    /**
      * 사다리 컬럼 간의 연결 구조를 나타내는 구조입니다.
      * 인덱스 i번은 i+1번 컬럼과 i+2번 컬럼 사이에 연결이 있는지를 나타냅니다. true면 연결이 있고 false면 연결이 없습니다.
      * 컬럼은 1번부터 시작합니다.
@@ -22,8 +17,6 @@ public class LadderLine {
     private final List<Boolean> connectionInfo;
 
     private LadderLine(List<Boolean> connectionInfo) {
-        this.theNumberOfColumn = connectionInfo.size() + 1;
-
         for (int i = 0; i < connectionInfo.size()-1; i++) {
             checkSuccessiveConnection(connectionInfo, i);
         }
@@ -89,11 +82,11 @@ public class LadderLine {
     }
 
     public int howManyColumns() {
-        return this.theNumberOfColumn;
+        return this.connectionInfo.size() + 1;
     }
 
     public boolean hasTheSameNumberOfColumn(int theNumberOfColumn) {
-        return this.theNumberOfColumn == theNumberOfColumn;
+        return howManyColumns() == theNumberOfColumn;
     }
 
     /**
@@ -104,11 +97,11 @@ public class LadderLine {
      * @return 주어진 컬럼이 우측 컬럼과 연결되어 있다면 true를 반환합니다.
      */
     public boolean isConnected(int leftColumnIndex) {
-        if (leftColumnIndex < 0 || leftColumnIndex >= this.theNumberOfColumn) {
+        if (leftColumnIndex < 0 || leftColumnIndex >= howManyColumns()) {
             throw new IllegalArgumentException("주어진 컬럼 번호 " + leftColumnIndex +"는 존재하지 않습니다.");
         }
 
-        if (leftColumnIndex == this.theNumberOfColumn - 1) {
+        if (leftColumnIndex == howManyColumns() - 1) {
             return false;
         }
 
@@ -124,19 +117,18 @@ public class LadderLine {
             return false;
         }
         LadderLine that = (LadderLine) o;
-        return theNumberOfColumn == that.theNumberOfColumn && Objects.equals(connectionInfo, that.connectionInfo);
+        return Objects.equals(connectionInfo, that.connectionInfo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(theNumberOfColumn, connectionInfo);
+        return Objects.hash(connectionInfo);
     }
 
     @Override
     public String toString() {
         return "LadderLine{" +
-                "theNumberOfColumn=" + theNumberOfColumn +
-                ", connectionInfo=" + connectionInfo +
+                "connectionInfo=" + connectionInfo +
                 '}';
     }
 
