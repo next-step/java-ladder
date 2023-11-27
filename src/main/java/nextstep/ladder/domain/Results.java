@@ -4,13 +4,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Result {
+public class Results {
     public static final String RESULT_EMPTY_MSG = "결과는 공백 일 수 없습니다.";
     public static final String RESULT_DELIMITER = ",";
     public static final String INVALID_RESULT_COUNT_MSG = "참가자의 수와 결과의 수는 다를 수 없습니다.";
-    private String[] results;
+    private final String[] results;
 
-    public Result(final int countOfPerson, final String resultText) {
+    public Results(final int countOfPerson, final String resultText) {
         emptyCheck(resultText);
 
         final String[] results = resultText.split(RESULT_DELIMITER);
@@ -36,6 +36,11 @@ public class Result {
         return resultText == null || resultText.isEmpty();
     }
 
+
+    public String get(final Position endPosition) {
+        return this.results[endPosition.get()];
+    }
+
     @Override
     public String toString() {
         final List<String> collect = Arrays.stream(this.results)
@@ -45,7 +50,4 @@ public class Result {
         return String.join("", collect);
     }
 
-    public String of(final Position endPosition) {
-        return this.results[endPosition.get()];
-    }
 }

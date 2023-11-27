@@ -1,22 +1,17 @@
 package nextstep.ladder.domain;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Ladder {
-    private Lines lines;
+    private final Lines lines;
 
     public Ladder(final int width, final int height) {
         this.lines = new Lines(width, height);
     }
 
-    public LadderResult start(final Participants participants, final Result result) {
+    public LadderResult start(final Participants participants, final Results result) {
         LadderResult ladderResult = new LadderResult();
         for (int i = 0; i < participants.countOfPerson(); i++) {
-            final Participant participant = participants.of(i);
             final Position endPosition = lines.move(Position.of(i));
-
-            ladderResult.put(participant, result.of(endPosition));
+            ladderResult.put(participants.get(i), result.get(endPosition));
         }
 
         return ladderResult;

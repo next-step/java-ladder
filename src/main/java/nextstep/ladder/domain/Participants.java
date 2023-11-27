@@ -60,6 +60,10 @@ public class Participants {
         return this.participants.size();
     }
 
+    public Participant get(final int index) {
+        return participants.get(index);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -82,7 +86,4 @@ public class Participants {
         return String.join("", collect);
     }
 
-    public Participant of(final int index) {
-        return participants.get(index);
-    }
 }

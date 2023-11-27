@@ -13,7 +13,7 @@ class LadderResultTest {
     @NullAndEmptySource
     void 사다리_결과가_비었을때(String input) {
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new Result(2, input);
+            new Results(2, input);
         });
     }
 
@@ -21,7 +21,7 @@ class LadderResultTest {
     @Test
     void 참가자의_수와_사다리의_결과의수가_다를떄() {
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new Result(2, "aa,bb,cc");
+            new Results(2, "aa,bb,cc");
         });
     }
 }
