@@ -16,7 +16,7 @@ public class PlayersTest {
 
     @AfterEach
     void clear() {
-        Coordinate.clear();
+        Position.clear();
     }
 
     @DisplayName("플레이어들의 이름을 가져온다.")
@@ -25,9 +25,9 @@ public class PlayersTest {
         // given
         String[] names = {"홍길동", "전창길", "코난"};
 
-        Coordinate.init(new Width(names.length), new Height(5));
+        Position.init(new Width(names.length), new Height(5));
         Players players = new Players(IntStream.range(0, names.length)
-            .mapToObj(i -> new Player(names[i], Coordinate.of(i, 0)))
+            .mapToObj(i -> new Player(names[i], Position.of(i, 0)))
             .collect(Collectors.toList()));
 
         // when & then
@@ -39,14 +39,14 @@ public class PlayersTest {
     void find() {
         // given
         String[] names = {"홍길동", "전창길", "코난", "브라이언"};
-        Coordinate.init(new Width(names.length), new Height(5));
+        Position.init(new Width(names.length), new Height(5));
 
         Players players = new Players(IntStream.range(0, names.length)
-            .mapToObj(i -> new Player(names[i], Coordinate.of(i, 0)))
+            .mapToObj(i -> new Player(names[i], Position.of(i, 0)))
             .collect(Collectors.toList()));
 
         // when
-        Player player = players.findPlayerBy(Coordinate.of(1,0));
+        Player player = players.findPlayerBy(Position.of(1,0));
 
         // then
         assertThat(player.name()).isEqualTo("전창길");
@@ -57,10 +57,10 @@ public class PlayersTest {
     void move() {
         // given
         String[] names = {"홍길동", "전창길", "코난", "브라이언"};
-        Coordinate.init(new Width(names.length), new Height(5));
+        Position.init(new Width(names.length), new Height(5));
 
         Players players = new Players(IntStream.range(0, names.length)
-            .mapToObj(i -> new Player(names[i], Coordinate.of(i, 0)))
+            .mapToObj(i -> new Player(names[i], Position.of(i, 0)))
             .collect(Collectors.toList()));
 
         Ladder ladder = new Ladder(List.of(
@@ -75,17 +75,17 @@ public class PlayersTest {
         Player player = players.moveOne(0, ladder);
 
         // then
-        assertThat(player.isEqualCoordinate(Coordinate.of(2, 5))).isTrue();
+        assertThat(player.isEqualCoordinate(Position.of(2, 5))).isTrue();
     }
 
     @DisplayName("인자로 받은 이름과 일치하는 플레이어를 찾아 반환한다.")
     @Test
     void findPlayerBy() {
         String[] names = {"홍길동", "전창길", "코난", "브라이언"};
-        Coordinate.init(new Width(names.length), new Height(5));
+        Position.init(new Width(names.length), new Height(5));
 
         Players players = new Players(IntStream.range(0, names.length)
-            .mapToObj(i -> new Player(names[i], Coordinate.of(i, 0)))
+            .mapToObj(i -> new Player(names[i], Position.of(i, 0)))
             .collect(Collectors.toList()));
 
         // when

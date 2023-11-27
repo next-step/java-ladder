@@ -14,7 +14,7 @@ public class LadderTest {
 
     @AfterEach
     void clear() {
-        Coordinate.clear();
+        Position.clear();
     }
 
     @DisplayName("Ladder로 포장된 값을 String 타입의 사다리 모양으로 변환해 반환한다.")
@@ -38,13 +38,13 @@ public class LadderTest {
         Ladder ladder = new Ladder(List.of
             (new Bridges(List.of(true, false, true)),
              new Bridges(List.of(true, false, true))));
-        Coordinate.init(new Width(4), new Height(2));
-        Player player = new Player("홍길동", Coordinate.of(0, 0));
+        Position.init(new Width(4), new Height(2));
+        Player player = new Player("홍길동", Position.of(0, 0));
 
         // when
         Player finished = ladder.climb(player);
 
         // then
-        assertThat(finished.isEqualCoordinate(Coordinate.of(0, 2))).isTrue();
+        assertThat(finished.isEqualCoordinate(Position.of(0, 2))).isTrue();
     }
 }

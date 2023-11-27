@@ -14,12 +14,12 @@ public class PlayerTest {
     void setUp() {
         Width width = new Width(5);
         Height height = new Height(5);
-        Coordinate.init(width, height);
+        Position.init(width, height);
     }
 
     @AfterEach
     void clear() {
-        Coordinate.clear();
+        Position.clear();
     }
 
     @DisplayName("Player의 이름을 확인한다.")
@@ -27,7 +27,7 @@ public class PlayerTest {
     void names() {
         // given
         String name = "홍길동";
-        Player player = new Player(name, Coordinate.of(1, 0));
+        Player player = new Player(name, Position.of(1, 0));
 
         // when & then
         assertThat(player.name()).isEqualTo("홍길동");
@@ -38,8 +38,8 @@ public class PlayerTest {
     void isEqualWith() {
         // given
         String name = "홍길동";
-        Player player = new Player(name, Coordinate.of(1, 0));
-        Coordinate target = Coordinate.of(1, 0);
+        Player player = new Player(name, Position.of(1, 0));
+        Position target = Position.of(1, 0);
 
         // when & then
         assertThat(player.isEqualCoordinate(target)).isTrue();
@@ -49,7 +49,7 @@ public class PlayerTest {
     @Test
     void isEqualName() {
         // given
-        Player player = new Player("홍길동", Coordinate.of(1, 0));
+        Player player = new Player("홍길동", Position.of(1, 0));
 
         // when & then
         assertThat(player.isEqualName("홍길동")).isTrue();
@@ -60,13 +60,13 @@ public class PlayerTest {
     void move() {
         // given
         String name = "홍길동";
-        Player player = new Player(name, Coordinate.of(1, 0));
+        Player player = new Player(name, Position.of(1, 0));
         Bridges bridges = new Bridges(List.of(true, false, true, false));
 
         // when
         Player movedPlayer = player.move(bridges);
 
         // then
-        assertThat(movedPlayer.isEqualCoordinate(Coordinate.of(0, 1))).isTrue();
+        assertThat(movedPlayer.isEqualCoordinate(Position.of(0, 1))).isTrue();
     }
 }

@@ -5,23 +5,23 @@ import nextstep.ladder.domain.wrapper.Name;
 public class Player {
 
     private final Name name;
-    private Coordinate coordinate;
+    private Position position;
 
-    public Player(String name, Coordinate coordinate) {
+    public Player(String name, Position position) {
         this.name = new Name(name);
-        this.coordinate = coordinate;
+        this.position = position;
     }
 
     public String name() {
         return this.name.toString();
     }
 
-    public boolean isEqualCoordinate(Coordinate coordinate) {
-        return this.coordinate.equals(coordinate);
+    public boolean isEqualCoordinate(Position position) {
+        return this.position.equals(position);
     }
 
     public Player move(Bridges bridge) {
-        coordinate = coordinate.findNextCoordinate(bridge);
+        position = position.findNextCoordinate(bridge);
         return this;
     }
 

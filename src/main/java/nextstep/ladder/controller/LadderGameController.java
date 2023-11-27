@@ -1,7 +1,7 @@
 package nextstep.ladder.controller;
 
 import nextstep.ladder.controller.dto.GameInfo;
-import nextstep.ladder.domain.Coordinate;
+import nextstep.ladder.domain.Position;
 import nextstep.ladder.domain.LadderGame;
 import nextstep.ladder.domain.wrapper.Height;
 import nextstep.ladder.domain.wrapper.Width;
@@ -23,7 +23,7 @@ public class LadderGameController {
         String[] prizes = inputView.inputPrize(names.length);
         int height = inputView.inputHeight();
 
-        Coordinate.init(new Width(names.length), new Height(height));
+        Position.init(new Width(names.length), new Height(height));
         GameInfo gameInfo = new GameInfo(names, height, prizes);
         LadderGame ladderGame = new LadderGame(gameInfo);
 

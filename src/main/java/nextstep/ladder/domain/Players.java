@@ -20,9 +20,9 @@ public class Players {
             .collect(Collectors.joining());
     }
 
-    public Player findPlayerBy(Coordinate coordinate) {
+    public Player findPlayerBy(Position position) {
         return players.stream()
-            .filter(player -> player.isEqualCoordinate(coordinate))
+            .filter(player -> player.isEqualCoordinate(position))
             .findAny()
             .orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.NOT_EXIST_PLAYER.message()));
     }

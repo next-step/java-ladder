@@ -10,13 +10,13 @@ import java.util.stream.IntStream;
 
 public class WinningPrize {
 
-    private final Map<Coordinate, String> winningPrize;
+    private final Map<Position, String> winningPrize;
 
     public WinningPrize(List<String> prizes, int height) {
         this.winningPrize = IntStream.range(0, prizes.size())
             .boxed()
             .collect(Collectors.toMap(
-                i -> Coordinate.of(i, height),
+                i -> Position.of(i, height),
                 prizes::get,
                 (oldVal, newVal) -> newVal,
                 LinkedHashMap::new
@@ -24,12 +24,12 @@ public class WinningPrize {
     }
 
     public String findWinningPrizeBy(Player player) {
-        Coordinate coordinate = winningPrize.keySet().stream()
+        Position position = winningPrize.keySet().stream()
             .filter(player::isEqualCoordinate)
             .findFirst()
             .orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.NOT_EXIST_PLAYER.message()));
 
-        return winningPrize.get(coordinate);
+        return winningPrize.get(position);
     }
 
     @Override

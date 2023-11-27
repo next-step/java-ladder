@@ -11,17 +11,17 @@ import java.util.List;
 import static nextstep.ladder.exception.ExceptionMessage.*;
 import static org.assertj.core.api.Assertions.*;
 
-public class CoordinateTest {
+public class PositionTest {
 
     @AfterEach
     void clear() {
-        Coordinate.clear();
+        Position.clear();
     }
 
     @DisplayName("초기화 되지 않은 좌표 값에 접근할 경우 예외를 발생시킨다.")
     @Test
     void accessBeforeInit() {
-        assertThatThrownBy(() -> Coordinate.of(1, 2)).isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() -> Position.of(1, 2)).isInstanceOf(IllegalArgumentException.class)
             .hasMessage(COORDINATE_IS_NOT_INIT.message());
     }
 
@@ -31,15 +31,15 @@ public class CoordinateTest {
         // given
         Width width = new Width(5);
         Height height = new Height(5);
-        Coordinate.init(width, height);
+        Position.init(width, height);
 
         // when
         int x = 3;
         int y = 2;
-        Coordinate result = Coordinate.of(x, y);
+        Position result = Position.of(x, y);
 
         // then
-        assertThat(result).isEqualTo(Coordinate.of(3, 2));
+        assertThat(result).isEqualTo(Position.of(3, 2));
     }
 
     @DisplayName("전체 좌표 값의 범위를 넘어서는 값이 인자로 전달될 경우 예외를 발생시킨다.")
@@ -48,10 +48,10 @@ public class CoordinateTest {
         // given
         Width width = new Width(5);
         Height height = new Height(5);
-        Coordinate.init(width, height);
+        Position.init(width, height);
 
         // when & then
-        assertThatThrownBy(() -> Coordinate.of(5, 5)).isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() -> Position.of(5, 5)).isInstanceOf(IllegalArgumentException.class)
             .hasMessage(COORDINATE_OUR_OF_RANGE.message());
     }
 
@@ -61,10 +61,10 @@ public class CoordinateTest {
         // given
         Width width = new Width(5);
         Height height = new Height(5);
-        Coordinate.init(width, height);
+        Position.init(width, height);
 
         // when & then
-        assertThatThrownBy(() -> Coordinate.init(new Width(3), new Height(5))).isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() -> Position.init(new Width(3), new Height(5))).isInstanceOf(IllegalArgumentException.class)
             .hasMessage(COORDINATE_IS_INIT.message());
     }
 
@@ -74,15 +74,15 @@ public class CoordinateTest {
         // given
         Width width = new Width(5);
         Height height = new Height(5);
-        Coordinate.init(width, height);
+        Position.init(width, height);
 
-        Coordinate coordinate = Coordinate.of(0, 0);
+        Position position = Position.of(0, 0);
         Bridges bridges = new Bridges(List.of(true, false, true, false));
 
         // when
-        Coordinate nextCoordinate = coordinate.findNextCoordinate(bridges);
+        Position nextPosition = position.findNextCoordinate(bridges);
 
         // then
-        assertThat(nextCoordinate).isEqualTo(Coordinate.of(1, 1));
+        assertThat(nextPosition).isEqualTo(Position.of(1, 1));
     }
 }
