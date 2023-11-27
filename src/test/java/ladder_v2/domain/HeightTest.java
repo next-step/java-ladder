@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 public class HeightTest {
 
     @Test
-    @DisplayName("Ladder는 최소 1개의 Line을 가져야 한다.")
+    @DisplayName("높이는 1 미만의 숫자로 생성할 수 없다.")
     void testHeight() {
         Assertions.assertThatIllegalArgumentException().isThrownBy(() -> {
             new Height(0);

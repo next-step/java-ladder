@@ -1,7 +1,6 @@
 package ladder_v2.domain;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class LadderGame {
@@ -17,7 +16,7 @@ public class LadderGame {
         return new GameResult(result);
     }
 
-    private static Position move(Ladder ladder, Position position) {
+    private Position move(Ladder ladder, Position position) {
         for(Line line: ladder.lines()){
             Direction direction =line.points().get(position.position()).move();
             position = position.move(direction);

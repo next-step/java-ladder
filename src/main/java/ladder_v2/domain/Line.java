@@ -15,7 +15,7 @@ public class Line {
         return new Line().make(count);
     }
 
-    public Line make(int count){
+    private Line make(int count){
         Point point = Point.first();
         points.add(point);
         point = addMiddlePoint(count, point);

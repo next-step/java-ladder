@@ -13,4 +13,6 @@ public class LineTest {
         assertThatIllegalArgumentException().isThrownBy(() -> Line.of(1));
     }
 
+
+
 }

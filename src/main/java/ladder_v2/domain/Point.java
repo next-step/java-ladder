@@ -23,6 +23,9 @@ public class Point {
     public boolean isRight() {
         return right;
     }
+    public boolean isLeft() {
+        return left;
+    }
 
     public static Point first() {
         return Point.of(false, random.nextBoolean());
@@ -59,7 +62,7 @@ public class Point {
             points[2] = new Point(false, false);
         }
 
-        public static Point getPoint(boolean left, boolean right){
+        private static Point getPoint(boolean left, boolean right){
             if(right){
                 return points[0];
             }
