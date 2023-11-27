@@ -27,4 +27,12 @@ public class LadderLines {
     public List<LadderLine> draw() {
         return Collections.unmodifiableList(ladder);
     }
+
+    public int move(int start) {
+        for (LadderLine ladderLine : ladder) {
+            start = ladderLine.move(start);
+        }
+
+        return start;
+    }
 }
