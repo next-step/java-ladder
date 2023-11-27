@@ -1,5 +1,6 @@
 package ladder.controller;
 
+import ladder.domain.generator.Generator;
 import ladder.view.LadderRenderer;
 import ladder.view.NameRenderer;
 import ladder.view.Prompt;
@@ -7,7 +8,7 @@ import ladder.view.MessageRenderer;
 import ladder.domain.Ladder;
 import ladder.domain.Name;
 import ladder.domain.Names;
-import ladder.domain.util.LadderGenerator;
+import ladder.domain.generator.RandomLadderGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +52,9 @@ public class LadderGameController {
     }
 
     private void ladderGenerationPhase() {
-        this.ladder = LadderGenerator.generateRandomLadder(this.names.size(), depth);
+        this.ladder = Ladder.of(
+                new RandomLadderGenerator(depth, this.names.size())
+        );
     }
 
     private void printPhase() {

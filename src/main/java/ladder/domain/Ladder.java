@@ -1,5 +1,8 @@
 package ladder.domain;
 
+import ladder.domain.generator.Generator;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -79,6 +82,10 @@ public class Ladder {
      */
     public static Ladder of(List<LadderLine> lines) {
         return new Ladder(List.copyOf(lines));
+    }
+
+    public static Ladder of(Generator<Ladder> ladderGenerator) {
+        return ladderGenerator.make();
     }
 
     /**

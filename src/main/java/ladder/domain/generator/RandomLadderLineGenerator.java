@@ -1,6 +1,5 @@
-package ladder.domain.util;
+package ladder.domain.generator;
 
-import ladder.domain.Ladder;
 import ladder.domain.LadderLine;
 
 import java.util.ArrayList;
@@ -8,12 +7,26 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * 사다리 라인을 생성하는 유틸 모음집
+ * 랜덤으로 구성되는 사다리 라인 한 개를 만듭니다.
  */
-public class LadderGenerator {
+public class RandomLadderLineGenerator implements Generator<LadderLine> {
     private static final Random RANDOM = new Random();
 
-    private LadderGenerator() {
+    private final int theNumberOfColumn;
+
+    /**
+     * 랜덤으로 사다리 라인을 생성하는 생성기를 만듭니다.
+     *
+     * @param theNumberOfColumn 이 생성기가 생성할 LadderLine의 컬럼 수
+     */
+    public RandomLadderLineGenerator(int theNumberOfColumn) {
+        this.theNumberOfColumn = theNumberOfColumn;
+    }
+
+
+    @Override
+    public LadderLine make() {
+        return generateRandomLine(theNumberOfColumn);
     }
 
     /**
@@ -23,7 +36,7 @@ public class LadderGenerator {
      *
      * @return 랜덤 사다리 라인
      */
-    public static LadderLine generateRandomLine(int theNumberOfColumn) {
+    private static LadderLine generateRandomLine(int theNumberOfColumn) {
         if (theNumberOfColumn < 0) {
             throw new IllegalArgumentException("컬럼을 0개 이하로 지정할 수 없으나 " + theNumberOfColumn + "개로 지정되어 호출되었습니다.");
         }
@@ -45,10 +58,6 @@ public class LadderGenerator {
         return LadderLine.of(connectionInfo);
     }
 
-    private static boolean determineRandomConnection() {
-        return RANDOM.nextBoolean();
-    }
-
     /**
      * 이번에 연결할지 말지 판단합니다.
      *
@@ -65,13 +74,7 @@ public class LadderGenerator {
         return isConnected;
     }
 
-    public static Ladder generateRandomLadder(int theNumberOfColumn, int depth) {
-        List<LadderLine> lines = new ArrayList<>(depth);
-
-        for (int i = 0; i < depth; i++) {
-            lines.add(generateRandomLine(theNumberOfColumn));
-        }
-
-        return Ladder.of(lines);
+    private static boolean determineRandomConnection() {
+        return RANDOM.nextBoolean();
     }
 }
