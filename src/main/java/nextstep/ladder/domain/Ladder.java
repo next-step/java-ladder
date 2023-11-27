@@ -1,4 +1,6 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
+
+import nextstep.ladder.domain.strategy.LineStrategy;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -12,8 +14,17 @@ public class Ladder implements Iterable<Line> {
         this.lines = new ArrayList<>(lines);
     }
 
-    public Ladder(int personCount, int height, LineStrategy ladderFactory) {
-        this.lines = LadderFactory.createLadder(personCount, height, ladderFactory);
+    public Ladder(int personCount, int height, LineStrategy lineStrategy) {
+        List<Line> lines = new ArrayList<>();
+        for (int i = 0; i < height; i++) {
+            lines.add(createLine(personCount, lineStrategy));
+        }
+
+        this.lines = lines;
+    }
+
+    private static Line createLine(int personCount, LineStrategy lineStrategy) {
+        return lineStrategy.createLine(personCount);
     }
 
     public void validate(List<Line> lines) {
@@ -23,10 +34,6 @@ public class Ladder implements Iterable<Line> {
     public void checkLinesSizeIsValid(List<Line> lines) {
         if (lines == null || lines.isEmpty()) {
             throw new IllegalArgumentException("라인은 최소 1개 이상이어야 합니다.");
-        }
-
-        for (Line line : lines) {
-            line.validate(line.points());
         }
     }
 

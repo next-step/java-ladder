@@ -1,5 +1,7 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Line;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;

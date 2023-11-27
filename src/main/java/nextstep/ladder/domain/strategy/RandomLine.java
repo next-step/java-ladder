@@ -1,7 +1,10 @@
-package nextstep.ladder;
+package nextstep.ladder.domain.strategy;
+
+import nextstep.ladder.domain.Line;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class RandomLine implements LineStrategy {
     private static final int SECOND_LINE_INDEX = 1;
@@ -9,10 +12,11 @@ public class RandomLine implements LineStrategy {
 
     @Override
     public Line createLine(int personCount) {
+        int lineCount = personCount - 1;
         List<Boolean> list = new ArrayList<>();
         boolean twoLeftPositionHasLine = false;
         boolean oneLeftPositionHasLine = false;
-        for (int index = 0; index < personCount; index++) {
+        for (int index = 0; index < lineCount; index++) {
             if (index >= SECOND_LINE_INDEX) {
                 oneLeftPositionHasLine = list.get(index - 1);
                 if(oneLeftPositionHasLine) {
@@ -30,17 +34,9 @@ public class RandomLine implements LineStrategy {
                 }
             }
 
-            list.add(randomLine());
+            list.add(new Random().nextBoolean());
         }
 
         return new Line(list);
-    }
-
-    private static boolean randomLine() {
-        int min = 1;
-        int max = 2;
-        int randomValue = (int) (Math.random() * max) + min;
-
-        return randomValue == 1 ? Boolean.TRUE : Boolean.FALSE;
     }
 }

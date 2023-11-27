@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 public class Name {
     private static final int MIN_LENGTH = 1;

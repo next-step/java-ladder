@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 public class Height {
     private static final int MIN_HEIGHT = 1;

@@ -1,4 +1,9 @@
-package nextstep.ladder;
+package nextstep.ladder.view;
+
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.Name;
+import nextstep.ladder.domain.PersonNames;
 
 public class OutputView {
     private static final StringBuilder sb = new StringBuilder();
@@ -14,7 +19,7 @@ public class OutputView {
 
     private static void appendPersonNames(PersonNames personNames) {
         for (Name name : personNames) {
-            sb.append(name).append("  ");
+            sb.append(String.format ("%5s", name));
         }
         sb.append("\n");
     }
