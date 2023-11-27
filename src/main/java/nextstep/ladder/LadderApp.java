@@ -10,7 +10,7 @@ public class LadderApp {
 
     public static void main(String[] args) {
         final Participants participants = new Participants(InputView.inputParticipants());
-        final Results result = new Results(participants.countOfPerson(), InputView.inputResult());
+        final Results result = new Results(InputView.inputResult(participants.countOfPerson()));
         final Height ladderHeight = new Height(InputView.inputLadderHeight());
 
         ResultView.println(participants.toString());
