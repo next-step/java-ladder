@@ -21,4 +21,11 @@ public class PositionTest {
         Position position = new Position(0);
         assertThat(position.move(Direction.RIGHT)).isEqualTo(new Position(1));
     }
+
+    @Test
+    @DisplayName("Position은 position을 반환할 수 있다.")
+    void positionReturn(){
+        Position position = new Position(0);
+        assertThat(position.position()).isEqualTo(0);
+    }
 }
