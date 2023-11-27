@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import nextstep.ladder.domain.lines.Lines;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -20,10 +21,10 @@ public class LadderTest {
         assertThat(result).isEqualTo(new Ladder(5, createLines()));
     }
 
-    private List<Line> createLines() {
+    private Lines createLines() {
         Line line1 = new Line(List.of(true, false, true));
         Line line2 = new Line(List.of(false, true, false));
         Line line3 = new Line(List.of(false, false, true));
-        return List.of(line1, line2, line3);
+        return new Lines(List.of(line1, line2, line3));
     }
 }

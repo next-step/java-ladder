@@ -8,14 +8,14 @@ public class Ladder {
     private final int width;
     private final Lines lines;
 
-    public Ladder(List<String> names, List<Line> lines) {
+    public Ladder(List<String> names, Lines lines) {
         this.width = createWidthBy(names);
-        this.lines = new Lines(lines);
+        this.lines = lines;
     }
 
-    public Ladder(int width, List<Line> lines) {
+    public Ladder(int width, Lines lines) {
         this.width = width;
-        this.lines = new Lines(lines);
+        this.lines = lines;
     }
 
     private int createWidthBy(List<String> names) {

@@ -1,14 +1,20 @@
 package nextstep.ladder.controller;
 
 import java.util.List;
-import nextstep.ladder.domain.Participant;
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.lines.Lines;
+import nextstep.ladder.domain.lines.RandomLinesFactory;
 
 public class LadderController {
-    public void run(List<String> names, int height) {
-        for (String name : names) {
-            Participant participant = new Participant(name);
-        }
 
+    private final RandomLinesFactory randomLinesFactory;
 
+    public LadderController(RandomLinesFactory randomLinesFactory) {
+        this.randomLinesFactory = randomLinesFactory;
+    }
+
+    public Ladder startLadderGame(List<String> names, int height) {
+        Lines randomLines = randomLinesFactory.createLines(height, names.size());
+        return new Ladder(names, randomLines);
     }
 }
