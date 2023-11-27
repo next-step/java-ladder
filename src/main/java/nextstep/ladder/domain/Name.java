@@ -14,4 +14,9 @@ public class Name {
             throw new IllegalArgumentException("이름은 5자를 초과할 수 없습니다.");
         }
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
