@@ -10,7 +10,7 @@ public class Players {
 
     private Players(List<Player> players) {
         this.players = players;
-        this.nameLengthMax = nameLengthMax(players);
+        this.nameLengthMax = lengthMax(players);
     }
 
     public static Players of(String... names) {
@@ -27,9 +27,9 @@ public class Players {
                 .collect(Collectors.toList());
     }
 
-    private long nameLengthMax(List<Player> players) {
+    private long lengthMax(List<Player> players) {
         return players.stream()
-                .mapToLong(Player::nameLength)
+                .mapToLong(Player::length)
                 .max()
                 .orElseThrow();
     }
@@ -42,7 +42,7 @@ public class Players {
         return players;
     }
 
-    public long nameLengthMax() {
+    public long lengthMax() {
         return nameLengthMax;
     }
 }

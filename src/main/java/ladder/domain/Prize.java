@@ -11,6 +11,10 @@ public class Prize {
         return new Prize(name);
     }
 
+    public long length() {
+        return name.length();
+    }
+
     public String value() {
         return name;
     }

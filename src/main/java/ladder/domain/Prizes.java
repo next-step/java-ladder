@@ -24,6 +24,13 @@ public class Prizes {
                 .collect(Collectors.toList()));
     }
 
+    public long lengthMax() {
+        return prizes.stream()
+                .mapToLong(Prize::length)
+                .max()
+                .orElseThrow();
+    }
+
     public List<Prize> prizes() {
         return Collections.unmodifiableList(prizes);
     }

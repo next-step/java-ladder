@@ -37,8 +37,10 @@ public class PlayLadder {
         return prizes.prizes();
     }
 
-    public long nameLengthMax() {
-        return players.nameLengthMax();
+    public long lengthMax() {
+        if(players.lengthMax() < prizes.lengthMax()){
+            return prizes.lengthMax();
+        }
+        return players.lengthMax();
     }
-
 }

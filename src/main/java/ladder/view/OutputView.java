@@ -21,7 +21,7 @@ public class OutputView {
 
     private void printHeader(PlayLadder playLadder, StringBuffer stringBuffer) {
         playLadder.players()
-                .forEach(player -> stringBuffer.append(fixedRow(player.name(), playLadder.nameLengthMax())));
+                .forEach(player -> stringBuffer.append(fixedRow(player.name(), playLadder.lengthMax())));
     }
 
     private String fixedRow(String name, long nameLengthMax) {
@@ -29,8 +29,8 @@ public class OutputView {
     }
 
     private void createBody(PlayLadder playLadder, StringBuffer stringBuffer) {
-        String onPath = DASH.repeat((int)playLadder.nameLengthMax());
-        String offPath = BLANK.repeat((int)playLadder.nameLengthMax());
+        String onPath = DASH.repeat((int)playLadder.lengthMax());
+        String offPath = BLANK.repeat((int)playLadder.lengthMax());
 
         playLadder.ladder()
                 .forEach(line -> {
@@ -47,6 +47,6 @@ public class OutputView {
 
     private void createFooter(PlayLadder playLadder, StringBuffer stringBuffer) {
         playLadder.prizes()
-                .forEach(prize -> stringBuffer.append(fixedRow(prize.value(), playLadder.nameLengthMax())));
+                .forEach(prize -> stringBuffer.append(fixedRow(prize.value(), playLadder.lengthMax())));
     }
 }

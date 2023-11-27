@@ -25,7 +25,7 @@ public class Player {
         }
     }
 
-    public long nameLength() {
+    public long length() {
         return name.length();
     }
 

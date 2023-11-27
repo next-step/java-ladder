@@ -10,6 +10,6 @@ class PlayersTest {
     @Test
     @DisplayName("참가자 중에 가장 이름이 긴 값을 가져온다")
     public void name_length_max(){
-        Assertions.assertThat(Players.of(List.of("a", "abc", "abcde")).nameLengthMax()).isEqualTo(5);
+        Assertions.assertThat(Players.of(List.of("a", "abc", "abcde")).lengthMax()).isEqualTo(5);
     }
 }
