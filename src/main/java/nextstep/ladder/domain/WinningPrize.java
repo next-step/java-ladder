@@ -16,7 +16,7 @@ public class WinningPrize {
         this.winningPrize = IntStream.range(0, prizes.size())
             .boxed()
             .collect(Collectors.toMap(
-                i -> Position.of(i, height),
+                Position::get,
                 prizes::get,
                 (oldVal, newVal) -> newVal,
                 LinkedHashMap::new

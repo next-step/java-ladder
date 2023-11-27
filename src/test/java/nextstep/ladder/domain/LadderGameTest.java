@@ -34,7 +34,7 @@ class LadderGameTest {
         ));
         Position.init(new Width(names.length), new Height(5));
         Players players = new Players(IntStream.range(0, names.length)
-            .mapToObj(i -> new Player(names[i], Position.of(i, 0)))
+            .mapToObj(i -> new Player(names[i], Position.get(i)))
             .collect(Collectors.toUnmodifiableList()));
         WinningPrize winningPrize = new WinningPrize(List.of("꽝", "5000", "꽝", "3000"), 5);
         LadderGame ladderGame = new LadderGame(players, ladder, winningPrize);
@@ -44,10 +44,10 @@ class LadderGameTest {
 
         // then
         assertAll(
-            () -> assertEquals("홍길동", movedPlayers.findPlayerBy(Position.of(2, 5)).name()),
-            () -> assertEquals("전창길", movedPlayers.findPlayerBy(Position.of(0, 5)).name()),
-            () -> assertEquals("코난", movedPlayers.findPlayerBy(Position.of(1, 5)).name()),
-            () -> assertEquals("브라이언", movedPlayers.findPlayerBy(Position.of(3, 5)).name())
+            () -> assertEquals("홍길동", movedPlayers.findPlayerBy(Position.get(2)).name()),
+            () -> assertEquals("전창길", movedPlayers.findPlayerBy(Position.get(0)).name()),
+            () -> assertEquals("코난", movedPlayers.findPlayerBy(Position.get(1)).name()),
+            () -> assertEquals("브라이언", movedPlayers.findPlayerBy(Position.get(3)).name())
         );
     }
 
@@ -64,10 +64,10 @@ class LadderGameTest {
         ));
         Position.init(new Width(names.length), new Height(5));
         Players players = new Players(List.of(
-            new Player("홍길동", Position.of(2, 5)),
-            new Player("전창길", Position.of(0, 5)),
-            new Player("코난", Position.of(1, 5)),
-            new Player("브라이언", Position.of(3, 5))
+            new Player("홍길동", Position.get(2)),
+            new Player("전창길", Position.get(0)),
+            new Player("코난", Position.get(1)),
+            new Player("브라이언", Position.get(3))
         ));
         WinningPrize winningPrize = new WinningPrize(List.of("꽝", "5000", "꽝", "3000"), 5);
 

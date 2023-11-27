@@ -31,7 +31,7 @@ public class GameInfo {
 
     public Players players() {
         return new Players(IntStream.range(0, names.length)
-            .mapToObj(i -> new Player(names[i], Position.of(i, 0)))
+            .mapToObj(i -> new Player(names[i], Position.get(i)))
             .collect(Collectors.toUnmodifiableList()));
     }
 

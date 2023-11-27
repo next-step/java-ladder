@@ -17,11 +17,11 @@ public class Position {
     private static final int[] DIRECTIONS = {0 , -1};
     public static final int DEPTH_ADJUSTMENT = 1;
 
-    private final int x;
+    private final int value;
     private final int y;
 
-    private Position(int x, int y) {
-        this.x = x;
+    private Position(int value, int y) {
+        this.value = value;
         this.y = y;
     }
 
@@ -52,7 +52,14 @@ public class Position {
         validateNotInit();
 
         return POSITIONS.stream()
-            .filter(coordinate -> coordinate.x == x && coordinate.y == y)
+            .filter(coordinate -> coordinate.value == x && coordinate.y == y)
+            .findFirst()
+            .orElseThrow(() -> new IllegalArgumentException(COORDINATE_OUR_OF_RANGE.message()));
+    }
+
+    public static Position get(int value) {
+        return POSITIONS.stream()
+            .filter(position -> position.value == value)
             .findFirst()
             .orElseThrow(() -> new IllegalArgumentException(COORDINATE_OUR_OF_RANGE.message()));
     }
@@ -69,21 +76,17 @@ public class Position {
 
     public Position findNextCoordinate(Bridges bridge) {
         return Arrays.stream(DIRECTIONS)
-            .filter(direction -> bridge.isMovableSide(x + direction))
-            .mapToObj(direction -> movableSide(direction, x + direction))
+            .filter(direction -> bridge.isMovableSide(value + direction))
+            .mapToObj(direction -> movableSide(direction, value + direction))
             .findAny()
-            .orElse(Position.of(x, nextHeight(y)));
+            .orElse(Position.get(value));
     }
 
     private Position movableSide(int direction, int next) {
         if (direction == DIRECTIONS[0]) {
-            return Position.of(next + DEPTH_ADJUSTMENT, nextHeight(y));
+            return Position.get(next + DEPTH_ADJUSTMENT);
         }
 
-        return Position.of(next, nextHeight(y));
-    }
-
-    private int nextHeight(int y) {
-        return y + DEPTH_ADJUSTMENT;
+        return Position.get(next);
     }
 }

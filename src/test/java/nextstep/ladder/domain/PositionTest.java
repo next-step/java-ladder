@@ -21,7 +21,7 @@ public class PositionTest {
     @DisplayName("초기화 되지 않은 좌표 값에 접근할 경우 예외를 발생시킨다.")
     @Test
     void accessBeforeInit() {
-        assertThatThrownBy(() -> Position.of(1, 2)).isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() -> Position.get(1)).isInstanceOf(IllegalArgumentException.class)
             .hasMessage(COORDINATE_IS_NOT_INIT.message());
     }
 
@@ -35,11 +35,10 @@ public class PositionTest {
 
         // when
         int x = 3;
-        int y = 2;
-        Position result = Position.of(x, y);
+        Position result = Position.get(x);
 
         // then
-        assertThat(result).isEqualTo(Position.of(3, 2));
+        assertThat(result).isEqualTo(Position.get(3));
     }
 
     @DisplayName("전체 좌표 값의 범위를 넘어서는 값이 인자로 전달될 경우 예외를 발생시킨다.")
@@ -51,7 +50,7 @@ public class PositionTest {
         Position.init(width, height);
 
         // when & then
-        assertThatThrownBy(() -> Position.of(5, 5)).isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() -> Position.get(5)).isInstanceOf(IllegalArgumentException.class)
             .hasMessage(COORDINATE_OUR_OF_RANGE.message());
     }
 
@@ -76,13 +75,13 @@ public class PositionTest {
         Height height = new Height(5);
         Position.init(width, height);
 
-        Position position = Position.of(0, 0);
+        Position position = Position.get(0);
         Bridges bridges = new Bridges(List.of(true, false, true, false));
 
         // when
         Position nextPosition = position.findNextCoordinate(bridges);
 
         // then
-        assertThat(nextPosition).isEqualTo(Position.of(1, 1));
+        assertThat(nextPosition).isEqualTo(Position.get(1));
     }
 }

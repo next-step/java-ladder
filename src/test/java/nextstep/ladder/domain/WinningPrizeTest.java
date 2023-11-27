@@ -24,7 +24,7 @@ public class WinningPrizeTest {
         int height = 5;
         Position.init(new Width(4), new Height(height));
 
-        Player player = new Player("홍길동", Position.of(2, 5));
+        Player player = new Player("홍길동", Position.get(2));
         WinningPrize winningPrize = new WinningPrize(List.of("꽝", "5000", "꽝", "3000"), height);
 
         // when

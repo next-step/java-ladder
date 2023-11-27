@@ -39,12 +39,12 @@ public class LadderTest {
             (new Bridges(List.of(true, false, true)),
              new Bridges(List.of(true, false, true))));
         Position.init(new Width(4), new Height(2));
-        Player player = new Player("홍길동", Position.of(0, 0));
+        Player player = new Player("홍길동", Position.get(0));
 
         // when
         Player finished = ladder.climb(player);
 
         // then
-        assertThat(finished.isEqualCoordinate(Position.of(0, 2))).isTrue();
+        assertThat(finished.isEqualCoordinate(Position.get(0))).isTrue();
     }
 }
