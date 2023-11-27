@@ -25,4 +25,11 @@ public class RewardsTest {
         assertThat(rewards.rewards()).containsExactly("10000", "20000");
     }
 
+    @Test
+    @DisplayName("보상은 보상을 반환할 수 있다.")
+    void rewardsReturnReward(){
+        Rewards rewards = new Rewards(List.of("10000", "20000"));
+        assertThat(rewards.get(0)).isEqualTo("10000");
+    }
+
 }
