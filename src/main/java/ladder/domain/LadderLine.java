@@ -17,6 +17,9 @@ public class LadderLine {
     }
 
     public static LadderLine of(People people, CoordinateGenerator coordinateGeneration) {
+        /**
+         * 사다리 시작점인 왼쪽은 항상 연결되어 있지 않아야 하므로 false로 초기화
+         */
         Coordinate coordinate = Coordinate.valueOf(false);
 
         return Stream
