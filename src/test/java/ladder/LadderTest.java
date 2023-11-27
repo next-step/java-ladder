@@ -21,9 +21,8 @@ public class LadderTest {
     @DisplayName("[Ladder.of] 생성 테스트")
     public void creation() {
         assertThat(Ladder.of(
-                "|-| | |",
-                "| |-| |",
-                "| | |-|"
+                List.of( "|-| | |", "| |-| |", "| | |-|"),
+                '|', '-'
         )).isEqualTo(
                 Ladder.of(
                         LadderLine.of(List.of(CONNECTED, NOT_CONNECTED, NOT_CONNECTED)),
@@ -39,9 +38,8 @@ public class LadderTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> {
                     Ladder.of(
-                            "| | | | |",
-                            "| | | |",
-                            "| | | | |"
+                            List.of( "| | | | |", "| | | |", "| | | | |"),
+                            '|', '-'
                     );
                 });
     }
@@ -51,7 +49,7 @@ public class LadderTest {
     @DisplayName("[LadderGenerator.of] 라인 생성기와 함께 depth를 지정해서 요청하면 -> 지정된 depth를 가진 Ladder 생성")
     public void ladderDepthTest(int depth) {
         Ladder ladder = Ladder.of(
-                () -> LadderLine.of("|-|"),
+                () -> LadderLine.of("|-|", '|', '-'),
                 depth
         );
 

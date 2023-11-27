@@ -13,8 +13,7 @@ import java.util.Objects;
 public class LadderLine {
     /**
      * 사다리 컬럼 간의 연결 구조를 나타내는 구조입니다.
-     * 인덱스 i번은 i+1번 컬럼과 i+2번 컬럼 사이에 연결이 있는지를 나타냅니다. true면 연결이 있고 false면 연결이 없습니다.
-     * 컬럼은 1번부터 시작합니다.
+     * 인덱스 i번은 i번 컬럼과 i+1번 컬럼 사이에 연결이 있는지를 나타냅니다.
      */
     private final List<ColumnConnection> connectionInfo;
 
@@ -56,22 +55,28 @@ public class LadderLine {
     }
 
     /**
-     * 컬럼 간의 연결 정보를 이용하여 사다리 한 줄을 생성합니다.
+     * 사다리 라인 표현식을 이용하여 사다리 한 줄을 생성합니다.
+     * 사다리 라인 객체를 리터럴로 생성할 때 사용할 수 있습니다.
      *
      * @param connectionInfo 사다리 컬럼 간의 연결 구조를 나타내는 구조입니다.
-     *                       `|`과 `-` 그리고 ` ` (공백 문자)를 이용해 나타냅니다.
-     *                       `|`은 컬럼을 의미하고 `|`과 `|` 사이의 `-`는 컬럼 간의 연결을 의미합니다.
-     *                       `|`과 `|` 사이에 ` `가 있는 경우 연결이 없음을 의미합니다.
-     *                       1번 컬럼과 2번 컬럼이 연결되어 있고 3번과 4번이 연결되어 있는 경우 `|-| |-|`처럼 나타낼 수 있습니다.
+     *                       columnSymbol과 connectionSymbol 그리고 ` ` (공백 문자)를 이용해 나타냅니다.
+     *                       columnSymbol을 이용하여 컬럼을 나타내고 컬럼과 컬럼 사이에 connectionSymbol을 사용하여 연결을 정의합니다.
+     *                       컬럼 간에 공백이 있을 경우 연결되지 않음을 의미합니다.
+     *
+     *                       columnSymbol로 `|`을 쓰고, connectionSymbol로 `-`을 쓰는 상황에서
+     *                       1번 컬럼과 2번 컬럼이 연결되어 있고 3번과 4번이 연결되어 있는 경우
+     *                       `|-| |-|`처럼 나타낼 수 있습니다.
+     * @param columnSymbol 사다리 라인 표현식에서 사용하고 있는 컬럼의 기호
+     * @param connectionSymbol 사다리 라인 표현식
      *
      * @return 생성된 사다리 라인
      */
-    public static LadderLine of(String connectionInfo) {
+    public static LadderLine of(String connectionInfo, char columnSymbol, char connectionSymbol) {
         List<ColumnConnection> booleanConnectionInfo = new ArrayList<>();
 
         for (int p = 1; p < connectionInfo.length() - 1; p += 2) {
-            char connectionSymbol = connectionInfo.charAt(p);
-            if (connectionSymbol == '-') {
+            char inputedConnectionSymbol = connectionInfo.charAt(p);
+            if (inputedConnectionSymbol == connectionSymbol) {
                 booleanConnectionInfo.add(ColumnConnection.CONNECTED);
             }
             else {

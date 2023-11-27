@@ -16,14 +16,14 @@ public class LadderLineTest {
     @Test
     @DisplayName("[LadderLine.of] 사다리 한 줄 생성")
     public void creation() {
-        assertThat(LadderLine.of("|-| | |"))
-                .isEqualTo(LadderLine.of("|-| | |"));
+        assertThat(LadderLine.of("|-| | |", '|', '-'))
+                .isEqualTo(LadderLine.of("|-| | |", '|', '-'));
     }
 
     @Test
     @DisplayName("[LadderLine.of] 문자열 생성과 bool 배열 생성 간의 일치")
     public void creationWithTwoMethod() {
-        LadderLine ladderLineByString = LadderLine.of("| |-| |");
+        LadderLine ladderLineByString = LadderLine.of("| |-| |", '|', '-');
         LadderLine ladderLineByConnection = LadderLine.of(
                 List.of(NOT_CONNECTED, CONNECTED, NOT_CONNECTED)
         );
@@ -37,7 +37,7 @@ public class LadderLineTest {
     public void twoMovePoint() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> {
-                    LadderLine.of("| |-|-| |");
+                    LadderLine.of("| |-|-| |", '|', '-');
                 });
     }
 }

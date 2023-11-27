@@ -44,16 +44,19 @@ public class Ladder {
 
     /**
      * 사다리를 하나 정의합니다.
-     * 이 정적 팩토리 메서드는 입력으로 사다리 라인 표현식을 받습니다.
+     * 이 정적 팩토리 메서드는 입력으로 사다리 라인 표현식의 목록을 받습니다.
      * 각 파라미터는 사다리 한 줄을 정의하며 파라미터 순서가 앞선 사다리 라인이 상층에 쌓이고 파라미터 상 뒤에 오는 사다리 라인이 하층에 쌓입니다.
      *
-     * @param lines `-` `|` ` `로 구성된 사다리 라인 표현식
+     * @param connectionInfo 사다리 라인 표현식. 한 엘리먼트가 한 라인을 정의합니다.
+     * @param columnSymbol 사다리 라인 표현식에서 사용하는 컬럼 기호
+     * @param connectionSymbol 사다리 라인 표현식에서 사용하는 연결 기호
+     *
      *
      * @return 생성된 사다리 객체
      */
-    public static Ladder of(String... lines) {
-        List<LadderLine> ladderLines = Arrays.stream(lines)
-                .map(LadderLine::of)
+    public static Ladder of(List<String> connectionInfos, char columnSymbol, char connectionSymbol) {
+        List<LadderLine> ladderLines = connectionInfos.stream()
+                .map(connectionInfo -> LadderLine.of(connectionInfo, columnSymbol, connectionSymbol))
                 .collect(Collectors.toList());
 
         return new Ladder(ladderLines);
