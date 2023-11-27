@@ -13,11 +13,16 @@ public class Names {
                 .collect(Collectors.toList());
     }
 
-    public List<Name> names() {
-        return Collections.unmodifiableList(names);
+    public Name name(int index){
+        return names.get(index);
     }
 
     public int countOfParticipant() {
         return names.size();
     }
+
+    public List<Name> names() {
+        return Collections.unmodifiableList(names);
+    }
+
 }

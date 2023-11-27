@@ -11,6 +11,7 @@ public class OutputView {
     private OutputView() {
     }
 
+    private static final String ALL_PARTICIPATNS = "all";
     private static final String WALL = "|";
     private static final String LINE = "-----";
     private static final String BLANK = "     ";
@@ -23,7 +24,7 @@ public class OutputView {
         names.names().forEach(System.out::print);
     }
 
-    public static void printLadder(Ladder ladder) {
+    public static void printLines(Ladder ladder) {
         System.out.println();
         List<Line> lines = ladder.lines();
         lines.forEach(OutputView::printLine);
@@ -44,5 +45,22 @@ public class OutputView {
 
     public static void printPrizes(Prizes prizes) {
         prizes.prizes().forEach(System.out::print);
+    }
+
+    public static void printLadderResult(String resultName, LadderResult ladderResult) {
+        System.out.println();
+        System.out.println("실행 결과");
+        if (ALL_PARTICIPATNS.equals(resultName)) {
+            participantsResult(ladderResult);
+            return;
+        }
+
+        System.out.println(ladderResult.result(resultName).prize());
+    }
+
+    private static void participantsResult(LadderResult ladderResult) {
+        ladderResult.results().forEach((name, prize) ->
+                System.out.println(name.name() + " : " + prize.prize())
+        );
     }
 }

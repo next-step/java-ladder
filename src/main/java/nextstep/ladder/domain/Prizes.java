@@ -13,6 +13,10 @@ public class Prizes {
                 .collect(Collectors.toList());
     }
 
+    public Prize prize(int index){
+        return prizes.get(index);
+    }
+
     public List<Prize> prizes() {
         return Collections.unmodifiableList(prizes);
     }

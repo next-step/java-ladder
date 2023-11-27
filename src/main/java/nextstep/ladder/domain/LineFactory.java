@@ -47,14 +47,14 @@ public class LineFactory {
 
     private static int randomDirection(int countOfPerson, int directionSize) {
         if (directionSize == 0) {
-            return random.nextInt(2); // 0,  1
+            return random.nextInt(2); // 0, 1
         }
 
         if (directionSize == countOfPerson - 1) {
-            return random.nextInt(2) - 1;// -1, 0
+            return 0;
         }
 
-        return random.nextInt(3) - 1; // -1, 0, 1
+        return random.nextInt(2); // 0, 1
     }
 
     private static void adjustDirections(List<Direction> directions) {
