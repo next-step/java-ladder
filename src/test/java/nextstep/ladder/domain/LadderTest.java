@@ -5,6 +5,8 @@ import nextstep.ladder.domain.wrapper.Width;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
@@ -32,19 +34,22 @@ public class LadderTest {
         assertThat(stringLadder).isEqualTo("|-----|     |-----|\n|-----|     |-----|");
     }
 
-    @DisplayName("인자로 플레이어를 받아 사다리를 타게한다. 사다리 타기가 완료된 플레이어를 반환한다.")
-    @Test
-    void climb() {
-        Ladder ladder = new Ladder(List.of
-            (new Bridges(List.of(true, false, true)),
-             new Bridges(List.of(true, false, true))));
-        Position.init(new Width(4), new Height(2));
-        Player player = new Player("홍길동", Position.get(0));
+    @DisplayName("인자로 시작 위치를 전달 받아 사다리를 타고 결과 위치를 반환한다.")
+    @ParameterizedTest
+    @CsvSource({"0,2","1,0","2,1","3,3"})
+    void climb(int startPosition, int expectedResult) {
+        Ladder ladder = new Ladder(List.of(
+            new Bridges(List.of(true, false, true)),
+            new Bridges(List.of(true, false, true)),
+            new Bridges(List.of(true, false, false)),
+            new Bridges(List.of(false, false, false)),
+            new Bridges(List.of(false, true, false))
+        ));
 
         // when
-        Player finished = ladder.climb(player);
+        int result = ladder.climb(startPosition);
 
         // then
-        assertThat(finished.isEqualCoordinate(Position.get(0))).isTrue();
+        assertThat(result).isEqualTo(expectedResult);
     }
 }
