@@ -23,4 +23,11 @@ public class PlayersTest {
         Players players = new Players(List.of(new Name("pobi"), new Name("ryan")));
         Assertions.assertThat(players.names()).containsExactly(new Name("pobi"), new Name("ryan"));
     }
+
+    @Test
+    @DisplayName("Player의 이름을 반환할 수 있다.")
+    void returnPlayerName() {
+        Players players = new Players(List.of(new Name("pobi"), new Name("ryan")));
+        Assertions.assertThat(players.get(0)).isEqualTo(new Name("pobi"));
+    }
 }
