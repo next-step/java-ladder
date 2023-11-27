@@ -17,7 +17,7 @@ public class LadderGame {
         return new GameResult(result);
     }
 
-    private static Position move(Ladder ladder, Position position) {
+    private Position move(Ladder ladder, Position position) {
         for(Line line: ladder.lines()){
             Direction direction =line.points().get(position.position()).move();
             position = position.move(direction);
