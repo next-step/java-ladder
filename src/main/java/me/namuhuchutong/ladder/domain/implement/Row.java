@@ -22,16 +22,12 @@ public class Row implements Line {
     private void validateContinuousScaffold(List<LadderExpression> values) {
         ContinuousScaffoldValidator validator = new ContinuousScaffoldValidator();
         values.stream()
-              .filter(this::filteringVerticalBar)
+              .filter(LadderExpression::isNotVerticalBar)
               .filter(validator::isContinuous)
               .findAny()
               .ifPresent(e -> {
                   throw new IllegalArgumentException("사다리 발판은 연속적일 수 없습니다.");
               });
-    }
-
-    private boolean filteringVerticalBar(LadderExpression expression) {
-        return expression.isNotVerticalBar();
     }
 
     @Override
