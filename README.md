@@ -29,9 +29,8 @@
       - [x] 12자가 넘는 단어 중 길이가 긴 순서로 100개의 단어를 추출한다.
       - [x] 단어 중복을 허용하지 않는다.
       - [x] 추출한 100개의 단어를 출력해야하고 모든 문자는 소문자이여야한다.
-- [ ] Optional을 활용해 조건에 따른 값을 반환한다.
-  - [ ] User의 ageIsInRange1()은 30 ~ 45살 이하에 해당하는 User가 존재하는 경우 true를 반환한다.
-  - [ ] User의 ageIsInRange2()는 ageIsInRange1()과 결과는 같지만 메소드인자로 User를 Optional로 넘겨받는다.
-    - [ ] Stream의 map, filter와 같은 메소드를 사용해 구현한다.
-  - [ ] User의 getUser() 메소드를 stream과 Optional을 활용해 구현한다.
-  - [ ] ExpressionTest의 테스트가 통과가능하도록 of 메서드를 구현한다. 이때, stream을 활용한다.
+- [x] Optional을 활용해 조건에 따른 값을 반환한다.
+  - [x] User의 ageIsInRange2()는 ageIsInRange1()과 결과는 같지만 메소드인자로 User를 Optional로 넘겨받는다.
+    - [x] Stream의 map, filter와 같은 메소드를 사용해 구현한다.
+  - [x] User의 getUser() 메소드를 stream과 Optional을 활용해 구현한다.
+  - [x] ExpressionTest의 테스트가 통과가능하도록 of 메서드를 구현한다. 이때, stream을 활용한다.
