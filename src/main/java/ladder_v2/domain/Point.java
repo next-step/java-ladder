@@ -62,7 +62,7 @@ public class Point {
             points[2] = new Point(false, false);
         }
 
-        public static Point getPoint(boolean left, boolean right){
+        private static Point getPoint(boolean left, boolean right){
             if(right){
                 return points[0];
             }
