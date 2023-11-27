@@ -122,31 +122,6 @@ public class Ladder {
     }
 
     /**
-     * 이 사다리의 컬럼 수를 반환합니다.
-     *
-     * @return 사다리 컬럼 수
-     */
-    public int howManyColumn() {
-        return this.lines.get(0).howManyColumns();
-    }
-
-    /**
-     * 특정 depth의 특정 컬럼이 우측 컬럼과 이어져 있는지를 확인합니다.
-     *
-     * @param depthIndex 사다리 높이 번호입니다. 0부터 시작하며 숫자가 낮을 수록 상층입니다.
-     * @param leftColumnIndex 컬럼 번호입니다. 0부터 시작합니다.
-     *
-     * @return 주어진 depth의 주어진 컬럼이 우측 컬럼과 연결되어 있다면 true를 반환합니다.
-     */
-    public ColumnConnection isConnected(int depthIndex, int leftColumnIndex) {
-        if (depthIndex < 0 || depthIndex >= this.lines.size()) {
-            throw new IllegalArgumentException("주어진 depth 위치 " + depthIndex + "는 존재하지 않습니다.");
-        }
-
-        return this.lines.get(depthIndex).isConnected(leftColumnIndex);
-    }
-
-    /**
      * 이 타입과 호환되 않는 곳에서 Ladder를 사용하기 위해 List로 변환합니다.
      *
      * @return 사다리 연결 정보
