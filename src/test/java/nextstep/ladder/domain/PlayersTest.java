@@ -18,6 +18,13 @@ public class PlayersTest {
             .hasMessage(NOT_ENOUGH_PLAYER.message());
     }
 
+    @DisplayName("플레이어의 이름이 중복되면 예외를 던진다.")
+    @Test
+    void validateDuplicateName() {
+        assertThatThrownBy(() -> new Players(List.of("ABc", "abc"))).isInstanceOf(IllegalArgumentException.class)
+            .hasMessage(DUPLICATE_NAME.message());
+    }
+
     @DisplayName("플레이어들의 이름을 가져온다.")
     @Test
     void playersName() {

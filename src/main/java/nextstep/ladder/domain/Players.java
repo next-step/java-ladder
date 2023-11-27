@@ -14,15 +14,32 @@ public class Players {
     private final List<Name> players;
 
     public Players(List<String> names) {
-        validateNumOfPlayers(names);
+        validateDuplicateName(names);
 
         players = names.stream()
             .map(Name::new)
             .collect(Collectors.toUnmodifiableList());
     }
 
-    private void validateNumOfPlayers(List<String> names) {
-        if (names.size() < MINIMUN_PLAYERS) {
+    private void validateDuplicateName(List<String> names) {
+        long countOfName = countName(names);
+
+        if (countOfName != names.size()) {
+            throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_NAME.message());
+        }
+
+        validateNumOfPlayers(countOfName);
+    }
+
+    private long countName(List<String> names) {
+        return names.stream()
+            .map(String::toLowerCase)
+            .distinct()
+            .count();
+    }
+
+    private void validateNumOfPlayers(long countOfName) {
+        if (countOfName < MINIMUN_PLAYERS) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_ENOUGH_PLAYER.message());
         }
     }
