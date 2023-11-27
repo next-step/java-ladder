@@ -10,7 +10,11 @@ public class RandomCreateStrategy implements CreateStrategy {
 
     @Override
     public boolean isCreate(Point point) {
-        return new Random().nextBoolean() && point.current();
+        return new Random().nextBoolean() && isBeforeFalse(point);
+    }
+
+    private static boolean isBeforeFalse(final Point point) {
+        return !point.current();
     }
 
     @Override

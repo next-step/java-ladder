@@ -2,6 +2,8 @@ package nextstep.ladder.domain;
 
 public class Point {
     public static final String INVALID_STATUS_MSG = "두 상태가 true 일 수 없습니다.";
+    private static final String EXIST_POINT_STR = "-----";
+    private static final String EMPTY_POINT_STR = "     ";
     private final boolean left;
     private final boolean current;
 
@@ -40,5 +42,17 @@ public class Point {
 
     public boolean current() {
         return this.current;
+    }
+
+    private String getRadderStr(boolean point) {
+        if (point) {
+            return EXIST_POINT_STR;
+        }
+
+        return EMPTY_POINT_STR;
+    }
+    @Override
+    public String toString() {
+        return getRadderStr(this.current);
     }
 }

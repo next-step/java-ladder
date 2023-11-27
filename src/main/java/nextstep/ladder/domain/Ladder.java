@@ -22,21 +22,21 @@ public class Ladder {
 
     public LadderResult start(final Participants participants, final Results result) {
         LadderResult ladderResult = new LadderResult();
-        for (int i = 0; i < participants.countOfPerson(); i++) {
-            final Position endPosition = move(Position.of(i));
-            ladderResult.put(participants.get(i), result.get(endPosition));
-        }
 
+        for (int i = 0; i < participants.countOfPerson(); i++) {
+            Position position = new Position(i);
+            position = getPosition(position);
+
+            ladderResult.put(participants.get(i), result.get(position));
+        }
         return ladderResult;
     }
 
-    public Position move(final Position startPosition) {
-        Position currentPosition = startPosition;
-        for (Line line: this.lines) {
-            currentPosition = line.move(currentPosition);
+    private Position getPosition(Position position) {
+        for (Line line : lines) {
+            position = line.move(position);
         }
-
-        return currentPosition;
+        return position;
     }
 
     @Override

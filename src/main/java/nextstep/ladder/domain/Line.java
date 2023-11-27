@@ -8,8 +8,6 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Line {
-    private static final String EXIST_POINT_STR = "-----";
-    private static final String EMPTY_POINT_STR = "     ";
     private static final String DELIMITER_STR = "|";
     private List<Point> points;
 
@@ -28,24 +26,11 @@ public class Line {
         this.points = points;
     }
 
-    private String getRadderStr(boolean point) {
-        if (point) {
-            return EXIST_POINT_STR;
-        }
 
-        return EMPTY_POINT_STR;
-    }
-
-    public Position move(final Position startPosition) {
-        if (startPosition.isFirstPosition()) {
-            return startPosition.movePostPosition(points);
-        }
-
-        if (startPosition.isLastPosition(this.points)) {
-            return startPosition.movePrePosition(this.points);
-        }
-
-        return startPosition.move(points);
+    public Position move(Position position) {
+        final Point point = this.points.get(position.get());
+        final Direction direction = point.move();
+        return position.move(direction);
     }
 
     @Override
@@ -64,7 +49,7 @@ public class Line {
     @Override
     public String toString() {
         return this.points.stream()
-                .map(this::getRadderStr)
-                .collect(Collectors.joining(DELIMITER_STR, DELIMITER_STR, DELIMITER_STR));
+                .map(p -> DELIMITER_STR + p.toString())
+                .collect(Collectors.joining());
     }
 }

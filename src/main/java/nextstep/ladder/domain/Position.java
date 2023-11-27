@@ -1,12 +1,11 @@
 package nextstep.ladder.domain;
 
-import java.util.List;
 import java.util.Objects;
 
 public class Position {
     public static final String NEGATIVE_POSITION_MSG = "현재 위치는 0미만이 될 수 없습니다.";
     private final int value;
-    private Position(final int position) {
+    public Position(final int position) {
         negativePositionCheck(position);
         this.value = position;
     }
@@ -17,47 +16,20 @@ public class Position {
         }
     }
 
-    public static Position of(final int position) {
-        return new Position(position);
-    }
-
     public int get() {
         return this.value;
     }
 
-    public Position move(final List<Boolean> points) {
-        if (points.get(this.value)) {
-            return new Position(this.value + 1);
-        }
-
-        if (points.get(this.value - 1)) {
+    public Position move(final Direction direction) {
+        if (Direction.LEFT == direction) {
             return new Position(this.value - 1);
         }
 
-        return this;
-    }
-
-    public Position movePostPosition(final List<Boolean> points) {
-        if (points.get(this.value)) {
+        if (Direction.RIGHT == direction) {
             return new Position(this.value + 1);
         }
 
         return this;
-    }
-
-    public Position movePrePosition(final List<Boolean> points) {
-        if (points.get(this.value - 1)) {
-            return new Position(this.value - 1);
-        }
-
-        return this;
-    }
-
-    public boolean isFirstPosition() {
-        return this.value == 0;
-    }
-    public boolean isLastPosition(List<Boolean> points) {
-        return this.value == points.size();
     }
 
     @Override
