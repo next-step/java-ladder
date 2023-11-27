@@ -22,10 +22,10 @@ public class LadderApp {
 
         String resultInput = InputView.inputParticipantLadderResult();
         while (isNotAll(resultInput)) {
-            ResultView.println(ladderResult.participantResult(new Participant(resultInput)));
+            final String participantResult = ladderResult.participantResult(new Participant(resultInput));
+            ResultView.println(participantResult);
             resultInput = InputView.inputParticipantLadderResult();
         }
-
         ResultView.println(ladderResult.participantResult());
     }
 
