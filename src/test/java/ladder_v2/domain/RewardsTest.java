@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class RewardsTest {
@@ -15,6 +16,13 @@ public class RewardsTest {
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new Rewards(List.of("10000"));
         });
+    }
+
+    @Test
+    @DisplayName("보상은 보상목록을 반환할 수 있다.")
+    void rewardsReturn(){
+        Rewards rewards = new Rewards(List.of("10000", "20000"));
+        assertThat(rewards.rewards()).containsExactly("10000", "20000");
     }
 
 }
