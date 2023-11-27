@@ -16,4 +16,11 @@ public class PlayersTest {
             new Players(List.of(new Name("pobi")));
         });
     }
+
+    @Test
+    @DisplayName("Player의 목록을 반환할 수 있다.")
+    void returnPlayersName() {
+        Players players = new Players(List.of(new Name("pobi"), new Name("ryan")));
+        Assertions.assertThat(players.names()).containsExactly(new Name("pobi"), new Name("ryan"));
+    }
 }
