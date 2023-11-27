@@ -18,7 +18,7 @@ public class Line {
 
     private void validateSize(long size) {
         if (size < SIZE_MIN) {
-            throw new IllegalArgumentException("최소 너비는 1 이상입니다.");
+            throw new IllegalArgumentException("최소 너비는 2 이상입니다.");
         }
     }
 
