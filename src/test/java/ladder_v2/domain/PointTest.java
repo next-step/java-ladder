@@ -19,5 +19,10 @@ class PointTest {
         assertThat(Point.first().isLeft()).isFalse();
     }
 
+    @Test
+    @DisplayName("Point의 마지막 포인트는 right는 무조건 false이다.")
+    void rightOfLastPointShouldBeFalse() {
+        assertThat(Point.first().last().isRight()).isFalse();
+    }
 
 }
