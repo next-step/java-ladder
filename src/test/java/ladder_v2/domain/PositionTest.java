@@ -14,4 +14,11 @@ public class PositionTest {
             new Position(-1);
         });
     }
+
+    @Test
+    @DisplayName("Position을 특정 Direction으로 움직이면 Position이 반환된다.")
+    void positionMove(){
+        Position position = new Position(0);
+        assertThat(position.move(Direction.RIGHT)).isEqualTo(new Position(1));
+    }
 }
