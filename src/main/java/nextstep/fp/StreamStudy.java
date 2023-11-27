@@ -32,8 +32,8 @@ public class StreamStudy {
         words.stream()
             .filter(word -> word.length() > 12)
             .sorted(Comparator.comparing(String::length).reversed())
-            .distinct()
             .map(String::toLowerCase)
+            .distinct()
             .forEach(System.out::println);
     }
 
@@ -42,11 +42,13 @@ public class StreamStudy {
     }
 
     public static long sumAll(List<Integer> numbers) {
-        return numbers.stream().reduce(0, (x, y) -> x + y);
+        return numbers.stream().reduce(0, Integer::sum);
     }
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
-        return numbers.stream().filter(number -> number > 3).map(number -> number * 2)
-            .reduce(0, (numberX, numberY) -> numberX + numberY);
+        return numbers.stream()
+            .filter(number -> number > 3)
+            .map(number -> number * 2)
+            .reduce(0, Integer::sum);
     }
 }
