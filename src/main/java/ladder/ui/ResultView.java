@@ -22,34 +22,54 @@ public class ResultView {
         System.out.println();
     }
 
-    public static void printResult(GameResult gameResult) {
+    public static void printResult(GameResult gameResult, People people) {
         while (true) {
             String text = InputView.inputPerson();
 
-            if (checkEnd(text)) {
-                System.out.printf("%n종료되었습니다.%n");
-                break;
-            }
+            if (checkEnd(text)) break;
+
+            if (checkContains(people, text)) continue;
 
             System.out.printf("%n실행 결과%n");
             if (checkAll(text)) {
-                gameResult.values().forEach((name, gift) -> System.out.printf("%s : %s%n", name, gift));
+                printAll(gameResult);
                 continue;
             }
 
-            System.out.printf("%s : %s%n", text, gameResult.checkResult(new Name(text)));
+            printSolo(gameResult, text);
 
         }
 
+    }
+
+    private static void printSolo(GameResult gameResult, String text) {
+        System.out.printf("%s : %s%n", text, gameResult.checkResult(new Name(text)));
+    }
+
+    private static void printAll(GameResult gameResult) {
+        gameResult.values().forEach((name, gift) -> System.out.printf("%s : %s%n", name, gift));
+    }
+
+    private static boolean checkContains(People people, String text) {
+        if (!checkAll(text) &&!people.contains(new Name(text))) {
+            System.out.println("잘못입력하셨습니다.");
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean checkEnd(String text) {
+        if (text.equals(",")) {
+            System.out.printf("%n종료되었습니다.%n");
+            return true;
+        }
+        return false;
     }
 
     private static boolean checkAll(String text) {
         return text.equals("all");
     }
 
-    private static boolean checkEnd(String text) {
-        return text.equals(",");
-    }
 
     private static void drawLine(LadderLine ladderLine) {
         ladderLine.draw().forEach(item -> System.out.print(drawCoordinate(item)));
