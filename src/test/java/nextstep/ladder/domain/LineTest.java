@@ -12,7 +12,7 @@ public class LineTest {
     @Test
     @DisplayName("Line은 주어진 가로 라인이 겹치는 경우 예외를 던진다")
     void newObject_twoLinesAttached_throwsException() {
-        List<Boolean> list = List.of(false, true, true);
+        List<Point> list = List.of(new Point(false), new Point(true), new Point(true));
         assertThatThrownBy(
                 () -> new Line(list)
         ).isInstanceOf(IllegalArgumentException.class);

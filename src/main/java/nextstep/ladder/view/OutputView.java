@@ -1,9 +1,6 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Name;
-import nextstep.ladder.domain.PersonNames;
+import nextstep.ladder.domain.*;
 
 public class OutputView {
     private static final StringBuilder sb = new StringBuilder();
@@ -33,13 +30,13 @@ public class OutputView {
     }
 
     private static void appendLine(Line line) {
-        for (Boolean hasLine : line.points()) {
-            if(hasLine) {
+        for (Point point : line.points()) {
+            if(point.isPoint()) {
                 sb.append("-----");
                 sb.append("|");
             }
 
-            if(!hasLine) {
+            if(!point.isPoint()) {
                 sb.append("     ");
                 sb.append("|");
             }
