@@ -31,17 +31,8 @@ public class LadderRenderer {
     }
 
     private static String ladderLineToLineString(LadderLine ladderLine) {
-        StringBuilder st = new StringBuilder();
-        for (int columnIndex = 0; columnIndex < ladderLine.howManyColumns() - 1; columnIndex++) {
-            st.append(COLUMN_SYMBOL);
-            if (ladderLine.isConnected(columnIndex)) {
-                st.append(CONNECTION_SYMBOL);
-            }
-            else {
-                st.append(NO_CONNECTION_SYMBOL);
-            }
-        }
-        st.append(COLUMN_SYMBOL);
-        return st.toString();
+        return ladderLine.toList().stream()
+                .map(isConnected -> isConnected ? CONNECTION_SYMBOL : NO_CONNECTION_SYMBOL)
+                .reduce(COLUMN_SYMBOL, (acc, connectionString) -> acc + connectionString + COLUMN_SYMBOL);
     }
 }
