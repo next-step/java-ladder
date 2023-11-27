@@ -1,6 +1,7 @@
 package ladder.domain.generator;
 
 import ladder.domain.LadderLine;
+import ladder.domain.type.ColumnConnection;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,11 +43,11 @@ public class RandomLadderLineGenerator implements Generator<LadderLine> {
         }
 
         if (theNumberOfColumn == 1) {
-            return LadderLine.of(new ArrayList<Boolean>());
+            return LadderLine.of(new ArrayList<ColumnConnection>());
         }
 
 
-        List<Boolean> connectionInfo = new ArrayList<>(theNumberOfColumn-1);
+        List<ColumnConnection> connectionInfo = new ArrayList<>(theNumberOfColumn-1);
 
         connectionInfo.add(determineRandomConnection());
         for (int i = 1; i < theNumberOfColumn - 1; i++) {
@@ -61,20 +62,20 @@ public class RandomLadderLineGenerator implements Generator<LadderLine> {
     /**
      * 이번에 연결할지 말지 판단합니다.
      *
-     * @param isConnected 이번에 연결할지 말지를 나타내는 플래그입니다. 상황에 따라 연결을 요청해도 연결되지 않을 수 있습니다.
-     * @param isConnectedWithBeforeColumn 이전 컬럼 연결 여부를 나타냅니다. 이전 컬럼과의 연결 여부가 다음 컬럼 연결에 영향을 미칩니다.
+     * @param connection 이번에 연결할지 말지를 나타내는 플래그입니다. 상황에 따라 연결을 요청해도 연결되지 않을 수 있습니다.
+     * @param connectionWithBeforeColumn 이전 컬럼 연결 여부를 나타냅니다. 이전 컬럼과의 연결 여부가 다음 컬럼 연결에 영향을 미칩니다.
      *
-     * @return 다음 컬럼과 연결할지 말지 계산된 값입니다. true면 연결을 false면 미연결을 의미합니다.
+     * @return 다음 컬럼과 연결할지 말지 계산된 값입니다.
      */
-    private static Boolean tryConnect(boolean isConnected, Boolean isConnectedWithBeforeColumn) {
-        if (isConnectedWithBeforeColumn) {
-            return false;
+    private static ColumnConnection tryConnect(ColumnConnection connection, ColumnConnection connectionWithBeforeColumn) {
+        if (connectionWithBeforeColumn.isConnected()) {
+            return ColumnConnection.NOT_CONNECTED;
         }
 
-        return isConnected;
+        return connection;
     }
 
-    private static boolean determineRandomConnection() {
-        return RANDOM.nextBoolean();
+    private static ColumnConnection determineRandomConnection() {
+        return ColumnConnection.of(RANDOM.nextBoolean());
     }
 }

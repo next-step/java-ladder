@@ -1,11 +1,14 @@
 package ladder;
 
 import ladder.domain.LadderLine;
+import ladder.domain.type.ColumnConnection;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static ladder.domain.type.ColumnConnection.CONNECTED;
+import static ladder.domain.type.ColumnConnection.NOT_CONNECTED;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
@@ -20,10 +23,13 @@ public class LadderLineTest {
     @Test
     @DisplayName("[LadderLine.of] 문자열 생성과 bool 배열 생성 간의 일치")
     public void creationWithTwoMethod() {
-        assertThat(LadderLine.of("| |-| |"))
-                .isEqualTo(LadderLine.of(
-                        List.of(false, true, false)
-                ));
+        LadderLine ladderLineByString = LadderLine.of("| |-| |");
+        LadderLine ladderLineByConnection = LadderLine.of(
+                List.of(NOT_CONNECTED, CONNECTED, NOT_CONNECTED)
+        );
+
+        assertThat(ladderLineByString)
+                .isEqualTo(ladderLineByConnection);
     }
 
     @Test

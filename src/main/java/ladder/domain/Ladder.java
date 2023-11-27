@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import ladder.domain.generator.Generator;
+import ladder.domain.type.ColumnConnection;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -134,7 +135,7 @@ public class Ladder {
      *
      * @return 주어진 depth의 주어진 컬럼이 우측 컬럼과 연결되어 있다면 true를 반환합니다.
      */
-    public boolean isConnected(int depthIndex, int leftColumnIndex) {
+    public ColumnConnection isConnected(int depthIndex, int leftColumnIndex) {
         if (depthIndex < 0 || depthIndex >= this.lines.size()) {
             throw new IllegalArgumentException("주어진 depth 위치 " + depthIndex + "는 존재하지 않습니다.");
         }

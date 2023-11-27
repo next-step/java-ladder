@@ -3,6 +3,7 @@ package ladder;
 import ladder.domain.Ladder;
 import ladder.domain.LadderLine;
 import ladder.domain.generator.RandomLadderLineGenerator;
+import ladder.domain.type.ColumnConnection;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,6 +11,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
+import static ladder.domain.type.ColumnConnection.CONNECTED;
+import static ladder.domain.type.ColumnConnection.NOT_CONNECTED;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
@@ -23,9 +26,9 @@ public class LadderTest {
                 "| | |-|"
         )).isEqualTo(
                 Ladder.of(
-                        LadderLine.of(List.of(true, false, false)),
-                        LadderLine.of(List.of(false, true, false)),
-                        LadderLine.of(List.of(false, false, true))
+                        LadderLine.of(List.of(CONNECTED, NOT_CONNECTED, NOT_CONNECTED)),
+                        LadderLine.of(List.of(NOT_CONNECTED, CONNECTED, NOT_CONNECTED)),
+                        LadderLine.of(List.of(NOT_CONNECTED, NOT_CONNECTED, CONNECTED))
                 )
         );
     }

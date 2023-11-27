@@ -32,7 +32,7 @@ public class LadderRenderer {
 
     private static String ladderLineToLineString(LadderLine ladderLine) {
         return ladderLine.toList().stream()
-                .map(isConnected -> isConnected ? CONNECTION_SYMBOL : NO_CONNECTION_SYMBOL)
+                .map(columnConnection -> columnConnection.isConnected() ? CONNECTION_SYMBOL : NO_CONNECTION_SYMBOL)
                 .reduce(COLUMN_SYMBOL, (acc, connectionString) -> acc + connectionString + COLUMN_SYMBOL);
     }
 }
