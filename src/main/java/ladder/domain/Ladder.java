@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 
 public class Ladder {
 
-    public static final int HEIGHT_MIN = 2;
+    private static final int HEIGHT_MIN = 2;
     private final List<Line> lines;
 
     private Ladder(long width, long height, PathStrategy pathStrategy) {
