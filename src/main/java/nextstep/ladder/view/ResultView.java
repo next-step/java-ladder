@@ -3,9 +3,6 @@ package nextstep.ladder.view;
 import nextstep.ladder.controller.dto.GameResult;
 import nextstep.ladder.domain.LadderGame;
 
-import java.util.Arrays;
-import java.util.Set;
-
 public class ResultView {
 
     public void printLadder(LadderGame ladderGame) {
@@ -38,15 +35,20 @@ public class ResultView {
 
         if ("all".equals(name)) {
             printAll(gameResult);
+            println("");
+
             return true;
         }
 
         print(gameResult.prize(name));
+        println("");
+
         return false;
     }
 
     public void printAll(GameResult gameResult) {
-        gameResult.names().forEach(name -> println(name + " : " + gameResult.prize(name)));
+        gameResult.names()
+            .forEach(name -> println(name + " : " + gameResult.prize(name)));
     }
 
     private void println(String message) {

@@ -8,14 +8,12 @@ import nextstep.ladder.domain.wrapper.Width;
 import nextstep.ladder.util.LadderBuilder;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class GameInfo {
 
-    private String[] names;
-    private int height;
-    private String[] prizes;
+    private final String[] names;
+    private final int height;
+    private final String[] prizes;
 
     public GameInfo(String[] names, int height, String[] prizes) {
         this.names = names;
