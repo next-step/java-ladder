@@ -15,14 +15,14 @@ public class Prompt {
     public static String askString(String questionMessage) {
         clearInputStream();
 
-        Renderer.simplePrint(questionMessage);
+        MessageRenderer.simplePrint(questionMessage);
         return scanner.nextLine();
     }
 
     public static int askInt(String questionMessage) {
         clearInputStream();
 
-        Renderer.simplePrint(questionMessage);
+        MessageRenderer.simplePrint(questionMessage);
 
         return scanner.nextInt();
     }

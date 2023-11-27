@@ -1,11 +1,10 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
 import ladder.domain.Name;
 
 import java.util.List;
 
-public class Renderer {
+public class MessageRenderer {
 
     /** 컬럼 간 간격 */
     private static final int COLUMN_WIDTH = 6;
@@ -13,7 +12,7 @@ public class Renderer {
     private static final char CONNECTION_SYMBOL = '-';
     private static final char COLUMN_SYMBOL = '|';
 
-    private Renderer() {
+    private MessageRenderer() {
     }
 
     /**
@@ -77,45 +76,4 @@ public class Renderer {
         simplePrintWithWidth(printableSting, width, false);
     }
 
-    /**
-     * 사다리를 출력합니다.
-     *
-     * @param ladder 출력할 사다리
-     */
-    public static void printLadder(Ladder ladder) {
-        // 연결이 있음을 표현하는 문자열
-        StringBuilder connectionSymbol = new StringBuilder();
-        // 연결이 없음을 표현하는 문자열
-        StringBuilder noConnectionSymbol = new StringBuilder();
-        for (int i = 0; i < COLUMN_WIDTH; i++) {
-            connectionSymbol.append(CONNECTION_SYMBOL);
-            noConnectionSymbol.append(' ');
-        }
-
-        List<String> ladderLineStrings = ladder
-                .toPrintableStrings(
-                        String.valueOf(COLUMN_SYMBOL),
-                        connectionSymbol.toString(),
-                        noConnectionSymbol.toString()
-                );
-
-        for (String ladderLineString : ladderLineStrings) {
-            simplePrint(ladderLineString);
-        }
-    }
-
-    /**
-     * 이름을 출력합니다.
-     * 이름은 공간을 지정해서 정렬된 상태로 출력됩니다.
-     *
-     * @param names 출력할 이름 목록
-     */
-    public static void printNames(List<Name> names) {
-        final int COLUMN_SYMBOL_LENGTH = 1;
-
-        for (Name name : names) {
-            simplePrintWithWidth(name.toPrintableSting(), COLUMN_WIDTH + COLUMN_SYMBOL_LENGTH);
-        }
-        newLine();
-    }
 }

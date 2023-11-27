@@ -96,6 +96,25 @@ public class LadderLine {
         return this.theNumberOfColumn == theNumberOfColumn;
     }
 
+    /**
+     * 컬럼이 우측 컬럼과 이어져 있는지를 확인합니다.
+     *
+     * @param leftColumnIndex 컬럼 번호입니다. 0부터 시작합니다.
+     *
+     * @return 주어진 컬럼이 우측 컬럼과 연결되어 있다면 true를 반환합니다.
+     */
+    public boolean isConnected(int leftColumnIndex) {
+        if (leftColumnIndex < 0 || leftColumnIndex >= this.theNumberOfColumn) {
+            throw new IllegalArgumentException("주어진 컬럼 번호 " + leftColumnIndex +"는 존재하지 않습니다.");
+        }
+
+        if (leftColumnIndex == this.theNumberOfColumn - 1) {
+            return false;
+        }
+
+        return this.connectionInfo.get(leftColumnIndex);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -122,18 +141,11 @@ public class LadderLine {
     }
 
     /**
-     * 출력용 문자열로 바꿉니다.
+     * 이 타입과 호환되지 않는 곳에서 LadderLine을 사용하기 위해 리스트로 변환합니다.
      *
-     * @param columSymbol 컬럼을 나타낼 때 사용할 기호입니다.
-     * @param connectionSymbol 컬럼과 컬럼이 연결되었을 때 사용할 기호입니다.
-     * @param noConnectionSymbol 컬럼과 컬럼이 연결되지 않았을 때 사용할 기호입니다.
-     *
-     * @return 생성된 출력용 문자열
+     * @return 컬럼 간 연결 정보
      */
-    public String toPrintableString(String columSymbol, String connectionSymbol, String noConnectionSymbol) {
-        return connectionInfo.stream()
-                .map(isConnected -> isConnected ? connectionSymbol : noConnectionSymbol)
-                .map(connectionString -> connectionString + columSymbol)
-                .reduce(columSymbol, (acc, value) -> acc + value);
+    public List<Boolean> toList() {
+        return List.copyOf(this.connectionInfo);
     }
 }

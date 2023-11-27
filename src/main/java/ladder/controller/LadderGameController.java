@@ -1,7 +1,9 @@
 package ladder.controller;
 
+import ladder.view.LadderRenderer;
+import ladder.view.NameRenderer;
 import ladder.view.Prompt;
-import ladder.view.Renderer;
+import ladder.view.MessageRenderer;
 import ladder.domain.Ladder;
 import ladder.domain.Name;
 import ladder.domain.Names;
@@ -11,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGameController {
+    private static final int NAME_WIDTH = 6;
+
     private Ladder ladder;
     private int depth;
     private final List<Name> names;
@@ -51,10 +55,10 @@ public class LadderGameController {
     }
 
     private void printPhase() {
-        Renderer.simplePrint("실행 결과");
+        MessageRenderer.simplePrint("실행 결과");
 
-        Renderer.printNames(this.names);
-        Renderer.printLadder(ladder);
+        NameRenderer.printNames(this.names, NAME_WIDTH);
+        LadderRenderer.printLadder(ladder);
     }
 
 }
