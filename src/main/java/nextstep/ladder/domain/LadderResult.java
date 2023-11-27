@@ -7,7 +7,6 @@ public class LadderResult {
     public static final String EMPTY_PARTICIPANT_MSG = "없는 참가자 입니다.";
     public static final String NEW_LINE = "\n";
     private final Map<Participant, String> ladderResult = new HashMap<>();
-    private boolean isNotFinished = true;
 
     public LadderResult() {
     }
@@ -16,17 +15,12 @@ public class LadderResult {
         ladderResult.put(participant, result);
     }
 
-    public boolean isNotFinished() {
-        return isNotFinished;
+
+    public String participantResult() {
+        return toString();
     }
 
-    public String getParticipantResult(final String participantText) {
-        if ("all".equals(participantText)) {
-            this.isNotFinished = false;
-            return toString();
-        }
-
-        Participant participant = new Participant(participantText);
+    public String participantResult(Participant participant) {
         if (isEmptyParticipant(participant)) {
             throw new IllegalArgumentException(EMPTY_PARTICIPANT_MSG);
         }

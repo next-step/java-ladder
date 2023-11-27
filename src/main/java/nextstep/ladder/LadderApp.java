@@ -5,6 +5,9 @@ import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
 public class LadderApp {
+
+    public static final String ALL = "all";
+
     public static void main(String[] args) {
         final Participants participants = new Participants(InputView.inputParticipants());
         final Results result = new Results(participants.countOfPerson(), InputView.inputResult());
@@ -17,8 +20,16 @@ public class LadderApp {
 
         final LadderResult ladderResult = ladder.start(participants, result);
 
-        while (ladderResult.isNotFinished()) {
-            ResultView.println(ladderResult.getParticipantResult(InputView.inputParticipantLadderResult()));
+        String resultInput = InputView.inputParticipantLadderResult();
+        while (isNotAll(resultInput)) {
+            ResultView.println(ladderResult.participantResult(new Participant(resultInput)));
+            resultInput = InputView.inputParticipantLadderResult();
         }
+
+        ResultView.println(ladderResult.participantResult());
+    }
+
+    private static boolean isNotAll(String resultInput) {
+        return !ALL.equals(resultInput);
     }
 }
