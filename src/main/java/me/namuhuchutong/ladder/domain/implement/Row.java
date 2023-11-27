@@ -37,9 +37,9 @@ public class Row implements Line {
     }
 
     private Movements findDestination(int startPoint) {
-        LadderExpression left = findExpression(startPoint - 1);
-        LadderExpression right = isEndOfCollection(startPoint) ?
-                findExpression(startPoint) : findExpression(startPoint + 1);
+        int leftPoint = startPoint - 1;
+        LadderExpression left = findExpression(leftPoint);
+        LadderExpression right = findRightExpression(startPoint);
         if (left.isHyphen()) {
             return MOVE_LEFT;
         }
@@ -51,6 +51,15 @@ public class Row implements Line {
 
     private LadderExpression findExpression(int startPoint) {
         return this.values.get(startPoint);
+    }
+
+    private LadderExpression findRightExpression(int startPoint) {
+        if (isEndOfCollection(startPoint)) {
+            return findExpression(startPoint);
+        }
+
+        int rightPoint = startPoint + 1;
+        return findExpression(rightPoint);
     }
 
     private boolean isEndOfCollection(int startPoint) {
