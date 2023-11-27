@@ -3,16 +3,16 @@ package ladder.domain;
 import java.util.*;
 import java.util.stream.IntStream;
 
-public class PointGenerator {
+public class LineGenerator {
 
 
     private final Random random;
 
-    public PointGenerator() {
+    public LineGenerator() {
         this(new Random());
     }
 
-    public PointGenerator(Random random) {
+    public LineGenerator(Random random) {
         this.random = random;
     }
 

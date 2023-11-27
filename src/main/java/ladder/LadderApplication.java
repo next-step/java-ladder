@@ -14,10 +14,10 @@ public class LadderApplication {
 
     public static void main(String[] args) {
         PersonNames personNames = InputView.inputNames();
-        int maxHeight = InputView.inputLadderMaxHeight();
+        LadderHeight ladderHeight = InputView.inputLadderHeight();
 
-        PointGenerator generator = new PointGenerator();
-        List<Line> lines = IntStream.range(0, maxHeight)
+        LineGenerator generator = new LineGenerator();
+        List<Line> lines = IntStream.range(0, ladderHeight.value())
             .mapToObj(n -> generator.generate(personNames.size()))
             .collect(Collectors.toList());
 

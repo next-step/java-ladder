@@ -2,6 +2,7 @@ package ladder.view;
 
 import java.util.Scanner;
 
+import ladder.domain.LadderHeight;
 import ladder.domain.PersonNames;
 
 import static ladder.view.inputParser.parse;
@@ -14,9 +15,9 @@ public class InputView {
         return parse(scanner.nextLine());
     }
 
-    public static int inputLadderMaxHeight() {
+    public static LadderHeight inputLadderHeight() {
         System.out.println("\n최대 사다리 높이는 몇 개인가요?");
         Scanner scanner = new Scanner(System.in);
-        return scanner.nextInt();
+        return new LadderHeight(scanner.nextInt());
     }
 }
