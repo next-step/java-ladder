@@ -31,4 +31,11 @@ class PointTest {
         assertThat(Point.first().middle()).isInstanceOf(Point.class);
     }
 
+    @Test
+    @DisplayName("Point를 이동시키면 Direction을 얻는다.")
+    void movePoint() {
+        assertThat(Point.first().move()).isInstanceOf(Direction.class);
+        assertThat(Point.first().last().move()).isInstanceOf(Direction.class);
+        assertThat(Point.first().middle().move()).isInstanceOf(Direction.class);
+    }
 }
