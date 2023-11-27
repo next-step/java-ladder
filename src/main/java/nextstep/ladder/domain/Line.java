@@ -11,22 +11,21 @@ public class Line {
     private static final String EXIST_POINT_STR = "-----";
     private static final String EMPTY_POINT_STR = "     ";
     private static final String DELIMITER_STR = "|";
-    private List<Boolean> points;
-
-    public Line(List<Boolean> points) {
-        this.points = points;
-    }
+    private List<Point> points;
 
     public Line(int width, CreateStrategy strategy) {
-        List<Boolean> points = new ArrayList<>();
-        points.add(false);
+        List<Point> points = new ArrayList<>();
+        Point point = Point.first(strategy.generate());
+        points.add(point);
 
-        for (int i = 1; i < width; i++) {
-            final boolean create = strategy.isCreate(points.get(i - 1));
-            points.add(create);
+        for (int i = 1; i < width - 1; i++) {
+            point = point.next(strategy.isCreate(point));
+            points.add(point);
         }
 
-        this.points = points.subList(1, width);
+        points.add(point.last());
+
+        this.points = points;
     }
 
     private String getRadderStr(boolean point) {

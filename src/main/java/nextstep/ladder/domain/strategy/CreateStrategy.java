@@ -1,5 +1,9 @@
 package nextstep.ladder.domain.strategy;
 
+import nextstep.ladder.domain.Point;
+
 public interface CreateStrategy {
-    public boolean isCreate(boolean beforeExist);
+    boolean isCreate(Point beforePoint);
+
+    boolean generate();
 }

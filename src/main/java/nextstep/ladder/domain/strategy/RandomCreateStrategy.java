@@ -1,28 +1,20 @@
 package nextstep.ladder.domain.strategy;
 
+import nextstep.ladder.domain.Point;
+
 import java.util.Random;
 
 public class RandomCreateStrategy implements CreateStrategy {
-
-    private boolean beforeExist;
-
     public RandomCreateStrategy() {
-        this.beforeExist = false;
     }
 
     @Override
-    public boolean isCreate(boolean beforeExist) {
-        boolean isCraete = false;
-
-        if (new Random().nextBoolean() && isBeforeNotExist(beforeExist)) {
-            isCraete = true;
-        }
-
-        this.beforeExist = beforeExist;
-        return isCraete;
+    public boolean isCreate(Point point) {
+        return new Random().nextBoolean() && point.current();
     }
 
-    private static boolean isBeforeNotExist(final boolean beforeExist) {
-        return !beforeExist;
+    @Override
+    public boolean generate() {
+        return new Random().nextBoolean();
     }
 }
