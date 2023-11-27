@@ -25,4 +25,10 @@ class PointTest {
         assertThat(Point.first().last().isRight()).isFalse();
     }
 
+    @Test
+    @DisplayName("Point는 middle 포인트를 생성 할 수 있다")
+    void createMiddlePoint() {
+        assertThat(Point.first().middle()).isInstanceOf(Point.class);
+    }
+
 }
