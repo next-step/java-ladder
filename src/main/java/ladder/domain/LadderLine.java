@@ -76,12 +76,8 @@ public class LadderLine {
 
         for (int p = 1; p < connectionInfo.length() - 1; p += 2) {
             char inputedConnectionSymbol = connectionInfo.charAt(p);
-            if (inputedConnectionSymbol == connectionSymbol) {
-                booleanConnectionInfo.add(ColumnConnection.CONNECTED);
-            }
-            else {
-                booleanConnectionInfo.add(ColumnConnection.NOT_CONNECTED);
-            }
+            boolean isSymbolMatched = (inputedConnectionSymbol == connectionSymbol);
+            booleanConnectionInfo.add(ColumnConnection.of(isSymbolMatched));
         }
 
         return LadderLine.of(booleanConnectionInfo);
