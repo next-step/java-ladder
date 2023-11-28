@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Line implements Iterable<Point> {
     private final List<Point> points;
@@ -18,25 +19,22 @@ public class Line implements Iterable<Point> {
     }
 
     private void checkMoreThanTwoLinesAttached(List<Point> points) {
-        boolean thisLineHasPoint = false;
-        boolean nextLineHasPoint = false;
-        for (int index = 0; index < points.size() - 1; index++) {
-            thisLineHasPoint = pointHasLine(points, index);
-            nextLineHasPoint = pointHasLine(points, index + 1);
-            if (thisLineHasPoint && nextLineHasPoint) {
-                throw new IllegalArgumentException("사다리는 가로 라인이 겹칠 수 없습니다.");
-            }
-        }
+        IntStream.range(1, points.size())
+                .filter(index -> lefAndRightSame(points, index))
+                .findFirst()
+                .ifPresent(index -> {
+                    throw new IllegalArgumentException("사다리는 가로 라인이 겹칠 수 없습니다.");
+                });
+    }
+
+    private boolean lefAndRightSame(List<Point> points, int index) {
+        return points.get(index - 1).isPoint() && points.get(index).isPoint();
     }
 
     private void checkPointsSizeIsValid(List<Point> points) {
         if (points == null || points.isEmpty()) {
             throw new IllegalArgumentException(("라인은 Point가 적어도 1개 이상 존재해야 합니다."));
         }
-    }
-
-    private static boolean pointHasLine(List<Point> points, int i) {
-        return points.get(i).isPoint();
     }
 
     public List<Point> points() {
