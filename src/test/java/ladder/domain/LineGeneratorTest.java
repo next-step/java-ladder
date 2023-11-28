@@ -18,9 +18,9 @@ public class LineGeneratorTest {
 
     @Test
     void custom_boolean_값() {
-        LineGenerator lineGenerator = new LineGenerator(new CustomBooleanGenerator(FALSE, TRUE));
-        Line line = lineGenerator.generate(3);
-        assertThat(line).isEqualTo(new Line("| |-|"));
+        LineGenerator lineGenerator = new LineGenerator(new CustomBooleanGenerator(FALSE, TRUE, FALSE, FALSE));
+        Line line = lineGenerator.generate(5);
+        assertThat(line).isEqualTo(new Line("| |-| | |"));
     }
 
 }
