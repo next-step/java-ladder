@@ -1,9 +1,5 @@
 package ladder;
 
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
 import ladder.domain.LineGenerator;
 import ladder.domain.RandomBooleanGenerator;
 import ladder.domain.data.*;
@@ -19,11 +15,11 @@ public class LadderApplication {
         LadderHeight ladderHeight = InputView.inputLadderHeight();
 
         LineGenerator generator = new LineGenerator(new RandomBooleanGenerator());
-        List<Line> lines = IntStream.range(0, ladderHeight.value())
-            .mapToObj(n -> generator.generate(personNames.size()))
-            .collect(Collectors.toList());
-
+        Ladder ladder = new Ladder();
+        for (int i = 0; i < ladderHeight.value(); i++) {
+            ladder.add(generator.generate(personNames.size()));
+        }
         personNames(personNames);
-        result(lines);
+        result(ladder.lines());
     }
 }

@@ -2,6 +2,8 @@ package ladder.domain.data;
 
 import ladder.domain.exception.LadderException;
 
+import static ladder.domain.data.Ladder.INDENT;
+
 public class Name {
 
     public static final int NAME_SIZE = 5;
@@ -24,6 +26,6 @@ public class Name {
 
     @Override
     public String toString() {
-        return " ".repeat(NAME_SIZE + 1 - value.length()) + value;
+        return INDENT.repeat(NAME_SIZE + 1 - value.length()) + value;
     }
 }

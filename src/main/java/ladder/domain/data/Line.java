@@ -3,6 +3,7 @@ package ladder.domain.data;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static ladder.domain.data.Ladder.INDENT;
 import static ladder.domain.data.Name.NAME_SIZE;
 
 public class Line {
@@ -23,7 +24,7 @@ public class Line {
 
     @Override
     public String toString() {
-        return " ".repeat(NAME_SIZE) + points.stream()
+        return INDENT.repeat(NAME_SIZE) + points.stream()
             .map(Point::toString)
             .collect(Collectors.joining());
     }
