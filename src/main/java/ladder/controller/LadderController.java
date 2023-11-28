@@ -32,6 +32,10 @@ public class LadderController {
         LadderSize ladderSize = LadderSize.of(players, height);
         Ladder ladder = Ladder.of(ladderSize, new RandomPathStrategy());
 
+        PlayLadder playLadder = PlayLadder.of(players, prizes, ladder);
+        playLadder.moving();
+
+
         return PlayLadder.of(players, prizes, ladder);
     }
 }

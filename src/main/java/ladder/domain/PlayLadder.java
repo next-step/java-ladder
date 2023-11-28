@@ -25,6 +25,40 @@ public class PlayLadder {
         return new PlayLadder(players, prizes, ladder);
     }
 
+    public void moving() {
+        for (Player player : players()) {
+            int playerPosition = players().indexOf(player);
+
+            for (Line line : ladder()) {
+                List<Boolean> paths = line.paths();
+
+                int leftPosition = playerPosition - 1;
+                int rightPosition = playerPosition;
+
+
+                if(leftPosition >= 0){
+                    boolean previousPath = paths.get(leftPosition);
+                    if(previousPath){
+                        playerPosition = playerPosition - 1;
+                    }
+                }
+
+                if(rightPosition < paths.size()) {
+                    boolean nextPath = paths.get(rightPosition);
+                    if(nextPath){
+                        playerPosition = playerPosition + 1;
+                    }
+                }
+            }
+
+            System.out.println("playerPosition = " + playerPosition);
+            Prize prize = prizes.prizes().get(playerPosition);
+            System.out.println("player.name() = " + player.name());
+            System.out.println("prize = " + prize.value());
+            System.out.println("-----------------------------------------------------------------------------------------------");
+        }
+    }
+
     public List<Player> players() {
         return Collections.unmodifiableList(players.players());
     }
