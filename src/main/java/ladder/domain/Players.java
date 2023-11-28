@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class Players {
@@ -22,8 +23,9 @@ public class Players {
     }
 
     private static List<Player> namesToPlayers(List<String> names) {
+        AtomicInteger index = new AtomicInteger();
         return names.stream()
-                .map(Player::from)
+                .map(name -> Player.of(name, index.getAndIncrement()))
                 .collect(Collectors.toList());
     }
 

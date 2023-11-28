@@ -27,32 +27,33 @@ public class PlayLadder {
 
     public void moving() {
         for (Player player : players()) {
-            int playerPosition = players().indexOf(player);
+            Position currentPosition = player.position();
+            System.out.println(currentPosition.value());
 
             for (Line line : ladder()) {
                 List<Boolean> paths = line.paths();
 
-                int leftPosition = playerPosition - 1;
-                int rightPosition = playerPosition;
+                int leftPosition = currentPosition.value() - 1;
+                int rightPosition = currentPosition.value();
 
 
                 if(leftPosition >= 0){
                     boolean previousPath = paths.get(leftPosition);
                     if(previousPath){
-                        playerPosition = playerPosition - 1;
+                        currentPosition = currentPosition.left();
                     }
                 }
 
                 if(rightPosition < paths.size()) {
                     boolean nextPath = paths.get(rightPosition);
                     if(nextPath){
-                        playerPosition = playerPosition + 1;
+                        currentPosition = currentPosition.right();
                     }
                 }
             }
 
-            System.out.println("playerPosition = " + playerPosition);
-            Prize prize = prizes.prizes().get(playerPosition);
+            System.out.println("playerPosition = " + currentPosition.value());
+            Prize prize = prizes.prizes().get(currentPosition.value());
             System.out.println("player.name() = " + player.name());
             System.out.println("prize = " + prize.value());
             System.out.println("-----------------------------------------------------------------------------------------------");

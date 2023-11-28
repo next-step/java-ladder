@@ -5,14 +5,20 @@ import java.util.Objects;
 public class Player {
     private static final int NAME_LENGTH_MAX = 5;
     private final String name;
+    private final Position position;
 
-    private Player(String name) {
+    private Player(String name, int position) {
         validateName(name);
         this.name = name;
+        this.position = Position.from(position);
     }
 
     public static Player from(String name) {
-        return new Player(name);
+        return of(name, 0);
+    }
+
+    public static Player of(String name, int position) {
+        return new Player(name, position);
     }
 
     private void validateName(String name) {
@@ -31,6 +37,10 @@ public class Player {
 
     public String name() {
         return name;
+    }
+
+    public Position position() {
+        return position;
     }
 
     @Override
