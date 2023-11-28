@@ -13,6 +13,7 @@ public class Line implements Iterable<Point> {
     }
 
     public void validate(List<Point> points) {
+        checkPointsSizeIsValid(points);
         checkMoreThanTwoLinesAttached(points);
     }
 
@@ -25,6 +26,12 @@ public class Line implements Iterable<Point> {
             if (thisLineHasPoint && nextLineHasPoint) {
                 throw new IllegalArgumentException("사다리는 가로 라인이 겹칠 수 없습니다.");
             }
+        }
+    }
+
+    private void checkPointsSizeIsValid(List<Point> points) {
+        if (points == null || points.isEmpty()) {
+            throw new IllegalArgumentException(("라인은 Point가 적어도 1개 이상 존재해야 합니다."));
         }
     }
 
