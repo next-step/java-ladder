@@ -14,48 +14,45 @@ public class RandomLine implements LineStrategy {
     public Line createLine(int personCount) {
         int lineCount = personCount - 1;
         int lastIndex = lineCount - 1;
-        List<Point> list = new ArrayList<>();
-        boolean oneLeftPointnHasLine = false;
+        List<Point> points = new ArrayList<>();
         for (int index = 0; index < lineCount; index++) {
-            if (index == FIRST_LINE_INDEX) {
-                addRandomPoint(list);
-                continue;
-            }
-
-            if (index == lastIndex) {
-                addEmptyPoint(list);
-                continue;
-            }
-
-            oneLeftPointnHasLine = lineHasPoint(list, index - 1);
-            if(oneLeftPointnHasLine) {
-                addEmptyPoint(list);
-                continue;
-            }
-
-            addRandomPoint(list);
+            Point point = createPoint(index, points, lastIndex);
+            points.add(point);
         }
 
-        return new Line(list);
+        return new Line(points);
     }
 
-    private static void addRandomPoint(List<Point> list) {
-        addPoint(list, randomPoint());
+    private Point createPoint(int index, List<Point> points, int lastIndex) {
+        if (index == FIRST_LINE_INDEX) {
+            return new Point(randomPoint());
+        }
+
+        if (index == lastIndex) {
+            return new Point(linedPoint());
+        }
+
+        boolean leftPointHasLine = pointHasLine(points, index - 1);
+        if (leftPointHasLine) {
+            return new Point(emptyPoint());
+        }
+
+        return new Point(randomPoint());
     }
 
-    private static void addEmptyPoint(List<Point> list) {
-        addPoint(list, Boolean.FALSE);
+    private boolean linedPoint() {
+        return true;
     }
 
-    private static void addPoint(List<Point> list, boolean point) {
-        list.add(new Point(point));
+    private boolean emptyPoint() {
+        return false;
     }
 
-    private static boolean randomPoint() {
+    private boolean randomPoint() {
         return new Random().nextBoolean();
     }
 
-    private static boolean lineHasPoint(List<Point> list, int index) {
-        return list.get(index).isPoint();
+    private boolean pointHasLine(List<Point> list, int leftIndex) {
+        return list.get(leftIndex).isPoint();
     }
 }
