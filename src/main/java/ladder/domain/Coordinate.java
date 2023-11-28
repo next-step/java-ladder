@@ -3,32 +3,59 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Coordinate {
-    private static final Coordinate POSITIVE = new Coordinate(true);
-    private static final Coordinate NEGATIVE = new Coordinate(false);
 
-    private final boolean state;
+    private static final Coordinate LEFT = new Coordinate(true, false);
+    private static final Coordinate RIGHT = new Coordinate(false, true);
+    private static final Coordinate DONT_MOVE = new Coordinate(false, false);
 
-    public Coordinate(boolean state) {
-        this.state = state;
+    private final Location left;
+    private final Location right;
+
+
+    public Coordinate(boolean left, boolean right) {
+        this.left = Location.valueOf(left);
+        this.right = Location.valueOf(right);
+
     }
 
-    public static Coordinate valueOf(boolean state) {
-        if (state) {
-            return POSITIVE;
+    public static Coordinate of(boolean left, boolean right) {
+        if (left) {
+            return LEFT;
         }
-        return NEGATIVE;
-    }
-
-    public Coordinate next(boolean state) {
-        if (this.state) {
-            return NEGATIVE;
+        if (right) {
+            return RIGHT;
         }
-        return Coordinate.valueOf(state);
-
+        return DONT_MOVE;
     }
 
-    public boolean exist() {
-        return state;
+    public static Coordinate first(boolean right) {
+        return Coordinate.of(false, right);
+    }
+
+    public static Coordinate end(boolean left) {
+        return Coordinate.of(left, false);
+    }
+
+    public Coordinate next(boolean left, boolean right) {
+        return Coordinate.of(left, right);
+    }
+
+    public boolean isLeft() {
+        return left.exist();
+    }
+
+    public boolean isRight() {
+        return right.exist();
+    }
+
+    public int move() {
+        if (left.exist()) {
+            return Direction.LEFT.move();
+        }
+        if (right.exist()) {
+            return Direction.RIGHT.move();
+        }
+        return Direction.DONT.move();
     }
 
     @Override
@@ -36,16 +63,16 @@ public class Coordinate {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Coordinate that = (Coordinate) o;
-        return state == that.state;
+        return left == that.left && right == that.right;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(state);
+        return Objects.hash(left, right);
     }
 
     @Override
     public String toString() {
-        return String.valueOf(state);
+        return left + " : " + right;
     }
 }

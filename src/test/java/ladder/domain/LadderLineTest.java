@@ -24,10 +24,10 @@ public class LadderLineTest {
         List<String> nameList = new ArrayList<>(Arrays.asList("a", "b", "c", "d"));
         People people = new People(nameList);
         List<Coordinate> result = new ArrayList<>() {{
-            add(Coordinate.valueOf(false));
-            add(Coordinate.valueOf(true));
-            add(Coordinate.valueOf(false));
-            add(Coordinate.valueOf(true));
+            add(Coordinate.first(true));
+            add(Coordinate.of(true, false));
+            add(Coordinate.of(false, true));
+            add(Coordinate.end(true));
         }};
 
         LadderLine ladderLine = LadderLine.of(people, COORDINATE_GENERATION);
@@ -37,7 +37,7 @@ public class LadderLineTest {
 
     @ParameterizedTest
     @DisplayName("한 좌표 위치에 있는 참여자가 이동할 수 있는 위치를 리턴하는지 확인")
-    @CsvSource(value = {"0:1","1:0","2:3","3:2"},delimiter = ':')
+    @CsvSource(value = {"0:1", "1:0", "2:3", "3:2"}, delimiter = ':')
     void move_확인(int current, int result) {
         List<String> nameList = new ArrayList<>(Arrays.asList("a", "b", "c", "d"));
         People people = new People(nameList);

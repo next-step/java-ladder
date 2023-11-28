@@ -2,16 +2,11 @@ package ladder.domain;
 
 import ladder.domain.strategy.CoordinateGenerator;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Stream;
-
-import static java.util.stream.Collectors.collectingAndThen;
-import static java.util.stream.Collectors.toList;
 
 public class LadderLine {
-    private static final int ONE = 1;
-    private static final int START_INDEX = 0;
     private final List<Coordinate> line;
 
     public LadderLine(List<Coordinate> list) {
@@ -19,15 +14,18 @@ public class LadderLine {
     }
 
     public static LadderLine of(People people, CoordinateGenerator coordinateGeneration) {
-        /**
-         * 사다리 시작점인 왼쪽은 항상 연결되어 있지 않아야 하므로 false로 초기화
-         */
-        Coordinate coordinate = Coordinate.valueOf(false);
+        List<Coordinate> list = new ArrayList<>();
+        Coordinate coordinate = Coordinate.first(coordinateGeneration.generate());
+        list.add(coordinate);
 
-        return Stream
-                .iterate(coordinate, preCoordinate -> preCoordinate.next(coordinateGeneration.generate()))
-                .limit(people.count())
-                .collect(collectingAndThen(toList(), LadderLine::new));
+        for (int i = 1; i < people.count() - 1; i++) {
+            coordinate = coordinate.next(coordinate.isRight(), coordinateGeneration.generate());
+            list.add(coordinate);
+        }
+
+        list.add(Coordinate.end(coordinate.isRight()));
+
+        return new LadderLine(list);
 
     }
 
@@ -36,25 +34,8 @@ public class LadderLine {
     }
 
     public int move(int current) {
-        if (canGoLeft(current)) {
-            return --current;
-        }
-        if (canGoRight(current)) {
-            return ++current;
-        }
-        return current;
+        final Coordinate coordinate = this.line.get(current);
+        return coordinate.move() + current;
 
-    }
-
-    private boolean canGoRight(int current) {
-        return current < findBeforeEnd() && line.get(current + 1).exist();
-    }
-
-    private int findBeforeEnd() {
-        return line.size() - ONE;
-    }
-
-    private boolean canGoLeft(int current) {
-        return current > START_INDEX && line.get(current).exist();
     }
 }
