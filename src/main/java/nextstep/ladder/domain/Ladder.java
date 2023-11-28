@@ -16,7 +16,7 @@ public class Ladder {
 
     public int climb(int position) {
         for (Line line : lines) {
-            position += line.move(position).getValue();
+            position = line.move(position).move(position);
         }
         return position;
     }

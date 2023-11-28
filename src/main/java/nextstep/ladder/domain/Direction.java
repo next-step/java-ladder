@@ -24,6 +24,9 @@ public enum Direction {
         return this.value == value;
     }
 
+    public int move(int position) {
+        return position + this.value;
+    }
 
     public int getValue() {
         return value;
