@@ -1,4 +1,4 @@
-package step3.teststrategy;
+package step3;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -8,6 +8,7 @@ import step3.model.LadderGame;
 import step3.model.Player;
 import step3.model.Prize;
 import step3.model.Results;
+import step3.teststrategy.PointFalseStrategy;
 
 import java.util.List;
 import java.util.stream.Stream;
