@@ -23,11 +23,11 @@ public class LadderLineTest {
     void 사다리_한줄_생성확인() {
         List<String> nameList = new ArrayList<>(Arrays.asList("a", "b", "c", "d"));
         People people = new People(nameList);
-        List<Coordinate> result = new ArrayList<>() {{
-            add(Coordinate.first(true));
-            add(Coordinate.of(true, false));
-            add(Coordinate.of(false, true));
-            add(Coordinate.end(true));
+        List<Direction> result = new ArrayList<>() {{
+            add(Direction.first(true));
+            add(Direction.of(true, false));
+            add(Direction.of(false, true));
+            add(Direction.end(true));
         }};
 
         LadderLine ladderLine = LadderLine.of(people, COORDINATE_GENERATION);

@@ -7,35 +7,36 @@ import java.util.Collections;
 import java.util.List;
 
 public class LadderLine {
-    private final List<Coordinate> line;
+    private final List<Direction> line;
 
-    public LadderLine(List<Coordinate> list) {
+    public LadderLine(List<Direction> list) {
         this.line = list;
     }
 
     public static LadderLine of(People people, CoordinateGenerator coordinateGeneration) {
-        List<Coordinate> list = new ArrayList<>();
-        Coordinate coordinate = Coordinate.first(coordinateGeneration.generate());
-        list.add(coordinate);
+        Direction direction = Direction.first(coordinateGeneration.generate());
+        List<Direction> list = new ArrayList<>();
+        list.add(direction);
 
         for (int i = 1; i < people.count() - 1; i++) {
-            coordinate = coordinate.next(coordinate.isRight(), coordinateGeneration.generate());
-            list.add(coordinate);
+            direction = Direction.of(direction.isRight(), coordinateGeneration.generate());
+            list.add(direction);
         }
 
-        list.add(Coordinate.end(coordinate.isRight()));
-
+        if (people.count() > 1) {
+            list.add(Direction.end(direction.isRight()));
+        }
+        
         return new LadderLine(list);
-
     }
 
-    public List<Coordinate> draw() {
+    public List<Direction> draw() {
         return Collections.unmodifiableList(line);
     }
 
     public int move(int current) {
-        final Coordinate coordinate = this.line.get(current);
-        return coordinate.move() + current;
+        final Direction direction = this.line.get(current);
+        return direction.move() + current;
 
     }
 }

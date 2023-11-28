@@ -40,8 +40,8 @@ public class ResultView {
         System.out.println();
     }
 
-    private static String drawCoordinate(Coordinate coordinate) {
-        if (coordinate.isLeft()) {
+    private static String drawCoordinate(Direction direction) {
+        if (direction.isLeft()) {
             return "-----|";
         }
         return "     |";
