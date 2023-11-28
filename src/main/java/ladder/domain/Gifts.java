@@ -9,11 +9,11 @@ public class Gifts {
     private final List<Gift> values;
 
     public Gifts(List<String> giftList, People people) {
-        this.values = valueOf(giftList, people);
+        validate(giftList, people);
+        this.values = valueOf(giftList);
     }
 
-    private static List<Gift> valueOf(List<String> giftList, People people) {
-        validate(giftList, people);
+    private static List<Gift> valueOf(List<String> giftList) {
         return giftList.stream().map(Gift::new).collect(Collectors.toList());
     }
 

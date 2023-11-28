@@ -23,7 +23,7 @@ public class People {
         return names.indexOf(name);
     }
 
-    public boolean contains(Name name){
+    public boolean contains(Name name) {
         return names.contains(name);
     }
 
