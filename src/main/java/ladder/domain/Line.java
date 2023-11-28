@@ -1,38 +1,47 @@
 package ladder.domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
+import static ladder.domain.Name.NAME_SIZE;
 
 public class Line {
 
     private final List<Point> points;
 
-    public Line() {
-        this(new ArrayList<>());
+    public Line(String strings) {
+        this(Arrays.stream(strings.split(""))
+            .map(Direction::valueOfCharacter)
+            .map(Point::new)
+            .collect(Collectors.toList())
+        );
     }
 
     public Line(List<Point> points) {
-        this.points = points;
-    }
-
-    public static Line of(Boolean... values) {
-        return new Line(
-            Stream.of(values)
-                .map(Point::new)
-                .collect(Collectors.toList())
-        );
+        this.points = new ArrayList<>(points);
     }
 
     @Override
     public String toString() {
-        return " ".repeat(5) + points.stream()
+        return " ".repeat(NAME_SIZE) + points.stream()
             .map(Point::toString)
             .collect(Collectors.joining());
     }
 
-    public List<Point> getPoints() {
-        return points;
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
+        Line line = (Line) object;
+        return Objects.equals(points, line.points);
+    }
+
+    @Override
+    public int hashCode() {
+        return points != null ? points.hashCode() : 0;
     }
 }

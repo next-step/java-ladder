@@ -1,48 +1,49 @@
 package ladder.domain;
 
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LineGenerator {
 
+    private final BooleanGenerator booleanGenerator;
 
-    private final Random random;
-
-    public LineGenerator() {
-        this(new Random());
-    }
-
-    public LineGenerator(Random random) {
-        this.random = random;
+    public LineGenerator(BooleanGenerator booleanGenerator) {
+        this.booleanGenerator = booleanGenerator;
     }
 
     public Line generate(int numberOfPeople) {
-        List<Point> points = new ArrayList<>();
-        int totalIndexSize = 2 * numberOfPeople - 1;
-        IntStream.range(0, totalIndexSize)
-            .forEach(n -> {
-                if (isPipeIndex(n)) {
-                    points.add(new Point(null));
-                    return;
-                }
-                boolean value = random.nextBoolean();
-                if (lastValueIsTrue(points)) {
-                    value = false;
-                }
-                points.add(new Point(value));
-            });
+        Queue<Direction> queue = new LinkedList<>();
+        List<Point> points = IntStream.range(0, 2 * numberOfPeople - 1)
+            .mapToObj(idx -> getDirection(idx, queue))
+            .map(Point::new)
+            .collect(Collectors.toList());
         return new Line(points);
     }
 
-    private static boolean isPipeIndex(int n) {
-        return n % 2 == 0;
+    private Direction getDirection(int idx, Queue<Direction> queue) {
+        if (isEvenIndex(idx)) {
+            return Direction.VERTICAL;
+        }
+        if (lastValueIsHorizontal(queue)) {
+            return Direction.NONE;
+        }
+        if (booleanGenerator.generate()) {
+            Direction horizontal = Direction.HORIZONTAL;
+            queue.add(horizontal);
+            return horizontal;
+        }
+        return Direction.NONE;
     }
 
-    private boolean lastValueIsTrue(List<Point> points) {
-        int oldLineIndex = points.size() - 2;
-        if (oldLineIndex < 0) {
-            oldLineIndex = 0;
+    private boolean isEvenIndex(int idx) {
+        return idx % 2 == 0;
+    }
+
+    private boolean lastValueIsHorizontal(Queue<Direction> directions) {
+        if (directions.isEmpty()) {
+            return false;
         }
-        return points.get(oldLineIndex).isTrue();
+        return directions.poll().isHorizontal();
     }
 }

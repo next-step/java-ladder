@@ -7,10 +7,6 @@ public class PersonNames {
 
     private final List<Name> names;
 
-    public PersonNames() {
-        this(new ArrayList<>());
-    }
-
     public PersonNames(String[] names) {
         this(Arrays.stream(names)
             .map(Name::new)
@@ -19,7 +15,7 @@ public class PersonNames {
     }
 
     public PersonNames(List<Name> names) {
-        this.names = names;
+        this.names = new ArrayList<>(names);
     }
 
     public int size() {

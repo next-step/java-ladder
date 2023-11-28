@@ -1,30 +1,22 @@
 package ladder.domain;
 
-import java.util.Objects;
-
 import static ladder.domain.Name.NAME_SIZE;
 
 public class Point {
 
-    private final Boolean value;
+    private final Direction direction;
 
-    public Point(Boolean value) {
-        this.value = value;
-    }
-
-    public boolean isTrue() {
-        return value == Boolean.TRUE;
+    public Point(Direction direction) {
+        this.direction = direction;
     }
 
     @Override
     public String toString() {
-        if (value == null) {
-            return "|";
+        String character = direction.character();
+        if (direction.isHorizontal() || direction.isNone()) {
+            return character.repeat(NAME_SIZE);
         }
-        if (isTrue()) {
-            return "-".repeat(NAME_SIZE);
-        }
-        return " ".repeat(NAME_SIZE);
+        return character;
     }
 
     @Override
@@ -35,14 +27,12 @@ public class Point {
         if (object == null || getClass() != object.getClass()) {
             return false;
         }
-
         Point point = (Point) object;
-
-        return Objects.equals(value, point.value);
+        return direction == point.direction;
     }
 
     @Override
     public int hashCode() {
-        return value != null ? value.hashCode() : 0;
+        return direction.hashCode();
     }
 }

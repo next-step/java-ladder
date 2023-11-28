@@ -8,9 +8,8 @@ public class Name {
     private final String value;
 
     public Name(String value) {
-        String trimmedName = value.trim();
-        validate(trimmedName);
-        this.value = trimmedName;
+        validate(value);
+        this.value = value.trim();
     }
 
     private void validate(String value) {

@@ -1,29 +1,25 @@
 package ladder.domain;
 
-import java.util.List;
-import java.util.Random;
-
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static ladder.view.ResultView.result;
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineGeneratorTest {
 
     @Test
-    void 랜덤값으로_인한_라인_겹침_해결() {
+    void 값이_모두_true_일때_사다리가_겹침_여부_확인() {
         LineGenerator lineGenerator = new LineGenerator(new AlwaysReturnTrue());
         Line line = lineGenerator.generate(3);
-        result(List.of(line));
-        Assertions.assertThat(line.getPoints()).containsSequence(new Point(true), new Point(null), new Point(false));
+        assertThat(line).isEqualTo(new Line("|-| |"));
     }
 
-    static class AlwaysReturnTrue extends Random {
-
-        @Override
-        public boolean nextBoolean() {
-            return true;
-        }
+    @Test
+    void custom_boolean_값() {
+        LineGenerator lineGenerator = new LineGenerator(new CustomBooleanGenerator(FALSE, TRUE));
+        Line line = lineGenerator.generate(3);
+        assertThat(line).isEqualTo(new Line("| |-|"));
     }
 
 }

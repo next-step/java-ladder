@@ -16,7 +16,7 @@ public class LadderApplication {
         PersonNames personNames = InputView.inputNames();
         LadderHeight ladderHeight = InputView.inputLadderHeight();
 
-        LineGenerator generator = new LineGenerator();
+        LineGenerator generator = new LineGenerator(new RandomBooleanGenerator());
         List<Line> lines = IntStream.range(0, ladderHeight.value())
             .mapToObj(n -> generator.generate(personNames.size()))
             .collect(Collectors.toList());
