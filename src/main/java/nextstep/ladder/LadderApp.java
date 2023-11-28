@@ -1,16 +1,35 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Participants;
-import nextstep.ladder.view.InputView;
-import nextstep.ladder.view.ResultView;
+import nextstep.ladder.domain.*;
+import static nextstep.ladder.view.InputView.*;
+import static nextstep.ladder.view.ResultView.print;
+import static nextstep.ladder.view.ResultView.println;
 
 public class LadderApp {
+    public static final String ALL = "all";
+
     public static void main(String[] args) {
-        Participants participants = new Participants(InputView.inputParticipants());
+        final Participants participants = new Participants(inputParticipants());
+        final Results result = new Results(inputResult(participants.countOfPerson()));
+        final Height ladderHeight = new Height(inputLadderHeight());
 
-        Ladder ladder = new Ladder(participants, InputView.inputLadderHeight());
+        println(participants.toString());
+        final Ladder ladder = new Ladder(participants.countOfPerson(), ladderHeight.get());
+        print(ladder.toString());
+        println(result.toString());
 
-        ResultView.print(ladder.toString());
+        final LadderResult ladderResult = ladder.start(participants, result);
+
+        String resultInput = inputParticipantLadderResult();
+        while (isNotAll(resultInput)) {
+            final String participantResult = ladderResult.participantResult(new Participant(resultInput));
+            println(participantResult);
+            resultInput = inputParticipantLadderResult();
+        }
+        println(ladderResult.participantResult());
+    }
+
+    private static boolean isNotAll(String resultInput) {
+        return !ALL.equals(resultInput);
     }
 }

@@ -1,39 +1,36 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.strategy.CreateStrategy;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Line {
-    private static final String EXIST_POINT_STR = "|-----";
-    private static final String EMPTY_POINT_STR = "|     ";
-    private static final String END_STR = "|";
-    private List<Boolean> points;
+    private static final String DELIMITER_STR = "|";
+    private List<Point> points;
 
-    public Line(List<Boolean> points) {
-        this.points = points;
-    }
+    public Line(int width, CreateStrategy strategy) {
+        List<Point> points = new ArrayList<>();
+        Point point = Point.first(strategy.generate());
+        points.add(point);
 
-    public Line(int countOfPerson, CreateStrategy strategy) {
-        List<Boolean> points = new ArrayList<>();
-
-        IntStream.range(0, countOfPerson - 1)
-        .forEach(i -> {
-            boolean shouldCreate = strategy.isCreate() && (i == 0 || !points.get(i - 1));
-            points.add(shouldCreate);
-        });
-
-        this.points = points;
-    }
-
-    private String getRadderStr(boolean point) {
-        if (point) {
-            return EXIST_POINT_STR;
+        for (int i = 1; i < width - 1; i++) {
+            point = point.next(strategy.isCreate(point));
+            points.add(point);
         }
 
-        return EMPTY_POINT_STR;
+        points.add(point.last());
+
+        this.points = points;
+    }
+
+
+    public Position move(Position position) {
+        final Point point = this.points.get(position.get());
+        final Direction direction = point.move();
+        return position.move(direction);
     }
 
     @Override
@@ -51,9 +48,8 @@ public class Line {
 
     @Override
     public String toString() {
-        List<String> pointStrList = this.points.stream()
-                .map(this::getRadderStr)
-                .collect(Collectors.toList());
-        return String.join("", pointStrList) + END_STR;
+        return this.points.stream()
+                .map(p -> DELIMITER_STR + p.toString())
+                .collect(Collectors.joining());
     }
 }
