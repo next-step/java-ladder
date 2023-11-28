@@ -11,45 +11,47 @@ import java.util.stream.Collectors;
 
 public class StreamStudy {
 
-	public static long countWords() throws IOException {
-		String contents = new String(Files.readAllBytes(Paths
-				.get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
-		List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
+    public static long countWords() throws IOException {
+        String contents = new String(Files.readAllBytes(Paths
+            .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
+        List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-		long count = 0;
-		for (String w : words) {
-			if (w.length() > 12) count++;
-		}
-		return count;
-	}
+        long count = 0;
+        for (String w : words) {
+            if (w.length() > 12) {
+                count++;
+            }
+        }
+        return count;
+    }
 
-	public static void printLongestWordTop100() throws IOException {
-		String contents = new String(Files.readAllBytes(Paths
-				.get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
-		List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
+    public static void printLongestWordTop100() throws IOException {
+        String contents = new String(Files.readAllBytes(Paths
+            .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
+        List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-		// TODO 이 부분에 구현한다.
-		words.stream()
-				.filter(e -> e.length() > 12)
-				.distinct()
-				.sorted(Comparator.comparingInt(String::length).reversed())
-				.limit(100)
-				.map(String::toLowerCase)
-				.forEach(System.out::println);
-	}
+        // TODO 이 부분에 구현한다.
+        words.stream()
+            .filter(e -> e.length() > 12)
+            .distinct()
+            .sorted(Comparator.comparingInt(String::length).reversed())
+            .limit(100)
+            .map(String::toLowerCase)
+            .forEach(System.out::println);
+    }
 
-	public static List<Integer> doubleNumbers(List<Integer> numbers) {
-		return numbers.stream().map(x -> 2 * x).collect(Collectors.toList());
-	}
+    public static List<Integer> doubleNumbers(List<Integer> numbers) {
+        return numbers.stream().map(x -> 2 * x).collect(Collectors.toList());
+    }
 
-	public static long sumAll(List<Integer> numbers) {
-		return numbers.stream().reduce(0, (x, y) -> x + y);
-	}
+    public static long sumAll(List<Integer> numbers) {
+        return numbers.stream().reduce(0, (x, y) -> x + y);
+    }
 
-	public static long sumOverThreeAndDouble(List<Integer> numbers) {
-		return numbers.stream()
-				.filter(e -> e > 3)
-				.mapToLong(e -> e * 2)
-				.sum();
-	}
+    public static long sumOverThreeAndDouble(List<Integer> numbers) {
+        return numbers.stream()
+            .filter(e -> e > 3)
+            .mapToLong(e -> e * 2)
+            .sum();
+    }
 }

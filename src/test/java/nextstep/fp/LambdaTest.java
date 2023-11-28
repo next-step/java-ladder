@@ -1,14 +1,14 @@
 package nextstep.fp;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class LambdaTest {
+
     private List<Integer> numbers;
 
     @BeforeEach
@@ -39,7 +39,7 @@ public class LambdaTest {
 
     @Test
     public void sumAllEven() throws Exception {
-        int sum = Lambda.sumAllEven(numbers, e -> e % 2 == 0 );
+        int sum = Lambda.sumAllEven(numbers, e -> e % 2 == 0);
         assertThat(sum).isEqualTo(12);
     }
 
