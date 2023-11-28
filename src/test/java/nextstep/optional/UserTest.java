@@ -1,12 +1,13 @@
 package nextstep.optional;
 
-import org.junit.jupiter.api.Test;
-
 import static nextstep.optional.User.ageIsInRange1;
 import static nextstep.optional.User.ageIsInRange2;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.Test;
+
 public class UserTest {
+
     @Test
     public void whenFiltersWithoutOptional_thenCorrect() {
         assertThat(ageIsInRange1(new User("crong", 35))).isTrue();
