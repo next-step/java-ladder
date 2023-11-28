@@ -28,9 +28,7 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers) {
-        return numbers.stream()
-                .mapToInt(Integer::intValue)
-                .sum();
+        return sumAll(numbers, number -> true);
     }
 
     public static int sumAll(List<Integer> numbers, Predicate<Integer> conditional) {
