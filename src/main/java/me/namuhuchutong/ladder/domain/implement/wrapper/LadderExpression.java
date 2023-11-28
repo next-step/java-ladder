@@ -33,11 +33,11 @@ public enum LadderExpression {
     }
 
     public boolean isHyphen() {
-        return this.character.equals('-');
+        return this == HYPHEN;
     }
 
     public boolean isNotVerticalBar() {
-        return !this.character.equals('|');
+        return !(this == VERTICAL_BAR);
     }
 
     abstract public String convertToString();
