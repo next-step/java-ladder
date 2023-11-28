@@ -9,7 +9,7 @@ public enum Direction {
     private final boolean right;
     private final int move;
 
-    private Direction(boolean left, boolean right, int move) {
+    Direction(boolean left, boolean right, int move) {
         this.left = left;
         this.right = right;
         this.move = move;
