@@ -1,5 +1,6 @@
 package nextstep.ladder;
 
+import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Participators;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
@@ -18,7 +19,6 @@ public class LadderMain {
         int ladderHeight = inputView.inputLadderHeight();
 
         Participators participators = Participators.from(makeNameList(participatorsName));
-
 
 
         outputView.printResult();
