@@ -18,7 +18,7 @@ public class Line {
         }
 
         List<Point> points = new ArrayList<>();
-        Point point = new Point();
+        Point point = Point.randomInstance();
         points.add(point);
 
         for (int idx = 1; idx < countOfPerson - 1; idx++) {

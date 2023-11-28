@@ -12,8 +12,8 @@ public class Point {
         this.active = active;
     }
 
-    public Point() {
-        this.active = secureRandom.nextBoolean();
+    public static Point randomInstance() {
+        return new Point(secureRandom.nextBoolean());
     }
 
     public boolean isActive() {
@@ -25,6 +25,6 @@ public class Point {
             return new Point(false);
         }
 
-        return new Point();
+        return Point.randomInstance();
     }
 }
