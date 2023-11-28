@@ -16,7 +16,7 @@ public class LineFactory {
 
     public static Line createLine(int countOfPerson) {
         if (countOfPerson == 1) {
-            return new Line(List.of(STAY));
+            return new Line(STAY);
         }
         List<Direction> directions = new ArrayList<>();
         while (directions.size() < countOfPerson) {

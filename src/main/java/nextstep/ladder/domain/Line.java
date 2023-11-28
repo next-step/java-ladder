@@ -21,6 +21,10 @@ public class Line {
         );
     }
 
+    public Line(Direction direction) {
+        this(List.of(direction));
+    }
+
     public Line(List<Direction> directions) {
         validateDirectionsContinuity(directions);
         this.directions = new ArrayList<>(directions);
