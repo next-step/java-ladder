@@ -12,7 +12,7 @@ public class LineFactory {
     private LineFactory() {
     }
 
-    private static Random random = new Random();
+    private static final Random random = new Random();
 
     public static Line createLine(int countOfPerson) {
         if (countOfPerson == 1) {

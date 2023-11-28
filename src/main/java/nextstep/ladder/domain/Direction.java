@@ -15,10 +15,15 @@ public enum Direction {
 
     public static Direction of(int value) {
         return Arrays.stream(Direction.values())
-                .filter(direction -> direction.getValue() == value)
+                .filter(direction -> direction.sameValue(value))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("숫자 값에 따른 Direction을 찾을 수 없습니다."));
     }
+
+    public boolean sameValue(int value) {
+        return this.value == value;
+    }
+
 
     public int getValue() {
         return value;
