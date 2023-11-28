@@ -29,6 +29,22 @@ class DirectionTest {
     }
 
     @ParameterizedTest
+    @MethodSource("provideDirectionAndPosition")
+    @DisplayName("성공 - 처음 위치에서 방향에 따라 위치값이 수정된다.")
+    void success_move(int initPosition, Direction direction, int expectPosition) {
+        assertThat(direction.move(initPosition)).isEqualTo(expectPosition);
+    }
+
+    private static Stream<Arguments> provideDirectionAndPosition() {
+        return Stream.of(
+                Arguments.of(1, Direction.LEFT, 0),
+                Arguments.of(1, Direction.STAY, 1),
+                Arguments.of( 1, Direction.RIGHT, 2)
+        );
+    }
+
+
+    @ParameterizedTest
     @CsvSource(value = {"-2", "2"})
     @DisplayName("실패 - 숫자 값에 따른 방향을 찾지 못한다.")
     void fail_find_direction(int value) {
