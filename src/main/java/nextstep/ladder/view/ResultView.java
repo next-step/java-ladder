@@ -1,12 +1,12 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.Ladder;
-import nextstep.ladder.Line;
-import nextstep.ladder.Point;
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.Point;
 
 import java.util.List;
 
-import static nextstep.ladder.Name.MAX_LENGTH_OF_NAME;
+import static nextstep.ladder.domain.Name.MAX_LENGTH_OF_NAME;
 
 public final class ResultView {
 
