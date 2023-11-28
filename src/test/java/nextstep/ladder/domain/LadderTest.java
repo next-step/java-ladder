@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static nextstep.ladder.domain.Direction.STAY;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderTest {
@@ -22,6 +23,21 @@ class LadderTest {
         assertThat(lines)
                 .hasSize(height.height())
                 .allSatisfy(line -> assertThat(line.size()).isEqualTo(countOfPerson));
+    }
+
+    @Test
+    @DisplayName("성공 - 참여자가 1명이면 만들어진 사다리는 일자이다.")
+    void success_generate_ladder_single_participant() {
+        Height height = new Height(5);
+        int countOfPerson = 1;
+
+        Ladder ladder = new Ladder(height, countOfPerson);
+
+        List<Line> lines = ladder.lines();
+
+        assertThat(lines)
+                .hasSize(height.height())
+                .allSatisfy(line -> assertThat(line).isEqualTo(new Line((STAY))));
     }
 
     @Test

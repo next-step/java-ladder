@@ -5,13 +5,22 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static nextstep.ladder.domain.Direction.STAY;
+
 public class Ladder {
     private final List<Line> lines;
 
     public Ladder(Height height, int countOfPerson) {
         this.lines = IntStream.range(0, height.height())
-                .mapToObj(i -> LineFactory.createLine(countOfPerson))
+                .mapToObj(i -> createLine(countOfPerson))
                 .collect(Collectors.toList());
+    }
+
+    private static Line createLine(int countOfPerson) {
+        if(countOfPerson == 1){
+            return new Line(STAY);
+        }
+        return new Line(countOfPerson);
     }
 
     public int climb(int position) {

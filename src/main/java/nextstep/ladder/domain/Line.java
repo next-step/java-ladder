@@ -2,16 +2,15 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.exception.LineDuplicateException;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static nextstep.ladder.domain.Direction.LEFT;
+import static nextstep.ladder.domain.Direction.*;
 
 public class Line {
+    private static final Random random = new Random();
+
     private final List<Direction> directions;
 
     public Line(int[] directions) {
@@ -23,6 +22,10 @@ public class Line {
 
     public Line(Direction direction) {
         this(List.of(direction));
+    }
+
+    public Line(int countOfPerson) {
+        this(createDirections(countOfPerson));
     }
 
     public Line(List<Direction> directions) {
@@ -43,6 +46,26 @@ public class Line {
         return LEFT == directions.get(index) && LEFT == directions.get(index + 1);
     }
 
+    private static List<Direction> createDirections(int countOfPerson) {
+        List<Direction> directions = new ArrayList<>();
+        while (directions.size() < countOfPerson - 1) {
+            createDirection(countOfPerson, directions);
+        }
+        return directions;
+    }
+
+    private static void createDirection(int countOfPerson, List<Direction> directions) {
+        Direction direction = Direction.of(random.nextInt(2));
+        directions.add(direction);
+
+        if (direction == RIGHT) {
+            directions.add(LEFT);
+        }
+        if (directions.size() == countOfPerson - 1) {
+            directions.add(STAY);
+        }
+    }
+
     public Direction move(int position) {
         return directions.get(position);
     }
@@ -55,5 +78,16 @@ public class Line {
         return Collections.unmodifiableList(directions);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Line line = (Line) o;
+        return Objects.equals(directions, line.directions);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(directions);
+    }
 }

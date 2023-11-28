@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import nextstep.ladder.exception.LineDuplicateException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -46,4 +47,12 @@ public class LineTest {
                 Arguments.of(2, LEFT)
         );
     }
+
+    @Test
+    @DisplayName("성공 - 인원수를 토대로 Line을 생성한다 ")
+    void success_create_line_by_count_of_person() {
+        Line line = new Line(4);
+        assertThat(line.size()).isEqualTo(4);
+    }
+
 }
