@@ -1,6 +1,6 @@
-package ladder.domain;
+package ladder.domain.data;
 
-import static ladder.domain.Name.NAME_SIZE;
+import static ladder.domain.data.Name.NAME_SIZE;
 
 public class Point {
 

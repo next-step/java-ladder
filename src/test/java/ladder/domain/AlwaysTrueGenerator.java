@@ -1,6 +1,6 @@
 package ladder.domain;
 
-public class AlwaysReturnTrue implements BooleanGenerator {
+public class AlwaysTrueGenerator implements BooleanGenerator {
 
     @Override
     public boolean generate() {

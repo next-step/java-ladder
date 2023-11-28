@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.data;
 
 import ladder.domain.exception.LadderException;
 import org.assertj.core.api.Assertions;

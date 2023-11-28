@@ -1,9 +1,9 @@
-package ladder.domain;
+package ladder.domain.data;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static ladder.domain.Name.NAME_SIZE;
+import static ladder.domain.data.Name.NAME_SIZE;
 
 public class Line {
 

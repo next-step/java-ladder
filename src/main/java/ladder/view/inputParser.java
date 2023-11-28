@@ -1,6 +1,6 @@
 package ladder.view;
 
-import ladder.domain.PersonNames;
+import ladder.domain.data.PersonNames;
 
 public class inputParser {
 

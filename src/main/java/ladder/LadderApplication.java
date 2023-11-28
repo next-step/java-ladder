@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import ladder.domain.*;
+import ladder.domain.LineGenerator;
+import ladder.domain.RandomBooleanGenerator;
+import ladder.domain.data.*;
 import ladder.view.InputView;
 
 import static ladder.view.ResultView.personNames;

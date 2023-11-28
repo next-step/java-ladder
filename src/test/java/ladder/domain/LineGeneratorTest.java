@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.domain.data.Line;
 import org.junit.jupiter.api.Test;
 
 import static java.lang.Boolean.FALSE;
@@ -10,7 +11,7 @@ public class LineGeneratorTest {
 
     @Test
     void 값이_모두_true_일때_사다리가_겹침_여부_확인() {
-        LineGenerator lineGenerator = new LineGenerator(new AlwaysReturnTrue());
+        LineGenerator lineGenerator = new LineGenerator(new AlwaysTrueGenerator());
         Line line = lineGenerator.generate(3);
         assertThat(line).isEqualTo(new Line("|-| |"));
     }

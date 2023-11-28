@@ -2,7 +2,7 @@ package ladder.view;
 
 import java.util.List;
 
-import ladder.domain.PersonNames;
+import ladder.domain.data.PersonNames;
 
 public class ResultView {
 

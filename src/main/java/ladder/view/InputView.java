@@ -2,8 +2,8 @@ package ladder.view;
 
 import java.util.Scanner;
 
-import ladder.domain.LadderHeight;
-import ladder.domain.PersonNames;
+import ladder.domain.data.LadderHeight;
+import ladder.domain.data.PersonNames;
 
 import static ladder.view.inputParser.parse;
 

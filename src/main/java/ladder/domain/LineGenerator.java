@@ -4,6 +4,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import ladder.domain.data.*;
+
 public class LineGenerator {
 
     private final BooleanGenerator booleanGenerator;
