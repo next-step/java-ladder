@@ -1,14 +1,10 @@
 package step3.controller;
 
-import step3.model.LadderGame;
-import step3.model.Player;
-import step3.model.Prize;
-import step3.model.Result;
+import step3.model.*;
 import step3.view.InputView;
 import step3.view.OutputView;
 
 import java.util.List;
-import java.util.Map;
 
 public class LadderController {
 
@@ -17,12 +13,13 @@ public class LadderController {
 
         int lineHeight = InputView.inputLadderHeight();
         List<Prize> prizes = InputView.inputLadderPrizes();
-        Player player = InputView.inputLadderResultPlayer();
+        Player player = InputView.inputLadderResultPlayer(players);
 
-        LadderGame ladderGame = new LadderGame(lineHeight, players.size());
+        LadderGame ladderGame = LadderGame.start(lineHeight, players.size(), new PointRandomStrategy());
         OutputView.viewLadder(ladderGame, players, prizes);
 
-        Result result = Result.of(players, prizes, ladderGame);
-        OutputView.viewResult(result);
+        Results result = new Results(prizes);
+        List<String> ladderResult = result.getLadderResult(player.getName(), players, ladderGame, result);
+        OutputView.viewResult(ladderResult);
     }
 }

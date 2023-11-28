@@ -4,15 +4,10 @@ public class Player {
 
     private static final int MAX_NAME_LENGTH = 5;
     private final String name;
-    private Prize prize;
 
     public Player(String name) {
         validate(name);
         this.name = name;
-    }
-
-    public void savePrize(Prize prize) {
-        this.prize = prize;
     }
 
     private void validate(String name) {

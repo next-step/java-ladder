@@ -1,4 +1,4 @@
-package step2.teststrategy;
+package step3.teststrategy;
 
 import step3.model.RandomStrategy;
 

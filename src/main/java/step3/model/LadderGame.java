@@ -1,23 +1,37 @@
 package step3.model;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.IntStream;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class LadderGame {
 
     private final List<Line> lines;
 
-    public LadderGame(final int lineHeight, final int playersCount) {
-        List<Line> result = new ArrayList<>();
+    public LadderGame(List<Line> lines) {
+        this.lines = lines;
+    }
 
-        IntStream.range(0, lineHeight)
-                .forEach(line -> result.add(new Line(playersCount, new PointRandomStrategy())));
+    public static LadderGame start(final int lineHeight, final int playersCount, RandomStrategy randomStrategy) {
+        List<Line> lines = Stream.generate(() -> Line.create(playersCount, randomStrategy))
+                .limit(lineHeight)
+                .collect(Collectors.toList());
 
-        this.lines = result;
+        return new LadderGame(lines);
     }
 
     public List<Line> getLines() {
-        return this.lines;
+        return Collections.unmodifiableList(this.lines);
+    }
+
+    public int move(int playerPosition) {
+        int resultIndex = playerPosition;
+
+        for (Line line : lines) {
+            resultIndex = line.move(resultIndex);
+        }
+
+        return resultIndex;
     }
 }

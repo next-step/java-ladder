@@ -5,13 +5,16 @@ import step3.model.Prize;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
     private static final String SERARATOR = ",";
+    private static final String ALL = "all";
 
     public static List<Player> inputPlayers() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
@@ -45,8 +48,19 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
-    public static Player inputLadderResultPlayer() {
+    public static Player inputLadderResultPlayer(List<Player> players) {
         System.out.println("결과를 보고 싶은 사람은?");
-        return new Player(scanner.nextLine());
+        Player player = new Player(scanner.nextLine());
+        validateParticipantPlayer(player, players);
+        return player;
+    }
+
+    private static void validateParticipantPlayer(Player player, List<Player> players) {
+        if (!ALL.equals(player.getName())){
+            IntStream.range(0, players.size())
+                    .filter(i -> Objects.equals(players.get(i).getName(), player.getName()))
+                    .findFirst()
+                    .orElseThrow(() -> new IllegalArgumentException("사다리 게임 참여자가 아닙니다."));
+        }
     }
 }

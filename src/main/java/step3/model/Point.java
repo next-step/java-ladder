@@ -2,13 +2,14 @@ package step3.model;
 
 public class Point {
 
-    private boolean status;
+    private final boolean status;
 
     public Point(boolean status) {
         this.status = status;
     }
 
     public Point() {
+        this(false);
     }
 
     public Point create(Point point, RandomStrategy randomStrategy) {

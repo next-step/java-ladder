@@ -1,9 +1,11 @@
 package step3.view;
 
-import step3.model.*;
+import step3.model.Ladder;
+import step3.model.LadderGame;
+import step3.model.Player;
+import step3.model.Prize;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -28,11 +30,8 @@ public class OutputView {
                 .collect(Collectors.joining()));
     }
 
-    public static void viewResult(Result result) {
-        Map<String, Prize> resultMap = result.getResult();
-        resultMap.keySet().forEach(name -> {
-            System.out.println(name + " : " + resultMap.get(name).getValue());
-        });
+    public static void viewResult(List<String> ladderResult) {
+        ladderResult.forEach(System.out::println);
     }
 
     public static void viewPrizes(List<Prize> prizes) {
