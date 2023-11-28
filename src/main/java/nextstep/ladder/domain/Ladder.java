@@ -3,7 +3,7 @@ package nextstep.ladder.domain;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static nextstep.ladder.domain.Direction.STAY;
 
@@ -11,8 +11,8 @@ public class Ladder {
     private final List<Line> lines;
 
     public Ladder(Height height, int countOfPerson) {
-        this.lines = IntStream.range(0, height.height())
-                .mapToObj(i -> createLine(countOfPerson))
+        this.lines = Stream.generate(() -> createLine(countOfPerson))
+                .limit(height.height())
                 .collect(Collectors.toList());
     }
 
