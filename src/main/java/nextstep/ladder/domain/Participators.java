@@ -17,7 +17,17 @@ public class Participators {
                 .collect(Collectors.toList()));
     }
 
+    public int participatorCount() {
+        return participators.size();
+    }
+
     public List<Participator> getParticipators() {
         return participators;
+    }
+
+    @Override
+    public String toString() {
+        return participators.stream().map(Participator::makeFullName)
+                .collect(Collectors.joining());
     }
 }

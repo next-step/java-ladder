@@ -21,4 +21,16 @@ class ParticipatorsTest {
         Assertions.assertThat(result.getParticipators()).hasSize(4);
     }
 
+    @DisplayName("참가자가 몇 명인지 전달해줍니다.")
+    @Test
+    void count() {
+        // given
+        List<String> names = List.of("pobi", "honux", "crong", "jk");
+        Participators participators = Participators.from(names);
+        // when
+        int result = participators.participatorCount();
+        // then
+        Assertions.assertThat(result).isEqualTo(4);
+    }
+
 }

@@ -5,13 +5,19 @@ import java.util.Objects;
 public class Participator {
 
     private final String name;
-    private String result;
 
     public Participator(String name) {
         this.name = name.length() > 5 ? name.substring(0, 5) : name;
     }
 
+    public String makeFullName() {
+        if (name.length() == 5) {
+            return " " + name;
+        }
 
+        String tempName = "     " + name + " ";
+        return tempName.substring(tempName.length() - 6);
+    }
 
     @Override
     public boolean equals(Object o) {

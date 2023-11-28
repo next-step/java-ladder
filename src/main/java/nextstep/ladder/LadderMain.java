@@ -19,13 +19,14 @@ public class LadderMain {
         int ladderHeight = inputView.inputLadderHeight();
 
         Participators participators = Participators.from(makeNameList(participatorsName));
+        Ladder ladder = Ladder.makeLadder(participators.participatorCount(), ladderHeight);
 
-
-        outputView.printResult();
+        outputView.printResult(participators, ladder);
     }
 
     private static List<String> makeNameList(String participators) {
         return Arrays.stream(participators.split(","))
+                .map(String::trim)
                 .collect(Collectors.toList());
     }
 }

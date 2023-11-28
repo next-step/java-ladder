@@ -34,4 +34,17 @@ public class Line {
     public List<WidthStatus> getLine() {
         return line;
     }
+
+    @Override
+    public String toString() {
+        String prefix = "     |";
+        String lineString = line.stream().map(status -> {
+            if (status == WidthStatus.connected) {
+                return "-----|";
+            }
+            return "     |";
+        }).collect(Collectors.joining());
+
+        return prefix + lineString;
+    }
 }
