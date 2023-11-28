@@ -2,7 +2,7 @@ package me.namuhuchutong.ladder.domain.implement;
 
 import me.namuhuchutong.ladder.domain.engine.Line;
 import me.namuhuchutong.ladder.domain.engine.LineCreator;
-import me.namuhuchutong.ladder.domain.engine.ScaffoldDiscriminator;
+import me.namuhuchutong.ladder.domain.engine.ScaffoldGenerator;
 import me.namuhuchutong.ladder.domain.implement.wrapper.LadderExpression;
 
 import java.util.ArrayList;
@@ -13,36 +13,39 @@ import static me.namuhuchutong.ladder.domain.implement.wrapper.LadderExpression.
 
 public class RowCreator implements LineCreator {
 
-    private final ScaffoldDiscriminator scaffoldDiscriminator;
+    private final ScaffoldGenerator scaffoldGenerator;
 
-    public RowCreator(ScaffoldDiscriminator scaffoldDiscriminator) {
-        this.scaffoldDiscriminator = scaffoldDiscriminator;
+    public RowCreator(ScaffoldGenerator scaffoldGenerator) {
+        this.scaffoldGenerator = scaffoldGenerator;
     }
 
     @Override
     public Line createLine(int participants) {
-        return from(participants, scaffoldDiscriminator);
+        return from(participants, scaffoldGenerator);
     }
 
-    private Line from(int participants, ScaffoldDiscriminator factory) {
+    private Line from(int participants, ScaffoldGenerator factory) {
         List<LadderExpression> initializedRow = initializeLadderRow();
         initializedRow.addAll(addScaffold(participants, factory));
         return new Row(unmodifiableList(initializedRow));
     }
 
-    private List<LadderExpression> addScaffold(int participants, ScaffoldDiscriminator discriminator) {
+    private List<LadderExpression> addScaffold(int participants, ScaffoldGenerator generator) {
         List<LadderExpression> result = new ArrayList<>();
         for (int i = 1; i < participants; i++) {
-            result.add(addScaffoldByCondition(discriminator));
+            result.add(addScaffoldByCondition(generator));
             result.add(VERTICAL_BAR);
         }
         return result;
     }
 
-    private LadderExpression addScaffoldByCondition(ScaffoldDiscriminator discriminator) {
-        if (discriminator.isNotCreatedBefore()) {
+    private LadderExpression addScaffoldByCondition(ScaffoldGenerator generator) {
+        PreviousStatus checker = new PreviousStatus();
+        if (generator.canGenerate() && checker.isNotCreatedBefore()) {
+            checker.setCreated();
             return HYPHEN;
         }
+        checker.setNotCreated();
         return EMPTY_SPACE;
     }
 
