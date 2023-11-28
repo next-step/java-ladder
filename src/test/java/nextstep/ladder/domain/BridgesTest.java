@@ -2,11 +2,11 @@ package nextstep.ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
-import static nextstep.ladder.domain.Bridges.*;
-import static nextstep.ladder.domain.Ladder.*;
 import static nextstep.ladder.exception.ExceptionMessage.*;
 import static org.assertj.core.api.Assertions.*;
 
@@ -29,6 +29,27 @@ public class BridgesTest {
         String stringBridges = bridges.toString();
 
         // then
-        assertThat(stringBridges).isEqualTo(TRUE_BRIDGE + LADDER_POLE + FALSE_BRIDGE + LADDER_POLE + TRUE_BRIDGE);
+        assertThat(stringBridges).isEqualTo("-----|     |-----");
+    }
+
+    @DisplayName("인자로 사다리의 다리 위치 값을 전달 받아 해당 다리가 이동 가능한 지 확인한다.")
+    @ParameterizedTest
+    @CsvSource({"0,true", "1,false", "3,false"})
+    void isMovable(int x, boolean expectedReuslt) {
+        Bridges bridges = new Bridges(List.of(true, false, true));
+
+        // when & then
+        assertThat(bridges.isMovable(x)).isEqualTo(expectedReuslt);
+    }
+
+    @DisplayName("사다리 위치 값을 인자로 받아 다음 위치로 이동한다.")
+    @ParameterizedTest
+    @CsvSource({"0,0", "1,2", "2,1", "3,3"})
+    void move(int position, int expectedReuslt) {
+        // given
+        Bridges bridges = new Bridges(List.of(false, true, false));
+
+        // when & then
+        assertThat(bridges.move(position)).isEqualTo(expectedReuslt);
     }
 }

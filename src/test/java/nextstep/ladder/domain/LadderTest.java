@@ -2,12 +2,11 @@ package nextstep.ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
-import static nextstep.ladder.domain.Bridges.FALSE_BRIDGE;
-import static nextstep.ladder.domain.Bridges.TRUE_BRIDGE;
-import static nextstep.ladder.domain.Ladder.LADDER_POLE;
 import static org.assertj.core.api.Assertions.*;
 
 public class LadderTest {
@@ -24,9 +23,25 @@ public class LadderTest {
         String stringLadder = ladder.toString();
 
         // then
-        assertThat(stringLadder).isEqualTo(
-            LADDER_POLE+ TRUE_BRIDGE + LADDER_POLE + FALSE_BRIDGE + LADDER_POLE + TRUE_BRIDGE + LADDER_POLE + "\n" +
-                LADDER_POLE+ TRUE_BRIDGE + LADDER_POLE + FALSE_BRIDGE + LADDER_POLE + TRUE_BRIDGE + LADDER_POLE
-        );
+        assertThat(stringLadder).isEqualTo("|-----|     |-----|\n|-----|     |-----|");
+    }
+
+    @DisplayName("인자로 시작 위치를 전달 받아 사다리를 타고 결과 위치를 반환한다.")
+    @ParameterizedTest
+    @CsvSource({"0,2","1,0","2,1","3,3"})
+    void climb(int startPosition, int expectedResult) {
+        Ladder ladder = new Ladder(List.of(
+            new Bridges(List.of(true, false, true)),
+            new Bridges(List.of(true, false, true)),
+            new Bridges(List.of(true, false, false)),
+            new Bridges(List.of(false, false, false)),
+            new Bridges(List.of(false, true, false))
+        ));
+
+        // when
+        int result = ladder.climb(startPosition);
+
+        // then
+        assertThat(result).isEqualTo(expectedResult);
     }
 }

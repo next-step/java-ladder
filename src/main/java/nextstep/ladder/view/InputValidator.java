@@ -53,4 +53,20 @@ public class InputValidator {
     private boolean isNotPositive(int height) {
         return height <= 0;
     }
+
+    public void validatePrizes(String input, String delimiter, int numOfPlayers) {
+        validateNone(input);
+        validateNumOfPrizes(input, delimiter, numOfPlayers);
+    }
+
+    private void validateNumOfPrizes(String input, String delimiter, int numOfPlayers) {
+        if (hasNotDelimiter(input, delimiter)) {
+            throw new IllegalArgumentException("상품 개수는 플레이어 수와 같아야 합니다.");
+        }
+
+        String[] split = input.split(delimiter);
+        if (numOfPlayers != split.length) {
+            throw new IllegalArgumentException("상품 개수는 플레이어 수와 같아야 합니다.");
+        }
+    }
 }

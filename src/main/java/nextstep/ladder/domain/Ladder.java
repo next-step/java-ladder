@@ -14,6 +14,11 @@ public class Ladder {
         this.ladder = ladder;
     }
 
+    public int climb(int startPosition) {
+        return ladder.stream()
+            .reduce(startPosition, (current, bridges) -> bridges.move(current), (a, b) -> b);
+    }
+
     @Override
     public String toString() {
         return ladder.stream()
