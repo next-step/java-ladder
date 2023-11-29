@@ -40,13 +40,9 @@ public class Lambda {
     }
 
     private static int sum(List<Integer> numbers, Conditional conditional) {
-        return numbers.stream().mapToInt(number -> {
-            int temp = 0;
-            if (conditional.test(number)) {
-                temp += number;
-            }
-            return temp;
-        }).sum();
+        return numbers.stream()
+            .filter(conditional::test)
+            .reduce(0, Integer::sum);
     }
 
 }
