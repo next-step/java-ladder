@@ -15,10 +15,7 @@ class LadderTest {
 
     @Test
     void ladder() {
-        Ladder ladder = new Ladder(5, 4, new AlwaysReturnTrue());
-
-        ladder.getLines()
-            .forEach(System.out::println);
+        Ladder ladder = new Ladder(new LadderHeight(5), new PersonCount(4), new AlwaysReturnTrue());
     }
 
 }

@@ -9,10 +9,10 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(int ladderHeight, int countOfPerson, Random random) {
+    public Ladder(LadderHeight heightOfLadder, PersonCount countOfPerson, Random random) {
         this.lines = new ArrayList<>();
-        IntStream.range(0, ladderHeight)
-            .mapToObj(line -> new Line(countOfPerson, random))
+        IntStream.range(0, heightOfLadder.getHeightOfLadder())
+            .mapToObj(line -> new Line(countOfPerson.getCountOfPerson(), random))
             .forEach(this.lines::add);
     }
 

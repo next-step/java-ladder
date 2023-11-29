@@ -11,7 +11,7 @@ public class InputView {
         return SCANNER.nextLine();
     }
 
-    public String inputLadderMaxHeight() {
+    public String inputHeightOfLadder() {
         System.out.println("\n최대 사다리 높이는 몇 개인가요?");
         return SCANNER.nextLine();
     }
