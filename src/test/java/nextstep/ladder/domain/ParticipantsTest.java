@@ -15,11 +15,4 @@ class ParticipantsTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("최소 2명 이상 참가해야됩니다.");
     }
-
-    @DisplayName("참가자의 수를 리턴한다.")
-    @Test
-    void size() {
-        assertThat(new Participants("choi, jae, hyeon").size()).isEqualTo(3);
-    }
-
 }

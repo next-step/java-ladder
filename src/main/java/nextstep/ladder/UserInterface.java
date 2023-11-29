@@ -15,9 +15,11 @@ public class UserInterface {
         int ladderLevel = Parser.numberFormatParsing(InputView.ladderLevel());
 
         List<Line> ladder = new ArrayList<>();
+
         for (int i = 0; i < ladderLevel; i++) {
-            ladder.add(new Line(participants.size()));
+            ladder.add(new Line(participants.ladderSpace()));
         }
+
         ResultView.resultMessage();
         ResultView.printParticipantNames(participants.getParticipant());
         ResultView.printLadder(ladder);

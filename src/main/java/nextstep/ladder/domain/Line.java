@@ -8,27 +8,17 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Line {
-    private List<Boolean> step;
+    private List<Boolean> steps;
 
-    public Line(int participantCount) {
-        int stepSpace = participantCount - 1;
-        step = new ArrayList<>(stepMaker(stepSpace));
+    public Line(int space) {
+        this.steps = new ArrayList<>();
+        Step step = new Step();
+        for (int i = 0; i < space; i++) {
+            steps.add(step.next());
+        }
     }
 
     public List<Boolean> getLine() {
-        return Collections.unmodifiableList(step);
-    }
-
-    private List<Boolean> stepMaker(int stepSpace) {
-        return Stream.iterate(new Random().nextBoolean(), previous -> previousCheck(previous))
-                .limit(stepSpace)
-                .collect(Collectors.toList());
-    }
-
-    private boolean previousCheck(boolean previous) {
-        if (!previous) {
-            return new Random().nextBoolean();
-        }
-        return false;
+        return Collections.unmodifiableList(steps);
     }
 }
