@@ -35,15 +35,11 @@ public class Line {
 
     private void validateDirectionsContinuity(List<Direction> directions) {
         IntStream.range(0, directions.size() - 1)
-                .filter(index -> isDuplicateLeftDirection(directions, index))
+                .filter(index -> directions.get(index).isLeft() && directions.get(index + 1).isLeft())
                 .findFirst()
                 .ifPresent(i -> {
                     throw new LineDuplicateException();
                 });
-    }
-
-    private boolean isDuplicateLeftDirection(List<Direction> directions, int index) {
-        return LEFT == directions.get(index) && LEFT == directions.get(index + 1);
     }
 
     private static List<Direction> createDirections(int countOfPerson) {
