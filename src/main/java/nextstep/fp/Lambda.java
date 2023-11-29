@@ -28,22 +28,21 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers) {
-        return numbers.stream()
-            .mapToInt(e -> e)
-            .sum();
+        return sum(numbers, (number) -> true);
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        return numbers.stream()
-            .filter(e -> e % 2 == 0)
-            .mapToInt(e -> e)
-            .sum();
+        return sum(numbers, (number) -> number % 2 == 0);
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
+        return sum(numbers, (number) -> number > 3);
+    }
+
+    private static int sum(List<Integer> numbers, Conditional conditional) {
         return numbers.stream()
-            .filter(e -> e > 3)
-            .mapToInt(e -> e)
+            .filter(conditional::test)
+            .mapToInt(number -> number)
             .sum();
     }
 }
