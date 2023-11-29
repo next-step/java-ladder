@@ -1,6 +1,7 @@
 package nextstep.ladder.controller;
 
 import nextstep.ladder.domain.*;
+import nextstep.ladder.strategy.RandomDirectionStrategy;
 import nextstep.ladder.util.StringParser;
 
 import java.util.LinkedHashMap;
@@ -15,7 +16,7 @@ public class LadderCame {
         Names participants = new Names(StringParser.split(personName()));
         Prizes prizes = new Prizes(StringParser.split(ladderPrize()));
         Height height = new Height(inputLadderHeight());
-        Ladder ladder = new Ladder(height, participants.countOfParticipant());
+        Ladder ladder = new Ladder(new RandomDirectionStrategy(), height, participants.countOfParticipant());
         printLadder(participants, ladder, prizes);
         LadderResult ladderResult = new LadderResult(calculateLadderResult(participants, prizes, ladder));
         printLadderResult(inputLadderResultName(), ladderResult);

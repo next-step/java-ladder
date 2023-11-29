@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.strategy.DirectionStrategy;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,17 +11,17 @@ import static nextstep.ladder.domain.Direction.STAY;
 public class Ladder {
     private final List<Line> lines;
 
-    public Ladder(Height height, int countOfPerson) {
-        this.lines = Stream.generate(() -> createLine(countOfPerson))
+    public Ladder(DirectionStrategy directionStrategy, Height height, int countOfPerson) {
+        this.lines = Stream.generate(() -> createLine(directionStrategy, countOfPerson))
                 .limit(height.height())
                 .collect(Collectors.toList());
     }
 
-    private static Line createLine(int countOfPerson) {
+    private static Line createLine(DirectionStrategy directionStrategy, int countOfPerson) {
         if (countOfPerson == 1) {
             return new Line(STAY);
         }
-        return new Line(countOfPerson);
+        return new Line(directionStrategy, countOfPerson);
     }
 
     public int climb(int position) {

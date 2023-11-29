@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.exception.LineDuplicateException;
+import nextstep.ladder.strategy.DirectionStrategy;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -24,8 +25,8 @@ public class Line {
         this(List.of(direction));
     }
 
-    public Line(int countOfPerson) {
-        this(createDirections(countOfPerson));
+    public Line(DirectionStrategy directionStrategy, int countOfPerson) {
+        this(createDirections(directionStrategy, countOfPerson));
     }
 
     public Line(List<Direction> directions) {
@@ -42,16 +43,16 @@ public class Line {
                 });
     }
 
-    private static List<Direction> createDirections(int countOfPerson) {
+    private static List<Direction> createDirections(DirectionStrategy directionStrategy, int countOfPerson) {
         List<Direction> directions = new ArrayList<>();
         while (directions.size() < countOfPerson - 1) {
-            createDirection(countOfPerson, directions);
+            createDirection(directionStrategy, countOfPerson, directions);
         }
         return directions;
     }
 
-    private static void createDirection(int countOfPerson, List<Direction> directions) {
-        Direction direction = Direction.of(random.nextInt(2));
+    private static void createDirection(DirectionStrategy directionStrategy, int countOfPerson, List<Direction> directions) {
+        Direction direction = directionStrategy.direction();
         directions.add(direction);
 
         if (direction == RIGHT) {
