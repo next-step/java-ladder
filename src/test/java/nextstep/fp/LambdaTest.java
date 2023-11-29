@@ -39,13 +39,23 @@ public class LambdaTest {
 
     @Test
     public void sumAllEven() throws Exception {
-        int sum = Lambda.sumAllEven(numbers);
+        int sum = Lambda.sumAllEven(numbers, new SumStrategy() {
+            @Override
+            public boolean isSummable(int number) {
+                return number % 2 == 0;
+            }
+        });
         assertThat(sum).isEqualTo(12);
     }
 
     @Test
     public void sumAllOverThree() throws Exception {
-        int sum = Lambda.sumAllOverThree(numbers);
+        int sum = Lambda.sumAllOverThree(numbers, new SumStrategy() {
+            @Override
+            public boolean isSummable(int number) {
+                return number > 3;
+            }
+        });
         assertThat(sum).isEqualTo(15);
     }
 }
