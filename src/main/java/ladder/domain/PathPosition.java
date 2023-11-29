@@ -43,11 +43,7 @@ public class PathPosition {
             return false;
         }
 
-        if (!movablePath(leftPath)) {
-            return false;
-        }
-
-        return true;
+        return pathByPosition(leftPath);
     }
 
     private boolean movableRight() {
@@ -55,18 +51,14 @@ public class PathPosition {
             return false;
         }
 
-        if (!movablePath(rightPath)) {
-            return false;
-        }
-
-        return true;
+        return pathByPosition(rightPath);
     }
 
     private int endPosition() {
         return line.size() - 1;
     }
 
-    private boolean movablePath(Position position) {
+    private boolean pathByPosition(Position position) {
         return line.getByPosition(position);
     }
 }

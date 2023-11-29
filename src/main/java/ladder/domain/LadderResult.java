@@ -1,8 +1,8 @@
 package ladder.domain;
 
 public class LadderResult {
-    private String playerName;
-    private String prize;
+    private final String playerName;
+    private final String prize;
 
 
     public LadderResult(String playerName, String prize) {
