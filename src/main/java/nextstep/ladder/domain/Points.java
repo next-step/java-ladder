@@ -10,6 +10,6 @@ public class Points {
     }
 
     public int move(int currentPoint) {
-        return points.get(currentPoint).move(currentPoint);
+        return points.get(currentPoint).move();
     }
 }

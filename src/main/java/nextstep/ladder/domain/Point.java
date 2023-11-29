@@ -10,7 +10,7 @@ public class Point {
         this.direction = direction;
     }
 
-    public int move(int point) {
-        return direction.nextPoint(point);
+    public int move() {
+        return direction.nextPoint(x);
     }
 }
