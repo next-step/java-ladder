@@ -9,4 +9,8 @@ public class Point {
         this.x = x;
         this.direction = direction;
     }
+
+    public int move(int point) {
+        return direction.nextPoint(point);
+    }
 }
