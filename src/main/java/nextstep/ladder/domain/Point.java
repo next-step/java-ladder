@@ -9,14 +9,14 @@ public class Point {
         this.right = right;
     }
 
-    public Move move(){
+    public int move(int position){
         if (left) {
-            return Move.LEFT;
+            return position - 1;
         }
         if (right) {
-            return Move.RIGHT;
+            return position + 1;
         }
-        return Move.NONE;
+        return position;
     }
 
     public boolean isRight() {

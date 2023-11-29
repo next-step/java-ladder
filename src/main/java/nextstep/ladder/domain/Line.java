@@ -50,12 +50,6 @@ public class Line {
 
     public int move(int position) {
         Point point = this.points.get(position);
-        if (point.move().equals(Move.RIGHT)) {
-            return position + 1;
-        }
-        if (point.move().equals(Move.LEFT)) {
-            return position - 1;
-        }
-        return position;
+        return point.move(position);
     }
 }
