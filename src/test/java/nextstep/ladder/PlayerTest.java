@@ -3,7 +3,6 @@ package nextstep.ladder;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +12,7 @@ public class PlayerTest {
     @Test
     void playerCreatedByName() {
         String pobi = "pobi";
-        Player player = Player.of(pobi);
+        Player player = Player.from(pobi);
         assertThat(player.name()).isEqualTo(pobi);
     }
 
@@ -21,7 +20,7 @@ public class PlayerTest {
     @Test
     void nameExceeds5CharactersThenException() {
         String michael = "Michael Jackson";
-        assertThatThrownBy(() -> Player.of(michael)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Player.from(michael)).isInstanceOf(IllegalArgumentException.class);
     }
 
 }
