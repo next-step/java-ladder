@@ -15,21 +15,21 @@ class DirectionsTest {
 
     @ParameterizedTest
     @MethodSource("provideDirection")
-    @DisplayName("성공 - 위치에 해당 하는 방향을 구한다.")
-    void success_find_direction(int index, Direction direction) {
+    @DisplayName("성공 - 위치에서 이동한 후의 방향을 구한다.")
+    void success_find_direction(int startPosition, int nextPosition) {
         Directions directions = new Directions(
                 List.of(RIGHT, LEFT, STAY, STAY)
         );
 
-        assertThat(directions.move(index)).isEqualTo(direction);
+        assertThat(directions.move(startPosition)).isEqualTo(nextPosition);
     }
 
     private static Stream<Arguments> provideDirection() {
         return Stream.of(
-                Arguments.of(0, RIGHT),
-                Arguments.of(1, LEFT),
-                Arguments.of(2, STAY),
-                Arguments.of(3, STAY)
+                Arguments.of(0, 1),
+                Arguments.of(1, 0),
+                Arguments.of(2, 2),
+                Arguments.of(3, 3)
         );
     }
 

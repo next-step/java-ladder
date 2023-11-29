@@ -28,11 +28,8 @@ public enum Direction {
         return this == LEFT;
     }
 
-    public int move(int position) {
+    public int plus(int position) {
         return position + this.value;
     }
 
-    public int getValue() {
-        return value;
-    }
 }

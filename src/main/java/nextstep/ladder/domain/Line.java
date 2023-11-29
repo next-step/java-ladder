@@ -62,7 +62,7 @@ public class Line {
         }
     }
 
-    public Direction move(int position) {
+    public int move(int position) {
         return directions.move(position);
     }
 

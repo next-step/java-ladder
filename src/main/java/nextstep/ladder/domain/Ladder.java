@@ -17,7 +17,7 @@ public class Ladder {
     }
 
     private static Line createLine(int countOfPerson) {
-        if(countOfPerson == 1){
+        if (countOfPerson == 1) {
             return new Line(STAY);
         }
         return new Line(countOfPerson);
@@ -25,7 +25,7 @@ public class Ladder {
 
     public int climb(int position) {
         for (Line line : lines) {
-            position = line.move(position).move(position);
+            position = line.move(position);
         }
         return position;
     }

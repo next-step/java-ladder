@@ -30,9 +30,9 @@ class DirectionTest {
 
     @ParameterizedTest
     @MethodSource("provideDirectionAndPosition")
-    @DisplayName("성공 - 처음 위치에서 방향에 따라 위치값이 수정된다.")
+    @DisplayName("성공 - 주어진 인자의 위치에서 방향에 따라 위치값이 수정된다.")
     void success_move(int initPosition, Direction direction, int expectPosition) {
-        assertThat(direction.move(initPosition)).isEqualTo(expectPosition);
+        assertThat(direction.plus(initPosition)).isEqualTo(expectPosition);
     }
 
     private static Stream<Arguments> provideDirectionAndPosition() {

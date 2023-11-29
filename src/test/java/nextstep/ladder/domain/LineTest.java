@@ -34,17 +34,17 @@ public class LineTest {
 
     @ParameterizedTest
     @MethodSource("provideDirection")
-    @DisplayName("성공 - 위치에 해당하는 방향을 구한다.")
-    void success_find_direction(int index, Direction direction) {
+    @DisplayName("성공 - 위치에서 이동 한 후에 이동 후의 해당하는 방향을 구한다.")
+    void success_find_direction(int position, int nextPosition) {
         Line line = new Line(new int[]{0, 1, -1});
-        assertThat(line.move(index)).isEqualTo(direction);
+        assertThat(line.move(position)).isEqualTo(nextPosition);
     }
 
     private static Stream<Arguments> provideDirection() {
         return Stream.of(
-                Arguments.of(0, STAY),
-                Arguments.of(1, RIGHT),
-                Arguments.of(2, LEFT)
+                Arguments.of(0, 0),
+                Arguments.of(1, 2),
+                Arguments.of(2, 1)
         );
     }
 

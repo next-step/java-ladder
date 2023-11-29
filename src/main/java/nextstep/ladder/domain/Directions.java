@@ -11,8 +11,9 @@ public class Directions {
         this.directions = directions;
     }
 
-    public Direction move(int position) {
-        return directions.get(position);
+    public int move(int position) {
+        Direction direction = directions.get(position);
+        return direction.plus(position);
     }
 
     public int size() {
