@@ -30,7 +30,7 @@ public class StreamStudy {
                 Integer.compare(y.length(), x.length())
             ).collect(Collectors.toList())
             .subList(0, 100)
-            .forEach(System.out::println);
+            .forEach(w -> System.out.println(w.toLowerCase()));
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
@@ -38,7 +38,7 @@ public class StreamStudy {
     }
 
     public static long sumAll(List<Integer> numbers) {
-        return numbers.stream().reduce(0, (x, y) -> x + y);
+        return numbers.stream().reduce(0, Integer::sum);
     }
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
