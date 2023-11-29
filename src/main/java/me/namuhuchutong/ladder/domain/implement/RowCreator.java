@@ -32,15 +32,15 @@ public class RowCreator implements LineCreator {
 
     private List<LadderExpression> addScaffold(int participants, ScaffoldGenerator generator) {
         List<LadderExpression> result = new ArrayList<>();
+        PreviousStatus checker = new PreviousStatus();
         for (int i = 1; i < participants; i++) {
-            result.add(addScaffoldByCondition(generator));
+            result.add(addScaffoldByCondition(generator, checker));
             result.add(VERTICAL_BAR);
         }
         return result;
     }
 
-    private LadderExpression addScaffoldByCondition(ScaffoldGenerator generator) {
-        PreviousStatus checker = new PreviousStatus();
+    private LadderExpression addScaffoldByCondition(ScaffoldGenerator generator, PreviousStatus checker) {
         if (generator.canGenerate() && checker.isNotCreatedBefore()) {
             checker.setCreated();
             return HYPHEN;
