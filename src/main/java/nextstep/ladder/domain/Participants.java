@@ -8,9 +8,8 @@ public class Participants {
     private final int MIN_PARTICIPANT = 2;
     private List<Name> participant;
 
-    public Participants(String value) {
+    public Participants(List<String> names) {
         participant = new ArrayList<>();
-        List<String> names = Parser.splitString(value);
         validateParticipantCount(names.size());
         names.stream()
                 .forEach(name -> participant.add(new Name(name)));

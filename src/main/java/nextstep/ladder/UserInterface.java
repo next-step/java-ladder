@@ -9,8 +9,7 @@ import java.util.List;
 
 public class UserInterface {
     public static void main(String[] args) {
-        String participantNames = InputView.participantNames();
-        Participants participants = new Participants(participantNames);
+        Participants participants = new Participants(Parser.splitString(InputView.participantNames()));
 
         int ladderLevel = Parser.numberFormatParsing(InputView.ladderLevel());
 
