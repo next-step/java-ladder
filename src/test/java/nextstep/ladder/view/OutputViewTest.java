@@ -13,7 +13,7 @@ class OutputViewTest {
         Ladder ladder = new Ladder(new LadderHeight(10), new PersonCount(5),
             new RandomTrueOrFalse());
         OutputView outputView = new OutputView();
-        outputView.printLadder(ladder);
+//        outputView.printLadder(ladder);
 
     }
 

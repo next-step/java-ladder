@@ -9,6 +9,7 @@ import nextstep.ladder.model.Name;
 import nextstep.ladder.model.PersonCount;
 import nextstep.ladder.model.RandomTrueOrFalse;
 import nextstep.ladder.view.InputView;
+import nextstep.ladder.view.OutputView;
 
 public class MainController {
 
@@ -27,7 +28,8 @@ public class MainController {
 
         Ladder ladder = new Ladder(heightOfLadder, countOfPerson, new RandomTrueOrFalse());
 
-
+        OutputView outputView = new OutputView();
+        outputView.print(ladder, names);
     }
 
 }

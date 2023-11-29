@@ -2,6 +2,7 @@ package nextstep.ladder.model;
 
 public class PersonCount {
 
+    private static final int MIN_COUNT = 1;
     private final Integer countOfPerson;
 
     public PersonCount(Integer countOfPerson) {
@@ -10,7 +11,7 @@ public class PersonCount {
     }
 
     private void validateCountOfPerson(Integer countOfPerson) {
-        if (countOfPerson < 0) {
+        if (countOfPerson < MIN_COUNT) {
             throw new IllegalArgumentException("사람의 수는 1 이상 이어야 합니다.");
         }
     }
