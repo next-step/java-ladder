@@ -5,14 +5,14 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class Names {
+import static nextstep.ladder.util.StringSplit.stringSplitToList;
 
-    private static final String NAMES_DELIMITER = ",";
+public class Names {
 
     private final List<Name> values = new ArrayList<>();
 
     public Names(String names) {
-        Arrays.stream(names.split(NAMES_DELIMITER))
+        Arrays.stream(stringSplitToList(names))
                 .forEach(name -> this.values.add(new Name(name)));
     }
 
