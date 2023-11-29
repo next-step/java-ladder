@@ -4,14 +4,13 @@ import me.namuhuchutong.ladder.domain.engine.Ladder;
 import me.namuhuchutong.ladder.domain.engine.LadderCreator;
 import me.namuhuchutong.ladder.domain.engine.dto.LadderResult;
 import me.namuhuchutong.ladder.domain.engine.dto.UserInputInformation;
+import me.namuhuchutong.ladder.domain.implement.wrapper.Name;
 import me.namuhuchutong.ladder.ui.InputView;
 import me.namuhuchutong.ladder.ui.OutputView;
 
 import static me.namuhuchutong.ladder.beans.FactoryBean.*;
 
 public class LadderController {
-
-    private static final String ALL = "all";
 
     private final InputView inputView;
 
@@ -43,6 +42,7 @@ public class LadderController {
     }
 
     private boolean isNotAll(String input) {
-        return !ALL.equals(input);
+        Name name = new Name(input);
+        return name.isNotAll();
     }
 }
