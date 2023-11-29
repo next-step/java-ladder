@@ -40,4 +40,10 @@ class UsersTest {
     void toStringTest() {
         assertThat(Users.fromString("aa,bbbbb,c,d,e")).hasToString("   aa bbbbb     c     d     e");
     }
+
+    @Test
+    @DisplayName("첫 유저의 이름 길이")
+    void firstUsernameLength() {
+        assertThat(Users.fromString("aa,bbbbb,c,d,e").firstUsernameLength()).isEqualTo(2);
+    }
 }

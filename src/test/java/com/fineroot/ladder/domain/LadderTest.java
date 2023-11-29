@@ -13,4 +13,11 @@ class LadderTest {
         Ladder ladder = Ladder.of(Users.fromString("a,b,c,d"),5);
         assertThat(ladder).isInstanceOf(Ladder.class);
     }
+
+    @Test
+    @DisplayName("Ladder toString")
+    void toStringTest() {
+        Ladder ladder = Ladder.of(Users.fromString("aaaa,bbbbb,ccccc,ddd"),5);
+        assertThat(ladder.toString()).isInstanceOf(String.class);
+    }
 }

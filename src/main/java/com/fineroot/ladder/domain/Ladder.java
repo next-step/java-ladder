@@ -18,8 +18,7 @@ public class Ladder {
         return new Ladder(users, countOfHeight);
     }
 
-    @Override
-    public String toString() {
-        return lineList.stream().map(e->toString().concat(System.lineSeparator())).collect(Collectors.joining());
+    public String toStringBoard(final int firstUsernameLength) {
+        return lineList.stream().map(e->" ".repeat(firstUsernameLength).concat(e.toString().concat(System.lineSeparator()))).collect(Collectors.joining());
     }
 }

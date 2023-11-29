@@ -45,6 +45,10 @@ public class Users {
                 .length();
     }
 
+    public int firstUsernameLength(){
+        return userList.get(0).length();
+    }
+
     @Override
     public String toString() {
         int longestUserNameLength = longestUserNameLength();
