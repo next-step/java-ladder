@@ -6,23 +6,23 @@ public class Position {
     private final int position;
 
     private Position(int position) {
-        System.out.println("position = " + position);
         this.position = position;
     }
 
     public static Position from() {
         return from(0);
     }
+
     public static Position from(int position) {
         return new Position(position);
     }
 
     public Position left() {
-        return new Position(this.position - 1);
+        return Position.from(this.position - 1);
     }
 
     public Position right() {
-        return new Position(this.position + 1);
+        return Position.from(this.position + 1);
     }
 
     public int value() {

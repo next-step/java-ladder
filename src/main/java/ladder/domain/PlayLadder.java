@@ -1,7 +1,6 @@
 package ladder.domain;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class PlayLadder {
     private final Players players;
@@ -25,39 +24,29 @@ public class PlayLadder {
         return new PlayLadder(players, prizes, ladder);
     }
 
-    public void moving() {
+    public Map<String, LadderResult> move() {
+        Map<String, LadderResult> ladderResults = new LinkedHashMap<>();
+
         for (Player player : players()) {
-            Position currentPosition = player.position();
-            System.out.println(currentPosition.value());
+            Position position = moveLine(player);
 
-            for (Line line : ladder()) {
-                List<Boolean> paths = line.paths();
+            LadderResult ladderResult = new LadderResult(player.name(), prizes.prizes().get(position.value()).value());
 
-                int leftPosition = currentPosition.value() - 1;
-                int rightPosition = currentPosition.value();
-
-
-                if(leftPosition >= 0){
-                    boolean previousPath = paths.get(leftPosition);
-                    if(previousPath){
-                        currentPosition = currentPosition.left();
-                    }
-                }
-
-                if(rightPosition < paths.size()) {
-                    boolean nextPath = paths.get(rightPosition);
-                    if(nextPath){
-                        currentPosition = currentPosition.right();
-                    }
-                }
-            }
-
-            System.out.println("playerPosition = " + currentPosition.value());
-            Prize prize = prizes.prizes().get(currentPosition.value());
-            System.out.println("player.name() = " + player.name());
-            System.out.println("prize = " + prize.value());
-            System.out.println("-----------------------------------------------------------------------------------------------");
+            ladderResults.put(ladderResult.playerName(), ladderResult);
         }
+
+        return ladderResults;
+    }
+
+    private Position moveLine(Player player) {
+        Position moveResult = player.position();
+
+        for (Line line : ladder()) {
+            PathPosition pathPosition = PathPosition.of(moveResult, line);
+            moveResult = pathPosition.move();
+        }
+
+        return moveResult;
     }
 
     public List<Player> players() {

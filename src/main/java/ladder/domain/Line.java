@@ -26,6 +26,14 @@ public class Line {
         return new Line(size, pathStrategy);
     }
 
+    public boolean getByPosition(Position position) {
+        return paths.get(position.value());
+    }
+
+    public int size() {
+        return paths.size();
+    }
+
     public List<Boolean> paths() {
         return Collections.unmodifiableList(paths);
     }

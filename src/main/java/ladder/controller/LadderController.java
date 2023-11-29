@@ -21,20 +21,16 @@ public class LadderController {
     }
 
     public void start() {
-        PlayLadder playLadder = play(inputView.readName(), inputView.readPrize(), inputView.readHeight());
+        PlayLadder playLadder = initialize(inputView.readName(), inputView.readPrize(), inputView.readHeight());
         outputView.printLadder(playLadder);
     }
 
-    private PlayLadder play(List<String> nameList, List<String> prizeList, long height) {
+    private PlayLadder initialize(List<String> nameList, List<String> prizeList, long height) {
         Players players = Players.of(nameList);
         Prizes prizes = Prizes.of(prizeList);
 
         LadderSize ladderSize = LadderSize.of(players, height);
         Ladder ladder = Ladder.of(ladderSize, new RandomPathStrategy());
-
-        PlayLadder playLadder = PlayLadder.of(players, prizes, ladder);
-        playLadder.moving();
-
 
         return PlayLadder.of(players, prizes, ladder);
     }
