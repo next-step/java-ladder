@@ -36,8 +36,7 @@ public class ResultView {
     private static String printLine(Line line) {
         StringBuilder builder = new StringBuilder();
         line.points().stream().forEach(point -> {
-            builder.append(LADDER_LINE);
-            builder.append(printLadderPoint(point.isRight()));
+            builder.append(LADDER_LINE).append(printLadderPoint(point.isRight()));
         });
         return builder.toString();
     }
@@ -66,9 +65,11 @@ public class ResultView {
 
     private static void printAllResult(LadderResult ladderResult) {
         StringBuilder builder = new StringBuilder();
-        for (Map.Entry<Name, Result> entry : ladderResult.results().entrySet()) {
-            builder.append(printReusltText(entry.getKey(), entry.getValue()));
-        }
+        ladderResult.results()
+                .entrySet().stream()
+                .forEach(entry -> {
+                    builder.append(printReusltText(entry.getKey(), entry.getValue()));
+                });
         System.out.println(builder.toString());
     }
 
