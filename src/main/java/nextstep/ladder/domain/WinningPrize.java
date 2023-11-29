@@ -8,27 +8,37 @@ import java.util.stream.IntStream;
 
 public class WinningPrize {
 
-    private final Map<Integer, String> prizes;
+    private final Map<Integer, String> prizesByPosition;
 
-    public WinningPrize(List<String> prizes) {
-        this.prizes = IntStream.range(0, prizes.size())
+    public WinningPrize(List<String> prizesByPosition) {
+        this.prizesByPosition = IntStream.range(0, prizesByPosition.size())
             .boxed()
             .collect(Collectors.toMap(
                 i -> i,
-                prizes::get,
+                prizesByPosition::get,
                 (oldVal, newVal) -> newVal,
                 LinkedHashMap::new
             ));
     }
 
     public String prize(int position) {
-        return prizes.get(position);
+        return prizesByPosition.get(position);
     }
 
     @Override
     public String toString() {
-        return prizes.values().stream()
+        return prizesByPosition.values().stream()
             .map(val ->String.format("%-6s", val))
             .collect(Collectors.joining());
+    }
+
+    public Map<String, String> convertPointToPrize(Map<String, Integer> pointByName) {
+        return pointByName.keySet().stream()
+            .collect(Collectors.toMap(
+                name -> name,
+                name -> prize(pointByName.get(name)),
+                (oldVal, newVal) -> newVal,
+                LinkedHashMap::new
+            ));
     }
 }

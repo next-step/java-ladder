@@ -5,8 +5,9 @@ import nextstep.ladder.controller.dto.GameResult;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import static java.util.stream.Collectors.*;
 
 public class LadderGame {
 
@@ -37,15 +38,20 @@ public class LadderGame {
     }
 
     public GameResult play() {
-        Map<String, String> result = IntStream.range(0, players.numOfPlayers())
+        Map<String, Integer> pointAfterClimbing = climbLadder();
+        Map<String, String> prizeByName = winningPrize.convertPointToPrize(pointAfterClimbing);
+
+        return new GameResult(prizeByName);
+    }
+
+    private LinkedHashMap<String, Integer> climbLadder() {
+        return IntStream.range(0, players.numOfPlayers())
             .boxed()
-            .collect(Collectors.toMap(
+            .collect(toMap(
                 players::name,
-                i -> winningPrize.prize(ladder.climb(i)),
+                ladder::climb,
                 (oldVal, newVal) -> newVal,
                 LinkedHashMap::new
             ));
-
-        return new GameResult(result);
     }
 }

@@ -5,17 +5,17 @@ import java.util.Set;
 
 public class GameResult {
 
-    private final Map<String, String> result;
+    private final Map<String, String> prizesByName;
 
-    public GameResult(Map<String, String> result) {
-        this.result = result;
+    public GameResult(Map<String, String> prizesByName) {
+        this.prizesByName = prizesByName;
     }
 
     public String prize(String name) {
-        return result.get(name);
+        return prizesByName.get(name);
     }
 
     public Set<String> names() {
-        return result.keySet();
+        return prizesByName.keySet();
     }
 }
