@@ -10,7 +10,7 @@ import java.util.List;
 public class UserInterface {
     public static void main(String[] args) {
         String participantNames = InputView.participantNames();
-        Participant participant = new Participant(participantNames);
+        Participants participants = new Participants(participantNames);
         System.out.println();
 
         int ladderLevel = Parser.numberFormatParsing(InputView.ladderLevel());
@@ -18,10 +18,10 @@ public class UserInterface {
 
         List<Line> ladder = new ArrayList<>();
         for (int i = 0; i < ladderLevel; i++) {
-            ladder.add(new Line(participant.size()));
+            ladder.add(new Line(participants.size()));
         }
 
-        ResultView.printParticipantNames(participant.getParticipant());
+        ResultView.printParticipantNames(participants.getParticipant());
         ResultView.printLadder(ladder);
     }
 }

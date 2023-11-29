@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Participant {
-    private List<Name> participant;
+public class Participants {
     private final int MIN_PARTICIPANT = 2;
+    private List<Name> participant;
 
-    public Participant(String value) {
+    public Participants(String value) {
         participant = new ArrayList<>();
         List<String> names = Parser.splitString(value);
         validateParticipantCount(names.size());
