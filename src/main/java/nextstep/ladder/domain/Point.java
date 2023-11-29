@@ -2,15 +2,19 @@ package nextstep.ladder.domain;
 
 public class Point {
 
-    private int x;
+    private int point;
     private Direction direction;
 
-    public Point(int x, Direction direction) {
-        this.x = x;
+    public Point(int point, Direction direction) {
+        this.point = point;
         this.direction = direction;
     }
 
     public int move() {
-        return direction.nextPoint(x);
+        return direction.nextPoint(point);
+    }
+
+    public Direction direction() {
+        return this.direction;
     }
 }
