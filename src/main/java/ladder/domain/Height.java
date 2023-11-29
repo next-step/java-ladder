@@ -11,8 +11,9 @@ public class Height {
         validate(count);
         this.count = count;
     }
-    private void validate(int count){
-        if(count< MIN_COUNT){
+
+    private void validate(int count) {
+        if (count < MIN_COUNT) {
             throw new InputMismatchException("사다리 높이는 1개 이상이어야합니다.");
         }
     }

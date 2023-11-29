@@ -15,10 +15,20 @@ public class InputView {
         return new ArrayList<>(List.of(split(SCANNER.nextLine())));
     }
 
+    public static List<String> inputGifts() {
+        System.out.printf("%n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)%n");
+        return new ArrayList<>(List.of(split(SCANNER.nextLine())));
+    }
+
     public static int inputHeight() {
         System.out.printf("%n최대 사다리 높이는 몇 개인가요?%n");
 
         return checkNumber(SCANNER.nextLine());
+    }
+
+    public static String inputPerson() {
+        System.out.printf("%n결과를 보고 싶은 사람은?(그만보고 싶다면 쉼표(,)를 입력하세요)%n");
+        return SCANNER.nextLine();
     }
 
     private static int checkNumber(String number) {

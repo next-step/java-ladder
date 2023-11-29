@@ -18,4 +18,13 @@ public class People {
     public List<Name> values() {
         return Collections.unmodifiableList(names);
     }
+
+    public int indexOf(Name name) {
+        return names.indexOf(name);
+    }
+
+    public boolean contains(Name name) {
+        return names.contains(name);
+    }
+
 }
