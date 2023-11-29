@@ -8,13 +8,13 @@ public enum Direction {
     CENTER(point -> point),
     RIGHT(point -> point + 1);
 
-    private final Function<Integer, Integer> function;
+    private final Function<Integer, Integer> nextPoint;
 
-    Direction(Function<Integer, Integer> function) {
-        this.function = function;
+    Direction(Function<Integer, Integer> nextPoint) {
+        this.nextPoint = nextPoint;
     }
 
     public int nextPoint(int point) {
-        return this.function.apply(point);
+        return this.nextPoint.apply(point);
     }
 }

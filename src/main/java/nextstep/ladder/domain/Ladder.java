@@ -16,7 +16,7 @@ public class Ladder {
 
     public int climb(int startPosition) {
         return ladder.stream()
-            .reduce(startPosition, (current, points) -> points.move(current), (a, b) -> b);
+            .reduce(startPosition, (current, points) -> points.move(current), (previous, current) -> current);
     }
 
     @Override
