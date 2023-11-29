@@ -9,6 +9,8 @@ import me.namuhuchutong.ladder.domain.implement.discriminator.ScaffoldRandomGene
 
 public class FactoryBean {
 
+    private FactoryBean() {}
+
     public static ScaffoldGenerator scaffoldDiscriminator() {
         return new ScaffoldRandomGenerator();
     }
