@@ -33,6 +33,10 @@ public enum Direction {
         return Direction.of(left, false);
     }
 
+    public Direction next(boolean right) {
+        return Direction.of(this.right, right);
+    }
+
     public int move() {
         return move;
     }

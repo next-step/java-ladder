@@ -23,7 +23,7 @@ public class LadderController {
 
         GameResult gameResult = GameResult.valueOf(people, ladder, gifts);
 
-        printGame(gameResult, people);
+        printGame(gameResult);
 
     }
 }

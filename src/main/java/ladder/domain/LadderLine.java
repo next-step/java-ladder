@@ -19,14 +19,12 @@ public class LadderLine {
         list.add(direction);
 
         for (int i = 1; i < people.count() - 1; i++) {
-            direction = Direction.of(direction.isRight(), coordinateGeneration.generate());
+            direction = direction.next(coordinateGeneration.generate());
             list.add(direction);
         }
 
-        if (people.count() > 1) {
-            list.add(Direction.end(direction.isRight()));
-        }
-        
+        list.add(Direction.end(direction.isRight()));
+
         return new LadderLine(list);
     }
 
