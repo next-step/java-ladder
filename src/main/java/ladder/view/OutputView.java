@@ -1,7 +1,10 @@
 package ladder.view;
 
+import ladder.domain.LadderResult;
 import ladder.domain.PlayLadder;
 import ladder.utils.StringUtils;
+
+import java.util.Map;
 
 public class OutputView {
 
@@ -9,8 +12,9 @@ public class OutputView {
     private static final String BLANK = " ";
 
     public void printLadder(PlayLadder playLadder) {
+        System.out.println();
         StringBuffer stringBuffer = new StringBuffer();
-        stringBuffer.append("실행결과").append("\n");
+        stringBuffer.append("사다리 결과").append("\n");
         printHeader(playLadder, stringBuffer);
         stringBuffer.append("\n");
         createBody(playLadder, stringBuffer);
@@ -48,5 +52,31 @@ public class OutputView {
     private void createFooter(PlayLadder playLadder, StringBuffer stringBuffer) {
         playLadder.prizes()
                 .forEach(prize -> stringBuffer.append(fixedRow(prize.value(), playLadder.lengthMax())));
+    }
+
+    public void printLadderResult(Map<String, LadderResult> ladderResults, String resultType) {
+        System.out.println();
+        System.out.println("실행 결과");
+        if (playerType(ladderResults, resultType)) {
+            printResultPlayer(ladderResults, resultType);
+            return;
+        }
+
+        printResultAll(ladderResults);
+    }
+
+    private void printResultPlayer(Map<String, LadderResult> ladderResults, String resultType) {
+        LadderResult ladderResult = ladderResults.get(resultType);
+        System.out.println(ladderResult.prize());
+    }
+
+    private void printResultAll(Map<String, LadderResult> ladderResults) {
+        for (String name : ladderResults.keySet()) {
+            System.out.println(name + " : " + ladderResults.get(name).prize());
+        }
+    }
+
+    private boolean playerType(Map<String, LadderResult> move, String resultType) {
+        return move.containsKey(resultType);
     }
 }
