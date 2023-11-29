@@ -39,4 +39,9 @@ public class Line {
     public List<Boolean> getPoints() {
         return this.points;
     }
+
+    @Override
+    public String toString() {
+        return this.points.toString();
+    }
 }
