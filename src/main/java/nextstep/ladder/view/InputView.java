@@ -11,6 +11,7 @@ public class InputView {
     }
 
     public static String ladderLevel() {
+        System.out.println();
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         return scanner.nextLine();
     }

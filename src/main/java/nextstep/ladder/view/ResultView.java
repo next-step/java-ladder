@@ -4,6 +4,7 @@ import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Name;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ResultView {
     private static final String CONNECTION = "-----";
@@ -14,26 +15,27 @@ public class ResultView {
     }
 
     public static void resultMessage() {
-        System.out.print("실행결과");
-    }
-
-    public static void printParticipantNames(List<Name> names) {
-        names.stream().forEach(name -> System.out.print(String.format("%6s", name)));
+        System.out.println();
+        System.out.println("실행결과");
         System.out.println();
     }
 
-    public static void printLadder(List<Line> ladder) {
-        ladder.stream().forEach(line -> {
-            System.out.print(disconnectionStep());
-            printLine(line.getLine());
-        });
+    public static void printParticipantNames(List<Name> names) {
+        System.out.println(names.stream()
+                .map(name -> String.format("%6s", name))
+                .collect(Collectors.joining()));
     }
 
-    private static void printLine(List<Boolean> line) {
-        StringBuffer lineDisplay = new StringBuffer();
-        line.stream()
-                .forEach(flag -> lineDisplay.append(makeStep(flag)));
-        System.out.println(lineDisplay);
+    public static void printLadder(List<Line> ladder) {
+        System.out.println(ladder.stream()
+                .map(line -> disconnectionStep() + printLine(line.getLine()))
+                .collect(Collectors.joining("\n")));
+    }
+
+    private static String printLine(List<Boolean> line) {
+        return line.stream()
+                .map(flag -> makeStep(flag))
+                .collect(Collectors.joining());
     }
 
     private static String makeStep(boolean step) {
