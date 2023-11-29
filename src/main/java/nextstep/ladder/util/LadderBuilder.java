@@ -51,12 +51,12 @@ public class LadderBuilder {
                 return new Point(position, LEFT);
             }
 
-            if (this.previous && !current) {
+            if (this.previous) {
                 this.previous = current;
                 return new Point(position, LEFT);
             }
 
-            if (!this.previous && current) {
+            if (current) {
                 this.previous = current;
                 return new Point(position, RIGHT);
             }
