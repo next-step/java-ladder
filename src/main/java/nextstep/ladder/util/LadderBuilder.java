@@ -1,14 +1,15 @@
 package nextstep.ladder.util;
 
-import nextstep.ladder.domain.Bridges;
-import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.*;
 import nextstep.ladder.domain.wrapper.Height;
 import nextstep.ladder.domain.wrapper.Width;
 
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
+
+import static nextstep.ladder.domain.Direction.*;
 
 public class LadderBuilder {
 
@@ -19,39 +20,49 @@ public class LadderBuilder {
     }
 
     public static Ladder build(Width width, Height height) {
-        List<Bridges> ladder = Stream.generate(width::value)
-            .map(LadderBuilder::buildBridges)
+        List<Points> ladder = Stream.generate(width::value)
+            .map(LadderBuilder::buildPoints)
             .limit(height.value())
             .collect(Collectors.toUnmodifiableList());
 
         return new Ladder(ladder);
     }
 
-    private static Bridges buildBridges(int width) {
-        BridgeBuilder bridgeBuilder = new BridgeBuilder();
+    private static Points buildPoints(int width) {
+        PointBuilder pointBuilder = new PointBuilder();
 
-        return Stream.generate(RANDOM::nextBoolean)
-            .map(bridgeBuilder::build)
-            .limit(width)
-            .collect(Collectors.collectingAndThen(Collectors.toList(), Bridges::new));
+        List<Point> points = IntStream.range(0, width - 1)
+            .boxed()
+            .map(position -> pointBuilder.build((RANDOM.nextBoolean()), position))
+            .collect(Collectors.toList());
+
+        points.add(pointBuilder.build(false, width - 1));
+
+        return new Points(points);
     }
 
-    static class BridgeBuilder {
+    static class PointBuilder {
 
-        private boolean bridge;
+        private boolean previous;
 
-        private BridgeBuilder() {
-            this.bridge = RANDOM.nextBoolean();
-        }
-
-        private boolean build(boolean bridge) {
-            if (this.bridge) {
-                this.bridge = false;
-                return false;
+        private Point build(boolean current, int position) {
+            if (this.previous && current) {
+                this.previous = false;
+                return new Point(position, LEFT);
             }
 
-            this.bridge = bridge;
-            return bridge;
+            if (this.previous && !current) {
+                this.previous = current;
+                return new Point(position, LEFT);
+            }
+
+            if (!this.previous && current) {
+                this.previous = current;
+                return new Point(position, RIGHT);
+            }
+
+            this.previous = current;
+            return new Point(position, CENTER);
         }
     }
 }
