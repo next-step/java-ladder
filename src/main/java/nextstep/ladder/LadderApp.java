@@ -20,14 +20,12 @@ public class LadderApp {
 
         final LadderResult ladderResult = ladder.start(participants, result);
 
-        String resultInput = "";
-        do {
-            resultInput = inputParticipantLadderResult();
+        String resultInput = inputParticipantLadderResult();
+        while (isNotAll(resultInput)) {
             final String participantResult = ladderResult.participantResult(new Participant(resultInput));
             println(participantResult);
-
-        } while (isNotAll(resultInput));
-
+            resultInput = inputParticipantLadderResult();
+        }
         println(ladderResult.participantResult());
     }
 
