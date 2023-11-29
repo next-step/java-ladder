@@ -31,14 +31,4 @@ public class WinningPrize {
             .map(val ->String.format("%-6s", val))
             .collect(Collectors.joining());
     }
-
-    public Map<String, String> convertPointToPrize(Map<String, Integer> pointByName) {
-        return pointByName.keySet().stream()
-            .collect(Collectors.toMap(
-                name -> name,
-                name -> prize(pointByName.get(name)),
-                (oldVal, newVal) -> newVal,
-                LinkedHashMap::new
-            ));
-    }
 }
