@@ -1,5 +1,8 @@
 package nextstep.ladder.view;
 
+import nextstep.ladder.domain.Height;
+import nextstep.ladder.domain.Participants;
+import nextstep.ladder.domain.Results;
 import nextstep.ladder.domain.util.InputParser;
 
 import java.util.Scanner;
@@ -16,26 +19,29 @@ public class InputView {
     private InputView() {
     }
 
-    public static String[] inputParticipants() {
+    public static Participants inputParticipants() {
         System.out.println(PARTICIPANTS_INPUT_MSG);
-        final String participantTexts = SCANNER.next();
+        final String input = SCANNER.next();
 
-        return InputParser.parse(participantTexts);
+        String[] participantTextList = InputParser.parse(input);
+
+        return new Participants(participantTextList);
     }
 
-    public static int inputLadderHeight() {
+    public static Height inputLadderHeight() {
         System.out.println(LADDER_HEIGHT_INPUT_MSG);
-        return SCANNER.nextInt();
+        int input = SCANNER.nextInt();
+        return new Height(input);
     }
 
-    public static String[] inputResult(final int countOfPerson) {
+    public static Results inputResult(final int countOfPerson) {
         System.out.println(RESULT_INPUT_MSG);
-        final String resultText = SCANNER.next();
-        final String[] results = InputParser.parse(resultText);
+        final String input = SCANNER.next();
+        final String[] resultTextList = InputParser.parse(input);
 
-        resultNumberCheck(countOfPerson, results);
+        resultNumberCheck(countOfPerson, resultTextList);
 
-        return results;
+        return new Results(resultTextList);
     }
 
     private static void resultNumberCheck(final int countOfPerson, final String[] results) {
