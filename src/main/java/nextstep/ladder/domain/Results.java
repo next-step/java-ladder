@@ -12,7 +12,7 @@ public class Results {
 
     public Results(String result) {
         Arrays.stream(stringSplitToList(result))
-                .forEach(name -> this.results.add(new Result(name)));
+                .forEach(value -> this.results.add(new Result(value)));
     }
 
     public void validateSize(int size) {
@@ -32,9 +32,7 @@ public class Results {
     public LadderResult of(Names names, Ladder ladder) {
         Map<Name, Result> result = new HashMap<>();
         for (int nameIdx = 0; nameIdx < names.size(); nameIdx++) {
-            Name name = names.get(nameIdx);
-            int position = ladder.move(nameIdx);
-            result.put(name, get(position));
+            result.put(names.get(nameIdx), get(ladder.move(nameIdx)));
         }
         return new LadderResult(result);
     }
