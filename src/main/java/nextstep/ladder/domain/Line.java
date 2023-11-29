@@ -11,7 +11,7 @@ import static nextstep.ladder.domain.Direction.*;
 public class Line {
     private static final Random random = new Random();
 
-    private final List<Direction> directions;
+    private final Directions directions;
 
     public Line(int[] directions) {
         this(Arrays.stream(directions)
@@ -30,7 +30,7 @@ public class Line {
 
     public Line(List<Direction> directions) {
         validateDirectionsContinuity(directions);
-        this.directions = new ArrayList<>(directions);
+        this.directions = new Directions(directions);
     }
 
     private void validateDirectionsContinuity(List<Direction> directions) {
@@ -63,15 +63,15 @@ public class Line {
     }
 
     public Direction move(int position) {
-        return directions.get(position);
+        return directions.move(position);
     }
 
     public int size() {
         return directions.size();
     }
 
-    public List<Direction> directions() {
-        return Collections.unmodifiableList(directions);
+    public Directions directions() {
+        return directions;
     }
 
     @Override

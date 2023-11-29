@@ -32,7 +32,7 @@ public class OutputView {
 
     private static void printLine(Line line) {
         System.out.print(BLANK);
-        line.directions().forEach(point -> System.out.print(WALL + judgeLineOrBlank(point)));
+        line.directions().directions().forEach(direction -> System.out.print(WALL + judgeLineOrBlank(direction)));
         System.out.println();
     }
 
