@@ -33,8 +33,8 @@ public class OutputView {
     }
 
     private void createBody(PlayLadder playLadder, StringBuffer stringBuffer) {
-        String onPath = DASH.repeat((int)playLadder.lengthMax());
-        String offPath = BLANK.repeat((int)playLadder.lengthMax());
+        String onPath = DASH.repeat((int) playLadder.lengthMax());
+        String offPath = BLANK.repeat((int) playLadder.lengthMax());
 
         playLadder.ladder()
                 .forEach(line -> {

@@ -4,7 +4,6 @@ public class LadderResult {
     private final String playerName;
     private final String prize;
 
-
     public LadderResult(String playerName, String prize) {
         this.playerName = playerName;
         this.prize = prize;

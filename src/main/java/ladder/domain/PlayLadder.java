@@ -1,13 +1,16 @@
 package ladder.domain;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class PlayLadder {
     private final Players players;
     private final Prizes prizes;
     private final Ladder ladder;
 
-    public PlayLadder(Players players, Prizes prizes, Ladder ladder) {
+    private PlayLadder(Players players, Prizes prizes, Ladder ladder) {
         validate(players, prizes);
         this.players = players;
         this.prizes = prizes;

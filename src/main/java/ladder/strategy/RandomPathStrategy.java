@@ -17,7 +17,7 @@ public class RandomPathStrategy implements PathStrategy {
     }
 
     private boolean randomIfPreviousNotChecked(boolean previous) {
-        if(notChecked(previous)) {
+        if (notChecked(previous)) {
             return random();
         }
 

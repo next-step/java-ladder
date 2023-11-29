@@ -13,7 +13,6 @@ public class Prizes {
         this.prizes = prizes;
     }
 
-
     public static Prizes of(String... prizes) {
         return of(Arrays.asList(prizes));
     }

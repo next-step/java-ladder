@@ -3,6 +3,7 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Position {
+
     private final int position;
 
     private Position(int position) {
