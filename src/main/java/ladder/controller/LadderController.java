@@ -1,11 +1,12 @@
 package ladder.controller;
 
-import ladder.domain.*;
+import ladder.domain.Ladder;
+import ladder.domain.PlayLadder;
+import ladder.domain.Players;
+import ladder.domain.Prizes;
 import ladder.strategy.RandomPathStrategy;
 import ladder.view.InputView;
 import ladder.view.OutputView;
-
-import java.util.Map;
 
 public class LadderController {
 
