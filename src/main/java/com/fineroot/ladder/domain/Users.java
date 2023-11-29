@@ -1,27 +1,31 @@
 package com.fineroot.ladder.domain;
 
+import static com.fineroot.ladder.utils.ExceptionMessage.USERS_CALL_LONGEST_LENGTH;
+
 import com.fineroot.ladder.utils.ExceptionMessage;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Users {
 
-    private final Set<User> userSet;
+    private final List<User> userList;
 
-    private Users(String users) {
-        Set<User> set = new HashSet<>();
-        List<String> collect = Arrays.stream(users.split(",")).map(String::trim).collect(Collectors.toList());
+    private Users(String userList) {
+        List<User> list = new ArrayList<>();
+        List<String> collect = Arrays.stream(userList.split(",")).map(String::trim).collect(Collectors.toList());
         for (String s : collect) {
-            validateDuplicate(s, set);
+            User user = User.from(s);
+            validateDuplicate(list, user);
+            list.add(user);
         }
-        userSet = set;
+        this.userList = list;
     }
 
-    private void validateDuplicate(String s, Set<User> set) {
-        if(!set.add(User.from(s))){
+    private void validateDuplicate(List<User> list, User user) {
+        if(list.contains(user)){
             throw new IllegalArgumentException(ExceptionMessage.USER_NAME_DUPLICATED.getMessage());
         }
     }
@@ -31,7 +35,20 @@ public class Users {
     }
 
     public int size() {
-        return userSet.size();
+        return userList.size();
     }
 
+    public int longestUserNameLength() {
+        return userList.stream().sorted(Comparator.reverseOrder()).limit(1)
+                .findFirst()
+                .orElseThrow(() -> new IllegalStateException(USERS_CALL_LONGEST_LENGTH.getMessage()))
+                .length();
+    }
+
+    @Override
+    public String toString() {
+        int longestUserNameLength = longestUserNameLength();
+        return userList.stream().map(e->" ".repeat(longestUserNameLength-e.toString().length()).concat(e.toString()).concat(" ")).collect(
+                Collectors.joining()).stripTrailing();
+    }
 }

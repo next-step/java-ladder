@@ -22,4 +22,22 @@ class UsersTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ExceptionMessage.USER_NAME_DUPLICATED.getMessage());
     }
+
+    @Test
+    @DisplayName("가장 이름이 긴 유저의 이름 길이")
+    void longestUserNameLength() {
+        assertThat(Users.fromString("aa,b,c,d,e").longestUserNameLength()).isEqualTo(2);
+    }
+
+    @Test
+    @DisplayName("Users의 길이")
+    void size() {
+        assertThat(Users.fromString("aa,b,c,d,e").size()).isEqualTo(5);
+    }
+
+    @Test
+    @DisplayName("Users 이름")
+    void toStringTest() {
+        assertThat(Users.fromString("aa,bbbbb,c,d,e")).hasToString("   aa bbbbb     c     d     e");
+    }
 }

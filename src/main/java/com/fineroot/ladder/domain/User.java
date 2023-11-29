@@ -3,7 +3,7 @@ package com.fineroot.ladder.domain;
 import com.fineroot.ladder.utils.ExceptionMessage;
 import java.util.Objects;
 
-public class User {
+public class User implements Comparable<User>{
 
     private String name;
 
@@ -25,6 +25,10 @@ public class User {
         }
     }
 
+    public int length(){
+        return name.length();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -40,5 +44,15 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    @Override
+    public int compareTo(User o) {
+        return Integer.compare(this.name.length(), o.name.length());
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
