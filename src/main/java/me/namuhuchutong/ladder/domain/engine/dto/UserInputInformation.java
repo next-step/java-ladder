@@ -1,4 +1,4 @@
-package me.namuhuchutong.ladder.dto;
+package me.namuhuchutong.ladder.domain.engine.dto;
 
 public class UserInputInformation {
 

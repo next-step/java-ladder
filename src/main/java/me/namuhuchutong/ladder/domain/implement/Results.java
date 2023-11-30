@@ -1,6 +1,6 @@
-package me.namuhuchutong.ladder.domain;
+package me.namuhuchutong.ladder.domain.implement;
 
-import me.namuhuchutong.ladder.domain.wrapper.Result;
+import me.namuhuchutong.ladder.domain.implement.wrapper.Result;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,6 +10,7 @@ import static java.util.stream.Collectors.*;
 public class Results {
 
     private static final String COMMA_REGEX = ",";
+    private static final String BLANK = "";
 
     private final List<Result> results;
 
@@ -28,7 +29,7 @@ public class Results {
         return this.results.stream()
                            .map(Result::getResult)
                            .map(resultName -> String.format(format, resultName))
-                           .reduce("", (previous, newOne) -> previous + newOne);
+                           .reduce(BLANK, (previous, newOne) -> previous + newOne);
     }
 
     public Result getNthResult(Integer index) {

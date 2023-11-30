@@ -1,4 +1,4 @@
-package me.namuhuchutong.ladder.domain.wrapper;
+package me.namuhuchutong.ladder.domain.implement.wrapper;
 
 import java.util.Objects;
 

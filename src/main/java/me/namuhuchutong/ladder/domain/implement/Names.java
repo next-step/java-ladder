@@ -1,6 +1,6 @@
-package me.namuhuchutong.ladder.domain;
+package me.namuhuchutong.ladder.domain.implement;
 
-import me.namuhuchutong.ladder.domain.wrapper.Name;
+import me.namuhuchutong.ladder.domain.implement.wrapper.Name;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,6 +12,7 @@ public class Names {
 
     private static final String COMMA_REGEX = ",";
     private static final int MINIMUM_SIZE = 2;
+    private static final String BLANK = "";
 
     private final List<Name> values;
 
@@ -41,7 +42,7 @@ public class Names {
         return this.values.stream()
                           .map(Name::getName)
                           .map(name -> String.format(format, name))
-                          .reduce("", (previous, newOne) -> previous + newOne);
+                          .reduce(BLANK, (previous, newOne) -> previous + newOne);
     }
 
     public Stream<Name> stream() {
@@ -72,10 +73,5 @@ public class Names {
 
     private boolean isBiggerThanSize(Integer index) {
         return this.values.size() - 1 < index;
-    }
-
-    public boolean contains(String inputStringName) {
-        Name name = new Name(inputStringName);
-        return this.values.contains(name);
     }
 }

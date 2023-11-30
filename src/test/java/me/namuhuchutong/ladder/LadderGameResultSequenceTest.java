@@ -1,6 +1,6 @@
 package me.namuhuchutong.ladder;
 
-import me.namuhuchutong.ladder.domain.LadderGameResultSequence;
+import me.namuhuchutong.ladder.domain.implement.LadderGameResultSequence;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
