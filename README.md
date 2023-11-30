@@ -7,3 +7,13 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+
+## 요구사항 step1 
+
+* [x] CarTest MoveStrategy에 대한 익명 클래스로 구현하고 있는데 람다를 적용해 구현
+* [x] 중복되는 코드 제거 
+* [x] sumOverThreeAndDouble를 map, reduce, filter를 활용해 구현
+* [x] printLongestWordTop100 메서드 구현 
+* [x] isPresent(), map(), filter() 사용해서 ageIsInRange2 메서드 구현 
+* [x] Optional에서 exception 처리 구현 
