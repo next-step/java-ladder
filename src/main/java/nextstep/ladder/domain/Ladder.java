@@ -9,6 +9,9 @@ import java.util.stream.Stream;
 import static nextstep.ladder.domain.Direction.STAY;
 
 public class Ladder {
+
+    private static final int SINGLE_PERSON = 1;
+
     private final List<Line> lines;
 
     public Ladder(DirectionStrategy directionStrategy, Height height, int countOfPerson) {
@@ -18,7 +21,7 @@ public class Ladder {
     }
 
     private static Line createLine(DirectionStrategy directionStrategy, int countOfPerson) {
-        if (countOfPerson == 1) {
+        if (countOfPerson == SINGLE_PERSON) {
             return new Line(STAY);
         }
         return new Line(directionStrategy, countOfPerson);

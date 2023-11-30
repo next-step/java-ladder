@@ -7,7 +7,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class LadderResult {
-
     private final Map<Name, Prize> results;
 
     public LadderResult(Map<Name, Prize> results) {
@@ -19,7 +18,6 @@ public class LadderResult {
             throw new MisMatchNameException(name);
         }
         return results.get(new Name(name));
-
     }
 
     public Map<Name, Prize> results() {

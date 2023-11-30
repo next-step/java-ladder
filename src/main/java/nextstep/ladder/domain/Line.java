@@ -7,8 +7,6 @@ import java.util.stream.Collectors;
 import static nextstep.ladder.domain.Direction.*;
 
 public class Line {
-    private static final Random random = new Random();
-
     private final Directions directions;
 
     public Line(int[] directions) {

@@ -3,7 +3,6 @@ package nextstep.ladder.domain;
 import java.util.Objects;
 
 public class Prize {
-
     private final String prize;
 
     public Prize(String prize) {
