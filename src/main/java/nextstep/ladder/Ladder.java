@@ -10,13 +10,29 @@ public class Ladder {
 
     public Ladder(List<Line> lines) {
         this.lines = lines;
+        updateFirsLineToFalse();
     }
 
-    public static Ladder from(int count) {
+    private void updateFirsLineToFalse() {
+        lines.forEach(this::updateFirsLineToFalse);
+    }
+
+    private void updateFirsLineToFalse(Line line) {
+        List<Boolean> currentLine = line.line();
+        if (currentLine != null && !currentLine.isEmpty()) {
+            currentLine.set(0, false);
+        }
+    }
+
+    public static Ladder of(int height, int playerCount) {
         return new Ladder(
-            IntStream.range(0, count)
-                .mapToObj(i -> Line.from(3))
+            IntStream.range(0, height)
+                .mapToObj(i -> Line.from(playerCount))
                 .collect(Collectors.toList()));
+    }
+
+    public List<Line> lines() {
+        return lines;
     }
 
     public int ladderSize() {
