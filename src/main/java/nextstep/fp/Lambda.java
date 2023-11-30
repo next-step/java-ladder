@@ -1,12 +1,6 @@
 package nextstep.fp;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
-
-interface Conditional {
-    boolean test(Integer number);
-}
 
 public class Lambda {
 
