@@ -29,4 +29,17 @@ class LineTest {
         // then
         Assertions.assertThat(line.getLine()).hasSize(4);
     }
+
+    @DisplayName("특정 위치가 연결되었는지 확인합니다.")
+    @Test
+    void isConnected() {
+        // given
+        Line line = new Line(List.of(WidthStatus.connected, WidthStatus.notConnected));
+        // when
+        boolean connectResult = line.isConnected(0);
+        boolean notConnectResult = line.isConnected(1);
+        // then
+        Assertions.assertThat(connectResult).isTrue();
+        Assertions.assertThat(notConnectResult).isFalse();
+    }
 }

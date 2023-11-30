@@ -9,7 +9,7 @@ public class Line {
 
     private List<WidthStatus> line;
 
-    private Line(List<WidthStatus> line) {
+    public Line(List<WidthStatus> line) {
         this.line = line;
     }
 
@@ -24,6 +24,14 @@ public class Line {
         }
 
         return new Line(line);
+    }
+
+    public boolean isConnected(int location) {
+        return line.get(location).equals(WidthStatus.connected);
+    }
+
+    public int getSize() {
+        return line.size();
     }
 
     private static void applyWidthCondition(List<WidthStatus> line, int currentLocation) {

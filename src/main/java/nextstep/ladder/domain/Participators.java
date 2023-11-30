@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Participators {
 
@@ -12,8 +13,8 @@ public class Participators {
     }
 
     public static Participators from(List<String> names) {
-        return new Participators(names.stream()
-                .map(Participator::new)
+        return new Participators(IntStream.range(0, names.size())
+                .mapToObj(loc -> new Participator(names.get(loc), loc))
                 .collect(Collectors.toList()));
     }
 
