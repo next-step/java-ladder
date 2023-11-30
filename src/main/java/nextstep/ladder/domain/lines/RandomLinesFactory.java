@@ -21,8 +21,11 @@ public class RandomLinesFactory {
         List<Line> lines = new ArrayList<>();
         Line firstLine = firstLineCreationStrategy.createFirstLine(height);
         lines.add(firstLine);
-        while (participantCount-- > 1) {
-            lines.add(leftLineCreationStrategy.createLeftLine(firstLine, height));
+        while (participantCount >= 2) {
+            Line nextLine = leftLineCreationStrategy.createLeftLine(firstLine, height);
+            lines.add(nextLine);
+            firstLine = nextLine;
+            participantCount--;
         }
         return new Lines(lines);
     }

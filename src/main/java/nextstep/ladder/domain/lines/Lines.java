@@ -41,12 +41,12 @@ public class Lines {
         for (int lineIndex = 1; lineIndex < lines.size(); lineIndex++) {
             Line line = lines.get(lineIndex);
             targetLine.isOverlapping(line);
-            targetLine = changeTarget(line);
+            targetLine = line;
         }
     }
 
-    private Line changeTarget(Line line) {
-        return line;
+    public List<Line> getLines() {
+        return lines;
     }
 
     @Override
