@@ -1,8 +1,6 @@
-package nextstep.step4.engine;
+package nextstep.step4.impl;
 
-import nextstep.step4.impl.Participant;
-import nextstep.step4.impl.Participants;
-import nextstep.step4.impl.Results;
+import nextstep.step4.engine.LadderResult;
 
 public class ResultProcessor {
     public static final String NEW_LINE = "\n";

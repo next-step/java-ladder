@@ -3,7 +3,7 @@ package nextstep.step4;
 
 import nextstep.step4.engine.Ladder;
 import nextstep.step4.engine.LadderResult;
-import nextstep.step4.engine.ResultProcessor;
+import nextstep.step4.impl.ResultProcessor;
 import nextstep.step4.impl.Height;
 import nextstep.step4.impl.Participant;
 import nextstep.step4.impl.Participants;
