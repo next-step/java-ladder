@@ -9,18 +9,15 @@ import java.util.List;
 
 public class UserInterface {
     public static void main(String[] args) {
-        Participants participants = new Participants(Parser.splitString(InputView.participantNames()));
+        List<String> names = Parser.splitString(InputView.participantNames());
+        Participants participants = new Participants(names);
 
         int ladderLevel = Parser.numberFormatParsing(InputView.ladderLevel());
 
-        List<Line> ladder = new ArrayList<>();
-
-        for (int i = 0; i < ladderLevel; i++) {
-            ladder.add(new Line(participants.ladderSpace()));
-        }
+        LadderFactory ladder = LadderFactory.make(participants, ladderLevel);
 
         ResultView.resultMessage();
         ResultView.printParticipantNames(participants.getParticipant());
-        ResultView.printLadder(ladder);
+        ResultView.printLadder(ladder.getLadder());
     }
 }

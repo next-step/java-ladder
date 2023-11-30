@@ -15,8 +15,8 @@ public class Participants {
                 .forEach(name -> participant.add(new Name(name)));
     }
 
-    public int ladderSpace() {
-        return participant.size() - 1;
+    public int size() {
+        return participant.size();
     }
 
     public List<Name> getParticipant() {
