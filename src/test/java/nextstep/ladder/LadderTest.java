@@ -2,7 +2,7 @@ package nextstep.ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.assertj.core.api.Assertions;
+import nextstep.ladder.model.Ladder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
