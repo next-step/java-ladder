@@ -11,7 +11,7 @@ public class OutputView {
     private OutputView() {
     }
 
-    private static final String ALL_PARTICIPATNS = "all";
+    private static final String ALL_PARTICIPANTS = "all";
     private static final String WALL = "|";
     private static final String LINE = "-----";
     private static final String BLANK = "     ";
@@ -50,7 +50,7 @@ public class OutputView {
     public static void printLadderResult(String resultName, LadderResult ladderResult) {
         System.out.println();
         System.out.println("실행 결과");
-        if (ALL_PARTICIPATNS.equals(resultName)) {
+        if (ALL_PARTICIPANTS.equals(resultName)) {
             participantsResult(ladderResult);
             return;
         }

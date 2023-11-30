@@ -19,22 +19,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class LineTest {
 
     @ParameterizedTest
-    @MethodSource("providePoints")
-    @DisplayName("실패 - 가로 라인이 겹치는 경우 예외가 발생한다.")
-    void fail_line_duplicate(List<Direction> directions) {
-        Assertions.assertThatThrownBy(() -> new Line(directions))
-                .isInstanceOf(LineDuplicateException.class)
-                .hasMessage("가로 라인이 겹칩니다.");
-    }
-
-    private static Stream<Arguments> providePoints() {
-        return Stream.of(
-                Arguments.of(List.of(RIGHT, LEFT, LEFT, STAY)),
-                Arguments.of(List.of(STAY, RIGHT, LEFT, LEFT))
-        );
-    }
-
-    @ParameterizedTest
     @MethodSource("provideDirection")
     @DisplayName("성공 - 위치에서 이동 한 후에 이동 후의 해당하는 방향을 구한다.")
     void success_find_direction(int position, int nextPosition) {

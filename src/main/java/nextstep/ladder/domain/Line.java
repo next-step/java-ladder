@@ -1,17 +1,12 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.exception.LineDuplicateException;
 import nextstep.ladder.strategy.DirectionStrategy;
-
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import static nextstep.ladder.domain.Direction.*;
 
 public class Line {
-    private static final Random random = new Random();
-
     private final Directions directions;
 
     public Line(int[] directions) {
@@ -30,17 +25,7 @@ public class Line {
     }
 
     public Line(List<Direction> directions) {
-        validateDirectionsContinuity(directions);
         this.directions = new Directions(directions);
-    }
-
-    private void validateDirectionsContinuity(List<Direction> directions) {
-        IntStream.range(0, directions.size() - 1)
-                .filter(index -> directions.get(index).isLeft() && directions.get(index + 1).isLeft())
-                .findFirst()
-                .ifPresent(i -> {
-                    throw new LineDuplicateException();
-                });
     }
 
     private static List<Direction> createDirections(DirectionStrategy directionStrategy, int countOfPerson) {
