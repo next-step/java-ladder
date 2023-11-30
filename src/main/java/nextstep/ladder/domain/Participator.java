@@ -7,7 +7,10 @@ public class Participator {
     private final String name;
 
     public Participator(String name) {
-        this.name = name.length() > 5 ? name.substring(0, 5) : name;
+        if (name.length() > 5) {
+            name = name.substring(0, 5);
+        }
+        this.name = name;
     }
 
     public String makeFullName() {

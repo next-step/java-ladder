@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -25,14 +26,18 @@ public class Line {
         return new Line(line);
     }
 
-    private static void applyWidthCondition(List<WidthStatus> line, int i) {
-        if (line.get(i - 1) == WidthStatus.connected && line.get(i) == WidthStatus.connected) {
-            line.set(i, WidthStatus.notConnected);
+    private static void applyWidthCondition(List<WidthStatus> line, int currentLocation) {
+        if (isConnectedContinuously(line, currentLocation)) {
+            line.set(currentLocation, WidthStatus.notConnected);
         }
     }
 
+    private static boolean isConnectedContinuously(List<WidthStatus> line, int location) {
+        return line.get(location - 1) == WidthStatus.connected && line.get(location) == WidthStatus.connected;
+    }
+
     public List<WidthStatus> getLine() {
-        return line;
+        return Collections.unmodifiableList(line);
     }
 
     @Override
