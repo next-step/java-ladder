@@ -34,6 +34,6 @@
 * [X] nextstep.optional.Users의 getUser() 메소드를 자바 8의 stream과 Optional을 활용해 구현한다.
 * [X] 자바 8의 stream과 Optional을 사용하도록 리팩토링한 후 UsersTest의 단위 테스트가 통과해야 한다.
 * 요구사항 3 - Optional에서 exception 처리
-* [ ] nextstep.optional.ExpressionTest의 테스트가 통과하도록 Expression의 of 메소드를 구현한다.
-* [ ] 단, of 메소드를 구현할 때 자바 8의 stream을 기반으로 구현한다.
+* [X] nextstep.optional.ExpressionTest의 테스트가 통과하도록 Expression의 of 메소드를 구현한다.
+* [X] 단, of 메소드를 구현할 때 자바 8의 stream을 기반으로 구현한다.
 
