@@ -10,16 +10,15 @@ public class LadderController {
 
     public static void main(String[] args) {
         List<Player> players = InputView.inputPlayers();
-
-        int lineHeight = InputView.inputLadderHeight();
         List<Prize> prizes = InputView.inputLadderPrizes();
-        Player player = InputView.inputLadderResultPlayer(players);
+        int lineHeight = InputView.inputLadderHeight();
 
         LadderGame ladderGame = LadderGame.start(lineHeight, players.size(), new PointRandomStrategy());
         OutputView.viewLadder(ladderGame, players, prizes);
 
-        Results result = new Results(prizes);
-        List<String> ladderResult = result.getLadderResult(player.getName(), players, ladderGame, result);
-        OutputView.viewResult(ladderResult);
+        Player player = InputView.inputLadderResultPlayer(players);
+
+        Results result = Results.of(players, ladderGame, prizes);
+        OutputView.getLadderResult(player, result);
     }
 }

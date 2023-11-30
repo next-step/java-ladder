@@ -1,16 +1,15 @@
 package ladder.view;
 
-import ladder.model.LadderGame;
-import ladder.model.Ladder;
-import ladder.model.Player;
-import ladder.model.Prize;
+import ladder.model.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
 
     private static final String WIDTH = "%6s";
+    private static final String ALL = "all";
 
     public static void viewLadder(LadderGame ladderGame, List<Player> players, List<Prize> prizes) {
         viewPlayers(players);
@@ -30,8 +29,23 @@ public class OutputView {
                 .collect(Collectors.joining()));
     }
 
-    public static void viewResult(List<String> ladderResult) {
-        ladderResult.forEach(System.out::println);
+    public static void particularPlayerPrize(Results results, Player player) {
+        Map<Player, Prize> resultMap = results.getResults();
+        System.out.println(resultMap.get(player).getValue());
+    }
+
+    public static void getLadderResult(Player player, Results results) {
+        System.out.println("실행 결과");
+        if (ALL.equals(player.getName())) {
+            allLadderResult(results.getResults());
+            return;
+        }
+
+        particularPlayerPrize(results, player);
+    }
+
+    public static void allLadderResult(Map<Player, Prize> results) {
+        results.forEach((player, prize) -> System.out.println(player.getName() + " : " + prize.getValue()));
     }
 
     public static void viewPrizes(List<Prize> prizes) {
