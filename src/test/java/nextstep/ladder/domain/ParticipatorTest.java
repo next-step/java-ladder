@@ -79,4 +79,17 @@ class ParticipatorTest {
         assertThat(participator.getLocation()).isEqualTo(result);
     }
 
+    @DisplayName("이름이 있는지 확인하는 메서드")
+    @Test
+    void hasName() {
+        // given
+        Participator participator = new Participator("test", 1);
+        // when
+        boolean result1 = participator.hasName("test");
+        boolean result2 = participator.hasName("test2");
+        // then
+        assertThat(result1).isTrue();
+        assertThat(result2).isFalse();
+    }
+
 }

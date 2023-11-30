@@ -48,8 +48,16 @@ public class Participator {
         return tempName.substring(tempName.length() - 6);
     }
 
+    public boolean hasName(String name) {
+        return this.name.equals(name);
+    }
+
     public int getLocation() {
         return location;
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override
