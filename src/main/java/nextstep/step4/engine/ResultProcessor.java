@@ -19,7 +19,7 @@ public class ResultProcessor {
 
         for (Integer source : ladderResult.keys()) {
             final Participant participant = participants.get(source);
-            final String result = results.get(source);
+            final String result = results.get(ladderResult.get(source));
             stringBuilder.append(String.format("%s : %s", participant.toString(), result) + NEW_LINE);
         }
 
