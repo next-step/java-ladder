@@ -12,16 +12,6 @@ public class Main {
         Players players = Players.from(Arrays.stream(string.split(",")).collect(Collectors.toList()));
 
         Ladder ladder = Ladder.of(5, players.list().size());
-        ladder.lines().forEach(line -> {
-            line.line().forEach(bool->{
-                if(bool){
-                    System.out.print("-----");
-                }else {
-                    System.out.print("     ");
-                }
-                System.out.print("|");
-            });
-            System.out.print("\n");
-        });
+        ladder.lines().forEach(Line::draw);
     }
 }

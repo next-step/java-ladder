@@ -29,4 +29,16 @@ public class Line {
     public int lineSize() {
         return line.size();
     }
+
+    public void draw() {
+        this.line().forEach(bool->{
+            if(bool){
+                System.out.print("-----");
+            }else {
+                System.out.print("     ");
+            }
+            System.out.print("|");
+        });
+        System.out.print("\n");
+    }
 }
