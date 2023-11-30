@@ -20,7 +20,7 @@ public class LadderTest {
     void alwaysFalseThatFirstLadder(){
         Ladder ladder = Ladder.of(5, 3);
         ladder.lines().forEach(line -> {
-            assertThat(line.line().get(0)).isFalse();
+            assertThat(line.line().findFirst().get().canMove()).isFalse();
         });
     }
 
