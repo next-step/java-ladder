@@ -16,3 +16,4 @@
 * [x] sumOverThreeAndDouble를 map, reduce, filter를 활용해 구현
 * [x] printLongestWordTop100 메서드 구현 
 * [x] isPresent(), map(), filter() 사용해서 ageIsInRange2 메서드 구현 
+* [x] Optional에서 exception 처리 구현 
