@@ -6,7 +6,7 @@ import nextstep.ladder.controller.LadderController;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.lines.RandomLinesFactory;
 import nextstep.ladder.domain.lines.strategy.RandomFirstLineCreationStrategy;
-import nextstep.ladder.domain.lines.strategy.RandomLeftLineCreationStrategy;
+import nextstep.ladder.domain.lines.strategy.RandomNextLineCreationStrategy;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
@@ -22,7 +22,7 @@ public class LadderMain {
         LadderController ladderController = new LadderController(
                 new RandomLinesFactory(
                         new RandomFirstLineCreationStrategy(),
-                        new RandomLeftLineCreationStrategy()
+                        new RandomNextLineCreationStrategy()
                 ));
         Ladder ladder = ladderController.startLadderGame(names, height);
         outputView.printLadderExecutionResult(names, ladder);
