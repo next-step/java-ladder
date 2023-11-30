@@ -14,12 +14,24 @@ public class Line {
     }
 
     public static Line from(int count) {
-        return new Line(
-            IntStream.range(0, count)
-                .mapToObj(i -> randomLineGenerator.randomLine())
-                .collect(Collectors.toList())
-        );
+        List<Boolean> collect = IntStream.range(0, count)
+            .mapToObj(step -> randomLineGenerator.randomStep())
+            .collect(Collectors.toList());
+
+        for (int i = 1; i < collect.size(); i++) {
+            collect.set(i, neverOverlapLine(collect.get(i), collect.get(i - 1)));
+        }
+
+        return new Line(collect);
     }
+
+    private static Boolean neverOverlapLine(Boolean step, Boolean previousStep) {
+        if (step.equals(true) && previousStep.equals(true)) {
+            return false;
+        }
+        return step;
+    }
+
 
     public List<Boolean> line() {
         return line;
@@ -31,10 +43,10 @@ public class Line {
     }
 
     public void draw() {
-        this.line().forEach(bool->{
-            if(bool){
+        this.line().forEach(bool -> {
+            if (bool) {
                 System.out.print("-----");
-            }else {
+            } else {
                 System.out.print("     ");
             }
             System.out.print("|");
