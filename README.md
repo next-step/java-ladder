@@ -13,3 +13,5 @@
 
 * [x] CarTest MoveStrategy에 대한 익명 클래스로 구현하고 있는데 람다를 적용해 구현
 * [x] 중복되는 코드 제거 
+* [x] sumOverThreeAndDouble를 map, reduce, filter를 활용해 구현
+* [x] printLongestWordTop100 메서드 구현 
