@@ -25,7 +25,7 @@ public class PersonTest {
         Person person = new Person(name);
 
         // then
-        assertThat(person.name).isEqualTo(name);
+        assertThat(person.name()).isEqualTo(name);
     }
 
 }
