@@ -15,3 +15,4 @@
 * [x] 중복되는 코드 제거 
 * [x] sumOverThreeAndDouble를 map, reduce, filter를 활용해 구현
 * [x] printLongestWordTop100 메서드 구현 
+* [x] isPresent(), map(), filter() 사용해서 ageIsInRange2 메서드 구현 
