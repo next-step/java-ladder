@@ -1,4 +1,4 @@
-package step3.model;
+package ladder.model;
 
 import java.util.List;
 import java.util.Objects;

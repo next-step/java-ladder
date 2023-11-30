@@ -1,7 +1,7 @@
-package step3.view;
+package ladder.view;
 
-import step3.model.Player;
-import step3.model.Prize;
+import ladder.model.Player;
+import ladder.model.Prize;
 
 import java.util.Arrays;
 import java.util.List;

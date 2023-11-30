@@ -1,4 +1,4 @@
-package step3.model;
+package ladder.model;
 
 public enum Ladder {
 

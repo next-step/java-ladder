@@ -1,14 +1,14 @@
-package step3;
+package ladder;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import step3.model.LadderGame;
-import step3.model.Player;
-import step3.model.Prize;
-import step3.model.Results;
-import step3.teststrategy.PointFalseStrategy;
+import ladder.model.LadderGame;
+import ladder.model.Player;
+import ladder.model.Prize;
+import ladder.model.Results;
+import ladder.teststrategy.PointFalseStrategy;
 
 import java.util.List;
 import java.util.stream.Stream;

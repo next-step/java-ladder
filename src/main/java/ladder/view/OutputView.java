@@ -1,9 +1,9 @@
-package step3.view;
+package ladder.view;
 
-import step3.model.Ladder;
-import step3.model.LadderGame;
-import step3.model.Player;
-import step3.model.Prize;
+import ladder.model.LadderGame;
+import ladder.model.Ladder;
+import ladder.model.Player;
+import ladder.model.Prize;
 
 import java.util.List;
 import java.util.stream.Collectors;

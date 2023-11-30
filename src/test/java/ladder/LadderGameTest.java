@@ -1,12 +1,10 @@
-package step3;
+package ladder;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import step3.model.LadderGame;
-import step3.model.Line;
-import step3.model.PointRandomStrategy;
-import step3.teststrategy.PointTrueStrategy;
+import ladder.model.LadderGame;
+import ladder.model.PointRandomStrategy;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

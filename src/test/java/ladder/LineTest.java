@@ -1,15 +1,14 @@
-package step3;
+package ladder;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import step3.model.Ladder;
-import step3.model.Line;
-import step3.model.Point;
-import step3.model.PointRandomStrategy;
-import step3.teststrategy.PointFalseStrategy;
-import step3.teststrategy.PointTrueStrategy;
+import ladder.model.Ladder;
+import ladder.model.Line;
+import ladder.model.Point;
+import ladder.model.PointRandomStrategy;
+import ladder.teststrategy.PointFalseStrategy;
+import ladder.teststrategy.PointTrueStrategy;
 
 import java.util.List;
 

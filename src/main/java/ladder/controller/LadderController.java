@@ -1,8 +1,8 @@
-package step3.controller;
+package ladder.controller;
 
-import step3.model.*;
-import step3.view.InputView;
-import step3.view.OutputView;
+import ladder.model.*;
+import ladder.view.InputView;
+import ladder.view.OutputView;
 
 import java.util.List;
 

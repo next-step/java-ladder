@@ -1,11 +1,11 @@
-package step3;
+package ladder;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import step3.model.Point;
-import step3.model.PointRandomStrategy;
-import step3.teststrategy.PointFalseStrategy;
-import step3.teststrategy.PointTrueStrategy;
+import ladder.model.Point;
+import ladder.model.PointRandomStrategy;
+import ladder.teststrategy.PointFalseStrategy;
+import ladder.teststrategy.PointTrueStrategy;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

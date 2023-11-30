@@ -1,6 +1,6 @@
-package step3.teststrategy;
+package ladder.teststrategy;
 
-import step3.model.RandomStrategy;
+import ladder.model.RandomStrategy;
 
 public class PointTrueStrategy implements RandomStrategy {
 
