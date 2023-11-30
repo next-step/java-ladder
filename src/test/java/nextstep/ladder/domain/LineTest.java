@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import static nextstep.ladder.domain.Line.HORIZONTAL_LINE_OVERLAPPING_EXCEPTION;
+import static nextstep.ladder.domain.Line.NO_LINE_TO_COMPARE_SIZE_EXCEPTION;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -68,5 +69,14 @@ public class LineTest {
         assertThatThrownBy(() -> line.validateSameSizeAs(targetLine))
                 .isExactlyInstanceOf(IllegalStateException.class)
                 .hasMessage(Line.LINE_LENGTH_DIFFERENCE_EXCEPTION);
+    }
+
+    @Test
+    @DisplayName("사이즈를 비교할 라인이 없다면 예외를 던진다.")
+    void no_line_creation_exception() {
+        // when // then
+        assertThatThrownBy(() -> new Line(List.of(true, false)).validateSameSizeAs(null))
+                .isExactlyInstanceOf(NullPointerException.class)
+                .hasMessage(NO_LINE_TO_COMPARE_SIZE_EXCEPTION);
     }
 }

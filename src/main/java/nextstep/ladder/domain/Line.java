@@ -2,11 +2,13 @@ package nextstep.ladder.domain;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 public class Line {
     static final String LINE_INDEX_OUT_OF_RANGE_EXCEPTION = "라인의 범위를 넘어섰습니다.";
     public static final String LINE_LENGTH_DIFFERENCE_EXCEPTION = "라인들의 길이가 다릅니다!";
     public static final String HORIZONTAL_LINE_OVERLAPPING_EXCEPTION = "사다리의 수평선이 서로 겹칩니다.";
+    public static final String NO_LINE_TO_COMPARE_SIZE_EXCEPTION = "사이즈를 비교할 라인이 존재하지 않습니다.";
     private final List<Boolean> points;
 
     public Line(List<Boolean> points) {
@@ -35,7 +37,9 @@ public class Line {
     }
 
     private boolean isSameSize(Line line) {
-        return this.points.size() != line.points.size();
+        return Optional.ofNullable(line)
+                .map(l -> this.points.size() != l.points.size())
+                .orElseThrow(() -> new NullPointerException(NO_LINE_TO_COMPARE_SIZE_EXCEPTION));
     }
 
     public void isOverlapping(Line line) {
