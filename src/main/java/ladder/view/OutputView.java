@@ -65,6 +65,10 @@ public class OutputView {
         printResultAll(ladderResults);
     }
 
+    private boolean playerType(Map<String, LadderResult> move, String resultType) {
+        return move.containsKey(resultType);
+    }
+
     private void printResultPlayer(Map<String, LadderResult> ladderResults, String resultType) {
         LadderResult ladderResult = ladderResults.get(resultType);
         System.out.println(ladderResult.prize());
@@ -74,9 +78,5 @@ public class OutputView {
         for (String name : ladderResults.keySet()) {
             System.out.println(name + " : " + ladderResults.get(name).prize());
         }
-    }
-
-    private boolean playerType(Map<String, LadderResult> move, String resultType) {
-        return move.containsKey(resultType);
     }
 }
