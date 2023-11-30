@@ -1,7 +1,11 @@
 package ladder;
 
 import ladder.domain.Line;
+import ladder.domain.RandomPointCondition;
 import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -10,9 +14,23 @@ class LineTest {
     @Test
     void 라인_생성() {
         int countOfPerson = 3;
-        Line line = new Line(countOfPerson);
-        String error = "true, true";
+        Line lineTF = new Line(countOfPerson, () -> true);
+        List<Boolean> pointsTF = lineTF.getPoints(); // true, false
 
-        assertThat(line.toString().contains(error)).isFalse();
+        Line lineFX = new Line(countOfPerson, () -> false);
+        List<Boolean> pointsFX = lineFX.getPoints(); // false, (true/false)
+
+        assertThat(pointsTF).isEqualTo(Arrays.asList(true, false));
+        assertThat(pointsFX.get(0)).isFalse();
+    }
+
+    @Test
+    void 라인_생성_중복없음() {
+        int countOfPerson = 3;
+        RandomPointCondition pointCondition = new RandomPointCondition();
+        Line line = new Line(countOfPerson, pointCondition);
+        List<Boolean> points = line.getPoints();
+
+        assertThat(points).isNotEqualTo(Arrays.asList(true, true));
     }
 }

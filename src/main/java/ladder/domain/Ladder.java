@@ -1,18 +1,20 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Ladder {
 
-    private final ArrayList<Line> lines = new ArrayList<>();
+    private final List<Line> lines = new ArrayList<>();
 
     public Ladder(int countOfPerson, int ladderHeight) {
+        RandomPointCondition pointCondition = new RandomPointCondition();
         for (int i = 0; i < ladderHeight; i++) {
-            lines.add(new Line(countOfPerson));
+            lines.add(new Line(countOfPerson, pointCondition));
         }
     }
 
-    public ArrayList<Line> getLines() {
+    public List<Line> getLines() {
         return lines;
     }
 

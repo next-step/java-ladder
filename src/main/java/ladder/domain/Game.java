@@ -23,7 +23,7 @@ public class Game {
                 .get();
     }
 
-    public ArrayList<Line> ladderLines() {
+    public List<Line> ladderLines() {
         return ladder.getLines();
     }
 }

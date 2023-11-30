@@ -8,35 +8,31 @@ public class Line {
 
     private final List<Boolean> points = new ArrayList<>();
 
-    public Line(int countOfPerson) {
-        points.add(0, randomBoolean());
+    public Line(int countOfPerson, PointCondition pointCondition) {
+        addValue(0, pointCondition.pointExist());
         for (int i = 1; i < countOfPerson - 1; i++) {
-            addBooleanValue(i);
+            addBooleanValue(i, pointCondition);
         }
     }
 
-    private void addBooleanValue(int index) {
-        if (points.get(index - 1).equals(Boolean.TRUE)) {
-            points.add(index, Boolean.FALSE);
+    private void addValue(int index, boolean pointExist) {
+        points.add(index, pointExist);
+    }
+
+    private void addBooleanValue(int index, PointCondition pointCondition) {
+        if (prevLineExist(index)) {
+            addValue(index, false);
         }
-        if (points.get(index - 1).equals(Boolean.FALSE)) {
-            points.add(index, randomBoolean());
+        if (!prevLineExist(index)) {
+            addValue(index, pointCondition.pointExist());
         }
     }
 
-    private boolean randomBoolean() {
-        Random random = new Random();
-        return random.nextBoolean();
+    private boolean prevLineExist(int index) {
+        return points.get(index - 1);
     }
 
     public List<Boolean> getPoints() {
         return points;
-    }
-
-    @Override
-    public String toString() {
-        return "Line{" +
-                "points=" + points +
-                '}';
     }
 }

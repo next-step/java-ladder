@@ -18,7 +18,7 @@ class GameTest {
         List<Person> personList = Arrays.asList(new Person("p1"), new Person("p2"), new Person("p3"));
         int ladderHeight = 5;
         Game game = new Game(personList, ladderHeight);
-        ArrayList<Line> lines = game.ladderLines();
+        List<Line> lines = game.ladderLines();
 
         assertThat(lines.size()).isEqualTo(5);
     }

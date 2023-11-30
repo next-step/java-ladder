@@ -8,13 +8,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-        InputView inputView = new InputView();
-        ResultView resultView = new ResultView();
-
         //사다리 게임 데이터 입력 & 생성
-        Game game = inputView.inputGameData();
+        Game game = InputView.inputGameData();
 
         //입력 결과 출력
-        resultView.dataInputResult(game);
+        ResultView.dataInputResult(game);
     }
 }
