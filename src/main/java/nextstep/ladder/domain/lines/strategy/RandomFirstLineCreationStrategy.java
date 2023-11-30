@@ -1,8 +1,9 @@
 package nextstep.ladder.domain.lines.strategy;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import nextstep.ladder.domain.Line;
 
 public class RandomFirstLineCreationStrategy implements FirstLineCreationStrategy {
@@ -10,10 +11,12 @@ public class RandomFirstLineCreationStrategy implements FirstLineCreationStrateg
     @Override
     public Line createFirstLine(int height) {
         Random random = new Random();
-        List<Boolean> points = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            points.add(random.nextBoolean());
-        }
-        return new Line(points);
+        return new Line(createRandomPoints(height, random));
+    }
+
+    private List<Boolean> createRandomPoints(int height, Random random) {
+        return IntStream.range(0, height)
+                .mapToObj(endOfLadderIndex -> random.nextBoolean())
+                .collect(Collectors.toList());
     }
 }
