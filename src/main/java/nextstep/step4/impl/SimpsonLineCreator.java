@@ -6,8 +6,8 @@ import nextstep.step4.engine.LineCreator;
 import java.util.ArrayList;
 import java.util.List;
 
-import static nextstep.step4.engine.RandomGenerator.generate;
-import static nextstep.step4.engine.RandomGenerator.isCreate;
+import static nextstep.step4.impl.util.RandomGenerator.generate;
+import static nextstep.step4.impl.util.RandomGenerator.isCreate;
 
 public class SimpsonLineCreator implements LineCreator {
     @Override

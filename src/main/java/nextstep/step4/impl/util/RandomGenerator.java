@@ -1,4 +1,4 @@
-package nextstep.step4.engine;
+package nextstep.step4.impl.util;
 
 import nextstep.step4.impl.Point;
 
