@@ -54,6 +54,10 @@ public class Line {
         return this.points.get(point) && line.points.get(point);
     }
 
+    public int getMaxHeight() {
+        return this.points.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

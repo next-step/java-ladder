@@ -25,6 +25,14 @@ public class Ladder {
                 .orElse(0);
     }
 
+    public int getWidth() {
+        return width;
+    }
+
+    public Lines getLines() {
+        return lines;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
