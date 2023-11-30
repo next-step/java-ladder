@@ -7,6 +7,8 @@ import nextstep.step4.engine.Line;
 import java.util.List;
 
 public class SimpsonLadder implements Ladder {
+    public static final String NEW_LINE = "\n";
+
     private List<Line> lines;
     private final int countOfPerson;
 
@@ -43,5 +45,13 @@ public class SimpsonLadder implements Ladder {
             target = line.move(target);
         }
         return target;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        this.lines.forEach(l -> stringBuilder.append(l.toString()).append(NEW_LINE));
+
+        return stringBuilder.toString();
     }
 }
