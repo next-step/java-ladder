@@ -1,7 +1,6 @@
 package nextstep.step4.impl.util;
 
 import nextstep.step4.impl.Point;
-
 import java.util.Random;
 
 public class RandomGenerator {

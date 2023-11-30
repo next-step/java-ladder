@@ -15,7 +15,6 @@ public class InputView {
     private static final String PARTICIPANT_LADDER_RESULT_INPUT_MSG = "결과를 보고 싶은 사람은?";
     public static final String INVALID_RESULT_COUNT_MSG = "참가자의 수와 결과의 수는 다를 수 없습니다.";
 
-
     private InputView() {
     }
 
