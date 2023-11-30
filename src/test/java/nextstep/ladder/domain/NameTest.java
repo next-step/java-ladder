@@ -14,7 +14,7 @@ class NameTest {
 
         Assertions.assertThatThrownBy(() -> new Name(name))
                 .isInstanceOf(ExceedNameLengthException.class)
-                .hasMessage("참여자의 이름은 5자 이하로 입력하세요.");
+                .hasMessage("참여자의 이름 길이가 초과되었습니다.입력한 참여자의 길이는 6자 입니다.");
     }
 
 }
