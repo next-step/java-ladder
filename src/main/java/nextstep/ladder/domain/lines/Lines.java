@@ -2,12 +2,14 @@ package nextstep.ladder.domain.lines;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import nextstep.ladder.domain.Line;
 
 public class Lines {
 
     public static final String LINES_COUNT_EXCEPTION = "줄이 1개면 사다리를 생성할 수 없습니다.";
     public static final int MIN_SIZE = 1;
+    public static final String NONE_NORM_LINE_EXCEPTION = "줄의 길이를 비교할 때, 기준 라인이 존재하지 않습니다.";
 
     private final List<Line> lines;
 
@@ -33,7 +35,14 @@ public class Lines {
     }
 
     public void validateSameLength(List<Line> lines) {
-        lines.forEach(line -> line.validateSameSizeAs(lines.get(0)));
+        Optional.ofNullable(lines.get(0))
+                .ifPresentOrElse(
+                        existedLine -> {
+                            lines.forEach(existedLine::validateSameSizeAs);
+                        },
+                        () -> {
+                            throw new NullPointerException(NONE_NORM_LINE_EXCEPTION);
+                        });
     }
 
     public void validateLineOverlapping(List<Line> lines) {
