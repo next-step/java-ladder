@@ -42,10 +42,10 @@ public class LineTest {
 
     @ParameterizedTest
     @ValueSource(ints = {0,1,2,3})
-    @DisplayName("아직 그려진 포인트가 없거나 사다리의 첫 시작점이라면 이전 포인트가 없으므로 null을 리턴한다.")
+    @DisplayName("아직 그려진 포인트가 없거나 사다리의 첫 시작점이라면 이전 포인트가 없으므로 false 상태 리턴한다.")
     void isPreviousPointExistTest(int playerCount) {
         Line.create(playerCount, new PointRandomStrategy());
-        assertThat(Line.isPreviousPointExist(List.of(new Point()), 0)).isEqualTo(null);
+        assertThat(Line.isPreviousPointExist(List.of(new Point()), 0).getStatus()).isEqualTo(new Point(false).getStatus());
     }
 
     @ParameterizedTest
