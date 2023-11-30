@@ -14,15 +14,9 @@ public class Ladder {
     }
 
     private void updateFirsLineToFalse() {
-        lines.forEach(this::updateFirsLineToFalse);
+        lines.forEach(Line::updateFirsLineToFalse);
     }
 
-    private void updateFirsLineToFalse(Line line) {
-        List<Boolean> currentLine = line.line();
-        if (currentLine != null && !currentLine.isEmpty()) {
-            currentLine.set(0, false);
-        }
-    }
 
     public static Ladder of(int height, int playerCount) {
         return new Ladder(

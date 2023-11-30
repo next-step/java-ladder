@@ -28,8 +28,8 @@ public class ResultView {
     }
 
     private void drawLadder(Line line) {
-        line.line().forEach(bool -> {
-            if (bool) {
+        line.line().forEach(step -> {
+            if (step.canMove()) {
                 System.out.print("-----");
             } else {
                 System.out.print("     ");

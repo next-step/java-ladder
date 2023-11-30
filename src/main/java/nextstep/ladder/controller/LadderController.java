@@ -26,9 +26,9 @@ public class LadderController {
 
     public void start() {
         Players players = getPlayers();
-        resultView.outputPlayers(players);
-
         Ladder ladder = getLadder(players);
+
+        resultView.outputPlayers(players);
         resultView.outputLadder(ladder);
     }
 

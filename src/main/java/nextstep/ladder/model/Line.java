@@ -3,41 +3,41 @@ package nextstep.ladder.model;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Line {
+    private final List<Step> line;
 
-    private static final RandomLineGenerator randomLineGenerator = RandomLineGenerator.getInstance();
-    private final List<Boolean> line;
-
-    private Line(List<Boolean> line) {
+    private Line(List<Step> line) {
         this.line = line;
     }
 
     public static Line from(int count) {
-        List<Boolean> collect = IntStream.range(0, count)
-            .mapToObj(step -> randomLineGenerator.randomStep())
+        List<Step> collect = IntStream.range(0, count)
+            .mapToObj(i -> new Step())
             .collect(Collectors.toList());
-
-        for (int i = 1; i < collect.size(); i++) {
-            collect.set(i, neverOverlapLine(collect.get(i), collect.get(i - 1)));
-        }
-
+        lineNeverOverlap(collect);
         return new Line(collect);
     }
 
-    private static Boolean neverOverlapLine(Boolean step, Boolean previousStep) {
-        if (step.equals(true) && previousStep.equals(true)) {
-            return false;
+    private static void lineNeverOverlap(List<Step> collect) {
+        for (int i = 1; i < collect.size(); i++) {
+            collect.set(i, collect.get(i).overlapStepReplace(collect.get(i - 1)));
         }
-        return step;
-    }
-
-    public List<Boolean> line() {
-        return line;
     }
 
     public int lineSize() {
         return line.size();
     }
 
+    public void updateFirsLineToFalse() {
+        List<Step> currentLine = this.line;
+        if (currentLine != null && !currentLine.isEmpty()) {
+            currentLine.set(0, Step.emptyStep());
+        }
+    }
+
+    public Stream<Step> line() {
+        return this.line.stream();
+    }
 }
