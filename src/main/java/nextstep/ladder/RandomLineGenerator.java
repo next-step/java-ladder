@@ -11,7 +11,7 @@ public class RandomLineGenerator {
         return RandomLineGeneratorHolder.INSTANCE;
     }
 
-    public Boolean randomLine(){
+    public Boolean randomStep(){
         return random.nextBoolean();
     }
 
