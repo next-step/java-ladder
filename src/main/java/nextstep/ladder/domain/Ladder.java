@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -22,6 +23,6 @@ public class Ladder {
     }
 
     public List<Line> getLines() {
-        return lines;
+        return Collections.unmodifiableList(lines);
     }
 }
