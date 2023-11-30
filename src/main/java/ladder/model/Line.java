@@ -43,19 +43,19 @@ public class Line {
     }
 
     public int move(int position) {
-        if (position > 0 && this.points.get(position - 1).getStatus()) {
+        if (position > 0 && Point.previousStatus(points, position)) {
             return --position;
         }
 
-        if (position == points.size() && this.points.get(position - 1).getStatus()) {
+        if (position == points.size() && Point.previousStatus(points, position)) {
             return --position;
         }
 
-        if (position == points.size() && !this.points.get(position - 1).getStatus()) {
+        if (position == points.size() && !Point.previousStatus(points, position)) {
             return position;
         }
 
-        if (points.get(position).getStatus()) {
+        if (Point.currentStatus(points, position)) {
             return ++position;
         }
 

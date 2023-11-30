@@ -1,5 +1,7 @@
 package ladder.model;
 
+import java.util.List;
+
 public class Point {
 
     private final boolean status;
@@ -22,6 +24,14 @@ public class Point {
 
     public boolean getStatus() {
         return this.status;
+    }
+
+    public static boolean previousStatus(List<Point> points, int position) {
+        return points.get(position - 1).getStatus();
+    }
+
+    public static boolean currentStatus(List<Point> points, int position) {
+        return points.get(position).getStatus();
     }
 
     @Override
