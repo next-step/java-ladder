@@ -32,25 +32,12 @@ public class Line {
         return step;
     }
 
-
     public List<Boolean> line() {
         return line;
     }
-
 
     public int lineSize() {
         return line.size();
     }
 
-    public void draw() {
-        this.line().forEach(bool -> {
-            if (bool) {
-                System.out.print("-----");
-            } else {
-                System.out.print("     ");
-            }
-            System.out.print("|");
-        });
-        System.out.print("\n");
-    }
 }
