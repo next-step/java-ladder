@@ -11,5 +11,5 @@
 
 ## 요구사항 step1 
 
-* [ ] CarTest MoveStrategy에 대한 익명 클래스로 구현하고 있는데 람다를 적용해 구현
-* 
+* [x] CarTest MoveStrategy에 대한 익명 클래스로 구현하고 있는데 람다를 적용해 구현
+* [x] 중복되는 코드 제거 
