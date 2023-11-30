@@ -26,6 +26,12 @@ public class ResultView {
                 .collect(Collectors.joining()));
     }
 
+    public static void printResult(List<String> results) {
+        System.out.println(results.stream()
+                .map(result -> String.format("%6s", result))
+                .collect(Collectors.joining()));
+    }
+
     public static void printLadder(List<Line> ladder) {
         System.out.println(ladder.stream()
                 .map(line -> disconnectionStep() + printLine(line.getLine()))
@@ -34,7 +40,7 @@ public class ResultView {
 
     private static String printLine(List<Boolean> line) {
         return line.stream()
-                .map(flag -> makeStep(flag))
+                .map(ResultView::makeStep)
                 .collect(Collectors.joining());
     }
 
