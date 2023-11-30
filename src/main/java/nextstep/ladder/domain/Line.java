@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.IntStream;
 
 public class Line {
     static final String LINE_INDEX_OUT_OF_RANGE_EXCEPTION = "라인의 범위를 넘어섰습니다.";
@@ -43,9 +44,8 @@ public class Line {
     }
 
     public void isOverlapping(Line line) {
-        for (int point = 0; point < this.points.size(); point++) {
-            validateOverlapping(line, point);
-        }
+        IntStream.rangeClosed(0, this.points.size())
+                .forEach(point -> validateOverlapping(line, point));
     }
 
     private void validateOverlapping(Line line, int point) {
