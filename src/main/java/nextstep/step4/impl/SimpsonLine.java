@@ -13,6 +13,7 @@ public class SimpsonLine implements Line {
 
     @Override
     public int move(final int position) {
-        return 0;
+        final Point point = points.get(position);
+        return point.move(position);
     }
 }

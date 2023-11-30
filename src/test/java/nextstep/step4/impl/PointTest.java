@@ -10,18 +10,18 @@ class PointTest {
     @Test
     void last() {
         final Point point = Point.first(false).last();
-        assertThat(point.move()).isEqualTo(Direction.PASS);
+        assertThat(point.move(1)).isEqualTo(1);
     }
     @Test
     void first() {
         final Point point = Point.first(true);
-        assertThat(point.move()).isEqualTo(Direction.RIGHT);
+        assertThat(point.move(1)).isEqualTo(2);
     }
 
     @Test
     void next() {
         final Point point = Point.first(true).next(false);
-        assertThat(point.move()).isEqualTo(Direction.LEFT);
+        assertThat(point.move(1)).isEqualTo(0);
     }
 
     @Test
@@ -34,12 +34,12 @@ class PointTest {
     @Test
     void left() {
         final Point point = Point.first(true).next(false);
-        assertThat(point.move()).isEqualTo(Direction.LEFT);
+        assertThat(point.move(1)).isEqualTo(0);
     }
 
     @Test
     void right() {
         final Point point = Point.first(false).next(true);
-        assertThat(point.move()).isEqualTo(Direction.RIGHT);
+        assertThat(point.move(1)).isEqualTo(2);
     }
 }

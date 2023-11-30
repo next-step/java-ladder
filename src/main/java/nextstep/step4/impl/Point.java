@@ -29,16 +29,16 @@ public class Point {
         return new Point(this.current, current);
     }
 
-    public Direction move() {
+    public int move(int position) {
         if (left) {
-            return Direction.LEFT;
+            return position - 1;
         }
 
         if (current) {
-            return Direction.RIGHT;
+            return position + 1;
         }
 
-        return Direction.PASS;
+        return position;
     }
 
     public boolean current() {
