@@ -6,16 +6,16 @@ import nextstep.ladder.domain.lines.Lines;
 
 public class Ladder {
     private final int width;
-    private final Lines lines;
+    private final Lines ladderLines;
 
-    public Ladder(List<String> names, Lines lines) {
+    public Ladder(List<String> names, Lines ladderLines) {
         this.width = createWidthBy(names);
-        this.lines = lines;
+        this.ladderLines = ladderLines;
     }
 
-    public Ladder(int width, Lines lines) {
+    public Ladder(int width, Lines ladderLines) {
         this.width = width;
-        this.lines = lines;
+        this.ladderLines = ladderLines;
     }
 
     private int createWidthBy(List<String> names) {
@@ -29,8 +29,8 @@ public class Ladder {
         return width;
     }
 
-    public Lines getLines() {
-        return lines;
+    public Lines getLadderLines() {
+        return ladderLines;
     }
 
     @Override
@@ -42,19 +42,19 @@ public class Ladder {
             return false;
         }
         Ladder ladder = (Ladder) o;
-        return width == ladder.width && Objects.equals(lines, ladder.lines);
+        return width == ladder.width && Objects.equals(ladderLines, ladder.ladderLines);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(width, lines);
+        return Objects.hash(width, ladderLines);
     }
 
     @Override
     public String toString() {
         return "Ladder{" +
                 "width=" + width +
-                ", lines=" + lines +
+                ", lines=" + ladderLines +
                 '}';
     }
 }
