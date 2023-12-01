@@ -14,7 +14,7 @@ public class Point {
         this(false);
     }
 
-    public Point create(Point point, RandomStrategy randomStrategy) {
+    public static Point create(Point point, RandomStrategy randomStrategy) {
         if (point == null || !point.status) {
             return new Point(randomStrategy.hasPoint());
         }
@@ -26,13 +26,22 @@ public class Point {
         return this.status;
     }
 
-    public static boolean previousStatus(List<Point> points, int position) {
-        return points.get(position - 1).getStatus();
+    public static boolean isStay(List<Point> points, int position) {
+        return position == points.size() && !hasPoint(points, position - 1);
     }
 
-    public static boolean currentStatus(List<Point> points, int position) {
-        return points.get(position).getStatus();
+    public static boolean isLeftLadderHasPoint(List<Point> points, int position) {
+        return position > 0 && hasPoint(points, position - 1);
     }
+
+    public static boolean isRightLadderHasPoint(List<Point> points, int position) {
+        return position < points.size() && hasPoint(points, position);
+    }
+
+    public static boolean hasPoint(List<Point> points, int location) {
+        return points.get(location).getStatus();
+    }
+
 
     @Override
     public String toString() {

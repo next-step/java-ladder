@@ -17,8 +17,7 @@ public class Line {
         List<Point> result = new ArrayList<>();
         IntStream.range(0, playersCount - 1)
                 .forEach(count ->
-                        result.add(new Point()
-                                .create(isPreviousPointExist(result, count), randomStrategy)));
+                        result.add(Point.create(isPreviousPointExist(result, count), randomStrategy)));
 
         return new Line(result);
     }
@@ -43,19 +42,15 @@ public class Line {
     }
 
     public int move(int position) {
-        if (position > 0 && Point.previousStatus(points, position)) {
+        if (Point.isLeftLadderHasPoint(points, position)) {
             return --position;
         }
 
-        if (position == points.size() && Point.previousStatus(points, position)) {
-            return --position;
-        }
-
-        if (position == points.size() && !Point.previousStatus(points, position)) {
+        if (Point.isStay(points, position)) {
             return position;
         }
 
-        if (Point.currentStatus(points, position)) {
+        if (Point.isRightLadderHasPoint(points, position)) {
             return ++position;
         }
 
