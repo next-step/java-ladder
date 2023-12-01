@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 
 public class Ladder {
 
-    public static final String LADDER_POLE = "|";
     private static final String LINE_BREAK = "\n";
 
     private final List<Points> ladder;
@@ -22,11 +21,7 @@ public class Ladder {
     @Override
     public String toString() {
         return ladder.stream()
-            .map(this::setUpSide)
+            .map(Points::toString)
             .collect(Collectors.joining(LINE_BREAK));
-    }
-
-    private String setUpSide(Points points) {
-        return LADDER_POLE + points.toString() + LADDER_POLE;
     }
 }

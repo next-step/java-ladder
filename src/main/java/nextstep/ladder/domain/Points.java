@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static nextstep.ladder.domain.Ladder.LADDER_POLE;
-
 public class Points {
+
+    public static final String LADDER_POLE = "|";
 
     private final List<Point> points;
 
@@ -23,6 +23,6 @@ public class Points {
         return IntStream.range(0, points.size() - 1)
             .boxed()
             .map(i -> points.get(i).toString())
-            .collect(Collectors.joining(LADDER_POLE));
+            .collect(Collectors.joining(LADDER_POLE, LADDER_POLE, LADDER_POLE));
     }
 }
