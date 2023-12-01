@@ -1,17 +1,18 @@
 package nextstep.ladder.ui;
 
 import nextstep.ladder.common.util.ColumnPrinter;
-import nextstep.ladder.common.util.RowLinePrinter;
 import nextstep.ladder.domain.line.Line;
 import nextstep.ladder.domain.line.Lines;
 
 import java.util.Arrays;
 
 public class ResultView {
+    private LinePrinter printer;
     private final String[] participants;
     private final Lines lines;
 
-    public ResultView(String[] participants, Lines lines) {
+    public ResultView(LinePrinter printer, String[] participants, Lines lines) {
+        this.printer = printer;
         this.participants = participants;
         this.lines = lines;
     }
@@ -40,11 +41,7 @@ public class ResultView {
         int rowLineNumber = participants.length - 1;
         System.out.print(ColumnPrinter.generate());
         for (int index = 0; index < rowLineNumber; index++) {
-            if (line.isTruePosition(index)) {
-                System.out.print(RowLinePrinter.generate(true) + ColumnPrinter.generate());
-                continue;
-            }
-            System.out.print(RowLinePrinter.generate(false) + "|");
+            printer.printRefactoring(line.isTruePosition(index));
         }
     }
 }

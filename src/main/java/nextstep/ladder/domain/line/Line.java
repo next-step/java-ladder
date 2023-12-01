@@ -1,11 +1,15 @@
 package nextstep.ladder.domain.line;
 
 public class Line {
-    private int rowLineCount;
-    private int columnLineCount;
+    private RowLinePositions rowLinePosition;
 
-    public Line(int rowLineCount, int columnLineCount) {
-        this.rowLineCount = rowLineCount;
-        this.columnLineCount = columnLineCount;
+    public Line(String[] participants) {
+        int participantNumber = participants.length;
+        int rowLineNumber = participantNumber - 1;
+        rowLinePosition = new RowLinePositions(rowLineNumber);
+    }
+
+    public boolean isTruePosition(int index) {
+        return rowLinePosition.isTrue(index);
     }
 }
