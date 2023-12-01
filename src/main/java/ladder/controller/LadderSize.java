@@ -12,7 +12,7 @@ public class LadderSize {
     }
 
     public static LadderSize of(Players players, long height) {
-        return new LadderSize(players.size() - 1, height);
+        return new LadderSize(players.size() - 1, height); // 사다리 생성시 라인의 이동 경로 수는 참가자 - 1 값이다.
     }
 
     public long width() {
