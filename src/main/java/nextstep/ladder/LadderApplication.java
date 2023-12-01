@@ -1,8 +1,6 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.Height;
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.PersonNames;
+import nextstep.ladder.domain.*;
 import nextstep.ladder.domain.strategy.RandomLineStrategy;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
@@ -13,7 +11,9 @@ public class LadderApplication {
         PersonNames personNames = new PersonNames(inputNames);
         int inputHeight = InputView.inputHeight();
         Height height = new Height(inputHeight);
+        String inputAmounts = InputView.inputAmounts();
+        ResultAmounts resultAmounts = new ResultAmounts(inputAmounts);
         Ladder ladder = new Ladder(personNames, height, new RandomLineStrategy());
-        OutputView.printLadder(personNames, ladder);
+        OutputView.printLadder(personNames, ladder, resultAmounts);
     }
 }

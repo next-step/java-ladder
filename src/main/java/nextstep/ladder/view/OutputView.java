@@ -5,11 +5,12 @@ import nextstep.ladder.domain.*;
 public class OutputView {
     private static final StringBuilder sb = new StringBuilder();
 
-    public static void printLadder(PersonNames personNames, Ladder ladder) {
+    public static void printLadder(PersonNames personNames, Ladder ladder, ResultAmounts resultAmounts) {
         sb.setLength(0);
 
         appendPersonNames(personNames);
         appendLadder(ladder);
+        appendResultAmounts(resultAmounts);
 
         System.out.println(sb);
     }
@@ -41,5 +42,12 @@ public class OutputView {
                 sb.append("|");
             }
         }
+    }
+
+    private static void appendResultAmounts(ResultAmounts resultAmounts) {
+        for (Amount amount : resultAmounts) {
+            sb.append(String.format ("%5s", amount));
+        }
+        sb.append("\n");
     }
 }
