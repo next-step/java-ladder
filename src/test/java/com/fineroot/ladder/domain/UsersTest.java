@@ -24,12 +24,6 @@ class UsersTest {
     }
 
     @Test
-    @DisplayName("가장 이름이 긴 유저의 이름 길이")
-    void longestUserNameLength() {
-        assertThat(Users.fromString("aa,b,c,d,e").longestUserNameLength()).isEqualTo(2);
-    }
-
-    @Test
     @DisplayName("Users의 길이")
     void size() {
         assertThat(Users.fromString("aa,b,c,d,e").size()).isEqualTo(5);

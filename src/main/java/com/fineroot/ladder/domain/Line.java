@@ -6,11 +6,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Line {
-    private final List<Step> steps = new ArrayList<>();
-    private final int stepSize;
+    private final List<Bar> bars = new ArrayList<>();
 
-    private Line(final int countOfUser, final int stepSize) {
-        this.stepSize = stepSize;
+    private Line(final int countOfUser) {
         initSteps();
         for (int i = 0; i < countOfUser - 2; i++) {
             addStep(i);
@@ -20,35 +18,35 @@ public class Line {
 
 
     private Line(final Boolean ... steps){
-        stepSize = 5;
-        this.steps.add(Step.from(Bar.first(steps[0])));
+        bars.add(Bar.of(false, steps[0]));
         for (int i = 0; i < steps.length-1; i++) {
-            this.steps.add(Step.from(this.steps.get(i).next(steps[i+1])));
+            bars.add(Bar.of(bars.get(i).currentStep(),steps[i+1]));
         }
-        this.steps.add(Step.from(this.steps.get(this.steps.size()-1).last()));
+        bars.add(Bar.of(bars.get(bars.size()-1).currentStep(), false));
     }
 
     private void initSteps() {
-        steps.add(Step.from(Bar.first(RandomUtils.getBoolean())));
+        bars.add(Bar.of(false, RandomUtils.getBoolean()));
     }
+
 
     private void addStep(int index) {
-        steps.add(getStep(steps.get(index)));
+        bars.add(createBar(bars.get(index)));
     }
 
-    private Step getStep(Step step) {
-        if(step.canNextTrue()){
-            return Step.from(step.next(RandomUtils.getBoolean()));
+    private Bar createBar(Bar bar) {
+        if(!bar.currentStep()){
+            return Bar.of(bar.currentStep(), RandomUtils.getBoolean());
         }
-        return Step.from(step.next(false));
+        return Bar.of(bar.currentStep(), false);
     }
 
     private void addLastStep() {
-        steps.add(Step.from(steps.get(steps.size()-1).last()));
+        bars.add(Bar.of(bars.get(bars.size()-1).currentStep(),false));
     }
 
     public static Line from(Users users) {
-        return new Line(users.size(),users.longestUserNameLength());
+        return new Line(users.size());
     }
 
     public static Line fromBooleanArray(Boolean... steps) {
@@ -57,6 +55,6 @@ public class Line {
 
     @Override
     public String toString() {
-        return steps.stream().map(e->"|".concat(e.toString().repeat(stepSize))).collect(Collectors.joining()).stripTrailing();
+        return bars.stream().map(e->"|".concat(e.toString())).collect(Collectors.joining()).stripTrailing();
     }
 }
