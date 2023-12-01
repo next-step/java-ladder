@@ -3,8 +3,12 @@ package nextstep.ladder.domain;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class LineTest {
 
@@ -30,16 +34,39 @@ class LineTest {
         Assertions.assertThat(line.getLine()).hasSize(4);
     }
 
-    @DisplayName("특정 위치가 연결되었는지 확인합니다.")
-    @Test
-    void isConnected() {
+    @ParameterizedTest(name = "i-1 이 연결되어 있다면 참가자의 위치는 i-1 이 됩니다.")
+    @CsvSource(value = {"1, 0", "3, 2"})
+    void goLeft(int current, int result) {
         // given
-        Line line = new Line(List.of(WidthStatus.connected, WidthStatus.notConnected));
+        Participator participator = new Participator("test", current);
+        Line line = new Line(List.of(WidthStatus.connected, WidthStatus.notConnected, WidthStatus.connected));
         // when
-        boolean connectResult = line.isConnected(0);
-        boolean notConnectResult = line.isConnected(1);
+        line.go(participator);
         // then
-        Assertions.assertThat(connectResult).isTrue();
-        Assertions.assertThat(notConnectResult).isFalse();
+        assertThat(participator.getLocation()).isEqualTo(result);
+    }
+
+    @ParameterizedTest(name = "i 가 연결되어 있다면 참가자의 위치는 i+1 이 됩니다.")
+    @CsvSource(value = {"0, 1", "2, 3"})
+    void goRight(int current, int result) {
+        // given
+        Participator participator = new Participator("test", current);
+        Line line = new Line(List.of(WidthStatus.connected, WidthStatus.notConnected, WidthStatus.connected));
+        // when
+        line.go(participator);
+        // then
+        assertThat(participator.getLocation()).isEqualTo(result);
+    }
+
+    @ParameterizedTest(name = "둘 다 연결되어 있지 않다면 참가자의 위치는 i가 됩니다.")
+    @CsvSource(value = {"2, 2", "3, 3"})
+    void goStraight(int current, int result) {
+        // given
+        Participator participator = new Participator("test", current);
+        Line line = new Line(List.of(WidthStatus.connected, WidthStatus.notConnected, WidthStatus.notConnected));
+        // when
+        line.go(participator);
+        // then
+        assertThat(participator.getLocation()).isEqualTo(result);
     }
 }
