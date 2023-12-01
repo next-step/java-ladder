@@ -6,10 +6,10 @@ import java.util.Objects;
  * 실행 결과를 나타내는 포장용 클래스
  * 불변 객체입니다.
  */
-public class Result {
+public class ResultItem {
     private final String result;
 
-    public Result(String result) {
+    public ResultItem(String result) {
         this.result = result;
     }
 
@@ -21,8 +21,8 @@ public class Result {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Result result1 = (Result) o;
-        return Objects.equals(result, result1.result);
+        ResultItem resultItem1 = (ResultItem) o;
+        return Objects.equals(result, resultItem1.result);
     }
 
     @Override
@@ -32,6 +32,10 @@ public class Result {
 
     @Override
     public String toString() {
+        return this.result;
+    }
+
+    public String toPrintableString() {
         return this.result;
     }
 }

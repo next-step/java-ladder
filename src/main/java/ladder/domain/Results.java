@@ -18,11 +18,11 @@ public class Results {
      *
      * @return 분리된 실행 결과
      */
-    public static List<Result> of(String results) {
+    public static List<ResultItem> of(String results) {
         String[] split = results.split(",");
 
         return Arrays.stream(split)
-                .map(Result::new)
+                .map(ResultItem::new)
                 .collect(Collectors.toList());
     }
 }

@@ -13,10 +13,10 @@ class ResultsTest {
     public void ofTest() {
         assertThat(Results.of("hello,world,my,result"))
                 .hasSameElementsAs(
-                        List.of(new Result("hello"),
-                                new Result("world"),
-                                new Result("my"),
-                                new Result("result"))
+                        List.of(new ResultItem("hello"),
+                                new ResultItem("world"),
+                                new ResultItem("my"),
+                                new ResultItem("result"))
                 );
     }
 }
