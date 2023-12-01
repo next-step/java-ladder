@@ -1,4 +1,4 @@
-package ladder.generator;
+package ladder.domain.generator;
 
 import ladder.domain.LadderLine;
 import ladder.domain.generator.Generator;
