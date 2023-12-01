@@ -14,10 +14,10 @@ public class Ladder implements Iterable<Line> {
         this.lines = new ArrayList<>(lines);
     }
 
-    public Ladder(int personCount, int height, LineStrategy lineStrategy) {
+    public Ladder(PersonNames personNames, Height height, LineStrategy lineStrategy) {
         List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            lines.add(createLine(personCount, lineStrategy));
+        for (int i = 0; i < height.height(); i++) {
+            lines.add(createLine(personNames.size(), lineStrategy));
         }
 
         this.lines = lines;
