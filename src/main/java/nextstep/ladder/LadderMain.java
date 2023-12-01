@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.*;
+import nextstep.ladder.view.GameResultView;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
@@ -15,22 +16,37 @@ public class LadderMain {
         OutputView outputView = new OutputView();
 
         String participatorsName = inputView.inputParticipators();
-        String ladderPrice = inputView.inputLadderPrice();
-        int ladderHeight = inputView.inputLadderHeight();
+        String results = inputView.inputLadderResults();
 
         Participators participators = Participators.from(makeStringList(participatorsName));
+        LadderResults ladderResults = new LadderResults(makeStringList(results));
+
+        if (!isParticipatorsAndResultHasSameCount(participators, ladderResults)) {
+            throw new IllegalArgumentException("참가자 수와 사다리 결과의 개수가 다릅니다.");
+        }
+
+        int ladderHeight = inputView.inputLadderHeight();
         Ladder ladder = Ladder.makeLadder(participators.participatorCount(), ladderHeight);
-        LadderResult ladderResult = new LadderResult(makeStringList(ladderPrice));
 
         participators.playLadder(ladder);
 
-        outputView.printLadderStatus(participators, ladder, ladderResult);
+        outputView.printLadderStatus(participators, ladder, ladderResults);
 
-        String name = inputView.inputResultName();
+        GameResultView gameResultView = new GameResultView();
 
-        GameResult gameResult = new GameResult(participators, ladderResult);
-        String result = gameResult.gameResult(name);
-        outputView.printResult(result);
+        while (true) {
+            String name = inputView.inputResultName();
+            String result = gameResultView.gameResult(participators, ladderResults, name);
+            outputView.printResult(result);
+
+            if (name.equals("all")) {
+                break;
+            }
+        }
+    }
+
+    private static boolean isParticipatorsAndResultHasSameCount(Participators participators, LadderResults ladderResults) {
+        return participators.participatorCount() == ladderResults.ladderResultCount();
     }
 
     private static List<String> makeStringList(String participators) {
