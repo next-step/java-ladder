@@ -11,7 +11,7 @@ public class LadderController {
 
     public static void main(String[] args) {
         InputView inputView = new InputView();
-        String[] participants = splitParticipants(inputView);
+        String[] participants = inputView.splitParticipants(inputView.inputParticipant());
         int highCount = inputView.inputHighCount();
 
         LadderService ladderService = new LadderService();
@@ -20,10 +20,5 @@ public class LadderController {
         LinePrinter printer = new LinePrinter(highCount);
         ResultView resultView = new ResultView(printer, participants, response.getLines());
         resultView.showResult();
-    }
-
-    private static String[] splitParticipants(InputView inputView) {
-        return inputView.inputParticipant()
-                .split(",");
     }
 }

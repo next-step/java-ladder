@@ -11,6 +11,10 @@ public class InputView {
         return scanner.nextLine();
     }
 
+    public String[] splitParticipants(String participants) {
+        return participants.split(",");
+    }
+
     public int inputHighCount() {
         printEmpty();
         System.out.println("최대 사다리 높이는 몇 개인가요?");

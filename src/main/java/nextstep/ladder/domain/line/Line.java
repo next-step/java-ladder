@@ -6,7 +6,7 @@ public class Line {
     public Line(String[] participants) {
         int participantNumber = participants.length;
         int rowLineNumber = participantNumber - 1;
-        rowLinePosition = new RowLinePositions(rowLineNumber);
+        rowLinePosition = RowLinePositions.create(rowLineNumber);
     }
 
     public boolean isTruePosition(int index) {

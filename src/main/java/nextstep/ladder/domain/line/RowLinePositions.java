@@ -9,21 +9,27 @@ import java.util.stream.IntStream;
 public class RowLinePositions {
     private List<Boolean> positionList = new ArrayList<>();
     private int rowLineCount;
-    private Random random = new Random();
+    private static final Random random = new Random();
 
-    public RowLinePositions(int rowLineCount) {
+    public RowLinePositions(List<Boolean> positionList, int rowLineCount) {
+        this.positionList = positionList;
         this.rowLineCount = rowLineCount;
-        initializePositionList();
     }
 
-    private void initializePositionList() {
+    public static RowLinePositions create(int rowLineCount) {
+        List<Boolean> positionList = new ArrayList<>();
+        initializePositionList(positionList, rowLineCount);
+        return new RowLinePositions(positionList, rowLineCount);
+    }
+
+    private static void initializePositionList(List<Boolean> positionList, int rowLineCount) {
         positionList.add(random.nextBoolean());
         IntStream.range(1, rowLineCount)
-                .forEach(index -> addRandomBoolean(index));
-        addTrueIfAllFalse();
+                .forEach(index -> addRandomBoolean(positionList, index));
+        addTrueIfAllFalse(positionList, rowLineCount);
     }
 
-    private void addRandomBoolean(int index) {
+    private static void addRandomBoolean(List<Boolean> positionList, int index) {
         if (positionList.get(index - 1)) {
             positionList.add(false);
             return;
@@ -31,7 +37,7 @@ public class RowLinePositions {
         positionList.add(random.nextBoolean());
     }
 
-    private void addTrueIfAllFalse() {
+    private static void addTrueIfAllFalse(List<Boolean> positionList, int rowLineCount) {
         boolean isAllFalse = positionList.stream()
                 .allMatch(e -> e.equals(Boolean.FALSE));
         if (isAllFalse) {
