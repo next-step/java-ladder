@@ -16,7 +16,10 @@ public class StreamStudy {
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-        long count = words.stream().filter(word -> word.length() > 12).count();
+        long count = words
+                .stream()
+                .filter(word -> word.length() > 12)
+                .count();
         return count;
     }
 
@@ -27,10 +30,10 @@ public class StreamStudy {
 
         words.stream()
                 .filter(word -> 12 < word.length())
-                .distinct()
                 .sorted(Comparator.comparingInt(String::length))
                 .limit(100)
                 .map(String::toLowerCase)
+                .distinct()
                 .forEach(word -> System.out.println(word));
     }
 
@@ -39,7 +42,9 @@ public class StreamStudy {
     }
 
     public static long sumAll(List<Integer> numbers) {
-        return numbers.stream().reduce(0, (x, y) -> x + y);
+        return numbers
+                .stream()
+                .reduce(0, (x, y) -> x + y);
     }
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
@@ -47,7 +52,6 @@ public class StreamStudy {
                 .filter(number -> 3 < number)
                 .map(number -> number * 2)
                 .reduce(0, (x, y) -> x + y);
-
         return result;
     }
 }
