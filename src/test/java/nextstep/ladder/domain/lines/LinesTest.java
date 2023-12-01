@@ -48,7 +48,7 @@ class LinesTest {
     @DisplayName("길이가 모두 동일한 라인인지 비교할 때, 기준 라인이 존재하지 않으면 예외를 던진다.")
     void none_norm_line_exception() {
         // when // then
-        assertThatThrownBy(() -> new Lines(null))
+        assertThatThrownBy(() -> new Lines(List.of(null, new Line(List.of(true)))))
                 .isExactlyInstanceOf(NullPointerException.class)
                 .hasMessage(NONE_NORM_LINE_EXCEPTION);
     }

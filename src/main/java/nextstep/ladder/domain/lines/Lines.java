@@ -46,12 +46,20 @@ public class Lines {
     }
 
     public void validateLineOverlapping(List<Line> lines) {
-        Line targetLine = lines.get(0);
-        for (int lineIndex = 1; lineIndex < lines.size(); lineIndex++) {
-            Line line = lines.get(lineIndex);
-            targetLine.isOverlapping(line);
-            targetLine = line;
-        }
+        lines.stream()
+                .findFirst()
+                .ifPresentOrElse(
+                        firstLine -> {
+                            Line targetLine = firstLine;
+                            for (int lineIndex = 1; lineIndex < lines.size(); lineIndex++) {
+                                Line line = lines.get(lineIndex);
+                                targetLine.isOverlapping(line);
+                                targetLine = line;
+                            }
+                        },
+                        () -> {
+                            throw new NullPointerException(NONE_NORM_LINE_EXCEPTION);
+                        });
     }
 
     public List<Line> getLines() {
