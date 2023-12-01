@@ -11,10 +11,10 @@ public class OutputView {
     private static final String WIDTH = "%6s";
     private static final String ALL = "all";
 
-    public static void viewLadder(List<Line> lines, List<Player> players, List<Prize> prizes) {
+    public static void viewLadder(LadderGame ladderGame, List<Player> players, List<Prize> prizes) {
         viewPlayers(players);
 
-        lines.forEach(line -> {
+        ladderGame.getLines().forEach(line -> {
             System.out.print(Ladder.LINE_ONLY.getShape());
             System.out.print(line);
             System.out.println();
@@ -29,19 +29,19 @@ public class OutputView {
                 .collect(Collectors.joining()));
     }
 
-    public static void particularPlayerPrize(LadderGame ladderGame, Player player) {
-        Map<Player, Prize> resultMap = ladderGame.getResults();
+    public static void particularPlayerPrize(LadderResult ladderResult, Player player) {
+        Map<Player, Prize> resultMap = ladderResult.getResults();
         System.out.println(resultMap.get(player).getValue());
     }
 
-    public static void getLadderResult(Player player, LadderGame ladderGame) {
+    public static void getLadderResult(Player player, LadderResult ladderResult) {
         System.out.println("실행 결과");
         if (ALL.equals(player.getName())) {
-            allLadderResult(ladderGame.getResults());
+            allLadderResult(ladderResult.getResults());
             return;
         }
 
-        particularPlayerPrize(ladderGame, player);
+        particularPlayerPrize(ladderResult, player);
     }
 
     public static void allLadderResult(Map<Player, Prize> results) {

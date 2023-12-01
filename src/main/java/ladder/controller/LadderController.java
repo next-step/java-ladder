@@ -13,12 +13,12 @@ public class LadderController {
         List<Prize> prizes = InputView.inputLadderPrizes();
         int lineHeight = InputView.inputLadderHeight();
 
-        List<Line> lines = LadderGame.start(lineHeight, players.size(), new PointRandomStrategy());
-        OutputView.viewLadder(lines, players, prizes);
+        LadderGame ladderGame = LadderGame.start(lineHeight, players.size(), new PointRandomStrategy());
+        OutputView.viewLadder(ladderGame, players, prizes);
 
-        LadderGame gameResult = LadderGame.result(players, lines, prizes);
+        LadderResult ladderResult = ladderGame.result(players, prizes);
         Player player = InputView.inputLadderResultPlayer(players);
 
-        OutputView.getLadderResult(player, gameResult);
+        OutputView.getLadderResult(player, ladderResult);
     }
 }
