@@ -1,4 +1,4 @@
-package step2.model;
+package ladder.model;
 
 public interface RandomStrategy {
 

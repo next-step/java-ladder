@@ -1,9 +1,9 @@
-package step2.model;
+package ladder.model;
 
 public class Player {
 
-    private final String name;
     private static final int MAX_NAME_LENGTH = 5;
+    private final String name;
 
     public Player(String name) {
         validate(name);
