@@ -12,7 +12,7 @@ public class OutputView {
 
     public void printLadderExecutionResult(List<String> namesOfParticipants, Ladder ladder) {
         printExecutionMessage();
-        printParticipants(namesOfParticipants, ladder);
+        printParticipants(namesOfParticipants);
         int maxHeight = ladder.getLadderLines().getLines().get(0).getMaxHeight();
         IntStream.range(0, maxHeight)
                 .forEachOrdered(currentHeight -> {
@@ -24,28 +24,31 @@ public class OutputView {
         System.out.println(EXECUTION_RESULT_MESSAGE);
     }
 
-    private void printParticipants(List<String> namesOfParticipants, Ladder ladder) {
+    private void printParticipants(List<String> namesOfParticipants) {
         for (String participantName : namesOfParticipants) {
-            System.out.print(
-                    participantName + " ".repeat(calculateCompartmentsBetweenParticipants(ladder, participantName))
-            );
+            System.out.print(createCompartmentsBetweenParticipants(participantName));
         }
         System.out.println();
     }
 
-    private int calculateCompartmentsBetweenParticipants(Ladder ladder, String participantName) {
-        return ladder.getWidth() + 1 - participantName.length();
+    private String createCompartmentsBetweenParticipants(String participantName) {
+        if (participantName.length() == 5) {
+            return " " + participantName;
+        }
+
+        String tempName = "     " + participantName + " ";
+        return tempName.substring(tempName.length() - 6);
     }
 
     private void printLadderOfCurrentHeight(List<String> namesOfParticipants, Ladder ladder, int presentHeight) {
-        printCompartmentsOfCurrentHeight(namesOfParticipants);
+        printCompartmentsOfCurrentHeight(namesOfParticipants.get(0), ladder.getWidth());
         printPureLadderOfCurrentHeight(namesOfParticipants, ladder, presentHeight);
     }
 
-    private void printCompartmentsOfCurrentHeight(List<String> namesOfParticipants) {
-        Optional.ofNullable(namesOfParticipants.get(0)).ifPresentOrElse(
+    private void printCompartmentsOfCurrentHeight(String participantName, int width) {
+        Optional.ofNullable(participantName).ifPresentOrElse(
                 participantsName -> {
-                    System.out.print(" ".repeat(participantsName.length()));
+                    System.out.print(" ".repeat(width));
                 },
                 () -> {
                     throw new NullPointerException(NONE_NAMES_OF_PARTICIPANTS_EXCEPTION);
@@ -59,11 +62,11 @@ public class OutputView {
             printOnePieceOfLine();
             printHorizontalLine(ladder, currentHeight, currentPointIndex);
         });
-        printOnePieceOfLine();
+        printLastPieceOfLine();
     }
 
     private void printOnePieceOfLine() {
-        System.out.print("ㅣ");
+        System.out.print("|");
     }
 
     private void printHorizontalLine(Ladder ladder, int presentHeight, int currentPointIndex) {
@@ -76,5 +79,10 @@ public class OutputView {
 
     private boolean hasHorizontalLine(Ladder ladder, int presentHeight, int currentPointIndex) {
         return ladder.getLadderLines().getLines().get(currentPointIndex).hasHorizontalLine(presentHeight);
+    }
+
+    private void printLastPieceOfLine() {
+        printOnePieceOfLine();
+        System.out.println();
     }
 }
