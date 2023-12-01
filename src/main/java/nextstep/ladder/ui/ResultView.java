@@ -1,6 +1,5 @@
 package nextstep.ladder.ui;
 
-import nextstep.ladder.common.util.ColumnPrinter;
 import nextstep.ladder.domain.line.Line;
 import nextstep.ladder.domain.line.Lines;
 
@@ -39,7 +38,7 @@ public class ResultView {
 
     private void printLadderByOneLine(Line line) {
         int rowLineNumber = participants.length - 1;
-        System.out.print(ColumnPrinter.generate());
+        System.out.print("|");
         for (int index = 0; index < rowLineNumber; index++) {
             printer.printRefactoring(line.isTruePosition(index));
         }
