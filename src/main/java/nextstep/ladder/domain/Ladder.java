@@ -1,32 +1,43 @@
 package nextstep.ladder.domain;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+import static java.util.stream.Collectors.*;
 
 public class Ladder {
 
-    public static final String LADDER_POLE = "|";
     private static final String LINE_BREAK = "\n";
 
-    private final List<Bridges> ladder;
+    private final List<Points> ladder;
 
-    public Ladder(List<Bridges> ladder) {
+    public Ladder(List<Points> ladder) {
         this.ladder = ladder;
     }
 
-    public int climb(int startPosition) {
+    public Map<String, Integer> climb(Players players) {
+        return IntStream.range(0, players.numOfPlayers())
+            .boxed()
+            .collect(toMap(
+                players::name,
+                this::climbFrom,
+                (oldVal, newVal) -> newVal,
+                LinkedHashMap::new
+            ));
+    }
+
+    public int climbFrom(int startPosition) {
         return ladder.stream()
-            .reduce(startPosition, (current, bridges) -> bridges.move(current), (a, b) -> b);
+            .reduce(startPosition, (current, points) -> points.move(current), (previous, current) -> current);
     }
 
     @Override
     public String toString() {
         return ladder.stream()
-            .map(this::setUpSide)
+            .map(Points::toString)
             .collect(Collectors.joining(LINE_BREAK));
-    }
-
-    private String setUpSide(Bridges bridges) {
-        return LADDER_POLE + bridges.toString() + LADDER_POLE;
     }
 }

@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
+import static nextstep.ladder.domain.Direction.*;
 import static org.assertj.core.api.Assertions.*;
 
 public class LadderTest {
@@ -15,31 +16,59 @@ public class LadderTest {
     @Test
     void ladderToBoolean() {
         // given
-        Ladder ladder = new Ladder(List.of
-            (new Bridges(List.of(true, false, true)),
-             new Bridges(List.of(true, false, true))));
+        Ladder ladder = new Ladder(List.of(
+            new Points(List.of(
+                new Point(0, RIGHT),
+                new Point(1, LEFT),
+                new Point(2, CENTER)
+            )),
+            new Points(List.of(
+                new Point(0, CENTER),
+                new Point(1, RIGHT),
+                new Point(2, LEFT)
+            ))
+        ));
 
         // when
         String stringLadder = ladder.toString();
 
         // then
-        assertThat(stringLadder).isEqualTo("|-----|     |-----|\n|-----|     |-----|");
+        assertThat(stringLadder).isEqualTo("|-----|     |" + "\n" + "|     |-----|");
     }
 
     @DisplayName("인자로 시작 위치를 전달 받아 사다리를 타고 결과 위치를 반환한다.")
     @ParameterizedTest
-    @CsvSource({"0,2","1,0","2,1","3,3"})
+    @CsvSource({"0,3","1,2","2,1","3,0"})
     void climb(int startPosition, int expectedResult) {
         Ladder ladder = new Ladder(List.of(
-            new Bridges(List.of(true, false, true)),
-            new Bridges(List.of(true, false, true)),
-            new Bridges(List.of(true, false, false)),
-            new Bridges(List.of(false, false, false)),
-            new Bridges(List.of(false, true, false))
+            new Points(List.of(
+                new Point(0, RIGHT),
+                new Point(1, LEFT),
+                new Point(2, RIGHT),
+                new Point(3, LEFT)
+            )),
+            new Points(List.of(
+                new Point(0, CENTER),
+                new Point(1, RIGHT),
+                new Point(2, LEFT),
+                new Point(3, CENTER)
+            )),
+            new Points(List.of(
+                new Point(0, RIGHT),
+                new Point(1, LEFT),
+                new Point(2, RIGHT),
+                new Point(3, LEFT)
+            )),
+            new Points(List.of(
+                new Point(0, CENTER),
+                new Point(1, RIGHT),
+                new Point(2, LEFT),
+                new Point(3, CENTER)
+            ))
         ));
 
         // when
-        int result = ladder.climb(startPosition);
+        int result = ladder.climbFrom(startPosition);
 
         // then
         assertThat(result).isEqualTo(expectedResult);

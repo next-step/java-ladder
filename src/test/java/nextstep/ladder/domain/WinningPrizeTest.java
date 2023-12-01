@@ -3,23 +3,31 @@ package nextstep.ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.*;
 
 public class WinningPrizeTest {
 
-    @DisplayName("위치 값을 인자로 받아 해당하는 당첨결과를 반환한다.")
+    @DisplayName("플레이어 이름, 최종 위치를 키,값의 형태를 플레이어 이름, 당첨 상품의 키,값 형태로 바꾼다.")
     @Test
     void findWinningPrizeBy() {
         // given
-        WinningPrize winningPrize = new WinningPrize(List.of("꽝", "5000", "꽝", "3000"));
+        List<String> prizes = List.of("꽝", "5000", "꽝", "3000");
+        WinningPrize winningPrize = new WinningPrize(prizes);
+
+        Map<String, Integer> pointByName = new LinkedHashMap<>();
+        IntStream.range(0, prizes.size())
+            .forEach(i -> pointByName.put(String.valueOf(i), i));
 
         // when
-        int position = 2;
-        String prize = winningPrize.prize(position);
+        Map<String, String> prizeByName = winningPrize.convertPointToPrize(pointByName);
 
         // then
-        assertThat(prize).isEqualTo("꽝");
+        IntStream.range(0, prizes.size())
+            .forEach(i -> assertThat(prizeByName.get(String.valueOf(i))).isEqualTo(prizes.get(i)));
     }
 }
