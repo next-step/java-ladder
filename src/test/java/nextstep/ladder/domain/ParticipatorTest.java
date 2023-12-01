@@ -2,10 +2,6 @@ package nextstep.ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -46,39 +42,6 @@ class ParticipatorTest {
         assertThat(result.length()).isEqualTo(6);
     }
 
-    @ParameterizedTest(name = "i-1 이 연결되어 있다면 참가자의 위치는 i-1 이 됩니다.")
-    @CsvSource(value = {"1, 0", "3, 2"})
-    void goLeft(int current, int result) {
-        // given
-        Participator participator = new Participator("test", current);
-        // when
-        participator.goLadderOneLine(new Line(List.of(WidthStatus.connected, WidthStatus.notConnected, WidthStatus.connected)));
-        // then
-        assertThat(participator.getLocation()).isEqualTo(result);
-    }
-
-    @ParameterizedTest(name = "i 가 연결되어 있다면 참가자의 위치는 i+1 이 됩니다.")
-    @CsvSource(value = {"0, 1", "2, 3"})
-    void goRight(int current, int result) {
-        // given
-        Participator participator = new Participator("test", current);
-        // when
-        participator.goLadderOneLine(new Line(List.of(WidthStatus.connected, WidthStatus.notConnected, WidthStatus.connected)));
-        // then
-        assertThat(participator.getLocation()).isEqualTo(result);
-    }
-
-    @ParameterizedTest(name = "둘 다 연결되어 있지 않다면 참가자의 위치는 i가 됩니다.")
-    @CsvSource(value = {"2, 2", "3, 3"})
-    void goStraight(int current, int result) {
-        // given
-        Participator participator = new Participator("test", current);
-        // when
-        participator.goLadderOneLine(new Line(List.of(WidthStatus.connected, WidthStatus.notConnected, WidthStatus.notConnected)));
-        // then
-        assertThat(participator.getLocation()).isEqualTo(result);
-    }
-
     @DisplayName("이름이 있는지 확인하는 메서드")
     @Test
     void hasName() {
@@ -90,6 +53,28 @@ class ParticipatorTest {
         // then
         assertThat(result1).isTrue();
         assertThat(result2).isFalse();
+    }
+
+    @DisplayName("사다리에서 왼쪽으로 이동합니다.")
+    @Test
+    void goLeft() {
+        // given
+        Participator participator = new Participator("test", 1);
+        // when
+        participator.goLeft();
+        // then
+        assertThat(participator.getLocation()).isEqualTo(0);
+    }
+
+    @DisplayName("사다리에서 오른쪽으로 이동합니다.")
+    @Test
+    void goRight() {
+        // given
+        Participator participator = new Participator("test", 1);
+        // when
+        participator.goRight();
+        // then
+        assertThat(participator.getLocation()).isEqualTo(2);
     }
 
 }

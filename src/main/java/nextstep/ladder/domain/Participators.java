@@ -19,7 +19,7 @@ public class Participators {
     }
 
     public void playLadder(Ladder ladder) {
-        participators.forEach(participator -> ladder.getLines().forEach(participator::goLadderOneLine));
+        participators.forEach(ladder::play);
     }
 
     public int findParticipatorLocation(String name) {

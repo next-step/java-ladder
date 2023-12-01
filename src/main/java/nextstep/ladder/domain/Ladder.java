@@ -22,6 +22,10 @@ public class Ladder {
         return new Ladder(lines);
     }
 
+    public void play(Participator participator) {
+        lines.forEach(line -> line.go(participator));
+    }
+
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }

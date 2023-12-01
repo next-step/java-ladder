@@ -15,28 +15,12 @@ public class Participator {
         this.location = location;
     }
 
-    /**
-     * 참가자의 위치를 i라고 한다면 사다리 상태는 i-1, i 2개를 확인해야 합니다.
-     * 1. i-1 이 연결되어 있다면 참가자의 위치는 i-1 이 됩니다.
-     * 2. i 가 연결되어 있다면 참가자의 위치는 i+1 이 됩니다.
-     * 3. 둘 다 연결되어 있지 않다면 참가자의 위치는 i가 됩니다.
-     */
-    public void goLadderOneLine(Line line) {
-        if (isLeftLadderConnected(line)) {
-            location--;
-            return;
-        }
-        if (isRightLadderConnected(line)) {
-            location++;
-        }
+    public void goLeft() {
+        location--;
     }
 
-    private boolean isLeftLadderConnected(Line line) {
-        return location != 0 && line.isConnected(location - 1);
-    }
-
-    private boolean isRightLadderConnected(Line line) {
-        return location != line.getSize() && line.isConnected(location);
+    public void goRight() {
+        location++;
     }
 
     public String makeFullName() {

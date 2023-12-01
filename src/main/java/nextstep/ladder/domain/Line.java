@@ -26,12 +26,22 @@ public class Line {
         return new Line(line);
     }
 
-    public boolean isConnected(int location) {
-        return line.get(location).equals(WidthStatus.connected);
-    }
+    /**
+     * 참가자의 위치를 i라고 한다면 사다리 상태는 i-1, i 2개를 확인해야 합니다.
+     * 1. i-1 이 연결되어 있다면 참가자의 위치는 i-1 이 됩니다.
+     * 2. i 가 연결되어 있다면 참가자의 위치는 i+1 이 됩니다.
+     * 3. 둘 다 연결되어 있지 않다면 참가자의 위치는 i가 됩니다.
+     */
+    public void go(Participator participator) {
+        int location = participator.getLocation();
+        if (isLeftLadderConnected(line, location)) {
+            participator.goLeft();
+            return;
+        }
 
-    public int getSize() {
-        return line.size();
+        if (isRightLadderConnected(line, location)) {
+            participator.goRight();
+        }
     }
 
     private static void applyWidthCondition(List<WidthStatus> line, int currentLocation) {
@@ -41,7 +51,19 @@ public class Line {
     }
 
     private static boolean isConnectedContinuously(List<WidthStatus> line, int location) {
-        return line.get(location - 1) == WidthStatus.connected && line.get(location) == WidthStatus.connected;
+        return isConnected(line, location - 1) && isConnected(line, location);
+    }
+
+    private boolean isLeftLadderConnected(List<WidthStatus> line, int location) {
+        return location != 0 && isConnected(line, location - 1);
+    }
+
+    private boolean isRightLadderConnected(List<WidthStatus> line, int location) {
+        return location != line.size() && isConnected(line, location);
+    }
+
+    private static boolean isConnected(List<WidthStatus> line, int location) {
+        return line.get(location).equals(WidthStatus.connected);
     }
 
     public List<WidthStatus> getLine() {
