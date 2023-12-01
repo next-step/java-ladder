@@ -12,7 +12,7 @@ public class OutputView {
 
     public void printLadderExecutionResult(List<String> namesOfParticipants, Ladder ladder) {
         printExecutionMessage();
-        printParticipants(namesOfParticipants);
+        printParticipants(namesOfParticipants, ladder.getWidth());
         int maxHeight = ladder.getLadderLines().getLines().get(0).getMaxHeight();
         IntStream.range(0, maxHeight)
                 .forEachOrdered(currentHeight -> {
@@ -24,20 +24,32 @@ public class OutputView {
         System.out.println(EXECUTION_RESULT_MESSAGE);
     }
 
-    private void printParticipants(List<String> namesOfParticipants) {
+    private void printParticipants(List<String> namesOfParticipants, int width) {
         for (String participantName : namesOfParticipants) {
-            System.out.print(createCompartmentsBetweenParticipants(participantName));
+            System.out.print(createCompartmentsBetweenParticipants(participantName, width));
         }
         System.out.println();
     }
 
-    private String createCompartmentsBetweenParticipants(String participantName) {
-        if (participantName.length() == 5) {
-            return " " + participantName;
+    private String createCompartmentsBetweenParticipants(String participantName, int width) {
+        if (isSameAsWidth(participantName, width)) {
+            return createMaxSizeParticipantFormat(participantName);
         }
 
-        String tempName = "     " + participantName + " ";
-        return tempName.substring(tempName.length() - 6);
+        return createNormalParticipantFormat(participantName, width);
+    }
+
+    private boolean isSameAsWidth(String participantName, int width) {
+        return participantName.length() == width;
+    }
+
+    private String createMaxSizeParticipantFormat(String participantName) {
+        return " " + participantName;
+    }
+
+    private static String createNormalParticipantFormat(String participantName, int width) {
+        String tempName = " ".repeat(width) + participantName + " ";
+        return tempName.substring(tempName.length() - (width + 1));
     }
 
     private void printLadderOfCurrentHeight(List<String> namesOfParticipants, Ladder ladder, int presentHeight) {
