@@ -5,6 +5,7 @@ import static nextstep.ladder.domain.Line.LINE_LENGTH_DIFFERENCE_EXCEPTION;
 import static nextstep.ladder.domain.lines.Lines.NONE_NORM_LINE_EXCEPTION;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.Arrays;
 import java.util.List;
 import nextstep.ladder.domain.Line;
 import org.junit.jupiter.api.DisplayName;
@@ -48,7 +49,7 @@ class LinesTest {
     @DisplayName("길이가 모두 동일한 라인인지 비교할 때, 기준 라인이 존재하지 않으면 예외를 던진다.")
     void none_norm_line_exception() {
         // when // then
-        assertThatThrownBy(() -> new Lines(List.of(null, new Line(List.of(true)))))
+        assertThatThrownBy(() -> new Lines(Arrays.asList(null, new Line(List.of(true, false)))))
                 .isExactlyInstanceOf(NullPointerException.class)
                 .hasMessage(NONE_NORM_LINE_EXCEPTION);
     }

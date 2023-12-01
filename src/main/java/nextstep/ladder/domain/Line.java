@@ -44,8 +44,8 @@ public class Line {
     }
 
     public void isOverlapping(Line line) {
-        IntStream.rangeClosed(0, this.points.size())
-                .forEach(point -> validateOverlapping(line, point));
+        int bound = this.points.size();
+        IntStream.range(0, bound).forEachOrdered(point -> validateOverlapping(line, point));
     }
 
     private void validateOverlapping(Line line, int point) {
