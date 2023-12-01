@@ -56,4 +56,22 @@ public class LadderTest {
         assertThat(ladder.howLongDepth())
                 .isEqualTo(depth);
     }
+
+    @Test
+    @DisplayName("[Ladder.calculateResultOf] 사다리 시작 컬럼 번호 주면 -> 그 컬럼의 도착 컬럼 반환")
+    public void getResultTest() {
+        Ladder ladder = Ladder.of(
+                List.of(
+                        "|-| | |",
+                        "| |-| |",
+                        "| | |-|"),
+                '|',
+                '-'
+        );
+
+        assertThat(ladder.calculateResultOf(0)).isEqualTo(3);
+        assertThat(ladder.calculateResultOf(1)).isEqualTo(0);
+        assertThat(ladder.calculateResultOf(2)).isEqualTo(1);
+        assertThat(ladder.calculateResultOf(3)).isEqualTo(2);
+    }
 }

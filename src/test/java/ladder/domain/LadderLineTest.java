@@ -1,9 +1,9 @@
 package ladder.domain;
 
-import ladder.domain.LadderLine;
-import ladder.domain.type.ColumnConnection;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
@@ -39,5 +39,24 @@ public class LadderLineTest {
                 .isThrownBy(() -> {
                     LadderLine.of("| |-|-| |", '|', '-');
                 });
+    }
+
+    @ParameterizedTest
+    @CsvSource(
+            {
+                    "|-| | |,0,1",
+                    "| |-| |,1,2",
+                    "| |-| |,2,1",
+                    "| | |-|,2,3",
+                    "| | |-|,3,2",
+                    "| | | |,1,1",
+            }
+    )
+    @DisplayName("[LadderLine.connectedColumnOf] 컬럼 번호 주면 -> 그 컬럼에서 이어진 컬럼 번호 반환")
+    public void connectedColumnOf(String ladderLineNotation, int startColumnIndex, int expectedEndColumn) {
+        LadderLine ladderLine = LadderLine.of(ladderLineNotation, '|', '-');
+
+        assertThat(ladderLine.connectedColumnOf(startColumnIndex))
+                .isEqualTo(expectedEndColumn);
     }
 }

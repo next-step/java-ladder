@@ -123,4 +123,38 @@ public class LadderLine {
     public List<ColumnConnection> toList() {
         return List.copyOf(this.connectionInfo);
     }
+
+    /**
+     * 주어진 컬럼에서 이동하게 되는 컬럼을 반환합니다.
+     *
+     * @param columnIndex 시작 컬럼
+     * @return 이동 후 컬럼
+     */
+    public int connectedColumnOf(int columnIndex) {
+        if (this.isRightConnectedOf(columnIndex)) {
+            return columnIndex + 1;
+        }
+
+        if (this.isLeftConnectedOf(columnIndex)) {
+            return columnIndex - 1;
+        }
+
+        return columnIndex;
+    }
+
+    private boolean isRightConnectedOf(int columnIndex) {
+        if (columnIndex >= this.connectionInfo.size()) {
+            return false;
+        }
+
+        return this.connectionInfo.get(columnIndex).isConnected();
+    }
+
+    private boolean isLeftConnectedOf(int columnIndex) {
+        if (columnIndex <= 0) {
+            return false;
+        }
+
+        return this.connectionInfo.get(columnIndex-1).isConnected();
+    }
 }

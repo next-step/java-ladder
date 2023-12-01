@@ -47,7 +47,7 @@ public class Ladder {
      * 이 정적 팩토리 메서드는 입력으로 사다리 라인 표현식의 목록을 받습니다.
      * 각 파라미터는 사다리 한 줄을 정의하며 파라미터 순서가 앞선 사다리 라인이 상층에 쌓이고 파라미터 상 뒤에 오는 사다리 라인이 하층에 쌓입니다.
      *
-     * @param connectionInfo 사다리 라인 표현식. 한 엘리먼트가 한 라인을 정의합니다.
+     * @param connectionInfos 사다리 라인 표현식. 한 엘리먼트가 한 라인을 정의합니다.
      * @param columnSymbol 사다리 라인 표현식에서 사용하는 컬럼 기호
      * @param connectionSymbol 사다리 라인 표현식에서 사용하는 연결 기호
      *
@@ -154,4 +154,11 @@ public class Ladder {
                 '}';
     }
 
+    public int calculateResultOf(int columnIndex) {
+        int currentColumnIndex = columnIndex;
+        for (LadderLine line : lines) {
+            currentColumnIndex = line.connectedColumnOf(currentColumnIndex);
+        }
+        return currentColumnIndex;
+    }
 }
