@@ -32,8 +32,7 @@ public class LadderBuilder {
         PointBuilder pointBuilder = new PointBuilder();
 
         List<Point> points = IntStream.range(0, width - 1)
-            .boxed()
-            .map(position -> pointBuilder.build((RANDOM.nextBoolean()), position))
+            .mapToObj(position -> pointBuilder.build((RANDOM.nextBoolean()), position))
             .collect(Collectors.toList());
 
         points.add(pointBuilder.build(false, width - 1));
@@ -46,22 +45,16 @@ public class LadderBuilder {
         private boolean previous;
 
         private Point build(boolean current, int position) {
-            if (this.previous && current) {
+            if (this.previous) {
                 this.previous = false;
                 return new Point(position, LEFT);
             }
 
-            if (this.previous) {
-                this.previous = current;
-                return new Point(position, LEFT);
-            }
-
             if (current) {
-                this.previous = current;
+                this.previous = true;
                 return new Point(position, RIGHT);
             }
 
-            this.previous = current;
             return new Point(position, CENTER);
         }
     }
