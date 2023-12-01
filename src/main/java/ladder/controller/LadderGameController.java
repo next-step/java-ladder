@@ -57,7 +57,7 @@ public class LadderGameController {
 
         NameRenderer.printNames(this.ladderGame.names(), NAME_WIDTH);
         LadderRenderer.printLadder(this.ladderGame.ladderBody());
-        ResultRenderer.printResult(this.ladderGame.results(), NAME_WIDTH);
+        ResultRenderer.printResult(this.ladderGame.resultItems(), NAME_WIDTH);
     }
 
     private void getResultPhase() {

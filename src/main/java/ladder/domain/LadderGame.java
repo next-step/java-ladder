@@ -2,7 +2,6 @@ package ladder.domain;
 
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * 참여자 이름, 사다리 구조, 실행 결과로 이루어진 사다리 게임을 표현합니다.
@@ -56,7 +55,7 @@ public class LadderGame {
         return this.ladder;
     }
 
-    public List<ResultItem> results() {
+    public List<ResultItem> resultItems() {
         return List.copyOf(this.resultItems);
     }
 
