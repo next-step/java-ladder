@@ -1,9 +1,9 @@
 package ladder.domain;
 
 import java.util.Collections;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class PlayLadder {
     private final Players players;
@@ -28,28 +28,15 @@ public class PlayLadder {
     }
 
     public Map<String, LadderResult> move() {
-        Map<String, LadderResult> ladderResults = new LinkedHashMap<>();
+        PathTable pathTable = PathTable.of(ladder.ladder());
 
-        for (Player player : players()) {
-            Position position = moveLine(player);
-
-            LadderResult ladderResult = new LadderResult(player.name(), prizes.prizes().get(position.value()).value());
-
-            ladderResults.put(ladderResult.playerName(), ladderResult);
-        }
-
-        return ladderResults;
-    }
-
-    private Position moveLine(Player player) {
-        Position moveResult = player.position();
-
-        for (Line line : ladder()) {
-            PathPosition pathPosition = PathPosition.of(moveResult, line);
-            moveResult = pathPosition.move();
-        }
-
-        return moveResult;
+        return players.players()
+                .stream()
+                .map(player -> {
+                    pathTable.navigate(player);
+                    return new LadderResult(player.name(), prizes.value(player.position()));
+                })
+                .collect(Collectors.toMap(LadderResult::playerName, ladderResult -> ladderResult));
     }
 
     public List<Player> players() {

@@ -30,6 +30,10 @@ public class Prizes {
                 .orElseThrow();
     }
 
+    public String value(int index){
+        return prizes.get(index).value();
+    }
+
     public List<Prize> prizes() {
         return Collections.unmodifiableList(prizes);
     }

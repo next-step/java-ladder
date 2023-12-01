@@ -5,12 +5,12 @@ import java.util.Objects;
 public class Player {
     private static final int NAME_LENGTH_MAX = 5;
     private final String name;
-    private final Position position;
+    private int position;
 
     private Player(String name, int position) {
         validateName(name);
         this.name = name;
-        this.position = Position.from(position);
+        this.position = position;
     }
 
     public static Player from(String name) {
@@ -31,6 +31,13 @@ public class Player {
         }
     }
 
+    public void moveLeft() {
+        --position;
+    }
+    public void moveRight() {
+        ++position;
+    }
+
     public long length() {
         return name.length();
     }
@@ -39,7 +46,7 @@ public class Player {
         return name;
     }
 
-    public Position position() {
+    public int position() {
         return position;
     }
 
