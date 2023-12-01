@@ -7,8 +7,8 @@ import java.util.stream.Collectors;
 /**
  * Result를 여러 개 생성하는 유틸을 제공하는 유틸 클래스
  */
-public class Results {
-    private Results(){
+public class ResultItems {
+    private ResultItems(){
     }
 
     /**

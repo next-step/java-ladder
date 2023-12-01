@@ -11,7 +11,7 @@ class ResultsTest {
     @Test
     @DisplayName("[Results.of] 쉼표로 구분된 실행 결과 주면 -> 분리해서 반환")
     public void ofTest() {
-        assertThat(Results.of("hello,world,my,result"))
+        assertThat(ResultItems.of("hello,world,my,result"))
                 .hasSameElementsAs(
                         List.of(new ResultItem("hello"),
                                 new ResultItem("world"),

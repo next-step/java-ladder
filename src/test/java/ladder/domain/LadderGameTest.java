@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderGameTest {
     private final List<Name> NAMES = Names.of("a,b,c,d");
-    private final List<ResultItem> RESULTItems = Results.of("some1,some2,some3,some4");
+    private final List<ResultItem> RESULTItems = ResultItems.of("some1,some2,some3,some4");
     private final Ladder LADDER = Ladder.of(List.of(
             "|-| | |",
             "| |-| |",

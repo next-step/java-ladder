@@ -46,7 +46,7 @@ public class LadderGameController {
         this.names.addAll(Names.of(namesString));
 
         String resultString = Prompt.askString("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
-        this.resultItems.addAll(Results.of(resultString));
+        this.resultItems.addAll(ResultItems.of(resultString));
 
         this.depth = Prompt.askInt("최대 사다리 높이는 몇 개인가요?");
     }
