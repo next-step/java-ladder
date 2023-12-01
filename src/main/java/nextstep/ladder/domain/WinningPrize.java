@@ -21,7 +21,17 @@ public class WinningPrize {
             ));
     }
 
-    public String prize(int position) {
+    public Map<String, String> convertPointToPrize(Map<String, Integer> pointByName) {
+        return pointByName.keySet().stream()
+            .collect(Collectors.toMap(
+                name -> name,
+                name -> prize(pointByName.get(name)),
+                (oldVal, newVal) -> newVal,
+                LinkedHashMap::new
+            ));
+    }
+
+    private String prize(int position) {
         return prizesByPosition.get(position);
     }
 

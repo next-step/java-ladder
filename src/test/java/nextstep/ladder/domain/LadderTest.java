@@ -68,7 +68,7 @@ public class LadderTest {
         ));
 
         // when
-        int result = ladder.climb(startPosition);
+        int result = ladder.climbFrom(startPosition);
 
         // then
         assertThat(result).isEqualTo(expectedResult);

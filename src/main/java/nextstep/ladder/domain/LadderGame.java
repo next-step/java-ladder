@@ -3,12 +3,7 @@ package nextstep.ladder.domain;
 import nextstep.ladder.controller.dto.GameInfo;
 import nextstep.ladder.controller.dto.GameResult;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
-import static java.util.stream.Collectors.*;
 
 public class LadderGame {
 
@@ -39,30 +34,9 @@ public class LadderGame {
     }
 
     public GameResult play() {
-        Map<String, Integer> pointAfterClimbing = climbLadder();
-        Map<String, String> prizeByName = convertPointToPrize(pointAfterClimbing);
+        Map<String, Integer> pointByName = ladder.climb(players);
+        Map<String, String> prizeByName = winningPrize.convertPointToPrize(pointByName);
 
         return new GameResult(prizeByName);
-    }
-
-    private LinkedHashMap<String, Integer> climbLadder() {
-        return IntStream.range(0, players.numOfPlayers())
-            .boxed()
-            .collect(toMap(
-                players::name,
-                ladder::climb,
-                (oldVal, newVal) -> newVal,
-                LinkedHashMap::new
-            ));
-    }
-
-    private Map<String, String> convertPointToPrize(Map<String, Integer> pointByName) {
-        return pointByName.keySet().stream()
-            .collect(Collectors.toMap(
-                name -> name,
-                name -> winningPrize.prize(pointByName.get(name)),
-                (oldVal, newVal) -> newVal,
-                LinkedHashMap::new
-            ));
     }
 }
