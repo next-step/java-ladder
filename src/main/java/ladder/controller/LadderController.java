@@ -3,11 +3,10 @@ package ladder.controller;
 import ladder.domain.Ladder;
 import ladder.domain.PlayLadder;
 import ladder.domain.Players;
+import ladder.domain.Prizes;
 import ladder.strategy.RandomPathStrategy;
 import ladder.view.InputView;
 import ladder.view.OutputView;
-
-import java.util.List;
 
 public class LadderController {
 
@@ -20,14 +19,19 @@ public class LadderController {
     }
 
     public void start() {
-        PlayLadder playLadder = play(inputView.readName(), inputView.readHeight());
+        PlayLadder playLadder = initialize();
         outputView.printLadder(playLadder);
+        outputView.printLadderResult(playLadder.move(), inputView.resultType());
     }
 
-    private PlayLadder play(List<String> names, long height) {
-        Players players = Players.of(names);
-        Ladder ladder = Ladder.of(players.size() - 1, height, new RandomPathStrategy());
-        PlayLadder playLadder = PlayLadder.of(players, ladder);
-        return playLadder;
+    private PlayLadder initialize() {
+        Players players = Players.of(inputView.readName());
+        Prizes prizes = Prizes.of(inputView.readPrize());
+
+        LadderSize ladderSize = LadderSize.of(players, inputView.readHeight());
+        Ladder ladder = Ladder.of(ladderSize, new RandomPathStrategy());
+
+        return PlayLadder.of(players, prizes, ladder);
     }
+
 }

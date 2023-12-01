@@ -9,28 +9,24 @@ public class RandomPathStrategy implements PathStrategy {
 
     private static final Random random = new Random();
 
-    private boolean checked;
-
-    public RandomPathStrategy() {
-        this.checked = false;
-    }
-
     @Override
     public List<Boolean> generate(long size) {
-        return Stream.generate(this::randomIfPreviousNotChecked)
+        return Stream.iterate(random(), this::randomIfPreviousNotChecked)
                 .limit(size)
                 .collect(Collectors.toList());
     }
 
-    private boolean randomIfPreviousNotChecked() {
-        checked = notChecked() ? random() : false;
-        return checked;
+    private boolean randomIfPreviousNotChecked(boolean previous) {
+        if (notChecked(previous)) {
+            return random();
+        }
+
+        return false;
     }
 
-    private boolean notChecked() {
-        return !checked;
+    private boolean notChecked(boolean previous) {
+        return !previous;
     }
-
 
     private Boolean random() {
         return random.nextBoolean();
