@@ -16,12 +16,12 @@ public class Participants {
     private List<Participant> initParticipants(String[] participantTexts) {
         sizeCheck(participantTexts.length);
 
-        List<Participant> participantList = getParticipants(participantTexts);
+        List<Participant> participants = createParticipants(participantTexts);
 
-        return participantList;
+        return participants;
     }
 
-    private List<Participant> getParticipants(String[] tokens) {
+    private List<Participant> createParticipants(String[] tokens) {
         List<Participant> participantList = new ArrayList<>();
         for (String token : tokens) {
             participantList.add(new Participant(token));
