@@ -16,7 +16,7 @@ import static nextstep.step4.view.ResultView.println;
 
 public class LadderApp {
 
-    public static final String ALL = "ALL";
+    public static final String ALL = "all";
 
     public static void main(String[] args) {
         final Participants participants = inputParticipants();
