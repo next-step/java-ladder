@@ -1,6 +1,5 @@
 package ladder.model;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,31 +9,29 @@ import java.util.stream.Stream;
 
 public class LadderGame {
 
-    private final Map<Player, Prize> results;
+    private final List<Line> lines;
 
-    public LadderGame(Map<Player, Prize> results) {
-        this.results = results;
+    public LadderGame(List<Line> lines) {
+        this.lines = lines;
     }
 
-    public static List<Line> start(final int lineHeight, final int playersCount, RandomStrategy randomStrategy) {
-        return Stream.generate(() -> Line.create(playersCount, randomStrategy))
+    public static LadderGame start(final int lineHeight, final int playersCount, RandomStrategy randomStrategy) {
+        List<Line> lines = Stream.generate(() -> Line.create(playersCount, randomStrategy))
                 .limit(lineHeight)
                 .collect(Collectors.toList());
+
+        return new LadderGame(lines);
     }
 
-    public static LadderGame result(List<Player> players, List<Line> lines, List<Prize> prizes) {
+    public LadderResult result(List<Player> players, List<Prize> prizes) {
         Map<Player, Prize> results = new LinkedHashMap<>();
         IntStream.range(0, players.size())
-                .forEach(index -> results.put(players.get(index), prizes.get(move(index, lines))));
+                .forEach(index -> results.put(players.get(index), prizes.get(move(index, this.lines))));
 
-        return new LadderGame(results);
+        return new LadderResult(results);
     }
 
-    public Map<Player, Prize> getResults() {
-        return this.results;
-    }
-
-    public static int move(int playerPosition, List<Line> lines) {
+    public int move(int playerPosition, List<Line> lines) {
         int resultIndex = playerPosition;
 
         for (Line line : lines) {
@@ -42,5 +39,9 @@ public class LadderGame {
         }
 
         return resultIndex;
+    }
+
+    public List<Line> getLines() {
+        return this.lines;
     }
 }
