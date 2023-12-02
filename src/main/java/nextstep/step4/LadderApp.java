@@ -3,11 +3,9 @@ package nextstep.step4;
 
 import nextstep.step4.engine.Ladder;
 import nextstep.step4.engine.LadderResult;
-import nextstep.step4.impl.ResultProcessor;
 import nextstep.step4.impl.Height;
-import nextstep.step4.impl.Participant;
-import nextstep.step4.impl.Participants;
-import nextstep.step4.impl.Results;
+import nextstep.step4.engine.Participants;
+import nextstep.step4.engine.Results;
 
 import static nextstep.step4.factory.LadderFactoryBean.creatorLadderFactory;
 import static nextstep.step4.view.InputView.*;
@@ -15,31 +13,28 @@ import static nextstep.step4.view.ResultView.print;
 import static nextstep.step4.view.ResultView.println;
 
 public class LadderApp {
-
     public static final String ALL = "all";
 
     public static void main(String[] args) {
         final Participants participants = inputParticipants();
-        final Results results = inputResult(participants.countOfPerson());
-        final ResultProcessor resultProcessor = new ResultProcessor(participants, results);
-
+        final Results results = inputResult(participants.size());
         final Height height = inputLadderHeight();
 
         println(participants.toString());
-        final Ladder ladder = creatorLadderFactory().create(participants.countOfPerson(), height.get());
+        final Ladder ladder = creatorLadderFactory().create(participants.size(), height.get());
         print(ladder.toString());
         println(results.toString());
 
-        String participantName = inputParticipantLadderResult();
+        final LadderResult ladderResult = ladder.play(participants, results);
 
-        while(isNotAll(participantName)) {
-            final int index = participants.getIndex(new Participant(participantName));
-            final LadderResult ladderResult = ladder.play(index);
-            print(resultProcessor.toResult(ladderResult));
+        String participantName = null;
+        do {
             participantName = inputParticipantLadderResult();
-        }
+            print(ladderResult.result(participantName));
 
-        print(resultProcessor.toResult(ladder.play()));
+        } while (isNotAll(participantName));
+
+        println(ladderResult.toString());
     }
 
     private static boolean isNotAll(String ladderResult) {

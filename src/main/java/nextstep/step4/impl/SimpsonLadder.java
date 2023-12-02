@@ -1,15 +1,13 @@
 package nextstep.step4.impl;
 
-import nextstep.step4.engine.Ladder;
-import nextstep.step4.engine.LadderResult;
-import nextstep.step4.engine.Line;
+import nextstep.step4.engine.*;
 
 import java.util.List;
 
 public class SimpsonLadder implements Ladder {
     public static final String NEW_LINE = "\n";
 
-    private List<Line> lines;
+    private final List<Line> lines;
     private final int countOfPerson;
 
     public SimpsonLadder(final List<Line> lines, final int countOfPerson) {
@@ -18,26 +16,16 @@ public class SimpsonLadder implements Ladder {
     }
 
     @Override
-    public LadderResult play() {
-        LadderResult result = new LadderResult();
+    public LadderResult play(Participants participants, Results results) {
+        LadderResult ladderResult = new LadderResult();
 
-        for (int source = 0; source < countOfPerson; source++) {
-            int target = source;
+        for (int i = 0; i < countOfPerson; i++) {
+            int target = i;
             target = getTarget(target);
-            result.put(source, target);
+            ladderResult.put(participants.get(i), results.get(target));
         }
 
-        return result;
-    }
-
-    @Override
-    public LadderResult play(final int source) {
-        LadderResult result = new LadderResult();
-
-        int target = source;
-        result.put(source, getTarget(target));
-
-        return result;
+        return ladderResult;
     }
 
     private int getTarget(int target) {
