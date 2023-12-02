@@ -5,26 +5,26 @@ import java.util.Collections;
 import java.util.List;
 
 public class Participants {
-    private final int MIN_PARTICIPANT = 2;
-    private List<Name> participant;
+    private final int MIN_PARTICIPANTS = 2;
+    private List<Name> participants;
 
     public Participants(List<String> names) {
-        participant = new ArrayList<>();
+        participants = new ArrayList<>();
         validateParticipantCount(names.size());
         names.stream()
-                .forEach(name -> participant.add(new Name(name)));
+                .forEach(name -> participants.add(new Name(name)));
     }
 
     public int size() {
-        return participant.size();
+        return participants.size();
     }
 
-    public List<Name> getParticipant() {
-        return Collections.unmodifiableList(participant);
+    public List<Name> getParticipants() {
+        return Collections.unmodifiableList(participants);
     }
 
     private void validateParticipantCount(int participantCount) {
-        if (participantCount < MIN_PARTICIPANT) {
+        if (participantCount < MIN_PARTICIPANTS) {
             throw new IllegalArgumentException("최소 2명 이상 참가해야됩니다.");
         }
     }

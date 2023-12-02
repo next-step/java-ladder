@@ -16,11 +16,15 @@ public class UserInterface {
 
         int ladderLevel = Parser.numberFormatParsing(InputView.ladderLevel());
 
-        LadderFactory ladder = LadderFactory.make(participants, ladderLevel);
+        Ladder ladder = Ladder.make(participants, ladderLevel);
 
         ResultView.resultMessage();
-        ResultView.printParticipantNames(participants.getParticipant());
+        ResultView.printParticipantNames(participants.getParticipants());
         ResultView.printLadder(ladder.getLadder());
         ResultView.printResult(ladderResult.getResults());
+
+        for (int i = 0; i < names.size(); i++) {
+            System.out.println(results.get(ladder.pathFind(i)));
+        }
     }
 }
