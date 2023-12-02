@@ -1,5 +1,7 @@
 package nextstep.ladder.model;
 
+import nextstep.ladder.model.strategy.RandomLineStrategy;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -27,6 +29,7 @@ public class LineGenerator {
     }
 
     Line blankLine() {
-        return new Line(new ArrayList<>(Collections.nCopies(height.height(), Boolean.FALSE)));
+        return new Line(new ArrayList<>(Collections.nCopies(height.height(), Point.NO_POINT))
+                , new RandomLineStrategy());
     }
 }

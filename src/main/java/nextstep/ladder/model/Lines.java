@@ -23,6 +23,8 @@ public class Lines {
     public List<Boolean> horizonLineDrawAvailable(int index) {
         return this.lines.stream()
                 .map(line -> line.point(index))
+                .map(point -> !point.equals(Point.NO_POINT))
                 .collect(Collectors.toList());
     }
+
 }

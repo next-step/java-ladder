@@ -1,5 +1,6 @@
 package nextstep.ladder.model;
 
+import nextstep.ladder.model.strategy.RandomLineStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,9 +14,12 @@ class LinesTest {
     @DisplayName("모든 Line의 특정 인덱스 값을 올바르게 리턴한다.")
     void test1() {
         //given
-        Line lineA = new Line(List.of(false, true, false, false, false));
-        Line lineB = new Line(List.of(false, false, false, false, false));
-        Line lineC = new Line(List.of(false, true, true, false, false));
+        Line lineA = new Line(List.of(Point.NO_POINT, Point.LEFT, Point.NO_POINT, Point.NO_POINT, Point.NO_POINT)
+                , new RandomLineStrategy());
+        Line lineB = new Line(List.of(Point.NO_POINT, Point.NO_POINT, Point.NO_POINT, Point.NO_POINT, Point.NO_POINT)
+                , new RandomLineStrategy());
+        Line lineC = new Line(List.of(Point.NO_POINT, Point.LEFT, Point.LEFT, Point.NO_POINT, Point.NO_POINT)
+                , new RandomLineStrategy());
 
         List<Line> lineList = new ArrayList<>();
         lineList.add(lineA);

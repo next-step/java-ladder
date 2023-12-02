@@ -1,5 +1,6 @@
 package nextstep.ladder.model;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,6 +11,14 @@ public class People {
     public People(List<Name> names) {
         checkPeopleValidity(names);
         this.names = names;
+    }
+
+    public People(String... nameList) {
+        this(
+                Arrays.stream(nameList)
+                        .map(Name::new)
+                        .collect(Collectors.toList())
+        );
     }
 
     private void checkPeopleValidity(List<Name> names) {

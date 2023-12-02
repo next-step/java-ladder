@@ -1,43 +1,48 @@
 package nextstep.ladder.model;
 
-import nextstep.ladder.model.strategy.DontDrawLine;
 import nextstep.ladder.model.strategy.LineStrategy;
-import nextstep.ladder.model.strategy.RandomLine;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private final List<Boolean> points;
+    private final List<Point> points;
+    private final LineStrategy lineStrategy;
 
-    public Line(List<Boolean> points) {
+    public Line(List<Point> points, LineStrategy lineStrategy) {
         this.points = points;
+        this.lineStrategy = lineStrategy;
     }
 
     public Line generateLine() {
-        List<Boolean> points = new ArrayList<>();
+        List<Point> points = new ArrayList<>();
         for (int pointIndex = 0; pointIndex < this.points.size(); pointIndex++) {
             drawOrStop(points, pointIndex);
         }
-        return new Line(points);
+        return new Line(points, lineStrategy);
     }
 
-    private void drawOrStop(List<Boolean> points, int pointIndex) {
-        if (this.points.get(pointIndex)) {
-            points.add(drawOrStop(new DontDrawLine()));
+    private void drawOrStop(List<Point> points, int pointIndex) {
+        if (!this.points.get(pointIndex).equals(Point.NO_POINT)) {
+            points.add(Point.NO_POINT);
             return;
         }
-        points.add(drawOrStop(new RandomLine()));
+        if (drawOrStop(lineStrategy)) {
+            points.add(Point.LEFT);
+            return;
+        }
+        points.add(Point.NO_POINT);
     }
 
     private boolean drawOrStop(LineStrategy lineStrategy) {
         return lineStrategy.drawLine();
     }
 
-    public boolean point(int index){
+    public Point point(int index) {
         return this.points.get(index);
     }
-    List<Boolean> points(){
+
+    List<Point> points() {
         return this.points;
     }
 }

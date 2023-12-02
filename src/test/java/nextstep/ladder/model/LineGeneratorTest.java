@@ -21,8 +21,8 @@ class LineGeneratorTest {
         //when
         Line line = lineGenerator.blankLine();
         //then
-        assertThat(line.point(0)).isFalse();
-        assertThat(line.point(1)).isFalse();
+        assertThat(line.point(0)).isEqualTo(Point.NO_POINT);
+        assertThat(line.point(1)).isEqualTo(Point.NO_POINT);
         assertThat(line.points()).hasSize(2);
     }
 

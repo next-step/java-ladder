@@ -2,7 +2,7 @@ package nextstep.ladder.model.strategy;
 
 import java.util.Random;
 
-public class RandomLine implements LineStrategy {
+public class RandomLineStrategy implements LineStrategy {
     Random random = new Random();
 
     @Override
