@@ -4,14 +4,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class LadderResult {
+public class LadderGameResult {
     private final Map<Player, Amount> ladderResult;
 
-    public LadderResult() {
+    public LadderGameResult() {
         this(new HashMap<>());
     }
 
-    public LadderResult(Map<Player, Amount> ladderResult) {
+    public LadderGameResult(Map<Player, Amount> ladderResult) {
         this.ladderResult = ladderResult;
     }
 

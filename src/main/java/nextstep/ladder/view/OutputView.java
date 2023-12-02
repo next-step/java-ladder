@@ -5,12 +5,12 @@ import nextstep.ladder.domain.*;
 public class OutputView {
     private static final StringBuilder sb = new StringBuilder();
 
-    public static void printLadder(Players players, Ladder ladder, ResultAmounts resultAmounts) {
+    public static void printLadder(Players players, Ladder ladder, Amounts amounts) {
         sb.setLength(0);
 
         appendPersonNames(players);
         appendLadder(ladder);
-        appendResultAmounts(resultAmounts);
+        appendResultAmounts(amounts);
 
         System.out.println(sb);
     }
@@ -48,27 +48,27 @@ public class OutputView {
         }
     }
 
-    private static void appendResultAmounts(ResultAmounts resultAmounts) {
-        for (Amount amount : resultAmounts) {
+    private static void appendResultAmounts(Amounts amounts) {
+        for (Amount amount : amounts) {
             sb.append(String.format("%5s", amount));
         }
         sb.append("\n");
     }
 
-    public static void printResult(LadderResult ladderResult) {
+    public static void printResult(LadderGameResult ladderGameResult) {
         String inputName = "";
         while (!inputName.equals("all")) {
             inputName = InputView.inputPlayer();
 
             if (inputName.equals("all")) {
-                for (Player player : ladderResult.keySet()) {
-                    System.out.printf("%s : %s\n", player, ladderResult.get(player));
+                for (Player player : ladderGameResult.keySet()) {
+                    System.out.printf("%s : %s\n", player, ladderGameResult.get(player));
                 }
 
                 continue;
             }
 
-            System.out.printf("%s : %s\n", inputName, ladderResult.get(new Player(inputName)));
+            System.out.printf("%s : %s\n", inputName, ladderGameResult.get(new Player(inputName)));
         }
     }
 }

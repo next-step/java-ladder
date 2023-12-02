@@ -12,12 +12,12 @@ public class LadderApplication {
         int inputHeight = InputView.inputHeight();
         Height height = new Height(inputHeight);
         String inputAmounts = InputView.inputAmounts();
-        ResultAmounts resultAmounts = new ResultAmounts(inputAmounts);
+        Amounts amounts = new Amounts(inputAmounts);
         Ladder ladder = new Ladder(players, height, new RandomLineStrategy());
-        LadderGame ladderGame = new LadderGame(players, ladder, resultAmounts);
-        OutputView.printLadder(players, ladder, resultAmounts);
+        LadderGame ladderGame = new LadderGame(players, ladder, amounts);
+        OutputView.printLadder(players, ladder, amounts);
 
-        LadderResult ladderResult = ladderGame.play();
-        OutputView.printResult(ladderResult);
+        LadderGameResult ladderGameResult = ladderGame.play();
+        OutputView.printResult(ladderGameResult);
     }
 }

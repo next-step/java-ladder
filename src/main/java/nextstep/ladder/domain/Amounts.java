@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class ResultAmounts implements Iterable<Amount> {
+public class Amounts implements Iterable<Amount> {
     private final List<Amount> amounts;
 
-    public ResultAmounts(String inputAmounts) {
+    public Amounts(String inputAmounts) {
         validate(inputAmounts);
 
         String[] inputs = inputAmounts.split(",");

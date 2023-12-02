@@ -49,17 +49,17 @@ public class Ladder implements Iterable<Line> {
         return this.lines.get(0);
     }
 
-    public LadderResult play(Players players, Line startLine, ResultAmounts resultAmounts) {
-        LadderResult ladderResult = new LadderResult();
+    public LadderGameResult play(Players players, Line startLine, Amounts amounts) {
+        LadderGameResult ladderGameResult = new LadderGameResult();
         int pointIndex = 0;
         for (Player player : players) {
             int amountIndex = movingResult(startLine, pointIndex, 1);
-            Amount amount = resultAmounts.get(amountIndex);
+            Amount amount = amounts.get(amountIndex);
             pointIndex++;
-            ladderResult.put(player, amount);
+            ladderGameResult.put(player, amount);
         }
 
-        return ladderResult;
+        return ladderGameResult;
     }
 
     private int movingResult(Line line, int pointIndex, int ladderHeight) {

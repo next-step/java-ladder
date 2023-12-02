@@ -3,17 +3,17 @@ package nextstep.ladder.domain;
 public class LadderGame {
     private final Players players;
     private final Ladder ladder;
-    private final ResultAmounts resultAmounts;
+    private final Amounts amounts;
 
-    public LadderGame(Players players, Ladder ladder, ResultAmounts resultAmounts) {
+    public LadderGame(Players players, Ladder ladder, Amounts amounts) {
         this.players = players;
         this.ladder = ladder;
-        this.resultAmounts = resultAmounts;
+        this.amounts = amounts;
     }
 
-    public LadderResult play() {
+    public LadderGameResult play() {
         Line startLine = ladder.startLine();
-        LadderResult ladderResult = ladder.play(players, startLine, resultAmounts);
-        return ladderResult;
+        LadderGameResult ladderGameResult = ladder.play(players, startLine, amounts);
+        return ladderGameResult;
     }
 }
