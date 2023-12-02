@@ -19,6 +19,10 @@ public class Point {
         return position;
     }
 
+    public static Point createNextPoint(boolean left, boolean right) {
+        return new Point(left, right);
+    }
+
     public boolean isRight() {
         return right;
     }
