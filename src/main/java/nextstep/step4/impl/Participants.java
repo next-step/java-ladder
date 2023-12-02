@@ -14,9 +14,9 @@ public class Participants {
     }
 
     private List<Participant> initParticipants(String[] participantTexts) {
-        List<Participant> participantList = getParticipants(participantTexts);
+        sizeCheck(participantTexts.length);
 
-        sizeCheck(participantList);
+        List<Participant> participantList = getParticipants(participantTexts);
 
         return participantList;
     }
@@ -29,8 +29,8 @@ public class Participants {
         return participantList;
     }
 
-    private void sizeCheck(List<Participant> participantList) {
-        if (participantList.size() < 2) {
+    private void sizeCheck(final int participantSize) {
+        if (participantSize < 2) {
             throw new IllegalArgumentException(INVALID_PARTICIPANT_COUNT_MSG);
         }
     }
