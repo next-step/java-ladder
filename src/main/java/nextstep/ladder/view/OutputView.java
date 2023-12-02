@@ -14,10 +14,9 @@ public class OutputView {
         printExecutionMessage();
         printParticipants(namesOfParticipants, ladder.getWidth());
         int maxHeight = ladder.getLadderLines().getLines().get(0).getMaxHeight();
-        IntStream.range(0, maxHeight)
-                .forEachOrdered(currentHeight -> {
-                    printLadderOfCurrentHeight(namesOfParticipants, ladder, currentHeight);
-                });
+        for (int currentHeight = 0; currentHeight < maxHeight; currentHeight++) {
+            printLadderOfCurrentHeight(namesOfParticipants, ladder, currentHeight);
+        }
     }
 
     private void printExecutionMessage() {
