@@ -43,4 +43,32 @@ public class Point {
                 "point=" + point +
                 '}';
     }
+
+    public Direction compareMove(Point leftPoint, boolean firstIndex, boolean lastIndex) {
+        if(firstIndex) {
+            if(this.point) {
+                return Direction.RIGHT;
+            }
+
+            return Direction.DOWN;
+        }
+
+        if(lastIndex) {
+            if(leftPoint.isPoint()) {
+                return Direction.LEFT;
+            }
+
+            return Direction.DOWN;
+        }
+
+        if(isPoint()) {
+            return Direction.RIGHT;
+        }
+
+        if(leftPoint.isPoint()) {
+            return Direction.LEFT;
+        }
+
+        return Direction.DOWN;
+    }
 }

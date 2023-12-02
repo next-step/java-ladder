@@ -25,4 +25,11 @@ public class InputView {
 
         return inputAmounts;
     }
+
+    public static String inputPlayer() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        String inputPlayer = scanner.nextLine();
+
+        return inputPlayer;
+    }
 }

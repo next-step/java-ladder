@@ -8,12 +8,16 @@ import nextstep.ladder.view.OutputView;
 public class LadderApplication {
     public static void main(String[] args) {
         String inputNames = InputView.inputNames();
-        PersonNames personNames = new PersonNames(inputNames);
+        Players players = new Players(inputNames);
         int inputHeight = InputView.inputHeight();
         Height height = new Height(inputHeight);
         String inputAmounts = InputView.inputAmounts();
         ResultAmounts resultAmounts = new ResultAmounts(inputAmounts);
-        Ladder ladder = new Ladder(personNames, height, new RandomLineStrategy());
-        OutputView.printLadder(personNames, ladder, resultAmounts);
+        Ladder ladder = new Ladder(players, height, new RandomLineStrategy());
+        LadderGame ladderGame = new LadderGame(players, ladder, resultAmounts);
+        OutputView.printLadder(players, ladder, resultAmounts);
+
+        LadderResult ladderResult = ladderGame.play();
+        OutputView.printResult(ladderResult);
     }
 }

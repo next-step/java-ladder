@@ -29,6 +29,10 @@ public class ResultAmounts implements Iterable<Amount> {
         }
     }
 
+    public Amount get(int pointIndex) {
+        return this.amounts.get(pointIndex);
+    }
+
     @Override
     public Iterator<Amount> iterator() {
         return this.amounts.iterator();

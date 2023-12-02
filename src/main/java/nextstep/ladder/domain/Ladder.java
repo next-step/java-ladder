@@ -14,10 +14,10 @@ public class Ladder implements Iterable<Line> {
         this.lines = new ArrayList<>(lines);
     }
 
-    public Ladder(PersonNames personNames, Height height, LineStrategy lineStrategy) {
+    public Ladder(Players players, Height height, LineStrategy lineStrategy) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height.height(); i++) {
-            lines.add(createLine(personNames.size(), lineStrategy));
+            lines.add(createLine(players.size(), lineStrategy));
         }
 
         this.lines = lines;
@@ -39,6 +39,73 @@ public class Ladder implements Iterable<Line> {
 
     public List<Line> lines() {
         return this.lines;
+    }
+
+    public int height() {
+        return this.lines.size();
+    }
+
+    public Line startLine() {
+        return this.lines.get(0);
+    }
+
+    public LadderResult play(Players players, Line startLine, ResultAmounts resultAmounts) {
+        LadderResult ladderResult = new LadderResult();
+        int pointIndex = 0;
+        for (Player player : players) {
+            int amountIndex = movingResult(startLine, pointIndex, 1);
+            Amount amount = resultAmounts.get(amountIndex);
+            pointIndex++;
+            ladderResult.put(player, amount);
+        }
+
+        return ladderResult;
+    }
+
+    private int movingResult(Line line, int pointIndex, int ladderHeight) {
+        int firstIndex = 0;
+        int lastIndex = lines.get(0).points().size();
+
+        Point point = null;
+        Direction direction = null;
+
+        if (pointIndex == firstIndex) {
+            point = line.points().get(pointIndex);
+            direction = point.compareMove(null, true, false);
+        }
+
+        else if (pointIndex == lastIndex) {
+            point = new Point(false);
+            direction = point.compareMove(line.points().get(pointIndex - 1), false, true);
+        }
+
+        else if (pointIndex != firstIndex && pointIndex != lastIndex) {
+            point = line.points().get(pointIndex);
+            direction = point.compareMove(lines.get(ladderHeight - 1).points().get(pointIndex - 1), false, false);
+        }
+
+        if (direction == Direction.DOWN) {
+            if(ladderHeight == this.height()) {
+                return pointIndex;
+            }
+            return movingResult(lines.get(ladderHeight), pointIndex, ladderHeight + 1);
+        }
+
+        else if (direction == Direction.LEFT) {
+            if (ladderHeight == this.height()) {
+                return pointIndex - 1;
+            }
+            return movingResult(lines.get(ladderHeight), pointIndex - 1, ladderHeight + 1);
+        }
+
+        else if (direction == Direction.RIGHT) {
+            if (ladderHeight == this.height()) {
+                return pointIndex + 1;
+            }
+            return movingResult(lines.get(ladderHeight), pointIndex + 1, ladderHeight + 1);
+        }
+
+        return 0;
     }
 
     @Override
