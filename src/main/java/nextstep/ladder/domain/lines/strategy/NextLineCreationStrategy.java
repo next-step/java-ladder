@@ -4,5 +4,5 @@ import nextstep.ladder.domain.Line;
 
 public interface NextLineCreationStrategy {
 
-    Line createNextLine(Line beforLine, int height);
+    Line createNextLine(Line beforeLine, int height);
 }

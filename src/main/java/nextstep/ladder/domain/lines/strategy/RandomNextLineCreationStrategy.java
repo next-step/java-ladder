@@ -5,24 +5,19 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.Point;
 
 public class RandomNextLineCreationStrategy implements NextLineCreationStrategy {
 
     @Override
-    public Line createNextLine(Line beforLine, int height) {
+    public Line createNextLine(Line beforeLine, int height) {
         Random random = new Random();
-        return new Line(createNextPoints(beforLine, height, random));
+        return Line.createLine2WithPoints(createNextPoints(beforeLine, height, random));
     }
 
-    private List<Boolean> createNextPoints(Line beforLine, int height, Random random) {
+    private List<Point> createNextPoints(Line beforeLine, int height, Random random) {
         return IntStream.range(0, height)
-                .mapToObj(beforLine::hasHorizontalLine)
-                .map(hasHorizontalLine -> {
-                    if (hasHorizontalLine) {
-                        return false;
-                    }
-                    return random.nextBoolean();
-                })
+                .mapToObj(beforeLine::horizontalLine)
                 .collect(Collectors.toList());
     }
 }

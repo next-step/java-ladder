@@ -90,7 +90,7 @@ public class OutputView {
     }
 
     private boolean hasHorizontalLine(Ladder ladder, int presentHeight, int currentPointIndex) {
-        return ladder.getLadderLines().getLines().get(currentPointIndex).hasHorizontalLine(presentHeight);
+        return ladder.getLadderLines().getLines().get(currentPointIndex).horizontalLine(presentHeight).pointStatus();
     }
 
     private void printLastPieceOfLine() {

@@ -16,14 +16,14 @@ public class LineTest {
 
     @ParameterizedTest
     @DisplayName("줄에 수평선이 있는지 확인한다.")
-    @CsvSource(value = {"0,true", "1, false", "2, true"})
-    void validate_horizontal_line(int point, boolean expected) {
+    @CsvSource(value = {"0,LINE", "1, NOTHING", "2, LINE"})
+    void validate_horizontal_line(int point, Point expected) {
         // given
         List<Boolean> points = createPoints();
-        Line line = new Line(points);
+        Line line = Line.createLine2WithPointStatus(points);
 
         // when
-        boolean result = line.hasHorizontalLine(point);
+        Point result = line.horizontalLine(point);
 
         // then
         assertThat(result).isEqualTo(expected);
@@ -41,8 +41,8 @@ public class LineTest {
     @DisplayName("라인의 수평선이 겹치면 예외를 던진다.")
     void overlapping_horizontal_line_exception() {
         // given
-        Line line = new Line(createPoints());
-        Line targetLine = new Line(createTargetPoints());
+        Line line = Line.createLine2WithPointStatus(createPoints());
+        Line targetLine = Line.createLine2WithPointStatus(createTargetPoints());
 
         // when  // then
         assertThatThrownBy(() -> line.isOverlapping(targetLine))
@@ -62,8 +62,8 @@ public class LineTest {
     @DisplayName("줄의 길이가 다르면 예외를 던진다.")
     void line_length_difference_exception() {
         // given
-        Line line = new Line(createPoints());
-        Line targetLine = new Line(List.of(false, true, false, true));
+        Line line = Line.createLine2WithPointStatus(createPoints());
+        Line targetLine = Line.createLine2WithPointStatus(List.of(false, true, false, true));
 
         // when // then
         assertThatThrownBy(() -> line.validateSameSizeAs(targetLine))
@@ -75,7 +75,7 @@ public class LineTest {
     @DisplayName("사이즈를 비교할 라인이 없다면 예외를 던진다.")
     void no_line_creation_exception() {
         // when // then
-        assertThatThrownBy(() -> new Line(List.of(true, false)).validateSameSizeAs(null))
+        assertThatThrownBy(() -> Line.createLine2WithPointStatus(List.of(true, false)).validateSameSizeAs(null))
                 .isExactlyInstanceOf(NullPointerException.class)
                 .hasMessage(NO_LINE_TO_COMPARE_SIZE_EXCEPTION);
     }
