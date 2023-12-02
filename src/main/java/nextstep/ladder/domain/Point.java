@@ -4,7 +4,7 @@ public class Point {
     private final boolean left;
     private final boolean right;
 
-    public Point(boolean left, boolean right) {
+    private Point(boolean left, boolean right) {
         this.left = left;
         this.right = right;
     }
