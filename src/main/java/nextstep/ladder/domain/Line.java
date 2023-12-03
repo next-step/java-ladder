@@ -19,7 +19,7 @@ public class Line {
         for (int i = 1; i <= width; i++) {
             boolean point = beforePointCheck(beforePoint, ruleStrategy);
             point = lastPointCheck(width, point);
-            this.points.add(new Point(beforePoint, point));
+            this.points.add(Point.createNextPoint(beforePoint, point));
             beforePoint = point;
         }
     }
@@ -50,12 +50,6 @@ public class Line {
 
     public int move(int position) {
         Point point = this.points.get(position);
-        if (point.move().equals(Move.RIGHT)) {
-            return position + 1;
-        }
-        if (point.move().equals(Move.LEFT)) {
-            return position - 1;
-        }
-        return position;
+        return point.move(position);
     }
 }

@@ -4,15 +4,15 @@ import nextstep.ladder.exception.ResultSizeMismatchException;
 
 import java.util.*;
 
-public class Results {
+import static nextstep.ladder.util.StringSplit.stringSplitToList;
 
-    private static final String NAMES_DELIMITER = ",";
+public class Results {
 
     private final List<Result> results = new ArrayList<>();
 
     public Results(String result) {
-        Arrays.stream(result.split(NAMES_DELIMITER))
-                .forEach(name -> this.results.add(new Result(name)));
+        Arrays.stream(stringSplitToList(result))
+                .forEach(value -> this.results.add(new Result(value)));
     }
 
     public void validateSize(int size) {
@@ -32,9 +32,7 @@ public class Results {
     public LadderResult of(Names names, Ladder ladder) {
         Map<Name, Result> result = new HashMap<>();
         for (int nameIdx = 0; nameIdx < names.size(); nameIdx++) {
-            Name name = names.get(nameIdx);
-            int position = ladder.move(nameIdx);
-            result.put(name, get(position));
+            result.put(names.get(nameIdx), get(ladder.move(nameIdx)));
         }
         return new LadderResult(result);
     }

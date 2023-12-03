@@ -3,7 +3,6 @@ package nextstep.ladder.view;
 import nextstep.ladder.domain.*;
 
 import java.util.List;
-import java.util.Map;
 
 public class ResultView {
 
@@ -16,6 +15,7 @@ public class ResultView {
     private static final String LADDER_START = "   ";
     private static final String BLANK = "  ";
     private static final Name ALL = new Name("all");
+    private static final String NEXT_LINE = "\n";
 
     public static void printLadder(Names names, Ladder ladder, Results results) {
         System.out.println(START);
@@ -25,26 +25,30 @@ public class ResultView {
     }
 
     private static void printNames(List<Name> names) {
-        names.stream().forEach(name -> System.out.print(name.value() + BLANK));
-        System.out.println();
+        StringBuilder builder = new StringBuilder();
+        names.stream().forEach(name -> builder.append(name.value()).append(BLANK));
+        System.out.println(builder.toString());
     }
 
     private static void printLadderLine(List<Line> ladder) {
-        ladder.stream().forEach(line -> System.out.println(LADDER_START + printLine(line)));
+        StringBuilder builder = new StringBuilder();
+        ladder.stream().forEach(line -> builder.append(LADDER_START).append(printLine(line)));
+        System.out.print(builder.toString());
     }
 
     private static String printLine(Line line) {
         StringBuilder builder = new StringBuilder();
         line.points().stream().forEach(point -> {
-            builder.append(LADDER_LINE);
-            builder.append(printLadderPoint(point.isRight()));
+            builder.append(LADDER_LINE).append(printLadderPoint(point.isRight()));
         });
+        builder.append(NEXT_LINE);
         return builder.toString();
     }
 
     private static void printResult(List<Result> results) {
-        results.stream().forEach(result -> System.out.print(result.value() + BLANK));
-        System.out.println();
+        StringBuilder builder = new StringBuilder();
+        results.stream().forEach(result -> builder.append(result.value()).append(BLANK));
+        System.out.println(builder.toString());
         System.out.println();
     }
 
@@ -66,13 +70,15 @@ public class ResultView {
 
     private static void printAllResult(LadderResult ladderResult) {
         StringBuilder builder = new StringBuilder();
-        for (Map.Entry<Name, Result> entry : ladderResult.results().entrySet()) {
-            builder.append(printReusltText(entry.getKey(), entry.getValue()));
-        }
+        ladderResult.results()
+                .entrySet().stream()
+                .forEach(entry -> {
+                    builder.append(printReusltText(entry.getKey(), entry.getValue()));
+                });
         System.out.println(builder.toString());
     }
 
     private static String printReusltText(Name name, Result result) {
-        return name.value() + " : " + result.value() + "\n";
+        return name.value() + " : " + result.value() + NEXT_LINE;
     }
 }
