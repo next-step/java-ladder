@@ -15,7 +15,7 @@ public class RowLinePositionsTest {
     @Test
     void printRowLinePositionsList() {
         System.out.println("START");
-        RowLinePositions positions = new RowLinePositions(3);
+        RowLinePositions positions = RowLinePositions.create(3);
         positions.getPositionList()
                 .stream()
                 .forEach(element -> System.out.println("result : " + element));

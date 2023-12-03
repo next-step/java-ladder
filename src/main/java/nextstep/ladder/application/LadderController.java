@@ -11,19 +11,24 @@ public class LadderController {
 
     public static void main(String[] args) {
         InputView inputView = new InputView();
-        String[] participants = splitParticipants(inputView);
+        String[] participants = inputView.inputParticipant();
+        String[] results = inputView.inputResults();
         int highCount = inputView.inputHighCount();
 
         LadderService ladderService = new LadderService();
-        LadderResponse response = ladderService.createLadder(new LadderRequest(participants, highCount));
+        LadderResponse createResponse = ladderService.findWinner(new LadderRequest(
+                participants,
+                results,
+                highCount));
 
         LinePrinter printer = new LinePrinter(highCount);
-        ResultView resultView = new ResultView(printer, participants, response.getLines());
-        resultView.showResult();
-    }
-
-    private static String[] splitParticipants(InputView inputView) {
-        return inputView.inputParticipant()
-                .split(",");
+        ResultView resultView = new ResultView(
+                printer,
+                createResponse.getLines(),
+                createResponse.getParticipants(),
+                results);
+        resultView.showLadder();
+        resultView.showParticipant(inputView.inputWantShow());
+        resultView.showParticipant(inputView.inputWantShow());
     }
 }

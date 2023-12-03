@@ -7,23 +7,29 @@ import java.util.Random;
 import java.util.stream.IntStream;
 
 public class RowLinePositions {
-    private List<Boolean> positionList = new ArrayList<>();
-    private int rowLineCount;
-    private Random random = new Random();
+    private List<Boolean> positionList;
+    private int rowLineNumber;
+    private static final Random random = new Random();
 
-    public RowLinePositions(int rowLineCount) {
-        this.rowLineCount = rowLineCount;
-        initializePositionList();
+    public RowLinePositions(List<Boolean> positionList, int rowLineNumber) {
+        this.positionList = positionList;
+        this.rowLineNumber = rowLineNumber;
     }
 
-    private void initializePositionList() {
+    public static RowLinePositions create(int rowLineNumber) {
+        List<Boolean> positionList = new ArrayList<>();
+        initializePositionList(positionList, rowLineNumber);
+        return new RowLinePositions(positionList, rowLineNumber);
+    }
+
+    private static void initializePositionList(List<Boolean> positionList, int rowLineNumber) {
         positionList.add(random.nextBoolean());
-        IntStream.range(1, rowLineCount)
-                .forEach(index -> addRandomBoolean(index));
-        addTrueIfAllFalse();
+        IntStream.range(1, rowLineNumber)
+                .forEach(index -> addRandomBoolean(positionList, index));
+        addTrueIfAllFalse(positionList, rowLineNumber);
     }
 
-    private void addRandomBoolean(int index) {
+    private static void addRandomBoolean(List<Boolean> positionList, int index) {
         if (positionList.get(index - 1)) {
             positionList.add(false);
             return;
@@ -31,11 +37,11 @@ public class RowLinePositions {
         positionList.add(random.nextBoolean());
     }
 
-    private void addTrueIfAllFalse() {
+    private static void addTrueIfAllFalse(List<Boolean> positionList, int rowLineNumber) {
         boolean isAllFalse = positionList.stream()
                 .allMatch(e -> e.equals(Boolean.FALSE));
         if (isAllFalse) {
-            positionList.set(random.nextInt(rowLineCount), Boolean.TRUE);
+            positionList.set(random.nextInt(rowLineNumber), Boolean.TRUE);
         }
     }
 
