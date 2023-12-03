@@ -23,6 +23,10 @@ public class Participants {
         return Collections.unmodifiableList(participants);
     }
 
+    public boolean isParticipants(String participant) {
+        return participants.contains(new Name(participant));
+    }
+
     private void validateParticipantCount(int participantCount) {
         if (participantCount < MIN_PARTICIPANTS) {
             throw new IllegalArgumentException("최소 2명 이상 참가해야됩니다.");
