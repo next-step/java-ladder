@@ -15,15 +15,23 @@ public class RandomLinesFactory {
 
     public Lines createLines(int height, int participantCount) {
         List<Line> lines = new ArrayList<>();
-        Line firstLine = lineCreationStrategy.createNextLine(createFirstLine(), height);
+        Line firstLine = createFirstLine(height);
         lines.add(firstLine);
         while (participantCount >= 2) {
-            Line nextLine = lineCreationStrategy.createNextLine(firstLine, height);
+            Line nextLine = createNextLine(height, firstLine);
             lines.add(nextLine);
             firstLine = nextLine;
             participantCount--;
         }
         return new Lines(lines);
+    }
+
+    private Line createFirstLine(int height) {
+        return lineCreationStrategy.createNextLine(createFirstLine(), height);
+    }
+
+    private Line createNextLine(int height, Line firstLine) {
+        return lineCreationStrategy.createNextLine(firstLine, height);
     }
 
     private Line createFirstLine() {

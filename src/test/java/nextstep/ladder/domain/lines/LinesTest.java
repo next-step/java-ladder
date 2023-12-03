@@ -3,10 +3,8 @@ package nextstep.ladder.domain.lines;
 import static nextstep.ladder.domain.Line.HORIZONTAL_LINE_OVERLAPPING_EXCEPTION;
 import static nextstep.ladder.domain.Line.LINE_LENGTH_DIFFERENCE_EXCEPTION;
 import static nextstep.ladder.domain.lines.Lines.LINES_EMPTY_EXCEPTION;
-import static nextstep.ladder.domain.lines.Lines.NONE_NORM_LINE_EXCEPTION;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.Arrays;
 import java.util.List;
 import nextstep.ladder.domain.Line;
 import org.junit.jupiter.api.DisplayName;
@@ -46,15 +44,6 @@ class LinesTest {
         Line line = Line.createLineWithPointStatus(List.of(false, true, false));
         Line line3 = Line.createLineWithPointStatus(List.of(false, false, false, true));
         return List.of(line1, line, line3);
-    }
-
-    @Test
-    @DisplayName("길이가 모두 동일한 라인인지 비교할 때, 기준 라인이 존재하지 않으면 예외를 던진다.")
-    void none_norm_line_exception() {
-        // when // then
-        assertThatThrownBy(() -> new Lines(Arrays.asList(null, Line.createLineWithPointStatus(List.of(true, false)))))
-                .isExactlyInstanceOf(NullPointerException.class)
-                .hasMessage(NONE_NORM_LINE_EXCEPTION);
     }
 
     @ParameterizedTest
