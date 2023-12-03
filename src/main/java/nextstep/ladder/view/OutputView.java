@@ -3,6 +3,7 @@ package nextstep.ladder.view;
 import nextstep.ladder.domain.*;
 
 public class OutputView {
+    private static final String ALL_PLAYERS = "all";
     private static final StringBuilder sb = new StringBuilder();
 
     public static void printLadder(Players players, Ladder ladder, Amounts amounts) {
@@ -57,14 +58,14 @@ public class OutputView {
 
     public static void printResult(LadderGameResult ladderGameResult) {
         String inputName = "";
-        while (!inputName.equals("all")) {
+        while (!inputName.equals(ALL_PLAYERS)) {
             inputName = InputView.inputPlayer();
 
-            if (inputName.equals("all")) {
+            System.out.println("실행 결과");
+            if (inputName.equals(ALL_PLAYERS)) {
                 for (Player player : ladderGameResult.keySet()) {
                     System.out.printf("%s : %s\n", player, ladderGameResult.get(player));
                 }
-
                 continue;
             }
 

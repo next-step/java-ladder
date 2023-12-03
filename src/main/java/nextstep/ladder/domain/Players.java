@@ -33,15 +33,19 @@ public class Players implements Iterable<Player> {
         return this.players.size();
     }
 
-    @Override
-    public Iterator<Player> iterator() {
-        return this.players.iterator();
-    }
-
     public Player name(String inputName) {
         return this.players.stream()
                 .filter(name -> name.isSame(inputName))
                 .findAny()
                 .orElse(Player.NONE);
+    }
+
+    public Player player(int index) {
+        return this.players.get(index);
+    }
+
+    @Override
+    public Iterator<Player> iterator() {
+        return this.players.iterator();
     }
 }

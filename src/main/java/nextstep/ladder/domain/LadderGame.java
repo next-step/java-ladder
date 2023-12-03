@@ -12,8 +12,12 @@ public class LadderGame {
     }
 
     public LadderGameResult play() {
-        Line startLine = ladder.startLine();
-        LadderGameResult ladderGameResult = ladder.play(players, startLine, amounts);
+        LadderGameResult ladderGameResult = new LadderGameResult();
+        for (int pointIndex = 0; pointIndex < players.size(); pointIndex++) {
+            int amountIndex = ladder.movingResult(ladder.startLine(), pointIndex, 1);
+            ladderGameResult.put(players.player(pointIndex), amounts.amount(amountIndex));
+        }
+
         return ladderGameResult;
     }
 }

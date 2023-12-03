@@ -45,19 +45,19 @@ public class Point {
     }
 
     public Direction compareMove(Point leftPoint, boolean firstIndex, boolean lastIndex) {
-        if(firstIndex) {
-            if(this.point) {
-                return Direction.RIGHT;
-            }
+        if(firstIndex && this.point) {
+            return Direction.RIGHT;
+        }
 
+        if(firstIndex) {
             return Direction.DOWN;
         }
 
-        if(lastIndex) {
-            if(leftPoint.isPoint()) {
-                return Direction.LEFT;
-            }
+        if(lastIndex && leftPoint.isPoint()) {
+            return Direction.LEFT;
+        }
 
+        if(lastIndex) {
             return Direction.DOWN;
         }
 

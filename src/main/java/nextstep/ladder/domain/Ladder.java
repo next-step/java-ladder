@@ -37,10 +37,6 @@ public class Ladder implements Iterable<Line> {
         }
     }
 
-    public List<Line> lines() {
-        return this.lines;
-    }
-
     public int height() {
         return this.lines.size();
     }
@@ -49,63 +45,69 @@ public class Ladder implements Iterable<Line> {
         return this.lines.get(0);
     }
 
-    public LadderGameResult play(Players players, Line startLine, Amounts amounts) {
-        LadderGameResult ladderGameResult = new LadderGameResult();
-        int pointIndex = 0;
-        for (Player player : players) {
-            int amountIndex = movingResult(startLine, pointIndex, 1);
-            Amount amount = amounts.get(amountIndex);
-            pointIndex++;
-            ladderGameResult.put(player, amount);
+    public int movingResult(Line line, int pointIndex, int ladderHeight) {
+        if (ladderHeight - 1 == this.height()) {
+            return pointIndex;
         }
 
-        return ladderGameResult;
+        Direction direction = direction(line, pointIndex, ladderHeight);
+        if (direction == Direction.DOWN) {
+            return movingResult(downPoint(ladderHeight), pointIndex, ladderHeight + 1);
+        }
+
+        if (direction == Direction.LEFT) {
+            return movingResult(downPoint(ladderHeight), leftPointIndex(pointIndex), ladderHeight + 1);
+        }
+
+        if (direction == Direction.RIGHT) {
+            return movingResult(downPoint(ladderHeight), rightPointIndex(pointIndex), ladderHeight + 1);
+        }
+
+        return 0;
     }
 
-    private int movingResult(Line line, int pointIndex, int ladderHeight) {
+    private Direction direction(Line line, int pointIndex, int ladderHeight) {
         int firstIndex = 0;
-        int lastIndex = lines.get(0).points().size();
-
+        int lastIndex = line.points().size();
         Point point = null;
         Direction direction = null;
 
         if (pointIndex == firstIndex) {
             point = line.points().get(pointIndex);
-            direction = point.compareMove(null, true, false);
+            direction = point.compareMove(new Point(false), true, false);
         }
 
-        else if (pointIndex == lastIndex) {
+        if (pointIndex == lastIndex) {
             point = new Point(false);
-            direction = point.compareMove(line.points().get(pointIndex - 1), false, true);
+            direction = point.compareMove(leftPoint(pointIndex, ladderHeight), false, true);
         }
 
-        else if (pointIndex != firstIndex && pointIndex != lastIndex) {
+        if (pointIndex != firstIndex && pointIndex != lastIndex) {
             point = line.points().get(pointIndex);
-            direction = point.compareMove(lines.get(ladderHeight - 1).points().get(pointIndex - 1), false, false);
+            direction = point.compareMove(leftPoint(pointIndex, ladderHeight), false, false);
         }
 
-        if (direction == Direction.DOWN) {
-            if(ladderHeight == this.height()) {
-                return pointIndex;
-            }
-            return movingResult(lines.get(ladderHeight), pointIndex, ladderHeight + 1);
+        return direction;
+    }
+
+    private Line downPoint(int ladderHeight) {
+        if(ladderHeight == this.lines.size()) {
+            return lines.get(ladderHeight - 1);
         }
 
-        else if (direction == Direction.LEFT) {
-            if (ladderHeight == this.height()) {
-                return pointIndex - 1;
-            }
-            return movingResult(lines.get(ladderHeight), pointIndex - 1, ladderHeight + 1);
-        }
+        return lines.get(ladderHeight);
+    }
 
-        else if (direction == Direction.RIGHT) {
-            if (ladderHeight == this.height()) {
-                return pointIndex + 1;
-            }
-            return movingResult(lines.get(ladderHeight), pointIndex + 1, ladderHeight + 1);
-        }
+    private Point leftPoint(int pointIndex, int ladderHeight) {
+        return downPoint(leftPointIndex(ladderHeight)).points().get(leftPointIndex(pointIndex));
+    }
 
-        return 0;
+    private static int leftPointIndex(int pointIndex) {
+        return pointIndex - 1;
+    }
+
+    private static int rightPointIndex(int pointIndex) {
+        return pointIndex + 1;
     }
 
     @Override
