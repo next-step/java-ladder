@@ -15,6 +15,49 @@ public class Line {
         }
     }
 
+    public int following(int index) {
+        if (index == 0) {
+            return checkingAndGoingRight(index);
+        }
+        if (index == steps.size()) {
+            return checkingAndGoingLeft(index);
+        }
+        return checkingBothDirections(index);
+    }
+
+    private int checkingAndGoingRight(int index) {
+        if (steps.get(index)) {
+            return goingRight(index);
+        }
+        return index;
+    }
+
+    private int checkingAndGoingLeft(int index) {
+        if (steps.get(index - 1)) {
+            return goingLeft(index);
+        }
+        return index;
+    }
+
+    private int checkingBothDirections(int index) {
+        if (steps.get(index)) {
+            return goingRight(index);
+        }
+
+        if (steps.get(index - 1)) {
+            return goingLeft(index);
+        }
+        return index;
+    }
+
+    private int goingLeft(int index) {
+        return index - 1;
+    }
+
+    private int goingRight(int index) {
+        return index + 1;
+    }
+
     public List<Boolean> getLine() {
         return Collections.unmodifiableList(steps);
     }
