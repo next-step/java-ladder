@@ -1,6 +1,7 @@
 package nextstep.ladder.model;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,17 +16,18 @@ public class Game {
     }
 
     private void validate(Ladder ladder, Results results) {
-        if (results.resultSize() > ladder.peopleCount()) {
-            throw new IllegalArgumentException("실행 결과 수는 총 사람수 보다 클 수 없습니다.");
+        if (results.resultSize() != ladder.peopleCount()) {
+            throw new IllegalArgumentException("실행 결과 수는 총 사람수와 같아야 합니다");
         }
+
     }
 
     public GameResult playGame(){
-        Map<String, String> resultMap = new HashMap<>();
+        Map<String, String> resultMap = new LinkedHashMap<>();
         List<Integer> finalPeopleArrived = ladder.finalPeopleArrived();
-        for (int i = 0; i < ladder.peopleCount(); i++) {
-            String result = results.result(finalPeopleArrived.get(i));
-            resultMap.put(ladder.personName(i), result);
+        for (int peopleNumber = 0; peopleNumber < ladder.peopleCount(); peopleNumber++) {
+            String result = results.results(finalPeopleArrived.get(peopleNumber));
+            resultMap.put(ladder.personName(peopleNumber), result);
         }
         return new GameResult(resultMap);
     }

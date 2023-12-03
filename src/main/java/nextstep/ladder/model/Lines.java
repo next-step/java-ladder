@@ -25,7 +25,7 @@ public class Lines {
     public List<Boolean> horizonLineDrawAvailable(int index) {
         return this.lines.stream()
                 .map(line -> line.point(index))
-                .map(point -> !point.equals(Point.NO_POINT))
+                .map(point -> point.equals(Point.LEFT))
                 .collect(Collectors.toList());
     }
 
@@ -33,15 +33,12 @@ public class Lines {
         if (depth == height) {
             return lineIndex;
         }
-
-        for (int i = depth; i < height; i++) {
-            Line selectLine = this.lines.get(lineIndex);
-            lineIndex = move(depth + 1, lineIndex + selectLine.move(i));
-        }
+        Line selectLine = this.lines.get(lineIndex);
+        lineIndex = move(depth + 1, lineIndex + selectLine.move(depth));
         return lineIndex;
     }
 
-    public int lineCount(){
+    public int lineCount() {
         return this.lines.size();
     }
 

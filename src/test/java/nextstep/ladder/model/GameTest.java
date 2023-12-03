@@ -23,7 +23,7 @@ class GameTest {
         Results results = new Results("꽝", "당첨");
         //then
         assertThatThrownBy(() -> new Game(ladder, results))
-                .hasMessageContaining("실행 결과 수는 총 사람수 보다 클 수 없습니다.");
+                .hasMessageContaining("실행 결과 수는 총 사람수와 같아야 합니다");
     }
 
     @Test

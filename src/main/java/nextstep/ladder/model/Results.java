@@ -17,8 +17,14 @@ public class Results {
                 .collect(Collectors.toList());
     }
 
-    public String result(int index){
+    public String results(int index){
         return results.get(index).result();
+    }
+
+    public List<String> results() {
+        return results.stream()
+                .map(Result::result)
+                .collect(Collectors.toList());
     }
 
     public int resultSize() {
