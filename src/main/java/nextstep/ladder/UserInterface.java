@@ -18,13 +18,24 @@ public class UserInterface {
 
         Ladder ladder = Ladder.make(participants, ladderLevel);
 
-        ResultView.resultMessage();
+        ResultView.ladderResultMessage();
         ResultView.printParticipantNames(participants.getParticipants());
         ResultView.printLadder(ladder.getLadder());
         ResultView.printResult(ladderResult.getResults());
 
-        for (int i = 0; i < names.size(); i++) {
-            System.out.println(results.get(ladder.pathFind(i)));
+        while (true) {
+            String participantName = InputView.resultOfParticipant();
+            if (participantName.equals("all")) {
+                ResultView.printAllParticipantsResult(names, ladder, results);
+                break;
+            }
+
+            if (!participants.isParticipants(participantName)) {
+                ResultView.notParticipant();
+                continue;
+            }
+
+            ResultView.printParticipantResult(results, ladder, names.indexOf(participantName));
         }
     }
 }
