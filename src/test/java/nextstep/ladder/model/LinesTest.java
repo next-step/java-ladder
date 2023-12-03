@@ -33,4 +33,22 @@ class LinesTest {
         assertThat(lines.horizonLineDrawAvailable(1))
                 .containsExactly(true, false, true);
     }
+
+    @Test
+    @DisplayName("최종 목적지의 index를 올바르게 리턴한다.")
+    void test2() {
+        //given
+        Line lineA = new Line(List.of(Point.RIGHT, Point.NO_POINT, Point.NO_POINT)
+                , new RandomLineStrategyImpl());
+        Line lineB = new Line(List.of(Point.LEFT, Point.NO_POINT, Point.NO_POINT)
+                , new RandomLineStrategyImpl());
+        List<Line> lineList = new ArrayList<>();
+        lineList.add(lineA);
+        lineList.add(lineB);
+
+        Lines lines = new Lines(lineList, new Height(3));
+        //then
+        assertThat(lines.move(0, 0)).isEqualTo(1);
+        assertThat(lines.move(0, 1)).isEqualTo(0);
+    }
 }

@@ -46,4 +46,8 @@ public class Line {
     List<Point> points() {
         return this.points;
     }
+
+    public int move(int index){
+        return points.get(index).move();
+    }
 }

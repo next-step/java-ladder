@@ -1,6 +1,5 @@
 package nextstep.ladder.model;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,6 +15,10 @@ public class Results {
         this.results = Arrays.stream(results)
                 .map(Result::new)
                 .collect(Collectors.toList());
+    }
+
+    public String result(int index){
+        return results.get(index).result();
     }
 
     public int resultSize() {

@@ -33,6 +33,10 @@ public class People {
                 .collect(Collectors.toList());
     }
 
+    public String name(int index){
+        return this.names.get(index).name();
+    }
+
     public int count(){
         return this.names.size();
     }

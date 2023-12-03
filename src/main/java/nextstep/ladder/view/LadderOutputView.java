@@ -12,7 +12,7 @@ public class LadderOutputView {
     public static final String LINE_INITIAL = "-";
     public static final String BLANK_INITIAL = " ";
 
-    public void getResult(Ladder ladder) {
+    public void getLadderResult(Ladder ladder) {
         System.out.println("실행결과");
         System.out.println();
         viewNames(ladder);
