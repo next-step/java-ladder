@@ -7,7 +7,7 @@ import java.util.Random;
 import java.util.stream.IntStream;
 
 public class RowLinePositions {
-    private List<Boolean> positionList = new ArrayList<>();
+    private List<Boolean> positionList;
     private int rowLineNumber;
     private static final Random random = new Random();
 

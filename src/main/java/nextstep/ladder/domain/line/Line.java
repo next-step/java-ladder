@@ -7,15 +7,12 @@ public class Line {
     private final int rowLineNumber;
     private RowLinePositions rowLinePosition;
 
-    // Refactoring method
     public Line(String[] participants) {
         int participantNumber = participants.length;
         rowLineNumber = participantNumber - 1;
         rowLinePosition = RowLinePositions.create(rowLineNumber);
     }
 
-    // New method
-    // rowLineNumber == participants.length - 1
     public Line(int rowLineNumber) {
         this.rowLineNumber = rowLineNumber;
         rowLinePosition = RowLinePositions.create(rowLineNumber);
@@ -37,10 +34,6 @@ public class Line {
     }
 
     public void movableParticipant(Participant participant) {
-        if (participant.getCurrentIndex() == rowLineNumber) {
-            movableLeft(participant);
-            return;
-        }
         if (movableLeft(participant)) {
             return;
         }
@@ -58,10 +51,6 @@ public class Line {
 
     private boolean movableRight(Participant participant) {
         int index = participant.getCurrentIndex();
-        /**
-         * Fix
-         * - rowLineNumber가 3일 때, index != rowLineNumber로 설정할 경우 index + 1에서 예외 발생
-         */
         if (index != rowLineNumber && isTruePosition(index)) {
             participant.moveRight();
             return true;
