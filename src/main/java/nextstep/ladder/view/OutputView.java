@@ -1,14 +1,11 @@
 package nextstep.ladder.view;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.IntStream;
 import nextstep.ladder.domain.Ladder;
 
 public class OutputView {
 
-    public static final String EXECUTION_RESULT_MESSAGE = "실행결과\n";
-    public static final String NONE_NAMES_OF_PARTICIPANTS_EXCEPTION = "참가자들의 이름들이 존재하지 않습니다.";
+    private static final String EXECUTION_RESULT_MESSAGE = "실행결과\n";
 
     public void printLadderExecutionResult(List<String> namesOfParticipants, Ladder ladder) {
         printExecutionMessage();
@@ -34,7 +31,6 @@ public class OutputView {
         if (isSameAsWidth(participantName, width)) {
             return createMaxSizeParticipantFormat(participantName);
         }
-
         return createNormalParticipantFormat(participantName, width);
     }
 
@@ -51,28 +47,22 @@ public class OutputView {
         return tempName.substring(tempName.length() - (width + 1));
     }
 
-    private void printLadderOfCurrentHeight(List<String> namesOfParticipants, Ladder ladder, int presentHeight) {
-        printCompartmentsOfCurrentHeight(namesOfParticipants.get(0), ladder.getWidth());
-        printPureLadderOfCurrentHeight(namesOfParticipants, ladder, presentHeight);
+    private void printLadderOfCurrentHeight(List<String> namesOfParticipants, Ladder ladder, int currentHeight) {
+        printCompartmentsOfCurrentHeight(ladder.getWidth());
+        printPureLadderOfCurrentHeight(namesOfParticipants, ladder, currentHeight);
     }
 
-    private void printCompartmentsOfCurrentHeight(String participantName, int width) {
-        Optional.ofNullable(participantName).ifPresentOrElse(
-                participantsName -> {
-                    System.out.print(" ".repeat(width));
-                },
-                () -> {
-                    throw new NullPointerException(NONE_NAMES_OF_PARTICIPANTS_EXCEPTION);
-                }
-        );
+    private void printCompartmentsOfCurrentHeight(int width) {
+        System.out.print(" ".repeat(width));
     }
 
     private void printPureLadderOfCurrentHeight(List<String> namesOfParticipants, Ladder ladder,
                                                 int currentHeight) {
-        IntStream.range(0, namesOfParticipants.size() - 1).forEachOrdered(currentPointIndex -> {
+        int bound = namesOfParticipants.size() - 1;
+        for (int currentPointIndex = 0; currentPointIndex < bound; currentPointIndex++) {
             printOnePieceOfLine();
             printHorizontalLine(ladder, currentHeight, currentPointIndex);
-        });
+        }
         printLastPieceOfLine();
     }
 
