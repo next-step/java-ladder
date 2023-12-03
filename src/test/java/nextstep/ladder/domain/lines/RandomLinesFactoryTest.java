@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 class RandomLinesFactoryTest {
 
     @Test
-    @DisplayName("랜덤 사다리를 생성한다.")
+    @DisplayName("이전 라인과 포인트들이 겹치지 않게 동일한 길이로 구성된 랜덤 사다리를 생성한다.")
     void create_random_lines() {
         // given
         int height = 4;
