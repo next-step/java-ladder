@@ -22,6 +22,7 @@ public class LadderGame {
     }
 
     public Ladder generateLadder(int heightOfLadder) {
+        validateHeightOfLadder(heightOfLadder);
         List<HorizontalLine> horizontalLines = new ArrayList<>();
         for (int i = 0; i < heightOfLadder; i++) {
             horizontalLines.add(new HorizontalLine(determineHorizontalLineAtPoint()));
@@ -54,6 +55,12 @@ public class LadderGame {
         }
         if (points.getLast().isFalse()) {
             points.addLast(new Point(horizontalLineStrategy.isAbleToGenerate()));
+        }
+    }
+
+    private void validateHeightOfLadder(int heightOfLadder) {
+        if (heightOfLadder <= 0) {
+            throw new IllegalArgumentException("사다리 높이는 1이상 입력해야합니다.");
         }
     }
 }

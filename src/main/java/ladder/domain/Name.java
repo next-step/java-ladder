@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import org.apache.commons.lang3.ObjectUtils;
+
 public class Name {
 
     private static final int NAME_LENGTH_LIMIT = 5;
@@ -14,7 +16,7 @@ public class Name {
     }
 
     private boolean isEmptyOrNull(String text) {
-        return text == null || text.isEmpty();
+        return ObjectUtils.isEmpty(text);
     }
 
     private void validateTextLengthLimitOver(String value) {
