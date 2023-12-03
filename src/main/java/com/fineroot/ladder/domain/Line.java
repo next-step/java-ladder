@@ -9,40 +9,21 @@ public class Line {
     private final List<Bar> bars = new ArrayList<>();
 
     private Line(final int countOfUser) {
-        initSteps();
+        BarFactory barFactory = new BarFactory(RandomUtils.getBoolean());
+        bars.add(barFactory.first());
         for (int i = 0; i < countOfUser - 2; i++) {
-            addStep(i);
+            bars.add(barFactory.next(RandomUtils.getBoolean()));
         }
-        addLastStep();
+        bars.add(barFactory.last());
     }
-
 
     private Line(final Boolean ... steps){
-        bars.add(Bar.of(false, steps[0]));
+        BarFactory barFactory = new BarFactory(steps[0]);
+        bars.add(barFactory.first());
         for (int i = 0; i < steps.length-1; i++) {
-            bars.add(Bar.of(bars.get(i).currentStep(),steps[i+1]));
+            bars.add(barFactory.next(steps[i+1]));
         }
-        bars.add(Bar.of(bars.get(bars.size()-1).currentStep(), false));
-    }
-
-    private void initSteps() {
-        bars.add(Bar.of(false, RandomUtils.getBoolean()));
-    }
-
-
-    private void addStep(int index) {
-        bars.add(createBar(bars.get(index)));
-    }
-
-    private Bar createBar(Bar bar) {
-        if(!bar.currentStep()){
-            return Bar.of(bar.currentStep(), RandomUtils.getBoolean());
-        }
-        return Bar.of(bar.currentStep(), false);
-    }
-
-    private void addLastStep() {
-        bars.add(Bar.of(bars.get(bars.size()-1).currentStep(),false));
+        bars.add(barFactory.last());
     }
 
     public static Line from(Users users) {
