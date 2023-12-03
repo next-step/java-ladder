@@ -1,21 +1,24 @@
 package ladder.view;
 
+import ladder.domain.InputResults;
 import ladder.domain.Ladder;
 import ladder.domain.Members;
 
 public class OutputView {
 
     private static final String NAME_PADDING_FORMAT = "%6s";
+    private static final String INPUT_RESULT_PADDING_FORMAT = "%6s";
     private static final String HORIZONTAL_LINE_FORMAT = "%5s";
     private static final String EMPTY_TEXT_REGAX = "\\s";
     private static final String HORIZONTAL_LINE = "-";
     private static final String VERTICAL_LINE = "|";
 
-    public static void printResult(Members members, Ladder ladder) {
+    public static void printResult(Members members, Ladder ladder, InputResults inputResults) {
         printResultTitle();
         printNames(members);
         printNewLine();
         printLadder(ladder);
+        printInputResults(inputResults);
     }
 
     private static void printResultTitle() {
@@ -37,7 +40,7 @@ public class OutputView {
         String emptyHorizontalLineMark = String.format(HORIZONTAL_LINE_FORMAT, "");
         String horizontalLineMark = String.format(HORIZONTAL_LINE_FORMAT, "")
             .replaceAll(EMPTY_TEXT_REGAX, HORIZONTAL_LINE);
-        
+
         ladder.horizontalLines().forEach(horizontalLine -> {
             System.out.print(emptyHorizontalLineMark);
             horizontalLine.points().forEach(point -> {
@@ -50,6 +53,13 @@ public class OutputView {
                 }
             });
             System.out.println(VERTICAL_LINE);
+        });
+    }
+
+    private static void printInputResults(InputResults inputResults) {
+        inputResults.values().forEach(inputResult -> {
+            String paddedName = String.format(INPUT_RESULT_PADDING_FORMAT, inputResult.toString());
+            System.out.print(paddedName);
         });
     }
 }

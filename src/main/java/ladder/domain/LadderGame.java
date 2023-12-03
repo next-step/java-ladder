@@ -11,10 +11,12 @@ public class LadderGame {
 
     private final HorizontalLineStrategy horizontalLineStrategy;
     private final Members members;
+    private final InputResults inputResults;
 
-    public LadderGame(HorizontalLineStrategy horizontalLineStrategy, String[] memberNames) {
+    public LadderGame(HorizontalLineStrategy horizontalLineStrategy, String[] memberNames, InputResults inputResults) {
         this.horizontalLineStrategy = horizontalLineStrategy;
         this.members = joinMembers(memberNames);
+        this.inputResults = inputResults;
     }
 
     public Members members() {

@@ -12,7 +12,8 @@ class LadderGameTest {
     void 사다리_생성_확인() {
         FixedHorizontalLineStrategy fixedHorizontalLineStrategy = new FixedHorizontalLineStrategy(true);
         String[] memberNames = {"aaaa", "bbb", "ccc"};
-        LadderGame ladderGame = new LadderGame(fixedHorizontalLineStrategy, memberNames);
+        InputResults inputResults = new InputResults(new String[]{"꽝", "5000", "꽝"}, memberNames);
+        LadderGame ladderGame = new LadderGame(fixedHorizontalLineStrategy, memberNames, inputResults);
         int heightOfLadder = 2;
 
         assertThat(ladderGame.generateLadder(heightOfLadder).horizontalLines()).isEqualTo(
