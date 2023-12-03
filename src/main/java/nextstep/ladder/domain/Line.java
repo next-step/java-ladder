@@ -82,6 +82,10 @@ public class Line {
         return this.points.isEmpty();
     }
 
+    public boolean moveSide(int pointIndex) {
+        return points.get(pointIndex).movable();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
