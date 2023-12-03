@@ -10,6 +10,7 @@ public class Lines {
     public static final String LINES_COUNT_EXCEPTION = "줄이 1개면 사다리를 생성할 수 없습니다.";
     public static final int MIN_SIZE = 1;
     public static final String NONE_NORM_LINE_EXCEPTION = "줄의 길이를 비교할 때, 기준 라인이 존재하지 않습니다.";
+    public static final String LINES_EMPTY_EXCEPTION = "lines가 존재하지 않습니다.";
 
     private final List<Line> lines;
 
@@ -19,9 +20,16 @@ public class Lines {
     }
 
     private void validateLines(List<Line> lines) {
+        validateEmpty(lines);
         validateLinesCount(lines);
         validateSameLength(lines);
         validateLineOverlapping(lines);
+    }
+
+    private void validateEmpty(List<Line> lines) {
+        if (lines == null || lines.isEmpty()) {
+            throw new IllegalArgumentException(LINES_EMPTY_EXCEPTION);
+        }
     }
 
     private void validateLinesCount(List<Line> lines) {

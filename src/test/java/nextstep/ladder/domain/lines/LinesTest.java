@@ -2,6 +2,7 @@ package nextstep.ladder.domain.lines;
 
 import static nextstep.ladder.domain.Line.HORIZONTAL_LINE_OVERLAPPING_EXCEPTION;
 import static nextstep.ladder.domain.Line.LINE_LENGTH_DIFFERENCE_EXCEPTION;
+import static nextstep.ladder.domain.lines.Lines.LINES_EMPTY_EXCEPTION;
 import static nextstep.ladder.domain.lines.Lines.NONE_NORM_LINE_EXCEPTION;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -10,6 +11,8 @@ import java.util.List;
 import nextstep.ladder.domain.Line;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 class LinesTest {
 
@@ -52,5 +55,15 @@ class LinesTest {
         assertThatThrownBy(() -> new Lines(Arrays.asList(null, Line.createLineWithPointStatus(List.of(true, false)))))
                 .isExactlyInstanceOf(NullPointerException.class)
                 .hasMessage(NONE_NORM_LINE_EXCEPTION);
+    }
+
+    @ParameterizedTest
+    @DisplayName("null이나 빈 lines가 들어오면 예외를 던진다.")
+    @NullAndEmptySource
+    void null_and_empty(List<Line> given) {
+        // when // then
+        assertThatThrownBy(() -> new Lines(given))
+                .isExactlyInstanceOf(IllegalArgumentException.class)
+                .hasMessage(LINES_EMPTY_EXCEPTION);
     }
 }
