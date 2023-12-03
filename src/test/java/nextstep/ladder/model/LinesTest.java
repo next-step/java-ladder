@@ -1,6 +1,6 @@
 package nextstep.ladder.model;
 
-import nextstep.ladder.model.strategy.RandomLineStrategy;
+import nextstep.ladder.model.strategy.line.RandomLineStrategyImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,11 +15,11 @@ class LinesTest {
     void test1() {
         //given
         Line lineA = new Line(List.of(Point.NO_POINT, Point.LEFT, Point.NO_POINT, Point.NO_POINT, Point.NO_POINT)
-                , new RandomLineStrategy());
+                , new RandomLineStrategyImpl());
         Line lineB = new Line(List.of(Point.NO_POINT, Point.NO_POINT, Point.NO_POINT, Point.NO_POINT, Point.NO_POINT)
-                , new RandomLineStrategy());
+                , new RandomLineStrategyImpl());
         Line lineC = new Line(List.of(Point.NO_POINT, Point.LEFT, Point.LEFT, Point.NO_POINT, Point.NO_POINT)
-                , new RandomLineStrategy());
+                , new RandomLineStrategyImpl());
 
         List<Line> lineList = new ArrayList<>();
         lineList.add(lineA);

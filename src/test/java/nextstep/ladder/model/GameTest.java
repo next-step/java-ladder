@@ -1,6 +1,6 @@
 package nextstep.ladder.model;
 
-import nextstep.ladder.model.strategy.RandomLineStrategy;
+import nextstep.ladder.model.strategy.line.RandomLineStrategyImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +15,7 @@ class GameTest {
     void test1() {
         //given
         Line line = new Line(List.of(Point.NO_POINT, Point.LEFT, Point.NO_POINT, Point.NO_POINT, Point.NO_POINT)
-                , new RandomLineStrategy());
+                , new RandomLineStrategyImpl());
         Lines lines = new Lines(List.of(line));
         People people = new People("name");
         Ladder ladder = new Ladder(people, lines);
@@ -23,5 +23,9 @@ class GameTest {
         //then
         assertThatThrownBy(() -> new Game(ladder, results))
                 .hasMessageContaining("실행 결과 수는 총 사람수 보다 클 수 없습니다.");
+    }
+    @Test
+    @DisplayName("")
+    void test2(){
     }
 }
