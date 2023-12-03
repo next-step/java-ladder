@@ -1,7 +1,7 @@
 package ladder;
 
 import ladder.domain.Line;
-import ladder.domain.RandomPointCondition;
+import ladder.domain.RandomLineCondition;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -27,7 +27,7 @@ class LineTest {
     @Test
     void 라인_생성_중복없음() {
         int countOfPerson = 3;
-        RandomPointCondition pointCondition = new RandomPointCondition();
+        RandomLineCondition pointCondition = new RandomLineCondition();
         Line line = new Line(countOfPerson, pointCondition);
         List<Boolean> points = line.getPoints();
 

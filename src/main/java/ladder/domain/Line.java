@@ -2,16 +2,17 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Line {
 
+    public static final boolean NO_LINE = false;
+
     private final List<Boolean> points = new ArrayList<>();
 
-    public Line(int countOfPerson, PointCondition pointCondition) {
-        addValue(0, pointCondition.pointExist());
+    public Line(int countOfPerson, LineCondition lineCondition) {
+        addValue(0, lineCondition.lineExist());
         for (int i = 1; i < countOfPerson - 1; i++) {
-            addBooleanValue(i, pointCondition);
+            addBooleanValue(i, lineCondition);
         }
     }
 
@@ -19,12 +20,12 @@ public class Line {
         points.add(index, pointExist);
     }
 
-    private void addBooleanValue(int index, PointCondition pointCondition) {
+    private void addBooleanValue(int index, LineCondition lineCondition) {
         if (prevLineExist(index)) {
-            addValue(index, false);
+            addValue(index, NO_LINE);
         }
         if (!prevLineExist(index)) {
-            addValue(index, pointCondition.pointExist());
+            addValue(index, lineCondition.lineExist());
         }
     }
 

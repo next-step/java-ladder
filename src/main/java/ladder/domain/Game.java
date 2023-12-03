@@ -1,29 +1,39 @@
 package ladder.domain;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Game {
 
-    private final List<Person> persons;
+    private final PersonList persons;
     private final Ladder ladder;
 
-    public Game(List<Person> personList, int ladderHeight) {
-        if (ladderHeight < 2) {
-            throw new IllegalArgumentException("사다리 높이는 1보다 커야 합니다.");
-        }
+    public Game(PersonList personList, int ladderHeight) {
         this.persons = personList;
-        this.ladder = new Ladder(persons.size(), ladderHeight);
+        this.ladder = new Ladder(persons.listSize(), ladderHeight);
+    }
+
+    public Game(PersonList personList, List<LineCondition> conditions) {
+        this.persons = personList;
+        this.ladder = new Ladder(persons.listSize(), conditions);
     }
 
     public String formattedNames() {
-        return persons.stream()
+        return persons.getPersonList().stream()
                 .map(Person::spaceAddedName)
                 .reduce((n1, n2) -> n1 + n2)
                 .get();
     }
 
     public List<Line> ladderLines() {
-        return ladder.getLines();
+        return Collections.unmodifiableList(ladder.getLines());
+    }
+
+    public void playGame() {
+        persons.movePersons(ladder);
+    }
+
+    public PersonList getPersons() {
+        return persons;
     }
 }

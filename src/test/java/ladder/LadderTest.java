@@ -4,7 +4,11 @@ import ladder.domain.Ladder;
 import ladder.domain.Line;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class LadderTest {
 
@@ -13,9 +17,18 @@ class LadderTest {
         int countOfPerson = 3;
         int ladderHeight = 5;
         Ladder ladder = new Ladder(countOfPerson, ladderHeight);
-        String error = "true, true";
+        List<Boolean> errorLine = Arrays.asList(true, true);
 
-        Line firstLine = ladder.getLine(0);
-        assertThat(firstLine.toString().contains(error)).isFalse();
+        Line firstLine = ladder.getLines().get(0);
+        assertThat(firstLine.getPoints()).isNotEqualTo(errorLine);
+    }
+
+    @Test
+    void 사다리_높이_예외() {
+        int countOfPerson = 3;
+        int ladderHeight = 0;
+
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new Ladder(countOfPerson, ladderHeight));
     }
 }

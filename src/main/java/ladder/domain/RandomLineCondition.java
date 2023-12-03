@@ -2,12 +2,12 @@ package ladder.domain;
 
 import java.util.Random;
 
-public class RandomPointCondition implements PointCondition {
+public class RandomLineCondition implements LineCondition {
 
     private static final Random random = new Random();
 
     @Override
-    public boolean pointExist() {
+    public boolean lineExist() {
         return random.nextBoolean();
     }
 }
