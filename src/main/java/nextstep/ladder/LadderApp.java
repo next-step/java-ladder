@@ -9,9 +9,9 @@ public class LadderApp {
     public static final String ALL = "all";
 
     public static void main(String[] args) {
-        final Participants participants = new Participants(inputParticipants());
-        final Results result = new Results(inputResult(participants.countOfPerson()));
-        final Height ladderHeight = new Height(inputLadderHeight());
+        final Participants participants = inputParticipants();
+        final Results result = inputResult(participants.countOfPerson());
+        final Height ladderHeight = inputLadderHeight();
 
         println(participants.toString());
         final Ladder ladder = new Ladder(participants.countOfPerson(), ladderHeight.get());
