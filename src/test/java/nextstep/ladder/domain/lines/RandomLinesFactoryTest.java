@@ -18,8 +18,7 @@ class RandomLinesFactoryTest {
 
         // when
         RandomLinesFactory randomLinesFactory = new RandomLinesFactory(
-                height1 -> Line.createLine2WithPointStatus(List.of(false, true, false, true)),
-                (beforeLine, height12) -> Line.createLine2WithPointStatus(List.of(false, false, false, false)));
+                (beforeLine, currentHeight) -> Line.createLineWithPointStatus(List.of(false, false, false, false)));
         Lines result = randomLinesFactory.createLines(height, participantCount);
 
         // then
@@ -29,9 +28,9 @@ class RandomLinesFactoryTest {
     private Lines createExpectedLines() {
         return new Lines(
                 List.of(
-                        Line.createLine2WithPointStatus(List.of(false, true, false, true)),
-                        Line.createLine2WithPointStatus(List.of(false, false, false, false)),
-                        Line.createLine2WithPointStatus(List.of(false, false, false, false)
+                        Line.createLineWithPointStatus(List.of(false, true, false, true)),
+                        Line.createLineWithPointStatus(List.of(false, false, false, false)),
+                        Line.createLineWithPointStatus(List.of(false, false, false, false)
                         )
                 ));
     }

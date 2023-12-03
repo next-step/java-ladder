@@ -1,8 +1,8 @@
-package nextstep.ladder.domain.lines.strategy;
+package nextstep.ladder.domain.lines.strategy.line;
 
 import nextstep.ladder.domain.Line;
 
-public interface NextLineCreationStrategy {
+public interface LineCreationStrategy {
 
     Line createNextLine(Line beforeLine, int height);
 }

@@ -82,4 +82,11 @@ public class Lines {
     public int hashCode() {
         return Objects.hash(lines);
     }
+
+    @Override
+    public String toString() {
+        return "Lines{" +
+                "lines=" + lines +
+                '}';
+    }
 }

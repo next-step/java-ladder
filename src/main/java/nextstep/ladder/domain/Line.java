@@ -17,11 +17,11 @@ public class Line {
         this.points = points;
     }
 
-    public static Line createLine2WithPoints(List<Point> points) {
+    public static Line createLineWithPoints(List<Point> points) {
         return new Line(points);
     }
 
-    public static Line createLine2WithPointStatus(List<Boolean> pointStatus) {
+    public static Line createLineWithPointStatus(List<Boolean> pointStatus) {
         return new Line(createPoints(pointStatus));
     }
 
@@ -29,9 +29,9 @@ public class Line {
         return pointStatus.stream().map(Point::valueOf).collect(Collectors.toList());
     }
 
-    public Point horizontalLine(int point) {
-        validateLineRange(point);
-        return points.get(point);
+    public Point horizontalLine(int pointIndex) {
+        validateLineRange(pointIndex);
+        return points.get(pointIndex);
     }
 
     private void validateLineRange(int point) {
@@ -81,6 +81,10 @@ public class Line {
         return this.points.size();
     }
 
+    public boolean isEmptyLine() {
+        return this.points.isEmpty();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -96,5 +100,12 @@ public class Line {
     @Override
     public int hashCode() {
         return Objects.hash(points);
+    }
+
+    @Override
+    public String toString() {
+        return "Line{" +
+                "points=" + points +
+                '}';
     }
 }

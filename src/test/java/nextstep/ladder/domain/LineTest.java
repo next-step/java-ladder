@@ -20,7 +20,7 @@ public class LineTest {
     void validate_horizontal_line(int point, Point expected) {
         // given
         List<Boolean> points = createPoints();
-        Line line = Line.createLine2WithPointStatus(points);
+        Line line = Line.createLineWithPointStatus(points);
 
         // when
         Point result = line.horizontalLine(point);
@@ -41,8 +41,8 @@ public class LineTest {
     @DisplayName("라인의 수평선이 겹치면 예외를 던진다.")
     void overlapping_horizontal_line_exception() {
         // given
-        Line line = Line.createLine2WithPointStatus(createPoints());
-        Line targetLine = Line.createLine2WithPointStatus(createTargetPoints());
+        Line line = Line.createLineWithPointStatus(createPoints());
+        Line targetLine = Line.createLineWithPointStatus(createTargetPoints());
 
         // when  // then
         assertThatThrownBy(() -> line.isOverlapping(targetLine))
@@ -62,8 +62,8 @@ public class LineTest {
     @DisplayName("줄의 길이가 다르면 예외를 던진다.")
     void line_length_difference_exception() {
         // given
-        Line line = Line.createLine2WithPointStatus(createPoints());
-        Line targetLine = Line.createLine2WithPointStatus(List.of(false, true, false, true));
+        Line line = Line.createLineWithPointStatus(createPoints());
+        Line targetLine = Line.createLineWithPointStatus(List.of(false, true, false, true));
 
         // when // then
         assertThatThrownBy(() -> line.validateSameSizeAs(targetLine))
@@ -75,7 +75,7 @@ public class LineTest {
     @DisplayName("사이즈를 비교할 라인이 없다면 예외를 던진다.")
     void no_line_creation_exception() {
         // when // then
-        assertThatThrownBy(() -> Line.createLine2WithPointStatus(List.of(true, false)).validateSameSizeAs(null))
+        assertThatThrownBy(() -> Line.createLineWithPointStatus(List.of(true, false)).validateSameSizeAs(null))
                 .isExactlyInstanceOf(NullPointerException.class)
                 .hasMessage(NO_LINE_TO_COMPARE_SIZE_EXCEPTION);
     }

@@ -22,9 +22,9 @@ public class LadderTest {
     }
 
     private Lines createLines() {
-        Line line1 = Line.createLine2WithPointStatus(List.of(true, false, true));
-        Line line = Line.createLine2WithPointStatus(List.of(false, true, false));
-        Line line3 = Line.createLine2WithPointStatus(List.of(false, false, true));
+        Line line1 = Line.createLineWithPointStatus(List.of(true, false, true));
+        Line line = Line.createLineWithPointStatus(List.of(false, true, false));
+        Line line3 = Line.createLineWithPointStatus(List.of(false, false, true));
         return new Lines(List.of(line1, line, line3));
     }
 }

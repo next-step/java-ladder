@@ -1,32 +1,32 @@
 package nextstep.ladder.domain.lines;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.lines.strategy.FirstLineCreationStrategy;
-import nextstep.ladder.domain.lines.strategy.NextLineCreationStrategy;
+import nextstep.ladder.domain.lines.strategy.line.LineCreationStrategy;
 
 public class RandomLinesFactory {
+    private final LineCreationStrategy lineCreationStrategy;
 
-    private final FirstLineCreationStrategy firstLineCreationStrategy;
-    private final NextLineCreationStrategy nextLineCreationStrategy;
-
-    public RandomLinesFactory(FirstLineCreationStrategy firstLineCreationStrategy,
-                              NextLineCreationStrategy nextLineCreationStrategy) {
-        this.firstLineCreationStrategy = firstLineCreationStrategy;
-        this.nextLineCreationStrategy = nextLineCreationStrategy;
+    public RandomLinesFactory(LineCreationStrategy lineCreationStrategy) {
+        this.lineCreationStrategy = lineCreationStrategy;
     }
 
     public Lines createLines(int height, int participantCount) {
         List<Line> lines = new ArrayList<>();
-        Line firstLine = firstLineCreationStrategy.createFirstLine(height);
+        Line firstLine = lineCreationStrategy.createNextLine(createFirstLine(), height);
         lines.add(firstLine);
         while (participantCount >= 2) {
-            Line nextLine = nextLineCreationStrategy.createNextLine(firstLine, height);
+            Line nextLine = lineCreationStrategy.createNextLine(firstLine, height);
             lines.add(nextLine);
             firstLine = nextLine;
             participantCount--;
         }
         return new Lines(lines);
+    }
+
+    private Line createFirstLine() {
+        return Line.createLineWithPointStatus(Collections.emptyList());
     }
 }

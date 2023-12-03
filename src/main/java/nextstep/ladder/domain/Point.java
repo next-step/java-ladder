@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public enum Point {
 
@@ -25,5 +26,12 @@ public enum Point {
 
     public boolean pointStatus() {
         return pointStatus;
+    }
+
+    public Point createNonOverlappingPoint(boolean tempPointStatus) {
+        if (this.pointStatus) {
+            return Point.NOTHING;
+        }
+        return Point.valueOf(tempPointStatus);
     }
 }

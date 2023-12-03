@@ -23,9 +23,9 @@ class LinesTest {
     }
 
     private List<Line> createOverlappingLines() {
-        Line line1 = Line.createLine2WithPointStatus(List.of(true, false, true));
-        Line line = Line.createLine2WithPointStatus(List.of(false, true, false));
-        Line line3 = Line.createLine2WithPointStatus(List.of(false, true, true));
+        Line line1 = Line.createLineWithPointStatus(List.of(true, false, true));
+        Line line = Line.createLineWithPointStatus(List.of(false, true, false));
+        Line line3 = Line.createLineWithPointStatus(List.of(false, true, true));
         return List.of(line1, line, line3);
     }
 
@@ -39,9 +39,9 @@ class LinesTest {
     }
 
     private List<Line> createDifferentLengthLines() {
-        Line line1 = Line.createLine2WithPointStatus(List.of(true, false, true));
-        Line line = Line.createLine2WithPointStatus(List.of(false, true, false));
-        Line line3 = Line.createLine2WithPointStatus(List.of(false, false, false, true));
+        Line line1 = Line.createLineWithPointStatus(List.of(true, false, true));
+        Line line = Line.createLineWithPointStatus(List.of(false, true, false));
+        Line line3 = Line.createLineWithPointStatus(List.of(false, false, false, true));
         return List.of(line1, line, line3);
     }
 
@@ -49,7 +49,7 @@ class LinesTest {
     @DisplayName("길이가 모두 동일한 라인인지 비교할 때, 기준 라인이 존재하지 않으면 예외를 던진다.")
     void none_norm_line_exception() {
         // when // then
-        assertThatThrownBy(() -> new Lines(Arrays.asList(null, Line.createLine2WithPointStatus(List.of(true, false)))))
+        assertThatThrownBy(() -> new Lines(Arrays.asList(null, Line.createLineWithPointStatus(List.of(true, false)))))
                 .isExactlyInstanceOf(NullPointerException.class)
                 .hasMessage(NONE_NORM_LINE_EXCEPTION);
     }
