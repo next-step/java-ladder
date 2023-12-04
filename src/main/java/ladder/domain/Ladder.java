@@ -1,6 +1,6 @@
-package ladder2.domain;
+package ladder.domain;
 
-import ladder2.strategy.RowStrategy;
+import ladder.strategy.RowStrategy;
 
 import java.util.Collections;
 import java.util.List;

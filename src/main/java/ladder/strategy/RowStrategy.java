@@ -1,6 +1,6 @@
-package ladder2.strategy;
+package ladder.strategy;
 
-import ladder2.domain.Point;
+import ladder.domain.Point;
 
 import java.util.List;
 

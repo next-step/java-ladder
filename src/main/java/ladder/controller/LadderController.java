@@ -1,10 +1,10 @@
-package ladder2.controller;
+package ladder.controller;
 
 
-import ladder2.domain.*;
-import ladder2.strategy.RandomRowStrategy;
-import ladder2.view.InputView;
-import ladder2.view.OutputView;
+import ladder.domain.*;
+import ladder.strategy.RandomRowStrategy;
+import ladder.view.InputView;
+import ladder.view.OutputView;
 
 import java.util.Map;
 import java.util.stream.Collectors;

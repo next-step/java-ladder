@@ -1,8 +1,8 @@
-package ladder2;
+package ladder;
 
-import ladder2.controller.LadderController;
-import ladder2.view.InputView;
-import ladder2.view.OutputView;
+import ladder.controller.LadderController;
+import ladder.view.InputView;
+import ladder.view.OutputView;
 
 public class LadderGame {
     public static void main(String[] args) {

@@ -1,11 +1,10 @@
-package ladder2.domain;
+package ladder.domain;
 
-import ladder2.strategy.RandomRowStrategy;
+import ladder.strategy.RandomRowStrategy;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 class RowTest {

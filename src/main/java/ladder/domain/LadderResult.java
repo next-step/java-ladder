@@ -1,4 +1,4 @@
-package ladder2.domain;
+package ladder.domain;
 
 public class LadderResult {
     private final String playerName;

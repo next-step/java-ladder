@@ -1,7 +1,7 @@
-package ladder2.view;
+package ladder.view;
 
-import ladder2.domain.*;
-import ladder2.utils.StringUtils;
+import ladder.domain.*;
+import ladder.utils.StringUtils;
 
 import java.util.List;
 import java.util.Map;
