@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import java.util.List;
 import java.util.Objects;
 import nextstep.ladder.domain.lines.Lines;
+import nextstep.ladder.domain.lines.ParticipantPosition;
 
 public class Ladder {
     private final int width;
@@ -34,7 +35,7 @@ public class Ladder {
     }
 
     public Participant startGame(String participantName, int startPosition) {
-        return this.ladderLines.startGame(participantName, startPosition, 0);
+        return this.ladderLines.startGame(participantName, new ParticipantPosition(startPosition, 0));
     }
 
     @Override

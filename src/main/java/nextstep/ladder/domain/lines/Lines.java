@@ -55,17 +55,15 @@ public class Lines {
                 });
     }
 
-    public Participant startGame(String participantName, int startPosition, int currentHeight) {
-        if (startPosition == this.lines.size()) {
-            ParticipantPosition participantPosition = startAtLastLine();
-            return getLadderSingleGameResult(participantName, participantPosition);
+    public Participant startGame(String participantName, ParticipantPosition participantPosition) {
+        if (participantPosition.isLastLine(this.lines.size())) {
+            return getLadderSingleGameResult(participantName, getNotLastLinePosition());
         }
-        return getLadderSingleGameResult(participantName, new ParticipantPosition(startPosition, currentHeight));
+        return getLadderSingleGameResult(participantName, participantPosition);
     }
 
-    private ParticipantPosition startAtLastLine() {
-        ParticipantPosition participantPosition = new ParticipantPosition(this.lines.size(), 0);
-        return participantPosition.startAtLastLine(this.lines);
+    private ParticipantPosition getNotLastLinePosition() {
+        return new ParticipantPosition(this.lines.size(), 0).startAtLastLine(this.lines);
     }
 
     private Participant getLadderSingleGameResult(String participantName, ParticipantPosition participantPosition) {

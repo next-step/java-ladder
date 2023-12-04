@@ -14,6 +14,10 @@ public class ParticipantPosition {
         this.height = height;
     }
 
+    public boolean isLastLine(int size) {
+        return this.position == size;
+    }
+
     public ParticipantPosition startAtLastLine(List<Line> lines) {
         int maxHeight = lines.get(0).getMaxHeight();
         while (isLessThanMaxHeight(maxHeight)) {
