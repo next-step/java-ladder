@@ -23,4 +23,8 @@ public class Members {
     public int countOfMembers() {
         return values.size();
     }
+
+    public boolean contains(String person) {
+        return values.contains(new Member(person));
+    }
 }

@@ -1,6 +1,6 @@
 package ladder.view;
 
-import ladder.domain.InputResults;
+import ladder.domain.GameResults;
 import ladder.domain.Ladder;
 import ladder.domain.Members;
 
@@ -13,16 +13,23 @@ public class OutputView {
     private static final String HORIZONTAL_LINE = "-";
     private static final String VERTICAL_LINE = "|";
 
-    public static void printResult(Members members, Ladder ladder, InputResults inputResults) {
-        printResultTitle();
+    public static void printResultOfLadder(Members members, Ladder ladder, GameResults gameResults) {
+        printResultOfLadderTitle();
+        printNewLine();
         printNames(members);
         printNewLine();
         printLadder(ladder);
-        printInputResults(inputResults);
+        printInputResults(gameResults);
+        printNewLine();
     }
 
-    private static void printResultTitle() {
-        System.out.println("실행결과");
+    public static void printResultOfGame() {
+        printResultTitle();
+
+    }
+
+    private static void printResultOfLadderTitle() {
+        System.out.println("사다리 결과");
     }
 
     private static void printNames(Members members) {
@@ -56,10 +63,15 @@ public class OutputView {
         });
     }
 
-    private static void printInputResults(InputResults inputResults) {
-        inputResults.values().forEach(inputResult -> {
+    private static void printInputResults(GameResults gameResults) {
+        gameResults.values().forEach(inputResult -> {
             String paddedName = String.format(INPUT_RESULT_PADDING_FORMAT, inputResult.toString());
             System.out.print(paddedName);
         });
     }
+
+    private static void printResultTitle() {
+        System.out.println("실행결과");
+    }
+
 }

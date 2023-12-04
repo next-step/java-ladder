@@ -4,26 +4,26 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class InputResults {
+public class GameResults {
 
-    private final List<InputResult> values;
+    private final List<GameResult> values;
 
-    public InputResults(List<InputResult> values, String[] memberNames) {
+    public GameResults(List<GameResult> values, String[] memberNames) {
         validateCountOfInputResults(values, memberNames);
         this.values = values;
     }
 
-    public InputResults(String[] values, String[] memberNames) {
+    public GameResults(String[] values, String[] memberNames) {
         this(Arrays.stream(values)
-            .map(InputResult::new)
+            .map(GameResult::new)
             .collect(Collectors.toUnmodifiableList()), memberNames);
     }
 
-    public List<InputResult> values() {
+    public List<GameResult> values() {
         return values;
     }
 
-    private void validateCountOfInputResults(List<InputResult> values, String[] memberNames) {
+    private void validateCountOfInputResults(List<GameResult> values, String[] memberNames) {
         if (values.size() != memberNames.length) {
             throw new IllegalArgumentException("실행 결과 갯수는 참여 인원수와 동일해야합니다.");
         }

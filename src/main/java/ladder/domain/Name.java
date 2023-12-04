@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.Objects;
 import org.apache.commons.lang3.ObjectUtils;
 
 public class Name {
@@ -23,6 +24,23 @@ public class Name {
         if (value.length() > NAME_LENGTH_LIMIT) {
             throw new IllegalArgumentException("이름은 " + NAME_LENGTH_LIMIT + "자 이하만 입력가능합니다.");
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Name)) {
+            return false;
+        }
+        Name name = (Name) o;
+        return Objects.equals(value, name.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
     }
 
     @Override

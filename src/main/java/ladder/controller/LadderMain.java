@@ -3,10 +3,11 @@ package ladder.controller;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 import ladder.common.utils.TextManipulator;
-import ladder.domain.InputResult;
-import ladder.domain.InputResults;
+import ladder.domain.GameResult;
+import ladder.domain.GameResults;
 import ladder.domain.Ladder;
 import ladder.domain.LadderGame;
+import ladder.domain.LadderGenerator;
 import ladder.domain.horizontallinecreationstrategy.RandomHorizontalLineStrategy;
 import ladder.view.InputView;
 import ladder.view.OutputView;
@@ -15,16 +16,23 @@ public class LadderMain {
 
     public static void main(String[] args) {
         String[] members = TextManipulator.splitTextByComma(InputView.inputNamesInOneLine());
-        InputResults inputResults = new InputResults(
+        GameResults gameResults = new GameResults(
             Arrays.stream(TextManipulator.splitTextByComma(InputView.inputResultOfLadder()))
-                .map(InputResult::new)
+                .map(GameResult::new)
                 .collect(Collectors.toUnmodifiableList()), members);
-        int heightOfLadder = InputView.inputHeightOfLadder();
+        String heightOfLadder = InputView.inputHeightOfLadder();
 
         RandomHorizontalLineStrategy randomHorizontalLineStrategy = new RandomHorizontalLineStrategy();
-        LadderGame ladderGame = new LadderGame(randomHorizontalLineStrategy, members, inputResults);
-        Ladder ladder = ladderGame.generateLadder(heightOfLadder);
+        LadderGenerator ladderGenerator = new LadderGenerator(randomHorizontalLineStrategy, members, gameResults);
+        Ladder ladder = ladderGenerator.generateLadder(heightOfLadder);
 
-        OutputView.printResult(ladderGame.members(), ladder, inputResults);
+        OutputView.printResultOfLadder(ladderGenerator.members(), ladder, gameResults);
+
+        //// 반복
+        String climber = InputView.inputLadderClimber();
+        LadderGame ladderGame = new LadderGame(ladderGenerator.members(), ladder, gameResults, climber);
+        ladderGame.start();
+        OutputView.printResultOfGame();
+        ////
     }
 }

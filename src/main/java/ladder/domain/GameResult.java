@@ -2,12 +2,12 @@ package ladder.domain;
 
 import org.apache.commons.lang3.ObjectUtils;
 
-public class InputResult {
+public class GameResult {
 
     private static final int INPUT_RESULT_LENGTH_LIMIT = 5;
     private final String value;
 
-    public InputResult(String value) {
+    public GameResult(String value) {
         if (isEmptyOrNull(value)) {
             throw new IllegalArgumentException("한 글자 이상의 결과를 입력해주세요.");
         }
