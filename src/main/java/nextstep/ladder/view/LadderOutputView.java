@@ -1,6 +1,8 @@
 package nextstep.ladder.view;
 
+import nextstep.ladder.model.GameResult;
 import nextstep.ladder.model.Ladder;
+import nextstep.ladder.model.Results;
 
 import java.util.List;
 
@@ -11,8 +13,18 @@ public class LadderOutputView {
     public static final String WALL = "|";
     public static final String LINE_INITIAL = "-";
     public static final String BLANK_INITIAL = " ";
+    public static final String COLON = ":";
 
-    public void getResult(Ladder ladder) {
+    public void viewGameResult(GameResult gameResult, String resultName) {
+        System.out.println(gameResult.getPeopleResult(resultName));
+    }
+
+    public void viewTotalGameResult(GameResult gameResult) {
+        gameResult.gameResult()
+                .forEach((k, v) -> System.out.println(k + " " + COLON + " " + v));
+    }
+
+    public void getLadderResult(Ladder ladder, Results results) {
         System.out.println("실행결과");
         System.out.println();
         viewNames(ladder);
@@ -21,6 +33,7 @@ public class LadderOutputView {
             drawHorizon(ladder, list);
             System.out.println();
         }
+        viewResults(results);
     }
 
     private void drawHorizon(Ladder ladder, List<Boolean> list) {
@@ -45,6 +58,13 @@ public class LadderOutputView {
     private void viewNames(Ladder ladder) {
         for (String name : ladder.peopleNames()) {
             System.out.printf("%" + (MAX_NAME_LENGTH + 1) + "s", name);
+        }
+        System.out.println();
+    }
+
+    private void viewResults(Results results) {
+        for (String result : results.results()) {
+            System.out.printf("%" + (MAX_NAME_LENGTH + 1) + "s", result);
         }
         System.out.println();
     }

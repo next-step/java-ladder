@@ -1,6 +1,6 @@
 package nextstep.ladder.model;
 
-import nextstep.ladder.model.strategy.LineStrategy;
+import nextstep.ladder.model.strategy.line.LineStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +29,7 @@ public class Line {
         }
         if (drawOrStop(lineStrategy)) {
             points.add(Point.LEFT);
+            this.points.set(pointIndex, Point.RIGHT);
             return;
         }
         points.add(Point.NO_POINT);
@@ -44,5 +45,9 @@ public class Line {
 
     List<Point> points() {
         return this.points;
+    }
+
+    public int move(int index){
+        return points.get(index).move();
     }
 }

@@ -1,5 +1,6 @@
 package nextstep.ladder.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
@@ -15,15 +16,28 @@ public class Ladder {
         return this.people.names();
     }
 
-    public int height() {
-        return this.lines.height();
-    }
-
     public int peopleCount() {
         return this.people.count();
     }
 
+    public String personName(int index) {
+        return people.name(index);
+    }
+
+    public int height() {
+        return this.lines.height();
+    }
+
+
     public List<Boolean> horizonLineDrawAvailable(int index) {
         return this.lines.horizonLineDrawAvailable(index);
+    }
+
+    public List<Integer> finalPeopleArrived() {
+        List<Integer> arrived = new ArrayList<>();
+        for (int startIndex = 0; startIndex < lines.lineCount(); startIndex++) {
+            arrived.add(lines.move(0, startIndex));
+        }
+        return arrived;
     }
 }
