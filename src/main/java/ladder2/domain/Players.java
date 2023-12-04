@@ -1,6 +1,7 @@
 package ladder2.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -41,7 +42,7 @@ public class Players {
     }
 
     public List<Player> players() {
-        return players;
+        return Collections.unmodifiableList(players);
     }
 
     public long lengthMax() {

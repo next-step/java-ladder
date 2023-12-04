@@ -18,7 +18,6 @@ public class Row {
     public void move(Player player) {
         Point point = points.get(player.position());
 
-
         if (point.move() == Direction.LEFT) {
             player.moveLeft();
         }
@@ -30,6 +29,10 @@ public class Row {
 
     public int size() {
         return points.size();
+    }
+
+    public List<Point> points() {
+        return points;
     }
 
     @Override
