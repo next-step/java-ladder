@@ -50,7 +50,7 @@ public class InputView {
         }
     }
 
-    public String participantName() {
+    public String targetName() {
         System.out.println(INPUT_PARTICIPANT_NAME_MESSAGE);
         return scanner.nextLine();
     }
