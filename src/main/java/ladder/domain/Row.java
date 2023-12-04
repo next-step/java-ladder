@@ -31,7 +31,7 @@ public class Row {
         return points.size();
     }
 
-    public List<Point> points() {
+    public List<Point> values() {
         return points;
     }
 

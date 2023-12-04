@@ -1,6 +1,8 @@
 package ladder.view;
 
-import ladder.domain.*;
+import ladder.domain.LadderResult;
+import ladder.domain.PlayLadder;
+import ladder.domain.Point;
 import ladder.utils.StringUtils;
 
 import java.util.List;
@@ -40,7 +42,7 @@ public class OutputView {
         playLadder.rows()
                 .forEach(row -> {
                     stringBuffer.append(offPath(playLadder.lengthMax()));
-                    stringBuffer.append(createRow(row.points(), playLadder.lengthMax()));
+                    stringBuffer.append(createRow(row.values(), playLadder.lengthMax()));
                     stringBuffer.append("\n");
                 });
     }

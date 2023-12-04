@@ -30,11 +30,11 @@ public class Prizes {
                 .orElseThrow();
     }
 
-    public String value(int index){
+    public String value(int index) {
         return prizes.get(index).value();
     }
 
-    public List<Prize> prizes() {
+    public List<Prize> values() {
         return Collections.unmodifiableList(prizes);
     }
 

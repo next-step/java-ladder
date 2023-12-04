@@ -17,12 +17,12 @@ public class Ladder {
     public static Ladder from(LadderSize ladderSize, RowStrategy rowStrategy) {
         return new Ladder(
                 Stream.generate(() -> Row.from(rowStrategy.generate(ladderSize.width())))
-                .limit(ladderSize.height())
-                .collect(Collectors.toList()));
+                        .limit(ladderSize.height())
+                        .collect(Collectors.toList()));
     }
 
     public void move(Players players) {
-        for (Player player : players.players()) {
+        for (Player player : players.values()) {
             rows.forEach(row -> row.move(player));
         }
     }

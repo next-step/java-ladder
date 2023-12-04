@@ -41,7 +41,7 @@ public class Players {
         return players.size();
     }
 
-    public List<Player> players() {
+    public List<Player> values() {
         return Collections.unmodifiableList(players);
     }
 

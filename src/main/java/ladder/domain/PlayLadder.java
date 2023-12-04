@@ -26,11 +26,11 @@ public class PlayLadder {
     }
 
     public List<Player> players() {
-        return Collections.unmodifiableList(players.players());
+        return Collections.unmodifiableList(players.values());
     }
 
     public List<Prize> prizes() {
-        return prizes.prizes();
+        return prizes.values();
     }
 
     public List<Row> rows() {
@@ -38,6 +38,6 @@ public class PlayLadder {
     }
 
     public int lengthMax() {
-        return (int)Math.max(players.lengthMax(), prizes.lengthMax());
+        return (int) Math.max(players.lengthMax(), prizes.lengthMax());
     }
 }

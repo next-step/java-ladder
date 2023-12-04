@@ -34,7 +34,7 @@ public class LadderController {
     }
 
     public Map<String, LadderResult> ladderResults(Players players, Prizes prizes) {
-        return players.players()
+        return players.values()
                 .stream()
                 .map(player -> new LadderResult(player.name(), prizes.value(player.position())))
                 .collect(Collectors.toMap(LadderResult::playerName, ladderResult -> ladderResult));
