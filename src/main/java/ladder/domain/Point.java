@@ -5,9 +5,7 @@ public class Point {
     private final boolean left;
     private final boolean right;
 
-    private final PointType type;
-
-    private Point(boolean left, boolean right, PointType type) {
+    private Point(boolean left, boolean right) {
 
         if (left && right) {
             throw new IllegalArgumentException("양방향 모두가 이동가능할 수는 없습니다.");
@@ -15,31 +13,26 @@ public class Point {
 
         this.left = left;
         this.right = right;
-        this.type = type;
     }
 
     public static Point first(boolean right) {
-        return of(false, right, PointType.FIRST);
+        return of(false, right);
     }
 
     public Point last() {
-        return of(this.right, false, PointType.LAST);
+        return of(this.right, false);
     }
 
     public Point next(boolean right) {
         if (this.right) {
-            return of(true, false, PointType.MIDDLE);
+            return of(true, false);
         }
 
-        return of(false, right, PointType.MIDDLE);
+        return of(false, right);
     }
 
     public static Point of(boolean left, boolean right) {
-        return new Point(left, right, PointType.MIDDLE);
-    }
-
-    public static Point of(boolean left, boolean right, PointType pointType) {
-        return new Point(left, right, pointType);
+        return new Point(left, right);
     }
 
     public Direction move() {
@@ -54,12 +47,8 @@ public class Point {
         return Direction.DOWN;
     }
 
-    public boolean right() {
-        return right;
-    }
-
-    public boolean isLast() {
-        return type == PointType.LAST;
+    public boolean left() {
+        return left;
     }
 
     @Override

@@ -41,7 +41,6 @@ public class OutputView {
     private void createBody(PlayLadder playLadder, StringBuffer stringBuffer) {
         playLadder.rows()
                 .forEach(row -> {
-                    stringBuffer.append(offPath(playLadder.lengthMax()));
                     stringBuffer.append(createRow(row.values(), playLadder.lengthMax()));
                     stringBuffer.append("\n");
                 });
@@ -49,13 +48,7 @@ public class OutputView {
 
     private String createRow(List<Point> points, int lengthMax) {
         return points.stream()
-                .map(point -> {
-                    if (point.isLast()) {
-                        return "";
-                    }
-
-                    return createPoint(point.right(), onPath(lengthMax), offPath(lengthMax));
-                })
+                .map(point -> createPoint(point.left(), onPath(lengthMax), offPath(lengthMax)))
                 .collect(Collectors.joining());
     }
 
