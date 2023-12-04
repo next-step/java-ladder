@@ -18,11 +18,11 @@ public class Row {
     public void move(Player player) {
         Point point = points.get(player.position());
 
-        if (point.move() == Direction.LEFT) {
+        if (point.left()) {
             player.moveLeft();
         }
 
-        if (point.move() == Direction.RIGHT) {
+        if (point.right()) {
             player.moveRight();
         }
     }
