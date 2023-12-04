@@ -30,7 +30,11 @@ public class LadderMain {
                                         new RandomPointCreationStrategy(
                                                 new DefaultRandomService(
                                                         new Random()))))));
+
+        String participantName = inputView.participantName();
+
         Ladder ladder = ladderController.startLadderGame(names, height);
+
         outputView.printLadderExecutionResult(names, ladder);
     }
 }
