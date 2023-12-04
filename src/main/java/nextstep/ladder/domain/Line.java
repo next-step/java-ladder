@@ -3,7 +3,6 @@ package nextstep.ladder.domain;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import nextstep.ladder.domain.lines.position.Height;
 
 public class Line {
 
