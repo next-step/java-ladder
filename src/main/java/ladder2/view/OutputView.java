@@ -1,58 +1,72 @@
 package ladder2.view;
 
+import ladder2.domain.*;
+import ladder2.utils.StringUtils;
 
-import ladder.utils.StringUtils;
-import ladder2.domain.LadderResult;
-import ladder2.domain.PlayLadder;
-
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class OutputView {
 
     private static final String DASH = "-";
     private static final String BLANK = " ";
+    private static final String PIPE = "|";
 
     public void printLadder(PlayLadder playLadder) {
         System.out.println();
         StringBuffer stringBuffer = new StringBuffer();
-        stringBuffer.append("사다리 결과").append("\n");
-        printHeader(playLadder, stringBuffer);
-        stringBuffer.append("\n");
+        createHaeder(playLadder, stringBuffer);
         createBody(playLadder, stringBuffer);
         createFooter(playLadder, stringBuffer);
 
         System.out.println(stringBuffer);
     }
 
-    private void printHeader(PlayLadder playLadder, StringBuffer stringBuffer) {
-        playLadder.players()
-                .forEach(player -> stringBuffer.append(fixedRow(player.name(), playLadder.lengthMax())));
+    private void createHaeder(PlayLadder playLadder, StringBuffer stringBuffer) {
+        stringBuffer.append("사다리 결과").append("\n");
+        stringBuffer.append(playLadder.players()
+                .stream()
+                .map(player -> fixedRow(player.name(), playLadder.lengthMax()))
+                .collect(Collectors.joining()));
+        stringBuffer.append("\n");
     }
 
     private String fixedRow(String name, long nameLengthMax) {
-        return StringUtils.leftPad(name, nameLengthMax + 1, " ");
+        return StringUtils.leftPad(name, nameLengthMax + 1, BLANK);
     }
 
     private void createBody(PlayLadder playLadder, StringBuffer stringBuffer) {
-        String onPath = DASH.repeat((int) playLadder.lengthMax());
-        String offPath = BLANK.repeat((int) playLadder.lengthMax());
-
-
-        playLadder.ladder()
+        playLadder.rows()
                 .forEach(row -> {
-                    stringBuffer.append(offPath).append("|");
-                    row.points().forEach(point -> {
-                        if(row.points().size() -1 == row.points().indexOf(point)){
-                            return;
-                        }
-                        stringBuffer.append(createPath(point.right(), onPath, offPath)).append("|");
-                    });
+                    stringBuffer.append(offPath(playLadder.lengthMax()));
+                    stringBuffer.append(createRow(row.points(), playLadder.lengthMax()));
                     stringBuffer.append("\n");
                 });
     }
 
-    private String createPath(Boolean path, String onPath, String offPath) {
-        return path ? onPath : offPath;
+    private String createRow(List<Point> points, int lengthMax) {
+        return points.stream()
+                .map(point -> {
+                    if (point.isLast()) {
+                        return "";
+                    }
+
+                    return createPoint(point.right(), onPath(lengthMax), offPath(lengthMax));
+                })
+                .collect(Collectors.joining());
+    }
+
+    private String createPoint(Boolean point, String onPath, String offPath) {
+        return point ? onPath : offPath;
+    }
+
+    private static String onPath(int lengthMax) {
+        return DASH.repeat(lengthMax) + PIPE;
+    }
+
+    private static String offPath(int lengthMax) {
+        return BLANK.repeat(lengthMax) + PIPE;
     }
 
     private void createFooter(PlayLadder playLadder, StringBuffer stringBuffer) {
@@ -81,8 +95,8 @@ public class OutputView {
     }
 
     private void printResultAll(Map<String, LadderResult> ladderResults) {
-        for (String name : ladderResults.keySet()) {
-            System.out.println(name + " : " + ladderResults.get(name).prize());
-        }
+        ladderResults.keySet()
+                .stream()
+                .forEach(name -> System.out.println(name + " : " + ladderResults.get(name).prize()));
     }
 }

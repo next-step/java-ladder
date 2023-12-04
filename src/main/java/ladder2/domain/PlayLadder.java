@@ -33,11 +33,11 @@ public class PlayLadder {
         return prizes.prizes();
     }
 
-    public List<Row> ladder() {
+    public List<Row> rows() {
         return ladder.rows();
     }
 
-    public long lengthMax() {
-        return Math.max(players.lengthMax(), prizes.lengthMax());
+    public int lengthMax() {
+        return (int)Math.max(players.lengthMax(), prizes.lengthMax());
     }
 }
