@@ -11,11 +11,11 @@ public class LadderFactory {
     private final People people;
 
 
-    public LadderFactory(String names) throws Exception {
+    public LadderFactory(String names){
         this.people = new People(names);
     }
 
-    public Ladder ladder(int height) throws Exception {
+    public Ladder ladder(int height){
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height; ++i) {
             lines.add(new Line(points()));

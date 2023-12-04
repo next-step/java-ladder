@@ -7,7 +7,7 @@ public class People {
 
     private final List<Person> people = new ArrayList<>();
 
-    public People(String names) throws Exception {
+    public People(String names){
         String[] nameArr = names.split(",");
         for (String name : nameArr) {
             people.add(new Person(name));
