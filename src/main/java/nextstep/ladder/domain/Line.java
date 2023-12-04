@@ -82,7 +82,7 @@ public class Line {
         return this.points.isEmpty();
     }
 
-    public boolean moveSide(int pointIndex) {
+    public boolean ableToMoveSideWay(int pointIndex) {
         return points.get(pointIndex).movable();
     }
 
@@ -108,5 +108,9 @@ public class Line {
         return "Line{" +
                 "points=" + points +
                 '}';
+    }
+
+    public int calculateDir(int currentHeight) {
+        return 0;
     }
 }

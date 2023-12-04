@@ -78,7 +78,7 @@ public class LineTest {
         Line line = Line.createLineWithPointStatus(List.of(false, true, false));
 
         // when
-        boolean result = line.moveSide(given);
+        boolean result = line.ableToMoveSideWay(given);
 
         // then
         assertThat(result).isEqualTo(expected);

@@ -2,7 +2,10 @@ package nextstep.ladder.domain.lines;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.Participant;
+import nextstep.ladder.domain.Point;
 
 public class Lines {
 
@@ -56,6 +59,73 @@ public class Lines {
 
     public List<Line> getLines() {
         return lines;
+    }
+
+    public Participant startGame(Participant participant, int startPosition, int currentHeight) {
+        if (startPosition == this.lines.size()) {
+            CurrentLadderPosition currentLadderPosition = startWithLastLine();
+            return startWithNormalLine(new Participant(participant.getName() , currentLadderPosition.getPosition()), currentLadderPosition.getPosition(),
+                    currentLadderPosition.getHeight());
+        }
+
+        return startWithNormalLine(participant, startPosition, currentHeight);
+    }
+
+    private Participant startWithNormalLine(Participant participant, int startPosition, int currentHeight) {
+        int maxHeight = this.lines.get(0).getMaxHeight();
+        int currentPosition = startPosition;
+        while (currentHeight < maxHeight) {
+            int dir = moveDir(currentPosition, currentHeight);
+            participant.move(dir);
+            currentPosition += dir;
+            currentHeight++;
+        }
+        return participant;
+    }
+
+    private CurrentLadderPosition startWithLastLine() {
+        int maxHeight = this.lines.get(0).getMaxHeight();
+        int currentHeight = 0;
+        int currentPosition = this.lines.size();
+
+        while (currentHeight < maxHeight) {
+            if (findPoint(currentPosition, currentHeight)) {
+                return new CurrentLadderPosition(currentPosition - 1, currentHeight + 1);
+            }
+            currentHeight++;
+        }
+        return new CurrentLadderPosition(currentPosition, maxHeight);
+    }
+
+    private boolean findPoint(int currentPosition, int currentHeight) {
+        Point leftPoint = Optional.ofNullable(lines.get(currentPosition - 1))
+                .map(line -> line.horizontalLine(currentHeight))
+                .orElse(Point.NOTHING);
+        return leftPoint.movable();
+    }
+
+    private int moveDir(int currentPosition, int currentHeight) {
+        Line currentLine = lines.get(currentPosition);
+        if (currentLine.ableToMoveSideWay(currentHeight)) {
+            return 1;
+        }
+
+        int beforePosition = getBeforePosition(currentPosition);
+        Point leftPoint = Optional.ofNullable(lines.get(beforePosition))
+                .map(line -> line.horizontalLine(currentHeight))
+                .orElse(Point.NOTHING);
+        if (leftPoint.movable()) {
+            return -1;
+        }
+
+        return 0;
+    }
+
+    private int getBeforePosition(int currentPosition) {
+        if (currentPosition == 0 || currentPosition > this.lines.size()) {
+            return 0;
+        }
+        return currentPosition - 1;
     }
 
     @Override

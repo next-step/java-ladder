@@ -6,6 +6,8 @@ import java.util.List;
 import nextstep.ladder.domain.lines.Lines;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class LadderTest {
 
@@ -26,5 +28,24 @@ public class LadderTest {
         Line line = Line.createLineWithPointStatus(List.of(false, true, false));
         Line line3 = Line.createLineWithPointStatus(List.of(false, false, true));
         return new Lines(List.of(line1, line, line3));
+    }
+
+    @ParameterizedTest
+    @DisplayName("사다리 타기를 실행해 참가자가 어느 라인에 위치하는지 알려준다")
+    @CsvSource(value = {"0, 3", "1, 1", "2, 0", "3, 2"})
+    void start_game(int given, int expected) {
+        // given
+        Ladder ladder = createLadder();
+
+        // when
+        Participant result = ladder.startGame(new Participant("pobi", given), given);
+
+        // then
+        assertThat(result).isEqualTo(new Participant("pobi", expected));
+    }
+
+    private Ladder createLadder() {
+        List<String> names = List.of("pobi", "honux", "crong", "jk");
+        return new Ladder(names, createLines());
     }
 }

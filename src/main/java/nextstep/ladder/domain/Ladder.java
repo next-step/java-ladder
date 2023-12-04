@@ -33,6 +33,10 @@ public class Ladder {
         return ladderLines;
     }
 
+    public Participant startGame(Participant participant, int startPosition) {
+        return this.ladderLines.startGame(participant, startPosition, 0);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
