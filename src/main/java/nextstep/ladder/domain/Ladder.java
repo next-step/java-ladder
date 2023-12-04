@@ -2,34 +2,36 @@ package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Ladder {
-    public static int MAX_PLAYER_NAME_LENGTH = 5;
-    private final List<String> playerNames;
-    private final List<Line> lines = new ArrayList<>();
+    private static final Random random = new Random();
+    private final Players players;
+    private final List<Line> lines;
 
-    public Ladder(List<String> playerNames, int height, LineStrategy lineStrategy) {
-        validateNameLen(playerNames);
-        this.playerNames = playerNames;
-
-        for (int i = 0; i < height; i++) {
-            lines.add(new Line(playerNames.size(), lineStrategy));
-        }
+    private Ladder(Players players, List<Line> lines) {
+        this.players = players;
+        this.lines = lines;
     }
 
-    private static void validateNameLen(List<String> playerNames) {
-        for (String player : playerNames) {
-            if (player.length() > MAX_PLAYER_NAME_LENGTH) {
-                throw new IllegalArgumentException("최대 5자까지 입력가능합니다." + player);
-            }
+    public static Ladder of(List<String> playerNames, int height) {
+        return new Ladder(Players.fromString(playerNames), initLines(playerNames, height));
+    }
+
+    private static List<Line> initLines(List<String> playerNames, int height) {
+        List<Line> lines = new ArrayList<>();
+        for (int i = 0; i < height; i++) {
+            lines.add(new Line(playerNames.size(), random::nextBoolean));
         }
+        return lines;
     }
 
     public List<Line> getLines() {
         return lines;
     }
 
-    public List<String> getPlayerNames() {
-        return playerNames;
+    public List<String> toStringPlayers() {
+        return this.players.toStringList();
     }
+
 }

@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public class ResultView {
     public static void printLadder(Ladder ladder) {
 
-        System.out.println(ladder.getPlayerNames()
+        System.out.println(ladder.toStringPlayers()
                 .stream()
                 .map(p -> String.format("%-6s", p))
                 .collect(Collectors.joining("")));
@@ -28,7 +28,7 @@ public class ResultView {
     }
 
     private static void printRoute(Boolean route) {
-        if(route) {
+        if (route) {
             System.out.print("-----");
             return;
         }

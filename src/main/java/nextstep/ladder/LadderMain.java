@@ -10,7 +10,9 @@ public class LadderMain {
     public static void main(String[] args) {
         InputView inputView = new InputView();
         Random random = new Random();
-        ResultView.printLadder(new Ladder(inputView.inputPlayer(), inputView.inputLadderHeight(), random::nextBoolean));
+
+        Ladder ladder = Ladder.of(inputView.inputPlayer(), inputView.inputLadderHeight());
+        ResultView.printLadder(ladder);
     }
 
 }
