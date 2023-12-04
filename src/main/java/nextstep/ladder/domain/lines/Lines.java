@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Objects;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Participant;
+import nextstep.ladder.domain.Point;
+import nextstep.ladder.domain.lines.position.ParticipantPosition;
+import nextstep.ladder.domain.lines.position.Position;
 
 public class Lines {
 
@@ -67,7 +70,7 @@ public class Lines {
     }
 
     private Participant getLadderSingleGameResult(String participantName, ParticipantPosition participantPosition) {
-        int position = participantPosition.startAtNormalLine(this.lines);
+        Position position = participantPosition.startAtNormalLine(this.lines);
         return new Participant(participantName, position);
     }
 

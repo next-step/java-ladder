@@ -3,12 +3,12 @@ package nextstep.ladder.domain;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import nextstep.ladder.domain.lines.position.Height;
 
 public class Line {
 
     public static final String LINE_LENGTH_DIFFERENCE_EXCEPTION = "라인들의 길이가 다릅니다!";
     public static final String HORIZONTAL_LINE_OVERLAPPING_EXCEPTION = "사다리의 수평선이 서로 겹칩니다.";
-    public static final String NO_LINE_TO_COMPARE_SIZE_EXCEPTION = "사이즈를 비교할 라인이 존재하지 않습니다.";
     static final String LINE_INDEX_OUT_OF_RANGE_EXCEPTION = "라인의 범위를 넘어섰습니다.";
     private final List<Point> points;
 
@@ -28,19 +28,19 @@ public class Line {
         return pointStatus.stream().map(Point::valueOf).collect(Collectors.toList());
     }
 
-    public Point horizontalLine(int pointIndex) {
-        validateLineRange(pointIndex);
-        return points.get(pointIndex);
+    public Point horizontalLine(int height) {
+        validateLineRange(height);
+        return points.get(height);
     }
 
-    private void validateLineRange(int point) {
-        if (outOfRange(point)) {
+    private void validateLineRange(int height) {
+        if (outOfRange(height)) {
             throw new ArrayIndexOutOfBoundsException(LINE_INDEX_OUT_OF_RANGE_EXCEPTION);
         }
     }
 
-    private boolean outOfRange(int point) {
-        return point >= points.size();
+    private boolean outOfRange(int height) {
+        return height >= this.points.size();
     }
 
     public void validateSameSizeAs(Line line) {

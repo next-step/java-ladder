@@ -1,16 +1,23 @@
 package nextstep.ladder.domain;
 
 import java.util.Objects;
+import nextstep.ladder.domain.lines.position.Position;
 
 public class Participant {
     public static final String PARTICIPANT_NAME_LENGTH_EXCEPTION = "참가자의 이름은 1자에서 5자 사이여야 합니다.";
     private final String name;
-    private int position;
+    private Position position;
+
+    public Participant(String name, Position position) {
+        validateNameLength(name);
+        this.name = name;
+        this.position = position;
+    }
 
     public Participant(String name, int position) {
         validateNameLength(name);
         this.name = name;
-        this.position = position;
+        this.position = new Position(position);
     }
 
     public Participant(String name) {
@@ -36,19 +43,11 @@ public class Participant {
             return false;
         }
         Participant that = (Participant) o;
-        return position == that.position && Objects.equals(name, that.name);
+        return Objects.equals(name, that.name) && Objects.equals(position, that.position);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(name, position);
-    }
-
-    @Override
-    public String toString() {
-        return "Participant{" +
-                "name='" + name + '\'' +
-                ", position=" + position +
-                '}';
     }
 }

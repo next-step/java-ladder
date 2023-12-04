@@ -3,7 +3,7 @@ package nextstep.ladder.domain;
 import java.util.List;
 import java.util.Objects;
 import nextstep.ladder.domain.lines.Lines;
-import nextstep.ladder.domain.lines.ParticipantPosition;
+import nextstep.ladder.domain.lines.position.ParticipantPosition;
 
 public class Ladder {
     private final int width;

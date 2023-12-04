@@ -1,5 +1,7 @@
 package nextstep.ladder.domain.lines;
 
+import nextstep.ladder.domain.lines.position.Position;
+
 public enum Direction {
 
     LEFT(-1), RIGHT(1), MIDDLE(0);
@@ -10,7 +12,7 @@ public enum Direction {
         this.value = value;
     }
 
-    public int move(int position) {
-        return this.value + position;
+    public Position move(Position position) {
+        return position.moveByDirection(this.value);
     }
 }
