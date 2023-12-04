@@ -12,10 +12,11 @@ public class LadderApplication {
 
     public static void main(String[] args) {
         PersonNames personNames = InputView.inputNames();
+        Goals goals = InputView.inputGoals();
         LadderHeight ladderHeight = InputView.inputLadderHeight();
 
         LineGenerator generator = new LineGenerator(new RandomBooleanGenerator());
-        Ladder ladder = new Ladder();
+        Ladder ladder = new Ladder(goals);
         for (int i = 0; i < ladderHeight.value(); i++) {
             ladder.add(generator.generate(personNames.size()));
         }
