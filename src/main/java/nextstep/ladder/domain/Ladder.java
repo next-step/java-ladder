@@ -20,7 +20,7 @@ public class Ladder {
     private static void validateNameLen(List<String> playerNames) {
         for (String player : playerNames) {
             if (player.length() > MAX_PLAYER_NAME_LENGTH) {
-                throw new IllegalArgumentException("최대 5자까지 입력가능합니다.");
+                throw new IllegalArgumentException("최대 5자까지 입력가능합니다." + player);
             }
         }
     }
