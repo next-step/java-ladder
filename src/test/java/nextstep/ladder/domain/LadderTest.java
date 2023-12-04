@@ -14,9 +14,9 @@ public class LadderTest {
     @ParameterizedTest
     @NullAndEmptySource
     @DisplayName("Ladder 는 아무런 라인이 주어지지 않으면 예외를 던진다.")
-    void newObject_NullAndEmpty_throwsException(List<Line> blankLists) {
+    void newObject_NullAndEmpty_throwsException(List<Line> lines) {
         assertThatThrownBy(
-                () -> new Ladder(blankLists)
+                () -> new Ladder(lines)
         ).isInstanceOf(IllegalArgumentException.class);
     }
 

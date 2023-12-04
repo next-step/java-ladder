@@ -24,7 +24,7 @@ public class OutputView {
     }
 
     private static void appendLadder(Ladder ladder) {
-        for (Line line : ladder) {
+        for (Line line : ladder.lines()) {
             sb.append("  |");
             appendBrace(line);
             sb.setLength(sb.length() - 6);
