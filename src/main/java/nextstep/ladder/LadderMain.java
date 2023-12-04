@@ -20,6 +20,7 @@ public class LadderMain {
         OutputView outputView = new OutputView();
 
         List<String> names = inputView.names();
+        List<String> gameResults = inputView.gameResults();
         int height = inputView.height();
 
         LadderController ladderController = new LadderController(
