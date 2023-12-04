@@ -32,4 +32,8 @@ public class Line {
     public long routeCount() {
         return this.routes.stream().filter(r -> r).count();
     }
+
+    public List<Boolean> routes() {
+        return routes;
+    }
 }
