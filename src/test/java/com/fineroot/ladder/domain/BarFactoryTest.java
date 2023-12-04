@@ -20,30 +20,30 @@ class BarFactoryTest {
     @Test
     @DisplayName("첫 단계 bar")
     void create_first() {
-        BarFactory barFactory = new BarFactory(RandomUtils.getBoolean());
+        BarFactory barFactory = new BarFactory(false);
         assertThat(barFactory.first()).isInstanceOf(Bar.class);
     }
 
     @Test
     @DisplayName("중간 단계 bar")
     void next(){
-        BarFactory barFactory = new BarFactory(RandomUtils.getBoolean());
-        assertThat(barFactory.next(RandomUtils.getBoolean())).isInstanceOf(Bar.class);
+        BarFactory barFactory = new BarFactory(false);
+        assertThat(barFactory.next(false)).isInstanceOf(Bar.class);
     }
 
     @Test
     @DisplayName("last() 호출")
     void last() {
-        BarFactory barFactory = new BarFactory(RandomUtils.getBoolean());
+        BarFactory barFactory = new BarFactory(false);
         assertThat(barFactory.last()).isInstanceOf(Bar.class);
     }
 
     @Test
     @DisplayName("last() 호출 이후 next() 호출시 예외 발생")
     void next_should_throw_exception_when_next_after_last(){
-        BarFactory barFactory = new BarFactory(RandomUtils.getBoolean());
+        BarFactory barFactory = new BarFactory(false);
         barFactory.last();
-        assertThatThrownBy(()->barFactory.next(RandomUtils.getBoolean()))
+        assertThatThrownBy(()->barFactory.next(false))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ExceptionMessage.BAR_FACTORY_NEXT_AFTER_LAST.getMessage());
     }

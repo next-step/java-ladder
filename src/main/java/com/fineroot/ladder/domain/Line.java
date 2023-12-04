@@ -1,37 +1,27 @@
 package com.fineroot.ladder.domain;
 
-import com.fineroot.ladder.utils.RandomUtils;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Line {
-    private final List<Bar> bars = new ArrayList<>();
+    private final List<Bar> bars;
 
-    private Line(final int countOfUser) {
-        BarFactory barFactory = new BarFactory(RandomUtils.getBoolean());
-        bars.add(barFactory.first());
-        for (int i = 0; i < countOfUser - 2; i++) {
-            bars.add(barFactory.next(RandomUtils.getBoolean()));
-        }
-        bars.add(barFactory.last());
-    }
-
-    private Line(final Boolean ... steps){
-        BarFactory barFactory = new BarFactory(steps[0]);
-        bars.add(barFactory.first());
-        for (int i = 0; i < steps.length-1; i++) {
-            bars.add(barFactory.next(steps[i+1]));
-        }
-        bars.add(barFactory.last());
-    }
-
-    public static Line from(Users users) {
-        return new Line(users.size());
+    private Line(final List<Bar> bars){
+        this.bars = bars;
     }
 
     public static Line fromBooleanArray(Boolean... steps) {
-        return new Line(steps);
+        BarFactory barFactory = new BarFactory(steps[0]);
+        List<Bar> initData = Arrays.stream(Arrays.copyOfRange(steps, 1, steps.length)).map(barFactory::next)
+                .collect(Collectors.toList());
+        initData.add(0,barFactory.first());
+        initData.add(barFactory.last());
+        return new Line(initData);
+    }
+
+    public Position move(Position position){
+        return position.getFromList(bars).move().getMovement().apply(position);
     }
 
     @Override
