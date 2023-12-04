@@ -43,8 +43,8 @@ class PointTest {
     @Test
     @DisplayName("종료점을 생성한다. 오른쪽으로는 이동이 불가능하다.")
     public void create_last(){
-        assertThat(Point.last(true).move()).isEqualTo(Direction.LEFT);
-        assertThat(Point.last(false).move()).isEqualTo(Direction.DOWN);
+        assertThat(Point.first(true).last().move()).isEqualTo(Direction.LEFT);
+        assertThat(Point.first(false).last().move()).isEqualTo(Direction.DOWN);
     }
 
 

@@ -23,8 +23,8 @@ public class Point {
         return of(false, right);
     }
 
-    public static Point last(boolean left) {
-        return of(left, false);
+    public Point last() {
+        return of(this.right, false);
     }
 
     public Point next(boolean right) {
@@ -41,5 +41,9 @@ public class Point {
         }
 
         return Direction.DOWN;
+    }
+
+    public boolean right() {
+        return right;
     }
 }
