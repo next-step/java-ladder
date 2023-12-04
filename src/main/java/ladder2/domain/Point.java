@@ -14,6 +14,14 @@ public class Point {
         return new Point(left, right);
     }
 
+    public static Point first(boolean right) {
+        return of(false, right);
+    }
+
+    public static Point last(boolean left) {
+        return of(left, false);
+    }
+
     public Direction move() {
         if (left) {
             return Direction.LEFT;

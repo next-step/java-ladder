@@ -24,4 +24,18 @@ class PointTest {
     public void down(){
         assertThat(Point.of(false, false).move()). isEqualTo(Direction.DOWN);
     }
+
+    @Test
+    @DisplayName("시작점을 생성한다. 왼쪽으로는 이동이 불가능하다.")
+    public void create_first(){
+        assertThat(Point.first(true).move()).isEqualTo(Direction.RIGHT);
+        assertThat(Point.first(false).move()).isEqualTo(Direction.DOWN);
+    }
+
+    @Test
+    @DisplayName("종료점을 생성한다. 오른쪽으로는 이동이 불가능하다.")
+    public void create_last(){
+        assertThat(Point.last(true).move()).isEqualTo(Direction.LEFT);
+        assertThat(Point.last(false).move()).isEqualTo(Direction.DOWN);
+    }
 }
