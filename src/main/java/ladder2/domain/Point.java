@@ -46,4 +46,10 @@ public class Point {
     public boolean right() {
         return right;
     }
+
+    @Override
+    public String toString() {
+        return move().name();
+    }
 }
+
