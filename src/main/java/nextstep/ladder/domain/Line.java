@@ -109,8 +109,4 @@ public class Line {
                 "points=" + points +
                 '}';
     }
-
-    public int calculateDir(int currentHeight) {
-        return 0;
-    }
 }

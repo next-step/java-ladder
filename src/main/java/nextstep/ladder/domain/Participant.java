@@ -27,19 +27,6 @@ public class Participant {
         return name.isEmpty() || name.isBlank() || name.length() > 5;
     }
 
-    public void move(int dir) {
-        if (dir == 0) {
-            return;
-        }
-        if (dir == 1) {
-            this.position += 1;
-            return;
-        }
-        if (dir == -1) {
-            this.position -= 1;
-        }
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -63,9 +50,5 @@ public class Participant {
                 "name='" + name + '\'' +
                 ", position=" + position +
                 '}';
-    }
-
-    public String getName() {
-        return this.name;
     }
 }
