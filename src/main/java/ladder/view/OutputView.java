@@ -96,7 +96,6 @@ public class OutputView {
 
     private void printResultAll(Map<String, LadderResult> ladderResults) {
         ladderResults.keySet()
-                .stream()
                 .forEach(name -> System.out.println(name + " : " + ladderResults.get(name).prize()));
     }
 }
