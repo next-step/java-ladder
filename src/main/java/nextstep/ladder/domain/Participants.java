@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Participants {
 
@@ -11,8 +12,8 @@ public class Participants {
     private final List<Participant> participants;
 
     public Participants(List<String> participantNames) {
-        this.participants = participantNames.stream()
-                .map(Participant::new)
+        this.participants = IntStream.range(0, participantNames.size())
+                .mapToObj(position -> new Participant(participantNames.get(position), position))
                 .collect(Collectors.toList());
     }
 
@@ -60,5 +61,12 @@ public class Participants {
     @Override
     public int hashCode() {
         return Objects.hash(participants);
+    }
+
+    @Override
+    public String toString() {
+        return "Participants{" +
+                "participants=" + participants +
+                '}';
     }
 }

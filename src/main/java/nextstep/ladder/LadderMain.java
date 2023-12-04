@@ -33,9 +33,10 @@ public class LadderMain {
                                                         new Random()))))));
 
         Ladder ladder = ladderController.getLadder(participantsNames, height);
-        outputView.printLadderExecutionResult(participantsNames, ladder);
+        outputView.printLadder(participantsNames, ladder, gameResults);
 
         String target = inputView.targetName();
         List<Participant> participants = ladderController.startGame(ladder, participantsNames, target);
+        outputView.printLadderGameResult(participants, gameResults);
     }
 }

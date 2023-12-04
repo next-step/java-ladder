@@ -1,19 +1,24 @@
 package nextstep.ladder.view;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Participant;
 
 public class OutputView {
 
-    private static final String EXECUTION_RESULT_MESSAGE = "실행결과\n";
+    private static final String EXECUTION_RESULT_MESSAGE = "\n실행결과\n";
+    private static final String EXECUTION_RESULT = "\n실행 결과";
 
-    public void printLadderExecutionResult(List<String> namesOfParticipants, Ladder ladder) {
+    public void printLadder(List<String> namesOfParticipants, Ladder ladder, List<String> gameResults) {
         printExecutionMessage();
-        printParticipants(namesOfParticipants, ladder.getWidth());
+        int width = ladder.getWidth();
+        printParticipants(namesOfParticipants, width);
         int maxHeight = ladder.getLadderLines().getLines().get(0).getMaxHeight();
         for (int currentHeight = 0; currentHeight < maxHeight; currentHeight++) {
             printLadderOfCurrentHeight(namesOfParticipants, ladder, currentHeight);
         }
+        printGameResult(gameResults, width);
     }
 
     private void printExecutionMessage() {
@@ -42,7 +47,7 @@ public class OutputView {
         return " " + participantName;
     }
 
-    private static String createNormalParticipantFormat(String participantName, int width) {
+    private String createNormalParticipantFormat(String participantName, int width) {
         String tempName = " ".repeat(width) + participantName + " ";
         return tempName.substring(tempName.length() - (width + 1));
     }
@@ -85,5 +90,29 @@ public class OutputView {
     private void printLastPieceOfLine() {
         printOnePieceOfLine();
         System.out.println();
+    }
+
+    private void printGameResult(List<String> gameResults, int width) {
+        String gameResultFormat = createGameResultFormat(gameResults);
+        System.out.println(gameResultFormat);
+    }
+
+    private String createGameResultFormat(List<String> gameResults) {
+        return gameResults.stream().map(gameResult -> {
+            if (gameResult.equals("꽝")) {
+                return "    꽝 ";
+            }
+            String tempResult = "     " + gameResult + " ";
+            return tempResult.substring(tempResult.length() - 6);
+        }).collect(Collectors.joining());
+    }
+
+    public void printLadderGameResult(List<Participant> participants, List<String> gameResults) {
+        System.out.println(EXECUTION_RESULT);
+        for (Participant participant : participants) {
+            String participantName = participant.getName();
+            int position = participant.getPosition().getValue();
+            System.out.printf("%s : %s\n", participantName, gameResults.get(position));
+        }
     }
 }

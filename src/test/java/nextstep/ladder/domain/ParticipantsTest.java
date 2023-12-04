@@ -34,7 +34,7 @@ class ParticipantsTest {
         Participants result = participants.createParticipants("pobi");
 
         // then
-        assertThat(result).isEqualTo(new Participants(new Participant("pobi")));
+        assertThat(result).isEqualTo(new Participants(new Participant("pobi", 1)));
     }
 
     @Test

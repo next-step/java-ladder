@@ -33,7 +33,7 @@ public class Position {
         return new Position(this.position + direction);
     }
 
-    public int getPosition() {
+    public int getValue() {
         return position;
     }
 

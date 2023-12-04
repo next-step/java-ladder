@@ -66,7 +66,7 @@ public class ParticipantPosition {
     }
 
     private Direction checkDirection(List<Line> lines) {
-        Line currentLine = lines.get(this.position.getPosition());
+        Line currentLine = lines.get(this.position.getValue());
         if (currentLine.ableToMoveSideWay(this.height.getHeight())) {
             return Direction.RIGHT;
         }

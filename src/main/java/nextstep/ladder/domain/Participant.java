@@ -47,6 +47,10 @@ public class Participant {
         return name;
     }
 
+    public Position getPosition() {
+        return position;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -62,5 +66,13 @@ public class Participant {
     @Override
     public int hashCode() {
         return Objects.hash(name, position);
+    }
+
+    @Override
+    public String toString() {
+        return "Participant{" +
+                "name='" + name + '\'' +
+                ", position=" + position +
+                '}';
     }
 }
