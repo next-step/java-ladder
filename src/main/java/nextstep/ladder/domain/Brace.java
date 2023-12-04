@@ -12,7 +12,7 @@ public class Brace {
         this.rightPoint = rightPoint;
     }
 
-    private void validate(boolean leftPoint, boolean rightPoint) {
+    public void validate(boolean leftPoint, boolean rightPoint) {
         twoPointsAttached(leftPoint, rightPoint);
     }
 

@@ -1,63 +1,52 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.stream.IntStream;
 
-public class Line implements Iterable<Point> {
-    private final List<Point> points;
+public class Line implements Iterable<Brace> {
+    private final List<Brace> braces;
 
-    public Line (List<Point> points) {
-        this.validate(points);
-        this.points = new ArrayList<>(points);
+    public Line(List<Brace> braces) {
+        validate(braces);
+        this.braces = braces;
     }
 
-    public void validate(List<Point> points) {
-        checkPointsSizeIsValid(points);
-        checkMoreThanTwoLinesAttached(points);
+    private void validate(List<Brace> braces) {
+        checkBracesSizeIsValid(braces);
     }
 
-    private void checkPointsSizeIsValid(List<Point> points) {
-        if (points == null || points.isEmpty()) {
-            throw new IllegalArgumentException(("라인은 Point가 적어도 1개 이상 존재해야 합니다."));
+    private static void checkBracesSizeIsValid(List<Brace> braces) {
+        if(braces == null || braces.isEmpty()) {
+            throw new IllegalArgumentException("지지대는 최소 1개 이상이어야 합니다.");
         }
     }
 
-    private void checkMoreThanTwoLinesAttached(List<Point> points) {
-        IntStream.range(1, points.size())
-                .filter(index -> lefAndCurrentHaveLines(points, index))
-                .findFirst()
-                .ifPresent(index -> {
-                    throw new IllegalArgumentException("사다리는 가로 라인이 겹칠 수 없습니다.");
-                });
-    }
+    public int move(int index) {
+        Brace brace = braces.get(index);
+        if(brace.isLeft()) {
+            return index - 1;
+        }
 
-    private boolean lefAndCurrentHaveLines(List<Point> points, int index) {
-        return leftHasLine(points, index) && currentHasLine(points, index);
-    }
+        if(brace.isRight()) {
+            return index  + 1;
+        }
 
-    private static boolean leftHasLine(List<Point> points, int index) {
-        return points.get(index - 1).isPoint();
-    }
-
-    private static boolean currentHasLine(List<Point> points, int index) {
-        return points.get(index).isPoint();
-    }
-
-    public List<Point> points() {
-        return this.points;
+        return index;
     }
 
     @Override
     public String toString() {
         return "Line{" +
-                "points=" + points +
+                "braces=" + braces +
                 '}';
     }
 
+    public List<Brace> braces() {
+        return this.braces;
+    }
+
     @Override
-    public Iterator<Point> iterator() {
-        return this.points.iterator();
+    public Iterator<Brace> iterator() {
+        return this.braces.iterator();
     }
 }

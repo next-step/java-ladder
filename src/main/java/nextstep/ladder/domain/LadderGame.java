@@ -4,29 +4,17 @@ public class LadderGame {
     private final Players players;
     private final Ladder ladder;
     private final Amounts amounts;
-    private final RealLadder realLadder;
 
-    public LadderGame(Players players, Ladder ladder, Amounts amounts, RealLadder realLadder) {
+    public LadderGame(Players players, Ladder ladder, Amounts amounts) {
         this.players = players;
         this.ladder = ladder;
         this.amounts = amounts;
-        this.realLadder = realLadder;
-    }
-
-    public LadderGameResult play() {
-        LadderGameResult ladderGameResult = new LadderGameResult();
-        for (int pointIndex = 0; pointIndex < players.size(); pointIndex++) {
-            int amountIndex = ladder.movingResult(ladder.startLine(), pointIndex, 1);
-            ladderGameResult.put(players.find(pointIndex), amounts.find(amountIndex));
-        }
-
-        return ladderGameResult;
     }
 
     public LadderGameResult realPlay() {
         LadderGameResult ladderGameResult = new LadderGameResult();
         for (int index = 0; index < players.size(); index++) {
-            int resultIndex = realLadder.move(index);
+            int resultIndex = ladder.move(index);
             ladderGameResult.put(players.find(index), amounts.find(resultIndex));
         }
 
