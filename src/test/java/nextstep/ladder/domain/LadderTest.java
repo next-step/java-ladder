@@ -22,10 +22,10 @@ public class LadderTest {
 
     @Test
     void move_success() {
-        Brace firstLine_brace1 = new Brace(false, true);
-        Brace firstLine_brace2 = new Brace(true, false);
-        Brace firstLine_brace3 = new Brace(false, false);
-        Brace firstLine_brace4 = new Brace(false, false);
+        Brace firstLine_brace1 = new Brace(Point.FALSE, Point.TRUE);
+        Brace firstLine_brace2 = new Brace(Point.TRUE, Point.FALSE);
+        Brace firstLine_brace3 = new Brace(Point.FALSE, Point.FALSE);
+        Brace firstLine_brace4 = new Brace(Point.FALSE, Point.FALSE);
         Line firstLine = new Line(List.of(firstLine_brace1, firstLine_brace2, firstLine_brace3, firstLine_brace4));
         assertThat(firstLine.move(0)).isEqualTo(1);
         assertThat(firstLine.move(1)).isEqualTo(0);

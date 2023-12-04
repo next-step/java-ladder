@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -7,43 +8,38 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderGameTest {
+    private final static Brace BRACE_FALSE_TRUE = new Brace(Point.FALSE, Point.TRUE);
+    private final static Brace BRACE_TRUE_FALSE = new Brace(Point.TRUE, Point.FALSE);
+    private final static Brace BRACE_FALSE_FALSE = new Brace(Point.FALSE, Point.FALSE);
+
+    private Line firstLine;
+    private Line secondLine;
+    private Line thirdLine;
+    private Line fourthLine;
+
+    @BeforeEach
+    void setUp() {
+        firstLine = new Line(List.of(BRACE_FALSE_TRUE, BRACE_TRUE_FALSE, BRACE_FALSE_FALSE, BRACE_FALSE_FALSE));
+        secondLine = new Line(List.of(BRACE_FALSE_TRUE, BRACE_TRUE_FALSE, BRACE_FALSE_FALSE, BRACE_FALSE_FALSE));
+        thirdLine = new Line(List.of(BRACE_FALSE_FALSE, BRACE_FALSE_TRUE, BRACE_TRUE_FALSE, BRACE_FALSE_FALSE));
+        fourthLine = new Line(List.of(BRACE_FALSE_TRUE, BRACE_TRUE_FALSE, BRACE_FALSE_FALSE, BRACE_FALSE_FALSE));
+    }
+
     @Test
     void success() {
-        Brace firstLine_brace1 = new Brace(false, true);
-        Brace firstLine_brace2 = new Brace(true, false);
-        Brace firstLine_brace3 = new Brace(false, false);
-        Brace firstLine_brace4 = new Brace(false, false);
-        Line firstLine = new Line(List.of(firstLine_brace1, firstLine_brace2, firstLine_brace3, firstLine_brace4));
-
-        Brace secondLine_brace1 = new Brace(false, true);
-        Brace secondLine_brace2 = new Brace(true, false);
-        Brace secondLine_brace3 = new Brace(false, false);
-        Brace secondLine_brace4 = new Brace(false, false);
-        Line secondLine = new Line(List.of(secondLine_brace1, secondLine_brace2, secondLine_brace3, secondLine_brace4));
-
-        Brace thirdLine_brace1 = new Brace(false, false);
-        Brace thirdLine_brace2 = new Brace(false, true);
-        Brace thirdLine_brace3 = new Brace(true, false);
-        Brace thirdLine_brace4 = new Brace(false, false);
-        Line thirdLine = new Line(List.of(thirdLine_brace1, thirdLine_brace2, thirdLine_brace3, thirdLine_brace4));
-
-        Brace fourthLine_brace1 = new Brace(false, true);
-        Brace fourthLine_brace2 = new Brace(true, false);
-        Brace fourthLine_brace3 = new Brace(false, false);
-        Brace fourthLine_brace4 = new Brace(false, false);
-        Line fourthLine = new Line(List.of(fourthLine_brace1, fourthLine_brace2, fourthLine_brace3, fourthLine_brace4));
-
         Players players = new Players("a,b,c,d");
-        Amounts amounts = new Amounts("1,2,3,4");
         Ladder ladder = new Ladder(List.of(firstLine, secondLine, thirdLine, fourthLine));
-        LadderGameResult ladderGameResult = new LadderGameResult();
-        int index1 = ladder.move(0);
-        int index2 = ladder.move(1);
-        int index3 = ladder.move(2);
-        int index4 = ladder.move(3);
-        assertThat(index1).isEqualTo(1);
-        assertThat(index2).isEqualTo(2);
-        assertThat(index3).isEqualTo(0);
-        assertThat(index4).isEqualTo(3);
+        Amounts amounts = new Amounts("1,2,3,4");
+        LadderGame ladderGame = new LadderGame(players, ladder, amounts);
+        LadderGameResult ladderGameResult = ladderGame.realPlay();
+
+        Amount firstAmount = ladderGameResult.get(new Player("a"));
+        Amount secondAmount = ladderGameResult.get(new Player("b"));
+        Amount thirdAmount = ladderGameResult.get(new Player("c"));
+        Amount fourthAmount = ladderGameResult.get(new Player("d"));
+        assertThat(firstAmount).isEqualTo(new Amount("2"));
+        assertThat(secondAmount).isEqualTo(new Amount("3"));
+        assertThat(thirdAmount).isEqualTo(new Amount("1"));
+        assertThat(fourthAmount).isEqualTo(new Amount("4"));
     }
 }

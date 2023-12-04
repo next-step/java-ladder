@@ -10,7 +10,7 @@ public class BraceTest {
     @DisplayName("Brace는 주어진 가로 라인이 겹치는 경우 예외를 던진다")
     void newObject_twoLinesAttached_throwsException() {
         assertThatThrownBy(
-                () -> new Brace(true, true)
+                () -> new Brace(Point.TRUE,Point.TRUE)
         ).isInstanceOf(IllegalArgumentException.class);
     }
 }

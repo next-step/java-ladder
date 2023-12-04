@@ -3,47 +3,47 @@ package nextstep.ladder.domain;
 import java.util.Random;
 
 public class Brace {
-    private final boolean leftPoint;
-    private final boolean rightPoint;
+    private final Point leftPoint;
+    private final Point rightPoint;
 
-    public Brace(boolean leftPoint, boolean rightPoint) {
+    public Brace(Point leftPoint, Point rightPoint) {
         validate(leftPoint, rightPoint);
         this.leftPoint = leftPoint;
         this.rightPoint = rightPoint;
     }
 
-    public void validate(boolean leftPoint, boolean rightPoint) {
+    public void validate(Point leftPoint, Point rightPoint) {
         twoPointsAttached(leftPoint, rightPoint);
     }
 
-    private static void twoPointsAttached(boolean leftPoint, boolean rightPoint) {
-        if(leftPoint && rightPoint) {
+    private static void twoPointsAttached(Point leftPoint, Point rightPoint) {
+        if(leftPoint.isPoint() && rightPoint.isPoint()) {
             throw new IllegalArgumentException("선이 나란히 2개가 존재할 수 없습니다.");
         }
     }
 
     public boolean isLeft() {
-        return leftPoint && !rightPoint;
+        return leftPoint.isPoint() && !rightPoint.isPoint();
     }
 
     public boolean isRight() {
-        return !leftPoint && rightPoint;
+        return !leftPoint.isPoint() && rightPoint.isPoint();
     }
 
     public static Brace first() {
-        return new Brace(false, new Random().nextBoolean());
+        return new Brace(new Point(false), new Point(new Random().nextBoolean()));
     }
 
     public Brace next() {
-        if(this.rightPoint) {
-            return new Brace(true, false);
+        if(this.rightPoint.isPoint()) {
+            return new Brace(this.rightPoint, new Point(false));
         }
 
-        return new Brace(false, new Random().nextBoolean());
+        return new Brace(this.leftPoint, new Point(new Random().nextBoolean()));
     }
 
     public Brace last() {
-        return new Brace(this.rightPoint, false);
+        return new Brace(this.rightPoint, new Point(false));
     }
 
     @Override

@@ -22,16 +22,23 @@ public class Line implements Iterable<Brace> {
     }
 
     public int move(int index) {
-        Brace brace = braces.get(index);
-        if(brace.isLeft()) {
+        if(isLeft(index)) {
             return index - 1;
         }
 
-        if(brace.isRight()) {
+        if(isRight(index)) {
             return index  + 1;
         }
 
         return index;
+    }
+
+    private boolean isLeft(int index) {
+        return braces.get(index).isLeft();
+    }
+
+    private boolean isRight(int index) {
+        return braces.get(index).isRight();
     }
 
     @Override

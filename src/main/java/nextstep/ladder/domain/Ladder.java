@@ -38,19 +38,19 @@ public class Ladder implements Iterable<Line> {
         }
     }
 
-    @Override
-    public String toString() {
-        return "Ladder{" +
-                "lines=" + lines +
-                '}';
-    }
-
     public int move(int index) {
         for (Line line : lines) {
             index = line.move(index);
         }
 
         return index;
+    }
+
+    @Override
+    public String toString() {
+        return "Ladder{" +
+                "lines=" + lines +
+                '}';
     }
 
     @Override
