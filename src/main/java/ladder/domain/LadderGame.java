@@ -17,13 +17,13 @@ public class LadderGame {
         this.gameResults = gameResults;
     }
 
-    public LadderResult start() {
+    public WinnerResult start() {
         Map<Member, GameResult> result = new LinkedHashMap<>();
         for (int memberPosition = 0; memberPosition < members.countOfMembers(); memberPosition++) {
             int resultPosition = ladder.climb(memberPosition);
             result.put(members.values().get(memberPosition), gameResults.values().get(resultPosition));
         }
-        return new LadderResult(result);
+        return new WinnerResult(result);
     }
 
     private void validateLadderClimber(Members members, String ladderClimber) {

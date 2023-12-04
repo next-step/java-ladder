@@ -3,6 +3,8 @@ package ladder.view;
 import ladder.domain.GameResults;
 import ladder.domain.Ladder;
 import ladder.domain.Members;
+import ladder.domain.WinnerResult;
+import org.apache.commons.lang3.StringUtils;
 
 public class OutputView {
 
@@ -23,9 +25,11 @@ public class OutputView {
         printNewLine();
     }
 
-    public static void printResultOfGame() {
+    public static void printResultOfGame(String climber, WinnerResult winnerResult) {
+        printNewLine();
         printResultTitle();
-
+        printResult(climber, winnerResult);
+        printNewLine();
     }
 
     private static void printResultOfLadderTitle() {
@@ -74,4 +78,12 @@ public class OutputView {
         System.out.println("실행결과");
     }
 
+    private static void printResult(String climber, WinnerResult winnerResult) {
+        if (StringUtils.equals(climber, "all")) {
+            winnerResult.values().forEach((member, gameResult) -> System.out.println(member + ":" + gameResult));
+        }
+        if (!StringUtils.equals(climber, "all")) {
+            System.out.println(winnerResult.gameResult(climber));
+        }
+    }
 }

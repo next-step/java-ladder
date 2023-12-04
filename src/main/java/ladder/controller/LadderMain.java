@@ -8,6 +8,7 @@ import ladder.domain.GameResults;
 import ladder.domain.Ladder;
 import ladder.domain.LadderGame;
 import ladder.domain.LadderGenerator;
+import ladder.domain.WinnerResult;
 import ladder.domain.horizontallinecreationstrategy.RandomHorizontalLineStrategy;
 import ladder.view.InputView;
 import ladder.view.OutputView;
@@ -28,11 +29,11 @@ public class LadderMain {
 
         OutputView.printResultOfLadder(ladderGenerator.members(), ladder, gameResults);
 
-        //// 반복
-        String climber = InputView.inputLadderClimber();
-        LadderGame ladderGame = new LadderGame(ladderGenerator.members(), ladder, gameResults, climber);
-        ladderGame.start();
-        OutputView.printResultOfGame();
-        ////
+        while (true) {
+            String climber = InputView.inputLadderClimber();
+            LadderGame ladderGame = new LadderGame(ladderGenerator.members(), ladder, gameResults, climber);
+            WinnerResult winnerResult = ladderGame.start();
+            OutputView.printResultOfGame(climber, winnerResult);
+        }
     }
 }
