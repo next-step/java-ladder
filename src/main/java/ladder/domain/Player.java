@@ -34,6 +34,7 @@ public class Player {
     public void moveLeft() {
         --position;
     }
+
     public void moveRight() {
         ++position;
     }
