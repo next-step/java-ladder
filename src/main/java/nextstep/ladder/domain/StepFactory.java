@@ -20,4 +20,8 @@ public class StepFactory {
         this.previousStep = new Random().nextBoolean();
         return this.previousStep;
     }
+
+    public boolean previous() {
+        return previousStep;
+    }
 }

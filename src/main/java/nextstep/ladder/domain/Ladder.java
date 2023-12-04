@@ -5,16 +5,17 @@ import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
-    List<Line> ladder;
+    private final List<Line> ladder;
 
-    private Ladder(Participants participants, int level) {
-        this.ladder = new ArrayList<>();
-        for (int i = 0; i < level; i++) {
-            ladder.add(new Line(participants.size() - 1));
-        }
+    private Ladder(List<Line> lines) {
+        this.ladder = new ArrayList<>(lines);
     }
     public static Ladder make(Participants participants, int level) {
-        return new Ladder(participants, level);
+        List<Line> lines = new ArrayList<>();
+        for (int i = 0; i < level; i++) {
+            lines.add(Line.make(participants.size()));
+        }
+        return new Ladder(lines);
     }
 
     public int pathFind(int index) {

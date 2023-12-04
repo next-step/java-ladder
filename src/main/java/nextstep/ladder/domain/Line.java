@@ -5,60 +5,26 @@ import java.util.Collections;
 import java.util.List;
 
 public class Line {
-    private List<Boolean> steps;
+    private final List<Point> points;
 
-    public Line(int space) {
-        this.steps = new ArrayList<>();
+    private Line(List<Point> points) {
+        this.points = new ArrayList<>(points);
+    }
+
+    public static Line make(int pointCount) {
+        List<Point> points = new ArrayList<>();
         StepFactory stepFactory = new StepFactory();
-        for (int i = 0; i < space; i++) {
-            steps.add(stepFactory.next());
+        for (int i = 0; i < pointCount; i++) {
+            points.add(Point.make(i, pointCount, stepFactory));
         }
+        return new Line(points);
     }
 
     public int following(int index) {
-        if (index == 0) {
-            return checkingAndGoingRight(index);
-        }
-        if (index == steps.size()) {
-            return checkingAndGoingLeft(index);
-        }
-        return checkingBothDirections(index);
+        return index + points.get(index).moving();
     }
 
-    private int checkingAndGoingRight(int index) {
-        if (steps.get(index)) {
-            return goingRight(index);
-        }
-        return index;
-    }
-
-    private int checkingAndGoingLeft(int index) {
-        if (steps.get(index - 1)) {
-            return goingLeft(index);
-        }
-        return index;
-    }
-
-    private int checkingBothDirections(int index) {
-        if (steps.get(index)) {
-            return goingRight(index);
-        }
-
-        if (steps.get(index - 1)) {
-            return goingLeft(index);
-        }
-        return index;
-    }
-
-    private int goingLeft(int index) {
-        return index - 1;
-    }
-
-    private int goingRight(int index) {
-        return index + 1;
-    }
-
-    public List<Boolean> getLine() {
-        return Collections.unmodifiableList(steps);
+    public List<Point> getLine() {
+        return Collections.unmodifiableList(points);
     }
 }

@@ -18,7 +18,6 @@ public class UserInterface {
 
         Ladder ladder = Ladder.make(participants, ladderLevel);
 
-        ResultView.ladderResultMessage();
         ResultView.printParticipantNames(participants.getParticipants());
         ResultView.printLadder(ladder.getLadder());
         ResultView.printResult(ladderResult.getResults());
@@ -26,7 +25,7 @@ public class UserInterface {
         while (true) {
             String participantName = InputView.resultOfParticipant();
             if (participantName.equals("all")) {
-                ResultView.printAllParticipantsResult(names, ladder, results);
+                ResultView.printAllParticipantsResult(results, ladder, names);
                 break;
             }
 
