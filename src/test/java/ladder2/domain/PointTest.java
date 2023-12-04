@@ -4,8 +4,16 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PointTest {
+
+    @Test
+    @DisplayName("포인트를 생성한다. 양방향으로 이동을 설정할 수는 없다.")
+    public void create(){
+        assertThatThrownBy(() -> Point.of(true, true))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
     @Test
     @DisplayName("왼쪽으로 이동한다.")
@@ -37,5 +45,17 @@ class PointTest {
     public void create_last(){
         assertThat(Point.last(true).move()).isEqualTo(Direction.LEFT);
         assertThat(Point.last(false).move()).isEqualTo(Direction.DOWN);
+    }
+
+
+    @Test
+    @DisplayName("이전 포인트를 기준을 다음 포인트를 생성한다. 이전 포인트의 오른쪽이 이동가능한 경우 다음 포인트의 왼쪽은 이동설정은 불가능하다.")
+    public void create_next(){
+        assertThat(Point.of(false, true).next(false).move()).isEqualTo(Direction.LEFT);
+        assertThat(Point.of(false, false).next(true).move()).isEqualTo(Direction.RIGHT);
+        assertThat(Point.of(false, false).next(false).move()).isEqualTo(Direction.DOWN);
+
+        assertThatThrownBy(() -> Point.of(false, true).next(true))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

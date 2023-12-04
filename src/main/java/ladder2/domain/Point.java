@@ -6,6 +6,11 @@ public class Point {
     private final boolean right;
 
     private Point(boolean left, boolean right) {
+
+        if (left && right) {
+            throw new IllegalArgumentException("양방향 모두가 이동가능할 수는 없습니다.");
+        }
+
         this.left = left;
         this.right = right;
     }
@@ -20,6 +25,10 @@ public class Point {
 
     public static Point last(boolean left) {
         return of(left, false);
+    }
+
+    public Point next(boolean right) {
+        return of(this.right, right);
     }
 
     public Direction move() {
