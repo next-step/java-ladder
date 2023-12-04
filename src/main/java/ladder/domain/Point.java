@@ -27,7 +27,11 @@ public class Point {
     }
 
     public Point next(boolean right) {
-        return of(this.right, right, PointType.MIDDLE);
+        if (this.right) {
+            return of(true, false, PointType.MIDDLE);
+        }
+
+        return of(false, right, PointType.MIDDLE);
     }
 
     public static Point of(boolean left, boolean right) {

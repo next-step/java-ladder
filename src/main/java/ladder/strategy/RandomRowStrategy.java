@@ -21,10 +21,6 @@ public class RandomRowStrategy implements RowStrategy {
                         return previous.last();
                     }
 
-                    if (previous.right()) {
-                        return previous.next(false);
-                    }
-
                     return previous.next(random());
                 })
                 .limit(size)
