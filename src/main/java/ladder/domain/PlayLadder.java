@@ -52,7 +52,7 @@ public class PlayLadder {
     }
 
     public List<Row> rows() {
-        return ladder.rows();
+        return ladder.values();
     }
 
     public int lengthMax() {

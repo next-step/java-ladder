@@ -30,7 +30,7 @@ public class Ladder {
         return position;
     }
 
-    public List<Row> rows() {
+    public List<Row> values() {
         return Collections.unmodifiableList(rows);
     }
 }
