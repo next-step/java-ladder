@@ -19,9 +19,9 @@ public class LadderApplication {
         Ladder ladder = new Ladder(players, height, new RandomLineStrategy());
         RealLadder realLadder = new RealLadder(players, height, new RandomLineStrategy());
         LadderGame ladderGame = new LadderGame(players, ladder, amounts, realLadder);
-        OutputView.printLadder(players, ladder, amounts);
+        OutputView.printLadder(players, realLadder, amounts);
 
-        LadderGameResult ladderGameResult = ladderGame.play();
+        LadderGameResult ladderGameResult = ladderGame.realPlay();
         OutputView.printResult(ladderGameResult);
     }
 }

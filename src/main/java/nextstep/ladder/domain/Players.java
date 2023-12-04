@@ -40,7 +40,7 @@ public class Players implements Iterable<Player> {
                 .orElse(Player.NONE);
     }
 
-    public Player player(int index) {
+    public Player find(int index) {
         return this.players.get(index);
     }
 

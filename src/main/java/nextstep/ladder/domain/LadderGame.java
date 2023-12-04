@@ -17,7 +17,7 @@ public class LadderGame {
         LadderGameResult ladderGameResult = new LadderGameResult();
         for (int pointIndex = 0; pointIndex < players.size(); pointIndex++) {
             int amountIndex = ladder.movingResult(ladder.startLine(), pointIndex, 1);
-            ladderGameResult.put(players.player(pointIndex), amounts.amount(amountIndex));
+            ladderGameResult.put(players.find(pointIndex), amounts.find(amountIndex));
         }
 
         return ladderGameResult;
@@ -27,7 +27,7 @@ public class LadderGame {
         LadderGameResult ladderGameResult = new LadderGameResult();
         for (int index = 0; index < players.size(); index++) {
             int resultIndex = realLadder.move(index);
-            ladderGameResult.put(players.player(index), amounts.amount(resultIndex));
+            ladderGameResult.put(players.find(index), amounts.find(resultIndex));
         }
 
         return ladderGameResult;

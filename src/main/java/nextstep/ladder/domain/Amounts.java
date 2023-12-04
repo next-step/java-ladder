@@ -29,7 +29,7 @@ public class Amounts implements Iterable<Amount> {
         }
     }
 
-    public Amount amount(int pointIndex) {
+    public Amount find(int pointIndex) {
         return this.amounts.get(pointIndex);
     }
 

@@ -27,4 +27,15 @@ public class RealLine implements Iterable<Brace> {
 
         return index;
     }
+
+    @Override
+    public String toString() {
+        return "RealLine{" +
+                "braces=" + braces +
+                '}';
+    }
+
+    public List<Brace> braces() {
+        return this.braces;
+    }
 }

@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.strategy;
 
+import nextstep.ladder.domain.Brace;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Point;
 import nextstep.ladder.domain.RealLine;
@@ -39,6 +40,30 @@ public class RandomLineStrategy implements LineStrategy {
 
     @Override
     public RealLine createRealLine(int personCount) {
-        return null;
+        List<Brace> createdBraces = new ArrayList<>();
+        Brace brace = createFirstBrace(createdBraces);
+        brace = createMiddleBraces(personCount, brace, createdBraces);
+        createLastBrace(brace, createdBraces);
+
+        return new RealLine(createdBraces);
+    }
+
+    private Brace createFirstBrace(List<Brace> createdBraces) {
+        Brace brace = Brace.first();
+        createdBraces.add(brace);
+        return brace;
+    }
+
+    private Brace createMiddleBraces(int personCount, Brace brace, List<Brace> createdBraces) {
+        for (int index = 1; index <= personCount - 2; index++) {
+            brace = brace.next();
+            createdBraces.add(brace);
+        }
+        return brace;
+    }
+
+    private void createLastBrace(Brace brace, List<Brace> createdBraces) {
+        brace = brace.last();
+        createdBraces.add(brace);
     }
 }

@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import java.util.Random;
+
 public class Brace {
     private final boolean leftPoint;
     private final boolean rightPoint;
@@ -26,5 +28,29 @@ public class Brace {
 
     public boolean isRight() {
         return !leftPoint && rightPoint;
+    }
+
+    public static Brace first() {
+        return new Brace(false, new Random().nextBoolean());
+    }
+
+    public Brace next() {
+        if(this.rightPoint) {
+            return new Brace(true, false);
+        }
+
+        return new Brace(false, new Random().nextBoolean());
+    }
+
+    public Brace last() {
+        return new Brace(this.rightPoint, false);
+    }
+
+    @Override
+    public String toString() {
+        return "Brace{" +
+                "leftPoint=" + leftPoint +
+                ", rightPoint=" + rightPoint +
+                '}';
     }
 }

@@ -17,7 +17,8 @@ public class RealLadder implements Iterable<RealLine> {
     public RealLadder(Players players, Height height, LineStrategy lineStrategy) {
         List<RealLine> lines = new ArrayList<>();
         for (int i = 0; i < height.height(); i++) {
-            lines.add(createLine(players.size(), lineStrategy));
+            RealLine realLadder = createLine(players.size(), lineStrategy);
+            lines.add(realLadder);
         }
 
         this.lines = lines;

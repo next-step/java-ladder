@@ -6,7 +6,7 @@ public class OutputView {
     private static final String ALL_PLAYERS = "all";
     private static final StringBuilder sb = new StringBuilder();
 
-    public static void printLadder(Players players, Ladder ladder, Amounts amounts) {
+    public static void printLadder(Players players, RealLadder ladder, Amounts amounts) {
         sb.setLength(0);
 
         appendPersonNames(players);
@@ -23,27 +23,28 @@ public class OutputView {
         sb.append("\n");
     }
 
-    private static void appendLadder(Ladder ladder) {
-        for (Line line : ladder) {
-            sb.append("   |");
-            appendLine(line);
+    private static void appendLadder(RealLadder ladder) {
+        for (RealLine realLine : ladder) {
+            sb.append("  |");
+            appendBrace(realLine);
+            sb.setLength(sb.length() - 6);
             sb.append("\n");
         }
     }
 
-    private static void appendLine(Line line) {
-        for (Point point : line.points()) {
-            addPoint(point);
+    private static void appendBrace(RealLine line) {
+        for (Brace brace : line.braces()) {
+            addBrace(brace);
         }
     }
 
-    private static void addPoint(Point point) {
-        if (point.isPoint()) {
+    private static void addBrace(Brace brace) {
+        if (brace.isRight()) {
             sb.append("-----");
             sb.append("|");
         }
 
-        if (!point.isPoint()) {
+        if (!brace.isRight()) {
             sb.append("     ");
             sb.append("|");
         }
