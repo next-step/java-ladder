@@ -9,8 +9,9 @@ import java.util.stream.Collectors;
 public class InputView {
 
     private static final String INPUT_PARTICIPANTS_NAME_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
-    public static final String INPUT_GAME_RESULTS_MESSEAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)\n";
+    private static final String INPUT_GAME_RESULTS_MESSEAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)\n";
     private static final String INPUT_MAX_HEIGHT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
+    private static final String INPUT_PARTICIPANT_NAME_MESSAGE = "결과를 보고 싶은 사람은?";
 
     private static final String INPUT_NAMES_PATTERN_EXCEPTION = "참가자 이름들의_구분자를_콤마로_입력해주세요";
     private static final String INPUT_GAME_RESULTS_PATTERN_EXCEPTION = "참가자 이름들의_구분자를_콤마로_입력해주세요";
@@ -50,7 +51,7 @@ public class InputView {
     }
 
     public String participantName() {
-        System.out.println("결과를 보고 싶은 사람은?");
+        System.out.println(INPUT_PARTICIPANT_NAME_MESSAGE);
         return scanner.nextLine();
     }
 }

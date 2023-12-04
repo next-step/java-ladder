@@ -34,8 +34,8 @@ public class Ladder {
         return ladderLines;
     }
 
-    public Participant startGame(String participantName, int startPosition) {
-        return this.ladderLines.startGame(participantName, new ParticipantPosition(startPosition, 0));
+    public Participant startGame(Participant participant) {
+        return this.ladderLines.startGame(participant);
     }
 
     @Override

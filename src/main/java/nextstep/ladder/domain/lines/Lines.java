@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Objects;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Participant;
-import nextstep.ladder.domain.Point;
 import nextstep.ladder.domain.lines.position.ParticipantPosition;
 import nextstep.ladder.domain.lines.position.Position;
 
@@ -58,7 +57,9 @@ public class Lines {
                 });
     }
 
-    public Participant startGame(String participantName, ParticipantPosition participantPosition) {
+    public Participant startGame(Participant participant) {
+        ParticipantPosition participantPosition = participant.createParticipantPosition();
+        String participantName = participant.getName();
         if (participantPosition.isLastLine(this.lines.size())) {
             return getLadderSingleGameResult(participantName, getNotLastLinePosition());
         }
@@ -69,9 +70,9 @@ public class Lines {
         return new ParticipantPosition(this.lines.size(), 0).startAtLastLine(this.lines);
     }
 
-    private Participant getLadderSingleGameResult(String participantName, ParticipantPosition participantPosition) {
+    private Participant getLadderSingleGameResult(String participant, ParticipantPosition participantPosition) {
         Position position = participantPosition.startAtNormalLine(this.lines);
-        return new Participant(participantName, position);
+        return new Participant(participant, position);
     }
 
     public List<Line> getLines() {

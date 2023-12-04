@@ -10,6 +10,7 @@ import nextstep.ladder.domain.lines.RandomLinesFactory;
 import nextstep.ladder.domain.lines.strategy.line.RandomLineCreationStrategy;
 import nextstep.ladder.domain.lines.strategy.point.RandomPointCreationStrategy;
 import nextstep.ladder.domain.lines.strategy.point.RandomPointsFactory;
+import nextstep.ladder.service.LadderService;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
@@ -29,7 +30,7 @@ public class LadderMain {
                                 new RandomPointsFactory(
                                         new RandomPointCreationStrategy(
                                                 new DefaultRandomService(
-                                                        new Random()))))));
+                                                        new Random()))))), new LadderService());
 
         String participantName = inputView.participantName();
 

@@ -15,6 +15,10 @@ public class ParticipantPosition {
         this.height = height;
     }
 
+    public ParticipantPosition(Position position) {
+        this(position, new Height(0));
+    }
+
     public ParticipantPosition(int position, int height) {
         this.position = new Position(position);
         this.height = new Height(height);

@@ -38,7 +38,7 @@ public class LadderTest {
         Ladder ladder = createLadder();
 
         // when
-        Participant result = ladder.startGame("pobi", given);
+        Participant result = ladder.startGame(new Participant("pobi", given));
 
         // then
         assertThat(result).isEqualTo(new Participant("pobi", expected));

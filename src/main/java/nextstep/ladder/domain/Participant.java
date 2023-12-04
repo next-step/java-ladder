@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.Objects;
+import nextstep.ladder.domain.lines.position.ParticipantPosition;
 import nextstep.ladder.domain.lines.position.Position;
 
 public class Participant {
@@ -32,6 +33,14 @@ public class Participant {
 
     private boolean outOfRange(String name) {
         return name.isEmpty() || name.isBlank() || name.length() > 5;
+    }
+
+    public ParticipantPosition createParticipantPosition() {
+        return new ParticipantPosition(this.position);
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override
