@@ -2,6 +2,7 @@ package nextstep.ladder.domain.strategy;
 
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Point;
+import nextstep.ladder.domain.RealLine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,5 +35,10 @@ public class RandomLineStrategy implements LineStrategy {
     private static void createLastPoint(Point point, List<Point> createdPoints) {
         point = point.last();
         createdPoints.add(point);
+    }
+
+    @Override
+    public RealLine createRealLine(int personCount) {
+        return null;
     }
 }
