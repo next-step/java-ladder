@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Player {
     private static final int NAME_LENGTH_MAX = 5;
     private final String name;
-    private int position;
+    private final int position;
 
     private Player(String name, int position) {
         validateName(name);
@@ -29,14 +29,6 @@ public class Player {
         if (name.length() > NAME_LENGTH_MAX) {
             throw new IllegalArgumentException("이름은 최대 5자리입니다.");
         }
-    }
-
-    public void moveLeft() {
-        --position;
-    }
-
-    public void moveRight() {
-        ++position;
     }
 
     public long length() {

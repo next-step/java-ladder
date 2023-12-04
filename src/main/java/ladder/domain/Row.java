@@ -15,16 +15,9 @@ public class Row {
         return new Row(points);
     }
 
-    public void move(Player player) {
-        Point point = points.get(player.position());
-
-        if (point.left()) {
-            player.moveLeft();
-        }
-
-        if (point.right()) {
-            player.moveRight();
-        }
+    public int move(int position) {
+        Point point = points.get(position);
+        return point.move(position);
     }
 
     public int size() {

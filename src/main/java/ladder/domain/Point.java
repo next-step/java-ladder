@@ -28,6 +28,18 @@ public class Point {
         return new Point(left, right);
     }
 
+    public int move(int position) {
+        if (left()) {
+            return position - 1;
+        }
+
+        if (right()) {
+            return position + 1;
+        }
+
+        return position;
+    }
+
     public Direction direction() {
         return direction;
     }

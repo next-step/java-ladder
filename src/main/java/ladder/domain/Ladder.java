@@ -21,10 +21,13 @@ public class Ladder {
                         .collect(Collectors.toList()));
     }
 
-    public void move(Players players) {
-        for (Player player : players.values()) {
-            rows.forEach(row -> row.move(player));
+    public int move(int position) {
+
+        for (Row row : rows) {
+            position = row.move(position);
         }
+
+        return position;
     }
 
     public List<Row> rows() {

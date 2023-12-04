@@ -25,6 +25,24 @@ public class PlayLadder {
         return new PlayLadder(players, prizes, ladder);
     }
 
+    public LadderResults moveResult() {
+        LadderResults ladderResults = LadderResults.of();
+
+        for (Player player : players()) {
+            ladderResults.put(player.name(), prize(player));
+        }
+
+        return ladderResults;
+    }
+
+    private String prize(Player player) {
+        return prizes.value(moveResult(player));
+    }
+
+    private int moveResult(Player player) {
+        return ladder.move(player.position());
+    }
+
     public List<Player> players() {
         return Collections.unmodifiableList(players.values());
     }

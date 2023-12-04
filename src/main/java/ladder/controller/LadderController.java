@@ -6,9 +6,6 @@ import ladder.strategy.RandomRowStrategy;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
-import java.util.Map;
-import java.util.stream.Collectors;
-
 public class LadderController {
 
     private final InputView inputView;
@@ -28,15 +25,8 @@ public class LadderController {
         PlayLadder playLadder = PlayLadder.of(players, prizes, ladder);
         outputView.printLadder(playLadder);
 
-        ladder.move(players);
+        LadderResults ladderResults = playLadder.moveResult();
 
-        outputView.printLadderResult(ladderResults(players, prizes), inputView.resultType());
-    }
-
-    public Map<String, LadderResult> ladderResults(Players players, Prizes prizes) {
-        return players.values()
-                .stream()
-                .map(player -> new LadderResult(player.name(), prizes.value(player.position())))
-                .collect(Collectors.toMap(LadderResult::playerName, ladderResult -> ladderResult));
+        outputView.printLadderResult(ladderResults.values(), inputView.resultType());
     }
 }
