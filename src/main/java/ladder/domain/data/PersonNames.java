@@ -3,6 +3,8 @@ package ladder.domain.data;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import ladder.domain.exception.LadderException;
+
 public class PersonNames {
 
     private final List<Name> names;
@@ -15,7 +17,18 @@ public class PersonNames {
     }
 
     public PersonNames(List<Name> names) {
+        validate(names);
         this.names = new ArrayList<>(names);
+    }
+
+    private void validate(List<Name> names) {
+        if (!isValid(names)) {
+            throw new LadderException("중복된 이름이 있습니다.");
+        }
+    }
+
+    private boolean isValid(List<Name> names) {
+        return names.size() == new HashSet<>(names).size();
     }
 
     public int size() {

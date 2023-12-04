@@ -6,7 +6,7 @@ import java.util.List;
 public class Ladder {
 
     public static final String INDENT = " ";
-    private List<Line> lines;
+    private final List<Line> lines;
     private Goals goals;
 
     public Ladder() {
@@ -20,6 +20,14 @@ public class Ladder {
     public Ladder(List<Line> lines, Goals goals) {
         this.lines = new ArrayList<>(lines);
         this.goals = goals;
+    }
+
+    public Goal run(int index) {
+        int newIndex = index;
+        for (Line line: lines) {
+            newIndex = line.run(newIndex);
+        }
+        return goals.get(newIndex);
     }
 
     public void add(Line line) {

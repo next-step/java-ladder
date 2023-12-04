@@ -9,6 +9,10 @@ public class Point {
     public Point(Direction direction) {
         this.direction = direction;
     }
+    
+    public boolean equalsHorizontal() {
+        return direction == Direction.HORIZONTAL;
+    }
 
     @Override
     public String toString() {
@@ -35,4 +39,5 @@ public class Point {
     public int hashCode() {
         return direction.hashCode();
     }
+
 }

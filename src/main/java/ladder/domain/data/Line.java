@@ -22,6 +22,32 @@ public class Line {
         this.points = new ArrayList<>(points);
     }
 
+    public int run(int index) {
+        int leftIndex = 2 * index - 1;
+        int rightIndex = 2 * index + 1;
+        if (leftIndex >= 1) {
+            index = left(index, leftIndex);
+        }
+        if (rightIndex < points.size()) {
+            index = right(index, rightIndex);
+        }
+        return index;
+    }
+
+    private int left(int index, int leftIndex) {
+        if (points.get(leftIndex).equalsHorizontal()) {
+            index -= 1;
+        }
+        return index;
+    }
+
+    private int right(int index, int rightIndex) {
+        if (points.get(rightIndex).equalsHorizontal()) {
+            index += 1;
+        }
+        return index;
+    }
+
     @Override
     public String toString() {
         return INDENT.repeat(NAME_SIZE) + points.stream()
@@ -45,4 +71,5 @@ public class Line {
     public int hashCode() {
         return points != null ? points.hashCode() : 0;
     }
+
 }
