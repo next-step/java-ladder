@@ -1,11 +1,8 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.People;
 
 public class LadderFactory {
 
@@ -26,23 +23,29 @@ public class LadderFactory {
         return new Ladder(lines);
     }
 
-    private List<Boolean> points() {
-        List<Boolean> points = new ArrayList<>();
+    public People people() {
+        return this.people;
+    }
+
+    private Points points() {
+        Points points = new Points(new ArrayList<>());
         for (int i = 0; i < people.count() - 1; ++i) {
             addLineRandomly(points);
         }
         return points;
     }
 
-    private void addLineRandomly(List<Boolean> points) {
+    private void addLineRandomly(Points points) {
         if (points.isEmpty()) {
-            points.add(random.nextBoolean());
+            points.add(new Point(random.nextBoolean()));
+            return;
         }
-        if (points.get(points.size() - 1)) {
-            points.add(false);
+        if (points.isLastTrue()) {
+            points.add(new Point(false));
+            return;
         }
-        if (!points.get(points.size() - 1)) {
-            points.add(random.nextBoolean());
+        if (points.isLastFalse()) {
+            points.add(new Point(random.nextBoolean()));
         }
     }
 }

@@ -17,4 +17,8 @@ public class People {
     public List<Person> people() {
         return this.people;
     }
+
+    public int count() {
+        return this.people.size();
+    }
 }

@@ -1,20 +1,16 @@
 package nextstep.ladder.domain;
 
+import java.util.List;
+
 public class Ladder {
 
-    private final People people;
-    private final Line line;
+    private final List<Line> lines;
 
-    public Ladder(String names) throws Exception {
-        this.people = new People(names);
-        line = new Line();
+    public Ladder(List<Line> lines) throws Exception {
+        this.lines = lines;
     }
 
-    public People people() {
-        return people;
-    }
-
-    public Line line() {
-        return line;
+    public List<Line> lines() {
+        return this.lines;
     }
 }

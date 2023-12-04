@@ -15,7 +15,7 @@ public class PeopleTest {
         People people = new People(names);
 
         // then
-        assertThat(people.people().size()).isEqualTo(4);
+        assertThat(people.count()).isEqualTo(4);
     }
 
 }
