@@ -22,8 +22,8 @@ public class Position {
         return new Position(this.position - 1);
     }
 
-    public int getBeforePosition(int size) {
-        if (this.position == 0 || this.position > size) {
+    public int getBeforePosition() {
+        if (this.position == 0) {
             return 0;
         }
         return this.position - 1;

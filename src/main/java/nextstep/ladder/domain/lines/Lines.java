@@ -60,7 +60,7 @@ public class Lines {
     public Participant startGame(Participant participant) {
         ParticipantPosition participantPosition = participant.createParticipantPosition();
         String participantName = participant.getName();
-        if (participantPosition.isLastLine(this.lines.size())) {
+        if (participantPosition.isLastLine(this.lines.size() - 1)) {
             return getLadderSingleGameResult(participantName, getNotLastLinePosition());
         }
         return getLadderSingleGameResult(participantName, participantPosition);

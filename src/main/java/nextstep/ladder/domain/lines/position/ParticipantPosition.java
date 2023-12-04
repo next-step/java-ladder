@@ -71,7 +71,7 @@ public class ParticipantPosition {
             return Direction.RIGHT;
         }
 
-        int beforePosition = this.position.getBeforePosition(lines.size());
+        int beforePosition = this.position.getBeforePosition();
         Point leftPoint = lines.get(beforePosition).horizontalLine(this.height.getHeight());
         if (leftPoint.movable()) {
             return Direction.LEFT;
