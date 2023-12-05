@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Objects;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Participant;
+import nextstep.ladder.domain.lines.position.Height;
 import nextstep.ladder.domain.lines.position.ParticipantPosition;
 import nextstep.ladder.domain.lines.position.Position;
 
@@ -59,7 +60,6 @@ public class Lines {
 
     public Position startGame(Participant participant) {
         ParticipantPosition participantPosition = participant.createParticipantPosition();
-        String participantName = participant.getName();
         if (participantPosition.isLastLine(this.lines.size())) {
             return getLadderSingleGameResult(getNotLastLinePosition());
         }

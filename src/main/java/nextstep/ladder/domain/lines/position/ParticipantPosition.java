@@ -59,10 +59,34 @@ public class ParticipantPosition {
     public Position startAtNormalLine(List<Line> lines) {
         int maxHeight = lines.get(0).getMaxHeight();
         while (this.height.isLessThan(maxHeight)) {
+            if (offTheLadder(lines)) {
+                initParticipantPosition(lines, maxHeight);
+                continue;
+            }
             this.position = checkDirection(lines).move(this.position);
             moveMiddleWay();
         }
         return this.position;
+    }
+
+    private boolean offTheLadder(List<Line> lines) {
+        return lines.size() == this.position.getValue();
+    }
+
+    private void initParticipantPosition(List<Line> lines, int maxHeight) {
+        ParticipantPosition participantPosition = getPosition(lines, maxHeight);
+        this.position = participantPosition.position;
+        this.height = participantPosition.height;
+    }
+
+    private ParticipantPosition getPosition(List<Line> lines, int maxHeight) {
+        while (isLessThanMaxHeight(maxHeight) && !findLeftPoint(lines)) {
+            moveMiddleWay();
+        }
+        if (isLessThanMaxHeight(maxHeight)) {
+            return moveLeftSide();
+        }
+        return this;
     }
 
     private Direction checkDirection(List<Line> lines) {
