@@ -1,4 +1,7 @@
-package ladder.domain;
+package ladder.domain.ladder;
+
+import ladder.domain.Name;
+import ladder.domain.ResultItem;
 
 /**
  * 이름과 결과 아이템을 매핑한 정보입니다.

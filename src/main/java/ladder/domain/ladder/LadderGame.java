@@ -1,5 +1,8 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
+
+import ladder.domain.Name;
+import ladder.domain.ResultItem;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package ladder.view;
 
-import ladder.domain.LadderResult;
-import ladder.domain.LadderResultSet;
+import ladder.domain.ladder.LadderResult;
+import ladder.domain.ladder.LadderResultSet;
 
 public class LadderResultSetRenderer {
     private LadderResultSetRenderer() {

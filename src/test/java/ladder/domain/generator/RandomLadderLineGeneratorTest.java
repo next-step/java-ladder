@@ -1,8 +1,6 @@
 package ladder.domain.generator;
 
-import ladder.domain.LadderLine;
-import ladder.domain.generator.Generator;
-import ladder.domain.generator.RandomLadderLineGenerator;
+import ladder.domain.ladder.LadderLine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;

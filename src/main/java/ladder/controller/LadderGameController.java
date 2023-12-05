@@ -2,6 +2,10 @@ package ladder.controller;
 
 import ladder.domain.*;
 import ladder.domain.generator.RandomLadderLineGenerator;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.LadderGame;
+import ladder.domain.ladder.LadderResult;
+import ladder.domain.ladder.LadderResultSet;
 import ladder.view.*;
 
 import java.util.ArrayList;
