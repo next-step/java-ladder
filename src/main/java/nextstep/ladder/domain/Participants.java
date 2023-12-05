@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -21,29 +22,23 @@ public class Participants {
         this.participants = List.of(participant);
     }
 
-    public Participants createParticipants(String target) {
+    public List<Participant> createParticipants(String target) {
         if (ALL_PARTICIPANTS.equals(target)) {
             return getAllParticipants();
         }
         return createTargetParticipants(target);
     }
 
-    private Participants getAllParticipants() {
-        return this;
+    private List<Participant> getAllParticipants() {
+        return this.participants;
     }
 
-    private Participants createTargetParticipants(String target) {
+    private List<Participant> createTargetParticipants(String target) {
         return this.participants.stream()
                 .filter(p -> p.isSameName(target))
                 .findFirst()
-                .map(Participants::new)
+                .map(Collections::singletonList)
                 .orElseThrow(() -> new IllegalStateException(NO_TARGET_EQUATION_EXCEPTION));
-    }
-
-    public List<Participant> startLadderGame(Ladder ladder) {
-        return this.participants.stream()
-                .map(ladder::startGame)
-                .collect(Collectors.toList());
     }
 
     @Override

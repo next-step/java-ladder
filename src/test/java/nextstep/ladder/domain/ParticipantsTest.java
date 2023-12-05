@@ -18,10 +18,12 @@ class ParticipantsTest {
         Participants participants = new Participants(List.of("tobi", "pobi", "jason"));
 
         // when
-        Participants result = participants.createParticipants(ALL_PARTICIPANTS);
+        List<Participant> result = participants.createParticipants(ALL_PARTICIPANTS);
 
         // then
-        assertThat(result).isEqualTo(new Participants(List.of("tobi", "pobi", "jason")));
+        assertThat(result).isEqualTo(List.of(new Participant("tobi", 0)
+                , new Participant("pobi", 1)
+                , new Participant("jason", 2)));
     }
 
     @Test
@@ -31,10 +33,10 @@ class ParticipantsTest {
         Participants participants = new Participants(List.of("tobi", "pobi", "jason"));
 
         // when
-        Participants result = participants.createParticipants("pobi");
+        List<Participant> result = participants.createParticipants("pobi");
 
         // then
-        assertThat(result).isEqualTo(new Participants(new Participant("pobi", 1)));
+        assertThat(result).isEqualTo(List.of(new Participant("pobi", 1)));
     }
 
     @Test

@@ -22,6 +22,7 @@ public class LadderController {
 
     public List<Participant> startGame(Ladder ladder, List<String> participantsNames, String target) {
         Participants participants = new Participants(participantsNames);
-        return participants.createParticipants(target).startLadderGame(ladder);
+        List<Participant> targetParticipants = participants.createParticipants(target);
+        return ladder.startGame(targetParticipants);
     }
 }

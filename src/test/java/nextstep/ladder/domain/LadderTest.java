@@ -38,10 +38,10 @@ public class LadderTest {
         Ladder ladder = createLadder();
 
         // when
-        Participant result = ladder.startGame(new Participant("pobi", given));
+        List<Participant> result = ladder.startGame(List.of(new Participant("pobi", given)));
 
         // then
-        assertThat(result).isEqualTo(new Participant("pobi", expected));
+        assertThat(result).isEqualTo(List.of(new Participant("pobi", expected)));
     }
 
     private Ladder createLadder() {
