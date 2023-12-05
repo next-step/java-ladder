@@ -22,8 +22,8 @@ public class LadderTest {
         ladder.add(new Line("|-| |"));
         ladder.add(new Line("| |-|"));
 
-        assertThat(ladder.run(0)).isEqualTo(new Goal("3000"));
-        assertThat(ladder.run(1)).isEqualTo(new Goal("꽝"));
-        assertThat(ladder.run(2)).isEqualTo(new Goal("5000"));
+        assertThat(ladder.run(new Person("a", 0))).isEqualTo(new Goal("3000"));
+        assertThat(ladder.run(new Person("b", 1))).isEqualTo(new Goal("꽝"));
+        assertThat(ladder.run(new Person("c", 2))).isEqualTo(new Goal("5000"));
     }
 }

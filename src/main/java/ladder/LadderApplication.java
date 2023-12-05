@@ -3,24 +3,28 @@ package ladder;
 import ladder.domain.LineGenerator;
 import ladder.domain.RandomBooleanGenerator;
 import ladder.domain.data.*;
-import ladder.view.InputView;
 
-import static ladder.view.ResultView.personNames;
-import static ladder.view.ResultView.result;
+import static ladder.view.InputView.*;
+import static ladder.view.ResultView.*;
 
 public class LadderApplication {
 
     public static void main(String[] args) {
-        PersonNames personNames = InputView.inputNames();
-        Goals goals = InputView.inputGoals();
-        LadderHeight ladderHeight = InputView.inputLadderHeight();
+        Persons persons = inputNames();
+        Goals goals = inputGoals();
+        LadderHeight ladderHeight = inputLadderHeight();
 
         LineGenerator generator = new LineGenerator(new RandomBooleanGenerator());
         Ladder ladder = new Ladder(goals);
         for (int i = 0; i < ladderHeight.value(); i++) {
-            ladder.add(generator.generate(personNames.size()));
+            ladder.add(generator.generate(persons.size()));
         }
-        personNames(personNames);
-        result(ladder.lines());
+        showPersons(persons);
+        ladderResult(ladder);
+
+        Person person = inputPerson();
+        Goal goal = ladder.run(persons.find(person));
+        goalResult(goal);
+
     }
 }

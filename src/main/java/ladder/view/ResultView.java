@@ -1,18 +1,23 @@
 package ladder.view;
 
-import java.util.List;
-
-import ladder.domain.data.PersonNames;
+import ladder.domain.data.*;
 
 public class ResultView {
 
-    public static void personNames(PersonNames personNames) {
-        System.out.println("\n실행결과\n");
-        System.out.println(personNames);
+    public static void showPersons(Persons persons) {
+        System.out.println("\n사다리 결과\n");
+        System.out.println(persons);
     }
 
-    public static void result(List<?> collections) {
-        collections.forEach(System.out::println);
+    public static void ladderResult(Ladder ladder) {
+        ladder.lines().forEach(System.out::println);
+        System.out.println(ladder.goals());
+        System.out.println();
+    }
+
+    public static void goalResult(Goal goal) {
+        System.out.println("\n실행결과");
+        System.out.println(goal);
     }
 
 }

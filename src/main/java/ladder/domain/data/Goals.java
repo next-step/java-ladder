@@ -23,4 +23,11 @@ public class Goals {
     public Goal get(int index) {
         return goals.get(index);
     }
+
+    @Override
+    public String toString() {
+        return goals.stream()
+            .map(Goal::addIndent)
+            .collect(Collectors.joining());
+    }
 }

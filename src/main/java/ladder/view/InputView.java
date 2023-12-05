@@ -8,10 +8,10 @@ import static ladder.view.inputParser.parse;
 
 public class InputView {
 
-    public static PersonNames inputNames() {
+    public static Persons inputNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         Scanner scanner = new Scanner(System.in);
-        return new PersonNames(parse(scanner.nextLine()));
+        return new Persons(parse(scanner.nextLine()));
     }
 
     public static LadderHeight inputLadderHeight() {
@@ -21,8 +21,14 @@ public class InputView {
     }
 
     public static Goals inputGoals() {
-        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        System.out.println("\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         Scanner scanner = new Scanner(System.in);
         return new Goals(parse(scanner.nextLine()));
+    }
+
+    public static Person inputPerson() {
+        System.out.println("\n결과를 보고 싶은 사람은?");
+        Scanner scanner = new Scanner(System.in);
+        return new Person(scanner.nextLine());
     }
 }

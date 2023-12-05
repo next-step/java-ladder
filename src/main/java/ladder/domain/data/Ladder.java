@@ -22,8 +22,8 @@ public class Ladder {
         this.goals = goals;
     }
 
-    public Goal run(int index) {
-        int newIndex = index;
+    public Goal run(Person person) {
+        int newIndex = person.order();
         for (Line line: lines) {
             newIndex = line.run(newIndex);
         }
@@ -33,8 +33,12 @@ public class Ladder {
     public void add(Line line) {
         lines.add(line);
     }
-
+    
     public List<Line> lines() {
         return lines;
+    }
+
+    public Goals goals() {
+        return goals;
     }
 }

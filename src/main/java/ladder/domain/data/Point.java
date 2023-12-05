@@ -9,13 +9,12 @@ public class Point {
     public Point(Direction direction) {
         this.direction = direction;
     }
-    
+
     public boolean equalsHorizontal() {
         return direction == Direction.HORIZONTAL;
     }
 
-    @Override
-    public String toString() {
+    public String addIndent() {
         String character = direction.character();
         if (direction.isHorizontal() || direction.isNone()) {
             return character.repeat(NAME_SIZE);
