@@ -1,8 +1,10 @@
 package nextstep.ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import nextstep.ladder.domain.lines.Lines;
+import nextstep.ladder.domain.lines.position.Position;
 
 public class Ladder {
     private final int width;
@@ -31,6 +33,15 @@ public class Ladder {
 
     public Lines getLadderLines() {
         return ladderLines;
+    }
+
+    public List<Participant> startGame(List<Participant> targetParticipants) {
+        List<Participant> afterGameParticipants = new ArrayList<>();
+        for (Participant target : targetParticipants) {
+            Position position = this.ladderLines.startGame(target);
+            afterGameParticipants.add(new Participant(target.getName(), position));
+        }
+        return afterGameParticipants;
     }
 
     @Override

@@ -3,6 +3,10 @@ package nextstep.ladder.domain.lines;
 import java.util.List;
 import java.util.Objects;
 import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.Participant;
+import nextstep.ladder.domain.lines.position.Height;
+import nextstep.ladder.domain.lines.position.ParticipantPosition;
+import nextstep.ladder.domain.lines.position.Position;
 
 public class Lines {
 
@@ -52,6 +56,22 @@ public class Lines {
                     targetLine.isOverlapping(nextLine);
                     return nextLine;
                 });
+    }
+
+    public Position startGame(Participant participant) {
+        ParticipantPosition participantPosition = participant.createParticipantPosition();
+        if (participantPosition.isLastLine(this.lines.size())) {
+            return getLadderSingleGameResult(getNotLastLinePosition());
+        }
+        return getLadderSingleGameResult(participantPosition);
+    }
+
+    private ParticipantPosition getNotLastLinePosition() {
+        return new ParticipantPosition(this.lines.size(), 0).startAtLastLine(this.lines);
+    }
+
+    private Position getLadderSingleGameResult(ParticipantPosition participantPosition) {
+        return participantPosition.startAtNormalLine(this.lines);
     }
 
     public List<Line> getLines() {

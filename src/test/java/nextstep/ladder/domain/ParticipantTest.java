@@ -18,6 +18,4 @@ public class ParticipantTest {
                 .isExactlyInstanceOf(IllegalStateException.class)
                 .hasMessage(PARTICIPANT_NAME_LENGTH_EXCEPTION);
     }
-
-
 }

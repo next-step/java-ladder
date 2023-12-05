@@ -1,35 +1,40 @@
 package nextstep.ladder;
 
 import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import nextstep.ladder.config.ObjectFactory;
 import nextstep.ladder.controller.LadderController;
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.lines.DefaultRandomService;
-import nextstep.ladder.domain.lines.RandomLinesFactory;
-import nextstep.ladder.domain.lines.strategy.line.RandomLineCreationStrategy;
-import nextstep.ladder.domain.lines.strategy.point.RandomPointCreationStrategy;
-import nextstep.ladder.domain.lines.strategy.point.RandomPointsFactory;
+import nextstep.ladder.domain.Participant;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
 public class LadderMain {
 
     public static void main(String[] args) {
-        InputView inputView = new InputView(new Scanner(System.in));
-        OutputView outputView = new OutputView();
+        ObjectFactory objectFactory = new ObjectFactory();
+        InputView inputView = objectFactory.inputView();
+        LadderController ladderController = objectFactory.controller();
+        OutputView outputView = objectFactory.outputView();
 
-        List<String> names = inputView.names();
+        List<String> participantsNames = inputView.names();
+        List<String> gameResults = inputView.gameResults();
+
+        Ladder ladder = getLadder(inputView, ladderController, participantsNames);
+        outputView.printLadder(participantsNames, ladder, gameResults);
+
+        List<Participant> participants = getFinalPositions(inputView, ladderController, ladder, participantsNames);
+        outputView.printLadderGameResult(participants, gameResults);
+    }
+
+    private static Ladder getLadder(InputView inputView, LadderController ladderController,
+                                    List<String> participantsNames) {
         int height = inputView.height();
+        return ladderController.getLadder(participantsNames, height);
+    }
 
-        LadderController ladderController = new LadderController(
-                new RandomLinesFactory(
-                        new RandomLineCreationStrategy(
-                                new RandomPointsFactory(
-                                        new RandomPointCreationStrategy(
-                                                new DefaultRandomService(
-                                                        new Random()))))));
-        Ladder ladder = ladderController.startLadderGame(names, height);
-        outputView.printLadderExecutionResult(names, ladder);
+    private static List<Participant> getFinalPositions(InputView inputView, LadderController ladderController,
+                                                       Ladder ladder, List<String> participantsNames) {
+        String target = inputView.targetName();
+        return ladderController.startGame(ladder, participantsNames, target);
     }
 }

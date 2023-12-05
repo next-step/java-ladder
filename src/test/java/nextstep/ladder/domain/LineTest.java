@@ -1,7 +1,6 @@
 package nextstep.ladder.domain;
 
 import static nextstep.ladder.domain.Line.HORIZONTAL_LINE_OVERLAPPING_EXCEPTION;
-import static nextstep.ladder.domain.Line.NO_LINE_TO_COMPARE_SIZE_EXCEPTION;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -69,5 +68,19 @@ public class LineTest {
         assertThatThrownBy(() -> line.validateSameSizeAs(targetLine))
                 .isExactlyInstanceOf(IllegalStateException.class)
                 .hasMessage(Line.LINE_LENGTH_DIFFERENCE_EXCEPTION);
+    }
+
+    @ParameterizedTest
+    @DisplayName("포인트를 따라 줄을 타고 움직인다.")
+    @CsvSource(value = {"0, false", "1, true"})
+    void move(int given, boolean expected) {
+        // given
+        Line line = Line.createLineWithPointStatus(List.of(false, true, false));
+
+        // when
+        boolean result = line.ableToMoveSideWay(given);
+
+        // then
+        assertThat(result).isEqualTo(expected);
     }
 }

@@ -33,4 +33,8 @@ public enum Point {
         }
         return Point.valueOf(tempPointStatus);
     }
+
+    public boolean movable() {
+        return this.pointStatus;
+    }
 }
