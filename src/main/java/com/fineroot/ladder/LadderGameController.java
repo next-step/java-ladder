@@ -2,6 +2,10 @@ package com.fineroot.ladder;
 
 import com.fineroot.ladder.domain.Ladder;
 import com.fineroot.ladder.domain.LadderGame;
+import com.fineroot.ladder.domain.LadderResult;
+import com.fineroot.ladder.domain.Rewards;
+import com.fineroot.ladder.domain.User;
+import com.fineroot.ladder.domain.UserRewardSet;
 import com.fineroot.ladder.domain.Users;
 import com.fineroot.ladder.view.InputView;
 import com.fineroot.ladder.view.ResultView;
@@ -13,20 +17,46 @@ public class LadderGameController {
     private final InputViewModel inputViewModel;
     private final ResultViewModel resultViewModel;
 
+    private final InputView inputView;
+    private final ResultView resultView;
+
     public LadderGameController(final InputViewModel inputViewModel, final ResultViewModel resultViewModel) {
         this.inputViewModel = inputViewModel;
         this.resultViewModel = resultViewModel;
+        this.inputView = new InputView(inputViewModel);
+        this.resultView = new ResultView(resultViewModel);
     }
 
     public void gameStart() {
-        InputView inputView = new InputView(inputViewModel);
-        ResultView resultView = new ResultView(resultViewModel);
+        inputPhase();
+        Users users = Users.fromString(inputViewModel.getUsernamesString());
+        LadderGame ladderGame = new LadderGame(Ladder.of(users, inputViewModel.getHeight()),
+                new UserRewardSet(users, Rewards.fromString(inputViewModel.getRewardsString())));
+        drawLadderResult(users, ladderGame);
+        drawResultCheckView(ladderGame.ladderResult());
+    }
+
+    private void drawLadderResult(Users users, LadderGame ladderGame) {
+        resultViewModel.saveUsernamesString(users.toString());
+        resultViewModel.saveLadderString(ladderGame.ladderBoard());
+        resultViewModel.saveRewardsString(Rewards.fromString(inputViewModel.getRewardsString()).toString());
+        resultView.drawLadderResultView();
+    }
+
+    private void inputPhase() {
         inputView.drawInputUserNames();
+        inputView.drawInputRewards();
         inputView.drawInputLadderHeight();
-        Users users = Users.fromString(inputViewModel.getUsernameString());
-        resultViewModel.saveLadderString(
-                new LadderGame(Ladder.of(users, inputViewModel.getHeight()), users).ladderBoard());
-        resultViewModel.saveUsernameString(users.toString());
-        resultView.drawResultView();
+    }
+
+    private void drawResultCheckView(LadderResult ladderResult) {
+        boolean canGo = true;
+        while (canGo) {
+            inputView.drawInputResult();
+            User inputUser = User.from(inputViewModel.getUsernameString());
+            canGo = !inputUser.isAll();
+            resultViewModel.saveResultString(ladderResult.resultSting(inputUser));
+            resultView.drawResultView();
+        }
     }
 }

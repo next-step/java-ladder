@@ -26,29 +26,19 @@ class LadderTest {
     }
 
     @ParameterizedTest
-    @DisplayName("실행 결과 하나만")
-    @CsvSource({"0,0", "1,3", "2,2", "3,1"})
-    void resultOne(int actualInput, int expected) {
-        Ladder ladder = Ladder.fromBooleanArrays(
-                new Boolean[][]{{true, false, true},
-                        {false, true, false},
-                        {true, false, false},
-                        {false, true, false},
-                        {true, false, true}}, 4);
-        Position actual = ladder.resultOne(new Position(actualInput));
-        assertThat(actual).isEqualTo(new Position(expected));
-    }
-
-    @Test
     @DisplayName("전체 실행 결과")
-    void resultAll() {
+    @CsvSource({"0,꽝","1,3000","2,꽝","3,5000"})
+    void resultAll(int actual, String expected) {
+        Rewards rewards = Rewards.fromString("꽝,5000,꽝,3000");
         Ladder ladder = Ladder.fromBooleanArrays(
                 new Boolean[][]{{true, false, true},
                         {false, true, false},
                         {true, false, false},
                         {false, true, false},
                         {true, false, true}}, 4);
-        assertIterableEquals(ladder.resultAll(),
-                List.of(new Position(0), new Position(3), new Position(2), new Position(1)));
+
+        Positions positions = ladder.resultAll();
+
+        assertThat(positions.matchString(rewards::rewardString,actual)).isEqualTo(expected);
     }
 }

@@ -19,7 +19,7 @@ public class Ladder {
 
     public static Ladder of(final Users users, final int countOfHeight) {
         return new Ladder(Stream.generate(() -> Line.fromBooleanArray(
-                        RandomUtils.getBooleanArray(users.size())))
+                        RandomUtils.getBooleanArray(users.size()-1)))
                 .limit(countOfHeight).collect(Collectors.toList()), users.size());
     }
 
@@ -29,14 +29,10 @@ public class Ladder {
                 .collect(Collectors.toList()), userCount);
     }
 
-    public Position resultOne(final Position position) {
-        return calculateResultPosition(position);
-    }
-
-    public List<Position> resultAll() {
-        return IntStream.range(0, userCount)
+    public Positions resultAll() {
+        return Positions.from(IntStream.range(0, userCount)
                 .mapToObj(i -> calculateResultPosition(new Position(i)))
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
     }
 
     private Position calculateResultPosition(final Position position) {
@@ -47,6 +43,6 @@ public class Ladder {
     public String toStringBoard(final int firstUsernameLength) {
         return lineList.stream()
                 .map(e -> " ".repeat(firstUsernameLength).concat(e.toString().concat(System.lineSeparator())))
-                .collect(Collectors.joining());
+                .collect(Collectors.joining()).stripTrailing();
     }
 }
