@@ -1,10 +1,6 @@
 package nextstep.ladder.domain;
 
 public class Point {
-    private final int GOING_RIGHT = 1;
-    private final int GOING_LEFT = -1;
-    private final int HOLD_POSITION = 0;
-
     private final boolean leftConnected;
     private final boolean rightConnected;
 
@@ -24,13 +20,7 @@ public class Point {
     }
 
     public int moving() {
-        if (leftConnected) {
-            return GOING_LEFT;
-        }
-        if (rightConnected) {
-            return GOING_RIGHT;
-        }
-        return HOLD_POSITION;
+        return DirectionEnum.getDirection(leftConnected, rightConnected).getValue();
     }
 
     public boolean isLeftConnected() {
