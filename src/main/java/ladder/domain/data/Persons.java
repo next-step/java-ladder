@@ -43,10 +43,14 @@ public class Persons {
             .orElseThrow(() -> new LadderException("게임에 참여한 사람의 결과만 볼 수 있습니다."));
     }
 
+    public List<Person> persons() {
+        return persons;
+    }
+
     @Override
     public String toString() {
         return persons.stream()
-            .map(Person::toString)
+            .map(Person::formatted)
             .collect(Collectors.joining());
     }
 }

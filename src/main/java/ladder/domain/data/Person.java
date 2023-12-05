@@ -14,6 +14,18 @@ public class Person {
         this.order = order;
     }
 
+    public boolean hasAll() {
+        return name.equals(new Name("all"));
+    }
+
+    public String formatted() {
+        return name.formatted();
+    }
+
+    public Name name() {
+        return name;
+    }
+
     public int order() {
         return order;
     }

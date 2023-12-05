@@ -14,7 +14,6 @@ public class PersonsTest {
         assertThat(persons.size()).isEqualTo(3);
     }
 
-
     @Test
     void 중복된_사람() {
         assertThatThrownBy(() -> new Persons(new String[] {"a", "a", "b"}))

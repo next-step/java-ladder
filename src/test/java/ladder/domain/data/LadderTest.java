@@ -17,13 +17,30 @@ public class LadderTest {
 
     @Test
     void 개인_결과_계산() {
-        Goals goals = new Goals(List.of("꽝", "5000", "3000"));
-        Ladder ladder = new Ladder(goals);
-        ladder.add(new Line("|-| |"));
-        ladder.add(new Line("| |-|"));
+        Ladder ladder = ladder();
+        Person a = new Person("a", 0);
+        Person b = new Person("b", 1);
+        Person c = new Person("c", 2);
+        assertThat(ladder.run(a)).isEqualTo(new Result(a, new Goal("3000")));
+        assertThat(ladder.run(b)).isEqualTo(new Result(b, new Goal("꽝")));
+        assertThat(ladder.run(c)).isEqualTo(new Result(c, new Goal("5000")));
+    }
 
-        assertThat(ladder.run(new Person("a", 0))).isEqualTo(new Goal("3000"));
-        assertThat(ladder.run(new Person("b", 1))).isEqualTo(new Goal("꽝"));
-        assertThat(ladder.run(new Person("c", 2))).isEqualTo(new Goal("5000"));
+
+    @Test
+    void 전체_결과_계산() {
+        //new Persons
+        //Ladder ladder = ladder();
+        //assertThat(ladder.runAll())
+    }
+
+    private static Ladder ladder() {
+        return new Ladder(
+            List.of(
+                new Line("|-| |"),
+                new Line("| |-|")
+            ),
+            new Goals(List.of("꽝", "5000", "3000"))
+        );
     }
 }

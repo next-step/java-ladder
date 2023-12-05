@@ -51,7 +51,7 @@ public class Line {
     @Override
     public String toString() {
         return INDENT.repeat(NAME_SIZE) + points.stream()
-            .map(Point::addIndent)
+            .map(Point::formatted)
             .collect(Collectors.joining());
     }
 

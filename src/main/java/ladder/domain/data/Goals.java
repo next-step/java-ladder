@@ -8,7 +8,7 @@ public class Goals {
 
     List<Goal> goals;
 
-    public Goals(String[] names) {
+    public Goals(String... names) {
         this(Arrays.stream(names)
             .collect(Collectors.toList())
         );
@@ -27,7 +27,7 @@ public class Goals {
     @Override
     public String toString() {
         return goals.stream()
-            .map(Goal::addIndent)
+            .map(Goal::formatted)
             .collect(Collectors.joining());
     }
 }

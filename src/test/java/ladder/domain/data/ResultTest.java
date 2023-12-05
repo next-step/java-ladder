@@ -4,12 +4,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class GoalTest {
-
+public class ResultTest {
 
     @Test
     void formatted() {
-        Goal a = new Goal("a");
-        assertThat(a.formatted()).isEqualTo("     a");
+        assertThat(new Result(new Person("a"), new Goal("goal")).formatted()).isEqualTo("a : goal");
     }
 }

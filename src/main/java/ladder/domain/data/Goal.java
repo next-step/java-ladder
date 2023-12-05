@@ -13,7 +13,7 @@ public class Goal {
         this.value = value;
     }
 
-    public String addIndent() {
+    public String formatted() {
         return INDENT.repeat(NAME_SIZE + 1 - value.length()) + value;
     }
 

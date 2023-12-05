@@ -26,9 +26,13 @@ public class Name {
         return !value.isEmpty() && value.length() <= NAME_SIZE;
     }
 
+    public String formatted() {
+        return INDENT.repeat(NAME_SIZE + 1 - value.length()) + value;
+    }
+
     @Override
     public String toString() {
-        return INDENT.repeat(NAME_SIZE + 1 - value.length()) + value;
+        return value;
     }
 
     @Override

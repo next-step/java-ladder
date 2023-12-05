@@ -14,7 +14,7 @@ public class Point {
         return direction == Direction.HORIZONTAL;
     }
 
-    public String addIndent() {
+    public String formatted() {
         String character = direction.character();
         if (direction.isHorizontal() || direction.isNone()) {
             return character.repeat(NAME_SIZE);

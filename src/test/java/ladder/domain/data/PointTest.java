@@ -13,9 +13,9 @@ public class PointTest {
     }
 
     @Test
-    void addIndent() {
-        assertThat(new Point(Direction.VERTICAL).addIndent()).isEqualTo("|");
-        assertThat(new Point(Direction.HORIZONTAL).addIndent()).isEqualTo("-----");
-        assertThat(new Point(Direction.NONE).addIndent()).isEqualTo("     ");
+    void formatted() {
+        assertThat(new Point(Direction.VERTICAL).formatted()).isEqualTo("|");
+        assertThat(new Point(Direction.HORIZONTAL).formatted()).isEqualTo("-----");
+        assertThat(new Point(Direction.NONE).formatted()).isEqualTo("     ");
     }
 }

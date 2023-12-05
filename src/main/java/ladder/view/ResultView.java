@@ -1,5 +1,7 @@
 package ladder.view;
 
+import java.util.List;
+
 import ladder.domain.data.*;
 
 public class ResultView {
@@ -9,15 +11,22 @@ public class ResultView {
         System.out.println(persons);
     }
 
-    public static void ladderResult(Ladder ladder) {
+    public static void showLines(Ladder ladder) {
         ladder.lines().forEach(System.out::println);
-        System.out.println(ladder.goals());
-        System.out.println();
     }
 
-    public static void goalResult(Goal goal) {
+    public static void showGoals(Goals goals) {
+        System.out.println(goals);
+    }
+
+    public static void showResult(Result result) {
         System.out.println("\n실행결과");
-        System.out.println(goal);
+        System.out.println(result);
+    }
+
+    public static void showResult(List<Result> results) {
+        System.out.println("\n실행결과");
+        results.forEach(x -> System.out.println(x.formatted()));
     }
 
 }

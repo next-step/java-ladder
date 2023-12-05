@@ -2,6 +2,7 @@ package ladder.domain.data;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Ladder {
 
@@ -22,23 +23,26 @@ public class Ladder {
         this.goals = goals;
     }
 
-    public Goal run(Person person) {
+    public List<Result> runAll(Persons persons) {
+        return persons.persons().stream()
+            .map(this::run)
+            .collect(Collectors.toList());
+    }
+
+    public Result run(Person person) {
         int newIndex = person.order();
         for (Line line: lines) {
             newIndex = line.run(newIndex);
         }
-        return goals.get(newIndex);
+        return new Result(person, goals.get(newIndex));
     }
 
     public void add(Line line) {
         lines.add(line);
     }
-    
+
     public List<Line> lines() {
         return lines;
     }
 
-    public Goals goals() {
-        return goals;
-    }
 }
