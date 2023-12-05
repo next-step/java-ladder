@@ -10,8 +10,11 @@ public class Point {
         this.direction = direction;
     }
 
-    @Override
-    public String toString() {
+    public boolean equalsHorizontal() {
+        return direction == Direction.HORIZONTAL;
+    }
+
+    public String formatted() {
         String character = direction.character();
         if (direction.isHorizontal() || direction.isNone()) {
             return character.repeat(NAME_SIZE);
@@ -35,4 +38,5 @@ public class Point {
     public int hashCode() {
         return direction.hashCode();
     }
+
 }
