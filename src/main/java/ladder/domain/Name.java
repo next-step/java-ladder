@@ -1,5 +1,8 @@
 package ladder.domain;
 
+import java.util.Objects;
+import org.apache.commons.lang3.ObjectUtils;
+
 public class Name {
 
     private static final int NAME_LENGTH_LIMIT = 5;
@@ -14,13 +17,30 @@ public class Name {
     }
 
     private boolean isEmptyOrNull(String text) {
-        return text == null || text.isEmpty();
+        return ObjectUtils.isEmpty(text);
     }
 
     private void validateTextLengthLimitOver(String value) {
         if (value.length() > NAME_LENGTH_LIMIT) {
             throw new IllegalArgumentException("이름은 " + NAME_LENGTH_LIMIT + "자 이하만 입력가능합니다.");
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Name)) {
+            return false;
+        }
+        Name name = (Name) o;
+        return Objects.equals(value, name.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
     }
 
     @Override

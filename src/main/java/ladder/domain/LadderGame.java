@@ -1,59 +1,38 @@
 package ladder.domain;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.stream.Collectors;
-import ladder.domain.horizontallinecreationstrategy.HorizontalLineStrategy;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import org.apache.commons.lang3.StringUtils;
 
 public class LadderGame {
 
-    private final HorizontalLineStrategy horizontalLineStrategy;
     private final Members members;
+    private final Ladder ladder;
+    private final GameResults gameResults;
 
-    public LadderGame(HorizontalLineStrategy horizontalLineStrategy, String[] memberNames) {
-        this.horizontalLineStrategy = horizontalLineStrategy;
-        this.members = joinMembers(memberNames);
+    public LadderGame(Members members, Ladder ladder, GameResults gameResults, String ladderClimber) {
+        validateLadderClimber(members, ladderClimber);
+        this.members = members;
+        this.ladder = ladder;
+        this.gameResults = gameResults;
     }
 
-    public Members members() {
-        return members;
-    }
-
-    public Ladder generateLadder(int heightOfLadder) {
-        List<HorizontalLine> horizontalLines = new ArrayList<>();
-        for (int i = 0; i < heightOfLadder; i++) {
-            horizontalLines.add(new HorizontalLine(determineHorizontalLineAtPoint()));
+    public WinnerResult start() {
+        Map<Member, GameResult> result = new LinkedHashMap<>();
+        for (int memberPosition = 0; memberPosition < members.countOfMembers(); memberPosition++) {
+            int resultPosition = ladder.climb(memberPosition);
+            result.put(members.values().get(memberPosition), gameResults.values().get(resultPosition));
         }
-        return new Ladder(horizontalLines);
+        return new WinnerResult(result);
     }
 
-    private Members joinMembers(String[] memberNames) {
-        return new Members(Arrays.stream(memberNames)
-            .map(Member::new)
-            .collect(Collectors.toList()));
-    }
-
-    private List<Point> determineHorizontalLineAtPoint() {
-        LinkedList<Point> points = new LinkedList<>();
-        for (int i = 0; i < members.countOfMembers() - 1; i++) {
-            addHorizontalLineRandomlyOrSkip(points);
-        }
-        return points;
-    }
-
-    private void addHorizontalLineRandomlyOrSkip(LinkedList<Point> points) {
-        if (points.isEmpty()) {
-            points.addLast(new Point(horizontalLineStrategy.isAbleToGenerate()));
+    private void validateLadderClimber(Members members, String ladderClimber) {
+        if (StringUtils.equals(ladderClimber, "all")) {
             return;
         }
-        if (points.getLast().isTrue()) {
-            points.addLast(new Point(false));
+        if (members.contains(ladderClimber)) {
             return;
         }
-        if (points.getLast().isFalse()) {
-            points.addLast(new Point(horizontalLineStrategy.isAbleToGenerate()));
-        }
+        throw new IllegalArgumentException("'결과를 보고 싶은 사람'엔 'all' 또는 '참여 멤버 중 한 명'을 입력해야합니다.");
     }
 }
