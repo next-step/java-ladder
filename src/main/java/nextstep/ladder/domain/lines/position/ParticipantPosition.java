@@ -30,11 +30,11 @@ public class ParticipantPosition {
 
     public ParticipantPosition startAtLastLine(List<Line> lines) {
         int maxHeight = lines.get(0).getMaxHeight();
-        while (isLessThanMaxHeight(maxHeight)) {
-            if (findLeftPoint(lines)) {
-                return moveLeftSide();
-            }
+        while (isLessThanMaxHeight(maxHeight) && !findLeftPoint(lines)) {
             moveMiddleWay();
+        }
+        if (isLessThanMaxHeight(maxHeight)) {
+            return moveLeftSide();
         }
         return new ParticipantPosition(lines.size(), maxHeight);
     }
