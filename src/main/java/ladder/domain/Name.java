@@ -21,7 +21,7 @@ public class Name {
                 .orElseThrow(() -> new IllegalArgumentException("주어진 이름 " + name + "은 유효하지 않습니다."));
     }
 
-    public String toPrintableSting() {
+    public String toPrintableString() {
         return this.name;
     }
 

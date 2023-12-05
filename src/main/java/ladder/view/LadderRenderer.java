@@ -1,7 +1,7 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.LadderLine;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.LadderLine;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,8 +31,8 @@ public class LadderRenderer {
     }
 
     private static String ladderLineToLineString(LadderLine ladderLine) {
-        return ladderLine.toList().stream()
-                .map(columnConnection -> columnConnection.isConnected() ? CONNECTION_SYMBOL : NO_CONNECTION_SYMBOL)
+        return ladderLine.toConnectionInfos().stream()
+                .map(columnConnection -> columnConnection ? CONNECTION_SYMBOL : NO_CONNECTION_SYMBOL)
                 .reduce(COLUMN_SYMBOL, (acc, connectionString) -> acc + connectionString + COLUMN_SYMBOL);
     }
 }

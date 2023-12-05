@@ -1,7 +1,8 @@
 package ladder.domain.generator;
 
-import ladder.domain.LadderLine;
-import ladder.domain.type.ColumnConnection;
+import ladder.domain.ladder.LadderColumn;
+import ladder.domain.ladder.LadderConnection;
+import ladder.domain.ladder.LadderLine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,44 +39,35 @@ public class RandomLadderLineGenerator implements Generator<LadderLine> {
      * @return 랜덤 사다리 라인
      */
     private static LadderLine generateRandomLine(int theNumberOfColumn) {
-        if (theNumberOfColumn < 0) {
-            throw new IllegalArgumentException("컬럼을 0개 이하로 지정할 수 없으나 " + theNumberOfColumn + "개로 지정되어 호출되었습니다.");
+        if (theNumberOfColumn <= 0) {
+            throw new IllegalArgumentException("컬럼을 1개 미만으로 지정할 수 없으나 " + theNumberOfColumn + "개로 지정되어 호출되었습니다.");
         }
 
-        if (theNumberOfColumn == 1) {
-            return LadderLine.of(new ArrayList<ColumnConnection>());
+        List<LadderColumn> columns = new ArrayList<>();
+        for (int columnIndex = 0; columnIndex < theNumberOfColumn-1; columnIndex++) {
+            columnIndex = tryConnect(columnIndex, columns);
         }
 
-
-        List<ColumnConnection> connectionInfo = new ArrayList<>(theNumberOfColumn-1);
-
-        connectionInfo.add(determineRandomConnection());
-        for (int i = 1; i < theNumberOfColumn - 1; i++) {
-            connectionInfo.add(
-                    tryConnect(determineRandomConnection(), connectionInfo.get(i-1))
-            );
+        if (columns.size() < theNumberOfColumn) {
+            columns.add(new LadderColumn(theNumberOfColumn-1, LadderConnection.NONE));
         }
 
-        return LadderLine.of(connectionInfo);
+        return new LadderLine(columns);
     }
 
-    /**
-     * 이번에 연결할지 말지 판단합니다.
-     *
-     * @param connection 이번에 연결할지 말지를 나타내는 플래그입니다. 상황에 따라 연결을 요청해도 연결되지 않을 수 있습니다.
-     * @param connectionWithBeforeColumn 이전 컬럼 연결 여부를 나타냅니다. 이전 컬럼과의 연결 여부가 다음 컬럼 연결에 영향을 미칩니다.
-     *
-     * @return 다음 컬럼과 연결할지 말지 계산된 값입니다.
-     */
-    private static ColumnConnection tryConnect(ColumnConnection connection, ColumnConnection connectionWithBeforeColumn) {
-        if (connectionWithBeforeColumn.isConnected()) {
-            return ColumnConnection.NOT_CONNECTED;
+    private static int tryConnect(int columnIndex, List<LadderColumn> columns) {
+        if (RANDOM.nextBoolean() == false) {
+            // 미연결
+            LadderColumn column = new LadderColumn(columnIndex, LadderConnection.NONE);
+            columns.add(column);
+            return columnIndex;
         }
 
-        return connection;
-    }
-
-    private static ColumnConnection determineRandomConnection() {
-        return ColumnConnection.of(RANDOM.nextBoolean());
+        // 연결
+        LadderColumn column = new LadderColumn(columnIndex, LadderConnection.RIGHT);
+        LadderColumn nextColumn = new LadderColumn(columnIndex +1, LadderConnection.LEFT);
+        columns.add(column);
+        columns.add(nextColumn);
+        return columnIndex + 1;
     }
 }
