@@ -8,25 +8,12 @@ import java.util.stream.Stream;
 public class Line {
     private final List<Step> line;
 
-    private Line(List<Step> line) {
+    protected Line(List<Step> line) {
         this.line = line;
     }
 
-    public static Line from(int count) {
-        RandomLineGenerator lineGenerator = RandomLineGenerator.getInstance();
-
-        List<Step> collect = IntStream.range(0, count)
-            .mapToObj(i -> Step.from(lineGenerator))
-            .collect(Collectors.toList());
-        lineNeverOverlap(collect);
-
-        return new Line(collect);
-    }
-
-    private static void lineNeverOverlap(List<Step> collect) {
-        for (int i = 1; i < collect.size(); i++) {
-            collect.set(i, collect.get(i).overlapStepReplace(collect.get(i - 1)));
-        }
+    public static Line from(List<Step> line) {
+        return new Line(line);
     }
 
     public int lineSize() {

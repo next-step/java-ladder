@@ -4,29 +4,31 @@ import java.util.Objects;
 
 public class Step {
 
-    private final Boolean step;
+    private final Boolean currentStep;
+    private final Boolean previousStep;
 
-    private Step(boolean step) {
-        this.step = step;
+    private Step(Boolean currentStep, Boolean previousStep) {
+        this.currentStep = currentStep;
+        this.previousStep = previousStep;
     }
 
-    public static Step from(RandomLineGenerator randomLineGenerator){
-        return new Step(randomLineGenerator.randomStep());
+    public static Step from(Boolean currentStep, Boolean previousStep){
+        return new Step(currentStep, previousStep);
     }
 
     public static Step emptyStep() {
-        return new Step(false);
+        return new Step(false, false);
     }
 
-    public Step overlapStepReplace(Step previousStep) {
-        if (this.equals(previousStep) && previousStep.step.equals(true)) {
-            return new Step(false);
+    public Step overlapStepReplace(Boolean previousStep) {
+        if (currentStep.equals(previousStep) && previousStep.equals(true)) {
+            return new Step(false, false);
         }
-        return new Step(this.step);
+        return new Step(currentStep, previousStep);
     }
 
     public boolean canMove() {
-        return this.step;
+        return this.currentStep;
     }
 
     @Override
@@ -38,11 +40,15 @@ public class Step {
             return false;
         }
         Step step1 = (Step) o;
-        return Objects.equals(step, step1.step);
+        return Objects.equals(currentStep, step1.currentStep);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(step);
+        return Objects.hash(currentStep);
+    }
+
+    public Boolean currentStep() {
+        return currentStep;
     }
 }

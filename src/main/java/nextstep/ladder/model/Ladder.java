@@ -18,10 +18,10 @@ public class Ladder {
     }
 
 
-    public static Ladder of(int height, int playerCount) {
+    public static Ladder of(int height, LineFactory factory) {
         return new Ladder(
             IntStream.range(0, height)
-                .mapToObj(i -> Line.from(playerCount))
+                .mapToObj(i -> factory.line())
                 .collect(Collectors.toList()));
     }
 

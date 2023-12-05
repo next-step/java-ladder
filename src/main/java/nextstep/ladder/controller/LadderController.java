@@ -6,7 +6,9 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 import nextstep.ladder.model.Ladder;
 import nextstep.ladder.model.Line;
+import nextstep.ladder.model.LineFactory;
 import nextstep.ladder.model.Players;
+import nextstep.ladder.model.RandomLineGenerator;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
@@ -14,6 +16,8 @@ public class LadderController {
 
     private final InputView inputView;
     private final ResultView resultView;
+
+    private final RandomLineGenerator randomLineGenerator = RandomLineGenerator.getInstance();
 
     public LadderController(InputStream in, PrintStream out) {
         this.inputView = InputView.from(in);
@@ -35,7 +39,7 @@ public class LadderController {
     private Ladder getLadder(Players players) {
         resultView.outputInitLadderHeight();
         int ladderHeight = inputView.initLadderHeight();
-        return Ladder.of(ladderHeight, players.list().size());
+        return Ladder.of(ladderHeight, LineFactory.from(randomLineGenerator, players.list().size()));
     }
 
     private Players getPlayers() {
