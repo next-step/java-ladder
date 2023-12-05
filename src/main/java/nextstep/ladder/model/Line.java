@@ -13,10 +13,13 @@ public class Line {
     }
 
     public static Line from(int count) {
+        RandomLineGenerator lineGenerator = RandomLineGenerator.getInstance();
+
         List<Step> collect = IntStream.range(0, count)
-            .mapToObj(i -> new Step())
+            .mapToObj(i -> Step.from(lineGenerator))
             .collect(Collectors.toList());
         lineNeverOverlap(collect);
+
         return new Line(collect);
     }
 

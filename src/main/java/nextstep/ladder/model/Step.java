@@ -4,15 +4,14 @@ import java.util.Objects;
 
 public class Step {
 
-    private static final RandomLineGenerator randomLineGenerator = RandomLineGenerator.getInstance();
     private final Boolean step;
-
-    public Step() {
-        this.step = randomLineGenerator.randomStep();
-    }
 
     private Step(boolean step) {
         this.step = step;
+    }
+
+    public static Step from(RandomLineGenerator randomLineGenerator){
+        return new Step(randomLineGenerator.randomStep());
     }
 
     public static Step emptyStep() {
@@ -26,7 +25,7 @@ public class Step {
         return new Step(this.step);
     }
 
-    public boolean canMove(){
+    public boolean canMove() {
         return this.step;
     }
 
