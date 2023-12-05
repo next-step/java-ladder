@@ -17,10 +17,7 @@ public class LadderLine {
     }
 
     private static void validateLadderColumns(List<LadderColumn> columns) {
-        //TODO: 검증하기
-        // 1. 컬럼이 순서대로 있는지?
         validateColumnOrder(columns);
-        // 2. 연결이 제대로 되어 있는지?
         validateColumnConnection(columns);
     }
 
@@ -42,17 +39,21 @@ public class LadderLine {
         }
 
         for (int columnIndex = 0; columnIndex < columns.size(); columnIndex++) {
-            if (columns.get(columnIndex).isNotConnected()) {
-                continue;
-            }
+            validateBidirectionConnection(columns, columnIndex);
+        }
+    }
 
-            if (columns.get(columnIndex).isConnectedRight() && columns.get(columnIndex+1).isNotConnectedLeft()) {
-                throw new IllegalArgumentException("컬럼 간에는 쌍방으로 연결되어 있으나 연결이 파편화 되어 있습니다.");
-            }
+    private static void validateBidirectionConnection(List<LadderColumn> columns, int columnIndex) {
+        if (columns.get(columnIndex).isNotConnected()) {
+            return;
+        }
 
-            if (columns.get(columnIndex).isConnectedLeft() && columns.get(columnIndex-1).isNotConnectedRight()) {
-                throw new IllegalArgumentException("컬럼 간에는 쌍방으로 연결되어 있으나 연결이 파편화 되어 있습니다.");
-            }
+        if (columns.get(columnIndex).isConnectedRight() && columns.get(columnIndex +1).isNotConnectedLeft()) {
+            throw new IllegalArgumentException("컬럼 간에는 쌍방으로 연결되어 있으나 연결이 파편화 되어 있습니다.");
+        }
+
+        if (columns.get(columnIndex).isConnectedLeft() && columns.get(columnIndex -1).isNotConnectedRight()) {
+            throw new IllegalArgumentException("컬럼 간에는 쌍방으로 연결되어 있으나 연결이 파편화 되어 있습니다.");
         }
     }
 
