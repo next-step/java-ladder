@@ -7,3 +7,10 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+
+## TODO
+* [x] 사람은 최대 5자의 이름을 가진다.
+* [x] 사람 이름은 쉼표로 구분한다.
+* [x] 사다리의 라인은 겹치지 않아야 한다.
+* [x] 사다리는 사람수보다 하나 적은 수의 폭을 가진다.
