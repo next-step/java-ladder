@@ -39,47 +39,55 @@ public class ParticipantPosition {
         return new ParticipantPosition(lines.size(), maxHeight);
     }
 
-    private boolean findLeftPoint(List<Line> lines) {
-        Point leftPoint = lines.get(this.position.calculateMinusPosition()).horizontalLine(this.height.getValue());
-        return leftPoint.movable();
-    }
-
     private boolean isLessThanMaxHeight(int maxHeight) {
         return this.height.isLessThan(maxHeight);
-    }
-
-    private ParticipantPosition moveLeftSide() {
-        return new ParticipantPosition(this.position.leftPosition(), this.height.higherHeight());
     }
 
     private void moveMiddleWay() {
         this.height = this.height.higherHeight();
     }
 
+    private boolean findLeftPoint(List<Line> lines) {
+        Point leftPoint = lines.get(this.position.calculateMinusPosition()).horizontalLine(this.height.getValue());
+        return leftPoint.movable();
+    }
+
+    private ParticipantPosition moveLeftSide() {
+        return new ParticipantPosition(this.position.leftPosition(), this.height.higherHeight());
+    }
+
     public Position startAtNormalLine(List<Line> lines) {
         int maxHeight = lines.get(0).getMaxHeight();
-        while (this.height.isLessThan(maxHeight)) {
-            if (offTheLadder(lines)) {
-                initParticipantPosition(lines, maxHeight);
-                continue;
-            }
-            this.position = checkDirection(lines).move(this.position);
-            moveMiddleWay();
+        while (shouldContinueMoving(maxHeight)) {
+            moveInLadder(lines, maxHeight);
         }
         return this.position;
+    }
+
+    private boolean shouldContinueMoving(int maxHeight) {
+        return this.height.isLessThan(maxHeight);
+    }
+
+    private void moveInLadder(List<Line> lines, int maxHeight) {
+        if (offTheLadder(lines)) {
+            moveReverse(lines, maxHeight);
+            return;
+        }
+        moveInDirection(lines);
+        moveMiddleWay();
     }
 
     private boolean offTheLadder(List<Line> lines) {
         return lines.size() == this.position.getValue();
     }
 
-    private void initParticipantPosition(List<Line> lines, int maxHeight) {
-        ParticipantPosition participantPosition = getPosition(lines, maxHeight);
+    private void moveReverse(List<Line> lines, int maxHeight) {
+        ParticipantPosition participantPosition = getMovedPosition(lines, maxHeight);
         this.position = participantPosition.position;
         this.height = participantPosition.height;
     }
 
-    private ParticipantPosition getPosition(List<Line> lines, int maxHeight) {
+    private ParticipantPosition getMovedPosition(List<Line> lines, int maxHeight) {
         while (isLessThanMaxHeight(maxHeight) && !findLeftPoint(lines)) {
             moveMiddleWay();
         }
@@ -87,6 +95,10 @@ public class ParticipantPosition {
             return moveLeftSide();
         }
         return this;
+    }
+
+    private void moveInDirection(List<Line> lines) {
+        this.position = checkDirection(lines).move(this.position);
     }
 
     private Direction checkDirection(List<Line> lines) {
