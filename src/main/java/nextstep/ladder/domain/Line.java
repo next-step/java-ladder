@@ -3,22 +3,28 @@ package nextstep.ladder.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Line {
-    private List<Boolean> steps;
+    private final List<Point> points;
 
-    public Line(int space) {
-        this.steps = new ArrayList<>();
-        Step step = new Step();
-        for (int i = 0; i < space; i++) {
-            steps.add(step.next());
-        }
+    private Line(List<Point> points) {
+        this.points = new ArrayList<>(points);
     }
 
-    public List<Boolean> getLine() {
-        return Collections.unmodifiableList(steps);
+    public static Line make(int pointCount) {
+        List<Point> points = new ArrayList<>();
+        StepFactory stepFactory = new StepFactory();
+        for (int i = 0; i < pointCount; i++) {
+            points.add(Point.make(i, pointCount, stepFactory));
+        }
+        return new Line(points);
+    }
+
+    public int following(int index) {
+        return index + points.get(index).moving();
+    }
+
+    public List<Point> getLine() {
+        return Collections.unmodifiableList(points);
     }
 }
