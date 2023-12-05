@@ -4,22 +4,22 @@ import java.util.Objects;
 
 public class Height {
 
-    private final int height;
+    private final int value;
 
-    public Height(int height) {
-        this.height = height;
+    public Height(int value) {
+        this.value = value;
     }
 
     public boolean isLessThan(int maxHeight) {
-        return this.height < maxHeight;
+        return this.value < maxHeight;
     }
 
     public Height higherHeight() {
-        return new Height(this.height + 1);
+        return new Height(this.value + 1);
     }
 
-    public int getHeight() {
-        return height;
+    public int getValue() {
+        return value;
     }
 
     @Override
@@ -31,11 +31,11 @@ public class Height {
             return false;
         }
         Height height1 = (Height) o;
-        return height == height1.height;
+        return value == height1.value;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(height);
+        return Objects.hash(value);
     }
 }

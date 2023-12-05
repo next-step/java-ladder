@@ -40,7 +40,7 @@ public class ParticipantPosition {
     }
 
     private boolean findLeftPoint(List<Line> lines) {
-        Point leftPoint = lines.get(this.position.calculateMinusPosition()).horizontalLine(this.height.getHeight());
+        Point leftPoint = lines.get(this.position.calculateMinusPosition()).horizontalLine(this.height.getValue());
         return leftPoint.movable();
     }
 
@@ -67,12 +67,12 @@ public class ParticipantPosition {
 
     private Direction checkDirection(List<Line> lines) {
         Line currentLine = lines.get(this.position.getValue());
-        if (currentLine.ableToMoveSideWay(this.height.getHeight())) {
+        if (currentLine.ableToMoveSideWay(this.height.getValue())) {
             return Direction.RIGHT;
         }
 
         int beforePosition = this.position.getBeforePosition();
-        Point leftPoint = lines.get(beforePosition).horizontalLine(this.height.getHeight());
+        Point leftPoint = lines.get(beforePosition).horizontalLine(this.height.getValue());
         if (leftPoint.movable()) {
             return Direction.LEFT;
         }
