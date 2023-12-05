@@ -16,16 +16,12 @@ class PlayerTest {
 
         Assertions.assertThat(player1).isEqualTo(Player.from("1"));
         Assertions.assertThat(player2).isEqualTo(Player.from("12345"));
-        Assertions.assertThatThrownBy(() -> {
-            Player.from("123456");
-        }).isInstanceOf(IllegalArgumentException.class);
+        Assertions.assertThatThrownBy(() -> Player.from("123456")).isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest(name = "유저 이름은 null 이나 빈값인 경우 예외가 발생한다")
     @NullAndEmptySource
     void create_null_or_empty(String input) {
-        Assertions.assertThatThrownBy(() -> {
-            Player.from(input);
-        }).isInstanceOf(IllegalArgumentException.class);
+        Assertions.assertThatThrownBy(() -> Player.from(input)).isInstanceOf(IllegalArgumentException.class);
     }
 }

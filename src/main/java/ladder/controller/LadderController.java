@@ -1,10 +1,8 @@
 package ladder.controller;
 
-import ladder.domain.Ladder;
-import ladder.domain.PlayLadder;
-import ladder.domain.Players;
-import ladder.domain.Prizes;
-import ladder.strategy.RandomPathStrategy;
+
+import ladder.domain.*;
+import ladder.strategy.RandomRowStrategy;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -19,19 +17,16 @@ public class LadderController {
     }
 
     public void start() {
-        PlayLadder playLadder = initialize();
-        outputView.printLadder(playLadder);
-        outputView.printLadderResult(playLadder.move(), inputView.resultType());
-    }
-
-    private PlayLadder initialize() {
         Players players = Players.of(inputView.readName());
         Prizes prizes = Prizes.of(inputView.readPrize());
-
         LadderSize ladderSize = LadderSize.of(players, inputView.readHeight());
-        Ladder ladder = Ladder.of(ladderSize, new RandomPathStrategy());
+        Ladder ladder = Ladder.from(ladderSize, new RandomRowStrategy());
 
-        return PlayLadder.of(players, prizes, ladder);
+        PlayLadder playLadder = PlayLadder.of(players, prizes, ladder);
+        outputView.printLadder(playLadder);
+
+        LadderResults ladderResults = playLadder.moveResult();
+
+        outputView.printLadderResult(ladderResults.values(), inputView.resultType());
     }
-
 }

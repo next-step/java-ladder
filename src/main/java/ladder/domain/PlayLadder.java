@@ -2,8 +2,6 @@ package ladder.domain;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 public class PlayLadder {
     private final Players players;
@@ -27,31 +25,37 @@ public class PlayLadder {
         return new PlayLadder(players, prizes, ladder);
     }
 
-    public Map<String, LadderResult> move() {
-        PathTable pathTable = PathTable.of(ladder.ladder());
+    public LadderResults moveResult() {
+        LadderResults ladderResults = LadderResults.of();
 
-        return players.players()
-                .stream()
-                .map(player -> {
-                    pathTable.navigate(player);
-                    return new LadderResult(player.name(), prizes.value(player.position()));
-                })
-                .collect(Collectors.toMap(LadderResult::playerName, ladderResult -> ladderResult));
+        for (Player player : players()) {
+            ladderResults.put(player.name(), prize(player));
+        }
+
+        return ladderResults;
+    }
+
+    private String prize(Player player) {
+        return prizes.value(moveResult(player));
+    }
+
+    private int moveResult(Player player) {
+        return ladder.move(player.position());
     }
 
     public List<Player> players() {
-        return Collections.unmodifiableList(players.players());
-    }
-
-    public List<Line> ladder() {
-        return ladder.ladder();
+        return Collections.unmodifiableList(players.values());
     }
 
     public List<Prize> prizes() {
-        return prizes.prizes();
+        return prizes.values();
     }
 
-    public long lengthMax() {
-        return Math.max(players.lengthMax(), prizes.lengthMax());
+    public List<Row> rows() {
+        return ladder.values();
+    }
+
+    public int lengthMax() {
+        return (int) Math.max(players.lengthMax(), prizes.lengthMax());
     }
 }
