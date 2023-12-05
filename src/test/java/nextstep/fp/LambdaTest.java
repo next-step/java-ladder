@@ -45,7 +45,7 @@ public class LambdaTest {
 
     @Test
     public void sumAllOverThree() throws Exception {
-        int sum = Lambda.sumAllByConditional(numbers, number -> (number > 3));
+        int sum = Lambda.sumAllOverThree(numbers);
         assertThat(sum).isEqualTo(15);
     }
 }
