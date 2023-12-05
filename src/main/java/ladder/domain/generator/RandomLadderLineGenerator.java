@@ -45,18 +45,7 @@ public class RandomLadderLineGenerator implements Generator<LadderLine> {
 
         List<LadderColumn> columns = new ArrayList<>();
         for (int columnIndex = 0; columnIndex < theNumberOfColumn-1; columnIndex++) {
-            LadderColumn column;
-            if (RANDOM.nextBoolean()) {
-                column = new LadderColumn(columnIndex, LadderConnection.RIGHT);
-                LadderColumn nextColumn = new LadderColumn(columnIndex+1, LadderConnection.LEFT);
-                columns.add(column);
-                columns.add(nextColumn);
-                columnIndex++;
-            }
-            else {
-                column = new LadderColumn(columnIndex, LadderConnection.NONE);
-                columns.add(column);
-            }
+            columnIndex = tryConnect(columnIndex, columns);
         }
 
         if (columns.size() < theNumberOfColumn) {
@@ -64,5 +53,21 @@ public class RandomLadderLineGenerator implements Generator<LadderLine> {
         }
 
         return new LadderLine(columns);
+    }
+
+    private static int tryConnect(int columnIndex, List<LadderColumn> columns) {
+        if (RANDOM.nextBoolean() == false) {
+            // 미연결
+            LadderColumn column = new LadderColumn(columnIndex, LadderConnection.NONE);
+            columns.add(column);
+            return columnIndex;
+        }
+
+        // 연결
+        LadderColumn column = new LadderColumn(columnIndex, LadderConnection.RIGHT);
+        LadderColumn nextColumn = new LadderColumn(columnIndex +1, LadderConnection.LEFT);
+        columns.add(column);
+        columns.add(nextColumn);
+        return columnIndex + 1;
     }
 }
