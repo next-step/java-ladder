@@ -41,7 +41,7 @@ public class Lambda {
 
     private static int conditionalSum(List<Integer> numbers, Conditional cond) {
         return numbers.stream()
-                      .filter(cond::test)
+                      .filter(cond::formular)
                       .mapToInt(Integer::intValue)
                       .sum();
     }
