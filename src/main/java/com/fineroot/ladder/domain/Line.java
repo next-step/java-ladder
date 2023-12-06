@@ -1,56 +1,27 @@
 package com.fineroot.ladder.domain;
 
-import com.fineroot.ladder.utils.RandomUtils;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Line {
-    private final List<Bar> bars = new ArrayList<>();
+    private final List<Bar> bars;
 
-    private Line(final int countOfUser) {
-        initSteps();
-        for (int i = 0; i < countOfUser - 2; i++) {
-            addStep(i);
-        }
-        addLastStep();
-    }
-
-
-    private Line(final Boolean ... steps){
-        bars.add(Bar.of(false, steps[0]));
-        for (int i = 0; i < steps.length-1; i++) {
-            bars.add(Bar.of(bars.get(i).currentStep(),steps[i+1]));
-        }
-        bars.add(Bar.of(bars.get(bars.size()-1).currentStep(), false));
-    }
-
-    private void initSteps() {
-        bars.add(Bar.of(false, RandomUtils.getBoolean()));
-    }
-
-
-    private void addStep(int index) {
-        bars.add(createBar(bars.get(index)));
-    }
-
-    private Bar createBar(Bar bar) {
-        if(!bar.currentStep()){
-            return Bar.of(bar.currentStep(), RandomUtils.getBoolean());
-        }
-        return Bar.of(bar.currentStep(), false);
-    }
-
-    private void addLastStep() {
-        bars.add(Bar.of(bars.get(bars.size()-1).currentStep(),false));
-    }
-
-    public static Line from(Users users) {
-        return new Line(users.size());
+    private Line(final List<Bar> bars){
+        this.bars = bars;
     }
 
     public static Line fromBooleanArray(Boolean... steps) {
-        return new Line(steps);
+        BarFactory barFactory = new BarFactory(steps[0]);
+        List<Bar> initData = Arrays.stream(Arrays.copyOfRange(steps, 1, steps.length)).map(barFactory::next)
+                .collect(Collectors.toList());
+        initData.add(0,barFactory.first());
+        initData.add(barFactory.last());
+        return new Line(initData);
+    }
+
+    public Position move(Position position){
+        return position.getFromList(bars).move().getMovement().apply(position);
     }
 
     @Override

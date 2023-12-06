@@ -39,6 +39,18 @@ public class Users {
         return userList.get(0).length();
     }
 
+    public int indexOf(User user){
+        return userList.indexOf(user);
+    }
+
+    public boolean contains(User user){
+        return userList.contains(user);
+    }
+
+    public String userString(Position position){
+        return position.getFromList(userList).toString();
+    }
+
     @Override
     public String toString() {
         return userList.stream().map(e->" ".repeat(5-e.toString().length()).concat(e.toString()).concat(" ")).collect(

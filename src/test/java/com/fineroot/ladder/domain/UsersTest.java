@@ -6,6 +6,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import com.fineroot.ladder.utils.ExceptionMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class UsersTest {
 
@@ -39,5 +41,25 @@ class UsersTest {
     @DisplayName("첫 유저의 이름 길이")
     void firstUsernameLength() {
         assertThat(Users.fromString("aa,bbbbb,c,d,e").firstUsernameLength()).isEqualTo(2);
+    }
+
+
+    @Test
+    @DisplayName("User 이름")
+    void userString() {
+        assertThat(Users.fromString("aa,bbbbb,c,d,e").userString(new Position(0))).isEqualTo("aa");
+    }
+
+    @Test
+    @DisplayName("User 위치")
+    void indexOf() {
+        assertThat(Users.fromString("aa,bbbbb,c,d,e").indexOf(User.from("aa"))).isZero();
+    }
+
+    @ParameterizedTest
+    @DisplayName("User 보유 여부")
+    @CsvSource({"aa,true","pobi,false"})
+    void contains(String actual, boolean expected) {
+        assertThat(Users.fromString("aa,bbbbb,c,d,e").contains(User.from(actual))).isEqualTo(expected);
     }
 }

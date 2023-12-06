@@ -7,6 +7,8 @@ public class User implements Comparable<User>{
 
     private String name;
 
+    private static final String ALL = "all";
+
     private User(String name){
         validation(name);
         this.name = name;
@@ -39,6 +41,10 @@ public class User implements Comparable<User>{
         }
         User user = (User) o;
         return Objects.equals(name, user.name);
+    }
+
+    public boolean isAll(){
+        return name.equals(ALL);
     }
 
     @Override
