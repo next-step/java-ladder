@@ -1,9 +1,27 @@
 package nextstep.ladder.domain;
 
-public enum DirectionEnum {
-    GOING_RIGHT(1),
-    GOING_LEFT(-1),
-    HOLD_POSITION(0);
+import java.util.Arrays;
+
+public enum DirectionEnum{
+
+    GOING_RIGHT(1){
+        @Override
+        protected boolean isAccept(boolean leftConnected, boolean rightConnected) {
+            return rightConnected;
+        }
+    },
+    GOING_LEFT(-1){
+        @Override
+        protected boolean isAccept(boolean leftConnected, boolean rightConnected) {
+            return leftConnected;
+        }
+    },
+    HOLD_POSITION(0){
+        @Override
+        protected boolean isAccept(boolean leftConnected, boolean rightConnected) {
+            return !leftConnected && !rightConnected;
+        }
+    };
 
     private final int value;
 
@@ -15,13 +33,12 @@ public enum DirectionEnum {
         return value;
     }
 
+    protected abstract boolean isAccept(boolean leftConnected, boolean rightConnected);
+
     public static DirectionEnum getDirection(boolean leftConnected, boolean rightConnected) {
-        if (leftConnected) {
-            return GOING_LEFT;
-        }
-        if (rightConnected) {
-            return GOING_RIGHT;
-        }
-        return HOLD_POSITION;
+        return Arrays.stream(values())
+                .filter(direction -> direction.isAccept(leftConnected, rightConnected))
+                .findFirst()
+                .orElse(HOLD_POSITION);
     }
 }
