@@ -11,8 +11,8 @@ import java.util.stream.Collectors;
 
 public class StreamStudy {
 
-    public static final int WORD_LENGTH_THRESHOLD = 12;
-    public static final int NUBER_THRESHOLD = 3;
+    private static final int WORD_LENGTH_THRESHOLD = 12;
+    private static final int NUMBER_THRESHOLD = 3;
 
     public static long countWords() throws IOException {
         String contents = new String(Files.readAllBytes(Paths
@@ -47,7 +47,7 @@ public class StreamStudy {
     }
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
-        return numbers.stream().filter(number -> number > NUBER_THRESHOLD)
+        return numbers.stream().filter(number -> number > NUMBER_THRESHOLD)
                                .map(number -> number * 2)
                                .reduce(0, Integer::sum);
     }
