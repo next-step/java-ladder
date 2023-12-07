@@ -8,9 +8,13 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderGameTest {
-    private final static Brace BRACE_FALSE_TRUE = new Brace(Point.FALSE, Point.TRUE);
-    private final static Brace BRACE_TRUE_FALSE = new Brace(Point.TRUE, Point.FALSE);
-    private final static Brace BRACE_FALSE_FALSE = new Brace(Point.FALSE, Point.FALSE);
+    private static final Point POINT_LEFT = new Point(true, false);
+    private static final Point POINT_RIGHT = new Point(false, true);
+    private static final Point POINT_NONE = new Point(false, false);
+
+    private static final Brace BRACE_LEFT = new Brace(POINT_LEFT);
+    private static final Brace BRACE_RIGHT = new Brace(POINT_RIGHT);
+    private static final Brace BRACE_NONE = new Brace(POINT_NONE);
 
     private Line firstLine;
     private Line secondLine;
@@ -19,10 +23,10 @@ public class LadderGameTest {
 
     @BeforeEach
     void setUp() {
-        firstLine = new Line(List.of(BRACE_FALSE_TRUE, BRACE_TRUE_FALSE, BRACE_FALSE_FALSE, BRACE_FALSE_FALSE));
-        secondLine = new Line(List.of(BRACE_FALSE_TRUE, BRACE_TRUE_FALSE, BRACE_FALSE_FALSE, BRACE_FALSE_FALSE));
-        thirdLine = new Line(List.of(BRACE_FALSE_FALSE, BRACE_FALSE_TRUE, BRACE_TRUE_FALSE, BRACE_FALSE_FALSE));
-        fourthLine = new Line(List.of(BRACE_FALSE_TRUE, BRACE_TRUE_FALSE, BRACE_FALSE_FALSE, BRACE_FALSE_FALSE));
+        firstLine = new Line(List.of(BRACE_RIGHT, BRACE_LEFT, BRACE_NONE, BRACE_NONE));
+        secondLine = new Line(List.of(BRACE_RIGHT, BRACE_LEFT, BRACE_NONE, BRACE_NONE));
+        thirdLine = new Line(List.of(BRACE_NONE, BRACE_RIGHT, BRACE_LEFT, BRACE_NONE));
+        fourthLine = new Line(List.of(BRACE_RIGHT, BRACE_LEFT, BRACE_NONE, BRACE_NONE));
     }
 
     @Test

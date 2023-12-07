@@ -1,16 +1,18 @@
 package nextstep.ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class BraceTest {
-    @Test
-    @DisplayName("Brace는 주어진 가로 라인이 겹치는 경우 예외를 던진다")
-    void newObject_twoLinesAttached_throwsException() {
+    @ParameterizedTest
+    @NullSource
+    @DisplayName("Brace는 빈 라인이 주어지면 예외를 던진다.")
+    void newObject_null_throwsException(Point point) {
         assertThatThrownBy(
-                () -> new Brace(Point.TRUE,Point.TRUE)
+                () -> new Brace(point)
         ).isInstanceOf(IllegalArgumentException.class);
     }
 }

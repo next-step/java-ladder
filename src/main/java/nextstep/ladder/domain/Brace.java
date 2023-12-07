@@ -1,56 +1,51 @@
 package nextstep.ladder.domain;
 
-import java.util.Random;
-
 public class Brace {
-    private final Point leftPoint;
-    private final Point rightPoint;
+    private final Point point;
 
-    public Brace(Point leftPoint, Point rightPoint) {
-        validate(leftPoint, rightPoint);
-        this.leftPoint = leftPoint;
-        this.rightPoint = rightPoint;
+    public Brace(Point point) {
+        validate(point);
+        this.point = point;
     }
 
-    public void validate(Point leftPoint, Point rightPoint) {
-        twoPointsAttached(leftPoint, rightPoint);
-    }
-
-    private static void twoPointsAttached(Point leftPoint, Point rightPoint) {
-        if(leftPoint.isPoint() && rightPoint.isPoint()) {
-            throw new IllegalArgumentException("선이 나란히 2개가 존재할 수 없습니다.");
+    private static void checkPointIsNull(Point point) {
+        if (point == null) {
+            throw new IllegalArgumentException("Point는 빈 값이면 안됩니다.");
         }
-    }
-
-    public boolean isLeft() {
-        return leftPoint.isPoint() && !rightPoint.isPoint();
-    }
-
-    public boolean isRight() {
-        return !leftPoint.isPoint() && rightPoint.isPoint();
     }
 
     public static Brace first() {
-        return new Brace(new Point(false), new Point(new Random().nextBoolean()));
+        return new Brace(Point.first());
+    }
+
+    public void validate(Point point) {
+        checkPointIsNull(point);
+    }
+
+    public boolean isLeft() {
+        return point.isLeft() && !point.isRight();
+    }
+
+    public boolean isRight() {
+        return !point.isLeft() && point.isRight();
     }
 
     public Brace next() {
-        if(this.rightPoint.isPoint()) {
-            return new Brace(this.rightPoint, new Point(false));
+        if (this.point.isRight()) {
+            return new Brace(Point.left());
         }
 
-        return new Brace(this.leftPoint, new Point(new Random().nextBoolean()));
+        return new Brace(point.next());
     }
 
     public Brace last() {
-        return new Brace(this.rightPoint, new Point(false));
+        return new Brace(point.last());
     }
 
     @Override
     public String toString() {
         return "Brace{" +
-                "leftPoint=" + leftPoint +
-                ", rightPoint=" + rightPoint +
+                "point=" + point +
                 '}';
     }
 }

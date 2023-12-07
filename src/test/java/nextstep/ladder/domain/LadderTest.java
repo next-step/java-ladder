@@ -11,6 +11,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LadderTest {
+    private static final Point POINT_LEFT = new Point(true, false);
+    private static final Point POINT_RIGHT = new Point(false, true);
+    private static final Point POINT_NONE = new Point(false, false);
+
+    private static final Brace BRACE_LEFT = new Brace(POINT_LEFT);
+    private static final Brace BRACE_RIGHT = new Brace(POINT_RIGHT);
+    private static final Brace BRACE_NONE = new Brace(POINT_NONE);
+
     @ParameterizedTest
     @NullAndEmptySource
     @DisplayName("Ladder 는 아무런 라인이 주어지지 않으면 예외를 던진다.")
@@ -22,11 +30,7 @@ public class LadderTest {
 
     @Test
     void move_success() {
-        Brace firstLine_brace1 = new Brace(Point.FALSE, Point.TRUE);
-        Brace firstLine_brace2 = new Brace(Point.TRUE, Point.FALSE);
-        Brace firstLine_brace3 = new Brace(Point.FALSE, Point.FALSE);
-        Brace firstLine_brace4 = new Brace(Point.FALSE, Point.FALSE);
-        Line firstLine = new Line(List.of(firstLine_brace1, firstLine_brace2, firstLine_brace3, firstLine_brace4));
+        Line firstLine = new Line(List.of(BRACE_RIGHT, BRACE_LEFT, BRACE_NONE, BRACE_NONE));
         assertThat(firstLine.move(0)).isEqualTo(1);
         assertThat(firstLine.move(1)).isEqualTo(0);
         assertThat(firstLine.move(2)).isEqualTo(2);

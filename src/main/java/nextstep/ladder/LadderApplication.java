@@ -10,11 +10,11 @@ public class LadderApplication {
         String inputNames = InputView.inputNames();
         Players players = new Players(inputNames);
 
-        int inputHeight = InputView.inputHeight();
-        Height height = new Height(inputHeight);
-
         String inputAmounts = InputView.inputAmounts();
         Amounts amounts = new Amounts(inputAmounts);
+
+        int inputHeight = InputView.inputHeight();
+        Height height = new Height(inputHeight);
 
         Ladder ladder = new Ladder(players, height, new RandomLineStrategy());
         LadderGame ladderGame = new LadderGame(players, ladder, amounts);
