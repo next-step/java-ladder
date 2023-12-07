@@ -33,7 +33,7 @@ public class LineFactory {
 
     private static void lineNeverOverlap(List<Step> collect) {
         for (int i = 1; i < collect.size(); i++) {
-            collect.set(i, collect.get(i).overlapStepReplace(collect.get(i - 1).currentStep()));
+            collect.set(i, collect.get(i).overlapStepReplace());
         }
     }
 

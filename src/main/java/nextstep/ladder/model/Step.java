@@ -20,7 +20,7 @@ public class Step {
         return new Step(false, false);
     }
 
-    public Step overlapStepReplace(Boolean previousStep) {
+    public Step overlapStepReplace() {
         if (currentStep.equals(previousStep) && previousStep.equals(true)) {
             return new Step(false, false);
         }
