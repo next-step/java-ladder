@@ -20,7 +20,7 @@ public class LineFactory {
 
     public Line line(){
         List<Step> line = new ArrayList<>();
-        line.add(Step.of(randomLineGenerator.randomStep(), false));
+        line.add(Step.first(randomLineGenerator.randomStep()));
 
         for (int i=1; i<count; i++){
             Boolean previousStep = line.get(i - 1).currentStep();

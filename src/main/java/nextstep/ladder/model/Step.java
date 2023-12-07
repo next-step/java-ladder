@@ -16,6 +16,10 @@ public class Step {
         return new Step(currentStep, previousStep);
     }
 
+    public static Step first(Boolean currentStep) {
+        return of(currentStep, false);
+    }
+
     public static Step emptyStep() {
         return new Step(false, false);
     }
