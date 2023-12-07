@@ -28,6 +28,7 @@ public class ObjectFactory {
     private LineCreationStrategy lineCreationStrategy() {
         RandomPointsFactory randomPointsFactory = new RandomPointsFactory(pointCreationStrategy());
         return new RandomLineCreationStrategy(randomPointsFactory);
+
     }
 
     private PointCreationStrategy pointCreationStrategy() {
