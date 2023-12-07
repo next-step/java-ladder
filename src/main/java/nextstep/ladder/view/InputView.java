@@ -17,11 +17,7 @@ public class InputView {
     private static final String INPUT_GAME_RESULTS_PATTERN_EXCEPTION = "참가자 이름들의_구분자를_콤마로_입력해주세요";
     private static final String INPUT_LADDER_HEIGHT_EXCEPTION = "사다리 높이는 숫자로 입력해주세요.";
 
-    private final Scanner scanner;
-
-    public InputView(Scanner scanner) {
-        this.scanner = scanner;
-    }
+    private final Scanner scanner = new Scanner(System.in);
 
     public List<String> names() {
         System.out.println(INPUT_PARTICIPANTS_NAME_MESSAGE);
