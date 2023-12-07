@@ -12,7 +12,7 @@ public class Step {
         this.previousStep = previousStep;
     }
 
-    public static Step from(Boolean currentStep, Boolean previousStep){
+    public static Step of(Boolean currentStep, Boolean previousStep){
         return new Step(currentStep, previousStep);
     }
 

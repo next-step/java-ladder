@@ -20,11 +20,11 @@ public class LineFactory {
 
     public Line line(){
         List<Step> line = new ArrayList<>();
-        line.add(Step.from(randomLineGenerator.randomStep(), false));
+        line.add(Step.of(randomLineGenerator.randomStep(), false));
 
         for (int i=1; i<count; i++){
             Boolean previousStep = line.get(i - 1).currentStep();
-            line.add(Step.from(randomLineGenerator.randomStep(), previousStep));
+            line.add(Step.of(randomLineGenerator.randomStep(), previousStep));
         }
         lineNeverOverlap(line);
 
