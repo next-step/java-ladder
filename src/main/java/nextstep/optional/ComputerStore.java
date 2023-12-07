@@ -3,6 +3,8 @@ package nextstep.optional;
 import nextstep.optional.Computer.Soundcard;
 import nextstep.optional.Computer.USB;
 
+import java.util.Optional;
+
 public class ComputerStore {
     public static final String UNKNOWN_VERSION = "UNKNOWN";
 
@@ -21,6 +23,14 @@ public class ComputerStore {
     }
 
     public static String getVersionOptional(Computer computer) {
-        return null;
+        return Optional.ofNullable(computer)
+                .filter(com -> com.getSoundcard() != null)
+                .map(Computer::getSoundcard)
+                .filter(soundcard -> soundcard.getUsb() != null)
+                .map(Soundcard::getUsb)
+                .filter(usb -> usb.getVersion() != null)
+                .map(USB::getVersion)
+                .orElse(UNKNOWN_VERSION);
+
     }
 }
