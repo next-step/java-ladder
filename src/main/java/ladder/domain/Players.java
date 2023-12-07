@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import java.lang.reflect.Member;
 import java.util.List;
 
 public class Players {
