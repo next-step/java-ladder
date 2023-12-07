@@ -34,8 +34,8 @@ public class Lambda {
         return sumAllByConditional(numbers, conditional);
     }
 
-    public static int sumAllOverThree(List<Integer> numbers, Conditional conditional) {
-        return sumAllByConditional(numbers, conditional);
+    public static int sumAllOverThree(List<Integer> numbers) {
+        return sumAllByConditional(numbers, number -> number > 3);
     }
 
     public static int sumAllByConditional(List<Integer> numbers, Conditional conditional){
