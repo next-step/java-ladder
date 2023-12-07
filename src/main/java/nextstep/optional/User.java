@@ -36,7 +36,9 @@ public class User {
 
     public static boolean ageIsInRange2(User user) {
         return Optional.ofNullable(user)
-                .filter(findUser -> user.age != null && findUser.age >= 30 && findUser.age <= 40)
+                .filter(findUser -> user.age != null)
+                .filter(findUser -> findUser.age >= 30)
+                .filter(findUser -> findUser.age <= 40)
                 .isPresent();
     }
 
