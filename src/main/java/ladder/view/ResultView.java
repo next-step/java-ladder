@@ -10,17 +10,20 @@ public class ResultView {
     private static final String LADDER_LINE = "-----";
     private static final String LADDER_EMPTY = "     ";
 
-    private static final String MEMBER_EMPTY = "   ";
-
     public void ladderView(Ladder ladder, Players players){
 
-        players.getPlayers().forEach(p -> System.out.print(p.getPlayer() + MEMBER_EMPTY));
+        players.getPlayers().forEach(p -> {
+            int spacesToAdd = 6 - p.getPlayer().length();
+            StringBuilder result = new StringBuilder(p.getPlayer());
+            result.append(" ".repeat(spacesToAdd));
+            System.out.print(result);
+        });
         System.out.println();
         ladder.getLines().stream().forEach(this::drawLadder);
     }
 
     private void drawLadder(Line line) {
-        System.out.print(LADDER_EMPTY + LINE);
+        System.out.print(LINE);
         line.stream()
             .forEach(b -> {
                 if (b) {
