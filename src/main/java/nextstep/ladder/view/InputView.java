@@ -22,4 +22,8 @@ public class InputView {
     public int initLadderHeight() {
         return scanner.nextInt();
     }
+
+    public String initGameResult() {
+        return scanner.next();
+    }
 }

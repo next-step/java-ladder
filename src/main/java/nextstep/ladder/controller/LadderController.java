@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.stream.Collectors;
+import nextstep.ladder.model.GameResult;
 import nextstep.ladder.model.Ladder;
 import nextstep.ladder.model.Line;
 import nextstep.ladder.model.LineFactory;
@@ -31,15 +32,23 @@ public class LadderController {
     public void start() {
         Players players = getPlayers();
         Ladder ladder = getLadder(players);
+        GameResult gameResult = getGameResult();
 
         resultView.outputPlayers(players);
         resultView.outputLadder(ladder);
+        resultView.outputGameResult(gameResult);
+    }
+
+    private GameResult getGameResult() {
+        resultView.outputInitGameResult();
+        return GameResult.of(inputView.initGameResult());
     }
 
     private Ladder getLadder(Players players) {
         resultView.outputInitLadderHeight();
         int ladderHeight = inputView.initLadderHeight();
-        return Ladder.of(ladderHeight, LineFactory.from(randomLineGenerator, players.list().size()));
+        return Ladder.of(ladderHeight,
+            LineFactory.from(randomLineGenerator, players.list().size()));
     }
 
     private Players getPlayers() {

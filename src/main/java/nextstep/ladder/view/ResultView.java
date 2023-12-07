@@ -2,6 +2,7 @@ package nextstep.ladder.view;
 
 import java.io.PrintStream;
 import java.util.function.Consumer;
+import nextstep.ladder.model.GameResult;
 import nextstep.ladder.model.Ladder;
 import nextstep.ladder.model.Line;
 import nextstep.ladder.model.Players;
@@ -45,5 +46,24 @@ public class ResultView {
 
     public void outputInitLadderHeight(){
         sout.print("최대 사다리 높이는 몇 개인가요?\n");
+    }
+
+    public void outputInitGameResult() {
+        sout.print("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)\n");
+    }
+
+    public void outputGameResult(GameResult gameResult) {
+        gameResult.list().forEach(s -> {
+            if(tooSmallString(s.length())){
+                System.out.print(s + "    ");
+            }else{
+                System.out.print(s + "  ");
+            }
+        });
+        sout.println();
+    }
+
+    private boolean tooSmallString(int stringLength) {
+        return stringLength <= 2;
     }
 }
