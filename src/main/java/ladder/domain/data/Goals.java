@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class Goals {
 
-    List<Goal> goals;
+    private final List<Goal> goals;
 
     public Goals(String... names) {
         this(Arrays.stream(names)
@@ -29,5 +29,9 @@ public class Goals {
         return goals.stream()
             .map(Goal::formatted)
             .collect(Collectors.joining());
+    }
+
+    public int size() {
+        return goals.size();
     }
 }

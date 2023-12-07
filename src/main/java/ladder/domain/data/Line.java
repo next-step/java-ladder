@@ -26,22 +26,22 @@ public class Line {
         int leftIndex = 2 * index - 1;
         int rightIndex = 2 * index + 1;
         if (leftIndex >= 1) {
-            index = left(index, leftIndex);
+            index = toLeft(index, leftIndex);
         }
         if (rightIndex < points.size()) {
-            index = right(index, rightIndex);
+            index = toRight(index, rightIndex);
         }
         return index;
     }
 
-    private int left(int index, int leftIndex) {
+    private int toLeft(int index, int leftIndex) {
         if (points.get(leftIndex).equalsHorizontal()) {
             index -= 1;
         }
         return index;
     }
 
-    private int right(int index, int rightIndex) {
+    private int toRight(int index, int rightIndex) {
         if (points.get(rightIndex).equalsHorizontal()) {
             index += 1;
         }

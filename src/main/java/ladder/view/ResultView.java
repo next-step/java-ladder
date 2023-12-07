@@ -6,27 +6,37 @@ import ladder.domain.data.*;
 
 public class ResultView {
 
-    public static void showPersons(Persons persons) {
+    public static void showLadder(Persons persons, Ladder ladder) {
+        showPersons(persons);
+        showLines(ladder.lines());
+        showGoals(ladder.goals());
+    }
+
+    private static void showPersons(Persons persons) {
         System.out.println("\n사다리 결과\n");
         System.out.println(persons);
     }
 
-    public static void showLines(Ladder ladder) {
-        ladder.lines().forEach(System.out::println);
+    private static void showLines(List<Line> lines) {
+        lines.forEach(System.out::println);
     }
 
-    public static void showGoals(Goals goals) {
+    private static void showGoals(Goals goals) {
         System.out.println(goals);
     }
 
     public static void showResult(Result result) {
-        System.out.println("\n실행결과");
+        resultTitle();
         System.out.println(result);
     }
 
     public static void showResult(List<Result> results) {
-        System.out.println("\n실행결과");
+        resultTitle();
         results.forEach(x -> System.out.println(x.formatted()));
+    }
+
+    private static void resultTitle() {
+        System.out.println("\n실행결과");
     }
 
 }

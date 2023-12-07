@@ -1,15 +1,10 @@
 package ladder;
 
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import ladder.domain.LineGenerator;
-import ladder.domain.RandomBooleanGenerator;
 import ladder.domain.data.*;
 
 import static ladder.view.InputView.*;
-import static ladder.view.ResultView.*;
+import static ladder.view.ResultView.showLadder;
+import static ladder.view.ResultView.showResult;
 
 public class LadderApplication {
 
@@ -18,15 +13,8 @@ public class LadderApplication {
         Goals goals = inputGoals();
         LadderHeight ladderHeight = inputLadderHeight();
 
-        LineGenerator generator = new LineGenerator(new RandomBooleanGenerator());
-        List<Line> lines = Stream.generate(() -> generator.generate(persons.size()))
-            .limit(ladderHeight.value())
-            .collect(Collectors.toList());
-        Ladder ladder = new Ladder(lines, goals);
-
-        showPersons(persons);
-        showLines(ladder);
-        showGoals(goals);
+        Ladder ladder = Ladder.of(goals, ladderHeight);
+        showLadder(persons, ladder);
 
         Person person = inputPerson();
         if (person.hasAll()) {
@@ -35,4 +23,5 @@ public class LadderApplication {
         }
         showResult(ladder.run(persons.find(person)));
     }
+
 }

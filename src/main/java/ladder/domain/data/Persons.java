@@ -32,10 +32,6 @@ public class Persons {
         return persons.size() == new HashSet<>(persons).size();
     }
 
-    public int size() {
-        return persons.size();
-    }
-
     public Person find(Person target) {
         return persons.stream()
             .filter(target::equals)

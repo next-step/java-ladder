@@ -9,12 +9,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class PersonsTest {
 
     @Test
-    void size() {
-        Persons persons = persons();
-        assertThat(persons.size()).isEqualTo(3);
-    }
-
-    @Test
     void 중복된_사람() {
         assertThatThrownBy(() -> new Persons(new String[] {"a", "a", "b"}))
             .isInstanceOf(LadderException.class)

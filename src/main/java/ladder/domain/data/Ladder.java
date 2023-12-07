@@ -3,6 +3,10 @@ package ladder.domain.data;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import ladder.domain.LineGenerator;
+import ladder.domain.RandomBooleanGenerator;
 
 public class Ladder {
 
@@ -23,6 +27,14 @@ public class Ladder {
         this.goals = goals;
     }
 
+    public static Ladder of(Goals goals, LadderHeight ladderHeight) {
+        LineGenerator generator = new LineGenerator(new RandomBooleanGenerator());
+        List<Line> lines = Stream.generate(() -> generator.generate(goals.size()))
+            .limit(ladderHeight.value())
+            .collect(Collectors.toList());
+        return new Ladder(lines, goals);
+    }
+
     public List<Result> runAll(Persons persons) {
         return persons.persons().stream()
             .map(this::run)
@@ -30,11 +42,11 @@ public class Ladder {
     }
 
     public Result run(Person person) {
-        int newIndex = person.order();
+        int currentIndex = person.order();
         for (Line line: lines) {
-            newIndex = line.run(newIndex);
+            currentIndex = line.run(currentIndex);
         }
-        return new Result(person, goals.get(newIndex));
+        return new Result(person, goals.get(currentIndex));
     }
 
     public void add(Line line) {
@@ -45,4 +57,7 @@ public class Ladder {
         return lines;
     }
 
+    public Goals goals() {
+        return goals;
+    }
 }

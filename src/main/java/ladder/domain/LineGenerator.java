@@ -14,9 +14,9 @@ public class LineGenerator {
         this.booleanGenerator = booleanGenerator;
     }
 
-    public Line generate(int numberOfPeople) {
+    public Line generate(int numberOfVerticals) {
         Queue<Direction> queue = new LinkedList<>();
-        List<Point> points = IntStream.range(0, 2 * numberOfPeople - 1)
+        List<Point> points = IntStream.range(0, 2 * numberOfVerticals - 1)
             .mapToObj(idx -> getDirection(idx, queue))
             .map(Point::new)
             .collect(Collectors.toList());
