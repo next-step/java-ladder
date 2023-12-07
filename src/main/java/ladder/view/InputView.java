@@ -3,7 +3,6 @@ package ladder.view;
 import ladder.domain.Player;
 import ladder.domain.Players;
 
-import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;

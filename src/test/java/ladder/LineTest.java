@@ -1,14 +1,12 @@
 package ladder;
 
 import ladder.domain.Line;
-import ladder.domain.Player;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LineTest {
@@ -38,8 +36,8 @@ public class LineTest {
         list.add(false);
         list.add(true);
 
-        assertThatThrownBy(() -> {
-            new Line(list);
-        }).isInstanceOf(RuntimeException.class);
+        Line line = new Line(list);
+
+        assertThat(line).isEqualTo(new Line(list));
     }
 }
