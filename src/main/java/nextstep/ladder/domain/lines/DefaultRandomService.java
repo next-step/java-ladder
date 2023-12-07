@@ -3,11 +3,7 @@ package nextstep.ladder.domain.lines;
 import java.util.Random;
 
 public class DefaultRandomService implements RandomService {
-    private final Random random;
-
-    public DefaultRandomService(Random random) {
-        this.random = random;
-    }
+    private final Random random = new Random();
 
     @Override
     public Boolean nextBoolean() {

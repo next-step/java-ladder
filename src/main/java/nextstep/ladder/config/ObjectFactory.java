@@ -17,27 +17,18 @@ import nextstep.ladder.view.OutputView;
 public class ObjectFactory {
 
     public InputView inputView() {
-        return new InputView(scanner());
-    }
-
-    private Scanner scanner() {
-        return new Scanner(System.in);
+        return new InputView();
     }
 
     public LadderController controller() {
-        return new LadderController(randomLinesFactory());
-    }
-
-    private RandomLinesFactory randomLinesFactory() {
-        return new RandomLinesFactory(lineCreationStrategy());
+        RandomLinesFactory randomLinesFactory = new RandomLinesFactory(lineCreationStrategy());
+        return new LadderController(randomLinesFactory);
     }
 
     private LineCreationStrategy lineCreationStrategy() {
-        return new RandomLineCreationStrategy(randomPointsFactory());
-    }
+        RandomPointsFactory randomPointsFactory = new RandomPointsFactory(pointCreationStrategy());
+        return new RandomLineCreationStrategy(randomPointsFactory);
 
-    private RandomPointsFactory randomPointsFactory() {
-        return new RandomPointsFactory(pointCreationStrategy());
     }
 
     private PointCreationStrategy pointCreationStrategy() {
@@ -45,11 +36,7 @@ public class ObjectFactory {
     }
 
     private RandomService randomService() {
-        return new DefaultRandomService(random());
-    }
-
-    private Random random() {
-        return new Random();
+        return new DefaultRandomService();
     }
 
     public OutputView outputView() {
