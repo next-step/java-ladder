@@ -10,7 +10,7 @@ public class PlayersTest {
     @ParameterizedTest
     @EmptySource
     @DisplayName("PersonNames 은 아무런 이름이 주어지지 않으면 예외를 던진다.")
-    void newObject_empty_throwsException(String empty) {
+    void newObject_empty_throwsException(String[] empty) {
         assertThatThrownBy(
                 () -> new Players(empty)
         ).isInstanceOf(IllegalArgumentException.class);

@@ -10,7 +10,7 @@ public class AmountsTest {
     @ParameterizedTest
     @NullAndEmptySource
     @DisplayName("ResultAmounts 은 아무런 결과 금액이 주어지지 않으면 예외를 던진다.")
-    void newObject_nullAndEmpty_throwsException(String nullAndEmpty) {
+    void newObject_nullAndEmpty_throwsException(String[] nullAndEmpty) {
         assertThatThrownBy(
                 () -> new Amounts(nullAndEmpty)
         ).isInstanceOf(IllegalArgumentException.class);

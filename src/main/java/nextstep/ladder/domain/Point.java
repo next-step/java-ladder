@@ -28,7 +28,7 @@ public class Point {
     }
 
     public Point next() {
-        return new Point(this.right, random());
+        return new Point(false, random());
     }
 
     private static boolean random() {

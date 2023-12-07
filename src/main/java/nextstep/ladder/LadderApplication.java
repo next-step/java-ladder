@@ -7,10 +7,10 @@ import nextstep.ladder.view.OutputView;
 
 public class LadderApplication {
     public static void main(String[] args) {
-        String inputNames = InputView.inputNames();
+        String[] inputNames = InputView.inputNames();
         Players players = new Players(inputNames);
 
-        String inputAmounts = InputView.inputAmounts();
+        String[] inputAmounts = InputView.inputAmounts();
         Amounts amounts = new Amounts(inputAmounts);
 
         int inputHeight = InputView.inputHeight();
@@ -21,6 +21,6 @@ public class LadderApplication {
         OutputView.printLadder(players, ladder, amounts);
 
         LadderGameResult ladderGameResult = ladderGame.realPlay();
-        OutputView.printResult(ladderGameResult);
+        OutputView.printResults(ladderGameResult);
     }
 }

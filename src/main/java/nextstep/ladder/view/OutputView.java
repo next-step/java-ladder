@@ -57,20 +57,28 @@ public class OutputView {
         sb.append("\n");
     }
 
-    public static void printResult(LadderGameResult ladderGameResult) {
+    public static void printResults(LadderGameResult ladderGameResult) {
         String inputName = "";
         while (!inputName.equals(ALL_PLAYERS)) {
             inputName = InputView.inputPlayer();
 
             System.out.println("실행 결과");
             if (inputName.equals(ALL_PLAYERS)) {
-                for (Player player : ladderGameResult.keySet()) {
-                    System.out.printf("%s : %s\n", player, ladderGameResult.get(player));
-                }
+                printAllPlayersResults(ladderGameResult);
                 continue;
             }
 
-            System.out.printf("%s : %s\n", inputName, ladderGameResult.get(new Player(inputName)));
+            printPlayerResult(ladderGameResult, inputName);
+        }
+    }
+
+    private static void printPlayerResult(LadderGameResult ladderGameResult, String inputName) {
+        System.out.printf("%s : %s\n", inputName, ladderGameResult.get(new Player(inputName)));
+    }
+
+    private static void printAllPlayersResults(LadderGameResult ladderGameResult) {
+        for (Player player : ladderGameResult.keySet()) {
+            System.out.printf("%s : %s\n", player, ladderGameResult.get(player));
         }
     }
 }

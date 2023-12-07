@@ -20,6 +20,8 @@ public class LadderGameTest {
     private Line secondLine;
     private Line thirdLine;
     private Line fourthLine;
+    private String[] inputPlayers;
+    private String[] inputAmounts;
 
     @BeforeEach
     void setUp() {
@@ -27,13 +29,15 @@ public class LadderGameTest {
         secondLine = new Line(List.of(BRACE_RIGHT, BRACE_LEFT, BRACE_NONE, BRACE_NONE));
         thirdLine = new Line(List.of(BRACE_NONE, BRACE_RIGHT, BRACE_LEFT, BRACE_NONE));
         fourthLine = new Line(List.of(BRACE_RIGHT, BRACE_LEFT, BRACE_NONE, BRACE_NONE));
+        inputPlayers = "a,b,c,d".split(",");
+        inputAmounts = "1,2,3,4".split(",");
     }
 
     @Test
     void success() {
-        Players players = new Players("a,b,c,d");
+        Players players = new Players(inputPlayers);
         Ladder ladder = new Ladder(List.of(firstLine, secondLine, thirdLine, fourthLine));
-        Amounts amounts = new Amounts("1,2,3,4");
+        Amounts amounts = new Amounts(inputAmounts);
         LadderGame ladderGame = new LadderGame(players, ladder, amounts);
         LadderGameResult ladderGameResult = ladderGame.realPlay();
 
