@@ -6,9 +6,21 @@ public class LadderGame {
     private final Amounts amounts;
 
     public LadderGame(Players players, Ladder ladder, Amounts amounts) {
+        validate(players, amounts);
+
         this.players = players;
         this.ladder = ladder;
         this.amounts = amounts;
+    }
+
+    private void validate(Players players, Amounts amounts) {
+        checkPlayersAndAmountsSizeSame(players, amounts);
+    }
+
+    private void checkPlayersAndAmountsSizeSame(Players players, Amounts amounts) {
+        if (players.size() != amounts.size()) {
+            throw new IllegalArgumentException("참가자와 사다리 결과의 수는 같아야 합니다.");
+        }
     }
 
     public LadderGameResult realPlay() {

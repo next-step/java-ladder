@@ -2,23 +2,21 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.strategy.LineStrategy;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
-    private final Lines lines;
+    private final List<Line> lines;
 
     public Ladder(List<Line> lines) {
         validate(lines);
 
-        this.lines = new Lines(lines);
-    }
-
-    public Ladder(Lines lines) {
         this.lines = lines;
     }
 
     public Ladder(Players players, Height height, LineStrategy lineStrategy) {
-        Lines lines = new Lines();
+        List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height.height(); i++) {
             Line line = createLine(players.size(), lineStrategy);
             lines.add(line);
@@ -49,8 +47,8 @@ public class Ladder {
         return index;
     }
 
-    public Lines lines() {
-        return this.lines;
+    public List<Line> lines() {
+        return Collections.unmodifiableList(this.lines);
     }
 
     @Override
