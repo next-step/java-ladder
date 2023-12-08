@@ -21,6 +21,6 @@ public class LadderApplication {
         OutputView.printLadder(players, ladder, amounts);
 
         LadderGameResult ladderGameResult = ladderGame.realPlay();
-        OutputView.printResults(ladderGameResult);
+        OutputView.printResultLoop(ladderGameResult);
     }
 }

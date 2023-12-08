@@ -18,13 +18,13 @@ public class Line implements Iterable<Brace> {
     }
 
     private static void checkBracesSizeIsValid(List<Brace> braces) {
-        if(braces == null || braces.isEmpty()) {
+        if (braces == null || braces.isEmpty()) {
             throw new IllegalArgumentException("지지대는 최소 1개 이상이어야 합니다.");
         }
     }
 
     private void checkBracesNotConnected(List<Brace> braces) {
-        IntStream.range(0, braces.size())
+        IntStream.range(0, braces.size() - 1)
                 .filter(index -> notConnected(braces, index))
                 .findFirst()
                 .ifPresent(index -> {
