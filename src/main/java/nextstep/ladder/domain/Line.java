@@ -33,7 +33,8 @@ public class Line implements Iterable<Brace> {
     }
 
     private static boolean notConnected(List<Brace> braces, int index) {
-        return braces.get(index).isRight() && !braces.get(index + 1).isLeft();
+        return braces.get(index).isRight() && !braces.get(index + 1).isLeft()
+                || !braces.get(index).isRight() && braces.get(index + 1).isLeft();
     }
 
     public int move(int index) {

@@ -8,6 +8,10 @@ public class Brace {
         this.point = point;
     }
 
+    public void validate(Point point) {
+        checkPointIsNull(point);
+    }
+
     private static void checkPointIsNull(Point point) {
         if (point == null) {
             throw new IllegalArgumentException("Point는 빈 값이면 안됩니다.");
@@ -16,10 +20,6 @@ public class Brace {
 
     public static Brace first() {
         return new Brace(Point.first());
-    }
-
-    public void validate(Point point) {
-        checkPointIsNull(point);
     }
 
     public boolean isLeft() {
