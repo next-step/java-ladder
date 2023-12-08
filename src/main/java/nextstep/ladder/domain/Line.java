@@ -12,10 +12,14 @@ public class Line {
         this.points = points;
     }
 
+    public static Line from(List<Point> points) {
+        validateCountOfPerson(points.size());
+
+        return new Line(points);
+    }
+
     public static Line of(int countOfPerson) {
-        if (countOfPerson < MIN_COUNT_OF_PERSON) {
-            throw new IllegalArgumentException("라인은 최소 " + MIN_COUNT_OF_PERSON + "명 이상의 참가자가 있어야 합니다.");
-        }
+        validateCountOfPerson(countOfPerson);
 
         List<Point> points = new ArrayList<>();
         Point point = Point.randomInstance();
@@ -28,6 +32,12 @@ public class Line {
         }
 
         return new Line(points);
+    }
+
+    private static void validateCountOfPerson(int countOfPerson) {
+        if (countOfPerson < MIN_COUNT_OF_PERSON) {
+            throw new IllegalArgumentException("라인은 최소 " + MIN_COUNT_OF_PERSON + "명 이상의 참가자가 있어야 합니다.");
+        }
     }
 
     public List<Point> points() {
