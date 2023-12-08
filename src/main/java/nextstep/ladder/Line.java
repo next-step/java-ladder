@@ -13,6 +13,9 @@ public class Line {
     private Random random = new Random();
 
     public Line (int countOfPerson) {
+        if (countOfPerson <= 1 ) {
+             throw new IllegalArgumentException("라인은 1명이상인 경우만 생성됩니다");
+        }
         this.points = Stream.iterate(random.nextBoolean(), this::hasLine)
                 .limit(countOfPerson-1)
                 .collect(Collectors.toList());
