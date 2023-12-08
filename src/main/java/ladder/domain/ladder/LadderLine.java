@@ -49,11 +49,11 @@ public class LadderLine {
         }
 
         if (columns.get(columnIndex).isConnectedRight() && columns.get(columnIndex +1).isNotConnectedLeft()) {
-            throw new IllegalArgumentException("컬럼 간에는 쌍방으로 연결되어 있으나 연결이 파편화 되어 있습니다.");
+            throw new IllegalArgumentException("컬럼 간에는 쌍방으로 연결되어 있어야 하나 연결이 파편화 되어 있습니다.");
         }
 
         if (columns.get(columnIndex).isConnectedLeft() && columns.get(columnIndex -1).isNotConnectedRight()) {
-            throw new IllegalArgumentException("컬럼 간에는 쌍방으로 연결되어 있으나 연결이 파편화 되어 있습니다.");
+            throw new IllegalArgumentException("컬럼 간에는 쌍방으로 연결되어 있어야 하나 연결이 파편화 되어 있습니다.");
         }
     }
 
