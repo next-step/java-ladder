@@ -40,4 +40,25 @@ public class Ladder {
     public List<Line> lines() {
         return new ArrayList<>(lines);
     }
+
+    public String play(String playerName) {
+        int position = playerNames.indexOf(playerName);
+
+        for (Line line : lines) {
+            Point prevPoint = null;
+            if (position - 1 > 0) {
+                prevPoint = line.points().get(position - 1);
+            }
+            Point curPoint = line.points().get(position);
+            if (prevPoint != null && prevPoint.isActive()) {
+                position -= 1;
+            }
+
+            if (prevPoint != null && !prevPoint.isActive() && curPoint != null && curPoint.isActive()) {
+                position += 1;
+            }
+        }
+
+        return result.get(position);
+    }
 }

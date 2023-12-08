@@ -30,16 +30,18 @@ class LadderTest {
                 .hasMessage("플레이어와 결과의 수는 동일해야 합니다.");
     }
 
-//    @ParameterizedTest
-//    @CsvSource(value = {"pobi:꽝", "honux:5000"}, delimiter = ':')
-//    void 사다리는_이름을_받아_결과를_반환할_수_있다(String playerName, String result) {
-//        Ladder ladder = new Ladder(
-//                List.of(
-//                        Line.from(List.of(new Point(false), new Point(false))),
-//                        Line.from(List.of(new Point(false), new Point(false)))
-//                )
-//        );
-//
-//        assertThat(ladder.play(playerName)).isEqualsTo(result);
-//    }
+    @ParameterizedTest
+    @CsvSource(value = {"pobi:꽝", "honux:5000"}, delimiter = ':')
+    void 사다리는_이름을_받아_결과를_반환할_수_있다(String playerName, String result) {
+        Ladder ladder = new Ladder(
+                List.of("pobi", "honux"),
+                List.of(
+                        Line.from(List.of(new Point(false), new Point(false))),
+                        Line.from(List.of(new Point(false), new Point(false)))
+                ),
+                List.of("꽝", "5000")
+        );
+
+        assertThat(ladder.play(playerName)).isEqualTo(result);
+    }
 }
