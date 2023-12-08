@@ -1,51 +1,53 @@
 package nextstep.ladder.domain;
 
+import java.util.Random;
+
 public class Brace {
-    private final Point point;
+    private final boolean left;
+    private final boolean right;
 
-    public Brace(Point point) {
-        validate(point);
-        this.point = point;
+    public Brace(boolean left, boolean right) {
+        validate(left, right);
+
+        this.left = left;
+        this.right = right;
     }
 
-    public void validate(Point point) {
-        checkPointIsNull(point);
+    private void validate(boolean left, boolean right) {
+        checkTwoPointsAttached(left, right);
     }
 
-    private static void checkPointIsNull(Point point) {
-        if (point == null) {
-            throw new IllegalArgumentException("Point는 빈 값이면 안됩니다.");
+    private static void checkTwoPointsAttached(boolean left, boolean right) {
+        if (left && right) {
+            throw new IllegalArgumentException("사다리는 2개가 연속해서 만들어질 수 없습니다.");
         }
     }
 
     public static Brace first() {
-        return new Brace(Point.first());
-    }
-
-    public boolean isLeft() {
-        return point.isLeft() && !point.isRight();
-    }
-
-    public boolean isRight() {
-        return !point.isLeft() && point.isRight();
-    }
-
-    public Brace next() {
-        if (this.point.isRight()) {
-            return new Brace(Point.left());
-        }
-
-        return new Brace(point.next());
+        return new Brace(false, random());
     }
 
     public Brace last() {
-        return new Brace(point.last());
+        return new Brace(this.right, false);
     }
 
-    @Override
-    public String toString() {
-        return "Brace{" +
-                "point=" + point +
-                '}';
+    public Brace next() {
+        if (isRight()) {
+            return new Brace(true, false);
+        }
+
+        return new Brace(false, random());
+    }
+
+    private static boolean random() {
+        return new Random().nextBoolean();
+    }
+
+    public boolean isLeft() {
+        return this.left;
+    }
+
+    public boolean isRight() {
+        return this.right;
     }
 }

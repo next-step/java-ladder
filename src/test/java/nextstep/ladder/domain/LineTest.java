@@ -10,13 +10,9 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LineTest {
-    private static final Point POINT_LEFT = new Point(true, false);
-    private static final Point POINT_RIGHT = new Point(false, true);
-    private static final Point POINT_NONE = new Point(false, false);
-
-    private static final Brace BRACE_LEFT = new Brace(POINT_LEFT);
-    private static final Brace BRACE_RIGHT = new Brace(POINT_RIGHT);
-    private static final Brace BRACE_NONE = new Brace(POINT_NONE);
+    private static final Brace BRACE_LEFT = new Brace(true, false);
+    private static final Brace BRACE_RIGHT = new Brace(false, true);
+    private static final Brace BRACE_NONE = new Brace(false, false);
 
     @ParameterizedTest
     @NullAndEmptySource
