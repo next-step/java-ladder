@@ -12,7 +12,7 @@ public class Step {
         this.previousStep = previousStep;
     }
 
-    public static Step of(Boolean currentStep, Boolean previousStep){
+    public static Step of(Boolean currentStep, Boolean previousStep) {
         return new Step(currentStep, previousStep);
     }
 
@@ -20,19 +20,20 @@ public class Step {
         return of(currentStep, false);
     }
 
-    public static Step emptyStep() {
-        return new Step(false, false);
-    }
-
-    public Step overlapStepReplace() {
-        if (currentStep.equals(previousStep) && previousStep.equals(true)) {
-            return new Step(false, false);
-        }
-        return new Step(currentStep, previousStep);
+    public static Step last(Boolean previousStep) {
+        return of(false, previousStep);
     }
 
     public boolean canMove() {
         return this.currentStep;
+    }
+
+    public Boolean currentStep() {
+        return currentStep;
+    }
+
+    public Boolean previousStep() {
+        return previousStep;
     }
 
     @Override
@@ -52,7 +53,4 @@ public class Step {
         return Objects.hash(currentStep);
     }
 
-    public Boolean currentStep() {
-        return currentStep;
-    }
 }
