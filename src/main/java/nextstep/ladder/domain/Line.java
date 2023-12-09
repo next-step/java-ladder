@@ -1,55 +1,75 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class Line implements Iterable<Point> {
-    private final List<Point> points;
+public class Line implements Iterable<Brace> {
+    private final List<Brace> braces;
 
-    public Line (List<Point> points) {
-        this.validate(points);
-        this.points = new ArrayList<>(points);
+    public Line(List<Brace> braces) {
+        validate(braces);
+        this.braces = braces;
     }
 
-    public void validate(List<Point> points) {
-        checkPointsSizeIsValid(points);
-        checkMoreThanTwoLinesAttached(points);
+    private void validate(List<Brace> braces) {
+        checkBracesSizeIsValid(braces);
+        checkBracesNotConnected(braces);
     }
 
-    private void checkMoreThanTwoLinesAttached(List<Point> points) {
-        IntStream.range(1, points.size())
-                .filter(index -> lefAndRightSame(points, index))
-                .findFirst()
-                .ifPresent(index -> {
-                    throw new IllegalArgumentException("사다리는 가로 라인이 겹칠 수 없습니다.");
-                });
-    }
-
-    private boolean lefAndRightSame(List<Point> points, int index) {
-        return points.get(index - 1).isPoint() && points.get(index).isPoint();
-    }
-
-    private void checkPointsSizeIsValid(List<Point> points) {
-        if (points == null || points.isEmpty()) {
-            throw new IllegalArgumentException(("라인은 Point가 적어도 1개 이상 존재해야 합니다."));
+    private static void checkBracesSizeIsValid(List<Brace> braces) {
+        if (braces == null || braces.isEmpty()) {
+            throw new IllegalArgumentException("지지대는 최소 1개 이상이어야 합니다.");
         }
     }
 
-    public List<Point> points() {
-        return this.points;
+    private void checkBracesNotConnected(List<Brace> braces) {
+        IntStream.range(0, braces.size() - 1)
+                .filter(index -> notConnected(braces, index))
+                .findFirst()
+                .ifPresent(index -> {
+                    throw new IllegalArgumentException("사다리가 정상적으로 이어져 있지 않습니다.");
+                });
+    }
+
+    private static boolean notConnected(List<Brace> braces, int index) {
+        return braces.get(index).isRight() && !braces.get(index + 1).isLeft()
+                || !braces.get(index).isRight() && braces.get(index + 1).isLeft();
+    }
+
+    public int move(int index) {
+        if (isLeft(index)) {
+            return index - 1;
+        }
+
+        if (isRight(index)) {
+            return index  + 1;
+        }
+
+        return index;
+    }
+
+    private boolean isLeft(int index) {
+        return braces.get(index).isLeft();
+    }
+
+    private boolean isRight(int index) {
+        return braces.get(index).isRight();
     }
 
     @Override
     public String toString() {
         return "Line{" +
-                "points=" + points +
+                "braces=" + braces +
                 '}';
     }
 
+    public List<Brace> braces() {
+        return this.braces;
+    }
+
     @Override
-    public Iterator<Point> iterator() {
-        return this.points.iterator();
+    public Iterator<Brace> iterator() {
+        return this.braces.iterator();
     }
 }

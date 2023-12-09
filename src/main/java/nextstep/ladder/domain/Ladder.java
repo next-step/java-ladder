@@ -3,21 +3,23 @@ package nextstep.ladder.domain;
 import nextstep.ladder.domain.strategy.LineStrategy;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Collections;
 import java.util.List;
 
-public class Ladder implements Iterable<Line> {
+public class Ladder {
     private final List<Line> lines;
 
     public Ladder(List<Line> lines) {
         validate(lines);
-        this.lines = new ArrayList<>(lines);
+
+        this.lines = lines;
     }
 
-    public Ladder(int personCount, int height, LineStrategy lineStrategy) {
+    public Ladder(Players players, Height height, LineStrategy lineStrategy) {
         List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            lines.add(createLine(personCount, lineStrategy));
+        for (int i = 0; i < height.height(); i++) {
+            Line line = createLine(players.size(), lineStrategy);
+            lines.add(line);
         }
 
         this.lines = lines;
@@ -37,8 +39,16 @@ public class Ladder implements Iterable<Line> {
         }
     }
 
+    public int move(int index) {
+        for (Line line : lines) {
+            index = line.move(index);
+        }
+
+        return index;
+    }
+
     public List<Line> lines() {
-        return this.lines;
+        return Collections.unmodifiableList(this.lines);
     }
 
     @Override
@@ -46,10 +56,5 @@ public class Ladder implements Iterable<Line> {
         return "Ladder{" +
                 "lines=" + lines +
                 '}';
-    }
-
-    @Override
-    public Iterator<Line> iterator() {
-        return this.lines.iterator();
     }
 }
