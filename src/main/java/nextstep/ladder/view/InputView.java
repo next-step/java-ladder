@@ -26,4 +26,7 @@ public class InputView {
     public String initGameResult() {
         return scanner.next();
     }
-}
+
+    public String initResult() {
+        return scanner.next();
+    }}
