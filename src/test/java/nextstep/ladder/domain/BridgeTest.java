@@ -8,14 +8,14 @@ public class BridgeTest {
 
     @Test
     public void canCrossBridge_다리_존재_시_True_반환() {
-        Bridge bridge = new Bridge(true);
+        Bridge bridge = Bridge.of(true);
 
         assertThat(bridge.canCrossBridge()).isTrue();
     }
 
     @Test
     public void canCrossBridge_다리_없을_시_False_반환() {
-        Bridge bridge = new Bridge(false);
+        Bridge bridge = Bridge.of(false);
 
         assertThat(bridge.canCrossBridge()).isFalse();
     }
