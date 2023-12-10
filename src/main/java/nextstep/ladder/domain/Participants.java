@@ -9,6 +9,7 @@ import java.util.List;
 public class Participants {
     private static final String PARTICIPANTS_BLANK_ERROR = "참가자를 입력해주세요.";
     private static final String PARTICIPATNS_MINIMUM_ERROR = "참가자가 부족합니다.";
+
     private final List<Participant> participants;
 
     public Participants(String participants) {

@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -7,14 +8,15 @@ import java.util.stream.IntStream;
 public class Ladder {
     private static final String MINIMUM_HEIGHT_ERROR = "사다리 최고 높이는 1보다 작을 수 없습니다.";
     private static final int MINIMUM_HEIGHT = 1;
-    private final List<Line> lines;
+
+    private final List<Line> lines = new ArrayList<>();
 
     public Ladder(int maxHeight, Participants participants) {
         validationMaxHeight(maxHeight);
 
-        this.lines = IntStream.rangeClosed(MINIMUM_HEIGHT, maxHeight)
-                .mapToObj(i -> new Line(makeRandomLine(participants.getNumberOfParticipants())))
-                .collect(Collectors.toList());
+        for (int i=0; i<maxHeight; i++) {
+            lines.add(makeRandomLine(participants.getNumberOfParticipants()));
+        }
     }
 
     private void validationMaxHeight(int maxHeight) {
@@ -27,7 +29,7 @@ public class Ladder {
         return lines;
     }
 
-    private List<Point> makeRandomLine(int numberOfParticipants) {
-        return RandomLine.makeRandomLine(numberOfParticipants);
+    private Line makeRandomLine(int numberOfParticipants) {
+        return new Line(RandomLine.makeRandomLine(numberOfParticipants));
     }
 }

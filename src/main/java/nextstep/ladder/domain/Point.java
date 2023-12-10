@@ -1,13 +1,13 @@
 package nextstep.ladder.domain;
 
 public class Point {
-    private final Boolean point;
+    private final Boolean isStair;
 
-    public Point(boolean point) {
-        this.point = point;
+    public Point(boolean isStair) {
+        this.isStair = isStair;
     }
 
-    public Boolean getPoint() {
-        return point;
+    public Boolean getIsStair() {
+        return isStair;
     }
 }
