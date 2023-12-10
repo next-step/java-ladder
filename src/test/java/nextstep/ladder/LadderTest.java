@@ -11,6 +11,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class LadderTest {
 
@@ -48,6 +49,28 @@ class LadderTest {
                 List.of("꽝", "5000")
         );
 
-        assertThat(ladder.play(playerName)).isEqualTo(result);
+        assertAll(
+                () -> assertThat(ladder.play(playerName)).hasSize(1),
+                () -> assertThat(ladder.play(playerName)).contains(result)
+        );
+    }
+
+    @Test
+    void 사다리는_all을_입력하면_전체_참여자의_실행_결과를_출력한다() {
+        Ladder ladder = new Ladder(
+                List.of("pobi", "honux"),
+                new Lines(List.of(
+                        Line.from(List.of(new Point(false), new Point(false))),
+                        Line.from(List.of(new Point(false), new Point(false)))
+                )),
+                List.of("꽝", "5000")
+        );
+
+        List<String> result = ladder.play("all");
+
+        assertAll(
+                () -> assertThat(result).hasSize(2),
+                () -> assertThat(result).containsAll(List.of("꽝", "5000"))
+        );
     }
 }

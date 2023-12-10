@@ -3,8 +3,11 @@ package nextstep.ladder.domain;
 import nextstep.ladder.Lines;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Ladder {
+
+    private static final String PLAY_ALL = "all";
 
     private final List<String> playerNames;
 
@@ -30,11 +33,19 @@ public class Ladder {
         return lines.values();
     }
 
-    public String play(String playerName) {
+    private String result(String playerName) {
         int position = playerNames.indexOf(playerName);
 
-        position = lines.finalPosition(position);
+        return result.get(lines.finalPosition(position));
+    }
 
-        return result.get(position);
+    public List<String> play(String playName) {
+        if (!PLAY_ALL.equals(playName)) {
+            return List.of(result(playName));
+        }
+
+        return playerNames.stream()
+                .map(this::result)
+                .collect(Collectors.toList());
     }
 }
