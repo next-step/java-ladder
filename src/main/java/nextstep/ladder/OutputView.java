@@ -22,10 +22,10 @@ public class OutputView {
     }
 
     private String printLine(Line line) {
-        StringBuilder ladderLine = new StringBuilder(LADDER_BLANK_LINE);
+        StringBuilder ladderLine = new StringBuilder(LADDER_BLANK_LINE+LADDER_COLUMN_LINE);
         line.points().forEach(point ->  {
-            ladderLine.append(LADDER_COLUMN_LINE);
             ladderLine.append(point ? LADDER_ROW_LINE : LADDER_BLANK_LINE);
+            ladderLine.append(LADDER_COLUMN_LINE);
         });
         return ladderLine.toString();
     }
