@@ -5,11 +5,7 @@ import java.util.Map;
 
 public class LadderResult {
 
-    private final Map<String, String> value;
-
-    public LadderResult(Map<String, String> value) {
-        this.value = value;
-    }
+    private final Map<String, String> value = new HashMap<>();
 
     public Map<String, String> value() {
         return new HashMap<>(value);
@@ -21,5 +17,9 @@ public class LadderResult {
         }
 
         return value.get(playerName);
+    }
+
+    public void addResult(String playerName, String result) {
+        value.put(playerName, result);
     }
 }
