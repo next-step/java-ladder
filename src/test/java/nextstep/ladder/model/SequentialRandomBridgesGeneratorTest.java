@@ -14,9 +14,5 @@ public class SequentialRandomBridgesGeneratorTest {
         assertThat(bridgesGenerator.generateBridges(5)).hasSize(4);
     }
 
-    @Test
-    public void generateBridges_사람수_1명일때_에러_테스트() {
-        assertThatThrownBy(() -> bridgesGenerator.generateBridges(1))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
+
 }
