@@ -1,4 +1,4 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.model;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +18,7 @@ public class Bridge {
         this.value = value;
     }
 
-    static Bridge of(boolean value) {
+    public static Bridge of(boolean value) {
         return cacheBridge.get(value);
     }
 
