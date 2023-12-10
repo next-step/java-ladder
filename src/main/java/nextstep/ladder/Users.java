@@ -9,4 +9,8 @@ public class Users {
     public int size() {
         return userList.size();
     }
+
+    public List<User> getUserList() {
+        return userList;
+    }
 }

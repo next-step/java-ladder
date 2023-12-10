@@ -24,5 +24,7 @@ public class Line {
         return b == true ? false : random.nextBoolean();
     }
 
-
+    public List<Boolean> points() {
+        return points;
+    }
 }
