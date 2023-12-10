@@ -11,6 +11,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 class LadderTest {
@@ -72,5 +73,19 @@ class LadderTest {
                 () -> assertThat(result).hasSize(2),
                 () -> assertThat(result).containsAll(List.of("꽝", "5000"))
         );
+    }
+
+    @Test
+    void 사다리는_참여자가_아닌_이름으로_결과를_확인할_수_없다() {
+        Ladder ladder = new Ladder(
+                List.of("pobi", "honux"),
+                new Lines(List.of(Line.from(List.of(new Point(false), new Point(false))))),
+                List.of("꽝", "5000")
+        );
+
+        Throwable throwable = catchThrowable(() -> ladder.play("참가자아님"));
+
+        assertThat(throwable).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("참여자가 아닙니다.");
     }
 }

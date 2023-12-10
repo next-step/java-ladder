@@ -34,14 +34,19 @@ public class Ladder {
     }
 
     private String result(String playerName) {
+        boolean contains = playerNames.contains(playerName);
+        if (!contains) {
+            throw new IllegalArgumentException("참여자가 아닙니다.");
+        }
+
         int position = playerNames.indexOf(playerName);
 
         return result.get(lines.finalPosition(position));
     }
 
-    public List<String> play(String playName) {
-        if (!PLAY_ALL.equals(playName)) {
-            return List.of(result(playName));
+    public List<String> play(String playerName) {
+        if (!PLAY_ALL.equals(playerName)) {
+            return List.of(result(playerName));
         }
 
         return playerNames.stream()
