@@ -1,50 +1,27 @@
 package com.fineroot.ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 
-import com.fineroot.ladder.utils.ExceptionMessage;
-import com.fineroot.ladder.utils.RandomUtils;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class BarFactoryTest {
-
-    @Test
-    @DisplayName("BarFactory withInitValue 생성")
-    void create_withInitValue() {
-        BarFactory barFactory = new BarFactory(false);
-        assertThat(barFactory.first().currentStep()).isFalse();
-    }
-
-    @Test
-    @DisplayName("첫 단계 bar")
-    void create_first() {
-        BarFactory barFactory = new BarFactory(false);
-        assertThat(barFactory.first()).isInstanceOf(Bar.class);
-    }
-
-    @Test
-    @DisplayName("중간 단계 bar")
-    void next(){
-        BarFactory barFactory = new BarFactory(false);
-        assertThat(barFactory.next(false)).isInstanceOf(Bar.class);
-    }
-
-    @Test
-    @DisplayName("last() 호출")
-    void last() {
-        BarFactory barFactory = new BarFactory(false);
-        assertThat(barFactory.last()).isInstanceOf(Bar.class);
-    }
-
-    @Test
-    @DisplayName("last() 호출 이후 next() 호출시 예외 발생")
-    void next_should_throw_exception_when_next_after_last(){
-        BarFactory barFactory = new BarFactory(false);
-        barFactory.last();
-        assertThatThrownBy(()->barFactory.next(false))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ExceptionMessage.BAR_FACTORY_NEXT_AFTER_LAST.getMessage());
+    @ParameterizedTest
+    @DisplayName("Bar 생성")
+    @ValueSource(ints = {0,1,2,3})
+    void createBars(int index) {
+        List<Bar> bars = new ArrayList<>();
+        List<Bar> expected = List.of(
+                Bar.of(false, true),
+                Bar.of(true, false),
+                Bar.of(false, true),
+                Bar.of(true, false));
+        List<Bar> actual = BarFactory.createBars(true, false, true);
+        assertThat(actual.get(index)).hasToString(expected.get(index).toString());
     }
 }

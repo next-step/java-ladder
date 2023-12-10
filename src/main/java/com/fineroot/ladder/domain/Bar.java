@@ -5,11 +5,11 @@ import com.fineroot.ladder.utils.ExceptionMessage;
 public class Bar {
 
     private boolean havePreviousStep;
-    private boolean haveStep;
+    private boolean haveNextStep;
 
-    private Bar(final boolean hasPreviousStep, final boolean haveStep) {
-        validation(hasPreviousStep, haveStep);
-        this.haveStep = haveStep;
+    private Bar(final boolean hasPreviousStep, final boolean haveNextStep) {
+        validation(hasPreviousStep, haveNextStep);
+        this.haveNextStep = haveNextStep;
         this.havePreviousStep=hasPreviousStep;
     }
 
@@ -23,24 +23,24 @@ public class Bar {
     }
 
     public boolean currentStep(){
-        return haveStep;
+        return haveNextStep;
     }
 
-    public Direction move(){
+    public Position move(Position position){
         if(havePreviousStep){
-            return Direction.LEFT;
+            return Direction.LEFT.move(position);
         }
-        if(haveStep){
-            return Direction.RIGHT;
+        if(haveNextStep){
+            return Direction.RIGHT.move(position);
         }
-        return Direction.PASS;
+        return Direction.PASS.move(position);
     }
 
     @Override
     public String toString() {
-        if(haveStep){
-            return "-----";
+        if(haveNextStep){
+            return "|-----";
         }
-        return "     ";
+        return "|     ";
     }
 }

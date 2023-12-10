@@ -32,8 +32,8 @@ class BarTest {
     }
 
     @ParameterizedTest
-    @CsvSource({"true, false, LEFT","false, true, RIGHT","false, false, PASS"})
-    void move(boolean previousStepInput, boolean haveStep, Direction expected) {
-        assertThat(Bar.of(previousStepInput, haveStep).move()).isEqualTo(expected);
+    @CsvSource({"true, false, 0","false, true, 2","false, false, 1"})
+    void move(boolean previousStepInput, boolean haveStep, int expected) {
+        assertThat(Bar.of(previousStepInput, haveStep).move(new Position(1))).isEqualTo(new Position(expected));
     }
 }

@@ -13,7 +13,7 @@ public enum Direction {
         this.movement = movement;
     }
 
-    public UnaryOperator<Position> getMovement() {
-        return movement;
+    public Position move(Position position) {
+        return movement.apply(position);
     }
 }

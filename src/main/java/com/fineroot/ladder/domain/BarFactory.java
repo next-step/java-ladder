@@ -5,39 +5,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BarFactory {
-    private final List<Bar> barList= new ArrayList<>();
-    private boolean isValid = true;
 
-    public BarFactory(boolean initValue){
-        barList.add(Bar.of(false, initValue));
+    private BarFactory(){
+        throw new IllegalArgumentException(ExceptionMessage.UTILITY_CLASS.getMessage());
     }
 
-    public Bar first(){
-        return barList.get(0);
-    }
-
-    public Bar next(boolean value){
-        if(!isValid){
-            throw new IllegalArgumentException(ExceptionMessage.BAR_FACTORY_NEXT_AFTER_LAST.getMessage());
+    public static List<Bar> createBars(Boolean... steps){
+        List<Bar> result = new ArrayList<>();
+        for (int i = 0; i < steps.length + 1; i++) {
+            result.add(createBar(result,steps));
         }
-        Bar result = createNextBar(value);
-        barList.add(result);
         return result;
     }
 
-    public Bar last(){
-        isValid = false;
-        return Bar.of(currentBar().currentStep(),false);
-    }
-
-    private Bar createNextBar(boolean value){
-        if(!currentBar().currentStep()){
-            return Bar.of(currentBar().currentStep(), value);
+    private static Bar createBar(List<Bar> bars, Boolean... steps) {
+        if (bars.isEmpty()) {
+            return Bar.of(false, steps[0]);
         }
-        return Bar.of(currentBar().currentStep(), false);
+
+        if (bars.size() - 1 == steps.length) {
+            return Bar.of(steps[steps.length - 1], false);
+        }
+
+        return createNextBar(bars, steps);
     }
 
-    private Bar currentBar(){
-        return barList.get(barList.size()-1);
+    private static Bar createNextBar(List<Bar> bars, Boolean... steps) {
+        if (!bars.get(bars.size() - 1).currentStep()) {
+            return Bar.of(bars.get(bars.size() - 1).currentStep(), steps[bars.size()]);
+        }
+        return Bar.of(bars.get(bars.size() - 1).currentStep(), false);
     }
 }

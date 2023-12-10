@@ -7,10 +7,10 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Positions {
-    private final List<Position> value;
+    private final List<Position> positions;
 
-    private Positions(List<Position> value) {
-        this.value = value;
+    private Positions(List<Position> positions) {
+        this.positions = positions;
     }
 
     public static Positions from(List<Position> value) {
@@ -25,12 +25,12 @@ public class Positions {
     }
 
     public String matchString(final Function<Position, String> rewardString, final int userIndex){
-        return rewardString.apply(value.get(userIndex));
+        return rewardString.apply(positions.get(userIndex));
     }
 
     public String matchAllString(final Function<Position, String> userString,
                                  final Function<Position, String> rewardString) {
-        return IntStream.range(0, value.size())
+        return IntStream.range(0, positions.size())
                 .boxed()
                 .map(toIntegerStringFunction(userString, rewardString))
                 .collect(Collectors.joining())
@@ -40,7 +40,7 @@ public class Positions {
     private Function<Integer, String> toIntegerStringFunction(Function<Position, String> userString,
                                                                Function<Position, String> rewardString) {
         return e -> userString.
-                apply(new Position(e)).concat(" : ").concat(rewardString.apply(value.get(e)))
+                apply(new Position(e)).concat(" : ").concat(rewardString.apply(positions.get(e)))
                 .concat(System.lineSeparator());
     }
 }
