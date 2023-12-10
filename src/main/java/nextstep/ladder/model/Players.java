@@ -2,7 +2,6 @@ package nextstep.ladder.model;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Players {
 
@@ -27,5 +26,9 @@ public class Players {
             }
         }
         throw new IllegalArgumentException("해당 플레이어는 존재하지 않습니다.");
+    }
+
+    public int orderByPlayerName(String name) {
+        return players.indexOf(findPlayer(name));
     }
 }
