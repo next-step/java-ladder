@@ -12,10 +12,22 @@ public class Lines {
     private final List<Line> values;
 
     public Lines(List<Line> values) {
+        validateLines(values);
+
+        this.values = values;
+    }
+
+    private void validateLines(List<Line> values) {
         if (values.isEmpty()) {
             throw new IllegalArgumentException("최소 높이는 최소 " + MIN_HEIGHT_OF_LADDER + "이상이어야 합니다.");
         }
-        this.values = values;
+
+        int pointSize = values.get(0).points().size();
+        boolean invalid = values.stream()
+                .anyMatch(value -> value.points().size() != pointSize);
+        if (invalid) {
+            throw new IllegalArgumentException("모든 라인의 포지션 수는 동일해야합니다.");
+        }
     }
 
     public static Lines of(int countOfPlayer, int maxHeightOfLadder) {
