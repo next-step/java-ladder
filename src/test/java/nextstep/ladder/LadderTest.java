@@ -1,18 +1,15 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.LadderResult;
 import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.Lines;
 import nextstep.ladder.domain.Point;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 class LadderTest {
@@ -55,7 +52,7 @@ class LadderTest {
 
     @Test
     void 사다리_게임은_최소_2명_이상의_참가자가_있어야_한다() {
-        assertThatThrownBy(() -> Ladder.of(List.of("pobi"), new Lines(List.of(Line.of(1))), List.of("꽝")))
+        assertThatThrownBy(() -> Ladder.of(List.of("pobi"), new Lines(List.of(Line.from(1))), List.of("꽝")))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사다리 게임은 최소 2명 이상의 참가자가 있어야 합니다.");
     }

@@ -7,7 +7,7 @@ public class Line {
 
     private final List<Point> points;
 
-    public Line(List<Point> points) {
+    private Line(List<Point> points) {
         if (points == null || points.isEmpty()) {
             throw new IllegalArgumentException("라인은 최소 1개 이상의 포인트가 있어야 합니다.");
         }
@@ -19,7 +19,7 @@ public class Line {
         return new Line(points);
     }
 
-    public static Line of(int countOfPoint) {
+    public static Line from(int countOfPoint) {
         List<Point> points = new ArrayList<>();
         Point point = Point.randomInstance();
         points.add(point);

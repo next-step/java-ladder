@@ -1,6 +1,4 @@
-package nextstep.ladder;
-
-import nextstep.ladder.domain.Line;
+package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +8,6 @@ import java.util.stream.IntStream;
 public class Lines {
 
     private static final int MIN_HEIGHT_OF_LADDER = 1;
-
 
     private final List<Line> values;
 
@@ -23,7 +20,7 @@ public class Lines {
 
     public static Lines of(int countOfPlayer, int maxHeightOfLadder) {
         List<Line> lines = IntStream.range(0, maxHeightOfLadder)
-                .mapToObj(idx -> Line.of(countOfPlayer))
+                .mapToObj(idx -> Line.from(countOfPlayer))
                 .collect(Collectors.toList());
 
         return new Lines(lines);

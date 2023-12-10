@@ -1,7 +1,5 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.Lines;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

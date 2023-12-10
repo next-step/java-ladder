@@ -2,6 +2,7 @@ package nextstep.ladder;
 
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderResult;
+import nextstep.ladder.domain.Lines;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 

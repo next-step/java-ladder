@@ -15,7 +15,7 @@ class LineTest {
 
     @Test
     void 라인은_최소_1개_이상의_포인트가_있어야_한다() {
-        assertThat(catchThrowable(() -> new Line(List.of())))
+        assertThat(catchThrowable(() -> Line.from(List.of())))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("라인은 최소 1개 이상의 포인트가 있어야 합니다.");
     }
@@ -23,7 +23,7 @@ class LineTest {
     @ParameterizedTest
     @CsvSource(value = {"0: 1", "1:-1", "2:0"}, delimiter = ':')
     void 라인은_시작_포지션에서_다음_포지션_값을_구할_수_있다(int startPosition, int nextPosition) {
-        Line line = new Line(List.of(new Point(true), new Point(false)));
+        Line line = Line.from(List.of(new Point(true), new Point(false)));
         assertThat(line.nextPosition(startPosition)).isEqualTo(nextPosition);
     }
 }
