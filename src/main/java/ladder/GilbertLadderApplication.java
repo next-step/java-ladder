@@ -5,11 +5,11 @@ import ladder.factory.LadderFactoryBean;
 import ladder.gilbert.GilbertLadder;
 import ladder.gilbert.domain.data.*;
 
-import static ladder.view.InputView.*;
-import static ladder.view.ResultView.showLadder;
-import static ladder.view.ResultView.showResult;
+import static ladder.gilbert.view.InputView.*;
+import static ladder.gilbert.view.ResultView.showLadder;
+import static ladder.gilbert.view.ResultView.showResult;
 
-public class LadderApplication {
+public class GilbertLadderApplication {
 
     public static void main(String[] args) {
         Persons persons = inputNames();
@@ -17,15 +17,15 @@ public class LadderApplication {
         LadderHeight ladderHeight = inputLadderHeight();
 
         LadderGenerator ladderFactory = LadderFactoryBean.createLadderFactory();
-        GilbertLadder ladder = (GilbertLadder) ladderFactory.generate(goals, ladderHeight);
-        showLadder(persons, ladder.lines(), ladder.goals());
+        GilbertLadder ladder = (GilbertLadder) ladderFactory.generate(persons.size(), ladderHeight.value());
+        showLadder(persons, ladder.lines(), goals);
 
         Person person = inputPerson();
         if (person.hasAll()) {
-            showResult(ladder.runAll(persons));
+            showResult(ladder.runAll(persons.size()), persons, goals);
             return;
         }
-        showResult(ladder.run(persons.find(person)));
+        showResult(ladder.run(persons.toOrder(person)), persons, goals);
     }
 
 }

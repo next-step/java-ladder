@@ -32,15 +32,16 @@ public class Persons {
         return persons.size() == new HashSet<>(persons).size();
     }
 
-    public Person find(Person target) {
+    public Integer toOrder(Person target) {
         return persons.stream()
             .filter(target::equals)
+            .map(Person::order)
             .findAny()
             .orElseThrow(() -> new LadderException("게임에 참여한 사람의 결과만 볼 수 있습니다."));
     }
 
-    public List<Person> persons() {
-        return persons;
+    public Name findName(int personOrder) {
+        return persons.get(personOrder).name();
     }
 
     @Override
@@ -48,5 +49,9 @@ public class Persons {
         return persons.stream()
             .map(Person::formatted)
             .collect(Collectors.joining());
+    }
+
+    public int size() {
+        return persons.size();
     }
 }

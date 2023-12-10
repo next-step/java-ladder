@@ -1,41 +1,53 @@
 package ladder.gilbert;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
-import ladder.engine.Ladder;
-import ladder.engine.Line;
-import ladder.gilbert.domain.data.*;
+import ladder.engine.*;
+import ladder.gilbert.domain.data.Goals;
 
 public class GilbertLadder implements Ladder {
 
     private final List<Line> lines;
     private Goals goals;
 
-    public GilbertLadder() {
-        this.lines = new ArrayList<>();
+    public GilbertLadder(List<Line> lines) {
+        this.lines = new ArrayList<>(lines);
     }
 
     public GilbertLadder(List<Line> lines, Goals goals) {
-        this.lines = new ArrayList<>(lines);
+        this.lines = lines;
         this.goals = goals;
     }
 
-    @Override
-    public List<Result> runAll(Persons persons) {
-        return persons.persons().stream()
-            .map(this::run)
-            .collect(Collectors.toList());
+    public GilbertLadder with(Goals goals) {
+        return new GilbertLadder(lines, goals);
     }
 
     @Override
-    public Result run(Person person) {
-        int currentIndex = person.order();
+    public Result runAll(int numberOfPersons) {
+        Map<Integer, Integer> map = IntStream.range(0, numberOfPersons)
+            .boxed()
+            .collect(Collectors.toMap(Function.identity(), this::indexAfterLineRunning));
+        return new Result(map);
+    }
+
+    @Override
+    public Result run(int personOrder) {
+        Result result = new Result();
+        int currentIndex = indexAfterLineRunning(personOrder);
+        result.put(personOrder, currentIndex);
+        return result;
+    }
+
+    private int indexAfterLineRunning(int personOrder) {
+        int currentIndex = personOrder;
         for (Line line: lines) {
             currentIndex = line.run(currentIndex);
         }
-        return new Result(person, goals.get(currentIndex));
+        return currentIndex;
     }
 
     public void add(Line line) {

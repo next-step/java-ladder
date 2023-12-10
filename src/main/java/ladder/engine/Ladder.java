@@ -1,15 +1,11 @@
 package ladder.engine;
 
-import java.util.List;
-
-import ladder.gilbert.domain.data.*;
-
 public interface Ladder {
 
     String INDENT = " ";
 
-    List<Result> runAll(Persons persons);
+    Result runAll(int personOrder);
 
-    Result run(Person person);
+    Result run(int personOrder);
 
 }

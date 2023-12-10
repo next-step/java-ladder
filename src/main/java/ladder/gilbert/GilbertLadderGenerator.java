@@ -5,8 +5,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import ladder.engine.*;
-import ladder.gilbert.domain.data.Goals;
-import ladder.gilbert.domain.data.LadderHeight;
 
 public class GilbertLadderGenerator implements LadderGenerator {
 
@@ -17,10 +15,10 @@ public class GilbertLadderGenerator implements LadderGenerator {
     }
 
     @Override
-    public Ladder generate(Goals goals, LadderHeight ladderHeight) {
-        List<Line> lines = Stream.generate(() -> lineGenerator.generate(goals.size()))
-            .limit(ladderHeight.value())
+    public Ladder generate(int numberOfPersons, int ladderHeight) {
+        List<Line> lines = Stream.generate(() -> lineGenerator.generate(numberOfPersons))
+            .limit(ladderHeight)
             .collect(Collectors.toList());
-        return new GilbertLadder(lines, goals);
+        return new GilbertLadder(lines);
     }
 }

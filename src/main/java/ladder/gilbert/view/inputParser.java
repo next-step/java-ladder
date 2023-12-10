@@ -1,4 +1,4 @@
-package ladder.view;
+package ladder.gilbert.view;
 
 public class inputParser {
 

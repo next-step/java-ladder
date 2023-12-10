@@ -1,4 +1,4 @@
-package ladder.view;
+package ladder.gilbert.view;
 
 import java.util.Scanner;
 

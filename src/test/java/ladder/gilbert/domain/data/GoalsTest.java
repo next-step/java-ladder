@@ -9,12 +9,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class GoalsTest {
 
     @Test
-    void size() {
-        Goals goals = goals();
-        assertThat(goals.size()).isEqualTo(3);
-    }
-
-    @Test
     void get() {
         Goals goals = goals();
         assertThat(goals.get(0)).isEqualTo(new Goal("a"));

@@ -16,7 +16,6 @@ public class Goals {
         );
     }
 
-
     public Goals(List<String> names) {
         validate(names);
         this.goals = names.stream()
@@ -47,7 +46,4 @@ public class Goals {
             .collect(Collectors.joining());
     }
 
-    public int size() {
-        return goals.size();
-    }
 }

@@ -2,7 +2,8 @@ package ladder.gilbert;
 
 import java.util.List;
 
-import ladder.gilbert.domain.data.*;
+import ladder.engine.Ladder;
+import ladder.gilbert.domain.data.Goals;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -11,7 +12,7 @@ public class GilbertLadderTest {
 
     @Test
     void add() {
-        GilbertLadder ladder = new GilbertLadder();
+        GilbertLadder ladder = new GilbertLadder(List.of());
         ladder.add(new GilbertLine("|-| |"));
         assertThat(ladder.lines()).hasSize(1);
     }
@@ -19,20 +20,18 @@ public class GilbertLadderTest {
     @Test
     void 개인_결과_계산() {
         GilbertLadder ladder = ladder();
-        Person a = new Person("a", 0);
-        Person b = new Person("b", 1);
-        Person c = new Person("c", 2);
-        assertThat(ladder.run(a)).isEqualTo(new Result(a, new Goal("3000")));
-        assertThat(ladder.run(b)).isEqualTo(new Result(b, new Goal("꽝")));
-        assertThat(ladder.run(c)).isEqualTo(new Result(c, new Goal("5000")));
+        assertThat(ladder.run(0).get(0)).isEqualTo(2);
+        assertThat(ladder.run(1).get(1)).isEqualTo(0);
+        assertThat(ladder.run(2).get(2)).isEqualTo(1);
     }
 
 
     @Test
     void 전체_결과_계산() {
-        //new Persons
-        //Ladder ladder = ladder();
-        //assertThat(ladder.runAll())
+        Ladder ladder = ladder();
+        assertThat(ladder.runAll(3).get(0)).isEqualTo(2);
+        assertThat(ladder.runAll(3).get(1)).isEqualTo(0);
+        assertThat(ladder.runAll(3).get(2)).isEqualTo(1);
     }
 
     private static GilbertLadder ladder() {

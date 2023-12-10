@@ -1,9 +1,11 @@
-package ladder.view;
+package ladder.gilbert.view;
 
 import java.util.List;
 
 import ladder.engine.Line;
-import ladder.gilbert.domain.data.*;
+import ladder.engine.Result;
+import ladder.gilbert.domain.data.Goals;
+import ladder.gilbert.domain.data.Persons;
 
 public class ResultView {
 
@@ -26,14 +28,11 @@ public class ResultView {
         System.out.println(goals);
     }
 
-    public static void showResult(Result result) {
+    public static void showResult(Result result, Persons persons, Goals goals) {
         resultTitle();
-        System.out.println(result);
-    }
-
-    public static void showResult(List<Result> results) {
-        resultTitle();
-        results.forEach(x -> System.out.println(x.formatted()));
+        for (Integer value: result.keySet()) {
+            System.out.println(persons.findName(value) + ":" + goals.get(result.get(value)));
+        }
     }
 
     private static void resultTitle() {
