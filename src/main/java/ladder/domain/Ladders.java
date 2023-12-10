@@ -14,7 +14,15 @@ public class Ladders {
         }
     }
 
-    public List<Ladder> getLadders() {
+    public Ladders(List<Ladder> immutableLadder) {
+        this.ladders = immutableLadder;
+    }
+
+    public List<Ladder> allLadders() {
         return this.ladders;
+    }
+
+    public List<Ladder> getLadders() {
+        return new Ladders(this.ladders).allLadders();
     }
 }
