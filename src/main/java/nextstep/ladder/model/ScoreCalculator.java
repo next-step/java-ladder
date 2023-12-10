@@ -26,7 +26,7 @@ public class ScoreCalculator {
     }
 
     private Score calculateScore(Player player) {
-        Score score = Score.of(player, players.list().indexOf(player));
+        Score score = Score.of(player, players.orderByPlayerName(player.name()));
         return ladder.lines()
             .stream()
             .reduce(score, (currentScore, rowLine) -> {
