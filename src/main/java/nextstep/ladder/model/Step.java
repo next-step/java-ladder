@@ -16,11 +16,11 @@ public class Step {
         return new Step(currentStep, previousStep);
     }
 
-    public static Step first(Boolean currentStep) {
+    public static Step stepPreviousIsFalse(Boolean currentStep) {
         return of(currentStep, false);
     }
 
-    public static Step last(Boolean previousStep) {
+    public static Step stepCurrentIsFalse(Boolean previousStep) {
         return of(false, previousStep);
     }
 
