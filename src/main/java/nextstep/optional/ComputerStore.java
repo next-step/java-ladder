@@ -24,11 +24,8 @@ public class ComputerStore {
 
     public static String getVersionOptional(Computer computer) {
         return Optional.ofNullable(computer)
-                .filter(com -> com.getSoundcard() != null)
                 .map(Computer::getSoundcard)
-                .filter(soundcard -> soundcard.getUsb() != null)
                 .map(Soundcard::getUsb)
-                .filter(usb -> usb.getVersion() != null)
                 .map(USB::getVersion)
                 .orElse(UNKNOWN_VERSION);
 
