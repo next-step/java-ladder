@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderResult;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
@@ -17,14 +18,13 @@ public class LadderGame {
                 InputView.inputResult()
         );
 
-        ResultView.printResultString();
         ResultView.printNames(names);
         ResultView.printLadder(ladder);
 
+        LadderResult result = ladder.play();
+
         while (true) {
-            String playerName = InputView.inputResultPlayerName();
-            List<String> result = ladder.play(playerName);
-            ResultView.printResult(result);
+            ResultView.printResult(InputView.inputResultPlayerName(), result);
         }
     }
 }

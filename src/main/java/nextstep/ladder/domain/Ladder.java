@@ -4,11 +4,10 @@ import nextstep.ladder.Lines;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Ladder {
-
-    private static final String PLAY_ALL = "all";
 
     private static final int MIN_COUNT_OF_PERSON = 2;
 
@@ -55,13 +54,10 @@ public class Ladder {
         return result.get(lines.finalPosition(position));
     }
 
-    public List<String> play(String playerName) {
-        if (!PLAY_ALL.equals(playerName)) {
-            return List.of(result(playerName));
-        }
+    public LadderResult play() {
+        Map<String, String> collect = playerNames.stream()
+                .collect(Collectors.toMap(playerName -> playerName, this::result));
 
-        return playerNames.stream()
-                .map(this::result)
-                .collect(Collectors.toList());
+        return new LadderResult(collect);
     }
 }

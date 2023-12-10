@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderResult;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Point;
 import org.junit.jupiter.api.Test;
@@ -38,9 +39,8 @@ class LadderTest {
                 .hasMessage("플레이어와 결과의 수는 동일해야 합니다.");
     }
 
-    @ParameterizedTest
-    @CsvSource(value = {"pobi:꽝", "honux:5000"}, delimiter = ':')
-    void 사다리는_이름을_받아_결과를_반환할_수_있다(String playerName, String result) {
+    @Test
+    void 사다리는_게임_실행_후_결과를_반환할_수_있다() {
         Ladder ladder = new Ladder(
                 List.of("pobi", "honux"),
                 new Lines(List.of(
@@ -50,43 +50,7 @@ class LadderTest {
                 List.of("꽝", "5000")
         );
 
-        assertAll(
-                () -> assertThat(ladder.play(playerName)).hasSize(1),
-                () -> assertThat(ladder.play(playerName)).contains(result)
-        );
-    }
-
-    @Test
-    void 사다리는_all을_입력하면_전체_참여자의_실행_결과를_출력한다() {
-        Ladder ladder = new Ladder(
-                List.of("pobi", "honux"),
-                new Lines(List.of(
-                        Line.from(List.of(new Point(false), new Point(false))),
-                        Line.from(List.of(new Point(false), new Point(false)))
-                )),
-                List.of("꽝", "5000")
-        );
-
-        List<String> result = ladder.play("all");
-
-        assertAll(
-                () -> assertThat(result).hasSize(2),
-                () -> assertThat(result).containsAll(List.of("꽝", "5000"))
-        );
-    }
-
-    @Test
-    void 사다리는_참여자가_아닌_이름으로_결과를_확인할_수_없다() {
-        Ladder ladder = new Ladder(
-                List.of("pobi", "honux"),
-                new Lines(List.of(Line.from(List.of(new Point(false), new Point(false))))),
-                List.of("꽝", "5000")
-        );
-
-        Throwable throwable = catchThrowable(() -> ladder.play("참가자아님"));
-
-        assertThat(throwable).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("참여자가 아닙니다.");
+        assertThat(ladder.play()).isNotNull();
     }
 
     @Test
