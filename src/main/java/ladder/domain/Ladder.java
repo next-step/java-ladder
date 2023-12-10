@@ -6,8 +6,11 @@ import java.util.List;
 import static ladder.util.RandomUtil.getRandomBoolean;
 
 public class Ladder {
-    private final String FALSE_POINT = "     |";
-    private final String TRUE_POINT = "-----|";
+    private static final String FALSE_POINT = "     |";
+    private static final String TRUE_POINT = "-----|";
+    private static final int ZERO = 0;
+
+    private final StringBuilder sb = new StringBuilder();
 
     private final List<Boolean> ladder;
 
@@ -24,15 +27,14 @@ public class Ladder {
     }
 
     public String ladderDraw() {
-        StringBuilder sb = new StringBuilder();
-
+        sb.setLength(ZERO);
         sb.append(FALSE_POINT);
 
-        this.ladder.forEach(x -> {
-            if (x) {
+        this.ladder.forEach(point -> {
+            if (point) {
                 sb.append(TRUE_POINT);
             }
-            if (!x) {
+            if (!point) {
                 sb.append(FALSE_POINT);
             }
         });
