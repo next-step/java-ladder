@@ -24,3 +24,14 @@
 * [X] Optional 실습 1 : Optional을 활용해 조건에 따른 반환
 * [X] Optional 실습 2 : Optional에서 값을 반환
 * [X] Optional 실습 3 : Optional에서 exception 처리
+
+# STEP 2
+* [X] 참여할 사람 명단 입력받기
+  * [X] 쉼표 구분자를 파싱하기
+* [X] 최대 사다리 높이 입력받기
+* [X] 실행결과 출력하기
+* [X] 사다리 만들기
+  * [X] 사다리 한 줄(Line) 만들기
+  * [X] 사다리 다리 구성하기 (Bridge)
+    * [X] 캐시 전략 사용하기
+  * [X] 사다리 다리 리스트 구성하기
