@@ -22,7 +22,7 @@ public class Bridge {
         return cacheBridge.get(value);
     }
 
-    public boolean canCrossBridge() {
+    boolean canCrossBridge() {
         return value;
     }
 
@@ -31,5 +31,11 @@ public class Bridge {
             return of(false);
         }
         return of(ThreadLocalRandom.current().nextBoolean());
+    }
+
+    public void compareToNextBridge(Bridge next) {
+        if (this.value && next.value) {
+            throw new IllegalArgumentException("연속해서 true인 Bridge가 있습니다.");
+        }
     }
 }
