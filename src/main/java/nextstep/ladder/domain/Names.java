@@ -12,4 +12,15 @@ public class Names {
     public int size() {
         return names.size();
     }
+
+    public int getFirstNameLength() {
+        return names.stream()
+                .findFirst()
+                .map(name -> name.getName().length())
+                .orElse(0);
+    }
+
+    public List<Name> getNames() {
+        return names;
+    }
 }

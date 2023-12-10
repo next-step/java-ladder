@@ -21,4 +21,12 @@ public class LadderGame {
                 .collect(Collectors.toList());
         return new Lines(lines);
     }
+
+    public Names getNames() {
+        return names;
+    }
+
+    public Lines getLines() {
+        return lines;
+    }
 }

@@ -10,4 +10,8 @@ public class Line {
     public Line(int namesSize, GenerateLadderPoint generateLadderPoint) {
         this.points = generateLadderPoint.generate(namesSize);
     }
+
+    public List<Boolean> getPoints() {
+        return points;
+    }
 }

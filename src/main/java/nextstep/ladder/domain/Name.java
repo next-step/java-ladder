@@ -17,4 +17,8 @@ public class Name {
             throw new IllegalArgumentException(String.format("이름은 최대 %d 길이까지 부여할 수 있습니다.", MAX_NAME_LENGTH));
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }
