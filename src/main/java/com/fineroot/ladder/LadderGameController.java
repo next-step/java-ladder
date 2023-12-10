@@ -1,12 +1,12 @@
 package com.fineroot.ladder;
 
-import com.fineroot.ladder.domain.Ladder;
 import com.fineroot.ladder.domain.LadderGame;
-import com.fineroot.ladder.domain.LadderResult;
+import com.fineroot.ladder.domain.LadderGameResult;
 import com.fineroot.ladder.domain.Rewards;
 import com.fineroot.ladder.domain.User;
 import com.fineroot.ladder.domain.UserRewardSet;
 import com.fineroot.ladder.domain.Users;
+import com.fineroot.ladder.factory.LadderFactoryBean;
 import com.fineroot.ladder.view.InputView;
 import com.fineroot.ladder.view.ResultView;
 import com.fineroot.ladder.viewmodel.InputViewModel;
@@ -30,7 +30,9 @@ public class LadderGameController {
     public void gameStart() {
         inputPhase();
         Users users = Users.fromString(inputViewModel.getUsernamesString());
-        LadderGame ladderGame = new LadderGame(Ladder.of(users, inputViewModel.getHeight()),
+
+        LadderGame ladderGame = new LadderGame(
+                LadderFactoryBean.createLadderFactory().create(users.size(), inputViewModel.getHeight()),
                 new UserRewardSet(users, Rewards.fromString(inputViewModel.getRewardsString())));
         drawLadderResult(users, ladderGame);
         drawResultCheckView(ladderGame.ladderResult());
@@ -49,13 +51,13 @@ public class LadderGameController {
         inputView.drawInputLadderHeight();
     }
 
-    private void drawResultCheckView(LadderResult ladderResult) {
+    private void drawResultCheckView(LadderGameResult ladderGameResult) {
         boolean canGo = true;
         while (canGo) {
             inputView.drawInputResult();
             User inputUser = User.from(inputViewModel.getUsernameString());
             canGo = !inputUser.isAll();
-            resultViewModel.saveResultString(ladderResult.resultSting(inputUser));
+            resultViewModel.saveResultString(ladderGameResult.resultSting(inputUser));
             resultView.drawResultView();
         }
     }

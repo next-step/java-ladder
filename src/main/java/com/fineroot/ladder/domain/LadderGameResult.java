@@ -1,10 +1,12 @@
 package com.fineroot.ladder.domain;
 
-public class LadderResult {
-    private UserRewardSet userRewardSet;
-    private Positions positions;
+import com.fineroot.ladder.engine.Positions;
 
-    public LadderResult(UserRewardSet userRewardSet, Positions positions) {
+public class LadderGameResult {
+    private final UserRewardSet userRewardSet;
+    private final Positions positions;
+
+    public LadderGameResult(UserRewardSet userRewardSet, Positions positions) {
         this.userRewardSet = userRewardSet;
         this.positions = positions;
     }

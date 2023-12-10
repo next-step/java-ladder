@@ -1,5 +1,7 @@
 package com.fineroot.ladder.domain;
 
+import com.fineroot.ladder.engine.Ladder;
+
 public class LadderGame {
     private final Ladder ladder;
     private final UserRewardSet userRewardSet;
@@ -10,10 +12,10 @@ public class LadderGame {
     }
 
     public String ladderBoard(){
-        return ladder.toStringBoard(userRewardSet.firstUsernameLength());
+        return ladder.toString();
     }
 
-    public LadderResult ladderResult(){
-        return new LadderResult(userRewardSet,ladder.resultAll());
+    public LadderGameResult ladderResult(){
+        return new LadderGameResult(userRewardSet, ladder.playResult());
     }
 }

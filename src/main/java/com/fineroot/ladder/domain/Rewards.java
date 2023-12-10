@@ -1,5 +1,6 @@
 package com.fineroot.ladder.domain;
 
+import com.fineroot.ladder.engine.Position;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
