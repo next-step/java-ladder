@@ -2,14 +2,15 @@ package ladder.view;
 
 import java.util.List;
 
-import ladder.domain.data.*;
+import ladder.engine.Line;
+import ladder.gilbert.domain.data.*;
 
 public class ResultView {
 
-    public static void showLadder(Persons persons, Ladder ladder) {
+    public static void showLadder(Persons persons, List<Line> lines, Goals goals) {
         showPersons(persons);
-        showLines(ladder.lines());
-        showGoals(ladder.goals());
+        showLines(lines);
+        showGoals(goals);
     }
 
     private static void showPersons(Persons persons) {
