@@ -40,7 +40,7 @@ class MyLadderTest {
                                 {true, false, false},
                                 {false, true, false},
                                 {true, false, true}})
-                .map(e -> new MyLineCreator().create(e))
+                .map(e -> new MyLineCreator(new MyBarCreator()).create(e))
                 .collect(Collectors.toList()), 4);
 
         Positions positions = myLadder.playResult();

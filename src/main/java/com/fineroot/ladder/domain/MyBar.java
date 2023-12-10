@@ -9,7 +9,7 @@ public class MyBar implements Bar {
     private final boolean havePreviousStep;
     private final boolean haveNextStep;
 
-    private MyBar(final boolean hasPreviousStep, final boolean haveNextStep) {
+    MyBar(final boolean hasPreviousStep, final boolean haveNextStep) {
         validation(hasPreviousStep, haveNextStep);
         this.haveNextStep = haveNextStep;
         this.havePreviousStep=hasPreviousStep;
@@ -19,9 +19,6 @@ public class MyBar implements Bar {
         if (hasPreviousStep && haveStep) {
             throw new IllegalArgumentException(ExceptionMessage.STEP_ROW_LINE_BOTH_TRUE.getMessage());
         }
-    }
-    public static MyBar of(final boolean hasPreviousStep, final boolean haveStep) {
-        return new MyBar(hasPreviousStep, haveStep);
     }
 
     @Override

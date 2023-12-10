@@ -7,6 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MyLineCreator implements LineCreator {
+
+    private final MyBarCreator myBarCreator;
+
+    public MyLineCreator(MyBarCreator myBarCreator) {
+        this.myBarCreator = myBarCreator;
+    }
+
     @Override
     public Line create(Boolean... steps) {
         return new MyLine(createBars(steps));
@@ -22,11 +29,11 @@ public class MyLineCreator implements LineCreator {
 
     private Bar createBar(List<Bar> bars, Boolean... steps) {
         if (bars.isEmpty()) {
-            return MyBar.of(false, steps[0]);
+            return myBarCreator.create(false, steps[0]);
         }
 
         if (bars.size() == steps.length) {
-            return MyBar.of(steps[steps.length - 1], false);
+            return myBarCreator.create(steps[steps.length - 1], false);
         }
 
         return createNextBar(bars, steps);
@@ -34,8 +41,8 @@ public class MyLineCreator implements LineCreator {
 
     private Bar createNextBar(List<Bar> bars, Boolean... steps) {
         if (!bars.get(bars.size() - 1).currentStep()) {
-            return MyBar.of(bars.get(bars.size() - 1).currentStep(), steps[bars.size()]);
+            return myBarCreator.create(bars.get(bars.size() - 1).currentStep(), steps[bars.size()]);
         }
-        return MyBar.of(bars.get(bars.size() - 1).currentStep(), false);
+        return myBarCreator.create(bars.get(bars.size() - 1).currentStep(), false);
     }
 }
