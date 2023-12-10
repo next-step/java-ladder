@@ -23,6 +23,13 @@ public class BridgeTest {
     }
 
     @Test
+    public void next_현재_다리_value가_TRUE_일때_무조건_False반환() {
+        Bridge now = Bridge.of(true);
+
+        assertThat(now.next()).isEqualTo(Bridge.of(false));
+    }
+
+    @Test
     public void compareToNextBridge_연속된_두개가_True일시_에러_반환() {
         Bridge prev = Bridge.of(true);
         Bridge next = Bridge.of(true);

@@ -5,6 +5,7 @@ import nextstep.ladder.model.Lines;
 import nextstep.ladder.model.LinesGenerator;
 import nextstep.ladder.model.Participants;
 import nextstep.ladder.view.InputView;
+import nextstep.ladder.view.OutputView;
 
 public class LadderController {
 
@@ -16,5 +17,6 @@ public class LadderController {
         Lines lines = new Lines(linesGenerator.generatorLines(participants.getNumbersOfParticipants(), height));
 
         Ladder ladder = new Ladder(participants, lines, height);
+        OutputView.printLadder(ladder);
     }
 }

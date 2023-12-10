@@ -38,4 +38,8 @@ public class Line {
             throw new IllegalArgumentException("사람은 최소 2명 이상이어야 합니다.");
         }
     }
+
+    public List<Bridge> getBridges() {
+        return bridges;
+    }
 }

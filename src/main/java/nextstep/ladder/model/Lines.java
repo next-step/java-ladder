@@ -9,4 +9,8 @@ public class Lines {
     public Lines(List<Line> lines) {
         this.lines = lines;
     }
+
+    public List<Line> getLines() {
+        return lines;
+    }
 }

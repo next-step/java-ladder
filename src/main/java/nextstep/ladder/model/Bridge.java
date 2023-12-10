@@ -22,7 +22,7 @@ public class Bridge {
         return cacheBridge.get(value);
     }
 
-    boolean canCrossBridge() {
+    public boolean canCrossBridge() {
         return value;
     }
 

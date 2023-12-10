@@ -17,4 +17,8 @@ public class Participant {
             throw new IllegalArgumentException("0글자 이하이거나 5글자를 초과하는 참가자 이름이 포함되어 있습니다.");
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }

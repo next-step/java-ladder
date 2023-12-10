@@ -21,5 +21,11 @@ public class Ladder {
         }
     }
 
+    public Participants getParticipants() {
+        return participants;
+    }
 
+    public Lines getLines() {
+        return lines;
+    }
 }
