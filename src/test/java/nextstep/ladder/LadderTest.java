@@ -88,4 +88,11 @@ class LadderTest {
         assertThat(throwable).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("참여자가 아닙니다.");
     }
+
+    @Test
+    void 사다리_게임은_최소_2명_이상의_참가자가_있어야_한다() {
+        assertThatThrownBy(() -> Ladder.of(List.of("pobi"), new Lines(List.of(Line.of(1))), List.of("꽝")))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("사다리 게임은 최소 2명 이상의 참가자가 있어야 합니다.");
+    }
 }

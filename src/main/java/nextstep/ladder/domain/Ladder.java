@@ -10,6 +10,8 @@ public class Ladder {
 
     private static final String PLAY_ALL = "all";
 
+    private static final int MIN_COUNT_OF_PERSON = 2;
+
     private final List<String> playerNames;
 
     private final List<String> result;
@@ -19,6 +21,10 @@ public class Ladder {
     public Ladder(List<String> playerNames, Lines lines, List<String> result) {
         if (playerNames.size() != result.size()) {
             throw new IllegalArgumentException("플레이어와 결과의 수는 동일해야 합니다.");
+        }
+
+        if (playerNames.size() < MIN_COUNT_OF_PERSON) {
+            throw new IllegalArgumentException("사다리 게임은 최소 " + MIN_COUNT_OF_PERSON + "명 이상의 참가자가 있어야 합니다.");
         }
 
         this.playerNames = playerNames;
