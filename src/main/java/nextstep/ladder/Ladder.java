@@ -13,7 +13,7 @@ public class Ladder {
     }
 
     public Ladder(int rows, int columns) {
-        if (columns > 0 ) {
+        if (columns < 1 ) {
             throw new IllegalArgumentException("사다리는 높이가 1 이상이여야합니다.");
         }
         this.lines = Stream.generate(() -> new Line(rows))

@@ -9,7 +9,7 @@ class LadderTest {
 
     @Test
     void 사다리는_높이가_1_이상_이여야_한다() {
-        assertThatThrownBy(() -> new Ladder(0, 3))
+        assertThatThrownBy(() -> new Ladder(2, 0))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
