@@ -13,8 +13,6 @@ public class Line {
     }
 
     public static Line from(List<Point> points) {
-        validateCountOfPerson(points.size());
-
         return new Line(points);
     }
 
@@ -42,5 +40,33 @@ public class Line {
 
     public List<Point> points() {
         return new ArrayList<>(points);
+    }
+
+    private boolean moveLeft(int curPosition) {
+        if (curPosition <= 0) {
+            return false;
+        }
+
+        return points.get(curPosition - 1).isActive();
+    }
+
+    private boolean moveRight(int curPosition) {
+        if (curPosition >= points.size()) {
+            return false;
+        }
+
+        return points.get(curPosition).isActive();
+    }
+
+    public int nextPosition(int curPosition) {
+        if (moveLeft(curPosition)) {
+            return -1;
+        }
+
+        if (moveRight(curPosition)) {
+            return 1;
+        }
+
+        return 0;
     }
 }
