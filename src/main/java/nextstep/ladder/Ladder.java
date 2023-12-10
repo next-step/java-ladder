@@ -13,6 +13,14 @@ public class Ladder {
     }
 
     public Ladder(int rows, int columns) {
-        this.points = Stream.generate(() -> new Line(rows)).limit(columns).collect(Collectors.toList());
+        if (columns > 0 ) {
+            throw new IllegalArgumentException("사다리는 높이가 1 이상이여야합니다.");
+        }
+        this.points = Stream.generate(() -> new Line(rows))
+                .limit(columns)
+                .collect(Collectors.toList());
     }
+
+
+
 }
