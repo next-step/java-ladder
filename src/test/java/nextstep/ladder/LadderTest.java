@@ -10,7 +10,6 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertAll;
 
 class LadderTest {
 
@@ -51,9 +50,15 @@ class LadderTest {
     }
 
     @Test
-    void 사다리_게임은_최소_2명_이상의_참가자가_있어야_한다() {
+    void 사다리_게임은_2명_미만의_참가자로는_생성할_수_없다() {
         assertThatThrownBy(() -> Ladder.of(List.of("pobi"), new Lines(List.of(Line.from(1))), List.of("꽝")))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사다리 게임은 최소 2명 이상의 참가자가 있어야 합니다.");
+    }
+
+    @Test
+    void 사다리_게임은_2명_이상의_참가자로_생성할_수_있다() {
+        Ladder ladder = Ladder.of(List.of("pobi", "crong"), new Lines(List.of(Line.from(2))), List.of("꽝", "1000"));
+        assertThat(ladder).isNotNull();
     }
 }
