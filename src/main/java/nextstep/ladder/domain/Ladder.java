@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.Lines;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,6 +32,10 @@ public class Ladder {
 
     public List<Line> lines() {
         return lines.values();
+    }
+
+    public List<String> result() {
+        return new ArrayList<>(result);
     }
 
     private String result(String playerName) {

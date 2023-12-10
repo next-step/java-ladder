@@ -27,6 +27,9 @@ public final class ResultView {
     public static void printLadder(Ladder ladder) {
         System.out.println("");
         ladder.lines().forEach(ResultView::printLine);
+        ladder.result().stream()
+                .map(rs -> rs.concat(" ".repeat(MAX_LENGTH_OF_NAME - rs.length() + 1)))
+                .forEach(System.out::print);
 
     }
 
@@ -47,5 +50,10 @@ public final class ResultView {
         }
 
         System.out.print(pointFalsePrint + "|");
+    }
+
+    public static void printResult(List<String> result) {
+        System.out.println("실행 결과");
+        System.out.println(result.get(0));
     }
 }

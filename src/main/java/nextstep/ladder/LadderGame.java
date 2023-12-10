@@ -13,15 +13,19 @@ public class LadderGame {
     public static void main(String[] args) {
         List<String> names = InputView.inputNames();
 
-        Lines lines = new Lines(List.of(
-                Line.from(List.of(new Point(false), new Point(false))),
-                Line.from(List.of(new Point(false), new Point(false)))
-        ));
-
-        Ladder ladder = Ladder.of(names, lines, List.of());
+        Ladder ladder = Ladder.of(
+                names,
+                Lines.of(names.size(), InputView.inputMaxHeightOfLadder()),
+                InputView.inputResult()
+        );
 
         ResultView.printResultString();
         ResultView.printNames(names);
         ResultView.printLadder(ladder);
+
+        String playerName = InputView.inputResultPlayerName();
+        List<String> result = ladder.play(playerName);
+        ResultView.printResult(result);
+
     }
 }
