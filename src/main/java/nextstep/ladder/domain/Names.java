@@ -8,4 +8,8 @@ public class Names {
     public Names(List<Name> names) {
         this.names = names;
     }
+
+    public int size() {
+        return names.size();
+    }
 }

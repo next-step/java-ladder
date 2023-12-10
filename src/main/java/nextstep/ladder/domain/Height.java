@@ -14,4 +14,8 @@ public class Height {
             throw new IllegalArgumentException(String.format("사다리의 높이는 최소 %d 이상이어야 합니다.", MIN_HEIGHT));
         }
     }
+
+    public int getHeight() {
+        return height;
+    }
 }
