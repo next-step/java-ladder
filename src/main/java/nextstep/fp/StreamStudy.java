@@ -22,13 +22,15 @@ public class StreamStudy {
         String contents = new String(Files.readAllBytes(Paths
                                                             .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
-        words.stream()
-             .filter(word -> word.length() > 12)
-             .distinct()
-             .sorted((p1, p2) -> Integer.compare(p2.length(), p1.length()))
-             .limit(100)
-             .map(String::toLowerCase)
-             .forEach(System.out::println);
+        String joinWords = words.stream()
+                              .filter(word -> word.length() > 12)
+                              .distinct()
+                              .sorted((p1, p2) -> Integer.compare(p2.length(), p1.length()))
+                              .limit(100)
+                              .map(String::toLowerCase)
+                              .collect(Collectors.joining("\n"));
+
+        System.out.println(joinWords);
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
