@@ -46,7 +46,7 @@ public class Lines {
         int position = startPosition;
 
         for (Line line: values) {
-            position += line.nextPosition(position);
+            position = line.nextPosition(position);
         }
 
         return position;

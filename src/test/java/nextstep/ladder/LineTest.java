@@ -21,7 +21,7 @@ class LineTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"0: 1", "1:-1", "2:0"}, delimiter = ':')
+    @CsvSource(value = {"0: 1", "1:0", "2:2"}, delimiter = ':')
     void 라인은_시작_포지션에서_다음_포지션_값을_구할_수_있다(int startPosition, int nextPosition) {
         Line line = Line.from(List.of(new Point(true), new Point(false)));
         assertThat(line.nextPosition(startPosition)).isEqualTo(nextPosition);

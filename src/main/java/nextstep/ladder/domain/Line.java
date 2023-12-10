@@ -55,13 +55,13 @@ public class Line {
 
     public int nextPosition(int curPosition) {
         if (moveLeft(curPosition)) {
-            return -1;
+            return curPosition - 1;
         }
 
         if (moveRight(curPosition)) {
-            return 1;
+            return curPosition + 1;
         }
 
-        return 0;
+        return curPosition;
     }
 }
