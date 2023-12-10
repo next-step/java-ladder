@@ -2,21 +2,21 @@ package nextstep.ladder.domain;
 
 import java.util.Arrays;
 
-public enum DirectionEnum{
+public enum DirectionEnum {
 
-    GOING_RIGHT(1){
+    GOING_RIGHT(1) {
         @Override
         protected boolean isAccept(boolean leftConnected, boolean rightConnected) {
             return rightConnected;
         }
     },
-    GOING_LEFT(-1){
+    GOING_LEFT(-1) {
         @Override
         protected boolean isAccept(boolean leftConnected, boolean rightConnected) {
             return leftConnected;
         }
     },
-    HOLD_POSITION(0){
+    HOLD_POSITION(0) {
         @Override
         protected boolean isAccept(boolean leftConnected, boolean rightConnected) {
             return !leftConnected && !rightConnected;
