@@ -43,7 +43,7 @@ public class Ladder {
         return new ArrayList<>(result);
     }
 
-    private String result(String playerName) {
+    private String play(String playerName) {
         boolean contains = playerNames.contains(playerName);
         if (!contains) {
             throw new IllegalArgumentException("참여자가 아닙니다.");
@@ -55,9 +55,9 @@ public class Ladder {
     }
 
     public LadderResult play() {
-        Map<String, String> collect = playerNames.stream()
-                .collect(Collectors.toMap(playerName -> playerName, this::result));
+        Map<String, String> ladderResultMap = playerNames.stream()
+                .collect(Collectors.toMap(playerName -> playerName, this::play));
 
-        return new LadderResult(collect);
+        return new LadderResult(ladderResultMap);
     }
 }
