@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class SequentialRandomBridgesGenerator implements BridgesGenerator {
+public class BridgesGeneratorBySequentialRandom implements BridgesGenerator {
 
     @Override
     public List<Bridge> generateBridges(Integer numbersOfPeople) {

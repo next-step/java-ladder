@@ -4,9 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
-public class SequentialRandomBridgesGeneratorTest {
+public class BridgesGeneratorBySequentialRandomTest {
 
-    private final BridgesGenerator bridgesGenerator = new SequentialRandomBridgesGenerator();
+    private final BridgesGenerator bridgesGenerator = new BridgesGeneratorBySequentialRandom();
 
     @Test
     public void generateBridges_다리_개수_확인() {

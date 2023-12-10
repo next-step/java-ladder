@@ -6,7 +6,7 @@ import java.util.stream.IntStream;
 
 public class LinesGenerator {
 
-    private final BridgesGenerator bridgesGenerator = new SequentialRandomBridgesGenerator();
+    private final BridgesGenerator bridgesGenerator = new BridgesGeneratorBySequentialRandom();
 
     public List<Line> generatorLines(Integer numbersOfPeople, Integer height) {
         return IntStream.range(0, height)
