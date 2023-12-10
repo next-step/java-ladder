@@ -1,5 +1,7 @@
-package com.fineroot.ladder.domain;
+package com.fineroot.ladder.factory;
 
+import com.fineroot.ladder.domain.MyBar;
+import com.fineroot.ladder.engine.Bar;
 import com.fineroot.ladder.utils.ExceptionMessage;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,11 +22,11 @@ public class BarFactory {
 
     private static Bar createBar(List<Bar> bars, Boolean... steps) {
         if (bars.isEmpty()) {
-            return Bar.of(false, steps[0]);
+            return MyBar.of(false, steps[0]);
         }
 
-        if (bars.size() - 1 == steps.length) {
-            return Bar.of(steps[steps.length - 1], false);
+        if (bars.size() == steps.length) {
+            return MyBar.of(steps[steps.length - 1], false);
         }
 
         return createNextBar(bars, steps);
@@ -32,8 +34,8 @@ public class BarFactory {
 
     private static Bar createNextBar(List<Bar> bars, Boolean... steps) {
         if (!bars.get(bars.size() - 1).currentStep()) {
-            return Bar.of(bars.get(bars.size() - 1).currentStep(), steps[bars.size()]);
+            return MyBar.of(bars.get(bars.size() - 1).currentStep(), steps[bars.size()]);
         }
-        return Bar.of(bars.get(bars.size() - 1).currentStep(), false);
+        return MyBar.of(bars.get(bars.size() - 1).currentStep(), false);
     }
 }

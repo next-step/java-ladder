@@ -1,5 +1,6 @@
 package com.fineroot.ladder.domain;
 
+import com.fineroot.ladder.engine.Position;
 import com.fineroot.ladder.utils.ExceptionMessage;
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,5 +1,6 @@
 package com.fineroot.ladder.domain;
 
+import com.fineroot.ladder.engine.Position;
 import java.util.function.UnaryOperator;
 
 public enum Direction {

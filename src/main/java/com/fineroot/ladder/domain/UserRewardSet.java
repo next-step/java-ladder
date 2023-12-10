@@ -1,5 +1,6 @@
 package com.fineroot.ladder.domain;
 
+import com.fineroot.ladder.engine.Positions;
 import com.fineroot.ladder.utils.ExceptionMessage;
 
 public class UserRewardSet {

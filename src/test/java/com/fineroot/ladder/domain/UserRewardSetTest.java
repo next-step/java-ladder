@@ -3,6 +3,7 @@ package com.fineroot.ladder.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import com.fineroot.ladder.engine.Positions;
 import com.fineroot.ladder.utils.ExceptionMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

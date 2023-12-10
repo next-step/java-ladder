@@ -1,13 +1,15 @@
 package com.fineroot.ladder.domain;
 
+import com.fineroot.ladder.engine.Bar;
+import com.fineroot.ladder.engine.Position;
 import com.fineroot.ladder.utils.ExceptionMessage;
 
-public class Bar {
+public class MyBar implements Bar {
 
-    private boolean havePreviousStep;
-    private boolean haveNextStep;
+    private final boolean havePreviousStep;
+    private final boolean haveNextStep;
 
-    private Bar(final boolean hasPreviousStep, final boolean haveNextStep) {
+    private MyBar(final boolean hasPreviousStep, final boolean haveNextStep) {
         validation(hasPreviousStep, haveNextStep);
         this.haveNextStep = haveNextStep;
         this.havePreviousStep=hasPreviousStep;
@@ -18,14 +20,16 @@ public class Bar {
             throw new IllegalArgumentException(ExceptionMessage.STEP_ROW_LINE_BOTH_TRUE.getMessage());
         }
     }
-    public static Bar of(final boolean hasPreviousStep, final boolean haveStep) {
-        return new Bar(hasPreviousStep, haveStep);
+    public static MyBar of(final boolean hasPreviousStep, final boolean haveStep) {
+        return new MyBar(hasPreviousStep, haveStep);
     }
 
+    @Override
     public boolean currentStep(){
         return haveNextStep;
     }
 
+    @Override
     public Position move(Position position){
         if(havePreviousStep){
             return Direction.LEFT.move(position);

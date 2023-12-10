@@ -2,8 +2,8 @@ package com.fineroot.viewmodel;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.fineroot.ladder.domain.LadderResult;
-import com.fineroot.ladder.domain.Positions;
+import com.fineroot.ladder.domain.LadderGameResult;
+import com.fineroot.ladder.engine.Positions;
 import com.fineroot.ladder.domain.Rewards;
 import com.fineroot.ladder.domain.User;
 import com.fineroot.ladder.domain.UserRewardSet;
@@ -29,11 +29,11 @@ class ResultViewModelTest {
     @Test
     void saveLadderResult() {
         ResultViewModel resultViewModel = new ResultViewModel();
-        LadderResult ladderResult = new LadderResult(
+        LadderGameResult ladderGameResult = new LadderGameResult(
                 new UserRewardSet(Users.fromString("pobi,honux,crong,jk"),
                         Rewards.fromString("꽝,3000,꽝,2000")),
                 Positions.fromIntArray(0,1,2,3));
-        resultViewModel.saveResultString(ladderResult.resultSting(User.from("all")));
+        resultViewModel.saveResultString(ladderGameResult.resultSting(User.from("all")));
         assertThat(resultViewModel.getResultString()).isEqualTo(
                 "pobi : 꽝\n honux : 3000\n crong : 꽝\n jk : 2000");
     }

@@ -1,4 +1,4 @@
-package com.fineroot.ladder.domain;
+package com.fineroot.ladder.engine;
 
 import java.util.Arrays;
 import java.util.List;
@@ -38,7 +38,7 @@ public class Positions {
     }
 
     private Function<Integer, String> toIntegerStringFunction(Function<Position, String> userString,
-                                                               Function<Position, String> rewardString) {
+                                                              Function<Position, String> rewardString) {
         return e -> userString.
                 apply(new Position(e)).concat(" : ").concat(rewardString.apply(positions.get(e)))
                 .concat(System.lineSeparator());
