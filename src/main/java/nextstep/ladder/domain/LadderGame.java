@@ -20,7 +20,7 @@ public class LadderGame {
     }
 
     private Lines createLines(int namesSize, Height height, GenerateLadderPoint generateLadderPoint) {
-        List<Line> lines = IntStream.range(0, height.getHeight())
+        List<Line> lines = IntStream.range(0, height.getPoint())
                 .mapToObj(i -> new Line(namesSize, generateLadderPoint))
                 .collect(Collectors.toList());
         return new Lines(lines);
