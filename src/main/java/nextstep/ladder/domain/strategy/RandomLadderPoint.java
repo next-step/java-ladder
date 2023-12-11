@@ -2,11 +2,12 @@ package nextstep.ladder.domain.strategy;
 
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class RandomLadderPoint implements GenerateLadderPoint{
-    private static final Random RANDOM = new Random();
+    private static final ThreadLocalRandom RANDOM = ThreadLocalRandom.current();
     private boolean wasPrevious;
 
     @Override
