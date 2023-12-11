@@ -12,16 +12,16 @@ public class LadderGame {
 
     public LadderGame(Names names, GenerateLadderPoint generateLadderPoint, Height height) {
         this.names = names;
-        initialize(names.size(), height, generateLadderPoint);
+        initialize(height, generateLadderPoint);
     }
 
-    private void initialize(int namesSize, Height height, GenerateLadderPoint generateLadderPoint) {
-        this.lines = createLines(namesSize, height, generateLadderPoint);
+    private void initialize(Height height, GenerateLadderPoint generateLadderPoint) {
+        this.lines = createLines(height, generateLadderPoint);
     }
 
-    private Lines createLines(int namesSize, Height height, GenerateLadderPoint generateLadderPoint) {
+    private Lines createLines(Height height, GenerateLadderPoint generateLadderPoint) {
         List<Line> lines = IntStream.range(0, height.getPoint())
-                .mapToObj(i -> new Line(namesSize, generateLadderPoint))
+                .mapToObj(i -> new Line(names.size(), generateLadderPoint))
                 .collect(Collectors.toList());
         return new Lines(lines);
     }
