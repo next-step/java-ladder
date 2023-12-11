@@ -21,6 +21,10 @@ public class Participants {
         return Collections.unmodifiableList(participants);
     }
 
+    public int count() {
+        return this.participants.size();
+    }
+
     @Override
     public String toString() {
         return "Participants{" +
