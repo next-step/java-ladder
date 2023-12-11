@@ -18,4 +18,21 @@ public class Line {
     public List<Boolean> routes() {
         return routes;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+
+        for (Boolean route : this.routes()) {
+            result.append("|");
+            if (route) {
+                result.append("-----");
+                continue;
+            }
+            result.append("     ");
+        }
+        result.append("|\n");
+
+        return result.toString();
+    }
 }
