@@ -12,7 +12,11 @@ public class LadderGame {
 
     public LadderGame(Names names, GenerateLadderPoint generateLadderPoint, Height height) {
         this.names = names;
-        this.lines = createLines(names.size(), height, generateLadderPoint);
+        initialize(names.size(), height, generateLadderPoint);
+    }
+
+    private void initialize(int namesSize, Height height, GenerateLadderPoint generateLadderPoint) {
+        this.lines = createLines(namesSize, height, generateLadderPoint);
     }
 
     private Lines createLines(int namesSize, Height height, GenerateLadderPoint generateLadderPoint) {
