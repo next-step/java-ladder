@@ -16,6 +16,6 @@ class PlayersTest {
     @Test
     void toStringList() {
         Players players = Players.fromString(List.of("a", "b", "c"));
-        assertThat(players.toStringList()).isEqualTo(List.of("a", "b", "c"));
+        assertThat(players.toStringPlayers()).isEqualTo(List.of("a", "b", "c"));
     }
 }
