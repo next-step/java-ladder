@@ -37,3 +37,6 @@
 * [X] nextstep.optional.ExpressionTest의 테스트가 통과하도록 Expression의 of 메소드를 구현한다.
 * [X] 단, of 메소드를 구현할 때 자바 8의 stream을 기반으로 구현한다.
 
+## step1 추가보완사항
+* [X] @FunctionalInterface 활용
+
