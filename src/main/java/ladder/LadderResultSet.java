@@ -1,8 +1,5 @@
 package ladder;
 
-import seungjun.ladder.Name;
-import seungjun.ladder.ResultItem;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +15,8 @@ public class LadderResultSet {
         this.resultSet = new ArrayList<>();
     }
 
-    public void addResultMapping(Name name, ResultItem resultItem) {
-        this.addResultMapping(new LadderResult(name, resultItem));
+    public void addResultMapping(LadderParticipant ladderParticipant, LadderResultItem resultItem) {
+        this.addResultMapping(new LadderResult(ladderParticipant, resultItem));
     }
 
     public void addResultMapping(LadderResult ladderResult) {

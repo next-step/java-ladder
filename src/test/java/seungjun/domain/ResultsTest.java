@@ -2,7 +2,7 @@ package seungjun.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import seungjun.ladder.ResultItem;
+import ladder.LadderResultItem;
 import seungjun.ladder.ResultItems;
 
 import java.util.List;
@@ -15,10 +15,10 @@ class ResultsTest {
     public void ofTest() {
         assertThat(ResultItems.of("hello,world,my,result"))
                 .hasSameElementsAs(
-                        List.of(new ResultItem("hello"),
-                                new ResultItem("world"),
-                                new ResultItem("my"),
-                                new ResultItem("result"))
+                        List.of(new LadderResultItem("hello"),
+                                new LadderResultItem("world"),
+                                new LadderResultItem("my"),
+                                new LadderResultItem("result"))
                 );
     }
 }

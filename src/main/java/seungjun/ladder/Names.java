@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 /**
  * 여러개의 이름을 생성하는 유틸용 클래스.
- * @see Name
+ * @see LadderParticipant
  */
 public class Names {
     private Names() {
@@ -15,7 +15,7 @@ public class Names {
 
     public static List<LadderParticipant> of(String names) {
         return splitNames(names).stream()
-                .map(Name::new)
+                .map(LadderParticipant::new)
                 .collect(Collectors.toList());
     }
 

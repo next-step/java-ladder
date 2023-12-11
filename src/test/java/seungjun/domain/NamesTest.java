@@ -1,6 +1,6 @@
 package seungjun.domain;
 
-import seungjun.ladder.Name;
+import ladder.LadderParticipant;
 import seungjun.ladder.Names;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,7 +14,7 @@ public class NamesTest {
     @DisplayName("[Names.of] 이름 하나 주면 -> 이름 하나 담긴 리스트 반환")
     public void generation() {
         assertThat(Names.of("hello"))
-                .hasSameElementsAs(List.of(new Name("hello")));
+                .hasSameElementsAs(List.of(new LadderParticipant("hello")));
     }
 
     @Test
@@ -22,8 +22,8 @@ public class NamesTest {
     public void multipleGeneration() {
         assertThat(Names.of("hello,world"))
                 .hasSameElementsAs(
-                        List.of( new Name("hello"),
-                                new Name("world")
+                        List.of( new LadderParticipant("hello"),
+                                new LadderParticipant("world")
                         )
                 );
     }

@@ -1,6 +1,6 @@
 package seungjun.domain;
 
-import seungjun.ladder.Name;
+import ladder.LadderParticipant;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -9,12 +9,12 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-public class NameTest {
+public class LadderParticipantTest {
     @Test
     @DisplayName("[Name.equals] 같은 사람 이름이면 -> 동일 판정")
     public void same() {
-        assertThat(new Name("mymy"))
-                .isEqualTo(new Name("mymy"));
+        assertThat(new LadderParticipant("mymy"))
+                .isEqualTo(new LadderParticipant("mymy"));
     }
 
     @ParameterizedTest
@@ -23,7 +23,7 @@ public class NameTest {
     public void wrongNameLength(String name) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> {
-                    new Name(name);
+                    new LadderParticipant(name);
                 });
     }
 
@@ -32,7 +32,7 @@ public class NameTest {
     public void nullName() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> {
-                    new Name(null);
+                    new LadderParticipant(null);
                 });
     }
 }

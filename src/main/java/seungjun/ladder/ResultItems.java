@@ -24,7 +24,7 @@ public class ResultItems {
         String[] split = results.split(",");
 
         return Arrays.stream(split)
-                .map(ResultItem::new)
+                .map(LadderResultItem::new)
                 .collect(Collectors.toList());
     }
 }

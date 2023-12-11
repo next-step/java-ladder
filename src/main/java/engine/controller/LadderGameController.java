@@ -2,7 +2,7 @@ package engine.controller;
 
 import engine.view.*;
 import ladder.*;
-import seungjun.ladder.Name;
+import ladder.LadderParticipant;
 import seungjun.ladder.Names;
 import seungjun.ladder.ResultItems;
 import seungjun.ladder.RandomLadderLineGenerator;
@@ -76,7 +76,7 @@ public class LadderGameController {
             return;
         }
 
-        LadderResult ladderResult = this.ladderGame.calculateResultOf(new Name(name));
+        LadderResult ladderResult = this.ladderGame.calculateResultOf(new LadderParticipant(name));
         LadderResultSetRenderer.printSingleResult(ladderResult);
     }
 }

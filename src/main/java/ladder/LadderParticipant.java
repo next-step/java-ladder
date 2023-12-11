@@ -1,10 +1,49 @@
 package ladder;
 
-public interface LadderParticipant {
+import java.util.Objects;
+import java.util.Optional;
+
+/**
+ * 이름을 나타내는 클래스입니다.
+ * 불변 객체입니다.
+ */
+public class LadderParticipant {
+    private final String name;
+
     /**
-     * 출력용 문자열을 만듭니다.
-     *
-     * @return 출력용 문자열
+     * 주어진 이름으로 이름 객체를 생성합니다.
+     * @param name 생성할 이름
      */
-    public String toPrintableString();
+    public LadderParticipant(String name) {
+        this.name = Optional.ofNullable(name)
+                .filter(v -> v.length() > 0)
+                .filter(v -> v.length() < 6)
+                .orElseThrow(() -> new IllegalArgumentException("주어진 이름 " + name + "은 유효하지 않습니다."));
+    }
+
+    public String toPrintableString() {
+        return this.name;
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        LadderParticipant ladderParticipant1 = (LadderParticipant) o;
+        return Objects.equals(name, ladderParticipant1.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
 }
