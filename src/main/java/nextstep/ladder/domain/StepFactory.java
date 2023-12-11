@@ -3,25 +3,30 @@ package nextstep.ladder.domain;
 import java.util.Random;
 
 public class StepFactory {
-    private boolean previousStep;
+    private boolean current;
 
-    public StepFactory() {
-        this(false);
+    private StepFactory(boolean current) {
+        this.current = current;
     }
-    public StepFactory(boolean previousStep) {
-        this.previousStep = previousStep;
+
+    public static StepFactory first(boolean flag) {
+        return new StepFactory(flag);
+    }
+
+    public static StepFactory first() {
+        return new StepFactory(new Random().nextBoolean());
     }
 
     public boolean next() {
-        if (previousStep) {
-            this.previousStep = false;
+        if (current) {
+            this.current = false;
             return false;
         }
-        this.previousStep = new Random().nextBoolean();
-        return this.previousStep;
+        this.current = new Random().nextBoolean();
+        return this.current;
     }
 
-    public boolean previous() {
-        return previousStep;
+    public boolean current() {
+        return current;
     }
 }

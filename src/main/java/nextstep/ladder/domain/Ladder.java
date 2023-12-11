@@ -10,6 +10,7 @@ public class Ladder {
     private Ladder(List<Line> lines) {
         this.ladder = new ArrayList<>(lines);
     }
+
     public static Ladder make(Participants participants, int level) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < level; i++) {
@@ -18,11 +19,11 @@ public class Ladder {
         return new Ladder(lines);
     }
 
-    public int pathFind(int index) {
+    public int pathFind(int participantPosition) {
         for (Line line : ladder) {
-            index = line.following(index);
+            participantPosition = line.moving(participantPosition);
         }
-        return index;
+        return participantPosition;
     }
 
     public List<Line> getLadder() {

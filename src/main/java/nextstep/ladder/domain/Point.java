@@ -1,39 +1,35 @@
 package nextstep.ladder.domain;
 
 public class Point {
-    private final int GOING_RIGHT = 1;
-    private final int GOING_LEFT = -1;
-    private final int HOLD_POSITION = 0;
-
     private final boolean leftConnected;
     private final boolean rightConnected;
 
     private Point(boolean leftConnected, boolean rightConnected) {
+        if (leftConnected && rightConnected) {
+            throw new IllegalArgumentException("양쪽으로 이어질수 없습니다.");
+        }
         this.leftConnected = leftConnected;
         this.rightConnected = rightConnected;
     }
 
-    public static Point make(int index, int pointCount, StepFactory stepFactory) {
-        if (index == 0) {
-            return new Point(false, stepFactory.next());
-        }
-        if (index == pointCount - 1) {
-            return new Point(stepFactory.previous(), false);
-        }
-        return new Point(stepFactory.previous(), stepFactory.next());
+    public static Point first(boolean rightConnected) {
+        return new Point(false, rightConnected);
     }
 
-    public int moving() {
-        if (leftConnected) {
-            return GOING_LEFT;
-        }
-        if (rightConnected) {
-            return GOING_RIGHT;
-        }
-        return HOLD_POSITION;
+    public Point next(boolean newRightConnected) {
+        return new Point(this.rightConnected, newRightConnected);
+    }
+
+    public Point last() {
+        return new Point(this.rightConnected, false);
     }
 
     public boolean isLeftConnected() {
         return leftConnected;
     }
+
+    public int moving() {
+        return DirectionEnum.getDirection(leftConnected, rightConnected).getValue();
+    }
+
 }

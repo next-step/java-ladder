@@ -5,23 +5,27 @@ import java.util.Collections;
 import java.util.List;
 
 public class Line {
-    private final List<Point> points;
+    private List<Point> points;
 
     private Line(List<Point> points) {
         this.points = new ArrayList<>(points);
     }
 
-    public static Line make(int pointCount) {
+    public static Line make(int participantsCount) {
         List<Point> points = new ArrayList<>();
-        StepFactory stepFactory = new StepFactory();
-        for (int i = 0; i < pointCount; i++) {
-            points.add(Point.make(i, pointCount, stepFactory));
+        StepFactory stepFactory = StepFactory.first();
+        Point point = Point.first(stepFactory.current());
+        points.add(point);
+        for (int index = 1; index < participantsCount - 1; index++) {
+            point = point.next(stepFactory.next());
+            points.add(point);
         }
+        points.add(point.last());
         return new Line(points);
     }
 
-    public int following(int index) {
-        return index + points.get(index).moving();
+    public int moving(int position) {
+        return position + points.get(position).moving();
     }
 
     public List<Point> getLine() {
