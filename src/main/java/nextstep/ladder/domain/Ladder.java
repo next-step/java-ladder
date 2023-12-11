@@ -24,7 +24,7 @@ public class Ladder {
         if (columns < MAX_HEIGHT) {
             throw new IllegalArgumentException(String.format("사다리는 높이가 %d 이상이여야 합니다", MAX_HEIGHT));
         }
-        return Stream.generate(() -> new Line(rows, random))
+        return Stream.generate(() -> new Line(rows))
                 .limit(columns)
                 .collect(Collectors.toList());
     }
