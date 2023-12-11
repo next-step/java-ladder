@@ -1,5 +1,8 @@
 package nextstep.ladder;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class OutputView {
 
     public static final int MAX_LADDER_WIDTH = 5;
@@ -15,10 +18,14 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printLadder(Ladder ladder) {
-        ladder.lines().forEach(line -> {
-            System.out.println(printLine(line));
-        });
+    public void printLadder(Ladder ladder){
+        stringLadder(ladder).forEach(System.out::println);
+    }
+
+    public List<String> stringLadder(Ladder ladder) {
+        return ladder.lines().stream()
+                .map(this::printLine)
+                .collect(Collectors.toList());
     }
 
     private String printLine(Line line) {
