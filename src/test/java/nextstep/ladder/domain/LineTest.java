@@ -8,7 +8,7 @@ class LineTest {
 
     @Test
     void 라인생성() {
-        Line line = new Line(5, () -> true);
+        Line line = LineFactory.createLine(5, () -> true);
         assertThat(line.routeCount()).isEqualTo(2);
     }
 }
