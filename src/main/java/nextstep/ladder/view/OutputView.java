@@ -1,4 +1,9 @@
-package nextstep.ladder;
+package nextstep.ladder.view;
+
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.User;
+import nextstep.ladder.domain.Users;
 
 import java.util.List;
 import java.util.stream.Collectors;

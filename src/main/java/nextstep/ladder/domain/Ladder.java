@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,15 +9,19 @@ public class Ladder {
     public static final int MAX_HEIGHT = 1;
     private List<Line> lines;
 
+    public Ladder(int rows, int columns) {
+        this.lines = makeLines(rows, columns);
+    }
+
     public Ladder(List<Line> lines) {
         this.lines = lines;
     }
 
-    public Ladder(int rows, int columns) {
+    private List<Line> makeLines(int rows, int columns) {
         if (columns < MAX_HEIGHT) {
             throw new IllegalArgumentException(String.format("사다리는 높이가 %d 이상이여야 합니다", MAX_HEIGHT));
         }
-        this.lines = Stream.generate(() -> new Line(rows))
+        return Stream.generate(() -> new Line(rows))
                 .limit(columns)
                 .collect(Collectors.toList());
     }

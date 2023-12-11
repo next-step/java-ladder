@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 import java.util.List;
 import java.util.Random;
@@ -11,6 +11,10 @@ public class Line {
     private final List<Boolean> points;
     private Random random = new Random();
 
+    public Line(List<Boolean> points) {
+        this.points = points;
+    }
+
     public Line (int countOfPerson) {
         if (countOfPerson <= MAX_PERSON_SIZE) {
              throw new IllegalArgumentException(String.format("라인은 %d명 이상인 경우만 생성 됩니다", MAX_PERSON_SIZE));
@@ -20,8 +24,8 @@ public class Line {
                 .collect(Collectors.toList());
     }
 
-    private boolean hasLine(Boolean b) {
-        return b == true ? false : random.nextBoolean();
+    private boolean hasLine(Boolean hasLine) {
+        return !hasLine && random.nextBoolean();
     }
 
     public List<Boolean> points() {

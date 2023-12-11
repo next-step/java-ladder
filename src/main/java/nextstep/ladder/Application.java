@@ -1,5 +1,10 @@
 package nextstep.ladder;
 
+import nextstep.ladder.domain.LadderGame;
+import nextstep.ladder.domain.Users;
+import nextstep.ladder.view.InputView;
+import nextstep.ladder.view.OutputView;
+
 public class Application {
 
     private final static InputView inputView = new InputView();
