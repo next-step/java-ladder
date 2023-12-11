@@ -2,21 +2,21 @@ package seungjun.ladder;
 
 import ladder.LadderBody;
 import ladder.LadderLine;
-import ladder.Generator;
+import ladder.LadderLineGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class SeungjunLadderBody implements LadderBody {
-    private final List<SeungjunLadderLine> lines;
+    private final List<LadderLine> lines;
 
-    public SeungjunLadderBody(List<SeungjunLadderLine> lines) {
+    public SeungjunLadderBody(List<LadderLine> lines) {
         validateLadderLines(lines);
         this.lines = lines;
     }
 
-    private static void validateLadderLines(List<SeungjunLadderLine> lines) {
+    private static void validateLadderLines(List<LadderLine> lines) {
         checkAllLinesHasSameColumn(lines);
     }
 
@@ -25,7 +25,7 @@ public class SeungjunLadderBody implements LadderBody {
      * 다른 개수의 컬럼을 가진 LadderLine이 있다면 예외가 던져집니다.
      * @param lines 검사할 LadderLine의 리스트
      */
-    private static void checkAllLinesHasSameColumn(List<SeungjunLadderLine> lines) {
+    private static void checkAllLinesHasSameColumn(List<LadderLine> lines) {
         int theNumberOfColumn = lines.get(0).howManyColumns();
 
         lines.stream()
@@ -46,15 +46,15 @@ public class SeungjunLadderBody implements LadderBody {
      *
      * @return 생성된 사다리 객체
      */
-    public static SeungjunLadderBody of(Generator<SeungjunLadderLine> generator, int depth) {
+    public static SeungjunLadderBody of(LadderLineGenerator generator, int depth) {
         if (depth <= 0) {
             throw new IllegalArgumentException("사다리 라인을 " + depth + "개 생성하라고 설정되었습니다.");
         }
 
-        List<SeungjunLadderLine> lines = new ArrayList<>(depth);
+        List<LadderLine> lines = new ArrayList<>(depth);
 
         for (int i = 0; i < depth; i++) {
-            lines.add(generator.make());
+            lines.add(generator.generate());
         }
 
         return new SeungjunLadderBody(lines);
@@ -97,7 +97,7 @@ public class SeungjunLadderBody implements LadderBody {
     @Override
     public int calculateResultOf(int columnIndex) {
         int currentColumnIndex = columnIndex;
-        for (SeungjunLadderLine line : lines) {
+        for (LadderLine line : lines) {
             currentColumnIndex = line.connectedColumnOf(currentColumnIndex);
         }
         return currentColumnIndex;

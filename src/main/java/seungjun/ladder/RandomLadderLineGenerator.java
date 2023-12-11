@@ -1,10 +1,8 @@
 package seungjun.ladder;
 
-import ladder.Generator;
+import ladder.LadderLineGenerator;
 import ladder.LadderColumn;
-import seungjun.ladder.SeungjunLadderColumn;
 import ladder.LadderConnection;
-import seungjun.ladder.SeungjunLadderLine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +11,7 @@ import java.util.Random;
 /**
  * 랜덤으로 구성되는 사다리 라인 한 개를 만듭니다.
  */
-public class RandomLadderLineGenerator implements Generator<SeungjunLadderLine> {
+public class RandomLadderLineGenerator implements LadderLineGenerator {
     private static final Random RANDOM = new Random();
 
     private final int theNumberOfColumn;
@@ -29,7 +27,7 @@ public class RandomLadderLineGenerator implements Generator<SeungjunLadderLine> 
 
 
     @Override
-    public SeungjunLadderLine make() {
+    public SeungjunLadderLine generate() {
         return generateRandomLine(theNumberOfColumn);
     }
 
