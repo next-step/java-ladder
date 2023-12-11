@@ -1,7 +1,7 @@
 package seungjun.domain.generator;
 
-import seungjun.generator.Generator;
-import seungjun.generator.RandomLadderLineGenerator;
+import ladder.Generator;
+import seungjun.ladder.RandomLadderLineGenerator;
 import seungjun.ladder.SeungjunLadderLine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

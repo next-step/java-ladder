@@ -5,7 +5,7 @@ import ladder.*;
 import seungjun.ladder.Name;
 import seungjun.ladder.Names;
 import seungjun.ladder.ResultItems;
-import seungjun.generator.RandomLadderLineGenerator;
+import seungjun.ladder.RandomLadderLineGenerator;
 import seungjun.ladder.SeungjunLadderBody;
 import seungjun.ladder.SeungjunLadderGame;
 

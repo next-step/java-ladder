@@ -1,4 +1,4 @@
-package seungjun.generator;
+package ladder;
 
 /**
  * 특정 타입의 인스턴스를 생성하는 로직 객체가 구현해야 하는 인터페이스입니다.

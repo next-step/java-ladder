@@ -1,5 +1,6 @@
-package seungjun.generator;
+package seungjun.ladder;
 
+import ladder.Generator;
 import ladder.LadderColumn;
 import seungjun.ladder.SeungjunLadderColumn;
 import ladder.LadderConnection;

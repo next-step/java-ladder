@@ -2,7 +2,7 @@ package seungjun.ladder;
 
 import ladder.LadderBody;
 import ladder.LadderLine;
-import seungjun.generator.Generator;
+import ladder.Generator;
 
 import java.util.ArrayList;
 import java.util.List;
