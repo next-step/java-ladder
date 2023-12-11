@@ -1,7 +1,11 @@
 package nextstep.ladder.utils;
 
-public class RandomLineGenerator {
-    public static void generateLine() {
+import java.util.Random;
 
+public class RandomLineGenerator {
+    private static final Random random = new Random();
+
+    public static boolean generateLine() {
+        return random.nextBoolean();
     }
 }

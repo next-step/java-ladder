@@ -1,18 +1,34 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.utils.RandomLineGenerator;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class Line {
-    private final ArrayList<Boolean> points;
+    private final List<Boolean> points;
 
     public Line(int countOfParticipant) {
-        this(new ArrayList<>(countOfParticipant - 1));
-
-        // 라인의 좌표 값에 선이 있는지 유무를 판단하는 로직 추가
+        this(generateRandomLine(countOfParticipant));
     }
 
-    public Line(ArrayList<Boolean> points) {
+    private static ArrayList<Boolean> generateRandomLine(int countOfParticipant) {
+        ArrayList<Boolean> booleans = new ArrayList<>();
+        booleans.add(false);
+
+        for (int i = 1; i < countOfParticipant; i++) {
+            boolean shouldGenerateLine = !booleans.get(i - 1) && RandomLineGenerator.generateLine();
+            booleans.add(shouldGenerateLine);
+        }
+        return booleans;
+    }
+
+    public Line(List<Boolean> points) {
         this.points = points;
+    }
+
+    public List<Boolean> getPoints() {
+        return points;
     }
 
     @Override

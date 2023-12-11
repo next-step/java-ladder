@@ -21,6 +21,10 @@ public class Ladder {
         return lines.size();
     }
 
+    public ArrayList<Line> getLines() {
+        return lines;
+    }
+
     @Override
     public String toString() {
         return "Ladder{" +

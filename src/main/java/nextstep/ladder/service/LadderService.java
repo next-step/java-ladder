@@ -7,5 +7,4 @@ public class LadderService {
 
         return Ladder.generate(countOfParticipant, ladderHeight);
     }
-
 }

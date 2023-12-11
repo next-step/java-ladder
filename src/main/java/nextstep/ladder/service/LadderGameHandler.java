@@ -18,6 +18,7 @@ public class LadderGameHandler {
 
         ResultView.printResultWord();
         ResultView.printParticipantsName(participants);
+        ResultView.printLadder(ladder);
     }
 
     private static Participants inputAndRegisterParticipant(ParticipantService participantService) {
