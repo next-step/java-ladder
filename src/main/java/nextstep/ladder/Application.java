@@ -2,8 +2,8 @@ package nextstep.ladder;
 
 public class Application {
 
-    private static InputView inputView = new InputView();
-    private static OutputView outputView = new OutputView();
+    private final static InputView inputView = new InputView();
+    private final static OutputView outputView = new OutputView();
 
     public static void main(String[] args) {
         String[] userName = inputView.inputNameList("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");

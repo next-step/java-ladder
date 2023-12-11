@@ -8,15 +8,15 @@ import java.util.stream.Stream;
 public class Line {
 
     public static final int MAX_PERSON_SIZE = 1;
-    private List<Boolean> points;
+    private final List<Boolean> points;
     private Random random = new Random();
 
     public Line (int countOfPerson) {
         if (countOfPerson <= MAX_PERSON_SIZE) {
-             throw new IllegalArgumentException("라인은 1명 이상인 경우만 생성 됩니다");
+             throw new IllegalArgumentException(String.format("라인은 %d명 이상인 경우만 생성 됩니다", MAX_PERSON_SIZE));
         }
         this.points = Stream.iterate(random.nextBoolean(), this::hasLine)
-                .limit(countOfPerson-1)
+                .limit(countOfPerson-MAX_PERSON_SIZE)
                 .collect(Collectors.toList());
     }
 
