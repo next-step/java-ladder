@@ -1,5 +1,8 @@
 package nextstep.optional;
 
+import java.util.Arrays;
+import java.util.Optional;
+
 enum Expression {
     PLUS("+"), MINUS("-"), TIMES("*"), DIVIDE("/");
 
@@ -14,12 +17,10 @@ enum Expression {
     }
 
     static Expression of(String expression) {
-        for (Expression v : values()) {
-            if (matchExpression(v, expression)) {
-                return v;
-            }
-        }
-
-        throw new IllegalArgumentException(String.format("%s는 사칙연산에 해당하지 않는 표현식입니다.", expression));
+        Optional<String> optional = Optional.of(expression);
+        return Arrays.stream(values())
+                .filter(enumExpression -> matchExpression(enumExpression, optional.get()))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(String.format("%s는 사칙연산에 해당하지 않는 표현식입니다.", expression)));
     }
 }
