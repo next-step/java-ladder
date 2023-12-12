@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.concrete;
 
+import nextstep.ladder.domain.Position;
 import nextstep.ladder.domain.strategy.BraceStrategy;
 
 import java.util.Random;
@@ -26,16 +27,16 @@ public class Brace implements BraceStrategy {
     }
 
     @Override
-    public int move(int index) {
+    public Position move(Position position) {
         if (isLeft()) {
-            return index - 1;
+            return position.left();
         }
 
         if (isRight()) {
-            return index + 1;
+            return position.right();
         }
 
-        return index;
+        return position;
     }
 
     public static Brace first() {

@@ -1,6 +1,6 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.concrete;
 
-import nextstep.ladder.domain.concrete.Brace;
+import nextstep.ladder.domain.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -63,5 +63,19 @@ public class BraceTest {
         Brace braceLeftNext = braceLeft.next();
 
         assertThat(braceLeft.isRight()).isEqualTo(braceLeftNext.isLeft());
+    }
+
+    @Test
+    @DisplayName("move는 왼쪽이 존재하면 한칸 왼쪽 위치를, 오른쪽이 존재하면 한칸 오른쪽 위치를 반환한다.")
+    void move_success() {
+        int current = 1;
+        Position position = new Position(current);
+        Brace rightBrace = new Brace(false, true);
+        Position rigthPosition = rightBrace.move(position);
+        assertThat(rigthPosition.current()).isEqualTo(current + 1);
+
+        Brace leftBrace = new Brace(true, false);
+        Position leftPosition = leftBrace.move(position);
+        assertThat(leftPosition.current()).isEqualTo(current - 1);
     }
 }

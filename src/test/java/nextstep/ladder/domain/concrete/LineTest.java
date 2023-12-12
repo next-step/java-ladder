@@ -1,4 +1,4 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.concrete;
 
 import nextstep.ladder.domain.concrete.Brace;
 import nextstep.ladder.domain.concrete.Line;

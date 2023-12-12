@@ -1,5 +1,7 @@
 package nextstep.ladder.domain.strategy;
 
+import nextstep.ladder.domain.Position;
+
 public interface LineStrategy {
-    int move(int index);
+    Position move(Position position);
 }

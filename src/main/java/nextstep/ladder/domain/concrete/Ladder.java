@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.concrete;
 
+import nextstep.ladder.domain.Position;
 import nextstep.ladder.domain.strategy.LadderStrategy;
 
 import java.util.Collections;
@@ -25,12 +26,12 @@ public class Ladder implements LadderStrategy {
     }
 
     @Override
-    public int move(int index) {
+    public Position move(Position position) {
         for (Line line : lines) {
-            index = line.move(index);
+            position = line.move(position);
         }
 
-        return index;
+        return position;
     }
 
     public List<Line> lines() {

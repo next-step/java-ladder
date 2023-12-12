@@ -15,3 +15,4 @@
   - [x] 사다리(Ladder) 생성 및 이동
   - [x] 라인(Line) 생성 및 이동
   - [x] 구조선(Brace) 이동
+- [x] index -> Position 객체로 개선

@@ -1,5 +1,6 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.concrete;
 
+import nextstep.ladder.domain.Position;
 import nextstep.ladder.domain.concrete.Ladder;
 import nextstep.ladder.domain.concrete.Line;
 import nextstep.ladder.fixtures.BraceFixtures;
@@ -28,9 +29,9 @@ public class LadderTest {
         Line firstLine = new Line(List.of(
                 BraceFixtures.right(), BraceFixtures.left(), BraceFixtures.none(), BraceFixtures.none()
         ));
-        assertThat(firstLine.move(0)).isEqualTo(1);
-        assertThat(firstLine.move(1)).isEqualTo(0);
-        assertThat(firstLine.move(2)).isEqualTo(2);
-        assertThat(firstLine.move(3)).isEqualTo(3);
+        assertThat(firstLine.move(new Position(0))).isEqualTo(new Position(1));
+        assertThat(firstLine.move(new Position(1))).isEqualTo(new Position(0));
+        assertThat(firstLine.move(new Position(2))).isEqualTo(new Position(2));
+        assertThat(firstLine.move(new Position(3))).isEqualTo(new Position(3));
     }
 }

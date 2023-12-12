@@ -28,8 +28,8 @@ public class LadderGame {
     public LadderGameResult play() {
         LadderGameResult ladderGameResult = new LadderGameResult();
         for (int index = 0; index < players.size(); index++) {
-            int resultIndex = ladder.move(index);
-            ladderGameResult.put(players.find(index), amounts.find(resultIndex));
+            Position resultPosition = ladder.move(new Position(index));
+            ladderGameResult.put(players.find(new Position(index)), amounts.find(resultPosition));
         }
 
         return ladderGameResult;

@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.concrete;
 
+import nextstep.ladder.domain.Position;
 import nextstep.ladder.domain.strategy.LineStrategy;
 
 import java.util.Iterator;
@@ -40,9 +41,13 @@ public class Line implements LineStrategy, Iterable<Brace> {
     }
 
     @Override
-    public int move(int index) {
-        Brace brace = braces.get(index);
-        return brace.move(index);
+    public Position move(Position position) {
+        Brace brace = find(position);
+        return brace.move(position);
+    }
+
+    private Brace find(Position position) {
+        return braces.get(position.current());
     }
 
     public List<Brace> braces() {
