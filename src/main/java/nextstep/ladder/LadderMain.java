@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderFactory;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
@@ -11,8 +12,11 @@ public class LadderMain {
         InputView inputView = new InputView();
         Random random = new Random();
 
-        Ladder ladder = Ladder.of(inputView.inputPlayer(), inputView.inputLadderHeight());
+        Ladder ladder = LadderFactory.createLadder(inputView.inputPlayer(), inputView.inputLadderHeight(), inputView.inputResult());
         ResultView.printLadder(ladder);
+        ladder.run();
+        ResultView.printResultPerPlayer(ladder, inputView.inputPlayerForResult());
+
     }
 
 }

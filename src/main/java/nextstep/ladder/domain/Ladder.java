@@ -1,37 +1,54 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+import java.util.stream.Collectors;
 
 public class Ladder {
-    private static final Random random = new Random();
     private final Players players;
     private final List<Line> lines;
+    private final List<String> results;
 
-    private Ladder(Players players, List<Line> lines) {
+    public Ladder(Players players, List<Line> lines, List<String> results) {
         this.players = players;
         this.lines = lines;
+        this.results = results;
     }
 
-    public static Ladder of(List<String> playerNames, int height) {
-        return new Ladder(Players.fromString(playerNames), initLines(playerNames, height));
+    public void run() {
+        players.run(this.lines);
     }
 
-    private static List<Line> initLines(List<String> playerNames, int height) {
-        List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            lines.add(new Line(playerNames.size(), random::nextBoolean));
+    public String getGameResultPerPlayer(String name) {
+        if("all".equals(name)) {
+            return this.players.gameResults(results);
         }
-        return lines;
+        return this.players.gameResult(new Player(name), results);
     }
 
     public List<Line> getLines() {
         return lines;
     }
 
-    public List<String> toStringPlayers() {
-        return this.players.toStringList();
-    }
+    public String toStringResult() {
+        StringBuilder result = new StringBuilder();
 
+        result.append(players.toStringPlayers()
+                .stream()
+                .map(p -> String.format("%-6s", p))
+                .collect(Collectors.joining("")));
+
+        result.append("\n");
+
+        for (Line line : this.lines) {
+            result.append(line.toString());
+        }
+
+        result.append(this.results
+                .stream()
+                .map(p -> String.format("%-6s", p))
+                .collect(Collectors.joining("")));
+
+        return result.toString();
+
+    }
 }
