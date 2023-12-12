@@ -1,7 +1,8 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.*;
-import nextstep.ladder.domain.strategy.RandomLineStrategy;
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.concrete.RandomLineCreateStrategy;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
@@ -16,7 +17,7 @@ public class LadderApplication {
         int inputHeight = InputView.inputHeight();
         Height height = new Height(inputHeight);
 
-        Ladder ladder = new Ladder(players, height, new RandomLineStrategy());
+        Ladder ladder = new Ladder(players, height, new RandomLineCreateStrategy());
         LadderGame ladderGame = new LadderGame(players, ladder, amounts);
         OutputView.printLadder(players, ladder, amounts);
 

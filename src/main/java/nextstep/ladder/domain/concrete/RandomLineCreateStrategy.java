@@ -1,12 +1,12 @@
-package nextstep.ladder.domain.strategy;
+package nextstep.ladder.domain.concrete;
 
 import nextstep.ladder.domain.Brace;
-import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.strategy.LineCreateStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RandomLineStrategy implements LineStrategy {
+public class RandomLineCreateStrategy implements LineCreateStrategy {
     @Override
     public Line createLine(int personCount) {
         List<Brace> createdBraces = new ArrayList<>();

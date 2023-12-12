@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.strategy.LineStrategy;
+import nextstep.ladder.domain.concrete.Line;
+import nextstep.ladder.domain.strategy.LineCreateStrategy;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,18 +16,18 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public Ladder(Players players, Height height, LineStrategy lineStrategy) {
+    public Ladder(Players players, Height height, LineCreateStrategy lineCreateStrategy) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height.height(); i++) {
-            Line line = createLine(players.size(), lineStrategy);
+            Line line = createLine(players.size(), lineCreateStrategy);
             lines.add(line);
         }
 
         this.lines = lines;
     }
 
-    private static Line createLine(int personCount, LineStrategy lineStrategy) {
-        return lineStrategy.createLine(personCount);
+    private static Line createLine(int personCount, LineCreateStrategy lineCreateStrategy) {
+        return lineCreateStrategy.createLine(personCount);
     }
 
     public void validate(List<Line> lines) {

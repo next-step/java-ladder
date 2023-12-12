@@ -1,6 +1,8 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.*;
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.concrete.Line;
 
 public class OutputView {
     private static final String ALL_PLAYERS = "all";
