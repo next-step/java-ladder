@@ -18,6 +18,7 @@ public class ResultView {
 			System.out.print(user.getName() + "     ");
 		}
 		System.out.println();
+		// indent 개선
 		for (int i = 0; i < height; i++) {
 			for (int j = 0; j < ladder.lines().lines().size()-1; j++) {
 				System.out.print("|");

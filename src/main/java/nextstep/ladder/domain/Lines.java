@@ -18,6 +18,7 @@ public class Lines {
 	public Lines(Width width, Height height) {
 		lines = new ArrayList<>();
 		lines.add(new Line(new FirstLineGenerator(height)));
+		// indent 개선
 		for (int idx = 1; idx < width.width(); idx++) {
 			if (idx == width.width() - 1) {
 				lines.add(new Line(new LastLineGenerator(lines.get(idx - 1).points())));

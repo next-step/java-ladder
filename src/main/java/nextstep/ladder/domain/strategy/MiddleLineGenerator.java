@@ -16,6 +16,7 @@ public class MiddleLineGenerator implements LineGenerator{
 	public List<Point> generate() {
 		List<Point> points = new ArrayList<>();
 		for (Point point : beforeLine) {
+			// indent 개선
 			if (point.isRight()) {
 				points.add(Point.LEFT);
 				continue;
