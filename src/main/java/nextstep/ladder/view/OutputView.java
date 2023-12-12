@@ -1,10 +1,8 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.LadderGame;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Lines;
-import nextstep.ladder.domain.Names;
+import nextstep.ladder.domain.*;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -15,39 +13,68 @@ public class OutputView {
     private static final String LADDER_SPACE = " ";
     private static final String NEWLINE = System.lineSeparator();
 
-    public static void printNamesAndLadders(LadderGame ladderGame) {
-        System.out.println("실행 결과" + NEWLINE);
+    private static final String PARTICIPANT_NAME_ALL = "all";
+    private static final int MAX_NAME_LENGTH = 5;
 
-        String output = formatParticipantNames(ladderGame.getNames()) +
-                formatLines(ladderGame.getNames().getFirstNameLength(), ladderGame.getLines());
-
-        System.out.println(output);
+    private OutputView() {
     }
 
-    private static String formatParticipantNames(Names names) {
-        int lastIndex = names.getNames().size() - 1;
+    public static void printInputResults(List<LadderResult> inputLadderResults) {
+        System.out.println(formatLadderResults(inputLadderResults) + NEWLINE);
+    }
 
+    public static void printResultByName(Name inputName, LadderResults ladderResults) {
+        printHeader();
+        if (inputName.getName().equals(PARTICIPANT_NAME_ALL)) {
+            printAllParticipantResults(ladderResults);
+        } else {
+            printSingleParticipantResult(inputName, ladderResults);
+        }
+    }
+
+    private static void printHeader() {
+        System.out.println("실행 결과");
+    }
+
+    private static void printAllParticipantResults(LadderResults ladderResults) {
+        ladderResults.getAllResults().forEach((participant, result) ->
+                System.out.println(participant.getName() + " : " + result.getResult()));
+    }
+
+    private static void printSingleParticipantResult(Name name, LadderResults ladderResults) {
+        System.out.println(ladderResults.getResultForParticipant(name).getResult());
+    }
+
+    public static void printNames(Names names) {
         String strNames = names.getNames().stream()
-                .limit(lastIndex)
                 .map(name -> String.format(NAME_FORMAT, name.getName()))
                 .collect(Collectors.joining());
 
-        return strNames + String.format(NAME_FORMAT, names.getNames().get(lastIndex).getName()) + NEWLINE;
+        System.out.println(strNames);
     }
 
-    private static String formatLines(int firstNameLength, Lines lines) {
+    public static void printLadders(Lines lines) {
+        System.out.println(formatLines(lines));
+    }
+
+    private static String formatLines(Lines lines) {
         return lines.getLines().stream()
-                .map(line -> formatSingleLine(firstNameLength, line))
-                .collect(Collectors.joining(NEWLINE)) + NEWLINE;
+                .map(OutputView::formatSingleLine)
+                .collect(Collectors.joining(NEWLINE));
     }
 
-    private static String formatSingleLine(int firstNameLength, Line line) {
-        StringBuilder ladder = new StringBuilder(LADDER_SPACE.repeat(firstNameLength) + LADDER_VERTICAL_LINE);
+    private static String formatSingleLine(Line line) {
+        StringBuilder ladder = new StringBuilder(LADDER_SPACE.repeat(MAX_NAME_LENGTH) + LADDER_VERTICAL_LINE);
 
         line.getPoints().stream()
                 .map(point -> point ? LADDER_HORIZONTAL_LINE : LADDER_EMPTY_SPACE)
                 .forEach(segment -> ladder.append(segment).append(LADDER_VERTICAL_LINE));
 
         return ladder.toString();
+    }
+    private static String formatLadderResults(List<LadderResult> inputLadderResults) {
+        return inputLadderResults.stream()
+                .map(ladderResult -> String.format(NAME_FORMAT, ladderResult.getResult()))
+                .collect(Collectors.joining());
     }
 }
