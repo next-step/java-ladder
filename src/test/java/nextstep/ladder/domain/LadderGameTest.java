@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.concrete.Ladder;
 import nextstep.ladder.domain.concrete.Line;
 import nextstep.ladder.fixtures.BraceFixtures;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,7 +34,7 @@ public class LadderGameTest {
         Ladder ladder = new Ladder(List.of(firstLine, secondLine, thirdLine, fourthLine));
         Amounts amounts = new Amounts(inputAmounts);
         LadderGame ladderGame = new LadderGame(players, ladder, amounts);
-        LadderGameResult ladderGameResult = ladderGame.realPlay();
+        LadderGameResult ladderGameResult = ladderGame.play();
 
         Amount firstAmount = ladderGameResult.get(new Player("a"));
         Amount secondAmount = ladderGameResult.get(new Player("b"));

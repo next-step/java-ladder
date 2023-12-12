@@ -1,33 +1,17 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.concrete;
 
-import nextstep.ladder.domain.concrete.Line;
-import nextstep.ladder.domain.strategy.LineCreateStrategy;
+import nextstep.ladder.domain.strategy.LadderStrategy;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Ladder {
+public class Ladder implements LadderStrategy {
     private final List<Line> lines;
 
     public Ladder(List<Line> lines) {
         validate(lines);
 
         this.lines = lines;
-    }
-
-    public Ladder(Players players, Height height, LineCreateStrategy lineCreateStrategy) {
-        List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < height.height(); i++) {
-            Line line = createLine(players.size(), lineCreateStrategy);
-            lines.add(line);
-        }
-
-        this.lines = lines;
-    }
-
-    private static Line createLine(int personCount, LineCreateStrategy lineCreateStrategy) {
-        return lineCreateStrategy.createLine(personCount);
     }
 
     public void validate(List<Line> lines) {
@@ -40,6 +24,7 @@ public class Ladder {
         }
     }
 
+    @Override
     public int move(int index) {
         for (Line line : lines) {
             index = line.move(index);
