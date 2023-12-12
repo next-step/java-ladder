@@ -10,12 +10,12 @@ public class LadderGame {
     private Names names;
     private Lines lines;
 
-    public LadderGame(Names names, GenerateLadderPoint generateLadderPoint, Height height) {
+    public LadderGame(Names names) {
         this.names = names;
-        initialize(height, generateLadderPoint);
+//        initialize(height, generateLadderPoint);
     }
 
-    private void initialize(Height height, GenerateLadderPoint generateLadderPoint) {
+    public void initialize(Height height, GenerateLadderPoint generateLadderPoint) {
         this.lines = createLines(height, generateLadderPoint);
     }
 

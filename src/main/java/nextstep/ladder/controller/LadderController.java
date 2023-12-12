@@ -12,7 +12,8 @@ public class LadderController {
         Names names = InputView.inputNames();
         Height height = InputView.inputHeight();
 
-        LadderGame ladderGame = new LadderGame(names, new RandomLadderPoint(), height);
+        LadderGame ladderGame = new LadderGame(names);
+        ladderGame.initialize(height, new RandomLadderPoint());
 
         OutputView.printNamesAndLadders(ladderGame);
     }
