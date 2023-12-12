@@ -19,7 +19,7 @@ public class LadderController {
         OutputView.printLadders(lines);
         OutputView.printInputResults(inputLadderResults);
 
-//        LadderGame ladderGame = new LadderGame(names);
+        LadderGame ladderGame = new LadderGame(names, lines, inputLadderResults);
 
 //        OutputView.printNamesAndLadders(ladderGame);
 //        OutputView.printInputResults(inputLadderResults);
