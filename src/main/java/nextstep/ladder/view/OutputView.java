@@ -12,39 +12,32 @@ public class OutputView {
     private static final String LADDER_VERTICAL_LINE = "|";
     private static final String LADDER_SPACE = " ";
     private static final String NEWLINE = System.lineSeparator();
-
-    public static void printNamesAndLadders(LadderGame ladderGame) {
-        System.out.println("실행 결과" + NEWLINE);
-
-        String output = formatParticipantNames(ladderGame.getNames()) +
-                formatLines(ladderGame.getNames().getFirstNameLength(), ladderGame.getLines());
-
-        System.out.println(output);
-    }
+    private static final int MAX_NAME_LENGTH = 5;
 
     public static void printInputResults(List<LadderResult> inputLadderResults) {
         System.out.println(formatLadderResults(inputLadderResults) + NEWLINE);
     }
 
-    private static String formatParticipantNames(Names names) {
-        int lastIndex = names.getNames().size() - 1;
-
+    public static void printNames(Names names) {
         String strNames = names.getNames().stream()
-                .limit(lastIndex)
                 .map(name -> String.format(NAME_FORMAT, name.getName()))
                 .collect(Collectors.joining());
 
-        return strNames + String.format(NAME_FORMAT, names.getNames().get(lastIndex).getName()) + NEWLINE;
+        System.out.println(strNames);
     }
 
-    private static String formatLines(int firstNameLength, Lines lines) {
+    public static void printLadders(Lines lines) {
+        System.out.println(formatLines(lines));
+    }
+
+    private static String formatLines(Lines lines) {
         return lines.getLines().stream()
-                .map(line -> formatSingleLine(firstNameLength, line))
-                .collect(Collectors.joining(NEWLINE)) + NEWLINE;
+                .map(OutputView::formatSingleLine)
+                .collect(Collectors.joining(NEWLINE));
     }
 
-    private static String formatSingleLine(int firstNameLength, Line line) {
-        StringBuilder ladder = new StringBuilder(LADDER_SPACE.repeat(firstNameLength) + LADDER_VERTICAL_LINE);
+    private static String formatSingleLine(Line line) {
+        StringBuilder ladder = new StringBuilder(LADDER_SPACE.repeat(MAX_NAME_LENGTH) + LADDER_VERTICAL_LINE);
 
         line.getPoints().stream()
                 .map(point -> point ? LADDER_HORIZONTAL_LINE : LADDER_EMPTY_SPACE)

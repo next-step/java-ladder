@@ -1,9 +1,6 @@
 package nextstep.ladder.controller;
 
-import nextstep.ladder.domain.Height;
-import nextstep.ladder.domain.LadderGame;
-import nextstep.ladder.domain.LadderResult;
-import nextstep.ladder.domain.Names;
+import nextstep.ladder.domain.*;
 import nextstep.ladder.domain.strategy.RandomLadderPoint;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
@@ -15,11 +12,16 @@ public class LadderController {
         Names names = InputView.inputNames();
         List<LadderResult> inputLadderResults = InputView.inputLadderResults();
         Height height = InputView.inputHeight();
+        Lines lines = new Lines();
+        lines.initialize(names.size(), height, new RandomLadderPoint());
 
-        LadderGame ladderGame = new LadderGame(names);
-        ladderGame.initialize(height, new RandomLadderPoint());
-
-        OutputView.printNamesAndLadders(ladderGame);
+        OutputView.printNames(names);
+        OutputView.printLadders(lines);
         OutputView.printInputResults(inputLadderResults);
+
+//        LadderGame ladderGame = new LadderGame(names);
+
+//        OutputView.printNamesAndLadders(ladderGame);
+//        OutputView.printInputResults(inputLadderResults);
     }
 }
