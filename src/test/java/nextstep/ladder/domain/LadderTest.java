@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.fixtures.BraceFixtures;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -11,10 +12,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LadderTest {
-    private static final Brace BRACE_LEFT = new Brace(true, false);
-    private static final Brace BRACE_RIGHT = new Brace(false, true);
-    private static final Brace BRACE_NONE = new Brace(false, false);
-
     @ParameterizedTest
     @NullAndEmptySource
     @DisplayName("Ladder 는 아무런 라인이 주어지지 않으면 예외를 던진다.")
@@ -26,7 +23,9 @@ public class LadderTest {
 
     @Test
     void move_success() {
-        Line firstLine = new Line(List.of(BRACE_RIGHT, BRACE_LEFT, BRACE_NONE, BRACE_NONE));
+        Line firstLine = new Line(List.of(
+                BraceFixtures.right(), BraceFixtures.left(), BraceFixtures.none(), BraceFixtures.none()
+        ));
         assertThat(firstLine.move(0)).isEqualTo(1);
         assertThat(firstLine.move(1)).isEqualTo(0);
         assertThat(firstLine.move(2)).isEqualTo(2);
