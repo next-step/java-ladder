@@ -5,7 +5,7 @@ import java.util.Random;
 public class RandomLineGenerator {
     private final Random random = new Random();
 
-    private RandomLineGenerator() {}
+    protected RandomLineGenerator() {}
 
     public static RandomLineGenerator getInstance() {
         return RandomLineGeneratorHolder.INSTANCE;

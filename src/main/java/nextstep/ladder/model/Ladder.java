@@ -6,30 +6,25 @@ import java.util.stream.IntStream;
 
 public class Ladder {
 
-    private final List<Line> lines;
+    private final List<RowLine> rowLines;
 
-    public Ladder(List<Line> lines) {
-        this.lines = lines;
-        updateFirsLineToFalse();
+    public Ladder(List<RowLine> rowLines) {
+        this.rowLines = rowLines;
     }
 
-    private void updateFirsLineToFalse() {
-        lines.forEach(Line::updateFirsLineToFalse);
-    }
-
-
-    public static Ladder of(int height, LineFactory factory) {
+    public static Ladder of(int height, RowLineFactory factory) {
         return new Ladder(
             IntStream.range(0, height)
                 .mapToObj(i -> factory.line())
                 .collect(Collectors.toList()));
     }
 
-    public List<Line> lines() {
-        return lines;
+    public List<RowLine> lines() {
+        return rowLines;
     }
 
     public int ladderSize() {
-        return lines.size();
+        return rowLines.size();
     }
+
 }
