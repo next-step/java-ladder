@@ -1,7 +1,7 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.*;
-import nextstep.ladder.domain.Brace;
+import nextstep.ladder.domain.concrete.Brace;
 import nextstep.ladder.domain.concrete.Ladder;
 import nextstep.ladder.domain.concrete.Line;
 

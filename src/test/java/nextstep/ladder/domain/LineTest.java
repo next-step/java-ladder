@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.concrete.Brace;
 import nextstep.ladder.domain.concrete.Line;
 import nextstep.ladder.fixtures.BraceFixtures;
 import org.junit.jupiter.api.DisplayName;

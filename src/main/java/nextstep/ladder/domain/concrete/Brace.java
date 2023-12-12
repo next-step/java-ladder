@@ -1,8 +1,10 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.concrete;
+
+import nextstep.ladder.domain.strategy.BraceStrategy;
 
 import java.util.Random;
 
-public class Brace {
+public class Brace implements BraceStrategy {
     private final boolean left;
     private final boolean right;
 
@@ -23,6 +25,7 @@ public class Brace {
         }
     }
 
+    @Override
     public int move(int index) {
         if (isLeft()) {
             return index - 1;

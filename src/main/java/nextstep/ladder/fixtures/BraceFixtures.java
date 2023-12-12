@@ -1,6 +1,6 @@
 package nextstep.ladder.fixtures;
 
-import nextstep.ladder.domain.Brace;
+import nextstep.ladder.domain.concrete.Brace;
 
 public class BraceFixtures {
     public static Brace none() {

@@ -1,6 +1,5 @@
 package nextstep.ladder.domain.concrete;
 
-import nextstep.ladder.domain.Brace;
 import nextstep.ladder.domain.strategy.LineCreateStrategy;
 
 import java.util.ArrayList;
