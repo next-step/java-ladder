@@ -12,10 +12,37 @@ public class OutputView {
     private static final String LADDER_VERTICAL_LINE = "|";
     private static final String LADDER_SPACE = " ";
     private static final String NEWLINE = System.lineSeparator();
+
+    private static final String PARTICIPANT_NAME_ALL = "all";
     private static final int MAX_NAME_LENGTH = 5;
+
+    private OutputView() {
+    }
 
     public static void printInputResults(List<LadderResult> inputLadderResults) {
         System.out.println(formatLadderResults(inputLadderResults) + NEWLINE);
+    }
+
+    public static void printResultByName(Name inputName, LadderResults ladderResults) {
+        printHeader();
+        if (inputName.getName().equals(PARTICIPANT_NAME_ALL)) {
+            printAllParticipantResults(ladderResults);
+        } else {
+            printSingleParticipantResult(inputName, ladderResults);
+        }
+    }
+
+    private static void printHeader() {
+        System.out.println("실행 결과");
+    }
+
+    private static void printAllParticipantResults(LadderResults ladderResults) {
+        ladderResults.getAllResults().forEach((participant, result) ->
+                System.out.println(participant.getName() + " : " + result.getResult()));
+    }
+
+    private static void printSingleParticipantResult(Name name, LadderResults ladderResults) {
+        System.out.println(ladderResults.getResultForParticipant(name).getResult());
     }
 
     public static void printNames(Names names) {

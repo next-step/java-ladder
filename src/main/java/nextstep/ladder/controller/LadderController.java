@@ -20,8 +20,8 @@ public class LadderController {
         OutputView.printInputResults(inputLadderResults);
 
         LadderGame ladderGame = new LadderGame(names, lines, inputLadderResults);
+        LadderResults ladderResults = ladderGame.play();
 
-//        OutputView.printNamesAndLadders(ladderGame);
-//        OutputView.printInputResults(inputLadderResults);
+        OutputView.printResultByName(InputView.inputNameForResult(), ladderResults);
     }
 }

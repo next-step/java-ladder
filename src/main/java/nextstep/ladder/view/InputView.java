@@ -34,6 +34,13 @@ public class InputView {
         return parseLadderResults(SCANNER.nextLine());
     }
 
+    public static Name inputNameForResult() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        String inputNames = SCANNER.nextLine();
+
+        return new Name(inputNames);
+    }
+
     private static Names splitNames(String inputNames) {
         List<Name> names = Arrays.stream(inputNames.split(COMMA))
                 .map(Name::new)
@@ -42,7 +49,7 @@ public class InputView {
     }
 
     private static List<LadderResult> parseLadderResults(String inputLadderResults) {
-        return Arrays.stream(inputLadderResults.split(","))
+        return Arrays.stream(inputLadderResults.split(COMMA))
                 .map(String::trim)
                 .map(LadderResult::new)
                 .collect(Collectors.toList());

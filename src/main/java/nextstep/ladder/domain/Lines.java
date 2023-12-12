@@ -18,6 +18,13 @@ public class Lines {
         this.lines = createLines(size, height, generateLadderPoint);
     }
 
+    public int move(int position) {
+        for (Line line : lines) {
+            position = line.move(position);
+        }
+        return position;
+    }
+
     private List<Line> createLines(int size, Height height, GenerateLadderPoint generateLadderPoint) {
         return IntStream.range(0, height.getPoint())
                 .mapToObj(i -> new Line(size, generateLadderPoint))
