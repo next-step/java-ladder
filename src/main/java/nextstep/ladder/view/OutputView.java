@@ -1,10 +1,8 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.LadderGame;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Lines;
-import nextstep.ladder.domain.Names;
+import nextstep.ladder.domain.*;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -22,6 +20,10 @@ public class OutputView {
                 formatLines(ladderGame.getNames().getFirstNameLength(), ladderGame.getLines());
 
         System.out.println(output);
+    }
+
+    public static void printInputResults(List<LadderResult> inputLadderResults) {
+        System.out.println(formatLadderResults(inputLadderResults) + NEWLINE);
     }
 
     private static String formatParticipantNames(Names names) {
@@ -49,5 +51,10 @@ public class OutputView {
                 .forEach(segment -> ladder.append(segment).append(LADDER_VERTICAL_LINE));
 
         return ladder.toString();
+    }
+    private static String formatLadderResults(List<LadderResult> inputLadderResults) {
+        return inputLadderResults.stream()
+                .map(ladderResult -> String.format(NAME_FORMAT, ladderResult.getResult()))
+                .collect(Collectors.joining());
     }
 }
