@@ -1,5 +1,6 @@
 package ladderWithInterface.engin;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,10 +15,15 @@ public class LadderResult {
         return result.get(source);
     }
 
+
     @Override
     public String toString() {
         return "LadderResult{" +
                 "result=" + result +
                 '}';
+    }
+
+    public Map<Integer, Integer> values() {
+        return Collections.unmodifiableMap(result);
     }
 }

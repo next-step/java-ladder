@@ -1,5 +1,5 @@
 package ladderWithInterface.engin;
 
 public interface LadderCreator {
-    Ladder create(int countOfPosion, int height);
+    Ladder create(int countOfPosition, int height, CoordinateGenerator coordinateGeneration);
 }

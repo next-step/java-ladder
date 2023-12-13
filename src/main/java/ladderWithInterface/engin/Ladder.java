@@ -1,7 +1,10 @@
 package ladderWithInterface.engin;
 
+import java.util.List;
+
 public interface Ladder {
+
     LadderResult play();
 
-    LadderResult play(int source);
+    List<Line> draw();
 }
