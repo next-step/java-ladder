@@ -14,7 +14,7 @@ public class ResultView {
 		return height;
 	}
 	public static void showLadder(int height, Ladder ladder) {
-		for (User user : ladder.participants().participants()) {
+		for (User user : ladder.participants().values()) {
 			System.out.print(user.getName() + "     ");
 		}
 		System.out.println();
