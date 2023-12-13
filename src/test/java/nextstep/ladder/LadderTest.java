@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LadderTest {
@@ -57,7 +58,7 @@ class LadderTest {
 
     @Test
     void 사다리_게임은_2명_이상의_참가자로_생성할_수_있다() {
-        Ladder ladder = Ladder.of(List.of("pobi", "crong"), new Lines(List.of(Line.from(2))), List.of("꽝", "1000"));
-        assertThat(ladder).isNotNull();
+        assertThatCode(() -> Ladder.of(List.of("pobi", "crong"), new Lines(List.of(Line.from(2))), List.of("꽝", "1000")))
+                .doesNotThrowAnyException();
     }
 }
