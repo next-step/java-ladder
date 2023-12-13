@@ -2,17 +2,28 @@ package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Line {
 
     private final List<Point> points;
 
     private Line(List<Point> points) {
+        validatePoints(points);
+        this.points = points;
+    }
+
+    private static void validatePoints(List<Point> points) {
         if (points == null || points.isEmpty()) {
             throw new IllegalArgumentException("라인은 최소 1개 이상의 포인트가 있어야 합니다.");
         }
 
-        this.points = points;
+        boolean invalidPoints = IntStream.range(0, points.size() - 1)
+                .anyMatch(idx -> points.get(idx).isActive() && points.get(idx + 1).isActive());
+
+        if (invalidPoints) {
+            throw new IllegalArgumentException("라인은 연속된 활성 포인트를 가질 수 없습니다.");
+        }
     }
 
     public static Line from(List<Point> points) {

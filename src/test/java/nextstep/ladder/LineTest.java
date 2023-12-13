@@ -26,4 +26,12 @@ class LineTest {
         Line line = Line.from(List.of(new Point(true), new Point(false)));
         assertThat(line.nextPosition(startPosition)).isEqualTo(nextPosition);
     }
+
+    @Test
+    void 라인은_연속된_포인트를_가질_수_없다() {
+        Throwable throwable = catchThrowable(() -> Line.from(List.of(new Point(true), new Point(true))));
+        assertThat(throwable)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("라인은 연속된 활성 포인트를 가질 수 없습니다.");
+    }
 }
