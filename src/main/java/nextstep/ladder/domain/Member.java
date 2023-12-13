@@ -13,4 +13,8 @@ public class Member {
             throw new IllegalArgumentException("이름은 최대 5글자까지 부여할 수 있다.");
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }
