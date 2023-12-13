@@ -11,13 +11,13 @@ public class LadderTest {
     @Test
     @DisplayName("사다리 높이가 1보다 작은 경우 Exception Throw")
     void ladder_Height_Exception_Test() {
-        assertThrows(CannotMakeLadderException.class, () -> Ladder.generate(3, 0));
+        assertThrows(CannotMakeLadderException.class, () -> Ladder.generate(new LadderInfo(0, 3)));
     }
 
     @Test
     @DisplayName("높이 만큼 사다리 높이가 생성된다.")
     void line_Vertical_Test() {
-        Ladder ladder = Ladder.generate(4, 3);
+        Ladder ladder = Ladder.generate(new LadderInfo(3, 4));
         System.out.println("ladder.toString() = " + ladder.toString());
 
         assertThat(ladder.getHeight()).isEqualTo(3);

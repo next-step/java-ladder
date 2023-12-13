@@ -3,16 +3,17 @@ package nextstep.ladder.domain;
 import nextstep.ladder.exception.CannotMakeLadderException;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Ladder {
     private final ArrayList<Line> lines;
 
-    public static Ladder generate(int countOfParticipant, int ladderHeight) {
-        validateHeight(ladderHeight);
-        return new Ladder((ArrayList<Line>) Stream.generate(() -> new Line(countOfParticipant))
-                .limit(ladderHeight)
+    public static Ladder generate(LadderInfo ladderInfo) {
+        validateHeight(ladderInfo.getHeight());
+        return new Ladder((ArrayList<Line>) Stream.generate(() -> new Line(ladderInfo.getNumberOfLines()))
+                .limit(ladderInfo.getHeight())
                 .collect(Collectors.toList()));
     }
 
@@ -30,7 +31,7 @@ public class Ladder {
         return lines.size();
     }
 
-    public ArrayList<Line> getLines() {
+    public List<Line> getLines() {
         return lines;
     }
 

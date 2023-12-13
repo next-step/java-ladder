@@ -1,6 +1,7 @@
 package nextstep.ladder.service;
 
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderInfo;
 import nextstep.ladder.domain.Participants;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
@@ -27,7 +28,8 @@ public class LadderGameHandler {
 
     private static Ladder drawLadder(Participants participants) {
         int ladderHeight = InputView.inputLadderHeight();
-        Ladder ladder = Ladder.generate(participants.count(), ladderHeight);
+        LadderInfo ladderInfo = new LadderInfo(ladderHeight, participants.count());
+        Ladder ladder = Ladder.generate(ladderInfo);
         ResultView.enter();
         return ladder;
     }
