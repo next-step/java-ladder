@@ -1,6 +1,7 @@
 package nextstep.ladder.ui;
 
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderGame;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Member;
 
@@ -13,8 +14,12 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void outputLadder(List<Member> members, Ladder ladder) {
+    public static void outputLadder(LadderGame ladderGame) {
+        List<Member> members = ladderGame.getMembers();
+        Ladder ladder = ladderGame.getLadder();
+
         outputMembers(members);
+
         int height = ladder.getHeight();
         List<Line> lines = ladder.getLines();
 
