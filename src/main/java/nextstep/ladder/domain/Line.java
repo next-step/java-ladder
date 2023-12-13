@@ -20,6 +20,21 @@ public class Line {
         this.points = makePoints(countOfPerson);
     }
 
+    public int move(int start) {
+        boolean leftMovement = start != 0 && points.get(start - 1);
+        boolean rightMovement = start != points.size() && points.get(start);
+
+        if (rightMovement) {
+            return start+1;
+        }
+
+        if (leftMovement) {
+            return start-1;
+        }
+
+        return start;
+    }
+
     private List<Boolean> makePoints(int count) {
         Random random = new Random();
         return Stream.iterate(random.nextBoolean(), it -> this.hasLine(it, random))
