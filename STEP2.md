@@ -24,5 +24,5 @@
   * [ ] 사다리 연속인 경우 Exception Throw 테스트 추가
 * [ ] Participants 클래스가 필요할까? 
 * [X] LadderService가 필요할까? (너무 작은 역할의 서비스)
-* [ ] View가 아닌 클래스에서 출력 책임 제거  
+* [X] View가 아닌 클래스에서 출력 책임 제거  
 * [ ] 하나의 메소드 내 depth 맞추기 

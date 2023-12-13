@@ -10,11 +10,11 @@ public class LadderGameHandler {
         ParticipantService participantService = new ParticipantService();
 
         Participants participants = inputAndRegisterParticipant(participantService);
-        enter();
+        ResultView.enter();
 
         int ladderHeight = InputView.inputLadderHeight();
         Ladder ladder = Ladder.generate(participants.count(), ladderHeight);
-        enter();
+        ResultView.enter();
 
         ResultView.printResultWord();
         ResultView.printParticipantsName(participants);
@@ -25,9 +25,5 @@ public class LadderGameHandler {
         String inputParticipantName = InputView.inputParticipantName();
         Participants participants = participantService.registerParticipant(inputParticipantName);
         return participants;
-    }
-
-    private static void enter() {
-        System.out.println();
     }
 }

@@ -36,4 +36,8 @@ public class ResultView {
             System.out.print(COLUMN);
         });
     }
+
+    public static void enter() {
+        System.out.println();
+    }
 }
