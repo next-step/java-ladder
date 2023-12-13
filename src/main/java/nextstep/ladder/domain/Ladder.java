@@ -1,15 +1,13 @@
 package nextstep.ladder.domain;
 
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Ladder {
 
     public static final int MAX_HEIGHT = 1;
-    public static final Random random = new Random();
-    private List<Line> lines;
+    private final List<Line> lines;
 
 
     public Ladder(int rows, int columns) {
