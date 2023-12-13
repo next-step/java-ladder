@@ -17,6 +17,7 @@ public class Ladder {
     }
 
     public Ladder(int height, List<Line> lines) {
+        validateHeight(height, lines);
         this.height = height;
         this.lines.addAll(lines);
     }
@@ -27,5 +28,11 @@ public class Ladder {
 
     public int getHeight() {
         return height;
+    }
+
+    private static void validateHeight(int height, List<Line> lines) {
+        if (height != lines.size()) {
+            throw new IllegalArgumentException("입력한 높이와 Line의 갯수가 다릅니다.");
+        }
     }
 }

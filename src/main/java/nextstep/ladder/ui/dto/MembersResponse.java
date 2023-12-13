@@ -10,13 +10,14 @@ public class MembersResponse {
     }
 
     public static MembersResponse from(JoinMembers members) {
-        return new MembersResponse(members.getMembers().stream()
+        StringBuilder stringBuilder = members.getMembers().stream()
                 .collect(
                         StringBuilder::new,
                         (sb, s) -> sb.append(String.format("%1$6s", s.getName())),
                         StringBuilder::append
-                ).toString()
-        );
+                );
+        stringBuilder.deleteCharAt(0);
+        return new MembersResponse(stringBuilder.toString());
     }
 
     public String getResponse() {

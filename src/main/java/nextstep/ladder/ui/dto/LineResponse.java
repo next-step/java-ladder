@@ -20,7 +20,7 @@ public class LineResponse {
         List<Boolean> points = line.getPoints();
 
         StringBuilder sb = new StringBuilder(OFFSET);
-        for (int i = 0; i < points.size() - 1; i++) {
+        for (int i = 0; i < points.size(); i++) {
             if (points.get(i)) {
                 sb.append(CONNECTED_LINE);
                 continue;

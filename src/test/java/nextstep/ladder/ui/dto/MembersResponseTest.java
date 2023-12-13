@@ -5,19 +5,19 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 class MembersResponseTest {
 
     @Test
-    void test() {
+    void createMembersResponse() {
         // given
         JoinMembers joinMembers = JoinMembers.from(List.of("pobi,honux,crong,jk".split(",")));
 
         // when
-        MembersResponse member = MembersResponse.from(joinMembers);
+        MembersResponse members = MembersResponse.from(joinMembers);
 
-        //
-
-
-
+        // then
+        assertThat(members.getResponse()).isEqualTo(" pobi honux crong    jk");
     }
 }
