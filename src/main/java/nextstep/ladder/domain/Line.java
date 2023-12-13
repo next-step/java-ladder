@@ -20,6 +20,10 @@ public class Line {
         this.points = makePoints(countOfPerson);
     }
 
+    public int size() {
+        return points.size();
+    }
+
     public int move(int start) {
         boolean leftMovement = start != 0 && points.get(start - 1);
         boolean rightMovement = start != points.size() && points.get(start);

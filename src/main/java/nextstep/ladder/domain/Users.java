@@ -25,4 +25,8 @@ public class Users {
     public List<User> getUserList() {
         return userList;
     }
+
+    public String getUserName(int index) {
+        return userList.get(index).name();
+    }
 }
