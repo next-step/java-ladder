@@ -11,6 +11,6 @@ public class LadderController {
 		Participants participants = new Participants(ResultView.showParticipants(InputView.inputUsers()));
 		Height height = new Height(ResultView.showHeight(InputView.inputHeight()));
 		Ladder ladder = new Ladder(participants, height);
-		ResultView.showLadder(height.height(), ladder);
+		ResultView.showLadder(ladder);
 	}
 }

@@ -2,23 +2,23 @@ package nextstep.ladder.domain;
 
 public class Ladder {
 	private final Participants participants;
-	private final Lines lines;
+	private final Rows rows;
 
-	public Ladder(Participants participants, Lines lines) {
+	public Ladder(Participants participants, Rows rows) {
 		this.participants = participants;
-		this.lines = lines;
+		this.rows = rows;
 	}
 
 	public Ladder(Participants participants, Height height)  {
 		this.participants = participants;
-		this.lines = new Lines(new Width(participants.num()), height);
+		this.rows = new Rows(new Width(participants.num()), height);
 	}
 
 	public Participants participants() {
 		return participants;
 	}
 
-	public Lines lines() {
-		return lines;
+	public Rows rows() {
+		return rows;
 	}
 }

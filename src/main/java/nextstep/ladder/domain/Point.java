@@ -17,9 +17,12 @@ public enum Point {
 		this.left = left;
 		this.right = right;
 	}
+	public boolean isLeft() {
+		return this == Point.LEFT;
+	}
 
 	public boolean isRight() {
-		return right;
+		return this == Point.RIGHT;
 	}
 
 	public static Point random() {

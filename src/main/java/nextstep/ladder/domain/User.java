@@ -11,7 +11,7 @@ public class User {
 		validUser();
 	}
 
-	public String getName() {
+	public String value() {
 		return name;
 	}
 

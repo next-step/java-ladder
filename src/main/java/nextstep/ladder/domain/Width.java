@@ -15,7 +15,7 @@ public class Width {
 		}
 	}
 
-	public int width() {
+	public int value() {
 		return width;
 	}
 }

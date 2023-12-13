@@ -15,7 +15,7 @@ public class Height {
 		}
 	}
 
-	public int height() {
+	public int value() {
 		return height;
 	}
 }
