@@ -10,17 +10,18 @@ public class Line {
     private List<Boolean> points = new ArrayList<>();
 
     public Line(int countOfPerson) {
-        for (int i = 1; i < countOfPerson; i++) {
+        int countOfPoint = countOfPerson - 1;
+        for (int i = 0; i < countOfPoint; i++) {
             points.add(checkLine(i));
         }
     }
 
     private Boolean checkLine(int index) {
         Random random = new Random();
-        if (index == 1) {
+        if (index == 0) {
             return random.nextBoolean();
         }
-        if (points.get(index - 2)) {
+        if (points.get(index - 1)) {
             return false;
         }
         return random.nextBoolean();
