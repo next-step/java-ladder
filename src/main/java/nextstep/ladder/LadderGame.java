@@ -18,20 +18,18 @@ public class LadderGame {
 
         Ladder ladder = Ladder.of(
                 names,
-                Lines.of(names.size(), maxHeightOfLadder),
-                inputResult
-
+                Lines.of(names.size(), maxHeightOfLadder)
         );
 
         ResultView.printNames(names);
-        ResultView.printLadder(ladder);
+        ResultView.printLadder(ladder, inputResult);
 
-        LadderResult result = ladder.play();
+        LadderResult ladderResult = ladder.play();
 
         String playerName = "";
         while (!"ALL".equalsIgnoreCase(playerName)) {
             playerName = InputView.inputResultPlayerName();
-            ResultView.printResult(playerName, result);
+            ResultView.printResult(playerName, ladderResult, inputResult);
         }
     }
 }

@@ -21,10 +21,10 @@ public final class ResultView {
                 .forEach(System.out::print);
     }
 
-    public static void printLadder(Ladder ladder) {
+    public static void printLadder(Ladder ladder, List<String> result) {
         System.out.println("사다리 결과");
         ladder.lines().forEach(ResultView::printLine);
-        ladder.result().stream()
+        result.stream()
                 .map(rs -> rs.concat(" ".repeat(MAX_LENGTH_OF_NAME - rs.length() + 1)))
                 .forEach(System.out::print);
         System.out.println("");
@@ -49,17 +49,17 @@ public final class ResultView {
         System.out.print(pointFalsePrint + "|");
     }
 
-    private static void printAllResult(LadderResult result) {
-        result.value().forEach((playerName, res) -> System.out.println(playerName + " : " + res));
+    private static void printAllResult(LadderResult ladderResult, List<String> result) {
+        ladderResult.value().forEach((playerName, res) -> System.out.println(playerName + " : " + result.get(res)));
     }
 
-    public static void printResult(String playerName, LadderResult result) {
+    public static void printResult(String playerName, LadderResult ladderResult, List<String> result) {
         System.out.println("실행 결과");
         if ("all".equals(playerName)) {
-            printAllResult(result);
+            printAllResult(ladderResult, result);
             return;
         }
 
-        System.out.println(result.result(playerName));
+        System.out.println(ladderResult.result(playerName, result));
     }
 }
