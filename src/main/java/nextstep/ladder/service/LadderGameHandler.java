@@ -13,7 +13,7 @@ public class LadderGameHandler {
         enter();
 
         int ladderHeight = InputView.inputLadderHeight();
-        Ladder ladder = LadderService.generateLadder(participants.count(), ladderHeight);
+        Ladder ladder = Ladder.generate(participants.count(), ladderHeight);
         enter();
 
         ResultView.printResultWord();

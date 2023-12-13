@@ -16,3 +16,13 @@
 ### 힌트
 * 2차원 배열을 ArrayList, Generic을 적용해 구현하면 ArrayList<ArrayList<Boolean>>와 같이 이해하기 어려운 코드가 추가된다.
 * 사다리 게임에서 한 라인의 좌표 값을 가지는 객체를 추가해 구현해 본다.
+
+## step2 보완사항
+* [ ] 매개변수 두개가 같은 type의 경우, input 세팅 실수 방지
+* [ ] 의도를 파악하기 어려운 메소드 명칭인 경우, 행위를 이름으로 메소드명 정의 or 간단 주석을 추가
+* [ ] 테스트하기 어려운 케이스 RandomLineGenerator.generateLine() -> 전략으로 표현
+  * [ ] 사다리 연속인 경우 Exception Throw 테스트 추가
+* [ ] Participants 클래스가 필요할까? 
+* [X] LadderService가 필요할까? (너무 작은 역할의 서비스)
+* [ ] View가 아닌 클래스에서 출력 책임 제거  
+* [ ] 하나의 메소드 내 depth 맞추기 
