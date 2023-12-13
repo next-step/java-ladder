@@ -6,16 +6,16 @@ import nextstep.ladder.ui.OutputView;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class LineApplication {
+public class LadderGameApplication {
     public static void main(String[] args) {
         List<String> inputNames = InputView.inputNames();
-        JoinMembers joinMembers = new JoinMembers(inputNames.stream()
+        List<Member> members = inputNames.stream()
                 .map(Member::new)
-                .collect(Collectors.toList()));
-
+                .collect(Collectors.toList());
         int inputHeight = InputView.inputHeight();
-        Ladder ladder = new Ladder(inputHeight, joinMembers.getNumberOfMembers());
+        // TODO 수정 예정
+        Ladder ladder = new Ladder(inputHeight, inputNames.size());
 
-        OutputView.outputLadder(joinMembers, ladder);
+        OutputView.outputLadder(members, ladder);
     }
 }
