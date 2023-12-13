@@ -1,5 +1,7 @@
-package nextstep.ladder.domain;
+package nextstep.ladder;
 
+import nextstep.ladder.domain.JoinMembers;
+import nextstep.ladder.domain.LadderGame;
 import nextstep.ladder.ui.InputView;
 import nextstep.ladder.ui.OutputView;
 
