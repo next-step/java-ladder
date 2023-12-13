@@ -44,6 +44,10 @@ public class Line {
         return new Line(points);
     }
 
+   public boolean isSamePointsSize(Line line) {
+        return this.points.size() == line.points.size();
+   }
+
     public List<Point> points() {
         return new ArrayList<>(points);
     }

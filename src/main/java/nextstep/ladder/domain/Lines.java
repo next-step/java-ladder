@@ -22,9 +22,9 @@ public class Lines {
             throw new IllegalArgumentException("최소 높이는 최소 " + MIN_HEIGHT_OF_LADDER + "이상이어야 합니다.");
         }
 
-        int pointSize = values.get(0).points().size();
+        Line firstLine = values.get(0);
         boolean invalid = values.stream()
-                .anyMatch(value -> value.points().size() != pointSize);
+                .anyMatch(value -> !value.isSamePointsSize(firstLine));
         if (invalid) {
             throw new IllegalArgumentException("모든 라인의 포지션 수는 동일해야합니다.");
         }
