@@ -6,6 +6,10 @@ import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
 public class LadderGameHandler {
+
+    private LadderGameHandler() { // 인스턴스화 방지
+    }
+
     public static void runGame() {
         Participants participants = inputAndRegisterParticipant();
         ResultView.enter();
@@ -30,7 +34,6 @@ public class LadderGameHandler {
 
     private static Participants inputAndRegisterParticipant() {
         String inputParticipantName = InputView.inputParticipantName();
-        Participants participants = new Participants(inputParticipantName);
-        return participants;
+        return new Participants(inputParticipantName);
     }
 }

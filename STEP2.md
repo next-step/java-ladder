@@ -19,9 +19,9 @@
 
 ## step2 보완사항
 * [ ] 매개변수 두개가 같은 type의 경우, input 세팅 실수 방지
-* [ ] 의도를 파악하기 어려운 메소드 명칭인 경우, 행위를 이름으로 메소드명 정의 or 간단 주석을 추가
-* [ ] 테스트하기 어려운 케이스 RandomLineGenerator.generateLine() -> 전략으로 표현
-  * [ ] 사다리 연속인 경우 Exception Throw 테스트 추가
+* [X] 의도를 파악하기 어려운 메소드 명칭인 경우, 행위를 이름으로 메소드명 정의 or 간단 주석을 추가
+* [X] 테스트하기 어려운 케이스 RandomLineGenerator.generateLine() -> 전략으로 표현
+  * [X] 사다리 연속인 경우 Exception Throw 테스트 추가
 * [X] ParticipantService 클래스가 필요할까? (너무 작은 역할의 서비스) 
 * [X] LadderService가 필요할까? (너무 작은 역할의 서비스)
 * [X] View가 아닌 클래스에서 출력 책임 제거  
