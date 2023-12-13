@@ -1,7 +1,5 @@
 package nextstep.ladder.domain;
 
-import java.util.List;
-
 public class LadderGame {
     private final JoinMembers joinMembers;
     private final Ladder ladder;
@@ -21,7 +19,7 @@ public class LadderGame {
         return ladder;
     }
 
-    public List<Member> getMembers() {
-        return joinMembers.getMembers();
+    public JoinMembers getJoinMembers() {
+        return joinMembers;
     }
 }

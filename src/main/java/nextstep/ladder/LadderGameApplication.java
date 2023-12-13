@@ -14,6 +14,6 @@ public class LadderGameApplication {
 
         LadderGame ladderGame = LadderGame.of(JoinMembers.from(inputNames), inputHeight);
 
-        OutputView.outputLadder(ladderGame);
+        OutputView.outputLadderGame(ladderGame);
     }
 }
