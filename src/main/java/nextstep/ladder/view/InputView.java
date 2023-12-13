@@ -6,7 +6,7 @@ public class InputView {
 
     private final Scanner scanner = new Scanner(System.in);
 
-    public String[] inputNameList(String message) {
+    public String[] inputStringList(String message) {
         System.out.println(message);
         String line = scanner.nextLine();
         return line.split(",");
@@ -15,5 +15,10 @@ public class InputView {
     public int inputInteger(String message) {
         System.out.println(message);
         return Integer.parseInt(scanner.nextLine());
+    }
+
+    public String inputString(String message) {
+        System.out.println(message);
+        return scanner.nextLine();
     }
 }

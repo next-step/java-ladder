@@ -5,6 +5,7 @@ import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.User;
 import nextstep.ladder.domain.Users;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,8 +24,17 @@ public class OutputView {
         System.out.println();
     }
 
+    public void printResultList(Ladder ladder) {
+        ladder.getResult().forEach(result -> {
+            System.out.print(getLadderSizeResult(result));
+            System.out.print(" ");
+        });
+        System.out.println();
+    }
+
     public void printLadder(Ladder ladder){
         stringLadder(ladder).forEach(System.out::println);
+        this.printResultList(ladder);
     }
 
     public List<String> stringLadder(Ladder ladder) {
@@ -51,5 +61,15 @@ public class OutputView {
         return " ".repeat(MAX_LADDER_WIDTH - length) + name;
     }
 
-
+    private String getLadderSizeResult(String result) {
+        int length = result.length();
+        if (length == MAX_LADDER_WIDTH) {
+            return result;
+        }
+        return " ".repeat(MAX_LADDER_WIDTH - length) + result;
+    }
+    public void printResult(Ladder ladder, Users users, String name) {
+        System.out.println("실행 결과");
+        System.out.println(ladder.getLadderResult(users.positionUserName(name)));
+    }
 }
