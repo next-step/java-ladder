@@ -12,11 +12,17 @@ public class Line {
     public Line(int countOfPerson) {
         int countOfPoint = countOfPerson - 1;
         for (int i = 0; i < countOfPoint; i++) {
-            points.add(checkLine(i));
+            this.points.add(createLine(i));
         }
+        checkLine(this.points);
     }
 
-    private Boolean checkLine(int index) {
+    public Line(List<Boolean> points) {
+        checkLine(points);
+        this.points = points;
+    }
+
+    private Boolean createLine(int index) {
         Random random = new Random();
         if (index == 0) {
             return random.nextBoolean();
@@ -27,11 +33,10 @@ public class Line {
         return random.nextBoolean();
     }
 
-    public Line(List<Boolean> points) {
+    private void checkLine(List<Boolean> points) {
         for (int i = 1; i < points.size(); i++) {
             compareTo(points.get(i-1), points.get(i));
         }
-        this.points = points;
     }
 
     public void compareTo(Boolean o1, Boolean o2) {
