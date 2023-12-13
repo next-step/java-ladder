@@ -14,7 +14,14 @@ public class Ladder {
     private final List<String> result;
 
     public Ladder(int rows, int columns, String... result) {
-        this(makeLines(rows, columns), List.of(result));
+        this(makeLines(rows, columns), validateResult(rows, result));
+    }
+
+    private static List<String> validateResult(int rows, String[] result) {
+        if (rows != result.length) {
+            throw new IllegalArgumentException("결과 값과 인원수가 맞지 않으면 사다리를 구축할 수 없습니다");
+        }
+        return List.of(result);
     }
 
     public Ladder(List<Line> lines) {
