@@ -15,7 +15,7 @@ public enum Direction {
         this.move = move;
     }
 
-    public static Direction of(boolean left, boolean right) {
+    private static Direction of(boolean left, boolean right) {
         if (left) {
             return LEFT;
         }
@@ -29,8 +29,8 @@ public enum Direction {
         return Direction.of(false, right);
     }
 
-    public static Direction end(boolean left) {
-        return Direction.of(left, false);
+    public Direction end() {
+        return Direction.of(this.right, false);
     }
 
     public Direction next(boolean right) {

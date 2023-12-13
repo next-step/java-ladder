@@ -23,7 +23,7 @@ public class LadderLine {
             list.add(direction);
         }
 
-        list.add(Direction.end(direction.isRight()));
+        list.add(direction.end());
 
         return new LadderLine(list);
     }

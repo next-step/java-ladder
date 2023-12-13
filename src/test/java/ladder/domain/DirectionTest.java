@@ -28,7 +28,14 @@ public class DirectionTest {
     @Test
     @DisplayName("사다리의 이전 죄표가 연결되어 있을 경우 다음 좌표는 연결하지 않음")
     void 사다리_다음좌표_연결확인() {
-        Direction result = Direction.of(direction.isRight(), COORDINATE_GENERATION.generate());
+        Direction result = direction.next(COORDINATE_GENERATION.generate());
+        assertThat(result.isRight()).isFalse();
+    }
+
+    @Test
+    @DisplayName("사다리의 이전 죄표가 연결되어 있을 경우 다음 좌표는 연결하지 않음")
+    void 사다리_마지막_연결확인() {
+        Direction result = direction.end();
         assertThat(result.isRight()).isFalse();
     }
 
