@@ -29,4 +29,14 @@ class ParticipantsTest {
 
         assertThat(participants.size()).isEqualTo(3);
     }
+
+    @DisplayName("index를 넘기면 해당 위치의 참가자를 반환한다.")
+    @Test
+    void getParticipantTest() {
+        Participant participant1 = new Participant("참가자1");
+        Participant participant2 = new Participant("참가자2");
+        Participants participants = new Participants(List.of(participant1, participant2));
+
+        assertThat(participants.getParticipant(1)).isEqualTo(participant2);
+    }
 }

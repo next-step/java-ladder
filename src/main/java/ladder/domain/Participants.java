@@ -26,11 +26,15 @@ public class Participants {
         return this.values.size();
     }
 
+    public Participant getParticipant(int index) {
+        return values.get(index);
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         values.stream()
-                .forEach(value -> sb.append(value.toString()));
+                .forEach(value -> sb.append(value.toString() + " "));
         return sb.toString();
     }
 }

@@ -14,12 +14,22 @@ class ParticipantTest {
         assertThat(new Participant("다섯글자다")).isInstanceOf(Participant.class);
     }
 
-    @DisplayName("1자 이하 또는 5자 이상의 참가자 이름을 전달하면 IllegalArgumentException을 던진다.")
+    @DisplayName("null 또는 1자 이하 또는 5자 이상의 참가자 이름을 전달하면 IllegalArgumentException을 던진다.")
     @Test
     void participantExceptionTest() {
+        assertThatThrownBy(() -> new Participant(null))
+                .isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new Participant(""))
                 .isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new Participant("여섯글자이름"))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("참가자의 이름 길이를 알 수 있다.")
+    @Test
+    void lengthTest() {
+        Participant participant = new Participant("테스트이름");
+
+        assertThat(participant.length()).isEqualTo(5);
     }
 }
