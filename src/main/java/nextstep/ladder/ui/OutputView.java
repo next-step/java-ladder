@@ -5,7 +5,6 @@ import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
 
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class OutputView {
 
@@ -23,7 +22,7 @@ public class OutputView {
             System.out.printf("%5s", "");
             for (int j = 0; j < joinMembers.getNumberOfMembers() - 1; j++) {
                 if (lines.get(i).getPoints().get(j)) {
-                    System.out.printf("|-----");
+                    System.out.print("|-----");
                     continue;
                 }
                 System.out.printf("%-6s", "|");
@@ -31,10 +30,5 @@ public class OutputView {
             System.out.printf("%-6s", "|");
             System.out.println();
         }
-
-        IntStream.range(0, height).forEach(i -> {
-                }
-        );
-
     }
 }

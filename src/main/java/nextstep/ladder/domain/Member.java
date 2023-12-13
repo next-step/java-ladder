@@ -1,7 +1,7 @@
 package nextstep.ladder.domain;
 
 public class Member {
-    private String name;
+    private final String name;
 
     public Member(String name) {
         validateNameLength(name);
