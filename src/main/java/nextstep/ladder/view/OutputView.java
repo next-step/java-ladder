@@ -70,6 +70,13 @@ public class OutputView {
     }
     public void printResult(Ladder ladder, Users users, String name) {
         System.out.println("실행 결과");
+        if (name.equals("all")) {
+            ladder.getLadderAllResult().forEach((key, result) -> {
+                System.out.printf("%s : %s%n",users.getUserName(key), result);
+            });
+            return;
+        }
         System.out.println(ladder.getLadderResult(users.positionUserName(name)));
+
     }
 }

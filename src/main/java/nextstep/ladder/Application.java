@@ -19,6 +19,10 @@ public class Application {
         outputView.printUserNameList(users);
         Ladder ladder = new Ladder(users.size(), height, results);
         outputView.printLadder(ladder);
-        outputView.printResult(ladder, users, inputView.inputString("결과를 보고 싶은 사람은?"));
+        String name;
+        do  {
+            name = inputView.inputString("결과를 보고 싶은 사람은?");
+            outputView.printResult(ladder, users, name);
+        } while (!name.equals("all"));
     }
 }
