@@ -13,10 +13,14 @@ public class LadderGame {
     public static void main(String[] args) {
         List<String> names = InputView.inputNames();
 
+        List<String> inputResult = InputView.inputResult();
+        int maxHeightOfLadder = InputView.inputMaxHeightOfLadder();
+
         Ladder ladder = Ladder.of(
                 names,
-                Lines.of(names.size(), InputView.inputMaxHeightOfLadder()),
-                InputView.inputResult()
+                Lines.of(names.size(), maxHeightOfLadder),
+                inputResult
+
         );
 
         ResultView.printNames(names);
