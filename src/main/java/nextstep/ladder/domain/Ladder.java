@@ -11,8 +11,8 @@ public class Ladder {
     private final List<Line> lines;
     private final List<String> result;
 
-    public Ladder(int rows, int columns) {
-        this(makeLines(rows, columns));
+    public Ladder(int rows, int columns, String... result) {
+        this(makeLines(rows, columns), List.of(result));
     }
 
     public Ladder(List<Line> lines) {
@@ -34,7 +34,7 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
-    public String getResult(int index) {
+    public String getLadderResult(int index) {
         int idx = index;
         for (Line line: lines) {
             idx = line.move(idx);
@@ -44,5 +44,9 @@ public class Ladder {
 
     public List<Line> lines() {
         return lines;
+    }
+
+    public List<String> getResult() {
+        return result;
     }
 }
