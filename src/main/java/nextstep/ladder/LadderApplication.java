@@ -1,26 +1,24 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.*;
-import nextstep.ladder.domain.strategy.RandomLineStrategy;
+import nextstep.ladder.domain.concrete.Ladder;
+import nextstep.ladder.domain.factory.LadderFactoryBean;
+import nextstep.ladder.domain.strategy.LadderCreateStrategy;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
 public class LadderApplication {
     public static void main(String[] args) {
-        String[] inputNames = InputView.inputNames();
-        Players players = new Players(inputNames);
+        Players players = new Players(InputView.inputNames());
+        Amounts amounts = new Amounts(InputView.inputAmounts());
+        Height height = new Height(InputView.inputHeight());
 
-        String[] inputAmounts = InputView.inputAmounts();
-        Amounts amounts = new Amounts(inputAmounts);
-
-        int inputHeight = InputView.inputHeight();
-        Height height = new Height(inputHeight);
-
-        Ladder ladder = new Ladder(players, height, new RandomLineStrategy());
+        LadderCreateStrategy ladderCreateStrategy = LadderFactoryBean.createLadderFactory();
+        Ladder ladder = ladderCreateStrategy.create(players, height);
         LadderGame ladderGame = new LadderGame(players, ladder, amounts);
         OutputView.printLadder(players, ladder, amounts);
 
-        LadderGameResult ladderGameResult = ladderGame.realPlay();
+        LadderGameResult ladderGameResult = ladderGame.play();
         OutputView.printResultLoop(ladderGameResult);
     }
 }

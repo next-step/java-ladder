@@ -1,8 +1,11 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.concrete;
+
+import nextstep.ladder.domain.Position;
+import nextstep.ladder.domain.strategy.BraceStrategy;
 
 import java.util.Random;
 
-public class Brace {
+public class Brace implements BraceStrategy {
     private final boolean left;
     private final boolean right;
 
@@ -21,6 +24,19 @@ public class Brace {
         if (left && right) {
             throw new IllegalArgumentException("사다리는 2개가 연속해서 만들어질 수 없습니다.");
         }
+    }
+
+    @Override
+    public Position move(Position position) {
+        if (isLeft()) {
+            return position.left();
+        }
+
+        if (isRight()) {
+            return position.right();
+        }
+
+        return position;
     }
 
     public static Brace first() {

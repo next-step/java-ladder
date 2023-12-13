@@ -1,5 +1,8 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.concrete;
 
+import nextstep.ladder.domain.concrete.Brace;
+import nextstep.ladder.domain.concrete.Line;
+import nextstep.ladder.fixtures.BraceFixtures;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,10 +13,6 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LineTest {
-    private static final Brace BRACE_LEFT = new Brace(true, false);
-    private static final Brace BRACE_RIGHT = new Brace(false, true);
-    private static final Brace BRACE_NONE = new Brace(false, false);
-
     @ParameterizedTest
     @NullAndEmptySource
     @DisplayName("Line은 아무런 Point가 주어지지 않으면 예외를 던진다.")
@@ -26,7 +25,7 @@ public class LineTest {
     @Test
     @DisplayName("Line은 가로 선이 연결되어 있지 않으면 예외를 던진다.")
     void newObject_notConnected_throwsException() {
-        List<Brace> braces = List.of(BRACE_RIGHT, BRACE_RIGHT);
+        List<Brace> braces = List.of(BraceFixtures.right(), BraceFixtures.right());
 
         assertThatThrownBy(
                 () -> new Line(braces)

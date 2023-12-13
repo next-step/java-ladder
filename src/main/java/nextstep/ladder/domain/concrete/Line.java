@@ -1,10 +1,13 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.concrete;
+
+import nextstep.ladder.domain.Position;
+import nextstep.ladder.domain.strategy.LineStrategy;
 
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class Line implements Iterable<Brace> {
+public class Line implements LineStrategy, Iterable<Brace> {
     private final List<Brace> braces;
 
     public Line(List<Brace> braces) {
@@ -37,24 +40,18 @@ public class Line implements Iterable<Brace> {
                 || !braces.get(index).isRight() && braces.get(index + 1).isLeft();
     }
 
-    public int move(int index) {
-        if (isLeft(index)) {
-            return index - 1;
-        }
-
-        if (isRight(index)) {
-            return index  + 1;
-        }
-
-        return index;
+    @Override
+    public Position move(Position position) {
+        Brace brace = find(position);
+        return brace.move(position);
     }
 
-    private boolean isLeft(int index) {
-        return braces.get(index).isLeft();
+    private Brace find(Position position) {
+        return braces.get(position.current());
     }
 
-    private boolean isRight(int index) {
-        return braces.get(index).isRight();
+    public List<Brace> braces() {
+        return this.braces;
     }
 
     @Override
@@ -62,10 +59,6 @@ public class Line implements Iterable<Brace> {
         return "Line{" +
                 "braces=" + braces +
                 '}';
-    }
-
-    public List<Brace> braces() {
-        return this.braces;
     }
 
     @Override

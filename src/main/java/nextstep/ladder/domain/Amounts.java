@@ -28,8 +28,8 @@ public class Amounts implements Iterable<Amount> {
         }
     }
 
-    public Amount find(int pointIndex) {
-        return this.amounts.get(pointIndex);
+    public Amount find(Position position) {
+        return this.amounts.get(position.current());
     }
 
     public int size() {

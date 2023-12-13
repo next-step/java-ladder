@@ -39,8 +39,8 @@ public class Players implements Iterable<Player> {
                 .orElse(Player.NONE);
     }
 
-    public Player find(int index) {
-        return this.players.get(index);
+    public Player find(Position position) {
+        return this.players.get(position.current());
     }
 
     @Override
