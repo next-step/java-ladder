@@ -3,6 +3,7 @@ package nextstep.ladder.view;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderResult;
 import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.Name;
 import nextstep.ladder.domain.Point;
 
 import java.util.List;
@@ -15,9 +16,9 @@ public final class ResultView {
     private ResultView() {
     }
 
-    public static void printNames(List<String> userNames) {
+    public static void printNames(List<Name> userNames) {
         userNames.stream()
-                .map(userName -> userName.concat(" ".repeat(MAX_LENGTH_OF_NAME - userName.length() + 1)))
+                .map(Name::ladderName)
                 .forEach(System.out::print);
     }
 
@@ -53,9 +54,9 @@ public final class ResultView {
         ladderResult.value().forEach((playerName, res) -> System.out.println(playerName + " : " + result.get(res)));
     }
 
-    public static void printResult(String playerName, LadderResult ladderResult, List<String> result) {
+    public static void printResult(Name playerName, LadderResult ladderResult, List<String> result) {
         System.out.println("실행 결과");
-        if ("all".equals(playerName)) {
+        if (new Name("all").equals(playerName)) {
             printAllResult(ladderResult, result);
             return;
         }
