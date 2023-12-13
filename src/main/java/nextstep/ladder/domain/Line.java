@@ -48,31 +48,31 @@ public class Line {
         return new ArrayList<>(points);
     }
 
-    private boolean moveLeft(int curPosition) {
-        if (curPosition <= 0) {
+    private boolean moveLeft(int currentPosition) {
+        if (currentPosition <= 0) {
             return false;
         }
 
-        return points.get(curPosition - 1).isActive();
+        return points.get(currentPosition - 1).isActive();
     }
 
-    private boolean moveRight(int curPosition) {
-        if (curPosition >= points.size()) {
+    private boolean moveRight(int currentPosition) {
+        if (currentPosition >= points.size()) {
             return false;
         }
 
-        return points.get(curPosition).isActive();
+        return points.get(currentPosition).isActive();
     }
 
-    public int nextPosition(int curPosition) {
-        if (moveLeft(curPosition)) {
-            return curPosition - 1;
+    public int nextPosition(int currentPosition) {
+        if (moveLeft(currentPosition)) {
+            return currentPosition - 1;
         }
 
-        if (moveRight(curPosition)) {
-            return curPosition + 1;
+        if (moveRight(currentPosition)) {
+            return currentPosition + 1;
         }
 
-        return curPosition;
+        return currentPosition;
     }
 }
