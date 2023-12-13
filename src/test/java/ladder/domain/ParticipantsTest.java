@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,13 +18,13 @@ class ParticipantsTest {
     @DisplayName(",로 구분된 참가자 이름들을 전달하면 Participants 객체를 생성한다.")
     @Test
     void participantsStringTest() {
-        assertThat(Participants.from("name1,name2")).isInstanceOf(Participants.class);
+        assertThat(Participants.from(new String[]{"name1", "name2"})).isInstanceOf(Participants.class);
     }
 
     @DisplayName("생성된 Participants의 크기를 확인할 수 있다.")
     @Test
     void sizeTest() {
-        Participants participants = Participants.from("name1,name2,name3");
+        Participants participants = Participants.from(new String[]{"name1","name2","name3"});
 
         assertThat(participants.size()).isEqualTo(3);
     }

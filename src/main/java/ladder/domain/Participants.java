@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Participants {
 
-    public static final String NAME_SPLITTER = ",";
 
     private List<Participant> values = new ArrayList<>();
 
@@ -13,11 +12,10 @@ public class Participants {
         this.values = values;
     }
 
-    public static Participants from(String values) {
+    public static Participants from(String[] names) {
         List<Participant> newParticipants = new ArrayList<>();
-        String[] splitValues = values.split(NAME_SPLITTER);
-        for (String value : splitValues) {
-            newParticipants.add(new Participant(value));
+        for (String name : names) {
+            newParticipants.add(new Participant(name));
         }
         return new Participants(newParticipants);
     }
