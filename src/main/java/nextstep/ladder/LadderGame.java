@@ -24,8 +24,10 @@ public class LadderGame {
 
         LadderResult result = ladder.play();
 
-        while (true) {
-            ResultView.printResult(InputView.inputResultPlayerName(), result);
+        String playerName = "";
+        while (!"ALL".equalsIgnoreCase(playerName)) {
+            playerName = InputView.inputResultPlayerName();
+            ResultView.printResult(playerName, result);
         }
     }
 }
