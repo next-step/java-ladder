@@ -2,6 +2,9 @@ package ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -11,17 +14,16 @@ class ParticipantTest {
     @Test
     void participantTest() {
         assertThat(new Participant("1")).isInstanceOf(Participant.class);
-        assertThat(new Participant("다섯글자다")).isInstanceOf(Participant.class);
+        assertThatNoException().isThrownBy(() -> new Participant("다섯글자다"));
     }
 
+    @ParameterizedTest
     @DisplayName("null 또는 1자 이하 또는 5자 이상의 참가자 이름을 전달하면 IllegalArgumentException을 던진다.")
-    @Test
-    void participantExceptionTest() {
-        assertThatThrownBy(() -> new Participant(null))
-                .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new Participant(""))
-                .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new Participant("여섯글자이름"))
+    @NullSource
+    @ValueSource(strings = {"", "여섯글자이름"})
+    void participantExceptionTest(String input) {
+        System.out.println("input :" + input);
+        assertThatThrownBy(() -> new Participant(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
