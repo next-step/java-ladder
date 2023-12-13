@@ -2,6 +2,8 @@ package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Ladder {
 
@@ -51,9 +53,9 @@ public class Ladder {
     }
 
     public LadderResult play() {
-        LadderResult ladderResult = new LadderResult();
-        playerNames.forEach(playerName -> ladderResult.addResult(playerName, play(playerName)));
+        Map<String, String> ladderResultMap = playerNames.stream()
+                .collect(Collectors.toMap(playerName -> playerName, this::play));
 
-        return ladderResult;
+        return new LadderResult(ladderResultMap);
     }
 }
