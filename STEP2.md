@@ -22,7 +22,7 @@
 * [ ] 의도를 파악하기 어려운 메소드 명칭인 경우, 행위를 이름으로 메소드명 정의 or 간단 주석을 추가
 * [ ] 테스트하기 어려운 케이스 RandomLineGenerator.generateLine() -> 전략으로 표현
   * [ ] 사다리 연속인 경우 Exception Throw 테스트 추가
-* [ ] Participants 클래스가 필요할까? 
+* [X] ParticipantService 클래스가 필요할까? (너무 작은 역할의 서비스) 
 * [X] LadderService가 필요할까? (너무 작은 역할의 서비스)
 * [X] View가 아닌 클래스에서 출력 책임 제거  
-* [ ] 하나의 메소드 내 depth 맞추기 
+* [X] 하나의 메소드 내 depth 맞추기 
