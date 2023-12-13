@@ -2,6 +2,8 @@ package nextstep.ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -14,17 +16,10 @@ class MemberTest {
         assertThat(new Member("abcde")).isInstanceOf(Member.class);
     }
 
-    @Test
-    @DisplayName("생성 / 이름 0글자 / IllegalArgumentException")
-    void 생성_실패_0() {
+    @ParameterizedTest(name = "생성 / 이름: {0} / IllegalArgumentException")
+    @ValueSource(strings = {"", "abcdef"})
+    void 생성_실패(String name) {
         // expect
-        assertThatIllegalArgumentException().isThrownBy(() -> new Member(""));
-    }
-
-    @Test
-    @DisplayName("생성 / 이름6글자 / IllegalArgumentException")
-    void 생성_실패_6() {
-        // expect
-        assertThatIllegalArgumentException().isThrownBy(() -> new Member("abcdef"));
+        assertThatIllegalArgumentException().isThrownBy(() -> new Member(name));
     }
 }
