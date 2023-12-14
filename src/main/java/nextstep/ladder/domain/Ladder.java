@@ -27,10 +27,10 @@ public class Ladder {
         return lines.finalPosition(ladderPlayers.positionOfPlayer(playerName));
     }
 
-    public LadderResult play() {
-        Map<Name, Integer> ladderResultMap = ladderPlayers.values()
+    public LadderResult play(List<String> result) {
+        Map<Name, String> ladderResultMap = ladderPlayers.values()
                 .stream()
-                .collect(Collectors.toMap(playerName -> playerName, this::play));
+                .collect(Collectors.toMap(playerName -> playerName, playerName -> result.get(play(playerName))));
 
         return new LadderResult(ladderResultMap);
     }

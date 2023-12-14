@@ -20,15 +20,14 @@ public class LadderGame {
 
         Ladder ladder = Ladder.of(new LadderPlayers(names), Lines.of(names.size(), maxHeightOfLadder));
 
-        ResultView.printNames(names);
-        ResultView.printLadder(ladder, inputResult);
+        ResultView.printLadder(ladder, names, inputResult);
 
-        LadderResult ladderResult = ladder.play();
+        LadderResult ladderResult = ladder.play(inputResult);
 
-        Name playerName = new Name("");
+        Name playerName = null;
         while (!new Name("all").equals(playerName)) {
             playerName = InputView.inputResultPlayerName();
-            ResultView.printResult(playerName, ladderResult, inputResult);
+            ResultView.printResult(playerName, ladderResult);
         }
     }
 }

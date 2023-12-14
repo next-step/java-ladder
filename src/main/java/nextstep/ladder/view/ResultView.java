@@ -16,25 +16,27 @@ public final class ResultView {
     private ResultView() {
     }
 
-    public static void printNames(List<Name> userNames) {
-        userNames.stream()
-                .map(Name::ladderName)
-                .forEach(System.out::print);
-    }
-
-    public static void printLadder(Ladder ladder, List<String> result) {
+    public static void printLadder(Ladder ladder, List<Name> userNames, List<String> result) {
         System.out.println("사다리 결과");
+        printNames(userNames);
         ladder.lines().forEach(ResultView::printLine);
         result.stream()
                 .map(rs -> rs.concat(" ".repeat(MAX_LENGTH_OF_NAME - rs.length() + 1)))
                 .forEach(System.out::print);
-        System.out.println("");
+        System.out.println();
+    }
+
+    private static void printNames(List<Name> userNames) {
+        userNames.stream()
+                .map(Name::ladderName)
+                .forEach(System.out::print);
+        System.out.println();
     }
 
     private static void printLine(Line line) {
         System.out.print("|");
         line.points().forEach(ResultView::printPoint);
-        System.out.println("");
+        System.out.println();
 
     }
 
@@ -50,17 +52,17 @@ public final class ResultView {
         System.out.print(pointFalsePrint + "|");
     }
 
-    private static void printAllResult(LadderResult ladderResult, List<String> result) {
-        ladderResult.value().forEach((playerName, res) -> System.out.println(playerName + " : " + result.get(res)));
+    private static void printAllResult(LadderResult ladderResult) {
+        ladderResult.value().forEach((playerName, res) -> System.out.println(playerName.value() + " : " + res));
     }
 
-    public static void printResult(Name playerName, LadderResult ladderResult, List<String> result) {
+    public static void printResult(Name playerName, LadderResult ladderResult) {
         System.out.println("실행 결과");
         if (new Name("all").equals(playerName)) {
-            printAllResult(ladderResult, result);
+            printAllResult(ladderResult);
             return;
         }
 
-        System.out.println(ladderResult.result(playerName, result));
+        System.out.println(ladderResult.result(playerName));
     }
 }

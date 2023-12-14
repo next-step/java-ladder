@@ -31,11 +31,11 @@ class LadderTest {
         Line line = lineOf(false, false);
         Lines lines = new Lines(List.of(line, line));
 
-        LadderResult expectedLadderResult = new LadderResult(Map.of(new Name("pobi"), 0, new Name("honux"), 1));
+        LadderResult expectedLadderResult = new LadderResult(Map.of(new Name("pobi"), "꽝", new Name("honux"), "1000"));
 
         Ladder ladder = new Ladder(ladderPlayers, lines);
 
-        assertThat(ladder.play()).isEqualTo(expectedLadderResult);
+        assertThat(ladder.play(List.of("꽝", "1000"))).isEqualTo(expectedLadderResult);
     }
 
     private Line lineOf(boolean first, boolean second) {
