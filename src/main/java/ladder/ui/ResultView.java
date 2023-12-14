@@ -13,20 +13,6 @@ public class ResultView {
 
     }
 
-    public static void printGame(GameResult gameResult, People people) {
-        while (true) {
-            String text = InputView.inputPerson();
-
-            if (isEnd(text)) {
-                break;
-            }
-
-            System.out.printf("%n실행 결과%n");
-            printGameResult(gameResult, text);
-
-        }
-
-    }
 
     private static void printTitle(People people) {
         System.out.printf("실행결과%n%n");
@@ -50,6 +36,20 @@ public class ResultView {
     private static void printEndLadder(Gifts gifts) {
         gifts.values().forEach(item -> System.out.printf(String.format("%5s ", item)));
         System.out.println();
+    }
+
+    public static void printGame(GameResult gameResult) {
+        while (true) {
+            String text = InputView.inputPerson();
+
+            if (isEnd(text)) {
+                break;
+            }
+
+            System.out.printf("%n실행 결과%n");
+            printGameResult(gameResult, text);
+
+        }
     }
 
     private static boolean isEnd(String text) {

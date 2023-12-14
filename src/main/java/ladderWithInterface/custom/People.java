@@ -1,4 +1,5 @@
-package ladder.domain;
+package ladderWithInterface.custom;
+
 
 import java.util.Collections;
 import java.util.InputMismatchException;
@@ -25,6 +26,10 @@ public class People {
 
     public List<Name> values() {
         return Collections.unmodifiableList(names);
+    }
+
+    public String value(int index) {
+        return names.get(index).toString();
     }
 
     public int indexOf(Name name) {

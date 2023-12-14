@@ -1,7 +1,6 @@
-package ladder.domain;
+package ladderWithInterface.custom;
 
-import ladder.domain.strategy.CoordinateGenerator;
-import ladder.domain.strategy.ManualCoordinateGenerator;
+import ladderWithInterface.engin.CoordinateGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

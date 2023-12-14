@@ -1,8 +1,11 @@
-package ladder.domain.strategy;
+package ladderWithInterface.custom;
+
+import ladderWithInterface.engin.CoordinateGenerator;
 
 import java.util.Random;
 
 public class RandomCoordinateGenerator implements CoordinateGenerator {
+
     private static final Random RANDOM = new Random();
 
     @Override

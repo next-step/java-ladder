@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladderWithInterface.custom;
 
 public enum Direction {
     LEFT(true, false, -1),
