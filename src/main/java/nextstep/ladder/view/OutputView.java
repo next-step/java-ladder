@@ -15,25 +15,32 @@ public class OutputView {
     public static final String LADDER_BLANK_LINE = " ".repeat(MAX_LADDER_WIDTH);
     public static final String LADDER_ROW_LINE = "-".repeat(MAX_LADDER_WIDTH);
     public static final String LADDER_COLUMN_LINE = "|";
+    private final Output output;
+
+
+    public OutputView(Output output) {
+        this.output = output;
+    }
 
     public void printUserNameList(Users users) {
+        output.printf("사다리 결과 %n%n");
         for (User user : users.getUserList()) {
-            System.out.print(getLadderSizeName(user));
-            System.out.print(" ");
+            output.print(getLadderSizeName(user));
+            output.print(" ");
         }
-        System.out.println();
+        output.println("");
     }
 
     public void printResultList(Ladder ladder) {
         ladder.getResult().forEach(result -> {
-            System.out.print(getLadderSizeResult(result));
-            System.out.print(" ");
+            output.print(getLadderSizeResult(result));
+            output.print(" ");
         });
-        System.out.println();
+        output.println("");
     }
 
     public void printLadder(Ladder ladder){
-        stringLadder(ladder).forEach(System.out::println);
+        stringLadder(ladder).forEach(output::println);
         this.printResultList(ladder);
     }
 
