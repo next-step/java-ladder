@@ -24,19 +24,19 @@ public class Line {
         return points.size();
     }
 
-    public int move(int start) {
-        boolean leftMovement = start != 0 && points.get(start - 1);
-        boolean rightMovement = start != points.size() && points.get(start);
+    public int move(Position position) {
+        boolean leftMovement = !position.isFirstPosition() && points.get(position.leftPosition());
+        boolean rightMovement = !position.isLastPosition() && points.get(position.currentPosition());
 
         if (rightMovement) {
-            return start+1;
+            return position.rightPosition();
         }
 
         if (leftMovement) {
-            return start-1;
+            return position.leftPosition();
         }
 
-        return start;
+        return position.currentPosition();
     }
 
     private List<Boolean> makePoints(int count) {

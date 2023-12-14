@@ -46,7 +46,7 @@ public class Ladder {
     public String getLadderResult(int index) {
         int idx = index;
         for (Line line: lines) {
-            idx = line.move(idx);
+            idx = line.move(new Position(idx, result.size()));
         }
         return result.get(idx);
     }
