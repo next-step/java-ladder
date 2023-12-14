@@ -1,7 +1,12 @@
 package nextstep.ladder.view;
 
+import java.util.List;
+
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Participants;
 import nextstep.ladder.domain.Point;
+import nextstep.ladder.domain.Result;
+import nextstep.ladder.domain.Results;
 import nextstep.ladder.domain.Row;
 import nextstep.ladder.domain.User;
 
@@ -11,17 +16,24 @@ public class ResultView {
 		return participants;
 	}
 
+	public static String showResults(String inputResults) {
+		System.out.println(inputResults);
+		return inputResults;
+	}
+
 	public static int showHeight(int height) {
 		System.out.println(height);
 		return height;
 	}
 
-	public static void showLadder(Ladder ladder) {
-		for (User user : ladder.participants().values()) {
+	public static void showParticipantsInGame(Participants participants) {
+		for (User user : participants.values()) {
 			System.out.print(user.value() + "     ");
 		}
 		System.out.println();
+	}
 
+	public static void showLadder(Ladder ladder) {
 		for (Row row : ladder.rows().values()) {
 			showRows(row);
 		}
@@ -41,5 +53,12 @@ public class ResultView {
 			return;
 		}
 		System.out.print("      |");
+	}
+
+	public static void showResultsInGame(Results results) {
+		for (Result result : results.values()) {
+			System.out.print(result.value() + "     ");
+		}
+		System.out.println();
 	}
 }
