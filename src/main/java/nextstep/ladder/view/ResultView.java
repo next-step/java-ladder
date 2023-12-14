@@ -1,6 +1,7 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderPlayers;
 import nextstep.ladder.domain.LadderResult;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Name;
@@ -17,9 +18,9 @@ public final class ResultView {
     private ResultView() {
     }
 
-    public static void printLadder(Ladder ladder, List<Name> userNames, Results results) {
+    public static void printLadder(Ladder ladder, LadderPlayers ladderPlayers, Results results) {
         System.out.println("사다리 결과");
-        printNames(userNames);
+        printNames(ladderPlayers);
         ladder.lines().forEach(ResultView::printLine);
         results.values().stream()
                 .map(rs -> rs.value().concat(" ".repeat(Math.max(MAX_LENGTH_OF_NAME - rs.value().length() + 1, 0))))
@@ -27,8 +28,8 @@ public final class ResultView {
         System.out.println();
     }
 
-    private static void printNames(List<Name> userNames) {
-        userNames.stream()
+    private static void printNames(LadderPlayers ladderPlayers) {
+        ladderPlayers.values().stream()
                 .map(name -> name.value().concat(" ".repeat(Math.max(MAX_LENGTH_OF_NAME - name.value().length() + 1, 0))))
                 .forEach(System.out::print);
         System.out.println();

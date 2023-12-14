@@ -14,14 +14,14 @@ import java.util.List;
 public class LadderGame {
 
     public static void main(String[] args) {
-        List<Name> names = InputView.inputNames();
+        LadderPlayers ladderPlayers = InputView.inputNames();
 
         Results inputResult = InputView.inputResult();
         int maxHeightOfLadder = InputView.inputMaxHeightOfLadder();
 
-        Ladder ladder = new Ladder(new LadderPlayers(names), Lines.of(names.size(), maxHeightOfLadder));
+        Ladder ladder = new Ladder(ladderPlayers, Lines.of(ladderPlayers.size(), maxHeightOfLadder));
 
-        ResultView.printLadder(ladder, names, inputResult);
+        ResultView.printLadder(ladder, ladderPlayers, inputResult);
 
         LadderResult ladderResult = ladder.play(inputResult);
 

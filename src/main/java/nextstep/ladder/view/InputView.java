@@ -1,5 +1,6 @@
 package nextstep.ladder.view;
 
+import nextstep.ladder.domain.LadderPlayers;
 import nextstep.ladder.domain.Name;
 import nextstep.ladder.domain.Result;
 import nextstep.ladder.domain.Results;
@@ -13,14 +14,15 @@ public final class InputView {
     private InputView() {
     }
 
-    public static List<Name> inputNames() {
+    public static LadderPlayers inputNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         Scanner scanner = new Scanner(System.in);
-        String[] names = scanner.nextLine().replace(" ", "").split(",");
-
-        return Arrays.stream(names)
+        String[] stringNames = scanner.nextLine().replace(" ", "").split(",");
+        List<Name> names = Arrays.stream(stringNames)
                 .map(Name::new)
                 .collect(Collectors.toList());
+
+        return new LadderPlayers(names);
     }
 
     public static Results inputResult() {
