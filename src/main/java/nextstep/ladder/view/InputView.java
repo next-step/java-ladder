@@ -1,8 +1,9 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Name;
+import nextstep.ladder.domain.Result;
+import nextstep.ladder.domain.Results;
 
-import java.security.PublicKey;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -22,12 +23,18 @@ public final class InputView {
                 .collect(Collectors.toList());
     }
 
-    public static List<String> inputResult() {
+    public static Results inputResult() {
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         Scanner scanner = new Scanner(System.in);
-        String[] names = scanner.nextLine().replace(" ", "").split(",");
+        String[] stringResults = scanner.nextLine()
+                .replace(" ", "")
+                .split(",");
 
-        return Arrays.asList(names);
+        List<Result> results = Arrays.stream(stringResults)
+                .map(Result::new)
+                .collect(Collectors.toList());
+
+        return new Results(results);
     }
 
     public static int inputMaxHeightOfLadder() {

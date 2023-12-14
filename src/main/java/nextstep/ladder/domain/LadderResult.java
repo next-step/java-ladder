@@ -6,17 +6,17 @@ import java.util.Objects;
 
 public class LadderResult {
 
-    private final Map<Name, String> value;
+    private final Map<Name, Result> value;
 
-    public LadderResult(Map<Name, String> value) {
+    public LadderResult(Map<Name, Result> value) {
         this.value = value;
     }
 
-    public Map<Name, String > value() {
+    public Map<Name, Result> value() {
         return new HashMap<>(value);
     }
 
-    public String result(Name playerName) {
+    public Result result(Name playerName) {
         if (!value.containsKey(playerName)) {
             throw new IllegalArgumentException("해당 유저가 존재하지 않습니다.");
         }

@@ -16,14 +16,14 @@ public class LadderGame {
     public static void main(String[] args) {
         List<Name> names = InputView.inputNames();
 
-        List<String> inputResult = InputView.inputResult();
+        Results inputResult = InputView.inputResult();
         int maxHeightOfLadder = InputView.inputMaxHeightOfLadder();
 
         Ladder ladder = new Ladder(new LadderPlayers(names), Lines.of(names.size(), maxHeightOfLadder));
 
         ResultView.printLadder(ladder, names, inputResult);
 
-        LadderResult ladderResult = ladder.play(new Results(inputResult));
+        LadderResult ladderResult = ladder.play(inputResult);
 
         Name playerName = null;
         while (!new Name("all").equals(playerName)) {

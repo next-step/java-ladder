@@ -24,7 +24,7 @@ public class Ladder {
     }
 
     public LadderResult play(Results results) {
-        Map<Name, String> ladderResultMap = ladderPlayers.values()
+        Map<Name, Result> ladderResultMap = ladderPlayers.values()
                 .stream()
                 .collect(Collectors.toMap(playerName -> playerName, playerName -> results.getResultByPosition(play(playerName))));
 

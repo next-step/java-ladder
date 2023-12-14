@@ -7,6 +7,7 @@ import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Lines;
 import nextstep.ladder.domain.Name;
 import nextstep.ladder.domain.Point;
+import nextstep.ladder.domain.Result;
 import nextstep.ladder.domain.Results;
 import org.junit.jupiter.api.Test;
 
@@ -31,11 +32,11 @@ class LadderTest {
         Line line = lineOf(false, false);
         Lines lines = new Lines(List.of(line, line));
 
-        LadderResult expectedLadderResult = new LadderResult(Map.of(new Name("pobi"), "꽝", new Name("honux"), "1000"));
+        LadderResult expectedLadderResult = new LadderResult(Map.of(new Name("pobi"), new Result("꽝"), new Name("honux"), new Result("1000")));
 
         Ladder ladder = new Ladder(ladderPlayers, lines);
 
-        assertThat(ladder.play(new Results(List.of("꽝", "1000")))).isEqualTo(expectedLadderResult);
+        assertThat(ladder.play(new Results(List.of(new Result("꽝"), new Result("1000"))))).isEqualTo(expectedLadderResult);
     }
 
     private Line lineOf(boolean first, boolean second) {
