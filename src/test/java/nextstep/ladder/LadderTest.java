@@ -14,14 +14,13 @@ import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LadderTest {
 
     @Test
     void 사다리는_최소_1이상의_높이를_가져야_한다() {
-        assertThatThrownBy(() -> Ladder.of(new LadderPlayers(List.of(new Name("pobi"), new Name("honux"))), new Lines(List.of())))
+        assertThatThrownBy(() -> new Ladder(new LadderPlayers(List.of(new Name("pobi"), new Name("honux"))), new Lines(List.of())))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("최소 높이는 최소 1이상이어야 합니다.");
     }

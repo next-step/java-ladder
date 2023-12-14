@@ -17,7 +17,7 @@ class LadderPlayersTest {
 
     @Test
     void 사다리_게임_참가자_2명_미만일_수_없다() {
-        assertThatThrownBy(() -> Ladder.of(new LadderPlayers(List.of(new Name("pobi"))), new Lines(List.of(Line.from(1)))))
+        assertThatThrownBy(() -> new Ladder(new LadderPlayers(List.of(new Name("pobi"))), new Lines(List.of(Line.from(1)))))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("최소 " + MIN_COUNT_OF_PERSON + "명 이상의 참가자가 있어야 합니다.");
     }
