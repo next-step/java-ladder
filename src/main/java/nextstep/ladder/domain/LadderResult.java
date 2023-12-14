@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class LadderResult {
 
@@ -23,5 +24,20 @@ public class LadderResult {
         int finalPosition = value.get(playerName);
 
         return result.get(finalPosition);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        LadderResult that = (LadderResult) o;
+        return Objects.equals(value, that.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
     }
 }
