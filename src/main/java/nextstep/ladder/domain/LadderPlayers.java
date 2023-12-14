@@ -7,7 +7,7 @@ public class LadderPlayers {
 
     public static final int MIN_COUNT_OF_PERSON = 2;
 
-    private List<Name> values;
+    private final List<Name> values;
 
     public LadderPlayers(List<Name> values) {
         if (values.size() < MIN_COUNT_OF_PERSON) {
