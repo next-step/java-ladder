@@ -26,11 +26,6 @@ public class Ladder {
         return List.of(result);
     }
 
-    public Ladder(List<Line> lines) {
-        this(lines, new ArrayList<>());
-
-    }
-
     public Ladder(List<Line> lines, List<String> result) {
         this.lines = lines;
         this.result = result;
