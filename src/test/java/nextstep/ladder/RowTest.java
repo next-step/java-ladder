@@ -19,7 +19,7 @@ public class RowTest {
 	@MethodSource("rows1")
 	void validate_move_in_width(List<Point> points) {
 		assertThatThrownBy(() -> new Row(points))
-			.isInstanceOf(ArrayIndexOutOfBoundsException.class)
+			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessage("사다리 폭을 초과하여 이동할 수 없습니다.");
 	}
 

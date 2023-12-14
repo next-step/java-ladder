@@ -47,17 +47,33 @@ public class Row {
 	}
 
 	private void validate() {
-		try {
-			for (int i = 0; i < points.size(); i++) {
-				if (points.get(i).isLeft() && !points.get(i - 1).isRight()) {
-					throw new IllegalArgumentException("수평 이동선 생성에 문제가 있습니다.");
-				}
-				if (points.get(i).isRight() && !points.get(i + 1).isLeft()) {
-					throw new IllegalArgumentException("수평 이동선 생성에 문제가 있습니다.");
-				}
-			}
-		} catch (ArrayIndexOutOfBoundsException e) {
-			throw new ArrayIndexOutOfBoundsException("사다리 폭을 초과하여 이동할 수 없습니다.");
+		for (int index = 0; index < points.size(); index++) {
+			validateOverRange(index);
+			validatePair(index);
+		}
+	}
+
+	private void validateOverRange(int index) {
+		if (isIndexUnderZero(index) || isIndexOverMaxSize(index)) {
+			throw new IllegalArgumentException("사다리 폭을 초과하여 이동할 수 없습니다.");
+		}
+	}
+
+	private boolean isIndexUnderZero(int index) {
+		return points.get(index).move(index) < 0;
+	}
+
+	private boolean isIndexOverMaxSize(int index) {
+		return points.get(index).move(index) >= points.size();
+	}
+
+	private void validatePair(int index) {
+		if (
+			points.get(index).isLeft() && !points.get(index - 1).isRight()
+				||
+				points.get(index).isRight() && !points.get(index + 1).isLeft()
+		) {
+			throw new IllegalArgumentException("수평 이동선 생성에 문제가 있습니다.");
 		}
 	}
 
