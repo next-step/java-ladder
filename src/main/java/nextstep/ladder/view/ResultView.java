@@ -2,6 +2,7 @@ package nextstep.ladder.view;
 
 import java.util.Map;
 
+import nextstep.ladder.domain.GameResults;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Participants;
 import nextstep.ladder.domain.Point;
@@ -62,9 +63,9 @@ public class ResultView {
 		System.out.println();
 	}
 
-	public static void showGameResults(Participants participants, Results results, Ladder ladder) {
+	public static void showGameResults(Participants participants, Results results, GameResults gameResults) {
 		System.out.println("실행 결과");
-		for (Map.Entry<Integer, Integer> entry : ladder.gameResults().values().entrySet()) {
+		for (Map.Entry<Integer, Integer> entry : gameResults.values().entrySet()) {
 			System.out.println(
 				participants.values().get(entry.getKey()).value()
 					+ " : "

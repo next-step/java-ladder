@@ -60,11 +60,11 @@ public class Row {
 	}
 
 	private boolean isIndexUnderZero(int index) {
-		return points.get(index).move(index) < 0;
+		return getMovedIndex(index) < 0;
 	}
 
 	private boolean isIndexOverMaxSize(int index) {
-		return points.get(index).move(index) >= points.size();
+		return getMovedIndex(index) >= points.size();
 	}
 
 	private void validatePair(int index) {
