@@ -39,7 +39,7 @@ public class Row {
 			points.add(Point.LEFT);
 			return;
 		}
-		points.add(Point.DOWN);
+		points.add(Point.HOLD);
 	}
 
 	private void addRandom() {
@@ -59,5 +59,10 @@ public class Row {
 		} catch (ArrayIndexOutOfBoundsException e) {
 			throw new ArrayIndexOutOfBoundsException("사다리 폭을 초과하여 이동할 수 없습니다.");
 		}
+	}
+
+	public int getMovedIndex(int index) {
+		return points.get(index)
+			.move(index);
 	}
 }

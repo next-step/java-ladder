@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -26,8 +25,8 @@ public class RowTest {
 
 	static Stream<Arguments> rows1() {
 		return Stream.of(
-			Arguments.arguments(List.of(Point.LEFT, Point.DOWN, Point.DOWN)),
-			Arguments.arguments(List.of(Point.DOWN, Point.DOWN, Point.RIGHT))
+			Arguments.arguments(List.of(Point.LEFT, Point.HOLD, Point.HOLD)),
+			Arguments.arguments(List.of(Point.HOLD, Point.HOLD, Point.RIGHT))
 		);
 	}
 
@@ -42,8 +41,8 @@ public class RowTest {
 
 	static Stream<Arguments> rows2() {
 		return Stream.of(
-			Arguments.arguments(List.of(Point.RIGHT, Point.DOWN, Point.LEFT, Point.DOWN, Point.LEFT)),
-			Arguments.arguments(List.of(Point.RIGHT, Point.RIGHT, Point.RIGHT, Point.DOWN, Point.LEFT))
+			Arguments.arguments(List.of(Point.RIGHT, Point.HOLD, Point.LEFT, Point.HOLD, Point.LEFT)),
+			Arguments.arguments(List.of(Point.RIGHT, Point.RIGHT, Point.RIGHT, Point.HOLD, Point.LEFT))
 		);
 	}
 }

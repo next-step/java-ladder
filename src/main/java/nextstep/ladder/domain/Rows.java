@@ -21,4 +21,12 @@ public class Rows {
 	public List<Row> values() {
 		return Collections.unmodifiableList(rows);
 	}
+
+	public int calcResultIndex(int currentIndex) {
+		int resultIndex = currentIndex;
+		for (Row row : rows) {
+			resultIndex = row.getMovedIndex(resultIndex);
+		}
+		return resultIndex;
+	}
 }

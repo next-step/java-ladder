@@ -1,6 +1,6 @@
 package nextstep.ladder.view;
 
-import java.util.List;
+import java.util.Map;
 
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Participants;
@@ -60,5 +60,16 @@ public class ResultView {
 			System.out.print(result.value() + "     ");
 		}
 		System.out.println();
+	}
+
+	public static void showGameResults(Participants participants, Results results, Ladder ladder) {
+		System.out.println("실행 결과");
+		for (Map.Entry<Integer, Integer> entry : ladder.gameResults().values().entrySet()) {
+			System.out.println(
+				participants.values().get(entry.getKey()).value()
+					+ " : "
+					+ results.values().get(entry.getValue()).value()
+			);
+		}
 	}
 }

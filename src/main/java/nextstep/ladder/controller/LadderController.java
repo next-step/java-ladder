@@ -18,5 +18,9 @@ public class LadderController {
 		ResultView.showParticipantsInGame(participants);
 		ResultView.showLadder(ladder);
 		ResultView.showResultsInGame(results);
+
+		ladder.playGame(new Width(participants.num()));
+
+		ResultView.showGameResults(participants, results, ladder);
 	}
 }
