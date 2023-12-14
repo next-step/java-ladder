@@ -7,6 +7,7 @@ import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Lines;
 import nextstep.ladder.domain.Name;
 import nextstep.ladder.domain.Point;
+import nextstep.ladder.domain.Results;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -35,7 +36,7 @@ class LadderTest {
 
         Ladder ladder = new Ladder(ladderPlayers, lines);
 
-        assertThat(ladder.play(List.of("꽝", "1000"))).isEqualTo(expectedLadderResult);
+        assertThat(ladder.play(new Results(List.of("꽝", "1000")))).isEqualTo(expectedLadderResult);
     }
 
     private Line lineOf(boolean first, boolean second) {

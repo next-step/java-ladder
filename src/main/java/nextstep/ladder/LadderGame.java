@@ -5,6 +5,7 @@ import nextstep.ladder.domain.LadderPlayers;
 import nextstep.ladder.domain.LadderResult;
 import nextstep.ladder.domain.Lines;
 import nextstep.ladder.domain.Name;
+import nextstep.ladder.domain.Results;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
@@ -22,7 +23,7 @@ public class LadderGame {
 
         ResultView.printLadder(ladder, names, inputResult);
 
-        LadderResult ladderResult = ladder.play(inputResult);
+        LadderResult ladderResult = ladder.play(new Results(inputResult));
 
         Name playerName = null;
         while (!new Name("all").equals(playerName)) {
