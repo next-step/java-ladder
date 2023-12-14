@@ -27,10 +27,6 @@ public class Name {
         return value;
     }
 
-    public String ladderName() {
-        return value.concat(" ".repeat(MAX_LENGTH_OF_NAME - value.length() + 1));
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o)

@@ -28,7 +28,7 @@ public final class ResultView {
 
     private static void printNames(List<Name> userNames) {
         userNames.stream()
-                .map(Name::ladderName)
+                .map(name -> name.value().concat(" ".repeat(MAX_LENGTH_OF_NAME - name.value().length() + 1)))
                 .forEach(System.out::print);
         System.out.println();
     }
