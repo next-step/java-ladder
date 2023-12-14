@@ -19,7 +19,9 @@ public class Ladder {
 
     private static List<String> validateResult(int rows, String[] result) {
         if (rows != result.length) {
-            throw new IllegalArgumentException("결과 값과 인원수가 맞지 않으면 사다리를 구축할 수 없습니다");
+            throw new IllegalArgumentException(
+                    String.format("결과 값과 인원수가 맞지 않으면 사다리를 구축할 수 없습니다 결과값: %d, 인원수: %d", result.length, rows)
+            );
         }
         return List.of(result);
     }
