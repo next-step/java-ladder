@@ -52,7 +52,7 @@ public class Ladder {
     }
 
     public Map<Integer, String> getLadderAllResult() {
-        HashMap map = new HashMap();
+        HashMap<Integer, String> map = new HashMap();
         for (int index = 0; index < this.columnSize(); index++) {
             map.put(index, getLadderResult(index));
         }
