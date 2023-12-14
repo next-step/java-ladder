@@ -19,7 +19,7 @@ public class LadderGame {
         List<String> inputResult = InputView.inputResult();
         int maxHeightOfLadder = InputView.inputMaxHeightOfLadder();
 
-        Ladder ladder = Ladder.of(new LadderPlayers(names), Lines.of(names.size(), maxHeightOfLadder));
+        Ladder ladder = new Ladder(new LadderPlayers(names), Lines.of(names.size(), maxHeightOfLadder));
 
         ResultView.printLadder(ladder, names, inputResult);
 

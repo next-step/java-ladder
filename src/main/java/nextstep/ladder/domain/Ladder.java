@@ -15,10 +15,6 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder of(LadderPlayers ladderPlayers, Lines lines) {
-        return new Ladder(ladderPlayers, lines);
-    }
-
     public List<Line> lines() {
         return lines.values();
     }
