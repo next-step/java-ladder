@@ -6,24 +6,17 @@ import java.util.stream.Collectors;
 
 public class Ladder {
 
-    private static final int MIN_COUNT_OF_PERSON = 2;
-
-    private final List<Name> playerNames;
+    private final LadderPlayers ladderPlayers;
 
     private final Lines lines;
 
-    public Ladder(List<Name> playerNames, Lines lines) {
-
-        if (playerNames.size() < MIN_COUNT_OF_PERSON) {
-            throw new IllegalArgumentException("사다리 게임은 최소 " + MIN_COUNT_OF_PERSON + "명 이상의 참가자가 있어야 합니다.");
-        }
-
-        this.playerNames = playerNames;
+    public Ladder(LadderPlayers ladderPlayers, Lines lines) {
+        this.ladderPlayers = ladderPlayers;
         this.lines = lines;
     }
 
-    public static Ladder of(List<Name> playerNames, Lines lines) {
-        return new Ladder(playerNames, lines);
+    public static Ladder of(LadderPlayers ladderPlayers, Lines lines) {
+        return new Ladder(ladderPlayers, lines);
     }
 
     public List<Line> lines() {
@@ -31,18 +24,12 @@ public class Ladder {
     }
 
     private int play(Name playerName) {
-        boolean contains = playerNames.contains(playerName);
-        if (!contains) {
-            throw new IllegalArgumentException("참여자가 아닙니다.");
-        }
-
-        int position = playerNames.indexOf(playerName);
-
-        return lines.finalPosition(position);
+        return lines.finalPosition(ladderPlayers.positionOfPlayer(playerName));
     }
 
     public LadderResult play() {
-        Map<Name, Integer> ladderResultMap = playerNames.stream()
+        Map<Name, Integer> ladderResultMap = ladderPlayers.values()
+                .stream()
                 .collect(Collectors.toMap(playerName -> playerName, this::play));
 
         return new LadderResult(ladderResultMap);

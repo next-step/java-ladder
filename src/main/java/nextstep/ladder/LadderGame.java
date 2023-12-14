@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderPlayers;
 import nextstep.ladder.domain.LadderResult;
 import nextstep.ladder.domain.Lines;
 import nextstep.ladder.domain.Name;
@@ -17,10 +18,7 @@ public class LadderGame {
         List<String> inputResult = InputView.inputResult();
         int maxHeightOfLadder = InputView.inputMaxHeightOfLadder();
 
-        Ladder ladder = Ladder.of(
-                names,
-                Lines.of(names.size(), maxHeightOfLadder)
-        );
+        Ladder ladder = Ladder.of(new LadderPlayers(names), Lines.of(names.size(), maxHeightOfLadder));
 
         ResultView.printNames(names);
         ResultView.printLadder(ladder, inputResult);
