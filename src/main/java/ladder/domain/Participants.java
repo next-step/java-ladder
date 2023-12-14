@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Participants {
 
+    private static final String PARTICIPANT_FORMAT = "%-6s";
 
     private List<Participant> values = new ArrayList<>();
 
@@ -31,8 +32,9 @@ public class Participants {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        values.stream()
-                .forEach(value -> sb.append(value.toString() + " "));
+        for (Participant value : values) {
+            sb.append(String.format(PARTICIPANT_FORMAT, value.toString()));
+        }
         return sb.toString();
     }
 }

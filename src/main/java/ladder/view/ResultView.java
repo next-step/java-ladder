@@ -10,8 +10,8 @@ public class ResultView {
 
     private static final String NOTICE_RESULT = "\n실행결과\n";
     private static final String HORIZONTAL = "|";
-    private static final String VERTICAL = "-";
-    private static final String VERTICAL_BLANK = " ";
+    private static final String VERTICAL = "-----";
+    private static final String VERTICAL_BLANK = "     ";
 
     public static void showResult(Participants participants, Lines lines) {
         System.out.println(NOTICE_RESULT);
@@ -34,7 +34,7 @@ public class ResultView {
         StringBuilder builder = new StringBuilder();
         builder.append(HORIZONTAL);
         for (int i = 0; i < points.size(); i++) {
-            builder.append(isPoint(points.get(i)).repeat(participants.getParticipant(i).length()));
+            builder.append(isPoint(points.get(i)));
             builder.append(HORIZONTAL);
         }
         return builder.toString();
