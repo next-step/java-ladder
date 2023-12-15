@@ -15,10 +15,11 @@ public class Row {
 	public Row(Width width) {
 		points = new ArrayList<>();
 		addRandom();
-		for (int i = 1; i < width.value() - 1; i++) {
+		int widthValue = width.value();
+		for (int i = 1; i < widthValue - 1; i++) {
 			addPoint(points.get(i - 1));
 		}
-		addLastPoint(points.get(width.value() - 2));
+		addLastPoint(points.get(widthValue - 2));
 		validate();
 	}
 

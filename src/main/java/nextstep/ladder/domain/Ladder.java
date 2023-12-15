@@ -23,7 +23,8 @@ public class Ladder {
 	}
 
 	public GameResults playGame(Width width) {
-		for (int idx = 0; idx < width.value(); idx++) {
+		int widthValue = width.value();
+		for (int idx = 0; idx < widthValue; idx++) {
 			gameResults.put(idx, rows.calcResultIndex(idx));
 		}
 		return gameResults;

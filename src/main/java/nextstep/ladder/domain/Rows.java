@@ -13,7 +13,8 @@ public class Rows {
 
 	public Rows(Width width, Height height) {
 		rows = new ArrayList<>();
-		for (int idx = 0; idx < height.value(); idx++) {
+		int heightValue = height.value();
+		for (int idx = 0; idx < heightValue; idx++) {
 			rows.add(new Row(width));
 		}
 	}
