@@ -9,7 +9,6 @@ public class Row {
 
 	public Row(List<Point> points) {
 		this.points = points;
-		validate();
 	}
 
 	public Row(Width width) {
@@ -20,7 +19,6 @@ public class Row {
 			addPoint(points.get(i - 1));
 		}
 		addLastPoint(points.get(widthValue - 2));
-		validate();
 	}
 
 	public List<Point> values() {
@@ -45,37 +43,6 @@ public class Row {
 
 	private void addRandom() {
 		points.add(Point.random());
-	}
-
-	private void validate() {
-		for (int index = 0; index < points.size(); index++) {
-			validateOverRange(index);
-			validatePair(index);
-		}
-	}
-
-	private void validateOverRange(int index) {
-		if (isIndexUnderZero(index) || isIndexOverMaxSize(index)) {
-			throw new IllegalArgumentException("사다리 폭을 초과하여 이동할 수 없습니다.");
-		}
-	}
-
-	private boolean isIndexUnderZero(int index) {
-		return getMovedIndex(index) < 0;
-	}
-
-	private boolean isIndexOverMaxSize(int index) {
-		return getMovedIndex(index) >= points.size();
-	}
-
-	private void validatePair(int index) {
-		if (
-			points.get(index).isLeft() && !points.get(index - 1).isRight()
-				||
-				points.get(index).isRight() && !points.get(index + 1).isLeft()
-		) {
-			throw new IllegalArgumentException("수평 이동선 생성에 문제가 있습니다.");
-		}
 	}
 
 	public int getMovedIndex(int index) {
