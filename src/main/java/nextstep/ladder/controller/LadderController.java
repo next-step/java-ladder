@@ -11,7 +11,7 @@ import nextstep.ladder.view.ResultView;
 public class LadderController {
 	public static void main(String[] args) {
 		Participants participants = new Participants(ResultView.showParticipants(InputView.inputUsers()));
-		Results results = new Results(ResultView.showResults(InputView.inputResults()));
+		Results results = new Results(ResultView.showResults(InputView.inputResults()), new Width(participants.num()));
 		Height height = new Height(ResultView.showHeight(InputView.inputHeight()));
 		Ladder ladder = new Ladder(new Width(participants.num()), height);
 
