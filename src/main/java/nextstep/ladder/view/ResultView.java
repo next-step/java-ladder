@@ -63,8 +63,22 @@ public class ResultView {
 		System.out.println();
 	}
 
-	public static void showGameResults(Participants participants, Results results, GameResults gameResults) {
+	public static void showGameResults(Participants participants, Results results, GameResults gameResults, String name) {
 		System.out.println("실행 결과");
+		if (name.equals("all")) {
+			showAllUserResults(participants, results, gameResults);
+			return;
+		}
+		for (int i = 0; i < participants.values().size(); i++) {
+			if (participants.values().get(i).value().equals(name)) {
+				System.out.println(results.values().get(gameResults.values().get(i)).value());
+				return;
+			}
+		}
+		throw new IllegalArgumentException("찾는 유저 이름이 없습니다.");
+	}
+
+	private static void showAllUserResults(Participants participants, Results results, GameResults gameResults) {
 		for (Map.Entry<Integer, Integer> entry : gameResults.values().entrySet()) {
 			System.out.println(
 				participants.values().get(entry.getKey()).value()
