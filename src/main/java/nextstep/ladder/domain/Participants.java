@@ -25,4 +25,8 @@ public class Participants {
 	public int num() {
 		return participants.size();
 	}
+
+	public boolean equalName(int index, String name) {
+		return participants.get(index).equalName(name);
+	}
 }
