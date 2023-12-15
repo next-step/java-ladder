@@ -1,49 +1,32 @@
 package nextstep.ladder;
 
-import static org.assertj.core.api.Assertions.*;
-
 import java.util.List;
-import java.util.stream.Stream;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
 
 import nextstep.ladder.domain.Point;
 import nextstep.ladder.domain.Row;
+import nextstep.ladder.domain.Width;
 
 public class RowTest {
-	@DisplayName("사다리 폭을 초과하여 이동할 수 없습니다.")
-	@ParameterizedTest
-	@MethodSource("rows1")
-	void validate_move_in_width(List<Point> points) {
-		assertThatThrownBy(() -> new Row(points))
-			.isInstanceOf(ArrayIndexOutOfBoundsException.class)
-			.hasMessage("사다리 폭을 초과하여 이동할 수 없습니다.");
+	@DisplayName("width에 맞게 ladder row가 생성됩니다.")
+	@Test
+	void validate_create_row() {
+		Assertions.assertThat(new Row(new Width(5)).values().size())
+			.isEqualTo(5);
 	}
 
-	static Stream<Arguments> rows1() {
-		return Stream.of(
-			Arguments.arguments(List.of(Point.LEFT, Point.DOWN, Point.DOWN)),
-			Arguments.arguments(List.of(Point.DOWN, Point.DOWN, Point.RIGHT))
-		);
-	}
-
-	@DisplayName("수평 이동선 생성에 문제가 있는지 확인합니다.")
-	@ParameterizedTest
-	@MethodSource("rows2")
-	void validate_can_move_other_line(List<Point> points) {
-		assertThatThrownBy(() -> new Row(points))
-			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessage("수평 이동선 생성에 문제가 있습니다.");
-	}
-
-	static Stream<Arguments> rows2() {
-		return Stream.of(
-			Arguments.arguments(List.of(Point.RIGHT, Point.DOWN, Point.LEFT, Point.DOWN, Point.LEFT)),
-			Arguments.arguments(List.of(Point.RIGHT, Point.RIGHT, Point.RIGHT, Point.DOWN, Point.LEFT))
-		);
+	@DisplayName("항상 right point 오른쪽에는 left point가 위치합니다.")
+	@Test
+	void validate_pair() {
+		Row row = new Row(new Width(20));
+		List<Point> rowValues = row.values();
+		for (int i = 0; i < rowValues.size(); i++) {
+			if (row.values().get(i).isRight()) {
+				Assertions.assertThat(rowValues.get(i+1)).isEqualTo(Point.LEFT);
+			}
+		}
 	}
 }

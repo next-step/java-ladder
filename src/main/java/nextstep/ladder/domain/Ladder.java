@@ -1,24 +1,32 @@
 package nextstep.ladder.domain;
 
 public class Ladder {
-	private final Participants participants;
 	private final Rows rows;
+	private final GameResults gameResults;
 
-	public Ladder(Participants participants, Rows rows) {
-		this.participants = participants;
+	public Ladder(Rows rows) {
 		this.rows = rows;
+		this.gameResults = new GameResults();
 	}
 
-	public Ladder(Participants participants, Height height)  {
-		this.participants = participants;
-		this.rows = new Rows(new Width(participants.num()), height);
-	}
-
-	public Participants participants() {
-		return participants;
+	public Ladder(Width width, Height height) {
+		this.rows = new Rows(width, height);
+		this.gameResults = new GameResults();
 	}
 
 	public Rows rows() {
 		return rows;
+	}
+
+	public GameResults gameResults() {
+		return gameResults;
+	}
+
+	public GameResults playGame(Width width) {
+		int widthValue = width.value();
+		for (int idx = 0; idx < widthValue; idx++) {
+			gameResults.put(idx, rows.calcResultIndex(idx));
+		}
+		return gameResults;
 	}
 }

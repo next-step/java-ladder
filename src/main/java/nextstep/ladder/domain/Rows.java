@@ -13,12 +13,21 @@ public class Rows {
 
 	public Rows(Width width, Height height) {
 		rows = new ArrayList<>();
-		for (int idx = 0; idx < height.value(); idx++) {
+		int heightValue = height.value();
+		for (int idx = 0; idx < heightValue; idx++) {
 			rows.add(new Row(width));
 		}
 	}
 
 	public List<Row> values() {
 		return Collections.unmodifiableList(rows);
+	}
+
+	public int calcResultIndex(int currentIndex) {
+		int resultIndex = currentIndex;
+		for (Row row : rows) {
+			resultIndex = row.getMovedIndex(resultIndex);
+		}
+		return resultIndex;
 	}
 }
