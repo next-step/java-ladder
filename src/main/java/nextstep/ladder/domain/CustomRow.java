@@ -4,14 +4,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Row {
+import nextstep.ladder.engine.Row;
+
+public class CustomRow implements Row {
 	private final List<Point> points;
 
-	public Row(List<Point> points) {
+	public CustomRow(List<Point> points) {
 		this.points = points;
 	}
 
-	public Row(Width width) {
+	public CustomRow(Width width) {
 		points = new ArrayList<>();
 		addRandom();
 		int widthValue = width.value();
@@ -45,7 +47,8 @@ public class Row {
 		points.add(Point.random());
 	}
 
-	public int getMovedIndex(int index) {
+	@Override
+	public int move(int index) {
 		return points.get(index)
 			.move(index);
 	}

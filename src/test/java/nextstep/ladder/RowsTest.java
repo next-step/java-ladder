@@ -8,7 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import nextstep.ladder.domain.Point;
-import nextstep.ladder.domain.Row;
+import nextstep.ladder.domain.CustomRow;
 import nextstep.ladder.domain.Rows;
 
 public class RowsTest {
@@ -17,13 +17,13 @@ public class RowsTest {
 	void validate_calc_result_index() {
 		Rows rows = new Rows(
 			List.of(
-				new Row(
+				new CustomRow(
 					List.of(Point.RIGHT, Point.LEFT, Point.HOLD)
 				),
-				new Row(
+				new CustomRow(
 					List.of(Point.HOLD, Point.RIGHT, Point.LEFT)
 				),
-				new Row(
+				new CustomRow(
 					List.of(Point.HOLD, Point.HOLD, Point.HOLD)
 				)
 			)

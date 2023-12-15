@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import nextstep.ladder.engine.Row;
+
 public class Rows {
 	private final List<Row> rows;
 
@@ -15,7 +17,7 @@ public class Rows {
 		rows = new ArrayList<>();
 		int heightValue = height.value();
 		for (int idx = 0; idx < heightValue; idx++) {
-			rows.add(new Row(width));
+			rows.add(new CustomRow(width));
 		}
 	}
 
@@ -26,7 +28,7 @@ public class Rows {
 	public int calcResultIndex(int currentIndex) {
 		int resultIndex = currentIndex;
 		for (Row row : rows) {
-			resultIndex = row.getMovedIndex(resultIndex);
+			resultIndex = row.move(resultIndex);
 		}
 		return resultIndex;
 	}
