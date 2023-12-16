@@ -3,20 +3,21 @@ package nextstep.ladder.domain;
 public class Position {
 
     public static final int FIRST_POSITION = 0;
-    private int index;
-    private int maxIndex;
+    private final int index;
+    private final int maxIndex;
 
     public Position(int index, int maxIndex) {
         this.index = index;
         this.maxIndex = maxIndex;
     }
 
-    public boolean isFirstPosition() {
-        return index == FIRST_POSITION;
+
+    public boolean isNotFirstPosition() {
+        return index != FIRST_POSITION;
     }
 
-    public boolean isLastPosition() {
-        return index == maxIndex;
+    public boolean iNotLastPosition() {
+        return index != maxIndex;
     }
 
     public int leftPosition() {
