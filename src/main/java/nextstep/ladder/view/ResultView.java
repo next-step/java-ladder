@@ -32,7 +32,7 @@ public class ResultView {
 
     private static void printPoints(Line line) {
         line.getPoints().forEach(point -> {
-            System.out.print(point ? LINE : BLANK);
+            System.out.print(point.getCurrent() ? LINE : BLANK);
             System.out.print(COLUMN);
         });
     }
