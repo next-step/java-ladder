@@ -3,6 +3,7 @@ package nextstep.ladder.view;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Participants;
+import nextstep.ladder.domain.ResultInfo;
 
 public class ResultView {
 
@@ -39,5 +40,9 @@ public class ResultView {
 
     public static void enter() {
         System.out.println();
+    }
+
+    public static void printResultInfo(ResultInfo resultInfo) {
+        resultInfo.getResult().forEach(result -> System.out.print(String.format("%-8s", result)));
     }
 }

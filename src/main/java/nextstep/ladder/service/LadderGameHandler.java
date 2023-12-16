@@ -3,6 +3,7 @@ package nextstep.ladder.service;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderInfo;
 import nextstep.ladder.domain.Participants;
+import nextstep.ladder.domain.ResultInfo;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
@@ -13,17 +14,23 @@ public class LadderGameHandler {
 
     public static void runGame() {
         Participants participants = inputAndRegisterParticipant();
-        ResultView.enter();
-
+        ResultInfo resultInfo = inputGameResultInfo();
         Ladder ladder = drawLadder(participants);
 
-        printLadder(participants, ladder);
+        printLadder(participants, ladder, resultInfo);
     }
 
-    private static void printLadder(Participants participants, Ladder ladder) {
+    private static ResultInfo inputGameResultInfo() {
+        String gameResults = InputView.inputGameResult();
+        ResultView.enter();
+        return new ResultInfo(gameResults);
+    }
+
+    private static void printLadder(Participants participants, Ladder ladder, ResultInfo resultInfo) {
         ResultView.printResultWord();
         ResultView.printParticipantsName(participants);
         ResultView.printLadder(ladder);
+        ResultView.printResultInfo(resultInfo);
     }
 
     private static Ladder drawLadder(Participants participants) {
@@ -36,6 +43,7 @@ public class LadderGameHandler {
 
     private static Participants inputAndRegisterParticipant() {
         String inputParticipantName = InputView.inputParticipantName();
+        ResultView.enter();
         return new Participants(inputParticipantName);
     }
 }

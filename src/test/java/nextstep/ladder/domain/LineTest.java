@@ -16,6 +16,6 @@ public class LineTest {
             }
         };
 
-        assertThrows(IllegalArgumentException.class, () -> Point.previousOf(true , lineGenerator));
+        assertThrows(IllegalArgumentException.class, () -> LineState.previousOf(true , lineGenerator));
     }
 }

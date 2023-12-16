@@ -2,21 +2,21 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.utils.RandomLineGenerator;
 
-public class Point {
-    private boolean previous;
-    private boolean current;
+public class LineState {
+    private final boolean previous;
+    private final boolean current;
 
 
-    public static Point previousOf(boolean previous) {
+    public static LineState previousOf(boolean previous) {
         LineGenerator lineGenerator = new RandomLineGenerator();
-        return new Point(previous, !previous && lineGenerator.generateLine());
+        return new LineState(previous, !previous && lineGenerator.generateLine());
     }
 
-    public static Point previousOf(boolean previous, LineGenerator lineGenerator) {
-        return new Point(previous, lineGenerator.generateLine());
+    public static LineState previousOf(boolean previous, LineGenerator lineGenerator) {
+        return new LineState(previous, lineGenerator.generateLine());
     }
 
-    public Point(boolean previous, boolean current) {
+    public LineState(boolean previous, boolean current) {
         checkForConsecutiveTrue(previous, current);
         this.previous = previous;
         this.current = current;
