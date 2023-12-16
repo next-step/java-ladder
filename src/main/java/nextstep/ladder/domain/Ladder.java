@@ -2,7 +2,6 @@ package nextstep.ladder.domain;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -50,12 +49,12 @@ public class Ladder {
         return result.get(idx);
     }
 
-    public Map<Integer, String> getLadderAllResult() {
-        HashMap<Integer, String> map = new HashMap();
+    public Result getLadderAllResult(Users users) {
+        Result result = new Result(new HashMap<>());
         for (int index = 0; index < this.columnSize(); index++) {
-            map.put(index, getLadderResult(index));
+            result.putIndexByValue(users.getUserName(index), getLadderResult(index));
         }
-        return map;
+        return result;
     }
 
     public List<Line> lines() {
