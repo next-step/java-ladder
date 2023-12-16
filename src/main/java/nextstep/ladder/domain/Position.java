@@ -21,7 +21,7 @@ public class Position {
     }
 
     public int leftPosition() {
-        return this.index-1;
+        return this.index - 1;
     }
 
     public int currentPosition() {
@@ -29,6 +29,6 @@ public class Position {
     }
 
     public int rightPosition() {
-        return this.index+1;
+        return this.index + 1;
     }
 }

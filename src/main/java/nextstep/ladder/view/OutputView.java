@@ -5,7 +5,6 @@ import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.User;
 import nextstep.ladder.domain.Users;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,7 +38,7 @@ public class OutputView {
         output.println("");
     }
 
-    public void printLadder(Ladder ladder){
+    public void printLadder(Ladder ladder) {
         stringLadder(ladder).forEach(output::println);
         this.printResultList(ladder);
     }
@@ -51,8 +50,8 @@ public class OutputView {
     }
 
     private String printLine(Line line) {
-        StringBuilder ladderLine = new StringBuilder(LADDER_BLANK_LINE+LADDER_COLUMN_LINE);
-        line.points().forEach(point ->  {
+        StringBuilder ladderLine = new StringBuilder(LADDER_BLANK_LINE + LADDER_COLUMN_LINE);
+        line.points().forEach(point -> {
             ladderLine.append(point ? LADDER_ROW_LINE : LADDER_BLANK_LINE);
             ladderLine.append(LADDER_COLUMN_LINE);
         });
@@ -75,11 +74,12 @@ public class OutputView {
         }
         return " ".repeat(MAX_LADDER_WIDTH - length) + result;
     }
+
     public void printResult(Ladder ladder, Users users, String name) {
         System.out.println("실행 결과");
         if (name.equals("all")) {
             ladder.getLadderAllResult().forEach((key, result) -> {
-                System.out.printf("%s : %s%n",users.getUserName(key), result);
+                System.out.printf("%s : %s%n", users.getUserName(key), result);
             });
             return;
         }

@@ -1,6 +1,5 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,7 +41,7 @@ public class Ladder {
 
     public String getLadderResult(int index) {
         int idx = index;
-        for (Line line: lines) {
+        for (Line line : lines) {
             idx = line.move(new Position(idx, result.size()));
         }
         return result.get(idx);
@@ -65,6 +64,6 @@ public class Ladder {
     }
 
     private int columnSize() {
-        return lines.get(0).size()+1;
+        return lines.get(0).size() + 1;
     }
 }

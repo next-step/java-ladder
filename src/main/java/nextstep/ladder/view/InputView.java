@@ -1,7 +1,5 @@
 package nextstep.ladder.view;
 
-import java.util.Scanner;
-
 public class InputView {
 
     private final Input input;
