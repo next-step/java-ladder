@@ -27,6 +27,9 @@ public class Ladder {
 
     public Ladder(List<Line> lines, List<String> result) {
         this.lines = lines;
+        if (lines.size() != result.size()) {
+            throw new IllegalArgumentException("결과 값과 인원수가 맞지 않으면 사다리를 구축할 수 없습니다");
+        }
         this.result = result;
     }
 
