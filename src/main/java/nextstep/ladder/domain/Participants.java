@@ -3,14 +3,16 @@ package nextstep.ladder.domain;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class Participants {
     private final List<Participant> players;
+    private static final AtomicInteger sequence = new AtomicInteger(1);
 
     public Participants(String names) {
         this(Arrays.stream(names.split(","))
-                .map(Participant::nameOf).collect(Collectors.toList()));
+                .map(name -> Participant.nameOf(name, sequence.getAndIncrement())).collect(Collectors.toList()));
     }
 
     public Participants(List<Participant> players) {

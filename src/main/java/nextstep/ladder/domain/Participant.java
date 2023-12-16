@@ -6,16 +6,18 @@ public class Participant {
 
     public static final int MIN_NAME_LENGTH = 1;
     public static final int MAX_NAME_LENGTH = 5;
-    private String name;
+    private final String name;
+    private int position;
 
 
-    public static Participant nameOf(String name) {
+    public static Participant nameOf(String name, int position) {
         validateNameLength(name.trim());
-        return new Participant(name.trim());
+        return new Participant(name.trim(), position);
     }
 
-    private Participant(String name) {
+    private Participant(String name, int position) {
         this.name = name;
+        this.position = position;
     }
 
     private static void validateNameLength(String name) {
@@ -29,6 +31,10 @@ public class Participant {
 
     public String getName() {
         return name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 
     @Override
