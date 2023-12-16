@@ -27,7 +27,7 @@ public class Line {
 
     public int move(Position position) {
         boolean leftMovement = position.isNotFirstPosition() && points.get(position.leftPosition());
-        boolean rightMovement = !position.isNotFirstPosition() && points.get(position.currentPosition());
+        boolean rightMovement = !position.isNotLastPosition() && points.get(position.currentPosition());
 
         if (rightMovement) {
             return position.rightPosition();

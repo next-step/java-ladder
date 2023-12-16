@@ -16,7 +16,7 @@ public class Position {
         return index != FIRST_POSITION;
     }
 
-    public boolean iNotLastPosition() {
+    public boolean isNotLastPosition() {
         return index != maxIndex;
     }
 
