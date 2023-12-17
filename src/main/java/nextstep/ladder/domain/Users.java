@@ -18,7 +18,15 @@ public class Users {
         return userList.size();
     }
 
+    public int positionUserName(String name) {
+        return userList.indexOf(new User(name));
+    }
+
     public List<User> getUserList() {
         return userList;
+    }
+
+    public String getUserName(int index) {
+        return userList.get(index).name();
     }
 }

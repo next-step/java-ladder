@@ -14,17 +14,33 @@ public class OutputView {
     public static final String LADDER_BLANK_LINE = " ".repeat(MAX_LADDER_WIDTH);
     public static final String LADDER_ROW_LINE = "-".repeat(MAX_LADDER_WIDTH);
     public static final String LADDER_COLUMN_LINE = "|";
+    private final Output output;
 
-    public void printUserNameList(Users users) {
-        for (User user : users.getUserList()) {
-            System.out.print(getLadderSizeName(user));
-            System.out.print(" ");
-        }
-        System.out.println();
+
+    public OutputView(Output output) {
+        this.output = output;
     }
 
-    public void printLadder(Ladder ladder){
-        stringLadder(ladder).forEach(System.out::println);
+    public void printUserNameList(Users users) {
+        output.printf("사다리 결과 %n%n");
+        for (User user : users.getUserList()) {
+            output.print(getLadderSizeName(user));
+            output.print(" ");
+        }
+        output.println("");
+    }
+
+    public void printResultList(Ladder ladder) {
+        ladder.getResult().forEach(result -> {
+            output.print(getLadderSizeResult(result));
+            output.print(" ");
+        });
+        output.println("");
+    }
+
+    public void printLadder(Ladder ladder) {
+        stringLadder(ladder).forEach(output::println);
+        this.printResultList(ladder);
     }
 
     public List<String> stringLadder(Ladder ladder) {
@@ -34,8 +50,8 @@ public class OutputView {
     }
 
     private String printLine(Line line) {
-        StringBuilder ladderLine = new StringBuilder(LADDER_BLANK_LINE+LADDER_COLUMN_LINE);
-        line.points().forEach(point ->  {
+        StringBuilder ladderLine = new StringBuilder(LADDER_BLANK_LINE + LADDER_COLUMN_LINE);
+        line.points().forEach(point -> {
             ladderLine.append(point ? LADDER_ROW_LINE : LADDER_BLANK_LINE);
             ladderLine.append(LADDER_COLUMN_LINE);
         });
@@ -51,5 +67,23 @@ public class OutputView {
         return " ".repeat(MAX_LADDER_WIDTH - length) + name;
     }
 
+    private String getLadderSizeResult(String result) {
+        int length = result.length();
+        if (length == MAX_LADDER_WIDTH) {
+            return result;
+        }
+        return " ".repeat(MAX_LADDER_WIDTH - length) + result;
+    }
 
+    public void printResult(Ladder ladder, Users users, String name) {
+        System.out.println("실행 결과");
+        if (name.equals("all")) {
+            ladder.getLadderAllResult(users).getMap().forEach((key, result) -> {
+                System.out.printf("%s : %s%n", key, result);
+            });
+            return;
+        }
+        System.out.println(ladder.getLadderResult(users.positionUserName(name)));
+
+    }
 }
