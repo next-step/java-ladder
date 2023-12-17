@@ -3,13 +3,13 @@ package nextstep.ladder.view;
 import java.util.Map;
 
 import nextstep.ladder.domain.GameResults;
-import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Participants;
 import nextstep.ladder.domain.Point;
 import nextstep.ladder.domain.Result;
 import nextstep.ladder.domain.Results;
-import nextstep.ladder.domain.Row;
 import nextstep.ladder.domain.User;
+import nextstep.ladder.engine.Ladder;
+import nextstep.ladder.engine.Row;
 
 public class ResultView {
 	public static String showParticipants(String participants) {
@@ -70,7 +70,7 @@ public class ResultView {
 			return;
 		}
 		for (int i = 0; i < participants.values().size(); i++) {
-			if (participants.values().get(i).value().equals(name)) {
+			if (participants.equalName(i, name)) {
 				System.out.println(results.values().get(gameResults.values().get(i)).value());
 				return;
 			}
