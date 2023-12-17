@@ -27,4 +27,14 @@ class LineTest {
         assertThatThrownBy(() -> new Line(List.of(false, true, true)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("생성된 Line 객체에 인덱스를 전달하면 움직일 방향을 반환한다.(1이면 오른쪽, -1이면 왼쪽, 0이면 그대로)")
+    @Test
+    void moveTest() {
+        Line line = new Line(List.of(true, false, true, false));
+
+        assertThat(line.move(0)).isEqualTo(1);
+        assertThat(line.move(1)).isEqualTo(-1);
+        assertThat(line.move(4)).isEqualTo(0);
+    }
 }
