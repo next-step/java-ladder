@@ -29,6 +29,11 @@ public class Line {
         return points;
     }
 
+
+    public LineState getPointsByIndex(int index) {
+        return points.get(index);
+    }
+
     @Override
     public String toString() {
         return "Line{" +

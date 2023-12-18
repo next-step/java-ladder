@@ -14,9 +14,30 @@ public class LadderGameHandler {
         ResultInfo resultInfo = inputGameResultInfo();
         Ladder ladder = drawLadder(participants);
 
-        printLadder(participants, ladder, resultInfo);
+        moveParticipants(participants, ladder);
 
+        printLadder(participants, ladder, resultInfo);
         printResult(participants, resultInfo);
+    }
+
+    private static void moveParticipants(Participants participants, Ladder ladder) {
+        for (int i = 0; i < ladder.getHeight(); i++) {
+            Line lineByHeight = ladder.getLineByHeight(i);
+            moveParticipantsOnLadder(participants, lineByHeight);
+        }
+    }
+
+    private static void moveParticipantsOnLadder(Participants participants, Line line) {
+        for (int i = 0; i < participants.count(); i++) {
+            if (line.getPointsByIndex(i).getCurrent()) {
+                Participant currentParticipant = participants.getParticipantByPosition(i);
+                currentParticipant.moveBack();
+                System.out.println(currentParticipant);
+                Participant previousParticipant = participants.getParticipantByPosition(i - 1);
+                previousParticipant.moveFront();
+                System.out.println(previousParticipant);
+            }
+        }
     }
 
     private static void printResult(Participants participants, ResultInfo resultInfo) {
@@ -26,7 +47,8 @@ public class LadderGameHandler {
                 ResultView.printResultAll(participants, resultInfo);
                 return;
             }
-            Participant participant = participants.getParticipant(inputName);
+            Participant participant = participants.getParticipantByName(inputName);
+            participant.toString();
             ResultView.printResultOfParticipant(resultInfo.getResult(participant.getPosition()));
         }
     }

@@ -36,4 +36,11 @@ public class LineState {
         }
     }
 
+    @Override
+    public String toString() {
+        return "LineState{" +
+                "previous=" + previous +
+                ", current=" + current +
+                '}';
+    }
 }

@@ -29,6 +29,14 @@ public class Participant {
         }
     }
 
+    public void moveFront() {
+        this.position++;
+    }
+
+    public void moveBack() {
+        this.position--;
+    }
+
     public String getName() {
         return name;
     }
@@ -41,6 +49,7 @@ public class Participant {
     public String toString() {
         return "Participant{" +
                 "name='" + name + '\'' +
+                ", position=" + position +
                 '}';
     }
 }

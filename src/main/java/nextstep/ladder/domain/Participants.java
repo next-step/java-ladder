@@ -21,7 +21,7 @@ public class Participants {
         this.players = players;
     }
 
-    public Participant getParticipant(String inputName) {
+    public Participant getParticipantByName(String inputName) {
         return validateInputName(inputName);
     }
 
@@ -29,6 +29,12 @@ public class Participants {
         return players.stream().filter(participant -> participant.getName().equals(inputName.trim()))
                 .findAny()
                 .orElseThrow(() -> new NotFoundException("입력하신 이름과 일치하는 참가자가 없습니다."));
+    }
+
+    public Participant getParticipantByPosition(int position) {
+        return players.stream()
+                .filter(player -> player.getPosition() == position)
+                .findAny().orElseThrow(() -> new NotFoundException("해당하는 위치의 참가자가 없습니다."));
     }
 
     public List<Participant> getParticipants() {

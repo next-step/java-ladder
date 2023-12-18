@@ -49,14 +49,18 @@ public class ResultView {
     }
 
     public static void printResultAll(Participants participants, ResultInfo resultInfo) {
+        enter();
         printResultWord();
         for (int i = 0; i < participants.count(); i++) {
-            System.out.println(participants.getParticipants().get(i).getName() + " : " + resultInfo.getResults().get(i));
+            Participant participant = participants.getParticipants().get(i);
+            System.out.println(participant.getName()
+                    + " : " + resultInfo.getResults().get(participant.getPosition()));
         }
         enter();
     }
 
     public static void printResultOfParticipant(String result) {
+        enter();
         printResultWord();
         System.out.println(result);
         enter();

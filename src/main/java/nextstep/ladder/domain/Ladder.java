@@ -35,6 +35,10 @@ public class Ladder {
         return lines;
     }
 
+    public Line getLineByHeight(int height) {
+        return lines.get(height);
+    }
+
     @Override
     public String toString() {
         return "Ladder{" +
