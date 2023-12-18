@@ -46,7 +46,6 @@ public class LadderGameHandler {
                 return;
             }
             Participant participant = participants.getParticipantByName(inputName);
-            participant.toString();
             ResultView.printResultOfParticipant(resultInfo.getResult(participant.getPosition()));
         }
     }
