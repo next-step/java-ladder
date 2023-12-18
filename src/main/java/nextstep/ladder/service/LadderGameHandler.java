@@ -32,10 +32,8 @@ public class LadderGameHandler {
             if (line.getPointsByIndex(i).getCurrent()) {
                 Participant currentParticipant = participants.getParticipantByPosition(i);
                 currentParticipant.moveBack();
-                System.out.println(currentParticipant);
                 Participant previousParticipant = participants.getParticipantByPosition(i - 1);
-                previousParticipant.moveFront();
-                System.out.println(previousParticipant);
+                previousParticipant.moveFront(participants.count());
             }
         }
     }

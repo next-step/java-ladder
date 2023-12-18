@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.exception.CanNotMoveException;
 import nextstep.ladder.exception.CannotRegisterNameException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -33,5 +34,36 @@ public class ParticipantTest {
     void ParticipantPositionTest() {
         Participant participant = Participant.nameOf("test", 1);
         assertThat(participant.getPosition()).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("참가자는 오른쪽으로 이동할 수 있다.")
+    void moveFrontTest() {
+        Participant participant = Participant.nameOf("test", 1);
+        participant.moveFront(1);
+
+        assertThat(participant.getPosition()).isEqualTo(2);
+    }
+    @Test
+    @DisplayName("제일 왼쪽에 위치한 참가자가 한칸 더 왼쪽으로 이동하는 경우 Exception 발생")
+    void canNotMoveFrontTest() {
+        Participants participants = new Participants("a,b");
+
+        assertThrows(CanNotMoveException.class, () -> participants.getParticipantByName("b").moveFront(participants.count()));
+    }
+    @Test
+    @DisplayName("참가자는 왼쪽으로 이동할 수 있다.")
+    void moveBackTest() {
+        Participant participant = Participant.nameOf("test", 1);
+        participant.moveBack();
+
+        assertThat(participant.getPosition()).isEqualTo(0);
+    }
+    @Test
+    @DisplayName("제일 왼쪽에 위치한 참가자가 한칸 더 왼쪽으로 이동하는 경우 Exception 발생")
+    void canNotMoveBackTest() {
+        Participant participant = Participant.nameOf("test", 0);
+
+        assertThrows(CanNotMoveException.class, () -> participant.moveBack());
     }
 }

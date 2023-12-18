@@ -1,9 +1,11 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.exception.NotFoundException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ParticipantsTest {
     @Test
@@ -13,4 +15,12 @@ public class ParticipantsTest {
         assertThat(participants.getParticipants().get(0).getPosition()).isEqualTo(1);
         assertThat(participants.getParticipants().get(1).getPosition()).isEqualTo(2);
     }
+
+    @Test
+    @DisplayName("참가자 명단에 없는 이름을 입력하는 경우 Exception 발생")
+    void wrongInputParticipantName() {
+        Participants participants = new Participants("a,b");
+        assertThrows(NotFoundException.class, () -> participants.getParticipantByName("c"));
+    }
+
 }

@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.exception.CanNotMoveException;
 import nextstep.ladder.exception.CannotRegisterNameException;
 
 public class Participant {
@@ -29,12 +30,26 @@ public class Participant {
         }
     }
 
-    public void moveFront() {
+    public void moveFront(int participantCount) {
+        canMoveFront(participantCount);
         this.position++;
     }
 
+    private void canMoveFront(int participantCount) {
+        if (position == participantCount - 1) {
+            throw new CanNotMoveException("제일 오른쪽에 위치해, 더 이상 오른쪽으로 이동할 수 없습니다.");
+        }
+    }
+
     public void moveBack() {
+        canMoveBack();
         this.position--;
+    }
+
+    private void canMoveBack() {
+        if (this.position == 0) {
+            throw new CanNotMoveException("제일 왼쪽에 위치해, 더 이상 왼쪽으로 이동할 수 없습니다.");
+        }
     }
 
     public String getName() {
