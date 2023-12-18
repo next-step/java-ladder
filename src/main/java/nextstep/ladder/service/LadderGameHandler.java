@@ -11,7 +11,7 @@ public class LadderGameHandler {
 
     public static void runGame() {
         Participants participants = inputAndRegisterParticipant();
-        ResultInfo resultInfo = inputGameResultInfo();
+        ResultInfo resultInfo = inputGameResultInfo(participants.count());
         Ladder ladder = drawLadder(participants);
 
         moveParticipants(participants, ladder);
@@ -50,10 +50,10 @@ public class LadderGameHandler {
         }
     }
 
-    private static ResultInfo inputGameResultInfo() {
+    private static ResultInfo inputGameResultInfo(int participantCount) {
         String gameResults = InputView.inputGameResult();
         ResultView.enter();
-        return new ResultInfo(gameResults);
+        return new ResultInfo(gameResults, participantCount);
     }
 
     private static void printLadder(Participants participants, Ladder ladder, ResultInfo resultInfo) {
