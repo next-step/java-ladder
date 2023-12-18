@@ -1,9 +1,6 @@
 package nextstep.ladder.service;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.LadderInfo;
-import nextstep.ladder.domain.Participants;
-import nextstep.ladder.domain.ResultInfo;
+import nextstep.ladder.domain.*;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
@@ -18,6 +15,20 @@ public class LadderGameHandler {
         Ladder ladder = drawLadder(participants);
 
         printLadder(participants, ladder, resultInfo);
+
+        printResult(participants, resultInfo);
+    }
+
+    private static void printResult(Participants participants, ResultInfo resultInfo) {
+        while (true) {
+            String inputName = InputView.inputForParticipantResult();
+            if (inputName.trim().equals("all")) {
+                ResultView.printResultAll(participants, resultInfo);
+                return;
+            }
+            Participant participant = participants.getParticipant(inputName);
+            ResultView.printResultOfParticipant(resultInfo.getResult(participant.getPosition()));
+        }
     }
 
     private static ResultInfo inputGameResultInfo() {
@@ -27,7 +38,7 @@ public class LadderGameHandler {
     }
 
     private static void printLadder(Participants participants, Ladder ladder, ResultInfo resultInfo) {
-        ResultView.printResultWord();
+        ResultView.printLadderWord();
         ResultView.printParticipantsName(participants);
         ResultView.printLadder(ladder);
         ResultView.printResultInfo(resultInfo);
