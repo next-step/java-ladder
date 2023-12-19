@@ -31,4 +31,21 @@ public class Ladder {
     public int getHeight() {
         return lines.size();
     }
+
+    public int getResult(int idx) {
+        for (Line line : lines) {
+            idx = line.move(idx);
+        }
+        return idx;
+    }
+
+    public LadderResult getResults(List<String> prizes) {
+        LadderResult ladderResult = new LadderResult();
+        IntStream.range(0, joinMembers.getNumberOfMembers())
+                .forEach(memberIDX -> {
+                    int prizeIDX = getResult(memberIDX);
+                    ladderResult.addResult(joinMembers.getMember(memberIDX), prizes.get(prizeIDX));
+                });
+        return ladderResult;
+    }
 }

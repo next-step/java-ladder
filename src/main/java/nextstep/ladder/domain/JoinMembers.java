@@ -26,6 +26,10 @@ public class JoinMembers {
                 .collect(Collectors.toList()));
     }
 
+    public Member getMember(int idx) {
+        return this.members.get(idx);
+    }
+
     public List<Member> getMembers() {
         return Collections.unmodifiableList(members);
     }
