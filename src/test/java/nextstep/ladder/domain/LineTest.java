@@ -12,12 +12,6 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 class LineTest {
     @Test
-    @DisplayName("생성 / 인원수를 넣음 / 성공")
-    void create() {
-        assertThat(new Line(5)).isInstanceOf(Line.class);
-    }
-
-    @Test
     @DisplayName("생성 / 라인이 겹치게 생성 / IllegalArgumentException")
     void createOverlapLineFail() {
         assertThatIllegalArgumentException().isThrownBy(

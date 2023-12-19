@@ -8,13 +8,6 @@ import java.util.stream.IntStream;
 public class Line {
     private final List<Boolean> points = new ArrayList<>();
 
-    public Line(int countOfPerson) {
-        this(IntStream.range(0, countOfPerson)
-                .mapToObj(i -> Boolean.FALSE)
-                .collect(Collectors.toList())
-        );
-    }
-
     public Line(List<Boolean> points) {
         validateExistSequentialLine(points);
         this.points.addAll(points);

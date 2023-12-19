@@ -11,7 +11,7 @@ public class Ladder {
 
     public Ladder(JoinMembers joinMembers, int height) {
         this(joinMembers, IntStream.range(0, height)
-                .mapToObj((i) -> new Line(joinMembers.getNumberOfMembers() - 1))
+                .mapToObj((i) -> LineFactory.randomCreate(joinMembers.getNumberOfMembers()))
                 .collect(Collectors.toList()));
     }
 
