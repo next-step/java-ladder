@@ -16,7 +16,7 @@ class LadderResponseTest {
     void createLadderResponse() {
         Line line1 = new Line(List.of(FALSE, TRUE, FALSE, FALSE));
         Line line2 = new Line(List.of(FALSE, TRUE, FALSE, TRUE));
-        Ladder ladder = new Ladder(2, List.of(line1, line2));
+        Ladder ladder = new Ladder(List.of(line1, line2));
 
         LadderResponse ladderResponse = LadderResponse.from(ladder);
 
