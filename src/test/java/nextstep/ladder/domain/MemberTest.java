@@ -12,14 +12,12 @@ class MemberTest {
     @Test
     @DisplayName("생성 / 이름5글자 / 성공")
     void 생성_성공() {
-        // expect
         assertThat(new Member("abcde")).isInstanceOf(Member.class);
     }
 
     @ParameterizedTest(name = "생성 / 이름: {0} / IllegalArgumentException")
     @ValueSource(strings = {"", "abcdef"})
     void 생성_실패(String name) {
-        // expect
         assertThatIllegalArgumentException().isThrownBy(() -> new Member(name));
     }
 }

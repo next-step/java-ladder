@@ -12,14 +12,12 @@ class LineTest {
     @Test
     @DisplayName("생성 / 인원수를 넣음 / 성공")
     void create() {
-        // expect
         assertThat(new Line(5)).isInstanceOf(Line.class);
     }
 
     @Test
     @DisplayName("생성 / 라인이 겹치게 생성 / IllegalArgumentException")
     void createOverlapLineFail() {
-        // expect
         assertThatIllegalArgumentException().isThrownBy(
                 () -> new Line(Arrays.asList(Boolean.TRUE, Boolean.TRUE, Boolean.FALSE)));
     }

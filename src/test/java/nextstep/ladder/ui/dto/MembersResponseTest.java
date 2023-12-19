@@ -10,7 +10,9 @@ class MembersResponseTest {
     @Test
     void createMembersResponse() {
         JoinMembers joinMembers = new JoinMembers("pobi,honux,crong,jk");
+
         MembersResponse members = MembersResponse.from(joinMembers);
+
         assertThat(members.getResponse()).isEqualTo(" pobi honux crong    jk");
     }
 }

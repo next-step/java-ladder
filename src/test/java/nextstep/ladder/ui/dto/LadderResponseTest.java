@@ -14,15 +14,12 @@ class LadderResponseTest {
 
     @Test
     void createLadderResponse() {
-        // given
         Line line1 = new Line(List.of(FALSE, TRUE, FALSE, FALSE));
         Line line2 = new Line(List.of(FALSE, TRUE, FALSE, TRUE));
         Ladder ladder = new Ladder(2, List.of(line1, line2));
 
-        // when
         LadderResponse ladderResponse = LadderResponse.from(ladder);
 
-        // then
         assertThat(ladderResponse.getResponse())
                 .isEqualTo(
                         "     |     |-----|     |     |\n" +
