@@ -34,4 +34,27 @@ public class Line {
     public List<Boolean> getPoints() {
         return points;
     }
+
+    public int move(int idx) {
+        if (idx == points.size() && points.get(idx - 1)) {
+            return idx - 1;
+        }
+        if (idx == points.size() && !points.get(idx - 1)) {
+            return idx;
+        }
+        if (idx == 0 && points.get(idx)) {
+            return idx + 1;
+        }
+        if (idx == 0 && !points.get(idx)) {
+            return idx;
+        }
+
+        if (points.get(idx)) {
+            return idx + 1;
+        }
+        if (points.get(idx - 1)) {
+            return idx - 1;
+        }
+        return idx;
+    }
 }
