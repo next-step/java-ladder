@@ -24,6 +24,6 @@ class LadderResponseTest {
         assertThat(ladderResponse.getResponse())
                 .isEqualTo(
                         "     |     |-----|     |     |\n" +
-                                "     |     |-----|     |-----|\n");
+                                "     |     |-----|     |-----|");
     }
 }

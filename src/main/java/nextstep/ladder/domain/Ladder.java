@@ -32,7 +32,7 @@ public class Ladder {
         return lines.size();
     }
 
-    public int getResult(int idx) {
+    private int getResult(int idx) {
         for (Line line : lines) {
             idx = line.move(idx);
         }

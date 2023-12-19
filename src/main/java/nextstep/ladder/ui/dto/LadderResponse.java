@@ -16,6 +16,7 @@ public class LadderResponse {
             sb.append(LineResponse.from(lines.get(i)).getResponse());
             sb.append("\n");
         }
+        sb.deleteCharAt(sb.length() - 1);
         return new LadderResponse(sb.toString());
     }
 
