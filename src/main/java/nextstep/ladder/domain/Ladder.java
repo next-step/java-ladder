@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
 
 public class Ladder {
     private final int height;
-    private final List<Line> lines = new ArrayList<>();
+    private final List<Line> lines;
 
     public Ladder(int height, int countOfPerson) {
         this(height, IntStream.range(0, height)
@@ -19,7 +19,7 @@ public class Ladder {
     public Ladder(int height, List<Line> lines) {
         validateHeight(height, lines);
         this.height = height;
-        this.lines.addAll(lines);
+        this.lines= lines;
     }
 
     public List<Line> getLines() {

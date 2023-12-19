@@ -12,7 +12,7 @@ public class LadderGameApplication {
         List<String> inputNames = InputView.inputNames();
         int inputHeight = InputView.inputHeight();
 
-        LadderGame ladderGame = LadderGame.of(JoinMembers.from(inputNames), inputHeight);
+        LadderGame ladderGame = new LadderGame(JoinMembers.fromMemberNames(inputNames), inputHeight);
 
         OutputView.outputLadderGame(ladderGame);
     }
