@@ -12,9 +12,6 @@ public class LineResponse {
 
     private final String line;
 
-    private LineResponse(String line) {
-        this.line = line;
-    }
 
     public static LineResponse from(Line line) {
         List<Boolean> points = line.getPoints();
@@ -29,6 +26,10 @@ public class LineResponse {
         }
         sb.append(LAST_LINE);
         return new LineResponse(sb.toString());
+    }
+
+    private LineResponse(String line) {
+        this.line = line;
     }
 
     public String getResponse() {

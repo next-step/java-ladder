@@ -9,10 +9,6 @@ public class LadderResponse {
     private final String ladder;
 
 
-    public LadderResponse(String ladder) {
-        this.ladder = ladder;
-    }
-
     public static LadderResponse from(Ladder ladder) {
         StringBuilder sb = new StringBuilder();
         List<Line> lines = ladder.getLines();
@@ -21,6 +17,10 @@ public class LadderResponse {
             sb.append("\n");
         }
         return new LadderResponse(sb.toString());
+    }
+
+    private LadderResponse(String ladder) {
+        this.ladder = ladder;
     }
 
     public String getResponse() {

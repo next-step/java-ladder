@@ -1,7 +1,7 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.JoinMembers;
-import nextstep.ladder.domain.LadderGame;
+import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.ui.InputView;
 import nextstep.ladder.ui.OutputView;
 
@@ -12,8 +12,8 @@ public class LadderGameApplication {
         List<String> inputNames = InputView.inputNames();
         int inputHeight = InputView.inputHeight();
 
-        LadderGame ladderGame = new LadderGame(JoinMembers.fromMemberNames(inputNames), inputHeight);
+        Ladder ladder = new Ladder(JoinMembers.fromMemberNames(inputNames), inputHeight);
 
-        OutputView.outputLadderGame(ladderGame);
+        OutputView.outputLadder(ladder);
     }
 }
