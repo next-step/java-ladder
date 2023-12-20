@@ -20,12 +20,6 @@ public class JoinMembers {
         this.members = members;
     }
 
-    public static JoinMembers fromMemberNames(List<String> members) {
-        return new JoinMembers(members.stream()
-                .map(Member::new)
-                .collect(Collectors.toList()));
-    }
-
     public Member getMember(int idx) {
         return this.members.get(idx);
     }
