@@ -9,6 +9,10 @@ public class Ladder {
     private final JoinMembers joinMembers;
     private final List<Line> lines;
 
+    public Ladder(String names, int height) {
+        this(new JoinMembers(names), height);
+    }
+
     public Ladder(JoinMembers joinMembers, int height) {
         this(joinMembers, IntStream.range(0, height)
                 .mapToObj((i) -> LineFactory.randomCreate(joinMembers.getNumberOfMembers()))
