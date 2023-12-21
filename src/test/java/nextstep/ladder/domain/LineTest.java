@@ -37,4 +37,30 @@ class LineTest {
         assertThat(line.move(4)).isEqualTo(5);
         assertThat(line.move(5)).isEqualTo(4);
     }
+
+    @Test
+    @DisplayName("이동 / 좌우 이동 / 성공")
+    void moveLeftRight() {
+        /*
+        0     1
+        |-----|
+         */
+        Line line = new Line(Arrays.asList(RIGHT, LEFT));
+
+        assertThat(line.move(0)).isEqualTo(1);
+        assertThat(line.move(1)).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("이동 / 직진 이동 / 성공")
+    void moveStraight() {
+        /*
+        0     1
+        |     |
+         */
+        Line line = new Line(Arrays.asList(STRAIGHT, STRAIGHT));
+
+        assertThat(line.move(0)).isEqualTo(0);
+        assertThat(line.move(1)).isEqualTo(1);
+    }
 }
