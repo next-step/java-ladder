@@ -6,8 +6,9 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.lang.Boolean.FALSE;
-import static java.lang.Boolean.TRUE;
+import static nextstep.ladder.domain.LineDirection.LEFT;
+import static nextstep.ladder.domain.LineDirection.RIGHT;
+import static nextstep.ladder.domain.LineDirection.STRAIGHT;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderTest {
@@ -27,8 +28,8 @@ class LadderTest {
         Member c = new Member("c");
         Member d = new Member("d");
         Member e = new Member("e");
-        Line line1 = new Line(List.of(FALSE, TRUE, FALSE, TRUE));
-        Line line2 = new Line(List.of(TRUE, FALSE, TRUE, FALSE));
+        Line line1 = new Line(List.of(STRAIGHT, RIGHT, LEFT, RIGHT, LEFT));
+        Line line2 = new Line(List.of(RIGHT, LEFT, RIGHT, LEFT, STRAIGHT));
         Ladder ladder = new Ladder(new JoinMembers(List.of(a, b, c, d, e)), List.of(line1, line2));
 
         LadderResult results = ladder.getResults(new ArrayList<>(List.of("꽝", "5000", "꽝", "6000", "7000")));

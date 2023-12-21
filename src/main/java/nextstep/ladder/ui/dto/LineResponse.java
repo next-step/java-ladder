@@ -1,8 +1,11 @@
 package nextstep.ladder.ui.dto;
 
 import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.LineDirection;
 
 import java.util.List;
+
+import static nextstep.ladder.domain.LineDirection.RIGHT;
 
 public class LineResponse {
     public static final String OFFSET = "     ";
@@ -14,11 +17,11 @@ public class LineResponse {
 
 
     public static LineResponse from(Line line) {
-        List<Boolean> points = line.getPoints();
+        List<LineDirection> lineDirections = line.getLineDirections();
 
         StringBuilder sb = new StringBuilder(OFFSET);
-        for (int i = 0; i < points.size(); i++) {
-            if (points.get(i)) {
+        for (int i = 0; i < lineDirections.size() - 1; i++) {
+            if (lineDirections.get(i).equals(RIGHT)) {
                 sb.append(CONNECTED_LINE);
                 continue;
             }
