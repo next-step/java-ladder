@@ -1,37 +1,37 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static nextstep.ladder.domain.LineDirection.LEFT;
+import static nextstep.ladder.domain.LineDirection.RIGHT;
+import static nextstep.ladder.domain.LineDirection.validateSequentialDirection;
+
 public class Line {
-    private final List<Boolean> points = new ArrayList<>();
+    private final List<LineDirection> lineDirections;
 
-    public Line(int countOfPerson) {
-        this(IntStream.range(0, countOfPerson)
-                .mapToObj(i -> Boolean.FALSE)
-                .collect(Collectors.toList())
-        );
+    public Line(List<LineDirection> lineDirections) {
+        validateExistSequentialLine(lineDirections);
+        this.lineDirections = lineDirections;
     }
 
-    public Line(List<Boolean> points) {
-        validateExistSequentialLine(points);
-        this.points.addAll(points);
+    private void validateExistSequentialLine(List<LineDirection> lineDirections) {
+        IntStream.range(1, lineDirections.size())
+                .forEach((i) -> validateSequentialDirection(lineDirections.get(i - 1), lineDirections.get(i)));
     }
 
-    private void validateExistSequentialLine(List<Boolean> points) {
-        IntStream.range(1, points.size())
-                .forEach((i) -> validateSequential(points, i));
+    public List<LineDirection> getLineDirections() {
+        return lineDirections;
     }
 
-    private void validateSequential(List<Boolean> points, int idx) {
-        if (points.get(idx - 1) && points.get(idx)) {
-            throw new IllegalArgumentException("라인은 연속으로 겹치면 안됩니다.");
+    public int move(int idx) {
+        LineDirection lineDirection = lineDirections.get(idx);
+        if (lineDirection.equals(LEFT)) {
+            return idx - 1;
         }
-    }
-
-    public List<Boolean> getPoints() {
-        return points;
+        if (lineDirection.equals(RIGHT)) {
+            return idx + 1;
+        }
+        return idx;
     }
 }

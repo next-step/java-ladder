@@ -5,10 +5,6 @@ import nextstep.ladder.domain.JoinMembers;
 public class MembersResponse {
     private final String member;
 
-    public MembersResponse(String member) {
-        this.member = member;
-    }
-
     public static MembersResponse from(JoinMembers members) {
         StringBuilder stringBuilder = members.getMembers().stream()
                 .collect(
@@ -18,6 +14,10 @@ public class MembersResponse {
                 );
         stringBuilder.deleteCharAt(0);
         return new MembersResponse(stringBuilder.toString());
+    }
+
+    private MembersResponse(String member) {
+        this.member = member;
     }
 
     public String getResponse() {

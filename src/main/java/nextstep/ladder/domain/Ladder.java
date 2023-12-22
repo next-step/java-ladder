@@ -1,38 +1,55 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private final int height;
-    private final List<Line> lines = new ArrayList<>();
+    private final JoinMembers joinMembers;
+    private final List<Line> lines;
 
-    public Ladder(int height, int countOfPerson) {
-        this(height, IntStream.range(0, height)
-                .mapToObj((i) -> new Line(countOfPerson))
+    public Ladder(String names, int height) {
+        this(new JoinMembers(names), height);
+    }
+
+    public Ladder(JoinMembers joinMembers, int height) {
+        this(joinMembers, IntStream.range(0, height)
+                .mapToObj((i) -> LineFactory.randomCreate(joinMembers.getNumberOfMembers()))
                 .collect(Collectors.toList()));
     }
 
-    public Ladder(int height, List<Line> lines) {
-        validateHeight(height, lines);
-        this.height = height;
-        this.lines.addAll(lines);
+    public Ladder(JoinMembers joinMembers, List<Line> lines) {
+        this.joinMembers = joinMembers;
+        this.lines = lines;
     }
 
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }
 
-    public int getHeight() {
-        return height;
+    public JoinMembers getJoinMembers() {
+        return joinMembers;
     }
 
-    private static void validateHeight(int height, List<Line> lines) {
-        if (height != lines.size()) {
-            throw new IllegalArgumentException("입력한 높이와 Line의 갯수가 다릅니다.");
+    public int getHeight() {
+        return lines.size();
+    }
+
+    private int getResult(int idx) {
+        for (Line line : lines) {
+            idx = line.move(idx);
         }
+        return idx;
+    }
+
+    public LadderResult getResults(List<String> prizes) {
+        LadderResult ladderResult = new LadderResult();
+        IntStream.range(0, joinMembers.getNumberOfMembers())
+                .forEach(memberIDX -> {
+                    int prizeIDX = getResult(memberIDX);
+                    ladderResult.addResult(joinMembers.getMember(memberIDX), prizes.get(prizeIDX));
+                });
+        return ladderResult;
     }
 }

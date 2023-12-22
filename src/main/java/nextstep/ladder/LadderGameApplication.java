@@ -1,7 +1,7 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.JoinMembers;
-import nextstep.ladder.domain.LadderGame;
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderResult;
 import nextstep.ladder.ui.InputView;
 import nextstep.ladder.ui.OutputView;
 
@@ -9,11 +9,22 @@ import java.util.List;
 
 public class LadderGameApplication {
     public static void main(String[] args) {
-        List<String> inputNames = InputView.inputNames();
+        String inputNames = InputView.inputNames();
+        List<String> inputPrizes = InputView.inputPrizes();
         int inputHeight = InputView.inputHeight();
 
-        LadderGame ladderGame = LadderGame.of(JoinMembers.from(inputNames), inputHeight);
+        Ladder ladder = new Ladder(inputNames, inputHeight);
+        LadderResult results = ladder.getResults(inputPrizes);
 
-        OutputView.outputLadderGame(ladderGame);
+        OutputView.outputLadder(ladder);
+        OutputView.outputPrizes(inputPrizes);
+        while (true) {
+            String inputResultMember = InputView.inputResultMember();
+            if (inputResultMember.equals("all")) {
+                OutputView.outputPrizeResults(results);
+                return;
+            }
+            OutputView.outputPrizeResult(results.getResult(inputResultMember));
+        }
     }
 }
