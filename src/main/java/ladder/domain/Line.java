@@ -50,17 +50,28 @@ public class Line {
     }
 
     public int move(int index) {
-        boolean left = (index == points.size() + 1 && points.get(index))
-                || (0 < index && index < points.size() &&  points.get(index - 1)
-                || (index == points.size() && points.get(index - 1)));
-        boolean right = (index == 0 && points.get(index))
-                || (0 < index && index < points.size() && points.get(index));
-        if (left) {
+        if (isPossibleMoveLeft(index)) {
             return -1;
         }
-        if (right) {
+        if (isPossibleMoveRight(index)) {
             return 1;
         }
         return 0;
+    }
+
+    private boolean isPossibleMoveLeft(int index) {
+        if ((index == points.size() + 1 && points.get(index))
+        || (0 < index && index <= points.size() && points.get(index - 1))) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private boolean isPossibleMoveRight(int index) {
+        if (0 <= index && index < points.size() && points.get(index)) {
+            return true;
+        }
+        return false;
     }
 }
