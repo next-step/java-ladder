@@ -1,13 +1,12 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class Ladder {
-
-    private static final String RESULT_FORMAT = "%-6s";
 
     private List<Line> lines = new ArrayList<>();
 
@@ -31,12 +30,8 @@ public class Ladder {
         return this.lines.get(index);
     }
 
-    public String getResultsData() {
-        StringBuilder sb = new StringBuilder();
-        for (String result : results) {
-            sb.append(String.format(RESULT_FORMAT, result));
-        }
-        return sb.toString();
+    public List<String> getResults() {
+        return Collections.unmodifiableList(results);
     }
 
     private String getLadderResult(int index) {

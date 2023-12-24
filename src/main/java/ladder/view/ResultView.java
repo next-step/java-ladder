@@ -13,6 +13,7 @@ public class ResultView {
     private static final String VERTICAL = "-----";
     private static final String VERTICAL_BLANK = "     ";
     private static final String NOTICE_RESULT = "\n실행 결과";
+    private static final String RESULT_FORMAT = "%-6s";
 
     public static void showLadder(Participants participants, Ladder ladder) {
         System.out.println(NOTICE_LADDERS);
@@ -28,7 +29,7 @@ public class ResultView {
         for (int i = 0; i < ladder.size(); i++) {
             System.out.println(createLines(ladder.getLine(i)));
         }
-        System.out.println(ladder.getResultsData());
+        showResultData(ladder.getResults());
     }
 
     private static String createLines(Line line) {
@@ -47,6 +48,14 @@ public class ResultView {
             return VERTICAL;
         }
         return VERTICAL_BLANK;
+    }
+
+    private static void showResultData(List<String> results) {
+        StringBuilder sb = new StringBuilder();
+        for (String result : results) {
+            sb.append(String.format(RESULT_FORMAT, result));
+        }
+        System.out.println(sb.toString());
     }
 
     public static void showResult(String result) {
