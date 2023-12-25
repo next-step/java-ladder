@@ -3,8 +3,9 @@ package nextstep.ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LineFactory {
-    public static Line randomCreate(int countOfPerson) {
+public class RandomLineCreator implements LineCreator {
+    @Override
+    public Line create(int countOfPerson) {
         List<LineDirection> lineDirections = new ArrayList<>();
         lineDirections.add(LineDirection.makeFirstRandomDirection());
         for (int i = 1; i < countOfPerson - 1; i++) {
