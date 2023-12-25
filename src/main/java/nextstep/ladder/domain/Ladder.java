@@ -36,16 +36,6 @@ public class Ladder {
         return idx;
     }
 
-    public LadderResult getResults(JoinMembers joinMembers, List<String> prizes) {
-        LadderResult ladderResult = new LadderResult();
-        IntStream.range(0, joinMembers.countOfMembers())
-                .forEach(memberIDX -> {
-                    int prizeIDX = getResult(memberIDX);
-                    ladderResult.addResult(joinMembers.getMember(memberIDX), prizes.get(prizeIDX));
-                });
-        return ladderResult;
-    }
-
     public MatchingResult play() {
         MatchingResult matchingResult = new MatchingResult();
         IntStream.range(0, countOfMembers)
