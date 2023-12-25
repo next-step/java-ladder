@@ -6,30 +6,20 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private final JoinMembers joinMembers;
     private final List<Line> lines;
 
-    public Ladder(String names, int height) {
-        this(new JoinMembers(names), height);
-    }
-
-    public Ladder(JoinMembers joinMembers, int height) {
-        this(joinMembers, IntStream.range(0, height)
-                .mapToObj((i) -> LineFactory.randomCreate(joinMembers.getNumberOfMembers()))
+    public Ladder(int countOfMembers, int height) {
+        this(IntStream.range(0, height)
+                .mapToObj((i) -> LineFactory.randomCreate(countOfMembers))
                 .collect(Collectors.toList()));
     }
 
-    public Ladder(JoinMembers joinMembers, List<Line> lines) {
-        this.joinMembers = joinMembers;
+    public Ladder(List<Line> lines) {
         this.lines = lines;
     }
 
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
-    }
-
-    public JoinMembers getJoinMembers() {
-        return joinMembers;
     }
 
     public int getHeight() {
@@ -43,9 +33,9 @@ public class Ladder {
         return idx;
     }
 
-    public LadderResult getResults(List<String> prizes) {
+    public LadderResult getResults(JoinMembers joinMembers, List<String> prizes) {
         LadderResult ladderResult = new LadderResult();
-        IntStream.range(0, joinMembers.getNumberOfMembers())
+        IntStream.range(0, joinMembers.countOfMembers())
                 .forEach(memberIDX -> {
                     int prizeIDX = getResult(memberIDX);
                     ladderResult.addResult(joinMembers.getMember(memberIDX), prizes.get(prizeIDX));

@@ -3,7 +3,6 @@ package nextstep.ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static nextstep.ladder.domain.LineDirection.LEFT;
@@ -30,9 +29,10 @@ class LadderTest {
         Member e = new Member("e");
         Line line1 = new Line(List.of(STRAIGHT, RIGHT, LEFT, RIGHT, LEFT));
         Line line2 = new Line(List.of(RIGHT, LEFT, RIGHT, LEFT, STRAIGHT));
-        Ladder ladder = new Ladder(new JoinMembers(List.of(a, b, c, d, e)), List.of(line1, line2));
+        JoinMembers joinMembers = new JoinMembers(List.of(a, b, c, d, e));
+        Ladder ladder = new Ladder(List.of(line1, line2));
 
-        LadderResult results = ladder.getResults(new ArrayList<>(List.of("꽝", "5000", "꽝", "6000", "7000")));
+        LadderResult results = ladder.getResults(joinMembers, List.of("꽝", "5000", "꽝", "6000", "7000"));
 
         assertThat(results.getResult(a)).isEqualTo("5000");
         assertThat(results.getResult(b)).isEqualTo("6000");

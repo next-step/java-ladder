@@ -10,8 +10,8 @@ import java.util.List;
 
 public class OutputView {
 
-    public static void outputLadder(Ladder ladder) {
-        outputMembers(ladder.getJoinMembers());
+    public static void outputLadder(JoinMembers joinMembers, Ladder ladder) {
+        outputMembers(joinMembers);
         System.out.println(LadderResponse.from(ladder).getResponse());
     }
 
