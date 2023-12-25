@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -20,5 +21,9 @@ public class Rewards {
 
     public String getReward(int idx) {
         return rewards.get(idx);
+    }
+
+    public List<String> getRewards() {
+        return Collections.unmodifiableList(rewards);
     }
 }

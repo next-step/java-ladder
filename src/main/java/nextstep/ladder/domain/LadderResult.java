@@ -3,7 +3,6 @@ package nextstep.ladder.domain;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 public class LadderResult {
     private final Map<Member, String> results = new HashMap<>();
@@ -20,8 +19,7 @@ public class LadderResult {
     }
 
     public String getResult(String memberName) {
-        return Optional.ofNullable(results.get(new Member(memberName)))
-                .orElseThrow(() -> new IllegalArgumentException(String.format("입력하신 %s는 존재하지 않는 이름입니다.", memberName)));
+        return results.get(new Member(memberName));
     }
 
     public Map<Member, String> getResults() {
