@@ -3,6 +3,7 @@ package nextstep.ladder;
 import nextstep.ladder.domain.JoinMembers;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderResult;
+import nextstep.ladder.domain.MatchingResult;
 import nextstep.ladder.domain.Rewards;
 import nextstep.ladder.ui.InputView;
 import nextstep.ladder.ui.OutputView;
@@ -19,7 +20,8 @@ public class LadderGameApplication {
         int inputHeight = InputView.inputHeight();
 
         Ladder ladder = new Ladder(joinMembers.countOfMembers(), inputHeight);
-        LadderResult results = ladder.getResults(joinMembers, inputPrizes);
+        MatchingResult matchingResult = ladder.play();
+        LadderResult results = matchingResult.map(joinMembers, rewards);
 
         OutputView.outputLadder(joinMembers, ladder);
         OutputView.outputPrizes(inputPrizes);

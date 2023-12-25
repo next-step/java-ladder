@@ -30,7 +30,7 @@ class LadderTest {
         Line line1 = new Line(List.of(STRAIGHT, RIGHT, LEFT, RIGHT, LEFT));
         Line line2 = new Line(List.of(RIGHT, LEFT, RIGHT, LEFT, STRAIGHT));
         JoinMembers joinMembers = new JoinMembers(List.of(a, b, c, d, e));
-        Ladder ladder = new Ladder(List.of(line1, line2));
+        Ladder ladder = new Ladder(joinMembers.countOfMembers(), List.of(line1, line2));
 
         LadderResult results = ladder.getResults(joinMembers, List.of("꽝", "5000", "꽝", "6000", "7000"));
 

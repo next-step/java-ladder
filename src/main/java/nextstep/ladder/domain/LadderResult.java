@@ -11,8 +11,8 @@ public class LadderResult {
     public LadderResult() {
     }
 
-    public void addResult(Member member, String string) {
-        results.put(member, string);
+    public void addResult(Member member, String reward) {
+        results.put(member, reward);
     }
 
     public String getResult(Member member) {

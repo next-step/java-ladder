@@ -17,7 +17,7 @@ class LadderResponseTest {
     void createLadderResponse() {
         Line line1 = new Line(List.of(STRAIGHT, RIGHT, LEFT, STRAIGHT, STRAIGHT));
         Line line2 = new Line(List.of(STRAIGHT, RIGHT, LEFT, RIGHT, LEFT));
-        Ladder ladder = new Ladder(List.of(line1, line2));
+        Ladder ladder = new Ladder(5, List.of(line1, line2));
 
         LadderResponse ladderResponse = LadderResponse.from(ladder);
 

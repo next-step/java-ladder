@@ -17,4 +17,8 @@ public class Rewards {
     public Rewards(List<String> rewards) {
         this.rewards = rewards;
     }
+
+    public String getReward(int idx) {
+        return rewards.get(idx);
+    }
 }
