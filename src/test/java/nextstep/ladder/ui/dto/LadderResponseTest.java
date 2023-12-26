@@ -1,6 +1,5 @@
 package nextstep.ladder.ui.dto;
 
-import nextstep.ladder.domain.JoinMembers;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
 import org.junit.jupiter.api.Test;
@@ -18,7 +17,7 @@ class LadderResponseTest {
     void createLadderResponse() {
         Line line1 = new Line(List.of(STRAIGHT, RIGHT, LEFT, STRAIGHT, STRAIGHT));
         Line line2 = new Line(List.of(STRAIGHT, RIGHT, LEFT, RIGHT, LEFT));
-        Ladder ladder = new Ladder(new JoinMembers("a,b,c,d,e"), List.of(line1, line2));
+        Ladder ladder = new Ladder(5, List.of(line1, line2));
 
         LadderResponse ladderResponse = LadderResponse.from(ladder);
 

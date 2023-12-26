@@ -1,30 +1,27 @@
 package nextstep.ladder;
 
+import nextstep.ladder.domain.JoinMembers;
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderFactory;
 import nextstep.ladder.domain.LadderResult;
+import nextstep.ladder.domain.MatchingResult;
+import nextstep.ladder.domain.Rewards;
 import nextstep.ladder.ui.InputView;
 import nextstep.ladder.ui.OutputView;
 
-import java.util.List;
-
 public class LadderGameApplication {
+    private static final LadderGameConfig ladderGameConfig = new LadderGameConfig();
+
     public static void main(String[] args) {
-        String inputNames = InputView.inputNames();
-        List<String> inputPrizes = InputView.inputPrizes();
-        int inputHeight = InputView.inputHeight();
+        JoinMembers joinMembers = InputView.createJoinMembers();
+        Rewards rewards = InputView.createRewards();
 
-        Ladder ladder = new Ladder(inputNames, inputHeight);
-        LadderResult results = ladder.getResults(inputPrizes);
+        Ladder ladder = LadderFactory.create(ladderGameConfig.getLineCreator(), joinMembers.countOfMembers(), InputView.inputHeight());
+        OutputView.outputLadder(joinMembers, ladder, rewards);
 
-        OutputView.outputLadder(ladder);
-        OutputView.outputPrizes(inputPrizes);
-        while (true) {
-            String inputResultMember = InputView.inputResultMember();
-            if (inputResultMember.equals("all")) {
-                OutputView.outputPrizeResults(results);
-                return;
-            }
-            OutputView.outputPrizeResult(results.getResult(inputResultMember));
-        }
+        MatchingResult matchingResult = ladder.play();
+        LadderResult result = matchingResult.map(joinMembers, rewards);
+
+        OutputView.outputResult(result);
     }
 }

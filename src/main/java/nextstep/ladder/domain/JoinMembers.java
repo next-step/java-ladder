@@ -28,7 +28,7 @@ public class JoinMembers {
         return Collections.unmodifiableList(members);
     }
 
-    public int getNumberOfMembers() {
+    public int countOfMembers() {
         return members.size();
     }
 }
