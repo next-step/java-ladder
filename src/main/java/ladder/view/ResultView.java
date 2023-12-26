@@ -3,6 +3,7 @@ package ladder.view;
 import ladder.domain.Ladder;
 import ladder.domain.Line;
 import ladder.domain.Participants;
+import ladder.domain.Results;
 
 import java.util.List;
 
@@ -15,10 +16,11 @@ public class ResultView {
     private static final String NOTICE_RESULT = "\n실행 결과";
     private static final String RESULT_FORMAT = "%-6s";
 
-    public static void showLadder(Participants participants, Ladder ladder) {
+    public static void showLadder(Participants participants, Ladder ladder, Results results) {
         System.out.println(NOTICE_LADDERS);
         showParticipants(participants);
         showLadder(ladder);
+        showResultData(results.getValues());
     }
 
     private static void showParticipants(Participants participants) {
@@ -29,7 +31,6 @@ public class ResultView {
         for (int i = 0; i < ladder.size(); i++) {
             System.out.println(createLines(ladder.getLine(i)));
         }
-        showResultData(ladder.getResults());
     }
 
     private static String createLines(Line line) {

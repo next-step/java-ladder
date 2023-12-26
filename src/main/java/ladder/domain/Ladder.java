@@ -10,23 +10,17 @@ public class Ladder {
 
     private List<Line> lines = new ArrayList<>();
 
-    private List<String> results = new ArrayList<>();
-
-    public Ladder(List<Line> lines, List<String> results) {
+    public Ladder(List<Line> lines) {
         this.lines = lines;
-        this.results = results;
     }
 
-    public static Ladder of(int countOfPerson, String[] results, int countOfLadder) {
-        if (countOfPerson != results.length) {
-            throw new IllegalArgumentException("참가자와 결과의 수는 동일해야합니다.");
-        }
+    public static Ladder of(int countOfPerson, int countOfLadder) {
         List<Line> newLadder = new ArrayList<>();
         for (int i = 0; i < countOfLadder; i++) {
             newLadder.add(new Line(countOfPerson));
         }
 
-        return new Ladder(newLadder, List.of(results));
+        return new Ladder(newLadder);
     }
 
     public int size() {
@@ -37,21 +31,17 @@ public class Ladder {
         return this.lines.get(index);
     }
 
-    public List<String> getResults() {
-        return Collections.unmodifiableList(results);
-    }
-
-    private String getLadderResult(int index) {
+    private int getLadderIndex(int index) {
         for (int i = 0; i < lines.size(); i++) {
             index += lines.get(i).move(index);
         }
-        return results.get(index);
+        return index;
     }
 
-    public LadderResult getLadderResult(Participants participants) {
+    public LadderResult getLadderResult(Participants participants, Results results) {
         Map<String, String> ladderResult = new HashMap<>();
         for (int i = 0; i < participants.size(); i++) {
-            ladderResult.put(participants.getParticipant(i).toString(), getLadderResult(i));
+            ladderResult.put(participants.getParticipant(i).toString(), results.getResult(getLadderIndex(i)));
         }
         return new LadderResult(ladderResult);
     }
