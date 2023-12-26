@@ -12,14 +12,21 @@ public class Ladder {
 
     private List<String> results = new ArrayList<>();
 
-    public Ladder(int countOfPerson, String[] results, int countOfLadder) {
+    public Ladder(List<Line> lines, List<String> results) {
+        this.lines = lines;
+        this.results = results;
+    }
+
+    public static Ladder of(int countOfPerson, String[] results, int countOfLadder) {
         if (countOfPerson != results.length) {
             throw new IllegalArgumentException("참가자와 결과의 수는 동일해야합니다.");
         }
-        this.results = List.of(results);
+        List<Line> newLadder = new ArrayList<>();
         for (int i = 0; i < countOfLadder; i++) {
-            lines.add(new Line(countOfPerson));
+            newLadder.add(new Line(countOfPerson));
         }
+
+        return new Ladder(newLadder, List.of(results));
     }
 
     public int size() {

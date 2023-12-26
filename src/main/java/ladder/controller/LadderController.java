@@ -10,7 +10,7 @@ public class LadderController {
 
     public static void run() {
         Participants participants = Participants.from(InputView.inputParticipants());
-        Ladder ladder = new Ladder(participants.size(), InputView.inputResultData(), InputView.inputLadderHeight());
+        Ladder ladder = Ladder.of(participants.size(), InputView.inputResultData(), InputView.inputLadderHeight());
         ResultView.showLadder(participants, ladder);
         LadderResult result = ladder.getLadderResult(participants);
         ResultView.showResult(result.getSelectResult(InputView.inputParticipantResult()));
