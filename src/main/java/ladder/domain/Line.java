@@ -48,4 +48,30 @@ public class Line {
     public List<Boolean> getPoints() {
         return Collections.unmodifiableList(points);
     }
+
+    public int move(int index) {
+        if (isPossibleMoveLeft(index)) {
+            return -1;
+        }
+        if (isPossibleMoveRight(index)) {
+            return 1;
+        }
+        return 0;
+    }
+
+    private boolean isPossibleMoveLeft(int index) {
+        if ((index == points.size() + 1 && points.get(index))
+        || (0 < index && index <= points.size() && points.get(index - 1))) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private boolean isPossibleMoveRight(int index) {
+        if (0 <= index && index < points.size() && points.get(index)) {
+            return true;
+        }
+        return false;
+    }
 }
