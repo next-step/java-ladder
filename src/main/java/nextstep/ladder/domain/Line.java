@@ -14,10 +14,15 @@ public class Line {
         this.points = points;
     }
 
+    public Line(GeneratePointStrategy strategy) {
+        this.points = strategy.generate();
+    }
+
     public Line(int countOfPerson) {
         RandomGeneratePointStrategy strategy = new RandomGeneratePointStrategy(countOfPerson);
         this.points = makePoints(strategy);
     }
+
 
     public int size() {
         return points.size();

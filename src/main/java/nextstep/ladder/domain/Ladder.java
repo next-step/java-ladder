@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.strategy.LinePositionMovableStrategy;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,9 +28,11 @@ public class Ladder {
 
     public Ladder(List<Line> lines, List<String> result) {
         this.lines = lines;
-        if (lines.size() != result.size()) {
-            throw new IllegalArgumentException("결과 값과 인원수가 맞지 않으면 사다리를 구축할 수 없습니다");
-        }
+        lines.stream().findAny().ifPresent(line -> {
+            if (line.size() + 1 != result.size()) {
+                throw new IllegalArgumentException("결과 값과 인원수가 맞지 않으면 사다리를 구축할 수 없습니다");
+            }
+        });
         this.result = result;
     }
 
@@ -44,7 +48,7 @@ public class Ladder {
     public String getLadderResult(int index) {
         int idx = index;
         for (Line line : lines) {
-            idx = line.move(new Position(idx, result.size()));
+            idx = line.move(new LinePositionMovableStrategy(new Position(idx, result.size()), line.points()));
         }
         return result.get(idx);
     }
