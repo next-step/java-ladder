@@ -1,5 +1,8 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.strategy.GeneratePointStrategy;
+import nextstep.ladder.domain.strategy.PositionMovableStrategy;
+
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -50,6 +53,11 @@ public class Line {
         return Stream.iterate(random.nextBoolean(), it -> this.hasLine(it, random))
                 .limit(count - MAX_PERSON_SIZE)
                 .collect(Collectors.toList());
+    }
+
+    private List<Boolean> makePoints(GeneratePointStrategy strategy) {
+        return strategy.generate();
+
     }
 
     private boolean hasLine(Boolean hasLine, Random random) {

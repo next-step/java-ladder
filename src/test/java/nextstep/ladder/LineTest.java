@@ -1,8 +1,8 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.LinePositionMovableStrategy;
 import nextstep.ladder.domain.Position;
+import nextstep.ladder.domain.strategy.LinePositionMovableStrategy;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

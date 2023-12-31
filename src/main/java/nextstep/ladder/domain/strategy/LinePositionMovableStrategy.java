@@ -1,4 +1,6 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.strategy;
+
+import nextstep.ladder.domain.Position;
 
 import java.util.List;
 
