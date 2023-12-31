@@ -12,6 +12,9 @@ public class RandomGeneratePointStrategy implements GeneratePointStrategy {
     private int count;
 
     public RandomGeneratePointStrategy(int count) {
+        if (count <= MAX_PERSON_SIZE) {
+            throw new IllegalArgumentException(String.format("라인은 %d명 이상인 경우만 생성 됩니다", MAX_PERSON_SIZE));
+        }
         this.count = count;
     }
 

@@ -8,7 +8,6 @@ import java.util.List;
 
 public class Line {
 
-    public static final int MAX_PERSON_SIZE = 1;
     private final List<Boolean> points;
 
     public Line(List<Boolean> points) {
@@ -16,9 +15,6 @@ public class Line {
     }
 
     public Line(int countOfPerson) {
-        if (countOfPerson <= MAX_PERSON_SIZE) {
-            throw new IllegalArgumentException(String.format("라인은 %d명 이상인 경우만 생성 됩니다", MAX_PERSON_SIZE));
-        }
         RandomGeneratePointStrategy strategy = new RandomGeneratePointStrategy(countOfPerson);
         this.points = makePoints(strategy);
     }
