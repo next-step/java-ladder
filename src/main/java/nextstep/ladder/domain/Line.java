@@ -2,11 +2,9 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.strategy.GeneratePointStrategy;
 import nextstep.ladder.domain.strategy.PositionMovableStrategy;
+import nextstep.ladder.domain.strategy.RandomGeneratePointStrategy;
 
 import java.util.List;
-import java.util.Random;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Line {
 
@@ -21,7 +19,8 @@ public class Line {
         if (countOfPerson <= MAX_PERSON_SIZE) {
             throw new IllegalArgumentException(String.format("라인은 %d명 이상인 경우만 생성 됩니다", MAX_PERSON_SIZE));
         }
-        this.points = makePoints(countOfPerson);
+        RandomGeneratePointStrategy strategy = new RandomGeneratePointStrategy(countOfPerson);
+        this.points = makePoints(strategy);
     }
 
     public int size() {
@@ -43,25 +42,12 @@ public class Line {
         return position.currentPosition();
     }
 
-
     public int move(PositionMovableStrategy strategy) {
         return strategy.move();
     }
 
-    private List<Boolean> makePoints(int count) {
-        Random random = new Random();
-        return Stream.iterate(random.nextBoolean(), it -> this.hasLine(it, random))
-                .limit(count - MAX_PERSON_SIZE)
-                .collect(Collectors.toList());
-    }
-
     private List<Boolean> makePoints(GeneratePointStrategy strategy) {
         return strategy.generate();
-
-    }
-
-    private boolean hasLine(Boolean hasLine, Random random) {
-        return !hasLine && random.nextBoolean();
     }
 
     public List<Boolean> points() {

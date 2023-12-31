@@ -19,6 +19,7 @@ class LineTest {
                 .hasMessage("라인은 1명 이상인 경우만 생성 됩니다");
     }
 
+
     @Test
     void 컬럼에서_오른쪽에_다리가_놓여있으면_오른쪽_한칸으로_이동한다() {
         Line line = new Line(List.of(false, true, false));
