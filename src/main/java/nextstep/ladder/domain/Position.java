@@ -11,13 +11,12 @@ public class Position {
         this.maxIndex = maxIndex;
     }
 
-
     public boolean isNotFirstPosition() {
         return index != FIRST_POSITION;
     }
 
     public boolean isNotLastPosition() {
-        return index != maxIndex;
+        return index != maxIndex - 1;
     }
 
     public int leftPosition() {

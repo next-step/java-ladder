@@ -2,9 +2,9 @@ package nextstep.ladder;
 
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.strategy.ManualGeneratePointStrategy;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -21,7 +21,8 @@ class LadderTest {
 
     @Test
     void 사다리의_위치의_결과를_노출한다() {
-        List<Line> lines = List.of(new Line(List.of(false, false)));
+        ManualGeneratePointStrategy strategy = new ManualGeneratePointStrategy(List.of(false, false));
+        List<Line> lines = List.of(new Line(strategy), new Line(strategy));
         Ladder ladder = new Ladder(lines, List.of("a", "b"));
         assertThat(ladder.getLadderResult(0)).isEqualTo("a");
     }

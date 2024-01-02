@@ -2,6 +2,8 @@ package nextstep.ladder;
 
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Users;
+import nextstep.ladder.factory.LadderCreator;
+import nextstep.ladder.factory.LadderFactoryBean;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
@@ -22,7 +24,8 @@ public class Application {
 
         Users users = new Users(userName);
         outputView.printUserNameList(users);
-        Ladder ladder = new Ladder(users.size(), height, results);
+        LadderCreator ladderCreator = LadderFactoryBean.createLadderFactory();
+        Ladder ladder = ladderCreator.create(users.size(), height, results);
         outputView.printLadder(ladder);
 
         String name;
