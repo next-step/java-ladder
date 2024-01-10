@@ -7,14 +7,14 @@ import java.util.stream.Stream;
 
 import ladder.util.PointGenerator;
 
-public class Lines {
+public final class Lines {
 	private final List<Line> line;
 
-	public Lines(List<Line> list) {
+	public Lines(final List<Line> list) {
 		this.line = list;
 	}
 
-	public static Lines of(People people, Height heightCount, PointGenerator pointGenerator) {
+	public static Lines of(final People people, final Height heightCount, final PointGenerator pointGenerator) {
 		return Stream
 			.generate(() -> Line.of(people, pointGenerator))
 			.limit(heightCount.find())

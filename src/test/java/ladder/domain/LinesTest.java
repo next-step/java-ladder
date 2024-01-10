@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class LinesTest {
+public final class LinesTest {
 	private static final PointGenerator POINT_GENERATOR = new ManualPointGenerator();
 
 	@Test

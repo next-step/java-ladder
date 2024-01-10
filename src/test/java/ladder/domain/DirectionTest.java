@@ -9,7 +9,7 @@ import ladder.util.PointGenerator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class DirectionTest {
+public final class DirectionTest {
 	private static final PointGenerator POINT_GENERATOR = new ManualPointGenerator();
 
 	private Direction direction;

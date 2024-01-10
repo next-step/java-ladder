@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class InputView {
+public final class InputView {
 	private static final Scanner SCANNER = new Scanner(System.in);
 
 	public static List<String> inputNames() {
@@ -23,7 +23,7 @@ public class InputView {
 		return checkNumber(SCANNER.nextLine());
 	}
 
-	private static int checkNumber(String number) {
+	private static int checkNumber(final String number) {
 		try {
 			return Integer.parseInt(number);
 		} catch (NumberFormatException error) {
@@ -31,7 +31,7 @@ public class InputView {
 		}
 	}
 
-	private static String[] split(String string) {
+	private static String[] split(final String string) {
 		return string.replaceAll(" ", "").split(",");
 	}
 }

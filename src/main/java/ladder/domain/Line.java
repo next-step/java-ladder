@@ -6,14 +6,14 @@ import java.util.Collections;
 
 import ladder.util.PointGenerator;
 
-public class Line {
+public final class Line {
 	private final List<Direction> line;
 
-	public Line(List<Direction> line) {
+	public Line(final List<Direction> line) {
 		this.line = line;
 	}
 
-	public static Line of(People people, PointGenerator pointGenerator) {
+	public static Line of(final People people, final PointGenerator pointGenerator) {
 		Direction direction = Direction.first(pointGenerator.generate());
 		List<Direction> list = new ArrayList<>();
 		list.add(direction);

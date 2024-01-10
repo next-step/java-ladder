@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.List;
 
-public class PeopleTest {
+public final class PeopleTest {
 	@Test
 	@DisplayName("사람이 두명 이하면 에러를 던진다")
 	void 사람_수_에러() {
