@@ -9,7 +9,7 @@ import ladder.domain.People;
 import ladder.util.PointGenerator;
 import ladder.util.RandomPointGenerator;
 
-public fianl class LadderApplication {
+public final class LadderApplication {
 	private static final PointGenerator POINT_GENERATOR = new RandomPointGenerator();
 
 	public static void main(String[] args) {
