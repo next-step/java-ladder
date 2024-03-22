@@ -20,4 +20,8 @@ public class Ladder {
         List<Line> unmodifiableLines = Collections.unmodifiableList(lines);
         return new Ladder(unmodifiableLines);
     }
+
+    public List<Line> lines() {
+        return lines;
+    }
 }
