@@ -10,7 +10,8 @@ public class Line {
     public static final int MIN_LENGTH = 3;
     private static final String OVERLAP_EXCEPTION_MESSAGE = "가로 라인은 겹쳐질 수 없습니다";
     private static final String PARTICIPANT_COLUMN_TRUE_EXCEPTION_MESSAGE = "참가자가 타고 내려갈 열은 True여선 안 됩니다";
-    private static final String MIN_LENGTH_EXCEPTION_MESSAGE = "사다리 열은 " + MIN_LENGTH + "개 이상 있어야 합니다";
+    private static final String MIN_LENGTH_EXCEPTION_MESSAGE =
+        "사다리 열은 " + MIN_LENGTH + "개 이상 있어야 합니다";
 
     private final List<Boolean> points;
 
