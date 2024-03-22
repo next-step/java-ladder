@@ -32,4 +32,12 @@ class LineTest {
         assertThatThrownBy(() -> Line.of(input))
             .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("point가 3개 미만일 경우 예외가 발생한다")
+    void fail_for_min_length_3() {
+        List<Boolean> input = List.of(false, false);
+        assertThatThrownBy(() -> Line.of(input))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
 }
