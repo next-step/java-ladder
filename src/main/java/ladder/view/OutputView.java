@@ -46,7 +46,7 @@ public class OutputView {
         printLine();
     }
 
-    private static void printPoint(Boolean point) {
+    private void printPoint(Boolean point) {
         if (point) {
             System.out.print(HORIZONTAL_LINE);
             return;
