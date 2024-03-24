@@ -43,6 +43,11 @@ public class Ladder {
         return Collections.unmodifiableList(this.lines);
     }
 
+    public int move(int start) {
+        return lines.stream()
+                .reduce(start, (currentPosition, line) -> line.move(currentPosition), (prev, next) -> next);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -54,14 +59,5 @@ public class Ladder {
     @Override
     public int hashCode() {
         return Objects.hash(lines);
-    }
-
-    public int move(int position) {
-        int result = position;
-        for (Line line : lines) {
-            result = line.move(result);
-        }
-
-        return result;
     }
 }
