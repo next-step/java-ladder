@@ -8,7 +8,7 @@ import java.util.Random;
 import java.util.stream.IntStream;
 
 public class Line {
-    private static final int MIN_COUNT = 2;
+    public static final int MIN_COUNT = 2;
     private static final Random RANDOM = new Random();
 
     private final List<Boolean> points;
@@ -23,7 +23,7 @@ public class Line {
 
     private static List<Boolean> create(int countOfPerson) {
         if (countOfPerson < MIN_COUNT) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("최소 인원은 " + MIN_COUNT + "명 입니다");
         }
 
         List<Boolean> result = new ArrayList<>();
