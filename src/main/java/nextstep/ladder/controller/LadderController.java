@@ -20,7 +20,7 @@ public class LadderController {
         List<String> names = inputView.askNames();
         int height = inputView.askLadderHeight();
 
-        Ladder ladder = Ladder.from(height, names.size());
+        Ladder ladder = Ladder.of(height, names.size());
 
         outputView.print(names, ladder);
     }

@@ -7,11 +7,11 @@ import java.util.Objects;
 public class Ladder {
     private final List<Line> lines;
 
-    public static Ladder from(List<Line> lines) {
-        return new Ladder(lines);
+    public static Ladder from(Line... lines) {
+        return new Ladder(List.of(lines));
     }
 
-    public static Ladder from(int height, int countOfPerson) {
+    public static Ladder of(int height, int countOfPerson) {
         return new Ladder(create(height, countOfPerson));
     }
 

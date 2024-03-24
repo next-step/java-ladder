@@ -3,8 +3,6 @@ package nextstep.ladder.model;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -13,8 +11,8 @@ class LineTest {
 
     @Test
     void create() {
-        Line line = Line.from(Arrays.asList(true, false, true));
-        assertThat(line).isEqualTo(Line.from(Arrays.asList(true, false, true)));
+        Line line = Line.from(true, false, true);
+        assertThat(line).isEqualTo(Line.from(true, false, true));
     }
 
     @Test
@@ -25,10 +23,10 @@ class LineTest {
 
     @Test
     void 라인은_연속적으로_연결할수없다() {
-        assertThatThrownBy(() -> Line.from(Arrays.asList(false, true, true)))
+        assertThatThrownBy(() -> Line.from(false, true, true))
                 .isInstanceOf(IllegalArgumentException.class);
-        
-        assertThatThrownBy(() -> Line.from(Arrays.asList(true, true, false)))
+
+        assertThatThrownBy(() -> Line.from(true, true, false))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

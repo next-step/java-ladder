@@ -16,8 +16,8 @@ public class Line {
         return new Line(create(countOfPerson));
     }
 
-    public static Line from(List<Boolean> points) {
-        return new Line(points);
+    public static Line from(Boolean... points) {
+        return new Line(List.of(points));
     }
 
     private static List<Boolean> create(int countOfPerson) {
