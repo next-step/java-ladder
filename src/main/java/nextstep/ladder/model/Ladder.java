@@ -55,4 +55,13 @@ public class Ladder {
     public int hashCode() {
         return Objects.hash(lines);
     }
+
+    public int move(int position) {
+        int result = position;
+        for (Line line : lines) {
+            result = line.move(result);
+        }
+
+        return result;
+    }
 }
