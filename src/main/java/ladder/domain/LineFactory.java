@@ -11,9 +11,9 @@ public class LineFactory {
     private static final boolean NO_HORIZONTAL = false;
     private static boolean overlap = false;
 
-    public static Line generate(int participants) {
+    public static Line generate(int participantCount) {
         List<Boolean> points = new ArrayList<>();
-        for (int i = 0; i < participants; i++) {
+        for (int i = 0; i < participantCount; i++) {
             points.add(PARTICIPANT_COLUMN);
             addHorizontal(points);
         }
