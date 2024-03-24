@@ -5,6 +5,17 @@
     - 전체 라인이 연결되지 않은 경우 동일한 위치를 반환한다
     - 각 라인이 연결되어 있는 경우 이동한 위치를 반환한다
 
+- [x] Name 객체 생성
+    - 이름이 비어있거나, 최대 5자리를 초과할 경우 예외를 던진다
+- [x] Position 객체 생성
+    - [x] 음수 값을 입력할 경우 예외를 던진다
+    - [x] 왼쪽 이동할 경우 -1 감소시킨 Position 객체 반환 -- moveLeft()
+    - [x] 오른쪽 이동할 경우 +1 증가시킨 Position 객체 반환 -- moveRight()
+- [x] Player 생성
+    - [x] Name, Position 상태를 가진다
+    - [x] 왼쪽 이동할 경우, Position을 -1 감소시킨 Player 객체 반환 -- moveLeft()
+    - [x] 오른쪽 이동할 경우, Position을 +1 증가시킨다 Player 객체 반환 -- moveRight()
+
 ---
 
 ### 2단계 - 사다리(생성)
