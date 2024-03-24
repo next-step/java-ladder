@@ -10,6 +10,6 @@ public class LadderFactory {
         List<Line> lines = IntStream.range(0, height)
             .mapToObj(i -> LineFactory.generate(participants))
             .collect(Collectors.toList());
-        return Ladder.of(lines);
+        return Ladder.from(lines);
     }
 }

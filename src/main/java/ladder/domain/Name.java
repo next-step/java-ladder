@@ -15,7 +15,7 @@ public class Name {
         this.value = value;
     }
 
-    public static Name of(String value) {
+    public static Name from(String value) {
         if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException(NULL_OR_EMPTY_EXCEPTION_MESSAGE);
         }

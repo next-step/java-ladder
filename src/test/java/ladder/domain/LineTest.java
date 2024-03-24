@@ -14,14 +14,14 @@ class LineTest {
     void success() {
         List<Boolean> input = List.of(false, true, false, false, false);
         assertThatNoException()
-            .isThrownBy(() -> Line.of(input));
+            .isThrownBy(() -> Line.from(input));
     }
 
     @Test
     @DisplayName("가로 라인이 겹칠 경우 예외가 발생한다")
     void fail_for_overlap() {
         List<Boolean> input = List.of(false, true, false, true, false);
-        assertThatThrownBy(() -> Line.of(input))
+        assertThatThrownBy(() -> Line.from(input))
             .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -29,7 +29,7 @@ class LineTest {
     @DisplayName("참가자 열이 true가 들어갈 경우 예외가 발생한다")
     void fail_for_participant_column_true() {
         List<Boolean> input = List.of(false, true, true, false, false);
-        assertThatThrownBy(() -> Line.of(input))
+        assertThatThrownBy(() -> Line.from(input))
             .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -37,7 +37,7 @@ class LineTest {
     @DisplayName("point가 3개 미만일 경우 예외가 발생한다")
     void fail_for_min_length_3() {
         List<Boolean> input = List.of(false, false);
-        assertThatThrownBy(() -> Line.of(input))
+        assertThatThrownBy(() -> Line.from(input))
             .isInstanceOf(IllegalArgumentException.class);
     }
 }

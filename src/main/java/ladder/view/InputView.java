@@ -18,7 +18,7 @@ public class InputView {
         String line = scanner.nextLine();
         return Arrays.stream(line.split(NAME_DELIMITER))
             .map(String::trim)
-            .map(Name::of)
+            .map(Name::from)
             .collect(Collectors.toUnmodifiableList());
     }
 

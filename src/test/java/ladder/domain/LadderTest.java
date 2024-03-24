@@ -15,13 +15,13 @@ class LadderTest {
     void success() {
         Line line = LineFactory.generate(5);
         assertThatNoException()
-            .isThrownBy(() -> Ladder.of(List.of(line)));
+            .isThrownBy(() -> Ladder.from(List.of(line)));
     }
 
     @Test
     @DisplayName("빈 Line이라면 사다리가 정상적으로 생성되지 않는다")
     void name() {
-        assertThatThrownBy(() -> Ladder.of(Collections.emptyList()))
+        assertThatThrownBy(() -> Ladder.from(Collections.emptyList()))
             .isInstanceOf(IllegalArgumentException.class);
 
     }

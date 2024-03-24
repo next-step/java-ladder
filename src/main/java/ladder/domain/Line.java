@@ -19,7 +19,7 @@ public class Line {
         this.points = points;
     }
 
-    public static Line of(List<Boolean> points) {
+    public static Line from(List<Boolean> points) {
         assertNotEmpty(points);
         assertNotOverlap(points);
         assertParticipantColumnFalse(points);

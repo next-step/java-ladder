@@ -13,7 +13,7 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder of(List<Line> lines) {
+    public static Ladder from(List<Line> lines) {
         if (lines.isEmpty()) {
             throw new IllegalArgumentException(EMPTY_LADDER_EXCEPTION_MESSAGE);
         }

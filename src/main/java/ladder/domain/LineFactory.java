@@ -19,7 +19,7 @@ public class LineFactory {
         }
         int lastIndex = points.size() - 1;
         points.remove(lastIndex);
-        return Line.of(points);
+        return Line.from(points);
     }
 
     private static void addHorizontal(List<Boolean> points) {
