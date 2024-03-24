@@ -43,9 +43,9 @@ public class Ladder {
         return Collections.unmodifiableList(this.lines);
     }
 
-    public int move(int start) {
+    public Player move(Player player) {
         return lines.stream()
-                .reduce(start, (currentPosition, line) -> line.move(currentPosition), (prev, next) -> next);
+                .reduce(player, (movedPlayer, line) -> line.move(movedPlayer), (prev, next) -> next);
     }
 
     @Override

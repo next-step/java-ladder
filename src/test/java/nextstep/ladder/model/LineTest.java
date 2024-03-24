@@ -36,7 +36,9 @@ class LineTest {
     @ParameterizedTest
     @CsvSource(value = {"0:1", "2:3", "3:2"}, delimiter = ':')
     void move(int position, int expected) {
+        Player player = new Player("test", position);
         Line line = Line.from(true, false, true);
-        assertThat(line.move(position)).isEqualTo(expected);
+
+        assertThat(line.move(player)).isEqualTo(new Player("test", expected));
     }
 }

@@ -34,24 +34,27 @@ class LadderTest {
 
     @ParameterizedTest
     @CsvSource(value = {"0:0", "1:1", "2:2", "3:3"}, delimiter = ':')
-    void 라인이_연결되지않은경우_동일한_위치를_반환한다(int start, int expected) {
+    void 라인이_연결되지_않은경우_시작과_동일한_객체를_반환한다(int start, int expected) {
+        Player player = new Player("test", start);
+
         Line line1 = Line.from(false, false, false);
         Line line2 = Line.from(false, false, false);
         Ladder ladder = Ladder.from(line1, line2);
 
-        int actual = ladder.move(start);
-        assertThat(actual).isEqualTo(expected);
+        Player actual = ladder.move(player);
+        assertThat(actual).isEqualTo(new Player("test", expected));
     }
 
-    @DisplayName("각 라인이 연결되어 있는 경우 이동한 위치를 반환한다")
     @ParameterizedTest
     @CsvSource(value = {"0:2", "1:0", "2:3", "3:1"}, delimiter = ':')
-    void 라인이_연결되어있는_경우_이동한_위치를_반환한다(int start, int expected) {
+    void 라인이_연결되어_있는경우_이동한_결과객체를_반환한다(int start, int expected) {
+        Player player = new Player("test", start);
+
         Line line1 = Line.from(true, false, true);
         Line line2 = Line.from(false, true, false);
         Ladder ladder = Ladder.from(line1, line2);
 
-        int actual = ladder.move(start);
-        assertThat(actual).isEqualTo(expected);
+        Player actual = ladder.move(player);
+        assertThat(actual).isEqualTo(new Player("test", expected));
     }
 }

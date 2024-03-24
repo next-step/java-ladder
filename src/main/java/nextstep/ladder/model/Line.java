@@ -66,24 +66,40 @@ public class Line {
         }
     }
 
+    public Player move(Player player) {
+        if (movableLeft(player)) {
+            return player.moveLeft();
+        }
+
+        if (movableRight(player)) {
+            return player.moveRight();
+        }
+
+        return player;
+    }
+
+    private boolean movableLeft(Player player) {
+        return player.greaterThan(startLine()) && isConnected(player.getPosition() - 1);
+    }
+
+    private boolean movableRight(Player player) {
+        return player.lessThan(endLine()) && isConnected(player.getPosition());
+    }
+
+    private int startLine() {
+        return 0;
+    }
+
+    private int endLine() {
+        return this.points.size();
+    }
+
     public List<Boolean> getPoints() {
         return Collections.unmodifiableList(this.points);
     }
 
-    private int lineCount() {
-        return this.points.size();
-    }
-
-    public int move(int position) {
-        if (position > 0 && this.points.get(position - 1)) {
-            return position - 1;
-        }
-
-        if (position < lineCount() && this.points.get(position)) {
-            return position + 1;
-        }
-
-        return position;
+    private boolean isConnected(int position) {
+        return this.points.get(position);
     }
 
     @Override
