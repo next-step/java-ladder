@@ -20,31 +20,31 @@ public class Line {
     }
 
     public static Line from(List<Boolean> points) {
-        assertNotEmpty(points);
-        assertNotOverlap(points);
-        assertParticipantColumnFalse(points);
+        validateNotEmpty(points);
+        validateNotOverlap(points);
+        validateParticipantColumnFalse(points);
         List<Boolean> unmodifiablePoints = Collections.unmodifiableList(points);
         return new Line(unmodifiablePoints);
     }
 
-    private static void assertNotEmpty(List<Boolean> points) {
+    private static void validateNotEmpty(List<Boolean> points) {
         if (points.size() < MIN_LENGTH) {
             throw new IllegalArgumentException(MIN_LENGTH_EXCEPTION_MESSAGE);
         }
     }
 
-    private static void assertNotOverlap(List<Boolean> points) {
+    private static void validateNotOverlap(List<Boolean> points) {
         IntStream.range(0, points.size() - 2)
-            .forEach(i -> assertNotOverlap(points, i));
+            .forEach(i -> validateNotOverlap(points, i));
     }
 
-    private static void assertNotOverlap(List<Boolean> points, int idx) {
+    private static void validateNotOverlap(List<Boolean> points, int idx) {
         if (points.get(idx) && points.get(idx + 2)) {
             throw new IllegalArgumentException(OVERLAP_EXCEPTION_MESSAGE);
         }
     }
 
-    private static void assertParticipantColumnFalse(List<Boolean> points) {
+    private static void validateParticipantColumnFalse(List<Boolean> points) {
         boolean anyParticipantColumnTrue = IntStream.range(0, points.size())
             .filter(i -> i % 2 == 0)
             .mapToObj(points::get)
