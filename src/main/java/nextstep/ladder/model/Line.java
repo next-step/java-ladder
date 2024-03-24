@@ -70,6 +70,22 @@ public class Line {
         return Collections.unmodifiableList(this.points);
     }
 
+    private int lineCount() {
+        return this.points.size();
+    }
+
+    public int move(int position) {
+        if (position > 0 && this.points.get(position - 1)) {
+            return position - 1;
+        }
+
+        if (position < lineCount() && this.points.get(position)) {
+            return position + 1;
+        }
+
+        return position;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (this == other) return true;

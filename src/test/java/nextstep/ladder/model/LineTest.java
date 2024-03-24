@@ -1,6 +1,8 @@
 package nextstep.ladder.model;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -31,4 +33,10 @@ class LineTest {
                 .hasMessage("라인이 겹치지 않아야 합니다");
     }
 
+    @ParameterizedTest
+    @CsvSource(value = {"0:1", "2:3", "3:2"}, delimiter = ':')
+    void move(int position, int expected) {
+        Line line = Line.from(true, false, true);
+        assertThat(line.move(position)).isEqualTo(expected);
+    }
 }
