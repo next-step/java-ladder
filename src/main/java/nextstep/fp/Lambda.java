@@ -26,10 +26,10 @@ public class Lambda {
         }).start();
     }
 
-    public static int sum(List<Integer> numbers, Conditional conditional) {
+    public static int sum(List<Integer> numbers, SumCondition sumCondition) {
         int total = 0;
         for (int number : numbers) {
-            if (conditional.test(number)) {
+            if (sumCondition.isMatchCondition(number)) {
                 total += number;
             }
         }
