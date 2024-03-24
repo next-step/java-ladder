@@ -1,5 +1,9 @@
 package ladder.domain;
 
+import static ladder.domain.Link.LEFT_LINK;
+import static ladder.domain.Link.NO_LINK;
+import static ladder.domain.Link.RIGHT_LINK;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -7,30 +11,36 @@ import java.util.Random;
 public class LineFactory {
 
     private static final Random random = new Random();
-    private static final boolean PARTICIPANT_COLUMN = false;
-    private static final boolean NO_HORIZONTAL = false;
-    private static boolean overlap = false;
 
     public static Line generate(int participantCount) {
-        List<Boolean> points = new ArrayList<>();
+        List<Link> links = new ArrayList<>();
         for (int i = 0; i < participantCount; i++) {
-            points.add(PARTICIPANT_COLUMN);
-            addHorizontal(points);
+            links.add(nextPoint(links, participantCount));
         }
-        int lastIndex = points.size() - 1;
-        points.remove(lastIndex);
-        return Line.from(points);
+        return Line.from(links);
     }
 
-    private static void addHorizontal(List<Boolean> points) {
-        if (overlap) {
-            points.add(NO_HORIZONTAL);
-            overlap = false;
-            return;
+    private static Link nextPoint(List<Link> links, int pointCount) {
+        if (lastAddedPoint(links) == RIGHT_LINK) {
+            return LEFT_LINK;
         }
-        points.add(random.nextBoolean());
-        if (points.get(points.size() - 1)) {
-            overlap = true;
+        boolean isLastPoint = links.size() == pointCount - 1;
+        if (isLastPoint) {
+            return NO_LINK;
         }
+        return randomPointOf(NO_LINK, RIGHT_LINK);
+    }
+
+    private static Link lastAddedPoint(List<Link> links) {
+        if (links.isEmpty()) {
+            return NO_LINK;
+        }
+        int lastIndex = links.size() - 1;
+        return links.get(lastIndex);
+    }
+
+    private static Link randomPointOf(Link... links) {
+        int randomIndex = random.nextInt(links.length);
+        return links[randomIndex];
     }
 }

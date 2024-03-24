@@ -6,9 +6,9 @@ import java.util.stream.IntStream;
 
 public class LadderFactory {
 
-    public static Ladder generate(int participantCount, int height) {
+    public static Ladder generate(int participants, int height) {
         List<Line> lines = IntStream.range(0, height)
-            .mapToObj(i -> LineFactory.generate(participantCount))
+            .mapToObj(i -> LineFactory.generate(participants))
             .collect(Collectors.toList());
         return Ladder.from(lines);
     }

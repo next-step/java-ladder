@@ -1,61 +1,65 @@
 package ladder.domain;
 
+import static ladder.domain.Link.LEFT_LINK;
+import static ladder.domain.Link.RIGHT_LINK;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.IntStream;
 
 public class Line {
 
-    public static final int MIN_LENGTH = 3;
-    private static final String OVERLAP_EXCEPTION_MESSAGE = "가로 라인은 겹쳐질 수 없습니다";
-    private static final String PARTICIPANT_COLUMN_TRUE_EXCEPTION_MESSAGE = "참가자가 타고 내려갈 열은 True여선 안 됩니다";
-    private static final String MIN_LENGTH_EXCEPTION_MESSAGE =
-        "사다리 열은 " + MIN_LENGTH + "개 이상 있어야 합니다";
+    private final List<Link> links;
 
-    private final List<Boolean> points;
-
-    private Line(List<Boolean> points) {
-        this.points = points;
+    private Line(List<Link> links) {
+        this.links = links;
     }
 
-    public static Line from(List<Boolean> points) {
-        validateNotEmpty(points);
-        validateNotOverlap(points);
-        validateParticipantColumnFalse(points);
-        List<Boolean> unmodifiablePoints = Collections.unmodifiableList(points);
-        return new Line(unmodifiablePoints);
+    public static Line from(List<Link> links) {
+        validate(links);
+        List<Link> unmodifiableLinks = Collections.unmodifiableList(links);
+        return new Line(unmodifiableLinks);
     }
 
-    private static void validateNotEmpty(List<Boolean> points) {
-        if (points.size() < MIN_LENGTH) {
-            throw new IllegalArgumentException(MIN_LENGTH_EXCEPTION_MESSAGE);
+    private static void validate(List<Link> links) {
+        validateNotEmpty(links);
+        validateNullLink(links);
+        validateConsistency(links);
+    }
+
+    private static void validateNotEmpty(List<Link> links) {
+        if (links.isEmpty()) {
+            throw new IllegalArgumentException();
         }
     }
 
-    private static void validateNotOverlap(List<Boolean> points) {
-        IntStream.range(0, points.size() - 2)
-            .forEach(i -> validateNotOverlap(points, i));
-    }
-
-    private static void validateNotOverlap(List<Boolean> points, int idx) {
-        if (points.get(idx) && points.get(idx + 2)) {
-            throw new IllegalArgumentException(OVERLAP_EXCEPTION_MESSAGE);
+    private static void validateNullLink(List<Link> links) {
+        Link first = links.get(0);
+        Link last = links.get(links.size() - 1);
+        if (first == LEFT_LINK || last == RIGHT_LINK) {
+            throw new IllegalArgumentException();
         }
     }
 
-    private static void validateParticipantColumnFalse(List<Boolean> points) {
-        boolean anyParticipantColumnTrue = IntStream.range(0, points.size())
-            .filter(i -> i % 2 == 0)
-            .mapToObj(points::get)
-            .anyMatch(p -> p);
-        if (anyParticipantColumnTrue) {
-            throw new IllegalArgumentException(PARTICIPANT_COLUMN_TRUE_EXCEPTION_MESSAGE);
+    private static void validateConsistency(List<Link> links) {
+        int secondFromBackIndex = links.size() - 2;
+        for (int i = 0; i <= secondFromBackIndex; i++) {
+            Link current = links.get(i);
+            Link next = links.get(i + 1);
+            validateConsistency(current, next);
         }
     }
 
-    public List<Boolean> points() {
-        return points;
+    private static void validateConsistency(Link current, Link next) {
+        boolean violation = (current == RIGHT_LINK && next != LEFT_LINK)
+            || (current == LEFT_LINK && next == LEFT_LINK);
+        if (violation) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public List<Link> points() {
+        return links;
     }
 
     @Override
@@ -67,18 +71,18 @@ public class Line {
             return false;
         }
         Line line = (Line) o;
-        return Objects.equals(points, line.points);
+        return Objects.equals(links, line.links);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(points);
+        return Objects.hash(links);
     }
 
     @Override
     public String toString() {
         return "Line{" +
-            "points=" + points +
+            "links=" + links +
             '}';
     }
 }

@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import ladder.domain.Ladder;
 import ladder.domain.Line;
 import ladder.domain.Name;
+import ladder.domain.Link;
 
 public class OutputView {
 
@@ -38,16 +39,17 @@ public class OutputView {
     }
 
     private void printLine(Line line) {
-        List<Boolean> points = line.points();
+        List<Link> links = line.points();
         System.out.print(FIRST_PARTICIPANT_COLUMN);
-        for (int i = FIRST_HORIZONTAL_COLUMN_INDEX; i < points.size(); i += HORIZONTAL_COLUMN_GAP) {
-            printPoint(points.get(i));
+        int secondFromBackIndex = links.size() - 2;
+        for (int i = 0; i <= secondFromBackIndex; i++) {
+            printPoint(links.get(i));
         }
         printLine();
     }
 
-    private void printPoint(Boolean point) {
-        if (point) {
+    private void printPoint(Link link) {
+        if (link == Link.RIGHT_LINK) {
             System.out.print(HORIZONTAL_LINE);
             return;
         }
