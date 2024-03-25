@@ -7,3 +7,22 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+
+## Todo
+- 스트림과 람다로 가능한 로직은 최대한 사용해보기
+- InputView
+    - [ ] 문자열 입력받아 ,로 나누어 Players 반환 (IllegalArgumentException 시 재시도)
+    - [ ] 최대 사다리 높이 입력받아 반환 (숫자 아닌 경우 예외처리 후 재시도)
+- Player
+    - [ ] 매개변수로 오는 문자열(이름)이 5자 초과 시 IllegalArgumentException을 던지는 플레이어 값 객체
+- Players
+    - [ ] List\<Player>만을 인스턴스 변수로 가지는 일급 컬렉션 Players 구현
+    - [ ] List\<Player>의 size() 위임 메서드 구현
+    - [ ] 공백을 두고 모든 Player를 출력하는 toString() 재정의
+- Line
+    - [ ] List\<Boolean>만을 필드로 가지는 Line 객체 구현
+    - [ ] 생성자의 매개변수로 정수를 받아, 정수 - 1 만큼 순회하며 List\<Boolean>에 true 혹은 false를 추가
+- OutputView
+    - [ ] Players를 매개변수로 받아 한 줄로 출력
+    - [ ] List\<Line>을 순회하며 각각의 Line에서 |를 먼저 출력하고 List\<Boolean>이 true면 '-----|', false면 '     |'를 출력
