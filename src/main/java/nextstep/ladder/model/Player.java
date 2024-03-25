@@ -31,6 +31,14 @@ public class Player {
         return new Player(this.name, position.moveRight());
     }
 
+    public boolean sameName(Name other) {
+        return this.name.equals(other);
+    }
+
+    public String getName() {
+        return this.name.getName();
+    }
+
     public int getPosition() {
         return this.position.getPosition();
     }
