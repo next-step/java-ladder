@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain.user;
 
 public class User {
 	private final String name;
