@@ -34,7 +34,7 @@ public class StreamStudy {
                 .sorted(Comparator.comparing(String::length).reversed())
                 .distinct()
                 .limit(100)
-                .map(word -> String.format("%03d. %s", index.incrementAndGet(), word))
+                .map(word -> String.format("%03d. %s", index.incrementAndGet(), word.toLowerCase()))
                 .collect(Collectors.joining(System.lineSeparator(), "", ""));
     }
 
