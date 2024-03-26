@@ -17,8 +17,8 @@
 - Player
     - [X] 매개변수로 오는 문자열(이름)이 5자 초과 시 IllegalArgumentException을 던지는 플레이어 값 객체
 - Players
-    - [ ] List\<Player>만을 인스턴스 변수로 가지는 일급 컬렉션 Players 구현
-    - [ ] List\<Player>의 size() 위임 메서드 구현
+    - [X] List\<Player>만을 인스턴스 변수로 가지는 일급 컬렉션 Players 구현
+    - [X] List\<Player>의 size() 위임 메서드 구현
     - [ ] 공백을 두고 모든 Player를 출력하는 toString() 재정의
 - Line
     - [X] List\<Boolean>만을 필드로 가지는 Line 객체 구현
