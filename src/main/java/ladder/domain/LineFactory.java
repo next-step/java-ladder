@@ -21,7 +21,7 @@ public class LineFactory {
     }
 
     private static Link nextLink(List<Link> links, int totalLinkCount) {
-        if (lastAddedLink(links) == RIGHT_LINK) {
+        if (prevLink(links) == RIGHT_LINK) {
             return LEFT_LINK;
         }
         boolean isLastLink = links.size() == totalLinkCount - 1;
@@ -31,7 +31,7 @@ public class LineFactory {
         return randomLinkOf(NO_LINK, RIGHT_LINK);
     }
 
-    private static Link lastAddedLink(List<Link> links) {
+    private static Link prevLink(List<Link> links) {
         if (links.isEmpty()) {
             return NO_LINK;
         }
