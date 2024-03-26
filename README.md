@@ -17,3 +17,6 @@
 
 ### 스트림(Stream) map, reduce, filter 실습 1
 - `nextstep.fp.StreamStudyTest#sumOverThreeAndDouble` 메서드의 테스트가 성공하도록 처리
+
+### 스트림(Stream) map, reduce, filter 실습 2
+- `nextstep.fp.StreamStudy#printLongestWordTop100()` 메서드 구현
