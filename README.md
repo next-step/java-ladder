@@ -15,7 +15,7 @@
     - [ ] 문자열 입력받아 ,로 나누어 Players 반환 (IllegalArgumentException 시 재시도)
     - [ ] 최대 사다리 높이 입력받아 반환 (숫자 아닌 경우 예외처리 후 재시도)
 - Player
-    - [ ] 매개변수로 오는 문자열(이름)이 5자 초과 시 IllegalArgumentException을 던지는 플레이어 값 객체
+    - [X] 매개변수로 오는 문자열(이름)이 5자 초과 시 IllegalArgumentException을 던지는 플레이어 값 객체
 - Players
     - [ ] List\<Player>만을 인스턴스 변수로 가지는 일급 컬렉션 Players 구현
     - [ ] List\<Player>의 size() 위임 메서드 구현
