@@ -23,3 +23,6 @@
 
 ### Optional 실습 1
 - `User#ageIsInRange2` 메서드에 Optional을 활용해 `30살 이상, 45살 이하에 해당하는 User인 경우 true 반환` 기능 구현
+
+### Optional 실습 2
+- `getUser()` 메서드를 stream과 Optional을 활용해 반환하도록 처리
