@@ -39,16 +39,16 @@ public class OutputView {
     }
 
     private void printLine(Line line) {
-        List<Link> links = line.points();
+        List<Link> links = line.links();
         System.out.print(FIRST_PARTICIPANT_COLUMN);
         int secondFromBackIndex = links.size() - 2;
         for (int i = 0; i <= secondFromBackIndex; i++) {
-            printPoint(links.get(i));
+            printLink(links.get(i));
         }
         printLine();
     }
 
-    private void printPoint(Link link) {
+    private void printLink(Link link) {
         if (link == Link.RIGHT_LINK) {
             System.out.print(HORIZONTAL_LINE);
             return;
