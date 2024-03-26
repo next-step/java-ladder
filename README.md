@@ -29,3 +29,5 @@
 - OutputView
     - [ ] Players를 매개변수로 받아 한 줄로 출력
     - [ ] List\<Line>을 순회하며 각각의 Line에서 |를 먼저 출력하고 List\<Boolean>이 true면 '-----|', false면 '     |'를 출력
+- StringUtil
+    - [X] 문자열을 split 하여 List로 반환해주는 splitStringToList 구현
