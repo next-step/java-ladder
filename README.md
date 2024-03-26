@@ -22,7 +22,10 @@
     - [ ] 공백을 두고 모든 Player를 출력하는 toString() 재정의
 - Line
     - [ ] List\<Boolean>만을 필드로 가지는 Line 객체 구현
-    - [ ] 생성자의 매개변수로 정수를 받아, 정수 - 1 만큼 순회하며 List\<Boolean>에 true 혹은 false를 추가
+    - [ ] 생성자의 매개변수로 참가자 수와 Line 생성 전략을 받아 List\<Boolean>에 바인딩
+- PointsMakeStrategy
+  - [ ] 메개변수로 Line 개수를 받아, 사다리 라인의 List\<Boolean>을 반환하는 인터페이스
+  - [ ] 구현체로 RandomPointsMakeStrategy 구현
 - OutputView
     - [ ] Players를 매개변수로 받아 한 줄로 출력
     - [ ] List\<Line>을 순회하며 각각의 Line에서 |를 먼저 출력하고 List\<Boolean>이 true면 '-----|', false면 '     |'를 출력
