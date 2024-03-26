@@ -8,22 +8,20 @@ public class Ladder {
     private static final String EMPTY_LADDER_EXCEPTION_MESSAGE = "사다리는 Line이 1개 이상 있어야 합니다";
 
     private final Lines lines;
-    private final List<String> results;
 
-    private Ladder(List<Line> lines, List<String> results) {
-        this(Lines.from(lines), results);
+    private Ladder(List<Line> lines) {
+        this(Lines.from(lines));
     }
 
-    private Ladder(Lines lines, List<String> results) {
+    private Ladder(Lines lines) {
         this.lines = lines;
-        this.results = results;
     }
 
-    public static Ladder from(List<Line> lines, List<String> results) {
+    public static Ladder from(List<Line> lines) {
         if (lines.isEmpty()) {
             throw new IllegalArgumentException(EMPTY_LADDER_EXCEPTION_MESSAGE);
         }
-        return new Ladder(lines, results);
+        return new Ladder(lines);
     }
 
     public List<Line> lines() {
