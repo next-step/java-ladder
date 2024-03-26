@@ -15,3 +15,5 @@
 ### 람다 실습 2 : 람다를 활용해 중복 제거
 - `nextstep.fp.Lamda`의 `sumAll`, `sumAllEven`, `sumAllOverThree` 메서드 리팩토링
 
+### 스트림(Stream) map, reduce, filter 실습 1
+- `nextstep.fp.StreamStudyTest#sumOverThreeAndDouble` 메서드의 테스트가 성공하도록 처리
