@@ -3,11 +3,15 @@ package ladder.controller;
 import java.util.List;
 import ladder.domain.Ladder;
 import ladder.domain.LadderFactory;
+import ladder.domain.LadderGame;
+import ladder.domain.LadderGameResult;
 import ladder.domain.Participant;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
 public class LadderConsole {
+
+    private static final String WHOLE_PARTICIPANT_SIGN = "all";
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -22,7 +26,23 @@ public class LadderConsole {
         List<String> results = inputView.inputResults();
         int height = inputView.inputHeight();
 
-        Ladder ladder = LadderFactory.generate(participants.size(), results, height);
-        outputView.printLadder(ladder, participants);
+        Ladder ladder = LadderFactory.generate(participants.size(), height);
+        outputView.printLadder(ladder, participants, results);
+
+        LadderGame ladderGame = new LadderGame(ladder, participants, results);
+        LadderGameResult gameResult = ladderGame.result();
+        checkGameResult(participants, gameResult);
+    }
+
+    private void checkGameResult(List<Participant> participants, LadderGameResult gameResult) {
+        String participantToCheck = inputView.inputParticipantToCheckResult();
+        if (WHOLE_PARTICIPANT_SIGN.equals(participantToCheck)) {
+            outputView.printWholeGameResult(participants, gameResult);
+            return;
+        }
+        Participant participant = Participant.from(participantToCheck);
+        outputView.printGameResult(participant, gameResult);
+
+        checkGameResult(participants, gameResult);
     }
 }
