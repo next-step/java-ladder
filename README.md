@@ -32,4 +32,4 @@
 - StringUtil
     - [X] 문자열을 split 하여 List로 반환해주는 splitStringToList 구현
 - LadderGame
-  - [ ] 게임을 진행하는 컨트롤러 구현
+  - [X] 게임을 진행하는 컨트롤러 구현
