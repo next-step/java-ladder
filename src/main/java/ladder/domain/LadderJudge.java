@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,9 +10,15 @@ public class LadderJudge {
     private final List<Participant> participants;
     private final List<String> results;
 
-    public LadderJudge(List<Participant> participants, List<String> results) {
+    private LadderJudge(List<Participant> participants, List<String> results) {
         this.participants = participants;
         this.results = results;
+    }
+
+    public static LadderJudge of(List<Participant> participants, List<String> results) {
+        List<Participant> unmodifiableParticipants = Collections.unmodifiableList(participants);
+        List<String> unmodifiableResults = Collections.unmodifiableList(results);
+        return new LadderJudge(unmodifiableParticipants, unmodifiableResults);
     }
 
     public LadderGameResult judge(LadderResult ladderResult) {
@@ -22,6 +29,6 @@ public class LadderJudge {
             String result = results.get(resultIndex);
             judgeResult.put(participant, result);
         }
-        return new LadderGameResult(judgeResult);
+        return LadderGameResult.from(judgeResult);
     }
 }

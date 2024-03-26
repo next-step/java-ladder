@@ -27,7 +27,7 @@ public class Ladder {
 
     public LadderResult result() {
         Map<Integer, Integer> resultIndices = resultIndices();
-        return new LadderResult(resultIndices);
+        return LadderResult.from(resultIndices);
     }
 
     private Map<Integer, Integer> resultIndices() {
