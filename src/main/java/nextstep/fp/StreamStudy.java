@@ -31,7 +31,7 @@ public class StreamStudy {
         AtomicInteger index = new AtomicInteger(0);
         return words.stream()
                 .filter(word -> word.length() > 12)
-                .sorted(Comparator.comparing(String::length).reversed())
+                .sorted(Comparator.comparingInt(String::length).reversed())
                 .distinct()
                 .limit(100)
                 .map(word -> String.format("%03d. %s", index.incrementAndGet(), word.toLowerCase()))
