@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
-import ladder.domain.Name;
+import ladder.domain.Participant;
 
 public class InputView {
 
@@ -14,12 +14,12 @@ public class InputView {
     public static final String INPUT_RESULTS_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private final Scanner scanner = new Scanner(System.in);
 
-    public List<Name> inputPariticipantNames() {
+    public List<Participant> inputPariticipantNames() {
         System.out.println(INPUT_NAMES_MESSAGE);
         String line = scanner.nextLine();
         return Arrays.stream(line.split(DELIMITER))
             .map(String::trim)
-            .map(Name::from)
+            .map(Participant::from)
             .collect(Collectors.toUnmodifiableList());
     }
 

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import ladder.domain.Ladder;
 import ladder.domain.Line;
-import ladder.domain.Name;
+import ladder.domain.Participant;
 import ladder.domain.Link;
 
 public class OutputView {
@@ -22,17 +22,17 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printLadder(Ladder ladder, List<Name> names) {
+    public void printLadder(Ladder ladder, List<Participant> participants) {
         System.out.println(LADDER_HEADER_MESSAGE);
-        printNames(names);
+        printNames(participants);
 
         List<Line> lines = ladder.lines();
         lines.forEach(this::printLine);
     }
 
-    private void printNames(List<Name> names) {
-        String strNames = names.stream()
-            .map(Name::value)
+    private void printNames(List<Participant> participants) {
+        String strNames = participants.stream()
+            .map(Participant::name)
             .map(name -> String.format(NAME_FORMAT, name))
             .collect(Collectors.joining(NAME_DELIMITER));
         System.out.println(strNames);

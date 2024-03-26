@@ -3,7 +3,7 @@ package ladder.controller;
 import java.util.List;
 import ladder.domain.Ladder;
 import ladder.domain.LadderFactory;
-import ladder.domain.Name;
+import ladder.domain.Participant;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -18,11 +18,11 @@ public class LadderConsole {
     }
 
     public void start() {
-        List<Name> names = inputView.inputPariticipantNames();
+        List<Participant> participants = inputView.inputPariticipantNames();
         List<String> results = inputView.inputResults();
         int height = inputView.inputHeight();
 
-        Ladder ladder = LadderFactory.generate(names.size(), results, height);
-        outputView.printLadder(ladder, names);
+        Ladder ladder = LadderFactory.generate(participants.size(), results, height);
+        outputView.printLadder(ladder, participants);
     }
 }
