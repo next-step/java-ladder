@@ -62,6 +62,14 @@ public class Line {
         return links;
     }
 
+    public Link linkOf(int linkIndex) {
+        return links.get(linkIndex);
+    }
+
+    public int size() {
+        return links.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

@@ -1,7 +1,9 @@
 package ladder.domain;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class Lines {
@@ -16,8 +18,26 @@ public class Lines {
         return new Lines(Collections.unmodifiableList(lines));
     }
 
-    public List<Line> value() {
-        return lines;
+    public Map<Integer, Integer> resultIndices() {
+        Map<Integer, Integer> resultIndices = new HashMap<>();
+        for (int i = 0; i < lines.get(0).size(); i++) {
+            int resultIndex = resultIndexOf(i);
+            resultIndices.put(i, resultIndex);
+        }
+        return resultIndices;
+    }
+
+    private int resultIndexOf(int index) {
+        int lineIndex = 0;
+        while (lineIndex < lines.size()) {
+            System.out.printf("%d %d\n", lineIndex, index);
+            Line currentLine = lines.get(lineIndex);
+            Link currentLink = currentLine.linkOf(index);
+
+            lineIndex++;
+            index = currentLink.nextIndex(index);
+        }
+        return index;
     }
 
     @Override
@@ -42,5 +62,9 @@ public class Lines {
         return "Lines{" +
             "lines=" + lines +
             '}';
+    }
+
+    public List<Line> value() {
+        return lines;
     }
 }

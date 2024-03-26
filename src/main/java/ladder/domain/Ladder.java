@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class Ladder {
@@ -22,6 +23,11 @@ public class Ladder {
             throw new IllegalArgumentException(EMPTY_LADDER_EXCEPTION_MESSAGE);
         }
         return new Ladder(lines);
+    }
+
+    public LadderResult result() {
+        Map<Integer, Integer> resultIndices = lines.resultIndices();
+        return new LadderResult(resultIndices);
     }
 
     public List<Line> lines() {
