@@ -26,11 +26,15 @@ public class RandomPointsMakeStrategyTest {
         PointsMakeStrategy pointsMakeStrategy = new RandomPointsMakeStrategy();
         List<Boolean> points = pointsMakeStrategy.makePoints(playerCount);
         for (int i = 1; i < points.size(); i++) {
-            Boolean point = points.get(i);
-            if (!point) {
-                continue;
-            }
-            assertThat(point).isNotEqualTo(points.get(i - 1));
+            extracted(points, i);
         }
+    }
+
+    private static void extracted(List<Boolean> points, int i) {
+        Boolean point = points.get(i);
+        if (!point) {
+            return;
+        }
+        assertThat(point).isNotEqualTo(points.get(i - 1));
     }
 }
