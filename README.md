@@ -12,7 +12,7 @@
 ## Todo
 - 스트림과 람다로 가능한 로직은 최대한 사용해보기
 - InputView
-    - [ ] 문자열 입력받아 ,로 나누어 Players 반환 (IllegalArgumentException 시 재시도)
+    - [X] 문자열 입력받아 ,로 나누어 Players 반환 (IllegalArgumentException 시 재시도)
     - [ ] 최대 사다리 높이 입력받아 반환 (숫자 아닌 경우 예외처리 후 재시도)
 - Player
     - [X] 매개변수로 오는 문자열(이름)이 5자 초과 시 IllegalArgumentException을 던지는 플레이어 값 객체

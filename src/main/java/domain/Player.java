@@ -3,6 +3,7 @@ package domain;
 import java.util.Objects;
 
 public class Player {
+    public static final String NAME_LENGTH_CANT_OVER_FIVE = "이름은 5자를 초과할 수 없습니다.";
     private final String name;
     public static Player from(String name) {
         return new Player(name);
@@ -10,7 +11,7 @@ public class Player {
 
     private Player(String name) {
         if (name.length() > 5) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(NAME_LENGTH_CANT_OVER_FIVE);
         }
         this.name = name;
     }
