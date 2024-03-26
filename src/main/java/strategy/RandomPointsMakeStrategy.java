@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class RandomPointsMakeStrategy implements PointsMakeStrategy {
-    private static Random RANDOM = new Random();
+    private static final Random RANDOM = new Random();
     @Override
     public List<Boolean> makePoints(int playerCount) {
         List<Boolean> points = new ArrayList<>();
@@ -16,7 +16,7 @@ public class RandomPointsMakeStrategy implements PointsMakeStrategy {
         return points;
     }
 
-    private static boolean addPoint(boolean isPreviousTrue, List<Boolean> points) {
+    private boolean addPoint(boolean isPreviousTrue, List<Boolean> points) {
         if (isPreviousTrue) {
             points.add(false);
             return false;
