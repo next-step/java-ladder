@@ -27,10 +27,11 @@ public class Lambda {
         }).start();
     }
 
-    public static int sum(List<Integer> numbers, Predicate<Integer> predicate) {
-        return numbers.stream()
-                .filter(predicate)
-                .mapToInt(Integer::intValue)
-                .sum();
+    public static int sumAll(List<Integer> numbers) {
+        int total = 0;
+        for (int number : numbers) {
+            total += number;
+        }
+        return total;
     }
 }
