@@ -19,7 +19,7 @@
 - Players
     - [X] List\<Player>만을 인스턴스 변수로 가지는 일급 컬렉션 Players 구현
     - [X] List\<Player>의 size() 위임 메서드 구현
-    - [ ] 공백을 두고 모든 Player를 출력하는 toString() 재정의
+    - [X] 공백을 두고 모든 Player를 출력하는 toString() 재정의
 - Line
     - [X] List\<Boolean>만을 필드로 가지는 Line 객체 구현
     - [X] 생성자의 매개변수로 참가자 수와 Line 생성 전략을 받아 List\<Boolean>에 바인딩
@@ -28,6 +28,8 @@
   - [X] 구현체로 RandomPointsMakeStrategy 구현
 - OutputView
     - [X] Players를 매개변수로 받아 한 줄로 출력
-    - [ ] List\<Line>을 순회하며 각각의 Line에서 |를 먼저 출력하고 List\<Boolean>이 true면 '-----|', false면 '     |'를 출력
+    - [X] List\<Line>을 순회하며 각각의 Line에서 |를 먼저 출력하고 List\<Boolean>이 true면 '-----|', false면 '     |'를 출력
 - StringUtil
     - [X] 문자열을 split 하여 List로 반환해주는 splitStringToList 구현
+- LadderGame
+  - [ ] 게임을 진행하는 컨트롤러 구현
