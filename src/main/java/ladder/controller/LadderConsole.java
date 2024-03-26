@@ -3,8 +3,8 @@ package ladder.controller;
 import java.util.List;
 import ladder.domain.Ladder;
 import ladder.domain.LadderFactory;
-import ladder.domain.LadderGame;
 import ladder.domain.LadderGameResult;
+import ladder.domain.LadderJudge;
 import ladder.domain.Participant;
 import ladder.view.InputView;
 import ladder.view.OutputView;
@@ -29,8 +29,8 @@ public class LadderConsole {
         Ladder ladder = LadderFactory.generate(participants.size(), height);
         outputView.printLadder(ladder, participants, results);
 
-        LadderGame ladderGame = new LadderGame(ladder, participants, results);
-        LadderGameResult gameResult = ladderGame.result();
+        LadderJudge ladderJudge = new LadderJudge(participants, results);
+        LadderGameResult gameResult = ladderJudge.judge(ladder.result());
         checkGameResult(participants, gameResult);
     }
 
