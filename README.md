@@ -11,3 +11,7 @@
 ## Step1 스트림, 람다, Optional
 ### 람다 실습 1 : 익명 클래스를 람다로 전환
 - CarTest의 MoveStrategy에 대한 익명 클래스 구현부를 람다로 적용
+
+### 람다 실습 2 : 람다를 활용해 중복 제거
+- `nextstep.fp.Lamda`의 `sumAll`, `sumAllEven`, `sumAllOverThree` 메서드 리팩토링
+
