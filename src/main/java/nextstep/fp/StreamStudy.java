@@ -6,7 +6,6 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class StreamStudy {
@@ -24,18 +23,16 @@ public class StreamStudy {
         String contents = Files.readString(Paths.get("src/main/resources/fp/war-and-peace.txt"));
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-        System.out.println(formatWords(words));
+        printWords(words);
     }
 
-    private static String formatWords(List<String> words) {
-        AtomicInteger index = new AtomicInteger(0);
-        return words.stream()
+    private static void printWords(List<String> words) {
+        words.stream()
                 .filter(word -> word.length() > 12)
                 .sorted(Comparator.comparingInt(String::length).reversed())
                 .distinct()
                 .limit(100)
-                .map(word -> String.format("%03d. %s", index.incrementAndGet(), word.toLowerCase()))
-                .collect(Collectors.joining(System.lineSeparator(), "", ""));
+                .forEach(word -> System.out.print(word.toLowerCase()));
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
