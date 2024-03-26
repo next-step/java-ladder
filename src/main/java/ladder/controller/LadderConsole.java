@@ -19,10 +19,10 @@ public class LadderConsole {
 
     public void start() {
         List<Name> names = inputView.inputPariticipantNames();
-        outputView.printLine();
+        List<String> results = inputView.inputResults();
         int height = inputView.inputHeight();
 
-        Ladder ladder = LadderFactory.generate(names.size(), height);
+        Ladder ladder = LadderFactory.generate(names.size(), results, height);
         outputView.printLadder(ladder, names);
     }
 }
