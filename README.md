@@ -21,8 +21,8 @@
     - [ ] List\<Player>의 size() 위임 메서드 구현
     - [ ] 공백을 두고 모든 Player를 출력하는 toString() 재정의
 - Line
-    - [ ] List\<Boolean>만을 필드로 가지는 Line 객체 구현
-    - [ ] 생성자의 매개변수로 참가자 수와 Line 생성 전략을 받아 List\<Boolean>에 바인딩
+    - [X] List\<Boolean>만을 필드로 가지는 Line 객체 구현
+    - [X] 생성자의 매개변수로 참가자 수와 Line 생성 전략을 받아 List\<Boolean>에 바인딩
 - PointsMakeStrategy
   - [X] 메개변수로 참가자 수를 받아, 사다리 라인의 List\<Boolean>을 반환하는 인터페이스
   - [X] 구현체로 RandomPointsMakeStrategy 구현
