@@ -39,10 +39,8 @@ public class Lambda {
     }
 
     private static int doIterationOnCondition(List<Integer> numbers, Conditional conditional) {
-        int total = 0;
-        for (int number : numbers) {
-            total = conditional.getCondition(total, number);
-        }
-        return total;
+        return numbers.stream()
+                .filter(conditional::getCondition)
+                .reduce(0, Integer::sum);
     }
 }
