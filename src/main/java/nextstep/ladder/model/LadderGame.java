@@ -1,7 +1,6 @@
 package nextstep.ladder.model;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LadderGame {
     private final Ladder ladder;
@@ -12,9 +11,9 @@ public class LadderGame {
         this.players = players;
     }
 
-    public List<Player> result() {
-        return players.stream()
-                .map(ladder::move)
-                .collect(Collectors.toList());
+    public List<Player> move() {
+        players.forEach(ladder::move);
+
+        return this.players;
     }
 }

@@ -37,24 +37,30 @@ class LadderTest {
     void 라인이_연결되지_않은경우_시작과_동일한_객체를_반환한다(int start, int expected) {
         Player player = new Player("test", start);
 
-        Line line1 = Line.from(false, false, false);
-        Line line2 = Line.from(false, false, false);
-        Ladder ladder = Ladder.from(line1, line2);
+        Line line1 = LineTestUtil.createLineBy(false, false, false);
+        Line line2 = LineTestUtil.createLineBy(false, false, false);
 
-        Player actual = ladder.move(player);
-        assertThat(actual).isEqualTo(new Player("test", expected));
+        Ladder ladder = Ladder.from(line1, line2);
+        ladder.move(player);
+
+        assertThat(player).isEqualTo(new Player("test", expected));
     }
 
+    /**
+     * |-----|     |-----|
+     * |     |-----|     |
+     */
     @ParameterizedTest
     @CsvSource(value = {"0:2", "1:0", "2:3", "3:1"}, delimiter = ':')
     void 라인이_연결되어_있는경우_이동한_결과객체를_반환한다(int start, int expected) {
         Player player = new Player("test", start);
 
-        Line line1 = Line.from(true, false, true);
-        Line line2 = Line.from(false, true, false);
+        Line line1 = LineTestUtil.createLineBy(true, false, true);
+        Line line2 = LineTestUtil.createLineBy(false, true, false);
         Ladder ladder = Ladder.from(line1, line2);
+        ladder.move(player);
 
-        Player actual = ladder.move(player);
-        assertThat(actual).isEqualTo(new Player("test", expected));
+        assertThat(player).isEqualTo(new Player("test", expected));
     }
+
 }

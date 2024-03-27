@@ -11,6 +11,12 @@
     - LEFT, RIGHT, DOWN 정의
     - moveTo(..) : position이 주어진 경우 다음 위치 계산하여 반환한다
 
+- [x] 라인 이동시 Player 위치(상태) 변경되도록 리팩토링
+    - enum Direction 파라미터로 전달
+
+- [x] Line 클래스에서 Point 생성 책임 분리 -- PointsFactory
+- [x] LadderGame -> Ladder -> Line move(..) method 리팩토링
+
 ---
 
 ### 3단계 - 사다리(게임실행)
