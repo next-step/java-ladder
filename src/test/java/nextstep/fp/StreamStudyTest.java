@@ -45,4 +45,11 @@ public class StreamStudyTest {
         long sum = StreamStudy.sumOverThreeAndDouble(numbers);
         assertThat(sum).isEqualTo(36);
     }
+
+    @Test
+    public void sumOverThreeAndDoubleEdge() throws Exception {
+        numbers = Arrays.asList(Integer.MAX_VALUE);
+        long sum = StreamStudy.sumOverThreeAndDouble(numbers);
+        assertThat(sum).isEqualTo(4294967294L);
+    }
 }
