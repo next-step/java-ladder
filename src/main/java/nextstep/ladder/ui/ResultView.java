@@ -43,4 +43,12 @@ public class ResultView {
                 .collect(Collectors.joining());
     }
 
+    public static void printException(String message, Exception e) {
+        printException(message);
+        e.printStackTrace();
+    }
+
+    public static void printException(String message) {
+        System.out.println(message);
+    }
 }
