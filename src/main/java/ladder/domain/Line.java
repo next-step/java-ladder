@@ -58,8 +58,16 @@ public class Line {
         }
     }
 
-    public List<Link> points() {
+    public List<Link> links() {
         return links;
+    }
+
+    public Link linkOf(int linkIndex) {
+        return links.get(linkIndex);
+    }
+
+    public int size() {
+        return links.size();
     }
 
     @Override

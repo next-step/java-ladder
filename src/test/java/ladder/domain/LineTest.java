@@ -20,7 +20,7 @@ class LineTest {
     }
 
     @Test
-    @DisplayName("Point끼리의 양방향 Link의 정합성이 훼손되면 예외가 발생한다")
+    @DisplayName("양방향 Link의 정합성이 훼손되면 예외가 발생한다")
     void fail_for_overlap() {
         List<Link> input = List.of(RIGHT_LINK, RIGHT_LINK);
         assertThatThrownBy(() -> Line.from(input))
@@ -28,7 +28,7 @@ class LineTest {
     }
 
     @Test
-    @DisplayName("Point의 Link가 없는 것을 가르키면 예외가 발생한다")
+    @DisplayName("Link가 없는 것을 link하면 예외가 발생한다")
     void fail_for_participant_column_true() {
         List<Link> input = List.of(LEFT_LINK);
         assertThatThrownBy(() -> Line.from(input))
@@ -36,7 +36,7 @@ class LineTest {
     }
 
     @Test
-    @DisplayName("point가 빈 경우 예외가 발생한다")
+    @DisplayName("Link가 빈 경우 예외가 발생한다")
     void fail_for_min_length_3() {
         List<Link> input = List.of();
         assertThatThrownBy(() -> Line.from(input))

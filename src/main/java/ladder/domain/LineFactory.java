@@ -10,28 +10,34 @@ import java.util.Random;
 
 public class LineFactory {
 
+    private static final String CAN_NOT_BE_INSTANCE_EXCEPTION_MESSAGE
+        = "인스턴스화 불가 클래스입니다";
     private static final Random random = new Random();
+
+    private LineFactory() {
+        throw new AssertionError(CAN_NOT_BE_INSTANCE_EXCEPTION_MESSAGE);
+    }
 
     public static Line generate(int participantCount) {
         List<Link> links = new ArrayList<>();
         for (int i = 0; i < participantCount; i++) {
-            links.add(nextPoint(links, participantCount));
+            links.add(nextLink(links, participantCount));
         }
         return Line.from(links);
     }
 
-    private static Link nextPoint(List<Link> links, int pointCount) {
-        if (lastAddedPoint(links) == RIGHT_LINK) {
+    private static Link nextLink(List<Link> links, int totalLinkCount) {
+        if (prevLink(links) == RIGHT_LINK) {
             return LEFT_LINK;
         }
-        boolean isLastPoint = links.size() == pointCount - 1;
-        if (isLastPoint) {
+        boolean isLastLink = links.size() == totalLinkCount - 1;
+        if (isLastLink) {
             return NO_LINK;
         }
-        return randomPointOf(NO_LINK, RIGHT_LINK);
+        return randomLinkOf(NO_LINK, RIGHT_LINK);
     }
 
-    private static Link lastAddedPoint(List<Link> links) {
+    private static Link prevLink(List<Link> links) {
         if (links.isEmpty()) {
             return NO_LINK;
         }
@@ -39,7 +45,7 @@ public class LineFactory {
         return links.get(lastIndex);
     }
 
-    private static Link randomPointOf(Link... links) {
+    private static Link randomLinkOf(Link... links) {
         int randomIndex = random.nextInt(links.length);
         return links[randomIndex];
     }
