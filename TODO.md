@@ -1,3 +1,18 @@
+### 3단계 피드백/리팩토링
+
+- [x] Point 클래스 생성, 기능 구현
+    - left, right 상태값을 가진다
+    - left, right 둘 다 true인 경우 예외를 던진다 (라인은 연속적으로 연결하면 안됨)
+    - first(..) : left 무조건 false
+    - last() : right 무조건 false
+    - next(..) : "이전 right" 상태값이 left 할당
+    - move() : 이동 가능한 Direction 반환한다
+- [x] enum Direction 생성
+    - LEFT, RIGHT, DOWN 정의
+    - moveTo(..) : position이 주어진 경우 다음 위치 계산하여 반환한다
+
+---
+
 ### 3단계 - 사다리(게임실행)
 
 - [x] 라인이 정해져 있을 때, 현재 위치에서 라인 타고 이동한 다음 위치를 반환한다
