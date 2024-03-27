@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 import nextstep.ladder.exception.LineConsecutivePointException;
+import nextstep.ladder.exception.LinePointsSizeException;
 
 import java.util.List;
 import java.util.Random;
@@ -15,12 +16,23 @@ public class Line {
     private final List<Boolean> points;
 
     public Line(int countOfPerson) {
-        this(generatePoints(getMaxPointSize(countOfPerson)));
+        this(countOfPerson, generatePoints(getMaxPointSize(countOfPerson)));
     }
 
-    public Line(List<Boolean> points) {
+    public Line(int countOfPerson, List<Boolean> points) {
+        validateLinePointSize(countOfPerson, points);
         validateConsecutivePoint(points);
         this.points = points;
+    }
+
+    private void validateLinePointSize(int countOfPerson, List<Boolean> points) {
+        if (notMatch(countOfPerson, points)) {
+            throw new LinePointsSizeException(getMaxPointSize(countOfPerson), points);
+        }
+    }
+
+    private boolean notMatch(int countOfPerson, List<Boolean> points) {
+        return getMaxPointSize(countOfPerson) != points.size();
     }
 
     private void validateConsecutivePoint(List<Boolean> points) {
