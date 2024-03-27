@@ -17,4 +17,13 @@ public class LadderGame {
     public int getLadderHeight() {
         return this.ladder.getHeight();
     }
+
+    public Participants getParticipants() {
+        return this.participants;
+    }
+
+    public Ladder getLadder() {
+        return this.ladder;
+    }
+
 }

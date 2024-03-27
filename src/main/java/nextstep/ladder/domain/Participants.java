@@ -21,4 +21,8 @@ public class Participants {
     public int numberOf() {
         return this.participants.size();
     }
+
+    public List<Participant> get() {
+        return this.participants;
+    }
 }
