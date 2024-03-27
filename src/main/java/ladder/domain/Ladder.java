@@ -42,7 +42,6 @@ public class Ladder {
     private int resultIndexOf(int index) {
         int lineIndex = 0;
         while (lineIndex < lines.size()) {
-            System.out.printf("%d %d\n", lineIndex, index);
             Line currentLine = lines.get(lineIndex);
             Link currentLink = currentLine.linkOf(index);
 
