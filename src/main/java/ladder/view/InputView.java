@@ -15,7 +15,7 @@ public class InputView {
     private static final String INPUT_PARTICIPANT_TO_CHECK_RESULT_MESSAGE = "결과를 보고 싶은 사람은?";
     private final Scanner scanner = new Scanner(System.in);
 
-    public List<Participant> inputPariticipantNames() {
+    public List<Participant> inputParticipants() {
         System.out.println(INPUT_NAMES_MESSAGE);
         String line = scanner.nextLine();
         return Arrays.stream(line.split(DELIMITER))

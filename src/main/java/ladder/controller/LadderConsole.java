@@ -22,7 +22,7 @@ public class LadderConsole {
     }
 
     public void start() {
-        List<Participant> participants = inputView.inputPariticipantNames();
+        List<Participant> participants = inputView.inputParticipants();
         List<String> results = inputView.inputResults();
         int height = inputView.inputHeight();
 
