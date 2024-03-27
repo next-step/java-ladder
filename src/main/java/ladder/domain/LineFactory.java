@@ -10,7 +10,13 @@ import java.util.Random;
 
 public class LineFactory {
 
+    private static final String CAN_NOT_BE_INSTANCE_EXCEPTION_MESSAGE
+        = "인스턴스화 불가 클래스입니다";
     private static final Random random = new Random();
+
+    private LineFactory() {
+        throw new AssertionError(CAN_NOT_BE_INSTANCE_EXCEPTION_MESSAGE);
+    }
 
     public static Line generate(int participantCount) {
         List<Link> links = new ArrayList<>();
