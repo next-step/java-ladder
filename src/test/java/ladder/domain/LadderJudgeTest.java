@@ -13,10 +13,8 @@ class LadderJudgeTest {
     @DisplayName("참가자와 사다리 결과를 알맞게 매칭시킨다")
     void judge() {
         List<Participant> participants = makeParticipants();
-        LadderJudge ladderJudge = LadderJudge.of(participants, makeResults());
-
         LadderResult ladderResult = makeLadderResult();
-        LadderGameResult gameResult = ladderJudge.judge(ladderResult);
+        LadderGameResult gameResult = LadderJudge.judge(participants, makeResults(), ladderResult);
 
         assertThat(gameResult.get(participants.get(0))).isEqualTo("3");
         assertThat(gameResult.get(participants.get(1))).isEqualTo("1");

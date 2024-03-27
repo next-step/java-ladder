@@ -29,8 +29,7 @@ public class LadderConsole {
         Ladder ladder = LadderFactory.generate(participants.size(), height);
         outputView.printLadder(ladder, participants, results);
 
-        LadderJudge ladderJudge = LadderJudge.of(participants, results);
-        LadderGameResult gameResult = ladderJudge.judge(ladder.result());
+        LadderGameResult gameResult = LadderJudge.judge(participants, results, ladder.result());
         checkGameResult(participants, gameResult);
     }
 
