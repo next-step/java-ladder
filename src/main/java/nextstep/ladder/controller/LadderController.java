@@ -1,5 +1,6 @@
 package nextstep.ladder.controller;
 
+import nextstep.ladder.dto.LadderResult;
 import nextstep.ladder.model.Ladder;
 import nextstep.ladder.model.LadderGame;
 import nextstep.ladder.model.Player;
@@ -24,26 +25,30 @@ public class LadderController {
 
     public void run() {
         List<Player> players = toPlayer(inputView.askNames());
-        List<String> ladderReward = inputView.askLadderReward(players.size());
+        List<String> reward = inputView.askLadderReward(players.size());
         int height = inputView.askLadderHeight();
 
         Ladder ladder = Ladder.of(height, players.size());
 
-        outputView.print(players, ladder, ladderReward);
+        outputView.print(players, ladder, reward);
 
         LadderGame ladderGame = new LadderGame(ladder, players);
-        List<Player> playerResult = ladderGame.result();
+        List<Player> movedPlayer = ladderGame.move();
 
-        String name = "";
-        while (!ALL.equals(name)) {
-            name = inputView.askPlayerNameToConfirm();
-            outputView.printResultBy(ladderReward, playerResult, name);
-        }
+        confirmResult(new LadderResult(movedPlayer, reward));
     }
 
     private List<Player> toPlayer(List<String> names) {
         return IntStream.range(0, names.size())
                 .mapToObj(idx -> new Player(names.get(idx), idx))
                 .collect(toList());
+    }
+
+    private void confirmResult(LadderResult ladderResult) {
+        String name = "";
+        while (!ALL.equals(name)) {
+            name = inputView.askPlayerNameToConfirm();
+            outputView.printResultBy(ladderResult, name);
+        }
     }
 }

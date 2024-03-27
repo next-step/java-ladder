@@ -1,11 +1,13 @@
 package nextstep.ladder.view;
 
+import nextstep.ladder.dto.LadderResult;
 import nextstep.ladder.model.Ladder;
 import nextstep.ladder.model.Line;
-import nextstep.ladder.model.Name;
 import nextstep.ladder.model.Player;
+import nextstep.ladder.model.Point;
 
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
 
@@ -15,14 +17,15 @@ public class OutputView {
     private static final String FIVE_BLANK = "     ";
     private static final String NEW_LINE = System.lineSeparator();
     private static final String ALL = "all";
+    private static final String NOT_FOUND_NAME = "";
 
-    public void print(List<Player> players, Ladder ladder, List<String> ladderReward) {
+    public void print(List<Player> players, Ladder ladder, List<String> rewards) {
         StringBuilder sb = new StringBuilder();
         sb.append("사다리 결과").append(NEW_LINE);
 
         appendNames(sb, players);
         appendLadder(sb, ladder);
-        appendLadderReward(sb, ladderReward);
+        appendRewards(sb, rewards);
 
         System.out.println(sb);
     }
@@ -43,57 +46,53 @@ public class OutputView {
                 .forEach(points -> this.appendLine(sb, points));
     }
 
-    private void appendLine(StringBuilder sb, List<Boolean> points) {
+    private void appendLine(StringBuilder sb, List<Point> points) {
         sb.append(FIVE_BLANK).append(PIPE_LINE);
-        points.forEach(point -> {
-            sb.append(point ? LINE : FIVE_BLANK).append(PIPE_LINE);
-        });
+
+        for (int i = 1; i < points.size(); i++) {
+            sb.append(points.get(i).isConnected() ? LINE : FIVE_BLANK).append(PIPE_LINE);
+        }
+
         sb.append(NEW_LINE);
     }
 
-    private void appendLadderReward(StringBuilder sb, List<String> ladderReward) {
+    private void appendRewards(StringBuilder sb, List<String> rewards) {
         sb.append(THREE_BLANK);
-        ladderReward.forEach(result -> {
+        rewards.forEach(result -> {
             sb.append(String.format("%-6s", result));
         });
         sb.append(NEW_LINE);
     }
 
-    public void printResultBy(List<String> ladderResult, List<Player> playerResult, String name) {
+    public void printResultBy(LadderResult ladderResult, String name) {
         if (ALL.equals(name)) {
-            printAll(ladderResult, playerResult);
+            printAll(ladderResult);
             return;
         }
 
-        printOnlyOne(ladderResult, playerResult, name);
+        printOnlyOne(ladderResult, name);
     }
 
-    private void printAll(List<String> ladderResult, List<Player> playerResult) {
+    private void printAll(LadderResult ladderResult) {
         StringBuilder sb = new StringBuilder();
         sb.append("실행 결과").append(NEW_LINE);
 
-        playerResult.forEach(player -> {
-            String text = String.format("%s : %s", player.getName(), ladderResult.get(player.getPosition()));
+        Map<String, String> nameAndRewardMap = ladderResult.getNameAndRewardMap();
+        nameAndRewardMap.keySet().forEach(name -> {
+            String text = String.format("%s : %s", name, nameAndRewardMap.get(name));
             sb.append(text).append(NEW_LINE);
         });
 
         System.out.println(sb);
     }
 
-    private void printOnlyOne(List<String> ladderResult, List<Player> playerResult, String name) {
+    private void printOnlyOne(LadderResult ladderResult, String name) {
         StringBuilder sb = new StringBuilder();
         sb.append("실행 결과").append(NEW_LINE);
-        sb.append(ladderResult.get(findFinalPosition(playerResult, name)));
+
+        Map<String, String> nameAndRewardMap = ladderResult.getNameAndRewardMap();
+        sb.append(nameAndRewardMap.getOrDefault(name, NOT_FOUND_NAME));
+
         System.out.println(sb);
-    }
-
-    private int findFinalPosition(List<Player> playerResult, String name) {
-        Name target = new Name(name);
-
-        return playerResult.stream()
-                .filter(player -> player.sameName(target))
-                .map(Player::getPosition)
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("참가자 중에 " + name + "이 존재하지 않습니다"));
     }
 }
