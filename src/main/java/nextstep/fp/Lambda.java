@@ -27,6 +27,10 @@ public class Lambda {
         }).start();
     }
 
+    public static int sumAll(List<Integer> numbers) {
+        return sumAll(numbers, i -> true);
+    }
+
     public static int sumAll(List<Integer> numbers, Predicate<? super Integer> predicate) {
         return numbers.stream()
                 .filter(predicate)
