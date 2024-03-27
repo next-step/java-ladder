@@ -1,5 +1,6 @@
 package nextstep.ladder;
 
+import nextstep.ladder.domain.Line;
 import nextstep.ladder.exception.LineConsecutivePointException;
 import nextstep.ladder.exception.LinePointsSizeException;
 import org.junit.jupiter.api.DisplayName;

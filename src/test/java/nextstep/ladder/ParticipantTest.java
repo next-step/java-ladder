@@ -1,5 +1,6 @@
 package nextstep.ladder;
 
+import nextstep.ladder.domain.Participant;
 import nextstep.ladder.exception.ParticipantNameLengthExceedException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
