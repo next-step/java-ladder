@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder {
 
@@ -31,12 +33,14 @@ public class Ladder {
     }
 
     private Map<Integer, Integer> resultIndices() {
-        Map<Integer, Integer> resultIndices = new HashMap<>();
-        for (int i = 0; i < lines.get(0).size(); i++) {
-            int resultIndex = resultIndexOf(i);
-            resultIndices.put(i, resultIndex);
-        }
-        return resultIndices;
+        return IntStream.range(0, lines.get(0).size())
+            .boxed()
+            .collect(
+                Collectors.toMap(
+                    i -> i,
+                    this::resultIndexOf
+                )
+            );
     }
 
     private int resultIndexOf(int index) {
