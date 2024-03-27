@@ -45,21 +45,11 @@ public class Lambda {
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        return sumAll(numbers, new Conditional() {
-            @Override
-            public boolean test(Integer number) {
-                return number % 2 == 0;
-            }
-        });
+        return sumAll(numbers, it -> it % 2 == 0);
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
-        return sumAll(numbers, new Conditional() {
-            @Override
-            public boolean test(Integer number) {
-                return number > 3;
-            }
-        });
+        return sumAll(numbers, it -> it > 3);
     }
 
 }
