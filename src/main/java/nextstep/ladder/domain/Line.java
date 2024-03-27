@@ -6,13 +6,20 @@ import java.util.Random;
 
 public class Line {
 
-    private List<Boolean> points = new ArrayList<>();
+    private final List<Boolean> points = new ArrayList<>();
 
     public Line(final int numberOfPeople) {
         final Random random = new Random();
-        for (int i = 0; i < numberOfPeople - 1; i++) {
-            points.add(random.nextBoolean());
+        while (points.size() < numberOfPeople - 1) {
+            final boolean now = random.nextBoolean();
+            if (isDifferentFromPrevious(now)) {
+                points.add(now);
+            }
         }
+    }
+
+    private boolean isDifferentFromPrevious(final boolean now) {
+        return points.isEmpty() || points.get(points.size() - 1) != now;
     }
 
     public List<Boolean> getPoints() {
