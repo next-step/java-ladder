@@ -7,3 +7,25 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+## Step1 스트림, 람다, Optional
+### 람다 실습 1 : 익명 클래스를 람다로 전환
+- CarTest의 MoveStrategy에 대한 익명 클래스 구현부를 람다로 적용
+
+### 람다 실습 2 : 람다를 활용해 중복 제거
+- `nextstep.fp.Lamda`의 `sumAll`, `sumAllEven`, `sumAllOverThree` 메서드 리팩토링
+
+### 스트림(Stream) map, reduce, filter 실습 1
+- `nextstep.fp.StreamStudyTest#sumOverThreeAndDouble` 메서드의 테스트가 성공하도록 처리
+
+### 스트림(Stream) map, reduce, filter 실습 2
+- `nextstep.fp.StreamStudy#printLongestWordTop100()` 메서드 구현
+
+### Optional 실습 1 - Optional을 활용해 조건에 따른 반환
+- `User#ageIsInRange2` 메서드에 Optional을 활용해 `30살 이상, 45살 이하에 해당하는 User인 경우 true 반환` 기능 구현
+
+### Optional 실습 2 - Optional에서 값을 반환
+- `getUser()` 메서드를 stream과 Optional을 활용해 반환하도록 처리
+
+### Optional 실습 3 - Optional에서 exception 처리
+- `ExpressionTest`의 테스트가 통과하도록 of 메서드 구현
