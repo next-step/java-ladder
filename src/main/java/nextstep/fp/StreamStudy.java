@@ -14,7 +14,7 @@ public class StreamStudy {
     public static long countWords() throws IOException {
         String contents = new String(Files.readAllBytes(Paths
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
-        return Arrays.asList(contents.split("[\\P{L}]+")).stream()
+        return Arrays.stream(contents.split("[\\P{L}]+"))
                 .filter(word -> word.length() > 12)
                 .count();
     }
