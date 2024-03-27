@@ -14,12 +14,12 @@ public class Ladder {
         this.height = height;
     }
 
-    public static Ladder of(int countOfPerson, int height) {
-        return new Ladder(createLines(countOfPerson, height), height);
+    public static Ladder of(int countOfParticipant, int height) {
+        return new Ladder(createLines(countOfParticipant, height), height);
     }
 
-    private static List<Line> createLines(int countOfPerson, int height) {
-        return Stream.generate(() -> new Line(countOfPerson))
+    private static List<Line> createLines(int countOfParticipant, int height) {
+        return Stream.generate(() -> new Line(countOfParticipant))
                 .limit(height)
                 .collect(Collectors.toList());
     }

@@ -1,20 +1,20 @@
 package nextstep.ladder;
 
-import nextstep.ladder.exception.PersonNameLengthExceedException;
+import nextstep.ladder.exception.ParticipantNameLengthExceedException;
 
-public class Person {
+public class Participant {
 
     private static final int MAX_NAME_LENGTH = 5;
     private final String name;
 
-    public Person(String name) {
+    public Participant(String name) {
         validateNameLength(name);
         this.name = name;
     }
 
     private void validateNameLength(String name) {
         if (exceedNameLength(name)) {
-            throw new PersonNameLengthExceedException(name);
+            throw new ParticipantNameLengthExceedException(name);
         }
     }
 
