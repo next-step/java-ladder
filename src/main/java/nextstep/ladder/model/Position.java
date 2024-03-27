@@ -13,24 +13,8 @@ public class Position {
         this.position = position;
     }
 
-    public boolean greaterThan(int other) {
-        return this.position > other;
-    }
-
-    public boolean lessThan(int other) {
-        return this.position < other;
-    }
-
-    public void moveLeft() {
-        if (this.position <= 0) {
-            throw new IllegalArgumentException("왼쪽으로 이동할 수 없습니다");
-        }
-
-        this.position -= 1;
-    }
-
-    public void moveRight() {
-        this.position += 1;
+    public void moveTo(Direction direction) {
+        this.position = direction.next(this.position);
     }
 
     public int getPosition() {

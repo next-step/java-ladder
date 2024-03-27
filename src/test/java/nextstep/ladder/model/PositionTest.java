@@ -21,28 +21,29 @@ class PositionTest {
                 .withMessage("음수 값은 허용하지 않습니다");
     }
 
-    @DisplayName("왼쪽으로 이동할 경우 -1 감소시킨 Position 객체 반환")
+    @DisplayName("왼쪽으로 이동할 경우 -1 감소시킨다")
     @Test
     void moveLeft() {
         Position position = new Position(1);
-        position.moveLeft();
+        position.moveTo(Direction.LEFT);
 
         assertThat(position).isEqualTo(new Position(0));
     }
 
-    @Test
-    void 왼쪽으로_이동할수없는경우_예외를던진다() {
-        Position position = new Position(0);
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> position.moveLeft())
-                .withMessage("왼쪽으로 이동할 수 없습니다");
-    }
-
-    @DisplayName("오른쪽으로 이동할 경우 +1 증가시킨 Position 객체 반환")
+    @DisplayName("오른쪽으로 이동할 경우 +1 증가시킨다")
     @Test
     void moveRight() {
         Position position = new Position(0);
-        position.moveRight();
+        position.moveTo(Direction.RIGHT);
+
+        assertThat(position).isEqualTo(new Position(1));
+    }
+
+    @DisplayName("아래로 이동할 경우 현재 상태를 유지한다")
+    @Test
+    void moveDown() {
+        Position position = new Position(1);
+        position.moveTo(Direction.DOWN);
 
         assertThat(position).isEqualTo(new Position(1));
     }

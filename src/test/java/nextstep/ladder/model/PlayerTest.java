@@ -13,23 +13,21 @@ class PlayerTest {
         assertThat(player).isEqualTo(new Player("test", 0));
     }
 
-    @DisplayName("왼쪽 이동할 경우, Position을 -1 감소시킨 Player 객체 반환한다")
+    @DisplayName("왼쪽 이동할 경우, Position을 -1 감소시킨다")
     @Test
-    void moveLeft() {
+    void moveToLeft() {
         Player player = new Player("test", 1);
+        player.moveTo(Direction.LEFT);
 
-        Player result = player.moveLeft();
-
-        assertThat(result).isEqualTo(new Player("test", 0));
+        assertThat(player).isEqualTo(new Player("test", 0));
     }
 
-    @DisplayName("오른쪽 이동할 경우, Position을 +1 증가시킨다 Player 객체 반환한다")
+    @DisplayName("오른쪽 이동할 경우, Position을 +1 증가시킨다")
     @Test
-    void moveRight() {
+    void moveToRight() {
         Player player = new Player("test", 0);
+        player.moveTo(Direction.RIGHT);
 
-        Player result = player.moveRight();
-
-        assertThat(result).isEqualTo(new Player("test", 1));
+        assertThat(player).isEqualTo(new Player("test", 1));
     }
 }

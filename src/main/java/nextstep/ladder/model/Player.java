@@ -15,26 +15,8 @@ public class Player {
         this.position = position;
     }
 
-    public boolean greaterThan(int other) {
-        return this.position.greaterThan(other);
-    }
-
-    public boolean lessThan(int other) {
-        return this.position.lessThan(other);
-    }
-
-    public Player moveLeft() {
-        position.moveLeft();
-        return this;
-    }
-
-    public Player moveRight() {
-        position.moveRight();
-        return this;
-    }
-
-    public boolean sameName(Name other) {
-        return this.name.equals(other);
+    public void moveTo(Direction direction) {
+        this.position.moveTo(direction);
     }
 
     public String getName() {
