@@ -24,11 +24,13 @@ public class Player {
     }
 
     public Player moveLeft() {
-        return new Player(this.name, position.moveLeft());
+        position.moveLeft();
+        return this;
     }
 
     public Player moveRight() {
-        return new Player(this.name, position.moveRight());
+        position.moveRight();
+        return this;
     }
 
     public boolean sameName(Name other) {

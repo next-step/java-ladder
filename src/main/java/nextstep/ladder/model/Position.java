@@ -3,7 +3,7 @@ package nextstep.ladder.model;
 import java.util.Objects;
 
 public class Position {
-    private final int position;
+    private int position;
 
     public Position(int position) {
         if (position < 0) {
@@ -21,16 +21,16 @@ public class Position {
         return this.position < other;
     }
 
-    public Position moveLeft() {
+    public void moveLeft() {
         if (this.position <= 0) {
             throw new IllegalArgumentException("왼쪽으로 이동할 수 없습니다");
         }
 
-        return new Position(this.position - 1);
+        this.position -= 1;
     }
 
-    public Position moveRight() {
-        return new Position(this.position + 1);
+    public void moveRight() {
+        this.position += 1;
     }
 
     public int getPosition() {

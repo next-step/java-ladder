@@ -25,9 +25,9 @@ class PositionTest {
     @Test
     void moveLeft() {
         Position position = new Position(1);
-        Position nextPosition = position.moveLeft();
+        position.moveLeft();
 
-        assertThat(nextPosition).isEqualTo(new Position(0));
+        assertThat(position).isEqualTo(new Position(0));
     }
 
     @Test
@@ -42,8 +42,8 @@ class PositionTest {
     @Test
     void moveRight() {
         Position position = new Position(0);
-        Position nextPosition = position.moveRight();
+        position.moveRight();
 
-        assertThat(nextPosition).isEqualTo(new Position(1));
+        assertThat(position).isEqualTo(new Position(1));
     }
 }
