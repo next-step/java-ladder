@@ -15,24 +15,24 @@ public class Line {
 
     private final List<Boolean> points;
 
-    public Line(int countOfParticipant) {
-        this(countOfParticipant, generatePoints(getMaxPointSize(countOfParticipant)));
+    public Line(int numberOfParticipant) {
+        this(numberOfParticipant, generatePoints(getMaxPointSize(numberOfParticipant)));
     }
 
-    public Line(int countOfParticipant, List<Boolean> points) {
-        validateLinePointSize(countOfParticipant, points);
+    public Line(int numberOfParticipant, List<Boolean> points) {
+        validateLinePointSize(numberOfParticipant, points);
         validateConsecutivePoint(points);
         this.points = points;
     }
 
-    private void validateLinePointSize(int countOfParticipant, List<Boolean> points) {
-        if (notMatch(countOfParticipant, points)) {
-            throw new LinePointsSizeException(getMaxPointSize(countOfParticipant), points);
+    private void validateLinePointSize(int numberOfParticipant, List<Boolean> points) {
+        if (notMatch(numberOfParticipant, points)) {
+            throw new LinePointsSizeException(getMaxPointSize(numberOfParticipant), points);
         }
     }
 
-    private boolean notMatch(int countOfParticipant, List<Boolean> points) {
-        return getMaxPointSize(countOfParticipant) != points.size();
+    private boolean notMatch(int numberOfParticipant, List<Boolean> points) {
+        return getMaxPointSize(numberOfParticipant) != points.size();
     }
 
     private void validateConsecutivePoint(List<Boolean> points) {
@@ -52,8 +52,8 @@ public class Line {
         return points;
     }
 
-    private static int getMaxPointSize(int countOfParticipant) {
-        return countOfParticipant - 1;
+    private static int getMaxPointSize(int numberOfParticipant) {
+        return numberOfParticipant - 1;
     }
 
     private static boolean hasConsecutivePoint(List<Boolean> points) {

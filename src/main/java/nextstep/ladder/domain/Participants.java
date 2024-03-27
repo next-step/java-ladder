@@ -18,7 +18,7 @@ public class Participants {
         this.participants = participants;
     }
 
-    public int getSize() {
+    public int numberOf() {
         return this.participants.size();
     }
 }

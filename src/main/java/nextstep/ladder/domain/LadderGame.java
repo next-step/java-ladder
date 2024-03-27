@@ -11,7 +11,7 @@ public class LadderGame {
     }
 
     public int getParticipantsSize() {
-        return this.participants.getSize();
+        return this.participants.numberOf();
     }
 
     public int getLadderHeight() {
