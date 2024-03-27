@@ -1,22 +1,24 @@
 package ladder;
 
-import ladder.domain.ladder.Line;
+import ladder.domain.ladder.Ladder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderTest {
-	@DisplayName("사용자의 이름길이 만큼 사다리의 넓이가 결정된다.")
+
+	@DisplayName("높이와 사람 수를 입력하면 사다리를 생성한다.")
 	@Test
-	void makeLineWidthByUserNameLength() {
+	void testMethodNameHere() {
 		// given
-		String userName = "pobi";
+		int height = 5;
+		int countOfPerson = 4;
 
 		// when
-		Line line = Line.createLine(userName.length(), 0);
+		Ladder ladder = Ladder.createLadder(height, countOfPerson);
 
 		// then
-		assertThat(line.getWidth()).isEqualTo(4);
+		assertThat(ladder.getHeight()).isEqualTo(5);
 	}
 }
