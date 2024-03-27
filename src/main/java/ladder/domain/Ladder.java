@@ -44,12 +44,8 @@ public class Ladder {
     }
 
     private int resultIndexOf(int index) {
-        int lineIndex = 0;
-        while (lineIndex < lines.size()) {
-            Line currentLine = lines.get(lineIndex);
+        for (Line currentLine : lines) {
             Link currentLink = currentLine.linkOf(index);
-
-            lineIndex++;
             index = currentLink.nextIndex(index);
         }
         return index;
