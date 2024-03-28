@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
 
-    @DisplayName("")
+    @DisplayName("각 Line 은 높이와 사용자(owner) 를 가진다.")
     @Test
     void test() {
         Line line = new Line("pobi", 5);
