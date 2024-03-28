@@ -84,4 +84,8 @@ public class LadderRow {
         LadderColumn column = columns.get(columnIndex);
         return column.nextIndex();
     }
+
+    public int columnSize() {
+        return columns.size();
+    }
 }
