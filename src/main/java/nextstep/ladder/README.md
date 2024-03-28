@@ -31,8 +31,8 @@
 ## StepType
 - Line에서 사용되는, 현재 `step`이 존재하는지 역할을 가지고 있는 Enum
 - EMPTY(0, draw), STEP(1, draw)
-- [ ] `boolean` 파라미터로 어떤 타입인지 반환한다.
-- [ ] `StepType`으로 draw를 반환한다.
+- [x] `boolean` 파라미터로 어떤 타입인지 반환한다.
+- [x] `StepType`으로 draw를 반환한다.
 
 ## Line
 - 사다리의 가로선 역할을 담당하는 클래스. 내부에서 발판의 존재 여부를 `StepType`으로 가지고 있다.
