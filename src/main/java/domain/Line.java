@@ -2,11 +2,11 @@ package domain;
 
 public class Line {
 
-    private final String owner;
+    private final Name name;
     private final int height;
 
-    public Line(String owner, int height) {
-        this.owner = owner;
+    public Line(Name name, int height) {
+        this.name = name;
         this.height = height;
     }
 }
