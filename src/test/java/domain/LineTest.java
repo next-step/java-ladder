@@ -10,7 +10,7 @@ public class LineTest {
     @DisplayName("")
     @Test
     void test() {
-        Line line = new Line(5);
+        Line line = new Line("pobi", 5);
         assertThat(line).isNotNull();
     }
 }
