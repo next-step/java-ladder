@@ -1,3 +1,50 @@
+### 3단계 피드백/리팩토링
+
+- [x] Point 클래스 생성, 기능 구현
+    - left, right 상태값을 가진다
+    - left, right 둘 다 true인 경우 예외를 던진다 (라인은 연속적으로 연결하면 안됨)
+    - first(..) : left 무조건 false
+    - last() : right 무조건 false
+    - next(..) : "이전 right" 상태값이 left 할당
+    - move() : 이동 가능한 Direction 반환한다
+- [x] enum Direction 생성
+    - LEFT, RIGHT, DOWN 정의
+    - moveTo(..) : position이 주어진 경우 다음 위치 계산하여 반환한다
+
+- [x] 라인 이동시 Player 위치(상태) 변경되도록 리팩토링
+    - enum Direction 파라미터로 전달
+
+- [x] Line 클래스에서 Point 생성 책임 분리 -- PointsFactory
+- [x] LadderGame -> Ladder -> Line move(..) method 리팩토링
+
+---
+
+### 3단계 - 사다리(게임실행)
+
+- [x] 라인이 정해져 있을 때, 현재 위치에서 라인 타고 이동한 다음 위치를 반환한다
+- [x] 사다리에서 출발위치가 주어졌을 때, 도착한 위치를 반환한다
+    - 전체 라인이 연결되지 않은 경우 동일한 위치를 반환한다
+    - 각 라인이 연결되어 있는 경우 이동한 위치를 반환한다
+
+- [x] Name 객체 생성
+    - 이름이 비어있거나, 최대 5자리를 초과할 경우 예외를 던진다
+- [x] Position 객체 생성
+    - [x] 음수 값을 입력할 경우 예외를 던진다
+    - [x] 왼쪽 이동할 경우 -1 감소시킨 Position 객체 반환 -- moveLeft()
+    - [x] 오른쪽 이동할 경우 +1 증가시킨 Position 객체 반환 -- moveRight()
+- [x] Player 생성
+    - [x] Name, Position 상태를 가진다
+    - [x] 왼쪽 이동할 경우, Position을 -1 감소시킨 Player 객체 반환 -- moveLeft()
+    - [x] 오른쪽 이동할 경우, Position을 +1 증가시킨다 Player 객체 반환 -- moveRight()
+
+- [x] 사디리 게임 실행 결과(=보상)를 입력 받는다
+    - 구분자는 쉼표
+    - 참가자 수 만큼 입력 받아야 함
+- [x] 결과를 보고 싶은 사람의 이름을 입력받고, 사다리 게임 결과를 출력한다
+    - "all" 입력하는 경우 전체 출력 (종료)
+
+---
+
 ### 2단계 - 사다리(생성)
 
 - [x] 라인을 생성한다
