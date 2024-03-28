@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
-	private final int height;
+	private final Height height;
 	private final List<Line> lines;
 
-	public Ladder(int height, List<Line> lines) {
+	public Ladder(Height height, List<Line> lines) {
 		this.height = height;
 		this.lines = lines;
 	}
 
-	public static Ladder createLadder(int height, int countOfPerson) {
+	public static Ladder createLadder(Height height, int countOfPerson) {
 		List<Line> lines = new ArrayList<>();
-		for (int i = 0; i < height; i++) {
+		for (int i = 0; i < height.getHeight(); i++) {
 			lines.add(Line.createLine(countOfPerson));
 		}
 		return new Ladder(height, lines);
@@ -27,6 +27,6 @@ public class Ladder {
 	}
 
 	public int getHeight() {
-		return height;
+		return height.getHeight();
 	}
 }

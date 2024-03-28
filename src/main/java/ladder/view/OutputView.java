@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.domain.ladder.Height;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.user.Users;
 
@@ -9,6 +10,6 @@ public class OutputView {
 		System.out.println("");
 
 		System.out.println(users.toString());
-		Ladder.createLadder(ladderHeight, users.getCountOfPerson()).printLadder();
+		Ladder.createLadder(Height.createHeight(ladderHeight), users.getCountOfPerson()).printLadder();
 	}
 }
