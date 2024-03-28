@@ -3,6 +3,7 @@ package ladder2.domain;
 import static ladder2.domain.Link.LEFT_LINK;
 import static ladder2.domain.Link.NO_LINK;
 import static ladder2.domain.Link.RIGHT_LINK;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -48,5 +49,14 @@ class LadderRowTest {
     void new_link_not_two_way_link_exception() {
         assertThatThrownBy(() -> LadderRow.of(LEFT_LINK, LEFT_LINK))
             .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("특정 열에 연결된 다음 열의 인덱스를 반환한다")
+    void nextColumnIndex() {
+        LadderRow ladderRow = LadderRow.of(RIGHT_LINK, LEFT_LINK);
+        int currentIndex = 0;
+        int nextIndex = ladderRow.nextColumnIndex(currentIndex);
+        assertThat(nextIndex).isEqualTo(1);
     }
 }

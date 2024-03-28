@@ -79,4 +79,9 @@ public class LadderRow {
         }
         return new LadderRow(columns);
     }
+
+    public int nextColumnIndex(int columnIndex) {
+        LadderColumn column = columns.get(columnIndex);
+        return column.nextIndex();
+    }
 }
