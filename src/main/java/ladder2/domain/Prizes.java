@@ -8,17 +8,9 @@ import java.util.stream.Collectors;
 
 public class Prizes {
 
-    private final Map<Integer, Prize> prizes;
+    private final List<Prize> prizes;
 
     public Prizes(List<Prize> prizes) {
-        this(
-            prizes.stream().collect(
-                Collectors.toUnmodifiableMap(Prize::index, prize -> prize)
-            )
-        );
-    }
-
-    public Prizes(Map<Integer, Prize> prizes) {
         this.prizes = prizes;
     }
 
@@ -27,7 +19,7 @@ public class Prizes {
     }
 
     public List<String> names() {
-        return prizes.values().stream()
+        return prizes.stream()
             .map(Prize::name)
             .collect(Collectors.toList());
     }

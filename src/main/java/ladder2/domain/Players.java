@@ -1,23 +1,13 @@
 package ladder2.domain;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Players {
 
-    private final Map<Integer, Player> players;
+    private final List<Player> players;
 
     public Players(List<Player> players) {
-        this(
-            players.stream().collect(
-                Collectors.toMap(Player::index, player -> player)
-            )
-        );
-    }
-
-    public Players(Map<Integer, Player> players) {
         this.players = players;
     }
 
@@ -34,19 +24,19 @@ public class Players {
     }
 
     public Player getByName(String name) {
-        return players.values().stream()
+        return players.stream()
             .filter(player -> player.name().equals(name))
             .findFirst()
             .orElseThrow();
     }
 
     public List<String> names() {
-        return players.values().stream()
+        return players.stream()
             .map(Player::name)
             .collect(Collectors.toList());
     }
 
     public List<Player> value() {
-        return new ArrayList<>(players.values());
+        return players;
     }
 }
