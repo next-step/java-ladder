@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Position {
 
     private static final String NEGATIVE_EXCEPTION_MESSAGE = "음수가 될 수 없습니다";
-    
+
     private final int position;
 
     public Position(int position) {

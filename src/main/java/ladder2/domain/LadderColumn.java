@@ -20,6 +20,14 @@ public class LadderColumn {
         return link.nextPosition(position);
     }
 
+    public int position() {
+        return position.value();
+    }
+
+    public Link link() {
+        return link;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
