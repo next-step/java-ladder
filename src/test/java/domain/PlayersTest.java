@@ -16,7 +16,7 @@ public class PlayersTest {
 
     @ParameterizedTest
     @MethodSource("playerListAndToString")
-    @DisplayName("List<Player>만을 가지는 일급컬렉션")
+    @DisplayName("from 호출 시 매개변수인 Player의 목록이 Players의 players 필드로 초기화")
     void create(List<Player> playerList) {
         Players players = Players.from(playerList);
         assertThat(players.size()).isEqualTo(playerList.size());
