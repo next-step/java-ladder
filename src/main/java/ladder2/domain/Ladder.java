@@ -3,6 +3,7 @@ package ladder2.domain;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -58,5 +59,29 @@ public class Ladder {
 
     public List<LadderRow> rows() {
         return rows;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Ladder ladder = (Ladder) o;
+        return Objects.equals(rows, ladder.rows);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(rows);
+    }
+
+    @Override
+    public String toString() {
+        return "Ladder{" +
+            "rows=" + rows +
+            '}';
     }
 }
