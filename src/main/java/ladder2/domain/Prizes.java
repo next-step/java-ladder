@@ -1,5 +1,6 @@
 package ladder2.domain;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -22,5 +23,11 @@ public class Prizes {
 
     public Prize get(int index) {
         return prizes.get(index);
+    }
+
+    public List<String> names() {
+        return prizes.values().stream()
+            .map(Prize::name)
+            .collect(Collectors.toList());
     }
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
 public class Ladder {
 
     private final List<LadderRow> rows;
@@ -53,5 +54,9 @@ public class Ladder {
             index = row.nextColumnIndex(index);
         }
         return index;
+    }
+
+    public List<LadderRow> rows() {
+        return rows;
     }
 }

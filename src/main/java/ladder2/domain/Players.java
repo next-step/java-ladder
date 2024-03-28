@@ -1,5 +1,6 @@
 package ladder2.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -30,5 +31,22 @@ public class Players {
 
     public int count() {
         return players.size();
+    }
+
+    public Player getByName(String name) {
+        return players.values().stream()
+            .filter(player -> player.name().equals(name))
+            .findFirst()
+            .orElseThrow();
+    }
+
+    public List<String> names() {
+        return players.values().stream()
+            .map(Player::name)
+            .collect(Collectors.toList());
+    }
+
+    public List<Player> value() {
+        return new ArrayList<>(players.values());
     }
 }

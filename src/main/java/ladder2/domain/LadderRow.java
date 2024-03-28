@@ -88,4 +88,8 @@ public class LadderRow {
     public int columnSize() {
         return columns.size();
     }
+
+    public List<LadderColumn> columns() {
+        return columns;
+    }
 }
