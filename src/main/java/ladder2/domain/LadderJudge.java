@@ -11,11 +11,9 @@ public class LadderJudge {
     }
 
     public void judge(LadderResult ladderResult) {
-        for (int i = 0; i < players.count(); i++) {
-            int resultIndex = ladderResult.resultIndexOf(i);
-            Player player = players.get(i);
-            Prize prize = prizes.get(resultIndex);
-            player.receivePrize(prize);
+        for (int playerIndex = 0; playerIndex < players.count(); playerIndex++) {
+            int prizeIndex = ladderResult.resultIndexOf(playerIndex);
+            players.sendPrize(playerIndex, prizes.get(prizeIndex));
         }
     }
 }
