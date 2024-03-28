@@ -4,17 +4,17 @@ import java.util.function.Function;
 
 public enum Link {
 
-    LEFT_LINK(Position::minus),
-    RIGHT_LINK(Position::plus),
-    NO_LINK(position -> position);
+    LEFT_LINK(index -> index - 1),
+    RIGHT_LINK(index -> index + 1),
+    NO_LINK(index -> index);
 
-    private final Function<Position, Position> nextPositionFunction;
+    private final Function<Integer, Integer> nextIndexFunction;
 
-    Link(Function<Position, Position> nextPositionFunction) {
-        this.nextPositionFunction = nextPositionFunction;
+    Link(Function<Integer, Integer> nextIndexFunction) {
+        this.nextIndexFunction = nextIndexFunction;
     }
 
-    public Position nextPosition(Position position) {
-        return nextPositionFunction.apply(position);
+    public int nextIndex(int index) {
+        return nextIndexFunction.apply(index);
     }
 }

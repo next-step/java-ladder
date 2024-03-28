@@ -8,7 +8,7 @@ import java.util.List;
 
 public class LadderRow {
 
-    private static final String POSITION_EXCEPTION_MESSAGE = "LadderColumn 위치 정보가 잘못되었습니다";
+    private static final String INDEX_EXCEPTION_MESSAGE = "LadderColumn 위치 정보가 잘못되었습니다";
     private static final String EMPTY_EXCEPTION_MESSAGE = "LadderColumn이 1개 이상 있어야 합니다";
     private static final String LINK_TO_NULL_EXCEPTION_MESSAGE = "빈 곳을 Link하는 LadderColumn이 있습니다";
     private static final String LINK_ONEWAY_EXCEPTION_MESSAGE = "단방향 Link를 가진 LadderColumn이 있습니다";
@@ -21,22 +21,22 @@ public class LadderRow {
     }
 
     private static void validate(List<LadderColumn> columns) {
-        validatePosition(columns);
+        validateIndex(columns);
         validateNotEmpty(columns);
         validateLinkToNotNull(columns);
         validateLinkedTwoWay(columns);
     }
 
-    private static void validatePosition(List<LadderColumn> columns) {
+    private static void validateIndex(List<LadderColumn> columns) {
         for (int i = 0; i < columns.size(); i++) {
             LadderColumn column = columns.get(i);
-            validatePosition(column, i);
+            validateIndex(column, i);
         }
     }
 
-    private static void validatePosition(LadderColumn column, int i) {
-        if (column.position() != i) {
-            throw new IllegalArgumentException(POSITION_EXCEPTION_MESSAGE);
+    private static void validateIndex(LadderColumn column, int i) {
+        if (column.index() != i) {
+            throw new IllegalArgumentException(INDEX_EXCEPTION_MESSAGE);
         }
     }
 

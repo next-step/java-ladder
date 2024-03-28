@@ -20,8 +20,8 @@ class LadderRowTest {
     }
 
     @Test
-    @DisplayName("열들의 position이 올바르지 않을 경우 예외가 발생한다")
-    void new_illegal_position_exception() {
+    @DisplayName("열들의 index가 올바르지 않을 경우 예외가 발생한다")
+    void new_illegal_index_exception() {
         List<LadderColumn> columns = List.of(
             new LadderColumn(999, NO_LINK)
         );

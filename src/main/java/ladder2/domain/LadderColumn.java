@@ -4,24 +4,20 @@ import java.util.Objects;
 
 public class LadderColumn {
 
-    private final Position position;
+    private final int index;
     private final Link link;
 
-    public LadderColumn(int position, Link link) {
-        this(new Position(position), link);
-    }
-
-    public LadderColumn(Position position, Link link) {
-        this.position = position;
+    public LadderColumn(int index, Link link) {
+        this.index = index;
         this.link = link;
     }
 
-    public Position nextPosition() {
-        return link.nextPosition(position);
+    public int nextIndex() {
+        return link.nextIndex(index);
     }
 
-    public int position() {
-        return position.value();
+    public int index() {
+        return index;
     }
 
     public Link link() {
@@ -37,18 +33,18 @@ public class LadderColumn {
             return false;
         }
         LadderColumn that = (LadderColumn) o;
-        return Objects.equals(position, that.position) && link == that.link;
+        return Objects.equals(index, that.index) && link == that.link;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(position, link);
+        return Objects.hash(index, link);
     }
 
     @Override
     public String toString() {
         return "LadderColumn{" +
-            "position=" + position +
+            "index=" + index +
             ", link=" + link +
             '}';
     }
