@@ -21,20 +21,20 @@ public class LadderRowFactory {
         throw new AssertionError(CAN_NOT_BE_INSTANCE_EXCEPTION_MESSAGE);
     }
 
-    public static LadderRow generate(int columnCount) {
+    public static LadderRow generate(int columnSize) {
         List<LadderColumn> columns = new ArrayList<>();
-        for (int i = 0; i < columnCount; i++) {
-            LadderColumn column = nextColumn(columns, i, columnCount);
+        for (int i = 0; i < columnSize; i++) {
+            LadderColumn column = nextColumn(columns, i, columnSize);
             columns.add(column);
         }
         return new LadderRow(columns);
     }
 
-    private static LadderColumn nextColumn(List<LadderColumn> columns, int index, int columnCount) {
+    private static LadderColumn nextColumn(List<LadderColumn> columns, int index, int columnSize) {
         if (isPrevColumnLinkIsRight(columns)) {
             return new LadderColumn(index, LEFT_LINK);
         }
-        boolean isLastColumn = columns.size() == columnCount - 1;
+        boolean isLastColumn = columns.size() == columnSize - 1;
         if (isLastColumn) {
             return new LadderColumn(index, NO_LINK);
         }
