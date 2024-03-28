@@ -15,11 +15,15 @@ public class Ladder {
     }
 
     public static Ladder of(int numberOfParticipant, int height) {
-        return new Ladder(createLines(numberOfParticipant, height), height);
+        return new Ladder(createLines(numberOfParticipant - 1, height), height);
+    }
+
+    public static Ladder of(int numberOfParticipant, int height, List<Line> lines) {
+        return new Ladder(lines, height);
     }
 
     private static List<Line> createLines(int numberOfParticipant, int height) {
-        return Stream.generate(() -> new Line(numberOfParticipant))
+        return Stream.generate(() -> Line.of(numberOfParticipant - 1))
                 .limit(height)
                 .collect(Collectors.toList());
     }
