@@ -4,13 +4,15 @@ import java.util.Objects;
 
 public class Player {
     public static final String NAME_LENGTH_CANT_OVER_FIVE = "이름은 5자를 초과할 수 없습니다.";
+    public static final int MAX_NAME_LENGTH = 5;
+
     private final String name;
     public static Player from(String name) {
         return new Player(name);
     }
 
     private Player(String name) {
-        if (name.length() > 5) {
+        if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(NAME_LENGTH_CANT_OVER_FIVE);
         }
         this.name = name;
