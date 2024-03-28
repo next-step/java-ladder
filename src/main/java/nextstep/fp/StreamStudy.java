@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 public class StreamStudy {
@@ -29,13 +30,15 @@ public class StreamStudy {
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
         // TODO 이 부분에 구현한다.
-        words.stream()
+        String joinedWords = words.stream()
                 .filter(word -> word.length() > 12)
                 .map(String::toLowerCase)
                 .distinct()
                 .sorted(Comparator.comparing(String::length).reversed())
                 .limit(100)
-                .forEach(System.out::println);
+                .collect(Collectors.joining(System.lineSeparator()));
+
+        System.out.println(joinedWords);
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
