@@ -2,16 +2,24 @@ package domain;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.IntStream;
 
 public class Line {
 
-    private final Name name;
+    private final Player player;
     private final int height;
-    private Map<Integer, Boolean> bridges = new HashMap<>();
+    private final Map<Integer, Boolean> bridges;
 
-    public Line(Name name, int height) {
-        this.name = name;
+    public Line(Player player, int height) {
+        this.player = player;
         this.height = height;
+        bridges = new HashMap<>();
+    }
+
+    public void addBridges(Line prev) {
+        IntStream.range(0, height)
+                .filter(i -> !prev.hasBridge(i))
+                .forEach(this::addBridge);
     }
 
     public void addBridge(int height) {

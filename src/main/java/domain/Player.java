@@ -1,14 +1,14 @@
 package domain;
 
-public class Name {
+public class Player {
 
     public static final int MAX_LENGTH = 5;
 
-    private final String value;
+    private final String name;
 
-    public Name(String name) {
+    public Player(String name) {
         assertLessThenFiveLength(name);
-        this.value = name;
+        this.name = name;
     }
 
     private void assertLessThenFiveLength(String name) {
