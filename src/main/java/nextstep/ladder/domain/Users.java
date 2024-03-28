@@ -30,4 +30,8 @@ public class Users {
                 .map(User::name)
                 .collect(Collectors.toList());
     }
+
+    public int countOfUsers() {
+        return this.users.size();
+    }
 }

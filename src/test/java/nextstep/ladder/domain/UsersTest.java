@@ -26,4 +26,14 @@ class UsersTest {
         // then
         assertThrows(IllegalArgumentException.class, () -> Users.of(List.of("one")));
     }
+
+    @DisplayName("참여자의 수를 반환한다.")
+    @Test
+    void countParticipants() {
+        // given
+        Users users = Users.of(List.of("poppy", "jetty"));
+
+        // then
+        assertThat(users.countOfUsers()).isEqualTo(2);
+    }
 }

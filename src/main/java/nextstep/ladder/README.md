@@ -47,8 +47,8 @@
 
 ## Lines
 - 가로선 `Line`을 층수(`Height`)만큼 가지고 있는 일급 컬렉션
-- [ ] 층고(`Floor`)를 받고, 층고만큼의 `Line`을 가진다.
-- [ ] (역할 : `Lines` -> `Ladder`) `Drawer`에서 참여자의 출력을 위해 `List<List<StepType>>`을 반환 해 준다.
+- [x] 층고(`Floor`)를 받고, 층고만큼의 `Line`을 가진다.
+- [x] (역할 : `Lines` -> `Ladder`) `Drawer`에서 참여자의 출력을 위해 `List<List<StepType>>`을 반환 해 준다.
 
 ## Floor
 - 사다리의 층고 역할을 담당하는 클래스

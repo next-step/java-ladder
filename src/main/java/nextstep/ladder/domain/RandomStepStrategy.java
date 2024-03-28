@@ -13,7 +13,7 @@ public class RandomStepStrategy implements StepStrategy {
         List<StepType> floor = new ArrayList<>();
         Random random = new Random();
 
-        IntStream.rangeClosed(0, countOfUsers)
+        IntStream.range(1, countOfUsers)
                 .forEach(index -> floor.add(getNextRandomStepType(random)));
 
         return floor;
