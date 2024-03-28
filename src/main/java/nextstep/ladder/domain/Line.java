@@ -12,14 +12,20 @@ public class Line {
         final Random random = new Random();
         while (points.size() < numberOfPeople - 1) {
             final boolean now = random.nextBoolean();
-            if (isDifferentFromPrevious(now)) {
-                points.add(now);
-            }
+            addBridge(now);
         }
     }
 
-    private boolean isDifferentFromPrevious(final boolean now) {
-        return points.isEmpty() || points.get(points.size() - 1) != now;
+    private void addBridge(final boolean now) {
+        if (points.isEmpty()) {
+            points.add(now);
+            return;
+        }
+        if (points.get(points.size() - 1)) {
+            points.add(false);
+            return;
+        }
+        points.add(now);
     }
 
     public List<Boolean> getPoints() {
