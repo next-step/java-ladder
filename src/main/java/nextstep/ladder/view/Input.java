@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 public class Input {
 
+    public static final String COMMA = ",";
     private final Scanner scanner = new Scanner(System.in);
 
     public List<String> getUsersInput() {
@@ -15,7 +16,7 @@ public class Input {
         String names = scanner.nextLine();
         System.out.println();
 
-        return Arrays.stream(names.split(","))
+        return Arrays.stream(names.split(COMMA))
                 .map(String::trim)
                 .collect(Collectors.toList());
     }

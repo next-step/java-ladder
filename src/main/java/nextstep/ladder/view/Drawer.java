@@ -6,6 +6,9 @@ import java.util.List;
 
 public class Drawer {
 
+    public static final String LADDER_POLE = "|";
+    public static final String LINE_BREAK = "\n";
+
     public void printUserNames(List<String> names) {
         names.forEach(
                 name -> System.out.printf("%6s", name)
@@ -19,7 +22,7 @@ public class Drawer {
         ladderInfo.forEach(
                 line -> stringBuffer
                         .append(lineToString(line))
-                        .append("\n")
+                        .append(LINE_BREAK)
         );
         System.out.println(stringBuffer);
     }
@@ -28,12 +31,12 @@ public class Drawer {
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer
                 .append(StepType.drawOf(StepType.EMPTY))
-                .append("|");
+                .append(LADDER_POLE);
 
         line.forEach(
                 step -> stringBuffer
                         .append(StepType.drawOf(step))
-                        .append("|")
+                        .append(LADDER_POLE)
         );
         return stringBuffer.toString();
     }

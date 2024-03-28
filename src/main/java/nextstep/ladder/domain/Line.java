@@ -10,6 +10,7 @@ public class Line {
 
     public static final int MINIMUM_PARTICIPANTS_COUNT = 2;
     public static final int FIRST_INDEX = 0;
+    public static final int SECOND_INDEX = FIRST_INDEX + 1;
     private final List<StepType> points;
 
     public static Line of(int countOfUsers, StepStrategy strategy) {
@@ -23,7 +24,7 @@ public class Line {
         List<StepType> stepTypes = new ArrayList<>();
         stepTypes.add(strategyResult.get(FIRST_INDEX));
 
-        IntStream.range(FIRST_INDEX + 1, strategyResult.size())
+        IntStream.range(SECOND_INDEX, strategyResult.size())
                 .forEach(index -> {
                     stepTypes.add(step(strategyResult.get(index), stepTypes.get(index - 1)));
                 });
