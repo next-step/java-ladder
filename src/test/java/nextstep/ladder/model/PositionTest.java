@@ -25,26 +25,23 @@ class PositionTest {
     @Test
     void moveLeft() {
         Position position = new Position(1);
-        position.moveTo(Direction.LEFT);
 
-        assertThat(position).isEqualTo(new Position(0));
+        assertThat(position.moveTo(Direction.LEFT)).isEqualTo(new Position(0));
     }
 
     @DisplayName("오른쪽으로 이동할 경우 +1 증가시킨다")
     @Test
     void moveRight() {
         Position position = new Position(0);
-        position.moveTo(Direction.RIGHT);
 
-        assertThat(position).isEqualTo(new Position(1));
+        assertThat(position.moveTo(Direction.RIGHT)).isEqualTo(new Position(1));
     }
 
     @DisplayName("아래로 이동할 경우 현재 상태를 유지한다")
     @Test
     void moveDown() {
         Position position = new Position(1);
-        position.moveTo(Direction.DOWN);
-
-        assertThat(position).isEqualTo(new Position(1));
+        
+        assertThat(position.moveTo(Direction.DOWN)).isEqualTo(new Position(1));
     }
 }

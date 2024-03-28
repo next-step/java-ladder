@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Player {
     private final Name name;
-    private final Position position;
+    private Position position;
 
     public Player(String name, int position) {
         this(new Name(name), new Position(position));
@@ -16,7 +16,7 @@ public class Player {
     }
 
     public void moveTo(Direction direction) {
-        this.position.moveTo(direction);
+        this.position = this.position.moveTo(direction);
     }
 
     public String getName() {

@@ -16,4 +16,8 @@ public enum Direction {
     public int next(int position) {
         return function.apply(position);
     }
+
+    public boolean isDown() {
+        return this == DOWN;
+    }
 }

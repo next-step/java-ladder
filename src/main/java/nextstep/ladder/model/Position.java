@@ -3,7 +3,7 @@ package nextstep.ladder.model;
 import java.util.Objects;
 
 public class Position {
-    private int position;
+    private final int position;
 
     public Position(int position) {
         if (position < 0) {
@@ -13,8 +13,12 @@ public class Position {
         this.position = position;
     }
 
-    public void moveTo(Direction direction) {
-        this.position = direction.next(this.position);
+    public Position moveTo(Direction direction) {
+        if (direction.isDown()) {
+            return this;
+        }
+
+        return new Position(direction.next(this.position));
     }
 
     public int getPosition() {
