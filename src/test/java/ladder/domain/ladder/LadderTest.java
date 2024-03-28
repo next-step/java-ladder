@@ -1,6 +1,5 @@
-package ladder;
+package ladder.domain.ladder;
 
-import ladder.domain.ladder.Ladder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +15,7 @@ public class LadderTest {
 		int countOfPerson = 4;
 
 		// when
-		Ladder ladder = Ladder.createLadder(height, countOfPerson);
+		Ladder ladder = Ladder.createLadder(Height.createHeight(height), countOfPerson);
 
 		// then
 		assertThat(ladder.getHeight()).isEqualTo(5);
