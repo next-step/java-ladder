@@ -24,9 +24,9 @@
 
 ## Users
 - 참여자 리스트를 가지고 있는 일급 컬렉션
-- [ ] 사용자의 컬렉션을 담고 있다.
-- [ ] (역할 : `Users` -> `Drawer`) `Drawer`에서 참여자의 출력을 위해 `List<String>`을 반환 해준다.
-- [ ] User의 수가 2보다 작다면, `IllegalArgumentException`을 던진다.
+- [x] 사용자의 컬렉션을 담고 있다.
+- [x] (역할 : `Users` -> `Drawer`) `Drawer`에서 참여자의 출력을 위해 `List<String>`을 반환 해준다.
+- [x] User의 수가 2보다 작다면, `IllegalArgumentException`을 던진다.
 
 ## StepType
 - Line에서 사용되는, 현재 `step`이 존재하는지 역할을 가지고 있는 Enum
