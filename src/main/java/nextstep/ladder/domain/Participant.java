@@ -3,23 +3,21 @@ package nextstep.ladder.domain;
 import nextstep.ladder.exception.ParticipantNameLengthExceedException;
 
 public class Participant {
-
-    private static final int MAX_NAME_LENGTH = 5;
     private final String name;
 
-    public Participant(String name) {
-        validateNameLength(name);
+    public Participant(String name, int nameMaxLength) {
+        validateNameLength(name, nameMaxLength);
         this.name = name;
     }
 
-    private void validateNameLength(String name) {
-        if (exceedNameLength(name)) {
+    private void validateNameLength(String name, int nameMaxLength) {
+        if (exceedNameLength(name, nameMaxLength)) {
             throw new ParticipantNameLengthExceedException(name);
         }
     }
 
-    private boolean exceedNameLength(String name) {
-        return name.length() > MAX_NAME_LENGTH;
+    private boolean exceedNameLength(String name, int nameMaxLength) {
+        return name.length() > nameMaxLength;
     }
 
     public String getName() {

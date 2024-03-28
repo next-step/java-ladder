@@ -10,12 +10,14 @@ import java.util.List;
 
 public class Main {
 
+    private final static int PARTICIPANT_NAME_MAX_LENGTH = 5;
+
     public static void main(String[] args) {
         try {
             List<String> names = InputView.readParticipantNames();
             int height = InputView.readLadderMaxHeight();
 
-            Participants participants = Participants.of(names);
+            Participants participants = Participants.of(names, PARTICIPANT_NAME_MAX_LENGTH);
             Ladder ladder = Ladder.of(participants.numberOf(), height);
             LadderGame ladderGame = new LadderGame(participants, ladder);
 
