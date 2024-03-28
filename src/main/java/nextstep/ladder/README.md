@@ -39,11 +39,11 @@
 
 ## Line
 - 사다리의 가로선 역할을 담당하는 클래스. 내부에서 발판의 존재 여부를 `StepType`으로 가지고 있다.
-- [ ] 초기 생성 시 전략을 통해 받는다.
-- [ ] 위에서 받은 전략 중 이전 사다리의 다리(`StepType.STEP`)이 존재하면, 다음은 `StepType.EMPTY`이여야 한다.
-- [ ] 전략을 통해 받은 리스트의 크기는 항상 사용자수보다 1 적다. 그렇지 않으면 `IllegalArguemntException`을 던진다.
-- [ ] 참여자의 수의 -1 만큼 위치(`point`)가 존재한다.
-- [ ] (역할 : `Line` -> `Lines`) `Drawer`에서 참여자의 출력을 위해 `List<StepType>`을 반환 해 준다.
+- [x] 초기 생성 시 전략을 통해 받는다.
+- [x] 위에서 받은 전략 중 이전 사다리의 다리(`StepType.STEP`)이 존재하면, 다음은 `StepType.EMPTY`이여야 한다.
+- [x] 전략을 통해 받은 리스트의 크기는 항상 사용자수보다 1 적다. 그렇지 않으면 `IllegalArguemntException`을 던진다.
+- [x] 참여자의 수의 -1 만큼 위치(`point`)가 존재한다.
+- [x] (역할 : `Line` -> `Lines`) `Drawer`에서 참여자의 출력을 위해 `List<StepType>`을 반환 해 준다.
 
 ## Lines
 - 가로선 `Line`을 층수(`Height`)만큼 가지고 있는 일급 컬렉션
