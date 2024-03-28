@@ -1,14 +1,17 @@
 package ladder2.domain;
 
+import java.util.Collections;
 import java.util.List;
-
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 public class Ladder {
 
     private final List<LadderRow> rows;
 
     public Ladder(List<LadderRow> rows) {
         validate(rows);
-        this.rows = rows;
+        this.rows = Collections.unmodifiableList(rows);
     }
 
     private void validate(List<LadderRow> rows) {
@@ -27,5 +30,28 @@ public class Ladder {
         if (!sameColumnSize) {
             throw new IllegalArgumentException("모든 LadderRow의 열 개수가 일치해야 합니다");
         }
+    }
+
+    public LadderResult result() {
+        Map<Integer, Integer> resultIndices = resultIndices();
+        return new LadderResult(resultIndices);
+    }
+
+    private Map<Integer, Integer> resultIndices() {
+        return IntStream.range(0, rows.get(0).columnSize())
+            .boxed()
+            .collect(
+                Collectors.toMap(
+                    i -> i,
+                    this::resultIndexOf
+                )
+            );
+    }
+
+    private int resultIndexOf(int index) {
+        for (LadderRow row : rows) {
+            index = row.nextColumnIndex(index);
+        }
+        return index;
     }
 }
