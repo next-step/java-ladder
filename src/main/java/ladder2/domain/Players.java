@@ -24,7 +24,11 @@ public class Players {
         get(index).receivePrize(prize);
     }
 
-    private Player get(int index) {
+    public Player get(int index) {
         return players.get(index);
+    }
+
+    public int count() {
+        return players.size();
     }
 }
