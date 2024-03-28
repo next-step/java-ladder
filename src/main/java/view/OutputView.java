@@ -19,13 +19,17 @@ public class OutputView {
                 StringBuilder sb = new StringBuilder();
                 sb.append("|");
                 line.forEach(point-> {
-                    if (point) {
-                        sb.append(TRUE_LINE);
-                        return;
-                    }
-                    sb.append(FALSE_LINE);
+                    appendLineByPoint(point, sb);
                 });
                 System.out.println(sb);
             });
+    }
+
+    private void appendLineByPoint(Boolean point, StringBuilder sb) {
+        if (point) {
+            sb.append(TRUE_LINE);
+            return;
+        }
+        sb.append(FALSE_LINE);
     }
 }
