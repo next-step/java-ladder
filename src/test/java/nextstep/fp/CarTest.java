@@ -18,5 +18,5 @@ public class CarTest {
         Car actual = car.move(() -> false);
         assertThat(actual).isEqualTo(new Car("pobi", 0));
     }
-    
+
 }
