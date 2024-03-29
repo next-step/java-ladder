@@ -19,6 +19,6 @@ enum Expression {
         return Arrays.stream(values())
                 .filter(it -> matchExpression(it, expression))
                 .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(() -> new IllegalArgumentException(String.format("%s는 사칙연산에 해당하지 않는 표현식입니다.", expression)));
     }
 }
