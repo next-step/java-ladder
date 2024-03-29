@@ -43,6 +43,10 @@ public class Ladder {
         return Collections.unmodifiableList(this.lines);
     }
 
+    public void move(Player player) {
+        lines.forEach(line -> line.move(player));
+    }
+
     @Override
     public boolean equals(Object other) {
         if (this == other) return true;
