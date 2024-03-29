@@ -20,7 +20,7 @@ public class Validator {
     }
 
 
-    public static boolean isGreaterThanStandard(int number, int standard) {
-        return number > standard;
+    public static boolean isGreaterThanOrEqualStandard(int number, int standard) {
+        return number >= standard;
     }
 }

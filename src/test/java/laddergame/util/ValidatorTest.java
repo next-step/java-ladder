@@ -33,8 +33,8 @@ class ValidatorTest {
 
     @ParameterizedTest
     @CsvSource(value = {"1:2:false", "5:2:true"}, delimiter = ':')
-    @DisplayName("isGreaterThanStandard(): number가 standard 보다 큰 경우 true를 그렇자 않은 경우 false를 반환한다.")
-    void testIsGreaterThanStandard(int number, int standard, boolean expected) {
-        assertThat(Validator.isGreaterThanStandard(number, standard)).isEqualTo(expected);
+    @DisplayName("isGreaterThanOrEqualStandard(): number가 standard 보다 큰 경우 true를 그렇자 않은 경우 false를 반환한다.")
+    void testIsGreaterThanOrEqualStandard(int number, int standard, boolean expected) {
+        assertThat(Validator.isGreaterThanOrEqualStandard(number, standard)).isEqualTo(expected);
     }
 }
