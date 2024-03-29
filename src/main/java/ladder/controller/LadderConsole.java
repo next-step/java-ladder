@@ -30,10 +30,10 @@ public class LadderConsole {
         outputView.printLadder(ladder, participants, results);
 
         LadderGameResult gameResult = LadderJudge.judge(participants, results, ladder.result());
-        checkGameResult(participants, gameResult);
+        showGameResult(participants, gameResult);
     }
 
-    private void checkGameResult(List<Participant> participants, LadderGameResult gameResult) {
+    private void showGameResult(List<Participant> participants, LadderGameResult gameResult) {
         String participantToCheck = inputView.inputParticipantToCheckResult();
         if (WHOLE_PARTICIPANT_SIGN.equals(participantToCheck)) {
             outputView.printWholeGameResult(participants, gameResult);
@@ -42,6 +42,6 @@ public class LadderConsole {
         Participant participant = Participant.from(participantToCheck);
         outputView.printGameResult(participant, gameResult);
 
-        checkGameResult(participants, gameResult);
+        showGameResult(participants, gameResult);
     }
 }
