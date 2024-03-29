@@ -1,33 +1,44 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.IntStream;
+import java.util.function.BooleanSupplier;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class RandomPointsGenerator {
 
     private static final Random RANDOM = new Random();
 
     public static List<Boolean> generate(int pointSize) {
-        List<Boolean> points = new ArrayList<>();
-        IntStream.range(0, pointSize)
-                .forEach((index) -> addPoint(points, index));
-        return Collections.unmodifiableList(points);
+        return Stream.generate(PointSupplier::getInstance)
+                .map(BooleanSupplier::getAsBoolean)
+                .limit(pointSize)
+                .collect(Collectors.toUnmodifiableList());
     }
 
-    private static void addPoint(List<Boolean> points, int index) {
-        if (isTruePreviousPoint(points, index)) {
-            points.add(false);
-            return;
+    private static class PointSupplier implements BooleanSupplier {
+        private static final PointSupplier INSTANCE = new PointSupplier();
+        private boolean previous;
+
+        public static PointSupplier getInstance() {
+            return INSTANCE;
         }
-        points.add(RANDOM.nextBoolean());
-    }
 
+        private PointSupplier() {
+            this.previous = RANDOM.nextBoolean();
+        }
 
-    private static boolean isTruePreviousPoint(List<Boolean> points, int index) {
-        return index != 0 && points.get(index - 1);
+        @Override
+        public boolean getAsBoolean() {
+            if (previous) {
+                previous = false;
+                return false;
+            }
+            boolean current = RANDOM.nextBoolean();
+            previous = current;
+            return current;
+        }
     }
 
 }
