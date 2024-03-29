@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 public class Line {
 
-    private List<Point> points;
+    private final List<Point> points;
 
     public Line(int countOfPerson) {
         this(generatePoints(countOfPerson));
