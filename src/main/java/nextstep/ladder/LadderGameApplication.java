@@ -16,9 +16,7 @@ public class LadderGameApplication {
 
         Ladder ladder = Ladder.of(floor, users, new RandomStepStrategy());
 
-        System.out.println("실행 결과\n");
         DrawerView drawerView = new DrawerView();
-        drawerView.printUserNames(ladder.getParticipants());
-        drawerView.printLadderInfo(ladder.getLadderInfo());
+        drawerView.printLadderGameResult(ladder.getParticipants(), ladder.getLadderInfo());
     }
 }

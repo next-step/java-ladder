@@ -9,14 +9,21 @@ public class DrawerView {
     public static final String LADDER_POLE = "|";
     public static final String LINE_BREAK = "\n";
 
-    public void printUserNames(List<String> names) {
+    public void printLadderGameResult(List<String> names, List<List<StepType>> ladderInfo) {
+        System.out.println("실행 결과\n");
+
+        printUserNames(names);
+        printLadderInfo(ladderInfo);
+    }
+
+    private void printUserNames(List<String> names) {
         names.forEach(
                 name -> System.out.printf("%6s", name)
         );
         System.out.println();
     }
 
-    public void printLadderInfo(List<List<StepType>> ladderInfo) {
+    private void printLadderInfo(List<List<StepType>> ladderInfo) {
         StringBuffer stringBuffer = new StringBuffer();
 
         ladderInfo.forEach(
