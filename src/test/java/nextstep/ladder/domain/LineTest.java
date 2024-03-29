@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 
 class LineTest {
@@ -42,7 +42,8 @@ class LineTest {
         int countOfUsers = 1;
 
         // then
-        assertThrows(IllegalArgumentException.class, () -> Line.of(countOfUsers, strategy));
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> Line.of(countOfUsers, strategy));
     }
 
     @DisplayName("사용자의 수는 항상 Line의 StepType 수 보다 항상 1 많다. 아니라면 IllegalArguemntException을 던진다.")
@@ -52,6 +53,7 @@ class LineTest {
         int countOfUsers = 3;
 
         // then
-        assertThrows(IllegalArgumentException.class, () -> Line.of(countOfUsers, strategy));
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> Line.of(countOfUsers, strategy));
     }
 }

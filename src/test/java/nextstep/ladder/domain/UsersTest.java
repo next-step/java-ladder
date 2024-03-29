@@ -1,12 +1,13 @@
 package nextstep.ladder.domain;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class UsersTest {
 
@@ -24,7 +25,8 @@ class UsersTest {
     @Test
     void throwIllegalArgumentExceptionWhenUserSizeIsLessThan2() {
         // then
-        assertThrows(IllegalArgumentException.class, () -> Users.of(List.of("one")));
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> Users.of(List.of("one")));
     }
 
     @DisplayName("참여자의 수를 반환한다.")

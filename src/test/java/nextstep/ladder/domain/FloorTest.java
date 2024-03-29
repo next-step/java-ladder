@@ -4,7 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class FloorTest {
 
@@ -22,7 +22,9 @@ class FloorTest {
     @Test
     void throwIllegalArgumentExceptionWhenFloorIsLessThan1() {
         // then
-        assertThrows(IllegalArgumentException.class, () -> Floor.of(0));
-        assertThrows(IllegalArgumentException.class, () -> Floor.of(-1));
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> Floor.of(0));
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> Floor.of(-1));
     }
 }

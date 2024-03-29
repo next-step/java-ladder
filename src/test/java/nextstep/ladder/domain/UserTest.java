@@ -1,10 +1,12 @@
 package nextstep.ladder.domain;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static nextstep.ladder.domain.User.MAXIMUM_NAME_LENGTH;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
@@ -26,6 +28,7 @@ class UserTest {
         String overLimitName = "a".repeat(MAXIMUM_NAME_LENGTH + 1);
 
         // then
-        assertThrows(IllegalArgumentException.class, () -> User.of(overLimitName));
+        assertThatIllegalArgumentException()
+                        .isThrownBy(() -> User.of(overLimitName));
     }
 }
