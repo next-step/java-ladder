@@ -13,7 +13,7 @@ public class Line {
 
     private final List<Link> links;
 
-    private Line(LinkStrategy linkStrategy, int numberOfPlayers) {
+    private Line(int numberOfPlayers, LinkStrategy linkStrategy) {
         Deque<Link> links = new LinkedList<>();
 
         IntStream.range(START_RANGE, numberOfPlayers - 1)
@@ -28,8 +28,8 @@ public class Line {
         this.links = new ArrayList<>(links);
     }
 
-    public static Line newLine(LinkStrategy linkStrategy, int numberOfPlayers) {
-        return new Line(linkStrategy, numberOfPlayers);
+    public static Line newLine(int numberOfPlayers, LinkStrategy linkStrategy) {
+        return new Line(numberOfPlayers, linkStrategy);
     }
 
     public List<Link> links() {

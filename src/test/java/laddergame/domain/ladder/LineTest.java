@@ -22,7 +22,7 @@ class LineTest {
         @DisplayName("생성된 Line 인스턴스에서 links의 크기는 numberOfPlayers - 1 과 같다.")
         void testNumberOfPoints() {
             int numberOfPlayers = 4;
-            Line line = Line.newLine(linkStrategyStub, numberOfPlayers);
+            Line line = Line.newLine(numberOfPlayers, linkStrategyStub);
 
             assertThat(line.links().size()).isEqualTo(numberOfPlayers - 1);
         }
@@ -31,7 +31,8 @@ class LineTest {
         @DisplayName("생성된 Line 인스턴스에서 links는 LINKED를 연속으로 가질 수 없다.")
         void testNonOverlap() {
             int numberOfPlayers = 10;
-            List<Link> links = Line.newLine(linkStrategyStub, numberOfPlayers).links();
+            List<Link> links = Line.newLine(numberOfPlayers, linkStrategyStub)
+                    .links();
 
             IntStream.range(1, numberOfPlayers - 1)
                     .forEach(i -> {
