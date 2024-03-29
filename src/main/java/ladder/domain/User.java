@@ -7,7 +7,7 @@ public class User {
   public static final Integer MAX_USER_NAME_LENGTH = 5;
   public static final String INVALID_USER_NAME_INPUT = "올바르지 않은 유저 명이 들어왔습니다. 유저 명 혹은 길이를 확인해주세요. input: %s, maxLength: %s";
 
-  private String name;
+  private final String name;
 
   public User(String name) {
     validate(name);
@@ -19,7 +19,7 @@ public class User {
   }
 
   private void validate(String name) {
-    if (name.length() > MAX_USER_NAME_LENGTH) {
+    if (Objects.isNull(name) || name.isEmpty() || MAX_USER_NAME_LENGTH < name.length()) {
       throw new IllegalArgumentException(String.format(INVALID_USER_NAME_INPUT, name, MAX_USER_NAME_LENGTH));
     }
   }

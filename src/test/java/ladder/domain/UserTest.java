@@ -2,6 +2,7 @@ package ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static ladder.domain.User.INVALID_USER_NAME_INPUT;
@@ -27,6 +28,17 @@ public class UserTest {
       "User를 생성 시" +
       "유저 이름이 최대 길이를 넘는 경우 exception 테스트")
   void userTest2(String given) {
+    assertThatThrownBy(() -> new User(given))
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessageContaining(String.format(INVALID_USER_NAME_INPUT, given, MAX_USER_NAME_LENGTH));
+  }
+
+  @ParameterizedTest
+  @NullAndEmptySource
+  @DisplayName("유저 이름을 입력하여 " +
+      "User를 생성 시" +
+      "유저 이름이 null or empty인 경우 exception 테스트")
+  void userTest3(String given) {
     assertThatThrownBy(() -> new User(given))
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessageContaining(String.format(INVALID_USER_NAME_INPUT, given, MAX_USER_NAME_LENGTH));
