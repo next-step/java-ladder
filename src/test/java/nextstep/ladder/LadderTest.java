@@ -14,11 +14,11 @@ public class LadderTest {
     @DisplayName("[성공] 사다리를 생성한다.")
     void 사다리_생성() {
         Ladder ladder = Ladder.of(List.of(
-                Line.of(List.of(true, false, true)),
-                Line.of(List.of(false, true, false)),
-                Line.of(List.of(true, false, false)),
-                Line.of(List.of(false, true, false)),
-                Line.of(List.of(true, false, true))
+                new Line(List.of(true, false, true)),
+                new Line(List.of(false, true, false)),
+                new Line(List.of(true, false, false)),
+                new Line(List.of(false, true, false)),
+                new Line(List.of(true, false, true))
         ));
         Assertions.assertThat(ladder.getHeight()).isEqualTo(5);
     }

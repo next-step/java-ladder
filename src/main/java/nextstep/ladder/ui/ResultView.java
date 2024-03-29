@@ -19,6 +19,9 @@ public class ResultView {
         System.out.println("실행 결과");
         System.out.println(formatParticipantNames(game.getParticipants()));
         System.out.println(formatLadder(game.getLadder()));
+        for (Line line : game.getLadder().getLines()) {
+            System.out.println(line.get());
+        }
     }
 
     private static String formatLadder(Ladder ladder) {
