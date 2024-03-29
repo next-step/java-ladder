@@ -16,6 +16,4 @@ class PlayerTest {
     void testInstanceCreation(String name) {
         assertThatThrownBy(() -> Player.valueOf(name)).isExactlyInstanceOf(InvalidPlayerException.class);
     }
-
-
 }
