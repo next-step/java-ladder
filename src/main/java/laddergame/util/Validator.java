@@ -18,4 +18,9 @@ public class Validator {
     public static boolean isPositiveInteger(String numberString) {
         return isNonBlank(numberString) && PATTERN_FOR_POSITIVE_INTEGER.matcher(numberString).find();
     }
+
+
+    public static boolean isGreaterThanStandard(int number, int standard) {
+        return number > standard;
+    }
 }
