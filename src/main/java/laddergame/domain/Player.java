@@ -23,4 +23,12 @@ public class Player {
     public static Player valueOf(String name) {
         return new Player(name);
     }
+
+    public int lengthOfName() {
+        return name.length();
+    }
+
+    public String name() {
+        return name;
+    }
 }

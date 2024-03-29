@@ -10,15 +10,15 @@ public enum Link {
         this.value = value;
     }
 
-    public boolean value() {
-        return value;
-    }
-
     public boolean isLinked() {
         return this == LINKED;
     }
 
     public boolean isUnLinked() {
         return this == UNLINKED;
+    }
+
+    public boolean value() {
+        return value;
     }
 }

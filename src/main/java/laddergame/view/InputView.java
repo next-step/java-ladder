@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+import static laddergame.view.OutputView.printHeightOfLadderGuideMessage;
+import static laddergame.view.OutputView.printPlayerInputGuideMessage;
+
 public class InputView {
-    private static final String PLAYER_INPUT_GUIDE_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
-    private static final String HEIGHT_OF_LADDER_INPUT_GUIDE_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
     private static final String COMMA_DELIMITER = ",";
-    private static final String NEXT_LINE = System.lineSeparator();
     private static final Scanner SCANNER = new Scanner(System.in);
 
     private InputView() {
@@ -22,7 +22,7 @@ public class InputView {
     }
 
     public static List<Player> enteredPlayers() {
-        System.out.println(PLAYER_INPUT_GUIDE_MESSAGE);
+        printPlayerInputGuideMessage();
 
         String nameOfPlayers = SCANNER.nextLine();
 
@@ -32,11 +32,7 @@ public class InputView {
     }
 
     public static HeightOfLadder enteredHeightOfLadder() {
-        String heightOfLadderGuideMessage = new StringBuilder()
-                .append(NEXT_LINE)
-                .append(HEIGHT_OF_LADDER_INPUT_GUIDE_MESSAGE)
-                .toString();
-        System.out.println(heightOfLadderGuideMessage);
+        printHeightOfLadderGuideMessage();
 
         String heightInput = SCANNER.nextLine();
         validateHeightInput(heightInput);
@@ -45,7 +41,7 @@ public class InputView {
     }
 
     private static void validateHeightInput(String heightInput) {
-        if(!Validator.isPositiveInteger(heightInput)) {
+        if (!Validator.isPositiveInteger(heightInput)) {
             throw new InvalidHeightOfLadderException(heightInput);
         }
     }
