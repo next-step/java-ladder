@@ -12,7 +12,7 @@ public class ParticipantTest {
     @Test
     @DisplayName("[성공] 5글자 이하의 이름을 가지는 사람을 생성한다.")
     void 사람_생성() {
-        assertThat((new Participant("pobi", 5)).getName()).hasSizeLessThan(5);
+        assertThat((new Participant("pobi")).getName()).hasSizeLessThan(5);
     }
 
     @Test
@@ -20,7 +20,7 @@ public class ParticipantTest {
     void 사람_생성_예외() {
         assertThatExceptionOfType(ParticipantNameLengthExceedException.class)
                 .isThrownBy(() -> {
-                    new Participant("nayeon", 5);
+                    new Participant("nayeon");
                 }).withMessageContaining("사람의 이름은 5글자를 초과할 수 없습니다.");
     }
 }

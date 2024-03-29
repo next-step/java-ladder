@@ -7,9 +7,9 @@ public class Participants {
 
     private final List<Participant> participants;
 
-    public static Participants of(List<String> names, int nameMaxLength) {
+    public static Participants of(List<String> names) {
         List<Participant> participants = names.stream()
-                .map((name) -> new Participant(name, nameMaxLength))
+                .map(Participant::new)
                 .collect(Collectors.toUnmodifiableList());
         return new Participants(participants);
     }
