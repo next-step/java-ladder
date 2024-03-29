@@ -15,10 +15,15 @@ public enum StepType {
     }
 
     public static StepType of(boolean value) {
-        return Arrays.stream(StepType.values())
-                .filter(stepType -> stepType.value == value)
-                .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+        if (isStep(value)) {
+            return StepType.STEP;
+        }
+
+        return StepType.EMPTY;
+    }
+
+    private static boolean isStep(boolean value) {
+        return value;
     }
 
     public static String drawOf(StepType value) {
