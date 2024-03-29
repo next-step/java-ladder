@@ -23,6 +23,4 @@ public class Player {
     public static Player valueOf(String name) {
         return new Player(name);
     }
-
-
 }
