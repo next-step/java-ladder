@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -39,9 +40,10 @@ public class PlayersTest {
                 ));
     }
 
-    private static List<Player> createPlayerList(String... name) {
-        return Arrays.stream(name)
-                .map(Player::from)
+    private static List<Player> createPlayerList(String... names) {
+        AtomicInteger atomicInteger = new AtomicInteger(0);
+        return Arrays.stream(names)
+                .map(name -> Player.of(name, atomicInteger.getAndAdd(1)))
                 .collect(Collectors.toList());
     }
 }

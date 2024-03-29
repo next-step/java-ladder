@@ -12,7 +12,7 @@ public class LadderResultTest {
     @DisplayName("put 호출 시 Player를 key로, 결과 문자열을 value로 Map에 추가")
     void put(String result) {
         LadderResult ladderResult = new LadderResult();
-        Player pobi = Player.from("pobi");
+        Player pobi = Player.of("pobi", 0);
         ladderResult.put(pobi, result);
         Assertions.assertThat(ladderResult.get(pobi)).isEqualTo(result);
     }

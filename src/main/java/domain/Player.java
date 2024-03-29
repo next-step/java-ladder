@@ -3,19 +3,24 @@ package domain;
 import java.util.Objects;
 
 public class Player {
-    public static final String NAME_LENGTH_CANT_OVER_FIVE = "이름은 5자를 초과할 수 없습니다.";
-    public static final int MAX_NAME_LENGTH = 5;
+    private final Name name;
+    private final Position position;
 
-    private final String name;
-    public static Player from(String name) {
-        return new Player(name);
+    public static Player of(String name, Integer position) {
+        return new Player(name, position);
     }
 
-    private Player(String name) {
-        if (name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException(NAME_LENGTH_CANT_OVER_FIVE);
-        }
+    public static Player of(Name name, Position position) {
+        return new Player(name, position);
+    }
+
+    private Player(String name, Integer position) {
+        this(Name.from(name), Position.valueOf(position));
+    }
+
+    private Player(Name name, Position position) {
         this.name = name;
+        this.position = position;
     }
 
     @Override
@@ -33,6 +38,6 @@ public class Player {
 
     @Override
     public String toString() {
-        return name;
+        return name.toString();
     }
 }

@@ -49,6 +49,6 @@
   - [X] 각 Point의 양 옆 (index - 1, index + 1)에 따라 PointDirection을 반환하는 checkPointDirection 구현
 - [ ] List\<Line>의 일급컬렉션 Ladder 생성
   - [ ] 게임 진행 후 LadderResult를 반환
-- [ ] Player 수정
-  - [ ] Position 값 객체 추가
-  - [ ] Name 값 객체로 분리
+- [X] Player 수정
+  - [X] Position 값 객체 추가
+  - [X] Name 값 객체로 분리

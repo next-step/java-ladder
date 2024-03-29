@@ -6,6 +6,7 @@ import util.StringUtil;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class InputView {
@@ -23,9 +24,10 @@ public class InputView {
     private Players inputPlayers(String message) {
         System.out.println(message);
         List<String> nameList = StringUtil.splitStringToList(SCANNER.nextLine(), ",");
+        AtomicInteger index = new AtomicInteger(1);
         try {
             List<Player> playerList = nameList.stream()
-                    .map(Player::from)
+                    .map(name -> Player.of(name, index.getAndIncrement()))
                     .collect(Collectors.toList());
 
             return Players.from(playerList);
