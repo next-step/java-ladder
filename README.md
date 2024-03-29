@@ -45,8 +45,8 @@
   - [ ] Result를 매개변수로 받아, 실행 결과 출력
   - [ ] 실행 결과를 사다리 밑에 출력
 - [X] 각 Point의 수평 사다리 위치(유무)를 나타내는 PointDirection 구현
-- [ ] Line 기능 추가
-  - [ ] 각 Point의 양 옆 (index - 1, index + 1)에 따라 PointDirection을 반환하는 checkPointDirection 구현
+- [X] Line 기능 추가
+  - [X] 각 Point의 양 옆 (index - 1, index + 1)에 따라 PointDirection을 반환하는 checkPointDirection 구현
 - [ ] List\<Line>의 일급컬렉션 Ladder 생성
   - [ ] 게임 진행 후 LadderResult를 반환
 - [ ] Players 기능 추가
