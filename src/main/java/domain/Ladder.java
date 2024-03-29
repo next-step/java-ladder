@@ -1,23 +1,17 @@
 package domain;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class Ladder {
 
-    private final List<Line> lines;
-    private final List<Player> players;
+    private final Lines lines;
+    private final Players players;
 
-    public Ladder(List<Player> players, int height) {
-        this.lines = players.stream()
-                .map(name -> new Line(name, height))
-                .collect(Collectors.toList());
+    public Ladder(Lines lines, Players players) {
+        this.lines = lines;
         this.players = players;
     }
 
-    public void play() {
-        for (Line line : lines) {
-
-        }
+    public static Ladder of(Players players, Height height) {
+        Lines lines = Lines.of(players.totalNumber(), height);
+        return new Ladder(lines, players);
     }
 }

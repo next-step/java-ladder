@@ -6,18 +6,16 @@ import java.util.stream.IntStream;
 
 public class Line {
 
-    private final Player player;
-    private final int height;
+    private final Height height;
     private final Map<Integer, Boolean> bridges;
 
-    public Line(Player player, int height) {
-        this.player = player;
+    public Line(Height height) {
         this.height = height;
         bridges = new HashMap<>();
     }
 
     public void addBridges(Line prev) {
-        IntStream.range(0, height)
+        IntStream.range(0, height.height())
                 .filter(i -> !prev.hasBridge(i))
                 .forEach(this::addBridge);
     }
