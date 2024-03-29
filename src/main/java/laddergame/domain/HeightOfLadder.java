@@ -23,4 +23,8 @@ public class HeightOfLadder {
     public static HeightOfLadder valueOf(int height) {
         return new HeightOfLadder(height);
     }
+
+    public int height() {
+        return height;
+    }
 }
