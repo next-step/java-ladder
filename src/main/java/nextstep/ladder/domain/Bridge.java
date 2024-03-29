@@ -17,4 +17,8 @@ public enum Bridge {
         }
         return NON_BRIDGE;
     }
+
+    public boolean isBridge() {
+        return isBridge;
+    }
 }

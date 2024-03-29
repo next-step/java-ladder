@@ -17,6 +17,6 @@ class LineTest {
         final Line line = new Line(() -> true, numberOfPeople);
 
         // then
-        assertThat(line.getPoints()).isEqualTo(List.of(true, false, true));
+        assertThat(line.getBridges()).isEqualTo(List.of(Bridge.BRIDGE, Bridge.NON_BRIDGE, Bridge.BRIDGE));
     }
 }

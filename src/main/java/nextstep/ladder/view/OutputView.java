@@ -1,5 +1,6 @@
 package nextstep.ladder.view;
 
+import nextstep.ladder.domain.Bridge;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Names;
@@ -20,15 +21,15 @@ public class OutputView {
 
     private void printLine(final Line line) {
         System.out.print(" ");
-        for (final Boolean point : line.getPoints()) {
+        for (final Bridge bridge : line.getBridges()) {
             System.out.print("|");
-            printBridge(point);
+            printBridge(bridge);
         }
         System.out.print("|\n");
     }
 
-    private void printBridge(final Boolean point) {
-        if (point) {
+    private void printBridge(final Bridge bridge) {
+        if (bridge.isBridge()) {
             System.out.print("-".repeat(BRIDGE_LENGTH));
             return;
         }

@@ -1,32 +1,33 @@
 package nextstep.ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Line {
 
-    private final List<Boolean> points = new ArrayList<>();
+    private final List<Bridge> bridges = new ArrayList<>();
 
     public Line(final Generator generator, final int numberOfPeople) {
-        while (points.size() < numberOfPeople - 1) {
+        while (bridges.size() < numberOfPeople - 1) {
             final boolean now = generator.generate();
-            addBridge(now);
+            addBridge(Bridge.of(now));
         }
     }
 
-    private void addBridge(final boolean now) {
-        if (points.isEmpty()) {
-            points.add(now);
+    private void addBridge(final Bridge now) {
+        if (bridges.isEmpty()) {
+            bridges.add(now);
             return;
         }
-        if (points.get(points.size() - 1)) {
-            points.add(false);
+        if (bridges.get(bridges.size() - 1).isBridge()) {
+            bridges.add(Bridge.of(false));
             return;
         }
-        points.add(now);
+        bridges.add(now);
     }
 
-    public List<Boolean> getPoints() {
-        return points;
+    public List<Bridge> getBridges() {
+        return Collections.unmodifiableList(bridges);
     }
 }
