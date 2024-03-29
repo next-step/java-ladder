@@ -14,6 +14,10 @@ public class Names {
                 .collect(Collectors.toList());
     }
 
+    public int getNumberOfNames() {
+        return names.size();
+    }
+
     public List<Name> getNames() {
         return names;
     }
