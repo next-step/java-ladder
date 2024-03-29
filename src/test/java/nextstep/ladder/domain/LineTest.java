@@ -2,6 +2,8 @@ package nextstep.ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 class LineTest {
@@ -12,9 +14,9 @@ class LineTest {
         final int numberOfPeople = 4;
 
         // when
-        final Line line = new Line(numberOfPeople);
+        final Line line = new Line(() -> true, numberOfPeople);
 
         // then
-        assertThat(line.getPoints()).hasSize(3);
+        assertThat(line.getPoints()).isEqualTo(List.of(true, false, true));
     }
 }

@@ -2,16 +2,14 @@ package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Line {
 
     private final List<Boolean> points = new ArrayList<>();
 
-    public Line(final int numberOfPeople) {
-        final Random random = new Random();
+    public Line(final Generator generator, final int numberOfPeople) {
         while (points.size() < numberOfPeople - 1) {
-            final boolean now = random.nextBoolean();
+            final boolean now = generator.generate();
             addBridge(now);
         }
     }
