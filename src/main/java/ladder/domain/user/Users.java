@@ -12,6 +12,9 @@ public class Users {
 				.map(String::trim)
 				.map(User::new)
 				.collect(Collectors.toList());
+		if(users.size() != users.stream().map(user -> user.getName()).distinct().count()){
+			throw new IllegalArgumentException("유저이름은 중복될 수 없습니다.");
+		}
 		this.users = users;
 	}
 
