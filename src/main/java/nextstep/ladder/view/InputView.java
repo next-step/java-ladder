@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class Input {
+public class InputView {
 
     public static final String COMMA = ",";
     private final Scanner scanner = new Scanner(System.in);

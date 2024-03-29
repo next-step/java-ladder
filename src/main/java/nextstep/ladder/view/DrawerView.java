@@ -4,7 +4,7 @@ import nextstep.ladder.data.StepType;
 
 import java.util.List;
 
-public class Drawer {
+public class DrawerView {
 
     public static final String LADDER_POLE = "|";
     public static final String LINE_BREAK = "\n";
