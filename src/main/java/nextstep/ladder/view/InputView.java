@@ -22,6 +22,11 @@ public class InputView {
         return split(SCANNER.next());
     }
 
+    public String inputName() {
+        System.out.println("\n결과를 보고 싶은 사람은?");
+        return SCANNER.next();
+    }
+
     private String[] split(final String input) {
         return input.split(NAME_SPLITTER);
     }
