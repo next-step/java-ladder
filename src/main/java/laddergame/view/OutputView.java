@@ -17,6 +17,7 @@ public class OutputView {
     private static final String BLANK = " ";
     private static final String NEXT_LINE = System.lineSeparator();
     private static final String PLAYER_NAME_FORMAT = "%6s";
+    private static final int FIRST = 0;
 
 
     public static void printPlayerInputGuideMessage() {
@@ -44,7 +45,7 @@ public class OutputView {
                 .append(NEXT_LINE)
                 .append(playersMessage(players))
                 .append(NEXT_LINE)
-                .append(ladderMessage(players.get(0).lengthOfName(), ladder))
+                .append(ladderMessage(players.get(FIRST).lengthOfName(), ladder))
                 .toString();
 
         System.out.println(executionResult);

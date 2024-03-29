@@ -21,8 +21,7 @@ public class Line {
                     boolean linkable = linkStrategy.linkable();
                     Link before = Optional.ofNullable(links.peekLast())
                             .orElse(UNLINKED);
-                    Link now = linkable && before.isUnLinked() ? LINKED : UNLINKED;
-                    links.add(now);
+                    links.add(linkable && before.isUnLinked() ? LINKED : UNLINKED);
                 });
 
         this.links = new ArrayList<>(links);
