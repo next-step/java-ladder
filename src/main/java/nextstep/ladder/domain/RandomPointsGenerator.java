@@ -13,13 +13,14 @@ public class RandomPointsGenerator {
     public static List<Boolean> generate(int pointSize) {
         List<Boolean> points = new ArrayList<>();
         IntStream.range(0, pointSize)
-                .forEach((index) -> add(points, index));
+                .forEach((index) -> addPoint(points, index));
         return Collections.unmodifiableList(points);
     }
 
-    private static void add(List<Boolean> points, int index) {
+    private static void addPoint(List<Boolean> points, int index) {
         if (isTruePreviousPoint(points, index)) {
             points.add(false);
+            return;
         }
         points.add(RANDOM.nextBoolean());
     }
