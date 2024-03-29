@@ -19,7 +19,7 @@ public class SimpleLineCreator implements LineCreator {
         Point point = Point.first();
         points.add(point);
 
-        for (int i = 1; i <= countOfPerson - 1; i++) {
+        for (int i = 1; i < countOfPerson - 1; i++) {
             point = point.next();
             points.add(point);
         }
