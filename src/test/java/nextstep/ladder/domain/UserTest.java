@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static nextstep.ladder.domain.User.MAXIMUM_NAME_LENGTH;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,10 +19,13 @@ class UserTest {
         assertThat(candy.name()).isEqualTo("candy");
     }
 
-    @DisplayName("이름은 5글자 이하만 가능하다. 5글자 초과 시 IllegalArgumentException을 던진다.")
+    @DisplayName("이름의 길이 제한을 검증한다. 제한글자 초과 시 IllegalArgumentException을 던진다.")
     @Test
-    void throwIllegalArgumentExceptionWhenOverNameLength5() {
+    void throwIllegalArgumentExceptionWhenOverNameLengthLimit() {
+        // given
+        String overLimitName = "a".repeat(MAXIMUM_NAME_LENGTH + 1);
+
         // then
-        assertThrows(IllegalArgumentException.class, () -> User.of("naruto"));
+        assertThrows(IllegalArgumentException.class, () -> User.of(overLimitName));
     }
 }

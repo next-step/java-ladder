@@ -16,7 +16,8 @@ public class User {
 
     private void validate(String name) {
         if (name.length() > MAXIMUM_NAME_LENGTH) {
-            throw new IllegalArgumentException("이름은 5자 이하로 입력 해 주세요.");
+            throw new IllegalArgumentException(
+                    String.format("이름은 %d자 이하로 입력 해 주세요. 입력 이름 = \"%s\"", MAXIMUM_NAME_LENGTH, name));
         }
     }
 
