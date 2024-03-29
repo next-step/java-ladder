@@ -33,3 +33,21 @@
     - [X] 문자열을 split 하여 List로 반환해주는 splitStringToList 구현
 - LadderGame
   - [X] 게임을 진행하는 컨트롤러 구현
+
+## 3단계 Todo
+- [ ] 결과를 저장하는 LadderResult 클래스 생성
+  - [ ] 이름과 결과가 Map 으로 매핑된 일급컬렉션
+  - [ ] Player와 결과 문자열을 매개변수로 받아 Map에 추가하는 put 구현 
+- [ ] InputView 입력 기능 추가
+  - [ ] 실행 결과를 입력받아 문자열 배열로 반환
+  - [ ] 결과를 보고 싶은 사람을 입력받아 반환
+- [ ] OutputView 출력 기능 추가
+  - [ ] Result를 매개변수로 받아, 실행 결과 출력
+  - [ ] 실행 결과를 사다리 밑에 출력
+- [ ] 각 Point의 수평 사다리 위치(유무)를 나타내는 PointDirection 구현
+- [ ] Line 기능 추가
+  - [ ] 각 Point의 양 옆 (index - 1, index + 1)에 따라 PointDirection을 반환하는 checkPointDirection 구현
+- [ ] List\<Line>의 일급컬렉션 Ladder 생성
+  - [ ] 게임 진행 후 LadderResult를 반환
+- [ ] Players 기능 추가
+  - [ ] 매개변수로 Ladder가 넘어가면,   
