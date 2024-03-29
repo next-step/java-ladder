@@ -8,6 +8,8 @@ public class DrawerView {
 
     public static final String LADDER_POLE = "|";
     public static final String LINE_BREAK = "\n";
+    public static final String EMPTY = "     ";
+    public static final String STEP = "-----";
 
     public void printLadderGameResult(List<String> names, List<List<StepType>> ladderInfo) {
         System.out.println("실행 결과\n");
@@ -37,14 +39,22 @@ public class DrawerView {
     private String lineToString(List<StepType> line) {
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer
-                .append(StepType.drawOf(StepType.EMPTY))
+                .append(EMPTY)
                 .append(LADDER_POLE);
 
         line.forEach(
                 step -> stringBuffer
-                        .append(StepType.drawOf(step))
+                        .append(getStepWithStepType(step))
                         .append(LADDER_POLE)
         );
         return stringBuffer.toString();
+    }
+
+    private String getStepWithStepType(StepType stepType) {
+        if (stepType == StepType.EMPTY) {
+            return EMPTY;
+        }
+
+        return STEP;
     }
 }
