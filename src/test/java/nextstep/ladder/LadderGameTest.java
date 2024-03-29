@@ -13,9 +13,17 @@ import java.util.List;
 public class LadderGameTest {
 
     @Test
-    @DisplayName("[성공] 4명의 참가자와 높이 5의 사다리를 갖는 사다리 게임을 생성한다.")
+    @DisplayName("[성공] 사다리 게임을 생성한다.")
     void 사다리_게임_생성() {
-        LadderGame ladder = new LadderGame(Participants.of(List.of("pobi", "honux", "crong", "ny")), Ladder.of(4, 5));
+        Participants participants = Participants.of(List.of("pobi", "honux", "crong", "ny"));
+        LadderGame ladder = new LadderGame(participants, Ladder.of(List.of(
+                Line.of(List.of(true, false, true)),
+                Line.of(List.of(false, true, false)),
+                Line.of(List.of(true, false, false)),
+                Line.of(List.of(false, true, false)),
+                Line.of(List.of(true, false, true))
+        )));
+
         Assertions.assertThat(ladder.getParticipantsSize()).isEqualTo(4);
         Assertions.assertThat(ladder.getLadderHeight()).isEqualTo(5);
     }

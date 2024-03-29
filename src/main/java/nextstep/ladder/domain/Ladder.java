@@ -7,29 +7,27 @@ import java.util.stream.Stream;
 public class Ladder {
 
     private final List<Line> lines;
-    private final int height;
 
-    private Ladder(List<Line> lines, int height) {
+    private Ladder(List<Line> lines) {
         this.lines = lines;
-        this.height = height;
     }
 
-    public static Ladder of(int numberOfParticipant, int height) {
-        return new Ladder(createLines(numberOfParticipant - 1, height), height);
+    public static Ladder of(int pointSize, int height) {
+        return new Ladder(createLines(pointSize, height));
     }
 
-    public static Ladder of(int numberOfParticipant, int height, List<Line> lines) {
-        return new Ladder(lines, height);
+    public static Ladder of(List<Line> lines) {
+        return new Ladder(lines);
     }
 
-    private static List<Line> createLines(int numberOfParticipant, int height) {
-        return Stream.generate(() -> Line.of(numberOfParticipant - 1))
+    private static List<Line> createLines(int pointSize, int height) {
+        return Stream.generate(() -> Line.of(pointSize))
                 .limit(height)
                 .collect(Collectors.toList());
     }
 
     public int getHeight() {
-        return this.height;
+        return this.lines.size();
     }
 
     public List<Line> getLines() {
