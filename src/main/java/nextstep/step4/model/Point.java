@@ -10,6 +10,7 @@ import static nextstep.step4.model.Direction.RIGHT;
 
 public class Point {
     private static final Random RANDOM = new Random();
+
     private final boolean left;
     private final boolean right;
 
@@ -56,6 +57,10 @@ public class Point {
         }
 
         return DOWN;
+    }
+
+    public boolean isConnected() {
+        return left;
     }
 
     @Override

@@ -5,6 +5,8 @@ import java.util.Objects;
 public class Name {
 
     public static final int MAX_LENGTH = 5;
+    public static final Name EMPTY = new Name("empty");
+
     private final String name;
 
     public Name(String name) {
@@ -17,6 +19,10 @@ public class Name {
         }
 
         this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override

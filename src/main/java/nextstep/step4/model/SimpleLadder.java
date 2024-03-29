@@ -4,6 +4,7 @@ import nextstep.step4.api.Ladder;
 import nextstep.step4.api.LadderResult;
 import nextstep.step4.api.Line;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -38,6 +39,11 @@ public class SimpleLadder implements Ladder {
         }
 
         return result;
+    }
+
+    @Override
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(this.lines);
     }
 
     @Override

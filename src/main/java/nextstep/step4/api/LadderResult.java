@@ -20,8 +20,12 @@ public class LadderResult {
         resultMap.put(key, value);
     }
 
-    public Map<Integer, Integer> get() {
+    public Map<Integer, Integer> getResultMap() {
         return Collections.unmodifiableMap(this.resultMap);
+    }
+
+    public int get(int key) {
+        return this.resultMap.get(key);
     }
 
     @Override
