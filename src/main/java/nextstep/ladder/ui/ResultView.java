@@ -1,6 +1,7 @@
 package nextstep.ladder.ui;
 
 import nextstep.ladder.domain.*;
+import nextstep.ladder.dto.LadderGameResponse;
 
 import java.util.stream.Collectors;
 
@@ -10,8 +11,11 @@ public class ResultView {
     private static final String POINT_FALSE = "     ";
     private static final String LINE_DELIMITER = "|";
 
+    public static void printLadderGameResponse(LadderGameResponse response) {
+        printLadderGame(response.getLadderGame());
+    }
 
-    public static void printGameResult(LadderGame game) {
+    public static void printLadderGame(LadderGame game) {
         System.out.println("실행 결과");
         System.out.println(formatParticipantNames(game.getParticipants()));
         System.out.println(formatLadder(game.getLadder()));

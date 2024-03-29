@@ -1,27 +1,14 @@
 package nextstep.ladder.controller;
 
 import nextstep.ladder.domain.LadderGame;
-import nextstep.ladder.ui.InputView;
-import nextstep.ladder.ui.ResultView;
-
-import java.util.List;
+import nextstep.ladder.dto.LadderGameRequest;
+import nextstep.ladder.dto.LadderGameResponse;
 
 public class LadderGameController {
 
-    public static void main(String[] args) {
-        try {
-            List<String> names = InputView.readParticipantNames();
-            int height = InputView.readLadderMaxHeight();
-
-            LadderGame ladderGame = LadderGame.of(names, height);
-
-            ResultView.printGameResult(ladderGame);
-        } catch (IllegalArgumentException e) {
-            ResultView.printException(e.getMessage());
-        } catch (Exception e) {
-            ResultView.printException("예기치 못한 예외가 발생했습니다.", e);
-        }
-
+    public LadderGameResponse getGame(LadderGameRequest request) {
+        LadderGame ladderGame = LadderGame.of(request.getNames(), request.getHeight());
+        return new LadderGameResponse(ladderGame);
     }
 
 }

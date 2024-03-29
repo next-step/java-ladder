@@ -1,5 +1,11 @@
 package nextstep.ladder.ui;
 
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Participant;
+import nextstep.ladder.dto.LadderGameRequest;
+import nextstep.ladder.exception.LadderHeightException;
+import nextstep.ladder.exception.ParticipantNameLengthExceedException;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -9,9 +15,17 @@ public class InputView {
 
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    public static List<String> readParticipantNames() {
+    public static LadderGameRequest createLadderGameRequest() {
+        List<String> names = InputView.readParticipantNames();
+        int height = InputView.readLadderMaxHeight();
+        return new LadderGameRequest(names, height);
+    }
+
+    private static List<String> readParticipantNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉽표(,)로 구분하세요)");
-        return parseStringList(nextLine());
+        List<String> names = parseStringList(nextLine());
+        validateParticipantNames(names);
+        return names;
     }
 
     private static String nextLine() {
@@ -23,13 +37,32 @@ public class InputView {
         return Arrays.stream(strings).collect(Collectors.toUnmodifiableList());
     }
 
-    public static int readLadderMaxHeight() {
+    private static int readLadderMaxHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        return nextInt();
+        int height = nextInt();
+        validateLadderMaxHeight(height);
+        return height;
     }
 
     private static int nextInt() {
         return SCANNER.nextInt();
+    }
+
+    private static void validateParticipantNames(List<String> names) {
+        names.forEach(InputView::validateName);
+    }
+
+    private static void validateName(String name) {
+        int nameLength = name.length();
+        if (nameLength < Participant.MIN_NAME_LENGTH || nameLength > Participant.MAX_NAME_LENGTH) {
+            throw new ParticipantNameLengthExceedException(name);
+        }
+    }
+
+    private static void validateLadderMaxHeight(int height) {
+        if (height < Ladder.MIN_LADDER_HEIGHT) {
+            throw new LadderHeightException(height);
+        }
     }
 
 }
