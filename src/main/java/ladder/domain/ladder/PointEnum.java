@@ -21,4 +21,9 @@ public enum PointEnum {
     public static PointEnum createRandomPoint() {
         return Math.random() > 0.5 ? TRUE : FALSE;
     }
+
+    public static Boolean isTrue(PointEnum point) {
+        return point.equals(TRUE);
+
+    }
 }

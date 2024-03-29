@@ -16,7 +16,7 @@ public class Line {
 	}
 
 	private static void pointsAdd(final List<PointEnum> points, final int i) {
-		if (points.get(i - 1).equals(PointEnum.TRUE)) {
+		if (PointEnum.isTrue(points.get(i - 1))) {
 			points.add(PointEnum.createPoint(false));
 			return;
 		}
@@ -31,22 +31,7 @@ public class Line {
 		return points.size();
 	}
 
-	@Override
-	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		for (PointEnum point : points) {
-			sb.append("|");
-			appendPoint(point, sb);
-		}
-		sb.append("|");
-		return sb.toString();
-	}
-
-	private static void appendPoint(final PointEnum point, final StringBuilder sb) {
-		if (point.equals(PointEnum.TRUE)) {
-			sb.append("-----");
-			return;
-		}
-		sb.append("     ");
+	public List<PointEnum> getPoints() {
+		return points;
 	}
 }
