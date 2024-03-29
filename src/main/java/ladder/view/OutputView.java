@@ -10,6 +10,7 @@ public class OutputView {
 		System.out.println("");
 
 		System.out.println(users.toString());
-		Ladder.createLadder(Height.createHeight(ladderHeight), users.getCountOfPerson()).printLadder();
+		Ladder.createLadder(Height.createHeight(ladderHeight), users.getCountOfPerson()).getLines()
+				.forEach(System.out::println);
 	}
 }

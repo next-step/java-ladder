@@ -20,13 +20,11 @@ public class Ladder {
 		return new Ladder(height, lines);
 	}
 
-	public void printLadder() {
-		for (Line line : lines) {
-			System.out.println(line.toString());
-		}
-	}
-
 	public int getHeight() {
 		return height.getHeight();
+	}
+
+	public List<Line> getLines() {
+		return lines;
 	}
 }
