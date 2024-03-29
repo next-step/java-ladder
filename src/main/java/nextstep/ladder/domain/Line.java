@@ -21,8 +21,8 @@ public class Line {
     }
 
     private static boolean hasConsecutivePoint(List<Boolean> points) {
-        return IntStream.range(0, points.size() - 1)
-                .anyMatch(index -> points.get(index) && points.get(index + 1));
+        return IntStream.range(1, points.size())
+                .anyMatch(index -> points.get(index - 1) && points.get(index));
     }
 
     public List<Boolean> get() {
