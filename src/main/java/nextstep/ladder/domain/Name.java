@@ -22,7 +22,7 @@ public class Name {
 
     private void validateEmpty(final String name) {
         if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException("이름의 길이는 5자를 초과할 수 없습니다.");
+            throw new IllegalArgumentException("이름은 공백일 수 없습니다.");
         }
     }
 
