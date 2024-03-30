@@ -1,6 +1,4 @@
 package nextstep.ladder.domain;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -8,20 +6,13 @@ public class Line {
 
     private final List<Boolean> line;
 
-    public Line(Participant participant, PointGenerator pointGenerator) {
-        this(generateByGenerator(participant, pointGenerator));
+
+    public Line(Participant participant) {
+        this(participant.generatePoints());
     }
 
     public Line(List<Boolean> line) {
         this.line = line;
-    }
-
-    private static List<Boolean> generateByGenerator(Participant participant, PointGenerator pointGenerator){
-        ArrayList<Boolean> result = new ArrayList<>();
-        for(int i =0; i < participant.getSize(); i++){
-            result.add(pointGenerator.generate());
-        }
-        return result;
     }
 
     @Override
@@ -35,5 +26,9 @@ public class Line {
     @Override
     public int hashCode() {
         return Objects.hash(line);
+    }
+
+    public int getSize(){
+        return this.line.size();
     }
 }

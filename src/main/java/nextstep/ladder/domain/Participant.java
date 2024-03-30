@@ -1,11 +1,14 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.util.RandomBooleanGenerator;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class Participant {
+public class Participant implements Point{
 
     private final List<Name> name;
 
@@ -30,6 +33,14 @@ public class Participant {
                 .collect(Collectors.toList());
     }
 
+    public List<Boolean> generatePoints(){
+        ArrayList<Boolean> points = new ArrayList<>();
+        for(int i =0; i < name.size(); i++){
+            points.add(RandomBooleanGenerator.generate());
+        }
+        return points;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -41,9 +52,5 @@ public class Participant {
     @Override
     public int hashCode() {
         return Objects.hash(name);
-    }
-
-    public int getSize(){
-        return this.name.size();
     }
 }

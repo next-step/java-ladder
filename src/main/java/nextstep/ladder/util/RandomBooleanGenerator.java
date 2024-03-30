@@ -1,12 +1,11 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.util;
 
 import java.util.Random;
 
-public class RandomPointGenerator implements PointGenerator{
-
+public class RandomBooleanGenerator {
     private static final Random random = new Random();
 
-    public Boolean generate(){
+    public static Boolean generate(){
         return random.nextBoolean();
     }
 }
