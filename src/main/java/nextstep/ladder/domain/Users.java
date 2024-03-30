@@ -8,14 +8,14 @@ public class Users {
     public static final int MINIMUM_USERS_COUNT = 2;
     private final List<User> users;
 
-    public static Users of(List<String> users) {
+    public static Users from(List<String> users) {
         return new Users(users);
     }
 
     private Users(List<String> users) {
         validate(users);
         this.users = users.stream()
-                .map(User::of)
+                .map(User::from)
                 .collect(Collectors.toList());
     }
 

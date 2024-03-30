@@ -11,8 +11,8 @@ public class Ladder {
 
     public static Ladder of(int floor, List<String> users, StepStrategy strategy) {
         return new Ladder(
-                Floor.of(floor),
-                Users.of(users),
+                Floor.from(floor),
+                Users.from(users),
                 strategy
         );
     }

@@ -1,7 +1,5 @@
 package nextstep.ladder.data;
 
-import java.util.Arrays;
-
 public enum StepType {
     EMPTY(false),
     STEP(true);
@@ -12,7 +10,7 @@ public enum StepType {
         this.value = value;
     }
 
-    public static StepType of(boolean value) {
+    public static StepType from(boolean value) {
         if (isStep(value)) {
             return StepType.STEP;
         }

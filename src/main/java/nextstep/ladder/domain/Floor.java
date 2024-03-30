@@ -5,7 +5,7 @@ public class Floor {
     public static final int MINIMUM_FLOOR = 1;
     private final int floor;
 
-    public static Floor of(int floor) {
+    public static Floor from(int floor) {
         return new Floor(floor);
     }
 

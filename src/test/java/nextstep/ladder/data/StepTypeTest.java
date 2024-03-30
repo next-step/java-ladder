@@ -11,7 +11,7 @@ class StepTypeTest {
     @Test
     void getStepTypeOfBooleanType() {
         // then
-        assertThat(StepType.of(true)).isEqualTo(StepType.STEP);
-        assertThat(StepType.of(false)).isEqualTo(StepType.EMPTY);
+        assertThat(StepType.from(true)).isEqualTo(StepType.STEP);
+        assertThat(StepType.from(false)).isEqualTo(StepType.EMPTY);
     }
 }

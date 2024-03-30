@@ -1,6 +1,5 @@
 package nextstep.ladder.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +14,7 @@ class UsersTest {
     @Test
     void getUsersStringListForPrint() {
         // given
-        Users users = Users.of(List.of("poppy", "jetty"));
+        Users users = Users.from(List.of("poppy", "jetty"));
 
         // then
         assertThat(users.toNameList()).contains("poppy", "jetty");
@@ -26,14 +25,14 @@ class UsersTest {
     void throwIllegalArgumentExceptionWhenUserSizeIsLessThan2() {
         // then
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> Users.of(List.of("one")));
+                .isThrownBy(() -> Users.from(List.of("one")));
     }
 
     @DisplayName("참여자의 수를 반환한다.")
     @Test
     void countParticipants() {
         // given
-        Users users = Users.of(List.of("poppy", "jetty"));
+        Users users = Users.from(List.of("poppy", "jetty"));
 
         // then
         assertThat(users.countOfUsers()).isEqualTo(2);

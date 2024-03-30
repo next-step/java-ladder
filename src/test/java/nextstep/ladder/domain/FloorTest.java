@@ -12,7 +12,7 @@ class FloorTest {
     @Test
     void getFloor() {
         // given
-        Floor floor = Floor.of(3);
+        Floor floor = Floor.from(3);
 
         // then
         assertThat(floor.getFloor()).isEqualTo(3);
@@ -23,8 +23,8 @@ class FloorTest {
     void throwIllegalArgumentExceptionWhenFloorIsLessThan1() {
         // then
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> Floor.of(0));
+                .isThrownBy(() -> Floor.from(0));
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> Floor.of(-1));
+                .isThrownBy(() -> Floor.from(-1));
     }
 }

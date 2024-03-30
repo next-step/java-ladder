@@ -5,7 +5,7 @@ public class User {
     public static final int MAXIMUM_NAME_LENGTH = 5;
     private final String name;
 
-    public static User of(String name) {
+    public static User from(String name) {
         return new User(name);
     }
 

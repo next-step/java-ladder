@@ -20,6 +20,6 @@ public class RandomStepStrategy implements StepStrategy {
     }
 
     private StepType getNextRandomStepType(Random random) {
-        return StepType.of(random.nextBoolean());
+        return StepType.from(random.nextBoolean());
     }
 }

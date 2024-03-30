@@ -1,13 +1,11 @@
 package nextstep.ladder.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static nextstep.ladder.domain.User.MAXIMUM_NAME_LENGTH;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
-import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
 
@@ -15,7 +13,7 @@ class UserTest {
     @Test
     void getUserName() {
         // given
-        User candy = User.of("candy");
+        User candy = User.from("candy");
 
         // then
         assertThat(candy.name()).isEqualTo("candy");
@@ -29,6 +27,6 @@ class UserTest {
 
         // then
         assertThatIllegalArgumentException()
-                        .isThrownBy(() -> User.of(overLimitName));
+                        .isThrownBy(() -> User.from(overLimitName));
     }
 }
