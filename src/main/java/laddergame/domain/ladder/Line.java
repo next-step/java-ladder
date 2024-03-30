@@ -1,5 +1,6 @@
 package laddergame.domain.ladder;
 
+import laddergame.domain.Players;
 import laddergame.domain.ladder.strategy.LinkStrategy;
 
 import java.util.*;
@@ -13,25 +14,28 @@ public class Line {
 
     private final List<Link> links;
 
-    private Line(int numberOfPlayers, LinkStrategy linkStrategy) {
-        Deque<Link> links = new LinkedList<>();
-
-        IntStream.range(START_RANGE, numberOfPlayers - 1)
-                .forEach(i -> {
-                    boolean linkable = linkStrategy.linkable();
-                    Link before = Optional.ofNullable(links.peekLast())
-                            .orElse(UNLINKED);
-                    links.add(linkable && before.isUnLinked() ? LINKED : UNLINKED);
-                });
-
-        this.links = new ArrayList<>(links);
+    private Line(List<Link> links) {
+        this.links = links;
     }
 
-    public static Line newLine(int numberOfPlayers, LinkStrategy linkStrategy) {
-        return new Line(numberOfPlayers, linkStrategy);
+    public static Line newLine(Players players, LinkStrategy linkStrategy) {
+        Deque<Link> links = new LinkedList<>();
+
+        IntStream.range(START_RANGE, players.numberOfPlayers() - 1)
+                .forEach(i -> links.add(nextLink(links, linkStrategy)));
+
+        return new Line(new ArrayList<>(links));
+    }
+
+    private static Link nextLink(Deque<Link> links, LinkStrategy linkStrategy) {
+        boolean linkable = linkStrategy.linkable();
+        Link before = Optional.ofNullable(links.peekLast())
+                .orElse(UNLINKED);
+
+        return linkable && before.isUnLinked() ? LINKED : UNLINKED;
     }
 
     public List<Link> links() {
-        return links;
+        return Collections.unmodifiableList(links);
     }
 }

@@ -4,7 +4,7 @@ import laddergame.exception.InvalidPlayerException;
 
 import java.util.Objects;
 
-import static laddergame.util.Validator.isValidStringLength;
+import static laddergame.util.Validator.isNonBlank;
 
 public class Player {
     public static final int MAX_NAME_LENGTH = 5;
@@ -17,7 +17,7 @@ public class Player {
     }
 
     private void validateName(String name) {
-        if (!isValidStringLength(name, MAX_NAME_LENGTH)) {
+        if (!isNonBlank(name) || name.length() > MAX_NAME_LENGTH) {
             throw new InvalidPlayerException(name);
         }
     }

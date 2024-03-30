@@ -2,8 +2,6 @@ package laddergame.domain;
 
 import laddergame.exception.InvalidHeightOfLadderException;
 
-import static laddergame.util.Validator.isGreaterThanOrEqualStandard;
-
 public class HeightOfLadder {
     public static final int LADDER_MIN_HEIGHT = 1;
 
@@ -15,7 +13,7 @@ public class HeightOfLadder {
     }
 
     private void validateHeight(int height) {
-        if (!isGreaterThanOrEqualStandard(height, LADDER_MIN_HEIGHT)) {
+        if (height < LADDER_MIN_HEIGHT) {
             throw new InvalidHeightOfLadderException(height);
         }
     }

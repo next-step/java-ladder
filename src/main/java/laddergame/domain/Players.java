@@ -3,6 +3,7 @@ package laddergame.domain;
 import laddergame.exception.InvalidPlayersException;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,7 +32,7 @@ public class Players {
         int sizeOfPlayers = players.size();
         int sizeOfPlayersSet = new HashSet<>(players).size();
 
-        if(sizeOfPlayers < PLAYERS_MIN_NUMBER || sizeOfPlayers > sizeOfPlayersSet) {
+        if (sizeOfPlayers < PLAYERS_MIN_NUMBER || sizeOfPlayers > sizeOfPlayersSet) {
             throw new InvalidPlayersException();
         }
     }
@@ -57,6 +58,6 @@ public class Players {
     }
 
     public List<Player> players() {
-        return players;
+        return Collections.unmodifiableList(players);
     }
 }

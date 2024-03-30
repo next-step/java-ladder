@@ -15,7 +15,7 @@ public class LadderGameMain {
         try {
             Players players = Players.valueOf(enteredPlayers());
             HeightOfLadder heightOfLadder = enteredHeightOfLadder();
-            Ladder ladder = Ladder.newLadder(heightOfLadder.height(), players.numberOfPlayers(), new RandomStrategy());
+            Ladder ladder = Ladder.newLadder(heightOfLadder, players, new RandomStrategy());
 
             printExecutionResult(players, ladder);
         } catch (Exception e) {
