@@ -5,6 +5,10 @@ import java.util.Objects;
 public class Count {
     private final int value;
 
+    public Count() {
+        this(0);
+    }
+
     public Count(int value) {
         assertPositive(value);
         this.value = value;
@@ -18,6 +22,13 @@ public class Count {
 
     public int value() {
         return value;
+    }
+
+    public Count subtract(int value) {
+        if (this.value < value) {
+            return new Count();
+        }
+        return new Count(this.value - value);
     }
 
     @Override

@@ -16,17 +16,21 @@ public enum Rung {
         this.exist = exist;
     }
 
-    public static Rung generate(RungGenerateStrategy generateStrategy) {
-        return Optional.ofNullable(generateStrategy)
-                .map(strategy -> findByBoolean(strategy.addable()))
-                .orElse(EMPTY);
-    }
-
-    private static Rung findByBoolean(boolean value) {
+    public static Rung findByBoolean(boolean value) {
         if (value) {
             return EXIST;
         }
         return EMPTY;
+    }
+
+    public static Rung generate(RungGenerateStrategy generateStrategy, Rung adjacentRung) {
+        return Optional.ofNullable(generateStrategy)
+                .map(strategy -> findByBoolean(adjacentRung.notExist() && strategy.addable()))
+                .orElse(EMPTY);
+    }
+
+    public boolean notExist() {
+        return !exist();
     }
 
     public boolean exist() {
