@@ -7,3 +7,12 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+## 1단계 : 스트림, 람다, Optional
+* MoveStrategy의 익명 클래스를 람다로 전환 (Done)
+* Lambda의 sumAll, sumAllEven, sumAllOverThree에 대한 중복 제거 (Done)
+* map, reduce, filter을 활용하여 StreamStudyTest의 sumOverThreeAndDouble() 테스트 통과 (Done)
+* StreamStudy의 printLongestWordTop100 메서드 구현 (Done)
+* User의 ageIsInRange2 메소드 구현 (Done)
+* User의 getUser 메소드 구현 (Done)
+* Expression의 of 메소드 구현 (Done)
