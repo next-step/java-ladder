@@ -3,20 +3,21 @@ package nextstep.ladder.view;
 import nextstep.ladder.domain.*;
 
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
-
-import static nextstep.ladder.view.OutputView.printPlainMessage;
 
 public class ViewHelper {
 
+    public static Scanner scanner = new Scanner(System.in);
+
     public static Participant insertParticipant(){
-        printPlainMessage("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        return new Participant(InputView.inputString());
+        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        return new Participant(scanner.nextLine());
     }
 
     public static Height insertHeight(){
-        printPlainMessage("최대 사다리 높이는 몇 개인가요?");
-        return new Height(InputView.inputInt());
+        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        return new Height(scanner.nextInt());
     }
 
 
@@ -25,7 +26,7 @@ public class ViewHelper {
         String header = name.stream()
                 .map(Name::toString)
                 .collect(Collectors.joining(" "));
-        printPlainMessage(header);
+        System.out.println(header);
     }
 
     public static void printLadder(Lines entireLines){
@@ -36,7 +37,7 @@ public class ViewHelper {
             printPoints(sb, line.getLine());
             sb.append("\n");
         }
-        printPlainMessage(sb.toString());
+        System.out.println(sb);
     }
 
     private static void printPoints(StringBuilder sb, List<Boolean> points) {
