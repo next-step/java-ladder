@@ -1,10 +1,9 @@
 package laddergame.view;
 
-import laddergame.domain.Player;
+import laddergame.domain.Players;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.Line;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -17,7 +16,7 @@ public class OutputView {
     private static final String BLANK = " ";
     private static final String NEXT_LINE = System.lineSeparator();
     private static final String PLAYER_NAME_FORMAT = "%6s";
-    private static final int FIRST = 0;
+    private static final int FIRST_INDEX = 0;
 
 
     public static void printPlayerInputGuideMessage() {
@@ -37,7 +36,10 @@ public class OutputView {
         System.out.println(exceptionMessage);
     }
 
-    public static void printExecutionResult(List<Player> players, Ladder ladder) {
+    public static void printExecutionResult(Players players, Ladder ladder) {
+        int lengthOfFirstPlayerName = players.findPlayerByIndex(FIRST_INDEX)
+                .lengthOfName();
+
         String executionResult = new StringBuilder()
                 .append(NEXT_LINE)
                 .append(EXECUTION_RESULT_MESSAGE)
@@ -45,14 +47,15 @@ public class OutputView {
                 .append(NEXT_LINE)
                 .append(playersMessage(players))
                 .append(NEXT_LINE)
-                .append(ladderMessage(players.get(FIRST).lengthOfName(), ladder))
+                .append(ladderMessage(lengthOfFirstPlayerName, ladder))
                 .toString();
 
         System.out.println(executionResult);
     }
 
-    private static String playersMessage(List<Player> players) {
-        return players.stream()
+    private static String playersMessage(Players players) {
+        return players.players()
+                .stream()
                 .map(player -> String.format(PLAYER_NAME_FORMAT, player.name()))
                 .collect(Collectors.joining())
                 .trim();
