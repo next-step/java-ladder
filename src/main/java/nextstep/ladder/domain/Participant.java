@@ -42,4 +42,8 @@ public class Participant {
     public int hashCode() {
         return Objects.hash(name);
     }
+
+    public int getSize(){
+        return this.name.size();
+    }
 }
