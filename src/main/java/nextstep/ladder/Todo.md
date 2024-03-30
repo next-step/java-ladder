@@ -1,5 +1,4 @@
 ## Todo
-- [ ] 참여자가 ""일 경우에 예외("" => IllegalArgumentException) 
 - [ ] 전체 참여자가 1명 이하일 경우에 예외("pobi" => IllegalArugmentExcepiton)
 - [ ] 참여자들은 ','를 구분자로 구분("pobi,honux" => pobi, honux)
 - [ ] 최대 사다리 높이는 0이하이면 예외(0 => IllegalArgumentException, 1 => IllegalArgumentException)
@@ -13,3 +12,4 @@
 - [ ] 사다리 출력
 
 ## Done
+- [X] 참여자가 ""일 경우에 예외("" => IllegalArgumentException) 
