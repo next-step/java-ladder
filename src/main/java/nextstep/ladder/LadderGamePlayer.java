@@ -1,7 +1,7 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.ladder.Height;
-import nextstep.ladder.domain.Players;
+import nextstep.ladder.domain.player.Players;
 import nextstep.ladder.view.InputView;
 
 public class LadderGamePlayer {

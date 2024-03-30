@@ -1,4 +1,4 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.player;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,5 +18,9 @@ public class Players {
         if (players != null && !players.isEmpty()) {
             this.players.addAll(players);
         }
+    }
+
+    public Count count() {
+        return new Count(players.size());
     }
 }
