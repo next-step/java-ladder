@@ -7,8 +7,8 @@ public class Line {
     private final List<Boolean> line;
 
 
-    public Line(Participant participant) {
-        this(participant.generatePoints());
+    public Line(Point point) {
+        this(point.generatePoints());
     }
 
     public Line(List<Boolean> line) {
@@ -26,10 +26,6 @@ public class Line {
     @Override
     public int hashCode() {
         return Objects.hash(line);
-    }
-
-    public int getSize(){
-        return this.line.size();
     }
 
     public List<Boolean> getLine() {
