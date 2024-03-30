@@ -3,7 +3,7 @@ package nextstep.ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Height {
+public class Height implements LineFactory{
     private final int height;
 
     public Height(int height) {
@@ -13,10 +13,10 @@ public class Height {
         this.height = height;
     }
 
-    public List<Line> generateLines(Participant participant){
+    public List<Line> generateLines(Point point){
         ArrayList<Line> lines = new ArrayList<>();
         for(int i =0; i < height; i++){
-            lines.add(new Line(participant));
+            lines.add(new Line(point));
         }
         return lines;
     }
