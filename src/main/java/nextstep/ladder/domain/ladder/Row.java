@@ -20,14 +20,16 @@ public class Row {
         final AtomicBoolean lastFlag = new AtomicBoolean(false);
 
         return IntStream.range(0, playersCount.subtract(1).value())
-                .mapToObj(idx -> {
-                    final Rung rung = Rung.generate(strategy, Rung.findByBoolean(lastFlag.get()));
-
-                    lastFlag.set(rung.exist());
-
-                    return rung;
-                })
+                .mapToObj(idx -> generateRung(strategy, lastFlag))
                 .collect(Collectors.toList());
+    }
+
+    private Rung generateRung(RungGenerateStrategy strategy, AtomicBoolean lastFlag) {
+        final Rung rung = Rung.generate(strategy, Rung.findByBoolean(lastFlag.get()));
+
+        lastFlag.set(rung.exist());
+
+        return rung;
     }
 
     public List<Rung> rungs() {
