@@ -19,10 +19,6 @@ public class ViewHelper {
         return new Height(InputView.inputInt());
     }
 
-    public static void printResult(Participant participant){
-        printPlainMessage("실행결과");
-        printHeader(participant);
-    }
 
     public static void printHeader(Participant participant){
         List<Name> name = participant.getName();
@@ -30,5 +26,29 @@ public class ViewHelper {
                 .map(Name::toString)
                 .collect(Collectors.joining(" "));
         printPlainMessage(header);
+    }
+
+    public static void printLadder(Lines entireLines){
+        List<Line> lines = entireLines.getLines();
+        StringBuilder sb = new StringBuilder();
+        for(Line line : lines) {
+            sb.append("     |");
+            printPoints(sb, line.getLine());
+            sb.append("\n");
+        }
+        printPlainMessage(sb.toString());
+    }
+
+    private static void printPoints(StringBuilder sb, List<Boolean> points) {
+        for(Boolean point : points){
+            sb.append(getPoint(point));
+        }
+    }
+
+    private static String getPoint(Boolean point){
+        if(point){
+            return "-----|";
+        }
+        return "     |";
     }
 }
