@@ -1,15 +1,15 @@
 package laddergame.domain;
 
-import laddergame.exception.InvalidPlayersException;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static laddergame.exception.ExceptionMessage.WRONG_SIZE_OF_PLAYERS_MESSAGE;
+
 public class Players {
-    public static final int PLAYERS_MIN_NUMBER = 2;
+    private static final int PLAYERS_MIN_NUMBER = 2;
 
     private final List<Player> players;
 
@@ -33,7 +33,7 @@ public class Players {
         int sizeOfPlayersSet = new HashSet<>(players).size();
 
         if (sizeOfPlayers < PLAYERS_MIN_NUMBER || sizeOfPlayers > sizeOfPlayersSet) {
-            throw new InvalidPlayersException();
+            throw new IllegalArgumentException(String.format(WRONG_SIZE_OF_PLAYERS_MESSAGE.message(), PLAYERS_MIN_NUMBER));
         }
     }
 

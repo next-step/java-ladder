@@ -1,6 +1,6 @@
 package laddergame.domain;
 
-import laddergame.exception.InvalidHeightOfLadderException;
+import static laddergame.exception.ExceptionMessage.WRONG_LADDER_HEIGHT_MESSAGE;
 
 public class HeightOfLadder {
     public static final int LADDER_MIN_HEIGHT = 1;
@@ -14,7 +14,7 @@ public class HeightOfLadder {
 
     private void validateHeight(int height) {
         if (height < LADDER_MIN_HEIGHT) {
-            throw new InvalidHeightOfLadderException(height);
+            throw new IllegalArgumentException(String.format(WRONG_LADDER_HEIGHT_MESSAGE.message(), height, LADDER_MIN_HEIGHT));
         }
     }
 
