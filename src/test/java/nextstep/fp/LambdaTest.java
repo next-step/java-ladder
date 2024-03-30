@@ -10,6 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LambdaTest {
     private List<Integer> numbers;
+    private Conditional conditional;
 
     @BeforeEach
     public void setup() {
@@ -33,19 +34,34 @@ public class LambdaTest {
 
     @Test
     public void sumAll() throws Exception {
-        int sum = Lambda.sumAll(numbers);
+        int sum = Lambda.sum(numbers, new Conditional() {
+            @Override
+            public boolean test(int number) {
+                return true;
+            }
+        });
         assertThat(sum).isEqualTo(21);
     }
 
     @Test
     public void sumAllEven() throws Exception {
-        int sum = Lambda.sumAllEven(numbers);
+        int sum = Lambda.sum(numbers, new Conditional() {
+            @Override
+            public boolean test(int number) {
+                return number % 2 == 0;
+            }
+        });
         assertThat(sum).isEqualTo(12);
     }
 
     @Test
     public void sumAllOverThree() throws Exception {
-        int sum = Lambda.sumAllOverThree(numbers);
+        int sum = Lambda.sum(numbers, new Conditional() {
+            @Override
+            public boolean test(int number) {
+                return number > 3;
+            }
+        });
         assertThat(sum).isEqualTo(15);
     }
 }

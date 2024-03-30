@@ -26,31 +26,16 @@ public class Lambda {
         }).start();
     }
 
-    public static int sumAll(List<Integer> numbers) {
+    // 변하는 부분 : 덧셈 조건 (모두 더하기, 짝수만 더하기, 3이 넘는 수 더하기)
+    // 변하지 않는 부분 : 반복문을 통해 total에 수 더하기
+    public static int sum(List<Integer> numbers, Conditional conditional) {
         int total = 0;
         for (int number : numbers) {
-            total += number;
-        }
-        return total;
-    }
-
-    public static int sumAllEven(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number % 2 == 0) {
+            if (conditional.test(number)) {
                 total += number;
             }
         }
         return total;
     }
 
-    public static int sumAllOverThree(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number > 3) {
-                total += number;
-            }
-        }
-        return total;
-    }
 }
