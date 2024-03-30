@@ -1,6 +1,4 @@
 ## Todo
-- [ ] 전체 참여자가 1명 이하일 경우에 예외("pobi" => IllegalArugmentExcepiton)
-- [ ] 참여자들은 ','를 구분자로 구분("pobi,honux" => pobi, honux)
 - [ ] 최대 사다리 높이는 0이하이면 예외(0 => IllegalArgumentException, 1 => IllegalArgumentException)
 - [ ] 하나의 라인은 (참여자들 -1)개만큼의 boolean 값들이 존재(5 => true,true,false,ture, 3 => true,false)
 - [ ] 라인들은 사다리 높이 개만큼 존재(5 => 5)
@@ -13,3 +11,5 @@
 
 ## Done
 - [X] 참여자가 ""일 경우에 예외("" => IllegalArgumentException) 
+- [X] 전체 참여자가 1명 이하일 경우에 예외("pobi" => IllegalArugmentExcepiton)
+- [X] 참여자들은 ','를 구분자로 구분("pobi,honux" => pobi, honux)
