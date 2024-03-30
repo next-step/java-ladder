@@ -3,6 +3,7 @@ package laddergame.domain;
 import laddergame.exception.InvalidPlayersException;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,7 +28,10 @@ public class Players {
     }
 
     private void validatePlayers(List<Player> players) {
-        if(players.size() < PLAYERS_MIN_NUMBER) {
+        int sizeOfPlayers = players.size();
+        int sizeOfPlayersSet = new HashSet<>(players).size();
+
+        if(sizeOfPlayers < PLAYERS_MIN_NUMBER || sizeOfPlayers > sizeOfPlayersSet) {
             throw new InvalidPlayersException();
         }
     }
