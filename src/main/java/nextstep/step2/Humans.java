@@ -17,7 +17,7 @@ public class Humans {
                 .collect(Collectors.toList());
     }
 
-    private void validation (String names) {
+    private void validation(String names) {
         if (names == null || names.trim().isEmpty()) {
             throw new IllegalArgumentException("이름에는 null과 공백이 올 수 없습니다.");
         }
