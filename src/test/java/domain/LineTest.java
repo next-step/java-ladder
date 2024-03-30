@@ -22,14 +22,17 @@ public class LineTest {
     @DisplayName("전략에 따라 bridge 를 생성하고, 정상적으로 생성되었는지 확인한다.")
     @TestFactory
     Collection<DynamicTest> test02() {
-        Line line = new Line(3);
+        Height height = new Height(5);
+        Line prev = new Line(height);
         return List.of(
                 DynamicTest.dynamicTest("전략에 따라 bridge 를 생성한다.", () -> {
-                    line.addBridges(new Line(3));
-                    assertThat(line.hasBridge(0)).isTrue();
+                    prev.addBridges(() -> true);
+                    assertThat(prev.hasBridge(0)).isTrue();
                 }),
-                DynamicTest.dynamicTest("전략에 맞춰 bridge 가 생성되었는지 확인한다.", () -> {
-                    assertThat(line.hasBridge(1)).isTrue();
+                DynamicTest.dynamicTest("이전 Line 객체의 동일 높이의 bridge 가 생성되었다면, 현재 Line 객체의 동일 높이 bridge 는 제거한다.", () -> {
+                    Line cur = Line.createWithBridges(height, () -> true);
+                    cur.resetBridges(prev);
+                    assertThat(cur.hasBridge(0)).isFalse();
                 })
         );
     }

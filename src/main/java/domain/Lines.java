@@ -14,21 +14,25 @@ public class Lines implements Iterable<Line> {
     }
 
     public static Lines of(int count, int height) {
-        return of(count, new Height(height));
+        return of(count, new Height(height), new RandomBridgeCreationStrategy());
     }
 
-    public static Lines of(int count, Height height) {
+    public static Lines of(int count, Height height, BridgeCreationStrategy strategy) {
         List<Line> lines = IntStream.range(0, count)
-                .mapToObj(i -> new Line(height))
+                .mapToObj(i -> Line.createWithBridges(height, strategy))
                 .collect(Collectors.toList());
 
+        removeBridgeIfPreviousBridgeExist(count, lines);
+        return new Lines(lines);
+    }
+
+    private static void removeBridgeIfPreviousBridgeExist(int count, List<Line> lines) {
         Line prev = lines.get(0);
         for (int i = 1; i < count; i++) {
-            Line curLine = lines.get(i);
-            curLine.addBridges(prev);
-            prev = curLine;
+            Line cur = lines.get(i);
+            cur.resetBridges(prev);
+            prev = cur;
         }
-        return new Lines(lines);
     }
 
     public void accept(LadderVisitor visitor) {

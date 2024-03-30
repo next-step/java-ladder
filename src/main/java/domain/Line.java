@@ -18,9 +18,21 @@ public class Line {
         heightToBridges = new HashMap<>();
     }
 
-    public void addBridges(Line prev) {
+    public static Line createWithBridges(Height height, BridgeCreationStrategy bridgeCreationStrategy) {
+        Line line = new Line(height);
+        line.addBridges(bridgeCreationStrategy);
+        return line;
+    }
+
+    public void resetBridges(Line prev) {
         IntStream.range(0, height.height())
-                .forEach(i -> this.addBridge(i, !prev.hasBridge(i)));
+                .filter(prev::hasBridge)
+                .forEach(i -> this.addBridge(i, false));
+    }
+
+    public void addBridges(BridgeCreationStrategy bridgeCreationStrategy) {
+        IntStream.range(0, height.height())
+                .forEach(i -> this.addBridge(i, bridgeCreationStrategy.create()));
     }
 
     private void addBridge(int height, boolean value) {

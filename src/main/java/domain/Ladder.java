@@ -10,8 +10,8 @@ public class Ladder {
         this.players = players;
     }
 
-    public static Ladder of(Players players, Height height) {
-        Lines lines = Lines.of(players.totalNumber(), height);
+    public static Ladder of(Players players, Height height, BridgeCreationStrategy strategy) {
+        Lines lines = Lines.of(players.totalNumber(), height, strategy);
         return new Ladder(lines, players);
     }
 
