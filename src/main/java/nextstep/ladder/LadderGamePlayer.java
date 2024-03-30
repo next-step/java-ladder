@@ -10,6 +10,9 @@ public class LadderGamePlayer {
         final Players players = new Players(InputView.playerNames());
 
         final Height height = new Height(InputView.ladderHeight());
+        if (height.isZero()) {
+            return;
+        }
     }
 
     public static void main(String[] args) {
