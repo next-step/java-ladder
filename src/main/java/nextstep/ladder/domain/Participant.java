@@ -53,4 +53,8 @@ public class Participant implements Point{
     public int hashCode() {
         return Objects.hash(name);
     }
+
+    public List<Name> getName() {
+        return name;
+    }
 }

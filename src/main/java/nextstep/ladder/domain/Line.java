@@ -31,4 +31,8 @@ public class Line {
     public int getSize(){
         return this.line.size();
     }
+
+    public List<Boolean> getLine() {
+        return line;
+    }
 }

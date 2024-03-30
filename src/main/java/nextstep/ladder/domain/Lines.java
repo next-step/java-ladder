@@ -17,4 +17,8 @@ public class Lines {
     public int getSize(){
         return lines.size();
     }
+
+    public List<Line> getLines() {
+        return lines;
+    }
 }
