@@ -4,7 +4,6 @@ import nextstep.ladder.data.StepType;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Line {
 
@@ -13,10 +12,6 @@ public class Line {
     public static final int SECOND_INDEX = FIRST_INDEX + 1;
     private final List<StepType> points;
 
-    public static Line of(int countOfUsers, StepStrategy strategy) {
-        return new Line(countOfUsers, strategy);
-    }
-
     private Line(int countOfUsers, StepStrategy strategy) {
         List<StepType> strategyResult = strategy.execute(countOfUsers);
         validate(countOfUsers, strategyResult);
@@ -24,11 +19,15 @@ public class Line {
         List<StepType> stepTypes = new ArrayList<>();
         stepTypes.add(strategyResult.get(FIRST_INDEX));
 
-        IntStream.range(SECOND_INDEX, strategyResult.size())
-                .forEach(index -> {
-                    stepTypes.add(step(strategyResult.get(index), stepTypes.get(index - 1)));
-                });
+        for (int i = SECOND_INDEX; i < strategyResult.size(); i++) {
+            stepTypes.add(step(strategyResult.get(i), stepTypes.get(i - 1)));
+        }
+
         this.points = stepTypes;
+    }
+
+    public static Line of(int countOfUsers, StepStrategy strategy) {
+        return new Line(countOfUsers, strategy);
     }
 
     private void validate(int countOfUsers, List<StepType> strategyResult) {

@@ -5,7 +5,6 @@ import nextstep.ladder.data.StepType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.IntStream;
 
 public class RandomStepStrategy implements StepStrategy {
     @Override
@@ -13,8 +12,9 @@ public class RandomStepStrategy implements StepStrategy {
         List<StepType> floor = new ArrayList<>();
         Random random = new Random();
 
-        IntStream.range(1, countOfUsers)
-                .forEach(index -> floor.add(getNextRandomStepType(random)));
+        for (int i = 1; i < countOfUsers; i++) {
+            floor.add(getNextRandomStepType(random));
+        }
 
         return floor;
     }
