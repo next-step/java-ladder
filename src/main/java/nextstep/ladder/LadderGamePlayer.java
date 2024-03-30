@@ -1,6 +1,6 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.Height;
+import nextstep.ladder.domain.ladder.Height;
 import nextstep.ladder.domain.Players;
 import nextstep.ladder.view.InputView;
 
