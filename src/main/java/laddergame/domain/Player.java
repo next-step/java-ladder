@@ -2,6 +2,8 @@ package laddergame.domain;
 
 import laddergame.exception.InvalidPlayerException;
 
+import java.util.Objects;
+
 import static laddergame.util.Validator.isValidStringLength;
 
 public class Player {
@@ -26,6 +28,25 @@ public class Player {
 
     public int lengthOfName() {
         return name.length();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Player player = (Player) o;
+        return Objects.equals(name, player.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 
     public String name() {
