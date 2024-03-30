@@ -1,8 +1,9 @@
 package domain;
 
+import java.util.Iterator;
 import java.util.List;
 
-public class Players {
+public class Players implements Iterable<Player> {
 
     private final List<Player> players;
 
@@ -12,5 +13,14 @@ public class Players {
 
     public int totalNumber() {
         return players.size();
+    }
+
+    public void accept(LadderVisitor visitor) {
+        visitor.visit(players);
+    }
+
+    @Override
+    public Iterator<Player> iterator() {
+        return players.iterator();
     }
 }

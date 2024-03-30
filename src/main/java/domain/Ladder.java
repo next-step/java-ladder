@@ -14,4 +14,9 @@ public class Ladder {
         Lines lines = Lines.of(players.totalNumber(), height);
         return new Ladder(lines, players);
     }
+
+    public void display(LadderVisitor visitor) {
+        players.accept(visitor);
+        lines.accept(visitor);
+    }
 }

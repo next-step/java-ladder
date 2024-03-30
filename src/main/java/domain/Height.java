@@ -2,7 +2,7 @@ package domain;
 
 public class Height {
 
-    public static final int MIN_HEIGHT = 0;
+    public static final int MIN_HEIGHT = 1;
 
     private final int value;
 

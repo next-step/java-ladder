@@ -1,11 +1,8 @@
 import domain.Height;
 import domain.Ladder;
-import domain.Player;
 import domain.Players;
 import view.InputView;
 import view.ResultView;
-
-import java.util.List;
 
 public class LadderApplication {
 
@@ -14,6 +11,7 @@ public class LadderApplication {
         Height height = InputView.promptForHeight();
         Ladder ladder = Ladder.of(players, height);
 
-        ResultView.print(ladder);
+        ResultView resultView = new ResultView();
+        ladder.display(resultView);
     }
 }

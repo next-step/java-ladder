@@ -7,24 +7,31 @@ import java.util.stream.IntStream;
 public class Line {
 
     private final Height height;
-    private final Map<Integer, Boolean> bridges;
+    private final Map<Integer, Boolean> heightToBridges;
+
+    public Line(int height) {
+        this(new Height(height));
+    }
 
     public Line(Height height) {
         this.height = height;
-        bridges = new HashMap<>();
+        heightToBridges = new HashMap<>();
     }
 
     public void addBridges(Line prev) {
         IntStream.range(0, height.height())
-                .filter(i -> !prev.hasBridge(i))
-                .forEach(this::addBridge);
+                .forEach(i -> this.addBridge(i, !prev.hasBridge(i)));
     }
 
-    public void addBridge(int height) {
-        bridges.put(height, true);
+    private void addBridge(int height, boolean value) {
+        heightToBridges.put(height, value);
     }
 
     public boolean hasBridge(int height) {
-        return bridges.getOrDefault(height, false);
+        return heightToBridges.getOrDefault(height, false);
+    }
+
+    public int height() {
+        return height.height();
     }
 }

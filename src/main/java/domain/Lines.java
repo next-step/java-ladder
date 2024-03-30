@@ -1,15 +1,20 @@
 package domain;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Lines {
+public class Lines implements Iterable<Line> {
 
     private final List<Line> lines;
 
     public Lines(List<Line> lines) {
         this.lines = lines;
+    }
+
+    public static Lines of(int count, int height) {
+        return of(count, new Height(height));
     }
 
     public static Lines of(int count, Height height) {
@@ -24,5 +29,14 @@ public class Lines {
             prev = curLine;
         }
         return new Lines(lines);
+    }
+
+    public void accept(LadderVisitor visitor) {
+        visitor.visit(lines, lines.get(0).height());
+    }
+
+    @Override
+    public Iterator<Line> iterator() {
+        return lines.iterator();
     }
 }
