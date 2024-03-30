@@ -35,7 +35,7 @@ public class Participant implements PointFactory {
 
     public List<Boolean> generatePoints(){
         ArrayList<Boolean> points = new ArrayList<>();
-        for(int i =0; i < name.size(); i++){
+        for(int i =0; i < name.size()-1; i++){
             points.add(RandomBooleanGenerator.generate());
         }
         return points;

@@ -23,7 +23,7 @@ class LineTest {
         @Override
         public List<Boolean> generatePoints() {
             ArrayList<Boolean> points = new ArrayList<>();
-            for(int i =0; i < size; i++){
+            for(int i =0; i < size-1; i++){
                 points.add(true);
             }
             return points;
@@ -32,13 +32,13 @@ class LineTest {
 
     static Stream<Arguments> inputLine() {
         return Stream.of(
-                Arguments.of("pobi,honux", List.of(true,true)),
-                Arguments.of("pobi,honux,koko", List.of(true,true,true))
+                Arguments.of("pobi,honux", List.of(true)),
+                Arguments.of("pobi,honux,koko", List.of(true,true))
         );
     }
 
     @ParameterizedTest
-    @DisplayName("하나의 라인은 (참여자들 -1)개만큼의 boolean 값들이 존재(pobi,honux => true,true/ pobi,hounx,koko => true,true,true)")
+    @DisplayName("하나의 라인은 (참여자들 -1)개만큼의 boolean 값들이 존재(pobi,honux => true/ pobi,hounx,koko => true,true)")
     @MethodSource("inputLine")
     void line_size(String names, List<Boolean> result) {
         Line line = new Line(new TestPointFactory(names));
