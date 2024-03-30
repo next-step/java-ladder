@@ -10,9 +10,11 @@ public class Ladder {
     private final List<Line> lines;
 
     public Ladder(int height, int width, PointGenerator pointGenerator) {
-        this.lines = Stream.generate(() -> new Line(height, pointGenerator))
-                .limit(width)
-                .collect(Collectors.toList());
+        this.lines = Stream.concat(
+                Stream.iterate(new Line(height, pointGenerator), prev -> new Line(height, prev, pointGenerator))
+                        .limit(width - 1),
+                Stream.of(new Line(height, new AlwaysFalsePointGenerator()))
+        ).collect(Collectors.toList());
     }
 
     public List<Line> getLines() {
