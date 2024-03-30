@@ -14,7 +14,7 @@ public class Lines {
         this.lines = new ArrayList<>();
 
         for (int i = 0; i < floor.getFloor(); i++) {
-            lines.add(Line.of(countOfUsers, strategy));
+            lines.add(strategy.execute(countOfUsers));
         }
     }
 

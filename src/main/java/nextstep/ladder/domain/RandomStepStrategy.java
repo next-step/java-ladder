@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class RandomStepStrategy implements StepStrategy {
     @Override
-    public List<StepType> execute(int countOfUsers) {
+    public Line execute(int countOfUsers) {
         List<StepType> floor = new ArrayList<>();
         Random random = new Random();
 
@@ -16,7 +16,7 @@ public class RandomStepStrategy implements StepStrategy {
             floor.add(getNextRandomStepType(random));
         }
 
-        return floor;
+        return Line.of(countOfUsers, floor);
     }
 
     private StepType getNextRandomStepType(Random random) {

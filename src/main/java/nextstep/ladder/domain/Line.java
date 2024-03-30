@@ -12,22 +12,17 @@ public class Line {
     public static final int SECOND_INDEX = FIRST_INDEX + 1;
     private final List<StepType> points;
 
-    private Line(int countOfUsers, StepStrategy strategy) {
-        List<StepType> strategyResult = strategy.execute(countOfUsers);
-        validate(countOfUsers, strategyResult);
+    private Line(int countOfUsers, List<StepType> stepTypes) {
+        validate(countOfUsers, stepTypes);
 
-        List<StepType> stepTypes = new ArrayList<>();
-        stepTypes.add(strategyResult.get(FIRST_INDEX));
+        List<StepType> validatedStepType = new ArrayList<>();
+        validatedStepType.add(stepTypes.get(FIRST_INDEX));
 
-        for (int i = SECOND_INDEX; i < strategyResult.size(); i++) {
-            stepTypes.add(step(strategyResult.get(i), stepTypes.get(i - 1)));
+        for (int i = SECOND_INDEX; i < stepTypes.size(); i++) {
+            validatedStepType.add(step(stepTypes.get(i), validatedStepType.get(i - 1)));
         }
 
-        this.points = stepTypes;
-    }
-
-    public static Line of(int countOfUsers, StepStrategy strategy) {
-        return new Line(countOfUsers, strategy);
+        this.points = validatedStepType;
     }
 
     private void validate(int countOfUsers, List<StepType> strategyResult) {
@@ -45,6 +40,10 @@ public class Line {
             return nowStrategyStep;
         }
         return StepType.EMPTY;
+    }
+
+    public static Line of(int countOfUsers, List<StepType> stepTypes) {
+        return new Line(countOfUsers, stepTypes);
     }
 
     public List<StepType> toList() {
