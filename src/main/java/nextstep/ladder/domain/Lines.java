@@ -7,8 +7,8 @@ public class Lines {
 
     private final List<Line> lines;
 
-    public Lines(LineFactory height, Point point) {
-        this(height.generateLines(point));
+    public Lines(LineFactory height, PointFactory pointFactory) {
+        this(height.generateLines(pointFactory));
     }
 
     public Lines(List<Line> lines) {

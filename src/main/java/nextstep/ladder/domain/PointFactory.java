@@ -2,7 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.List;
 
-public interface Point {
+public interface PointFactory {
 
     List<Boolean> generatePoints();
 }

@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface LineFactory {
 
-    List<Line> generateLines(Point point);
+    List<Line> generateLines(PointFactory pointFactory);
 }

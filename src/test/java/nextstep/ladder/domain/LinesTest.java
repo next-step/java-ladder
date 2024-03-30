@@ -21,7 +21,7 @@ class LinesTest {
         }
 
         @Override
-        public List<Line> generateLines(Point point) {
+        public List<Line> generateLines(PointFactory pointFactory) {
             ArrayList<Line> lines = new ArrayList<>();
             for(int i =0; i < size; i++){
                 lines.add(new Line());

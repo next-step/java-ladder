@@ -13,10 +13,10 @@ public class Height implements LineFactory{
         this.height = height;
     }
 
-    public List<Line> generateLines(Point point){
+    public List<Line> generateLines(PointFactory pointFactory){
         ArrayList<Line> lines = new ArrayList<>();
         for(int i =0; i < height; i++){
-            lines.add(new Line(point));
+            lines.add(new Line(pointFactory));
         }
         return lines;
     }

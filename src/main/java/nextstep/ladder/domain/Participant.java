@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class Participant implements Point{
+public class Participant implements PointFactory {
 
     private final List<Name> name;
 

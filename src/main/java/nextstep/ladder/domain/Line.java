@@ -12,8 +12,8 @@ public class Line {
         this(new ArrayList<>());
     }
 
-    public Line(Point point) {
-        this(point.generatePoints());
+    public Line(PointFactory pointFactory) {
+        this(pointFactory.generatePoints());
     }
 
     public Line(List<Boolean> line) {
