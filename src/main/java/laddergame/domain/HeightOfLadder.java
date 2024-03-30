@@ -5,7 +5,7 @@ import laddergame.exception.InvalidHeightOfLadderException;
 import static laddergame.util.Validator.isGreaterThanOrEqualStandard;
 
 public class HeightOfLadder {
-    private static final int LADDER_MIN_HEIGHT = 1;
+    public static final int LADDER_MIN_HEIGHT = 1;
 
     private final int height;
 

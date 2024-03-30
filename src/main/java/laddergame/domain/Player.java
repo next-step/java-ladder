@@ -7,7 +7,7 @@ import java.util.Objects;
 import static laddergame.util.Validator.isValidStringLength;
 
 public class Player {
-    private static final int MAX_NAME_LENGTH = 5;
+    public static final int MAX_NAME_LENGTH = 5;
 
     private final String name;
 
