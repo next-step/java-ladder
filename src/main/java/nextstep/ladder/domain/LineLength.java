@@ -2,7 +2,7 @@ package nextstep.ladder.domain;
 
 public class LineLength {
     private final int length;
-    private final int MIN_LENGTH = 2;
+    private final int MIN_LENGTH = 1;
 
     public LineLength(int length) {
         assertValidLength(length);
