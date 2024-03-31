@@ -35,7 +35,7 @@ public class ViewHelper {
         for(Line line : lines) {
             sb.append("     |");
             printPoints(sb, line.getLine());
-            sb.append("\n");
+            sb.append(System.lineSeparator());
         }
         System.out.println(sb);
     }
