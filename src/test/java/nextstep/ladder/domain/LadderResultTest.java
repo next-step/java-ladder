@@ -17,6 +17,6 @@ class LadderResultTest {
         final LadderResult ladderResult = new LadderResult(result);
 
         // then
-        assertThat(ladderResult.getResults()).hasSize(4);
+        assertThat(ladderResult.getResultNumber()).isEqualTo(4);
     }
 }

@@ -1,7 +1,6 @@
 package nextstep.ladder.domain;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,9 +19,5 @@ public class LadderResult {
 
     public int getResultNumber() {
         return results.size();
-    }
-
-    public List<String> getResults() {
-        return Collections.unmodifiableList(results);
     }
 }
