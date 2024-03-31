@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class Players {
-    public static final String PLAYER_NAME_SPACE = "  ";
+    public static final String PRINT_SPACE = "  ";
     private final List<Player> players;
 
     public static Players from(String... players) {
@@ -33,7 +33,7 @@ public class Players {
     public String toString() {
         return players.stream()
                 .map(Player::toString)
-                .collect(Collectors.joining(PLAYER_NAME_SPACE));
+                .collect(Collectors.joining(PRINT_SPACE));
     }
 
     public LadderResult play(List<Line> lines, List<String> results) {

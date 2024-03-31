@@ -41,14 +41,13 @@ public class Player {
     }
 
     public int getPlayedLastPosition(List<Line> lines) {
-        return lines.stream()
-                .map((line) -> line.checkPointDirection(this))
-                .mapToInt(pointDirection -> {
-                    position = position.move(pointDirection);
-                    return position.getPosition();
-                })
-                .reduce((first, second) -> second)
-                .orElse(position.getPosition());
+        int lastPosition = position.getPosition();
+        for (Line line : lines) {
+            PointDirection pointDirection = line.checkPointDirection(this);
+            position = position.move(pointDirection);
+            lastPosition = position.getPosition();
+        }
+        return lastPosition;
     }
 
     @Override

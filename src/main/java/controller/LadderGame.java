@@ -1,5 +1,7 @@
 package controller;
 
+import domain.Ladder;
+import domain.LadderResult;
 import domain.Line;
 import domain.Players;
 import strategy.PointsMakeStrategy;
@@ -25,9 +27,16 @@ public class LadderGame {
         for (int i = 0; i < ladderHeight; i++) {
             lines.add(Line.from(players.size(), pointsMakeStrategy));
         }
+        Ladder ladder = Ladder.from(lines);
 
         OutputView outputView = new OutputView();
         outputView.printPlayers(players);
-        outputView.printLadder(lines);
+        outputView.printLadder(ladder);
+        outputView.printResults(results);
+
+        LadderResult ladderResult = ladder.play(players, results);
+
+        inputView.printPlayerResult(ladderResult);
+
     }
 }

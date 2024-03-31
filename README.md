@@ -38,12 +38,11 @@
 - [X] 결과를 저장하는 LadderResult 클래스 생성
   - [X] 이름과 결과가 Map 으로 매핑된 일급컬렉션
   - [X] Player와 결과 문자열을 매개변수로 받아 Map에 추가하는 put 구현 
-- [ ] InputView 입력 기능 추가
+- [X] InputView 입력 기능 추가
   - [X] 실행 결과를 입력받아 문자열 리스트로 반환
-  - [ ] 결과를 보고 싶은 사람을 입력받아 반환
-- [ ] OutputView 출력 기능 추가
-  - [ ] Result를 매개변수로 받아, 실행 결과 출력
-  - [ ] 실행 결과를 사다리 밑에 출력
+  - [X] 결과를 보고 싶은 사람을 입력받아 반환
+- [X] OutputView 출력 기능 추가
+  - [X] 실행 결과를 사다리 밑에 출력
 - [X] 각 Point의 수평 사다리 위치(유무)를 나타내는 PointDirection 구현
 - [X] Line 기능 추가
   - [X] 각 Point의 양 옆 (index - 1, index + 1)에 따라 PointDirection을 반환하는 checkPointDirection 구현

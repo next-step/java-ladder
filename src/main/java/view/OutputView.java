@@ -1,9 +1,10 @@
 package view;
 
-import domain.Line;
+import domain.Ladder;
 import domain.Players;
 
 import java.util.List;
+
 
 public class OutputView {
     private static final String TRUE_LINE = "-----|";
@@ -13,8 +14,8 @@ public class OutputView {
         System.out.println(players);
     }
 
-    public void printLadder(List<Line> lines) {
-        lines
+    public void printLadder(Ladder ladder) {
+        ladder
             .forEach(line -> {
                 StringBuilder sb = new StringBuilder();
                 sb.append("|");
@@ -31,5 +32,12 @@ public class OutputView {
             return;
         }
         sb.append(FALSE_LINE);
+    }
+
+    public void printResults(List<String> results) {
+        results.forEach(result -> {
+            System.out.print(result + Players.PRINT_SPACE);
+        });
+        System.out.println();
     }
 }

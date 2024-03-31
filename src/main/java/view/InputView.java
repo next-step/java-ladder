@@ -1,5 +1,6 @@
 package view;
 
+import domain.LadderResult;
 import domain.Player;
 import domain.Players;
 import util.StringUtil;
@@ -17,6 +18,8 @@ public class InputView {
     public static final String TRY_INPUT_AGAIN = " 다시 입력해주세요.";
     public static final String NUMBER_FORMAT_EXCEPTION = "숫자만 입력할 수 있습니다.";
     public static final String PLAY_RESULT_INPUT_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
+    public static final String GET_PLAYER_RESULT_INPUT_MESSAGE = "결과를 보고 싶은 사람은?";
+    public static final String PLAY_RESULT_PRINT_MESSAGE = "실행 결과";
 
     public Players inputPlayers() {
         return inputPlayers(PLAYER_NAME_INPUT_MESSAGE);
@@ -25,7 +28,7 @@ public class InputView {
     private Players inputPlayers(String message) {
         System.out.println(message);
         List<String> nameList = StringUtil.splitStringToList(SCANNER.nextLine(), ",");
-        AtomicInteger index = new AtomicInteger(1);
+        AtomicInteger index = new AtomicInteger(0);
         try {
             List<Player> playerList = nameList.stream()
                     .map(name -> Player.of(name, index.getAndIncrement()))
@@ -70,6 +73,32 @@ public class InputView {
             return StringUtil.splitStringToList(SCANNER.nextLine(), ",");
         } catch (IllegalArgumentException e) {
             return inputResults(TRY_INPUT_AGAIN);
+        }
+    }
+
+    public void printPlayerResult(LadderResult ladderResult) {
+        printPlayerResult(GET_PLAYER_RESULT_INPUT_MESSAGE, ladderResult);
+    }
+
+    private void printPlayerResult(String message, LadderResult ladderResult) {
+        System.out.println(message);
+        String playerName = SCANNER.nextLine();
+        if (playerName.equals("all")) {
+            System.out.println(PLAY_RESULT_PRINT_MESSAGE);
+            System.out.println(ladderResult.resultAllToString());
+            printPlayerResult(GET_PLAYER_RESULT_INPUT_MESSAGE, ladderResult);
+            return;
+        }
+        if (playerName.equals("exit")) {
+            System.out.println("게임을 종료합니다.");
+            return;
+        }
+        try {
+            System.out.println(PLAY_RESULT_PRINT_MESSAGE);
+            System.out.println(ladderResult.getResult(playerName));
+            printPlayerResult(GET_PLAYER_RESULT_INPUT_MESSAGE, ladderResult);
+        } catch (IllegalArgumentException e) {
+            printPlayerResult(e.getMessage() + TRY_INPUT_AGAIN, ladderResult);
         }
     }
 
