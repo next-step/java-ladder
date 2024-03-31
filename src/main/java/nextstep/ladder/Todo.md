@@ -1,5 +1,4 @@
 ## Todo
-- [ ] Line 생성에 대한 책임을 Height가 아닌 Lines로 이동 
 - [ ] 개행문자 하드코딩된 부분들을 System.lineSeparator() 메서드 사용해서 변경
 
 ## Done
@@ -19,3 +18,4 @@
 - [X] 참여자들을 관리하는 Participants 추가
 - [X] Name null checking 추가
 - [X] Point 생성에 대한 책임을 Participant가 아닌 Line으로 이동
+- [X] Line 생성에 대한 책임을 Height가 아닌 Lines로 이동
