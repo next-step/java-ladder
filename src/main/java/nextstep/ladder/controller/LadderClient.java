@@ -10,7 +10,7 @@ public class LadderClient {
     public static void main(String[] args) {
         Participants participants = insertParticipant();
         Height height = insertHeight();
-        System.out.println("실행결과");
+        printPlainMessage("실행결과");
         printHeader(participants);
         printLadder(new Lines(height.getSize(), participants.getSize()));
     }

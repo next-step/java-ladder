@@ -40,6 +40,10 @@ public class ViewHelper {
         System.out.println(sb);
     }
 
+    public static void printPlainMessage(String message){
+        System.out.println(message);
+    }
+
     private static void printPoints(StringBuilder sb, List<Boolean> points) {
         for(Boolean point : points){
             sb.append(getPoint(point));
