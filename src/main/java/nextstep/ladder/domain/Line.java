@@ -9,7 +9,7 @@ public class Line {
 
     public Line(int lineLength, LineGenerator lineGenerator) {
         this.length = new LineLength(lineLength);
-        this.line = lineGenerator.generate(lineLength);
+        this.line = lineGenerator.generate(this.length);
 
         assertValidLine(this.line);
     }

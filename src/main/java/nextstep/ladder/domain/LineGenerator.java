@@ -4,5 +4,5 @@ import java.util.List;
 
 @FunctionalInterface
 public interface LineGenerator {
-    List<Boolean> generate(int length);
+    List<Boolean> generate(LineLength length);
 }

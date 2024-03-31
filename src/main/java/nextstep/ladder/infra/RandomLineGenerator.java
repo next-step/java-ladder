@@ -1,6 +1,7 @@
 package nextstep.ladder.infra;
 
 import nextstep.ladder.domain.LineGenerator;
+import nextstep.ladder.domain.LineLength;
 
 import java.sql.SQLOutput;
 import java.util.ArrayList;
@@ -12,11 +13,11 @@ public class RandomLineGenerator implements LineGenerator {
     private final ThreadLocalRandom random = ThreadLocalRandom.current();
 
     @Override
-    public List<Boolean> generate(int length) {
+    public List<Boolean> generate(LineLength length) {
         List<Boolean> line = new ArrayList<>();
         Boolean prev = false;
 
-        for (int i = 0; i < length; i++) {
+        for (int i = 0; i < length.getLength(); i++) {
             Boolean cur = random.nextBoolean();
             cur = toNonOverlapBridge(prev, cur);
 

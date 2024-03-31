@@ -20,7 +20,7 @@ public class LineTest {
     @Test
     @DisplayName("겹치는 라인이 있을 경우 에러 발생")
     void testOverlapLine() {
-        assertThatIllegalArgumentException().isThrownBy(() -> new Line(lineLength, count -> Collections.nCopies(count, Boolean.TRUE)));
+        assertThatIllegalArgumentException().isThrownBy(() -> new Line(lineLength, count -> Collections.nCopies(count.getLength(), Boolean.TRUE)));
     }
 
 
