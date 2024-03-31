@@ -1,44 +1,17 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.util.RandomBooleanGenerator;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
-public class Participant implements PointFactory {
+public class Participant {
 
-    private final List<Name> name;
+    private final Name name;
 
-    public Participant(String names) {
-        this(names.split(","));
+    public Participant(String name) {
+        this.name = new Name(name);
     }
 
-    public Participant(String[] names) {
-        this(generateNames(names));
-    }
-
-    public Participant(List<Name> name) {
-        if(name.size() <= 1){
-            throw new IllegalArgumentException();
-        }
+    public Participant(Name name) {
         this.name = name;
-    }
-
-    private static List<Name> generateNames(String[] names){
-        return Arrays.stream(names)
-                .map(Name::new)
-                .collect(Collectors.toList());
-    }
-
-    public List<Boolean> generatePoints(){
-        ArrayList<Boolean> points = new ArrayList<>();
-        for(int i =0; i < name.size()-1; i++){
-            points.add(RandomBooleanGenerator.generate());
-        }
-        return points;
     }
 
     @Override
@@ -54,7 +27,7 @@ public class Participant implements PointFactory {
         return Objects.hash(name);
     }
 
-    public List<Name> getName() {
+    public Name getName() {
         return name;
     }
 }

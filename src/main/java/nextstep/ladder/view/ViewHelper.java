@@ -10,9 +10,9 @@ public class ViewHelper {
 
     public static Scanner scanner = new Scanner(System.in);
 
-    public static Participant insertParticipant(){
+    public static Participants insertParticipant(){
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        return new Participant(scanner.nextLine());
+        return new Participants(scanner.nextLine());
     }
 
     public static Height insertHeight(){
@@ -21,8 +21,8 @@ public class ViewHelper {
     }
 
 
-    public static void printHeader(Participant participant){
-        List<Name> name = participant.getName();
+    public static void printHeader(Participants participants){
+        List<Name> name = participants.getName();
         String header = name.stream()
                 .map(Name::toString)
                 .collect(Collectors.joining(" "));

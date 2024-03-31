@@ -22,6 +22,6 @@ class ParticipantsTest {
     @DisplayName("참여자들은 ','를 구분자로 구분(pobi,honux => pobi, honux)")
     void participants_split_by() {
         Participants participant = new Participants("pobi,honux");
-        assertThat(participant).isEqualTo(new Participants(List.of(new ParticipantV2("pobi"), new ParticipantV2("honux"))));
+        assertThat(participant).isEqualTo(new Participants(List.of(new Participant("pobi"), new Participant("honux"))));
     }
 }

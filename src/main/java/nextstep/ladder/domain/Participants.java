@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Participants {
-    private final List<ParticipantV2> participants;
+    private final List<Participant> participants;
 
     public Participants(String names) {
         this(names.split(","));
@@ -16,16 +16,16 @@ public class Participants {
         this(generateNames(names));
     }
 
-    public Participants(List<ParticipantV2> participants) {
+    public Participants(List<Participant> participants) {
         if(participants.size() <= 1){
             throw new IllegalArgumentException();
         }
         this.participants = participants;
     }
 
-    private static List<ParticipantV2> generateNames(String[] names){
+    private static List<Participant> generateNames(String[] names){
         return Arrays.stream(names)
-                .map(ParticipantV2::new)
+                .map(Participant::new)
                 .collect(Collectors.toList());
     }
 
@@ -40,5 +40,15 @@ public class Participants {
     @Override
     public int hashCode() {
         return Objects.hash(participants);
+    }
+
+    public int getSize(){
+        return this.participants.size();
+    }
+
+    public List<Name> getName() {
+        return this.participants.stream()
+                .map(Participant::getName)
+                .collect(Collectors.toList());
     }
 }

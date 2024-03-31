@@ -5,14 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Line implements PointFactory{
+public class Line{
 
     private final List<Boolean> line;
-    private final int size;
 
-
-    public Line(){
-        this(new ArrayList<>());
+    public Line(int size){
+        this(generatePoints(size));
     }
 
     public Line(PointFactory pointFactory) {
@@ -21,7 +19,14 @@ public class Line implements PointFactory{
 
     public Line(List<Boolean> line) {
         this.line = line;
-        this.size = line.size();
+    }
+
+    public static List<Boolean> generatePoints(int size) {
+        ArrayList<Boolean> points = new ArrayList<>();
+        for(int i =0; i < size-1; i++){
+            points.add(RandomBooleanGenerator.generate());
+        }
+        return points;
     }
 
     @Override
@@ -39,14 +44,5 @@ public class Line implements PointFactory{
 
     public List<Boolean> getLine() {
         return line;
-    }
-
-    @Override
-    public List<Boolean> generatePoints() {
-        ArrayList<Boolean> points = new ArrayList<>();
-        for(int i =0; i < size-1; i++){
-            points.add(RandomBooleanGenerator.generate());
-        }
-        return points;
     }
 }
