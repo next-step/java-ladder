@@ -18,3 +18,4 @@
 - [X] 사다리 출력
 - [X] Participant가 참여자들이 아닌 각각의 참여자를 의미하도록 변경
 - [X] 참여자들을 관리하는 Participants 추가
+- [X] Name null checking 추가
