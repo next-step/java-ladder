@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Objects;
 
 public class Position {
+    public static final String POSITION_CANT_MINUS_MESSAGE = "Position은 0 이상의 정수여야 합니다.";
     private static final Map<Integer, Position> POSITION_MAP = new HashMap<>() {{
         for (int i = 1; i <= 20; i++) {
             put(i, new Position(i));
@@ -16,7 +17,10 @@ public class Position {
         return POSITION_MAP.getOrDefault(value, new Position(value));
     }
 
-    public Position(int value) {
+    private Position(int value) {
+        if (value < 0) {
+            throw new IllegalArgumentException(POSITION_CANT_MINUS_MESSAGE);
+        }
         this.value = value;
     }
 
