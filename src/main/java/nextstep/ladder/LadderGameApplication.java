@@ -12,6 +12,7 @@ public class LadderGameApplication {
     public static void main(String[] args) {
         InputView inputView = new InputView();
         List<String> users = inputView.getUsersInput();
+        List<String> gameResults = inputView.getLadderGameResults();
         int floor = inputView.getFloorInput();
 
         Ladder ladder = Ladder.of(floor, users, new RandomLineStrategy());
