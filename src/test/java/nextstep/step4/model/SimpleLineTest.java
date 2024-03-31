@@ -4,9 +4,9 @@ import nextstep.step4.api.Line;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -23,12 +23,11 @@ class SimpleLineTest {
         assertThat(line).isEqualTo(new SimpleLine(points));
     }
 
-    @Test
-    void 라인정보가_널이거나_비어있는경우_예외를던진다() {
+    @NullAndEmptySource
+    @ParameterizedTest
+    void 라인정보가_널이거나_비어있는경우_예외를던진다(List<Point> points) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new SimpleLine(null));
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> new SimpleLine(Collections.emptyList()));
+                .isThrownBy(() -> new SimpleLine(points));
     }
 
     @ParameterizedTest
