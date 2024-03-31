@@ -32,7 +32,7 @@ public class LadderGameTest {
     @Test
     @DisplayName("[성공] 사다리 게임을 실행한다.")
     void 사다리_게임_실행() {
-        assertThat(LADDER_GAME.execute("pobi")).containsOnly(ParticipantPosition.of("pobi", 0));
+        assertThat(LADDER_GAME.execute()).containsAnyOf(ParticipantPosition.of("pobi", 0));
     }
 
 }
