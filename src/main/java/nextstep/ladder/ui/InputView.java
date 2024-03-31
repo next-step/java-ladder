@@ -54,7 +54,12 @@ public class InputView {
     }
 
     private static int nextInt() {
-        return SCANNER.nextInt();
+        try {
+            return Integer.parseInt(SCANNER.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("사다리 높이는 숫자만 입력 가능합니다. 다시 입력해주세요.");
+            return nextInt();
+        }
     }
 
     public static List<String> readLadderGamePrizes() {
