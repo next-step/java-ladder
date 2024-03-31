@@ -26,6 +26,10 @@ public class LadderLine {
     return EMPTY_LINE;
   }
 
+  public int size() {
+    return lines.size();
+  }
+
   private void validate(List<Boolean> lines) {
     int nowTrueIndex = -100;
     for (int index = 0; index < lines.size(); index++) {

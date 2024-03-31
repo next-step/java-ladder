@@ -4,6 +4,7 @@ import ladder.domain.strtegy.BooleanRandomLineGenerator;
 import ladder.domain.strtegy.LineGenerateStrategy;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class LadderGame {
 
@@ -30,5 +31,13 @@ public class LadderGame {
 
   public boolean isSameLadderHeight(int height) {
     return lineMap.size() == height;
+  }
+
+  public List<String> getUserNames() {
+    return users.stream().map(User::getUserName).collect(Collectors.toList());
+  }
+
+  public Map<LadderHeight, LadderLine> getLineInfoMap() {
+    return Collections.unmodifiableMap(lineMap);
   }
 }

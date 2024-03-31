@@ -18,12 +18,15 @@ public class User {
     return this.name.equals(given);
   }
 
+  public String getUserName() {
+    return name;
+  }
+
   private void validate(String name) {
     if (Objects.isNull(name) || name.isEmpty() || MAX_USER_NAME_LENGTH < name.length()) {
       throw new IllegalArgumentException(String.format(INVALID_USER_NAME_INPUT, name, MAX_USER_NAME_LENGTH));
     }
   }
-
 
   @Override
   public boolean equals(Object o) {
