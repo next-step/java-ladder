@@ -1,11 +1,14 @@
 package nextstep.ladder.domain;
+import nextstep.ladder.util.RandomBooleanGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Line {
+public class Line implements PointFactory{
 
     private final List<Boolean> line;
+    private final int size;
 
 
     public Line(){
@@ -18,6 +21,7 @@ public class Line {
 
     public Line(List<Boolean> line) {
         this.line = line;
+        this.size = line.size();
     }
 
     @Override
@@ -35,5 +39,14 @@ public class Line {
 
     public List<Boolean> getLine() {
         return line;
+    }
+
+    @Override
+    public List<Boolean> generatePoints() {
+        ArrayList<Boolean> points = new ArrayList<>();
+        for(int i =0; i < size-1; i++){
+            points.add(RandomBooleanGenerator.generate());
+        }
+        return points;
     }
 }
