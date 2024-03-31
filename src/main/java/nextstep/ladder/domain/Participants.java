@@ -9,7 +9,7 @@ public class Participants {
 
     public static Participants of(List<String> names) {
         List<Participant> participants = names.stream()
-                .map(Participant::new)
+                .map(Participant::of)
                 .collect(Collectors.toUnmodifiableList());
         return new Participants(participants);
     }
