@@ -1,6 +1,6 @@
 package nextstep.step4.dto;
 
-import nextstep.step4.api.LadderResult;
+import nextstep.step4.model.LadderResult;
 import nextstep.step4.model.Name;
 
 import java.util.Collections;

@@ -1,9 +1,8 @@
 package nextstep.step4.controller;
 
-import nextstep.step4.MainApplication;
-import nextstep.step4.api.Ladder;
-import nextstep.step4.api.LadderCreator;
 import nextstep.step4.dto.LadderResponse;
+import nextstep.step4.model.Ladder;
+import nextstep.step4.model.LadderFactory;
 import nextstep.step4.model.Name;
 import nextstep.step4.view.InputView;
 import nextstep.step4.view.OutputView;
@@ -25,8 +24,7 @@ public class LadderGameController {
         List<String> rewards = inputView.askRewards(names.size());
         int height = inputView.askLadderHeight();
 
-        LadderCreator ladderCreator = MainApplication.simpleLadderFactory();
-        Ladder ladder = ladderCreator.create(height, names.size());
+        Ladder ladder = LadderFactory.of(height, names.size());
 
         outputView.printLadderStatus(names, ladder, rewards);
 

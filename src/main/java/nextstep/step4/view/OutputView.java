@@ -1,8 +1,8 @@
 package nextstep.step4.view;
 
-import nextstep.step4.api.Ladder;
-import nextstep.step4.api.Line;
 import nextstep.step4.dto.LadderResponse;
+import nextstep.step4.model.Ladder;
+import nextstep.step4.model.Line;
 import nextstep.step4.model.Name;
 import nextstep.step4.model.Point;
 
