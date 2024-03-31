@@ -30,9 +30,10 @@ public class StreamStudy {
 
         words.stream()
                 .filter(word -> word.length() > TWELVE)
+                .map(String::toLowerCase)
                 .distinct()
                 .sorted((a, b) -> Integer.compare(b.length(), a.length()))
-                .forEach(word -> System.out.println(word.toLowerCase()));
+                .forEach(word -> System.out.println(word));
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
