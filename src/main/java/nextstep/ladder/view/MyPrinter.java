@@ -10,6 +10,9 @@ public class MyPrinter {
     public static void print(char character) {
         System.out.print(character);
     }
+    public static void print(String character) {
+        System.out.print(character);
+    }
 
     public static void lineChange() {
         System.out.println();

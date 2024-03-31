@@ -23,4 +23,17 @@ public class Players {
     public Count count() {
         return new Count(players.size());
     }
+
+    public Count maxNameLength() {
+        return new Count(players.stream()
+                .mapToInt(player -> player.name().length())
+                .max()
+                .orElse(0));
+    }
+
+    public List<String> playerNames() {
+        return players.stream()
+                .map(Player::name)
+                .collect(Collectors.toList());
+    }
 }
