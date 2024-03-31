@@ -5,10 +5,18 @@ import java.util.stream.Collectors;
 
 public class Line {
     private final List<Boolean> line;
+    private final LineLength length;
 
-    public Line(int numberOfUser, LineGenerator lineGenerator) {
-        this.line = lineGenerator.generate(numberOfUser);
+    public Line(int lineLength, LineGenerator lineGenerator) {
+        this.length = new LineLength(lineLength);
+        this.line = lineGenerator.generate(lineLength);
+
         assertValidLine(this.line);
+    }
+
+    public Line(Line line) {
+        this.line = line.getLine().stream().collect(Collectors.toUnmodifiableList());
+        this.length = line.length;
     }
 
     private void assertValidLine(List<Boolean> line) {
@@ -29,5 +37,9 @@ public class Line {
 
     public List<Boolean> getLine() {
         return line.stream().collect(Collectors.toUnmodifiableList());
+    }
+
+    public int getLength() {
+        return length.getLength();
     }
 }

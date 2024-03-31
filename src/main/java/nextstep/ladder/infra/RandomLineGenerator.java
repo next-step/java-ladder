@@ -2,6 +2,7 @@ package nextstep.ladder.infra;
 
 import nextstep.ladder.domain.LineGenerator;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -31,6 +32,6 @@ public class RandomLineGenerator implements LineGenerator {
             return Boolean.FALSE;
         }
 
-        return Boolean.TRUE;
+        return cur;
     }
 }
