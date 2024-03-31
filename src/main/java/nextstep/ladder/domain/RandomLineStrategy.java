@@ -12,14 +12,19 @@ public class RandomLineStrategy implements LineStrategy {
         List<StepType> floor = new ArrayList<>();
         Random random = new Random();
 
-        for (int i = 1; i < countOfUsers; i++) {
-            floor.add(getNextRandomStepType(random));
+        floor.add(getNextRandomStepType(StepType.EMPTY, random));
+        for (int i = 1; i < countOfUsers - 1; i++) {
+            floor.add(getNextRandomStepType(floor.get(i - 1), random));
         }
 
         return Line.of(countOfUsers, floor);
     }
 
-    private StepType getNextRandomStepType(Random random) {
+    private StepType getNextRandomStepType(StepType beforeStepType, Random random) {
+        if (beforeStepType == StepType.STEP) {
+            return StepType.EMPTY;
+        }
+
         return StepType.from(random.nextBoolean());
     }
 }

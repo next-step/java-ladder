@@ -2,27 +2,17 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.data.StepType;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
 
     public static final int MINIMUM_PARTICIPANTS_COUNT = 2;
-    public static final int FIRST_INDEX = 0;
-    public static final int SECOND_INDEX = FIRST_INDEX + 1;
     private final List<StepType> points;
 
     private Line(int countOfUsers, List<StepType> stepTypes) {
         validate(countOfUsers, stepTypes);
 
-        List<StepType> validatedStepType = new ArrayList<>();
-        validatedStepType.add(stepTypes.get(FIRST_INDEX));
-
-        for (int i = SECOND_INDEX; i < stepTypes.size(); i++) {
-            validatedStepType.add(step(stepTypes.get(i), validatedStepType.get(i - 1)));
-        }
-
-        this.points = validatedStepType;
+        this.points = stepTypes;
     }
 
     private void validate(int countOfUsers, List<StepType> strategyResult) {
@@ -33,13 +23,20 @@ public class Line {
         if (countOfUsers != (strategyResult.size() + 1)) {
             throw new IllegalArgumentException("사용자 수와 사다리 전략 결과의 검증에 실패했습니다.");
         }
+
+        validateStepStrategy(strategyResult);
     }
 
-    private StepType step(StepType nowStrategyStep, StepType beforeStep) {
-        if (nowStrategyStep == StepType.STEP && beforeStep != StepType.STEP) {
-            return nowStrategyStep;
+    private void validateStepStrategy(List<StepType> strategyResult) {
+        for (int i = 1; i < strategyResult.size(); i++) {
+            validateContinuedStep(strategyResult, i);
         }
-        return StepType.EMPTY;
+    }
+
+    private static void validateContinuedStep(List<StepType> strategyResult, int currentIndex) {
+        if (strategyResult.get(currentIndex - 1) == StepType.STEP && strategyResult.get(currentIndex) == StepType.STEP) {
+            throw new IllegalArgumentException("올바르지 못한 LineStrategy 입니다.");
+        }
     }
 
     public static Line of(int countOfUsers, List<StepType> stepTypes) {
