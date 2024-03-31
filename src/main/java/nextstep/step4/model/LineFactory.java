@@ -1,16 +1,15 @@
 package nextstep.step4.model;
 
-import nextstep.step4.api.Line;
-import nextstep.step4.api.LineCreator;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class SimpleLineCreator implements LineCreator {
+public class LineFactory {
     public static final int MIN_COUNT = 2;
 
-    @Override
-    public Line create(int countOfPerson) {
+    private LineFactory() {
+    }
+
+    public static Line from(int countOfPerson) {
         if (countOfPerson < MIN_COUNT) {
             throw new IllegalArgumentException("최소 인원은 " + MIN_COUNT + "명 입니다");
         }
@@ -26,6 +25,6 @@ public class SimpleLineCreator implements LineCreator {
 
         points.add(point.last());
 
-        return new SimpleLine(points);
+        return new Line(points);
     }
 }
