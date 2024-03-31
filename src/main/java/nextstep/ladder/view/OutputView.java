@@ -2,9 +2,11 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.ladder.Row;
+import nextstep.ladder.domain.ladder.Rung;
 import nextstep.ladder.domain.player.Count;
 import nextstep.ladder.domain.player.Players;
 
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -37,6 +39,17 @@ public class OutputView {
         printLine(joinedName);
     }
 
+    private static String centerName(String name, int width) {
+        int rightPad = (width - name.length()) / 2;
+        int leftPad = width - name.length() - rightPad;
+
+        return new StringBuilder()
+                .append(spaceBuilder(leftPad))
+                .append(name)
+                .append(spaceBuilder(rightPad))
+                .toString();
+    }
+
     private static void printLadder(Ladder ladder, int columnWidth) {
         ladder.forEachRows(row -> printLadderRow(row, columnWidth));
     }
@@ -46,32 +59,24 @@ public class OutputView {
         final String emptyRungString = spaceBuilder(columnWidth - 1);
         final String rungString = rungBuilder(columnWidth - 1);
 
-        final String row = ladderRow.rungs().stream()
+        String rowString = new StringBuilder(leftPad)
+                .append(rungs(ladderRow.rungs(), emptyRungString, rungString))
+                .append(Announcements.COLUMN)
+                .toString();
+
+        printLine(rowString);
+    }
+
+    private static String rungs(List<Rung> rungs, String emptyRungString, String rungString) {
+        return rungs.stream()
                 .map(rung -> {
                     StringBuilder sb = new StringBuilder(Announcements.COLUMN);
                     if (rung.exist()) {
-                        return sb.append(emptyRungString).toString();
+                        return sb.append(rungString).toString();
                     }
-                    return sb.append(rungString).toString();
+                    return sb.append(emptyRungString).toString();
                 })
                 .collect(Collectors.joining());
-
-        StringBuilder builder = new StringBuilder(leftPad)
-                .append(row)
-                .append(Announcements.COLUMN);
-        printLine(builder.toString());
-    }
-
-    private static String centerName(String name, int width) {
-        int rightPad = (width - name.length()) / 2;
-        int leftPad = width - name.length() - rightPad;
-
-        StringBuilder builder = new StringBuilder();
-        builder.append(spaceBuilder(leftPad));
-        builder.append(name);
-        builder.append(spaceBuilder(rightPad));
-
-        return builder.toString();
     }
 
     private static String spaceBuilder(int length) {
