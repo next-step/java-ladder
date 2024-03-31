@@ -2,6 +2,7 @@ package nextstep.ladder.ui;
 
 import nextstep.ladder.domain.*;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class ResultView {
@@ -10,10 +11,11 @@ public class ResultView {
     private static final String POINT_FALSE = "     ";
     private static final String LINE_DELIMITER = "|";
 
-    public static void printLadderGame(LadderGame game) {
+    public static void printLadderGame(LadderGame game, List<String> prizes) {
         System.out.println("실행 결과");
         System.out.println(formatParticipantNames(game.getParticipants()));
         System.out.println(formatLadder(game.getLadder()));
+        System.out.println(formatPrizes(prizes));
     }
 
     private static String formatLadder(Ladder ladder) {
@@ -39,6 +41,12 @@ public class ResultView {
         return participants.get().stream()
                 .map(Participant::getName)
                 .map(name -> String.format("%-6s", name))
+                .collect(Collectors.joining());
+    }
+
+    private static String formatPrizes(List<String> prizes) {
+        return prizes.stream()
+                .map(prize -> String.format("%-6s", prize))
                 .collect(Collectors.joining());
     }
 

@@ -18,7 +18,7 @@ public class LadderGameController {
 
             LadderGame ladderGame = LadderGame.of(participants, ladder);
 
-            ResultView.printLadderGame(ladderGame);
+            ResultView.printLadderGame(ladderGame, prizes);
         } catch (IllegalArgumentException e) {
             ResultView.printException(e.getMessage());
         } catch (Exception e) {
