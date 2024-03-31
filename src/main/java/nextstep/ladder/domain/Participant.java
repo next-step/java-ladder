@@ -1,6 +1,6 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.exception.ParticipantNameLengthExceedException;
+import nextstep.ladder.validator.ParticipantValidator;
 
 public class Participant {
 
@@ -9,18 +9,8 @@ public class Participant {
     private final String name;
 
     public Participant(String name) {
-        validateNameLength(name);
+        ParticipantValidator.validateNameLength(name);
         this.name = name;
-    }
-
-    private void validateNameLength(String name) {
-        if (exceedNameLength(name)) {
-            throw new ParticipantNameLengthExceedException(name);
-        }
-    }
-
-    private boolean exceedNameLength(String name) {
-        return name.length() > MAX_NAME_LENGTH;
     }
 
     public String getName() {

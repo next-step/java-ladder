@@ -1,6 +1,6 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.exception.LadderHeightException;
+import nextstep.ladder.validator.LadderValidator;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,7 +12,7 @@ public class Ladder {
     private final List<Line> lines;
 
     private Ladder(List<Line> lines) {
-        validateLadderMaxHeight(lines.size());
+        LadderValidator.validateLadderMaxHeight(lines.size());
         this.lines = lines;
     }
 
@@ -28,12 +28,6 @@ public class Ladder {
         return Stream.generate(() -> Line.of(RandomPointsGenerator.generate(pointSize)))
                 .limit(height)
                 .collect(Collectors.toList());
-    }
-
-    private static void validateLadderMaxHeight(int height) {
-        if (height < Ladder.MIN_LADDER_HEIGHT) {
-            throw new LadderHeightException(height);
-        }
     }
 
     public int getHeight() {

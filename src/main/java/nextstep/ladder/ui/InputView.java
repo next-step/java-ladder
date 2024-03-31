@@ -1,10 +1,10 @@
 package nextstep.ladder.ui;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Participant;
 import nextstep.ladder.dto.LadderGameRequest;
 import nextstep.ladder.exception.LadderHeightException;
 import nextstep.ladder.exception.ParticipantNameLengthExceedException;
+import nextstep.ladder.validator.LadderValidator;
+import nextstep.ladder.validator.ParticipantValidator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -51,7 +51,7 @@ public class InputView {
         int height;
         try {
             height = nextInt();
-            validateLadderMaxHeight(height);
+            LadderValidator.validateLadderMaxHeight(height);
         } catch (LadderHeightException e) {
             ResultView.printException(e.getMessage());
             return readLadderMaxHeight();
@@ -65,20 +65,9 @@ public class InputView {
     }
 
     private static void validateParticipantNames(List<String> names) {
-        names.forEach(InputView::validateName);
+        names.forEach(ParticipantValidator::validateNameLength);
     }
 
-    private static void validateName(String name) throws ParticipantNameLengthExceedException {
-        int nameLength = name.length();
-        if (nameLength < Participant.MIN_NAME_LENGTH || nameLength > Participant.MAX_NAME_LENGTH) {
-            throw new ParticipantNameLengthExceedException(name);
-        }
-    }
 
-    private static void validateLadderMaxHeight(int height) throws LadderHeightException {
-        if (height < Ladder.MIN_LADDER_HEIGHT) {
-            throw new LadderHeightException(height);
-        }
-    }
 
 }
