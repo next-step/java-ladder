@@ -2,6 +2,7 @@ package nextstep.ladder.ui;
 
 import nextstep.ladder.exception.LadderHeightException;
 import nextstep.ladder.exception.ParticipantNameLengthExceedException;
+import nextstep.ladder.validator.LadderGamePrizeValidator;
 import nextstep.ladder.validator.LadderValidator;
 import nextstep.ladder.validator.ParticipantValidator;
 
@@ -57,10 +58,11 @@ public class InputView {
         return SCANNER.nextInt();
     }
 
-    private static void validateParticipantNames(List<String> names) {
-        names.forEach(ParticipantValidator::validateNameLength);
+    public static List<String> readLadderGamePrizes() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요.");
+        List<String> prizes = parseStringList(nextLine());
+        LadderGamePrizeValidator.validatePrizes(prizes);
+        return prizes;
     }
-
-
 
 }

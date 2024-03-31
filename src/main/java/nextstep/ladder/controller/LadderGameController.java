@@ -6,12 +6,15 @@ import nextstep.ladder.domain.Participants;
 import nextstep.ladder.ui.InputView;
 import nextstep.ladder.ui.ResultView;
 
+import java.util.List;
+
 public class LadderGameController {
 
     public void doLadderGame() {
         try {
             Participants participants = Participants.of(InputView.readParticipantNames());
             Ladder ladder = Ladder.of(participants.numberOf(), InputView.readLadderMaxHeight());
+            List<String> prizes = InputView.readLadderGamePrizes();
 
             LadderGame ladderGame = LadderGame.of(participants, ladder);
 
