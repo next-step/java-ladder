@@ -1,8 +1,8 @@
 package ladder.controller;
 
-import ladder.Ladder;
-import ladder.NameList;
-import ladder.utils.StringToIntConverter;
+import ladder.model.Ladder;
+import ladder.model.NameList;
+import ladder.model.utils.StringToIntConverter;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 

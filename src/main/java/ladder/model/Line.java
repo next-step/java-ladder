@@ -1,6 +1,6 @@
-package ladder;
+package ladder.model;
 
-import ladder.utils.RandomGenerator;
+import ladder.model.utils.ConnectLine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,21 +9,27 @@ import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
 public class Line {
-    private List<Boolean> points = new ArrayList<>();
+    private final List<Boolean> points;
 
-    public Line(int countOfPerson) {
+    private Line(List<Boolean> points) {
+        this.points = points;
+    }
+
+    public static Line createOneLine(int countOfPerson) {
+        List<Boolean> points = new ArrayList<>();
         int columnNum = countOfPerson - 1;
 
         while (points.size() < columnNum) {
-            checkLine();
+            connectLine(points);
         }
         if (points.size() > columnNum) {
             points.remove(points.size() - 1);
         }
+        return new Line(points);
     }
 
-    private void checkLine() {
-        if (1 == RandomGenerator.generate()) {
+    private static void connectLine(List<Boolean> points) {
+        if (ConnectLine.isConnect()) {
             points.add(TRUE);
         }
         points.add(FALSE);

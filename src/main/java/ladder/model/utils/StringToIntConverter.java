@@ -1,4 +1,4 @@
-package ladder.utils;
+package ladder.model.utils;
 
 public class StringToIntConverter {
     public static int toInt(String values) {

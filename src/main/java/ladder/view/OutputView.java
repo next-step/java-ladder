@@ -1,9 +1,9 @@
 package ladder.view;
 
 
-import ladder.Ladder;
-import ladder.Line;
-import ladder.NameList;
+import ladder.model.Ladder;
+import ladder.model.Line;
+import ladder.model.NameList;
 
 import java.util.stream.Collectors;
 
@@ -11,8 +11,6 @@ public class OutputView {
     private static final String CONNECT = "-----";
     private static final String DISCONNECT = "     ";
     private static final String COLUMN = "|";
-    private static final String NEW_LINE = "\n";
-
 
     public static void printLadderGameResult(NameList nameList, Ladder ladder) {
         printLadderGameResultTitle(nameList);
@@ -20,7 +18,7 @@ public class OutputView {
         for (Line line : ladder.getLines()) {
             String oneLine = line.getPoints().stream()
                     .map(point -> point ? CONNECT : DISCONNECT)
-                    .collect(Collectors.joining(COLUMN, COLUMN, COLUMN + NEW_LINE));
+                    .collect(Collectors.joining(COLUMN, COLUMN, COLUMN));
             System.out.println(oneLine);
         }
 
