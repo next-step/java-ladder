@@ -20,6 +20,11 @@ public class InputView {
     public static final String PLAY_RESULT_INPUT_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     public static final String GET_PLAYER_RESULT_INPUT_MESSAGE = "결과를 보고 싶은 사람은?";
     public static final String PLAY_RESULT_PRINT_MESSAGE = "실행 결과";
+    public static final String ALL_RESULT_REQUEST = "all";
+    public static final String EXIT_GAME_INPUT = "exit";
+    public static final String EXIT_GAME_MESSAGE = "게임을 종료합니다.";
+    public static final String INPUT_DELIMITER = ",";
+    public static final int INITIAL_INDEX = 0;
 
     public Players inputPlayers() {
         return inputPlayers(PLAYER_NAME_INPUT_MESSAGE);
@@ -27,8 +32,8 @@ public class InputView {
 
     private Players inputPlayers(String message) {
         System.out.println(message);
-        List<String> nameList = StringUtil.splitStringToList(SCANNER.nextLine(), ",");
-        AtomicInteger index = new AtomicInteger(0);
+        List<String> nameList = StringUtil.splitStringToList(SCANNER.nextLine(), INPUT_DELIMITER);
+        AtomicInteger index = new AtomicInteger(INITIAL_INDEX);
         try {
             List<Player> playerList = nameList.stream()
                     .map(name -> Player.of(name, index.getAndIncrement()))
@@ -70,7 +75,7 @@ public class InputView {
     private List<String> inputResults(String message) {
         System.out.println(message);
         try {
-            return StringUtil.splitStringToList(SCANNER.nextLine(), ",");
+            return StringUtil.splitStringToList(SCANNER.nextLine(), INPUT_DELIMITER);
         } catch (IllegalArgumentException e) {
             return inputResults(TRY_INPUT_AGAIN);
         }
@@ -83,14 +88,14 @@ public class InputView {
     private void printPlayerResult(String message, LadderResult ladderResult) {
         System.out.println(message);
         String playerName = SCANNER.nextLine();
-        if (playerName.equals("all")) {
+        if (playerName.equals(ALL_RESULT_REQUEST)) {
             System.out.println(PLAY_RESULT_PRINT_MESSAGE);
             System.out.println(ladderResult.resultAllToString());
             printPlayerResult(GET_PLAYER_RESULT_INPUT_MESSAGE, ladderResult);
             return;
         }
-        if (playerName.equals("exit")) {
-            System.out.println("게임을 종료합니다.");
+        if (playerName.equals(EXIT_GAME_INPUT)) {
+            System.out.println(EXIT_GAME_MESSAGE);
             return;
         }
         try {

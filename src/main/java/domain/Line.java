@@ -45,7 +45,8 @@ public class Line implements Iterable<Boolean>  {
     }
 
     private Boolean isExistLeftPoint(Player player) {
-        return points.get(player.getPosition() - 1);
+        int leftPoint = player.getPosition() - 1;
+        return points.get(leftPoint);
     }
 
     private boolean isFarRight(Player player) {

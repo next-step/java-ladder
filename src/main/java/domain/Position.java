@@ -6,8 +6,10 @@ import java.util.Objects;
 
 public class Position {
     public static final String POSITION_CANT_MINUS_MESSAGE = "Position은 0 이상의 정수여야 합니다.";
+    public static final int MIN_POSITION_NUMBER = 0;
+    public static final int MAX_POSITION_NUMBER = 20;
     private static final Map<Integer, Position> POSITION_MAP = new HashMap<>() {{
-        for (int i = 1; i <= 20; i++) {
+        for (int i = MIN_POSITION_NUMBER; i <= MAX_POSITION_NUMBER; i++) {
             put(i, new Position(i));
         }
     }};
@@ -18,7 +20,7 @@ public class Position {
     }
 
     private Position(int value) {
-        if (value < 0) {
+        if (value < MIN_POSITION_NUMBER) {
             throw new IllegalArgumentException(POSITION_CANT_MINUS_MESSAGE);
         }
         this.value = value;
