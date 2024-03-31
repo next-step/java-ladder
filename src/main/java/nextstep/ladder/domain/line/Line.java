@@ -6,9 +6,9 @@ import java.util.Random;
 
 public class Line {
 
-    private List<Boolean> points = new ArrayList<>();
-
     private final Random random = new Random();
+
+    private List<Boolean> points = new ArrayList<>();
 
     public Line(int countOfPerson) {
         boolean before = false;

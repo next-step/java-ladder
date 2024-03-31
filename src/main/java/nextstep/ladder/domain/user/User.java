@@ -7,7 +7,7 @@ public class User {
     private String userName;
 
     public User(String userName) {
-        if (userName == null || userName.isEmpty() || userName.isBlank()){
+        if (userName == null || userName.isEmpty() || userName.isBlank()) {
             throw new UserNameEmptyException(userName);
         }
         this.userName = userName;

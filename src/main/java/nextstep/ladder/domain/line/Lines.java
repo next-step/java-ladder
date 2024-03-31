@@ -12,6 +12,10 @@ public class Lines {
         this(toLines(height, countOfPerson));
     }
 
+    public Lines(List<Line> lines) {
+        this.lines = lines;
+    }
+
     private static List<Line> toLines(int height, int countOfPerson) {
         return IntStream.range(0, height)
             .mapToObj(currentHeight -> new Line(countOfPerson))
@@ -20,10 +24,6 @@ public class Lines {
 
     public List<Line> getLines() {
         return lines;
-    }
-
-    public Lines(List<Line> lines) {
-        this.lines = lines;
     }
 
     public int size() {

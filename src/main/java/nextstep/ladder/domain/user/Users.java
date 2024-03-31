@@ -8,26 +8,26 @@ public class Users {
 
     private List<User> users;
 
-    public Users(String... userNames){
+    public Users(String... userNames) {
         this(toUsers(userNames));
     }
 
-    private static List<User> toUsers(String... userNames) {
-        List<User> users = new ArrayList<>();
-        for (String userName : userNames){
-            users.add(new User(userName));
-        }
-        return users;
-    }
-
     public Users(List<User> users) {
-        if(users.size() == 0){
+        if (users.size() == 0) {
             throw new UserSizeEmptyException(users);
         }
         this.users = users;
     }
 
-    public int size(){
+    private static List<User> toUsers(String... userNames) {
+        List<User> users = new ArrayList<>();
+        for (String userName : userNames) {
+            users.add(new User(userName));
+        }
+        return users;
+    }
+
+    public int size() {
         return users.size();
     }
 

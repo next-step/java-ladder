@@ -12,7 +12,7 @@ public class Output {
     private Output() {
     }
 
-    public static void printResult(Users users, Lines lines){
+    public static void printResult(Users users, Lines lines) {
         System.out.println("실행결과");
         System.out.println(users);
 
