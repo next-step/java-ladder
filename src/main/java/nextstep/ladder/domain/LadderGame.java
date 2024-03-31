@@ -39,16 +39,10 @@ public class LadderGame {
         return this.ladder;
     }
 
-    public List<ParticipantPosition> execute(String executeString) {
-        if (executeString.equals("all")) {
-            return participants.get().stream()
-                    .map((participant) -> ParticipantPosition.of(participant, move(participant)))
-                    .collect(Collectors.toUnmodifiableList());
-        }
-
-        Participant participant = Participant.of(executeString);
-        ParticipantPosition position = ParticipantPosition.of(participant, move(participant));
-        return List.of(position);
+    public List<ParticipantPosition> execute() {
+        return participants.get().stream()
+                .map((participant) -> ParticipantPosition.of(participant, move(participant)))
+                .collect(Collectors.toUnmodifiableList());
     }
 
     private int move(Participant participant) {

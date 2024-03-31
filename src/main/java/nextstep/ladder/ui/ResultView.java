@@ -50,15 +50,23 @@ public class ResultView {
                 .collect(Collectors.joining());
     }
 
-    public static void printLadderGameResult(List<String> prizes, List<ParticipantPosition> positions) {
+    public static void printLadderGameResult(LadderGameResult gameResult, String name) {
         System.out.println("실행 결과");
-        System.out.println(formatResult(prizes, positions));
+        System.out.println(formatResult(gameResult, name));
     }
 
-    private static String formatResult(List<String> prizes, List<ParticipantPosition> positions) {
-        return positions.stream()
-                .map(position -> String.format("%s : %s", position.getParticipant().getName(), prizes.get(position.getPosition())))
-                .collect(Collectors.joining(System.lineSeparator()));
+    private static String formatResult(LadderGameResult gameResult, String name) {
+        if ("all".equals(name)) {
+            return gameResult.getParticipantPositions().stream()
+                    .map(position -> formatParticipantPosition(gameResult, position))
+                    .collect(Collectors.joining());
+        }
+        return formatParticipantPosition(gameResult, gameResult.getParticipantPosition(name));
+    }
+
+    private static String formatParticipantPosition(LadderGameResult gameResult, ParticipantPosition position) {
+        String name = position.getParticipantName();
+        return String.format("%s : %s%s", name, gameResult.getPrize(name), System.lineSeparator());
     }
 
     public static void printException(String message, Exception e) {

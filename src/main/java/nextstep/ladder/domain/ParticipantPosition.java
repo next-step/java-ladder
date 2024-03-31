@@ -20,8 +20,8 @@ public class ParticipantPosition {
         this.position = position;
     }
 
-    public Participant getParticipant() {
-        return this.participant;
+    public String getParticipantName() {
+        return this.participant.getName();
     }
 
     public int getPosition() {
