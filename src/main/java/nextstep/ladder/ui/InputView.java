@@ -20,7 +20,7 @@ public class InputView {
         List<String> names;
         try {
             names = parseStringList(nextLine());
-            validateParticipantNames(names);
+            ParticipantValidator.validateNamesLength(names);
         } catch (ParticipantNameLengthExceedException e) {
             ResultView.printException(e.getMessage());
             return readParticipantNames();
