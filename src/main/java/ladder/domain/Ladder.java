@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 public class Ladder {
 
-    private final List<Line> ladder;
+    private final List<Line> lines;
 
 
     public Ladder(int height, int countOfPerson) {
@@ -19,12 +19,12 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
-    public Ladder(List<Line> ladder) {
-        this.ladder = ladder;
+    public Ladder(List<Line> lines) {
+        this.lines = lines;
     }
 
     @Override
     public String toString() {
-        return ladder.stream().map(line -> " ".repeat(5) + line.toString() + "\n").collect(Collectors.joining());
+        return lines.stream().map(line -> " ".repeat(5) + line.toString() + "\n").collect(Collectors.joining());
     }
 }
