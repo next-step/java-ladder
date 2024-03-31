@@ -4,10 +4,6 @@ import java.util.Objects;
 
 public class Point {
 
-    public static final int LADDER_WIDTH = 5;
-    public static final String EXIST_MARK = "-";
-    public static final String NON_EXIST_MARK = " ";
-    public static final String PREFIX = "|";
     private final boolean isExist;
 
     public Point(boolean isExist) {
@@ -22,6 +18,10 @@ public class Point {
         return this.isExist && b;
     }
 
+    public boolean isTrue() {
+        return isExist;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -33,13 +33,5 @@ public class Point {
     @Override
     public int hashCode() {
         return Objects.hash(isExist);
-    }
-
-    @Override
-    public String toString() {
-        if (this.isExist) {
-            return PREFIX + EXIST_MARK.repeat(LADDER_WIDTH);
-        }
-        return PREFIX + NON_EXIST_MARK.repeat(LADDER_WIDTH);
     }
 }

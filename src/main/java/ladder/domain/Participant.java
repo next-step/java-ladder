@@ -3,6 +3,7 @@ package ladder.domain;
 import ladder.Lambda;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,9 +21,8 @@ public class Participant {
         this.names = names;
     }
 
-    @Override
-    public String toString() {
-        return names.stream().map(name ->  String.format("%" + 6 + "s", name)).collect(Collectors.joining());
+    public List<String> getNames() {
+        return Collections.unmodifiableList(names);
     }
-}
 
+}

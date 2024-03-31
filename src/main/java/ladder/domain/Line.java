@@ -38,8 +38,7 @@ public class Line {
         this.points = points;
     }
 
-    @Override
-    public String toString() {
-        return points.stream().map(Point::toString).collect(Collectors.joining()) + "|";
+    public List<Boolean> getLine() {
+        return this.points.stream().map(Point::isTrue).collect(Collectors.toList());
     }
 }

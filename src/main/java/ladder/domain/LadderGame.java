@@ -18,6 +18,14 @@ public class LadderGame {
         this.participant = participant;
     }
 
+    public Ladder getLadder() {
+        return ladder;
+    }
+
+    public Participant getParticipant() {
+        return participant;
+    }
+
     @Override
     public String toString() {
         return participant.toString() + "\n" + ladder.toString();
