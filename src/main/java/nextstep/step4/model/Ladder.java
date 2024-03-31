@@ -1,27 +1,32 @@
 package nextstep.step4.model;
 
-import nextstep.step4.api.Ladder;
-import nextstep.step4.api.LadderResult;
-import nextstep.step4.api.Line;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public class SimpleLadder implements Ladder {
+public class Ladder {
+    private static final int MIN_COUNT = 2;
+
     private final int countOfPerson;
     private final List<Line> lines;
 
-    public SimpleLadder(int countOfPerson, List<Line> lines) {
-        if (lines == null || lines.isEmpty()) {
-            throw new IllegalArgumentException("라인 정보가 비어있습니다");
-        }
+    public Ladder(int countOfPerson, List<Line> lines) {
+        validate(countOfPerson, lines);
 
         this.countOfPerson = countOfPerson;
         this.lines = lines;
     }
 
-    @Override
+    private void validate(int countOfPerson, List<Line> lines) {
+        if (countOfPerson < MIN_COUNT) {
+            throw new IllegalArgumentException("최소 인원은 " + MIN_COUNT + "명 입니다");
+        }
+
+        if (lines == null || lines.isEmpty()) {
+            throw new IllegalArgumentException("라인 정보가 비어있습니다");
+        }
+    }
+
     public LadderResult play() {
         LadderResult ladderResult = new LadderResult();
         for (int i = 0; i < countOfPerson; i++) {
@@ -41,7 +46,6 @@ public class SimpleLadder implements Ladder {
         return result;
     }
 
-    @Override
     public List<Line> getLines() {
         return Collections.unmodifiableList(this.lines);
     }
@@ -50,12 +54,12 @@ public class SimpleLadder implements Ladder {
     public boolean equals(Object other) {
         if (this == other) return true;
         if (other == null || getClass() != other.getClass()) return false;
-        SimpleLadder that = (SimpleLadder) other;
-        return Objects.equals(lines, that.lines);
+        Ladder ladder = (Ladder) other;
+        return countOfPerson == ladder.countOfPerson && Objects.equals(lines, ladder.lines);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(lines);
+        return Objects.hash(countOfPerson, lines);
     }
 }
