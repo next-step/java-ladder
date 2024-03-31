@@ -25,6 +25,7 @@ public class InputView {
     public static final String EXIT_GAME_MESSAGE = "게임을 종료합니다.";
     public static final String INPUT_DELIMITER = ",";
     public static final int INITIAL_INDEX = 0;
+    public static final int MIN_LADDER_HEIGHT = 1;
 
     public Players inputPlayers() {
         return inputPlayers(PLAYER_NAME_INPUT_MESSAGE);
@@ -62,7 +63,7 @@ public class InputView {
 
     private static int scanLadderHeight() {
         int inputInt = Integer.parseInt(SCANNER.nextLine());
-        if (inputInt < 1) {
+        if (inputInt < MIN_LADDER_HEIGHT) {
             throw new IllegalArgumentException(LADDER_HEIGHT_RANGE_OVER + TRY_INPUT_AGAIN);
         }
         return inputInt;
