@@ -27,30 +27,22 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            total += number;
-        }
-        return total;
+        return sumCommon(numbers, number -> true);
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number % 2 == 0) {
-                total += number;
-            }
-        }
-        return total;
+        return sumCommon(numbers, number -> number % 2 == 0);
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number > 3) {
-                total += number;
-            }
-        }
-        return total;
+        return sumCommon(numbers, number -> number > 3);
     }
+
+    public static int sumCommon(List<Integer> numbers, SumConditionStrategy sumConditionStrategy) {
+        return numbers.stream()
+                .filter(number -> sumConditionStrategy.sumCondition(number))
+                .reduce(Integer::sum)
+                .orElseThrow(() -> new IllegalArgumentException("정상적인 요소 값이 아닙니다."));
+    }
+
 }
