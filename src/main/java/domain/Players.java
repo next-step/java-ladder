@@ -37,18 +37,11 @@ public class Players {
     }
 
     public LadderResult play(List<Line> lines, String[] results) {
-        LadderResult ladderResult = new LadderResult();
-        for (int startPosition = 0; startPosition < players.size(); startPosition++) {
-            Player player = players.get(startPosition);
-            int lastPosition = startPosition;
-            for (Line line : lines) {
-                PointDirection pointDirection = line.checkPointDirection(player);
-                player.move(pointDirection);
-                lastPosition = player.getPosition();
-            }
-            ladderResult.addResult(player, results[lastPosition]);
-        }
-
-        return ladderResult;
+        return new LadderResult(players.stream()
+                .collect(Collectors.toMap(
+                        (player) -> player,
+                        (player) -> results[player.getPlayedLastPosition(lines)]
+                ))
+        );
     }
 }

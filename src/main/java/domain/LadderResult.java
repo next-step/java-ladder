@@ -1,13 +1,13 @@
 package domain;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class LadderResult {
 
-    private final Map<Player, String> ladderResult = new HashMap<>();
-    public void addResult(Player player, String result) {
-        ladderResult.put(player, result);
+    private final Map<Player, String> ladderResult;
+
+    public LadderResult(Map<Player, String> ladderResult) {
+        this.ladderResult = ladderResult;
     }
 
     public String getResult(Player player) {

@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Player {
@@ -7,7 +8,7 @@ public class Player {
     private Position position;
 
     public static Player from(String name) {
-        return new Player(name, 0);
+        return new Player(name);
     }
     public static Player of(String name, Integer position) {
         return new Player(name, position);
@@ -21,6 +22,11 @@ public class Player {
         this(Name.from(name), Position.valueOf(position));
     }
 
+    private Player(String name) {
+        this.name = Name.from(name);
+        this.position = Position.valueOf(0);
+    }
+
     private Player(Name name, Position position) {
         this.name = name;
         this.position = position;
@@ -32,6 +38,17 @@ public class Player {
 
     public int getPosition() {
         return position.getPosition();
+    }
+
+    public int getPlayedLastPosition(List<Line> lines) {
+        return lines.stream()
+                .map((line) -> line.checkPointDirection(this))
+                .mapToInt(pointDirection -> {
+                    position = position.move(pointDirection);
+                    return position.getPosition();
+                })
+                .reduce((first, second) -> second)
+                .orElse(position.getPosition());
     }
 
     @Override
@@ -50,9 +67,5 @@ public class Player {
     @Override
     public String toString() {
         return name.toString();
-    }
-
-    public void move(PointDirection pointDirection) {
-        position = position.move(pointDirection);
     }
 }
