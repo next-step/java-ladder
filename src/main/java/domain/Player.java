@@ -4,8 +4,11 @@ import java.util.Objects;
 
 public class Player {
     private final Name name;
-    private final Position position;
+    private Position position;
 
+    public static Player from(String name) {
+        return new Player(name, 0);
+    }
     public static Player of(String name, Integer position) {
         return new Player(name, position);
     }
@@ -21,6 +24,14 @@ public class Player {
     private Player(Name name, Position position) {
         this.name = name;
         this.position = position;
+    }
+
+    public boolean hasPosition(int target) {
+        return position.hasPosition(target);
+    }
+
+    public int getPosition() {
+        return position.getPosition();
     }
 
     @Override
@@ -39,5 +50,9 @@ public class Player {
     @Override
     public String toString() {
         return name.toString();
+    }
+
+    public void move(PointDirection pointDirection) {
+        position = position.move(pointDirection);
     }
 }

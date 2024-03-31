@@ -20,22 +20,22 @@ public class LineTest {
     }
 
     @ParameterizedTest
-    @MethodSource("playerPointAndPointDirection")
+    @MethodSource("playerAndPointDirection")
     @DisplayName("checkPointDirection 호출 시 현재 플레이어 기준 수평 사다리의 방향 반환")
-    void checkPointDirection(int playerPoint, PointDirection expectedDirection) {
+    void checkPointDirection(Player player, PointDirection expectedDirection) {
         Line line = Line.from(6, (playerCount) -> List.of(true, false, false, false, true));
-        PointDirection pointDirection = line.checkPointDirection(playerPoint);
+        PointDirection pointDirection = line.checkPointDirection(player);
         assertThat(pointDirection).isEqualTo(expectedDirection);
     }
 
-    static Stream<Arguments> playerPointAndPointDirection() {
+    static Stream<Arguments> playerAndPointDirection() {
         return Stream.of(
-                Arguments.arguments(0, PointDirection.RIGHT),
-                Arguments.arguments(1, PointDirection.LEFT),
-                Arguments.arguments(2, PointDirection.NONE),
-                Arguments.arguments(3, PointDirection.NONE),
-                Arguments.arguments(4, PointDirection.RIGHT),
-                Arguments.arguments(5, PointDirection.LEFT)
+                Arguments.arguments(Player.of("nimoh",0) , PointDirection.RIGHT),
+                Arguments.arguments(Player.of("sera",1), PointDirection.LEFT),
+                Arguments.arguments(Player.of("pobi",2), PointDirection.NONE),
+                Arguments.arguments(Player.of("jane",3), PointDirection.NONE),
+                Arguments.arguments(Player.of("yona",4), PointDirection.RIGHT),
+                Arguments.arguments(Player.of("jinx",5), PointDirection.LEFT)
         );
     }
 }

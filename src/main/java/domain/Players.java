@@ -36,17 +36,19 @@ public class Players {
                 .collect(Collectors.joining(PLAYER_NAME_SPACE));
     }
 
-    public int play(List<Line> lines) {
-
-        for (int i = 0; i < players.size(); i++) {
-            Player player = players.get(i);
-            int lastPoint = i;
+    public LadderResult play(List<Line> lines, String[] results) {
+        LadderResult ladderResult = new LadderResult();
+        for (int startPosition = 0; startPosition < players.size(); startPosition++) {
+            Player player = players.get(startPosition);
+            int lastPosition = startPosition;
             for (Line line : lines) {
-                PointDirection pointDirection = line.checkPointDirection(i);
-                lastPoint += pointDirection.operate(i);
+                PointDirection pointDirection = line.checkPointDirection(player);
+                player.move(pointDirection);
+                lastPosition = player.getPosition();
             }
+            ladderResult.addResult(player, results[lastPosition]);
         }
 
-        return 0;
+        return ladderResult;
     }
 }

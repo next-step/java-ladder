@@ -13,7 +13,7 @@ public class LadderResultTest {
     void put(String result) {
         LadderResult ladderResult = new LadderResult();
         Player pobi = Player.of("pobi", 0);
-        ladderResult.put(pobi, result);
-        Assertions.assertThat(ladderResult.get(pobi)).isEqualTo(result);
+        ladderResult.addResult(pobi, result);
+        Assertions.assertThat(ladderResult.getResult(pobi)).isEqualTo(result);
     }
 }

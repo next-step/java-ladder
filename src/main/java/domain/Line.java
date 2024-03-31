@@ -23,44 +23,48 @@ public class Line implements Iterable<Boolean>  {
         return points.iterator();
     }
 
-    public PointDirection checkPointDirection(int playerPoint) {
-        if (isFarLeft(playerPoint)) {
-            return rightPointOrNone(playerPoint);
+    public PointDirection checkPointDirection(Player player) {
+        if (isFarLeft(player)) {
+            return rightPointOrNone(player);
         }
-        if (isFarRight(playerPoint)) {
-            return leftPointOrNone(playerPoint);
+        if (isFarRight(player)) {
+            return leftPointOrNone(player);
         }
-        if (isExistPoint(playerPoint)) {
+        if (isExistRightPoint(player)) {
             return PointDirection.RIGHT;
         }
-        if (isExistPoint(playerPoint - 1)) {
+        if (isExistLeftPoint(player)) {
             return PointDirection.LEFT;
         }
 
         return PointDirection.NONE;
     }
 
-    private Boolean isExistPoint(int playerPoint) {
-        return points.get(playerPoint);
+    private Boolean isExistRightPoint(Player player) {
+        return points.get(player.getPosition());
     }
 
-    private boolean isFarRight(int playerPoint) {
-        return playerPoint == (points.size());
+    private Boolean isExistLeftPoint(Player player) {
+        return points.get(player.getPosition() - 1);
     }
 
-    private boolean isFarLeft(int playerPoint) {
-        return playerPoint == FIRST_POINT_INDEX;
+    private boolean isFarRight(Player player) {
+        return player.hasPosition(points.size());
     }
 
-    private PointDirection leftPointOrNone(int playerPoint) {
-        if (isExistPoint(playerPoint - 1)) {
+    private boolean isFarLeft(Player player) {
+        return player.hasPosition(FIRST_POINT_INDEX);
+    }
+
+    private PointDirection leftPointOrNone(Player player) {
+        if (isExistLeftPoint(player)) {
             return PointDirection.LEFT;
         }
         return PointDirection.NONE;
     }
 
-    private PointDirection rightPointOrNone(int playerPoint) {
-        if (isExistPoint(playerPoint)) {
+    private PointDirection rightPointOrNone(Player player) {
+        if (isExistRightPoint(player)) {
             return PointDirection.RIGHT;
         }
         return PointDirection.NONE;

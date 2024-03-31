@@ -20,6 +20,10 @@ public class Position {
         this.value = value;
     }
 
+    public boolean hasPosition(int target) {
+        return value == target;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -31,5 +35,13 @@ public class Position {
     @Override
     public int hashCode() {
         return Objects.hash(value);
+    }
+
+    public int getPosition() {
+        return value;
+    }
+
+    public Position move(PointDirection pointDirection) {
+        return Position.valueOf(pointDirection.operate(value));
     }
 }
