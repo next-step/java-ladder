@@ -2,12 +2,15 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Bridge;
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderResultDeterminer;
 import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.Name;
 import nextstep.ladder.domain.Names;
 
 public class OutputView {
 
     private static final int BRIDGE_LENGTH = 4;
+    private static final String NAME_RESULT_DELIMITER = " : ";
 
     public void printLadder(final Names names, final Ladder ladder) {
         System.out.println("\n실행 결과");
@@ -26,6 +29,15 @@ public class OutputView {
             printBridge(bridge);
         }
         System.out.print("|\n");
+    }
+
+    public void printResult(final String name, final LadderResultDeterminer determiner) {
+        if ("all".equals(name)) {
+            determiner.getNames()
+                    .forEach(n -> System.out.println(n.getName() + NAME_RESULT_DELIMITER + determiner.determineResult(n)));
+            return;
+        }
+        System.out.println(name + NAME_RESULT_DELIMITER + determiner.determineResult(new Name(name)));
     }
 
     private void printBridge(final Bridge bridge) {
