@@ -1,9 +1,10 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 import java.util.Optional;
 
 public class UserName {
     private final String name;
+    private static final int MAX_LENGTH = 5;
 
 
     public UserName(String name) {
@@ -17,8 +18,8 @@ public class UserName {
     }
 
     private void assertValidLength(String name) {
-        String invalidLengthMessage = "[이름] 5글자를 초과할 수 없습니다.";
-        if (name.length() > 5) {
+        String invalidLengthMessage = String.format("[이름] %d 글자를 초과할 수 없습니다.", MAX_LENGTH);
+        if (name.length() > MAX_LENGTH) {
             throw new IllegalArgumentException(invalidLengthMessage);
         }
     }
