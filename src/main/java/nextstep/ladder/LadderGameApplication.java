@@ -12,12 +12,17 @@ public class LadderGameApplication {
     public static void main(String[] args) {
         InputView inputView = new InputView();
         List<String> users = inputView.getUsersInput();
-        List<String> gameResults = inputView.getLadderGameResults();
+        List<String> ladderGameWinningProduct = inputView.getLadderGameResults();
         int floor = inputView.getFloorInput();
 
-        Ladder ladder = Ladder.of(floor, users, new RandomLineStrategy());
+        Ladder ladder = Ladder.of(floor, users, ladderGameWinningProduct, new RandomLineStrategy());
 
         DrawerView drawerView = new DrawerView();
-        drawerView.printLadderGameResult(ladder.getParticipants(), ladder.getLadderInfo());
+        drawerView.printLadderGameResult(ladder.getParticipants(), ladder.getLadderInfo(), ladderGameWinningProduct);
+
+        while (true) {
+            String resultTarget = inputView.getGameResultTargetUser();
+            drawerView.printWinningProductOfUser(resultTarget, ladder);
+        }
     }
 }

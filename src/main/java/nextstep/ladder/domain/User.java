@@ -4,14 +4,16 @@ public class User {
 
     public static final int MAXIMUM_NAME_LENGTH = 5;
     private final String name;
+    private final String winningProduct;
 
-    public static User from(String name) {
-        return new User(name);
+    public static User from(String name, String winningProduct) {
+        return new User(name, winningProduct);
     }
 
-    private User(String name) {
+    private User(String name, String winningProduct) {
         validate(name);
         this.name = name;
+        this.winningProduct = winningProduct;
     }
 
     private void validate(String name) {
@@ -23,6 +25,10 @@ public class User {
 
     public String name() {
         return this.name;
+    }
+
+    public String winningProduct() {
+        return this.winningProduct;
     }
 
     @Override

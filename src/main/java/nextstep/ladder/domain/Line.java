@@ -17,7 +17,7 @@ public class Line {
 
     private void validate(int countOfUsers, List<StepType> strategyResult) {
         if (countOfUsers < MINIMUM_PARTICIPANTS_COUNT) {
-            throw new IllegalArgumentException("사용자 수는 2명 이상이여야 합니다.");
+            throw new IllegalArgumentException(String.format("사용자 수는 %d명 이상이여야 합니다.", MINIMUM_PARTICIPANTS_COUNT));
         }
 
         if (countOfUsers != (strategyResult.size() + 1)) {

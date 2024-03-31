@@ -28,17 +28,16 @@ public class Lines {
     }
 
     public List<Integer> gameResult(int countOfUsers) {
-        List<Integer> winResult = new ArrayList<>();
+        List<Integer> userWinLocations = new ArrayList<>();
 
         for (int i = 0; i < countOfUsers; i++) {
-            int userResultPosition = getUserResult(countOfUsers, i);
-            winResult.add(userResultPosition);
+            userWinLocations.add(getUserWinLocation(countOfUsers, i));
         }
 
-        return winResult;
+        return userWinLocations;
     }
 
-    private int getUserResult(int countOfUsers, int startPosition) {
+    private int getUserWinLocation(int countOfUsers, int startPosition) {
         int currentPosition = startPosition;
         for (Line line : this.lines) {
             currentPosition += movePosition(line, countOfUsers, currentPosition);

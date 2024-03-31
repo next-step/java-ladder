@@ -31,15 +31,15 @@
 - [x] 사용자의 이름을 담고있다.
     - [x] 이름은 5글자 이하만 가능하다. 5글자 초과 시 `IllegalArgumentException`을 던진다.
     - [x] (역할 : `User` -> `Users`) 사용자의 이름을 줄 수 있다.(`name()`)
-- [ ] 사다리 게임의 결과를 담고있다.
+- [x] 사다리 게임의 결과를 담고있다.
 
 ## Users
 - 참여자 리스트를 가지고 있는 일급 컬렉션
 - [x] 사용자의 컬렉션을 담고 있다.
 - [x] (역할 : `Users` -> `Drawer`) `Drawer`에서 참여자의 출력을 위해 `List<String>`을 반환 해준다.
 - [x] User의 수가 2보다 작다면, `IllegalArgumentException`을 던진다.
-- [ ] 참여자의 게임 결과를 반환한다.
-  - [ ] 입력받은 사용자가 참여자 리스트에 없으면 `IllegalArgumentException`을 던진다.
+- [x] 참여자의 게임 결과를 반환한다.
+  - [x] 입력받은 사용자가 참여자 리스트에 없으면 `IllegalArgumentException`을 던진다.
 
 ## StepType
 - Line에서 사용되는, 현재 `step`이 존재하는지 역할을 가지고 있는 Enum
@@ -62,7 +62,7 @@
 - 가로선 `Line`을 층수(`Height`)만큼 가지고 있는 일급 컬렉션
 - [x] 층고(`Floor`)를 받고, 층고만큼의 `Line`을 가진다.
 - [x] (역할 : `Lines` -> `Ladder`) `Drawer`에서 참여자의 출력을 위해 `List<List<StepType>>`을 반환 해 준다.
-- [ ] 사다리 게임의 결과를 반환한다.
+- [x] 사다리 게임의 결과를 반환한다.
 
 ## MoveDirection
 - 이동 방향을 결정하는 Enum
@@ -83,7 +83,7 @@
 ## Drawer
 - 사다리를 그리는 역할을 담당하는 클래스
 - [x] `Lines`를 통해 사다리 그림을 그려준다.
-- [ ] 실행 결과 위치를 출력한다.
+- [x] 실행 결과 위치를 출력한다.
 
 ## Ladder
 - (역할 : `Ladder` -> `Drawer`) `Drawer`에서 출력을 위해 참여자 목록(`List<String>`)을 반환한다.
