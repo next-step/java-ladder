@@ -1,6 +1,5 @@
 package nextstep.ladder.ui;
 
-import nextstep.ladder.dto.LadderGameRequest;
 import nextstep.ladder.exception.LadderHeightException;
 import nextstep.ladder.exception.ParticipantNameLengthExceedException;
 import nextstep.ladder.validator.LadderValidator;
@@ -15,13 +14,7 @@ public class InputView {
 
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    public static LadderGameRequest createLadderGameRequest() {
-        List<String> names = InputView.readParticipantNames();
-        int height = InputView.readLadderMaxHeight();
-        return new LadderGameRequest(names, height);
-    }
-
-    private static List<String> readParticipantNames() {
+    public static List<String> readParticipantNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉽표(,)로 구분하세요)");
 
         List<String> names;
@@ -45,7 +38,7 @@ public class InputView {
         return Arrays.stream(strings).collect(Collectors.toUnmodifiableList());
     }
 
-    private static int readLadderMaxHeight() {
+    public static int readLadderMaxHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
 
         int height;

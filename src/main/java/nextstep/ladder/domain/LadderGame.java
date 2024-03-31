@@ -13,9 +13,7 @@ public class LadderGame {
         return new LadderGame(participants, ladder);
     }
 
-    public static LadderGame of(List<String> names, int height) {
-        Participants participants = Participants.of(names);
-        Ladder ladder = Ladder.of(participants.numberOf(), height);
+    public static LadderGame of(Participants participants, Ladder ladder) {
         return new LadderGame(participants, ladder);
     }
 
