@@ -15,10 +15,10 @@ class LadderTest {
     void getParticipantsInfo() {
         // given
         List<String> users = List.of("yang", "gang", "eee");
-        RandomStepStrategy randomStepStrategy = new RandomStepStrategy();
+        RandomLineStrategy randomLineStrategy = new RandomLineStrategy();
 
         // when
-        Ladder ladder = Ladder.of(4, users, randomStepStrategy);
+        Ladder ladder = Ladder.of(4, users, randomLineStrategy);
 
         // then
         assertThat(ladder.getParticipants()).contains("yang", "gang", "eee");
@@ -31,7 +31,7 @@ class LadderTest {
         List<String> users = List.of("yang", "gang", "eee");
 
         // when
-        Ladder ladder = Ladder.of(7, users, new RandomStepStrategy());
+        Ladder ladder = Ladder.of(7, users, new RandomLineStrategy());
         List<List<StepType>> ladderInfo = ladder.getLadderInfo();
 
         // then

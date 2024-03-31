@@ -10,7 +10,7 @@ public class Lines {
 
     private final List<Line> lines;
 
-    private Lines(Floor floor, int countOfUsers, StepStrategy strategy) {
+    private Lines(Floor floor, int countOfUsers, LineStrategy strategy) {
         this.lines = new ArrayList<>();
 
         for (int i = 0; i < floor.getFloor(); i++) {
@@ -18,7 +18,7 @@ public class Lines {
         }
     }
 
-    public static Lines of(Floor floor, int countOfUsers, StepStrategy strategy) {
+    public static Lines of(Floor floor, int countOfUsers, LineStrategy strategy) {
         return new Lines(floor, countOfUsers, strategy);
     }
 

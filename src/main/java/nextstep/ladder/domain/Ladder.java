@@ -9,7 +9,7 @@ public class Ladder {
     private final Lines lines;
     private final Users users;
 
-    public static Ladder of(int floor, List<String> users, StepStrategy strategy) {
+    public static Ladder of(int floor, List<String> users, LineStrategy strategy) {
         return new Ladder(
                 Floor.from(floor),
                 Users.from(users),
@@ -17,7 +17,7 @@ public class Ladder {
         );
     }
 
-    private Ladder(Floor floor, Users users, StepStrategy strategy) {
+    private Ladder(Floor floor, Users users, LineStrategy strategy) {
         this.users = users;
         this.lines = Lines.of(floor, users.countOfUsers(), strategy);
     }

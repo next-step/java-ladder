@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class RandomStepStrategy implements StepStrategy {
+public class RandomLineStrategy implements LineStrategy {
     @Override
     public Line execute(int countOfUsers) {
         List<StepType> floor = new ArrayList<>();
