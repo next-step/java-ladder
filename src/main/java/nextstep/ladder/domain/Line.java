@@ -10,7 +10,15 @@ public class Line {
 
     private final List<Boolean> points;
 
-    public Line(List<Boolean> points) {
+    public static Line of(Boolean... points) {
+        return new Line(List.of(points));
+    }
+
+    public static Line of(List<Boolean> points) {
+        return new Line(points);
+    }
+
+    private Line(List<Boolean> points) {
         validateConsecutivePoint(points);
         this.points = points;
     }

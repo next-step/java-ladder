@@ -25,7 +25,7 @@ public class Ladder {
     }
 
     private static List<Line> createLines(int pointSize, int height) {
-        return Stream.generate(() -> new Line(RandomPointsGenerator.generate(pointSize)))
+        return Stream.generate(() -> Line.of(RandomPointsGenerator.generate(pointSize)))
                 .limit(height)
                 .collect(Collectors.toList());
     }

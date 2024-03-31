@@ -15,11 +15,11 @@ public class LadderGameTest {
     void 사다리_게임_생성() {
         LadderGame ladder = LadderGame.of(List.of("pobi", "honux", "crong", "ny"),
                 List.of(
-                    new Line(List.of(true, false, true)),
-                    new Line(List.of(false, true, false)),
-                    new Line(List.of(true, false, false)),
-                    new Line(List.of(false, true, false)),
-                    new Line(List.of(true, false, true))
+                    Line.of(true, false, true),
+                    Line.of(false, true, false),
+                    Line.of(true, false, false),
+                    Line.of(false, true, false),
+                    Line.of(true, false, true)
                 )
         );
 

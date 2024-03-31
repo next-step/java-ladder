@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.*;
 
 public class LineTest {
@@ -17,7 +15,7 @@ public class LineTest {
     @DisplayName("[성공] 라인을 생성한다.")
     void 라인_생성() {
         assertThatNoException().isThrownBy(() -> {
-            new Line(List.of(true, false, true, false));
+            Line.of(true, false, true, false);
         });
     }
 
@@ -25,7 +23,7 @@ public class LineTest {
     @CsvSource(value = {"0:true", "1:false", "2:true"}, delimiter = ':')
     @DisplayName("[성공] 가로 좌표가 있거나 없는 라인을 생성한다.")
     void 라인_생성_가로_라인_유무(int index, boolean bool) {
-        Line line = new Line(List.of(true, false, true));
+        Line line = Line.of(true, false, true);
         assertThat(line.get().get(index)).isEqualTo(bool);
     }
 
@@ -33,7 +31,7 @@ public class LineTest {
     @DisplayName("[실패] 라인의 좌표가 연속적으로 true 가 나오는 경우 LineConsecutivePointException 예외가 발생한다.")
     void 라인_생성_예외() {
         assertThatExceptionOfType(LineConsecutivePointException.class)
-                .isThrownBy(() -> new Line(List.of(true, true, false)))
+                .isThrownBy(() -> Line.of(true, true, false))
                 .withMessageContaining("하나의 라인에 연속적인 좌표는 가질 수 없습니다.");
     }
 
