@@ -38,4 +38,16 @@ public class Line {
         return Collections.unmodifiableList(this.points);
     }
 
+    public int move(int position) {
+        if (points.get(position)) {
+            return position + 1;
+        }
+
+        if (points.get(position - 1)) {
+            return position - 1;
+        }
+
+        return position;
+    }
+
 }

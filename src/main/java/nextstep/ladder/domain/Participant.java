@@ -30,7 +30,7 @@ public class Participant {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Participant that = (Participant) o;
-        return name.equals(that.name);
+        return Objects.equals(name, that.name);
     }
 
     @Override
@@ -49,7 +49,8 @@ public class Participant {
             if (PARTICIPANT_CACHE.containsKey(name)) {
                 return PARTICIPANT_CACHE.get(name);
             }
-            return PARTICIPANT_CACHE.put(name, new Participant(name));
+            PARTICIPANT_CACHE.put(name, new Participant(name));
+            return PARTICIPANT_CACHE.get(name);
         }
     }
 }

@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LadderGame {
 
@@ -36,6 +37,23 @@ public class LadderGame {
 
     public Ladder getLadder() {
         return this.ladder;
+    }
+
+    public List<ParticipantPosition> execute(String executeString) {
+        if (executeString.equals("all")) {
+            return participants.get().stream()
+                    .map((participant) -> ParticipantPosition.of(participant, move(participant)))
+                    .collect(Collectors.toUnmodifiableList());
+        }
+
+        Participant participant = Participant.of(executeString);
+        ParticipantPosition position = ParticipantPosition.of(participant, move(participant));
+        return List.of(position);
+    }
+
+    private int move(Participant participant) {
+        int position = participants.startPosition(participant);
+        return ladder.move(position);
     }
 
 }

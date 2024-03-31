@@ -25,4 +25,9 @@ public class Participants {
     public List<Participant> get() {
         return this.participants;
     }
+
+    public int startPosition(Participant executeParticipant) {
+        return participants.indexOf(executeParticipant);
+    }
+
 }
