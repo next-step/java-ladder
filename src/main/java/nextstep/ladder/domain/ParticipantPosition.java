@@ -20,6 +20,14 @@ public class ParticipantPosition {
         this.position = position;
     }
 
+    public Participant getParticipant() {
+        return this.participant;
+    }
+
+    public int getPosition() {
+        return this.position;
+    }
+
     @Override
     public boolean equals(Object o) {
 

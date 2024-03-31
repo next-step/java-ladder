@@ -67,4 +67,19 @@ public class InputView {
         return parseStringList(nextLine());
     }
 
+    public static String readNameForGameResult() {
+        System.out.println("결과를 보고 싶은 사람은?");
+
+        String name;
+        try {
+            name = nextLine();
+            ParticipantValidator.validateNameLength(name);
+        } catch (ParticipantNameLengthExceedException e) {
+            ResultView.printException(e.getMessage());
+            return readNameForGameResult();
+        }
+
+        return name;
+    }
+
 }

@@ -2,6 +2,7 @@ package nextstep.ladder.controller;
 
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderGame;
+import nextstep.ladder.domain.ParticipantPosition;
 import nextstep.ladder.domain.Participants;
 import nextstep.ladder.ui.InputView;
 import nextstep.ladder.ui.ResultView;
@@ -19,6 +20,16 @@ public class LadderGameController {
             LadderGame ladderGame = LadderGame.of(participants, ladder);
 
             ResultView.printLadderGame(ladderGame, prizes);
+
+            while (true) {
+                String resultName = InputView.readNameForGameResult();
+                List<ParticipantPosition> positions = ladderGame.execute(resultName);
+                ResultView.printLadderGameResult(prizes, positions);
+
+                if (resultName.equals("all")) {
+                    break;
+                }
+            }
         } catch (IllegalArgumentException e) {
             ResultView.printException(e.getMessage());
         } catch (Exception e) {

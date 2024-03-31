@@ -50,6 +50,17 @@ public class ResultView {
                 .collect(Collectors.joining());
     }
 
+    public static void printLadderGameResult(List<String> prizes, List<ParticipantPosition> positions) {
+        System.out.println("실행 결과");
+        System.out.println(formatResult(prizes, positions));
+    }
+
+    private static String formatResult(List<String> prizes, List<ParticipantPosition> positions) {
+        return positions.stream()
+                .map(position -> String.format("%s : %s", position.getParticipant().getName(), prizes.get(position.getPosition())))
+                .collect(Collectors.joining(System.lineSeparator()));
+    }
+
     public static void printException(String message, Exception e) {
         printException(message);
         e.printStackTrace();
