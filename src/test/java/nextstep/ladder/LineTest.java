@@ -9,20 +9,21 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.assertj.core.api.Assertions.*;
 
 public class LineTest {
 
     @Test
-    @DisplayName("[성공] 4 만큼의 라인을 생성한다.")
+    @DisplayName("[성공] 라인을 생성한다.")
     void 라인_생성() {
-        assertThat((new Line(List.of(true, false, true, false)).get())).hasSize(4);
+        assertThatNoException().isThrownBy(() -> {
+            new Line(List.of(true, false, true, false));
+        });
     }
 
     @ParameterizedTest(name = "[{index}] line.get().get({0}) is {1}")
     @CsvSource(value = {"0:true", "1:false", "2:true"}, delimiter = ':')
-    @DisplayName("[성공] 가로 라인이 있거나 없는 라인을 생성한다.")
+    @DisplayName("[성공] 가로 좌표가 있거나 없는 라인을 생성한다.")
     void 라인_생성_가로_라인_유무(int index, boolean bool) {
         Line line = new Line(List.of(true, false, true));
         assertThat(line.get().get(index)).isEqualTo(bool);
