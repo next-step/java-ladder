@@ -23,8 +23,16 @@ public class InputView {
 
     private static List<String> readParticipantNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉽표(,)로 구분하세요)");
-        List<String> names = parseStringList(nextLine());
-        validateParticipantNames(names);
+
+        List<String> names;
+        try {
+            names = parseStringList(nextLine());
+            validateParticipantNames(names);
+        } catch (ParticipantNameLengthExceedException e) {
+            ResultView.printException(e.getMessage());
+            return readParticipantNames();
+        }
+
         return names;
     }
 
@@ -39,8 +47,16 @@ public class InputView {
 
     private static int readLadderMaxHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        int height = nextInt();
-        validateLadderMaxHeight(height);
+
+        int height;
+        try {
+            height = nextInt();
+            validateLadderMaxHeight(height);
+        } catch (LadderHeightException e) {
+            ResultView.printException(e.getMessage());
+            return readLadderMaxHeight();
+        }
+
         return height;
     }
 
@@ -52,14 +68,14 @@ public class InputView {
         names.forEach(InputView::validateName);
     }
 
-    private static void validateName(String name) {
+    private static void validateName(String name) throws ParticipantNameLengthExceedException {
         int nameLength = name.length();
         if (nameLength < Participant.MIN_NAME_LENGTH || nameLength > Participant.MAX_NAME_LENGTH) {
             throw new ParticipantNameLengthExceedException(name);
         }
     }
 
-    private static void validateLadderMaxHeight(int height) {
+    private static void validateLadderMaxHeight(int height) throws LadderHeightException {
         if (height < Ladder.MIN_LADDER_HEIGHT) {
             throw new LadderHeightException(height);
         }
