@@ -14,13 +14,11 @@ public class LadderGameController {
     public void doLadderGame() {
         try {
             Participants participants = Participants.of(InputView.readParticipantNames());
-            Ladder ladder = Ladder.of(participants.numberOf(), InputView.readLadderMaxHeight());
             List<String> prizes = InputView.readLadderGamePrizes();
+            Ladder ladder = Ladder.of(participants.numberOf(), InputView.readLadderMaxHeight());
 
             LadderGame ladderGame = LadderGame.of(participants, ladder);
-
             ResultView.printLadderGame(ladderGame, prizes);
-
             while (true) {
                 String resultName = InputView.readNameForGameResult();
                 List<ParticipantPosition> positions = ladderGame.execute(resultName);
