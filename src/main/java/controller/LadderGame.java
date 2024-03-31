@@ -14,6 +14,7 @@ public class LadderGame {
     public static void main(String[] args) {
         InputView inputView = new InputView();
         Players players = inputView.inputPlayers();
+        List<String> results = inputView.inputResults();
 
         int ladderHeight = inputView.inputLadderHeight();
 

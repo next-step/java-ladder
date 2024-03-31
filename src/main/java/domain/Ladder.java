@@ -13,7 +13,7 @@ public class Ladder implements Iterable<Line> {
         this.lines = lines;
     }
 
-    public LadderResult play(Players players, String[] results) {
+    public LadderResult play(Players players, List<String> results) {
         return players.play(lines, results);
     }
 

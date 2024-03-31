@@ -20,7 +20,7 @@ public class LadderTest {
             lines.add(Line.from(players.size(), (playerCount) -> List.of(true, false, true, false)));
         }
 
-        String[] results = new String[]{"꽝", "2000", "3000", "꽝", "10000"};
+        List<String> results = List.of("꽝", "2000", "3000", "꽝", "10000");
         Ladder ladder = Ladder.from(lines);
         LadderResult ladderResult = ladder.play(players, results);
         assertThat(ladderResult.getResult("pobi")).isEqualTo("2000");

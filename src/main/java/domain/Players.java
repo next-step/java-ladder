@@ -36,11 +36,11 @@ public class Players {
                 .collect(Collectors.joining(PLAYER_NAME_SPACE));
     }
 
-    public LadderResult play(List<Line> lines, String[] results) {
+    public LadderResult play(List<Line> lines, List<String> results) {
         return new LadderResult(players.stream()
                 .collect(Collectors.toMap(
                         (player) -> player,
-                        (player) -> results[player.getPlayedLastPosition(lines)]
+                        (player) -> results.get(player.getPlayedLastPosition(lines))
                 ))
         );
     }

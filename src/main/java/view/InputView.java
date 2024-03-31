@@ -16,6 +16,7 @@ public class InputView {
     public static final String LADDER_HEIGHT_RANGE_OVER = "1 이상의 정수만 입력할 수 있습니다.";
     public static final String TRY_INPUT_AGAIN = " 다시 입력해주세요.";
     public static final String NUMBER_FORMAT_EXCEPTION = "숫자만 입력할 수 있습니다.";
+    public static final String PLAY_RESULT_INPUT_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
 
     public Players inputPlayers() {
         return inputPlayers(PLAYER_NAME_INPUT_MESSAGE);
@@ -57,6 +58,19 @@ public class InputView {
             throw new IllegalArgumentException(LADDER_HEIGHT_RANGE_OVER + TRY_INPUT_AGAIN);
         }
         return inputInt;
+    }
+
+    public List<String> inputResults() {
+        return inputResults(PLAY_RESULT_INPUT_MESSAGE);
+    }
+
+    private List<String> inputResults(String message) {
+        System.out.println(message);
+        try {
+            return StringUtil.splitStringToList(SCANNER.nextLine(), ",");
+        } catch (IllegalArgumentException e) {
+            return inputResults(TRY_INPUT_AGAIN);
+        }
     }
 
 }
