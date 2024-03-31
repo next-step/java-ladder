@@ -18,6 +18,10 @@ public class LadderResult {
         return results.get(index);
     }
 
+    public int getResultNumber() {
+        return results.size();
+    }
+
     public List<String> getResults() {
         return Collections.unmodifiableList(results);
     }
