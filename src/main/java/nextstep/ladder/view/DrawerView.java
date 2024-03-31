@@ -1,6 +1,7 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.data.StepType;
+import nextstep.ladder.domain.Line;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ public class DrawerView {
     public static final String EMPTY = "     ";
     public static final String STEP = "-----";
 
-    public void printLadderGameResult(List<String> names, List<List<StepType>> ladderInfo) {
+    public void printLadderGameResult(List<String> names, List<Line> ladderInfo) {
         System.out.println("실행 결과\n");
 
         printUserNames(names);
@@ -25,7 +26,7 @@ public class DrawerView {
         System.out.println();
     }
 
-    private void printLadderInfo(List<List<StepType>> ladderInfo) {
+    private void printLadderInfo(List<Line> ladderInfo) {
         StringBuffer stringBuffer = new StringBuffer();
 
         ladderInfo.forEach(
@@ -36,13 +37,13 @@ public class DrawerView {
         System.out.println(stringBuffer);
     }
 
-    private String lineToString(List<StepType> line) {
+    private String lineToString(Line line) {
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer
                 .append(EMPTY)
                 .append(LADDER_POLE);
 
-        line.forEach(
+        line.toList().forEach(
                 step -> stringBuffer
                         .append(getStepWithStepType(step))
                         .append(LADDER_POLE)

@@ -1,6 +1,5 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.data.StepType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -32,7 +31,7 @@ class LadderTest {
 
         // when
         Ladder ladder = Ladder.of(7, users, new RandomLineStrategy());
-        List<List<StepType>> ladderInfo = ladder.getLadderInfo();
+        List<Line> ladderInfo = ladder.getLadderInfo();
 
         // then
         assertThat(ladderInfo).hasSize(7);

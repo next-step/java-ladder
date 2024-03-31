@@ -1,7 +1,5 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.data.StepType;
-
 import java.util.List;
 
 public class Ladder {
@@ -26,7 +24,7 @@ public class Ladder {
         return this.users.toNameList();
     }
 
-    public List<List<StepType>> getLadderInfo() {
+    public List<Line> getLadderInfo() {
         return this.lines.toList();
     }
 }

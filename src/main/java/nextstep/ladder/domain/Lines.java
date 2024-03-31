@@ -1,10 +1,7 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.data.StepType;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Lines {
 
@@ -22,9 +19,7 @@ public class Lines {
         return new Lines(floor, countOfUsers, strategy);
     }
 
-    public List<List<StepType>> toList() {
-        return lines.stream()
-                .map(Line::toList)
-                .collect(Collectors.toList());
+    public List<Line> toList() {
+        return List.copyOf(this.lines);
     }
 }
