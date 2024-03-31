@@ -46,4 +46,8 @@ public class Line {
     public List<StepType> toList() {
         return List.copyOf(points);
     }
+
+    public StepType getStepTypeOfIndex(int index) {
+        return this.points.get(index);
+    }
 }

@@ -62,6 +62,10 @@
 - 가로선 `Line`을 층수(`Height`)만큼 가지고 있는 일급 컬렉션
 - [x] 층고(`Floor`)를 받고, 층고만큼의 `Line`을 가진다.
 - [x] (역할 : `Lines` -> `Ladder`) `Drawer`에서 참여자의 출력을 위해 `List<List<StepType>>`을 반환 해 준다.
+- [ ] 사다리 게임의 결과를 반환한다.
+
+## MoveDirection
+- 이동 방향을 결정하는 Enum
 
 ## Floor
 - 사다리의 층고 역할을 담당하는 클래스
@@ -84,4 +88,4 @@
 ## Ladder
 - (역할 : `Ladder` -> `Drawer`) `Drawer`에서 출력을 위해 참여자 목록(`List<String>`)을 반환한다.
 - (역할 : `Ladder` -> `Drawer`) `Drawer`에서 출력을 위해 사다리 현황(`List<List<StepType>`)을 반환한다.
-- [ ] 사다리 게임의 결과를 반환한다.
+- [x] 사다리 게임의 결과를 반환한다.
