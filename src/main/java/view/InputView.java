@@ -26,6 +26,7 @@ public class InputView {
     public static final String INPUT_DELIMITER = ",";
     public static final int INITIAL_INDEX = 0;
     public static final int MIN_LADDER_HEIGHT = 1;
+    public static final String RESULTS_CANT_MORE_PLAYER_SIZE = "결과 개수는 Player의 수보다 많을 수 없습니다.";
 
     public Players inputPlayers() {
         return inputPlayers(PLAYER_NAME_INPUT_MESSAGE);
@@ -69,16 +70,20 @@ public class InputView {
         return inputInt;
     }
 
-    public List<String> inputResults() {
-        return inputResults(PLAY_RESULT_INPUT_MESSAGE);
+    public List<String> inputResults(int playerSize) {
+        return inputResults(PLAY_RESULT_INPUT_MESSAGE, playerSize);
     }
 
-    private List<String> inputResults(String message) {
+    private List<String> inputResults(String message, int playerSize) {
         System.out.println(message);
         try {
-            return StringUtil.splitStringToList(SCANNER.nextLine(), INPUT_DELIMITER);
+            List<String> results = StringUtil.splitStringToList(SCANNER.nextLine(), INPUT_DELIMITER);
+            if (results.size() > playerSize) {
+                throw new IllegalArgumentException(RESULTS_CANT_MORE_PLAYER_SIZE);
+            }
+            return results;
         } catch (IllegalArgumentException e) {
-            return inputResults(TRY_INPUT_AGAIN);
+            return inputResults(e.getMessage() + TRY_INPUT_AGAIN, playerSize);
         }
     }
 

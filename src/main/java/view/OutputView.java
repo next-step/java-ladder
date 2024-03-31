@@ -19,9 +19,7 @@ public class OutputView {
             .forEach(line -> {
                 StringBuilder sb = new StringBuilder();
                 sb.append("|");
-                line.forEach(point-> {
-                    appendLineByPoint(point, sb);
-                });
+                line.forEach(point-> appendLineByPoint(point, sb));
                 System.out.println(sb);
             });
     }
@@ -35,9 +33,7 @@ public class OutputView {
     }
 
     public void printResults(List<String> results) {
-        results.forEach(result -> {
-            System.out.print(result + Players.PRINT_SPACE);
-        });
+        results.forEach(result -> System.out.print(result + Players.PRINT_SPACE));
         System.out.println();
     }
 }

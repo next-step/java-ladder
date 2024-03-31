@@ -29,7 +29,10 @@ public class LadderResult {
     public String resultAllToString() {
         StringBuilder sb = new StringBuilder();
         for (Map.Entry<Player, String> entry : ladderResult.entrySet()) {
-            sb.append(entry.getKey() + " : " + entry.getValue() + "\n");
+            sb.append(entry.getKey())
+                    .append(" : ")
+                    .append(entry.getValue())
+                    .append("\n");
         }
         return sb.toString();
     }
