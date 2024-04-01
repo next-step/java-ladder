@@ -6,6 +6,8 @@ import java.util.stream.Stream;
 
 public class Participants {
 
+    private static final String ALL_PARTICIPANTS = "all";
+
     private final List<Participant> participants;
 
     public static Participants of(List<String> names) {
@@ -33,6 +35,10 @@ public class Participants {
 
     public Stream<Participant> stream() {
         return this.participants.stream();
+    }
+
+    public static boolean meanAllParticipants(String name) {
+        return ALL_PARTICIPANTS.equals(name);
     }
 
 }
