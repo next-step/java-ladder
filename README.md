@@ -32,4 +32,4 @@ tdd를 통한 개발을 할 때 도메인, 요구 사항에 대한 명확한 이
 - [x] Line 객체를 초기화했을 때, 앞 부분이 가로선이 생겼다면 그 다음 부분은 공백이 된다
 - [x] 0명이거나 음수를 입력했을 때, IllegalArgumentException을 반환한다 
 - [x] Ladder 객체를 초기화했을 때, 입력한 사다리 높이에 따라 Line 객체가 생성된다
-- [ ] 사다리 높이가 0이거나 음수를 입력했을 때, IllegalArgumentException을 반환한다
+- [x] 사다리 높이가 0이거나 음수를 입력했을 때, IllegalArgumentException을 반환한다
