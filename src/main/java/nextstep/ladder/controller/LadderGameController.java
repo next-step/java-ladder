@@ -4,22 +4,21 @@ import nextstep.ladder.domain.*;
 import nextstep.ladder.ui.InputView;
 import nextstep.ladder.ui.ResultView;
 
-import java.util.List;
+import java.util.Map;
 
 public class LadderGameController {
 
     public void doLadderGame() {
         try {
             Participants participants = Participants.of(InputView.readParticipantNames());
-            List<String> prizes = InputView.readLadderGamePrizes(participants.numberOf());
+            int numberOfParticipant = participants.numberOf();
+            Prizes prizes = new Prizes(numberOfParticipant, InputView.readLadderGamePrizes(numberOfParticipant));
             Ladder ladder = Ladder.of(participants.numberOf(), InputView.readLadderMaxHeight());
 
-            LadderGame ladderGame = LadderGame.of(participants, ladder);
-            ResultView.printLadderGame(ladderGame, prizes);
+            Map<Participant, String> prizeMap = ladder.move(participants, prizes);
+            ResultView.printLadder(ladder, prizeMap);
 
-            List<ParticipantPosition> positions = ladderGame.execute();
-            LadderGameResult ladderGameResult = new LadderGameResult(prizes, positions);
-            printLadderGameResult(ladderGameResult);
+            printPrizesRepeatedly(prizeMap);
         } catch (IllegalArgumentException e) {
             ResultView.printException(e.getMessage());
         } catch (Exception e) {
@@ -27,14 +26,11 @@ public class LadderGameController {
         }
     }
 
-    private void printLadderGameResult(LadderGameResult ladderGameResult) {
-        while (true) {
+    private void printPrizesRepeatedly(Map<Participant, String> prizeMap) {
+        String name = "";
+        while (!Participants.meanAllParticipants(name)) {
             String resultName = InputView.readNameForGameResult();
-            ResultView.printLadderGameResult(ladderGameResult, resultName);
-
-            if (resultName.equals("all")) {
-                break;
-            }
+            ResultView.printLadderGameResult(prizeMap, resultName);
         }
     }
 }
