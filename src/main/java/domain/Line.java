@@ -35,8 +35,8 @@ public class Line {
                 .forEach(i -> this.addBridge(i, bridgeCreationStrategy.create()));
     }
 
-    private void addBridge(int height, boolean value) {
-        heightToBridges.put(height, value);
+    private void addBridge(int height, boolean isBridge) {
+        heightToBridges.put(height, isBridge);
     }
 
     public boolean hasBridge(int height) {
