@@ -17,26 +17,27 @@ public class LadderGame {
         InputView inputView = new InputView();
         Players players = inputView.inputPlayers();
         List<String> results = inputView.inputResults(players.size());
-
         int ladderHeight = inputView.inputLadderHeight();
 
-        PointsMakeStrategy pointsMakeStrategy = new RandomPointsMakeStrategy();
+        Ladder ladder = makeLadder(ladderHeight, players);
+        printLadder(players, ladder, results);
+        LadderResult ladderResult = ladder.play(players, results);
+        inputView.printPlayerResult(ladderResult);
+    }
 
-        List<Line> lines = new ArrayList<>();
-
-        for (int i = 0; i < ladderHeight; i++) {
-            lines.add(Line.from(players.size(), pointsMakeStrategy));
-        }
-        Ladder ladder = Ladder.from(lines);
-
+    private static void printLadder(Players players, Ladder ladder, List<String> results) {
         OutputView outputView = new OutputView();
         outputView.printPlayers(players);
         outputView.printLadder(ladder);
         outputView.printResults(results);
+    }
 
-        LadderResult ladderResult = ladder.play(players, results);
-
-        inputView.printPlayerResult(ladderResult);
-
+    private static Ladder makeLadder(int ladderHeight, Players players) {
+        PointsMakeStrategy pointsMakeStrategy = new RandomPointsMakeStrategy();
+        List<Line> lines = new ArrayList<>();
+        for (int i = 0; i < ladderHeight; i++) {
+            lines.add(Line.from(players.size(), pointsMakeStrategy));
+        }
+        return Ladder.from(lines);
     }
 }
