@@ -1,10 +1,8 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.LadderGame;
-import ladder.domain.Line;
-import ladder.domain.Participant;
+import ladder.domain.*;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class DrawView {
@@ -14,20 +12,21 @@ public class DrawView {
     public static final String NON_EXIST_MARK = " ";
     public static final String PREFIX = "|";
 
-    public void drawResult(LadderGame ladderGame) {
+    public void drawLadder(LadderGame ladderGame, GameResult results) {
         System.out.println("실행결과");
         drawParticipants(ladderGame.getParticipant());
-        drawLadder(ladderGame.getLadder());
+        drawLine(ladderGame.getLadder());
+        drawResult(results);
     }
 
-    public void drawParticipants(Participant participant) {
-        System.out.println(participant.getNames().stream()
+    public void drawParticipants(Participants participants) {
+        System.out.println(participants.getNames().stream()
                 .map(name -> String.format("%-" + 6 + "s", name))
                 .collect(Collectors.joining())
         );
     }
 
-    public void drawLadder(Ladder ladder) {
+    public void drawLine(Ladder ladder) {
         ladder.getLines().stream()
                 .map(Line::getLine)
                 .forEach(line -> System.out.println(line.stream()
@@ -41,5 +40,17 @@ public class DrawView {
             return PREFIX + EXIST_MARK.repeat(LADDER_WIDTH);
         }
         return PREFIX + NON_EXIST_MARK.repeat(LADDER_WIDTH);
+    }
+
+    private void drawResult(GameResult results) {
+        System.out.println(results.getRewords().stream()
+                .map(reword -> String.format("%-" + 6 + "s", reword))
+                .collect(Collectors.joining()));
+    }
+
+    public void drawGameResult(List<Gamer> gamers) {
+        System.out.println(gamers.stream()
+                .map(gamer -> String.format("%-" + 6 + "s", gamer.getName()))
+                .collect(Collectors.joining()));
     }
 }
