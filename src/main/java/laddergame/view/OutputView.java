@@ -1,10 +1,13 @@
 package laddergame.view;
 
 import laddergame.domain.Players;
+import laddergame.domain.PlayersAndWinningContents;
+import laddergame.domain.WinningContents;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.Line;
 
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class OutputView {
     private static final String PLAYER_INPUT_GUIDE_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
@@ -17,7 +20,9 @@ public class OutputView {
     private static final String BLANK = " ";
     private static final String NEXT_LINE = System.lineSeparator();
     private static final String PLAYER_NAME_FORMAT = "%6s";
+    private static final String WINNING_CONTENTS_FORMAT = "%-6s";
     private static final int FIRST_INDEX = 0;
+    private static final int SECOND_INDEX = 1;
 
 
     public static void printPlayerInputGuideMessage() {
@@ -46,8 +51,8 @@ public class OutputView {
         System.out.println(exceptionMessage);
     }
 
-    public static void printExecutionResult(Players players, Ladder ladder) {
-        int lengthOfFirstPlayerName = players.findPlayerByIndex(FIRST_INDEX)
+    public static void printExecutionResult(PlayersAndWinningContents playersAndWinningContents, Ladder ladder) {
+        int lengthOfFirstPlayerName = playersAndWinningContents.findPlayerByIndex(FIRST_INDEX)
                 .lengthOfName();
 
         String executionResult = new StringBuilder()
@@ -55,9 +60,11 @@ public class OutputView {
                 .append(EXECUTION_RESULT_MESSAGE)
                 .append(NEXT_LINE)
                 .append(NEXT_LINE)
-                .append(playersMessage(players))
+                .append(playersMessage(playersAndWinningContents.players()))
                 .append(NEXT_LINE)
                 .append(ladderMessage(lengthOfFirstPlayerName, ladder))
+                .append(NEXT_LINE)
+                .append(winningContentsMessage(lengthOfFirstPlayerName, playersAndWinningContents.winningContents()))
                 .toString();
 
         System.out.println(executionResult);
@@ -76,6 +83,27 @@ public class OutputView {
                 .stream()
                 .map(line -> lineMessage(lengthOfFirstPlayerName, line))
                 .collect(Collectors.joining(NEXT_LINE));
+    }
+
+    private static String winningContentsMessage(int lengthOfFirstPlayerName, WinningContents winningContents) {
+        String firstWinningContentFormat = new StringBuilder()
+                .append("%-")
+                .append(lengthOfFirstPlayerName + 1)
+                .append("s")
+                .toString();
+
+        String firstWinningContent = winningContents.findWinningContentByIndex(FIRST_INDEX)
+                .winningContent();
+        StringBuilder winningContentsMessageBuilder = new StringBuilder(String.format(firstWinningContentFormat, firstWinningContent));
+
+        IntStream.range(SECOND_INDEX, winningContents.numberOfWinningContents())
+                .forEach(i -> {
+                    String winningContent = winningContents.findWinningContentByIndex(i)
+                            .winningContent();
+                    winningContentsMessageBuilder.append(String.format(WINNING_CONTENTS_FORMAT, winningContent));
+                });
+
+        return winningContentsMessageBuilder.toString();
     }
 
     private static String lineMessage(int lengthOfFirstPlayerName, Line line) {

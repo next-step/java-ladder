@@ -23,6 +23,17 @@ class WinningContentsTest {
     }
 
     @Test
+    @DisplayName("findWinningContentByIndex(): WinningContents.winningContents 중 전달된 index 순서에 해당하는 winningContent를 반환한다.")
+    void testFindPlayerByIndex() {
+        WinningContent firstWinningContent = WinningContent.valueOf("a");
+        WinningContent secondWinningContent = WinningContent.valueOf("b");
+        WinningContents winningContents = WinningContents.newWinningContents(firstWinningContent, secondWinningContent);
+
+        assertThat(winningContents.findWinningContentByIndex(0)).isEqualTo(firstWinningContent);
+        assertThat(winningContents.findWinningContentByIndex(1)).isEqualTo(secondWinningContent);
+    }
+
+    @Test
     @DisplayName("numberOfWinningContents(): WinningContents.winningContents의 크기를 반환한다.")
     void testNumberOfWinningContents() {
         WinningContents winningContents = WinningContents.newWinningContents("a", "b", "c");

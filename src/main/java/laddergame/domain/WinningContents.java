@@ -1,6 +1,7 @@
 package laddergame.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,10 +11,14 @@ import static laddergame.exception.ExceptionMessage.WRONG_SIZE_OF_WINNINGS_MESSA
 public class WinningContents {
     private final List<WinningContent> winningContents;
 
-    private WinningContents(String... winnings) {
-        this(Arrays.stream(winnings)
+    private WinningContents(String... winningContents) {
+        this(Arrays.stream(winningContents)
                 .map(WinningContent::valueOf)
                 .collect(Collectors.toList()));
+    }
+
+    private WinningContents(WinningContent... winningContents) {
+        this(List.of(winningContents));
     }
 
     private WinningContents(List<WinningContent> winningContents) {
@@ -27,8 +32,12 @@ public class WinningContents {
         }
     }
 
-    public static WinningContents newWinningContents(String... winnings) {
-        return new WinningContents(winnings);
+    public static WinningContents newWinningContents(String... winningContents) {
+        return new WinningContents(winningContents);
+    }
+
+    public static WinningContents newWinningContents(WinningContent... winningContents) {
+        return new WinningContents(winningContents);
     }
 
     public static WinningContents valueOf(List<WinningContent> winningContents) {
@@ -37,5 +46,13 @@ public class WinningContents {
 
     public int numberOfWinningContents() {
         return winningContents.size();
+    }
+
+    public List<WinningContent> winningContents() {
+        return Collections.unmodifiableList(winningContents);
+    }
+
+    public WinningContent findWinningContentByIndex(int index) {
+        return winningContents.get(index);
     }
 }
