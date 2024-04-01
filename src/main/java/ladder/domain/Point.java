@@ -22,6 +22,10 @@ public class Point {
         return isExist;
     }
 
+    public boolean moveHorizontal() {
+        return this.isExist;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
