@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static ladder.domain.LadderLine.*;
+import static ladder.domain.LadderLine.INVALID_LADDER_LINE_RULE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -19,11 +19,11 @@ public class LadderLineTest {
     List<Boolean> given = List.of(true, false, false, true, false);
     LadderLine ladderLine = new LadderLine(given);
 
-    assertThat(ladderLine.printLine(0)).isEqualTo(PRINT_LINE);
-    assertThat(ladderLine.printLine(1)).isEqualTo(EMPTY_LINE);
-    assertThat(ladderLine.printLine(2)).isEqualTo(EMPTY_LINE);
-    assertThat(ladderLine.printLine(3)).isEqualTo(PRINT_LINE);
-    assertThat(ladderLine.printLine(4)).isEqualTo(EMPTY_LINE);
+    assertThat(ladderLine.isTrue(0)).isEqualTo(true);
+    assertThat(ladderLine.isTrue(1)).isEqualTo(false);
+    assertThat(ladderLine.isTrue(2)).isEqualTo(false);
+    assertThat(ladderLine.isTrue(3)).isEqualTo(true);
+    assertThat(ladderLine.isTrue(4)).isEqualTo(false);
   }
 
   @Test

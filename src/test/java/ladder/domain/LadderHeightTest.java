@@ -18,7 +18,7 @@ public class LadderHeightTest {
   void ladderHeightTest() {
     int given = 5;
     LadderHeight ladderHeight = new LadderHeight(given);
-    assertThat(ladderHeight.isSame(given)).isTrue();
+    assertThat(ladderHeight.height()).isEqualTo(given);
   }
 
   @ParameterizedTest
