@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 public class Line {
 
     private final Height height;
-    private final Map<Integer, Boolean> heightToBridges;
+    private final Map<Integer, Bridge> heightToBridges;
 
     public Line(int height) {
         this(new Height(height));
@@ -36,11 +36,11 @@ public class Line {
     }
 
     private void addBridge(int height, boolean isBridge) {
-        heightToBridges.put(height, isBridge);
+        heightToBridges.put(height, new Bridge(isBridge));
     }
 
     public boolean hasBridge(int height) {
-        return heightToBridges.getOrDefault(height, false);
+        return heightToBridges.getOrDefault(height, new Bridge(false)).has();
     }
 
     public int height() {
