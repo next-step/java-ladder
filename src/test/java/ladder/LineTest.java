@@ -1,0 +1,4 @@
+package ladder;
+
+class LineTest {
+}
