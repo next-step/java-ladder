@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.data.StepType;
 import org.assertj.core.api.Assertions;
+import org.assertj.core.internal.IterableElementComparisonStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -9,6 +10,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 
 class LineTest {
@@ -44,5 +46,19 @@ class LineTest {
         // then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> Line.of(3, List.of(StepType.STEP, StepType.EMPTY, StepType.STEP)));
+    }
+
+    @DisplayName("시작 전 위치를 주면, 현재 Line에 대한 이동 시 결과를 반환한다.")
+    @Test
+    void getDestinationPointFromDepartPoint() {
+        Line line = Line.of(5, List.of(StepType.STEP, StepType.EMPTY, StepType.STEP, StepType.EMPTY));
+        // then
+        assertAll(
+            () -> assertThat(line.getDestinationFrom(0)).isEqualTo(1),
+            () -> assertThat(line.getDestinationFrom(1)).isEqualTo(0),
+            () -> assertThat(line.getDestinationFrom(2)).isEqualTo(3),
+            () -> assertThat(line.getDestinationFrom(3)).isEqualTo(2),
+            () -> assertThat(line.getDestinationFrom(4)).isEqualTo(4)
+        );
     }
 }

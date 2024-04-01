@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.data.MoveDirection;
 import nextstep.ladder.data.StepType;
 
 import java.util.List;
@@ -7,6 +8,7 @@ import java.util.List;
 public class Line {
 
     public static final int MINIMUM_PARTICIPANTS_COUNT = 2;
+    public static final int LEFT_SIDE_INDEX = 0;
     private final List<StepType> points;
 
     private Line(int countOfUsers, List<StepType> stepTypes) {
@@ -47,7 +49,67 @@ public class Line {
         return List.copyOf(points);
     }
 
-    public StepType getStepTypeOfIndex(int index) {
+    public StepType getStepTypeOfIndex(int index) { // TODO : 삭제
         return this.points.get(index);
+    }
+
+    public int getDestinationFrom(int departPosition) {
+        return departPosition + movePosition(departPosition);
+    }
+
+    private int movePosition(int departPosition) {
+        if (isLeftSide(departPosition)) {
+            return moveFromLeftSide(departPosition);
+        }
+
+        if (isRightSide(departPosition)) {
+            return moveFromRightSide(departPosition);
+        }
+
+        return moveFromMiddleSide(departPosition);
+    }
+
+    private boolean isLeftSide(int currentPosition) {
+        return currentPosition == LEFT_SIDE_INDEX;
+    }
+
+    private int moveFromLeftSide(int currentPosition) {
+        if (canMoveToRight(currentPosition)) {
+            return MoveDirection.RIGHT.getDirection();
+        }
+
+        return MoveDirection.STAY.getDirection();
+    }
+
+    private boolean isRightSide( int currentIndex) {
+        return currentIndex == this.points.size();
+    }
+
+    private int moveFromRightSide(int currentIndex) {
+        if (canMoveToLeft(currentIndex)) {
+            return MoveDirection.LEFT.getDirection();
+        }
+
+        return MoveDirection.STAY.getDirection();
+    }
+
+    private int moveFromMiddleSide(int currentIndex) {
+        if (canMoveToLeft(currentIndex)) {
+            return MoveDirection.LEFT.getDirection();
+        }
+
+        if (canMoveToRight(currentIndex)) {
+            return MoveDirection.RIGHT.getDirection();
+        }
+
+        return MoveDirection.STAY.getDirection();
+    }
+
+    private boolean canMoveToLeft(int currentPosition) {
+        return this.points.get(currentPosition - 1) == StepType.STEP;
+    }
+
+    private boolean canMoveToRight(int currentPosition) {
+        return this.points.get(currentPosition) == StepType.STEP;
     }
 }

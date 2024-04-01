@@ -8,7 +8,8 @@ import java.util.List;
 
 public class Lines {
 
-    public static final int LEFT_SIDE_INDEX = 0;
+
+    private static final int LEFT_SIDE_INDEX = 0;
     private final List<Line> lines;
 
     private Lines(Floor floor, int countOfUsers, LineStrategy strategy) {
