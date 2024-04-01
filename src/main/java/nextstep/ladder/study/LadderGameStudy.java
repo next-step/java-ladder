@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.study;
 
 import java.util.Scanner;
 
