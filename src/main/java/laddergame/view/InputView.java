@@ -2,7 +2,7 @@ package laddergame.view;
 
 import laddergame.domain.HeightOfLadder;
 import laddergame.domain.Player;
-import laddergame.domain.Winning;
+import laddergame.domain.WinningContent;
 
 import java.util.Arrays;
 import java.util.List;
@@ -34,13 +34,13 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
-    public static List<Winning> enteredWinnings() {
+    public static List<WinningContent> enteredWinnings() {
         printWinningInputGuideMessage();
 
         String winnings = SCANNER.nextLine();
 
         return Arrays.stream(winnings.split(COMMA_DELIMITER))
-                .map(Winning::valueOf)
+                .map(WinningContent::valueOf)
                 .collect(Collectors.toList());
     }
 

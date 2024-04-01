@@ -2,7 +2,7 @@ package laddergame;
 
 import laddergame.domain.HeightOfLadder;
 import laddergame.domain.Players;
-import laddergame.domain.Winnings;
+import laddergame.domain.WinningContents;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.strategy.RandomStrategy;
 
@@ -14,7 +14,7 @@ public class LadderGameMain {
     public static void main(String[] arguments) throws Exception {
         try {
             Players players = Players.valueOf(enteredPlayers());
-            Winnings winnings = Winnings.valueOf(enteredWinnings());
+            WinningContents winningContents = WinningContents.valueOf(enteredWinnings());
 
 
             HeightOfLadder heightOfLadder = enteredHeightOfLadder();

@@ -6,11 +6,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static laddergame.domain.PlayersAndWinningContents.MIN_NUMBER_OF_PLAYERS_AND_WINNING_CONTENTS;
 import static laddergame.exception.ExceptionMessage.WRONG_SIZE_OF_PLAYERS_MESSAGE;
 
 public class Players {
-    private static final int PLAYERS_MIN_NUMBER = 2;
-
     private final List<Player> players;
 
     private Players(String... players) {
@@ -32,8 +31,8 @@ public class Players {
         int sizeOfPlayers = players.size();
         int sizeOfPlayersSet = new HashSet<>(players).size();
 
-        if (sizeOfPlayers < PLAYERS_MIN_NUMBER || sizeOfPlayers > sizeOfPlayersSet) {
-            throw new IllegalArgumentException(String.format(WRONG_SIZE_OF_PLAYERS_MESSAGE.message(), PLAYERS_MIN_NUMBER));
+        if (sizeOfPlayers < MIN_NUMBER_OF_PLAYERS_AND_WINNING_CONTENTS || sizeOfPlayers > sizeOfPlayersSet) {
+            throw new IllegalArgumentException(String.format(WRONG_SIZE_OF_PLAYERS_MESSAGE.message(), MIN_NUMBER_OF_PLAYERS_AND_WINNING_CONTENTS));
         }
     }
 

@@ -2,12 +2,11 @@ package laddergame.domain;
 
 import java.util.Objects;
 
+import static laddergame.domain.PlayersAndWinningContents.MAX_LENGTH_OF_PLAYER_AND_WINNING_CONTENT;
 import static laddergame.exception.ExceptionMessage.WRONG_PLAYER_NAME_MESSAGE;
 import static laddergame.util.Validator.isNonBlank;
 
 public class Player {
-    private static final int MAX_NAME_LENGTH = 5;
-
     private final String name;
 
     private Player(String name) {
@@ -16,8 +15,8 @@ public class Player {
     }
 
     private void validateName(String name) {
-        if (!isNonBlank(name) || name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException(String.format(WRONG_PLAYER_NAME_MESSAGE.message(), name, MAX_NAME_LENGTH));
+        if (!isNonBlank(name) || name.length() > MAX_LENGTH_OF_PLAYER_AND_WINNING_CONTENT) {
+            throw new IllegalArgumentException(String.format(WRONG_PLAYER_NAME_MESSAGE.message(), name, MAX_LENGTH_OF_PLAYER_AND_WINNING_CONTENT));
         }
     }
 

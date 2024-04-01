@@ -14,7 +14,7 @@ class PlayersTest {
     @DisplayName("Players 인스턴스 생성 테스트")
     class InstanceCreationTest {
         @Test
-        @DisplayName("인스턴스 생성시 players의 크기가 PLAYERS_MIN_NUMBER보다 작은 경우 IllegalArgumentException이 발생한다.")
+        @DisplayName("인스턴스 생성시 players의 크기가 MIN_NUMBER_OF_PLAYERS_AND_WINNING_CONTENTS보다 작은 경우 IllegalArgumentException이 발생한다.")
         void testWrongSizeOfPlayers() {
             List<Player> players = List.of(Player.valueOf("a"));
             assertThatThrownBy(() -> Players.valueOf(players))
