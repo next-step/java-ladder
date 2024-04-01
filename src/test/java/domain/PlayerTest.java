@@ -22,4 +22,12 @@ public class PlayerTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름은 5글자를 초과할 수 없습니다.");
     }
+
+    @DisplayName("이름이 빈 값일 경우 예외가 발생한다.")
+    @Test
+    void test03() {
+        assertThatThrownBy(() -> new Player("   "))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이름이 빈 값입니다.");
+    }
 }

@@ -7,8 +7,15 @@ public class Player {
     private final String name;
 
     public Player(String name) {
+        assertNoBlank(name);
         assertLessThenFiveLength(name);
         this.name = name;
+    }
+
+    private void assertNoBlank(String name) {
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("이름이 빈 값입니다.");
+        }
     }
 
     private void assertLessThenFiveLength(String name) {
