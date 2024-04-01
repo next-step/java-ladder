@@ -57,7 +57,7 @@ public class Lines {
         return moveFromMiddleSide(line, currentIndex);
     }
 
-    private static boolean isLeftSide(int currentIndex) {
+    private boolean isLeftSide(int currentIndex) {
         return currentIndex == LEFT_SIDE_INDEX;
     }
 
@@ -70,7 +70,7 @@ public class Lines {
         return MoveDirection.STAY.getDirection();
     }
 
-    private static boolean isRightSide(int countOfUsers, int currentIndex) {
+    private boolean isRightSide(int countOfUsers, int currentIndex) {
         return currentIndex == (countOfUsers - 1);
     }
 
@@ -94,11 +94,11 @@ public class Lines {
         return MoveDirection.STAY.getDirection();
     }
 
-    private static boolean canMoveToLeft(Line line, int currentIndex) {
+    private boolean canMoveToLeft(Line line, int currentIndex) {
         return line.getStepTypeOfIndex(currentIndex - 1) == StepType.STEP;
     }
 
-    private static boolean canMoveToRight(Line line, int currentIndex) {
+    private boolean canMoveToRight(Line line, int currentIndex) {
         return line.getStepTypeOfIndex(currentIndex) == StepType.STEP;
     }
 }

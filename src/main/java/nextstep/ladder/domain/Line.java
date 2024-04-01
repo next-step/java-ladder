@@ -33,7 +33,7 @@ public class Line {
         }
     }
 
-    private static void validateContinuedStep(List<StepType> strategyResult, int currentIndex) {
+    private void validateContinuedStep(List<StepType> strategyResult, int currentIndex) {
         if (strategyResult.get(currentIndex - 1) == StepType.STEP && strategyResult.get(currentIndex) == StepType.STEP) {
             throw new IllegalArgumentException("올바르지 못한 LineStrategy 입니다.");
         }
