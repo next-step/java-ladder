@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class WinningsTest {
@@ -19,5 +20,12 @@ class WinningsTest {
             assertThatThrownBy(() -> Winnings.valueOf(winnings))
                     .isExactlyInstanceOf(IllegalArgumentException.class);
         }
+    }
+
+    @Test
+    @DisplayName("numberOfWinnings(): Winnings.winnings의 크기를 반환한다.")
+    void testNumberOfWinnings() {
+        Winnings winnings = Winnings.newWinnings("a", "b", "c");
+        assertThat(winnings.numberOfWinnings()).isEqualTo(3);
     }
 }
