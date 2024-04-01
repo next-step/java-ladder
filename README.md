@@ -26,4 +26,5 @@
 - Bridge 객체 
   - [x] bridge 유무를 확인한다.
 - Bridges 객체 
-  - [x] 높이에 따른 Bridge 를 생성할 수 있다.
+  - [x] 특정 높이에 다리 (Bridge) 를 생성한다.
+  - [x] 특정 높이에 다리 (Bridge) 를 제거한다.

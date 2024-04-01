@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 public class Line {
 
     private final Height height;
-    private final Map<Integer, Bridge> heightToBridges;
+    private final Bridges bridges;
 
     public Line(int height) {
         this(new Height(height));
@@ -15,7 +15,7 @@ public class Line {
 
     public Line(Height height) {
         this.height = height;
-        heightToBridges = new HashMap<>();
+        this.bridges = new Bridges(height);
     }
 
     public static Line createWithBridges(Height height, BridgeCreationStrategy bridgeCreationStrategy) {
@@ -27,20 +27,25 @@ public class Line {
     public void resetBridges(Line prev) {
         IntStream.range(0, height.height())
                 .filter(prev::hasBridge)
-                .forEach(i -> this.addBridge(i, false));
+                .forEach(this::removeBridge);
     }
 
     public void addBridges(BridgeCreationStrategy bridgeCreationStrategy) {
         IntStream.range(0, height.height())
-                .forEach(i -> this.addBridge(i, bridgeCreationStrategy.isCreate()));
+                .filter(i -> bridgeCreationStrategy.isCreate())
+                .forEach(this::addBridge);
     }
 
-    private void addBridge(int height, boolean isBridge) {
-        heightToBridges.put(height, new Bridge(isBridge));
+    private void addBridge(int height) {
+        bridges.create(height);
+    }
+
+    private void removeBridge(int height) {
+        bridges.remove(height);
     }
 
     public boolean hasBridge(int height) {
-        return heightToBridges.getOrDefault(height, new Bridge(false)).has();
+        return bridges.has(height);
     }
 
     public int height() {
