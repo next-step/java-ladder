@@ -13,7 +13,7 @@ public class Users {
             new User("jk", 40),
             new User("honux", 45));
 
-    User getUser(String name) {
+    User getUser(final String name) {
         return this.users.stream()
                 .filter(user -> user.matchName(name))
                 .findFirst()
