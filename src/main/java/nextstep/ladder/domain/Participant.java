@@ -2,8 +2,6 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.validator.ParticipantValidator;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 public class Participant {
@@ -13,7 +11,7 @@ public class Participant {
     private final String name;
 
     public static Participant of(String name) {
-        return ParticipantCache.valueOf(name);
+        return new Participant(name);
     }
 
     private Participant(String name) {
@@ -38,19 +36,4 @@ public class Participant {
         return Objects.hash(name);
     }
 
-    private static class ParticipantCache {
-
-        /**
-         * Key: 'name' String <br> Value: 'Participant' Object
-         */
-        static final Map<String, Participant> PARTICIPANT_CACHE = new HashMap<>();
-
-        static Participant valueOf(String name) {
-            if (PARTICIPANT_CACHE.containsKey(name)) {
-                return PARTICIPANT_CACHE.get(name);
-            }
-            PARTICIPANT_CACHE.put(name, new Participant(name));
-            return PARTICIPANT_CACHE.get(name);
-        }
-    }
 }
