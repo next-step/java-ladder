@@ -29,8 +29,8 @@ public class LadderGameController {
     private void printPrizesRepeatedly(Map<Participant, String> prizeMap) {
         String name = "";
         while (!Participants.meanAllParticipants(name)) {
-            String resultName = InputView.readNameForGameResult();
-            ResultView.printLadderGameResult(prizeMap, resultName);
+            name = InputView.readNameForGameResult();
+            ResultView.printLadderGameResult(prizeMap, name);
         }
     }
 }
