@@ -32,7 +32,7 @@ public class Line {
 
     public void addBridges(BridgeCreationStrategy bridgeCreationStrategy) {
         IntStream.range(0, height.height())
-                .forEach(i -> this.addBridge(i, bridgeCreationStrategy.create()));
+                .forEach(i -> this.addBridge(i, bridgeCreationStrategy.isCreate()));
     }
 
     private void addBridge(int height, boolean isBridge) {

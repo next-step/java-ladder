@@ -3,5 +3,5 @@ package domain;
 @FunctionalInterface
 public interface BridgeCreationStrategy {
 
-    boolean create();
+    boolean isCreate();
 }
