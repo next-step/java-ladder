@@ -1,6 +1,6 @@
 package laddergame.domain.ladder;
 
-import laddergame.domain.Players;
+import laddergame.domain.PlayersAndWinningContents;
 import laddergame.domain.ladder.strategy.LinkStrategy;
 
 import java.util.*;
@@ -40,10 +40,10 @@ public class Line {
         return new Line(links);
     }
 
-    public static Line newLine(Players players, LinkStrategy linkStrategy) {
+    public static Line newLine(PlayersAndWinningContents playersAndWinningContents, LinkStrategy linkStrategy) {
         Deque<Link> links = new LinkedList<>();
 
-        IntStream.range(START_RANGE, players.numberOfPlayers() - 1)
+        IntStream.range(START_RANGE, playersAndWinningContents.numberOfLinks())
                 .forEach(i -> links.add(nextLink(links, linkStrategy)));
 
         return new Line(new ArrayList<>(links));

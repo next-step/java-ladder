@@ -24,4 +24,20 @@ public class PlayersAndWinningContents {
     public static PlayersAndWinningContents newPlayersAndWinnings(Players players, WinningContents winningContents) {
         return new PlayersAndWinningContents(players, winningContents);
     }
+
+    public int numberOfLinks() {
+        return players.numberOfPlayers() - 1;
+    }
+
+    public Player findPlayerByIndex(int index) {
+        return players.findPlayerByIndex(index);
+    }
+
+    public Players players() {
+        return players;
+    }
+
+    public WinningContents winningContents() {
+        return winningContents;
+    }
 }

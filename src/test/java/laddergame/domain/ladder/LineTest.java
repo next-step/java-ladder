@@ -1,6 +1,8 @@
 package laddergame.domain.ladder;
 
 import laddergame.domain.Players;
+import laddergame.domain.PlayersAndWinningContents;
+import laddergame.domain.WinningContents;
 import laddergame.domain.ladder.strategy.LinkStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -44,25 +46,26 @@ class LineTest {
         @Nested
         @DisplayName("Line 인스턴스 생성 성공 케이스 테스트")
         class SuccessCaseTest {
+            Players players = Players.newPlayers("a", "b", "c", "d");
+            WinningContents winningContents = WinningContents.newWinningContents("100", "꽝", "1000", "꽝");
+            PlayersAndWinningContents playersAndWinningContents = PlayersAndWinningContents.newPlayersAndWinnings(players, winningContents);
             LinkStrategy linkStrategyStub = () -> true;
 
             @Test
-            @DisplayName("생성된 Line 인스턴스에서 links의 크기는 numberOfPlayers - 1 과 같다.")
+            @DisplayName("생성된 Line 인스턴스에서 links의 크기는 playersAndWinningContents.numberOfLinks()와 동일하다.")
             void testNumberOfPoints() {
-                Players players = Players.newPlayers("a", "b", "c", "d");
-                Line line = Line.newLine(players, linkStrategyStub);
+                Line line = Line.newLine(playersAndWinningContents, linkStrategyStub);
 
-                assertThat(line.links().size()).isEqualTo(players.numberOfPlayers() - 1);
+                assertThat(line.links().size()).isEqualTo(playersAndWinningContents.numberOfLinks());
             }
 
             @Test
             @DisplayName("생성된 Line 인스턴스에서 links는 LINKED를 연속으로 가질 수 없다.")
             void testNonOverlap() {
-                Players players = Players.newPlayers("a", "b", "c", "d", "e", "f", "g", "h", "i", "j");
-                List<Link> links = Line.newLine(players, linkStrategyStub)
+                List<Link> links = Line.newLine(playersAndWinningContents, linkStrategyStub)
                         .links();
 
-                IntStream.range(1, players.numberOfPlayers() - 1)
+                IntStream.range(1, playersAndWinningContents.numberOfLinks())
                         .forEach(i -> {
                             Link now = links.get(i);
                             Link before = links.get(i - 1);
