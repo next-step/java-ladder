@@ -13,7 +13,7 @@ public class Ladder {
         this.lines = Stream.concat(
                 Stream.iterate(new Line(height, pointGenerator), prev -> new Line(height, prev, pointGenerator))
                         .limit(width - 1),
-                Stream.of(new Line(height, new AlwaysFalsePointGenerator()))
+                Stream.of(Line.generateEndLine(height))
         ).collect(Collectors.toList());
     }
 

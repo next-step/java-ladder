@@ -5,15 +5,15 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Humans {
+public class Entries {
 
-    private final List<Human> humanList;
+    private final List<Participant> entries;
 
-    public Humans(String names) {
+    public Entries(String names) {
         validation(names);
-        this.humanList = Arrays.stream(names.split(","))
+        this.entries = Arrays.stream(names.split(","))
                 .map(String::trim)
-                .map(Human::new)
+                .map(Participant::new)
                 .collect(Collectors.toList());
     }
 
@@ -23,7 +23,7 @@ public class Humans {
         }
     }
 
-    public List<Human> getHumanList() {
-        return Collections.unmodifiableList(humanList);
+    public List<Participant> getHumanList() {
+        return Collections.unmodifiableList(entries);
     }
 }

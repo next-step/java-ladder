@@ -6,11 +6,11 @@ import nextstep.step2.view.ResultView;
 public class LadderApplication {
 
     public static void main(String[] args) {
-        Humans humans = new Humans(InputView.inputNames());
+        Entries entries = new Entries(InputView.inputNames());
         int ladderHeight = InputView.inputHeight();
         RandomPointGenerator randomPointGenerator = new RandomPointGenerator();
-        Ladder ladder = new Ladder(ladderHeight, humans.getHumanList().size(), randomPointGenerator);
-        ResultView.printHumans(humans);
+        Ladder ladder = new Ladder(ladderHeight, entries.getHumanList().size(), randomPointGenerator);
+        ResultView.printHumans(entries);
         ResultView.printLadder(ladder);
     }
 }

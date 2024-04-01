@@ -1,7 +1,7 @@
 package nextstep.step2.view;
 
-import nextstep.step2.Human;
-import nextstep.step2.Humans;
+import nextstep.step2.Participant;
+import nextstep.step2.Entries;
 import nextstep.step2.Ladder;
 import nextstep.step2.Line;
 
@@ -9,10 +9,10 @@ import java.util.List;
 
 public class ResultView {
 
-    public static void printHumans(Humans humans) {
+    public static void printHumans(Entries entries) {
         StringBuilder sb = new StringBuilder();
-        for (Human human : humans.getHumanList()) {
-            String name = human.getName();
+        for (Participant participant : entries.getHumanList()) {
+            String name = participant.getName();
             int paddingLength = 6 - name.length();
             sb.append(" ".repeat(Math.max(0, paddingLength)));
             sb.append(name);
