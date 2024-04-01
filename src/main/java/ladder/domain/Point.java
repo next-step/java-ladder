@@ -18,10 +18,6 @@ public class Point {
         return this.isExist && b;
     }
 
-    public boolean isTrue() {
-        return isExist;
-    }
-
     public boolean moveHorizontal() {
         return this.isExist;
     }
