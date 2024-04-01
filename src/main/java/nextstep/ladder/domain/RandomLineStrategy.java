@@ -17,7 +17,7 @@ public class RandomLineStrategy implements LineStrategy {
             floor.add(getNextRandomStepType(floor.get(i - 1), random));
         }
 
-        return Line.of(countOfUsers, floor);
+        return Line.of(floor);
     }
 
     private StepType getNextRandomStepType(StepType beforeStepType, Random random) {

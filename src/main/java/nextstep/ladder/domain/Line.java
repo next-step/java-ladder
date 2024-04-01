@@ -7,26 +7,13 @@ import java.util.List;
 
 public class Line {
 
-    public static final int MINIMUM_PARTICIPANTS_COUNT = 2;
     public static final int LEFT_SIDE_INDEX = 0;
     private final List<StepType> points;
 
-    private Line(int countOfUsers, List<StepType> stepTypes) {
-        validate(countOfUsers, stepTypes);
+    private Line(List<StepType> stepTypes) {
+        validateStepStrategy(stepTypes);
 
         this.points = stepTypes;
-    }
-
-    private void validate(int countOfUsers, List<StepType> strategyResult) {
-        if (countOfUsers < MINIMUM_PARTICIPANTS_COUNT) {
-            throw new IllegalArgumentException(String.format("사용자 수는 %d명 이상이여야 합니다.", MINIMUM_PARTICIPANTS_COUNT));
-        }
-
-        if (countOfUsers != (strategyResult.size() + 1)) {
-            throw new IllegalArgumentException("사용자 수와 사다리 전략 결과의 검증에 실패했습니다.");
-        }
-
-        validateStepStrategy(strategyResult);
     }
 
     private void validateStepStrategy(List<StepType> strategyResult) {
@@ -41,8 +28,8 @@ public class Line {
         }
     }
 
-    public static Line of(int countOfUsers, List<StepType> stepTypes) {
-        return new Line(countOfUsers, stepTypes);
+    public static Line of(List<StepType> stepTypes) {
+        return new Line(stepTypes);
     }
 
     public List<StepType> toList() {
@@ -107,5 +94,9 @@ public class Line {
 
     private boolean canMoveToRight(int currentPosition) {
         return this.points.get(currentPosition) == StepType.STEP;
+    }
+
+    public int size() {
+        return this.points.size();
     }
 }
