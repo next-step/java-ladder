@@ -13,7 +13,7 @@ class UserTest {
     @Test
     void getUserName() {
         // given
-        User candy = User.from("candy", "1등");
+        User candy = User.from("candy");
 
         // then
         assertThat(candy.name()).isEqualTo("candy");
@@ -27,6 +27,6 @@ class UserTest {
 
         // then
         assertThatIllegalArgumentException()
-                        .isThrownBy(() -> User.from(overLimitName, "1등"));
+                        .isThrownBy(() -> User.from(overLimitName));
     }
 }

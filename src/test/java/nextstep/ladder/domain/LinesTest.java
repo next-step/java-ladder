@@ -18,13 +18,13 @@ class LinesTest {
         LineStrategy customStrategy = (count) -> Line.of(List.of(StepType.STEP, StepType.EMPTY, StepType.STEP, StepType.EMPTY));
         Lines lines = Lines.of(Floor.from(3), 5, customStrategy);
 
-        // when
-        List<Integer> integers = lines.gameResult(5);
-        System.out.println(integers);
-
         // then
-        Assertions.assertThat(integers).containsExactly(
-                1, 0, 3, 2, 4
+        org.junit.jupiter.api.Assertions.assertAll(
+                () -> Assertions.assertThat(lines.getUserWinLocation(0)).isEqualTo(1),
+                () -> Assertions.assertThat(lines.getUserWinLocation(1)).isEqualTo(0),
+                () -> Assertions.assertThat(lines.getUserWinLocation(2)).isEqualTo(3),
+                () -> Assertions.assertThat(lines.getUserWinLocation(3)).isEqualTo(2),
+                () -> Assertions.assertThat(lines.getUserWinLocation(4)).isEqualTo(4)
         );
     }
 

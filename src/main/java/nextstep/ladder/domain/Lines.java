@@ -36,17 +36,7 @@ public class Lines {
         return List.copyOf(this.lines);
     }
 
-    public List<Integer> gameResult(int countOfUsers) {
-        List<Integer> userWinLocations = new ArrayList<>();
-
-        for (int i = 0; i < countOfUsers; i++) {
-            userWinLocations.add(getUserWinLocation(i));
-        }
-
-        return userWinLocations;
-    }
-
-    private int getUserWinLocation(int startPosition) {
+    public int getUserWinLocation(int startPosition) {
         int currentPosition = startPosition;
         for (Line line : this.lines) {
             currentPosition = line.getDestinationFrom(currentPosition);

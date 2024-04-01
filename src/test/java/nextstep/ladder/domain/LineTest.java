@@ -24,6 +24,7 @@ class LineTest {
     @DisplayName("참여자 수의 -1 만큼 위치가 존재한다.")
     @Test
     void sizeAsCountOfUsers() {
+        // when
         Line line = Line.of(List.of(StepType.STEP, StepType.EMPTY, StepType.STEP, StepType.EMPTY));
 
         // then

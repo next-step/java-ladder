@@ -2,6 +2,7 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.data.StepType;
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderGame;
 import nextstep.ladder.domain.Line;
 
 import java.util.List;
@@ -70,25 +71,25 @@ public class DrawerView {
         System.out.println();
     }
 
-    public void printWinningProductOfUser(String name, Ladder ladder) {
-        System.out.println(getWinningProductOfUser(name, ladder));
+    public void printWinningProductOfUser(String name, LadderGame ladderGame) {
+        System.out.println(getWinningProductOfUser(name, ladderGame));
         System.out.println();
     }
 
-    private String getWinningProductOfUser(String name, Ladder ladder) {
+    private String getWinningProductOfUser(String name, LadderGame ladderGame) {
         if (ALL_USERS_QUERY.equalsIgnoreCase(name)) {
-            return getWinningProductOfAllUsers(ladder);
+            return getWinningProductOfAllUsers(ladderGame);
         }
 
-        return ladder.getUserProducts(name);
+        return ladderGame.getWinProduct(name);
     }
 
-    private static String getWinningProductOfAllUsers(Ladder ladder) {
+    private static String getWinningProductOfAllUsers(LadderGame ladderGame) {
         StringBuilder stringBuffer = new StringBuilder();
 
-        List<String> participants = ladder.getParticipants();
+        List<String> participants = ladderGame.getParticipants();
         for (String participant : participants) {
-            String winningProduct = ladder.getUserProducts(participant);
+            String winningProduct = ladderGame.getWinProduct(participant);
             stringBuffer.append(participant)
                     .append(" : ")
                     .append(winningProduct)
