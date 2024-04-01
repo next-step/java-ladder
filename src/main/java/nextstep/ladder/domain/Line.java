@@ -49,10 +49,6 @@ public class Line {
         return List.copyOf(points);
     }
 
-    public StepType getStepTypeOfIndex(int index) { // TODO : 삭제
-        return this.points.get(index);
-    }
-
     public int getDestinationFrom(int departPosition) {
         return departPosition + movePosition(departPosition);
     }
