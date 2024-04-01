@@ -8,11 +8,13 @@ public class Position {
     public static final String POSITION_CANT_MINUS_MESSAGE = "Position은 0 이상의 정수여야 합니다.";
     public static final int MIN_POSITION_NUMBER = 0;
     public static final int MAX_POSITION_NUMBER = 20;
-    private static final Map<Integer, Position> POSITION_MAP = new HashMap<>() {{
+    private static final Map<Integer, Position> POSITION_MAP = new HashMap<>();
+
+    static {
         for (int i = MIN_POSITION_NUMBER; i <= MAX_POSITION_NUMBER; i++) {
-            put(i, new Position(i));
+            POSITION_MAP.put(i, new Position(i));
         }
-    }};
+    }
 
     private final int value;
     public static Position valueOf(int value) {
