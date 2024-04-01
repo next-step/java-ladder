@@ -1,10 +1,12 @@
 package ladder.domain;
 
+import ladder.domain.strtegy.BooleanRandomLineGenerator;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -27,7 +29,8 @@ public class LadderGameTest {
       "사다리 길이가 정상적으로 생성되는지 검증")
   void ladderGameTest() {
     int height = 5;
-    LadderGame ladderGame = LadderGame.start(USERS, new LadderHeight(height));
-    assertThat(ladderGame.isSameLadderHeight(height)).isTrue();
+    LadderGame ladderGame = LadderGame.start(USERS, new LadderHeight(height), new BooleanRandomLineGenerator());
+    Map<LadderHeight, LadderLine> infoMap = ladderGame.getLineInfoMap();
+    assertThat(infoMap).size().isEqualTo(height);
   }
 }

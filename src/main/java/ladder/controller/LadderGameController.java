@@ -3,6 +3,7 @@ package ladder.controller;
 import ladder.domain.LadderGame;
 import ladder.domain.LadderHeight;
 import ladder.domain.User;
+import ladder.domain.strtegy.BooleanRandomLineGenerator;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -27,7 +28,7 @@ public class LadderGameController {
     List<User> users = Arrays.stream(userNames)
         .map(User::new)
         .collect(Collectors.toList());
-    LadderGame ladderGame = LadderGame.start(users, new LadderHeight(height));
+    LadderGame ladderGame = LadderGame.start(users, new LadderHeight(height), new BooleanRandomLineGenerator());
 
     resultView.printResult(ladderGame);
   }

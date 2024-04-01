@@ -18,10 +18,8 @@ public class LadderGame {
     this.lineMap = lineMap;
   }
 
-  public static LadderGame start(List<User> users, LadderHeight ladderHeight) {
+  public static LadderGame start(List<User> users, LadderHeight ladderHeight, LineGenerateStrategy generator) {
     Map<LadderHeight, LadderLine> initMap = new HashMap<>();
-    LineGenerateStrategy generator = new BooleanRandomLineGenerator();
-
     for (int i = START_LADDER_HEIGHT_INDEX; i <= ladderHeight.height(); i++) {
       initMap.put(new LadderHeight(i), generator.generate(users.size() - 1));
     }
@@ -29,12 +27,10 @@ public class LadderGame {
     return new LadderGame(users, initMap);
   }
 
-  public boolean isSameLadderHeight(int height) {
-    return lineMap.size() == height;
-  }
-
   public List<String> getUserNames() {
-    return users.stream().map(User::getUserName).collect(Collectors.toList());
+    return users.stream()
+        .map(User::getUserName)
+        .collect(Collectors.toList());
   }
 
   public Map<LadderHeight, LadderLine> getLineInfoMap() {
