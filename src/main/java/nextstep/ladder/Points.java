@@ -5,10 +5,21 @@ import java.util.List;
 
 public class Points {
 
-    private final List<Boolean> points;
+    private final List<Boolean> points = new ArrayList<>();
 
-    public Points(List<Boolean> points) {
-        this.points = points;
+    public Points(int countOfPerson, boolean hasLadder) {
+        for (int i = 0; i < countOfPerson - 1; i++) {
+            if (i >= 1 && hasLadder) {
+                hasLadder = false;
+                for (int j = 0; j < 5; j++) {
+                    points.add(hasLadder);
+                }
+            } else {
+                for (int j = 0; j < 5; j++) {
+                    points.add(hasLadder);
+                }
+            }
+        }
     }
 
     public void add(Boolean point) {

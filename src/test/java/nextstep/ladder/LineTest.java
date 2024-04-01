@@ -26,7 +26,7 @@ public class LineTest {
                 .isFalse();
     }
 
-    @DisplayName("참가자수(n)에 따라 Point는 (n - 1) * 5 만큼 생긴다")
+    @DisplayName("참가자수(n)에 따라 Line의 사이즈는 (n - 1) * 5 가 된다")
     @Test
     void initLine() {
         assertThat(new Line(3, true).size()).isEqualTo(10);
