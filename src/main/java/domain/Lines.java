@@ -14,11 +14,15 @@ public class Lines implements Iterable<Line> {
     }
 
     public static Lines of(int count, int height) {
-        return of(count, new Height(height), new RandomBridgeCreationStrategy());
+        return of(count, height, new RandomBridgeCreationStrategy());
+    }
+
+    public static Lines of(int count, int height, BridgeCreationStrategy strategy) {
+        return of(count, new Height(height), strategy);
     }
 
     public static Lines of(int count, Height height, BridgeCreationStrategy strategy) {
-        List<Line> lines = IntStream.range(0, count)
+        List<Line> lines = IntStream.rangeClosed(1, count)
                 .mapToObj(i -> Line.createWithBridges(height, strategy))
                 .collect(Collectors.toList());
 

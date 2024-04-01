@@ -18,20 +18,24 @@ public class Line {
         this.bridges = new Bridges(height);
     }
 
-    public static Line createWithBridges(Height height, BridgeCreationStrategy bridgeCreationStrategy) {
+    public static Line createWithBridges(int height, BridgeCreationStrategy strategy) {
+        return createWithBridges(new Height(height), strategy);
+    }
+
+    public static Line createWithBridges(Height height, BridgeCreationStrategy strategy) {
         Line line = new Line(height);
-        line.addBridges(bridgeCreationStrategy);
+        line.addBridges(strategy);
         return line;
     }
 
     public void resetBridges(Line prev) {
-        IntStream.range(0, height.height())
+        IntStream.rangeClosed(1, height.height())
                 .filter(prev::hasBridge)
                 .forEach(this::removeBridge);
     }
 
     public void addBridges(BridgeCreationStrategy bridgeCreationStrategy) {
-        IntStream.range(0, height.height())
+        IntStream.rangeClosed(1, height.height())
                 .filter(i -> bridgeCreationStrategy.isCreate())
                 .forEach(this::addBridge);
     }
