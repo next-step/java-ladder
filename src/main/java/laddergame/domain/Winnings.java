@@ -1,6 +1,8 @@
 package laddergame.domain;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static laddergame.exception.ExceptionMessage.WRONG_SIZE_OF_WINNINGS_MESSAGE;
 
@@ -9,7 +11,13 @@ public class Winnings {
 
     private final List<Winning> winnings;
 
-    public Winnings(List<Winning> winnings) {
+    private Winnings(String... winnings) {
+        this(Arrays.stream(winnings)
+                .map(Winning::valueOf)
+                .collect(Collectors.toList()));
+    }
+
+    private Winnings(List<Winning> winnings) {
         validateWinnings(winnings);
         this.winnings = winnings;
     }
@@ -20,7 +28,15 @@ public class Winnings {
         }
     }
 
+    public static Winnings newWinnings(String... winnings) {
+        return new Winnings(winnings);
+    }
+
     public static Winnings valueOf(List<Winning> winnings) {
         return new Winnings(winnings);
+    }
+
+    public int numberOfWinnings() {
+        return winnings.size();
     }
 }
