@@ -19,11 +19,7 @@ public class LadderResult {
     }
 
     public String getResult(String playerName) {
-        Player player = Player.from(playerName);
-        if (!ladderResult.containsKey(player)) {
-            throw new IllegalArgumentException(PLAYER_NOT_FOUND);
-        }
-        return ladderResult.get(player);
+        return getResult(Player.from(playerName));
     }
 
     public String resultAllToString() {
