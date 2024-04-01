@@ -1,9 +1,12 @@
 package nextstep.ladder.controller;
 
-import nextstep.ladder.domain.*;
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Participant;
+import nextstep.ladder.domain.Participants;
 import nextstep.ladder.ui.InputView;
 import nextstep.ladder.ui.ResultView;
 
+import java.util.List;
 import java.util.Map;
 
 public class LadderGameController {
@@ -28,7 +31,7 @@ public class LadderGameController {
     private void printPrizesRepeatedly(Map<Participant, String> prizeMap) {
         String name = "";
         while (!Participants.meanAllParticipants(name)) {
-            name = InputView.readNameForGameResult();
+            name = InputView.readNameForGameResult(prizeMap.keySet());
             ResultView.printLadderGameResult(prizeMap, name);
         }
     }

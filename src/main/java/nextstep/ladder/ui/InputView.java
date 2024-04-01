@@ -1,14 +1,21 @@
 package nextstep.ladder.ui;
 
+import nextstep.ladder.domain.Participant;
 import nextstep.ladder.exception.LadderHeightException;
+import nextstep.ladder.exception.NotInParticipantsException;
 import nextstep.ladder.exception.ParticipantNameLengthExceedException;
-import nextstep.ladder.validator.LadderValidator;
-import nextstep.ladder.validator.ParticipantValidator;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.stream.Collectors;
+
+import static nextstep.ladder.validator.LadderValidator.validateLadderMaxHeight;
+import static nextstep.ladder.validator.ParticipantValidator.validateNameLength;
+import static nextstep.ladder.validator.ParticipantValidator.validateNamesLength;
+import static nextstep.ladder.validator.ParticipantsValidator.notMatchParticipantsSize;
+import static nextstep.ladder.validator.ParticipantsValidator.validateInParticipants;
 
 public class InputView {
 
@@ -20,7 +27,7 @@ public class InputView {
         List<String> names;
         try {
             names = parseStringList(nextLine());
-            ParticipantValidator.validateNamesLength(names);
+            validateNamesLength(names);
         } catch (ParticipantNameLengthExceedException e) {
             ResultView.printException(e.getMessage());
             return readParticipantNames();
@@ -44,7 +51,7 @@ public class InputView {
         int height;
         try {
             height = nextInt();
-            LadderValidator.validateLadderMaxHeight(height);
+            validateLadderMaxHeight(height);
         } catch (LadderHeightException e) {
             ResultView.printException(e.getMessage());
             return readLadderMaxHeight();
@@ -66,23 +73,24 @@ public class InputView {
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요.");
 
         List<String> prizes = parseStringList(nextLine());
-        if (prizes.size() != numberOfParticipant) {
+        if (notMatchParticipantsSize(prizes, numberOfParticipant)) {
             System.out.println("참가자 수와 실행 결과 수가 일치하지 않습니다.");
             return readLadderGamePrizes(numberOfParticipant);
         }
         return prizes;
     }
 
-    public static String readNameForGameResult() {
+    public static String readNameForGameResult(Set<Participant> participants) {
         System.out.println("결과를 보고 싶은 사람은?");
 
         String name;
         try {
             name = nextLine();
-            ParticipantValidator.validateNameLength(name);
-        } catch (ParticipantNameLengthExceedException e) {
+            validateNameLength(name);
+            validateInParticipants(participants, name);
+        } catch (ParticipantNameLengthExceedException | NotInParticipantsException e) {
             ResultView.printException(e.getMessage());
-            return readNameForGameResult();
+            return readNameForGameResult(participants);
         }
 
         return name;
