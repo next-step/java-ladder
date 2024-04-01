@@ -7,10 +7,11 @@ public class Line {
 
     private List<Boolean> points = new ArrayList<>();
 
-    public Line(int countOfPerson) { //참가자수
+    public Line(int countOfPerson, boolean hasLadder) { //참가자수
         for (int i = 0; i < countOfPerson - 1; i++) {
+            //hasLadder = random.nextBoolean();
             for (int j = 0; j < 5; j++) {
-                points.add(true);
+                points.add(hasLadder);
             }
         }
     }
