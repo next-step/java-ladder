@@ -9,7 +9,6 @@ public class Ladder {
 
     private final List<Line> lines;
 
-
     public Ladder(int height, int countOfPerson) {
         this(generateLines(height, countOfPerson));
     }
@@ -22,6 +21,11 @@ public class Ladder {
 
     public Ladder(List<Line> lines) {
         this.lines = lines;
+    }
+
+    public Position move(Position position) {
+        return lines.stream()
+                .reduce(position, (p, line) -> p.move(line::canMove), (p1, p2) -> p2);
     }
 
     public List<Line> getLines() {
