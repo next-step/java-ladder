@@ -2,7 +2,9 @@ package ladder.domain;
 
 import ladder.Lambda;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -39,6 +41,13 @@ public class Line {
     }
 
     public List<Boolean> getLine() {
-        return this.points.stream().map(Point::isTrue).collect(Collectors.toList());
+        return this.points.stream().map(Point::isMovable).collect(Collectors.toUnmodifiableList());
+    }
+
+    public boolean canMove(int positionIndex) {
+        if (positionIndex < 0 || positionIndex >= points.size()) {
+            return false;
+        }
+        return points.get(positionIndex).isMovable();
     }
 }
