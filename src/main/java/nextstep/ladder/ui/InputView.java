@@ -62,9 +62,15 @@ public class InputView {
         }
     }
 
-    public static List<String> readLadderGamePrizes() {
+    public static List<String> readLadderGamePrizes(int numberOfParticipant) {
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요.");
-        return parseStringList(nextLine());
+
+        List<String> prizes = parseStringList(nextLine());
+        if (prizes.size() != numberOfParticipant) {
+            System.out.println("참가자 수와 실행 결과 수가 일치하지 않습니다.");
+            return readLadderGamePrizes(numberOfParticipant);
+        }
+        return prizes;
     }
 
     public static String readNameForGameResult() {
