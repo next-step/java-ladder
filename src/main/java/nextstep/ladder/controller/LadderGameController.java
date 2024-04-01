@@ -11,8 +11,7 @@ public class LadderGameController {
     public void doLadderGame() {
         try {
             Participants participants = Participants.of(InputView.readParticipantNames());
-            int numberOfParticipant = participants.numberOf();
-            Prizes prizes = new Prizes(numberOfParticipant, InputView.readLadderGamePrizes(numberOfParticipant));
+            List<String> prizes = InputView.readLadderGamePrizes(participants.numberOf());
             Ladder ladder = Ladder.of(participants.numberOf(), InputView.readLadderMaxHeight());
 
             Map<Participant, String> prizeMap = ladder.move(participants, prizes);

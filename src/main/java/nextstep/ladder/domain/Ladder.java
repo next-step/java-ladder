@@ -40,11 +40,11 @@ public class Ladder {
         return this.lines;
     }
 
-    public Map<Participant, String> move(Participants participants, Prizes prizes) {
+    public Map<Participant, String> move(Participants participants, List<String> prizes) {
         return participants.stream()
                 .collect(Collectors.toMap(
                         participant -> participant,
-                        participant -> prizes.getPrize(move(participants, participant))
+                        participant -> prizes.get(move(participants, participant))
                         , (key, value) -> key
                         , LinkedHashMap::new)
                 );
