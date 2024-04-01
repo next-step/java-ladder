@@ -22,6 +22,10 @@ public class Points {
         }
     }
 
+    public boolean isBlankLine(int index) {
+        return points.get(index).equals(points.get(index + 1));
+    }
+
     public void add(Boolean point) {
         points.add(point);
     }

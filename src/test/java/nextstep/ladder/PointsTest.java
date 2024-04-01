@@ -7,6 +7,13 @@ import static org.assertj.core.api.Assertions.*;
 
 public class PointsTest {
 
+    @DisplayName("Point객체를 생성했을 때 앞 부분이 가로선이 생겼다면 그 다음 부분은 공백이 된다")
+    @Test
+    void points() {
+        Points points = new Points(3, true);
+        assertThat(points.isBlankLine(5)).isTrue();
+    }
+
     @DisplayName("point를 추가할 수 있다")
     @Test
     void add() {
