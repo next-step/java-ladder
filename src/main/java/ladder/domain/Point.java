@@ -18,7 +18,7 @@ public class Point {
         return this.isExist && b;
     }
 
-    public boolean moveHorizontal() {
+    public boolean isMovable() {
         return this.isExist;
     }
 
