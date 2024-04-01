@@ -18,15 +18,48 @@ public class Line{
     }
 
     public Line(List<Boolean> line) {
+        validateNotEmpty(line);
+        validateDuplication(line);
         this.line = line;
+    }
+
+    private void validateNotEmpty(List<Boolean> line) {
+        if(line == null || line.isEmpty()){
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateDuplication(List<Boolean> line) {
+        Boolean previous = line.get(0);
+        for(int i =1; i < line.size(); i++){
+            checkIfTrueAgain(previous, line.get(i));
+            previous = line.get(i);
+        }
+    }
+
+    private void checkIfTrueAgain(Boolean previous, Boolean point) {
+        if(previous && point){
+            throw new IllegalArgumentException();
+        }
     }
 
     public static List<Boolean> generatePoints(int size) {
         ArrayList<Boolean> points = new ArrayList<>();
+        Boolean previous = RandomBooleanGenerator.generate();
         for(int i =0; i < size-1; i++){
-            points.add(RandomBooleanGenerator.generate());
+            Boolean current = RandomBooleanGenerator.generate();
+            current = reversWhenTrueAgain(previous, current);
+            points.add(current);
+            previous = current;
         }
         return points;
+    }
+
+    private static Boolean reversWhenTrueAgain(Boolean previous, Boolean current) {
+        if(previous && current){
+            current = false;
+        }
+        return current;
     }
 
     @Override

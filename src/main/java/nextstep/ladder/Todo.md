@@ -1,5 +1,4 @@
 ## Todo
-- [ ] 가로 라인은 겹치면 예외(true,true => IllegalArgumentException | false,true,true => IllegalArgumentException)
 - [ ] 실행결과가 null 또는 ""일 경우에 예외(null => IllegalArgumentException, "" => IllegalArgumentException)
 - [ ] 실행결과값들은 ','를 구분자로 구분("꽝,5000,꽝,3000" => 꽝,5000,꽝,3000)
 - [ ] 실행결과의 개수는 참가자 수랑 다르면 예외(3,4 => IllegalArgumentException)
@@ -35,3 +34,4 @@
 - [X] Point 생성에 대한 책임을 Participant가 아닌 Line으로 이동
 - [X] Line 생성에 대한 책임을 Height가 아닌 Lines로 이동
 - [X] 개행문자 하드코딩된 부분들을 System.lineSeparator() 메서드 사용해서 변경
+- [X] 가로 라인은 겹치면 예외(true,true => IllegalArgumentException | false,true,true => IllegalArgumentException)
