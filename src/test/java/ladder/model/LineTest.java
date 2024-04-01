@@ -1,7 +1,10 @@
 package ladder.model;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static ladder.model.Line.createOneLine;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -18,17 +21,10 @@ public class LineTest {
     @Test
     @DisplayName("Line은 TRUE를 연속으로 가질 수 없다.")
     void check_ladder_height() {
-        int numberOfName = 100000;
-        Line line = createOneLine(numberOfName);
+        List<Boolean> connectedLine = List.of(Boolean.TRUE, Boolean.TRUE);
 
-        Boolean beforeState = line.getPoints().get(0);
-        for (int i = 1; i < line.getPoints().size(); i++) {
-            Boolean nowState = line.getPoints().get(i);
-            if (beforeState && nowState) {
-                throw new IllegalArgumentException("사다리 가로줄은 연속해서 그릴 수 없음");
-            }
-            beforeState = nowState;
-        }
-
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            new Line(connectedLine);
+        });
     }
 }

@@ -16,12 +16,12 @@ public class StringToListConverter {
         return result;
     }
 
-    private static void checkNull(String[] names) {
-        Arrays.stream(names)
-                .filter(name -> name == null || name.isBlank())
+    private static void checkNull(String[] valueList) {
+        Arrays.stream(valueList)
+                .filter(value -> value == null || value.isBlank())
                 .findAny()
-                .ifPresent(name -> {
-                    throw new IllegalArgumentException("이름이 빈칸일수 없습니다");
+                .ifPresent(value -> {
+                    throw new IllegalArgumentException("입력 항목이 빈칸일수 없습니다");
                 });
     }
 

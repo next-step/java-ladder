@@ -4,6 +4,7 @@ import ladder.model.utils.ConnectLine;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
@@ -11,7 +12,8 @@ import static java.lang.Boolean.TRUE;
 public class Line {
     private final List<Boolean> points;
 
-    private Line(List<Boolean> points) {
+    public Line(List<Boolean> points) {
+        checkValidConnect(points);
         this.points = points;
     }
 
@@ -33,6 +35,13 @@ public class Line {
             points.add(TRUE);
         }
         points.add(FALSE);
+    }
+
+    private void checkValidConnect(List<Boolean> points){
+        if (IntStream.range(0, points.size() - 1)
+                .anyMatch(i -> points.get(i).equals(points.get(i + 1)) && points.get(i))) {
+            throw new IllegalArgumentException("사다리는 연속으로 가로줄을 그릴수 없다.");
+        }
     }
 
     public List<Boolean> getPoints() {
