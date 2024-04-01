@@ -23,7 +23,7 @@ class LineTest {
 
     @Test
     @DisplayName("다리가 왼쪽에 있으면 -1을 반환한다")
-    void test() {
+    void testMoveLeft() {
         /*
         |----|    |----|
          */
@@ -39,7 +39,7 @@ class LineTest {
 
     @Test
     @DisplayName("다리가 오른쪽에 있으면 1을 반환한다")
-    void test2() {
+    void testMoveRight() {
         /*
         |----|    |----|
          */
@@ -55,7 +55,7 @@ class LineTest {
 
     @Test
     @DisplayName("다리가 없으면 건너지 못한다")
-    void test1() {
+    void testNonMove() {
         /*
         |    |    |    |
          */
