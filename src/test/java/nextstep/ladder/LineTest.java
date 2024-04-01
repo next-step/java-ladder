@@ -19,16 +19,17 @@ public class LineTest {
     @DisplayName("Line 객체를 초기화했을 때, 앞 부분이 가로선이 생겼다면 그 다음 부분은 공백이 된다")
     @Test
     void horizonRule() {
-        assertThat(new Line(3, true).getPoints().get(4)
-                .equals(new Line(3, false).getPoints().get(5)))
-                .isFalse();
+        Line line = new Line(3, true);
 
+        assertThat(line.getPoints().get(4)
+                .equals(line.getPoints().get(5)))
+                .isFalse();
     }
 
     @DisplayName("참가자수(n)에 따라 Point는 (n - 1) * 5 만큼 생긴다")
     @Test
     void initLine() {
-        assertThat(new Line(3, true).getPoints().size()).isEqualTo(10);
+        assertThat(new Line(3, true).size()).isEqualTo(10);
     }
 
 }
