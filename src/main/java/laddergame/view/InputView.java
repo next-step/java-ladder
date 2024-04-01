@@ -2,6 +2,7 @@ package laddergame.view;
 
 import laddergame.domain.HeightOfLadder;
 import laddergame.domain.Player;
+import laddergame.domain.Winning;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,8 +13,7 @@ import java.util.stream.Collectors;
 import static laddergame.domain.HeightOfLadder.LADDER_MIN_HEIGHT;
 import static laddergame.exception.ExceptionMessage.WRONG_LADDER_HEIGHT_MESSAGE;
 import static laddergame.util.Validator.isNonBlank;
-import static laddergame.view.OutputView.printHeightOfLadderGuideMessage;
-import static laddergame.view.OutputView.printPlayerInputGuideMessage;
+import static laddergame.view.OutputView.*;
 
 public class InputView {
     private static final Pattern PATTERN_FOR_POSITIVE_INTEGER = Pattern.compile("^([1-9][0-9]*)$");
@@ -31,6 +31,16 @@ public class InputView {
 
         return Arrays.stream(nameOfPlayers.split(COMMA_DELIMITER))
                 .map(Player::valueOf)
+                .collect(Collectors.toList());
+    }
+
+    public static List<Winning> enteredWinnings() {
+        printWinningInputGuideMessage();
+
+        String winnings = SCANNER.nextLine();
+
+        return Arrays.stream(winnings.split(COMMA_DELIMITER))
+                .map(Winning::valueOf)
                 .collect(Collectors.toList());
     }
 

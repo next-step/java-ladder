@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 public class OutputView {
     private static final String PLAYER_INPUT_GUIDE_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
+    private static final String WINNING_INPUT_GUIDE_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String HEIGHT_OF_LADDER_INPUT_GUIDE_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
     private static final String EXECUTION_RESULT_MESSAGE = "실행결과";
     private static final String FRAME = "|";
@@ -21,6 +22,15 @@ public class OutputView {
 
     public static void printPlayerInputGuideMessage() {
         System.out.println(PLAYER_INPUT_GUIDE_MESSAGE);
+    }
+
+    public static void printWinningInputGuideMessage() {
+        String winningsGuidMessage = new StringBuilder()
+                .append(NEXT_LINE)
+                .append(WINNING_INPUT_GUIDE_MESSAGE)
+                .toString();
+
+        System.out.println(winningsGuidMessage);
     }
 
     public static void printHeightOfLadderGuideMessage() {
