@@ -12,14 +12,15 @@ public class ResultView implements LadderVisitor {
 
     @Override
     public void visit(List<Line> lines, int height) {
-        IntStream.range(0, height).forEach(i -> {
-            List<Boolean> bridges = lines.stream()
-                    .map(line -> line.hasBridge(i))
-                    .collect(Collectors.toList());
+        IntStream.rangeClosed(1, height)
+                .forEach(i -> {
+                    List<Boolean> bridges = lines.stream()
+                            .map(line -> line.hasBridge(i))
+                            .collect(Collectors.toList());
 
-            printBridges(bridges);
-            System.out.println();
-        });
+                    printBridges(bridges);
+                    System.out.println();
+                });
     }
 
     private static void printBridges(List<Boolean> bridges) {

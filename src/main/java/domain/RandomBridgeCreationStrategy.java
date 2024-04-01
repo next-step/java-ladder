@@ -4,9 +4,10 @@ import java.util.Random;
 
 public class RandomBridgeCreationStrategy implements BridgeCreationStrategy {
 
+    public final Random random = new Random();
+
     @Override
     public boolean isCreate() {
-        Random random = new Random();
         return random.nextBoolean();
     }
 }
