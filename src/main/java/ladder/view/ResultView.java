@@ -1,10 +1,11 @@
 package ladder.view;
 
-import ladder.domain.Ladders;
-import ladder.domain.Player;
-import ladder.domain.Players;
-import ladder.domain.Row;
+import ladder.domain.*;
+import ladder.dto.LaddersDto;
+import ladder.dto.PlayerDto;
+import ladder.dto.RowDto;
 
+import java.util.List;
 import java.util.stream.IntStream;
 
 public class ResultView {
@@ -12,62 +13,51 @@ public class ResultView {
   private static final String PARALLEL = "-----";
   private static final String VERTICAL = "|";
 
-  public static void displayResult(Players players, Ladders ladders) {
-    printOutInputMessage("실행 결과\n");
-    displayPlayers(players);
-    displayLadders(ladders);
+  public static void displayResult(ResultDto result) {
+    StringBuilder sb = new StringBuilder("실행 결과\n");
+    sb.append(playersBuilder(result.getPlayers()));
+    sb.append(laddersBuilder(result.getLadders()));
+    System.out.println(sb);
   }
 
-  private static void displayLadders(Ladders ladders) {
-    for (Row row : ladders) {
-      displayRow(row);
-    }
-  }
-
-  private static void displayPlayers(Players players) {
-    for (Player player : players) {
-      displayPlayer(player);
-    }
-    newLine();
-  }
-
-  private static void displayPlayer(Player player) {
-    System.out.printf("%5s", player.name());
-  }
-
-  private static void displayRow(Row row) {
-    displayOffset();
-
-    for (Boolean isExisting : row) {
-      displayVertical();
-      displayParallel(isExisting);
+  private static StringBuilder laddersBuilder(LaddersDto ladders) {
+    final StringBuilder sb = new StringBuilder();
+    for (RowDto row : ladders.getRows()) {
+      sb.append(rowBuilder(row));
     }
 
-    displayVertical();
-    newLine();
+    return sb;
   }
 
-  private static void displayOffset() {
-    System.out.print(OFFSET);
+  private static StringBuilder playersBuilder(List<PlayerDto> players) {
+    StringBuilder sb = new StringBuilder();
+    for (PlayerDto player : players) {
+      sb.append(String.format("%6s", player.getName()));
+    }
+    sb.append("\n");
+
+    return sb;
   }
 
-  private static void displayVertical() {
-    System.out.print(VERTICAL);
+  private static StringBuilder rowBuilder(RowDto row) {
+    final StringBuilder sb = new StringBuilder();
+    sb.append(OFFSET);
+
+    for (Boolean isExisting : row.getValues()) {
+      sb.append(VERTICAL);
+      sb.append(parallel(isExisting));
+    }
+
+    sb.append(VERTICAL);
+    sb.append("\n");
+
+    return sb;
   }
 
-  private static void displayParallel(Boolean exist) {
+  private static String parallel(Boolean exist) {
     if (exist) {
-      System.out.print(PARALLEL);
-      return;
+      return PARALLEL;
     }
-    System.out.print(OFFSET);
-  }
-
-  private static void newLine() {
-    System.out.println();
-  }
-
-  private static void printOutInputMessage(final String message) {
-    System.out.println(message);
+    return OFFSET;
   }
 }

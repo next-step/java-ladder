@@ -5,10 +5,11 @@ import ladder.domain.Row;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.IntStream;
 
 public class RowGeneratorRandom implements RowGenerator {
-  private final Random random = new Random();
+  private final Random random = ThreadLocalRandom.current();
   private final int size;
 
   public RowGeneratorRandom(final int size) {

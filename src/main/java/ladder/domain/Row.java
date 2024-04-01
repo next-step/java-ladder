@@ -10,12 +10,19 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Row implements Iterable<Boolean> {
-  private List<Boolean> row;
+  private final List<Boolean> values;
 
   public static Row of(final int[] row) {
     return new Row(Arrays.stream(row)
-            .mapToObj(i -> i != 0)
+            .mapToObj(Row::convertToBoolean)
             .collect(Collectors.toList()));
+  }
+
+  private static Boolean convertToBoolean(final int number) {
+    if (number != 1 && number != 0) {
+      throw new IllegalArgumentException("사다리 입력은 0, 1 값만 유효합니다.");
+    }
+    return number == 1;
   }
 
   public static Row of(final List<Boolean> row) {
@@ -26,9 +33,9 @@ public class Row implements Iterable<Boolean> {
     return generator.generate();
   }
 
-  private Row(final List<Boolean> row) {
-    if (validate(row)) {
-      this.row = row;
+  private Row(final List<Boolean> rows) {
+    if (validate(rows)) {
+      this.values = rows;
       return;
     }
     throw new IllegalArgumentException("잘못된 사다리 입력입니다.");
@@ -44,20 +51,29 @@ public class Row implements Iterable<Boolean> {
   }
 
   public Integer size() {
-    return this.row.size();
+    return this.values.size();
+  }
+
+  public List<Boolean> values() {
+    return this.values;
   }
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    Row booleans = (Row) o;
-    return row.equals(booleans.row);
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+
+    Row target = (Row) o;
+    return this.values.equals(target.values);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(row);
+    return Objects.hash(this.values);
   }
 
   @Override
@@ -70,12 +86,12 @@ public class Row implements Iterable<Boolean> {
 
     @Override
     public boolean hasNext() {
-      return cursor < row.size();
+      return cursor < values.size();
     }
 
     @Override
     public Boolean next() {
-      return row.get(cursor++);
+      return values.get(cursor++);
     }
   }
 }

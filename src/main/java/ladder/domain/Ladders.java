@@ -10,16 +10,16 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladders implements Iterable<Row> {
-  private final List<Row> ladders;
+  private final List<Row> rows;
 
-  public static Ladders rows(final int[][] ladders) {
+  public static Ladders from(final int[][] ladders) {
     return new Ladders(Arrays.stream(ladders)
             .map(Row::of)
             .collect(Collectors.toList()));
   }
 
-  public static Ladders rows(final List<Row> ladders) {
-    return new Ladders(ladders);
+  public static Ladders from(final List<Row> rows) {
+    return new Ladders(rows);
   }
 
   public static Ladders of(final int height, final RowGenerator generator) {
@@ -31,11 +31,15 @@ public class Ladders implements Iterable<Row> {
     return new Ladders(ladders);
   }
 
-  private Ladders(final List<Row> ladders) {
-    if (ladders.size() == 0) {
+  private Ladders(final List<Row> rows) {
+    if (rows.size() == 0) {
       throw new IllegalArgumentException("잘못된 사다리 입력입니다.");
     }
-    this.ladders = ladders;
+    this.rows = rows;
+  }
+
+  public List<Row> rows() {
+    return this.rows;
   }
 
   @Override
@@ -48,12 +52,12 @@ public class Ladders implements Iterable<Row> {
 
     @Override
     public boolean hasNext() {
-      return cursor < ladders.size();
+      return cursor < rows.size();
     }
 
     @Override
     public Row next() {
-      return ladders.get(cursor++);
+      return rows.get(cursor++);
     }
   }
 }
