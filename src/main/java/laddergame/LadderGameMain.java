@@ -1,10 +1,10 @@
 package laddergame;
 
 import laddergame.domain.HeightOfLadder;
-import laddergame.domain.Players;
-import laddergame.domain.PlayersAndWinningContents;
-import laddergame.domain.WinningContents;
 import laddergame.domain.ladder.Ladder;
+import laddergame.domain.ladder.Players;
+import laddergame.domain.ladder.PlayersAndWinningContents;
+import laddergame.domain.ladder.WinningContents;
 import laddergame.domain.ladder.strategy.RandomStrategy;
 
 import static laddergame.view.InputView.*;
@@ -19,7 +19,7 @@ public class LadderGameMain {
             HeightOfLadder heightOfLadder = enteredHeightOfLadder();
             Ladder ladder = Ladder.newLadder(heightOfLadder, playersAndWinningContents, new RandomStrategy());
 
-            printExecutionResult(playersAndWinningContents, ladder);
+            printExecutionResult(ladder);
         } catch (Exception e) {
             printExceptionMessage(e.getMessage());
         }

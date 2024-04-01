@@ -1,4 +1,4 @@
-package laddergame.domain;
+package laddergame.domain.ladder;
 
 import static laddergame.exception.ExceptionMessage.WRONG_PLAYERS_AND_WINNINGS_MESSAGE;
 

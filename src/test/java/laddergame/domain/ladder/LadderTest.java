@@ -1,9 +1,6 @@
 package laddergame.domain.ladder;
 
 import laddergame.domain.HeightOfLadder;
-import laddergame.domain.Players;
-import laddergame.domain.PlayersAndWinningContents;
-import laddergame.domain.WinningContents;
 import laddergame.domain.ladder.strategy.LinkStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

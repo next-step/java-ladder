@@ -1,10 +1,6 @@
 package laddergame.view;
 
-import laddergame.domain.Players;
-import laddergame.domain.PlayersAndWinningContents;
-import laddergame.domain.WinningContents;
-import laddergame.domain.ladder.Ladder;
-import laddergame.domain.ladder.Line;
+import laddergame.domain.ladder.*;
 
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -51,7 +47,8 @@ public class OutputView {
         System.out.println(exceptionMessage);
     }
 
-    public static void printExecutionResult(PlayersAndWinningContents playersAndWinningContents, Ladder ladder) {
+    public static void printExecutionResult(Ladder ladder) {
+        PlayersAndWinningContents playersAndWinningContents = ladder.playersAndWinningContents();
         int lengthOfFirstPlayerName = playersAndWinningContents.findPlayerByIndex(FIRST_INDEX)
                 .lengthOfName();
 
