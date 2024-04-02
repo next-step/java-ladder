@@ -1,8 +1,8 @@
-package laddergame.domain.ladder;
+package laddergame.domain;
 
 import java.util.Objects;
 
-import static laddergame.domain.ladder.PlayersAndWinningContents.MAX_LENGTH_OF_PLAYER_AND_WINNING_CONTENT;
+import static laddergame.domain.PlayersAndWinningContents.MAX_LENGTH_OF_PLAYER_AND_WINNING_CONTENT;
 import static laddergame.exception.ExceptionMessage.WRONG_PLAYER_NAME_MESSAGE;
 import static laddergame.util.Validator.isNonBlank;
 

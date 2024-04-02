@@ -1,6 +1,7 @@
 package laddergame.domain.ladder;
 
 import laddergame.domain.HeightOfLadder;
+import laddergame.domain.PlayersAndWinningContents;
 import laddergame.domain.ladder.strategy.LinkStrategy;
 
 import java.util.Collections;

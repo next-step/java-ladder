@@ -1,8 +1,8 @@
 package laddergame.view;
 
 import laddergame.domain.HeightOfLadder;
-import laddergame.domain.ladder.Player;
-import laddergame.domain.ladder.WinningContent;
+import laddergame.domain.Player;
+import laddergame.domain.WinningContent;
 
 import java.util.Arrays;
 import java.util.List;
