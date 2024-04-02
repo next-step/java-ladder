@@ -11,6 +11,7 @@ public class OutputView {
 
     private static final int BRIDGE_LENGTH = 4;
     private static final String NAME_RESULT_DELIMITER = " : ";
+    private static final String ALL_NAMES = "all";
 
     public void printLadder(final Names names, final Ladder ladder) {
         System.out.println("\n실행 결과");
@@ -32,7 +33,7 @@ public class OutputView {
     }
 
     public void printResult(final String name, final LadderResultDeterminer determiner) {
-        if ("all".equals(name)) {
+        if (ALL_NAMES.equals(name)) {
             determiner.getNames()
                     .forEach(n -> System.out.println(n.getName() + NAME_RESULT_DELIMITER + determiner.determineResult(n)));
             return;
