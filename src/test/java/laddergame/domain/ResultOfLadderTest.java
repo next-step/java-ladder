@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ResultOfLadderTest {
     @Test
-    @DisplayName("findWinningContentByIndex(): winningContents 중 전달된 index 순서에 해당하는 winningContent를 반환한다. ")
+    @DisplayName("findResultByIndex(): results 중 전달된 index 순서에 해당하는 요소를 반환한다. ")
     void testFindWinningContentByIndex() {
         WinningContent winningContentA = WinningContent.valueOf("a");
         WinningContent winningContentB = WinningContent.valueOf("b");
@@ -17,7 +17,7 @@ class ResultOfLadderTest {
 
         ResultOfLadder resultOfLadder = ResultOfLadder.valueOf(List.of(winningContentA, winningContentB, winningContentC));
 
-        assertThat(resultOfLadder.findWinningContentByIndex(1)).isEqualTo(winningContentB);
+        assertThat(resultOfLadder.findResultByIndex(1)).isEqualTo(winningContentB);
 
     }
 }

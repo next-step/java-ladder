@@ -13,7 +13,7 @@ public class ResultOfLadder {
         return new ResultOfLadder(results);
     }
 
-    public WinningContent findWinningContentByIndex(int index) {
+    public WinningContent findResultByIndex(int index) {
         return results.get(index);
     }
 }
