@@ -28,11 +28,11 @@ public class RandomLineGenerator implements LineGenerator {
         return line;
     }
 
-    private Boolean toNonOverlapBridge(boolean prev, boolean cur) {
-        if (cur && prev) {
+    private Boolean toNonOverlapBridge(boolean previous, boolean current) {
+        if (current && previous) {
             return Boolean.FALSE;
         }
 
-        return cur;
+        return current;
     }
 }

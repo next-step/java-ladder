@@ -17,7 +17,7 @@ public class ResultView {
     }
 
     public void printLadderAndUserNames(Ladder ladder, List<User> users) {
-        System.out.println("실행 결과\n");
+        System.out.printf("실행 결과%n%n");
         users.forEach(user -> System.out.printf("%5s ",user.getUserName()));
         System.out.println();
         ladder.getLines().forEach(this::printLine);
