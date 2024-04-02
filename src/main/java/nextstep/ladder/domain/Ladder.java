@@ -50,7 +50,7 @@ public class Ladder {
                 );
     }
 
-    public int move(Participants participants, Participant participant) {
+    private int move(Participants participants, Participant participant) {
         int position = participants.startPosition(participant);
         for (Line line : this.lines) {
             position = line.move(position);
