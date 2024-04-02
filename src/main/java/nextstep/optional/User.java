@@ -38,7 +38,7 @@ public class User {
         return Optional.ofNullable(user)
             .map(User::getAge)
             .stream()
-            .anyMatch(age -> age >= 30 && age <= 45);
+            .anyMatch(age -> 30 <= age && age <= 45);
     }
 
     @Override
