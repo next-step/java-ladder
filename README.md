@@ -13,3 +13,5 @@ step 1
   * modified Lambda class with stream()
 * feature/mod-car
   * modified test codes w/ lambda
+* refactor/lambda
+  * refactored Lambda codes w/ requirements
