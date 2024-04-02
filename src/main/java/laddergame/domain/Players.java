@@ -48,6 +48,10 @@ public class Players {
         return players.size();
     }
 
+    public int indexOf(Player player) {
+        return players.indexOf(player);
+    }
+
     public List<Player> players() {
         return Collections.unmodifiableList(players);
     }
