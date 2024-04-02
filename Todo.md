@@ -1,7 +1,7 @@
 ## 1단계 - 스티림, 람다, Optional
-- [] 람다 실습
+- [X] 람다 실습
   - [X] 익명 클래스 람다로 전환
-  - [] 람다를 활용해 중복 제거
+  - [X] 람다를 활용해 중복 제거
 - [] Stream 실습
   - [] map, reduce, filter 실습 1
   - [] map, reduce, filter 실습 2
