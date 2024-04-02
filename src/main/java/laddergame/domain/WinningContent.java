@@ -3,7 +3,7 @@ package laddergame.domain;
 import java.util.Objects;
 
 import static laddergame.domain.PlayersAndWinningContents.MAX_LENGTH_OF_PLAYER_AND_WINNING_CONTENT;
-import static laddergame.exception.ExceptionMessage.WRONG_WINNING_MESSAGE;
+import static laddergame.exception.ExceptionMessage.WRONG_WINNING_CONTENT_MESSAGE;
 import static laddergame.util.Validator.isNonBlank;
 
 public class WinningContent {
@@ -16,7 +16,7 @@ public class WinningContent {
 
     private void validateWinning(String winningContent) {
         if (!isNonBlank(winningContent) || winningContent.length() > MAX_LENGTH_OF_PLAYER_AND_WINNING_CONTENT) {
-            throw new IllegalArgumentException(String.format(WRONG_WINNING_MESSAGE.message(), winningContent, MAX_LENGTH_OF_PLAYER_AND_WINNING_CONTENT));
+            throw new IllegalArgumentException(String.format(WRONG_WINNING_CONTENT_MESSAGE.message(), winningContent, MAX_LENGTH_OF_PLAYER_AND_WINNING_CONTENT));
         }
     }
 

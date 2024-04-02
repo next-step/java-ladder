@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static laddergame.domain.PlayersAndWinningContents.MIN_NUMBER_OF_PLAYERS_AND_WINNING_CONTENTS;
-import static laddergame.exception.ExceptionMessage.WRONG_SIZE_OF_WINNINGS_MESSAGE;
+import static laddergame.exception.ExceptionMessage.WRONG_SIZE_OF_WINNING_CONTENTS_MESSAGE;
 
 public class WinningContents {
     private final List<WinningContent> winningContents;
@@ -18,7 +18,7 @@ public class WinningContents {
 
     private void validateWinnings(List<WinningContent> winningContents) {
         if (winningContents.size() < MIN_NUMBER_OF_PLAYERS_AND_WINNING_CONTENTS) {
-            throw new IllegalArgumentException(String.format(WRONG_SIZE_OF_WINNINGS_MESSAGE.message(), MIN_NUMBER_OF_PLAYERS_AND_WINNING_CONTENTS));
+            throw new IllegalArgumentException(String.format(WRONG_SIZE_OF_WINNING_CONTENTS_MESSAGE.message(), MIN_NUMBER_OF_PLAYERS_AND_WINNING_CONTENTS));
         }
     }
 

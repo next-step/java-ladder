@@ -1,6 +1,6 @@
 package laddergame.domain;
 
-import static laddergame.exception.ExceptionMessage.WRONG_PLAYERS_AND_WINNINGS_MESSAGE;
+import static laddergame.exception.ExceptionMessage.WRONG_PLAYERS_AND_WINNING_CONTENTS_MESSAGE;
 
 public class PlayersAndWinningContents {
     public final static int MAX_LENGTH_OF_PLAYER_AND_WINNING_CONTENT = 5;
@@ -17,7 +17,7 @@ public class PlayersAndWinningContents {
 
     private void validatePlayersAndWinnings(Players players, WinningContents winningContents) {
         if (players.numberOfPlayers() != winningContents.numberOfWinningContents()) {
-            throw new IllegalArgumentException(WRONG_PLAYERS_AND_WINNINGS_MESSAGE.message());
+            throw new IllegalArgumentException(WRONG_PLAYERS_AND_WINNING_CONTENTS_MESSAGE.message());
         }
     }
 
