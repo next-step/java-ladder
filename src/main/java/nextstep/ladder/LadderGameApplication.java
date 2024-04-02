@@ -1,7 +1,7 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.RandomStepStrategy;
+import nextstep.ladder.domain.LadderGame;
+import nextstep.ladder.domain.RandomLineStrategy;
 import nextstep.ladder.view.DrawerView;
 import nextstep.ladder.view.InputView;
 
@@ -12,11 +12,17 @@ public class LadderGameApplication {
     public static void main(String[] args) {
         InputView inputView = new InputView();
         List<String> users = inputView.getUsersInput();
+        List<String> ladderGameWinningProduct = inputView.getLadderGameResults();
         int floor = inputView.getFloorInput();
 
-        Ladder ladder = Ladder.of(floor, users, new RandomStepStrategy());
+        LadderGame ladderGame = new LadderGame(users, floor, ladderGameWinningProduct, new RandomLineStrategy());
 
         DrawerView drawerView = new DrawerView();
-        drawerView.printLadderGameResult(ladder.getParticipants(), ladder.getLadderInfo());
+        drawerView.printLadderGameResult(ladderGame.getParticipants(), ladderGame.getLadderInfo(), ladderGameWinningProduct);
+
+        while (true) {
+            String resultTarget = inputView.getGameResultTargetUser();
+            drawerView.printWinningProductOfUser(resultTarget, ladderGame);
+        }
     }
 }

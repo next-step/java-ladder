@@ -1,6 +1,9 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.data.StepType;
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderGame;
+import nextstep.ladder.domain.Line;
 
 import java.util.List;
 
@@ -10,12 +13,15 @@ public class DrawerView {
     public static final String LINE_BREAK = "\n";
     public static final String EMPTY = "     ";
     public static final String STEP = "-----";
+    public static final String ALL_USERS_QUERY = "all";
 
-    public void printLadderGameResult(List<String> names, List<List<StepType>> ladderInfo) {
+    public void printLadderGameResult(List<String> names, List<Line> ladderInfo, List<String> winningResults) {
         System.out.println("실행 결과\n");
 
         printUserNames(names);
         printLadderInfo(ladderInfo);
+        printWinningResult(winningResults);
+        System.out.println();
     }
 
     private void printUserNames(List<String> names) {
@@ -25,7 +31,7 @@ public class DrawerView {
         System.out.println();
     }
 
-    private void printLadderInfo(List<List<StepType>> ladderInfo) {
+    private void printLadderInfo(List<Line> ladderInfo) {
         StringBuffer stringBuffer = new StringBuffer();
 
         ladderInfo.forEach(
@@ -36,13 +42,13 @@ public class DrawerView {
         System.out.println(stringBuffer);
     }
 
-    private String lineToString(List<StepType> line) {
+    private String lineToString(Line line) {
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer
                 .append(EMPTY)
                 .append(LADDER_POLE);
 
-        line.forEach(
+        line.toList().forEach(
                 step -> stringBuffer
                         .append(getStepWithStepType(step))
                         .append(LADDER_POLE)
@@ -56,5 +62,40 @@ public class DrawerView {
         }
 
         return STEP;
+    }
+
+    private void printWinningResult(List<String> winningResults) {
+        winningResults.forEach(
+                winningResult -> System.out.printf("%6s", winningResult)
+        );
+        System.out.println();
+    }
+
+    public void printWinningProductOfUser(String name, LadderGame ladderGame) {
+        System.out.println(getWinningProductOfUser(name, ladderGame));
+        System.out.println();
+    }
+
+    private String getWinningProductOfUser(String name, LadderGame ladderGame) {
+        if (ALL_USERS_QUERY.equalsIgnoreCase(name)) {
+            return getWinningProductOfAllUsers(ladderGame);
+        }
+
+        return ladderGame.getWinProduct(name);
+    }
+
+    private static String getWinningProductOfAllUsers(LadderGame ladderGame) {
+        StringBuilder stringBuffer = new StringBuilder();
+
+        List<String> participants = ladderGame.getParticipants();
+        for (String participant : participants) {
+            String winningProduct = ladderGame.getWinProduct(participant);
+            stringBuffer.append(participant)
+                    .append(" : ")
+                    .append(winningProduct)
+                    .append("\n");
+        }
+
+        return stringBuffer.toString();
     }
 }

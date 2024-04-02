@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -36,5 +37,31 @@ class UsersTest {
 
         // then
         assertThat(users.countOfUsers()).isEqualTo(2);
+    }
+
+    @DisplayName("사용자의 위치를 반환한다.")
+    @Test
+    void getUsersIndex() {
+        // given
+        Users users = Users.from(List.of("poppy", "jetty"));
+
+        // then
+        Assertions.assertAll(
+                () -> assertThat(users.getUserIndex("poppy")).isEqualTo(0),
+                () -> assertThat(users.getUserIndex("jetty")).isEqualTo(1)
+        );
+    }
+
+    @DisplayName("사용자가 있는지 반환한다.")
+    @Test
+    void hasUserName() {
+        // given
+        Users users = Users.from(List.of("poppy", "jetty"));
+
+        // then
+        Assertions.assertAll(
+                () -> assertThat(users.hasUserName("poppy")).isTrue(),
+                () -> assertThat(users.hasUserName("popo")).isFalse()
+        );
     }
 }

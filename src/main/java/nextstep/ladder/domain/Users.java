@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,9 +15,11 @@ public class Users {
 
     private Users(List<String> users) {
         validate(users);
-        this.users = users.stream()
-                .map(User::from)
-                .collect(Collectors.toList());
+
+        this.users = new ArrayList<>();
+        for (String user : users) {
+            this.users.add(User.from(user));
+        }
     }
 
     private void validate(List<String> users) {
@@ -33,5 +36,14 @@ public class Users {
 
     public int countOfUsers() {
         return this.users.size();
+    }
+
+    public boolean hasUserName(String name) {
+        return this.users.stream()
+                .anyMatch(userName -> userName.name().equals(name));
+    }
+
+    public int getUserIndex(String name) {
+        return toNameList().indexOf(name);
     }
 }

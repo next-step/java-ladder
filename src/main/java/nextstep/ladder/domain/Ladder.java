@@ -1,32 +1,29 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.data.StepType;
-
 import java.util.List;
 
 public class Ladder {
 
     private final Lines lines;
-    private final Users users;
 
-    public static Ladder of(int floor, List<String> users, StepStrategy strategy) {
+    public static Ladder of(int floor, int countOfUsers, LineStrategy strategy) {
         return new Ladder(
                 Floor.from(floor),
-                Users.from(users),
+                countOfUsers,
                 strategy
         );
     }
 
-    private Ladder(Floor floor, Users users, StepStrategy strategy) {
-        this.users = users;
-        this.lines = Lines.of(floor, users.countOfUsers(), strategy);
+    private Ladder(Floor floor, int countOfUsers, LineStrategy strategy) {
+        this.lines = Lines.of(floor, countOfUsers, strategy);
     }
 
-    public List<String> getParticipants() {
-        return this.users.toNameList();
-    }
 
-    public List<List<StepType>> getLadderInfo() {
+    public List<Line> getLadderInfo() {
         return this.lines.toList();
+    }
+
+    public int destinationPosition(int departPosition) {
+        return this.lines.getUserWinLocation(departPosition);
     }
 }

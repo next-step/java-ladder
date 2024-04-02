@@ -29,4 +29,24 @@ public class InputView {
 
         return Integer.parseInt(floor.trim());
     }
+
+    public List<String> getLadderGameResults() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+
+        String ladderGameResults = scanner.nextLine();
+        System.out.println();
+
+        return Arrays.stream(ladderGameResults.split(COMMA))
+                .map(String::trim)
+                .collect(Collectors.toList());
+    }
+
+    public String getGameResultTargetUser() {
+        System.out.println("결과를 보고 싶은 사람은?");
+
+        String gameResultTargetUser = scanner.nextLine();
+        System.out.println();
+
+        return gameResultTargetUser.trim();
+    }
 }
