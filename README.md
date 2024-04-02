@@ -15,3 +15,5 @@ step 1
   * modified test codes w/ lambda
 * refactor/lambda
   * refactored Lambda codes w/ requirements
+* feature/stream
+  * modified streamStudy class
