@@ -42,6 +42,17 @@ class PlayersTest {
     }
 
     @Test
+    @DisplayName("indexOf(): plyaers에서 player의 인덱스를 반환한다.")
+    void testIndexOf() {
+        Player firstPlayer = Player.valueOf("a");
+        Player secondPlayer = Player.valueOf("b");
+        Player thirdPlayer = Player.valueOf("c");
+        Players players = Players.newPlayers(firstPlayer, secondPlayer, thirdPlayer);
+
+        assertThat(players.indexOf(secondPlayer)).isEqualTo(1);
+    }
+
+    @Test
     @DisplayName("numberOfPlayers(): Players.players의 크기를 반환한다.")
     void testNumberOfPlayers() {
         Players players = Players.newPlayers("a", "b", "c");
