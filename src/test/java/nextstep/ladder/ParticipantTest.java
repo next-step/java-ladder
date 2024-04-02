@@ -14,7 +14,7 @@ public class ParticipantTest {
     @Test
     @DisplayName("[성공] 사람을 생성한다.")
     void 사람_생성() {
-        assertThat((new Participant("pobi")).getName()).hasSizeLessThan(Participant.MAX_NAME_LENGTH);
+        assertThat((Participant.of("pobi")).getName()).hasSizeLessThan(Participant.MAX_NAME_LENGTH);
     }
 
     @Test
@@ -22,7 +22,7 @@ public class ParticipantTest {
     void 사람_생성_예외() {
         assertThatExceptionOfType(ParticipantNameLengthExceedException.class)
                 .isThrownBy(() -> {
-                    new Participant("nayeon");
+                    Participant.of("nayeon");
                 }).withMessageContaining(MessageFormat.format("사람의 이름은 {0}글자를 초과할 수 없습니다.", Participant.MAX_NAME_LENGTH));
     }
 }

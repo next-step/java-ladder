@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.exception.LineConsecutivePointException;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -9,7 +10,15 @@ public class Line {
 
     private final List<Boolean> points;
 
-    public Line(List<Boolean> points) {
+    public static Line of(Boolean... points) {
+        return new Line(List.of(points));
+    }
+
+    public static Line of(List<Boolean> points) {
+        return new Line(points);
+    }
+
+    private Line(List<Boolean> points) {
         validateConsecutivePoint(points);
         this.points = points;
     }
@@ -26,7 +35,27 @@ public class Line {
     }
 
     public List<Boolean> get() {
-        return this.points;
+        return Collections.unmodifiableList(this.points);
+    }
+
+    public int move(int position) {
+        if (canMoveRight(position)) {
+            return position + 1;
+        }
+
+        if (canMoveLeft(position)) {
+            return position - 1;
+        }
+
+        return position;
+    }
+
+    private boolean canMoveRight(int position) {
+        return position < points.size() && points.get(position);
+    }
+
+    private boolean canMoveLeft(int position) {
+        return position > 0 && points.get(position - 1);
     }
 
 }

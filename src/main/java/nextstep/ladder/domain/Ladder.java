@@ -1,8 +1,10 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.exception.LadderHeightException;
+import nextstep.ladder.validator.LadderValidator;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -12,7 +14,7 @@ public class Ladder {
     private final List<Line> lines;
 
     private Ladder(List<Line> lines) {
-        validateLadderMaxHeight(lines.size());
+        LadderValidator.validateLadderMaxHeight(lines.size());
         this.lines = lines;
     }
 
@@ -25,15 +27,9 @@ public class Ladder {
     }
 
     private static List<Line> createLines(int pointSize, int height) {
-        return Stream.generate(() -> new Line(RandomPointsGenerator.generate(pointSize)))
+        return Stream.generate(() -> Line.of(RandomPointsGenerator.generate(pointSize)))
                 .limit(height)
                 .collect(Collectors.toList());
-    }
-
-    private static void validateLadderMaxHeight(int height) {
-        if (height < Ladder.MIN_LADDER_HEIGHT) {
-            throw new LadderHeightException(height);
-        }
     }
 
     public int getHeight() {
@@ -42,5 +38,23 @@ public class Ladder {
 
     public List<Line> getLines() {
         return this.lines;
+    }
+
+    public Map<Participant, String> move(Participants participants, List<String> prizes) {
+        return participants.stream()
+                .collect(Collectors.toMap(
+                        participant -> participant,
+                        participant -> prizes.get(move(participants, participant))
+                        , (key, value) -> key
+                        , LinkedHashMap::new)
+                );
+    }
+
+    public int move(Participants participants, Participant participant) {
+        int position = participants.startPosition(participant);
+        for (Line line : this.lines) {
+            position = line.move(position);
+        }
+        return position;
     }
 }
