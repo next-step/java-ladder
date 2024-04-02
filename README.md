@@ -7,3 +7,15 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+step 1
+* feature/mod-lambda
+  * modified Lambda class with stream()
+* feature/mod-car
+  * modified test codes w/ lambda
+* refactor/lambda
+  * refactored Lambda codes w/ requirements
+* feature/stream
+  * modified streamStudy class
+* feature/optional
+  * modified optional codes
