@@ -11,3 +11,5 @@
 step 1
 * feature/mod-lambda
   * modified Lambda class with stream()
+* feature/mod-car
+  * modified test codes w/ lambda
