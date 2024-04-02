@@ -18,8 +18,9 @@ public class LadderGameController {
             Ladder ladder = Ladder.of(participants.numberOf(), InputView.readLadderMaxHeight());
 
             Map<Participant, String> prizeMap = ladder.move(participants, prizes);
-            ResultView.printLadder(ladder, prizeMap);
 
+            ResultView.printLadder(participants, ladder);
+            ResultView.printPrizes(prizes);
             printPrizesRepeatedly(prizeMap);
         } catch (IllegalArgumentException e) {
             ResultView.printException(e.getMessage());
