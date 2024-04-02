@@ -25,17 +25,17 @@ class LineTest {
             @Test
             @DisplayName("links가 null 또는 비어있는 경우 IllegalArgumentException이 발생한다.")
             void testNullOrEmptyCase() {
-                assertThatThrownBy(() -> Line.newLine(null))
+                assertThatThrownBy(() -> Line.valueOf(null))
                         .isExactlyInstanceOf(IllegalArgumentException.class);
 
-                assertThatThrownBy(() -> Line.newLine(Collections.emptyList()))
+                assertThatThrownBy(() -> Line.valueOf(Collections.emptyList()))
                         .isExactlyInstanceOf(IllegalArgumentException.class);
             }
 
             @Test
             @DisplayName("links가 LINKED를 연속적으로 가지고 있는 경우 IllegalArgumentException이 발생한다.")
             void testOverlapLinked() {
-                assertThatThrownBy(() -> Line.newLine(List.of(LINKED, LINKED, UNLINKED, LINKED)))
+                assertThatThrownBy(() -> Line.valueOf(List.of(LINKED, LINKED, UNLINKED, LINKED)))
                         .isExactlyInstanceOf(IllegalArgumentException.class);
             }
         }

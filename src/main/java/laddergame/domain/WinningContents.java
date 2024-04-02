@@ -11,16 +11,6 @@ import static laddergame.exception.ExceptionMessage.WRONG_SIZE_OF_WINNINGS_MESSA
 public class WinningContents {
     private final List<WinningContent> winningContents;
 
-    private WinningContents(String... winningContents) {
-        this(Arrays.stream(winningContents)
-                .map(WinningContent::valueOf)
-                .collect(Collectors.toList()));
-    }
-
-    private WinningContents(WinningContent... winningContents) {
-        this(List.of(winningContents));
-    }
-
     private WinningContents(List<WinningContent> winningContents) {
         validateWinnings(winningContents);
         this.winningContents = winningContents;
@@ -32,16 +22,18 @@ public class WinningContents {
         }
     }
 
-    public static WinningContents newWinningContents(String... winningContents) {
+    public static WinningContents valueOf(List<WinningContent> winningContents) {
         return new WinningContents(winningContents);
+    }
+
+    public static WinningContents newWinningContents(String... winningContents) {
+        return new WinningContents(Arrays.stream(winningContents)
+                .map(WinningContent::valueOf)
+                .collect(Collectors.toList()));
     }
 
     public static WinningContents newWinningContents(WinningContent... winningContents) {
-        return new WinningContents(winningContents);
-    }
-
-    public static WinningContents valueOf(List<WinningContent> winningContents) {
-        return new WinningContents(winningContents);
+        return new WinningContents(List.of(winningContents));
     }
 
     public int numberOfWinningContents() {

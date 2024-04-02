@@ -35,7 +35,7 @@ public class Line {
         }
     }
 
-    public static Line newLine(List<Link> links) {
+    public static Line valueOf(List<Link> links) {
         return new Line(links);
     }
 
@@ -54,6 +54,14 @@ public class Line {
                 .orElse(UNLINKED);
 
         return linkable && before.isUnLinked() ? LINKED : UNLINKED;
+    }
+
+    public static Line newLine(Link... links) {
+        return new Line(List.of(links));
+    }
+
+    public int numberOfLinks() {
+        return links.size();
     }
 
     public List<Link> links() {

@@ -2,6 +2,7 @@ package laddergame.domain.ladder;
 
 import laddergame.domain.HeightOfLadder;
 import laddergame.domain.PlayersAndWinningContents;
+import laddergame.domain.ResultOfLadder;
 import laddergame.domain.ladder.strategy.LinkStrategy;
 
 import java.util.Collections;
@@ -16,7 +17,7 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder newLadder(List<Line> lines) {
+    public static Ladder valueOf(List<Line> lines) {
         return new Ladder(lines);
     }
 
@@ -28,7 +29,15 @@ public class Ladder {
         return new Ladder(generatedLines);
     }
 
+    public static Ladder newLadder(Line... lines) {
+        return new Ladder(List.of(lines));
+    }
+
     public List<Line> lines() {
         return Collections.unmodifiableList(lines);
+    }
+
+    public ResultOfLadder resultOfLadder(PlayersAndWinningContents playersAndWinningContents) {
+        return null;
     }
 }

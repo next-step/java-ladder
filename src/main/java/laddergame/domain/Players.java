@@ -12,16 +12,6 @@ import static laddergame.exception.ExceptionMessage.WRONG_SIZE_OF_PLAYERS_MESSAG
 public class Players {
     private final List<Player> players;
 
-    private Players(String... players) {
-        this(Arrays.stream(players)
-                .map(Player::valueOf)
-                .collect(Collectors.toList()));
-    }
-
-    private Players(Player... players) {
-        this(List.of(players));
-    }
-
     private Players(List<Player> players) {
         validatePlayers(players);
         this.players = players;
@@ -36,16 +26,18 @@ public class Players {
         }
     }
 
-    public static Players newPlayers(String... players) {
+    public static Players valueOf(List<Player> players) {
         return new Players(players);
+    }
+
+    public static Players newPlayers(String... players) {
+        return new Players(Arrays.stream(players)
+                .map(Player::valueOf)
+                .collect(Collectors.toList()));
     }
 
     public static Players newPlayers(Player... players) {
-        return new Players(players);
-    }
-
-    public static Players valueOf(List<Player> players) {
-        return new Players(players);
+        return new Players(List.of(players));
     }
 
     public Player findPlayerByIndex(int index) {
