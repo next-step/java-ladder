@@ -2,6 +2,7 @@ package nextstep.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Ladder {
 
@@ -13,7 +14,7 @@ public class Ladder {
         }
 
         for (int i = 0; i < height; i++) {
-            lines.add(new Line(countOfPerson, false));
+            lines.add(new Line(countOfPerson));
         }
     }
 
