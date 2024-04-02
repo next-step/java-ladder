@@ -1,13 +1,24 @@
 package nextstep.step2;
 
+import nextstep.step2.view.ResultView;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class LadderTest {
+
+    private Ladder ladder;
+    private PointGenerator pointGenerator;
+
+    @BeforeEach
+    void setUp() {
+        pointGenerator = new AlwaysTruePointGenerator();
+        ladder = new Ladder(5, 4, pointGenerator);
+    }
 
     @Test
     void 사다리를_생성한다() {
@@ -15,9 +26,9 @@ public class LadderTest {
         int humanCount = 5;
         Ladder ladder = new Ladder(height, humanCount, new RandomPointGenerator());
 
-        Assertions.assertEquals(humanCount, ladder.getLines().size());
+        assertEquals(humanCount, ladder.getLines().size());
         for (Line line : ladder.getLines()) {
-            Assertions.assertEquals(height, line.getPoints().size());
+            assertEquals(height, line.getPoints().size());
         }
     }
 
@@ -50,5 +61,37 @@ public class LadderTest {
                 assertFalse(prevLine.getPoints().get(j) && currLine.getPoints().get(j));
             }
         }
+    }
+
+    @Test
+    void 모든_다리가_있는_사다리면_제일_좌측의_참가자는_두번째에_도착한다() {
+        Position position = new Position(0, 0);
+        int result = ladder.move(position);
+        assertEquals(1, result);
+    }
+
+    @Test
+    void 모든_다리가_있는_사다리면_제일_우측의_참가자는_세번째에_도착한다() {
+        Position position = new Position(3, 0);
+        int result = ladder.move(position);
+        assertEquals(2, result);
+    }
+
+    @Test
+    void 모든_다리가_있으면_두번째_참가자는_첫번째에_도착한다() {
+        Position position = new Position(1, 0);
+        int result = ladder.move(position);
+        assertEquals(0, result);
+    }
+
+    @Test
+    void 다리가_없는_사다리는_각_참가자_라인의_끝에_도달한다() {
+        Ladder emptyLadder = new Ladder(3, 3, new AlwaysFalsePointGenerator());
+
+        assertAll(
+                () -> assertEquals(0, emptyLadder.move(new Position(0,0))),
+                () -> assertEquals(1, emptyLadder.move(new Position(1,0))),
+                () -> assertEquals(2, emptyLadder.move(new Position(2,0)))
+        );
     }
 }

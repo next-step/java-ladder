@@ -31,4 +31,8 @@ public class Line {
     public List<Boolean> getPoints() {
         return Collections.unmodifiableList(points);
     }
+
+    public boolean connectLine(int height) {
+        return points.get(height);
+    }
 }
