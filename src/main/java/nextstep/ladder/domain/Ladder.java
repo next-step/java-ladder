@@ -2,9 +2,7 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.validator.LadderValidator;
 
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -41,17 +39,17 @@ public class Ladder {
     }
 
     public Map<Participant, String> move(Participants participants, List<String> prizes) {
-        return participants.stream()
-                .collect(Collectors.toMap(
-                        participant -> participant,
-                        participant -> prizes.get(move(participants, participant))
-                        , (key, value) -> key
-                        , LinkedHashMap::new)
-                );
+        Map<Participant, String> prizeMap = new LinkedHashMap<>();
+
+        for (Participant participant : participants.get()) {
+            int position = move(participants.startPositionOf(participant));
+            prizeMap.put(participant, prizes.get(position));
+        }
+
+        return Collections.unmodifiableMap(prizeMap);
     }
 
-    private int move(Participants participants, Participant participant) {
-        int position = participants.startPosition(participant);
+    private int move(int position) {
         for (Line line : this.lines) {
             position = line.move(position);
         }
