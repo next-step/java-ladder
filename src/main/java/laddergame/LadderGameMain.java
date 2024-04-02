@@ -9,17 +9,16 @@ import laddergame.domain.ladder.strategy.RandomStrategy;
 
 import static laddergame.view.InputView.*;
 import static laddergame.view.OutputView.printExceptionMessage;
-import static laddergame.view.OutputView.printExecutionResult;
+import static laddergame.view.OutputView.printLadderResult;
 
 public class LadderGameMain {
     public static void main(String[] arguments) throws Exception {
         try {
             PlayersAndWinningContents playersAndWinningContents = PlayersAndWinningContents.newPlayersAndWinnings(Players.valueOf(enteredPlayers()), WinningContents.valueOf(enteredWinnings()));
-
             HeightOfLadder heightOfLadder = enteredHeightOfLadder();
             Ladder ladder = Ladder.newLadder(heightOfLadder, playersAndWinningContents, new RandomStrategy());
 
-            printExecutionResult(ladder);
+            printLadderResult(playersAndWinningContents, ladder);
         } catch (Exception e) {
             printExceptionMessage(e.getMessage());
         }

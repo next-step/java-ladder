@@ -39,10 +39,10 @@ public class Line {
         return new Line(links);
     }
 
-    public static Line newLine(PlayersAndWinningContents playersAndWinningContents, LinkStrategy linkStrategy) {
+    public static Line newLine(int numberOfLink, LinkStrategy linkStrategy) {
         Deque<Link> links = new LinkedList<>();
 
-        IntStream.range(START_RANGE, playersAndWinningContents.numberOfLinks())
+        IntStream.range(START_RANGE, numberOfLink)
                 .forEach(i -> links.add(nextLink(links, linkStrategy)));
 
         return new Line(new ArrayList<>(links));

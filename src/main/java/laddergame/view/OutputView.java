@@ -9,6 +9,7 @@ public class OutputView {
     private static final String PLAYER_INPUT_GUIDE_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String WINNING_INPUT_GUIDE_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String HEIGHT_OF_LADDER_INPUT_GUIDE_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
+    private static final String LADDER_RESULT_MESSAGE = "사다리 결과";
     private static final String EXECUTION_RESULT_MESSAGE = "실행결과";
     private static final String FRAME = "|";
     private static final String STEP = "-----";
@@ -47,14 +48,13 @@ public class OutputView {
         System.out.println(exceptionMessage);
     }
 
-    public static void printExecutionResult(Ladder ladder) {
-        PlayersAndWinningContents playersAndWinningContents = ladder.playersAndWinningContents();
+    public static void printLadderResult(PlayersAndWinningContents playersAndWinningContents, Ladder ladder) {
         int lengthOfFirstPlayerName = playersAndWinningContents.findPlayerByIndex(FIRST_INDEX)
                 .lengthOfName();
 
         String executionResult = new StringBuilder()
                 .append(NEXT_LINE)
-                .append(EXECUTION_RESULT_MESSAGE)
+                .append(LADDER_RESULT_MESSAGE)
                 .append(NEXT_LINE)
                 .append(NEXT_LINE)
                 .append(playersMessage(playersAndWinningContents.players()))

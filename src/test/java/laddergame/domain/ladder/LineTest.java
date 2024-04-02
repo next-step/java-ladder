@@ -43,26 +43,23 @@ class LineTest {
         @Nested
         @DisplayName("Line 인스턴스 생성 성공 케이스 테스트")
         class SuccessCaseTest {
-            Players players = Players.newPlayers("a", "b", "c", "d");
-            WinningContents winningContents = WinningContents.newWinningContents("100", "꽝", "1000", "꽝");
-            PlayersAndWinningContents playersAndWinningContents = PlayersAndWinningContents.newPlayersAndWinnings(players, winningContents);
+            int numberOfLink = 4;
             LinkStrategy linkStrategyStub = () -> true;
 
             @Test
-            @DisplayName("생성된 Line 인스턴스에서 links의 크기는 playersAndWinningContents.numberOfLinks()와 동일하다.")
+            @DisplayName("생성된 Line 인스턴스에서 links의 크기는 numberOfLink와 동일하다.")
             void testNumberOfPoints() {
-                Line line = Line.newLine(playersAndWinningContents, linkStrategyStub);
-
-                assertThat(line.links().size()).isEqualTo(playersAndWinningContents.numberOfLinks());
+                Line line = Line.newLine(numberOfLink, linkStrategyStub);
+                assertThat(line.links().size()).isEqualTo(numberOfLink);
             }
 
             @Test
             @DisplayName("생성된 Line 인스턴스에서 links는 LINKED를 연속으로 가질 수 없다.")
             void testNonOverlap() {
-                List<Link> links = Line.newLine(playersAndWinningContents, linkStrategyStub)
+                List<Link> links = Line.newLine(numberOfLink, linkStrategyStub)
                         .links();
 
-                IntStream.range(1, playersAndWinningContents.numberOfLinks())
+                IntStream.range(1, numberOfLink)
                         .forEach(i -> {
                             Link now = links.get(i);
                             Link before = links.get(i - 1);

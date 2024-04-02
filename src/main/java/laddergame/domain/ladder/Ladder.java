@@ -9,22 +9,22 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Ladder {
-    private final PlayersAndWinningContents playersAndWinningContents;
     private final List<Line> lines;
 
-    private Ladder(HeightOfLadder heightOfLadder, PlayersAndWinningContents playersAndWinningContents, LinkStrategy linkStrategy) {
-        this.playersAndWinningContents = playersAndWinningContents;
-        this.lines = Stream.generate(() -> Line.newLine(playersAndWinningContents, linkStrategy))
-                .limit(heightOfLadder.height())
-                .collect(Collectors.toList());
+    private Ladder(List<Line> lines) {
+        this.lines = lines;
+    }
+
+    public static Ladder newLadder(List<Line> lines) {
+        return new Ladder(lines);
     }
 
     public static Ladder newLadder(HeightOfLadder heightOfLadder, PlayersAndWinningContents playersAndWinningContents, LinkStrategy linkStrategy) {
-        return new Ladder(heightOfLadder, playersAndWinningContents, linkStrategy);
-    }
+        List<Line> generatedLines = Stream.generate(() -> Line.newLine(playersAndWinningContents.numberOfLinks(), linkStrategy))
+                .limit(heightOfLadder.height())
+                .collect(Collectors.toList());
 
-    public PlayersAndWinningContents playersAndWinningContents() {
-        return playersAndWinningContents;
+        return new Ladder(generatedLines);
     }
 
     public List<Line> lines() {
