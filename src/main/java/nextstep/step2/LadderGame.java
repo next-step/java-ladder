@@ -1,7 +1,6 @@
 package nextstep.step2;
 
-import java.util.HashMap;
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -26,7 +25,7 @@ public class LadderGame {
                             return results.getResults().get(resultIndex);
                         },
                         (a, b) -> a,
-                        HashMap::new
+                        LinkedHashMap::new
                 ));
 
         return new GameResult(resultMap);

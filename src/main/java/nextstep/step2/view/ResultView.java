@@ -1,11 +1,10 @@
 package nextstep.step2.view;
 
-import nextstep.step2.Participant;
-import nextstep.step2.Entries;
-import nextstep.step2.Ladder;
-import nextstep.step2.Line;
+import nextstep.step2.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 
 public class ResultView {
 
@@ -38,5 +37,47 @@ public class ResultView {
             sb.append(points.get(rowIndex) ? "-----" : "     ");
         }
         System.out.println(sb);
+    }
+
+    public static void printResults(Results results) {
+        StringBuilder sb = new StringBuilder();
+        List<String> resultList = results.getResults();
+        for (String result : resultList) {
+            int paddingLength = 6 - result.length();
+            sb.append(" ".repeat(Math.max(0, paddingLength)));
+            sb.append(result);
+        }
+        System.out.println(sb);
+    }
+
+
+    public static void printGameResults(GameResult gameResult) {
+        Scanner scanner = new Scanner(System.in);
+        String name;
+        while (true) {
+            System.out.print("결과를 보고 싶은 사람은? ");
+            name = scanner.nextLine();
+            if (name.equalsIgnoreCase("all")) {
+                printAllResults(gameResult);
+                break;
+            }
+            printSingleResult(gameResult, name);
+        }
+    }
+
+    private static void printAllResults(GameResult gameResult) {
+        Map<String, String> allResults = gameResult.getAllResults();
+        System.out.println("실행 결과");
+        for (Map.Entry<String, String> entry : allResults.entrySet()) {
+            String name = entry.getKey();
+            String result = entry.getValue();
+            System.out.println(name + " : " + result);
+        }
+    }
+
+    private static void printSingleResult(GameResult gameResult, String name) {
+        System.out.println("실행 결과");
+        String result = gameResult.getResult(name);
+        System.out.println(name + " : " + result);
     }
 }
