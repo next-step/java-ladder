@@ -15,6 +15,11 @@ public class InputView {
     return inputSingleNumber();
   }
 
+  public static String rewards() {
+    printOutInputMessage("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+    return inputLine();
+  }
+
   private static void printOutInputMessage(final String message) {
     System.out.println(message);
   }
