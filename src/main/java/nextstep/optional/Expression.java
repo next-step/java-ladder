@@ -18,11 +18,10 @@ enum Expression {
 
     static Expression of(String expression) {
 
-        Optional<Expression> result = Arrays.stream(values())
-                                .filter(e -> matchExpression(e,expression))
-                                .findFirst();
-
-        return result.orElseThrow(() -> new IllegalArgumentException(expression + "는 사칙연산에 해당하지 않는 표현식입니다."));
+        return Arrays.stream(values())
+                .filter(e -> matchExpression(e, expression))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(expression + "는 사칙연산에 해당하지 않는 표현식입니다."));
 
     }
 }

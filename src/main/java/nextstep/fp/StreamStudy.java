@@ -29,11 +29,11 @@ public class StreamStudy {
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
         List<String> result = words.stream()
-                .filter(w -> w.length() > 12)
+                .filter(word -> word.length() > 12)
                 .sorted(Comparator.comparingInt(String::length).reversed())
                 .distinct()
                 .limit(100)
-                .map(w->w.toLowerCase())
+                .map(String::toLowerCase)
                 .collect(Collectors.toList());
 
         result.forEach(System.out::println); 
