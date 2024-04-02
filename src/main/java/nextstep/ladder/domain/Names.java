@@ -14,7 +14,7 @@ public class Names {
                 .collect(Collectors.toList());
     }
 
-    public int findStartRow(final Name name) {
+    public int findStartColumn(final Name name) {
         return names.indexOf(name);
     }
 

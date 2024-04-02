@@ -17,13 +17,8 @@ public class LadderResultDeterminer {
     }
 
     public String determineResult(final Name name) {
-        int row = names.findStartRow(name);
-        int column = 0;
-        while (column != ladder.getLines().size()) {
-            row += ladder.move(row, column);
-            column++;
-        }
-        return ladderResult.getResultByIndex(row);
+        final int column = ladder.move(names.findStartColumn(name));
+        return ladderResult.getResultByIndex(column);
     }
 
     private void validate(final LadderResult ladderResult, final Names names) {
