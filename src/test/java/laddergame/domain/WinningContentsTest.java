@@ -24,7 +24,7 @@ class WinningContentsTest {
 
     @Test
     @DisplayName("findWinningContentByIndex(): WinningContents.winningContents 중 전달된 index 순서에 해당하는 winningContent를 반환한다.")
-    void testFindPlayerByIndex() {
+    void testFindWinningContentByIndex() {
         WinningContent firstWinningContent = WinningContent.valueOf("a");
         WinningContent secondWinningContent = WinningContent.valueOf("b");
         WinningContents winningContents = WinningContents.newWinningContents(firstWinningContent, secondWinningContent);
