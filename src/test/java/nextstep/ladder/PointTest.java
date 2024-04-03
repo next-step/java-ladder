@@ -12,16 +12,16 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 public class PointTest {
 
     @Test
-    @DisplayName("[성공] 오른쪽으로만 이동할 수 있는, 첫 번째 포인트를 생성한다.")
+    @DisplayName("[성공] 왼쪽으로 이동할 수 없는, 첫 번째 포인트를 생성한다.")
     void 첫번째_포인트() {
         Point point = Point.first();
         assertThat(point.move()).isEqualTo(Direction.RIGHT);
     }
 
     @Test
-    @DisplayName("[성공] 왼쪽으로만 이동할 수 있는, 마지막 포인트를 생성한다.")
+    @DisplayName("[성공] 오른쪽으로 이동할 수 없는, 마지막 포인트를 생성한다.")
     void 마지막_포인트() {
-        Point point = Point.last();
+        Point point = Point.last(true);
         assertThat(point.move()).isEqualTo(Direction.LEFT);
     }
 
