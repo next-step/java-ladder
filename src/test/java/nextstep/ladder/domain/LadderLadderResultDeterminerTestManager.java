@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatNoException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class LadderResultDeterminerTest {
+class LadderLadderResultDeterminerTestManager {
 
     @Test
     @DisplayName("실행 결과의 개수가 참여자의 수와 일치하지 않으면 예외가 발생한다")
@@ -16,8 +16,8 @@ class LadderResultDeterminerTest {
         final String[] names = {"pobi", "crong"};
 
         // when & then
-        assertThatIllegalArgumentException().isThrownBy(() -> new LadderResultDeterminer(new LadderResult(result),
-                new Ladder(4, 5), new Names(names)));
+        assertThatIllegalArgumentException().isThrownBy(
+                () -> new LadderResultDeterminer(new LadderResult(result), new Names(names)));
     }
 
     @Test
@@ -28,7 +28,7 @@ class LadderResultDeterminerTest {
         final String[] names = {"pobi", "crong"};
 
         // when & then
-        assertThatNoException().isThrownBy(() -> new LadderResultDeterminer(new LadderResult(result),
-                new Ladder(4, 5), new Names(names)));
+        assertThatNoException().isThrownBy(
+                () -> new LadderResultDeterminer(new LadderResult(result), new Names(names)));
     }
 }

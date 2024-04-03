@@ -2,10 +2,10 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Bridge;
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.LadderResultDeterminer;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Name;
 import nextstep.ladder.domain.Names;
+import nextstep.ladder.domain.LadderResultManager;
 
 public class OutputView {
 
@@ -32,13 +32,12 @@ public class OutputView {
         System.out.print("|\n");
     }
 
-    public void printResult(final String name, final LadderResultDeterminer determiner) {
+    public void printResult(final String name, final LadderResultManager ladderResultManager) {
         if (ALL_NAMES.equals(name)) {
-            determiner.getNames()
-                    .forEach(n -> System.out.println(n.getName() + NAME_RESULT_DELIMITER + determiner.determineResult(n)));
+            ladderResultManager.getResults().forEach((n, r) -> System.out.println(n.getName() + NAME_RESULT_DELIMITER + r));
             return;
         }
-        System.out.println(name + NAME_RESULT_DELIMITER + determiner.determineResult(new Name(name)));
+        System.out.println(name + NAME_RESULT_DELIMITER + ladderResultManager.getResultByName(new Name(name)));
     }
 
     private void printBridge(final Bridge bridge) {
