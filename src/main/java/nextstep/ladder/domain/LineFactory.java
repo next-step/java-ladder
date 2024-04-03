@@ -24,4 +24,22 @@ public class LineFactory {
         return Line.of(Collections.unmodifiableList(points));
     }
 
+    public static Line of(List<Boolean> rightPoints) {
+        List<Point> points = new ArrayList<>();
+
+        Point point = Point.first(rightPoints.get(0));
+        points.add(point);
+
+        for (int i = 1; i < rightPoints.size() - 1; i++) {
+            Point nextPoint = Point.next(point.right(), rightPoints.get(i));
+            points.add(nextPoint);
+            point = nextPoint;
+        }
+
+        point = Point.last(point.right());
+        points.add(point);
+
+        return Line.of(Collections.unmodifiableList(points));
+    }
+
 }

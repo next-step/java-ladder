@@ -13,6 +13,10 @@ public class Point {
         return new Point(false, random());
     }
 
+    public static Point first(boolean right) {
+        return new Point(false, right);
+    }
+
     public static Point last(boolean left) {
         return Point.from(left, false);
     }
