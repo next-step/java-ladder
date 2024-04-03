@@ -37,4 +37,7 @@ public class Person {
         return Objects.hash(name);
     }
 
+    public String getName() {
+        return name;
+    }
 }
