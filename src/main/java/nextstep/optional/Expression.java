@@ -12,13 +12,17 @@ enum Expression {
     }
 
     private static boolean matchExpression(Expression e, String expression) {
-        return expression.equals(e.expression);
+        return e.matches(expression);
     }
 
     static Expression of(String expression) {
         return Arrays.stream(values())
-                .filter(operator -> matchExpression(operator, expression))
+                .filter(operator -> operator.matches(expression))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(String.format("%s는 사칙연산에 해당하지 않는 표현식입니다.", expression)));
+    }
+
+    private boolean matches(String expression) {
+        return this.expression.equals(expression);
     }
 }
