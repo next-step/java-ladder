@@ -17,21 +17,13 @@ public class Ladder {
     }
 
     public static Ladder of(int numberOfParticipant, int height) {
-        return new Ladder(createLines(numberOfParticipant - 1, height));
-    }
-
-    public static Ladder of(List<Line> lines) {
-        return new Ladder(lines);
+        return new Ladder(createLines(numberOfParticipant, height));
     }
 
     private static List<Line> createLines(int pointSize, int height) {
-        return Stream.generate(() -> Line.of(RandomPointsGenerator.generate(pointSize)))
+        return Stream.generate(() -> LineFactory.createLine(pointSize, height))
                 .limit(height)
                 .collect(Collectors.toList());
-    }
-
-    public int getHeight() {
-        return this.lines.size();
     }
 
     public List<Line> getLines() {

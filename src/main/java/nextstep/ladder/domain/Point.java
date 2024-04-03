@@ -64,4 +64,8 @@ public class Point {
         return left;
     }
 
+    public boolean right() {
+        return right;
+    }
+
 }

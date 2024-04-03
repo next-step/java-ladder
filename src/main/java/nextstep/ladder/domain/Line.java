@@ -1,61 +1,33 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.exception.LineConsecutivePointException;
-
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Line {
 
-    private final List<Boolean> points;
+    private final List<Point> points;
 
-    public static Line of(Boolean... points) {
+    public static Line of(Point... points) {
         return new Line(List.of(points));
     }
 
-    public static Line of(List<Boolean> points) {
+    public static Line of(List<Point> points) {
         return new Line(points);
     }
 
-    private Line(List<Boolean> points) {
-        validateConsecutivePoint(points);
+    private Line(List<Point> points) {
         this.points = points;
     }
 
-    private static void validateConsecutivePoint(List<Boolean> points) {
-        if (hasConsecutivePoint(points)) {
-            throw new LineConsecutivePointException(points);
-        }
-    }
-
-    private static boolean hasConsecutivePoint(List<Boolean> points) {
-        return IntStream.range(1, points.size())
-                .anyMatch(index -> points.get(index - 1) && points.get(index));
-    }
-
-    public List<Boolean> get() {
+    public List<Point> get() {
         return Collections.unmodifiableList(this.points);
     }
 
     public int move(int position) {
-        if (canMoveRight(position)) {
-            return position + 1;
-        }
-
-        if (canMoveLeft(position)) {
-            return position - 1;
-        }
-
-        return position;
+        return currentPoint(position).getDirection().move(position);
     }
 
-    private boolean canMoveRight(int position) {
-        return position < points.size() && points.get(position);
+    private Point currentPoint(int position) {
+        return this.points.get(position);
     }
-
-    private boolean canMoveLeft(int position) {
-        return position > 0 && points.get(position - 1);
-    }
-
 }

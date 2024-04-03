@@ -1,9 +1,6 @@
 package nextstep.ladder.ui;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Participant;
-import nextstep.ladder.domain.Participants;
+import nextstep.ladder.domain.*;
 
 import java.util.List;
 import java.util.Map;
@@ -32,13 +29,15 @@ public class ResultView {
     }
 
     private static String formatLine(Line line) {
-        return line.get().stream()
+        List<Point> points = line.get();
+        return points.stream()
+                .limit(points.size() - 1)
                 .map(point -> String.format("%5s", formatPoint(point)))
                 .collect(Collectors.joining(LINE_DELIMITER, String.format("%5s", LINE_DELIMITER), LINE_DELIMITER));
     }
 
-    private static String formatPoint(boolean point) {
-        if (point) {
+    private static String formatPoint(Point point) {
+        if (point.right()) {
             return POINT_TRUE;
         }
         return POINT_FALSE;
