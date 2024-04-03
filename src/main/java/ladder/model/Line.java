@@ -21,20 +21,20 @@ public class Line {
         List<Boolean> points = new ArrayList<>();
         int columnNum = countOfPerson - 1;
 
+        boolean before = FALSE;
         while (points.size() < columnNum) {
-            connectLine(points);
-        }
-        if (points.size() > columnNum) {
-            points.remove(points.size() - 1);
+            boolean next = connectLine(before);
+            points.add(next);
+            before = next;
         }
         return new Line(points);
     }
 
-    private static void connectLine(List<Boolean> points) {
-        if (ConnectLine.next()) {
-            points.add(TRUE);
+    private static boolean connectLine(boolean before) {
+        if(!before){
+            return ConnectLine.next();
         }
-        points.add(FALSE);
+        return FALSE;
     }
 
     private void checkValidConnect(List<Boolean> points){

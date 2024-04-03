@@ -2,18 +2,17 @@ package ladder.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import static ladder.model.Line.createOneLine;
 
 public class Ladder {
     private List<Line> lines = new ArrayList<>();
 
-    public Ladder(int heightOfLadder, int NumberOfName) {
-        checkIndex(heightOfLadder, NumberOfName);
+    public Ladder(int heightOfLadder, int numberOfName) {
+        checkIndex(heightOfLadder, numberOfName);
 
         for (int i = 0; i < heightOfLadder; i++) {
-            this.lines.add(createOneLine(NumberOfName));
+            this.lines.add(createOneLine(numberOfName));
         }
     }
 

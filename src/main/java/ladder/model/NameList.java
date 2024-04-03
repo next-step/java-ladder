@@ -27,7 +27,7 @@ public class NameList {
                 .filter(name -> !Pattern.matches(NAME_PATTERN, name))
                 .findFirst()
                 .ifPresent(name -> {
-                    throw new IllegalArgumentException("아이디는 영어 대소문자 / 숫자만 포함 가능.");
+                    throw new IllegalArgumentException("이름은 영어 대소문자 / 숫자만 포함 가능.");
                 });
     }
 

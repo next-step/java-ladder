@@ -9,11 +9,9 @@ public class StringToListConverter {
         String[] valueList = value.split(",");
         checkNull(valueList);
 
-        List<String> result = Arrays.stream(valueList)
+        return Arrays.stream(valueList)
                 .map(element -> element.replaceAll(" ", ""))
                 .collect(Collectors.toList());
-
-        return result;
     }
 
     private static void checkNull(String[] valueList) {
