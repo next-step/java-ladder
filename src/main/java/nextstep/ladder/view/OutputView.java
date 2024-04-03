@@ -4,6 +4,7 @@ import nextstep.ladder.domain.LadderGame;
 import nextstep.ladder.domain.Line;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputView {
 
@@ -35,16 +36,9 @@ public class OutputView {
     }
 
     private static String renderPoints(List<Boolean> points) {
-        StringBuilder sb = new StringBuilder();
-        for (Boolean point : points) {
-            sb.append("|");
-            if (point) {
-                sb.append("-----");
-            } else {
-                sb.append("     ");
-            }
-        }
-        return sb.toString();
+        return points.stream()
+                .map(point -> "|" + (point? "-----" : "     "))
+                .collect(Collectors.joining());
     }
 
 }
