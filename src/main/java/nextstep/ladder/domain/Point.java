@@ -10,25 +10,28 @@ public class Point {
     private final boolean right;
 
     public static Point first() {
-        return new Point(false, true);
+        return new Point(false, random());
     }
 
-    public static Point last() {
-        return new Point(true, false);
+    public static Point last(boolean left) {
+        return Point.from(left, false);
+    }
+
+    public static Point middle(boolean left) {
+        return Point.from(left, random());
+    }
+
+    private static Point from(boolean left, boolean right) {
+        if (left) {
+            return new Point(true, false);
+        }
+        return new Point(false, right);
     }
 
     public static Point middle(boolean left, boolean right) {
         return new Point(left, right);
     }
-
-    public static Point middle(boolean left) {
-        if (left) {
-            return new Point(true, false);
-        }
-
-        return new Point(false, ThreadLocalRandom.current().nextBoolean());
-    }
-
+    
     private Point(boolean left, boolean right) {
         validateConsecutivePoint(left, right);
         this.left = left;
@@ -39,6 +42,10 @@ public class Point {
         if (left && right) {
             throw new ConsecutivePointException();
         }
+    }
+
+    private static boolean random() {
+        return ThreadLocalRandom.current().nextBoolean();
     }
 
     public Direction move() {
@@ -52,4 +59,9 @@ public class Point {
 
         return Direction.STOP;
     }
+
+    public boolean left() {
+        return left;
+    }
+
 }
