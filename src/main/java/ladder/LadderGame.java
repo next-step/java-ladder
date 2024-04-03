@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.domain.*;
+import ladder.dto.PrizeDto;
 import ladder.rowgenerator.RowGeneratorRandom;
 
 import java.util.HashMap;
@@ -13,7 +14,7 @@ public class LadderGame {
   private final Players players;
   private final Ladders ladders;
   private final List<Prize> prizes;
-  private Map<String, Prize> results = new HashMap<>();
+  private final Map<String, Prize> results = new HashMap<>();
 
   public static LadderGame of(final String playersText, final String maxHeight, final String prizesText) {
     List<String> names = csvParser(playersText);
@@ -43,16 +44,19 @@ public class LadderGame {
 
   public void play() {
     IntStream.range(0, this.players.size())
-            .forEach(i -> {
-              int position = i;
-              for (Row row : this.ladders) {
-                position = row.nextPosition(position);
-              }
-              results.put(this.players.at(i).name(), this.prizes.get(position));
-            });
+            .forEach(startPosition -> results.put(
+                    this.players.nameAt(startPosition),
+                    this.prizes.get(this.ladders.finalPosition(startPosition)))
+            );
   }
 
-  public Map<String, Prize> result() {
-    return this.results;
+  public Map<String, PrizeDto> results() {
+    final HashMap<String, PrizeDto> results = new HashMap<>();
+
+    this.results.entrySet()
+            .stream()
+            .forEach(entry -> results.put(entry.getKey(), new PrizeDto(entry.getValue())));
+
+    return results;
   }
 }

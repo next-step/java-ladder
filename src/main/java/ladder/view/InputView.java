@@ -20,6 +20,11 @@ public class InputView {
     return inputLine();
   }
 
+  public static String wantResultOf() {
+    printOutInputMessage("결과를 보고싶은 사람은?");
+    return inputLine();
+  }
+
   private static void printOutInputMessage(final String message) {
     System.out.println(message);
   }

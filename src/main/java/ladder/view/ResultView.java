@@ -7,13 +7,14 @@ import ladder.dto.PrizeDto;
 import ladder.dto.RowDto;
 
 import java.util.List;
+import java.util.Map;
 
 public class ResultView {
   private static final String OFFSET = "     ";
   private static final String PARALLEL = "-----";
   private static final String VERTICAL = "|";
 
-  public static void displayResult(StatusDto result) {
+  public static void displayStatus(StatusDto result) {
     StringBuilder sb = new StringBuilder("실행 결과\n");
     sb.append(playersBuilder(result.getPlayers()));
     sb.append(laddersBuilder(result.getLadders()));
@@ -71,5 +72,18 @@ public class ResultView {
     sb.append("\n");
 
     return sb;
+  }
+
+  public static void displayResult(Map<String, PrizeDto> results, String name) {
+    StringBuilder sb = new StringBuilder();
+
+    if ("all".equals(name)) {
+      results.entrySet().stream()
+              .forEach(entry -> sb.append(String.format("%s: %s\n", entry.getKey(), entry.getValue().getValue())));
+      System.out.println(sb);
+      return;
+    }
+
+    System.out.println(results.get(name).getValue());
   }
 }

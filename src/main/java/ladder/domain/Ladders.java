@@ -42,6 +42,16 @@ public class Ladders implements Iterable<Row> {
     return this.rows;
   }
 
+  public int finalPosition(final int startPosition) {
+    int position = startPosition;
+
+    for (Row row : this.rows) {
+      position = row.nextPosition(position);
+    }
+
+    return position;
+  }
+
   @Override
   public Iterator<Row> iterator() {
     return new RowIterator();
