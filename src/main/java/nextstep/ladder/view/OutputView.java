@@ -26,13 +26,16 @@ public class OutputView {
     }
 
     private static String renderLine(LadderGame ladderGame) {
-        StringBuilder sb = new StringBuilder();
-        for (Line line : ladderGame.getLines()) {
-            sb.append("     ");
-            sb.append(renderPoints(line.getPoints()));
-            sb.append("|\n");
-        }
-        return sb.toString();
+        //StringBuilder sb = new StringBuilder();
+        //for (Line line : ladderGame.getLines()) {
+        //    sb.append("     ");
+        //    sb.append(renderPoints(line.getPoints()));
+        //    sb.append("|\n");
+        //}
+        //return sb.toString();
+        return ladderGame.getLines().stream()
+                .map(line -> "     " + renderPoints(line.getPoints()) + "|\n")
+                .collect(Collectors.joining());
     }
 
     private static String renderPoints(List<Boolean> points) {
