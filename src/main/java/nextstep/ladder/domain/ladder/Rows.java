@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Rows {
     private final List<Row> values = new ArrayList<>();
 
     public Rows(Height height, Count playersCount, RungGenerateStrategy strategy) {
-        this(IntStream.range(0, height.value())
-                .mapToObj(idx -> new Row(playersCount, strategy))
+        this(Stream.generate(() -> new Row(playersCount, strategy))
+                .limit(height.value())
                 .collect(Collectors.toList()));
     }
 
@@ -30,4 +30,5 @@ public class Rows {
     public void forEach(Consumer<Row> action) {
         values.forEach(action);
     }
+
 }
