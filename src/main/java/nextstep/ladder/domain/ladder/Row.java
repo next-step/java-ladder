@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Row {
     private final List<Rung> rungs = new ArrayList<>();
@@ -19,8 +19,8 @@ public class Row {
     private List<Rung> generateRungs(Count playersCount, RungGenerateStrategy strategy) {
         final AtomicBoolean lastFlag = new AtomicBoolean(false);
 
-        return IntStream.range(0, playersCount.subtract(1).value())
-                .mapToObj(idx -> generateRung(strategy, lastFlag))
+        return Stream.generate(() -> generateRung(strategy, lastFlag))
+                .limit(playersCount.subtract(1).value())
                 .collect(Collectors.toList());
     }
 
