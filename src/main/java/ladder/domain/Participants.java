@@ -12,4 +12,8 @@ public class Participants {
                 .map(Name::new)
                 .collect(Collectors.toList());
     }
+
+    public int countOfPerson() {
+        return names.size();
+    }
 }

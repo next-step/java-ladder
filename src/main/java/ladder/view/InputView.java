@@ -15,6 +15,11 @@ public class InputView {
         return new Participants(input.split(SPLIT_DELIMITER, -1));
     }
 
+    public static int askLadderHeight() {
+        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        return scanner.nextInt();
+    }
+
     private static void checkEmptyInput(String input) {
         if (input == null || input.isBlank()) {
             throw new IllegalArgumentException("빈 값이 입력되었습니다.");
