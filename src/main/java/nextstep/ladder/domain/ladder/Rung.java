@@ -16,7 +16,7 @@ public enum Rung {
         this.exist = exist;
     }
 
-    public static Rung findByBoolean(boolean value) {
+    public static Rung from(boolean value) {
         if (value) {
             return EXIST;
         }
@@ -25,7 +25,7 @@ public enum Rung {
 
     public static Rung generate(RungGenerateStrategy generateStrategy, Rung adjacentRung) {
         return Optional.ofNullable(generateStrategy)
-                .map(strategy -> findByBoolean(adjacentRung.notExist() && strategy.addable()))
+                .map(strategy -> from(adjacentRung.notExist() && strategy.addable()))
                 .orElse(EMPTY);
     }
 

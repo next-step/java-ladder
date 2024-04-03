@@ -25,7 +25,7 @@ public class Row {
     }
 
     private Rung generateRung(RungGenerateStrategy strategy, AtomicBoolean lastFlag) {
-        final Rung rung = Rung.generate(strategy, Rung.findByBoolean(lastFlag.get()));
+        final Rung rung = Rung.generate(strategy, Rung.from(lastFlag.get()));
 
         lastFlag.set(rung.exist());
 

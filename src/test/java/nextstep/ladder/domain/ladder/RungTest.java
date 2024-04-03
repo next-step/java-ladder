@@ -23,7 +23,7 @@ public class RungTest {
     @ParameterizedTest
     @CsvSource(value = {"true,EXIST", "false,EMPTY"})
     void findByBoolean(boolean value, Rung rung) {
-        assertThat(Rung.findByBoolean(value))
+        assertThat(Rung.from(value))
                 .isEqualTo(rung);
     }
 
