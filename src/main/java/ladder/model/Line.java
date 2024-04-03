@@ -31,7 +31,7 @@ public class Line {
     }
 
     private static void connectLine(List<Boolean> points) {
-        if (ConnectLine.isConnect()) {
+        if (ConnectLine.next()) {
             points.add(TRUE);
         }
         points.add(FALSE);
