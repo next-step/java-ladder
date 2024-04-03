@@ -48,7 +48,7 @@ public class Point {
         return ThreadLocalRandom.current().nextBoolean();
     }
 
-    public Direction move() {
+    public Direction getDirection() {
         if (left) {
             return Direction.LEFT;
         }
