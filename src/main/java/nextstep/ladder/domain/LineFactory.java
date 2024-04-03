@@ -12,14 +12,14 @@ public class LineFactory {
         Point firstPoint = Point.first();
         points.add(firstPoint);
 
-        boolean previousLeft = firstPoint.left();
+        boolean previousRight = firstPoint.right();
         for (int i = 1; i < numberOfParticipants - 1; i++) {
-            Point currentPoint = Point.middle(previousLeft);
+            Point currentPoint = Point.middle(previousRight);
             points.add(currentPoint);
-            previousLeft = currentPoint.left();
+            previousRight = currentPoint.right();
         }
 
-        Point lastPoint = Point.last(previousLeft);
+        Point lastPoint = Point.last(previousRight);
         points.add(lastPoint);
 
         return Line.of(Collections.unmodifiableList(points));
