@@ -17,7 +17,7 @@ public class Point {
         return Point.from(left, false);
     }
 
-    public static Point middle(boolean left) {
+    public static Point next(boolean left) {
         return Point.from(left, random());
     }
 
@@ -28,7 +28,7 @@ public class Point {
         return new Point(false, right);
     }
 
-    public static Point middle(boolean left, boolean right) {
+    public static Point next(boolean left, boolean right) {
         return new Point(left, right);
     }
     
@@ -58,10 +58,6 @@ public class Point {
         }
 
         return Direction.STOP;
-    }
-
-    public boolean left() {
-        return left;
     }
 
     public boolean right() {

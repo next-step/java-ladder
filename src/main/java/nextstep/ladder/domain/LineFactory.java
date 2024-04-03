@@ -9,18 +9,17 @@ public class LineFactory {
     public static Line of(int pointSize) {
         List<Point> points = new ArrayList<>();
 
-        Point firstPoint = Point.first();
-        points.add(firstPoint);
+        Point point = Point.first();
+        points.add(point);
 
-        boolean previousRight = firstPoint.right();
         for (int i = 1; i < pointSize - 1; i++) {
-            Point currentPoint = Point.middle(previousRight);
-            points.add(currentPoint);
-            previousRight = currentPoint.right();
+            Point nextPoint = Point.next(point.right());
+            points.add(nextPoint);
+            point = nextPoint;
         }
 
-        Point lastPoint = Point.last(previousRight);
-        points.add(lastPoint);
+        point = Point.last(point.right());
+        points.add(point);
 
         return Line.of(Collections.unmodifiableList(points));
     }
