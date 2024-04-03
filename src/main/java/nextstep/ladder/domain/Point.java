@@ -2,6 +2,8 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.exception.ConsecutivePointException;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public class Point {
 
     private final boolean left;
@@ -17,6 +19,14 @@ public class Point {
 
     public static Point middle(boolean left, boolean right) {
         return new Point(left, right);
+    }
+
+    public static Point middle(boolean left) {
+        if (left) {
+            return new Point(true, false);
+        }
+
+        return new Point(false, ThreadLocalRandom.current().nextBoolean());
     }
 
     private Point(boolean left, boolean right) {
