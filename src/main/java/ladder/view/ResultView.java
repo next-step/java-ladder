@@ -3,20 +3,22 @@ package ladder.view;
 import ladder.domain.*;
 import ladder.dto.LaddersDto;
 import ladder.dto.PlayerDto;
+import ladder.dto.PrizeDto;
 import ladder.dto.RowDto;
 
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class ResultView {
   private static final String OFFSET = "     ";
   private static final String PARALLEL = "-----";
   private static final String VERTICAL = "|";
 
-  public static void displayResult(ResultDto result) {
+  public static void displayResult(StatusDto result) {
     StringBuilder sb = new StringBuilder("실행 결과\n");
     sb.append(playersBuilder(result.getPlayers()));
     sb.append(laddersBuilder(result.getLadders()));
+    sb.append(prizesBuilder(result.getPrizes()));
+
     System.out.println(sb);
   }
 
@@ -59,5 +61,15 @@ public class ResultView {
       return PARALLEL;
     }
     return OFFSET;
+  }
+
+  private static StringBuilder prizesBuilder(List<PrizeDto> prizes) {
+    StringBuilder sb = new StringBuilder();
+    for (PrizeDto prize : prizes) {
+      sb.append(String.format("%6s", prize.getValue()));
+    }
+    sb.append("\n");
+
+    return sb;
   }
 }

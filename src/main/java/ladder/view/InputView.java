@@ -10,13 +10,13 @@ public class InputView {
     return inputLine();
   }
 
-  public static int maxLadderHeight() {
+  public static String maxLadderHeight() {
     printOutInputMessage("최대 사다리 높이는 몇 개인가요?");
-    return inputSingleNumber();
+    return inputLine();
   }
 
-  public static String rewards() {
-    printOutInputMessage("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+  public static String prizes() {
+    printOutInputMessage("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요.)");
     return inputLine();
   }
 
@@ -26,9 +26,5 @@ public class InputView {
 
   public static String inputLine() {
     return scanner.nextLine();
-  }
-
-  public static int inputSingleNumber() {
-    return scanner.nextInt();
   }
 }

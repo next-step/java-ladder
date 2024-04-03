@@ -1,7 +1,7 @@
 package ladder.domain;
 
 public class Prize {
-  private static String FAILURE = "꽝";
+  private static final String FAILURE = "꽝";
   private final String value;
 
   public Prize(final String text) {
@@ -24,5 +24,9 @@ public class Prize {
       }
       throw new IllegalArgumentException("유효하지 않은 입력입니다.(숫자가 아닌 값)");
     }
+  }
+
+  public String textValue() {
+    return this.value;
   }
 }
