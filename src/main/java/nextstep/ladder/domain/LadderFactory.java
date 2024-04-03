@@ -3,10 +3,22 @@ package nextstep.ladder.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-public class LineFactory {
+public class LadderFactory {
 
-    public static Line createLine(int numberOfParticipants, int height) {
+    public static Ladder create(int numberOfParticipants, int height) {
+        return new Ladder(createLines(numberOfParticipants, height));
+    }
+
+    private static List<Line> createLines(int numberOfParticipants, int height) {
+        return Stream.generate(() -> LadderFactory.createLine(numberOfParticipants))
+                .limit(height)
+                .collect(Collectors.toList());
+    }
+
+    public static Line createLine(int numberOfParticipants) {
         List<Point> points = new ArrayList<>();
 
         Point firstPoint = Point.first();
