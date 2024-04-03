@@ -2,10 +2,10 @@
 - [X] 람다 실습
   - [X] 익명 클래스 람다로 전환
   - [X] 람다를 활용해 중복 제거
-- [] Stream 실습
-  - [] map, reduce, filter 실습 1
-  - [] map, reduce, filter 실습 2
-- [] Optional
-  - [] 조건에 따른 반환
-  - [] 값 반환
-  - [] 예외 처리
+- [X] Stream 실습
+  - [X] map, reduce, filter 실습 1
+  - [X] map, reduce, filter 실습 2
+- [X] Optional
+  - [X] 조건에 따른 반환
+  - [X] 값 반환
+  - [X] 예외 처리
