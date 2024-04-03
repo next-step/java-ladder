@@ -29,8 +29,16 @@ public class PlayersAndWinningContents {
         return players.numberOfPlayers() - 1;
     }
 
+    public int numberOfPlayers() {
+        return players.numberOfPlayers();
+    }
+
     public Player findPlayerByIndex(int index) {
         return players.findPlayerByIndex(index);
+    }
+
+    public WinningContent findWinningContentByIndex(int index) {
+        return winningContents.findWinningContentByIndex(index);
     }
 
     public Players players() {

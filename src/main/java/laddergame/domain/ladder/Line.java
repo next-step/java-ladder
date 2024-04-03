@@ -64,6 +64,24 @@ public class Line {
         return links.size();
     }
 
+    public int nextIndexOfFrame(int indexOfFrame) {
+        int indexOfLeftLink = indexOfFrame - 1;
+        if (isValidIndexOfLink(indexOfLeftLink) && links.get(indexOfLeftLink).isLinked()) {
+            return indexOfFrame - 1;
+        }
+
+        int indexOfRightLink = indexOfFrame;
+        if (isValidIndexOfLink(indexOfRightLink) && links.get(indexOfRightLink).isLinked()) {
+            return indexOfFrame + 1;
+        }
+
+        return indexOfFrame;
+    }
+
+    private boolean isValidIndexOfLink(int indexOfLink) {
+        return indexOfLink >= 0 && indexOfLink < links.size();
+    }
+
     public List<Link> links() {
         return Collections.unmodifiableList(links);
     }
