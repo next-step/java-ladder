@@ -31,12 +31,7 @@ public class Users {
         return users.size();
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (User user : users) {
-            sb.append(user.toString());
-        }
-        return sb.toString();
+    public List<User> getUsers() {
+        return users;
     }
 }
