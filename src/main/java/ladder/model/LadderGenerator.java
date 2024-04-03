@@ -9,7 +9,7 @@ public class LadderGenerator {
 
     public static Ladder generateLadder(int heightOfLadder, Participants participants, LadderGeneratorStrategy strategy) {
         List<Line> ladder = IntStream.range(0, heightOfLadder)
-                .mapToObj(i -> new Line(generateOneHeightOfLadder(participants.getNumberOfParticipants(), strategy)))
+                .mapToObj(i -> Line.of(generateOneHeightOfLadder(participants.getNumberOfParticipants(), strategy)))
                 .collect(Collectors.toList());
 
         return new Ladder(ladder);

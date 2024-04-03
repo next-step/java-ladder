@@ -25,7 +25,7 @@ class LadderTest {
 
     private Ladder getLadder() {
         List<Line> lines = new ArrayList<>();
-        Line line = new Line(List.of(true, false));
+        Line line = Line.of(List.of(true, false));
         lines.add(line);
         return new Ladder(lines);
     }
