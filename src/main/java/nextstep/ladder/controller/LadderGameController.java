@@ -1,6 +1,7 @@
 package nextstep.ladder.controller;
 
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderFactory;
 import nextstep.ladder.domain.Participant;
 import nextstep.ladder.domain.Participants;
 import nextstep.ladder.ui.InputView;
@@ -13,15 +14,18 @@ public class LadderGameController {
 
     public void doLadderGame() {
         try {
+
             Participants participants = Participants.of(InputView.readParticipantNames());
             List<String> prizes = InputView.readLadderGamePrizes(participants.numberOf());
-            Ladder ladder = Ladder.of(participants.numberOf(), InputView.readLadderMaxHeight());
+            int ladderHeight = InputView.readLadderMaxHeight();
 
-            Map<Participant, String> prizeMap = ladder.move(participants, prizes);
-
+            Ladder ladder = LadderFactory.of(participants.numberOf(), ladderHeight);
             ResultView.printLadder(participants, ladder);
             ResultView.printPrizes(prizes);
+
+            Map<Participant, String> prizeMap = ladder.move(participants, prizes);
             printPrizesRepeatedly(prizeMap);
+
         } catch (IllegalArgumentException e) {
             ResultView.printException(e.getMessage());
         } catch (Exception e) {
