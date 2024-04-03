@@ -12,10 +12,7 @@ public class LadderController {
         int countOfPerson = names.length;
 
         int height = InputView.getHeight();
-
-        OutputView.printHeight(height);
-        OutputView.printNames(names);
-        OutputView.printLadder(new LadderGame(height, countOfPerson));
+        OutputView.printLadder(height, names, new LadderGame(height, countOfPerson));
     }
 
 }
