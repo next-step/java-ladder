@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
@@ -26,7 +28,7 @@ public class SplitterTest {
         @Test
         void byComma() {
             final String input = "1,2,3,4,5,6";
-            final String[] result = Splitter.byComma(input);
+            final List<String> result = Splitter.byComma(input);
 
             assertThat(result).containsExactly("1", "2", "3", "4", "5", "6");
         }

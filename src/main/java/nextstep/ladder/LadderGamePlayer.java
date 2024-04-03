@@ -11,7 +11,7 @@ import nextstep.ladder.view.OutputView;
 public class LadderGamePlayer {
 
     private void play() {
-        final Players players = new Players(InputView.playerNames());
+        final Players players = Players.from(InputView.playerNames());
 
         final Height height = new Height(InputView.ladderHeight());
         if (height.isZero()) {

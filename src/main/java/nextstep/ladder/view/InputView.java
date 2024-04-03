@@ -3,6 +3,7 @@ package nextstep.ladder.view;
 import nextstep.ladder.utils.Splitter;
 import nextstep.ladder.utils.StringUtils;
 
+import java.util.List;
 import java.util.Scanner;
 
 import static nextstep.ladder.view.MyPrinter.lineChange;
@@ -13,10 +14,10 @@ public class InputView {
 
     private InputView() {}
 
-    public static String[] playerNames() {
+    public static List<String> playerNames() {
         printLine(Announcements.PLAYER_NAMES);
 
-        final String[] names = Splitter.byComma(StringUtils.removeSpace(SCANNER.nextLine()));
+        final List<String> names = Splitter.byComma(StringUtils.removeSpace(SCANNER.nextLine()));
 
         lineChange();
 

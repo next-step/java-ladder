@@ -1,13 +1,16 @@
 package nextstep.ladder.utils;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Splitter {
     private static final String COMMA_DELIMITER = ",";
 
     private Splitter() {}
 
-    public static String[] byComma(String input) {
+    public static List<String> byComma(String input) {
         assertNotBlank(input);
-        return input.split(COMMA_DELIMITER);
+        return Arrays.asList(input.split(COMMA_DELIMITER));
     }
 
     private static void assertNotBlank(String input) {

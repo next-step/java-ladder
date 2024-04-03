@@ -1,17 +1,18 @@
 package nextstep.ladder.domain.player;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Players {
     private final List<Player> players = new ArrayList<>();
 
-    public Players(String[] playerNames) {
-        this(Arrays.stream(playerNames)
-                .map(Player::new)
-                .collect(Collectors.toList()));
+    public static Players from(List<String> playerNames) {
+        return new Players(
+                Optional.ofNullable(playerNames)
+                    .stream()
+                    .flatMap(Collection::stream)
+                    .map(Player::new)
+                    .collect(Collectors.toList()));
     }
 
     public Players(List<Player> players) {
