@@ -1,6 +1,7 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
-import java.util.ArrayList;
+import nextstep.ladder.utils.RandomLadderGenerator;
+
 import java.util.List;
 
 public class Line {
@@ -12,7 +13,7 @@ public class Line {
             throw new IllegalArgumentException("참가자는 1명 이상이어야 합니다.");
         }
 
-        points = new Points(countOfPerson, new LadderGenerateStrategy());
+        points = new Points(countOfPerson, new RandomLadderGenerator());
     }
 
     public int size() {

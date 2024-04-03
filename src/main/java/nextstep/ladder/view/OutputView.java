@@ -1,26 +1,40 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.Ladder;
-import nextstep.ladder.Line;
+import nextstep.ladder.domain.LadderGame;
+import nextstep.ladder.domain.Line;
 
 import java.util.List;
 
 public class OutputView {
 
-    public void printLadder(Ladder ladder) {
-        System.out.println(renderLine(ladder));
+    public static void printHeight(int height) {
+        System.out.println(height);
     }
 
-    private String renderLine(Ladder ladder) {
+    public static void printNames(String[] names) {
+        System.out.println("\n실행결과\n");
+        for (String name : names) {
+            System.out.printf("%5s", name.trim());
+            System.out.print(" ");
+        }
+        System.out.println("\n");
+    }
+
+    public static void printLadder(LadderGame ladderGame) {
+        System.out.println(renderLine(ladderGame));
+    }
+
+    private static String renderLine(LadderGame ladderGame) {
         StringBuilder sb = new StringBuilder();
-        for (Line line : ladder.getLines()) {
+        for (Line line : ladderGame.getLines()) {
+            sb.append("     ");
             sb.append(renderPoints(line.getPoints()));
             sb.append("|\n");
         }
         return sb.toString();
     }
 
-    private String renderPoints(List<Boolean> points) {
+    private static String renderPoints(List<Boolean> points) {
         StringBuilder sb = new StringBuilder();
         for (Boolean point : points) {
             sb.append("|");

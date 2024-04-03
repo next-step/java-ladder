@@ -1,8 +1,8 @@
-package nextstep.ladder;
+package nextstep.ladder.utils;
 
 import java.util.Random;
 
-public class LadderGenerateStrategy implements GenerateStrategy {
+public class RandomLadderGenerator implements LadderGenerator {
 
     private static final Random RANDOM = new Random();
 

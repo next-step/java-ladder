@@ -1,4 +1,6 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
+
+import nextstep.ladder.utils.LadderGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +9,7 @@ public class Points {
 
     private final List<Boolean> points = new ArrayList<>();
 
-    public Points(int countOfPerson, GenerateStrategy strategy) {
+    public Points(int countOfPerson, LadderGenerator strategy) {
         for (int i = 0; i < countOfPerson - 1; i++) {
             boolean hasLadder = strategy.generate();
             //처음엔 랜덤으로 hasLadder가 결정
