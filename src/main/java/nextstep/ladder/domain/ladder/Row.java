@@ -19,17 +19,10 @@ public class Row {
     private List<Rung> generateRungs(Count playersCount, RungGenerateStrategy strategy) {
         final AtomicBoolean lastFlag = new AtomicBoolean(false);
 
-        return Stream.generate(() -> generateRung(strategy, lastFlag))
+        return Stream.iterate(Rung.EMPTY.generate(strategy),
+                        previousRung -> previousRung.generate(strategy))
                 .limit(playersCount.subtract(1).value())
                 .collect(Collectors.toList());
-    }
-
-    private Rung generateRung(RungGenerateStrategy strategy, AtomicBoolean lastFlag) {
-        final Rung rung = Rung.generate(strategy, Rung.from(lastFlag.get()));
-
-        lastFlag.set(rung.exist());
-
-        return rung;
     }
 
     public List<Rung> rungs() {

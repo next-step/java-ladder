@@ -27,31 +27,23 @@ public class RungTest {
                 .isEqualTo(rung);
     }
 
-
-    @DisplayName("generate 메서드는")
+    @DisplayName("generate 정적 메서드는")
     @Nested
-    class Describe_generate {
+    class Describe__generate {
 
         @DisplayName("사다리 게임 발판 생성 규칙에 따라, 인접한 발판이 없을 경우 발판을 생성한다.")
         @ParameterizedTest
-        @CsvSource(value = {"true,EXIST", "false,EMPTY"})
-        void it_returns_rung_by_strategy_value(boolean exist, Rung expectedRung) {
-            assertThat(Rung.generate(() -> exist, Rung.EMPTY))
+        @CsvSource(value = {"EXIST,true,EMPTY", "EXIST,false,EMPTY", "EMPTY,true,EXIST", "EMPTY,false,EMPTY"})
+        void it_returns_rung_by_strategy_value(Rung adjacent, boolean exist, Rung expectedRung) {
+            assertThat(adjacent.generate(() -> exist))
                     .isEqualTo(expectedRung);
-        }
-
-        @DisplayName("인접한 발판이 있을 경우 발판을 생성하지 않는다.")
-        @Test
-        void it_returns_rung_when_adjacent_rung_exist() {
-            assertThat(Rung.generate(() -> true, Rung.EXIST))
-                    .isEqualTo(Rung.EMPTY);
         }
 
         @DisplayName("발판 생성 규칙이 없을 경우, EMPTY를 반환한다.")
         @ParameterizedTest(name = "발판 생성 규칙이 {0}일 경우, EMPTY를 반환한다.")
         @NullSource
         void it_returns_empty_rung(RungGenerateStrategy strategy) {
-            assertThat(Rung.generate(strategy, Rung.EMPTY))
+            assertThat(Rung.EMPTY.generate(strategy))
                     .isEqualTo(Rung.EMPTY);
         }
 

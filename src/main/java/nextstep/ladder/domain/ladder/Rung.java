@@ -23,9 +23,9 @@ public enum Rung {
         return EMPTY;
     }
 
-    public static Rung generate(RungGenerateStrategy generateStrategy, Rung adjacentRung) {
+    public Rung generate(RungGenerateStrategy generateStrategy) {
         return Optional.ofNullable(generateStrategy)
-                .map(strategy -> from(adjacentRung.notExist() && strategy.addable()))
+                .map(strategy -> from(notExist() && strategy.addable()))
                 .orElse(EMPTY);
     }
 
