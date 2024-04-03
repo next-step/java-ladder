@@ -13,7 +13,11 @@ public class Point {
         return new Point(true, false);
     }
 
-    public Point(boolean left, boolean right) {
+    public static Point middle(boolean left, boolean right) {
+        return new Point(left, right);
+    }
+
+    private Point(boolean left, boolean right) {
         this.left = left;
         this.right = right;
     }
