@@ -7,10 +7,6 @@ public class Line {
 
     private final List<Point> points;
 
-    public static Line of(Point... points) {
-        return new Line(List.of(points));
-    }
-
     public static Line of(List<Point> points) {
         return new Line(points);
     }
