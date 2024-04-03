@@ -6,6 +6,9 @@ public class Person {
     private final String name;
 
     public Person(String name) {
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException(String.format("참가자의 이름은 (%s)와 같이 공백이거나 null일 수 없습니다.", name));
+        }
         this.name = name;
     }
 
