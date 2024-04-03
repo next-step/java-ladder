@@ -4,6 +4,8 @@ import laddergame.domain.ladder.strategy.LinkStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Collections;
 import java.util.List;
@@ -67,5 +69,13 @@ class LineTest {
                         });
             }
         }
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"-1:-1", "0:1", "1:0", "2:2"}, delimiter = ':')
+    @DisplayName("nextIndexOfFrame(): 사다리 frame의 왼쪽이 LINKED인 경우 indexOfFrame - 1, 오른쪽이 LINKED인 경우 indexOfFrame + 1를 반환한다. 만약 둘 다 아니면 indexOfFrame을 반환한다.")
+    void testNextIndexOfFrame(int indexOfFrame, int expected) {
+        Line line = Line.valueOf(List.of(LINKED, UNLINKED));
+        assertThat(line.nextIndexOfFrame(indexOfFrame)).isEqualTo(expected);
     }
 }
