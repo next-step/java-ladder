@@ -10,10 +10,11 @@ public enum Direction {
 
     private final Function<Integer, Integer> function;
 
-
     Direction(Function<Integer, Integer> function) {
         this.function = function;
     }
 
-
+    public int move(int position) {
+        return function.apply(position);
+    }
 }
