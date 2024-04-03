@@ -1,6 +1,7 @@
 package nextstep.ladder.domain.user;
 
 import nextstep.ladder.error.exception.UserNameEmptyException;
+import nextstep.ladder.error.exception.UserNameSizeException;
 
 public class User {
 
@@ -10,11 +11,14 @@ public class User {
         if (userName == null || userName.isEmpty() || userName.isBlank()) {
             throw new UserNameEmptyException(userName);
         }
+
+        if (userName.length() > 5) {
+            throw new UserNameSizeException(userName);
+        }
         this.userName = userName;
     }
 
-    @Override
-    public String toString() {
-        return String.format("%6s", userName);
+    public String getUserName() {
+        return userName;
     }
 }
