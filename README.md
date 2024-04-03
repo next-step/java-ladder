@@ -27,9 +27,14 @@ tdd를 통한 개발을 할 때 도메인, 요구 사항에 대한 명확한 이
 - `LadderGame`: 사다리게임을 나타내는 객체
 - `InputView`: 사용자 입력을 나타내는 객체
 - `OutputView`: 출력 부분을 나타내는 객체 
+- `Person`: 참가자를 나타내는 객체 
 ### 기능 구현 목록
 - [x] Line 객체를 초기화했을 때, 참가자의 수에 따라 리스트의 크기가 설정된다(ex. 참가자의 수가 3이라면 길이는 (3 - 1) * 5 만큼 생긴다)
 - [x] Line 객체를 초기화했을 때, 앞 부분이 가로선이 생겼다면 그 다음 부분은 공백이 된다
 - [x] 0명이거나 음수를 입력했을 때, IllegalArgumentException을 반환한다 
 - [x] Ladder 객체를 초기화했을 때, 입력한 사다리 높이에 따라 Line 객체가 생성된다
 - [x] 사다리 높이가 0이거나 음수를 입력했을 때, IllegalArgumentException을 반환한다
+- [ ] 참가자는 이름을 갖는다
+- [ ] 참가자의 이름을 공백이나 null을 입력했을 때, IllegalArgumentException을 반환한다
+- [ ] 참가자의 이름은 다섯글자를 초과할 수 없다. 초과한다면 IllegalArgumentException을 반환한다 
+
