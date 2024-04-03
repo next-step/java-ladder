@@ -62,7 +62,7 @@ public class ResultView {
     }
 
     private static String formatResult(Map<Participant, String> prizeMap, String name) {
-        if ("all".equals(name)) {
+        if (Participants.meanAllParticipants(name)) {
             return prizeMap.keySet().stream()
                     .map(participant -> formatParticipantPosition(prizeMap, participant))
                     .collect(Collectors.joining());
