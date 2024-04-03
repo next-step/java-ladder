@@ -28,8 +28,8 @@ public class StreamStudy {
 
         List<String> strings = words.stream()
                 .filter(it -> it.length() > 12)
-                .sorted(Comparator.comparing(it -> it.length()))
                 .distinct()
+                .sorted(Comparator.comparing(it -> it.length()))
                 .limit(100)
                 .collect(Collectors.toList());
 
