@@ -12,4 +12,9 @@ public class Ladder {
                 .limit(ladderHeight)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public String toString() {
+        return lines.stream().map(Line::toString).collect(Collectors.joining("\n"));
+    }
 }

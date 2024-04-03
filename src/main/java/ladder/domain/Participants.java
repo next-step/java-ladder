@@ -13,6 +13,10 @@ public class Participants {
                 .collect(Collectors.toList());
     }
 
+    public List<Name> names() {
+        return names;
+    }
+
     public int countOfPerson() {
         return names.size();
     }

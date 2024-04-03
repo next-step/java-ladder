@@ -24,7 +24,8 @@ public class Name {
         return input.length() > 0 && input.length() <= MAX_NAME_LENGTH;
     }
 
-    public String value() {
-        return value;
+    @Override
+    public String toString() {
+        return this.value;
     }
 }
