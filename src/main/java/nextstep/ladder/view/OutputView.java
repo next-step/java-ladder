@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class OutputView {
 
     private static final String BRIDGE = "-----";
-    private static final String NO_BRIDGE = "-----";
+    private static final String NO_BRIDGE = "     ";
     private static final String UNIT_LADDER = "|";
 
     public static void printLadder(int height, List<Person> names, LadderGame ladderGame) {
