@@ -43,11 +43,7 @@ public class OutputView {
         int rightPad = (width - name.length()) / 2;
         int leftPad = width - name.length() - rightPad;
 
-        return new StringBuilder()
-                .append(spaceBuilder(leftPad))
-                .append(name)
-                .append(spaceBuilder(rightPad))
-                .toString();
+        return spaceBuilder(leftPad) + name + spaceBuilder(rightPad);
     }
 
     private static void printLadder(Ladder ladder, int columnWidth) {
@@ -59,10 +55,9 @@ public class OutputView {
         final String emptyRungString = spaceBuilder(columnWidth - 1);
         final String rungString = rungBuilder(columnWidth - 1);
 
-        String rowString = new StringBuilder(leftPad)
-                .append(rungs(ladderRow.rungs(), emptyRungString, rungString))
-                .append(Announcements.COLUMN)
-                .toString();
+        String rowString = leftPad +
+                rungs(ladderRow.rungs(), emptyRungString, rungString) +
+                Announcements.COLUMN;
 
         printLine(rowString);
     }
@@ -70,27 +65,20 @@ public class OutputView {
     private static String rungs(List<Rung> rungs, String emptyRungString, String rungString) {
         return rungs.stream()
                 .map(rung -> {
-                    StringBuilder sb = new StringBuilder(Announcements.COLUMN);
                     if (rung.exist()) {
-                        return sb.append(rungString).toString();
+                        return Announcements.COLUMN + rungString;
                     }
-                    return sb.append(emptyRungString).toString();
+                    return Announcements.COLUMN + emptyRungString;
                 })
                 .collect(Collectors.joining());
     }
 
     private static String spaceBuilder(int length) {
-        return stringRepeater(length, Announcements.SPACE);
+        return Announcements.SPACE.repeat(length);
     }
 
     private static String rungBuilder(int length) {
-        return stringRepeater(length, Announcements.RUNG);
-    }
-
-    private static String stringRepeater(int length, String target) {
-        return IntStream.range(0, length)
-                .mapToObj(i -> target)
-                .collect(Collectors.joining());
+        return Announcements.RUNG.repeat(length);
     }
 
     private static abstract class Announcements {
