@@ -4,29 +4,25 @@ import nextstep.ladder.utils.LadderGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Points {
 
     private final List<Boolean> points = new ArrayList<>();
 
     public Points(int countOfPerson, LadderGenerator strategy) {
-        for (int i = 0; i < countOfPerson - 1; i++) {
+        IntStream.range(0, countOfPerson - 1).forEach(i -> {
             boolean hasLadder = strategy.generate();
-            //처음엔 랜덤으로 hasLadder가 결정
-            if (i == 0) {
-                addLadderPoints(hasLadder);
+            // i == 0일 때는 랜덤으로 결정
+            if (i >= 1 && hasLadderAtPrevious(i)) {
+                hasLadder = false;
             }
-            // i가 1이상일 때, 이전의 가로선이 true이면 hasLadder를 false로 변경
-            // i가 1이상일 때, 이전의 가로선이 false이면 hasLadder은 랜덤
-            if (i >= 1) {
-                if (points.get(i - 1)) {
-                    addLadderPoints(false);
-                }
-                if (!points.get(i - 1)) {
-                    addLadderPoints(hasLadder);
-                }
-            }
-        }
+            addLadderPoints(hasLadder);
+        });
+    }
+
+    private Boolean hasLadderAtPrevious(int i) {
+        return points.get(i - 1);
     }
 
     private void addLadderPoints(boolean hasLadder) {
