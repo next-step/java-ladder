@@ -1,11 +1,15 @@
 package nextstep.ladder.domain.user;
 
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import nextstep.ladder.error.exception.UserNameEmptyException;
-import org.assertj.core.api.Assertions;
+import nextstep.ladder.error.exception.UserNameSizeException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class UserTest {
 
