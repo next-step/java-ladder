@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.exception.ConsecutivePointException;
+
 public class Point {
 
     private final boolean left;
@@ -18,8 +20,15 @@ public class Point {
     }
 
     private Point(boolean left, boolean right) {
+        validateConsecutivePoint(left, right);
         this.left = left;
         this.right = right;
+    }
+
+    private void validateConsecutivePoint(boolean left, boolean right) {
+        if (left && right) {
+            throw new ConsecutivePointException();
+        }
     }
 
     public Direction move() {
