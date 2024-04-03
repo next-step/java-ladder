@@ -18,8 +18,14 @@ public class Rows {
     }
 
     public Rows(List<Row> values) {
-        if (values != null && !values.isEmpty()) {
-            this.values.addAll(values);
+        assertRowsNotEmpty(values);
+
+        this.values.addAll(values);
+    }
+
+    private void assertRowsNotEmpty(List<Row> rows) {
+        if (rows == null || rows.isEmpty()) {
+            throw new IllegalArgumentException("사다리 행은 비어있을 수 없습니다.");
         }
     }
 
