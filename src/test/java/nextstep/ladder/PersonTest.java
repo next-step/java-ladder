@@ -3,6 +3,8 @@ package nextstep.ladder;
 import nextstep.ladder.domain.Person;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -16,13 +18,12 @@ public class PersonTest {
     }
 
     @DisplayName("참가자의 이름을 공백이나 null을 입력했을 때, IllegalArgumentException을 반환한다")
-    @Test
-    void blankOrNull() {
-        String blank = " ";
-
-        assertThatThrownBy(() -> new Person(" "))
+    @ParameterizedTest
+    @NullAndEmptySource
+    void blankOrNull(String name) {
+        assertThatThrownBy(() -> new Person(name))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(String.format("참가자의 이름은 (%s)와 같이 공백이거나 null일 수 없습니다.", blank));
+                .hasMessage(String.format("참가자의 이름은 (%s)와 같이 공백이거나 null일 수 없습니다.", name));
     }
 
 }

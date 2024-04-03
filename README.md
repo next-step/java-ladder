@@ -34,7 +34,7 @@ tdd를 통한 개발을 할 때 도메인, 요구 사항에 대한 명확한 이
 - [x] 0명이거나 음수를 입력했을 때, IllegalArgumentException을 반환한다 
 - [x] Ladder 객체를 초기화했을 때, 입력한 사다리 높이에 따라 Line 객체가 생성된다
 - [x] 사다리 높이가 0이거나 음수를 입력했을 때, IllegalArgumentException을 반환한다
-- [ ] 참가자는 이름을 갖는다
-- [ ] 참가자의 이름을 공백이나 null을 입력했을 때, IllegalArgumentException을 반환한다
+- [x] 참가자는 이름을 갖는다
+- [x] 참가자의 이름을 공백이나 null을 입력했을 때, IllegalArgumentException을 반환한다
 - [ ] 참가자의 이름은 다섯글자를 초과할 수 없다. 초과한다면 IllegalArgumentException을 반환한다 
 
