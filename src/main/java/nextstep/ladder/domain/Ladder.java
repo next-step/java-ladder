@@ -14,6 +14,15 @@ public class Ladder {
         }
     }
 
+    public int move(int column) {
+        int row = 0;
+        while (row != lines.size()) {
+            column += lines.get(row).move(column);
+            row++;
+        }
+        return column;
+    }
+
     public List<Line> getLines() {
         return lines;
     }
