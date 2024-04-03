@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -8,7 +7,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class LadderTest {
+public class LaddersTest {
   @ParameterizedTest
   @MethodSource("provideWrongConstructorInput")
   void 잘못된_사다리_입력_시_예외(int[][] input) {

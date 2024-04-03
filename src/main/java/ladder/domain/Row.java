@@ -58,6 +58,22 @@ public class Row implements Iterable<Boolean> {
     return this.values;
   }
 
+  public int nextPosition(final int position) {
+    if (isValid(position) && this.values.get(position)) {
+      return position + 1;
+    }
+
+    if (isValid(position - 1) && this.values.get(position - 1)) {
+      return position - 1;
+    }
+
+    return position;
+  }
+
+  private boolean isValid(final int index) {
+    return 0 <= index && index < this.values.size();
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {

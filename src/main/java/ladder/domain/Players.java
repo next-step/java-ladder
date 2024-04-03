@@ -14,6 +14,10 @@ public class Players implements Iterable<Player> {
     return players.size();
   }
 
+  public Player at(final int index) {
+    return this.players.get(index);
+  }
+
   @Override
   public Iterator<Player> iterator() {
     return new PlayerIterator();
