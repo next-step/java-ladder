@@ -27,17 +27,27 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers) {
+        return sumAll(numbers, number -> true);
+    }
+
+    private static int sumAll(List<Integer> numbers, Conditional c){
         int total = 0;
         for (int number : numbers) {
-            total += number;
+            if(c.canDo(number)){
+                total += number;
+            }
         }
         return total;
     }
 
     public static int sumAllEven(List<Integer> numbers) {
+        return sumAllEven(numbers, number -> number % 2 == 0);
+    }
+
+    public static int sumAllEven(List<Integer> numbers, Conditional c) {
         int total = 0;
         for (int number : numbers) {
-            if (number % 2 == 0) {
+            if (c.canDo(number)) {
                 total += number;
             }
         }
@@ -45,9 +55,13 @@ public class Lambda {
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
+        return sumAllOverThree(numbers, number -> number > 3);
+    }
+
+    public static int sumAllOverThree(List<Integer> numbers,  Conditional c) {
         int total = 0;
         for (int number : numbers) {
-            if (number > 3) {
+            if (c.canDo(number)) {
                 total += number;
             }
         }
