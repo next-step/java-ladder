@@ -28,17 +28,6 @@ class LinesTest {
         );
     }
 
-    @DisplayName("사용자 수가 2명 미만이면 IllegalArgumentException을 던진다.")
-    @Test
-    void throwIllegalArgumentExceptionLessThan1User() {
-        // then
-        LineStrategy customStrategy = (count) -> Line.of(List.of(StepType.STEP, StepType.EMPTY, StepType.STEP, StepType.EMPTY));
-
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> Lines.of(Floor.from(3), 1, customStrategy));
-    }
-
-
     @DisplayName("사용자의 수는 항상 Lines의 StepType 수 보다 항상 1 많다. 아니라면 IllegalArguemntException을 던진다.")
     @Test
     void throwIllegalArgumentExceptionBetweenUserCountAndLine() {

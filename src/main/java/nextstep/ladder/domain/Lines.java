@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Lines {
 
-    public static final int MINIMUM_PARTICIPANTS_COUNT = 2;
     private final List<Line> lines;
 
     private Lines(Floor floor, int countOfUsers, LineStrategy strategy) {
@@ -19,10 +18,6 @@ public class Lines {
     }
 
     private void validate(int countOfUsers, LineStrategy strategy) {
-        if (countOfUsers < MINIMUM_PARTICIPANTS_COUNT) {
-            throw new IllegalArgumentException(String.format("사용자 수는 %d명 이상이여야 합니다.", Lines.MINIMUM_PARTICIPANTS_COUNT));
-        }
-
         if (countOfUsers != (strategy.execute(countOfUsers).size() + 1)) {
             throw new IllegalArgumentException("사용자 수와 사다리 전략 결과의 검증에 실패했습니다.");
         }
