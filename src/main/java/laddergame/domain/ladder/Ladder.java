@@ -1,13 +1,12 @@
 package laddergame.domain.ladder;
 
-import laddergame.domain.HeightOfLadder;
-import laddergame.domain.PlayersAndWinningContents;
-import laddergame.domain.ResultOfLadder;
-import laddergame.domain.WinningContent;
+import laddergame.domain.*;
 import laddergame.domain.ladder.strategy.LinkStrategy;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -46,9 +45,9 @@ public class Ladder {
             throw new IllegalArgumentException(WRONG_PLAYERS_AND_WINNING_CONTENTS_FOR_LADDER.message());
         }
 
-        List<WinningContent> results = IntStream.range(0, playersAndWinningContents.numberOfPlayers())
-                .mapToObj(playerIndex -> playersAndWinningContents.findWinningContentByIndex(indexOfWinningContentOfPlayer(playerIndex)))
-                .collect(Collectors.toList());
+        Map<Player, WinningContent> results = new HashMap<>();
+        IntStream.range(0, playersAndWinningContents.numberOfPlayers())
+                .forEach(playerIndex -> results.put(playersAndWinningContents.findPlayerByIndex(playerIndex), playersAndWinningContents.findWinningContentByIndex(indexOfWinningContentOfPlayer(playerIndex))));
 
         return ResultOfLadder.valueOf(results);
     }
@@ -65,5 +64,4 @@ public class Ladder {
                 .reduce(playerIndex, (indexOfFrame, indexOfLine) -> lines.get(indexOfLine)
                         .nextIndexOfFrame(indexOfFrame));
     }
-
 }

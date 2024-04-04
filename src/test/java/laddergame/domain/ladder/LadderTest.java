@@ -62,11 +62,11 @@ class LadderTest {
                     Line.newLine(LINKED, UNLINKED, LINKED));
 
             ResultOfLadder resultOfLadder = ladder.resultOfLadder(playersAndWinningContents);
-            
-            assertThat(resultOfLadder.findResultByIndex(players.indexOf(playerA))).isEqualTo(winningContentA);
-            assertThat(resultOfLadder.findResultByIndex(players.indexOf(playerB))).isEqualTo(winningContentD);
-            assertThat(resultOfLadder.findResultByIndex(players.indexOf(playerC))).isEqualTo(winningContentC);
-            assertThat(resultOfLadder.findResultByIndex(players.indexOf(playerD))).isEqualTo(winningContentB);
+
+            assertThat(resultOfLadder.winningContentOfPlayer(playerA)).isEqualTo(winningContentA);
+            assertThat(resultOfLadder.winningContentOfPlayer(playerB)).isEqualTo(winningContentD);
+            assertThat(resultOfLadder.winningContentOfPlayer(playerC)).isEqualTo(winningContentC);
+            assertThat(resultOfLadder.winningContentOfPlayer(playerD)).isEqualTo(winningContentB);
         }
     }
 }

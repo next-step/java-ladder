@@ -1,23 +1,38 @@
 package laddergame.domain;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ResultOfLadderTest {
-    @Test
-    @DisplayName("findResultByIndex(): results 중 전달된 index 순서에 해당하는 요소를 반환한다. ")
-    void testFindWinningContentByIndex() {
-        WinningContent winningContentA = WinningContent.valueOf("a");
-        WinningContent winningContentB = WinningContent.valueOf("b");
-        WinningContent winningContentC = WinningContent.valueOf("c");
+    @Nested
+    @DisplayName("winningContentOfPlayer() 테스트")
+    class WinningContentOfPlayerTest {
+        Map<Player, WinningContent> results = new HashMap<>() {{
+            put(Player.valueOf("A"), WinningContent.valueOf("a"));
+            put(Player.valueOf("B"), WinningContent.valueOf("b"));
+        }};
+        ResultOfLadder resultOfLadder = ResultOfLadder.valueOf(results);
 
-        ResultOfLadder resultOfLadder = ResultOfLadder.valueOf(List.of(winningContentA, winningContentB, winningContentC));
+        @Test
+        @DisplayName("player가 존재하지 않는 경우 IllegalArgumentException이 발생한다.")
+        void testFailCase() {
+            assertThatThrownBy(() -> resultOfLadder.winningContentOfPlayer(Player.valueOf("C"))).isExactlyInstanceOf(IllegalArgumentException.class);
+        }
 
-        assertThat(resultOfLadder.findResultByIndex(1)).isEqualTo(winningContentB);
-
+        @ParameterizedTest
+        @CsvSource(value = {"A:a", "B:b"}, delimiter = ':')
+        @DisplayName("player의 winningContent를 반환한다.")
+        void testSuccessCase(String player, String winningContent) {
+            assertThat(resultOfLadder.winningContentOfPlayer(Player.valueOf(player))).isEqualTo(WinningContent.valueOf(winningContent));
+        }
     }
 }
