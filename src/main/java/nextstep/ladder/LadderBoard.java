@@ -21,4 +21,12 @@ public class LadderBoard {
         return this.ladderBoard;
     }
 
+    public List<Point> getLine(int index) {
+        return this.ladderBoard.get(index).getPoints();
+    }
+
+    public Point getPoint(int index) {
+        return this.ladderBoard.get(index).getPoint(index);
+    }
+
 }
