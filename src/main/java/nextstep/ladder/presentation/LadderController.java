@@ -1,10 +1,7 @@
 package nextstep.ladder.presentation;
 
 import nextstep.ladder.application.LadderService;
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.User;
-import nextstep.ladder.domain.UserName;
-import nextstep.ladder.domain.Users;
+import nextstep.ladder.domain.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -34,6 +31,20 @@ public class LadderController {
         Ladder ladder = ladderService.makeLadder(ladderHeight, users.getUsers().size(), ladderResults);
 
         resultView.printLadderAndUserNames(ladder, users);
+
+        resultView.printInputUserNameForResult();
+        String userNameForResult = inputView.inputUserNameForResult();
+
+        printGameResult(new GameResult(ladder, users), users, userNameForResult);
+    }
+
+    private void printGameResult(GameResult gameResult, Users users, String inputUserName) {
+        if (ladderService.isGameResultForAll(inputUserName)) {
+            resultView.printGameResultByAllUser(gameResult, users);
+            return;
+        }
+
+        resultView.printGameResultByUser(gameResult, inputUserName);
     }
 
 }

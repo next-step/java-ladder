@@ -19,7 +19,7 @@ public class ResultView {
         users.getUsers().forEach(user -> System.out.printf("%5s ",user.getUserName()));
         System.out.println();
         ladder.getLines().forEach(this::printLine);
-        ladder.getLadderResult().forEach(result -> System.out.printf("%-5s ",result));
+        ladder.getLadderResult().forEach(result -> System.out.printf("%5s ",result));
         System.out.println();
     }
 
@@ -44,5 +44,22 @@ public class ResultView {
         });
 
         System.out.println(deliminator);
+    }
+
+    public void printInputUserNameForResult() {
+        System.out.println("결과를 보고 싶은 사람은?");
+    }
+
+    public void printGameResultByUser(GameResult gameResult, String name) {
+        System.out.println("실행 결과");
+        System.out.println(gameResult.getGameResultByUserName(name));
+        System.out.println();
+    }
+
+    public void printGameResultByAllUser(GameResult gameResult, Users users) {
+        System.out.println("실행 결과");
+        users.getUsers().stream()
+                .map(User::getUserName)
+                .forEach(name -> System.out.println(name + " : " + gameResult.getGameResultByUserName(name)));
     }
 }

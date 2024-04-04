@@ -1,9 +1,6 @@
 package nextstep.ladder.application;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.LineGenerator;
-import nextstep.ladder.domain.User;
-import nextstep.ladder.domain.Users;
+import nextstep.ladder.domain.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,5 +20,17 @@ public class LadderService {
         List<User> users = userNames.stream().map(User::new).collect(Collectors.toUnmodifiableList());
 
         return new Users(users);
+    }
+
+    public GameResult getGameResult(Ladder ladder, Users users) {
+        return new GameResult(ladder, users);
+    }
+
+    public boolean isGameResultForAll(String name) {
+        if (InvalidUserName.ALL.getInvalidName().equalsIgnoreCase(name)) {
+            return true;
+        }
+
+        return false;
     }
 }

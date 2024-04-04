@@ -1,5 +1,7 @@
 package nextstep.ladder.presentation;
 
+import nextstep.ladder.domain.UserName;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,6 +19,10 @@ public class InputView {
 
     public int inputLadderHeight() {
         return inputNumber();
+    }
+
+    public String inputUserNameForResult() {
+        return SCANNER.nextLine();
     }
 
     private int inputNumber() {
