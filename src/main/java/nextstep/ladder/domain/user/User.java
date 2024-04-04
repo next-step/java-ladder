@@ -5,7 +5,7 @@ import nextstep.ladder.error.exception.UserNameSizeException;
 
 public class User {
 
-    private String userName;
+    private final String userName;
 
     public User(String userName) {
         if (userName == null || userName.isEmpty() || userName.isBlank()) {
