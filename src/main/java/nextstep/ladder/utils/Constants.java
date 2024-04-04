@@ -1,4 +1,4 @@
-package nextstep.ladder.common;
+package nextstep.ladder.utils;
 
 public class Constants {
 
