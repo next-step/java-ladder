@@ -11,8 +11,6 @@ import static laddergame.domain.ladder.Link.UNLINKED;
 import static laddergame.exception.ExceptionMessage.WRONG_LINE_MESSAGE;
 
 public class Line {
-    private static final int START_RANGE = 0;
-
     private final List<Link> links;
 
     private Line(List<Link> links) {
@@ -42,7 +40,7 @@ public class Line {
     public static Line newLine(int numberOfLink, LinkStrategy linkStrategy) {
         Deque<Link> links = new LinkedList<>();
 
-        IntStream.range(START_RANGE, numberOfLink)
+        IntStream.range(0, numberOfLink)
                 .forEach(i -> links.add(nextLink(links, linkStrategy)));
 
         return new Line(new ArrayList<>(links));
