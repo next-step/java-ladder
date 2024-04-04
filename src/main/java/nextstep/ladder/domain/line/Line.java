@@ -2,7 +2,6 @@ package nextstep.ladder.domain.line;
 
 import java.util.ArrayList;
 import java.util.List;
-import nextstep.ladder.domain.RandomGenerator;
 
 public class Line {
 
@@ -19,12 +18,8 @@ public class Line {
         }
     }
 
-    private Point addLineValue(
-        Point previousPoint) {
-        Point newStatus =
-            previousPoint.isLadderConstructionStatusFalse()
-                ? new Point(RandomGenerator.createRandomBoolean())
-                : new Point(false);
+    private Point addLineValue(Point previousPoint) {
+        Point newStatus = previousPoint.decideNextPoint();
         points.add(newStatus);
         return newStatus;
     }
