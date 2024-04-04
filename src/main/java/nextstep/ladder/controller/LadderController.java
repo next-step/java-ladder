@@ -21,13 +21,13 @@ public class LadderController {
     public void start() {
         final Names names = new Names(inputView.inputNames());
         final LadderResult ladderResult = new LadderResult(inputView.inputResult());
-        final int height = inputView.inputLadderHeight();
-        final Ladder ladder = new Ladder(names.getNumberOfNames(), height);
+        final Ladder ladder = new Ladder(names.getNumberOfNames(), inputView.inputLadderHeight());
 
         outputView.printLadder(names, ladder);
+
         final LadderResultDeterminer determiner = new LadderResultDeterminer(ladderResult, names);
-        final LadderResultManager ladderResultManager = new LadderResultManager(names);
-        ladderResultManager.update(ladder, determiner);
+        final LadderResultManager ladderResultManager = new LadderResultManager(names, ladder, determiner);
+
         outputView.printResult(inputView.inputName(), ladderResultManager);
     }
 }
