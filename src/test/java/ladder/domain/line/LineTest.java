@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain.line;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

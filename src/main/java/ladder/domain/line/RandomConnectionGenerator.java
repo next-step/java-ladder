@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain.line;
 
 import java.util.concurrent.ThreadLocalRandom;
 

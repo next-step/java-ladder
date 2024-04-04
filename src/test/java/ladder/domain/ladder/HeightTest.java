@@ -1,6 +1,6 @@
-package ladder;
+package ladder.domain.ladder;
 
-import static ladder.Height.MINIMUM_HEIGHT;
+import static ladder.domain.ladder.Height.MINIMUM_HEIGHT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 

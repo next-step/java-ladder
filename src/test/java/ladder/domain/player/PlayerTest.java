@@ -1,6 +1,6 @@
-package ladder;
+package ladder.domain.player;
 
-import static ladder.Player.MAXIMUM_NAME_LENGTH;
+import static ladder.domain.player.Player.MAXIMUM_NAME_LENGTH;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 

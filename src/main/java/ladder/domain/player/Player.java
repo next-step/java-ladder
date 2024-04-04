@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain.player;
 
 import java.text.MessageFormat;
 import java.util.Objects;

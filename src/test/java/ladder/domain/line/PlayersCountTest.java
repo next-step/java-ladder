@@ -1,6 +1,6 @@
-package ladder;
+package ladder.domain.line;
 
-import static ladder.PlayersCount.MINIMUM_PLAYERS_COUNT;
+import static ladder.domain.line.PlayersCount.MINIMUM_PLAYERS_COUNT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 

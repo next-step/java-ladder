@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain.line;
 
 public class PlayersCount {
 
@@ -12,7 +12,7 @@ public class PlayersCount {
         this.value = value;
     }
 
-    public int value() {
+    int value() {
         return this.value;
     }
 

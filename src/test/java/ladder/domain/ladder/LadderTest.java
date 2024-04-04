@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain.ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -6,6 +6,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import ladder.domain.line.Line;
+import ladder.domain.line.PlayersCount;
 
 class LadderTest {
 

@@ -1,9 +1,13 @@
-package ladder;
+package ladder.domain.ladder;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import ladder.domain.line.ConnectionGenerator;
+import ladder.domain.line.Line;
+import ladder.domain.line.PlayersCount;
 
 public class Ladder {
 

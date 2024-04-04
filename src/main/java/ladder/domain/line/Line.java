@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain.line;
 
 import static java.lang.Boolean.FALSE;
 
@@ -11,7 +11,7 @@ public class Line {
 
     private final List<Boolean> connections;
 
-    Line(final List<Boolean> connections) {
+    public Line(final List<Boolean> connections) {
         this.connections = connections;
     }
 

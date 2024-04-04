@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain.ladder;
 
 public class Height {
 
@@ -6,13 +6,13 @@ public class Height {
 
     private final int value;
 
-    public Height(final int value) {
+    Height(final int value) {
         validateHeightIsNotLessThanMinimum(value);
 
         this.value = value;
     }
 
-    public int value() {
+    int value() {
         return this.value;
     }
 
