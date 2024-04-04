@@ -25,12 +25,20 @@ public class LadderGame {
     }
 
     public void run() {
-        final List<String> playerNames = inputView.readPlayerNames();
-        final Players players = Players.from(playerNames);
+        try {
+            final List<String> playerNames = inputView.readPlayerNames();
+            final Players players = Players.from(playerNames);
 
-        int height = inputView.readLadderHeight();
-        final Ladder ladder = Ladder.of(players.playersCount(), height, connectionGenerator);
+            final int height = inputView.readLadderHeight();
+            final Ladder ladder = Ladder.of(players.playersCount(), height, connectionGenerator);
 
-        outputView.printResult(players, ladder);
+            outputView.printResult(players, ladder);
+
+        } catch (final IllegalArgumentException e) {
+            outputView.printBusinessException(e.getMessage());
+
+        } catch (final Exception e) {
+            outputView.printUnexpectedException();
+        }
     }
 }

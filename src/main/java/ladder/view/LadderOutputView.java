@@ -59,4 +59,12 @@ public class LadderOutputView {
 
         return LADDER_COLUMN + lineResult + LADDER_COLUMN;
     }
+
+    public void printBusinessException(final String message) {
+        output.printLine(message);
+    }
+
+    public void printUnexpectedException() {
+        output.printLine("알 수 없는 에러가 발생했습니다. 프로그램을 종료합니다.");
+    }
 }
