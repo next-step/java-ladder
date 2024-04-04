@@ -39,7 +39,7 @@ public class Output {
 
     private static void printLineStatus(Line line) {
         for (Point status : line.getPoints()) {
-            System.out.print(String.format(OUT_PUT_FORMAT, status.isLadderConstructionStatusFalse()
+            System.out.print(String.format(OUT_PUT_FORMAT, status.isPointFalse()
                 ? EMPTY_SPACE
                 : HORIZONTAL_LINE));
         }
