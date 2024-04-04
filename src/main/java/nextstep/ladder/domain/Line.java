@@ -8,7 +8,6 @@ import java.util.Objects;
 public class Line{
 
     private final List<Boolean> line;
-
     public Line(int size){
         this(generatePoints(size));
     }
@@ -77,5 +76,28 @@ public class Line{
 
     public List<Boolean> getLine() {
         return line;
+    }
+
+    public Participants switchOrder(Participants participants) {
+        int[] orders = new int[line.size() + 1];
+        init(orders);
+        for(int i = 0; i < this.line.size(); i++){
+            switchIfTrue(orders, i);
+        }
+        return participants.regenerate(orders);
+    }
+
+    private void switchIfTrue(int[] orders, int i) {
+        if(this.line.get(i)){
+            int temp = orders[i];
+            orders[i] = orders[i +1];
+            orders[i +1] = temp;
+        }
+    }
+
+    private void init(int[] order) {
+        for(int i =0; i < line.size()+1; i++){
+            order[i] = i;
+        }
     }
 }

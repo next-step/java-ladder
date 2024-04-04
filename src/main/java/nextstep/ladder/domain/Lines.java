@@ -28,6 +28,14 @@ public class Lines{
         return lines;
     }
 
+    public Participants switchOrder(Participants participants){
+        Participants previous = participants;
+        for(Line line : lines){
+            previous = line.switchOrder(previous);
+        }
+        return previous;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

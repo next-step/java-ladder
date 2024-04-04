@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -50,5 +51,13 @@ public class Participants {
         return this.participants.stream()
                 .map(Participant::getName)
                 .collect(Collectors.toList());
+    }
+
+    public Participants regenerate(int[] orders) {
+        ArrayList<Participant> newParticipants = new ArrayList<>();
+        for (int order : orders) {
+            newParticipants.add(this.participants.get(order));
+        }
+        return new Participants(newParticipants);
     }
 }

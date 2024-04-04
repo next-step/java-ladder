@@ -24,4 +24,12 @@ class ParticipantsTest {
         Participants participant = new Participants("pobi,honux");
         assertThat(participant).isEqualTo(new Participants(List.of(new Participant("pobi"), new Participant("honux"))));
     }
+
+    @Test
+    @DisplayName("order 순서에 따라서 참여자들이 다시 재배치된다(a,b,c -> 2,1,0 => c,b,a)")
+    void reordering(){
+        Participants participants = new Participants(List.of(new Participant("a"), new Participant("b"), new Participant("c")));
+        int[] orders = {2, 1, 0};
+        assertThat(participants.regenerate(orders)).isEqualTo(new Participants(List.of(new Participant("c"), new Participant("b"), new Participant("a"))));
+    }
 }
