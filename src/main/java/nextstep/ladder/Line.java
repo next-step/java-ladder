@@ -3,6 +3,7 @@ package nextstep.ladder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Line {
@@ -19,8 +20,8 @@ public class Line {
 		points.add(new Point(() -> RandomLine.getRandomValue()));
 
 		for (int i = 1; i < countOfPerson - 1; i++) {
-			int index = i;
-			points.add(new Point(() -> isBeforeDrawLine(index - 1)));
+			int prevIndex = i - 1;
+			points.add(new Point(() -> isBeforeDrawLine(prevIndex)));
 		}
 
 		checkOverLabLine(points);
@@ -32,14 +33,22 @@ public class Line {
 
 	private void checkOverLabLine(List<Point> points) {
 		boolean foundOverLab = IntStream.range(0, points.size() - 1)
-				.anyMatch(i -> points.get(i).isPoint() && points.get(i + 1).isPoint());
+				.anyMatch(i -> isSamePosition(points, i));
 
 		if (foundOverLab)
 			throw new IllegalArgumentException("라인이 중복되면 안됩니다.");
 	}
 
+	private static boolean isSamePosition(List<Point> points, int i) {
+		return points.get(i).isPoint() && points.get(i + 1).isPoint();
+	}
+
 	public List<Point> getPoints() {
 		return points;
+	}
+
+	public Point getPoint(int index) {
+		return points.get(index);
 	}
 
 }
