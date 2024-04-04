@@ -32,11 +32,7 @@ public class UserName {
     }
 
     private void assertNotNameIsAll(String name) {
-        String invalidName = "all";
-        String errorMessage = "[이름] 유저 이름은 all이 될 수 없습니다.";
-        if (name.equalsIgnoreCase(invalidName)) {
-            throw new IllegalArgumentException(errorMessage);
-        }
+        InvalidUserName.assertNotContain(name);
     }
 
     public String getName() {
