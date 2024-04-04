@@ -6,44 +6,39 @@ import java.util.Random;
 import java.util.stream.IntStream;
 
 public class Line {
-	private List<Boolean> points = new ArrayList<>();
+	private List<Point> points = new ArrayList<>();
 
-	public Line(List<Boolean> points) {
+	public Line(List<Point> points) {
 		checkOverLabLine(points);
 		this.points = points;
 	}
 
 	public Line(int countOfPerson) {
-		drawLine(() -> RandomLine.getRandomValue());
+		this.points = new ArrayList<>(countOfPerson);
+
+		points.add(new Point(() -> RandomLine.getRandomValue()));
 
 		for (int i = 1; i < countOfPerson - 1; i++) {
 			int index = i;
-			drawLine(() -> isBeforeDrawLine(index - 1));
+			points.add(new Point(() -> isBeforeDrawLine(index - 1)));
 		}
 
 		checkOverLabLine(points);
 	}
 
-	public void drawLine(DrawStrategy drawStrategy) {
-		if (drawStrategy.isDraw()) {
-			points.add(true);
-		}
-		points.add(false);
-	}
-
 	private boolean isBeforeDrawLine(int prevIndex) {
-		return RandomLine.getRandomValue() && points.get(prevIndex);
+		return RandomLine.getRandomValue() && points.get(prevIndex).isPoint();
 	}
 
-	private void checkOverLabLine(List<Boolean> points) {
+	private void checkOverLabLine(List<Point> points) {
 		boolean foundOverLab = IntStream.range(0, points.size() - 1)
-				.anyMatch(i -> points.get(i) && points.get(i + 1));
+				.anyMatch(i -> points.get(i).isPoint() && points.get(i + 1).isPoint());
 
 		if (foundOverLab)
 			throw new IllegalArgumentException("라인이 중복되면 안됩니다.");
 	}
 
-	public List<Boolean> getPoints() {
+	public List<Point> getPoints() {
 		return points;
 	}
 
