@@ -6,30 +6,30 @@ import nextstep.ladder.domain.RandomGenerator;
 
 public class Line {
 
-    private final List<LadderConstructionStatus> points = new ArrayList<>();
+    private final List<Point> points = new ArrayList<>();
 
     public Line(int countOfPerson) {
         initializeLine(countOfPerson);
     }
 
     private void initializeLine(int countOfPerson) {
-        LadderConstructionStatus ladderConstructionStatus = new LadderConstructionStatus(false);
+        Point point = new Point(false);
         for (int count = 0; count < countOfPerson - 1; count++) {
-            ladderConstructionStatus = addLineValue(ladderConstructionStatus);
+            point = addLineValue(point);
         }
     }
 
-    private LadderConstructionStatus addLineValue(
-        LadderConstructionStatus previousLadderConstructionStatus) {
-        LadderConstructionStatus newStatus =
-            previousLadderConstructionStatus.isLadderConstructionStatusFalse()
-                ? new LadderConstructionStatus(RandomGenerator.createRandomBoolean())
-                : new LadderConstructionStatus(false);
+    private Point addLineValue(
+        Point previousPoint) {
+        Point newStatus =
+            previousPoint.isLadderConstructionStatusFalse()
+                ? new Point(RandomGenerator.createRandomBoolean())
+                : new Point(false);
         points.add(newStatus);
         return newStatus;
     }
 
-    public List<LadderConstructionStatus> getPoints() {
+    public List<Point> getPoints() {
         return points;
     }
 

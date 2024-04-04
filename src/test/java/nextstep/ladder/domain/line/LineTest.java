@@ -22,14 +22,14 @@ class LineTest {
         //given
         Line line = new Line(5); // 예시로 사용할 Line 객체 생성
         Method addLineValue = Line.class.getDeclaredMethod("addLineValue",
-            LadderConstructionStatus.class);
+            Point.class);
         addLineValue.setAccessible(true);
 
-        LadderConstructionStatus ladderConstructionStatus = new LadderConstructionStatus(true);
+        Point point = new Point(true);
 
         //when
-        LadderConstructionStatus actual = (LadderConstructionStatus) addLineValue.invoke(line,
-            ladderConstructionStatus);
+        Point actual = (Point) addLineValue.invoke(line,
+            point);
 
         //then
         assertThat(actual.isLadderConstructionStatusFalse()).isEqualTo(true);

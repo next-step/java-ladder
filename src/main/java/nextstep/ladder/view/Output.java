@@ -1,6 +1,6 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.line.LadderConstructionStatus;
+import nextstep.ladder.domain.line.Point;
 import nextstep.ladder.domain.line.Line;
 import nextstep.ladder.domain.line.Lines;
 import nextstep.ladder.domain.user.Users;
@@ -42,7 +42,7 @@ public class Output {
     }
 
     private static void printLineStatus(Line line) {
-        for (LadderConstructionStatus status : line.getPoints()) {
+        for (Point status : line.getPoints()) {
             System.out.print(String.format(OUT_PUT_FORMAT, status.isLadderConstructionStatusFalse()
                 ? EMPTY_SPACE
                 : HORIZONTAL_LINE));
