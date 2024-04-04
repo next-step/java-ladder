@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatNoException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class LadderLadderResultDeterminerTestManager {
+class LadderResultDeterminerTest {
 
     @Test
     @DisplayName("실행 결과의 개수가 참여자의 수와 일치하지 않으면 예외가 발생한다")
