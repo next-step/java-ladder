@@ -1,5 +1,7 @@
 package ladder.controller;
 
+import ladder.model.GameResult;
+import ladder.model.GameResultList;
 import ladder.model.Ladder;
 import ladder.model.NameList;
 import ladder.model.utils.StringToIntConverter;
@@ -11,10 +13,18 @@ public class LadderController {
         String nameString = InputView.nameOfPlayer();
         NameList nameList = new NameList(nameString);
 
-        int heightOfLadder = StringToIntConverter.toInt(InputView.heightOfLadder());
+        String resultString = InputView.resultOfGame();
+        GameResultList gameResultList = new GameResultList(resultString, nameList.numOfName());
 
+        int heightOfLadder = StringToIntConverter.toInt(InputView.heightOfLadder());
         Ladder ladder = new Ladder(heightOfLadder, nameList.numOfName());
 
-        OutputView.printLadderGameResult(nameList, ladder);
+        GameResult gameResult = new GameResult(nameList, gameResultList);
+        OutputView.printLadderGameResult(nameList, ladder, gameResultList);
+
+        gameResult.ladderGame(ladder);
+
+        String resultPlayer = InputView.printWantToKnowResult();
+        OutputView.printResultOfGame(gameResult,resultPlayer);
     }
 }

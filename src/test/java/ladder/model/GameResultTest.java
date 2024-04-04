@@ -6,12 +6,14 @@ import org.junit.jupiter.api.Test;
 
 public class GameResultTest {
     @Test
-    @DisplayName("입력 받은 게임 결과 개수가 사람수와 다르면 에러")
-    void check_ladder_height() {
+    @DisplayName("게임 결과 출력 시 참여자가 아닌 이름 입력하면 에러")
+    void check_game_result_one_player() {
+        NameList nameList = new NameList("anna, pony, jiwoo");
+        GameResultList gameResultList = new GameResultList("100,200,300", nameList.numOfName());
+
+        GameResult gameResult = new GameResult(nameList,gameResultList);
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            int numberOfPlayer = 5;
-            new GameResult("꽝, 5000, 꽝, 4000", numberOfPlayer);
+            gameResult.makeResult("anno");
         });
     }
-
 }

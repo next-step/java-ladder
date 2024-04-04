@@ -2,6 +2,7 @@ package ladder.model;
 
 import ladder.model.utils.StringToListConverter;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -46,5 +47,13 @@ public class NameList {
 
     public List<String> getNameList() {
         return nameList;
+    }
+
+    public void swapPoints(int index){
+        if (index < 0 || index > nameList.size()) {
+            throw new IllegalArgumentException("경계 초과");
+        }
+        List<String> swapList = this.nameList;
+        Collections.swap(swapList,index,index+1);
     }
 }

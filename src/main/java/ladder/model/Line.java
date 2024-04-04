@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 import static java.lang.Boolean.FALSE;
-import static java.lang.Boolean.TRUE;
 
 public class Line {
     private final List<Boolean> points;
