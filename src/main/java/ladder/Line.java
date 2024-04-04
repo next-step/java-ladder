@@ -4,13 +4,14 @@ import static java.lang.Boolean.FALSE;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.IntStream;
 
 public class Line {
 
     private final List<Boolean> connections;
 
-    private Line(final List<Boolean> connections) {
+    Line(final List<Boolean> connections) {
         this.connections = connections;
     }
 
@@ -30,5 +31,23 @@ public class Line {
                 .forEach(connections::add);
 
         return connections;
+    }
+
+    @Override
+    public boolean equals(final Object otherLine) {
+        if (this == otherLine) {
+            return true;
+        }
+
+        if (otherLine == null || getClass() != otherLine.getClass()) {
+            return false;
+        }
+
+        return Objects.equals(this.connections, ((Line)otherLine).connections);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.connections);
     }
 }
