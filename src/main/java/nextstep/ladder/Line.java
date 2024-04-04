@@ -27,7 +27,7 @@ public class Line {
 	}
 
 	private boolean isBeforeDrawLine(int prevIndex) {
-		return RandomLine.getRandomValue() && points.get(prevIndex).isPoint();
+		return !points.get(prevIndex).isPoint() && RandomLine.getRandomValue();
 	}
 
 	private void checkOverLabLine(List<Point> points) {
