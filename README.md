@@ -19,3 +19,8 @@ step 1
   * modified streamStudy class
 * feature/optional
   * modified optional codes
+
+step 2
+* feature/requirements-unit-test
+  * generate unit test w/ requirements
+  * modified ComputerStore.class in order to build successful
