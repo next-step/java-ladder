@@ -1,6 +1,4 @@
 ## Todo
-- [ ] 실행결과값들은 ','를 구분자로 구분("꽝,5000,꽝,3000" => 꽝,5000,꽝,3000)
-- [ ] 실행결과의 개수는 참가자 수랑 다르면 예외(3,4 => IllegalArgumentException)
 - [ ] 결과 조회자가 null 또는 ""일 경우에 예외(null => IllegalArgumentException, "" => IllegalArgumentException)
 - [ ] 결과 조회자가 참가자 또는 "all"이 아니라면 예외(a,b,c,d | e => IllegalArgumentException)
 - [ ] 결과 조회자가 all이라면 전체 결과를 조회("all" => a:꽝,b:3000,c:5000)
@@ -35,3 +33,5 @@
 - [X] 가로 라인은 겹치면 예외(true,true => IllegalArgumentException | false,true,true => IllegalArgumentException)
 - [X] 사다리에 따라서 바뀌는 순서를 계산(false => 0,1 | true => 1,0 | false, false => 0,1,2 | true,false => 1,0,2 | false,true => 0,2,1)
 - [X] 실행결과가 null 또는 ""일 경우에 예외(null => IllegalArgumentException, "" => IllegalArgumentException)
+- [X] 실행결과값들은 ','를 구분자로 구분("꽝,5000,꽝,3000" => 꽝,5000,꽝,3000)
+- [X] 실행결과의 개수는 참가자 수랑 다르면 예외(3,4 => IllegalArgumentException)
