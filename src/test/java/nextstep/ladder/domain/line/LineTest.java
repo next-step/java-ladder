@@ -2,8 +2,7 @@ package nextstep.ladder.domain.line;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class LineTest {
@@ -13,25 +12,14 @@ class LineTest {
         int countOfPerson = 6;
         Line line = new Line(countOfPerson);
 
-        assertThat(line.size()).isEqualTo(countOfPerson - 1);
+        assertThat(line.getPoints().size()).isEqualTo(countOfPerson - 1);
     }
 
     @Test
-    void 이전_사다리_상태가_Truu라면_다음_상태는_True일수_없다()
-        throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        //given
-        Line line = new Line(5); // 예시로 사용할 Line 객체 생성
-        Method addLineValue = Line.class.getDeclaredMethod("addLineValue",
-            Point.class);
-        addLineValue.setAccessible(true);
+    void 이전_사다리_상태가_True라면_다음_상태는_True일수_없다() {
+        Line line = new Line(List.of(true, true));
 
-        Point point = new Point(true);
-
-        //when
-        Point actual = (Point) addLineValue.invoke(line,
-            point);
-
-        //then
-        assertThat(actual.isLadderConstructionStatusFalse()).isEqualTo(true);
+        assertThat(line.getPoints().get(0).isPointFalse()).isEqualTo(true);
+        assertThat(line.getPoints().get(1).isPointFalse()).isEqualTo(true);
     }
 }

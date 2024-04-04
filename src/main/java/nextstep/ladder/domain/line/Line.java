@@ -11,10 +11,16 @@ public class Line {
         initializeLine(countOfPerson);
     }
 
+    public Line(List<Boolean> points) {
+        for (Boolean point : points) {
+            addLineValue(new Point(point));
+        }
+    }
+
     private void initializeLine(int countOfPerson) {
-        Point point = new Point(false);
+        Point previousPoint = new Point(false);
         for (int count = 0; count < countOfPerson - 1; count++) {
-            point = addLineValue(point);
+            previousPoint = addLineValue(previousPoint);
         }
     }
 
@@ -28,7 +34,4 @@ public class Line {
         return points;
     }
 
-    public int size() {
-        return points.size();
-    }
 }
