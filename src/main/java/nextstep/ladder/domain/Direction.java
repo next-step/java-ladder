@@ -1,20 +1,15 @@
 package nextstep.ladder.domain;
 
-import java.util.function.Function;
-
 public enum Direction {
 
-    LEFT(x -> x - 1),
-    RIGHT(x -> x + 1),
-    STOP(x -> x);
+    LEFT(-1),
+    RIGHT(1),
+    STOP(0);
 
-    private final Function<Integer, Integer> function;
+    private final int direction;
 
-    Direction(Function<Integer, Integer> function) {
-        this.function = function;
+    Direction(int direction) {
+        this.direction = direction;
     }
 
-    public int move(int position) {
-        return function.apply(position);
-    }
 }
