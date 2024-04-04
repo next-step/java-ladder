@@ -10,12 +10,12 @@ public class Point {
         this.point = point;
     }
 
-    public boolean isLadderConstructionStatusFalse() {
+    public boolean isPointFalse() {
         return !point;
     }
 
     public Point decideNextPoint() {
-        if (point) {
+        if (!point) {
             return new Point(RandomGenerator.createRandomBoolean());
         }
         return new Point(false);
