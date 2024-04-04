@@ -25,4 +25,8 @@ public class Results {
     public List<String> getResults() {
         return Collections.unmodifiableList(results);
     }
+
+    public int getResultsSize() {
+        return results.size();
+    }
 }

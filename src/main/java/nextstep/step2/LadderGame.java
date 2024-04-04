@@ -15,11 +15,12 @@ public class LadderGame {
     }
 
     public GameResult gameStart(Entries entries, Results results) {
-        Map<String, String> resultMap = entries.getHumanList().stream()
+        validateEntriesAndResults(entries, results);
+        Map<String, String> resultMap = entries.getParticipantList().stream()
                 .collect(Collectors.toMap(
                         Participant::getName,
                         participant -> {
-                            int startXPosition = entries.getHumanList().indexOf(participant);
+                            int startXPosition = entries.getParticipantList().indexOf(participant);
                             Position position = new Position(startXPosition, START_Y_POSITION);
                             int resultIndex = ladder.move(position);
                             return results.getResults().get(resultIndex);
@@ -29,5 +30,11 @@ public class LadderGame {
                 ));
 
         return new GameResult(resultMap);
+    }
+
+    private void validateEntriesAndResults(Entries entries, Results results) {
+        if (entries.getParticipantListSize() != results.getResultsSize()) {
+            throw new IllegalArgumentException("The number of entries and results must be the same.");
+        }
     }
 }

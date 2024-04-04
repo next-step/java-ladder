@@ -32,7 +32,10 @@ public class Line {
         return Collections.unmodifiableList(points);
     }
 
-    public boolean connectLine(int height) {
-        return points.get(height);
+    public boolean isConnected(int y) {
+        if (y < 0 || y >= points.size()) {
+            return false;
+        }
+        return points.get(y);
     }
 }

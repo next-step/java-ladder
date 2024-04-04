@@ -1,49 +1,42 @@
 package nextstep.step2;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Ladder {
 
-    private final List<Line> lines;
+    private final Lines lines;
 
     public Ladder(int height, int width, PointGenerator pointGenerator) {
-        this.lines = Stream.concat(
-                Stream.iterate(new Line(height, pointGenerator), prev -> new Line(height, prev, pointGenerator))
-                        .limit(width - 1),
-                Stream.of(Line.generateEndLine(height))
-        ).collect(Collectors.toList());
-    }
-
-    public List<Line> getLines() {
-        return Collections.unmodifiableList(lines);
+        this.lines = new Lines(height, width, pointGenerator);
     }
 
     public int move(Position position) {
-        int endXPosition = lines.size();
-        int endYPosition = lines.isEmpty() ? 0 : lines.get(0).getPoints().size();
-
-        while (position.getY() < endYPosition) {
-            position = moveHorizontally(position, endXPosition);
+        while (position.getY() < lines.getHeight()) {
+            position = moveHorizontally(position);
             position = position.moveVertically();
         }
-
         return position.getX();
     }
 
-    private Position moveHorizontally(Position position, int endXPosition) {
-        int currentX = position.getX();
-        boolean canMoveLeft = currentX > 0 && lines.get(currentX - 1).connectLine(position.getY());
-        boolean canMoveRight = currentX < endXPosition - 1 && lines.get(currentX).connectLine(position.getY());
-
-        if (canMoveLeft) {
+    private Position moveHorizontally(Position position) {
+        if (canMoveLeft(position)) {
             return position.moveLeft();
         }
-        if (canMoveRight) {
+        if (canMoveRight(position)) {
             return position.moveRight();
         }
         return position;
+    }
+
+    private boolean canMoveLeft(Position position) {
+        return position.getX() > 0 && lines.isConnected(position.getX() - 1, position.getY());
+    }
+
+    private boolean canMoveRight(Position position) {
+        return position.getX() < lines.getWidth() - 1 && lines.isConnected(position.getX(), position.getY());
+    }
+
+    public List<Line> getLines() {
+        return lines.getLines();
     }
 }

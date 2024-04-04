@@ -10,7 +10,7 @@ public class ResultView {
 
     public static void printHumans(Entries entries) {
         StringBuilder sb = new StringBuilder();
-        for (Participant participant : entries.getHumanList()) {
+        for (Participant participant : entries.getParticipantList()) {
             String name = participant.getName();
             int paddingLength = 6 - name.length();
             sb.append(" ".repeat(Math.max(0, paddingLength)));

@@ -11,7 +11,7 @@ public class LadderApplication {
         int ladderHeight = InputView.inputHeight();
         RandomPointGenerator randomPointGenerator = new RandomPointGenerator();
 
-        Ladder ladder = new Ladder(ladderHeight, entries.getHumanList().size(), randomPointGenerator);
+        Ladder ladder = new Ladder(ladderHeight, entries.getParticipantList().size(), randomPointGenerator);
         LadderGame ladderGame = new LadderGame(ladder);
         GameResult gameResult = ladderGame.gameStart(entries, results);
 
