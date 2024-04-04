@@ -6,7 +6,7 @@ import nextstep.ladder.domain.RandomGenerator;
 
 public class Line {
 
-    private List<LadderConstructionStatus> points = new ArrayList<>();
+    private final List<LadderConstructionStatus> points = new ArrayList<>();
 
     public Line(int countOfPerson) {
         initializeLine(countOfPerson);

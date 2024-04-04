@@ -2,7 +2,7 @@ package nextstep.ladder.domain.line;
 
 public class LadderConstructionStatus {
 
-    private boolean ladderConstructionStatus;
+    private final boolean ladderConstructionStatus;
 
     public LadderConstructionStatus(boolean ladderConstructionStatus) {
         this.ladderConstructionStatus = ladderConstructionStatus;

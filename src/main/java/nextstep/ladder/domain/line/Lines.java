@@ -7,7 +7,7 @@ import nextstep.ladder.error.exception.LadderHeightSizeException;
 
 public class Lines {
 
-    private List<Line> lines;
+    private final List<Line> lines;
 
     public Lines(int height, int countOfPerson) {
         this(toLines(height, countOfPerson));
