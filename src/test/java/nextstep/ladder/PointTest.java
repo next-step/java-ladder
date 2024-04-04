@@ -1,6 +1,5 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.Direction;
 import nextstep.ladder.domain.Point;
 import nextstep.ladder.exception.ConsecutivePointException;
 import org.junit.jupiter.api.DisplayName;
@@ -14,29 +13,29 @@ public class PointTest {
     @Test
     @DisplayName("[성공] 왼쪽으로 이동할 수 없는, 첫 번째 포인트를 생성한다.")
     void 첫번째_포인트() {
-        Point point = Point.first();
-        assertThat(point.getDirection()).isIn(Direction.STOP, Direction.RIGHT);
+        Point point = Point.first(true);
+        assertThat(point.move()).isEqualTo(1);
     }
 
     @Test
     @DisplayName("[성공] 오른쪽으로 이동할 수 없는, 마지막 포인트를 생성한다.")
     void 마지막_포인트() {
         Point point = Point.last(true);
-        assertThat(point.getDirection()).isIn(Direction.STOP, Direction.LEFT);
+        assertThat(point.move()).isEqualTo(-1);
     }
 
     @Test
     @DisplayName("[성공] 오른쪽으로 이동하는 포인트를 생성한다.")
     void 오른쪽_이동_포인트() {
         Point point = Point.next(false, true);
-        assertThat(point.getDirection()).isEqualTo(Direction.RIGHT);
+        assertThat(point.move()).isEqualTo(1);
     }
 
     @Test
     @DisplayName("[성공] 왼쪽으로 이동하는 포인트를 생성한다.")
     void 왼쪽_이동_포인트() {
         Point point = Point.next(true, false);
-        assertThat(point.getDirection()).isEqualTo(Direction.LEFT);
+        assertThat(point.move()).isEqualTo(-1);
     }
 
     @Test

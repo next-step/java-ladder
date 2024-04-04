@@ -37,7 +37,7 @@ public class ResultView {
     }
 
     private static String formatPoint(Point point) {
-        if (point.right()) {
+        if (point.current()) {
             return POINT_TRUE;
         }
         return POINT_FALSE;

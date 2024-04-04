@@ -30,7 +30,7 @@ public class LineTest {
                 Arguments.of(1, 2, List.of(false, true, false)),
 
                 Arguments.of(2, 1, List.of(false, true, false)),
-                Arguments.of(2, 2, List.of(true, false, false))
+                Arguments.of(2, 2, List.of(false, false, false))
         );
     }
 

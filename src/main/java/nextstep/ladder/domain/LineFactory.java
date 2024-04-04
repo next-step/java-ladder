@@ -13,12 +13,12 @@ public class LineFactory {
         points.add(point);
 
         for (int i = 1; i < pointSize - 1; i++) {
-            Point nextPoint = Point.next(point.right());
+            Point nextPoint = Point.next(point.current());
             points.add(nextPoint);
             point = nextPoint;
         }
 
-        point = Point.last(point.right());
+        point = Point.last(point.current());
         points.add(point);
 
         return Line.of(Collections.unmodifiableList(points));
@@ -31,12 +31,12 @@ public class LineFactory {
         points.add(point);
 
         for (int i = 1; i < rightPoints.size() - 1; i++) {
-            Point nextPoint = Point.next(point.right(), rightPoints.get(i));
+            Point nextPoint = Point.next(point.current(), rightPoints.get(i));
             points.add(nextPoint);
             point = nextPoint;
         }
 
-        point = Point.last(point.right());
+        point = Point.last(point.current());
         points.add(point);
 
         return Line.of(Collections.unmodifiableList(points));

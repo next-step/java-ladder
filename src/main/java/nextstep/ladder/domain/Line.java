@@ -20,7 +20,7 @@ public class Line {
     }
 
     public int move(int position) {
-        return currentPoint(position).getDirection().move(position);
+        return position + currentPoint(position).move();
     }
 
     private Point currentPoint(int position) {
