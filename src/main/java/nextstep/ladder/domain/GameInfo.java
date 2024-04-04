@@ -8,8 +8,16 @@ public class GameInfo {
     private final WinProducts winProducts;
 
     private GameInfo(Users users, WinProducts winProducts) {
+        validate(users, winProducts);
+
         this.users = users;
         this.winProducts = winProducts;
+    }
+
+    private void validate(Users users, WinProducts winProducts) {
+        if (users.countOfUsers() != winProducts.countOfWinProducts()) {
+            throw new IllegalArgumentException("참가자 수와 상품 수가 상이합니다.");
+        }
     }
 
     public static GameInfo of(Users users, WinProducts winProducts) {
