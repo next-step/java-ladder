@@ -10,6 +10,8 @@ import static laddergame.domain.PlayersAndWinningContents.MIN_NUMBER_OF_PLAYERS_
 import static laddergame.exception.ExceptionMessage.WRONG_SIZE_OF_PLAYERS_MESSAGE;
 
 public class Players {
+    private static final String ALL_PLAYERS = "ALL";
+
     private final List<Player> players;
 
     private Players(List<Player> players) {
@@ -44,12 +46,20 @@ public class Players {
         return players.get(index);
     }
 
-    public int numberOfPlayers() {
-        return players.size();
+    public List<Player> findPlayersByName(String name) {
+        if (ALL_PLAYERS.equals(name)) {
+            return Collections.unmodifiableList(players);
+        }
+
+        Player targetOfFinding = Player.valueOf(name);
+
+        return players.stream()
+                .filter(player -> player.equals(targetOfFinding))
+                .collect(Collectors.toList());
     }
 
-    public int indexOf(Player player) {
-        return players.indexOf(player);
+    public int numberOfPlayers() {
+        return players.size();
     }
 
     public List<Player> players() {
