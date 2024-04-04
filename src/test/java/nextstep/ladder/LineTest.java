@@ -15,7 +15,7 @@ public class LineTest {
     @Test
     @DisplayName("라인이 겹칠 때 생성 불가 테스트")
     void lineOverLabTest() {
-        assertThatThrownBy(() -> new Line(List.of(true, true, false)))
+        assertThatThrownBy(() -> new Line(List.of(new Point(true), new Point(true), new Point(false))))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("중복");
     }
@@ -23,24 +23,8 @@ public class LineTest {
     @Test
     @DisplayName("라인 생성 테스트")
     void lineConstructTest() {
-        Line line = new Line(List.of(false,true,false));
-        assertThat(line.getPoints().get(1)).isEqualTo(true);
-    }
-
-    @Test
-    @DisplayName("라인 그리기 생성 성공 테스트")
-    void lineSuccessTest() {
-        Line line = new Line(new ArrayList<>());
-        line.drawLine(() -> true);
-        assertThat(line.getPoints().get(0)).isEqualTo(true);
-    }
-
-    @Test
-    @DisplayName("라인 그리기 실패 성공 테스트")
-    void lineFailTest() {
-        Line line = new Line(new ArrayList<>());
-        line.drawLine(() -> false);
-        assertThat(line.getPoints().get(0)).isEqualTo(false);
+        Line line = new Line(List.of(new Point(false),new Point(true),new Point(false)));
+        assertThat(line.getPoints().get(1).isPoint()).isEqualTo(true);
     }
 
 }
