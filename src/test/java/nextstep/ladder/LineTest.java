@@ -1,6 +1,8 @@
 package nextstep.ladder;
 
+import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.LineFactory;
+import nextstep.ladder.fixture.RightOnlyPointsStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -17,7 +19,8 @@ public class LineTest {
     @MethodSource("lineMoveFixture")
     @DisplayName("[성공] 라인의 좌표 정보를 기반으로 위치를 이동시킨다.")
     void 라인_이동(int startPosition, int expectedPosition, List<Boolean> rightPoints) {
-        assertThat(LineFactory.of(rightPoints).move(startPosition)).isEqualTo(expectedPosition);
+        Line line = LineFactory.of(new RightOnlyPointsStrategy(), rightPoints);
+        assertThat(line.move(startPosition)).isEqualTo(expectedPosition);
     }
 
     static Stream<Arguments> lineMoveFixture() {

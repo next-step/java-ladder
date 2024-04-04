@@ -11,7 +11,9 @@ public class LadderFactory {
     }
 
     private static List<Line> createLines(int pointSize, int height) {
-        return Stream.generate(() -> LineFactory.of(pointSize))
+        PointsGenerateStrategy<Integer> strategy = new RandomPointsStrategy();
+
+        return Stream.generate(() -> LineFactory.of(strategy, pointSize))
                 .limit(height)
                 .collect(Collectors.toList());
     }
