@@ -8,13 +8,9 @@ import nextstep.ladder.domain.user.Users;
 public class Output {
 
     private static final String HORIZONTAL_LINE = "-----|";
-
     private static final String EMPTY_SPACE = "     |";
-
     private static final String VERTICAL_LINE = "|";
-
     private static final String RESULT_HEADER = "실행결과";
-
     private static final String OUT_PUT_FORMAT = "%6s";
 
 
