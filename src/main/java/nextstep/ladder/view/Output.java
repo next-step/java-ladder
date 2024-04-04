@@ -1,8 +1,9 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.line.Point;
+import nextstep.ladder.domain.result.LadderResult;
 import nextstep.ladder.domain.line.Line;
 import nextstep.ladder.domain.line.Lines;
+import nextstep.ladder.domain.line.Point;
 import nextstep.ladder.domain.user.Users;
 
 public class Output {

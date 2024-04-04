@@ -1,7 +1,7 @@
 package nextstep.ladder.error.exception;
 
 import java.text.MessageFormat;
-import nextstep.ladder.common.Constants;
+import nextstep.ladder.utils.Constants;
 
 public class UserNameSizeException extends RuntimeException {
 

@@ -1,6 +1,6 @@
 package nextstep.ladder.domain.line;
 
-import nextstep.ladder.common.RandomGenerator;
+import nextstep.ladder.utils.RandomGenerator;
 
 public class Point {
 
@@ -12,6 +12,10 @@ public class Point {
 
     public boolean isPointFalse() {
         return !point;
+    }
+
+    public int moveNextPoint() {
+        return point ? 1 : -1;
     }
 
     public Point decideNextPoint() {
