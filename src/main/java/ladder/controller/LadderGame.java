@@ -29,7 +29,7 @@ public class LadderGame {
         final Players players = Players.from(playerNames);
 
         int height = inputView.readLadderHeight();
-        final Ladder ladder = Ladder.from(players.playersCount(), height, connectionGenerator);
+        final Ladder ladder = Ladder.of(players.playersCount(), height, connectionGenerator);
 
         outputView.printResult(players, ladder);
     }

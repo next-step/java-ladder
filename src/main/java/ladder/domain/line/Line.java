@@ -21,18 +21,18 @@ public class Line {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public static Line from(final PlayersCount playersCount, final ConnectionGenerator connectionGenerator) {
-        return new Line(createConnections(playersCount, connectionGenerator));
+    public static Line of(final ConnectionCount connectionCount, final ConnectionGenerator connectionGenerator) {
+        return new Line(createConnections(connectionCount, connectionGenerator));
     }
 
     private static List<Boolean> createConnections(
-            final PlayersCount playersCount,
+            final ConnectionCount connectionCount,
             final ConnectionGenerator connectionGenerator
     ) {
         final List<Boolean> connections = new ArrayList<>();
         connections.add(connectionGenerator.generate());
 
-        IntStream.range(1, playersCount.value())
+        IntStream.range(1, connectionCount.count())
                 .mapToObj(i -> connections.get(i - 1) ? FALSE : connectionGenerator.generate())
                 .forEach(connections::add);
 
