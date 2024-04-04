@@ -12,7 +12,7 @@ public class InputView {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String input = scanner.nextLine();
         checkEmptyInput(input);
-        return new Participants(input.split(SPLIT_DELIMITER, -1));
+        return Participants.generateParticipants(input.split(SPLIT_DELIMITER, -1));
     }
 
     public static int askLadderHeight() {

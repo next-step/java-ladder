@@ -1,27 +1,40 @@
 package ladder.domain;
 
 import java.util.List;
-import java.util.Random;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Line {
-    private static final Random random = new Random();
     private final List<Boolean> bridge;
 
-    public Line (int countOfPerson) {
-        this.bridge = Stream.iterate(random.nextBoolean(), this::getNextLine)
+    public Line(List<Boolean> bridge) {
+        if (hasAdjacentBridge(bridge)) {
+            throw new IllegalArgumentException("사다리의 가로줄은 이어질 수 없습니다.");
+        }
+
+        this.bridge = bridge;
+    }
+
+    private boolean hasAdjacentBridge(List<Boolean> bridge) {
+        return IntStream.range(0, bridge.size() - 1)
+                .anyMatch(i -> bridge.get(i) && bridge.get(i + 1));
+    }
+
+    public static Line generateLine(int countOfPerson, LineGeneratorStrategy generator) {
+        final List<Boolean> bridge = Stream
+                .iterate(generator.nextBoolean(), previous -> Line.getNextLine(previous, generator))
                 .limit(countOfPerson - 1)
                 .collect(Collectors.toList());
+        return new Line(bridge);
     }
 
-    private Boolean getNextLine(Boolean previous) {
-        return !previous && random.nextBoolean();
+    private static boolean getNextLine(boolean previous, LineGeneratorStrategy generator) {
+        return !previous && generator.nextBoolean();
     }
 
-    @Override
-    public String toString() {
+    public String lineToString() {
         StringJoiner joiner = new StringJoiner("|", "     |", "|");
         this.bridge
                 .stream()

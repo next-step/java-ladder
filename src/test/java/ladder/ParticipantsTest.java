@@ -13,7 +13,7 @@ class ParticipantsTest {
     @ParameterizedTest
     @ValueSource(strings = {"a,bb,ccc", "a,abcde"})
     void 참가자_생성(String input) {
-        Participants participants = new Participants(input.split(SPLIT_DELIMITER, -1));
+        Participants participants = Participants.generateParticipants(input.split(SPLIT_DELIMITER, -1));
         assertThat(participants).isNotNull();
     }
 
@@ -21,6 +21,6 @@ class ParticipantsTest {
     @ValueSource(strings = {"", " ", ",,", "ab,a b", "a, b", "abc,abcdef"})
     void 적절하지_않은_참가자_생성(String input) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Participants(input.split(SPLIT_DELIMITER, -1)));
+                .isThrownBy(() -> Participants.generateParticipants(input.split(SPLIT_DELIMITER, -1)));
     }
 }

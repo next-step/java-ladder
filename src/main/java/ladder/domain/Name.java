@@ -2,7 +2,9 @@ package ladder.domain;
 
 public class Name {
     private final static int MAX_NAME_LENGTH = 5;
+    private final static int MIN_NAME_LENGTH = 1;
     private final static String BLANK = " ";
+
     private final String value;
 
     public Name(String input) {
@@ -21,7 +23,7 @@ public class Name {
     }
 
     private boolean isValidLength(String input) {
-        return input.length() > 0 && input.length() <= MAX_NAME_LENGTH;
+        return input.length() >= MIN_NAME_LENGTH && input.length() <= MAX_NAME_LENGTH;
     }
 
     @Override

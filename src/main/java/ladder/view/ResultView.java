@@ -1,6 +1,7 @@
 package ladder.view;
 
 import ladder.domain.Ladder;
+import ladder.domain.Line;
 import ladder.domain.Participants;
 
 import java.util.List;
@@ -16,6 +17,9 @@ public class ResultView {
     }
 
     public static void showLadder(Ladder ladder) {
-        System.out.println(ladder);
+        ladder.getLines()
+                .stream()
+                .map(Line::lineToString)
+                .forEach(System.out::println);
     }
 }

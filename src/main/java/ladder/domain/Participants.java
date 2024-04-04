@@ -7,10 +7,15 @@ import java.util.stream.Stream;
 public class Participants {
     private final List<Name> names;
 
-    public Participants(String[] input) {
-        this.names = Stream.of(input)
+    private Participants(List<Name> names) {
+        this.names = names;
+    }
+
+    public static Participants generateParticipants(String[] input) {
+        final List<Name> names = Stream.of(input)
                 .map(Name::new)
                 .collect(Collectors.toList());
+        return new Participants(names);
     }
 
     public List<Name> names() {
