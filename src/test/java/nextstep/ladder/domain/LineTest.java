@@ -4,6 +4,8 @@ import nextstep.ladder.data.StepType;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
@@ -32,16 +34,11 @@ class LineTest {
     }
 
     @DisplayName("시작 전 위치를 주면, 현재 Line에 대한 이동 시 결과를 반환한다.")
-    @Test
-    void getDestinationPointFromDepartPoint() {
+    @ParameterizedTest
+    @CsvSource(value = {"0,1", "1,0", "2,3", "3,2", "4,4"}, delimiter = ',')
+    void getDestinationPointFromDepartPoint(int departPosition, int expected) {
         Line line = Line.of(List.of(StepType.STEP, StepType.EMPTY, StepType.STEP, StepType.EMPTY));
         // then
-        assertAll(
-            () -> assertThat(line.getDestinationFrom(0)).isEqualTo(1),
-            () -> assertThat(line.getDestinationFrom(1)).isEqualTo(0),
-            () -> assertThat(line.getDestinationFrom(2)).isEqualTo(3),
-            () -> assertThat(line.getDestinationFrom(3)).isEqualTo(2),
-            () -> assertThat(line.getDestinationFrom(4)).isEqualTo(4)
-        );
+        assertThat(line.getDestinationFrom(departPosition)).isEqualTo(expected);
     }
 }
