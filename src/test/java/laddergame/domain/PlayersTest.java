@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -41,16 +42,45 @@ class PlayersTest {
         assertThat(players.findPlayerByIndex(1)).isEqualTo(secondPlayer);
     }
 
-    @Test
-    @DisplayName("indexOf(): plyaers에서 player의 인덱스를 반환한다.")
-    void testIndexOf() {
-        Player firstPlayer = Player.valueOf("a");
-        Player secondPlayer = Player.valueOf("b");
-        Player thirdPlayer = Player.valueOf("c");
-        Players players = Players.newPlayers(firstPlayer, secondPlayer, thirdPlayer);
+    @Nested
+    @DisplayName("findPlayerByName() 테스트")
+    class FindPlayerByNameTest {
+        Players players = Players.newPlayers("a", "b", "c", "d");
 
-        assertThat(players.indexOf(secondPlayer)).isEqualTo(1);
+        @Test
+        @DisplayName("name을 가지는 참여자가 존재하는 경우 해당 참여자를 포함하는 List<Player>를 반환하다.")
+        void testReturnSingleElementList() {
+            String name = "a";
+
+            List<Player> foundPlayers = players.findPlayersByName(name);
+
+            assertThat(foundPlayers.size()).isEqualTo(1);
+            assertThat(foundPlayers.get(0)).isEqualTo(Player.valueOf(name));
+        }
+
+        @Test
+        @DisplayName("name을 가지는 참여자가 존재하지 않는 경우 비어있는 List<Player>를 반환하다.")
+        void testReturnEmptyList() {
+            String name = "abcd";
+
+            List<Player> foundPlayers = players.findPlayersByName(name);
+
+            assertThat(foundPlayers.size()).isEqualTo(0);
+        }
+
+        @Test
+        @DisplayName("name이 ALL인 경우 모든 참여자들을 포함한 List<Player>를 반환한다.")
+        void testReturnAllPlayers() {
+            String name = "ALL";
+
+            List<Player> foundPlayers = players.findPlayersByName(name);
+
+            assertThat(foundPlayers.size()).isEqualTo(players.numberOfPlayers());
+            IntStream.range(0, foundPlayers.size())
+                    .forEach(i -> assertThat(foundPlayers.get(i)).isEqualTo(players.players().get(i)));
+        }
     }
+
 
     @Test
     @DisplayName("numberOfPlayers(): Players.players의 크기를 반환한다.")
