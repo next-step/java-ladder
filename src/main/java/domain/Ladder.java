@@ -15,4 +15,8 @@ public class Ladder {
     public void accept(LadderVisitor visitor) {
         lines.accept(visitor);
     }
+
+    public int getEndPoint(int position) {
+        return 0;
+    }
 }
