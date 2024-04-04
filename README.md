@@ -25,6 +25,6 @@
 - [x] 추출한 100개의 단어를 모두 소문자로 출력한다.
 
 ### Optional 실습
-- [ ] Optional을 활용해 ageIsInRange2() 메소드에 구현한다
-- [ ] nextstep.optional.Users의 getUser() 메소드를 자바 8의 stream과 Optional을 활용해 구현
-- [ ] nextstep.optional.ExpressionTest의 테스트가 통과하도록 Expression의 of 메소드를 구현한다.
+- [x] Optional을 활용해 ageIsInRange2() 메소드에 구현한다
+- [x] nextstep.optional.Users의 getUser() 메소드를 자바 8의 stream과 Optional을 활용해 구현
+- [x] nextstep.optional.ExpressionTest의 테스트가 통과하도록 Expression의 of 메소드를 구현한다.
