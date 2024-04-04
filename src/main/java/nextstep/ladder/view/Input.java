@@ -29,6 +29,19 @@ public class Input {
         }
     }
 
+    public static String[] inputExecutionResult() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        try {
+            return scanner.nextLine().split(",");
+        } catch (NoSuchElementException e) {
+            throw new NoSuchElementException(INVALID_INPUT_EMPTY.getMessage());
+        } catch (IllegalStateException e) {
+            throw new IllegalStateException(ILLEGAL_STATE.getMessage(), e);
+        } catch (Exception e) {
+            throw new RuntimeException(UN_EXPECTED_ERROR.getMessage(), e);
+        }
+    }
+
     public static int inputLadderHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         try {
