@@ -38,7 +38,7 @@ public class LadderInputView {
     }
 
     public int readLadderHeight() {
-        output.printLine("최대 사다리 높이는 몇 개인가요?");
+        output.printLine("\n최대 사다리 높이는 몇 개인가요?");
         final String userInput = input.readLine();
 
         try {

@@ -28,9 +28,13 @@ public class Players {
     }
 
     public List<String> names() {
-        return players.stream()
+        return this.players.stream()
                 .map(Player::name)
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    public int playersCount() {
+        return this.players.size();
     }
 
     public static Players from(final List<String> playerNames) {

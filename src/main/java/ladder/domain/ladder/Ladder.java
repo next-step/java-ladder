@@ -23,6 +23,10 @@ public class Ladder {
                 .collect(Collectors.toUnmodifiableList());
     }
 
+    public static Ladder from(final int playersCount, final int height, final ConnectionGenerator connectionGenerator) {
+        return from(new PlayersCount(playersCount), new Height(height), connectionGenerator);
+    }
+
     public static Ladder from(
             final PlayersCount playersCount,
             final Height height,

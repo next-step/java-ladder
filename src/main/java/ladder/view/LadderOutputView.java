@@ -27,7 +27,14 @@ public class LadderOutputView {
         this.output = output;
     }
 
-    public void printPlayers(final Players players) {
+    public void printResult(final Players players, final Ladder ladder) {
+        output.printLine("\n실행 결과\n");
+
+        printPlayers(players);
+        printLadder(ladder);
+    }
+
+    private void printPlayers(final Players players) {
         final String line = players.names()
                 .stream()
                 .map(name -> String.format(PLAYER_NAME_PRINTING_FORMAT, name))
@@ -36,7 +43,7 @@ public class LadderOutputView {
         output.printLine(line);
     }
 
-    public void printLadder(final Ladder ladder) {
+    private void printLadder(final Ladder ladder) {
         final String result = ladder.ladderDetail()
                 .stream()
                 .map(this::buildLine)
@@ -48,7 +55,7 @@ public class LadderOutputView {
     private String buildLine(final List<Boolean> line) {
         final String lineResult = line.stream()
                 .map(LADDER_CONNECTION::get)
-                .collect(Collectors.joining());
+                .collect(Collectors.joining(LADDER_COLUMN));
 
         return LADDER_COLUMN + lineResult + LADDER_COLUMN;
     }
