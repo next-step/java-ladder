@@ -21,7 +21,7 @@
   - [x] 이전 Line 객체의 동일 높이의 bridge 가 생성되었다면, 현재 Line 객체의 동일 높이 bridge 는 제거한다.
 - Lines 객체 
   - [x] 갯수와 높이를 기반으로 Lines 객체를 생성한다.
-- Ladder 객체 
+- GameBoard 객체 
   - [x] 출력한다. 
 - Bridge 객체 
   - [x] bridge 유무를 확인한다.
