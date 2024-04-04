@@ -1,6 +1,6 @@
 package nextstep.ladder.domain.line;
 
-import nextstep.ladder.domain.RandomGenerator;
+import nextstep.ladder.common.RandomGenerator;
 
 public class Point {
 
