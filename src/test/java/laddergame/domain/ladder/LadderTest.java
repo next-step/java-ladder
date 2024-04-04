@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Optional;
 
 import static laddergame.domain.ladder.Link.LINKED;
 import static laddergame.domain.ladder.Link.UNLINKED;
@@ -63,10 +64,10 @@ class LadderTest {
 
             ResultOfLadder resultOfLadder = ladder.resultOfLadder(playersAndWinningContents);
 
-            assertThat(resultOfLadder.winningContentOfPlayer(playerA)).isEqualTo(winningContentA);
-            assertThat(resultOfLadder.winningContentOfPlayer(playerB)).isEqualTo(winningContentD);
-            assertThat(resultOfLadder.winningContentOfPlayer(playerC)).isEqualTo(winningContentC);
-            assertThat(resultOfLadder.winningContentOfPlayer(playerD)).isEqualTo(winningContentB);
+            assertThat(resultOfLadder.winningContentOfPlayer(playerA)).isEqualTo(Optional.of(winningContentA));
+            assertThat(resultOfLadder.winningContentOfPlayer(playerB)).isEqualTo(Optional.of(winningContentD));
+            assertThat(resultOfLadder.winningContentOfPlayer(playerC)).isEqualTo(Optional.of(winningContentC));
+            assertThat(resultOfLadder.winningContentOfPlayer(playerD)).isEqualTo(Optional.of(winningContentB));
         }
     }
 }

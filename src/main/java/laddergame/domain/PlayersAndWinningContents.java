@@ -1,5 +1,7 @@
 package laddergame.domain;
 
+import java.util.List;
+
 import static laddergame.exception.ExceptionMessage.WRONG_PLAYERS_AND_WINNING_CONTENTS_MESSAGE;
 
 public class PlayersAndWinningContents {
@@ -39,6 +41,10 @@ public class PlayersAndWinningContents {
 
     public WinningContent findWinningContentByIndex(int index) {
         return winningContents.findWinningContentByIndex(index);
+    }
+
+    public List<Player> findPlayersByName(String name) {
+        return players.findPlayersByName(name);
     }
 
     public Players players() {

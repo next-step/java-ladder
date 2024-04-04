@@ -58,4 +58,9 @@ public class InputView {
             throw new IllegalArgumentException(String.format(WRONG_LADDER_HEIGHT_MESSAGE.message(), heightInput, LADDER_MIN_HEIGHT));
         }
     }
+
+    public static String enteredPlayerForResult() {
+        printPlayerForResultInputGuideMessage();
+        return SCANNER.nextLine();
+    }
 }

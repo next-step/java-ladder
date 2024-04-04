@@ -14,8 +14,7 @@ public class ResultOfLadder {
         return new ResultOfLadder(results);
     }
 
-    public WinningContent winningContentOfPlayer(Player player) {
-        return Optional.ofNullable(results.get(player))
-                .orElseThrow(IllegalArgumentException::new);
+    public Optional<WinningContent> winningContentOfPlayer(Player player) {
+        return Optional.ofNullable(results.get(player));
     }
 }
