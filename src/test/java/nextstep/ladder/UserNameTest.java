@@ -6,8 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.*;
 
 public class UserNameTest {
 
@@ -30,6 +29,13 @@ public class UserNameTest {
     @DisplayName("유저 이름 생성 테스트")
     void testValidUserName(String name) {
         assertThat(new UserName(name).getName()).isEqualTo(name);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"all", "ALL"})
+    @DisplayName("유저 이름이 all인 경우 에러 발생")
+    void testInvalidUserName(String invalidName) {
+        assertThatIllegalArgumentException().isThrownBy(() -> new UserName(invalidName));
     }
 
 

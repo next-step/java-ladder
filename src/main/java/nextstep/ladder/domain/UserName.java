@@ -12,6 +12,7 @@ public class UserName {
     public UserName(String name) {
         assertNonEmptyName(name);
         assertValidLength(name);
+        assertNotNameIsAll(name);
         this.name = name;
     }
 
@@ -27,6 +28,14 @@ public class UserName {
         String invalidLengthMessage = String.format("[이름] %d 글자를 초과할 수 없습니다.", MAX_LENGTH);
         if (name.length() > MAX_LENGTH) {
             throw new IllegalArgumentException(invalidLengthMessage);
+        }
+    }
+
+    private void assertNotNameIsAll(String name) {
+        String invalidName = "all";
+        String errorMessage = "[이름] 유저 이름은 all이 될 수 없습니다.";
+        if (name.equalsIgnoreCase(invalidName)) {
+            throw new IllegalArgumentException(errorMessage);
         }
     }
 
