@@ -6,7 +6,7 @@ import nextstep.ladder.domain.PointsGenerateStrategy;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RightOnlyPointsStrategy implements PointsGenerateStrategy<List<Boolean>> {
+public class CurrentOnlyPointsStrategy implements PointsGenerateStrategy<List<Boolean>> {
 
     @Override
     public List<Point> generate(List<Boolean> pointParam) {
