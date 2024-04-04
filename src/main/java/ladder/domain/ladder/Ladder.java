@@ -17,6 +17,12 @@ public class Ladder {
         this.lines = lines;
     }
 
+    public List<List<Boolean>> ladderDetail() {
+        return this.lines.stream()
+                .map(Line::connections)
+                .collect(Collectors.toUnmodifiableList());
+    }
+
     public static Ladder from(
             final PlayersCount playersCount,
             final Height height,

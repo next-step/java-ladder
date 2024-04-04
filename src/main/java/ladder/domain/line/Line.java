@@ -5,6 +5,7 @@ import static java.lang.Boolean.FALSE;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Line {
@@ -13,6 +14,11 @@ public class Line {
 
     public Line(final List<Boolean> connections) {
         this.connections = connections;
+    }
+
+    public List<Boolean> connections() {
+        return connections.stream()
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public static Line from(final PlayersCount playersCount, final ConnectionGenerator connectionGenerator) {

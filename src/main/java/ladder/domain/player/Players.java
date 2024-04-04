@@ -15,13 +15,13 @@ public class Players {
         this.players = players;
     }
 
-    private static void validatePlayersAreNotDuplicated(List<Player> players) {
+    private void validatePlayersAreNotDuplicated(List<Player> players) {
         if (new HashSet<>(players).size() != players.size()) {
             throw new IllegalArgumentException("중복된 플레이어가 존재합니다. 플레이어: " + players);
         }
     }
 
-    private static void validatePlayersAreNotEmpty(List<Player> players) {
+    private void validatePlayersAreNotEmpty(List<Player> players) {
         if (players.isEmpty()) {
             throw new IllegalArgumentException("플레이어가 존재하지 않습니다.");
         }
