@@ -7,8 +7,9 @@ public class LadderGame {
 		List<String> names = InputView.InputNames();
 		int ladderHeight = InputView.InputLadderHeight();
 
-		LadderBoard ladderBoard = new LadderBoard(names.size(), ladderHeight);
+		LadderBoard ladderBoard = new LadderBoard(ladderHeight, names.size());
 
+		ResultView.printNames(names);
 		ResultView.printLadderBoard(ladderBoard);
 	}
 }
