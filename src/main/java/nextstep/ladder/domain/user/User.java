@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.user;
 
+import java.util.Objects;
 import nextstep.ladder.error.exception.UserNameEmptyException;
 import nextstep.ladder.error.exception.UserNameSizeException;
 
@@ -20,5 +21,22 @@ public class User {
 
     public String getUserName() {
         return userName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof User)) {
+            return false;
+        }
+        User user = (User) o;
+        return Objects.equals(getUserName(), user.getUserName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getUserName());
     }
 }
