@@ -45,4 +45,8 @@ public class Output {
                 : HORIZONTAL_LINE));
         }
     }
+
+    private static void printIndividualResults(LadderResult ladderResult) {
+
+    }
 }
