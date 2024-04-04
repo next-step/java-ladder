@@ -9,11 +9,15 @@ public class Player {
 
     private final String name;
 
-    public Player(final String name) {
+    Player(final String name) {
         validateNameIsNotNullOrBlank(name);
         validateNameNotExceedMaxLength(name);
 
         this.name = name;
+    }
+
+    String name() {
+        return this.name;
     }
 
     private void validateNameIsNotNullOrBlank(final String name) {
