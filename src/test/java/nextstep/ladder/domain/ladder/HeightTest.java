@@ -16,19 +16,20 @@ public class HeightTest {
     @Nested
     class Describe_constructor {
 
-        @DisplayName("0 이상의 높이를 가질 수 있다.")
+        @DisplayName("1 이상의 높이를 가질 수 있다.")
         @ParameterizedTest
-        @ValueSource(ints = {0, 1, 2})
+        @ValueSource(ints = {1, 2})
         void can_have_positive_height(int height) {
             assertThatCode(() -> new Height(height))
                     .doesNotThrowAnyException();
         }
 
-        @DisplayName("음수를 가질 수 없다.")
-        @Test
-        void cannot_have_negative_height() {
+        @DisplayName("음수나 0을 가질 수 없다.")
+        @ParameterizedTest
+        @ValueSource(ints = {-1, 0})
+        void cannot_have_negative_height(int height) {
             assertThatIllegalArgumentException()
-                    .isThrownBy(() -> new Height(-1));
+                    .isThrownBy(() -> new Height(height));
         }
     }
 
