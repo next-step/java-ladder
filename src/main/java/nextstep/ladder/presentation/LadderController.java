@@ -35,7 +35,7 @@ public class LadderController {
         resultView.printInputUserNameForResult();
         String userNameForResult = inputView.inputUserNameForResult();
 
-        printGameResult(new GameResult(ladder, users), users, userNameForResult);
+        printGameResult(ladderService.getGameResult(ladder, users), users, userNameForResult);
     }
 
     private void printGameResult(GameResult gameResult, Users users, String inputUserName) {
