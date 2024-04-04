@@ -13,17 +13,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderTest {
 
+    private List<String> ladderResults = Collections.nCopies(6, "test");
+    private int length = 5;
+    private int height = 4;
+
     @Test
     @DisplayName("사다리 생성 테스트")
     void testValidLadder() {
-        int height = 4;
-        int numberOfUser = 5;
-        LineGenerator testLineGenerator = count -> Collections.nCopies(numberOfUser, Boolean.FALSE);
+        LineGenerator testLineGenerator = count -> Collections.nCopies(length, Boolean.FALSE);
 
-        Ladder ladder = new Ladder(height, numberOfUser, testLineGenerator);
+        Ladder ladder = new Ladder(height, length, testLineGenerator, ladderResults);
         assertThat(ladder.getHeight()).isEqualTo(height);
         assertThat(ladder.getLines()).hasSize(height);
-        assertContainLines(ladder, new Line(numberOfUser, testLineGenerator), numberOfUser);
+        assertThat(ladder.getLadderResult()).hasSize(length+1).containsExactlyElementsOf(ladderResults);
+        assertContainLines(ladder, new Line(length, testLineGenerator), length);
     }
 
     private void assertContainLines(Ladder ladder, Line expectLine, int numberOfUser) {

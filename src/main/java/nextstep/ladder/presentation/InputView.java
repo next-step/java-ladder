@@ -11,6 +11,10 @@ public class InputView {
         return List.of(SCANNER.nextLine().split(","));
     }
 
+    public List<String> inputLadderResult() {
+        return List.of(SCANNER.nextLine().split(","));
+    }
+
     public int inputLadderHeight() {
         return inputNumber();
     }
