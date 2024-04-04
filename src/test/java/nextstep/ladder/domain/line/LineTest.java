@@ -32,6 +32,6 @@ class LineTest {
             ladderConstructionStatus);
 
         //then
-        assertThat(actual.isLadderConstructionStatus()).isEqualTo(false);
+        assertThat(actual.isLadderConstructionStatusFalse()).isEqualTo(true);
     }
 }

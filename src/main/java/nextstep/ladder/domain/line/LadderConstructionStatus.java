@@ -11,8 +11,4 @@ public class LadderConstructionStatus {
     public boolean isLadderConstructionStatusFalse() {
         return !ladderConstructionStatus;
     }
-
-    public boolean isLadderConstructionStatus() {
-        return ladderConstructionStatus;
-    }
 }
