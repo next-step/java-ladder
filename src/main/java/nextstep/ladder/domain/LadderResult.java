@@ -40,7 +40,4 @@ public class LadderResult {
         return results.stream().collect(Collectors.toUnmodifiableList());
     }
 
-    public LineLength getLength() {
-        return length;
-    }
 }

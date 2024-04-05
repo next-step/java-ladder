@@ -19,9 +19,9 @@ public class UserName {
     private void assertNonEmptyName(String name) {
         String emptyNameMessage = "[이름] 이름이 없습니다.";
 
-        Optional.ofNullable(name)
-                .filter(input -> !input.isBlank())
-                .orElseThrow(() -> new IllegalArgumentException(emptyNameMessage));
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException(emptyNameMessage);
+        }
     }
 
     private void assertValidLength(String name) {

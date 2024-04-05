@@ -16,7 +16,7 @@ public class LadderService {
         return new Ladder(height, numberOfUser-1, lineGenerator, results);
     }
 
-    public Users makeUser(List<String> userNames) {
+    public Users makeUsers(List<String> userNames) {
         List<User> users = userNames.stream().map(User::new).collect(Collectors.toUnmodifiableList());
 
         return new Users(users);

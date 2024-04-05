@@ -20,7 +20,7 @@ public class LadderController {
     public void startGame() {
         resultView.printInputUserNames();
         List<String> userNames = inputView.inputUserNames();
-        Users users = ladderService.makeUser(userNames);
+        Users users = ladderService.makeUsers(userNames);
 
         resultView.printInputLadderResult();
         List<String> ladderResults = inputView.inputLadderResult();
