@@ -22,17 +22,18 @@ public class Users {
         this.users = users;
     }
 
-    public void addLadderResult(Map<User, Integer> ladderResult, Lines lines) {
-        IntStream.range(0, users.size())
-            .forEach(userIndex -> ladderResult.put(users.get(userIndex), lines.findUserResult(userIndex)));
-    }
-
     private static List<User> toUsers(String... userNames) {
         List<User> users = new ArrayList<>();
         for (String userName : userNames) {
             users.add(new User(userName));
         }
         return users;
+    }
+
+    public void addLadderResult(Map<User, Integer> ladderResult, Lines lines) {
+        IntStream.range(0, users.size())
+            .forEach(userIndex -> ladderResult.put(users.get(userIndex),
+                lines.findUserResult(userIndex)));
     }
 
     public int size() {

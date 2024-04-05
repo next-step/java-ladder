@@ -17,15 +17,15 @@ public class Line {
         }
     }
 
-    public boolean canMoveRight(int userIndex){
-        if (userIndex + 1 < points.size() + 1 && points.get(userIndex).isPointTrue()){
+    public boolean canMoveRight(int userIndex) {
+        if (userIndex + 1 < points.size() + 1 && points.get(userIndex).isPointTrue()) {
             return true;
         }
         return false;
     }
 
-    public boolean canMoveLeft(int userIndex){
-        if (userIndex - 1 >= 0 && points.get(userIndex-1).isPointTrue()){
+    public boolean canMoveLeft(int userIndex) {
+        if (userIndex - 1 >= 0 && points.get(userIndex - 1).isPointTrue()) {
             return true;
         }
         return false;

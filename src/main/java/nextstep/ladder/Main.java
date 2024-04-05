@@ -20,8 +20,8 @@ public class Main {
 
         LadderResult ladderResult = new LadderResult(result, users);
         ladderResult.calculateLadderResult(users, lines);
-        
-        while(true){
+
+        while (true) {
             String userName = Input.inputUserForDrawConfirmation();
             if (Output.findAllDrawResult(ladderResult, userName)) {
                 break;

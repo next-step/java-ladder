@@ -59,7 +59,7 @@ public class Output {
     }
 
     public static boolean findAllDrawResult(LadderResult ladderResult, String userName) {
-        if("all".equals(userName)){
+        if ("all".equals(userName)) {
             Output.printAllResult(ladderResult);
             return true;
         }

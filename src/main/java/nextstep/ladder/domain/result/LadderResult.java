@@ -14,11 +14,12 @@ import nextstep.ladder.error.exception.LadderUsersMismatchException;
 import nextstep.ladder.error.exception.NotExistUserException;
 
 public class LadderResult {
+
     private final Map<User, Integer> ladderResult = new HashMap<>();
     private List<String> drewList;
 
     public LadderResult(List<String> drewList, Users users) {
-        if (drewList.size() != users.size()){
+        if (drewList.size() != users.size()) {
             throw new LadderUsersMismatchException(drewList.size(), users.size());
         }
 
@@ -32,14 +33,14 @@ public class LadderResult {
     public String userDrawResult(User user) throws NotExistUserException {
         int result = ladderResult.getOrDefault(user, NOT_EXIST_USER_CODE);
 
-        if (NOT_EXIST_USER_CODE == result){
+        if (NOT_EXIST_USER_CODE == result) {
             throw new NotExistUserException(user.getUserName());
         }
 
         return drewList.get(result);
     }
 
-    public Set<User> keySet(){
+    public Set<User> keySet() {
         return ladderResult.keySet();
     }
 }

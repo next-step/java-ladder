@@ -17,6 +17,16 @@ public class Lines {
         this.lines = lines;
     }
 
+    private static List<Line> toLines(int height, int countOfPerson) {
+        if (height < 1) {
+            throw new LadderHeightSizeException(height);
+        }
+
+        return Stream.generate(() -> new Line(countOfPerson))
+            .limit(height)
+            .collect(Collectors.toList());
+    }
+
     public int findUserResult(int userIndex) {
         return lines.stream()
             .reduce(userIndex, this::adjustUserIndex, Integer::sum);
@@ -30,16 +40,6 @@ public class Lines {
             return currentIndex - 1;
         }
         return currentIndex;
-    }
-
-    private static List<Line> toLines(int height, int countOfPerson) {
-        if (height < 1) {
-            throw new LadderHeightSizeException(height);
-        }
-
-        return Stream.generate(() -> new Line(countOfPerson))
-            .limit(height)
-            .collect(Collectors.toList());
     }
 
     public List<Line> getLines() {
