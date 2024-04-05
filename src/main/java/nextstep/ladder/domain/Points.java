@@ -13,12 +13,15 @@ public class Points {
     public Points(int countOfPerson, LadderGenerator strategy) {
         IntStream.range(0, countOfPerson - 1).forEach(i -> {
             boolean hasLadder = strategy.generate();
-            // i == 0일 때는 랜덤으로 결정
-            if (i >= 1 && hasLadderAtPrevious(i)) {
+            if (isNotFirstPoint(i) && hasLadderAtPrevious(i)) {
                 hasLadder = false;
             }
             addLadderPoints(hasLadder);
         });
+    }
+
+    private boolean isNotFirstPoint(int i) {
+        return i >= 1;
     }
 
     private Boolean hasLadderAtPrevious(int i) {
