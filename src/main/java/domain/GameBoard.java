@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.List;
+
 public class GameBoard {
 
     private final Players players;
@@ -18,5 +20,10 @@ public class GameBoard {
     public void display(LadderVisitor visitor) {
         players.accept(visitor);
         ladder.accept(visitor);
+    }
+
+    public Reward getReward(Player player, List<Reward> rewards) {
+        Position position = players.getPosition(player);
+        return rewards.get(ladder.getEndPositionByStartPosition(position).getX());
     }
 }
