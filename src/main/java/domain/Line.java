@@ -49,4 +49,8 @@ public class Line {
     public int height() {
         return height.getHeight();
     }
+
+    public boolean isBridge(int height) {
+        return this.bridges.has(height);
+    }
 }
