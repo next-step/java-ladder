@@ -2,9 +2,8 @@ package nextstep.ladder.ui;
 
 import nextstep.ladder.domain.*;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class ResultView {
@@ -13,11 +12,14 @@ public class ResultView {
     private static final String POINT_FALSE = "     ";
     private static final String LINE_DELIMITER = "|";
 
-    public static void printLadder(Ladder ladder, Map<Participant, String> prizeMap) {
+    public static void printLadder(Participants participants, Ladder ladder) {
         System.out.println("사다리 결과");
-        System.out.println(formatParticipantNames(prizeMap.keySet()));
+        System.out.println(formatParticipantNames(participants));
         System.out.println(formatLadder(ladder));
-        System.out.println(formatPrizes(prizeMap.values()));
+    }
+
+    public static void printPrizes(List<String> prizes) {
+        System.out.println(formatPrizes(prizes));
     }
 
     private static String formatLadder(Ladder ladder) {
@@ -27,26 +29,28 @@ public class ResultView {
     }
 
     private static String formatLine(Line line) {
-        return line.get().stream()
+        List<Point> points = line.get();
+        return points.stream()
+                .limit(points.size() - 1)
                 .map(point -> String.format("%5s", formatPoint(point)))
                 .collect(Collectors.joining(LINE_DELIMITER, String.format("%5s", LINE_DELIMITER), LINE_DELIMITER));
     }
 
-    private static String formatPoint(boolean point) {
-        if (point) {
+    private static String formatPoint(Point point) {
+        if (point.current()) {
             return POINT_TRUE;
         }
         return POINT_FALSE;
     }
 
-    private static String formatParticipantNames(Set<Participant> participants) {
-        return participants.stream()
+    private static String formatParticipantNames(Participants participants) {
+        return participants.get().stream()
                 .map(Participant::getName)
                 .map(name -> String.format("%-6s", name))
                 .collect(Collectors.joining());
     }
 
-    private static String formatPrizes(Collection<String> prizes) {
+    private static String formatPrizes(List<String> prizes) {
         return prizes.stream()
                 .map(prize -> String.format("%-6s", prize))
                 .collect(Collectors.joining());
@@ -58,7 +62,7 @@ public class ResultView {
     }
 
     private static String formatResult(Map<Participant, String> prizeMap, String name) {
-        if ("all".equals(name)) {
+        if (Participants.meanAllParticipants(name)) {
             return prizeMap.keySet().stream()
                     .map(participant -> formatParticipantPosition(prizeMap, participant))
                     .collect(Collectors.joining());

@@ -2,7 +2,6 @@ package nextstep.ladder.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Participants {
 
@@ -29,12 +28,8 @@ public class Participants {
         return this.participants;
     }
 
-    public int startPosition(Participant executeParticipant) {
-        return participants.indexOf(executeParticipant);
-    }
-
-    public Stream<Participant> stream() {
-        return this.participants.stream();
+    public int startPositionOf(Participant participant) {
+        return participants.indexOf(participant);
     }
 
     public static boolean meanAllParticipants(String name) {
