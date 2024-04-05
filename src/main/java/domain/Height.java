@@ -9,11 +9,11 @@ public class Height {
     private final int value;
 
     public Height(int value) {
-        assertGreaterThenMinHeight(value);
+        validateGreaterThenMinHeight(value);
         this.value = value;
     }
 
-    private static void assertGreaterThenMinHeight(int value) {
+    private static void validateGreaterThenMinHeight(int value) {
         if (value < MIN_HEIGHT) {
             throw new IllegalArgumentException("높이는 1보다 커야합니다.");
         }
