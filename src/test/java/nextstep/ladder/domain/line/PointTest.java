@@ -25,7 +25,6 @@ class PointTest {
     @Test
     public void Point는_true값일경우_decideNextPoint의_반환값이_false여야한다() {
         Point point = new Point(true);
-
         assertThat(point.decideNextPoint().isPointTrue()).isEqualTo(false);
     }
 
