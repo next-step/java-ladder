@@ -30,13 +30,6 @@ public class Users {
 		return users;
 	}
 
-	@Override
-	public String toString() {
-		return users.stream()
-				.map(User::getName)
-				.collect(Collectors.joining(" "));
-	}
-
 	public int getCountOfPerson() {
 		return users.size();
 	}

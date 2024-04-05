@@ -31,4 +31,12 @@ public class Result {
 	public int hashCode() {
 		return Objects.hash(value);
 	}
+
+    public String getValue() {
+		return value;
+    }
+
+	public String getValueWithSpace() {
+		return String.format("%-" + 6 + "s", value);
+	}
 }

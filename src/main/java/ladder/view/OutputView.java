@@ -3,18 +3,33 @@ package ladder.view;
 import ladder.domain.ladder.Height;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.PointEnum;
+import ladder.domain.result.Result;
+import ladder.domain.result.Results;
+import ladder.domain.user.User;
 import ladder.domain.user.Users;
 
 import java.util.List;
 
 public class OutputView {
-	public static void printResult(Users users, int ladderHeight) {
-		System.out.println("실행결과");
+	public static Ladder printLadderResult(Users users, int ladderHeight, Results results) {
+		System.out.println("사다리 결과");
 		System.out.println("");
 
-		System.out.println(users.toString());
-		Ladder.createLadder(Height.createHeight(ladderHeight), users.getCountOfPerson()).getLines()
-				.forEach(line -> toPrint(line.getPoints()));
+		Ladder ladder = Ladder.createLadder(Height.createHeight(ladderHeight), users, results);
+
+		ladder.getUsers().stream()
+				.map(User::getNameWithSpace)
+				.forEach(System.out::print);
+		System.out.println("");
+
+		ladder.getLines().forEach(line -> toPrint(line.getPoints()));
+
+		ladder.getResults().stream()
+				.map(Result::getValueWithSpace)
+				.forEach(System.out::print);
+		System.out.println("");
+
+		return ladder;
 	}
 
 	private static void toPrint(List<PointEnum> points) {
@@ -32,5 +47,10 @@ public class OutputView {
 			return;
 		}
 		sb.append("     ");
+	}
+
+	public static void printResult(Ladder ladder, String matchUser) {
+		System.out.println("실행 결과");
+
 	}
 }
