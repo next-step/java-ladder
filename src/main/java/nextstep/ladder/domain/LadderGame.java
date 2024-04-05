@@ -8,13 +8,11 @@ public class LadderGame {
     private List<Line> lines = new ArrayList<>();
 
     public LadderGame(int height, int countOfPerson) {
-        if (height < 1) {
-            throw new IllegalArgumentException("사다리 높이는 1 이상이어야 합니다.");
-        }
+        this(new Height(height), countOfPerson);
+    }
 
-        for (int i = 0; i < height; i++) {
-            lines.add(new Line(countOfPerson));
-        }
+    public LadderGame(Height height, int countOfPerson) {
+        height.add(lines, countOfPerson);
     }
 
     public List<Line> getLines() {
