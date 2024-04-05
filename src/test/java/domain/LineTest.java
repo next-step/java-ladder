@@ -16,7 +16,7 @@ public class LineTest {
     @Test
     void test01() {
         Line line = Line.createWithBridges(1, () -> true);
-        assertThat(line.height()).isEqualTo(1);
+        assertThat(line.getHeight()).isEqualTo(1);
     }
 
     @DisplayName("전략에 따라 bridge 를 생성하고, 정상적으로 생성되었는지 확인한다.")

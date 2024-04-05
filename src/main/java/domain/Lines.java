@@ -45,7 +45,7 @@ public class Lines implements Iterable<Line> {
     }
 
     public void accept(LadderVisitor visitor) {
-        visitor.visit(lines, lines.get(0).height());
+        visitor.visit(lines, lines.get(0).getHeight());
     }
 
     @Override
@@ -74,5 +74,9 @@ public class Lines implements Iterable<Line> {
             return Optional.of(new Position(position.getX() + 1, position.getY()));
         }
         return Optional.empty();
+    }
+
+    public int getHeight() {
+        return this.lines.get(0).getHeight();
     }
 }

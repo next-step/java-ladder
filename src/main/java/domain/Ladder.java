@@ -17,7 +17,11 @@ public class Ladder {
     }
 
     public Position getEndPositionByStartPosition(Position startPosition) {
-
-        return new Position(0, 0);
+        Position position = startPosition;
+        while (position.getY() < lines.getHeight()) {
+            Position move = lines.move(position);
+            position = new Position(move.getX(), move.getY() + 1);
+        }
+        return position;
     }
 }

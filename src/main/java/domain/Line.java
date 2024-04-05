@@ -50,7 +50,7 @@ public class Line {
         return bridges.has(height);
     }
 
-    public int height() {
+    public int getHeight() {
         return height.getHeight();
     }
 }
