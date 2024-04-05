@@ -14,8 +14,7 @@ public class OutputView {
     private static final String ALL_NAMES = "all";
 
     public void printLadder(final Names names, final Ladder ladder) {
-        System.out.println("\n실행 결과");
-
+        System.out.println("\n사다리 결과");
         System.out.println();
         names.getNames().forEach(name -> System.out.print(name.getName() + " "));
         System.out.println();
@@ -33,11 +32,12 @@ public class OutputView {
     }
 
     public void printResult(final String name, final LadderResultManager ladderResultManager) {
+        System.out.println("\n실행 결과");
         if (ALL_NAMES.equals(name)) {
             ladderResultManager.getResults().forEach((n, r) -> System.out.println(n.getName() + NAME_RESULT_DELIMITER + r));
             return;
         }
-        System.out.println(name + NAME_RESULT_DELIMITER + ladderResultManager.getResultByName(new Name(name)));
+        System.out.println(ladderResultManager.getResultByName(new Name(name)));
     }
 
     private void printBridge(final Bridge bridge) {

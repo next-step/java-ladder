@@ -7,11 +7,12 @@ public class LadderResultManager {
     
     private final Map<Name, String> results;
 
-    public LadderResultManager(final Names names) {
+    public LadderResultManager(final Names names, final Ladder ladder, final LadderResultDeterminer determiner) {
         this.results = names.toResult();
+        update(ladder, determiner);
     }
     
-    public void update(final Ladder ladder, final LadderResultDeterminer determiner) {
+    private void update(final Ladder ladder, final LadderResultDeterminer determiner) {
         results.forEach((name, result) -> {
             final int startColumn = determiner.getStartColumn(name);
             final int column = ladder.move(startColumn);
