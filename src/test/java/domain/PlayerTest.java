@@ -35,4 +35,10 @@ public class PlayerTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름이 빈 값입니다.");
     }
+
+    @DisplayName("이름을 확인한다.")
+    @Test
+    void test04() {
+        assertThat(PlayerTest.P1.isName("pobi")).isTrue();
+    }
 }
