@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Height {
 
-    private static final int MIN_HEIGHT = 1;
+    private static final int MIN_HEIGHT = 0;
 
     private final int value;
 
@@ -15,7 +15,7 @@ public class Height {
 
     private static void validateGreaterThenMinHeight(int value) {
         if (value < MIN_HEIGHT) {
-            throw new IllegalArgumentException("높이는 1보다 커야합니다.");
+            throw new IllegalArgumentException("높이는 0보다 커야합니다.");
         }
     }
 

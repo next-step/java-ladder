@@ -26,9 +26,9 @@ public class Lines implements Iterable<Line> {
     }
 
     public static Lines of(int count, Height height, BridgeCreationStrategy strategy) {
-        List<Line> lines = IntStream.rangeClosed(1, count)
-                .mapToObj(i -> Line.createWithBridges(height, strategy))
-                .collect(Collectors.toList());
+        List<Line> lines = IntStream.range(0, count)
+            .mapToObj(i -> Line.createWithBridges(height, strategy))
+            .collect(Collectors.toList());
 
         removeBridgeIfPreviousBridgeExist(count, lines);
         return new Lines(lines);

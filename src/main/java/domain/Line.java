@@ -23,13 +23,13 @@ public class Line {
     }
 
     public void resetBridges(Line prev) {
-        IntStream.rangeClosed(1, height.getHeight())
+        IntStream.range(0, height.getHeight())
                 .filter(prev::hasBridge)
                 .forEach(this::removeBridge);
     }
 
     public void addBridges(BridgeCreationStrategy bridgeCreationStrategy) {
-        IntStream.rangeClosed(1, height.getHeight())
+        IntStream.range(0, height.getHeight())
                 .filter(i -> bridgeCreationStrategy.isCreate())
                 .forEach(this::addBridge);
     }
@@ -42,15 +42,15 @@ public class Line {
         bridges.remove(height);
     }
 
+    public boolean hasBridge(Position position) {
+        return this.hasBridge(position.getY());
+    }
+
     public boolean hasBridge(int height) {
         return bridges.has(height);
     }
 
     public int height() {
         return height.getHeight();
-    }
-
-    public boolean isBridge(int height) {
-        return this.bridges.has(height);
     }
 }
