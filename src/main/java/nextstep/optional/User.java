@@ -30,8 +30,7 @@ public class User {
 	public static boolean ageIsInRange1(User user) {
 		boolean isInRange = false;
 
-		if (user != null && user.getAge() != null
-				&& isAgeOver30Under45(user)) {
+		if (user != null && user.getAge() != null && isAgeOver30Under45(user)) {
 			isInRange = true;
 		}
 		return isInRange;
