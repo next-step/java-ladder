@@ -9,8 +9,12 @@ public class Lines implements Iterable<Line> {
 
     private final List<Line> lines;
 
-    public Lines(List<Line> lines) {
+    private Lines(List<Line> lines) {
         this.lines = lines;
+    }
+
+    public static Lines from(List<Line> lines) {
+        return new Lines(lines);
     }
 
     public static Lines of(int count, int height) {

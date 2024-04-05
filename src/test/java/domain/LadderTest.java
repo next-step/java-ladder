@@ -21,7 +21,7 @@ public class LadderTest {
         Line line1 = Line.createWithBridges(5, () -> false);
         Line line2 = Line.createWithBridges(5, () -> true);
         Line line3 = Line.createWithBridges(5, () -> false);
-        Ladder ladder = new Ladder(new Lines(List.of(line1, line2, line3)));
+        Ladder ladder = new Ladder(Lines.from(List.of(line1, line2, line3)));
 
         int position = ladder.getEndPoint(0);
 
