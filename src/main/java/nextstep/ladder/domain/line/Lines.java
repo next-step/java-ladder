@@ -48,6 +48,5 @@ public class Lines {
 
     public int size() {
         return lines.size();
-
     }
 }
