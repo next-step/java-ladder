@@ -1,10 +1,11 @@
 package nextstep.ladder;
 
+import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -24,7 +25,7 @@ public class LineTest {
     @DisplayName("라인 생성 테스트")
     void lineConstructTest() {
         Line line = new Line(List.of(new Point(false),new Point(true),new Point(false)));
-        assertThat(line.getPoints().get(1).isPoint()).isEqualTo(true);
+        assertThat(line.getPoints().get(1).isActive()).isEqualTo(true);
     }
 
 }
