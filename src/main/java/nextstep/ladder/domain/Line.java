@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Line {
@@ -45,8 +46,10 @@ public class Line {
         return findPoint(index).isActive() && findPoint(index + 1).isActive();
     }
 
-    public List<Point> getPoints() {
-        return points;
+    public List<Boolean> pointToBoolean() {
+        return points.stream()
+                .map(Point::isActive)
+                .collect(Collectors.toList());
     }
 
 }

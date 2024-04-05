@@ -28,9 +28,9 @@ public class ResultView {
     }
 
     private static void printRow(Line line) {
-        line.getPoints().forEach(point -> {
+        line.pointToBoolean().forEach(point -> {
             printLadder();
-            if (point.isActive()) {
+            if (point) {
                 printLine();
             } else {
                 printGap();
