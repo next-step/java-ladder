@@ -1,15 +1,18 @@
 package nextstep.ladder;
 
-import java.util.List;
+import nextstep.ladder.domain.LadderBoard;
+import nextstep.ladder.domain.UserNames;
+import nextstep.ladder.view.InputView;
+import nextstep.ladder.view.ResultView;
 
 public class LadderGame {
 	public static void start() {
-		List<String> names = InputView.InputNames();
+		UserNames userNames = new UserNames(InputView.InputNames());
 		int ladderHeight = InputView.InputLadderHeight();
 
-		LadderBoard ladderBoard = new LadderBoard(ladderHeight, names.size());
+		LadderBoard ladderBoard = new LadderBoard(ladderHeight, userNames.getUserNamesSize());
 
-		ResultView.printNames(names);
+		ResultView.printNames(userNames);
 		ResultView.printLadderBoard(ladderBoard);
 	}
 

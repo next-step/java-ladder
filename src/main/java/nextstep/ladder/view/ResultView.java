@@ -1,4 +1,7 @@
-package nextstep.ladder;
+package nextstep.ladder.view;
+
+import nextstep.ladder.domain.LadderBoard;
+import nextstep.ladder.domain.UserNames;
 
 import java.util.List;
 
@@ -9,8 +12,8 @@ public class ResultView {
     private final static String LADDER_FORMAT = "%6s";
 
 
-    public static void printNames(List<String> names) {
-        names.stream().map(name -> String.format(LADDER_FORMAT, name)).forEach(System.out::print);
+    public static void printNames(UserNames userNames) {
+        userNames.getNames().stream().map(name -> String.format(LADDER_FORMAT, name)).forEach(System.out::print);
         System.out.println();
     }
 
@@ -19,7 +22,7 @@ public class ResultView {
             printGap();
             line.getPoints().forEach(point -> {
                 printLadder();
-                if (point.isPoint()) {
+                if (point.isActive()) {
                     printLine();
                 } else {
                     printGap();

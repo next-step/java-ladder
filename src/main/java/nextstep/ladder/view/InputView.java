@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.view;
 
 import java.util.Arrays;
 import java.util.List;
@@ -11,13 +11,7 @@ public class InputView {
 		System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
 		String names = scanner.nextLine();
 		List<String> stringNames = getStringNames(names);
-		checkNameLength(stringNames);
 		return stringNames;
-	}
-
-	private static void checkNameLength(List<String> stringNames) {
-		if(stringNames.stream().anyMatch(name -> name.length() > 5))
-			throw new IllegalArgumentException("사람 이름은 5글자 이하여야합니다.");
 	}
 
 	private static List<String> getStringNames(String names) {
