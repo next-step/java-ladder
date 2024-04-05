@@ -1,21 +1,43 @@
 package ladder.domain.vo;
 
+import java.util.Objects;
+
 public class Row {
 
-    private final Integer width;
+    private final Boolean bridgeExist;
 
-    public Row(Integer width) {
-        if(width > 5)
-            throw new IllegalArgumentException("길이는 5가 최대입니다.");
-        this.width = width;
+    public Row(RowCreateStrategy rowCreateStrategy,
+               Boolean bridgeExist){
+        this(create(rowCreateStrategy, bridgeExist));
     }
 
-    public Integer width(){
-        return this.width;
+    public Row(Boolean bridgeExist) {
+        this.bridgeExist = bridgeExist;
     }
 
-    public Boolean exist(){
-        return this.width > 0;
+
+    public Boolean bridgeExist(){
+        return this.bridgeExist;
     }
 
+    public static Boolean create(RowCreateStrategy rowCreateStrategy,
+                                 Boolean bridgeExist) {
+        if (rowCreateStrategy.isPreviousBridgeExist()) {
+            return Boolean.FALSE;
+        }
+        return bridgeExist;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Row row = (Row) o;
+        return Objects.equals(bridgeExist, row.bridgeExist);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(bridgeExist);
+    }
 }

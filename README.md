@@ -24,3 +24,6 @@ step 2
 * feature/requirements-unit-test
   * generate unit test w/ requirements
   * modified ComputerStore.class in order to build successful
+* feature/implement-ladder-application
+  * create applications
+  * modified test codes
