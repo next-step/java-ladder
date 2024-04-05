@@ -20,6 +20,6 @@ public class HeightTest {
     @Test
     void test02() {
         Height height = new Height(1);
-        assertThat(height.height()).isEqualTo(1);
+        assertThat(height.getHeight()).isEqualTo(1);
     }
 }

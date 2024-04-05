@@ -19,7 +19,7 @@ public class Height {
         }
     }
 
-    public int height() {
+    public int getHeight() {
         return this.value;
     }
 
