@@ -33,23 +33,17 @@ public class Lambda {
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        return numbers.stream()
-                .mapToInt(number -> number)
-                .filter(number -> number % 2 == 0)
-                .sum();
+        return Lambda.sumAll(numbers, number -> number % 2 == 0);
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
-        return numbers.stream()
-                .mapToInt(number -> number)
-                .filter(number -> number > 3)
-                .sum();
+        return Lambda.sumAll(numbers, number -> number > 3);
     }
 
-    public static int sumAll(List<Integer> numbers, Conditional c) {
+    private static int sumAll(List<Integer> numbers, Conditional conditional) {
         return numbers.stream()
                 .mapToInt(number -> number)
-                .filter(c::test)
+                .filter(conditional::test)
                 .sum();
     }
 
