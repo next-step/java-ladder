@@ -13,7 +13,7 @@ public class Bridges {
     }
 
     public Bridges(Height height) {
-        this.heightToBridges = IntStream.rangeClosed(1, height.getHeight())
+        this.heightToBridges = IntStream.range(0, height.getHeight())
                 .mapToObj(Height::new)
                 .collect(Collectors.toMap(h -> h, h -> new Bridge()));
     }

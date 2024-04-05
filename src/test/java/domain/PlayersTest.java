@@ -9,10 +9,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class PlayersTest {
 
+    public static final Players PS1 = new Players(List.of(PlayerTest.P1, PlayerTest.P2, PlayerTest.P3));
+
     @DisplayName("전체 플레이어의 인원을 구한다.")
     @Test
     void test01() {
-        Players players = new Players(List.of(PlayerTest.P1, PlayerTest.P2, PlayerTest.P3));
-        assertThat(players.totalNumber()).isEqualTo(3);
+        assertThat(PS1.totalNumber()).isEqualTo(3);
     }
 }
