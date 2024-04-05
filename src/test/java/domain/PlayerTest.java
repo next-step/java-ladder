@@ -8,6 +8,11 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class PlayerTest {
 
+    public static final Player P1 = new Player("pobi");
+    public static final Player P2 = new Player("honux");
+    public static final Player P3 = new Player("crong");
+    public static final Player P4 = new Player("jk");
+
     @DisplayName("5글자 이하의 이름을 가진 플레이어를 생성한다.")
     @Test
     void test01() {
