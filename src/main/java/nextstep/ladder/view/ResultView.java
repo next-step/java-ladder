@@ -1,6 +1,7 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.LadderBoard;
+import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.UserNames;
 
 import java.util.List;
@@ -20,16 +21,20 @@ public class ResultView {
     public static void printLadderBoard(LadderBoard ladderBoard) {
         ladderBoard.getLadderBoard().forEach(line -> {
             printGap();
-            line.getPoints().forEach(point -> {
-                printLadder();
-                if (point.isActive()) {
-                    printLine();
-                } else {
-                    printGap();
-                }
-            });
+            printRow(line);
             printLadder();
             System.out.println();
+        });
+    }
+
+    private static void printRow(Line line) {
+        line.getPoints().forEach(point -> {
+            printLadder();
+            if (point.isActive()) {
+                printLine();
+            } else {
+                printGap();
+            }
         });
     }
 
