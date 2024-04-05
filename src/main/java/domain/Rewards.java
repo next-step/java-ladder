@@ -1,5 +1,7 @@
 package domain;
 
+import view.ResultView;
+
 import java.util.List;
 
 public class Rewards {
@@ -15,5 +17,9 @@ public class Rewards {
             throw new IllegalArgumentException("없는 보상입니다.");
         }
         return new Position(rewards.indexOf(reward), 0);
+    }
+
+    public void display(LadderVisitor visitor) {
+        visitor.visit(rewards);
     }
 }

@@ -1,9 +1,6 @@
 package view;
 
-import domain.Height;
-import domain.Player;
-import domain.Players;
-import domain.Reward;
+import domain.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,12 +27,12 @@ public class InputView {
         return new Height(height - 1);
     }
 
-    public static List<Reward> promptForRewards() {
+    public static Rewards promptForRewards() {
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         String input = scanner.nextLine();
         System.out.println();
-        return Arrays.stream(input.split(","))
+        return new Rewards(Arrays.stream(input.split(","))
                 .map(Reward::new)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
     }
 }

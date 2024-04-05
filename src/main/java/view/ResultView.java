@@ -3,7 +3,9 @@ package view;
 import domain.LadderVisitor;
 import domain.Line;
 import domain.Player;
+import domain.Reward;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -37,5 +39,14 @@ public class ResultView implements LadderVisitor {
                 .map(player -> String.format("%5s", player))
                 .collect(Collectors.joining(" "));
         System.out.println(result);
+    }
+
+    @Override
+    public void visit(Collection<Reward> rewards) {
+        String result = rewards.stream()
+                .map(reward -> String.format("%5s", reward))
+                .collect(Collectors.joining(" "));
+        System.out.println(result);
+
     }
 }
