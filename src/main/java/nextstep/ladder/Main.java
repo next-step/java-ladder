@@ -18,7 +18,7 @@ public class Main {
 
         Output.printLadderConsoleResult(users, lines, result);
 
-        LadderResult ladderResult = new LadderResult(result);
+        LadderResult ladderResult = new LadderResult(result, users);
         ladderResult.calculateLadderResult(users, lines);
         
         while(true){
