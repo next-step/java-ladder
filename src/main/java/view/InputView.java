@@ -3,8 +3,10 @@ package view;
 import domain.Height;
 import domain.Player;
 import domain.Players;
+import domain.Reward;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
@@ -26,5 +28,14 @@ public class InputView {
         int height = scanner.nextInt();
         System.out.println();
         return new Height(height - 1);
+    }
+
+    public static List<Reward> promptForRewards() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String input = scanner.nextLine();
+        System.out.println();
+        return Arrays.stream(input.split(","))
+                .map(Reward::new)
+                .collect(Collectors.toList());
     }
 }

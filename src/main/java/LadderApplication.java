@@ -1,14 +1,14 @@
-import domain.Height;
-import domain.GameBoard;
-import domain.Players;
-import domain.RandomBridgeCreationStrategy;
+import domain.*;
 import view.InputView;
 import view.ResultView;
+
+import java.util.List;
 
 public class LadderApplication {
 
     public static void main(String[] args) {
         Players players = InputView.promptForPlayer();
+        List<Reward> rewards = InputView.promptForRewards();
         Height height = InputView.promptForHeight();
         GameBoard gameBoard = GameBoard.of(players, height, new RandomBridgeCreationStrategy());
 
