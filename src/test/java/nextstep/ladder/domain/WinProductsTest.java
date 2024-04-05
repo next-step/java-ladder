@@ -14,7 +14,7 @@ class WinProductsTest {
     @Test
     void getWinProductOf() {
         // given
-        WinProducts winProducts = WinProducts.of(List.of("poppy", "jetty"));
+        WinProducts winProducts = WinProducts.from(List.of("poppy", "jetty"));
 
         // then
         Assertions.assertAll(
