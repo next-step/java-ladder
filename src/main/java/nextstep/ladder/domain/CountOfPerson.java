@@ -1,22 +1,20 @@
 package nextstep.ladder.domain;
 
-import java.util.List;
 import java.util.Objects;
+import java.util.stream.IntStream;
 
-public class Height {
+public class CountOfPerson {
     private final int number;
 
-    public Height(int number) {
-        if (number < 1) {
-            throw new IllegalArgumentException("사다리 높이는 1 이상이어야 합니다.");
+    public CountOfPerson(int number) {
+        if (number < 0) {
+            throw new IllegalArgumentException(String.format("사람의 수(%d)는 음수가 될 수 없습니다", number));
         }
         this.number = number;
     }
 
-    public void add(List<Line> lines, CountOfPerson countOfPerson) {
-        for (int i = 0; i < number; i++) {
-            lines.add(new Line(countOfPerson));
-        }
+    public IntStream rangOfZeroToCount() {
+        return IntStream.range(0, number - 1);
     }
 
     @Override
@@ -29,12 +27,13 @@ public class Height {
             return false;
         }
 
-        Height height = (Height) object;
-        return number == height.number;
+        CountOfPerson that = (CountOfPerson) object;
+        return number == that.number;
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(number);
     }
+
 }

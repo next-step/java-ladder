@@ -4,14 +4,18 @@ import nextstep.ladder.utils.LadderGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Points {
 
     private final List<Boolean> points = new ArrayList<>();
 
     public Points(int countOfPerson, LadderGenerator strategy) {
-        IntStream.range(0, countOfPerson - 1).forEach(i -> {
+        this(new CountOfPerson(countOfPerson), strategy);
+    }
+
+    public Points(CountOfPerson countOfPerson, LadderGenerator strategy) {
+        countOfPerson.rangOfZeroToCount()
+                .forEach(i -> {
             boolean hasLadder = strategy.generate();
             if (isNotFirstPoint(i) && hasLadderAtPrevious(i)) {
                 hasLadder = false;

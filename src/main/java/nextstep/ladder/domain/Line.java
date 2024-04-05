@@ -16,6 +16,10 @@ public class Line {
         points = new Points(countOfPerson, new RandomLadderGenerator());
     }
 
+    public Line(CountOfPerson countOfPerson) {
+        points = new Points(countOfPerson, new RandomLadderGenerator());
+    }
+
     public int size() {
         return points.size();
     }
