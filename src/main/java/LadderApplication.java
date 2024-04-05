@@ -2,8 +2,6 @@ import domain.*;
 import view.InputView;
 import view.ResultView;
 
-import java.util.List;
-
 public class LadderApplication {
 
     public static void main(String[] args) {
@@ -15,5 +13,9 @@ public class LadderApplication {
         ResultView resultView = new ResultView();
         gameBoard.display(resultView);
         rewards.display(resultView);
+
+        Player player = InputView.promptForResult();
+        GameResult result = gameBoard.result(player, rewards);
+        resultView.print(result);
     }
 }

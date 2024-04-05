@@ -1,12 +1,10 @@
 package view;
 
-import domain.LadderVisitor;
-import domain.Line;
-import domain.Player;
-import domain.Reward;
+import domain.*;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -48,5 +46,12 @@ public class ResultView implements LadderVisitor {
                 .collect(Collectors.joining(" "));
         System.out.println(result);
 
+    }
+
+    public void print(GameResult result) {
+        System.out.println("실행 결과");
+        for (Map.Entry<Player, Reward> entry : result) {
+            System.out.println(entry.getKey() + " : " + entry.getValue());
+        }
     }
 }

@@ -22,7 +22,7 @@ public class InputView {
 
     public static Height promptForHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        int height = scanner.nextInt();
+        int height = Integer.parseInt(scanner.nextLine());
         System.out.println();
         return new Height(height - 1);
     }
@@ -34,5 +34,12 @@ public class InputView {
         return new Rewards(Arrays.stream(input.split(","))
                 .map(Reward::new)
                 .collect(Collectors.toList()));
+    }
+
+    public static Player promptForResult() {
+        System.out.println("\n결과를 보고 싶은 사람은?");
+        scanner.reset();
+        String name = scanner.nextLine();
+        return new Player(name);
     }
 }

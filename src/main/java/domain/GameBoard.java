@@ -28,9 +28,14 @@ public class GameBoard {
     }
 
     public GameResult result(Player player, Rewards rewards) {
+        GameResult gameResult = new GameResult();
         if (player.isName("all")) {
-
+            this.players.forEach(p -> {
+                gameResult.add(p, getReward(p, rewards));
+            });
+            return gameResult;
         }
-        return null;
+        gameResult.add(player, getReward(player, rewards));
+        return gameResult;
     }
 }
