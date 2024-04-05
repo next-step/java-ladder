@@ -12,4 +12,5 @@ public class LadderGame {
 		ResultView.printNames(names);
 		ResultView.printLadderBoard(ladderBoard);
 	}
+
 }

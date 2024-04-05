@@ -2,7 +2,6 @@ package nextstep.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class LadderBoard {
     private List<Line> ladderBoard = new ArrayList<>();
@@ -23,10 +22,6 @@ public class LadderBoard {
 
     public List<Point> getLine(int index) {
         return this.ladderBoard.get(index).getPoints();
-    }
-
-    public Point getPoint(int index) {
-        return this.ladderBoard.get(index).getPoint(index);
     }
 
 }
