@@ -1,37 +1,56 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.data.StepType;
-import org.assertj.core.api.Assertions;
+import nextstep.ladder.data.MoveDirection;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class LinesTest {
 
     @DisplayName("게임의 결과를 받을 수 있다.")
-    @Test
-    void getGameResult() {
+    @ParameterizedTest
+    @CsvSource(value = {"0,1", "1,0", "2,3", "3,2", "4,4"}, delimiter = ',')
+    void getGameResult(int startPosition, int expected) {
         // given
-        LineStrategy customStrategy = (count) -> Line.of(List.of(StepType.STEP, StepType.EMPTY, StepType.STEP, StepType.EMPTY));
+        List<Point> points = List.of(
+                LeftSidePoint.create(MoveDirection.RIGHT),
+                MiddlePoint.create(MoveDirection.RIGHT, MoveDirection.LEFT),
+                MiddlePoint.create(MoveDirection.LEFT, MoveDirection.RIGHT),
+                MiddlePoint.create(MoveDirection.RIGHT, MoveDirection.LEFT),
+                RightSidePoint.create(MoveDirection.LEFT, MoveDirection.STAY)
+        );
+
+        LineStrategy customStrategy = (count) -> {
+            return Line.of(points);
+        };
+
         Lines lines = Lines.of(Floor.from(3), 5, customStrategy);
 
         // then
-        org.junit.jupiter.api.Assertions.assertAll(
-                () -> Assertions.assertThat(lines.getUserWinLocation(0)).isEqualTo(1),
-                () -> Assertions.assertThat(lines.getUserWinLocation(1)).isEqualTo(0),
-                () -> Assertions.assertThat(lines.getUserWinLocation(2)).isEqualTo(3),
-                () -> Assertions.assertThat(lines.getUserWinLocation(3)).isEqualTo(2),
-                () -> Assertions.assertThat(lines.getUserWinLocation(4)).isEqualTo(4)
-        );
+        assertThat(lines.getUserWinLocation(startPosition)).isEqualTo(expected);
     }
 
-    @DisplayName("사용자의 수는 항상 Lines의 StepType 수 보다 항상 1 많다. 아니라면 IllegalArguemntException을 던진다.")
+    @DisplayName("막대기(Pole)의 개수와 전략으로 받은 Pole의 개수는 항상 같다. 아니라면 IllegalArguemntException을 던진다.")
     @Test
-    void throwIllegalArgumentExceptionBetweenUserCountAndLine() {
-        LineStrategy customStrategy = (count) -> Line.of(List.of(StepType.STEP, StepType.EMPTY, StepType.STEP, StepType.EMPTY));
+    void throwIllegalArgumentExceptionOfPoleCount() {
+        // given
+        List<Point> points = List.of(
+                LeftSidePoint.create(MoveDirection.RIGHT),
+                MiddlePoint.create(MoveDirection.RIGHT, MoveDirection.LEFT),
+                MiddlePoint.create(MoveDirection.LEFT, MoveDirection.RIGHT),
+                MiddlePoint.create(MoveDirection.RIGHT, MoveDirection.LEFT),
+                RightSidePoint.create(MoveDirection.LEFT, MoveDirection.STAY)
+        );
+
+        LineStrategy customStrategy = (count) -> {
+            return Line.of(points);
+        };
 
         // then
         assertThatIllegalArgumentException()

@@ -7,24 +7,24 @@ public class Lines {
 
     private final List<Line> lines;
 
-    private Lines(Floor floor, int countOfUsers, LineStrategy strategy) {
-        validate(countOfUsers, strategy);
+    private Lines(Floor floor, int countPole, LineStrategy strategy) {
+        validate(countPole, strategy);
 
         this.lines = new ArrayList<>();
 
         for (int i = 0; i < floor.getFloor(); i++) {
-            lines.add(strategy.execute(countOfUsers));
+            lines.add(strategy.execute(countPole));
         }
     }
 
-    private void validate(int countOfUsers, LineStrategy strategy) {
-        if (countOfUsers != (strategy.execute(countOfUsers).size() + 1)) {
+    private void validate(int countPole, LineStrategy strategy) {
+        if (countPole != strategy.execute(countPole).size()) {
             throw new IllegalArgumentException("사용자 수와 사다리 전략 결과의 검증에 실패했습니다.");
         }
     }
 
-    public static Lines of(Floor floor, int countOfUsers, LineStrategy strategy) {
-        return new Lines(floor, countOfUsers, strategy);
+    public static Lines of(Floor floor, int countPole, LineStrategy strategy) {
+        return new Lines(floor, countPole, strategy);
     }
 
     public List<Line> toList() {
