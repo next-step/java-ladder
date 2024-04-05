@@ -1,6 +1,5 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,8 +15,8 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 public class LadderResultTest {
 
-    int validLength = 5;
-    List<String> validResult = List.of("1", "2", "3", "4", "5");
+    private int validLength = 5;
+    private List<String> validResult = List.of("1", "2", "3", "4", "5");
 
     @Test
     @DisplayName("사다리 결과 생성")

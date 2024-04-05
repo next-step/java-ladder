@@ -23,14 +23,10 @@ public class LadderService {
     }
 
     public GameResult getGameResult(Ladder ladder, Users users) {
-        return new GameResult(ladder, users);
+        return ladder.getGameResult(users);
     }
 
     public boolean isGameResultForAll(String name) {
-        if (InvalidUserName.ALL.getInvalidName().equalsIgnoreCase(name)) {
-            return true;
-        }
-
-        return false;
+        return InvalidUserName.ALL.getInvalidName().equalsIgnoreCase(name);
     }
 }

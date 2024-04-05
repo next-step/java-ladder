@@ -1,54 +1,35 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.*;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class GameResult {
     private final Map<String, String> gameResult = new HashMap<>();
 
-    public GameResult(Ladder ladder, Users users) {
-        List<String> orderLadderResult = matchByOrder(ladder);
+    public GameResult(List<String> orderLadderResult, Users users) {
+        assertNotEmpty(orderLadderResult, users);
+        assertMatchSize(orderLadderResult, users);
         setGameResult(users, orderLadderResult);
     }
 
-    private List<String> matchByOrder(Ladder ladder) {
-        List<String> ladderResult = ladder.getLadderResult();
-        List<Line> lines = ladder.getLines();
+    private void assertNotEmpty(List<String> orderLadderResult, Users users) {
+        String emptyLadderResultMessage = "[결과] 사다리가 없습니다.";
+        String emptyUsersMessage = "[결과] 유저가 없습니다.";
 
-        List<String> orderLadderResult = new ArrayList<>();
-
-        for (int i = 0; i < ladderResult.size(); i++) {
-            orderLadderResult.add(ladderResult.get(findIndex(lines, i)));
+        if (orderLadderResult == null || orderLadderResult.isEmpty()) {
+            throw new IllegalArgumentException(emptyLadderResultMessage);
         }
 
-        return orderLadderResult;
+        if (users == null || users.getUsers().isEmpty()) {
+            throw new IllegalArgumentException(emptyUsersMessage);
+        }
     }
 
-    private int findIndex(List<Line> lines, int startIndex) {
-        int nextIndex = startIndex;
-
-        for (Line line : lines) {
-                nextIndex = getNextIndex(line, nextIndex);
+    private void assertMatchSize(List<String> orderLadderResult, Users users) {
+        String notMatchSizeMessage = "[결과] 사다리 결과 수와 유저 수가 일치하지 않습니다.";
+        if (orderLadderResult.size() != users.getUsers().size()) {
+            throw new IllegalArgumentException(notMatchSizeMessage);
         }
-
-        return nextIndex;
-    }
-
-    private int getNextIndex(Line line, int index){
-
-        //오른쪽으로 가야하는 경우
-        if (index != line.getLength() && line.getLine().get(index)) {
-            return index + 1;
-        }
-
-        //왼쪽으로 가야하는 경우
-        if (index != 0 && line.getLine().get(index-1)) {
-            return index-1;
-        }
-
-        return index;
     }
 
     private void setGameResult(Users users, List<String> result) {
