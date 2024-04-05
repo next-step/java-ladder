@@ -56,7 +56,7 @@ public class LadderTest {
     }
 
     private static List<User> makeUser() {
-        return IntStream.range(0,5).boxed()
+        return IntStream.range(0, 5).boxed()
                 .map(String::valueOf)
                 .map(User::new)
                 .collect(Collectors.toUnmodifiableList());
