@@ -23,8 +23,7 @@ public class Main {
         
         while(true){
             String userName = Input.inputUserForDrawConfirmation();
-            if("all".equals(userName)){
-                Output.printAllResult(ladderResult);
+            if (Output.findAllDrawResult(ladderResult, userName)) {
                 break;
             }
 

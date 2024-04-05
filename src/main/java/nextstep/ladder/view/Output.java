@@ -58,6 +58,14 @@ public class Output {
         System.out.println();
     }
 
+    public static boolean findAllDrawResult(LadderResult ladderResult, String userName) {
+        if("all".equals(userName)){
+            Output.printAllResult(ladderResult);
+            return true;
+        }
+        return false;
+    }
+
     public static void printAllResult(LadderResult ladderResult) {
         System.out.println("실행 결과");
         for (User user : ladderResult.keySet()) {
