@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,10 +18,6 @@ public class LadderBoard {
 
     public List<Line> getLadderBoard() {
         return this.ladderBoard;
-    }
-
-    public List<Point> getLine(int index) {
-        return this.ladderBoard.get(index).getPoints();
     }
 
 }
