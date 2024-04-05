@@ -17,6 +17,21 @@ public class Lines {
         this.lines = lines;
     }
 
+    public int findUserResult(int userIndex) {
+        return lines.stream()
+            .reduce(userIndex, this::adjustUserIndex, Integer::sum);
+    }
+
+    private int adjustUserIndex(int currentIndex, Line line) {
+        if (line.canMoveRight(currentIndex)) {
+            return currentIndex + 1;
+        }
+        if (!line.canMoveRight(currentIndex) && line.canMoveLeft(currentIndex)) {
+            return currentIndex - 1;
+        }
+        return currentIndex;
+    }
+
     private static List<Line> toLines(int height, int countOfPerson) {
         if (height < 1) {
             throw new LadderHeightSizeException(height);
