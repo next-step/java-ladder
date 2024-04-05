@@ -36,4 +36,11 @@ public class LineTest {
                 })
         );
     }
+
+    @DisplayName("다리 (Bridge) 유무를 확인한다.")
+    @Test
+    void test03() {
+        Line line = Line.createWithBridges(3, () -> true);
+        assertThat(line.isBridge(1)).isTrue();
+    }
 }
