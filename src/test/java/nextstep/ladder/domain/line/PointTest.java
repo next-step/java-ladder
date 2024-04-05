@@ -13,7 +13,6 @@ class PointTest {
     public void Point는_자신의_상태가_true인지_확인하는값에_응답해야한다(boolean input, boolean expected) {
         Point point = new Point(input);
         assertThat(point.isPointTrue()).isEqualTo(expected);
-        assertThat(point.isPointFalse()).isEqualTo(expected);
     }
 
     @ParameterizedTest
