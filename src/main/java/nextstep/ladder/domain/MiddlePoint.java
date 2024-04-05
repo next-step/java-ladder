@@ -84,4 +84,19 @@ public class MiddlePoint implements Point {
     public MoveDirection getMoveDirection() {
         return this.moveDirection;
     }
+
+    @Override
+    public boolean isLeft() {
+        return this.moveDirection.equals(MoveDirection.LEFT);
+    }
+
+    @Override
+    public boolean isRight() {
+        return this.moveDirection.equals(MoveDirection.RIGHT);
+    }
+
+    @Override
+    public boolean isStay() {
+        return this.moveDirection.equals(MoveDirection.STAY);
+    }
 }

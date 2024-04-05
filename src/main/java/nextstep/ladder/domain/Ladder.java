@@ -18,7 +18,6 @@ public class Ladder {
         this.lines = Lines.of(floor, countPole, strategy);
     }
 
-
     public List<Line> getLadderInfo() {
         return this.lines.toList();
     }

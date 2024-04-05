@@ -26,9 +26,7 @@ class LinesTest {
                 RightSidePoint.create(MoveDirection.LEFT, MoveDirection.STAY)
         );
 
-        LineStrategy customStrategy = (count) -> {
-            return Line.of(points);
-        };
+        LineStrategy customStrategy = (count) -> Line.of(points);
 
         Lines lines = Lines.of(Floor.from(3), 5, customStrategy);
 
@@ -48,9 +46,7 @@ class LinesTest {
                 RightSidePoint.create(MoveDirection.LEFT, MoveDirection.STAY)
         );
 
-        LineStrategy customStrategy = (count) -> {
-            return Line.of(points);
-        };
+        LineStrategy customStrategy = (count) -> Line.of(points);
 
         // then
         assertThatIllegalArgumentException()

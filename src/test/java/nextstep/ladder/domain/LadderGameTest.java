@@ -1,6 +1,6 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.data.StepType;
+import nextstep.ladder.data.MoveDirection;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -44,6 +44,7 @@ class LadderGameTest {
     @DisplayName("참가자 리스트에 없는 참가자를 입력하면 IllegalArgumentException을 던진다.")
     @Test
     void throwIllegalArgumentExceptionIfNotInList() {
+        // given
         List<String> users = List.of("yang", "gang", "eee");
         List<String> winningProducts = List.of("1등", "2등", "3등");
         RandomLineStrategy randomLineStrategy = new RandomLineStrategy();
@@ -62,7 +63,15 @@ class LadderGameTest {
         // given
         List<String> users = List.of("yang", "gang", "eee", "aaa", "ooo");
         List<String> winningProducts = List.of("1등", "2등", "3등", "4등", "5등");
-        LineStrategy customStrategy = (count) -> Line.of(List.of(StepType.STEP, StepType.EMPTY, StepType.STEP, StepType.EMPTY));
+        List<Point> points = List.of(
+                LeftSidePoint.create(MoveDirection.RIGHT),
+                MiddlePoint.create(MoveDirection.RIGHT, MoveDirection.LEFT),
+                MiddlePoint.create(MoveDirection.LEFT, MoveDirection.RIGHT),
+                MiddlePoint.create(MoveDirection.RIGHT, MoveDirection.LEFT),
+                RightSidePoint.create(MoveDirection.LEFT, MoveDirection.STAY)
+        );
+
+        LineStrategy customStrategy = (count) -> Line.of(points);
 
         // when
         LadderGame ladderGame = new LadderGame(users, 1, winningProducts, customStrategy);

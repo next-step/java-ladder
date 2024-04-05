@@ -10,7 +10,7 @@ public class LadderGame {
     private final LadderResult ladderResult;
 
     public LadderGame(List<String> users, int floor, List<String> winProducts, LineStrategy lineStrategy) {
-        this.gameInfo = GameInfo.of(Users.from(users), WinProducts.of(winProducts));
+        this.gameInfo = GameInfo.of(Users.from(users), WinProducts.from(winProducts));
         this.ladder = Ladder.of(floor, users.size(), lineStrategy);
         this.ladderResult = new LadderResult(getResultLadderGame());
     }

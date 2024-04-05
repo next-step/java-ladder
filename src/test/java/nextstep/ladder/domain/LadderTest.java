@@ -39,9 +39,7 @@ class LadderTest {
                 RightSidePoint.create(MoveDirection.LEFT, MoveDirection.STAY)
         );
 
-        LineStrategy customStrategy = (count) -> {
-            return Line.of(points);
-        };
+        LineStrategy customStrategy = (count) -> Line.of(points);
 
         // when
         Ladder ladder = Ladder.of(1, 5, customStrategy);

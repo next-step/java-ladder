@@ -33,4 +33,8 @@ public class Line {
     public int size() {
         return this.points.size();
     }
+
+    public List<Point> toList() {
+        return List.copyOf(this.points);
+    }
 }

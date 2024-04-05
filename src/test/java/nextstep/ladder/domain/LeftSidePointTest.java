@@ -29,4 +29,16 @@ class LeftSidePointTest {
         assertThat(point.movePosition(8))
                 .isEqualTo(8);
     }
+
+    @DisplayName("Point의 방향을 검증한다.")
+    @Test
+    void checkDirection() {
+        // given
+        Point point = LeftSidePoint.create(MoveDirection.RIGHT);
+
+        // then
+        assertThat(point.isLeft()).isFalse();
+        assertThat(point.isRight()).isTrue();
+        assertThat(point.isStay()).isFalse();
+    }
 }
