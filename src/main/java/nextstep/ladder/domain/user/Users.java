@@ -2,6 +2,9 @@ package nextstep.ladder.domain.user;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.IntStream;
+import nextstep.ladder.domain.line.Lines;
 import nextstep.ladder.error.exception.UserSizeEmptyException;
 
 public class Users {
@@ -17,6 +20,11 @@ public class Users {
             throw new UserSizeEmptyException(users);
         }
         this.users = users;
+    }
+
+    public void addLadderResult(Map<User, Integer> ladderResult, Lines lines) {
+        IntStream.range(0, users.size())
+            .forEach(userIndex -> ladderResult.put(users.get(userIndex), lines.findUserResult(userIndex)));
     }
 
     private static List<User> toUsers(String... userNames) {

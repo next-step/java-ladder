@@ -14,8 +14,8 @@ public class Point {
         return !point;
     }
 
-    public int moveNextPoint() {
-        return point ? 1 : -1;
+    public boolean isPointTrue() {
+        return point;
     }
 
     public Point decideNextPoint() {
