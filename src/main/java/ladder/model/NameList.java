@@ -49,11 +49,11 @@ public class NameList {
         return nameList;
     }
 
-    public void swapPoints(int index){
+    public void swapPoints(int index) {
         if (index < 0 || index > nameList.size()) {
             throw new IllegalArgumentException("경계 초과");
         }
         List<String> swapList = this.nameList;
-        Collections.swap(swapList,index,index+1);
+        Collections.swap(swapList, index, index + 1);
     }
 }

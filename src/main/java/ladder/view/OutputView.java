@@ -42,9 +42,23 @@ public class OutputView {
 
     }
 
-
     public static void printResultOfGame(GameResult gameResult, String name) {
         System.out.println("실행 결과");
-        System.out.println(gameResult.makeResult(name));
+        String resultOfName = gameResult.makeResult(name);
+        if ("all".equals(resultOfName)) {
+            resultOfName = makeAllResult(gameResult);
+        }
+        System.out.println(resultOfName);
+    }
+
+    private static String makeAllResult(GameResult gameResult) {
+        String result = "";
+        GameResultList gameResultList = gameResult.getGameResultList();
+        NameList nameList = gameResult.getNameList();
+
+        for (int i = 0; i < gameResultList.getResultList().size(); i++) {
+            result = result + nameList.getNameList().get(i) + " : " + gameResultList.getResultList().get(i) + "\n";
+        }
+        return result;
     }
 }

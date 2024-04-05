@@ -6,7 +6,7 @@ import java.util.List;
 
 public class GameResultList {
     private static final int MAX_LENGTH = 5;
-    private static List<String> resultList;
+    private final List<String> resultList;
 
     public GameResultList(String resultList, int numberOfPlayer) {
         this.resultList = StringToListConverter.toList(resultList);
@@ -20,7 +20,7 @@ public class GameResultList {
         }
     }
 
-    private static void checkLength() {
+    private void checkLength() {
         resultList.stream()
                 .filter(result -> result.length() > MAX_LENGTH)
                 .findFirst()

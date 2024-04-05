@@ -25,6 +25,6 @@ public class LadderController {
         gameResult.ladderGame(ladder);
 
         String resultPlayer = InputView.printWantToKnowResult();
-        OutputView.printResultOfGame(gameResult,resultPlayer);
+        OutputView.printResultOfGame(gameResult, resultPlayer);
     }
 }

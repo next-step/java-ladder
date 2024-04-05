@@ -8,6 +8,10 @@ import static ladder.model.Line.createOneLine;
 public class Ladder {
     private List<Line> lines = new ArrayList<>();
 
+    public Ladder(List<Line> lines) {
+        this.lines = lines;
+    }
+
     public Ladder(int heightOfLadder, int numberOfName) {
         checkIndex(heightOfLadder, numberOfName);
 

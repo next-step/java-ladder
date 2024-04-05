@@ -30,13 +30,13 @@ public class Line {
     }
 
     private static boolean connectLine(boolean before) {
-        if(!before){
+        if (!before) {
             return ConnectLine.next();
         }
         return FALSE;
     }
 
-    private void checkValidConnect(List<Boolean> points){
+    private void checkValidConnect(List<Boolean> points) {
         if (IntStream.range(0, points.size() - 1)
                 .anyMatch(i -> points.get(i).equals(points.get(i + 1)) && points.get(i))) {
             throw new IllegalArgumentException("사다리는 연속으로 가로줄을 그릴수 없다.");
