@@ -89,3 +89,6 @@
 - (역할 : `Ladder` -> `Drawer`) `Drawer`에서 출력을 위해 참여자 목록(`List<String>`)을 반환한다.
 - (역할 : `Ladder` -> `Drawer`) `Drawer`에서 출력을 위해 사다리 현황(`List<List<StepType>`)을 반환한다.
 - [x] 사다리 게임의 결과를 반환한다.
+
+# 리팩토링
+![리팩토링](./images/image003.png)
