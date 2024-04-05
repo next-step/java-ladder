@@ -4,5 +4,6 @@ import nextstep.ladder.data.MoveDirection;
 
 public interface Point {
     int movePosition(int currentPosition);
-    int getMoveDirection();
+    int getDirection();
+    MoveDirection getMoveDirection();
 }

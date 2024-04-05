@@ -52,7 +52,12 @@ public class LeftSidePoint implements Point {
     }
 
     @Override
-    public int getMoveDirection() {
+    public int getDirection() {
         return this.moveDirection.getDirection();
+    }
+
+    @Override
+    public MoveDirection getMoveDirection() {
+        return this.moveDirection;
     }
 }
