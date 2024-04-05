@@ -23,7 +23,7 @@ class LadderResultTest {
     @Test
     void Users_개수와_결과_개수가_불일치_할_경우_예외가_발생한다() {
         assertThatThrownBy(() -> new LadderResult(List.of("3000"), new Users("name1", "name2")))
-            .isInstanceOf(LadderUsersMismatchException.class);
-//            .hasMessage("존재하지 않는 사용자입니다. 입력값: 존재X");
+            .isInstanceOf(LadderUsersMismatchException.class)
+            .hasMessage("사용자와 결과 개수는 일치해야 합니다 사용자 인원: 1,결과 개수 2");
     }
 }
