@@ -24,7 +24,18 @@ public class Line {
                 .collect(Collectors.toList());
     }
 
+    public static Line generateEndLine(int height) {
+        return new Line(height, new AlwaysFalsePointGenerator());
+    }
+
     public List<Boolean> getPoints() {
         return Collections.unmodifiableList(points);
+    }
+
+    public boolean isConnected(int y) {
+        if (y < 0 || y >= points.size()) {
+            return false;
+        }
+        return points.get(y);
     }
 }
