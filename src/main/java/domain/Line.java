@@ -7,11 +7,7 @@ public class Line {
     private final Height height;
     private final Bridges bridges;
 
-    public Line(int height) {
-        this(new Height(height));
-    }
-
-    public Line(Height height) {
+    private Line(Height height) {
         this.height = height;
         this.bridges = new Bridges(height);
     }

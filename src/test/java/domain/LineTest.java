@@ -15,7 +15,7 @@ public class LineTest {
     @DisplayName("높이를 기반으로 Line 객체를 생성할 수 있다.")
     @Test
     void test01() {
-        Line line = new Line(1);
+        Line line = Line.createWithBridges(1, () -> true);
         assertThat(line.height()).isEqualTo(1);
     }
 
@@ -23,7 +23,7 @@ public class LineTest {
     @TestFactory
     Collection<DynamicTest> test02() {
         int height = 5;
-        Line prev = new Line(height);
+        Line prev = Line.createWithBridges(height, () -> false);
         return List.of(
                 DynamicTest.dynamicTest("전략에 따라 bridge 를 생성한다.", () -> {
                     prev.addBridges(() -> true);
