@@ -16,4 +16,11 @@ public class PlayersTest {
     void test01() {
         assertThat(PS1.totalNumber()).isEqualTo(3);
     }
+
+    @DisplayName("특정 플레이어에 대한 위치를 구한다.")
+    @Test
+    void test02() {
+        Position position = PS1.getPosition(PlayerTest.P1);
+        assertThat(position).isEqualTo(new Position(0, 0));
+    }
 }
