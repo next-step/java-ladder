@@ -18,13 +18,13 @@ public class LadderTest {
     @DisplayName("시작 위치를 입력받아 끝 위치를 출력한다.")
     @Test
     void test02() {
-        Line line1 = Line.createWithBridges(5, () -> false);
-        Line line2 = Line.createWithBridges(5, () -> true);
+        Line line1 = Line.createWithBridges(5, () -> true);
+        Line line2 = Line.createWithBridges(5, () -> false);
         Line line3 = Line.createWithBridges(5, () -> false);
         Ladder ladder = new Ladder(Lines.from(List.of(line1, line2, line3)));
 
-        int position = ladder.getEndPoint(0);
+        Position position = ladder.getEndPositionByStartPosition(new Position(0, 0));
 
-        assertThat(position).isEqualTo(3);
+        assertThat(position).isEqualTo(new Position(1, 5));
     }
 }

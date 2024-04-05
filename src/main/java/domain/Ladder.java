@@ -16,7 +16,8 @@ public class Ladder {
         lines.accept(visitor);
     }
 
-    public int getEndPoint(int position) {
-        return 0;
+    public Position getEndPositionByStartPosition(Position startPosition) {
+
+        return new Position(0, 0);
     }
 }
