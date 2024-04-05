@@ -18,7 +18,7 @@ public class GameBoardTest {
         Line line3 = Line.createWithBridges(height, () -> false);
         Lines lines = Lines.from(List.of(line1, line2, line3));
         GameBoard gameBoard = new GameBoard(lines, PlayersTest.PS1);
-        List<Reward> rewards = List.of(new Reward("꽝"), new Reward("2000"), new Reward("3000"));
+        Rewards rewards = new Rewards(List.of(new Reward("꽝"), new Reward("2000"), new Reward("3000")));
         Reward reward = gameBoard.getReward(PlayerTest.P1, rewards);
 
         assertThat(reward).isEqualTo(new Reward("2000"));

@@ -22,8 +22,15 @@ public class GameBoard {
         ladder.accept(visitor);
     }
 
-    public Reward getReward(Player player, List<Reward> rewards) {
+    public Reward getReward(Player player, Rewards rewards) {
         Position position = players.getPosition(player);
-        return rewards.get(ladder.getEndPositionByStartPosition(position).getX());
+        return rewards.findByPosition(ladder.getEndPositionByStartPosition(position).getX());
+    }
+
+    public GameResult result(Player player, Rewards rewards) {
+        if (player.isName("all")) {
+
+        }
+        return null;
     }
 }

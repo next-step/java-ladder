@@ -22,4 +22,8 @@ public class Rewards {
     public void display(LadderVisitor visitor) {
         visitor.visit(rewards);
     }
+
+    public Reward findByPosition(int x) {
+        return rewards.get(x);
+    }
 }
