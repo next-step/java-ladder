@@ -3,7 +3,7 @@ package ladder.view;
 import ladder.domain.Ladder.Ladder;
 import ladder.domain.Ladder.Line;
 import ladder.domain.LadderGame;
-import ladder.domain.Records;
+import ladder.domain.result.Records;
 import ladder.domain.participants.Participants;
 import ladder.domain.result.GameResult;
 

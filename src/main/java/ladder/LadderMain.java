@@ -1,7 +1,7 @@
 package ladder;
 
 import ladder.domain.LadderGame;
-import ladder.domain.Records;
+import ladder.domain.result.Records;
 import ladder.domain.participants.Name;
 import ladder.domain.participants.Participants;
 import ladder.domain.result.GameResult;

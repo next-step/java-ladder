@@ -1,7 +1,7 @@
 package ladder.domain.participants;
 
 import ladder.domain.Ladder.Ladder;
-import ladder.domain.RewardResult;
+import ladder.domain.result.RewardResult;
 import ladder.domain.participants.factory.ParticipantsFactory;
 import ladder.domain.result.Reward;
 import ladder.utils.SplitUtils;

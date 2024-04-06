@@ -1,6 +1,5 @@
 package ladder.domain.result;
 
-import ladder.domain.Records;
 import ladder.domain.participants.Participants;
 import ladder.utils.SplitUtils;
 
