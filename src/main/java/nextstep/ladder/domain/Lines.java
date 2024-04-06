@@ -21,7 +21,7 @@ public class Lines {
 
     public static Lines of(int countOfPerson, int height) {
         List<Line> lines = IntStream.range(0, height)
-                .mapToObj(i -> Line.createLine(countOfPerson))
+                .mapToObj(i -> LineBuilder.buildWithRandomPoints(countOfPerson))
                 .collect(Collectors.toList());
         return new Lines(lines);
     }

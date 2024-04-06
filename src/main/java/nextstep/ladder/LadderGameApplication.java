@@ -54,7 +54,7 @@ public class LadderGameApplication {
     }
 
     private static String lineToString(Line line) {
-        return IntStream.range(0, line.size())
+        return IntStream.range(0, line.width())
                 .mapToObj(index -> pointToString(line.getPoint(index)))
                 .collect(Collectors.joining());
     }
