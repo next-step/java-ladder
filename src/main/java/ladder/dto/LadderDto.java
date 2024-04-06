@@ -1,15 +1,15 @@
 package ladder.dto;
 
-import ladder.domain.Ladders;
+import ladder.domain.Ladder;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class LaddersDto {
+public class LadderDto {
   private final List<RowDto> rows;
 
-  public LaddersDto(Ladders ladders) {
-    this.rows = ladders.rows().stream()
+  public LadderDto(Ladder ladder) {
+    this.rows = ladder.rows().stream()
             .map(RowDto::new)
             .collect(Collectors.toList());
   }

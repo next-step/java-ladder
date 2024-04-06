@@ -44,7 +44,13 @@ public class RowTest {
 
   @Test
   void generator_로_생성() {
-    Row row = Row.fromGenerator(() -> Row.of(new int[]{0, 1, 0, 1}));
+    Row row = Row.fromGenerator(size -> Row.of(new int[]{0, 1, 0, 1}), 4);
     assertThat(row).isEqualTo(Row.of(List.of(false, true, false, true)));
+  }
+
+  @Test
+  void 잘못된_generator_입력() {
+    assertThatThrownBy(() -> Row.fromGenerator(size -> Row.of(new int[]{0, 1, 0, 1, 0}), 4))
+            .isInstanceOf(IllegalStateException.class);
   }
 }

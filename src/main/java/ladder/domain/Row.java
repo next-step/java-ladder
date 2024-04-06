@@ -29,8 +29,14 @@ public class Row implements Iterable<Boolean> {
     return new Row(row);
   }
 
-  public static Row fromGenerator(RowGenerator generator) {
-    return generator.generate();
+  public static Row fromGenerator(RowGenerator generator, final Integer size) {
+    final Row row = generator.generate(size);
+
+    if (row.isNotSizeOf(size)) {
+      throw new IllegalStateException("입력된 사다리 행(Row) 길이와 생성된 사다리 행 길이와 일치하지 않습니다.");
+    }
+
+    return row;
   }
 
   private Row(final List<Boolean> rows) {
@@ -72,6 +78,10 @@ public class Row implements Iterable<Boolean> {
 
   private boolean isValid(final int index) {
     return 0 <= index && index < this.values.size();
+  }
+
+  public boolean isNotSizeOf(final int size) {
+    return this.values.size() != size;
   }
 
   @Override

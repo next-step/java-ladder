@@ -7,11 +7,11 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class LaddersTest {
+public class LadderTest {
   @ParameterizedTest
   @MethodSource("provideWrongConstructorInput")
   void 잘못된_사다리_입력_시_예외(int[][] input) {
-    assertThatThrownBy(() -> Ladders.from(input))
+    assertThatThrownBy(() -> Ladder.from(input))
             .isInstanceOf(IllegalArgumentException.class);
   }
 
@@ -36,6 +36,10 @@ public class LaddersTest {
                     {2, 0, 1},
                     {0, 1, 0},
                     {1, 0, 1}
+            },
+            new int[][] {
+                    {1, 0 ,1},
+                    {0, 0, 0, 1}
             }
     );
   }
@@ -43,7 +47,7 @@ public class LaddersTest {
   @ParameterizedTest
   @MethodSource("provideRightConstructorInput")
   void 정상_사다리_생성(int[][] input) {
-    Ladders.from(new int[][]{
+    Ladder.from(new int[][]{
             {1, 0, 0},
             {0, 1, 0},
             {0, 0, 1}

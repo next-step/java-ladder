@@ -1,7 +1,7 @@
 package ladder.view;
 
 import ladder.domain.*;
-import ladder.dto.LaddersDto;
+import ladder.dto.LadderDto;
 import ladder.dto.PlayerDto;
 import ladder.dto.PrizeDto;
 import ladder.dto.RowDto;
@@ -17,15 +17,15 @@ public class ResultView {
   public static void displayStatus(StatusDto result) {
     StringBuilder sb = new StringBuilder("실행 결과\n");
     sb.append(playersBuilder(result.getPlayers()));
-    sb.append(laddersBuilder(result.getLadders()));
+    sb.append(ladderBuilder(result.getladder()));
     sb.append(prizesBuilder(result.getPrizes()));
 
     System.out.println(sb);
   }
 
-  private static StringBuilder laddersBuilder(LaddersDto ladders) {
+  private static StringBuilder ladderBuilder(LadderDto ladder) {
     final StringBuilder sb = new StringBuilder();
-    for (RowDto row : ladders.getRows()) {
+    for (RowDto row : ladder.getRows()) {
       sb.append(rowBuilder(row));
     }
 

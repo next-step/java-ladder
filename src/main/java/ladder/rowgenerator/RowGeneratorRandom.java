@@ -10,17 +10,15 @@ import java.util.stream.IntStream;
 
 public class RowGeneratorRandom implements RowGenerator {
   private final Random random = ThreadLocalRandom.current();
-  private final int size;
 
-  public RowGeneratorRandom(final int size) {
-    this.size = size;
+  public RowGeneratorRandom() {
   }
 
   @Override
-  public Row generate() {
-    List<Boolean> row = new ArrayList<>(this.size);
+  public Row generate(final Integer size) {
+    List<Boolean> row = new ArrayList<>(size);
 
-    IntStream.range(0, this.size)
+    IntStream.range(0, size)
             .forEach(i -> row.add(rowValue(row, i)));
 
     return Row.of(row);

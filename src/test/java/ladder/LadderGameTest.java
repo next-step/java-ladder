@@ -1,6 +1,6 @@
 package ladder;
 
-import ladder.domain.Ladders;
+import ladder.domain.Ladder;
 import ladder.dto.PrizeDto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,7 +19,7 @@ public class LadderGameTest {
   void 사다리_게임_실행_테스트(int[][] input, Map<String, PrizeDto> result) {
     LadderGame ladderGame = new LadderGame(
             List.of("Kim", "Lee", "Park", "Choi", "Heo"),
-            Ladders.from(input),
+            Ladder.from(input),
             List.of("꽝", "꽝", "10000", "1000", "5000")
     );
     ladderGame.play();
