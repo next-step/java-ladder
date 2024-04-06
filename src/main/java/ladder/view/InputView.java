@@ -1,5 +1,7 @@
 package ladder.view;
 
+import ladder.domain.participants.Name;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -19,5 +21,10 @@ public class InputView {
     public int getLadderHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         return scanner.nextInt();
+    }
+
+    public Name getGamerName() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        return new Name(scanner.next());
     }
 }

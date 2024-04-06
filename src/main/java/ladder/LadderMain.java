@@ -1,12 +1,12 @@
 package ladder;
 
-import ladder.domain.GameResult;
-import ladder.domain.Gamer;
 import ladder.domain.LadderGame;
+import ladder.domain.Records;
+import ladder.domain.participants.Name;
+import ladder.domain.participants.Participants;
+import ladder.domain.result.GameResult;
 import ladder.view.DrawView;
 import ladder.view.InputView;
-
-import java.util.List;
 
 public class LadderMain {
 
@@ -19,10 +19,18 @@ public class LadderMain {
 
         LadderGame ladderGame = new LadderGame(height, inputText);
         GameResult results = new GameResult(rawResults);
-        List<Gamer> gamers = ladderGame.doStart();
+
+        Participants participants = ladderGame.doStart();
 
         DrawView drawView = new DrawView();
         drawView.drawLadder(ladderGame, results);
-        drawView.drawGameResult(gamers);
+
+        Name targetName = inputView.getGamerName();
+
+        Records test = results.recordResult(participants);
+        if (targetName.equals(new Name("all"))) {
+            drawView.drawGameResult(test);
+        }
+        drawView.drawGameResult(test.find(targetName));
     }
 }
