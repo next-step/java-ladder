@@ -43,4 +43,8 @@ public class ExecutionResults {
     public int hashCode() {
         return Objects.hash(executionResults);
     }
+
+    public ExecutionResult getByOrder(int i) {
+        return this.executionResults.get(i);
+    }
 }

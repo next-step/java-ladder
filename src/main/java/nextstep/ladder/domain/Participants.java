@@ -1,9 +1,6 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Participants {
@@ -59,5 +56,9 @@ public class Participants {
             newParticipants.add(this.participants.get(order));
         }
         return new Participants(newParticipants);
+    }
+
+    public Participant getByOrder(int i) {
+        return this.participants.get(i);
     }
 }

@@ -1,8 +1,4 @@
 ## Todo
-- [ ] 결과 조회자가 null 또는 ""일 경우에 예외(null => IllegalArgumentException, "" => IllegalArgumentException)
-- [ ] 결과 조회자가 참가자 또는 "all"이 아니라면 예외(a,b,c,d | e => IllegalArgumentException)
-- [ ] 결과 조회자가 all이라면 전체 결과를 조회("all" => a:꽝,b:3000,c:5000)
-- [ ] 결과 조회 대상자라면 해당 조회자의 결과만 조회("a" => a:꽝)
 - [ ] 출력("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)")
 - [ ] 실행결과 입력("꽝,5000,꽝,3000")
 - [ ] 사다리 하단에 결과값 순서에 맞춰서 출력("꽝 5000 꽝 3000")
@@ -35,3 +31,6 @@
 - [X] 실행결과가 null 또는 ""일 경우에 예외(null => IllegalArgumentException, "" => IllegalArgumentException)
 - [X] 실행결과값들은 ','를 구분자로 구분("꽝,5000,꽝,3000" => 꽝,5000,꽝,3000)
 - [X] 실행결과의 개수는 참가자 수랑 다르면 예외(3,4 => IllegalArgumentException)
+- [X] 결과 조회자가 null일 경우에 예외(null => IllegalArgumentException)
+- [X] 결과 조회자가 참가자가 아니라면 예외(a,b,c,d | e => IllegalArgumentException)
+- [X] 결과 조회 대상자라면 해당 조회자의 결과만 조회("a" => a:꽝)
