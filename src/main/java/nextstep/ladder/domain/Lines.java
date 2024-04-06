@@ -28,8 +28,8 @@ public class Lines{
         return lines;
     }
 
-    public Participants switchOrder(Participants participants){
-        Participants previous = participants;
+    public LadderMapping switchOrder(LadderMapping ladderMapping){
+        LadderMapping previous = ladderMapping;
         for(Line line : lines){
             previous = line.switchOrder(previous);
         }

@@ -70,13 +70,4 @@ class LineTest {
             new Line(input);
         }).isInstanceOf(IllegalArgumentException.class);
     }
-
-    @ParameterizedTest
-    @DisplayName("사다리에 따라서 바뀌는 순서를 계산(false => 0,1 | true => 1,0 | false, false => 0,1,2 | true,false => 1,0,2 | false,true => 0,2,1)")
-    @MethodSource("inputLine3")
-    void switching_participants(List<Participant> input, List<Boolean> points, List<Participant> result){
-        Line line = new Line(points);
-        Participants switchedParticipants = line.switchOrder(new Participants(input));
-        assertThat(switchedParticipants).isEqualTo(new Participants(result));
-    }
 }

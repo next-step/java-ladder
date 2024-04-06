@@ -78,13 +78,13 @@ public class Line{
         return line;
     }
 
-    public Participants switchOrder(Participants participants) {
+    public LadderMapping switchOrder(LadderMapping ladderMapping) {
         int[] orders = new int[line.size() + 1];
         init(orders);
         for(int i = 0; i < this.line.size(); i++){
             switchIfTrue(orders, i);
         }
-        return participants.regenerate(orders);
+        return ladderMapping.regenerate(orders);
     }
 
     private void switchIfTrue(int[] orders, int i) {
