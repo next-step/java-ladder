@@ -73,9 +73,9 @@ class LineTest {
 
     @ParameterizedTest
     @CsvSource(value = {"-1:-1", "0:1", "1:0", "2:2"}, delimiter = ':')
-    @DisplayName("nextIndexOfFrame(): 사다리 frame의 왼쪽이 LINKED인 경우 indexOfFrame - 1, 오른쪽이 LINKED인 경우 indexOfFrame + 1를 반환한다. 만약 둘 다 아니면 indexOfFrame을 반환한다.")
-    void testNextIndexOfFrame(int indexOfFrame, int expected) {
+    @DisplayName("nextIndexOfColumn(): 사다리 column의 왼쪽이 LINKED인 경우 indexOfColumn - 1, 오른쪽이 LINKED인 경우 indexOfColumn + 1를 반환한다. 만약 둘 다 아니면 indexOfColumn을 반환한다.")
+    void testIndexOfColumn(int indexOfColumn, int expected) {
         Line line = new Line(List.of(LINKED, UNLINKED));
-        assertThat(line.nextIndexOfColumn(indexOfFrame)).isEqualTo(expected);
+        assertThat(line.nextIndexOfColumn(indexOfColumn)).isEqualTo(expected);
     }
 }

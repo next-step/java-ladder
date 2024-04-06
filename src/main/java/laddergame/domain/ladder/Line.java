@@ -55,21 +55,17 @@ public class Line {
     }
 
     public int nextIndexOfColumn(int indexOfColumn) {
-        int indexOfLeftLink = indexOfColumn - 1;
-        if (isValidIndexOfLink(indexOfLeftLink) && links.get(indexOfLeftLink).isLinked()) {
-            return indexOfColumn - 1;
-        }
-
-        int indexOfRightLink = indexOfColumn;
-        if (isValidIndexOfLink(indexOfRightLink) && links.get(indexOfRightLink).isLinked()) {
-            return indexOfColumn + 1;
-        }
-
-        return indexOfColumn;
+        return indexOfColumn
+                + findLinkByIndex(indexOfColumn - 1).leftDirectionValue()
+                + findLinkByIndex(indexOfColumn).rightDirectionValue();
     }
 
-    private boolean isValidIndexOfLink(int indexOfLink) {
-        return indexOfLink >= 0 && indexOfLink < links.size();
+    private Link findLinkByIndex(int index) {
+        try {
+            return links.get(index);
+        } catch (IndexOutOfBoundsException e) {
+            return UNLINKED;
+        }
     }
 
     public List<Link> links() {
