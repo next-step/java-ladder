@@ -3,7 +3,6 @@ package nextstep.ladder.view;
 import nextstep.ladder.domain.*;
 
 import java.util.List;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 import static nextstep.ladder.view.InputView.insertInt;
@@ -22,9 +21,9 @@ public class ViewHelper {
     }
 
     public static void printBottom(ExecutionResults executionResults) {
-        List<ExecutionResult> results = executionResults.getExecutionResults();
+        List<Destination> results = executionResults.getExecutionResults();
         String header = results.stream()
-                .map(iter -> prependSpace(iter.getExecutionResult()))
+                .map(iter -> prependSpace(iter.getDestination()))
                 .collect(Collectors.joining(" "));
         System.out.println(header);
     }

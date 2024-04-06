@@ -7,26 +7,26 @@ import java.util.stream.Collectors;
 
 public class ExecutionResults {
 
-    private final List<ExecutionResult> executionResults;
+    private final List<Destination> destinations;
     public ExecutionResults(String str) {
         this(str.split(","));
     }
 
     public ExecutionResults(String[] executionResults) {
         this(Arrays.stream(executionResults)
-                .map(ExecutionResult::new)
+                .map(Destination::new)
                 .collect(Collectors.toList()));
     }
 
-    public ExecutionResults(List<ExecutionResult> executionResults) {
-        if(executionResults == null || executionResults.isEmpty()){
+    public ExecutionResults(List<Destination> destinations) {
+        if(destinations == null || destinations.isEmpty()){
             throw new IllegalArgumentException();
         }
-        this.executionResults = executionResults;
+        this.destinations = destinations;
     }
 
     public void validateSize(Participants participants){
-        if(this.executionResults.size() != participants.getSize()){
+        if(this.destinations.size() != participants.getSize()){
             throw new IllegalArgumentException();
         }
     }
@@ -36,19 +36,19 @@ public class ExecutionResults {
         if (this == o) return true;
         if (!(o instanceof ExecutionResults)) return false;
         ExecutionResults that = (ExecutionResults) o;
-        return Objects.equals(executionResults, that.executionResults);
+        return Objects.equals(destinations, that.destinations);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(executionResults);
+        return Objects.hash(destinations);
     }
 
-    public ExecutionResult getByOrder(int i) {
-        return this.executionResults.get(i);
+    public Destination getByOrder(int i) {
+        return this.destinations.get(i);
     }
 
-    public List<ExecutionResult> getExecutionResults() {
-        return executionResults;
+    public List<Destination> getExecutionResults() {
+        return destinations;
     }
 }

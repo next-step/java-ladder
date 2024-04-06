@@ -35,6 +35,6 @@ class LadderMappingTest {
     @Test
     @DisplayName("결과 조회 대상자라면 해당 조회자의 결과만 조회('a' => a:꽝)")
     void show_all() {
-        assertThat(ladderMapping.showResult(new Participant("a"))).isEqualTo(new ExecutionResult("꽝"));
+        assertThat(ladderMapping.showResult(new Participant("a"))).isEqualTo(new Destination("꽝"));
     }
 }

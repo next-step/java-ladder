@@ -23,17 +23,17 @@ class ExecutionResultsTest {
     void split() {
         ExecutionResults executionResults = new ExecutionResults("꽝,5000,꽝,3000");
         assertThat(executionResults).isEqualTo(new ExecutionResults(
-                List.of(new ExecutionResult("꽝"),
-                        new ExecutionResult("5000"),
-                        new ExecutionResult("꽝"),
-                        new ExecutionResult("3000"))));
+                List.of(new Destination("꽝"),
+                        new Destination("5000"),
+                        new Destination("꽝"),
+                        new Destination("3000"))));
     }
 
     @Test
     @DisplayName("실행결과의 개수는 참가자 수랑 다르면 예외(3,4 => IllegalArgumentException)")
     void check_size() {
         Participants participants = new Participants(List.of(new Participant("a"), new Participant("b"), new Participant("c")));
-        ExecutionResults executionResults = new ExecutionResults(List.of(new ExecutionResult("꽝"), new ExecutionResult("5000"), new ExecutionResult("꽝"), new ExecutionResult("3000")));
+        ExecutionResults executionResults = new ExecutionResults(List.of(new Destination("꽝"), new Destination("5000"), new Destination("꽝"), new Destination("3000")));
         assertThatThrownBy(() -> {
             executionResults.validateSize(participants);
         }).isInstanceOf(IllegalArgumentException.class);
