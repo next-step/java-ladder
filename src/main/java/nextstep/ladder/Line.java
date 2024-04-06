@@ -24,7 +24,7 @@ public class Line {
         List<Point> points = new ArrayList<>();
 
         boolean moveable = RANDOM.nextBoolean();
-        points.add(createFirstPoint(moveable));
+        points.add(Point.leftmostPoint(moveable));
 
         boolean leftMoveable = moveable;
         for (int i = 1; i < count - 2; i++) {
@@ -36,16 +36,8 @@ public class Line {
             leftMoveable = rightMoveable;
         }
 
-        points.add(createLastPoint(leftMoveable));
+        points.add(Point.rightmostPoint(leftMoveable));
 
         return points;
-    }
-
-    private static Point createLastPoint(boolean leftMoveable) {
-        return new Point(leftMoveable, false);
-    }
-
-    private static Point createFirstPoint(boolean rightMoveable) {
-        return new Point(false, rightMoveable);
     }
 }

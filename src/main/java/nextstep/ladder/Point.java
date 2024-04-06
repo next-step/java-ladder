@@ -12,6 +12,14 @@ public class Point {
         this.right = right;
     }
 
+    public static Point leftmostPoint(boolean rightMoveable) {
+        return new Point(false, rightMoveable);
+    }
+
+    public static Point rightmostPoint(boolean leftMoveable) {
+        return new Point(leftMoveable, false);
+    }
+
     public boolean canMoveLeft() {
         return left;
     }

@@ -27,4 +27,19 @@ class PointTest {
         assertThat(point.canMoveRight()).isEqualTo(right);
     }
 
+    @DisplayName("가장 왼쪽 포인트는 왼쪽으로 이동할 수 없다")
+    @Test
+    void leftmostPoint() {
+        Point point = Point.leftmostPoint(true);
+
+        assertThat(point.canMoveLeft()).isFalse();
+    }
+
+    @DisplayName("가장 오른쪽 포인트는 오른쪽으로 이동할 수 없다")
+    @Test
+    void rightmostPoint() {
+        Point point = Point.rightmostPoint(true);
+
+        assertThat(point.canMoveRight()).isFalse();
+    }
 }
