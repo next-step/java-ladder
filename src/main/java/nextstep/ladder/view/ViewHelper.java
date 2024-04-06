@@ -35,6 +35,7 @@ public class ViewHelper {
 
 
     public static void printHeader(Participants participants){
+        System.out.println("사다리 결과");
         List<Name> name = participants.getName();
         String header = name.stream()
                 .map(iter -> prependSpace(iter.getName()))
@@ -50,11 +51,7 @@ public class ViewHelper {
             printPoints(sb, line.getLine());
             sb.append(System.lineSeparator());
         }
-        System.out.println(sb);
-    }
-
-    public static void printPlainMessage(String message){
-        System.out.println(message);
+        System.out.print(sb);
     }
 
     private static void printPoints(StringBuilder sb, List<Boolean> points) {
@@ -76,5 +73,21 @@ public class ViewHelper {
         }
         String substring = "     ".substring(0, 5 - value.length());
         return substring + value;
+    }
+
+    public static void printResult(LadderMapping ladderMapping, Participants participants){
+        while(true){
+            System.out.println("결과를 보고 싶은 사람은?");
+            String viewer = new Scanner(System.in).nextLine();
+            System.out.println();
+            System.out.println("실행 결과");
+           if(viewer.equals("all")){
+                for (Participant iter : participants.getParticipants()) {
+                    System.out.println(iter.getName() + " : " + ladderMapping.showResult(iter));
+                }
+                continue;
+            }
+            System.out.println(ladderMapping.showResult(new Participant(viewer)));
+        }
     }
 }

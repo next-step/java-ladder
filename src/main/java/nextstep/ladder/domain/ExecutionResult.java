@@ -32,4 +32,9 @@ public class ExecutionResult {
     public String getExecutionResult() {
         return executionResult;
     }
+
+    @Override
+    public String toString() {
+        return this.executionResult;
+    }
 }

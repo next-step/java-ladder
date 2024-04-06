@@ -14,6 +14,10 @@ public class Participants {
         this(generateNames(names));
     }
 
+    public List<Participant> getParticipants() {
+        return participants;
+    }
+
     public Participants(List<Participant> participants) {
         if(participants.size() <= 1){
             throw new IllegalArgumentException();

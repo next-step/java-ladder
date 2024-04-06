@@ -1,9 +1,6 @@
 package nextstep.ladder.controller;
 
-import nextstep.ladder.domain.ExecutionResults;
-import nextstep.ladder.domain.Height;
-import nextstep.ladder.domain.Lines;
-import nextstep.ladder.domain.Participants;
+import nextstep.ladder.domain.*;
 
 import static nextstep.ladder.view.ViewHelper.*;
 
@@ -12,9 +9,12 @@ public class LadderClient {
         Participants participants = insertParticipant();
         ExecutionResults executionResults = insertExecutionResults();
         Height height = insertHeight();
-        printPlainMessage("실행결과");
         printHeader(participants);
-        printLadder(new Lines(height.getSize(), participants.getSize()));
+        Lines lines = new Lines(height.getSize(), participants.getSize());
+        printLadder(lines);
+        Participants reOrderedParticipants = lines.switchOrder(participants);
         printBottom(executionResults);
+        LadderMapping ladderMapping = new LadderMapping(reOrderedParticipants, executionResults);
+        printResult(ladderMapping, participants);
     }
 }
