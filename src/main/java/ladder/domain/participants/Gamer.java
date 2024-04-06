@@ -1,5 +1,8 @@
-package ladder.domain;
+package ladder.domain.participants;
 
+
+import ladder.domain.Ladder.Ladder;
+import ladder.domain.result.Reward;
 
 public class Gamer {
 
@@ -15,11 +18,19 @@ public class Gamer {
         this.position = position;
     }
 
+    public Name getName() {
+        return name;
+    }
+
     public Gamer climb(Ladder ladder) {
         return new Gamer(this.name, ladder.move(position));
     }
 
-    public Name getName() {
-        return name;
+    public boolean hasSameName(Name nameToFind) {
+        return this.name.equals(nameToFind);
+    }
+
+    public boolean hasSamePosition(Reward reward) {
+        return reward.isSamePosition(this.position);
     }
 }
