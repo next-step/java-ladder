@@ -6,7 +6,10 @@ import ladder.domain.Players;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class PlayerFactory {
+public final class PlayerFactory {
+
+    private PlayerFactory() {
+    }
 
     public static Players create(List<String> playersNames){
         return new Players(createPlayers(playersNames));

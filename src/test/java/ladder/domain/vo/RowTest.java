@@ -1,5 +1,6 @@
 package ladder.domain.vo;
 
+import ladder.domain.factory.RowFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,17 +11,17 @@ public class RowTest {
     @Test
     @DisplayName("열 생성 테스트")
     void rowTest(){
-        final Row rowAfterTrue = new Row(()-> Boolean.TRUE, Boolean.TRUE);
-        final Row rowAfterFalse = new Row(()-> Boolean.FALSE, Boolean.TRUE);
+        final Row bridgeTrueRow = new Row(true);
+        final Row bridgeFalseRow = new Row(false);
 
-        assertThat(rowAfterTrue.bridgeExist()).isFalse();
-        assertThat(rowAfterFalse.bridgeExist()).isTrue();
+        assertThat(bridgeTrueRow.bridgeExist()).isTrue();
+        assertThat(bridgeFalseRow.bridgeExist()).isFalse();
     }
 
     @Test
     @DisplayName("여러개의 열 생성 테스트")
     void rowsTest(){
-        Rows rows = new Rows(5);
+        Rows rows = RowFactory.createRandom(5);
 
         assertThat(rows.rows()).hasSize(5);
 

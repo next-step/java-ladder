@@ -4,28 +4,28 @@ import java.util.Objects;
 
 public class Row {
 
-    private final Boolean bridgeExist;
+    private final boolean bridgeExist;
 
     public Row(RowCreateStrategy rowCreateStrategy,
-               Boolean bridgeExist){
-        this(create(rowCreateStrategy, bridgeExist));
+               boolean bridgeExist){
+        this(decideBridgeExist(rowCreateStrategy, bridgeExist));
     }
 
-    public Row(Boolean bridgeExist) {
+    public Row(boolean bridgeExist) {
         this.bridgeExist = bridgeExist;
     }
 
+    public static boolean decideBridgeExist(RowCreateStrategy rowCreateStrategy,
+                                            boolean bridgeExist) {
+        if (rowCreateStrategy.isPreviousBridgeExist()) {
+            return false;
+        }
 
-    public Boolean bridgeExist(){
-        return this.bridgeExist;
+        return bridgeExist;
     }
 
-    public static Boolean create(RowCreateStrategy rowCreateStrategy,
-                                 Boolean bridgeExist) {
-        if (rowCreateStrategy.isPreviousBridgeExist()) {
-            return Boolean.FALSE;
-        }
-        return bridgeExist;
+    public boolean bridgeExist(){
+        return this.bridgeExist;
     }
 
     @Override

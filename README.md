@@ -27,3 +27,5 @@ step 2
 * feature/implement-ladder-application
   * create applications
   * modified test codes
+* refactor/feedback
+  * refactored code based on feedback

@@ -27,18 +27,24 @@ public class OutputView {
     private static String formatPlayerName(String name) {
         int spacesLeft = (PLAYER_NAME_COLUMN_WIDTH - name.length()) / 2;
         int spacesRight = PLAYER_NAME_COLUMN_WIDTH - name.length() - spacesLeft;
+
         StringBuilder formattedName = new StringBuilder();
         formattedName.append(" ".repeat(Math.max(spacesLeft, 0)));
         formattedName.append(name);
         formattedName.append(" ".repeat(Math.max(spacesRight, 0)));
+
         return formattedName.toString();
     }
 
     private static void printRows(Rows rows){
         System.out.print("  |");
-        rows.rows().stream()
-                .map(row -> row.bridgeExist() ? "----|" : "    |")
-                .forEach(System.out::print);
+        rows.rows().forEach(row -> {
+            if (row.bridgeExist()) {
+                System.out.print("----|");
+                return;
+            }
+            System.out.print("    |");
+        });
         System.out.println();
     }
 }
