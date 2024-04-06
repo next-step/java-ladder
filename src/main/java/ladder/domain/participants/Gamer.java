@@ -4,6 +4,8 @@ package ladder.domain.participants;
 import ladder.domain.Ladder.Ladder;
 import ladder.domain.result.Reward;
 
+import java.util.Objects;
+
 public class Gamer {
 
     private final Name name;
@@ -32,5 +34,18 @@ public class Gamer {
 
     public boolean hasSamePosition(Reward reward) {
         return reward.isSamePosition(this.position);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Gamer)) return false;
+        Gamer gamer = (Gamer) o;
+        return Objects.equals(name, gamer.name) && Objects.equals(position, gamer.position);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, position);
     }
 }
