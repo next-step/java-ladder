@@ -1,13 +1,6 @@
 package ladder.dto;
 
 import ladder.domain.Ladder;
-import ladder.domain.Player;
-import ladder.domain.Players;
-import ladder.domain.Prize;
-import ladder.dto.LadderDto;
-import ladder.dto.PlayerDto;
-import ladder.dto.PrizeDto;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,17 +9,17 @@ public class StatusDto {
   private final LadderDto ladder;
   private final List<PrizeDto> prizes;
 
-  public StatusDto(final Players players, final Ladder ladder, final List<Prize> prizes) {
+  public StatusDto(final List<String> names, final Ladder ladder, final List<String> prizeValues) {
     this.players = new ArrayList<>();
-    for (Player player : players) {
-      this.players.add(new PlayerDto(player));
+    for (String name : names) {
+      this.players.add(new PlayerDto(name));
     }
 
     this.ladder = new LadderDto(ladder);
 
     this.prizes = new ArrayList<>();
-    for (Prize prize : prizes) {
-      this.prizes.add(new PrizeDto(prize));
+    for (String value : prizeValues) {
+      this.prizes.add(new PrizeDto(value));
     }
   }
 
@@ -34,7 +27,7 @@ public class StatusDto {
     return this.players;
   }
 
-  public LadderDto getladder() {
+  public LadderDto getLadder() {
     return this.ladder;
   }
 

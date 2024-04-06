@@ -13,7 +13,7 @@ public class ResultView {
   public static void displayStatus(StatusDto result) {
     StringBuilder sb = new StringBuilder("실행 결과\n");
     sb.append(playersBuilder(result.getPlayers()));
-    sb.append(ladderBuilder(result.getladder()));
+    sb.append(ladderBuilder(result.getLadder()));
     sb.append(prizesBuilder(result.getPrizes()));
 
     System.out.println(sb);
