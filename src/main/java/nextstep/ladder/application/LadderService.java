@@ -1,8 +1,6 @@
 package nextstep.ladder.application;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.LineGenerator;
-import nextstep.ladder.domain.User;
+import nextstep.ladder.domain.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,21 +12,21 @@ public class LadderService {
         this.lineGenerator = lineGenerator;
     }
 
-    public Ladder makeLadder(int height, int numberOfUser) {
-        return new Ladder(height, numberOfUser-1, lineGenerator);
+    public Ladder makeLadder(int height, int numberOfUser, List<String> results) {
+        return new Ladder(height, numberOfUser - 1, lineGenerator, results);
     }
 
-    public List<User> makeUser(List<String> userNames) {
-        assertNotDuplicateName(userNames);
+    public Users makeUsers(List<String> userNames) {
+        List<User> users = userNames.stream().map(User::new).collect(Collectors.toUnmodifiableList());
 
-        return userNames.stream().map(User::new).collect(Collectors.toUnmodifiableList());
+        return new Users(users);
     }
 
-    private void assertNotDuplicateName(List<String> userNames) {
-        String message = "[서비스] 중복된 유저 이름이 있습니다.";
+    public GameResult getGameResult(Ladder ladder, Users users) {
+        return ladder.getGameResult(users);
+    }
 
-        if (userNames.stream().distinct().count() != userNames.size()) {
-            throw new IllegalArgumentException(message);
-        }
+    public boolean isGameResultForAll(String name) {
+        return InvalidUserName.ALL.getInvalidName().equalsIgnoreCase(name);
     }
 }

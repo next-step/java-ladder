@@ -14,11 +14,6 @@ public class Line {
         assertValidLine(this.line);
     }
 
-    public Line(Line line) {
-        this.line = line.getLine().stream().collect(Collectors.toUnmodifiableList());
-        this.length = line.length;
-    }
-
     private void assertValidLine(List<Boolean> line) {
         boolean prev = false;
 

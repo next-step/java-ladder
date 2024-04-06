@@ -19,6 +19,15 @@
 
 <br>
 
+## Step3 기능 목록
+
+### domain
+
+- 사다리 보상을 입력할 수 있어야 한다.
+  - 보상의 수는 유저의 수랑 동일하다.
+- 사다리를 실행한 결과를 알 수 있어야 한다.
+
+<br>
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
