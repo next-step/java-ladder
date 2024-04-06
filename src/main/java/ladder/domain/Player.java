@@ -17,7 +17,7 @@ public class Player {
     return this.name.value();
   }
 
-  public Integer moveTo(final Ladder ladder) {
+  public Integer move(final Ladder ladder) {
     Integer position = this.initialPosition;
 
     for (Row row : ladder) {

@@ -33,7 +33,7 @@ public class PlayerTest {
   void 이동(int[][] input, int result) {
     Player player = Player.of("TEST", 0);
     Ladder ladder = Ladder.from(input);
-    assertThat(player.moveTo(ladder)).isEqualTo(result);
+    assertThat(player.move(ladder)).isEqualTo(result);
   }
 
   private static Stream<Arguments> provideMoveTestParameters() {
@@ -54,5 +54,11 @@ public class PlayerTest {
                     { 0, 0, 1 },
             }, 3)
     );
+  }
+
+  @Test
+  void 이름_반환() {
+    Player player = Player.of("TEST", 0);
+    assertThat(player.name()).isEqualTo("TEST");
   }
 }

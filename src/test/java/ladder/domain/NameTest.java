@@ -25,4 +25,9 @@ public class NameTest {
   void 캐싱() {
     assertThat(Name.of("abc") == Name.of("abc")).isTrue();
   }
+
+  @Test
+  void 이름_value_반환() {
+    assertThat(Name.of("TEST").value()).isEqualTo("TEST");
+  }
 }

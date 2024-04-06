@@ -26,9 +26,14 @@ public class PrizeTest {
           nullValues = {"null"}
   )
   void 경품_객체_생성_예외(String input, String message) {
-
     Assertions.assertThatThrownBy(() -> new Prize(input))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessage(message);
+  }
+
+  @ParameterizedTest
+  @CsvSource( {"1000, 1000", "10000, 10000", "꽝, 꽝"})
+  void 상품_값_반환(String input, String result) {
+    Assertions.assertThat(new Prize(input).textValue()).isEqualTo(result);
   }
 }

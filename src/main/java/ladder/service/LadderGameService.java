@@ -36,7 +36,7 @@ public class LadderGameService {
             .collect(Collectors.toList()));
 
     for (Player player : players) {
-      results.put(player.name(), new PrizeDto(prizes.prizeAt(player.moveTo(ladder))));
+      results.put(player.name(), new PrizeDto(prizes.prizeAt(player.move(ladder))));
     }
 
     return results;
