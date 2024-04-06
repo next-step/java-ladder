@@ -78,16 +78,24 @@ public class ViewHelper {
 
     public static void printResult(LadderMapping ladderMapping, Participants participants){
         while(true){
-            System.out.println(System.lineSeparator() + "결과를 보고 싶은 사람은?");
-            String viewer = insertString();
+            String viewer = insertViewer();
             System.out.println(System.lineSeparator() + "실행 결과");
-           if(viewer.equals("all")){
-                for (Participant iter : participants.getParticipants()) {
-                    System.out.println(iter.getName() + " : " + ladderMapping.showResult(iter));
-                }
-                continue;
-            }
-            System.out.println(ladderMapping.showResult(new Participant(viewer)));
+            printExecutionResults(ladderMapping, participants, viewer);
         }
+    }
+
+    private static void printExecutionResults(LadderMapping ladderMapping, Participants participants, String viewer) {
+        if(viewer.equals("all")){
+             for (Participant iter : participants.getParticipants()) {
+                 System.out.println(iter.getName() + " : " + ladderMapping.showResult(iter));
+             }
+            return;
+         }
+        System.out.println(ladderMapping.showResult(new Participant(viewer)));
+    }
+
+    private static String insertViewer() {
+        System.out.println(System.lineSeparator() + "결과를 보고 싶은 사람은?");
+        return insertString();
     }
 }
