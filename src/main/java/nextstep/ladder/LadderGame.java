@@ -7,8 +7,11 @@ import java.util.stream.IntStream;
 
 public class LadderGame {
 
-    private static final String MOVEABLE_FORMAT = "-----|";
-    private static final String IMMOVABLE_FORMAT = "     |";
+    private static final String VERTICAL_LINE = "|";
+    private static final String MOVEABLE_FORMAT = "-----";
+    private static final String LINE_BREAK = "\n";
+    private static final String PRINT_FORMAT = "%6s";
+    private static final String PLAYER_NAME_SPLIT_DELIMITER = ",";
 
     public static void main(String[] args) {
         List<String> playerNames = inputPlayerNames();
@@ -27,8 +30,8 @@ public class LadderGame {
 
     private static void printPlayers(List<String> players) {
         String collect = players.stream()
-                .map(name -> String.format("%5s", name))
-                .collect(Collectors.joining(" "));
+                .map(name -> String.format(PRINT_FORMAT, name))
+                .collect(Collectors.joining());
 
         System.out.println(collect);
     }
@@ -36,27 +39,23 @@ public class LadderGame {
     private static void printLines(List<Line> lines) {
         String str = lines.stream()
                 .map(LadderGame::lineToString)
-                .collect(Collectors.joining("\n"));
+                .collect(Collectors.joining(LINE_BREAK));
 
         System.out.println(str);
     }
 
     private static String lineToString(Line line) {
-        StringBuilder lineBuilder = new StringBuilder();
-
-        for (int i = 0; i < line.size(); i++) {
-            lineBuilder.append(lineToString(line.getPoint(i)));
-        }
-
-        return lineBuilder.toString();
+        return IntStream.range(0, line.size())
+                .mapToObj(index -> pointToString(line.getPoint(index)))
+                .collect(Collectors.joining());
     }
 
-    private static String lineToString(Point point) {
+    private static String pointToString(Point point) {
         if (point.canMoveLeft()) {
-            return MOVEABLE_FORMAT;
+            return String.format(PRINT_FORMAT, MOVEABLE_FORMAT + VERTICAL_LINE);
         }
 
-        return IMMOVABLE_FORMAT;
+        return String.format(PRINT_FORMAT, VERTICAL_LINE);
     }
 
     private static int inputHeight() {
@@ -68,7 +67,7 @@ public class LadderGame {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
 
         String input = "pobi,honux,crong,jk"; // TODO: input
-        return Arrays.stream(input.split(","))
+        return Arrays.stream(input.split(PLAYER_NAME_SPLIT_DELIMITER))
                 .collect(Collectors.toList());
     }
 
