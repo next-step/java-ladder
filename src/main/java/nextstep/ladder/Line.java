@@ -17,10 +17,10 @@ public class Line {
     }
 
     public static Line createLine(int countOfPerson) {
-        return new Line(createPoints(countOfPerson));
+        return new Line(generateRandomPoints(countOfPerson));
     }
 
-    private static List<Point> createPoints(int count) {
+    private static List<Point> generateRandomPoints(int count) {
         List<Point> points = new ArrayList<>();
 
         boolean moveable = RANDOM.nextBoolean();
