@@ -3,6 +3,8 @@ package nextstep.ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Line {
     private static final Random RANDOM = new Random();
@@ -10,10 +12,14 @@ public class Line {
     private List<Point> points;
 
     private Line(List<Point> points) {
+        validate(points);
+        this.points = points;
+    }
+
+    private static void validate(List<Point> points) {
         if (points == null || points.isEmpty()) {
             throw new IllegalArgumentException("점이 없습니다.");
         }
-        this.points = points;
     }
 
     public static Line createLine(int countOfPerson) {
@@ -23,24 +29,27 @@ public class Line {
     private static List<Point> generateRandomMoveablePoints(int count) {
         List<Point> points = new ArrayList<>();
 
-        boolean moveable = RANDOM.nextBoolean();
-        points.add(Point.leftmostPoint(moveable));
-        points.addAll(generateMiddlePoints(count, points.get(points.size() - 1).canMoveRight()));
-        points.add(Point.rightmostPoint(points.get(points.size() - 1).canMoveLeft()));
+        points.add(Point.leftmostPoint(RANDOM.nextBoolean()));
+        points.addAll(generateMiddlePoints(count, points));
+        points.add(Point.rightmostPoint(getLastPoint(points).canMoveLeft()));
 
         return points;
     }
 
-    private static List<Point> generateMiddlePoints(int count, boolean startPointMoveable) {
-        List<Point> middlePoints = new ArrayList<>();
+    private static List<Point> generateMiddlePoints(int count, List<Point> points) {
+        return IntStream.range(0, count - 2)
+                .mapToObj(i -> generateMiddlePoint(points))
+                .collect(Collectors.toList());
+    }
 
-        boolean leftMoveable = startPointMoveable;
-        for (int i = 0; i < count - 2; i++) {
-            boolean rightMoveable = !leftMoveable && RANDOM.nextBoolean();
-            middlePoints.add(new Point(leftMoveable, rightMoveable));
-            leftMoveable = rightMoveable;
-        }
-        return middlePoints;
+    private static Point generateMiddlePoint(List<Point> points) {
+        boolean leftMoveable = getLastPoint(points).canMoveRight();
+        boolean rightMoveable = !leftMoveable && RANDOM.nextBoolean();
+        return new Point(leftMoveable, rightMoveable);
+    }
+
+    private static Point getLastPoint(List<Point> points) {
+        return points.get(points.size() - 1);
     }
 
     public int size() {
