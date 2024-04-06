@@ -15,7 +15,7 @@ public class Line {
         this(LineFactory.generatePoints(countOfPerson));
     }
 
-    public Line(Boolean... points)  {
+    public Line(Boolean... points) {
         this(LineFactory.generatePoints(points));
     }
 
@@ -25,8 +25,8 @@ public class Line {
     }
 
     private static void validatePoints(List<Point> points) {
-        IntStream.range(0, points.size()-1)
-                .forEach(num ->  LambdaUtils.validatePointRule(points.get(num), points.get(num + 1), Point::isEqualToTrue));
+        IntStream.range(0, points.size() - 1)
+                .forEach(num -> LambdaUtils.validatePointRule(points.get(num), points.get(num + 1), Point::isEqualToTrue));
     }
 
     public List<Boolean> getLine() {
