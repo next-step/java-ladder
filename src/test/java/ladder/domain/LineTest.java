@@ -1,9 +1,9 @@
 package ladder.domain;
 
+import ladder.domain.Ladder.Line;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LineTest {
 

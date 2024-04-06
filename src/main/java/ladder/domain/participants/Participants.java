@@ -1,7 +1,7 @@
 package ladder.domain.participants;
 
 import ladder.domain.Ladder.Ladder;
-import ladder.domain.RewardGamer;
+import ladder.domain.RewardResult;
 import ladder.domain.participants.factory.ParticipantsFactory;
 import ladder.domain.result.Reward;
 import ladder.utils.SplitUtils;
@@ -36,10 +36,10 @@ public class Participants {
                 .collect(Collectors.toUnmodifiableList()));
     }
 
-    public RewardGamer mapTo(Reward reward) {
+    public RewardResult mapTo(Reward reward) {
         return gamers.stream()
                 .filter(gamer -> gamer.hasSamePosition(reward))
-                .map(gamer -> new RewardGamer(reward, gamer))
+                .map(gamer -> new RewardResult(reward, gamer))
                 .findFirst().orElseThrow();
     }
 
