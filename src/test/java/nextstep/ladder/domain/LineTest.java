@@ -14,8 +14,8 @@ class LineTest {
     @Test
     void create() {
         List<Point> points = List.of(
-                Point.leftmostPoint(false),
-                Point.rightmostPoint(false)
+                Point.leftmostPoint(true),
+                Point.rightmostPoint(true)
         );
         Line line = new Line(points);
 
@@ -54,6 +54,18 @@ class LineTest {
         List<Point> points = List.of(
                 new Point(false, false),
                 new Point(false, true)
+        );
+
+        assertThatThrownBy(() -> new Line(points))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("이동 가능한 포인트간에 서로 이동 가능하지 않으면 예외가 발생한다")
+    @Test
+    void hasMovableConnectionToNext() {
+        List<Point> points = List.of(
+                new Point(false, true),
+                new Point(false, false)
         );
 
         assertThatThrownBy(() -> new Line(points))
