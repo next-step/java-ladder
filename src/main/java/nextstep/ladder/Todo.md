@@ -1,6 +1,4 @@
-## Todo
-- [ ] LadderMapping 내부의 showResult를 Participant 내부로 이동
-- [ ] ViewHelper 내부의 printExecutionResult 로직 일부를 Participants 내부로 이동 
+## Todo 
 
 ## Done
 - [X] 참여자가 ""일 경우에 예외("" => IllegalArgumentException) 
@@ -37,4 +35,3 @@
 - [X] 출력("실행 결과")
 - [X] 결과 조회자 결과 출력("꽝")
 - [X] ExecutionResult 이름 변경( -> Destination)
-- [ ] Participant 내부에 Destination을 저장하도록 변경
