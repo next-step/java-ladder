@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 public class ResultView {
     private static final String PRINT_FORMAT = "%6s";
+
     public static void showParticipants(Participants participants) {
         List<String> names = participants.names()
                 .stream()

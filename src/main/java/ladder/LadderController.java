@@ -17,5 +17,7 @@ public class LadderController {
         ResultView.showParticipants(participants);
         ResultView.showLadder(ladder);
         ResultView.showGamePrize(gamePrize);
+
+        String participantForResult = InputView.askParticipantForResult();
     }
 }
