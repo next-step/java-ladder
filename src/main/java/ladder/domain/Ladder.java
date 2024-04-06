@@ -5,12 +5,13 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Ladder {
+    private static final RandomLineGenerator randomLineGenerator = new RandomLineGenerator();
     private final List<Line> lines;
 
     public Ladder(int ladderHeight, int countOfPerson) {
         checkLadderHeight(ladderHeight);
 
-        this.lines = Stream.generate(() -> Line.generateLine(countOfPerson, new RandomLineGenerator()))
+        this.lines = Stream.generate(() -> Line.generateLine(countOfPerson, randomLineGenerator))
                 .limit(ladderHeight)
                 .collect(Collectors.toList());
     }

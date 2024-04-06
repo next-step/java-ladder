@@ -5,6 +5,7 @@ import ladder.domain.Line;
 import ladder.domain.Participants;
 
 import java.util.List;
+import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 public class ResultView {
@@ -19,7 +20,20 @@ public class ResultView {
     public static void showLadder(Ladder ladder) {
         ladder.getLines()
                 .stream()
-                .map(Line::lineToString)
+                .map(ResultView::lineToString)
                 .forEach(System.out::println);
+    }
+
+    private static String lineToString(Line line) {
+        StringJoiner joiner = new StringJoiner("|", "     |", "|");
+        line.getBridge()
+                .stream()
+                .map(ResultView::bridgeToString)
+                .forEach(joiner::add);
+        return joiner.toString();
+    }
+
+    private static String bridgeToString(Boolean bridge) {
+        return bridge ? "-----" : "     ";
     }
 }

@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import java.util.List;
-import java.util.StringJoiner;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -34,16 +33,7 @@ public class Line {
         return !previous && generator.nextBoolean();
     }
 
-    public String lineToString() {
-        StringJoiner joiner = new StringJoiner("|", "     |", "|");
-        this.bridge
-                .stream()
-                .map(this::bridgeToString)
-                .forEach(joiner::add);
-        return joiner.toString();
-    }
-
-    private String bridgeToString(Boolean bridge) {
-        return bridge ? "-----" : "     ";
+    public List<Boolean> getBridge() {
+        return bridge;
     }
 }
