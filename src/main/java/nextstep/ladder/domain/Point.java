@@ -5,23 +5,27 @@ public class Point {
     private final boolean right;
 
     public Point(boolean left, boolean right) {
-        if (left && right) {
-            throw new IllegalArgumentException("좌 우 모두 이동 가능한 Point 생성 불가");
-        }
+        validate(left, right);
         this.left = left;
         this.right = right;
     }
 
-    public static Point leftmostPoint(boolean rightMoveable) {
-        return new Point(false, rightMoveable);
+    private static void validate(boolean left, boolean right) {
+        if (left && right) {
+            throw new IllegalArgumentException("좌 우 모두 이동 가능한 Point 생성 불가");
+        }
     }
 
-    public Point rightmostPoint() {
+    public static Point createLeftmost(boolean canMoveRight) {
+        return new Point(false, canMoveRight);
+    }
+
+    public Point createRightmost() {
         return new Point(this.right, false);
     }
 
-    public Point nextPoint(boolean rightMoveable) {
-        return new Point(this.right, !this.right && rightMoveable);
+    public Point createNext(boolean canMoveRight) {
+        return new Point(this.right, !this.right && canMoveRight);
     }
 
     public boolean canMoveLeft() {

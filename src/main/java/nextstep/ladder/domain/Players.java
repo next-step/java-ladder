@@ -25,7 +25,7 @@ public class Players {
         return new Players(players);
     }
 
-    public int countOfPerson() {
+    public int count() {
         return players.size();
     }
 

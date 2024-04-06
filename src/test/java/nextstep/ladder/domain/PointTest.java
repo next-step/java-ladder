@@ -29,16 +29,16 @@ class PointTest {
 
     @DisplayName("가장 왼쪽 포인트는 왼쪽으로 이동할 수 없다")
     @Test
-    void leftmostPoint() {
-        Point point = Point.leftmostPoint(true);
+    void createLeftmost() {
+        Point point = Point.createLeftmost(true);
 
         assertThat(point.canMoveLeft()).isFalse();
     }
 
     @DisplayName("가장 오른쪽 포인트는 오른쪽으로 이동할 수 없다")
     @Test
-    void rightmostPoint() {
-        Point point = new Point(false, true).rightmostPoint();
+    void createRightmost() {
+        Point point = new Point(false, true).createRightmost();
 
         assertThat(point.canMoveRight()).isFalse();
     }

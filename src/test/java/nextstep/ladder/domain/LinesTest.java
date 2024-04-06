@@ -18,8 +18,8 @@ class LinesTest {
     @Test
     void create() {
         int height = 5;
-        int countOfPerson = 3;
-        Lines lines = Lines.of(countOfPerson, height);
+        int numberOfPlayers = 3;
+        Lines lines = Lines.of(numberOfPlayers, height);
 
         assertThat(lines.getHeight()).isEqualTo(height);
     }

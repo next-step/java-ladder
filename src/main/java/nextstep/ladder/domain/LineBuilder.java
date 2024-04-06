@@ -17,20 +17,20 @@ public class LineBuilder {
     }
 
     private Line build() {
-        points.add(lastPoint().rightmostPoint());
+        points.add(lastPoint().createRightmost());
         return new Line(points);
     }
 
-    private LineBuilder addRandomMoveablePoints(int countOfMiddlePoint) {
-        for (int i = 0; i < countOfMiddlePoint; i++) {
-            Point point = lastPoint().nextPoint(RANDOM.nextBoolean());
+    private LineBuilder addRandomMoveablePoints(int numberOfMiddlePoints) {
+        for (int i = 0; i < numberOfMiddlePoints; i++) {
+            Point point = lastPoint().createNext(RANDOM.nextBoolean());
             points.add(point);
         }
         return this;
     }
 
     private LineBuilder initRandomMoveablePoint() {
-        points.add(Point.leftmostPoint(RANDOM.nextBoolean()));
+        points.add(Point.createLeftmost(RANDOM.nextBoolean()));
         return this;
     }
 

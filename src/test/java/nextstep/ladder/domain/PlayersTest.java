@@ -16,7 +16,7 @@ class PlayersTest {
         List<String> playerNames = List.of("pobi", "crong", "honux");
         Players players = Players.of(playerNames);
 
-        assertThat(players.countOfPerson()).isEqualTo(playerNames.size());
+        assertThat(players.count()).isEqualTo(playerNames.size());
     }
 
     @DisplayName("참가자는 1명 이상이다")

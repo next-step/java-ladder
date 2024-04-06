@@ -19,9 +19,9 @@ public class Lines {
         }
     }
 
-    public static Lines of(int countOfPerson, int height) {
+    public static Lines of(int numberOfPlayers, int height) {
         List<Line> lines = IntStream.range(0, height)
-                .mapToObj(i -> LineBuilder.buildWithRandomPoints(countOfPerson))
+                .mapToObj(i -> LineBuilder.buildWithRandomPoints(numberOfPlayers))
                 .collect(Collectors.toList());
         return new Lines(lines);
     }

@@ -37,7 +37,7 @@ public class LadderGameApplication {
     }
 
     private static void printPlayers(Players players) {
-        String playerNames = IntStream.range(0, players.countOfPerson())
+        String playerNames = IntStream.range(0, players.count())
                 .mapToObj(players::getPlayer)
                 .map(player -> String.format(PRINT_FORMAT, player.getName()))
                 .collect(Collectors.joining());
