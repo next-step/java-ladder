@@ -11,6 +11,7 @@ import java.util.List;
 
 import static laddergame.domain.ladder.Link.LINKED;
 import static laddergame.domain.ladder.Link.UNLINKED;
+import static laddergame.utilForTest.LineUtilForTest.newLine;
 import static laddergame.utilForTest.WinningContentsUtilForTest.newWinningContents;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -36,7 +37,7 @@ class LadderTest {
         @DisplayName("PlayersAndWinningContents.numberOfLinks()가 Line.numberOfLinks()와 다른 경우 IllegalArgumentException이 발생한다.")
         void testFailCase() {
             PlayersAndWinningContents playersAndWinningContents = new PlayersAndWinningContents(PlayersUtilForTest.newPlayers("a", "b"), newWinningContents("10", "꽝"));
-            Ladder ladder = Ladder.newLadder(Line.newLine(LINKED, UNLINKED));
+            Ladder ladder = Ladder.newLadder(newLine(LINKED, UNLINKED));
             assertThatThrownBy(() -> ladder.resultOfLadder(playersAndWinningContents)).isExactlyInstanceOf(IllegalArgumentException.class);
         }
 
@@ -57,11 +58,11 @@ class LadderTest {
 
             PlayersAndWinningContents playersAndWinningContents = new PlayersAndWinningContents(players, winningContents);
 
-            Ladder ladder = Ladder.newLadder(Line.newLine(LINKED, UNLINKED, LINKED),
-                    Line.newLine(UNLINKED, LINKED, UNLINKED),
-                    Line.newLine(LINKED, UNLINKED, UNLINKED),
-                    Line.newLine(UNLINKED, LINKED, UNLINKED),
-                    Line.newLine(LINKED, UNLINKED, LINKED));
+            Ladder ladder = Ladder.newLadder(newLine(LINKED, UNLINKED, LINKED),
+                    newLine(UNLINKED, LINKED, UNLINKED),
+                    newLine(LINKED, UNLINKED, UNLINKED),
+                    newLine(UNLINKED, LINKED, UNLINKED),
+                    newLine(LINKED, UNLINKED, LINKED));
 
             ResultOfLadder resultOfLadder = ladder.resultOfLadder(playersAndWinningContents);
 

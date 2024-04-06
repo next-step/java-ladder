@@ -50,26 +50,22 @@ public class Line {
         return linkable && before.isUnLinked() ? LINKED : UNLINKED;
     }
 
-    public static Line newLine(Link... links) {
-        return new Line(List.of(links));
-    }
-
     public int numberOfLinks() {
         return links.size();
     }
 
-    public int nextIndexOfFrame(int indexOfFrame) {
-        int indexOfLeftLink = indexOfFrame - 1;
+    public int nextIndexOfColumn(int indexOfColumn) {
+        int indexOfLeftLink = indexOfColumn - 1;
         if (isValidIndexOfLink(indexOfLeftLink) && links.get(indexOfLeftLink).isLinked()) {
-            return indexOfFrame - 1;
+            return indexOfColumn - 1;
         }
 
-        int indexOfRightLink = indexOfFrame;
+        int indexOfRightLink = indexOfColumn;
         if (isValidIndexOfLink(indexOfRightLink) && links.get(indexOfRightLink).isLinked()) {
-            return indexOfFrame + 1;
+            return indexOfColumn + 1;
         }
 
-        return indexOfFrame;
+        return indexOfColumn;
     }
 
     private boolean isValidIndexOfLink(int indexOfLink) {

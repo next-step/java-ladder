@@ -20,7 +20,7 @@ public class OutputView {
     private static final String PLAYER_FOR_RESULT_INPUT_GUIDE_MESSAGE = "결과를 보고 싶은 사람은?(종료를 입력하면 프로그램이 종료됩니다.)";
     private static final String END_LADDER_KEYWORD = "종료";
     private static final String EXECUTION_RESULT_MESSAGE = "실행결과";
-    private static final String FRAME = "|";
+    private static final String LADDER_COLUMN = "|";
     private static final String LINKED = "-----";
     private static final String UNLINKED = "     ";
     private static final String BLANK = " ";
@@ -127,13 +127,13 @@ public class OutputView {
     private static String lineMessage(int lengthOfFirstPlayerName, Line line) {
         String prefixOfLine = new StringBuilder()
                 .append(BLANK.repeat(lengthOfFirstPlayerName))
-                .append(FRAME)
+                .append(LADDER_COLUMN)
                 .toString();
 
         return line.links()
                 .stream()
                 .map(link -> link.isLinked() ? LINKED : UNLINKED)
-                .collect(Collectors.joining(FRAME, prefixOfLine, FRAME));
+                .collect(Collectors.joining(LADDER_COLUMN, prefixOfLine, LADDER_COLUMN));
     }
 
     public static void printExecutionResult(PlayersAndWinningContents playersAndWinningContents, ResultOfLadder resultOfLadder) {

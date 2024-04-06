@@ -76,6 +76,6 @@ class LineTest {
     @DisplayName("nextIndexOfFrame(): 사다리 frame의 왼쪽이 LINKED인 경우 indexOfFrame - 1, 오른쪽이 LINKED인 경우 indexOfFrame + 1를 반환한다. 만약 둘 다 아니면 indexOfFrame을 반환한다.")
     void testNextIndexOfFrame(int indexOfFrame, int expected) {
         Line line = new Line(List.of(LINKED, UNLINKED));
-        assertThat(line.nextIndexOfFrame(indexOfFrame)).isEqualTo(expected);
+        assertThat(line.nextIndexOfColumn(indexOfFrame)).isEqualTo(expected);
     }
 }

@@ -57,7 +57,7 @@ public class Ladder {
 
     private int indexOfWinningContentOfPlayer(int playerIndex) {
         return IntStream.range(0, lines.size())
-                .reduce(playerIndex, (indexOfFrame, indexOfLine) -> lines.get(indexOfLine)
-                        .nextIndexOfFrame(indexOfFrame));
+                .reduce(playerIndex, (indexOfColumn, indexOfLine) -> lines.get(indexOfLine)
+                        .nextIndexOfColumn(indexOfColumn));
     }
 }
