@@ -2,8 +2,16 @@ package ladder.model;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static ladder.model.Line.createOneLine;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class NameListTest {
 
@@ -32,6 +40,26 @@ public class NameListTest {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             new NameList(input);
         });
+    }
+
+    @Test
+    @DisplayName("list 범위를 넘은 index 입력 시 swap 에러 발생")
+    void check_swap() {
+        NameList nameList = new NameList("anna, pony, ando");
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            nameList.swapPoints(2);
+        });
+    }
+    @Test
+    @DisplayName("list 범위를 넘지 않은 index 입력 시 정상 swap")
+    void check_swap_correct() {
+        NameList nameList = new NameList("anna, pony, ando");
+
+        NameList nameList1 = nameList.swapPoints(1);
+        NameList nameList2 = new NameList("anna, ando, pony");
+        assertThat(nameList1.getNameList()).isEqualTo(nameList2.getNameList());
+
     }
 
 }

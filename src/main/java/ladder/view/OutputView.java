@@ -44,11 +44,14 @@ public class OutputView {
 
     public static void printResultOfGame(GameResult gameResult, String name) {
         System.out.println("실행 결과");
-        String resultOfName = gameResult.makeResult(name);
-        if ("all".equals(resultOfName)) {
-            resultOfName = makeAllResult(gameResult);
+        System.out.println(makeResultOfGame(gameResult, name));
+    }
+
+    private static String makeResultOfGame(GameResult gameResult, String name){
+        if ("all".equals(name)) {
+            return makeAllResult(gameResult);
         }
-        System.out.println(resultOfName);
+        return gameResult.makeResult(name);
     }
 
     private static String makeAllResult(GameResult gameResult) {
