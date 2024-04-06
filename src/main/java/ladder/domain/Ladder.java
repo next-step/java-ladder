@@ -32,7 +32,7 @@ public class Ladder implements Iterable<Row> {
   }
 
   private Ladder(final List<Row> rows) {
-    if (rows.size() == 0) {
+    if (rows.isEmpty()) {
       throw new IllegalArgumentException("잘못된 사다리 입력입니다.");
     }
 
