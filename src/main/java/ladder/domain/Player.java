@@ -4,11 +4,15 @@ import java.util.Objects;
 
 public class Player {
 
+    private static final int MIN_NAME_LENGTH = 5;
+
     private final String name;
 
     public Player(String name) {
-        if(name.length() > 5)
+        if (name.length() > MIN_NAME_LENGTH) {
             throw new IllegalArgumentException("이름은 최대 5글자 입니다.");
+        }
+
         this.name = name;
     }
 
