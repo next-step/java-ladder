@@ -1,6 +1,7 @@
 package ladder.domain.result;
 
 import ladder.domain.participants.Participants;
+import ladder.domain.result.factory.GameResultFactory;
 import ladder.utils.SplitUtils;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public class GameResult {
     }
 
     public GameResult(String[] items) {
-        this(GameResultFactory.createRewords(items));
+        this(GameResultFactory.createRewards(items));
     }
 
     public GameResult(List<Reward> rewards) {
