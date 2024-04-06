@@ -30,7 +30,7 @@ public class InputView {
         String nameOfPlayers = SCANNER.nextLine();
 
         return Arrays.stream(nameOfPlayers.split(COMMA_DELIMITER))
-                .map(Player::valueOf)
+                .map(Player::new)
                 .collect(Collectors.toList());
     }
 
@@ -40,7 +40,7 @@ public class InputView {
         String winnings = SCANNER.nextLine();
 
         return Arrays.stream(winnings.split(COMMA_DELIMITER))
-                .map(WinningContent::valueOf)
+                .map(WinningContent::new)
                 .collect(Collectors.toList());
     }
 
@@ -50,7 +50,7 @@ public class InputView {
         String heightInput = SCANNER.nextLine();
         validateHeightInput(heightInput);
 
-        return HeightOfLadder.valueOf(Integer.parseInt(heightInput));
+        return new HeightOfLadder(Integer.parseInt(heightInput));
     }
 
     private static void validateHeightInput(String heightInput) {

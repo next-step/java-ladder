@@ -11,7 +11,7 @@ public class PlayersAndWinningContents {
     private final Players players;
     private final WinningContents winningContents;
 
-    private PlayersAndWinningContents(Players players, WinningContents winningContents) {
+    public PlayersAndWinningContents(Players players, WinningContents winningContents) {
         validatePlayersAndWinnings(players, winningContents);
         this.players = players;
         this.winningContents = winningContents;
@@ -21,10 +21,6 @@ public class PlayersAndWinningContents {
         if (players.numberOfPlayers() != winningContents.numberOfWinningContents()) {
             throw new IllegalArgumentException(WRONG_PLAYERS_AND_WINNING_CONTENTS_MESSAGE.message());
         }
-    }
-
-    public static PlayersAndWinningContents newPlayersAndWinnings(Players players, WinningContents winningContents) {
-        return new PlayersAndWinningContents(players, winningContents);
     }
 
     public int numberOfLinks() {

@@ -13,7 +13,7 @@ import static laddergame.exception.ExceptionMessage.WRONG_LINE_MESSAGE;
 public class Line {
     private final List<Link> links;
 
-    private Line(List<Link> links) {
+    public Line(List<Link> links) {
         validateLinks(links);
         this.links = links;
     }
@@ -31,10 +31,6 @@ public class Line {
         if (before.isLinked() && now.isLinked()) {
             throw new IllegalArgumentException(WRONG_LINE_MESSAGE.message());
         }
-    }
-
-    public static Line valueOf(List<Link> links) {
-        return new Line(links);
     }
 
     public static Line newLine(int numberOfLink, LinkStrategy linkStrategy) {

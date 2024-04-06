@@ -12,7 +12,7 @@ import static laddergame.view.OutputView.*;
 public class LadderGameMain {
     public static void main(String[] arguments) throws Exception {
         try {
-            PlayersAndWinningContents playersAndWinningContents = PlayersAndWinningContents.newPlayersAndWinnings(Players.valueOf(enteredPlayers()), WinningContents.valueOf(enteredWinnings()));
+            PlayersAndWinningContents playersAndWinningContents = new PlayersAndWinningContents(new Players(enteredPlayers()), new WinningContents(enteredWinnings()));
 
             Ladder ladder = Ladder.newLadder(enteredHeightOfLadder(), playersAndWinningContents, new RandomStrategy());
             printLadderResult(playersAndWinningContents, ladder);

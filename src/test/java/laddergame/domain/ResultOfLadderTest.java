@@ -14,12 +14,12 @@ class ResultOfLadderTest {
     @DisplayName("winningContentOfPlayer(): player의 winningContent를 반환한다.")
     void testSuccessCase() {
         Map<Player, WinningContent> results = new HashMap<>() {{
-            put(Player.valueOf("A"), WinningContent.valueOf("a"));
-            put(Player.valueOf("B"), WinningContent.valueOf("b"));
+            put(new Player("A"), new WinningContent("a"));
+            put(new Player("B"), new WinningContent("b"));
         }};
-        ResultOfLadder resultOfLadder = ResultOfLadder.valueOf(results);
+        ResultOfLadder resultOfLadder = new ResultOfLadder(results);
 
-        assertThat(resultOfLadder.winningContentOfPlayer(Player.valueOf("A"))).isEqualTo(Optional.of(WinningContent.valueOf("a")));
-        assertThat(resultOfLadder.winningContentOfPlayer(Player.valueOf("C")).isEmpty()).isTrue();
+        assertThat(resultOfLadder.winningContentOfPlayer(new Player("A"))).isEqualTo(Optional.of(new WinningContent("a")));
+        assertThat(resultOfLadder.winningContentOfPlayer(new Player("C")).isEmpty()).isTrue();
     }
 }

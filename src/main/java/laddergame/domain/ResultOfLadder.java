@@ -6,12 +6,8 @@ import java.util.Optional;
 public class ResultOfLadder {
     private final Map<Player, WinningContent> results;
 
-    private ResultOfLadder(Map<Player, WinningContent> results) {
+    public ResultOfLadder(Map<Player, WinningContent> results) {
         this.results = results;
-    }
-
-    public static ResultOfLadder valueOf(Map<Player, WinningContent> results) {
-        return new ResultOfLadder(results);
     }
 
     public Optional<WinningContent> winningContentOfPlayer(Player player) {

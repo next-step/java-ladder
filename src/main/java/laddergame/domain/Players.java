@@ -1,6 +1,5 @@
 package laddergame.domain;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -14,7 +13,7 @@ public class Players {
 
     private final List<Player> players;
 
-    private Players(List<Player> players) {
+    public Players(List<Player> players) {
         validatePlayers(players);
         this.players = players;
     }
@@ -28,20 +27,6 @@ public class Players {
         }
     }
 
-    public static Players valueOf(List<Player> players) {
-        return new Players(players);
-    }
-
-    public static Players newPlayers(String... players) {
-        return new Players(Arrays.stream(players)
-                .map(Player::valueOf)
-                .collect(Collectors.toList()));
-    }
-
-    public static Players newPlayers(Player... players) {
-        return new Players(List.of(players));
-    }
-
     public Player findPlayerByIndex(int index) {
         return players.get(index);
     }
@@ -51,7 +36,7 @@ public class Players {
             return Collections.unmodifiableList(players);
         }
 
-        Player targetOfFinding = Player.valueOf(name);
+        Player targetOfFinding = new Player(name);
 
         return players.stream()
                 .filter(player -> player.equals(targetOfFinding))

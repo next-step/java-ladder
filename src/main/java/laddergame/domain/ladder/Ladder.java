@@ -20,10 +20,6 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder valueOf(List<Line> lines) {
-        return new Ladder(lines);
-    }
-
     public static Ladder newLadder(HeightOfLadder heightOfLadder, PlayersAndWinningContents playersAndWinningContents, LinkStrategy linkStrategy) {
         List<Line> generatedLines = Stream.generate(() -> Line.newLine(playersAndWinningContents.numberOfLinks(), linkStrategy))
                 .limit(heightOfLadder.height())
@@ -49,7 +45,7 @@ public class Ladder {
         IntStream.range(0, playersAndWinningContents.numberOfPlayers())
                 .forEach(playerIndex -> results.put(playersAndWinningContents.findPlayerByIndex(playerIndex), playersAndWinningContents.findWinningContentByIndex(indexOfWinningContentOfPlayer(playerIndex))));
 
-        return ResultOfLadder.valueOf(results);
+        return new ResultOfLadder(results);
     }
 
     private boolean isValidPlayersAndWinningContents(PlayersAndWinningContents playersAndWinningContents) {

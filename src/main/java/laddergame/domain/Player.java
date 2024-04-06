@@ -9,7 +9,7 @@ import static laddergame.util.Validator.isNonBlank;
 public class Player {
     private final String name;
 
-    private Player(String name) {
+    public Player(String name) {
         validateName(name);
         this.name = name;
     }
@@ -18,10 +18,6 @@ public class Player {
         if (!isNonBlank(name) || name.length() > MAX_LENGTH_OF_PLAYER_AND_WINNING_CONTENT) {
             throw new IllegalArgumentException(String.format(WRONG_PLAYER_NAME_MESSAGE.message(), name, MAX_LENGTH_OF_PLAYER_AND_WINNING_CONTENT));
         }
-    }
-
-    public static Player valueOf(String name) {
-        return new Player(name);
     }
 
     public int lengthOfName() {

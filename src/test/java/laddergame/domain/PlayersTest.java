@@ -1,5 +1,6 @@
 package laddergame.domain;
 
+import laddergame.utilForTest.PlayersUtilForTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -17,16 +18,16 @@ class PlayersTest {
         @Test
         @DisplayName("인스턴스 생성시 players의 크기가 MIN_NUMBER_OF_PLAYERS_AND_WINNING_CONTENTS보다 작은 경우 IllegalArgumentException이 발생한다.")
         void testWrongSizeOfPlayers() {
-            List<Player> players = List.of(Player.valueOf("a"));
-            assertThatThrownBy(() -> Players.valueOf(players))
+            List<Player> players = List.of(new Player("a"));
+            assertThatThrownBy(() -> new Players(players))
                     .isExactlyInstanceOf(IllegalArgumentException.class);
         }
 
         @Test
         @DisplayName("인스턴스 생성시 players에 중복된 데이터가 있는 경우 IllegalArgumentException이 발생한다.")
         void testDuplicatePlayers() {
-            List<Player> players = List.of(Player.valueOf("a"), Player.valueOf("a"));
-            assertThatThrownBy(() -> Players.valueOf(players))
+            List<Player> players = List.of(new Player("a"), new Player("a"));
+            assertThatThrownBy(() -> new Players(players))
                     .isExactlyInstanceOf(IllegalArgumentException.class);
         }
     }
@@ -34,9 +35,9 @@ class PlayersTest {
     @Test
     @DisplayName("findPlayerByIndex(): Players.players 중 전달된 index 순서에 해당하는 player를 반환한다.")
     void testFindPlayerByIndex() {
-        Player firstPlayer = Player.valueOf("a");
-        Player secondPlayer = Player.valueOf("b");
-        Players players = Players.newPlayers(firstPlayer, secondPlayer);
+        Player firstPlayer = new Player("a");
+        Player secondPlayer = new Player("b");
+        Players players = PlayersUtilForTest.newPlayers(firstPlayer, secondPlayer);
 
         assertThat(players.findPlayerByIndex(0)).isEqualTo(firstPlayer);
         assertThat(players.findPlayerByIndex(1)).isEqualTo(secondPlayer);
@@ -45,7 +46,7 @@ class PlayersTest {
     @Nested
     @DisplayName("findPlayerByName() 테스트")
     class FindPlayerByNameTest {
-        Players players = Players.newPlayers("a", "b", "c", "d");
+        Players players = PlayersUtilForTest.newPlayers("a", "b", "c", "d");
 
         @Test
         @DisplayName("name을 가지는 참여자가 존재하는 경우 해당 참여자를 포함하는 List<Player>를 반환하다.")
@@ -55,7 +56,7 @@ class PlayersTest {
             List<Player> foundPlayers = players.findPlayersByName(name);
 
             assertThat(foundPlayers.size()).isEqualTo(1);
-            assertThat(foundPlayers.get(0)).isEqualTo(Player.valueOf(name));
+            assertThat(foundPlayers.get(0)).isEqualTo(new Player(name));
         }
 
         @Test
@@ -85,7 +86,7 @@ class PlayersTest {
     @Test
     @DisplayName("numberOfPlayers(): Players.players의 크기를 반환한다.")
     void testNumberOfPlayers() {
-        Players players = Players.newPlayers("a", "b", "c");
+        Players players = PlayersUtilForTest.newPlayers("a", "b", "c");
         assertThat(players.numberOfPlayers()).isEqualTo(3);
     }
 }
