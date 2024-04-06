@@ -17,28 +17,30 @@ public class Line {
     }
 
     public static Line createLine(int countOfPerson) {
-        return new Line(generateRandomPoints(countOfPerson));
+        return new Line(generateRandomMoveablePoints(countOfPerson));
     }
 
-    private static List<Point> generateRandomPoints(int count) {
+    private static List<Point> generateRandomMoveablePoints(int count) {
         List<Point> points = new ArrayList<>();
 
         boolean moveable = RANDOM.nextBoolean();
         points.add(Point.leftmostPoint(moveable));
-
-        boolean leftMoveable = moveable;
-        for (int i = 0; i < count - 2; i++) {
-            boolean rightMoveable = RANDOM.nextBoolean();
-            if (leftMoveable) {
-                rightMoveable = false;
-            }
-            points.add(new Point(leftMoveable, rightMoveable));
-            leftMoveable = rightMoveable;
-        }
-
-        points.add(Point.rightmostPoint(leftMoveable));
+        points.addAll(generateMiddlePoints(count, points.get(points.size() - 1).canMoveRight()));
+        points.add(Point.rightmostPoint(points.get(points.size() - 1).canMoveLeft()));
 
         return points;
+    }
+
+    private static List<Point> generateMiddlePoints(int count, boolean startPointMoveable) {
+        List<Point> middlePoints = new ArrayList<>();
+
+        boolean leftMoveable = startPointMoveable;
+        for (int i = 0; i < count - 2; i++) {
+            boolean rightMoveable = !leftMoveable && RANDOM.nextBoolean();
+            middlePoints.add(new Point(leftMoveable, rightMoveable));
+            leftMoveable = rightMoveable;
+        }
+        return middlePoints;
     }
 
     public int size() {
