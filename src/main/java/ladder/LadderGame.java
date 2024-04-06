@@ -4,6 +4,7 @@ import ladder.domain.*;
 import ladder.dto.PrizeDto;
 import ladder.rowgenerator.RowGeneratorRandom;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,8 +37,9 @@ public class LadderGame {
   }
 
   private static List<String> csvParser(final String text) {
-    return List.of(text.replace(" ", "")
-            .split(","));
+    return Arrays.stream(text.split(","))
+            .map(String::trim)
+            .collect(Collectors.toList());
   }
 
   public StatusDto status() {
