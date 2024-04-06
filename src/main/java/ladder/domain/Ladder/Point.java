@@ -4,18 +4,22 @@ import java.util.Objects;
 
 public class Point {
 
-    private final boolean isExist;
+    private final boolean Exists;
 
-    public Point(boolean isExist) {
-        this.isExist = isExist;
+    public Point(PointPredicate predicate) {
+        this(predicate.exists());
+    }
+
+    public Point(boolean Exists) {
+        this.Exists = Exists;
     }
 
     public boolean isEqualToTrue(Point y) {
-        return y.isExist && this.isExist;
+        return y.Exists && this.Exists;
     }
 
     public boolean isMovable() {
-        return this.isExist;
+        return this.Exists;
     }
 
     @Override
@@ -23,11 +27,11 @@ public class Point {
         if (this == o) return true;
         if (!(o instanceof Point)) return false;
         Point point = (Point) o;
-        return isExist == point.isExist;
+        return Exists == point.Exists;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(isExist);
+        return Objects.hash(Exists);
     }
 }
