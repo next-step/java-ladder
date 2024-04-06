@@ -1,17 +1,18 @@
 package ladder.domain.Ladder;
 
-import ladder.domain.Ladder.factory.LadderFactory;
+import ladder.domain.Ladder.factory.LineFactory;
 import ladder.domain.participants.Position;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class Ladder {
 
     private final List<Line> lines;
 
     public Ladder(int height, int countOfPerson) {
-        this(LadderFactory.generateLines(height, countOfPerson));
+        this(LineFactory.generateLines(height, countOfPerson, new RandomPointPredicate()));
     }
 
     public Ladder(List<Line> lines) {
@@ -25,5 +26,18 @@ public class Ladder {
 
     public List<Line> getLines() {
         return Collections.unmodifiableList(this.lines);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Ladder)) return false;
+        Ladder ladder = (Ladder) o;
+        return Objects.equals(lines, ladder.lines);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(lines);
     }
 }

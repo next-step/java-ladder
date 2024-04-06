@@ -2,12 +2,13 @@ package ladder.domain.participants;
 
 import ladder.domain.Ladder.Ladder;
 import ladder.domain.result.RewardResult;
-import ladder.domain.participants.factory.ParticipantsFactory;
+import ladder.domain.participants.factory.GamerFactory;
 import ladder.domain.result.Reward;
 import ladder.utils.SplitUtils;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Participants {
@@ -19,7 +20,7 @@ public class Participants {
     }
 
     public Participants(String[] names) {
-        this(ParticipantsFactory.generateGamers(names));
+        this(GamerFactory.generateGamers(names));
     }
 
     public Participants(List<Gamer> gamers) {
@@ -43,7 +44,16 @@ public class Participants {
                 .findFirst().orElseThrow();
     }
 
-    public int count() {
-        return this.gamers.size();
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Participants)) return false;
+        Participants that = (Participants) o;
+        return Objects.equals(gamers, that.gamers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(gamers);
     }
 }

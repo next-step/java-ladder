@@ -1,9 +1,10 @@
 package ladder.domain.Ladder;
 
-import ladder.domain.Ladder.factory.LineFactory;
+import ladder.domain.Ladder.factory.PointFactory;
 import ladder.utils.LambdaUtils;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -11,12 +12,12 @@ public class Line {
 
     private final List<Point> points;
 
-    public Line(int countOfPerson) {
-        this(LineFactory.generatePoints(countOfPerson));
+    public Line(int countOfPerson, PointPredicate pointPredicate) {
+        this(PointFactory.generatePoints(countOfPerson, pointPredicate));
     }
 
     public Line(Boolean... points) {
-        this(LineFactory.generatePoints(points));
+        this(PointFactory.generatePoints(points));
     }
 
     public Line(List<Point> points) {
@@ -40,5 +41,18 @@ public class Line {
             return false;
         }
         return points.get(positionIndex).isMovable();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Line)) return false;
+        Line line = (Line) o;
+        return Objects.equals(points, line.points);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(points);
     }
 }

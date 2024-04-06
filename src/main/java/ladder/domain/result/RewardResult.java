@@ -2,7 +2,8 @@ package ladder.domain.result;
 
 import ladder.domain.participants.Gamer;
 import ladder.domain.participants.Name;
-import ladder.domain.result.Reward;
+
+import java.util.Objects;
 
 public class RewardResult {
 
@@ -24,5 +25,18 @@ public class RewardResult {
 
     public boolean isSameName(Name nameToFind) {
         return gamer.hasSameName(nameToFind);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof RewardResult)) return false;
+        RewardResult that = (RewardResult) o;
+        return Objects.equals(reward, that.reward) && Objects.equals(gamer, that.gamer);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(reward, gamer);
     }
 }

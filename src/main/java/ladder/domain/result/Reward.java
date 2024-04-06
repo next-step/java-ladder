@@ -2,6 +2,8 @@ package ladder.domain.result;
 
 import ladder.domain.participants.Position;
 
+import java.util.Objects;
+
 public class Reward {
 
     private final Item item;
@@ -22,5 +24,18 @@ public class Reward {
 
     public boolean isSamePosition(Position position) {
         return this.position.equals(position);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Reward)) return false;
+        Reward reward = (Reward) o;
+        return Objects.equals(item, reward.item) && Objects.equals(position, reward.position);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(item, position);
     }
 }
