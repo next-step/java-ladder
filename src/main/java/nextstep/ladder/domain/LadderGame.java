@@ -1,11 +1,8 @@
 package nextstep.ladder.domain;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LadderGame {
-    private static final String PLAYER_NAME_SPLIT_DELIMITER = ",";
 
     private final Players players;
     private final Lines lines;
@@ -15,8 +12,8 @@ public class LadderGame {
         this.lines = lines;
     }
 
-    public static LadderGame of(String playerNames, int height) {
-        Players players = Players.of(splitNames(playerNames));
+    public static LadderGame of(List<String> playerNames, int height) {
+        Players players = Players.of(playerNames);
         Lines lines = Lines.of(players.countOfPerson(), height);
 
         return new LadderGame(players, lines);
@@ -28,10 +25,5 @@ public class LadderGame {
 
     public Lines getLines() {
         return lines;
-    }
-
-    private static List<String> splitNames(String playerNames) {
-        return Arrays.stream(playerNames.split(PLAYER_NAME_SPLIT_DELIMITER))
-                .collect(Collectors.toList());
     }
 }

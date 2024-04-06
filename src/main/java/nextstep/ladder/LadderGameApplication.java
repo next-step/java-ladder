@@ -2,11 +2,14 @@ package nextstep.ladder;
 
 import nextstep.ladder.domain.*;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LadderGameApplication {
 
+    private static final String PLAYER_NAME_SPLIT_DELIMITER = ",";
     private static final String VERTICAL_LINE = "|";
     private static final String MOVEABLE_FORMAT = "-----";
     private static final String LINE_BREAK = "\n";
@@ -16,9 +19,15 @@ public class LadderGameApplication {
         String playerNames = inputPlayerNames();
         int height = inputHeight();
 
-        LadderGame ladderGame = LadderGame.of(playerNames, height);
+        LadderGame ladderGame = LadderGame.of(splitNames(playerNames), height);
 
         printGameResults(ladderGame);
+    }
+
+
+    private static List<String> splitNames(String playerNames) {
+        return Arrays.stream(playerNames.split(PLAYER_NAME_SPLIT_DELIMITER))
+                .collect(Collectors.toList());
     }
 
     private static void printGameResults(LadderGame ladderGame) {
