@@ -33,7 +33,10 @@ public class Players implements Iterable<Player> {
 
     @Override
     public Player next() {
-      return players.get(cursor++);
+      if (hasNext()) {
+        return players.get(cursor++);
+      }
+      throw new IllegalStateException("더 이상 불러올 요소가 없습니다.");
     }
   }
 }

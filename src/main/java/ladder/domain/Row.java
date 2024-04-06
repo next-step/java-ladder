@@ -117,7 +117,10 @@ public class Row implements Iterable<Boolean> {
 
     @Override
     public Boolean next() {
-      return values.get(cursor++);
+      if (hasNext()) {
+        return values.get(cursor++);
+      }
+      throw new IllegalStateException("더 이상 불러올 요소가 없습니다.");
     }
   }
 }
