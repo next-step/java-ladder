@@ -11,7 +11,7 @@ public class Destination {
     }
 
     private void validateIfEmpty(String destination) {
-        if(destination == null || destination.isEmpty()){
+        if (destination == null || destination.isEmpty()) {
             throw new IllegalArgumentException();
         }
     }

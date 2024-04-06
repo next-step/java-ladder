@@ -6,7 +6,7 @@ public class Name {
     private final String name;
 
     public Name(String name) {
-        if(name == null || "".equals(name)){
+        if (name == null || "".equals(name)) {
             throw new IllegalArgumentException();
         }
         this.name = name;

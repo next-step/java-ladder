@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Lines{
+public class Lines {
 
     private final List<Line> lines;
 
@@ -18,7 +18,7 @@ public class Lines{
 
     public static List<Line> generateLines(int size, int participantSize) {
         ArrayList<Line> lines = new ArrayList<>();
-        for(int i =0; i < size; i++){
+        for (int i = 0; i < size; i++) {
             lines.add(new Line(participantSize));
         }
         return lines;
@@ -28,9 +28,9 @@ public class Lines{
         return lines;
     }
 
-    public LadderMapping switchOrder(LadderMapping ladderMapping){
+    public LadderMapping switchOrder(LadderMapping ladderMapping) {
         LadderMapping previous = ladderMapping;
-        for(Line line : lines){
+        for (Line line : lines) {
             previous = line.switchOrder(previous);
         }
         return previous;

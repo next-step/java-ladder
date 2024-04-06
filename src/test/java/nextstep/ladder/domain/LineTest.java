@@ -10,15 +10,16 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 
 class LineTest {
 
     static Stream<Arguments> inputLine2() {
         return Stream.of(
-                Arguments.of(List.of(true,true)),
-                Arguments.of(List.of(false,true,true))
+                Arguments.of(List.of(true, true)),
+                Arguments.of(List.of(false, true, true))
         );
     }
 
@@ -65,7 +66,7 @@ class LineTest {
     @ParameterizedTest
     @DisplayName("가로 라인은 겹치면 예외(true,true => IllegalArgumentException | false,true,true => IllegalArgumentException)")
     @MethodSource("inputLine2")
-    void legs_should_not_come_out_in_a_row(List<Boolean> input){
+    void legs_should_not_come_out_in_a_row(List<Boolean> input) {
         assertThatThrownBy(() -> {
             new Line(input);
         }).isInstanceOf(IllegalArgumentException.class);

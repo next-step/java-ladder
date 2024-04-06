@@ -18,7 +18,7 @@ public class LadderIOHandler {
         this.outputView = outputView;
     }
 
-    public void printLadder(List<Participant> participants, Lines entireLines, List<Destination> destinations){
+    public void printLadder(List<Participant> participants, Lines entireLines, List<Destination> destinations) {
         outputView.printLadderResult();
         outputView.printMessage(getHeader(participants));
         outputView.printMessage(getLadder(entireLines));
@@ -39,10 +39,10 @@ public class LadderIOHandler {
                 .collect(Collectors.joining(" "));
     }
 
-    private String getLadder(Lines entireLines){
+    private String getLadder(Lines entireLines) {
         List<Line> lines = entireLines.getLines();
         StringBuilder sb = new StringBuilder();
-        for(Line line : lines) {
+        for (Line line : lines) {
             sb.append("     |");
             printPoints(sb, line.getLine());
             sb.append(System.lineSeparator());
@@ -51,21 +51,21 @@ public class LadderIOHandler {
     }
 
     private void printPoints(StringBuilder sb, List<Boolean> points) {
-        for(Boolean point : points){
+        for (Boolean point : points) {
             sb.append(getPoint(point));
         }
     }
 
-    private String prependSpace(String value){
-        if(value.length() >= 5){
+    private String prependSpace(String value) {
+        if (value.length() >= 5) {
             return value;
         }
         String substring = "     ".substring(0, 5 - value.length());
         return substring + value;
     }
 
-    private String getPoint(Boolean point){
-        if(point){
+    private String getPoint(Boolean point) {
+        if (point) {
             return "-----|";
         }
         return "     |";

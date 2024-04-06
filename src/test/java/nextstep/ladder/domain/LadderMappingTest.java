@@ -13,6 +13,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class LadderMappingTest {
 
     LadderMapping testLadderMapping;
+
     @BeforeEach
     void setUp() {
         List<Participant> participants = List.of(new Participant("a"), new Participant("b"), new Participant("c"));
@@ -63,7 +64,7 @@ class LadderMappingTest {
 
     @Test
     @DisplayName("order 순서에 따라서 참여자들이 다시 재배치된다(a,b,c -> 2,1,0 => c,b,a)")
-    void reordering(){
+    void reordering() {
         List<Participant> participants = List.of(new Participant("a"), new Participant("b"), new Participant("c"));
         LadderMapping ladderMapping = new LadderMapping(participants, List.of(new Destination("1"), new Destination("2"), new Destination("3")));
         int[] orders = {2, 1, 0};

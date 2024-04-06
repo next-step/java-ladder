@@ -7,15 +7,15 @@ import java.util.stream.Collectors;
 
 public class InputView {
 
-    public Integer insertInt(){
+    public Integer insertInt() {
         return new Scanner(System.in).nextInt();
     }
 
-    public String insertString(){
+    public String insertString() {
         return new Scanner(System.in).nextLine();
     }
 
-    public List<String> insertStrings(){
+    public List<String> insertStrings() {
         String str = new Scanner(System.in).nextLine();
         return Arrays.stream(str.split(",")).collect(Collectors.toList());
     }

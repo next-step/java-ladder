@@ -9,7 +9,7 @@ class DestinationTest {
 
     @Test
     @DisplayName("실행결과가 null 또는 ''일 경우에 예외(null => IllegalArgumentException, '' => IllegalArgumentException)")
-    void null_or_empty(){
+    void null_or_empty() {
         assertThatThrownBy(() -> {
             new Destination(null);
         }).isInstanceOf(IllegalArgumentException.class);

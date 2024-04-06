@@ -15,8 +15,8 @@ public class ResultIOHandler {
         this.outputView = outputView;
     }
 
-    public void print(LadderMapping ladderMapping){
-        while(true){
+    public void print(LadderMapping ladderMapping) {
+        while (true) {
             outputView.printInputViewer();
             String viewer = inputView.insertString();
             printResult(ladderMapping, viewer);
@@ -24,18 +24,18 @@ public class ResultIOHandler {
     }
 
     private void printResult(LadderMapping ladderMapping, String viewer) {
-        if(viewer.equals("all")){
+        if (viewer.equals("all")) {
             printDto(ladderMapping.showAll());
             return;
         }
         printDto(ladderMapping.showResult(new Participant(viewer)));
     }
 
-    private void printDto(LadderMapping.MappingDto dto){
+    private void printDto(LadderMapping.MappingDto dto) {
         outputView.printMessage(dto.getDestination().toString());
     }
 
-    private void printDto(List<LadderMapping.MappingDto> dtos){
+    private void printDto(List<LadderMapping.MappingDto> dtos) {
         dtos.forEach(iter -> {
             outputView.printMessage(String.format("%s : %s", iter.getParticipant(), iter.getDestination()));
         });
