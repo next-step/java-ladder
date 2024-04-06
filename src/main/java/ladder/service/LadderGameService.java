@@ -1,9 +1,6 @@
 package ladder.service;
 
-import ladder.domain.Ladder;
-import ladder.domain.Player;
-import ladder.domain.Players;
-import ladder.domain.Prize;
+import ladder.domain.*;
 import ladder.dto.PrizeDto;
 import ladder.dto.StatusDto;
 import ladder.rowgenerator.RowGeneratorRandom;
@@ -34,15 +31,13 @@ public class LadderGameService {
     Ladder ladder = threadLocal.get();
     threadLocal.remove();
 
-    List<Prize> prizes = prizeTexts.stream()
+    Prizes prizes = new Prizes(prizeTexts.stream()
             .map(Prize::new)
-            .collect(Collectors.toList());
+            .collect(Collectors.toList()));
 
-    IntStream.range(0, players.size())
-            .forEach(startPosition -> results.put(
-                    players.nameAt(startPosition),
-                    new PrizeDto(prizes.get(ladder.finalPosition(startPosition))))
-            );
+    for (Player player : players) {
+      results.put(player.name(), new PrizeDto(prizes.prizeAt(player.moveTo(ladder))));
+    }
 
     return results;
   }
