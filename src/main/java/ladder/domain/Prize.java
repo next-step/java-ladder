@@ -1,9 +1,13 @@
 package ladder.domain;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Prize {
   private static final String FAILURE = "꽝";
+  private static final Pattern inputPattern = Pattern.compile("^(?:[1-9]\\d*|" + FAILURE + ")$");
+
   private final String value;
 
   public Prize(final String text) {
@@ -12,19 +16,13 @@ public class Prize {
   }
 
   private void validate(final String text) {
-    if (text == null || text.isEmpty()) {
-      throw new IllegalArgumentException("잘못된 경품 입력입니다.(공백)");
+    if (text == null) {
+      throw new IllegalArgumentException("잘못된 경품 입력입니다.");
     }
 
-    try {
-      if (Integer.parseInt(text) < 0) {
-        throw new IllegalArgumentException("잘못된 경품 입력입니다.(0보다 작은 값)");
-      }
-    } catch (NumberFormatException e) {
-      if (FAILURE.equals(text)) {
-        return;
-      }
-      throw new IllegalArgumentException("유효하지 않은 입력입니다.(숫자가 아닌 값)");
+    Matcher matcher = inputPattern.matcher(text);
+    if (!matcher.find()) {
+      throw new IllegalArgumentException("잘못된 경품 입력입니다.");
     }
   }
 

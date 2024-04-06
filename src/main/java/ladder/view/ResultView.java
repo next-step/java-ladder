@@ -1,10 +1,6 @@
 package ladder.view;
 
-import ladder.domain.*;
-import ladder.dto.LadderDto;
-import ladder.dto.PlayerDto;
-import ladder.dto.PrizeDto;
-import ladder.dto.RowDto;
+import ladder.dto.*;
 
 import java.util.List;
 import java.util.Map;

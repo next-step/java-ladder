@@ -1,5 +1,9 @@
-package ladder.domain;
+package ladder.dto;
 
+import ladder.domain.Ladder;
+import ladder.domain.Player;
+import ladder.domain.Players;
+import ladder.domain.Prize;
 import ladder.dto.LadderDto;
 import ladder.dto.PlayerDto;
 import ladder.dto.PrizeDto;

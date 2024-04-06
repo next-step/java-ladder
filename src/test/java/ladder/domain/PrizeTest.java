@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class PrizeTest {
   @ParameterizedTest
-  @ValueSource(strings = { "꽝", "3000", "0", })
+  @ValueSource(strings = { "꽝", "3000", "1" })
   void 경품_객체_정상_생성(String input) {
     new Prize(input);
   }
@@ -15,10 +15,13 @@ public class PrizeTest {
   @ParameterizedTest
   @CsvSource(
           value = {
-                  "광,유효하지 않은 입력입니다.(숫자가 아닌 값)",
-                  "-3000,잘못된 경품 입력입니다.(0보다 작은 값)",
-                  ",잘못된 경품 입력입니다.(공백)",
-                  "null,잘못된 경품 입력입니다.(공백)"
+                  "광,잘못된 경품 입력입니다.",
+                  "-3000,잘못된 경품 입력입니다.",
+                  "'',잘못된 경품 입력입니다.",
+                  "null,잘못된 경품 입력입니다.",
+                  "0030,잘못된 경품 입력입니다.",
+                  "0,잘못된 경품 입력입니다.",
+                  "123ABC,잘못된 경품 입력입니다."
           },
           nullValues = {"null"}
   )

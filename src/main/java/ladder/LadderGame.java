@@ -1,7 +1,11 @@
 package ladder;
 
-import ladder.domain.*;
+import ladder.domain.Ladder;
+import ladder.domain.Player;
+import ladder.domain.Players;
+import ladder.domain.Prize;
 import ladder.dto.PrizeDto;
+import ladder.dto.StatusDto;
 import ladder.rowgenerator.RowGeneratorRandom;
 
 import java.util.Arrays;
