@@ -1,9 +1,13 @@
 package ladder.util;
 
+import java.util.Random;
+
 public class RandomBooleanGenerator implements BooleanGenerator{
 
+    private final Random random = new Random();
+
     @Override
-    public Boolean generate(){
-        return Math.random() < 0.5;
+    public boolean generate(){
+        return random.nextBoolean();
     }
 }

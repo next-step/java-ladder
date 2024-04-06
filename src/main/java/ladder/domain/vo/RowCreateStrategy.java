@@ -1,5 +1,6 @@
 package ladder.domain.vo;
 
+@FunctionalInterface
 public interface RowCreateStrategy {
-    Boolean isPreviousBridgeExist();
+    boolean isPreviousBridgeExist();
 }

@@ -15,7 +15,7 @@ public class InputView {
         return StringSplitter.splitWithComma(playersNamesStrings);
     }
 
-    public static Integer getLadderHeight(){
+    public static int getLadderHeight(){
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         return SCANNER.nextInt();
     }

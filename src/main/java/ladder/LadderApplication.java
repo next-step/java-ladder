@@ -15,7 +15,7 @@ public class LadderApplication {
         List<String> playersNames = InputView.getPlayersNames();
         Players players = PlayerFactory.create(playersNames);
 
-        Integer height = InputView.getLadderHeight();
+        int height = InputView.getLadderHeight();
         Ladder ladder = new Ladder(players, height);
 
         OutputView.printLadderResult(ladder, players);

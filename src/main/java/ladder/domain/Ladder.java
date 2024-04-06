@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.domain.factory.PlayerFactory;
+import ladder.domain.factory.RowFactory;
 import ladder.domain.vo.Rows;
 
 import java.util.Collections;
@@ -10,30 +10,31 @@ import java.util.stream.IntStream;
 
 public class Ladder {
 
+    private static final int MIN_PLAYERS = 2;
+    private static final int MIN_HEIGHT = 2;
+
     private final List<Rows> rowsList;
 
-    public Ladder(List<String> playersNames,
-                  Integer height){
-        this(create(PlayerFactory.create(playersNames), height));
-    }
-
     public Ladder(Players players,
-                  Integer height){
-        this(create(players, height));
+                  int height){
+        this(createLadder(players, height));
     }
 
     public Ladder(List<Rows> rowsList) {
         this.rowsList = rowsList;
     }
 
-    private static List<Rows> create(Players players,
-                                     Integer height){
-        if (players.count() < 2)
+    private static List<Rows> createLadder(Players players,
+                                           int height){
+        if (players.count() < MIN_PLAYERS){
             throw new IllegalArgumentException("사다리 생성에 필요한 참가자는 최소 2명 이상이어야 합니다.");
-        if (height < 2)
+        }
+        if (height < MIN_HEIGHT){
             throw new IllegalArgumentException("사다리 높이는 최소 2 이상이어야 합니다.");
+        }
+
         return IntStream.range(0, height)
-                .mapToObj(i -> new Rows(players.count() - 1))
+                .mapToObj(i -> RowFactory.createRandom(players.count() - 1))
                 .collect(Collectors.toList());
     }
 
@@ -41,14 +42,15 @@ public class Ladder {
         return Collections.unmodifiableList(rowsList);
     }
 
-    public Integer height(){
+    public int height(){
         return rowsList.size();
     }
 
-    public Integer width(){
-        return rowsList().stream()
-                .findFirst()
-                .map(rows -> rows.rows().size())
-                .orElseThrow(() -> new IllegalStateException("알 수 없는 오류 입니다."));
+    public int width(){
+        if (rowsList.isEmpty()) {
+            throw new IllegalStateException("알 수 없는 오류 입니다.");
+        }
+
+        return rowsList.get(0).size();
     }
 }

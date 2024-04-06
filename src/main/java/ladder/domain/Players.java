@@ -6,18 +6,18 @@ import java.util.Objects;
 
 public class Players {
 
-    private final List<Player> players;
+    private final List<Player> playerList;
 
-    public Players(List<Player> players) {
-        this.players = players;
+    public Players(List<Player> playerList) {
+        this.playerList = playerList;
     }
 
     public List<Player> players(){
-        return Collections.unmodifiableList(players);
+        return Collections.unmodifiableList(playerList);
     }
 
-    public Integer count(){
-        return players.size();
+    public int count(){
+        return playerList.size();
     }
 
 
@@ -26,12 +26,12 @@ public class Players {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Players that = (Players) o;
-        return Objects.equals(players, that.players);
+        return Objects.equals(playerList, that.playerList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(players);
+        return Objects.hash(playerList);
     }
 }
 
