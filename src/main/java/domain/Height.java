@@ -4,22 +4,22 @@ import java.util.Objects;
 
 public class Height {
 
-    public static final int MIN_HEIGHT = 1;
+    private static final int MIN_HEIGHT = 0;
 
     private final int value;
 
     public Height(int value) {
-        assertGreaterThenMinHeight(value);
+        validateGreaterThenMinHeight(value);
         this.value = value;
     }
 
-    private static void assertGreaterThenMinHeight(int value) {
+    private static void validateGreaterThenMinHeight(int value) {
         if (value < MIN_HEIGHT) {
-            throw new IllegalArgumentException("높이는 1보다 커야합니다.");
+            throw new IllegalArgumentException("높이는 0보다 커야합니다.");
         }
     }
 
-    public int height() {
+    public int getHeight() {
         return this.value;
     }
 

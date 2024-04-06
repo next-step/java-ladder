@@ -3,20 +3,25 @@ package domain;
 public class Ladder {
 
     private final Lines lines;
-    private final Players players;
 
-    public Ladder(Lines lines, Players players) {
+    public Ladder(int playerCount, int height) {
+        this(Lines.of(playerCount, height));
+    }
+
+    public Ladder(Lines lines) {
         this.lines = lines;
-        this.players = players;
     }
 
-    public static Ladder of(Players players, Height height, BridgeCreationStrategy strategy) {
-        Lines lines = Lines.of(players.totalNumber(), height, strategy);
-        return new Ladder(lines, players);
-    }
-
-    public void display(LadderVisitor visitor) {
-        players.accept(visitor);
+    public void accept(LadderVisitor visitor) {
         lines.accept(visitor);
+    }
+
+    public Position getEndPositionByStartPosition(Position startPosition) {
+        Position position = startPosition;
+        while (position.getY() < lines.getHeight()) {
+            Position move = lines.move(position);
+            position = new Position(move.getX(), move.getY() + 1);
+        }
+        return position;
     }
 }

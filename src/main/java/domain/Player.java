@@ -24,6 +24,10 @@ public class Player {
         }
     }
 
+    public boolean isName(String name) {
+        return this.name.equals(name);
+    }
+
     @Override
     public String toString() {
         return name;

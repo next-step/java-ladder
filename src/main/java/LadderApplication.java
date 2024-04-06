@@ -1,7 +1,4 @@
-import domain.Height;
-import domain.Ladder;
-import domain.Players;
-import domain.RandomBridgeCreationStrategy;
+import domain.*;
 import view.InputView;
 import view.ResultView;
 
@@ -9,10 +6,16 @@ public class LadderApplication {
 
     public static void main(String[] args) {
         Players players = InputView.promptForPlayer();
+        Rewards rewards = InputView.promptForRewards();
         Height height = InputView.promptForHeight();
-        Ladder ladder = Ladder.of(players, height, new RandomBridgeCreationStrategy());
+        GameBoard gameBoard = GameBoard.of(players, height, new RandomBridgeCreationStrategy());
 
         ResultView resultView = new ResultView();
-        ladder.display(resultView);
+        gameBoard.display(resultView);
+        rewards.display(resultView);
+
+        Player player = InputView.promptForResult();
+        GameResult result = gameBoard.result(player, rewards);
+        resultView.print(result);
     }
 }

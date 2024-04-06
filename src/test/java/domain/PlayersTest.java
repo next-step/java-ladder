@@ -9,14 +9,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class PlayersTest {
 
+    public static final Players PS1 = new Players(List.of(PlayerTest.P1, PlayerTest.P2, PlayerTest.P3));
+
     @DisplayName("전체 플레이어의 인원을 구한다.")
     @Test
     void test01() {
-        Player player1 = new Player("pobi");
-        Player player2 = new Player("honux");
-        Player player3 = new Player("crong");
-        Players players = new Players(List.of(player1, player2, player3));
+        assertThat(PS1.totalNumber()).isEqualTo(3);
+    }
 
-        assertThat(players.totalNumber()).isEqualTo(3);
+    @DisplayName("특정 플레이어에 대한 위치를 구한다.")
+    @Test
+    void test02() {
+        Position position = PS1.getPosition(PlayerTest.P1);
+        assertThat(position).isEqualTo(new Position(0, 0));
     }
 }
