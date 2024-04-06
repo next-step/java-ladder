@@ -20,6 +20,11 @@ public class ViewHelper {
         return new Height(scanner.nextInt());
     }
 
+    public static ExecutionResults insertExecutionResults(){
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        return new ExecutionResults(scanner.nextLine());
+    }
+
 
     public static void printHeader(Participants participants){
         List<Name> name = participants.getName();
