@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PlayersTest {
 
@@ -18,4 +19,10 @@ class PlayersTest {
         assertThat(players.countOfPerson()).isEqualTo(playerNames.size());
     }
 
+    @DisplayName("참가자는 1명 이상이다")
+    @Test
+    void invalidPlayerCount() {
+        assertThatThrownBy(() -> Players.of(List.of()))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
