@@ -1,6 +1,8 @@
 package ladder.domain;
 
-import java.util.List;
+import ladder.domain.Ladder.Ladder;
+import ladder.domain.participants.Participants;
+import ladder.utils.SplitUtils;
 
 public class LadderGame {
 
@@ -8,11 +10,7 @@ public class LadderGame {
     private final Participants participants;
 
     public LadderGame(int height, String inputText) {
-        this(new Ladder(height, getLengthOfLadder(inputText)), new Participants(inputText) );
-    }
-
-    private static int getLengthOfLadder(String inputText) {
-        return inputText.split(",").length;
+        this(new Ladder(height, SplitUtils.split(inputText).length), new Participants(inputText) );
     }
 
     public LadderGame(Ladder ladder, Participants participants) {
@@ -20,7 +18,7 @@ public class LadderGame {
         this.participants = participants;
     }
 
-    public List<Gamer> doStart() {
+    public Participants doStart() {
         return this.participants.startGame(ladder);
     }
 
