@@ -2,6 +2,8 @@ package ladder.model;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
@@ -39,6 +41,14 @@ class LineTest {
         Line line = Line.of(List.of(true, false));
 
         assertThat(line.isConnectedLadder(1)).isFalse();
+    }
+
+    @ParameterizedTest(name = "해당 index에서 사다리를 한번 탈 경우 이동하는 거리를 반환")
+    @CsvSource(value = {"0:1", "1:-1", "2:0"}, delimiter = ':')
+    void testLine_moveByDistance_ShouldMoveLeft(int index, int movement) {
+        Line line = Line.of(List.of(true, false, false));
+
+        assertEquals(line.moveByDistance(index), movement);
     }
 
 }
