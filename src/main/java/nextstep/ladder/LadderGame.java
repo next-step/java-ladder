@@ -14,34 +14,41 @@ public class LadderGame {
     private static final String PLAYER_NAME_SPLIT_DELIMITER = ",";
 
     public static void main(String[] args) {
-        List<String> playerNames = inputPlayerNames();
-        int countOfPerson = playerNames.size();
-        int height = inputHeight();
-        List<Line> lines = createLines(countOfPerson, height);
+        String playerNames = inputPlayerNames();
+        Players players = Players.of(splitNames(playerNames));
 
-        printGameResults(playerNames, lines);
+        int height = inputHeight();
+        Lines lines = Lines.of(players.countOfPerson(), height);
+
+        printGameResults(players, lines);
     }
 
-    private static void printGameResults(List<String> players, List<Line> lines) {
+    private static List<String> splitNames(String playerNames) {
+        return Arrays.stream(playerNames.split(PLAYER_NAME_SPLIT_DELIMITER))
+                .collect(Collectors.toList());
+    }
+
+    private static void printGameResults(Players players, Lines lines) {
         System.out.println("실행결과");
         printPlayers(players);
         printLines(lines);
     }
 
-    private static void printPlayers(List<String> players) {
-        String collect = players.stream()
-                .map(name -> String.format(PRINT_FORMAT, name))
+    private static void printPlayers(Players players) {
+        String playerNames = IntStream.range(0, players.countOfPerson())
+                .mapToObj(players::getPlayer)
+                .map(player -> String.format(PRINT_FORMAT, player.getName()))
                 .collect(Collectors.joining());
 
-        System.out.println(collect);
+        System.out.println(playerNames);
     }
 
-    private static void printLines(List<Line> lines) {
-        String str = lines.stream()
-                .map(LadderGame::lineToString)
+    private static void printLines(Lines lines) {
+        String linesString = IntStream.range(0, lines.getHeight())
+                .mapToObj(targetHeight -> lineToString(lines.getLine(targetHeight)))
                 .collect(Collectors.joining(LINE_BREAK));
 
-        System.out.println(str);
+        System.out.println(linesString);
     }
 
     private static String lineToString(Line line) {
@@ -63,17 +70,9 @@ public class LadderGame {
         return 5; // TODO: input
     }
 
-    private static List<String> inputPlayerNames() {
+    private static String inputPlayerNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
 
-        String input = "pobi,honux,crong,jk"; // TODO: input
-        return Arrays.stream(input.split(PLAYER_NAME_SPLIT_DELIMITER))
-                .collect(Collectors.toList());
-    }
-
-    private static List<Line> createLines(int countOfPerson, int height) {
-        return IntStream.range(0, height)
-                .mapToObj(i -> Line.createLine(countOfPerson))
-                .collect(Collectors.toList());
+        return "pobi,honux,crong,jk"; // TODO: input
     }
 }
