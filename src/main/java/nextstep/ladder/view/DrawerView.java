@@ -1,9 +1,8 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.data.StepType;
-import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderGame;
 import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.Point;
 
 import java.util.List;
 
@@ -48,20 +47,32 @@ public class DrawerView {
                 .append(EMPTY)
                 .append(LADDER_POLE);
 
-        line.toList().forEach(
-                step -> stringBuffer
-                        .append(getStepWithStepType(step))
-                        .append(LADDER_POLE)
-        );
+        List<Point> points = line.toList();
+        for (int i = 1; i < points.size(); i++) {
+            stringBuffer.append(getStepWithStepType(points.get(i - 1), points.get(i)));
+        }
+
         return stringBuffer.toString();
     }
 
-    private String getStepWithStepType(StepType stepType) {
-        if (stepType == StepType.EMPTY) {
-            return EMPTY;
+    private String getStepWithStepType(Point beforePoint, Point currentPoint) {
+        if (beforePoint.isRight() && currentPoint.isLeft()) {
+            return STEP + LADDER_POLE;
         }
 
-        return STEP;
+        if (beforePoint.isLeft() && currentPoint.isStay()) {
+            return EMPTY + LADDER_POLE;
+        }
+
+        if (beforePoint.isStay() && currentPoint.isRight()) {
+            return EMPTY + LADDER_POLE;
+        }
+
+        if (beforePoint.isStay() && currentPoint.isStay()) {
+            return EMPTY + LADDER_POLE;
+        }
+
+        return EMPTY + LADDER_POLE;
     }
 
     private void printWinningResult(List<String> winningResults) {

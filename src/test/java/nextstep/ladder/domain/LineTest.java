@@ -1,47 +1,65 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.data.MoveDirection;
 import nextstep.ladder.data.StepType;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 
 class LineTest {
 
-    @DisplayName("이전 사다리의 발판(step)이 존재하면, 다음은 step이 없어야 한다. 전략이 맞지 않다면, IllegalArugmentException을 던진다.")
+    @DisplayName("첫 번째 Point는 항상 LeftSidePoint여야 한다.")
     @Test
-    void throwIllegalArgumentExceptionIfStepContinued() {
+    void leftAlwaysLeftSidePoint() {
+        // given
+        List<Point> points = List.of(
+                MiddlePoint.create(MoveDirection.STAY, MoveDirection.STAY),
+                RightSidePoint.create(MoveDirection.STAY, MoveDirection.STAY)
+        );
+
         // then
-        Assertions.assertThatThrownBy(() -> Line.of(List.of(StepType.STEP, StepType.STEP, StepType.STEP, StepType.STEP)))
+        assertThatThrownBy(() -> Line.of(points))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("참여자 수의 -1 만큼 위치가 존재한다.")
+    @DisplayName("마지막 Point는 항상 RightSidePoint여야 한다.")
     @Test
-    void sizeAsCountOfUsers() {
-        // when
-        Line line = Line.of(List.of(StepType.STEP, StepType.EMPTY, StepType.STEP, StepType.EMPTY));
+    void rightAlwaysRightSidePoint() {
+        // given
+        List<Point> points = List.of(
+                LeftSidePoint.create(MoveDirection.STAY),
+                MiddlePoint.create(MoveDirection.STAY, MoveDirection.STAY)
+        );
 
         // then
-        assertThat(line.toList()).hasSize(4);
+        assertThatThrownBy(() -> Line.of(points))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("시작 전 위치를 주면, 현재 Line에 대한 이동 시 결과를 반환한다.")
-    @Test
-    void getDestinationPointFromDepartPoint() {
-        Line line = Line.of(List.of(StepType.STEP, StepType.EMPTY, StepType.STEP, StepType.EMPTY));
-        // then
-        assertAll(
-            () -> assertThat(line.getDestinationFrom(0)).isEqualTo(1),
-            () -> assertThat(line.getDestinationFrom(1)).isEqualTo(0),
-            () -> assertThat(line.getDestinationFrom(2)).isEqualTo(3),
-            () -> assertThat(line.getDestinationFrom(3)).isEqualTo(2),
-            () -> assertThat(line.getDestinationFrom(4)).isEqualTo(4)
+    @ParameterizedTest
+    @CsvSource(value = {"0,0", "1,2", "2,1"}, delimiter = ',')
+    void getDestinationPointFromDepartPoint(int departPosition, int expected) {
+        // given
+        List<Point> points = List.of(
+                LeftSidePoint.create(MoveDirection.STAY),
+                MiddlePoint.create(MoveDirection.STAY, MoveDirection.RIGHT),
+                RightSidePoint.create(MoveDirection.RIGHT, MoveDirection.LEFT)
         );
+
+        // when
+        Line line = Line.of(points);
+
+        // then
+        assertThat(line.getDestinationFrom(departPosition)).isEqualTo(expected);
     }
 }
