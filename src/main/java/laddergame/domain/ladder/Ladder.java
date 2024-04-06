@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import static laddergame.exception.ExceptionMessage.WRONG_PLAYERS_AND_WINNING_CONTENTS_FOR_LADDER;
+import static laddergame.exception.ExceptionMessage.WRONG_PLAYERS_AND_WINNING_CONTENTS_FOR_LADDER_MESSAGE;
 
 public class Ladder {
     private final List<Line> lines;
@@ -38,7 +38,7 @@ public class Ladder {
 
     public ResultOfLadder resultOfLadder(PlayersAndWinningContents playersAndWinningContents) {
         if (!isValidPlayersAndWinningContents(playersAndWinningContents)) {
-            throw new IllegalArgumentException(WRONG_PLAYERS_AND_WINNING_CONTENTS_FOR_LADDER.message());
+            throw new IllegalArgumentException(WRONG_PLAYERS_AND_WINNING_CONTENTS_FOR_LADDER_MESSAGE.message());
         }
 
         Map<Player, WinningContent> results = new HashMap<>();

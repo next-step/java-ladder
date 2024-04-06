@@ -1,6 +1,9 @@
 package laddergame.view;
 
-import laddergame.domain.*;
+import laddergame.domain.Players;
+import laddergame.domain.PlayersAndWinningContents;
+import laddergame.domain.ResultOfLadder;
+import laddergame.domain.WinningContents;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.Line;
 
@@ -17,8 +20,6 @@ public class OutputView {
     private static final String PLAYER_FOR_RESULT_INPUT_GUIDE_MESSAGE = "결과를 보고 싶은 사람은?(종료를 입력하면 프로그램이 종료됩니다.)";
     private static final String END_LADDER_KEYWORD = "종료";
     private static final String EXECUTION_RESULT_MESSAGE = "실행결과";
-    private static final String NOT_EXIST_PLAYER = "존재하지 않는 참여자 입니다.";
-
     private static final String FRAME = "|";
     private static final String LINKED = "-----";
     private static final String UNLINKED = "     ";
@@ -160,9 +161,7 @@ public class OutputView {
                 executionResultMessageBuilder.append(NEXT_LINE)
                         .append(player.name())
                         .append(COLON_BETWEEN_BLANK)
-                        .append(resultOfLadder.winningContentOfPlayer(player)
-                                .map(WinningContent::winningContent)
-                                .orElse(NOT_EXIST_PLAYER))
+                        .append(resultOfLadder.winningContentOfPlayer(player))
         );
 
         return executionResultMessageBuilder.toString();
