@@ -6,12 +6,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class ParticipantsFactory {
+public class GamerFactory {
 
-    private ParticipantsFactory() {
+    private GamerFactory() {
     }
 
     public static List<Gamer> generateGamers(String[] names) {
-        return IntStream.range(0, names.length).mapToObj(num -> new Gamer(names[num], num)).collect(Collectors.toList());
+        return IntStream.range(0, names.length)
+                .mapToObj(num -> new Gamer(names[num], num))
+                .collect(Collectors.toList());
     }
 }
