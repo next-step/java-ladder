@@ -53,11 +53,9 @@ public class LadderGame {
   }
 
   public Map<String, PrizeDto> results() {
-    final HashMap<String, PrizeDto> results = new HashMap<>();
+    final Map<String, PrizeDto> results = new HashMap<>();
 
-    this.results.entrySet()
-            .stream()
-            .forEach(entry -> results.put(entry.getKey(), new PrizeDto(entry.getValue())));
+    this.results.forEach((key, value) -> results.put(key, new PrizeDto(value)));
 
     return results;
   }
