@@ -28,4 +28,8 @@ public class ExecutionResult {
     public int hashCode() {
         return Objects.hash(executionResult);
     }
+
+    public String getExecutionResult() {
+        return executionResult;
+    }
 }

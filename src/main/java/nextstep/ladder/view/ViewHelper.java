@@ -20,6 +20,14 @@ public class ViewHelper {
         return new Height(scanner.nextInt());
     }
 
+    public static void printBottom(ExecutionResults executionResults) {
+        List<ExecutionResult> results = executionResults.getExecutionResults();
+        String header = results.stream()
+                .map(iter -> prependSpace(iter.getExecutionResult()))
+                .collect(Collectors.joining(" "));
+        System.out.println(header);
+    }
+
     public static ExecutionResults insertExecutionResults(){
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         return new ExecutionResults(scanner.nextLine());
@@ -29,7 +37,7 @@ public class ViewHelper {
     public static void printHeader(Participants participants){
         List<Name> name = participants.getName();
         String header = name.stream()
-                .map(Name::toString)
+                .map(iter -> prependSpace(iter.getName()))
                 .collect(Collectors.joining(" "));
         System.out.println(header);
     }
@@ -60,5 +68,13 @@ public class ViewHelper {
             return "-----|";
         }
         return "     |";
+    }
+
+    private static String prependSpace(String value){
+        if(value.length() >= 5){
+            return value;
+        }
+        String substring = "     ".substring(0, 5 - value.length());
+        return substring + value;
     }
 }

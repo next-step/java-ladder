@@ -25,12 +25,7 @@ public class Name {
         return Objects.hash(name);
     }
 
-    @Override
-    public String toString() {
-        if(this.name.length() >= 5){
-            return this.name;
-        }
-        String substring = "     ".substring(0, 5 - name.length());
-        return substring + this.name;
+    public String getName() {
+        return name;
     }
 }

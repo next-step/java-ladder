@@ -47,4 +47,8 @@ public class ExecutionResults {
     public ExecutionResult getByOrder(int i) {
         return this.executionResults.get(i);
     }
+
+    public List<ExecutionResult> getExecutionResults() {
+        return executionResults;
+    }
 }

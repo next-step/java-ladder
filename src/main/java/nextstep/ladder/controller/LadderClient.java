@@ -15,5 +15,6 @@ public class LadderClient {
         printPlainMessage("실행결과");
         printHeader(participants);
         printLadder(new Lines(height.getSize(), participants.getSize()));
+        printBottom(executionResults);
     }
 }
