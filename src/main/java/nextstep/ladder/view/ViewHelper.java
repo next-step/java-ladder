@@ -6,18 +6,19 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class ViewHelper {
+import static nextstep.ladder.view.InputView.insertInt;
+import static nextstep.ladder.view.InputView.insertString;
 
-    public static Scanner scanner = new Scanner(System.in);
+public class ViewHelper {
 
     public static Participants insertParticipant(){
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        return new Participants(scanner.nextLine());
+        return new Participants(insertString());
     }
 
     public static Height insertHeight(){
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        return new Height(scanner.nextInt());
+        return new Height(insertInt());
     }
 
     public static void printBottom(ExecutionResults executionResults) {
@@ -30,7 +31,7 @@ public class ViewHelper {
 
     public static ExecutionResults insertExecutionResults(){
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
-        return new ExecutionResults(scanner.nextLine());
+        return new ExecutionResults(insertString());
     }
 
 
@@ -77,10 +78,9 @@ public class ViewHelper {
 
     public static void printResult(LadderMapping ladderMapping, Participants participants){
         while(true){
-            System.out.println("결과를 보고 싶은 사람은?");
-            String viewer = new Scanner(System.in).nextLine();
-            System.out.println();
-            System.out.println("실행 결과");
+            System.out.println(System.lineSeparator() + "결과를 보고 싶은 사람은?");
+            String viewer = insertString();
+            System.out.println(System.lineSeparator() + "실행 결과");
            if(viewer.equals("all")){
                 for (Participant iter : participants.getParticipants()) {
                     System.out.println(iter.getName() + " : " + ladderMapping.showResult(iter));
