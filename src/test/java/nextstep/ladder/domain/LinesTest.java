@@ -16,15 +16,7 @@ class LinesTest {
     @DisplayName("라인들은 사다리 높이 개만큼 존재(5 => 5)")
     @ValueSource(ints = {5, 6})
     void lines_size(int heightSize) {
-        Lines lines = new Lines(heightSize, 1);
-        assertThat(lines).isEqualTo(new Lines(generateLineBySize(heightSize)));
-    }
-
-    private List<Line> generateLineBySize(int size){
-        ArrayList<Line> lines = new ArrayList<>();
-        for(int i =0; i < size; i++){
-            lines.add(new Line(1));
-        }
-        return lines;
+        Lines lines = new Lines(heightSize, 2);
+        assertThat(lines.getLines().size()).isEqualTo(heightSize);
     }
 }
