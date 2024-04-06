@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.Ladder;
 
 import java.util.Objects;
 
@@ -11,11 +11,7 @@ public class Point {
     }
 
     public boolean isEqualToTrue(Point y) {
-        return y.express(this.isExist);
-    }
-
-    private boolean express(boolean b) {
-        return this.isExist && b;
+        return y.isExist && this.isExist;
     }
 
     public boolean isMovable() {
