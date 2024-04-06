@@ -16,8 +16,12 @@ public class Point {
         return new Point(false, rightMoveable);
     }
 
-    public static Point rightmostPoint(boolean leftMoveable) {
-        return new Point(leftMoveable, false);
+    public Point rightmostPoint() {
+        return new Point(this.right, false);
+    }
+
+    public Point nextPoint(boolean rightMoveable) {
+        return new Point(this.right, !this.right && rightMoveable);
     }
 
     public boolean canMoveLeft() {

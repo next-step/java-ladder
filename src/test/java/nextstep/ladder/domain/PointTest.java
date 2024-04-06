@@ -38,7 +38,7 @@ class PointTest {
     @DisplayName("가장 오른쪽 포인트는 오른쪽으로 이동할 수 없다")
     @Test
     void rightmostPoint() {
-        Point point = Point.rightmostPoint(true);
+        Point point = new Point(false, true).rightmostPoint();
 
         assertThat(point.canMoveRight()).isFalse();
     }

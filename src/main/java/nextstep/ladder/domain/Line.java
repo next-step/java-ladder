@@ -36,13 +36,9 @@ public class Line {
     }
 
     private static void assertConsecutivePointsAreMovable(List<Point> points, int i) {
-        if (!hasMovableConnectionToNext(points, i)) {
+        if (points.get(i).canMoveRight() && !points.get(i + 1).canMoveLeft()) {
             throw new IllegalArgumentException("연속된 점에서는 서로 이동 가능해야 합니다.");
         }
-    }
-
-    private static boolean hasMovableConnectionToNext(List<Point> points, int i) {
-        return points.get(i).canMoveRight() && points.get(i + 1).canMoveLeft();
     }
 
     private static Point firstPoint(List<Point> points) {

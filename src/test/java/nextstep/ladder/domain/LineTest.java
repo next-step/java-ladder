@@ -13,9 +13,10 @@ class LineTest {
     @DisplayName("포인트를 받아 라인을 생성한다")
     @Test
     void create() {
+        Point leftmostPoint = Point.leftmostPoint(true);
         List<Point> points = List.of(
-                Point.leftmostPoint(true),
-                Point.rightmostPoint(true)
+                leftmostPoint,
+                leftmostPoint.rightmostPoint()
         );
         Line line = new Line(points);
 

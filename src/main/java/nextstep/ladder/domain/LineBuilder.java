@@ -3,8 +3,6 @@ package nextstep.ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class LineBuilder {
 
@@ -18,35 +16,22 @@ public class LineBuilder {
                 .build();
     }
 
-    private LineBuilder addPoint(Point point) {
-        points.add(point);
-        return this;
-    }
-
     private Line build() {
-        points.add(Point.rightmostPoint(lastPoint().canMoveLeft()));
+        points.add(lastPoint().rightmostPoint());
         return new Line(points);
     }
 
     private LineBuilder addRandomMoveablePoints(int countOfMiddlePoint) {
-        points.addAll(generateMiddlePoints(countOfMiddlePoint));
+        for (int i = 0; i < countOfMiddlePoint; i++) {
+            Point point = lastPoint().nextPoint(RANDOM.nextBoolean());
+            points.add(point);
+        }
         return this;
     }
 
     private LineBuilder initRandomMoveablePoint() {
-        return addPoint(Point.leftmostPoint(RANDOM.nextBoolean()));
-    }
-
-    private List<Point> generateMiddlePoints(int count) {
-        return IntStream.range(0, count)
-                .mapToObj(i -> generateMiddlePoint())
-                .collect(Collectors.toList());
-    }
-
-    private Point generateMiddlePoint() {
-        boolean leftMoveable = lastPoint().canMoveRight();
-        boolean rightMoveable = !leftMoveable && RANDOM.nextBoolean();
-        return new Point(leftMoveable, rightMoveable);
+        points.add(Point.leftmostPoint(RANDOM.nextBoolean()));
+        return this;
     }
 
     private Point lastPoint() {
