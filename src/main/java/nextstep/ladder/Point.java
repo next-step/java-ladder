@@ -11,4 +11,12 @@ public class Point {
         this.left = left;
         this.right = right;
     }
+
+    public boolean canMoveLeft() {
+        return left;
+    }
+
+    public boolean canMoveRight() {
+        return right;
+    }
 }
