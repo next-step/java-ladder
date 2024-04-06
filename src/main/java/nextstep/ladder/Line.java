@@ -27,17 +27,25 @@ public class Line {
         points.add(Point.leftmostPoint(moveable));
 
         boolean leftMoveable = moveable;
-        for (int i = 1; i < count - 2; i++) {
+        for (int i = 0; i < count - 2; i++) {
             boolean rightMoveable = RANDOM.nextBoolean();
             if (leftMoveable) {
                 rightMoveable = false;
             }
-            points.add(new Point(moveable, rightMoveable));
+            points.add(new Point(leftMoveable, rightMoveable));
             leftMoveable = rightMoveable;
         }
 
         points.add(Point.rightmostPoint(leftMoveable));
 
         return points;
+    }
+
+    public int size() {
+        return points.size();
+    }
+
+    public Point getPoint(int index) {
+        return points.get(index);
     }
 }
