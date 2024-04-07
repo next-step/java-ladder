@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 class LinesTest {
 
     @Test
-    void 사다리높이와_사다리연결명령이_전달될때_높이만큼_라인이_생겨야_한다() {
+    void 사다리높이와_LadderConnectOrder가_전달될때_높이만큼_라인이_생겨야_한다() {
         int height = 3;
         Lines sutLines = new Lines(height, createLadderConnectOrders(height, 4));
 
