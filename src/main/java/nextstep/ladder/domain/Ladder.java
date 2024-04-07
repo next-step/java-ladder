@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Ladder {
-    private final LadderHeight height;
 
     private final List<Line> lines;
 
@@ -14,10 +13,10 @@ public class Ladder {
 
 
     public Ladder(int height, int length, LineGenerator lineGenerator, List<String> results) {
-        this.height = new LadderHeight(height);
+        LadderHeight ladderHeight = new LadderHeight(height);
         this.ladderResult = new LadderResult(results, length);
         this.lines = Stream.generate(() -> new Line(length, lineGenerator))
-                .limit(height)
+                .limit(ladderHeight.getHeight())
                 .collect(Collectors.toUnmodifiableList());
     }
 
@@ -50,7 +49,7 @@ public class Ladder {
 
 
     public int getHeight() {
-        return height.getHeight();
+        return lines.size();
     }
 
     public List<Line> getLines() {

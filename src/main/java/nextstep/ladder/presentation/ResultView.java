@@ -49,7 +49,7 @@ public class ResultView {
             result.append(emptyBridge);
         });
 
-//        result.delete(result.length() - repeatCount, result.length());
+        result.delete(result.length() - repeatCount, result.length());
 
         return result.toString();
     }
