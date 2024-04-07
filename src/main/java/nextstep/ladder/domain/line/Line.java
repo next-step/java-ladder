@@ -44,19 +44,19 @@ public class Line {
     }
 
     private boolean isValidUserIndexSize(int userIndex) {
-        return userIndex < points.size() ? true : false;
+        return userIndex < points.size();
     }
 
     private boolean isRightTrue(int userIndex) {
-        return points.get(userIndex).isPointTrue() ? true : false;
+        return points.get(userIndex).isPointTrue();
     }
 
     private boolean isValidUserIndexPositive(int userIndex) {
-        return userIndex > 0 ? true : false;
+        return userIndex > 0;
     }
 
     private boolean isLeftTrue(int userIndex) {
-        return points.get(userIndex - 1).isPointTrue() ? true : false;
+        return points.get(userIndex - 1).isPointTrue();
     }
 
     public List<Point> getPoints() {
