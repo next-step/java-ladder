@@ -14,6 +14,5 @@ public class LadderMain {
 		Ladder ladder = OutputView.printLadderResult(users, ladderHeight, results);
 		String matchUser = InputView.getMatchUser();
 		OutputView.printResult(ladder, matchUser);
-
 	}
 }

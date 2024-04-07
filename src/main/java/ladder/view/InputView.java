@@ -14,12 +14,12 @@ public class InputView {
 
 	public static Users getPlayerNames() {
 		print(PLAYER_NAMES_MESSAGE);
-		return Users.createUsers(scanner.nextLine());
+		return Users.createUsers(scanner.next());
 	}
 
 	public static Results getResults(Users users) {
 		print(RESULT_NAMES_MESSAGE);
-		return Results.createResults(scanner.nextLine(), users.getCountOfPerson());
+		return Results.createResults(scanner.next(), users.getCountOfPerson());
 	}
 
 	public static int getLadderHeight() {
@@ -29,7 +29,7 @@ public class InputView {
 
 	public static String getMatchUser() {
 		print(RESULT_NAME_MESSAGE);
-		return scanner.nextLine();
+		return scanner.next();
 	}
 
 	private static void print(String message) {

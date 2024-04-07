@@ -1,5 +1,6 @@
 package ladder.domain.ladder;
 
+import ladder.domain.ladder.point.PointAddStrategy;
 import ladder.domain.result.Result;
 import ladder.domain.result.Results;
 import ladder.domain.user.User;
@@ -10,23 +11,18 @@ import java.util.List;
 
 public class Ladder {
 	private final Height height;
-	private final List<Line> lines;
+	private final Lines lines;
 	private final Users users;
 	private final Results results;
 
-	public Ladder(Height height, List<Line> lines, Users users, Results results) {
+	public Ladder(Height height, Users users, Results results, PointAddStrategy pointAddStrategy) {
 		this.height = height;
-		this.lines = lines;
 		this.users = users;
 		this.results = results;
+		this.lines = Lines.createLines(height.getHeight(), users.getSize(), pointAddStrategy);
 	}
-
-	public static Ladder createLadder(Height height, Users users, Results results) {
-		List<Line> lines = new ArrayList<>();
-		for (int i = 0; i < height.getHeight(); i++) {
-			lines.add(Line.createLine(users.getCountOfPerson()));
-		}
-		return new Ladder(height, lines, users, results);
+	public static Ladder createLadder(Height height, Users users, Results results, PointAddStrategy pointAddStrategy) {
+		return new Ladder(height, users, results, pointAddStrategy);
 	}
 
 	public int getHeight() {
@@ -34,7 +30,7 @@ public class Ladder {
 	}
 
 	public List<Line> getLines() {
-		return lines;
+		return lines.getLines();
 	}
 
 	public List<User> getUsers() {
@@ -43,5 +39,9 @@ public class Ladder {
 
 	public List<Result> getResults() {
 		return results.getResults();
+	}
+
+	public String getMatchResult(String matchUser) {
+		return null;
 	}
 }

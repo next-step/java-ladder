@@ -2,7 +2,8 @@ package ladder.view;
 
 import ladder.domain.ladder.Height;
 import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.PointEnum;
+import ladder.domain.ladder.point.PointEnum;
+import ladder.domain.ladder.point.RandomPointAdd;
 import ladder.domain.result.Result;
 import ladder.domain.result.Results;
 import ladder.domain.user.User;
@@ -15,7 +16,7 @@ public class OutputView {
 		System.out.println("사다리 결과");
 		System.out.println("");
 
-		Ladder ladder = Ladder.createLadder(Height.createHeight(ladderHeight), users, results);
+		Ladder ladder = Ladder.createLadder(Height.createHeight(ladderHeight), users, results, new RandomPointAdd());
 
 		ladder.getUsers().stream()
 				.map(User::getNameWithSpace)
@@ -51,6 +52,6 @@ public class OutputView {
 
 	public static void printResult(Ladder ladder, String matchUser) {
 		System.out.println("실행 결과");
-
+		System.out.println(ladder.getMatchResult(matchUser));
 	}
 }

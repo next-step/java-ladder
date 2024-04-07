@@ -1,5 +1,7 @@
 package ladder.domain.user;
 
+import java.util.Objects;
+
 public class User {
 	private static final int NAME_LENGTH_MAX_NUMBER = 5;
 	private final String name;
@@ -25,4 +27,21 @@ public class User {
 	public String getNameWithSpace() {
 		return String.format("%-" + 6 + "s", name);
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		User user = (User) o;
+		return Objects.equals(name, user.name);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(name);
+	}
+
+    public boolean isMatchUser(String matchUser) {
+		return name.equals(matchUser);
+    }
 }
