@@ -40,12 +40,13 @@ public class LadderTest {
 		Results results = new Results("꽝,5000,꽝,3000", users.getCountOfPerson());
 
 		/**
+		 *
 		 * pobi  honux crong   jk
-		 *     |-----|     |-----|
-		 *     |     |-----|     |
-		 *     |-----|     |     |
-		 *     |     |-----|     |
-		 *     |-----|     |-----|
+		 *     |-----|     |-----|012 0123
+		 *     |     |-----|     |345 4567
+		 *     |-----|     |     |678 89011
+		 *     |     |-----|     |91011 12131415
+		 *     |-----|     |-----|121314 16171819
 		 * 꽝    5000  꽝    3000
 		 */
 		List<PointEnum> points = new ArrayList<>();

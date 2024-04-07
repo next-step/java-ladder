@@ -42,12 +42,4 @@ public enum PointEnum {
         return point.equals(TRUE);
 
     }
-
-    public boolean isRight() {
-        return this.equals(TRUE);
-    }
-
-    public boolean isLeft() {
-        return this.equals(FALSE);
-    }
 }

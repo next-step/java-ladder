@@ -16,6 +16,10 @@ public class Lines {
         return lines;
     }
 
+    public Line getLine(int index) {
+        return lines.get(index);
+    }
+
     public static Lines createLines(int height, int countOfPerson, PointAddStrategy pointAddStrategy) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {

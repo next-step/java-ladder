@@ -6,42 +6,44 @@ import ladder.domain.result.Results;
 import ladder.domain.user.User;
 import ladder.domain.user.Users;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
-	private final Height height;
-	private final Lines lines;
-	private final Users users;
-	private final Results results;
+    private final Height height;
+    private final Lines lines;
+    private final Users users;
+    private final Results results;
 
-	public Ladder(Height height, Users users, Results results, PointAddStrategy pointAddStrategy) {
-		this.height = height;
-		this.users = users;
-		this.results = results;
-		this.lines = Lines.createLines(height.getHeight(), users.getSize(), pointAddStrategy);
-	}
-	public static Ladder createLadder(Height height, Users users, Results results, PointAddStrategy pointAddStrategy) {
-		return new Ladder(height, users, results, pointAddStrategy);
-	}
+    public Ladder(Height height, Users users, Results results, PointAddStrategy pointAddStrategy) {
+        this.height = height;
+        this.users = users;
+        this.results = results;
+        this.lines = Lines.createLines(height.getHeight(), users.getSize(), pointAddStrategy);
+    }
 
-	public int getHeight() {
-		return height.getHeight();
-	}
+    public static Ladder createLadder(Height height, Users users, Results results, PointAddStrategy pointAddStrategy) {
+        return new Ladder(height, users, results, pointAddStrategy);
+    }
 
-	public List<Line> getLines() {
-		return lines.getLines();
-	}
+    public int getHeight() {
+        return height.getHeight();
+    }
 
-	public List<User> getUsers() {
-		return users.getUsers();
-	}
+    public List<Line> getLines() {
+        return lines.getLines();
+    }
 
-	public List<Result> getResults() {
-		return results.getResults();
-	}
+    public List<User> getUsers() {
+        return users.getUsers();
+    }
 
-	public String getMatchResult(String matchUser) {
-		return null;
-	}
+    public List<Result> getResults() {
+        return results.getResults();
+    }
+
+    public String getMatchResult(String matchUser) {
+        int index = users.findUserIndex(matchUser);
+        lines.getLines().forEach(line -> line.move(index));
+        return results.getResult(index).getValue();
+    }
 }
