@@ -27,7 +27,7 @@ public class Participants {
         this.gamers = gamers;
     }
 
-    public List<Gamer> getNames() {
+    public List<Gamer> getGamers() {
         return Collections.unmodifiableList(gamers);
     }
 

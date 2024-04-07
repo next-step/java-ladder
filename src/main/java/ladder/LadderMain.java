@@ -27,10 +27,7 @@ public class LadderMain {
 
         Name targetName = inputView.getGamerName();
 
-        Records test = results.recordResult(participants);
-        if (targetName.equals(new Name("all"))) {
-            drawView.drawGameResult(test);
-        }
-        drawView.drawGameResult(test.find(targetName));
+        Records gameRecords = results.recordResult(participants);
+        drawView.drawGameRecords(targetName, gameRecords);
     }
 }
