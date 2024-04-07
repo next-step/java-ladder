@@ -1,12 +1,12 @@
-package nextstep.ladder.ladderConnectOrder.impl;
+package nextstep.ladder.domain.ladderConnectOrder.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import nextstep.ladder.domain.ladderConnectOrder.LadderConnectOrder;
 import nextstep.ladder.domain.line.Point;
-import nextstep.ladder.ladderConnectOrder.LadderConnectOrder;
 
 public class RandomLadderConnectOrder implements LadderConnectOrder {
 
