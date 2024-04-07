@@ -23,13 +23,13 @@ public class Line {
 
     public static Line generateLine(int countOfPerson, LineGeneratorStrategy generator) {
         final List<Boolean> bridge = Stream
-                .iterate(generator.nextBoolean(), previous -> Line.getNextLine(previous, generator))
+                .iterate(generator.nextBoolean(), previous -> Line.getNextBridge(previous, generator))
                 .limit(countOfPerson - 1)
                 .collect(Collectors.toList());
         return new Line(bridge);
     }
 
-    private static boolean getNextLine(boolean previous, LineGeneratorStrategy generator) {
+    private static boolean getNextBridge(boolean previous, LineGeneratorStrategy generator) {
         return !previous && generator.nextBoolean();
     }
 

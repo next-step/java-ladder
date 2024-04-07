@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import java.util.Objects;
+
 public class Name {
     private final static int MAX_NAME_LENGTH = 5;
     private final static int MIN_NAME_LENGTH = 1;
@@ -29,5 +31,18 @@ public class Name {
     @Override
     public String toString() {
         return this.value;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Name name = (Name) o;
+        return Objects.equals(value, name.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
     }
 }

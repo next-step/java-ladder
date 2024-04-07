@@ -1,0 +1,5 @@
+package ladder;
+
+class GameResultTest {
+
+}

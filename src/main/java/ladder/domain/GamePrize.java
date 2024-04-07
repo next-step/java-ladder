@@ -42,4 +42,8 @@ public class GamePrize {
     public List<String> getPrize() {
         return prize;
     }
+
+    public String prizeOf(int index) {
+        return prize.get(index);
+    }
 }
