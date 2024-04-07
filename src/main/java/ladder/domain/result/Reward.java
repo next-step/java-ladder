@@ -6,20 +6,20 @@ import java.util.Objects;
 
 public class Reward {
 
-    private final Item item;
+    private final Prize prize;
     private final Position position;
 
     public Reward(String item, int index) {
-        this(new Item(item), new Position(index));
+        this(new Prize(item), new Position(index));
     }
 
-    public Reward(Item item, Position position) {
-        this.item = item;
+    public Reward(Prize prize, Position position) {
+        this.prize = prize;
         this.position = position;
     }
 
-    public Item getItem() {
-        return item;
+    public Prize getItem() {
+        return prize;
     }
 
     public boolean isSamePosition(Position position) {
@@ -31,11 +31,11 @@ public class Reward {
         if (this == o) return true;
         if (!(o instanceof Reward)) return false;
         Reward reward = (Reward) o;
-        return Objects.equals(item, reward.item) && Objects.equals(position, reward.position);
+        return Objects.equals(prize, reward.prize) && Objects.equals(position, reward.position);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(item, position);
+        return Objects.hash(prize, position);
     }
 }
