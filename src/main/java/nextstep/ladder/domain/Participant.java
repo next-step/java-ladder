@@ -27,7 +27,12 @@ public class Participant {
         return Objects.hash(name);
     }
 
-    public Name getName() {
-        return name;
+    public String getName() {
+        return name.getName();
+    }
+
+    @Override
+    public String toString() {
+        return this.getName();
     }
 }

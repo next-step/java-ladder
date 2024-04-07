@@ -6,7 +6,7 @@ public class Name {
     private final String name;
 
     public Name(String name) {
-        if(name == null || "".equals(name)){
+        if (name == null || "".equals(name)) {
             throw new IllegalArgumentException();
         }
         this.name = name;
@@ -25,12 +25,12 @@ public class Name {
         return Objects.hash(name);
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public String toString() {
-        if(this.name.length() >= 5){
-            return this.name;
-        }
-        String substring = "     ".substring(0, 5 - name.length());
-        return substring + this.name;
+        return this.name;
     }
 }
