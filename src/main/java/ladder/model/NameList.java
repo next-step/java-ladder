@@ -2,12 +2,14 @@ package ladder.model;
 
 import ladder.model.utils.StringToListConverter;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 
 public class NameList {
     private static final String NAME_PATTERN = "^[a-zA-Z]*$";
-    private static List<String> nameList;
+    private List<String> nameList;
 
     public NameList(String nameList) {
         this.nameList = StringToListConverter.toList(nameList);
@@ -16,22 +18,22 @@ public class NameList {
         checkLength();
     }
 
-    private static void checkDuplicate() {
+    private void checkDuplicate() {
         if (nameList.size() != nameList.stream().distinct().count()) {
             throw new IllegalArgumentException("이름은 중복일수 없습니다.");
         }
     }
 
-    private static void checkPattern() {
+    private void checkPattern() {
         nameList.stream()
                 .filter(name -> !Pattern.matches(NAME_PATTERN, name))
                 .findFirst()
                 .ifPresent(name -> {
-                    throw new IllegalArgumentException("아이디는 영어 대소문자 / 숫자만 포함 가능.");
+                    throw new IllegalArgumentException("이름은 영어 대소문자 / 숫자만 포함 가능.");
                 });
     }
 
-    private static void checkLength() {
+    private void checkLength() {
         nameList.stream()
                 .filter(name -> name.length() > 5)
                 .findFirst()
@@ -47,4 +49,14 @@ public class NameList {
     public List<String> getNameList() {
         return nameList;
     }
+
+    public NameList swapPoints(int index) {
+        if (index < 0 || index >= nameList.size() - 1) {
+            throw new IllegalArgumentException("경계 초과");
+        }
+        List<String> newList = new ArrayList<>(nameList);
+        Collections.swap(newList, index, index + 1);
+        return new NameList(String.join(",", newList));
+    }
+
 }
