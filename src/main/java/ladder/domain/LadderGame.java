@@ -1,33 +1,32 @@
 package ladder.domain;
 
+import ladder.domain.Ladder.Ladder;
+import ladder.domain.participants.Participants;
+import ladder.utils.SplitUtils;
+
 public class LadderGame {
 
     private final Ladder ladder;
-    private final Participant participant;
+    private final Participants participants;
 
     public LadderGame(int height, String inputText) {
-        this(new Ladder(height, getLengthOfLadder(inputText)), new Participant(inputText) );
+        this(new Ladder(height, SplitUtils.split(inputText).length), new Participants(inputText) );
     }
 
-    private static int getLengthOfLadder(String inputText) {
-        return inputText.split(",").length;
-    }
-
-    public LadderGame(Ladder ladder, Participant participant) {
+    public LadderGame(Ladder ladder, Participants participants) {
         this.ladder = ladder;
-        this.participant = participant;
+        this.participants = participants;
+    }
+
+    public Participants doStart() {
+        return this.participants.startGame(ladder);
     }
 
     public Ladder getLadder() {
         return ladder;
     }
 
-    public Participant getParticipant() {
-        return participant;
-    }
-
-    @Override
-    public String toString() {
-        return participant.toString() + "\n" + ladder.toString();
+    public Participants getParticipant() {
+        return participants;
     }
 }
