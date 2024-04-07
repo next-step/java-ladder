@@ -23,7 +23,7 @@ public class PlayersAndWinningContents {
         }
     }
 
-    public int numberOfLinks() {
+    public int numberOfLinkedUnLinked() {
         return players.numberOfPlayers() - 1;
     }
 

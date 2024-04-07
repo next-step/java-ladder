@@ -22,6 +22,6 @@ class PlayersAndWinningContentsTest {
         WinningContents winningContents = newWinningContents("100", "꽝", "1000");
         PlayersAndWinningContents playersAndWinningContents = new PlayersAndWinningContents(players, winningContents);
 
-        assertThat(playersAndWinningContents.numberOfLinks()).isEqualTo(players.numberOfPlayers() - 1);
+        assertThat(playersAndWinningContents.numberOfLinkedUnLinked()).isEqualTo(players.numberOfPlayers() - 1);
     }
 }
