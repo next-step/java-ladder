@@ -24,8 +24,8 @@ public class LineTest {
     @Test
     @DisplayName("라인 생성 테스트")
     void lineConstructTest() {
-        Line line = new Line(List.of(new Point(false),new Point(true),new Point(false)));
-        assertThat(line.pointToBoolean()).containsExactly(false,true,false);
+        Line line = new Line(List.of(new Point(false), new Point(true), new Point(false)));
+        assertThat(line.pointToBoolean()).containsExactly(false, true, false);
     }
 
 }

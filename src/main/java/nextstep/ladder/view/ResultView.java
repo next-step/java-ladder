@@ -38,13 +38,13 @@ public class ResultView {
     }
 
     private static void printLine(Boolean point) {
-        if(point) {
+        if (point) {
             System.out.print(LINE);
         }
     }
 
     private static void printGap(Boolean point) {
-        if(!point) {
+        if (!point) {
             System.out.print(GAP);
         }
     }
