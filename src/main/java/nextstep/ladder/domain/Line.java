@@ -15,19 +15,23 @@ public class Line {
 
     public Line(int countOfPerson) {
         this.points = new ArrayList<>(countOfPerson);
+        Point beforePoint = new Point(RandomLine::getRandomValue);
+        points.add(beforePoint);
 
-        points.add(new Point(RandomLine::getRandomValue));
+        boolean isBeforePoint = beforePoint.isActive();
 
         for (int i = 1; i < countOfPerson - 1; i++) {
-            int prevIndex = i - 1;
-            points.add(new Point(() -> isBeforeDrawLine(prevIndex)));
+            boolean finalIsBeforePoint = isBeforePoint;
+            Point currentPoint = new Point(() -> isBeforeDrawLine(finalIsBeforePoint));
+            points.add(currentPoint);
+            isBeforePoint = currentPoint.isActive();
         }
 
         checkOverLabLine();
     }
 
-    private boolean isBeforeDrawLine(int prevIndex) {
-        return !findPoint(prevIndex).isActive() && RandomLine.getRandomValue();
+    private boolean isBeforeDrawLine(boolean isBeforePoint) {
+        return !isBeforePoint && RandomLine.getRandomValue();
     }
 
     private Point findPoint(int index) {
