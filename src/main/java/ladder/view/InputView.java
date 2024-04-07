@@ -10,9 +10,19 @@ public class InputView {
     return inputLine();
   }
 
-  public static int maxLadderHeight() {
+  public static String maxLadderHeight() {
     printOutInputMessage("최대 사다리 높이는 몇 개인가요?");
-    return inputSingleNumber();
+    return inputLine();
+  }
+
+  public static String prizes() {
+    printOutInputMessage("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요.)");
+    return inputLine();
+  }
+
+  public static String wantResultOf() {
+    printOutInputMessage("결과를 보고싶은 사람은?");
+    return inputLine();
   }
 
   private static void printOutInputMessage(final String message) {
@@ -21,9 +31,5 @@ public class InputView {
 
   public static String inputLine() {
     return scanner.nextLine();
-  }
-
-  public static int inputSingleNumber() {
-    return scanner.nextInt();
   }
 }

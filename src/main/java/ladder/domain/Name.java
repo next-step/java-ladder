@@ -2,9 +2,10 @@ package ladder.domain;
 
 import java.util.HashMap;
 import java.util.Map;
-
 public class Name {
   private static final Map<String, Name> cache = new HashMap<>();
+
+  private static final int MAX_LENGTH = 5;
 
   private final String value;
 
@@ -26,12 +27,9 @@ public class Name {
   }
 
   private boolean isIllegalName(String name) {
-    final int MAX_LENGTH = 5;
-
-    if (name.length() > MAX_LENGTH || name.isEmpty()) {
-      return true;
-    }
-    return false;
+    return name == null ||
+            name.length() > MAX_LENGTH ||
+            name.isEmpty();
   }
 
   public String value() {

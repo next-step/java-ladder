@@ -5,21 +5,20 @@ import ladder.domain.Row;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.IntStream;
 
 public class RowGeneratorRandom implements RowGenerator {
-  private final Random random = new Random();
-  private final int size;
+  private final Random random = ThreadLocalRandom.current();
 
-  public RowGeneratorRandom(final int size) {
-    this.size = size;
+  public RowGeneratorRandom() {
   }
 
   @Override
-  public Row generate() {
-    List<Boolean> row = new ArrayList<>(this.size);
+  public Row generate(final Integer size) {
+    List<Boolean> row = new ArrayList<>(size);
 
-    IntStream.range(0, this.size)
+    IntStream.range(0, size)
             .forEach(i -> row.add(rowValue(row, i)));
 
     return Row.of(row);

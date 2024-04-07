@@ -8,7 +8,7 @@ public class RowGeneratorRandomTest {
   @ParameterizedTest
   @ValueSource(ints = { 3, 4, 5, 6, 20 })
   void 무작위로_사다리행_생성(final int input) {
-    RowGeneratorRandom generator = new RowGeneratorRandom(input);
-    Assertions.assertThat(generator.generate().size()).isEqualTo(input);
+    RowGeneratorRandom generator = new RowGeneratorRandom();
+    Assertions.assertThat(generator.generate(input).size()).isEqualTo(input);
   }
 }

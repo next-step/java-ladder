@@ -2,6 +2,7 @@ package ladder.rowgenerator;
 
 import ladder.domain.Row;
 
+@FunctionalInterface
 public interface RowGenerator {
-  public Row generate();
+  Row generate(final Integer size);
 }

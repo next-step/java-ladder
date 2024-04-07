@@ -4,10 +4,14 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Players implements Iterable<Player> {
-  private final List<Player> players;
+  private final List<Player> values;
 
-  public Players(List<Player> players) {
-    this.players = players;
+  public Players(List<Player> values) {
+    this.values = values;
+  }
+
+  public List<Player> values() {
+    return this.values;
   }
 
   @Override
@@ -20,12 +24,15 @@ public class Players implements Iterable<Player> {
 
     @Override
     public boolean hasNext() {
-      return cursor < players.size();
+      return cursor < values.size();
     }
 
     @Override
     public Player next() {
-      return players.get(cursor++);
+      if (hasNext()) {
+        return values.get(cursor++);
+      }
+      throw new IllegalStateException("더 이상 불러올 요소가 없습니다.");
     }
   }
 }
