@@ -9,8 +9,7 @@
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
 
 ## 요구사항 명세서
-![img.png](img.png)
-
+![](LadderGameImage.png)
 ###  LadderConnectOrder
 
 **기능**
