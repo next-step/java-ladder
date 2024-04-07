@@ -1,7 +1,5 @@
 package nextstep.ladder.domain.line;
 
-import nextstep.ladder.utils.RandomGenerator;
-
 public class Point {
 
     private final boolean point;
@@ -18,9 +16,9 @@ public class Point {
         return point;
     }
 
-    public Point decideNextPoint() {
+    public Point decideNextPoint(Boolean randomBoolean) {
         if (!point) {
-            return new Point(RandomGenerator.createRandomBoolean());
+            return new Point(randomBoolean);
         }
         return new Point(false);
     }
