@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.service;
 
 import java.util.List;
 

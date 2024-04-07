@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 
+import nextstep.ladder.service.LadderService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
