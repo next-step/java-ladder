@@ -6,7 +6,7 @@ import nextstep.ladder.error.exception.UserSizeEmptyException;
 
 public class Users {
 
-    private List<User> users;
+    private final List<User> users;
 
     public Users(String... userNames) {
         this(toUsers(userNames));
@@ -25,6 +25,10 @@ public class Users {
             users.add(new User(userName));
         }
         return users;
+    }
+
+    public User findUser(int userIndex){
+        return users.get(userIndex);
     }
 
     public int size() {

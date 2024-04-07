@@ -10,6 +10,12 @@ import org.junit.jupiter.api.Test;
 class UsersTest {
 
     @Test
+    void Users는_UserIndex를_사용하여_User를_조회한다() {
+        Users users = new Users("pobi", "honux", "crong", "jk");
+        assertThat(users.findUser(0)).isEqualTo(new User("pobi"));
+    }
+
+    @Test
     void Users는_자신의_크기를_반환해야_한다() {
         Users users = new Users("pobi", "honux", "crong", "jk");
         assertThat(users.size()).isEqualTo(4);
