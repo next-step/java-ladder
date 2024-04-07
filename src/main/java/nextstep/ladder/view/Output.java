@@ -7,7 +7,6 @@ import nextstep.ladder.domain.line.Point;
 import nextstep.ladder.domain.result.LadderResult;
 import nextstep.ladder.domain.user.User;
 import nextstep.ladder.domain.user.Users;
-import nextstep.ladder.error.exception.NotExistUserException;
 
 public class Output {
 
@@ -69,17 +68,17 @@ public class Output {
     public static void printAllResult(LadderResult ladderResult) {
         System.out.println("실행 결과");
         for (User user : ladderResult.keySet()) {
-                System.out.println(String.format("%s : %s", user.getUserName(),
-                    getDrawResult(ladderResult, user)));
+            System.out.println(String.format("%s : %s", user.getUserName(),
+                getDrawResult(ladderResult, user)));
 
         }
     }
 
     public static void printDrawResult(LadderResult ladderResult, User user) {
-            System.out.println(getDrawResult(ladderResult, user));
+        System.out.println(getDrawResult(ladderResult, user));
     }
 
-    private static String getDrawResult(LadderResult ladderResult, User user){
+    private static String getDrawResult(LadderResult ladderResult, User user) {
         return ladderResult.findUserDrawResult(user).getValue();
     }
 }
