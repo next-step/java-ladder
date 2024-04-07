@@ -10,7 +10,7 @@ public class LadderGame {
 		UserNames userNames = new UserNames(InputView.InputNames());
 		int ladderHeight = InputView.InputLadderHeight();
 
-		LadderBoard ladderBoard = new LadderBoard(ladderHeight, userNames.getUserNamesSize());
+		LadderBoard ladderBoard = new LadderBoard(ladderHeight, userNames.getUserCount());
 
 		ResultView.printNames(userNames);
 		ResultView.printLadderBoard(ladderBoard);

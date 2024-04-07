@@ -10,9 +10,9 @@ public class LadderBoard {
         this.ladderBoard = ladderBoard;
     }
 
-    public LadderBoard(int countOfHeight, int countOfPerson) {
-        for (int i = 0; i < countOfHeight; i++) {
-            ladderBoard.add(new Line(countOfPerson));
+    public LadderBoard(int column, int row) {
+        for (int i = 0; i < column; i++) {
+            ladderBoard.add(new Line(row));
         }
     }
 
