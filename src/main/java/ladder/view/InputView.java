@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 public class InputView {
     private Scanner scanner = new Scanner(System.in);
 
-    private static final String VALID_PARTICIPANTS = "^[a-zA-Z,]*$";
     private static final String COMMA_DELIMITER = ",";
 
     public List<String> askParticipants() {
@@ -16,16 +15,7 @@ public class InputView {
 
         String input = scanner.nextLine();
 
-        while (!isValidParticipants(input)) {
-            System.out.println("참여할 사람의 이름을 쉼표로 구분하여 다시 입력해주세요.\n(ex: java,go,lust)");
-            input = scanner.nextLine();
-        }
-
         return separateStringByDelimiter(input);
-    }
-
-    private boolean isValidParticipants(String input) {
-        return input.matches(VALID_PARTICIPANTS);
     }
 
     private List<String> separateStringByDelimiter(String input) {
@@ -49,6 +39,20 @@ public class InputView {
 
     private boolean isValidHeightOfLadder(int input) {
         return input > 0;
+    }
+
+    public List<String> askPrizes() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+
+        String input = scanner.nextLine();
+
+        return separateStringByDelimiter(input);
+    }
+
+    public String askTargetParticipants() {
+        System.out.println("결과를 보고 싶은 사람은?");
+
+        return scanner.next();
     }
 
 }

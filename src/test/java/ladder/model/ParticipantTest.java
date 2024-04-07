@@ -12,7 +12,7 @@ class ParticipantTest {
     @Test
     @DisplayName("Participant.of 정적 메서드를 사용해 Participant 객체 정상 생성")
     void testParticipant_of_ShouldReturnParticipant() {
-        Participant participant = Participant.of("java");
+        Participant participant = Participant.of("java", 0);
 
         assertThat(participant.getParticipant()).isEqualTo("java");
     }
@@ -21,7 +21,7 @@ class ParticipantTest {
     @DisplayName("Participant.of 정적 메서드를 사용해 이름 길이가 5를 초과한 Participant 객체 생성시 에러 반환")
     void testParticipant_of_overNameLengthFive_ShouldThrowException() {
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            Participant.of("Python");
+            Participant.of("Python", 0);
         }).withMessageContaining(INVALID_PARTICIPANT_NAME_LENGTH);
     }
 

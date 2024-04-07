@@ -16,4 +16,13 @@ public class Ladder {
     public Line getNthOfLadder(int index) {
         return ladder.get(index);
     }
+
+    protected int getLastPositionAt(int index) {
+        for (Line line : ladder) {
+            index += line.moveByDistance(index);
+        }
+
+        return index;
+    }
+
 }
