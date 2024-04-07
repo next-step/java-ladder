@@ -13,7 +13,7 @@ public class Lines {
         this(toLines(height, randomLadderConnectOrders));
     }
 
-    public Lines(List<Line> lines) {
+    private Lines(List<Line> lines) {
         this.lines = lines;
     }
 
