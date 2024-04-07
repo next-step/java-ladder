@@ -2,22 +2,22 @@ package nextstep.ladder.domain.line;
 
 public class Point {
 
-    private final boolean point;
+    private final boolean value;
 
-    public Point(boolean point) {
-        this.point = point;
+    public Point(boolean value) {
+        this.value = value;
     }
 
     public boolean isPointFalse() {
-        return !point;
+        return !value;
     }
 
     public boolean isPointTrue() {
-        return point;
+        return value;
     }
 
     public Point decideNextPoint(Boolean randomBoolean) {
-        if (!point) {
+        if (!value) {
             return new Point(randomBoolean);
         }
         return new Point(false);
