@@ -4,6 +4,7 @@ import nextstep.ladder.domain.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -14,10 +15,12 @@ public class ConsoleUtil {
     private static final String PRINT_FORMAT = "%6s";
     private static final String PLAYER_NAME_SPLIT_DELIMITER = ",";
 
+    private static final Scanner SCANNER = new Scanner(System.in);
+
     public static List<String> inputPlayerNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
 
-        String input = "pobi,honux,crong,jk"; // TODO: input
+        String input = SCANNER.nextLine(); // ex) pobi,honux,crong,jk
         return splitNames(input);
 
     }
@@ -29,7 +32,7 @@ public class ConsoleUtil {
 
     public static int inputHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        return 5; // TODO: input
+        return SCANNER.nextInt();
     }
 
     public static void printGameResults(LadderGame ladderGame) {
