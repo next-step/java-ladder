@@ -18,4 +18,13 @@ public class UsersTest {
         Assertions.assertThat(users.getUserCount()).isEqualTo(4);
     }
 
+    @Test
+    @DisplayName("크기가 0이거나 비어있으면 예외 발생" )
+    void invalidUsersTest() {
+        Assertions.assertThatThrownBy(() -> new Users(List.of()))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("존재하지 않는 유저들의 객체 생성을 시도합니다");
+    }
+
+
 }
