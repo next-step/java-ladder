@@ -1,10 +1,11 @@
 package laddergame.domain.ladder;
 
-import laddergame.domain.Players;
 import laddergame.domain.ladder.strategy.LinkStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Collections;
 import java.util.List;
@@ -26,17 +27,17 @@ class LineTest {
             @Test
             @DisplayName("links가 null 또는 비어있는 경우 IllegalArgumentException이 발생한다.")
             void testNullOrEmptyCase() {
-                assertThatThrownBy(() -> Line.newLine(null))
+                assertThatThrownBy(() -> new Line(null))
                         .isExactlyInstanceOf(IllegalArgumentException.class);
 
-                assertThatThrownBy(() -> Line.newLine(Collections.emptyList()))
+                assertThatThrownBy(() -> new Line(Collections.emptyList()))
                         .isExactlyInstanceOf(IllegalArgumentException.class);
             }
 
             @Test
             @DisplayName("links가 LINKED를 연속적으로 가지고 있는 경우 IllegalArgumentException이 발생한다.")
             void testOverlapLinked() {
-                assertThatThrownBy(() -> Line.newLine(List.of(LINKED, LINKED, UNLINKED, LINKED)))
+                assertThatThrownBy(() -> new Line(List.of(LINKED, LINKED, UNLINKED, LINKED)))
                         .isExactlyInstanceOf(IllegalArgumentException.class);
             }
         }
@@ -44,25 +45,23 @@ class LineTest {
         @Nested
         @DisplayName("Line 인스턴스 생성 성공 케이스 테스트")
         class SuccessCaseTest {
+            int numberOfLink = 4;
             LinkStrategy linkStrategyStub = () -> true;
 
             @Test
-            @DisplayName("생성된 Line 인스턴스에서 links의 크기는 numberOfPlayers - 1 과 같다.")
+            @DisplayName("생성된 Line 인스턴스에서 links의 크기는 numberOfLink와 동일하다.")
             void testNumberOfPoints() {
-                Players players = Players.newPlayers("a", "b", "c", "d");
-                Line line = Line.newLine(players, linkStrategyStub);
-
-                assertThat(line.links().size()).isEqualTo(players.numberOfPlayers() - 1);
+                Line line = Line.newLine(numberOfLink, linkStrategyStub);
+                assertThat(line.links().size()).isEqualTo(numberOfLink);
             }
 
             @Test
             @DisplayName("생성된 Line 인스턴스에서 links는 LINKED를 연속으로 가질 수 없다.")
             void testNonOverlap() {
-                Players players = Players.newPlayers("a", "b", "c", "d", "e", "f", "g", "h", "i", "j");
-                List<Link> links = Line.newLine(players, linkStrategyStub)
+                List<Link> links = Line.newLine(numberOfLink, linkStrategyStub)
                         .links();
 
-                IntStream.range(1, players.numberOfPlayers() - 1)
+                IntStream.range(1, numberOfLink)
                         .forEach(i -> {
                             Link now = links.get(i);
                             Link before = links.get(i - 1);
@@ -70,5 +69,13 @@ class LineTest {
                         });
             }
         }
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"-1:-1", "0:1", "1:0", "2:2"}, delimiter = ':')
+    @DisplayName("nextIndexOfColumn(): 사다리 column의 왼쪽이 LINKED인 경우 indexOfColumn - 1, 오른쪽이 LINKED인 경우 indexOfColumn + 1를 반환한다. 만약 둘 다 아니면 indexOfColumn을 반환한다.")
+    void testIndexOfColumn(int indexOfColumn, int expected) {
+        Line line = new Line(List.of(LINKED, UNLINKED));
+        assertThat(line.nextIndexOfColumn(indexOfColumn)).isEqualTo(expected);
     }
 }

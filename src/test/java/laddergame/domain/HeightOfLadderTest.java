@@ -10,6 +10,6 @@ class HeightOfLadderTest {
     @DisplayName("HeightOfLadder 인스턴스 생성시 height가 LADDER_MIN_HEIGHT보다 작은 경우 IllegalArgumentException이 발생합니다.")
     void testInstanceCreationFail() {
         int height = 0;
-        assertThatThrownBy(() -> HeightOfLadder.valueOf(height)).isExactlyInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new HeightOfLadder(height)).isExactlyInstanceOf(IllegalArgumentException.class);
     }
 }

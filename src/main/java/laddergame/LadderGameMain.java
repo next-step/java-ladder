@@ -1,23 +1,23 @@
 package laddergame;
 
-import laddergame.domain.HeightOfLadder;
 import laddergame.domain.Players;
+import laddergame.domain.PlayersAndWinningContents;
+import laddergame.domain.WinningContents;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.strategy.RandomStrategy;
 
-import static laddergame.view.InputView.enteredHeightOfLadder;
-import static laddergame.view.InputView.enteredPlayers;
-import static laddergame.view.OutputView.printExceptionMessage;
-import static laddergame.view.OutputView.printExecutionResult;
+import static laddergame.view.InputView.*;
+import static laddergame.view.OutputView.*;
 
 public class LadderGameMain {
     public static void main(String[] arguments) throws Exception {
         try {
-            Players players = Players.valueOf(enteredPlayers());
-            HeightOfLadder heightOfLadder = enteredHeightOfLadder();
-            Ladder ladder = Ladder.newLadder(heightOfLadder, players, new RandomStrategy());
+            PlayersAndWinningContents playersAndWinningContents = new PlayersAndWinningContents(new Players(enteredPlayers()), new WinningContents(enteredWinnings()));
 
-            printExecutionResult(players, ladder);
+            Ladder ladder = Ladder.newLadder(enteredHeightOfLadder(), playersAndWinningContents, new RandomStrategy());
+            printLadderResult(playersAndWinningContents, ladder);
+
+            printExecutionResult(playersAndWinningContents, ladder.resultOfLadder(playersAndWinningContents));
         } catch (Exception e) {
             printExceptionMessage(e.getMessage());
         }

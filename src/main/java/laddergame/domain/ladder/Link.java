@@ -1,13 +1,17 @@
 package laddergame.domain.ladder;
 
+import java.util.List;
+
+import static laddergame.domain.ladder.Direction.*;
+
 public enum Link {
-    LINKED(true),
-    UNLINKED(false);
+    LINKED(List.of(RIGHT, LEFT)),
+    UNLINKED(List.of(DOWN, DOWN));
 
-    private final boolean value;
+    private final List<Direction> directions;
 
-    Link(boolean value) {
-        this.value = value;
+    Link(List<Direction> directions) {
+        this.directions = directions;
     }
 
     public boolean isLinked() {
@@ -18,7 +22,12 @@ public enum Link {
         return this == UNLINKED;
     }
 
-    public boolean value() {
-        return value;
+    public int rightDirectionValue() {
+        return directions.get(0).value();
     }
+
+    public int leftDirectionValue() {
+        return directions.get(1).value();
+    }
+
 }

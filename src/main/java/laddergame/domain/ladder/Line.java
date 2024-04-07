@@ -1,6 +1,5 @@
 package laddergame.domain.ladder;
 
-import laddergame.domain.Players;
 import laddergame.domain.ladder.strategy.LinkStrategy;
 
 import java.util.*;
@@ -12,11 +11,9 @@ import static laddergame.domain.ladder.Link.UNLINKED;
 import static laddergame.exception.ExceptionMessage.WRONG_LINE_MESSAGE;
 
 public class Line {
-    private static final int START_RANGE = 0;
-
     private final List<Link> links;
 
-    private Line(List<Link> links) {
+    public Line(List<Link> links) {
         validateLinks(links);
         this.links = links;
     }
@@ -36,14 +33,10 @@ public class Line {
         }
     }
 
-    public static Line newLine(List<Link> links) {
-        return new Line(links);
-    }
-
-    public static Line newLine(Players players, LinkStrategy linkStrategy) {
+    public static Line newLine(int numberOfLink, LinkStrategy linkStrategy) {
         Deque<Link> links = new LinkedList<>();
 
-        IntStream.range(START_RANGE, players.numberOfPlayers() - 1)
+        IntStream.range(0, numberOfLink)
                 .forEach(i -> links.add(nextLink(links, linkStrategy)));
 
         return new Line(new ArrayList<>(links));
@@ -55,6 +48,24 @@ public class Line {
                 .orElse(UNLINKED);
 
         return linkable && before.isUnLinked() ? LINKED : UNLINKED;
+    }
+
+    public int numberOfLinks() {
+        return links.size();
+    }
+
+    public int nextIndexOfColumn(int indexOfColumn) {
+        return indexOfColumn
+                + findLinkByIndex(indexOfColumn - 1).leftDirectionValue()
+                + findLinkByIndex(indexOfColumn).rightDirectionValue();
+    }
+
+    private Link findLinkByIndex(int index) {
+        try {
+            return links.get(index);
+        } catch (IndexOutOfBoundsException e) {
+            return UNLINKED;
+        }
     }
 
     public List<Link> links() {
