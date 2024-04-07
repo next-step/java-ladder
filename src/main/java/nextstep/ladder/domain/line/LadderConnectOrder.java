@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
 public class LadderConnectOrder {
 
     private final List<Boolean> values;
-    private final static Random random = new Random();
+    private static final Random random = new Random();
 
     public LadderConnectOrder(List<Boolean> values) {
         this.values = values;
