@@ -23,9 +23,8 @@ class PointTest {
     }
 
     @Test
-    public void Point는_true값일경우_decideNextPoint의_반환값이_false여야한다() {
+    public void Point가_이전_Point와_연결되었을때_다음_Point와는_연결할_수_없다() {
         Point point = new Point(true);
-        assertThat(point.decideNextPoint().isPointTrue()).isEqualTo(false);
+        assertThat(point.decideNextPoint(true).isPointTrue()).isEqualTo(false);
     }
-
 }
