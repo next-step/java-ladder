@@ -15,6 +15,6 @@ class LadderGameTest {
         List<String> playerNames = List.of("pobi", "honux", "crong", "jk");
         int height = 5;
 
-        assertThatCode(() -> LadderGame.of(playerNames, height)).doesNotThrowAnyException();
+        assertThatCode(() -> LadderGame.start(playerNames, height)).doesNotThrowAnyException();
     }
 }

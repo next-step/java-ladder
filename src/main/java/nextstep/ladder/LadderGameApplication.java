@@ -11,7 +11,7 @@ public class LadderGameApplication {
         List<String> playerNames = ConsoleUtil.inputPlayerNames();
         int height = ConsoleUtil.inputHeight();
 
-        LadderGame ladderGame = LadderGame.of(playerNames, height);
+        LadderGame ladderGame = LadderGame.start(playerNames, height);
 
         ConsoleUtil.printGameResults(ladderGame);
     }

@@ -12,7 +12,7 @@ public class LadderGame {
         this.lines = lines;
     }
 
-    public static LadderGame of(List<String> playerNames, int height) {
+    public static LadderGame start(List<String> playerNames, int height) {
         Players players = Players.of(playerNames);
         Lines lines = Lines.of(players.count(), height);
 
