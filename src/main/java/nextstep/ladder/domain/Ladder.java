@@ -15,7 +15,7 @@ public class Ladder {
 
     public Ladder(int height, int length, LineGenerator lineGenerator, List<String> results) {
         this.height = new LadderHeight(height);
-        this.ladderResult = new LadderResult(results, length + 1);
+        this.ladderResult = new LadderResult(results, length);
         this.lines = Stream.generate(() -> new Line(length, lineGenerator))
                 .limit(height)
                 .collect(Collectors.toUnmodifiableList());

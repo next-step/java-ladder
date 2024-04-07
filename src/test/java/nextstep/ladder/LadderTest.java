@@ -20,7 +20,7 @@ public class LadderTest {
     @Test
     @DisplayName("사다리 생성 테스트")
     void testValidLadder() {
-        LineGenerator testLineGenerator = count -> Collections.nCopies(length, Boolean.FALSE);
+        LineGenerator testLineGenerator = count -> Collections.nCopies(length, nonLinePoint());
 
         Ladder ladder = new Ladder(height, length, testLineGenerator, results);
         assertThat(ladder.getHeight()).isEqualTo(height);
@@ -32,7 +32,7 @@ public class LadderTest {
     @Test
     @DisplayName("사다리 결과 테스트")
     void testLadderResult() {
-        Ladder ladder = new Ladder(height,length,count -> List.of(true, false, true, false), results);
+        Ladder ladder = new Ladder(height,length,count -> List.of(rightLinePoint(), leftLinePoint(), rightLinePoint(), leftLinePoint(), nonLinePoint()), results);
         Users users = new Users(makeUser());
 
         GameResult gameResult = ladder.getGameResult(users);
@@ -60,5 +60,17 @@ public class LadderTest {
                 .map(String::valueOf)
                 .map(User::new)
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    private static LinePoint leftLinePoint() {
+        return LinePoint.of(MoveDirection.LEFT);
+    }
+
+    private static LinePoint rightLinePoint() {
+        return LinePoint.of(MoveDirection.RIGHT);
+    }
+
+    private static  LinePoint nonLinePoint() {
+        return LinePoint.of(MoveDirection.NON);
     }
 }

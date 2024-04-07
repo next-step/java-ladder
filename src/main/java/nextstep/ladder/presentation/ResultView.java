@@ -28,22 +28,30 @@ public class ResultView {
     }
 
     private void printLine(Line line) {
-        String bridge = "-----";
-        String emptyBridge = "     ";
+        System.out.print("     ");
+        System.out.println(printLineFormat(line));
+    }
+
+    private String printLineFormat(Line line) {
+        StringBuilder result = new StringBuilder();
+        int repeatCount = 5;
+        String bridge = "-".repeat(repeatCount);
+        String emptyBridge = " ".repeat(repeatCount);
         String deliminator = "|";
 
-        System.out.print("     ");
         line.getLine().forEach(data -> {
-            System.out.printf(deliminator);
-            if (data) {
-                System.out.printf(bridge);
+            result.append(deliminator);
+            if (data.canMoveRight()) {
+                result.append(bridge);
                 return;
             }
 
-            System.out.printf(emptyBridge);
+            result.append(emptyBridge);
         });
 
-        System.out.println(deliminator);
+//        result.delete(result.length() - repeatCount, result.length());
+
+        return result.toString();
     }
 
     public void printInputUserNameForResult() {
