@@ -26,7 +26,7 @@ public class Line {
 
     private boolean isConsecutiveTrues(List<Point> points) {
         return IntStream.range(0, points.size() - 1)
-            .anyMatch(i -> points.get(i).isPointTrue() && points.get(i + 1).isPointTrue());
+            .anyMatch(pointIndex -> points.get(pointIndex).isPointTrue() && points.get(pointIndex + 1).isPointTrue());
     }
 
     public boolean canMoveRight(int userIndex) {
