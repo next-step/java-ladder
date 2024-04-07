@@ -4,8 +4,6 @@ import nextstep.ladder.domain.LadderBoard;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.UserNames;
 
-import java.util.List;
-
 public class ResultView {
     private final static String GAP = "     ";
     private final static String LINE = "-----";
@@ -20,7 +18,7 @@ public class ResultView {
 
     public static void printLadderBoard(LadderBoard ladderBoard) {
         ladderBoard.getLadderBoard().forEach(line -> {
-            printGap();
+            printGap(false);
             printRow(line);
             printLadder();
             System.out.println();
@@ -30,11 +28,8 @@ public class ResultView {
     private static void printRow(Line line) {
         line.pointToBoolean().forEach(point -> {
             printLadder();
-            if (point) {
-                printLine();
-            } else {
-                printGap();
-            }
+            printLine(point);
+            printGap(point);
         });
     }
 
@@ -42,12 +37,16 @@ public class ResultView {
         System.out.print(LADDER);
     }
 
-    private static void printLine() {
-        System.out.print(LINE);
+    private static void printLine(Boolean point) {
+        if(point) {
+            System.out.print(LINE);
+        }
     }
 
-    private static void printGap() {
-        System.out.print(GAP);
+    private static void printGap(Boolean point) {
+        if(!point) {
+            System.out.print(GAP);
+        }
     }
 
 }
