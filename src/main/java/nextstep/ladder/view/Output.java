@@ -69,25 +69,17 @@ public class Output {
     public static void printAllResult(LadderResult ladderResult) {
         System.out.println("실행 결과");
         for (User user : ladderResult.keySet()) {
-            try {
                 System.out.println(String.format("%s : %s", user.getUserName(),
                     getDrawResult(ladderResult, user)));
-            } catch (NotExistUserException e) {
-                System.out.println(e.getMessage());
-            }
+
         }
     }
 
     public static void printDrawResult(LadderResult ladderResult, User user) {
-        try {
             System.out.println(getDrawResult(ladderResult, user));
-        } catch (NotExistUserException e) {
-            System.out.println(e.getMessage());
-        }
     }
 
-    private static String getDrawResult(LadderResult ladderResult, User user)
-        throws NotExistUserException {
+    private static String getDrawResult(LadderResult ladderResult, User user){
         return ladderResult.findUserDrawResult(user).getValue();
     }
 }
