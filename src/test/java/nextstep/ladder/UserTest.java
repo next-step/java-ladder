@@ -3,6 +3,7 @@ package nextstep.ladder;
 
 import nextstep.ladder.domain.User;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
@@ -10,7 +11,7 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 public class UserTest {
     private String testName = "test";
     private String exceedLengthName = "a".repeat(100);
-    @ParameterizedTest
+    @ParameterizedTest(name = "[{0}] 이름은 잘못된 이름으로 예외 발생")
     @NullAndEmptySource
     void userEmptyTest(String name) {
         Assertions.assertThatThrownBy(() -> new User(name))
@@ -19,6 +20,7 @@ public class UserTest {
     }
 
     @Test
+    @DisplayName("이름은 최대 5글자이며, 초과시 예외 발생")
     void exceedLengthTest() {
         Assertions.assertThatThrownBy(() -> new User(exceedLengthName))
                 .isInstanceOf(IllegalArgumentException.class)
