@@ -16,6 +16,7 @@ public class Output {
     private static final String RESULT_HEADER = "사디리 결과";
     private static final String OUT_PUT_USER_FORMAT = "%6s";
     private static final String OUT_PUT_RESULT_FORMAT = "%-6s";
+    private static final String ALL = "all";
 
 
     private Output() {
@@ -58,7 +59,7 @@ public class Output {
     }
 
     public static boolean findAllDrawResult(LadderResult ladderResult, String userName) {
-        if ("all".equals(userName)) {
+        if (ALL.equals(userName)) {
             Output.printAllResult(ladderResult);
             return true;
         }
