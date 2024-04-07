@@ -33,9 +33,7 @@ public class GameResult {
     }
 
     private void setGameResult(Users users, List<String> result) {
-        List<String> userNames = users.getUsers().stream()
-                .map(User::getUserName)
-                .collect(Collectors.toUnmodifiableList());
+        List<String> userNames = users.getUserNames();
 
         for (int i = 0; i < result.size(); i++) {
             this.gameResult.put(userNames.get(i), result.get(i));
