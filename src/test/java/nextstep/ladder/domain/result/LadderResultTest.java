@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import nextstep.ladder.domain.line.LadderConnectOrder;
+import nextstep.ladder.domain.line.RandomLadderConnectOrder;
 import nextstep.ladder.domain.line.Lines;
 import nextstep.ladder.domain.user.User;
 import nextstep.ladder.domain.user.Users;
@@ -21,16 +21,17 @@ class LadderResultTest {
         Users users = new Users("user1", "user2", "user3", "user4");
         LadderResult sutLadderResult = new LadderResult(draws, users);
 
-        LadderConnectOrder firstLadderConnectOrder = new LadderConnectOrder(
+        RandomLadderConnectOrder firstRandomLadderConnectOrder = new RandomLadderConnectOrder(
             List.of(false, true, false));  // |     |-----|     |
-        LadderConnectOrder secondLadderConnectOrder = new LadderConnectOrder(
+        RandomLadderConnectOrder secondRandomLadderConnectOrder = new RandomLadderConnectOrder(
             List.of(true, false, true));  // |-----|     |-----|
-        LadderConnectOrder thirdLadderConnectOrder = new LadderConnectOrder(
+        RandomLadderConnectOrder thirdRandomLadderConnectOrder = new RandomLadderConnectOrder(
             List.of(false, false, true));  // |     |     |-----|
-        List<LadderConnectOrder> ladderConnectOrders = List.of(firstLadderConnectOrder,
-            secondLadderConnectOrder, thirdLadderConnectOrder);
+        List<RandomLadderConnectOrder> randomLadderConnectOrders = List.of(
+            firstRandomLadderConnectOrder,
+            secondRandomLadderConnectOrder, thirdRandomLadderConnectOrder);
 
-        Lines lines = new Lines(3, ladderConnectOrders);
+        Lines lines = new Lines(3, randomLadderConnectOrders);
 
         //when
         sutLadderResult.calculateLadderResult(users, lines);

@@ -9,24 +9,24 @@ public class Lines {
 
     private final List<Line> lines;
 
-    public Lines(int height, List<LadderConnectOrder> ladderConnectOrders) {
-        this(toLines(height, ladderConnectOrders));
+    public Lines(int height, List<LadderConnectOrder> randomLadderConnectOrders) {
+        this(toLines(height, randomLadderConnectOrders));
     }
 
     public Lines(List<Line> lines) {
         this.lines = lines;
     }
 
-    private static List<Line> toLines(int height, List<LadderConnectOrder> ladderConnectOrders) {
+    private static List<Line> toLines(int height, List<LadderConnectOrder> randomLadderConnectOrders) {
         if (height < 1) {
             throw new LadderHeightSizeException(height);
         }
 
-        if (height != ladderConnectOrders.size()){
-            throw new LinesSizeException(height, ladderConnectOrders.size());
+        if (height != randomLadderConnectOrders.size()){
+            throw new LinesSizeException(height, randomLadderConnectOrders.size());
         }
 
-        return ladderConnectOrders.stream()
+        return randomLadderConnectOrders.stream()
             .map(Line::new)
             .collect(Collectors.toList());
     }

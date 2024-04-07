@@ -1,6 +1,6 @@
 package nextstep.ladder.domain.line;
 
-import static nextstep.ladder.domain.line.LadderConnectOrder.createLadderConnectOrders;
+import static nextstep.ladder.domain.line.RandomLadderConnectOrder.createLadderConnectOrders;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -21,22 +21,22 @@ class LinesTest {
 
     @Test
     void 사다리_높이가_1보다_작을_경우_예외가_발생해야_한다() {
-        List<LadderConnectOrder> ladderConnectOrders = new ArrayList<>();
-        ladderConnectOrders.add(new LadderConnectOrder(List.of(false)));
+        List<RandomLadderConnectOrder> randomLadderConnectOrders = new ArrayList<>();
+        randomLadderConnectOrders.add(new RandomLadderConnectOrder(List.of(false)));
 
-        assertThatThrownBy(() -> new Lines(0, ladderConnectOrders))
+        assertThatThrownBy(() -> new Lines(0, randomLadderConnectOrders))
             .isInstanceOf(LadderHeightSizeException.class)
             .hasMessage("사다리의 높이는 0보다 커야 합니다 입력값: 0");
     }
 
     @Test
     void 사용자의_당첨결과_인덱스를_조회해야_한다() {
-        List<LadderConnectOrder> ladderConnectOrders = new ArrayList<>();
-        ladderConnectOrders.add(new LadderConnectOrder(List.of(false, true))); // |    |----|
-        ladderConnectOrders.add(new LadderConnectOrder(List.of(true, false))); // |----|    |
-        ladderConnectOrders.add(new LadderConnectOrder(List.of(false, false)));// |    |    |
+        List<RandomLadderConnectOrder> randomLadderConnectOrders = new ArrayList<>();
+        randomLadderConnectOrders.add(new RandomLadderConnectOrder(List.of(false, true))); // |    |----|
+        randomLadderConnectOrders.add(new RandomLadderConnectOrder(List.of(true, false))); // |----|    |
+        randomLadderConnectOrders.add(new RandomLadderConnectOrder(List.of(false, false)));// |    |    |
 
-        Lines sutLines = new Lines(3, ladderConnectOrders);
+        Lines sutLines = new Lines(3, randomLadderConnectOrders);
 
         assertThat(sutLines.findUserResultIndex(1)).isEqualTo(2);
     }

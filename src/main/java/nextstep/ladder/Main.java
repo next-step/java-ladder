@@ -1,7 +1,7 @@
 package nextstep.ladder;
 
 import java.util.List;
-import nextstep.ladder.domain.line.LadderConnectOrder;
+import nextstep.ladder.domain.line.RandomLadderConnectOrder;
 import nextstep.ladder.domain.line.Lines;
 import nextstep.ladder.domain.result.LadderResult;
 import nextstep.ladder.domain.user.User;
@@ -15,7 +15,7 @@ public class Main {
         Users users = new Users(Input.inputPersonName());
         List<String> result = Input.inputExecutionResult();
         int height = Input.inputLadderHeight();
-        Lines lines = new Lines(height, LadderConnectOrder.createLadderConnectOrders(height,
+        Lines lines = new Lines(height, RandomLadderConnectOrder.createLadderConnectOrders(height,
             users.size()));
 
         Output.printLadderConsoleResult(users, lines, result);

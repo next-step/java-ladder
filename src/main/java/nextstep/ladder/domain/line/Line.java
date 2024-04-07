@@ -8,8 +8,8 @@ public class Line {
 
     private final List<Point> points;
 
-    public Line(LadderConnectOrder ladderConnectOrder) {
-        this(initializeLine(ladderConnectOrder));
+    public Line(LadderConnectOrder randomLadderConnectOrder) {
+        this(initializeLine(randomLadderConnectOrder));
     }
 
     public Line(List<Point> points) {
@@ -19,8 +19,8 @@ public class Line {
         this.points = points;
     }
 
-    private static List<Point> initializeLine(LadderConnectOrder ladderConnectOrder) {
-        return ladderConnectOrder.connectLadder();
+    private static List<Point> initializeLine(LadderConnectOrder randomLadderConnectOrder) {
+        return randomLadderConnectOrder.connectLadder();
     }
 
 
