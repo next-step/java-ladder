@@ -34,6 +34,18 @@ public class LineTest {
     }
 
     @Test
+    @DisplayName("라인 생성 테스트")
+    void testNextIndex() {
+        Line line = new Line(lineLength, length -> List.of(true,false,false,true));
+        List<Integer> expectNextIndex = List.of(1,0,2,4,3);
+
+        for (int i = 0; i < lineLength; i++) {
+            assertThat(line.nextIndex(i)).isEqualTo(expectNextIndex.get(i));
+        }
+        assertThat(line.nextIndex(lineLength)).isEqualTo(expectNextIndex.get(lineLength));
+    }
+
+    @Test
     @DisplayName("랜덤 값으로 라인 생성 테스트")
     void testRandomLine() {
         assertThat(new Line(lineLength, new RandomLineGenerator()).getLine()).hasSize(lineLength);

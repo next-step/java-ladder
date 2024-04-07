@@ -30,6 +30,22 @@ public class Line {
         }
     }
 
+    public int nextIndex(int index) {
+
+
+        if (index != getLength() && line.get(index)) {
+            return index + 1;
+        }
+
+        //왼쪽으로 가야하는 경우
+        if (index != 0 && line.get(index - 1)) {
+            return index - 1;
+        }
+
+        return index;
+
+    }
+
     public List<Boolean> getLine() {
         return line.stream().collect(Collectors.toUnmodifiableList());
     }

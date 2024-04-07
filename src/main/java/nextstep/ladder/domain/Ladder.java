@@ -41,26 +41,13 @@ public class Ladder {
         int nextIndex = startIndex;
 
         for (Line line : lines) {
-            nextIndex = getNextIndex(line, nextIndex);
+            nextIndex = line.nextIndex(nextIndex);
         }
 
         return nextIndex;
     }
 
-    private int getNextIndex(Line line, int index) {
 
-        //오른쪽으로 가야하는 경우
-        if (index != line.getLength() && line.getLine().get(index)) {
-            return index + 1;
-        }
-
-        //왼쪽으로 가야하는 경우
-        if (index != 0 && line.getLine().get(index - 1)) {
-            return index - 1;
-        }
-
-        return index;
-    }
 
     public int getHeight() {
         return height.getHeight();
