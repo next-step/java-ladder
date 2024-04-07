@@ -39,11 +39,13 @@ public class Line {
     }
 
     private void checkOverLabLine() {
-        boolean foundOverLab = IntStream.range(0, points.size() - 1)
-                .anyMatch(this::isSamePosition);
-
-        if (foundOverLab)
+        if (isFoundOverLab())
             throw new IllegalArgumentException("라인이 중복되면 안됩니다.");
+    }
+
+    private boolean isFoundOverLab() {
+        return IntStream.range(0, points.size() - 1)
+                .anyMatch(this::isSamePosition);
     }
 
     private boolean isSamePosition(int index) {
