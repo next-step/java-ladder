@@ -12,7 +12,7 @@ class LineTest {
     @Test
     void Line은_사람의_수보다_하나_작게_생성되어야_한다() {
         int countOfPerson = 4;
-        RandomLadderConnectOrder randomLadderConnectOrder = new RandomLadderConnectOrder(
+        LadderConnectOrder randomLadderConnectOrder = new RandomLadderConnectOrder(
             List.of(false, false, true)); //|     |     |-----|
 
         Line sutLine = new Line(randomLadderConnectOrder);

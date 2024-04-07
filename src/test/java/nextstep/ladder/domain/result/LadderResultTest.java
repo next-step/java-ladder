@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import nextstep.ladder.domain.line.LadderConnectOrder;
 import nextstep.ladder.domain.line.RandomLadderConnectOrder;
 import nextstep.ladder.domain.line.Lines;
 import nextstep.ladder.domain.user.User;
@@ -15,19 +16,19 @@ import org.junit.jupiter.api.Test;
 class LadderResultTest {
 
     @Test
-    void 당첨된_User를_조회한다() throws NotExistUserException {
+    void 당첨된_User를_조회한다() {
         //given
         List<String> draws = List.of("꽝", "3000", "4000", "5000");
         Users users = new Users("user1", "user2", "user3", "user4");
         LadderResult sutLadderResult = new LadderResult(draws, users);
 
-        RandomLadderConnectOrder firstRandomLadderConnectOrder = new RandomLadderConnectOrder(
+        LadderConnectOrder firstRandomLadderConnectOrder = new RandomLadderConnectOrder(
             List.of(false, true, false));  // |     |-----|     |
-        RandomLadderConnectOrder secondRandomLadderConnectOrder = new RandomLadderConnectOrder(
+        LadderConnectOrder secondRandomLadderConnectOrder = new RandomLadderConnectOrder(
             List.of(true, false, true));  // |-----|     |-----|
-        RandomLadderConnectOrder thirdRandomLadderConnectOrder = new RandomLadderConnectOrder(
+        LadderConnectOrder thirdRandomLadderConnectOrder = new RandomLadderConnectOrder(
             List.of(false, false, true));  // |     |     |-----|
-        List<RandomLadderConnectOrder> randomLadderConnectOrders = List.of(
+        List<LadderConnectOrder> randomLadderConnectOrders = List.of(
             firstRandomLadderConnectOrder,
             secondRandomLadderConnectOrder, thirdRandomLadderConnectOrder);
 

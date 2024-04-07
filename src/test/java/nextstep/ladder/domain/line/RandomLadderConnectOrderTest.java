@@ -16,7 +16,7 @@ class RandomLadderConnectOrderTest {
 
     @Test
     void LadderConnectOrders는_사다리높이만큼_개수를_가져야_한다() {
-        List<RandomLadderConnectOrder> sutRandomLadderConnectOrder = RandomLadderConnectOrder.createLadderConnectOrders(
+        List<LadderConnectOrder> sutRandomLadderConnectOrder = RandomLadderConnectOrder.createLadderConnectOrders(
             5, 4);
 
         assertThat(sutRandomLadderConnectOrder).hasSize(5);
@@ -24,7 +24,7 @@ class RandomLadderConnectOrderTest {
 
     @Test
     void connectLadder를_수행한뒤_생성한_Points의_크기와_LadderConnectOrder의_크기는_동일하다() {
-        RandomLadderConnectOrder sutRandomLadderConnectOrder = new RandomLadderConnectOrder(
+        LadderConnectOrder sutRandomLadderConnectOrder = new RandomLadderConnectOrder(
             RandomLadderConnectOrder.createLadderConnectOrder(3));
 
         List<Point> points = sutRandomLadderConnectOrder.connectLadder();

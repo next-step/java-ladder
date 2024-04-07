@@ -21,7 +21,7 @@ class LinesTest {
 
     @Test
     void 사다리_높이가_1보다_작을_경우_예외가_발생해야_한다() {
-        List<RandomLadderConnectOrder> randomLadderConnectOrders = new ArrayList<>();
+        List<LadderConnectOrder> randomLadderConnectOrders = new ArrayList<>();
         randomLadderConnectOrders.add(new RandomLadderConnectOrder(List.of(false)));
 
         assertThatThrownBy(() -> new Lines(0, randomLadderConnectOrders))
@@ -31,7 +31,7 @@ class LinesTest {
 
     @Test
     void 사용자의_당첨결과_인덱스를_조회해야_한다() {
-        List<RandomLadderConnectOrder> randomLadderConnectOrders = new ArrayList<>();
+        List<LadderConnectOrder> randomLadderConnectOrders = new ArrayList<>();
         randomLadderConnectOrders.add(new RandomLadderConnectOrder(List.of(false, true))); // |    |----|
         randomLadderConnectOrders.add(new RandomLadderConnectOrder(List.of(true, false))); // |----|    |
         randomLadderConnectOrders.add(new RandomLadderConnectOrder(List.of(false, false)));// |    |    |
