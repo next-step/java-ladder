@@ -2,7 +2,6 @@ package nextstep.ladder.domain.result;
 
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -16,20 +15,20 @@ import nextstep.ladder.error.exception.NotExistUserException;
 public class LadderResult {
 
     private final Map<User, Result> ladderResult = new HashMap<>();
-    private List<String> draws;
+    private Results results;
 
-    public LadderResult(List<String> draws, Users users) {
-        if (draws.size() != users.size()) {
-            throw new LadderUsersMismatchException(draws.size(), users.size());
+    public LadderResult(Results results, Users users) {
+        if (results.size() != users.size()) {
+            throw new LadderUsersMismatchException(results.size(), users.size());
         }
 
-        this.draws = draws;
+        this.results = results;
     }
 
     public void calculateLadderResult(Users users, Lines lines) {
         IntStream.range(0, users.size())
             .forEach(userIndex -> ladderResult.put(users.findUser(userIndex),
-                new Result(draws.get(lines.findUserResultIndex(userIndex)))));
+                results.findResult(lines.findUserResultIndex(userIndex))));
     }
 
     public Result findUserDrawResult(User user) throws NotExistUserException {

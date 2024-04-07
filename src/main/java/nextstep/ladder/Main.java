@@ -4,6 +4,7 @@ import java.util.List;
 import nextstep.ladder.domain.line.RandomLadderConnectOrder;
 import nextstep.ladder.domain.line.Lines;
 import nextstep.ladder.domain.result.LadderResult;
+import nextstep.ladder.domain.result.Results;
 import nextstep.ladder.domain.user.User;
 import nextstep.ladder.domain.user.Users;
 import nextstep.ladder.view.Input;
@@ -20,7 +21,7 @@ public class Main {
 
         Output.printLadderConsoleResult(users, lines, result);
 
-        LadderResult ladderResult = new LadderResult(result, users);
+        LadderResult ladderResult = new LadderResult(Results.createResults(result), users);
         ladderResult.calculateLadderResult(users, lines);
 
         while (true) {

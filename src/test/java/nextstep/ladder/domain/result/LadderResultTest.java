@@ -20,7 +20,7 @@ class LadderResultTest {
         //given
         List<String> draws = List.of("꽝", "3000", "4000", "5000");
         Users users = new Users("user1", "user2", "user3", "user4");
-        LadderResult sutLadderResult = new LadderResult(draws, users);
+        LadderResult sutLadderResult = new LadderResult(Results.createResults(draws), users);
 
         LadderConnectOrder firstRandomLadderConnectOrder = new RandomLadderConnectOrder(
             List.of(false, true, false));  // |     |-----|     |
@@ -44,7 +44,7 @@ class LadderResultTest {
 
     @Test
     void 존재하지_않는_User에_대해서_당첨_조회를_할_경우_예외가_발생한다() {
-        LadderResult ladderResult = new LadderResult(List.of("3000", "꽝"),
+        LadderResult ladderResult = new LadderResult(Results.createResults(List.of("3000", "꽝")),
             new Users("name1", "name2"));
         assertThatThrownBy(() -> ladderResult.findUserDrawResult(new User("존재X")))
             .isInstanceOf(NotExistUserException.class)
@@ -53,7 +53,7 @@ class LadderResultTest {
 
     @Test
     void Users_개수와_결과_개수가_불일치_할_경우_예외가_발생한다() {
-        assertThatThrownBy(() -> new LadderResult(List.of("3000"), new Users("name1", "name2")))
+        assertThatThrownBy(() -> new LadderResult(Results.createResults(List.of("3000")), new Users("name1", "name2")))
             .isInstanceOf(LadderUsersMismatchException.class)
             .hasMessage("사용자와 결과 개수는 일치해야 합니다 사용자 인원: 1,결과 개수 2");
     }
