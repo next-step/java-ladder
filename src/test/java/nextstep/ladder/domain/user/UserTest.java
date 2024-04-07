@@ -1,7 +1,6 @@
 package nextstep.ladder.domain.user;
 
 
-import nextstep.ladder.domain.user.User;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,6 +10,7 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 public class UserTest {
     private String testName = "test";
     private String exceedLengthName = "a".repeat(100);
+
     @ParameterizedTest(name = "[{0}] 이름은 잘못된 이름으로 예외 발생")
     @NullAndEmptySource
     void userEmptyTest(String name) {
