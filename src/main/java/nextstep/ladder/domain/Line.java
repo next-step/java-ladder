@@ -3,7 +3,7 @@ package nextstep.ladder.domain;
 import java.util.List;
 
 public class Line {
-    private List<Point> points;
+    private final List<Point> points;
 
     Line(List<Point> points) {
         validate(points);
