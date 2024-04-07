@@ -1,6 +1,7 @@
-package nextstep.ladder.domain.line;
+package nextstep.ladder.ladderConnectOrder;
 
 import java.util.List;
+import nextstep.ladder.domain.line.Point;
 
 public interface LadderConnectOrder {
 

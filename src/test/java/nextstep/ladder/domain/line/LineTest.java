@@ -4,7 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import nextstep.ladder.ladderConnectOrder.LadderConnectOrder;
 import nextstep.ladder.error.exception.LineNoConsecutiveTrues;
+import nextstep.ladder.ladderConnectOrder.impl.RandomLadderConnectOrder;
 import org.junit.jupiter.api.Test;
 
 class LineTest {

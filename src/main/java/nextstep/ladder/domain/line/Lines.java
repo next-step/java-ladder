@@ -2,6 +2,7 @@ package nextstep.ladder.domain.line;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import nextstep.ladder.ladderConnectOrder.LadderConnectOrder;
 import nextstep.ladder.error.exception.LadderHeightSizeException;
 import nextstep.ladder.error.exception.LinesSizeException;
 

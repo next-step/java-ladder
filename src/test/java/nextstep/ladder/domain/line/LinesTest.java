@@ -1,12 +1,14 @@
 package nextstep.ladder.domain.line;
 
-import static nextstep.ladder.domain.line.RandomLadderConnectOrder.createLadderConnectOrders;
+import static nextstep.ladder.ladderConnectOrder.impl.RandomLadderConnectOrder.createLadderConnectOrders;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.ArrayList;
 import java.util.List;
+import nextstep.ladder.ladderConnectOrder.LadderConnectOrder;
 import nextstep.ladder.error.exception.LadderHeightSizeException;
+import nextstep.ladder.ladderConnectOrder.impl.RandomLadderConnectOrder;
 import org.junit.jupiter.api.Test;
 
 class LinesTest {
