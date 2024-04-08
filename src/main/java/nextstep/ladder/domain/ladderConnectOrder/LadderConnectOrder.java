@@ -1,11 +1,9 @@
 package nextstep.ladder.domain.ladderConnectOrder;
 
 import java.util.List;
-import nextstep.ladder.domain.lines.Point;
+import nextstep.ladder.domain.lines.point.Point;
 
-@FunctionalInterface
 public interface LadderConnectOrder {
 
     List<Point> connectLadder();
-
 }

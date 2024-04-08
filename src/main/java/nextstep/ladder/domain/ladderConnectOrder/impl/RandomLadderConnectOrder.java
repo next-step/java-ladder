@@ -6,7 +6,8 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import nextstep.ladder.domain.ladderConnectOrder.LadderConnectOrder;
-import nextstep.ladder.domain.lines.Point;
+import nextstep.ladder.domain.lines.point.Point;
+import nextstep.ladder.domain.lines.point.impl.PointImpl;
 
 public class RandomLadderConnectOrder implements LadderConnectOrder {
 
@@ -23,14 +24,9 @@ public class RandomLadderConnectOrder implements LadderConnectOrder {
             .collect(Collectors.toList());
     }
 
-    public static List<Boolean> createLadderConnectOrder(int countOfPerson) {
-        return IntStream.range(0, countOfPerson - 1)
-            .mapToObj(i -> random.nextBoolean())
-            .collect(Collectors.toList());
-    }
-
+    @Override
     public List<Point> connectLadder() {
-        Point previousPoint = new Point(false);
+        PointImpl previousPoint = new PointImpl(false);
         List<Point> points = new ArrayList<>();
 
         for (Boolean value : values) {
@@ -40,7 +36,13 @@ public class RandomLadderConnectOrder implements LadderConnectOrder {
         return points;
     }
 
-    private Point addLineValue(Point previousPoint, boolean value) {
+    public static List<Boolean> createLadderConnectOrder(int countOfPerson) {
+        return IntStream.range(0, countOfPerson - 1)
+            .mapToObj(i -> random.nextBoolean())
+            .collect(Collectors.toList());
+    }
+
+    private PointImpl addLineValue(PointImpl previousPoint, boolean value) {
         return previousPoint.decideNextPoint(value);
     }
 }
