@@ -22,7 +22,7 @@ public class ConnectionCount {
         }
     }
 
-    public static ConnectionCount from(final int playersCount) {
-        return new ConnectionCount(playersCount - 1);
+    public static ConnectionCount from(final int count) {
+        return new ConnectionCount(count);
     }
 }

@@ -14,7 +14,7 @@ class LineTest {
     void Line_PlayersCount() {
         final Line expectedLine = new Line(List.of(true, false, true, false));
 
-        final Line actualLine = Line.of(ConnectionCount.from(5), () -> true);
+        final Line actualLine = Line.of(ConnectionCount.from(4), () -> true);
 
         assertThat(actualLine).isEqualTo(expectedLine);
     }

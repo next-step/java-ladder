@@ -15,13 +15,13 @@ public class Players {
         this.players = players;
     }
 
-    private void validatePlayersAreNotDuplicated(List<Player> players) {
+    private void validatePlayersAreNotDuplicated(final List<Player> players) {
         if (new HashSet<>(players).size() != players.size()) {
             throw new IllegalArgumentException("중복된 플레이어가 존재합니다. 플레이어: " + players);
         }
     }
 
-    private void validatePlayersAreNotEmpty(List<Player> players) {
+    private void validatePlayersAreNotEmpty(final List<Player> players) {
         if (players.isEmpty()) {
             throw new IllegalArgumentException("플레이어가 존재하지 않습니다.");
         }
@@ -33,8 +33,8 @@ public class Players {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public int playersCount() {
-        return this.players.size();
+    public int connectionCount() {
+        return this.players.size() - 1;
     }
 
     public static Players from(final List<String> playerNames) {

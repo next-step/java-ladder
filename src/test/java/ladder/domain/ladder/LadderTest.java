@@ -17,7 +17,7 @@ class LadderTest {
         final Line line = new Line(List.of(true, false, true, false));
         final Ladder expectedLadder = new Ladder(List.of(line, line, line));
 
-        final Ladder actualLadder = Ladder.of(5, 3, () -> true);
+        final Ladder actualLadder = Ladder.of(4, 3, () -> true);
 
         assertThat(actualLadder).isEqualTo(expectedLadder);
     }

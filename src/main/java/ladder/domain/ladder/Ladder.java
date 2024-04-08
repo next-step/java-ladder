@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 import ladder.domain.line.ConnectionCount;
 import ladder.domain.line.ConnectionGenerator;
 import ladder.domain.line.Line;
+import ladder.domain.player.Players;
 
 public class Ladder {
 
@@ -23,8 +24,12 @@ public class Ladder {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public static Ladder of(final int playersCount, final int height, final ConnectionGenerator connectionGenerator) {
-        return of(ConnectionCount.from(playersCount), new Height(height), connectionGenerator);
+    public static Ladder of(final Players players, final int height, final ConnectionGenerator connectionGenerator) {
+        return of(players.connectionCount(), height, connectionGenerator);
+    }
+
+    public static Ladder of(final int count, final int height, final ConnectionGenerator connectionGenerator) {
+        return of(ConnectionCount.from(count), new Height(height), connectionGenerator);
     }
 
     public static Ladder of(

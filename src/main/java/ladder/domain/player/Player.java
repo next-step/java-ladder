@@ -26,7 +26,7 @@ public class Player {
         }
     }
 
-    private void validateNameNotExceedMaxLength(String name) {
+    private void validateNameNotExceedMaxLength(final String name) {
         if (name.length() > MAXIMUM_NAME_LENGTH) {
             throw new IllegalArgumentException(MessageFormat.format(
                     "플레이어의 이름은 {0}자를 초과할 수 없습니다. 이름 : {1}", MAXIMUM_NAME_LENGTH, name));

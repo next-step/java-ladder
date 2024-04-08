@@ -1,7 +1,5 @@
 package ladder.controller;
 
-import java.util.List;
-
 import ladder.domain.ladder.Ladder;
 import ladder.domain.line.ConnectionGenerator;
 import ladder.domain.player.Players;
@@ -26,12 +24,8 @@ public class LadderGame {
 
     public void run() {
         try {
-            final List<String> playerNames = inputView.readPlayerNames();
-            final Players players = Players.from(playerNames);
-
-            final int height = inputView.readLadderHeight();
-            final Ladder ladder = Ladder.of(players.playersCount(), height, connectionGenerator);
-
+            final Players players = Players.from(inputView.readPlayerNames());
+            final Ladder ladder = Ladder.of(players, inputView.readLadderHeight(), connectionGenerator);
             outputView.printResult(players, ladder);
 
         } catch (final IllegalArgumentException e) {
