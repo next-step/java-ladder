@@ -1,9 +1,10 @@
 package nextstep.ladder;
 
 import java.util.List;
-import nextstep.ladder.domain.lines.Lines;
 import nextstep.ladder.domain.ladderConnectOrder.impl.RandomLadderConnectOrder;
-import nextstep.ladder.domain.result.LadderResult;
+import nextstep.ladder.domain.lines.Lines;
+import nextstep.ladder.domain.result.LadderResult.LadderResult;
+import nextstep.ladder.domain.result.LadderResult.impl.LadderResultImpl;
 import nextstep.ladder.domain.result.Results;
 import nextstep.ladder.domain.user.User;
 import nextstep.ladder.domain.user.Users;
@@ -21,7 +22,7 @@ public class Main {
 
         Output.printLadderConsoleResult(users, lines, result);
 
-        LadderResult ladderResult = new LadderResult(Results.createResults(result), users);
+        LadderResult ladderResult = new LadderResultImpl(Results.createResults(result), users);
         ladderResult.calculateLadderResult(users, lines);
 
         while (true) {

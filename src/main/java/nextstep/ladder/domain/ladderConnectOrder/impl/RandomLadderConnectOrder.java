@@ -26,7 +26,7 @@ public class RandomLadderConnectOrder implements LadderConnectOrder {
 
     @Override
     public List<Point> connectLadder() {
-        PointImpl previousPoint = new PointImpl(false);
+        Point previousPoint = new PointImpl(false);
         List<Point> points = new ArrayList<>();
 
         for (Boolean value : values) {
@@ -42,7 +42,7 @@ public class RandomLadderConnectOrder implements LadderConnectOrder {
             .collect(Collectors.toList());
     }
 
-    private PointImpl addLineValue(PointImpl previousPoint, boolean value) {
+    private Point addLineValue(Point previousPoint, boolean value) {
         return previousPoint.decideNextPoint(value);
     }
 }

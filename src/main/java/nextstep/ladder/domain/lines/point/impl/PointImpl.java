@@ -11,7 +11,7 @@ public class PointImpl implements Point {
     }
 
     @Override
-    public PointImpl decideNextPoint(Boolean randomBoolean) {
+    public Point decideNextPoint(Boolean randomBoolean) {
         if (!value) {
             return new PointImpl(randomBoolean);
         }

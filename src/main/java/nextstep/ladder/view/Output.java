@@ -2,9 +2,9 @@ package nextstep.ladder.view;
 
 import java.util.List;
 import nextstep.ladder.domain.lines.Lines;
-import nextstep.ladder.domain.lines.Point;
 import nextstep.ladder.domain.lines.line.Line;
-import nextstep.ladder.domain.result.LadderResult;
+import nextstep.ladder.domain.lines.point.Point;
+import nextstep.ladder.domain.result.LadderResult.LadderResult;
 import nextstep.ladder.domain.user.User;
 import nextstep.ladder.domain.user.Users;
 
@@ -38,9 +38,9 @@ public class Output {
     }
 
     private static void printLadderLines(Lines lines) {
-        for (Line lineImpl : lines.getLines()) {
+        for (Line line : lines.getLines()) {
             System.out.print(String.format(OUT_PUT_USER_FORMAT, VERTICAL_LINE));
-            printLineStatus(lineImpl);
+            printLineStatus(line);
             System.out.println();
         }
     }
@@ -68,7 +68,7 @@ public class Output {
 
     public static void printAllResult(LadderResult ladderResult) {
         System.out.println("실행 결과");
-        for (User user : ladderResult.keySet()) {
+        for (User user : ladderResult.users()) {
             System.out.println(String.format("%s : %s", user.getUserName(),
                 getDrawResult(ladderResult, user)));
 
@@ -80,6 +80,6 @@ public class Output {
     }
 
     private static String getDrawResult(LadderResult ladderResult, User user) {
-        return ladderResult.findUserDrawResult(user).getValue();
+        return ladderResult.findUserResult(user).getValue();
     }
 }
