@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,18 +10,14 @@ public class LadderBoard {
         this.ladderBoard = ladderBoard;
     }
 
-    public LadderBoard(int countOfHeight, int countOfPerson) {
-        for (int i = 0; i < countOfHeight; i++) {
-            ladderBoard.add(new Line(countOfPerson));
+    public LadderBoard(int column, int row) {
+        for (int i = 0; i < column; i++) {
+            ladderBoard.add(new Line(row));
         }
     }
 
     public List<Line> getLadderBoard() {
         return this.ladderBoard;
-    }
-
-    public List<Point> getLine(int index) {
-        return this.ladderBoard.get(index).getPoints();
     }
 
 }

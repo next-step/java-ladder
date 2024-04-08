@@ -1,4 +1,6 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
+
+import nextstep.ladder.DrawStrategy;
 
 public class Point {
     private boolean point;
@@ -11,7 +13,7 @@ public class Point {
         this.point = drawStrategy.isDraw();
     }
 
-    public boolean isPoint() {
+    public boolean isActive() {
         return point;
     }
 

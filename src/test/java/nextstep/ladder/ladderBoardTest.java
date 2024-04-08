@@ -1,5 +1,8 @@
 package nextstep.ladder;
 
+import nextstep.ladder.domain.LadderBoard;
+import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,10 +16,10 @@ public class ladderBoardTest {
     @DisplayName("사다리판 생성 테스트")
     void ladderBoardConstructTest() {
         List<Line> lines = new ArrayList<>();
-        lines.add(new Line(List.of(new Point(true),new Point(false),new Point(false))));
-        lines.add(new Line(List.of(new Point(true),new Point(false),new Point(true))));
-        lines.add(new Line(List.of(new Point(true),new Point(false),new Point(false))));
-        lines.add(new Line(List.of(new Point(true),new Point(false),new Point(true))));
+        lines.add(new Line(List.of(new Point(true), new Point(false), new Point(false))));
+        lines.add(new Line(List.of(new Point(true), new Point(false), new Point(true))));
+        lines.add(new Line(List.of(new Point(true), new Point(false), new Point(false))));
+        lines.add(new Line(List.of(new Point(true), new Point(false), new Point(true))));
         LadderBoard ladderBoard = new LadderBoard(lines);
         assertThat(ladderBoard.getLadderBoard()).hasSize(lines.size());
     }

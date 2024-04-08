@@ -23,14 +23,14 @@ public class User {
 		return this.name.equals(name);
 	}
 
-	private static boolean isAgeOver30Under45(User user) {
+	private static boolean isAge(User user) {
 		return user.age >= 30 && user.age <= 45;
 	}
 
 	public static boolean ageIsInRange1(User user) {
 		boolean isInRange = false;
 
-		if (user != null && user.getAge() != null && isAgeOver30Under45(user)) {
+		if (user != null && user.getAge() != null && isAge(user)) {
 			isInRange = true;
 		}
 		return isInRange;
