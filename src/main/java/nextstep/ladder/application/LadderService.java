@@ -13,7 +13,7 @@ public class LadderService {
     }
 
     public Ladder makeLadder(int height, int numberOfUser, List<String> results) {
-        return new Ladder(height, numberOfUser - 1, lineGenerator, results);
+        return new Ladder(height, numberOfUser, lineGenerator, results);
     }
 
     public Users makeUsers(List<String> userNames) {

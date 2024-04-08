@@ -31,4 +31,10 @@ public class Users {
     public List<User> getUsers() {
         return users.stream().collect(Collectors.toUnmodifiableList());
     }
+
+    public List<String> getUserNames() {
+        return users.stream()
+                .map(User::getUserName)
+                .collect(Collectors.toUnmodifiableList());
+    }
 }

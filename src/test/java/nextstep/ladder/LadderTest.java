@@ -13,26 +13,26 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderTest {
 
-    private List<String> results = IntStream.range(0,5).boxed().map(String::valueOf).collect(Collectors.toUnmodifiableList());
-    private int length = 4;
+    private List<String> results = IntStream.range(0, 5).boxed().map(String::valueOf).collect(Collectors.toUnmodifiableList());
+    private int length = 5;
     private int height = 3;
 
     @Test
     @DisplayName("사다리 생성 테스트")
     void testValidLadder() {
-        LineGenerator testLineGenerator = count -> Collections.nCopies(length, Boolean.FALSE);
+        LineGenerator testLineGenerator = count -> Collections.nCopies(length, nonLinePoint());
 
         Ladder ladder = new Ladder(height, length, testLineGenerator, results);
         assertThat(ladder.getHeight()).isEqualTo(height);
         assertThat(ladder.getLines()).hasSize(height);
-        assertThat(ladder.getLadderResult()).hasSize(length+1).containsExactlyElementsOf(results);
+        assertThat(ladder.getLadderResult()).hasSize(length).containsExactlyElementsOf(results);
         assertContainLines(ladder, new Line(length, testLineGenerator), length);
     }
 
     @Test
     @DisplayName("사다리 결과 테스트")
     void testLadderResult() {
-        Ladder ladder = new Ladder(height,length,count -> List.of(true, false, true, false), results);
+        Ladder ladder = new Ladder(height, length, count -> List.of(rightLinePoint(), leftLinePoint(), rightLinePoint(), leftLinePoint(), nonLinePoint()), results);
         Users users = new Users(makeUser());
 
         GameResult gameResult = ladder.getGameResult(users);
@@ -60,5 +60,17 @@ public class LadderTest {
                 .map(String::valueOf)
                 .map(User::new)
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    private static LinePoint leftLinePoint() {
+        return LinePoint.of(MoveDirection.LEFT);
+    }
+
+    private static LinePoint rightLinePoint() {
+        return LinePoint.of(MoveDirection.RIGHT);
+    }
+
+    private static LinePoint nonLinePoint() {
+        return LinePoint.of(MoveDirection.NON);
     }
 }
