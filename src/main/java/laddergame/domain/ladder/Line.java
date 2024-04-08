@@ -77,8 +77,8 @@ public class Line {
 
     public int nextIndexOfColumn(int indexOfColumn) {
         return indexOfColumn
-                + findLinkByIndex(2 * indexOfColumn - 1).value()
-                + findLinkByIndex(2 * indexOfColumn).value();
+                + findLinkByIndex(2 * indexOfColumn - 1).valueForNextIndexCalculation()
+                + findLinkByIndex(2 * indexOfColumn).valueForNextIndexCalculation();
     }
 
     private Link findLinkByIndex(int index) {

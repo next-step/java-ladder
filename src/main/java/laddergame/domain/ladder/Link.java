@@ -7,11 +7,11 @@ public enum Link {
     RIGHT(1, Link::isUnLinked),
     DOWN(0, beforeLink -> beforeLink.isUnLinked() || beforeLink.isLinkedLeft());
 
-    private final int value;
+    private final int valueForNextIndexCalculation; // valueForNextIndexCalculation
     private final Predicate<Link> beforeLinkCondition;
 
-    Link(int value, Predicate<Link> beforeLinkCondition) {
-        this.value = value;
+    Link(int valueForNextIndexCalculation, Predicate<Link> beforeLinkCondition) {
+        this.valueForNextIndexCalculation = valueForNextIndexCalculation;
         this.beforeLinkCondition = beforeLinkCondition;
     }
 
@@ -31,8 +31,8 @@ public enum Link {
         return this == DOWN;
     }
 
-    public int value() {
-        return value;
+    public int valueForNextIndexCalculation() {
+        return valueForNextIndexCalculation;
     }
 
     public boolean isValidBeforeLink(Link beforeLink) {
