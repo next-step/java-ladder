@@ -27,7 +27,7 @@ public class LadderOutputView {
         this.output = output;
     }
 
-    public void printResult(final Players players, final Ladder ladder) {
+    public void printGameResult(final Players players, final Ladder ladder) {
         output.printLine("\n실행 결과\n");
 
         printPlayers(players);
