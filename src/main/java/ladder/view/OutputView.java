@@ -51,6 +51,12 @@ public class OutputView {
 
 	public static void printResult(Ladder ladder, String matchUser) {
 		System.out.println("실행 결과");
+		if(matchUser.equals("all")) {
+			ladder.getUsers().stream()
+					.map(User::getName)
+					.forEach(userName -> System.out.println(userName + " : " + ladder.getMatchResult(userName)));
+			return;
+		}
 		System.out.println(ladder.getMatchResult(matchUser));
 	}
 }

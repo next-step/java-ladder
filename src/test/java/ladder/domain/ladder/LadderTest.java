@@ -4,6 +4,8 @@ import ladder.domain.result.Results;
 import ladder.domain.user.Users;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +31,9 @@ public class LadderTest {
 	}
 
 	@DisplayName("사다리를 생성하고 원하는 사람의 결과값을 출력한다.")
-	@Test
-	void resultForDesiredPerson() {
+	@ParameterizedTest
+	@CsvSource(value = {"pobi,꽝", "honux,3000", "crong,꽝", "jk,5000"})
+	void resultForDesiredPerson(String name, String result) {
 		// given
 		int height = 5;
 		Users users = new Users("pobi,honux,crong,jk");
@@ -84,6 +87,6 @@ public class LadderTest {
 		Ladder ladder = new Ladder(Height.createHeight(height), users, results, lines);
 
 		// then
-		assertThat(ladder.getMatchResult("jk")).isEqualTo("5000");
+		assertThat(ladder.getMatchResult(name)).isEqualTo(result);
 	}
 }

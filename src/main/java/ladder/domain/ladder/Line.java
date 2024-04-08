@@ -63,7 +63,7 @@ public class Line {
     }
 
     private int moveLast() {
-        return PointEnum.isTrue(points.get(points.size() - 1)) ? points.size() - 1 : points.size() - 2;
+        return PointEnum.isTrue(points.get(points.size() - 1)) ? points.size() - 1 : points.size();
     }
 
     private int moveFirst() {
