@@ -7,7 +7,7 @@ public enum Link {
     RIGHT(1, Link::isUnLinked),
     DOWN(0, beforeLink -> beforeLink.isUnLinked() || beforeLink.isLinkedLeft());
 
-    private final int valueForNextIndexCalculation; // valueForNextIndexCalculation
+    private final int valueForNextIndexCalculation;
     private final Predicate<Link> beforeLinkCondition;
 
     Link(int valueForNextIndexCalculation, Predicate<Link> beforeLinkCondition) {
