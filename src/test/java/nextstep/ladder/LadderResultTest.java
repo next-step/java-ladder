@@ -42,7 +42,7 @@ public class LadderResultTest {
 
     private static Stream<List<String>> makeInvalidResult() {
         return Stream.of(
-                List.of("1","2","3"),
+                List.of("1", "2", "3"),
                 List.of("1", "2", "3", "4", "")
         );
     }

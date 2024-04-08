@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 public class GameResultTest {
 
     private final static int USER_NUMBER = 5;
-    List<String> results = IntStream.range(0,USER_NUMBER).boxed().map(String::valueOf).collect(Collectors.toUnmodifiableList());
+    List<String> results = IntStream.range(0, USER_NUMBER).boxed().map(String::valueOf).collect(Collectors.toUnmodifiableList());
 
     Users users = new Users(makeUser());
 
@@ -35,12 +35,12 @@ public class GameResultTest {
     @Test
     @DisplayName("사다리 결과와 유저 수가 다른 경우 에러 발생")
     void testNotMatchSize() {
-        List<String> invalidResults = IntStream.range(0,USER_NUMBER-1).boxed().map(String::valueOf).collect(Collectors.toUnmodifiableList());
+        List<String> invalidResults = IntStream.range(0, USER_NUMBER - 1).boxed().map(String::valueOf).collect(Collectors.toUnmodifiableList());
         assertThatIllegalArgumentException().isThrownBy(() -> new GameResult(invalidResults, users));
     }
 
     private static List<User> makeUser() {
-        return IntStream.range(0,USER_NUMBER).boxed()
+        return IntStream.range(0, USER_NUMBER).boxed()
                 .map(String::valueOf)
                 .map(User::new)
                 .collect(Collectors.toUnmodifiableList());

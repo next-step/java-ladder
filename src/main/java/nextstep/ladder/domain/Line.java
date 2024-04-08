@@ -28,12 +28,12 @@ public class Line {
 
     private void assertValidLine(List<LinePoint> line) {
         String errorMessage = "[라인] 시작 점은 왼쪽으로 갈 수 없고, 끝 점은 오른쪽으로 갈 수 없습니다.";
-        if (line.get(0).canMoveLeft() || line.get(line.size()-1).canMoveRight()) {
+        if (line.get(0).canMoveLeft() || line.get(line.size() - 1).canMoveRight()) {
             throw new IllegalArgumentException(errorMessage);
         }
 
         for (int i = 1; i < line.size(); i++) {
-            assertValidLinePoints(line.get(i-1), line.get(i));
+            assertValidLinePoints(line.get(i - 1), line.get(i));
         }
     }
 

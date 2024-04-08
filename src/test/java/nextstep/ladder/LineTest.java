@@ -9,9 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -31,7 +29,7 @@ public class LineTest {
     @DisplayName("라인 생성 테스트")
     void testNextIndex() {
         Line line = new Line(lineLength, length -> List.of(rightLinePoint(), leftLinePoint(), nonLinePoint(), rightLinePoint(), leftLinePoint()));
-        List<Integer> expectNextIndex = List.of(1,0,2,4,3);
+        List<Integer> expectNextIndex = List.of(1, 0, 2, 4, 3);
 
         for (int i = 0; i < lineLength; i++) {
             assertThat(line.nextIndex(i)).isEqualTo(expectNextIndex.get(i));
@@ -62,7 +60,7 @@ public class LineTest {
         return LinePoint.of(MoveDirection.RIGHT);
     }
 
-    private static  LinePoint nonLinePoint() {
+    private static LinePoint nonLinePoint() {
         return LinePoint.of(MoveDirection.NON);
     }
 

@@ -27,13 +27,13 @@ public class RandomLineGenerator implements LineGenerator {
 
     private LinePoint generateLinePoint(LineLength length, int current, LinePoint previous) {
         List<MoveDirection> possibleMoveDirection = getPossibleMoveDirectionForRight();
-        if (previous != null && previous.canMoveRight()){
+        if (previous != null && previous.canMoveRight()) {
             return LinePoint.of(MoveDirection.LEFT);
         }
-        if (current == length.getLength()-1) {
+        if (current == length.getLength() - 1) {
             return LinePoint.of(MoveDirection.NON);
         }
-        if (current == 0){
+        if (current == 0) {
             possibleMoveDirection = getPossibleMoveDirectionForRight();
         }
 
