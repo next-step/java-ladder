@@ -16,7 +16,7 @@ public class LinePoint {
         cache.put(MoveDirection.NON, new LinePoint(false, false));
     }
 
-    private LinePoint(boolean left, boolean right) {
+    public LinePoint(boolean left, boolean right) {
         assertNotBothTrue(left, right);
         this.left = left;
         this.right = right;
