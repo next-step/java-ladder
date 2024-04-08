@@ -3,12 +3,16 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Position {
-    private int height;
-    private int width;
+    private final int height;
+    private final int width;
 
     public Position(int height, int width) {
         this.height = height;
         this.width = width;
+    }
+
+    public static Position departurePosition(int indexOfParticipant) {
+        return new Position(0, indexOfParticipant);
     }
 
     public int getHeight() {
@@ -20,20 +24,15 @@ public class Position {
     }
 
     public Position moveLeftAndDown() {
-        this.width--;
-        this.moveDown();
-        return this;
+        return new Position(height + 1, width - 1);
     }
 
     public Position moveRightAndDown() {
-        this.width++;
-        this.moveDown();
-        return this;
+        return new Position(height + 1, width + 1);
     }
 
     public Position moveDown() {
-        this.height++;
-        return this;
+        return new Position(height + 1, width);
     }
 
     @Override

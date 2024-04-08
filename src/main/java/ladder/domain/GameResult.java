@@ -25,7 +25,7 @@ public class GameResult {
     }
 
     private static int indexOfPrize(Ladder ladder, int indexOfParticipant) {
-        Position currentPosition = new Position(0, indexOfParticipant);
+        Position currentPosition = Position.departurePosition(indexOfParticipant);
         Position result = ladder.arrival(currentPosition);
 
         return result.getWidth();
