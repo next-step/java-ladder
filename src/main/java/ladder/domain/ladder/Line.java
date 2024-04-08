@@ -1,8 +1,5 @@
 package ladder.domain.ladder;
 
-import ladder.domain.ladder.point.PointAddStrategy;
-import ladder.domain.ladder.point.PointEnum;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,23 +18,20 @@ public class Line {
         this.points = points;
     }
 
-    public static Line createPointLine(Integer countOfPerson, PointAddStrategy pointAddStrategy) {
-        return new Line(pointAddStrategy.makePoint(countOfPerson));
-    }
-
-    public static Line createMenualPointLine(Integer countOfPerson, List<PointEnum> points) {
-        if (points.size() != countOfPerson - 1) {
-            throw new IllegalArgumentException("사람 수와 포인트 수가 일치하지 않습니다.");
-        }
-        return new Line(points);
-    }
-
     private static void pointsAdd(final List<PointEnum> points, final int i) {
         if (PointEnum.isTrue(points.get(i - 1))) {
             points.add(PointEnum.createPoint(false));
             return;
         }
         points.add(PointEnum.createRandomPoint());
+    }
+
+    public static Line createRandomLine(final int countOfPerson) {
+        return new Line(countOfPerson, PointEnum.createRandomPoint());
+    }
+
+    public static Line createManualLine(final List<PointEnum> point) {
+        return new Line(point);
     }
 
     public int size() {
@@ -60,10 +54,10 @@ public class Line {
 
     private int moveMiddle(int index) {
         if (PointEnum.isTrue(points.get(index - 1))) {
-            return index + 1;
+            return index - 1;
         }
         if (PointEnum.isTrue(points.get(index))) {
-            return index - 1;
+            return index + 1;
         }
         return index;
     }

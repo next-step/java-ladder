@@ -1,8 +1,5 @@
 package ladder.domain.ladder;
 
-import ladder.domain.ladder.point.ManualPointAdd;
-import ladder.domain.ladder.point.PointEnum;
-import ladder.domain.ladder.point.RandomPointAdd;
 import ladder.domain.result.Results;
 import ladder.domain.user.Users;
 import org.junit.jupiter.api.DisplayName;
@@ -25,7 +22,7 @@ public class LadderTest {
 
 
 		// when
-		Ladder ladder = Ladder.createLadder(Height.createHeight(height), users, results, new RandomPointAdd());
+		Ladder ladder = Ladder.createLadder(height, users, results, new RandomPointLines());
 
 		// then
 		assertThat(ladder.getHeight()).isEqualTo(5);
@@ -35,7 +32,7 @@ public class LadderTest {
 	@Test
 	void resultForDesiredPerson() {
 		// given
-		Height height = Height.createHeight(5);
+		int height = 5;
 		Users users = new Users("pobi,honux,crong,jk");
 		Results results = new Results("꽝,5000,꽝,3000", users.getCountOfPerson());
 
@@ -49,28 +46,44 @@ public class LadderTest {
 		 *     |-----|     |-----|121314 16171819
 		 * 꽝    5000  꽝    3000
 		 */
-		List<PointEnum> points = new ArrayList<>();
-		points.add(PointEnum.TRUE);
-		points.add(PointEnum.FALSE);
-		points.add(PointEnum.TRUE);
-		points.add(PointEnum.FALSE);
-		points.add(PointEnum.TRUE);
-		points.add(PointEnum.FALSE);
-		points.add(PointEnum.TRUE);
-		points.add(PointEnum.FALSE);
-		points.add(PointEnum.FALSE);
-		points.add(PointEnum.FALSE);
-		points.add(PointEnum.TRUE);
-		points.add(PointEnum.FALSE);
-		points.add(PointEnum.TRUE);
-		points.add(PointEnum.FALSE);
-		points.add(PointEnum.TRUE);
+		List<List<PointEnum>> pointArrayList = new ArrayList<>();
 
+		List<PointEnum> points1 = new ArrayList<>();
+		points1.add(PointEnum.TRUE);
+		points1.add(PointEnum.FALSE);
+		points1.add(PointEnum.TRUE);
+
+		List<PointEnum> points2 = new ArrayList<>();
+		points2.add(PointEnum.FALSE);
+		points2.add(PointEnum.TRUE);
+		points2.add(PointEnum.FALSE);
+
+		List<PointEnum> points3 = new ArrayList<>();
+		points3.add(PointEnum.TRUE);
+		points3.add(PointEnum.FALSE);
+		points3.add(PointEnum.FALSE);
+
+		List<PointEnum> points4 = new ArrayList<>();
+		points4.add(PointEnum.FALSE);
+		points4.add(PointEnum.TRUE);
+		points4.add(PointEnum.FALSE);
+
+		List<PointEnum> points5 = new ArrayList<>();
+		points5.add(PointEnum.TRUE);
+		points5.add(PointEnum.FALSE);
+		points5.add(PointEnum.TRUE);
+
+		pointArrayList.add(points1);
+		pointArrayList.add(points2);
+		pointArrayList.add(points3);
+		pointArrayList.add(points4);
+		pointArrayList.add(points5);
+
+		Lines lines = Lines.createManualLines(height, users.getCountOfPerson(), pointArrayList);
 		// when
-		Ladder ladder = Ladder.createLadder(height, users, results, new ManualPointAdd(points));
-
+		Ladder ladder = new Ladder(Height.createHeight(height), users, results, lines);
 
 		// then
-		assertThat(ladder.getMatchResult("honux")).isEqualTo("3000");
+		assertThat(ladder.getMatchResult("jk")).isEqualTo("5000");
 	}
 }

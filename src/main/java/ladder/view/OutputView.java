@@ -1,9 +1,8 @@
 package ladder.view;
 
-import ladder.domain.ladder.Height;
 import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.point.PointEnum;
-import ladder.domain.ladder.point.RandomPointAdd;
+import ladder.domain.ladder.PointEnum;
+import ladder.domain.ladder.RandomPointLines;
 import ladder.domain.result.Result;
 import ladder.domain.result.Results;
 import ladder.domain.user.User;
@@ -16,7 +15,7 @@ public class OutputView {
 		System.out.println("사다리 결과");
 		System.out.println("");
 
-		Ladder ladder = Ladder.createLadder(Height.createHeight(ladderHeight), users, results, new RandomPointAdd());
+		Ladder ladder = Ladder.createLadder(ladderHeight, users, results, new RandomPointLines());
 
 		ladder.getUsers().stream()
 				.map(User::getNameWithSpace)

@@ -1,6 +1,5 @@
 package ladder.domain.ladder;
 
-import ladder.domain.ladder.point.PointAddStrategy;
 import ladder.domain.result.Result;
 import ladder.domain.result.Results;
 import ladder.domain.user.User;
@@ -14,15 +13,16 @@ public class Ladder {
     private final Users users;
     private final Results results;
 
-    public Ladder(Height height, Users users, Results results, PointAddStrategy pointAddStrategy) {
+    public Ladder(Height height, Users users, Results results, Lines lines) {
         this.height = height;
         this.users = users;
         this.results = results;
-        this.lines = Lines.createLines(height.getHeight(), users.getSize(), pointAddStrategy);
+        this.lines = lines;
     }
 
-    public static Ladder createLadder(Height height, Users users, Results results, PointAddStrategy pointAddStrategy) {
-        return new Ladder(height, users, results, pointAddStrategy);
+    public static Ladder createLadder(int height, Users users, Results results, LinesStrategy lineAddStrategy) {
+        Lines lines = Lines.createLines(height, users.getSize(), lineAddStrategy);
+        return new Ladder(Height.createHeight(height), users, results, lines);
     }
 
     public int getHeight() {
@@ -43,7 +43,9 @@ public class Ladder {
 
     public String getMatchResult(String matchUser) {
         int index = users.findUserIndex(matchUser);
-        lines.getLines().forEach(line -> line.move(index));
+        for (int i = 0; i < lines.getLines().size(); i++) {
+            index = lines.getLine(i).move(index);
+        }
         return results.getResult(index).getValue();
     }
 }

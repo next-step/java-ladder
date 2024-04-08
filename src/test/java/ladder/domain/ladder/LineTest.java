@@ -1,6 +1,5 @@
 package ladder.domain.ladder;
 
-import ladder.domain.ladder.point.RandomPointAdd;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +13,7 @@ public class LineTest {
 		int countOfPerson = 4;
 
 		// when
-		Line line = Line.createPointLine(countOfPerson, new RandomPointAdd());
+		Line line = Line.createRandomLine(countOfPerson);
 
 		// then
 		assertThat(line.size()).isEqualTo(3);

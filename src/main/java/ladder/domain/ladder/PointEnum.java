@@ -1,4 +1,4 @@
-package ladder.domain.ladder.point;
+package ladder.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,10 +19,6 @@ public enum PointEnum {
         for (int i = 1; i < countOfPerson - 1; i++) {
             points.add(PointEnum.createRandomPoint());
         }
-        return points;
-    }
-
-    public static List<PointEnum> createManualPoints(int countOfPerson, List<PointEnum> points) {
         return points;
     }
 
