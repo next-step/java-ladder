@@ -5,7 +5,6 @@ import nextstep.ladder.domain.ladder.Line;
 import nextstep.ladder.domain.ladder.Point;
 import nextstep.ladder.result.LadderResult;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class ResultView {
@@ -16,26 +15,16 @@ public class ResultView {
     private final static String STRIPE = "|";
 
     public static void viewResult(LadderResult ladderResult) {
-        StringBuilder stringBuilder = new StringBuilder();
-
-        stringBuilder.append(RESULT_MESSAGE)
+        StringBuilder resultBuilder = new StringBuilder()
+                .append(RESULT_MESSAGE)
                 .append(LINE_SEPARATOR)
                 .append(LINE_SEPARATOR);
 
+        ladderResult.getUserNames().forEach(userName -> resultBuilder.append(userName).append(BLANK));
+        resultBuilder.append(LINE_SEPARATOR);
+        resultBuilder.append(printLadder(ladderResult.getLadder()));
 
-        //print usernames
-        List<String> userNames = ladderResult.getUserNames();
-        for (String userName : userNames) {
-            stringBuilder.append(userName).append(BLANK);
-        }
-
-        stringBuilder.append(LINE_SEPARATOR);
-
-        //print ladder
-        Ladder ladder = ladderResult.getLadder();
-        stringBuilder.append(printLadder(ladder));
-
-        System.out.println(stringBuilder);
+        System.out.println(resultBuilder);
     }
 
     private static String printLadder(Ladder ladder) {
