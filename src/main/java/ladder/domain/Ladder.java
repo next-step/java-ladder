@@ -2,6 +2,8 @@ package ladder.domain;
 
 import ladder.domain.factory.RowFactory;
 import ladder.domain.vo.Rows;
+import ladder.util.BooleanGenerator;
+import ladder.util.RandomBooleanGenerator;
 
 import java.util.Collections;
 import java.util.List;
@@ -33,8 +35,10 @@ public class Ladder {
             throw new IllegalArgumentException("사다리 높이는 최소 2 이상이어야 합니다.");
         }
 
+        RowFactory rowFactory = new RowFactory(new RandomBooleanGenerator());
+
         return IntStream.range(0, height)
-                .mapToObj(i -> RowFactory.createRandom(players.count() - 1))
+                .mapToObj(i -> rowFactory.createRandom(players.count() - 1))
                 .collect(Collectors.toList());
     }
 

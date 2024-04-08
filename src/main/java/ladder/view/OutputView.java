@@ -19,12 +19,12 @@ public class OutputView {
     private static void printPlayers(Players players){
         players.players()
                 .forEach(player ->
-                    System.out.print(formatPlayerName(player.name()))
+                        System.out.print(formatPlayerName(player.name()))
                 );
         System.out.println();
     }
 
-    private static String formatPlayerName(String name) {
+    private static StringBuilder formatPlayerName(String name) {
         int spacesLeft = (PLAYER_NAME_COLUMN_WIDTH - name.length()) / 2;
         int spacesRight = PLAYER_NAME_COLUMN_WIDTH - name.length() - spacesLeft;
 
@@ -33,18 +33,19 @@ public class OutputView {
         formattedName.append(name);
         formattedName.append(" ".repeat(Math.max(spacesRight, 0)));
 
-        return formattedName.toString();
+        return formattedName;
     }
 
-    private static void printRows(Rows rows){
-        System.out.print("  |");
+    private static void printRows(Rows rows) {
+        StringBuilder rowsString = new StringBuilder("  |");
         rows.rows().forEach(row -> {
             if (row.bridgeExist()) {
-                System.out.print("----|");
+                rowsString.append("----|");
                 return;
             }
-            System.out.print("    |");
+            rowsString.append("    |");
         });
-        System.out.println();
+
+        System.out.println(rowsString);
     }
 }

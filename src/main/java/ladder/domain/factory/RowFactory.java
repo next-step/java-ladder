@@ -11,15 +11,17 @@ import java.util.List;
 
 public final class RowFactory {
 
-    private RowFactory() {
+    private final BooleanGenerator booleanGenerator;
+
+    public RowFactory(BooleanGenerator booleanGenerator) {
+        this.booleanGenerator = booleanGenerator;
     }
 
-    public static Rows createRandom(int size){
-        return new Rows(createRows(size, new RandomBooleanGenerator()));
+    public Rows createRandom(int size){
+        return new Rows(createRows(size));
     }
 
-    private static List<Row> createRows(int size,
-                                        BooleanGenerator booleanGenerator) {
+    private List<Row> createRows(int size) {
         List<Row> rowList = new ArrayList<>(size);
 
         rowList.add(new Row(booleanGenerator.generate()));
