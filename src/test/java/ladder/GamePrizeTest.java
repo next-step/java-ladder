@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.domain.GamePrize;
+import ladder.domain.Prize;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -28,6 +29,6 @@ class GamePrizeTest {
     @Test
     void 인덱스로_보상_조회() {
         GamePrize gamePrize = GamePrize.generateGamePrize(new String[]{"꽝", "1000", "3000"});
-        assertThat(gamePrize.prizeOf(1)).isEqualTo("1000");
+        assertThat(gamePrize.prizeOf(1)).isEqualTo(new Prize("1000"));
     }
 }

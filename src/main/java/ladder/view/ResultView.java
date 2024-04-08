@@ -39,7 +39,7 @@ public class ResultView {
     }
 
     public static void showGamePrize(GamePrize gamePrize) {
-        List<String> prizeList = gamePrize.getPrize()
+        List<String> prizeList = gamePrize.prizeList()
                 .stream()
                 .map(prize -> String.format(PRINT_FORMAT, prize))
                 .collect(Collectors.toList());

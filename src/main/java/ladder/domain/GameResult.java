@@ -6,18 +6,18 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class GameResult {
-    private final Map<Name, String> result;
+    private final Map<Name, Prize> result;
 
-    private GameResult(Map<Name, String> result) {
+    private GameResult(Map<Name, Prize> result) {
         this.result = result;
     }
 
     public static GameResult of(Ladder ladder, Participants participants, GamePrize gamePrize) {
-        List<String> prizeList = IntStream.range(0, participants.countOfPerson())
+        List<Prize> prizeList = IntStream.range(0, participants.countOfPerson())
                 .mapToObj(index -> gamePrize.prizeOf(indexOfPrize(ladder, index)))
                 .collect(Collectors.toList());
 
-        Map<Name, String> result = IntStream.range(0, participants.countOfPerson())
+        Map<Name, Prize> result = IntStream.range(0, participants.countOfPerson())
                 .boxed()
                 .collect(Collectors.toMap(participants::nameOf, prizeList::get));
 
@@ -31,7 +31,7 @@ public class GameResult {
         return result.getWidth();
     }
 
-    public Map<Name, String> getResult() {
+    public Map<Name, Prize> getResult() {
         return result;
     }
 }
