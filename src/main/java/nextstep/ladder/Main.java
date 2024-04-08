@@ -1,7 +1,7 @@
 package nextstep.ladder;
 
 import java.util.List;
-import nextstep.ladder.domain.line.Lines;
+import nextstep.ladder.domain.lines.Lines;
 import nextstep.ladder.domain.ladderConnectOrder.impl.RandomLadderConnectOrder;
 import nextstep.ladder.domain.result.LadderResult;
 import nextstep.ladder.domain.result.Results;

@@ -1,4 +1,4 @@
-package nextstep.ladder.domain.line;
+package nextstep.ladder.domain.lines;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

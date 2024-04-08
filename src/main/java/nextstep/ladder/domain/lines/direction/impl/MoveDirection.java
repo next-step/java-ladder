@@ -1,6 +1,6 @@
-package nextstep.ladder.domain.line.direction.impl;
+package nextstep.ladder.domain.lines.direction.impl;
 
-import nextstep.ladder.domain.line.direction.Direction;
+import nextstep.ladder.domain.lines.direction.Direction;
 
 public enum MoveDirection implements Direction {
     NO_MOVE(0),

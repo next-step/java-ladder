@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.List;
 import nextstep.ladder.domain.ladderConnectOrder.LadderConnectOrder;
 import nextstep.ladder.domain.ladderConnectOrder.impl.RandomLadderConnectOrder;
-import nextstep.ladder.domain.line.Lines;
+import nextstep.ladder.domain.lines.Lines;
 import nextstep.ladder.domain.user.User;
 import nextstep.ladder.domain.user.Users;
 import nextstep.ladder.error.exception.LadderUsersMismatchException;

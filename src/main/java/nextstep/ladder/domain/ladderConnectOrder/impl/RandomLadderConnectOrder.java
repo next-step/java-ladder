@@ -6,7 +6,7 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import nextstep.ladder.domain.ladderConnectOrder.LadderConnectOrder;
-import nextstep.ladder.domain.line.Point;
+import nextstep.ladder.domain.lines.Point;
 
 public class RandomLadderConnectOrder implements LadderConnectOrder {
 

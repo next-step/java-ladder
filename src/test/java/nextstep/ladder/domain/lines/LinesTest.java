@@ -1,4 +1,4 @@
-package nextstep.ladder.domain.line;
+package nextstep.ladder.domain.lines;
 
 import static nextstep.ladder.domain.ladderConnectOrder.impl.RandomLadderConnectOrder.createLadderConnectOrders;
 import static org.assertj.core.api.Assertions.assertThat;

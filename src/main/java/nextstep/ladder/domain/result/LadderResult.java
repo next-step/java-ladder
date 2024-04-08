@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.IntStream;
-import nextstep.ladder.domain.line.Lines;
+import nextstep.ladder.domain.lines.Lines;
 import nextstep.ladder.domain.user.User;
 import nextstep.ladder.domain.user.Users;
 import nextstep.ladder.error.exception.LadderUsersMismatchException;

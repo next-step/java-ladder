@@ -1,9 +1,9 @@
 package nextstep.ladder.view;
 
 import java.util.List;
-import nextstep.ladder.domain.line.Line;
-import nextstep.ladder.domain.line.Lines;
-import nextstep.ladder.domain.line.Point;
+import nextstep.ladder.domain.lines.Lines;
+import nextstep.ladder.domain.lines.Point;
+import nextstep.ladder.domain.lines.line.Line;
 import nextstep.ladder.domain.result.LadderResult;
 import nextstep.ladder.domain.user.User;
 import nextstep.ladder.domain.user.Users;
@@ -38,9 +38,9 @@ public class Output {
     }
 
     private static void printLadderLines(Lines lines) {
-        for (Line line : lines.getLines()) {
+        for (Line lineImpl : lines.getLines()) {
             System.out.print(String.format(OUT_PUT_USER_FORMAT, VERTICAL_LINE));
-            printLineStatus(line);
+            printLineStatus(lineImpl);
             System.out.println();
         }
     }

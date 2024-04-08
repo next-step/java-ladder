@@ -1,10 +1,12 @@
-package nextstep.ladder.domain.line;
+package nextstep.ladder.domain.lines;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import nextstep.ladder.domain.ladderConnectOrder.LadderConnectOrder;
-import nextstep.ladder.domain.line.direction.Direction;
-import nextstep.ladder.domain.line.direction.impl.MoveDirection;
+import nextstep.ladder.domain.lines.direction.Direction;
+import nextstep.ladder.domain.lines.direction.impl.MoveDirection;
+import nextstep.ladder.domain.lines.line.Line;
+import nextstep.ladder.domain.lines.line.impl.LineImpl;
 import nextstep.ladder.error.exception.LadderHeightSizeException;
 import nextstep.ladder.error.exception.LinesSizeException;
 
@@ -30,7 +32,7 @@ public class Lines {
         }
 
         return randomLadderConnectOrders.stream()
-            .map(Line::new)
+            .map(LineImpl::new)
             .collect(Collectors.toList());
     }
 
