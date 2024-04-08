@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 import nextstep.ladder.domain.ladderConnectOrder.LadderConnectOrder;
 import nextstep.ladder.domain.ladderConnectOrder.impl.RandomLadderConnectOrder;
+import nextstep.ladder.domain.lines.point.Point;
+import nextstep.ladder.domain.lines.point.impl.PointImpl;
 import org.junit.jupiter.api.Test;
 
 class RandomLadderConnectOrderTest {
