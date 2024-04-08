@@ -18,4 +18,8 @@ public class User {
             throw new IllegalArgumentException(USER_INVAILD_MESSEAGE);
         }
     }
+
+    public String getUserName() {
+        return userName;
+    }
 }

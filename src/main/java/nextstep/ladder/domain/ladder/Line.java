@@ -1,6 +1,7 @@
 package nextstep.ladder.domain.ladder;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -12,6 +13,10 @@ public class Line {
     public Line(List<Point> points) {
         checkInvalidPoints(points);
         this.points = points;
+    }
+
+    public Line(boolean... pointsStatus) {
+        this(getPoints(pointsStatus));
     }
 
     private void checkInvalidPoints(List<Point> points) {
@@ -29,16 +34,17 @@ public class Line {
                 .anyMatch(i -> points.get(i).isConnect() && points.get(i + 1).isConnect());
     }
 
-    public Line(boolean... pointsStatus) {
-        this(getPoints(pointsStatus));
-    }
-
     private static List<Point> getPoints(boolean[] pointsStatus) {
         List<Point> points = new ArrayList<>();
 
         for (boolean status : pointsStatus) {
             points.add(new Point(status));
         }
+
         return points;
+    }
+
+    public List<Point> getPoints() {
+        return Collections.unmodifiableList(points);
     }
 }
