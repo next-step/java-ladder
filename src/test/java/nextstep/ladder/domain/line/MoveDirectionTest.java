@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.line;
 
+import nextstep.ladder.domain.line.direction.impl.MoveDirection;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

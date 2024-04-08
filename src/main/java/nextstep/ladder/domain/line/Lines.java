@@ -3,6 +3,8 @@ package nextstep.ladder.domain.line;
 import java.util.List;
 import java.util.stream.Collectors;
 import nextstep.ladder.domain.ladderConnectOrder.LadderConnectOrder;
+import nextstep.ladder.domain.line.direction.Direction;
+import nextstep.ladder.domain.line.direction.impl.MoveDirection;
 import nextstep.ladder.error.exception.LadderHeightSizeException;
 import nextstep.ladder.error.exception.LinesSizeException;
 
@@ -38,7 +40,7 @@ public class Lines {
     }
 
     private int adjustUserIndex(int currentIndex, Line line) {
-        MoveDirection direction = MoveDirection.NO_MOVE;
+        Direction direction = MoveDirection.NO_MOVE;
         if (line.canMoveRight(currentIndex)) {
             direction = MoveDirection.RIGHT;
         }
