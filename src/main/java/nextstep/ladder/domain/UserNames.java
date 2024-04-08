@@ -15,12 +15,12 @@ public class UserNames {
             throw new IllegalArgumentException("사람 이름은 5글자 이하여야합니다.");
     }
 
-    public int getUserCount() {
-        return names.size();
-    }
-
     public List<String> getNames() {
         return names;
+    }
+
+    public int size() {
+        return names.size();
     }
 
 }
