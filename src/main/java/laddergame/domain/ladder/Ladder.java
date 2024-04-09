@@ -21,7 +21,7 @@ public class Ladder {
     }
 
     public static Ladder newLadder(HeightOfLadder heightOfLadder, PlayersAndWinningContents playersAndWinningContents, LinkStrategy linkStrategy) {
-        List<Line> generatedLines = Stream.generate(() -> Line.newLine(playersAndWinningContents.numberOfLinks(), linkStrategy))
+        List<Line> generatedLines = Stream.generate(() -> Line.newLine(playersAndWinningContents.numberOfLinkedUnLinked(), linkStrategy))
                 .limit(heightOfLadder.height())
                 .collect(Collectors.toList());
 
@@ -50,7 +50,7 @@ public class Ladder {
 
     private boolean isValidPlayersAndWinningContents(PlayersAndWinningContents playersAndWinningContents) {
         long numberOfInvalidCase = lines.stream()
-                .filter(line -> line.numberOfLinks() != playersAndWinningContents.numberOfLinks())
+                .filter(line -> line.numberOfLinkedUnLinked() != playersAndWinningContents.numberOfLinkedUnLinked())
                 .count();
         return numberOfInvalidCase == 0;
     }

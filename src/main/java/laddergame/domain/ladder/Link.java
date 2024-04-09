@@ -1,33 +1,41 @@
 package laddergame.domain.ladder;
 
-import java.util.List;
-
-import static laddergame.domain.ladder.Direction.*;
+import java.util.function.Predicate;
 
 public enum Link {
-    LINKED(List.of(RIGHT, LEFT)),
-    UNLINKED(List.of(DOWN, DOWN));
+    LEFT(-1, Link::isLinkedRight),
+    RIGHT(1, Link::isUnLinked),
+    DOWN(0, beforeLink -> beforeLink.isUnLinked() || beforeLink.isLinkedLeft());
 
-    private final List<Direction> directions;
+    private final int valueForNextIndexCalculation;
+    private final Predicate<Link> beforeLinkCondition;
 
-    Link(List<Direction> directions) {
-        this.directions = directions;
+    Link(int valueForNextIndexCalculation, Predicate<Link> beforeLinkCondition) {
+        this.valueForNextIndexCalculation = valueForNextIndexCalculation;
+        this.beforeLinkCondition = beforeLinkCondition;
     }
 
     public boolean isLinked() {
-        return this == LINKED;
+        return this == LEFT || this == RIGHT;
+    }
+
+    public boolean isLinkedRight() {
+        return this == RIGHT;
+    }
+
+    public boolean isLinkedLeft() {
+        return this == LEFT;
     }
 
     public boolean isUnLinked() {
-        return this == UNLINKED;
+        return this == DOWN;
     }
 
-    public int rightDirectionValue() {
-        return directions.get(0).value();
+    public int valueForNextIndexCalculation() {
+        return valueForNextIndexCalculation;
     }
 
-    public int leftDirectionValue() {
-        return directions.get(1).value();
+    public boolean isValidBeforeLink(Link beforeLink) {
+        return beforeLinkCondition.test(beforeLink);
     }
-
 }

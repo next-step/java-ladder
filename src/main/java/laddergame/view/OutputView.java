@@ -6,7 +6,9 @@ import laddergame.domain.ResultOfLadder;
 import laddergame.domain.WinningContents;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.Line;
+import laddergame.domain.ladder.Link;
 
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -130,8 +132,11 @@ public class OutputView {
                 .append(LADDER_COLUMN)
                 .toString();
 
-        return line.links()
-                .stream()
+        List<Link> links = line.links();
+        
+        return IntStream.range(0, line.numberOfLinks())
+                .filter(i -> i % 2 == 1)
+                .mapToObj(links::get)
                 .map(link -> link.isLinked() ? LINKED : UNLINKED)
                 .collect(Collectors.joining(LADDER_COLUMN, prefixOfLine, LADDER_COLUMN));
     }
