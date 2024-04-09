@@ -32,24 +32,23 @@ public class Ladder {
         return lines;
     }
 
-    public Position arrival(Position currentPosition) {
-        return move(currentPosition);
+    public Position arrival(Position initialPosition) {
+        return Stream.iterate(initialPosition, this::nextPosition)
+                .filter(position -> position.getHeight() >= lines.size())
+                .findFirst()
+                .orElse(initialPosition);
     }
 
-    private Position move(Position currentPosition) {
-        if (currentPosition.getHeight() == lines.size()) {
-            return currentPosition;
-        }
-
+    private Position nextPosition(Position currentPosition) {
         if (isMovable(currentPosition.getHeight(), currentPosition.getWidth() - 1)) {
-            return move(currentPosition.moveLeftAndDown());
+            return currentPosition.moveLeftAndDown();
         }
 
         if (isMovable(currentPosition.getHeight(), currentPosition.getWidth())) {
-            return move(currentPosition.moveRightAndDown());
+            return currentPosition.moveRightAndDown();
         }
 
-        return move(currentPosition.moveDown());
+        return currentPosition.moveDown();
     }
 
     private boolean isMovable(int height, int width) {

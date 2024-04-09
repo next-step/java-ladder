@@ -33,7 +33,7 @@ class LadderTest {
                 new Line(List.of(false, true, false)),
                 new Line(List.of(true, false, true))));
 
-        assertThat(ladder.arrival(new Position(0, departure)))
+        assertThat(ladder.arrival(Position.departurePosition(departure)))
                 .isEqualTo(new Position(3, arrival));
     }
 }
