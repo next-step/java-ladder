@@ -15,11 +15,6 @@ public class StreamStudy {
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-//        long count = 0;
-//        for (String w : words) {
-//            if (w.length() > 12) count++;
-//        }
-//        return count;
         return words.stream()
                 .map(word -> word.length() > 12)
                 .count();
@@ -30,7 +25,6 @@ public class StreamStudy {
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-        // TODO 이 부분에 구현한다.
         List<String> strings = words.stream()
                                     .distinct()
                                     .filter(string -> string.length() > 12)
