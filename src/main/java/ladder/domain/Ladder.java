@@ -34,7 +34,7 @@ public class Ladder {
 
     public Position arrival(Position initialPosition) {
         return Stream.iterate(initialPosition, this::nextPosition)
-                .filter(position -> position.getHeight() >= lines.size())
+                .filter(position -> position.isArrivalPosition(lines.size()))
                 .findFirst()
                 .orElse(initialPosition);
     }
@@ -56,11 +56,11 @@ public class Ladder {
             return false;
         }
 
-        if (width < 0 || width >= lines.get(0).getBridge().size()) {
+        if (width < 0 || width >= lines.get(0).countOfBridge()) {
             return false;
         }
 
-        return lines.get(height).getBridge().get(width);
+        return lines.get(height).canMove(width);
     }
 
 }

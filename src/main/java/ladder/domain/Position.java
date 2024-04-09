@@ -15,14 +15,6 @@ public class Position {
         return new Position(0, indexOfParticipant);
     }
 
-    public int getHeight() {
-        return height;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
     public Position moveLeftAndDown() {
         return new Position(height + 1, width - 1);
     }
@@ -33,6 +25,18 @@ public class Position {
 
     public Position moveDown() {
         return new Position(height + 1, width);
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public boolean isArrivalPosition(int ladderHeight) {
+        return this.height >= ladderHeight;
     }
 
     @Override

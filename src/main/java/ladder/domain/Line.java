@@ -36,4 +36,12 @@ public class Line {
     public List<Boolean> getBridge() {
         return bridge;
     }
+
+    public int countOfBridge() {
+        return this.bridge.size();
+    }
+
+    public boolean canMove(int width) {
+        return this.bridge.get(width);
+    }
 }
