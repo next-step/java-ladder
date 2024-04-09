@@ -29,3 +29,12 @@ step 2
   * modified test codes
 * refactor/feedback
   * refactored code based on feedback
+
+step 3
+* refactor/feedback-step2
+  * refactored codes based on feedback from step2
+* feature/ladder-game
+  * implement ladder game
+    * add position field in player
+    * modified codes related with ladder game
+    * modified test codes as well

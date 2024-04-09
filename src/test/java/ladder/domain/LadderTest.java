@@ -14,21 +14,27 @@ public class LadderTest {
     @Test
     @DisplayName("사다리 생성 테스트")
     void ladderTest(){
-        final Players players = PlayerFactory.create(List.of("david", "J", "lee"));
-        final Ladder ladder = new Ladder(players, 5);
+        final Ladder ladder = new Ladder(1, 2);
 
-        assertThat(ladder.height()).isEqualTo(5);
-        assertThat(ladder.width()).isEqualTo(2);
+        assertThat(ladder.width()).isEqualTo(1);
+        assertThat(ladder.height()).isEqualTo(2);
+    }
 
+    @Test
+    @DisplayName("사다리 생성 실패 테스트 (사다리 넓이 최소 1)")
+    void ladderFailForUnavailableWidthTest(){
         assertThatThrownBy(() -> {
-            Players onePlayer = PlayerFactory.create(List.of("david"));
-            new Ladder(onePlayer, 2);
+            new Ladder(0, 2);
         })
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("사다리 생성에 필요한 참가자는 최소 2명 이상이어야 합니다.");
+                .hasMessage("사다리 넓이는 최소 1 이상이어야 합니다.");
+    }
 
+    @Test
+    @DisplayName("사다리 생성 테스트 (사다리 높이 최소 2)")
+    void ladderFailForUnavailableHeightTest(){
         assertThatThrownBy(() -> {
-            new Ladder(players, 1);
+            new Ladder(1, 1);
         })
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사다리 높이는 최소 2 이상이어야 합니다.");
