@@ -1,10 +1,8 @@
 package ladder.domain.factory;
 
 import ladder.domain.vo.Row;
-import ladder.domain.vo.RowCreateStrategy;
 import ladder.domain.vo.Rows;
 import ladder.util.BooleanGenerator;
-import ladder.util.RandomBooleanGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
