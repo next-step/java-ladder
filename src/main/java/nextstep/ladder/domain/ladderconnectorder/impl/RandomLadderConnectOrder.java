@@ -1,11 +1,11 @@
-package nextstep.ladder.domain.ladderConnectOrder.impl;
+package nextstep.ladder.domain.ladderconnectorder.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import nextstep.ladder.domain.ladderConnectOrder.LadderConnectOrder;
+import nextstep.ladder.domain.ladderconnectorder.LadderConnectOrder;
 import nextstep.ladder.domain.lines.point.Point;
 import nextstep.ladder.domain.lines.point.impl.PointImpl;
 

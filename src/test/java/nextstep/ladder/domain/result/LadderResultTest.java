@@ -4,8 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import nextstep.ladder.domain.ladderConnectOrder.LadderConnectOrder;
-import nextstep.ladder.domain.ladderConnectOrder.impl.RandomLadderConnectOrder;
+import nextstep.ladder.domain.ladderconnectorder.LadderConnectOrder;
+import nextstep.ladder.domain.ladderconnectorder.impl.RandomLadderConnectOrder;
 import nextstep.ladder.domain.lines.Lines;
 import nextstep.ladder.domain.result.LadderResult.impl.LadderResultImpl;
 import nextstep.ladder.domain.user.User;

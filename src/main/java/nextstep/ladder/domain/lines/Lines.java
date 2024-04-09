@@ -2,7 +2,7 @@ package nextstep.ladder.domain.lines;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import nextstep.ladder.domain.ladderConnectOrder.LadderConnectOrder;
+import nextstep.ladder.domain.ladderconnectorder.LadderConnectOrder;
 import nextstep.ladder.domain.lines.direction.Direction;
 import nextstep.ladder.domain.lines.direction.impl.MoveDirection;
 import nextstep.ladder.domain.lines.line.Line;

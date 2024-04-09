@@ -2,7 +2,7 @@ package nextstep.ladder.domain.lines.line.impl;
 
 import java.util.List;
 import java.util.stream.IntStream;
-import nextstep.ladder.domain.ladderConnectOrder.LadderConnectOrder;
+import nextstep.ladder.domain.ladderconnectorder.LadderConnectOrder;
 import nextstep.ladder.domain.lines.line.Line;
 import nextstep.ladder.domain.lines.point.Point;
 import nextstep.ladder.error.exception.LineNoConsecutiveTrues;
