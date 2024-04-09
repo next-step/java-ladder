@@ -1,39 +1,59 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.Players;
+import ladder.domain.*;
 import ladder.domain.vo.Rows;
+import ladder.service.LadderGame;
+
+import java.util.Map;
 
 public class OutputView {
 
-    private static final int PLAYER_NAME_COLUMN_WIDTH = 5;
+    private static final int LADDER_ENDPOINT_WIDTH = 5;
 
-    public static void printLadderResult(Ladder ladder, Players players){
-        System.out.println("실행결과");
-        printPlayers(players);
+    public static void printLadderGame(LadderGame ladderGame){
+        System.out.println("사다리 결과");
 
-        ladder.rowsList()
+        printPlayers(ladderGame.players());
+
+        ladderGame.ladder().rowsList()
                 .forEach(OutputView::printRows);
+
+        printDestinations(ladderGame.destinations());
+    }
+
+    public static void printResults(Map<Player, Destination> playersDestinations){
+        System.out.println("실행 결과");
+        playersDestinations.forEach(
+                (player, destination) -> System.out.println(player.name() + " : " + destination.result())
+        );
     }
 
     private static void printPlayers(Players players){
         players.players()
                 .forEach(player ->
-                        System.out.print(formatPlayerName(player.name()))
+                        System.out.print(formatLadderEndpoint(player.name()))
                 );
         System.out.println();
     }
 
-    private static StringBuilder formatPlayerName(String name) {
-        int spacesLeft = (PLAYER_NAME_COLUMN_WIDTH - name.length()) / 2;
-        int spacesRight = PLAYER_NAME_COLUMN_WIDTH - name.length() - spacesLeft;
+    private static void printDestinations(Destinations destinations){
+        destinations.destinations()
+                .forEach(destination ->
+                        System.out.print(formatLadderEndpoint(destination.result()))
+                );
+        System.out.println();
+    }
 
-        StringBuilder formattedName = new StringBuilder();
-        formattedName.append(" ".repeat(Math.max(spacesLeft, 0)));
-        formattedName.append(name);
-        formattedName.append(" ".repeat(Math.max(spacesRight, 0)));
+    private static StringBuilder formatLadderEndpoint(String value) {
+        int spacesLeft = (LADDER_ENDPOINT_WIDTH - value.length()) / 2;
+        int spacesRight = LADDER_ENDPOINT_WIDTH - value.length() - spacesLeft;
 
-        return formattedName;
+        StringBuilder formattedEndpoint = new StringBuilder();
+        formattedEndpoint.append(" ".repeat(Math.max(spacesLeft, 0)));
+        formattedEndpoint.append(value);
+        formattedEndpoint.append(" ".repeat(Math.max(spacesRight, 0)));
+
+        return formattedEndpoint;
     }
 
     private static void printRows(Rows rows) {

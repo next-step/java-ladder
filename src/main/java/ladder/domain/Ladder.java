@@ -2,7 +2,6 @@ package ladder.domain;
 
 import ladder.domain.factory.RowFactory;
 import ladder.domain.vo.Rows;
-import ladder.util.BooleanGenerator;
 import ladder.util.RandomBooleanGenerator;
 
 import java.util.Collections;
@@ -12,24 +11,24 @@ import java.util.stream.IntStream;
 
 public class Ladder {
 
-    private static final int MIN_PLAYERS = 2;
+    private static final int MIN_WIDTH = 1;
     private static final int MIN_HEIGHT = 2;
 
     private final List<Rows> rowsList;
 
-    public Ladder(Players players,
+    public Ladder(int width,
                   int height){
-        this(createLadder(players, height));
+        this(createLadder(width, height));
     }
 
     public Ladder(List<Rows> rowsList) {
         this.rowsList = rowsList;
     }
 
-    private static List<Rows> createLadder(Players players,
+    private static List<Rows> createLadder(int width,
                                            int height){
-        if (players.count() < MIN_PLAYERS){
-            throw new IllegalArgumentException("사다리 생성에 필요한 참가자는 최소 2명 이상이어야 합니다.");
+        if (width < MIN_WIDTH){
+            throw new IllegalArgumentException("사다리 넓이는 최소 1 이상이어야 합니다.");
         }
         if (height < MIN_HEIGHT){
             throw new IllegalArgumentException("사다리 높이는 최소 2 이상이어야 합니다.");
@@ -38,7 +37,7 @@ public class Ladder {
         RowFactory rowFactory = new RowFactory(new RandomBooleanGenerator());
 
         return IntStream.range(0, height)
-                .mapToObj(i -> rowFactory.createRandom(players.count() - 1))
+                .mapToObj(i -> rowFactory.createRandom(width))
                 .collect(Collectors.toList());
     }
 
