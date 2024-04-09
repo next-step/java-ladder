@@ -30,14 +30,20 @@ public class Users {
 		return users;
 	}
 
-	@Override
-	public String toString() {
-		return users.stream()
-				.map(User::getName)
-				.collect(Collectors.joining(" "));
+	public Integer getSize() {
+		return users.size();
 	}
 
 	public int getCountOfPerson() {
 		return users.size();
+	}
+
+	public int findUserIndex(String matchUser) {
+		for (int i = 0; i < users.size(); i++) {
+			if (users.get(i).isMatchUser(matchUser)) {
+				return i;
+			}
+		}
+		throw new IllegalArgumentException("해당하는 이름의 유저가 없습니다.");
 	}
 }
