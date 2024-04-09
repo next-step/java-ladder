@@ -11,8 +11,8 @@ public class LineImpl implements Line {
 
     private final List<Point> points;
 
-    public LineImpl(LadderConnectOrder randomLadderConnectOrder) {
-        this(initializeLine(randomLadderConnectOrder));
+    public LineImpl(LadderConnectOrder ladderConnectOrder) {
+        this(initializeLine(ladderConnectOrder));
     }
 
     public LineImpl(List<Point> points) {
