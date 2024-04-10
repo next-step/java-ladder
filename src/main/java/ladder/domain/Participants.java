@@ -25,4 +25,8 @@ public class Participants {
     public int countOfPerson() {
         return names.size();
     }
+
+    public Name nameOf(int index) {
+        return names.get(index);
+    }
 }

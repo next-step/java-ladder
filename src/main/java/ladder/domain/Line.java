@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import java.util.List;
-import java.util.StringJoiner;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -24,26 +23,25 @@ public class Line {
 
     public static Line generateLine(int countOfPerson, LineGeneratorStrategy generator) {
         final List<Boolean> bridge = Stream
-                .iterate(generator.nextBoolean(), previous -> Line.getNextLine(previous, generator))
+                .iterate(generator.nextBoolean(), previous -> Line.getNextBridge(previous, generator))
                 .limit(countOfPerson - 1)
                 .collect(Collectors.toList());
         return new Line(bridge);
     }
 
-    private static boolean getNextLine(boolean previous, LineGeneratorStrategy generator) {
+    private static boolean getNextBridge(boolean previous, LineGeneratorStrategy generator) {
         return !previous && generator.nextBoolean();
     }
 
-    public String lineToString() {
-        StringJoiner joiner = new StringJoiner("|", "     |", "|");
-        this.bridge
-                .stream()
-                .map(this::bridgeToString)
-                .forEach(joiner::add);
-        return joiner.toString();
+    public List<Boolean> getBridge() {
+        return bridge;
     }
 
-    private String bridgeToString(Boolean bridge) {
-        return bridge ? "-----" : "     ";
+    public int countOfBridge() {
+        return this.bridge.size();
+    }
+
+    public boolean canMove(int width) {
+        return this.bridge.get(width);
     }
 }
