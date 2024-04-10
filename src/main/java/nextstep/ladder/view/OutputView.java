@@ -18,7 +18,7 @@ public class OutputView {
         printResult(results);
     }
 
-    public static void printResult(List<String> results) {
+    private static void printResult(List<String> results) {
         String result = results.stream()
                 .map(it -> String.format("%5s", it))
                 .collect(Collectors.joining(" "));

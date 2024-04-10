@@ -7,6 +7,9 @@ public class Person {
     private static final int NAME_LENGTH_STANDARD = 5;
 
     public Person(String name) {
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException(String.format("참가자의 이름은 (%s)와 같이 공백이거나 null일 수 없습니다.", name));
+        }
         if (name.length() > NAME_LENGTH_STANDARD) {
             throw new IllegalArgumentException(String.format("참가자(%s)의 이름 글자수는 NAME_LENGTH_STANDARD를 초과할 수 없습니다", name));
         }
