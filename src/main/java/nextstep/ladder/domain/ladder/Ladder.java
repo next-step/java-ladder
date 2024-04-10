@@ -16,6 +16,10 @@ public class Ladder {
         return new Ladder(lines);
     }
 
+    public List<Line> getLines() {
+        return lines;
+    }
+
     public static Ladder generateLadder(int userCount, int height) {
         List<Line> lines = new ArrayList<>();
         IntStream.range(0, height)
