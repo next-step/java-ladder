@@ -9,11 +9,7 @@ public class Line {
     private final Points points;
 
     public Line(int countOfPerson) {
-        if (countOfPerson < 1) {
-            throw new IllegalArgumentException("참가자는 1명 이상이어야 합니다.");
-        }
-
-        points = new Points(countOfPerson, new RandomLadderGenerator());
+        this(new CountOfPerson(countOfPerson));
     }
 
     public Line(CountOfPerson countOfPerson) {
