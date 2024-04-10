@@ -1,5 +1,7 @@
 package nextstep.ladder.domain.ladder;
 
+import nextstep.ladder.domain.generator.PointGenerator;
+
 public class Point {
 
     private final Boolean connect;
@@ -10,6 +12,10 @@ public class Point {
 
     public static Point of(Boolean connect) {
         return new Point(connect);
+    }
+
+    public static Point generatePoint(PointGenerator strategy) {
+        return new Point(strategy.generate());
     }
 
     public boolean isConnected() {
