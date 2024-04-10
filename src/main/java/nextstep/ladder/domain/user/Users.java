@@ -20,6 +20,14 @@ public class Users {
         );
     }
 
+    public static Users join(List<String> userNames){
+        return new Users(
+            userNames.stream()
+                .map(User::of)
+                .collect(Collectors.toList())
+        );
+    }
+
     public int numberOfUsers(){
         return users.size();
     }
