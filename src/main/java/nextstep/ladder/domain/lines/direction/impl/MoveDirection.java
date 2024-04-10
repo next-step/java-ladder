@@ -1,6 +1,8 @@
-package nextstep.ladder.domain.line;
+package nextstep.ladder.domain.lines.direction.impl;
 
-public enum MoveDirection {
+import nextstep.ladder.domain.lines.direction.Direction;
+
+public enum MoveDirection implements Direction {
     NO_MOVE(0),
     LEFT(-1),
     RIGHT(1);
@@ -11,6 +13,7 @@ public enum MoveDirection {
         this.value = value;
     }
 
+    @Override
     public int move(int currentIndex){
         return value + currentIndex;
     }

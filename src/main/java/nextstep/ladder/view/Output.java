@@ -1,13 +1,12 @@
 package nextstep.ladder.view;
 
 import java.util.List;
-import nextstep.ladder.domain.line.Line;
-import nextstep.ladder.domain.line.Lines;
-import nextstep.ladder.domain.line.Point;
-import nextstep.ladder.domain.result.LadderResult;
+import nextstep.ladder.domain.lines.Lines;
+import nextstep.ladder.domain.lines.line.Line;
+import nextstep.ladder.domain.lines.point.Point;
+import nextstep.ladder.domain.result.LadderResult.LadderResult;
 import nextstep.ladder.domain.user.User;
 import nextstep.ladder.domain.user.Users;
-import nextstep.ladder.error.exception.NotExistUserException;
 
 public class Output {
 
@@ -17,6 +16,7 @@ public class Output {
     private static final String RESULT_HEADER = "사디리 결과";
     private static final String OUT_PUT_USER_FORMAT = "%6s";
     private static final String OUT_PUT_RESULT_FORMAT = "%-6s";
+    private static final String ALL = "all";
 
 
     private Output() {
@@ -59,7 +59,7 @@ public class Output {
     }
 
     public static boolean findAllDrawResult(LadderResult ladderResult, String userName) {
-        if ("all".equals(userName)) {
+        if (ALL.equals(userName)) {
             Output.printAllResult(ladderResult);
             return true;
         }
@@ -68,26 +68,18 @@ public class Output {
 
     public static void printAllResult(LadderResult ladderResult) {
         System.out.println("실행 결과");
-        for (User user : ladderResult.keySet()) {
-            try {
-                System.out.println(String.format("%s : %s", user.getUserName(),
-                    getDrawResult(ladderResult, user)));
-            } catch (NotExistUserException e) {
-                System.out.println(e.getMessage());
-            }
+        for (User user : ladderResult.users()) {
+            System.out.println(String.format("%s : %s", user.getUserName(),
+                getDrawResult(ladderResult, user)));
+
         }
     }
 
     public static void printDrawResult(LadderResult ladderResult, User user) {
-        try {
-            System.out.println(getDrawResult(ladderResult, user));
-        } catch (NotExistUserException e) {
-            System.out.println(e.getMessage());
-        }
+        System.out.println(getDrawResult(ladderResult, user));
     }
 
-    private static String getDrawResult(LadderResult ladderResult, User user)
-        throws NotExistUserException {
-        return ladderResult.findUserDrawResult(user).getValue();
+    private static String getDrawResult(LadderResult ladderResult, User user) {
+        return ladderResult.findUserResult(user).getValue();
     }
 }
