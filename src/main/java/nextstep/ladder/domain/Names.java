@@ -15,4 +15,9 @@ public class Names {
 	public List<Name> getNames() {
 		return names;
 	}
+
+	public int getNumberOfNames() {
+		return names.size();
+	}
+
 }
