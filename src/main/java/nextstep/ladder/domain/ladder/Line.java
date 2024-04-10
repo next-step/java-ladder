@@ -11,6 +11,7 @@ import nextstep.ladder.domain.generator.RandomPointGenerator;
 
 public class Line {
 
+    private static final int NEXT_INDEX = 1;
     private final List<Point> points;
 
     private Line(List<Point> points) {
@@ -32,10 +33,14 @@ public class Line {
         );
     }
 
+    public List<Point> getPoints() {
+        return points;
+    }
+
     public static Line generateLine(int userCount) {
         List<Point> points = new ArrayList<>();
 
-        IntStream.range(0, userCount)
+        IntStream.range(0, userCount - 1)
             .forEach(idx -> addAvailablePoint(points, idx));
 
         return Line.of(points);

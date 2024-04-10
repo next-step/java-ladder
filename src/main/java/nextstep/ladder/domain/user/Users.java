@@ -12,6 +12,10 @@ public class Users {
         this.users = users;
     }
 
+    public List<String> getUserNames() {
+        return users.stream().map(User::getName).collect(Collectors.toList());
+    }
+
     public static Users join(String... usersNames) {
         return new Users(
             Arrays.stream(usersNames)
