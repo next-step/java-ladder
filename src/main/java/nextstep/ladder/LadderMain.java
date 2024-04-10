@@ -11,10 +11,11 @@ public class LadderMain {
 
     public static void main(String[] args) {
         List<Person> names = InputView.getPersonNames();
+        List<String> results = InputView.getResults();
         int countOfPerson = names.size();
         int height = InputView.getHeight();
 
-        OutputView.printLadder(height, names, new LadderGame(height, countOfPerson));
+        OutputView.printLadder(names, new LadderGame(height, countOfPerson), results);
     }
 
 }

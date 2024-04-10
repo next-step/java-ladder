@@ -12,10 +12,17 @@ public class OutputView {
     private static final String NO_BRIDGE = "     ";
     private static final String UNIT_LADDER = "|";
 
-    public static void printLadder(int height, List<Person> names, LadderGame ladderGame) {
-        printHeight(height);
+    public static void printLadder(List<Person> names, LadderGame ladderGame, List<String> results) {
         printNames(names);
-        System.out.println(renderLine(ladderGame));
+        System.out.print(renderLine(ladderGame));
+        printResult(results);
+    }
+
+    public static void printResult(List<String> results) {
+        String result = results.stream()
+                .map(it -> String.format("%5s", it))
+                .collect(Collectors.joining(" "));
+        System.out.println(result);
     }
 
     private static void printHeight(int height) {
@@ -38,7 +45,7 @@ public class OutputView {
 
     private static String renderPoints(List<Boolean> points) {
         return points.stream()
-                .map(point -> UNIT_LADDER + (point? BRIDGE : NO_BRIDGE))
+                .map(point -> UNIT_LADDER + (point ? BRIDGE : NO_BRIDGE))
                 .collect(Collectors.joining());
     }
 

@@ -22,6 +22,17 @@ public class InputView {
                 .collect(Collectors.toUnmodifiableList());
     }
 
+    public static List<String> getResults() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String line = scanner.nextLine();
+        if (line == null || line.isBlank()) {
+            throw new IllegalArgumentException(String.format("참가자의 이름은 (%s)와 같이 공백이거나 null일 수 없습니다.", line));
+        }
+        return Arrays.stream(line.split(","))
+                .map(String::trim)
+                .collect(Collectors.toUnmodifiableList());
+    }
+
     public static int getHeight() {
         System.out.println("\n최대 사다리 높이는 몇 개인가요?");
         return scanner.nextInt();
