@@ -10,6 +10,8 @@ import java.util.stream.IntStream;
 
 public final class PlayerFactory {
 
+    private static final int MIN_PLAYERS = 2;
+
     private PlayerFactory() {
     }
 
@@ -23,22 +25,10 @@ public final class PlayerFactory {
         return IntStream.range(0, playersNames.size())
                 .mapToObj(index -> new Player(playersNames.get(index), index))
                 .collect(Collectors.toList());
-
-//        List<Player> playerList = new ArrayList<>();
-//        for (int index = 0; index < playersNames.size(); index++) {
-//            Player player = new Player(playersNames.get(index), index);
-//            playerList.add(player);
-//        }
-//
-//        return playerList;
-
-//        return playersNames.stream()
-//                .map(Player::new)
-//                .collect(Collectors.toList());
     }
 
     private static void validatePlayers(List<String> playersNames){
-        if (playersNames.size() < 2){
+        if (playersNames.size() < MIN_PLAYERS){
             throw new IllegalArgumentException("참가자는 최소 2명 이상이어야 합니다.");
         }
     }

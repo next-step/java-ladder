@@ -10,15 +10,15 @@ public class OutputView {
 
     private static final int LADDER_ENDPOINT_WIDTH = 5;
 
-    public static void printLadderGame(LadderGame ladderGame){
+    public static void printLadder(Ladder ladder){
         System.out.println("사다리 결과");
 
-        printPlayers(ladderGame.players());
+        printPlayers(ladder.players());
 
-        ladderGame.ladder().rowsList()
+        ladder.ladderBody().rowsList()
                 .forEach(OutputView::printRows);
 
-        printDestinations(ladderGame.destinations());
+        printDestinations(ladder.destinations());
     }
 
     public static void printResults(Map<Player, Destination> playersDestinations){

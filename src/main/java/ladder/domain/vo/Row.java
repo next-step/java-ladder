@@ -30,8 +30,12 @@ public class Row {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Row row = (Row) o;
         return Objects.equals(bridgeExist, row.bridgeExist);
     }
