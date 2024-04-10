@@ -1,8 +1,10 @@
 package ladder;
 
 import ladder.domain.Destinations;
+import ladder.domain.Ladder;
 import ladder.domain.Players;
 import ladder.domain.factory.DestinationFactory;
+import ladder.domain.factory.LadderFactory;
 import ladder.domain.factory.PlayerFactory;
 import ladder.service.LadderGame;
 import ladder.view.InputView;
@@ -20,22 +22,15 @@ public class LadderApplication {
         List<String> destinationsString = InputView.getDestinationsResults();
         Destinations destinations = DestinationFactory.create(destinationsString);
 
-        validateDestinations(players, destinations);
-
         int height = InputView.getLadderHeight();
-        LadderGame ladderGame = new LadderGame(players, destinations, height);
-
-        OutputView.printLadderGame(ladderGame);
+        Ladder ladder = LadderFactory.create(players, destinations, height);
+        OutputView.printLadder(ladder);
 
         List<String> wantedPlayersNames = InputView.getWantedPlayersNames();
         Players wantedPlayers = players.of(wantedPlayersNames);
 
-        OutputView.printResults(ladderGame.wantedResults(wantedPlayers));
+        LadderGame ladderGame = new LadderGame();
+        OutputView.printResults(ladderGame.wantedResults(ladder, wantedPlayers));
     }
 
-    private static void validateDestinations(Players players, Destinations destinations){
-        if (players.count() != destinations.count()){
-            throw new IllegalArgumentException("참가자 수와 실행 결과 수는 같아야 합니다");
-        }
-    }
 }
