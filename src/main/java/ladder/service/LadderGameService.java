@@ -24,9 +24,7 @@ public class LadderGameService {
   public Map<String, PrizeDto> play(final List<String> names, final Integer maxHeight, final List<String> prizeTexts) {
     final Map<String, PrizeDto> results = new HashMap<>();
 
-    Players players = new Players(IntStream.range(0, names.size())
-            .mapToObj(index -> Player.of(names.get(index), index))
-            .collect(Collectors.toList()));
+    Players players = Players.from(names);
 
     Ladder ladder = threadLocal.get();
     threadLocal.remove();
@@ -36,9 +34,16 @@ public class LadderGameService {
             .collect(Collectors.toList()));
 
     for (Player player : players) {
-      results.put(player.name(), new PrizeDto(prizes.prizeAt(player.move(ladder))));
+      Coordinates lastPosition = player.move(ladder);
+      results.put(player.name(), new PrizeDto(prizes.prizeAt(lastPosition.x())));
     }
 
     return results;
+  }
+
+  private List<Player> createPlayers(List<String> names) {
+    return IntStream.range(0, names.size())
+            .mapToObj(index -> Player.of(names.get(index), index))
+            .collect(Collectors.toList());
   }
 }

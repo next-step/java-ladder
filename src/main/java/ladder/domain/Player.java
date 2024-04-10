@@ -17,8 +17,8 @@ public class Player {
     return this.name.value();
   }
 
-  public Integer move(final Ladder ladder) {
-    Integer position = this.initialPosition;
+  public Coordinates move(final Ladder ladder) {
+    Coordinates position = Coordinates.of(this.initialPosition, 0);
 
     for (Row row : ladder) {
       position = row.nextPosition(position);

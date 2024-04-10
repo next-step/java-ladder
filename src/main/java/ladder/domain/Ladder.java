@@ -3,7 +3,6 @@ package ladder.domain;
 import ladder.rowgenerator.RowGenerator;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,9 +12,11 @@ public class Ladder implements Iterable<Row> {
   private final List<Row> rows;
 
   public static Ladder from(final int[][] ladder) {
-    return new Ladder(Arrays.stream(ladder)
-            .map(Row::of)
-            .collect(Collectors.toList()));
+    return new Ladder(
+            IntStream.range(0, ladder.length)
+                    .mapToObj(i -> Row.of(ladder[i], i))
+                    .collect(Collectors.toList())
+    );
   }
 
   public static Ladder from(final List<Row> rows) {
@@ -26,24 +27,29 @@ public class Ladder implements Iterable<Row> {
     final List<Row> ladder = new ArrayList<>(height);
 
     IntStream.range(0, height)
-            .forEach(i -> ladder.add(Row.fromGenerator(generator, width)));
+            .forEach(i -> ladder.add(Row.fromGenerator(generator, width, i)));
 
     return new Ladder(ladder);
   }
 
   private Ladder(final List<Row> rows) {
+    validate(rows);
+    this.rows = rows;
+  }
+
+  private void validate(List<Row> rows) {
     if (rows.isEmpty()) {
       throw new IllegalArgumentException("잘못된 사다리 입력입니다.");
     }
 
-    Integer width = rows.get(0).size();
-    for (Row row : rows) {
-      if (row.isNotSizeOf(width)) {
-        throw new IllegalArgumentException("길이가 다른 행(Row) 입력이 있습니다.");
-      }
+    if (sizeMisMatchExists(rows)) {
+      throw new IllegalArgumentException("길이가 다른 행(Row) 입력이 있습니다.");
     }
+  }
 
-    this.rows = rows;
+  private Boolean sizeMisMatchExists(List<Row> rows) {
+    return rows.stream()
+            .anyMatch(row -> row.isNotSizeOf(rows.get(0).size()));
   }
 
   public List<Row> rows() {
