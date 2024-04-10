@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.RandomGenerator;
 
 public class LineTest {
 
