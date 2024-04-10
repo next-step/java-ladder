@@ -19,4 +19,9 @@ public class NameTest {
 	public void 이름_5자리_초과할_경우() {
 		assertThatThrownBy(() -> new Name("unicorn")).isInstanceOf(IllegalArgumentException.class);
 	}
+
+	@Test
+	public void 이름이_비어있을_경우() {
+		assertThatThrownBy(() -> new Name(" ")).isInstanceOf(IllegalArgumentException.class);
+	}
 }
