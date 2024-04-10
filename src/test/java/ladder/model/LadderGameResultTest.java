@@ -41,11 +41,9 @@ public class LadderGameResultTest {
     void testLadderGameResult_getPrizeOfNonExistingParticipant_ShouldThrowException() {
         // given
         Participant python = Participant.of("lust", 0);
-
-        // when
         LadderGameResult ladderGameResult = LadderGameResult.generateLadderGameResult(getLadder(), participants, prizes);
 
-        // then
+        // when & then
         assertThatIllegalArgumentException().isThrownBy(() -> {
             ladderGameResult.getPrizeOf(python);
         }).withMessageContaining(NO_MATCHING_PRIZE);

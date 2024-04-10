@@ -6,6 +6,7 @@ import java.util.stream.IntStream;
 public class Line {
     public static final int MOVE_LEFT = -1;
     public static final int MOVE_RIGHT = 1;
+    public static final int STAY = 0;
     public static final String INVALID_LINE = "사다리의 연달은 라인이 겹칠 수는 없습니다.";
     private final List<Boolean> points;
 
@@ -43,7 +44,7 @@ public class Line {
             return MOVE_LEFT;
         }
 
-        return 0;
+        return STAY;
     }
 
     private boolean isNotTheFirstIndex(int index) {
