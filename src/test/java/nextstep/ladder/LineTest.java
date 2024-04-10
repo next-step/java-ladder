@@ -1,18 +1,18 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.RandomGenerator;
-
-public class LineTest {
+class LineTest {
 
 	@Test
 	void 라인_생성_테스트() {
+
 		final int numberOfPeople = 4;
-		final Line line = new Line(numberOfPeople);
-		assertThat(line.getPoints()).hasSize(3);
+		final Line line = new Line(() -> true, numberOfPeople);
+		assertThat(line.getBridges()).isEqualTo(List.of(Bridge.BRIDGE, Bridge.NON_BRIDGE, Bridge.BRIDGE));
 	}
 }

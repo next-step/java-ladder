@@ -9,7 +9,7 @@ public class Ladder {
 	public Ladder(final int numberOfPeople, final int height) {
 		lines = new ArrayList<>();
 		while (lines.size() < height) {
-			lines.add(new Line(numberOfPeople));
+			lines.add(new Line(new RandomGenerator(), numberOfPeople));
 		}
 	}
 	public List<Line> getLines() {
