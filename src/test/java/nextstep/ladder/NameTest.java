@@ -2,10 +2,11 @@ package nextstep.ladder;
 
 import static org.assertj.core.api.Assertions.*;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import nextstep.fp.Car;
 import nextstep.ladder.domain.Name;
+import nextstep.ladder.domain.Names;
 
 public class NameTest {
 
