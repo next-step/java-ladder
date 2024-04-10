@@ -14,7 +14,7 @@ public class Line {
     private final List<Point> points;
 
     private Line(List<Point> points) {
-        if(validAvailableLine(points)){
+        if (validAvailableLine(points)) {
             throw new IllegalArgumentException("라인이 겹칩니다.");
         }
         this.points = points;
@@ -49,11 +49,15 @@ public class Line {
     private static void addAvailablePoint(List<Point> points, int idx) {
         if (idx == 0) {
             points.add(generatePoint(new RandomPointGenerator()));
+            return;
         }
 
         if (!points.get(idx - 1).isConnected()) {
             points.add(generatePoint(new RandomPointGenerator()));
+            return;
         }
+
+        points.add(Point.of(false));
     }
 
 }
