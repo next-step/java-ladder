@@ -1,5 +1,8 @@
 package ladder.model;
 
+import ladder.model.utils.ConnectLine;
+import ladder.model.utils.ConnectLineRandom;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,11 +15,11 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public Ladder(int heightOfLadder, int numberOfName) {
+    public Ladder(int heightOfLadder, int numberOfName, ConnectLine connectLine) {
         checkIndex(heightOfLadder, numberOfName);
 
         for (int i = 0; i < heightOfLadder; i++) {
-            this.lines.add(createOneLine(numberOfName));
+            this.lines.add(createOneLine(numberOfName, connectLine));
         }
     }
 

@@ -1,6 +1,7 @@
 package ladder.model;
 
 import ladder.model.utils.ConnectLine;
+import ladder.model.utils.ConnectLineRandom;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,22 +17,22 @@ public class Line {
         this.points = points;
     }
 
-    public static Line createOneLine(int countOfPerson) {
+    public static Line createOneLine(int countOfPerson, ConnectLine connectLine) {
         List<Boolean> points = new ArrayList<>();
         int columnNum = countOfPerson - 1;
 
         boolean before = FALSE;
         while (points.size() < columnNum) {
-            boolean next = connectLine(before);
+            boolean next = connectLine(before, connectLine);
             points.add(next);
             before = next;
         }
         return new Line(points);
     }
 
-    private static boolean connectLine(boolean before) {
+    private static boolean connectLine(boolean before, ConnectLine connectLine) {
         if (!before) {
-            return ConnectLine.next();
+            return connectLine.next();
         }
         return FALSE;
     }
