@@ -39,12 +39,12 @@ public class Ladder {
     }
 
     public Map<Integer, Integer> move() {
-        final Map<Integer, Integer> route = IntStream.range(0, width())
+        Map<Integer, Integer> route = IntStream.range(0, width())
                 .boxed()
                 .collect(Collectors.toMap(i -> i, i -> i));
 
         for (final Line line : this.lines) {
-            line.move(route);
+            route = line.move(route);
         }
 
         return Collections.unmodifiableMap(route);

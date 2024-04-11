@@ -27,7 +27,7 @@ class LineTest {
     @DisplayName("라인 연결 상태에 따라 포지션을 이동한다.")
     void Move_Positions() {
         final Line line = new Line(List.of(true, false, true, false));
-        final Map<Integer, Integer> actualRoute = new HashMap<>() {{
+        final Map<Integer, Integer> initialRoute = new HashMap<>() {{
             put(0, 0);
             put(1, 1);
             put(2, 2);
@@ -40,8 +40,7 @@ class LineTest {
                 3, 2
         );
 
-        line.move(actualRoute);
-
-        assertThat(actualRoute).isEqualTo(expectedRoute);
+        assertThat(line.move(initialRoute))
+                .isEqualTo(expectedRoute);
     }
 }

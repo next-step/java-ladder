@@ -28,8 +28,13 @@ public class Line {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public void move(final Map<Integer, Integer> route) {
-        route.forEach((startPosition, currentPosition) -> route.put(startPosition, toNextPosition(currentPosition)));
+    public Map<Integer, Integer> move(final Map<Integer, Integer> route) {
+        return route.entrySet()
+                .stream()
+                .collect(Collectors.toUnmodifiableMap(
+                        Map.Entry::getKey,
+                        entry -> toNextPosition(entry.getValue())
+                ));
     }
 
     private int toNextPosition(final int currentPosition) {
