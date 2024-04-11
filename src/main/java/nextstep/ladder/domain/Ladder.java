@@ -14,4 +14,8 @@ public class Ladder {
     this.ladderMap = ladderMap;
   }
 
+  public LadderResult getLadder() {
+    return new LadderResult(people.getPeopleNames(), ladderMap.getLineStrings());
+  }
+
 }
