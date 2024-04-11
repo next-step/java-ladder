@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
@@ -25,5 +26,14 @@ public class LadderMapTest {
 
     assertThatThrownBy(() -> new LadderMap(width, height))
         .isInstanceOf(IllegalArgumentException.class);
+  }
+
+  @Test
+  @DisplayName("사다리 정상 생성")
+  void createLadder() {
+    int width = 6;
+    int height = 5;
+
+    assertThatNoException().isThrownBy(() -> new LadderMap(width, height));
   }
 }

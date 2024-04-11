@@ -1,17 +1,21 @@
 package nextstep.ladder.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LadderMap {
-  List<Line> lines;
+  private List<Line> lines;
 
 public LadderMap(Integer width, Integer height) {
-  validateWidth(width);
+    validateWidth(width);
     validateHeight(height);
+    this.lines = generateLines(width, height);
   }
 
-  public LadderMap(List<Line> lines) {
-    this.lines = lines;
+  private static List<Line> generateLines(Integer width, Integer height) {
+    return IntStream.range(0, height).mapToObj(i -> new Line(width))
+        .collect(Collectors.toList());
   }
 
   private void validateWidth(Integer width) {
