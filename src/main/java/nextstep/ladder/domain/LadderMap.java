@@ -30,4 +30,10 @@ public LadderMap(Integer width, Integer height) {
     }
   }
 
+  public List<String> getLineStrings(){
+    return lines.stream()
+        .map(Line::getLineString)
+        .collect(Collectors.toList());
+  }
+
 }
