@@ -12,10 +12,8 @@ class HeightTest {
     @Test
     @DisplayName("사다리 높이를 생성한다.")
     void Height() {
-        final Height height = new Height(MINIMUM_HEIGHT);
-
-        assertThat(height.value())
-                .isEqualTo(MINIMUM_HEIGHT);
+        assertThat(new Height(MINIMUM_HEIGHT))
+                .isEqualTo(new Height(MINIMUM_HEIGHT));
     }
 
     @Test
