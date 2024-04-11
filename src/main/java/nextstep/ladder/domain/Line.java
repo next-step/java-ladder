@@ -10,12 +10,12 @@ public class Line {
         this.points = points;
     }
 
-    private static void validate(List<Point> points) {
+    private void validate(List<Point> points) {
         validatePointsListSize(points);
         validatePointMovements(points);
     }
 
-    private static void validatePointsListSize(List<Point> points) {
+    private void validatePointsListSize(List<Point> points) {
         if (points == null || points.isEmpty()) {
             throw new IllegalArgumentException("점이 없습니다.");
         }
@@ -25,7 +25,7 @@ public class Line {
         }
     }
 
-    private static void validatePointMovements(List<Point> points) {
+    private void validatePointMovements(List<Point> points) {
         if (firstPoint(points).canMoveLeft() || lastPoint(points).canMoveRight()) {
             throw new IllegalArgumentException("첫 점에서는 왼쪽으로 이동할 수 없고, 마지막 점에서는 오른쪽으로 이동할 수 없습니다.");
         }
@@ -35,17 +35,17 @@ public class Line {
         }
     }
 
-    private static void assertConsecutivePointsAreMovable(List<Point> points, int i) {
+    private void assertConsecutivePointsAreMovable(List<Point> points, int i) {
         if (points.get(i).canMoveRight() && !points.get(i + 1).canMoveLeft()) {
             throw new IllegalArgumentException("연속된 점에서는 서로 이동 가능해야 합니다.");
         }
     }
 
-    private static Point firstPoint(List<Point> points) {
+    private Point firstPoint(List<Point> points) {
         return points.get(0);
     }
 
-    private static Point lastPoint(List<Point> points) {
+    private Point lastPoint(List<Point> points) {
         return points.get(points.size() - 1);
     }
 

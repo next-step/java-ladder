@@ -8,7 +8,7 @@ public class Player {
         this.name = name;
     }
 
-    private static void validate(String name) {
+    private void validate(String name) {
         if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException("이름은 비어있을 수 없습니다.");
         }

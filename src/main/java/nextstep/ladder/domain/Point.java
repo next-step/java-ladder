@@ -10,7 +10,7 @@ public class Point {
         this.right = right;
     }
 
-    private static void validate(boolean left, boolean right) {
+    private void validate(boolean left, boolean right) {
         if (left && right) {
             throw new IllegalArgumentException("좌 우 모두 이동 가능한 Point 생성 불가");
         }
