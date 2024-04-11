@@ -1,4 +1,4 @@
-package ladder.domain.line;
+package ladder.domain.ladder.line;
 
 public interface ConnectionGenerator {
 
