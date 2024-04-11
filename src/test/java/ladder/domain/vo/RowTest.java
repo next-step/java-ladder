@@ -1,6 +1,7 @@
 package ladder.domain.vo;
 
 import ladder.domain.factory.RowFactory;
+import ladder.util.RandomBooleanGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +22,8 @@ public class RowTest {
     @Test
     @DisplayName("여러개의 열 생성 테스트")
     void rowsTest(){
-        Rows rows = RowFactory.createRandom(5);
+        RowFactory rowFactory = new RowFactory(new RandomBooleanGenerator());
+        Rows rows = rowFactory.createRandom(5);
 
         assertThat(rows.rows()).hasSize(5);
 

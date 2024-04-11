@@ -1,10 +1,10 @@
 package ladder.util;
 
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomBooleanGenerator implements BooleanGenerator{
 
-    private final Random random = new Random();
+    private final ThreadLocalRandom random = ThreadLocalRandom.current();
 
     @Override
     public boolean generate(){

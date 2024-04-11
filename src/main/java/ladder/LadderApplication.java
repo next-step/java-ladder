@@ -1,8 +1,12 @@
 package ladder;
 
+import ladder.domain.Destinations;
 import ladder.domain.Ladder;
 import ladder.domain.Players;
+import ladder.domain.factory.DestinationFactory;
+import ladder.domain.factory.LadderFactory;
 import ladder.domain.factory.PlayerFactory;
+import ladder.service.LadderGame;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -15,9 +19,18 @@ public class LadderApplication {
         List<String> playersNames = InputView.getPlayersNames();
         Players players = PlayerFactory.create(playersNames);
 
-        int height = InputView.getLadderHeight();
-        Ladder ladder = new Ladder(players, height);
+        List<String> destinationsString = InputView.getDestinationsResults();
+        Destinations destinations = DestinationFactory.create(destinationsString);
 
-        OutputView.printLadderResult(ladder, players);
+        int height = InputView.getLadderHeight();
+        Ladder ladder = LadderFactory.create(players, destinations, height);
+        OutputView.printLadder(ladder);
+
+        List<String> wantedPlayersNames = InputView.getWantedPlayersNames();
+        Players wantedPlayers = players.of(wantedPlayersNames);
+
+        LadderGame ladderGame = new LadderGame();
+        OutputView.printResults(ladderGame.wantedResults(ladder, wantedPlayers));
     }
+
 }

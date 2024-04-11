@@ -29,3 +29,17 @@ step 2
   * modified test codes
 * refactor/feedback
   * refactored code based on feedback
+
+step 3
+* refactor/feedback-step2
+  * refactored codes based on feedback from step2
+* feature/ladder-game
+  * implement ladder game
+    * add position field in player
+    * modified codes related with ladder game
+    * modified test codes as well
+* refactor/feedback
+  * refactored codes based on feedback
+    * separated with LadderBody
+    * modified LadderGame as a service layer (made it stateless)
+    * modified test codes as well
