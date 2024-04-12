@@ -24,6 +24,10 @@ public class Points {
         });
     }
 
+    public Points(List<Point> points) {
+        this.points.addAll(points);
+    }
+
     private boolean isNotFirstPoint(int i) {
         return i >= 1;
     }
@@ -42,6 +46,14 @@ public class Points {
 
     public List<Point> getPoints() {
         return points;
+    }
+
+    public List<Boolean> validatePoints() {
+        List<Boolean> booleans = new ArrayList<>();
+        for (Point point : points) {
+            booleans.add(point.isExist());
+        }
+        return booleans;
     }
 
 }

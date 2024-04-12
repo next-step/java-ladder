@@ -64,5 +64,8 @@ tdd를 통한 개발을 할 때 도메인, 요구 사항에 대한 명확한 이
 - Point
   - [x] boolean값을 갖는다
   - [x] 이전(i - 1) 점이 존재하는지 검증한다   
+- Points
+  - [x] 점들이 각각 true인지 false인지 검증한다  
+  - [ ] 점들을 캐싱처리한다 
 - Line
-  - [ ] 줄(Line)의 한 점(Point)가 true인지 false인지 검증한다  
+  - [ ] 줄(Line)의 점들(Points)가 각각 true인지 false인지 검증한다  

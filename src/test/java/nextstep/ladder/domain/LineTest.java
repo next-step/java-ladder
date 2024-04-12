@@ -13,4 +13,9 @@ public class LineTest {
         assertThat(new Line(3).size()).isEqualTo(2);
     }
 
+    @DisplayName("줄(Line)의 한 점(Point)가 true인지 false인지 검증한다")
+    @Test
+    void name() {
+
+    }
 }
