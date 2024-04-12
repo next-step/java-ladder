@@ -31,6 +31,10 @@ public class Count {
         return new Count(this.value - value);
     }
 
+    public boolean equals(int value) {
+        return this.value == value;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

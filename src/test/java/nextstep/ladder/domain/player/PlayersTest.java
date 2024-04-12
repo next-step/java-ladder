@@ -11,6 +11,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 
 public class PlayersTest {
+    public static final List<String> TEST_PLAYER_NAMES = List.of("pobi", "honux", "crong", "jk");
 
     @DisplayName("Players는")
     @Nested

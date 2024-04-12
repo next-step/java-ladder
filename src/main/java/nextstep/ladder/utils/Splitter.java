@@ -4,13 +4,13 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Splitter {
-    private static final String COMMA_DELIMITER = ",";
+    public static final String COMMA_DELIMITER = ",";
 
     private Splitter() {}
 
-    public static List<String> byComma(String input) {
+    public static List<String> byDelimiter(String input, String delimiter) {
         assertNotBlank(input);
-        return Arrays.asList(input.split(COMMA_DELIMITER));
+        return Arrays.asList(input.split(delimiter));
     }
 
     private static void assertNotBlank(String input) {

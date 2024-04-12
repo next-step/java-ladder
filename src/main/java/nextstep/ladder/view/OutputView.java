@@ -8,9 +8,9 @@ import nextstep.ladder.domain.player.Players;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
-import static nextstep.ladder.view.MyPrinter.*;
+import static nextstep.ladder.view.MyPrinter.lineChange;
+import static nextstep.ladder.view.MyPrinter.printLine;
 
 public class OutputView {
 
