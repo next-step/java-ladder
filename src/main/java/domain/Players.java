@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -7,18 +8,23 @@ import java.util.stream.Collectors;
 
 public class Players {
     public static final String PRINT_SPACE = "  ";
+    public static final int INITIAL_POSITION = 0;
+
     private final List<Player> players;
 
     public static Players from(String... players) {
-        AtomicInteger position = new AtomicInteger();
-        List<Player> playerList = Arrays.stream(players)
-                .map(player -> Player.of(player, position.getAndIncrement()))
-                .collect(Collectors.toList());
-        return new Players(playerList);
+        return fromStringList(Arrays.stream(players).collect(Collectors.toList()));
     }
 
     public static Players from(List<Player> players) {
         return new Players(players);
+    }
+    public static Players fromStringList(List<String> players) {
+        List<Player> playerList = new ArrayList<>();
+        for (int i = INITIAL_POSITION; i < players.size(); i++) {
+            playerList.add(Player.of(players.get(i), i));
+        }
+        return new Players(playerList);
     }
 
     private Players(List<Player> players) {

@@ -1,14 +1,9 @@
 package view;
 
-import domain.LadderResult;
-import domain.Player;
-import domain.Players;
 import util.StringUtil;
 
 import java.util.List;
 import java.util.Scanner;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
 public class InputView {
     private static final Scanner SCANNER = new Scanner(System.in);
@@ -18,33 +13,13 @@ public class InputView {
     public static final String TRY_INPUT_AGAIN = " 다시 입력해주세요.";
     public static final String NUMBER_FORMAT_EXCEPTION = "숫자만 입력할 수 있습니다.";
     public static final String PLAY_RESULT_INPUT_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
-    public static final String GET_PLAYER_RESULT_INPUT_MESSAGE = "결과를 보고 싶은 사람은?";
-    public static final String PLAY_RESULT_PRINT_MESSAGE = "실행 결과";
-    public static final String ALL_RESULT_REQUEST = "all";
-    public static final String EXIT_GAME_INPUT = "exit";
-    public static final String EXIT_GAME_MESSAGE = "게임을 종료합니다.";
     public static final String INPUT_DELIMITER = ",";
-    public static final int INITIAL_INDEX = 0;
     public static final int MIN_LADDER_HEIGHT = 1;
-    public static final String RESULTS_CANT_MORE_PLAYER_SIZE = "결과 개수는 Player의 수보다 많을 수 없습니다.";
+    public static final String WRONG_RESULTS_INPUT = "잘못 입력하셨습니다. Player 수에 맞게 다시 입력해주세요.";
 
-    public Players inputPlayers() {
-        return inputPlayers(PLAYER_NAME_INPUT_MESSAGE);
-    }
-
-    private Players inputPlayers(String message) {
-        System.out.println(message);
-        List<String> nameList = StringUtil.splitStringToList(SCANNER.nextLine(), INPUT_DELIMITER);
-        AtomicInteger index = new AtomicInteger(INITIAL_INDEX);
-        try {
-            List<Player> playerList = nameList.stream()
-                    .map(name -> Player.of(name, index.getAndIncrement()))
-                    .collect(Collectors.toList());
-
-            return Players.from(playerList);
-        } catch (IllegalArgumentException e) {
-            return inputPlayers(e.getMessage() + TRY_INPUT_AGAIN);
-        }
+    public List<String> inputPlayers() {
+        System.out.println(PLAYER_NAME_INPUT_MESSAGE);
+        return StringUtil.splitStringToList(SCANNER.nextLine(), INPUT_DELIMITER);
     }
 
     public int inputLadderHeight() {
@@ -77,40 +52,22 @@ public class InputView {
     private List<String> inputResults(String message, int playerSize) {
         System.out.println(message);
         try {
-            List<String> results = StringUtil.splitStringToList(SCANNER.nextLine(), INPUT_DELIMITER);
-            if (results.size() > playerSize) {
-                throw new IllegalArgumentException(RESULTS_CANT_MORE_PLAYER_SIZE);
-            }
-            return results;
+            return validatedResultList(playerSize);
         } catch (IllegalArgumentException e) {
             return inputResults(e.getMessage() + TRY_INPUT_AGAIN, playerSize);
         }
     }
 
-    public void printPlayerResult(LadderResult ladderResult) {
-        printPlayerResult(GET_PLAYER_RESULT_INPUT_MESSAGE, ladderResult);
+    private static List<String> validatedResultList(int playerSize) {
+        List<String> results = StringUtil.splitStringToList(SCANNER.nextLine(), INPUT_DELIMITER);
+        if (results.size() != playerSize) {
+            throw new IllegalArgumentException(WRONG_RESULTS_INPUT);
+        }
+        return results;
     }
 
-    private void printPlayerResult(String message, LadderResult ladderResult) {
-        System.out.println(message);
-        String playerName = SCANNER.nextLine();
-        if (playerName.equals(ALL_RESULT_REQUEST)) {
-            System.out.println(PLAY_RESULT_PRINT_MESSAGE);
-            System.out.println(ladderResult.resultAllToString());
-            printPlayerResult(GET_PLAYER_RESULT_INPUT_MESSAGE, ladderResult);
-            return;
-        }
-        if (playerName.equals(EXIT_GAME_INPUT)) {
-            System.out.println(EXIT_GAME_MESSAGE);
-            return;
-        }
-        try {
-            System.out.println(PLAY_RESULT_PRINT_MESSAGE);
-            System.out.println(ladderResult.getResult(playerName));
-            printPlayerResult(GET_PLAYER_RESULT_INPUT_MESSAGE, ladderResult);
-        } catch (IllegalArgumentException e) {
-            printPlayerResult(e.getMessage() + TRY_INPUT_AGAIN, ladderResult);
-        }
+    public static String readNextLine() {
+        return SCANNER.nextLine();
     }
 
 }

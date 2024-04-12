@@ -1,5 +1,6 @@
 package domain;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -10,19 +11,24 @@ import static org.assertj.core.api.Assertions.*;
 public class LadderTest {
 
     @Test
+    @DisplayName("play 호출시 매개변수로 Players와 결과 목록이 주어졌을 때 사다리 게임 진행 후 결과(LadderResult) 반환")
     void play() {
+        // given
         Players players = Players.from("pobi", "nimoh", "test", "race", "lotto");
         int ladderHeight = 5;
 
         List<Line> lines = new ArrayList<>();
-
         for (int i = 0; i < ladderHeight; i++) {
             lines.add(Line.from(players.size(), (playerCount) -> List.of(true, false, true, false)));
         }
 
         List<String> results = List.of("꽝", "2000", "3000", "꽝", "10000");
         Ladder ladder = Ladder.from(lines);
+
+        //when
         LadderResult ladderResult = ladder.play(players, results);
+
+        //then
         assertThat(ladderResult.getResult("pobi")).isEqualTo("2000");
         assertThat(ladderResult.getResult("nimoh")).isEqualTo("꽝");
         assertThat(ladderResult.getResult("test")).isEqualTo("꽝");
