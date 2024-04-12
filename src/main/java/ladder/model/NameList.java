@@ -18,6 +18,13 @@ public class NameList {
         checkLength();
     }
 
+    public NameList(List<String> nameList) {
+        this.nameList = nameList;
+        checkDuplicate();
+        checkPattern();
+        checkLength();
+    }
+
     private void checkDuplicate() {
         if (nameList.size() != nameList.stream().distinct().count()) {
             throw new IllegalArgumentException("이름은 중복일수 없습니다.");
@@ -56,7 +63,7 @@ public class NameList {
         }
         List<String> newList = new ArrayList<>(nameList);
         Collections.swap(newList, index, index + 1);
-        return new NameList(String.join(",", newList));
+        return new NameList(newList);
     }
 
 }
