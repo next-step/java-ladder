@@ -9,13 +9,13 @@ import view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LadderGame {
+public class LadderGameController {
     private static final InputView INPUT_VIEW = new InputView();
 
     public static final String TRY_INPUT_AGAIN = " 다시 입력해주세요.";
 
     public static void main(String[] args) {
-        Players players = inputPlayers();
+        Players players = readPlayers();
         List<String> results = INPUT_VIEW.inputResults(players.size());
         int ladderHeight = INPUT_VIEW.inputLadderHeight();
 
@@ -25,7 +25,7 @@ public class LadderGame {
         printResult(ladderResult);
     }
 
-    private static Players inputPlayers() {
+    private static Players readPlayers() {
         while (true) {
             try {
                 return Players.fromStringList(INPUT_VIEW.inputPlayers());
