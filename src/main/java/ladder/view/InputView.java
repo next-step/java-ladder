@@ -1,6 +1,6 @@
 package ladder.view;
 
-import ladder.Player;
+import ladder.domain.Player;
 
 import java.util.Arrays;
 import java.util.List;

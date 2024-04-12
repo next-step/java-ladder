@@ -1,8 +1,8 @@
 package ladder.view;
 
-import ladder.Ladder;
-import ladder.Player;
-import ladder.Point;
+import ladder.domain.Ladder;
+import ladder.domain.Player;
+import ladder.domain.Point;
 
 import java.util.List;
 import java.util.stream.Collectors;
