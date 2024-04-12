@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.domain.Ladder.Ladder;
+import ladder.domain.ladder.Ladder;
 import ladder.domain.participants.Participants;
 import ladder.utils.SplitUtils;
 

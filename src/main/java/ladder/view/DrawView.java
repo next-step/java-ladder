@@ -1,7 +1,7 @@
 package ladder.view;
 
-import ladder.domain.Ladder.Ladder;
-import ladder.domain.Ladder.Line;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.Line;
 import ladder.domain.LadderGame;
 import ladder.domain.participants.Name;
 import ladder.domain.participants.Participants;

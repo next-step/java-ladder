@@ -1,6 +1,6 @@
 package ladder.domain.participants;
 
-import ladder.domain.Ladder.Point;
+import ladder.domain.ladder.Point;
 
 import java.util.List;
 import java.util.Objects;

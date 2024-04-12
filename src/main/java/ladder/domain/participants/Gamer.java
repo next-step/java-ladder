@@ -1,7 +1,7 @@
 package ladder.domain.participants;
 
 
-import ladder.domain.Ladder.Ladder;
+import ladder.domain.ladder.Ladder;
 import ladder.domain.result.Reward;
 
 import java.util.Objects;

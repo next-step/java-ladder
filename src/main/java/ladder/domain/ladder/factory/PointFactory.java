@@ -1,7 +1,7 @@
-package ladder.domain.Ladder.factory;
+package ladder.domain.ladder.factory;
 
-import ladder.domain.Ladder.Point;
-import ladder.domain.Ladder.PointPredicate;
+import ladder.domain.ladder.Point;
+import ladder.domain.ladder.PointPredicate;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;

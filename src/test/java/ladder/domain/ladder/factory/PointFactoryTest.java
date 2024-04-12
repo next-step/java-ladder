@@ -1,6 +1,6 @@
-package ladder.domain.Ladder.factory;
+package ladder.domain.ladder.factory;
 
-import ladder.domain.Ladder.Point;
+import ladder.domain.ladder.Point;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

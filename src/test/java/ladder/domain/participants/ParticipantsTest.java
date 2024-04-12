@@ -1,7 +1,7 @@
 package ladder.domain.participants;
 
-import ladder.domain.Ladder.Ladder;
-import ladder.domain.Ladder.Line;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.Line;
 import ladder.domain.result.Reward;
 import ladder.domain.result.RewardResult;
 import org.junit.jupiter.api.Test;

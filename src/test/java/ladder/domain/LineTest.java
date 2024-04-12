@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.domain.Ladder.Line;
+import ladder.domain.ladder.Line;
 import ladder.domain.participants.Position;
 import org.junit.jupiter.api.Test;
 
