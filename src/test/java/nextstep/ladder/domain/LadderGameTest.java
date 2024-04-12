@@ -1,6 +1,5 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.LadderGame;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -23,4 +22,10 @@ public class LadderGameTest {
         assertThat(new LadderGame(5, 3).getLines().size()).isEqualTo(5);
     }
 
+    @Test
+    void name() {
+        LadderGame ladderGame = new LadderGame(new Height(3), new CountOfPerson(3));
+
+
+    }
 }

@@ -1,6 +1,6 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.utils.RandomLadderGenerator;
+import nextstep.ladder.utils.LadderGenerator;
 
 import java.util.List;
 
@@ -8,12 +8,12 @@ public class Line {
 
     private final Points points;
 
-    public Line(int countOfPerson) {
-        this(new CountOfPerson(countOfPerson));
+    public Line(int countOfPerson, LadderGenerator generator) {
+        this(new CountOfPerson(countOfPerson), generator);
     }
 
-    public Line(CountOfPerson countOfPerson) {
-        points = new Points(countOfPerson, new RandomLadderGenerator());
+    public Line(CountOfPerson countOfPerson, LadderGenerator generator) {
+        points = new Points(countOfPerson, generator);
     }
 
     public int size() {
@@ -24,4 +24,7 @@ public class Line {
         return points.getPoints();
     }
 
+    public List<Boolean> validateLine() {
+        return points.validatePoints();
+    }
 }
