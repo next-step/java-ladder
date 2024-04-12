@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -16,7 +17,7 @@ public class PlayersTest {
 
     @ParameterizedTest
     @MethodSource("playerListAndToString")
-    @DisplayName("List<Player>만을 가지는 일급컬렉션")
+    @DisplayName("from 호출 시 매개변수인 Player의 목록이 Players의 players 필드로 초기화")
     void create(List<Player> playerList) {
         Players players = Players.from(playerList);
         assertThat(players.size()).isEqualTo(playerList.size());
@@ -39,9 +40,10 @@ public class PlayersTest {
                 ));
     }
 
-    private static List<Player> createPlayerList(String... name) {
-        return Arrays.stream(name)
-                .map(Player::from)
+    private static List<Player> createPlayerList(String... names) {
+        AtomicInteger atomicInteger = new AtomicInteger(0);
+        return Arrays.stream(names)
+                .map(name -> Player.of(name, atomicInteger.getAndAdd(1)))
                 .collect(Collectors.toList());
     }
 }

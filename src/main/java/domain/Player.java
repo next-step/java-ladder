@@ -1,19 +1,53 @@
 package domain;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Player {
-    public static final String NAME_LENGTH_CANT_OVER_FIVE = "이름은 5자를 초과할 수 없습니다.";
-    private final String name;
+    private final Name name;
+    private Position position;
+
     public static Player from(String name) {
         return new Player(name);
     }
+    public static Player of(String name, Integer position) {
+        return new Player(name, position);
+    }
+
+    public static Player of(Name name, Position position) {
+        return new Player(name, position);
+    }
+
+    private Player(String name, Integer position) {
+        this(Name.from(name), Position.valueOf(position));
+    }
 
     private Player(String name) {
-        if (name.length() > 5) {
-            throw new IllegalArgumentException(NAME_LENGTH_CANT_OVER_FIVE);
-        }
+        this.name = Name.from(name);
+        this.position = Position.valueOf(0);
+    }
+
+    private Player(Name name, Position position) {
         this.name = name;
+        this.position = position;
+    }
+
+    public boolean hasPosition(int target) {
+        return position.hasPosition(target);
+    }
+
+    public int getPosition() {
+        return position.getPosition();
+    }
+
+    public int getPlayedLastPosition(List<Line> lines) {
+        int lastPosition = position.getPosition();
+        for (Line line : lines) {
+            PointDirection pointDirection = line.checkPointDirection(this);
+            position = position.move(pointDirection);
+            lastPosition = position.getPosition();
+        }
+        return lastPosition;
     }
 
     @Override
@@ -31,6 +65,6 @@ public class Player {
 
     @Override
     public String toString() {
-        return name;
+        return name.toString();
     }
 }

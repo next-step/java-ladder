@@ -1,7 +1,9 @@
 package strategy;
 
+import domain.Point;
+
 import java.util.List;
 
 public interface PointsMakeStrategy {
-    List<Boolean> makePoints(int playerCount);
+    List<Point> makePoints(int playerCount);
 }
