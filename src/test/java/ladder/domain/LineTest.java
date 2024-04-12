@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import ladder.domain.Ladder.Line;
+import ladder.domain.participants.Position;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -25,7 +26,7 @@ class LineTest {
     @Test
     void inquire_can_move_at_a_specific_position_on_the_line() {
         Line line = new Line(false, false, true);
-        final int positionIndex = 0;
-        assertThat(line.canMove(positionIndex)).isFalse();
+        final Position position = new Position(0);
+        assertThat(line.move(position)).isEqualTo(new Position(0));
     }
 }
