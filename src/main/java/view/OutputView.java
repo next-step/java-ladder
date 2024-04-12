@@ -3,6 +3,7 @@ package view;
 import domain.Ladder;
 import domain.LadderResult;
 import domain.Players;
+import domain.Point;
 
 import java.util.List;
 
@@ -58,8 +59,8 @@ public class OutputView {
         System.out.println();
     }
 
-    private void appendLineByPoint(Boolean point, StringBuilder sb) {
-        if (point) {
+    private void appendLineByPoint(Point point, StringBuilder sb) {
+        if (point.isExist()) {
             sb.append(TRUE_LINE);
             return;
         }

@@ -5,21 +5,21 @@ import strategy.PointsMakeStrategy;
 import java.util.Iterator;
 import java.util.List;
 
-public class Line implements Iterable<Boolean>  {
+public class Line implements Iterable<Point>  {
     public static final int FIRST_POINT_INDEX = 0;
-    private final List<Boolean> points;
+    private final List<Point> points;
 
     public static Line from(int playerCount, PointsMakeStrategy pointsMakeStrategy) {
-        List<Boolean> points = pointsMakeStrategy.makePoints(playerCount);
+        List<Point> points = pointsMakeStrategy.makePoints(playerCount);
         return new Line(points);
     }
 
-    private Line(List<Boolean> points) {
+    private Line(List<Point> points) {
         this.points = points;
     }
 
     @Override
-    public Iterator<Boolean> iterator() {
+    public Iterator<Point> iterator() {
         return points.iterator();
     }
 
@@ -41,12 +41,13 @@ public class Line implements Iterable<Boolean>  {
     }
 
     private Boolean isExistRightPoint(Player player) {
-        return points.get(player.getPosition());
+        Point rightPoint = points.get(player.getPosition());
+        return rightPoint.isExist();
     }
 
     private Boolean isExistLeftPoint(Player player) {
-        int leftPoint = player.getPosition() - 1;
-        return points.get(leftPoint);
+        Point leftPoint = points.get(player.getPosition() - 1);
+        return leftPoint.isExist();
     }
 
     private boolean isFarRight(Player player) {
