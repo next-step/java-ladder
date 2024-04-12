@@ -8,6 +8,7 @@ import view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class LadderGameController {
     private static final InputView INPUT_VIEW = new InputView();
@@ -26,13 +27,26 @@ public class LadderGameController {
     }
 
     private static Players readPlayers() {
-        while (true) {
-            try {
-                return Players.fromStringList(INPUT_VIEW.inputPlayers());
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage() + TRY_INPUT_AGAIN);
+        Players players;
+        do {
+            Optional<Players> validatedInputPlayers = validatedInputPlayers();
+
+            if (validatedInputPlayers.isPresent()) {
+                players = validatedInputPlayers.get();
+                break;
             }
+        } while (true);
+
+        return players;
+    }
+
+    private static Optional<Players> validatedInputPlayers() {
+        try {
+            return Optional.of(Players.fromStringList(INPUT_VIEW.inputPlayers()));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage() + TRY_INPUT_AGAIN);
         }
+        return Optional.empty();
     }
 
     private static void printLadder(Players players, Ladder ladder, List<String> results) {
@@ -52,10 +66,7 @@ public class LadderGameController {
     }
 
     private static void printResult(LadderResult ladderResult) {
-        while (true) {
-            if (recursivePrintResult(ladderResult)) {
-                break;
-            }
+        while (!recursivePrintResult(ladderResult)) {
         }
     }
 
