@@ -1,10 +1,9 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.Points;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class PointsTest {
 
@@ -12,7 +11,7 @@ public class PointsTest {
     @Test
     void points() {
         Points points = new Points(3, () -> true);
-        assertThat(points.getPoints().get(1)).isFalse();
+        assertThat(points.getPoints().get(1).isExist()).isFalse();
     }
 
     @DisplayName("참가자수(n)에 따라 Point는 (n - 1) 개만큼 생긴다")

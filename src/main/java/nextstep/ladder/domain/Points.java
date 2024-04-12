@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Points {
 
-    private final List<Boolean> points = new ArrayList<>();
+    private final List<Point> points = new ArrayList<>();
 
     public Points(int countOfPerson, LadderGenerator strategy) {
         this(new CountOfPerson(countOfPerson), strategy);
@@ -17,40 +17,30 @@ public class Points {
         countOfPerson.rangOfZeroToCount()
                 .forEach(i -> {
             boolean hasLadder = strategy.generate();
-            if (isNotFirstPoint(i) && hasLadderAtPrevious(i)) {
+            if (isNotFirstPoint(i) && hasLadderAtPrevious(i).isExist()) {
                 hasLadder = false;
             }
-            addLadderPoints(hasLadder);
+            addLadderPoints(new Point(hasLadder));
         });
-    }
-
-    public void startGame(int i) {
-        if (i == 0 && points.get(i)) {
-            position++;
-        }
-
-        if (isNotFirstPoint(i) && points.get(i - 1)) {
-            position--;
-        }
     }
 
     private boolean isNotFirstPoint(int i) {
         return i >= 1;
     }
 
-    private Boolean hasLadderAtPrevious(int i) {
+    private Point hasLadderAtPrevious(int i) {
         return points.get(i - 1);
     }
 
-    private void addLadderPoints(boolean hasLadder) {
-        points.add(hasLadder);
+    private void addLadderPoints(Point point) {
+        points.add(point);
     }
 
     public int size() {
         return points.size();
     }
 
-    public List<Boolean> getPoints() {
+    public List<Point> getPoints() {
         return points;
     }
 

@@ -20,7 +20,7 @@ public class Line {
         return points.size();
     }
 
-    public List<Boolean> getPoints() {
+    public List<Point> getPoints() {
         return points.getPoints();
     }
 
