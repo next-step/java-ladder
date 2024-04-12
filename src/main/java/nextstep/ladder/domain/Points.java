@@ -24,6 +24,16 @@ public class Points {
         });
     }
 
+    public void startGame(int i) {
+        if (i == 0 && points.get(i)) {
+            position++;
+        }
+
+        if (isNotFirstPoint(i) && points.get(i - 1)) {
+            position--;
+        }
+    }
+
     private boolean isNotFirstPoint(int i) {
         return i >= 1;
     }

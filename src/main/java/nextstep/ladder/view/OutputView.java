@@ -15,10 +15,10 @@ public class OutputView {
     public static void printLadder(List<Person> names, LadderGame ladderGame, List<String> results) {
         printNames(names);
         System.out.print(renderLine(ladderGame));
-        printResult(results);
+        printExecutionResult(results);
     }
 
-    private static void printResult(List<String> results) {
+    private static void printExecutionResult(List<String> results) {
         String result = results.stream()
                 .map(it -> String.format("%5s", it))
                 .collect(Collectors.joining(" "));
