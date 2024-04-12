@@ -60,6 +60,8 @@ tdd를 통한 개발을 할 때 도메인, 요구 사항에 대한 명확한 이
 - Person
   - [ ] 각각 int형 포지션을 갖는다
   - [ ] 포지션이 음수면 예외를 반환한다 
-  - [ ] 게임을 시작하면 포인트(Point)의 값(true/false)에 따라 사람(Person)의 position이 바뀐다   
+  - [ ] 게임을 시작하면 포인트(Point)의 값(true/false)에 따라 사람(Person)의 position이 바뀐다
+- Point
+  - [ ] boolean값을 갖는다 
 - Line
   - [ ] 줄(Line)의 한 점(Point)가 true인지 false인지 검증한다  
