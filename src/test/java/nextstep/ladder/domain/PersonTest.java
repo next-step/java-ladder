@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -9,6 +10,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class PersonTest {
+
+    @Test
+    void position() {
+        assertThat(new Person("현구막", 0)).isEqualTo(new Person("현구막", 0));
+    }
 
     @DisplayName("참가자는 이름을 갖는다")
     @Test

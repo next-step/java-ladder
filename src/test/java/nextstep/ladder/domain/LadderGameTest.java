@@ -22,10 +22,10 @@ public class LadderGameTest {
         assertThat(new LadderGame(5, 3).getLines().size()).isEqualTo(5);
     }
 
-    @Test
-    void name() {
-        LadderGame ladderGame = new LadderGame(new Height(3), new CountOfPerson(3));
-
-
-    }
+//    @DisplayName("줄(Line)의 점들(Points)이 각각 true인지 false인지 검증한다")
+//    @Test
+//    void name() {
+//        LadderGame ladderGame = new LadderGame(new Height(3), new CountOfPerson(3));
+//        ladderGame.
+//    }
 }
