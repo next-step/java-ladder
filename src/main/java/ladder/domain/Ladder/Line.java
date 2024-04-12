@@ -1,46 +1,36 @@
 package ladder.domain.Ladder;
 
 import ladder.domain.Ladder.factory.PointFactory;
-import ladder.utils.LambdaUtils;
+import ladder.domain.participants.Position;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Line {
 
     private final List<Point> points;
 
     public Line(int countOfPerson, PointPredicate pointPredicate) {
-        this(PointFactory.generatePoints(countOfPerson, pointPredicate));
+        this(PointFactory.generatePoints2(countOfPerson, pointPredicate));
     }
 
     public Line(Boolean... points) {
-        this(PointFactory.generatePoints(points));
+        this(PointFactory.generatePoints2(points));
     }
 
     public Line(List<Point> points) {
-        validatePoints(points);
         this.points = points;
-    }
-
-    private static void validatePoints(List<Point> points) {
-        IntStream.range(0, points.size() - 1)
-                .forEach(num -> LambdaUtils.validatePointRule(points.get(num), points.get(num + 1), Point::isEqualToTrue));
     }
 
     public List<Boolean> getLine() {
         return this.points.stream()
-                .map(Point::isMovable)
+                .map(Point::getCurrent)
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public boolean canMove(int positionIndex) {
-        if (positionIndex < 0 || positionIndex >= points.size()) {
-            return false;
-        }
-        return points.get(positionIndex).isMovable();
+    public Position move(Position position) {
+        return position.find(this.points).move(position);
     }
 
     @Override
