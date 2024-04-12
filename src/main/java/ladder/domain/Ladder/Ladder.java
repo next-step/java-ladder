@@ -21,7 +21,7 @@ public class Ladder {
 
     public Position move(Position position) {
         return lines.stream()
-                .reduce(position, (p, line) -> p.move(line::canMove), (p1, p2) -> p2);
+                .reduce(position, (p, line) ->line.move(p), (p1, p2) -> p2);
     }
 
     public List<Line> getLines() {
