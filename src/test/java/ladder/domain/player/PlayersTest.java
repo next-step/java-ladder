@@ -33,4 +33,22 @@ class PlayersTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> Players.from(List.of("kyle", "kyle", "alex")));
     }
+
+    @Test
+    @DisplayName("포지션에 해당하는 플레이어를 반환한다.")
+    void Get_PlayerAtPosition() {
+        final Players players = Players.from(List.of("kyle", "alex", "haley"));
+
+        assertThat(players.get(1))
+                .isEqualTo(new Player("alex"));
+    }
+
+    @Test
+    @DisplayName("포지션에 해당하는 플레이어가 없는 경우 예외를 던진다.")
+    void Get_NoPlayerAtPosition_Exception() {
+        final Players players = Players.from(List.of("kyle", "alex", "haley"));
+
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> players.get(3));
+    }
 }

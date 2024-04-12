@@ -5,19 +5,15 @@ import java.util.Objects;
 
 public class Player {
 
-    static final int MAXIMUM_NAME_LENGTH = 5;
+    public static final int MAXIMUM_NAME_LENGTH = 5;
 
     private final String name;
 
-    Player(final String name) {
+    public Player(final String name) {
         validateNameIsNotNullOrBlank(name);
         validateNameNotExceedMaxLength(name);
 
         this.name = name;
-    }
-
-    String name() {
-        return this.name;
     }
 
     private void validateNameIsNotNullOrBlank(final String name) {
@@ -26,11 +22,15 @@ public class Player {
         }
     }
 
-    private void validateNameNotExceedMaxLength(String name) {
+    private void validateNameNotExceedMaxLength(final String name) {
         if (name.length() > MAXIMUM_NAME_LENGTH) {
             throw new IllegalArgumentException(MessageFormat.format(
                     "플레이어의 이름은 {0}자를 초과할 수 없습니다. 이름 : {1}", MAXIMUM_NAME_LENGTH, name));
         }
+    }
+
+    public String name() {
+        return this.name;
     }
 
     @Override
@@ -51,5 +51,10 @@ public class Player {
     @Override
     public int hashCode() {
         return Objects.hash(this.name);
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
     }
 }
