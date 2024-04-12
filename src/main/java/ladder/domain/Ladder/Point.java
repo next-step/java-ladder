@@ -1,25 +1,49 @@
 package ladder.domain.Ladder;
 
+import ladder.domain.participants.Position;
+
 import java.util.Objects;
 
 public class Point {
 
-    private final boolean Exists;
+    private final boolean left;
+    private final boolean current;
 
-    public Point(PointPredicate predicate) {
-        this(predicate.exists());
+    private Point(boolean left, boolean current) {
+        if (left && current) {
+            current = false;
+        }
+
+        this.left = left;
+        this.current = current;
     }
 
-    public Point(boolean Exists) {
-        this.Exists = Exists;
+    public static Point first(boolean current) {
+        return new Point(false, current);
     }
 
-    public boolean isEqualToTrue(Point y) {
-        return y.Exists && this.Exists;
+    public Point next(boolean current) {
+        return new Point(this.current, current);
     }
 
-    public boolean isMovable() {
-        return this.Exists;
+    public Point last() {
+        return new Point(this.current, false);
+    }
+
+    public Position move(Position position) {
+        if (this.left) {
+            return Direction.LEFT.move(position);
+        }
+
+        if (this.current) {
+            return Direction.RIGHT.move(position);
+        }
+
+        return Direction.BYPASS.move(position);
+    }
+
+    public boolean getCurrent() {
+        return this.current;
     }
 
     @Override
@@ -27,11 +51,11 @@ public class Point {
         if (this == o) return true;
         if (!(o instanceof Point)) return false;
         Point point = (Point) o;
-        return Exists == point.Exists;
+        return left == point.left && current == point.current;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(Exists);
+        return Objects.hash(left, current);
     }
 }
