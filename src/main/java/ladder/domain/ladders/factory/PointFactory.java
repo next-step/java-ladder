@@ -1,7 +1,8 @@
-package ladder.domain.ladder.factory;
+package ladder.domain.ladders.factory;
 
-import ladder.domain.ladder.Point;
-import ladder.domain.ladder.PointPredicate;
+import ladder.domain.ladders.ladder.Line;
+import ladder.domain.ladders.ladder.Point;
+import ladder.domain.ladders.PointPredicate;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -38,7 +39,7 @@ public class PointFactory {
             points.addLast(points.getLast().next(exists.get(i)));
         }
 
-        points.push(points.getLast().last());
+        points.add(points.getLast().last());
         return new ArrayList<>(points);
     }
 }
