@@ -34,18 +34,18 @@ public class Person {
     // Line엔 rungs(사다리 가로선)이 포함되어 있음
     // position이 곧 people의 index
     public void crossLadder(Rungs rungs) {
-        // position이 2부터
+        // position이 1부터(두번째부터)
         if (!this.position.isFirstPosition()) {
-            // List<Point>의 position번째가 true일 때
+            // Rungs의 position번째가 true일 때
             if (rungs.isExist(this.position.getPosition())) {
                 this.position.crossRight();
             }
-            // List<Point>의 position - 1번째가 true일 때
+            // Rungs의 (position - 1)번째가 true일 때
             if (rungs.isExist(this.position.getPosition() - 1)) {
                 this.position.crossLeft();
             }
         }
-        // position이 1일때
+        // position이 0일때
         if (rungs.isExist(this.position.getPosition())) {
             this.position.crossRight();
         }
