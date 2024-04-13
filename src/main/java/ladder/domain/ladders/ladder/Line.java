@@ -1,6 +1,7 @@
-package ladder.domain.ladder;
+package ladder.domain.ladders.ladder;
 
-import ladder.domain.ladder.factory.PointFactory;
+import ladder.domain.ladders.PointPredicate;
+import ladder.domain.ladders.factory.PointFactory;
 import ladder.domain.participants.Position;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public class Line {
 
     public List<Boolean> getLine() {
         return this.points.stream()
-                .map(Point::getCurrent)
+                .map(Point::isLeft)
                 .collect(Collectors.toUnmodifiableList());
     }
 

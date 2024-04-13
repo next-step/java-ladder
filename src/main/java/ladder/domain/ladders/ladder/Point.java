@@ -1,4 +1,4 @@
-package ladder.domain.ladder;
+package ladder.domain.ladders.ladder;
 
 import ladder.domain.participants.Position;
 
@@ -42,8 +42,8 @@ public class Point {
         return Direction.BYPASS.move(position);
     }
 
-    public boolean getCurrent() {
-        return this.current;
+    public boolean isLeft() {
+        return left;
     }
 
     @Override

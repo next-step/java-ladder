@@ -1,4 +1,4 @@
-package ladder.domain.ladder;
+package ladder.domain.ladders;
 
 public interface PointPredicate {
     boolean exists();
