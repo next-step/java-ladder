@@ -5,7 +5,6 @@ import nextstep.ladder.domain.player.Count;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -17,8 +16,6 @@ public class Row {
     }
 
     private List<Rung> generateRungs(Count playersCount, RungGenerateStrategy strategy) {
-        final AtomicBoolean lastFlag = new AtomicBoolean(false);
-
         return Stream.iterate(Rung.EMPTY.generate(strategy),
                         previousRung -> previousRung.generate(strategy))
                 .limit(playersCount.subtract(1).value())
@@ -27,5 +24,22 @@ public class Row {
 
     public List<Rung> rungs() {
         return Collections.unmodifiableList(rungs);
+    }
+
+    public ColumnIndex moveFrom(ColumnIndex columnIndex) {
+        if (!columnIndex.equals(rungs.size()) && isConnected(columnIndex)) {
+            return columnIndex.next();
+        }
+
+        final ColumnIndex beforeIndex = columnIndex.before();
+        if (columnIndex.isNotFirst() && isConnected(beforeIndex)) {
+            return beforeIndex;
+        }
+
+        return columnIndex;
+    }
+
+    public boolean isConnected(ColumnIndex columnIndex) {
+        return rungs.get(columnIndex.value()).exist();
     }
 }
