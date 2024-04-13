@@ -1,4 +1,4 @@
-package ladder.domain.ladder;
+package ladder.domain.ladders.ladder;
 
 import ladder.domain.participants.Position;
 
