@@ -87,6 +87,7 @@ public class PersonTest {
         Person javajigi = new Person("java", new Position(3));
 
         Rungs rungs = new Rungs(List.of(RungTest.TRUE, RungTest.FALSE, RungTest.FALSE));
+
         first.crossLadder(rungs);
         hyunNineMak.crossLadder(rungs);
         hyungjunn.crossLadder(rungs);

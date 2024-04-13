@@ -34,7 +34,7 @@ public class Position {
         if (this == object) {
             return true;
         }
-        if (object == null || getClass() != object.getClass()){
+        if (object == null || getClass() != object.getClass()) {
             return false;
         }
         Position position1 = (Position) object;

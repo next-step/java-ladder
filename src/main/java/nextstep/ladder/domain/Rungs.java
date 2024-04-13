@@ -16,12 +16,12 @@ public class Rungs {
     public Rungs(CountOfPerson countOfPerson, LadderGenerator strategy) {
         countOfPerson.rangOfZeroToCount()
                 .forEach(i -> {
-            boolean hasLadder = strategy.generate();
-            if (isNotFirstRung(i) && hasLadderAtPrevious(i).isExist()) {
-                hasLadder = false;
-            }
-            addRung(new Rung(hasLadder));
-        });
+                    boolean hasLadder = strategy.generate();
+                    if (isNotFirstRung(i) && hasLadderAtPrevious(i).isExist()) {
+                        hasLadder = false;
+                    }
+                    addRung(new Rung(hasLadder));
+                });
     }
 
     public Rungs(List<Rung> rungs) {
