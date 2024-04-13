@@ -15,7 +15,6 @@ public class LadderGame {
         height.add(lines, countOfPerson);
     }
 
-
     public List<Line> getLines() {
         return lines;
     }

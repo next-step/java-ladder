@@ -20,7 +20,7 @@ public class OutputView {
     }
 
     private static void printPeople(List<Person> people) {
-        System.out.println("\n실행결과");
+        System.out.println("\n사다리 결과");
         String namesOfPersons = people.stream()
                 .map(person -> String.format("%5s", person.getName()))
                 .collect(Collectors.joining(" "));
@@ -45,6 +45,30 @@ public class OutputView {
                 .map(it -> String.format("%5s", it))
                 .collect(Collectors.joining(" "));
         System.out.println(result);
+    }
+
+    public static void printResult(String personName, List<Person> people, List<String> results) {
+        if (personName.equals("all")) {
+            printAllResult(people, results);
+            return;
+        }
+        printIndivisualResult(people, results, personName);
+    }
+
+    private static void printIndivisualResult(List<Person> people, List<String> results, String personName) {
+        Person person = people.stream()
+                .filter(it -> it.getName().equals(personName))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 참가자입니다."));
+        String wantedResult = results.get(person.getPosition());
+        System.out.println(wantedResult);
+    }
+
+    private static void printAllResult(List<Person> people, List<String> results) {
+        people.forEach(person -> {
+            String wantedResult = results.get(person.getPosition());
+            System.out.println(person.getName() + " : " + wantedResult);
+        });
     }
 
 }
