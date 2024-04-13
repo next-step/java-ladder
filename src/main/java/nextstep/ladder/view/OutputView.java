@@ -26,6 +26,8 @@ public class OutputView {
         printPlayers(players, columnWidth);
         printLadder(ladder, columnWidth);
         printResults(results, columnWidth);
+
+        lineChange();
     }
 
     private static int columnWidth(Players players, Results results) {

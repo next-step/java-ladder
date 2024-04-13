@@ -27,6 +27,10 @@ public class Name {
         return this.value.length();
     }
 
+    public boolean equals(String name) {
+        return this.value.equals(name);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -5,6 +5,8 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Players {
+    private static final String ALL_PLAYERS = "all";
+
     private final List<Player> players = new ArrayList<>();
 
     public static Players from(List<String> playerNames) {
@@ -14,6 +16,10 @@ public class Players {
                                 .mapToObj(index -> new Player(playerNames.get(index), index))
                                 .collect(Collectors.toList()))
                         .orElse(Collections.emptyList()));
+    }
+
+    public Players(Player player) {
+        this(List.of(player));
     }
 
     public Players(List<Player> players) {
@@ -61,5 +67,23 @@ public class Players {
 
     public List<Player> values() {
         return players;
+    }
+
+    public Players targetPlayers(String name) {
+        if (ALL_PLAYERS.equals(name)) {
+            return this;
+        }
+        return new Players(findByName(name));
+    }
+
+    public Player findByName(String name) {
+        return players.stream()
+                .filter(player -> player.name().equals(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("참가자를 찾을 수 없습니다."));
+    }
+
+    public boolean contains(String name) {
+        return playerNames().contains(name);
     }
 }
