@@ -1,6 +1,6 @@
 package ladder.domain.result.factory;
 
-import ladder.domain.result.Reward;
+import ladder.domain.ladders.reward.Reward;
 
 import java.util.List;
 import java.util.stream.Collectors;
