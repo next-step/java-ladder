@@ -2,6 +2,8 @@ package ladder.view;
 
 import ladder.domain.Player;
 import ladder.domain.Players;
+import ladder.domain.Result;
+import ladder.domain.Results;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,8 +25,21 @@ public class InputView {
                 .collect(Collectors.toUnmodifiableList()));
     }
 
+    public static Results scanResult() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String line = scanner.nextLine();
+        if (line == null || line.isBlank()) {
+            throw new IllegalArgumentException("입력은 공백일 수 없습니다.");
+        }
+        return new Results(Arrays.stream(line.split(","))
+                .map(String::trim)
+                .map(Result::new)
+                .collect(Collectors.toUnmodifiableList()));
+    }
+
     public static int scanHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         return scanner.nextInt();
     }
+
 }
