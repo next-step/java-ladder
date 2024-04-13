@@ -1,11 +1,10 @@
 package ladder.domain.participants;
 
-import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.Line;
-import ladder.domain.result.Reward;
+import ladder.domain.ladder.LadderGameTest;
+import ladder.domain.ladders.reward.Prize;
+import ladder.domain.ladders.reward.Reward;
+import ladder.domain.result.RewardResult;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -17,13 +16,9 @@ class GamerTest {
         int initPosition = 0;
         int lastPosition = 2;
         Gamer gamer = new Gamer(name, initPosition);
-        Ladder ladder = new Ladder(List.of(
-                new Line(true, false, true),
-                new Line(false, true, false)
-        ));
-
-        assertThat(gamer.climb(ladder))
-                .isEqualTo(new Gamer(name, lastPosition));
+        RewardResult climb = gamer.climb(LadderGameTest.LADDER_GAME);
+        assertThat(gamer.climb(LadderGameTest.LADDER_GAME))
+                .isEqualTo(new RewardResult(new Name(name), new Prize("item2")));
     }
 
     @Test

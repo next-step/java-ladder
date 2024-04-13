@@ -1,6 +1,7 @@
 package ladder.domain.ladder.factory;
 
-import ladder.domain.ladder.Point;
+import ladder.domain.ladders.ladder.Point;
+import ladder.domain.ladders.factory.PointFactory;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -14,7 +15,7 @@ class PointFactoryTest {
         Point first = Point.first(false);
 
         assertThat(PointFactory.generatePoints2(3, () -> false))
-                .isEqualTo(List.of(first, first.next(false)));
+                .isEqualTo(List.of(first, first.next(false),first.next(false).last()));
     }
 
     @Test
@@ -22,6 +23,6 @@ class PointFactoryTest {
         Point first = Point.first(true);
 
         assertThat(PointFactory.generatePoints2(new Boolean[]{true, false}))
-                .isEqualTo(List.of(first, first.next(false)));
+                .isEqualTo(List.of(first, first.next(false), first.next(false).last()));
     }
 }

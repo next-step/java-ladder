@@ -1,5 +1,6 @@
 package ladder.domain.result;
 
+import ladder.domain.ladders.reward.Reward;
 import ladder.domain.result.factory.GameResultFactory;
 import org.junit.jupiter.api.Test;
 
@@ -7,7 +8,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class GameResultFactoryTest {
+class GameRewardsFactoryTest {
 
     @Test
     void create_rewards() {

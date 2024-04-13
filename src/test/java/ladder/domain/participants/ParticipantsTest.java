@@ -1,8 +1,10 @@
 package ladder.domain.participants;
 
-import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.Line;
-import ladder.domain.result.Reward;
+import ladder.domain.ladders.LadderGame;
+import ladder.domain.ladder.LadderTest;
+import ladder.domain.result.GameRecords;
+import ladder.domain.result.GameRewardsTest;
+import ladder.domain.ladders.reward.Reward;
 import ladder.domain.result.RewardResult;
 import org.junit.jupiter.api.Test;
 
@@ -12,22 +14,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ParticipantsTest {
 
+    public static final Participants participants = new Participants("pobi,honux,crong");
+    public static final LadderGame LADDER_GAME = new LadderGame(LadderTest.ladder, GameRewardsTest.gameResult);
     @Test
     void start_ladder_game_and_get_result() {
-        Participants participants = new Participants("pobi,honux,crong");
-        Ladder ladder = new Ladder(
-                List.of(
-                        new Line(true, false),
-                        new Line(false, true)
-                )
-        );
 
-        assertThat(participants.startGame(ladder)).isEqualTo(
-                new Participants(
+        assertThat(participants.startGame(LADDER_GAME)).isEqualTo(
+                new GameRecords(
                         List.of(
-                                new Gamer("pobi", 2),
-                                new Gamer("honux", 0),
-                                new Gamer("crong", 1)
+                                new RewardResult("pobi", "item2"),
+                                new RewardResult("honux", "item1"),
+                                new RewardResult("crong", "item0")
                         )
                 )
         );
@@ -45,6 +42,5 @@ class ParticipantsTest {
 
         ));
         Reward item1 = new Reward("item1", 0);
-        assertThat(participants.mapTo(item1)).isEqualTo(new RewardResult(item1, pobi));
     }
 }
