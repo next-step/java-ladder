@@ -2,6 +2,7 @@ package ladder.view;
 
 import ladder.domain.Ladder;
 import ladder.domain.Player;
+import ladder.domain.Players;
 import ladder.domain.Point;
 
 import java.util.List;
@@ -13,14 +14,14 @@ public class OutputView {
     private static final String BRIDGE = "-----";
     private static final String EMPTY_BRIDGE = "     ";
 
-    public static void printLadderWithPlayer(List<Player> names, Ladder ladder) {
+    public static void printLadderWithPlayer(Players players, Ladder ladder) {
         System.out.println("\n실행결과");
-        printNames(names);
+        printNames(players);
         System.out.println(makeLine(ladder));
     }
 
-    private static void printNames(List<Player> names) {
-        String namesOfPersons = names.stream()
+    private static void printNames(Players names) {
+        String namesOfPersons = names.getPlayers().stream()
                 .map(person -> String.format("%5s", person.getName()))
                 .collect(Collectors.joining(" "));
         System.out.println(namesOfPersons);
