@@ -25,7 +25,7 @@ public class LadderGamePlayer {
 
         final GameResults gameResults = ladder.gameResults(players, results);
         final Players resultTargetPlayers = players.targetPlayers(InputView.resultTargetName(players));
-
+        OutputView.gameResults(gameResults, resultTargetPlayers);
     }
 
     private Ladder ladderByRandomRungGenerator(Count playersCount, Height height) {

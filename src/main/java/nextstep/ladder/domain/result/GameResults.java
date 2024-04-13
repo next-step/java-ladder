@@ -19,4 +19,7 @@ public class GameResults {
         other.results.forEach(this::add);
     }
 
+    public Result findBy(Player player) {
+        return results.get(player);
+    }
 }

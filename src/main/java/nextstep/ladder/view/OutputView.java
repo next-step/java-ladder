@@ -5,6 +5,8 @@ import nextstep.ladder.domain.ladder.Row;
 import nextstep.ladder.domain.ladder.Rung;
 import nextstep.ladder.domain.player.Count;
 import nextstep.ladder.domain.player.Players;
+import nextstep.ladder.domain.result.GameResults;
+import nextstep.ladder.domain.result.Result;
 import nextstep.ladder.domain.result.Results;
 
 import java.util.List;
@@ -18,7 +20,7 @@ public class OutputView {
     private OutputView() {}
 
     public static void printLadder(Players players, Ladder ladder, Results results) {
-        printLine(Announcements.RESULT);
+        printLine(Announcements.LADDER_SHAPE);
 
         lineChange();
 
@@ -83,6 +85,28 @@ public class OutputView {
                 .collect(Collectors.joining());
     }
 
+    public static void gameResults(GameResults gameResults, Players targetPlayers) {
+        printLine(Announcements.RESULT);
+
+        if (targetPlayers.count().equals(1)) {
+            singleResult(gameResults, targetPlayers);
+            return;
+        }
+        allResults(gameResults, targetPlayers);
+    }
+
+    private static void singleResult(GameResults gameResults, Players targetPlayers) {
+        final Result result = gameResults.findBy(targetPlayers.values().get(0));
+        printLine(result.value());
+    }
+
+    private static void allResults(GameResults gameResults, Players players) {
+        players.values().forEach(player -> {
+            final Result result = gameResults.findBy(player);
+            printLine(String.format(Announcements.PLAYER_RESULT_FORMAT, player.name().value(), result.value()));
+        });
+    }
+
     private static String spaceBuilder(int length) {
         return Announcements.SPACE.repeat(length);
     }
@@ -92,9 +116,12 @@ public class OutputView {
     }
 
     private static abstract class Announcements {
-        static final String RESULT = "실행결과";
+        static final String LADDER_SHAPE = "사다리결과";
         static final String SPACE = " ";
         static final String COLUMN = "|";
         static final String RUNG = "-";
+
+        static final String RESULT = "실행결과";
+        static final String PLAYER_RESULT_FORMAT = "%s : %s";
     }
 }
