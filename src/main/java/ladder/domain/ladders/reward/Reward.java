@@ -1,4 +1,4 @@
-package ladder.domain.result;
+package ladder.domain.ladders.reward;
 
 import ladder.domain.participants.Position;
 
@@ -18,7 +18,7 @@ public class Reward {
         this.position = position;
     }
 
-    public Prize getItem() {
+    public Prize getPrize() {
         return prize;
     }
 
