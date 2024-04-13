@@ -2,6 +2,8 @@ package nextstep.ladder.domain.player;
 
 import nextstep.ladder.domain.ladder.ColumnIndex;
 
+import java.util.Objects;
+
 public class Player {
     private final Name name;
     private final ColumnIndex index;
@@ -19,4 +21,20 @@ public class Player {
         return this.name;
     }
 
+    public ColumnIndex index() {
+        return this.index;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return Objects.equals(name, player.name) && Objects.equals(index, player.index);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, index);
+    }
 }

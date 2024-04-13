@@ -5,6 +5,7 @@ import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.ladder.RandomRungGenerator;
 import nextstep.ladder.domain.player.Count;
 import nextstep.ladder.domain.player.Players;
+import nextstep.ladder.domain.result.GameResults;
 import nextstep.ladder.domain.result.Results;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
@@ -21,6 +22,9 @@ public class LadderGamePlayer {
         final Ladder ladder = ladderByRandomRungGenerator(players.count(), height);
 
         OutputView.printLadder(players, ladder, results);
+
+        final GameResults gameResults = ladder.gameResults(players, results);
+
     }
 
     private Ladder ladderByRandomRungGenerator(Count playersCount, Height height) {

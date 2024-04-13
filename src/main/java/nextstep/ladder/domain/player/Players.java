@@ -58,4 +58,8 @@ public class Players {
                 .map(player -> player.name().value())
                 .collect(Collectors.toList());
     }
+
+    public List<Player> values() {
+        return players;
+    }
 }

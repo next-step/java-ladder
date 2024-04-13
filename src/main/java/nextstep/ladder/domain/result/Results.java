@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.result;
 
+import nextstep.ladder.domain.ladder.ColumnIndex;
 import nextstep.ladder.domain.player.Count;
 
 import java.util.Collection;
@@ -40,5 +41,9 @@ public class Results {
                 .mapToInt(Result::length)
                 .max()
                 .orElse(0));
+    }
+
+    public Result findBy(ColumnIndex index) {
+        return values.get(index.value());
     }
 }

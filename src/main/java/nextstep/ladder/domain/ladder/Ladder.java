@@ -1,6 +1,9 @@
 package nextstep.ladder.domain.ladder;
 
 import nextstep.ladder.domain.player.Count;
+import nextstep.ladder.domain.player.Players;
+import nextstep.ladder.domain.result.GameResults;
+import nextstep.ladder.domain.result.Results;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +37,13 @@ public class Ladder {
 
     public List<Row> rows() {
         return this.values;
+    }
+
+    public GameResults gameResults(Players players, Results results) {
+        return players.values().stream()
+                .collect(GameResults::new,
+                        (gameResults, player) -> gameResults.add(player, results.findBy(moveFrom(player.index()))),
+                        GameResults::addAll);
     }
 
     public ColumnIndex moveFrom(ColumnIndex columnIndex) {
