@@ -7,6 +7,9 @@ public class Player {
     private String name;
 
     public Player(String name) {
+        if(name == null){
+            throw new NullPointerException("이름을 입력해야합니다.");
+        }
         if(name.length() > MAX_NAME_LENGTH){
             throw new IllegalArgumentException("이름이 5자를 초과하였습니다.");
         }
