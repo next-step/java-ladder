@@ -14,4 +14,12 @@ public class Result {
             throw new IllegalArgumentException("사다리 게임 결과를 입력해주세요.");
         }
     }
+
+    public String value() {
+        return this.value;
+    }
+
+    public int length() {
+        return this.value.length();
+    }
 }

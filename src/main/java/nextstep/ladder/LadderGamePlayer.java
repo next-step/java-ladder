@@ -20,7 +20,7 @@ public class LadderGamePlayer {
 
         final Ladder ladder = ladderByRandomRungGenerator(players.count(), height);
 
-        OutputView.printLadder(players, ladder);
+        OutputView.printLadder(players, ladder, results);
     }
 
     private Ladder ladderByRandomRungGenerator(Count playersCount, Height height) {

@@ -28,4 +28,17 @@ public class Results {
             throw new IllegalArgumentException("결과의 개수는 입력한 참여자 수와 동일해야 합니다.");
         }
     }
+
+    public List<String> resultNames() {
+        return values.stream()
+                .map(Result::value)
+                .collect(Collectors.toList());
+    }
+
+    public Count maxValueLength() {
+        return new Count(values.stream()
+                .mapToInt(Result::length)
+                .max()
+                .orElse(0));
+    }
 }

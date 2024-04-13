@@ -5,6 +5,7 @@ import nextstep.ladder.domain.ladder.Row;
 import nextstep.ladder.domain.ladder.Rung;
 import nextstep.ladder.domain.player.Count;
 import nextstep.ladder.domain.player.Players;
+import nextstep.ladder.domain.result.Results;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,27 +17,34 @@ public class OutputView {
 
     private OutputView() {}
 
-    public static void printLadder(Players players, Ladder ladder) {
+    public static void printLadder(Players players, Ladder ladder, Results results) {
         printLine(Announcements.RESULT);
 
         lineChange();
 
-        final int columnWidth = columnWidth(players);
+        final int columnWidth = columnWidth(players, results);
         printPlayers(players, columnWidth);
         printLadder(ladder, columnWidth);
+        printResults(results, columnWidth);
     }
 
-    private static int columnWidth(Players players) {
-        final Count maxLength = players.maxNameLength();
+    private static int columnWidth(Players players, Results results) {
+        final Count maxLength = players.maxNameLength().max(results.maxValueLength());
         return (maxLength.value() / 2 + 1) * 2 + 1;
     }
 
     private static void printPlayers(Players players, int columnWidth) {
-        String joinedName = players.playerNames().stream()
+        printLine(centerAlignAndJoinStrings(players.playerNames(), columnWidth));
+    }
+
+    private static void printResults(Results results, int columnWidth) {
+        printLine(centerAlignAndJoinStrings(results.resultNames(), columnWidth));
+    }
+
+    private static String centerAlignAndJoinStrings(List<String> names, int columnWidth) {
+        return names.stream()
                 .map(name -> centerName(name, columnWidth))
                 .collect(Collectors.joining());
-
-        printLine(joinedName);
     }
 
     private static String centerName(String name, int width) {

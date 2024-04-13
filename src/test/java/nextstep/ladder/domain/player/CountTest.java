@@ -39,4 +39,11 @@ public class CountTest {
                 .isEqualTo(expected);
     }
 
+    @DisplayName("max는 비교대상과 현재값 중 큰 값을 반환한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"1,2,2", "2,1,2", "1,1,1"})
+    void max(int origin, int target, int expected) {
+        assertThat(new Count(origin).max(new Count(target)))
+                .isEqualTo(new Count(expected));
+    }
 }

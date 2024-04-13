@@ -7,11 +7,12 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
+import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.*;
 
 public class ResultsTest {
+    public static final List<String> TEST_RESULT_NAMES = List.of("꽝", "꽈과광", "당첨", "꽈과과과광");
 
     @DisplayName("경기 결과 목록은")
     @Nested
@@ -39,5 +40,12 @@ public class ResultsTest {
                     .isThrownBy(() -> Results.fromResultNames(PlayersTest.TEST_PLAYER_NAMES, new Count(PlayersTest.TEST_PLAYER_NAMES.size() + 1)))
                     .withMessage("결과의 개수는 입력한 참여자 수와 동일해야 합니다.");
         }
+    }
+
+    @DisplayName("maxValueLength는 가장 긴 경기결과 문자열 길이를 반환한다.")
+    @Test
+    void maxValueLength() {
+        assertThat(Results.fromResultNames(TEST_RESULT_NAMES, new Count(4)).maxValueLength())
+                .isEqualTo(new Count(5));
     }
 }
