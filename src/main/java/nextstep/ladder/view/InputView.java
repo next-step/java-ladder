@@ -6,19 +6,20 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static List<Person> getPersonNames() {
+    public static List<Person> getPeople() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String line = scanner.nextLine();
         if (line == null || line.isBlank()) {
             throw new IllegalArgumentException(String.format("참가자의 이름은 (%s)와 같이 공백이거나 null일 수 없습니다.", line));
         }
-        return Arrays.stream(line.split(","))
-                .map(String::trim)
-                .map(Person::new)
+        String[] names = line.split(",");
+        return IntStream.range(0, names.length)
+                .mapToObj(index -> new Person(names[index], index))
                 .collect(Collectors.toUnmodifiableList());
     }
 

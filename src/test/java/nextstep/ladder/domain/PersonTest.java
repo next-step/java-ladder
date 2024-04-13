@@ -21,14 +21,14 @@ public class PersonTest {
     @DisplayName("참가자는 이름을 갖는다")
     @Test
     void name() {
-        assertThat(new Person("현구막")).isEqualTo(new Person("현구막"));
+        assertThat(new Person("현구막", 0)).isEqualTo(new Person("현구막", 0));
     }
 
     @DisplayName("참가자의 이름은 NAME_LENGTH_STANDARD를 초과할 수 없다. 초과한다면 IllegalArgumentException을 반환한다 ")
     @Test
     void lessThanFive() {
         String name = "현구막리뷰어님블로그멋있어요";
-        assertThatThrownBy(() -> new Person(name))
+        assertThatThrownBy(() -> new Person(name, 0))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(String.format("참가자(%s)의 이름 글자수는 NAME_LENGTH_STANDARD를 초과할 수 없습니다", name));
     }
@@ -37,7 +37,7 @@ public class PersonTest {
     @NullAndEmptySource
     @ParameterizedTest
     void nullAndEmptyNameException(String input) {
-        assertThatThrownBy(() -> new Person(input))
+        assertThatThrownBy(() -> new Person(input, 0))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(String.format("참가자의 이름은 (%s)와 같이 공백이거나 null일 수 없습니다.", input));
     }

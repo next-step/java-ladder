@@ -8,10 +8,6 @@ public class Person {
 
     private static final int NAME_LENGTH_STANDARD = 5;
 
-    public Person(String name) {
-        this(name, 0);
-    }
-
     public Person(String name, int position) {
         this(name, new Position(position));
     }

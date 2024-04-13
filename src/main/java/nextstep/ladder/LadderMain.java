@@ -10,7 +10,7 @@ import java.util.List;
 public class LadderMain {
 
     public static void main(String[] args) {
-        List<Person> people = InputView.getPersonNames();
+        List<Person> people = InputView.getPeople();
         List<String> results = InputView.getResults();
         int countOfPerson = people.size();
         int height = InputView.getHeight();
@@ -18,6 +18,7 @@ public class LadderMain {
         OutputView.printLadder(people, new LadderGame(height, countOfPerson), results);
 
         //todo: 실행결과 로직 (여기부터)
+
     }
 
 }
