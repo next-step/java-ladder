@@ -1,8 +1,9 @@
 package ladder.domain.participants;
 
 
-import ladder.domain.ladder.Ladder;
-import ladder.domain.result.Reward;
+import ladder.domain.ladders.LadderGame;
+import ladder.domain.ladders.reward.Reward;
+import ladder.domain.result.RewardResult;
 
 import java.util.Objects;
 
@@ -24,9 +25,10 @@ public class Gamer {
         return name;
     }
 
-    public Gamer climb(Ladder ladder) {
-        return new Gamer(this.name, ladder.move(position));
+    public RewardResult climb(LadderGame ladder) {
+        return new RewardResult(this.name, ladder.getRewardBy(position));
     }
+
 
     public boolean hasSameName(Name nameToFind) {
         return this.name.equals(nameToFind);
