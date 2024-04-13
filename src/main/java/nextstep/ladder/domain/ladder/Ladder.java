@@ -36,4 +36,9 @@ public class Ladder {
     public void forEach(Consumer<Row> action) {
         values.forEach(action);
     }
+
+    public ColumnIndex moveFrom(ColumnIndex columnIndex) {
+        return values.stream()
+                .reduce(columnIndex, (currentIdx, row) -> row.moveFrom(currentIdx), (resultA, resultB) -> resultB);
+    }
 }
