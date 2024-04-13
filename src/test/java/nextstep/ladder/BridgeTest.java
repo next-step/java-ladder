@@ -14,7 +14,7 @@ public class BridgeTest {
 	@CsvSource(value = {"true,BRIDGE", "false,NON_BRIDGE"})
 	@DisplayName("랜덤으로 선택된 boolean 값으로 다리 생성 여부를 판단한다")
 	void createBridge(final boolean isBridge, final Bridge expected) {
-		final Bridge bridge = Bridge.of(isBridge);
+		final Bridge bridge = Bridge.from(isBridge);
 
 		assertThat(bridge).isEqualTo(expected);
 	}

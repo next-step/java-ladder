@@ -10,7 +10,7 @@ public class Line {
 	public Line(final Generator generator, final int numberOfPeople) {
 		while (bridges.size() < numberOfPeople - 1){
 			final boolean now = generator.generate();
-			addBridge(Bridge.of(now));
+			addBridge(Bridge.from(now));
 
 		}
 	}
@@ -21,7 +21,7 @@ public class Line {
 			return;
 		}
 		if (bridges.get(bridges.size() - 1).isBridge()) {
-			bridges.add(Bridge.of(false));
+			bridges.add(Bridge.from(false));
 			return;
 		}
 		bridges.add(now);

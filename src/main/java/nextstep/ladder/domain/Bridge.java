@@ -10,7 +10,7 @@ public enum Bridge {
 		this.isBridge = isBridge;
 	}
 
-	public static Bridge of(final boolean now) {
+	public static Bridge from(final boolean now) {
 		if (BRIDGE.isBridge == now) {
 			return BRIDGE;
 		}
