@@ -20,6 +20,7 @@ public class InputView {
         String[] names = line.split(",");
         return IntStream.range(0, names.length)
                 .mapToObj(index -> new Person(names[index], index))
+
                 .collect(Collectors.toUnmodifiableList());
     }
 

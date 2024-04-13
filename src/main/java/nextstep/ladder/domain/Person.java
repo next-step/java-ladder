@@ -31,21 +31,14 @@ public class Person {
     // position이 곧 people의 index
     public void crossLadder(Rungs rungs) {
         // position이 1부터(두번째부터)
-        if (!this.position.isFirstPosition()) {
-            // Rungs의 position번째가 true일 때
-            if (rungs.isExist(this.position.getPosition())) {
-                this.position.crossRight();
-            }
+        if (!this.position.isFirstPosition() && rungs.isExist(this.position.getPosition() - 1)) {
             // Rungs의 (position - 1)번째가 true일 때
-            if (rungs.isExist(this.position.getPosition() - 1)) {
-                this.position.crossLeft();
-            }
+            this.position.crossLeft();
         }
-        // position이 0일때
+        // position이 0일때 -> Rungs의 position번째가 true일 때
         if (rungs.isExist(this.position.getPosition())) {
             this.position.crossRight();
         }
-
     }
 
     @Override
