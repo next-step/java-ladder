@@ -78,7 +78,7 @@ public class PersonTest {
         Assertions.assertThat(hyungjunn).isEqualTo(new Person("임형준", new Position(1)));
     }
 
-    @DisplayName("두번째 주자(position이 1인 주자)가 점(가로선)이 왼쪽에 있다면 position이 1감소한다")
+    @DisplayName("각 참가자들의 position(0 ~ 3)에 따라 사다리를 타고 이동한다")
     @Test
     void secondPersonCrossLadderToLeft() {
         Person first = new Person("first", new Position(0));
