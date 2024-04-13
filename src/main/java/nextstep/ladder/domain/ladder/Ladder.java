@@ -4,7 +4,6 @@ import nextstep.ladder.domain.player.Count;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -33,8 +32,8 @@ public class Ladder {
         return new Height(this.values.size());
     }
 
-    public void forEach(Consumer<Row> action) {
-        values.forEach(action);
+    public List<Row> rows() {
+        return this.values;
     }
 
     public ColumnIndex moveFrom(ColumnIndex columnIndex) {

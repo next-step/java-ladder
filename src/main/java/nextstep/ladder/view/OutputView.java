@@ -55,7 +55,7 @@ public class OutputView {
     }
 
     private static void printLadder(Ladder ladder, int columnWidth) {
-        ladder.forEach(row -> printLadderRow(row, columnWidth));
+        ladder.rows().forEach(row -> printLadderRow(row, columnWidth));
     }
 
     private static void printLadderRow(Row ladderRow, int columnWidth) {

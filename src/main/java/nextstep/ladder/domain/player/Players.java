@@ -2,6 +2,7 @@ package nextstep.ladder.domain.player;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Players {
     private final List<Player> players = new ArrayList<>();
@@ -9,10 +10,10 @@ public class Players {
     public static Players from(List<String> playerNames) {
         return new Players(
                 Optional.ofNullable(playerNames)
-                    .stream()
-                    .flatMap(Collection::stream)
-                    .map(Player::new)
-                    .collect(Collectors.toList()));
+                        .map(names -> IntStream.range(0, playerNames.size())
+                                .mapToObj(index -> new Player(playerNames.get(index), index))
+                                .collect(Collectors.toList()))
+                        .orElse(Collections.emptyList()));
     }
 
     public Players(List<Player> players) {
@@ -54,7 +55,7 @@ public class Players {
 
     public List<String> playerNames() {
         return players.stream()
-                .map(Player::name)
+                .map(player -> player.name().value())
                 .collect(Collectors.toList());
     }
 }
