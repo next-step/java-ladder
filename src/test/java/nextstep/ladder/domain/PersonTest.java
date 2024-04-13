@@ -64,6 +64,40 @@ public class PersonTest {
         Assertions.assertThat(hyunNineMak).isEqualTo(new Person("현구막", new Position(0)));
     }
 
+    @DisplayName("두번째 주자(position이 1인 주자)가 점(가로선)이 오른쪽에 있다면 position이 1증가한다")
+    @Test
+    void secondPersonCrossLadderToRight() {
+        Person hyunNineMak = new Person("현구막", new Position(1));
+        Person hyungjunn = new Person("임형준", new Position(2));
+
+        Rungs rungs = new Rungs(List.of(RungTest.FALSE, RungTest.TRUE, RungTest.FALSE));
+        hyunNineMak.crossLadder(rungs);
+        hyungjunn.crossLadder(rungs);
+
+        Assertions.assertThat(hyunNineMak).isEqualTo(new Person("현구막", new Position(2)));
+        Assertions.assertThat(hyungjunn).isEqualTo(new Person("임형준", new Position(1)));
+    }
+
+    @DisplayName("두번째 주자(position이 1인 주자)가 점(가로선)이 왼쪽에 있다면 position이 1감소한다")
+    @Test
+    void secondPersonCrossLadderToLeft() {
+        Person first = new Person("first", new Position(0));
+        Person hyunNineMak = new Person("현구막", new Position(1));
+        Person hyungjunn = new Person("임형준", new Position(2));
+        Person javajigi = new Person("java", new Position(3));
+
+        Rungs rungs = new Rungs(List.of(RungTest.TRUE, RungTest.FALSE, RungTest.FALSE));
+        first.crossLadder(rungs);
+        hyunNineMak.crossLadder(rungs);
+        hyungjunn.crossLadder(rungs);
+        javajigi.crossLadder(rungs);
+
+        Assertions.assertThat(first).isEqualTo(new Person("first", new Position(1)));
+        Assertions.assertThat(hyunNineMak).isEqualTo(new Person("현구막", new Position(0)));
+        Assertions.assertThat(hyungjunn).isEqualTo(new Person("임형준", new Position(2)));
+        Assertions.assertThat(javajigi).isEqualTo(new Person("java", new Position(3)));
+    }
+
     @DisplayName("사다리가 존재하지 않으면 예외를 반환한다")
     @Test
     void crossLadderException() {

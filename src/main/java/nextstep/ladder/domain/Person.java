@@ -33,13 +33,18 @@ public class Person {
         if (rungs == null || rungs.size() == 0) {
             throw new IllegalArgumentException("사다리가 존재하지 않습니다.");
         }
-        // position이 1부터(두번째부터)
-        if (!this.position.isFirstPosition() && rungs.isExist(this.position.getPosition() - 1)) {
-            // Rungs의 (position - 1)번째가 true일 때
-            this.position.crossLeft();
-        }
         // position이 0일때 -> Rungs의 position번째가 true일 때
-        if (rungs.isExist(this.position.getPosition())) {
+        if (this.position.isFirstPosition() && rungs.isExist(this.position.getPosition())) {
+            this.position.crossRight();
+            return;
+        }
+        // position이 1부터(두번째부터) -> Rungs의 (position - 1)번째가 true일 때
+        if (!this.position.isFirstPosition() && rungs.isExist(this.position.getPosition() - 1)) {
+            this.position.crossLeft();
+            return;
+        }
+        // position이 1부터 -> Rungs의 position번째가 true일 때
+        if (!this.position.isFirstPosition() && rungs.isExist(this.position.getPosition())) {
             this.position.crossRight();
         }
     }
@@ -61,4 +66,11 @@ public class Person {
         return Objects.hash(name, position);
     }
 
+    public int getPosition() {
+        return position.getPosition();
+    }
+
+    public boolean isSameName(String personName) {
+        return personName.equals(this.name);
+    }
 }

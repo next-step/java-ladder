@@ -45,6 +45,9 @@ public class Rungs {
     }
 
     public boolean isExist(int index) {
+        if (index >= rungs.size()) {
+            return false;
+        }
         return rungs.get(index).isExist();
     }
 

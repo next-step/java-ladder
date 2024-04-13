@@ -27,4 +27,9 @@ public class Line {
     public List<Boolean> validateLine() {
         return rungs.validateRungs();
     }
+
+    public void crossLadder(Person person) {
+        person.crossLadder(rungs);
+    }
+
 }
