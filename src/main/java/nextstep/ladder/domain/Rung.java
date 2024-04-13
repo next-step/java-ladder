@@ -2,15 +2,15 @@ package nextstep.ladder.domain;
 
 import java.util.Objects;
 
-public class Point {
-    private final boolean b;
+public class Rung {
+    private final boolean isExist;
 
-    public Point(boolean b) {
-        this.b = b;
+    public Rung(boolean isExist) {
+        this.isExist = isExist;
     }
 
     public boolean isExist() {
-        return this.b;
+        return this.isExist;
     }
 
     @Override
@@ -21,12 +21,12 @@ public class Point {
         if (object == null || getClass() != object.getClass()) {
             return false;
         }
-        Point point = (Point) object;
-        return b == point.b;
+        Rung rung = (Rung) object;
+        return isExist == rung.isExist;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(b);
+        return Objects.hash(isExist);
     }
 }

@@ -6,25 +6,25 @@ import java.util.List;
 
 public class Line {
 
-    private final Points points;
+    private final Rungs rungs;
 
     public Line(int countOfPerson, LadderGenerator generator) {
         this(new CountOfPerson(countOfPerson), generator);
     }
 
     public Line(CountOfPerson countOfPerson, LadderGenerator generator) {
-        points = new Points(countOfPerson, generator);
+        rungs = new Rungs(countOfPerson, generator);
     }
 
     public int size() {
-        return points.size();
+        return rungs.size();
     }
 
-    public List<Point> getPoints() {
-        return points.getPoints();
+    public List<Rung> getPoints() {
+        return rungs.getPoints();
     }
 
     public List<Boolean> validateLine() {
-        return points.validatePoints();
+        return rungs.validatePoints();
     }
 }

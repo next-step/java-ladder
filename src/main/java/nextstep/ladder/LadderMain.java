@@ -10,12 +10,14 @@ import java.util.List;
 public class LadderMain {
 
     public static void main(String[] args) {
-        List<Person> names = InputView.getPersonNames();
+        List<Person> people = InputView.getPersonNames();
         List<String> results = InputView.getResults();
-        int countOfPerson = names.size();
+        int countOfPerson = people.size();
         int height = InputView.getHeight();
 
-        OutputView.printLadder(names, new LadderGame(height, countOfPerson), results);
+        OutputView.printLadder(people, new LadderGame(height, countOfPerson), results);
+
+        //todo: 실행결과 로직 (여기부터)
     }
 
 }

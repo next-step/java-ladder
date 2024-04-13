@@ -2,7 +2,7 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.LadderGame;
 import nextstep.ladder.domain.Person;
-import nextstep.ladder.domain.Point;
+import nextstep.ladder.domain.Rung;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -40,7 +40,7 @@ public class OutputView {
 
     private static String renderLine(LadderGame ladderGame) {
         return ladderGame.getLines().stream()
-                .map(line -> NO_BRIDGE + renderPoints(line.getPoints()) + "|\n")
+                .map(line -> NO_BRIDGE + render(line.getPoints()) + "|\n")
                 .collect(Collectors.joining());
     }
 
@@ -50,9 +50,9 @@ public class OutputView {
                 .collect(Collectors.joining());
     }
 
-    private static String renderPoints(List<Point> points) {
-        return points.stream()
-                .map(Point::isExist)
+    private static String render(List<Rung> rungs) {
+        return rungs.stream()
+                .map(Rung::isExist)
                 .map(point -> UNIT_LADDER + (point ? BRIDGE : NO_BRIDGE))
                 .collect(Collectors.joining());
     }

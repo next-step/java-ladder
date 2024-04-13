@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -39,4 +41,29 @@ public class PersonTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(String.format("참가자의 이름은 (%s)와 같이 공백이거나 null일 수 없습니다.", input));
     }
+
+    @DisplayName("처음 주자(position이 0인 주자)가 점(가로선)을 만나면 오른쪽으로 이동한다")
+    @Test
+    void crossLadderByTrue() {
+        Person hyunNineMak = new Person("현구막", new Position(0));
+
+        Rungs rungs = new Rungs(List.of(RungTest.TRUE, RungTest.FALSE));
+        hyunNineMak.crossLadder(rungs);
+
+        Assertions.assertThat(hyunNineMak).isEqualTo(new Person("현구막", new Position(1)));
+    }
+
+    @DisplayName("처음 주자(position이 0인 주자)가 점(가로선)을 만나지 않으면 가만히 있는다")
+    @Test
+    void crossLadderByFalse() {
+        Person hyunNineMak = new Person("현구막", new Position(0));
+
+        Rungs rungs = new Rungs(List.of(RungTest.FALSE, RungTest.TRUE));
+        hyunNineMak.crossLadder(rungs);
+
+        Assertions.assertThat(hyunNineMak).isEqualTo(new Person("현구막", new Position(0)));
+    }
+
+
+
 }

@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Person {
     private final String name;
-    private final int position;
+    private final Position position;
 
     private static final int NAME_LENGTH_STANDARD = 5;
 
@@ -13,6 +13,10 @@ public class Person {
     }
 
     public Person(String name, int position) {
+        this(name, new Position(position));
+    }
+
+    public Person(String name, Position position) {
         if (name == null || name.isBlank()) {
             throw new IllegalArgumentException(String.format("참가자의 이름은 (%s)와 같이 공백이거나 null일 수 없습니다.", name));
         }
@@ -23,26 +27,46 @@ public class Person {
         this.position = position;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    // Line엔 rungs(사다리 가로선)이 포함되어 있음
+    // position이 곧 people의 index
+    public void crossLadder(Rungs rungs) {
+        // position이 2부터
+        if (!this.position.isFirstPosition()) {
+            // List<Point>의 position번째가 true일 때
+            if (rungs.isExist(this.position.getPosition())) {
+                this.position.crossRight();
+            }
+            // List<Point>의 position - 1번째가 true일 때
+            if (rungs.isExist(this.position.getPosition() - 1)) {
+                this.position.crossLeft();
+            }
+        }
+        // position이 1일때
+        if (rungs.isExist(this.position.getPosition())) {
+            this.position.crossRight();
+        }
+
+    }
+
     @Override
     public boolean equals(Object object) {
         if (this == object) {
             return true;
         }
-
         if (object == null || getClass() != object.getClass()) {
             return false;
         }
-
         Person person = (Person) object;
-        return Objects.equals(name, person.name);
+        return Objects.equals(name, person.name) && Objects.equals(position, person.position);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(name, position);
     }
 
-    public String getName() {
-        return name;
-    }
 }
