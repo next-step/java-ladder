@@ -30,6 +30,9 @@ public class Person {
     // Line엔 rungs(사다리 가로선)이 포함되어 있음
     // position이 곧 people의 index
     public void crossLadder(Rungs rungs) {
+        if (rungs == null || rungs.size() == 0) {
+            throw new IllegalArgumentException("사다리가 존재하지 않습니다.");
+        }
         // position이 1부터(두번째부터)
         if (!this.position.isFirstPosition() && rungs.isExist(this.position.getPosition() - 1)) {
             // Rungs의 (position - 1)번째가 true일 때

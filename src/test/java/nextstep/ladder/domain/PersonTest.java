@@ -64,4 +64,14 @@ public class PersonTest {
         Assertions.assertThat(hyunNineMak).isEqualTo(new Person("현구막", new Position(0)));
     }
 
+    @DisplayName("사다리가 존재하지 않으면 예외를 반환한다")
+    @Test
+    void crossLadderException() {
+        Person hyunNineMak = new Person("현구막", new Position(0));
+
+        assertThatThrownBy(() -> hyunNineMak.crossLadder(null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("사다리가 존재하지 않습니다.");
+    }
+
 }
