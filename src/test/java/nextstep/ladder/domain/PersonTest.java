@@ -64,6 +64,4 @@ public class PersonTest {
         Assertions.assertThat(hyunNineMak).isEqualTo(new Person("현구막", new Position(0)));
     }
 
-
-
 }

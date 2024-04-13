@@ -20,11 +20,11 @@ public class Line {
         return rungs.size();
     }
 
-    public List<Rung> getPoints() {
-        return rungs.getPoints();
+    public List<Rung> getRungs() {
+        return rungs.getRungs();
     }
 
     public List<Boolean> validateLine() {
-        return rungs.validatePoints();
+        return rungs.validateRungs();
     }
 }

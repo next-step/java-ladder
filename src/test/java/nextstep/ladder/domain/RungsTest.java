@@ -14,7 +14,7 @@ public class RungsTest {
     @Test
     void points() {
         Rungs rungs = new Rungs(3, () -> true);
-        assertThat(rungs.getPoints().get(1).isExist()).isFalse();
+        assertThat(rungs.getRungs().get(1).isExist()).isFalse();
     }
 
     @DisplayName("참가자수(n)에 따라 Point는 (n - 1) 개만큼 생긴다")
@@ -28,7 +28,7 @@ public class RungsTest {
     void validatePoints() {
         Rungs rungs = new Rungs(List.of(new Rung(true), new Rung(false), new Rung(true)));
 
-        List<Boolean> booleans = rungs.validatePoints();
+        List<Boolean> booleans = rungs.validateRungs();
 
         Assertions.assertThat(booleans.get(0)).isTrue();
         Assertions.assertThat(booleans.get(1)).isFalse();

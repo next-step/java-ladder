@@ -13,26 +13,15 @@ public class OutputView {
     private static final String NO_BRIDGE = "     ";
     private static final String UNIT_LADDER = "|";
 
-    public static void printLadder(List<Person> names, LadderGame ladderGame, List<String> results) {
-        printNames(names);
+    public static void printLadder(List<Person> people, LadderGame ladderGame, List<String> results) {
+        printPeople(people);
         System.out.print(renderLine(ladderGame));
         printExecutionResult(results);
     }
 
-    private static void printExecutionResult(List<String> results) {
-        String result = results.stream()
-                .map(it -> String.format("%5s", it))
-                .collect(Collectors.joining(" "));
-        System.out.println(result);
-    }
-
-    private static void printHeight(int height) {
-        System.out.println(height);
-    }
-
-    private static void printNames(List<Person> names) {
+    private static void printPeople(List<Person> people) {
         System.out.println("\n실행결과");
-        String namesOfPersons = names.stream()
+        String namesOfPersons = people.stream()
                 .map(person -> String.format("%5s", person.getName()))
                 .collect(Collectors.joining(" "));
         System.out.println(namesOfPersons);
@@ -40,13 +29,7 @@ public class OutputView {
 
     private static String renderLine(LadderGame ladderGame) {
         return ladderGame.getLines().stream()
-                .map(line -> NO_BRIDGE + render(line.getPoints()) + "|\n")
-                .collect(Collectors.joining());
-    }
-
-    private static String renderPoints1(List<Boolean> points) {
-        return points.stream()
-                .map(point -> UNIT_LADDER + (point ? BRIDGE : NO_BRIDGE))
+                .map(line -> NO_BRIDGE + render(line.getRungs()) + "|\n")
                 .collect(Collectors.joining());
     }
 
@@ -55,6 +38,13 @@ public class OutputView {
                 .map(Rung::isExist)
                 .map(point -> UNIT_LADDER + (point ? BRIDGE : NO_BRIDGE))
                 .collect(Collectors.joining());
+    }
+
+    private static void printExecutionResult(List<String> results) {
+        String result = results.stream()
+                .map(it -> String.format("%5s", it))
+                .collect(Collectors.joining(" "));
+        System.out.println(result);
     }
 
 }

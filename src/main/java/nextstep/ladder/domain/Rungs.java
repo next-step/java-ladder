@@ -17,10 +17,10 @@ public class Rungs {
         countOfPerson.rangOfZeroToCount()
                 .forEach(i -> {
             boolean hasLadder = strategy.generate();
-            if (isNotFirstPoint(i) && hasLadderAtPrevious(i).isExist()) {
+            if (isNotFirstRung(i) && hasLadderAtPrevious(i).isExist()) {
                 hasLadder = false;
             }
-            addLadderPoints(new Rung(hasLadder));
+            addRung(new Rung(hasLadder));
         });
     }
 
@@ -28,7 +28,7 @@ public class Rungs {
         this.rungs.addAll(rungs);
     }
 
-    private boolean isNotFirstPoint(int i) {
+    private boolean isNotFirstRung(int i) {
         return i >= 1;
     }
 
@@ -36,7 +36,7 @@ public class Rungs {
         return rungs.get(i - 1);
     }
 
-    private void addLadderPoints(Rung rung) {
+    private void addRung(Rung rung) {
         rungs.add(rung);
     }
 
@@ -48,11 +48,11 @@ public class Rungs {
         return rungs.get(index).isExist();
     }
 
-    public List<Rung> getPoints() {
+    public List<Rung> getRungs() {
         return rungs;
     }
 
-    public List<Boolean> validatePoints() {
+    public List<Boolean> validateRungs() {
         List<Boolean> booleans = new ArrayList<>();
         for (Rung rung : rungs) {
             booleans.add(rung.isExist());
