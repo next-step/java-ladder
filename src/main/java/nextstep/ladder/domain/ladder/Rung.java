@@ -2,11 +2,20 @@ package nextstep.ladder.domain.ladder;
 
 import java.util.Optional;
 
+/**
+ * 사다리 발판
+ */
 public enum Rung {
-    LEFT,
-    RIGHT,
-    NONE
+    LEFT(-1),
+    RIGHT(1),
+    NONE(0)
     ;
+
+    private final int direction;
+
+    Rung(int direction) {
+        this.direction = direction;
+    }
 
     public static Rung from(boolean addable) {
         if (addable) {
@@ -46,14 +55,6 @@ public enum Rung {
     }
 
     public ColumnIndex nextColumnIndex(ColumnIndex currentIndex) {
-        if (this == LEFT) {
-            return currentIndex.before();
-        }
-
-        if (this == RIGHT) {
-            return currentIndex.next();
-        }
-
-        return currentIndex;
+        return currentIndex.move(direction);
     }
 }

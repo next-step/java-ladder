@@ -33,24 +33,11 @@ public class ColumnIndexTest {
         }
     }
 
-    @DisplayName("isFirst는 0번째 열인 경우 true를 반환한다.")
-    @Test
-    void isFirst() {
-        assertThat(new ColumnIndex(0).isFirst()).isTrue();
-    }
-
-    @DisplayName("next는 다음 index를 반환한다.")
-    @Test
-    void next() {
-        assertThat(new ColumnIndex(1).next())
-                .isEqualTo(new ColumnIndex(2));
-    }
-
-    @DisplayName("before는 이전 index를 반환한다. 단, 첫번째인 경우 첫번쨀르 반환한다.")
+    @DisplayName("add는 현재 열 번호에 특정한 값이 더해진 열 번호를 반환한다. 단, 최소값은 0으로 유지된다.")
     @ParameterizedTest
-    @CsvSource(value = {"1,0", "0,0"})
-    void before(int current, int expected) {
-        assertThat(new ColumnIndex(current).before())
+    @CsvSource(value = {"0,-1,0", "0,1,1", "0,0,0"})
+    void move(int current, int move, int expected) {
+        assertThat(new ColumnIndex(current).move(move))
                 .isEqualTo(new ColumnIndex(expected));
     }
 }
