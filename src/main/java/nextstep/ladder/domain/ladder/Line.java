@@ -36,7 +36,7 @@ public class Line {
 
     private static List<Point> connectedStatus(boolean[] pointsStatus) {
         return IntStream.range(0, pointsStatus.length)
-                .mapToObj(i -> new Point(pointsStatus[i]))
+                .mapToObj(i -> Point.of(pointsStatus[i]))
                 .collect(Collectors.toList());
     }
 

@@ -7,8 +7,8 @@ public class PointTest {
 
     @Test
     void getPointStatus() {
-        Point falsePoint = new Point(false);
-        Point truePoint = new Point(true);
+        Point falsePoint = Point.of(false);
+        Point truePoint = Point.of(true);
 
         Assertions.assertThat(falsePoint.isConnect()).isEqualTo(false);
         Assertions.assertThat(truePoint.isConnect()).isEqualTo(true);
