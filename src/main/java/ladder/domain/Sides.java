@@ -46,9 +46,11 @@ public class Sides {
     if (this == o) {
       return true;
     }
+
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
+
     Sides sides = (Sides) o;
     return left.equals(sides.left) && right.equals(sides.right);
   }
@@ -56,5 +58,13 @@ public class Sides {
   @Override
   public int hashCode() {
     return Objects.hash(left, right);
+  }
+
+  @Override
+  public String toString() {
+    return "Sides{" +
+            "left=" + left +
+            ", right=" + right +
+            '}';
   }
 }

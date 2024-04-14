@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.dto.PrizeDto;
+import ladder.rowgenerator.RowGeneratorRandom;
 import ladder.service.LadderGameService;
 import ladder.view.InputView;
 import ladder.view.ResultView;
@@ -18,9 +19,11 @@ public class Main {
     int height = Integer.parseInt(InputView.maxLadderHeight());
     List<String> prizes = csvParser(InputView.prizes());
 
-    ResultView.displayStatus(game.status(playerNames, height, prizes));
+    game.setLadder(playerNames.size() - 1, height, new RowGeneratorRandom());
 
-    Map<String, PrizeDto> results = game.play(playerNames, height, prizes);
+    ResultView.displayStatus(game.status(playerNames, prizes));
+
+    Map<String, PrizeDto> results = game.play(playerNames, prizes);
 
     String name = "";
     while (isNotEmpty((name = InputView.wantResultOf()))) {

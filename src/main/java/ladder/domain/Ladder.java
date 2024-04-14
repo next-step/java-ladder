@@ -5,6 +5,7 @@ import ladder.rowgenerator.RowGenerator;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -76,5 +77,24 @@ public class Ladder implements Iterable<Row> {
       }
       throw new IllegalStateException("더 이상 불러올 요소가 없습니다.");
     }
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+
+    Ladder rows1 = (Ladder) o;
+    return rows.equals(rows1.rows);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(rows);
   }
 }

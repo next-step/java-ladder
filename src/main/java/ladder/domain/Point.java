@@ -37,9 +37,11 @@ public class Point {
     if (this == o) {
       return true;
     }
+
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
+
     Point point = (Point) o;
     return coordinates.equals(point.coordinates) && sides.equals(point.sides);
   }
@@ -47,5 +49,14 @@ public class Point {
   @Override
   public int hashCode() {
     return Objects.hash(coordinates, sides);
+  }
+
+  @Override
+  public String toString() {
+    return "Point{" +
+            "coordinates=" + coordinates +
+            ", sides=" + sides +
+            ", moveStrategy=" + moveStrategy +
+            '}';
   }
 }

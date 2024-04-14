@@ -3,25 +3,27 @@ package ladder.service;
 import ladder.domain.*;
 import ladder.dto.PrizeDto;
 import ladder.dto.StatusDto;
-import ladder.rowgenerator.RowGeneratorRandom;
+import ladder.rowgenerator.RowGenerator;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class LadderGameService {
   private final ThreadLocal<Ladder> threadLocal = new ThreadLocal<>();
 
-  public StatusDto status(final List<String> names, final int maxHeight, final List<String> prizeTexts) {
-    Ladder ladder = Ladder.of(maxHeight, names.size() - 1, new RowGeneratorRandom());
+  public void setLadder(final int width, final int maxHeight, RowGenerator rowGenerator) {
+    Ladder ladder = Ladder.of(maxHeight, width, rowGenerator);
     threadLocal.set(ladder);
+  }
 
+  public StatusDto status(final List<String> names, final List<String> prizeTexts) {
+    Ladder ladder = threadLocal.get();
     return new StatusDto(names, ladder, prizeTexts);
   }
 
-  public Map<String, PrizeDto> play(final List<String> names, final int maxHeight, final List<String> prizeTexts) {
+  public Map<String, PrizeDto> play(final List<String> names, final List<String> prizeTexts) {
     final Map<String, PrizeDto> results = new HashMap<>();
 
     Players players = Players.from(names);
@@ -39,11 +41,5 @@ public class LadderGameService {
     }
 
     return results;
-  }
-
-  private List<Player> createPlayers(List<String> names) {
-    return IntStream.range(0, names.size())
-            .mapToObj(index -> Player.of(names.get(index), index))
-            .collect(Collectors.toList());
   }
 }
