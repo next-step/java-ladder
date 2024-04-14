@@ -1,8 +1,8 @@
 package nextstep.ladder.domain.ladder;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Line {
@@ -35,13 +35,9 @@ public class Line {
     }
 
     private static List<Point> getPoints(boolean[] pointsStatus) {
-        List<Point> points = new ArrayList<>();
-
-        for (boolean status : pointsStatus) {
-            points.add(new Point(status));
-        }
-
-        return points;
+        return IntStream.range(0, pointsStatus.length)
+                .mapToObj(i -> new Point(pointsStatus[i]))
+                .collect(Collectors.toList());
     }
 
     public List<Point> getPoints() {
