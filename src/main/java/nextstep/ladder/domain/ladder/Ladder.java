@@ -40,10 +40,11 @@ public class Ladder {
     }
 
     public GameResults gameResults(Players players, Results results) {
-        return players.values().stream()
-                .collect(GameResults::new,
-                        (gameResults, player) -> gameResults.add(player, results.findBy(moveFrom(player.index()))),
-                        GameResults::addAll);
+        return new GameResults(
+                players.values().stream()
+                        .collect(Collectors.toMap(
+                                player -> player,
+                                player -> results.findBy(moveFrom(player.index())))));
     }
 
     public ColumnIndex moveFrom(ColumnIndex columnIndex) {
