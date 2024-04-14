@@ -48,6 +48,8 @@ public class InputView {
         printLine(Announcements.RESULT_TARGET_NAME);
 
         final String name = SCANNER.nextLine();
+        lineChange();
+
         if (Announcements.EVERY_RESULTS.equals(name) || players.contains(name)) {
             return name;
         }

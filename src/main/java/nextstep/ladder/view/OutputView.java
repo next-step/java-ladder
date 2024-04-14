@@ -97,7 +97,7 @@ public class OutputView {
 
     private static void singleResult(GameResults gameResults, Players targetPlayers) {
         final Result result = gameResults.findBy(targetPlayers.values().get(0));
-        printLine(result.value());
+        printLine(result.value() + "\n");
     }
 
     private static void allResults(GameResults gameResults, Players players) {

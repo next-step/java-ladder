@@ -24,12 +24,23 @@ public class LadderGamePlayer {
         OutputView.printLadder(players, ladder, results);
 
         final GameResults gameResults = ladder.gameResults(players, results);
-        final Players resultTargetPlayers = players.targetPlayers(InputView.resultTargetName(players));
-        OutputView.gameResults(gameResults, resultTargetPlayers);
+
+        printResults(players, gameResults);
     }
 
     private Ladder ladderByRandomRungGenerator(Count playersCount, Height height) {
         return new Ladder(height, playersCount, new RandomRungGenerator());
+    }
+
+    private void printResults(Players players, GameResults gameResults) {
+        final String targetName = InputView.resultTargetName(players);
+
+        final Players resultTargetPlayers = players.targetPlayers(targetName);
+        OutputView.gameResults(gameResults, resultTargetPlayers);
+
+        if (!targetName.equals(Players.ALL_PLAYERS)) {
+            printResults(players, gameResults);
+        }
     }
 
     public static void main(String[] args) {

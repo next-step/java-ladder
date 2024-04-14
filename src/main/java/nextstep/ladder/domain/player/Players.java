@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Players {
-    private static final String ALL_PLAYERS = "all";
+    public static final String ALL_PLAYERS = "all";
 
     private final List<Player> players = new ArrayList<>();
 
