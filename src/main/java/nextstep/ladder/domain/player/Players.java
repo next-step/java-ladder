@@ -18,10 +18,6 @@ public class Players {
                         .orElse(Collections.emptyList()));
     }
 
-    public Players(Player player) {
-        this(List.of(player));
-    }
-
     public Players(List<Player> players) {
         assertPlayersNotEmpty(players);
         assertPlayerNamesNotDuplicated(players);
@@ -73,7 +69,7 @@ public class Players {
         if (ALL_PLAYERS.equals(name)) {
             return this;
         }
-        return new Players(findByName(name));
+        return new Players(List.of(findByName(name)));
     }
 
     public Player findByName(String name) {
