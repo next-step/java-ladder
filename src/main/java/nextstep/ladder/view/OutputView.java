@@ -1,6 +1,6 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.ladder.Direction;
+import nextstep.ladder.domain.ladder.Rung;
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.ladder.Row;
 import nextstep.ladder.domain.player.Count;
@@ -74,7 +74,7 @@ public class OutputView {
         printLine(rowString);
     }
 
-    private static String rungs(List<Direction> connections, String emptyRungString, String rungString) {
+    private static String rungs(List<Rung> connections, String emptyRungString, String rungString) {
         return connections.stream()
                 .map(rung -> {
                     if (rung.isRight()) {

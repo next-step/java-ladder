@@ -9,25 +9,25 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Row {
-    private final LinkedList<Direction> rungs = new LinkedList<>();
+    private final LinkedList<Rung> rungs = new LinkedList<>();
 
     public Row(Count playersCount, RungGenerateStrategy strategy) {
         this.rungs.addAll(generateDirections(playersCount, strategy));
         this.rungs.add(generateLastDirection());
     }
 
-    private List<Direction> generateDirections(Count playersCount, RungGenerateStrategy strategy) {
-        return Stream.iterate(Direction.NONE.generate(strategy),
+    private List<Rung> generateDirections(Count playersCount, RungGenerateStrategy strategy) {
+        return Stream.iterate(Rung.NONE.generate(strategy),
                         previousRung -> previousRung.generate(strategy))
                 .limit(playersCount.value() - 1)
                 .collect(Collectors.toList());
     }
 
-    private Direction generateLastDirection() {
+    private Rung generateLastDirection() {
         return rungs.getLast().generateLast();
     }
 
-    public List<Direction> rungs() {
+    public List<Rung> rungs() {
         return Collections.unmodifiableList(rungs);
     }
 

@@ -2,20 +2,20 @@ package nextstep.ladder.domain.ladder;
 
 import java.util.Optional;
 
-public enum Direction {
+public enum Rung {
     LEFT,
     RIGHT,
     NONE
     ;
 
-    public static Direction from(boolean addable) {
+    public static Rung from(boolean addable) {
         if (addable) {
             return RIGHT;
         }
         return NONE;
     }
 
-    public Direction generate(RungGenerateStrategy generateStrategy) {
+    public Rung generate(RungGenerateStrategy generateStrategy) {
         return Optional.ofNullable(generateStrategy)
                 .map(strategy -> {
                     if (notConnected() || isLeft()) {
@@ -26,7 +26,7 @@ public enum Direction {
                 .orElse(NONE);
     }
 
-    public Direction generateLast() {
+    public Rung generateLast() {
         if (isRight()) {
             return LEFT;
         }
