@@ -15,7 +15,7 @@ public class RowTest {
     void constructor() {
         final Row row = new Row(new Count(4), () -> true);
         assertThat(row.rungs())
-                .containsExactly(Rung.EXIST, Rung.EMPTY, Rung.EXIST);
+                .containsExactly(Connection.EXIST, Connection.EMPTY, Connection.EXIST);
     }
 
     @DisplayName("moveFrom은 특정 열에서 움직인 결과인 열 번호를 반환한다.")

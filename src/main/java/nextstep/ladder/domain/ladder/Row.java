@@ -9,25 +9,25 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Row {
-    private final List<Rung> rungs = new ArrayList<>();
+    private final List<Connection> connections = new ArrayList<>();
 
     public Row(Count playersCount, RungGenerateStrategy strategy) {
-        this.rungs.addAll(generateRungs(playersCount, strategy));
+        this.connections.addAll(generateRungs(playersCount, strategy));
     }
 
-    private List<Rung> generateRungs(Count playersCount, RungGenerateStrategy strategy) {
-        return Stream.iterate(Rung.EMPTY.generate(strategy),
+    private List<Connection> generateRungs(Count playersCount, RungGenerateStrategy strategy) {
+        return Stream.iterate(Connection.EMPTY.generate(strategy),
                         previousRung -> previousRung.generate(strategy))
                 .limit(playersCount.subtract(1).value())
                 .collect(Collectors.toList());
     }
 
-    public List<Rung> rungs() {
-        return Collections.unmodifiableList(rungs);
+    public List<Connection> rungs() {
+        return Collections.unmodifiableList(connections);
     }
 
     public ColumnIndex moveFrom(ColumnIndex columnIndex) {
-        if (!columnIndex.equals(rungs.size()) && isConnected(columnIndex)) {
+        if (!columnIndex.equals(connections.size()) && isConnected(columnIndex)) {
             return columnIndex.next();
         }
 
@@ -40,6 +40,6 @@ public class Row {
     }
 
     public boolean isConnected(ColumnIndex columnIndex) {
-        return rungs.get(columnIndex.value()).exist();
+        return connections.get(columnIndex.value()).exist();
     }
 }
