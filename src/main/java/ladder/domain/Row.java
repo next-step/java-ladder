@@ -51,6 +51,9 @@ public class Row implements Iterable<Point> {
   }
 
   private void validate(final List<Boolean> row) {
+    if (row.size() == 0) {
+      throw new IllegalArgumentException("잘못된 사다리 입력입니다.");
+    }
     IntStream.range(0, row.size() - 1)
             .forEach(i -> validateEach(row, i));
   }
