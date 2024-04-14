@@ -31,16 +31,6 @@ public class RowGeneratorRandom implements RowGenerator {
     return false;
   }
 
-  private List<Boolean> rowReducer(final List<Boolean> acc, final int cur) {
-    acc.add((cur != 0));
-    return acc;
-  }
-
-  private List<Boolean> rowCombiner(final List<Boolean> list1, final List<Boolean> list2) {
-    list1.addAll(list2);
-    return list1;
-  }
-
   private boolean randomValue() {
     return this.random.nextBoolean();
   }
