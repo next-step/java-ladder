@@ -21,10 +21,6 @@ public class Height {
         return this.value;
     }
 
-    public boolean isZero() {
-        return value == 0;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -17,14 +17,14 @@ public class Row {
     }
 
     private List<Rung> generateRungs(Count playersCount, RungGenerateStrategy strategy) {
-        return Stream.iterate(Rung.empty().generate(strategy),
+        return Stream.iterate(Rung.NONE.generate(strategy),
                         previousRung -> previousRung.generate(strategy))
                 .limit(playersCount.value() - 1)
                 .collect(Collectors.toList());
     }
 
     private Rung generateLastRung() {
-        return rungs.getLast().generate(() -> false);
+        return rungs.getLast().generateLast();
     }
 
     public List<Rung> rungs() {
@@ -32,7 +32,7 @@ public class Row {
     }
 
     public ColumnIndex moveFrom(ColumnIndex columnIndex) {
-        return rungs.get(columnIndex.value()).moveFrom(columnIndex);
+        return rungs.get(columnIndex.value()).nextColumnIndex(columnIndex);
     }
 
 }

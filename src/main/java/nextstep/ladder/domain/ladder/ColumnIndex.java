@@ -23,27 +23,8 @@ public class ColumnIndex {
         return this.value;
     }
 
-    public boolean isFirst() {
-        return this.value == MIN;
-    }
-
-    public boolean isNotFirst() {
-        return !isFirst();
-    }
-
-    public ColumnIndex next() {
-        return new ColumnIndex(this.value + 1);
-    }
-
-    public ColumnIndex before() {
-        if (isFirst()) {
-            return this;
-        }
-        return new ColumnIndex(this.value - 1);
-    }
-
-    public boolean equals(int value) {
-        return this.value == value;
+    public ColumnIndex move(int value) {
+        return new ColumnIndex(Math.max(MIN, this.value + value));
     }
 
     @Override

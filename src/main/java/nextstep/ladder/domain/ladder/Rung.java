@@ -1,66 +1,60 @@
 package nextstep.ladder.domain.ladder;
 
-import java.util.Objects;
 import java.util.Optional;
 
 /**
- * 사다리 가로대(발판)
+ * 사다리 발판
  */
-public class Rung {
-    private final Connection connection;
-    private final Direction direction;
+public enum Rung {
+    LEFT(-1),
+    RIGHT(1),
+    NONE(0)
+    ;
 
-    public static Rung empty() {
-        return new Rung(Connection.EMPTY, Direction.NONE);
-    }
+    private final int direction;
 
-    public Rung(Connection connection) {
-        this(connection, connection.generateDirection());
-    }
-
-    public Rung(Connection connection, Direction direction) {
-        this.connection = connection;
+    Rung(int direction) {
         this.direction = direction;
+    }
+
+    public static Rung from(boolean addable) {
+        if (addable) {
+            return RIGHT;
+        }
+        return NONE;
     }
 
     public Rung generate(RungGenerateStrategy generateStrategy) {
         return Optional.ofNullable(generateStrategy)
                 .map(strategy -> {
-                    if (notConnected() || leftConnected()) {
-                        return new Rung(Connection.from(generateStrategy.addable()));
+                    if (notConnected() || isLeft()) {
+                        return from(generateStrategy.addable());
                     }
-
-                    return new Rung(Connection.EXIST, Direction.LEFT);
+                    return LEFT;
                 })
-                .orElse(empty());
+                .orElse(NONE);
+    }
+
+    public Rung generateLast() {
+        if (isRight()) {
+            return LEFT;
+        }
+        return NONE;
+    }
+
+    public boolean isLeft() {
+        return this == LEFT;
+    }
+
+    public boolean isRight() {
+        return this == RIGHT;
     }
 
     public boolean notConnected() {
-        return connection.notExist();
+        return this == NONE;
     }
 
-    public boolean rightConnected() {
-        return connection.exist() && direction.isRight();
-    }
-
-    public boolean leftConnected() {
-        return connection.exist() && direction.isLeft();
-    }
-
-    public ColumnIndex moveFrom(ColumnIndex currentIndex) {
-        return direction.next(currentIndex);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Rung rung = (Rung) o;
-        return connection == rung.connection && direction == rung.direction;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(connection, direction);
+    public ColumnIndex nextColumnIndex(ColumnIndex currentIndex) {
+        return currentIndex.move(direction);
     }
 }

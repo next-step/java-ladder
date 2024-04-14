@@ -9,32 +9,49 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class RungTest {
 
-    @DisplayName("사다리 발판 생성 규칙은 이전 발판에 영향을 받는다.")
+    @DisplayName("next는 현재 열 번호에서 이동할 경우 다음 열 번호를 반환한다.")
     @ParameterizedTest
-    @CsvSource(value = {"EMPTY,NONE,EXIST,RIGHT", "EXIST,RIGHT,EXIST,LEFT", "EXIST,LEFT,EXIST,RIGHT"})
-    void generate(Connection originConnection, Direction originDirection, Connection expectedConnection, Direction expectedDirection) {
-        assertThat(new Rung(originConnection, originDirection).generate(() -> true))
-                .isEqualTo(new Rung(expectedConnection, expectedDirection));
+    @CsvSource(value = {"LEFT,2,1", "RIGHT,2,3", "NONE,2,2"})
+    void next(Rung rung, int origin, int expected) {
+        assertThat(rung.nextColumnIndex(new ColumnIndex(origin)))
+                .isEqualTo(new ColumnIndex(expected));
     }
 
-    @DisplayName("rightConnected는 발판이 우측으로 연결되었는지 여부를 반환한다.")
+    @DisplayName("사다리 발판 생성 규칙은 이전 발판에 영향을 받는다.")
+    @ParameterizedTest
+    @CsvSource(value = {"NONE,RIGHT", "RIGHT,LEFT", "LEFT,RIGHT"})
+    void generate(Rung originRung, Rung expectedRung) {
+        assertThat(originRung.generate(() -> true))
+                .isEqualTo(expectedRung);
+    }
+
+    @DisplayName("마지막 발판 생성은 RIGHT를 만들어 내지 않는다.")
+    @ParameterizedTest
+    @CsvSource(value = {"NONE,NONE", "RIGHT,LEFT"})
+    void generateLast(Rung origin, Rung expectedLast) {
+        assertThat(origin.generateLast())
+                .isEqualTo(expectedLast);
+    }
+
+    @DisplayName("isRight는 발판이 우측으로 연결되었는지 여부를 반환한다.")
     @Test
-    void rightConnected() {
-        assertThat(new Rung(Connection.EXIST, Direction.RIGHT).rightConnected())
+    void isRight() {
+        assertThat(Rung.RIGHT.isRight())
                 .isTrue();
     }
 
-    @DisplayName("leftConnected는 발판이 우측으로 연결되었는지 여부를 반환한다.")
+    @DisplayName("isLeft는 발판이 우측으로 연결되었는지 여부를 반환한다.")
     @Test
-    void leftConnected() {
-        assertThat(new Rung(Connection.EXIST, Direction.LEFT).leftConnected())
+    void isLeft() {
+        assertThat(Rung.LEFT.isLeft())
                 .isTrue();
     }
 
     @DisplayName("notConnected는 발판이 우측으로 연결되었는지 여부를 반환한다.")
     @Test
     void notConnected() {
-        assertThat(new Rung(Connection.EMPTY, Direction.NONE).notConnected())
+        assertThat(Rung.NONE.notConnected())
                 .isTrue();
     }
+
 }
