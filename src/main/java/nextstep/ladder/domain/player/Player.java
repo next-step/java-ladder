@@ -21,6 +21,10 @@ public class Player {
         return this.name;
     }
 
+    public boolean equalsName(String name) {
+        return this.name.equals(name);
+    }
+
     public ColumnIndex index() {
         return this.index;
     }
