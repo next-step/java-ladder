@@ -3,7 +3,7 @@ package nextstep.ladder.domain.ladder;
 import java.util.Optional;
 
 /**
- * 사다리 가로대(발판)
+ * 사다리 가로대(발판) 연결여부
  */
 public enum Connection {
     EXIST(true),
@@ -35,6 +35,16 @@ public enum Connection {
 
     public boolean exist() {
         return this.exist;
+    }
+
+    /**
+     * 생성 방향은 우측으로만 한정한다.
+     */
+    public Direction generateDirection() {
+        if (this == EXIST) {
+            return Direction.RIGHT;
+        }
+        return Direction.NONE;
     }
 
 }

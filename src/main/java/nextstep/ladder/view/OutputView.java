@@ -3,6 +3,7 @@ package nextstep.ladder.view;
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.ladder.Row;
 import nextstep.ladder.domain.ladder.Connection;
+import nextstep.ladder.domain.ladder.Rung;
 import nextstep.ladder.domain.player.Count;
 import nextstep.ladder.domain.player.Players;
 import nextstep.ladder.domain.result.GameResults;
@@ -74,14 +75,15 @@ public class OutputView {
         printLine(rowString);
     }
 
-    private static String rungs(List<Connection> connections, String emptyRungString, String rungString) {
+    private static String rungs(List<Rung> connections, String emptyRungString, String rungString) {
         return connections.stream()
                 .map(rung -> {
-                    if (rung.exist()) {
+                    if (rung.rightConnected()) {
                         return Announcements.COLUMN + rungString;
                     }
                     return Announcements.COLUMN + emptyRungString;
                 })
+                .limit(connections.size() - 1)
                 .collect(Collectors.joining());
     }
 

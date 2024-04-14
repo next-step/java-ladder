@@ -2,44 +2,37 @@ package nextstep.ladder.domain.ladder;
 
 import nextstep.ladder.domain.player.Count;
 
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Row {
-    private final List<Connection> connections = new ArrayList<>();
+    private final LinkedList<Rung> rungs = new LinkedList<>();
 
     public Row(Count playersCount, RungGenerateStrategy strategy) {
-        this.connections.addAll(generateRungs(playersCount, strategy));
+        this.rungs.addAll(generateRungs(playersCount, strategy));
+        this.rungs.add(generateLastRung());
     }
 
-    private List<Connection> generateRungs(Count playersCount, RungGenerateStrategy strategy) {
-        return Stream.iterate(Connection.EMPTY.generate(strategy),
+    private List<Rung> generateRungs(Count playersCount, RungGenerateStrategy strategy) {
+        return Stream.iterate(Rung.empty().generate(strategy),
                         previousRung -> previousRung.generate(strategy))
-                .limit(playersCount.subtract(1).value())
+                .limit(playersCount.value() - 1)
                 .collect(Collectors.toList());
     }
 
-    public List<Connection> rungs() {
-        return Collections.unmodifiableList(connections);
+    private Rung generateLastRung() {
+        return rungs.getLast().generate(() -> false);
+    }
+
+    public List<Rung> rungs() {
+        return Collections.unmodifiableList(rungs);
     }
 
     public ColumnIndex moveFrom(ColumnIndex columnIndex) {
-        if (!columnIndex.equals(connections.size()) && isConnected(columnIndex)) {
-            return columnIndex.next();
-        }
-
-        final ColumnIndex beforeIndex = columnIndex.before();
-        if (columnIndex.isNotFirst() && isConnected(beforeIndex)) {
-            return beforeIndex;
-        }
-
-        return columnIndex;
+        return rungs.get(columnIndex.value()).moveFrom(columnIndex);
     }
 
-    public boolean isConnected(ColumnIndex columnIndex) {
-        return connections.get(columnIndex.value()).exist();
-    }
 }
