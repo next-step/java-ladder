@@ -1,5 +1,8 @@
 package nextstep.ladder.domain.ladder;
 
+import nextstep.ladder.domain.generator.LineGenerator;
+import nextstep.ladder.domain.generator.RandomLineGenerator;
+import nextstep.ladder.domain.user.Users;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,5 +25,15 @@ public class LineTest {
         Assertions.assertThatThrownBy(() -> new Line(List.of()))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("빈 List<Point>를 통해 Line을 생성할 수 없습니다.");
+    }
+
+    @Test
+    @DisplayName("사람 수 - 1 만큼 사다리 폭이 결정된다.")
+    void lineWidthTest() {
+        LineGenerator lineGenerator = new RandomLineGenerator();
+        Users users= new Users("pobi", "honux", "crong", "jk");
+        Line line = new Line(lineGenerator.lineGenerate(users.getUserCount()));
+
+        Assertions.assertThat(line.getLength()).isEqualTo(4);
     }
 }

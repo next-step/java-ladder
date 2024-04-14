@@ -47,4 +47,8 @@ public class Line {
     public List<Point> getPoints() {
         return Collections.unmodifiableList(points);
     }
+
+    public int getLength() {
+        return points.size();
+    }
 }
