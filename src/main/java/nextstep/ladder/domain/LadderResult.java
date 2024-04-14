@@ -4,8 +4,9 @@ import java.util.List;
 
 public class LadderResult {
   private final List<String> peopleNames;
-  private final List<String> ladderResults;
-  public LadderResult(List<String> peopleNames, List<String> ladderResults) {
+  private final List<Line> ladderResults;
+
+  public LadderResult(List<String> peopleNames, List<Line> ladderResults) {
     this.peopleNames = peopleNames;
     this.ladderResults = ladderResults;
   }
@@ -14,7 +15,7 @@ public class LadderResult {
     return peopleNames;
   }
 
-  public List<String> getLadderResults() {
+  public List<Line> getLadderResults() {
     return ladderResults;
   }
 }

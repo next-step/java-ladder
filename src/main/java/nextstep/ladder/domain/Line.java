@@ -27,10 +27,7 @@ public class Line {
         }, ArrayList::addAll);
   }
 
-
-  public String getLineString() {
-   return String.format("|%s|", points.stream().map(point -> point.isNotBridge() ? "     " : "-----")
-        .collect(Collectors.joining("|")));
+  public List<Point> getPoints() {
+    return points;
   }
-
 }

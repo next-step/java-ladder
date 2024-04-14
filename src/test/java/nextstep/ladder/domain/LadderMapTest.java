@@ -47,11 +47,4 @@ public class LadderMapTest {
     assertThatNoException().isThrownBy(() -> new LadderMap(width, height, booleanGenerator));
   }
 
-  @Test
-  @DisplayName("사다리 형태로 출력하는지 확인")
-  void getLineStrings() {
-    LadderMap ladderMap = new LadderMap(6 ,5, booleanGenerator);
-    List<String> lineStrings = ladderMap.getLineStrings();
-    assertThat(lineStrings).allMatch(s -> s.matches("(\\|(-{5}| {5})){6}\\|"));
-  }
 }

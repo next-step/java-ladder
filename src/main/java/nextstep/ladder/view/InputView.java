@@ -22,6 +22,7 @@ public class InputView {
   }
 
   public People inputNames() {
+    System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
     List<Person> people = Arrays.stream(scanner.nextLine().split(","))
         .map(String::trim)
         .map(Person::new)

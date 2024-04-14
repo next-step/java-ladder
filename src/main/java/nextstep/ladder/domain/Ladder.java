@@ -15,7 +15,7 @@ public class Ladder {
   }
 
   public LadderResult getLadder() {
-    return new LadderResult(people.getPeopleNames(), ladderMap.getLineStrings());
+    return new LadderResult(people.getPeopleNames(), ladderMap.getLine());
   }
 
 }

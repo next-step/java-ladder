@@ -33,10 +33,8 @@ public LadderMap(int width, int height, BooleanGenerator booleanGenerator) {
     }
   }
 
-  public List<String> getLineStrings(){
-    return lines.stream()
-        .map(Line::getLineString)
-        .collect(Collectors.toList());
+  public List<Line> getLine(){
+  return lines;
   }
 
 }
