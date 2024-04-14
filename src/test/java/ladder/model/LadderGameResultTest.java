@@ -52,8 +52,20 @@ public class LadderGameResultTest {
 
     private Ladder getLadder() {
         List<Line> lines = new ArrayList<>();
-        Line line1 = Line.of(List.of(true, false, false));
-        Line line2 = Line.of(List.of(false, true, false));
+        Line line1 = Line.of(
+                            List.of(
+                                    Point.of(false, true),
+                                    Point.of(true, false),
+                                    Point.of(false, false)
+                            )
+                    );
+        Line line2 = Line.of(
+                            List.of(
+                                    Point.of(false, false),
+                                    Point.of(false, true),
+                                    Point.of(true, false)
+                            )
+                    );
         lines.add(line1);
         lines.add(line2);
         return new Ladder(lines);
