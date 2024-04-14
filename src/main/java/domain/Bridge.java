@@ -24,6 +24,10 @@ public class Bridge {
         return new Bridge(false, current);
     }
 
+    public Bridge next(boolean current) {
+        return new Bridge(this.current, current);
+    }
+
     public Direction move() {
         if (left) {
             return Direction.LEFT;
