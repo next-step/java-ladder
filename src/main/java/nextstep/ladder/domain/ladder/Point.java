@@ -1,13 +1,16 @@
 package nextstep.ladder.domain.ladder;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Point {
     private final boolean connect;
-    private final static Point cacheTruePoint;
-    private final static Point cacheFalsePoint;
+    private final static Map<Boolean, Point> cachePoint;
 
     static {
-        cacheTruePoint = new Point(true);
-        cacheFalsePoint = new Point(false);
+        cachePoint = new HashMap<>();
+        cachePoint.put(true, new Point(true));
+        cachePoint.put(false, new Point(false));
     }
 
     private Point(boolean connect) {
@@ -15,7 +18,7 @@ public class Point {
     }
 
     public static Point of(boolean connect) {
-        return connect ? cacheTruePoint : cacheFalsePoint;
+        return cachePoint.get(connect);
     }
 
     public boolean isConnect() {
