@@ -15,21 +15,23 @@ public class LadderGenerator {
         return new Ladder(ladder);
     }
 
-    private static List<Boolean> generateOneHeightOfLadder(int numberOfParticipants, LadderGeneratorStrategy strategy) {
-        List<Boolean> points = new ArrayList<>();
-        boolean isConnectedHorizontally = false;
+    private static List<Point> generateOneHeightOfLadder(int numberOfParticipants, LadderGeneratorStrategy strategy) {
+        List<Point> points = new ArrayList<>();
+        boolean beforePoint = false;
+        boolean currentPoint = false;
 
         for (int i = 0; i < numberOfParticipants - 1; i++) {
-            isConnectedHorizontally = isPossibleToConnected(isConnectedHorizontally, strategy);
-            points.add(isConnectedHorizontally);
+            currentPoint = isPossibleToConnected(beforePoint, strategy);
+            points.add(Point.of(beforePoint, currentPoint));
+            beforePoint = currentPoint;
         }
 
-        points.add(false);
+        points.add(Point.of(currentPoint, false));
         return points;
     }
 
-    private static boolean isPossibleToConnected(boolean isConnectedHorizontally, LadderGeneratorStrategy strategy) {
-        if (isConnectedHorizontally) {
+    private static boolean isPossibleToConnected(boolean beforePoint, LadderGeneratorStrategy strategy) {
+        if (beforePoint) {
             return false;
         }
 
