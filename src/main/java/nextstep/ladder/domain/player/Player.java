@@ -1,25 +1,44 @@
 package nextstep.ladder.domain.player;
 
+import nextstep.ladder.domain.ladder.ColumnIndex;
+
+import java.util.Objects;
+
 public class Player {
-    private static final int MAX_NAME_LENGTH = 5;
+    private final Name name;
+    private final ColumnIndex index;
 
-    private final String name;
+    public Player(String name, int index) {
+        this(new Name(name), new ColumnIndex(index));
+    }
 
-    public Player(String name) {
-        assertNameNotBlankAndLengthUnderFive(name);
-
+    public Player(Name name, ColumnIndex index) {
         this.name = name;
+        this.index = index;
     }
 
-    private void assertNameNotBlankAndLengthUnderFive(String name) {
-        if (name == null || name.isBlank() || name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException("이름은 1글자에서 5글자까지 입력 가능합니다.");
-        }
+    public Name name() {
+        return this.name;
     }
 
-    public String name() {
-        return name;
+    public boolean equalsName(String name) {
+        return this.name.equals(name);
     }
 
+    public ColumnIndex index() {
+        return this.index;
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return name.equals(player.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
 }

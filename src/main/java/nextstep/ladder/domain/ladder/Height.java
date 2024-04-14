@@ -12,8 +12,8 @@ public class Height {
     }
 
     private void assertPositive(int value) {
-        if (value < 0) {
-            throw new IllegalArgumentException("사다리 높이는 음수가 될 수 없습니다.");
+        if (value <= 0) {
+            throw new IllegalArgumentException("사다리 높이는 양수여야 합니다.");
         }
     }
 

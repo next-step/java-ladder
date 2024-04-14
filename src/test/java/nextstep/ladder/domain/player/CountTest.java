@@ -1,14 +1,13 @@
 package nextstep.ladder.domain.player;
 
-import nextstep.ladder.domain.ladder.Height;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.*;
 
 public class CountTest {
 
@@ -32,4 +31,19 @@ public class CountTest {
         }
     }
 
+    @DisplayName("equals는 Count 값과 비교대상 값이 일치하는지 반환한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"1,1,true", "1,2,false"})
+    void equals(int origin, int target, boolean expected) {
+        assertThat(new Count(origin).equals(target))
+                .isEqualTo(expected);
+    }
+
+    @DisplayName("max는 비교대상과 현재값 중 큰 값을 반환한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"1,2,2", "2,1,2", "1,1,1"})
+    void max(int origin, int target, int expected) {
+        assertThat(new Count(origin).max(new Count(target)))
+                .isEqualTo(new Count(expected));
+    }
 }

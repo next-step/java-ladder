@@ -1,52 +1,40 @@
 package nextstep.ladder.domain.ladder;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.NullSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RungTest {
 
-    @DisplayName("Rung은 사다리의 발판이 존재하는지 여부를 가진다.")
+    @DisplayName("사다리 발판 생성 규칙은 이전 발판에 영향을 받는다.")
     @ParameterizedTest
-    @CsvSource(value = {"EXIST,true", "EMPTY,false"})
-    void constructor(Rung rung, boolean exist) {
-        assertThat(rung.exist())
-                .isEqualTo(exist);
+    @CsvSource(value = {"EMPTY,NONE,EXIST,RIGHT", "EXIST,RIGHT,EXIST,LEFT", "EXIST,LEFT,EXIST,RIGHT"})
+    void generate(Connection originConnection, Direction originDirection, Connection expectedConnection, Direction expectedDirection) {
+        assertThat(new Rung(originConnection, originDirection).generate(() -> true))
+                .isEqualTo(new Rung(expectedConnection, expectedDirection));
     }
 
-    @DisplayName("findByBoolean 메서드는 값에 따른 Rung을 반환한다.")
-    @ParameterizedTest
-    @CsvSource(value = {"true,EXIST", "false,EMPTY"})
-    void findByBoolean(boolean value, Rung rung) {
-        assertThat(Rung.from(value))
-                .isEqualTo(rung);
+    @DisplayName("rightConnected는 발판이 우측으로 연결되었는지 여부를 반환한다.")
+    @Test
+    void rightConnected() {
+        assertThat(new Rung(Connection.EXIST, Direction.RIGHT).rightConnected())
+                .isTrue();
     }
 
-    @DisplayName("generate 정적 메서드는")
-    @Nested
-    class Describe__generate {
-
-        @DisplayName("사다리 게임 발판 생성 규칙에 따라, 인접한 발판이 없을 경우 발판을 생성한다.")
-        @ParameterizedTest
-        @CsvSource(value = {"EXIST,true,EMPTY", "EXIST,false,EMPTY", "EMPTY,true,EXIST", "EMPTY,false,EMPTY"})
-        void it_returns_rung_by_strategy_value(Rung adjacent, boolean exist, Rung expectedRung) {
-            assertThat(adjacent.generate(() -> exist))
-                    .isEqualTo(expectedRung);
-        }
-
-        @DisplayName("발판 생성 규칙이 없을 경우, EMPTY를 반환한다.")
-        @ParameterizedTest(name = "발판 생성 규칙이 {0}일 경우, EMPTY를 반환한다.")
-        @NullSource
-        void it_returns_empty_rung(RungGenerateStrategy strategy) {
-            assertThat(Rung.EMPTY.generate(strategy))
-                    .isEqualTo(Rung.EMPTY);
-        }
-
+    @DisplayName("leftConnected는 발판이 우측으로 연결되었는지 여부를 반환한다.")
+    @Test
+    void leftConnected() {
+        assertThat(new Rung(Connection.EXIST, Direction.LEFT).leftConnected())
+                .isTrue();
     }
 
+    @DisplayName("notConnected는 발판이 우측으로 연결되었는지 여부를 반환한다.")
+    @Test
+    void notConnected() {
+        assertThat(new Rung(Connection.EMPTY, Direction.NONE).notConnected())
+                .isTrue();
+    }
 }

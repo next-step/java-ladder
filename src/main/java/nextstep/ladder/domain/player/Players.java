@@ -2,17 +2,20 @@ package nextstep.ladder.domain.player;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Players {
+    public static final String ALL_PLAYERS = "all";
+
     private final List<Player> players = new ArrayList<>();
 
     public static Players from(List<String> playerNames) {
         return new Players(
                 Optional.ofNullable(playerNames)
-                    .stream()
-                    .flatMap(Collection::stream)
-                    .map(Player::new)
-                    .collect(Collectors.toList()));
+                        .map(names -> IntStream.range(0, playerNames.size())
+                                .mapToObj(index -> new Player(playerNames.get(index), index))
+                                .collect(Collectors.toList()))
+                        .orElse(Collections.emptyList()));
     }
 
     public Players(List<Player> players) {
@@ -54,7 +57,29 @@ public class Players {
 
     public List<String> playerNames() {
         return players.stream()
-                .map(Player::name)
+                .map(player -> player.name().value())
                 .collect(Collectors.toList());
+    }
+
+    public List<Player> values() {
+        return players;
+    }
+
+    public Players targetPlayers(String name) {
+        if (ALL_PLAYERS.equals(name)) {
+            return this;
+        }
+        return new Players(List.of(findByName(name)));
+    }
+
+    public Player findByName(String name) {
+        return players.stream()
+                .filter(player -> player.equalsName(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("참가자를 찾을 수 없습니다."));
+    }
+
+    public boolean contains(String name) {
+        return playerNames().contains(name);
     }
 }

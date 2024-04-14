@@ -7,13 +7,6 @@ public class MyPrinter {
         System.out.println(text);
     }
 
-    public static void print(char character) {
-        System.out.print(character);
-    }
-    public static void print(String character) {
-        System.out.print(character);
-    }
-
     public static void lineChange() {
         System.out.println();
     }

@@ -13,22 +13,22 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 public class SplitterTest {
 
-    @DisplayName("byComma는")
+    @DisplayName("byDelimiter는")
     @Nested
-    class Describe_byComma {
+    class Describe_byDelimiter {
 
         @DisplayName("입력받은 문자열이 null 이거나 비어있다면 IllegalArgumentExcpetion을 던진다.")
         @ParameterizedTest
         @NullAndEmptySource
         public void throwExceptionWhenEmptyString(String input) {
-            assertThatIllegalArgumentException().isThrownBy(() -> Splitter.byComma(input));
+            assertThatIllegalArgumentException().isThrownBy(() -> Splitter.byDelimiter(input, Splitter.COMMA_DELIMITER));
         }
 
         @DisplayName("입력받은 문자열을 쉼표 문자로 split 할 수 있다")
         @Test
         void byComma() {
             final String input = "1,2,3,4,5,6";
-            final List<String> result = Splitter.byComma(input);
+            final List<String> result = Splitter.byDelimiter(input, Splitter.COMMA_DELIMITER);
 
             assertThat(result).containsExactly("1", "2", "3", "4", "5", "6");
         }

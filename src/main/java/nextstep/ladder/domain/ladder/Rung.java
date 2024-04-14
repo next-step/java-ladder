@@ -1,40 +1,66 @@
 package nextstep.ladder.domain.ladder;
 
+import java.util.Objects;
 import java.util.Optional;
 
 /**
  * 사다리 가로대(발판)
  */
-public enum Rung {
-    EXIST(true),
-    EMPTY(false),
-    ;
+public class Rung {
+    private final Connection connection;
+    private final Direction direction;
 
-    private final boolean exist;
-
-    Rung(boolean exist) {
-        this.exist = exist;
+    public static Rung empty() {
+        return new Rung(Connection.EMPTY, Direction.NONE);
     }
 
-    public static Rung from(boolean value) {
-        if (value) {
-            return EXIST;
-        }
-        return EMPTY;
+    public Rung(Connection connection) {
+        this(connection, connection.generateDirection());
+    }
+
+    public Rung(Connection connection, Direction direction) {
+        this.connection = connection;
+        this.direction = direction;
     }
 
     public Rung generate(RungGenerateStrategy generateStrategy) {
         return Optional.ofNullable(generateStrategy)
-                .map(strategy -> from(notExist() && strategy.addable()))
-                .orElse(EMPTY);
+                .map(strategy -> {
+                    if (notConnected() || leftConnected()) {
+                        return new Rung(Connection.from(generateStrategy.addable()));
+                    }
+
+                    return new Rung(Connection.EXIST, Direction.LEFT);
+                })
+                .orElse(empty());
     }
 
-    public boolean notExist() {
-        return !exist();
+    public boolean notConnected() {
+        return connection.notExist();
     }
 
-    public boolean exist() {
-        return this.exist;
+    public boolean rightConnected() {
+        return connection.exist() && direction.isRight();
     }
 
+    public boolean leftConnected() {
+        return connection.exist() && direction.isLeft();
+    }
+
+    public ColumnIndex moveFrom(ColumnIndex currentIndex) {
+        return direction.next(currentIndex);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Rung rung = (Rung) o;
+        return connection == rung.connection && direction == rung.direction;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(connection, direction);
+    }
 }

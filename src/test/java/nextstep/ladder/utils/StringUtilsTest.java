@@ -4,7 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.NullSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -17,7 +17,7 @@ public class StringUtilsTest {
 
         @DisplayName("입력 받은 문자열이 없을 경우, IllegalArgumentException을 발생시킨다.")
         @ParameterizedTest
-        @NullAndEmptySource
+        @NullSource
         void it_throws_illegalArgumentException_when_blank_input(String input) {
             assertThatIllegalArgumentException()
                     .isThrownBy(() -> StringUtils.removeSpace(input));

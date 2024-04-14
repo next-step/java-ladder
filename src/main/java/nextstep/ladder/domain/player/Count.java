@@ -1,8 +1,9 @@
 package nextstep.ladder.domain.player;
 
 import java.util.Objects;
+import java.util.stream.IntStream;
 
-public class Count {
+public class Count implements Comparable<Count> {
     private final int value;
 
     public Count() {
@@ -31,6 +32,17 @@ public class Count {
         return new Count(this.value - value);
     }
 
+    public boolean equals(int value) {
+        return this.value == value;
+    }
+
+    public Count max(Count other) {
+        if (this.compareTo(other) <= 0) {
+            return other;
+        }
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -42,5 +54,10 @@ public class Count {
     @Override
     public int hashCode() {
         return Objects.hash(value);
+    }
+
+    @Override
+    public int compareTo(Count other) {
+        return Integer.compare(this.value, other.value);
     }
 }
