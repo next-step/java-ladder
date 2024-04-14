@@ -9,15 +9,11 @@ import nextstep.ladder.result.LadderResult;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LadderService {
+public class LadderMaker {
     private final LineGenerator lineGenerator;
 
-    public LadderService(LineGenerator lineGenerator) {
+    public LadderMaker(LineGenerator lineGenerator) {
         this.lineGenerator = lineGenerator;
-    }
-
-    public Users makeUsers(String[] userNames) {
-        return new Users(userNames);
     }
 
     public LadderResult generateLadder(Users users, int ladderHeight) {
