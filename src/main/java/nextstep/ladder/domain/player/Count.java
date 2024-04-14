@@ -1,7 +1,6 @@
 package nextstep.ladder.domain.player;
 
 import java.util.Objects;
-import java.util.stream.IntStream;
 
 public class Count implements Comparable<Count> {
     private final int value;
@@ -23,13 +22,6 @@ public class Count implements Comparable<Count> {
 
     public int value() {
         return value;
-    }
-
-    public Count subtract(int value) {
-        if (this.value < value) {
-            return new Count();
-        }
-        return new Count(this.value - value);
     }
 
     public boolean equals(int value) {
