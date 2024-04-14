@@ -27,26 +27,33 @@ public class Person {
         return name;
     }
 
-    // Line엔 rungs(사다리 가로선)이 포함되어 있음
-    // position이 곧 people의 index
     public void crossLadder(Rungs rungs) {
         if (rungs == null || rungs.size() == 0) {
             throw new IllegalArgumentException("사다리가 존재하지 않습니다.");
         }
-        // position이 0일때 -> Rungs의 position번째가 true일 때
-        if (this.position.isFirstPosition() && rungs.isExist(this.position.getPosition())) {
+        if (isFirstPosition() && isExistNextToRight(rungs)) {
             this.position.crossRight();
             return;
         }
-        // position이 1부터(두번째부터) -> Rungs의 (position - 1)번째가 true일 때
-        if (!this.position.isFirstPosition() && rungs.isExist(this.position.getPosition() - 1)) {
+        if (!isFirstPosition() && isExistNextToLeft(rungs)) {
             this.position.crossLeft();
             return;
         }
-        // position이 1부터 -> Rungs의 position번째가 true일 때
-        if (!this.position.isFirstPosition() && rungs.isExist(this.position.getPosition())) {
+        if (!isFirstPosition() && isExistNextToRight(rungs)) {
             this.position.crossRight();
         }
+    }
+
+    private boolean isFirstPosition() {
+        return this.position.isFirstPosition();
+    }
+
+    private boolean isExistNextToLeft(Rungs rungs) {
+        return rungs.isExist(this.position.getPosition() - 1);
+    }
+
+    private boolean isExistNextToRight(Rungs rungs) {
+        return rungs.isExist(this.position.getPosition());
     }
 
     @Override
