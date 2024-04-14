@@ -2,7 +2,6 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.ladder.Row;
-import nextstep.ladder.domain.ladder.Connection;
 import nextstep.ladder.domain.ladder.Rung;
 import nextstep.ladder.domain.player.Count;
 import nextstep.ladder.domain.player.Players;

@@ -7,19 +7,13 @@ import java.util.Optional;
  * 사다리 가로대(발판)
  */
 public class Rung {
-    private final Connection connection;
     private final Direction direction;
 
     public static Rung empty() {
-        return new Rung(Connection.EMPTY, Direction.NONE);
+        return new Rung(Direction.NONE);
     }
 
-    public Rung(Connection connection) {
-        this(connection, connection.generateDirection());
-    }
-
-    public Rung(Connection connection, Direction direction) {
-        this.connection = connection;
+    public Rung(Direction direction) {
         this.direction = direction;
     }
 
@@ -27,24 +21,24 @@ public class Rung {
         return Optional.ofNullable(generateStrategy)
                 .map(strategy -> {
                     if (notConnected() || leftConnected()) {
-                        return new Rung(Connection.from(generateStrategy.addable()));
+                        return new Rung(Direction.from(generateStrategy.addable()));
                     }
 
-                    return new Rung(Connection.EXIST, Direction.LEFT);
+                    return new Rung(Direction.LEFT);
                 })
                 .orElse(empty());
     }
 
     public boolean notConnected() {
-        return connection.notExist();
+        return direction.notConnected();
     }
 
     public boolean rightConnected() {
-        return connection.exist() && direction.isRight();
+        return direction.isRight();
     }
 
     public boolean leftConnected() {
-        return connection.exist() && direction.isLeft();
+        return direction.isLeft();
     }
 
     public ColumnIndex moveFrom(ColumnIndex currentIndex) {
@@ -56,11 +50,11 @@ public class Rung {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Rung rung = (Rung) o;
-        return connection == rung.connection && direction == rung.direction;
+        return direction == rung.direction;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(connection, direction);
+        return Objects.hash(direction);
     }
 }
