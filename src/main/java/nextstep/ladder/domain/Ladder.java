@@ -5,7 +5,7 @@ public class Ladder {
   private People people;
   private LadderMap ladderMap;
 
-  public Ladder(People people, Integer height, BooleanGenerator booleanGenerator) {
+  public Ladder(People people, int height, BooleanGenerator booleanGenerator) {
     this(people, new LadderMap(people.getPeopleNumber()-1, height, booleanGenerator));
   }
 
