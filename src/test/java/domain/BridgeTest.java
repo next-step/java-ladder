@@ -20,4 +20,25 @@ public class BridgeTest {
         Bridge bridge = Bridge.first(true);
         assertThat(bridge.move()).isEqualTo(Direction.RIGHT);
     }
+
+    @DisplayName("왼쪽으로 이동한다.")
+    @Test
+    void test03() {
+        Bridge bridge = Bridge.first(true).next(false);
+        assertThat(bridge.move()).isEqualTo(Direction.LEFT);
+    }
+
+    @DisplayName("오른쪽으로 이동한다.")
+    @Test
+    void test04() {
+        Bridge bridge = Bridge.first(false).next(true);
+        assertThat(bridge.move()).isEqualTo(Direction.RIGHT);
+    }
+
+    @DisplayName("패스한다.")
+    @Test
+    void test05() {
+        Bridge bridge = Bridge.first(false).next(false);
+        assertThat(bridge.move()).isEqualTo(Direction.PASS);
+    }
 }
