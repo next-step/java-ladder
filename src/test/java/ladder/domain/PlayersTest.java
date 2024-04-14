@@ -8,10 +8,7 @@ import java.util.List;
 public class PlayersTest {
   @Test
   void 정상_생성() {
-    Players players = new Players(List.of(
-            Player.of("TEST1", 0),
-            Player.of("TEST2", 1)
-    ));
+    Players players = Players.from(List.of("TEST1", "TEST2"));
 
     Assertions.assertThat(players.values())
             .extracting("name")

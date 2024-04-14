@@ -3,6 +3,7 @@ package ladder.dto;
 import ladder.domain.Ladder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class StatusDto {
   private final List<PlayerDto> players;
@@ -33,5 +34,24 @@ public class StatusDto {
 
   public List<PrizeDto> getPrizes() {
     return this.prizes;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+
+    StatusDto statusDto = (StatusDto) o;
+    return players.equals(statusDto.players) && ladder.equals(statusDto.ladder) && prizes.equals(statusDto.prizes);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(players, ladder, prizes);
   }
 }

@@ -2,11 +2,21 @@ package ladder.domain;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Players implements Iterable<Player> {
   private final List<Player> values;
 
-  public Players(List<Player> values) {
+  public static Players from(final List<String> names) {
+    List<Player> players = IntStream.range(0, names.size())
+            .mapToObj(i -> Player.of(names.get(i), i))
+            .collect(Collectors.toList());
+
+    return new Players(players);
+  }
+
+  private Players(List<Player> values) {
     this.values = values;
   }
 

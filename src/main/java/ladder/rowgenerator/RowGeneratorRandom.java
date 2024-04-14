@@ -15,13 +15,13 @@ public class RowGeneratorRandom implements RowGenerator {
   }
 
   @Override
-  public Row generate(final Integer size) {
+  public Row generate(final int size, final int y) {
     List<Boolean> row = new ArrayList<>(size);
 
     IntStream.range(0, size)
             .forEach(i -> row.add(rowValue(row, i)));
 
-    return Row.of(row);
+    return Row.of(row, y);
   }
 
   private Boolean rowValue(final List<Boolean> row, final int index) {
@@ -29,16 +29,6 @@ public class RowGeneratorRandom implements RowGenerator {
       return randomValue();
     }
     return false;
-  }
-
-  private List<Boolean> rowReducer(final List<Boolean> acc, final int cur) {
-    acc.add((cur != 0));
-    return acc;
-  }
-
-  private List<Boolean> rowCombiner(final List<Boolean> list1, final List<Boolean> list2) {
-    list1.addAll(list2);
-    return list1;
   }
 
   private boolean randomValue() {

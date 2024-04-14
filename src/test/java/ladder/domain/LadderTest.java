@@ -88,21 +88,21 @@ public class LadderTest {
   private static Stream<List<Row>> provideRightConstructorInput2() {
     return Stream.of(
             List.of(
-                    Row.of(new int[] {1, 0, 0}),
-                    Row.of(new int[] {0, 1, 0}),
-                    Row.of(new int[] {0, 0, 1}),
-                    Row.of(new int[] {1, 0, 1})
+                    Row.of(new int[] {1, 0, 0}, 0),
+                    Row.of(new int[] {0, 1, 0}, 1),
+                    Row.of(new int[] {0, 0, 1}, 2),
+                    Row.of(new int[] {1, 0, 1}, 3)
             ),
             List.of(
-                    Row.of(new int[] {0, 0, 0}),
-                    Row.of(new int[] {0, 1, 0}),
-                    Row.of(new int[] {1, 0, 1})
+                    Row.of(new int[] {0, 0, 0}, 0),
+                    Row.of(new int[] {0, 1, 0}, 1),
+                    Row.of(new int[] {1, 0, 1}, 2)
             ),
             List.of(
-                    Row.of(new int[] {1, 0, 1}),
-                    Row.of(new int[] {0, 1, 0}),
-                    Row.of(new int[] {0, 0, 1}),
-                    Row.of(new int[] {1, 0, 0})
+                    Row.of(new int[] {1, 0, 1}, 0),
+                    Row.of(new int[] {0, 1, 0}, 1),
+                    Row.of(new int[] {0, 0, 1}, 2),
+                    Row.of(new int[] {1, 0, 0}, 3)
             )
     );
   }
@@ -116,22 +116,8 @@ public class LadderTest {
   private static Stream<Arguments> provideRightConstructorInput3() {
     return Stream.of(
             Arguments.arguments(3, 5, new RowGeneratorRandom()),
-            Arguments.arguments(2, 3, new RowGenerator() {
-              @Override
-              public Row generate(Integer size) {
-                {
-                  return Row.of(new int[] {1, 0, 1});
-                }
-              }
-            }),
-            Arguments.arguments(2, 5, new RowGenerator() {
-              @Override
-              public Row generate(Integer size) {
-                {
-                  return Row.of(new int[] {1, 0, 1, 0, 1});
-                }
-              }
-            })
+            Arguments.arguments(2, 3, (RowGenerator) (size, y) -> Row.of(new int[] {1, 0, 1}, y)),
+            Arguments.arguments(2, 5, (RowGenerator) (size, y) -> Row.of(new int[] {1, 0, 1, 0, 1}, y))
     );
   }
 
@@ -147,10 +133,10 @@ public class LadderTest {
     );
     assertThat(ladder.rows()).isEqualTo(
             List.of(
-                    Row.of(List.of(true, false, true)),
-                    Row.of(List.of(false, true, false)),
-                    Row.of(List.of(false, false, true)),
-                    Row.of(List.of(true, false, false))
+                    Row.of(List.of(true, false, true), 0),
+                    Row.of(List.of(false, true, false), 1),
+                    Row.of(List.of(false, false, true), 2),
+                    Row.of(List.of(true, false, false), 3)
             )
     );
   }

@@ -30,7 +30,7 @@ public class PlayerTest {
 
   @ParameterizedTest
   @MethodSource("provideMoveTestParameters")
-  void 이동(int[][] input, int result) {
+  void 이동(int[][] input, Coordinates result) {
     Player player = Player.of("TEST", 0);
     Ladder ladder = Ladder.from(input);
     assertThat(player.move(ladder)).isEqualTo(result);
@@ -42,17 +42,17 @@ public class PlayerTest {
                     {0, 1},
                     {1, 0},
                     {0, 0},
-            }, 1),
+            }, Coordinates.of(1, 3)),
             arguments(new int[][]{
                     { 1, 0, 1 },
                     { 1, 0, 0 },
                     { 0, 0, 0 },
-            }, 0),
+            }, Coordinates.of(0, 3)),
             arguments(new int[][]{
                     { 1, 0, 0 },
                     { 0, 1, 0 },
                     { 0, 0, 1 },
-            }, 3)
+            }, Coordinates.of(3, 3))
     );
   }
 

@@ -3,7 +3,6 @@ package ladder.domain;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
@@ -15,7 +14,7 @@ public class RowTest {
   @ParameterizedTest
   @MethodSource("provideWrongConstructorInput")
   void 연속된_line_있는_다리행_생성_불가(List<Boolean> input) {
-    assertThatThrownBy(() -> Row.of(input))
+    assertThatThrownBy(() -> Row.of(input, 0))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessage("잘못된 사다리 입력입니다.");
   }
@@ -31,7 +30,7 @@ public class RowTest {
   @ParameterizedTest
   @MethodSource("provideWrongConstructorInput2")
   void 입력_값으로_0_1_외에는_불가(int[] input) {
-    assertThatThrownBy(() -> Row.of(input))
+    assertThatThrownBy(() -> Row.of(input, 0))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessage("사다리 입력은 0, 1 값만 유효합니다.");
   }
@@ -46,7 +45,7 @@ public class RowTest {
   @ParameterizedTest
   @MethodSource("provideRightConstructorInput")
   void 정상_다리_생성(List<Boolean> input) {
-    Row.of(input);
+    Row.of(input, 0);
   }
 
   private static Stream<List<Boolean>> provideRightConstructorInput() {
@@ -61,14 +60,14 @@ public class RowTest {
 
   @Test
   void generator_로_생성() {
-    Row row = Row.fromGenerator(size -> Row.of(new int[]{0, 1, 0, 1}), 4);
-    assertThat(row).isEqualTo(Row.of(List.of(false, true, false, true)));
+    Row row = Row.fromGenerator((size, y) -> Row.of(new int[]{0, 1, 0, 1}, y), 4, 0);
+    assertThat(row).isEqualTo(Row.of(List.of(false, true, false, true), 0));
   }
 
   @ParameterizedTest
   @MethodSource("provideWrongGeneratorInput")
-  void 잘못된_generator_입력(int[] input1, Integer input2) {
-    assertThatThrownBy(() -> Row.fromGenerator(size -> Row.of(input1), input2))
+  void 잘못된_generator_입력(int[] input1, int input2) {
+    assertThatThrownBy(() -> Row.fromGenerator((size, y) -> Row.of(input1, y), input2, 0))
             .isInstanceOf(IllegalStateException.class)
             .hasMessage("입력된 사다리 행(Row) 길이와 생성된 사다리 행 길이와 일치하지 않습니다.");
   }
@@ -83,7 +82,7 @@ public class RowTest {
   @ParameterizedTest
   @MethodSource("provideSizeValidationTestParameters")
   void 사이즈_검증(List<Boolean> input, int size, boolean result) {
-    Row row = Row.of(input);
+    Row row = Row.of(input, 0);
     assertThat(row.isNotSizeOf(size)).isEqualTo(result);
   }
 
@@ -96,16 +95,26 @@ public class RowTest {
   }
 
   @ParameterizedTest
-  @CsvSource( { "0, 1", "1, 0", "2, 3", "3, 2", "4, 4" })
-  void 다음_위치_반환(int input, int result) {
-    Row row = Row.of(new int[]{1, 0, 1, 0});
+  @MethodSource("provideNextPositionTestParameters")
+  void 다음_위치_반환(Coordinates input, Coordinates result) {
+    Row row = Row.of(new int[]{1, 0, 1, 0}, 0);
     assertThat(row.nextPosition(input)).isEqualTo(result);
+  }
+
+  private static Stream<Arguments> provideNextPositionTestParameters() {
+    return Stream.of(
+            Arguments.arguments(Coordinates.of(0, 0), Coordinates.of(1, 1)),
+            Arguments.arguments(Coordinates.of(1, 0), Coordinates.of(0, 1)),
+            Arguments.arguments(Coordinates.of(2, 0), Coordinates.of(3, 1)),
+            Arguments.arguments(Coordinates.of(3, 0), Coordinates.of(2, 1)),
+            Arguments.arguments(Coordinates.of(4, 0), Coordinates.of(4, 1))
+    );
   }
 
   @ParameterizedTest
   @MethodSource("provideSizeTestParameters")
   void 크기_반환(int [] input, int result) {
-    assertThat(Row.of(input).size()).isEqualTo(result);
+    assertThat(Row.of(input, 0).size()).isEqualTo(result);
   }
 
   private static Stream<Arguments> provideSizeTestParameters() {
@@ -119,7 +128,7 @@ public class RowTest {
   @ParameterizedTest
   @MethodSource("provideValuesTestParameters")
   void 행_값_반환(int[] input, List<Boolean> result) {
-    assertThat(Row.of(input).values()).isEqualTo(result);
+    assertThat(Row.of(input, 0).values()).isEqualTo(result);
   }
 
   private static Stream<Arguments> provideValuesTestParameters() {
