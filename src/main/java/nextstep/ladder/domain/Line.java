@@ -11,9 +11,13 @@ public class Line {
 
   private final List<Point> points;
 
-  public Line (int width) {
-    this.points = IntStream.range(0, width)
-        .mapToObj(i -> getRandomBoolean())
+  public Line (int width, BooleanGenerator booleanGenerator) {
+    this.points = makePoints(width, booleanGenerator);
+  }
+
+  private static List<Point> makePoints(int width, BooleanGenerator booleanGenerator) {
+    return IntStream.range(0, width)
+        .mapToObj(i -> booleanGenerator.generate())
         .collect(ArrayList::new, (list, element) -> {
           if (list.isEmpty() || list.get(list.size() - 1).isNotBridge()) {
             list.add(Point.of(element));
@@ -23,9 +27,6 @@ public class Line {
         }, ArrayList::addAll);
   }
 
-  private Boolean getRandomBoolean() {
-    return Math.random() < 0.5;
-  }
 
   public String getLineString() {
    return String.format("|%s|", points.stream().map(point -> point.isNotBridge() ? "     " : "-----")

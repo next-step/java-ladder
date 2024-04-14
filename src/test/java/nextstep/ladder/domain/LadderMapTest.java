@@ -5,10 +5,18 @@ import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class LadderMapTest {
+
+  BooleanGenerator booleanGenerator;
+
+  @BeforeEach
+  void setUp() {
+    booleanGenerator = new RandomBooleanGenerator();
+  }
 
   @Test
   @DisplayName("사다리 너비가 1 미만일 경우 예외 발생")
@@ -16,7 +24,7 @@ public class LadderMapTest {
     int width = 0;
     int height = 5;
 
-     assertThatThrownBy(() -> new LadderMap(width, height))
+     assertThatThrownBy(() -> new LadderMap(width, height, booleanGenerator))
          .isInstanceOf(IllegalArgumentException.class);
   }
 
@@ -26,7 +34,7 @@ public class LadderMapTest {
     int width = 3;
     int height = 0;
 
-    assertThatThrownBy(() -> new LadderMap(width, height))
+    assertThatThrownBy(() -> new LadderMap(width, height, booleanGenerator))
         .isInstanceOf(IllegalArgumentException.class);
   }
 
@@ -36,13 +44,13 @@ public class LadderMapTest {
     int width = 6;
     int height = 5;
 
-    assertThatNoException().isThrownBy(() -> new LadderMap(width, height));
+    assertThatNoException().isThrownBy(() -> new LadderMap(width, height, booleanGenerator));
   }
 
   @Test
   @DisplayName("사다리 형태로 출력하는지 확인")
   void getLineStrings() {
-    LadderMap ladderMap = new LadderMap(6 ,5);
+    LadderMap ladderMap = new LadderMap(6 ,5, booleanGenerator);
     List<String> lineStrings = ladderMap.getLineStrings();
     assertThat(lineStrings).allMatch(s -> s.matches("(\\|(-{5}| {5})){6}\\|"));
   }
