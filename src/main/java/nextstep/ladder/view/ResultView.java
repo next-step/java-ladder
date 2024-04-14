@@ -34,7 +34,7 @@ public class ResultView {
     }
 
     private static String printLine(Line line) {
-        return line.getPoints().stream()
+        return line.connectedStatus().stream()
                 .map(point -> printPoint(point))
                 .collect(Collectors.joining(STRIPE, BLANK + STRIPE, STRIPE));
     }

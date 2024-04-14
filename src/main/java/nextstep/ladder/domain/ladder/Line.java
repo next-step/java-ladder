@@ -16,7 +16,7 @@ public class Line {
     }
 
     public Line(boolean... pointsStatus) {
-        this(getPoints(pointsStatus));
+        this(connectedStatus(pointsStatus));
     }
 
     private void checkInvalidPoints(List<Point> points) {
@@ -34,13 +34,13 @@ public class Line {
                 .anyMatch(i -> points.get(i).isConnect() && points.get(i + 1).isConnect());
     }
 
-    private static List<Point> getPoints(boolean[] pointsStatus) {
+    private static List<Point> connectedStatus(boolean[] pointsStatus) {
         return IntStream.range(0, pointsStatus.length)
                 .mapToObj(i -> new Point(pointsStatus[i]))
                 .collect(Collectors.toList());
     }
 
-    public List<Point> getPoints() {
+    public List<Point> connectedStatus() {
         return Collections.unmodifiableList(points);
     }
 
