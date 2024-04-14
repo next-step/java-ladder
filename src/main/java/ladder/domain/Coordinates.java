@@ -1,19 +1,20 @@
 package ladder.domain;
 
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.IntStream;
 
 public class Coordinates {
-  static Coordinates[][] cache = new Coordinates[10][10];
+  static Map<CacheKey, Coordinates> cache = new HashMap<>();
 
   private final int x;
   private final int y;
 
   static {
     IntStream.range(0, 10)
-            .forEach(y -> IntStream.range(0, 10)
-                    .forEach(x -> cache[y][x] = Coordinates.of(x, y))
-            );
+            .forEach(y -> {
+              IntStream.range(0, 10)
+                      .forEach(x -> cache.put(new CacheKey(x, y), Coordinates.of(x, y)));
+            });
   }
 
   public static Coordinates of(final int x, final int y) {
@@ -21,17 +22,14 @@ public class Coordinates {
       throw new IllegalStateException("음수 좌표를 가질 수 없습니다.");
     }
 
-    if (cache[y][x] != null) {
-      return cache[y][x];
-    }
-
-    return new Coordinates(x, y);
+    CacheKey key = new CacheKey(x, y);
+    cache.putIfAbsent(key, new Coordinates(x, y));
+    return cache.get(key);
   }
 
   private Coordinates(final int x, final int y) {
     this.x = x;
     this.y = y;
-    cache[y][x] = this;
   }
 
   public int x() {
@@ -87,5 +85,33 @@ public class Coordinates {
             "x=" + x +
             ", y=" + y +
             '}';
+  }
+
+  static class CacheKey {
+    private final int x;
+    private final int y;
+
+    public CacheKey(final int x, final int y) {
+      this.x = x;
+      this.y = y;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (this == o) {
+        return true;
+      }
+      if (o == null || getClass() != o.getClass()) {
+        return false;
+      }
+
+      CacheKey cacheKey = (CacheKey) o;
+      return x == cacheKey.x && y == cacheKey.y;
+    }
+
+    @Override
+    public int hashCode() {
+      return Objects.hash(x, y);
+    }
   }
 }
