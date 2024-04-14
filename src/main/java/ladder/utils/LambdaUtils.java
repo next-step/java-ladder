@@ -1,28 +1,17 @@
 package ladder.utils;
 
-import ladder.domain.Ladder.Point;
-import ladder.error.ErrorMessage;
+import ladder.exception.OutOfLengthException;
 
 import java.util.function.BiPredicate;
 
 public class LambdaUtils {
 
-    public static Point decidePointExist(Point point1, Point point2, BiPredicate<Point, Point> predicate) {
-        if (predicate.test(point1, point2)) {
-            return new Point(false);
-        }
-        return point2;
-    }
-
-    public static void validatePointRule(Point p1, Point p2, BiPredicate<Point, Point> predicate) {
-        if (predicate.test(p1,p2)) {
-            throw new IllegalArgumentException(ErrorMessage.ERR_INVALID_POINT.print());
-        }
+    private LambdaUtils() {
     }
 
     public static void validateLength(String name, int number, BiPredicate<String , Integer> predicate) {
         if (predicate.test(name, number)) {
-            throw new IllegalArgumentException(ErrorMessage.ERR_OUT_OF_LENGTH.print());
+            throw new OutOfLengthException(name);
         }
     }
 }

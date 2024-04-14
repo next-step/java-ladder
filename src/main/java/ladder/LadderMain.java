@@ -1,10 +1,10 @@
 package ladder;
 
-import ladder.domain.LadderGame;
-import ladder.domain.result.Records;
+import ladder.domain.ladders.LadderGame;
+import ladder.domain.ladders.RandomPointPredicate;
+import ladder.domain.result.GameRecords;
 import ladder.domain.participants.Name;
 import ladder.domain.participants.Participants;
-import ladder.domain.result.GameResult;
 import ladder.view.DrawView;
 import ladder.view.InputView;
 
@@ -13,21 +13,18 @@ public class LadderMain {
     public static void main(String[] args) {
         InputView inputView = new InputView();
 
-        String inputText = inputView.getParticipants();
-        String rawResults = inputView.getResults();
+        String participantsText = inputView.getParticipants();
+        String rewardsText = inputView.getResults();
         int height = inputView.getLadderHeight();
 
-        LadderGame ladderGame = new LadderGame(height, inputText);
-        GameResult results = new GameResult(rawResults);
-
-        Participants participants = ladderGame.doStart();
+        LadderGame ladderGame = new LadderGame(height, rewardsText, new RandomPointPredicate());
+        Participants participants = new Participants(participantsText);
+        GameRecords gameRecords = participants.startGame(ladderGame);
 
         DrawView drawView = new DrawView();
-        drawView.drawLadder(ladderGame, results);
+        drawView.drawLadder(ladderGame, participants);
 
         Name targetName = inputView.getGamerName();
-
-        Records gameRecords = results.recordResult(participants);
         drawView.drawGameRecords(targetName, gameRecords);
     }
 }

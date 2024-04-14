@@ -1,7 +1,7 @@
-package ladder.domain.Ladder.factory;
+package ladder.domain.ladders.factory;
 
-import ladder.domain.Ladder.Line;
-import ladder.domain.Ladder.PointPredicate;
+import ladder.domain.ladders.ladder.Line;
+import ladder.domain.ladders.PointPredicate;
 
 import java.util.List;
 import java.util.stream.Collectors;

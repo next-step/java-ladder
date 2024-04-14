@@ -1,9 +1,8 @@
 package ladder.domain.participants;
 
-import ladder.domain.Ladder.Ladder;
-import ladder.domain.result.RewardResult;
+import ladder.domain.ladders.LadderGame;
 import ladder.domain.participants.factory.GamerFactory;
-import ladder.domain.result.Reward;
+import ladder.domain.result.GameRecords;
 import ladder.utils.SplitUtils;
 
 import java.util.Collections;
@@ -31,17 +30,10 @@ public class Participants {
         return Collections.unmodifiableList(gamers);
     }
 
-    public Participants startGame(Ladder ladder) {
-        return new Participants(gamers.stream()
+    public GameRecords startGame(LadderGame ladder) {
+        return new GameRecords(gamers.stream()
                 .map(gamer -> gamer.climb(ladder))
                 .collect(Collectors.toUnmodifiableList()));
-    }
-
-    public RewardResult mapTo(Reward reward) {
-        return gamers.stream()
-                .filter(gamer -> gamer.hasSamePosition(reward))
-                .map(gamer -> new RewardResult(reward, gamer))
-                .findFirst().orElseThrow();
     }
 
     @Override

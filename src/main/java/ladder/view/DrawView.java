@@ -1,13 +1,15 @@
 package ladder.view;
 
-import ladder.domain.Ladder.Ladder;
-import ladder.domain.Ladder.Line;
-import ladder.domain.LadderGame;
+import ladder.domain.ladders.ladder.Ladder;
+import ladder.domain.ladders.LadderGame;
+import ladder.domain.ladders.ladder.Line;
 import ladder.domain.participants.Name;
 import ladder.domain.participants.Participants;
-import ladder.domain.result.GameResult;
-import ladder.domain.result.Records;
+import ladder.domain.ladders.reward.GameRewards;
+import ladder.domain.result.GameRecords;
+import ladder.domain.result.RewardResult;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class DrawView {
@@ -15,18 +17,18 @@ public class DrawView {
     public static final int LADDER_WIDTH = 5;
     public static final String EXIST_MARK = "-";
     public static final String NON_EXIST_MARK = " ";
-    public static final String PREFIX = "|";
+    public static final String SUFFIX = "|";
 
-    public void drawLadder(LadderGame ladderGame, GameResult results) {
+    public void drawLadder(LadderGame ladderGame, Participants participants) {
         System.out.println("사다리 결과");
-        drawParticipants(ladderGame.getParticipant());
+        drawParticipants(participants);
         drawLine(ladderGame.getLadder());
-        drawResult(results);
+        drawResult(ladderGame.getGameRewards());
     }
 
     private void drawParticipants(Participants participants) {
         System.out.println(participants.getGamers().stream()
-                .map(gamer -> String.format("%-" + 6 + "s", gamer.getName()))
+                .map(gamer -> String.format("%" + 6 + "s", gamer.getName()))
                 .collect(Collectors.joining())
         );
     }
@@ -36,35 +38,34 @@ public class DrawView {
                 .map(Line::getLine)
                 .forEach(line -> System.out.println(line.stream()
                         .map(this::drawPoint)
-                        .collect(Collectors.joining()) + "|")
+                        .collect(Collectors.joining()))
                 );
     }
 
     private String drawPoint(boolean isExist) {
         if (isExist) {
-            return PREFIX + EXIST_MARK.repeat(LADDER_WIDTH);
+            return EXIST_MARK.repeat(LADDER_WIDTH) + SUFFIX;
         }
-        return PREFIX + NON_EXIST_MARK.repeat(LADDER_WIDTH);
+        return NON_EXIST_MARK.repeat(LADDER_WIDTH) + SUFFIX;
     }
 
-    private void drawResult(GameResult results) {
+    private void drawResult(GameRewards results) {
         System.out.println(results.getRewords().stream()
-                .map(reword -> String.format("%-" + 6 + "s", reword.getItem()))
+                .map(reword -> String.format("%" + 6 + "s", reword.getPrize()))
                 .collect(Collectors.joining()));
     }
 
-    public void drawGameRecords(Name targetName, Records gameRecords) {
+    public void drawGameRecords(Name targetName, GameRecords gameRecords) {
         if (targetName.equals(new Name("all"))) {
-            drawGameRecords(gameRecords);
+            drawGameRecords(gameRecords.getRewardGamers());
         }
-        drawGameRecords(gameRecords.find(targetName));
+        drawGameRecords(List.of(gameRecords.find(targetName)));
     }
 
-    private void drawGameRecords(Records record) {
+    private void drawGameRecords(List<RewardResult> rewardResults) {
         System.out.println("실행 결과");
-        record.getRewardGamers()
-                .forEach(e -> System.out.println(
-                        String.format("%s : %s", e.getGamer().getName(), e.getReword().getItem())
-                ));
+        rewardResults.forEach(e -> System.out.println(
+                String.format("%s : %s", e.getName(), e.getPrize())
+        ));
     }
 }

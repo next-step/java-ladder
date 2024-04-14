@@ -1,30 +1,34 @@
 package ladder.domain.result;
 
-import ladder.domain.participants.Gamer;
+import ladder.domain.ladders.reward.Prize;
 import ladder.domain.participants.Name;
 
 import java.util.Objects;
 
 public class RewardResult {
 
-    private final Reward reward;
-    private final Gamer gamer;
+    private final Name name;
+    private final Prize prize;
 
-    public RewardResult(Reward reward, Gamer gamer) {
-        this.reward = reward;
-        this.gamer = gamer;
+    public RewardResult(String name, String prize) {
+        this(new Name(name), new Prize(prize));
     }
 
-    public Reward getReword() {
-        return reward;
+    public RewardResult(Name name, Prize prize) {
+        this.name = name;
+        this.prize = prize;
     }
 
-    public Gamer getGamer() {
-        return gamer;
+    public Name getName() {
+        return name;
+    }
+
+    public Prize getPrize() {
+        return prize;
     }
 
     public boolean isSameName(Name nameToFind) {
-        return gamer.hasSameName(nameToFind);
+        return name.equals(nameToFind);
     }
 
     @Override
@@ -32,11 +36,11 @@ public class RewardResult {
         if (this == o) return true;
         if (!(o instanceof RewardResult)) return false;
         RewardResult that = (RewardResult) o;
-        return Objects.equals(reward, that.reward) && Objects.equals(gamer, that.gamer);
+        return Objects.equals(name, that.name) && Objects.equals(prize, that.prize);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(reward, gamer);
+        return Objects.hash(name, prize);
     }
 }

@@ -1,4 +1,4 @@
-package ladder.domain.result;
+package ladder.domain.ladders.reward;
 
 import java.util.Objects;
 

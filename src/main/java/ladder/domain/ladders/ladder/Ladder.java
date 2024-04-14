@@ -1,6 +1,7 @@
-package ladder.domain.Ladder;
+package ladder.domain.ladders.ladder;
 
-import ladder.domain.Ladder.factory.LineFactory;
+import ladder.domain.ladders.PointPredicate;
+import ladder.domain.ladders.factory.LineFactory;
 import ladder.domain.participants.Position;
 
 import java.util.Collections;
@@ -11,8 +12,8 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(int height, int countOfPerson) {
-        this(LineFactory.generateLines(height, countOfPerson, new RandomPointPredicate()));
+    public Ladder(int height, int countOfPerson, PointPredicate predicate) {
+        this(LineFactory.generateLines(height, countOfPerson, predicate));
     }
 
     public Ladder(List<Line> lines) {
@@ -21,7 +22,7 @@ public class Ladder {
 
     public Position move(Position position) {
         return lines.stream()
-                .reduce(position, (p, line) -> p.move(line::canMove), (p1, p2) -> p2);
+                .reduce(position, (p, line) ->line.move(p), (p1, p2) -> p2);
     }
 
     public List<Line> getLines() {

@@ -1,7 +1,9 @@
 package ladder.domain.participants;
 
+import ladder.domain.ladders.ladder.Point;
+
+import java.util.List;
 import java.util.Objects;
-import java.util.function.IntPredicate;
 
 public class Position {
 
@@ -19,16 +21,12 @@ public class Position {
         return new Position(index + 1);
     }
 
-    public Position move(IntPredicate predicate) {
-        if (predicate.test(this.index)) {
-            return moveRight();
-        }
-
-        if (predicate.test(this.index - 1)) {
-            return moveLeft();
-        }
-
+    public Position byPass() {
         return this;
+    }
+
+    public Point find(List<Point> points) {
+        return points.get(this.index);
     }
 
     @Override
