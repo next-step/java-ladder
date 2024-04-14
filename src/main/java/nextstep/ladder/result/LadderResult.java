@@ -1,6 +1,7 @@
 package nextstep.ladder.result;
 
 import nextstep.ladder.domain.ladder.Ladder;
+import nextstep.ladder.domain.ladder.Line;
 import nextstep.ladder.domain.user.Users;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class LadderResult {
         return users.getUserNames();
     }
 
-    public Ladder getLadder() {
-        return ladder;
+    public List<Line> getLines() {
+        return ladder.getLines();
     }
 }

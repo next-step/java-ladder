@@ -1,10 +1,10 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.ladder.Line;
 import nextstep.ladder.domain.ladder.Point;
 import nextstep.ladder.result.LadderResult;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class ResultView {
@@ -22,13 +22,13 @@ public class ResultView {
 
         ladderResult.getUserNames().forEach(userName -> resultBuilder.append(userName).append(BLANK));
         resultBuilder.append(LINE_SEPARATOR);
-        resultBuilder.append(printLadder(ladderResult.getLadder()));
+        resultBuilder.append(printLadder(ladderResult.getLines()));
 
         System.out.println(resultBuilder);
     }
 
-    private static String printLadder(Ladder ladder) {
-        return ladder.getLines().stream()
+    private static String printLadder(List<Line> lines) {
+        return lines.stream()
                 .map(line -> printLine(line))
                 .collect(Collectors.joining(LINE_SEPARATOR));
     }
