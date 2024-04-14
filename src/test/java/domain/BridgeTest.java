@@ -13,4 +13,11 @@ public class BridgeTest {
         Bridge bridge = new Bridge(true);
         assertThat(bridge.has()).isTrue();
     }
+
+    @DisplayName("첫 번째 다리 (Bridge) 를 생성한다.")
+    @Test
+    void test02() {
+        Bridge bridge = Bridge.first(true);
+        assertThat(bridge.move()).isEqualTo(Direction.RIGHT);
+    }
 }
