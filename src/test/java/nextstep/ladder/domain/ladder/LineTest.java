@@ -31,7 +31,7 @@ public class LineTest {
     @DisplayName("사람 수 - 1 만큼 사다리 폭이 결정된다.")
     void lineWidthTest() {
         LineGenerator lineGenerator = new RandomLineGenerator();
-        Users users= new Users("pobi", "honux", "crong", "jk");
+        Users users = new Users("pobi", "honux", "crong", "jk");
         Line line = new Line(lineGenerator.lineGenerate(users.getUserCount()));
 
         Assertions.assertThat(line.getLength()).isEqualTo(4);
