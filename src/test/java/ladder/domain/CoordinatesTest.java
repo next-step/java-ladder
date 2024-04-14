@@ -20,19 +20,4 @@ public class CoordinatesTest {
   void 캐싱() {
     assertThat(Coordinates.of(1, 1) == Coordinates.of(1, 1)).isTrue();
   }
-  
-  @Test
-  void 우하단() {
-    assertThat(Coordinates.of(1, 1).downRight()).isEqualTo(Coordinates.of(2, 2));
-  }
-
-  @Test
-  void 좌하단() {
-    assertThat(Coordinates.of(1, 1).downLeft()).isEqualTo(Coordinates.of(0, 2));
-  }
-
-  @Test
-  void 직하단() {
-    assertThat(Coordinates.of(1, 1).downStraight()).isEqualTo(Coordinates.of(1, 2));
-  }
 }

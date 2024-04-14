@@ -40,24 +40,12 @@ public class Coordinates {
     return this.y;
   }
 
-  public Coordinates downRight() {
-    return Coordinates.of(this.x + 1, this.y + 1);
-  }
-
-  public Coordinates downLeft() {
-    return Coordinates.of(this.x - 1, this.y + 1);
-  }
-
-  public Coordinates downStraight() {
-    return Coordinates.of(this.x, this.y + 1);
+  public Coordinates move(final int dX, final int dY) {
+    return Coordinates.of(this.x + dX, this.y + dY);
   }
 
   public Coordinates right() {
     return Coordinates.of(this.x + 1, this.y);
-  }
-
-  public Coordinates left() {
-    return Coordinates.of(this.x - 1, this.y);
   }
 
   @Override

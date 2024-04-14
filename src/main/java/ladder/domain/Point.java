@@ -28,15 +28,8 @@ public class Point {
   }
 
   public Coordinates move() {
-    if (Direction.RIGHT.equals(sides.direction(moveStrategy))) {
-      return this.coordinates.downRight();
-    }
-
-    if (Direction.LEFT.equals(sides.direction(moveStrategy))) {
-      return this.coordinates.downLeft();
-    }
-
-    return this.coordinates.downStraight();
+    Direction direction = this.sides.direction(moveStrategy);
+    return direction.move(this.coordinates);
   }
 
   @Override
