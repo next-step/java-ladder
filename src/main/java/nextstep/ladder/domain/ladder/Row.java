@@ -12,18 +12,18 @@ public class Row {
     private final LinkedList<Rung> rungs = new LinkedList<>();
 
     public Row(Count playersCount, RungGenerateStrategy strategy) {
-        this.rungs.addAll(generateDirections(playersCount, strategy));
-        this.rungs.add(generateLastDirection());
+        this.rungs.addAll(generateRungs(playersCount, strategy));
+        this.rungs.add(generateLastRung());
     }
 
-    private List<Rung> generateDirections(Count playersCount, RungGenerateStrategy strategy) {
+    private List<Rung> generateRungs(Count playersCount, RungGenerateStrategy strategy) {
         return Stream.iterate(Rung.NONE.generate(strategy),
                         previousRung -> previousRung.generate(strategy))
                 .limit(playersCount.value() - 1)
                 .collect(Collectors.toList());
     }
 
-    private Rung generateLastDirection() {
+    private Rung generateLastRung() {
         return rungs.getLast().generateLast();
     }
 
