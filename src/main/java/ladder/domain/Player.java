@@ -4,11 +4,11 @@ public class Player {
   private final Name name;
   private final Integer initialPosition;
 
-  public static Player of(final String name, final Integer initialPosition) {
+  public static Player of(final String name, final int initialPosition) {
     return new Player(Name.of(name), initialPosition);
   }
 
-  private Player(final Name name, Integer initialPosition) {
+  private Player(final Name name, int initialPosition) {
     this.name = name;
     this.initialPosition = initialPosition;
   }

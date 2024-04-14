@@ -66,7 +66,7 @@ public class RowTest {
 
   @ParameterizedTest
   @MethodSource("provideWrongGeneratorInput")
-  void 잘못된_generator_입력(int[] input1, Integer input2) {
+  void 잘못된_generator_입력(int[] input1, int input2) {
     assertThatThrownBy(() -> Row.fromGenerator((size, y) -> Row.of(input1, y), input2, 0))
             .isInstanceOf(IllegalStateException.class)
             .hasMessage("입력된 사다리 행(Row) 길이와 생성된 사다리 행 길이와 일치하지 않습니다.");

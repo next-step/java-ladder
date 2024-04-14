@@ -9,7 +9,7 @@ public class Point {
   private final Sides sides;
   private final MoveStrategy moveStrategy;
 
-  public static Point first(final Integer y, final Boolean right, MoveStrategy moveStrategy) {
+  public static Point first(final int y, final Boolean right, MoveStrategy moveStrategy) {
     return new Point(Coordinates.of(0, y), Sides.first(right), moveStrategy);
   }
 

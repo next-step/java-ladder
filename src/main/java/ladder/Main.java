@@ -15,7 +15,7 @@ public class Main {
     LadderGameService game = new LadderGameService();
 
     List<String> playerNames = csvParser(InputView.participants());
-    Integer height = Integer.parseInt(InputView.maxLadderHeight());
+    int height = Integer.parseInt(InputView.maxLadderHeight());
     List<String> prizes = csvParser(InputView.prizes());
 
     ResultView.displayStatus(game.status(playerNames, height, prizes));

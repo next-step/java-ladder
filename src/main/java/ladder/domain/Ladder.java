@@ -23,7 +23,7 @@ public class Ladder implements Iterable<Row> {
     return new Ladder(rows);
   }
 
-  public static Ladder of(final Integer height, final Integer width, final RowGenerator generator) {
+  public static Ladder of(final int height, final int width, final RowGenerator generator) {
     final List<Row> ladder = new ArrayList<>(height);
 
     IntStream.range(0, height)

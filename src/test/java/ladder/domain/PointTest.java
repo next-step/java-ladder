@@ -27,7 +27,7 @@ public class PointTest {
 
   @ParameterizedTest
   @CsvSource(value = { "RIGHT,2, 2", "LEFT, 0, 2", "STRAIGHT, 1, 2"})
-  void 이동(Direction direction, Integer x, Integer y) {
+  void 이동(Direction direction, int x, int y) {
     Point point = Point.first(1, true, sides -> direction).next(false, sides -> direction);
     assertThat(point.move()).isEqualTo(Coordinates.of(x, y));
   }

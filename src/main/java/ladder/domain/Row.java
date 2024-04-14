@@ -11,7 +11,7 @@ public class Row implements Iterable<Point> {
   private final List<Boolean> values = new ArrayList<>();
   private final List<Point> points = new ArrayList<>();
 
-  public static Row of(final int[] row, final Integer y) {
+  public static Row of(final int[] row, final int y) {
     return new Row(Arrays.stream(row)
             .mapToObj(Row::convertToBoolean)
             .collect(Collectors.toList()), y);
@@ -24,11 +24,11 @@ public class Row implements Iterable<Point> {
     return number == 1;
   }
 
-  public static Row of(final List<Boolean> row, final Integer y) {
+  public static Row of(final List<Boolean> row, final int y) {
     return new Row(row, y);
   }
 
-  public static Row fromGenerator(RowGenerator generator, final Integer size, final Integer y) {
+  public static Row fromGenerator(RowGenerator generator, final int size, final int y) {
     final Row row = generator.generate(size, y);
 
     if (row.isNotSizeOf(size)) {
@@ -38,7 +38,7 @@ public class Row implements Iterable<Point> {
     return row;
   }
 
-  private Row(final List<Boolean> row, final Integer y) {
+  private Row(final List<Boolean> row, final int y) {
     validate(row);
 
     this.values.addAll(row);
@@ -55,7 +55,7 @@ public class Row implements Iterable<Point> {
             .forEach(i -> validateEach(row, i));
   }
 
-  private void validateEach(final List<Boolean> row, final Integer index) {
+  private void validateEach(final List<Boolean> row, final int index) {
     if (consecutiveTrue(row, index)) {
       throw new IllegalArgumentException("잘못된 사다리 입력입니다.");
     }
@@ -65,7 +65,7 @@ public class Row implements Iterable<Point> {
     return row.get(i) && row.get(i + 1);
   }
 
-  public Integer size() {
+  public int size() {
     return this.values.size();
   }
 

@@ -14,14 +14,14 @@ import java.util.stream.IntStream;
 public class LadderGameService {
   private final ThreadLocal<Ladder> threadLocal = new ThreadLocal<>();
 
-  public StatusDto status(final List<String> names, final Integer maxHeight, final List<String> prizeTexts) {
+  public StatusDto status(final List<String> names, final int maxHeight, final List<String> prizeTexts) {
     Ladder ladder = Ladder.of(maxHeight, names.size() - 1, new RowGeneratorRandom());
     threadLocal.set(ladder);
 
     return new StatusDto(names, ladder, prizeTexts);
   }
 
-  public Map<String, PrizeDto> play(final List<String> names, final Integer maxHeight, final List<String> prizeTexts) {
+  public Map<String, PrizeDto> play(final List<String> names, final int maxHeight, final List<String> prizeTexts) {
     final Map<String, PrizeDto> results = new HashMap<>();
 
     Players players = Players.from(names);

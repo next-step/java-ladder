@@ -4,5 +4,5 @@ import ladder.domain.Row;
 
 @FunctionalInterface
 public interface RowGenerator {
-  Row generate(final Integer size, final Integer y);
+  Row generate(final int size, final int y);
 }

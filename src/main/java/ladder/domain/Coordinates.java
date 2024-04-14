@@ -6,8 +6,8 @@ import java.util.stream.IntStream;
 public class Coordinates {
   static Coordinates[][] cache = new Coordinates[10][10];
 
-  private final Integer x;
-  private final Integer y;
+  private final int x;
+  private final int y;
 
   static {
     IntStream.range(0, 10)
@@ -16,7 +16,7 @@ public class Coordinates {
             );
   }
 
-  public static Coordinates of(final Integer x, final Integer y) {
+  public static Coordinates of(final int x, final int y) {
     if (x < 0 || y < 0) {
       throw new IllegalStateException("음수 좌표를 가질 수 없습니다.");
     }
@@ -28,17 +28,17 @@ public class Coordinates {
     return new Coordinates(x, y);
   }
 
-  private Coordinates(final Integer x, final Integer y) {
+  private Coordinates(final int x, final int y) {
     this.x = x;
     this.y = y;
     cache[y][x] = this;
   }
 
-  public Integer x() {
+  public int x() {
     return this.x;
   }
 
-  public Integer y() {
+  public int y() {
     return this.y;
   }
 
@@ -73,7 +73,7 @@ public class Coordinates {
     }
 
     Coordinates that = (Coordinates) o;
-    return x.equals(that.x) && y.equals(that.y);
+    return x == that.x && y == that.y;
   }
 
   @Override

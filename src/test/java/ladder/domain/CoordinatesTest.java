@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.*;
 public class CoordinatesTest {
   @ParameterizedTest
   @CsvSource(value = { "-1, 0", "0, -1", "-1, -1" })
-  void 잘못된_좌표(Integer x, Integer y) {
+  void 잘못된_좌표(int x, int y) {
     assertThatThrownBy(() -> Coordinates.of(x, y))
             .isInstanceOf(IllegalStateException.class)
             .hasMessage("음수 좌표를 가질 수 없습니다.");

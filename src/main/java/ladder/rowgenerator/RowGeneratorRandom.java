@@ -15,7 +15,7 @@ public class RowGeneratorRandom implements RowGenerator {
   }
 
   @Override
-  public Row generate(final Integer size, final Integer y) {
+  public Row generate(final int size, final int y) {
     List<Boolean> row = new ArrayList<>(size);
 
     IntStream.range(0, size)
