@@ -1,18 +1,15 @@
 package domain;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Bridges {
 
     private final List<Bridge> bridges;
 
     public Bridges(List<Bridge> bridges) {
-        if (bridges.get(bridges.size() - 1).has()) {
+        if (bridges.get(bridges.size() - 1).hasRightBridge()) {
             throw new IllegalArgumentException("마지막 다리의 우측에는 다리를 놓을 수 없습니다.");
         }
         this.bridges = bridges;
@@ -23,12 +20,19 @@ public class Bridges {
         Bridge prev = Bridge.first(strategy.isCreate());
         result.add(prev);
         for (int i = 1; i < column - 1; i++) {
-            Bridge next = prev.next(strategy.isCreate());
+            Bridge next = getNext(strategy, prev);
             result.add(next);
             prev = next;
         }
         result.add(prev.next(false));
         return new Bridges(result);
+    }
+
+    private static Bridge getNext(BridgeCreationStrategy strategy, Bridge prev) {
+        if (prev.hasRightBridge()) {
+            return prev.next(false);
+        }
+        return prev.next(strategy.isCreate());
     }
 
     public Direction move(int column) {
@@ -37,5 +41,11 @@ public class Bridges {
 
     public int total() {
         return this.bridges.size();
+    }
+
+    public List<Boolean> getTotalBridge() {
+        return bridges.stream()
+                .map(bridge -> bridge.move().isSame(Direction.RIGHT))
+                .collect(Collectors.toList());
     }
 }

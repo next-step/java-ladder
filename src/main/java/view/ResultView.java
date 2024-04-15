@@ -8,19 +8,13 @@ import java.util.stream.Collectors;
 
 public class ResultView implements LadderVisitor {
 
-    private static void printBridges(List<Boolean> bridges) {
-        boolean prev = false;
-        for (Boolean bridge : bridges) {
-            System.out.printf("%s|", prev ? "-".repeat(5) : " ".repeat(5));
-            prev = bridge;
-        }
-    }
-
     @Override
-    public void visitBridges(List<Bridges> bridges) {
-        for (int i = 0; i < bridges.size(); i++) {
-            Bridges bridges1 = bridges.get(i);
-
+    public void visitBridges(List<Bridges> totalBridges) {
+        for (Bridges bridges : totalBridges) {
+            System.out.print("|");
+            bridges.getTotalBridge()
+                    .forEach(isBridge -> System.out.printf("%s|", isBridge ? "-".repeat(5) : " ".repeat(5)));
+            System.out.println();
         }
     }
 
