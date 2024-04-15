@@ -3,7 +3,7 @@ package nextstep.ladder.domain;
 public class Person {
 
   private final String name;
-  private final int MAX_NAME_LENGTH = 5;
+  private static final int MAX_NAME_LENGTH = 5;
 
   public Person(String name) {
     validateName(name);
@@ -12,7 +12,7 @@ public class Person {
 
   private void validateName(String name) {
     if( name.length() > MAX_NAME_LENGTH ){
-      throw new IllegalArgumentException("이름은 5자 이하여야 합니다.");
+      throw new IllegalArgumentException(String.format("이름은 %d자 이하여야 합니다.", MAX_NAME_LENGTH));
     }
   }
 

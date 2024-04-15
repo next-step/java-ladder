@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 public class People {
   private List<Person> people;
-  private final int MIN_PEOPLE_NUMBER = 2;
+  private static final int MIN_PEOPLE_NUMBER = 2;
 
   public People(List<Person> people) {
     validatePeople(people);
