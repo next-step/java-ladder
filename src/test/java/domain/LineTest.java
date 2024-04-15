@@ -49,7 +49,7 @@ public class LineTest {
     void test04() {
         Bridge first = Bridge.first(true);
         Bridge second = first.next(false);
-        Bridge third = second.next(true);
+        Bridge third = second.next(false);
         Bridges bridges = new Bridges(List.of(first, second, third));
         Line line = Line.create(bridges);
         assertThat(line.move(0)).isEqualTo(Direction.RIGHT);

@@ -35,7 +35,7 @@ public class BridgesTest {
     void test02() {
         Bridge first = Bridge.first(true);
         Bridge second = first.next(false);
-        Bridge third = second.next(true);
+        Bridge third = second.next(false);
         Bridges bridges = new Bridges(List.of(first, second, third));
         assertThat(bridges).isNotNull();
     }
@@ -45,7 +45,7 @@ public class BridgesTest {
     void test03() {
         Bridge first = Bridge.first(true);
         Bridge second = first.next(false);
-        Bridge third = second.next(true);
+        Bridge third = second.next(false);
         Bridges bridges = new Bridges(List.of(first, second, third));
         assertThat(bridges.move(0)).isEqualTo(Direction.RIGHT);
     }
@@ -55,7 +55,7 @@ public class BridgesTest {
     void test04() {
         Bridge first = Bridge.first(true);
         Bridge second = first.next(false);
-        Bridge third = second.next(true);
+        Bridge third = second.next(false);
         Bridges bridges = new Bridges(List.of(first, second, third));
         assertThat(bridges.total()).isEqualTo(3);
     }

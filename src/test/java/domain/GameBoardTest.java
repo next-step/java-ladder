@@ -36,7 +36,7 @@ public class GameBoardTest {
         Bridge first1 = Bridge.first(false);
         Bridge second1 = first1.next(true);
         Bridge third1 = second1.next(false);
-        Bridge fourth1 = second.next(true);
+        Bridge fourth1 = second.next(false);
         Bridges secondHeightBridges = new Bridges(List.of(first1, second1, third1, fourth1));
 
         Bridge first2 = Bridge.first(true);
