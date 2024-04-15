@@ -2,5 +2,7 @@ package ladder.domain.ladder.line;
 
 public interface ConnectionGenerator {
 
-    boolean generate();
+    Connection generateFirst();
+
+    Connection generateNext(final Connection previousConnection);
 }

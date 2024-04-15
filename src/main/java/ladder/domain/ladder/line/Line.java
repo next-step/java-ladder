@@ -1,30 +1,29 @@
 package ladder.domain.ladder.line;
 
-import static java.lang.Boolean.FALSE;
-
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import ladder.domain.ladder.Width;
 
 public class Line {
 
-    private final List<Boolean> connections;
+    private final List<Connection> connections;
 
-    public Line(final List<Boolean> connections) {
+    public Line(final List<Connection> connections) {
         this.connections = connections;
     }
 
     public int width() {
-        return this.connections.size() + 1;
+        return this.connections.size();
     }
 
-    public List<Boolean> connections() {
+    public List<Connection> connections() {
         return this.connections.stream()
+                .map(Connection::copyOf)
                 .collect(Collectors.toUnmodifiableList());
     }
 
@@ -38,41 +37,31 @@ public class Line {
     }
 
     private int toNextPosition(final int currentPosition) {
-        final int leftConnectionIndex = currentPosition - 1;
-        final int rightConnectionIndex = currentPosition;
+        final Connection currentConnection = this.connections.get(currentPosition);
+        final Direction direction = currentConnection.move();
 
-        if (isConnected(leftConnectionIndex)) {
-            return currentPosition - 1;
-        }
-
-        if (isConnected(rightConnectionIndex)) {
-            return currentPosition + 1;
-        }
-
-        return currentPosition;
-    }
-
-    private boolean isConnected(final int connectionIndex) {
-        if (connectionIndex < 0 || connectionIndex >= this.connections.size()) {
-            return false;
-        }
-
-        return this.connections.get(connectionIndex);
+        return currentPosition + direction.delta();
     }
 
     public static Line of(final Width width, final ConnectionGenerator connectionGenerator) {
         return new Line(createConnections(width, connectionGenerator));
     }
 
-    private static List<Boolean> createConnections(final Width width, final ConnectionGenerator connectionGenerator) {
-        final List<Boolean> connections = new ArrayList<>();
-        connections.add(connectionGenerator.generate());
+    private static List<Connection> createConnections(
+            final Width width,
+            final ConnectionGenerator connectionGenerator
+    ) {
+        final List<Connection> connections = Stream.iterate(
+                        connectionGenerator.generateFirst(),
+                        connectionGenerator::generateNext
+                )
+                .limit(width.value() - 1)
+                .collect(Collectors.toList());
 
-        IntStream.range(1, width.connectionCount())
-                .mapToObj(i -> connections.get(i - 1) ? FALSE : connectionGenerator.generate())
-                .forEach(connections::add);
+        final Connection lastConnection = connections.get(connections.size() - 1).last();
+        connections.add(lastConnection);
 
-        return connections;
+        return Collections.unmodifiableList(connections);
     }
 
     @Override
