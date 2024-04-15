@@ -27,4 +27,25 @@ public class LadderTest {
 
         assertThat(position).isEqualTo(new Position(1, 5));
     }
+
+    @DisplayName("시작 column 을 입력받아 최종 column 을 출력한다.")
+    @Test
+    void test03() {
+        Bridge first = Bridge.first(true);
+        Bridge second = first.next(false);
+        Bridge third = second.next(true);
+        Bridges firstHeightBridges = new Bridges(List.of(first, second, third));
+
+        Bridge first1 = Bridge.first(false);
+        Bridge second1 = first.next(true);
+        Bridge third1 = second.next(false);
+        Bridges secondHeightBridges = new Bridges(List.of(first, second, third));
+
+        Bridge first2 = Bridge.first(true);
+        Bridge second2 = first.next(false);
+        Bridge third2 = second.next(true);
+        Bridges thirdHeightBridges = new Bridges(List.of(first, second, third));
+        Ladder ladder = new Ladder(List.of(firstHeightBridges, secondHeightBridges, thirdHeightBridges));
+        assertThat(ladder.getEndColumn(0)).isEqualTo(2);
+    }
 }
