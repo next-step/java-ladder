@@ -43,4 +43,15 @@ public class LineTest {
         Line line = Line.createWithBridges(3, () -> true);
         assertThat(line.hasBridge(1)).isTrue();
     }
+
+    @DisplayName("특정 높이의 다리의 이동방향을 구한다.")
+    @Test
+    void test04() {
+        Bridge first = Bridge.first(true);
+        Bridge second = first.next(false);
+        Bridge third = second.next(true);
+        Bridges bridges = new Bridges(List.of(first, second, third));
+        Line line = Line.create(bridges);
+        assertThat(line.move(0)).isEqualTo(Direction.RIGHT);
+    }
 }
