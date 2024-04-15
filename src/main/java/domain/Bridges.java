@@ -24,6 +24,9 @@ public class Bridges {
     }
 
     public Bridges(List<Bridge> bridges) {
+        if (bridges.get(bridges.size() - 1).has()) {
+            throw new IllegalArgumentException("마지막 다리의 우측에는 다리를 놓을 수 없습니다.");
+        }
         this.heightToBridges = new HashMap<>();
         this.bridges = bridges;
     }
