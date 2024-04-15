@@ -48,4 +48,14 @@ public class BridgesTest {
         Bridges bridges = new Bridges(List.of(first, second, third));
         assertThat(bridges.move(0)).isEqualTo(Direction.RIGHT);
     }
+
+    @DisplayName("전체 다리의 갯수를 구한다.")
+    @Test
+    void test04() {
+        Bridge first = Bridge.first(true);
+        Bridge second = first.next(false);
+        Bridge third = second.next(true);
+        Bridges bridges = new Bridges(List.of(first, second, third));
+        assertThat(bridges.total()).isEqualTo(3);
+    }
 }

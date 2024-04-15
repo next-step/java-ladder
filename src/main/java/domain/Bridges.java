@@ -43,4 +43,8 @@ public class Bridges {
     public Direction move(int height) {
         return bridges.get(height).move();
     }
+
+    public int total() {
+        return this.bridges.size();
+    }
 }
