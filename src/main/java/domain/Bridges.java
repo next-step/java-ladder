@@ -1,5 +1,8 @@
 package domain;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -7,6 +10,7 @@ import java.util.stream.IntStream;
 public class Bridges {
 
     private final Map<Height, Bridge> heightToBridges;
+    private final List<Bridge> bridges;
 
     public Bridges(int height) {
         this(new Height(height));
@@ -16,6 +20,12 @@ public class Bridges {
         this.heightToBridges = IntStream.range(0, height.getHeight())
                 .mapToObj(Height::new)
                 .collect(Collectors.toMap(h -> h, h -> new Bridge()));
+        this.bridges = new ArrayList<>();
+    }
+
+    public Bridges(List<Bridge> bridges) {
+        this.heightToBridges = new HashMap<>();
+        this.bridges = bridges;
     }
 
     public void create(int height) {
