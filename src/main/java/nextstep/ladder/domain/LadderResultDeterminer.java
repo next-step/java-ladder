@@ -1,9 +1,7 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.LadderResult;
-import nextstep.ladder.domain.Name;
-import nextstep.ladder.domain.Names;
+import java.util.Collections;
+import java.util.List;
 
 public class LadderResultDeterminer {
 
@@ -25,5 +23,9 @@ public class LadderResultDeterminer {
 			column++;
 		}
 		return ladderResult.getResultByIndex(row);
+	}
+
+	public List<Name> getNames(){
+		return Collections.unmodifiableList(names.getNames());
 	}
 }

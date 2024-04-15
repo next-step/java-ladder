@@ -2,6 +2,8 @@ package nextstep.ladder;
 
 import nextstep.ladder.domain.Height;
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderResult;
+import nextstep.ladder.domain.LadderResultDeterminer;
 import nextstep.ladder.domain.Names;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
@@ -11,9 +13,11 @@ public class LadderMain {
 		InputView inputView = new InputView();
 		OutputView outputView = new OutputView();
 		final Names names = new Names(inputView.inputNames());
+		final LadderResult ladderResult = new LadderResult(inputView.inputResult());
 		final Height height = new Height(inputView.inputLadderHeight());
 		final Ladder ladder = new Ladder(names.getNumberOfNames(), height);
 
 		outputView.printLadder(names, ladder);
+		outputView.printResult(inputView.inputName(), new LadderResultDeterminer(ladderResult, ladder, names));
 	}
 }
