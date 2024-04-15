@@ -1,12 +1,11 @@
 package ladder;
 
 import ladder.domain.Ladder;
+import ladder.domain.Player;
 import ladder.domain.Players;
 import ladder.domain.Results;
 import ladder.view.InputView;
 import ladder.view.OutputView;
-
-import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
@@ -16,5 +15,9 @@ public class Main {
 
         Ladder ladder = Ladder.of(height, players.getCount());
         OutputView.printLadderWithPlayer(players, ladder, results);
+
+        String playerName = InputView.scanPlayerShowResult();
+        Player resultTargetPlayer = players.getPlayerByNameOrNull(playerName);
+        OutputView.printRunResults(results.playerResults(ladder.getLines(), players, resultTargetPlayer));
     }
 }

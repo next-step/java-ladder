@@ -36,7 +36,8 @@ public class Points {
         return points;
     }
 
-    public Point getPoint(int index) {
+    public Point getPointOrNull(int index) {
+        if(index >= points.size() || index < 0) return null;
         return points.get(index);
     }
 

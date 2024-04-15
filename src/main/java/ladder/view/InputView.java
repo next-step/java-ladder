@@ -6,7 +6,6 @@ import ladder.domain.Result;
 import ladder.domain.Results;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
@@ -39,7 +38,14 @@ public class InputView {
 
     public static int scanHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        return scanner.nextInt();
+        int height = scanner.nextInt();
+        scanner.nextLine();
+        return height;
+    }
+
+    public static String scanPlayerShowResult() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        return scanner.nextLine();
     }
 
 }

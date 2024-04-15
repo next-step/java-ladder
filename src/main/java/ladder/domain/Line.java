@@ -18,7 +18,9 @@ public class Line {
         return points.getPoints();
     }
 
-    public Boolean getPoint(int index) {
-        return points.getPoint(index).exist();
+    public Boolean hasPoint(int index) {
+        Point point = points.getPointOrNull(index);
+        if (point == null) return false;
+        return point.exist();
     }
 }
