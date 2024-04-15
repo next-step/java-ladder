@@ -13,6 +13,10 @@ public class LadderResult {
 			.collect(Collectors.toList());
 	}
 
+	public int getResultNumber() {
+		return results.size();
+	}
+
 	public String getResultByIndex(final int index) {
 		return results.get(index);
 	}

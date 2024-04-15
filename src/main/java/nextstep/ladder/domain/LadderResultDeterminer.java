@@ -10,6 +10,7 @@ public class LadderResultDeterminer {
 	private final Names names;
 
 	public LadderResultDeterminer(final LadderResult ladderResult, final Ladder ladder, final Names names) {
+		validate(ladderResult, names);
 		this.ladderResult = ladderResult;
 		this.ladder = ladder;
 		this.names = names;
@@ -27,5 +28,11 @@ public class LadderResultDeterminer {
 
 	public List<Name> getNames(){
 		return Collections.unmodifiableList(names.getNames());
+	}
+
+	private void validate(final LadderResult ladderResult, final Names names) {
+		if (ladderResult.getResultNumber() != names.getNumberOfNames()) {
+			throw new IllegalArgumentException("실행 결과의 개수가 참여자의 수와 일치하지 않습니다.");
+		}
 	}
 }
