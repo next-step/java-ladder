@@ -19,6 +19,10 @@ public class Players implements Iterable<Player> {
         visitor.visit(players);
     }
 
+    public Player findByOrder(int order) {
+        return players.get(order);
+    }
+
     @Override
     public Iterator<Player> iterator() {
         return players.iterator();
