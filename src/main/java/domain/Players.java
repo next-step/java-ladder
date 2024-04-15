@@ -31,4 +31,8 @@ public class Players implements Iterable<Player> {
     public Position getPosition(Player player) {
         return new Position(this.players.indexOf(player), 0);
     }
+
+    public int getOrder(Player player) {
+        return players.indexOf(player);
+    }
 }
