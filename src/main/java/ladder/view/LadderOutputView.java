@@ -1,7 +1,5 @@
 package ladder.view;
 
-import static java.lang.Boolean.FALSE;
-import static java.lang.Boolean.TRUE;
 import static java.text.MessageFormat.format;
 
 import java.util.List;
@@ -11,6 +9,7 @@ import java.util.stream.Collectors;
 import ladder.domain.item.Item;
 import ladder.domain.item.Items;
 import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.line.Connection;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
 import ladder.domain.result.Result;
@@ -21,8 +20,8 @@ public class LadderOutputView {
     private static final String NAME_PRINTING_FORMAT = "%-5s";
     private static final String NAME_JOIN_DELIMITER = " ";
     private static final Map<Boolean, String> LADDER_CONNECTION = Map.of(
-            TRUE, "-----",
-            FALSE, "     "
+            true, "-----",
+            false, "     "
     );
     private static final String LADDER_COLUMN = "|";
     private static final String ALL_PLAYERS = "all";
@@ -51,7 +50,7 @@ public class LadderOutputView {
     }
 
     private void printLadder(final Ladder ladder) {
-        final String result = ladder.connectionsOfLines()
+        final String result = ladder.allConnectionsByEachLine()
                 .stream()
                 .map(this::buildLine)
                 .collect(Collectors.joining("\n"));
@@ -59,12 +58,12 @@ public class LadderOutputView {
         output.printLine(result);
     }
 
-    private String buildLine(final List<Boolean> line) {
+    private String buildLine(final List<Connection> line) {
         final String lineResult = line.stream()
-                .map(LADDER_CONNECTION::get)
+                .map(connection -> LADDER_CONNECTION.get(connection.isRightConnected()))
                 .collect(Collectors.joining(LADDER_COLUMN));
 
-        return LADDER_COLUMN + lineResult + LADDER_COLUMN;
+        return LADDER_COLUMN + lineResult;
     }
 
     private void printItems(final Items items) {
