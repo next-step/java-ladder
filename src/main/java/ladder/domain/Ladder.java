@@ -5,14 +5,8 @@ import java.util.List;
 public class Ladder {
 
     private Lines lines;
-    private Floor floor;
-
     private Ladder(int height, int countOfPlayer) {
-
         Lines lines = new Lines(height, countOfPlayer);
-        Floor newFloor = new Floor(height);
-
-        this.floor = newFloor;
         this.lines = lines;
     }
 
