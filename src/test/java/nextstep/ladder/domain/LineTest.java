@@ -16,4 +16,17 @@ public class LineTest {
 
   }
 
+  @Test
+  @DisplayName("사다리를 생성하고 한 줄을 이동한다.")
+  void moveLine() {
+    BooleanGenerator noBridgeGenerator = () -> false;
+
+    Line line = new Line(5, noBridgeGenerator);
+    assertThat(line.move(0)).isEqualTo(0);
+    assertThat(line.move(1)).isEqualTo(1);
+    assertThat(line.move(2)).isEqualTo(2);
+    assertThat(line.move(3)).isEqualTo(3);
+    assertThat(line.move(4)).isEqualTo(4);
+  }
+
 }

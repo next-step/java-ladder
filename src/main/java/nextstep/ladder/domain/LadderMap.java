@@ -37,4 +37,9 @@ public LadderMap(int width, int height, BooleanGenerator booleanGenerator) {
   return lines;
   }
 
+  public int move(int index) {
+    return lines.stream()
+        .reduce(index, (idx, line) -> line.move(idx), (idx1, idx2) -> idx2);
+  }
+
 }

@@ -19,4 +19,20 @@ public class Person {
   public String getName() {
     return name;
   }
+
+  public boolean isSameName(String name) {
+    return this.name.equals(name);
+  }
+
+  public boolean equals(Object obj){
+    if(obj != null && obj instanceof Person){
+      return this.name.equals(((Person)obj).getName());
+    }
+    return false;
+  }
+
+  public int hashCode(){
+    return name.hashCode();
+  }
+
 }

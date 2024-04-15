@@ -1,6 +1,9 @@
 package nextstep.ladder.domain;
 
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 public class Ladder {
   private People people;
   private LadderMap ladderMap;
@@ -14,8 +17,14 @@ public class Ladder {
     this.ladderMap = ladderMap;
   }
 
-  public LadderResult getLadder() {
-    return new LadderResult(people.getPeopleNames(), ladderMap.getLine());
+  public LadderResult getGameResult(LadderPrize prize) {
+    return new LadderResult(doLadderGame(prize), ladderMap.getLine());
+  }
+
+  private  Map<Person, String> doLadderGame(LadderPrize prize) {
+    Map<Person, String> result = new LinkedHashMap<>();
+    people.getPeople().forEach(person -> result.put(person, prize.getPrizes().get(ladderMap.move(people.getPeople().indexOf(person)))));
+    return result;
   }
 
 }

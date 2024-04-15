@@ -1,6 +1,8 @@
 package nextstep.ladder.controller;
 
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderPrize;
+import nextstep.ladder.domain.LadderResult;
 import nextstep.ladder.domain.People;
 import nextstep.ladder.domain.RandomBooleanGenerator;
 import nextstep.ladder.view.InputView;
@@ -19,7 +21,11 @@ public class Main {
     int maxLadder = inputView.inputInteger();
     Ladder ladder = new Ladder(people, maxLadder, new RandomBooleanGenerator());
 
-    resultView.print("실행 결과");
-    resultView.printLadder(ladder.getLadder());
+    resultView.print("사다리 결과");
+    LadderResult gameResult = ladder.getGameResult(prize);
+    resultView.printLadder(gameResult, prize);
+
+    resultView.printResultByName(gameResult.getResultByName(inputView.inputName()));
+    resultView.printResultByName(gameResult.getResultByName(inputView.inputName()));
   }
 }

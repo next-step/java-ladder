@@ -1,7 +1,6 @@
 package nextstep.ladder.domain;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class People {
   private List<Person> people;
@@ -21,8 +20,7 @@ public class People {
   public int getPeopleNumber() {
     return people.size();
   }
-
-  public List<String> getPeopleNames() {
-    return people.stream().map(Person::getName).collect(Collectors.toList());
+  public List<Person> getPeople() {
+    return people;
   }
 }

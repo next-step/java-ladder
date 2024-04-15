@@ -30,4 +30,16 @@ public class Line {
   public List<Point> getPoints() {
     return points;
   }
+
+  public int move(int index) {
+    if(index > 0 && !points.get(index-1).isNotBridge() ) {
+      return index - 1;
+    }
+
+    if (index < points.size() && !points.get(index).isNotBridge()) {
+      return index + 1;
+    }
+    return index;
+  }
+
 }

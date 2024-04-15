@@ -47,4 +47,12 @@ public class LadderMapTest {
     assertThatNoException().isThrownBy(() -> new LadderMap(width, height, booleanGenerator));
   }
 
+  @Test
+  @DisplayName("사다리를 타고 움직일 때 정상적으로 이동하는지 확인")
+  void getLine() {
+    LadderMap ladderMap = new LadderMap(3, 5, () -> true);
+
+    assertThat(ladderMap.move(0)).isEqualTo(1);
+  }
+
 }
