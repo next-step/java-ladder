@@ -16,6 +16,11 @@ public class InputView {
 		return split(scanner.nextLine());
 	}
 
+	public String inputName() {
+		System.out.println("\n결과를 보고 싶은 사람은?");
+		return scanner.next();
+	}
+
 	public int inputLadderHeight(){
 		System.out.println("\n최대 사다리 높이는 몇 개인가요?");
 		return scanner.nextInt();
