@@ -1,6 +1,8 @@
 package domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class GameBoard {
 
@@ -27,9 +29,11 @@ public class GameBoard {
         ladder.accept(visitor);
     }
 
-    public Reward getReward(Player player, Rewards rewards) {
-        Position position = players.getPosition(player);
-        return rewards.findByPosition(ladder.getEndPositionByStartPosition(position).getX());
+    public GameResults resultAll(Rewards rewards) {
+        return new GameResults(IntStream.range(0, players.totalNumber())
+                .mapToObj(players::findByOrder)
+                .map(player -> result(player, rewards))
+                .collect(Collectors.toList()));
     }
 
     public GameResult result(Player player, Rewards rewards) {

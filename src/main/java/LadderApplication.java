@@ -15,7 +15,10 @@ public class LadderApplication {
         rewards.display(resultView);
 
         Player player = InputView.promptForResult();
-        GameResult gameResult = gameBoard.result(player, rewards);
-        resultView.print(gameResult);
+        if (player.isName("all")) {
+            resultView.print(gameBoard.resultAll(rewards));
+            return;
+        }
+        resultView.print(gameBoard.result(player, rewards));
     }
 }

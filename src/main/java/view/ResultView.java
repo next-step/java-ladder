@@ -50,8 +50,13 @@ public class ResultView implements LadderVisitor {
 
     public void print(GameResult result) {
         System.out.println("실행 결과");
-        for (Map.Entry<Player, Reward> entry : result) {
-            System.out.println(entry.getKey() + " : " + entry.getValue());
+        System.out.println(result.getPlayer() + " : " + result.getReward());
+    }
+
+    public void print(GameResults results) {
+        System.out.println("실행 결과");
+        for (GameResult result : results) {
+            System.out.println(result.getPlayer() + " : " + result.getReward());
         }
     }
 }
