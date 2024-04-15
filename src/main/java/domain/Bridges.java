@@ -40,8 +40,8 @@ public class Bridges {
         this.heightToBridges.put(new Height(height), new Bridge());
     }
 
-    public Direction move(int height) {
-        return bridges.get(height).move();
+    public Direction move(int column) {
+        return bridges.get(column).move();
     }
 
     public int total() {

@@ -39,7 +39,7 @@ public class BridgesTest {
         assertThat(bridges).isNotNull();
     }
 
-    @DisplayName("특정 높이의 다리의 이동방향을 구한다.")
+    @DisplayName("특정 column 의 다리의 이동방향을 구한다.")
     @Test
     void test03() {
         Bridge first = Bridge.first(true);
