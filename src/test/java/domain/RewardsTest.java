@@ -9,24 +9,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class RewardsTest {
 
+    public static final Rewards RS1 = new Rewards(List.of(RewardTest.R1, RewardTest.R2, RewardTest.R3));
+
     @DisplayName("특정 보상의 위치를 구한다.")
     @Test
     void test01() {
-        Reward reward1 = new Reward("1000");
-        Reward reward2 = new Reward("1000");
-        Reward reward3 = new Reward("1000");
-        Rewards rewards = new Rewards(List.of(reward1, reward2, reward3));
-
-        assertThat(rewards.position(reward1)).isEqualTo(new Position(0, 0));
+        assertThat(RS1.position(RewardTest.R1)).isEqualTo(new Position(0, 0));
     }
 
     @DisplayName("순서를 입력받아 보상을 구한다.")
     @Test
     void test02() {
-        Reward reward1 = new Reward("1000");
-        Reward reward2 = new Reward("1000");
-        Reward reward3 = new Reward("1000");
-        Rewards rewards = new Rewards(List.of(reward1, reward2, reward3));
-        assertThat(rewards.findByOrder(0)).isEqualTo(reward1);
+        assertThat(RS1.findByOrder(0)).isEqualTo(RewardTest.R1);
     }
 }

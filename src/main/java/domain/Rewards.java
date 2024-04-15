@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Rewards {
@@ -7,7 +8,7 @@ public class Rewards {
     private final List<Reward> rewards;
 
     public Rewards(List<Reward> rewards) {
-        this.rewards = rewards;
+        this.rewards = new ArrayList<>(rewards);
     }
 
     public Position position(Reward reward) {
