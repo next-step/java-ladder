@@ -15,12 +15,25 @@ public class Line {
 		}
 	}
 
+	public int move(final int column) {
+		final Bridge leftBridge = getBridge(column - 1);
+		final Bridge rightBridge = getBridge(column);
+
+		if (leftBridge.isBridge()) {
+			return -1;
+		}
+		if (rightBridge.isBridge()) {
+			return 1;
+		}
+		return 0;
+	}
+
 	private void addBridge(final Bridge now) {
 		if (bridges.isEmpty()) {
 			bridges.add(now);
 			return;
 		}
-		if (bridges.get(bridges.size() - 1).isBridge()) {
+		if (getBridge(bridges.size() - 1).isBridge()) {
 			bridges.add(Bridge.from(false));
 			return;
 		}
@@ -29,6 +42,13 @@ public class Line {
 
 	public List<Bridge> getBridges() {
 		return bridges;
+	}
+
+	private Bridge getBridge(final int index) {
+		if (index >= 0 && index < bridges.size()) {
+			return bridges.get(index);
+		}
+		return Bridge.NON_BRIDGE;
 	}
 
 	@Override
