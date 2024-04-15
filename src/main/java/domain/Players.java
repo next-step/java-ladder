@@ -23,16 +23,12 @@ public class Players implements Iterable<Player> {
         return players.get(order);
     }
 
+    public int getOrder(Player player) {
+        return players.indexOf(player);
+    }
+
     @Override
     public Iterator<Player> iterator() {
         return players.iterator();
-    }
-
-    public Position getPosition(Player player) {
-        return new Position(this.players.indexOf(player), 0);
-    }
-
-    public int getOrder(Player player) {
-        return players.indexOf(player);
     }
 }

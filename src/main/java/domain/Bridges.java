@@ -9,38 +9,26 @@ import java.util.stream.IntStream;
 
 public class Bridges {
 
-    private final Map<Height, Bridge> heightToBridges;
     private final List<Bridge> bridges;
-
-    public Bridges(int height) {
-        this(new Height(height));
-    }
-
-    public Bridges(Height height) {
-        this.heightToBridges = IntStream.range(0, height.getHeight())
-                .mapToObj(Height::new)
-                .collect(Collectors.toMap(h -> h, h -> new Bridge()));
-        this.bridges = new ArrayList<>();
-    }
 
     public Bridges(List<Bridge> bridges) {
         if (bridges.get(bridges.size() - 1).has()) {
             throw new IllegalArgumentException("마지막 다리의 우측에는 다리를 놓을 수 없습니다.");
         }
-        this.heightToBridges = new HashMap<>();
         this.bridges = bridges;
     }
 
-    public void create(int height) {
-        heightToBridges.put(new Height(height), new Bridge(true));
-    }
-
-    public boolean has(int height) {
-        return heightToBridges.getOrDefault(new Height(height), new Bridge()).has();
-    }
-
-    public void remove(int height) {
-        this.heightToBridges.put(new Height(height), new Bridge());
+    public static Bridges of(int column, BridgeCreationStrategy strategy) {
+        List<Bridge> result = new ArrayList<>();
+        Bridge prev = Bridge.first(strategy.isCreate());
+        result.add(prev);
+        for (int i = 1; i < column - 1; i++) {
+            Bridge next = prev.next(strategy.isCreate());
+            result.add(next);
+            prev = next;
+        }
+        result.add(prev.next(false));
+        return new Bridges(result);
     }
 
     public Direction move(int column) {

@@ -17,23 +17,16 @@ public class PlayersTest {
         assertThat(PS1.totalNumber()).isEqualTo(3);
     }
 
-    @DisplayName("특정 플레이어에 대한 위치를 구한다.")
-    @Test
-    void test02() {
-        Position position = PS1.getPosition(PlayerTest.P1);
-        assertThat(position).isEqualTo(new Position(0, 0));
-    }
-
     @DisplayName("순서를 입력받아 플레이어를 구한다.")
     @Test
-    void test03() {
+    void test02() {
         Player player = PS1.findByOrder(0);
         assertThat(player).isEqualTo(PlayerTest.P1);
     }
 
     @DisplayName("특정 플레이어의 순서를 구한다.")
     @Test
-    void test04() {
+    void test03() {
         int order = PS1.getOrder(PlayerTest.P1);
         assertThat(order).isEqualTo(0);
     }

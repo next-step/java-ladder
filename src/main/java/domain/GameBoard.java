@@ -1,6 +1,5 @@
 package domain;
 
-import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -9,19 +8,16 @@ public class GameBoard {
     private final Players players;
     private final Ladder ladder;
 
-    public GameBoard(Lines lines, Players players) {
-        this.players = players;
-        this.ladder = new Ladder(lines);
-    }
-
     public GameBoard(Players players, Ladder ladder) {
         this.players = players;
         this.ladder = ladder;
     }
 
     public static GameBoard of(Players players, Height height, BridgeCreationStrategy strategy) {
-        Lines lines = Lines.of(players.totalNumber(), height, strategy);
-        return new GameBoard(lines, players);
+        Ladder ladder = new Ladder(IntStream.range(0, height.getHeight())
+                .mapToObj(i -> Bridges.of(players.totalNumber(), strategy))
+                .collect(Collectors.toList()));
+        return new GameBoard(players, ladder);
     }
 
     public void display(LadderVisitor visitor) {
