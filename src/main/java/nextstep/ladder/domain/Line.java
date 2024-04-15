@@ -5,6 +5,10 @@ import java.util.List;
 import java.util.Objects;
 
 public class Line {
+	private static final int MOVE_LEFT = -1;
+	private static final int NO_MOVE = 0;
+	private static final int MOVE_RIGHT = 1;
+
 	private final List<Bridge> bridges = new ArrayList<>();
 
 	public Line(final Generator generator, final int numberOfPeople) {
@@ -20,12 +24,12 @@ public class Line {
 		final Bridge rightBridge = getBridge(column);
 
 		if (leftBridge.isBridge()) {
-			return -1;
+			return MOVE_LEFT;
 		}
 		if (rightBridge.isBridge()) {
-			return 1;
+			return MOVE_RIGHT;
 		}
-		return 0;
+		return NO_MOVE;
 	}
 
 	private void addBridge(final Bridge now) {
