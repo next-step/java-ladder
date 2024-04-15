@@ -21,33 +21,23 @@ class LineTest {
 
 	@Test
 	@DisplayName("다리가 왼쪽에 있으면 -1을 반환한다")
-	void test() {
-        /*
-        |----|    |----|
-         */
-		// given
+	void testMoveLeft() {
 		final Line line = new Line(() -> true, 4);
-
-		// when
 		final int canMove = line.move(1);
-
-		// then
 		assertThat(canMove).isEqualTo(-1);
 	}
 
 	@Test
 	@DisplayName("다리가 오른쪽에 있으면 1을 반환한다")
-	void test2() {
+	void testMoveRight() {
 		final Line line = new Line(() -> true, 4);
-
 		final int canMove = line.move(2);
-
 		assertThat(canMove).isEqualTo(1);
 	}
 
 	@Test
 	@DisplayName("다리가 없으면 건너지 못한다")
-	void test1() {
+	void testNonMove() {
 		final Line line = new Line(() -> false, 4);
 		final int canMove = line.move(1);
 		assertThat(canMove).isEqualTo(0);

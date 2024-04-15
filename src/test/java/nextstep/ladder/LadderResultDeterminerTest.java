@@ -1,13 +1,10 @@
 package nextstep.ladder;
 
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
-import static org.assertj.core.api.Assertions.assertThatNoException;
+import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import nextstep.ladder.domain.Height;
-import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderResult;
 import nextstep.ladder.domain.LadderResultDeterminer;
 import nextstep.ladder.domain.Names;
@@ -20,8 +17,8 @@ class LadderResultDeterminerTest {
 		final String[] result = {"꽝", "5000", "꽝"};
 		final String[] names = {"pobi", "crong"};
 
-		assertThatIllegalArgumentException().isThrownBy(() -> new LadderResultDeterminer(new LadderResult(result),
-			new Ladder(4, new Height(5)), new Names(names)));
+		assertThatIllegalArgumentException().isThrownBy(
+			() -> new LadderResultDeterminer(new LadderResult(result), new Names(names)));
 	}
 
 	@Test
@@ -30,7 +27,7 @@ class LadderResultDeterminerTest {
 		final String[] result = {"꽝", "5000"};
 		final String[] names = {"pobi", "crong"};
 
-		assertThatNoException().isThrownBy(() -> new LadderResultDeterminer(new LadderResult(result),
-			new Ladder(4, new Height(5)), new Names(names)));
+		assertThatNoException().isThrownBy(
+			() -> new LadderResultDeterminer(new LadderResult(result), new Names(names)));
 	}
 }

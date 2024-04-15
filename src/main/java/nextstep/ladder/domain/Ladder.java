@@ -1,9 +1,7 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Ladder {
@@ -18,7 +16,12 @@ public class Ladder {
 		return lines;
 	}
 
-	public int move(int row, int column) {
-		return lines.get(column).move(row);
+	public int move(int column) {
+		int row = 0;
+		while (row != lines.size()){
+			column += lines.get(row).move(column);
+			row++;
+		}
+		return column;
 	}
 }
