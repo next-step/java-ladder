@@ -25,6 +25,9 @@ public class Bridge {
     }
 
     public Bridge next(boolean current) {
+        if (this.current && current) {
+            throw new IllegalArgumentException("다리를 연속해서 놓을 수 없습니다.");
+        }
         return new Bridge(this.current, current);
     }
 

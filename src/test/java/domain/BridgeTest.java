@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class BridgeTest {
 
@@ -40,5 +41,13 @@ public class BridgeTest {
     void test05() {
         Bridge bridge = Bridge.first(false).next(false);
         assertThat(bridge.move()).isEqualTo(Direction.PASS);
+    }
+
+    @DisplayName("다리를 연속해서 놓을 경우 예외가 발생한다.")
+    @Test
+    void test06() {
+        assertThatThrownBy(() -> Bridge.first(true).next(true))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("다리를 연속해서 놓을 수 없습니다.");
     }
 }
