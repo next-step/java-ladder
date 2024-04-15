@@ -48,6 +48,13 @@
 - `isConnectedLadder`로 N번째 참가자의 사다리가 다음 참가자의 사다리와 연결되어있는지 확인 가능
 - [x] 특정 `index`에서 사다리 타기를 시작해서 다음 지점에 도착하는 `index`를 반환
 
+### Point
+- [x] `Line`의 N번째 index에 해당되는 지점의 사다리 연결 정보를 가짐
+  - [x] 현재 `index`의 `current`와 이전 지점인 `before`의 정보를 가짐
+
+### DirectionEnum
+  - [x] `Point`의 다음 사다리로의 이동 거리를 나타냄
+
 ### Participants
 - 사다리 게임에 참여하는 유저들의 정보를 `List<Participant>`로 저장
 - [x] 특정 참가자가 존재할 경우, 해당 참가자를 반환
@@ -91,7 +98,16 @@
 - `LadderTest.java`
   - [x] 특정 `index`에서 사다리 타기를 시작해서 마지막으로 도착하는 `index`를 반환 
 - `LineTest.java`
+  - [x] 유효하지 않은 사다리 1개의 라인일 경우 에러 반환
+    - [x] 연달아 연결된 사다리
+    - [x] 특정 `index`에서 `current`가 `index+1`의 `before`과 매칭되지 않음
+  - [x] 특정 `index`에서 사다리가 연결되어있는지 `boolean`으로 결과 반환 
   - [x] 특정 `index`에서 사다리 타기를 시작해서 다음으로 도착하는 `index`를 반환
+- `PointTest.java`
+  - [x] 특정 `index`를 생성하는 테스트를 작성하되, 연달아서 사다리가 연결된 `Point` 생성시 에러 반환
+  - [x] 왼쪽, 오른쪽, 아래로 움직이는 경우의 TC 작성
+- `DirectionEnum.java`
+  - 단순한 `enum`클래스라 TC생략
 - `ParticipantsTest.java`
   - [x] 특정 참가자가 존재할 경우, 해당 참가자를 반환
     - [x] 존재하지 않을 경우 에러 반환 

@@ -22,16 +22,16 @@ class LadderTest {
         assertAll(
                 "Assert the first ladder",
                 () -> assertEquals(3, ladder.getNthOfLadder(0).getSizeOfLine()),
-                () -> assertEquals(true, ladder.getNthOfLadder(0).isConnectedLadder(0)),
-                () -> assertEquals(false, ladder.getNthOfLadder(0).isConnectedLadder(1)),
-                () -> assertEquals(false, ladder.getNthOfLadder(0).isConnectedLadder(2))
+                () -> assertEquals(true, ladder.getNthOfLadder(0).isConnectedToNextLadder(0)),
+                () -> assertEquals(false, ladder.getNthOfLadder(0).isConnectedToNextLadder(1)),
+                () -> assertEquals(false, ladder.getNthOfLadder(0).isConnectedToNextLadder(2))
         );
         assertAll(
                 "Assert the second ladder",
                 () -> assertEquals(3, ladder.getNthOfLadder(1).getSizeOfLine()),
-                () -> assertEquals(false, ladder.getNthOfLadder(1).isConnectedLadder(0)),
-                () -> assertEquals(true, ladder.getNthOfLadder(1).isConnectedLadder(1)),
-                () -> assertEquals(false, ladder.getNthOfLadder(1).isConnectedLadder(2))
+                () -> assertEquals(false, ladder.getNthOfLadder(1).isConnectedToNextLadder(0)),
+                () -> assertEquals(true, ladder.getNthOfLadder(1).isConnectedToNextLadder(1)),
+                () -> assertEquals(false, ladder.getNthOfLadder(1).isConnectedToNextLadder(2))
         );
     }
 
@@ -43,8 +43,20 @@ class LadderTest {
 
     private Ladder getLadder() {
         List<Line> lines = new ArrayList<>();
-        Line line1 = Line.of(List.of(true, false, false));
-        Line line2 = Line.of(List.of(false, true, false));
+        Line line1 = Line.of(
+                            List.of(
+                                    Point.of(false, true),
+                                    Point.of(true, false),
+                                    Point.of(false, false)
+                            )
+                    );
+        Line line2 = Line.of(
+                            List.of(
+                                    Point.of(false, false),
+                                    Point.of(false, true),
+                                    Point.of(true, false)
+                            )
+                    );
         lines.add(line1);
         lines.add(line2);
         return new Ladder(lines);

@@ -18,7 +18,7 @@ public class LadderDrawing {
     private void printOneHeightOfLadder(Line line) {
         for (int i = 0; i < line.getSizeOfLine(); i++) {
             System.out.printf(ONE_HEIGHT_OF_LADDER);
-            connectLadder(line.isConnectedLadder(i));
+            connectLadder(line.isConnectedToNextLadder(i));
         }
     }
 
