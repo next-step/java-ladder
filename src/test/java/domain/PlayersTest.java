@@ -23,4 +23,11 @@ public class PlayersTest {
         Position position = PS1.getPosition(PlayerTest.P1);
         assertThat(position).isEqualTo(new Position(0, 0));
     }
+
+    @DisplayName("순서를 입력받아 플레이어를 구한다.")
+    @Test
+    void test03() {
+        Player player = PS1.findByOrder(0);
+        assertThat(player).isEqualTo(PlayerTest.P1);
+    }
 }
