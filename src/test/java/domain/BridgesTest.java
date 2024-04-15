@@ -2,6 +2,7 @@ package domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DynamicTest;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
 
 import java.util.Collection;
@@ -26,5 +27,15 @@ public class BridgesTest {
                     assertThat(bridges.has(height)).isFalse();
                 })
         );
+    }
+
+    @DisplayName("여러 Bridge 객체를 기반으로 Bridges 일급 컬렉션을 생성한다.")
+    @Test
+    void test02() {
+        Bridge first = Bridge.first(true);
+        Bridge second = first.next(false);
+        Bridge third = second.next(true);
+        Bridges bridges = new Bridges(List.of(first, second, third));
+        assertThat(bridges).isNotNull();
     }
 }
