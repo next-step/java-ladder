@@ -20,8 +20,4 @@ public class LadderResult {
 	public String getResultByIndex(final int index) {
 		return results.get(index);
 	}
-
-	public List<String> getResults() {
-		return Collections.unmodifiableList(results);
-	}
 }

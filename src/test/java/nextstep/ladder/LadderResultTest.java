@@ -13,6 +13,6 @@ public class LadderResultTest {
 	void create() {
 		final String[] result = {"꽝", "5000", "꽝", "3000"};
 		final LadderResult ladderResult = new LadderResult(result);
-		assertThat(ladderResult.getResults()).hasSize(4);
+		assertThat(ladderResult.getResultNumber()).isEqualTo(4);
 	}
 }
