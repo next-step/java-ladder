@@ -1,5 +1,7 @@
 package ladder.domain.ladder;
 
+import static ladder.domain.ladder.line.LineTest.line;
+import static ladder.domain.ladder.line.LineTest.testConnectionGenerator;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
@@ -17,13 +19,13 @@ class LadderTest {
     @Test
     @DisplayName("플레이어 수와 높이에 따라 사다리를 생성한다.")
     void Ladder() {
-        final Line line = new Line(List.of(true, false, true, false));
+        final Line line = line(true, false, true, false);
         final Ladder expectedLadder = new Ladder(List.of(line, line, line));
 
         final Ladder actualLadder = Ladder.of(
                 Players.from(List.of("kyle", "alex", "haley", "harry", "jun")),
                 3,
-                () -> true
+                testConnectionGenerator
         );
 
         assertThat(actualLadder).isEqualTo(expectedLadder);
@@ -40,9 +42,9 @@ class LadderTest {
     @DisplayName("사다리 전체 연결 상태에 따라 포지션을 이동한다.")
     void Move_Positions() {
         final Ladder ladder = new Ladder(List.of(
-                new Line(List.of(true, false, true, false)),
-                new Line(List.of(false, true, false, true)),
-                new Line(List.of(false, true, false, false))
+                line(true, false, true, false),
+                line(false, true, false, true),
+                line(false, true, false, false)
         ));
         final Map<Integer, Integer> expectedRoute = Map.of(
                 0, 1,

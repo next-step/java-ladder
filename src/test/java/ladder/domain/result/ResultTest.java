@@ -1,5 +1,6 @@
 package ladder.domain.result;
 
+import static ladder.domain.ladder.line.LineTest.line;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
@@ -12,7 +13,6 @@ import org.junit.jupiter.api.Test;
 import ladder.domain.item.Item;
 import ladder.domain.item.Items;
 import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.line.Line;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
 
@@ -37,9 +37,9 @@ class ResultTest {
     void Result_DifferentCountBetweenPlayersAndColumns_Exception() {
         final Players players = Players.from(List.of("kyle", "alex", "haley"));
         final Ladder ladder = new Ladder(List.of(
-                new Line(List.of(true, false, true)),
-                new Line(List.of(false, true, false)),
-                new Line(List.of(true, false, true))
+                line(true, false, true),
+                line(false, true, false),
+                line(true, false, true)
         ));
         final Items items = Items.from(List.of("item1", "item2", "item3"));
 
@@ -52,9 +52,9 @@ class ResultTest {
     void Result_DifferentCountBetweenPlayersAndResults_Exception() {
         final Players players = Players.from(List.of("kyle", "alex", "haley", "harry"));
         final Ladder ladder = new Ladder(List.of(
-                new Line(List.of(true, false)),
-                new Line(List.of(false, true)),
-                new Line(List.of(true, false))
+                line(true, false),
+                line(false, true),
+                line(true, false)
         ));
         final Items items = Items.from(List.of("item1", "item2", "item3"));
 
@@ -67,9 +67,9 @@ class ResultTest {
     void Result_DifferentCountBetweenColumnsAndResults_Exception() {
         final Players players = Players.from(List.of("kyle", "alex", "haley"));
         final Ladder ladder = new Ladder(List.of(
-                new Line(List.of(true, false)),
-                new Line(List.of(false, true)),
-                new Line(List.of(true, false))
+                line(true, false),
+                line(false, true),
+                line(true, false)
         ));
         final Items items = Items.from(List.of("item1", "item2", "item3", "item4"));
 
@@ -94,9 +94,9 @@ class ResultTest {
     private Result result() {
         final Players players = Players.from(List.of("kyle", "alex", "haley"));
         final Ladder ladder = new Ladder(List.of(
-                new Line(List.of(true, false)),
-                new Line(List.of(false, true)),
-                new Line(List.of(true, false))
+                line(true, false),
+                line(false, true),
+                line(true, false)
         ));
         final Items items = Items.from(List.of("item1", "item2", "item3"));
 
