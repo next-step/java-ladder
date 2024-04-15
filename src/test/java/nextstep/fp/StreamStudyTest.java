@@ -24,7 +24,7 @@ public class StreamStudyTest {
 
     @Test
     public void printLongestWordTop100() throws Exception {
-        StreamStudy.printLongestWordTop100();
+        assertThat(StreamStudy.printLongestWordTop100().size()).isEqualTo(100);
     }
 
     @Test
