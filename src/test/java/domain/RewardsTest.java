@@ -19,4 +19,14 @@ public class RewardsTest {
 
         assertThat(rewards.position(reward1)).isEqualTo(new Position(0, 0));
     }
+
+    @DisplayName("순서를 입력받아 보상을 구한다.")
+    @Test
+    void test02() {
+        Reward reward1 = new Reward("1000");
+        Reward reward2 = new Reward("1000");
+        Reward reward3 = new Reward("1000");
+        Rewards rewards = new Rewards(List.of(reward1, reward2, reward3));
+        assertThat(rewards.findByOrder(0)).isEqualTo(reward1);
+    }
 }
