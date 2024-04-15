@@ -12,6 +12,11 @@ public class Line {
         this.bridges = new Bridges(height);
     }
 
+    private Line(Height height, Bridges bridges) {
+        this.height = height;
+        this.bridges = bridges;
+    }
+
     public static Line createWithBridges(int height, BridgeCreationStrategy strategy) {
         return createWithBridges(new Height(height), strategy);
     }
@@ -20,6 +25,10 @@ public class Line {
         Line line = new Line(height);
         line.addBridges(strategy);
         return line;
+    }
+
+    public static Line create(Bridges bridges) {
+        return new Line(new Height(bridges.total() - 1), bridges);
     }
 
     public void resetBridges(Line prev) {
@@ -52,5 +61,9 @@ public class Line {
 
     public int getHeight() {
         return height.getHeight();
+    }
+
+    public Direction move(int height) {
+        return this.bridges.move(height);
     }
 }
