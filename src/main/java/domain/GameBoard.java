@@ -33,18 +33,6 @@ public class GameBoard {
     }
 
     public GameResult result(Player player, Rewards rewards) {
-        GameResult gameResult = new GameResult();
-        if (player.isName("all")) {
-            this.players.forEach(p -> {
-                gameResult.add(p, getReward(p, rewards));
-            });
-            return gameResult;
-        }
-        gameResult.add(player, getReward(player, rewards));
-        return gameResult;
-    }
-
-    public Reward result1(Player player, Rewards rewards) {
-        return rewards.findByOrder(ladder.getEndColumn(players.getOrder(player)));
+        return new GameResult(player, rewards.findByOrder(ladder.getEndColumn(players.getOrder(player))));
     }
 }
