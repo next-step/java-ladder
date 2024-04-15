@@ -13,6 +13,7 @@ public class Main {
     ResultView resultView = new ResultView();
 
     People people = inputView.inputNames();
+    LadderPrize prize = inputView.inputPrizes();
 
     resultView.print("최대 사다리 높이는 몇 개인가요?");
     int maxLadder = inputView.inputInteger();
