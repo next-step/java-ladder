@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class BridgesTest {
 
@@ -57,5 +58,16 @@ public class BridgesTest {
         Bridge third = second.next(true);
         Bridges bridges = new Bridges(List.of(first, second, third));
         assertThat(bridges.total()).isEqualTo(3);
+    }
+
+    @DisplayName("마지막 다리의 우측에는 다리를 놓을 수 없다.")
+    @Test
+    void test05() {
+        Bridge first = Bridge.first(true);
+        Bridge second = first.next(false);
+        Bridge third = second.next(true);
+        assertThatThrownBy(() -> new Bridges(List.of(first, second, third)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("마지막 다리의 우측에는 다리를 놓을 수 없습니다.");
     }
 }
