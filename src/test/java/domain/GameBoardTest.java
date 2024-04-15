@@ -46,7 +46,7 @@ public class GameBoardTest {
         Bridges thirdHeightBridges = new Bridges(List.of(first2, second2, third2, fourth2));
         Ladder ladder = new Ladder(List.of(firstHeightBridges, secondHeightBridges, thirdHeightBridges));
         GameBoard gameBoard = new GameBoard(PlayersTest.PS1, ladder);
-        Reward reward = gameBoard.result(PlayerTest.P1, RewardsTest.RS1);
+        Reward reward = gameBoard.result1(PlayerTest.P1, RewardsTest.RS1);
         assertThat(reward).isEqualTo(RewardTest.R4);
     }
 }

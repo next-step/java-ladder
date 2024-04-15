@@ -12,6 +12,11 @@ public class GameBoard {
         this.ladder = new Ladder(lines);
     }
 
+    public GameBoard(Players players, Ladder ladder) {
+        this.players = players;
+        this.ladder = ladder;
+    }
+
     public static GameBoard of(Players players, Height height, BridgeCreationStrategy strategy) {
         Lines lines = Lines.of(players.totalNumber(), height, strategy);
         return new GameBoard(lines, players);
@@ -37,5 +42,9 @@ public class GameBoard {
         }
         gameResult.add(player, getReward(player, rewards));
         return gameResult;
+    }
+
+    public Reward result1(Player player, Rewards rewards) {
+        return rewards.findByOrder(ladder.getEndColumn(players.getOrder(player)));
     }
 }
