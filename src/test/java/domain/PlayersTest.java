@@ -30,4 +30,11 @@ public class PlayersTest {
         Player player = PS1.findByOrder(0);
         assertThat(player).isEqualTo(PlayerTest.P1);
     }
+
+    @DisplayName("특정 플레이어의 순서를 구한다.")
+    @Test
+    void test04() {
+        int order = PS1.getOrder(PlayerTest.P1);
+        assertThat(order).isEqualTo(0);
+    }
 }
