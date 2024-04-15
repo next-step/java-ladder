@@ -12,6 +12,10 @@ public class Names {
 			.collect(Collectors.toList());
 	}
 
+	public int findStartRow(final Name name) {
+		return names.indexOf(name);
+	}
+
 	public List<Name> getNames() {
 		return names;
 	}

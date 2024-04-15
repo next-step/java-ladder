@@ -17,4 +17,8 @@ public class Ladder {
 	public List<Line> getLines() {
 		return lines;
 	}
+
+	public int move(int row, int column) {
+		return lines.get(column).move(row);
+	}
 }
