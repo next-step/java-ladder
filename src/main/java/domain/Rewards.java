@@ -24,4 +24,8 @@ public class Rewards {
     public Reward findByPosition(int x) {
         return rewards.get(x);
     }
+
+    public Reward findByOrder(int order) {
+        return rewards.get(order);
+    }
 }
