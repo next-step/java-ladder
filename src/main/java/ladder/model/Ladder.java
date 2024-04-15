@@ -1,7 +1,6 @@
 package ladder.model;
 
 import ladder.model.utils.ConnectLine;
-import ladder.model.utils.ConnectLineRandom;
 
 import java.util.ArrayList;
 import java.util.List;

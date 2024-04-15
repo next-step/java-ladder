@@ -25,9 +25,10 @@ public class LineTest {
     @DisplayName("Line은 TRUE를 연속으로 가질 수 없다.")
     void check_ladder_height() {
         List<Boolean> connectedLine = List.of(Boolean.TRUE, Boolean.TRUE);
+        ConnectLine connectLine = new ConnectLineRandom();
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            new Line(connectedLine);
+            new Line(connectedLine, connectLine);
         });
     }
 }

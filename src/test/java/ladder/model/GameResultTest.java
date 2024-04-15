@@ -1,5 +1,7 @@
 package ladder.model;
 
+import ladder.model.utils.ConnectLine;
+import ladder.model.utils.ConnectLineRandom;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,10 +28,11 @@ public class GameResultTest {
     void check_game_result() {
         NameList nameList = new NameList("anna, pony, ando");
         GameResultList gameResultList = new GameResultList("100, 200, 300", nameList.numOfName());
+        ConnectLine connectLine = new ConnectLineRandom();
 
         GameResult gameResult = new GameResult(nameList, gameResultList);
-        Line line = new Line(Arrays.asList(Boolean.TRUE, Boolean.FALSE));
-        Line line2 = new Line(Arrays.asList(Boolean.FALSE, Boolean.FALSE));
+        Line line = new Line(Arrays.asList(Boolean.TRUE, Boolean.FALSE),connectLine);
+        Line line2 = new Line(Arrays.asList(Boolean.FALSE, Boolean.FALSE),connectLine);
         Ladder ladder = new Ladder(Arrays.asList(line, line2));
         gameResult.ladderGame(ladder);
 

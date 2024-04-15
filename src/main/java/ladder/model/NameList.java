@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class NameList {
+public class NameList implements NameListInterface{
     private static final String NAME_PATTERN = "^[a-zA-Z]*$";
     private List<String> nameList;
 
@@ -57,6 +57,7 @@ public class NameList {
         return nameList;
     }
 
+    @Override
     public NameList swapPoints(int index) {
         if (index < 0 || index >= nameList.size() - 1) {
             throw new IllegalArgumentException("경계 초과");
