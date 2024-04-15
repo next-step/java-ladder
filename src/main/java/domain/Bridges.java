@@ -39,4 +39,8 @@ public class Bridges {
     public void remove(int height) {
         this.heightToBridges.put(new Height(height), new Bridge());
     }
+
+    public Direction move(int height) {
+        return bridges.get(height).move();
+    }
 }
