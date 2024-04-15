@@ -14,7 +14,7 @@ public class People {
 
   private void validatePeople(List<Person> people) {
     if (people.size() < MIN_PEOPLE_NUMBER) {
-      throw new IllegalArgumentException("참여자는 최소 2명 이상이어야 합니다.");
+      throw new IllegalArgumentException(String.format("참여자는 최소 %d명 이상이어야 합니다.",MIN_PEOPLE_NUMBER));
     }
   }
 

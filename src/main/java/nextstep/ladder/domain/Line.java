@@ -21,9 +21,9 @@ public class Line {
         .collect(ArrayList::new, (list, element) -> {
           if (list.isEmpty() || list.get(list.size() - 1).isNotBridge()) {
             list.add(Point.of(element));
-          } else {
-            list.add(Point.of(FALSE));
+            return ;
           }
+          list.add(Point.of(FALSE));
         }, ArrayList::addAll);
   }
 

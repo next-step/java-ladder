@@ -6,8 +6,8 @@ import java.util.stream.IntStream;
 
 public class LadderMap {
   private List<Line> lines;
-  private final int MINIMUM_WIDTH = 1;
-  private final int MINIMUM_HEIGHT = 1;
+  private static final int MINIMUM_WIDTH = 1;
+  private static final int MINIMUM_HEIGHT = 1;
 
 
 public LadderMap(int width, int height, BooleanGenerator booleanGenerator) {

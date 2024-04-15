@@ -18,7 +18,12 @@ public class ResultView {
 
 
   private String getLineString(List<Point> points) {
-    return String.format("|%s|", points.stream().map(point -> point.isNotBridge() ? "     " : "-----")
+    return String.format("|%s|", points.stream().map(point -> {
+      if(point.isNotBridge()){
+        return "     ";
+      }
+      return "-----";
+    })
         .collect(Collectors.joining("|")));
   }
 }

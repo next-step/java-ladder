@@ -1,6 +1,6 @@
 package nextstep.ladder.domain;
 
-public class RandomBooleanGenerator implements BooleanGenerator{
+public class RandomBooleanGenerator implements BooleanGenerator {
 
   @Override
   public Boolean generate() {
