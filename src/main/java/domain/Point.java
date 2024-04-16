@@ -17,17 +17,6 @@ public class Point {
         return new Point(false, left, current);
     }
 
-    public Point(boolean current) {
-        this(false, current);
-    }
-    public Point(boolean left, boolean current) {
-        if (left && current) {
-            throw new IllegalArgumentException();
-        }
-        this.left = left;
-        this.current = current;
-    }
-
     private Point(boolean isLast, boolean left, boolean current) {
         if (left && current) {
             throw new IllegalArgumentException();

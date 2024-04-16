@@ -28,28 +28,28 @@ class PointTest {
         @Test
         @DisplayName("left만 true면 왼쪽으로 이동")
         void left() {
-            Point point = new Point(true, false);
+            Point point = Point.of(true, false);
             assertThat(point.move()).isEqualTo(PointDirection.LEFT);
         }
 
         @Test
         @DisplayName("current만 true면 오른쪽으로 이동")
         void right() {
-            Point point = new Point(false, true);
+            Point point = Point.of(false, true);
             assertThat(point.move()).isEqualTo(PointDirection.RIGHT);
         }
 
         @Test
         @DisplayName("left와 current가 false면 아래로 이동")
         void down() {
-            Point point = new Point(false, false);
+            Point point = Point.of(false, false);
             assertThat(point.move()).isEqualTo(PointDirection.DOWN);
         }
 
         @Test
         @DisplayName("left와 current가 false면 아래로 이동")
         void next() {
-            Point point = new Point(false, false);
+            Point point = Point.of(false, false);
             assertThat(point.move()).isEqualTo(PointDirection.DOWN);
         }
     }
