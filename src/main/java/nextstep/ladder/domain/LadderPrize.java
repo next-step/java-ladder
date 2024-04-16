@@ -12,4 +12,8 @@ public class LadderPrize {
   public List<String> getPrizes() {
     return prizes;
   }
+
+  public String findPrize(int index){
+    return prizes.get(index);
+  }
 }

@@ -20,7 +20,8 @@ public class People {
   public int getPeopleNumber() {
     return people.size();
   }
-  public List<Person> getPeople() {
-    return people;
+
+  public Person findPersonByIndex(int index){
+    return people.get(index);
   }
 }
