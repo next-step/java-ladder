@@ -22,7 +22,22 @@ public class Lines {
 
     public boolean hasAtLeastOneBridge(int countOfPlayer) {
         return IntStream.range(0, countOfPlayer - 1)
-                .allMatch(i -> this.lines.stream().anyMatch(line -> line.getPoint(i)));
+                .allMatch(i -> this.lines.stream().anyMatch(line -> line.hasPoint(i)));
+    }
+
+    public int runPlayerGoLines(int initialPosition) {
+        int movedPosition = initialPosition;
+
+        for (Line line : this.lines) {
+            if (line.hasPoint(movedPosition)) {
+                movedPosition += 1;
+            }
+            else if (line.hasPoint(movedPosition - 1)) {
+                movedPosition -= 1;
+            }
+        }
+
+        return movedPosition;
     }
 
     public List<Line> getLines() {

@@ -5,28 +5,22 @@ import java.util.List;
 public class Ladder {
 
     private Lines lines;
-    private Floor floor;
-
     private Ladder(int height, int countOfPlayer) {
-
         Lines lines = new Lines(height, countOfPlayer);
-        Floor newFloor = new Floor(height);
-
-        this.floor = newFloor;
         this.lines = lines;
     }
 
-    public static Ladder of(int height, int countOfPerson) {
-        Ladder ladder = new Ladder(height, countOfPerson);
+    public static Ladder of(int height, int countOfPlayer) {
+        Ladder ladder = new Ladder(height, countOfPlayer);
 
-        if (!ladder.lines.hasAtLeastOneBridge(countOfPerson)) {
-            return Ladder.of(height, countOfPerson);
+        if (!ladder.lines.hasAtLeastOneBridge(countOfPlayer)) {
+            return Ladder.of(height, countOfPlayer);
         }
 
         return ladder;
     }
 
-    public List<Line> getLines() {
-        return lines.getLines();
+    public Lines getLines() {
+        return this.lines;
     }
 }

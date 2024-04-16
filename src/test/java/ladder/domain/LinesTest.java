@@ -1,9 +1,10 @@
-package ladder;
+package ladder.domain;
 
 import ladder.domain.Line;
 import ladder.domain.Lines;
 import ladder.domain.Point;
 import ladder.domain.Points;
+import ladder.fixture.Fixture;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -31,10 +32,17 @@ class LinesTest {
     @DisplayName("player가 탈 사다리가 적어도 하나의 다리를 가지고있는지 확인한다. - 2층 사다리(line 2개), 3명의 참여자(point 2개)")
     @Test
     void hasAtLeastOneBridge_true() {
-        Points points1 = new Points(List.of(new Point(false), new Point(true))); // 3명
-        Points points2 = new Points(List.of(new Point(true), new Point(false))); // 3명
-        Lines lines = new Lines(List.of(new Line(points1), new Line(points2))); // 2층
-
+        Lines lines = Fixture.makeInvalidLines();
         Assertions.assertThat(lines.hasAtLeastOneBridge(3)).isTrue();
+    }
+
+    @DisplayName("player의 위치에 해당하는 인덱스에 Brige가 있으면 우측으로, 위치의 -1에 해당하는 인덱스에 Bridge가 있으면 좌측으로 이동한다.")
+    @Test
+    void runPlayerGoLines() {
+        Lines lines = Fixture.makeValidLines();
+
+        Assertions.assertThat(lines.runPlayerGoLines(0)).isEqualTo(1);
+        Assertions.assertThat(lines.runPlayerGoLines(1)).isEqualTo(2);
+        Assertions.assertThat(lines.runPlayerGoLines(2)).isEqualTo(0);
     }
 }
