@@ -1,7 +1,7 @@
 package domain;
 
 public class Point {
-    private boolean isLast;
+    private final boolean isLast;
     private final boolean left;
     private final boolean current;
 

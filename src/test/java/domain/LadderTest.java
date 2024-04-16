@@ -40,9 +40,9 @@ public class LadderTest {
     private static List<Point> getPoints(boolean... pointArr) {
         List<Point> points = new ArrayList<>();
         boolean previousBoolean = false;
-        for (int i = 0; i < pointArr.length; i++) {
-            points.add(Point.of(previousBoolean, pointArr[i]));
-            previousBoolean = pointArr[i];
+        for (boolean b : pointArr) {
+            points.add(Point.of(previousBoolean, b));
+            previousBoolean = b;
         }
 
         return points;
