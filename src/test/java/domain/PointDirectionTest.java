@@ -24,7 +24,7 @@ class PointDirectionTest {
     @Test
     @DisplayName("PointDirection.NONE의 operate 호출 시 매개변수 그대로 반환")
     void none() {
-        assertThat(NONE.operate(1)).isEqualTo(1);
+        assertThat(DOWN.operate(1)).isEqualTo(1);
     }
 
 

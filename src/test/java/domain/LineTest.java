@@ -40,8 +40,8 @@ public class LineTest {
         return Stream.of(
                 Arguments.arguments(Player.of("nimoh",0) , PointDirection.RIGHT),
                 Arguments.arguments(Player.of("sera",1), PointDirection.LEFT),
-                Arguments.arguments(Player.of("pobi",2), PointDirection.NONE),
-                Arguments.arguments(Player.of("jane",3), PointDirection.NONE),
+                Arguments.arguments(Player.of("pobi",2), PointDirection.DOWN),
+                Arguments.arguments(Player.of("jane",3), PointDirection.DOWN),
                 Arguments.arguments(Player.of("yona",4), PointDirection.RIGHT),
                 Arguments.arguments(Player.of("jinx",5), PointDirection.LEFT)
         );

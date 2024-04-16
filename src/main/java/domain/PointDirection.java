@@ -3,7 +3,7 @@ package domain;
 import java.util.function.IntFunction;
 
 public enum PointDirection {
-    LEFT(value -> value - 1), RIGHT(value -> value + 1), NONE(value -> value);
+    LEFT(value -> value - 1), RIGHT(value -> value + 1), DOWN(value -> value);
 
     private final IntFunction<Integer> operator;
 

@@ -37,7 +37,7 @@ public class Line implements Iterable<Point>  {
             return PointDirection.LEFT;
         }
 
-        return PointDirection.NONE;
+        return PointDirection.DOWN;
     }
 
     private Boolean isExistRightPoint(Player player) {
@@ -62,13 +62,13 @@ public class Line implements Iterable<Point>  {
         if (isExistLeftPoint(player)) {
             return PointDirection.LEFT;
         }
-        return PointDirection.NONE;
+        return PointDirection.DOWN;
     }
 
     private PointDirection rightPointOrNone(Player player) {
         if (isExistRightPoint(player)) {
             return PointDirection.RIGHT;
         }
-        return PointDirection.NONE;
+        return PointDirection.DOWN;
     }
 }
