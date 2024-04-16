@@ -11,15 +11,11 @@ public class Rewards {
         this.rewards = new ArrayList<>(rewards);
     }
 
-    public void display(LadderVisitor visitor) {
-        visitor.visit(rewards);
-    }
-
-    public Reward findByPosition(int x) {
-        return rewards.get(x);
-    }
-
     public Reward findByOrder(int order) {
         return rewards.get(order);
+    }
+
+    public void display(LadderVisitor visitor) {
+        visitor.visit(rewards);
     }
 }

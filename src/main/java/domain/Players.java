@@ -15,16 +15,16 @@ public class Players implements Iterable<Player> {
         return players.size();
     }
 
-    public void accept(LadderVisitor visitor) {
-        visitor.visit(players);
-    }
-
     public Player findByOrder(int order) {
         return players.get(order);
     }
 
     public int getOrder(Player player) {
         return players.indexOf(player);
+    }
+
+    public void accept(LadderVisitor visitor) {
+        visitor.visit(players);
     }
 
     @Override

@@ -2,8 +2,8 @@ package domain;
 
 public class Bridge {
 
-    private boolean left;
-    private boolean current;
+    private final boolean left;
+    private final boolean current;
 
     private Bridge(boolean left, boolean current) {
         this.left = left;
