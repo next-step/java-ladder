@@ -29,4 +29,19 @@ public class LineTest {
     assertThat(line.move(4)).isEqualTo(4);
   }
 
+  @Test
+  @DisplayName("사다리에서 오른쪽으로 이동한다.")
+  void moveRight() {
+    Line line = new Line(5, () -> true);
+    assertThat(line.move(0)).isEqualTo(1);
+  }
+
+  @Test
+  @DisplayName("사다리 제일 끝에서 왼쪽으로 한칸 이동한다.")
+  void moveLeft() {
+    int width = 5;
+    Line line = new Line(width, () -> true);
+    assertThat(line.move(width)).isEqualTo(width-1);
+  }
+
 }

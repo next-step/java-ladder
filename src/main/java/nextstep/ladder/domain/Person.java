@@ -14,6 +14,9 @@ public class Person {
     if( name.length() > MAX_NAME_LENGTH ){
       throw new IllegalArgumentException(String.format("이름은 %d자 이하여야 합니다.", MAX_NAME_LENGTH));
     }
+    if(name.equals("all")){
+      throw new IllegalArgumentException("이름은 all이 올 수 없습니다.");
+    }
   }
 
   public String getName() {

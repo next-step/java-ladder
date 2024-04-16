@@ -20,4 +20,10 @@ public class PersonTest {
   void createPersonException() {
     assertThatThrownBy(() ->  new Person("pobime")).isInstanceOf(IllegalArgumentException.class);
   }
+
+  @Test
+  @DisplayName("사람의 이름은 all은 올 수 없다.")
+  void createPersonAllException() {
+    assertThatThrownBy(() ->  new Person("all")).isInstanceOf(IllegalArgumentException.class);
+  }
 }
