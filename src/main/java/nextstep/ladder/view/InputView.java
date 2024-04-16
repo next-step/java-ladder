@@ -23,9 +23,10 @@ public class InputView {
   }
 
   public People inputNames() {
-    System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+    System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요. 단, 이름에 `all` 은 올 수 없습니다.)");
     List<Person> people = Arrays.stream(scanner.nextLine().split(","))
         .map(String::trim)
+        .filter(this::nameIsNotAll)
         .map(Person::new)
         .collect(Collectors.toList());
     return new People(people);
@@ -42,5 +43,9 @@ public class InputView {
   public Person inputName(){
     System.out.println("결과를 보고 싶은 사람은?");
     return new Person(scanner.nextLine());
+  }
+
+  private boolean nameIsNotAll(String name){
+    return !name.equals("all");
   }
 }
