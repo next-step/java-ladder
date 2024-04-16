@@ -1,21 +1,20 @@
 package domain;
 
 public class Point {
-    private boolean isFirst;
     private boolean isLast;
     private final boolean left;
     private final boolean current;
 
     public static Point first(boolean current) {
-        return new Point(true, false, false, current);
+        return new Point(false, false, current);
     }
 
     public static Point last(boolean left) {
-        return new Point(false, true, left, false);
+        return new Point(true, left, false);
     }
 
     public static Point of(boolean left, boolean current) {
-        return new Point(false, false, left, current);
+        return new Point(false, left, current);
     }
 
     public Point(boolean current) {
@@ -29,11 +28,10 @@ public class Point {
         this.current = current;
     }
 
-    private Point(boolean isFirst, boolean isLast, boolean left, boolean current) {
+    private Point(boolean isLast, boolean left, boolean current) {
         if (left && current) {
             throw new IllegalArgumentException();
         }
-        this.isFirst = isFirst;
         this.isLast = isLast;
         this.left = left;
         this.current = current;
@@ -43,8 +41,8 @@ public class Point {
         return current;
     }
 
-    public boolean isFirst() {
-        return isFirst;
+    public boolean hasCurrent() {
+        return current;
     }
 
     public boolean isLast() {

@@ -60,7 +60,10 @@ public class OutputView {
     }
 
     private void appendLineByPoint(Point point, StringBuilder sb) {
-        if (point.isExist()) {
+        if (point.isLast()) {
+            return;
+        }
+        if (point.hasCurrent()) {
             sb.append(TRUE_LINE);
             return;
         }

@@ -19,7 +19,7 @@ public class LadderTest {
 
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < ladderHeight; i++) {
-            lines.add(Line.from(players.size(), (playerCount) -> getPoints(true, false, true, false)));
+            lines.add(Line.from(players.size(), (playerCount) -> getPoints(true, false, true, false, false)));
         }
 
         List<String> results = List.of("꽝", "2000", "3000", "꽝", "10000");
@@ -39,9 +39,12 @@ public class LadderTest {
 
     private static List<Point> getPoints(boolean... pointArr) {
         List<Point> points = new ArrayList<>();
-        for (boolean point : pointArr) {
-            points.add(new Point(point));
+        boolean previousBoolean = false;
+        for (int i = 0; i < pointArr.length; i++) {
+            points.add(Point.of(previousBoolean, pointArr[i]));
+            previousBoolean = pointArr[i];
         }
+
         return points;
     }
 }

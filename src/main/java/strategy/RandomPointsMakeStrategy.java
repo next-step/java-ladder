@@ -16,7 +16,7 @@ public class RandomPointsMakeStrategy implements PointsMakeStrategy {
 
         boolean currentPoint = getRandomBoolean();
         points.add(Point.first(currentPoint));
-        final int positionOfSecondFromLastPlayer = playerCount - 2;
+        final int positionOfSecondFromLastPlayer = playerCount - 1;
         for (int i = SECOND_PLAYER_POSITION; i < positionOfSecondFromLastPlayer; i++) {
             currentPoint = addPoint(currentPoint, points);
         }

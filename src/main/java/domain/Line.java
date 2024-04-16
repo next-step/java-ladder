@@ -24,20 +24,22 @@ public class Line implements Iterable<Point>  {
     }
 
     public PointDirection checkPointDirection(Player player) {
-        if (isFarLeft(player)) {
-            return rightPointOrNone(player);
-        }
-        if (isFarRight(player)) {
-            return leftPointOrNone(player);
-        }
-        if (isExistRightPoint(player)) {
-            return PointDirection.RIGHT;
-        }
-        if (isExistLeftPoint(player)) {
-            return PointDirection.LEFT;
-        }
-
-        return PointDirection.DOWN;
+        Point point = points.get(player.getPosition());
+        return point.move();
+//        if (isFarLeft(player)) {
+//            return rightPointOrNone(player);
+//        }
+//        if (isFarRight(player)) {
+//            return leftPointOrNone(player);
+//        }
+//        if (isExistRightPoint(player)) {
+//            return PointDirection.RIGHT;
+//        }
+//        if (isExistLeftPoint(player)) {
+//            return PointDirection.LEFT;
+//        }
+//
+//        return PointDirection.DOWN;
     }
 
     private Boolean isExistRightPoint(Player player) {
