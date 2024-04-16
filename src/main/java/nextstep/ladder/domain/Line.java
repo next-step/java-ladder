@@ -32,14 +32,22 @@ public class Line {
   }
 
   public int move(int index) {
-    if(index > 0 && !points.get(index-1).isNotBridge() ) {
+    if(canMoveLeft(index)) {
       return index - 1;
     }
 
-    if (index < points.size() && !points.get(index).isNotBridge()) {
+    if(canMoveRight(index)) {
       return index + 1;
     }
     return index;
+  }
+
+  private boolean canMoveLeft(int index){
+    return index > 0 && !points.get(index-1).isNotBridge();
+  }
+
+  private boolean canMoveRight(int index){
+    return index < points.size() && !points.get(index).isNotBridge();
   }
 
 }
