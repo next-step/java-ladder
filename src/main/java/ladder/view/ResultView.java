@@ -25,7 +25,7 @@ public class ResultView {
                 .forEach(System.out::println);
     }
 
-    private static String lineToString(Line line) {
+    private static String lineToString(LineStrategy line) {
         StringJoiner joiner = new StringJoiner("|", "     |", "|");
         line.getBridge()
                 .stream()

@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public class Line {
+public class Line implements LineStrategy {
     private final List<Boolean> bridge;
 
     public Line(List<Boolean> bridge) {
@@ -33,14 +33,17 @@ public class Line {
         return !previous && generator.nextBoolean();
     }
 
+    @Override
     public List<Boolean> getBridge() {
         return bridge;
     }
 
+    @Override
     public int countOfBridge() {
         return this.bridge.size();
     }
 
+    @Override
     public boolean canMove(int width) {
         return this.bridge.get(width);
     }

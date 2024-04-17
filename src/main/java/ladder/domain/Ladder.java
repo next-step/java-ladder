@@ -6,16 +6,16 @@ import java.util.stream.Stream;
 
 public class Ladder implements LadderStrategy{
     private static final RandomLineGenerator randomLineGenerator = new RandomLineGenerator();
-    private final List<Line> lines;
+    private final List<LineStrategy> lines;
 
-    public Ladder(List<Line> lines) {
+    public Ladder(List<LineStrategy> lines) {
         this.lines = lines;
     }
 
     public static Ladder generateLadder(int ladderHeight, int countOfPerson) {
         checkLadderHeight(ladderHeight);
 
-        List<Line> lineList = Stream.generate(() -> Line.generateLine(countOfPerson, randomLineGenerator))
+        List<LineStrategy> lineList = Stream.generate(() -> Line.generateLine(countOfPerson, randomLineGenerator))
                 .limit(ladderHeight)
                 .collect(Collectors.toList());
 
@@ -29,7 +29,7 @@ public class Ladder implements LadderStrategy{
     }
 
     @Override
-    public List<Line> getLines() {
+    public List<LineStrategy> getLines() {
         return lines;
     }
 
