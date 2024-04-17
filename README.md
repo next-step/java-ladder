@@ -72,5 +72,5 @@ tdd를 통한 개발을 할 때 도메인, 요구 사항에 대한 명확한 이
 
 ### 3단계 피드백
 - [x] 부정형(isNotFirstPosition)으로 물어보라
-- [ ] Person#crossLadder(..) 에 별도로 예외 메시지를 작성하라
+- [x] Person#crossLadder(..) 에 별도로 예외 메시지를 작성하라
 - [x] 값을 꺼내려하지말고 position 객체로 판별하게 하라

@@ -28,18 +28,36 @@ public class Person {
     }
 
     public void crossLadder(Rungs rungs) {
+        validateRungs(rungs);
+        if (isFirstPosition()) {
+            crossLadderFromFirstPosition(rungs);
+            return;
+        }
+
+        if (isNotFirstPosition()) {
+            crossLadderFromNonFirstPosition(rungs);
+            return;
+        }
+
+        throw new IllegalArgumentException("사다리를 건너는데 문제가 발생했습니다.");
+    }
+
+    private static void validateRungs(Rungs rungs) {
         if (rungs == null || rungs.size() == 0) {
             throw new IllegalArgumentException("사다리가 존재하지 않습니다.");
         }
-        if (isFirstPosition() && rungs.isExistNextToRight(position)) {
+    }
+
+    private void crossLadderFromFirstPosition(Rungs rungs) {
+        if (rungs.isExistNextToRight(position)) {
             this.position.crossRight();
-            return;
         }
-        if (isNotFirstPosition() && rungs.isExistNextToLeft(position)) {
+    }
+
+    private void crossLadderFromNonFirstPosition(Rungs rungs) {
+        if (rungs.isExistNextToLeft(position)) {
             this.position.crossLeft();
-            return;
-        }
-        if (isNotFirstPosition() && rungs.isExistNextToRight(position)) {
+        } else if (rungs.isExistNextToRight(position)) {
             this.position.crossRight();
         }
     }
