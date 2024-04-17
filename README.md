@@ -11,8 +11,8 @@
 ## Step1 : 🚀 1단계 - 스트림, 람다, Optional
 
 ### todo 
-- [x] 람다 실습 1 - 익명 클래스를 람다로 전환
-- [ ] 람다 실습 2 - 람다를 활용해 중복 제거
+- [X] 람다 실습 1 - 익명 클래스를 람다로 전환
+- [X] 람다 실습 2 - 람다를 활용해 중복 제거
 - [ ] 스트림 실습 1 - map, reduce, filter 실습 1
  - List에 담긴 모든 숫자 중 3보다 큰 숫자를 2배 한 후 모든 값의 합을 구한다. 지금까지 학습한 map, reduce, filter를 활용해 구현해야 한다.
  - nextstep.fp.StreamStudyTest 클래스의 sumOverThreeAndDouble() 테스트를 pass해야 한다.
