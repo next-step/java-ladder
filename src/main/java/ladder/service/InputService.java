@@ -1,5 +1,6 @@
 package ladder.service;
 
+import ladder.domain.Participant;
 import ladder.domain.Participants;
 import ladder.domain.ShowResultType;
 
@@ -10,9 +11,11 @@ import java.util.stream.Collectors;
 public class InputService {
     private static final String ALL_PARTICIPANTS = "all";
 
-    public static List<String> parseParticipants(String input) {
-        return Arrays.stream(input.replaceAll("\\s", "")
-                .split(",")).map(InputService::validateParticipants).collect(Collectors.toList());
+    public static List<Participant> parseParticipants(String input) {
+        List<String> stringParticipants = Arrays.stream(input.replaceAll("\\s", "")
+                .split(",")).collect(Collectors.toList());
+
+        return stringParticipants.stream().map(name -> new Participant(name, stringParticipants.indexOf(name))).collect(Collectors.toList());
     }
 
     public static List<String> parseResults(String input) {
@@ -22,14 +25,6 @@ public class InputService {
 
     public static ShowResultType getResultType(String input) {
         return ShowResultType.get(input);
-    }
-
-    private static String validateParticipants(String input) {
-        if (input.length() > 5) {
-            throw new IllegalArgumentException("참가자 이름은 다섯글자를 넘길 수 없습니다.");
-        }
-
-        return input;
     }
 
     public static int validateLadderHeight(int height) {

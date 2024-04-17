@@ -1,5 +1,6 @@
 package ladder.service;
 
+import ladder.domain.Participant;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,11 +15,11 @@ class InputServiceTest {
     public void parseParticipantsStringTest() {
         String input = "ik, oop, ddp, cho";
 
-        List<String> parsedParticipants = InputService.parseParticipants(input);
+        List<Participant> parsedParticipants = InputService.parseParticipants(input);
 
         assertThat(parsedParticipants.size()).isEqualTo(4);
-        assertThat(parsedParticipants.get(0)).isEqualTo("ik");
-        assertThat(parsedParticipants.get(1)).isEqualTo("oop");
+        assertThat(parsedParticipants.get(0).getName()).isEqualTo("ik");
+        assertThat(parsedParticipants.get(1).getName()).isEqualTo("oop");
     }
 
     @Test

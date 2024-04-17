@@ -15,24 +15,23 @@ public class Game {
         this.results = results;
     }
 
-    public String getIndividualResult(String participant) {
-        CurrentLocation currentLocation = participants.getParticipantStartLocation(participant);
+    public String getIndividualResult(Participant participant) {
         StreamSupport.stream(ladder.spliterator(), false)
-                .forEach(line -> updatePosition(currentLocation, line));
-        return results.getResult(currentLocation.getLocation());
+                .forEach(line -> updatePosition(participant, line));
+        return results.getResult(participant.getLocation());
     }
 
     public Map<String, String> getAllResult() {
         Map<String, String> result = new HashMap<>();
 
         StreamSupport.stream(participants.spliterator(), false)
-                .forEach(participant -> result.put(participant, getIndividualResult(participant)));
+                .forEach(participant -> result.put(participant.getName(), getIndividualResult(participant)));
 
         return result;
     }
 
-    private void updatePosition(CurrentLocation location, Line line) {
-        Direction direction = line.getDirection(location.getLocation());
-        location.updateLocation(direction);
+    private void updatePosition(Participant participant, Line line) {
+        Direction direction = line.getDirection(participant.getLocation());
+        participant.updateLocation(direction);
     }
 }

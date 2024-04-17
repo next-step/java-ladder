@@ -3,10 +3,10 @@ package ladder.domain;
 import java.util.Iterator;
 import java.util.List;
 
-public class Participants implements Iterable<String> {
-    private final List<String> participants;
+public class Participants implements Iterable<Participant> {
+    private final List<Participant> participants;
 
-    public Participants(List<String> participants) {
+    public Participants(List<Participant> participants) {
         this.participants = participants;
     }
 
@@ -14,16 +14,17 @@ public class Participants implements Iterable<String> {
         return participants.size();
     }
 
-    public CurrentLocation getParticipantStartLocation(String participant) {
-        return new CurrentLocation(participants.indexOf(participant));
+    public Participant findParticipant(String name) {
+        return participants.stream().filter(p -> p.isSameName(name)).findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("참가자가 아닙니다."));
     }
 
-    public boolean isParticipant(String participant) {
-        return participants.contains(participant);
+    public boolean isParticipant(String name) {
+        return participants.stream().anyMatch(p -> p.isSameName(name));
     }
 
     @Override
-    public Iterator<String> iterator() {
+    public Iterator<Participant> iterator() {
         return participants.iterator();
     }
 }

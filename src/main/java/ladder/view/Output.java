@@ -1,9 +1,6 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.Line;
-import ladder.domain.Participants;
-import ladder.domain.Results;
+import ladder.domain.*;
 
 import java.util.Map;
 import java.util.stream.StreamSupport;
@@ -39,8 +36,8 @@ public class Output {
     public static String showParticipants(Participants participants) {
         StringBuilder sb = new StringBuilder();
 
-        for (String participant: participants) {
-            sb.append(String.format("%6s", participant));
+        for (Participant participant: participants) {
+            sb.append(String.format("%6s", participant.getName()));
         }
 
         return sb.toString();

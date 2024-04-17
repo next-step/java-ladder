@@ -24,13 +24,13 @@ public class Main {
 
         Output.showGameView(participants, ladder, results);
 
-        String getResult = input.inputGetResult();
-        InputService.validateGetResultInput(getResult, participants);
+        String name = input.inputGetResult();
+        InputService.validateGetResultInput(name, participants);
 
-        ShowResultType showResultType = InputService.getResultType(getResult);
+        ShowResultType showResultType = InputService.getResultType(name);
 
         if (showResultType.equals(ShowResultType.INDIVIDUAL)) {
-            Output.showIndividualResult(game.getIndividualResult(getResult));
+            Output.showIndividualResult(game.getIndividualResult(participants.findParticipant(name)));
         }
 
         if (showResultType.equals(ShowResultType.ALL)) {
