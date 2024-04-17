@@ -27,26 +27,12 @@ public class LadderGameController {
     }
 
     private static Players readPlayers() {
-        Players players;
-        do {
-            Optional<Players> validatedInputPlayers = validatedInputPlayers();
-
-            if (validatedInputPlayers.isPresent()) {
-                players = validatedInputPlayers.get();
-                break;
-            }
-        } while (true);
-
-        return players;
-    }
-
-    private static Optional<Players> validatedInputPlayers() {
         try {
-            return Optional.of(Players.fromStringList(INPUT_VIEW.inputPlayers()));
+            return Players.fromStringList(INPUT_VIEW.inputPlayers());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage() + TRY_INPUT_AGAIN);
+            return readPlayers();
         }
-        return Optional.empty();
     }
 
     private static void printLadder(Players players, Ladder ladder, List<String> results) {
