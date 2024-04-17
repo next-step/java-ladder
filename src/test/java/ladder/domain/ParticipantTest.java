@@ -9,6 +9,7 @@ class ParticipantTest {
     public static final Participant PARTICIPANT_A = new Participant("a", 0);
     public static final Participant PARTICIPANT_B = new Participant("b", 1);
     public static final Participant PARTICIPANT_C = new Participant("c", 2);
+    public static final Participant PARTICIPANT_D = new Participant("d", 3);
 
     @Test
     @DisplayName("참가자 위치 이동 테스트")

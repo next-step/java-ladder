@@ -8,7 +8,7 @@ import java.util.Arrays;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ParticipantsTest {
-    public static final Participants PARTICIPANTS = new Participants(Arrays.asList(ParticipantTest.PARTICIPANT_A, ParticipantTest.PARTICIPANT_B, ParticipantTest.PARTICIPANT_C));
+    public static final Participants PARTICIPANTS = new Participants(Arrays.asList(ParticipantTest.PARTICIPANT_A, ParticipantTest.PARTICIPANT_B, ParticipantTest.PARTICIPANT_C, ParticipantTest.PARTICIPANT_D));
 
     @Test
     @DisplayName("참가자 생성 테스트")

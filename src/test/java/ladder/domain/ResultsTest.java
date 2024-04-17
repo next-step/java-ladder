@@ -8,7 +8,7 @@ import java.util.Arrays;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ResultsTest {
-    public static final Results RESULTS = new Results(Arrays.asList(ResultTest.RESULT_1, ResultTest.RESULT_2, ResultTest.RESULT_3));
+    public static final Results RESULTS = new Results(Arrays.asList(ResultTest.RESULT_1, ResultTest.RESULT_2, ResultTest.RESULT_3, ResultTest.RESULT_4));
 
     @Test
     @DisplayName("결과 생성 테스트")

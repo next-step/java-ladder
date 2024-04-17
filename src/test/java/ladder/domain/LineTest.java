@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
     public static Line LINE_1 = new Line(Arrays.asList(true, false, true));
-    public static Line LINE_2 = new Line(Arrays.asList(false, true, true));
+    public static Line LINE_2 = new Line(Arrays.asList(false, true, false));
 
     @Test
     @DisplayName("라인 초기화 테스트")
