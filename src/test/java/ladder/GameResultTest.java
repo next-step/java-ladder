@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class GameResultTest {
     @Test
     void 게임결과찾기() {
-        Ladder ladder = new Ladder(List.of(new Line(List.of(true, false)),
+        LadderStrategy ladder = new Ladder(List.of(new Line(List.of(true, false)),
                 new Line(List.of(false, true)),
                 new Line(List.of(true, false))));
         Participants participants = Participants.generateParticipants(new String[]{"aaa", "bbb", "ccc"});

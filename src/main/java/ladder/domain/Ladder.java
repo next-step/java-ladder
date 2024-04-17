@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Ladder {
+public class Ladder implements LadderStrategy{
     private static final RandomLineGenerator randomLineGenerator = new RandomLineGenerator();
     private final List<Line> lines;
 
@@ -28,10 +28,12 @@ public class Ladder {
         }
     }
 
+    @Override
     public List<Line> getLines() {
         return lines;
     }
 
+    @Override
     public Position arrival(Position initialPosition) {
         return Stream.iterate(initialPosition, this::nextPosition)
                 .filter(position -> position.isArrivalPosition(lines.size()))

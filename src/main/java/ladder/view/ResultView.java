@@ -18,7 +18,7 @@ public class ResultView {
         System.out.println(String.join("", names));
     }
 
-    public static void showLadder(Ladder ladder) {
+    public static void showLadder(LadderStrategy ladder) {
         ladder.getLines()
                 .stream()
                 .map(ResultView::lineToString)
