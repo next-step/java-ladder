@@ -61,12 +61,11 @@ tdd를 통한 개발을 할 때 도메인, 요구 사항에 대한 명확한 이
   - [x] 각각 int형 포지션을 갖는다
   - [x] 포지션이 음수면 예외를 반환한다 
   - [x] 포인트(Point)의 값(true/false)에 따라 사람(Person)의 position이 바뀐다
-- Point
+- Rung
   - [x] boolean값을 갖는다
   - [x] 이전(i - 1) 점이 존재하는지 검증한다   
-- Points
+- Rungs
   - [x] 점들이 각각 true인지 false인지 검증한다  
-  - [ ] 점들을 캐싱처리한다 
 - Ladder
   - [x] 점들이 각각 true인지 false인지 검증한다 
 
