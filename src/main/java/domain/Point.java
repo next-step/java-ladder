@@ -1,13 +1,50 @@
 package domain;
 
 public class Point {
-    private final boolean point;
+    private final boolean isLast;
+    private final boolean left;
+    private final boolean current;
 
-    public Point(boolean point) {
-        this.point = point;
+    public static Point first(boolean current) {
+        return new Point(false, false, current);
+    }
+
+    public static Point last(boolean left) {
+        return new Point(true, left, false);
+    }
+
+    public static Point of(boolean left, boolean current) {
+        return new Point(false, left, current);
+    }
+
+    private Point(boolean isLast, boolean left, boolean current) {
+        if (left && current) {
+            throw new IllegalArgumentException();
+        }
+        this.isLast = isLast;
+        this.left = left;
+        this.current = current;
     }
 
     public boolean isExist() {
-        return point;
+        return current;
+    }
+
+    public boolean hasCurrent() {
+        return current;
+    }
+
+    public boolean isLast() {
+        return isLast;
+    }
+
+    public PointDirection move() {
+        if (left) {
+            return PointDirection.LEFT;
+        }
+        if (current) {
+            return PointDirection.RIGHT;
+        }
+        return PointDirection.DOWN;
     }
 }

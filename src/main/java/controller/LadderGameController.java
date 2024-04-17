@@ -12,6 +12,8 @@ import java.util.List;
 public class LadderGameController {
     private static final InputView INPUT_VIEW = new InputView();
 
+    public static final String EXIT_GAME_INPUT = "exit";
+    public static final String EXIT_GAME_MESSAGE = "게임을 종료합니다.";
     public static final String TRY_INPUT_AGAIN = " 다시 입력해주세요.";
 
     public static void main(String[] args) {
@@ -26,12 +28,11 @@ public class LadderGameController {
     }
 
     private static Players readPlayers() {
-        while (true) {
-            try {
-                return Players.fromStringList(INPUT_VIEW.inputPlayers());
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage() + TRY_INPUT_AGAIN);
-            }
+        try {
+            return Players.fromStringList(INPUT_VIEW.inputPlayers());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage() + TRY_INPUT_AGAIN);
+            return readPlayers();
         }
     }
 
@@ -52,11 +53,26 @@ public class LadderGameController {
     }
 
     private static void printResult(LadderResult ladderResult) {
-        while (true) {
-            if (recursivePrintResult(ladderResult)) {
-                break;
+        try {
+            OutputView.printGetPlayerResultInputMessage();
+
+            String name = InputView.readNextLine();
+            if (isGameExitMessage(name)) {
+                return;
             }
+            OutputView.printPlayerResult(name, ladderResult);
+        } catch (IllegalArgumentException e) {
+            OutputView.printMessage(e.getMessage());
         }
+        printResult(ladderResult);
+    }
+
+    private static boolean isGameExitMessage(String message) {
+        if (EXIT_GAME_INPUT.equalsIgnoreCase(message)) {
+            System.out.println(EXIT_GAME_MESSAGE);
+            return true;
+        }
+        return false;
     }
 
     private static boolean recursivePrintResult(LadderResult ladderResult) {

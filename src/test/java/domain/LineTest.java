@@ -24,15 +24,18 @@ public class LineTest {
     @MethodSource("playerAndPointDirection")
     @DisplayName("checkPointDirection 호출 시 현재 플레이어 기준 수평 사다리의 방향 반환")
     void checkPointDirection(Player player, PointDirection expectedDirection) {
-        Line line = Line.from(6, (playerCount) -> getPoints(true, false, false, false, true));
+        Line line = Line.from(6, (playerCount) -> getPoints(true, false, false, false, true, false));
         PointDirection pointDirection = line.checkPointDirection(player);
         assertThat(pointDirection).isEqualTo(expectedDirection);
     }
     private static List<Point> getPoints(boolean... pointArr) {
         List<Point> points = new ArrayList<>();
-        for (boolean point : pointArr) {
-            points.add(new Point(point));
+        boolean previousBoolean = false;
+        for (boolean b : pointArr) {
+            points.add(Point.of(previousBoolean, b));
+            previousBoolean = b;
         }
+
         return points;
     }
 
@@ -40,8 +43,8 @@ public class LineTest {
         return Stream.of(
                 Arguments.arguments(Player.of("nimoh",0) , PointDirection.RIGHT),
                 Arguments.arguments(Player.of("sera",1), PointDirection.LEFT),
-                Arguments.arguments(Player.of("pobi",2), PointDirection.NONE),
-                Arguments.arguments(Player.of("jane",3), PointDirection.NONE),
+                Arguments.arguments(Player.of("pobi",2), PointDirection.DOWN),
+                Arguments.arguments(Player.of("jane",3), PointDirection.DOWN),
                 Arguments.arguments(Player.of("yona",4), PointDirection.RIGHT),
                 Arguments.arguments(Player.of("jinx",5), PointDirection.LEFT)
         );

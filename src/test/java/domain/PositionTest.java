@@ -32,7 +32,7 @@ public class PositionTest {
         return Stream.of(
                 Arguments.arguments(Position.valueOf(1), PointDirection.LEFT, Position.valueOf(0)),
                 Arguments.arguments(Position.valueOf(1), PointDirection.RIGHT, Position.valueOf(2)),
-                Arguments.arguments(Position.valueOf(1), PointDirection.NONE, Position.valueOf(1))
+                Arguments.arguments(Position.valueOf(1), PointDirection.DOWN, Position.valueOf(1))
         );
     }
 }

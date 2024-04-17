@@ -12,8 +12,6 @@ public class OutputView {
     private static final String FALSE_LINE = "     |";
     public static final String PLAY_RESULT_PRINT_MESSAGE = "실행 결과";
     public static final String ALL_RESULT_REQUEST = "all";
-    public static final String EXIT_GAME_INPUT = "exit";
-    public static final String EXIT_GAME_MESSAGE = "게임을 종료합니다.";
     public static final String GET_PLAYER_RESULT_INPUT_MESSAGE = "결과를 보고 싶은 사람은?";
 
     public static void printMessage(String message) {
@@ -30,14 +28,6 @@ public class OutputView {
             return;
         }
         System.out.println(ladderResult.getResult(playerName));
-    }
-
-    public static boolean isGameExitMessage (String message) {
-        if (EXIT_GAME_INPUT.equalsIgnoreCase(message)) {
-            System.out.println(EXIT_GAME_MESSAGE);
-            return true;
-        }
-        return false;
     }
 
     public void printPlayers(Players players) {
@@ -60,7 +50,10 @@ public class OutputView {
     }
 
     private void appendLineByPoint(Point point, StringBuilder sb) {
-        if (point.isExist()) {
+        if (point.isLast()) {
+            return;
+        }
+        if (point.hasCurrent()) {
             sb.append(TRUE_LINE);
             return;
         }
