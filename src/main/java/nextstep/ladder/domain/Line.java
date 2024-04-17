@@ -20,14 +20,23 @@ public class Line {
 	}
 
 	public int move(final int column) {
-		final Bridge leftBridge = getBridge(column - 1);
-		final Bridge rightBridge = getBridge(column);
+		int leftMove = checkLeftBridge(column);
+		int rightMove = checkRightBridge(column);
+		return leftMove != NO_MOVE ? leftMove : rightMove;
+	}
 
-		if (leftBridge.isBridge()) {
-			return MOVE_LEFT;
-		}
+	private Integer checkRightBridge(int column) {
+		final Bridge rightBridge = getBridgeAtIndex(column);
 		if (rightBridge.isBridge()) {
 			return MOVE_RIGHT;
+		}
+		return NO_MOVE;
+	}
+
+	private Integer checkLeftBridge(int column) {
+		final Bridge leftBridge = getBridgeAtIndex(column - 1);
+		if (leftBridge.isBridge()) {
+			return MOVE_LEFT;
 		}
 		return NO_MOVE;
 	}
@@ -37,7 +46,7 @@ public class Line {
 			bridges.add(now);
 			return;
 		}
-		if (getBridge(bridges.size() - 1).isBridge()) {
+		if (getBridgeAtIndex(bridges.size() - 1).isBridge()) {
 			bridges.add(Bridge.from(false));
 			return;
 		}
@@ -48,7 +57,7 @@ public class Line {
 		return bridges;
 	}
 
-	private Bridge getBridge(final int index) {
+	private Bridge getBridgeAtIndex(final int index) {
 		if (index >= 0 && index < bridges.size()) {
 			return bridges.get(index);
 		}

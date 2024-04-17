@@ -18,7 +18,7 @@ public class Ladder {
 
 	public int move(int column) {
 		int row = 0;
-		while (row != lines.size()){
+		while (row < lines.size()){
 			column += lines.get(row).move(column);
 			row++;
 		}
