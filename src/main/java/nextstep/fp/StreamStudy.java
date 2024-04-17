@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class StreamStudy {
@@ -26,8 +27,29 @@ public class StreamStudy {
         String contents = new String(Files.readAllBytes(Paths
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
+        words.stream()
+                .filter(overLength(12))
+                .sorted(StreamStudy::compareStringLength)
+                .distinct()
+                .limit(100)
+                .map(String::toLowerCase)
+                .forEach(System.out::println);
 
         // TODO 이 부분에 구현한다.
+    }
+
+    private static Predicate<String> overLength(int length) {
+        return word -> word.length() > length;
+    }
+
+    private static int compareStringLength(String word, String otherWord) {
+        if (otherWord.length() > word.length()) {
+            return 1;
+        }
+        if (otherWord.length() == word.length()) {
+            return otherWord.compareTo(word);
+        }
+        return -1;
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
