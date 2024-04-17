@@ -35,13 +35,17 @@ public class Person {
             this.position.crossRight();
             return;
         }
-        if (!isFirstPosition() && isExistNextToLeft(rungs)) {
+        if (isNotFirstPosition() && isExistNextToLeft(rungs)) {
             this.position.crossLeft();
             return;
         }
-        if (!isFirstPosition() && isExistNextToRight(rungs)) {
+        if (isNotFirstPosition() && isExistNextToRight(rungs)) {
             this.position.crossRight();
         }
+    }
+
+    private boolean isNotFirstPosition() {
+        return !isFirstPosition();
     }
 
     private boolean isFirstPosition() {
