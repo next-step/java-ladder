@@ -2,6 +2,7 @@ package ladder.service;
 
 import ladder.domain.Participant;
 import ladder.domain.Participants;
+import ladder.domain.Result;
 import ladder.domain.ShowResultType;
 
 import java.util.Arrays;
@@ -18,9 +19,9 @@ public class InputService {
         return stringParticipants.stream().map(name -> new Participant(name, stringParticipants.indexOf(name))).collect(Collectors.toList());
     }
 
-    public static List<String> parseResults(String input) {
+    public static List<Result> parseResults(String input) {
         return Arrays.stream(input.replaceAll("\\s", "")
-                .split(",")).collect(Collectors.toList());
+                .split(",")).map(Result::new).collect(Collectors.toList());
     }
 
     public static ShowResultType getResultType(String input) {

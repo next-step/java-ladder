@@ -1,6 +1,8 @@
 package ladder.service;
 
 import ladder.domain.Participant;
+import ladder.domain.Result;
+import ladder.domain.ShowResultType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -27,11 +29,11 @@ class InputServiceTest {
     public void parseResultsStringTest() {
         String input = "꽝, 5000, 3000, 꽝";
 
-        List<String> parsedResults = InputService.parseResults(input);
+        List<Result> parsedResults = InputService.parseResults(input);
 
         assertThat(parsedResults.size()).isEqualTo(4);
-        assertThat(parsedResults.get(0)).isEqualTo("꽝");
-        assertThat(parsedResults.get(1)).isEqualTo("5000");
+        assertThat(parsedResults.get(0).getName()).isEqualTo("꽝");
+        assertThat(parsedResults.get(1).getName()).isEqualTo("5000");
     }
 
     @Test
@@ -64,5 +66,13 @@ class InputServiceTest {
         )
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("참가자 수와 결과 수가 일치하지 않습니다.");
+    }
+
+    @Test
+    @DisplayName("결과를 가져오는 방식 테스트")
+    public void getShowResultTypeTest() {
+        assertThat(InputService.getResultType("all")).isEqualTo(ShowResultType.ALL);
+        assertThat(InputService.getResultType("이름")).isEqualTo(ShowResultType.INDIVIDUAL);
+        assertThat(InputService.getResultType("name")).isEqualTo(ShowResultType.INDIVIDUAL);
     }
 }

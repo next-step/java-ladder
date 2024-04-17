@@ -46,8 +46,8 @@ public class Output {
     public static String showResults(Results results) {
         StringBuilder sb = new StringBuilder();
 
-        for (String result: results) {
-            sb.append(String.format("%6s", result));
+        for (Result result: results) {
+            sb.append(String.format("%6s", result.getName()));
         }
 
         return sb.toString();

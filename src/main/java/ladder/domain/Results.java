@@ -3,10 +3,10 @@ package ladder.domain;
 import java.util.Iterator;
 import java.util.List;
 
-public class Results implements Iterable<String> {
-    private final List<String> results;
+public class Results implements Iterable<Result> {
+    private final List<Result> results;
 
-    public Results(List<String> results) {
+    public Results(List<Result> results) {
         this.results = results;
     }
 
@@ -15,11 +15,11 @@ public class Results implements Iterable<String> {
     }
 
     public String getResult(int location) {
-        return results.get(location);
+        return results.get(location).getName();
     }
 
     @Override
-    public Iterator<String> iterator() {
+    public Iterator<Result> iterator() {
         return results.iterator();
     }
 
