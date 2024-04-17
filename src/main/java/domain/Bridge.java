@@ -10,7 +10,7 @@ public class Bridge {
         this.current = current;
     }
 
-    public static Bridge first(boolean current) {
+    public static Bridge firstOf(boolean current) {
         return new Bridge(false, current);
     }
 

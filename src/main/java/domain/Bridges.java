@@ -17,7 +17,7 @@ public class Bridges {
 
     public static Bridges of(int column, BridgeCreationStrategy strategy) {
         List<Bridge> result = new ArrayList<>();
-        Bridge prev = Bridge.first(strategy.isCreate());
+        Bridge prev = Bridge.firstOf(strategy.isCreate());
         result.add(prev);
         for (int i = 1; i < column - 1; i++) {
             Bridge next = getNext(strategy, prev);
