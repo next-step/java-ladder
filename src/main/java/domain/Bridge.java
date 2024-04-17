@@ -21,6 +21,13 @@ public class Bridge {
         return new Bridge(this.current, current);
     }
 
+    public static Bridge nextOf(Bridge prev, boolean current) {
+        if (prev.current && current) {
+            throw new IllegalArgumentException("다리를 연속해서 놓을 수 없습니다.");
+        }
+        return new Bridge(prev.current, current);
+    }
+
     public Direction move() {
         if (left) {
             return Direction.LEFT;
