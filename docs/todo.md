@@ -16,5 +16,5 @@
   - 30살 이상, 45살 이하에 해당하는 User가 존재하는 경우 true를 반환한다.
 - [X] Optional에서 값을 반환
   - Users의 getUser() 메소드를 자바 8의 stream과 Optional을 활용해 구현한다.
-- [ ] Optional에서 exception 처리
+- [X] Optional에서 exception 처리
   - Expression의 of 메소드를 구현한다.
