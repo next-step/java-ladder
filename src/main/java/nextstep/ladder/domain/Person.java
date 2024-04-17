@@ -31,15 +31,15 @@ public class Person {
         if (rungs == null || rungs.size() == 0) {
             throw new IllegalArgumentException("사다리가 존재하지 않습니다.");
         }
-        if (isFirstPosition() && isExistNextToRight(rungs)) {
+        if (isFirstPosition() && rungs.isExistNextToRight(position)) {
             this.position.crossRight();
             return;
         }
-        if (isNotFirstPosition() && isExistNextToLeft(rungs)) {
+        if (isNotFirstPosition() && rungs.isExistNextToLeft(position)) {
             this.position.crossLeft();
             return;
         }
-        if (isNotFirstPosition() && isExistNextToRight(rungs)) {
+        if (isNotFirstPosition() && rungs.isExistNextToRight(position)) {
             this.position.crossRight();
         }
     }
@@ -50,14 +50,6 @@ public class Person {
 
     private boolean isFirstPosition() {
         return this.position.isFirstPosition();
-    }
-
-    private boolean isExistNextToLeft(Rungs rungs) {
-        return rungs.isExist(this.position.getPosition() - 1);
-    }
-
-    private boolean isExistNextToRight(Rungs rungs) {
-        return rungs.isExist(this.position.getPosition());
     }
 
     @Override

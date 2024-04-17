@@ -44,11 +44,18 @@ public class Rungs {
         return rungs.size();
     }
 
-    public boolean isExist(int index) {
-        if (index >= rungs.size()) {
+    public boolean isExistNextToLeft(Position position) {
+        if (position.left() >= rungs.size()) {
             return false;
         }
-        return rungs.get(index).isExist();
+        return rungs.get(position.left()).isExist();
+    }
+
+    public boolean isExistNextToRight(Position position) {
+        if (position.getPosition() >= rungs.size()) {
+            return false;
+        }
+        return rungs.get(position.getPosition()).isExist();
     }
 
     public List<Rung> getRungs() {

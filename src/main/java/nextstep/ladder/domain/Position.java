@@ -25,6 +25,10 @@ public class Position {
         --position;
     }
 
+    public int left() {
+        return position - 1;
+    }
+
     public int getPosition() {
         return position;
     }
