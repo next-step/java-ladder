@@ -3,7 +3,6 @@ package view;
 import domain.*;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
@@ -36,10 +35,9 @@ public class InputView {
                 .collect(Collectors.toList()));
     }
 
-    public static Player promptForResult() {
+    public static String promptForResult() {
         System.out.println("\n결과를 보고 싶은 사람은?");
         scanner.reset();
-        String name = scanner.nextLine();
-        return new Player(name);
+        return scanner.nextLine();
     }
 }
