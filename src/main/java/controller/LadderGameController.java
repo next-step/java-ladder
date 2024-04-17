@@ -8,7 +8,6 @@ import view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class LadderGameController {
     private static final InputView INPUT_VIEW = new InputView();
