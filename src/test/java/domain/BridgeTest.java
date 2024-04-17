@@ -3,8 +3,7 @@ package domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 public class BridgeTest {
 
@@ -42,5 +41,11 @@ public class BridgeTest {
         assertThatThrownBy(() -> Bridge.firstOf(true).next(true))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("다리를 연속해서 놓을 수 없습니다.");
+    }
+
+    @DisplayName("정적 팩터리 메서드를 통해 다음 Bridge 객체를 생성한다.")
+    @Test
+    void test06() {
+        assertThat(Bridge.nextOf(Bridge.firstOf(true), false)).isNotNull();
     }
 }
