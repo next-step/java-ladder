@@ -1,13 +1,14 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.dimension;
+
+import nextstep.ladder.domain.generator.BooleanGenerator;
 
 import static java.lang.Boolean.FALSE;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Line {
+public class Line implements OneDimension{
 
   private final List<Point> points;
 
@@ -31,6 +32,7 @@ public class Line {
     return points;
   }
 
+  @Override
   public int move(int index) {
     if(canMoveLeft(index)) {
       return index - 1;
