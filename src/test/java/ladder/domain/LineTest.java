@@ -18,4 +18,20 @@ public class LineTest {
 
         assertThat(newLine.iterator().next()).isTrue();
     }
+
+    @Test
+    @DisplayName("라인 방향 테스트")
+    public void getDirectionTest() {
+        assertThat(LINE_1.getDirection(0).moveLeft()).isFalse();
+        assertThat(LINE_1.getDirection(0).moveRight()).isTrue();
+
+        assertThat(LINE_1.getDirection(1).moveLeft()).isTrue();
+        assertThat(LINE_1.getDirection(1).moveRight()).isFalse();
+
+        assertThat(LINE_1.getDirection(2).moveLeft()).isFalse();
+        assertThat(LINE_1.getDirection(2).moveRight()).isTrue();
+
+        assertThat(LINE_1.getDirection(3).moveLeft()).isTrue();
+        assertThat(LINE_1.getDirection(3).moveRight()).isFalse();
+    }
 }

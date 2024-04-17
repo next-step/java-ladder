@@ -14,6 +14,14 @@ public class Participants implements Iterable<String> {
         return participants.size();
     }
 
+    public CurrentLocation getParticipantStartLocation(String participant) {
+        return new CurrentLocation(participants.indexOf(participant));
+    }
+
+    public boolean isParticipant(String participant) {
+        return participants.contains(participant);
+    }
+
     @Override
     public Iterator<String> iterator() {
         return participants.iterator();
