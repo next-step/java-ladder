@@ -21,13 +21,33 @@ public class Line {
         .collect(ArrayList::new, (list, element) -> {
           if (list.isEmpty() || list.get(list.size() - 1).isNotBridge()) {
             list.add(Point.of(element));
-          } else {
-            list.add(Point.of(FALSE));
+            return ;
           }
+          list.add(Point.of(FALSE));
         }, ArrayList::addAll);
   }
 
   public List<Point> getPoints() {
     return points;
   }
+
+  public int move(int index) {
+    if(canMoveLeft(index)) {
+      return index - 1;
+    }
+
+    if(canMoveRight(index)) {
+      return index + 1;
+    }
+    return index;
+  }
+
+  private boolean canMoveLeft(int index){
+    return index > 0 && !points.get(index-1).isNotBridge();
+  }
+
+  private boolean canMoveRight(int index){
+    return index < points.size() && !points.get(index).isNotBridge();
+  }
+
 }

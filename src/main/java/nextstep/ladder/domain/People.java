@@ -1,11 +1,10 @@
 package nextstep.ladder.domain;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class People {
   private List<Person> people;
-  private final int MIN_PEOPLE_NUMBER = 2;
+  private static final int MIN_PEOPLE_NUMBER = 2;
 
   public People(List<Person> people) {
     validatePeople(people);
@@ -14,7 +13,7 @@ public class People {
 
   private void validatePeople(List<Person> people) {
     if (people.size() < MIN_PEOPLE_NUMBER) {
-      throw new IllegalArgumentException("참여자는 최소 2명 이상이어야 합니다.");
+      throw new IllegalArgumentException(String.format("참여자는 최소 %d명 이상이어야 합니다.",MIN_PEOPLE_NUMBER));
     }
   }
 
@@ -22,7 +21,7 @@ public class People {
     return people.size();
   }
 
-  public List<String> getPeopleNames() {
-    return people.stream().map(Person::getName).collect(Collectors.toList());
+  public Person findPersonByIndex(int index){
+    return people.get(index);
   }
 }

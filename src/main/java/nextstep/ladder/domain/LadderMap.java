@@ -6,8 +6,8 @@ import java.util.stream.IntStream;
 
 public class LadderMap {
   private List<Line> lines;
-  private final int MINIMUM_WIDTH = 1;
-  private final int MINIMUM_HEIGHT = 1;
+  private static final int MINIMUM_WIDTH = 1;
+  private static final int MINIMUM_HEIGHT = 1;
 
 
 public LadderMap(int width, int height, BooleanGenerator booleanGenerator) {
@@ -35,6 +35,11 @@ public LadderMap(int width, int height, BooleanGenerator booleanGenerator) {
 
   public List<Line> getLine(){
   return lines;
+  }
+
+  public int move(int index) {
+    return lines.stream()
+        .reduce(index, (idx, line) -> line.move(idx), (idx1, idx2) -> idx2);
   }
 
 }
