@@ -18,6 +18,10 @@ public LadderMap(int width, int height, BooleanGenerator booleanGenerator) {
     this.lines = generateLines(width, height, booleanGenerator);
   }
 
+  public LadderMap(List<Line> lines) {
+    this.lines = lines;
+  }
+
   private static List<Line> generateLines(int width, int height, BooleanGenerator booleanGenerator) {
     return IntStream.range(0, height).mapToObj(i -> new Line(width, booleanGenerator ))
         .collect(Collectors.toList());

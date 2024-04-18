@@ -16,6 +16,10 @@ public class Line implements OneDimension{
     this.points = makePoints(width, booleanGenerator);
   }
 
+  public Line(List<Point> points) {
+    this.points = points;
+  }
+
   private static List<Point> makePoints(int width, BooleanGenerator booleanGenerator) {
     return IntStream.range(0, width)
         .mapToObj(i -> booleanGenerator.generate())
