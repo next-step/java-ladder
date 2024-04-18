@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Line {
     private static final int MIN_POINT_SIZE = 2;
-    
+
     private final List<Point> points;
 
     Line(List<Point> points) {
@@ -56,6 +56,9 @@ public class Line {
     }
 
     public Point getPoint(int index) {
-        return points.get(index);
+        return points.stream()
+                .filter(point -> point.sameIndex(index))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("포인트가 없습니다. index: " + index));
     }
 }

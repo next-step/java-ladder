@@ -41,8 +41,8 @@ class LineTest {
     @Test
     void firstPointCannotMoveLeft() {
         List<Point> points = List.of(
-                new Point(true, false),
-                new Point(false, false)
+                new Point(0, true, false),
+                new Point(1, false, false)
         );
 
         assertThatThrownBy(() -> new Line(points))
@@ -53,8 +53,8 @@ class LineTest {
     @Test
     void lastPointCannotMoveRight() {
         List<Point> points = List.of(
-                new Point(false, false),
-                new Point(false, true)
+                new Point(0, false, false),
+                new Point(1, false, true)
         );
 
         assertThatThrownBy(() -> new Line(points))
@@ -65,12 +65,25 @@ class LineTest {
     @Test
     void hasMovableConnectionToNext() {
         List<Point> points = List.of(
-                new Point(false, true),
-                new Point(false, false)
+                new Point(0, false, true),
+                new Point(1, false, false)
         );
 
         assertThatThrownBy(() -> new Line(points))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("인덱스를 받아 포인트를 반환한다")
+    @Test
+    void getPoint() {
+        Point leftmostPoint = Point.createLeftmost(true);
+        List<Point> points = List.of(
+                leftmostPoint,
+                leftmostPoint.createRightmost()
+        );
+        Line line = new Line(points);
+
+        assertThat(line.getPoint(0)).isEqualTo(leftmostPoint);
     }
 
 }
