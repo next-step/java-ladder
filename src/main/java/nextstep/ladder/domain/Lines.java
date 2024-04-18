@@ -1,8 +1,10 @@
 package nextstep.ladder.domain;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
 
 public class Lines {
 
@@ -20,10 +22,9 @@ public class Lines {
     }
 
     public static Lines of(int numberOfPlayers, int height) {
-        List<Line> lines = IntStream.range(0, height)
+        return IntStream.range(0, height)
                 .mapToObj(i -> LineBuilder.buildWithRandomPoints(numberOfPlayers))
-                .collect(Collectors.toList());
-        return new Lines(lines);
+                .collect(collectingAndThen(toList(), Lines::new));
     }
 
     public int getHeight() {
