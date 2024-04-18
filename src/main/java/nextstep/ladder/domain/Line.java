@@ -58,10 +58,14 @@ public class Line {
 	}
 
 	private Bridge getBridgeAtIndex(final int index) {
-		if (index >= 0 && index < bridges.size()) {
+		if (isIndexWithinBounds(index)) {
 			return bridges.get(index);
 		}
 		return Bridge.NON_BRIDGE;
+	}
+
+	private boolean isIndexWithinBounds(int index) {
+		return index >= 0 && index < bridges.size();
 	}
 
 	@Override

@@ -13,15 +13,14 @@ public class LadderMain {
 	public static void main(String[] args){
 		InputView inputView = new InputView();
 		OutputView outputView = new OutputView();
+
 		final Names names = new Names(inputView.inputNames());
 		final LadderResult ladderResult = new LadderResult(inputView.inputResult());
-		final Height height = new Height(inputView.inputLadderHeight());
-		final Ladder ladder = new Ladder(names.getNumberOfNames(), height);
+		final Ladder ladder = new Ladder(names.getNumberOfNames(), inputView.inputLadderHeight());
 
 		outputView.printLadder(names, ladder);
 		final LadderResultDeterminer determiner = new LadderResultDeterminer(ladderResult, names);
-		final LadderResultManager ladderResultManager = new LadderResultManager(names);
-		ladderResultManager.update(ladder, determiner);
+		final LadderResultManager ladderResultManager = new LadderResultManager(names, ladder, determiner);
 		outputView.printResult(inputView.inputName(), ladderResultManager);
 	}
 }

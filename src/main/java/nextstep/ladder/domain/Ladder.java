@@ -7,9 +7,9 @@ import java.util.stream.Stream;
 public class Ladder {
 	private final List<Line> lines;
 
-	public Ladder(final int numberOfPeople, final Height height) {
+	public Ladder(final int numberOfPeople, final int height) {
 		lines = Stream.generate(() -> new Line(new RandomGenerator(), numberOfPeople))
-			.limit(height.getValue())
+			.limit(height)
 			.collect(Collectors.toList());
 	}
 	public List<Line> getLines() {
