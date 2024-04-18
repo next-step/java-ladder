@@ -41,4 +41,8 @@ public class Bridge {
     public boolean hasRightBridge() {
         return this.current;
     }
+
+    public boolean isMoveDirection(Direction direction) {
+        return this.move() == direction;
+    }
 }
