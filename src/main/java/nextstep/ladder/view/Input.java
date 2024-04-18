@@ -1,7 +1,9 @@
 package nextstep.ladder.view;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Input {
 
@@ -11,7 +13,9 @@ public class Input {
         print("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String[] persons = input.nextLine().split(",");
         System.out.println();
-        return List.of(persons);
+        return Arrays.stream(persons)
+                .map(String::trim)
+                .collect(Collectors.toList());
     }
 
     public int ladderHeight() {
