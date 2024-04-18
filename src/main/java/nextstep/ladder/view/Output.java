@@ -3,7 +3,9 @@ package nextstep.ladder.view;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Output {
 
@@ -13,22 +15,18 @@ public class Output {
     public void personName(List<String> persons) {
         print("실행 결과");
         System.out.println();
-        for (String person : persons) {
-            print(person + " ");
-        }
+        String result = persons.stream()
+                .collect(Collectors.joining(" "));
+        print(result);
         System.out.println();
     }
 
     public void result(Ladder ladder) {
-        for (Line line : ladder.getLadder()) {
-            for (Boolean isLink : line.getList()) {
-                if (isLink)
-                    print(LINK);
-                else
-                    print(UNLINK);
-            }
-            System.out.println();
-        }
+        ladder.getLadder().forEach(line ->
+                print(line.getList().stream()
+                        .map(isLink -> isLink ? LINK : UNLINK)
+                        .collect(Collectors.joining())));
+        System.out.println();
     }
 
     private void print(String word) {
