@@ -1,31 +1,35 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.utils.RandomLadderGenerator;
+import nextstep.ladder.utils.LadderGenerator;
 
 import java.util.List;
 
 public class Line {
 
-    private final Points points;
+    private final Rungs rungs;
 
-    public Line(int countOfPerson) {
-        if (countOfPerson < 1) {
-            throw new IllegalArgumentException("참가자는 1명 이상이어야 합니다.");
-        }
-
-        points = new Points(countOfPerson, new RandomLadderGenerator());
+    public Line(int countOfPerson, LadderGenerator generator) {
+        this(new CountOfPerson(countOfPerson), generator);
     }
 
-    public Line(CountOfPerson countOfPerson) {
-        points = new Points(countOfPerson, new RandomLadderGenerator());
+    public Line(CountOfPerson countOfPerson, LadderGenerator generator) {
+        rungs = new Rungs(countOfPerson, generator);
     }
 
     public int size() {
-        return points.size();
+        return rungs.size();
     }
 
-    public List<Boolean> getPoints() {
-        return points.getPoints();
+    public List<Rung> getRungs() {
+        return rungs.getRungs();
+    }
+
+    public List<Boolean> validateLine() {
+        return rungs.validateRungs();
+    }
+
+    public void crossLadder(Person person) {
+        person.crossLadder(rungs);
     }
 
 }

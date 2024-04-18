@@ -10,11 +10,22 @@ import java.util.List;
 public class LadderMain {
 
     public static void main(String[] args) {
-        List<Person> names = InputView.getPersonNames();
-        int countOfPerson = names.size();
+        List<Person> people = InputView.getPeople();
+        List<String> results = InputView.getResults();
+        if (people.size() != results.size()) {
+            throw new IllegalArgumentException("참가자의 수와 결과의 수가 일치하지 않습니다.");
+        }
+        int countOfPerson = people.size();
         int height = InputView.getHeight();
+        InputView.getNextLine();
 
-        OutputView.printLadder(height, names, new LadderGame(height, countOfPerson));
+        LadderGame ladderGame = new LadderGame(height, countOfPerson);
+        ladderGame.getLines()
+                .forEach(line -> people.forEach(line::crossLadder));
+
+        OutputView.printLadder(people, ladderGame, results);
+        String personName = InputView.getPersonName();
+        OutputView.printResult(personName, people, results);
     }
 
 }

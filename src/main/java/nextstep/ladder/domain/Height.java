@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.utils.RandomLadderGenerator;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -15,7 +17,7 @@ public class Height {
 
     public void add(List<Line> lines, CountOfPerson countOfPerson) {
         for (int i = 0; i < number; i++) {
-            lines.add(new Line(countOfPerson));
+            lines.add(new Line(countOfPerson, new RandomLadderGenerator()));
         }
     }
 

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class LadderGame {
 
-    private List<Line> lines = new ArrayList<>();
+    private final List<Line> lines = new ArrayList<>();
 
     public LadderGame(int height, int countOfPerson) {
         this(new Height(height), new CountOfPerson(countOfPerson));
@@ -14,7 +14,6 @@ public class LadderGame {
     public LadderGame(Height height, CountOfPerson countOfPerson) {
         height.add(lines, countOfPerson);
     }
-
 
     public List<Line> getLines() {
         return lines;
