@@ -22,11 +22,13 @@ public class Output {
     }
 
     public void result(Ladder ladder) {
-        ladder.getLadder().forEach(line ->
-                print(line.getList().stream()
-                        .map(isLink -> isLink ? LINK : UNLINK)
-                        .collect(Collectors.joining())));
-        System.out.println();
+        ladder.getLadder().forEach(line -> {
+            String result = line.getList().stream()
+                    .map(isLink -> isLink ? LINK : UNLINK)
+                    .collect(Collectors.joining()); // Join elements of the line with a space
+            print(result);
+            System.out.println(); // Add a blank line after printing each line
+        });
     }
 
     private void print(String word) {
