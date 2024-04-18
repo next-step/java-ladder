@@ -4,9 +4,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
-import nextstep.ladder.domain.LadderPrize;
-import nextstep.ladder.domain.People;
-import nextstep.ladder.domain.Person;
+import nextstep.ladder.domain.ladder.LadderPrize;
+import nextstep.ladder.domain.person.People;
+import nextstep.ladder.domain.person.Person;
 
 public class InputView {
 

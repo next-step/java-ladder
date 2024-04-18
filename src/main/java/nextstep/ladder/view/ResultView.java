@@ -3,10 +3,10 @@ package nextstep.ladder.view;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import nextstep.ladder.domain.LadderPrize;
-import nextstep.ladder.domain.LadderResult;
-import nextstep.ladder.domain.Person;
-import nextstep.ladder.domain.Point;
+import nextstep.ladder.domain.ladder.LadderPrize;
+import nextstep.ladder.domain.ladder.LadderResult;
+import nextstep.ladder.domain.person.Person;
+import nextstep.ladder.domain.dimension.Point;
 
 public class ResultView {
 

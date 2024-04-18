@@ -1,18 +1,23 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.dimension;
+
+import nextstep.ladder.domain.generator.BooleanGenerator;
 
 import static java.lang.Boolean.FALSE;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Line {
+public class Line implements OneDimension{
 
   private final List<Point> points;
 
   public Line (int width, BooleanGenerator booleanGenerator) {
     this.points = makePoints(width, booleanGenerator);
+  }
+
+  public Line(List<Point> points) {
+    this.points = points;
   }
 
   private static List<Point> makePoints(int width, BooleanGenerator booleanGenerator) {
@@ -31,6 +36,7 @@ public class Line {
     return points;
   }
 
+  @Override
   public int move(int index) {
     if(canMoveLeft(index)) {
       return index - 1;

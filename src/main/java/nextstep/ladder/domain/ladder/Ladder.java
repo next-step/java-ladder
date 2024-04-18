@@ -1,8 +1,12 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.ladder;
 
+
+import nextstep.ladder.domain.person.People;
+import nextstep.ladder.domain.person.Person;
+import nextstep.ladder.domain.dimension.LadderMap;
+import nextstep.ladder.domain.generator.BooleanGenerator;
 
 import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -24,7 +28,7 @@ public class Ladder {
     return new LadderResult(doLadderGame(prize), ladderMap.getLine());
   }
 
-  private  Map<Person, String> doLadderGame(LadderPrize prize) {
+  private java.util.Map<Person, String> doLadderGame(LadderPrize prize) {
     return streamByPeopleIndex().collect(Collectors.toMap(
             index -> people.findPersonByIndex(index),
             index -> prize.findPrize(ladderMap.move(index)),

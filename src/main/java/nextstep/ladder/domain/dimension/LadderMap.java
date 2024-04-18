@@ -1,10 +1,12 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.dimension;
+
+import nextstep.ladder.domain.generator.BooleanGenerator;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class LadderMap {
+public class LadderMap implements TwoDimension {
   private List<Line> lines;
   private static final int MINIMUM_WIDTH = 1;
   private static final int MINIMUM_HEIGHT = 1;
@@ -14,6 +16,10 @@ public LadderMap(int width, int height, BooleanGenerator booleanGenerator) {
     validateWidth(width);
     validateHeight(height);
     this.lines = generateLines(width, height, booleanGenerator);
+  }
+
+  public LadderMap(List<Line> lines) {
+    this.lines = lines;
   }
 
   private static List<Line> generateLines(int width, int height, BooleanGenerator booleanGenerator) {
@@ -37,6 +43,7 @@ public LadderMap(int width, int height, BooleanGenerator booleanGenerator) {
   return lines;
   }
 
+  @Override
   public int move(int index) {
     return lines.stream()
         .reduce(index, (idx, line) -> line.move(idx), (idx1, idx2) -> idx2);

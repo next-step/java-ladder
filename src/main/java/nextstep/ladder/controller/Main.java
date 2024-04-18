@@ -1,10 +1,10 @@
 package nextstep.ladder.controller;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.LadderPrize;
-import nextstep.ladder.domain.LadderResult;
-import nextstep.ladder.domain.People;
-import nextstep.ladder.domain.RandomBooleanGenerator;
+import nextstep.ladder.domain.ladder.Ladder;
+import nextstep.ladder.domain.ladder.LadderPrize;
+import nextstep.ladder.domain.ladder.LadderResult;
+import nextstep.ladder.domain.person.People;
+import nextstep.ladder.domain.generator.RandomBooleanGenerator;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 

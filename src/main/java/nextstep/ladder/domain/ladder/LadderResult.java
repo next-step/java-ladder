@@ -1,4 +1,7 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.ladder;
+
+import nextstep.ladder.domain.person.Person;
+import nextstep.ladder.domain.dimension.Line;
 
 import java.util.List;
 import java.util.Map;

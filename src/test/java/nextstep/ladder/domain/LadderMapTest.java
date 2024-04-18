@@ -4,7 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.List;
+import nextstep.ladder.domain.generator.BooleanGenerator;
+import nextstep.ladder.domain.generator.RandomBooleanGenerator;
+import nextstep.ladder.domain.dimension.LadderMap;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
