@@ -5,9 +5,6 @@ import java.util.List;
 
 public class Ladder {
 
-    private int line;
-    private int height;
-
     private List<Line> ladder = new ArrayList<>();
 
     public Ladder(int line, int height) {
