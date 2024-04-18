@@ -48,4 +48,10 @@ public class BridgeTest {
     void test06() {
         assertThat(Bridge.nextOf(Bridge.firstOf(true), false)).isNotNull();
     }
+
+    @DisplayName("이동 방향을 확인한다.")
+    @Test
+    void test07() {
+        assertThat(Bridge.firstOf(true).isMoveDirection(Direction.RIGHT)).isTrue();
+    }
 }
