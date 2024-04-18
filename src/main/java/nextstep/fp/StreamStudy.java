@@ -30,9 +30,10 @@ public class StreamStudy {
 
         List<String> top100 = words.stream()
                 .filter(word -> word.length() > 12)
-                .sorted(Comparator.reverseOrder())
+                .sorted(Comparator.comparingInt(String::length).reversed())
                 .distinct()
                 .limit(100)
+                .map(String::toLowerCase)
                 .collect(Collectors.toList());
         return top100;
     }
