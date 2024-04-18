@@ -3,6 +3,8 @@ package nextstep.ladder.domain;
 import java.util.List;
 
 public class Line {
+    private static final int MIN_POINT_SIZE = 2;
+    
     private final List<Point> points;
 
     Line(List<Point> points) {
@@ -20,8 +22,8 @@ public class Line {
             throw new IllegalArgumentException("점이 없습니다.");
         }
 
-        if (points.size() < 2) {
-            throw new IllegalArgumentException("점이 두 개 이상 있어야 합니다.");
+        if (points.size() < MIN_POINT_SIZE) {
+            throw new IllegalArgumentException("점이 " + MIN_POINT_SIZE + "개 이상 있어야 합니다.");
         }
     }
 
