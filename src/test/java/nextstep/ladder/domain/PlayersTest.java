@@ -7,6 +7,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.SoftAssertions.assertSoftly;
 
 class PlayersTest {
 
@@ -24,5 +25,18 @@ class PlayersTest {
     void invalidPlayerCount() {
         assertThatThrownBy(() -> Players.of(List.of()))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("인덱스를 받아 참가자를 반환한다")
+    @Test
+    void getPlayer() {
+        List<String> playerNames = List.of("pobi", "crong", "honux");
+        Players players = Players.of(playerNames);
+
+        assertSoftly(softAssertions -> {
+            softAssertions.assertThat(players.getPlayer(0).getName()).isEqualTo("pobi");
+            softAssertions.assertThat(players.getPlayer(1).getName()).isEqualTo("crong");
+            softAssertions.assertThat(players.getPlayer(2).getName()).isEqualTo("honux");
+        });
     }
 }

@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Players {
     private final List<Player> players;
@@ -18,8 +19,8 @@ public class Players {
     }
 
     public static Players of(List<String> playerNames) {
-        List<Player> players = playerNames.stream()
-                .map(Player::new)
+        List<Player> players = IntStream.range(0, playerNames.size())
+                .mapToObj(index -> new Player(index, playerNames.get(index)))
                 .collect(Collectors.toList());
 
         return new Players(players);
@@ -30,6 +31,9 @@ public class Players {
     }
 
     public Player getPlayer(int index) {
-        return players.get(index);
+        return players.stream()
+                .filter(player -> player.sameIndex(index))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("참가자가 없습니다. index: " + index));
     }
 }
