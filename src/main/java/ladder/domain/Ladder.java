@@ -4,18 +4,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Ladder {
+public class Ladder implements LadderStrategy{
     private static final RandomLineGenerator randomLineGenerator = new RandomLineGenerator();
-    private final List<Line> lines;
+    private final List<LineStrategy> lines;
 
-    public Ladder(List<Line> lines) {
+    public Ladder(List<LineStrategy> lines) {
         this.lines = lines;
     }
 
     public static Ladder generateLadder(int ladderHeight, int countOfPerson) {
         checkLadderHeight(ladderHeight);
 
-        List<Line> lineList = Stream.generate(() -> Line.generateLine(countOfPerson, randomLineGenerator))
+        List<LineStrategy> lineList = Stream.generate(() -> Line.generateLine(countOfPerson, randomLineGenerator))
                 .limit(ladderHeight)
                 .collect(Collectors.toList());
 
@@ -28,10 +28,12 @@ public class Ladder {
         }
     }
 
-    public List<Line> getLines() {
+    @Override
+    public List<LineStrategy> getLines() {
         return lines;
     }
 
+    @Override
     public Position arrival(Position initialPosition) {
         return Stream.iterate(initialPosition, this::nextPosition)
                 .filter(position -> position.isArrivalPosition(lines.size()))

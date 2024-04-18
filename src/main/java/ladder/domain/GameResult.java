@@ -12,7 +12,7 @@ public class GameResult {
         this.result = result;
     }
 
-    public static GameResult of(Ladder ladder, Participants participants, GamePrize gamePrize) {
+    public static GameResult of(LadderStrategy ladder, Participants participants, GamePrize gamePrize) {
         List<Prize> prizeList = IntStream.range(0, participants.countOfPerson())
                 .mapToObj(index -> gamePrize.prizeOf(indexOfPrize(ladder, index)))
                 .collect(Collectors.toList());
@@ -24,7 +24,7 @@ public class GameResult {
         return new GameResult(result);
     }
 
-    private static int indexOfPrize(Ladder ladder, int indexOfParticipant) {
+    private static int indexOfPrize(LadderStrategy ladder, int indexOfParticipant) {
         Position currentPosition = Position.departurePosition(indexOfParticipant);
         Position result = ladder.arrival(currentPosition);
 

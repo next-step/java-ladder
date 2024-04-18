@@ -3,9 +3,9 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Prize {
-    private final static int MAX_PRIZE_LENGTH = 5;
-    private final static int MIN_PRIZE_LENGTH = 1;
-    private final static String BLANK = " ";
+    private static final int MAX_PRIZE_LENGTH = 5;
+    private static final int MIN_PRIZE_LENGTH = 1;
+    private static final String BLANK = " ";
 
     private final String value;
 
@@ -39,5 +39,10 @@ public class Prize {
     @Override
     public int hashCode() {
         return Objects.hash(value);
+    }
+
+    @Override
+    public String toString() {
+        return this.value;
     }
 }

@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.domain.Line;
+import ladder.domain.LineStrategy;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -11,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 class LineTest {
     @Test
     void 라인_생성() {
-        Line line = new Line(List.of(true, false, false, true));
+        LineStrategy line = new Line(List.of(true, false, false, true));
         assertThat(line).isNotNull();
     }
 

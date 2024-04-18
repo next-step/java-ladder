@@ -10,7 +10,7 @@ public class LadderController {
         GamePrize gamePrize = InputView.askGamePrize(participants.countOfPerson());
         int ladderHeight = InputView.askLadderHeight();
 
-        Ladder ladder = Ladder.generateLadder(ladderHeight, participants.countOfPerson());
+        LadderStrategy ladder = Ladder.generateLadder(ladderHeight, participants.countOfPerson());
 
         ResultView.showParticipants(participants);
         ResultView.showLadder(ladder);
