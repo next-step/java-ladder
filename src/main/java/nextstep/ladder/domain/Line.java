@@ -3,16 +3,16 @@ package nextstep.ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.IntStream;
 
 public class Line {
     private List<Boolean> list = new ArrayList<>();
 
-    public Line(int i) {
-        basicLine(i);
-        for (int j = 1; j < i; j++) {
-            if (!list.get(j - 1))
-                list.set(j, randomBoolean());
-        }
+    public Line(int size) {
+        basicLine(size);
+        IntStream.range(1, size)
+                .filter(i -> !list.get(i - 1))
+                .forEach(i -> list.set(i, randomBoolean()));
     }
 
     private boolean randomBoolean() {
