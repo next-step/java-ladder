@@ -1,5 +1,8 @@
 package ladder.service;
 
+import ladder.domain.Participant;
+import ladder.domain.Result;
+import ladder.domain.ShowResultType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,11 +17,23 @@ class InputServiceTest {
     public void parseParticipantsStringTest() {
         String input = "ik, oop, ddp, cho";
 
-        List<String> parsedParticipants = InputService.parseParticipants(input);
+        List<Participant> parsedParticipants = InputService.parseParticipants(input);
 
         assertThat(parsedParticipants.size()).isEqualTo(4);
-        assertThat(parsedParticipants.get(0)).isEqualTo("ik");
-        assertThat(parsedParticipants.get(1)).isEqualTo("oop");
+        assertThat(parsedParticipants.get(0).getName()).isEqualTo("ik");
+        assertThat(parsedParticipants.get(1).getName()).isEqualTo("oop");
+    }
+
+    @Test
+    @DisplayName("결과 잘라내기 테스트")
+    public void parseResultsStringTest() {
+        String input = "꽝, 5000, 3000, 꽝";
+
+        List<Result> parsedResults = InputService.parseResults(input);
+
+        assertThat(parsedResults.size()).isEqualTo(4);
+        assertThat(parsedResults.get(0).getName()).isEqualTo("꽝");
+        assertThat(parsedResults.get(1).getName()).isEqualTo("5000");
     }
 
     @Test
@@ -39,4 +54,25 @@ class InputServiceTest {
                 .hasMessage("높이는 1보다 작을 수 없습니다.");
     }
 
+    @Test
+    @DisplayName("결과 값 유효성 테스트, 참여자 수와 일치하지 않는 경우 예외 처리")
+    public void validateNumberOfResultsWithNumberOfParticipantsTest() {
+        String participants = "ik, oop, ddp, chokk";
+        String results = "꽝, 5000, 3000";
+
+        assertThatThrownBy(() -> InputService.validateResults(
+                InputService.parseParticipants(participants).size(),
+                InputService.parseResults(results).size())
+        )
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("참가자 수와 결과 수가 일치하지 않습니다.");
+    }
+
+    @Test
+    @DisplayName("결과를 가져오는 방식 테스트")
+    public void getShowResultTypeTest() {
+        assertThat(InputService.getResultType("all")).isEqualTo(ShowResultType.ALL);
+        assertThat(InputService.getResultType("이름")).isEqualTo(ShowResultType.INDIVIDUAL);
+        assertThat(InputService.getResultType("name")).isEqualTo(ShowResultType.INDIVIDUAL);
+    }
 }
