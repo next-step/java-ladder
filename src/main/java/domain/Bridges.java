@@ -45,7 +45,7 @@ public class Bridges {
 
     public List<Boolean> getTotalBridge() {
         return bridges.stream()
-                .map(bridge -> bridge.move().isSame(Direction.RIGHT))
+                .map(bridge -> bridge.isMoveDirection(Direction.RIGHT))
                 .collect(Collectors.toList());
     }
 }
