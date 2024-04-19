@@ -18,7 +18,6 @@ public class GameResultsTest {
     @DisplayName("특정 플레이어의 결과를 가져온다.")
     @Test
     void test02() {
-        GameResults results = GameResults.createResults(LadderTest.L1, PlayersTest.PS1, RewardsTest.RS1);
-        assertThat(GRS1.resultByPlayer(PlayerTest.P1)).isEqualTo(RewardTest.R2);
+        assertThat(GRS1.resultByPlayer(PlayerTest.P1).getReward()).isEqualTo(RewardTest.R4);
     }
 }

@@ -24,4 +24,11 @@ public class GameResults implements Iterable<GameResult> {
     public Iterator<GameResult> iterator() {
         return gameResults.iterator();
     }
+
+    public GameResult resultByPlayer(Player player) {
+        return gameResults.stream()
+                .filter(gameResult -> gameResult.isPlayer(player))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("해당 플레이어의 결과가 없습니다."));
+    }
 }
