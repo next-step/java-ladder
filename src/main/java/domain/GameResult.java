@@ -5,9 +5,13 @@ public class GameResult {
     private final Player player;
     private final Reward reward;
 
-    public GameResult(Player player, Reward reward) {
+    private GameResult(Player player, Reward reward) {
         this.player = player;
         this.reward = reward;
+    }
+
+    public static GameResult createResult(Ladder ladder, Players players, Rewards rewards, Player player) {
+        return new GameResult(player, rewards.findByOrder(ladder.getEndColumn(players.getOrder(player))));
     }
 
     public Player getPlayer() {
