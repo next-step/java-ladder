@@ -11,11 +11,18 @@ public class InputView {
     public static List<String> InputNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String names = scanner.nextLine();
-        List<String> stringNames = getStringNames(names);
+        List<String> stringNames = getStringArraysByComma(names);
         return stringNames;
     }
 
-    private static List<String> getStringNames(String names) {
+    public static List<String> InputExecutionResult() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String result = scanner.nextLine();
+        List<String> stringResult = getStringArraysByComma(result);
+        return stringResult;
+    }
+
+    private static List<String> getStringArraysByComma(String names) {
         String[] splitNames = names.split(NAME_DELIMITER);
         return Arrays.asList(splitNames);
     }
