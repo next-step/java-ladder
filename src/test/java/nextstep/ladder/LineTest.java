@@ -28,4 +28,18 @@ public class LineTest {
 		assertThat(line.pointToBoolean()).containsExactly(false, true, false);
 	}
 
+    @Test
+    @DisplayName("라인 오른쪽으로 갈 수 있는지 테스트")
+    void lineRightMovableTest() {
+        Line line = new Line(List.of(new Point(false),new Point(true),new Point(false)));
+        assertThat(line.rightIsMovable(new Position(1))).isTrue();
+    }
+
+    @Test
+    @DisplayName("라인 왼쪽으로 갈 수 있는지 테스트")
+    void lineleftMovableTest() {
+        Line line = new Line(List.of(new Point(false),new Point(true),new Point(false)));
+        assertThat(line.leftIsMovable(new Position(1))).isFalse();
+    }
+
 }
