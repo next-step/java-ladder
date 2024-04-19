@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.Position;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -62,6 +64,16 @@ public class Line {
 		return points.stream()
 				.map(Point::isActive)
 				.collect(Collectors.toList());
+	}
+
+	public boolean leftIsMovable(Position currentPosition) {
+		int leftPosition = currentPosition.getPosition() - 1;
+		return leftPosition >= 0 && points.get(leftPosition).isActive();
+	}
+
+	public boolean rightIsMovable(Position currentPosition) {
+		int rightPosition = currentPosition.getPosition();
+		return rightPosition < points.size() && points.get(rightPosition).isActive();
 	}
 
 }
