@@ -26,13 +26,10 @@ public class GameBoard {
     }
 
     public GameResults resultAll(Rewards rewards) {
-        return new GameResults(IntStream.range(0, players.totalNumber())
-                .mapToObj(players::findByOrder)
-                .map(player -> result(player, rewards))
-                .collect(Collectors.toList()));
+        return GameResults.createResults(ladder, players, rewards);
     }
 
     public GameResult result(Player player, Rewards rewards) {
-        return new GameResult(player, rewards.findByOrder(ladder.getEndColumn(players.getOrder(player))));
+        return GameResult.createResult(ladder, players, rewards, player);
     }
 }
