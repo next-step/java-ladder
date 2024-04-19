@@ -20,4 +20,8 @@ public class LadderBoard {
         return this.ladderBoard;
     }
 
+    public Line getLine(int index) {
+        return this.ladderBoard.get(index);
+    }
+
 }
