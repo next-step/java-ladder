@@ -19,9 +19,10 @@ public class GameUser {
         }
     }
 
-    public Position getPosition() {
-        return position;
+    public int getPosition() {
+        return position.getPosition();
     }
+
 
     public String getUserName() {
         return userName;
