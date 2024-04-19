@@ -30,6 +30,6 @@ public class GameBoard {
     }
 
     public GameResult result(Player player, Rewards rewards) {
-        return GameResult.createResult(ladder, players, rewards, player);
+        return GameResults.createResults(ladder, players, rewards).resultByPlayer(player);
     }
 }
