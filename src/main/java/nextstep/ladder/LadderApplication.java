@@ -12,9 +12,13 @@ public class LadderApplication {
         Input input = new Input();
         Output output = new Output();
         List<String> persons = input.joinPerson();
+        List<String> results = input.runResult();
         int height = input.ladderHeight();
+        System.out.println();
         Ladder ladder = new Ladder(persons.size(), height);
         output.personName(persons);
-        output.result(ladder);
+        output.ladderResult(ladder);
+        output.runResult(results);
+
     }
 }

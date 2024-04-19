@@ -23,10 +23,17 @@ public class Input {
         return input.nextInt();
     }
 
-    public String[] runResult() {
+    public List<String> runResult() {
+        print("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요");
         String[] result = input.nextLine().split(",");
         System.out.println();
-        return result;
+        return Arrays.stream(result)
+                .map(String::trim)
+                .collect(Collectors.toList());
+    }
+
+    public String resultWantPerson() {
+        return input.nextLine();
     }
 
     private void print(String word) {
