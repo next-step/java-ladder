@@ -13,7 +13,6 @@ public class LadderApplication {
         Output output = new Output();
         List<String> persons = input.joinPerson();
         int height = input.ladderHeight();
-        System.out.println();
         Ladder ladder = new Ladder(persons.size(), height);
         output.personName(persons);
         output.result(ladder);

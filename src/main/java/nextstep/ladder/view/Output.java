@@ -13,6 +13,7 @@ public class Output {
     private static final String LINK = "----|";
 
     public void personName(List<String> persons) {
+        print("");
         print("실행 결과");
         System.out.println();
         String result = persons.stream()
