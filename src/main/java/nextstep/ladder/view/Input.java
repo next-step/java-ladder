@@ -23,6 +23,12 @@ public class Input {
         return input.nextInt();
     }
 
+    public String[] runResult() {
+        String[] result = input.nextLine().split(",");
+        System.out.println();
+        return result;
+    }
+
     private void print(String word) {
         System.out.println(word);
     }
