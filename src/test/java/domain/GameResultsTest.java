@@ -19,6 +19,6 @@ public class GameResultsTest {
     @Test
     void test02() {
         GameResults results = GameResults.createResults(LadderTest.L1, PlayersTest.PS1, RewardsTest.RS1);
-        GRS1.resultByPlayer(PlayerTest.P1).isEqualTo(RewardTest.R2);
+        assertThat(GRS1.resultByPlayer(PlayerTest.P1)).isEqualTo(RewardTest.R2);
     }
 }
