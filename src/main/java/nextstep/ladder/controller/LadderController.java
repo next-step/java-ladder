@@ -10,17 +10,8 @@ import nextstep.ladder.view.ResultView;
 public class LadderController {
 
     public void play() {
-        Users users = joinUsers();
-        Ladder ladder = makeLadder(users.numberOfUsers());
+        Users users = Users.join(inputJoinUserNames());
+        Ladder ladder = Ladder.generateLadder(users.numberOfUsers(), inputLadderHeight());
         ResultView.printCreatedLadder(users, ladder);
     }
-
-    private Users joinUsers() {
-        return Users.join(inputJoinUserNames());
-    }
-
-    private Ladder makeLadder(int userCount) {
-        return Ladder.generateLadder(userCount, inputLadderHeight());
-    }
-
 }
