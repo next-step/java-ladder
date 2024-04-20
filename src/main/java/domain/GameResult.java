@@ -14,10 +14,6 @@ public class GameResult {
         return new GameResult(player, rewards.findByOrder(ladder.getEndColumn(players.getOrder(player))));
     }
 
-    public boolean isPlayer(Player player) {
-        return this.player.equals(player);
-    }
-
     public Player getPlayer() {
         return player;
     }
