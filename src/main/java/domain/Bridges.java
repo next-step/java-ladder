@@ -1,32 +1,51 @@
 package domain;
 
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Bridges {
 
-    private final Map<Height, Bridge> heightToBridges;
+    private final List<Bridge> bridges;
 
-    public Bridges(int height) {
-        this(new Height(height));
+    public Bridges(List<Bridge> bridges) {
+        if (bridges.get(bridges.size() - 1).hasRightBridge()) {
+            throw new IllegalArgumentException("마지막 다리의 우측에는 다리를 놓을 수 없습니다.");
+        }
+        this.bridges = bridges;
     }
 
-    public Bridges(Height height) {
-        this.heightToBridges = IntStream.range(0, height.getHeight())
-                .mapToObj(Height::new)
-                .collect(Collectors.toMap(h -> h, h -> new Bridge()));
+    public static Bridges of(int column, BridgeCreationStrategy strategy) {
+        List<Bridge> result = new ArrayList<>();
+        Bridge prev = Bridge.firstOf(strategy.isCreate());
+        result.add(prev);
+        for (int i = 1; i < column - 1; i++) {
+            Bridge next = getNext(strategy, prev);
+            result.add(next);
+            prev = next;
+        }
+        result.add(prev.next(false));
+        return new Bridges(result);
     }
 
-    public void create(int height) {
-        heightToBridges.put(new Height(height), new Bridge(true));
+    private static Bridge getNext(BridgeCreationStrategy strategy, Bridge prev) {
+        if (prev.hasRightBridge()) {
+            return prev.next(false);
+        }
+        return prev.next(strategy.isCreate());
     }
 
-    public boolean has(int height) {
-        return heightToBridges.getOrDefault(new Height(height), new Bridge()).has();
+    public Direction move(int column) {
+        return bridges.get(column).move();
     }
 
-    public void remove(int height) {
-        this.heightToBridges.put(new Height(height), new Bridge());
+    public int total() {
+        return this.bridges.size();
+    }
+
+    public List<Boolean> getTotalBridge() {
+        return bridges.stream()
+                .map(bridge -> bridge.isMoveDirection(Direction.RIGHT))
+                .collect(Collectors.toList());
     }
 }

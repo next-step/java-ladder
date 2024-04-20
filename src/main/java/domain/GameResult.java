@@ -1,19 +1,24 @@
 package domain;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+public class GameResult {
 
-public class GameResult implements Iterable<Map.Entry<Player, Reward>> {
+    private final Player player;
+    private final Reward reward;
 
-    private final Map<Player, Reward> result = new HashMap<>();
-
-    public void add(Player player, Reward reward) {
-        result.put(player, reward);
+    private GameResult(Player player, Reward reward) {
+        this.player = player;
+        this.reward = reward;
     }
 
-    @Override
-    public Iterator<Map.Entry<Player, Reward>> iterator() {
-        return result.entrySet().iterator();
+    public static GameResult createResult(Ladder ladder, Players players, Rewards rewards, Player player) {
+        return new GameResult(player, rewards.findByOrder(ladder.getEndColumn(players.getOrder(player))));
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public Reward getReward() {
+        return reward;
     }
 }

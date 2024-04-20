@@ -15,6 +15,14 @@ public class Players implements Iterable<Player> {
         return players.size();
     }
 
+    public Player findByOrder(int order) {
+        return players.get(order);
+    }
+
+    public int getOrder(Player player) {
+        return players.indexOf(player);
+    }
+
     public void accept(LadderVisitor visitor) {
         visitor.visit(players);
     }
@@ -22,9 +30,5 @@ public class Players implements Iterable<Player> {
     @Override
     public Iterator<Player> iterator() {
         return players.iterator();
-    }
-
-    public Position getPosition(Player player) {
-        return new Position(this.players.indexOf(player), 0);
     }
 }

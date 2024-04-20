@@ -4,30 +4,17 @@ import domain.*;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class ResultView implements LadderVisitor {
 
     @Override
-    public void visit(List<Line> lines, int height) {
-        IntStream.rangeClosed(1, height)
-                .forEach(i -> {
-                    List<Boolean> bridges = lines.stream()
-                            .map(line -> line.hasBridge(i))
-                            .collect(Collectors.toList());
-
-                    printBridges(bridges);
-                    System.out.println();
-                });
-    }
-
-    private static void printBridges(List<Boolean> bridges) {
-        boolean prev = false;
-        for (Boolean bridge : bridges) {
-            System.out.printf("%s|", prev ? "-".repeat(5) : " ".repeat(5));
-            prev = bridge;
+    public void visitBridges(List<Bridges> totalBridges) {
+        for (Bridges bridges : totalBridges) {
+            System.out.print("|");
+            bridges.getTotalBridge()
+                    .forEach(isBridge -> System.out.printf("%s|", isBridge ? "-".repeat(5) : " ".repeat(5)));
+            System.out.println();
         }
     }
 
@@ -45,13 +32,17 @@ public class ResultView implements LadderVisitor {
                 .map(reward -> String.format("%5s", reward))
                 .collect(Collectors.joining(" "));
         System.out.println(result);
-
     }
 
     public void print(GameResult result) {
         System.out.println("실행 결과");
-        for (Map.Entry<Player, Reward> entry : result) {
-            System.out.println(entry.getKey() + " : " + entry.getValue());
+        System.out.println(result.getPlayer() + " : " + result.getReward());
+    }
+
+    public void print(GameResults results) {
+        System.out.println("실행 결과");
+        for (GameResult result : results) {
+            System.out.println(result.getPlayer() + " : " + result.getReward());
         }
     }
 }
