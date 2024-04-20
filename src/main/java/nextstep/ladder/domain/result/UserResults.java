@@ -23,6 +23,18 @@ public class UserResults{
         return new UserResults(userResults);
     }
 
+    public List<UserResult> getUserResults() {
+        return userResults;
+    }
+
+    public String findResultByUserName(String name){
+        return userResults.stream()
+            .filter(userResult -> userResult.getUserName().equals(name))
+            .map(UserResult::getResult)
+            .findFirst()
+            .orElseThrow(IllegalArgumentException::new);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
