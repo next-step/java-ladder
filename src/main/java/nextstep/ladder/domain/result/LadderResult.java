@@ -19,6 +19,13 @@ public class LadderResult {
         );
     }
 
+    public static LadderResult of(List<String> results){
+        return new LadderResult(results);
+    }
+
+    public List<String> getResults() {
+        return results;
+    }
 
     public String getResult(int index){
         return results.get(index);

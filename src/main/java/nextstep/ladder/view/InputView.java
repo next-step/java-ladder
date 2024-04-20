@@ -14,12 +14,22 @@ public class InputView {
 
     public static List<String> inputJoinUserNames() {
         printMessage(INPUT_JOIN_USER_NAMES);
-        return inputLineToList(NAME_SEPARATOR);
+        return inputLineToList(COMMA_SEPARATOR);
     }
 
     public static int inputLadderHeight() {
         printMessage(INPUT_LADDER_HEIGHT);
         return scanner.nextInt();
+    }
+
+    public static List<String> inputExecuteResult(){
+        printMessage(INPUT_EXECUTE_RESULT);
+        return inputLineToList(COMMA_SEPARATOR);
+    }
+
+    public static String inputUserNameForResult(){
+        printMessage(INPUT_USER_NAME_FOR_RESULT);
+        return scanner.next();
     }
 
     private static List<String> inputLineToList(String regex) {

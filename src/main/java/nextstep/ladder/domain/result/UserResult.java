@@ -12,6 +12,14 @@ public class UserResult{
         this.result = result;
     }
 
+    public String getUserName() {
+        return user.getName();
+    }
+
+    public String getResult() {
+        return result;
+    }
+
     public static UserResult of(String user, String result){
         return new UserResult(User.of(user), result);
     }
