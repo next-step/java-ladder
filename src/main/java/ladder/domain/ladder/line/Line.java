@@ -38,9 +38,8 @@ public class Line {
 
     private int toNextPosition(final int currentPosition) {
         final Connection currentConnection = this.connections.get(currentPosition);
-        final Direction direction = currentConnection.move();
 
-        return currentPosition + direction.delta();
+        return currentConnection.move(currentPosition);
     }
 
     public static Line of(final Width width, final ConnectionGenerator connectionGenerator) {

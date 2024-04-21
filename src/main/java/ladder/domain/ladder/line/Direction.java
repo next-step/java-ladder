@@ -12,7 +12,19 @@ public enum Direction {
         this.delta = delta;
     }
 
-    public int delta() {
-        return this.delta;
+    public int move(final int position) {
+        return position + this.delta;
+    }
+
+    public static Direction of(final boolean isLeftConnected, final boolean isRightConnected) {
+        if (isLeftConnected) {
+            return Direction.LEFT;
+        }
+
+        if (isRightConnected) {
+            return Direction.RIGHT;
+        }
+
+        return Direction.DOWN;
     }
 }

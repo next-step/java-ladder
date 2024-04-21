@@ -1,8 +1,5 @@
 package ladder.domain.ladder.line;
 
-import static ladder.domain.ladder.line.Direction.DOWN;
-import static ladder.domain.ladder.line.Direction.LEFT;
-import static ladder.domain.ladder.line.Direction.RIGHT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
@@ -26,29 +23,29 @@ class ConnectionTest {
     }
 
     @Test
-    @DisplayName("왼쪽으로 이동 가능하다면, 왼쪽 방향을 반환한다.")
+    @DisplayName("왼쪽으로 이동한다.")
     void Move_DirectionLeft() {
         final Connection connection = Connection.first(true).next(false);
 
-        assertThat(connection.move())
-                .isEqualTo(LEFT);
+        assertThat(connection.move(1))
+                .isEqualTo(0);
     }
 
     @Test
-    @DisplayName("오른쪽으로 이동 가능하다면, 오른쪽 방향을 반환한다.")
+    @DisplayName("오른쪽으로 이동한다.")
     void Move_DirectionRight() {
         final Connection connection = Connection.first(true);
 
-        assertThat(connection.move())
-                .isEqualTo(RIGHT);
+        assertThat(connection.move(1))
+                .isEqualTo(2);
     }
 
     @Test
-    @DisplayName("왼쪽 오른쪽 모두 이동 가능하지 않다면, 아래 방향을 반환한다.")
+    @DisplayName("아래쪽으로 이동한다.")
     void Move_DirectionDown() {
         final Connection connection = Connection.first(true).next(false).last();
 
-        assertThat(connection.move())
-                .isEqualTo(DOWN);
+        assertThat(connection.move(1))
+                .isEqualTo(1);
     }
 }

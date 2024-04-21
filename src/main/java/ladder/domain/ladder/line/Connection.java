@@ -28,16 +28,10 @@ public class Connection {
         return new Connection(this.isLeftConnected, this.isRightConnected);
     }
 
-    public Direction move() {
-        if (isLeftConnected) {
-            return Direction.LEFT;
-        }
+    public int move(final int position) {
+        final Direction direction = Direction.of(this.isLeftConnected, this.isRightConnected);
 
-        if (isRightConnected) {
-            return Direction.RIGHT;
-        }
-
-        return Direction.DOWN;
+        return direction.move(position);
     }
 
     public Connection next(final boolean isNextConnected) {
