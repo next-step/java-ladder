@@ -1,8 +1,11 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.LadderBoard;
+import nextstep.ladder.domain.LadderGameResult;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.UserNames;
+
+import java.util.List;
 
 public class ResultView {
     private final static String GAP = "     ";
@@ -12,6 +15,7 @@ public class ResultView {
 
 
     public static void printNames(UserNames userNames) {
+        System.out.println("사디리 결과");
         userNames.getNames().stream().map(name -> String.format(LADDER_FORMAT, name)).forEach(System.out::print);
         System.out.println();
     }
@@ -47,6 +51,21 @@ public class ResultView {
         if (!point) {
             System.out.print(GAP);
         }
+    }
+
+    public static void printResultSinglePerson(String result) {
+        System.out.println("실행 결과");
+        System.out.println(result);
+    }
+
+    public static void printResultPerson(LadderGameResult results) {
+        System.out.println("실행 결과");
+        System.out.println(results.toString());
+    }
+
+    public static void printLadderGameResult(List<String> executionResult) {
+        executionResult.stream().map(result -> String.format(LADDER_FORMAT, result)).forEach(System.out::print);
+        System.out.println();
     }
 
 }
