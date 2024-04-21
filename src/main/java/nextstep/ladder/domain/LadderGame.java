@@ -14,9 +14,9 @@ public class LadderGame {
 
     public static LadderGame start(List<String> playerNames, int height) {
         Players players = Players.of(playerNames);
-        Lines lines = Lines.of(players.count(), height);
+        LinesGenerator linesGenerator = new RandomLinesGenerator(players.count(), height);
 
-        return new LadderGame(players, lines);
+        return new LadderGame(players, linesGenerator.generate());
     }
 
     public Players getPlayers() {
