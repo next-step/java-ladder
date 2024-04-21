@@ -28,12 +28,12 @@ public class Rungs {
         this.rungs.addAll(rungs);
     }
 
-    private boolean isNotFirstRung(int i) {
-        return i >= 1;
+    private boolean isNotFirstRung(int rungPosition) {
+        return rungPosition >= 1;
     }
 
-    private Rung hasLadderAtPrevious(int i) {
-        return rungs.get(i - 1);
+    private Rung hasLadderAtPrevious(int rungPosition) {
+        return rungs.get(rungPosition - 1);
     }
 
     private void addRung(Rung rung) {
