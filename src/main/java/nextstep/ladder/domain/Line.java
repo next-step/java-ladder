@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
@@ -7,7 +8,7 @@ public class Line {
 
     private final List<Point> points;
 
-    Line(List<Point> points) {
+    private Line(List<Point> points) {
         validate(points);
         this.points = points;
     }
@@ -60,5 +61,36 @@ public class Line {
                 .filter(point -> point.sameIndex(index))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("포인트가 없습니다. index: " + index));
+    }
+
+    static class LineBuilder {
+        private final List<Point> points;
+
+        public LineBuilder() {
+            this.points = new ArrayList<>();
+        }
+
+        public LineBuilder point(boolean canMoveRight) {
+            if (points.isEmpty()) {
+                points.add(Point.createLeftmost(canMoveRight));
+                return this;
+            }
+            points.add(lastPoint().createNext(canMoveRight));
+            return this;
+        }
+
+        public Line build() {
+            if (points.isEmpty()) {
+                throw new IllegalStateException("점이 없습니다.");
+            }
+
+            points.add(lastPoint().createRightmost());
+
+            return new Line(points);
+        }
+
+        private Point lastPoint() {
+            return points.get(points.size() - 1);
+        }
     }
 }

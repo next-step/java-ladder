@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import java.util.Objects;
+
 public class Point {
     private static final int MIN_INDEX = 0;
 
@@ -49,5 +51,18 @@ public class Point {
 
     public boolean sameIndex(int index) {
         return this.index == index;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Point point = (Point) o;
+        return index == point.index && left == point.left && right == point.right;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(index, left, right);
     }
 }
