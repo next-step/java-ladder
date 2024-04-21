@@ -7,9 +7,7 @@ import nextstep.ladder.domain.UserNames;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class LadderGame {
     private static final String QUIT_RESULT_VIEW = "q";

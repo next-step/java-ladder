@@ -1,9 +1,7 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.GameUser;
-import nextstep.ladder.LadderGame;
 import nextstep.ladder.Position;
-import org.w3c.dom.ls.LSOutput;
 
 import java.util.*;
 import java.util.stream.Collectors;
