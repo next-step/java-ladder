@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Ladder {
 
-    private final List<Line> lines;
-    private final int height;
+    private final List<Line> lines; // todo: 일급컬렉션
+    private final int height; // todo: height 유효성 검사
 
     public Ladder(int height) {
         this(height, new ArrayList<>());
