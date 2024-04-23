@@ -5,6 +5,9 @@ public class Direction {
     private final boolean right;
 
     public Direction(boolean left, boolean right) {
+        if (left && right) {
+            throw new IllegalArgumentException(); //todo: 예외 정의
+        }
         this.left = left;
         this.right = right;
     }
