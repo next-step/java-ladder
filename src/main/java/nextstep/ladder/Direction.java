@@ -16,6 +16,10 @@ public class Direction {
         return new Direction(false, right);
     }
 
+    public Direction next(boolean right) {
+        return new Direction(this.right, right);
+    }
+
     public int move() {
         if (this.right) {
             return 1;
