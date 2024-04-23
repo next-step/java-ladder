@@ -7,18 +7,39 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 public class RungTest {
     @ParameterizedTest
-    @CsvSource({"0, false, 0", "0, true, 1"})
-    void rightMove(int position, boolean right, int expected) {
-        Rung rung = new Rung(position, Direction.first(right));
+    @CsvSource({"false, 0", "true, 1"})
+    void rightMove(boolean right, int expected) {
+        Rung first = Rung.first(right);
 
-        Assertions.assertThat(rung.move()).isEqualTo(expected);
+        Assertions.assertThat(first.move()).isEqualTo(expected);
     }
 
     @Test
     void next() {
-        Rung rung = new Rung(1, Direction.first(true).next());
+        Rung second = Rung.first(true).next();
 
-        Assertions.assertThat(rung.move()).isEqualTo(0);
+        Assertions.assertThat(second.move()).isEqualTo(0);
+    }
+
+    @Test
+    void nextRight() {
+        Rung second = Rung.first(false).next(true);
+
+        Assertions.assertThat(second.move()).isEqualTo(2);
+    }
+
+    @Test
+    void nextLeft() {
+        Rung second = Rung.first(true).next(false);
+
+        Assertions.assertThat(second.move()).isEqualTo(0);
+    }
+
+    @Test
+    void nextPass() {
+        Rung second = Rung.first(false).next(false);
+
+        Assertions.assertThat(second.move()).isEqualTo(1);
     }
 
 }
