@@ -13,4 +13,12 @@ public class RungTest {
 
         Assertions.assertThat(rung.move()).isEqualTo(expected);
     }
+
+    @Test
+    void next() {
+        Rung rung = new Rung(1, Direction.first(true).next());
+
+        Assertions.assertThat(rung.move()).isEqualTo(0);
+    }
+
 }
