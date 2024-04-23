@@ -80,7 +80,7 @@ tdd를 통한 개발을 할 때 도메인, 요구 사항에 대한 명확한 이
 
 #### Direction
 - [x] true false 일 때, 움직이면 -1
-- [ ] false true 일 때, 움직이면 +1
+- [x] false true 일 때, 움직이면 +1
 - [ ] false false 일 때, 그대로
 - [ ] true true 일 때, 예외 반환
 - [ ] 첫 번째 Direction은 무조건 left가 false

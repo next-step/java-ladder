@@ -12,4 +12,11 @@ public class DirectionTest {
 
         assertThat(direction.move()).isEqualTo(-1);
     }
+
+    @Test
+    void right() {
+        Direction direction = new Direction(false, true);
+
+        assertThat(direction.move()).isEqualTo(1);
+    }
 }

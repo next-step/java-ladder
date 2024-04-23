@@ -10,6 +10,9 @@ public class Direction {
     }
 
     public int move() {
+        if (this.right) {
+            return 1;
+        }
         return -1;
     }
 }
