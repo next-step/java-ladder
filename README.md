@@ -88,7 +88,7 @@ tdd를 통한 개발을 할 때 도메인, 요구 사항에 대한 명확한 이
 - [x] 마지막 Direction은 무조건 right가 false
 - [x] first 다음부터 true다음엔 무조건 false
 #### Rung
-- [ ] position 0이고 false true 일 때, 움직이면 +1  
+- [x] position 0이고 false true 일 때, 움직이면 +1  
 - [ ] position 0이고 false false 일 때, 움직이면 0
 - [ ] position 1이고 false true 일 때, 움직이면 2
 - [ ] position 1이고 false true 일 때, 움직이면 2
