@@ -6,9 +6,9 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LineTest {
+public class LadderTest {
     @Test
-    void line() {
+    void ladder() {
         Rung first = Rung.first(true);
         Rung second = first.next(false);
         Rung last = second.last();
@@ -16,14 +16,10 @@ public class LineTest {
         List<Rung> rungs = List.of(first, second, last);
         Line line = new Line(3, rungs);
 
-        assertThat(line.move(0)).isEqualTo(1);
-        assertThat(line.move(1)).isEqualTo(0);
-        assertThat(line.move(2)).isEqualTo(2);
-    }
+        Ladder ladder = new Ladder(List.of(line));
 
-    @Test
-    void create() {
-        List<Rung> rungs = new Line(3).create();
-        assertThat(rungs.size()).isEqualTo(3);
+        assertThat(ladder.move(0)).isEqualTo(1);
+        assertThat(ladder.move(1)).isEqualTo(0);
+        assertThat(ladder.move(2)).isEqualTo(2);
     }
 }
