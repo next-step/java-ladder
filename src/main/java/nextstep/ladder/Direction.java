@@ -12,6 +12,10 @@ public class Direction {
         this.right = right;
     }
 
+    public static Direction first(boolean right) {
+        return new Direction(false, right);
+    }
+
     public int move() {
         if (this.right) {
             return 1;

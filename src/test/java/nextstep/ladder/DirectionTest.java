@@ -3,6 +3,7 @@ package nextstep.ladder;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DirectionTest {
@@ -30,7 +31,13 @@ public class DirectionTest {
 
     @Test
     void exception() {
-        Assertions.assertThatThrownBy(() -> new Direction(true, true))
+        assertThatThrownBy(() -> new Direction(true, true))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void first() {
+        assertThat(Direction.first(false).move()).isEqualTo(0);
+        assertThat(Direction.first(true).move()).isEqualTo(1);
     }
 }
