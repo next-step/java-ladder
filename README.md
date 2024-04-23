@@ -79,7 +79,7 @@ tdd를 통한 개발을 할 때 도메인, 요구 사항에 대한 명확한 이
 ### In -> Out 방식 TDD
 
 #### Direction
-- [ ] true false 일 때, 움직이면 -1
+- [x] true false 일 때, 움직이면 -1
 - [ ] false true 일 때, 움직이면 +1
 - [ ] false false 일 때, 그대로
 - [ ] true true 일 때, 예외 반환
