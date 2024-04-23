@@ -1,5 +1,6 @@
 package nextstep.ladder;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -16,10 +17,19 @@ public class LadderTest {
         List<Rung> rungs = List.of(first, second, last);
         Line line = new Line(3, rungs);
 
-        Ladder ladder = new Ladder(List.of(line));
+        Ladder ladder = new Ladder(1, List.of(line));
 
         assertThat(ladder.move(0)).isEqualTo(1);
         assertThat(ladder.move(1)).isEqualTo(0);
         assertThat(ladder.move(2)).isEqualTo(2);
+    }
+
+    @Test
+    void create() {
+        Ladder ladder = new Ladder(3);
+
+        List<Line> lines = ladder.create(3);
+
+        assertThat(lines.size()).isEqualTo(3);
     }
 }
