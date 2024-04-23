@@ -1,6 +1,5 @@
 package ladder.domain.ladder;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -8,6 +7,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import ladder.domain.ladder.line.Connection;
 import ladder.domain.ladder.line.ConnectionGenerator;
 import ladder.domain.ladder.line.Line;
 import ladder.domain.player.Players;
@@ -28,7 +28,7 @@ public class Ladder {
         }
     }
 
-    public List<List<Boolean>> connectionsOfLines() {
+    public List<List<Connection>> allConnectionsByEachLine() {
         return this.lines.stream()
                 .map(Line::connections)
                 .collect(Collectors.toUnmodifiableList());
@@ -47,7 +47,7 @@ public class Ladder {
             route = line.move(route);
         }
 
-        return Collections.unmodifiableMap(route);
+        return route;
     }
 
     public static Ladder of(final Players players, final int height, final ConnectionGenerator connectionGenerator) {

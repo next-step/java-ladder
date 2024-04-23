@@ -20,8 +20,8 @@ public class Width {
         }
     }
 
-    public int connectionCount() {
-        return this.value - 1;
+    public int value() {
+        return this.value;
     }
 
     @Override

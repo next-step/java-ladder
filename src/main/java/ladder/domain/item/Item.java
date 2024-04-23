@@ -23,7 +23,7 @@ public class Item {
     }
 
     public Item copyOf() {
-        return new Item(this.name);
+        return new Item(new String(this.name));
     }
 
     @Override
