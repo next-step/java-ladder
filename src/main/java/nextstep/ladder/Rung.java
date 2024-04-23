@@ -28,4 +28,8 @@ public class Rung {
     public int move() {
         return this.position + this.direction.move();
     }
+
+    public boolean isInLadderRange(int countOfPeople) {
+        return countOfPeople - 2 > position;
+    }
 }

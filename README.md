@@ -96,7 +96,7 @@ tdd를 통한 개발을 할 때 도메인, 요구 사항에 대한 명확한 이
 - [x] rung 1이고 이전의 값이 true일 때, next는 무조건 false 
 #### Line
 - [x] position이 Rung의 list에 따라 움직인다 
-- [ ] Rung의 list는 참가자 수에 따라 결정된다
+- [x] Rung의 list는 참가자 수에 따라 결정된다
 #### Ladder
 - [ ] position이 Line list에 따라 움직인다 
 - [ ] Line의 list는 height에 따라 결정된다 
