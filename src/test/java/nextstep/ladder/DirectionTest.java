@@ -1,39 +1,36 @@
 package nextstep.ladder;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 
-import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class DirectionTest {
 
     @Test
-    void left() {
-        Direction direction = new Direction(true, false);
+    void leftMove() {
+        Direction direction = Direction.of(true, false);
 
         assertThat(direction.move()).isEqualTo(-1);
     }
 
     @Test
-    void right() {
-        Direction direction = new Direction(false, true);
+    void rightMove() {
+        Direction direction = Direction.of(false, true);
 
         assertThat(direction.move()).isEqualTo(1);
     }
 
     @Test
-    void pass() {
-        Direction direction = new Direction(false, false);
+    void passMove() {
+        Direction direction = Direction.of(false, false);
 
         assertThat(direction.move()).isEqualTo(0);
     }
 
     @Test
     void exception() {
-        assertThatThrownBy(() -> new Direction(true, true))
+        assertThatThrownBy(() -> Direction.of(true, true))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
