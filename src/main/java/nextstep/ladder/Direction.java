@@ -13,6 +13,10 @@ public class Direction {
         if (this.right) {
             return 1;
         }
-        return -1;
+
+        if (this.left) {
+            return -1;
+        }
+        return 0;
     }
 }

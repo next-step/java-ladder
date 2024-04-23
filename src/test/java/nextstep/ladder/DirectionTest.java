@@ -19,4 +19,11 @@ public class DirectionTest {
 
         assertThat(direction.move()).isEqualTo(1);
     }
+
+    @Test
+    void pass() {
+        Direction direction = new Direction(false, false);
+
+        assertThat(direction.move()).isEqualTo(0);
+    }
 }
