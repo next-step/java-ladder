@@ -35,7 +35,7 @@ public class Direction {
     }
 
     public Direction last() {
-        return new Direction(this.right, false);
+        return of(this.right, false);
     }
 
     public int move() {
