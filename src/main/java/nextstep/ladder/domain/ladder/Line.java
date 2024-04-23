@@ -46,6 +46,16 @@ public class Line {
         return Line.of(points);
     }
 
+    public int move(int index) {
+        if (index != 0 && points.get(index - 1).isConnected()) {
+            return -1;
+        }
+        if (index != points.size() && points.get(index).isConnected()) {
+            return 1;
+        }
+        return 0;
+    }
+
     private boolean validAvailableLine(List<Point> points) {
         return IntStream.range(0, points.size() - 1)
             .anyMatch(idx -> points.get(idx).isConnected() && points.get(idx + 1).isConnected());
