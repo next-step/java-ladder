@@ -6,29 +6,41 @@ import java.util.List;
 public class Ladder {
 
     private final List<Line> lines; // todo: 일급컬렉션
-    private final int height; // todo: height 유효성 검사
+    private final int countOfPeople;
 
     public Ladder(int height) {
         this(height, new ArrayList<>());
     }
 
-    public Ladder(int height, List<Line> lines) {
-        this.height = height;
+    public Ladder(int countOfPeople, List<Line> lines) {
+        this.countOfPeople = countOfPeople;
         this.lines = lines;
     }
 
-    public List<Line> create(int countOfPerson) {
+    public Ladder create(int height, int countOfPerson) {
+        // todo: height 유효성 검사
         for (int i = 0; i < height; i++) {
-            lines.add(new Line(countOfPerson));
+            Line line = new Line(countOfPerson);
+            line.create();
+            lines.add(line);
         }
-        return lines;
+        return new Ladder(countOfPeople, lines);
     }
 
     public int move(int position) {
         int result = position;
         for (Line line : lines) {
-            result = line.move(result);
+            result = line.move(result); // todo debugginh
         }
         return result;
+    }
+
+    public LadderResult game() {
+        LadderResult ladderResult = new LadderResult();
+        for (int i = 0; i < countOfPeople; i++) {
+            System.out.println("ladderResult = " + ladderResult);
+            ladderResult.add(move(i));
+        }
+        return ladderResult;
     }
 }
