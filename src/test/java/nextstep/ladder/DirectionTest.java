@@ -39,16 +39,11 @@ public class DirectionTest {
 
     @Test
     void first() {
-        assertThat(Direction.first(false).move()).isEqualTo(0);
-        assertThat(Direction.first(true).move()).isEqualTo(1);
-    }
+        Direction firstFalseTrue = Direction.first(true);
+        Direction firstFalseFalse = Direction.first(false);
 
-    @ParameterizedTest
-    @CsvSource({"false, true, 1", "true, false, -1", "false, false, 0"})
-    void next(boolean left, boolean right, int expected) {
-        assertThat(Direction.first(left).next(right).move()).isEqualTo(expected);
-        assertThat(Direction.first(left).next(right).move()).isEqualTo(expected);
-        assertThat(Direction.first(left).next(right).move()).isEqualTo(expected);
+        assertThat(firstFalseTrue).isEqualTo(Direction.of(false, true));
+        assertThat(firstFalseFalse).isEqualTo(Direction.of(false, false));
     }
 
     @Test
