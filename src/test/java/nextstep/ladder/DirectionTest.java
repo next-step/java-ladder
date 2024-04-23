@@ -50,4 +50,11 @@ public class DirectionTest {
         assertThat(Direction.first(left).next(right).move()).isEqualTo(expected);
         assertThat(Direction.first(left).next(right).move()).isEqualTo(expected);
     }
+
+    @Test
+    void last() {
+        Direction last = Direction.first(true).next(false).last();
+
+        assertThat(last).isEqualTo(Direction.of(false, false));
+    }
 }
