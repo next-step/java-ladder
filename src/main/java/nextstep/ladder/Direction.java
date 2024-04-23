@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 import java.util.Objects;
+import java.util.Random;
 
 public class Direction {
     private final boolean left;
@@ -24,6 +25,13 @@ public class Direction {
 
     public Direction next(boolean right) {
         return new Direction(this.right, right);
+    }
+
+    public Direction next() {
+        if (this.right) {
+            return next(false);
+        }
+        return next(new Random().nextBoolean());
     }
 
     public Direction last() {
