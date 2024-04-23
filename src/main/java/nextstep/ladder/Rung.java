@@ -21,6 +21,10 @@ public class Rung {
         return new Rung(this.position + 1, this.direction.next());
     }
 
+    public Rung last() {
+        return new Rung(this.position + 1, this.direction.last());
+    }
+
     public int move() {
         return this.position + this.direction.move();
     }

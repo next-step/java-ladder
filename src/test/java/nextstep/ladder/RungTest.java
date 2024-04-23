@@ -41,5 +41,4 @@ public class RungTest {
 
         Assertions.assertThat(second.move()).isEqualTo(1);
     }
-
 }
