@@ -20,4 +20,13 @@ public class Participants {
     public List<Participant> getList() {
         return this.participants;
     }
+
+    public List<String> getNames() {
+        return this.participants.stream().map(Participant::getName)
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    public int countOfPerson() {
+        return this.participants.size();
+    }
 }
