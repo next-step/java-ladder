@@ -73,3 +73,30 @@ tdd를 통한 개발을 할 때 도메인, 요구 사항에 대한 명확한 이
 - [x] 부정형(isNotFirstPosition)으로 물어보라
 - [x] Person#crossLadder(..) 에 별도로 예외 메시지를 작성하라
 - [x] 값을 꺼내려하지말고 position 객체로 판별하게 하라
+
+## 4단계 - 리팩터링(4단계)
+
+### In -> Out 방식 TDD
+
+#### Direction
+- [ ] true false 일 때, 움직이면 -1
+- [ ] false true 일 때, 움직이면 +1
+- [ ] false false 일 때, 그대로
+- [ ] true true 일 때, 예외 반환
+- [ ] 첫 번째 Direction은 무조건 left가 false
+- [ ] 첫 번째 다음의 Direction은 left는 기존의 right
+- [ ] 마지막 Direction은 무조건 right가 false
+#### Rung
+- [ ] position 0이고 false true 일 때, 움직이면 +1  
+- [ ] position 0이고 false false 일 때, 움직이면 0
+- [ ] position 1이고 false true 일 때, 움직이면 2
+- [ ] position 1이고 false true 일 때, 움직이면 2
+- [ ] position 1이고 true false 일 때, 움직이면 0
+- [ ] position 1이고 이전의 값이 true일 때, next는 무조건 false 
+#### Line
+- [ ] position이 Rung의 list에 따라 움직인다 
+- [ ] Rung의 list는 참가자 수에 따라 결정된다
+#### Ladder
+- [ ] position이 Line list에 따라 움직인다 
+- [ ] Line의 list는 height에 따라 결정된다 
+#### LadderGame
