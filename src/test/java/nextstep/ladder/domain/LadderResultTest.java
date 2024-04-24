@@ -9,13 +9,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LadderResultTest {
 
-
     @Test
-    void find() {
-    }
-
-    @Test
-    void runResult() {
+    void 결과저장_메서드_실행되는지_확인() {
         Ladder ladder = new Ladder(4, 5);
         List<String> persons = Arrays.asList("Alice", "Bob", "Charlie");
         List<String> re = Arrays.asList("꽝","5000","꽝","3000");
@@ -24,9 +19,5 @@ class LadderResultTest {
         LadderResult result = new LadderResult(re);
         result.runResult(ladder, person);
         result.find(1);
-    }
-
-    @Test
-    void size() {
     }
 }
