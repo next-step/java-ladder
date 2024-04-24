@@ -10,11 +10,8 @@ public class ComputerStore {
         String version = UNKNOWN_VERSION;
         if (computer != null) {
             Soundcard soundcard = computer.getSoundcard();
-            if (soundcard != null) {
-                USB usb = soundcard.getUsb();
-                if (usb != null) {
-                    version = usb.getVersion();
-                }
+            if (soundcard != null && soundcard.getUsb() != null) {
+                version = soundcard.getUsb().getVersion();
             }
         }
         return version;

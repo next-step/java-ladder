@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.service.RunResultSave;
 import nextstep.ladder.view.Input;
 import nextstep.ladder.view.Output;
 
@@ -19,6 +20,8 @@ public class LadderApplication {
         output.personName(persons);
         output.ladderResult(ladder);
         output.runResult(results);
+        String person = input.resultWantPerson();
+        new RunResultSave().runResult(ladder, persons, results, person);
 
     }
 }

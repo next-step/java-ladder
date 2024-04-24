@@ -11,8 +11,7 @@ public class Output {
     private static final String LINK = "----|";
 
     public void personName(List<String> persons) {
-        print("");
-        print("실행 결과");
+        print("사다리 결과");
         System.out.println();
         String names = persons.stream()
                 .collect(Collectors.joining("  ", " ", ""));
@@ -32,9 +31,9 @@ public class Output {
 
     public void runResult(List<String> results) {
         String result = results.stream()
-                .collect(Collectors.joining("  ", " ", ""));
+                .collect(Collectors.joining("   ", " ", ""));
         print(result);
-        System.out.println();
+        System.out.println('\n');
     }
 
     private void print(String word) {

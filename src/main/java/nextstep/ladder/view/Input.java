@@ -33,7 +33,8 @@ public class Input {
     }
 
     public String resultWantPerson() {
-        return input.nextLine();
+        print("결과를 보고 싶은 사람은?");
+        return input.next();
     }
 
     private void print(String word) {
