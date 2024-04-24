@@ -1,6 +1,7 @@
 package nextstep.ladder.service;
 
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderResult;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Person;
 
@@ -9,13 +10,13 @@ import java.util.List;
 
 public class RunResultSave {
 
-    public void runResult(Ladder ladder, Person persons, List<String> results, String want) {
+    public void runResult(Ladder ladder, Person persons, LadderResult results, String want) {
         List<Integer> runResult = new ArrayList<>();
         List<Line> ladders = ladder.getLadder();
 
         int index = persons.location(want);
 
-        System.out.println("실행 결과");
+        System.out.println("\n실행 결과");
         int max_location = persons.size() - 1;
 
         for (int i = 0; i < persons.size(); i++) {
@@ -29,8 +30,7 @@ public class RunResultSave {
             runResult.add(location);
         }
 
-        System.out.println(results.get(runResult.get(index)));
-        System.out.println();
+        System.out.println(results.get(runResult.get(index)) + '\n');
         
         for (int i = 0; i < runResult.size(); i++) {
             System.out.println(persons.get(i) + " : " + results.get(runResult.get(i)));

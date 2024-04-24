@@ -1,6 +1,7 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderResult;
 import nextstep.ladder.domain.Person;
 
 import java.util.List;
@@ -28,10 +29,8 @@ public class Output {
         });
     }
 
-    public void runResult(List<String> results) {
-        String result = results.stream()
-                .collect(Collectors.joining("   ", " ", ""));
-        print(result);
+    public void runResult(LadderResult results) {
+        print(results.asString());
         System.out.println('\n');
     }
 
