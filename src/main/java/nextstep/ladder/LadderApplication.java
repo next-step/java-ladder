@@ -24,7 +24,7 @@ public class LadderApplication {
         output.ladderResult(ladder);
         output.runResult(results);
         String person = input.resultWantPerson();
-        new RunResultSave().runResult(ladder, persons, results, person);
-
+        results.runResult(ladder, persons);
+        output.finalResult(persons, results, person);
     }
 }

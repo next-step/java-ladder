@@ -21,6 +21,8 @@ public class Person {
     }
 
     public int location(String name) {
+        if (name.equals("all"))
+            return -1;
         for (int i = 0; i < persons.size(); i++) {
             if (persons.get(i).equals(name))
                 return i;

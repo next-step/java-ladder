@@ -21,6 +21,7 @@ class RunResultSaveTest {
         LadderResult results = new LadderResult(List.of("꽝","5000","꽝","3000"));
 
         RunResultSave resultSave = new RunResultSave();
+
         resultSave.runResult(ladder, persons, results, "pobi");
     }
 }

@@ -30,10 +30,10 @@ public class RunResultSave {
             runResult.add(location);
         }
 
-        System.out.println(results.get(runResult.get(index)) + '\n');
-        
+        System.out.println(results.find(runResult.get(index)) + '\n');
+
         for (int i = 0; i < runResult.size(); i++) {
-            System.out.println(persons.get(i) + " : " + results.get(runResult.get(i)));
+            System.out.println(persons.get(i) + " : " + results.find(runResult.get(i)));
         }
     }
 }
