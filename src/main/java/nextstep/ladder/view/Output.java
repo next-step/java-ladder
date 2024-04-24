@@ -1,6 +1,7 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Person;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,12 +11,10 @@ public class Output {
     private static final String UNLINK = "    |";
     private static final String LINK = "----|";
 
-    public void personName(List<String> persons) {
+    public void personName(Person persons) {
         print("사다리 결과");
         System.out.println();
-        String names = persons.stream()
-                .collect(Collectors.joining("  ", " ", ""));
-        print(names);
+        print(persons.name());
         System.out.println();
     }
 

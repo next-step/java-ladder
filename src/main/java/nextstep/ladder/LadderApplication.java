@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Person;
 import nextstep.ladder.service.RunResultSave;
 import nextstep.ladder.view.Input;
 import nextstep.ladder.view.Output;
@@ -12,7 +13,8 @@ public class LadderApplication {
 
         Input input = new Input();
         Output output = new Output();
-        List<String> persons = input.joinPerson();
+//        List<String> persons = input.joinPerson();
+        Person persons = new Person(input.joinPerson());
         List<String> results = input.runResult();
         int height = input.ladderHeight();
         System.out.println();
