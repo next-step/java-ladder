@@ -18,7 +18,12 @@ public class Ladder {
     }
 
     public Ladder create(int height, int countOfPerson) {
-        // todo: height 유효성 검사
+        if (height <= 0) {
+            throw new IllegalArgumentException("사다리 높이는 1 이상이어야 합니다.");
+        }
+        if (countOfPerson <= 0) {
+            throw new IllegalArgumentException("사람 수는 1 이상이어야 합니다.");
+        }
         for (int i = 0; i < height; i++) {
             Line line = new Line(countOfPerson);
             line.create();
