@@ -103,4 +103,15 @@ tdd를 통한 개발을 할 때 도메인, 요구 사항에 대한 명확한 이
 #### LadderGame
 
 ### 책임 주도 설계
-- 
+- in-out방식으로 일차적으로 개발했을 때, 책임이 너무 많은 객체가 생겼음(ex. Ladder, Line)
+- 책임을 분리하기 위해 책임 주도 설계를 진행함
+
+- 사다리를 타게하고 참가자의 결과를 도출하라
+  - 사다리를 생성하라
+    - LadderCreator#create(int height, int countOfPeople)
+    - LineCreator#create(int countOfPeople)
+  - 사다리를 타게하라(사다리게임을 실행하라)
+    - Ladder#game() 
+    - Line#move(int position)
+  - 참가자의 결과를 도출하라
+    - LadderResult#add(int resultPosition)
