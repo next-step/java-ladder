@@ -1,26 +1,44 @@
 package nextstep.ladder.domain;
 
-import org.junit.jupiter.api.DisplayName;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class RungTest {
+    @ParameterizedTest
+    @CsvSource({"false, 0", "true, 1"})
+    void rightMove(boolean right, int expected) {
+        Rung first = Rung.first(right);
 
-    public static final Rung TRUE = new Rung(true);
-    public static final Rung FALSE = new Rung(false);
-
-    @DisplayName("Point(점)은 boolean값을 갖는다")
-    @Test
-    void haveBoolean() {
-        assertThat(TRUE).isEqualTo(new Rung(true));
-        assertThat(FALSE).isEqualTo(new Rung(false));
+        Assertions.assertThat(first.move()).isEqualTo(expected);
     }
 
-    @DisplayName("이전(i - 1) 점이 존재하는지 검증한다")
     @Test
-    void hasPointAtPrevious() {
-        assertThat(TRUE.isExist()).isTrue();
-        assertThat(FALSE.isExist()).isFalse();
+    void next() {
+        Rung second = Rung.first(true).next();
+
+        Assertions.assertThat(second.move()).isEqualTo(0);
+    }
+
+    @Test
+    void nextRight() {
+        Rung second = Rung.first(false).next(true);
+
+        Assertions.assertThat(second.move()).isEqualTo(2);
+    }
+
+    @Test
+    void nextLeft() {
+        Rung second = Rung.first(true).next(false);
+
+        Assertions.assertThat(second.move()).isEqualTo(0);
+    }
+
+    @Test
+    void nextPass() {
+        Rung second = Rung.first(false).next(false);
+
+        Assertions.assertThat(second.move()).isEqualTo(1);
     }
 }

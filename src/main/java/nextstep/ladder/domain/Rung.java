@@ -1,32 +1,43 @@
 package nextstep.ladder.domain;
 
-import java.util.Objects;
-
 public class Rung {
-    private final boolean isExist;
+    private final int position;
+    private final Direction direction;
 
-    public Rung(boolean isExist) {
-        this.isExist = isExist;
+    private Rung(int position, Direction direction) {
+        this.position = position;
+        this.direction = direction;
     }
 
-    public boolean isExist() {
-        return this.isExist;
+    public static Rung first(boolean right) {
+        return new Rung(0, Direction.first(right));
     }
 
-    @Override
-    public boolean equals(Object object) {
-        if (this == object) {
-            return true;
-        }
-        if (object == null || getClass() != object.getClass()) {
-            return false;
-        }
-        Rung rung = (Rung) object;
-        return isExist == rung.isExist;
+    public Rung next(boolean right) {
+        return new Rung(this.position + 1, this.direction.next(right));
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(isExist);
+    public Rung next() {
+        return new Rung(this.position + 1, this.direction.next());
+    }
+
+    public Rung last() {
+        return new Rung(this.position + 1, this.direction.last());
+    }
+
+    public int move() {
+        return this.position + this.direction.move();
+    }
+
+    public boolean isInLadderRange(int countOfPeople) {
+        return countOfPeople - 2 > position;
+    }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public boolean isRight() {
+        return direction.isRight();
     }
 }

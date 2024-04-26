@@ -72,4 +72,47 @@ tdd를 통한 개발을 할 때 도메인, 요구 사항에 대한 명확한 이
 ### 3단계 피드백
 - [x] 부정형(isNotFirstPosition)으로 물어보라
 - [x] Person#crossLadder(..) 에 별도로 예외 메시지를 작성하라
-- [x] 값을 꺼내려하지말고 position 객체로 판별하게 하라
+- [x] 값을 꺼내려하지말고 rung 객체로 판별하게 하라
+
+## 4단계 - 리팩터링(4단계)
+
+### In -> Out 방식 TDD
+
+#### Direction
+- [x] true false 일 때, 움직이면 -1
+- [x] false true 일 때, 움직이면 +1
+- [x] false false 일 때, 그대로
+- [x] true true 일 때, 예외 반환
+- [x] 첫 번째 Direction은 무조건 left가 false
+- [x] 첫 번째 다음의 Direction은 left는 기존의 right
+- [x] 마지막 Direction은 무조건 right가 false
+- [x] first 다음부터 true다음엔 무조건 false
+#### Rung
+- [x] rung 0이고 false true 일 때, 움직이면 +1  
+- [x] rung 0이고 false false 일 때, 움직이면 0
+- [x] rung 1이고 true false 일 때, 움직이면 0
+- [x] rung 1이고 false true 일 때, 움직이면 2
+- [x] rung 1이고 false true 일 때, 움직이면 2
+- [x] rung 1이고 이전의 값이 true일 때, next는 무조건 false 
+#### Line
+- [x] position이 Rung의 list에 따라 움직인다 
+- [x] Rung의 list는 참가자 수에 따라 결정된다
+#### Ladder
+- [x] position이 Line list에 따라 움직인다 
+- [x] Line의 list는 height에 따라 결정된다 
+#### LadderGame
+
+### 책임 주도 설계
+- in-out방식으로 일차적으로 개발했을 때, 책임이 너무 많은 객체가 생겼음(ex. Ladder, Line)
+- 책임을 분리하기 위해 책임 주도 설계를 진행함
+- 책임을 분리하고 가장 마지막 노드부터 구현한다(여기선, LineCreator -> Line -> LadderCreator -> Ladder -> LadderResult)
+
+- 사다리를 타게하고 참가자의 결과를 도출하라
+  - 사다리를 생성하라
+    - LadderCreator#create(int height, int countOfPeople)
+    - LineCreator#create(int countOfPeople)
+  - 사다리를 타게하라(사다리게임을 실행하라)
+    - Ladder#game() 
+    - Line#move(int position)
+  - 참가자의 결과를 도출하라
+    - LadderResult#add(int resultPosition)
