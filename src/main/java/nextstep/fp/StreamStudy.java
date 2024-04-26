@@ -12,37 +12,36 @@ public class StreamStudy {
 
     public static long countWords() throws IOException {
         String contents = new String(Files.readAllBytes(Paths
-                .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
+            .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
         long count = 0;
         for (String w : words) {
-            if (w.length() > 12) count++;
+            if (w.length() > 12) {
+                count++;
+            }
         }
         return count;
     }
 
     public static void printLongestWordTop100() throws IOException {
         String contents = new String(Files.readAllBytes(Paths
-                .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
+            .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-        List<String> collections = words
-            .stream()
+        words.stream()
             .filter(word -> word.length() > 12)
             .sorted((word1, word2) -> Integer.compare(word2.length(), word1.length()))
             .distinct()
             .limit(100)
             .map(word -> word.toLowerCase())
-            .collect(Collectors.toList());
-
-        for (String word : collections) {
-            System.out.println(word);
-        }
+            .forEach(System.out::println);
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
-        return numbers.stream().map(x -> 2 * x).collect(Collectors.toList());
+        return numbers.stream()
+            .map(x -> 2 * x)
+            .collect(Collectors.toList());
     }
 
     public static long sumAll(List<Integer> numbers) {
@@ -50,6 +49,9 @@ public class StreamStudy {
     }
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
-        return numbers.stream().filter(number -> number > 3).map(number -> number * 2).reduce(0, (x, y) -> x + y);
+        return numbers.stream()
+            .filter(number -> number > 3)
+            .map(number -> number * 2)
+            .reduce(0, (x, y) -> x + y);
     }
 }
