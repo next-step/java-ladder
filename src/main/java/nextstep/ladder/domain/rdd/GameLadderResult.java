@@ -12,4 +12,8 @@ public class GameLadderResult implements LadderResult {
     public void add(int resultPosition) {
         result.add(resultPosition);
     }
+
+    public List<Integer> getResults() {
+        return result;
+    }
 }
