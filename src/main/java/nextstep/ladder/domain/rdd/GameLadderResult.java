@@ -13,6 +13,11 @@ public class GameLadderResult implements LadderResult {
         result.add(resultPosition);
     }
 
+    @Override
+    public Integer findResult(int index) {
+        return result.get(index);
+    }
+
     public List<Integer> getResults() {
         return result;
     }

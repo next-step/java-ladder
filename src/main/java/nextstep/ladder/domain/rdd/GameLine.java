@@ -20,4 +20,9 @@ public class GameLine implements Line {
     public int move(int position) {
         return rungs.get(position).move();
     }
+
+    @Override
+    public List<Rung> getRungs() {
+        return rungs;
+    }
 }

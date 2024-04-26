@@ -1,8 +1,8 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.LadderResult;
 import nextstep.ladder.domain.Rung;
+import nextstep.ladder.interfaces.Ladder;
+import nextstep.ladder.interfaces.LadderResult;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,19 +18,21 @@ public class OutputView {
             List<String> results,
             LadderResult ladderResult
     ) {
-        String wantedName = InputView.nextWantedName();
-        if (wantedName.equals("all")) {
-            people.forEach(person -> {
-                int index = people.indexOf(person);
-                Integer result = ladderResult.findResult(index);
-                System.out.println(person + " : " + results.get(result));
-            });
-            return;
+        while (true) {
+            String wantedName = InputView.nextWantedName();
+            if (wantedName.equals("all")) {
+                people.forEach(person -> {
+                    int index = people.indexOf(person);
+                    Integer result = ladderResult.findResult(index);
+                    System.out.println(person + " : " + results.get(result));
+                });
+                return;
+            }
+            int index = people.indexOf(wantedName);
+            Integer result = ladderResult.findResult(index);
+            System.out.println("\n실행 결과");
+            System.out.println(results.get(result));
         }
-        int index = people.indexOf(wantedName);
-        Integer result = ladderResult.findResult(index);
-        System.out.println("\n실행 결과");
-        System.out.println(results.get(result));
     }
 
     public static void printSplitOf(List<String> strings) {

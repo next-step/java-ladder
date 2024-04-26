@@ -1,7 +1,9 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.LadderResult;
+import nextstep.ladder.domain.rdd.GameLadderCreator;
+import nextstep.ladder.domain.rdd.GameLineCreator;
+import nextstep.ladder.interfaces.Ladder;
+import nextstep.ladder.interfaces.LadderResult;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
@@ -19,7 +21,9 @@ public class LadderGame {
         OutputView.printSplitOf(people);
 
         int countOfPeople = people.size();
-        Ladder ladder = new Ladder(countOfPeople).create(height, countOfPeople);
+        GameLineCreator lineCreator = new GameLineCreator();
+        GameLadderCreator ladderCreator = new GameLadderCreator(lineCreator);
+        Ladder ladder = ladderCreator.create(height, countOfPeople);
         OutputView.printRenderLines(ladder);
 
         LadderResult ladderResult = ladder.game();

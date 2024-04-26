@@ -24,6 +24,11 @@ public class GameLadder implements Ladder {
         return ladderResult;
     }
 
+    @Override
+    public List<Line> getLines() {
+        return lines;
+    }
+
     private int move(int position) {
         int result = position;
         for (Line line : lines) {

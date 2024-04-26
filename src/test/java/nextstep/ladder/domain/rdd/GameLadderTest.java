@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 public class GameLadderTest {
     @Test
     void game() {
@@ -17,10 +15,9 @@ public class GameLadderTest {
         Rung last = second.last();
 
         List<Rung> rungs = List.of(first, second, last);
-        GameLineCreator gameLineCreator = new GameLineCreator();
-        Line line = gameLineCreator.create(3);
 
-        Ladder ladder = new GameLadderCreator(gameLineCreator).create(3, 3);
-
+        Line line = new GameLine(rungs);
+        Ladder ladder = new GameLadder(1, List.of(line));
+        ladder.game();
     }
 }
