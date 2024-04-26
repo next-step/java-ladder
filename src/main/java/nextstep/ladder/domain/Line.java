@@ -1,10 +1,10 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static nextstep.ladder.RandomRungGenerator.generate;
+import static nextstep.ladder.domain.RandomRungGenerator.generate;
 
 public class Line {
     private final int countOfPeople;

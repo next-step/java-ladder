@@ -101,3 +101,6 @@ tdd를 통한 개발을 할 때 도메인, 요구 사항에 대한 명확한 이
 - [x] position이 Line list에 따라 움직인다 
 - [x] Line의 list는 height에 따라 결정된다 
 #### LadderGame
+
+### 책임 주도 설계
+- 

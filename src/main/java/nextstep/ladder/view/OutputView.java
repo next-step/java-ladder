@@ -1,4 +1,8 @@
-package nextstep.ladder;
+package nextstep.ladder.view;
+
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderResult;
+import nextstep.ladder.domain.Rung;
 
 import java.util.List;
 import java.util.stream.Collectors;
