@@ -4,7 +4,7 @@ public class Rung {
     private final int position;
     private final Direction direction;
 
-    public Rung(int position, Direction direction) {
+    private Rung(int position, Direction direction) {
         this.position = position;
         this.direction = direction;
     }

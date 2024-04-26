@@ -1,5 +1,7 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.rdd;
 
+import nextstep.ladder.domain.RandomRungGenerator;
+import nextstep.ladder.domain.Rung;
 import nextstep.ladder.interfaces.Line;
 import nextstep.ladder.interfaces.LineCreator;
 
