@@ -9,7 +9,7 @@ public class Direction {
 
     private Direction(boolean left, boolean right) {
         if (left && right) {
-            throw new IllegalArgumentException(); //todo: 예외 정의
+            throw new IllegalArgumentException("연속으로 사다리가 놓일 수 없습니다.");
         }
         this.left = left;
         this.right = right;

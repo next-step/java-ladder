@@ -9,7 +9,11 @@ public class OutputView {
         System.out.println("\n사다리 결과\n");
     }
 
-    public static void printResult(List<String> people, List<String> results, LadderResult ladderResult) {
+    public static void printResult(
+            List<String> people,
+            List<String> results,
+            LadderResult ladderResult
+    ) {
         String wantedName = InputView.nextWantedName();
         if (wantedName.equals("all")) {
             people.forEach(person -> {
@@ -45,5 +49,4 @@ public class OutputView {
                 .map(rung -> "|" + (rung.isRight() ? "-----" : "     "))
                 .collect(Collectors.joining());
     }
-
 }

@@ -31,7 +31,8 @@ public class DirectionTest {
     @Test
     void exception() {
         assertThatThrownBy(() -> Direction.of(true, true))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("연속으로 사다리가 놓일 수 없습니다.");
     }
 
     @Test
