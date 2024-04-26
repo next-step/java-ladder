@@ -36,4 +36,8 @@ public class Line {
     public int move(int position) {
         return rungs.get(position).move();
     }
+
+    public List<Rung> getRungs() {
+        return rungs;
+    }
 }

@@ -8,8 +8,8 @@ public class Ladder {
     private final List<Line> lines; // todo: 일급컬렉션
     private final int countOfPeople;
 
-    public Ladder(int height) {
-        this(height, new ArrayList<>());
+    public Ladder(int countOfPeople) {
+        this(countOfPeople, new ArrayList<>());
     }
 
     public Ladder(int countOfPeople, List<Line> lines) {
@@ -30,7 +30,7 @@ public class Ladder {
     public int move(int position) {
         int result = position;
         for (Line line : lines) {
-            result = line.move(result); // todo debugginh
+            result = line.move(result);
         }
         return result;
     }
@@ -38,9 +38,12 @@ public class Ladder {
     public LadderResult game() {
         LadderResult ladderResult = new LadderResult();
         for (int i = 0; i < countOfPeople; i++) {
-            System.out.println("ladderResult = " + ladderResult);
             ladderResult.add(move(i));
         }
         return ladderResult;
+    }
+
+    public List<Line> getLines() {
+        return lines;
     }
 }

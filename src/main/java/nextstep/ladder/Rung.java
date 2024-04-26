@@ -32,4 +32,12 @@ public class Rung {
     public boolean isInLadderRange(int countOfPeople) {
         return countOfPeople - 2 > position;
     }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public boolean isRight() {
+        return direction.isRight();
+    }
 }

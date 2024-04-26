@@ -49,6 +49,10 @@ public class Direction {
         return 0;
     }
 
+    public boolean isRight() {
+        return right;
+    }
+
     @Override
     public boolean equals(Object object) {
         if (this == object) {
