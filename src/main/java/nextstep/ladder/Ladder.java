@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Ladder {
 
-    private final List<Line> lines; // todo: 일급컬렉션
+    private final List<Line> lines;
     private final int countOfPeople;
 
     public Ladder(int countOfPeople) {

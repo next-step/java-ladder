@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LadderResult {
-    private List<Integer> result = new ArrayList<>();
+    private final List<Integer> result = new ArrayList<>();
 
     public void add(int resultPosition) {
         result.add(resultPosition);

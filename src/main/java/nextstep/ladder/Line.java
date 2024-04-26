@@ -7,8 +7,8 @@ import java.util.List;
 import static nextstep.ladder.RandomRungGenerator.generate;
 
 public class Line {
-    private final int countOfPeople; //todo : countOfPeople 유효성검사
-    private final List<Rung> rungs; //todo: rungs 일급컬렉션
+    private final int countOfPeople;
+    private final List<Rung> rungs;
 
     public Line(int countOfPeople) {
         this(countOfPeople, new ArrayList<>());
