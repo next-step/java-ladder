@@ -1,12 +1,12 @@
 package nextstep.ladder;
 
+
 import nextstep.ladder.domain.GameUsers;
 import nextstep.ladder.domain.LadderBoard;
 import nextstep.ladder.domain.LadderGameResult;
 import nextstep.ladder.domain.UserNames;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
-
 import java.util.List;
 
 public class LadderGame {
@@ -41,5 +41,5 @@ public class LadderGame {
             }
         }
     }
-
+  
 }

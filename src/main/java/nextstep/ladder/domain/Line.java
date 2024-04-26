@@ -1,13 +1,13 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.Position;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Line {
+
 	private List<Point> points;
 
 	public static Line from(List<Boolean> points) {
