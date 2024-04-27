@@ -13,7 +13,7 @@ class LinesTest {
     @Test
     void create() {
 
-        Lines lines = Lines.create(3, 5);
+        Lines lines = new Lines(3, 5);
         Assertions.assertThat(lines.size()).isEqualTo(5);
     }
 }

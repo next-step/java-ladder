@@ -1,17 +1,23 @@
 package nextstep.domain;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class Participants {
     List<Participant> participants = new ArrayList<Participant>();
 
-    public static Participants create(String names) {
-        String[] namesArray = names.split(",");
-        return new Participants(Arrays.stream(namesArray)
+    public Participants(String names) {
+        this(Arrays.stream(convertNameSplit(names))
                 .map(Participant::new)
                 .collect(Collectors.toUnmodifiableList()));
     }
+
+    private static String[] convertNameSplit(String names) {
+        return names.split(",");
+    }
+
 
     public Participants(List<Participant> participants) {
         this.participants = participants;

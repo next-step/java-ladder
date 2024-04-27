@@ -10,10 +10,15 @@ public class Lines {
     List<Line> lines = new ArrayList<>();
     public static Random RANDOM = new Random();
 
-    public static Lines create(int countOfPerson, int height) {
-        return new Lines(Stream.generate(() -> new Line(countOfPerson, isFirst()))
+    public Lines(int countOfPerson, int height) {
+        this(convertLine(countOfPerson, height));
+    }
+
+    private static List<Line> convertLine(int countOfPerson, int height) {
+        List<Line> collect = Stream.generate(() -> new Line(countOfPerson, isFirst()))
                 .limit(height)
-                .collect(Collectors.toUnmodifiableList()));
+                .collect(Collectors.toUnmodifiableList());
+        return collect;
     }
 
     private static boolean isFirst() {

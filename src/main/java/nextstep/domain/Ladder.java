@@ -4,17 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
-    private final Lines lines;
     private final Participants participants;
+    private final Lines lines;
+
 
     public Ladder(String names, Integer ladderHeight) {
-        this(Participants.create(names),Lines.create(participants.countOfPerson(), ladderHeight));
+        this(new Participants(names), ladderHeight);
+    }
+
+    public Ladder(Participants participants, Integer ladderHeight) {
+        this(participants, new Lines(participants.countOfPerson(), ladderHeight));
     }
 
 
-    public Ladder(Lines lines, Participants participants) {
-        this.lines = lines;
+    public Ladder(Participants participants, Lines lines) {
         this.participants = participants;
+        this.lines = lines;
     }
 
     public List<String> getNames() {

@@ -13,7 +13,7 @@ class ParticipantsTest {
     @Test
     void create() {
         String names = "pobi,honux,crong,jk";
-        Participants participants = Participants.create(names);
+        Participants participants = new Participants(names);
         List<Participant> participantList = participants.getList();
         Assertions.assertThat(participantList).containsExactly(new Participant("pobi"), new Participant("honux"), new Participant("crong"), new Participant("jk"));
     }
