@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LinesTest {
@@ -14,6 +15,6 @@ class LinesTest {
     void create() {
 
         Lines lines = new Lines(3, 5);
-        Assertions.assertThat(lines.size()).isEqualTo(5);
+        assertThat(lines.size()).isEqualTo(5);
     }
 }

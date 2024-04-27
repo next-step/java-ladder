@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.*;
+
 class ParticipantsTest {
 
 
@@ -15,6 +17,6 @@ class ParticipantsTest {
         String names = "pobi,honux,crong,jk";
         Participants participants = new Participants(names);
         List<Participant> participantList = participants.getList();
-        Assertions.assertThat(participantList).containsExactly(new Participant("pobi"), new Participant("honux"), new Participant("crong"), new Participant("jk"));
+        assertThat(participantList).containsExactly(new Participant("pobi"), new Participant("honux"), new Participant("crong"), new Participant("jk"));
     }
 }
