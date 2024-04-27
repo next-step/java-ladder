@@ -8,8 +8,13 @@ public class Ladder {
     private final Participants participants;
 
     public Ladder(String names, Integer ladderHeight) {
-        this.participants = Participants.create(names);
-        this.lines = Lines.create(participants.countOfPerson(), ladderHeight);
+        this(Participants.create(names),Lines.create(participants.countOfPerson(), ladderHeight);
+    }
+
+
+    public Ladder(Lines lines, Participants participants) {
+        this.lines = lines;
+        this.participants = participants;
     }
 
     public List<String> getNames() {
