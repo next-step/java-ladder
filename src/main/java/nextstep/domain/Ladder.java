@@ -8,7 +8,7 @@ public class Ladder {
     private final Participants participants;
 
     public Ladder(String names, Integer ladderHeight) {
-        this(Participants.create(names),Lines.create(participants.countOfPerson(), ladderHeight);
+        this(Participants.create(names),Lines.create(participants.countOfPerson(), ladderHeight));
     }
 
 
