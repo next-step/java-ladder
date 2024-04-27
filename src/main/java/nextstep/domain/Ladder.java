@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
-    Lines lines;
-    Participants participants;
+    private final Lines lines;
+    private final Participants participants;
 
     public Ladder(String names, Integer ladderHeight) {
         this.participants = Participants.create(names);
