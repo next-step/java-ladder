@@ -12,11 +12,7 @@ public class GameUser {
 	}
 
 	public void move(Line line) {
-		if (line.rightIsMovable(this.position)) {
-			this.position.rightMove();
-		} else if (line.leftIsMovable(this.position)) {
-			this.position.leftMove();
-		}
+		this.position = line.move(position);
 	}
 
 	public int getPosition() {

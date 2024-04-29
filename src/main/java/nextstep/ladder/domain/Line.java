@@ -76,4 +76,14 @@ public class Line {
 		return rightPosition < points.size() && points.get(rightPosition).isActive();
 	}
 
+	public Position move(Position position) {
+		if (rightIsMovable(position)) {
+			return position.rightMove();
+		}
+		if (leftIsMovable(position)) {
+			return position.leftMove();
+		}
+		return position;
+	}
+
 }
