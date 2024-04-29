@@ -20,8 +20,8 @@ public class GameUsers {
                 .forEach(gameUsers::add);
     }
 
-    public void moveAllUsersOnLadderBoard(LadderBoard ladderBoard) {
-        for (Line line : ladderBoard.getLadderBoard()) {
+    public void moveAllUsersOnLadderBoard(Ladder ladder) {
+        for (Line line : ladder.getLadderBoard()) {
             for (GameUser gameUser : gameUsers) {
                 gameUser.move(line);
             }

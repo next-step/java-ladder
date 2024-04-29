@@ -1,6 +1,6 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.LadderBoard;
+import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderGameResult;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.UserNames;
@@ -20,8 +20,8 @@ public class ResultView {
         System.out.println();
     }
 
-    public static void printLadderBoard(LadderBoard ladderBoard) {
-        ladderBoard.getLadderBoard().forEach(line -> {
+    public static void printLadderBoard(Ladder ladder) {
+        ladder.getLadderBoard().forEach(line -> {
             printGap(false);
             printRow(line);
             printLadder();

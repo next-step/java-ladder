@@ -1,6 +1,6 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.LadderBoard;
+import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,8 +19,8 @@ public class ladderBoardTest {
         lines.add(Line.from((List.of(true, false, true))));
         lines.add(Line.from((List.of(true, false, false))));
         lines.add(Line.from((List.of(true, false, true))));
-        LadderBoard ladderBoard = new LadderBoard(lines);
-        assertThat(ladderBoard.getLadderBoard()).hasSize(lines.size());
+        Ladder ladder = new Ladder(lines);
+        assertThat(ladder.getLadderBoard()).hasSize(lines.size());
     }
 
 }

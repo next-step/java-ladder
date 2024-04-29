@@ -38,7 +38,7 @@ public class GameUsersTest {
                 new Line(List.of(new Point(false), new Point(true), new Point(false))),
                 new Line(List.of(new Point(true), new Point(false), new Point(true)))
         );
-        LadderBoard ladderBoard = new LadderBoard(lines);
+        Ladder ladder = new Ladder(lines);
 
         List<GameUser> gameUserList = List.of(
                 new GameUser("pobi", new Position(0)),
@@ -47,7 +47,7 @@ public class GameUsersTest {
                 new GameUser("zzz", new Position(3))
         );
         GameUsers gameUsers = new GameUsers(gameUserList);
-        gameUsers.moveAllUsersOnLadderBoard(ladderBoard);
+        gameUsers.moveAllUsersOnLadderBoard(ladder);
         List<Integer> resultPosition = gameUsers.getResultPosition();
         assertThat(resultPosition).containsExactly(0, 3, 2, 1);
     }

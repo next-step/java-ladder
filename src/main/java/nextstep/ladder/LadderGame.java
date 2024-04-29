@@ -1,7 +1,7 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.GameUsers;
-import nextstep.ladder.domain.LadderBoard;
+import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderGameResult;
 import nextstep.ladder.domain.UserNames;
 import nextstep.ladder.view.InputView;
@@ -20,13 +20,13 @@ public class LadderGame {
 
         GameUsers gameUsers = new GameUsers(userNames);
 
-        LadderBoard ladderBoard = new LadderBoard(ladderHeight, userNames.size());
-        gameUsers.moveAllUsersOnLadderBoard(ladderBoard);
+        Ladder ladder = new Ladder(ladderHeight, userNames.size());
+        gameUsers.moveAllUsersOnLadderBoard(ladder);
 
         LadderGameResult result = gameUsers.makeResult(executionResult);
 
         ResultView.printNames(userNames);
-        ResultView.printLadderBoard(ladderBoard);
+        ResultView.printLadderBoard(ladder);
         ResultView.printLadderGameResult(executionResult);
 
         while (true) {
