@@ -3,12 +3,8 @@ package nextstep.ladder;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderResult;
 import nextstep.ladder.domain.Person;
-import nextstep.ladder.service.RunResultSave;
 import nextstep.ladder.view.Input;
 import nextstep.ladder.view.Output;
-
-import javax.xml.transform.Result;
-import java.util.List;
 
 public class LadderApplication {
     public static void main(String[] args) {
@@ -24,7 +20,7 @@ public class LadderApplication {
         output.ladderResult(ladder);
         output.runResult(results);
         String person = input.resultWantPerson();
-        results.runResult(ladder, persons);
+        ladder.play();
         output.finalResult(persons, results, person);
     }
 }

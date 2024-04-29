@@ -6,7 +6,9 @@ import java.util.List;
 public class Ladder {
 
     private List<Line> ladder = new ArrayList<>();
+    private List<Integer> result = new ArrayList<>();
     private int height;
+    private int line;
 
     public Ladder(int line, int height) {
         this.height = height;
@@ -19,6 +21,18 @@ public class Ladder {
         return ladder;
     }
 
-    // 사다리 실행결과도 사다리 클래스 안에 저장되어야 하는가?
-
+    public List<Integer> play() {
+        int max_location = line - 1;
+        for (int i = 0; i < line; i++) {
+            int location = i;
+            for (int j = 0; j < height; j++) {
+                if (ladder.get(j).getList().get(location))
+                    location--;
+                if (location < max_location && ladder.get(j).getList().get(location + 1))
+                    location++;
+            }
+            result.add(location);
+        }
+        return result;
+    }
 }

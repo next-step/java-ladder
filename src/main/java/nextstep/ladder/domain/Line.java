@@ -8,6 +8,7 @@ import java.util.stream.IntStream;
 public class Line implements RandomBoolean{
     private List<Boolean> connection = new ArrayList<>();
     private Random random = new Random();
+    private Location location;
 
     public Line(int size) {
         basicLine(size);
