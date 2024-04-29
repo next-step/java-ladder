@@ -1,7 +1,7 @@
 package nextstep.ladder;
 
 public class Position {
-	int position;
+	private int position;
 
 	public Position(int position) {
 		this.position = position;
