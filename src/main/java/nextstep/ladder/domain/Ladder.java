@@ -12,6 +12,7 @@ public class Ladder {
 
     public Ladder(int line, int height) {
         this.height = height;
+        this.line = line;
         for (int i = 0; i < height; i++) {
             ladder.add(new Line(line));
         }
@@ -42,5 +43,12 @@ public class Ladder {
             currentLocation.move(ladder.get(i).getLocation());
         }
         return currentLocation;
+    }
+
+    private void check(Location currentLocation) {
+        for (int i = 0; i < currentLocation.size(); i++) {
+            System.out.print(currentLocation.getter(i));
+        }
+        System.out.println();
     }
 }

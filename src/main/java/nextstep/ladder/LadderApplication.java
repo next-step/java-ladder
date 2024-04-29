@@ -20,7 +20,7 @@ public class LadderApplication {
         output.ladderResult(ladder);
         output.runResult(results);
         String person = input.resultWantPerson();
-        ladder.play();
+        results.runResult(ladder.play());
         output.finalResult(persons, results, person);
     }
 }
