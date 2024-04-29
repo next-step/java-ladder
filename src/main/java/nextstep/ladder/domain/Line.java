@@ -17,8 +17,8 @@ public class Line {
 	}
 
 	public Line(List<Point> points) {
+		checkOverLabLine(points);
 		this.points = points;
-		checkOverLabLine();
 	}
 
 	public Line(int countOfPerson) {
@@ -34,30 +34,29 @@ public class Line {
 			points.add(currentPoint);
 			isBeforePoint = currentPoint.isActive();
 		}
-
-		checkOverLabLine();
+		checkOverLabLine(points);
 	}
 
 	private boolean isBeforeDrawLine(boolean isBeforePoint) {
 		return !isBeforePoint && RandomLine.getRandomValue();
 	}
 
-	private Point findPoint(int index) {
+	private Point findPoint(int index, List<Point> points) {
 		return points.get(index);
 	}
 
-	private void checkOverLabLine() {
-		if (isFoundOverLab())
+	private void checkOverLabLine(List<Point> points) {
+		if (isFoundOverLab(points))
 			throw new IllegalArgumentException("라인이 중복되면 안됩니다.");
 	}
 
-	private boolean isFoundOverLab() {
+	private boolean isFoundOverLab(List<Point> points) {
 		return IntStream.range(0, points.size() - 1)
-				.anyMatch(this::isSamePosition);
+				.anyMatch(index -> isSamePosition(index, points));
 	}
 
-	private boolean isSamePosition(int index) {
-		return findPoint(index).isActive() && findPoint(index + 1).isActive();
+	private boolean isSamePosition(int index, List<Point> points) {
+		return findPoint(index, points).isActive() && findPoint(index + 1, points).isActive();
 	}
 
 	public List<Boolean> pointToBoolean() {
