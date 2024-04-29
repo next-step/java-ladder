@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 
 public class Lines {
     List<Line> lines = new ArrayList<>();
-    public static Random RANDOM = new Random();
+    private static Random RANDOM = new Random();
 
     public Lines(int countOfPerson, int height) {
         this(convertLine(countOfPerson, height));
@@ -35,5 +35,9 @@ public class Lines {
 
     public List<String> getLines() {
         return lines.stream().map(Line::getLineString).collect(Collectors.toUnmodifiableList());
+    }
+
+    public List<Line> getLineList() {
+        return lines;
     }
 }

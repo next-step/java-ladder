@@ -25,6 +25,18 @@ public class Participant {
         return Objects.hashCode(name);
     }
 
+    public String getName(int length) {
+        if (length == 0) {
+            return name;
+        }
+
+        if (this.name.length() != length) {
+            String format = "%" + length + "s";
+            return String.format(format, this.name);
+        }
+        return name;
+    }
+
     public String getName() {
         if (this.name.length() != 5) {
             return String.format("%5s", this.name);

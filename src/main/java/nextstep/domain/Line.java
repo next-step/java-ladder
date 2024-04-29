@@ -15,6 +15,10 @@ public class Line {
         }
     }
 
+    public Line(List<Boolean> points) {
+        this.points = points;
+    }
+
     private boolean createLine(int i, boolean firstStart) {
         if (isFirstIndex(i, firstStart) || isBeforeLineTure(i)) {
             return true;
@@ -56,5 +60,13 @@ public class Line {
             return "-----";
         }
         return "     ";
+    }
+
+    public boolean hasLine(Integer position) {
+        return points.get(position);
+    }
+
+    public boolean isFinalPosition(Integer position) {
+        return this.points.size() == position;
     }
 }
