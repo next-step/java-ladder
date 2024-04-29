@@ -15,6 +15,8 @@ public class Line implements RandomBoolean{
         IntStream.range(1, size)
                 .filter(i -> !connection.get(i - 1))
                 .forEach(i -> connection.set(i, isConnection()));
+        location = new Location(size);
+        location.swap(connection);
     }
 
     private void basicLine(int k) {
@@ -25,6 +27,10 @@ public class Line implements RandomBoolean{
 
     public List<Boolean> getList() {
         return connection;
+    }
+
+    public Location getLocation() {
+        return location;
     }
 
     @Override
