@@ -47,7 +47,7 @@ public class GameUsersTest {
                 new GameUser("zzz", new Position(3))
         );
         GameUsers gameUsers = new GameUsers(gameUserList);
-        gameUsers.moveAllUsersOnLadderBoard(ladder);
+        ladder.play(gameUsers);
         List<Integer> resultPosition = gameUsers.getResultPosition();
         assertThat(resultPosition).containsExactly(0, 3, 2, 1);
     }

@@ -20,14 +20,6 @@ public class GameUsers {
                 .forEach(gameUsers::add);
     }
 
-    public void moveAllUsersOnLadderBoard(Ladder ladder) {
-        for (Line line : ladder.getLadderBoard()) {
-            for (GameUser gameUser : gameUsers) {
-                gameUser.move(line);
-            }
-        }
-    }
-
     public List<Integer> getResultPosition() {
         return gameUsers.stream().map(gameUser -> gameUser.getPosition()).collect(Collectors.toList());
     }
@@ -39,6 +31,10 @@ public class GameUsers {
                 .forEach(i -> result.put(gameUsers.get(i).getUserName(), executionResult.get(gameUsers.get(i).getPosition())));
 
         return new LadderGameResult(result);
+    }
+
+    public List<GameUser> getGameUsers() {
+        return gameUsers;
     }
 
 }

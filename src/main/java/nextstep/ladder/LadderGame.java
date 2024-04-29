@@ -21,7 +21,7 @@ public class LadderGame {
         GameUsers gameUsers = new GameUsers(userNames);
 
         Ladder ladder = new Ladder(ladderHeight, userNames.size());
-        gameUsers.moveAllUsersOnLadderBoard(ladder);
+        ladder.play(gameUsers);
 
         LadderGameResult result = gameUsers.makeResult(executionResult);
 

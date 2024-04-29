@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ladderBoardTest {
+public class ladderTest {
     @Test
     @DisplayName("사다리판 생성 테스트")
     void ladderBoardConstructTest() {
@@ -20,7 +20,7 @@ public class ladderBoardTest {
         lines.add(Line.from((List.of(true, false, false))));
         lines.add(Line.from((List.of(true, false, true))));
         Ladder ladder = new Ladder(lines);
-        assertThat(ladder.getLadderBoard()).hasSize(lines.size());
+        assertThat(ladder.getLadder()).hasSize(lines.size());
     }
 
 }

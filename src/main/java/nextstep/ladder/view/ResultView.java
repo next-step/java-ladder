@@ -21,7 +21,7 @@ public class ResultView {
     }
 
     public static void printLadderBoard(Ladder ladder) {
-        ladder.getLadderBoard().forEach(line -> {
+        ladder.getLadder().forEach(line -> {
             printGap(false);
             printRow(line);
             printLadder();
