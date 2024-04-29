@@ -10,36 +10,22 @@ import nextstep.ladder.view.ResultView;
 import java.util.List;
 
 public class LadderGame {
-    private static final String QUIT_RESULT_VIEW = "q";
-    private static final String ALL_RESULT_VIEW = "all";
+	public static void start() {
+		UserNames userNames = new UserNames(InputView.InputNames());
+		List<String> executionResult = InputView.InputExecutionResult();
+		int ladderHeight = InputView.InputLadderHeight();
 
-    public static void start() {
-        UserNames userNames = new UserNames(InputView.InputNames());
-        List<String> executionResult = InputView.InputExecutionResult();
-        int ladderHeight = InputView.InputLadderHeight();
+		GameUsers gameUsers = new GameUsers(userNames);
 
-        GameUsers gameUsers = new GameUsers(userNames);
+		Ladder ladder = new Ladder(ladderHeight, userNames.size());
+		ladder.play(gameUsers);
 
-        Ladder ladder = new Ladder(ladderHeight, userNames.size());
-        ladder.play(gameUsers);
+		LadderGameResult result = gameUsers.makeResult(executionResult);
 
-        LadderGameResult result = gameUsers.makeResult(executionResult);
-
-        ResultView.printNames(userNames);
-        ResultView.printLadderBoard(ladder);
-        ResultView.printLadderGameResult(executionResult);
-
-        while (true) {
-            String interestedPerson = InputView.inputInterestedPerson();
-            if (interestedPerson.equals(QUIT_RESULT_VIEW)) {
-                return;
-            }
-            if (interestedPerson.equals(ALL_RESULT_VIEW)) {
-                ResultView.printResultPerson(result);
-            } else {
-                ResultView.printResultSinglePerson(result.getSingleResult(interestedPerson));
-            }
-        }
-    }
+		ResultView.printNames(userNames);
+		ResultView.printLadderBoard(ladder);
+		ResultView.printLadderGameResult(executionResult);
+		ResultView.printLadderGameResultPerson(result);
+	}
 
 }
