@@ -11,15 +11,17 @@ public class LadderApplication {
 
         Input input = new Input();
         Output output = new Output();
+
         Person persons = new Person(input.joinPerson());
         LadderResult results = new LadderResult(input.runResult());
-        int height = input.ladderHeight();
-        System.out.println();
-        Ladder ladder = new Ladder(persons.size(), height);
+        Ladder ladder = new Ladder(persons.size(), input.ladderHeight());
+
         output.personName(persons);
         output.ladderResult(ladder);
         output.runResult(results);
+
         String person = input.resultWantPerson();
+
         results.runResult(ladder.play());
         output.finalResult(persons, results, person);
     }

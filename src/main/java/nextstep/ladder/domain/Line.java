@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
 
-public class Line implements RandomBoolean{
+public class Line implements RandomBoolean {
     private List<Boolean> connection = new ArrayList<>();
     private Random random = new Random();
     private Location location;

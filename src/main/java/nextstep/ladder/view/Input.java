@@ -27,9 +27,11 @@ public class Input {
         print("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요");
         String[] result = input.nextLine().split(",");
         System.out.println();
-        return Arrays.stream(result)
+        List<String> run = Arrays.stream(result)
                 .map(String::trim)
                 .collect(Collectors.toList());
+        print("");
+        return run;
     }
 
     public String resultWantPerson() {
