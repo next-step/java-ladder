@@ -1,6 +1,5 @@
 package nextstep.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
@@ -28,5 +27,10 @@ public class Ladder {
 
     public List<String> getLines() {
         return lines.getLines();
+    }
+
+    public LadderResult createLadderResult(List<String> prize) {
+        participants.move(lines);
+        return new LadderResult(participants.getList(), prize);
     }
 }
