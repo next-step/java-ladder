@@ -17,6 +17,6 @@ class ParticipantsTest {
         String names = "pobi,honux,crong,jk";
         Participants participants = new Participants(names);
         List<Participant> participantList = participants.getList();
-        assertThat(participantList).containsExactly(new Participant("pobi"), new Participant("honux"), new Participant("crong"), new Participant("jk"));
+        assertThat(participantList).containsExactly(new Participant("pobi", 0), new Participant("honux",1), new Participant("crong",2), new Participant("jk",3));
     }
 }
