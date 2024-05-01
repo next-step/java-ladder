@@ -9,28 +9,13 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.*;
 
 class LadderResultTest {
-
-
-    @DisplayName("참가자들이 양옆에 라인이 있을 경우 위치를 변경할 수 있다.")
-    @Test
-    void move() {
-        Participant participantOne = new Participant("One");
-        Participant participantTwo = new Participant("Two");
-        List<Participant> participants = List.of(participantOne, participantTwo);
-        LadderResult ladderResult = new LadderResult(participants);
-        ladderResult.move(new Line(2, true));
-
-        assertThat(ladderResult.getPosition(participantOne)).isEqualTo(1);
-        assertThat(ladderResult.getPosition(participantTwo)).isEqualTo(0);
-    }
-
     @DisplayName("상품 당첨 정보를 조회할 수 있다.")
     @Test
-    void name() {
-        Participant participantOne = new Participant("One");
-        Participant participantTwo = new Participant("Two");
-        Participant participantThree = new Participant("Three");
-        Participant participantFour = new Participant("Four");
+    void createLadderResult() {
+        Participant participantOne = new Participant("One",0);
+        Participant participantTwo = new Participant("Two",1);
+        Participant participantThree = new Participant("Three",2);
+        Participant participantFour = new Participant("Four",3);
         Participants participants = new Participants(List.of(participantOne, participantTwo, participantThree, participantFour));
 
         Lines lines = new Lines(List.of(
@@ -42,12 +27,12 @@ class LadderResultTest {
         ));
 
         Ladder ladder = new Ladder(participants, lines);
-        LadderResult ladderResult = ladder.createLadderResult();
-        Map<String, String> participantPrizeMap= ladderResult.mappingPrize(List.of("꽝","5000","꽝","3000"));
-        String one = participantPrizeMap.get("One");
-        String two = participantPrizeMap.get("Two");
-        String three = participantPrizeMap.get("Three");
-        String four = participantPrizeMap.get("Four");
+        LadderResult ladderResult = ladder.createLadderResult(List.of("꽝", "5000", "꽝", "3000"));
+
+        String one = ladderResult.get("One");
+        String two = ladderResult.get("Two");
+        String three = ladderResult.get("Three");
+        String four = ladderResult.get("Four");
 
         assertThat(one).isEqualTo("꽝");
         assertThat(two).isEqualTo("3000");

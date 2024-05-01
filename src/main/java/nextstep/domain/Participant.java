@@ -4,18 +4,26 @@ import java.util.Objects;
 
 public class Participant {
     private String name;
-    private Integer position;
+    private Position position;
 
     public Participant(String name) {
         this(name, 0);
     }
 
     public Participant(String name, Integer position) {
+        this(name, new Position(position));
+    }
+
+    public Participant(String name, Position position) {
         if (name.length() > 5) {
             throw new IllegalArgumentException("이름은 다섯글자를 초과할 수 없습니다.");
         }
         this.name = name;
         this.position = position;
+    }
+
+    public void move(Line line) {
+        this.position = this.position.move(line);
     }
 
     @Override
@@ -48,5 +56,9 @@ public class Participant {
             return String.format("%5s", this.name);
         }
         return name;
+    }
+
+    public int getPosition() {
+        return this.position.getPosition();
     }
 }

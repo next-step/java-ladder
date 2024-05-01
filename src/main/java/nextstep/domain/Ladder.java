@@ -29,9 +29,8 @@ public class Ladder {
         return lines.getLines();
     }
 
-    public LadderResult createLadderResult() {
-        LadderResult ladderResult = new LadderResult(participants.getList());
-        ladderResult.moves(lines);
-        return ladderResult;
+    public LadderResult createLadderResult(List<String> prize) {
+        participants.move(lines);
+        return new LadderResult(participants.getList(), prize);
     }
 }

@@ -46,8 +46,7 @@ public class LadderGame {
         printPrize(prizeList);
 
         System.out.println();
-        LadderResult ladderResult = ladder.createLadderResult();
-        Map<String, String> participantStringMap = ladderResult.mappingPrize(prizeList);
+        LadderResult ladderResult = ladder.createLadderResult(prizeList);
 
         String input = "";
         do {
@@ -55,11 +54,11 @@ public class LadderGame {
             input = scanner.nextLine();
             if (Objects.equals(input, "all")) {
                 System.out.println("실행 결과");
-                participantStringMap.forEach((key, value) -> System.out.println(key + ": " + value));
+                ladderResult.getPrizeMappingMap().forEach((key, value) -> System.out.println(key + ": " + value));
                 break;
             }
 
-            System.out.println(participantStringMap.get(input));
+            System.out.println(ladderResult.getPrizeMappingMap().get(input));
         } while (!input.equals("all"));
     }
 

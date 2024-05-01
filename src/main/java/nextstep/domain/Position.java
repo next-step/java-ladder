@@ -37,4 +37,8 @@ public class Position {
     public int hashCode() {
         return Objects.hashCode(position);
     }
+
+    public int getPosition() {
+        return this.position;
+    }
 }
