@@ -16,6 +16,14 @@ public class Ladder {
         this.lines = lines;
     }
 
+    public int move(int position) {
+        int result = position;
+        for (Line line : lines) {
+            result = line.move(result);
+        }
+        return result;
+    }
+
     public static Ladder of(List<Line> lines) {
         return new Ladder(lines);
     }
@@ -24,27 +32,18 @@ public class Ladder {
         return lines;
     }
 
-    public static Ladder generateLadder(int userCount, int height) {
-        return Ladder.of(IntStream.range(0, height)
-            .mapToObj(idx -> Line.generateLine(userCount))
+    public static Ladder generate(int userCount, int height) {
+        return new Ladder(IntStream.range(0, height)
+            .mapToObj(idx -> Line.generate(userCount))
             .collect(Collectors.toList()));
-    }
-
-    private int findFinalIndex(int startIndex) {
-        return lines.stream()
-            .reduce(startIndex, (index, line) -> index + line.move(index), Integer::sum);
     }
 
     public UserResults createUserResults(Users users, LadderResult ladderResult) {
         return UserResults.of(IntStream.range(0, users.numberOfUsers())
             .mapToObj(idx-> UserResult.of(
-                users.getUser(idx), ladderResult.getResult(findFinalIndex(idx))
+                users.getUser(idx), ladderResult.getResult(move(idx))
                 )
             )
             .collect(Collectors.toList()));
-    }
-
-    public int size() {
-        return this.lines.size();
     }
 }
