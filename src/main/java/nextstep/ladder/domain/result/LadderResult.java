@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class LadderResult {
 
-    private List<String> results;
+    private final List<String> results;
 
     private LadderResult(List<String> results) {
         this.results = results;

@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class UserResults{
-    List<UserResult> userResults;
+    private final List<UserResult> userResults;
 
     private UserResults(List<UserResult> userResults) {
         this.userResults = userResults;

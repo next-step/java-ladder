@@ -4,8 +4,8 @@ import java.util.Objects;
 import nextstep.ladder.domain.user.User;
 
 public class UserResult{
-    private User user;
-    private String result;
+    private final User user;
+    private final String result;
 
     private UserResult(User user, String result) {
         this.user = user;
