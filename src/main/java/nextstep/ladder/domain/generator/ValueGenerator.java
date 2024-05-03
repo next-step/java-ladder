@@ -1,7 +1,7 @@
 package nextstep.ladder.domain.generator;
 
 
-public interface PointGenerator {
+public interface ValueGenerator {
     Boolean generate();
 
 }

@@ -28,11 +28,11 @@ public class UserResultTest {
 
         Ladder ladder = Ladder.of(
             List.of(
-                Line.of(true, false, true),
-                Line.of(false, true, false),
-                Line.of(true, false, false),
-                Line.of(false, true, false),
-                Line.of(true, false, true)
+                Line.of(true, false, true, false),
+                Line.of(false, true, false, false),
+                Line.of(true, false, false, false),
+                Line.of(false, true, false, false),
+                Line.of(true, false, true, false)
             )
         );
         LadderResult ladderResult = LadderResult.of("꽝", "5000", "꽝", "3000");
@@ -43,6 +43,8 @@ public class UserResultTest {
             UserResult.of("honux","꽝"),
             UserResult.of("jk","5000")
         );
+        System.out.println(ladder.createUserResults(users, ladderResult));
+        System.out.println(userResults);
         assertThat(ladder.createUserResults(users, ladderResult)).isEqualTo(userResults);
     }
 }

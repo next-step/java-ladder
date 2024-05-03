@@ -65,7 +65,7 @@ public class ResultView {
     private static String printLine(Line line) {
         return line.getPoints().stream()
             .map(point -> point.isConnected() ? CONNECTED_LINE : LINE_BLANK)
-            .collect(Collectors.joining(VERTICAL_BAR, LINE_BLANK + VERTICAL_BAR, VERTICAL_BAR));
+            .collect(Collectors.joining(VERTICAL_BAR, LINE_BLANK + VERTICAL_BAR, ""));
     }
 
 

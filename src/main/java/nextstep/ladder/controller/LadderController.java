@@ -1,5 +1,6 @@
 package nextstep.ladder.controller;
 
+
 import static nextstep.ladder.view.InputView.inputExecuteResult;
 import static nextstep.ladder.view.InputView.inputJoinUserNames;
 import static nextstep.ladder.view.InputView.inputLadderHeight;
@@ -16,7 +17,7 @@ public class LadderController {
     public void play() {
         Users users = Users.join(inputJoinUserNames());
         LadderResult ladderResult = LadderResult.of(inputExecuteResult());
-        Ladder ladder = Ladder.generateLadder(users.numberOfUsers(), inputLadderHeight());
+        Ladder ladder = Ladder.generate(users.numberOfUsers(), inputLadderHeight());
         ResultView.printCreatedLadder(users, ladder);
         ResultView.printLadderResult(ladderResult);
         UserResults userResults = ladder.createUserResults(users, ladderResult);

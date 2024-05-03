@@ -2,7 +2,7 @@ package nextstep.ladder.domain.generator;
 
 import java.util.Random;
 
-public class RandomPointGenerator implements PointGenerator{
+public class RandomValueGenerator implements ValueGenerator {
 
     private final static Random random = new Random();
     @Override
