@@ -16,9 +16,7 @@ public class LadderApplication {
         LadderResult results = new LadderResult(input.runResult());
         Ladder ladder = new Ladder(persons.size(), input.ladderHeight());
 
-        output.personName(persons);
-        output.ladderResult(ladder);
-        output.runResult(results);
+        output.ladderResult(persons, ladder, results);
 
         String person = input.resultWantPerson();
 

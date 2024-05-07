@@ -10,12 +10,17 @@ public class Output {
 
     private static final String UNLINK = "    |";
     private static final String LINK = "----|";
-    public void personName(Person persons) {
+    public void ladderResult(Person person, Ladder ladder, LadderResult result) {
+        personName(person);
+        ladderPrint(ladder);
+        runReward(result);
+    }
+    private void personName(Person persons) {
         print("사다리 결과");
         print(persons.name());
     }
 
-    public void ladderResult(Ladder ladder) {
+    private void ladderPrint(Ladder ladder) {
         ladder.getLadder().forEach(line -> {
             String result = line.getList().stream()
                     .map(isLink -> isLink ? LINK : UNLINK)
@@ -24,7 +29,7 @@ public class Output {
         });
     }
 
-    public void runResult(LadderResult results) {
+    private void runReward(LadderResult results) {
         print(results.asString() + '\n');
     }
 
