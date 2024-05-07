@@ -3,11 +3,11 @@ package nextstep.ladder.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class LadderResult {
+public class LadderReward {
     private Location location;
     private List<String> results;
 
-    public LadderResult(List<String> results) {
+    public LadderReward(List<String> results) {
         this.results = results;
     }
 
@@ -22,6 +22,11 @@ public class LadderResult {
 
     public void runResult(Location location) {
         this.location = location;
+    }
+
+    public MatchingReward runReward(Location location) {
+        this.location = location;
+        return new MatchingReward(location);
     }
 
     public int size() {
