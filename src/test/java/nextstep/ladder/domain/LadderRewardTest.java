@@ -6,9 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
-class LadderResultTest {
+class LadderRewardTest {
 
     @Test
     void 결과저장_메서드_실행되는지_확인() {
@@ -17,14 +16,14 @@ class LadderResultTest {
         List<String> re = Arrays.asList("꽝","5000","꽝","3000");
         Person person = new Person(persons);
 
-        LadderResult result = new LadderResult(re);
+        LadderReward result = new LadderReward(re);
         result.find(1);
     }
 
     @Test
     void find() {
         List<String> input = Arrays.asList("꽝","5000","꽝","3000");
-        LadderResult result = new LadderResult(input);
+        LadderReward result = new LadderReward(input);
         Location location = new Location(5);
         Line line = new Line(4) {
             @Override

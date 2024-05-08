@@ -1,7 +1,8 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.LadderResult;
+import nextstep.ladder.domain.LadderReward;
+import nextstep.ladder.domain.MatchingReward;
 import nextstep.ladder.domain.Person;
 
 import java.util.stream.Collectors;
@@ -10,12 +11,17 @@ public class Output {
 
     private static final String UNLINK = "    |";
     private static final String LINK = "----|";
-    public void personName(Person persons) {
+    public void ladderResult(Person person, Ladder ladder, LadderReward result) {
+        personName(person);
+        ladderPrint(ladder);
+        runReward(result);
+    }
+    private void personName(Person persons) {
         print("사다리 결과");
         print(persons.name());
     }
 
-    public void ladderResult(Ladder ladder) {
+    private void ladderPrint(Ladder ladder) {
         ladder.getLadder().forEach(line -> {
             String result = line.getList().stream()
                     .map(isLink -> isLink ? LINK : UNLINK)
@@ -24,7 +30,7 @@ public class Output {
         });
     }
 
-    public void runResult(LadderResult results) {
+    private void runReward(LadderReward results) {
         print(results.asString() + '\n');
     }
 
@@ -32,11 +38,13 @@ public class Output {
         System.out.println(word);
     }
 
-    public void finalResult(Person person, LadderResult result, String want) {
-        if (person.location(want) == -1) {
-            for (int i = 0; i < result.size(); i++)
-                print(person.get(i) + " : " + result.find(i));
+    public void finalResult(MatchingReward match, String want) {
+        print('\n' + "실행결과");
+        if (want.equals("all")) {
+            for (String key : match.getMatch().keySet()) {
+                print(key + " : " + match.getMatch().get(key));
+            }
         } else
-            print(result.find(person.location(want)));
+            print(match.result(want));
     }
 }
