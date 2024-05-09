@@ -1,5 +1,18 @@
 package nextstep.version.refactor;
 
-public class LadderGame {
+import nextstep.version.refactor.domain.*;
 
+public class LadderGame {
+    public static void main(String[] args) {
+        Participants participants = InputView.createParticipants();
+        Rewards rewards = InputView.createRewards();
+
+        Line ladder = new Line(participants.size(), InputView.getHeight(), new RandomCreator());
+        OutputView.printLadder(participants, ladder, rewards);
+
+        MatchResult matchResult = ladder.play();
+        LadderResult result = matchResult.map(participants, rewards);
+
+        OutputView.printResult(result);
+    }
 }

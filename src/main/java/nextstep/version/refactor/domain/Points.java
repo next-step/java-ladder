@@ -40,13 +40,21 @@ public class Points {
     }
 
     private static void addMiddlePoints(List<Boolean> pointBooleans, List<Point> points) {
-        for (int i = 1; i < pointBooleans.size(); i++) {
+        if (sizeOverThanMinimumSize(pointBooleans)) return;
+
+        for (int i = 1; i < pointBooleans.size() - 1; i++) {
             points.add(points.get(i - 1).next(pointBooleans.get(i)));
         }
     }
 
     private static void createLastPoint(List<Point> points, List<Boolean> pointBooleans) {
-        points.add(points.get(pointBooleans.size() - 1).last());
+        if (sizeOverThanMinimumSize(pointBooleans)) return;
+        points.add(points.get(pointBooleans.size() - 2).last());
+    }
+
+    private static boolean sizeOverThanMinimumSize(List<Boolean> pointBooleans) {
+        int pointBooleansSize = pointBooleans.size();
+        return pointBooleansSize < 3;
     }
 
     public boolean hasLine(int index) {
@@ -64,5 +72,9 @@ public class Points {
             return position;
         }
         return position + 1;
+    }
+
+    public int size() {
+        return this.points.size();
     }
 }

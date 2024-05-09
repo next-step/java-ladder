@@ -28,4 +28,12 @@ public class Rewards {
     public int hashCode() {
         return Objects.hashCode(prize);
     }
+
+    public String get(int i) {
+        return this.prize.get(i);
+    }
+
+    public int size() {
+        return this.prize.size();
+    }
 }

@@ -44,4 +44,8 @@ public class Participants {
     public int hashCode() {
         return Objects.hashCode(participants);
     }
+
+    public List<String> getNameList() {
+        return this.participants.stream().map(Participant::getName).collect(Collectors.toList());
+    }
 }

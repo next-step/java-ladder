@@ -1,6 +1,5 @@
 package nextstep.version.refactor.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,10 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-class LineTest {
-
+class MatchResultTest {
     int size;
     int height;
     LineCreator lineCreator;
@@ -20,7 +19,7 @@ class LineTest {
 
     @BeforeEach
     void setUp() {
-        size = 4;
+        size = 3;
         height = 5;
         lineCreator = new LineCreator() {
             @Override
@@ -41,22 +40,13 @@ class LineTest {
         line = new Line(size, height, lineCreator);
     }
 
-    @DisplayName("라인 리스트를 만들 수 있다.")
+    @DisplayName("참가자와 상품을 받아서 매칭시켜준다.")
     @Test
-    void create() {
-        Points points = line.get(0);
-        Assertions.assertThat(points.hasLine(0)).isTrue();
-    }
-
-    /**
-     * size:4,
-     * height:5
-     */
-    @DisplayName("게임을 실행하면 위치값과 결과값을 가지고 있는 결과객체를 반환한다.")
-    @Test
-    void play() {
-        MatchResult matchResult = line.play();
-        MatchResult result = new MatchResult(Map.of(0, 1, 1, 0, 2, 3, 3, 2));
-        Assertions.assertThat(matchResult).isEqualTo(result);
+    void map() {
+        Participants participants = new Participants("pobi,teddy,nana");
+        Rewards rewards = new Rewards("꽝,1등,꽝");
+        MatchResult matchResult = new MatchResult(Map.of(0, 1, 1, 0, 2, 2));
+        LadderResult ladderResult = matchResult.map(participants, rewards);
+        assertThat(ladderResult).isEqualTo(new LadderResult(Map.of("pobi", "1등", "teddy", "꽝", "nana", "꽝")));
     }
 }
