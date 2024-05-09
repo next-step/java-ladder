@@ -9,13 +9,12 @@ import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class MatchResultTest {
     int size;
     int height;
     LineCreator lineCreator;
-    Line line;
+    Ladder line;
 
     @BeforeEach
     void setUp() {
@@ -37,7 +36,7 @@ class MatchResultTest {
             }
         };
 
-        line = new Line(size, height, lineCreator);
+        line = new Ladder(size, height, lineCreator);
     }
 
     @DisplayName("참가자와 상품을 받아서 매칭시켜준다.")

@@ -9,14 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class LineTest {
+class LadderTest {
 
     int size;
     int height;
     LineCreator lineCreator;
-    Line line;
+    Ladder line;
 
     @BeforeEach
     void setUp() {
@@ -38,7 +36,7 @@ class LineTest {
             }
         };
 
-        line = new Line(size, height, lineCreator);
+        line = new Ladder(size, height, lineCreator);
     }
 
     @DisplayName("라인 리스트를 만들 수 있다.")

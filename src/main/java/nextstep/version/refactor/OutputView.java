@@ -8,17 +8,17 @@ import java.util.Scanner;
 public class OutputView {
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static void printLadder(Participants participants, Line line, Rewards rewards) {
+    public static void printLadder(Participants participants, Ladder line, Rewards rewards) {
         println("사다리 결과");
         printNames(participants);
         println();
 
         Integer size = line.size();
         printLadder(line, size);
-        printPrize(rewards);
+        printRewards(rewards);
     }
 
-    private static void printPrize(Rewards rewards) {
+    private static void printRewards(Rewards rewards) {
         int size = rewards.size();
         for (int i = 0; i < size; i++) {
             System.out.print(padLeft(rewards.get(i), 5));
@@ -26,9 +26,9 @@ public class OutputView {
         println();
     }
 
-    private static void printLadder(Line line, Integer size) {
+    private static void printLadder(Ladder ladder, Integer size) {
         for (int i = 0; i < size; i++) {
-            Points points = line.get(i);
+            Points points = ladder.get(i);
             int pointSize = points.size();
             createLine(pointSize, points);
         }

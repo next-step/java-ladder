@@ -5,10 +5,10 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Line {
+public class Ladder {
     private final List<Points> points;
 
-    public Line(int size, int height, LineCreator lineCreator) {
+    public Ladder(int size, int height, LineCreator lineCreator) {
         this(toLineList(size, height, lineCreator));
     }
 
@@ -20,7 +20,7 @@ public class Line {
         return points;
     }
 
-    public Line(List<Points> points) {
+    public Ladder(List<Points> points) {
         this.points = points;
     }
 

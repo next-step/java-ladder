@@ -7,7 +7,7 @@ public class LadderGame {
         Participants participants = InputView.createParticipants();
         Rewards rewards = InputView.createRewards();
 
-        Line ladder = new Line(participants.size(), InputView.getHeight(), new RandomCreator());
+        Ladder ladder = new Ladder(participants.size(), InputView.getHeight(), new RandomCreator());
         OutputView.printLadder(participants, ladder, rewards);
 
         MatchResult matchResult = ladder.play();
