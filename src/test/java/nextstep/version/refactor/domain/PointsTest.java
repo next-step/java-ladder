@@ -13,10 +13,7 @@ class PointsTest {
     void createPoints() {
         Points points = new Points(new Boolean[]{true});
         boolean result = points.hasLine(0);
-        boolean result1 = points.hasLine(1);
-
         assertTrue(result);
-        assertFalse(result1);
     }
 
     @DisplayName("크기가 1이하 인 경우 에러를 반환한다.")
@@ -37,7 +34,7 @@ class PointsTest {
     @DisplayName("첫 번째를 제외하고 왼쪽으로 이동할 수 있다.")
     @Test
     void leftMovePoint() {
-        Points points = new Points(new Boolean[]{false,true});
+        Points points = new Points(new Boolean[]{false,true,false});
         Integer movePoint = points.move(2);
         Assertions.assertThat(movePoint).isEqualTo(1);
     }

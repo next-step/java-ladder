@@ -20,14 +20,14 @@ public class Point {
         return new Point(this.current, current);
     }
 
-    public Direction move() {
+    public int move() {
         if (current) {
-            return Direction.NEXT;
+            return Direction.NEXT.getDirectionValue();
         }
         if (beforeLine) {
-            return Direction.BEFORE;
+            return Direction.BEFORE.getDirectionValue();
         }
-        return Direction.PASS;
+        return Direction.PASS.getDirectionValue();
     }
 
     public boolean getBeforeLine() {

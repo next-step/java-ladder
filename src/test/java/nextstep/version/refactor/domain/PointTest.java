@@ -13,8 +13,7 @@ class PointTest {
     void pass() {
         // beforeLine(x), current(x)
         Point point = Point.first(false);
-        Direction direction = point.move();
-        assertThat(direction).isEqualTo(Direction.PASS);
+        assertThat(point.move()).isEqualTo(0);
     }
 
     @DisplayName("NEXT_LINE")
@@ -22,8 +21,7 @@ class PointTest {
     void nextLine() {
         // beforeLine(x), current(x)
         Point point = Point.first(true);
-        Direction direction = point.move();
-        assertThat(direction).isEqualTo(Direction.NEXT);
+        assertThat(point.move()).isEqualTo(1);
     }
 
     @DisplayName("이전라인이 연결되어 있으면 이전라인으로 이동한다.")
@@ -31,8 +29,7 @@ class PointTest {
     void beforeLine() {
         // beforeLine(x), current(x)
         Point point = Point.first(true).next(false);
-        Direction direction = point.move();
-        assertThat(direction).isEqualTo(Direction.BEFORE);
+        assertThat(point.move()).isEqualTo(-1);
     }
 
     @DisplayName("포인트는 이어지는 라인이 둘다 이어졌을 경우 예외를 던진다.")

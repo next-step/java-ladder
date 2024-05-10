@@ -40,7 +40,7 @@ public class Points {
     }
 
     private static void addMiddlePoints(List<Boolean> pointBooleans, List<Point> points) {
-        if (sizeOverThanMinimumSize(pointBooleans)) return;
+        if (sizeOverThanMinimumSize(pointBooleans, 2)) return;
 
         for (int i = 1; i < pointBooleans.size() - 1; i++) {
             points.add(points.get(i - 1).next(pointBooleans.get(i)));
@@ -48,13 +48,13 @@ public class Points {
     }
 
     private static void createLastPoint(List<Point> points, List<Boolean> pointBooleans) {
-        if (sizeOverThanMinimumSize(pointBooleans)) return;
+        if (sizeOverThanMinimumSize(pointBooleans, 2)) return;
         points.add(points.get(pointBooleans.size() - 2).last());
     }
 
-    private static boolean sizeOverThanMinimumSize(List<Boolean> pointBooleans) {
+    private static boolean sizeOverThanMinimumSize(List<Boolean> pointBooleans, int size) {
         int pointBooleansSize = pointBooleans.size();
-        return pointBooleansSize < 3;
+        return pointBooleansSize < size;
     }
 
     public boolean hasLine(int index) {
@@ -63,15 +63,16 @@ public class Points {
 
     public Integer move(int position) {
         Point point = this.points.get(position);
-        Direction move = point.move();
-        if (move == Direction.BEFORE) {
-            return position - 1;
-        }
-
-        if (move == Direction.PASS) {
-            return position;
-        }
-        return position + 1;
+        return position + point.move();
+//        Direction move = point.move();
+//        if (move == Direction.BEFORE) {
+//            return position - move.getDirectionValue();
+//        }
+//
+//        if (move == Direction.PASS) {
+//            return position;
+//        }
+//        return position + move.getDirectionValue();
     }
 
     public int size() {
