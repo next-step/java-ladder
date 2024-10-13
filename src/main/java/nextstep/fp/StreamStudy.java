@@ -32,6 +32,21 @@ public class StreamStudy {
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
         // TODO 이 부분에 구현한다.
+        /*
+        아래의 조건을 충족하는 단어를 출력
+        - filter : 길이가 12자 초과
+        - distinct : 중복 불가
+        - limit : 100개 제한
+        - sort : 단어 길이가 긴 순서대로
+        - 출력 : 소문자로 출력
+        */
+        words.stream()
+                .filter(word -> word.length() > 12)
+                .distinct()
+                .limit(100)
+                .map(String::toLowerCase)
+                .sorted(comparing(String::length).reversed())
+                .forEach(System.out::println);
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
