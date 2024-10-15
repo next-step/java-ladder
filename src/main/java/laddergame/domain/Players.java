@@ -11,4 +11,8 @@ public class Players {
         }
         this.players = players;
     }
+
+    public int size(){
+        return players.size();
+    }
 }
