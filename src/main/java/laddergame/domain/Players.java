@@ -2,6 +2,8 @@ package laddergame.domain;
 
 import java.util.List;
 
+import static java.util.stream.Collectors.joining;
+
 public class Players {
     private final List<Player> players;
 
@@ -14,5 +16,12 @@ public class Players {
 
     public int size(){
         return players.size();
+    }
+
+    @Override
+    public String toString() {
+        return players.stream()
+                .map(Player::toString)
+                .collect(joining("   "));
     }
 }

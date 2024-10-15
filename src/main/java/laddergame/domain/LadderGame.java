@@ -4,7 +4,10 @@ import laddergame.ui.InputView;
 import laddergame.ui.ResultView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 public class LadderGame {
     private  static final String PLAYER_NAME_SEPERATOR = ",";
@@ -23,18 +26,18 @@ public class LadderGame {
         Players players = getPlayers();
         int ladderHeight = getLadderHeight();
         List<Line> ladder = createLadder(ladderHeight, players.size());
+        resultView.showLadderGameResult(players, ladder);
     }
-
 
     //region getPlayers
     private Players getPlayers() {
         String playerNames = inputView.getPlayerFromUser();
         String[] names = splitNames(playerNames);
 
-        List<Player> players = new ArrayList<Player>();
-        for (String name : names) {
-            players.add(new Player(name));
-        }
+        List<Player> players = Arrays.stream(names)
+                .map(Player::new)
+                .collect(toList());
+
         return new Players(players);
     }
 
