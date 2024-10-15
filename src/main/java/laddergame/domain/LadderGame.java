@@ -11,15 +11,20 @@ public class LadderGame {
 
     private final InputView inputView;
     private final ResultView resultView;
+    private final LadderLineStatusGenerator generator;
 
-    public LadderGame(InputView inputView, ResultView resultView) {
+    public LadderGame(InputView inputView, ResultView resultView, LadderLineStatusGenerator generator) {
         this.inputView = inputView;
         this.resultView = resultView;
+        this.generator = generator;
     }
 
     public void run() {
         Players players = getPlayers();
+        int ladderHeight = getLadderHeight();
+        List<Line> ladder = createLadder(ladderHeight, players.size());
     }
+
 
     //region getPlayers
     private Players getPlayers() {
@@ -37,4 +42,16 @@ public class LadderGame {
         return playerNames.replace(" ", "").split(PLAYER_NAME_SEPERATOR);
     }
     //endregion
+
+    private int getLadderHeight() {
+        return inputView.getMaxLadderHeightFromUser();
+    }
+
+    private List<Line> createLadder(int ladderHeight, int playerCount) {
+        List<Line> ladders = new ArrayList<>();
+        for (int i = 0; i < ladderHeight; i++) {
+            ladders.add(new Line(playerCount, generator));
+        }
+        return ladders;
+    }
 }
