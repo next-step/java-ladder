@@ -12,7 +12,6 @@ public class UsersTest {
         assertThat(users.getUser("crong")).isEqualTo(new User("crong", 35));
     }
 
-
     @Test
     public void getDefaultUser() {
         Users users = new Users();
