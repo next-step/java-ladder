@@ -6,17 +6,26 @@ import java.util.stream.IntStream;
 
 public class Line {
     private List<Boolean> points;
-    private LadderLineStatusGenerator generator;
 
-    public Line(int playerCount, LadderLineStatusGenerator generator) {
-        this.generator = generator;
+    public Line(int playerCount) {
         initialize(playerCount - 1);
-        generateLine(generator);
     }
 
     public Line(List<Boolean> points) {
         this.points = points;
         validate();
+    }
+
+    public void generateLine(LadderLineStatusGenerator generator){
+        for (int index = 0; index < points.size(); index++) {
+            addHorizontalLine(generator, index);
+        }
+    }
+
+    private void addHorizontalLine(LadderLineStatusGenerator generator, int index) {
+        if(this.canAddHorizontalLine(index)){
+            points.set(index, generator.generate());
+        }
     }
 
     private void initialize(int width) {
@@ -40,12 +49,6 @@ public class Line {
         return hasHorizontalLine(index) && hasHorizontalLine(index + 1);
     }
 
-    private void generateLine(LadderLineStatusGenerator generator){
-        IntStream.range(0, points.size())
-                .filter(this::canAddHorizontalLine)
-                .forEach((index) -> points.set(index, generator.generate()));
-    }
-
     private boolean canAddHorizontalLine(int index) {
         return index == 0 || hasNotHorizontalLine(index - 1);
     }
@@ -63,6 +66,6 @@ public class Line {
     }
 
     public List<Boolean> getPoints() {
-        return points;
+        return new ArrayList<Boolean>(points);
     }
 }

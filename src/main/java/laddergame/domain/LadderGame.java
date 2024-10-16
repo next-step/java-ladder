@@ -10,8 +10,6 @@ import java.util.List;
 import static java.util.stream.Collectors.toList;
 
 public class LadderGame {
-    private  static final String PLAYER_NAME_SEPERATOR = ",";
-
     private final InputView inputView;
     private final ResultView resultView;
     private final LadderLineStatusGenerator generator;
@@ -29,22 +27,15 @@ public class LadderGame {
         resultView.showLadderGameResult(players, ladder);
     }
 
-    //region getPlayers
     private Players getPlayers() {
-        String playerNames = inputView.getPlayerFromUser();
-        String[] names = splitNames(playerNames);
+        String[] playerNames = inputView.getPlayerFromUser();
 
-        List<Player> players = Arrays.stream(names)
+        List<Player> players = Arrays.stream(playerNames)
                 .map(Player::new)
                 .collect(toList());
 
         return new Players(players);
     }
-
-    private String[] splitNames(String playerNames){
-        return playerNames.replace(" ", "").split(PLAYER_NAME_SEPERATOR);
-    }
-    //endregion
 
     private int getLadderHeight() {
         return inputView.getMaxLadderHeightFromUser();
@@ -53,7 +44,9 @@ public class LadderGame {
     private List<Line> createLadder(int ladderHeight, int playerCount) {
         List<Line> ladders = new ArrayList<>();
         for (int i = 0; i < ladderHeight; i++) {
-            ladders.add(new Line(playerCount, generator));
+            Line line = new Line(playerCount);
+            line.generateLine(generator);
+            ladders.add(line);
         }
         return ladders;
     }

@@ -15,8 +15,7 @@ class LineTest {
     void lineSize(){
         int playerCount = 3;
 
-        LadderLineStatusGenerator generator = () -> true;
-        Line line = new Line(playerCount, generator);
+        Line line = new Line(playerCount);
 
         assertThat(line.size()).isEqualTo(2);
     }
@@ -29,5 +28,15 @@ class LineTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Line(points))
                 .withMessage("라인의 가로는 옆 라인과 겹칠 수 없습니다");
+    }
+
+    @DisplayName("옆 라인과 겹치치 않는 사다리의 라인을 생성한다")
+    @Test
+    void generateLine(){
+        int playerCount = 3;
+
+        Line line = new Line(playerCount);
+
+        assertThat(line.getPoints()).doesNotContain(true, true);
     }
 }
