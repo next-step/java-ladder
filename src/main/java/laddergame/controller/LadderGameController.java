@@ -1,6 +1,5 @@
 package laddergame.controller;
 
-import laddergame.domain.LadderGame;
 import laddergame.domain.LadderLineGenerator;
 import laddergame.domain.RandomLineGenerator;
 import laddergame.ui.InputView;

@@ -1,5 +1,9 @@
-package laddergame.domain;
+package laddergame.controller;
 
+import laddergame.domain.LadderLineGenerator;
+import laddergame.domain.Line;
+import laddergame.domain.Player;
+import laddergame.domain.Players;
 import laddergame.ui.InputView;
 import laddergame.ui.ResultView;
 
