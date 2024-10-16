@@ -44,8 +44,7 @@ public class LadderGame {
     private List<Line> createLadder(int ladderHeight, int playerCount) {
         List<Line> ladders = new ArrayList<>();
         for (int i = 0; i < ladderHeight; i++) {
-            Line line = new Line(playerCount);
-            line.generateLine(generator);
+            Line line = new Line(playerCount, generator);
             ladders.add(line);
         }
         return ladders;

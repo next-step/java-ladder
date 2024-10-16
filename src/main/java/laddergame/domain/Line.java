@@ -7,8 +7,10 @@ import java.util.stream.IntStream;
 public class Line {
     private List<Boolean> points;
 
-    public Line(int playerCount) {
+    public Line(int playerCount, LadderLineStatusGenerator generator) {
         initialize(playerCount - 1);
+        generateLine(generator);
+        validate();
     }
 
     public Line(List<Boolean> points) {
@@ -16,7 +18,7 @@ public class Line {
         validate();
     }
 
-    public void generateLine(LadderLineStatusGenerator generator){
+    private void generateLine(LadderLineStatusGenerator generator){
         for (int index = 0; index < points.size(); index++) {
             addHorizontalLine(generator, index);
         }
@@ -38,11 +40,16 @@ public class Line {
     private void validate() {
         boolean hasOverlap = IntStream
                     .range(0, points.size())
+                    .filter(this::isNotLastLine)
                     .anyMatch(this::hasBothHorizontalLine);
 
         if(hasOverlap){
             throw new IllegalArgumentException("라인의 가로는 옆 라인과 겹칠 수 없습니다");
         }
+    }
+
+    private boolean isNotLastLine(int index) {
+        return points.size() - 1 > index;
     }
 
     private boolean hasBothHorizontalLine(int index) {
