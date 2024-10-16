@@ -11,12 +11,20 @@ public class ResultView {
     private static final String RESULT_START_MESSAGE = "실행결과";
     private static final String LADDER_HORIZONTAL_LINE = "-----";
     private static final String LADDER_VERTICAL_LINE = "|";
+    private static final String SPACING_BETWEEN_PLAYERS = "    ";
 
     public void showLadderGameResult(Players players, List<Line> ladder) {
         System.out.println();
         System.out.println(RESULT_START_MESSAGE);
-        System.out.println(players.toString());
+        showPlayers(players);
         showLadder(ladder);
+    }
+
+    private void showPlayers(Players players) {
+        String playerNames = players.getPlayers().stream()
+                .map(player -> player.getName() + SPACING_BETWEEN_PLAYERS)
+                .collect(joining());
+        System.out.println(playerNames);
     }
 
     private void showLadder(List<Line> ladder) {
