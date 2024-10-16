@@ -12,9 +12,9 @@ import static java.util.stream.Collectors.toList;
 public class LadderGame {
     private final InputView inputView;
     private final ResultView resultView;
-    private final LadderLineStatusGenerator generator;
+    private final LadderLineGenerator generator;
 
-    public LadderGame(InputView inputView, ResultView resultView, LadderLineStatusGenerator generator) {
+    public LadderGame(InputView inputView, ResultView resultView, LadderLineGenerator generator) {
         this.inputView = inputView;
         this.resultView = resultView;
         this.generator = generator;

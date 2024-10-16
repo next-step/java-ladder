@@ -14,7 +14,7 @@ class LineTest {
     @Test
     void lineSize(){
         int playerCount = 3;
-        LadderLineStatusGenerator generator = () -> true;
+        LadderLineGenerator generator = (int size) -> List.of(true, false);
         Line line = new Line(playerCount, generator);
 
         assertThat(line.size()).isEqualTo(2);
