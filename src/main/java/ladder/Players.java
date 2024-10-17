@@ -18,6 +18,10 @@ public class Players {
         this.players = players;
     }
 
+    public int size() {
+        return players.size();
+    }
+
     private void validSize(List<Player> players) {
         if (players.size() < 2) {
             throw new IllegalArgumentException();
@@ -37,5 +41,9 @@ public class Players {
     @Override
     public int hashCode() {
         return Objects.hashCode(players);
+    }
+
+    public List<Player> getPlayers() {
+        return players;
     }
 }
