@@ -5,12 +5,13 @@ import java.util.List;
 import java.util.Scanner;
 
 import ladder.Player;
+import ladder.Players;
 
 public class InputView {
 
     private static final String DELIMITER = ",";
 
-    public static List<Player> inputPlayers() {
+    public static Players inputPlayers() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         return splitPlayer(scanner.nextLine());
@@ -22,13 +23,13 @@ public class InputView {
         return scanner.nextInt();
     }
 
-    private static List<Player> splitPlayer(String inputPlayers) {
+    private static Players splitPlayer(String inputPlayers) {
         String[] players = inputPlayers.split(DELIMITER);
         List<Player> playerList = new ArrayList<>();
         for (String player : players) {
             playerList.add(new Player(player));
         }
 
-        return playerList;
+        return new Players(playerList);
     }
 }
