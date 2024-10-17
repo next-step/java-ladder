@@ -1,12 +1,15 @@
 package ladder;
 
-import java.util.List;
-
 import ladder.view.InputView;
+import ladder.view.OutputView;
 
 public class Main {
     public static void main(String[] args) {
-        List<Player> players = InputView.inputPlayers();
+        Players players = InputView.inputPlayers();
         int height = InputView.inputHeight();
+
+        Ladder ladder = new Ladder(height, players.size());
+
+        OutputView.outputLadderGameResult(players, ladder);
     }
 }
