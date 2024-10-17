@@ -11,3 +11,5 @@
 ## Step1. 기능 구현
 * 익명 클래스를 람다로 전환
 * 람다를 활용해 중복 제거
+* map, reduce, filter 실습 1
+  * filter, reduce 사용
