@@ -20,7 +20,13 @@ public class InputView {
     public static int inputHeight() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        return scanner.nextInt();
+        int height = scanner.nextInt();
+
+        if (height <= 0) {
+            throw new IllegalArgumentException("height must be greater than 0");
+        }
+
+        return height;
     }
 
     private static Players splitPlayer(String inputPlayers) {
