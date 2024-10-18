@@ -32,4 +32,12 @@ class PositionTest {
         assertThat(position.moveRight()).isEqualTo(new Position(2));
     }
 
+    @DisplayName("같은 위치인지 확인한다")
+    @Test
+    void same(){
+        Position position = new Position(1);
+
+        assertThat(position.same(1)).isTrue();
+    }
+
 }

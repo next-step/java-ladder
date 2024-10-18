@@ -21,4 +21,12 @@ public class Player {
     public String getName() {
         return name;
     }
+
+    public boolean isSamePosition(int otherPosition) {
+        return this.position.same(otherPosition);
+    }
+
+    public boolean doesNotSamePosition(int otherPosition) {
+        return !isSamePosition(otherPosition);
+    }
 }

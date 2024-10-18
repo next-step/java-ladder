@@ -21,6 +21,10 @@ public class Position {
         return new Position(position + 1);
     }
 
+    public boolean same(int otherPosition) {
+        return this.equals(new Position(otherPosition));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
