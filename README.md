@@ -13,3 +13,5 @@
 * 람다를 활용해 중복 제거
 * map, reduce, filter 실습 1
   * filter, reduce 사용
+* map, reduce, filter 실습 2
+  * filter, distinct, limit, map, sorted 사용
