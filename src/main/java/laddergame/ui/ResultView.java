@@ -1,8 +1,6 @@
 package laddergame.ui;
 
-import laddergame.domain.Ladder;
-import laddergame.domain.LadderPositionResult;
-import laddergame.domain.Players;
+import laddergame.domain.*;
 
 import java.util.List;
 
@@ -14,6 +12,7 @@ public class ResultView {
     private static final String LADDER_HORIZONTAL_LINE = "-----";
     private static final String LADDER_VERTICAL_LINE = "|";
     private static final String SPACING_BETWEEN_PLAYERS = "    ";
+    private static final String GAME_RESULT_FORMAT = "%s : %s\n";
 
     public void showLadder(Players players, Ladder ladder, LadderPositionResult positionResult) {
         System.out.println();
@@ -55,4 +54,29 @@ public class ResultView {
                 .map(result -> result + SPACING_BETWEEN_PLAYERS)
                 .collect(joining());
     }
+
+    public void showGamePlayResult(LadderPlayResult playResult){
+        showGamePlayResult(null, playResult);
+    }
+
+    public void showGamePlayResult(Player player, LadderPlayResult playResult) {
+        System.out.println();
+        System.out.println(RESULT_START_MESSAGE);
+        if(player != null){
+            showIndividualGameResult(player, playResult);
+            return;
+        }
+        showAllGameResults(playResult);
+    }
+
+    private void showAllGameResults(LadderPlayResult playResult) {
+        playResult.getPlayResult().forEach((aa, result) -> {
+            System.out.printf(GAME_RESULT_FORMAT, aa.getName(), result);
+        });
+    }
+
+    private void showIndividualGameResult(Player player, LadderPlayResult playResult){
+        System.out.println(playResult.get(player));
+    }
+
 }

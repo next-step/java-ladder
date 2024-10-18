@@ -30,6 +30,7 @@ public class LadderGame {
         initialize();
         showLadder();
         moveDown();
+        showGameResult();
     }
 
     private void initialize() {
@@ -70,6 +71,25 @@ public class LadderGame {
     private Ladder createLadder(int playerCount) {
         int ladderHeight = inputView.getMaxLadderHeightFromUser();;
         return new Ladder(playerCount, ladderHeight, generator);
+    }
+
+    private void showGameResult() {
+        while(true){
+            String playerName = inputView.getResultPlayerFromUser();
+            Optional<Player> optionalPlayer = players.findByName(playerName);
+
+            optionalPlayer.ifPresentOrElse(
+                    (player) -> resultView.showGamePlayResult(player, playResult),
+                    () -> resultView.showGamePlayResult(playResult)
+            );
+            if (isExit(playerName)) {
+                return;
+            }
+        }
+    }
+
+    private boolean isExit(String playerName) {
+        return playerName.equals(ALL_PLAYERS);
     }
 
 }
