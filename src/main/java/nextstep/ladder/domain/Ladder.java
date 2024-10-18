@@ -3,7 +3,7 @@ package nextstep.ladder.domain;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Ladder {
 
@@ -14,8 +14,8 @@ public class Ladder {
     }
 
     public static Ladder of(int height, int groupCount) {
-        return new Ladder(IntStream.range(0, height)
-                .mapToObj(i -> LadderLine.of(groupCount))
+        return new Ladder(Stream.of(new LadderLine[height])
+                .map(i -> LadderLine.of(groupCount))
                 .collect(Collectors.toList()));
     }
 

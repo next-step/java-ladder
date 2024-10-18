@@ -1,12 +1,12 @@
 package nextstep.ladder.view.output;
 
+import nextstep.ladder.Visible;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Player;
 import nextstep.ladder.domain.PlayerGroup;
-import nextstep.ladder.Visible;
 
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class PlayerGroupView implements Visible {
 
@@ -18,8 +18,8 @@ public class PlayerGroupView implements Visible {
     }
 
     private String getWhiteSpace(String name) {
-        return IntStream.range(0, Player.NAME_LIMIT - name.length())
-                .mapToObj(i -> " ")
+        return Stream.of(new String[Player.NAME_LIMIT - name.length()])
+                .map(i -> " ")
                 .collect(Collectors.joining());
     }
 }

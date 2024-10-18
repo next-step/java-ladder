@@ -1,13 +1,13 @@
 package nextstep.ladder.view.output;
 
+import nextstep.ladder.Visible;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Player;
 import nextstep.ladder.domain.PlayerGroup;
-import nextstep.ladder.Visible;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class LadderView implements Visible {
 
@@ -16,8 +16,9 @@ public class LadderView implements Visible {
     private static final String BLANK = getMark(" ");
 
     private static String getMark(String mark) {
-        return IntStream.range(0, Player.NAME_LIMIT)
-                .mapToObj(i -> mark).collect(Collectors.joining());
+        return Stream.of(new String[Player.NAME_LIMIT])
+                .map(i -> mark)
+                .collect(Collectors.joining());
     }
 
     @Override

@@ -2,7 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class LadderLine {
 
@@ -14,9 +14,8 @@ public class LadderLine {
 
     public static LadderLine of(int groupCount) {
         Deque<Boolean> stack = new ArrayDeque<>();
-
-        return new LadderLine(IntStream.range(0, groupCount - 1)
-                .mapToObj(i -> {
+        return new LadderLine(Stream.of(new Ladder[groupCount - 1])
+                .map(empty -> {
                     boolean isLine = needRandom(stack) && booleanFromRandom();
                     stack.push(isLine);
                     return isLine;
