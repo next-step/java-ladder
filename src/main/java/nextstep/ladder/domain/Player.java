@@ -4,13 +4,19 @@ import java.util.Objects;
 
 public class Player {
 
+    public static final int NAME_LIMIT = 5;
+
     private final String name;
 
     public Player(String name) {
-        if (name.isBlank() || name.length() > 5) {
+        if (name.isBlank() || name.length() > NAME_LIMIT) {
             throw new IllegalArgumentException("참가자 이름은 1 ~ 5자 사이여야 합니다.");
         }
         this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override

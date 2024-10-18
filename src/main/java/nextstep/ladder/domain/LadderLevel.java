@@ -35,4 +35,8 @@ public class LadderLevel {
     public int count() {
         return lines.size();
     }
+
+    public Collection<Boolean> ladderLevel() {
+        return List.copyOf(lines);
+    }
 }

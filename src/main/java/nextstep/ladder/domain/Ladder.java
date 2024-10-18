@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -20,5 +21,11 @@ public class Ladder {
 
     public int count() {
         return ladderLevels.size();
+    }
+
+    public Collection<Collection<Boolean>> lines() {
+        return ladderLevels.stream()
+                .map(LadderLevel::ladderLevel)
+                .collect(Collectors.toUnmodifiableList());
     }
 }

@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -19,6 +20,10 @@ public class PlayerGroup {
 
     public PlayerGroup(List<String> playerNames) {
         this.players = playerNames.stream().map(Player::new).collect(Collectors.toList());
+    }
+
+    public Collection<String> playerNames() {
+        return players.stream().map(Player::getName).collect(Collectors.toUnmodifiableList());
     }
 
     public int count() {
