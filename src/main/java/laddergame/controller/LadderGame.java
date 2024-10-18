@@ -19,7 +19,7 @@ public class LadderGame {
 
     public void run() {
         Players players = getPlayers();
-        LadderPositionResult positionResult = getPositionResult();
+        LadderPositionResult positionResult = getPositionResult(players.size());
         Ladder ladder = createLadder(players.size());
         resultView.showLadderGameResult(players, ladder);
     }
@@ -29,8 +29,8 @@ public class LadderGame {
         return new Players(players);
     }
 
-    private LadderPositionResult getPositionResult() {
-        List<String> positonResult = inputView.getGameResultFromUser();
+    private LadderPositionResult getPositionResult(int playerCount) {
+        List<String> positonResult = inputView.getGameResultsFromUser(playerCount);
         return new LadderPositionResult(positonResult);
     }
 

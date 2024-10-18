@@ -42,10 +42,9 @@ public class InputView {
         return joiningTest.replace(" ", "").split(INPUT_DELIMITER);
     }
 
-    public List<String> getGameResultFromUser(){
+    public List<String> getGameResultsFromUser(int playerCount){
         String gameResult = getGameResultInput();
-        return Arrays.stream(split(gameResult))
-                .collect(toList());
+        return getGameResults(gameResult, playerCount);
     }
 
     private String getGameResultInput() {
@@ -56,6 +55,16 @@ public class InputView {
             throw new IllegalArgumentException("게임 결과를 입력해주세요");
         }
         return gameResult;
+    }
+
+    private List<String> getGameResults(String gameResult, int playerCount) {
+        List<String> gameResults = Arrays.stream(split(gameResult))
+                .collect(toList());
+
+        if(gameResults.size() != playerCount){
+            throw new IllegalArgumentException("플레이어의 수만큼 게임 결과를 입력하세요");
+        }
+        return gameResults;
     }
 
 
