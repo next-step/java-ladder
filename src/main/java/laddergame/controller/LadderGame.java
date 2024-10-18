@@ -11,6 +11,11 @@ public class LadderGame {
     private final ResultView resultView;
     private final LadderLineGenerator generator;
 
+    private Players players;
+    private LadderPositionResult positionResult;
+    private LadderPlayResult playResult;
+    private Ladder ladder;
+
     public LadderGame(InputView inputView, ResultView resultView, LadderLineGenerator generator) {
         this.inputView = inputView;
         this.resultView = resultView;
@@ -18,9 +23,30 @@ public class LadderGame {
     }
 
     public void run() {
-        Players players = getPlayers();
-        LadderPositionResult positionResult = getPositionResult(players.size());
-        Ladder ladder = createLadder(players.size());
+        initialize();
+        showLadder();
+        moveDown();
+    }
+
+    private void initialize() {
+        this.players = getPlayers();
+        this.positionResult = getPositionResult(players.size());
+        this.playResult = new LadderPlayResult(positionResult);
+        this.ladder = createLadder(players.size());
+    }
+
+    private void moveDown() {
+        int firstPosition = players.firstPosition();
+        int lastPosition = players.lastPosition();
+
+        for (int position = firstPosition; position <= lastPosition; position++) {
+            Player player = players.findBy(position);
+            int finalPosition = ladder.moveDownByPosition(position);
+            playResult.add(player, finalPosition);
+        }
+    }
+
+    private void showLadder() {
         resultView.showLadder(players, ladder, positionResult);
     }
 

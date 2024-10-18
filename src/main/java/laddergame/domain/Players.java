@@ -51,6 +51,13 @@ public class Players {
                 .getPosition();
     }
 
+    public Player findBy(int otherPosition) {
+        return players.stream()
+                .filter(player -> player.isSamePosition(otherPosition))
+                .findFirst()
+                .orElseThrow(() -> new NoSuchElementException("존재하지 않는 플레이어입니다"));
+    }
+
     public int size(){
         return players.size();
     }
