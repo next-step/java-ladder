@@ -1,9 +1,6 @@
 package laddergame.domain;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 import java.util.stream.IntStream;
 
 public class Players {
@@ -51,18 +48,16 @@ public class Players {
                 .getPosition();
     }
 
-    public Player findByName(String otherName){
+    public Optional<Player> findByName(String otherName){
         return players.stream()
                 .filter(player -> player.isSameName(otherName))
-                .findFirst()
-                .orElseThrow(() -> new NoSuchElementException("존재하지 않는 플레이어입니다"));
+                .findFirst();
     }
 
-    public Player findByPosition(int otherPosition) {
+    public Optional<Player> findByPosition(int otherPosition) {
         return players.stream()
                 .filter(player -> player.isSamePosition(otherPosition))
-                .findFirst()
-                .orElseThrow(() -> new NoSuchElementException("존재하지 않는 플레이어입니다"));
+                .findFirst();
     }
 
     public int size(){

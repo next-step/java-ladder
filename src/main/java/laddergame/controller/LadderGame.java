@@ -5,8 +5,12 @@ import laddergame.ui.InputView;
 import laddergame.ui.ResultView;
 
 import java.util.List;
+import java.util.Optional;
 
 public class LadderGame {
+
+    private static final String ALL_PLAYERS = "all";
+
     private final InputView inputView;
     private final ResultView resultView;
     private final LadderLineGenerator generator;
@@ -40,9 +44,12 @@ public class LadderGame {
         int lastPosition = players.lastPosition();
 
         for (int position = firstPosition; position <= lastPosition; position++) {
-            Player player = players.findBy(position);
+            Optional<Player> optionalPlayer = players.findByPosition(position);
             int finalPosition = ladder.moveDownByPosition(position);
-            playResult.add(player, finalPosition);
+
+            optionalPlayer.ifPresent(player -> {
+                playResult.add(player, finalPosition);
+            });
         }
     }
 

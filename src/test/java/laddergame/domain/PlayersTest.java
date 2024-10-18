@@ -77,7 +77,7 @@ class PlayersTest {
         );
         Players players = new Players(playerGroup);
 
-        assertThat(players.findByPosition(1)).isEqualTo(new Player("name2", 1));
+        assertThat(players.findByPosition(1).get()).isEqualTo(new Player("name2", 1));
     }
 
     @DisplayName("같은 이름의 플레이어를 조회한다")
@@ -89,7 +89,7 @@ class PlayersTest {
         );
         Players players = new Players(playerGroup);
 
-        assertThat(players.findByName("name2")).isEqualTo(new Player("name2", 1));
+        assertThat(players.findByName("name2").get()).isEqualTo(new Player("name2", 1));
     }
 
 }
