@@ -10,6 +10,6 @@ public class LadderTest {
     void create() {
         Ladder ladder = Ladder.of(5, 4);
 
-        assertThat(ladder.ladderCount()).isEqualTo(5);
+        assertThat(ladder.count()).isEqualTo(5);
     }
 }
