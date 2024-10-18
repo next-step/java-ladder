@@ -44,6 +44,6 @@ public class Line {
     }
 
     public List<Boolean> getPoints() {
-        return new ArrayList<Boolean>(points);
+        return new ArrayList<>(points);
     }
 }

@@ -18,6 +18,6 @@ public class Players {
     }
 
     public List<Player> getPlayers() {
-        return new ArrayList<Player>(players);
+        return new ArrayList<>(players);
     }
 }

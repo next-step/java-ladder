@@ -32,12 +32,7 @@ public class LadderGame {
     }
 
     private Players getPlayers() {
-        String[] playerNames = inputView.getPlayerFromUser();
-
-        List<Player> players = Arrays.stream(playerNames)
-                .map(Player::new)
-                .collect(toList());
-
+        List<Player> players = inputView.getPlayerFromUser();
         return new Players(players);
     }
 
