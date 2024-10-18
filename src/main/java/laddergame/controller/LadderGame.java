@@ -1,17 +1,13 @@
 package laddergame.controller;
 
+import laddergame.domain.Ladder;
 import laddergame.domain.LadderLineGenerator;
-import laddergame.domain.Line;
 import laddergame.domain.Player;
 import laddergame.domain.Players;
 import laddergame.ui.InputView;
 import laddergame.ui.ResultView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
-import static java.util.stream.Collectors.toList;
 
 public class LadderGame {
     private final InputView inputView;
@@ -26,8 +22,7 @@ public class LadderGame {
 
     public void run() {
         Players players = getPlayers();
-        int ladderHeight = getLadderHeight();
-        List<Line> ladder = createLadder(ladderHeight, players.size());
+        Ladder ladder = createLadder(players.size());
         resultView.showLadderGameResult(players, ladder);
     }
 
@@ -36,16 +31,9 @@ public class LadderGame {
         return new Players(players);
     }
 
-    private int getLadderHeight() {
-        return inputView.getMaxLadderHeightFromUser();
+    private Ladder createLadder(int playerCount) {
+        int ladderHeight = inputView.getMaxLadderHeightFromUser();;
+        return new Ladder(playerCount, ladderHeight, generator);
     }
 
-    private List<Line> createLadder(int ladderHeight, int playerCount) {
-        List<Line> ladders = new ArrayList<>();
-        for (int i = 0; i < ladderHeight; i++) {
-            Line line = new Line(playerCount, generator);
-            ladders.add(line);
-        }
-        return ladders;
-    }
 }

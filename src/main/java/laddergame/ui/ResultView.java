@@ -1,9 +1,7 @@
 package laddergame.ui;
 
-import laddergame.domain.Line;
+import laddergame.domain.Ladder;
 import laddergame.domain.Players;
-
-import java.util.List;
 
 import static java.util.stream.Collectors.joining;
 
@@ -13,7 +11,7 @@ public class ResultView {
     private static final String LADDER_VERTICAL_LINE = "|";
     private static final String SPACING_BETWEEN_PLAYERS = "    ";
 
-    public void showLadderGameResult(Players players, List<Line> ladder) {
+    public void showLadderGameResult(Players players, Ladder ladder) {
         System.out.println();
         System.out.println(RESULT_START_MESSAGE);
         showPlayers(players);
@@ -27,8 +25,8 @@ public class ResultView {
         System.out.println(playerNames);
     }
 
-    private void showLadder(List<Line> ladder) {
-        ladder.stream()
+    private void showLadder(Ladder ladder) {
+        ladder.getLines().stream()
                 .flatMap(line -> line.getPoints().stream()
                         .map(this::drawHorizontalLine)
                         .collect(joining())
