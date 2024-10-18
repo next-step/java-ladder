@@ -51,7 +51,14 @@ public class Players {
                 .getPosition();
     }
 
-    public Player findBy(int otherPosition) {
+    public Player findByName(String otherName){
+        return players.stream()
+                .filter(player -> player.isSameName(otherName))
+                .findFirst()
+                .orElseThrow(() -> new NoSuchElementException("존재하지 않는 플레이어입니다"));
+    }
+
+    public Player findByPosition(int otherPosition) {
         return players.stream()
                 .filter(player -> player.isSamePosition(otherPosition))
                 .findFirst()

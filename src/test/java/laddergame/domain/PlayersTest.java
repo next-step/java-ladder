@@ -70,14 +70,26 @@ class PlayersTest {
 
     @DisplayName("같은 위치에 있는 플레이어를 조회한다")
     @Test
-    void findBy(){
+    void findByPosition(){
         List<Player> playerGroup = List.of(
                 new Player("name1", 0),
                 new Player("name2", 1)
         );
         Players players = new Players(playerGroup);
 
-        assertThat(players.findBy(1)).isEqualTo(new Player("name2", 1));
+        assertThat(players.findByPosition(1)).isEqualTo(new Player("name2", 1));
+    }
+
+    @DisplayName("같은 이름의 플레이어를 조회한다")
+    @Test
+    void findByName(){
+        List<Player> playerGroup = List.of(
+                new Player("name1", 0),
+                new Player("name2", 1)
+        );
+        Players players = new Players(playerGroup);
+
+        assertThat(players.findByName("name2")).isEqualTo(new Player("name2", 1));
     }
 
 }

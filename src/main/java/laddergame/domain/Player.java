@@ -28,6 +28,10 @@ public class Player {
         return !isSamePosition(otherPosition);
     }
 
+    public boolean isSameName(String otherName) {
+        return otherName.equals(name);
+    }
+
     public String getName() {
         return name;
     }
