@@ -3,7 +3,7 @@ package nextstep.ladder;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.PlayerGroup;
 import nextstep.ladder.view.InputView;
-import nextstep.ladder.view.OutputView;
+import nextstep.ladder.view.output.OutputView;
 
 public class LadderGame {
 
@@ -14,7 +14,7 @@ public class LadderGame {
 
         Ladder ladder = Ladder.of(height, playerGroup.count());
 
-        OutputView outputView = new OutputView();
-        outputView.viewResult(playerGroup, ladder.ladderLines());
+        Visible outputView = new OutputView();
+        outputView.view(playerGroup, ladder);
     }
 }
