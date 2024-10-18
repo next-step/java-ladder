@@ -23,6 +23,14 @@ public class Ladder {
         return lines;
     }
 
+    public int moveDownByPosition(int startPosition) {
+        int currentPosition = startPosition;
+        for (Line line : lines) {
+            currentPosition = line.move(currentPosition);
+        }
+        return currentPosition;
+    }
+
     public int size() {
         return lines.size();
     }
