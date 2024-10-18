@@ -1,9 +1,6 @@
 package laddergame.controller;
 
-import laddergame.domain.Ladder;
-import laddergame.domain.LadderLineGenerator;
-import laddergame.domain.Player;
-import laddergame.domain.Players;
+import laddergame.domain.*;
 import laddergame.ui.InputView;
 import laddergame.ui.ResultView;
 
@@ -22,6 +19,7 @@ public class LadderGame {
 
     public void run() {
         Players players = getPlayers();
+        LadderPositionResult positionResult = getPositionResult();
         Ladder ladder = createLadder(players.size());
         resultView.showLadderGameResult(players, ladder);
     }
@@ -29,6 +27,11 @@ public class LadderGame {
     private Players getPlayers() {
         List<Player> players = inputView.getPlayerFromUser();
         return new Players(players);
+    }
+
+    private LadderPositionResult getPositionResult() {
+        List<String> positonResult = inputView.getGameResultFromUser();
+        return new LadderPositionResult(positonResult);
     }
 
     private Ladder createLadder(int playerCount) {
