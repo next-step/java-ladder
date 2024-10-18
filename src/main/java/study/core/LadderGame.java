@@ -2,6 +2,7 @@ package study.core;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class LadderGame {
     private final List<PlayerName> names;
@@ -14,11 +15,11 @@ public class LadderGame {
 
     public List<Line> createLadder() {
         List<Line> ladder = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
+        IntStream.range(0, height).forEach(i -> {
             Line line = new Line(new ArrayList<>());
             line.createPoints(names.size());
             ladder.add(line);
-        }
+        });
         return ladder;
     }
 
