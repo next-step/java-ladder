@@ -4,12 +4,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LadderLevelTest {
+public class LadderLineTest {
 
     @Test
     void create() {
-        LadderLevel ladderLevel = LadderLevel.of(9);
+        LadderLine ladderLine = LadderLine.of(9);
 
-        assertThat(ladderLevel.count()).isEqualTo(8);
+        assertThat(ladderLine.ladderLine().size()).isEqualTo(8);
     }
 }

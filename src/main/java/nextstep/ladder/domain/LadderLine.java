@@ -4,18 +4,18 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class LadderLevel {
+public class LadderLine {
 
     private final List<Boolean> lines;
 
-    public LadderLevel(List<Boolean> lines) {
+    public LadderLine(List<Boolean> lines) {
         this.lines = lines;
     }
 
-    public static LadderLevel of(int groupCount) {
+    public static LadderLine of(int groupCount) {
         Deque<Boolean> stack = new ArrayDeque<>();
 
-        return new LadderLevel(IntStream.range(0, groupCount - 1)
+        return new LadderLine(IntStream.range(0, groupCount - 1)
                 .mapToObj(i -> {
                     boolean isLine = needRandom(stack) && booleanFromRandom();
                     stack.push(isLine);
@@ -32,11 +32,7 @@ public class LadderLevel {
         return new Random().nextInt(2) == 1;
     }
 
-    public int count() {
-        return lines.size();
-    }
-
-    public Collection<Boolean> ladderLevel() {
+    public Collection<Boolean> ladderLine() {
         return List.copyOf(lines);
     }
 }
