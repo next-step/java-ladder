@@ -7,3 +7,17 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+## Step1. 기능 구현
+* 익명 클래스를 람다로 전환
+* 람다를 활용해 중복 제거
+* map, reduce, filter 실습 1
+  * filter, reduce 사용
+* map, reduce, filter 실습 2
+  * filter, distinct, limit, map, sorted 사용
+* Optional을 활용해 조건에 따른 반환
+  * Optional.ofNullable 사용
+* Optional에서 값 반환
+  * orElse 사용
+* Optional에서 exception 처리
+  * orThrowElse 사용
