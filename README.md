@@ -17,3 +17,5 @@
   * filter, distinct, limit, map, sorted 사용
 * Optional을 활용해 조건에 따른 반환
   * Optional.ofNullable, stream filter 사용
+* Optional에서 값 반환
+  * filter, findAny, orElse 사용
