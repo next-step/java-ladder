@@ -11,7 +11,7 @@ class PlayerTest {
     @Test
     void limitPlayerName(){
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Player("이름5자초과"))
+                .isThrownBy(() -> new Player("이름5자초과", 0))
                 .withMessage("플레이어의 이름을 5자 이하로 입력해주세요.");
     }
 
