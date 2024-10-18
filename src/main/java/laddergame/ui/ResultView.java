@@ -1,21 +1,26 @@
 package laddergame.ui;
 
 import laddergame.domain.Ladder;
+import laddergame.domain.LadderPositionResult;
 import laddergame.domain.Players;
+
+import java.util.List;
 
 import static java.util.stream.Collectors.joining;
 
 public class ResultView {
     private static final String RESULT_START_MESSAGE = "실행결과";
+    private static final String RESULT_LADDER_MESSAGE = "사다리 결과";
     private static final String LADDER_HORIZONTAL_LINE = "-----";
     private static final String LADDER_VERTICAL_LINE = "|";
     private static final String SPACING_BETWEEN_PLAYERS = "    ";
 
-    public void showLadderGameResult(Players players, Ladder ladder) {
+    public void showLadder(Players players, Ladder ladder, LadderPositionResult positionResult) {
         System.out.println();
-        System.out.println(RESULT_START_MESSAGE);
+        System.out.println(RESULT_LADDER_MESSAGE);
         showPlayers(players);
         showLadder(ladder);
+        showGameResult(positionResult);
     }
 
     private void showPlayers(Players players) {
@@ -37,5 +42,17 @@ public class ResultView {
 
     private String drawHorizontalLine(boolean lineStatus) {
         return LADDER_VERTICAL_LINE + (lineStatus ? LADDER_HORIZONTAL_LINE : "     ");
+    }
+
+    private void showGameResult(LadderPositionResult positionResult) {
+        List<String> gameResultsByInputOrder = positionResult.getGameResultByInputOrder();
+        String gameResults = getString(gameResultsByInputOrder);
+        System.out.println(gameResults);
+    }
+
+    private String getString(List<String> gameResultsByInputOrder) {
+        return gameResultsByInputOrder.stream()
+                .map(result -> result + SPACING_BETWEEN_PLAYERS)
+                .collect(joining());
     }
 }

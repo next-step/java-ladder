@@ -21,7 +21,7 @@ public class LadderGame {
         Players players = getPlayers();
         LadderPositionResult positionResult = getPositionResult(players.size());
         Ladder ladder = createLadder(players.size());
-        resultView.showLadderGameResult(players, ladder);
+        resultView.showLadder(players, ladder, positionResult);
     }
 
     private Players getPlayers() {
