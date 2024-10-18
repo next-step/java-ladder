@@ -1,7 +1,9 @@
 package laddergame.domain;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.IntStream;
 
 public class Players {
@@ -33,6 +35,22 @@ public class Players {
         }
     }
     //endregion
+    public int firstPosition(){
+        return players.stream()
+                .map(Player::getPosition)
+                .min(Comparator.naturalOrder())
+                .orElseThrow(() -> new NoSuchElementException("플레이어의 위치 정보가 없습니다"))
+                .getPosition();
+    }
+
+    public int lastPosition(){
+        return players.stream()
+                .map(Player::getPosition)
+                .max(Comparator.naturalOrder())
+                .orElseThrow(() -> new NoSuchElementException("플레이어의 위치 정보가 없습니다"))
+                .getPosition();
+    }
+
     public int size(){
         return players.size();
     }

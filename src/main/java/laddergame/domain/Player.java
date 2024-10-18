@@ -18,15 +18,19 @@ public class Player {
         this.position = position;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public boolean isSamePosition(int otherPosition) {
         return this.position.same(otherPosition);
     }
 
     public boolean doesNotSamePosition(int otherPosition) {
         return !isSamePosition(otherPosition);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Position getPosition() {
+        return position;
     }
 }

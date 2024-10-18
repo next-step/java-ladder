@@ -2,11 +2,11 @@ package laddergame.domain;
 
 import java.util.Objects;
 
-public class Position {
+public class Position implements Comparable<Position> {
 
-    private int position;
+    private final int position;
 
-    public Position(int position) {
+    public Position(final int position) {
         if(position < 0){
             throw new IllegalArgumentException("사다리 게임의 위치는 0이상이어야 합니다");
         }
@@ -26,6 +26,11 @@ public class Position {
     }
 
     @Override
+    public int compareTo(Position other) {
+        return Integer.compare(this.position, other.position);
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -36,5 +41,9 @@ public class Position {
     @Override
     public int hashCode() {
         return Objects.hashCode(position);
+    }
+
+    public int getPosition() {
+        return position;
     }
 }

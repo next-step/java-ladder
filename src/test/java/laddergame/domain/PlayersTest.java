@@ -42,4 +42,30 @@ class PlayersTest {
                 .withMessage("플레이어의 위치가 0부터 순차적으로 증가하지 않았습니다");
     }
 
+    @DisplayName("가장 처음에 위치한 플레이어의 위치를 구한다")
+    @Test
+    void firstPosition(){
+        List<Player> playerGroup = List.of(
+                new Player("name1", 0),
+                new Player("name2", 1),
+                new Player("name3", 2)
+        );
+        Players players = new Players(playerGroup);
+
+        assertThat(players.firstPosition()).isEqualTo(0);
+    }
+
+    @DisplayName("가장 마지막에 위치한 플레이어의 위치를 구한다")
+    @Test
+    void lastPosition(){
+        List<Player> playerGroup = List.of(
+                new Player("name1", 0),
+                new Player("name2", 1),
+                new Player("name3", 2)
+        );
+        Players players = new Players(playerGroup);
+
+        assertThat(players.lastPosition()).isEqualTo(2);
+    }
+
 }
