@@ -8,11 +8,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LadderTest {
     @Test
     @DisplayName("ladder 생성 테스트")
-    void createLadderTest(){
+    void createLadderTest() {
         //given
         final int countOfPlayers = 4;
         final int height = 5;
@@ -20,14 +22,19 @@ public class LadderTest {
 
 
         //when
-        Ladder ladder = new Ladder(countOfPlayers, height, lineGenerator);
+        Ladder ladder = new Ladder(
+                height,
+                IntStream.range(0, height)
+                        .mapToObj(it -> new Line(countOfPlayers, lineGenerator))
+                        .collect(Collectors.toList())
+        );
 
         //then
         Assertions.assertThat(ladder).isNotNull();
         Assertions.assertThat(ladder.getHeight()).isEqualTo(height);
 
         List<Line> lines = ladder.getLines();
-        Assertions.assertThat(lines.get(0).getPoints()).hasSize(countOfPlayers-1);
+        Assertions.assertThat(lines.get(0).getPoints()).hasSize(countOfPlayers - 1);
         System.out.println(lines);
     }
 }

@@ -2,18 +2,18 @@ package nextstep.ladder.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Ladder {
     private List<Line> lines;
     private int height;
 
-    public Ladder(int countOfPlayers, int height, LineGenerator lineGenerator) {
+    public Ladder() {
+        this(0, new ArrayList<>());
+    }
+
+    public Ladder(int height, List<Line> lines) {
         this.height = height;
-        this.lines = IntStream.range(0, height)
-                .mapToObj(it -> new Line(countOfPlayers, lineGenerator))
-                .collect(Collectors.toList());
+        this.lines = lines;
     }
 
     public List<Line> getLines() {
