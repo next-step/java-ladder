@@ -19,14 +19,17 @@ public class Line {
         Random random = new Random();
         boolean hasPreviousLine = false;
         for (int i = 0; i < playerCount - 1; i++) {
-            if (hasPreviousLine) {
-                points.add(false);
-                hasPreviousLine = false;
-                continue;
-            }
-            boolean hasLine = random.nextBoolean();
-            points.add(hasLine);
-            hasPreviousLine = hasLine;
+            hasPreviousLine = addPoint(random, hasPreviousLine);
         }
+    }
+
+    private boolean addPoint(Random random, boolean hasPreviousLine) {
+        if (hasPreviousLine) {
+            points.add(false);
+            return false;
+        }
+        boolean hasLine = random.nextBoolean();
+        points.add(hasLine);
+        return hasLine;
     }
 }
