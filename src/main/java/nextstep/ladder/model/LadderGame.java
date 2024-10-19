@@ -24,4 +24,8 @@ public class LadderGame {
         this.ladder = new Ladder(this.height, lines);
         return this.ladder;
     }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
 }

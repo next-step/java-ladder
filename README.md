@@ -18,5 +18,5 @@
 * Player class 생성 [X]
 * Line class 생성 [X]
 * Ladder class 생성 [X]
-* 사다리 생성 결과 출력 기능 []
 * Ladder Game class 생성 [X]
+* 사다리 생성 결과 출력 기능 [X]

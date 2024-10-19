@@ -4,6 +4,7 @@ import nextstep.ladder.model.Ladder;
 import nextstep.ladder.model.LadderGame;
 import nextstep.ladder.model.RandomLineGenerator;
 import nextstep.ladder.view.InputView;
+import nextstep.ladder.view.ResultView;
 
 import java.util.List;
 
@@ -15,5 +16,6 @@ public class LadderGameApplication {
         Ladder ladder = ladderGame.run(new RandomLineGenerator());
         System.out.println("height: " + ladder.getHeight());
         ladder.getLines().forEach(System.out::println);
+        ResultView.printLadder(ladder, ladderGame.getPlayers());
     }
 }
