@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LadderRowTest {
     @Test
@@ -31,5 +32,13 @@ class LadderRowTest {
         LadderRow ladderRow2 = new LadderRow(new PositiveNumber(5), () -> false);
         assertThat(ladderRow1.getRow().get(0)).isEqualTo("     ");
         assertThat(ladderRow2.getRow().get(0)).isEqualTo("     ");
+    }
+
+    @Test
+    @DisplayName("실패 - getRow 메서드의 반환된 List를 수정했을 때 예외가 발생한다.")
+    void throwExceptionWhenModifyingReturnedList() {
+        LadderRow ladderRow = new LadderRow(new PositiveNumber(5), () -> true);
+        assertThatThrownBy(() -> ladderRow.getRow().add("-----"))
+                .isInstanceOf(UnsupportedOperationException.class);
     }
 }
