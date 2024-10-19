@@ -11,7 +11,7 @@
 ## To-do
 * 참여 사람 입력 기능 [X]
 * 최대 사다리 높이 입력 기능 [X]
-* Player class 생성 []
+* Player class 생성 [X]
 * Line class 생성 []
 * Ladder class 생성 []
 * Ladder Game class 생성 []
