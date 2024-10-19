@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LadderGame {
@@ -26,11 +27,9 @@ public class LadderGame {
     }
 
     public Result play(List<Line> ladder, List<Prize> prizes) {
-        Map<PlayerName, Prize> results = new HashMap<>();
-        for (int i = 0; i < names.size(); i++) {
-            int resultIndex = playForPlayer(ladder, i);
-            results.put(names.get(i), prizes.get(resultIndex));
-        }
+        Map<PlayerName, Prize> results = IntStream.range(0, names.size())
+                .boxed()
+                .collect(Collectors.toMap(names::get, i -> prizes.get(playForPlayer(ladder, i))));
         return new Result(results);
     }
 
