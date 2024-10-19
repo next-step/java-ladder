@@ -10,7 +10,7 @@
 
 ## To-do
 * 참여 사람 입력 기능 [X]
-* 최대 사다리 높이 입력 기능 []
+* 최대 사다리 높이 입력 기능 [X]
 * Player class 생성 []
 * Line class 생성 []
 * Ladder class 생성 []
