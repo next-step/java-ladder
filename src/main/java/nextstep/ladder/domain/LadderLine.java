@@ -1,10 +1,16 @@
 package nextstep.ladder.domain;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.Collection;
+import java.util.Deque;
+import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class LadderLine {
+
+    private static final Random RANDOM = new Random();
 
     private final List<Boolean> lines;
 
@@ -14,13 +20,13 @@ public class LadderLine {
 
     public static LadderLine of(int groupCount) {
         Deque<Boolean> stack = new ArrayDeque<>();
-        return new LadderLine(Stream.of(new Ladder[groupCount - 1])
+        return Stream.of(new Ladder[groupCount - 1])
                 .map(empty -> {
                     boolean isLine = needRandom(stack) && booleanFromRandom();
                     stack.push(isLine);
                     return isLine;
                 })
-                .collect(Collectors.toList()));
+                .collect(Collectors.collectingAndThen(Collectors.toList(), LadderLine::new));
     }
 
     private static boolean needRandom(Deque<Boolean> stack) {
@@ -28,10 +34,10 @@ public class LadderLine {
     }
 
     private static boolean booleanFromRandom() {
-        return new Random().nextInt(2) == 1;
+        return RANDOM.nextInt(2) == 1;
     }
 
-    public Collection<Boolean> ladderLine() {
+    public Collection<Boolean> copy() {
         return List.copyOf(lines);
     }
 }

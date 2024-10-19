@@ -21,7 +21,7 @@ public class Ladder {
 
     public Collection<Collection<Boolean>> ladderLines() {
         return ladderLines.stream()
-                .map(LadderLine::ladderLine)
+                .map(LadderLine::copy)
                 .collect(Collectors.toUnmodifiableList());
     }
 }

@@ -10,6 +10,6 @@ public class LadderLineTest {
     void create() {
         LadderLine ladderLine = LadderLine.of(9);
 
-        assertThat(ladderLine.ladderLine().size()).isEqualTo(8);
+        assertThat(ladderLine.copy().size()).isEqualTo(8);
     }
 }
