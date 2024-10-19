@@ -2,16 +2,16 @@ package nextstep.ladder.domain;
 
 import java.util.Objects;
 
-public class LadderHeight {
-    public static final int MINIMUM_HEIGHT = 1;
+public class PositiveNumber {
+    public static final int MINIMUM_NUMBER = 1;
 
     private final int value;
 
-    public LadderHeight(int height) {
-        if (height < MINIMUM_HEIGHT) {
-            throw new IllegalArgumentException("높이는 0 이하일 수 없습니다.");
+    public PositiveNumber(int number) {
+        if (number < MINIMUM_NUMBER) {
+            throw new IllegalArgumentException("0 이하일 수 없습니다.");
         }
-        this.value = height;
+        this.value = number;
     }
 
     public int getValue() {
@@ -22,7 +22,7 @@ public class LadderHeight {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        LadderHeight that = (LadderHeight) o;
+        PositiveNumber that = (PositiveNumber) o;
         return value == that.value;
     }
 
