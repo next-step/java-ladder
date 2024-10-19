@@ -13,4 +13,8 @@ public class Users {
     public List<User> getUsers() {
         return Collections.unmodifiableList(users);
     }
+
+    public int size() {
+        return users.size();
+    }
 }
