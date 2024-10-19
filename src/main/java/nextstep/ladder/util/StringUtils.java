@@ -9,4 +9,12 @@ public class StringUtils {
     public static boolean isBlank(String str) {
         return str == null || str.trim().isEmpty();
     }
+
+    public static String lPad(String content, int length) {
+        StringBuilder builder = new StringBuilder();
+        for (int i = content.length(); i < length; i++) {
+            builder.append(" ");
+        }
+        return builder + content;
+    }
 }
