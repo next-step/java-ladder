@@ -12,4 +12,15 @@ class LadderRowTest {
         LadderRow ladderRow = new LadderRow(new PositiveNumber(5), () -> true);
         assertThat(ladderRow.getRow()).hasSize(5);
     }
+
+    @Test
+    @DisplayName("getBar 메서드가 이전의 사다리 bar가 비어있으면 새로운 bar를 생성시킨다.")
+    void generateLineTest() {
+        LadderRow ladderRow = new LadderRow(new PositiveNumber(5), () -> true);
+        assertThat(ladderRow.getRow().get(0)).isEqualTo("     ");
+        assertThat(ladderRow.getRow().get(1)).isEqualTo("-----");
+        assertThat(ladderRow.getRow().get(2)).isEqualTo("     ");
+        assertThat(ladderRow.getRow().get(3)).isEqualTo("-----");
+        assertThat(ladderRow.getRow().get(4)).isEqualTo("     ");
+    }
 }
