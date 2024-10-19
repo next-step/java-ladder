@@ -3,9 +3,14 @@ package nextstep.ladder.domain;
 import java.util.Objects;
 
 public class LadderHeight {
+    public static final int MINIMUM_HEIGHT = 1;
+
     private final int value;
 
     public LadderHeight(int height) {
+        if (height < MINIMUM_HEIGHT) {
+            throw new IllegalArgumentException("높이는 0 이하일 수 없습니다.");
+        }
         this.value = height;
     }
 
