@@ -34,7 +34,7 @@ class LambdaTest {
 
     @Test
     public void sumAll() {
-        int sum = Lambda.sumAll(numbers, num -> true);
+        int sum = Lambda.sumAll(numbers);
         assertThat(sum).isEqualTo(21);
     }
 
