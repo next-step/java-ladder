@@ -13,6 +13,6 @@
 * 최대 사다리 높이 입력 기능 [X]
 * Player class 생성 [X]
 * Line class 생성 [X]
-* Ladder class 생성 []
+* Ladder class 생성 [X]
 * Ladder Game class 생성 []
 * 사다리 생성 결과 출력 기능 []
