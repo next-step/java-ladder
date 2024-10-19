@@ -7,3 +7,12 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+## To-do
+* 참여 사람 입력 기능 [X]
+* 최대 사다리 높이 입력 기능 []
+* Player class 생성 []
+* Line class 생성 []
+* Ladder class 생성 []
+* Ladder Game class 생성 []
+* 사다리 생성 결과 출력 기능 []
