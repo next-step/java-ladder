@@ -24,3 +24,4 @@
 
 ## Step1. 피드백 구현
 * FunctionalInterface 추가
+* filter 로직 메소드 분리 
