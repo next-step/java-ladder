@@ -7,7 +7,21 @@ public class Users {
     private final List<User> users;
 
     public Users(List<User> users) {
+        validateDuplicateUserName(users);
         this.users = users;
+    }
+
+    private void validateDuplicateUserName(List<User> users) {
+        if (getDistinctUserCount(users) != users.size()) {
+            throw new IllegalArgumentException("이름이 같은 회원이 포함되어 있습니다.");
+        }
+    }
+
+    private long getDistinctUserCount(List<User> users) {
+        return users.stream()
+                .map(User::getName)
+                .distinct()
+                .count();
     }
 
     public List<User> getUsers() {
