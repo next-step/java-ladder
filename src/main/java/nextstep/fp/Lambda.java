@@ -2,6 +2,7 @@ package nextstep.fp;
 
 import java.util.List;
 import java.util.function.Function;
+import java.util.function.IntPredicate;
 
 public class Lambda {
     public static void printAllOld(List<Integer> numbers) {
@@ -26,14 +27,8 @@ public class Lambda {
         return sum(numbers, number -> true);
     }
 
-    public static int sum(List<Integer> numbers, Function<Integer, Boolean> conditional) {
-        int total = 0;
-        for (int number : numbers) {
-            if (conditional.apply(number)) {
-                total += number;
-            }
-        }
-        return total;
+    public static int sum(List<Integer> numbers, IntPredicate conditional) {
+        return numbers.stream().filter(conditional::test).reduce(0, Integer::sum);
     }
 
     public static int sumAllEven(List<Integer> numbers) {

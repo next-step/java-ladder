@@ -28,7 +28,6 @@ public class StreamStudy {
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-        // TODO 이 부분에 구현한다.
         words.stream()
                 .filter(word -> word.length() > 12)
                 .sorted(Comparator.comparing(String::length).reversed())
