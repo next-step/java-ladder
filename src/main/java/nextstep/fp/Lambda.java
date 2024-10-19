@@ -1,6 +1,8 @@
 package nextstep.fp;
 
 import java.util.List;
+import java.util.concurrent.locks.Condition;
+import java.util.stream.Collectors;
 
 public class Lambda {
     public static void printAllOld(List<Integer> numbers) {
@@ -26,31 +28,18 @@ public class Lambda {
         }).start();
     }
 
-    public static int sumAll(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            total += number;
-        }
-        return total;
+    public static int sumAll(List<Integer> numbers, Conditional c) {
+        return numbers.stream()
+                .filter(c::test)
+                .mapToInt(Integer::intValue)
+                .sum();
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number % 2 == 0) {
-                total += number;
-            }
-        }
-        return total;
+        return sumAll(numbers, num -> num % 2 == 0);
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number > 3) {
-                total += number;
-            }
-        }
-        return total;
+        return sumAll(numbers, num -> num > 3);
     }
 }
