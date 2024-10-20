@@ -25,12 +25,11 @@ public class LadderGameTest {
         Ladder ladder = ladderGame.run(lineGenerator);
 
         //then
-        Assertions.assertThat(ladder.getHeight()).isEqualTo(testHeight);
+        Assertions.assertThat(ladder.getLines().size()).isEqualTo(testHeight);
         List<Line> lines = ladder.getLines();
         for (Line line : lines) {
             List<Boolean> points = line.getPoints();
             Assertions.assertThat(points).hasSize(testNames.size() - 1);
-            System.out.println(line);
         }
     }
 }

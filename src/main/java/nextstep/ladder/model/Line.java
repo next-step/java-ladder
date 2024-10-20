@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class Line {
-    private List<Boolean> points = new ArrayList<>();
-    private LineGenerator lineGenerator;
+    private final List<Boolean> points = new ArrayList<>();
+    private final LineGenerator lineGenerator;
 
     public Line(int countOfPlayers, LineGenerator lineGenerator) {
         this.lineGenerator = lineGenerator;

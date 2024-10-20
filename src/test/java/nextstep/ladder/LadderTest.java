@@ -23,7 +23,6 @@ public class LadderTest {
 
         //when
         Ladder ladder = new Ladder(
-                height,
                 IntStream.range(0, height)
                         .mapToObj(it -> new Line(countOfPlayers, lineGenerator))
                         .collect(Collectors.toList())
@@ -31,7 +30,7 @@ public class LadderTest {
 
         //then
         Assertions.assertThat(ladder).isNotNull();
-        Assertions.assertThat(ladder.getHeight()).isEqualTo(height);
+        Assertions.assertThat(ladder.getLines().size()).isEqualTo(height);
 
         List<Line> lines = ladder.getLines();
         Assertions.assertThat(lines.get(0).getPoints()).hasSize(countOfPlayers - 1);
