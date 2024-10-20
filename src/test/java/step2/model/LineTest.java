@@ -1,12 +1,9 @@
-package step2;
+package step2.model;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import step2.ganerator.LadderGenerator;
 import step2.ganerator.RandomGenerator;
-import step2.model.Ladder;
-import step2.model.Line;
 import step2.util.StringUtil;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -22,7 +19,7 @@ public class LineTest {
     void createLineTest() {
         String[] personArr = StringUtil.divideNum("pobi,honux,crong,jk");
         RandomGenerator randomGenerator = () -> true;
-        Line line = Line.createLine(personArr, randomGenerator);
+        Line line = Line.createLine(Person.createPerson(personArr), randomGenerator);
         assertThat(line.getPoints()).containsExactly(false, true, false, true);
     }
 
@@ -30,7 +27,7 @@ public class LineTest {
     @Test
     void createLinePersonTest() {
         String[] personArr = StringUtil.divideNum("pobi,honux,crong,jk");
-        Line line = Line.createLine(personArr, new LadderGenerator());
+        Line line = Line.createLine(Person.createPerson(personArr), new LadderGenerator());
         assertThat(line.getPoints().size()).isEqualTo(4);
     }
 }
