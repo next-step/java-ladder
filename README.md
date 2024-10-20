@@ -20,4 +20,4 @@
 * Ladder class 생성 [X]
 * Ladder Game class 생성 [X]
 * 사다리 생성 결과 출력 기능 [X]
-* step2 feedback 반영 []
+* step2 feedback 반영 [X]

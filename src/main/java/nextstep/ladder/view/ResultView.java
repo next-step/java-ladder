@@ -3,8 +3,10 @@ package nextstep.ladder.view;
 import nextstep.ladder.model.Ladder;
 import nextstep.ladder.model.Line;
 import nextstep.ladder.model.Player;
+import nextstep.ladder.model.Point;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ResultView {
     private static final int MAX = 7;
@@ -20,7 +22,7 @@ public class ResultView {
         List<Line> lines = ladder.getLines();
         lines.forEach(line -> {
             sb.append(" ".repeat(MAX)).append("|");
-            List<Boolean> points = line.getPoints();
+            List<Boolean> points = line.getPoints().stream().map(Point::getValue).collect(Collectors.toList());
             points.forEach(point -> sb.append(point ? "-".repeat(6) : " ".repeat(6)).append("|"));
             sb.append("\n");
         });

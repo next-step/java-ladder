@@ -3,10 +3,11 @@ package nextstep.ladder.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Line {
-    private List<Boolean> points = new ArrayList<>();
+    private List<Point> points = new ArrayList<>();
     private LineGenerator lineGenerator;
 
     public Line(int countOfPlayers, LineGenerator lineGenerator) {
@@ -16,18 +17,21 @@ public class Line {
     }
 
     public Line(List<Boolean> points, LineGenerator lineGenerator) {
-        this.points = points;
+        this.points = points.stream().map(Point::new).collect(Collectors.toList());
         this.lineGenerator = lineGenerator;
     }
 
-    private boolean makeLine(int i) {
-        if (i == 0) {
-            return this.lineGenerator.generate();
+    private Point makeLine(int i) {
+        Point point = new Point(this.lineGenerator);
+        if (this.points.isEmpty()) {
+            point.next(false);
+            return point;
         }
-        return !points.get(i - 1) && this.lineGenerator.generate();
+        point.next(points.get(i - 1).getValue());
+        return point;
     }
 
-    public List<Boolean> getPoints() {
+    public List<Point> getPoints() {
         return points;
     }
 

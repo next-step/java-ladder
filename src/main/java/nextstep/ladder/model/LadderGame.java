@@ -14,6 +14,9 @@ public class LadderGame {
     }
 
     public Ladder run(int height, LineGenerator lineGenerator) {
+        if (height <= 0) {
+            throw new IllegalArgumentException("Height must be greater than 0");
+        }
         List<Line> lines = IntStream.range(0, height)
                 .mapToObj(it -> new Line(this.playerGroup.getPlayers().size(), lineGenerator))
                 .collect(Collectors.toList());

@@ -3,6 +3,7 @@ package nextstep.ladder;
 import nextstep.ladder.model.Ladder;
 import nextstep.ladder.model.LadderGame;
 import nextstep.ladder.model.Line;
+import nextstep.ladder.model.Point;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -47,7 +48,7 @@ public class LadderGameTest {
         Assertions.assertThat(ladder.getLines().size()).isEqualTo(testHeight);
         List<Line> lines = ladder.getLines();
         for (Line line : lines) {
-            List<Boolean> points = line.getPoints();
+            List<Boolean> points = line.getPoints().stream().map(Point::getValue).collect(Collectors.toList());
             Assertions.assertThat(points).hasSize(testNames.size() - 1);
         }
         Assertions.assertThat(ladder.getHeight()).isEqualTo(testHeight);

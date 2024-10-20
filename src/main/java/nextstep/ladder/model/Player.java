@@ -5,7 +5,7 @@ public class Player {
     private String name;
 
     public Player(String name) {
-        if (name.length() > MAX_NAME_LENGTH) {
+        if (name.length() > MAX_NAME_LENGTH || name.isBlank()) {
             throw new IllegalArgumentException("name must not be longer than 5");
         }
         this.name = name;
