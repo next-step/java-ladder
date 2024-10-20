@@ -1,6 +1,7 @@
 package ladder.domain;
 
 public class Member {
+    public static final int MAX_NAME_LENGTH = 5;
     private final String name;
 
     public Member(String name) {
@@ -15,7 +16,7 @@ public class Member {
     }
 
     private boolean isOutOfBoundLength(String name) {
-        return name.length() > 5;
+        return name.length() > MAX_NAME_LENGTH;
     }
 
 }
