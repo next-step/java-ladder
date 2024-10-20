@@ -28,4 +28,12 @@ public class LadderGame {
     public List<Player> getPlayers() {
         return players;
     }
+
+    public Ladder getLadder() {
+        return ladder;
+    }
+
+    public int getHeight() {
+        return height;
+    }
 }
