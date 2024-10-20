@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.Height;
 import ladder.Name;
 
 import java.util.Arrays;
@@ -23,9 +24,9 @@ public class InputView {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public int getHeightFromUser() {
+    public Height getHeightFromUser() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         String inputString = scanner.nextLine();
-        return Integer.parseInt(inputString);
+        return new Height(Integer.parseInt(inputString));
     }
 }

@@ -18,7 +18,7 @@ public class LadderGame {
 
     public void run() {
         List<Name> names = inputView.getNamesFromUser();
-        int height = inputView.getHeightFromUser();
+        Height height = inputView.getHeightFromUser();
 
         Lines lines = new Lines(names.size(), height);
 

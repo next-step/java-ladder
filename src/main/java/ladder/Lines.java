@@ -17,15 +17,15 @@ public class Lines {
         this.lineGenerateStrategy = lineGenerateStrategy;
     }
 
+    public Lines(int countOfPerson, Height height) {
+        this(countOfPerson, height.getValue(), new RandomLineGenerator());
+    }
+
     public Lines(int countOfPerson, int height) {
         this(countOfPerson, height, new RandomLineGenerator());
     }
 
     public Lines(int countOfPerson, int height, LineGenerateStrategy lineGenerateStrategy) {
-        generateLines(countOfPerson, height, lineGenerateStrategy);
-    }
-
-    private void generateLines(int countOfPerson, int height, LineGenerateStrategy lineGenerateStrategy) {
         for (int i = 0; i < height; i++) {
             lines.add(new Line(countOfPerson, lineGenerateStrategy));
         }
