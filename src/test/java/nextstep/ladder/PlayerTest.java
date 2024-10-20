@@ -9,9 +9,9 @@ import org.junit.jupiter.api.Test;
 public class PlayerTest {
     @Test
     @DisplayName("player 생성 테스트")
-    void createPlayerTest_Name(){
+    void createPlayerTest_Name() {
         //given
-        final String name = "pobi";
+        String name = "pobi";
 
         //when
         Player player = new Player(name);
@@ -22,9 +22,9 @@ public class PlayerTest {
 
     @Test
     @DisplayName("player 이름 제한 테스트")
-    void createPlayerNameConstraintTest(){
+    void createPlayerNameConstraintTest() {
         //given
-        final String name = "pobiii";
+        String name = "pobiii";
 
         //when
         ThrowableAssert.ThrowingCallable callable = () -> {

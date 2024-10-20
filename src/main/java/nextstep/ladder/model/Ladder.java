@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
-    private final List<Line> lines;
+    private List<Line> lines;
 
     public Ladder() {
         this(new ArrayList<>());

@@ -1,7 +1,7 @@
 package nextstep.ladder.model;
 
 public class Player {
-    private final String name;
+    private String name;
 
     public Player(String name) {
         if (name.length() > 5) {

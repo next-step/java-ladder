@@ -16,9 +16,9 @@ public class LadderTest {
     @DisplayName("ladder 생성 테스트")
     void createLadderTest() {
         //given
-        final int countOfPlayers = 4;
-        final int height = 5;
-        final LineGenerator lineGenerator = new MockLineGenerator();
+        int countOfPlayers = 4;
+        int height = 5;
+        LineGenerator lineGenerator = new MockLineGenerator();
 
 
         //when

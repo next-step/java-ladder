@@ -6,8 +6,8 @@ import java.util.stream.IntStream;
 
 public class LadderGame {
     private Ladder ladder;
-    private final List<Player> players;
-    private final int height;
+    private List<Player> players;
+    private int height;
 
     public LadderGame(List<String> names, int height) {
         this.ladder = new Ladder();

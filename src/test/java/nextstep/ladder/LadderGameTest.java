@@ -15,8 +15,8 @@ public class LadderGameTest {
     @DisplayName("ladder game 생성 테스트")
     void createLadderGameTest() {
         //given
-        final List<String> testNames = new ArrayList<>(List.of("pobi", "honux", "crong", "jk"));
-        final int testHeight = 5;
+        List<String> testNames = new ArrayList<>(List.of("pobi", "honux", "crong", "jk"));
+        int testHeight = 5;
         MockLineGenerator lineGenerator = new MockLineGenerator();
 
         LadderGame ladderGame = new LadderGame(testNames, testHeight);
