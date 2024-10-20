@@ -15,7 +15,10 @@ public class Line {
     }
 
     private boolean makeLine(int i) {
-        return i == 0 ? this.lineGenerator.generate() : !points.get(i - 1) && this.lineGenerator.generate();
+        if (i == 0) {
+            return this.lineGenerator.generate();
+        }
+        return !points.get(i - 1) && this.lineGenerator.generate();
     }
 
     public List<Boolean> getPoints() {
