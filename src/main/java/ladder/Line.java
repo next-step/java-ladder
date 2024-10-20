@@ -42,6 +42,10 @@ public class Line {
         }
     }
 
+    public List<Boolean> getPoints() {
+        return points;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
