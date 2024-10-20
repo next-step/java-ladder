@@ -4,15 +4,20 @@ package step2.uiView;
 import step2.enums.ResultMessage;
 import step2.model.Ladder;
 
-public class ResultView {
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
-    private final static String BLANK = "   ";
+public class ResultView {
 
     //사다리를 출력한다.
     public void resultLadder(Ladder ladder) {
         System.out.println(ResultMessage.RESULT.message());
         // 참가자 출력
-        System.out.println(String.join(BLANK, ladder.getPerson()));
+        String person = Arrays.stream(ladder.getPerson())
+                .map(name -> String.format("%6s", name))
+                .collect(Collectors.joining(""));
+
+        System.out.println(person);
 
         // 사다리 출력
         ladder.getLine().forEach(line -> {
