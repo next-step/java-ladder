@@ -9,13 +9,15 @@ public class Line {
 
     public Line(int countOfPerson) {
         IntStream.range(0, countOfPerson)
-                .forEach(index -> {
-                    if (isAvailableCreate(points, countOfPerson)) {
-                        points.add(isCreate(RandomStrategy.getInstance()));
-                        return;
-                    }
-                    points.add(false);
-                });
+                .forEach(index -> addHorizontal(countOfPerson));
+    }
+
+    private void addHorizontal(int countOfPerson) {
+        if (isAvailableCreate(points, countOfPerson)) {
+            points.add(isCreate(RandomStrategy.getInstance()));
+            return;
+        }
+        points.add(false);
     }
 
     public static boolean isCreate(CreateStrategy strategy) {
