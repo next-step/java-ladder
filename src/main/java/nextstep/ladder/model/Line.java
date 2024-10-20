@@ -23,12 +23,12 @@ public class Line {
 
     private Point makeLine(int i) {
         Point point = new Point(this.lineGenerator);
-        if (this.points.isEmpty()) {
-            point.next(false);
-            return point;
-        }
-        point.next(points.get(i - 1).getValue());
+        point.next(hasPreviousLine(i));
         return point;
+    }
+
+    private boolean hasPreviousLine(int i) {
+        return !this.points.isEmpty() && points.get(i - 1).getValue();
     }
 
     public List<Point> getPoints() {
