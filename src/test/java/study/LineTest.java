@@ -31,6 +31,18 @@ public class LineTest {
     }
 
     @Test
+    void validate_띄엄띄엄() {
+        Line line = new Line(List.of(true, false, true, false));
+        assertThat(line.getPoints().size()).isEqualTo(4);
+    }
+
+    @Test
+    void validate_연속_연결() {
+        assertThatThrownBy(() -> new Line(List.of(true, true, true)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     void move() {
         Line line = new Line(List.of(true, false, true));
         assertThat(line.move(0)).isEqualTo(1);

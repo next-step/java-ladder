@@ -14,4 +14,8 @@ public class Result {
         return Collections.unmodifiableMap(results);
     }
 
+    public String getPrizeToStringByPlayerName(PlayerName playerName) {
+        return getResults().get(playerName).getValue();
+    }
+
 }

@@ -1,6 +1,7 @@
 package study.view;
 
 
+import study.core.Ladder;
 import study.core.Line;
 import study.core.PlayerName;
 import study.core.Prize;
@@ -17,11 +18,11 @@ public class ResultView {
     private static final String LINE_VERTICAL = "|";
     private static final StringBuilder sb = new StringBuilder();
 
-    public void printLadder(List<PlayerName> names, List<Line> ladder, List<Prize> results) {
+    public void printLadder(List<PlayerName> names, Ladder ladder, List<Prize> results) {
         System.out.println(LADDER_RESULT_MESSAGE);
         names.forEach(name -> sb.append(String.format("%-5s", name.getName())).append(" "));
         sb.append(System.lineSeparator());
-        ladder.forEach(this::printLine);
+        ladder.getLines().forEach(this::printLine);
         results.forEach(result -> sb.append(String.format("%-5s", result.getValue())).append(" "));
         System.out.println(sb.toString());
         System.out.println();
@@ -44,7 +45,7 @@ public class ResultView {
         System.out.println();
         System.out.println(RESULT_MESSAGE);
         if (!playerName.getName().equals("all")) {
-            System.out.println(result.getResults().get(playerName).getValue());
+            System.out.println(result.getPrizeToStringByPlayerName(playerName));
             return;
         }
         result.getResults()
