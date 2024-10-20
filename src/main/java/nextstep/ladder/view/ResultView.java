@@ -9,15 +9,14 @@ import java.util.List;
 public class ResultView {
     private static final int MAX = 7;
 
-    public static void printLadder(Ladder ladder, List<Player> players) {
+    public static void printResultLetters() {
         System.out.println();
         System.out.println("실행결과");
         System.out.println();
+    }
 
+    public static void printLadder(Ladder ladder) {
         StringBuilder sb = new StringBuilder();
-        players.forEach(player -> sb.append(" ".repeat(getCountOfSpace(player))).append(player.getName()));
-        sb.append("\n");
-
         List<Line> lines = ladder.getLines();
         lines.forEach(line -> {
             sb.append(" ".repeat(MAX)).append("|");
@@ -25,6 +24,12 @@ public class ResultView {
             points.forEach(point -> sb.append(point ? "-".repeat(6) : " ".repeat(6)).append("|"));
             sb.append("\n");
         });
+        System.out.println(sb);
+    }
+
+    public static void printPlayers(List<Player> players) {
+        StringBuilder sb = new StringBuilder();
+        players.forEach(player -> sb.append(" ".repeat(getCountOfSpace(player))).append(player.getName()));
         System.out.println(sb);
     }
 
