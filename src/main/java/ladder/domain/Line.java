@@ -32,6 +32,14 @@ public class Line {
         return !isPreviousCreated(points);
     }
 
+    public int getSize() {
+        return points.size();
+    }
+
+    public boolean getPoint(int index) {
+        return points.get(index);
+    }
+
     private static Boolean isPreviousCreated(List<Boolean> points) {
         return points.get(points.size() - 1);
     }
@@ -40,7 +48,5 @@ public class Line {
         return points.size() == countOfPerson - 1;
     }
 
-    public int getSize() {
-        return points.size();
-    }
+
 }

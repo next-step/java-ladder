@@ -21,7 +21,6 @@ public class LadderController {
         int ladderHeight = inputView.getLadderHeight();
 
         List<Line> ladders = game.createLadders(playMembers, ladderHeight);
-        resultView.printLadders(ladders);
-        System.out.println(ladders);
+        resultView.printResults(playMembers, ladders);
     }
 }

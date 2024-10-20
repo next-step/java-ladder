@@ -13,4 +13,9 @@ public class Member {
     private boolean isOutOfBoundLength(String name) {
         return name.length() > 5;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
