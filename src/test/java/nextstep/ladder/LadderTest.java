@@ -17,7 +17,7 @@ public class LadderTest {
     void createLadderTest() {
         //given
         int countOfPlayers = 4;
-        int height = 5;
+        int height = 1;
         LineGenerator lineGenerator = new MockLineGenerator();
 
 
@@ -31,10 +31,13 @@ public class LadderTest {
 
         //then
         Assertions.assertThat(ladder).isNotNull();
-        Assertions.assertThat(ladder.getLines().size()).isEqualTo(height);
 
-        List<Line> lines = ladder.getLines();
-        Assertions.assertThat(lines.get(0).getPoints()).hasSize(countOfPlayers - 1);
-        System.out.println(lines);
+
+        Ladder expectedLadder = new Ladder(
+                List.of(new Line(List.of(true, false, true), lineGenerator)),
+                height
+        );
+
+        Assertions.assertThat(ladder).isEqualTo(expectedLadder);
     }
 }
