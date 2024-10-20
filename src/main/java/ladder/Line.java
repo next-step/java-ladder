@@ -17,10 +17,6 @@ public class Line {
         this.lineGenerateStrategy = lineGenerateStrategy;
     }
 
-    public Line(int countOfPerson) {
-        this(countOfPerson, new RandomLineGenerator());
-    }
-
     public Line(int countOfPerson, LineGenerateStrategy lineGenerateStrategy) {
         this.lineGenerateStrategy = lineGenerateStrategy;
         generatePoints(countOfPerson);
@@ -28,17 +24,11 @@ public class Line {
 
     private void generatePoints(int countOfPerson) {
 
-        boolean prevLine = false;
+        boolean isPrevLineConnected = false;
         for (int i = 0; i < countOfPerson - 1; i++) {
-            if (prevLine) {
-                points.add(false);
-                prevLine = false;
-                continue;
-            }
-
-            Boolean currentLine = lineGenerateStrategy.generate();
-            points.add(currentLine);
-            prevLine = currentLine;
+            boolean currentLineConnection = !isPrevLineConnected && lineGenerateStrategy.generate();
+            points.add(currentLineConnection);
+            isPrevLineConnected = currentLineConnection;
         }
     }
 
