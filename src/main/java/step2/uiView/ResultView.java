@@ -4,7 +4,6 @@ package step2.uiView;
 import step2.enums.ResultMessage;
 import step2.model.Ladder;
 
-import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public class ResultView {
@@ -13,7 +12,7 @@ public class ResultView {
     public void resultLadder(Ladder ladder) {
         System.out.println(ResultMessage.RESULT.message());
         // 참가자 출력
-        String person = Arrays.stream(ladder.getPerson())
+        String person = ladder.getPerson().getNames().stream()
                 .map(name -> String.format("%6s", name))
                 .collect(Collectors.joining(""));
 
