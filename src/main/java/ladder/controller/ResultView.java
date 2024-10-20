@@ -30,21 +30,26 @@ public class ResultView {
 
 
         for (Line line : ladders) {
-            for (int i = 0; i < line.getSize(); i++) {
-                if (i == 0) {
-                    sb.append("     ");
-                }
-                sb.append("|");
-                if (line.getPoint(i)) {
-                    sb.append("-----");
-                    continue;
-                }
-                sb.append("     ");
-            }
-            sb.append(System.lineSeparator());
+            printLines(line, sb);
         }
-
         System.out.println(sb);
     }
 
+    private void printLines(Line line, StringBuilder sb) {
+        addHorizontal(false, sb);
+        for (int i = 1; i < line.getSize(); i++) {
+            addHorizontal(line.getPoint(i - 1), sb);
+        }
+        sb.append(System.lineSeparator());
+    }
+
+    private void addHorizontal(boolean isPoint, StringBuilder sb) {
+        if (isPoint) {
+            sb.append("-----");
+            sb.append("|");
+            return;
+        }
+        sb.append("     ");
+        sb.append("|");
+    }
 }
