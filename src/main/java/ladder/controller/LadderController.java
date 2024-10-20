@@ -1,5 +1,6 @@
 package ladder.controller;
 
+import ladder.domain.Line;
 import ladder.domain.Member;
 import ladder.service.LadderGame;
 
@@ -19,6 +20,8 @@ public class LadderController {
         List<Member> playMembers = inputView.getPlayMembers();
         int ladderHeight = inputView.getLadderHeight();
 
-        System.out.println(game.play(playMembers, ladderHeight));
+        List<Line> ladders = game.createLadders(playMembers, ladderHeight);
+        resultView.printLadders(ladders);
+        System.out.println(ladders);
     }
 }
