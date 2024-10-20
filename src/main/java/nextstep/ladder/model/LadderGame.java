@@ -6,34 +6,26 @@ import java.util.stream.IntStream;
 
 public class LadderGame {
     private Ladder ladder;
-    private List<Player> players;
-    private int height;
+    private PlayerGroup playerGroup;
 
-    public LadderGame(List<String> names, int height) {
+    public LadderGame(List<String> names) {
         this.ladder = new Ladder();
-        this.players = names.stream()
-                .map(Player::new)
-                .collect(Collectors.toList());
-        this.height = height;
+        this.playerGroup = PlayerGroup.of(names);
     }
 
-    public Ladder run(LineGenerator lineGenerator) {
+    public Ladder run(int height, LineGenerator lineGenerator) {
         List<Line> lines = IntStream.range(0, height)
-                .mapToObj(it -> new Line(this.players.size(), lineGenerator))
+                .mapToObj(it -> new Line(this.playerGroup.getPlayers().size(), lineGenerator))
                 .collect(Collectors.toList());
-        this.ladder = new Ladder(lines);
+        this.ladder = new Ladder(lines, height);
         return this.ladder;
     }
 
     public List<Player> getPlayers() {
-        return players;
+        return playerGroup.getPlayers();
     }
 
     public Ladder getLadder() {
         return ladder;
-    }
-
-    public int getHeight() {
-        return height;
     }
 }

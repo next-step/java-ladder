@@ -17,10 +17,9 @@ public class LadderGameTest {
     void createLadderGameTest() {
         //given
         List<String> testNames = new ArrayList<>(List.of("pobi", "honux", "crong", "jk"));
-        int testHeight = 5;
 
         //when
-        LadderGame ladderGame = new LadderGame(testNames, testHeight);
+        LadderGame ladderGame = new LadderGame(testNames);
 
         //then
         Assertions.assertThat(ladderGame).isNotNull();
@@ -29,7 +28,6 @@ public class LadderGameTest {
                         .map(it -> it.getName())
                         .collect(Collectors.toList()))
                 .hasSameElementsAs(testNames);
-        Assertions.assertThat(ladderGame.getHeight()).isEqualTo(testHeight);
     }
 
     @Test
@@ -40,10 +38,10 @@ public class LadderGameTest {
         int testHeight = 5;
         MockLineGenerator lineGenerator = new MockLineGenerator();
 
-        LadderGame ladderGame = new LadderGame(testNames, testHeight);
+        LadderGame ladderGame = new LadderGame(testNames);
 
         //when
-        Ladder ladder = ladderGame.run(lineGenerator);
+        Ladder ladder = ladderGame.run(testHeight, lineGenerator);
 
         //then
         Assertions.assertThat(ladder.getLines().size()).isEqualTo(testHeight);
@@ -52,5 +50,6 @@ public class LadderGameTest {
             List<Boolean> points = line.getPoints();
             Assertions.assertThat(points).hasSize(testNames.size() - 1);
         }
+        Assertions.assertThat(ladder.getHeight()).isEqualTo(testHeight);
     }
 }
