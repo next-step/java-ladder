@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class ResultView {
     private static ResultView INSTANCE = null;
 
-    public ResultView() {
+    private ResultView() {
     }
 
     public static ResultView getInstance() {
@@ -24,7 +24,7 @@ public class ResultView {
         sb.append("실행결과");
         sb.append(System.lineSeparator());
         sb.append(members.stream()
-                .map(member -> String.format("%5s ", member))
+                .map(member -> String.format("%5s ", member.getName()))
                 .collect(Collectors.joining()));
         sb.append(System.lineSeparator());
 
