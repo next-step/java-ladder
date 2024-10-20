@@ -10,12 +10,12 @@ public class Member {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
     private boolean isOutOfBoundLength(String name) {
         return name.length() > 5;
     }
 
-    @Override
-    public String toString() {
-        return name;
-    }
 }
