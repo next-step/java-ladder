@@ -12,10 +12,10 @@ public class LadderGameApplication {
     public static void main(String[] args) {
         List<String> playerNames = InputView.inputPlayers();
         int height = InputView.inputLadderHeight();
+
         LadderGame ladderGame = new LadderGame(playerNames, height);
         Ladder ladder = ladderGame.run(new RandomLineGenerator());
-        System.out.println("height: " + ladder.getHeight());
-        ladder.getLines().forEach(System.out::println);
+
         ResultView.printLadder(ladder, ladderGame.getPlayers());
     }
 }
