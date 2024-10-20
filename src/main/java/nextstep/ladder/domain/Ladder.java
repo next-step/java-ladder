@@ -24,4 +24,8 @@ public class Ladder {
                 .map(LadderLine::copy)
                 .collect(Collectors.toUnmodifiableList());
     }
+
+    public <T> void play(List<T> target) {
+        ladderLines.forEach(ladderLine -> ladderLine.play(target));
+    }
 }
