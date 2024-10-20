@@ -13,7 +13,7 @@ public class ResultView {
         System.out.println(ResultMessage.RESULT.message());
         // 참가자 출력
         String person = ladder.getPerson().getNames().stream()
-                .map(name -> String.format("%6s", name))
+                .map(name -> String.format("%6s", name.getName()))
                 .collect(Collectors.joining(""));
 
         System.out.println(person);

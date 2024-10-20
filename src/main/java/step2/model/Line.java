@@ -10,13 +10,13 @@ public class Line {
 
     private final List<Boolean> points = new ArrayList<>();
 
-    private Line(String[] personArr, RandomGenerator randomGenerator) {
-        IntStream.range(0, personArr.length).forEach(i -> createLadderLine(randomGenerator));
+    private Line(Person person, RandomGenerator randomGenerator) {
+        IntStream.range(0, person.getNames().size()).forEach(i -> createLadderLine(randomGenerator));
     }
 
     //라인을 생성한다.
-    public static Line createLine(String[] personArr, RandomGenerator randomGenerator) {
-        return new Line(personArr, randomGenerator);
+    public static Line createLine(Person person, RandomGenerator randomGenerator) {
+        return new Line(person, randomGenerator);
     }
 
     public List<Boolean> getPoints() {

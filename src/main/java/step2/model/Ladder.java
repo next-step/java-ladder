@@ -8,23 +8,19 @@ import java.util.List;
 
 public class Ladder {
 
-    private final static String MINIMUM_PERSON_COUNT_MESSAGE = "참여 인원은 2명이상이여야 합니다.";
     private final static String MINIMUM_LADDER_COUNT_MESSAGE = "사다리의 높이는 2이상이여여만 합니다.";
 
-    private final static int MINIMUM_PERSON_COUNT = 2;
     private final static int MINIMUM_LADDER_COUNT = 2;
 
     private Person person;
     private final List<Line> line = new ArrayList<>();
 
     public void inputPerson(String personStr, int ladderSize) {
-        String[] personArr = StringUtil.divideNum(personStr);
-        confirmPersonCount(personArr);
         confirmLadderCount(ladderSize);
 
-        this.person = Person.createPerson(personArr);
+        this.person = Person.createPerson(StringUtil.divideNum(personStr));
         for (int i = 0; i < ladderSize; i++) {
-            line.add(Line.createLine(personArr, new LadderGenerator()));
+            line.add(Line.createLine(this.person, new LadderGenerator()));
         }
     }
 
@@ -34,13 +30,6 @@ public class Ladder {
 
     public Person getPerson() {
         return person;
-    }
-
-    //참여하는 인원수를 체크한다.
-    private void confirmPersonCount(String[] personArr) {
-        if (personArr.length < MINIMUM_PERSON_COUNT) {
-            throw new IllegalArgumentException(MINIMUM_PERSON_COUNT_MESSAGE);
-        }
     }
 
     //생성하는 최대 사다리수를 체크한다.
