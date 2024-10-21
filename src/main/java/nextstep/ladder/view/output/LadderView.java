@@ -1,8 +1,9 @@
 package nextstep.ladder.view.output;
 
 import nextstep.ladder.Visible;
+import nextstep.ladder.domain.GameOrganizer;
+import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Player;
-import nextstep.ladder.dto.ViewDto;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -21,8 +22,8 @@ public class LadderView implements Visible {
     }
 
     @Override
-    public void view(ViewDto viewDto) {
-        System.out.println(viewDto.getLadder().ladderLines().stream()
+    public void view(GameOrganizer gameOrganizer, Ladder ladder) {
+        System.out.println(ladder.ladderLines().stream()
                 .map(this::getLines)
                 .collect(Collectors.joining(System.lineSeparator())));
     }

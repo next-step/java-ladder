@@ -13,11 +13,9 @@ public class LadderGame {
         InputView inputView = new InputView();
         GameOrganizer gameOrganizer =  GameOrganizer.of(inputView.players(), inputView.ladderResults());
         int height = inputView.ladderHeight();
-
         Ladder ladder = Ladder.of(height, gameOrganizer.count());
-        MatchResult matchResult = gameOrganizer.match(ladder);
 
         Visible outputView = new OutputView();
-        outputView.view(new ViewDto(gameOrganizer.playerNames(), gameOrganizer.ladderResults(), ladder, matchResult));
+        outputView.view(gameOrganizer, ladder);
     }
 }

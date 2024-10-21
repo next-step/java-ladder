@@ -1,8 +1,9 @@
 package nextstep.ladder.view.output;
 
 import nextstep.ladder.Visible;
+import nextstep.ladder.domain.GameOrganizer;
+import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.MatchResult;
-import nextstep.ladder.dto.ViewDto;
 
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -12,9 +13,9 @@ public class ResultView implements Visible {
     private static final Scanner SCANNER = new Scanner(System.in);
 
     @Override
-    public void view(ViewDto viewDto) {
+    public void view(GameOrganizer gameOrganizer, Ladder ladder) {
         String player = "";
-        MatchResult matchResult = viewDto.getLadderResult();
+        MatchResult matchResult = gameOrganizer.play(ladder);
         while (!"all".equalsIgnoreCase(player)) {
             System.out.println();
             System.out.println("결과를 보고 싶은 사람은?");
