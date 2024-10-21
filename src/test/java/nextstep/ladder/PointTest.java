@@ -11,10 +11,9 @@ public class PointTest {
     @DisplayName("Point 생성")
     void createPointTest() {
         //given
-        LineGenerator lineGenerator = new MockLineGenerator();
 
         //when
-        Point point = new Point(lineGenerator);
+        Point point = new Point();
 
         //then
         Assertions.assertThat(point).isNotNull();
@@ -26,10 +25,10 @@ public class PointTest {
     void createPointValue() {
         //given
         LineGenerator lineGenerator = new MockLineGenerator();
-        Point point = new Point(lineGenerator);
+        Point point = new Point();
 
         //when
-        point.next(false);
+        point.next(false, lineGenerator.generate());
 
         //then
         Assertions.assertThat(point.getValue()).isEqualTo(true);

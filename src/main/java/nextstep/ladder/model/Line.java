@@ -21,8 +21,8 @@ public class Line {
     }
 
     private Point makeLine(int i) {
-        Point point = new Point(lineGenerator);
-        point.next(hasPreviousLine(i));
+        Point point = new Point();
+        point.next(hasPreviousLine(i), lineGenerator.generate());
         return point;
     }
 

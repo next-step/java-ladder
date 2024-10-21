@@ -4,18 +4,17 @@ import java.util.Objects;
 
 public class Point {
     private boolean value;
-    private LineGenerator lineGenerator;
 
-    public Point(LineGenerator lineGenerator) {
-        this.lineGenerator = lineGenerator;
+    public Point() {
+        this.value = false;
     }
 
     public Point(boolean value) {
         this.value = value;
     }
 
-    public void next(boolean hasPreviousLine) {
-        this.value = !hasPreviousLine && lineGenerator.generate();
+    public void next(boolean hasPreviousLine, boolean currentLine) {
+        this.value = !hasPreviousLine && currentLine;
     }
 
     public boolean getValue() {
