@@ -10,6 +10,28 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LineTest {
 
+    @Test
+    @DisplayName("이동할 수 없으면 현재 인덱스를 반환한다.")
+    void 가로선_이동_불가() {
+        Line line = new Line(2, () -> false);
+        assertThat(line.move(0)).isEqualTo(0);
+        assertThat(line.move(1)).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("오른쪽으로 이동할 수 있으면 현재 인덱스 + 1을 반환한다.")
+    void 가로선_오른쪽_이동() {
+        Line line = new Line(2, () -> true);
+        assertThat(line.move(0)).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("왼쪽으로 이동할 수 있으면 현재 인덱스 - 1을 반환한다.")
+    void 가로선_왼쪽_이동() {
+        Line line = new Line(2, () -> true);
+        assertThat(line.move(1)).isEqualTo(0);
+    }
+
     @ParameterizedTest
     @DisplayName("범위외에 인덱스를 요청할 때 예외를 발생시킨다.")
     @ValueSource(ints = {3, -1})

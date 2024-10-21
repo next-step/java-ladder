@@ -23,6 +23,16 @@ public class Line {
         return points.get(index);
     }
 
+    public int move(int index) {
+        if (isMoveLeft(index)) {
+            return index - 1;
+        }
+        if (isMoveRight(index)) {
+            return index + 1;
+        }
+        return index;
+    }
+
     private void addHorizontal(int countOfPerson, CreateStrategy createStrategy) {
         if (isAvailableCreate(points, countOfPerson)) {
             points.add(isCreate(createStrategy));
@@ -53,5 +63,17 @@ public class Line {
         return points.get(points.size() - 1);
     }
 
+    private boolean isMoveLeft(int index) {
+        if (index == 0) {
+            return false;
+        }
+        return !getPoint(index) && getPoint(index - 1);
+    }
 
+    private boolean isMoveRight(int index) {
+        if (index == points.size() - 1) {
+            return false;
+        }
+        return getPoint(index) && !getPoint(index + 1);
+    }
 }
