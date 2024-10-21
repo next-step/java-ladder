@@ -13,11 +13,22 @@ public class Line {
         this.lineGenerator = lineGenerator;
         IntStream.range(0, countOfPlayers - 1)
                 .forEach(it -> this.points.add(makeLine(it)));
+        validatePoints(countOfPlayers - 1);
     }
+
 
     public Line(List<Point> points, LineGenerator lineGenerator) {
         this.points = points;
         this.lineGenerator = lineGenerator;
+        validatePoints(points.size());
+    }
+
+    private void validatePoints(int count) {
+        IntStream.range(0, count).forEach(it -> {
+            if (it > 0 && this.points.get(it - 1).getValue() && this.points.get(it).getValue()) {
+                throw new IllegalArgumentException("executive true error");
+            }
+        });
     }
 
     private Point makeLine(int i) {
