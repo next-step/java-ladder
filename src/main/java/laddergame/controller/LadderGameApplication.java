@@ -5,7 +5,7 @@ import laddergame.domain.RandomLineGenerator;
 import laddergame.ui.InputView;
 import laddergame.ui.ResultView;
 
-public class LadderGameController {
+public class LadderGameApplication {
     public static void main(String[] args) {
         InputView inputView = new InputView();
         ResultView resultView = new ResultView();

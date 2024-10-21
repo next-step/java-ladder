@@ -16,7 +16,7 @@ public class LadderGame {
     private final LadderLineGenerator generator;
 
     private Players players;
-    private LadderPositionResult positionResult;
+    private LadderResult ladderResult;
     private LadderPlayResult playResult;
     private Ladder ladder;
 
@@ -35,27 +35,28 @@ public class LadderGame {
 
     private void initialize() {
         this.players = getPlayers();
-        this.positionResult = getPositionResult(players.size());
-        this.playResult = new LadderPlayResult(positionResult);
+        this.ladderResult = getLadderResult(players.size());
+        this.playResult = new LadderPlayResult();
         this.ladder = createLadder(players.size());
     }
 
     private void moveDown() {
-        int firstPosition = players.firstPosition();
-        int lastPosition = players.lastPosition();
+        int firstPosition = 0;
+        int lastPosition = players.size();
 
-        for (int position = firstPosition; position <= lastPosition; position++) {
+        for (int position = firstPosition; position < lastPosition; position++) {
             Optional<Player> optionalPlayer = players.findByPosition(position);
             int finalPosition = ladder.moveDownByPosition(position);
 
             optionalPlayer.ifPresent(player -> {
-                playResult.add(player, finalPosition);
+                String gameResult = this.ladderResult.findBy(finalPosition);
+                playResult.add(player, gameResult);
             });
         }
     }
 
     private void showLadder() {
-        resultView.showLadder(players, ladder, positionResult);
+        resultView.showLadder(players, ladder, ladderResult);
     }
 
     private Players getPlayers() {
@@ -63,9 +64,9 @@ public class LadderGame {
         return new Players(players);
     }
 
-    private LadderPositionResult getPositionResult(int playerCount) {
+    private LadderResult getLadderResult(int playerCount) {
         List<String> positonResult = inputView.getGameResultsFromUser(playerCount);
-        return new LadderPositionResult(positonResult);
+        return new LadderResult(positonResult);
     }
 
     private Ladder createLadder(int playerCount) {
