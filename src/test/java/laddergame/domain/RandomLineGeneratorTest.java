@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class RandomLineStatusGeneratorTest {
+class RandomLineGeneratorTest {
 
     @DisplayName("랜덤한 boolean 값으로 가로라인이 겹치치 않도록 라인을 생성한다")
     @Test
