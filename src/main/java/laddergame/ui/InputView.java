@@ -1,6 +1,8 @@
 package laddergame.ui;
 
+import laddergame.domain.LadderResult;
 import laddergame.domain.Player;
+import laddergame.domain.Players;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,7 +20,7 @@ public class InputView {
 
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    public List<Player> getPlayerFromUser(){
+    public Players getPlayerFromUser(){
         String playerInput = getPlayerInput();
         String[] playerNames = split(playerInput);
         return getPlayers(playerNames);
@@ -34,19 +36,21 @@ public class InputView {
         return players;
     }
 
-    private List<Player> getPlayers(String[] playerNames) {
-        return IntStream.range(0, playerNames.length)
+    private Players getPlayers(String[] playerNames) {
+        List<Player> playerGroup = IntStream.range(0, playerNames.length)
                 .mapToObj(index -> new Player(playerNames[index], index))
                 .collect(toList());
+        return new Players(playerGroup);
     }
 
     private String[] split(String joiningTest){
         return joiningTest.replace(" ", "").split(INPUT_DELIMITER);
     }
 
-    public List<String> getGameResultsFromUser(int playerCount){
+    public LadderResult getGameResultsFromUser(int playerCount){
         String gameResult = getGameResultInput();
-        return getGameResults(gameResult, playerCount);
+        List<String> gameResults = getGameResults(gameResult, playerCount);
+        return new LadderResult(gameResults);
     }
 
     private String getGameResultInput() {

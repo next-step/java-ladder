@@ -1,23 +1,23 @@
 package laddergame.domain;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderPlayResultTest {
 
-    @DisplayName("플레이어의 최종 위치와 연결된 게임 결과를 알 수 있다")
+    @DisplayName("플레이어 정보로부터 게임 결과 조회가 가능하다")
     @Test
     void getGameResult(){
-        Player player = new Player("name1", 0);
-        LadderPlayResult playResult = new LadderPlayResult();
+        Map<Player, String> result = new LinkedHashMap<>();
+        Player name1 = new Player("name1", 0);
+        result.put(name1, "성공");
+        LadderPlayResult playResult = new LadderPlayResult(result);
 
-        playResult.add(new Player("name1", 0), "꽝");
-
-        assertThat(playResult.get(player)).isEqualTo("꽝");
+        assertThat(playResult.get(name1)).isEqualTo("성공");
     }
 }

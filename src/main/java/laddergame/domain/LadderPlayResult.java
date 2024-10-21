@@ -4,14 +4,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class LadderPlayResult {
-    private Map<Player, String> playResult;
+    private final Map<Player, String> playResult;
 
-    public LadderPlayResult() {
-        playResult = new LinkedHashMap<>();
-    }
-
-    public void add(Player player, String gameResult){
-        playResult.put(player, gameResult);
+    public LadderPlayResult(Map<Player, String> playResult) {
+        this.playResult = playResult;
     }
 
     public String get(Player player){
