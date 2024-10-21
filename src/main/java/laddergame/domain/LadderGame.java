@@ -1,6 +1,4 @@
-package laddergame.controller;
-
-import laddergame.domain.*;
+package laddergame.domain;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
