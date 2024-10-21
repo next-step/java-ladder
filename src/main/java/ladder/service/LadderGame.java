@@ -3,7 +3,6 @@ package ladder.service;
 import ladder.domain.CreateStrategy;
 import ladder.domain.Line;
 import ladder.domain.Member;
-import ladder.domain.RandomStrategy;
 
 import java.util.List;
 import java.util.stream.Collectors;
