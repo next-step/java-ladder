@@ -18,7 +18,7 @@ public class Ladder {
 
     private void makeMap(PositiveNumber width, PositiveNumber height) {
         for (int i = 0; i < height.getValue(); i++) {
-            map.add(new LadderRow(width, new RandomBarGeneratorStrategy()));
+            map.add(new LadderRow(width, RandomBarGeneratorStrategy.getInstance()));
         }
     }
 
