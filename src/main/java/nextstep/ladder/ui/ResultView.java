@@ -22,13 +22,9 @@ public class ResultView {
 
     private static void printLadderMap(LadderGame ladderGame) {
         StringBuilder builder = new StringBuilder();
-        ladderGame.getLadder().getMap().forEach(bar -> {
-            bar.getRow().forEach(character -> {
-                builder.append(character);
-                builder.append("|");
-            });
-            builder.append("\n");
-        });
+        ladderGame.getLadder().getMapAsString().forEach(row ->
+            builder.append(row).append("|").append("\n")
+        );
         System.out.println(builder);
     }
 

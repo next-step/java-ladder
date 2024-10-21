@@ -44,4 +44,8 @@ public class LadderRow {
     private String getPreviousBar(int index) {
         return row.get(index - 1);
     }
+
+    public String getRowAsString() {
+        return String.join("|", row);
+    }
 }
