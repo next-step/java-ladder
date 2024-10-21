@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import ladder.LadderResult;
+import ladder.InputResult;
 import ladder.Player;
 import ladder.Players;
 
@@ -30,11 +30,11 @@ public class InputView {
         return height;
     }
 
-    public static LadderResult inputResult() {
+    public static InputResult inputResult() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         String resultStrings = scanner.nextLine();
-        return new LadderResult(resultStrings.split(DELIMITER));
+        return new InputResult(resultStrings.split(DELIMITER));
     }
 
     private static Players splitPlayer(String inputPlayers) {
