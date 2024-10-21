@@ -31,7 +31,6 @@ public class StreamStudy {
 
         // TODO 이 부분에 구현한다.
         words.stream().filter(x -> x.length() > 12).sorted(Comparator.comparing(String::length).reversed()).distinct().limit(100).map(x -> x.toLowerCase()).forEach(System.out :: println);
-//        words.stream().filter(x -> x.length() > 12).distinct().limit(100).map(x -> x.toLowerCase()).forEach(System.out :: println);
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
