@@ -1,5 +1,6 @@
 package ladder.service;
 
+import ladder.domain.CreateStrategy;
 import ladder.domain.Line;
 import ladder.domain.Member;
 import ladder.domain.RandomStrategy;
@@ -21,9 +22,9 @@ public class LadderGame {
         return INSTANCE;
     }
 
-    public List<Line> createLadders(List<Member> members, int height) {
+    public List<Line> createLadders(List<Member> members, int height, CreateStrategy createStrategy) {
         return IntStream.range(0, height)
-                .mapToObj(num -> new Line(members.size(), RandomStrategy.getInstance()))
+                .mapToObj(num -> new Line(members.size(), createStrategy))
                 .collect(Collectors.toList());
     }
 }

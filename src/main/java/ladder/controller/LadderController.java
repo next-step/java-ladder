@@ -2,6 +2,7 @@ package ladder.controller;
 
 import ladder.domain.Line;
 import ladder.domain.Member;
+import ladder.domain.RandomStrategy;
 import ladder.service.LadderGame;
 
 import java.util.List;
@@ -17,10 +18,11 @@ public class LadderController {
 
     public void play() {
         LadderGame game = LadderGame.getInstance();
+        RandomStrategy randomStrategy = RandomStrategy.getInstance();
         List<Member> playMembers = inputView.getPlayMembers();
         int ladderHeight = inputView.getLadderHeight();
 
-        List<Line> ladders = game.createLadders(playMembers, ladderHeight);
+        List<Line> ladders = game.createLadders(playMembers, ladderHeight, randomStrategy);
         resultView.printResults(playMembers, ladders);
     }
 }
