@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Users {
     private final List<User> users;
@@ -20,8 +21,8 @@ public class Users {
     private long getDistinctUserCount(List<User> users) {
         return users.stream()
                 .map(User::getName)
-                .distinct()
-                .count();
+                .collect(Collectors.toSet())
+                .size();
     }
 
     public List<User> getUsers() {
