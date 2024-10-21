@@ -32,8 +32,8 @@ public class LadderGameTest {
     }
 
     @Test
-    @DisplayName("ladder game 실행 테스트")
-    void makeLadderLadderGameTest() {
+    @DisplayName("ladder game 사다리 생성 테스트")
+    void makeLadderTest() {
         //given
         List<String> testNames = new ArrayList<>(List.of("pobi", "honux", "crong", "jk"));
         int testHeight = 5;
