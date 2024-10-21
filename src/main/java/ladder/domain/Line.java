@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Line {
@@ -23,14 +24,10 @@ public class Line {
         return points.get(index);
     }
 
-    public int move(int index) {
-        if (isMoveLeft(index)) {
-            return index - 1;
-        }
-        if (isMoveRight(index)) {
-            return index + 1;
-        }
-        return index;
+    public List<Integer> moveResult(List<Integer> results) {
+        return results.stream()
+                .map(this::move)
+                .collect(Collectors.toList());
     }
 
     private void addHorizontal(int countOfPerson, CreateStrategy createStrategy) {
@@ -61,6 +58,16 @@ public class Line {
 
     private Boolean isPreviousCreated(List<Boolean> points) {
         return points.get(points.size() - 1);
+    }
+
+    private int move(int index) {
+        if (isMoveLeft(index)) {
+            return index - 1;
+        }
+        if (isMoveRight(index)) {
+            return index + 1;
+        }
+        return index;
     }
 
     private boolean isMoveLeft(int index) {

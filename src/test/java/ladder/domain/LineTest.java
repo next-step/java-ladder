@@ -5,31 +5,25 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LineTest {
 
     @Test
-    @DisplayName("이동할 수 없으면 현재 인덱스를 반환한다.")
-    void 가로선_이동_불가() {
+    @DisplayName("리스트를 넣으면 그 라인에서의 이동 결과를 반환한다.")
+    void 리스트_이동_사다리없을경우(){
         Line line = new Line(2, () -> false);
-        assertThat(line.move(0)).isEqualTo(0);
-        assertThat(line.move(1)).isEqualTo(1);
+        assertThat(line.moveResult(List.of(0,1))).isEqualTo(List.of(0,1));
     }
 
     @Test
-    @DisplayName("오른쪽으로 이동할 수 있으면 현재 인덱스 + 1을 반환한다.")
-    void 가로선_오른쪽_이동() {
+    @DisplayName("리스트를 넣으면 그 라인에서의 이동 결과를 반환한다.")
+    void 리스트_이동(){
         Line line = new Line(2, () -> true);
-        assertThat(line.move(0)).isEqualTo(1);
-    }
-
-    @Test
-    @DisplayName("왼쪽으로 이동할 수 있으면 현재 인덱스 - 1을 반환한다.")
-    void 가로선_왼쪽_이동() {
-        Line line = new Line(2, () -> true);
-        assertThat(line.move(1)).isEqualTo(0);
+        assertThat(line.moveResult(List.of(0,1))).isEqualTo(List.of(1,0));
     }
 
     @ParameterizedTest
