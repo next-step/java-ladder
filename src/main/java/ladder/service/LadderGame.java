@@ -9,10 +9,10 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LadderGame {
+    private static LadderGame INSTANCE = null;
+
     private LadderGame() {
     }
-
-    private static LadderGame INSTANCE = null;
 
     public static LadderGame getInstance() {
         if (INSTANCE == null) {
