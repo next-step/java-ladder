@@ -21,3 +21,23 @@
   * orElse 사용
 * Optional에서 exception 처리
   * orThrowElse 사용
+
+## Step1. 피드백 구현
+* FunctionalInterface 추가
+* filter 로직 메소드 분리 
+
+## Step2. 요구 사항
+* 사다리 게임을 참가하는 사람의 이름을 부여한다. (최대 5글자)
+* 사다리를 출력할 때 사람 이름도 같이 출력한다.
+* 사람 이름은 ,를 기준으로 구분한다.
+* 사람 이름에 따라 사다리 폭이 넓어진다.
+* 사다리 라인이 겹치지 않아야 한다.
+
+## Step2. 피드백 구현
+* ToString -> Getter 변경
+* 매직넘버 상수분리
+* Member 정상 케이스 테스트 작성
+* 상수는 생성자 위에 위치
+* 생성자 private으로 수정
+* public, private 위치 조정
+* 객체 내부 메소드 private으로 수정 및 테스트 추가
