@@ -39,3 +39,5 @@
 * Member 정상 케이스 테스트 작성
 * 상수는 생성자 위에 위치
 * 생성자 private으로 수정
+* public, private 위치 조정
+* 객체 내부 메소드 private으로 수정 및 테스트 추가

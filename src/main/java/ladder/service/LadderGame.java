@@ -2,6 +2,7 @@ package ladder.service;
 
 import ladder.domain.Line;
 import ladder.domain.Member;
+import ladder.domain.RandomStrategy;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,7 +23,7 @@ public class LadderGame {
 
     public List<Line> createLadders(List<Member> members, int height) {
         return IntStream.range(0, height)
-                .mapToObj(num -> new Line(members.size()))
+                .mapToObj(num -> new Line(members.size(), RandomStrategy.getInstance()))
                 .collect(Collectors.toList());
     }
 }
