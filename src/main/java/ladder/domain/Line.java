@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Line {
@@ -17,7 +18,16 @@ public class Line {
     }
 
     public boolean getPoint(int index) {
+        if (index < 0 || index >= points.size()) {
+            throw new IllegalArgumentException("객체 범위 외의 인덱스는 허용하지 않습니다.");
+        }
         return points.get(index);
+    }
+
+    public List<Integer> moveResult(List<Integer> results) {
+        return results.stream()
+                .map(this::move)
+                .collect(Collectors.toList());
     }
 
     private void addHorizontal(int countOfPerson, CreateStrategy createStrategy) {
@@ -28,7 +38,7 @@ public class Line {
         points.add(false);
     }
 
-    private static boolean isAvailableCreate(List<Boolean> points, int countOfPerson) {
+    private boolean isAvailableCreate(List<Boolean> points, int countOfPerson) {
         if (points.isEmpty()) {
             return true;
         }
@@ -38,17 +48,39 @@ public class Line {
         return !isPreviousCreated(points);
     }
 
-    private static boolean isCreate(CreateStrategy strategy) {
+    private boolean isCreate(CreateStrategy strategy) {
         return strategy.create();
     }
 
-    private static boolean isLastPoint(List<Boolean> points, int countOfPerson) {
+    private boolean isLastPoint(List<Boolean> points, int countOfPerson) {
         return points.size() == countOfPerson - 1;
     }
 
-    private static Boolean isPreviousCreated(List<Boolean> points) {
+    private Boolean isPreviousCreated(List<Boolean> points) {
         return points.get(points.size() - 1);
     }
 
+    private int move(int index) {
+        if (isMoveLeft(index)) {
+            return index - 1;
+        }
+        if (isMoveRight(index)) {
+            return index + 1;
+        }
+        return index;
+    }
 
+    private boolean isMoveLeft(int index) {
+        if (index == 0) {
+            return false;
+        }
+        return !getPoint(index) && getPoint(index - 1);
+    }
+
+    private boolean isMoveRight(int index) {
+        if (index == points.size() - 1) {
+            return false;
+        }
+        return getPoint(index) && !getPoint(index + 1);
+    }
 }
