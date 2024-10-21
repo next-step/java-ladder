@@ -38,19 +38,19 @@ public class LadderLine {
         return RANDOM.nextInt(2) == 1;
     }
 
-    public <T> void play(List<T> indices) {
-        if (lines.size() != (indices.size() - 1)) {
+    public <T> void play(List<T> elements) {
+        if (lines.size() != (elements.size() - 1)) {
             throw new IllegalArgumentException("사다리 라인 수와 인덱스 리스트 수가 맞지 않습니다.");
         }
 
         for (int i = 0; i < lines.size(); i++) {
-            swap(indices, i);
+            swap(elements, i);
         }
     }
 
-    private <T> void swap(List<T> indices, int i) {
+    private <T> void swap(List<T> elements, int i) {
         if (lines.get(i)) {
-            Collections.swap(indices, i, i + 1);
+            Collections.swap(elements, i, i + 1);
         }
     }
 

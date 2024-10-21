@@ -50,7 +50,7 @@ public class GameOrganizer {
         return Collections.unmodifiableList(ladderResults);
     }
 
-    public MatchResult match(Ladder ladder) {
+    public MatchResult play(Ladder ladder) {
         List<Player> playerResults = new ArrayList<>(players);
         ladder.play(playerResults);
         return MatchResult.of(playerResults, ladderResults);
