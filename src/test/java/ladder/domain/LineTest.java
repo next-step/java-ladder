@@ -2,10 +2,22 @@ package ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LineTest {
+
+    @ParameterizedTest
+    @DisplayName("범위외에 인덱스를 요청할 때 예외를 발생시킨다.")
+    @ValueSource(ints = {3, -1})
+    void 범위외의_인덱스_예외발생(int index) {
+        Line line = new Line(3, () -> true);
+        assertThatThrownBy(() -> line.getPoint(index))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
     @Test
     @DisplayName("마지막 위치에 가로선을 생성하지 않는다.")

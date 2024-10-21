@@ -17,6 +17,9 @@ public class Line {
     }
 
     public boolean getPoint(int index) {
+        if (index < 0 || index >= points.size()) {
+            throw new IllegalArgumentException("객체 범위 외의 인덱스는 허용하지 않습니다.");
+        }
         return points.get(index);
     }
 

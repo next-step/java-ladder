@@ -42,6 +42,6 @@
 - [x] public, private 위치 조정
 - [x] 객체 내부 메소드 private으로 수정 및 테스트 추가
 - [X] private 메소드에 static 삭제
-- [ ] 일급 컬렉션에 없는 index면 exception 발생
+- [X] 일급 컬렉션에 없는 index면 exception 발생
 - [ ] 메소드 이름 변경
 - [ ] 컨트롤러 단으로 생성 전략 이동
