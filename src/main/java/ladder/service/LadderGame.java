@@ -31,6 +31,9 @@ public class LadderGame {
     }
 
     public LadderResult playLadders(List<Line> ladders, List<Member> members, List<Reword> rewords) {
+        if (members.size() != rewords.size()) {
+            throw new IllegalStateException("사다리 게임을 진행할 수 없습니다.");
+        }
         List<Integer> point = getResultPoints(ladders, members.size());
         return new LadderResult(getResultMap(members, rewords, point));
     }

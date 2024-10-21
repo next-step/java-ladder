@@ -7,8 +7,20 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LadderGameTest {
+
+    @Test
+    @DisplayName("멤버와 보상의 수가 다를 때 예외를 발생시킨다.")
+    void 사다리게임_예외() {
+        LadderGame game = LadderGame.getInstance();
+        List<Member> members = List.of(new Member("asd"), new Member("hee"));
+        List<Reword> rewords = List.of(new Reword("5000"));
+        List<Line> ladders = game.createLadders(members, 3, () -> true);
+        assertThatThrownBy(() -> game.playLadders(ladders, members, rewords))
+                .isInstanceOf(IllegalStateException.class);
+    }
 
     @Test
     @DisplayName("사다리 게임을 진행한다.")
