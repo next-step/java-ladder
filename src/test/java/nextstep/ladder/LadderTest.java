@@ -33,12 +33,14 @@ public class LadderTest {
         Assertions.assertThat(ladder).isNotNull();
 
 
-        Ladder expectedLadder = new Ladder(List.of(
-                new Line(List.of(
+        Ladder expectedLadder = new Ladder(
+                List.of(new Line(List.of(
                         new Point(true),
                         new Point(false),
-                        new Point(true)),
-                        lineGenerator)));
+                        new Point(true)
+                ),
+                        lineGenerator))
+        );
 
         Assertions.assertThat(ladder).isEqualTo(expectedLadder);
     }
