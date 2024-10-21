@@ -1,6 +1,7 @@
 package ladder;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -18,6 +19,24 @@ public class Ladder {
 
     public Ladder(List<Line> lines) {
         this.lines = lines;
+    }
+
+    public LadderResult run(Players players, InputResult inputResult) {
+        HashMap<String, String> ladderResult = new HashMap<>();
+
+        for (int startPoint = 0; startPoint < players.size(); startPoint++) {
+            int endPoint = runPerPerson(startPoint);
+            ladderResult.put(players.get(startPoint), inputResult.get(endPoint));
+        }
+        return new LadderResult(ladderResult);
+    }
+
+    int runPerPerson(int startPoint) {
+        int endPoint = startPoint;
+        for (Line line : lines) {
+            endPoint += line.findNextPoint(endPoint);
+        }
+        return endPoint;
     }
 
     public List<Line> getLines() {
