@@ -23,11 +23,15 @@ public class LadderRow {
         }
     }
 
+    public List<String> getRow() {
+        return Collections.unmodifiableList(row);
+    }
+
     private String getBar(int index) {
         if (row.isEmpty()) {
             return EMPTY_HORIZONTAL_BAR;
         }
-        if (row.get(index - 1).equals(EMPTY_HORIZONTAL_BAR)) {
+        if (getPreviousBar(index).equals(EMPTY_HORIZONTAL_BAR)) {
             return generateLine();
         }
         return EMPTY_HORIZONTAL_BAR;
@@ -37,7 +41,7 @@ public class LadderRow {
         return generatorStrategy.generable() ? HORIZONTAL_BAR : EMPTY_HORIZONTAL_BAR;
     }
 
-    public List<String> getRow() {
-        return Collections.unmodifiableList(row);
+    private String getPreviousBar(int index) {
+        return row.get(index - 1);
     }
 }
