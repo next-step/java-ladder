@@ -7,14 +7,14 @@ import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.toMap;
 
-public class LadderPositionResult {
+public class LadderResult {
     private final LinkedHashMap<Position, String> resultByPosition;
 
-    public LadderPositionResult(List<String> gameResults) {
+    public LadderResult(List<String> gameResults) {
         this(createResultByPosition(gameResults));
     }
 
-    public LadderPositionResult(LinkedHashMap<Position, String> resultByPosition) {
+    public LadderResult(LinkedHashMap<Position, String> resultByPosition) {
         this.resultByPosition = resultByPosition;
     }
 

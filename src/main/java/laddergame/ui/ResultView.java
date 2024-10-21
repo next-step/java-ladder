@@ -14,7 +14,7 @@ public class ResultView {
     private static final String SPACING_BETWEEN_PLAYERS = "    ";
     private static final String GAME_RESULT_FORMAT = "%s : %s\n";
 
-    public void showLadder(Players players, Ladder ladder, LadderPositionResult positionResult) {
+    public void showLadder(Players players, Ladder ladder, LadderResult positionResult) {
         System.out.println();
         System.out.println(RESULT_LADDER_MESSAGE);
         showPlayers(players);
@@ -43,8 +43,8 @@ public class ResultView {
         return LADDER_VERTICAL_LINE + (lineStatus ? LADDER_HORIZONTAL_LINE : "     ");
     }
 
-    private void showGameResult(LadderPositionResult positionResult) {
-        List<String> gameResultsByInputOrder = positionResult.getGameResultByInputOrder();
+    private void showGameResult(LadderResult ladderResult) {
+        List<String> gameResultsByInputOrder = ladderResult.getGameResultByInputOrder();
         String gameResults = getString(gameResultsByInputOrder);
         System.out.println(gameResults);
     }
