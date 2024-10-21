@@ -1,24 +1,14 @@
 package ladder;
 
-import java.util.Arrays;
+import java.util.Map;
 import java.util.Objects;
 
 public class LadderResult {
 
-    private final String[] ladderResults;
+    private final Map<String, String> results;
 
-    public LadderResult(String[] strings) {
-        this.ladderResults = strings;
-    }
-
-    public void validSize(int playerSize) {
-        if (playerSize != ladderResults.length) {
-            throw new IllegalArgumentException("invalid result or player size");
-        }
-    }
-
-    public String[] getLadderResults() {
-        return ladderResults;
+    public LadderResult(Map<String, String> results) {
+        this.results = results;
     }
 
     @Override
@@ -28,11 +18,22 @@ public class LadderResult {
         if (!(o instanceof LadderResult))
             return false;
         LadderResult that = (LadderResult)o;
-        return Objects.deepEquals(ladderResults, that.ladderResults);
+        return Objects.equals(results, that.results);
     }
 
     @Override
     public int hashCode() {
-        return Arrays.hashCode(ladderResults);
+        return Objects.hashCode(results);
+    }
+
+    public Map<String, String> getResults() {
+        return results;
+    }
+
+    public String getOne(String keyName) {
+        if (!results.containsKey(keyName)) {
+            throw new IllegalArgumentException();
+        }
+        return results.get(keyName);
     }
 }
