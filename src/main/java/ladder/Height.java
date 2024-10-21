@@ -3,11 +3,13 @@ package ladder;
 import java.util.Objects;
 
 public class Height {
+    private static final int MINIMUM_HEIGHT = 1;
+
     private final int value;
 
     public Height(int height) {
-        if (height < 1) {
-            throw new IllegalArgumentException("높이는 0보다 커야 합니다.");
+        if (height < MINIMUM_HEIGHT) {
+            throw new IllegalArgumentException("높이는 " + MINIMUM_HEIGHT + "이상으로 입력해주세요.");
         }
         this.value = height;
     }

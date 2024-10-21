@@ -6,24 +6,12 @@ import java.util.Objects;
 
 public class Line {
     private List<Boolean> points = new ArrayList<>();
-    private LineGenerateStrategy lineGenerateStrategy;
 
     public Line(List<Boolean> points) {
-        this(points, new RandomLineGenerator());
-    }
-
-    public Line(List<Boolean> points, LineGenerateStrategy lineGenerateStrategy) {
         this.points = points;
-        this.lineGenerateStrategy = lineGenerateStrategy;
     }
 
     public Line(int countOfPerson, LineGenerateStrategy lineGenerateStrategy) {
-        this.lineGenerateStrategy = lineGenerateStrategy;
-        generatePoints(countOfPerson);
-    }
-
-    private void generatePoints(int countOfPerson) {
-
         boolean isPrevLineConnected = false;
         for (int i = 0; i < countOfPerson - 1; i++) {
             boolean currentLineConnection = !isPrevLineConnected && lineGenerateStrategy.generate();

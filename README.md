@@ -21,7 +21,13 @@
 -[x] 프로그래밍 요구사항
   - [x] 자바 8의 스트림과 람다를 적용해 프로그래밍한다.
   - [x] 규칙 6: 모든 엔티티를 작게 유지한다.
-
+- [x] step2 피드백
+  - [x] height 매직넘버 적용
+  - [x] LadderGame 라인 생성 전략 주입
+  - [x] Line, Lines 라인 생성 전략 주입
+  - [x] 불필요 테스트 제거
+  - [x] SCANNER 대문자
+  - [x] InputView에서 객체 생성 분리
 --- 
 # STEP1 TODO
 # STEP1 DONE

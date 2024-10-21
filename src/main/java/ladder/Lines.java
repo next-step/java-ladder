@@ -1,28 +1,21 @@
 package ladder;
 
+import ladder.view.Names;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
 public class Lines {
     private List<Line> lines = new ArrayList<>();
-    private LineGenerateStrategy lineGenerateStrategy;
 
     public Lines(List<Line> lines) {
-        this(lines, new RandomLineGenerator());
-    }
-
-    public Lines(List<Line> lines, LineGenerateStrategy lineGenerateStrategy) {
         this.lines = lines;
-        this.lineGenerateStrategy = lineGenerateStrategy;
     }
 
-    public Lines(int countOfPerson, Height height) {
-        this(countOfPerson, height.getValue(), new RandomLineGenerator());
-    }
-
-    public Lines(int countOfPerson, int height) {
-        this(countOfPerson, height, new RandomLineGenerator());
+    public Lines(Names names, Height height, LineGenerateStrategy lineGenerateStrategy) {
+        this(names.getNames().size(), height.getValue(), lineGenerateStrategy);
     }
 
     public Lines(int countOfPerson, int height, LineGenerateStrategy lineGenerateStrategy) {
@@ -32,7 +25,7 @@ public class Lines {
     }
 
     public List<Line> getLines() {
-        return lines;
+        return Collections.unmodifiableList(lines);
     }
 
     @Override

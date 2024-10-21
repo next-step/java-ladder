@@ -4,7 +4,6 @@ import ladder.Line;
 import ladder.Lines;
 import ladder.Name;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class ResultView {
@@ -13,8 +12,9 @@ public class ResultView {
     private static final String HORIZONTAL_LINE = "------";
     private static final String EMPTY_SPACE = "      ";
 
-    public void showNames(List<Name> names) {
-        String namesLine = names.stream()
+    public void showNames(Names names) {
+        String namesLine = names.getNames()
+                .stream()
                 .map(Name::getName)
                 .map(name -> String.format("%7s", name))
                 .collect(Collectors.joining());
