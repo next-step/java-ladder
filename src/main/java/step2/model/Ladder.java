@@ -1,6 +1,6 @@
 package step2.model;
 
-import step2.ganerator.LadderGenerator;
+import step2.ganerator.RandomGenerator;
 import step2.util.StringUtil;
 
 import java.util.ArrayList;
@@ -14,13 +14,18 @@ public class Ladder {
 
     private Person person;
     private final List<Line> line = new ArrayList<>();
+    private final RandomGenerator randomGenerator;
 
-    public void inputPerson(String personStr, int ladderSize) {
+    public Ladder(RandomGenerator randomGenerator) {
+        this.randomGenerator = randomGenerator;
+    }
+
+    public void createLadder(String personStr, int ladderSize) {
         confirmLadderCount(ladderSize);
 
         this.person = Person.createPerson(StringUtil.divideNum(personStr));
         for (int i = 0; i < ladderSize; i++) {
-            line.add(Line.createLine(this.person, new LadderGenerator()));
+            line.add(Line.createLine(this.person, randomGenerator));
         }
     }
 
