@@ -9,8 +9,8 @@ public class Players {
 
     private final List<Player> players;
 
-    public Players(String... players) {
-        this(Arrays.stream(players).map(Player::new).collect(Collectors.toList()));
+    public Players(String... player) {
+        this(Arrays.stream(player).map(Player::new).collect(Collectors.toList()));
     }
 
     public Players(List<Player> players) {
@@ -45,5 +45,9 @@ public class Players {
 
     public List<Player> getPlayers() {
         return players;
+    }
+
+    public String get(int index) {
+        return players.get(index).getName();
     }
 }
