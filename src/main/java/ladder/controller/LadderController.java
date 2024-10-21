@@ -20,6 +20,7 @@ public class LadderController {
         LadderGame game = LadderGame.getInstance();
         RandomStrategy randomStrategy = RandomStrategy.getInstance();
         List<Member> playMembers = inputView.getPlayMembers();
+        List<String> playResults = inputView.getPlayResults();
         int ladderHeight = inputView.getLadderHeight();
 
         List<Line> ladders = game.createLadders(playMembers, ladderHeight, randomStrategy);
