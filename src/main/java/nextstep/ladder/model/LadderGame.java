@@ -13,7 +13,7 @@ public class LadderGame {
         this.playerGroup = PlayerGroup.of(names);
     }
 
-    public Ladder run(int height, LineGenerator lineGenerator) {
+    public Ladder makeLadder(int height, LineGenerator lineGenerator) {
         if (height <= 0) {
             throw new IllegalArgumentException("Height must be greater than 0");
         }

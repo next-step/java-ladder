@@ -33,7 +33,7 @@ public class LadderGameTest {
 
     @Test
     @DisplayName("ladder game 실행 테스트")
-    void runLadderGameTest() {
+    void makeLadderLadderGameTest() {
         //given
         List<String> testNames = new ArrayList<>(List.of("pobi", "honux", "crong", "jk"));
         int testHeight = 5;
@@ -42,7 +42,7 @@ public class LadderGameTest {
         LadderGame ladderGame = new LadderGame(testNames);
 
         //when
-        Ladder ladder = ladderGame.run(testHeight, lineGenerator);
+        Ladder ladder = ladderGame.makeLadder(testHeight, lineGenerator);
 
         //then
         Assertions.assertThat(ladder.getLines().size()).isEqualTo(testHeight);

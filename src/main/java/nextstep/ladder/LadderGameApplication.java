@@ -14,7 +14,7 @@ public class LadderGameApplication {
         int height = InputView.inputLadderHeight();
 
         LadderGame ladderGame = new LadderGame(playerNames);
-        Ladder ladder = ladderGame.run(height, new RandomLineGenerator());
+        Ladder ladder = ladderGame.makeLadder(height, new RandomLineGenerator());
 
         ResultView.printResultLetters();
         ResultView.printPlayers(ladderGame.getPlayers());
