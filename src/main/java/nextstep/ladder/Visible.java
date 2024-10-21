@@ -1,9 +1,8 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.PlayerGroup;
+import nextstep.ladder.dto.ViewDto;
 
 public interface Visible {
 
-    void view(final PlayerGroup playerGroup, final Ladder ladder);
+    void view(ViewDto viewDto);
 }
