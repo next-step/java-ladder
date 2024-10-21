@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ResultView {
+    public static final String HORIZONTAL_LINE = "-----";
+    public static final String VERTICAL_LINE = "|";
+    public static final String SPACES = "     ";
     private static ResultView INSTANCE = null;
 
     private ResultView() {
@@ -45,11 +48,11 @@ public class ResultView {
 
     private void addHorizontal(boolean isPoint, StringBuilder sb) {
         if (isPoint) {
-            sb.append("-----");
-            sb.append("|");
+            sb.append(HORIZONTAL_LINE);
+            sb.append(VERTICAL_LINE);
             return;
         }
-        sb.append("     ");
-        sb.append("|");
+        sb.append(SPACES);
+        sb.append(VERTICAL_LINE);
     }
 }
