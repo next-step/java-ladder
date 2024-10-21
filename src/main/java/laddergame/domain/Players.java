@@ -32,22 +32,6 @@ public class Players {
         }
     }
     //endregion
-    public int firstPosition(){
-        return players.stream()
-                .map(Player::getPosition)
-                .min(Comparator.naturalOrder())
-                .orElseThrow(() -> new NoSuchElementException("플레이어의 위치 정보가 없습니다"))
-                .getPosition();
-    }
-
-    public int lastPosition(){
-        return players.stream()
-                .map(Player::getPosition)
-                .max(Comparator.naturalOrder())
-                .orElseThrow(() -> new NoSuchElementException("플레이어의 위치 정보가 없습니다"))
-                .getPosition();
-    }
-
     public Optional<Player> findByName(String otherName){
         return players.stream()
                 .filter(player -> player.isSameName(otherName))
