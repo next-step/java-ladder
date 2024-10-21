@@ -35,7 +35,7 @@ public class Line {
             return checkHorizon(startPoint);
         }
 
-        return startPoint;
+        return 0;
     }
 
     private boolean findHorizon(int point) {
