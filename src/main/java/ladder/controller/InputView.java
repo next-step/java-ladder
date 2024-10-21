@@ -11,7 +11,7 @@ public class InputView {
     private static InputView INSTANCE = null;
     private final Scanner SCANNER = new Scanner(System.in);
 
-    public InputView() {
+    private InputView() {
     }
 
     public static InputView getInstance() {
