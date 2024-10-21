@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import nextstep.ladder.dto.PlayerResult;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +33,7 @@ public class MatchResult {
     }
 
     public Collection<PlayerResult> allPlayResults() {
-        return results.values();
+        return Collections.unmodifiableCollection(results.values());
     }
 
     @Override
