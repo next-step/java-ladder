@@ -28,7 +28,7 @@ public class Line {
         points.add(false);
     }
 
-    private static boolean isAvailableCreate(List<Boolean> points, int countOfPerson) {
+    private boolean isAvailableCreate(List<Boolean> points, int countOfPerson) {
         if (points.isEmpty()) {
             return true;
         }
@@ -38,15 +38,15 @@ public class Line {
         return !isPreviousCreated(points);
     }
 
-    private static boolean isCreate(CreateStrategy strategy) {
+    private boolean isCreate(CreateStrategy strategy) {
         return strategy.create();
     }
 
-    private static boolean isLastPoint(List<Boolean> points, int countOfPerson) {
+    private boolean isLastPoint(List<Boolean> points, int countOfPerson) {
         return points.size() == countOfPerson - 1;
     }
 
-    private static Boolean isPreviousCreated(List<Boolean> points) {
+    private Boolean isPreviousCreated(List<Boolean> points) {
         return points.get(points.size() - 1);
     }
 

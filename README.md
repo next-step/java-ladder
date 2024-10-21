@@ -34,10 +34,14 @@
 * 사다리 라인이 겹치지 않아야 한다.
 
 ## Step2. 피드백 구현
-* ToString -> Getter 변경
-* 매직넘버 상수분리
-* Member 정상 케이스 테스트 작성
-* 상수는 생성자 위에 위치
-* 생성자 private으로 수정
-* public, private 위치 조정
-* 객체 내부 메소드 private으로 수정 및 테스트 추가
+- [x] ToString -> Getter 변경
+- [x] 매직넘버 상수분리
+- [x] Member 정상 케이스 테스트 작성
+- [x] 상수는 생성자 위에 위치
+- [x] 생성자 private으로 수정
+- [x] public, private 위치 조정
+- [x] 객체 내부 메소드 private으로 수정 및 테스트 추가
+- [X] private 메소드에 static 삭제
+- [ ] 일급 컬렉션에 없는 index면 exception 발생
+- [ ] 메소드 이름 변경
+- [ ] 컨트롤러 단으로 생성 전략 이동
