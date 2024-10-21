@@ -1,8 +1,6 @@
 package nextstep.ladder.ui;
 
-import nextstep.ladder.domain.PositiveNumber;
-import nextstep.ladder.domain.User;
-import nextstep.ladder.domain.Users;
+import nextstep.ladder.domain.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,7 +24,7 @@ public class InputView {
 
     public static PositiveNumber readLadderHeight() {
         System.out.println(LADDER_HEIGHT_QUESTION);
-        return new PositiveNumber(readInt());
+        return PositiveNumberFactory.createPositiveNumber(readInt());
     }
 
     private static Users getUsers() {
@@ -34,7 +32,7 @@ public class InputView {
                 .map(String::trim)
                 .map(User::new)
                 .collect(Collectors.toList());
-        return new Users(users);
+        return UsersFactory.createUsers(users);
     }
 
     private static String readText() {
