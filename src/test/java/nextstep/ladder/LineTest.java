@@ -23,6 +23,5 @@ public class LineTest {
         Assertions.assertThat(points).hasSize(3);
         List<Point> expectedPoints = new ArrayList<>(List.of(new Point(true), new Point(false), new Point(true)));
         Assertions.assertThat(points).hasSameElementsAs(expectedPoints);
-        System.out.println(points);
     }
 }

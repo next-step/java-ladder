@@ -3,7 +3,6 @@ package nextstep.ladder.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Line {
@@ -16,13 +15,13 @@ public class Line {
                 .forEach(it -> this.points.add(makeLine(it)));
     }
 
-    public Line(List<Boolean> points, LineGenerator lineGenerator) {
-        this.points = points.stream().map(Point::new).collect(Collectors.toList());
+    public Line(List<Point> points, LineGenerator lineGenerator) {
+        this.points = points;
         this.lineGenerator = lineGenerator;
     }
 
     private Point makeLine(int i) {
-        Point point = new Point(this.lineGenerator);
+        Point point = new Point(lineGenerator);
         point.next(hasPreviousLine(i));
         return point;
     }

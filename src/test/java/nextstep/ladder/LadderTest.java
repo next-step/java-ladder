@@ -3,6 +3,7 @@ package nextstep.ladder;
 import nextstep.ladder.model.Ladder;
 import nextstep.ladder.model.Line;
 import nextstep.ladder.model.LineGenerator;
+import nextstep.ladder.model.Point;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -32,7 +33,12 @@ public class LadderTest {
         Assertions.assertThat(ladder).isNotNull();
 
 
-        Ladder expectedLadder = new Ladder(List.of(new Line(List.of(true, false, true), lineGenerator)));
+        Ladder expectedLadder = new Ladder(List.of(
+                new Line(List.of(
+                        new Point(true),
+                        new Point(false),
+                        new Point(true)),
+                        lineGenerator)));
 
         Assertions.assertThat(ladder).isEqualTo(expectedLadder);
     }
