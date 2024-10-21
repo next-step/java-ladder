@@ -25,18 +25,14 @@ public class LadderTest {
         Ladder ladder = new Ladder(
                 IntStream.range(0, height)
                         .mapToObj(it -> new Line(countOfPlayers, lineGenerator))
-                        .collect(Collectors.toList()),
-                height
+                        .collect(Collectors.toList())
         );
 
         //then
         Assertions.assertThat(ladder).isNotNull();
 
 
-        Ladder expectedLadder = new Ladder(
-                List.of(new Line(List.of(true, false, true), lineGenerator)),
-                height
-        );
+        Ladder expectedLadder = new Ladder(List.of(new Line(List.of(true, false, true), lineGenerator)));
 
         Assertions.assertThat(ladder).isEqualTo(expectedLadder);
     }

@@ -20,7 +20,7 @@ public class LadderGame {
         List<Line> lines = IntStream.range(0, height)
                 .mapToObj(it -> new Line(this.playerGroup.getPlayers().size(), lineGenerator))
                 .collect(Collectors.toList());
-        this.ladder = new Ladder(lines, height);
+        this.ladder = new Ladder(lines);
         return this.ladder;
     }
 

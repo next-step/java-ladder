@@ -6,24 +6,19 @@ import java.util.Objects;
 
 public class Ladder {
     private List<Line> lines;
-    private int height;
 
     public Ladder() {
-        this(new ArrayList<>(), 0);
+        this(new ArrayList<>());
     }
 
-    public Ladder(List<Line> lines, int height) {
+    public Ladder(List<Line> lines) {
         this.lines = lines;
-        this.height = height;
     }
 
     public List<Line> getLines() {
         return lines;
     }
 
-    public int getHeight() {
-        return height;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -34,11 +29,11 @@ public class Ladder {
             return false;
         }
         Ladder ladder = (Ladder) o;
-        return getHeight() == ladder.getHeight() && Objects.equals(getLines(), ladder.getLines());
+        return Objects.equals(getLines(), ladder.getLines());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getLines(), getHeight());
+        return Objects.hash(getLines());
     }
 }

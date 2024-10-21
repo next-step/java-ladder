@@ -51,6 +51,5 @@ public class LadderGameTest {
             List<Boolean> points = line.getPoints().stream().map(Point::getValue).collect(Collectors.toList());
             Assertions.assertThat(points).hasSize(testNames.size() - 1);
         }
-        Assertions.assertThat(ladder.getHeight()).isEqualTo(testHeight);
     }
 }
