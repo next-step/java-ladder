@@ -37,6 +37,13 @@ public class InputView {
         return new InputResult(resultStrings.split(DELIMITER));
     }
 
+    public static String wantPerson() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println();
+        System.out.println("결과를 보고 싶은 사람은?");
+        return scanner.nextLine();
+    }
+
     private static Players splitPlayer(String inputPlayers) {
         String[] players = inputPlayers.split(DELIMITER);
         List<Player> playerList = new ArrayList<>();
