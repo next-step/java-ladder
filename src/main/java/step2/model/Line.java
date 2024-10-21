@@ -11,7 +11,7 @@ public class Line {
     private final List<Boolean> points = new ArrayList<>();
 
     private Line(Person person, RandomGenerator randomGenerator) {
-        IntStream.range(0, person.getNames().size()).forEach(i -> createLadderLine(randomGenerator));
+        IntStream.range(0, person.nameSize()).forEach(i -> createLadderLine(randomGenerator));
     }
 
     //라인을 생성한다.

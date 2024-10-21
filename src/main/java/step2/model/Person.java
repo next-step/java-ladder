@@ -21,6 +21,10 @@ public class Person {
         return new Person(personArr);
     }
 
+    public int nameSize() {
+        return names.size();
+    }
+
     public List<Name> getNames() {
         return names;
     }
@@ -31,4 +35,5 @@ public class Person {
             throw new IllegalArgumentException(MINIMUM_PERSON_COUNT_MESSAGE);
         }
     }
+
 }
