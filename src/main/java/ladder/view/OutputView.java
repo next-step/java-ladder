@@ -1,8 +1,10 @@
 package ladder.view;
 
 import java.util.Arrays;
+import java.util.Map;
 import java.util.stream.Collectors;
 
+import ladder.InputResult;
 import ladder.Ladder;
 import ladder.LadderResult;
 import ladder.Player;
@@ -14,14 +16,40 @@ public class OutputView {
     private static final String LADDER_VERTICAL = "|";
     private static final String LADDER_HORIZON = "-----";
     private static final String LADDER_BLANK = "     ";
+    public static final String CHECK_ALL = "all";
 
-    public static void outputLadderGameResult(Players players, Ladder ladder, LadderResult ladderResult) {
+    public static void outputLadderGame(Players players, Ladder ladder, InputResult inputResult) {
         System.out.println();
         System.out.println("실행결과");
         System.out.println();
         playerView(players);
         ladderView(ladder);
-        resultView(ladderResult.getLadderResults());
+        resultView(inputResult.getLadderResults());
+    }
+
+    public static void outputOneResult(String resultInput, LadderResult ladderResult) {
+        System.out.println("실행결과");
+        System.out.println(ladderResult.getOne(resultInput));
+    }
+
+    public static void outputAllResult(LadderResult ladderResult) {
+        viewAll(ladderResult.getResults());
+    }
+
+    private static boolean checkAll(String resultInput) {
+        if (resultInput.equals(CHECK_ALL)) {
+            return true;
+        }
+        return false;
+    }
+
+    private static void viewAll(Map<String, String> results) {
+        results.entrySet()
+            .forEach(value -> System.out.println(value.getKey() + " : " + value.getValue()));
+    }
+
+    private static void viewOne(String keyName) {
+        System.out.println();
     }
 
     private static void playerView(Players players) {
