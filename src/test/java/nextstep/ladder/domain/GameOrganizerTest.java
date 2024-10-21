@@ -1,10 +1,9 @@
 package nextstep.ladder.domain;
 
-import org.assertj.core.api.Assertions;
+import nextstep.ladder.dto.PlayerResult;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -40,5 +39,25 @@ public class GameOrganizerTest {
     void 참가자_수와_사다리_결과_수가_일치하지_않을때_예외발생() {
         assertThatIllegalArgumentException().isThrownBy(() ->
                 GameOrganizer.of("pobi,honux,crong,jk", "꽝, 5000, 3000"));
+    }
+
+    @Test
+    void 사다리_게임_정상_결과_반환() {
+        GameOrganizer gameOrganizer = GameOrganizer
+                .of("pobi,honux,crong,jk", "꽝, 5000, 3000, 꽝");
+        Ladder ladder = new Ladder(List.of(
+                new LadderLine(List.of(true, false, false)),
+                new LadderLine(List.of(true, false, false)),
+                new LadderLine(List.of(true, false, false)),
+                new LadderLine(List.of(true, false, false))));
+
+        MatchResult matchResult = gameOrganizer.play(ladder);
+
+        assertThat(matchResult.allPlayResults()).containsExactlyInAnyOrder(
+                new PlayerResult(new Player("pobi"), "꽝"),
+                new PlayerResult(new Player("honux"), "5000"),
+                new PlayerResult(new Player("crong"), "3000"),
+                new PlayerResult(new Player("jk"), "꽝")
+        );
     }
 }
