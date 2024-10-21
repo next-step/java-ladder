@@ -1,6 +1,7 @@
 package laddergame.controller;
 
 import laddergame.domain.*;
+import laddergame.io.LadderGameIOHandler;
 import laddergame.ui.InputView;
 import laddergame.ui.ResultView;
 
@@ -11,8 +12,10 @@ public class LadderGameApplication {
     private static final String ALL_PLAYERS = "all";
 
     public static void main(String[] args) {
-        InputView inputView = new InputView();
-        ResultView resultView = new ResultView();
+        LadderGameIOHandler ioHandler = new LadderGameIOHandler(new InputView(), new ResultView());
+        InputView inputView = ioHandler.getInputView();
+        ResultView resultView = ioHandler.getResultView();
+
         LadderLineGenerator generator = new RandomLineGenerator();
 
         Players players = inputView.getPlayerFromUser();
@@ -28,11 +31,14 @@ public class LadderGameApplication {
         LadderGame game = new LadderGame(players, ladder, ladderResult);
         LadderPlayResult playResults = game.play();
 
-        showGameResult(inputView, players, resultView, playResults);
+        showGameResult(ioHandler, players, playResults);
 
     }
 
-    private static void showGameResult(InputView inputView, Players players, ResultView resultView, LadderPlayResult playResults) {
+    private static void showGameResult(LadderGameIOHandler ioHandler, Players players, LadderPlayResult playResults) {
+        InputView inputView = ioHandler.getInputView();
+        ResultView resultView = ioHandler.getResultView();
+
         while(true){
             String playerName = inputView.getResultPlayerFromUser();
             Optional<Player> optionalPlayer = players.findByName(playerName);
