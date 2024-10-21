@@ -2,7 +2,7 @@ package nextstep.optional;
 
 import java.util.Arrays;
 
-enum Expression{
+enum Expression {
     PLUS("+"), MINUS("-"), TIMES("*"), DIVIDE("/");
 
     private String expression;

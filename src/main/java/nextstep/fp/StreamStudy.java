@@ -28,6 +28,7 @@ public class StreamStudy {
                 .filter(w -> w.length() > 12)
                 .sorted()
                 .distinct()
+                .limit(100)
                 .map(String::toLowerCase)
                 .forEach(System.out::println);
     }
