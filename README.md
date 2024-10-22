@@ -72,8 +72,10 @@
 - [X] 일급컬렉션에 validation 추가
 - [X] Member 이름 중복에 대한 예외처리 추가 (Members 일급 컬렉션 사용)
 - [X] 타입 추상화 (LinkedHashMap -> Map)
+- [X] 메소드명 수정 (isMoveLeft -> isAbleToMoveLeft)
 
 ## Step3. 리팩토링 
 
 - [X] Reword에 불필요한 equals and hashcode 제거
 - [X] 테스트 코드 간결화 (상수 사용)
+- [X] 의미 파악하기 쉽게 로직 메소드 분리 (getLeftPoint() 등)

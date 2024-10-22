@@ -74,13 +74,21 @@ public class Line {
         if (index == 0) {
             return false;
         }
-        return !getPoint(index) && getPoint(index - 1);
+        return !getPoint(index) && getLeftPoint(index);
     }
 
     private boolean isAbleToMoveRight(int index) {
         if (index == points.size() - 1) {
             return false;
         }
-        return getPoint(index) && !getPoint(index + 1);
+        return getPoint(index) && !getRightPoint(index);
+    }
+
+    private boolean getLeftPoint(int index) {
+        return getPoint(index - 1);
+    }
+
+    private boolean getRightPoint(int index) {
+        return getPoint(index + 1);
     }
 }
