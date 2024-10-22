@@ -1,5 +1,6 @@
 package ladder;
 
+import ladder.line.RandomLineGenerator;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 

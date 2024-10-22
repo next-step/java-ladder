@@ -8,7 +8,14 @@
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
 
---- 
+---
+# STEP3 TODO
+# STEP3 DONE
+- [x] 기능 요구사항
+  - [x] 사다리 게임 실행 결과를 출력한다.
+  - [x] 개인별 이름을 입력하면 개인별 결과를 출력한다.
+  - [x] all을 입력하면 전체 참여자의 실행 결과를 출력한다
+---
 # STEP2 TODO
 # STEP2 DONE
 - [x] 기능 요구사항

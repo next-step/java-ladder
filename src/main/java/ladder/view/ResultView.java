@@ -1,9 +1,12 @@
 package ladder.view;
 
-import ladder.Line;
-import ladder.Lines;
-import ladder.Name;
+import ladder.Bettings;
+import ladder.line.Line;
+import ladder.line.Lines;
+import ladder.name.Name;
+import ladder.name.Names;
 
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ResultView {
@@ -32,6 +35,22 @@ public class ResultView {
                 .map(isConnected -> isConnected ? HORIZONTAL_LINE + VERTICAL_LINE : EMPTY_SPACE + VERTICAL_LINE)
                 .forEach(System.out::print);
         System.out.println();
+    }
+
+
+    public void showBettings(Bettings bettings) {
+        String namesLine = bettings.getBettongs()
+                .stream()
+                .map(name -> String.format("%7s", name))
+                .collect(Collectors.joining());
+        System.out.println(namesLine);
+    }
+
+    public void showBettingResult(Map<String, String> ladderResult) {
+        System.out.println();
+        System.out.println("실행결과");
+        ladderResult.forEach((key, value) -> System.out.printf("%s: %s%n", key, value));
+
     }
 
 }

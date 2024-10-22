@@ -1,12 +1,17 @@
 package ladder;
 
-import ladder.view.InputView;
-import ladder.view.Names;
-import ladder.view.ResultView;
+import ladder.line.LineGenerateStrategy;
+import ladder.line.Lines;
+import ladder.name.Name;
+import ladder.name.Names;
+import ladder.view.*;
 
 import java.util.List;
+import java.util.Map;
 
 public class LadderGame {
+    public static final String EXIT = "exit";
+
     private final InputView inputView;
     private final ResultView resultView;
     private final LineGenerateStrategy lineGenerateStrategy;
@@ -18,15 +23,31 @@ public class LadderGame {
     }
 
     public void run() {
-        List<String> namesFromUser = inputView.getNamesFromUser();
-        Names names = new Names(namesFromUser);
 
-        int heightFromUser = inputView.getHeightFromUser();
-        Height height = new Height(heightFromUser);
+        Names names = new Names(inputView.getPlayerNamesFromUser());
 
+        List<String> bettingsFromUser = inputView.getBettingsFromUser();
+        Bettings bettings = new Bettings(bettingsFromUser);
+
+        Height height = new Height(inputView.getHeightFromUser());
         Lines lines = new Lines(names, height, lineGenerateStrategy);
+        LadderResult ladderResult = new LadderResult(names, lines.movePoints());
 
         resultView.showNames(names);
         resultView.showLines(lines);
+        resultView.showBettings(bettings);
+
+        String nameFromUser = null;
+        while (tryNext(nameFromUser)) {
+            nameFromUser = inputView.getNameForResultFromUser();
+            Name user = new Name(nameFromUser);
+
+            Map<String, String> bettingResult = ladderResult.getBettingResult(user, bettings);
+            resultView.showBettingResult(bettingResult);
+        }
+    }
+
+    private boolean tryNext(String input) {
+        return !EXIT.equals(input);
     }
 }
