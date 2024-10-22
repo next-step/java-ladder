@@ -26,4 +26,26 @@ class PlayersTest {
         assertThatThrownBy(() -> new Players("pobi"))
             .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 해당_순서의_유저_이름을_반환한다() {
+        List<Player> playerList = List.of(
+            new Player("pobi"),
+            new Player("honux"),
+            new Player("crong"),
+            new Player("jk")
+        );
+
+        Players players = new Players(playerList);
+        String playerName = players.get(0);
+
+        assertThat(playerName).isEqualTo("pobi");
+    }
+
+    @Test
+    void 참가자들의_이름은_중복될_수_없다() {
+        assertThatThrownBy(() -> new Players("lili", "lili", "lili"))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("player name is not distinct");
+    }
 }

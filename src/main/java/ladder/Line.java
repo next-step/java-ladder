@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 
 public class Line {
 
+    public static final int GO_NEXT = 1;
+    public static final int GO_PREV = 0;
     private final List<Boolean> points;
 
     public Line(Boolean... points) {
@@ -19,6 +21,42 @@ public class Line {
 
     public Line(int ladderSize, LineGenerator lineGenerator) {
         this.points = lineGenerator.run(ladderSize);
+    }
+
+    public int findNextPoint(int startPoint) {
+        if (isFirst(startPoint)) {
+            return goNextOrPrev(0);
+        }
+        if (isLast(startPoint)) {
+            return -goNextOrPrev(startPoint - 1);
+        }
+        if (hasHorizon(startPoint - 1)) {
+            return -goNextOrPrev(startPoint - 1);
+        }
+        if (hasHorizon(startPoint)) {
+            return goNextOrPrev(startPoint);
+        }
+
+        return 0;
+    }
+
+    private boolean hasHorizon(int point) {
+        return points.get(point);
+    }
+
+    private int goNextOrPrev(int prevPoint) {
+        if (points.get(prevPoint)) {
+            return GO_NEXT;
+        }
+        return GO_PREV;
+    }
+
+    private boolean isFirst(int startPoint) {
+        return startPoint == 0;
+    }
+
+    private boolean isLast(int startPoint) {
+        return startPoint == points.size();
     }
 
     public List<Boolean> getPoints() {
