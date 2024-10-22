@@ -16,7 +16,6 @@ public class OutputView {
     private static final String LADDER_VERTICAL = "|";
     private static final String LADDER_HORIZON = "-----";
     private static final String LADDER_BLANK = "     ";
-    public static final String CHECK_ALL = "all";
 
     public static void outputLadderGame(Players players, Ladder ladder, InputResult inputResult) {
         System.out.println();
@@ -36,20 +35,9 @@ public class OutputView {
         viewAll(ladderResult.getResults());
     }
 
-    private static boolean checkAll(String resultInput) {
-        if (resultInput.equals(CHECK_ALL)) {
-            return true;
-        }
-        return false;
-    }
-
     private static void viewAll(Map<String, String> results) {
         results.entrySet()
             .forEach(value -> System.out.println(value.getKey() + " : " + value.getValue()));
-    }
-
-    private static void viewOne(String keyName) {
-        System.out.println();
     }
 
     private static void playerView(Players players) {
