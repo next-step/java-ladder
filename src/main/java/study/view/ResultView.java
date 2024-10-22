@@ -44,7 +44,7 @@ public class ResultView {
     public void printResult(PlayerName playerName, Result result) {
         System.out.println();
         System.out.println(RESULT_MESSAGE);
-        if (!playerName.getName().equals("all")) {
+        if (!playerName.isAll()) {
             System.out.println(result.getPrizeToStringByPlayerName(playerName));
             return;
         }

@@ -28,16 +28,8 @@ public class LadderGame {
     public Result play(Ladder ladder, List<Prize> prizes) {
         Map<PlayerName, Prize> results = IntStream.range(0, names.size())
                 .boxed()
-                .collect(Collectors.toMap(names::get, i -> prizes.get(playForPlayer(ladder, i))));
+                .collect(Collectors.toMap(names::get, i -> prizes.get(ladder.move(i))));
         return new Result(results);
-    }
-
-    public int playForPlayer(Ladder ladder, int startPosition) {
-        int currentPosition = startPosition;
-        for (Line line : ladder.getLines()) {
-            currentPosition = line.move(currentPosition);
-        }
-        return currentPosition;
     }
 
 }
