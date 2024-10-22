@@ -15,7 +15,15 @@ class UsersTest {
 
     @Test
     void 사용자들_중복검증() {
-        assertThatThrownBy(() -> new Users(List.of(new UserName("hwan2"), new UserName("hwan2"), new UserName("hwan4"))))
+        assertThatThrownBy(
+                () -> new Users(List.of(new UserName("hwan2"), new UserName("hwan2"), new UserName("hwan4"))))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 최소_사용자_검증() {
+        assertThatThrownBy(
+                () -> new Users(List.of(new UserName("hwan2"), new UserName("hwan2"))))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
