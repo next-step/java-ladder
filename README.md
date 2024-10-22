@@ -75,3 +75,4 @@
 ## Step3. 리팩토링 
 
 - [X] Reword에 불필요한 equals and hashcode 제거
+- [X] 테스트 코드 간결화 (상수 사용)
