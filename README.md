@@ -74,6 +74,7 @@
 - [X] 타입 추상화 (LinkedHashMap -> Map)
 - [X] 메소드명 수정 (isMoveLeft -> isAbleToMoveLeft)
 - [X] assertAll 로 테스트 묶기
+- [X] Lines 일급 컬렉션 추가
 
 ## Step3. 리팩토링 
 
