@@ -3,6 +3,7 @@ package ladder.controller;
 import ladder.domain.LadderResult;
 import ladder.domain.Line;
 import ladder.domain.Member;
+import ladder.domain.Members;
 import ladder.domain.Reword;
 
 import java.util.List;
@@ -26,11 +27,11 @@ public class ResultView {
         return INSTANCE;
     }
 
-    public void printLadders(List<Member> members, List<Line> ladders, List<Reword> rewords) {
+    public void printLadders(Members members, List<Line> ladders, List<Reword> rewords) {
         StringBuilder sb = new StringBuilder();
         sb.append("사다리 결과");
         sb.append(System.lineSeparator());
-        sb.append(members.stream()
+        sb.append(members.getMembers().stream()
                 .map(member -> String.format("%5s ", member.getName()))
                 .collect(Collectors.joining()));
         sb.append(System.lineSeparator());

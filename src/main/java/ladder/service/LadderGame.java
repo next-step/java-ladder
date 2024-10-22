@@ -4,6 +4,7 @@ import ladder.domain.CreateStrategy;
 import ladder.domain.LadderResult;
 import ladder.domain.Line;
 import ladder.domain.Member;
+import ladder.domain.Members;
 import ladder.domain.Reword;
 
 import java.util.LinkedHashMap;
@@ -24,18 +25,18 @@ public class LadderGame {
         return INSTANCE;
     }
 
-    public List<Line> createLadders(List<Member> members, int height, CreateStrategy createStrategy) {
+    public List<Line> createLadders(Members members, int height, CreateStrategy createStrategy) {
         return IntStream.range(0, height)
-                .mapToObj(num -> new Line(members.size(), createStrategy))
+                .mapToObj(num -> new Line(members.getSize(), createStrategy))
                 .collect(Collectors.toList());
     }
 
-    public LadderResult playLadders(List<Line> ladders, List<Member> members, List<Reword> rewords) {
-        if (members.size() != rewords.size()) {
+    public LadderResult playLadders(List<Line> ladders, Members members, List<Reword> rewords) {
+        if (members.getSize() != rewords.size()) {
             throw new IllegalStateException("사다리 게임을 진행할 수 없습니다.");
         }
-        List<Integer> point = getResultPoints(ladders, members.size());
-        return new LadderResult(getResultMap(members, rewords, point));
+        List<Integer> point = getResultPoints(ladders, members.getSize());
+        return new LadderResult(getResultMap(point, members, rewords));
     }
 
     private static List<Integer> getResultPoints(List<Line> ladders, int memberCount) {
@@ -48,10 +49,10 @@ public class LadderGame {
         return point;
     }
 
-    private static LinkedHashMap<Member, Reword> getResultMap(List<Member> members, List<Reword> rewords, List<Integer> point) {
+    private static LinkedHashMap<Member, Reword> getResultMap(List<Integer> point, Members members, List<Reword> rewords) {
         LinkedHashMap<Member, Reword> map = new LinkedHashMap<>();
-        IntStream.range(0, members.size())
-                .forEach(index -> map.put(members.get(index), rewords.get(point.get(index))));
+        IntStream.range(0, members.getSize())
+                .forEach(index -> map.put(members.getMember(index), rewords.get(point.get(index))));
         return map;
     }
 

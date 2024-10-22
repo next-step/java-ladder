@@ -3,6 +3,7 @@ package ladder.controller;
 import ladder.domain.LadderResult;
 import ladder.domain.Line;
 import ladder.domain.Member;
+import ladder.domain.Members;
 import ladder.domain.RandomStrategy;
 import ladder.domain.Reword;
 import ladder.service.LadderGame;
@@ -21,7 +22,7 @@ public class LadderController {
     public void play() {
         LadderGame game = LadderGame.getInstance();
         RandomStrategy randomStrategy = RandomStrategy.getInstance();
-        List<Member> playMembers = inputView.getPlayMembers();
+        Members playMembers = inputView.getPlayMembers();
         List<Reword> rewords = inputView.getPlayRewords();
         int ladderHeight = inputView.getLadderHeight();
 

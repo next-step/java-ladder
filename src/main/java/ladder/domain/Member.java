@@ -21,7 +21,6 @@ public class Member {
         return name.length() > MAX_NAME_LENGTH;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {

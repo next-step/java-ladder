@@ -1,6 +1,7 @@
 package ladder.controller;
 
 import ladder.domain.Member;
+import ladder.domain.Members;
 import ladder.domain.Reword;
 
 import java.util.Arrays;
@@ -23,11 +24,11 @@ public class InputView {
         return INSTANCE;
     }
 
-    public List<Member> getPlayMembers() {
+    public Members getPlayMembers() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        return Arrays.stream(SCANNER.nextLine().split(DELIMITER))
+        return new Members(Arrays.stream(SCANNER.nextLine().split(DELIMITER))
                 .map(Member::new)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
     }
 
     public int getLadderHeight() {
