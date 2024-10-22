@@ -61,23 +61,23 @@ public class Line {
     }
 
     private int move(int index) {
-        if (isMoveLeft(index)) {
+        if (isAbleToMoveLeft(index)) {
             return index - 1;
         }
-        if (isMoveRight(index)) {
+        if (isAbleToMoveRight(index)) {
             return index + 1;
         }
         return index;
     }
 
-    private boolean isMoveLeft(int index) {
+    private boolean isAbleToMoveLeft(int index) {
         if (index == 0) {
             return false;
         }
         return !getPoint(index) && getPoint(index - 1);
     }
 
-    private boolean isMoveRight(int index) {
+    private boolean isAbleToMoveRight(int index) {
         if (index == points.size() - 1) {
             return false;
         }
