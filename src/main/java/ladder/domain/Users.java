@@ -17,4 +17,7 @@ public class Users {
             throw new IllegalArgumentException();
         }
     }
+    public int size() {
+        return users.size();
+    }
 }
