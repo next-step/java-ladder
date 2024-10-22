@@ -66,3 +66,12 @@
 - [X] 사다리 결과 출력 (개인)
 - [X] 사다리 결과 출력 (전체)
 - [X] 사다리 수와 보상의 수가 다를 때 예외처리
+
+## Step3. 피드백 구현
+
+- [X] 일급컬렉션에 validation 추가
+- [X] Member 이름 중복에 대한 예외처리 추가 (Members 일급 컬렉션 사용)
+
+## Step3. 리팩토링 
+
+- [X] Reword에 불필요한 equals and hashcode 제거
