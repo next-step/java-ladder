@@ -10,7 +10,7 @@ public class Line {
 
     public Line(int countOfPerson, CreateStrategy createStrategy) {
         IntStream.range(0, countOfPerson)
-                .forEach(index -> addHorizontal(countOfPerson, createStrategy));
+                .forEach(index -> addHorizontal(index, countOfPerson - 1, createStrategy));
     }
 
     public int getSize() {
@@ -30,34 +30,30 @@ public class Line {
                 .collect(Collectors.toList());
     }
 
-    private void addHorizontal(int countOfPerson, CreateStrategy createStrategy) {
-        if (isAvailableCreate(points, countOfPerson)) {
+    private void addHorizontal(int index, int max, CreateStrategy createStrategy) {
+        if (isAvailableCreate(index, max)) {
             points.add(isCreate(createStrategy));
             return;
         }
         points.add(false);
     }
 
-    private boolean isAvailableCreate(List<Boolean> points, int countOfPerson) {
-        if (points.isEmpty()) {
+    private boolean isAvailableCreate(int index, int max) {
+        if (index == 0) {
             return true;
         }
-        if (isLastPoint(points, countOfPerson)) {
+        if (index == max) {
             return false;
         }
-        return !isPreviousCreated(points);
+        return !isPreviousCreated(index);
     }
 
     private boolean isCreate(CreateStrategy strategy) {
         return strategy.create();
     }
 
-    private boolean isLastPoint(List<Boolean> points, int countOfPerson) {
-        return points.size() == countOfPerson - 1;
-    }
-
-    private Boolean isPreviousCreated(List<Boolean> points) {
-        return points.get(points.size() - 1);
+    private boolean isPreviousCreated(int index) {
+        return points.get(index - 1);
     }
 
     private int move(int index) {
@@ -74,21 +70,21 @@ public class Line {
         if (index == 0) {
             return false;
         }
-        return !getPoint(index) && getLeftPoint(index);
+        return !points.get(index) && getLeftPoint(index);
     }
 
     private boolean isAbleToMoveRight(int index) {
         if (index == points.size() - 1) {
             return false;
         }
-        return getPoint(index) && !getRightPoint(index);
+        return points.get(index) && !getRightPoint(index);
     }
 
     private boolean getLeftPoint(int index) {
-        return getPoint(index - 1);
+        return points.get(index - 1);
     }
 
     private boolean getRightPoint(int index) {
-        return getPoint(index + 1);
+        return points.get(index + 1);
     }
 }
