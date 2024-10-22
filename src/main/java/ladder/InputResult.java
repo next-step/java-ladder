@@ -9,15 +9,16 @@ public class InputResult {
 
     private final String[] ladderResults;
 
-    public InputResult(String strings) {
-        this(strings.split(DELIMITER));
+    public InputResult(String strings, int playerSize) {
+        this(strings.split(DELIMITER), playerSize);
     }
 
-    public InputResult(String[] strings) {
+    public InputResult(String[] strings, int playerSize) {
         this.ladderResults = strings;
+        validSize(playerSize);
     }
 
-    public void validSize(int playerSize) {
+    private void validSize(int playerSize) {
         if (playerSize != ladderResults.length) {
             throw new IllegalArgumentException("invalid result or player size");
         }
