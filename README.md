@@ -23,7 +23,7 @@
 * step2 feedback 반영 [X]
 * prize class 생성 [X]
 * 실행 결과 입력 로직 [X]
-* 사다리 결과에 결과 출력 로직 []
+* 사다리 결과 출력 로직 [X]
 * LadderResult class 생성 []
 * 사다리 실행 로직 []
 * 결과 보고 싶은 사람 입력 로직 []

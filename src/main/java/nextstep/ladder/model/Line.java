@@ -7,19 +7,16 @@ import java.util.stream.IntStream;
 
 public class Line {
     private List<Point> points = new ArrayList<>();
-    private LineGenerator lineGenerator;
 
     public Line(int countOfPlayers, LineGenerator lineGenerator) {
-        this.lineGenerator = lineGenerator;
         IntStream.range(0, countOfPlayers - 1)
-                .forEach(it -> this.points.add(makeLine(it)));
+                .forEach(it -> this.points.add(makeLine(it, lineGenerator)));
         validatePoints(countOfPlayers - 1);
     }
 
 
     public Line(List<Point> points, LineGenerator lineGenerator) {
         this.points = points;
-        this.lineGenerator = lineGenerator;
         validatePoints(points.size());
     }
 
@@ -31,7 +28,7 @@ public class Line {
         });
     }
 
-    private Point makeLine(int i) {
+    private Point makeLine(int i, LineGenerator lineGenerator) {
         Point point = new Point();
         point.next(hasPreviousLine(i), lineGenerator.generate());
         return point;

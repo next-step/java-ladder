@@ -1,9 +1,6 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.model.Ladder;
-import nextstep.ladder.model.Line;
-import nextstep.ladder.model.Player;
-import nextstep.ladder.model.Point;
+import nextstep.ladder.model.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,16 +23,23 @@ public class ResultView {
             points.forEach(point -> sb.append(point ? "-".repeat(6) : " ".repeat(6)).append("|"));
             sb.append("\n");
         });
+        sb.deleteCharAt(sb.length() - 1);
         System.out.println(sb);
     }
 
     public static void printPlayers(List<Player> players) {
         StringBuilder sb = new StringBuilder();
-        players.forEach(player -> sb.append(" ".repeat(getCountOfSpace(player))).append(player.getName()));
+        players.forEach(player -> sb.append(" ".repeat(getCountOfSpace(player.getName().length()))).append(player.getName()));
         System.out.println(sb);
     }
 
-    private static int getCountOfSpace(Player player) {
-        return MAX - player.getName().length();
+    public static void printPrizes(List<Prize> prizes) {
+        StringBuilder sb = new StringBuilder();
+        prizes.forEach(player -> sb.append(" ".repeat(getCountOfSpace(player.getValue().length()))).append(player.getValue()));
+        System.out.println(sb);
+    }
+
+    private static int getCountOfSpace(int length) {
+        return MAX - length;
     }
 }

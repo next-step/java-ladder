@@ -22,6 +22,6 @@ public class LadderGameApplication {
         ResultView.printResultLetters();
         ResultView.printPlayers(ladderGame.getPlayers());
         ResultView.printLadder(ladder);
-
+        ResultView.printPrizes(prizes);
     }
 }
