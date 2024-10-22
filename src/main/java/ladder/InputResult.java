@@ -6,6 +6,7 @@ import java.util.Objects;
 public class InputResult {
 
     private static final String DELIMITER = ",";
+    public static final String PASSED_RESULT = "꽝";
 
     private final String[] ladderResults;
 
@@ -16,11 +17,27 @@ public class InputResult {
     public InputResult(String[] strings, int playerSize) {
         this.ladderResults = strings;
         validSize(playerSize);
+        checkDistinctResult(strings);
     }
 
     private void validSize(int playerSize) {
         if (playerSize != ladderResults.length) {
             throw new IllegalArgumentException("invalid result or player size");
+        }
+    }
+
+    private void checkDistinctResult(String[] strings) {
+        long initSize = Arrays.stream(strings)
+            .filter(it -> !it.equals(PASSED_RESULT))
+            .count();
+
+        long distinctSize = Arrays.stream(strings)
+            .filter(it -> !it.equals(PASSED_RESULT))
+            .distinct()
+            .count();
+
+        if (initSize != distinctSize) {
+            throw new IllegalArgumentException();
         }
     }
 

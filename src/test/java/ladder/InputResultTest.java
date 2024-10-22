@@ -30,4 +30,13 @@ class InputResultTest {
 
         assertThat(result).isEqualTo("꽝");
     }
+
+    @Test
+    void 꽝을_제외한_결과값은_중복될_수_없다() {
+        int playerSize = 4;
+        assertThatThrownBy(() -> new InputResult(new String[] {"꽝", "5000", "꽝", "5000"}, playerSize))
+            .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new InputResult(new String[] {"3000", "5000", "3000", "5000"}, playerSize))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
 }
