@@ -70,21 +70,17 @@ public class Line {
         if (index == 0) {
             return false;
         }
-        return !points.get(index) && getLeftPoint(index);
+        return !points.get(index) && isPreviousCreated(index);
     }
 
     private boolean isAbleToMoveRight(int index) {
         if (index == points.size() - 1) {
             return false;
         }
-        return points.get(index) && !getRightPoint(index);
+        return points.get(index) && !isNextCreated(index);
     }
 
-    private boolean getLeftPoint(int index) {
-        return points.get(index - 1);
-    }
-
-    private boolean getRightPoint(int index) {
+    private boolean isNextCreated(int index) {
         return points.get(index + 1);
     }
 }
