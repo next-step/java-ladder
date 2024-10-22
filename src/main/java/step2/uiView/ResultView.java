@@ -34,9 +34,9 @@ public class ResultView {
         System.out.println(ladderPrizeList);
     }
 
-    public void resultLadderPrize(LadderPrize ladderPrize, Person person, int[] endGameIndex) {
+    public void resultLadderPrize(LadderPrize ladderPrize, Person person, int[] personIndex, int[] endGameIndex) {
         System.out.println(ResultMessage.RESULT.message());
-        for(int i = 0; i < person.nameSize(); i++) {
+        for(int i = 0; i < personIndex.length; i++) {
             System.out.println(person.getNames().get(i).getName() + ":" + ladderPrize.choosePrize(endGameIndex[i]).getPrize());
         }
     }

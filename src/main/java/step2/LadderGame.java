@@ -28,6 +28,6 @@ public class LadderGame {
         int[] personIndex = person.getPersonIndex(personName);
         int[] endGameIndex = ladder.startLadderGame(personIndex);
 
-        resultView.resultLadderPrize(ladderPrize, person, endGameIndex);
+        resultView.resultLadderPrize(ladderPrize, person, personIndex, endGameIndex);
     }
 }
