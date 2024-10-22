@@ -41,4 +41,11 @@ class PlayersTest {
 
         assertThat(playerName).isEqualTo("pobi");
     }
+
+    @Test
+    void 참가자들의_이름은_중복될_수_없다() {
+        assertThatThrownBy(() -> new Players("lili", "lili", "lili"))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("player name is not distinct");
+    }
 }

@@ -14,6 +14,7 @@ public class Players {
     }
 
     public Players(List<Player> players) {
+        validNames(players);
         validSize(players);
         this.players = players;
     }
@@ -25,6 +26,17 @@ public class Players {
     private void validSize(List<Player> players) {
         if (players.size() < 2) {
             throw new IllegalArgumentException();
+        }
+    }
+
+    private void validNames(List<Player> players) {
+        int initSize = players.size();
+        long distinctSize = players.stream()
+            .distinct()
+            .count();
+
+        if (initSize != distinctSize) {
+            throw new IllegalArgumentException("player name is not distinct");
         }
     }
 
