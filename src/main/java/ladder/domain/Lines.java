@@ -10,6 +10,12 @@ import java.util.stream.IntStream;
 public class Lines {
     private final List<Line> lines;
 
+    public Lines(int memberSize, int height, CreateStrategy createStrategy) {
+        this(IntStream.range(0, height)
+                .mapToObj(num -> new Line(memberSize, createStrategy))
+                .collect(Collectors.toList()));
+    }
+
     public Lines(List<Line> lines) {
         this.lines = lines;
     }
@@ -22,8 +28,8 @@ public class Lines {
         return Collections.unmodifiableList(lines);
     }
 
-    public LadderResult playLadders(Members members, List<Reword> rewords) {
-        if (members.getSize() != rewords.size()) {
+    public LadderResult playLadders(Members members, Rewords rewords) {
+        if (members.getSize() != rewords.getSize()) {
             throw new IllegalStateException("사다리 게임을 진행할 수 없습니다.");
         }
         List<Integer> point = getResultPoints(members.getSize());
@@ -40,7 +46,7 @@ public class Lines {
         return point;
     }
 
-    private Map<Member, Reword> getResultMap(List<Integer> point, Members members, List<Reword> rewords) {
+    private Map<Member, Reword> getResultMap(List<Integer> point, Members members, Rewords rewords) {
         Map<Member, Reword> map = new LinkedHashMap<>();
         IntStream.range(0, members.getSize())
                 .forEach(index -> map.put(members.getMember(index), rewords.get(point.get(index))));

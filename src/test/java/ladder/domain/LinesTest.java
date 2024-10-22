@@ -13,6 +13,8 @@ import static ladder.domain.MemberTest.m2;
 import static ladder.domain.MembersTest.ms1;
 import static ladder.domain.RewordTest.r1;
 import static ladder.domain.RewordTest.r2;
+import static ladder.domain.RewordsTest.rs1;
+import static ladder.domain.RewordsTest.rs2;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -23,16 +25,14 @@ public class LinesTest {
     @Test
     @DisplayName("멤버와 보상의 수가 다를 때 예외를 발생시킨다.")
     void 사다리게임_예외() {
-        List<Reword> rewords = List.of(r1);
-        assertThatThrownBy(() -> ls2.playLadders(ms1, rewords))
+        assertThatThrownBy(() -> ls2.playLadders(ms1, rs2))
                 .isInstanceOf(IllegalStateException.class);
     }
 
     @Test
     @DisplayName("사다리 게임을 진행한다.")
     void 사다리게임_진행() {
-        List<Reword> rewords = List.of(r1, r2);
-        LadderResult results = ls2.playLadders(ms1, rewords);
+        LadderResult results = ls2.playLadders(ms1, rs1);
         org.junit.jupiter.api.Assertions.assertAll(
                 () -> assertThat(results.getSize()).isEqualTo(2),
                 () -> assertThat(results.getReword(m1)).isEqualTo(r2),

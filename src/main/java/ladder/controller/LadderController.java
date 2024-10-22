@@ -5,10 +5,7 @@ import ladder.domain.Lines;
 import ladder.domain.Member;
 import ladder.domain.Members;
 import ladder.domain.RandomStrategy;
-import ladder.domain.Reword;
-import ladder.service.LadderGame;
-
-import java.util.List;
+import ladder.domain.Rewords;
 
 public class LadderController {
     private final InputView inputView;
@@ -20,13 +17,12 @@ public class LadderController {
     }
 
     public void play() {
-        LadderGame game = LadderGame.getInstance();
         RandomStrategy randomStrategy = RandomStrategy.getInstance();
         Members playMembers = inputView.getPlayMembers();
-        List<Reword> rewords = inputView.getPlayRewords();
+        Rewords rewords = inputView.getPlayRewords();
         int ladderHeight = inputView.getLadderHeight();
 
-        Lines lines = game.createLadders(playMembers.getSize(), ladderHeight, randomStrategy);
+        Lines lines = new Lines(playMembers.getSize(), ladderHeight, randomStrategy);
         resultView.printLadders(playMembers, lines, rewords);
 
         LadderResult result = lines.playLadders(playMembers, rewords);
