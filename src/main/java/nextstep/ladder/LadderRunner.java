@@ -8,9 +8,8 @@ import nextstep.ladder.ui.ResultView;
 
 public class LadderRunner {
     public static void main(String[] args) {
-        Users users = InputView.readUsers();
-        PositiveNumber height = InputView.readLadderHeight();
-
+        Users users = Users.from(InputView.readUserNames());
+        PositiveNumber height = new PositiveNumber(InputView.readLadderHeight());
         LadderGame ladderGame = new LadderGame(users, height);
 
         ResultView.printGameResult(ladderGame);

@@ -1,7 +1,5 @@
 package nextstep.ladder.ui;
 
-import nextstep.ladder.domain.*;
-
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Set;
@@ -17,22 +15,16 @@ public class InputView {
         throw new UnsupportedOperationException("인스턴스를 생성할 수 없습니다.");
     }
 
-    public static Users readUsers() {
+    public static Set<String> readUserNames() {
         System.out.println(USER_NAMES_QUESTION);
-        return getUsers();
-    }
-
-    public static PositiveNumber readLadderHeight() {
-        System.out.println(LADDER_HEIGHT_QUESTION);
-        return new PositiveNumber(readInt());
-    }
-
-    private static Users getUsers() {
-        Set<User> users = Arrays.stream(readText().split(SPLIT_DELIMITER))
+        return Arrays.stream(readText().split(SPLIT_DELIMITER))
                 .map(String::trim)
-                .map(User::new)
                 .collect(Collectors.toSet());
-        return new Users(users);
+    }
+
+    public static int readLadderHeight() {
+        System.out.println(LADDER_HEIGHT_QUESTION);
+        return readInt();
     }
 
     private static String readText() {
