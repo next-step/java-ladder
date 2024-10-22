@@ -16,6 +16,10 @@ public class Name {
         return new Name(name);
     }
 
+    public boolean checkName(String name) {
+        return this.name.equals(name);
+    }
+
     //참여하는 인원 이름길이를 체크한다.
     private void confirmPersonNameLength(String person) {
         if (person.length() > MAXIMUM_PERSON_NAME_LENGTH) {
