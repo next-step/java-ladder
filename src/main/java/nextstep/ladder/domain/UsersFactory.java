@@ -1,6 +1,6 @@
 package nextstep.ladder.domain;
 
-import java.util.List;
+import java.util.Set;
 
 public class UsersFactory {
 
@@ -8,7 +8,7 @@ public class UsersFactory {
         throw new UnsupportedOperationException();
     }
 
-    public static Users createUsers(List<User> users) {
+    public static Users createUsers(Set<User> users) {
         return new Users(users);
     }
 }

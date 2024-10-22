@@ -3,8 +3,8 @@ package nextstep.ladder.ui;
 import nextstep.ladder.domain.*;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class InputView {
@@ -28,10 +28,10 @@ public class InputView {
     }
 
     private static Users getUsers() {
-        List<User> users = Arrays.stream(readText().split(SPLIT_DELIMITER))
+        Set<User> users = Arrays.stream(readText().split(SPLIT_DELIMITER))
                 .map(String::trim)
                 .map(User::new)
-                .collect(Collectors.toList());
+                .collect(Collectors.toSet());
         return UsersFactory.createUsers(users);
     }
 
