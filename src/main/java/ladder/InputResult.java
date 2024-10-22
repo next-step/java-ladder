@@ -5,6 +5,8 @@ import java.util.Objects;
 
 public class InputResult {
 
+    private static final String DELIMITER = ",";
+
     private final String[] ladderResults;
 
     public InputResult(String strings, int playerSize) {
