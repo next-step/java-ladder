@@ -14,7 +14,7 @@ public class ResultView {
     private static final String SPACING_BETWEEN_PLAYERS = "    ";
     private static final String GAME_RESULT_FORMAT = "%s : %s\n";
 
-    public void showLadder(Players players, Ladder ladder, LadderResult positionResult) {
+    public static void showLadder(Players players, Ladder ladder, LadderResult positionResult) {
         System.out.println();
         System.out.println(RESULT_LADDER_MESSAGE);
         showPlayers(players);
@@ -22,44 +22,44 @@ public class ResultView {
         showGameResult(positionResult);
     }
 
-    private void showPlayers(Players players) {
+    private static void showPlayers(Players players) {
         String playerNames = players.getPlayers().stream()
                 .map(player -> player.getName() + SPACING_BETWEEN_PLAYERS)
                 .collect(joining());
         System.out.println(playerNames);
     }
 
-    private void showLadder(Ladder ladder) {
+    private static void showLadder(Ladder ladder) {
         ladder.getLines().stream()
                 .flatMap(line -> line.getPoints().stream()
-                        .map(this::drawHorizontalLine)
+                        .map(ResultView::drawHorizontalLine)
                         .collect(joining())
                         .concat(LADDER_VERTICAL_LINE)
                         .lines())
                 .forEach(System.out::println);
     }
 
-    private String drawHorizontalLine(boolean lineStatus) {
+    private static String drawHorizontalLine(boolean lineStatus) {
         return LADDER_VERTICAL_LINE + (lineStatus ? LADDER_HORIZONTAL_LINE : "     ");
     }
 
-    private void showGameResult(LadderResult ladderResult) {
+    private static void showGameResult(LadderResult ladderResult) {
         List<String> gameResultsByInputOrder = ladderResult.getGameResultByInputOrder();
         String gameResults = getString(gameResultsByInputOrder);
         System.out.println(gameResults);
     }
 
-    private String getString(List<String> gameResultsByInputOrder) {
+    private static String getString(List<String> gameResultsByInputOrder) {
         return gameResultsByInputOrder.stream()
                 .map(result -> result + SPACING_BETWEEN_PLAYERS)
                 .collect(joining());
     }
 
-    public void showGamePlayResult(LadderPlayResult playResult){
+    public static void showGamePlayResult(LadderPlayResult playResult){
         showGamePlayResult(null, playResult);
     }
 
-    public void showGamePlayResult(Player player, LadderPlayResult playResult) {
+    public static void showGamePlayResult(Player player, LadderPlayResult playResult) {
         System.out.println();
         System.out.println(RESULT_START_MESSAGE);
         if(player != null){
@@ -69,14 +69,18 @@ public class ResultView {
         showAllGameResults(playResult);
     }
 
-    private void showAllGameResults(LadderPlayResult playResult) {
+    private static void showAllGameResults(LadderPlayResult playResult) {
         playResult.getPlayResult().forEach((aa, result) -> {
             System.out.printf(GAME_RESULT_FORMAT, aa.getName(), result);
         });
     }
 
-    private void showIndividualGameResult(Player player, LadderPlayResult playResult){
+    private static void showIndividualGameResult(Player player, LadderPlayResult playResult){
         System.out.println(playResult.get(player));
+    }
+
+    public static void showErrorMessage(Exception e){
+        System.out.println(e.getMessage());
     }
 
 }
