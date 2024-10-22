@@ -9,6 +9,7 @@ import ladder.domain.Reword;
 
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -49,8 +50,8 @@ public class LadderGame {
         return point;
     }
 
-    private static LinkedHashMap<Member, Reword> getResultMap(List<Integer> point, Members members, List<Reword> rewords) {
-        LinkedHashMap<Member, Reword> map = new LinkedHashMap<>();
+    private static Map<Member, Reword> getResultMap(List<Integer> point, Members members, List<Reword> rewords) {
+        Map<Member, Reword> map = new LinkedHashMap<>();
         IntStream.range(0, members.getSize())
                 .forEach(index -> map.put(members.getMember(index), rewords.get(point.get(index))));
         return map;

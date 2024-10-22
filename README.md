@@ -71,6 +71,7 @@
 
 - [X] 일급컬렉션에 validation 추가
 - [X] Member 이름 중복에 대한 예외처리 추가 (Members 일급 컬렉션 사용)
+- [X] 타입 추상화 (LinkedHashMap -> Map)
 
 ## Step3. 리팩토링 
 
