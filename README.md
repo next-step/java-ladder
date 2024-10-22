@@ -75,9 +75,11 @@
 - [X] 메소드명 수정 (isMoveLeft -> isAbleToMoveLeft)
 - [X] assertAll 로 테스트 묶기
 - [X] Lines 일급 컬렉션 추가
+- [X] 서비스 로직 삭제 (LadderGame 로직 Lines로 이동)
 
 ## Step3. 리팩토링 
 
 - [X] Reword에 불필요한 equals and hashcode 제거
 - [X] 테스트 코드 간결화 (상수 사용)
 - [X] 의미 파악하기 쉽게 로직 메소드 분리 (getLeftPoint() 등)
+- [X] Rewords 일급 컬렉션 추가
