@@ -43,7 +43,7 @@ class LadderTest {
         );
         Ladder ladder = new Ladder(lines);
         Players players = new Players("pobi", "lili");
-        InputResult inputResult = new InputResult("꽝,3000");
+        InputResult inputResult = new InputResult("꽝,3000", players.size());
         LadderResult ladderResult = ladder.run(players, inputResult);
 
         Map<String, String> values = Map.of("pobi", "3000", "lili", "꽝");

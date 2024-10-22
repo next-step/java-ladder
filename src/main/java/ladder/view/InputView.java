@@ -30,11 +30,11 @@ public class InputView {
         return height;
     }
 
-    public static InputResult inputResult() {
+    public static InputResult inputResult(int playerSize) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         String resultStrings = scanner.nextLine();
-        return new InputResult(resultStrings.split(DELIMITER));
+        return new InputResult(resultStrings.split(DELIMITER), playerSize);
     }
 
     public static String wantPerson() {
