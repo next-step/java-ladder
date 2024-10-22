@@ -40,7 +40,7 @@ public class LadderGame {
         return new LadderResult(getResultMap(point, members, rewords));
     }
 
-    private static List<Integer> getResultPoints(List<Line> ladders, int memberCount) {
+    private List<Integer> getResultPoints(List<Line> ladders, int memberCount) {
         List<Integer> point = IntStream.range(0, memberCount)
                 .boxed()
                 .collect(Collectors.toList());
@@ -50,7 +50,7 @@ public class LadderGame {
         return point;
     }
 
-    private static Map<Member, Reword> getResultMap(List<Integer> point, Members members, List<Reword> rewords) {
+    private Map<Member, Reword> getResultMap(List<Integer> point, Members members, List<Reword> rewords) {
         Map<Member, Reword> map = new LinkedHashMap<>();
         IntStream.range(0, members.getSize())
                 .forEach(index -> map.put(members.getMember(index), rewords.get(point.get(index))));

@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import ladder.service.LadderGame;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -33,16 +34,20 @@ public class LadderGameTest {
         List<Reword> rewords = List.of(r1, r2);
         List<Line> ladders = game.createLadders(ms1, 3, () -> true);
         LadderResult results = game.playLadders(ladders, ms1, rewords);
-        assertThat(results.getSize()).isEqualTo(2);
-        assertThat(results.getReword(m1)).isEqualTo(r2);
-        assertThat(results.getReword(m2)).isEqualTo(r1);
+        Assertions.assertAll(
+                () -> assertThat(results.getSize()).isEqualTo(2),
+                () -> assertThat(results.getReword(m1)).isEqualTo(r2),
+                () -> assertThat(results.getReword(m2)).isEqualTo(r1)
+        );
     }
 
     @Test
     @DisplayName("참여자와 높이를 입력하면 그에 맞는 사다리를 생성한다.")
     void 사다리_생성() {
         List<Line> ladders = LadderGame.getInstance().createLadders(ms1, 5, () -> true);
-        assertThat(ladders).hasSize(5);
-        assertThat(ladders.get(0).getSize()).isEqualTo(2);
+        Assertions.assertAll(
+                () -> assertThat(ladders).hasSize(5),
+                () -> assertThat(ladders.get(0).getSize()).isEqualTo(2)
+        );
     }
 }

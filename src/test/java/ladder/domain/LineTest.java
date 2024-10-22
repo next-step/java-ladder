@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,16 +15,16 @@ public class LineTest {
 
     @Test
     @DisplayName("리스트를 넣으면 그 라인에서의 이동 결과를 반환한다.")
-    void 리스트_이동_사다리없을경우(){
+    void 리스트_이동_사다리없을경우() {
         Line line = new Line(2, () -> false);
-        assertThat(line.moveResult(List.of(0,1))).isEqualTo(List.of(0,1));
+        assertThat(line.moveResult(List.of(0, 1))).isEqualTo(List.of(0, 1));
     }
 
     @Test
     @DisplayName("리스트를 넣으면 그 라인에서의 이동 결과를 반환한다.")
-    void 리스트_이동(){
+    void 리스트_이동() {
         Line line = new Line(2, () -> true);
-        assertThat(line.moveResult(List.of(0,1))).isEqualTo(List.of(1,0));
+        assertThat(line.moveResult(List.of(0, 1))).isEqualTo(List.of(1, 0));
     }
 
     @ParameterizedTest
@@ -39,9 +40,11 @@ public class LineTest {
     @DisplayName("마지막 위치에 가로선을 생성하지 않는다.")
     void 마지막위치_가로선_생성안함() {
         Line line = new Line(3, () -> true);
-        assertThat(line.getPoint(0)).isTrue();
-        assertThat(line.getPoint(1)).isFalse();
-        assertThat(line.getPoint(2)).isFalse();
+        Assertions.assertAll(
+                () -> assertThat(line.getPoint(0)).isTrue(),
+                () -> assertThat(line.getPoint(1)).isFalse(),
+                () -> assertThat(line.getPoint(2)).isFalse()
+        );
     }
 
 
@@ -49,8 +52,10 @@ public class LineTest {
     @DisplayName("이전 위치에 가로선이 생성되면 가로선을 생성하지 않는다.")
     void 이전위치_가로선_생성안함() {
         Line line = new Line(2, () -> true);
-        assertThat(line.getPoint(0)).isTrue();
-        assertThat(line.getPoint(1)).isFalse();
+        Assertions.assertAll(
+                () -> assertThat(line.getPoint(0)).isTrue(),
+                () -> assertThat(line.getPoint(1)).isFalse()
+        );
     }
 
     @Test

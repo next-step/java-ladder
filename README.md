@@ -73,6 +73,7 @@
 - [X] Member 이름 중복에 대한 예외처리 추가 (Members 일급 컬렉션 사용)
 - [X] 타입 추상화 (LinkedHashMap -> Map)
 - [X] 메소드명 수정 (isMoveLeft -> isAbleToMoveLeft)
+- [X] assertAll 로 테스트 묶기
 
 ## Step3. 리팩토링 
 
