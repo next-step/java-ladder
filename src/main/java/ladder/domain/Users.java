@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Users {
@@ -29,5 +30,9 @@ public class Users {
 
     public int size() {
         return users.size();
+    }
+
+    public List<UserName> getUsers() {
+        return Collections.unmodifiableList(users);
     }
 }

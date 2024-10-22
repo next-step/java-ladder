@@ -36,4 +36,8 @@ public class UserName {
     public int hashCode() {
         return Objects.hashCode(name);
     }
+
+    public String getName() {
+        return name;
+    }
 }

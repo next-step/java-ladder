@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 import ladder.strategy.LadderGenerateStrategy;
@@ -29,5 +30,9 @@ public class Line {
 
     private boolean hasLeftLadder() {
         return !points.isEmpty() && !points.get(points.size() - 1);
+    }
+
+    public List<Boolean> getPoints() {
+        return Collections.unmodifiableList(points);
     }
 }

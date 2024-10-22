@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import ladder.strategy.LadderGenerateStrategy;
 
@@ -12,7 +13,7 @@ public class Ladder {
 
     public Ladder(int maxLength, Users users, LadderGenerateStrategy randomGenerateStrategy) {
         validateMinLength(maxLength);
-        for (int i = 0; i < users.size(); i++) {
+        for (int i = 0; i < maxLength; i++) {
             lines.add(Line.of(users, randomGenerateStrategy));
         }
     }
@@ -21,5 +22,9 @@ public class Ladder {
         if (minLength < MIN_LENGTH) {
             throw new IllegalArgumentException(MIN_LENGTH_ERROR);
         }
+    }
+
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(lines);
     }
 }
