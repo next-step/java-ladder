@@ -1,7 +1,9 @@
 package nextstep.ladder.model;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -26,6 +28,20 @@ public class LadderResult {
 
     public LinkedHashMap<Player, Prize> getResult() {
         return result;
+    }
+
+    public Map<Player, Prize> getResultByPlayer(Player player) {
+        Prize prize = this.result.get(player);
+        HashMap<Player, Prize> result = new HashMap<>();
+        result.put(player, prize);
+        return result;
+    }
+
+    public Map<Player, Prize> getResult(String input) {
+        if (input.equals("all")) {
+            return getResult();
+        }
+        return getResultByPlayer(new Player(input));
     }
 
     @Override

@@ -7,6 +7,7 @@ import java.util.stream.IntStream;
 public class LadderGame {
     private Ladder ladder;
     private PlayerGroup playerGroup;
+    private LadderResult ladderResult;
 
     public LadderGame(List<String> names) {
         this.ladder = new Ladder();
@@ -29,7 +30,8 @@ public class LadderGame {
                 .mapToObj(i -> prizes.get(this.ladder.move(i)))
                 .collect(Collectors.toList());
 
-        return LadderResult.of(this.playerGroup.getPlayers(), finalPrizes);
+        this.ladderResult = LadderResult.of(this.playerGroup.getPlayers(), finalPrizes);
+        return this.ladderResult;
     }
 
     public List<Player> getPlayers() {

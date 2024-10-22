@@ -24,5 +24,9 @@ public class LadderGameApplication {
         ResultView.printPrizes(prizes);
 
         System.out.println(ladderResult.toString());
+
+        while (true) {
+            String player = InputView.inputPlayerForResult();
+        }
     }
 }

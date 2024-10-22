@@ -26,4 +26,10 @@ public class InputView {
         return Arrays.stream(SC.nextLine().split(","))
                 .collect(Collectors.toList());
     }
+
+    public static String inputPlayerForResult() {
+        System.out.println();
+        System.out.println("결과를 보고 싶은 사람은?");
+        return SC.nextLine();
+    }
 }
