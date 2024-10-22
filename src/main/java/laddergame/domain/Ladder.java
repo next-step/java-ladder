@@ -16,7 +16,7 @@ public class Ladder {
     }
 
     private static List<Line> createLines(int playerCount, int height, LadderLineGenerator generator) {
-        List<Line> lines = new ArrayList<Line>();
+        List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
             lines.add(new Line(playerCount, generator));
         };

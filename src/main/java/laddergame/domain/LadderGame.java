@@ -20,13 +20,11 @@ public class LadderGame {
         Map<Player, String> playResults = new LinkedHashMap<>();
 
         for (int position = 0; position < players.size(); position++) {
-            Optional<Player> optionalPlayer = players.findByPosition(position);
+            Player player = players.findByPosition(position)
+                    .orElseThrow(() -> new IllegalStateException("존재하지 않는 사용자입니다"));
             int finalPosition = ladder.moveDownByPosition(position);
-
-            optionalPlayer.ifPresent(player -> {
-                String gameResult = ladderResult.findBy(finalPosition);
-                playResults.put(player, gameResult);
-            });
+            String gameResult = ladderResult.findBy(finalPosition);
+            playResults.put(player, gameResult);
         }
         return new LadderPlayResult(playResults);
     }

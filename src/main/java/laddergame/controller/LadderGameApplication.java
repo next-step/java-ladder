@@ -1,60 +1,55 @@
 package laddergame.controller;
 
 import laddergame.domain.*;
-import laddergame.io.LadderGameIOHandler;
 import laddergame.ui.InputView;
 import laddergame.ui.ResultView;
 
-import java.util.Optional;
+import java.util.NoSuchElementException;
 
 public class LadderGameApplication {
 
     private static final String ALL_PLAYERS = "all";
 
     public static void main(String[] args) {
-        LadderGameIOHandler ioHandler = new LadderGameIOHandler(new InputView(), new ResultView());
-        InputView inputView = ioHandler.getInputView();
-        ResultView resultView = ioHandler.getResultView();
-
         LadderLineGenerator generator = new RandomLineGenerator();
 
-        Players players = inputView.getPlayerFromUser();
+        Players players = InputView.getPlayerFromUser();
         int playerCount = players.size();
 
-        LadderResult ladderResult = inputView.getGameResultsFromUser(playerCount);
+        LadderResult ladderResult = InputView.getGameResultsFromUser(playerCount);
 
-        int ladderHeight = inputView.getMaxLadderHeightFromUser();;
+        int ladderHeight = InputView.getMaxLadderHeightFromUser();;
         Ladder ladder =  new Ladder(playerCount, ladderHeight, generator);
 
-        resultView.showLadder(players, ladder, ladderResult);
+        ResultView.showLadder(players, ladder, ladderResult);
 
         LadderGame game = new LadderGame(players, ladder, ladderResult);
         LadderPlayResult playResults = game.play();
 
-        showGameResult(ioHandler, players, playResults);
+        showGameResult(players, playResults);
 
     }
 
-    private static void showGameResult(LadderGameIOHandler ioHandler, Players players, LadderPlayResult playResults) {
-        InputView inputView = ioHandler.getInputView();
-        ResultView resultView = ioHandler.getResultView();
-
+    private static void showGameResult(Players players, LadderPlayResult playResults) {
         while(true){
-            String playerName = inputView.getResultPlayerFromUser();
-            Optional<Player> optionalPlayer = players.findByName(playerName);
+            String playerName = InputView.getResultPlayerFromUser();
 
-            optionalPlayer.ifPresentOrElse(
-                    (player) -> resultView.showGamePlayResult(player, playResults),
-                    () -> resultView.showGamePlayResult(playResults)
-            );
-
-            if (isExit(playerName)) {
+            if (isShowAllPlayers(playerName)) {
+                ResultView.showGamePlayResult(playResults);
                 return;
+            }
+
+            try{
+                Player player = players.findByName(playerName)
+                        .orElseThrow(() -> new NoSuchElementException("존재하지 않는 플레이어입니다. 다시 입력하세요"));
+                ResultView.showGamePlayResult(player, playResults);
+            }catch (NoSuchElementException e){
+                ResultView.showErrorMessage(e);
             }
         }
     }
 
-    private static boolean isExit(String playerName) {
+    private static boolean isShowAllPlayers(String playerName) {
         return playerName.equals(ALL_PLAYERS);
     }
 }
