@@ -3,6 +3,7 @@ package nextstep.ladder.view;
 import nextstep.ladder.model.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ResultView {
@@ -41,5 +42,34 @@ public class ResultView {
 
     private static int getCountOfSpace(int length) {
         return MAX - length;
+    }
+
+    public static void printResult(Map<Player, Prize> result) {
+        if (result == null || result.isEmpty()) {
+            throw new IllegalArgumentException("result is null or empty");
+        }
+        System.out.println();
+        System.out.println("실행 결과");
+
+        StringBuilder sb = new StringBuilder();
+        if (result.size() == 1) {
+            printOneResult(result, sb);
+            return;
+        }
+        printAllResult(result, sb);
+    }
+
+    private static void printAllResult(Map<Player, Prize> result, StringBuilder sb) {
+        result.forEach((key, value) -> sb.append(key.getName())
+                .append(" : ")
+                .append(value.getWorth())
+                .append('\n'));
+        System.out.println(sb);
+    }
+
+    private static void printOneResult(Map<Player, Prize> result, StringBuilder sb) {
+        sb.append(result.values().stream().findFirst().map(Prize::getWorth).orElseThrow(IllegalArgumentException::new))
+                .append('\n');
+        System.out.println(sb);
     }
 }

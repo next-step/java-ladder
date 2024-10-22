@@ -69,7 +69,7 @@ public class LadderGameTest {
         LadderResult ladderResult = ladderGame.makeLadderResult(prizes);
 
         //then
-        LinkedHashMap<Player, Prize> result = ladderResult.getResult();
+        LinkedHashMap<Player, Prize> result = ladderResult.getAllResult();
         Assertions.assertThat(result).hasSize(4);
         Assertions.assertThat(result.get(new Player("pobi"))).isEqualTo(prizes.get(1));
         Assertions.assertThat(result.get(new Player("honux"))).isEqualTo(prizes.get(0));

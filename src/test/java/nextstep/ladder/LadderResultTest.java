@@ -24,7 +24,7 @@ public class LadderResultTest {
 
         //then
         Assertions.assertThat(ladderResult).isNotNull();
-        LinkedHashMap<Player, Prize> result = ladderResult.getResult();
+        LinkedHashMap<Player, Prize> result = ladderResult.getAllResult();
         Assertions.assertThat(result).hasSize(1);
     }
 }

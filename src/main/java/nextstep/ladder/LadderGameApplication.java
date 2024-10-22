@@ -5,6 +5,7 @@ import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class LadderGameApplication {
@@ -23,10 +24,13 @@ public class LadderGameApplication {
         ResultView.printLadder(ladder);
         ResultView.printPrizes(prizes);
 
-        System.out.println(ladderResult.toString());
-
         while (true) {
-            String player = InputView.inputPlayerForResult();
+            String input = InputView.inputPlayerForResult();
+            Map<Player, Prize> result = ladderResult.getResultByInput(input);
+            ResultView.printResult(result);
+            if (input.equals("all")) {
+                break;
+            }
         }
     }
 }

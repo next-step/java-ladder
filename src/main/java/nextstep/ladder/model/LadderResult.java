@@ -26,7 +26,7 @@ public class LadderResult {
         this.result = result;
     }
 
-    public LinkedHashMap<Player, Prize> getResult() {
+    public LinkedHashMap<Player, Prize> getAllResult() {
         return result;
     }
 
@@ -37,9 +37,9 @@ public class LadderResult {
         return result;
     }
 
-    public Map<Player, Prize> getResult(String input) {
+    public Map<Player, Prize> getResultByInput(String input) {
         if (input.equals("all")) {
-            return getResult();
+            return getAllResult();
         }
         return getResultByPlayer(new Player(input));
     }
