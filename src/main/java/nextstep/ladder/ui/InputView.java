@@ -24,7 +24,7 @@ public class InputView {
 
     public static PositiveNumber readLadderHeight() {
         System.out.println(LADDER_HEIGHT_QUESTION);
-        return PositiveNumberFactory.createPositiveNumber(readInt());
+        return new PositiveNumber(readInt());
     }
 
     private static Users getUsers() {
@@ -32,7 +32,7 @@ public class InputView {
                 .map(String::trim)
                 .map(User::new)
                 .collect(Collectors.toSet());
-        return UsersFactory.createUsers(users);
+        return new Users(users);
     }
 
     private static String readText() {
