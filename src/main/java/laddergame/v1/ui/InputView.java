@@ -1,8 +1,8 @@
-package laddergame.ui;
+package laddergame.v1.ui;
 
-import laddergame.domain.LadderResult;
-import laddergame.domain.Player;
-import laddergame.domain.Players;
+import laddergame.v1.domain.LadderResult;
+import laddergame.v1.domain.Player;
+import laddergame.v1.domain.Players;
 
 import java.util.Arrays;
 import java.util.List;

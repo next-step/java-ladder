@@ -1,4 +1,4 @@
-package laddergame.domain;
+package laddergame.v1.domain;
 
 import java.util.*;
 import java.util.stream.IntStream;

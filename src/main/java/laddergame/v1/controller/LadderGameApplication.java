@@ -1,8 +1,8 @@
-package laddergame.controller;
+package laddergame.v1.controller;
 
-import laddergame.domain.*;
-import laddergame.ui.InputView;
-import laddergame.ui.ResultView;
+import laddergame.v1.domain.*;
+import laddergame.v1.ui.InputView;
+import laddergame.v1.ui.ResultView;
 
 import java.util.NoSuchElementException;
 

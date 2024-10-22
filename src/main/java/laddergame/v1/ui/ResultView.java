@@ -1,6 +1,6 @@
-package laddergame.ui;
+package laddergame.v1.ui;
 
-import laddergame.domain.*;
+import laddergame.v1.domain.*;
 
 import java.util.List;
 

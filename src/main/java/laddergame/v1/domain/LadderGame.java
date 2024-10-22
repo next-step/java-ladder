@@ -1,8 +1,7 @@
-package laddergame.domain;
+package laddergame.v1.domain;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Optional;
 
 public class LadderGame {
 

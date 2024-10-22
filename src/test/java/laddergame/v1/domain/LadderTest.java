@@ -1,5 +1,8 @@
-package laddergame.domain;
+package laddergame.v1.domain;
 
+import laddergame.v1.domain.Ladder;
+import laddergame.v1.domain.LadderLineGenerator;
+import laddergame.v1.domain.RandomLineGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
