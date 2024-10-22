@@ -6,7 +6,7 @@ public class StringUtil {
 
     private final static String COMMA = ",";
 
-    public static String[] divideNum(String str) {
+    public static String[] divideComma(String str) {
         return Arrays.stream(str.split(COMMA))
                 .map(String::trim)
                 .toArray(String[]::new);
