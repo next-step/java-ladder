@@ -10,6 +10,7 @@ public class Person {
 
     private final static String MINIMUM_PERSON_COUNT_MESSAGE = "참여 인원은 2명이상이여야 합니다.";
     private final static String NOT_EXIST_CORRECT_NAME_MESSAGE = "이름이 일치하는 사람이 없습니다.";
+    private final static String ALL = "all";
     private final static int MINIMUM_PERSON_COUNT = 2;
 
     private final List<Name> names = new ArrayList<>();
@@ -28,7 +29,7 @@ public class Person {
 
     //이름을 입력받아 몇번째 참여 인원인지 가져온다.
     public int[] getPersonIndex(String personName) {
-        if ("all".equals(personName)) {
+        if (ALL.equals(personName)) {
             return IntStream.range(0, nameSize()).toArray();
         }
         return new int[] {
