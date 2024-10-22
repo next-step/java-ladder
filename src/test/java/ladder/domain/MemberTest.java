@@ -7,11 +7,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class MemberTest {
+    public static final Member m1 = new Member("hee");
+    public static final Member m2 = new Member("chul");
+    public static final Member m3 = new Member("chul");
+
 
     @Test
     @DisplayName("생성자로 이름을 생성한다.")
     void 이름_생성() {
-        assertThat(new Member("asda").getName()).isEqualTo("asda");
+        assertThat(m1.getName()).isEqualTo("hee");
     }
 
     @Test
