@@ -35,7 +35,7 @@ public class ResultView {
 
     public static void printPrizes(List<Prize> prizes) {
         StringBuilder sb = new StringBuilder();
-        prizes.forEach(player -> sb.append(" ".repeat(getCountOfSpace(player.getValue().length()))).append(player.getValue()));
+        prizes.forEach(player -> sb.append(" ".repeat(getCountOfSpace(player.getWorth().length()))).append(player.getWorth()));
         System.out.println(sb);
     }
 

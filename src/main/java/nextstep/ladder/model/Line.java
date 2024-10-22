@@ -42,6 +42,24 @@ public class Line {
         return points;
     }
 
+    public int move(int startIdx) {
+        if (hasNext(startIdx)) {
+            return startIdx + 1;
+        }
+        if (hasPrevious(startIdx)) {
+            return startIdx - 1;
+        }
+        return startIdx;
+    }
+
+    private boolean hasPrevious(int startIdx) {
+        return startIdx > 0 && this.points.get(startIdx - 1).getValue();
+    }
+
+    private boolean hasNext(int startIdx) {
+        return startIdx < this.points.size() && this.points.get(startIdx).getValue();
+    }
+
     @Override
     public String toString() {
         return "Line{" +

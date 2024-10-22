@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class PlayerGroup {
-    List<Player> players;
+    private List<Player> players;
 
     public PlayerGroup(List<String> names) {
         this.players = names.stream()
@@ -18,5 +18,9 @@ public class PlayerGroup {
 
     public List<Player> getPlayers() {
         return players;
+    }
+
+    public int getSize() {
+        return players.size();
     }
 }

@@ -24,6 +24,14 @@ public class LadderGame {
         return this.ladder;
     }
 
+    public LadderResult makeLadderResult(List<Prize> prizes) {
+        List<Prize> finalPrizes = IntStream.range(0, this.playerGroup.getSize())
+                .mapToObj(i -> prizes.get(this.ladder.move(i)))
+                .collect(Collectors.toList());
+
+        return LadderResult.of(this.playerGroup.getPlayers(), finalPrizes);
+    }
+
     public List<Player> getPlayers() {
         return playerGroup.getPlayers();
     }

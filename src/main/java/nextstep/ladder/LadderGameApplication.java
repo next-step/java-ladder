@@ -1,9 +1,6 @@
 package nextstep.ladder;
 
-import nextstep.ladder.model.Ladder;
-import nextstep.ladder.model.LadderGame;
-import nextstep.ladder.model.Prize;
-import nextstep.ladder.model.RandomLineGenerator;
+import nextstep.ladder.model.*;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
@@ -19,9 +16,13 @@ public class LadderGameApplication {
         LadderGame ladderGame = new LadderGame(playerNames);
         Ladder ladder = ladderGame.makeLadder(height, new RandomLineGenerator());
 
+        LadderResult ladderResult = ladderGame.makeLadderResult(prizes);
+
         ResultView.printResultLetters();
         ResultView.printPlayers(ladderGame.getPlayers());
         ResultView.printLadder(ladder);
         ResultView.printPrizes(prizes);
+
+        System.out.println(ladderResult.toString());
     }
 }

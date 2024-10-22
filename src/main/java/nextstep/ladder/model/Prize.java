@@ -1,16 +1,16 @@
 package nextstep.ladder.model;
 
 public class Prize {
-    private String value;
+    private String worth;
 
-    public Prize(String value) {
-        if (value.isBlank()) {
+    public Prize(String worth) {
+        if (worth.isBlank()) {
             throw new IllegalArgumentException("Prize value cannot be blank");
         }
-        this.value = value;
+        this.worth = worth;
     }
 
-    public String getValue() {
-        return value;
+    public String getWorth() {
+        return worth;
     }
 }

@@ -19,6 +19,13 @@ public class Ladder {
         return lines;
     }
 
+    public int move(int startIdx) {
+        return lines.stream()
+                .reduce(startIdx,
+                        (result, line) -> line.move(result),
+                        (result1, result2) -> result1);
+    }
+
 
     @Override
     public boolean equals(Object o) {

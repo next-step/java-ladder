@@ -16,6 +16,6 @@ public class PrizeTest {
         Prize prize = new Prize(prizeValue);
 
         //then
-        Assertions.assertThat(prize.getValue()).isEqualTo(prizeValue);
+        Assertions.assertThat(prize.getWorth()).isEqualTo(prizeValue);
     }
 }
