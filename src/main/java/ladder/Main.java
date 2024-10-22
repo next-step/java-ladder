@@ -9,7 +9,8 @@ public class Main {
 
     public static void main(String[] args) {
         Players players = InputView.inputPlayers();
-        InputResult inputResult = InputView.inputResult(players.size());
+        String[] inputResults = InputView.inputResult();
+        InputResult inputResult = new InputResult(inputResults, players.size());
         int height = InputView.inputHeight();
 
         Ladder ladder = new Ladder(height, players.size());
