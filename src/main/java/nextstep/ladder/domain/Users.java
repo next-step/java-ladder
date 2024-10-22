@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 public class Users {
     private final Set<User> users;
 
-    public Users(Set<User> users) {
+    private Users(Set<User> users) {
         this.users = users;
     }
 

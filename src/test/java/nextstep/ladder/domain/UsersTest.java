@@ -13,7 +13,7 @@ class UsersTest {
     @Test
     @DisplayName("성공 - getUsers 메서드가 유저 목록을 반환한다.")
     void getUsersTest() {
-        Users users = new Users(initUser());
+        Users users = initUser();
         assertThat(users.getUsers())
                 .hasSize(3)
                 .extracting(User::getName)
@@ -23,7 +23,7 @@ class UsersTest {
     @Test
     @DisplayName("실패 - getUsers 메서드가 반환된 List를 수정했을 때 예외가 발생한다.")
     void throwExceptionWhenModifyingReturnedList() {
-        Set<User> findUsers = new Users(initUser()).getUsers();
+        Set<User> findUsers = initUser().getUsers();
         assertThatThrownBy(() -> findUsers.add(new User("둘리")))
                 .isInstanceOf(UnsupportedOperationException.class);
     }
@@ -31,14 +31,12 @@ class UsersTest {
     @Test
     @DisplayName("성공 - size 메서드가 유저의 수를 반환한다.")
     void sizeTest() {
-        Users users = new Users(initUser());
+        Users users = initUser();
         assertThat(users.size())
                 .isEqualTo(initUser().size());
     }
 
-    private Set<User> initUser() {
-        return Set.of(new User("홍길동"),
-                new User("전우치"),
-                new User("고길동"));
+    private Users initUser() {
+        return Users.from(Set.of("홍길동", "전우치", "고길동"));
     }
 }
