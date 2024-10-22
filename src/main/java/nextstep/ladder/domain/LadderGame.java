@@ -16,4 +16,12 @@ public class LadderGame {
     public Ladder getLadder() {
         return ladder;
     }
+
+    public String getLadderAsString() {
+        StringBuilder builder = new StringBuilder();
+        ladder.getMapAsString().forEach(row ->
+            builder.append(row).append("|").append("\n")
+        );
+        return builder.toString();
+    }
 }

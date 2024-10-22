@@ -21,11 +21,7 @@ public class ResultView {
     }
 
     private static void printLadderMap(LadderGame ladderGame) {
-        StringBuilder builder = new StringBuilder();
-        ladderGame.getLadder().getMapAsString().forEach(row ->
-            builder.append(row).append("|").append("\n")
-        );
-        System.out.println(builder);
+        System.out.println(ladderGame.getLadderAsString());
     }
 
     private static void printPlayers(LadderGame ladderGame) {
