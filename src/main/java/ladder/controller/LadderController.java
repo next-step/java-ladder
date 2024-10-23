@@ -1,7 +1,7 @@
 package ladder.controller;
 
 import ladder.domain.LadderResult;
-import ladder.domain.Lines;
+import ladder.domain.Ladder;
 import ladder.domain.Member;
 import ladder.domain.Members;
 import ladder.domain.RandomStrategy;
@@ -22,10 +22,10 @@ public class LadderController {
         Rewords rewords = inputView.getPlayRewords();
         int ladderHeight = inputView.getLadderHeight();
 
-        Lines lines = new Lines(playMembers.getSize(), ladderHeight, randomStrategy);
-        resultView.printLadders(playMembers, lines, rewords);
+        Ladder ladder = new Ladder(playMembers.getSize(), ladderHeight, randomStrategy);
+        resultView.printLadders(playMembers, ladder, rewords);
 
-        LadderResult result = lines.playLadders(playMembers, rewords);
+        LadderResult result = ladder.playLadders(playMembers, rewords);
         Member memberResult = inputView.getMemberResult();
         resultView.printResult(result, memberResult);
     }

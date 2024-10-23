@@ -7,16 +7,16 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Lines {
+public class Ladder {
     private final List<Line> lines;
 
-    public Lines(int memberSize, int height, CreateStrategy createStrategy) {
+    public Ladder(int memberSize, int height, CreateStrategy createStrategy) {
         this(IntStream.range(0, height)
                 .mapToObj(num -> new Line(memberSize, createStrategy))
                 .collect(Collectors.toList()));
     }
 
-    public Lines(List<Line> lines) {
+    public Ladder(List<Line> lines) {
         this.lines = lines;
     }
 
