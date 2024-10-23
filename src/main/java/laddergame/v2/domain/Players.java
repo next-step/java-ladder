@@ -13,6 +13,10 @@ public class Players {
         this.players = players;
     }
 
+    public Player get(int startPosition){
+        return players.get(startPosition);
+    }
+
     public int size(){
         return players.size();
     }
