@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import ladder.exception.InvalidHeightOfLadderException;
+import ladder.exception.InvalidNumberOfPlayersException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,13 +16,24 @@ public class Ladder {
     }
 
     private List<Line> createLadder(int heightOfLadder, int numberOfPlayers) {
-        if (heightOfLadder < 1) {
-            throw new InvalidHeightOfLadderException();
-        }
+        validateHeightOfLadder(heightOfLadder);
+        validateNumberOfPlayers(numberOfPlayers);
 
         return IntStream.range(0, heightOfLadder)
                 .mapToObj(i -> new Line(numberOfPlayers))
                 .collect(Collectors.toList());
+    }
+
+    private void validateHeightOfLadder(int heightOfLadder) {
+        if (heightOfLadder < 1) {
+            throw new InvalidHeightOfLadderException();
+        }
+    }
+
+    private void validateNumberOfPlayers(int numberOfPlayers) {
+        if (numberOfPlayers < 1) {
+            throw new InvalidNumberOfPlayersException();
+        }
     }
 
     public List<Line> getLines() {

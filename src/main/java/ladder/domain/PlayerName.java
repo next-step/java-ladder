@@ -9,11 +9,15 @@ public class PlayerName {
     private final String name;
 
     private PlayerName(String name) {
+        validateName(name);
+        this.name = name;
+    }
+
+    private void validateName(String name) {
         String trimmed = name.trim();
         if (trimmed.isEmpty() || trimmed.length() > NAME_WIDTH) {
             throw new InvalidPlayerNameException();
         }
-        this.name = name;
     }
 
     public static PlayerName of(String name) {
