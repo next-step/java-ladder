@@ -6,20 +6,27 @@ import java.util.Objects;
 import java.util.stream.IntStream;
 
 public class Line {
-    private List<Point> points = new ArrayList<>();
-
-    public Line(int countOfPlayers, LineGenerator lineGenerator) {
-        IntStream.range(0, countOfPlayers - 1)
-                .forEach(it -> this.points.add(makeLine(it, lineGenerator)));
-        validatePoints(countOfPlayers - 1);
-    }
-
+    private List<Point> points;
 
     public Line(List<Point> points) {
         this.points = points;
         validatePoints(points.size());
     }
 
+    public static Line of(int countOfPlayers, LineGenerator lineGenerator) {
+        List<Point> points = new ArrayList<>();
+        IntStream.range(0, countOfPlayers - 1)
+                .forEach(idx -> {
+                    Point point = new Point();
+                    point.next(hasPreviousLine(idx, points), lineGenerator.generate());
+                    points.add(point);
+                });
+        return new Line(points);
+    }
+
+    private static boolean hasPreviousLine(int idx, List<Point> points) {
+        return !points.isEmpty() && points.get(idx - 1).getValue();
+    }
 
     private void validatePoints(int count) {
         IntStream.range(0, count).forEach(it -> {
@@ -27,17 +34,6 @@ public class Line {
                 throw new IllegalArgumentException("executive true error");
             }
         });
-    }
-
-    private Point makeLine(int i, LineGenerator lineGenerator) {
-        Point point = new Point();
-        point.next(hasPreviousLine(i), lineGenerator.generate());
-        return point;
-    }
-
-
-    private boolean hasPreviousLine(int i) {
-        return !this.points.isEmpty() && points.get(i - 1).getValue();
     }
 
     public List<Point> getPoints() {

@@ -25,7 +25,7 @@ public class LadderTest {
         //when
         Ladder ladder = new Ladder(
                 IntStream.range(0, height)
-                        .mapToObj(it -> new Line(countOfPlayers, lineGenerator))
+                        .mapToObj(it -> Line.of(countOfPlayers, lineGenerator))
                         .collect(Collectors.toList())
         );
 

@@ -18,7 +18,7 @@ public class LadderGame {
             throw new IllegalArgumentException("Height must be greater than 0");
         }
         List<Line> lines = IntStream.range(0, height)
-                .mapToObj(it -> new Line(this.playerGroup.getPlayers().size(), lineGenerator))
+                .mapToObj(it -> Line.of(this.playerGroup.getPlayers().size(), lineGenerator))
                 .collect(Collectors.toList());
         this.ladder = new Ladder(lines);
         return this.ladder;

@@ -15,7 +15,7 @@ public class LineTest {
     @DisplayName("line 생성")
     void createLineTest() {
         //given
-        Line line = new Line(4, new MockLineGenerator());
+        Line line = Line.of(4, new MockLineGenerator());
 
         //when
         List<Point> points = line.getPoints();
