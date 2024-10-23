@@ -36,8 +36,15 @@ public class ResultView {
 
     public static void printPrizes(List<Prize> prizes) {
         StringBuilder sb = new StringBuilder();
-        prizes.forEach(player -> sb.append(" ".repeat(getCountOfSpace(player.getWorth().length()))).append(player.getWorth()));
+        prizes.forEach(player -> sb.append(" ".repeat(getCountOfSpace(player.getWorth()))).append(player.getWorth()));
         System.out.println(sb);
+    }
+
+    private static int getCountOfSpace(String input) {
+        if (input.equals("꽝")) {
+            return getCountOfSpace(input.length());
+        }
+        return input.length();
     }
 
     private static int getCountOfSpace(int length) {
