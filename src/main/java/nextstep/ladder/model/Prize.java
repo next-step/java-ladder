@@ -1,5 +1,7 @@
 package nextstep.ladder.model;
 
+import java.util.Objects;
+
 public class Prize {
     private String worth;
 
@@ -12,5 +14,22 @@ public class Prize {
 
     public String getWorth() {
         return worth;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Prize)) {
+            return false;
+        }
+        Prize prize = (Prize) o;
+        return Objects.equals(getWorth(), prize.getWorth());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getWorth());
     }
 }
