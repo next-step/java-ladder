@@ -3,6 +3,7 @@ package step2.model;
 import step2.util.StringUtil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class LadderPrize {
@@ -12,9 +13,9 @@ public class LadderPrize {
 
     private LadderPrize(Person person, String[] ladderPrize) {
         confirmLadderPrizeSize(person, ladderPrize);
-        for(String prize : ladderPrize) {
-            prizes.add(Prize.createPrize(prize));
-        }
+        Arrays.stream(ladderPrize)
+                .map(Prize::createPrize)
+                .forEach(prizes::add);
     }
 
     //사다리보상을 생성한다.

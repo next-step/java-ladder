@@ -3,6 +3,7 @@ package step2.model;
 import step2.util.StringUtil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -17,9 +18,9 @@ public class Person {
 
     private Person(String[] personArr) {
         confirmPersonCount(personArr);
-        for(String name : personArr) {
-            names.add(Name.createName(name));
-        }
+        Arrays.stream(personArr)
+                .map(Name::createName)
+                .forEach(names::add);
     }
 
     // 사다리게임 참여인원을 생성한다.

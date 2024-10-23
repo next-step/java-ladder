@@ -5,6 +5,8 @@ import step2.ganerator.RandomGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder {
 
@@ -13,13 +15,13 @@ public class Ladder {
 
     private final static int MINIMUM_LADDER_COUNT = 2;
 
-    private final List<Line> line = new ArrayList<>();
+    private List<Line> line = new ArrayList<>();
 
     public Ladder(Person person, int ladderSize, RandomGenerator randomGenerator) {
         confirmLadderCount(ladderSize);
-        for (int i = 0; i < ladderSize; i++) {
-            line.add(Line.createLine(person, randomGenerator));
-        }
+        this.line = IntStream.rangeClosed(0, ladderSize - 1)
+                .mapToObj(i -> Line.createLine(person, randomGenerator))
+                .collect(Collectors.toList());
     }
 
     //사다리를 생성한다.
