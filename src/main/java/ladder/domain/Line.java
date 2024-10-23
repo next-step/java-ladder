@@ -24,7 +24,7 @@ public class Line {
     }
 
     private void addHorizontal(int num, Strategy strategy) {
-        if (isValidate(num) && strategy.randomLadder()) {
+        if (isValid(num) && strategy.randomLadder()) {
             this.points.add(true);
             return;
         }
@@ -32,15 +32,15 @@ public class Line {
     }
 
     private List<Boolean> parse(Boolean... booleans) {
-        isValidate(booleans);
+        isValid(booleans);
 
         // List로 반환
         return Arrays.asList(booleans);
     }
 
-    private static void isValidate(Boolean... booleans) {
+    private static void isValid(Boolean... booleans) {
         if (booleans == null || booleans.length == 0) {
-            throw new IllegalArgumentException("라인의 점은 비어 있을 수 없습니다.");
+            throw new IllegalArgumentException(ZERO_ERROR_MESSAGE);
         }
 
         // Stream을 사용하여 연속된 true 값 검증
@@ -48,12 +48,12 @@ public class Line {
                 .filter(i -> booleans[i] && booleans[i - 1])
                 .findFirst()
                 .ifPresent(i -> {
-                    throw new IllegalArgumentException("연속으로 true 값이 올 수 없습니다.");
+                    throw new IllegalArgumentException(CONSECUTIVE_ERROR_MESSAGE);
                 });
     }
 
-    public boolean isValidate(int num) {
-        return !points.isEmpty() && !points.get(num - 1);
+    public boolean isValid(int number) {
+        return !points.isEmpty() && !points.get(number - 1);
     }
 
     public List<Boolean> getPoints() {
