@@ -16,14 +16,14 @@ public class ResultView implements Visible {
     public void view(GameOrganizer gameOrganizer, Ladder ladder) {
         String player = "";
         MatchResult matchResult = gameOrganizer.play(ladder);
+        StringBuilder stringBuilder = new StringBuilder();
         while (!"all".equalsIgnoreCase(player)) {
-            System.out.println();
-            System.out.println("결과를 보고 싶은 사람은?");
+            System.out.println("\n결과를 보고 싶은 사람은?");
             player = SCANNER.nextLine();
 
-            System.out.println();
-            System.out.println("실행결과");
-            System.out.println(getResult(player, matchResult));
+            stringBuilder.append("\n").append("실행결과").append(getResult(player, matchResult));
+            System.out.println(stringBuilder);
+            stringBuilder.setLength(0);
         }
     }
 
