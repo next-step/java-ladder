@@ -23,5 +23,4 @@ class ladderTest {
         assertThatThrownBy(() -> new Ladder(0, users, alwaysGenerateStrategy))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
 }
