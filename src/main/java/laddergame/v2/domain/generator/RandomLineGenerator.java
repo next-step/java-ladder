@@ -1,4 +1,7 @@
-package laddergame.v2.domain;
+package laddergame.v2.domain.generator;
+
+import laddergame.v2.domain.Line;
+import laddergame.v2.domain.Position;
 
 import java.util.ArrayList;
 import java.util.List;
