@@ -26,6 +26,10 @@ public class LadderGame {
     }
 
     public LadderResult makeLadderResult(List<Prize> prizes) {
+        if (this.playerGroup.getPlayers().size() != prizes.size()) {
+            throw new IllegalArgumentException("Number of players does not match");
+        }
+        
         List<Prize> finalPrizes = IntStream.range(0, this.playerGroup.getSize())
                 .mapToObj(i -> prizes.get(this.ladder.move(i)))
                 .collect(Collectors.toList());
