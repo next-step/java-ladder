@@ -7,11 +7,10 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Persons {
-
-    private final static String DELIMITER = ",";
-    private final static String DELIMITER_ERROR_MESSAGE = "구분자는 ,를 입력해주세요.";
     private final static int MIN_PERSON_NUMBERS = 2;
     private final static String MIN_PERSON_NUMBERS_ERROR_MESSAGE = "참여 인원은 2명이상이어야 합니다.";
+    private final static String DELIMITER = ",";
+
     private final List<Person> persons;
 
     public Persons(String... input) {
