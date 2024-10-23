@@ -25,6 +25,13 @@ public class Point {
         return new Point(this.right, right);
     }
 
+    public Point next(){
+        if(right){
+            return next(false);
+        }
+        return next(RANDOM.nextBoolean());
+    }
+
     public Point last() {
         return new Point(this.right, false);
     }
