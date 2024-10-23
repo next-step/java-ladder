@@ -9,6 +9,10 @@ public class Line {
         this.positions = positions;
     }
 
+    public int move(int position){
+        return positions.get(position).move();
+    }
+
     public List<Position> getPositions() {
         return positions;
     }
