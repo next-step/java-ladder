@@ -10,6 +10,10 @@ import java.util.stream.IntStream;
 public class LadderResult {
     private LinkedHashMap<Player, Prize> result;
 
+    public LadderResult(LinkedHashMap<Player, Prize> result) {
+        this.result = result;
+    }
+
     public static LadderResult of(List<Player> players, List<Prize> prizes) {
         LinkedHashMap<Player, Prize> result = IntStream.range(0, players.size())
                 .boxed()
@@ -20,10 +24,6 @@ public class LadderResult {
                         LinkedHashMap::new
                 ));
         return new LadderResult(result);
-    }
-
-    public LadderResult(LinkedHashMap<Player, Prize> result) {
-        this.result = result;
     }
 
     public LinkedHashMap<Player, Prize> getAllResult() {
