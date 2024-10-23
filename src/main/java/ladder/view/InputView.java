@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import ladder.Player;
-import ladder.Players;
+import ladder.PlayerOld;
+import ladder.PlayersOld;
 
 public class InputView {
 
     private static final String DELIMITER = ",";
 
-    public static Players inputPlayers() {
+    public static PlayersOld inputPlayers() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         return splitPlayer(scanner.nextLine());
@@ -43,13 +43,13 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    private static Players splitPlayer(String inputPlayers) {
+    private static PlayersOld splitPlayer(String inputPlayers) {
         String[] players = inputPlayers.split(DELIMITER);
-        List<Player> playerList = new ArrayList<>();
+        List<PlayerOld> playerOldList = new ArrayList<>();
         for (String player : players) {
-            playerList.add(new Player(player));
+            playerOldList.add(new PlayerOld(player));
         }
 
-        return new Players(playerList);
+        return new PlayersOld(playerOldList);
     }
 }

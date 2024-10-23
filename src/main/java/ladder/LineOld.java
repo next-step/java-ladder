@@ -5,21 +5,21 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class Line {
+public class LineOld {
 
     public static final int GO_NEXT = 1;
     public static final int GO_PREV = 0;
     private final List<Boolean> points;
 
-    public Line(Boolean... points) {
+    public LineOld(Boolean... points) {
         this(Arrays.stream(points).collect(Collectors.toList()));
     }
 
-    public Line(List<Boolean> points) {
+    public LineOld(List<Boolean> points) {
         this.points = points;
     }
 
-    public Line(int ladderSize, LineGenerator lineGenerator) {
+    public LineOld(int ladderSize, LineGenerator lineGenerator) {
         this.points = lineGenerator.run(ladderSize);
     }
 
@@ -67,10 +67,10 @@ public class Line {
     public boolean equals(Object o) {
         if (this == o)
             return true;
-        if (!(o instanceof Line))
+        if (!(o instanceof LineOld))
             return false;
-        Line line = (Line)o;
-        return Objects.equals(points, line.points);
+        LineOld lineOld = (LineOld)o;
+        return Objects.equals(points, lineOld.points);
     }
 
     @Override
