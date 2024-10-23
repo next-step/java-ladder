@@ -42,12 +42,12 @@ public class Line {
 
     public int move(int startIdx) {
         if (hasNext(startIdx)) {
-            return startIdx + 1;
+            return MoveType.NEXT.getNextMove(startIdx);
         }
         if (hasPrevious(startIdx)) {
-            return startIdx - 1;
+            return MoveType.BACK.getNextMove(startIdx);
         }
-        return startIdx;
+        return MoveType.STAY.getNextMove(startIdx);
     }
 
     private boolean hasPrevious(int startIdx) {
