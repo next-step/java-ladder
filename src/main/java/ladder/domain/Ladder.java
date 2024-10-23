@@ -9,17 +9,17 @@ import java.util.Objects;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private final LadderNumber weight;
-    private final LadderNumber height;
+    private final PositiveNumber weight;
+    private final PositiveNumber height;
     private final List<Line> lines = new ArrayList<>();
     private final Strategy strategy;
 
     public Ladder(int weight, int height, Strategy strategy) {
-        this(new LadderNumber(weight), new LadderNumber(height), strategy);
+        this(new PositiveNumber(weight), new PositiveNumber(height), strategy);
         createLines();
     }
 
-    public Ladder(LadderNumber weight, LadderNumber height, Strategy strategy) {
+    public Ladder(PositiveNumber weight, PositiveNumber height, Strategy strategy) {
         this.weight = weight;
         this.height = height;
         this.strategy = strategy;
