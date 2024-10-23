@@ -20,4 +20,5 @@ public class InputView {
         scanner.nextLine();
         return count;
     }
+
 }

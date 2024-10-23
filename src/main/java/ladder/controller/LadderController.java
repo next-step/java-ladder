@@ -9,4 +9,5 @@ public class LadderController {
         LadderGame ladderGame = new LadderGame();
         ladderGame.play();
     }
+
 }

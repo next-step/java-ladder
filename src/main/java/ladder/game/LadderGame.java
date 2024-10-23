@@ -18,4 +18,5 @@ public class LadderGame {
 
         getResultView(ladder, persons);
     }
+
 }

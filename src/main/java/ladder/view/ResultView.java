@@ -50,4 +50,5 @@ public class ResultView {
         }
         return NO_LADDER;
     }
+
 }

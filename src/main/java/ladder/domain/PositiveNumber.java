@@ -20,4 +20,5 @@ public class PositiveNumber {
     public int getNumber() {
         return number;
     }
+
 }

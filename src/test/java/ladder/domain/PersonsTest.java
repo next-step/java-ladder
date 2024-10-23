@@ -18,4 +18,5 @@ public class PersonsTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageMatching("참여 인원은 2명이상이어야 합니다.");
     }
+
 }

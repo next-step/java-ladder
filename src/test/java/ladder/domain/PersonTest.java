@@ -13,4 +13,5 @@ public class PersonTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageMatching("이름은 5글자를 넘을 수 없습니다.");
     }
+
 }

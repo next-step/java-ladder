@@ -21,4 +21,5 @@ class LadderTest {
                 .hasMessageMatching("높이는 2 이상이어야 합니다.");
 
     }
+
 }

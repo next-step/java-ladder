@@ -9,4 +9,5 @@ public class LineStrategy implements Strategy {
     public boolean randomLadder() {
         return random.nextBoolean();
     }
+
 }
