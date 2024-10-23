@@ -2,7 +2,6 @@ package nextstep.ladder.domain;
 
 import java.util.ArrayDeque;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Deque;
 import java.util.List;
 import java.util.Random;
@@ -40,13 +39,13 @@ public class LadderLine {
         return RANDOM.nextInt(RANDOM_BOUND) == VALUE_FOR_LINE;
     }
 
-    public <T> void play(List<T> elements) {
-        if (lines.size() != lineCount(elements)) {
+    public void play(List<Player> players) {
+        if (lines.size() != lineCount(players)) {
             throw new IllegalArgumentException("사다리 라인 수와 참가자 리스트 수가 맞지 않습니다.");
         }
 
         for (int i = 0; i < lines.size(); i++) {
-            swap(elements, i);
+            switchPosition(players, i);
         }
     }
 
@@ -54,9 +53,9 @@ public class LadderLine {
         return elements.size() - 1;
     }
 
-    private <T> void swap(List<T> elements, int i) {
+    private void switchPosition(List<Player> players, int i) {
         if (lines.get(i)) {
-            Collections.swap(elements, i, i + 1);
+            players.get(i).switchPosition(players.get(i + 1));
         }
     }
 

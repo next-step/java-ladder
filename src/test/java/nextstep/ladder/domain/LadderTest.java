@@ -6,6 +6,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -31,26 +32,30 @@ public class LadderTest {
             String ladderLine4,
             String result
     ) {
-        List<Player> players = toPlayerList("0", "1", "2", "3", "4");
         Ladder ladder = new Ladder(List.of(
                 toLadderLine(ladderLine1),
                 toLadderLine(ladderLine2),
                 toLadderLine(ladderLine3),
                 toLadderLine(ladderLine4)));
 
+        List<Player> players = toPlayers();
         ladder.play(players);
 
         assertThat(players).containsExactly(toPlayerArray(result));
     }
 
-    private Player[] toPlayerArray(String text) {
-        return toPlayerList(text.split(",")).toArray(new Player[] {});
+    private static List<Player> toPlayers() {
+        return IntStream.range(0, 5)
+                .mapToObj(i -> new Player(String.valueOf(i), i))
+                .collect(Collectors.toList());
     }
 
-    private List<Player> toPlayerList(String... indexedNames) {
-        return Stream.of(indexedNames)
-                .map(i -> new Player(String.valueOf(i)))
-                .collect(Collectors.toList());
+    private Player[] toPlayerArray(String text) {
+        String[] positions = text.split(",");
+
+        return IntStream.range(0, 5)
+                .mapToObj(i -> new Player(String.valueOf(i), Integer.parseInt(positions[i])))
+                .toArray(Player[]::new);
     }
 
     private LadderLine toLadderLine(String text) {

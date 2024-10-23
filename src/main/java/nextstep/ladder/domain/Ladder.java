@@ -25,7 +25,7 @@ public class Ladder {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public <T> void play(List<T> target) {
-        ladderLines.forEach(ladderLine -> ladderLine.play(target));
+    public void play(List<Player> players) {
+        ladderLines.forEach(ladderLine -> ladderLine.play(players));
     }
 }
