@@ -14,6 +14,10 @@ public class Player {
         this.name = name;
     }
 
+    public boolean isSameName(String name) {
+        return name.equals(this.name);
+    }
+
     public String getName() {
         return name;
     }

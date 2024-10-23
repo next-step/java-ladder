@@ -36,6 +36,17 @@ class PlayersTest {
         assertThat(players.get(0)).isEqualTo(name1);
         assertThat(players.get(1)).isEqualTo(name2);
     }
+    
+    @DisplayName("이름으로 플레이어 조회한다")
+    @Test
+    void findBy(){
+        Player name1 = new Player("name1");
+        Player name2 = new Player("name2");
+        Players players = new Players(List.of(name1, name2));
+
+        players.findBy("name1").get();
+        assertThat(players.findBy("name1").get()).isEqualTo(name1);
+    }
 
     private Players createPlayer(String... names){
         List<Player> players = new ArrayList<>();

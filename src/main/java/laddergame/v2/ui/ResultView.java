@@ -1,9 +1,6 @@
 package laddergame.v2.ui;
 
-import laddergame.v2.domain.Ladder;
-import laddergame.v2.domain.LadderResult;
-import laddergame.v2.domain.Players;
-import laddergame.v2.domain.Position;
+import laddergame.v2.domain.*;
 
 import java.util.List;
 
@@ -58,5 +55,33 @@ public class ResultView {
         return gameResultsByInputOrder.stream()
                 .map(result -> result + SPACING_BETWEEN_PLAYERS)
                 .collect(joining());
+    }
+
+    public static void showGamePlayResult(LadderPlayResult playResult){
+        showGamePlayResult(null, playResult);
+    }
+
+    public static void showGamePlayResult(Player player, LadderPlayResult playResult) {
+        System.out.println();
+        System.out.println(RESULT_START_MESSAGE);
+        if(player != null){
+            showIndividualGameResult(player, playResult);
+            return;
+        }
+        showAllGameResults(playResult);
+    }
+
+    private static void showAllGameResults(LadderPlayResult playResult) {
+        playResult.getResults().forEach((player, result) -> {
+            System.out.printf(GAME_RESULT_FORMAT, player.getName(), result);
+        });
+    }
+
+    private static void showIndividualGameResult(Player player, LadderPlayResult playResult){
+        System.out.println(playResult.get(player));
+    }
+
+    public static void showErrorMessage(Exception e){
+        System.out.println(e.getMessage());
     }
 }
