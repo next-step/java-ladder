@@ -14,7 +14,7 @@ public class LadderGame {
     public void play() {
         Persons persons = new Persons(participantQuestion());
         Strategy strategy = new LineStrategy();
-        Ladder ladder = new Ladder(persons.getSize(), ladderCountQuestion(), strategy);
+        Ladder ladder = Ladder.of(persons.getSize(), ladderCountQuestion(), strategy);
 
         getResultView(ladder, persons);
     }

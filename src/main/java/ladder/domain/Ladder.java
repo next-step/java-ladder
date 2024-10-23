@@ -6,28 +6,26 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private final PositiveNumber weight;
     private final PositiveNumber height;
-    private final List<Line> lines = new ArrayList<>();
-    private final Strategy strategy;
+    private final List<Line> lines;
 
-    public Ladder(int weight, int height, Strategy strategy) {
-        this(new PositiveNumber(weight), new PositiveNumber(height), strategy);
-        createLines();
-    }
-
-    public Ladder(PositiveNumber weight, PositiveNumber height, Strategy strategy) {
-        this.weight = weight;
+    public Ladder(PositiveNumber height, List<Line> lines) {
         this.height = height;
-        this.strategy = strategy;
+        this.lines = lines;
     }
 
-    private void createLines() {
-        IntStream.range(0, height.getNumber())
-                .forEach(n -> this.lines.add(new Line(weight.getNumber(), strategy)));
+    public static Ladder of(int weight, int height, Strategy strategy) {
+        return new Ladder(new PositiveNumber(height), createLines(weight, height, strategy));
+    }
+
+    private static List<Line> createLines(int weight, int height, Strategy strategy) {
+        return IntStream.range(0, height)
+                .mapToObj(n -> new Line(weight, strategy))
+                .collect(Collectors.toList());
     }
 
     public List<Line> getLines() {
@@ -46,4 +44,5 @@ public class Ladder {
     public int hashCode() {
         return Objects.hash(height, lines);
     }
+
 }
