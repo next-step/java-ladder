@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import step2.ganerator.LadderGenerator;
 
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class LadderTest {
     @Test
     void inputMaxLadderTest() {
         Person person = Person.createPerson("pobi,honux,crong,jk");
-        Ladder ladder = Ladder.createLadder(person, 5, () -> true);;
+        Ladder ladder = Ladder.createLadder(person, 5, new LadderGenerator());
         assertThat(ladder.getLine().size()).isEqualTo(5);
     }
 
@@ -31,7 +32,7 @@ public class LadderTest {
     @Test
     void createLadderTest() {
         Person person = Person.createPerson("pobi,honux,crong,jk");
-        Ladder ladder = Ladder.createLadder(person, 5, () -> true);;
+        Ladder ladder = Ladder.createLadder(person, 5, () -> true);
         assertThat(ladder.getLine())
                 .extracting(Line::getPoints)
                 .containsExactly(
@@ -57,7 +58,7 @@ public class LadderTest {
     @CsvSource(value = {"0:1", "1:0", "2:3", "3:2"}, delimiter = ':')
     void startLadderGame(int currentIndex, int endIndex) {
         Person person = Person.createPerson("pobi,honux,crong,jk");
-        Ladder ladder = Ladder.createLadder(person, 5, () -> true);;
+        Ladder ladder = Ladder.createLadder(person, 5, () -> true);
 
         assertThat(ladder.startLadderGame(new int[]{currentIndex})).isEqualTo(new int[]{endIndex});
     }
@@ -66,7 +67,7 @@ public class LadderTest {
     @Test
     void startLadderGameOverMaxThrowException() {
         Person person = Person.createPerson("pobi,honux,crong,jk");
-        Ladder ladder = Ladder.createLadder(person, 5, () -> true);;
+        Ladder ladder = Ladder.createLadder(person, 5, () -> true);
         assertThatThrownBy(() -> ladder.startLadderGame(new int[]{5}))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사다리의 너비 크기는 0미만 5를 초과하면 안됩니다.");
