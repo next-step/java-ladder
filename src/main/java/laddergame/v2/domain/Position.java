@@ -33,4 +33,8 @@ public class Position {
     public int move() {
         return value + point.move().getOffset();
     }
+
+    public boolean hasBridge(){
+        return point.isRight();
+    }
 }
