@@ -26,6 +26,10 @@ public class Position {
         return new Position(this.value + 1, point.last());
     }
 
+    public boolean isInRange(final int playerCount) {
+        return playerCount - 2 > value;
+    }
+
     public int move() {
         return value + point.move().getOffset();
     }
