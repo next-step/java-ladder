@@ -13,17 +13,19 @@ import java.util.Optional;
 public class MatchResult {
 
     private final Map<String, PlayerResult> results;
+    private final List<String> ladderResults;
 
-    public MatchResult(Map<String, PlayerResult> results) {
+    public MatchResult(Map<String, PlayerResult> results, List<String> ladderResults) {
         this.results = results;
+        this.ladderResults = ladderResults;
     }
 
     public static MatchResult of(List<Player> players, List<String> ladderResults) {
         Map<String, PlayerResult> results = new LinkedHashMap<>();
-        for (int i = 0; i < players.size(); i++) {
-            results.put(players.get(i).getName(), new PlayerResult(players.get(i), ladderResults.get(i)));
-        }
-        return new MatchResult(results);
+        players.forEach(player ->
+                results.put(player.getName(), new PlayerResult(player, ladderResults.get(player.getPosition()))));
+
+        return new MatchResult(results, ladderResults);
     }
 
     public PlayerResult playResult(String playerName) {
@@ -34,6 +36,10 @@ public class MatchResult {
 
     public Collection<PlayerResult> allPlayResults() {
         return Collections.unmodifiableCollection(results.values());
+    }
+
+    public Collection<String> ladderResults() {
+        return Collections.unmodifiableList(ladderResults);
     }
 
     @Override
