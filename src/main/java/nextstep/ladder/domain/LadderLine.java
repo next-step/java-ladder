@@ -11,6 +11,8 @@ import java.util.stream.Stream;
 
 public class LadderLine {
 
+    private static final int RANDOM_BOUND = 2;
+    private static final int VALUE_FOR_LINE = 1;
     private static final Random RANDOM = new Random();
 
     private final List<Boolean> lines;
@@ -35,17 +37,21 @@ public class LadderLine {
     }
 
     private static boolean booleanFromRandom() {
-        return RANDOM.nextInt(2) == 1;
+        return RANDOM.nextInt(RANDOM_BOUND) == VALUE_FOR_LINE;
     }
 
     public <T> void play(List<T> elements) {
-        if (lines.size() != (elements.size() - 1)) {
-            throw new IllegalArgumentException("사다리 라인 수와 인덱스 리스트 수가 맞지 않습니다.");
+        if (lines.size() != lineCount(elements)) {
+            throw new IllegalArgumentException("사다리 라인 수와 참가자 리스트 수가 맞지 않습니다.");
         }
 
         for (int i = 0; i < lines.size(); i++) {
             swap(elements, i);
         }
+    }
+
+    private int lineCount(List<?> elements) {
+        return elements.size() - 1;
     }
 
     private <T> void swap(List<T> elements, int i) {
