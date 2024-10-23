@@ -37,11 +37,11 @@ public class LadderResult {
         return result;
     }
 
-    public Map<Player, Prize> getResultByInput(String input) {
-        if (input.equals("all")) {
+    public Map<Player, Prize> getResultByInput(Player player) {
+        if (player.isAllPlayers()) {
             return getAllResult();
         }
-        return getResultByPlayer(new Player(input));
+        return getResultByPlayer(player);
     }
 
     @Override
