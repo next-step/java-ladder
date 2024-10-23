@@ -39,7 +39,7 @@ public class ResultView {
 
 
     public void showBettings(Bettings bettings) {
-        String namesLine = bettings.getBettongs()
+        String namesLine = bettings.getBettings()
                 .stream()
                 .map(name -> String.format("%7s", name))
                 .collect(Collectors.joining());

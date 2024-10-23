@@ -14,11 +14,11 @@ public class Position {
         this.value = value;
     }
 
-    public Position decrease() {
+    public Position prev() {
         return new Position(value - ONE);
     }
 
-    public Position increase() {
+    public Position next() {
         return new Position(value + ONE);
     }
 
@@ -26,8 +26,8 @@ public class Position {
         return value > ZERO;
     }
 
-    public boolean isLessThan(int oterh) {
-        return value < oterh;
+    public boolean isLessThan(int other) {
+        return value < other;
     }
 
     public int getPosition() {

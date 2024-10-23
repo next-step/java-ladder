@@ -28,12 +28,12 @@ public class Line {
     }
 
     public Position move(Position position) {
-        if (position.isGreaterThanZero() && points.get(position.decrease().getPosition())) {
-            return position.decrease();
+        if (position.isGreaterThanZero() && points.get(position.prev().getPosition())) {
+            return position.prev();
         }
 
         if (position.isLessThan(points.size()) && points.get(position.getPosition())) {
-            return position.increase();
+            return position.next();
         }
         return position;
     }

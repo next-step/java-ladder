@@ -18,15 +18,15 @@ class PositionTest {
 
     @DisplayName("위치를 1 증가한 객체를 반환 받을 수 있다.")
     @Test
-    void increase() {
-        assertThat(new Position(1).increase())
+    void next() {
+        assertThat(new Position(1).next())
                 .isEqualTo(new Position(2));
     }
 
     @DisplayName("위치를 1 감소한 객체를 반환 받을 수 있다.")
     @Test
-    void decrease() {
-        assertThat(new Position(1).decrease())
+    void prev() {
+        assertThat(new Position(1).prev())
                 .isEqualTo(new Position(0));
     }
 }

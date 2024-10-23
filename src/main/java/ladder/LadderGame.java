@@ -27,7 +27,7 @@ public class LadderGame {
         Names names = new Names(inputView.getPlayerNamesFromUser());
 
         List<String> bettingsFromUser = inputView.getBettingsFromUser();
-        Bettings bettings = new Bettings(bettingsFromUser);
+        Bettings bettings = new Bettings(bettingsFromUser, names);
 
         Height height = new Height(inputView.getHeightFromUser());
         Lines lines = new Lines(names, height, lineGenerateStrategy);

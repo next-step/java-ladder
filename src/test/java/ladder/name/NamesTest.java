@@ -19,6 +19,7 @@ class NamesTest {
 
         assertThat(name).isEqualTo("green");
     }
+
     @DisplayName("인덱스가 이름 리스트 범위 밖이면 예외로 처리한다.")
     @Test
     void getNameOfThrowingException() {
@@ -28,4 +29,13 @@ class NamesTest {
                 () -> names.getNameOf(3)
         );
     }
+
+    @DisplayName("중복된 이름은 예외로 처리한다.")
+    @Test
+    void duplicateNameThrowingException() {
+        assertThatIllegalArgumentException().isThrownBy(
+                () -> new Names(List.of("green", "green", "red"))
+        );
+    }
+
 }

@@ -15,6 +15,12 @@
   - [x] 사다리 게임 실행 결과를 출력한다.
   - [x] 개인별 이름을 입력하면 개인별 결과를 출력한다.
   - [x] all을 입력하면 전체 참여자의 실행 결과를 출력한다
+- [x] 피드백
+  - [x] 배팅 입력 사이즈 검증
+  - [x] 오타 수정
+  - [x] increase, decrease 메소드명 수정 
+  - [x] 참가자 이름 중복 체크 
+  - [x] LadderResult Map -> List(UserResult) 변경
 ---
 # STEP2 TODO
 # STEP2 DONE
