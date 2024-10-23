@@ -10,7 +10,6 @@ public class LadderResult {
         this.rewordMap = rewordMap;
     }
 
-
     public Reword getReword(Member member) {
         if (!rewordMap.containsKey(member)) {
             throw new IllegalArgumentException("멤버가 존재하지 않습니다.");

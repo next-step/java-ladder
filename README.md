@@ -76,6 +76,7 @@
 - [X] assertAll 로 테스트 묶기
 - [X] Lines 일급 컬렉션 추가
 - [X] 서비스 로직 삭제 (LadderGame 로직 Lines로 이동)
+- [X] 불필요한 공백 제거
 
 ## Step3. 리팩토링 
 
