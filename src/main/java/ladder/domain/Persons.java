@@ -39,7 +39,7 @@ public class Persons {
     }
 
     private static String[] parse(String input) {
-        return validatePersonCount(validateSplit(input).split(DELIMITER));
+        return validatePersonCount(input.split(DELIMITER));
     }
 
     private static String[] validatePersonCount(String[] personArr) {
@@ -47,13 +47,6 @@ public class Persons {
             throw new IllegalArgumentException(MIN_PERSON_NUMBERS_ERROR_MESSAGE);
         }
         return personArr;
-    }
-
-    private static String validateSplit(String input) {
-        if (input.contains(DELIMITER)) {
-            return input;
-        }
-        throw new IllegalArgumentException(DELIMITER_ERROR_MESSAGE);
     }
 
     @Override

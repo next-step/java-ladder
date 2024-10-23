@@ -13,13 +13,6 @@ public class PersonsTest {
     }
 
     @Test
-    void 참가자_이름_리스트_저장_구분자_실패() {
-        assertThatThrownBy(() -> new Persons("pobi.honux"))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageMatching("구분자는 ,를 입력해주세요.");
-    }
-
-    @Test
     void 참가자_이름_리스트_저장_길이_실패() {
         assertThatThrownBy(() -> new Persons("pobi"))
                 .isInstanceOf(IllegalArgumentException.class)
