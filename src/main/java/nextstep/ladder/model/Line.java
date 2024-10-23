@@ -15,10 +15,11 @@ public class Line {
     }
 
 
-    public Line(List<Point> points, LineGenerator lineGenerator) {
+    public Line(List<Point> points) {
         this.points = points;
         validatePoints(points.size());
     }
+
 
     private void validatePoints(int count) {
         IntStream.range(0, count).forEach(it -> {
@@ -33,6 +34,7 @@ public class Line {
         point.next(hasPreviousLine(i), lineGenerator.generate());
         return point;
     }
+
 
     private boolean hasPreviousLine(int i) {
         return !this.points.isEmpty() && points.get(i - 1).getValue();

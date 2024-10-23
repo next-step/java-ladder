@@ -34,7 +34,7 @@ public class LineTest {
 
 
         //when
-        ThrowableAssert.ThrowingCallable callable = () -> new Line(testPoints, new MockLineGenerator());
+        ThrowableAssert.ThrowingCallable callable = () -> new Line(testPoints);
 
         //then
         Assertions.assertThatThrownBy(callable)

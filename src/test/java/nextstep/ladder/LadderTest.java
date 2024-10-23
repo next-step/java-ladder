@@ -38,8 +38,7 @@ public class LadderTest {
                         new Point(true),
                         new Point(false),
                         new Point(true)
-                ),
-                        lineGenerator))
+                )))
         );
 
         Assertions.assertThat(ladder).isEqualTo(expectedLadder);

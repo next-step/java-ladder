@@ -7,7 +7,6 @@ import java.util.stream.IntStream;
 public class LadderGame {
     private Ladder ladder;
     private PlayerGroup playerGroup;
-    private LadderResult ladderResult;
 
     public LadderGame(List<String> names) {
         this.ladder = new Ladder();
@@ -29,13 +28,12 @@ public class LadderGame {
         if (this.playerGroup.getPlayers().size() != prizes.size()) {
             throw new IllegalArgumentException("Number of players does not match");
         }
-        
+
         List<Prize> finalPrizes = IntStream.range(0, this.playerGroup.getSize())
                 .mapToObj(i -> prizes.get(this.ladder.move(i)))
                 .collect(Collectors.toList());
 
-        this.ladderResult = LadderResult.of(this.playerGroup.getPlayers(), finalPrizes);
-        return this.ladderResult;
+        return LadderResult.of(this.playerGroup.getPlayers(), finalPrizes);
     }
 
     public List<Player> getPlayers() {
