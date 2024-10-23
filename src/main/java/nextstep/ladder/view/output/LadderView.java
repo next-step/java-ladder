@@ -1,8 +1,8 @@
 package nextstep.ladder.view.output;
 
 import nextstep.ladder.Visible;
-import nextstep.ladder.domain.GameOrganizer;
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.MatchResult;
 import nextstep.ladder.domain.Player;
 
 import java.util.Collection;
@@ -22,7 +22,7 @@ public class LadderView implements Visible {
     }
 
     @Override
-    public void view(GameOrganizer gameOrganizer, Ladder ladder) {
+    public void view(MatchResult matchResult, Ladder ladder) {
         System.out.println(ladder.ladderLines().stream()
                 .map(this::getLines)
                 .collect(Collectors.joining(System.lineSeparator())));

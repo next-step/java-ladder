@@ -1,8 +1,8 @@
 package nextstep.ladder.view.output;
 
 import nextstep.ladder.Visible;
-import nextstep.ladder.domain.GameOrganizer;
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.MatchResult;
 import nextstep.ladder.view.output.list.LadderResulView;
 import nextstep.ladder.view.output.list.PlayerNamesView;
 
@@ -23,7 +23,7 @@ public class OutputView implements Visible {
     }
 
     @Override
-    public void view(GameOrganizer gameOrganizer, Ladder ladder) {
-        composite.forEach(visible -> visible.view(gameOrganizer, ladder));
+    public void view(MatchResult matchResult, Ladder ladder) {
+        composite.forEach(visible -> visible.view(matchResult, ladder));
     }
 }

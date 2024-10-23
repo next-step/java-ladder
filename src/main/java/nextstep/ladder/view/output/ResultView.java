@@ -1,7 +1,6 @@
 package nextstep.ladder.view.output;
 
 import nextstep.ladder.Visible;
-import nextstep.ladder.domain.GameOrganizer;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.MatchResult;
 
@@ -13,15 +12,14 @@ public class ResultView implements Visible {
     private static final Scanner SCANNER = new Scanner(System.in);
 
     @Override
-    public void view(GameOrganizer gameOrganizer, Ladder ladder) {
+    public void view(MatchResult matchResult, Ladder ladder) {
         String player = "";
-        MatchResult matchResult = gameOrganizer.play(ladder);
         StringBuilder stringBuilder = new StringBuilder();
         while (!"all".equalsIgnoreCase(player)) {
             System.out.println("\n결과를 보고 싶은 사람은?");
             player = SCANNER.nextLine();
 
-            stringBuilder.append("\n").append("실행결과").append(getResult(player, matchResult));
+            stringBuilder.append("\n").append("실행결과\n").append(getResult(player, matchResult));
             System.out.println(stringBuilder);
             stringBuilder.setLength(0);
         }

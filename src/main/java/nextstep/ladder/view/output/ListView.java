@@ -1,20 +1,19 @@
 package nextstep.ladder.view.output;
 
 import nextstep.ladder.Visible;
-import nextstep.ladder.domain.GameOrganizer;
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.MatchResult;
 import nextstep.ladder.domain.Player;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public abstract class ListView implements Visible {
 
     @Override
-    public final void view(GameOrganizer gameOrganizer, Ladder ladder) {
-        System.out.println(viewList(getList(gameOrganizer)));
+    public final void view(MatchResult matchResult, Ladder ladder) {
+        System.out.println(viewList(getList(matchResult)));
     }
 
     private String viewList(Collection<String> strings) {
@@ -29,5 +28,5 @@ public abstract class ListView implements Visible {
                 .collect(Collectors.joining());
     }
 
-    protected abstract List<String> getList(GameOrganizer gameOrganizer);
+    protected abstract Collection<String> getList(MatchResult matchResult);
 }

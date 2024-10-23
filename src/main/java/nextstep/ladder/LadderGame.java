@@ -1,9 +1,10 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.GameOrganizer;
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderResultGroup;
 import nextstep.ladder.domain.MatchResult;
-import nextstep.ladder.dto.ViewDto;
+import nextstep.ladder.domain.PlayerGroup;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.output.OutputView;
 
@@ -11,11 +12,16 @@ public class LadderGame {
 
     public static void main(String[] args) {
         InputView inputView = new InputView();
-        GameOrganizer gameOrganizer =  GameOrganizer.of(inputView.players(), inputView.ladderResults());
+
+        PlayerGroup playerGroup = new PlayerGroup(inputView.players());
+        LadderResultGroup ladderResultGroup = LadderResultGroup.of(inputView.ladderResults(), playerGroup.count());
+
         int height = inputView.ladderHeight();
-        Ladder ladder = Ladder.of(height, gameOrganizer.count());
+        Ladder ladder = Ladder.of(height, playerGroup.count());
+
+        MatchResult matchResult = GameOrganizer.getInstance().play(playerGroup, ladderResultGroup, ladder);
 
         Visible outputView = new OutputView();
-        outputView.view(gameOrganizer, ladder);
+        outputView.view(matchResult, ladder);
     }
 }
