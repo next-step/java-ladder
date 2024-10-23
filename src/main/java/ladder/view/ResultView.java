@@ -44,8 +44,8 @@ public class ResultView {
         });
         System.out.println();
     }
-    private static String makeLadder(boolean line) {
-        if(line) {
+    private static String makeLadder(boolean hasLine) {
+        if(hasLine) {
             return EXIST_LADDER;
         }
         return NO_LADDER;
