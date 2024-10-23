@@ -4,8 +4,6 @@ import ladder.domain.Ladder;
 import ladder.domain.Line;
 import ladder.domain.Person;
 import ladder.domain.Persons;
-import org.w3c.dom.ls.LSOutput;
-
 import java.util.List;
 import java.util.stream.Collectors;
 

@@ -6,10 +6,14 @@ import java.util.*;
 import java.util.stream.IntStream;
 
 public class Line {
+
+    private final static String ZERO_ERROR_MESSAGE = "라인은 비어있을 수 없습니다.";
+    private final static String CONSECUTIVE_ERROR_MESSAGE = "연속으로 true 값이 올 수 없습니다.";
+
     private final List<Boolean> points = new ArrayList<>();
 
     public Line(Boolean... booleans) {
-        this.points.addAll(Arrays.asList(booleans));
+        this.points.addAll(parse(booleans));
     }
 
     public Line(int countOfPerson, Strategy strategy) {
@@ -25,6 +29,27 @@ public class Line {
             return;
         }
         this.points.add(false);
+    }
+
+    private List<Boolean> parse(Boolean... booleans) {
+        isValidate(booleans);
+
+        // List로 반환
+        return Arrays.asList(booleans);
+    }
+
+    private static void isValidate(Boolean... booleans) {
+        if (booleans == null || booleans.length == 0) {
+            throw new IllegalArgumentException("라인의 점은 비어 있을 수 없습니다.");
+        }
+
+        // Stream을 사용하여 연속된 true 값 검증
+        IntStream.range(1, booleans.length)
+                .filter(i -> booleans[i] && booleans[i - 1])
+                .findFirst()
+                .ifPresent(i -> {
+                    throw new IllegalArgumentException("연속으로 true 값이 올 수 없습니다.");
+                });
     }
 
     public boolean isValidate(int num) {
