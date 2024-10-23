@@ -18,7 +18,8 @@ public class RandomLineGenerator implements LineGenerator {
         positions.add(current);
 
         while (current.isInRange(playerCount)) {
-            positions.add(current.next());
+            current = current.next();
+            positions.add(current);
         }
         positions.add(current.last());
         return new Line(positions);
