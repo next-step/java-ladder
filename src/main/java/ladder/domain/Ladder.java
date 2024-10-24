@@ -21,7 +21,7 @@ public class Ladder {
         validateNumberOfPlayers(numberOfPlayers);
 
         return IntStream.range(0, heightOfLadder)
-                .mapToObj(i -> new Line(numberOfPlayers))
+                .mapToObj(i -> new Line(numberOfPlayers, new RandomLineGenerator()))
                 .collect(Collectors.toList());
     }
 
