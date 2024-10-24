@@ -27,9 +27,10 @@ public class LadderGameApplication {
         while (true) {
             String input = InputView.inputPlayerForResult();
             Player player = new Player(input);
-            Map<Player, Prize> result = ladderResult.getResultByInput(player);
+            boolean isAll = input.equals("all");
+            Map<Player, Prize> result = ladderResult.getResultByInput(player, isAll);
             ResultView.printResult(result);
-            if (player.isAllPlayers()) {
+            if (isAll) {
                 break;
             }
         }
