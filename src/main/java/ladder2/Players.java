@@ -22,4 +22,12 @@ public class Players {
     public int size() {
         return players.size();
     }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public String get(int index) {
+        return players.get(index).getName();
+    }
 }
