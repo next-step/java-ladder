@@ -24,7 +24,7 @@ public class Ladder {
         return lines.size();
     }
 
-    public List<Line> getLines() {
+    public List<Line> getLadders() {
         return Collections.unmodifiableList(lines);
     }
 
