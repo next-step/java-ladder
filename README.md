@@ -29,3 +29,4 @@
 * 결과 보고 싶은 사람 입력 로직 [X]
 * 실행 결과 출력 로직 [X]
 * Player class 에서 ui 요구사항인 "all" 분리 [X]
+* MoveType 함수에 대한 unit test 추가 [X]
