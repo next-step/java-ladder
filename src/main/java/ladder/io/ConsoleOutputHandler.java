@@ -34,13 +34,8 @@ public class ConsoleOutputHandler implements OutputHandler {
     }
 
     private void printResultTitle() {
-        System.out.println("실행 결과\n\n");
-    }
-
-    private void printLadder(Ladder ladder) {
-        for (Line line : ladder.getLines()) {
-            printLine(line);
-        }
+        System.out.println("실행 결과");
+        System.out.println();
     }
 
     private void printPlayers(Players players) {
@@ -50,8 +45,14 @@ public class ConsoleOutputHandler implements OutputHandler {
         System.out.println();
     }
 
+    private void printLadder(Ladder ladder) {
+        for (Line line : ladder.getLines()) {
+            printLine(line);
+        }
+    }
+
     private void printLine(Line line) {
-        System.out.println(SPACE.repeat(4));
+        System.out.print(SPACE.repeat(4));
         for (Boolean point : line.getPoints()) {
             System.out.print(BAR);
             drawBridge(point);
