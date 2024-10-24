@@ -38,4 +38,8 @@ public class Position {
         }
         return index;
     }
+
+    public boolean lineOrBlank() {
+        return point.move() == Direction.Right;
+    }
 }
