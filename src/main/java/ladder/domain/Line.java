@@ -23,6 +23,16 @@ public class Line {
         return points.get(index);
     }
 
+    public int move(int index) {
+        if (isAbleToMoveLeft(index)) {
+            return index - 1;
+        }
+        if (isAbleToMoveRight(index)) {
+            return index + 1;
+        }
+        return index;
+    }
+
     private void addHorizontal(int index, int max, CreateStrategy createStrategy) {
         if (isAvailableCreate(index, max)) {
             points.add(isCreate(createStrategy));
@@ -47,16 +57,6 @@ public class Line {
 
     private boolean isPreviousCreated(int index) {
         return points.get(index - 1);
-    }
-
-    public int move(int index) {
-        if (isAbleToMoveLeft(index)) {
-            return index - 1;
-        }
-        if (isAbleToMoveRight(index)) {
-            return index + 1;
-        }
-        return index;
     }
 
     private boolean isAbleToMoveLeft(int index) {
