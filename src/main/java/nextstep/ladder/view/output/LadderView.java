@@ -1,9 +1,9 @@
 package nextstep.ladder.view.output;
 
 import nextstep.ladder.Visible;
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.MatchResult;
-import nextstep.ladder.domain.Player;
+import nextstep.ladder.domain.ladder.Ladder;
+import nextstep.ladder.domain.result.MatchResult;
+import nextstep.ladder.domain.player.Player;
 
 import java.util.Collection;
 import java.util.stream.Collectors;

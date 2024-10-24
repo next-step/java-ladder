@@ -1,4 +1,6 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.ladder;
+
+import nextstep.ladder.domain.player.Player;
 
 import java.util.ArrayDeque;
 import java.util.Collection;

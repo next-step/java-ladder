@@ -1,6 +1,6 @@
 package nextstep.ladder.dto;
 
-import nextstep.ladder.domain.Player;
+import nextstep.ladder.domain.player.Player;
 
 import java.util.Objects;
 

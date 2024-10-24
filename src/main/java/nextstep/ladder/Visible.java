@@ -1,7 +1,7 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.MatchResult;
+import nextstep.ladder.domain.ladder.Ladder;
+import nextstep.ladder.domain.result.MatchResult;
 
 public interface Visible {
 

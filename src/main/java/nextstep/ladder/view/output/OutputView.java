@@ -1,8 +1,8 @@
 package nextstep.ladder.view.output;
 
 import nextstep.ladder.Visible;
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.MatchResult;
+import nextstep.ladder.domain.ladder.Ladder;
+import nextstep.ladder.domain.result.MatchResult;
 import nextstep.ladder.view.output.list.LadderResulView;
 import nextstep.ladder.view.output.list.PlayerNamesView;
 

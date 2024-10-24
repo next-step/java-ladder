@@ -1,10 +1,9 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.GameOrganizer;
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.LadderResultGroup;
-import nextstep.ladder.domain.MatchResult;
-import nextstep.ladder.domain.PlayerGroup;
+import nextstep.ladder.domain.ladder.Ladder;
+import nextstep.ladder.domain.result.LadderResultGroup;
+import nextstep.ladder.domain.result.MatchResult;
+import nextstep.ladder.domain.player.PlayerGroup;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.output.OutputView;
 

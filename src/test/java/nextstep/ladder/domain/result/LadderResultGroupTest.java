@@ -1,4 +1,4 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.result;
 
 import org.junit.jupiter.api.Test;
 

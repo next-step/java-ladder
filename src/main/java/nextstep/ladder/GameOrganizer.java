@@ -1,4 +1,10 @@
-package nextstep.ladder.domain;
+package nextstep.ladder;
+
+import nextstep.ladder.domain.ladder.Ladder;
+import nextstep.ladder.domain.result.LadderResultGroup;
+import nextstep.ladder.domain.result.MatchResult;
+import nextstep.ladder.domain.player.Player;
+import nextstep.ladder.domain.player.PlayerGroup;
 
 import java.util.List;
 

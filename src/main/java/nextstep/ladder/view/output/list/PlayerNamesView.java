@@ -1,6 +1,6 @@
 package nextstep.ladder.view.output.list;
 
-import nextstep.ladder.domain.MatchResult;
+import nextstep.ladder.domain.result.MatchResult;
 import nextstep.ladder.dto.PlayerResult;
 import nextstep.ladder.view.output.ListView;
 

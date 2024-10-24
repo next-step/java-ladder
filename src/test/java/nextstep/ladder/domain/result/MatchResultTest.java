@@ -1,13 +1,12 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.result;
 
+import nextstep.ladder.domain.player.Player;
 import nextstep.ladder.dto.PlayerResult;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
