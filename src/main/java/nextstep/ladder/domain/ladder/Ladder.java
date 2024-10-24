@@ -1,4 +1,6 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.ladder;
+
+import nextstep.ladder.domain.player.Player;
 
 import java.util.Collection;
 import java.util.List;
@@ -21,7 +23,11 @@ public class Ladder {
 
     public Collection<Collection<Boolean>> ladderLines() {
         return ladderLines.stream()
-                .map(LadderLine::ladderLine)
+                .map(LadderLine::copy)
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    public void play(List<Player> players) {
+        ladderLines.forEach(ladderLine -> ladderLine.play(players));
     }
 }

@@ -1,8 +1,10 @@
 package nextstep.ladder.view.output;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.PlayerGroup;
 import nextstep.ladder.Visible;
+import nextstep.ladder.domain.ladder.Ladder;
+import nextstep.ladder.domain.result.MatchResult;
+import nextstep.ladder.view.output.list.LadderResulView;
+import nextstep.ladder.view.output.list.PlayerNamesView;
 
 import java.util.List;
 
@@ -13,13 +15,15 @@ public class OutputView implements Visible {
     public OutputView() {
         composite = List.of(
                 new OpeningView(),
-                new PlayerGroupView(),
-                new LadderView()
+                new PlayerNamesView(),
+                new LadderView(),
+                new LadderResulView(),
+                new ResultView()
         );
     }
 
     @Override
-    public void view(PlayerGroup playerGroup, Ladder ladder) {
-        composite.forEach(visible -> visible.view(playerGroup, ladder));
+    public void view(MatchResult matchResult, Ladder ladder) {
+        composite.forEach(visible -> visible.view(matchResult, ladder));
     }
 }

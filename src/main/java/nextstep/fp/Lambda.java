@@ -1,7 +1,6 @@
 package nextstep.fp;
 
 import java.util.List;
-import java.util.function.Function;
 import java.util.function.IntPredicate;
 
 public class Lambda {
@@ -28,7 +27,9 @@ public class Lambda {
     }
 
     public static int sum(List<Integer> numbers, IntPredicate conditional) {
-        return numbers.stream().filter(conditional::test).reduce(0, Integer::sum);
+        return numbers.stream()
+                .filter(conditional::test)
+                .reduce(0, Integer::sum);
     }
 
     public static int sumAllEven(List<Integer> numbers) {
