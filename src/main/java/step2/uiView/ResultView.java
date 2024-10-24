@@ -22,7 +22,7 @@ public class ResultView {
 
         // 사다리 출력
         ladder.getLine().forEach(line -> {
-            line.getPoints().forEach(point -> System.out.print(point ? ResultMessage.CREATE_LADDER.message() : ResultMessage.NO_LADDER.message()));
+            line.getPoints().forEach(point -> System.out.print(point.isLeft() ? ResultMessage.CREATE_LADDER.message() : ResultMessage.NO_LADDER.message()));
             System.out.println();
         });
 
