@@ -7,3 +7,28 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+
+##  step2 기능 목록
+
+#### - 사다리 라인으로 구성 
+
+* 라인(Line) 기능  
+ - [ ] 라인의 첫 시작 점은 전달한 값을 갖는다(true전달 시 true로 생성)
+ - [ ] 라인의 마지막 점은 false
+ - [ ] 한 줄의 중간 점들은 앞 점의 반대값
+   - 앞 점 true -> false 
+   - 앞 점 false > true 
+ - [ ] 점의 모양 
+   - true : |-----
+   - false : |   
+ 
+ - [ ] 다리 높이 만큼 줄 생성
+ - [ ] 참여 자 만큼 한줄의 점의 갯수 생성
+
+* inputView 
+ - [ ] 이름 입력 하여 (Players 객체 생성)
+ - [ ] 다리 높이 입력
+
+* OutputView
+
