@@ -24,14 +24,10 @@ public class LadderGame {
         List<String> namesOfPeople = inputHandler.getNamesOfPlayers();
         Players players = Players.of(namesOfPeople);
 
-        System.out.println();
-
         // 사다리 높이 입력
         outputHandler.showCommentForHeightOfLadder();
         int heightOfLadder = inputHandler.getHeightOfLadder();
         Ladder ladder = new Ladder(heightOfLadder, namesOfPeople.size());
-
-        System.out.println();
 
         // 실행 결과 출력
         outputHandler.showLadderGameResult(players, ladder);

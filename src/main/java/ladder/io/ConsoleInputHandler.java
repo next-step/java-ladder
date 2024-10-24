@@ -12,13 +12,19 @@ public class ConsoleInputHandler implements InputHandler {
     @Override
     public List<String> getNamesOfPlayers() {
         String[] namesOfPeople = SCANNER.nextLine().split(DEFAULT_DELIMITER);
+        blankLine();
         return List.of(namesOfPeople);
     }
 
     @Override
     public int getHeightOfLadder() {
         String heightOfLadder = SCANNER.nextLine();
+        blankLine();
         return toInt(heightOfLadder);
+    }
+
+    private void blankLine() {
+        System.out.println();
     }
 
     private int toInt(String heightOfLadder) {
