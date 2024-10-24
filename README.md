@@ -76,6 +76,7 @@
 - [X] assertAll 로 테스트 묶기
 - [X] Lines 일급 컬렉션 추가
 - [X] 서비스 로직 삭제 (LadderGame 로직 Lines로 이동)
+- [X] 불필요한 공백 제거
 
 ## Step3. 리팩토링 
 
@@ -84,3 +85,7 @@
 - [X] 의미 파악하기 쉽게 로직 메소드 분리 (getLeftPoint() 등)
 - [X] Rewords 일급 컬렉션 추가
 - [X] Line 내부 이상한 로직 수정 (points 가 있으면서도 getPoint를 사용하는 행위)
+
+## Step4. 리팩토링
+- [X] Lines -> Ladder 로 이름 변경
+- [X] 이동을 책임지는 객체 분리 (Points)
