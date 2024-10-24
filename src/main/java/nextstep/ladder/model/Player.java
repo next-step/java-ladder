@@ -17,6 +17,10 @@ public class Player {
         return name;
     }
 
+    public boolean isAllPlayers() {
+        return this.name.equals("all");
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
