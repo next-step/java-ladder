@@ -29,8 +29,8 @@ public class LadderResultGroup {
                         .collect(Collectors.toList()));
     }
 
-    public List<String> ladderResults() {
-        return Collections.unmodifiableList(ladderResults);
+    public MatchResult matchResult(List<Player> players) {
+        return MatchResult.of(players, Collections.unmodifiableList(ladderResults));
     }
 
     @Override

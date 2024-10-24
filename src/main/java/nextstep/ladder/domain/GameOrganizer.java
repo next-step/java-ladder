@@ -10,7 +10,7 @@ public class GameOrganizer {
 
     public MatchResult play(PlayerGroup playerGroup, LadderResultGroup ladderResultGroup, Ladder ladder) {
         List<Player> result = playerGroup.play(ladder);
-        return MatchResult.of(result, ladderResultGroup.ladderResults());
+        return ladderResultGroup.matchResult(result);
     }
 
     private static class GameOrganizerHolder {
