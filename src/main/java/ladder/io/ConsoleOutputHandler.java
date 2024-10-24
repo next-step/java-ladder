@@ -6,13 +6,13 @@ import ladder.domain.Line;
 import ladder.domain.Player;
 import ladder.domain.Players;
 
-import java.util.List;
-
 import static ladder.domain.PlayerName.NAME_WIDTH;
 
 public class ConsoleOutputHandler implements OutputHandler {
 
-    private StringBuilder sb;
+    public static final String BAR = "|";
+    public static final String DASH = "-";
+    public static final String SPACE = " ";
 
     @Override
     public void showCommentForNamesOfPlayers() {
@@ -26,40 +26,44 @@ public class ConsoleOutputHandler implements OutputHandler {
 
     @Override
     public void showLadderGameResult(Players players, Ladder ladder) {
-        sb = new StringBuilder().append("실행 결과").append(System.lineSeparator()).append(System.lineSeparator());
+        printResultTitle();
 
         printPlayers(players);
 
         printLadder(ladder);
+    }
 
-        System.out.println(sb);
+    private void printResultTitle() {
+        System.out.println("실행 결과\n\n");
     }
 
     private void printLadder(Ladder ladder) {
-        List<Line> lines = ladder.getLines();
-        for (Line line : lines) {
+        for (Line line : ladder.getLines()) {
             printLine(line);
         }
     }
 
     private void printPlayers(Players players) {
         for (Player player : players.getPlayers()) {
-            sb.append(String.format("%-7s", player.getPlayerName()));
+            System.out.printf("%-7s", player.getPlayerName());
         }
-        sb.append(System.lineSeparator());
+        System.out.println();
     }
 
     private void printLine(Line line) {
-        List<Boolean> points = line.getPoints();
-        sb.append("    ");
-        for (Boolean point : points) {
-            sb.append("|");
-            if (point) {
-                sb.append("-".repeat(NAME_WIDTH));
-            } else {
-                sb.append(" ".repeat(NAME_WIDTH));
-            }
+        System.out.println(SPACE.repeat(4));
+        for (Boolean point : line.getPoints()) {
+            System.out.print(BAR);
+            drawBridge(point);
         }
-        sb.append("|").append(System.lineSeparator());
+        System.out.println(BAR);
+    }
+
+    private void drawBridge(Boolean point) {
+        if (point) {
+            System.out.print(DASH.repeat(NAME_WIDTH));
+            return;
+        }
+        System.out.print(SPACE.repeat(NAME_WIDTH));
     }
 }
