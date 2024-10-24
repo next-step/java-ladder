@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 public class Players {
     private List<Player> players;
 
-    public Players(String names) {
+    public Players(String[] names) {
         this(initializePlayers(names));
     }
 
@@ -15,9 +15,8 @@ public class Players {
         this.players = players;
     }
 
-    private static List<Player> initializePlayers(String inputNames) {
-        String[] names = inputNames.split(",");
-        return Arrays.stream(names)
+    private static List<Player> initializePlayers(String[] inputNames) {
+        return Arrays.stream(inputNames)
                 .map(name -> new Player(name))
                 .collect(Collectors.toList());
     }
@@ -31,7 +30,7 @@ public class Players {
     @Override
     public boolean equals(Object obj) {
         return getPlayerNames().toString()
-                .equals(((Players)obj).getPlayerNames().toString());
+                .equals(((Players) obj).getPlayerNames().toString());
     }
 
     public int size() {

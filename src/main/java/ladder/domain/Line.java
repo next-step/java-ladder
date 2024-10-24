@@ -5,12 +5,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Line {
-    List<Boolean> lineValues;
-    BridgeDecision bridgeDecision;
+    private List<Boolean> dots;
 
     public Line(int userCount, BridgeDecision bridgeDecision) {
-        this.bridgeDecision = bridgeDecision;
-        this.lineValues = initializeDots(userCount, bridgeDecision);
+        this.dots = initializeDots(userCount, bridgeDecision);
     }
 
     private static List<Boolean> initializeDots(int count, BridgeDecision bridgeDecision) {
@@ -34,8 +32,13 @@ public class Line {
     }
 
     public String getShapeOfLine() {
-        return String.join("", lineValues.stream()
+        return String.join("",
+                dots.stream()
                         .map(value -> getShapeOfValue(value))
                         .collect(Collectors.toList()));
+    }
+
+    public List<Boolean> getDots() {
+        return dots;
     }
 }

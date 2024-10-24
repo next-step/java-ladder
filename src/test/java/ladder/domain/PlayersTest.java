@@ -10,12 +10,12 @@ import static org.assertj.core.api.Assertions.*;
 public class PlayersTest {
     @Test
     void createPlayers1() {
-        assertThat(new Players("a,b,c,d").size()).isEqualTo(4);
+        assertThat(new Players(new String[]{"a","b","c","d"}).size()).isEqualTo(4);
     }
 
     @Test
     void createPlayers2() {
-        assertThat(new Players("a,b,c,d")).
+        assertThat(new Players(new String[]{"a","b","c","d"})).
                 isEqualTo(new Players(Arrays.asList(
                 new Player("a"),
                 new Player("b"),
